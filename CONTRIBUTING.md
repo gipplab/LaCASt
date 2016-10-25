@@ -5,4 +5,13 @@
 2. Only Abdou is allowed to handout the JAR. If you want to be a contributor contact [Howard Cohl](https://github.com/HowardCohl) and Abdou to ask for the permission.
 
 ## How to contribute
-Once you have the JAR take a look to the [open Issues](https://github.com/TU-Berlin/latex-grammar/issues) to see what needs to be done. (more detailled advices will follow)
+Once you have the JAR take a look to the [open Issues](https://github.com/TU-Berlin/latex-grammar/issues) to see what needs to be done. Take also a look to the [LaTeX2CAS](https://github.com/TU-Berlin/latex-grammar/blob/master/LaTeX2CAS.pdf) pdf to see an example of a translation from the scratch (generic LaTeX) to a computer algebra system command. (more detailled advices will follow)
+
+## Current contributers and their roles
+[Howard Cohl](https://github.com/HowardCohl) & [Moritz Shubotz](https://github.com/physikerwelt): Supervisor
+
+Abdou Youssef: Advisor
+
+[Andre Greiner-Petter](https://github.com/AndreG-P): Translate semantic LaTeX to CAS
+
+[Claude](https://github.com/ClaudeZou) & [Jagan](https://github.com/notjagan): Translate generic LaTeX to semantic LaTeX
