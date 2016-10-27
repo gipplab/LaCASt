@@ -12,6 +12,6 @@ Once you have the JAR take a look to the [open Issues](https://github.com/TU-Ber
 
 Abdou Youssef: Advisor
 
-[Andre Greiner-Petter](https://github.com/AndreG-P): Translate semantic LaTeX to CAS
+[André Greiner-Petter](https://github.com/AndreG-P): Translate semantic LaTeX to CAS
 
 [Claude](https://github.com/ClaudeZou) & [Jagan](https://github.com/notjagan): Translate generic LaTeX to semantic LaTeX
