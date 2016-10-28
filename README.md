@@ -11,7 +11,7 @@ Once you have the JAR take a look to the [open Issues](https://github.com/TU-Ber
 ## Current contributers and their roles
 [Howard Cohl](https://github.com/HowardCohl) & [Moritz Shubotz](https://github.com/physikerwelt): Supervisor
 
-Abdou Youssef: Advisor
+[Abdou Youssef](https://github.com/abdouyoussef): Advisor
 
 [André Greiner-Petter](https://github.com/AndreG-P): Translate semantic LaTeX to CAS
 
