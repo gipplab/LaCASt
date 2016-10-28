@@ -32,8 +32,8 @@ public class MathMode {
     }
 
     private static boolean doesExit(String latex) {
-        for (int i = 0; i < textMode.length; i++) {
-            if (latex.startsWith(textMode[i])) {
+        for (String str : textMode) {
+            if (latex.startsWith(str)) {
                 return true;
             }
         }
@@ -44,16 +44,17 @@ public class MathMode {
         String min;
         if (enter) {
             min = "\\[";
-            HashMap<String, String> list = mathMode;
-            for (String key : list.keySet()) {
-                 
+            for (String key : mathMode.keySet()) {
+                int i = latex.indexOf(key);
+                if (i != -1 && (i <= latex.indexOf(min) || latex.contains(min))) {
+                    min = key;
+                }
             }
         } else {
             min = "\\hbox";
-            String[] list = textMode;
-            for (String key : list) {
+            for (String key : textMode) {
                 int i = latex.indexOf(key);
-                if (i != -1 && (i <= latex.indexOf(min) || latex.indexOf(min) == -1)) {
+                if (i != -1 && (i <= latex.indexOf(min) || latex.contains(min))) {
                     min = key;
                 }
             }
@@ -127,8 +128,8 @@ public class MathMode {
         ArrayList<String> sections = new ArrayList<String>();
         ArrayList<int[]> ranges = new ArrayList<int[]>();
         parseNonMath(latex, 0, ranges);
-        for (int i = 0; i < ranges.size(); i++) {
-            sections.add(latex.substring(ranges.get(i)[0], ranges.get(i)[1]));
+        for (int[] nums : ranges) {
+            sections.add(latex.substring(nums[0],nums[1]));
         }
         return sections;
     }
