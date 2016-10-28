@@ -1,4 +1,4 @@
-package gov.nist.drmf;
+package gov.nist.drmf.tosemantic;
 
 import java.util.ArrayList;
 import java.util.HashMap;
