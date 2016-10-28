@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\lstset{
+    language=[LaTeX]Tex,
+    showspaces=true,
+    keywordstyle=[1]\color{Red},
+    keywordstyle=[2]\color{Orange},
+    keywordstyle=[3]\color{Sepia},
+    keywordstyle=[4]\color{PineGreen},
+    keywordstyle=[5]\color{Blue},
+    keywords=[1]{P,JacobiP,cos,cos@,Cos},
+    keywords=[2]{alpha,Alpha},
+    keywords=[3]{beta,Beta},
+    keywords=[4]{n},
+    keywords=[5]{a,Theta},
+    xleftmargin=.2\textwidth, 
+    xrightmargin=.2\textwidth
+}
+
+\begin{document}
+\begin{center}
+    \Large
+    \LaTeX-Equation 2 CAS\\[12pt]
+    \large Examples
+\end{center}
+
+\section{The Jacobi Polynomial}
+Let us take a look to the Jacobi polynomial (\href{http://dlmf.nist.gov/18.3\#T1.t1.r2}{\textcolor{blue}{\underline{DLMF-Link}}}). We want to translate the general expression (section \ref{sec:generic}) to a CAS (section \ref{sec:cas}) representation. For instance we have the following term:
+\begin{equation}\label{eq:jacP}
+    P_n^{(\alpha, \beta)}(\cos(a \Theta))
+\end{equation}
+
+\subsection{Generic \LaTeX}\label{sec:generic}
+\begin{lstlisting}[mathescape]
+P_n^{(\alpha,\beta)}(\cos(a\Theta))
+\end{lstlisting}
+
+\subsection{Semantic \LaTeX}\label{sec:semantic}
+\begin{lstlisting}[mathescape]
+\JacobiP{\alpha}{\beta}{n}@{\cos@{a\Theta}}
+\end{lstlisting}
+
+\subsection{Computer Algebra Systems (CAS)}\label{sec:cas}
+From now on, be aware of the spaces between the symbols. For instance, a space between $a$ and $\Theta$ is needed to show $a$ and $\Theta$ are different variables. Otherwise Maple (for example) would think $aTheta$ is one new variable.
+\subsubsection{Maple}\label{subsec:maple}
+\begin{lstlisting}[mathescape]
+JacobiP(n,alpha,beta,cos(a Theta))
+\end{lstlisting}
+
+\subsubsection{Mathematica}\label{subsec:mathematica}
+\begin{lstlisting}[mathescape]
+JacobiP[n,\[Alpha],\[Beta],Cos[a \[Theta]]]
+\end{lstlisting}
+\end{document}
