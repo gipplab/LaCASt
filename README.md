@@ -3,6 +3,8 @@
 # Rules
 1. We are working with [Abdou's](https://github.com/abdouyoussef) JAR, which is not public yet. It is strictly **_prohibited to upload or share_**  this JAR with other people (even with other contributers). 
 2. Only [Abdou](https://github.com/abdouyoussef) is allowed to handout the JAR. If you want to be a contributor contact [Howard Cohl](https://github.com/HowardCohl) and [Abdou Youssef](https://github.com/abdouyoussef) to ask for the permission.
+3. Organize your issues in the [projects tab](https://github.com/TU-Berlin/latex-grammar/projects).
+4. If you working on an open task, drag and drop this task to _"accepted tasks"_.
 
 ## Structure
 1. [How to contribute?](#contribute)
