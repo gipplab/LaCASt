@@ -20,33 +20,86 @@ public class MathMode {
         put("$$", "$$");
     }};
 
-    private static boolean doesEnter(String latex) {
+    private static String[] textMode = new String[]{"\\hbox{", "\\mbox{", "\\text{"};
 
+    private static boolean doesEnter(String latex) {
+        for (String key : mathMode.keySet()) {
+            if (latex.startsWith(key)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static boolean doesExit(String latex) {
-
+        for (int i = 0; i < textMode.length; i++) {
+            if (latex.startsWith(textMode[i])) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static String firstDelim(String latex, boolean enter) {
-
+        String min;
+        if (enter) {
+            min = "\\[";
+            HashMap<String, String> list = mathMode;
+            for (String key : list.keySet()) {
+                 
+            }
+        } else {
+            min = "\\hbox";
+            String[] list = textMode;
+            for (String key : list) {
+                int i = latex.indexOf(key);
+                if (i != -1 && (i <= latex.indexOf(min) || latex.indexOf(min) == -1)) {
+                    min = key;
+                }
+            }
+        }
+        return min;
     }
-
-    private static boolean startsWith(String string, String substring) {
-        return string.lastIndexOf(substring, 0) == 0;
-    }
+    
 
     private static int skipEscaped(String latex) {
-
+        if (latex.startsWith("\\$")) {
+            return 2;
+        } else if (latex.startsWith("\\\\[")) {
+            return 3;
+        } else if (latex.startsWith("\\\\(")) {
+            return 3;
+        }
+        return 0;
     }
 
     private static int parseMath(String latex, int start, ArrayList<int[]> ranges) {
-
+        String delim = firstDelim(latex, true);
+        int i = delim.length();
+        int begin = start + i;
+        while (i < latex.length()) {
+            i += skipEscaped(latex.substring(i));
+            if (doesExit(latex.substring(i))) {
+                if (begin != start + i) {
+                    ranges.add(new int[]{begin, start + i});
+                }
+                i += parseNonMath(latex.substring(i),start + i, ranges);
+                begin = start + i;
+            }
+            if (latex.substring(i).startsWith(mathMode.get(delim))) {
+                if (begin != start + i) {
+                    ranges.add(new int[]{begin, start + i});
+                }
+                return i + mathMode.get(delim).length()-1;
+            }
+            i++;
+        }
+        return i;
     }
 
     private static int parseNonMath(String latex, int start, ArrayList<int[]> ranges) {
         String delim = firstDelim(latex, false);
-        if (!startsWith(latex, delim)) {
+        if (!latex.startsWith(delim)) {
             delim = "";
         }
         int level = 0;
@@ -78,5 +131,9 @@ public class MathMode {
             sections.add(latex.substring(ranges.get(i)[0], ranges.get(i)[1]));
         }
         return sections;
+    }
+
+    public static void main(String[] args) {
+
     }
 }
