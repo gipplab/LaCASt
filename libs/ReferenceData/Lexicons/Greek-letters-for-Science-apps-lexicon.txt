@@ -1,0 +1,434 @@
+
+Symbol: Delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - DELTA (taxonomy), a data format used in taxonomy for recording descriptions of living things
+	   - Delta (ligand), an activator of the Notch signaling pathway
+	   - Delta (wasp), Old World genus of potter wasps
+	   - Delta wave, on an ECG, the slurred upstroke of the QRS complex which is characteristic of Wolff-Parkinson-White syndrome
+	   - Delta wave, the frequency band of brain activity between 1 and 4 hertz
+	   - Epicentral distance) in earth sciences
+	   - distance to Earth, measured in astronomical units
+	   - heat in a chemical formula
+
+Symbol: Gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - Center of the Brillouin zone
+	   - Decay width of a particle in high-energy physics
+	   - the circulation in fluid dynamics
+	   - the confinement factor of an optical mode in a waveguide
+	   - the reflection coefficient of a transmission or telecommunication line.
+	   - the representation of a molecule's symmetry elements, in inorganic chemistry
+
+Symbol: Lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - the cosmological constant
+	   - the lambda baryon
+	   - the permeance of a material in electromagnetism
+
+Symbol: Omega
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - a solid angle
+	   - angular velocity / radian frequency (rev/min)
+	   - the Omega baryon
+	   - the Right Ascension of the Ascending Node (RAAN) or Longitude of the ascending node in astronomy and Orbital Mechanics
+	   - the SI unit measure of electrical resistance, the ohm
+	   - the density parameter in cosmology
+
+Symbol: Phi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - magnetic flux
+	   - phenyl functional group
+	   - the energy required by a photon to remove an electron from the surface of a metal
+	   - the work function in physics
+
+Symbol: Pi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - osmotic pressure
+
+Symbol: Psi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - water potential
+
+Symbol: Theta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - Debye temperature in solid state physics
+
+Symbol: Xi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - the xi baryon
+
+Symbol: alpha
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - Alpha (ethology) (also "alpha male" and "alpha female"), the highest ranking individuals in a community of social animals
+	   - Alpha carbon in organic chemistry
+	   - Alpha helix, a common motif in the secondary structure of proteins
+	   - Alpha taxonomy, the science of naming organisms
+	   - Alpha waves, recorded by electroencephalography
+	   - H-alpha, an emission line created by hydrogen atoms
+	   - Iron Ferrite and numerous phases within materials science
+	   - The common-base current gain of a transistor in electronics
+	   - The thermal diffusivity in thermodynamics
+	   - an alpha particle (He2+)
+	   - angular acceleration in physics
+	   - coefficient of thermal expansion in thermodynamics
+	   - right ascension in astronomy
+	   - the angle of attack in aerodynamics
+	   - the brightest star in a constellation according to the Bayer designation
+	   - the fine structure constant in physics
+	   - the isotope fractionation factor between two substances in geochemistry
+	   - the linear thermal expansion coefficient
+	   - the ratio of collector current to emitter current in a bipolar junction transistor (BJT) in electronics
+	   - the reciprocal of the sacrifice ratio
+
+Symbol: beta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - Beta (grape), a variety of North American grape
+	   - Beta (plant), a genus of flowering plants, mostly referred to as beets
+	   - Beta carbon, in organic chemistry - the second carbon atom in a chain when counting from a functional group
+	   - Beta cell, a type of cell in the pancreas, which produces insulin
+	   - Beta sheet, a secondary protein structure
+	   - Beta, a rank in a community of social animals
+	   - Beta-endorphin, a kind of neurotransmitter
+	   - In organic chemistry, beta represents the second carbon from a functional group
+	   - Phase Constant, in electromagnetics and electrical engineering, used in the theory of plane waves
+	   - The ratio of plasma pressure to magnetic pressure in plasma physics
+	   - The ratio of the velocity of an object to the speed of light as used in the Lorentz Factor
+	   - a beta particle
+	   - a symbol for compressibility, a measure of the relative volume change of a fluid or solid as a response to a pressure change
+	   - ecliptic latitude in astronomy
+	   - sound intensity
+	   - the beta brain wave in brain or cognitive sciences
+	   - the first-order effects of variations in Coriolis force with latitude in planetary dynamics
+	   - the ratio of collector current to base current in a bipolar junction transistor
+	   - the sideslip angle of an airplane
+	   - the thermodynamic beta
+	   - velocity divided by the speed of light in special relativity
+
+Symbol: chi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - electronegativity in the periodic table
+	   - the Rabi frequency
+	   - the spinor of a fundamental particle
+
+Symbol: delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - a partial charge. Delta- represents a negative partial charge, and delta+ represents a positive partial charge chemistry
+	   - declination in astronomy
+	   - stable isotope compositions
+	   - the Chemical shift of an atomic nucleus in NMR spectroscopy. For protons, this is relative to tetramethylsilane = 0.
+	   - the Turner function in computational material science
+	   - the receptor which enkephalins have the highest affinity for in pharmacology
+
+Symbol: epsilon
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - Epsilon (genus), a genus of wasps
+	   - Epsilon radiation
+	   - Epsilon wave, a cardiogram pattern
+	   - Vacuum permittivity, physical constant
+	   - electromotive force
+	   - emissivity
+	   - in chemistry, the molar extinction coefficient of a chromophore.
+	   - in electromagnetics, dielectric permittivity
+	   - strain in continuum mechanics
+	   - the Earth's axial tilt in astronomy
+
+Symbol: eta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - Hapticity
+	   - an index of refraction
+	   - efficiency (physics)
+	   - elasticities in economics
+	   - energy conversion efficiency
+	   - noise in communication system models
+	   - the Minkowski metric tensor in relativity
+	   - the absolute vertical vorticity (relative vertical vorticity + Coriolis effect) in fluid dynamics
+	   - the eta meson
+	   - the intrinsic wave impedance of a medium (e.g. the impedance of free space)
+	   - viscosity
+
+Symbol: gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - gamma rays and the photon
+	   - the Lorentz factor in special relativity
+	   - the circulation strength in fluid dynamics
+	   - the damping constant (kg/s)
+	   - the heat capacity ratio in thermodynamics
+	   - the partial safety factors applied to loads and materials in structural engineering
+	   - the specific weight of substances
+
+Symbol: iota
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - the orbital inclination in Celestial mechanics
+
+Symbol: kappa
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - a spring constant (usually a lowercase Latin k)
+	   - kappa Opioid receptor
+	   - the Von Karman constant, describing the velocity profile of turbulent flow
+	   - the heat capacity ratio in thermodynamics (usually gamma)
+	   - the receptor which dynorphins have the highest affinity for in pharmacology
+	   - thermal conductivity (usually a lowercase Latin k)
+	   - thermal diffusivity
+
+Symbol: lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - Flux linkage, an electromagnetic property of a two-terminal electric circuit element
+	   - a unit of measure of volume equal to one microliter or one cubic millimeter
+	   - ecliptic longitude in astronomy
+	   - linear density
+	   - longitude in geodesy
+	   - one wavelength of electromagnetic radiation
+	   - the decay constant in radioactivity
+	   - the failure rate in reliability engineering
+	   - the fundamental length of a fabrication process in VLSI design
+	   - the latent heat of fusion
+
+Symbol: mu
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - Electron mobility, relating the drift of electrons to the applied electric field across a material
+	   - Magnetic dipole moment, a measure of the strength of a system's net magnetic source
+	   - a muon
+	   - chemical potential in condensed matter physics
+	   - magnetic permeability in electromagnetics
+	   - reduced mass
+	   - the Standard gravitational parameter in celestial mechanics
+	   - the coefficient of friction in physics
+	   - the dynamic viscosity, the resistance of a fluid which is being deformed by stress, in physics
+	   - the ion mobility in plasma physics
+
+Symbol: nu
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - Poisson's ratio in material science
+	   - True anomaly in Celestial Mechanics
+	   - a neutrino
+	   - frequency in physics in hertz (Hz)
+	   - kinematic viscosity of liquids
+	   - stoichiometric coefficient in chemistry
+
+Symbol: omega
+
+  Feature Set:
+	Areas: science
+	Meanings:
+	   - The last carbon atom of a chain of carbon atoms is sometimes called the omega position, reflecting that omega is the last letter of the Greek alphabet. This nomenclature can be useful in describing unsaturated fatty acids.
+	   - angular velocity / radian frequency (rad/sec)
+	   - in economics, the total wealth of an agent in general equilibrium theory
+	   - the argument of periapsis in astronomy and Orbital Mechanics
+	   - the omega meson
+	   - vertical velocity in pressure-based coordinate systems (commonly used in atmospheric dynamics)
+
+Symbol: phi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - Krumbein phi scale for the size of a particle or sediment
+	   - Phi meson
+	   - a feature of a syntactic node giving that node characteristics such as gender, number and person in syntax
+	   - a scalar field
+	   - capacity reduction factor of materials in structural engineering
+	   - electric potential
+	   - radiant flux
+	   - the angle to the x axis in the xy-plane in spherical or cylindrical coordinates
+	   - the diameter of a vessel (engineering)
+
+Symbol: pi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - a pion (pi meson) in particle physics
+	   - a type of covalent bond in chemistry (pi bond)
+	   - angular frequency of a wave, in fluid dynamics
+	   - comoving distance, in cosmology
+	   - in electronics, a special type of small signal model is referred to as a hybrid-pi model
+	   - longitude of pericenter, in astronomy
+	   - nucleotide diversity in molecular genetics
+
+Symbol: psi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - load combination factor in structural engineering
+	   - yaw angle in vehicle dynamics
+
+Symbol: rho
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - Rho meson
+	   - density
+	   - population damping ratio, in ecology
+	   - resistivity
+
+Symbol: sigma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - Stefan-Boltzmann constant in blackbody radiation
+	   - a type of covalent bond in chemistry (sigma bond)
+	   - area density
+	   - electrical conductivity
+	   - nuclear cross section
+	   - stress in mechanics
+	   - surface charge density for microparticles
+	   - uncertainty
+	   - utilization in operations management
+
+Symbol: tau
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - Shear stress in continuum mechanics
+	   - a mean lifetime, of an exponential decay or spontaneous emission process
+	   - a measure of opacity, or how much sunlight cannot penetrate the atmosphere
+	   - an internal system step in transition systems
+	   - in proton NMR spectroscopy, tau was formerly used for chemical shift
+	   - one turn, that is, the constant ratio of a circle's circumference to its radius, with value 2pi
+	   - path tortuosity in reservoir engineering
+	   - proper time in relativity
+	   - the elementary tau lepton in particle physics
+	   - the tau in biochemistry, a protein associated to microtubules
+	   - the time constant of any device, such as an RC circuit
+	   - torque, the rotational force in mechanics
+
+Symbol: theta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - Bragg's angle of diffraction
+	   - soil water contents in soil science
+	   - the angle of a scattered photon during a Compton scattering interaction
+	   - the angle to the z axis in spherical coordinates (physics)
+	   - the mean time between failure in reliability engineering
+	   - the potential temperature in thermodynamics
+
+Symbol: upsilon
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - frequency in physics textbooks
+
+Symbol: xi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - coherence length
+	   - the damping ratio
+	   - the extent of a chemical reaction
+
+Symbol: zeta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: science
+	Meanings:
+	   - ZETA (fusion reactor), the Zero-Energy Toroidal (or Thermonuclear) Assembly reactor, a British test facility
+	   - Zeta (genus) a genus of potter wasps (Insecta Hymenoptera Vespidae Eumeninae)
+	   - Zeta Reticuli, a binary star system located in the Reticulum constellation
+	   - Zeta pinco ch or Z-pinch, a type of plasma confinement system
+	   - Zeta potential, the electrokinetic potential of a colloidal system
+	   - Zetaproteobacteria, a class of proteobacterianm
+	   - relative vertical vorticity in fluid dynamics
+	   - the coefficient of viscous friction in polymer dynamics
+	   - the damping ratio

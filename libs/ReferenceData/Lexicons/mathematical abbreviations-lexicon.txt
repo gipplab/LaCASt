@@ -1,0 +1,713 @@
+
+Symbol: A.M.
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: arithmetic mean
+	Role: abbreviation
+
+Symbol: A.P.
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: arithmetic progression
+	Role: abbreviation
+
+Symbol: AC
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Axiom of Choice
+	Role: abbreviation
+
+Symbol: AL
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Action limit
+	Role: abbreviation
+
+Symbol: Cor
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: corollary
+	Role: abbreviation
+
+Symbol: DNE
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: does not exist
+	Role: abbreviation
+
+Symbol: End
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: category theory
+	Font-style: upright
+	Font-weight: plain
+	Meanings: categories of endomorphisms
+	Role: abbreviation
+
+Symbol: Eqn
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: equation
+	Role: abbreviation
+
+Symbol: FIP
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: finite intersection property
+	Role: abbreviation
+
+Symbol: FOL
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: logic
+	Font-style: upright
+	Font-weight: plain
+	Meanings: first-order logic
+	Role: abbreviation
+
+Symbol: Frob
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Frobenius endomorphism
+	Role: abbreviation
+
+Symbol: G.M.
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: geometric mean
+	Role: abbreviation
+
+Symbol: G.P.
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: geometric progression
+	Role: abbreviation
+
+Symbol: GF
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Galois field
+	Role: abbreviation
+
+Symbol: H.M.
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: harmonic mean
+	Role: abbreviation
+
+Symbol: HOL
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: logic
+	Font-style: upright
+	Font-weight: plain
+	Meanings: higher-order logic
+	Role: abbreviation
+
+Symbol: LHS
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: left-hand side of an equation
+	Role: abbreviation
+
+Symbol: LST
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: language of set theory
+	Role: abbreviation
+
+Symbol: M.I.
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: mathematical induction
+	Role: abbreviation
+
+Symbol: NTS
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: need to show
+	Role: abbreviation
+
+Symbol: No.
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: number
+	Role: abbreviation
+
+Symbol: Q.E.D.
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Quod erat demonstrandum == end of proof
+	Role: abbreviation
+
+Symbol: QED
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Quod erat demonstrandum == end of proof
+	Role: abbreviation
+
+Symbol: QEF
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: quod erat faciendum == end of a construction
+	Role: abbreviation
+
+Symbol: R.V.
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Random Variable
+	Role: abbreviation
+
+Symbol: RHS
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: right-hand side of an equation
+	Role: abbreviation
+
+Symbol: RMS
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: root mean square
+	Role: abbreviation
+
+Symbol: RTP
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: required to prove
+	Role: abbreviation
+
+Symbol: RV
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Random Variable
+	Role: abbreviation
+
+Symbol: SFIP
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: strong finite intersection property
+	Role: abbreviation
+
+Symbol: SO
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Special orthogonal
+	Role: abbreviation
+
+Symbol: STP
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: sufficient to prove
+	Role: abbreviation
+
+Symbol: Soln
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: solution
+	Role: abbreviation
+
+Symbol: TFAE
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the following are equivalent
+	Role: abbreviation
+
+Symbol: Thm
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: theorem
+	Role: abbreviation
+
+Symbol: W
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: which was what we wanted == QED == end of proof
+	Role: abbreviation
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: 5
+
+Symbol: WMA
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: we may assume
+	Role: abbreviation
+
+Symbol: WO
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: well-ordered set
+	Role: abbreviation
+
+Symbol: WTP
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: want to prove
+	Role: abbreviation
+
+Symbol: WTS
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: want to show
+	Role: abbreviation
+
+Symbol: ZF
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Zermelo-Fraenkel axioms of set theory
+	Role: abbreviation
+
+Symbol: ZFC
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Zermelo-Fraenkel axioms of set theory
+	Role: abbreviation
+
+Symbol: a.c.
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: absolutely continuous
+	Role: abbreviation
+
+Symbol: a.e.
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: almost everywhere
+	Role: abbreviation
+
+Symbol: a.s.
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: almost surely
+	Role: abbreviation
+
+Symbol: c.f.
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: cumulative frequency
+	Role: abbreviation
+
+Symbol: cdf
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: probability || statistics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: cumulative distribution function
+	Role: abbreviation
+
+Symbol: def
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: define == definition
+	Role: abbreviation
+
+Symbol: dkl
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || units of measurement
+	Font-style: upright
+	Font-weight: plain
+	Meanings: decalitre
+	Role: abbreviation
+
+Symbol: hom
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: category theory
+	Font-style: upright
+	Font-weight: plain
+	Meanings: hom-class
+	Role: abbreviation
+
+Symbol: iff
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: if and only if
+	Role: abbreviation
+
+Symbol: iid
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: probability || statistics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: independent and identically distributed random variables
+	Role: abbreviation
+
+Symbol: lerp
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: linear interpolation
+	Role: abbreviation
+
+Symbol: li
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: analysis || linear algebra
+	Font-style: upright
+	Font-weight: plain
+	Meanings: linearly independent
+	Role: abbreviation
+
+Symbol: mod
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: modulo
+	Role: abbreviation
+
+Symbol: mx
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: linear algebra || matrices
+	Font-style: upright
+	Font-weight: plain
+	Meanings: matrix
+	Role: abbreviation
+
+Symbol: ob
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: category theory
+	Font-style: upright
+	Font-weight: plain
+	Meanings: object class
+	Role: abbreviation
+
+Symbol: pdf
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: probability || statistics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: probability density function
+	Role: abbreviation
+
+Symbol: pf
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: proof
+	Role: abbreviation
+
+Symbol: pmf
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: probability mass function
+	Role: abbreviation
+
+Symbol: resp
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: respectively
+	Role: abbreviation
+
+Symbol: rms
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: root mean square
+	Role: abbreviation
+
+Symbol: rng
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: non-unital ring
+	Role: abbreviation
+
+Symbol: s.t.
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: such that == so that
+	Role: abbreviation
+
+Symbol: seg
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: initial segment of
+	Role: abbreviation
+
+Symbol: undef
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: undefined
+	Role: abbreviation
+
+Symbol: walog
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: without any loss of generality
+	Role: abbreviation
+
+Symbol: wff
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: well-formed formula
+	Role: abbreviation
+
+Symbol: whp
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: with high probability
+	Role: abbreviation
+
+Symbol: wlog
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: without loss of generality
+	Role: abbreviation
+
+Symbol: wrt
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: with respect to == with regard to
+	Role: abbreviation

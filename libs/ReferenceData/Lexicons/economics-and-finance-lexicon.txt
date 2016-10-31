@@ -1,0 +1,200 @@
+
+Symbol: Delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: finance
+	Font-style: upright
+	Font-weight: plain
+	Meanings: first-order sensitivity to price
+	Role: measure
+	Root-symbol: Delta
+
+Symbol: Gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: finance
+	Font-style: upright
+	Font-weight: plain
+	Meanings: second-order sensitivity to price
+	Role: measure
+	Root-symbol: Gamma
+
+Symbol: Omega
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: finance
+	Font-style: upright
+	Font-weight: plain
+	Meanings: elasticity == the percentage change in option value per percentage change in the underlying price <_s a measure of leverage
+	Role: measure
+	Root-symbol: Omega
+
+Symbol: Theta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: finance
+	Font-style: upright
+	Font-weight: plain
+	Meanings: sensitivity of value to the passage of time
+	Role: measure
+	Root-symbol: Theta
+
+Symbol: alpha
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: finance
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: a measurement of risk-adjusted performance >_s the return in excess of the compensation for the risk borne in investment
+	Role: measure
+	Root-symbol: alpha
+	Subscript-size: 1
+	Subscript-type: alphabetic || integer
+
+Symbol: beta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: finance
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the beta coefficient
+	Role: measure
+	Root-symbol: beta
+	Subscript-size: 1
+	Subscript-type: alphabetic || integer
+
+Symbol: delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: finance
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the force of interest
+	Role: measure
+	Root-symbol: delta
+	Subscript-size: 1
+	Subscript-type: integer || real
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: economics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: depreciation
+	Role: measure
+	Root-symbol: delta
+	Subscript-size: 1
+	Subscript-type: integer || real
+
+Symbol: epsilon
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: economics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: elasticity
+	Role: measure
+	Root-symbol: epsilon
+
+Symbol: eta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: economics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Cost-push supply side shocks in the Phillips Curve Equation
+	Role: measure
+	Root-symbol: eta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: economics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: elasticity
+	Role: measure
+	Root-symbol: eta
+
+Symbol: kappa
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: finance
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Vega==the sensitivity to volatility
+	Role: measure
+	Root-symbol: kappa
+
+Symbol: lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: finance
+	Font-style: upright
+	Font-weight: plain
+	Meanings: elasticity==a measure of leverage== the percentage change in option value per percentage change in the underlying price
+	Role: measure
+	Root-symbol: lambda
+
+Symbol: nu
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: finance
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Vega==the sensitivity to volatility
+	Role: measure
+	Root-symbol: nu
+
+Symbol: omega
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: economics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the total wealth
+	Role: measure
+	Root-symbol: omega
+
+Symbol: pi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: economics || game theory
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: profit
+	Role: measure
+	Root-symbol: pi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: economics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: inflation
+	Role: measure
+	Root-symbol: pi
+
+Symbol: rho
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: finance
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the sensitivity to interest rate
+	Role: measure
+	Root-symbol: rho

@@ -1,0 +1,139 @@
+
+Symbol: Gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: group theory || number theory
+	Font-style: upright
+	Meanings: modular group
+	Role: set
+	Root-symbol: Gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: computer science
+	Meanings: the stack alphabet in pushdown automata
+	Role: set
+	Root-symbol: Gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Data types || Type theory
+	Meanings: a typing environment
+	Role: set
+	Root-symbol: Gamma
+
+Symbol: Lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: linear algebra || matrix theory
+	Font-style: upright
+	Meanings: a diagonal matrix of eigenvalues
+	Role: matrix
+	Root-symbol: Lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: lattice theory || order theory
+	Font-style: upright
+	Meanings: a lattice
+	Role: lattice
+	Root-symbol: Lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: logic
+	Font-style: upright
+	Meanings: set of logical axioms
+	Role: set
+	Root-symbol: Lambda
+
+Symbol: Pi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: logic || set theory
+	Font-style: upright
+	Meanings: a set in the arithmetical hierarchy
+	Role: set
+	Root-symbol: Pi
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: 0
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: logic || set theory
+	Font-style: upright
+	Meanings: a set in the analytical hierarchy
+	Role: set
+	Root-symbol: Pi
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: 1
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: logic || set theory
+	Font-style: upright
+	Meanings: a set in the polynomial hierarchy
+	Role: set
+	Root-symbol: Pi
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: P
+
+Symbol: Sigma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: logic || set theory
+	Font-style: upright
+	Meanings: a set in the arithmetical hierarchy
+	Role: set
+	Root-symbol: Sigma
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: 0
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: logic || set theory
+	Font-style: upright
+	Meanings: a set in the analytical hierarchy
+	Role: set
+	Root-symbol: Sigma
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: 1
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: logic || set theory
+	Font-style: upright
+	Meanings: a set in the polynomial hierarchy
+	Role: set
+	Root-symbol: Sigma
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: P
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: computer science
+	Meanings: the set of terminal symbols in a formal grammar || the tape alphabet in automata
+	Role: set
+	Root-symbol: Gamma

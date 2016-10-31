@@ -1,0 +1,1596 @@
+
+Symbol: 1
+
+  Feature Set:
+	Areas: mathematics
+	Argument-data-type: set element
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: bold || plain
+	Meanings: indicator function of $sub1 == characteristic function of $sub1
+	Role: function
+	Subscript-size: 1
+	Subscript-type: set
+
+Symbol: A
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: group theory
+	Font-style: upright
+	Font-weight: plain
+	Meanings: alternating group of degree $sub1
+	Role: definition
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: Alt
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: group theory
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: alternating group of degree $arg1
+	Role: definition
+
+Symbol: Aut
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra
+	Argument-data-type: (group)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: automorphism group of $arg1
+	Role: operator
+
+Symbol: Beta
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: probability || statistics
+	Argument-data-type: (real, real)
+	Argument-structure: (parameter, parameter)
+	Font-style: upright
+	Meanings: the Beta distribution
+	Role: probability distribution
+
+Symbol: Bias
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: probability || statistics
+	Argument-data-type: random
+	Argument-structure: [variable]
+	Font-style: upright
+	Font-weight: plain
+	Meanings: bias of estimator $arg1
+	Presubscript-type: parameter
+	Role: operator
+	Subscript-size: 1
+
+Symbol: Card
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || set theory
+	Argument-data-type: (set)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: cardinality of $arg1
+	Role: operator
+
+Symbol: Cl
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra
+	Argument-data-type: (group element)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: conjugacy class of group element $arg1
+	Role: operator
+
+Symbol: Corr
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: probability || statistics
+	Argument-data-type: (random, random)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: correlation of random variables $arg1 and $arg2
+	Role: operator
+
+Symbol: Delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: analysis || calculus
+	Argument-data-type: complex || function || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: finite difference operator
+	Role: operator
+	Root-symbol: Delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: analysis || calculus
+	Argument-data-type: complex || function || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: change
+	Role: concept
+	Root-symbol: Delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: analysis || calculus
+	Argument-data-type: function
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Laplace operator == laplacian
+	Role: operator
+	Root-symbol: Delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: set theory
+	Font-style: upright
+	Font-weight: plain
+	Meanings: set difference
+	Role: operation
+	Root-symbol: Delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: fuzzy logic
+	Argument-data-type: proposition
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the Delta connective
+	Role: unary connective
+	Root-symbol: Delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: graph theory
+	Argument-structure: (variable)
+	Argument-type: (graph)
+	Font-style: computer modern
+	Meanings: The maximum node degree of graph $arg1
+	Role: concept
+	Root-symbol: Delta
+
+Symbol: Ext
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: category theory
+	Argument-data-type: (module, module)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Ext functor
+	Role: functor
+
+Symbol: GL
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Lie groups || abstract algebra || linear algebra
+	Argument-data-type: (integer, field)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: general linear group of degree $arg1 over field $arg2
+	Role: operator
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Lie groups || abstract algebra || linear algebra
+	Argument-data-type: (field)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: general linear group of degree $sub1 over field $arg1
+	Role: operator
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Lie groups || abstract algebra || linear algebra
+	Argument-data-type: (vector space)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: general linear group of $arg1
+	Role: operator
+
+Symbol: Gal
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra
+	Argument-data-type: (extension/field)
+	Argument-structure: (variable/variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Galois group of $arg1
+	Role: operator
+
+Symbol: Gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Argument-data-type: (real, real)
+	Argument-structure: (parameter, parameter)
+	Font-style: upright
+	Meanings: the gamma distribution
+	Role: probability distribution
+	Root-symbol: Gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: graph theory
+	Argument-data-type: (element)
+	Argument-structure: (variable)
+	Meanings: neighborhood of vertex $arg1
+	Role: set
+	Root-symbol: Gamma
+
+Symbol: H
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || algebraic topology || homology
+	Argument-data-type: (space)
+	Argument-structure: (variable)
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the $sub1-th homology group of $arg1 with coefficients in $arg2
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || algebraic topology || homology
+	Argument-data-type: (space, field)
+	Argument-structure: (variable, variable)
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the $sub1-th homology group of $arg1
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: Hom
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: category theory
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Hom functor
+	Role: functor
+
+Symbol: I
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: (element)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: indicator function of $sub1 == characteristic function of $sub1
+	Role: function
+	Subscript-size: 1
+	Subscript-type: set
+
+Symbol: Im
+
+  Feature Set:
+	Alphabet: Latin
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: imaginary part of complex number $arg1
+	Role: operator
+
+Symbol: Lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Argument-data-type: (integer, integer, integer)
+	Argument-structure: (parameter, parameter, parameter)
+	Font-style: upright
+	Meanings: the lambda distribution
+	Role: probability distribution
+	Root-symbol: Lambda
+
+Symbol: NAND
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: logic
+	Font-style: upright
+	Font-weight: plain
+	Meanings: not-and
+	Role: operation
+
+Symbol: NOR
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: logic
+	Font-style: upright
+	Font-weight: plain
+	Meanings: not-or
+	Role: operation
+
+Symbol: Omega
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: algorithms || complexity theory || computer science
+	Argument-data-type: (function)
+	Argument-structure: (variable)
+	Meanings: an asymptotic lower bound
+	Role: function
+	Root-symbol: Omega
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: group theory
+	Argument-data-type: (group)
+	Argument-structure: (variable)
+	Font-style: upright
+	Meanings: omega subgroups of $arg1
+	Role: set
+	Root-symbol: Omega
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: P
+
+  Feature Set:
+	Alphabet: Latin
+	Argument-data-type: random event
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: probability of $arg1
+	Role: operator
+
+Symbol: PGL
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Lie groups || abstract algebra || linear algebra
+	Argument-data-type: (vector space)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the projective general linear group of $arg1 || the projective linear group of $arg1
+	Role: operator
+
+Symbol: PSL
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Lie groups || abstract algebra || linear algebra
+	Argument-data-type: (vector space)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the projective special linear group of $arg1
+	Role: operator
+
+Symbol: Phi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Meanings: the cumulative distribution function of the standard normal distribution
+	Role: function
+	Root-symbol: Phi
+
+Symbol: Pi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Relational databases || computer science
+	Argument-data-type: (relation)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: projection
+	Role: operator
+	Root-symbol: Pi
+	Subscript-size: n
+	Subscript-type: alphanumeric string
+
+Symbol: Pr
+
+  Feature Set:
+	Alphabet: Latin
+	Argument-data-type: random event
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: probability of $arg1
+	Role: operator
+
+Symbol: Re
+
+  Feature Set:
+	Alphabet: Latin
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: real part of complex number $arg1
+	Role: operator
+
+Symbol: S
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || group theory
+	Font-weight: plain
+	Meanings: symmetric group of degree $sub1
+	Role: operator
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || group theory
+	Font-typeface: fraktur
+	Font-weight: plain
+	Meanings: symmetric group of degree $sub1
+	Role: operator
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: SL
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Lie groups || abstract algebra || linear algebra
+	Argument-data-type: (integer, field)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: special linear group of degree $arg1 over field $arg2
+	Role: operator
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Lie groups || abstract algebra || linear algebra
+	Argument-data-type: (vector space)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: special linear group of $arg1
+	Role: operator
+
+Symbol: Sigma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: abstract algebra || group theory
+	Font-weight: plain
+	Meanings: symmetric group of degree $sub1
+	Role: operator
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Computability theory || computer science
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the busy beaver function
+	Role: function
+	Root-symbol: Sigma
+
+Symbol: Sp
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || linear algebra || vector spaces
+	Argument-data-type: (vector set)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: linear span of $arg1
+	Role: operator
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Lie groups || abstract algebra || symplectic geometry
+	Argument-data-type: (integer, field)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Symplectic group of degree $arg1 over the field $arg2
+	Role: operator
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Lie groups || abstract algebra || symplectic geometry
+	Argument-data-type: (vector space)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Symplectic group of vector space $arg1
+	Role: operator
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Lie groups || abstract algebra || symplectic geometry
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: compact symplectic group of degree $arg1
+	Role: operator
+
+Symbol: Span
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || linear algebra || vector spaces
+	Argument-data-type: (vector set)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: linear span of $arg1
+	Role: operator
+
+Symbol: Sym
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || group theory
+	Argument-data-type: (set)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: symmetric group on set $arg1
+	Role: operator
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || group theory
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: symmetric group of degree $arg1
+	Role: operator
+
+Symbol: Theta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: algorithms || complexity theory || computer science
+	Argument-data-type: (function)
+	Argument-structure: (variable)
+	Meanings: an asymptotically tight bound
+	Role: function
+	Root-symbol: Theta
+
+Symbol: Tor
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: category theory
+	Argument-data-type: (module, module)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Tor functor
+	Role: functor
+
+Symbol: Tr
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra
+	Argument-data-type: (field element)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the trace of $arg1
+	Role: operator
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: linear algebra || matrix theory
+	Argument-data-type: (linear transformation) || (matrix)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the trace of $arg1
+	Role: operator
+
+Symbol: U
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Lie groups
+	Argument-data-type: (integer)
+	Argument-structure: (parameter)
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unitary group of degree $arg1
+
+Symbol: Var
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: probability || statistics
+	Argument-data-type: random
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: variance of random variable $arg1
+	Role: operator
+
+Symbol: XOR
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: logic
+	Font-style: upright
+	Font-weight: plain
+	Meanings: exclusive-or
+	Role: operation
+
+Symbol: adj
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: linear algebra || matrix theory
+	Argument-data-type: (matrix)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: adjugate of matrix $arg1
+	Role: operator
+
+Symbol: alpha
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: computer 				science || discrete mathematics || graph theory
+	Argument-structure: (variable)
+	Argument-type: (graph)
+	Font-style: computer modern
+	Meanings: the independence number of graph $arg1
+	Role: concept
+	Root-symbol: alpha
+
+Symbol: arg
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: complex
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: argument of complex number $arg1
+	Role: function
+
+Symbol: arg max
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: function
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: argument of the maximum
+	Role: function
+	Subscript-size: 1
+	Subscript-type: constraint
+
+Symbol: arg min
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: function
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: argument of the minimum
+	Role: function
+	Subscript-size: 1
+	Subscript-type: constraint
+
+Symbol: b
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: algebraic topology
+	Argument-data-type: (set)
+	Argument-structure: (variable)
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the $sub1-th Betti number of $arg1
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: algebraic topology
+	Argument-data-type: (set, field)
+	Argument-structure: (variable, variable)
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the $sub1-th Betti number of $arg1 with coefficients in $arg2
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: bd
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: topology
+	Argument-data-type: (set)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: boundary of $arg1
+	Role: operator
+
+Symbol: beta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: matroids
+	Argument-data-type: (matroid)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Meanings: Beta invariant of matroid $arg1
+	Role: concept
+	Root-symbol: beta
+
+Symbol: char
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra
+	Argument-data-type: (ring)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: characteristic of ring $arg1
+	Role: operator
+
+Symbol: chi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: mathematics
+	Argument-data-type: set element
+	Argument-structure: variable
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: indicator function of $sub1 == characteristic function of $sub1
+	Role: function
+	Subscript-size: 1
+	Subscript-type: set
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: italic
+	Meanings: the chi distribution
+	Role: probability distribution
+	Root-symbol: chi
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: italic
+	Meanings: the chi-squared distribution
+	Role: probability distribution
+	Root-symbol: chi
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: 2
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: algebraic topology
+	Argument-data-type: (polyhedra)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Euler characteristic
+	Role: concept
+	Root-symbol: chi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: graph theory
+	Argument-structure: (variable)
+	Argument-type: (graph)
+	Font-style: computer modern
+	Meanings: The chromatic number of graph $arg1
+	Role: concept
+	Root-symbol: chi
+
+Symbol: cl
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: topology
+	Argument-data-type: (set)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: topological closure of $arg1
+	Role: operator
+
+Symbol: cod
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: (function)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: codomain of function $arg1
+	Role: operator
+
+Symbol: codom
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: (function)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: codomain of function $arg1
+	Role: operator
+
+Symbol: cok
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Abstract algebra || Category theory || functional analysis || linear algebra
+	Argument-data-type: (morphism)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: cokernel of morphism $arg1
+	Role: operator
+
+Symbol: coker
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Abstract algebra || Category theory || functional analysis || linear algebra
+	Argument-data-type: (morphism)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: cokernel of morphism $arg1
+	Role: operator
+
+Symbol: curl
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: vector calculus
+	Argument-data-type: vector
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: curl of vector field $arg1
+	Role: operator
+
+Symbol: deg
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || polynomials
+	Argument-data-type: (polynomial)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: degree of a polynomial
+	Role: operator
+
+Symbol: del
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: vector calculus
+	Argument-data-type: function
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: a differential operator
+	Role: operator
+
+Symbol: delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: stochastic analysis
+	Argument-data-type: stochastic process
+	Argument-structure: variable
+	Font-weight: plain
+	Meanings: the Skorokhod integral
+	Role: operator
+	Root-symbol: delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: mathematics
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the Diract delta function
+	Role: function
+	Root-symbol: delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: graph theory
+	Argument-structure: (variable)
+	Argument-type: (graph)
+	Font-style: computer modern
+	Meanings: The minimum node degree of graph $arg1
+	Role: concept
+	Root-symbol: delta
+
+Symbol: det
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: linear algebra || matrix theory
+	Argument-data-type: (matrix)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: determinant of matrix $arg1
+	Role: operator
+
+Symbol: dim
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || linear algebra || vector spaces
+	Argument-data-type: (vector space)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: dimension of vector space $arg1
+	Role: operator
+
+Symbol: div
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: vector calculus
+	Argument-data-type: vector
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: divergence of vector field $arg1
+	Role: operator
+
+Symbol: dom
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: (function) || (relation)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: domain of $arg1
+	Role: operator
+
+Symbol: eta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the Dirichlet eta function
+	Role: function
+	Root-symbol: eta
+
+Symbol: etr
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: linear algebra || matrices
+	Argument-data-type: (matrix)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: exponent of the trace of $arg1
+	Role: abbreviation
+
+Symbol: ext
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: topology
+	Argument-data-type: (set) || set
+	Argument-structure: (variable) || variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: exterior of $arg1
+	Role: operator
+
+Symbol: gcd
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: arithmetic || mathematics || number theory
+	Argument-data-type: (integer, integer)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: greatest common divisor of $arg1 and $arg2
+	Role: function
+
+Symbol: glb
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || order theory
+	Argument-data-type: (set)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: greatest lower bound of $arg1
+	Role: operator
+
+Symbol: grad
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: vector calculus
+	Argument-data-type: function
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: gradient of function $arg1
+	Role: operator
+
+Symbol: hcf
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: arithmetic || mathematics || number theory
+	Argument-data-type: (integer, integer)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: highest common factor of $arg1 and $arg2
+	Role: function
+
+Symbol: im
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: (function)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: image of function $arg1
+	Role: operator
+
+Symbol: inf
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || order theory
+	Argument-data-type: (set)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: infimum of $arg1
+	Role: operator
+
+Symbol: int
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: topology
+	Argument-data-type: (set)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: interior of $arg1
+	Role: operator
+
+Symbol: iota
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: mathematics
+	Argument-data-type: (element)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: an inclusion map
+	Role: function
+	Root-symbol: iota
+
+Symbol: kappa
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: linear algebra || matrices || numerical analysis
+	Argument-structure: (variable)
+	Argument-type: (matrix)
+	Font-style: computer modern
+	Meanings: the condition number of matrix $arg1
+	Role: concept
+	Root-symbol: kappa
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: computer 				science || discrete mathematics || graph theory
+	Argument-structure: (variable)
+	Argument-type: (graph)
+	Font-style: computer modern
+	Meanings: the connectivity of graph $arg1
+	Role: concept
+	Root-symbol: kappa
+
+Symbol: ker
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: functional analysis || linear algebra
+	Argument-data-type: (function)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: kernel of morphism $arg1
+	Role: operator
+
+Symbol: lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: measure theory
+	Argument-data-type: (set)
+	Argument-structure: (variable)
+	Meanings: Lebesbue measure of $arg1
+	Role: measure
+	Root-symbol: lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: lambda calculus
+	Argument-data-type: alphabetic
+	Argument-structure: variable
+	Meanings: variable-binding function-abstraction operator
+	Role: operator
+	Root-symbol: lambda
+
+Symbol: lcm
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: arithmetic || mathematics || number theory
+	Argument-data-type: (integer, integer)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: lowest common multiple of $arg1 and $arg2
+	Role: function
+
+Symbol: lim
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: analysis || calculus || mathematics
+	Argument-data-type: function || sequence
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: limit
+	Role: operator
+
+Symbol: lim inf
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: analysis || calculus || mathematics
+	Argument-data-type: function || sequence
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: limit inferior of $arg1
+	Role: operator
+
+Symbol: lim sup
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: analysis || calculus || mathematics
+	Argument-data-type: function || sequence
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: limit superior of $arg1
+	Role: operator
+
+Symbol: lub
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || order theory
+	Argument-data-type: (set)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: least upper bound of $arg1
+	Role: operator
+
+Symbol: max
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || order theory
+	Argument-data-type: (function) || (set)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: maximum of $arg1
+	Role: operator
+
+Symbol: mho
+
+  Feature Set:
+	Areas: group theory
+	Argument-data-type: (group)
+	Argument-structure: (variable)
+	Meanings: agemo subgroups of $arg1
+	Role: set
+	Subscript-size: 1
+	Subscript-type: integer
+	Unicode: u+02127
+
+Symbol: min
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || order theory
+	Argument-data-type: (function) || (set)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: minimum of $arg1
+	Role: operator
+
+Symbol: mu
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: measure theory
+	Argument-data-type: (set)
+	Argument-structure: (variable)
+	Meanings: a measure
+	Role: measure
+	Root-symbol: mu
+
+Symbol: nu
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: graph theory
+	Argument-structure: (variable)
+	Argument-type: (graph)
+	Font-style: computer modern
+	Meanings: The matching number of graph $arg1
+	Role: concept
+	Root-symbol: nu
+
+Symbol: ord
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: set theory
+	Argument-data-type: (set)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: ordinal number of $arg1
+	Role: operator
+
+Symbol: phi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: the probability density function of the standard normal distribution
+	Role: function
+	Root-symbol: phi
+
+Symbol: pi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Homotopy theory || algebraic topology
+	Argument-data-type: (topological space)
+	Argument-structure: (variable)
+	Font-style: upright
+	Meanings: the $sub1-th homotopy group of space $arg1
+	Role: operator
+	Root-symbol: pi
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Relational databases || computer science
+	Argument-data-type: (relation)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: projection
+	Role: operator
+	Root-symbol: pi
+	Subscript-size: n
+	Subscript-type: alphanumeric string
+
+Symbol: ran
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: (function) || (relation)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: range of $arg1
+	Role: operator
+
+Symbol: rank
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || linear algebra || vector spaces
+	Argument-data-type: (matrix)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: rank of matrix $arg1
+	Role: operator
+
+Symbol: rho
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Relational databases || computer science
+	Argument-data-type: (relation)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: rename
+	Role: operator
+	Root-symbol: rho
+	Subscript-size: 2
+	Subscript-type: alphanumeric string
+
+Symbol: rk
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || linear algebra || vector spaces
+	Argument-data-type: (matrix)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: rank of matrix $arg1
+	Role: operator
+
+Symbol: rn
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || linear algebra || vector spaces
+	Argument-data-type: (matrix)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: rank of matrix $arg1
+	Role: operator
+
+Symbol: rot
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: vector calculus
+	Argument-data-type: vector
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: rotor of vector field $arg1
+	Role: operator
+
+Symbol: sgn
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: signum function
+	Role: function
+
+Symbol: sigma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Relational databases || computer science
+	Argument-data-type: (relation)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: selection
+	Role: operator
+	Root-symbol: sigma
+	Subscript-size: 1
+	Subscript-type: propositional formula
+
+Symbol: sp
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || linear algebra || vector spaces
+	Argument-data-type: (vector set)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: linear span of $arg1
+	Role: operator
+
+Symbol: st
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Mathematics of infinitesimals || calculus || non-standard analysis
+	Argument-structure: (hyperreal || (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: standard part
+	Role: function
+
+Symbol: sup
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || order theory
+	Argument-data-type: (set)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: supremum of $arg1
+	Role: operator
+
+Symbol: supp
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: (function)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: support of function $arg1
+	Role: operator
+
+Symbol: tau
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Kendall rank correlation coefficient == Kendall's tau coefficient
+	Role: statistic
+	Root-symbol: tau
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: statistic for testing the strength of association of the cross tabulations, making no adjustments for ties.
+	Role: statistic
+	Root-symbol: tau
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: A
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Stuart-Kendall Tau-c <_s a statistic for testing the strength of association of the cross tabulations in rectangular tables, making adjustments for ties.
+	Role: statistic
+	Root-symbol: tau
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: C
+
+Symbol: tr
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: linear algebra || matrices
+	Argument-data-type: (matrix)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: trace of $arg1
+	Role: abbreviation
+
+Symbol: tre
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: linear algebra || matrices || probability || statistics
+	Argument-data-type: (matrix)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: exponential trace of $arg1
+	Role: abbreviation

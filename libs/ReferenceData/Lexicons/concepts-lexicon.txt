@@ -1,0 +1,225 @@
+
+Symbol: Delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: algebra
+	Font-style: upright
+	Meanings: the discriminant of a quadratic equation
+	Role: concept
+	Root-symbol: Delta
+
+Symbol: alpha
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Conic sections || Geodesy
+	Font-style: computer modern
+	Meanings: angular eccentricity
+	Role: angle
+	Root-symbol: alpha
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Astronomy || Geodesy || Geometry || Navigation
+	Font-style: computer modern
+	Meanings: azimuth
+	Role: angle
+	Root-symbol: alpha
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: geometry
+	Font-style: computer modern
+	Meanings: the first angle in a triangle
+	Role: angle
+	Root-symbol: alpha
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: algebra || mathematics
+	Font-style: computer modern
+	Meanings: one root of a quadratic equation
+	Role: concept
+	Root-symbol: alpha
+
+Symbol: beta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: geometry
+	Font-style: computer modern
+	Meanings: the second angle in a triangle
+	Role: angle
+	Root-symbol: beta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: algebra || mathematics
+	Font-style: computer modern
+	Meanings: one root of a quadratic equation
+	Role: concept
+	Root-symbol: beta
+
+Symbol: delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: calculus of variations
+	Font-style: computer modern
+	Meanings: a variation
+	Role: concept
+	Root-symbol: delta
+
+Symbol: epsilon
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: computer science
+	Font-style: computer modern
+	Meanings: the empty string
+	Role: concept
+	Root-symbol: epsilon
+
+Symbol: gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: geometry
+	Font-style: computer modern
+	Meanings: the third angle in a triangle
+	Role: angle
+	Root-symbol: gamma
+
+Symbol: kappa
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: calculus
+	Font-style: computer modern
+	Meanings: curvature
+	Role: concept
+	Root-symbol: kappa
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: cosmology || mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the spacetime Curvature from the Friedmann equations
+
+Symbol: lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: computer science
+	Font-style: computer modern
+	Meanings: the empty string
+	Role: concept
+	Root-symbol: lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: linear algebra || matrices || numerical analysis
+	Font-style: computer modern
+	Meanings: a general eigenvalue
+	Role: concept
+	Root-symbol: lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: mathematical optimization
+	Font-style: computer modern
+	Meanings: the lagrange multiplier
+	Role: concept
+	Root-symbol: lambda
+
+Symbol: mu
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: measure theory
+	Font-style: computer modern
+	Meanings: a measure
+	Role: concept
+	Root-symbol: mu
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: SI prefixes || measurement || units
+	Font-style: upright
+	Meanings: a unit of one millionth
+	Role: concept
+	Root-symbol: mu
+
+Symbol: nu
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Functional analysis || Linear algebra
+	Font-style: computer modern
+	Meanings: dimension of a nullspace == dimension of a null space == dimension of a kernel
+	Role: concept
+	Root-symbol: nu
+
+Symbol: phi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: mathematics
+	Font-style: computer modern
+	Meanings: the argument of a complex number
+	Role: concept
+	Root-symbol: phi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Astronomy || Geodesy || Geometry || Navigation
+	Font-style: computer modern
+	Meanings: latitude
+	Role: angle
+	Root-symbol: phi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Astronomy || Geodesy || Geometry || Navigation
+	Font-style: computer modern
+	Meanings: the angle to the z axis in spherical coordinates
+	Role: angle
+	Root-symbol: phi
+
+Symbol: rho
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: mathematics
+	Font-style: computer modern
+	Meanings: the radius in a cylindrical spherical coordinate system || the radius in a polar coordinate system || the radius in a spherical coordinate system
+	Role: concept
+	Root-symbol: rho
+
+Symbol: tau
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: computer science || logic || type theory
+	Meanings: an arbitrary type
+	Role: a general instance
+	Root-symbol: tau
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: topology
+	Meanings: an arbitrary topology
+	Role: a general instance
+	Root-symbol: tau
+
+Symbol: theta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: mathematics
+	Font-style: computer modern
+	Meanings: the angle to the x axis in the xy-plane in cylindrical coordinates || the angle to the x axis in the xy-plane in spherical coordinates
+	Role: angle
+	Root-symbol: theta

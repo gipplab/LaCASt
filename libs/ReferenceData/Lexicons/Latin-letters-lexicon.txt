@@ -1,0 +1,1484 @@
+
+Symbol: A
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || number system
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the digit 10 in hexadecimal and other positional numeral systems with a radix of 11 or greater
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electricity || electromagnetics || metric prefixes || physics || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: ampere
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Electromagnetics || vector calculus
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: bold
+	Meanings: a Vector potential
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: geometry || mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the Area
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Mass number of an element == atomic mass number ==  nucleon number
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics || thermodynamics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the Helmholtz free energy
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || group theory || mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: an Abelian group
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Algebraic Geometry
+	Font-typeface: blackboard
+	Font-weight: plain
+	Meanings: the affine space || the algebraic numbers
+
+Symbol: B
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || number system
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the digit 11 in hexadecimal and other positional numeral systems with a radix of 12 or greater
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: script
+	Font-weight: plain
+	Meaning: a ball
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meaning: a ball
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: script
+	Font-weight: plain
+	Meaning: a basis of a filter || a basis of a vector space
+
+Symbol: C
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || number system
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the digit 12 in hexadecimal and other positional numeral systems with a radix of 13 or greater
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electromagnetics
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit coulomb of electrical charge
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || physics || thermodynamics || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: together with a degree symbol represents the Celsius measurement of temperature
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electromagnetics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: capacitance
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: chemistry
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: number concentration
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: blackboard
+	Font-weight: plain
+	Meanings: the set of complex numbers
+
+Symbol: D
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || number system
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the digit 13 in hexadecimal and other positional numeral systems with a radix of 14 or greater
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: calculus || mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: The differential operator
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: chemistry || physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: diffusion coefficient == diffusivity
+
+Symbol: E
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || number system
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings:
+	   - an exponent in decimal numbers
+	   - the digit 14 in hexadecimal and other positional numeral systems with a radix of 15 or greater
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit prefix exa (10^{18}
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Energy
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: computer science || discrete mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the set of edges in a  matroid || the set of edges in a graph
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electromagnetics
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: bold
+	Meanings: Electric field
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: probability || statistics
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: bold
+	Meanings: an event == a probabilistic event
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electromagnetics
+	Font-typeface: script
+	Font-weight: plain
+	Meanings: Electromotive force || voltage
+
+Symbol: F
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || number system
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the digit 15 in hexadecimal and other positional numeral systems with a radix of 16 or greater
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electromagnetics || metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit farad of electrical capacity
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: thermodynamics
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: The Helmholtz free energy of a closed thermodynamic
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || physics || thermodynamics || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: together with a degree symbol represents the Fahrenheit measurement of temperature
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: force
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: probability || statistics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the cumulative distribution function
+
+Symbol: G
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit prefix giga
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: computer science || discrete mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a graph
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || group theory
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a group
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: thermodynamics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Gibbs free energy
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: differential geometry || general relativity
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: bold
+	Meanings: the Einstein tensor
+
+Symbol: H
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a Hilbert space
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || algebraic topology || homology
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the cohomology functor || the homology functor
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electromagnetics || metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit henry of magnetic inductance
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: information theory
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the (Shannon) entropy of information
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Attributes: introduced by William Rowan Hamilton
+	Font-typeface: blackboard
+	Font-weight: plain
+	Meanings: the set of quaternions
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Hamiltonian mechanics || classical mechanics || physics
+	Font-typeface: script
+	Font-weight: plain
+	Meanings: the Hamiltonian
+
+Symbol: I
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: linear algebra || matrix theory
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the identity matrix
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electromagnetics || radiometry
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the Irradiance
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Moment of inertia
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Intensity
+
+Symbol: J
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || physics || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit joule of energy
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electromagnetics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: current density
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: thermodynamics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Radiosity
+
+Symbol: K
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || physics || thermodynamics || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit kelvin of temperature
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: K-theory || algebra || algebraic geometry || algebraic topology
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: functors
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a field
+
+Symbol: L
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings:
+	   - the space of all integrable functions
+	   - the space of linear maps
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: probability || statistics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the Likelihood function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: computer science || logic
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a formal language
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electromagnetics || radiometry
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the radiance
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Angular momentum
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: liter
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics || mathematics
+	Font-typeface: script
+	Font-weight: plain
+	Meanings: the Lagrangian
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics || mathematics
+	Font-typeface: script
+	Font-weight: plain
+	Meanings: the Lagrangian
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: particle physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Exposure
+
+Symbol: M
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings:
+	   - a manifold
+	   - a metric space
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: computer science || discrete mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a matroid
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit prefix mega- (10^6)
+
+Symbol: N
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: chemistry || nuclear physics
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: bold
+	Meanings: the Neutron number
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics || metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit newton of force
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: chemistry || physics || thermodynamics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the Particle number
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: blackboard
+	Font-weight: plain
+	Meanings: the set of natural numbers
+
+Symbol: O
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: computer science || mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the order of asymptotic behavior of a function (upper bound), in big O notation
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: analytical geometry
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the origin of the coordinate system in Cartesian coordinates
+
+Symbol: P
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit prefix peta (10^15)
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: probability || statistics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Probability
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: pressure
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: number theory
+	Font-typeface: blackboard
+	Font-weight: plain
+	Meanings: the set of prime numbers
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: geometry
+	Font-typeface: blackboard
+	Font-weight: plain
+	Meanings: projective space
+
+Symbol: Q
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Heat energy
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: blackboard
+	Font-weight: plain
+	Meanings: the set of rational numbers
+
+Symbol: R
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: differential geometry
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the Ricci tensor
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: blackboard
+	Font-weight: plain
+	Meanings: the set of real numbers
+
+Symbol: S
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: sum
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: geometry || mathematics
+	Attributes: superscripted with dimension
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the unit sphere
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electromagnetics || metric prefixes || physics || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit siemens of electric conductance
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: quantum field theory. || quantum mechanics || scattering theory
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the scattering matrix
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics
+	Font-typeface: script
+	Font-weight: plain
+	Meanings: a system's action
+
+Symbol: T
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || lattice theory || order theory
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the top element of a lattice
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electromagnetics || metric prefixes || physics || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit tesla of magnetic flux density
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit prefix tera
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics || thermodynamics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: temperature
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: general relativity || physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the stress-energy tensor
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: computer science || discrete mathematics || mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a tree (a special kind of graph)
+
+Symbol: U
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Fourier analysis || Harmonic analysis || mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a U-set || a set of uniqueness
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: functional analysis
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a unitary operator
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: thermodynamics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the internal energy of a system
+
+Symbol: V
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electricity || electromagnetics || metric prefixes || physics || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit volt
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Electrical systems || Electromagnetism || Physical quantities
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: voltage
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: computer science || discrete mathematics || graph theory
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the set of vertices in a graph
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || linear algebra || vector spaces
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: A vector space
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: calculus || geometry
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: volume
+
+Symbol: W
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electricity || electromagnetics || metric prefixes || physics || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit watt of power
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mechanics || physics || thermodynamics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: work
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: statistical mechanics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the number of possible quantum states in Boltzmann's entropy formula
+
+Symbol: Y:
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit prefix yotta- (10^{24})
+
+Symbol: Z
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit prefix zetta (1021)
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: chemistry || physics
+	Font-typeface: computer-modern
+	Font-weight: bold
+	Meanings: the atomic number
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: probability || statistics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a standardized normal random variable
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: statistical mechanics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: The Partition function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: blackboard
+	Font-weight: plain
+	Meanings: the set of integers
+
+Symbol: a
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: algebra || analytic geometry || mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the x-intercept of a line
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: cosmology || physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the scale factor of the expanding universe in cosmology
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics || dynamics || physics
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: acceleration
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit are for area (100 squared meters)
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit prefix atto (10^{-18})
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics || dynamics || physics
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: bold
+	Meanings: acceleration as a vector
+
+Symbol: b
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: algebra || analytic geometry || mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the y-intercept of a line
+
+  Feature Set:
+	Accent: sometimes an over-arrow
+	Alphabet: Latin
+	Areas: analytic geometry || linear algebra
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a basis vector
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics || nuclear physics || nuclear scattering
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: The Impact parameter
+
+Symbol: c
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit prefix centi (10^{-2})
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: chemistry
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the Molar concentration == molarity
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the speed of light in vacuum
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || set theory
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: bold
+	Meanings: the cardinality of the set of real numbers (the "continuum")
+
+Symbol: d
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit day of time (86,400 s)
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit prefix deci
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: calculus || mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the differential operator
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || metric spaces
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a distance operator/function
+
+Symbol: e
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings:
+	   - the eccentricity of conic sections
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: analytics geometry || mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a vector of unit length, especially in the direction of one of the coordinates axes
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electromagnetics || physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the elementary charge in physics
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electromagnetics || physics
+	Attributes: sometimes superscripted
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: a positron, usually donated e^+ || an electron, usually donated e^-
+
+Symbol: f
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit prefix femto (10^{-15})
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a function
+
+Symbol: g
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics || physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the acceleration due to gravity on Earth
+
+Symbol: h
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings:
+	   - the unit hour for time (3600 s)
+	   - the unit prefix hecto (100)
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: algebraic number theory
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the class number
+
+Symbol: i
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings:
+	   - index
+	   - the imaginary unit == the square root of -1
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: analytical geometry
+	Font-typeface: computer modern
+	Font-weight: bold
+	Meanings: the unit vector in Cartesian coordinates going in the X-direction
+
+Symbol: j
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: index
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electrical engineering
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the imaginary unit == the square root of -1
+
+Symbol: k
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit prefix kilo
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: index
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the Wavenumber of the wave equation
+
+Symbol: l
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: liter
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings:
+	   - index
+	   - space of sequences
+
+Symbol: m
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: index
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: analytical geometry
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the slope in a linear regression || the slope of a line
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the mass
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings:
+	   - meter
+	   - the unit prefix milli (10^{-3})
+
+Symbol: n
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: index
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: astronomy || biology || chemistry || geography || physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the Number density of particles in a Volume
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics || quantum mechanics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the principal quantum number
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit prefix nano (10^{-9})
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: chemistry || nuclear physics
+	Attributes: sometimes superscripted with 0
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: A neutron
+
+Symbol: o
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || group theory
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the order of an element in a group
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: computer science || mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the order of asymptotic behavior of a function (strict upper bound) in little-o notation
+
+Symbol: p
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the unit prefix pico (10^{-12})
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: chemistry || physics
+	Attributes: sometimes superscripted with +
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a proton
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: probability || statistics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Probability
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: pressure
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: linear momentum
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: bold
+	Meanings: linear momentum vector
+
+Symbol: q
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: cosmology
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the Deceleration parameter
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electromagnetics || physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: elementary charge, though mostly e is used instead
+
+Symbol: r
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: geometry
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the radius of a circle || the radius of a sphere
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: electromagnetics || physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the distance between two objects as in Coulomb's law
+
+Symbol: s
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || metric prefixes || physics || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit second of time
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: calculus || geometry
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: an arclength
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: analytic number theory
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: a complex variable
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics
+	Font-typeface: computer modern
+	Font-weight: bold
+	Meanings: the displacement in mechanics equations
+
+Symbol: t
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics || physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: time
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: analytic number theory
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the imaginary part of the complex variable
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: probability || statistics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the sample statistic resulting from a Student's t-test
+
+Symbol: v
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: bold
+	Meanings: velocity vector
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: abstract algebra || linear algebra || vector spaces
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: bold
+	Meanings: A vector
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: velocity
+
+Symbol: w
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the coordinate on the fourth axis in four-dimensional space
+
+Symbol: x
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings:
+	   - an unknown variable, most often real.
+	   - the coordinate on the first or horizontal axis in a cartesian coordinate system.
+
+Symbol: y
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit prefix yocto- (10^{-24})
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings:
+	   - a second unknown variable
+	   - the coordinate on the second vertical axis in a cartesian coordinate system.
+
+Symbol: z
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: metric prefixes || units of measurement
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the unit prefix zepto (10^{-21})
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: computer graphics
+	Font-style: upright
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: the view depth || z-buffering
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings:
+	   - an unknown complex variable
+	   - the argument of a complex function
+	   - the coordinate on the third or vertical axis in three dimensional space
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: astronomy || cosmology
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: wavelength redshift

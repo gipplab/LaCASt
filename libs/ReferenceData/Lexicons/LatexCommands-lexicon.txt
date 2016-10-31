@@ -1,0 +1,2480 @@
+
+Symbol: /
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: division
+	Role: operation
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter
+
+Symbol: \Arrowvert
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation || relation
+
+Symbol: \Box
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \Bumpeq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \Cap
+
+  Feature Set:
+	Areas: set theory
+	Attributes: double intersection
+	Role: operation
+
+Symbol: \Cup
+
+  Feature Set:
+	Areas: set theory
+	Attributes: double union
+	Role: operation
+
+Symbol: \Downarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \L
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: everywhere
+	Role: symbol
+
+Symbol: \LaTeX
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: a document preparation system
+	Role: proper noun
+
+Symbol: \LaTeXe
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: a document preparation system
+	Role: proper noun
+
+Symbol: \Leftarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \Leftrightarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \Lleftarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \Longleftarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \Longleftrightarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \Longrightarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \Lsh
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \P
+
+  Feature Set:
+	Areas: everywhere
+	Role: paragraph symbol
+
+Symbol: \Rightarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \Rrightarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \Rsh
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \S
+
+  Feature Set:
+	Areas: everywhere
+	Role: section symbol
+
+Symbol: \Subset
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \Supset
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \TeX
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: a typesetting system
+	Role: proper noun
+
+Symbol: \Uparrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \Updownarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \Vdash
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \Vert
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation || relation
+
+Symbol: \Vvdash
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \amalg
+
+  Feature Set:
+	Areas: category theory
+	Attributes: coproduct == categorical sum
+	Role: operation
+
+  Feature Set:
+	Areas: set theory || topology
+	Attributes: disjoint union
+	Role: operation
+
+  Feature Set:
+	Areas: group theory
+	Attributes: free product
+	Role: operation
+
+Symbol: \approx
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \approxeq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \arraystretch
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: scale factor for inter-row spacing in array and tabular environments
+	Role: numeric
+
+Symbol: \arrowvert
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation || operation || relation
+
+Symbol: \ast
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: asterisk
+	Role: operation
+
+Symbol: \asymp
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \backepsilon
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \backsim
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \backsimeq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \barwedge
+
+  Feature Set:
+	Areas: Boolean algebra || logic
+	Attributes: nand
+	Role: operation
+
+Symbol: \because
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \between
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \bigcap
+
+  Feature Set:
+	Areas: set theory
+	Attributes: intersection
+	Role: operator
+
+Symbol: \bigcirc
+
+  Feature Set:
+	Areas: generic
+	Attributes: big circle
+	Role: operation
+
+Symbol: \bigcup
+
+  Feature Set:
+	Areas: set theory
+	Attributes: union
+	Role: operator
+
+Symbol: \bigodot
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: o dot
+	Role: operator
+
+Symbol: \bigoplus
+
+  Feature Set:
+	Areas: Boolean algebra || logic
+	Attributes: exclusive-or
+	Role: operator
+
+  Feature Set:
+	Areas: abstract algebra || group theory || module theory || ring theory || vector spaces
+	Attributes: direct sum
+	Role: operator
+
+  Feature Set:
+	Areas: category theory
+	Attributes: categorical sum || direct sum
+	Role: operator
+
+Symbol: \bigotimes
+
+  Feature Set:
+	Areas: dyadic algebra || module theory || multilinear algebra || vector spaces
+	Attributes: dyadic == dyadic tensor == tensor product == outer product
+	Role: operator
+
+  Feature Set:
+	Areas: linear algebra || matrix theory || vector algebra
+	Attributes: kronecker product
+	Role: operator
+
+Symbol: \bigsqcup
+
+  Feature Set:
+	Areas: set theory
+	Attributes: disjoint union
+	Role: operator
+
+Symbol: \bigtriangledown
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \bigtriangleup
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \biguplus
+
+  Feature Set:
+	Areas: generic || set theory
+	Attributes: disjoint union || union plus
+	Role: operator
+
+Symbol: \bigvee
+
+  Feature Set:
+	Areas: logic
+	Attributes: or
+	Role: operator
+
+  Feature Set:
+	Areas: order theory
+	Attributes: max == maximum
+	Role: operator
+
+  Feature Set:
+	Areas: lattice theory
+	Attributes: join
+	Role: operator
+
+Symbol: \bigwedge
+
+  Feature Set:
+	Areas: logic
+	Attributes: and
+	Role: operator
+
+  Feature Set:
+	Areas: order theory
+	Attributes: min == minimum
+	Role: operator
+
+  Feature Set:
+	Areas: lattice theory
+	Attributes: meet
+	Role: operator
+
+Symbol: \blacklozenge
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \blacksquare
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \blacktriangle
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \blacktriangledown
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \blacktriangleleft
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \blacktriangleright
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \bmod
+
+  Feature Set:
+	Areas: algebra || arithmetic || number theory
+	Attributes: binary mod
+	Role: operation
+
+Symbol: \bot
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \bowtie
+
+  Feature Set:
+	Areas: databases || relations
+	Attributes: join
+	Role: operation
+
+Symbol: \boxdot
+
+  Feature Set:
+	Areas: generic
+	Attributes: box dot
+	Role: operation
+
+Symbol: \boxminus
+
+  Feature Set:
+	Areas: generic
+	Attributes: box minus
+	Role: operation
+
+Symbol: \boxplus
+
+  Feature Set:
+	Areas: generic
+	Attributes: box plus
+	Role: operation
+
+Symbol: \boxtimes
+
+  Feature Set:
+	Areas: generic
+	Attributes: box times
+	Role: operation
+
+  Feature Set:
+	Areas: control theory
+	Attributes: box times
+	Role: operator
+
+Symbol: \bullet
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: dot
+	Role: operation
+
+Symbol: \bumpeq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \cap
+
+  Feature Set:
+	Areas: set theory
+	Attributes: intersection
+	Role: operation
+
+Symbol: \cdot
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: dot
+	Role: operation
+
+Symbol: \centerdot
+
+  Feature Set:
+	Areas: generic
+	Attributes: dot
+	Role: operation
+
+Symbol: \circ
+
+  Feature Set:
+	Areas: generic
+	Attributes: little circle
+	Role: operation
+
+Symbol: \circeq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \circlearrowleft
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \circlearrowright
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \circledast
+
+  Feature Set:
+	Areas: generic
+	Attributes: circled asterisk
+	Role: operation
+
+Symbol: \circledcirc
+
+  Feature Set:
+	Areas: generic
+	Attributes: circled circle
+	Role: operation
+
+Symbol: \circleddash
+
+  Feature Set:
+	Areas: generic
+	Attributes: circled dash
+	Role: operation
+
+Symbol: \cong
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \coprod
+
+  Feature Set:
+	Areas: category theory
+	Attributes: coproduct == categorical sum
+	Role: operator
+
+  Feature Set:
+	Areas: set theory || topology
+	Attributes: disjoint union
+	Role: operator
+
+  Feature Set:
+	Areas: group theory
+	Attributes: free product
+	Role: operator
+
+  Feature Set:
+	Areas: module theory || vector spaces
+	Attributes: direct sum
+	Role: operator
+
+Symbol: \copyright
+
+  Feature Set:
+	Areas: everywhere
+	Role: copyright symbol
+
+Symbol: \cup
+
+  Feature Set:
+	Areas: set theory
+	Attributes: union
+	Role: operation
+
+Symbol: \curlyeqprec
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \curlyeqsucc
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \curlyvee
+
+  Feature Set:
+	Areas: generic
+	Attributes: curly vee
+	Role: operation
+
+Symbol: \curlywedge
+
+  Feature Set:
+	Areas: generic
+	Attributes: curly wedge
+	Role: operation
+
+Symbol: \curvearrowleft
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \curvearrowright
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \dag
+
+  Feature Set:
+	Areas: generic
+	Attributes: dagger
+	Role: binary operation
+
+  Feature Set:
+	Areas: linear algebra
+	Attributes: conjugate
+	Role: exponent postfix unary operation
+
+Symbol: \dagger
+
+  Feature Set:
+	Areas: generic
+	Attributes: dagger
+	Role: binary operation
+
+  Feature Set:
+	Areas: linear algebra
+	Attributes: conjugate
+	Role: exponent postfix unary operation
+
+Symbol: \dashleftarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \dashrightarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \dashv
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \dblfloatpagefraction
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: float page fraction value for two-column Latex pages
+	Role: numeric
+
+Symbol: \dbltopfraction
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: maximum fraction value at the top of a two-column Latex page
+	Role: numeric
+
+Symbol: \ddag
+
+  Feature Set:
+	Areas: generic
+	Attributes: ddouble agger
+	Role: operation
+
+Symbol: \ddagger
+
+  Feature Set:
+	Areas: generic
+	Attributes: ddouble agger
+	Role: operation
+
+Symbol: \diamond
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \divideontimes
+
+  Feature Set:
+	Areas: proof
+	Attributes: contradiction || divide on times
+	Role: operation
+
+Symbol: \doteq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \doteqdot
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \dotplus
+
+  Feature Set:
+	Areas: generic
+	Attributes: dot plus
+	Role: operation
+
+Symbol: \doublebarwedge
+
+  Feature Set:
+	Areas: Boolean algebra || generic || logic
+	Attributes: doublebar wedge
+	Role: operation
+
+Symbol: \doublecap
+
+  Feature Set:
+	Areas: set theory
+	Attributes: double intersection
+	Role: operation
+
+Symbol: \doublecup
+
+  Feature Set:
+	Areas: set theory
+	Attributes: double union
+	Role: operation
+
+Symbol: \downarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \downdownarrows
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \downharpoonleft
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \downharpoonright
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \eqcirc
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \eqslantgtr
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \eqslantless
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \equiv
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \fallingdotseq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \floatpagefraction
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: float page fraction value in Latex
+	Role: numeric
+
+Symbol: \footnotemark
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: footnote number
+	Role: numeric
+
+Symbol: \frown
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \ge
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \geq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \geqq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \geqslant
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \gg
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \ggg
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \gnapprox
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \gneq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \gneqq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \gnsim
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \gtrapprox
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \gtrdot
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \gtreqless
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \gtreqqless
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \gtrless
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \gtrsim
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \gvertneqq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \hookleftarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \hookrightarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \i
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: everywhere
+	Role: symbol
+
+Symbol: \idotsint
+
+  Feature Set:
+	Areas: calculus || everywhere
+	Attributes: many-integral
+	Role: operator
+
+Symbol: \iff
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \iiiint
+
+  Feature Set:
+	Areas: calculus || everywhere
+	Attributes: quadruple integral
+	Role: operator
+
+Symbol: \iiint
+
+  Feature Set:
+	Areas: calculus || everywhere
+	Attributes: triple integral
+	Role: operator
+
+Symbol: \iint
+
+  Feature Set:
+	Areas: calculus || everywhere
+	Attributes: double integral
+	Role: operator
+
+Symbol: \in
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \int
+
+  Feature Set:
+	Areas: calculus || everywhere
+	Attributes: integral
+	Role: operator
+
+Symbol: \intercal
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \j
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: everywhere
+	Role: symbol
+
+Symbol: \join
+
+  Feature Set:
+	Areas: databases || relations
+	Attributes: join
+	Role: operation
+
+Symbol: \l
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: everywhere
+	Role: symbol
+
+Symbol: \lVert
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation || relation
+
+Symbol: \land
+
+  Feature Set:
+	Areas: Boolean algebra || logic
+	Attributes: and
+	Role: operation
+
+  Feature Set:
+	Areas: order theory
+	Attributes: min == minimum
+	Role: operation
+
+  Feature Set:
+	Areas: lattice theory
+	Attributes: meet
+	Role: operation
+
+Symbol: \lceil
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation
+
+Symbol: \le
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \leadsto
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \leftarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \leftarrowtail
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \leftharpoondown
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \leftharpoonup
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \leftleftarrows
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \leftrightarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \leftrightarrows
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \leftrightharpoons
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \leftrightsquigarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \leftthreetimes
+
+  Feature Set:
+	Areas: generic
+	Attributes: left three times
+	Role: operation
+
+Symbol: \leq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \leqq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \leqslant
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \lessapprox
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \lessdot
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \lesseqgtr
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \lesseqqgtr
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \lessgtr
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \lesssim
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \lfloor
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation
+
+Symbol: \lhd
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \ll
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \lll
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \llless
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \lnapprox
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \lneq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \lneqq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \lnsim
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \longleftarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \longleftrightarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \longmapsto
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \longrightarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \looparrowleft
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \looparrowright
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \lor
+
+  Feature Set:
+	Areas: Boolean algebra || logic
+	Attributes: or
+	Role: operation
+
+  Feature Set:
+	Areas: order theory
+	Attributes: max || maximum
+	Role: operation
+
+  Feature Set:
+	Areas: lattice theory
+	Attributes: join
+	Role: operation
+
+Symbol: \lozenge
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \lq
+
+  Feature Set:
+	Areas: everywhere
+	Role: left quote
+
+Symbol: \ltimes
+
+  Feature Set:
+	Areas: databases || relations
+	Attributes: left normal factor semidirect product || semijoin
+	Role: operation
+
+Symbol: \lvert
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation || operation || relation
+
+Symbol: \lvertneqq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \mapsto
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \mid
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation || operation || relation
+
+Symbol: \models
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \mp
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: minus plus
+	Role: operation
+
+Symbol: \multimap
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \nVDash
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nVdash
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nabla
+
+  Feature Set:
+	Areas: vector calculus
+	Attributes: curl || del == nabla || divergence || gradient
+	Role: operator
+
+Symbol: \ncong
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \ne
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nearrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \neq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \ngeq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \ngeqq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \ngeqslant
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \ngtr
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \ni
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \nleq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nleqq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nleqslant
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nless
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nmid
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \notin
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nparallel
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nprec
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \npreceq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nshortmid
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nshortparallel
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nsim
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nsubseteq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nsubseteqq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nsucc
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nsucceq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nsupseteq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nsupseteqq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \ntriangleleft
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \ntrianglelefteq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \ntriangleright
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \ntrianglerighteq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nvDash
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nvdash
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \nwarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \odot
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: o dot
+	Role: operation
+
+Symbol: \oint
+
+  Feature Set:
+	Areas: calculus || everywhere
+	Attributes: contour integral
+	Role: operator
+
+Symbol: \ominus
+
+  Feature Set:
+	Areas: generic
+	Attributes: o minus
+	Role: operation
+
+  Feature Set:
+	Areas: set theory
+	Attributes: symmetric difference
+	Role: operation
+
+  Feature Set:
+	Areas: Hilbert spaces
+	Attributes: o minus
+	Role: operation
+
+Symbol: \oplus
+
+  Feature Set:
+	Areas: Boolean algebra || logic
+	Attributes: exclusive-or
+	Role: operation
+
+  Feature Set:
+	Areas: abstract algebra || group theory || module theory || ring theory || vector spaces
+	Attributes: direct sum
+	Role: operation
+
+  Feature Set:
+	Areas: category theory
+	Attributes: categorical sum || direct sum
+	Role: operation
+
+Symbol: \oslash
+
+  Feature Set:
+	Areas: generic
+	Attributes: o slash
+	Role: operation
+
+Symbol: \otimes
+
+  Feature Set:
+	Areas: dyadic algebra || linear algebra || module theory || vector spaces
+	Attributes: dyadic == dyadic tensor == tensor product == outer product
+	Role: operation
+
+  Feature Set:
+	Areas: linear algebra || matrix theory || vector algebra
+	Attributes: kronecker product
+	Role: operation
+
+Symbol: \owns
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \parallel
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \partial
+
+  Feature Set:
+	Areas: calculus
+	Attributes: partial derivative
+	Role: operator
+
+Symbol: \perp
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \pitchfork
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \pm
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: plus minus
+	Role: binary operation
+
+  Feature Set:
+	Areas: everywhere || measurement
+	Attributes: plus minus
+	Role: unary operation
+
+Symbol: \pmod
+
+  Feature Set:
+	Areas: algebra || arithmetic || number theory
+	Attributes: mod
+	Role: relation-qualifier
+
+Symbol: \pounds
+
+  Feature Set:
+	Areas: everywhere
+	Role: pound sign
+
+Symbol: \prec
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \precapprox
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \preccurlyeq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \preceq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \precnapprox
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \precneqq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \precnsim
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \precsim
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \prod
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: product == multiplication
+	Role: operator
+
+Symbol: \propto
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \rVert
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation || relation
+
+Symbol: \rceil
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation
+
+Symbol: \rfloor
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation
+
+Symbol: \rhd
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \rightarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \rightarrowtail
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \rightharpoondown
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \rightharpoonup
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \rightleftarrows
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \rightleftharpoon
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \rightleftharpoons
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \rightrightarrows
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \rightsquigarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \rightthreetimes
+
+  Feature Set:
+	Areas: generic
+	Attributes: right three times
+	Role: operation
+
+Symbol: \risingdotseq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \rq
+
+  Feature Set:
+	Areas: everywhere
+	Role: right quote
+
+Symbol: \rtimes
+
+  Feature Set:
+	Areas: group theory
+	Attributes: right normal factor semidirect product
+	Role: operation
+
+Symbol: \rvert
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation || operation || relation
+
+Symbol: \searrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \setminus
+
+  Feature Set:
+	Areas: set theory
+	Attributes: set complement || set difference
+	Role: operation
+
+Symbol: \shortmid
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \shortparallel
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \sim
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \simeq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \smallfrown
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \smallint
+
+  Feature Set:
+	Areas: calculus || everywhere
+	Attributes: integral
+	Role: operator
+
+Symbol: \smallsetminus
+
+  Feature Set:
+	Areas: set theory
+	Attributes: set complement || set difference
+	Role: operation
+
+Symbol: \smallsmile
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \smile
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \sqcap
+
+  Feature Set:
+	Areas: number theory
+	Attributes: greatest common divisor
+	Role: operation
+
+  Feature Set:
+	Areas: set theory
+	Attributes: intersection
+	Role: operation
+
+Symbol: \sqcup
+
+  Feature Set:
+	Areas: set theory
+	Attributes: disjoint union
+	Role: operation
+
+Symbol: \sqsubset
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \sqsubseteq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \sqsupset
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \sqsupseteq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \square
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \star
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: star
+	Role: operation
+
+Symbol: \subset
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \subseteq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \subseteqq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \subsetneq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \subsetneqq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \succ
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \succapprox
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \succcurlyeq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \succeq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \succnapprox
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \succneqq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \succnsim
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \succsim
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \sum
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: sum == summation
+	Role: operator
+
+Symbol: \supset
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \supseteq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \supseteqq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \supsetneq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \supsetneqq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \swarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \textfraction
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: minimum fraction of a Latex text page that must coontain text
+	Role: numeric
+
+Symbol: \therefore
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \thickapprox
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \thicksim
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \times
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: times == multiplication == product
+	Role: operation
+
+  Feature Set:
+	Areas: geometry || vector calculus
+	Attributes: cross product
+	Role: operation
+
+  Feature Set:
+	Areas: ring theory
+	Attributes: set of units of a ring
+	Role: exponent postfix unary operation
+
+Symbol: \to
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \today
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: today's date
+	Role: date
+
+Symbol: \top
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \topfraction
+
+  Feature Set:
+	Areas: everywhere
+	Attributes: maximum fraction at the top of a single-column Latex page
+	Role: numeric
+
+Symbol: \triangledown
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \triangleleft
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \trianglelefteq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \triangleq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \triangleright
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \trianglerighteq
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \twoheadleftarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \twoheadrightarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \unlhd
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \unrhd
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \uparrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \updownarrow
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \upharpoonleft
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \upharpoonright
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \uplus
+
+  Feature Set:
+	Areas: generic || set theory
+	Attributes: disjoint union || union plus
+	Role: operation
+
+Symbol: \upuparrows
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \vDash
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \varpropto
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \varsubsetneq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \varsubsetneqq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \varsupsetneq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \varsupsetneqq
+
+  Feature Set:
+	Areas: mathematics
+	Attributes: negated
+	Role: relation
+
+Symbol: \vartriangle
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \vartriangleleft
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \vartriangleright
+
+  Feature Set:
+	Areas: mathematics
+	Role: object || operation || relation
+
+Symbol: \vdash
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+Symbol: \vee
+
+  Feature Set:
+	Areas: Boolean algebra || logic
+	Attributes: or
+	Role: operation
+
+  Feature Set:
+	Areas: order theory
+	Attributes: max || maximum
+	Role: operation
+
+  Feature Set:
+	Areas: lattice theory
+	Attributes: join
+	Role: operation
+
+Symbol: \veebar
+
+  Feature Set:
+	Areas: Boolean algebra || logic
+	Attributes: exclusive-or
+	Role: operation
+
+Symbol: \vert
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation || operation || relation
+
+Symbol: \wedge
+
+  Feature Set:
+	Areas: Boolean algebra || logic
+	Attributes: and
+	Role: operation
+
+  Feature Set:
+	Areas: order theory
+	Attributes: min || minimum
+	Role: operation
+
+  Feature Set:
+	Areas: lattice theory
+	Attributes: meet
+	Role: operation
+
+Symbol: \wr
+
+  Feature Set:
+	Areas: generic || group theory
+	Attributes: wreath product
+	Role: operation

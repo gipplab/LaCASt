@@ -1,0 +1,15 @@
+\acos , \arccos
+\acosec , \arccosec
+\acosech , \arcosech
+\acosh , \arcosh
+\acot , \arccot
+\acoth , \arcoth
+\acsc , \arccsc
+\arccosech , \arcosech
+\arccosh , \arcosh
+\arccoth , \arcoth
+\arccsch , \arcsch
+\asch , \arcsch
+\asec , \arcsec
+\asin , \arcsin
+\atan , \arctan

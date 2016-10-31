@@ -1,0 +1,295 @@
+
+Symbol: Omega
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistical mechanics || statistics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the set of possible distinct system states
+	Role: set
+	Root-symbol: Omega
+
+Symbol: Sigma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the covariance matrix
+	Role: matrix
+	Root-symbol: Sigma
+
+Symbol: Theta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: a space of parameters from which estimates are drawn
+	Role: concept
+	Root-symbol: Theta
+
+Symbol: alpha
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the statistical significance of a result
+	Role: concept
+	Root-symbol: alpha
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the false positive rate
+	Role: rate
+	Root-symbol: alpha
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the probability of a type I error
+	Role: probability
+	Root-symbol: alpha
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Cronbach's alpha <_s a statistical measure of reliability
+	Role: measure
+	Root-symbol: alpha
+
+Symbol: beta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the false negative rate
+	Role: rate
+	Root-symbol: beta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the probability of a Type II error
+	Role: probability
+	Root-symbol: beta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics || univariate linear regression
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: beta coefficient || standardized coefficient || standardized regression coefficient
+	Role: concept
+	Root-symbol: beta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: multivariate linear regression || probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: beta coefficient || standardized coefficient || standardized regression coefficient
+	Role: concept
+	Root-symbol: beta
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: epsilon
+
+  Feature Set:
+	Areas: linear regression || probability 	Alphabet: Greek || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: random error
+	Role: concept
+	Root-symbol: epsilon
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: kappa
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Cohen's kappa == Kappa statistic == a measure of agreement between two raters for qualitative items
+	Role: measure || statistic
+	Root-symbol: kappa
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Fleiss kappa == a measure of agreement among multiple raters for qualitative items
+	Role: statistical measure
+	Root-symbol: kappa
+
+Symbol: lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Goodman and Kruskal's lambda
+	Role: statistical measure
+	Root-symbol: lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the expected value in a Poisson distribution
+	Role: parameter
+	Root-symbol: lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || queueing theory || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the arrival rate
+	Role: rate
+	Root-symbol: lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the average lifetime in an exponential distribution || the rate parameter in an exponential distribution
+	Role: parameter
+	Root-symbol: lambda
+
+Symbol: mu
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || queueing theory || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the service rate
+	Role: rate
+	Root-symbol: mu
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the  population expected value || the population mean
+	Role: concept
+	Root-symbol: mu
+
+Symbol: nu
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Degrees of freedom
+	Role: concept
+	Root-symbol: nu
+
+Symbol: pi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Markov chains || probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: state distribution
+	Role: probability
+	Root-symbol: pi
+	Superscript-size: 1
+	Superscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Markov chains || probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: stationary distribution
+	Role: probability vector
+	Root-symbol: pi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the population proportion
+	Role: proportion
+	Root-symbol: pi
+
+Symbol: rho
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Pearson product-moment correlation coefficient
+	Role: concept
+	Root-symbol: rho
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Spearman's rank correlation coefficient
+	Role: concept
+	Root-symbol: rho
+
+Symbol: sigma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the population standard deviation
+	Role: concept
+	Root-symbol: sigma
+
+Symbol: theta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-weight: plain
+	Meanings: an unknown parameter
+	Role: parameter
+	Root-symbol: theta
+
+Symbol: xi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: probability || statistics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: a random variable
+	Role: variable
+	Root-symbol: xi

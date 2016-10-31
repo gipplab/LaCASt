@@ -1,0 +1,332 @@
+
+Symbol: B
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: number theory
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Brun's constant for prime quadruplets
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: 4
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: number theory
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Brun's constant
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: 2
+
+Symbol: G
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics || physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Newton's gravitational constant
+
+Symbol: Gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Lorentzian manifolds || Mathematical physics || Riemannian geometry
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the Christoffel symbols of the first kind
+	Role: special number || tensor
+	Root-symbol: Gamma
+	Subscript-size: 3
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Lorentzian manifolds || Mathematical physics || Riemannian geometry
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the Christoffel symbols of the second kind
+	Role: special number || tensor
+	Root-symbol: Gamma
+	Subscript-size: 2
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: ordinal numbers || proof theory
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Feferman-Schutte ordinal
+	Role: ordinal
+	Root-symbol: Gamma
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: 0
+
+Symbol: H
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Physical cosmology
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Hubble constant
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: 0
+
+Symbol: M
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: chemistry || physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the Madelung constant for crystal structures held by ionic bonding
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: Mathematical constants || number theory
+	Font-style: italic
+	Font-typeface: roman
+	Font-weight: plain
+	Meanings: Kronecker's constant || Meissel-Mertens constant || Mertens constant || the prime reciprocal constant
+
+Symbol: N
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: chemistry || physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the Avogadro constant == the number of entities in one mole
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: A
+
+Symbol: Omega
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: mathematics
+	Font-style: upright
+	Font-weight: plain
+	Meanings: The omega constant == the Adamchik constant
+	Role: mathematical constant
+	Root-symbol: Omega
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: algorithmic information theory || computer science
+	Font-style: upright
+	Font-weight: plain
+	Meanings: a Chaitin constant == Chaitin omega number == halting probability
+	Role: special number
+	Root-symbol: Omega
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: algorithmic information theory || computer science
+	Font-style: upright
+	Font-weight: plain
+	Meanings: a Chaitin constant == Chaitin omega number == halting probability
+	Role: special number
+	Root-symbol: Omega
+	Subscript-size: 1
+	Subscript-type: function
+
+Symbol: Phi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: mathematics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the golden ratio conjugate
+	Role: mathematical constant
+	Root-symbol: Phi
+
+Symbol: alpha
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Bifurcation theory || Chaos theory || Dynamical systems || Mathematical constants
+	Font-weight: plain
+	Meanings: the second Feigenbaum constant
+	Role: mathematical constant
+	Root-symbol: alpha
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: ordinal numbers
+	Font-style: computer modern
+	Meanings: a placeholder for ordinal numbers
+	Role: ordinal
+	Root-symbol: alpha
+
+Symbol: delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Bifurcation theory || Chaos theory || Dynamical systems || Mathematical constants
+	Font-weight: plain
+	Meanings: the first Feigenbaum constant
+	Role: mathematical constant
+	Root-symbol: delta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Elementary special functions || mathematics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the Kronecker delta function
+	Role: function || special number || tensor
+	Root-symbol: delta
+	Superscript-size: 2
+	Superscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: ordinal numbers
+	Meanings: a delta number == a multiplicatively indecomposable ordinal
+	Role: ordinal
+	Root-symbol: delta
+
+Symbol: e
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: Euler's number == Napier's constant ==  2.71828182845...
+
+Symbol: epsilon
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Linear algebra || Permutations || Tensors
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the Levi-Civita symbol
+	Role: special number || tensor
+	Root-symbol: epsilon
+	Subscript-size: 2 or more
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: ordinal numbers
+	Meanings: an epsilon number <_s an ordinal number
+	Role: concept
+	Root-symbol: epsilon
+	Subscript-size: 1
+	Subscript-type: integer || ordinal
+
+Symbol: gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: mathematics
+	Font-weight: plain
+	Meanings: the Euler-Mascheroni constant
+	Role: mathematical constant
+	Root-symbol: gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: ordinal numbers
+	Meanings: a gamma number == an additively indecomposable ordinal
+	Role: ordinal
+	Root-symbol: gamma
+
+Symbol: h
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: quantum mechanics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the Planck constant
+
+Symbol: k
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the Boltzmann constant
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the Boltzmann constant
+	Subcript-size: 1
+	Subscript-type: fixed
+	Subscript-value: B
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: classical mechanics || physics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Meanings: the spring constant of Hooke's law
+
+Symbol: omega
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: ordinal numbers
+	Font-style: upright
+	Meanings: the first infinite ordinal
+	Role: ordinal
+	Root-symbol: omega
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: ordinal numbers
+	Meanings: an uncountable ordinal number
+	Role: ordinal
+	Root-symbol: omega
+	Subscript-size: 1
+	Subscript-type: integer || ordinal
+
+Symbol: phi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: mathematics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the golden ratio == golden mean == golden section == extreme and mean ratio == medial section == divine proportion == divine section == golden proportion == golden cut == golden number
+	Role: mathematical constant
+	Root-symbol: phi
+
+Symbol: pi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: mathematics
+	Font-weight: plain
+	Meanings: Archimedes' constant == the ratio of a circle's circumference to its diameter
+	Role: mathematical constant
+	Root-symbol: pi
+
+Symbol: psi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: mathematics
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: The reciprocal Fibonacci constant
+	Role: mathematical constant
+	Root-symbol: psi

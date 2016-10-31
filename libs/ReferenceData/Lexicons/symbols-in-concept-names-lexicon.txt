@@ -1,0 +1,88 @@
+
+Symbol: alpha
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: lambda calculus
+	Full-name: alpha conversion
+	Meanings: a type of conversion in lambda calculus
+	Role: method name
+	Root-symbol: alpha
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: lambda calculus
+	Full-name: alpha equivalence
+	Meanings: a type of equivalence in lambda calculus
+	Role: equivalence name
+	Root-symbol: alpha
+
+Symbol: beta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: lambda calculus
+	Full-name: beta reduction
+	Meanings: a type of reduction in lambda calculus
+	Role: method name
+	Root-symbol: beta
+
+Symbol: epsilon
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: logic
+	Full-name: epsilon calculus
+	Meanings: a type of calculus in logic
+	Role: area name
+	Root-symbol: epsilon
+
+Symbol: eta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: lambda calculus
+	Full-name: eta conversion
+	Meanings: a type of conversion in lambda calculus
+	Role: method name
+	Root-symbol: eta
+
+Symbol: kappa
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: logic
+	Full-name: kappa calculus
+	Meanings: a type of calculus in logic
+	Role: area name
+	Root-symbol: kappa
+
+Symbol: lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: lambda calculus
+	Full-name: lambda calculus
+	Meanings: a type of calculus in logic
+	Role: area name
+	Root-symbol: lambda
+
+Symbol: rho
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: algorithms || number theory
+	Full-name: Pollard's rho algorithm
+	Meanings: an integer factorization algorithm
+	Role: algorithm name
+	Root-symbol: rho
+
+Symbol: sigma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: mathematical anlysis || mathematical statistics || measure theory || probability
+	Full-name: simga-algebra == sigma-field
+	Meanings: a mathematical construct
+	Role: construct name
+	Root-symbol: sigma

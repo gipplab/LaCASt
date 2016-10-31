@@ -1,0 +1,3891 @@
+
+Symbol: A
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: generalized Airy function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: bold
+	Meanings: Anger-Weber function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+Symbol: Ai
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Airy function of the first kind
+	Role: function
+
+Symbol: B
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the beta function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the q-beta function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex || real
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: incomplete beta function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: generalized Airy function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Bernoulli polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Bernoulli numbers
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Accent-location: above
+	Accent-value: tilde
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: periodic Bernoulli functions
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: Bi
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Airy function of the second kind
+	Role: function
+
+Symbol: C
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Fresnel integral
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Ultraspherical polynomial == Gegenbauer polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: real
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable; parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Charlier polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: Ce
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: modified Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+Symbol: Chi
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: hyperbolic cosine integral
+	Role: function
+
+Symbol: Ci
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the cosine integrals
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (parameter, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the generalized cosine integral
+	Role: function
+
+Symbol: Cin
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the cosine integrals
+	Role: function
+
+Symbol: D
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: parabolic cylinder function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: incomplete elliptic integral of Legendre's type
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: complete elliptic integral of Legendre's type,
+	Role: function
+
+Symbol: E
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the generalized exponential integral
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: bold
+	Meanings: Weber function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Legendre's incomplete elliptic integral of the second kind
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Legendre's complete elliptic integral of the second kind
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable, parameter)
+	Font-style: script
+	Meanings: Jacobi's epsilon function
+	Role: function
+	Root-symbol: E
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Euler polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Euler numbers
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Accent-location: above
+	Accent-value: tilde
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: periodic Euler functions
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: E1
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: exponential integral
+	Role: function
+
+Symbol: Ec
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Lame function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: real
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: Ei
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: exponential integral
+	Role: function
+
+Symbol: Ein
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: complementary exponential integral
+	Role: function
+
+Symbol: Es
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Lame function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: real
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: F
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Dawson's integral
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: script
+	Font-weight: plain
+	Meanings: Fresnel integral
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex, complex)
+	Argument-structure: (parameter, parameter; parameter; variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: hypergeometric function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex vector; complex vector; complex)
+	Argument-structure: (parameter; parameter; variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: generalized hypergeometric function
+	Presubscript-size: 1
+	Presubscript-type: integer
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex, complex, complex, complex)
+	Argument-structure: (parameter; parameter, parameter; parameter; variable, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: first Appell function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: 1
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex, complex, complex, complex, complex)
+	Argument-structure: (parameter; parameter, parameter; parameter, parameter; variable, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: second Appell function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: 2
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex, complex, complex, complex, complex)
+	Argument-structure: (parameter, parameter; parameter, parameter; parameter; variable, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: third Appell function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: 3
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex, complex, complex, complex)
+	Argument-structure: (parameter; parameter; parameter, parameter; variable, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: fourth Appell function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: 4
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Legendre's incomplete elliptic integral of the first kind
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Fermi-Dirac integral
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (parameter, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: regular Coulomb radial function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: Fe
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: modified Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: G
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Barne's G-function == double gamma function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the Goodwin-Staton integral
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex vector, complex vector)
+	Argument-structure: (variable; parameter; parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Meijer G-function
+	Role: function
+	Subscript-size: 2
+	Subscript-type: integer
+	Superscript-size: 2
+	Superscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Bose-Einstein integral
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: number theory || special functions
+	Argument-data-type: (integer, function)
+	Argument-structure: (variable, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Gauss sum
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (parameter, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: irregular Coulomb radial function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: Gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Meanings: the gamma function
+	Role: function
+	Root-symbol: Gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Meanings: the q-gamma function
+	Role: function
+	Root-symbol: Gamma
+	Subscript-size: 1
+	Subscript-type: complex || real
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: upright
+	Meanings: the p-adic gamma function
+	Role: function
+	Root-symbol: Gamma
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (parameter, variable)
+	Font-style: upright
+	Meanings: upper incomplete gamma function
+	Role: function
+	Root-symbol: Gamma
+
+Symbol: Ge
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: modified Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: Gi
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Scorer function == inhomogeneous Airy function
+	Role: function
+
+Symbol: H
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Bessel function of the third kind == Hankel function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: 1
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Bessel function of the third kind == Hankel function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: 2
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: bold
+	Meanings: Struve function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (parameter, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: irregular Coulomb radial function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: +
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (parameter, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: irregular Coulomb radial function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: -
+
+Symbol: Hf
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex, complex, complex, complex, complex)
+	Argument-structure: (parameter, parameter; parameter, parameter, parameter, parameter; variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Heun function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: Hi
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Scorer function == inhomogeneous Airy function
+	Role: function
+
+Symbol: Hl
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex, complex, complex, complex, complex)
+	Argument-structure: (parameter, parameter; parameter, parameter, parameter, parameter; variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Heun function
+	Role: function
+
+Symbol: Hp
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, integer, complex, complex, complex, complex)
+	Argument-structure: (parameter, parameter; parameter, parameter, parameter, parameter; variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Heun polynomial
+	Role: function
+	Subscript-size: 2
+	Subscript-type: integer
+
+Symbol: I
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: incomplete beta function,
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex || real
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: modified Bessel function of the first kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+Symbol: Ie
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: modified Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: Io
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: modified Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: J
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Bessel function of the first kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: bold
+	Meanings: Anger function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Klein's complete invariant
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Jordan's function == Jordan totient function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: K
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: modified Bessel function of the second kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: bold
+	Meanings: Struve function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real, integer)
+	Argument-structure: (variable; parameter, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Krawtchouk polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Legendre's complete elliptic integral of the first kind,
+	Role: function
+
+Symbol: Ke
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: modified Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: Ko
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: modified Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: L
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: bold
+	Meanings: modified Struve function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real, real, integer)
+	Argument-structure: (variable; parameter, parameter, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Hahn polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable; parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: q-Laguerre polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: real
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: generalized Laguerre polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: real
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Laguerre polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: 0 || fixed
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: arithmetic functions || number theory
+	Argument-data-type: (complex, Dirichlet character)
+	Argument-structure: (variable, parameter)
+	Font-style: computer modern
+	Meanings: Dirichlet L-series == Dirichlet L-function
+	Role: function
+	Root-symbol: L
+
+Symbol: Lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: Mangoldt's function
+	Role: function
+	Root-symbol: Lambda
+
+Symbol: Li
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the dilogarithm
+	Role: function
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: 2
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the polylogarithm
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+Symbol: M
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: bold
+	Meanings: modified Struve function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex)
+	Argument-structure: (parameter, parameter, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Kummer confluent hypergeometric function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex)
+	Argument-structure: (parameter, parameter, variable)
+	Font-style: upright
+	Font-weight: bold
+	Meanings: Olver's confluent hypergeometric function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Whittaker confluent hypergeometric function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real, real)
+	Argument-structure: (variable; parameter, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Meixner polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: modified Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: Mc
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: radial Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: Me
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: modified Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+Symbol: Ms
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: radial Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: Omega
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: upright
+	Meanings: prime power decomposition function
+	Role: function
+	Root-symbol: Omega
+
+Symbol: P
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (parameter, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: normalized incomplete gamma function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern || upright
+	Font-weight: plain
+	Meanings: Legendre function of the first kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Ferrers function of the first kind,
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+	Superscript-size: 1
+	Superscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: associated Legendre function of the first kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+	Superscript-size: 1
+	Superscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Jacobi polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-parenthesized: yes
+	Superscript-size: 2
+	Superscript-type: real
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Legendre polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Shifted Legendre polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: *
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable; parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Meixner-Pollaczek polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: real
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real, real)
+	Argument-structure: (variable; parameter, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Pollaczek polynomials
+	Role: function
+	Subscript- size: 1
+	Subscript-type: integer
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: real
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real, real, real, real)
+	Argument-structure: (variable; parameter, parameter, parameter; parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Big q-Jacobi polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: triangle polynomials
+	Role: function
+	Subscript-size: 2
+	Subscript-type: integer
+	Superscript-parenthesized: yes
+	Superscript-size: 3
+	Superscript-type: real
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Gegenbauer function
+	Role: function
+	Subscript-size: 2
+	Subscript-type: integer
+
+Symbol: Phi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex)
+	Argument-structure: (variable, variable, parameter)
+	Font-style: upright
+	Meanings: Lerch's transcendent
+	Role: function
+	Root-symbol: Phi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex, real vector)
+	Argument-structure: (variable; parameter)
+	Font-style: upright
+	Meanings: cuspoid catastrophe of codimension $sub1
+	Role: function
+	Root-symbol: Phi
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex, complex, real vector)
+	Argument-structure: (variable, variable; parameter)
+	Font-style: upright
+	Meanings: elliptic umbilic catastrophe
+	Role: function
+	Root-symbol: Phi
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: E
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex, complex, real vector)
+	Argument-structure: (variable, variable; parameter)
+	Font-style: upright
+	Meanings: hyperbolic umbilic catastrophe
+	Role: function
+	Root-symbol: Phi
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: H
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Waves || quantum mechanics || special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable,variable)
+	Font-style: upright
+	Meanings: 1D momentum-space wave function
+	Role: function
+	Root-symbol: Phi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Waves || quantum mechanics || special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: upright
+	Meanings: 1D time-independent momentum-space wave function
+	Role: function
+	Root-symbol: Phi
+
+Symbol: Pi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex)
+	Argument-structure: (variable, variable, variable)
+	Font-style: upright
+	Meanings: Legendre's incomplete elliptic integral of the third kind
+	Role: function
+	Root-symbol: Pi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Meanings: Legendre's complete elliptic integral of the third kind
+	Role: function
+	Root-symbol: Pi
+
+Symbol: Ps
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real || complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: spheroidal wave function of the first kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: Psi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (real vector)
+	Argument-structure: (variable)
+	Font-style: upright
+	Meanings: canonical integral function
+	Role: function
+	Root-symbol: Psi
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (real vector)
+	Argument-structure: (variable)
+	Font-style: upright
+	Meanings: elliptic umbilic canonical integral function
+	Role: function
+	Root-symbol: Psi
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: E
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (real vector)
+	Argument-structure: (variable)
+	Font-style: upright
+	Meanings: hyperbolic umbilic canonical integral function
+	Role: function
+	Root-symbol: Psi
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: H
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (real vector)
+	Argument-structure: (variable)
+	Font-style: upright
+	Meanings: umbilic canonical integral function
+	Role: function
+	Root-symbol: Psi
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: U
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (real vector, complex)
+	Argument-structure: (parameter; variable)
+	Font-style: upright
+	Meanings: diffraction catastrophe
+	Role: function
+	Root-symbol: Psi
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (real vector, complex)
+	Argument-structure: (parameter; variable)
+	Font-style: upright
+	Meanings: diffraction catastrophe
+	Role: function
+	Root-symbol: Psi
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: E
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (real vector, complex)
+	Argument-structure: (parameter; variable)
+	Font-style: upright
+	Meanings: diffraction catastrophe
+	Role: function
+	Root-symbol: Psi
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: H
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Waves || quantum mechanics || special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable,variable)
+	Font-style: upright
+	Meanings: 1D position-space wave function
+	Role: function
+	Root-symbol: Psi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Waves || quantum mechanics || special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: upright
+	Meanings: 1D time-independent position-space wave function
+	Role: function
+	Root-symbol: Psi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Waves || quantum mechanics || special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: upright
+	Meanings: 1D plane wave
+	Role: function
+	Root-symbol: Psi
+	Subscript-size: 1
+	Subscript-type: real
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Waves || quantum mechanics || special functions
+	Argument-data-type: (real vector, real)
+	Argument-structure: (variable,variable)
+	Font-style: upright
+	Meanings: 3D position-space wave function
+	Role: function
+	Root-symbol: Psi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Waves || quantum mechanics || special functions
+	Argument-data-type: (real vector, ..., real vector, real)
+	Argument-structure: (variable, ..., variable, variable)
+	Font-style: upright
+	Meanings: 3D position-space wave function for many particles
+	Role: function
+	Root-symbol: Psi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Waves || quantum mechanics || special functions
+	Argument-data-type: (real vector, real, real)
+	Argument-structure: (variable, variable, variable)
+	Font-style: upright
+	Meanings: 3D position-space wave function for one praticle with spin
+	Role: function
+	Root-symbol: Psi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Waves || quantum mechanics || special functions
+	Argument-data-type: (real vector, ..., real vector, real, ... , real, real)
+	Argument-structure: (variable, ..., variable, variable, ..., variable, variable)
+	Font-style: upright
+	Meanings: 3D position-space wave function for many particles with spin
+	Role: function
+	Root-symbol: Psi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Continuum mechanics || Fluid dynamics
+	Argument-data-type: (real, real, real)
+	Argument-structure: (variable, variable,variable)
+	Font-style: upright
+	Meanings: Stokes stream function
+	Role: function
+	Root-symbol: Psi
+
+Symbol: Q
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (parameter, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: normalized incomplete gamma function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern || upright
+	Font-weight: plain
+	Meanings: Legendre function of the second kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Ferrers function of the second kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+	Superscript-size: 1
+	Superscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: associated Legendre function of the second kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+	Superscript-size: 1
+	Superscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: bold
+	Meanings: Olver's associated Legendre function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+	Superscript-size: 1
+	Superscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real, real, integer, real)
+	Argument-structure: (variable; parameter, parameter, parameter, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: q-Hahn polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: Qs
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real || complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: spheroidal wave function of the second kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: R
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real, real, real, real)
+	Argument-structure: (variable; parameter, parameter, parameter, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Racah polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real, real, integer)
+	Argument-structure: (variable; parameter, parameter, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: dual Hahn polynomials
+	Role: function
+	Subscript- size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Disk polynomials
+	Role: function
+	Subscript-size: 2
+	Subscript-type: integer
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: real
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Carlson's combination of inverse circular and inverse hyperbolic functions
+	Role: function
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: C
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex)
+	Argument-structure: (variable, variable, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: elliptic integral symmetric in only two variables
+	Role: function
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: D
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex)
+	Argument-structure: (variable, variable, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: symmetric elliptic integral of first kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: F
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex)
+	Argument-structure: (variable, variable, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: symmetric elliptic integral of second kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: G
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex, complex)
+	Argument-structure: (variable, variable, variable, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: symmetric elliptic integral of third kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: fixed
+	Subscript-value: J
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex vector, complex vector)
+	Argument-structure: (parameter, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: multivariate hypergeometric function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: real
+
+Symbol: S
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Fresnel integral
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Lommel function
+	Role: function
+	Subscript-size: 2
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, complex, complex, complex)
+	Argument-structure: (variable; parameter, parameter, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: continuous dual Hahn polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable; parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Stieltjes-Wigert polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: radial spheroidal wave function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 2
+	Superscript-type: integer
+
+Symbol: Se
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: modified Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+Symbol: Shi
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: hyperbolic sine integral
+	Role: function
+
+Symbol: Si
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the sine integrals
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (parameter, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the generalized sine integrals
+	Role: function
+
+Symbol: T
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Chebyshev of first kind polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Shifted Chebyshev of first kind polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: *
+
+Symbol: U
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Voigt function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (parameter) || (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: parabolic cylinder function
+	Role: function
+	Separator: comma
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, complex)
+	Argument-structure: (parameter, parameter, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Kummer confluent hypergeometric function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Chebyshev of second kind polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Shifted Chebyshev of second kind polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: *
+
+Symbol: V
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Voigt function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (parameter) || (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: parabolic cylinder function
+	Role: function
+	Separator: comma
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Chebyshev of third kind polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: W
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (parameter, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: parabolic cylinder function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Whittaker confluent hypergeometric function
+	Role: function
+	Subscript-size: 2
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Chebyshev of fourth kind polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, complex, complex, complex, complex)
+	Argument-structure: (variable; parameter, parameter, parameter, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Wilson polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Meanings: the Lambert W-function
+	Role: function
+	Root-symbol: W
+
+Symbol: Xi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Harmonic analysis || Representation theory || special functions
+	Argument-data-type: (group element)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Harish-Chandra's Xi function
+	Role: function
+	Root-symbol: Xi
+
+Symbol: Y
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Bessel function of the second kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: spherical harmonic
+	Role: function
+	Subscript-size: 2
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: surface harmonic of the first kind == Laplace's spherical harmonics
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: Z
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable | parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Jacobi's zeta function
+	Role: function
+
+Symbol: am
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Jacobi's amplitude function
+	Role: function
+
+Symbol: arccos
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse cosine function
+	Role: function
+
+Symbol: arccosec
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse cosecant function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse cosecant function
+	Role: function
+
+Symbol: arccot
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse cotangent function
+	Role: function
+
+Symbol: arccsc
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse cosecant function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse cosecant function
+	Role: function
+
+Symbol: arcosech
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse hyperbolic cosecant function
+	Role: function
+
+Symbol: arcosh
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse hyperbolic cosine function
+	Role: function
+
+Symbol: arcoth
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse hyperbolic cotangent function
+	Role: function
+
+Symbol: arcsch
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse hyperbolic cosecant function
+	Role: function
+
+Symbol: arcsec
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse secant function
+	Role: function
+
+Symbol: arcsin
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse sine function
+	Role: function
+
+Symbol: arctan
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse tangent function
+	Role: function
+
+Symbol: arsech
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: hyperbolic functions
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse hyperbolic secant function
+	Role: function
+
+Symbol: arsinh
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: hyperbolic functions
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse hyperbolic sine function
+	Role: function
+
+Symbol: artanh
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: hyperbolic functions
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: inverse hyperbolic tangent function
+	Role: function
+
+Symbol: bei
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Kelvin function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+Symbol: ber
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Kelvin function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+Symbol: beta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Dirichlet beta function
+	Role: function
+	Root-symbol: Gamma
+
+Symbol: c
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Ramanujan's sum
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: cE
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Lame polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: cd
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Jacobian elliptic function
+	Role: function
+
+Symbol: cdE
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Lame polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: ce
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+Symbol: cel
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real, real, real)
+	Argument-structure: (variable, parameter, parameter, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Bulirsch's complete elliptic integral
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Bulirsch's incomplete elliptic integral of the first kind
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, real, real)
+	Argument-structure: (variable, variable, parameter, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Bulirsch's incomplete elliptic integral of the second kind
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex, real)
+	Argument-structure: (variable, variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Bulirsch's incomplete elliptic integral of the third kind
+	Role: function
+
+Symbol: chi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: arithmetic functions || number theory
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: Dirichlet character
+	Role: function
+	Root-symbol: chi
+
+Symbol: ci
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (parameter, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the generalized cosine integral
+	Role: function
+
+Symbol: cis
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: cos + i sin function
+	Role: function
+
+Symbol: cn
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Jacobian elliptic function
+	Role: function
+
+Symbol: cos
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: cosine function
+	Role: function
+
+Symbol: cosec
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: cosecant function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: cosecant function
+	Role: function
+
+Symbol: cosech
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: hyperbolic functions
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: hyperbolic cosecant function
+	Role: function
+
+Symbol: cosh
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: hyperbolic functions
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: hyperbolic cosine function
+	Role: function
+
+Symbol: cot
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: cotangent function
+	Role: function
+
+Symbol: coth
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: hyperbolic functions
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: hyperbolic cotangent function
+	Role: function
+
+Symbol: cs
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Jacobian elliptic function
+	Role: function
+
+Symbol: csc
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: cosecant function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: cosecant function
+	Role: function
+
+Symbol: csch
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: hyperbolic functions
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: hyperbolic cosecant function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: hyperbolic functions
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: hyperbolic cosecant function
+	Role: function
+
+Symbol: d
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the divisor function
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the number of ways of expressing an integer as the product of factors, with the order of factors taken into account.
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: dE
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Lame polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: dc
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Jacobian elliptic function
+	Role: function
+
+Symbol: dn
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Jacobian elliptic function
+	Role: function
+
+Symbol: ds
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Jacobian elliptic function
+	Role: function
+
+Symbol: erf
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: complex
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the error function
+	Role: function
+
+Symbol: erfc
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: complex
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the complementary error function
+	Role: function
+
+Symbol: eta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: Dedekind's eta function == Dedekind modular function
+	Role: function
+	Root-symbol: eta
+
+Symbol: exp
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: exponential function.
+	Role: function
+
+Symbol: fe
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (parameter, variable)
+	Font-style: italic
+	Meanings: lower incomplete gamma function
+	Role: function
+	Root-symbol: gamma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (parameter, variable)
+	Font-style: italic
+	Meanings: incomplete gamma function
+	Role: function
+	Root-symbol: gamma
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: *
+
+Symbol: ge
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: h
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: spherical Bessel function of the third kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: 1
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: spherical Bessel function of the third kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: 2
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable; parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Discrete q-Hermite I polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Accent-location: above
+	Accent-value: tilde
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable; parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Discrete q-Hermite II polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: i
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: modified spherical Bessel function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: 1
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: modified spherical Bessel function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: fixed
+	Superscript-value: 2
+
+Symbol: j
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: spherical Bessel function of the first kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: k
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: modified spherical Bessel function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: kei
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Kelvin function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+Symbol: ker
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Kelvin function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+Symbol: lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: elliptic modular function
+	Role: function
+	Root-symbol: lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: upright
+	Meanings: the Carmichael function
+	Role: function
+	Root-symbol: lambda
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: Liouville's function
+	Role: function
+	Root-symbol: lambda
+
+Symbol: lg
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: common logarithm == log base 10 or base 2
+	Role: function
+
+Symbol: li
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the logarithmic integral
+	Role: function
+
+Symbol: ln
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: natural logarithm
+	Role: function
+
+Symbol: log
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: logarithm
+	Role: function
+
+Symbol: me
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+Symbol: mu
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: Mobius function
+	Role: function
+	Root-symbol: mu
+
+Symbol: nc
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Jacobian elliptic function
+	Role: function
+
+Symbol: nd
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Jacobian elliptic function
+	Role: function
+
+Symbol: ns
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Jacobian elliptic function
+	Role: function
+
+Symbol: nu
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: prime power decomposition function
+	Role: function
+	Root-symbol: nu
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: omega
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: prime power decomposition function
+	Role: function
+	Root-symbol: omega
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: Wright omega function == Wright function
+	Role: function
+	Root-symbol: omega
+
+Symbol: p
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real, real, real)
+	Argument-structure: (variable; parameter, parameter; parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Little q-Jacobi polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Meanings: Weierstrass p-function
+	Role: function
+	Root-symbol: p
+	Unicode: u+02118
+
+Symbol: phi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex vector, complex vector, complex, complex)
+	Argument-structure: (parameter; parameter; parameter, variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: basic hypergeometric function == q-hypergeometric function
+	Presubscript-size: 1
+	Presubscript-type: integer
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: sum of $sub1-th powers of the integers that are relatively prime to $arg1
+	Role: function
+	Root-symbol: phi
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: Euler's totient==number of positive integers relatively prime with $arg1
+	Role: function
+	Root-symbol: phi
+
+Symbol: pi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: number of primes not exceeding $arg1
+	Role: function
+	Root-symbol: pi
+
+Symbol: psi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: the digamma function
+	Role: function
+	Root-symbol: psi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: the polygamma function
+	Role: function
+	Root-symbol: psi
+	Superscript-parenthesized: yes
+	Superscript-size: 1
+	Superscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex vector, complex vector, complex, complex)
+	Argument-structure: (parameter; parameter; parameter, variable)
+	Font-style: italic
+	Meanings: bilateral basic hypergeometric function == bilateral q-hypergeometric function
+	Presubscript-size: 1
+	Presubscript-type: integer
+	Role: function
+	Root-symbol: psi
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: The second Chebyshev function
+	Role: function
+	Root-symbol: psi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: Continuum mechanics || Fluid dynamics
+	Argument-data-type: (real, real, real)
+	Argument-structure: (variable, variable,variable)
+	Font-style: italic
+	Meanings: Lagrange stream function
+	Role: function
+	Root-symbol: psi
+
+Symbol: rho
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: Gegenbauer function
+	Role: function
+	Root-symbol: rho
+	Subscript-size: 2
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (real)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: the Dickman-de Bruijn function
+	Role: function
+	Root-symbol: rho
+
+Symbol: s
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Lommel function
+	Role: function
+	Subscript-size: 2
+	Subscript-type: complex
+
+Symbol: sE
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Lame polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: sc
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Jacobian elliptic function
+	Role: function
+
+Symbol: scE
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Lame polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: scdE
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Lame polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: sd
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Jacobian elliptic function
+	Role: function
+
+Symbol: sdE
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Lame polynomial
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+	Superscript-size: 1
+	Superscript-type: integer
+
+Symbol: se
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Mathieu function
+	Role: function
+	Subscript-size: 1
+	Subscript-type: complex
+
+Symbol: sec
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: secant function
+	Role: function
+
+Symbol: sech
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: hyperbolic secant function
+	Role: function
+
+Symbol: si
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the sine integrals
+	Role: function
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (parameter, variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: the generalized sine integrals
+	Role: function
+
+Symbol: sigma
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: the Weierstrass sigma function
+	Role: function
+	Root-symbol: zeta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: sum of $sub1 powers of the divisors of $arg1
+	Role: function
+	Root-symbol: sigma
+	Subscript-size: 1
+	Subscript-type: complex
+
+Symbol: sin
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: sine function
+	Role: function
+
+Symbol: sinc
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: sinc function
+	Role: function
+
+Symbol: sinh
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: hyperbolic functions
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: hyperbolic sine function
+	Role: function
+
+Symbol: sn
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex, real)
+	Argument-structure: (variable, parameter)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: Jacobian elliptic function
+	Role: function
+
+Symbol: tan
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: trigonometry
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: tangent function
+	Role: function
+
+Symbol: tanh
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: hyperbolic functions
+	Argument-data-type: complex || real
+	Argument-structure: variable
+	Font-style: upright
+	Font-weight: plain
+	Meanings: hyperbolic tangent function
+	Role: function
+
+Symbol: tau
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (integer)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: Ramanujan's tau
+	Role: function
+	Root-symbol: tau
+
+Symbol: theta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: italic
+	Meanings: theta function
+	Role: function
+	Root-symbol: theta
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable | parameter)
+	Font-style: italic
+	Meanings: theta function
+	Role: function
+	Root-symbol: theta
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex vector, complex matrix)
+	Argument-structure: (variable | parameter)
+	Font-style: italic
+	Meanings: Riemann theta function
+	Role: function
+	Root-symbol: theta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: The first Chebyshev function
+	Role: function
+	Root-symbol: theta
+
+Symbol: w
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: the complementary error function
+	Role: function
+
+Symbol: xi
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: Riemann Xi function
+	Role: function
+	Root-symbol: xi
+
+Symbol: y
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: upright
+	Font-weight: plain
+	Meanings: spherical Bessel function of the second kind
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: special functions
+	Argument-data-type: (real, real)
+	Argument-structure: (variable; parameter)
+	Font-style: computer modern
+	Font-weight: plain
+	Meanings: Bessel polynomials
+	Role: function
+	Subscript-size: 1
+	Subscript-type: integer
+
+Symbol: zeta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: Weierstrass zeta function
+	Role: function
+	Root-symbol: zeta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: number theory || special functions
+	Argument-data-type: (complex)
+	Argument-structure: (variable)
+	Font-style: italic
+	Meanings: Riemann zeta function
+	Role: function
+	Root-symbol: zeta
+
+  Feature Set:
+	Alphabet: Greek
+	Areas: special functions
+	Argument-data-type: (complex, complex)
+	Argument-structure: (variable, parameter)
+	Font-style: italic
+	Meanings: Hurwitz zeta function
+	Role: function
+	Root-symbol: zeta

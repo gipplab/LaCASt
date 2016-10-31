@@ -1,0 +1,315 @@
+
+Symbol: !
+
+  Feature Set: universal
+	Category: punctuation
+	Description: exclamation mark
+	Source: unicode-math
+	Tex-equivalent: \mathexclam
+	Unicode: u+00021
+
+Symbol: #
+
+  Feature Set: universal
+	Category: ordinary
+	Description: number sign
+	Source: unicode-math
+	Tex-equivalent: \mathoctothorpe
+	Unicode: u+00023
+
+Symbol: $
+
+  Feature Set: universal
+	Category: currency
+	Description: dollar sign
+	Source: unicode-math
+	Tex-equivalent: \mathdollar
+	Unicode: u+00024
+
+Symbol: %
+
+  Feature Set: universal
+	Category: ordinary
+	Description: percent sign
+	Source: unicode-math
+	Tex-equivalent: \mathpercent
+	Unicode: u+00025
+
+Symbol: &
+
+  Feature Set: universal
+	Category: ordinary
+	Description: ampersand
+	Source: unicode-math
+	Tex-equivalent: \mathampersand
+	Unicode: u+00026
+
+Symbol: (
+
+  Feature Set: universal
+	Category: opening delimiter
+	Description: left parenthesis
+	Source: unicode-math
+	Tex-equivalent: \lparen
+	Unicode: u+00028
+
+Symbol: )
+
+  Feature Set: universal
+	Category: closing delimiter
+	Description: right parenthesis
+	Source: unicode-math
+	Tex-equivalent: \rparen
+	Unicode: u+00029
+
+Symbol: +
+
+  Feature Set: universal
+	Category: operation
+	Description: plus
+	Source: unicode-math
+	Tex-equivalent: \mathplus
+	Unicode: u+0002b
+
+Symbol: -
+
+  Feature Set: universal
+	Category: operation
+	Description: minus
+	Source: unicode-math
+	Tex-equivalent: \minus
+	Unicode: u+02212
+
+Symbol: .
+
+  Feature Set: universal
+	Category: ordinary
+	Description: period
+	Meanings: full stop
+	Source: unicode-math
+	Tex-equivalent: \mathperiod
+	Unicode: u+0002e
+
+Symbol: /
+
+  Feature Set: universal
+	Category: ordinary
+	Description: solidus
+	Source: unicode-math
+	Tex-equivalent: \mathslash
+	Unicode: u+0002f
+
+Symbol: :
+
+  Feature Set: universal
+	Category: punctuation
+	Description: colon
+	Source: unicode-math
+	Tex-equivalent: \mathcolon
+	Unicode: u+0003a
+
+Symbol: ;
+
+  Feature Set: universal
+	Category: punctuation
+	Description: semicolon
+	Source: unicode-math
+	Tex-equivalent: \mathsemicolon
+	Unicode: u+0003b
+
+Symbol: <
+
+  Feature Set: universal
+	Category: relation
+	Description: less-than
+	Source: unicode-math
+	Subcategory: order
+	Tex-equivalent: \less
+	Unicode: u+0003c
+
+Symbol: <<
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+  Feature Set: universal
+	Category: relation
+	Description: much less than
+	Source: Tex
+	Subcategory: order
+	Tex-equivalent: \ll
+	Unicode: u+0226a
+
+Symbol: <<<
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+  Feature Set: universal
+	Category: relation
+	Description: triple less-than
+	Source: amssymb
+	Subcategory: order
+	Tex-equivalent: \lll
+	Unicode: u+022d8
+
+Symbol: =
+
+  Feature Set: universal
+	Category: relation
+	Description: equals
+	Source: unicode-math
+	Subcategory: equivalence
+	Tex-equivalent: \equal
+	Unicode: u+0003d
+
+Symbol: >
+
+  Feature Set: universal
+	Category: relation
+	Description: greater-than
+	Source: unicode-math
+	Subcategory: order
+	Tex-equivalent: \greater
+	Unicode: u+0003e
+
+Symbol: >>
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+  Feature Set: universal
+	Category: relation
+	Description: much greater than
+	Source: Tex
+	Subcategory: order
+	Tex-equivalent: \gg
+	Unicode: u+0226b
+
+Symbol: >>>
+
+  Feature Set:
+	Areas: mathematics
+	Role: relation
+
+  Feature Set: universal
+	Category: relation
+	Description: triple greater-than
+	Source: amssymb
+	Subcategory: order
+	Tex-equivalent: \ggg
+	Unicode: u+022d9
+
+Symbol: ?
+
+  Feature Set: universal
+	Category: ordinary
+	Description: question mark
+	Source: unicode-math
+	Tex-equivalent: \mathquestion
+	Unicode: u+0003f
+
+Symbol: @
+
+  Feature Set: universal
+	Category: ordinary
+	Description: commercial at
+	Source: unicode-math
+	Tex-equivalent: \mathatsign
+	Unicode: u+00040
+
+Symbol: [
+
+  Feature Set: universal
+	Category: opening delimiter
+	Description: left square bracket
+	Source: unicode-math
+	Tex-equivalent: \lbrack
+	Unicode: u+0005b
+
+Symbol: \
+
+  Feature Set: universal
+	Category: ordinary
+	Description: reverse solidus
+	Source: Tex
+	Tex-equivalent: \backslash
+	Unicode: u+0005c
+
+Symbol: \|
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation || relation
+
+  Feature Set: universal
+	Category: fence
+	Description: double vertical bar
+	Source: Tex
+	Tex-equivalent: \Vert
+	Unicode: u+02016
+
+Symbol: ]
+
+  Feature Set: universal
+	Category: closing delimiter
+	Description: right square bracket
+	Source: unicode-math
+	Tex-equivalent: \rbrack
+	Unicode: u+0005d
+
+Symbol: {
+
+  Feature Set: universal
+	Category: opening delimiter
+	Description: left curly bracket
+	Source: Tex
+	Tex-equivalent: \lbrace
+	Unicode: u+0007b
+
+Symbol: |
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation || operation || relation
+
+  Feature Set: universal
+	Category: fence
+	Description: vertical bar
+	Source: Tex
+	Tex-equivalent: \vert
+	Unicode: u+0007c
+
+Symbol: ||
+
+  Feature Set:
+	Areas: mathematics
+	Role: delimiter || enclosing multiglyph operation || relation
+
+  Feature Set: universal
+	Category: fence
+	Description: double vertical bar
+	Source: Tex
+	Tex-equivalent: \Vert
+	Unicode: u+02016
+
+Symbol: |||
+
+  Feature Set: universal
+	Category: fence
+	Description: triple vertical bar
+	Source: unicode-math
+	Tex-equivalent: \Vvert
+	Unicode: u+02980
+
+Symbol: }
+
+  Feature Set: universal
+	Category: closing delimiter
+	Description: right curly bracket
+	Source: Tex
+	Tex-equivalent: \rbrace
+	Unicode: u+0007d
