@@ -1,4 +1,18 @@
 
+Symbol: \JacobiP
+
+  Feature Set: macro
+	Areas: special functions
+	Description: Jacobi polynomial
+	Source: dlmf-macro
+	DLMF-Link: http://dlmf.nist.gov/18.3#T1.t1.r2
+	Parameters: 3
+	Variables: 1
+	Optional ats: 1
+	Maple: JacobiP($2,$0,$1,$3)
+	Maple-Link: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
+	Constraints: $0>-1;$1>-1
+
 Symbol: !
 
   Feature Set: universal
