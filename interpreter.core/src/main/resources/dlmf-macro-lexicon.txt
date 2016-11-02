@@ -1,0 +1,13 @@
+
+Symbol: \Mathieuce
+
+  Feature Set: macro
+	Areas: special functions
+	Description: Mathieu eigenvalue function ce
+	Source: dlmf-macro
+	DLMF-Link: http://dlmf.nist.gov/28.2#SS6.p1
+	Parameters: 1
+	Variables: 2
+	Optional ats: 2
+	Maple: MathieuCE($0,$2,$1)
+	Maple-Link: https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuCE

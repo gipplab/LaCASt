@@ -1,4 +1,4 @@
-package tests;/*
+package gov.nist.drmf.interpreter.examples;/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -16,11 +16,16 @@ import mlp.PomParser;
 import mlp.PomParserTokenManager;
 import mlp.PomTaggedExpression;
 
+import gov.nist.drmf.interpreter.common.GlobalConstants;
+
 /**
  *
  * @author youssef
  */
 public class MLP {
+
+    public static final String GLOBAL_LEXICON_PATH =
+            "libs\\ReferenceData";
 
     /**
      * @param args the command line arguments
@@ -30,9 +35,8 @@ public class MLP {
     }
 
     public static void start() {
-        
          // the folder where the reference data (e.g., lexicons) are
-        String refDataDir="libs\\ReferenceData";
+        String refDataDir= GLOBAL_LEXICON_PATH;
         System.out.println(Paths.get(".").toAbsolutePath().toString());
         
         String[] eqs=equationsForTesting(); //equations to test the parser on
@@ -55,6 +59,8 @@ public class MLP {
 
             // provide next an equation to parse
             String eq=eqs[0];
+            //eq = "\\Mathieuce{123 a}@@{\\sqrt{2}b}{\\frac{1}{2}}";
+            eq = "\\frac{ab}{\\sqrt[q]{cd}}";
 
             // parse/tag the equation and print it out 
             PomTaggedExpression pe = parser.parse(eq);
