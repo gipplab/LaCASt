@@ -1,6 +1,7 @@
 package gov.nist.drmf.core.tests;
 
 import gov.nist.drmf.interpreter.examples.ExampleParser;
+import mlp.ParseException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 /**
+ * A test suite for the Jacobi polynomial function.
  * Created by Andre Greiner-Petter on 02.11.2016.
  */
 public class JacobiPTests {
@@ -45,7 +47,12 @@ public class JacobiPTests {
     @BeforeAll
     static void init(){
         parser = new ExampleParser();
-        parser.parse("");
+        try {
+            parser.parse(SIMPLE_TEST_EQ);
+        } catch ( ParseException pe ){
+            System.err.println("Cannot parse given equation. Tests stopped.");
+            pe.printStackTrace();
+        }
     }
 
     @Test
@@ -78,7 +85,7 @@ public class JacobiPTests {
 
     @Test
     void constraintTests() {
-        List<String> constraints = new LinkedList<String>();
+        LinkedList<String> constraints = new LinkedList();
         constraints.add(tex_param1 + ">" + (-1));
         constraints.add(tex_param2 + ">" + (-1));
         List<String> parserConstraints = parser.getConstraints();
