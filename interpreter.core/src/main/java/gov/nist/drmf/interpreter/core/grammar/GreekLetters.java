@@ -49,14 +49,18 @@ public abstract class GreekLetters {
         }
 
         public static SpecialCases getSpecialFromMaple(String maple){
-            return getSpecialFromLatex(""+maple.charAt(0));
+            for (SpecialCases l : SpecialCases.values())
+                if ( l.maple.matches(maple) ) return l;
+            return null;
         }
 
         public static SpecialCases getSpecialFromMathematica(String mathematica){
             mathematica = mathematica.substring(2);
             if ( mathematica.startsWith(MATHEMATICA_CAPITAL) ) {
                 mathematica = mathematica.split(MATHEMATICA_CAPITAL)[1];
-                return getSpecialFromLatex(""+mathematica.charAt(0));
+                for (SpecialCases l : SpecialCases.values())
+                    if ( l.mathematica.substring(2).startsWith(mathematica) ) return l;
+                return null;
             } else return omicron;
         }
     }
@@ -65,10 +69,22 @@ public abstract class GreekLetters {
             "[ABZHIKMNoOPTX]";
 
     public static final String SPECIAL_MAPLE_PATTERN =
-            "[ABZHIKMNoOPTX].+";
+            "[ABZEIKMNoORTC].+";
 
+    /**
+     * I simply don't like regex...
+     * To match "[" you need the following
+     *      \\\\[
+     * Since Java needs \\ to represent a \ in regex
+     * and regex needs \[ since [ is a special character
+     * in regex, we need to get \[ after Java representation.
+     * Which brings us to \\\\[ because
+     *      \\\\[   -> is a java String looks like: \\[
+     *      \\[     -> is a regex representation for \[
+     *      \[      -> is exactly what we are looking for
+     */
     public static final String SPECIAL_MATHEMATICA_PATTERN =
-            BACK_SLASH + '[' + "(Capital|)[ABZHIKMNoOPTX].+";
+            "\\\\\\[(Capital[ABZEIKMNoORTC]|O).+";
 
     /**
      * Flips the first character of given string to upper case.
@@ -123,7 +139,7 @@ public abstract class GreekLetters {
         if ( mathematica_letter.startsWith(MATHEMATICA_CAPITAL) ) {
             return mathematica_letter.substring(MATHEMATICA_CAPITAL.length());
         } else { // second case: non-capital greek letter
-            return mathematica_letter.substring(MATHEMATICA_CAPITAL.length()).toLowerCase();
+            return mathematica_letter.toLowerCase();
         }
     }
 }
