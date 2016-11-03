@@ -1,4 +1,4 @@
-package gov.nist.drmf.core.grammar.tests;
+package gov.nist.drmf.core.tests;
 
 import gov.nist.drmf.interpreter.common.GreekLetters;
 import gov.nist.drmf.interpreter.core.GreekLetterInterpreter;
