@@ -6,4 +6,5 @@ package gov.nist.drmf.interpreter.core.lexicon;
  * Created by Andre Greiner-Petter on 02.11.2016.
  */
 public class LexiconExtender {
+    // TODO extend global-lexicon by dlmf-macros and more
 }

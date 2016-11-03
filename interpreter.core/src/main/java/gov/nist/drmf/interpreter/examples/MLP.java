@@ -60,7 +60,9 @@ public class MLP {
             // provide next an equation to parse
             String eq=eqs[0];
             //eq = "\\Mathieuce{123 a}@@{\\sqrt{2}b}{\\frac{1}{2}}";
-            eq = "\\frac{ab}{\\sqrt[q]{cd}}";
+            //eq = "\\frac{ab}{\\sqrt[q]{cd}}";
+            //eq = "\\JacobiP{\\alpha}{\\beta}{n}@{a\\Theta}";
+            eq = "\\frac{beta}{2}";
 
             // parse/tag the equation and print it out 
             PomTaggedExpression pe = parser.parse(eq);
