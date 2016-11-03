@@ -2,16 +2,12 @@ package gov.nist.drmf.core.grammar.tests;
 
 import gov.nist.drmf.interpreter.core.grammar.GreekLetters;
 import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 /**
@@ -84,7 +80,14 @@ public class GreekLettersTests {
     Iterable<DynamicTest> latexToMapleTests(){
         List<DynamicTest> list = new LinkedList();
         for ( TestLetters test : TestLetters.values() ){
-            list.add( generalTest("Test-LaTeX2Maple",test.latex,test.maple) );
+            list.add( dynamicTest(
+                    "LaTeX->Maple" + ": " + test.latex,
+                    () -> assertEquals(
+                            test.maple,
+                            GreekLetters.convertTexToMaple(test.latex)
+                    )
+                    )
+            );
         }
         return list;
     }
@@ -97,7 +100,14 @@ public class GreekLettersTests {
     Iterable<DynamicTest> latexToMathematicaTests(){
         List<DynamicTest> list = new LinkedList();
         for ( TestLetters test : TestLetters.values() ){
-            list.add( generalTest("Test-LaTeX2Mathematica",test.latex,test.mathematica) );
+            list.add( dynamicTest(
+                    "LaTeX->Mathematica" + ": " + test.latex,
+                    () -> assertEquals(
+                            test.mathematica,
+                            GreekLetters.convertTexToMathematica(test.latex)
+                    )
+                    )
+            );
         }
         return list;
     }
@@ -110,7 +120,14 @@ public class GreekLettersTests {
     Iterable<DynamicTest> mapleToLaTeXTests(){
         List<DynamicTest> list = new LinkedList();
         for ( TestLetters test : TestLetters.values() ){
-            list.add( generalTest("Test-Maple2LaTeX",test.maple,test.latex) );
+            list.add( dynamicTest(
+                    "Maple->LaTeX" + ": " + test.maple,
+                    () -> assertEquals(
+                            test.latex,
+                            GreekLetters.convertMapleToTex(test.maple)
+                    )
+                    )
+            );
         }
         return list;
     }
@@ -123,7 +140,14 @@ public class GreekLettersTests {
     Iterable<DynamicTest> mapleToMathematicaTests(){
         List<DynamicTest> list = new LinkedList();
         for ( TestLetters test : TestLetters.values() ){
-            list.add( generalTest("Test-Maple2Mathematica",test.maple,test.mathematica) );
+            list.add( dynamicTest(
+                    "Maple->Mathematica" + ": " + test.maple,
+                    () -> assertEquals(
+                            test.mathematica,
+                            GreekLetters.convertMapleToMathematica(test.maple)
+                    )
+                    )
+            );
         }
         return list;
     }
@@ -136,7 +160,14 @@ public class GreekLettersTests {
     Iterable<DynamicTest> mathematicaToLaTeXTests(){
         List<DynamicTest> list = new LinkedList();
         for ( TestLetters test : TestLetters.values() ){
-            list.add( generalTest("Test-Mathematica2LaTeX",test.mathematica,test.latex) );
+            list.add( dynamicTest(
+                    "Mathematica->LaTeX" + ": " + test.mathematica,
+                    () -> assertEquals(
+                            test.latex,
+                            GreekLetters.convertMathematicaToTex(test.mathematica)
+                    )
+                    )
+            );
         }
         return list;
     }
@@ -149,25 +180,15 @@ public class GreekLettersTests {
     Iterable<DynamicTest> mathematicaToMapleTests(){
         List<DynamicTest> list = new LinkedList();
         for ( TestLetters test : TestLetters.values() ){
-            list.add( generalTest("Test-Mathematica2Maple",test.mathematica,test.maple) );
+            list.add( dynamicTest(
+                    "Mathematica->Maple" + ": " + test.mathematica,
+                    () -> assertEquals(
+                            test.maple,
+                            GreekLetters.convertMathematicaToMaple(test.mathematica)
+                    )
+                    )
+            );
         }
         return list;
-    }
-
-    /**
-     * Generate a test for given strings.
-     * @param note  name of the test
-     * @param from  string representation that will translated
-     * @param to    what we expected after the translation finished
-     * @return a test class for given parameters
-     */
-    private DynamicTest generalTest(String note, String from, String to){
-        return dynamicTest(
-                note + ": " + from,
-                () -> assertEquals(
-                        to,
-                        GreekLetters.convertTexToMaple(from)
-                )
-        );
     }
 }
