@@ -1,6 +1,7 @@
 package gov.nist.drmf.core.grammar.tests;
 
-import gov.nist.drmf.interpreter.core.grammar.GreekLetters;
+import gov.nist.drmf.interpreter.common.GreekLetters;
+import gov.nist.drmf.interpreter.core.GreekLetterInterpreter;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
@@ -11,67 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 /**
- * Test conversion of greek letters.
- *
- * LaTeX:       https://de.sharelatex.com/learn/List_of_Greek_letters_and_math_symbols
- * Maple:       https://www.maplesoft.com/support/help/Maple/view.aspx?path=Greek
- * Mathematica: https://reference.wolfram.com/language/guide/GreekLetters.html
+ * Test conversion of greek letters. Take a look to
+ *      gov.nist.drmf.interpreter.common.GreekLetters.java
  *
  * Created by Andre Greiner-Petter on 02.11.2016.
  */
 public class GreekLettersTests {
-    /**
-     * This enumeration defines all test cases.
-     *      Few examples of easy translation
-     *      Few examples of variant forms of greek letters
-     *      All cases of special cases (not defined in LaTeX)
-     */
-    private enum TestLetters{
-        // some standard test cases
-        alpha("\\alpha","alpha","\\[Alpha]"),
-        beta("\\beta","beta","\\[Beta]"),
-        gamma("\\gamma","gamma","\\[Gamma]"),
-        Gamma("\\Gamma","Gamma","\\[CapitalGamma]"),
-
-        // variant forms
-        varepsilon("\\varepsilon","varepsilon","\\[CurlyEpsilon]"),
-        varphi("\\varphi","varphi","\\[CurlyPhi]"),
-
-        // special cases
-        Alpha("A","Alpha","\\[CapitalAlpha]"),
-        Beta("B","Beta","\\[CapitalBeta]"),
-        Zeta("Z","Zeta","\\[CapitalZeta]"),
-        Eta("H","Eta","\\[CapitalEta]"),
-        Iota("I","Iota","\\[CapitalIota]"),
-        Kappa("K","Kappa","\\[CapitalKappa]"),
-        Mu("M","Mu","\\[CapitalMu]"),
-        Nu("N","Nu","\\[CapitalNu]"),
-        omicron("o","omicron","\\[Omicron]"),
-        Omicron("O","Omicron","\\[CapitalOmicron]"),
-        Rho("P","Rho","\\[CapitalRho]"),
-        Tau("T","Tau","\\[CapitalTau]"),
-        Chi("X","Chi","\\[CapitalChi]");
-
-        // special variant forms
-        // TODO this is only for bijective translations
-        //varsigma("\\varsigma","varsigma","\\[FinalSigma]");
-
-        // greek letter in latex, maple and mathematica
-        private String latex, maple, mathematica;
-
-        /**
-         * Creates a TestLetters object
-         * @param latex
-         * @param maple
-         * @param mathematica
-         */
-        TestLetters(String latex, String maple, String mathematica){
-            this.latex = latex;
-            this.maple = maple;
-            this.mathematica = mathematica;
-        }
-    }
-
     /**
      * Test LaTeX to Maple for all test cases
      * @return
@@ -79,12 +25,12 @@ public class GreekLettersTests {
     @TestFactory
     Iterable<DynamicTest> latexToMapleTests(){
         List<DynamicTest> list = new LinkedList();
-        for ( TestLetters test : TestLetters.values() ){
+        for ( GreekLetters test : GreekLetters.values() ){
             list.add( dynamicTest(
                     "LaTeX->Maple" + ": " + test.latex,
                     () -> assertEquals(
                             test.maple,
-                            GreekLetters.convertTexToMaple(test.latex)
+                            GreekLetterInterpreter.convertTexToMaple(test.latex)
                     )
                     )
             );
@@ -99,12 +45,12 @@ public class GreekLettersTests {
     @TestFactory
     Iterable<DynamicTest> latexToMathematicaTests(){
         List<DynamicTest> list = new LinkedList();
-        for ( TestLetters test : TestLetters.values() ){
+        for ( GreekLetters test : GreekLetters.values() ){
             list.add( dynamicTest(
                     "LaTeX->Mathematica" + ": " + test.latex,
                     () -> assertEquals(
                             test.mathematica,
-                            GreekLetters.convertTexToMathematica(test.latex)
+                            GreekLetterInterpreter.convertTexToMathematica(test.latex)
                     )
                     )
             );
@@ -119,12 +65,12 @@ public class GreekLettersTests {
     @TestFactory
     Iterable<DynamicTest> mapleToLaTeXTests(){
         List<DynamicTest> list = new LinkedList();
-        for ( TestLetters test : TestLetters.values() ){
+        for ( GreekLetters test : GreekLetters.values() ){
             list.add( dynamicTest(
                     "Maple->LaTeX" + ": " + test.maple,
                     () -> assertEquals(
                             test.latex,
-                            GreekLetters.convertMapleToTex(test.maple)
+                            GreekLetterInterpreter.convertMapleToTex(test.maple)
                     )
                     )
             );
@@ -139,12 +85,12 @@ public class GreekLettersTests {
     @TestFactory
     Iterable<DynamicTest> mapleToMathematicaTests(){
         List<DynamicTest> list = new LinkedList();
-        for ( TestLetters test : TestLetters.values() ){
+        for ( GreekLetters test : GreekLetters.values() ){
             list.add( dynamicTest(
                     "Maple->Mathematica" + ": " + test.maple,
                     () -> assertEquals(
                             test.mathematica,
-                            GreekLetters.convertMapleToMathematica(test.maple)
+                            GreekLetterInterpreter.convertMapleToMathematica(test.maple)
                     )
                     )
             );
@@ -159,12 +105,12 @@ public class GreekLettersTests {
     @TestFactory
     Iterable<DynamicTest> mathematicaToLaTeXTests(){
         List<DynamicTest> list = new LinkedList();
-        for ( TestLetters test : TestLetters.values() ){
+        for ( GreekLetters test : GreekLetters.values() ){
             list.add( dynamicTest(
                     "Mathematica->LaTeX" + ": " + test.mathematica,
                     () -> assertEquals(
                             test.latex,
-                            GreekLetters.convertMathematicaToTex(test.mathematica)
+                            GreekLetterInterpreter.convertMathematicaToTex(test.mathematica)
                     )
                     )
             );
@@ -179,12 +125,12 @@ public class GreekLettersTests {
     @TestFactory
     Iterable<DynamicTest> mathematicaToMapleTests(){
         List<DynamicTest> list = new LinkedList();
-        for ( TestLetters test : TestLetters.values() ){
+        for ( GreekLetters test : GreekLetters.values() ){
             list.add( dynamicTest(
                     "Mathematica->Maple" + ": " + test.mathematica,
                     () -> assertEquals(
                             test.maple,
-                            GreekLetters.convertMathematicaToMaple(test.mathematica)
+                            GreekLetterInterpreter.convertMathematicaToMaple(test.mathematica)
                     )
                     )
             );
