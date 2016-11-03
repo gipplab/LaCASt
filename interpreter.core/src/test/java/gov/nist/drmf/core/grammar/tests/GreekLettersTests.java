@@ -1,13 +1,18 @@
 package gov.nist.drmf.core.grammar.tests;
 
 import gov.nist.drmf.interpreter.core.grammar.GreekLetters;
+import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestFactory;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 /**
  * Test conversion of greek letters.
@@ -19,6 +24,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Created by Andre Greiner-Petter on 02.11.2016.
  */
 public class GreekLettersTests {
+    /**
+     * This enumeration defines all test cases.
+     *      Few examples of easy translation
+     *      Few examples of variant forms of greek letters
+     *      All cases of special cases (not defined in LaTeX)
+     */
     private enum TestLetters{
         // some standard test cases
         alpha("\\alpha","alpha","\\[Alpha]"),
@@ -49,54 +60,114 @@ public class GreekLettersTests {
         // TODO this is only for bijective translations
         //varsigma("\\varsigma","varsigma","\\[FinalSigma]");
 
+        // greek letter in latex, maple and mathematica
         private String latex, maple, mathematica;
 
+        /**
+         * Creates a TestLetters object
+         * @param latex
+         * @param maple
+         * @param mathematica
+         */
         TestLetters(String latex, String maple, String mathematica){
             this.latex = latex;
             this.maple = maple;
             this.mathematica = mathematica;
         }
-
-        public static final int NUM_STANDARD = 4;
-        public static final int NUM_VAR = 2;
-        public static final int NUM_SPECIAL = 13;
     }
 
-    @Test
-    void patternTest(){
-        String pattern = "\\" + '[' + "(Capital|)[ABZHIKMNoOPTX].+";
-        String test = "\\[Alpha]";
-        System.out.println(test.matches(pattern));
-        // TODO why the hack is this false?
+    /**
+     * Test LaTeX to Maple for all test cases
+     * @return
+     */
+    @TestFactory
+    Iterable<DynamicTest> latexToMapleTests(){
+        List<DynamicTest> list = new LinkedList();
+        for ( TestLetters test : TestLetters.values() ){
+            list.add( generalTest("Test-LaTeX2Maple",test.latex,test.maple) );
+        }
+        return list;
     }
 
-    // TODO parameterized tests
+    /**
+     * Test LaTeX to Mathematica for all test cases
+     * @return
+     */
+    @TestFactory
+    Iterable<DynamicTest> latexToMathematicaTests(){
+        List<DynamicTest> list = new LinkedList();
+        for ( TestLetters test : TestLetters.values() ){
+            list.add( generalTest("Test-LaTeX2Mathematica",test.latex,test.mathematica) );
+        }
+        return list;
+    }
 
-    void generalTest(int i){
-        TestLetters[] tests = TestLetters.values();
-        assertEquals(
-                tests[i].maple,
-                GreekLetters.convertTexToMaple(tests[i].latex),
-                "Failed to convert " + tests[i].latex + " to Maple.");
-        assertEquals(
-                tests[i].mathematica,
-                GreekLetters.convertTexToMathematica(tests[i].latex),
-                "Failed to convert " + tests[i].latex + " to Mathematica.");
-        assertEquals(
-                tests[i].latex,
-                GreekLetters.convertMapleToTex(tests[i].maple),
-                "Failed to convert " + tests[i].maple + " to LaTeX.");
-        assertEquals(
-                tests[i].mathematica,
-                GreekLetters.convertMapleToMathematica(tests[i].maple),
-                "Failed to convert " + tests[i].maple + " to Mathematica.");
-        assertEquals(
-                tests[i].latex,
-                GreekLetters.convertMathematicaToTex(tests[i].mathematica),
-                "Failed to convert " + tests[i].mathematica + " to LaTeX.");
-        assertEquals(
-                tests[i].maple,
-                GreekLetters.convertMathematicaToMaple(tests[i].mathematica),
-                "Failed to convert " + tests[i].mathematica + " to Maple.");
+    /**
+     * Test Maple to LaTeX for all test cases
+     * @return
+     */
+    @TestFactory
+    Iterable<DynamicTest> mapleToLaTeXTests(){
+        List<DynamicTest> list = new LinkedList();
+        for ( TestLetters test : TestLetters.values() ){
+            list.add( generalTest("Test-Maple2LaTeX",test.maple,test.latex) );
+        }
+        return list;
+    }
+
+    /**
+     * Test Maple to Mathematica for all test cases
+     * @return
+     */
+    @TestFactory
+    Iterable<DynamicTest> mapleToMathematicaTests(){
+        List<DynamicTest> list = new LinkedList();
+        for ( TestLetters test : TestLetters.values() ){
+            list.add( generalTest("Test-Maple2Mathematica",test.maple,test.mathematica) );
+        }
+        return list;
+    }
+
+    /**
+     * Test Mathematica to LaTeX for all test cases
+     * @return
+     */
+    @TestFactory
+    Iterable<DynamicTest> mathematicaToLaTeXTests(){
+        List<DynamicTest> list = new LinkedList();
+        for ( TestLetters test : TestLetters.values() ){
+            list.add( generalTest("Test-Mathematica2LaTeX",test.mathematica,test.latex) );
+        }
+        return list;
+    }
+
+    /**
+     * Test Mathematica to Maple for all test cases
+     * @return
+     */
+    @TestFactory
+    Iterable<DynamicTest> mathematicaToMapleTests(){
+        List<DynamicTest> list = new LinkedList();
+        for ( TestLetters test : TestLetters.values() ){
+            list.add( generalTest("Test-Mathematica2Maple",test.mathematica,test.maple) );
+        }
+        return list;
+    }
+
+    /**
+     * Generate a test for given strings.
+     * @param note  name of the test
+     * @param from  string representation that will translated
+     * @param to    what we expected after the translation finished
+     * @return a test class for given parameters
+     */
+    private DynamicTest generalTest(String note, String from, String to){
+        return dynamicTest(
+                note + ": " + from,
+                () -> assertEquals(
+                        to,
+                        GreekLetters.convertTexToMaple(from)
+                )
+        );
     }
 }
