@@ -47,134 +47,235 @@ public class ExampleParser {
 
     /**
      *
-     * @param equation
+     * @param formula
      */
-    public void parse(String equation) throws ParseException {
-        this.last_equation = equation;
-        PomTaggedExpression top_expression = parser.parse(equation);
-
-        if ( top_expression.getTag() != "sequence" ){
-            System.out.println("Given formula is not a sequence!");
-            return;
-        }
+    public void parse(String formula) throws ParseException {
+        this.last_equation = formula;
+        PomTaggedExpression top_expression = parser.parse(formula);
 
         if ( top_expression.getRoot() != null && !top_expression.getRoot().isEmpty() ){
-            System.out.println("Root term:" + top_expression.getRoot().getTermText());
+            System.out.println("Root term: " + top_expression.getRoot().getTermText());
         }
 
-        handleExpression(top_expression);
+        maple = handleTopExpression(top_expression);
+        System.out.println("Your given formula is translated to Maple:");
+        System.out.println(maple);
     }
 
-    private int numOfParams = 0, numOfVars = 0, numOfAts = 0;
-    private int index = 0;
+    int numOfParams = 0,
+        numOfVars   = 0,
+        numOfAts    = 0;
     private String[] storage;
+    private String maplePatter;
     private boolean atPasses = false;
     private int atCounter = 0;
 
-    private String handleExpression( PomTaggedExpression exp ){
+    private static String fillVars( String pattern, String[] storage ){
+        for ( int i = 0; i < storage.length; i++ ){
+            if ( storage[i] != null ) //storage[i] = "NULL";
+                pattern = pattern.replace("$"+i, storage[i]);
+        }
+        return pattern;
+    }
+
+    private String handleTopExpression( PomTaggedExpression exp ){
         List<PomTaggedExpression> exp_list = exp.getComponents();
 
-        while ( !exp_list.isEmpty() ){
-            PomTaggedExpression exp_curr = exp_list.remove(0);
-            MathTerm root = exp_curr.getRoot();
-            if ( root.isEmpty() && exp_curr.getTag() == "sequence"){
-                String inner = innerExpression(exp_curr);
-                System.out.println("FOUND INNER: " + inner);
-                storage[index] = inner;
-                index++;
+        // TODO first, only take 1 macro (no prefix, no suffix)
+        PomTaggedExpression top_exp = exp_list.remove(0);
+        MathTerm root = top_exp.getRoot();
+        if ( root == null || root.isEmpty() ){
+            System.out.println("Something went wrong, first element should be a term.");
+            return "";
+        }
+
+        // extract infos
+        extractMacroInfo( root );
+        storage = new String[numOfParams + numOfVars];
+
+        // walk through tree (only neighbors)
+        for ( int i = 0; i < numOfParams + numOfVars; ){
+            PomTaggedExpression curr_exp = exp_list.remove(0);
+            MathTerm term = curr_exp.getRoot();
+            if ( term != null && !term.isEmpty() ){
+                // ignore ats
+                if ( term.getTag() == "at" ) continue;
+
+                storage[i] = handleMathTerm(term);
+                i++;
             } else {
-                String tmp = handleMathTerm(root);
-                if (tmp != null){
-                    storage[index] = tmp;
-                    index++;
+                storage[i] = handleExpression( curr_exp );
+                i++;
+            }
+        }
+
+        while ( !exp_list.isEmpty() ){
+            PomTaggedExpression curr_exp = exp_list.remove(0);
+            maplePatter += handleGeneralExpression(curr_exp);
+        }
+
+        return fillVars( maplePatter, storage );
+    }
+
+    /**
+     * ROOT TERM MUST BE NULL!
+     * @param exp
+     * @return
+     */
+    private String handleExpression( PomTaggedExpression exp ){
+        /**
+         * Possible PomTaggedExpressions Tags:
+         *      frac -> 2 children
+         *      cfrac -> 2 children (continued fractions)
+         *      ifrac, dfrag, tfrac, icfrac (need to check)
+         *      binom -> 2 children
+         *      stackrel -> 2 children (NOT SUPPORTED)
+         *      sqrt -> 1 children (or 2)
+         */
+
+        String tag = exp.getTag();
+        if ( tag == null || tag.isEmpty() ){
+            System.out.println("Unknown expression..." + exp);
+            return "";
+        }
+
+        if ( tag == "sequence" ){
+            return handleSequence(exp);
+        } else if ( tag == "fraction" ){
+            String[] tmp = handle2ArgExp(exp);
+            return "(" + tmp[0] + ")/(" + tmp[1] + ")";
+        } else if ( tag.contains("binomial") ){
+            String[] tmp = handle2ArgExp(exp);
+            return "binomial(" + tmp[0] + "," + tmp[1] + ")";
+        } else if ( tag == "square root" ){
+            return "sqrt(" + handleGeneralExpression(exp.getComponents().get(0)) + ")";
+        } else if ( tag.contains("radical") ){
+            String[] tmp = handle2ArgExp(exp);
+            return "surd(" + tmp[1] + "," + tmp[0] + ")";
+        } else {
+            System.out.println("Not yet supported expression: " + exp);
+            return "";
+        }
+    }
+
+    private String[] handle2ArgExp(PomTaggedExpression e){
+        String[] s = new String[2];
+        List<PomTaggedExpression> fracComps = e.getComponents();
+        s[0] = handleGeneralExpression(fracComps.get(0));
+        s[1] = handleGeneralExpression(fracComps.get(1));
+        return s;
+    }
+
+    private String handleGeneralExpression(PomTaggedExpression e){
+        MathTerm term = e.getRoot();
+        if ( term != null && !term.isEmpty() ){
+            return handleMathTerm(term);
+        } else {
+            return handleExpression(e);
+        }
+    }
+
+    /**
+     * TAG MUST BE SEQUENCE!
+     * @param topExp
+     * @return
+     */
+    private String handleSequence(PomTaggedExpression topExp){
+        List<PomTaggedExpression> exps = topExp.getComponents();
+        String sequence = "";
+        while ( !exps.isEmpty() ){
+            PomTaggedExpression exp = exps.remove(0);
+            sequence += handleGeneralExpression(exp);
+            if ( exps.size() > 0 ) {
+                if (    ( !exps.get(0).getRoot().isEmpty() &&
+                            exps.get(0).getRoot().getTag().contains("parenthesis"))
+                        ||
+                        ( !exp.getRoot().isEmpty() &&
+                                exp.getRoot().getTag().contains("parenthesis"))
+                        ){
+                    // do nothing
+                } else {
+                    sequence += " ";
                 }
             }
         }
-
-        for ( int i = 0; i < storage.length; i++ ){
-            if ( storage[i] != null ) //storage[i] = "NULL";
-                maple = maple.replace("$"+i, storage[i]);
-        }
-
-        System.out.println("Maybe translated to Maple: " + maple);
-        return maple;
+        return sequence;
     }
 
-    private String innerExpression( PomTaggedExpression exp ){
-        String output = "";
-        List<PomTaggedExpression> exp_list = exp.getComponents();
-
-        while ( !exp_list.isEmpty() ){
-            PomTaggedExpression exp_curr = exp_list.remove(0);
-            MathTerm root = exp_curr.getRoot();
-            if ( root.isEmpty() && exp_curr.getTag() == "sequence"){
-                String inner = innerExpression(exp_curr);
-                System.out.println("FOUND INNER-INNER: " + inner);
-                output += inner + " ";
-            } else {
-                output += handleMathTerm(root) + " ";
-            }
-        }
-
-        return output;
-    }
-
-    private String handleMathTerm( MathTerm term ){
-        FeatureSet macroSet = term.getNamedFeatureSet("macro");
+    private void extractMacroInfo( MathTerm macro ){
+        FeatureSet macroSet = macro.getNamedFeatureSet("macro");
         if ( macroSet != null ){
             this.link_dlmf = "http://"+macroSet.getFeature("DLMF-Link").first();
             this.link_maple = "https://"+macroSet.getFeature("Maple-Link").first();
             this.numOfVars = Integer.parseInt(macroSet.getFeature("Number of Variables").first());
             this.numOfParams = Integer.parseInt(macroSet.getFeature("Number of Parameters").first());
             this.numOfAts = Integer.parseInt(macroSet.getFeature("Number of optional ats").first());
-            this.maple = macroSet.getFeature("Maple Representation").first();
-            this.storage = new String[numOfParams+numOfVars];
-            this.index = 0;
-            this.atPasses = false;
-            System.out.println(numOfParams + ":" + numOfAts + ":" + numOfVars);
-            System.out.println(maple);
-            return null;
+            this.maplePatter = macroSet.getFeature("Maple Representation").first();
+            //System.out.println(numOfParams + ":" + numOfAts + ":" + numOfVars);
+            //System.out.println(maple);
         }
-
-        String tag = term.getTag();
-        if ( tag == "letter" ){
-            return term.getTermText();
-        } else if ( tag == "at" ){
-            if ( atCounter < numOfAts )
-                atCounter++;
-            else {
-                System.err.println("illegal number of ats");
-            }
-            return null;
-        } else if ( tag == "latex-command" ){
-            return translateCommand(term);
-        } else return null;
     }
 
-    private String translateCommand( MathTerm term ){
-        String t = term.getTermText();
-        /*
-        System.out.println("TRANSLATION TIME: " + t);
-        System.out.println("GetNamedFeatures");
-        System.out.println(Arrays.toString(term.getNamedFeatures().keySet().toArray()));
-        System.out.println("GetFeatureValue(Alphabet): " + term.getFeatureValue("Alphabet"));
-        */
-        List<FeatureSet> sets = term.getAlternativeFeatureSets();
-        //System.out.println(sets);
-        for ( FeatureSet feature : sets ){
-            SortedSet<String> f = feature.getFeature("Alphabet");
-            if ( f != null && !f.isEmpty() && f.first().matches("Greek") ){
-                return GreekLetterInterpreter.convertTexToMaple(t);
+    private String handleMathTerm( MathTerm term ){
+        String tag = term.getTag();
+        if ( tag == null ) return "";
+
+        if ( tag == "latex-command" ){
+            // Greek Letter or other macro
+            return handleLatexCommand(term);
+        } else if ( tag.matches("function") ){
+            // todo... hmm
+            return handleFunction(term);
+        } else if (
+                tag == "letter" || tag == "digit"   || tag == "numeric" ||
+                tag == "minus"  || tag == "plus"    || tag == "equals" ||
+                tag == "star"   || tag == "forward slash" ||
+                tag.contains("parenthesis")) {
+            // don't need to translate these
+            return term.getTermText();
+        } else if ( tag == "at" ){
+            // ignore...
+            return "";
+        } else {
+            System.out.println("Found not yet supported tag: " + tag);
+            return "";
+        }
+    }
+
+    private String handleLatexCommand( MathTerm term ){
+        List<FeatureSet> featureSets = term.getAlternativeFeatureSets();
+        while ( !featureSets.isEmpty() ){
+            FeatureSet set = featureSets.remove(0);
+            String alphabet = set.getFeature("Alphabet").first();
+            if ( alphabet != null && !alphabet.isEmpty() && alphabet.matches("Greek") ){
+                // its a greek letter, so translate the greek letter
+                return GreekLetterInterpreter.convertTexToMaple(term.getTermText());
             }
         }
-        System.err.println("Wasn't able to translate this command");
-        return t;
+        System.err.println("Wasn't able to translate latex-command: " + term);
+        return "";
+    }
+
+    /**
+     * TODO what could it be?
+     * @param term
+     * @return
+     */
+    private String handleFunction( MathTerm term ){
+        // TODO first approach, just delete the "\" in front of a function...
+        return term.getTermText().substring(1);
     }
 
     public static void main(String[] args){
         ExampleParser p = new ExampleParser();
         try{
-            p.parse("\\JacobiP{\\alpha}{\\beta}{n}@{a\\Theta}");
+            String formula = "";
+            if ( args != null )
+                for ( int i = 0; i < args.length; i++ )
+                    formula += args[i];
+            p.parse(formula);
+            //p.parse("\\HypergeoF@@{1+0.3}{\\sqrt[5]{1}}{\\frac{1}{2}}{x}+2-\\cos(\\pi)");
+            //p.parse("\\JacobiP{\\cos{a}}{\\beta+2}{\\frac{x+2}{2}}@{\\cos(a\\Theta)}");
         } catch ( Exception e ){
             System.err.println("Error occured!");
             e.printStackTrace();

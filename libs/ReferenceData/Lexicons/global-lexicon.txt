@@ -13,6 +13,19 @@ Symbol: \JacobiP
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
 	Constraints: $0>-1;$1>-1
 
+Symbol: \HypergeoF
+
+  Feature Set: macro
+	Areas: special functions
+	Description: Hypergeometric function
+	Source: dlmf-macro
+	DLMF-Link: dlmf.nist.gov/15.2#E1
+	Number of Parameters: 0
+	Number of Variables: 4
+	Number of optional ats: 3
+	Maple Representation: hypergeom([$0,$1],[$2],$3)/GAMMA(c)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
+
 Symbol: !
 
   Feature Set: universal
