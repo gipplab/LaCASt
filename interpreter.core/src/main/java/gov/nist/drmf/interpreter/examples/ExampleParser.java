@@ -77,24 +77,49 @@ public class ExampleParser {
         while ( !exp_list.isEmpty() ){
             PomTaggedExpression exp_curr = exp_list.remove(0);
             MathTerm root = exp_curr.getRoot();
-            if ( root.isEmpty() ){
-                String inner = handleExpression(exp_curr);
+            if ( root.isEmpty() && exp_curr.getTag() == "sequence"){
+                String inner = innerExpression(exp_curr);
                 System.out.println("FOUND INNER: " + inner);
+                storage[index] = inner;
+                index++;
             } else {
-                handleMathTerm(root);
+                String tmp = handleMathTerm(root);
+                if (tmp != null){
+                    storage[index] = tmp;
+                    index++;
+                }
             }
         }
 
         for ( int i = 0; i < storage.length; i++ ){
-            if ( storage[i] == null ) storage[i] = "NULL";
-            maple = maple.replace("$"+i, storage[i]);
+            if ( storage[i] != null ) //storage[i] = "NULL";
+                maple = maple.replace("$"+i, storage[i]);
         }
 
         System.out.println("Maybe translated to Maple: " + maple);
         return maple;
     }
 
-    private void handleMathTerm( MathTerm term ){
+    private String innerExpression( PomTaggedExpression exp ){
+        String output = "";
+        List<PomTaggedExpression> exp_list = exp.getComponents();
+
+        while ( !exp_list.isEmpty() ){
+            PomTaggedExpression exp_curr = exp_list.remove(0);
+            MathTerm root = exp_curr.getRoot();
+            if ( root.isEmpty() && exp_curr.getTag() == "sequence"){
+                String inner = innerExpression(exp_curr);
+                System.out.println("FOUND INNER-INNER: " + inner);
+                output += inner + " ";
+            } else {
+                output += handleMathTerm(root) + " ";
+            }
+        }
+
+        return output;
+    }
+
+    private String handleMathTerm( MathTerm term ){
         FeatureSet macroSet = term.getNamedFeatureSet("macro");
         if ( macroSet != null ){
             this.link_dlmf = "http://"+macroSet.getFeature("DLMF-Link").first();
@@ -108,24 +133,22 @@ public class ExampleParser {
             this.atPasses = false;
             System.out.println(numOfParams + ":" + numOfAts + ":" + numOfVars);
             System.out.println(maple);
-            return;
+            return null;
         }
 
         String tag = term.getTag();
-        if ( tag == "letter" && index < storage.length){
-            storage[index] = term.getTermText();
-            index++;
+        if ( tag == "letter" ){
+            return term.getTermText();
         } else if ( tag == "at" ){
             if ( atCounter < numOfAts )
                 atCounter++;
             else {
                 System.err.println("illegal number of ats");
             }
-        } else if ( tag == "latex-command" && index < storage.length ){
-            String translation = translateCommand(term);
-            storage[index] = translation;
-            index++;
-        }
+            return null;
+        } else if ( tag == "latex-command" ){
+            return translateCommand(term);
+        } else return null;
     }
 
     private String translateCommand( MathTerm term ){
@@ -137,9 +160,10 @@ public class ExampleParser {
         System.out.println("GetFeatureValue(Alphabet): " + term.getFeatureValue("Alphabet"));
         */
         List<FeatureSet> sets = term.getAlternativeFeatureSets();
+        //System.out.println(sets);
         for ( FeatureSet feature : sets ){
             SortedSet<String> f = feature.getFeature("Alphabet");
-            if ( f != null && !f.isEmpty() && f.first() == "Greek" ){
+            if ( f != null && !f.isEmpty() && f.first().matches("Greek") ){
                 return GreekLetterInterpreter.convertTexToMaple(t);
             }
         }
@@ -150,7 +174,7 @@ public class ExampleParser {
     public static void main(String[] args){
         ExampleParser p = new ExampleParser();
         try{
-            p.parse("\\JacobiP{\\alpha}{\\beta}{n}@{\\cos{a\\Theta}}");
+            p.parse("\\JacobiP{\\alpha}{\\beta}{n}@{a\\Theta}");
         } catch ( Exception e ){
             System.err.println("Error occured!");
             e.printStackTrace();
