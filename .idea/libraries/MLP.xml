@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="MLP">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/MLP/MLP.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

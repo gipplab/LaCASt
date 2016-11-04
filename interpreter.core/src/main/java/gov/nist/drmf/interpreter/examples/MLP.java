@@ -60,7 +60,7 @@ public class MLP {
             // provide next an equation to parse
             String eq=eqs[0];
             //eq = "\\Mathieuce{123 a}@@{\\sqrt{2}b}{\\frac{1}{2}}";
-            eq = "\\JacobiP{\\alpha}{\\beta}{n}@{\\cos(a\\Theta)}";
+            eq = "\\JacobiP{\\alpha}{\\beta}{n}@{\\cos{a\\Theta}}";
             //eq = "\\frac{beta}{2}";
 
             // parse/tag the equation and print it out 
