@@ -236,6 +236,12 @@ public class ExampleParser {
         } else if ( tag == "at" ){
             // ignore...
             return "";
+        } else if ( tag == "alphanumeric"){
+            String multi = "";
+            String input = term.getTermText();
+            for ( int i = 0; i < input.length(); i++ )
+                multi += input.charAt(i) + " ";
+            return multi;
         } else {
             System.out.println("Found not yet supported tag: " + tag);
             return "";
@@ -252,7 +258,7 @@ public class ExampleParser {
                 return GreekLetterInterpreter.convertTexToMaple(term.getTermText());
             }
         }
-        System.err.println("Wasn't able to translate latex-command: " + term);
+        System.err.println("Wasn't able to translate latex-command: " + term.getTermText());
         return "";
     }
 
@@ -270,9 +276,12 @@ public class ExampleParser {
         ExampleParser p = new ExampleParser();
         try{
             String formula = "";
-            if ( args != null )
-                for ( int i = 0; i < args.length; i++ )
+            if ( args != null ) {
+                for (int i = 0; i < args.length; i++) {
                     formula += args[i];
+                    formula += " ";
+                }
+            }
             p.parse(formula);
             //p.parse("\\HypergeoF@@{1+0.3}{\\sqrt[5]{1}}{\\frac{1}{2}}{x}+2-\\cos(\\pi)");
             //p.parse("\\JacobiP{\\cos{a}}{\\beta+2}{\\frac{x+2}{2}}@{\\cos(a\\Theta)}");
