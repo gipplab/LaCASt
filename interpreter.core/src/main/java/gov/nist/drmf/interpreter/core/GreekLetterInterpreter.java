@@ -45,6 +45,7 @@ public abstract class GreekLetterInterpreter {
         Nu("N","Nu","\\[CapitalNu]"),
         omicron("o","omicron","\\[Omicron]"),
         Omicron("O","Omicron","\\[CapitalOmicron]"),
+        Pi("\\Pi","PI","\\[CapitalPi]"),
         Rho("P","Rho","\\[CapitalRho]"),
         Tau("T","Tau","\\[CapitalTau]"),
         Chi("X","Chi","\\[CapitalChi]");
@@ -64,6 +65,7 @@ public abstract class GreekLetterInterpreter {
          * @return special case with given representation in latex
          */
         public static SpecialCases getSpecialFromLatex(String latex){
+            if ( latex.startsWith("\\") ) return Pi;
             for (SpecialCases l : SpecialCases.values())
                 if ( l.latex.matches(latex) ) return l;
             return null;
@@ -75,6 +77,7 @@ public abstract class GreekLetterInterpreter {
          * @return special case
          */
         public static SpecialCases getSpecialFromMaple(String maple){
+            if ( maple.matches("PI") ) return Pi;
             for (SpecialCases l : SpecialCases.values())
                 if ( l.maple.matches(maple) ) return l;
             return null;
@@ -86,6 +89,7 @@ public abstract class GreekLetterInterpreter {
          * @return special case
          */
         public static SpecialCases getSpecialFromMathematica(String mathematica){
+            if ( mathematica.contains("CapitalPi") ) return Pi;
             mathematica = mathematica.substring(2);
             if ( mathematica.startsWith(MATHEMATICA_CAPITAL) ) {
                 mathematica = mathematica.split(MATHEMATICA_CAPITAL)[1];
@@ -98,11 +102,11 @@ public abstract class GreekLetterInterpreter {
 
     // Pattern for all special cases in latex
     public static final String SPECIAL_LATEX_PATTERN =
-            "[ABZHIKMNoOPTX]";
+            "[ABZHIKMNoOPTX]|\\\\Pi";
 
     // Pattern for all special cases in Maple
     public static final String SPECIAL_MAPLE_PATTERN =
-            "[ABZEIKMNoORTC].+";
+            "[ABZEIKMNoORTC].+|PI";
 
     /**
      * I simply don't like regex...
@@ -159,6 +163,7 @@ public abstract class GreekLetterInterpreter {
      * @return greek letter in mathematica
      */
     public static String convertTexToMathematica(String latex_letter){
+        if (latex_letter.matches("\\\\Pi")) return SpecialCases.Pi.mathematica;
         return convertMapleToMathematica(convertTexToMaple(latex_letter));
     }
 
@@ -184,6 +189,8 @@ public abstract class GreekLetterInterpreter {
             if ( maple_letter.endsWith("sigma") ) return "\\[FinalSigma]";
             String math = firstCharacterToUpper(maple_letter.substring(3));
             return "\\[" + VARIANT_MATHEMATICA_START + math + "]";
+        } else if ( maple_letter.matches("PI") ){
+            return SpecialCases.Pi.mathematica;
         } else if ( maple_letter.matches("[A-Z].+") ){
             maple_letter = MATHEMATICA_CAPITAL + maple_letter;
         } else if ( maple_letter.matches("[a-z].+") ){
@@ -202,8 +209,9 @@ public abstract class GreekLetterInterpreter {
             return SpecialCases.getSpecialFromMathematica(mathematica_letter).latex;
         } else if ( mathematica_letter.matches(VARIANT_MATHEMATICA_PATTERN) ){
             return convertVariantMathematicaToTex(mathematica_letter);
-        }
-        return BACK_SLASH + convertMathematicaToMaple(mathematica_letter);
+        } else if ( mathematica_letter.contains("CapitalPi") ) {
+            return SpecialCases.Pi.latex;
+        } return BACK_SLASH + convertMathematicaToMaple(mathematica_letter);
     }
 
     /**
@@ -214,7 +222,8 @@ public abstract class GreekLetterInterpreter {
     public static String convertMathematicaToMaple( String mathematica_letter ){
         if ( mathematica_letter.matches(VARIANT_MATHEMATICA_PATTERN) ) {
             return convertVariantMathematicaToMaple(mathematica_letter);
-        }
+        } else if ( mathematica_letter.contains("CapitalPi") )
+            return SpecialCases.Pi.maple;
 
         // delete \\[ and ]
         mathematica_letter = mathematica_letter.substring(2, mathematica_letter.length()-1);

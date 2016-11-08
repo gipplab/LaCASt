@@ -31,6 +31,7 @@ public enum GreekLetters {
     Nu("N","Nu","\\[CapitalNu]"),
     omicron("o","omicron","\\[Omicron]"),
     Omicron("O","Omicron","\\[CapitalOmicron]"),
+    Pi("\\Pi","PI","\\[CapitalPi]"),
     Rho("P","Rho","\\[CapitalRho]"),
     Tau("T","Tau","\\[CapitalTau]"),
     Chi("X","Chi","\\[CapitalChi]");
