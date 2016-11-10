@@ -1,14 +1,12 @@
 package gov.nist.drmf.interpreter.examples;
 
 import gov.nist.drmf.interpreter.common.GlobalConstants;
-import gov.nist.drmf.interpreter.core.GreekLetterInterpreter;
+import gov.nist.drmf.interpreter.common.letters.AbstractGreekLetterInterpreter;
+import gov.nist.drmf.interpreter.core.grammar.MapleGreekLetterInterpreter;
 import mlp.*;
 
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.SortedSet;
 
 /**
  * This parser is a test suite for further computations.
@@ -35,11 +33,14 @@ public class ExampleParser {
     // the parser itself
     private PomParser parser;
 
+    private AbstractGreekLetterInterpreter letterInterpreter;
+
     /**
      * Simple constructor.
      */
     public ExampleParser(){
         constraints = new LinkedList<String>();
+        letterInterpreter = new MapleGreekLetterInterpreter();
 
         // initialize parser
         parser = new PomParser(GlobalConstants.REFERENCE_DATA_PATH.toString());
@@ -255,7 +256,7 @@ public class ExampleParser {
             String alphabet = set.getFeature("Alphabet").first();
             if ( alphabet != null && !alphabet.isEmpty() && alphabet.matches("Greek") ){
                 // its a greek letter, so translate the greek letter
-                return GreekLetterInterpreter.convertTexToMaple(term.getTermText());
+                return letterInterpreter.convertToCAS(term.getTermText());
             }
         }
         System.err.println("Wasn't able to translate latex-command: " + term.getTermText());

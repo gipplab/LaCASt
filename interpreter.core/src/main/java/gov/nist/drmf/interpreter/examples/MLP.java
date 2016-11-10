@@ -37,7 +37,9 @@ public class MLP {
     public static void start() {
          // the folder where the reference data (e.g., lexicons) are
         String refDataDir= GLOBAL_LEXICON_PATH;
+
         System.out.println(Paths.get(".").toAbsolutePath().toString());
+        System.out.println(GlobalConstants.REFERENCE_DATA_PATH.toAbsolutePath().toString());
         
         String[] eqs=equationsForTesting(); //equations to test the parser on
         
