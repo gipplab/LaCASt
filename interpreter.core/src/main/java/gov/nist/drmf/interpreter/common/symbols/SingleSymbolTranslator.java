@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.common.letters;
+package gov.nist.drmf.interpreter.common.symbols;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -15,9 +15,9 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * An abstract class to handle single symbols like greek letters and
+ * An abstract class to handle single symbols like greek symbols and
  * constants. It loads a JSON file with information about constants
- * and greek letters and stores them in an efficient way.
+ * and greek symbols and stores them in an efficient way.
  *
  * It provides to translate a given symbol from one representation
  * to another.
@@ -28,8 +28,8 @@ import java.util.Set;
 public abstract class SingleSymbolTranslator {
     /**
      * Storage System:
-     *  directory[0] <- all letters in language 0
-     *  directory[1] <- all letters in language 1 in same
+     *  directory[0] <- all symbols in language 0
+     *  directory[1] <- all symbols in language 1 in same
      *                  order as in directory[0]...
      *
      *  word_map[0]  <- maps a letter to the corresponding position
@@ -41,7 +41,7 @@ public abstract class SingleSymbolTranslator {
      *
      *  lang_map     <- maps the language name to the index. For instance
      *                  "LaTeX" -> 1 means directory[1] contains all LaTeX
-     *                  letters.
+     *                  symbols.
      */
 
     // the language index map
@@ -50,7 +50,7 @@ public abstract class SingleSymbolTranslator {
     // the word indices map
     private HashMap<String, Integer>[] word_map;
 
-    // the dictionary contains all letters
+    // the dictionary contains all symbols
     private String[][] dictionary;
 
     // The key strings in the GreekLetters.json
@@ -72,7 +72,7 @@ public abstract class SingleSymbolTranslator {
     }
 
     /**
-     * Initialize the class by loading all greek letters from a given json file.
+     * Initialize the class by loading all greek symbols from a given json file.
      * @param letters_json_path GreekLetters.json
      */
     private void init(
@@ -89,12 +89,13 @@ public abstract class SingleSymbolTranslator {
             JsonObject mainObj = tree.getAsJsonObject();
             JsonArray langs = mainObj.get(key_languages).getAsJsonArray();
 
-            lang_map = new HashMap();
+            lang_map = new HashMap<>();
+            //noinspection unchecked
             word_map = new HashMap[langs.size()];
             for ( int i = 0; i < langs.size(); i++ ){
                 String lang = langs.get(i).getAsString();
                 lang_map.put(lang, i);
-                word_map[i] = new HashMap();
+                word_map[i] = new HashMap<>();
             }
 
             JsonObject lettersObj = mainObj.get(key_entries).getAsJsonObject();
@@ -115,7 +116,7 @@ public abstract class SingleSymbolTranslator {
                 idx++;
             }
         } catch ( IOException ioe ){
-            System.err.println( "Unable to load greek letters and constants from json directory in: " +
+            System.err.println( "Unable to load greek symbols and constants from json directory in: " +
                     letters_json_path.toString());
         }
     }

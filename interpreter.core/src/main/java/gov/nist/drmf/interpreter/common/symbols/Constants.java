@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.common.letters;
+package gov.nist.drmf.interpreter.common.symbols;
 
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 

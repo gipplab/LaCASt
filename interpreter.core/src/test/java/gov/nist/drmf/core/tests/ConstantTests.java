@@ -1,7 +1,7 @@
 package gov.nist.drmf.core.tests;
 
 import gov.nist.drmf.interpreter.common.GlobalConstants;
-import gov.nist.drmf.interpreter.common.letters.Constants;
+import gov.nist.drmf.interpreter.common.symbols.Constants;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;

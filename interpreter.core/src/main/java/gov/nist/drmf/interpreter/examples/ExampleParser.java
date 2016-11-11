@@ -1,10 +1,9 @@
 package gov.nist.drmf.interpreter.examples;
 
 import gov.nist.drmf.interpreter.common.GlobalConstants;
-import gov.nist.drmf.interpreter.common.letters.GreekLetters;
+import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import mlp.*;
 
-import javax.xml.bind.annotation.XmlElementDecl;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,6 +15,7 @@ import java.util.List;
  *
  * Created by Andre Greiner-Petter on 02.11.2016.
  */
+@SuppressWarnings("all")
 public class ExampleParser {
     // last parsed equation
     private String last_equation = "";

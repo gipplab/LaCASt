@@ -1,7 +1,7 @@
 package gov.nist.drmf.core.tests;
 
 /**
- * This enum is a list of all greek letters in all CAS.
+ * This enum is a list of all greek symbols in all CAS.
  * To add support for other CAS extend this list.
  *
  * HOW TO EXTEND:
@@ -18,7 +18,7 @@ package gov.nist.drmf.core.tests;
  * Created by Andre Greiner-Petter on 10.11.2016.
  */
 public enum GreekLetterTestCases {
-    // Standard forms of greek letters
+    // Standard forms of greek symbols
     //       LaTeX           Maple       Mathematica
     alpha(  "\\alpha",      "alpha",    "\\[Alpha]"),
     Alpha(  "A",            "Alpha",    "\\[CapitalAlpha]"),
@@ -69,8 +69,8 @@ public enum GreekLetterTestCases {
     omega(  "\\omega",      "omega",    "\\[Omega]"),
     Omega(  "\\Omega",      "Omega",    "\\[CapitalOmega]"),
 
-    // variant forms of greek letters
-    // varrho is not in the list of supported greek letters in maple, but it works in Maple 2015
+    // variant forms of greek symbols
+    // varrho is not in the list of supported greek symbols in maple, but it works in Maple 2015
     //              LaTeX               Maple           Mathematica
     varepsilon( "\\varepsilon",     "varepsilon",   "\\[CurlyEpsilon]"),
     vartheta(   "\\vartheta",       "vartheta",     "\\[CurlyTheta]"),

@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.common.letters;
+package gov.nist.drmf.interpreter.common.symbols;
 
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 
@@ -14,7 +14,7 @@ import gov.nist.drmf.interpreter.common.GlobalConstants;
  */
 public class GreekLetters extends SingleSymbolTranslator {
     /**
-     * Reads all greek letters from GreekLettersAndConstants.json.
+     * Reads all greek symbols from GreekLettersAndConstants.json.
      */
     private GreekLetters(){
         super(
@@ -24,7 +24,7 @@ public class GreekLetters extends SingleSymbolTranslator {
         );
     }
 
-    // the unique greek letters obj
+    // the unique greek symbols obj
     private static GreekLetters obj = new GreekLetters();
 
     /**
