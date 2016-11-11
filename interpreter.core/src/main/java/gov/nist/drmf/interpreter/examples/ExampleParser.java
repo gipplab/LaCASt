@@ -1,10 +1,10 @@
 package gov.nist.drmf.interpreter.examples;
 
 import gov.nist.drmf.interpreter.common.GlobalConstants;
-import gov.nist.drmf.interpreter.common.letters.AbstractGreekLetterInterpreter;
-import gov.nist.drmf.interpreter.core.grammar.MapleGreekLetterInterpreter;
+import gov.nist.drmf.interpreter.common.letters.GreekLetters;
 import mlp.*;
 
+import javax.xml.bind.annotation.XmlElementDecl;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,17 +33,17 @@ public class ExampleParser {
     // the parser itself
     private PomParser parser;
 
-    private AbstractGreekLetterInterpreter letterInterpreter;
+    private GreekLetters greek;
 
     /**
      * Simple constructor.
      */
     public ExampleParser(){
         constraints = new LinkedList<String>();
-        letterInterpreter = new MapleGreekLetterInterpreter();
+        greek = GreekLetters.getGreekLetterInstance();
 
         // initialize parser
-        parser = new PomParser(GlobalConstants.REFERENCE_DATA_PATH.toString());
+        parser = new PomParser(GlobalConstants.PATH_REFERENCE_DATA.toString());
     }
 
     /**
@@ -256,7 +256,7 @@ public class ExampleParser {
             String alphabet = set.getFeature("Alphabet").first();
             if ( alphabet != null && !alphabet.isEmpty() && alphabet.matches("Greek") ){
                 // its a greek letter, so translate the greek letter
-                return letterInterpreter.convertToCAS(term.getTermText());
+                return greek.translate(GlobalConstants.KEY_LATEX, GlobalConstants.KEY_MAPLE, term.getTermText());
             }
         }
         System.err.println("Wasn't able to translate latex-command: " + term.getTermText());

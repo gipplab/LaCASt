@@ -51,7 +51,7 @@ public class JacobiPTests {
         parser = new ExampleParser();
         try {
             System.out.println("Parse: " + SIMPLE_TEST_EQ);
-            System.out.println(GlobalConstants.REFERENCE_DATA_PATH.toAbsolutePath().toString());
+            System.out.println(GlobalConstants.PATH_REFERENCE_DATA.toAbsolutePath().toString());
             parser.parse(SIMPLE_TEST_EQ);
         } catch ( ParseException pe ){
             System.err.println("Cannot parse given equation. Tests stopped.");

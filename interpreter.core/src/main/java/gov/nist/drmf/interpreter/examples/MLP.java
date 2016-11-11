@@ -5,15 +5,10 @@ package gov.nist.drmf.interpreter.examples;/*
  */
 
 import java.util.*;
-import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import mlp.ParseException;
 import mlp.PomParser;
-import mlp.PomParserTokenManager;
 import mlp.PomTaggedExpression;
 
 import gov.nist.drmf.interpreter.common.GlobalConstants;
@@ -39,7 +34,7 @@ public class MLP {
         String refDataDir= GLOBAL_LEXICON_PATH;
 
         System.out.println(Paths.get(".").toAbsolutePath().toString());
-        System.out.println(GlobalConstants.REFERENCE_DATA_PATH.toAbsolutePath().toString());
+        System.out.println(GlobalConstants.PATH_REFERENCE_DATA.toAbsolutePath().toString());
         
         String[] eqs=equationsForTesting(); //equations to test the parser on
         
