@@ -21,7 +21,7 @@ public class Constants extends SingleSymbolTranslator {
     }
 
     // the unique constants class
-    private static Constants obj = new Constants();
+    private static Constants obj;
 
     /**
      * Returns the unique object from this class.
@@ -29,5 +29,15 @@ public class Constants extends SingleSymbolTranslator {
      */
     public static Constants getConstantsInstance(){
         return obj;
+    }
+
+    /**
+     * Initialize the constants. Loading and extract all
+     * information from the JSON file.
+     * @see GlobalConstants#PATH_GREEK_LETTERS_AND_CONSTANTS_FILE
+     */
+    public static void init(){
+        if ( obj == null )
+            obj = new Constants();
     }
 }

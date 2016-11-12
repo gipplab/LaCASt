@@ -58,8 +58,8 @@ public class MLP {
             String eq=eqs[0];
             //eq = "\\Mathieuce{123 a}@@{\\sqrt{2}b}{\\frac{1}{2}}";
             //eq = "\\JacobiP{\\sqrt[2]{1}}{\\frac{1}{2}}{1+2-1*2/1}@{\\cos(a\\Theta)}";
-            eq = "a \\Leftrightarrow b";
-            //eq = "\\frac{beta}{2}";
+            //eq = "\\FerrersP[\\frac{1}{2}]{\\nu}@{z}";
+            eq = "\\binom{2}{3} = \\sqrt{2}";
 
             // parse/tag the equation and print it out 
             PomTaggedExpression pe = parser.parse(eq);

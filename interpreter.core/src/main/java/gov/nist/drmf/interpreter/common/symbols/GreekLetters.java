@@ -25,7 +25,7 @@ public class GreekLetters extends SingleSymbolTranslator {
     }
 
     // the unique greek symbols obj
-    private static GreekLetters obj = new GreekLetters();
+    private static GreekLetters obj;
 
     /**
      * Returns the unique object from this class.
@@ -33,5 +33,15 @@ public class GreekLetters extends SingleSymbolTranslator {
      */
     public static GreekLetters getGreekLetterInstance(){
         return obj;
+    }
+
+    /**
+     * Initialize the constants. Loading and extract all
+     * information from the JSON file.
+     * @see GlobalConstants#PATH_GREEK_LETTERS_AND_CONSTANTS_FILE
+     */
+    public static void init(){
+        if ( obj == null )
+            obj = new GreekLetters();
     }
 }
