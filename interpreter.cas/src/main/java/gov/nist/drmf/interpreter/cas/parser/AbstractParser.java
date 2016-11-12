@@ -49,6 +49,10 @@ public abstract class AbstractParser implements IParser {
         sequence = "";
         List<PomTaggedExpression> exp_list = topExpression.getComponents();
 
+        // TODO check here if exp_list contains DLMF_Macro
+        // TODO in that case, give the rest of the list to
+        // TODO a MacroParser obj to parse the neighbors.
+
         while ( !exp_list.isEmpty() ){
             translatedExp += parseGeneralExpression(exp_list.get(0));
             if ( exp_list.size() > 1 )

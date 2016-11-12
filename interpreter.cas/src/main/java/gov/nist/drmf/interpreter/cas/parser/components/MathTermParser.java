@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.cas.parser.components;
 
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import mlp.FeatureSet;
 import mlp.MathTerm;
 
 /**
@@ -18,7 +19,7 @@ public class MathTermParser extends AbstractInnerParser {
         }
 
         switch( tag ){
-            case command:
+            case command: // could be a DLMF-macro
                 break;
             case function:
                 break;
@@ -65,6 +66,16 @@ public class MathTermParser extends AbstractInnerParser {
             case macro:
                 break;
         }
+        return false;
+    }
+
+    private boolean handleCommand( MathTerm term ){
+        FeatureSet dlmfSet = term.getNamedFeatureSet("dlmf-macro");
+
+        if ( dlmfSet != null ){
+
+        }
+
         return false;
     }
 }

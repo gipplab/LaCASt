@@ -1,16 +1,11 @@
 package gov.nist.drmf.interpreter.cas.parser;
 
-import gov.nist.drmf.interpreter.cas.parser.components.EmptyExpressionParser;
-import gov.nist.drmf.interpreter.cas.parser.components.MathTermParser;
-import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
 
 import java.nio.file.Path;
-import java.util.List;
 
 /**
  * This parser parse semantic LaTeX formula using
@@ -58,7 +53,6 @@ public class SemanticLatexParser extends AbstractParser {
 
     @Override
     public boolean parse(PomTaggedExpression expression) {
-        MathTerm root = expression.getRoot();
         translatedExp = parseGeneralExpression(expression);
         return !isInnerError();
     }

@@ -82,7 +82,7 @@ public class ExampleParser {
     private String handleTopExpression( PomTaggedExpression exp ){
         List<PomTaggedExpression> exp_list = exp.getComponents();
 
-        // TODO first, only take 1 macro (no prefix, no suffix)
+        // first, only take 1 macro (no prefix, no suffix)
         PomTaggedExpression top_exp = exp_list.remove(0);
         MathTerm root = top_exp.getRoot();
         if ( root == null || root.isEmpty() ){
@@ -225,7 +225,7 @@ public class ExampleParser {
             // Greek Letter or other macro
             return handleLatexCommand(term);
         } else if ( tag.matches("function") ){
-            // todo... hmm
+            // ... hmm
             return handleFunction(term);
         } else if (
                 tag == "letter" || tag == "digit"   || tag == "numeric" ||
@@ -264,12 +264,12 @@ public class ExampleParser {
     }
 
     /**
-     * TODO what could it be?
+     * What could it be? ...
      * @param term
      * @return
      */
     private String handleFunction( MathTerm term ){
-        // TODO first approach, just delete the "\" in front of a function...
+        // first approach, just delete the "\" in front of a function...
         return term.getTermText().substring(1);
     }
 

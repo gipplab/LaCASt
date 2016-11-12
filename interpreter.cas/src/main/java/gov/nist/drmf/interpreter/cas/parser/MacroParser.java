@@ -13,6 +13,10 @@ public class MacroParser extends AbstractParser {
             numOfAts,
             numOfVars;
 
+    private String def_dlmf, def_maple;
+
+    private String translation_pattern;
+
     public MacroParser(
             int numOfParams,
             int numOfAts,
