@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.cas.parser;
 
-import mlp.MathTerm;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
@@ -53,7 +52,7 @@ public class SemanticLatexParser extends AbstractParser {
 
     @Override
     public boolean parse(PomTaggedExpression expression) {
-        translatedExp = parseGeneralExpression(expression);
+        translatedExp = parseGeneralExpression(expression, null);
         return !isInnerError();
     }
 }

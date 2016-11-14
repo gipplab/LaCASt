@@ -57,10 +57,10 @@ public class MLP {
             // provide next an equation to parse
             String eq=eqs[0];
             //eq = "\\Mathieuce{123 a}@@{\\sqrt{2}b}{\\frac{1}{2}}";
-            eq = "\\JacobiP{\\iunit}{5.5}@{23}";
+            //eq = "\\JacobiP{\\iunit}{5.5}@{23}";
             //eq = "\\FerrersP[\\frac{1}{2}]{\\nu}@{z}";
             //eq = "\\binom{2}{3} = \\sqrt{2}";
-
+            eq="\\JacobiP{a}{b}{c}@{d}";
             // parse/tag the equation and print it out 
             PomTaggedExpression pe = parser.parse(eq);
             print(eq+":\n"+pe.toString());

@@ -48,6 +48,7 @@ public class EmptyExpressionParser extends AbstractParser {
                 // TODO is it possible to have multiple components here?
                 if ( inner_parser.parse( expression.getComponents().get(0) ) ) {
                     translatedExp += "sqrt(" + inner_parser.getTranslatedExpression() + ")";
+                    extraInformation += inner_parser.getExtraInformation();
                     return true;
                 } else {
                     errorMessage += "Could not parse argument of square root: "+
@@ -62,7 +63,7 @@ public class EmptyExpressionParser extends AbstractParser {
                             "surd(" +
                                     getElements()[1] +
                                     "," +
-                                    getElements()[2] +
+                                    getElements()[0] +
                             ")";
                     return true;
                 } else return false;

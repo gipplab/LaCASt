@@ -18,6 +18,7 @@ Symbol: \iunit
 	Description: Imaginary unit
 	DLMF-Link: dlmf.nist.gov/1.9.i
 	Areas: constants
+	Maple Representation: I
 
 Symbol: !
 

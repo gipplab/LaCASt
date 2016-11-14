@@ -42,4 +42,8 @@ public enum MathTermTags {
                 return t;
         return null;
     }
+
+    public String tag(){
+        return tag;
+    }
 }

@@ -45,4 +45,12 @@ public interface IParser {
      */
     @Nullable
     String getErrorMessage();
+
+    /**
+     * Returns further information. For instance DLMF definitions or
+     * branch cuts, constraints etc.
+     * @return further information to translation
+     */
+    @Nullable
+    String getExtraInformation();
 }

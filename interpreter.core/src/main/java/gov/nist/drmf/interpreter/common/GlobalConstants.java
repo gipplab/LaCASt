@@ -21,6 +21,7 @@ public class GlobalConstants {
     public static final Path PATH_CORE_RESOURCES =
             Paths.get("interpreter.core", "src", "main", "resources");
 
+    // path to the json file with greek letters and constants
     public static final Path PATH_GREEK_LETTERS_AND_CONSTANTS_FILE =
             Paths.get("libs", "GreekLettersAndConstants.json");
 
@@ -35,4 +36,7 @@ public class GlobalConstants {
 
     // Key value for DLMF
     public static final String KEY_DLMF = "DLMF-Macro";
+
+    // this will be setup on runtime
+    public static String CAS_KEY = "";
 }

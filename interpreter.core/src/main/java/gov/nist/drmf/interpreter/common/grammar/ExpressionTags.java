@@ -25,4 +25,8 @@ public enum ExpressionTags {
             if ( tag.tag.matches(key) ) return tag;
         return null;
     }
+
+    public String tag(){
+        return tag;
+    }
 }
