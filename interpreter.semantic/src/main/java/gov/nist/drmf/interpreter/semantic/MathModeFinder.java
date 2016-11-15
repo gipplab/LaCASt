@@ -1,12 +1,14 @@
 package gov.nist.drmf.interpreter.semantic;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*;
 
 /**
  * Created by cyz1 on 10/25/16.
  */
-public class MathMode {
+public class MathModeFinder {
     private static HashMap<String, String> mathMode = new HashMap<String, String>() {{ //initialize map with mathmode starting/ending strings
         put("\\[","\\]");
         put("\\(","\\)");
@@ -40,41 +42,33 @@ public class MathMode {
         return false;
     }
 
-    private static String firstDelim(String latex, boolean enter) {
-        String min;
-        if (enter) {
-            min = "\\[";
-            for (String key : mathMode.keySet()) {
-                int i = latex.indexOf(key);
-                if (i != -1 && (i <= latex.indexOf(min) || latex.contains(min))) {
-                    min = key;
-                }
-            }
-        } else {
-            min = "\\hbox";
-            for (String key : textMode) {
-                int i = latex.indexOf(key);
-                if (i != -1 && (i <= latex.indexOf(min) || latex.contains(min))) {
-                    min = key;
+    private String firstDelim(String latex, boolean enter) {
+        String min = "";
+        for (String key : (enter ? mathMode.keySet() : new HashSet<>(Arrays.asList(textMode)))) {
+            int i = latex.indexOf(key);
+            if (min.equals("") || i != -1 && (i <= latex.indexOf(min) || !latex.contains(min))) {
+                min = key;
+                if (i == 0) {
+                    return min;
                 }
             }
         }
         return min;
     }
-    
 
-    private static int skipEscaped(String latex) {
-        if (latex.startsWith("\\$")) {
-            return 2;
-        } else if (latex.startsWith("\\\\[")) {
-            return 3;
-        } else if (latex.startsWith("\\\\(")) {
-            return 3;
+
+    private int skipEscaped(String latex) {
+        if (latex.startsWith("\\")) {
+            for (String key : mathMode.keySet()) {
+                if (key.matches("[^a-zA-Z]+") && latex.substring(1).startsWith(key)) {
+                    return 2;
+                }
+            }
         }
         return 0;
     }
 
-    private static int parseMath(String latex, int start, ArrayList<int[]> ranges) {
+    private int parseMath(String latex, int start, ArrayList<int[]> ranges) {
         String delim = firstDelim(latex, true);
         int i = delim.length();
         int begin = start + i;
@@ -98,7 +92,7 @@ public class MathMode {
         return i;
     }
 
-    private static int parseNonMath(String latex, int start, ArrayList<int[]> ranges) {
+    private int parseNonMath(String latex, int start, ArrayList<int[]> ranges) {
         String delim = firstDelim(latex, false);
         if (!latex.startsWith(delim)) {
             delim = "";
@@ -124,14 +118,24 @@ public class MathMode {
         return i;
     }
 
-    public static ArrayList<String> findMathSections(String latex) {
-        ArrayList<String> sections = new ArrayList<String>();
-        ArrayList<int[]> ranges = new ArrayList<int[]>();
+    private ArrayList<String> findMathSections(String latex) {
+        ArrayList<String> sections = new ArrayList<>();
+        ArrayList<int[]> ranges = new ArrayList<>();
         parseNonMath(latex, 0, ranges);
         for (int[] nums : ranges) {
-            sections.add(latex.substring(nums[0],nums[1]));
+            sections.add(latex.substring(nums[0], nums[1]));
         }
         return sections;
+    }
+
+    public ArrayList<String> findMathSections(Path path) {
+        try {
+            String content = new String(Files.readAllBytes(path));
+            return findMathSections(content);
+        } catch (IOException e) {
+            System.out.println("File " + path.getFileName() + " not found.");
+        }
+        return null;
     }
 
     public static void main(String[] args) {
