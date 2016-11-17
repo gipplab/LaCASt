@@ -204,7 +204,8 @@ Symbol: e
 	Areas: mathematics
 	Font-typeface: computer modern
 	Font-weight: plain
-	Meanings: Euler's number == Napier's constant ==  2.71828182845...
+	Meanings: the mathematical constant e == Napier's constant ==  2.71828182845...
+	Role: a mathematical constant
 
 Symbol: epsilon
 
@@ -269,7 +270,7 @@ Symbol: k
 	Font-typeface: computer modern
 	Font-weight: plain
 	Meanings: the Boltzmann constant
-	Subcript-size: 1
+	Subscript-size: 1
 	Subscript-type: fixed
 	Subscript-value: B
 

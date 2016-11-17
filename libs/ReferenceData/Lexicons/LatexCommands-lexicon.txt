@@ -1363,6 +1363,13 @@ Symbol: \mid
 	Areas: mathematics
 	Role: delimiter || enclosing multiglyph operation || operation || relation
 
+Symbol: \mod
+
+  Feature Set:
+	Areas: algebra || arithmetic || number theory
+	Attributes: binary mod
+	Role: operation
+
 Symbol: \models
 
   Feature Set:
