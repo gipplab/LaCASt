@@ -1,7 +1,5 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
-import mlp.MathTerm;
-
 /**
  * @author Andre Greiner-Petter
  */
@@ -30,7 +28,8 @@ public enum MathTermTags {
     less_than("less-than"),
     greater_than("greater-then"),
     mod("mod"),
-    macro("macro");
+    macro("macro"),
+    caret("caret");
 
     private String tag;
 
