@@ -33,6 +33,9 @@ public abstract class AbstractParser implements IParser {
     public static final String PARENTHESIS_PATTERN =
             "(right|left)[-\\s](parenthesis|bracket|brace)";
 
+    public static final String SPECIAL_SYMBOL_PATTERN =
+            "[\\^\\/\\*\\+\\-\\_]";
+
     public static final InformationLogger INFO_LOG = SemanticToCASInterpreter.INFO_LOG;
     public static final Logger ERROR_LOG = SemanticToCASInterpreter.ERROR_LOG;
 
@@ -83,9 +86,8 @@ public abstract class AbstractParser implements IParser {
                 inner_parser = fp;
             } // otherwise it is a general math term
             else {
-                MathTermParser mtp = new MathTermParser();
-                    return_value = mtp.parse(term);
-                inner_parser = mtp;
+                inner_parser = new MathTermParser();
+                return_value = inner_parser.parse(exp);
             }
         }
 

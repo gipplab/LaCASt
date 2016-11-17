@@ -1,8 +1,9 @@
 package gov.nist.drmf.interpreter.cas.parser.components;
 
 import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
-import gov.nist.drmf.interpreter.cas.parser.AbstractInnerParser;
+import gov.nist.drmf.interpreter.cas.parser.AbstractParser;
 import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
@@ -10,9 +11,7 @@ import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
-
-import java.util.List;
-import java.util.SortedSet;
+import mlp.PomTaggedExpression;
 
 /**
  * The math term parser parses only math terms.
@@ -21,13 +20,16 @@ import java.util.SortedSet;
  * found in {@link MathTermTags}.
  *
  * @see gov.nist.drmf.interpreter.cas.parser.AbstractParser
- * @see AbstractInnerParser
  * @see MathTermTags
  * @author Andre Greiner-Petter
  */
-public class MathTermParser extends AbstractInnerParser {
+public class MathTermParser extends AbstractParser {
+    public static final String CHAR_CARET = "^";
+    public static final String CHAR_BACKSLASH = "\\";
+
     @Override
-    public boolean parse( MathTerm term ) {
+    public boolean parse( PomTaggedExpression exp ) {
+        MathTerm term = exp.getRoot();
         String tagExp = term.getTag();
         MathTermTags tag = MathTermTags.getTagByKey(tagExp);
         FeatureSet constantSet =
@@ -148,6 +150,8 @@ public class MathTermParser extends AbstractInnerParser {
             case comma:
                 // ignore?
                 return true;
+            case caret:
+                return parseCaret( exp );
             case mod:
                 ERROR_LOG.warning(
                         "Well, mod is pretty hard to handle right now... " +
@@ -194,7 +198,7 @@ public class MathTermParser extends AbstractInnerParser {
 
     private String translateToDLMF( String constant ){
         Constants c = SemanticToCASInterpreter.CONSTANTS;
-        if ( !constant.startsWith("\\") ) constant = "\\" + constant;
+        if ( !constant.startsWith(CHAR_BACKSLASH) ) constant = CHAR_BACKSLASH + constant;
         String translated_const = c.translate( Keys.KEY_LATEX, Keys.KEY_DLMF, constant );
         return translated_const;
     }
@@ -241,8 +245,8 @@ public class MathTermParser extends AbstractInnerParser {
         String translated_letter = l.translate(greekLetter);
 
         if ( translated_letter == null ){
-            if ( !greekLetter.startsWith("\\") ){
-                greekLetter = "\\" + greekLetter;
+            if ( !greekLetter.startsWith(CHAR_BACKSLASH) ){
+                greekLetter = CHAR_BACKSLASH + greekLetter;
                 translated_letter = l.translate(greekLetter);
             }
         }
@@ -255,5 +259,16 @@ public class MathTermParser extends AbstractInnerParser {
 
         translatedExp += translated_letter;
         return true;
+    }
+
+    private boolean parseCaret( PomTaggedExpression exp ){
+        translatedExp += CHAR_CARET;
+        // a caret has always only one child. This child could be everything (even a sequence)
+        PomTaggedExpression sub_exp = exp.getComponents().get(0);
+        translatedExp +=
+                Brackets.left_parenthesis.symbol +
+                    parseGeneralExpression(sub_exp, null) +
+                Brackets.left_parenthesis.counterpart;
+        return !isInnerError();
     }
 }

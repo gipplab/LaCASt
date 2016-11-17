@@ -14,9 +14,7 @@ import java.util.List;
 public class SequenceParser extends AbstractListParser {
     private Brackets open_bracket;
 
-    public SequenceParser(){
-
-    }
+    public SequenceParser(){}
 
     public SequenceParser( Brackets open_bracket ){
         this.open_bracket = open_bracket;
@@ -49,7 +47,6 @@ public class SequenceParser extends AbstractListParser {
 
         if ( isInnerError() ) return false;
         translatedExp += sequence;
-        //translatedExp += open_bracket == null ? "" : open_bracket.counterpart;
         return true;
     }
 
@@ -117,8 +114,12 @@ public class SequenceParser extends AbstractListParser {
 
     private boolean isNextSymbolBracket(List<PomTaggedExpression> exp_list ){
         if ( exp_list.size() >= 1 ){
-            if ( ( !exp_list.get(0).getRoot().isEmpty() &&
-                    exp_list.get(0).getRoot().getTag().matches(PARENTHESIS_PATTERN) )
+            MathTerm tmp = exp_list.get(0).getRoot();
+            if ( !tmp.isEmpty() &&
+                    (
+                            tmp.getTermText().matches(PARENTHESIS_PATTERN) ||
+                                    tmp.getTermText().matches(SPECIAL_SYMBOL_PATTERN)
+                            )
                     ){
                 return false;
             } else return true;
