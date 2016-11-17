@@ -2,7 +2,10 @@ package gov.nist.drmf.interpreter.cas.parser.components;
 
 import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.cas.parser.AbstractParser;
+import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.List;
@@ -41,6 +44,26 @@ public class EmptyExpressionParser extends AbstractParser {
                                 expTag.tag()
                         );
                 return true;
+            case balanced_expression:
+                List<PomTaggedExpression> sub_exps = expression.getComponents();
+                if ( sub_exps.size() < 3 ){
+                    ERROR_LOG.warning("Found empty expression and ignored it.");
+                    return true;
+                }
+                PomTaggedExpression first = sub_exps.remove(0);
+                PomTaggedExpression last = sub_exps.remove( sub_exps.size()-1 );
+
+                // test open-close style of first-last
+                if ( !testParanthesis(first, last) ){
+                    ERROR_LOG.severe("Error in delimiters. The open delimiter doesn't fit with the closed delimiter.");
+                    return false;
+                }
+
+                translatedExp +=
+                        Brackets.left_parenthesis.symbol +
+                        parseGeneralExpression( sub_exps.remove(0), sub_exps ) +
+                        Brackets.left_parenthesis.counterpart;
+                return true;
             case sub_super_script:
             case numerator:
             case denominator:
@@ -67,5 +90,23 @@ public class EmptyExpressionParser extends AbstractParser {
             components[i] = parseGeneralExpression(list.get(i), null);
         }
         return components;
+    }
+
+    private boolean testParanthesis( PomTaggedExpression first, PomTaggedExpression last ){
+        try {
+            MathTermTags ftag = MathTermTags.getTagByKey( first.getRoot().getTag() );
+            MathTermTags ltag = MathTermTags.getTagByKey( last.getRoot().getTag() );
+            if ( !ftag.equals( MathTermTags.left_delimiter ) ) return false;
+            if ( !ltag.equals( MathTermTags.right_delimiter ) ) return false;
+            String left = first.getRoot().getTermText();
+            left = left.substring( left.length()-1 ); // last symbol (
+            String right = last.getRoot().getTermText();
+            right = right.substring( right.length()-1 ); // last symbol )
+            Brackets lBracket = Brackets.getBracket(left);
+            Brackets rBracket = Brackets.getBracket(right);
+            return Brackets.getBracket(lBracket.counterpart).equals(rBracket);
+        } catch ( Exception e ){
+            return false;
+        }
     }
 }

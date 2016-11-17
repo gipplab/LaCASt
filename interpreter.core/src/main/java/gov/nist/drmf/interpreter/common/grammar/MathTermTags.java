@@ -16,6 +16,8 @@ public enum MathTermTags {
     equals("equals"),
     multiply("star"),
     divide("forward slash"),
+    left_delimiter("left-delimiter"),
+    right_delimiter("right-delimiter"),
     left_parenthesis("left parenthesis"),
     right_parenthesis("right parenthesis"),
     left_bracket("left-bracket"),

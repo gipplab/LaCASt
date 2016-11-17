@@ -12,7 +12,8 @@ public enum ExpressionTags {
     sub_super_script("subsuperscript"),
     numerator("numerator"),
     denominator("denominator"),
-    equation("equation");
+    equation("equation"),
+    balanced_expression("balanced-expression");
 
     public String tag;
 
