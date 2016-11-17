@@ -8,36 +8,34 @@ import gov.nist.drmf.interpreter.common.GlobalConstants;
  *
  * Created by Andre Greiner-Petter on 02.11.2016.
  */
-public class Constants extends SingleSymbolTranslator {
+public class Constants extends AbstractJSONLoader {
+    public static final String
+            KEY_LANGUAGES = "Constants Languages",
+            KEY_CONSTANTS = "Constants";
+
+    private String FROM, TO;
+
     /**
      * Reads from GreekLettersAndConstantsFile and store data.
      */
-    private Constants(){
-        super(
-            GlobalConstants.PATH_GREEK_LETTERS_AND_CONSTANTS_FILE,
-            SingleSymbolTranslator.KEY_CONSTANT_LANGUAGES,
-            SingleSymbolTranslator.KEY_CONSTANTS
+    public Constants(String FROM, String TO){
+        this.FROM = FROM;
+        this.TO = TO;
+    }
+
+    /**
+     *
+     */
+    public void init(){
+        super.init(
+                GlobalConstants.PATH_GREEK_LETTERS_AND_CONSTANTS_FILE,
+                KEY_LANGUAGES,
+                KEY_CONSTANTS
         );
     }
 
-    // the unique constants class
-    private static Constants obj;
-
-    /**
-     * Returns the unique object from this class.
-     * @return the unique Constants object.
-     */
-    public static Constants getConstantsInstance(){
-        return obj;
-    }
-
-    /**
-     * Initialize the constants. Loading and extract all
-     * information from the JSON file.
-     * @see GlobalConstants#PATH_GREEK_LETTERS_AND_CONSTANTS_FILE
-     */
-    public static void init(){
-        if ( obj == null )
-            obj = new Constants();
+    @Override
+    public String translate( String symbol ) {
+        return super.translate( FROM, TO, symbol );
     }
 }

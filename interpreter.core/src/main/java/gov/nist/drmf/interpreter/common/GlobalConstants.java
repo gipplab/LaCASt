@@ -25,18 +25,7 @@ public class GlobalConstants {
     public static final Path PATH_GREEK_LETTERS_AND_CONSTANTS_FILE =
             Paths.get("libs", "GreekLettersAndConstants.json");
 
-    // Key value for LaTeX
-    public static final String KEY_LATEX = "LaTeX";
-
-    // Key value for Maple
-    public static final String KEY_MAPLE = "Maple";
-
-    // Key value for Mathematica
-    public static final String KEY_MATHEMATICA = "Mathematica";
-
-    // Key value for DLMF
-    public static final String KEY_DLMF = "DLMF-Macro";
-
-    // this will be setup on runtime
-    public static String CAS_KEY = "";
+    // path to the json file with basic functions
+    public static final Path PATH_BASIC_FUNCTIONS =
+            Paths.get("libs", "BasicFunctions.json");
 }

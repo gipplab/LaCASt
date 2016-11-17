@@ -1,15 +1,17 @@
 package gov.nist.drmf.interpreter.cas.parser;
 
-import gov.nist.drmf.interpreter.cas.parser.components.EmptyExpressionParser;
-import gov.nist.drmf.interpreter.cas.parser.components.MathTermParser;
-import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
+import gov.nist.drmf.interpreter.cas.parser.components.*;
+import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.IParser;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.List;
+import java.util.SortedSet;
 
 /**
  * The abstract parser provides {@link #getTranslatedExpression()}
@@ -23,7 +25,13 @@ import java.util.List;
 public abstract class AbstractParser implements IParser {
     public static final String SPACE = " ";
 
-    public static final String PARANTHESIS_PATTERN =
+    public static final String OPEN_PARENTHESIS_PATTERN =
+            "(left)[-\\s](parenthesis|bracket|brace)";
+
+    public static final String CLOSE_PARENTHESIS_PATTERN =
+            "(right)[-\\s](parenthesis|bracket|brace)";
+
+    public static final String PARENTHESIS_PATTERN =
             "(right|left)[-\\s](parenthesis|bracket|brace)";
 
     /**
@@ -41,81 +49,104 @@ public abstract class AbstractParser implements IParser {
      */
     protected String errorMessage = "";
 
-    private String[] elems;
-
-    private String sequence;
-
     private boolean innerError = false;
 
-    protected boolean extractMultipleSubExpressions( PomTaggedExpression topExpression ){
-        List<PomTaggedExpression> list = topExpression.getComponents();
-        elems = new String[list.size()];
-        for ( int i = 0; i < list.size(); i++ ){
-            elems[i] = parseGeneralExpression(list.get(i), null); // TODO
-        }
-        return !innerError;
-    }
-
-    protected boolean parseSequence( PomTaggedExpression topExpression ){
-        sequence = "";
-        List<PomTaggedExpression> exp_list = topExpression.getComponents();
-
-        while ( !exp_list.isEmpty() ){
-            PomTaggedExpression exp = exp_list.remove(0);
-            translatedExp += parseGeneralExpression( exp, exp_list );
-            if ( exp_list.size() >= 1 ){
-                if ( ( !exp_list.get(0).getRoot().isEmpty() &&
-                        exp_list.get(0).getRoot().getTag().matches(PARANTHESIS_PATTERN) )
-                    ||
-                        ( !exp.getRoot().isEmpty() &&
-                        exp.getRoot().getTag().matches(PARANTHESIS_PATTERN) ) ){
-
-                } else translatedExp += SPACE;
-            }
-        }
-        return !innerError;
-    }
-
+    /**
+     * This method simply handles a general expression and invoke
+     * all special parses if needed!
+     * @param exp
+     * @param exp_list
+     * @return
+     */
     protected String parseGeneralExpression(
             PomTaggedExpression exp,
             List<PomTaggedExpression> exp_list){
-        MathTerm root = exp.getRoot();
         AbstractParser inner_parser;
+        boolean return_value;
 
+        // handle all different cases
+        // first, does this expression contains a term?
+        if ( !containsTerm(exp) ){
+            inner_parser = new EmptyExpressionParser();
+            return_value = inner_parser.parse(exp);
+        } else { // if not handle all different cases of terms
+            MathTerm term = exp.getRoot();
+            // first, is this a DLMF macro?
+            if ( isDLMFMacro(term) ){ // BEFORE FUNCTION!
+                MacroParser mp = new MacroParser();
+                return_value = mp.parse(exp);
+                return_value = return_value && mp.parse(exp_list);
+                inner_parser = mp;
+            } // second, it could be a sub sequence
+            else if ( isSubSequence(term) ){
+                Brackets bracket = Brackets.getBracket(term.getTermText());
+                SequenceParser sp = new SequenceParser(bracket);
+                return_value = sp.parse(exp_list);
+                inner_parser = sp;
+            } // this is special, could be a function like cos
+            else if ( isFunction(term) ){
+                FunctionParser fp = new FunctionParser();
+                return_value = fp.parse(exp);
+                return_value = return_value && fp.parse(exp_list);
+                inner_parser = fp;
+            } // otherwise it is a general math term
+            else {
+                MathTermParser mtp = new MathTermParser();
+                    return_value = mtp.parse(term);
+                inner_parser = mtp;
+            }
+        }
 
-        if ( root != null && !root.isEmpty() ){
-            if ( root.getTag().matches(MathTermTags.command.tag()) &&
-                    root.getNamedFeatureSet(MacroParser.DLMF_FEATURE_NAME) != null ){
-                FeatureSet fset = root.getNamedFeatureSet(MacroParser.DLMF_FEATURE_NAME);
-                String areas = DLMFFeatureValues.areas.getFeatureValue(fset);
-                if ( !areas.matches("special functions") ) {
-                    inner_parser = new MathTermParser();
-                } else {
-                    MacroParser macroP = new MacroParser();
-                    boolean a = macroP.parse(exp);
-                    boolean b = macroP.parse(exp_list);
-                    if ( a && b ) {
-                        extraInformation += macroP.extraInformation;
-                        return macroP.getTranslatedExpression();
-                    } else {
-                        innerError = true;
-                        errorMessage += macroP.getErrorMessage() +
-                                System.lineSeparator();
-                        return SPACE;
-                    }
-                }
-            } else inner_parser = new MathTermParser();
-        } else inner_parser = new EmptyExpressionParser();
-
-        if ( inner_parser.parse(exp) ){
-            extraInformation += inner_parser.extraInformation;
-            return inner_parser.translatedExp;
+        if ( return_value ){
+            innerError = false;
         } else {
             innerError = true;
-            errorMessage += inner_parser.getErrorMessage() +
-                    System.lineSeparator();
-            return SPACE;
+            errorMessage += inner_parser.errorMessage;
         }
+
+        if ( !inner_parser.extraInformation.isEmpty() )
+            extraInformation += inner_parser.extraInformation + System.lineSeparator();
+        return inner_parser.translatedExp;
+    }
+
+    private boolean isDLMFMacro( MathTerm term ){
+        MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
+        if ( tag != null && tag.equals( MathTermTags.dlmf_macro ) )
+            return true;
+        FeatureSet dlmf = term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
+        if ( dlmf != null ){
+            SortedSet<String> role = dlmf.getFeature(Keys.FEATURE_ROLE);
+            if ( role != null && role.first().matches(Keys.FEATURE_VALUE_CONSTANT) )
+                return false;
+            else return true;
+        } else return false;
+    }
+
+    protected boolean isSubSequence( MathTerm term ){
+        String tag = term.getTag();
+        if ( tag.matches(OPEN_PARENTHESIS_PATTERN) ) {
+            return true;
+        } else if ( tag.matches(CLOSE_PARENTHESIS_PATTERN) ){
+            errorMessage +=
+                    "Reached a closed bracket " + term.getTermText() +
+                            " but there was not a corresponding" +
+                            " open bracket before." + System.lineSeparator();
+            return false;
+        } else return false;
+    }
+
+    private boolean isFunction( MathTerm term ){
+        MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
+        if ( tag == null ) {
+            return FeatureSetUtility.isFunction(term);
+        }
+        if ( tag.equals( MathTermTags.function ) ) return true;
+        return false;
+    }
+
+    public boolean containsTerm( PomTaggedExpression e ){
+        MathTerm t = e.getRoot();
+        return (t != null && !t.isEmpty());
     }
 
     @Override
@@ -134,14 +165,6 @@ public abstract class AbstractParser implements IParser {
     @Override
     public String getExtraInformation() {
         return this.extraInformation;
-    }
-
-    protected String[] getElements(){
-        return elems;
-    }
-
-    protected String getSequence(){
-        return sequence;
     }
 
     protected boolean isInnerError(){

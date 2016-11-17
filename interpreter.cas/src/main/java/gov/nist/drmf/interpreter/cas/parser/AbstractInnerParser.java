@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.cas.parser.components;
+package gov.nist.drmf.interpreter.cas.parser;
 
 import gov.nist.drmf.interpreter.cas.parser.AbstractParser;
 import mlp.MathTerm;

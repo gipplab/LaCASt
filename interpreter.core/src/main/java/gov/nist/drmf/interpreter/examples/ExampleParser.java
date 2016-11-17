@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.examples;
 
 import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import mlp.*;
 
@@ -40,7 +41,8 @@ public class ExampleParser {
      */
     public ExampleParser(){
         constraints = new LinkedList<String>();
-        greek = GreekLetters.getGreekLetterInstance();
+        greek = new GreekLetters( Keys.KEY_LATEX, Keys.KEY_MAPLE );
+        greek.init();
 
         // initialize parser
         parser = new PomParser(GlobalConstants.PATH_REFERENCE_DATA.toString());
@@ -256,7 +258,7 @@ public class ExampleParser {
             String alphabet = set.getFeature("Alphabet").first();
             if ( alphabet != null && !alphabet.isEmpty() && alphabet.matches("Greek") ){
                 // its a greek letter, so translate the greek letter
-                return greek.translate(GlobalConstants.KEY_LATEX, GlobalConstants.KEY_MAPLE, term.getTermText());
+                return greek.translate(term.getTermText());
             }
         }
         System.err.println("Wasn't able to translate latex-command: " + term.getTermText());

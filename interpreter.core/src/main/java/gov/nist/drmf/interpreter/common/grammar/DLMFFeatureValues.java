@@ -1,45 +1,60 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.Keys;
 import mlp.FeatureSet;
+
+import java.util.SortedSet;
 
 /**
  * @author Andre Greiner-Petter
  */
 public enum DLMFFeatureValues implements IFeatureExtractor{
     areas(
-            t -> t.getFeature("Areas").first()
+            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_AREAS))
     ),
     description(
-            t -> t.getFeature("Description").first()
+            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_DESCRIPTION))
+    ),
+    meaning(
+            t ->
+            {
+                SortedSet<String> tmp = t.getFeature(Keys.FEATURE_MEANING);
+                if ( tmp == null ) // TODO should be fixed in the backend and not here
+                    tmp = t.getFeature(Keys.FEATURE_MEANING + "s");
+                return IFeatureExtractor.getStringFromSet(tmp);
+            }
     ),
     dlmf_link(
             t -> DLMFFeatureValues.DLMF_LINK_PREFIX +
-                    t.getFeature("DLMF-Link").first()
+                    IFeatureExtractor.getStringFromSet(
+                            t.getFeature(Keys.KEY_DLMF + DLMFFeatureValues.LINK_SUFFIX))
     ),
     params(
-            t -> t.getFeature("Number of Parameters").first()
+            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.NUM_OF_PARAMS))
     ),
     ats(
-            t -> t.getFeature("Number of optional ats").first()
+            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.NUM_OF_ATS))
     ),
     variables(
-            t -> t.getFeature("Number of Variables").first()
+            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.NUM_OF_VARS))
     ),
     CAS(
-            t -> t.getFeature(GlobalConstants.CAS_KEY +
-                    " Representation").first()
+            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.CAS_KEY))
     ),
     CAS_Link(
             t -> DLMFFeatureValues.MAPLE_LINK_PREFIX +
-                    t.getFeature(GlobalConstants.CAS_KEY + "-Link").first()
+                    IFeatureExtractor.getStringFromSet(
+                            t.getFeature(Keys.CAS_KEY + DLMFFeatureValues.LINK_SUFFIX)
+                    )
     ),
     constraints(
-            t -> t.getFeature("Constraints").toString()
+            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_CONSTRAINTS))
     ),
     branch_cuts(
-            t -> t.getFeature("Branch Cuts").toString()
+            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_BRANCH_CUTS))
     );
+
+    private static final String LINK_SUFFIX = "-Link";
 
     private static final String DLMF_LINK_PREFIX = "http://";
 

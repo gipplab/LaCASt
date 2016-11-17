@@ -1,6 +1,7 @@
 package gov.nist.drmf.core.tests;
 
 import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
@@ -20,7 +21,8 @@ public class GreekLettersTests {
 
     @BeforeAll
     static void init(){
-        g = GreekLetters.getGreekLetterInstance();
+        g = new GreekLetters("","");
+        g.init();
     }
 
     /**
@@ -36,7 +38,7 @@ public class GreekLettersTests {
                     "LaTeX->Maple" + ": " + test.latex,
                     () -> assertEquals(
                             test.maple,
-                            g.translate(GlobalConstants.KEY_LATEX, GlobalConstants.KEY_MAPLE, test.latex)
+                            g.translate(Keys.KEY_LATEX, Keys.KEY_MAPLE, test.latex)
                     )
                     )
             );
@@ -57,7 +59,7 @@ public class GreekLettersTests {
                     "LaTeX->Mathematica" + ": " + test.latex,
                     () -> assertEquals(
                             test.mathematica,
-                            g.translate(GlobalConstants.KEY_LATEX, GlobalConstants.KEY_MATHEMATICA, test.latex)
+                            g.translate(Keys.KEY_LATEX, Keys.KEY_MATHEMATICA, test.latex)
                     )
                     )
             );
@@ -78,7 +80,7 @@ public class GreekLettersTests {
                     "Maple->LaTeX" + ": " + test.maple,
                     () -> assertEquals(
                             test.latex,
-                            g.translate(GlobalConstants.KEY_MAPLE, GlobalConstants.KEY_LATEX, test.maple)
+                            g.translate(Keys.KEY_MAPLE, Keys.KEY_LATEX, test.maple)
                     )
                     )
             );
@@ -99,7 +101,7 @@ public class GreekLettersTests {
                     "Mathematica->LaTeX" + ": " + test.mathematica,
                     () -> assertEquals(
                             test.latex,
-                            g.translate(GlobalConstants.KEY_MATHEMATICA, GlobalConstants.KEY_LATEX, test.mathematica)
+                            g.translate(Keys.KEY_MATHEMATICA, Keys.KEY_LATEX, test.mathematica)
                     )
                     )
             );

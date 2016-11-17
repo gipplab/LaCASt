@@ -60,9 +60,13 @@ public class MLP {
             //eq = "\\JacobiP{\\iunit}{5.5}@{23}";
             //eq = "\\FerrersP[\\frac{1}{2}]{\\nu}@{z}";
             //eq = "\\binom{2}{3} = \\sqrt{2}";
-            eq="\\JacobiP{a}{b}{c}@{d}";
+            eq="G";
+
             // parse/tag the equation and print it out 
             PomTaggedExpression pe = parser.parse(eq);
+            //Map<String,String> features = pe.getRoot().getNamedFeatures();
+            //for ( String key : features.keySet() )
+            //    System.out.println(key + ": " + features.get(key));
             print(eq+":\n"+pe.toString());
         }
         catch(ParseException e){

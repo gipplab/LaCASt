@@ -6,6 +6,8 @@ import mlp.MathTerm;
  * @author Andre Greiner-Petter
  */
 public enum MathTermTags {
+    dlmf_macro("dlmf-macro"),
+    constant("mathematical constant"),
     command("latex-command"),
     function("function"),
     letter("letter"),

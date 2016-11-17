@@ -12,36 +12,32 @@ import gov.nist.drmf.interpreter.common.GlobalConstants;
  *
  * @author Andre Greiner-Petter
  */
-public class GreekLetters extends SingleSymbolTranslator {
+public class GreekLetters extends AbstractJSONLoader {
+    public static final String
+            KEY_LANGUAGES = "Greek Letter Languages",
+            KEY_LETTERS = "Greek Letters";
+
+    private String FROM, TO;
+
     /**
      * Reads all greek symbols from GreekLettersAndConstants.json.
      */
-    private GreekLetters(){
-        super(
+    public GreekLetters(
+            String FROM, String TO){
+        this.FROM = FROM;
+        this.TO = TO;
+    }
+
+    public void init(){
+        super.init(
                 GlobalConstants.PATH_GREEK_LETTERS_AND_CONSTANTS_FILE,
-                SingleSymbolTranslator.KEY_GREEK_LANGUAGES,
-                SingleSymbolTranslator.KEY_GREEK_LETTERS
+                KEY_LANGUAGES,
+                KEY_LETTERS
         );
     }
 
-    // the unique greek symbols obj
-    private static GreekLetters obj;
-
-    /**
-     * Returns the unique object from this class.
-     * @return the unique GreekLetters object.
-     */
-    public static GreekLetters getGreekLetterInstance(){
-        return obj;
-    }
-
-    /**
-     * Initialize the constants. Loading and extract all
-     * information from the JSON file.
-     * @see GlobalConstants#PATH_GREEK_LETTERS_AND_CONSTANTS_FILE
-     */
-    public static void init(){
-        if ( obj == null )
-            obj = new GreekLetters();
+    @Override
+    public String translate( String symbol ) {
+        return super.translate( FROM, TO, symbol );
     }
 }

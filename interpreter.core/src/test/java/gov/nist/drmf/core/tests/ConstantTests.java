@@ -1,6 +1,7 @@
 package gov.nist.drmf.core.tests;
 
 import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
@@ -20,7 +21,8 @@ public class ConstantTests {
 
     @BeforeAll
     static void init(){
-        g = Constants.getConstantsInstance();
+        g = new Constants("","");
+        g.init();
     }
 
     /**
@@ -36,7 +38,7 @@ public class ConstantTests {
                     "dlmf->Maple" + ": " + test.dlmf,
                     () -> assertEquals(
                             test.maple,
-                            g.translate(GlobalConstants.KEY_DLMF, GlobalConstants.KEY_MAPLE, test.dlmf)
+                            g.translate(Keys.KEY_DLMF, Keys.KEY_MAPLE, test.dlmf)
                     )
                     )
             );
@@ -57,7 +59,7 @@ public class ConstantTests {
                     "dlmf->Mathematica" + ": " + test.dlmf,
                     () -> assertEquals(
                             test.mathematica,
-                            g.translate(GlobalConstants.KEY_DLMF, GlobalConstants.KEY_MATHEMATICA, test.dlmf)
+                            g.translate(Keys.KEY_DLMF, Keys.KEY_MATHEMATICA, test.dlmf)
                     )
                     )
             );
@@ -78,7 +80,7 @@ public class ConstantTests {
                     "Maple->dlmf" + ": " + test.maple,
                     () -> assertEquals(
                             test.dlmf,
-                            g.translate(GlobalConstants.KEY_MAPLE, GlobalConstants.KEY_DLMF, test.maple)
+                            g.translate(Keys.KEY_MAPLE, Keys.KEY_DLMF, test.maple)
                     )
                     )
             );
@@ -99,7 +101,7 @@ public class ConstantTests {
                     "Mathematica->dlmf" + ": " + test.mathematica,
                     () -> assertEquals(
                             test.dlmf,
-                            g.translate(GlobalConstants.KEY_MATHEMATICA, GlobalConstants.KEY_DLMF, test.mathematica)
+                            g.translate(Keys.KEY_MATHEMATICA, Keys.KEY_DLMF, test.mathematica)
                     )
                     )
             );
