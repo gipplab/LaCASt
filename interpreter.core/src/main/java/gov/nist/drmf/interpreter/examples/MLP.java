@@ -5,15 +5,10 @@ package gov.nist.drmf.interpreter.examples;/*
  */
 
 import java.util.*;
-import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import mlp.ParseException;
 import mlp.PomParser;
-import mlp.PomParserTokenManager;
 import mlp.PomTaggedExpression;
 
 import gov.nist.drmf.interpreter.common.GlobalConstants;
@@ -37,7 +32,9 @@ public class MLP {
     public static void start() {
          // the folder where the reference data (e.g., lexicons) are
         String refDataDir= GLOBAL_LEXICON_PATH;
+
         System.out.println(Paths.get(".").toAbsolutePath().toString());
+        System.out.println(GlobalConstants.PATH_REFERENCE_DATA.toAbsolutePath().toString());
         
         String[] eqs=equationsForTesting(); //equations to test the parser on
         
@@ -60,12 +57,16 @@ public class MLP {
             // provide next an equation to parse
             String eq=eqs[0];
             //eq = "\\Mathieuce{123 a}@@{\\sqrt{2}b}{\\frac{1}{2}}";
-            //eq = "\\JacobiP{\\sqrt[2]{1}}{\\frac{1}{2}}{1+2-1*2/1}@{\\cos(a\\Theta)}";
-            eq = "a \\Leftrightarrow b";
-            //eq = "\\frac{beta}{2}";
+            //eq = "\\JacobiP{\\iunit}{5.5}@{23}";
+            //eq = "\\FerrersP[\\frac{1}{2}]{\\nu}@{z}";
+            //eq = "\\binom{2}{3} = \\sqrt{2}";
+            eq="\\left( x+1 \\right)";
 
             // parse/tag the equation and print it out 
             PomTaggedExpression pe = parser.parse(eq);
+            //Map<String,String> features = pe.getRoot().getNamedFeatures();
+            //for ( String key : features.keySet() )
+            //    System.out.println(key + ": " + features.get(key));
             print(eq+":\n"+pe.toString());
         }
         catch(ParseException e){

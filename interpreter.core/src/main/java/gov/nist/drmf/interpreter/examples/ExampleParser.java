@@ -1,14 +1,12 @@
 package gov.nist.drmf.interpreter.examples;
 
 import gov.nist.drmf.interpreter.common.GlobalConstants;
-import gov.nist.drmf.interpreter.core.GreekLetterInterpreter;
+import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import mlp.*;
 
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.SortedSet;
 
 /**
  * This parser is a test suite for further computations.
@@ -18,6 +16,7 @@ import java.util.SortedSet;
  *
  * Created by Andre Greiner-Petter on 02.11.2016.
  */
+@SuppressWarnings("all")
 public class ExampleParser {
     // last parsed equation
     private String last_equation = "";
@@ -35,14 +34,18 @@ public class ExampleParser {
     // the parser itself
     private PomParser parser;
 
+    private GreekLetters greek;
+
     /**
      * Simple constructor.
      */
     public ExampleParser(){
         constraints = new LinkedList<String>();
+        greek = new GreekLetters( Keys.KEY_LATEX, Keys.KEY_MAPLE );
+        greek.init();
 
         // initialize parser
-        parser = new PomParser(GlobalConstants.REFERENCE_DATA_PATH.toString());
+        parser = new PomParser(GlobalConstants.PATH_REFERENCE_DATA.toString());
     }
 
     /**
@@ -81,7 +84,7 @@ public class ExampleParser {
     private String handleTopExpression( PomTaggedExpression exp ){
         List<PomTaggedExpression> exp_list = exp.getComponents();
 
-        // TODO first, only take 1 macro (no prefix, no suffix)
+        // first, only take 1 macro (no prefix, no suffix)
         PomTaggedExpression top_exp = exp_list.remove(0);
         MathTerm root = top_exp.getRoot();
         if ( root == null || root.isEmpty() ){
@@ -224,7 +227,7 @@ public class ExampleParser {
             // Greek Letter or other macro
             return handleLatexCommand(term);
         } else if ( tag.matches("function") ){
-            // todo... hmm
+            // ... hmm
             return handleFunction(term);
         } else if (
                 tag == "letter" || tag == "digit"   || tag == "numeric" ||
@@ -255,7 +258,7 @@ public class ExampleParser {
             String alphabet = set.getFeature("Alphabet").first();
             if ( alphabet != null && !alphabet.isEmpty() && alphabet.matches("Greek") ){
                 // its a greek letter, so translate the greek letter
-                return GreekLetterInterpreter.convertTexToMaple(term.getTermText());
+                return greek.translate(term.getTermText());
             }
         }
         System.err.println("Wasn't able to translate latex-command: " + term.getTermText());
@@ -263,12 +266,12 @@ public class ExampleParser {
     }
 
     /**
-     * TODO what could it be?
+     * What could it be? ...
      * @param term
      * @return
      */
     private String handleFunction( MathTerm term ){
-        // TODO first approach, just delete the "\" in front of a function...
+        // first approach, just delete the "\" in front of a function...
         return term.getTermText().substring(1);
     }
 

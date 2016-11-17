@@ -1,0 +1,34 @@
+{
+  "Languages": [
+	"MLP",
+    "LaTeX",
+    "Maple",
+    "Mathematica"
+  ],
+  "Functions": {
+	"Fraction": {
+		"MLP": "fraction",
+		"LaTeX": "\\frac{$0}{$1}",
+		"Maple": "($0)/($1)",
+		"Mathematica": "Divide[$0,$1]"
+	},
+	"Binomial": {
+		"MLP": "binomial coefficient",
+		"LaTeX": "\\binom{$0}{$1}",
+		"Maple": "binomial($0,$1)",
+		"Mathematica": "Binomial[$0,$1]"
+	},
+	"Square Root": {
+		"MLP": "square root",
+		"LaTeX": "\\sqrt{$0}",
+		"Maple": "sqrt($0)",
+		"Mathematica": "Sqrt[$0]"
+	},
+	"Surd Root": {
+		"MLP": "radical with a specified index",
+		"LaTeX": "\\sqrt[$0]{$1}",
+		"Maple": "surd($1,$0)",
+		"Mathematica": "Surd[$1,$0]"
+	}
+  }
+}

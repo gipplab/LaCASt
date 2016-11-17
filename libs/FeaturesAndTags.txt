@@ -1,0 +1,160 @@
+The Names of the Features in global-lexicon:
+	Accent
+	Accent-location
+	Accent-value
+	Actual-letter
+	Alphabet
+	Areas
+	Argument-data-type
+	Argument-structure
+	Attributes
+	Category
+	Description
+	Font-style
+	Font-typeface
+	Font-weight
+	Full-name
+	Lettercase
+	Meanings
+	Meanings//
+	Presubscript-size
+	Presubscript-type
+	Role
+	Root-symbol
+	Separator
+	Source
+	Subcategory
+	Subscript-size
+	Subscript-type
+	Subscript-value
+	Superscript-parenthesized
+	Superscript-size
+	Superscript-type
+	Superscript-value
+	Symbol-name
+	Tex-equivalent
+	Unicode
+
+MathTerm Primary Tags:
+	letter
+	digit
+	numeric	// both as primary and as secondary tag
+
+	newline
+	new line
+	maybe new line
+	no new line
+	maybe new page
+	no new page
+	controlled space
+	measured space
+
+	larger fixed-size delimiter
+	left-delimiter
+	right-delimiter
+
+	relation
+	negating operation
+
+	back-quote
+	exclamation point
+	at
+	hashtag
+	dollar
+	percent
+	ampersand
+	star
+	left parenthesis
+	right parenthesis
+	left-bracket
+	right-bracket
+	left-brace
+	right-brace
+	fence
+	backslash
+	semicolon
+	colon
+	comma
+	point
+	single quote
+	double quote
+	less-than
+	greater-than
+	forward slash
+	question mark
+	escaped symbol
+	non-allowed escaped symbol
+	
+
+	minus
+	plus
+	equals
+	underscore
+	caret
+	mod
+	
+	ellipsis
+	text
+
+	macro
+
+	accented
+	
+
+MathTerm Secondary Tags:
+	punctuation
+	opening delimiter
+	closing delimiter
+	ignored
+	lower_horizontal_ellipsis
+	centered_horizontal_ellipsis
+	vertical_ellipsis
+	diagonal_ellipsis
+	subscript_operation
+	superscript_operation
+	modulo
+	relation-qualifier
+	Latin
+	the floor function's left-delimiter
+	the floor function's right-delimiter
+	the ceiling function's left-delimiter
+	the ceiling function's right-delimiter
+
+
+
+Math Expression Primary Tags:
+	sequence
+	balanced-expression
+	subsuperscript
+	negated
+	ignored
+	binomial coefficient
+	fraction
+	radical with a specified index
+	square root
+	numerator
+	denominator
+	array
+	matrix
+	row
+	equation array
+	multicase
+	case
+	equation
+	numeric	// a footnote number
+
+Math Expression Secondary Tags:
+	subscript
+	superscript
+	top argument
+	bottom argument
+	top symbol
+	bottom symbol
+	numerator
+	denominator
+	the modulo parameter
+	radicand
+	index of the radical
+	macro replacement
+	footnote number
+	footnote

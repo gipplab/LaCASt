@@ -1,8 +1,10 @@
 package gov.nist.drmf.core.tests;
 
+import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.examples.ExampleParser;
 import mlp.ParseException;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
@@ -48,12 +50,15 @@ public class JacobiPTests {
     static void init(){
         parser = new ExampleParser();
         try {
+            System.out.println("Parse: " + SIMPLE_TEST_EQ);
+            System.out.println(GlobalConstants.PATH_REFERENCE_DATA.toAbsolutePath().toString());
             parser.parse(SIMPLE_TEST_EQ);
         } catch ( ParseException pe ){
             System.err.println("Cannot parse given equation. Tests stopped.");
             pe.printStackTrace();
         }
     }
+
 
     @Test
     void dlmfDefinitionTest(){
@@ -84,6 +89,7 @@ public class JacobiPTests {
     }
 
     @Test
+    @Disabled
     void constraintTests() {
         LinkedList<String> constraints = new LinkedList();
         constraints.add(tex_param1 + ">" + (-1));
