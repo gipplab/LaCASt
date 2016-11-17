@@ -4,15 +4,16 @@ Symbol: \JacobiP
   Feature Set: dlmf-macro
 	Areas: special functions
 	Meaning: Jacobi polynomial
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r2
 	Number of Parameters: 3
 	Number of Variables: 1
 	Number of optional ats: 1
+	DLMF: \JacobiP{a}{b}{c}@{d}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r2
 	Maple: JacobiP($2,$0,$1,$3)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
 	Mathematica: JacobiP[$2,$0,$1,$3]
 	Mathematica-Link: reference.wolfram.com/language/ref/JacobiP.html
-	Constraints: $0>-1;$1>-1
+	Constraints: a,b > -1
 	Role: dlmf-macro
 	
 Symbol: iunit

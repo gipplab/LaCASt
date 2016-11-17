@@ -16,13 +16,7 @@ public enum DLMFFeatureValues implements IFeatureExtractor{
             t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_DESCRIPTION))
     ),
     meaning(
-            t ->
-            {
-                SortedSet<String> tmp = t.getFeature(Keys.FEATURE_MEANING);
-                if ( tmp == null ) // TODO should be fixed in the backend and not here
-                    tmp = t.getFeature(Keys.FEATURE_MEANING + "s");
-                return IFeatureExtractor.getStringFromSet(tmp);
-            }
+            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_MEANINGS))
     ),
     dlmf_link(
             t -> DLMFFeatureValues.DLMF_LINK_PREFIX +

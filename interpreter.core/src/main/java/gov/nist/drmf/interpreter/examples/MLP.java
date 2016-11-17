@@ -60,7 +60,7 @@ public class MLP {
             //eq = "\\JacobiP{\\iunit}{5.5}@{23}";
             //eq = "\\FerrersP[\\frac{1}{2}]{\\nu}@{z}";
             //eq = "\\binom{2}{3} = \\sqrt{2}";
-            eq="\\left[x\\right]";
+            eq="\\left( x+1 \\right)";
 
             // parse/tag the equation and print it out 
             PomTaggedExpression pe = parser.parse(eq);

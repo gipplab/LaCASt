@@ -225,7 +225,7 @@ public class MathTermParser extends AbstractParser {
                 } else {
                     ERROR_LOG.warning(
                             "Cannot translate mathematical constant " +
-                                    constant + " - " + set.getFeature(Keys.FEATURE_MEANING)
+                                    constant + " - " + set.getFeature(Keys.FEATURE_MEANINGS)
                     );
                     return false;
                 }

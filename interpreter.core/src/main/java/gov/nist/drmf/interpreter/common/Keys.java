@@ -31,7 +31,7 @@ public class Keys {
             FEATURE_AREAS       = "Areas",
             FEATURE_ALPHABET    = "Alphabet",
             FEATURE_ROLE        = "Role",
-            FEATURE_MEANING     = "Meaning",
+            FEATURE_MEANINGS    = "Meanings",
             FEATURE_DESCRIPTION = "Description",
             FEATURE_CONSTRAINTS = "Constraints",
             FEATURE_BRANCH_CUTS = "Branch Cuts";
