@@ -36,10 +36,18 @@ public class SemanticToCASInterpreter {
         CONSTANTS.init();
         FUNCTIONS.init();
 
-        String test = "q*\\iunit+2-\\frac{\\sqrt[\\alpha]{\\cpi}}{2\\JacobiP{i}{\\beta}{2}@{12.6}}";
+        String test = "";
+        if ( args == null ) {
+            ERROR_LOG.severe("Need a given expression. Try \\JacobiP{a}{b}{c}@{d} for instance.");
+            return;
+        }
+        for ( int i = 0; i < args.length; i++ )
+            test += args[i];
+
+        //String test = "q*\\iunit+2-\\frac{\\sqrt[\\alpha]{\\cpi}}{2\\JacobiP{i}{\\beta}{2}@{12.6}}";
 //        test = "\\JacobiP{\\iunit}{b}{c}@{d}";
 //        test = "18*\\JacobiP{\\cos{\\sqrt{2}}}{\\JacobiP{\\iunit}{b}{c}@{d}}{2}@{3}";
-        test = "x^{\\JacobiP{\\iunit}{b}{c}@{d}}";
+        //test = "x^{\\JacobiP{\\iunit}{b}{c}@{d}}";
 
 //        test = "\\JacobiP{\\alpha}{b}{c}@{\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}";
 //        test = "\\JacobiP{\\alpha\\sqrt[3]{x}\\sin(x\\alpha xyz)\\sqrt[2]{3}}{b\\frac{1}{\\pi}}{1+0\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}@{\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}";
