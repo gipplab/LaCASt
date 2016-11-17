@@ -2,7 +2,6 @@ package gov.nist.drmf.interpreter.cas.parser.components;
 
 import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.cas.parser.AbstractParser;
-import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import mlp.PomTaggedExpression;
 
@@ -17,7 +16,7 @@ public class EmptyExpressionParser extends AbstractParser {
         String tag = expression.getTag();
         ExpressionTags expTag = ExpressionTags.getTagByKey(tag);
         if ( expTag == null ){
-            errorMessage += "Could not find tag: " + tag;
+            ERROR_LOG.warning("Could not find tag: " + tag);
             return false;
         }
         switch( expTag ){
@@ -25,12 +24,8 @@ public class EmptyExpressionParser extends AbstractParser {
                 SequenceParser p = new SequenceParser();
                 if ( p.parse( expression ) ){
                     translatedExp += p.getTranslatedExpression();
-                    extraInformation += p.getExtraInformation();
                     return true;
-                } else {
-                    errorMessage += p.getErrorMessage() + System.lineSeparator();
-                    return false;
-                }
+                } else return false;
             case fraction:
             case binomial:
             case square_root:
@@ -51,9 +46,7 @@ public class EmptyExpressionParser extends AbstractParser {
             case denominator:
             case equation:
             default:
-                errorMessage += "Unknown or not yet supported expression tag: "
-                        + tag
-                        + System.lineSeparator();
+                ERROR_LOG.warning("Reached unknown or not yet supported expression tag: " + tag);
                 return false;
         }
     }

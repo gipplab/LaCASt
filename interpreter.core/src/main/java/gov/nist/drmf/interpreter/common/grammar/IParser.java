@@ -14,9 +14,7 @@ public interface IParser {
     /**
      * This method parses a given expression.
      * It returns true if the parsing process
-     * finished without an error. Otherwise
-     * it returns false and once can get the
-     * error message by invoke {@link #getErrorMessage()}.
+     * finished without an error.
      * If the parsing process finished without an
      * error, the translated expression can get
      * by {@link #getTranslatedExpression()}.
@@ -36,21 +34,4 @@ public interface IParser {
      */
     @Nullable
     String getTranslatedExpression();
-
-    /**
-     * Returns the error message from {@link #parse(PomTaggedExpression)}
-     * or null, if the parsing process finished without an
-     * error.
-     * @return error message or null
-     */
-    @Nullable
-    String getErrorMessage();
-
-    /**
-     * Returns further information. For instance DLMF definitions or
-     * branch cuts, constraints etc.
-     * @return further information to translation
-     */
-    @Nullable
-    String getExtraInformation();
 }

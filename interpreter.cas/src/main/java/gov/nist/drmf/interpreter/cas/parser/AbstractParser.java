@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.cas.parser;
 
+import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
+import gov.nist.drmf.interpreter.cas.logging.InformationLogger;
 import gov.nist.drmf.interpreter.cas.parser.components.*;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
@@ -12,13 +14,10 @@ import mlp.PomTaggedExpression;
 
 import java.util.List;
 import java.util.SortedSet;
+import java.util.logging.Logger;
 
 /**
- * The abstract parser provides {@link #getTranslatedExpression()}
- * and {@link #getErrorMessage()} for each parser object.
  *
- * A parser object needs to set the {@link #translatedExp} and
- * {@link #errorMessage} due the parse method.
  *
  * @author Andre Greiner-Petter
  */
@@ -34,20 +33,13 @@ public abstract class AbstractParser implements IParser {
     public static final String PARENTHESIS_PATTERN =
             "(right|left)[-\\s](parenthesis|bracket|brace)";
 
+    public static final InformationLogger INFO_LOG = SemanticToCASInterpreter.INFO_LOG;
+    public static final Logger ERROR_LOG = SemanticToCASInterpreter.ERROR_LOG;
+
     /**
      * Translated expression.
      */
     protected String translatedExp = "";
-
-    /**
-     *
-     */
-    protected String extraInformation = "";
-
-    /**
-     * Error message
-     */
-    protected String errorMessage = "";
 
     private boolean innerError = false;
 
@@ -97,15 +89,7 @@ public abstract class AbstractParser implements IParser {
             }
         }
 
-        if ( return_value ){
-            innerError = false;
-        } else {
-            innerError = true;
-            errorMessage += inner_parser.errorMessage;
-        }
-
-        if ( !inner_parser.extraInformation.isEmpty() )
-            extraInformation += inner_parser.extraInformation + System.lineSeparator();
+        innerError = !return_value;
         return inner_parser.translatedExp;
     }
 
@@ -127,10 +111,9 @@ public abstract class AbstractParser implements IParser {
         if ( tag.matches(OPEN_PARENTHESIS_PATTERN) ) {
             return true;
         } else if ( tag.matches(CLOSE_PARENTHESIS_PATTERN) ){
-            errorMessage +=
-                    "Reached a closed bracket " + term.getTermText() +
-                            " but there was not a corresponding" +
-                            " open bracket before." + System.lineSeparator();
+            ERROR_LOG.severe("Reached a closed bracket " + term.getTermText() +
+                    " but there was not a corresponding" +
+                    " open bracket before.");
             return false;
         } else return false;
     }
@@ -155,16 +138,6 @@ public abstract class AbstractParser implements IParser {
     @Override
     public String getTranslatedExpression() {
         return translatedExp;
-    }
-
-    @Override
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    @Override
-    public String getExtraInformation() {
-        return this.extraInformation;
     }
 
     protected boolean isInnerError(){

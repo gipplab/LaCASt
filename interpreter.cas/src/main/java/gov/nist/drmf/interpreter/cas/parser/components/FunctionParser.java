@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.cas.parser.components;
 
+import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
@@ -34,10 +35,11 @@ public class FunctionParser extends AbstractListParser {
             translatedExp += term.getTermText().substring(1);
         else translatedExp += term.getTermText();
 
-        extraInformation +=
-                "Found a function without DLMF-Definition " + term.getTermText() + ". " +
-                        "We cannot translate it and keep it like it is (but delete prefix \\ if necessary)." +
-                        System.lineSeparator();
+        INFO_LOG.addGeneralInfo(
+                term.getTermText(),
+                "Function without DLMF-Definition. " +
+                        "We cannot translate it and keep it like it is (but delete prefix \\ if necessary)."
+        );
         return true;
     }
 

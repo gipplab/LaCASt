@@ -33,8 +33,8 @@ public class SequenceParser extends AbstractListParser {
     @Override
     public boolean parse(PomTaggedExpression expression){
         if ( !ExpressionTags.sequence.tag().matches(expression.getTag()) ){
-            errorMessage = "You used the wrong parse method. The given expression is not a sequence! " +
-                    expression.getTag() + System.lineSeparator();
+            ERROR_LOG.severe("You used the wrong parse method. The given expression is not a sequence! " +
+                    expression.getTag());
             return false;
         }
 
@@ -44,19 +44,7 @@ public class SequenceParser extends AbstractListParser {
         while ( !exp_list.isEmpty() ){
             PomTaggedExpression exp = exp_list.remove(0);
             sequence += parseGeneralExpression( exp, exp_list );
-
-            /*
-            if ( exp_list.size() >= 1 ){
-                if ( ( !exp_list.get(0).getRoot().isEmpty() &&
-                        exp_list.get(0).getRoot().getTag().matches(PARENTHESIS_PATTERN) )
-                        ){//||
-                        //( !exp.getRoot().isEmpty() &&
-                        //        exp.getRoot().getTag().matches(PARENTHESIS_PATTERN) ) ){
-
-                } else sequence += SPACE;
-            }
-            */
-            if ( spaceOrNot( exp_list ) ) sequence += SPACE;
+            if ( isNextSymbolBracket( exp_list ) ) sequence += SPACE;
         }
 
         if ( isInnerError() ) return false;
@@ -71,18 +59,6 @@ public class SequenceParser extends AbstractListParser {
             // take the next expression
             PomTaggedExpression exp = following_exp.remove(0);
 
-            // if this expression has no term, it cannot be a single symbol
-            /*if ( !containsTerm(exp) ) {
-                // in that case, use the empty expression parser
-                EmptyExpressionParser parser = new EmptyExpressionParser();
-                if ( parser.parse(exp) ){
-                    translatedExp += parser.getTranslatedExpression();
-                    continue;
-                } else {
-                    errorMessage += parser.getErrorMessage();
-                    return false;
-                }
-            }*/
             if ( !containsTerm(exp) ){
                 translatedExp += parseGeneralExpression(exp, following_exp);
                 if ( isInnerError() ) return false;
@@ -107,7 +83,6 @@ public class SequenceParser extends AbstractListParser {
                         translatedExp += sp.translatedExp;
                         continue;
                     } else {
-                        errorMessage += sp.errorMessage;
                         return false;
                     }
                 } else if ( open_bracket.counterpart.equals( bracket.symbol ) ){
@@ -118,44 +93,33 @@ public class SequenceParser extends AbstractListParser {
                             open_bracket.counterpart;
                     return true;
                 } else {
-                    errorMessage += "Bracket-Error: open bracket "
+                    ERROR_LOG.severe("Bracket-Error: open bracket "
                             + open_bracket.symbol
-                            + " reached " + bracket.symbol + System.lineSeparator();
+                            + " reached " + bracket.symbol);
                     return false;
                 }
             }
 
             // if this term is not a bracket, then the term is something
             // else and needs to be parsed in the common way:
-            /*
-            MathTermParser mp = new MathTermParser();
-            if ( mp.parse( term ) ){
-                translatedExp += mp.getTranslatedExpression();
-            } else {
-                errorMessage += mp.getErrorMessage();
-                return false;
-            }
-            */
             translatedExp += parseGeneralExpression(exp, following_exp);
-            if ( spaceOrNot( following_exp ) ) translatedExp += SPACE;
+            if ( isNextSymbolBracket( following_exp ) ) translatedExp += SPACE;
             if ( isInnerError() ) return false;
         }
 
         // this should not happen. It means the algorithm reached the end but a bracket is
         // left open.
-        errorMessage +=
+        ERROR_LOG.severe(
                 "Reached the end of sequence but a bracket is left open: " +
-                        open_bracket.symbol + System.lineSeparator();
+                        open_bracket.symbol);
         return false;
     }
 
-    private boolean spaceOrNot( List<PomTaggedExpression> exp_list ){
+    private boolean isNextSymbolBracket(List<PomTaggedExpression> exp_list ){
         if ( exp_list.size() >= 1 ){
             if ( ( !exp_list.get(0).getRoot().isEmpty() &&
                     exp_list.get(0).getRoot().getTag().matches(PARENTHESIS_PATTERN) )
-                    ){//||
-                //( !exp.getRoot().isEmpty() &&
-                //        exp.getRoot().getTag().matches(PARENTHESIS_PATTERN) ) ){
+                    ){
                 return false;
             } else return true;
         }

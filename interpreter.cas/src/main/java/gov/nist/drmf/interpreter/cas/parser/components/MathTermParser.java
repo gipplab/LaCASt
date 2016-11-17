@@ -39,7 +39,7 @@ public class MathTermParser extends AbstractInnerParser {
 
         // if the tag doesn't exists in the system now
         if ( tag == null ){
-            errorMessage += "Could not find tag by name: " + tagExp + System.lineSeparator();
+            ERROR_LOG.warning("Unknown tag: " + tagExp);
             return false;
         }
 
@@ -55,7 +55,7 @@ public class MathTermParser extends AbstractInnerParser {
                 //  3) A DLMF Macro -> this parser cannot handle DLMF-Macros
                 //  4) any not supported macro -> error
 
-                // or is it a greek letter?
+                // is it a greek letter?
                 if ( FeatureSetUtility.isGreekLetter(term) ){
                     if ( constantSet != null ){
                         constantVsLetter( constantSet, term );
@@ -65,7 +65,7 @@ public class MathTermParser extends AbstractInnerParser {
                     else return false;
                 }
 
-                // is it a constant?
+                // or is it a constant?
                 if ( constantSet != null ){
                     if ( parseMathematicalConstant( constantSet, term.getTermText() ) )
                         return true;
@@ -75,16 +75,16 @@ public class MathTermParser extends AbstractInnerParser {
                 // no it is a DLMF macro or unknown command
                 FeatureSet macro = term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
                 if ( macro != null ){
-                    errorMessage += "MathTermParser cannot parse DLMF-Macro: " +
-                            term.getTermText() + System.lineSeparator();
+                    ERROR_LOG.severe("MathTermParser cannot parse DLMF-Macro: " +
+                            term.getTermText());
                 } else {
-                    errorMessage += "Reached unknown latex-command " +
-                            term.getTermText() + System.lineSeparator();
+                    ERROR_LOG.severe("Reached unknown latex-command " +
+                            term.getTermText());
                 }
                 return false;
             case function:
-                errorMessage += "MathTermParser cannot parse functions alone: "
-                        + term.getTermText();
+                ERROR_LOG.severe("MathTermParser cannot parse functions alone: "
+                        + term.getTermText());
                 return false;
             case letter:
                 // lol a constant
@@ -99,9 +99,9 @@ public class MathTermParser extends AbstractInnerParser {
             case plus:
             case equals:
             case multiply:
-            case divide: // all above should translated directly, right?
+            case divide:
             case less_than:
-            case greater_than:
+            case greater_than: // all above should translated directly, right?
                 translatedExp = term.getTermText();
                 return true;
             case left_parenthesis: // the following should not reached!
@@ -110,16 +110,16 @@ public class MathTermParser extends AbstractInnerParser {
             case right_parenthesis:
             case right_bracket:
             case right_brace:
-                errorMessage += "MathTermParser don't expected brackets but found "
-                        + term.getTermText() + System.lineSeparator();
+                ERROR_LOG.severe("MathTermParser don't expected brackets but found "
+                        + term.getTermText());
                 return false;
             case at:
                 // simply ignore it...
                 return true;
             case constant:
                 // a constant in this state is simply not a command
-                // so there is no \ in front of the text
-                // that's why here is the same like a alphanumeric expression
+                // so there is no \ in front of the text.
+                // that's why a constant here is the same like a alphanumeric expression
                 // ==> do nothing and switch to alphanumeric
             case alphanumeric:
                 String alphanum = term.getTermText();
@@ -132,7 +132,7 @@ public class MathTermParser extends AbstractInnerParser {
                     else return false;
                 }
 
-                // lol a constant
+                // a constant
                 if ( constantSet != null ){
                     if ( parseMathematicalConstant( constantSet, alphanum ) ){
                         return true;
@@ -149,19 +149,19 @@ public class MathTermParser extends AbstractInnerParser {
                 // ignore?
                 return true;
             case mod:
-                errorMessage +=
+                ERROR_LOG.warning(
                         "Well, mod is pretty hard to handle right now... " +
-                                "not supported yet." + System.lineSeparator();
+                                "not supported yet.");
                 return false;
             case macro:
-                errorMessage +=
+                ERROR_LOG.warning(
                         "A macro? What is it? Please inform " +
                                 "Andre about this crazy shit: " +
-                                term.getTermText() + System.lineSeparator();
+                                term.getTermText());
                 return false;
             default:
-                errorMessage += "Unknown MathTerm Tag: "
-                        + term.getTag() + System.lineSeparator();
+                ERROR_LOG.warning("Unknown MathTerm Tag: "
+                        + term.getTag());
                 return false;
         }
     }
@@ -169,25 +169,27 @@ public class MathTermParser extends AbstractInnerParser {
     private void constantVsLetter( FeatureSet constantSet, MathTerm term ){
         String dlmf = translateToDLMF(term.getTermText());
         if ( dlmf == null ){
-            extraInformation += "Found " + term.getTermText() +
-                    " [" + DLMFFeatureValues.meaning.getFeatureValue(constantSet) + "]." +
-                    System.lineSeparator();
-            extraInformation += "But this system don't know how to translate it as a constant." +
-                    System.lineSeparator() +
-                    "It was translated as a general letter.";
+            INFO_LOG.addGeneralInfo(
+                    term.getTermText(),
+                    "Could be " + DLMFFeatureValues.meaning.getFeatureValue(constantSet) + "."
+                            + System.lineSeparator() +
+                            "But this system don't know how to translate it as a constant. " +
+                            "It was translated as a general letter."
+            );
             return;
         }
 
-        extraInformation += "Found a constant " +
-                term.getTermText() + " [" +
-                DLMFFeatureValues.meaning.getFeatureValue(constantSet) +
-                "]." + System.lineSeparator() +
-                "But this is also a normal greek letter." + System.lineSeparator();
-        extraInformation += "Be aware, that this program translated the letter " +
-                "as a normal greek letter " +
-                "and not as a constant!" + System.lineSeparator();
-        extraInformation += "Use the DLMF-Macro " +
-                dlmf + " to translate " + term.getTermText() + " as a constant.";
+
+        INFO_LOG.addGeneralInfo(
+                term.getTermText(),
+                "Could be " + DLMFFeatureValues.meaning.getFeatureValue(constantSet) + "."
+                        + System.lineSeparator() +
+                        "But it is also a greek letter. " +
+                        "Be aware, that this program translated the letter " +
+                        "as a normal greek letter and not as a constant!" + System.lineSeparator() +
+                        "Use the DLMF-Macro " +
+                        dlmf + " to translate " + term.getTermText() + " as a constant."
+        );
     }
 
     private String translateToDLMF( String constant ){
@@ -208,25 +210,29 @@ public class MathTermParser extends AbstractInnerParser {
             try {
                 String alphabet = set.getFeature( Keys.FEATURE_ALPHABET ).first();
                 if ( alphabet.contains( Keys.FEATURE_VALUE_GREEK ) ){
-                    extraInformation += "Cannot translated constant " + constant +
-                            " [" + DLMFFeatureValues.meaning.getFeatureValue(set) +
-                            "]. But since it is a greek letter we translated it to a greek letter in "
-                            + Keys.CAS_KEY + "." + System.lineSeparator();
+                    INFO_LOG.addGeneralInfo(
+                            constant,
+                            "Unable to translate " + constant + " [" +
+                                    DLMFFeatureValues.meaning.getFeatureValue(set) +
+                                    "]. But since it is a greek letter we translated it to a greek letter in "
+                                    + Keys.CAS_KEY + "."
+                    );
                     return parseGreekLetter( constant );
                 } else {
-                    errorMessage +=
+                    ERROR_LOG.warning(
                             "Cannot translate mathematical constant " +
-                                    constant + " - " + set.getFeature(Keys.FEATURE_MEANING) +
-                                    System.lineSeparator();
+                                    constant + " - " + set.getFeature(Keys.FEATURE_MEANING)
+                    );
                     return false;
                 }
             } catch ( NullPointerException npe ){/* ignore it */}
         }
 
         translatedExp += translated_const;
-        extraInformation +=
-                "Found constant " + constant + " [" + DLMFFeatureValues.meaning.getFeatureValue(set) +
-                        "]. Was translated to: " + translated_const + System.lineSeparator();
+        INFO_LOG.addGeneralInfo(
+                constant,
+                DLMFFeatureValues.meaning.getFeatureValue(set) + " was translated to: " + translated_const
+        );
         return true;
     }
 
@@ -242,8 +248,8 @@ public class MathTermParser extends AbstractInnerParser {
         }
 
         if ( translated_letter == null ){
-            errorMessage += "Cannot translate greek letter "
-                    + greekLetter + System.lineSeparator();
+            ERROR_LOG.warning("Cannot translate greek letter "
+                    + greekLetter);
             return false;
         }
 

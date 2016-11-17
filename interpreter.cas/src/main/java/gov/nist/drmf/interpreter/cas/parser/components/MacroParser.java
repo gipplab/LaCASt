@@ -41,8 +41,8 @@ public class MacroParser extends AbstractListParser {
         FeatureSet fset = term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
 
         if ( fset == null ){
-            errorMessage += "You should not use MacroParser when the PomTaggedExpression is " +
-                    "not a dlmf-macro!" + System.lineSeparator();
+            ERROR_LOG.warning("You should not use MacroParser when the PomTaggedExpression is " +
+                    "not a dlmf-macro!");
             return false;
         }
 
@@ -60,7 +60,10 @@ public class MacroParser extends AbstractListParser {
 
         translation_pattern = DLMFFeatureValues.CAS.getFeatureValue(fset);
 
-        createFurtherInformation();
+        INFO_LOG.addMacroInfo(
+                term.getTermText(),
+                createFurtherInformation()
+        );
         components = new String[numOfParams + numOfVars];
         return true;
     }
@@ -79,7 +82,6 @@ public class MacroParser extends AbstractListParser {
                     SequenceParser sp = new SequenceParser(bracket);
 
                     if (!sp.parse(following_exps)){
-                        errorMessage += sp.getErrorMessage();
                         return false;
                     }
 
@@ -113,11 +115,18 @@ public class MacroParser extends AbstractListParser {
         translatedExp = translation_pattern;
     }
 
-    private void createFurtherInformation(){
-        extraInformation += "Found DLMF-Macro: " + description + " " + meaning + System.lineSeparator();
+    private String createFurtherInformation(){
+        String extraInformation = "";
+        if ( !description.isEmpty() )
+            extraInformation += description;
+        if ( !description.isEmpty() && !meaning.isEmpty() )
+            extraInformation += " / " + meaning + System.lineSeparator();
+        else if ( !meaning.isEmpty() )
+            extraInformation += meaning + System.lineSeparator();
         extraInformation += "Constraints: " + constraints + System.lineSeparator();
         extraInformation += "Branch Cuts: " + branch_cuts + System.lineSeparator();
-        extraInformation += def_dlmf + System.lineSeparator()
-                + def_cas + System.lineSeparator() + System.lineSeparator();
+        extraInformation += "Link to definitions: " + System.lineSeparator() +
+                def_dlmf + System.lineSeparator() + def_cas;
+        return extraInformation;
     }
 }
