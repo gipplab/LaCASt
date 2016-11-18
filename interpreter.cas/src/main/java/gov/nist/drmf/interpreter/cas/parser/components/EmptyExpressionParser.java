@@ -26,7 +26,8 @@ public class EmptyExpressionParser extends AbstractParser {
             case sequence:
                 SequenceParser p = new SequenceParser();
                 if ( p.parse( expression ) ){
-                    translatedExp.addTranslatedExpression( p.getTranslatedExpressionObject() );
+                    innerTranslatedExp.addTranslatedExpression( p.getTranslatedExpressionObject() );
+                    last_exp = innerTranslatedExp.getLastExpression();
                     return true;
                 } else return false;
             case fraction:
@@ -38,12 +39,14 @@ public class EmptyExpressionParser extends AbstractParser {
                     return false;
                 }
 
-                translatedExp.addTranslatedExpression(
+                innerTranslatedExp.addTranslatedExpression(
                         SemanticLatexParser.getBasicFunctionParser().translate(
                                 comps,
                                 expTag.tag()
                         )
                 );
+                last_exp = innerTranslatedExp.getLastExpression();
+                global_exp.addTranslatedExpression( last_exp );
                 return true;
             case balanced_expression:
                 List<PomTaggedExpression> sub_exps = expression.getComponents();
@@ -60,11 +63,15 @@ public class EmptyExpressionParser extends AbstractParser {
                     return false;
                 }
 
-                translatedExp.addTranslatedExpression(
+                TranslatedExpression t = parseGeneralExpression( sub_exps.remove(0), sub_exps );
+                innerTranslatedExp.addTranslatedExpression(
                         Brackets.left_parenthesis.symbol +
-                        parseGeneralExpression( sub_exps.remove(0), sub_exps ).toString() +
+                        t.toString() +
                         Brackets.left_parenthesis.counterpart
                 );
+                last_exp = innerTranslatedExp.getLastExpression();
+                global_exp.removeLastNExps( t.clear() );
+                global_exp.addTranslatedExpression( last_exp );
                 return true;
             case sub_super_script:
             case numerator:
@@ -89,7 +96,9 @@ public class EmptyExpressionParser extends AbstractParser {
         List<PomTaggedExpression> list = topExpression.getComponents();
         String[] components = new String[list.size()];
         for ( int i = 0; i < list.size(); i++ ){
-            components[i] = parseGeneralExpression(list.get(i), null).toString();
+            TranslatedExpression t = parseGeneralExpression(list.get(i), null);
+            components[i] = t.toString();
+            global_exp.removeLastNExps( t.clear() );
         }
         return components;
     }

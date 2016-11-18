@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.cas.parser.components;
 
 import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
+import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.AbstractParser;
 import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
 import gov.nist.drmf.interpreter.common.Keys;
@@ -94,6 +95,8 @@ public class MathTermParser extends AbstractParser {
                 }
             case digit:
             case numeric:
+                // save last exp but not special characters
+                last_exp = term.getTermText();
             case minus:
             case plus:
             case equals:
@@ -101,7 +104,8 @@ public class MathTermParser extends AbstractParser {
             case divide:
             case less_than:
             case greater_than: // all above should translated directly, right?
-                translatedExp.addTranslatedExpression(term.getTermText());
+                innerTranslatedExp.addTranslatedExpression(term.getTermText());
+                global_exp.addTranslatedExpression(term.getTermText());
                 return true;
             case left_parenthesis: // the following should not reached!
             case left_bracket:
@@ -140,11 +144,18 @@ public class MathTermParser extends AbstractParser {
 
                 // maple, simply add spaces between all letters
                 String output = "";
-                for ( int i = 0; i < alphanum.length()-1; i++ )
-                    output += alphanum.charAt(i) + " ";
-                translatedExp.addTranslatedExpression(
-                        output + alphanum.charAt(alphanum.length()-1) // delete last space character
+                for ( int i = 0; i < alphanum.length()-1; i++ ) {
+                    output = alphanum.charAt(i) + " ";
+                    innerTranslatedExp.addTranslatedExpression( output );
+                    global_exp.addTranslatedExpression(output);
+                }
+                innerTranslatedExp.addTranslatedExpression(
+                        ""+alphanum.charAt(alphanum.length()-1) // delete last space character
                 );
+                global_exp.addTranslatedExpression(
+                        ""+alphanum.charAt(alphanum.length()-1)
+                );
+                last_exp = innerTranslatedExp.getLastExpression();
                 return true;
             case comma:
                 // ignore?
@@ -230,7 +241,9 @@ public class MathTermParser extends AbstractParser {
             } catch ( NullPointerException npe ){/* ignore it */}
         }
 
-        translatedExp.addTranslatedExpression( translated_const );
+        innerTranslatedExp.addTranslatedExpression( translated_const );
+        global_exp.addTranslatedExpression( translated_const );
+        last_exp = translated_const;
         INFO_LOG.addGeneralInfo(
                 constant,
                 DLMFFeatureValues.meaning.getFeatureValue(set) + " was translated to: " + translated_const
@@ -255,20 +268,25 @@ public class MathTermParser extends AbstractParser {
             return false;
         }
 
-        translatedExp.addTranslatedExpression(translated_letter);
+        innerTranslatedExp.addTranslatedExpression(translated_letter);
+        global_exp.addTranslatedExpression(translated_letter);
+        last_exp = translated_letter;
         return true;
     }
 
     private boolean parseCaret( PomTaggedExpression exp ){
-        String last = translatedExp.removeLastExpression();
-        last += CHAR_CARET;
-        // a caret has always only one child. This child could be everything (even a sequence)
         PomTaggedExpression sub_exp = exp.getComponents().get(0);
-        last +=
-                Brackets.left_parenthesis.symbol +
-                    parseGeneralExpression(sub_exp, null).toString() +
-                Brackets.left_parenthesis.counterpart;
-        translatedExp.addTranslatedExpression(last);
+        TranslatedExpression power = parseGeneralExpression(sub_exp, null);
+
+        Brackets b = Brackets.left_parenthesis;
+        String powerStr = CHAR_CARET +
+                b.symbol + power.toString() + b.counterpart;
+
+        innerTranslatedExp.addTranslatedExpression( powerStr );
+
+        global_exp.removeLastNExps( power.clear() );
+        global_exp.addTranslatedExpression( powerStr );
+        last_exp = powerStr;
         return !isInnerError();
     }
 }

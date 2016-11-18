@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.cas.parser;
 
-import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.cas.logging.InformationLogger;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.components.*;
@@ -41,7 +40,11 @@ public abstract class AbstractParser implements IParser {
 
     protected static Logger ERROR_LOG;
 
-    protected TranslatedExpression translatedExp = new TranslatedExpression();
+    protected TranslatedExpression innerTranslatedExp = new TranslatedExpression();
+
+    protected String last_exp;
+
+    protected static TranslatedExpression global_exp;
 
     private boolean innerError = false;
 
@@ -70,6 +73,7 @@ public abstract class AbstractParser implements IParser {
                 MacroParser mp = new MacroParser();
                 return_value = mp.parse(exp);
                 return_value = return_value && mp.parse(exp_list);
+                last_exp = mp.innerTranslatedExp.getLastExpression();
                 inner_parser = mp;
             } // second, it could be a sub sequence
             else if ( isSubSequence(term) ){
@@ -81,10 +85,23 @@ public abstract class AbstractParser implements IParser {
             else if ( isFunction(term) ){
                 FunctionParser fp = new FunctionParser();
                 return_value = fp.parse(exp);
-                String function = fp.translatedExp.removeLastExpression();
+                String function = fp.innerTranslatedExp.removeLastExpression();
                 return_value = return_value && fp.parse(exp_list);
-                String arguments = fp.translatedExp.removeLastExpression();
-                fp.translatedExp.addTranslatedExpression( function + arguments );
+                String arguments = fp.innerTranslatedExp.removeLastExpression();
+                String output;
+                if ( arguments.matches( "\\s*" + Brackets.OPEN_PATTERN + ".*" ) ){
+                    output = function + arguments;
+                } else {
+                    Brackets b = Brackets.left_parenthesis;
+                    output = function + b.symbol + arguments + b.counterpart;
+                }
+
+                fp.innerTranslatedExp.addTranslatedExpression(
+                        output
+                );
+                last_exp = fp.innerTranslatedExp.getLastExpression();
+                TranslatedExpression t = global_exp.removeLastNExps(2);
+                global_exp.addTranslatedExpression( output );
                 inner_parser = fp;
             } // otherwise it is a general math term
             else {
@@ -94,7 +111,7 @@ public abstract class AbstractParser implements IParser {
         }
 
         innerError = !return_value;
-        return inner_parser.translatedExp;
+        return inner_parser.innerTranslatedExp;
     }
 
     private boolean isDLMFMacro( MathTerm term ){
@@ -141,11 +158,15 @@ public abstract class AbstractParser implements IParser {
 
     @Override
     public String getTranslatedExpression() {
-        return translatedExp.getTranslatedExpression();
+        return innerTranslatedExp.getTranslatedExpression();
     }
 
     public TranslatedExpression getTranslatedExpressionObject(){
-        return translatedExp;
+        return innerTranslatedExp;
+    }
+
+    public TranslatedExpression getGlobalExpression(){
+        return global_exp;
     }
 
     protected boolean isInnerError(){

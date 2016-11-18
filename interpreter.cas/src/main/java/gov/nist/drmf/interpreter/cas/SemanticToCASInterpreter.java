@@ -8,6 +8,7 @@ import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,15 +35,15 @@ public class SemanticToCASInterpreter {
         for ( int i = 0; i < args.length; i++ )
             test += args[i];
 
-//        test = "q*\\iunit+2-\\frac{\\sqrt[\\alpha]{\\cpi}}{2\\JacobiP{i}{\\beta}{2}@{12.6}}";
+        test = "q*\\iunit+2-\\frac{\\sqrt[\\alpha]{\\cpi}}{2\\JacobiP{i}{\\beta}{2}@{12.6}}";
 //        test = "\\JacobiP{\\iunit}{b}{c}@{d}";
 //        test = "18*\\JacobiP{\\cos{\\sqrt{2}}}{\\JacobiP{\\iunit}{b}{c}@{d}}{2}@{3}";
         //test = "x^{\\JacobiP{\\iunit}{b}{c}@{d}}";
 
 //        test = "\\JacobiP{\\alpha}{b}{c}@{\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}";
-        test = "\\JacobiP{\\alpha\\sqrt[3]{x}\\sin(x\\alpha xyz)\\sqrt[2]{3}}{b\\frac{1}{\\pi}}{1+0\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}@{\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}";
+//        test = "\\JacobiP{\\alpha\\sqrt[3]{x}\\sin(x\\alpha xyz)\\sqrt[2]{3}}{b\\frac{1}{\\pi}}{1+0\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}@{\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}";
 
-//        test = "\\frac{\\cos{a}}{b}";
+//        test = "\\cos(2)^{3+2}+12+0.5*\\iunit";
 
         latexParser.init( GlobalConstants.PATH_REFERENCE_DATA );
         latexParser.parse(test);
@@ -50,6 +51,7 @@ public class SemanticToCASInterpreter {
         System.out.println(test + System.lineSeparator());
         System.out.println("Converted to " + Keys.CAS_KEY + ":");
         System.out.println(latexParser.getTranslatedExpression());
+        System.out.println(Arrays.toString(latexParser.getGlobalExpression().trans_exps.toArray()));
         System.out.println();
         System.out.println(latexParser.getInfoLog().toString());
     }

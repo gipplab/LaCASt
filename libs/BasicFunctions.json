@@ -29,6 +29,12 @@
 		"LaTeX": "\\sqrt[$0]{$1}",
 		"Maple": "surd($1,$0)",
 		"Mathematica": "Surd[$1,$0]"
+	},
+	"Factorial": {
+		"MLP": "exclamation point",
+		"LaTeX": "$0!",
+		"Maple": "factorial($0)",
+		"Mathematica": "$0!"
 	}
   }
 }

@@ -6,7 +6,7 @@ import java.util.LinkedList;
  * @author Andre Greiner-Petter
  */
 public class TranslatedExpression {
-    private LinkedList<String> trans_exps;
+    public LinkedList<String> trans_exps;
 
     public TranslatedExpression(){
         this.trans_exps = new LinkedList<>();
@@ -20,8 +20,29 @@ public class TranslatedExpression {
         this.trans_exps.addAll( expressions.trans_exps );
     }
 
+    public int clear(){
+        int s = trans_exps.size();
+        trans_exps = new LinkedList<>();
+        return s;
+    }
+
+    public TranslatedExpression removeLastNExps(int n){
+        TranslatedExpression sub = new TranslatedExpression();
+        LinkedList<String> tmp = new LinkedList<>();
+        for( int i = 0; i < n; i++ ){
+            tmp.add(removeLastExpression());
+        }
+        while ( !tmp.isEmpty() )
+            sub.addTranslatedExpression( tmp.removeLast() );
+        return sub;
+    }
+
     public String removeLastExpression(){
         return trans_exps.removeLast();
+    }
+
+    public String getLastExpression(){
+        return trans_exps.getLast();
     }
 
     public void replaceLastExpression( String new_exp ){

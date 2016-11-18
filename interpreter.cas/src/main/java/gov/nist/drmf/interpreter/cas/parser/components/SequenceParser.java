@@ -37,14 +37,14 @@ public class SequenceParser extends AbstractListParser {
             return false;
         }
 
-        String part = "";
+        String part;
         List<PomTaggedExpression> exp_list = expression.getComponents();
 
         while ( !exp_list.isEmpty() ){
             PomTaggedExpression exp = exp_list.remove(0);
             part = parseGeneralExpression( exp, exp_list ).toString();
             if ( addSpace( exp, exp_list ) ) part += SPACE;
-            translatedExp.addTranslatedExpression( part );
+            innerTranslatedExp.addTranslatedExpression( part );
         }
 
         if ( isInnerError() ) return false;
@@ -59,9 +59,9 @@ public class SequenceParser extends AbstractListParser {
             PomTaggedExpression exp = following_exp.remove(0);
 
             if ( !containsTerm(exp) ){
-                translatedExp.addTranslatedExpression(
-                        parseGeneralExpression(exp, following_exp).toString()
-                );
+                last_exp = parseGeneralExpression(exp, following_exp).toString();
+                innerTranslatedExp.addTranslatedExpression(last_exp);
+                global_exp.addTranslatedExpression(last_exp);
                 if ( isInnerError() ) return false;
                 else continue;
             }
@@ -81,22 +81,27 @@ public class SequenceParser extends AbstractListParser {
                     // a sub-sequence starts here
                     SequenceParser sp = new SequenceParser( bracket );
                     if ( sp.parse(following_exp) ){
-                        translatedExp.addTranslatedExpression(sp.translatedExp.toString());
+                        innerTranslatedExp.addTranslatedExpression(sp.innerTranslatedExp.toString());
+                        global_exp.addTranslatedExpression(sp.innerTranslatedExp.toString());
+                        last_exp = sp.innerTranslatedExp.toString();
                         continue;
                     } else {
                         return false;
                     }
                 } else if ( open_bracket.counterpart.equals( bracket.symbol ) ){
                     // this sequence ends here
-                    String seq = translatedExp.toString(); // get whole sequence from start
-                    translatedExp = new TranslatedExpression(); // clear sequence complete
+                    String seq = innerTranslatedExp.toString(); // get whole sequence from start
+                    int num = innerTranslatedExp.clear(); // clear sequence complete
 
                     // wrap parenthesis around sequence, this is one component of the sequence now
-                    translatedExp.addTranslatedExpression(
+                    innerTranslatedExp.addTranslatedExpression(
                             open_bracket.symbol +
                             seq +
                             open_bracket.counterpart
                     );
+                    last_exp = innerTranslatedExp.getLastExpression();
+                    global_exp.removeLastNExps(num);
+                    global_exp.addTranslatedExpression( last_exp );
                     return true;
                 } else {
                     ERROR_LOG.severe("Bracket-Error: open bracket "
@@ -110,7 +115,8 @@ public class SequenceParser extends AbstractListParser {
             // else and needs to be parsed in the common way:
             String next_element = parseGeneralExpression(exp, following_exp).toString();
             if ( addSpace( exp, following_exp ) ) next_element += SPACE;
-            translatedExp.addTranslatedExpression(next_element);
+            innerTranslatedExp.addTranslatedExpression(next_element);
+            last_exp = next_element;
             if ( isInnerError() ) return false;
         }
 

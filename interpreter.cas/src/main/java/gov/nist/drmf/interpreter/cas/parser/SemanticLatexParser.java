@@ -44,6 +44,8 @@ public class SemanticLatexParser extends AbstractParser {
         INFO_LOG = new InformationLogger();
         ERROR_LOG = Logger.getLogger( SemanticLatexParser.class.toString() );
         ERROR_LOG.setLevel(Level.WARNING);
+
+        global_exp = new TranslatedExpression();
     }
 
     /**
@@ -73,7 +75,7 @@ public class SemanticLatexParser extends AbstractParser {
 
     @Override
     public boolean parse(PomTaggedExpression expression) {
-        translatedExp.addTranslatedExpression(
+        innerTranslatedExp.addTranslatedExpression(
                 parseGeneralExpression(expression, null).getTranslatedExpression()
         );
         return !isInnerError();

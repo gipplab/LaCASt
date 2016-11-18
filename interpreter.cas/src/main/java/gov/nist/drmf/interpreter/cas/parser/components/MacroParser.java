@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.cas.parser.components;
 
+import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
@@ -96,8 +97,9 @@ public class MacroParser extends AbstractListParser {
                 }
             }
 
-            components[i] =
-                    parseGeneralExpression(exp, following_exps).toString();
+            TranslatedExpression t = parseGeneralExpression(exp, following_exps);
+            components[i] = t.toString();
+            global_exp.removeLastNExps( t.clear() );
 
             i++;
             if ( isInnerError() )
@@ -113,7 +115,8 @@ public class MacroParser extends AbstractListParser {
             translation_pattern =
                     translation_pattern.replace(position_char + Integer.toString(i), components[i]);
         }
-        translatedExp.addTranslatedExpression(translation_pattern);
+        innerTranslatedExp.addTranslatedExpression(translation_pattern);
+        global_exp.addTranslatedExpression(translation_pattern);
     }
 
     private String createFurtherInformation(){

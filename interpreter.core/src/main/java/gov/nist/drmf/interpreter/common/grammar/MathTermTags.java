@@ -31,7 +31,8 @@ public enum MathTermTags {
     greater_than("greater-then"),
     mod("mod"),
     macro("macro"),
-    caret("caret");
+    caret("caret"),
+    factorial("exclamation point");
 
     private String tag;
 
