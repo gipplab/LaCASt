@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.cas.parser;
 
 import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.cas.logging.InformationLogger;
+import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.components.*;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
@@ -36,13 +37,11 @@ public abstract class AbstractParser implements IParser {
     public static final String SPECIAL_SYMBOL_PATTERN =
             "[\\^\\/\\*\\+\\-\\_]";
 
-    public static final InformationLogger INFO_LOG = SemanticToCASInterpreter.INFO_LOG;
-    public static final Logger ERROR_LOG = SemanticToCASInterpreter.ERROR_LOG;
+    protected static InformationLogger INFO_LOG;
 
-    /**
-     * Translated expression.
-     */
-    protected String translatedExp = "";
+    protected static Logger ERROR_LOG;
+
+    protected TranslatedExpression translatedExp = new TranslatedExpression();
 
     private boolean innerError = false;
 
@@ -53,7 +52,7 @@ public abstract class AbstractParser implements IParser {
      * @param exp_list
      * @return
      */
-    protected String parseGeneralExpression(
+    protected TranslatedExpression parseGeneralExpression(
             PomTaggedExpression exp,
             List<PomTaggedExpression> exp_list){
         AbstractParser inner_parser;
@@ -82,7 +81,10 @@ public abstract class AbstractParser implements IParser {
             else if ( isFunction(term) ){
                 FunctionParser fp = new FunctionParser();
                 return_value = fp.parse(exp);
+                String function = fp.translatedExp.removeLastExpression();
                 return_value = return_value && fp.parse(exp_list);
+                String arguments = fp.translatedExp.removeLastExpression();
+                fp.translatedExp.addTranslatedExpression( function + arguments );
                 inner_parser = fp;
             } // otherwise it is a general math term
             else {
@@ -139,6 +141,10 @@ public abstract class AbstractParser implements IParser {
 
     @Override
     public String getTranslatedExpression() {
+        return translatedExp.getTranslatedExpression();
+    }
+
+    public TranslatedExpression getTranslatedExpressionObject(){
         return translatedExp;
     }
 

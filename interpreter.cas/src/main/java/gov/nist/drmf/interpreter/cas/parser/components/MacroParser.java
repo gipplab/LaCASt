@@ -96,7 +96,8 @@ public class MacroParser extends AbstractListParser {
                 }
             }
 
-            components[i] = parseGeneralExpression(exp, following_exps);
+            components[i] =
+                    parseGeneralExpression(exp, following_exps).toString();
 
             i++;
             if ( isInnerError() )
@@ -112,7 +113,7 @@ public class MacroParser extends AbstractListParser {
             translation_pattern =
                     translation_pattern.replace(position_char + Integer.toString(i), components[i]);
         }
-        translatedExp = translation_pattern;
+        translatedExp.addTranslatedExpression(translation_pattern);
     }
 
     private String createFurtherInformation(){

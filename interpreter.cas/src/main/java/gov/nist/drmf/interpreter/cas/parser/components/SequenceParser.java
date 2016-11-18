@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.cas.parser.components;
 
+import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
@@ -36,17 +37,18 @@ public class SequenceParser extends AbstractListParser {
             return false;
         }
 
-        String sequence = "";
+        String part = "";
         List<PomTaggedExpression> exp_list = expression.getComponents();
 
         while ( !exp_list.isEmpty() ){
             PomTaggedExpression exp = exp_list.remove(0);
-            sequence += parseGeneralExpression( exp, exp_list );
-            if ( isNextSymbolBracket( exp_list ) ) sequence += SPACE;
+            part = parseGeneralExpression( exp, exp_list ).toString();
+            if ( addSpace( exp, exp_list ) ) part += SPACE;
+            translatedExp.addTranslatedExpression( part );
         }
 
         if ( isInnerError() ) return false;
-        translatedExp += sequence;
+        //translatedExp.addTranslatedExpression(sequence);
         return true;
     }
 
@@ -57,7 +59,9 @@ public class SequenceParser extends AbstractListParser {
             PomTaggedExpression exp = following_exp.remove(0);
 
             if ( !containsTerm(exp) ){
-                translatedExp += parseGeneralExpression(exp, following_exp);
+                translatedExp.addTranslatedExpression(
+                        parseGeneralExpression(exp, following_exp).toString()
+                );
                 if ( isInnerError() ) return false;
                 else continue;
             }
@@ -77,17 +81,22 @@ public class SequenceParser extends AbstractListParser {
                     // a sub-sequence starts here
                     SequenceParser sp = new SequenceParser( bracket );
                     if ( sp.parse(following_exp) ){
-                        translatedExp += sp.translatedExp;
+                        translatedExp.addTranslatedExpression(sp.translatedExp.toString());
                         continue;
                     } else {
                         return false;
                     }
                 } else if ( open_bracket.counterpart.equals( bracket.symbol ) ){
                     // this sequence ends here
-                    translatedExp =
+                    String seq = translatedExp.toString(); // get whole sequence from start
+                    translatedExp = new TranslatedExpression(); // clear sequence complete
+
+                    // wrap parenthesis around sequence, this is one component of the sequence now
+                    translatedExp.addTranslatedExpression(
                             open_bracket.symbol +
-                            translatedExp +
-                            open_bracket.counterpart;
+                            seq +
+                            open_bracket.counterpart
+                    );
                     return true;
                 } else {
                     ERROR_LOG.severe("Bracket-Error: open bracket "
@@ -99,8 +108,9 @@ public class SequenceParser extends AbstractListParser {
 
             // if this term is not a bracket, then the term is something
             // else and needs to be parsed in the common way:
-            translatedExp += parseGeneralExpression(exp, following_exp);
-            if ( isNextSymbolBracket( following_exp ) ) translatedExp += SPACE;
+            String next_element = parseGeneralExpression(exp, following_exp).toString();
+            if ( addSpace( exp, following_exp ) ) next_element += SPACE;
+            translatedExp.addTranslatedExpression(next_element);
             if ( isInnerError() ) return false;
         }
 
@@ -112,18 +122,15 @@ public class SequenceParser extends AbstractListParser {
         return false;
     }
 
-    private boolean isNextSymbolBracket(List<PomTaggedExpression> exp_list ){
-        if ( exp_list.size() >= 1 ){
-            MathTerm tmp = exp_list.get(0).getRoot();
-            if ( !tmp.isEmpty() &&
-                    (
-                            tmp.getTermText().matches(PARENTHESIS_PATTERN) ||
-                                    tmp.getTermText().matches(SPECIAL_SYMBOL_PATTERN)
-                            )
-                    ){
+    private boolean addSpace(PomTaggedExpression currExp, List<PomTaggedExpression> exp_list ){
+        try {
+            if ( exp_list == null || exp_list.size() < 1) return false;
+            MathTerm curr = currExp.getRoot();
+            MathTerm next = exp_list.get(0).getRoot();
+            if ( curr.getTag().matches(PARENTHESIS_PATTERN)
+                    || next.getTag().matches(PARENTHESIS_PATTERN))
                 return false;
-            } else return true;
-        }
-        return false;
+            else return true;
+        } catch ( Exception e ){ return true; }
     }
 }

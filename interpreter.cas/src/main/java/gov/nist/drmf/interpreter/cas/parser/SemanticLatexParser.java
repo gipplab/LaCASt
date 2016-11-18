@@ -1,10 +1,18 @@
 package gov.nist.drmf.interpreter.cas.parser;
 
+import gov.nist.drmf.interpreter.cas.logging.InformationLogger;
+import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
+import gov.nist.drmf.interpreter.common.symbols.Constants;
+import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
 
 import java.nio.file.Path;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This parser parse semantic LaTeX formula using
@@ -22,10 +30,20 @@ import java.nio.file.Path;
  * @author Andre Greiner-Petter
  */
 public class SemanticLatexParser extends AbstractParser {
+    private static GreekLetters greekLetters;
+    private static Constants constants;
+    private static BasicFunctionsTranslator functions;
+
     private PomParser parser;
 
-    public SemanticLatexParser(){
-        // setup
+    public SemanticLatexParser( String from_language, String to_language ){
+        greekLetters = new GreekLetters(from_language, to_language);
+        constants = new Constants(Keys.KEY_DLMF, to_language);
+        functions = new BasicFunctionsTranslator(to_language);
+
+        INFO_LOG = new InformationLogger();
+        ERROR_LOG = Logger.getLogger( SemanticLatexParser.class.toString() );
+        ERROR_LOG.setLevel(Level.WARNING);
     }
 
     /**
@@ -33,6 +51,9 @@ public class SemanticLatexParser extends AbstractParser {
      * @param reference_dir_path
      */
     public void init( Path reference_dir_path ){
+        greekLetters.init();
+        constants.init();
+        functions.init();
         parser = new PomParser(reference_dir_path.toString());
     }
 
@@ -52,7 +73,25 @@ public class SemanticLatexParser extends AbstractParser {
 
     @Override
     public boolean parse(PomTaggedExpression expression) {
-        translatedExp = parseGeneralExpression(expression, null);
+        translatedExp.addTranslatedExpression(
+                parseGeneralExpression(expression, null).getTranslatedExpression()
+        );
         return !isInnerError();
+    }
+
+    public static GreekLetters getGreekLettersParser(){
+        return greekLetters;
+    }
+
+    public static Constants getConstantsParser(){
+        return constants;
+    }
+
+    public static BasicFunctionsTranslator getBasicFunctionParser(){
+        return functions;
+    }
+
+    public InformationLogger getInfoLog(){
+        return INFO_LOG;
     }
 }

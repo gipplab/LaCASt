@@ -1,11 +1,11 @@
 package gov.nist.drmf.interpreter.cas.parser.components;
 
-import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
+import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.AbstractParser;
+import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class EmptyExpressionParser extends AbstractParser {
             case sequence:
                 SequenceParser p = new SequenceParser();
                 if ( p.parse( expression ) ){
-                    translatedExp += p.getTranslatedExpression();
+                    translatedExp.addTranslatedExpression( p.getTranslatedExpressionObject() );
                     return true;
                 } else return false;
             case fraction:
@@ -38,11 +38,12 @@ public class EmptyExpressionParser extends AbstractParser {
                     return false;
                 }
 
-                translatedExp +=
-                        SemanticToCASInterpreter.FUNCTIONS.translate(
+                translatedExp.addTranslatedExpression(
+                        SemanticLatexParser.getBasicFunctionParser().translate(
                                 comps,
                                 expTag.tag()
-                        );
+                        )
+                );
                 return true;
             case balanced_expression:
                 List<PomTaggedExpression> sub_exps = expression.getComponents();
@@ -59,10 +60,11 @@ public class EmptyExpressionParser extends AbstractParser {
                     return false;
                 }
 
-                translatedExp +=
+                translatedExp.addTranslatedExpression(
                         Brackets.left_parenthesis.symbol +
-                        parseGeneralExpression( sub_exps.remove(0), sub_exps ) +
-                        Brackets.left_parenthesis.counterpart;
+                        parseGeneralExpression( sub_exps.remove(0), sub_exps ).toString() +
+                        Brackets.left_parenthesis.counterpart
+                );
                 return true;
             case sub_super_script:
             case numerator:
@@ -87,7 +89,7 @@ public class EmptyExpressionParser extends AbstractParser {
         List<PomTaggedExpression> list = topExpression.getComponents();
         String[] components = new String[list.size()];
         for ( int i = 0; i < list.size(); i++ ){
-            components[i] = parseGeneralExpression(list.get(i), null);
+            components[i] = parseGeneralExpression(list.get(i), null).toString();
         }
         return components;
     }

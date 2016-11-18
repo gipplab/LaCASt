@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.cas.parser.components;
 
 import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.cas.parser.AbstractParser;
+import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
@@ -62,16 +63,12 @@ public class MathTermParser extends AbstractParser {
                     if ( constantSet != null ){
                         constantVsLetter( constantSet, term );
                     }
-                    if ( parseGreekLetter(term.getTermText()) )
-                        return true;
-                    else return false;
+                    return parseGreekLetter(term.getTermText());
                 }
 
                 // or is it a constant?
                 if ( constantSet != null ){
-                    if ( parseMathematicalConstant( constantSet, term.getTermText() ) )
-                        return true;
-                    else return false;
+                    return parseMathematicalConstant( constantSet, term.getTermText() );
                 }
 
                 // no it is a DLMF macro or unknown command
@@ -104,7 +101,7 @@ public class MathTermParser extends AbstractParser {
             case divide:
             case less_than:
             case greater_than: // all above should translated directly, right?
-                translatedExp = term.getTermText();
+                translatedExp.addTranslatedExpression(term.getTermText());
                 return true;
             case left_parenthesis: // the following should not reached!
             case left_bracket:
@@ -145,7 +142,9 @@ public class MathTermParser extends AbstractParser {
                 String output = "";
                 for ( int i = 0; i < alphanum.length()-1; i++ )
                     output += alphanum.charAt(i) + " ";
-                translatedExp = output + alphanum.charAt(alphanum.length()-1);
+                translatedExp.addTranslatedExpression(
+                        output + alphanum.charAt(alphanum.length()-1) // delete last space character
+                );
                 return true;
             case comma:
                 // ignore?
@@ -183,7 +182,6 @@ public class MathTermParser extends AbstractParser {
             return;
         }
 
-
         INFO_LOG.addGeneralInfo(
                 term.getTermText(),
                 "Could be " + DLMFFeatureValues.meaning.getFeatureValue(constantSet) + "."
@@ -197,14 +195,14 @@ public class MathTermParser extends AbstractParser {
     }
 
     private String translateToDLMF( String constant ){
-        Constants c = SemanticToCASInterpreter.CONSTANTS;
+        Constants c = SemanticLatexParser.getConstantsParser();
         if ( !constant.startsWith(CHAR_BACKSLASH) ) constant = CHAR_BACKSLASH + constant;
         String translated_const = c.translate( Keys.KEY_LATEX, Keys.KEY_DLMF, constant );
         return translated_const;
     }
 
     private boolean parseMathematicalConstant( FeatureSet set, String constant ){
-        Constants c = SemanticToCASInterpreter.CONSTANTS;
+        Constants c = SemanticLatexParser.getConstantsParser();
         String translated_const = c.translate( constant );
 
         if ( translated_const == null )
@@ -232,7 +230,7 @@ public class MathTermParser extends AbstractParser {
             } catch ( NullPointerException npe ){/* ignore it */}
         }
 
-        translatedExp += translated_const;
+        translatedExp.addTranslatedExpression( translated_const );
         INFO_LOG.addGeneralInfo(
                 constant,
                 DLMFFeatureValues.meaning.getFeatureValue(set) + " was translated to: " + translated_const
@@ -241,7 +239,7 @@ public class MathTermParser extends AbstractParser {
     }
 
     private boolean parseGreekLetter( String greekLetter ){
-        GreekLetters l = SemanticToCASInterpreter.GREEK;
+        GreekLetters l = SemanticLatexParser.getGreekLettersParser();
         String translated_letter = l.translate(greekLetter);
 
         if ( translated_letter == null ){
@@ -257,18 +255,20 @@ public class MathTermParser extends AbstractParser {
             return false;
         }
 
-        translatedExp += translated_letter;
+        translatedExp.addTranslatedExpression(translated_letter);
         return true;
     }
 
     private boolean parseCaret( PomTaggedExpression exp ){
-        translatedExp += CHAR_CARET;
+        String last = translatedExp.removeLastExpression();
+        last += CHAR_CARET;
         // a caret has always only one child. This child could be everything (even a sequence)
         PomTaggedExpression sub_exp = exp.getComponents().get(0);
-        translatedExp +=
+        last +=
                 Brackets.left_parenthesis.symbol +
-                    parseGeneralExpression(sub_exp, null) +
+                    parseGeneralExpression(sub_exp, null).toString() +
                 Brackets.left_parenthesis.counterpart;
+        translatedExp.addTranslatedExpression(last);
         return !isInnerError();
     }
 }

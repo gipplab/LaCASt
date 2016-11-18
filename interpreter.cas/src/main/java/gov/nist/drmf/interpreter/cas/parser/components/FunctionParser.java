@@ -1,10 +1,8 @@
 package gov.nist.drmf.interpreter.cas.parser.components;
 
-import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
+import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
-import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
@@ -31,9 +29,11 @@ public class FunctionParser extends AbstractListParser {
     public boolean parse(PomTaggedExpression exp){
         MathTerm term = exp.getRoot();
 
+        String output;
         if ( term.getTermText().startsWith("\\") )
-            translatedExp += term.getTermText().substring(1);
-        else translatedExp += term.getTermText();
+            output = term.getTermText().substring(1);
+        else output = term.getTermText();
+        translatedExp.addTranslatedExpression(output);
 
         INFO_LOG.addGeneralInfo(
                 term.getTermText(),
@@ -46,14 +46,16 @@ public class FunctionParser extends AbstractListParser {
     @Override
     public boolean parse(List<PomTaggedExpression> following_exp) {
         PomTaggedExpression first = following_exp.remove(0);
-        String translation = parseGeneralExpression(first, following_exp);
+        TranslatedExpression translation = parseGeneralExpression(first, following_exp);
         String startPatter = "\\s*" + Brackets.OPEN_PATTERN + ".*";
-        if ( !translation.matches(startPatter) )
-            translatedExp +=
+        if ( !translation.toString().matches(startPatter) ){
+            translatedExp.addTranslatedExpression(
                     Brackets.left_parenthesis.symbol +
-                            translation +
-                            Brackets.left_parenthesis.counterpart;
-        else translatedExp += translation;
+                            translation.toString() +
+                            Brackets.left_parenthesis.counterpart
+            );
+        }
+        else translatedExp.addTranslatedExpression(translation.toString());
         return true;
     }
 }
