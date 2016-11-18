@@ -1,0 +1,816 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>BNF for PomTaggerParser.jj</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN=CENTER>BNF for PomTaggerParser.jj</H1>
+<H2 ALIGN=CENTER>TOKENS</H2>
+<TABLE>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; SKIP : {
+" "
+| "\t"
+| "\n"
+| "\r"
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;#DELIMITER: &lt;LPAREN&gt; | &lt;RPAREN&gt; | &lt;LBRACKET&gt; | &lt;RBRACKET&gt; | &lt;ESCAPED_LBRACE&gt; | &lt;ESCAPED_RBRACE&gt; | &lt;BACKSLASH&gt; | "\\lgroup" | "\\rgroup" | "\\langle" | "\\rangle" | "\\lmoustache" | "\\rmoustache" | "\\bracevert" | "\\llcorner" | "\\lrcorner" | "\\ulcorner" | "\\urcorner"&gt;
+| &lt;#BLANK: (" " | "\\n" | "\\t" | "\\r")*&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;LEFTDELIM: "\\left" &lt;BLANK&gt; (&lt;DELIMITER&gt; | &lt;AMBIGUOUS_DELIM&gt; | &lt;STRETCHABLE_VERTICAL_ARROW&gt; | ".")&gt;
+| &lt;RIGHTDELIM: "\\right" &lt;BLANK&gt; (&lt;DELIMITER&gt; | &lt;AMBIGUOUS_DELIM&gt; | &lt;STRETCHABLE_VERTICAL_ARROW&gt; | ".")&gt;
+| &lt;LARGEDELIM: ("\\big" | "\\bigg" | "\\Big" | "\\Bigg") (&lt;DELIMITER&gt; | &lt;AMBIGUOUS_DELIM&gt; | &lt;STRETCHABLE_VERTICAL_ARROW&gt;)&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;BEGIN: "\\begin"&gt;
+| &lt;END: "\\end"&gt;
+| &lt;ARRAY: "array"&gt;
+| &lt;MATRIX: "matrix"&gt;
+| &lt;PAR_MATRIX: "pmatrix"&gt;
+| &lt;BRACKET_MATRIX: "bmatrix"&gt;
+| &lt;BRACE_MATRIX: "Bmatrix"&gt;
+| &lt;VERTBAR_MATRIX: "vmatrix"&gt;
+| &lt;DOUBLE_VERTBAR_MATRIX: "Vmatrix"&gt;
+| &lt;CASES: "cases"&gt;
+| &lt;EQUATION: "equation"&gt;
+| &lt;MULTLINE: "multline"&gt;
+| &lt;EQNARRAY: "eqnarray"&gt;
+| &lt;IEEE_EQNARRAY: "IEEEeqnarray"&gt;
+| &lt;ALIGN: "align"&gt;
+| &lt;AMPERSAND: "&amp;"&gt;
+| &lt;TWOBACKSLASH: "\\\\"&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;LPAREN: "(" | "\\lparen"&gt;
+| &lt;RPAREN: ")" | "\\rparen"&gt;
+| &lt;LBRACE: "{"&gt;
+| &lt;RBRACE: "}"&gt;
+| &lt;LBRACKET: "[" | "\\lbrack"&gt;
+| &lt;RBRACKET: "]" | "\\rbrack"&gt;
+| &lt;ESCAPED_LBRACE: "\\{" | "\\lbrace"&gt;
+| &lt;ESCAPED_RBRACE: "\\}" | "\\rbrace"&gt;
+| &lt;BACKSLASH: "\\backslash"&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;#STRETCHABLE_VERTICAL_ARROW: "\\Uparrow" | "\\uparrow" | "\\Downarrow" | "\\downarrow" | "\\Updownarrow" | "\\updownarrow"&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;#UPPERCASE_LETTER: ["A"-"Z"]&gt;
+| &lt;#LOWERCASE_LETTER: ["a"-"z"]&gt;
+| &lt;ALPHANUM: &lt;LETTER&gt; (&lt;LETTER&gt; | &lt;DIGIT&gt;)+&gt;
+| &lt;NUMERIC: &lt;DIGIT&gt; (&lt;DIGIT&gt;)+ | (&lt;DIGIT&gt;)* "." (&lt;DIGIT&gt;)+&gt;
+| &lt;LETTER: &lt;UPPERCASE_LETTER&gt; | &lt;LOWERCASE_LETTER&gt;&gt;
+| &lt;DIGIT: ["0"-"9"]&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Special token -->
+ <TR>
+  <TD>
+<PRE>
+/*
+<!--
+// unicode letters
+TOKEN : {
+    < LETTER: 
+            ["A"-"Z",     // A-Z
+            "a"-"z",      // a-z
+            
+            // the rest is all kinds of letters from all kinds of
+            // world alphabets, along with accents:
+            "À"-"Ö", "Ø"-"ö", 
+            "ø"-"ÿ", "?"-"?"] >
+| 
+    
+    < DIGIT: 
+            // unicode digits
+            ["0"-"9",     // 0-9
+            "?"-"?",      // the Arabic 10 digits
+            "?"-"?",      // the Arabic-Indic 10 digits
+
+            // the rest are digits in all kinds of languages
+            "?"-"?", 
+            "?"-"?", "?"-"?",
+            "?"-"?", "?"-"?", "?"-"?",
+            "?"-"?", "?"-"?", "?"-"?",
+            "?"-"?", "?"-"?", "?"-"?"] 
+        >
+}
+-->
+*/</PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;MULTICHARACTER_SYMBOL: "&lt;&lt;" | "&gt;&gt;" | "&lt;&lt;&lt;" | "&gt;&gt;&gt;" | "\\|"&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;BACK_QUOTE: "`"&gt;
+| &lt;EXCLAMATION: "!"&gt;
+| &lt;AT: "@"&gt;
+| &lt;STAR: "*"&gt;
+| &lt;CARET: "^"&gt;
+| &lt;UNDERSCORE: "_"&gt;
+| &lt;HYPHEN: "-"&gt;
+| &lt;EQUAL: "="&gt;
+| &lt;PLUS: "+"&gt;
+| &lt;VERTICAL_BAR: "|"&gt;
+| &lt;SEMICOLON: ";"&gt;
+| &lt;COLON: ":"&gt;
+| &lt;QUOTE: "\'"&gt;
+| &lt;DOUBLE_QUOTE: "\""&gt;
+| &lt;COMMA: ","&gt;
+| &lt;LESS_THEN: "&lt;"&gt;
+| &lt;POINT: "."&gt;
+| &lt;GREATER_THAN: "&gt;"&gt;
+| &lt;SLASH: "/"&gt;
+| &lt;QUESTION_MARK: "?"&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;ESCAPED_HASHTAG: "\\#"&gt;
+| &lt;ESCAPED_PERCENT: "\\%"&gt;
+| &lt;ESCAPED_DOLLAR: "\\$"&gt;
+| &lt;ESCAPED_UNDERSCORE: "\\_"&gt;
+| &lt;ESCAPED_AMPERSAND: "\\&amp;"&gt;
+| &lt;ESCAPED_SYMBOL_ALLOWED: "\\" ("-" | "*" | "/")&gt;
+| &lt;ESCAPED_SYMBOL_DISALLOWED: &lt;ESCAPED_SYMBOL_TEXTACCENT&gt; | "\\" ("&lt;" | "&gt;" | "?" | "@")&gt;
+| &lt;#ESCAPED_SYMBOL_TEXTACCENT: "\\" ("+" | "\'" | "=" | "`" | "~" | "\"" | "." | "^")&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;FRAC: "\\" ("frac" | ("i" | "c" | "d" | "t") "frac" | "icfrac")&gt;
+| &lt;BINOM: "\\binom"&gt;
+| &lt;STACKREL: "\\stackrel"&gt;
+| &lt;SQRT: "\\sqrt"&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;PHANTOM: "\\phantom"&gt;
+| &lt;PMOD: "\\pmod"&gt;
+| &lt;FOOTNOTE: "\\footnote"&gt;
+| &lt;NOT: "\\not"&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;ELLIPSIS: "\\" ("c" | "l" | "v" | "d") "dots" | "\\dots" ("i" | "b" | "m" | "c" | "o") | "..."&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;PARAMETER: "#" (&lt;DIGIT&gt;)+&gt;
+| &lt;RENDERED_MACRO_NAME: "#" &lt;LETTER&gt; (&lt;LETTER&gt; | &lt;DIGIT&gt;)*&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;#OP_ENCLOSINGMULTIGLYPHOP_REL_DELIM: "|" | "\\vert" | "\\arrowvert" | "\\mid" | "\\lvert" | "\\rvert"&gt;
+| &lt;#ENCLOSINGMULTIGLYPHOP_REL_DELIM: "\\|" | "\\Vert" | "\\Arrowvert" | "\\lVert" | "\\rVert"&gt;
+| &lt;#ENCLOSINGMULTIGLYPHOP_DELIM: "\\lceil" | "\\rceil" | "\\lfloor" | "\\rfloor"&gt;
+| &lt;#OP_DELIM: &lt;SLASH&gt;&gt;
+| &lt;#AMBIGUOUS_DELIM: &lt;OP_DELIM&gt; | &lt;ENCLOSINGMULTIGLYPHOP_DELIM&gt; | &lt;ENCLOSINGMULTIGLYPHOP_REL_DELIM&gt; | &lt;OP_ENCLOSINGMULTIGLYPHOP_REL_DELIM&gt;&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Special token -->
+ <TR>
+  <TD>
+<PRE>
+//accents, stackable, meant primarily to be over a single brace-enclosed 
+//character; if the argument is longer, the accent size remains small 
+//and is centered
+</PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;ACCENT: "\\" ("acute" | "Acute" | "breve" | "Breve" | "grave" | "Grave" | "tilde" | "Tilde" | "bar" | "Bar" | "check" | "Check" | "hat" | "Hat" | "vec" | "Vec") | "mathring" | "\\" ("d")+ "ot" | "\\" "D" ("d")* "ot"&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Special token -->
+ <TR>
+  <TD>
+<PRE>
+//wide accents, covering their entire brace-enclosed argument, and stackable
+</PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;WIDEACCENT: "\\" ("overline" | "overbrace" | "underline" | "underbrace" | "overrightarrow" | "overleftarrow" | "overleftrightarrow" | "underrightarrow" | "underleftarrow" | "underleftrightarrow" | "widehat" | "widetilde")&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;FONT_STYLE: "\\" "mathit"&gt;
+| &lt;FONT_WEIGHT: "\\" ("mathbf" | "boldsymbol")&gt;
+| &lt;FONT_TYPEFACE: "\\" ("mathnormal" | "mathrm" | "mathscr" | "mathcal" | "mathbb" | "mathtt" | "mathsf" | "mathfrak")&gt;
+| &lt;FONT_SIZE: "\\" ("displaystyle" | "textstyle" | "scriptstyle" | "scriptscriptstyle")&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;CONTROLLED_SPACE: "\\" ("," | "!" | ":" | ";" | " " | "quad" | "qquad")&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;NEWLINE: "\\newline"&gt;
+| &lt;TWOBACKSLASHSTAR: "\\\\*"&gt;
+| &lt;LINEBREAK: "\\linebreak"&gt;
+| &lt;NOLINEBREAK: "\\nolinebreak"&gt;
+| &lt;PAGEBREAK: "\\pagebreak"&gt;
+| &lt;NOPAGEBREAK: "\\nopagebreak"&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;TEXT: "\\text"&gt;
+| &lt;MBOX: "\\mbox"&gt;
+| &lt;FBOX: "\\fbox"&gt;
+| &lt;MAKEBOX: "\\makebox"&gt;
+| &lt;FRAMEBOX: "\\framebox"&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;OTHER_LATEX: "\\" (&lt;LETTER&gt;)+&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; SKIP : {
+&lt;NOISE: ~[]&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+</TABLE>
+<H2 ALIGN=CENTER>NON-TERMINALS</H2>
+<TABLE>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod1">Expression</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod2">BasicExpression</A> )*</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod2">BasicExpression</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod3">BasicExprNo2Backslash</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;TWOBACKSLASH&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod3">BasicExprNo2Backslash</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;NUMERIC&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod4">Alphanumeric</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;LARGEDELIM&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;MULTICHARACTER_SYMBOL&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod5">Environment</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod6">SingleArgument</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod7">LatexCmd1or2Param</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod8">LatexCmd1Param</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod9">LatexCmd2Param</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod10">ScriptExpr</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod11">DelimitedBalancedExpr</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod12">NegatedExpression</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod13">Text</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod14">LineOrPageBreak</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod11">DelimitedBalancedExpr</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;LBRACE&gt; <A HREF="#prod1">Expression</A> &lt;RBRACE&gt; )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;LEFTDELIM&gt; <A HREF="#prod1">Expression</A> &lt;RIGHTDELIM&gt; )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod12">NegatedExpression</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;NOT&gt; <A HREF="#prod2">BasicExpression</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod14">LineOrPageBreak</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;NEWLINE&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;TWOBACKSLASHSTAR&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;LINEBREAK&gt; | &lt;NOLINEBREAK&gt; | &lt;PAGEBREAK&gt; | &lt;NOPAGEBREAK&gt; )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod6">SingleArgument</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;DIGIT&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;LETTER&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod15">KeyboardNonAlphanumericChar</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;CONTROLLED_SPACE&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod16">LatexCmd0Param</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod15">KeyboardNonAlphanumericChar</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;BACK_QUOTE&gt; | &lt;EXCLAMATION&gt; | &lt;AT&gt; | &lt;ESCAPED_HASHTAG&gt; | &lt;ESCAPED_DOLLAR&gt; | &lt;ESCAPED_PERCENT&gt; | &lt;ESCAPED_AMPERSAND&gt; | &lt;STAR&gt; | &lt;LPAREN&gt; | &lt;RPAREN&gt; | &lt;HYPHEN&gt; | &lt;ESCAPED_UNDERSCORE&gt; | &lt;EQUAL&gt; | &lt;PLUS&gt; | &lt;LBRACKET&gt; | &lt;ESCAPED_LBRACE&gt; | &lt;RBRACKET&gt; | &lt;ESCAPED_RBRACE&gt; | &lt;VERTICAL_BAR&gt; | &lt;BACKSLASH&gt; | &lt;SEMICOLON&gt; | &lt;COLON&gt; | &lt;QUOTE&gt; | &lt;DOUBLE_QUOTE&gt; | &lt;COMMA&gt; | &lt;LESS_THEN&gt; | &lt;POINT&gt; | &lt;GREATER_THAN&gt; | &lt;SLASH&gt; | &lt;QUESTION_MARK&gt; | &lt;ESCAPED_SYMBOL_ALLOWED&gt; | &lt;ESCAPED_SYMBOL_DISALLOWED&gt; )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod9">LatexCmd2Param</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;BINOM&gt; | &lt;STACKREL&gt; | &lt;FRAC&gt; ) ( ( <A HREF="#prod17">Argument</A> <A HREF="#prod17">Argument</A> ) | ( &lt;NUMERIC&gt; | &lt;ALPHANUM&gt; ) | ( <A HREF="#prod17">Argument</A> ( &lt;NUMERIC&gt; | &lt;ALPHANUM&gt; ) ) )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod17">Argument</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;LBRACE&gt; <A HREF="#prod1">Expression</A> &lt;RBRACE&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod6">SingleArgument</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod7">LatexCmd1or2Param</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;SQRT&gt; &lt;LBRACKET&gt; <A HREF="#prod1">Expression</A> &lt;RBRACKET&gt; ( ( <A HREF="#prod17">Argument</A> ) | ( &lt;NUMERIC&gt; | &lt;ALPHANUM&gt; ) )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod8">LatexCmd1Param</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod18">AccessorizedSingleTerm</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod19">AccessorizedExpression</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod20">OtherLatex1Param</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod16">LatexCmd0Param</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;ELLIPSIS&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod21">OtherLatex</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod10">ScriptExpr</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod22">SubsuperscriptPhrase</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod23">SubsuperscriptPhraseButting</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod24">SubscriptPhrase</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod25">SubscriptPhraseButting</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod26">SuperscriptPhrase</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod27">SuperscriptPhraseButting</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod24">SubscriptPhrase</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;UNDERSCORE&gt; <A HREF="#prod28">Subscript</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod28">Subscript</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod17">Argument</A> | <A HREF="#prod8">LatexCmd1Param</A> )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod25">SubscriptPhraseButting</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;UNDERSCORE&gt; ( &lt;NUMERIC&gt; | &lt;ALPHANUM&gt; )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod26">SuperscriptPhrase</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;CARET&gt; <A HREF="#prod29">Superscript</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod29">Superscript</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod17">Argument</A> | <A HREF="#prod8">LatexCmd1Param</A> )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod22">SubsuperscriptPhrase</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod24">SubscriptPhrase</A> <A HREF="#prod26">SuperscriptPhrase</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod26">SuperscriptPhrase</A> <A HREF="#prod24">SubscriptPhrase</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod23">SubsuperscriptPhraseButting</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod24">SubscriptPhrase</A> <A HREF="#prod27">SuperscriptPhraseButting</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod26">SuperscriptPhrase</A> <A HREF="#prod25">SubscriptPhraseButting</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod27">SuperscriptPhraseButting</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;CARET&gt; ( &lt;NUMERIC&gt; | &lt;ALPHANUM&gt; )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod30">Numerator</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;LBRACE&gt; <A HREF="#prod1">Expression</A> &lt;RBRACE&gt; )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod6">SingleArgument</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod31">Denominator</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;LBRACE&gt; <A HREF="#prod1">Expression</A> &lt;RBRACE&gt; )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod6">SingleArgument</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod20">OtherLatex1Param</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;PHANTOM&gt; | &lt;PMOD&gt; | &lt;SQRT&gt; | &lt;FOOTNOTE&gt; ) ( ( <A HREF="#prod17">Argument</A> ) | ( &lt;NUMERIC&gt; | &lt;ALPHANUM&gt; ) )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod18">AccessorizedSingleTerm</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;ACCENT&gt; | &lt;WIDEACCENT&gt; | &lt;FONT_TYPEFACE&gt; | &lt;FONT_WEIGHT&gt; | &lt;FONT_STYLE&gt; ) ( ( ( <A HREF="#prod6">SingleArgument</A> | ( &lt;LBRACE&gt; ( <A HREF="#prod6">SingleArgument</A> | <A HREF="#prod18">AccessorizedSingleTerm</A> ) &lt;RBRACE&gt; ) ) ) | ( &lt;NUMERIC&gt; | &lt;ALPHANUM&gt; ) )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod19">AccessorizedExpression</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;ACCENT&gt; | &lt;WIDEACCENT&gt; | &lt;FONT_TYPEFACE&gt; | &lt;FONT_WEIGHT&gt; | &lt;FONT_STYLE&gt; ) &lt;LBRACE&gt; <A HREF="#prod1">Expression</A> &lt;RBRACE&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod21">OtherLatex</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;OTHER_LATEX&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod5">Environment</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod32">Array</A> | <A HREF="#prod33">Matrix</A> | <A HREF="#prod34">Parmatrix</A> | <A HREF="#prod35">Bracketmatrix</A> | <A HREF="#prod36">Bracematrix</A> | <A HREF="#prod37">Vertbarmatrix</A> | <A HREF="#prod38">Doublevertbarmatrix</A> | <A HREF="#prod39">Eqnarray</A> | <A HREF="#prod40">IEEEeqnarray</A> | <A HREF="#prod41">Cases</A> | <A HREF="#prod42">Align</A> )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod32">Array</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;BEGIN&gt; &lt;LBRACE&gt; &lt;ARRAY&gt; &lt;RBRACE&gt; &lt;LBRACE&gt; <A HREF="#prod43">ColumnsStyle</A> &lt;RBRACE&gt; <A HREF="#prod44">Row</A> ( &lt;TWOBACKSLASH&gt; <A HREF="#prod44">Row</A> )* &lt;END&gt; &lt;LBRACE&gt; &lt;ARRAY&gt; &lt;RBRACE&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod44">Row</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod45">RowEntry</A> ( &lt;AMPERSAND&gt; <A HREF="#prod45">RowEntry</A> )* )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod45">RowEntry</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( <A HREF="#prod3">BasicExprNo2Backslash</A> )*</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod43">ColumnsStyle</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;VERTICAL_BAR&gt; | &lt;LETTER&gt; | &lt;ALPHANUM&gt; )*</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod33">Matrix</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;BEGIN&gt; &lt;LBRACE&gt; &lt;MATRIX&gt; &lt;RBRACE&gt; <A HREF="#prod44">Row</A> ( &lt;TWOBACKSLASH&gt; <A HREF="#prod44">Row</A> )* &lt;END&gt; &lt;LBRACE&gt; &lt;MATRIX&gt; &lt;RBRACE&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod34">Parmatrix</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;BEGIN&gt; &lt;LBRACE&gt; &lt;PAR_MATRIX&gt; &lt;RBRACE&gt; <A HREF="#prod44">Row</A> ( &lt;TWOBACKSLASH&gt; <A HREF="#prod44">Row</A> )* &lt;END&gt; &lt;LBRACE&gt; &lt;PAR_MATRIX&gt; &lt;RBRACE&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod35">Bracketmatrix</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;BEGIN&gt; &lt;LBRACE&gt; &lt;BRACKET_MATRIX&gt; &lt;RBRACE&gt; <A HREF="#prod44">Row</A> ( &lt;TWOBACKSLASH&gt; <A HREF="#prod44">Row</A> )* &lt;END&gt; &lt;LBRACE&gt; &lt;BRACKET_MATRIX&gt; &lt;RBRACE&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod36">Bracematrix</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;BEGIN&gt; &lt;LBRACE&gt; &lt;BRACE_MATRIX&gt; &lt;RBRACE&gt; <A HREF="#prod44">Row</A> ( &lt;TWOBACKSLASH&gt; <A HREF="#prod44">Row</A> )* &lt;END&gt; &lt;LBRACE&gt; &lt;BRACE_MATRIX&gt; &lt;RBRACE&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod37">Vertbarmatrix</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;BEGIN&gt; &lt;LBRACE&gt; &lt;VERTBAR_MATRIX&gt; &lt;RBRACE&gt; <A HREF="#prod44">Row</A> ( &lt;TWOBACKSLASH&gt; <A HREF="#prod44">Row</A> )* &lt;END&gt; &lt;LBRACE&gt; &lt;VERTBAR_MATRIX&gt; &lt;RBRACE&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod38">Doublevertbarmatrix</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;BEGIN&gt; &lt;LBRACE&gt; &lt;DOUBLE_VERTBAR_MATRIX&gt; &lt;RBRACE&gt; <A HREF="#prod44">Row</A> ( &lt;TWOBACKSLASH&gt; <A HREF="#prod44">Row</A> )* &lt;END&gt; &lt;LBRACE&gt; &lt;DOUBLE_VERTBAR_MATRIX&gt; &lt;RBRACE&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod39">Eqnarray</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;BEGIN&gt; &lt;LBRACE&gt; &lt;EQNARRAY&gt; &lt;RBRACE&gt; <A HREF="#prod46">Eqn</A> ( &lt;TWOBACKSLASH&gt; <A HREF="#prod46">Eqn</A> )* &lt;END&gt; &lt;LBRACE&gt; &lt;EQNARRAY&gt; &lt;RBRACE&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod40">IEEEeqnarray</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;BEGIN&gt; &lt;LBRACE&gt; &lt;IEEE_EQNARRAY&gt; &lt;RBRACE&gt; &lt;LBRACE&gt; <A HREF="#prod43">ColumnsStyle</A> &lt;RBRACE&gt; <A HREF="#prod46">Eqn</A> ( &lt;TWOBACKSLASH&gt; <A HREF="#prod46">Eqn</A> )* &lt;END&gt; &lt;LBRACE&gt; &lt;IEEE_EQNARRAY&gt; &lt;RBRACE&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod42">Align</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;BEGIN&gt; &lt;LBRACE&gt; &lt;ALIGN&gt; &lt;RBRACE&gt; <A HREF="#prod46">Eqn</A> ( &lt;TWOBACKSLASH&gt; <A HREF="#prod46">Eqn</A> )* &lt;END&gt; &lt;LBRACE&gt; &lt;ALIGN&gt; &lt;RBRACE&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod46">Eqn</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod44">Row</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod41">Cases</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;BEGIN&gt; &lt;LBRACE&gt; &lt;CASES&gt; &lt;RBRACE&gt; <A HREF="#prod47">Case</A> ( &lt;TWOBACKSLASH&gt; <A HREF="#prod47">Case</A> )* &lt;END&gt; &lt;LBRACE&gt; &lt;CASES&gt; &lt;RBRACE&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod47">Case</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod44">Row</A></TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod4">Alphanumeric</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;ALPHANUM&gt; | <A HREF="#prod48">ReservedWord</A> )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod48">ReservedWord</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;ARRAY&gt; | &lt;MATRIX&gt; | &lt;CASES&gt; | &lt;EQUATION&gt; | &lt;ALIGN&gt; )</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod13">Text</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>( &lt;TEXT&gt; | &lt;FBOX&gt; | &lt;MBOX&gt; | &lt;FRAMEBOX&gt; | &lt;MAKEBOX&gt; )</TD>
+</TR>
+</TABLE>
+</BODY>
+</HTML>
