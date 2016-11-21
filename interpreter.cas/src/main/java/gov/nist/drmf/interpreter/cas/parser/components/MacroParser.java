@@ -8,7 +8,6 @@ import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
-import java.awt.*;
 import java.util.List;
 
 /**
@@ -56,6 +55,11 @@ public class MacroParser extends AbstractListParser {
     public MacroParser(){}
 
     @Override
+    public boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following ){
+        return parse(exp) && parse(following);
+    }
+
+    @Override
     public boolean parse(PomTaggedExpression root_exp) {
         MathTerm term = root_exp.getRoot();
         FeatureSet fset = term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
@@ -89,8 +93,7 @@ public class MacroParser extends AbstractListParser {
         return true;
     }
 
-    @Override
-    public boolean parse(List<PomTaggedExpression> following_exps){
+    private boolean parse(List<PomTaggedExpression> following_exps){
         if ( components == null ) return false;
 
         for ( int i = 0; !following_exps.isEmpty() && i < components.length; ){
