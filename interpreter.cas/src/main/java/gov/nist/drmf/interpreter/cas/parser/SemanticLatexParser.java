@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.cas.parser;
 
 import gov.nist.drmf.interpreter.cas.logging.InformationLogger;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
@@ -57,7 +58,7 @@ public class SemanticLatexParser extends AbstractParser {
         constants.init();
         functions.init();
         parser = new PomParser(reference_dir_path.toString());
-        
+        parser.addLexicons( GlobalConstants.DLMF_MACROS_LEXICON_NAME );
     }
 
     /**

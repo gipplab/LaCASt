@@ -53,6 +53,7 @@ public class MLP {
             //location of the lexicons
             PomParser parser = new PomParser(refDataDir);
             parser.addMacros(macros);   //make the macros known to the parser
+            parser.addLexicons( GlobalConstants.DLMF_MACROS_LEXICON_NAME );
 
             // provide next an equation to parse
             String eq = eqs[0];

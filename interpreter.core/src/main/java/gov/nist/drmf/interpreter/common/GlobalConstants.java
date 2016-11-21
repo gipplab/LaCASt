@@ -28,4 +28,7 @@ public class GlobalConstants {
     // path to the json file with basic functions
     public static final Path PATH_BASIC_FUNCTIONS =
             Paths.get("libs", "BasicFunctions.json");
+
+    public static final String DLMF_MACROS_LEXICON_NAME =
+            "DLMF-macros-lexicon.txt";
 }
