@@ -34809,7 +34809,7 @@ Symbol: e
 	Font-typeface: computer modern
 	Font-weight: plain
 	Meanings: the mathematical constant e == Napier's constant ==  2.71828182845...
-	Role: a mathematical constant
+	Role: mathematical constant
 
 Symbol: epsilon
 
@@ -35279,7 +35279,7 @@ Symbol: i
 	Font-typeface: computer modern
 	Font-weight: plain
 	Meanings: the imaginary unit == the square root of -1
-	Role: a mathematical constant
+	Role: mathematical constant
 
   Feature Set:
 	Alphabet: Latin

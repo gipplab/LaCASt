@@ -205,7 +205,7 @@ Symbol: e
 	Font-typeface: computer modern
 	Font-weight: plain
 	Meanings: the mathematical constant e == Napier's constant ==  2.71828182845...
-	Role: a mathematical constant
+	Role: mathematical constant
 
 Symbol: epsilon
 

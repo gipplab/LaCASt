@@ -1093,7 +1093,7 @@ Symbol: i
 	Font-typeface: computer modern
 	Font-weight: plain
 	Meanings: the imaginary unit == the square root of -1
-	Role: a mathematical constant
+	Role: mathematical constant
 
   Feature Set:
 	Alphabet: Latin
