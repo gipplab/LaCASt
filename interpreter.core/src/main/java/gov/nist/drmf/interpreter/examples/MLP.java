@@ -55,11 +55,11 @@ public class MLP {
             parser.addMacros(macros);   //make the macros known to the parser
 
             // provide next an equation to parse
-            String eq=eqs[0];
+            String eq = eqs[0];
             //eq = "\\Mathieuce{123 a}@@{\\sqrt{2}b}{\\frac{1}{2}}";
             //eq = "\\JacobiP{\\iunit}{5.5}@{23}";
             //eq = "\\FerrersP[\\frac{1}{2}]{\\nu}@{z}";
-            eq = "\\left( \\frac{1}{2} \\right)";
+            eq = "\\cos\\left( 2 \\right)";
             //eq="\\left ( \\left ( y \\right ] \\right)";
 
             // parse/tag the equation and print it out 

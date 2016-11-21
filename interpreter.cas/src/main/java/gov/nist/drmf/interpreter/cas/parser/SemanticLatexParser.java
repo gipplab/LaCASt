@@ -57,6 +57,7 @@ public class SemanticLatexParser extends AbstractParser {
         constants.init();
         functions.init();
         parser = new PomParser(reference_dir_path.toString());
+        
     }
 
     /**
