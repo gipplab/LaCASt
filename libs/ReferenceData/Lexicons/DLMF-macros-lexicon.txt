@@ -39,7 +39,7 @@ Symbol: expe
 	DLMF-Link: dlmf.nist.gov/4.2.E11
 	Role: mathematical constant
 	
-Symbol: gamma
+Symbol: EulerConstant
 
   Feature Set: dlmf-macro
 	Meaning: Euler-Mascheroni constant
