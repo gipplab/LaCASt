@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.cas.logging;
 
+import gov.nist.drmf.interpreter.common.grammar.Brackets;
+
 import java.util.LinkedList;
 
 /**
@@ -20,6 +22,10 @@ public class TranslatedExpression {
         this.trans_exps.addAll( expressions.trans_exps );
     }
 
+    public int getLength(){
+        return trans_exps.size();
+    }
+
     public int clear(){
         int s = trans_exps.size();
         trans_exps = new LinkedList<>();
@@ -35,6 +41,35 @@ public class TranslatedExpression {
         while ( !tmp.isEmpty() )
             sub.addTranslatedExpression( tmp.removeLast() );
         return sub;
+    }
+
+    public void mergeLastNExpressions( int n ){
+        TranslatedExpression tmp = new TranslatedExpression();
+        LinkedList<String> tmpList = new LinkedList<>();
+        for ( int i = 0; i < n; i++ )
+            tmpList.add( this.removeLastExpression() );
+        while ( !tmpList.isEmpty() ){
+            tmp.addTranslatedExpression( tmpList.removeLast() );
+        }
+        addTranslatedExpression( tmp.toString() );
+    }
+
+    public int mergeAll(){
+        String tmp = toString();
+        int length = trans_exps.size();
+        trans_exps.clear();
+        trans_exps.add( tmp );
+        return length;
+    }
+
+    public int mergeAllWithParenthesis(){
+        String tmp = Brackets.left_parenthesis.symbol;
+        int i = trans_exps.size();
+        while ( !trans_exps.isEmpty() ){
+            tmp += trans_exps.removeFirst();
+        }
+        trans_exps.add( tmp + Brackets.left_parenthesis.counterpart );
+        return i;
     }
 
     public String removeLastExpression(){

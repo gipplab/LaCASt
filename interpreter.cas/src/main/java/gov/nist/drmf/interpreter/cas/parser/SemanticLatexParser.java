@@ -75,7 +75,7 @@ public class SemanticLatexParser extends AbstractParser {
 
     @Override
     public boolean parse(PomTaggedExpression expression) {
-        innerTranslatedExp.addTranslatedExpression(
+        local_inner_exp.addTranslatedExpression(
                 parseGeneralExpression(expression, null).getTranslatedExpression()
         );
         return !isInnerError();

@@ -35,15 +35,16 @@ public class SemanticToCASInterpreter {
         for ( int i = 0; i < args.length; i++ )
             test += args[i];
 
-        test = "q*\\iunit+2-\\frac{\\sqrt[\\alpha]{\\cpi}}{2\\JacobiP{i}{\\beta}{2}@{12.6}}";
-//        test = "\\JacobiP{\\iunit}{b}{c}@{d}";
+//        test = "\\cos \\left( 2+2 \\right)";
+//        test = "\\frac{1+1}{2+2}+2";
+//        test = "(abc1+2)*2";
+//        test = "\\sqrt[\\alpha]{\\cpi}+2\\JacobiP{i}{\\beta}{2}@{12.6}";
+//        test = "q*\\iunit+\\cos(2-\\frac{\\sqrt[\\alpha]{\\cpi}}{2\\JacobiP{i}{\\beta}{2}@{12.6}})";
 //        test = "18*\\JacobiP{\\cos{\\sqrt{2}}}{\\JacobiP{\\iunit}{b}{c}@{d}}{2}@{3}";
-        //test = "x^{\\JacobiP{\\iunit}{b}{c}@{d}}";
-
+//        test = "x^{\\JacobiP{\\iunit}{b}{c}@{d}}";
 //        test = "\\JacobiP{\\alpha}{b}{c}@{\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}";
-//        test = "\\JacobiP{\\alpha\\sqrt[3]{x}\\sin(x\\alpha xyz)\\sqrt[2]{3}}{b\\frac{1}{\\pi}}{1+0\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}@{\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}";
+        test = "\\JacobiP{\\alpha\\sqrt[3]{x}\\sin(x\\alpha xyz)\\sqrt[2]{3}}{b\\frac{1}{\\pi}}{1+0\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}@{\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}";
 
-//        test = "\\cos(2)^{3+2}+12+0.5*\\iunit";
 
         latexParser.init( GlobalConstants.PATH_REFERENCE_DATA );
         latexParser.parse(test);
@@ -51,7 +52,7 @@ public class SemanticToCASInterpreter {
         System.out.println(test + System.lineSeparator());
         System.out.println("Converted to " + Keys.CAS_KEY + ":");
         System.out.println(latexParser.getTranslatedExpression());
-        System.out.println(Arrays.toString(latexParser.getGlobalExpression().trans_exps.toArray()));
+        System.out.println(Arrays.toString(latexParser.getGlobalExpressionObject().trans_exps.toArray()));
         System.out.println();
         System.out.println(latexParser.getInfoLog().toString());
     }

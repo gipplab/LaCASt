@@ -36,17 +36,17 @@ public abstract class AbstractParser implements IParser {
     public static final String SPECIAL_SYMBOL_PATTERN =
             "[\\^\\/\\*\\+\\-\\_]";
 
+    public static final String CHAR_BACKSLASH = "\\";
+
     protected static InformationLogger INFO_LOG;
 
     protected static Logger ERROR_LOG;
 
-    protected TranslatedExpression innerTranslatedExp = new TranslatedExpression();
-
-    protected String last_exp;
+    protected TranslatedExpression local_inner_exp = new TranslatedExpression();
 
     protected static TranslatedExpression global_exp;
 
-    private boolean innerError = false;
+    private boolean inner_Error = false;
 
     /**
      * This method simply handles a general expression and invoke
@@ -58,7 +58,9 @@ public abstract class AbstractParser implements IParser {
     protected TranslatedExpression parseGeneralExpression(
             PomTaggedExpression exp,
             List<PomTaggedExpression> exp_list){
-        AbstractParser inner_parser;
+        // create inner local parser (recursive)
+        AbstractParser inner_parser = null;
+        // if there was an inner error
         boolean return_value;
 
         // handle all different cases
@@ -72,8 +74,7 @@ public abstract class AbstractParser implements IParser {
             if ( isDLMFMacro(term) ){ // BEFORE FUNCTION!
                 MacroParser mp = new MacroParser();
                 return_value = mp.parse(exp);
-                return_value = return_value && mp.parse(exp_list);
-                last_exp = mp.innerTranslatedExp.getLastExpression();
+                return_value &= mp.parse(exp_list);
                 inner_parser = mp;
             } // second, it could be a sub sequence
             else if ( isSubSequence(term) ){
@@ -85,23 +86,9 @@ public abstract class AbstractParser implements IParser {
             else if ( isFunction(term) ){
                 FunctionParser fp = new FunctionParser();
                 return_value = fp.parse(exp);
-                String function = fp.innerTranslatedExp.removeLastExpression();
-                return_value = return_value && fp.parse(exp_list);
-                String arguments = fp.innerTranslatedExp.removeLastExpression();
-                String output;
-                if ( arguments.matches( "\\s*" + Brackets.OPEN_PATTERN + ".*" ) ){
-                    output = function + arguments;
-                } else {
-                    Brackets b = Brackets.left_parenthesis;
-                    output = function + b.symbol + arguments + b.counterpart;
-                }
-
-                fp.innerTranslatedExp.addTranslatedExpression(
-                        output
-                );
-                last_exp = fp.innerTranslatedExp.getLastExpression();
-                TranslatedExpression t = global_exp.removeLastNExps(2);
-                global_exp.addTranslatedExpression( output );
+                return_value &= fp.parse( exp_list );
+                int num = fp.local_inner_exp.mergeAll(); // a bit redundant, num is always 2!
+                global_exp.mergeLastNExpressions( num );
                 inner_parser = fp;
             } // otherwise it is a general math term
             else {
@@ -110,8 +97,8 @@ public abstract class AbstractParser implements IParser {
             }
         }
 
-        innerError = !return_value;
-        return inner_parser.innerTranslatedExp;
+        inner_Error = !return_value;
+        return inner_parser.local_inner_exp;
     }
 
     private boolean isDLMFMacro( MathTerm term ){
@@ -158,18 +145,18 @@ public abstract class AbstractParser implements IParser {
 
     @Override
     public String getTranslatedExpression() {
-        return innerTranslatedExp.getTranslatedExpression();
+        return local_inner_exp.getTranslatedExpression();
     }
 
     public TranslatedExpression getTranslatedExpressionObject(){
-        return innerTranslatedExp;
+        return local_inner_exp;
     }
 
-    public TranslatedExpression getGlobalExpression(){
+    public TranslatedExpression getGlobalExpressionObject(){
         return global_exp;
     }
 
     protected boolean isInnerError(){
-        return innerError;
+        return inner_Error;
     }
 }

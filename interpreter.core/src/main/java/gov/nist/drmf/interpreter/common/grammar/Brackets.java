@@ -79,6 +79,7 @@ public enum Brackets {
     public static final boolean CLOSED = false;
 
     public static final String OPEN_PATTERN = "[\\(\\[\\{\\<]";
+    public static final String CLOSED_PATTERN = "[\\)\\]\\}\\>]";
 
     public final String symbol;
     public final boolean opened;
