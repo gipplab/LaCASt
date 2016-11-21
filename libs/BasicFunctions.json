@@ -35,6 +35,18 @@
 		"LaTeX": "$0!",
 		"Maple": "factorial($0)",
 		"Mathematica": "$0!"
+	},
+	"Double Factorial": {
+		"MLP": "double exclamation point",
+		"LaTeX": "$0!!",
+		"Maple": "doublefactorial($0)",
+		"Mathematica": "$0!!"
+	},
+	"Modulo": {
+		"MLP": "modulo",
+		"LaTeX": "$0 \\mod $1",
+		"Maple": "`mod`($0,$1)",
+		"Mathematica": "Mod[$0,$1]"
 	}
   },
   "Symbol Languages": [

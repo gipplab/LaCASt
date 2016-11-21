@@ -33,9 +33,6 @@ public abstract class AbstractParser implements IParser {
     public static final String PARENTHESIS_PATTERN =
             "(right|left)[-\\s](parenthesis|bracket|brace)";
 
-    public static final String SPECIAL_SYMBOL_PATTERN =
-            "[\\^\\/\\*\\+\\-\\_]";
-
     public static final String CHAR_BACKSLASH = "\\";
 
     protected static InformationLogger INFO_LOG;
@@ -73,8 +70,7 @@ public abstract class AbstractParser implements IParser {
             // first, is this a DLMF macro?
             if ( isDLMFMacro(term) ){ // BEFORE FUNCTION!
                 MacroParser mp = new MacroParser();
-                return_value = mp.parse(exp);
-                return_value &= mp.parse(exp_list);
+                return_value = mp.parse(exp, exp_list);
                 inner_parser = mp;
             } // second, it could be a sub sequence
             else if ( isSubSequence(term) ){
@@ -85,15 +81,13 @@ public abstract class AbstractParser implements IParser {
             } // this is special, could be a function like cos
             else if ( isFunction(term) ){
                 FunctionParser fp = new FunctionParser();
-                return_value = fp.parse(exp);
-                return_value &= fp.parse( exp_list );
-                int num = fp.local_inner_exp.mergeAll(); // a bit redundant, num is always 2!
-                global_exp.mergeLastNExpressions( num );
+                return_value = fp.parse(exp, exp_list);
                 inner_parser = fp;
             } // otherwise it is a general math term
             else {
-                inner_parser = new MathTermParser();
-                return_value = inner_parser.parse(exp);
+                MathTermParser mp = new MathTermParser();
+                return_value = mp.parse(exp, exp_list);
+                inner_parser = mp;
             }
         }
 
@@ -145,6 +139,7 @@ public abstract class AbstractParser implements IParser {
 
     @Override
     public String getTranslatedExpression() {
+        // TODO
         return local_inner_exp.getTranslatedExpression();
     }
 

@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.logging;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 /**
  * @author Andre Greiner-Petter
@@ -35,7 +36,7 @@ public class TranslatedExpression {
     public TranslatedExpression removeLastNExps(int n){
         TranslatedExpression sub = new TranslatedExpression();
         LinkedList<String> tmp = new LinkedList<>();
-        for( int i = 0; i < n; i++ ){
+        for( int i = 0; i < n && !trans_exps.isEmpty(); i++ ){
             tmp.add(removeLastExpression());
         }
         while ( !tmp.isEmpty() )
@@ -44,6 +45,10 @@ public class TranslatedExpression {
     }
 
     public void mergeLastNExpressions( int n ){
+        if ( n > trans_exps.size() ){
+            mergeAll();
+            return;
+        }
         TranslatedExpression tmp = new TranslatedExpression();
         LinkedList<String> tmpList = new LinkedList<>();
         for ( int i = 0; i < n; i++ )
@@ -73,15 +78,18 @@ public class TranslatedExpression {
     }
 
     public String removeLastExpression(){
-        return trans_exps.removeLast();
+        if ( !trans_exps.isEmpty() ) return trans_exps.removeLast();
+        else return null;
     }
 
     public String getLastExpression(){
-        return trans_exps.getLast();
+        if ( trans_exps.isEmpty() ) return null;
+        else return trans_exps.getLast();
     }
 
     public void replaceLastExpression( String new_exp ){
-        trans_exps.removeLast();
+        if ( !trans_exps.isEmpty() )
+            trans_exps.removeLast();
         trans_exps.add(new_exp);
     }
 

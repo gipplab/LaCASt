@@ -29,6 +29,9 @@ import java.util.List;
  * @author Andre Greiner-Petter
  */
 public class SequenceParser extends AbstractListParser {
+    public static final String SPECIAL_SYMBOL_PATTERN_FOR_SPACES =
+            "[\\^\\/\\_\\!]";
+
     // the open bracket if needed
     @Nullable
     private Brackets open_bracket;
@@ -50,6 +53,13 @@ public class SequenceParser extends AbstractListParser {
      */
     public SequenceParser( Brackets open_bracket ){
         this.open_bracket = open_bracket;
+    }
+
+    @Override
+    public boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following ){
+        if ( exp == null ) return parse(following);
+        else if ( following == null ) return parse(exp);
+        else return false;
     }
 
     /**
@@ -85,16 +95,24 @@ public class SequenceParser extends AbstractListParser {
             // only take the last object and check if it is
             // necessary to add a space character behind
             part = inner_translation.getLastExpression();
+            boolean lastMerged = false;
+            if ( part == null ) {
+                part = global_exp.getLastExpression();
+                lastMerged = true;
+            }
             if ( addSpace( exp, exp_list ) ) {
                 part += SPACE;
                 // the global list already got each element before,
                 // so simply replace the last if necessary
-                global_exp.replaceLastExpression(part);
+                String tmp = global_exp.getLastExpression();
+                global_exp.replaceLastExpression(tmp+SPACE);
             }
 
             // finally add all elements to the inner list
-            inner_translation.replaceLastExpression(part);
-            local_inner_exp.addTranslatedExpression( inner_translation );
+            inner_translation.replaceLastExpression( part );
+            if ( lastMerged )
+                local_inner_exp.replaceLastExpression( inner_translation.toString() );
+            else local_inner_exp.addTranslatedExpression( inner_translation );
         }
 
         // finally return value
@@ -116,7 +134,6 @@ public class SequenceParser extends AbstractListParser {
      *                      with an open bracket
      * @return true when the parser finished without an error.
      */
-    @Override
     public boolean parse(List<PomTaggedExpression> following_exp) {
         if ( open_bracket == null ){
             ERROR_LOG.severe("Wrong parser method used. " +
@@ -217,12 +234,19 @@ public class SequenceParser extends AbstractListParser {
 
             // check, if we need to add space here
             String last = inner_trans.removeLastExpression();
+            boolean inner = false;
+            if ( last == null ) {
+                last = global_exp.getLastExpression();
+                inner = true;
+            }
             if ( addSpace( exp, following_exp ) ) {
                 last += SPACE;
                 global_exp.replaceLastExpression( last );
             }
+
             inner_trans.addTranslatedExpression( last );
-            local_inner_exp.addTranslatedExpression( inner_trans );
+            if ( inner ) local_inner_exp.replaceLastExpression( inner_trans.toString() );
+            else local_inner_exp.addTranslatedExpression( inner_trans );
 
             // if there was in error, its over here...
             if ( isInnerError() ) return false;
@@ -248,7 +272,9 @@ public class SequenceParser extends AbstractListParser {
             MathTerm curr = currExp.getRoot();
             MathTerm next = exp_list.get(0).getRoot();
             return !(curr.getTag().matches(PARENTHESIS_PATTERN)
-                    || next.getTag().matches(PARENTHESIS_PATTERN));
+                    || next.getTag().matches(PARENTHESIS_PATTERN)
+                    || next.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)
+            );
         } catch ( Exception e ){ return true; }
     }
 }

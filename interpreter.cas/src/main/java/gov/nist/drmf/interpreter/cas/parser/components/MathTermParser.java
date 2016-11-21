@@ -2,12 +2,14 @@ package gov.nist.drmf.interpreter.cas.parser.components;
 
 import com.sun.istack.internal.Nullable;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
 import gov.nist.drmf.interpreter.cas.parser.AbstractParser;
 import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
@@ -15,6 +17,9 @@ import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * The math term parser parses only math terms.
@@ -28,10 +33,15 @@ import mlp.PomTaggedExpression;
  * @see MathTermTags
  * @author Andre Greiner-Petter
  */
-public class MathTermParser extends AbstractParser {
+public class MathTermParser extends AbstractListParser {
     // some special characters which are useful for this parser
     // the caret uses for powers
     public static final String CHAR_CARET = "^";
+
+    @Override
+    public boolean parse( PomTaggedExpression exp ){
+        return parse( exp, new LinkedList<>() );
+    }
 
     /**
      * This parser only parses MathTerms. Only use this
@@ -39,12 +49,12 @@ public class MathTermParser extends AbstractParser {
      * cannot parse by any other specialized parser!
      *
      * @param exp has a not empty term!
+     * @param following_exp
      * @return true when everything is fine and there was no error
      */
     @Override
-    public boolean parse( PomTaggedExpression exp ) {
+    public boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following_exp ) {
         // it has to be checked before that this exp has a not empty term
-
         // get the MathTermTags object
         MathTerm term = exp.getRoot();
         String tagExp = term.getTag();
@@ -178,31 +188,36 @@ public class MathTermParser extends AbstractParser {
                 // ignore?
                 return true;
             case operation:
-                SymbolTranslator sT = SemanticLatexParser.getSymbolsTranslator();
-                String translation = sT.translate( term.getTermText() );
-                if ( translation == null ){
-                    ERROR_LOG.warning("Cannot parse operation " + term.getTermText());
-                    return false;
-                } else {
-                    INFO_LOG.addGeneralInfo(
-                            term.getTermText(),
-                            "was translated to " + translation);
-                    local_inner_exp.addTranslatedExpression( translation );
-                    global_exp.addTranslatedExpression( translation );
+                OperationParser opParser = new OperationParser();
+                // well, maybe not the best choice
+                if ( opParser.parse( exp, following_exp ) ){
+                    local_inner_exp.addTranslatedExpression( opParser.getTranslatedExpressionObject() );
                     return true;
+                } else return false;
+            case factorial:
+                String last = global_exp.removeLastExpression();
+                BasicFunctionsTranslator translator = SemanticLatexParser.getBasicFunctionParser();
+                String translation;
+
+                String prefix = "";
+                try {
+                    PomTaggedExpression next = following_exp.get(0);
+                    MathTermTags nextTag = MathTermTags.getTagByKey( next.getRoot().getTag() );
+                    if ( nextTag != null && nextTag.equals( tag ) ){
+                        following_exp.remove(0);
+                        prefix = "double ";
+                    }
+                } catch ( Exception e ){
+                    prefix = "";
                 }
-            case factorial: // TODO
-                INFO_LOG.addGeneralInfo( "!", "Found factorial! We currently working on better translations." );
-                local_inner_exp.addTranslatedExpression( term.getTermText() );
-                global_exp.addTranslatedExpression( term.getTermText() );
+                translation = translator.translate(new String[]{last}, prefix+tag.tag());
+
+                // probably we don't have to do anything with the local exp
+                //local_inner_exp.addTranslatedExpression( translation );
+                global_exp.addTranslatedExpression( translation );
                 return true;
             case caret:
                 return parseCaret( exp );
-            case mod: // TODO
-                ERROR_LOG.warning(
-                        "Well, mod is pretty hard to handle right now... " +
-                                "not supported yet.");
-                return false;
             case macro:
                 ERROR_LOG.warning(
                         "A macro? What is it? Please inform " +
@@ -389,8 +404,10 @@ public class MathTermParser extends AbstractParser {
 
         // now we need to wrap parenthesis around the power
         Brackets b = Brackets.left_parenthesis;
-        String powerStr = CHAR_CARET +
-                b.symbol + power.toString() + b.counterpart;
+        String powerStr = CHAR_CARET;
+        if ( power.getLength() > 1 )
+                powerStr += b.symbol + power.toString() + b.counterpart;
+        else powerStr += power.toString();
 
         // the power becomes one big expression now.
         local_inner_exp.addTranslatedExpression( powerStr );
@@ -399,6 +416,8 @@ public class MathTermParser extends AbstractParser {
         global_exp.removeLastNExps( power.clear() );
         // and add the power with parenthesis (and the caret)
         global_exp.addTranslatedExpression( powerStr );
+        // merges last 2 expression, because after ^ it is one phrase than
+        global_exp.mergeLastNExpressions(2);
         return !isInnerError();
     }
 }

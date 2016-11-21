@@ -34,6 +34,22 @@ import java.util.List;
  */
 public class FunctionParser extends AbstractListParser {
     /**
+     *
+     * @param exp
+     * @param following
+     * @return
+     */
+    @Override
+    public boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following ){
+        boolean return_value;
+        return_value = parse(exp);
+        return_value &= parse(following);
+        int num = local_inner_exp.mergeAll(); // a bit redundant, num is always 2!
+        global_exp.mergeLastNExpressions( num );
+        return return_value;
+    }
+
+    /**
      * This parse method has to be invoked before {@link #parse(List)}.
      * It only parses the function itself (like cos(2), cos is the first part).
      *
@@ -71,8 +87,7 @@ public class FunctionParser extends AbstractListParser {
      * @param following_exp the descendants of a previous function {@link #parse(PomTaggedExpression)}
      * @return true if everything was fine
      */
-    @Override
-    public boolean parse(List<PomTaggedExpression> following_exp) {
+    private boolean parse(List<PomTaggedExpression> following_exp) {
         // get first expression
         PomTaggedExpression first = following_exp.remove(0);
 
