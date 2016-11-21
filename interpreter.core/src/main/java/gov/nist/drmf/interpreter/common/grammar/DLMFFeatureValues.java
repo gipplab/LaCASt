@@ -41,6 +41,9 @@ public enum DLMFFeatureValues implements IFeatureExtractor{
                             t.getFeature(Keys.CAS_KEY + DLMFFeatureValues.LINK_SUFFIX)
                     )
     ),
+    DLMF(
+            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.KEY_DLMF))
+    ),
     constraints(
             t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_CONSTRAINTS))
     ),

@@ -3,7 +3,7 @@ Symbol: \JacobiP
 
   Feature Set: dlmf-macro
 	Areas: special functions
-	Meaning: Jacobi polynomial
+	Meanings: Jacobi polynomial
 	Argument-structure: (parameter, parameter, parameter, variable)
 	Number of Parameters: 3
 	Number of Variables: 1
@@ -15,6 +15,7 @@ Symbol: \JacobiP
 	Mathematica: JacobiP[$2,$0,$1,$3]
 	Mathematica-Link: reference.wolfram.com/language/ref/JacobiP.html
 	Constraints: a,b > -1
+	Branch Cuts: None
 	Role: dlmf-macro
 	
 Symbol: iunit
@@ -29,4 +30,32 @@ Symbol: cpi
   Feature Set: dlmf-macro
 	Meaning: Archimed's constant, or the ratio of a circle's circumference to its diameter
 	DLMF-Link: dlmf.nist.gov
+	Role: mathematical constant
+	
+Symbol: expe
+
+  Feature Set: dlmf-macro
+	Meaning: Euler's constant
+	DLMF-Link: dlmf.nist.gov/4.2.E11
+	Role: mathematical constant
+	
+Symbol: gamma
+
+  Feature Set: dlmf-macro
+	Meaning: Euler-Mascheroni constant
+	DLMF-Link: dlmf.nist.gov/5.2#E3
+	Role: mathematical constant
+	
+Symbol: CatalansConstant
+
+  Feature Set: dlmf-macro
+	Meaning: Catalans constant
+	DLMF-Link: dlmf.nist.gov/25.11#E40
+	Role: mathematical constant
+
+Symbol: inf
+
+  Feature Set: dlmf-macro
+	Meaning: Infinity
+	DLMF-Link: dlmf.nist.gov/font/introduction#Sx4.p1.t1.r24
 	Role: mathematical constant

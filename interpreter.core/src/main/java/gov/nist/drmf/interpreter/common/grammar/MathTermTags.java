@@ -32,7 +32,8 @@ public enum MathTermTags {
     mod("mod"),
     macro("macro"),
     caret("caret"),
-    factorial("exclamation point");
+    factorial("exclamation point"),
+    operation("operation");
 
     private String tag;
 

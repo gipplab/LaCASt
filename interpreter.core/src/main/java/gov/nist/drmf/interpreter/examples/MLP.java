@@ -60,7 +60,7 @@ public class MLP {
             //eq = "\\Mathieuce{123 a}@@{\\sqrt{2}b}{\\frac{1}{2}}";
             //eq = "\\JacobiP{\\iunit}{5.5}@{23}";
             //eq = "\\FerrersP[\\frac{1}{2}]{\\nu}@{z}";
-            eq = "\\cos\\left( 2 \\right)";
+            eq = "2 \\cdot 3!";
             //eq="\\left ( \\left ( y \\right ] \\right)";
 
             // parse/tag the equation and print it out 

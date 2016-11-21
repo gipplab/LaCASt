@@ -10,6 +10,7 @@ import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
+import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
@@ -176,9 +177,28 @@ public class MathTermParser extends AbstractParser {
             case comma:
                 // ignore?
                 return true;
+            case operation:
+                SymbolTranslator sT = SemanticLatexParser.getSymbolsTranslator();
+                String translation = sT.translate( term.getTermText() );
+                if ( translation == null ){
+                    ERROR_LOG.warning("Cannot parse operation " + term.getTermText());
+                    return false;
+                } else {
+                    INFO_LOG.addGeneralInfo(
+                            term.getTermText(),
+                            "was translated to " + translation);
+                    local_inner_exp.addTranslatedExpression( translation );
+                    global_exp.addTranslatedExpression( translation );
+                    return true;
+                }
+            case factorial: // TODO
+                INFO_LOG.addGeneralInfo( "!", "Found factorial! We currently working on better translations." );
+                local_inner_exp.addTranslatedExpression( term.getTermText() );
+                global_exp.addTranslatedExpression( term.getTermText() );
+                return true;
             case caret:
                 return parseCaret( exp );
-            case mod:
+            case mod: // TODO
                 ERROR_LOG.warning(
                         "Well, mod is pretty hard to handle right now... " +
                                 "not supported yet.");

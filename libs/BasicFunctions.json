@@ -36,5 +36,17 @@
 		"Maple": "factorial($0)",
 		"Mathematica": "$0!"
 	}
+  },
+  "Symbol Languages": [
+	"LaTeX",
+	"Maple",
+	"Mathematica"
+  ],
+  "Symbols": {
+	"Multiply": {
+		"LaTeX": "cdot",
+		"Maple": "*",
+		"Mathematica": "*"
+	}
   }
 }

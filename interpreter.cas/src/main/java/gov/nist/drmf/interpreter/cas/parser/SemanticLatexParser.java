@@ -7,6 +7,7 @@ import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
+import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
@@ -34,6 +35,7 @@ public class SemanticLatexParser extends AbstractParser {
     private static GreekLetters greekLetters;
     private static Constants constants;
     private static BasicFunctionsTranslator functions;
+    private static SymbolTranslator symbols;
 
     private PomParser parser;
 
@@ -41,6 +43,7 @@ public class SemanticLatexParser extends AbstractParser {
         greekLetters = new GreekLetters(from_language, to_language);
         constants = new Constants(Keys.KEY_DLMF, to_language);
         functions = new BasicFunctionsTranslator(to_language);
+        symbols = new SymbolTranslator(from_language, to_language);
 
         INFO_LOG = new InformationLogger();
         ERROR_LOG = Logger.getLogger( SemanticLatexParser.class.toString() );
@@ -57,6 +60,7 @@ public class SemanticLatexParser extends AbstractParser {
         greekLetters.init();
         constants.init();
         functions.init();
+        symbols.init();
         parser = new PomParser(reference_dir_path.toString());
         parser.addLexicons( GlobalConstants.DLMF_MACROS_LEXICON_NAME );
     }
@@ -93,6 +97,10 @@ public class SemanticLatexParser extends AbstractParser {
 
     public static BasicFunctionsTranslator getBasicFunctionParser(){
         return functions;
+    }
+
+    public static SymbolTranslator getSymbolsTranslator(){
+        return symbols;
     }
 
     public InformationLogger getInfoLog(){

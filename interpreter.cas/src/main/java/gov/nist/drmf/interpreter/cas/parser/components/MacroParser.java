@@ -8,6 +8,7 @@ import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -38,6 +39,7 @@ public class MacroParser extends AbstractListParser {
             numOfAts,
             numOfVars;
 
+    private String DLMF_example;
 
     private String constraints;
 
@@ -72,6 +74,7 @@ public class MacroParser extends AbstractListParser {
         description = DLMFFeatureValues.description.getFeatureValue(fset);
         constraints = DLMFFeatureValues.constraints.getFeatureValue(fset);
         branch_cuts = DLMFFeatureValues.branch_cuts.getFeatureValue(fset);
+        DLMF_example= DLMFFeatureValues.DLMF.getFeatureValue(fset);
 
         def_dlmf    = DLMFFeatureValues.dlmf_link.getFeatureValue(fset);
         def_cas     = DLMFFeatureValues.CAS_Link.getFeatureValue(fset);
@@ -152,9 +155,10 @@ public class MacroParser extends AbstractListParser {
         if ( !description.isEmpty() )
             extraInformation += description;
         if ( !description.isEmpty() && !meaning.isEmpty() )
-            extraInformation += " / " + meaning + System.lineSeparator();
+            extraInformation += " / " + meaning;
         else if ( !meaning.isEmpty() )
-            extraInformation += meaning + System.lineSeparator();
+            extraInformation += meaning;
+        extraInformation += "; Example: " + DLMF_example + System.lineSeparator();
         extraInformation += "Constraints: " + constraints + System.lineSeparator();
         extraInformation += "Branch Cuts: " + branch_cuts + System.lineSeparator();
         extraInformation += "Link to definitions: " + System.lineSeparator() +
