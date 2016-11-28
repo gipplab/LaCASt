@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.parser.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
 import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
+import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import mlp.MathTerm;
@@ -19,19 +20,31 @@ public class OperationParser extends AbstractListParser {
         MathTerm top = first_exp.getRoot();
         String first = top.getTermText();
 
-        if ( first.matches("[\\\\]?cdot") ){
-            return parseSymbol( top );
-        } else if ( !first.matches("[\\\\]?mod") ){
-            ERROR_LOG.severe("Cannot parse unknown operation " + first);
-            return false;
-        }
+        if ( first.matches("[\\\\]?mod") )
+            return parseModulo( following_exp );
+        else return parseSymbol( top );
+    }
 
+    private boolean parseModulo( List<PomTaggedExpression> following_exp ){
         TranslatedExpression divisorExp =
                 parseGeneralExpression( following_exp.remove(0), following_exp );
         if ( isInnerError() ) return false;
 
+        while ( !following_exp.isEmpty() && forceNext( following_exp.get(0) ) ){
+            TranslatedExpression extended_divisor =
+                    parseGeneralExpression( following_exp.remove(0), following_exp );
+            String last = extended_divisor.getLastExpression();
+            if ( last == null ) {
+                last = global_exp.getLastExpression();
+                divisorExp.removeLastExpression();
+            }
+            extended_divisor.replaceLastExpression( last );
+            divisorExp.addTranslatedExpression( extended_divisor );
+        }
+
         // merge the divisor and get number of elements
-        int num = divisorExp.mergeAllWithParenthesis();
+        int num = divisorExp.mergeAll();
+
         // delete those last elements from global list
         global_exp.removeLastNExps( num );
 
@@ -51,6 +64,14 @@ public class OperationParser extends AbstractListParser {
         // since we replaced the last phrase in global_exp
         // global_exp and local_inner_exp are the same. Theoretically
         return true;
+    }
+
+    private boolean forceNext( PomTaggedExpression next_exp ){
+        if ( containsTerm(next_exp) ){
+            String termTag = next_exp.getRoot().getTag();
+            MathTermTags tag = MathTermTags.getTagByKey(termTag);
+            return tag.equals( MathTermTags.caret ) || tag.equals( MathTermTags.factorial );
+        } else return false;
     }
 
     private boolean parseSymbol( MathTerm term ){

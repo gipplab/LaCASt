@@ -57,12 +57,12 @@ public class MathTermParser extends AbstractListParser {
         // it has to be checked before that this exp has a not empty term
         // get the MathTermTags object
         MathTerm term = exp.getRoot();
-        String tagExp = term.getTag();
-        MathTermTags tag = MathTermTags.getTagByKey(tagExp);
+        String termTag = term.getTag();
+        MathTermTags tag = MathTermTags.getTagByKey(termTag);
 
         // if the tag doesn't exists in the system -> stop
         if ( tag == null ){
-            ERROR_LOG.warning("Unknown tag: " + tagExp);
+            ERROR_LOG.warning("Unknown tag: " + termTag);
             return false;
         }
 
@@ -191,6 +191,10 @@ public class MathTermParser extends AbstractListParser {
                 OperationParser opParser = new OperationParser();
                 // well, maybe not the best choice
                 if ( opParser.parse( exp, following_exp ) ){
+                    /*String transExp = opParser.getTranslatedExpressionObject().removeLastExpression();
+                    if ( transExp == null ){
+                        transExp = global_exp.getLastExpression();
+                    }*/
                     local_inner_exp.addTranslatedExpression( opParser.getTranslatedExpressionObject() );
                     return true;
                 } else return false;
@@ -218,11 +222,22 @@ public class MathTermParser extends AbstractListParser {
                 return true;
             case caret:
                 return parseCaret( exp );
+            case ellipsis:
+                SymbolTranslator sT = SemanticLatexParser.getSymbolsTranslator();
+                String symbol = sT.translateFromMLPKey( tag.tag() );
+                local_inner_exp.addTranslatedExpression( symbol );
+                global_exp.addTranslatedExpression( symbol );
+                return true;
             case macro:
                 ERROR_LOG.warning(
                         "A macro? What is it? Please inform " +
                                 "Andre about this crazy shit: " +
                                 term.getTermText());
+                return false;
+            case abbreviation:
+                ERROR_LOG.warning(
+                        "This program cannot parse abbreviations like " + term.getTermText()
+                );
                 return false;
             default:
                 ERROR_LOG.warning("Unknown MathTerm Tag: "
@@ -405,12 +420,13 @@ public class MathTermParser extends AbstractListParser {
         // now we need to wrap parenthesis around the power
         Brackets b = Brackets.left_parenthesis;
         String powerStr = CHAR_CARET;
-        if ( power.getLength() > 1 )
+        if ( !testBrackets( power.toString() ) )
                 powerStr += b.symbol + power.toString() + b.counterpart;
         else powerStr += power.toString();
 
         // the power becomes one big expression now.
         local_inner_exp.addTranslatedExpression( powerStr );
+        local_inner_exp.addAutoMergeLast(1);
 
         // remove all elements added from the power process
         global_exp.removeLastNExps( power.clear() );

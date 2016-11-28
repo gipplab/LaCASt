@@ -50,15 +50,23 @@
 	}
   },
   "Symbol Languages": [
+	"MLP",
 	"LaTeX",
 	"Maple",
 	"Mathematica"
   ],
   "Symbols": {
 	"Multiply": {
+		"MLP": "operation",
 		"LaTeX": "cdot",
 		"Maple": "*",
 		"Mathematica": "*"
+	},
+	"Lower dots":{
+		"MLP": "ellipsis",
+		"LaTeX": "ldots",
+		"Maple": "..",
+		"Mathematica": " ... "
 	}
   }
 }

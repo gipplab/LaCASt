@@ -100,6 +100,7 @@ public class SequenceParser extends AbstractListParser {
                 part = global_exp.getLastExpression();
                 lastMerged = true;
             }
+
             if ( addSpace( exp, exp_list ) ) {
                 part += SPACE;
                 // the global list already got each element before,
@@ -149,17 +150,17 @@ public class SequenceParser extends AbstractListParser {
 
             // if the next expression does not contains
             // a math term object, simply parse it as a general expression
-            if ( !containsTerm(exp) ){
+            /*if ( !containsTerm(exp) ){
                 TranslatedExpression inner_translation =
                         parseGeneralExpression(exp, following_exp);
 
                 // don't forget to check spaces:
-                String last = inner_translation.removeLastExpression();
+                String last = inner_translation.getLastExpression();
                 if ( addSpace( exp, following_exp ) ){
                     last += SPACE;
                     global_exp.replaceLastExpression( last );
                 }
-                inner_translation.addTranslatedExpression( last );
+                inner_translation.replaceLastExpression( last );
                 local_inner_exp.addTranslatedExpression( inner_translation );
                 // don't need to add elements to global_exp because they were
                 // already added from other methods.
@@ -169,6 +170,7 @@ public class SequenceParser extends AbstractListParser {
                 // otherwise take the next expression
                 else continue;
             }
+            */
 
             // otherwise investigate the term
             MathTerm term = exp.getRoot();
@@ -181,7 +183,7 @@ public class SequenceParser extends AbstractListParser {
             //      -> there is a bracket error in the sequence
 
             // open or closed brackets
-            if ( term.getTag().matches(PARENTHESIS_PATTERN) ){
+            if ( term != null && !term.isEmpty() && term.getTag().matches(PARENTHESIS_PATTERN) ){
                 // get the bracket
                 Brackets bracket = Brackets.getBracket( term.getTermText() );
 
@@ -233,18 +235,19 @@ public class SequenceParser extends AbstractListParser {
             TranslatedExpression inner_trans = parseGeneralExpression(exp, following_exp);
 
             // check, if we need to add space here
-            String last = inner_trans.removeLastExpression();
+            String last = inner_trans.getLastExpression();
             boolean inner = false;
             if ( last == null ) {
                 last = global_exp.getLastExpression();
                 inner = true;
             }
+
             if ( addSpace( exp, following_exp ) ) {
                 last += SPACE;
                 global_exp.replaceLastExpression( last );
             }
 
-            inner_trans.addTranslatedExpression( last );
+            inner_trans.replaceLastExpression( last );
             if ( inner ) local_inner_exp.replaceLastExpression( inner_trans.toString() );
             else local_inner_exp.addTranslatedExpression( inner_trans );
 

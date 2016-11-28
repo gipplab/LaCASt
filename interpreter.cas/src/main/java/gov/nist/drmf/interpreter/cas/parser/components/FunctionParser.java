@@ -148,26 +148,4 @@ public class FunctionParser extends AbstractListParser {
 
         return true;
     }
-
-    /**
-     * Simple test if the given string is wrapped by parenthesis.
-     * It only returns true if there is an open bracket at start and
-     * at the end AND the first open one is really closed in the end.
-     * Something like (1)/(2) would return false.
-     * @param str with or without brackets
-     * @return false if there are no brackets
-     */
-    private boolean testBrackets( String str ){
-        if ( !str.matches(Brackets.OPEN_PATTERN + ".*" + Brackets.CLOSED_PATTERN) )
-            return false;
-
-        int open = 0;
-        for ( int i = 1; i < str.length(); i++ ){
-            if ( (""+str.charAt(i)).matches( Brackets.OPEN_PATTERN ) )
-                open++;
-            else if ( (""+str.charAt(i)).matches( Brackets.CLOSED_PATTERN ) )
-                open--;
-        }
-        return open < 0;
-    }
 }
