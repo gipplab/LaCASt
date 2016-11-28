@@ -324,7 +324,7 @@ public class MathTermParser extends AbstractListParser {
                                 DLMFFeatureValues.meaning.getFeatureValue(set) + "]." + System.lineSeparator() +
                                 "We keep it like it is! But you should know that " + Keys.CAS_KEY +
                                 " uses " + translated_const + " for this constant." + System.lineSeparator() +
-                                "If you want to translated as a constant, use the corresponding DLMF macro " +
+                                "If you want to translate it as a constant, use the corresponding DLMF macro " +
                                 dlmf + System.lineSeparator()
                 );
                 // and now, use this translation
