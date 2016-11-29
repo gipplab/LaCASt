@@ -185,7 +185,9 @@ public class MathTermParser extends AbstractListParser {
                 global_exp.addTranslatedExpression(output);
                 return true;
             case comma:
-                // ignore?
+                // in general, translate them directly
+                local_inner_exp.addTranslatedExpression(term.getTermText());
+                global_exp.addTranslatedExpression(term.getTermText());
                 return true;
             case operation:
                 OperationParser opParser = new OperationParser();

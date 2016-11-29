@@ -35,11 +35,11 @@ public class SemanticToCASInterpreter {
         for ( int i = 0; i < args.length; i++ )
             test += args[i];
 
-        test = "\\cos(\\frac{2-1}{1+2}) i";
+//        test = "\\multinomial{1}{2, \\ldots, 3}";
 //        test = "(ab^2c1+2) \\cdot \\CatalansConstant";
 //        test = "\\JacobiP{(a! \\mod b^2)!!}{0}{0}@{0}";
 //        test = "\\cos \\left( 1^{2^{3+3}*\\iunit} \\right)";
-//        test = "2 \\mod (2*\\iunit!)!^2";
+        test = "(2*\\iunit!)!^2 \\mod 2";
 //        test = "x^{\\JacobiP{\\iunit}{b}{c}@{d}}!";
 //        test = "\\sqrt[\\alpha]{\\cpi}+2\\JacobiP{i}{\\beta}{2}@{12.6}!";
 //        test = "q*\\iunit+\\cos(2-\\frac{\\sqrt[\\alpha]{\\cpi}}{2\\JacobiP{i}{\\beta}{2}@{12.6}})";

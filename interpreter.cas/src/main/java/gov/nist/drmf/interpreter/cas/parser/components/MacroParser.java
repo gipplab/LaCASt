@@ -52,6 +52,8 @@ public class MacroParser extends AbstractListParser {
 
     private String branch_cuts;
 
+    private String extra_info;
+
     public MacroParser(){}
 
     @Override
@@ -74,6 +76,7 @@ public class MacroParser extends AbstractListParser {
         numOfAts    = Integer.parseInt(DLMFFeatureValues.ats.getFeatureValue(fset));
         numOfVars   = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset));
 
+        extra_info  = DLMFFeatureValues.extra_info.getFeatureValue(fset);
         meaning     = DLMFFeatureValues.meaning.getFeatureValue(fset);
         description = DLMFFeatureValues.description.getFeatureValue(fset);
         constraints = DLMFFeatureValues.constraints.getFeatureValue(fset);
@@ -162,6 +165,7 @@ public class MacroParser extends AbstractListParser {
         else if ( !meaning.isEmpty() )
             extraInformation += meaning;
         extraInformation += "; Example: " + DLMF_example + System.lineSeparator();
+        extraInformation += "Detailed: " + extra_info + System.lineSeparator();
         extraInformation += "Constraints: " + constraints + System.lineSeparator();
         extraInformation += "Branch Cuts: " + branch_cuts + System.lineSeparator();
         extraInformation += "Link to definitions: " + System.lineSeparator() +

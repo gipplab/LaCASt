@@ -67,6 +67,24 @@
 		"LaTeX": "ldots",
 		"Maple": "..",
 		"Mathematica": " ... "
+	},
+	"Equality":{
+		"MLP": "equals",
+		"LaTeX": "=",
+		"Maple": "=",
+		"Mathematica": "="
+	},
+	"Not Equality":{
+		"MLP": "relation_1",
+		"LaTeX": "neq",
+		"Maple": "<>",
+		"Mathematica": "\\[NotEqual]"
+	},
+	"Element of":{
+		"MLP": "relation_2",
+		"LaTeX": "in",
+		"Maple": "in",
+		"Mathematica": "\\[Element]"
 	}
   }
 }

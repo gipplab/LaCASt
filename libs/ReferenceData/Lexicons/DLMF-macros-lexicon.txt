@@ -4,7 +4,6 @@ Symbol: \JacobiP
   Feature Set: dlmf-macro
 	Areas: special functions
 	Meanings: Jacobi polynomial
-	Argument-structure: (parameter, parameter, parameter, variable)
 	Number of Parameters: 3
 	Number of Variables: 1
 	Number of optional ats: 1
@@ -15,7 +14,25 @@ Symbol: \JacobiP
 	Mathematica: JacobiP[$2,$0,$1,$3]
 	Mathematica-Link: reference.wolfram.com/language/ref/JacobiP.html
 	Constraints: a,b > -1
+	Extra Information: None
 	Branch Cuts: None
+	Role: dlmf-macro
+	
+Symbol: \multinomial
+
+  Feature Set: dlmf-macro
+	Areas: special functions
+	Meanings: Multinomial coefficient
+	Number of Parameters: 0
+	Number of Variables: 2
+	Number of optional ats: 0
+	DLMF: \multinomial{a}{n_1, ..., n_3}
+	DLMF-Link: dlmf.nist.gov/DUMMY
+	Maple: multinomial($0, $1)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=combinat/multinomial
+	Constraints: None
+	Branch Cuts: None
+	Extra Information: Maple needs an extra package. Load it with the following commant: with(combinat,multinomial)
 	Role: dlmf-macro
 	
 Symbol: iunit

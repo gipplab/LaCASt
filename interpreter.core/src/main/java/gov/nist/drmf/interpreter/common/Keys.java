@@ -34,7 +34,8 @@ public class Keys {
             FEATURE_MEANINGS    = "Meanings",
             FEATURE_DESCRIPTION = "Description",
             FEATURE_CONSTRAINTS = "Constraints",
-            FEATURE_BRANCH_CUTS = "Branch Cuts";
+            FEATURE_BRANCH_CUTS = "Branch Cuts",
+            FEATURE_EXTRA_INFO  = "Extra Information";
 
     public static final String
             FEATURE_VALUE_GREEK     = "Greek",

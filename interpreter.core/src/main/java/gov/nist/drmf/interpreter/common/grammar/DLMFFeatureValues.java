@@ -18,6 +18,9 @@ public enum DLMFFeatureValues implements IFeatureExtractor{
     meaning(
             t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_MEANINGS))
     ),
+    extra_info(
+            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_EXTRA_INFO))
+    ),
     dlmf_link(
             t -> DLMFFeatureValues.DLMF_LINK_PREFIX +
                     IFeatureExtractor.getStringFromSet(
