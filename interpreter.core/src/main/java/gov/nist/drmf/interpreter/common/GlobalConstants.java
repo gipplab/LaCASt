@@ -17,6 +17,9 @@ public class GlobalConstants {
     public static final Path PATH_REFERENCE_DATA =
             Paths.get("libs", "ReferenceData");
 
+    public static final Path PATH_REFERENCE_DATA_CSV =
+            Paths.get("libs", "ReferenceData", "CSVTables");
+
     // path variable to the resources of the core
     public static final Path PATH_CORE_RESOURCES =
             Paths.get("interpreter.core", "src", "main", "resources");

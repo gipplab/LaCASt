@@ -126,12 +126,15 @@ public class MathTermParser extends AbstractListParser {
                         return true;
                     }
                 }
+            case multiply:
+                local_inner_exp.addTranslatedExpression(MULTIPLY);
+                global_exp.addTranslatedExpression(MULTIPLY);
+                return true;
             case digit:
             case numeric:
             case minus:
             case plus:
             case equals:
-            case multiply:
             case divide:
             case less_than:
             case greater_than: // all above should translated directly, right?
@@ -173,7 +176,7 @@ public class MathTermParser extends AbstractListParser {
                 String output;
                 // add space to all objects except the last one
                 for ( int i = 0; i < alpha.length()-1; i++ ) {
-                    output = alpha.charAt(i) + " ";
+                    output = alpha.charAt(i) + MULTIPLY;
                     // add it to local and global
                     local_inner_exp.addTranslatedExpression( output );
                     global_exp.addTranslatedExpression(output);
@@ -193,10 +196,6 @@ public class MathTermParser extends AbstractListParser {
                 OperationParser opParser = new OperationParser();
                 // well, maybe not the best choice
                 if ( opParser.parse( exp, following_exp ) ){
-                    /*String transExp = opParser.getTranslatedExpressionObject().removeLastExpression();
-                    if ( transExp == null ){
-                        transExp = global_exp.getLastExpression();
-                    }*/
                     local_inner_exp.addTranslatedExpression( opParser.getTranslatedExpressionObject() );
                     return true;
                 } else return false;

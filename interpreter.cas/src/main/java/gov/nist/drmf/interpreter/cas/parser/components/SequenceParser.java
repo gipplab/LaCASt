@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
@@ -101,12 +102,18 @@ public class SequenceParser extends AbstractListParser {
                 lastMerged = true;
             }
 
-            if ( addSpace( exp, exp_list ) ) {
+            if ( addMultiply( exp, exp_list ) ){
+                part += MULTIPLY;
+                // the global list already got each element before,
+                // so simply replace the last if necessary
+                String tmp = global_exp.getLastExpression();
+                global_exp.replaceLastExpression(tmp + MULTIPLY);
+            } else if ( addSpace( exp, exp_list ) ) {
                 part += SPACE;
                 // the global list already got each element before,
                 // so simply replace the last if necessary
                 String tmp = global_exp.getLastExpression();
-                global_exp.replaceLastExpression(tmp+SPACE);
+                global_exp.replaceLastExpression(tmp + SPACE);
             }
 
             // finally add all elements to the inner list
@@ -242,7 +249,10 @@ public class SequenceParser extends AbstractListParser {
                 inner = true;
             }
 
-            if ( addSpace( exp, following_exp ) ) {
+            if ( addMultiply( exp, following_exp ) ){
+                last += MULTIPLY;
+                global_exp.replaceLastExpression( last );
+            } else if ( addSpace( exp, following_exp ) ) {
                 last += SPACE;
                 global_exp.replaceLastExpression( last );
             }
@@ -278,6 +288,23 @@ public class SequenceParser extends AbstractListParser {
                     || next.getTag().matches(PARENTHESIS_PATTERN)
                     || next.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)
             );
+        } catch ( Exception e ){ return true; }
+    }
+
+    private boolean addMultiply( PomTaggedExpression currExp, List<PomTaggedExpression> exp_list ){
+        try {
+            if ( exp_list == null || exp_list.size() < 1) return false;
+            MathTerm next = exp_list.get(0).getRoot();
+            MathTermTags nextTag = MathTermTags.getTagByKey(next.getTag());
+
+            switch( nextTag ){
+                case multiply:
+                case divide:
+                case minus:
+                case plus:
+                    return false;
+                default: return true;
+            }
         } catch ( Exception e ){ return true; }
     }
 }

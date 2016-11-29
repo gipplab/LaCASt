@@ -35,6 +35,8 @@ public abstract class AbstractParser implements IParser {
 
     public static final String CHAR_BACKSLASH = "\\";
 
+    public static String MULTIPLY;
+
     protected static InformationLogger INFO_LOG;
 
     protected static Logger ERROR_LOG;

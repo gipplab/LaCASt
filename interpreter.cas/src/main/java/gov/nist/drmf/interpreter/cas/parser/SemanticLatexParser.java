@@ -32,6 +32,8 @@ import java.util.logging.Logger;
  * @author Andre Greiner-Petter
  */
 public class SemanticLatexParser extends AbstractParser {
+    private static final String KEY_MULTIPLICATION = "General Multiplication";
+
     private static GreekLetters greekLetters;
     private static Constants constants;
     private static BasicFunctionsTranslator functions;
@@ -61,6 +63,9 @@ public class SemanticLatexParser extends AbstractParser {
         constants.init();
         functions.init();
         symbols.init();
+
+        MULTIPLY = symbols.translateFromMLPKey( KEY_MULTIPLICATION );
+
         parser = new PomParser(reference_dir_path.toString());
         parser.addLexicons( GlobalConstants.DLMF_MACROS_LEXICON_NAME );
     }
