@@ -56,11 +56,11 @@
 	"Mathematica"
   ],
   "Symbols": {
-	"General Multiplication": {
+	"GeneralMultiplication": {
 		"MLP": "General Multiplication",
 		"LaTeX": "\\cdot",
 		"Maple": "*",
-		"Mathematica": " ",
+		"Mathematica": " "
 	},
 	"Multiply": {
 		"MLP": "operation",

@@ -83,22 +83,22 @@ public class MathTermParser extends AbstractListParser {
                 // so do nothing here and switch to command:
             case command:
                 // a latex-command could be:
-                //  1) greek letter -> translate via GreekLetters.translate
+                //  1) Greek letter -> translate via GreekLetters.translate
                 //  2) constant     -> translate via Constants.translate
                 //  3) A DLMF Macro -> this parser cannot handle DLMF-Macros
                 //  4) a function   -> Should parsed by FunctionParser and not here!
 
-                // is it a greek letter?
+                // is it a Greek letter?
                 if ( FeatureSetUtility.isGreekLetter(term) ){
-                    // is this greek letter also known constant?
+                    // is this Greek letter also known constant?
                     if ( constantSet != null ){
                         // inform the user about our choices
                         constantVsLetter( constantSet, term );
-                    } // if not, simply translate it as a greek letter
+                    } // if not, simply translate it as a Greek letter
                     return parseGreekLetter(term.getTermText());
                 }
 
-                // or is it a constant but not a greek letter?
+                // or is it a constant but not a Greek letter?
                 if ( constantSet != null ){
                     // simply try to translate it as a constant
                     return parseMathematicalConstant( constantSet, term.getTermText() );
@@ -159,7 +159,7 @@ public class MathTermParser extends AbstractListParser {
                 // that's why a constant here is the same like a alphanumeric expression
                 // ==> do nothing and switch to alphanumeric
             case alphanumeric:
-                // check first, if it is a constant or greek letter
+                // check first, if it is a constant or Greek letter
                 String alpha = term.getTermText();
                 if ( FeatureSetUtility.isGreekLetter( term ) ){
                     if ( constantSet != null ){
@@ -249,16 +249,16 @@ public class MathTermParser extends AbstractListParser {
 
     /**
      * Inform the user about the fact of decision we made to translate this
-     * constant or greek letter.
+     * constant or Greek letter.
      *
-     * This method only will invoke, if the term is a greek letter and maybe
+     * This method only will invoke, if the term is a Greek letter and maybe
      * a constant. So it is maybe a constant we know how to translate but don't
      * want to (like pi but the user should use \cpi instead)
-     * or it is a completely unknown constant, then we can translate it as a greek
+     * or it is a completely unknown constant, then we can translate it as a Greek
      * letter anyway (for instance \alpha, could be the 2nd Feigenbaum constant).
      *
      * @param constantSet the constant feature set
-     * @param term the greek letter term
+     * @param term the Greek letter term
      */
     private void constantVsLetter( FeatureSet constantSet, MathTerm term ){
         String dlmf = translateToDLMF(term.getTermText());
@@ -277,9 +277,9 @@ public class MathTermParser extends AbstractListParser {
                 term.getTermText(),
                 "Could be " + DLMFFeatureValues.meaning.getFeatureValue(constantSet) + "."
                         + System.lineSeparator() +
-                        "But it is also a greek letter. " +
+                        "But it is also a Greek letter. " +
                         "Be aware, that this program translated the letter " +
-                        "as a normal greek letter and not as a constant!" + System.lineSeparator() +
+                        "as a normal Greek letter and not as a constant!" + System.lineSeparator() +
                         "Use the DLMF-Macro " +
                         dlmf + " to translate " + term.getTermText() + " as a constant." + System.lineSeparator()
         );
@@ -333,7 +333,7 @@ public class MathTermParser extends AbstractListParser {
             }
         }
 
-        // still null? try to translate it as a greek letter than if possible
+        // still null? try to translate it as a Greek letter than if possible
         if ( translated_const == null ){
             try {
                 String alphabet = set.getFeature( Keys.FEATURE_ALPHABET ).first();
@@ -342,7 +342,7 @@ public class MathTermParser extends AbstractListParser {
                             constant,
                             "Unable to translate " + constant + " [" +
                                     DLMFFeatureValues.meaning.getFeatureValue(set) +
-                                    "]. But since it is a greek letter we translated it to a greek letter in "
+                                    "]. But since it is a Greek letter we translated it to a Greek letter in "
                                     + Keys.CAS_KEY + "."
                     );
                     return parseGreekLetter( constant );
@@ -374,27 +374,27 @@ public class MathTermParser extends AbstractListParser {
     }
 
     /**
-     * Parsing a given greek letter.
-     * @param greekLetter the greek letter
+     * Parsing a given Greek letter.
+     * @param GreekLetter the Greek letter
      * @return true if it was parsed
      */
-    private boolean parseGreekLetter( String greekLetter ){
+    private boolean parseGreekLetter( String GreekLetter ){
         // try to translate
         GreekLetters l = SemanticLatexParser.getGreekLettersParser();
-        String translated_letter = l.translate(greekLetter);
+        String translated_letter = l.translate(GreekLetter);
 
         // if it's null, maybe a \ is missing
         if ( translated_letter == null ){
-            if ( !greekLetter.startsWith(CHAR_BACKSLASH) ){
-                greekLetter = CHAR_BACKSLASH + greekLetter;
-                translated_letter = l.translate(greekLetter);
+            if ( !GreekLetter.startsWith(CHAR_BACKSLASH) ){
+                GreekLetter = CHAR_BACKSLASH + GreekLetter;
+                translated_letter = l.translate(GreekLetter);
             }
         }
 
         // still null? inform the user, we cannot do more here
         if ( translated_letter == null ){
-            ERROR_LOG.warning("Cannot translate greek letter "
-                    + greekLetter);
+            ERROR_LOG.warning("Cannot translate Greek letter "
+                    + GreekLetter);
             return false;
         }
 

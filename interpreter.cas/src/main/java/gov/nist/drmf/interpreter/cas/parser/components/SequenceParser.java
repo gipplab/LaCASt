@@ -33,6 +33,9 @@ public class SequenceParser extends AbstractListParser {
     public static final String SPECIAL_SYMBOL_PATTERN_FOR_SPACES =
             "[\\^\\/\\_\\!]";
 
+    public static final String PATTERN_BASIC_OPERATIONS =
+            ".*[\\+\\-\\*\\/\\^\\_\\!\\(\\)\\{\\}\\[\\]\\<\\>\\s].*";
+
     // the open bracket if needed
     @Nullable
     private Brackets open_bracket;
@@ -294,17 +297,14 @@ public class SequenceParser extends AbstractListParser {
     private boolean addMultiply( PomTaggedExpression currExp, List<PomTaggedExpression> exp_list ){
         try {
             if ( exp_list == null || exp_list.size() < 1) return false;
+            MathTerm curr = currExp.getRoot();
             MathTerm next = exp_list.get(0).getRoot();
-            MathTermTags nextTag = MathTermTags.getTagByKey(next.getTag());
-
-            switch( nextTag ){
-                case multiply:
-                case divide:
-                case minus:
-                case plus:
-                    return false;
-                default: return true;
-            }
+            return !(
+                    curr.getTermText().matches(PATTERN_BASIC_OPERATIONS )
+                    || next.getTermText().matches(PATTERN_BASIC_OPERATIONS )
+                    || curr.getTag().matches( MathTermTags.operation.tag() )
+                    || next.getTag().matches( MathTermTags.operation.tag() )
+            );
         } catch ( Exception e ){ return true; }
     }
 }
