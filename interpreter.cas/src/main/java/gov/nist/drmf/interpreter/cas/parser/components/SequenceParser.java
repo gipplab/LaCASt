@@ -158,30 +158,6 @@ public class SequenceParser extends AbstractListParser {
             // take the next expression
             PomTaggedExpression exp = following_exp.remove(0);
 
-            // if the next expression does not contains
-            // a math term object, simply parse it as a general expression
-            /*if ( !containsTerm(exp) ){
-                TranslatedExpression inner_translation =
-                        parseGeneralExpression(exp, following_exp);
-
-                // don't forget to check spaces:
-                String last = inner_translation.getLastExpression();
-                if ( addSpace( exp, following_exp ) ){
-                    last += SPACE;
-                    global_exp.replaceLastExpression( last );
-                }
-                inner_translation.replaceLastExpression( last );
-                local_inner_exp.addTranslatedExpression( inner_translation );
-                // don't need to add elements to global_exp because they were
-                // already added from other methods.
-
-                // if there was in error, we can stop here
-                if ( isInnerError() ) return false;
-                // otherwise take the next expression
-                else continue;
-            }
-            */
-
             // otherwise investigate the term
             MathTerm term = exp.getRoot();
             //If this term is a bracket there are three possible options
@@ -254,10 +230,12 @@ public class SequenceParser extends AbstractListParser {
 
             if ( addMultiply( exp, following_exp ) ){
                 last += MULTIPLY;
-                global_exp.replaceLastExpression( last );
+                String tmp = global_exp.getLastExpression();
+                global_exp.replaceLastExpression( tmp + MULTIPLY );
             } else if ( addSpace( exp, following_exp ) ) {
                 last += SPACE;
-                global_exp.replaceLastExpression( last );
+                String tmp = global_exp.getLastExpression();
+                global_exp.replaceLastExpression( tmp + SPACE );
             }
 
             inner_trans.replaceLastExpression( last );
@@ -291,7 +269,7 @@ public class SequenceParser extends AbstractListParser {
                     || next.getTag().matches(PARENTHESIS_PATTERN)
                     || next.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)
             );
-        } catch ( Exception e ){ return true; }
+        } catch ( Exception e ){ return false; }
     }
 
     private boolean addMultiply( PomTaggedExpression currExp, List<PomTaggedExpression> exp_list ){

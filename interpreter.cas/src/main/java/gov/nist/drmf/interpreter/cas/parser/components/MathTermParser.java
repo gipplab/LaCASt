@@ -118,6 +118,10 @@ public class MathTermParser extends AbstractListParser {
                 ERROR_LOG.severe("MathTermParser cannot parse functions. Use the FunctionParser instead: "
                         + term.getTermText());
                 return false;
+            case multiply:
+                local_inner_exp.addTranslatedExpression(MULTIPLY);
+                global_exp.addTranslatedExpression(MULTIPLY);
+                return true;
             case letter:
                 // a letter can be one constant, but usually translate it simply
                 if ( constantSet != null ){
@@ -126,10 +130,6 @@ public class MathTermParser extends AbstractListParser {
                         return true;
                     }
                 }
-            case multiply:
-                local_inner_exp.addTranslatedExpression(MULTIPLY);
-                global_exp.addTranslatedExpression(MULTIPLY);
-                return true;
             case digit:
             case numeric:
             case minus:

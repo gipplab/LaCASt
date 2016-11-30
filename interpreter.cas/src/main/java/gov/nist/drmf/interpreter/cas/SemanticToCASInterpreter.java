@@ -35,8 +35,8 @@ public class SemanticToCASInterpreter {
         for ( int i = 0; i < args.length; i++ )
             test += args[i];
 
-//        test = "2+2";
-        test = "(ab^2c13b+2) \\cdot \\CatalansConstant 2";
+//        test = "\\cos(\\frac{1}{2})2";
+//        test = "(ab^2c13b+2) \\cdot \\CatalansConstant 2";
 //        test = "\\JacobiP{(a! \\mod b^2)!!}{0}{0}@{0}";
 //        test = "\\cos \\left( 1^{2^{3+3}*\\iunit} \\right)";
 //        test = "(2*\\iunit!)!^2 \\mod 2";
