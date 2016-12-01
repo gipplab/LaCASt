@@ -7,6 +7,10 @@ public class Keys {
     // this will be setup on runtime
     public static String CAS_KEY = "";
 
+    public static boolean ALTERNATIVE_MODE = false;
+
+    public static final String ALTERNATIVE_SPLIT = "||";
+
     // Key value for LaTeX
     public static final String KEY_LATEX = "LaTeX";
 
@@ -23,7 +27,7 @@ public class Keys {
 
     public static final String
             NUM_OF_VARS     = "Number of Variables",
-            NUM_OF_ATS      = "Number of optional ats",
+            NUM_OF_ATS      = "Number of Ats",
             NUM_OF_PARAMS   = "Number of Parameters";
 
     public static final String
@@ -34,11 +38,9 @@ public class Keys {
             FEATURE_MEANINGS    = "Meanings",
             FEATURE_DESCRIPTION = "Description",
             FEATURE_CONSTRAINTS = "Constraints",
-            FEATURE_BRANCH_CUTS = "Branch Cuts",
-            FEATURE_EXTRA_INFO  = "Extra Information";
+            FEATURE_BRANCH_CUTS = "Branch Cuts";
 
     public static final String
             FEATURE_VALUE_GREEK     = "Greek",
-            FEATURE_VALUE_CONSTANT  = "mathematical constant",
-            FEATURE_VALUE_SPEC_FUNC = "special function";
+            FEATURE_VALUE_CONSTANT  = "mathematical constant";
 }

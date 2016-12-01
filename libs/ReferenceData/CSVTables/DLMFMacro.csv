@@ -1,1402 +1,1401 @@
-Macro;Meanings;Number of Parameters;Number of optional ats;Number of Variables;Constraints;Branch Cuts;Role;DLMF Link;Info
-\sin@@{z};Sine;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.14#E1;
-\cos@@{z};Cosine;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.14#E2;
-\tan@@{z};Tangent;0;2;1;z != (k+1/2)*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.14#E4;
-\sec@@{z};Secant;0;2;1;z != (k+1/2)*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.14#E6;
-\csc@@{z};Cosecant;0;2;1;z != k*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.14#E5;
-\cot@@{z};Cotangent;0;2;1;z != k*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.14#E7;
-;;;;;;;;;
-\sinh@@{z};Hyperbolic sine;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.28#E1;
-\cosh@@{z};Hyperbolic cosine;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.28#E2;
-\tanh@@{z};Hyperbolic tangent;0;2;1;z != \iunit*(k+1/2)*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.28#E4;
-\sech@@{z};Hyperbolic secant;0;2;1;z != \iunit*(k+1/2)*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.28#E6;
-\csch@@{z};Hyperbolic cosecant;0;2;1;z != \iunit*k*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.28#E5;
-\coth@@{z};Hyperbolic cotangent;0;2;1;z != \iunit*k*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.28#E7;
-;;;;;;;;;
-\asin@@{z};Inverse sine;0;2;1;z != +/- \iunit;(-\inf, -1), (1, \inf);dlmf-macro;http://dlmf.nist.gov/4.23#SS2.p1;
-\acos@@{z};Inverse cosine;0;2;1;z != +/- \iunit;(-\inf, -1), (1, \inf);dlmf-macro;http://dlmf.nist.gov/4.23#SS2.p1;
-\atan@@{z};Inverse tangent;0;2;1;z != +/- \iunit;(-\iunit \inf, -\iunit), (\iunit, \iunit \inf);dlmf-macro;http://dlmf.nist.gov/4.23#SS2.p1;
-\asec@@{z};Inverse secant;0;2;1;z not element of {0,-\iunit,+\iunit};(-1, 1);dlmf-macro;http://dlmf.nist.gov/4.23#SS2.p1;
-\acsc@@{z};Inverse cosecant;0;2;1;z not element of {0,-\iunit,+\iunit};(-1, 1);dlmf-macro;http://dlmf.nist.gov/4.23#SS2.p1;
-\acot@@{z};Inverse cotangent;0;2;1;z not element of {0,-\iunit,+\iunit};(-\iunit, \iunit);dlmf-macro;http://dlmf.nist.gov/4.23#SS2.p1;
-;;;;;;;;;
-\Asin@@{z};Multivalued inverse sine;0;2;1;z != +/- \iunit;z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.23#E1;
-\Acos@@{z};Multivalued inverse cosine;0;2;1;z != +/- \iunit;z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.23#E2;
-\Atan@@{z};Multivalued inverse tangent;0;2;1;z != +/- \iunit;z = +/- \iunit;dlmf-macro;http://dlmf.nist.gov/4.23#E3;
-\Asec@@{z};Multivalued inverse secant;0;2;1;z not element of {0,-\iunit,+\iunit};z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.23#E5;
-\Acsc@@{z};Multivalued inverse cosecant;0;2;1;z not element of {0,-\iunit,+\iunit};z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.23#E4;
-\Acot@@{z};Multivalued inverse cotangent;0;2;1;z not element of {0,-\iunit,+\iunit};z = +/- \iunit;dlmf-macro;http://dlmf.nist.gov/4.23#E6;
-;;;;;;;;;
-\asinh@@{z};Inverse hyperbolic sine;0;2;1;z != +/-1;(-\iunit \inf, -\iunit), (\iunit, \iunit \inf);dlmf-macro;http://dlmf.nist.gov/4.37#SS2.p1;
-\acosh@@{z};Inverse hyperbolic cosine;0;2;1;z != +/-1;(-\inf, 1);dlmf-macro;http://dlmf.nist.gov/4.37#SS2.p1;
-\atanh@@{z};Inverse hyperbolic tangent;0;2;1;z != +/-1;(-\inf, -1), (1, \inf);dlmf-macro;http://dlmf.nist.gov/4.37#SS2.p1;
-\asech@@{z};Inverse hyperbolic secant;0;2;1;z not element of {0,-1,+1};(-\iunit, \iunit);dlmf-macro;http://dlmf.nist.gov/4.37#SS2.p1;
-\acsch@@{z};Inverse hyperbolic cosecant;0;2;1;z not element of {0,-1,+1};(-\inf, 0), (1,\inf);dlmf-macro;http://dlmf.nist.gov/4.37#SS2.p1;
-\acoth@@{z};Inverse hyperbolic cotangent;0;2;1;z not element of {0,-1,+1};(-1, 1);dlmf-macro;http://dlmf.nist.gov/4.37#SS2.p1;
-;;;;;;;;;
-\Asinh@@{z};Multivalued inverse hyperbolic sine;0;2;1;z != +/-1;z != +/- \iunit;dlmf-macro;http://dlmf.nist.gov/4.37#E1;
-\Acosh@@{z};Multivalued inverse hyperbolic cosine;0;2;1;z != +/-1;z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.37#E2;
-\Atanh@@{z};Multivalued inverse hyperbolic tangent;0;2;1;z != +/-1;z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.37#E3;
-\Asech@@{z};Multivalued inverse hyperbolic secant;0;2;1;z not element of {0,-1,+1};z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.37#E5;
-\Acsch@@{z};Multivalued inverse hyperbolic cosecant;0;2;1;z not element of {0,-1,+1};z != +/- \iunit;dlmf-macro;http://dlmf.nist.gov/4.37#E4;
-\Acoth@@{z};Multivalued inverse hyperbolic cotangent;0;2;1;z not element of {0,-1,+1};z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.37#E6;
-;;;;;;;;;
-\ln@@{z};Natural logarithm;0;2;1;z != 0;(-\inf, 0];dlmf-macro;http://dlmf.nist.gov/4.2#E2;
-\log@@{z};Logarithm;0;2;1;z != 0;(-\inf, 0];dlmf-macro;http://dlmf.nist.gov/4.2#E2;
-\logb{a}@@{z};Logarithm with different base;1;2;1;a not element of {0,1} and z != 0;(-\inf, 0];dlmf-macro;http://dlmf.nist.gov/4.2#EGx1;
-\Ln@@{z};Multivalued natural logarithm;0;2;1;z != 0;z = 0;dlmf-macro;http://dlmf.nist.gov/4.2#E1;
-\exp@@{z};Exponential function;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.2#E19;
-;;;;;;;;;
-\LambertW@{x};Lambert W-Function;0;1;1;x in \Real;;dlmf-macro;http://dlmf.nist.gov/4.13#p2;
-\LambertWp@{x};Principle branch of Lambert W-Function;0;1;1;-1/e \leq x < 0;;dlmf-macro;http://dlmf.nist.gov/4.13#p2;
-\LambertWm@{x};Another branch of Lambert W-Function;0;1;1;-1/e \leq x < 0;;dlmf-macro;http://dlmf.nist.gov/4.13#p2;
-;;;;;;;;;
-\SinInt@{z};Sine integral;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E9;
-\sinInt@{z};Shifted sine integral;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E10;
-\SinIntg@{a}{z};Generalized sine integral;0;1;2;;z = 0;dlmf-macro;http://dlmf.nist.gov/8.21#E2;
-\sinintg@{a}{z};Generalized sine integral;0;1;2;;z = 0;dlmf-macro;http://dlmf.nist.gov/8.21#E1;
-\CosInt@{z};Cosine integral;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E13;
-\CosIntCin@{z};Cosine integral;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E12;
-\CosIntg@{a}{z};Generalized cosine integral;0;1;2;;z = 0;dlmf-macro;http://dlmf.nist.gov/8.21#E2;
-\cosintg@{a}{z};Generalized cosine integral;0;1;2;;z = 0;dlmf-macro;http://dlmf.nist.gov/8.21#E1;
-\SinCosIntf@{z};Auxiliary function for sine and cosine integrals;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E17;
-\SinCosIntg@{z};Auxiliary function for sine and cosine integrals;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E18;
-;;;;;;;;;
-\SinhInt@{z};Hyperbolic sine integral;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E15;
-\CoshInt@{z};Hyperbolic cosine integral;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E16;
-;;;;;;;;;
-\Gudermannian@@{x};Gudermannian function;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.23#E39;
-\arcGudermannian@@{x};Inverse Gudermannian function;0;2;1;-(1/2) \cpi < x < (1/2) \cpi;;dlmf-macro;http://dlmf.nist.gov/4.23#E41;
-;;;;;;;;;
-\ExpInti@{x};Exponential integral;0;1;1;z != 0;(-\inf, 0];dlmf-macro;http://dlmf.nist.gov/6.2#E1;
-\ExpInt@{x};Exponential integral;0;1;1;z != 0;(-\inf, 0];dlmf-macro;http://dlmf.nist.gov/6.2#E1;
-\ExpIntEin@{z};Complementary exponential integral;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E3;
-\ExpIntn{p}@{z};Generalized exponential integral;1;1;1;;;dlmf-macro;http://dlmf.nist.gov/8.19#E1;
-\LogInt@{x};Logarithmic integral;0;1;1;x > 1;;dlmf-macro;http://dlmf.nist.gov/6.2#E8;
-\Dilogarithm@{z};Dilogarithm;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/25.12#E1;
-\Polylogarithm{s}@{z};Polylogarithm;1;1;1;;;dlmf-macro;http://dlmf.nist.gov/25.12#E10;
-\JonquierePhi@{z}{s};Polylogarithm;0;1;2;;;dlmf-macro;http://dlmf.nist.gov/25.1;
-;;;;;;;;;
-\cpi;Pi;0;0;0;;;mathematical constant;not defined;Constant
-\iunit;Imaginary unit;0;0;0;;;mathematical constant;http://dlmf.nist.gov/1.9.i;Constant
-\EulerConstant;Euler-Mascheroni constant;0;0;0;;;mathematical constant;http://dlmf.nist.gov/5.2#E3;Constant
-\StieltjesConstants{n};Stieltjes Constants;0;0;1;;;dlmf-macro;http://drmf.wmflabs.org/wiki/Definition:StieltjesConstants;Constant
-\expe;Euler's constant;0;0;0;;;mathematical constant;http://dlmf.nist.gov/4.2.E11;Constant
-\CatalansConstant;Catalan's constant;0;0;0;;;mathematical constant;http://dlmf.nist.gov/25.11.E40;Constant
-\inf;Infinity;0;0;0;;;mathematical constant;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r24;Constant
-;;;;;;;;;
-\Matrix{A};Matrix;0;0;1;;;;http://drmf.wmflabs.org/wiki/Definition:Matrix;
-\Vector{a};Vector;0;0;1;;;;http://drmf.wmflabs.org/wiki/Definition:Vector;
-\trace;Trace of a matrix;0;0;1;;;;http://dlmf.nist.gov/35.1#p3.t1.r9;
-\transpose;Transpose of matrix;0;0;1;;;;http://dlmf.nist.gov/1.3.E5;
-\exptrace@{\Matrix{X}};Exponential of the trace of a matrix;0;1;1;;;;http://dlmf.nist.gov/35.1#p3.t1.r10;
-\det A;Determinant;0;0;1;;;;http://dlmf.nist.gov/1.3#i;
-\diag A;Diagonal part of matrix;0;0;1;;;;http://dlmf.nist.gov/21.1#p2.t1.r11;
-\ph@@{z};Phase / Argument of a complex number;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/1.9#E7;
-\ph@@{z};Argument of a complex number;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/1.9#E7;
-;;;;;;;;;
-\conj{z};Conjugate complex number;0;0;1;;;dlmf-macro;http://dlmf.nist.gov/1.9#E11;
-\realpart{z};Real part of a complex number;0;0;1;;;dlmf-macro;http://dlmf.nist.gov/1.9#E2;
-\imagpart{z};Imaginary part of a complex num;0;0;1;;;dlmf-macro;http://dlmf.nist.gov/1.9#E2;
-\sqrt{z};Square root;0;0;1;;;dlmf-macro;not defined;
-\sqrt[p]{z};n-th root;1;0;1;;;dlmf-macro;not defined;
-\binom{m}{n};Binomial coefficient;0;0;2;;;dlmf-macro;http://dlmf.nist.gov/1.2#E1;
-\binomial{m}{n};Binomial coefficient;0;0;2;;;dlmf-macro;http://dlmf.nist.gov/1.2#E1;
-\multinomial{m}{n_1,...,n_k};Multinomial coefficient;0;0;2;;;dlmf-macro;http://dlmf.nist.gov/26.4.E2;
-\pgcd{m,n};Greatest common divisor;0;0;1;;;dlmf-macro;http://dlmf.nist.gov/27.1#p2.t1.r3;
-;;;;;;;;;
-\f{f}@{x};Function;1;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:f;
-\in;Element of;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r9;
-\notin;Not element of;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r10;
-\forall;For all;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r11;
-\Longrightarrow;Implies;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r12;
-\Longleftrightarrow;Equivalence;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r13;
-=;Equal;0;0;0;;;symbol;not defined;As a definition, it must be translated to :=
-\neq;Not equal;0;0;0;;;symbol;not defined;
-\ifrac{a}{b};Fraction;0;0;2;;;;http://dlmf.nist.gov/4.2.E8;
-\power{x}{y};Power;0;0;2;;;;http://dlmf.nist.gov/36.12#E9;
-n!;Factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r14;
-n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;n!! works as well in Maple, but Maple asks how to interpret it by a pop-up menu
-\psfactorial{a}{\kappa};Partitional shifted factorial;0;0;2;;;;http://dlmf.nist.gov/35.4#E1;
-\floor{x} ;Floor;0;0;1;;;;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r16;
-\ceiling{x};Ceiling;0;0;1;;;;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r17;
-\sign@@{x};Signum;0;2;1;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r18;
-\inf;Infimum;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r24;
-\sup;Supremum;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r25;
-\Sum{n}{k1}{k2}@{f(n)};Sum;3;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:Sum;
-\Prod{n}{k1}{k2}@{f(n)};Product;3;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:Prod;
-"\Wronskian@{w_1(z);w_2(z)}";Wronskian;0;1;2;;;;http://dlmf.nist.gov/1.13#E4;
-\Residue;Residue;0;0;0;;;symbol;http://dlmf.nist.gov/1.10#SS3.p5;
-\card{A};Number of elements of a set;0;0;1;;;;http://dlmf.nist.gov/26.1#p2.t1.r5;
-\cartprod;Cartesian product of groups;0;0;0;;;symbol;http://dlmf.nist.gov/23.1#p2.t1.r18;
-\divides;Devides;0;0;0;;;symbol;http://dlmf.nist.gov/24.1#p2.t1.r4;
-\liminf;Least limit point;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r4;
-\mod;Modulo;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r10;
-\opminus;Negative unity to an integer power;0;0;0;;;symbol;http://dlmf.nist.gov/5.7.E7;
-\poly{p}{n}@{x};Polynomial;2;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:poly;
-\CompositionsC[m]@{n};Number of compositions;1;1;1;;;;http://dlmf.nist.gov/26.11#p1;
-\Distribution{f}{g};Distribution;0;0;2;;;;http://dlmf.nist.gov/1.16#SS1.p5;
-\Lattice{L};Lattice;0;0;1;;;;http://dlmf.nist.gov/23.2#i;
-\fDiff[x];Forward difference;1;0;0;;;;http://dlmf.nist.gov/18.1#EGx1;
-\bDiff[x];Backward difference;1;0;0;;;;http://dlmf.nist.gov/18.1#EGx2;
-\cDiff[x];Central difference;1;0;0;;;;http://dlmf.nist.gov/18.1#EGx3;
-\deriv{f}{x};Derivative;0;0;2;;;;http://dlmf.nist.gov/1.4#E4;
-\pderiv{f}{x};Partial derivative;0;0;2;;;;http://dlmf.nist.gov/1.5#E3;
-\diff{x};Differential;0;0;1;;;;http://dlmf.nist.gov/1.4#SS4.p1;
-\pdiff{x};Power of partial differential;0;0;1;;;;http://dlmf.nist.gov/1.5#E3;
-\AntiDer@{x}{f(x)};Anti-Derivative;0;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:AntiDer;
-\Int{a}{b}@{x}{f(x)};Integral;2;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:Int;
-\int;Indefinite Integral;0;0;0;;;symbol;http://dlmf.nist.gov/1.4#iv;
-\pvint_{a}^{b} \f{f}@{x} \diff{x};Cauchy principle value;0;0;0;;;;http://dlmf.nist.gov/1.4#E24;
-\Schwarzian{z}{\zeta};Schwarzian derivative;0;0;2;;;;http://dlmf.nist.gov/1.13#E20;
-\Complex;Set of complex numbers;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r1;
-\Real;Set of real numbers;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r14;
-\Rational;Set of rational numbers;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r13;
-\Integer;Set of integers;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r20;
-\NatNumber;Set of positive integers;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r11;
-\Continuous@{A};Space of continuous functions on a set;0;1;1;;;;http://dlmf.nist.gov/1.4#ii;
-\SpaceTestFunTempered@{A};Space of test functions for tempered distributions;0;1;1;;;;http://dlmf.nist.gov/1.16#v;
-\setminus;Set difference;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r19;
-\subseteq;Subset;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r3;
-\subset;Subset;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r2;
-\setmod;Set of all elements of S_1 modulo elements of S_2;0;0;0;;;;http://dlmf.nist.gov/21.1#p2.t1.r17;
-\PartitionsP{n};Number of partitions of nonnegative integer n;0;0;1;;;;http://dlmf.nist.gov/26.2#P4.p2;
-\PartitionsP[k]@{n};Number of partitions of nonnegative integer n into at most k parts;1;1;1;;;;http://dlmf.nist.gov/26.9;
-\Permutations{n};Set of permutations;0;0;1;;;;http://dlmf.nist.gov/26.13;
-\PlanePartitionsPP@{n};Number of plane partitions;0;1;1;;;;http://dlmf.nist.gov/26.12#SS1.p4;
-\RestrictedPartitionsP[k]@{\mathrm{condition}}{n};Restricted number of partitions;1;1;2;;;;http://dlmf.nist.gov/26.11#p1;
-\RestrictedCompositionsC@{\mathrm{condition}}{n};Restricted number of compositions;0;1;2;;;;http://dlmf.nist.gov/26.10#i;
-\BigO@{x};Landau notation O;0;1;1;;;;http://dlmf.nist.gov/2.1#E3;
-\littleo@{x};Landau notation o;0;1;1;;;;http://dlmf.nist.gov/2.1#E2;
-\sim;Asymptotic equality;0;0;0;;;;http://dlmf.nist.gov/2.1#E1;
-;;;;;;;;;
-\AiryAi@{z};Airy function of the first kind;0;1;1;;;;http://dlmf.nist.gov/9.2#i;
-\AiryBi@{z};Airy function of the second kind;0;1;1;;;;http://dlmf.nist.gov/9.2#i;
-\AiryModulusM@{z};Airy modulus function M;0;1;1;;;;http://dlmf.nist.gov/9.8#i;
-\AiryModulusN@{z};Airy modulus function N;0;1;1;;;;http://dlmf.nist.gov/9.8#i;
-\AiryPhasePhi@{z};Airy phase function Phi;0;1;1;;;;http://dlmf.nist.gov/9.8#i;
-\AiryPhaseTheta@{z};Airy phase function Theta;0;1;1;;;;http://dlmf.nist.gov/9.8#i;
-\ODEgenAiryA{n}@{z};Generalized Airy function;1;1;1;;;;http://dlmf.nist.gov/9.13#SS1.p2;
-\ODEgenAiryB{n}@{z};Generalized Bairy function;1;1;1;;;;http://dlmf.nist.gov/9.13#SS1.p2;
-\IntgenAiryA{k}@{z}{p};Generalized Airy function integral;1;1;1;;;;http://dlmf.nist.gov/9.13#SS2.p1;
-\IntgenAiryB{k}@{z}{p};Generalized Bairy function integral;1;1;2;;;;http://dlmf.nist.gov/9.13#SS2.p1;
-\ZeroAiryAi{k};Zeros of Airy function of the first kind;0;0;1;;;;http://dlmf.nist.gov/9.9#SS1.p2;
-\ZeroAiryAiPrime{k};Zeros of derivative Airy function of the first kind;0;0;1;;;;http://dlmf.nist.gov/9.9#SS1.p2;
-\ZeroAiryBi{k};Zeros of Airy function  of the second kind;0;0;1;;;;http://dlmf.nist.gov/9.9#SS1.p2;
-\ZeroAiryBiPrime{k};Zeros of derivative Airy function of the second kind;0;0;1;;;;http://dlmf.nist.gov/9.9#SS1.p2;
-\ComplexZeroAiryBi{k};Complex zeros of Airy function of the second kind;0;0;1;;;;http://dlmf.nist.gov/9.9#SS1.p2;
-\ComplexZeroAiryBiPrime{k};Complex zeros of derivative of Airy function of the second kind;0;0;1;;;;http://dlmf.nist.gov/9.9#SS1.p2;
-;;;;;;;;;
-\AngerJ{v}@{z};Anger function;1;1;1;;;;http://dlmf.nist.gov/11.10#E1;
-\WeberE{v}@{z};Weber function;1;1;1;;;;http://dlmf.nist.gov/11.10#E2;
-\AngerA{v}@{z};Associated Anger function;1;1;1;Re(z) > 0;;;http://dlmf.nist.gov/11.10#E4;
-;;;;;;;;;
-\AppellFi@{\alpha}{\beta}{\beta'}{\gamma}{x}{y};First Appell function;0;1;6;;;;http://dlmf.nist.gov/16.13#E2;
-\AppellFii@{\alpha}{\beta}{\beta'}{\gamma}{\gamma'}{x}{y};Second Appell function;0;1;7;;;;http://dlmf.nist.gov/16.13#E3;
-\AppellFiii@{\alpha}{\alpha'}{\beta}{\beta'}{\gamma}{x}{y};Third Appell function;0;1;7;Re(z) > 0;;;http://dlmf.nist.gov/16.13#E4;
-\AppellFiv@{\alpha}{\beta}{\gamma}{\gamma'}{x}{y};Fourth Appell function;0;1;6;;;;http://dlmf.nist.gov/16.13#E5;
-;;;;;;;;;
-\BesselJ{v}@{z};Bessel function first kind;1;1;1;;if v \notin \Integer: (-\inf, 0];dlmf-macro;http://dlmf.nist.gov/10.2#E2;
-\BesselY{v}@{z};Bessel function second kind;1;1;1;;(-\inf, 0];;http://dlmf.nist.gov/10.2#E3;
-\HankelHi{v}@{z};Bessel function third kind;1;1;1;;;;http://dlmf.nist.gov/10.2#E5;
-\HankelHii{v}@{z};Bessel function third kind;1;1;1;;;;http://dlmf.nist.gov/10.2#E6;
-\BesselModulusM{\nu}@{x};Modulus Bessel function;1;1;1;;;;http://dlmf.nist.gov/10.18#E1;
-\BesselModulusN{\nu}@{x};Modulus derivative Bessel function;1;1;1;;;;http://dlmf.nist.gov/10.18#E2;
-\BesselPhaseTheta{\nu}@{x};Phase of Bessel function;1;1;1;;;;http://dlmf.nist.gov/10.18#E3;
-\BesselPhasePhi{\nu}@{x};Phase of derivative Bessel function;1;1;1;;;;http://dlmf.nist.gov/10.18#E3;
-\ZeroBesselJ{\nu}{m};Zeros of Bessel function first kind;1;0;1;;;;http://dlmf.nist.gov/10.21#SS1.p2;
-\ZeroBesselJPrime{\nu}{m};Zeros of derivative of Bessel function first kind;1;0;1;;;;http://dlmf.nist.gov/10.21#SS1.p2;
-\ZeroBesselY{\nu}{m};Zeros of Bessel function second kind;1;0;1;;;;http://dlmf.nist.gov/10.21#SS1.p2;
-\ZeroBesselYPrime{\nu}{m};Zeros of derivative of Bessel function second kind;1;0;1;;;;http://dlmf.nist.gov/10.21#SS1.p2;
-\BesselJtilde{\nu}@{x};Bessel of imaginary order first kind;1;1;1;;;;http://dlmf.nist.gov/10.24#Ex1;
-\BesselYtilde{\nu}@{x};Bessel of imaginary order second kind;1;1;1;;;;http://dlmf.nist.gov/10.24#Ex1;
-\BesselI{v}@{x};Modified Bessel function first kind;1;1;1;;;;http://dlmf.nist.gov/10.25#E2;
-\BesselK{v}@{x};Modified Bessel function second kind;1;1;1;;;;http://dlmf.nist.gov/10.25#E3;
-\ModCylinder{\nu}@{z};Nontrivial linear combination of modified Bessel functions;1;1;1;;;;http://dlmf.nist.gov/10.25#E3;
-\BesselItilde{\nu}@{x};Modified Bessel of imaginary order first kind;1;1;1;;;;http://dlmf.nist.gov/10.45#E2;
-\BesselKtilde{\nu}@{x};Modified Bessel of imaginary order second kind;1;1;1;;;;http://dlmf.nist.gov/10.45#E2;
-\GenBesselFun@{\rho}{\beta}{z};Generalized Bessel;0;1;3;;;;http://dlmf.nist.gov/10.46#E1;
-\MittagLeffler{a}{b}@{z};Mittag-Leffler function;2;1;1;;;;http://dlmf.nist.gov/10.46#E3;
-\SphBesselJ{n}@{z};Spherical Bessel function of the first kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E3;
-\SphBesselY{n}@{z};Spherical Bessel function of the second kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E4;
-\SphHankelHi{n}@{z};Spherical Bessel function of the third kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E5;
-\SphHankelHii{n}@{z};Spherical Bessel function of the third kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E6;
-\SphBesselIi{n}@{z};Modified spherical Bessel function of the first kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E7;
-\SphBesselIii{n}@{z};Modified spherical Bessel function of the first kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E8;
-\SphBesselK{n}@{z};Modified spherical Bessel function of the second kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E9;
-\BesselA{\nu}@{\Matrix{T}};Bessel function with matrix argument;1;1;1;;;;http://dlmf.nist.gov/35.5#i;
-\BesselB{\nu}@{\Matrix{T}};Bessel function with matrix argument;1;1;1;;;;http://dlmf.nist.gov/35.5#E3;
-\JacksonqBesselI{\nu}@{z}{q};Jackson q-Bessel function I;1;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:JacksonqBesselI;
-\JacksonqBesselII{\nu}@{z}{q};Jackson q-Bessel function II;1;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:JacksonqBesselII;
-\JacksonqBesselIII{\nu}@{z}{q};Jackson q-Bessel function III;1;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:JacksonqBesselIII;
-;;;;;;;;;
-\BickleyKi{\alpha}@{x};Bickley function;1;1;1;;;;http://dlmf.nist.gov/10.43#E11;
-;;;;;;;;;
-\EulerBeta@{a}{b};Euler-Beta function;0;1;2;R(a) > 0 and R(b) > 0;;;http://dlmf.nist.gov/5.12#E1;
-\IncBeta{x}@{a}{b};Incomplete Beta function;1;1;2;;;;http://dlmf.nist.gov/8.17#E1;
-\IncI{x}@{a}{b};Regularized incomplete Beta function;1;1;2;;;;http://dlmf.nist.gov/8.17#E2;Needs to define IncBeta previously: IncBeta := (x,a,b) -> int(t^(a-1)*(1-t)^(b-1), t = 0 .. x)
-\mEulerBeta{m}@{a}{b};Multivariate Euler-Beta function;1;1;2;R(a), R(b) > 1/2*(m-1);;;http://dlmf.nist.gov/35.3#E3;
-;;;;;;;;;
-\CanonicInt{K}@{\Vector{x}};Canonical integral;1;1;1;;;;http://dlmf.nist.gov/36.2#E4;
-\CanonicIntU@{\Vector{x}};Umbilic canonical integral;0;1;1;;;;http://dlmf.nist.gov/36.2#E5;
-\CanonicIntE@{\Vector{x}};Elliptic umbilic canonical integral;0;1;1;;;;http://dlmf.nist.gov/36.2#E6;
-\CanonicIntH@{\Vector{x}};hyperbolic umbilic canonical integral;0;1;1;;;;http://dlmf.nist.gov/36.2#E8;
-;;;;;;;;;
-\CatalanNumber@{n};Catalan number;0;1;1;;;;http://dlmf.nist.gov/26.5#E1;
-;;;;;;;;;
-\CuspCat{K}@{t}{\Vector{x}};Cuspoid catastrophe;1;1;2;;;;http://dlmf.nist.gov/36.2#E1;
-\UmbilicCatE@{s}{t}{\Vector{x}};Elliptic umbilic catastrophe;0;1;3;;;;http://dlmf.nist.gov/36.2#E2;
-\UmbilicCatH@{s}{t}{\Vector{x}};Hyperbolic umbilic catastrophe;0;1;3;;;;http://dlmf.nist.gov/36.2#E3;
-\DiffCat{K}@{\Vector{x}}{k};Diffraction catastrophe;1;1;2;;;;http://dlmf.nist.gov/36.2#E10;
-\DiffCatU@{\Vector{x}}{k};Diffraction umbilic catastrophe;0;1;2;;;;http://dlmf.nist.gov/36.2#E11;
-\DiffCatE@{\Vector{x}}{k};Diffraction elliptic umbilic catastrophe;0;1;2;;;;http://dlmf.nist.gov/36.2#E11;
-\DiffCatH@{\Vector{x}}{k};Diffraction hyperbolic umbilic catastrophe;0;1;2;;;;http://dlmf.nist.gov/36.2#E11;
-;;;;;;;;;
-\ChebyshevPsi@{x};Chebyshev Psi-function;0;1;1;;;;http://dlmf.nist.gov/25.16#E1;
-;;;;;;;;;
-\CoulombF{L}@{\eta}{\rho};Regular Coulomb function;1;1;2;;;;http://dlmf.nist.gov/33.2#E3;Only regular solution is supported by Maple 
-\Coulombf@{\epsilon}{\ell}{r};Regular Coulomb function;0;1;3;;;;http://dlmf.nist.gov/33.14#E4;
-\Coulombc@{\epsilon}{\ell}{r};Regular Coulomb function;0;1;3;;;;http://dlmf.nist.gov/33.14#E9;
-\Coulombs@{\epsilon}{\ell}{r};Regular Coulomb function;0;1;3;;;;http://dlmf.nist.gov/33.14#E9;
-\Coulombh@{\epsilon}{\ell}{r};Regular Coulomb function;0;1;3;;;;http://dlmf.nist.gov/33.14#E7;
-\CoulombG{\ell}@{\eta}{\rho};Irregular Coulomb function;1;1;2;;;;http://dlmf.nist.gov/33.2#E11;
-\CoulombH{\pm}{\ell}@{\eta}{\rho};Irregular Coulomb radial function;2;1;2;;;;http://dlmf.nist.gov/33.2#E7;
-\CoulombC{\ell}@{\eta};Normalizing constant for Coulomb radial functions;1;1;1;;;;http://dlmf.nist.gov/33.2#E5;
-\CoulombTheta{\ell}@{\eta}{\rho};Phase of Coulomb functions;1;1;2;;;;http://dlmf.nist.gov/33.2#E9;
-\CoulombSigma{\ell}@{\eta};Coulomb phase shift;1;1;1;;;;http://dlmf.nist.gov/33.2#E10;
-\CoulombM{\ell}@{\eta}{\rho};Envelope of Coulomb function;1;1;2;;;;http://dlmf.nist.gov/33.3#E1;
-\Coulombrhotp@{\eta}{\ell};Outer turning point for Coulomb radial functions;0;1;2;;;;http://dlmf.nist.gov/33.2#E2;
-\Coulombrtp@{\epsilon}{\ell};Outer turning point for Coulomb functions;0;1;2;;;;http://dlmf.nist.gov/33.14#E3;
-;;;;;;;;;
-\Cylinder{\nu}@{z};Cylinder function;1;1;1;;;;http://dlmf.nist.gov/10.2#Px5.p1;
-\ParabolicU@{a}{z};Parabolic cylinder function U;0;1;;;;;http://dlmf.nist.gov/12.4#E1;For a=0, this can be computed with BesselK. But this produces branch cut issues
-\ParabolicUbar@{a}{x};Real parabolic cylinder function U;0;1;2;;;;http://dlmf.nist.gov/12.2#21;
-\ParabolicV@{a}{z};Parabolic cylinder function V;0;1;2;;;;http://dlmf.nist.gov/12.4#E2;
-\ParabolicW@{a}{x};Parabolic cylinder function W;0;1;2;;;;http://dlmf.nist.gov/12.14.i;
-\WhitD{\nu}@{z};Whittaker's notation D;1;1;1;;;;http://dlmf.nist.gov/12.1;CylinderU(a,x) = CylinderD(-a-1/2,x)
-;;;;;;;;;
-\DawsonsInt@{z};Dawson integral;0;1;1;;;;http://dlmf.nist.gov/7.2#E5;
-;;;;;;;;;
-\DedekindModularEta@{\tau};Dedekind's eta function;0;1;1;;;;http://dlmf.nist.gov/27.14#E12;
-;;;;;;;;;
-\Diracdelta@{x-a};Dirac delta function;0;1;1;;;;http://dlmf.nist.gov/1.17#E12;
-\deltaDistribution;Dirac delta distribution;0;0;0;;;;http://dlmf.nist.gov/1.17.i;
-;;;;;;;;;
-\DirichletL@{s}{\chi};Dirichlet L-function;0;1;2;;;;http://dlmf.nist.gov/25.15#E1;
-\DirichletCharacter@@{n}{k};Dirichlet character;0;2;2;;;;http://dlmf.nist.gov/27.8;k is invisible!
-;;;;;;;;;
-\DiscriminantDelta@{\tau};Discriminant function;0;1;1;;;;http://dlmf.nist.gov/27.14#E16;
-;;;;;;;;;
-\NumPrimeDivNu@{n};Number of distinct primes dividing n;0;1;1;;;;http://dlmf.nist.gov/27.2#E1;
-\NumPrimesLessPi@{x};Number of primes not exceeding x;0;1;1;;;;http://dlmf.nist.gov/27.2#E2;
-\DivisorFunctionD[k]@{n};Divisor function;1;1;1;;;;http://dlmf.nist.gov/27.2#SS1.p4;
-\DivisorFunctionD@{n};Divisor function;0;1;1;;;;http://dlmf.nist.gov/27.2#E9;with(numtheory) since Maplesoft 2016 use with(NumberTheory)
-\DivisorSigma{\alpha}@{n};Sum of powers of divisors;1;1;1;;;;http://dlmf.nist.gov/27.2#E10;
-\DivisorSigma{1}@{n};Sum of divisors;1;1;1;;;;http://dlmf.nist.gov/27.2#E10;with(numtheory) since Maplesoft 2016 use with(NumberTheory)
-\JordanJ{k}@{n};Jordan's function;1;1;1;;;;http://dlmf.nist.gov/27.2#E11;
-\MoebiusMu@{n};Möbius function;0;1;1;;;;http://dlmf.nist.gov/27.2#E12;
-\LiouvilleLambda@{n};Liouville's function;0;1;1;;;;http://dlmf.nist.gov/27.2#E13;
-\MangoldtLambda@{n};Mangoldt's function;0;1;1;;;;http://dlmf.nist.gov/27.2#E14;
-;;;;;;;;;
-\EllIntcel@{k_c}{p}{a}{b};Bulirsch's complete elliptic integral;0;1;4;;;;http://dlmf.nist.gov/19.2#E11;
-\EllIntelone@{x}{k_c};Bulirsch's incomplete elliptic integral of first kind;0;1;2;;;;http://dlmf.nist.gov/19.2#E15;
-\EllInteltwo@{x}{k_c}{a}{b};Bulirsch's incomplete elliptic integral of second kind;0;1;4;;;;http://dlmf.nist.gov/19.2#E12;
-\EllIntelthree@{x}{k_c}{p};Bulirsch's incomplete elliptic integral of third kind;0;1;3;;;;http://dlmf.nist.gov/19.2#E16;\EllIntRC@@{x}{y} = \EllIntRF@@{x}{y}{y}
-\EllIntR{-a}@{\Vector{b}}{\Vector{z}};Multivariate hypergeometric function;1;1;2;;;;http://dlmf.nist.gov/19.16#E9;
-\EllIntRF@@{x}{y}{z};Symmetric elliptic integral of the first kind;0;2;3;;;;http://dlmf.nist.gov/19.16#E1;
-\EllIntRJ@@{x}{y}{z}{p};Symmetric elliptic integral of the second kind;0;2;4;;;;http://dlmf.nist.gov/19.16#E2;
-\EllIntRG@@{x}{y}{z};Symmetric elliptic integral of the third kind;0;2;3;;;;http://dlmf.nist.gov/19.16#E3;
-\EllIntRD@@{x}{y}{z};Symmetric in only two variables;0;2;3;;;;http://dlmf.nist.gov/19.16#E5;
-\EllIntRC@@{x}{y};Carlson elliptic integral;0;2;2;;;;http://dlmf.nist.gov/19.2#E17;
-;;;;;;;;;
-\EulerSumH@{s};Euler sums;0;1;1;;;;http://dlmf.nist.gov/25.16#SS2.p1;
-\GenEulerSumH@{s}{z};Generalized Euler sums;0;1;2;;;;http://dlmf.nist.gov/25.16#SS2.p7;
-\EulerPhi@{x};Euler's reciprocal function;0;1;1;;;;http://dlmf.nist.gov/27.14#E2;
-\EulerGamma@{z};Euler's gamma function;0;1;1;;;;http://dlmf.nist.gov/5.2#E1;
-\EulerTotientPhi[k]@{n};Euler's totient function;1;1;1;;;;http://dlmf.nist.gov/27.2#E6;
-\EulerianNumber{n}{k};Eulerian number;0;0;2;;;;http://dlmf.nist.gov/26.14#SS1.p3;
-;;;;;;;;;
-\erf@@{z};Error function;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/7.2#E1;
-\erfc@@{z};Complementary error function;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/7.2#E2;
-\erfw@{z};Complementary error function;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/7.2#E3;
-\inverf@@{x};Inverse error function;0;2;1;-1 < x < 1;;dlmf-macro;http://dlmf.nist.gov/7.17#E1;
-\inverfc@@{x};Inverse complementary error function;0;2;1;0 < x < 2;;dlmf-macro;http://dlmf.nist.gov/7.17#E1;
-\RepInterfc{n}@{z};Repeated / Iterated integral of complementary error function;1;1;1;;;dlmf-macro;http://dlmf.nist.gov/7.18#E2;
-\FishersHh{n}@{z};Probability function;1;1;1;;;dlmf-macro;http://dlmf.nist.gov/7.18#E12;
-;;;;;;;;;
-\FibonacciNumber{n};Fibonacci number;0;0;1;;;dlmf-macro;http://dlmf.nist.gov/26.11#E5;
-;;;;;;;;;
-\FresnelF@{z};Fresnel Integral;0;1;1;;;;http://dlmf.nist.gov/7.2#E6;
-\FresnelCos@{z};Fresnel Cosine Integral;0;1;1;;;;http://dlmf.nist.gov/7.2#E7;
-\FresnelSin@{z};Fresnel Sine Integral;0;1;1;;;;http://dlmf.nist.gov/7.2#E8;
-\Fresnelf@{z} ;Fresnel Auxiliaty Functions;0;1;1;;;;http://dlmf.nist.gov/7.2#E10;
-\Fresnelg@{z};Fresnel Auxiliaty Functions;0;1;1;;;;http://dlmf.nist.gov/7.2#E11;
-;;;;;;;;;
-\EulerGamma@{z};Euler Gamma function;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/5.2#E1;
-\incgamma@{a}{z};Incomplete Gamma function (lower);0;1;2;\Re(a) > 0;;dlmf-macro;http://dlmf.nist.gov/8.2#E1;Maple has no special function for it, but describes the lower incomplete gamma function
-\IncGamma@{a}{z};Incomplete Gamma function (upper);0;1;2;;;dlmf-macro;http://dlmf.nist.gov/8.2#E2;
-\digamma@{z};Digamma / Psi function;0;1;1;z not element of {0, -1, -2, ...};;dlmf-macro;http://dlmf.nist.gov/5.2#E2;
-\polygamma{n}@{z};Polygamma function;1;1;1;;;dlmf-macro;http://dlmf.nist.gov/5.15;Maple also allows complex n (and negative integer values)
-\BarnesGamma@{z};Double Gamma / Barnes Gamma;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/5.17#E1;
-\GammaP@{a}{z};Normalized incomplete Gamma;0;1;2;;;dlmf-macro;http://dlmf.nist.gov/8.2#E4;
-\GammaQ@{a}{z};Normalized incomplete Gamma;0;1;2;;;dlmf-macro;http://dlmf.nist.gov/8.2#E4;
-\incgammastar@{a}{z};Incomplete Gamma star;0;1;2;\Re(a) > 0;;dlmf-macro;http://dlmf.nist.gov/8.2#E6;
-\mEulerGamma{m}@{a};Multivariate Gamma;1;1;1;\Ra(a) > 1/2*(m-1);;dlmf-macro;http://dlmf.nist.gov/35.3#i;
-;;;;;;;;;
-\AGM@{a}{g};Arithmetic geometric mean;0;1;2;;;;http://dlmf.nist.gov/19.8#SS1.p1;
-\GaussSum@{n}{\DirichletCharacter};Gauss sum;0;1;2;;;;http://dlmf.nist.gov/27.10#E9;
-;;;;;;;;;
-\GoodStat@{z};Goodwin-Staton integral;0;1;1;;;;http://dlmf.nist.gov/7.2#E12;
-;;;;;;;;;
-\HarmonicNumber{n};Harmonic number;0;0;1;;;;http://dlmf.nist.gov/25.11#E33;positive integer variables
-\SphericalHarmonicY{l}{m}@{\theta}{\phi};Spherical harmonics;2;1;2;;;;http://dlmf.nist.gov/14.30#E1;
-\SurfaceHarmonicY{l}{m}@{\theta}{\phi};Surface harmonics of the first kind;2;1;2;;;;http://dlmf.nist.gov/14.30#E2;
-;;;;;;;;;
-\HeavisideH@{x};Heaviside step function;0;1;1;;;;http://dlmf.nist.gov/1.16#E13;Maple: Heaviside(0) = undefined / DLMF: \Heaviside@{0} = 0
-;;;;;;;;;
-\HeunLocal@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z};Local Heun function;0;2;7;;;;http://dlmf.nist.gov/31.3#E1;Maple assumes w'(0) = q/(gamma*a)
-\HeunFunction{m}{a}{b}@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z};General Heun functions;3;2;7;;;;http://dlmf.nist.gov/31.4#p1;
-\HypergeoF@@@{a}{b}{c}{z};Hypergeometric function;0;3;4;;;;http://dlmf.nist.gov/15.2#E1;
-\HyperboldpFq{2}{1}@{a,b}{c}{z};Hypergeometric function;2;1;3;;;;http://dlmf.nist.gov/15.2#E5;
-\HyperpFq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};Generalized hypergeometric function;2;3;3;;;;http://dlmf.nist.gov/16.2#E1;Maple extract p and q from the lists of a_n and b_n
-\HyperpHq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};Bilateral hypergeometric function;2;3;3;;;;http://dlmf.nist.gov/16.4#E16;
-\HypergeoboldF@@@{a}{b}{c}{z};Olver's hypergeometric function;0;3;4;;;;http://dlmf.nist.gov/15.2#E2;
+DLMF;Meanings;Number of Parameters;Number of Ats;Number of Variables;Constraints;Branch Cuts;Role;DLMF-Link
+\sin@@{z};Sine;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.14#E1
+\cos@@{z};Cosine;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.14#E2
+\tan@@{z};Tangent;0;2;1;z != (k+1/2)*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.14#E4
+\sec@@{z};Secant;0;2;1;z != (k+1/2)*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.14#E6
+\csc@@{z};Cosecant;0;2;1;z != k*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.14#E5
+\cot@@{z};Cotangent;0;2;1;z != k*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.14#E7
+;;;;;;;;
+\sinh@@{z};Hyperbolic sine;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.28#E1
+\cosh@@{z};Hyperbolic cosine;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.28#E2
+\tanh@@{z};Hyperbolic tangent;0;2;1;z != \iunit*(k+1/2)*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.28#E4
+\sech@@{z};Hyperbolic secant;0;2;1;z != \iunit*(k+1/2)*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.28#E6
+\csch@@{z};Hyperbolic cosecant;0;2;1;z != \iunit*k*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.28#E5
+\coth@@{z};Hyperbolic cotangent;0;2;1;z != \iunit*k*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.28#E7
+;;;;;;;;
+\asin@@{z};Inverse sine;0;2;1;z != +/- \iunit;(-\inf, -1), (1, \inf);dlmf-macro;http://dlmf.nist.gov/4.23#SS2.p1
+\acos@@{z};Inverse cosine;0;2;1;z != +/- \iunit;(-\inf, -1), (1, \inf);dlmf-macro;http://dlmf.nist.gov/4.23#SS2.p1
+\atan@@{z};Inverse tangent;0;2;1;z != +/- \iunit;(-\iunit \inf, -\iunit), (\iunit, \iunit \inf);dlmf-macro;http://dlmf.nist.gov/4.23#SS2.p1
+\asec@@{z};Inverse secant;0;2;1;z not element of {0,-\iunit,+\iunit};(-1, 1);dlmf-macro;http://dlmf.nist.gov/4.23#SS2.p1
+\acsc@@{z};Inverse cosecant;0;2;1;z not element of {0,-\iunit,+\iunit};(-1, 1);dlmf-macro;http://dlmf.nist.gov/4.23#SS2.p1
+\acot@@{z};Inverse cotangent;0;2;1;z not element of {0,-\iunit,+\iunit};(-\iunit, \iunit);dlmf-macro;http://dlmf.nist.gov/4.23#SS2.p1
+;;;;;;;;
+\Asin@@{z};Multivalued inverse sine;0;2;1;z != +/- \iunit;z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.23#E1
+\Acos@@{z};Multivalued inverse cosine;0;2;1;z != +/- \iunit;z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.23#E2
+\Atan@@{z};Multivalued inverse tangent;0;2;1;z != +/- \iunit;z = +/- \iunit;dlmf-macro;http://dlmf.nist.gov/4.23#E3
+\Asec@@{z};Multivalued inverse secant;0;2;1;z not element of {0,-\iunit,+\iunit};z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.23#E5
+\Acsc@@{z};Multivalued inverse cosecant;0;2;1;z not element of {0,-\iunit,+\iunit};z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.23#E4
+\Acot@@{z};Multivalued inverse cotangent;0;2;1;z not element of {0,-\iunit,+\iunit};z = +/- \iunit;dlmf-macro;http://dlmf.nist.gov/4.23#E6
+;;;;;;;;
+\asinh@@{z};Inverse hyperbolic sine;0;2;1;z != +/-1;(-\iunit \inf, -\iunit), (\iunit, \iunit \inf);dlmf-macro;http://dlmf.nist.gov/4.37#SS2.p1
+\acosh@@{z};Inverse hyperbolic cosine;0;2;1;z != +/-1;(-\inf, 1);dlmf-macro;http://dlmf.nist.gov/4.37#SS2.p1
+\atanh@@{z};Inverse hyperbolic tangent;0;2;1;z != +/-1;(-\inf, -1), (1, \inf);dlmf-macro;http://dlmf.nist.gov/4.37#SS2.p1
+\asech@@{z};Inverse hyperbolic secant;0;2;1;z not element of {0,-1,+1};(-\iunit, \iunit);dlmf-macro;http://dlmf.nist.gov/4.37#SS2.p1
+\acsch@@{z};Inverse hyperbolic cosecant;0;2;1;z not element of {0,-1,+1};(-\inf, 0), (1,\inf);dlmf-macro;http://dlmf.nist.gov/4.37#SS2.p1
+\acoth@@{z};Inverse hyperbolic cotangent;0;2;1;z not element of {0,-1,+1};(-1, 1);dlmf-macro;http://dlmf.nist.gov/4.37#SS2.p1
+;;;;;;;;
+\Asinh@@{z};Multivalued inverse hyperbolic sine;0;2;1;z != +/-1;z != +/- \iunit;dlmf-macro;http://dlmf.nist.gov/4.37#E1
+\Acosh@@{z};Multivalued inverse hyperbolic cosine;0;2;1;z != +/-1;z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.37#E2
+\Atanh@@{z};Multivalued inverse hyperbolic tangent;0;2;1;z != +/-1;z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.37#E3
+\Asech@@{z};Multivalued inverse hyperbolic secant;0;2;1;z not element of {0,-1,+1};z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.37#E5
+\Acsch@@{z};Multivalued inverse hyperbolic cosecant;0;2;1;z not element of {0,-1,+1};z != +/- \iunit;dlmf-macro;http://dlmf.nist.gov/4.37#E4
+\Acoth@@{z};Multivalued inverse hyperbolic cotangent;0;2;1;z not element of {0,-1,+1};z = +/- 1;dlmf-macro;http://dlmf.nist.gov/4.37#E6
+;;;;;;;;
+\ln@@{z};Natural logarithm;0;2;1;z != 0;(-\inf, 0];dlmf-macro;http://dlmf.nist.gov/4.2#E2
+\log@@{z};Logarithm;0;2;1;z != 0;(-\inf, 0];dlmf-macro;http://dlmf.nist.gov/4.2#E2
+\logb{a}@@{z};Logarithm with different base;1;2;1;a not element of {0,1} and z != 0;(-\inf, 0];dlmf-macro;http://dlmf.nist.gov/4.2#EGx1
+\Ln@@{z};Multivalued natural logarithm;0;2;1;z != 0;z = 0;dlmf-macro;http://dlmf.nist.gov/4.2#E1
+\exp@@{z};Exponential function;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.2#E19
+;;;;;;;;
+\LambertW@{x};Lambert W-Function;0;1;1;x in \Real;;dlmf-macro;http://dlmf.nist.gov/4.13#p2
+\LambertWp@{x};Principle branch of Lambert W-Function;0;1;1;-1/e \leq x < 0;;dlmf-macro;http://dlmf.nist.gov/4.13#p2
+\LambertWm@{x};Another branch of Lambert W-Function;0;1;1;-1/e \leq x < 0;;dlmf-macro;http://dlmf.nist.gov/4.13#p2
+;;;;;;;;
+\SinInt@{z};Sine integral;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E9
+\sinInt@{z};Shifted sine integral;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E10
+\SinIntg@{a}{z};Generalized sine integral;0;1;2;;z = 0;dlmf-macro;http://dlmf.nist.gov/8.21#E2
+\sinintg@{a}{z};Generalized sine integral;0;1;2;;z = 0;dlmf-macro;http://dlmf.nist.gov/8.21#E1
+\CosInt@{z};Cosine integral;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E13
+\CosIntCin@{z};Cosine integral;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E12
+\CosIntg@{a}{z};Generalized cosine integral;0;1;2;;z = 0;dlmf-macro;http://dlmf.nist.gov/8.21#E2
+\cosintg@{a}{z};Generalized cosine integral;0;1;2;;z = 0;dlmf-macro;http://dlmf.nist.gov/8.21#E1
+\SinCosIntf@{z};Auxiliary function for sine and cosine integrals;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E17
+\SinCosIntg@{z};Auxiliary function for sine and cosine integrals;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E18
+;;;;;;;;
+\SinhInt@{z};Hyperbolic sine integral;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E15
+\CoshInt@{z};Hyperbolic cosine integral;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E16
+;;;;;;;;
+\Gudermannian@@{x};Gudermannian function;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.23#E39
+\arcGudermannian@@{x};Inverse Gudermannian function;0;2;1;-(1/2) \cpi < x < (1/2) \cpi;;dlmf-macro;http://dlmf.nist.gov/4.23#E41
+;;;;;;;;
+\ExpInti@{x};Exponential integral;0;1;1;z != 0;(-\inf, 0];dlmf-macro;http://dlmf.nist.gov/6.2#E1
+\ExpInt@{x};Exponential integral;0;1;1;z != 0;(-\inf, 0];dlmf-macro;http://dlmf.nist.gov/6.2#E1
+\ExpIntEin@{z};Complementary exponential integral;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/6.2#E3
+\ExpIntn{p}@{z};Generalized exponential integral;1;1;1;;;dlmf-macro;http://dlmf.nist.gov/8.19#E1
+\LogInt@{x};Logarithmic integral;0;1;1;x > 1;;dlmf-macro;http://dlmf.nist.gov/6.2#E8
+\Dilogarithm@{z};Dilogarithm;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/25.12#E1
+\Polylogarithm{s}@{z};Polylogarithm;1;1;1;;;dlmf-macro;http://dlmf.nist.gov/25.12#E10
+\JonquierePhi@{z}{s};Polylogarithm;0;1;2;;;dlmf-macro;http://dlmf.nist.gov/25.1
+;;;;;;;;
+\cpi;Pi;0;0;0;;;mathematical constant;not defined
+\iunit;Imaginary unit;0;0;0;;;mathematical constant;http://dlmf.nist.gov/1.9.i
+\EulerConstant;Euler-Mascheroni constant;0;0;0;;;mathematical constant;http://dlmf.nist.gov/5.2#E3
+\StieltjesConstants{n};Stieltjes Constants;0;0;1;;;dlmf-macro;http://drmf.wmflabs.org/wiki/Definition:StieltjesConstants
+\expe;Euler's constant;0;0;0;;;mathematical constant;http://dlmf.nist.gov/4.2.E11
+\CatalansConstant;Catalan's constant;0;0;0;;;mathematical constant;http://dlmf.nist.gov/25.11.E40
+\inf;Infinity;0;0;0;;;mathematical constant;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r24
+;;;;;;;;
+\Matrix{A};Matrix;0;0;1;;;;http://drmf.wmflabs.org/wiki/Definition:Matrix
+\Vector{a};Vector;0;0;1;;;;http://drmf.wmflabs.org/wiki/Definition:Vector
+\trace;Trace of a matrix;0;0;1;;;;http://dlmf.nist.gov/35.1#p3.t1.r9
+\transpose;Transpose of matrix;0;0;1;;;;http://dlmf.nist.gov/1.3.E5
+\exptrace@{\Matrix{X}};Exponential of the trace of a matrix;0;1;1;;;;http://dlmf.nist.gov/35.1#p3.t1.r10
+\det A;Determinant;0;0;1;;;;http://dlmf.nist.gov/1.3#i
+\diag A;Diagonal part of matrix;0;0;1;;;;http://dlmf.nist.gov/21.1#p2.t1.r11
+\ph@@{z};Phase / Argument of a complex number;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/1.9#E7
+\ph@@{z};Argument of a complex number;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/1.9#E7
+;;;;;;;;
+\conj{z};Conjugate complex number;0;0;1;;;dlmf-macro;http://dlmf.nist.gov/1.9#E11
+\realpart{z};Real part of a complex number;0;0;1;;;dlmf-macro;http://dlmf.nist.gov/1.9#E2
+\imagpart{z};Imaginary part of a complex num;0;0;1;;;dlmf-macro;http://dlmf.nist.gov/1.9#E2
+\sqrt{z};Square root;0;0;1;;;dlmf-macro;not defined
+\sqrt[p]{z};n-th root;1;0;1;;;dlmf-macro;not defined
+\binom{m}{n};Binomial coefficient;0;0;2;;;dlmf-macro;http://dlmf.nist.gov/1.2#E1
+\binomial{m}{n};Binomial coefficient;0;0;2;;;dlmf-macro;http://dlmf.nist.gov/1.2#E1
+\multinomial{m}{n_1,...,n_k};Multinomial coefficient;0;0;2;;;dlmf-macro;http://dlmf.nist.gov/26.4.E2
+\pgcd{m,n};Greatest common divisor;0;0;1;;;dlmf-macro;http://dlmf.nist.gov/27.1#p2.t1.r3
+;;;;;;;;
+\f{f}@{x};Function;1;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:f
+\in;Element of;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r9
+\notin;Not element of;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r10
+\forall;For all;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r11
+\Longrightarrow;Implies;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r12
+\Longleftrightarrow;Equivalence;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r13
+=;Equal;0;0;0;;;symbol;not defined
+\neq;Not equal;0;0;0;;;symbol;not defined
+\ifrac{a}{b};Fraction;0;0;2;;;;http://dlmf.nist.gov/4.2.E8
+\power{x}{y};Power;0;0;2;;;;http://dlmf.nist.gov/36.12#E9
+n!;Factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r14
+n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15
+\psfactorial{a}{\kappa};Partitional shifted factorial;0;0;2;;;;http://dlmf.nist.gov/35.4#E1
+\floor{x} ;Floor;0;0;1;;;;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r16
+\ceiling{x};Ceiling;0;0;1;;;;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r17
+\sign@@{x};Signum;0;2;1;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r18
+\inf;Infimum;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r24
+\sup;Supremum;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r25
+\Sum{n}{k1}{k2}@{f(n)};Sum;3;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:Sum
+\Prod{n}{k1}{k2}@{f(n)};Product;3;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:Prod
+"\Wronskian@{w_1(z);w_2(z)}";Wronskian;0;1;2;;;;http://dlmf.nist.gov/1.13#E4
+\Residue;Residue;0;0;0;;;symbol;http://dlmf.nist.gov/1.10#SS3.p5
+\card{A};Number of elements of a set;0;0;1;;;;http://dlmf.nist.gov/26.1#p2.t1.r5
+\cartprod;Cartesian product of groups;0;0;0;;;symbol;http://dlmf.nist.gov/23.1#p2.t1.r18
+\divides;Devides;0;0;0;;;symbol;http://dlmf.nist.gov/24.1#p2.t1.r4
+\liminf;Least limit point;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r4
+\mod;Modulo;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r10
+\opminus;Negative unity to an integer power;0;0;0;;;symbol;http://dlmf.nist.gov/5.7.E7
+\poly{p}{n}@{x};Polynomial;2;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:poly
+\CompositionsC[m]@{n};Number of compositions;1;1;1;;;;http://dlmf.nist.gov/26.11#p1
+\Distribution{f}{g};Distribution;0;0;2;;;;http://dlmf.nist.gov/1.16#SS1.p5
+\Lattice{L};Lattice;0;0;1;;;;http://dlmf.nist.gov/23.2#i
+\fDiff[x];Forward difference;1;0;0;;;;http://dlmf.nist.gov/18.1#EGx1
+\bDiff[x];Backward difference;1;0;0;;;;http://dlmf.nist.gov/18.1#EGx2
+\cDiff[x];Central difference;1;0;0;;;;http://dlmf.nist.gov/18.1#EGx3
+\deriv{f}{x};Derivative;0;0;2;;;;http://dlmf.nist.gov/1.4#E4
+\pderiv{f}{x};Partial derivative;0;0;2;;;;http://dlmf.nist.gov/1.5#E3
+\diff{x};Differential;0;0;1;;;;http://dlmf.nist.gov/1.4#SS4.p1
+\pdiff{x};Power of partial differential;0;0;1;;;;http://dlmf.nist.gov/1.5#E3
+\AntiDer@{x}{f(x)};Anti-Derivative;0;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:AntiDer
+\Int{a}{b}@{x}{f(x)};Integral;2;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:Int
+\int;Indefinite Integral;0;0;0;;;symbol;http://dlmf.nist.gov/1.4#iv
+\pvint_{a}^{b} \f{f}@{x} \diff{x};Cauchy principle value;0;0;0;;;;http://dlmf.nist.gov/1.4#E24
+\Schwarzian{z}{\zeta};Schwarzian derivative;0;0;2;;;;http://dlmf.nist.gov/1.13#E20
+\Complex;Set of complex numbers;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r1
+\Real;Set of real numbers;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r14
+\Rational;Set of rational numbers;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r13
+\Integer;Set of integers;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r20
+\NatNumber;Set of positive integers;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r11
+\Continuous@{A};Space of continuous functions on a set;0;1;1;;;;http://dlmf.nist.gov/1.4#ii
+\SpaceTestFunTempered@{A};Space of test functions for tempered distributions;0;1;1;;;;http://dlmf.nist.gov/1.16#v
+\setminus;Set difference;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r19
+\subseteq;Subset;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r3
+\subset;Subset;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r2
+\setmod;Set of all elements of S_1 modulo elements of S_2;0;0;0;;;;http://dlmf.nist.gov/21.1#p2.t1.r17
+\PartitionsP{n};Number of partitions of nonnegative integer n;0;0;1;;;;http://dlmf.nist.gov/26.2#P4.p2
+\PartitionsP[k]@{n};Number of partitions of nonnegative integer n into at most k parts;1;1;1;;;;http://dlmf.nist.gov/26.9
+\Permutations{n};Set of permutations;0;0;1;;;;http://dlmf.nist.gov/26.13
+\PlanePartitionsPP@{n};Number of plane partitions;0;1;1;;;;http://dlmf.nist.gov/26.12#SS1.p4
+\RestrictedPartitionsP[k]@{\mathrm{condition}}{n};Restricted number of partitions;1;1;2;;;;http://dlmf.nist.gov/26.11#p1
+\RestrictedCompositionsC@{\mathrm{condition}}{n};Restricted number of compositions;0;1;2;;;;http://dlmf.nist.gov/26.10#i
+\BigO@{x};Landau notation O;0;1;1;;;;http://dlmf.nist.gov/2.1#E3
+\littleo@{x};Landau notation o;0;1;1;;;;http://dlmf.nist.gov/2.1#E2
+\sim;Asymptotic equality;0;0;0;;;;http://dlmf.nist.gov/2.1#E1
+;;;;;;;;
+\AiryAi@{z};Airy function of the first kind;0;1;1;;;;http://dlmf.nist.gov/9.2#i
+\AiryBi@{z};Airy function of the second kind;0;1;1;;;;http://dlmf.nist.gov/9.2#i
+\AiryModulusM@{z};Airy modulus function M;0;1;1;;;;http://dlmf.nist.gov/9.8#i
+\AiryModulusN@{z};Airy modulus function N;0;1;1;;;;http://dlmf.nist.gov/9.8#i
+\AiryPhasePhi@{z};Airy phase function Phi;0;1;1;;;;http://dlmf.nist.gov/9.8#i
+\AiryPhaseTheta@{z};Airy phase function Theta;0;1;1;;;;http://dlmf.nist.gov/9.8#i
+\ODEgenAiryA{n}@{z};Generalized Airy function;1;1;1;;;;http://dlmf.nist.gov/9.13#SS1.p2
+\ODEgenAiryB{n}@{z};Generalized Bairy function;1;1;1;;;;http://dlmf.nist.gov/9.13#SS1.p2
+\IntgenAiryA{k}@{z}{p};Generalized Airy function integral;1;1;1;;;;http://dlmf.nist.gov/9.13#SS2.p1
+\IntgenAiryB{k}@{z}{p};Generalized Bairy function integral;1;1;2;;;;http://dlmf.nist.gov/9.13#SS2.p1
+\ZeroAiryAi{k};Zeros of Airy function of the first kind;0;0;1;;;;http://dlmf.nist.gov/9.9#SS1.p2
+\ZeroAiryAiPrime{k};Zeros of derivative Airy function of the first kind;0;0;1;;;;http://dlmf.nist.gov/9.9#SS1.p2
+\ZeroAiryBi{k};Zeros of Airy function  of the second kind;0;0;1;;;;http://dlmf.nist.gov/9.9#SS1.p2
+\ZeroAiryBiPrime{k};Zeros of derivative Airy function of the second kind;0;0;1;;;;http://dlmf.nist.gov/9.9#SS1.p2
+\ComplexZeroAiryBi{k};Complex zeros of Airy function of the second kind;0;0;1;;;;http://dlmf.nist.gov/9.9#SS1.p2
+\ComplexZeroAiryBiPrime{k};Complex zeros of derivative of Airy function of the second kind;0;0;1;;;;http://dlmf.nist.gov/9.9#SS1.p2
+;;;;;;;;
+\AngerJ{v}@{z};Anger function;1;1;1;;;;http://dlmf.nist.gov/11.10#E1
+\WeberE{v}@{z};Weber function;1;1;1;;;;http://dlmf.nist.gov/11.10#E2
+\AngerA{v}@{z};Associated Anger function;1;1;1;Re(z) > 0;;;http://dlmf.nist.gov/11.10#E4
+;;;;;;;;
+\AppellFi@{\alpha}{\beta}{\beta'}{\gamma}{x}{y};First Appell function;0;1;6;;;;http://dlmf.nist.gov/16.13#E2
+\AppellFii@{\alpha}{\beta}{\beta'}{\gamma}{\gamma'}{x}{y};Second Appell function;0;1;7;;;;http://dlmf.nist.gov/16.13#E3
+\AppellFiii@{\alpha}{\alpha'}{\beta}{\beta'}{\gamma}{x}{y};Third Appell function;0;1;7;Re(z) > 0;;;http://dlmf.nist.gov/16.13#E4
+\AppellFiv@{\alpha}{\beta}{\gamma}{\gamma'}{x}{y};Fourth Appell function;0;1;6;;;;http://dlmf.nist.gov/16.13#E5
+;;;;;;;;
+\BesselJ{v}@{z};Bessel function first kind;1;1;1;;if v \notin \Integer: (-\inf, 0];dlmf-macro;http://dlmf.nist.gov/10.2#E2
+\BesselY{v}@{z};Bessel function second kind;1;1;1;;(-\inf, 0];;http://dlmf.nist.gov/10.2#E3
+\HankelHi{v}@{z};Bessel function third kind;1;1;1;;;;http://dlmf.nist.gov/10.2#E5
+\HankelHii{v}@{z};Bessel function third kind;1;1;1;;;;http://dlmf.nist.gov/10.2#E6
+\BesselModulusM{\nu}@{x};Modulus Bessel function;1;1;1;;;;http://dlmf.nist.gov/10.18#E1
+\BesselModulusN{\nu}@{x};Modulus derivative Bessel function;1;1;1;;;;http://dlmf.nist.gov/10.18#E2
+\BesselPhaseTheta{\nu}@{x};Phase of Bessel function;1;1;1;;;;http://dlmf.nist.gov/10.18#E3
+\BesselPhasePhi{\nu}@{x};Phase of derivative Bessel function;1;1;1;;;;http://dlmf.nist.gov/10.18#E3
+\ZeroBesselJ{\nu}{m};Zeros of Bessel function first kind;1;0;1;;;;http://dlmf.nist.gov/10.21#SS1.p2
+\ZeroBesselJPrime{\nu}{m};Zeros of derivative of Bessel function first kind;1;0;1;;;;http://dlmf.nist.gov/10.21#SS1.p2
+\ZeroBesselY{\nu}{m};Zeros of Bessel function second kind;1;0;1;;;;http://dlmf.nist.gov/10.21#SS1.p2
+\ZeroBesselYPrime{\nu}{m};Zeros of derivative of Bessel function second kind;1;0;1;;;;http://dlmf.nist.gov/10.21#SS1.p2
+\BesselJtilde{\nu}@{x};Bessel of imaginary order first kind;1;1;1;;;;http://dlmf.nist.gov/10.24#Ex1
+\BesselYtilde{\nu}@{x};Bessel of imaginary order second kind;1;1;1;;;;http://dlmf.nist.gov/10.24#Ex1
+\BesselI{v}@{x};Modified Bessel function first kind;1;1;1;;;;http://dlmf.nist.gov/10.25#E2
+\BesselK{v}@{x};Modified Bessel function second kind;1;1;1;;;;http://dlmf.nist.gov/10.25#E3
+\ModCylinder{\nu}@{z};Nontrivial linear combination of modified Bessel functions;1;1;1;;;;http://dlmf.nist.gov/10.25#E3
+\BesselItilde{\nu}@{x};Modified Bessel of imaginary order first kind;1;1;1;;;;http://dlmf.nist.gov/10.45#E2
+\BesselKtilde{\nu}@{x};Modified Bessel of imaginary order second kind;1;1;1;;;;http://dlmf.nist.gov/10.45#E2
+\GenBesselFun@{\rho}{\beta}{z};Generalized Bessel;0;1;3;;;;http://dlmf.nist.gov/10.46#E1
+\MittagLeffler{a}{b}@{z};Mittag-Leffler function;2;1;1;;;;http://dlmf.nist.gov/10.46#E3
+\SphBesselJ{n}@{z};Spherical Bessel function of the first kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E3
+\SphBesselY{n}@{z};Spherical Bessel function of the second kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E4
+\SphHankelHi{n}@{z};Spherical Bessel function of the third kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E5
+\SphHankelHii{n}@{z};Spherical Bessel function of the third kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E6
+\SphBesselIi{n}@{z};Modified spherical Bessel function of the first kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E7
+\SphBesselIii{n}@{z};Modified spherical Bessel function of the first kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E8
+\SphBesselK{n}@{z};Modified spherical Bessel function of the second kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E9
+\BesselA{\nu}@{\Matrix{T}};Bessel function with matrix argument;1;1;1;;;;http://dlmf.nist.gov/35.5#i
+\BesselB{\nu}@{\Matrix{T}};Bessel function with matrix argument;1;1;1;;;;http://dlmf.nist.gov/35.5#E3
+\JacksonqBesselI{\nu}@{z}{q};Jackson q-Bessel function I;1;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:JacksonqBesselI
+\JacksonqBesselII{\nu}@{z}{q};Jackson q-Bessel function II;1;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:JacksonqBesselII
+\JacksonqBesselIII{\nu}@{z}{q};Jackson q-Bessel function III;1;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:JacksonqBesselIII
+;;;;;;;;
+\BickleyKi{\alpha}@{x};Bickley function;1;1;1;;;;http://dlmf.nist.gov/10.43#E11
+;;;;;;;;
+\EulerBeta@{a}{b};Euler-Beta function;0;1;2;R(a) > 0 and R(b) > 0;;;http://dlmf.nist.gov/5.12#E1
+\IncBeta{x}@{a}{b};Incomplete Beta function;1;1;2;;;;http://dlmf.nist.gov/8.17#E1
+\IncI{x}@{a}{b};Regularized incomplete Beta function;1;1;2;;;;http://dlmf.nist.gov/8.17#E2
+\mEulerBeta{m}@{a}{b};Multivariate Euler-Beta function;1;1;2;R(a), R(b) > 1/2*(m-1);;;http://dlmf.nist.gov/35.3#E3
+;;;;;;;;
+\CanonicInt{K}@{\Vector{x}};Canonical integral;1;1;1;;;;http://dlmf.nist.gov/36.2#E4
+\CanonicIntU@{\Vector{x}};Umbilic canonical integral;0;1;1;;;;http://dlmf.nist.gov/36.2#E5
+\CanonicIntE@{\Vector{x}};Elliptic umbilic canonical integral;0;1;1;;;;http://dlmf.nist.gov/36.2#E6
+\CanonicIntH@{\Vector{x}};hyperbolic umbilic canonical integral;0;1;1;;;;http://dlmf.nist.gov/36.2#E8
+;;;;;;;;
+\CatalanNumber@{n};Catalan number;0;1;1;;;;http://dlmf.nist.gov/26.5#E1
+;;;;;;;;
+\CuspCat{K}@{t}{\Vector{x}};Cuspoid catastrophe;1;1;2;;;;http://dlmf.nist.gov/36.2#E1
+\UmbilicCatE@{s}{t}{\Vector{x}};Elliptic umbilic catastrophe;0;1;3;;;;http://dlmf.nist.gov/36.2#E2
+\UmbilicCatH@{s}{t}{\Vector{x}};Hyperbolic umbilic catastrophe;0;1;3;;;;http://dlmf.nist.gov/36.2#E3
+\DiffCat{K}@{\Vector{x}}{k};Diffraction catastrophe;1;1;2;;;;http://dlmf.nist.gov/36.2#E10
+\DiffCatU@{\Vector{x}}{k};Diffraction umbilic catastrophe;0;1;2;;;;http://dlmf.nist.gov/36.2#E11
+\DiffCatE@{\Vector{x}}{k};Diffraction elliptic umbilic catastrophe;0;1;2;;;;http://dlmf.nist.gov/36.2#E11
+\DiffCatH@{\Vector{x}}{k};Diffraction hyperbolic umbilic catastrophe;0;1;2;;;;http://dlmf.nist.gov/36.2#E11
+;;;;;;;;
+\ChebyshevPsi@{x};Chebyshev Psi-function;0;1;1;;;;http://dlmf.nist.gov/25.16#E1
+;;;;;;;;
+\CoulombF{L}@{\eta}{\rho};Regular Coulomb function;1;1;2;;;;http://dlmf.nist.gov/33.2#E3
+\Coulombf@{\epsilon}{\ell}{r};Regular Coulomb function;0;1;3;;;;http://dlmf.nist.gov/33.14#E4
+\Coulombc@{\epsilon}{\ell}{r};Regular Coulomb function;0;1;3;;;;http://dlmf.nist.gov/33.14#E9
+\Coulombs@{\epsilon}{\ell}{r};Regular Coulomb function;0;1;3;;;;http://dlmf.nist.gov/33.14#E9
+\Coulombh@{\epsilon}{\ell}{r};Regular Coulomb function;0;1;3;;;;http://dlmf.nist.gov/33.14#E7
+\CoulombG{\ell}@{\eta}{\rho};Irregular Coulomb function;1;1;2;;;;http://dlmf.nist.gov/33.2#E11
+\CoulombH{\pm}{\ell}@{\eta}{\rho};Irregular Coulomb radial function;2;1;2;;;;http://dlmf.nist.gov/33.2#E7
+\CoulombC{\ell}@{\eta};Normalizing constant for Coulomb radial functions;1;1;1;;;;http://dlmf.nist.gov/33.2#E5
+\CoulombTheta{\ell}@{\eta}{\rho};Phase of Coulomb functions;1;1;2;;;;http://dlmf.nist.gov/33.2#E9
+\CoulombSigma{\ell}@{\eta};Coulomb phase shift;1;1;1;;;;http://dlmf.nist.gov/33.2#E10
+\CoulombM{\ell}@{\eta}{\rho};Envelope of Coulomb function;1;1;2;;;;http://dlmf.nist.gov/33.3#E1
+\Coulombrhotp@{\eta}{\ell};Outer turning point for Coulomb radial functions;0;1;2;;;;http://dlmf.nist.gov/33.2#E2
+\Coulombrtp@{\epsilon}{\ell};Outer turning point for Coulomb functions;0;1;2;;;;http://dlmf.nist.gov/33.14#E3
+;;;;;;;;
+\Cylinder{\nu}@{z};Cylinder function;1;1;1;;;;http://dlmf.nist.gov/10.2#Px5.p1
+\ParabolicU@{a}{z};Parabolic cylinder function U;0;1;2;;;;http://dlmf.nist.gov/12.4#E1
+\ParabolicUbar@{a}{x};Real parabolic cylinder function U;0;1;2;;;;http://dlmf.nist.gov/12.2#21
+\ParabolicV@{a}{z};Parabolic cylinder function V;0;1;2;;;;http://dlmf.nist.gov/12.4#E2
+\ParabolicW@{a}{x};Parabolic cylinder function W;0;1;2;;;;http://dlmf.nist.gov/12.14.i
+\WhitD{\nu}@{z};Whittaker's notation D for the parabolic cylinder function;1;1;1;;;;http://dlmf.nist.gov/12.1
+;;;;;;;;
+\DawsonsInt@{z};Dawson integral;0;1;1;;;;http://dlmf.nist.gov/7.2#E5
+;;;;;;;;
+\DedekindModularEta@{\tau};Dedekind's eta function;0;1;1;;;;http://dlmf.nist.gov/27.14#E12
+;;;;;;;;
+\Diracdelta@{x-a};Dirac delta function;0;1;1;;;;http://dlmf.nist.gov/1.17#E12
+\deltaDistribution;Dirac delta distribution;0;0;0;;;;http://dlmf.nist.gov/1.17.i
+;;;;;;;;
+\DirichletL@{s}{\chi};Dirichlet L-function;0;1;2;;;;http://dlmf.nist.gov/25.15#E1
+\DirichletCharacter@@{n}{k};Dirichlet character;0;2;2;;;;http://dlmf.nist.gov/27.8
+;;;;;;;;
+\DiscriminantDelta@{\tau};Discriminant function;0;1;1;;;;http://dlmf.nist.gov/27.14#E16
+;;;;;;;;
+\NumPrimeDivNu@{n};Number of distinct primes dividing n;0;1;1;;;;http://dlmf.nist.gov/27.2#E1
+\NumPrimesLessPi@{x};Number of primes not exceeding x;0;1;1;;;;http://dlmf.nist.gov/27.2#E2
+\DivisorFunctionD[k]@{n};Divisor function;1;1;1;;;;http://dlmf.nist.gov/27.2#SS1.p4
+\DivisorFunctionD@{n};Divisor function;0;1;1;;;;http://dlmf.nist.gov/27.2#E9
+\DivisorSigma{\alpha}@{n};Sum of powers of divisors;1;1;1;;;;http://dlmf.nist.gov/27.2#E10
+\DivisorSigma{1}@{n};Sum of divisors;1;1;1;;;;http://dlmf.nist.gov/27.2#E10
+\JordanJ{k}@{n};Jordan's function;1;1;1;;;;http://dlmf.nist.gov/27.2#E11
+\MoebiusMu@{n};MÃ¶bius function;0;1;1;;;;http://dlmf.nist.gov/27.2#E12
+\LiouvilleLambda@{n};Liouville's function;0;1;1;;;;http://dlmf.nist.gov/27.2#E13
+\MangoldtLambda@{n};Mangoldt's function;0;1;1;;;;http://dlmf.nist.gov/27.2#E14
+;;;;;;;;
+\EllIntcel@{k_c}{p}{a}{b};Bulirsch's complete elliptic integral;0;1;4;;;;http://dlmf.nist.gov/19.2#E11
+\EllIntelone@{x}{k_c};Bulirsch's incomplete elliptic integral of first kind;0;1;2;;;;http://dlmf.nist.gov/19.2#E15
+\EllInteltwo@{x}{k_c}{a}{b};Bulirsch's incomplete elliptic integral of second kind;0;1;4;;;;http://dlmf.nist.gov/19.2#E12
+\EllIntelthree@{x}{k_c}{p};Bulirsch's incomplete elliptic integral of third kind;0;1;3;;;;http://dlmf.nist.gov/19.2#E16
+\EllIntR{-a}@{\Vector{b}}{\Vector{z}};Multivariate hypergeometric function;1;1;2;;;;http://dlmf.nist.gov/19.16#E9
+\EllIntRF@@{x}{y}{z};Symmetric elliptic integral of the first kind;0;2;3;;;;http://dlmf.nist.gov/19.16#E1
+\EllIntRJ@@{x}{y}{z}{p};Symmetric elliptic integral of the second kind;0;2;4;;;;http://dlmf.nist.gov/19.16#E2
+\EllIntRG@@{x}{y}{z};Symmetric elliptic integral of the third kind;0;2;3;;;;http://dlmf.nist.gov/19.16#E3
+\EllIntRD@@{x}{y}{z};Symmetric in only two variables;0;2;3;;;;http://dlmf.nist.gov/19.16#E5
+\EllIntRC@@{x}{y};Carlson elliptic integral;0;2;2;;;;http://dlmf.nist.gov/19.2#E17
+;;;;;;;;
+\EulerSumH@{s};Euler sums;0;1;1;;;;http://dlmf.nist.gov/25.16#SS2.p1
+\GenEulerSumH@{s}{z};Generalized Euler sums;0;1;2;;;;http://dlmf.nist.gov/25.16#SS2.p7
+\EulerPhi@{x};Euler's reciprocal function;0;1;1;;;;http://dlmf.nist.gov/27.14#E2
+\EulerGamma@{z};Euler's gamma function;0;1;1;;;;http://dlmf.nist.gov/5.2#E1
+\EulerTotientPhi[k]@{n};Euler's totient function;1;1;1;;;;http://dlmf.nist.gov/27.2#E6
+\EulerianNumber{n}{k};Eulerian number;0;0;2;;;;http://dlmf.nist.gov/26.14#SS1.p3
+;;;;;;;;
+\erf@@{z};Error function;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/7.2#E1
+\erfc@@{z};Complementary error function;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/7.2#E2
+\erfw@{z};Complementary error function;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/7.2#E3
+\inverf@@{x};Inverse error function;0;2;1;-1 < x < 1;;dlmf-macro;http://dlmf.nist.gov/7.17#E1
+\inverfc@@{x};Inverse complementary error function;0;2;1;0 < x < 2;;dlmf-macro;http://dlmf.nist.gov/7.17#E1
+\RepInterfc{n}@{z};Repeated / Iterated integral of complementary error function;1;1;1;;;dlmf-macro;http://dlmf.nist.gov/7.18#E2
+\FishersHh{n}@{z};Probability function;1;1;1;;;dlmf-macro;http://dlmf.nist.gov/7.18#E12
+;;;;;;;;
+\FibonacciNumber{n};Fibonacci number;0;0;1;;;dlmf-macro;http://dlmf.nist.gov/26.11#E5
+;;;;;;;;
+\FresnelF@{z};Fresnel Integral;0;1;1;;;;http://dlmf.nist.gov/7.2#E6
+\FresnelCos@{z};Fresnel Cosine Integral;0;1;1;;;;http://dlmf.nist.gov/7.2#E7
+\FresnelSin@{z};Fresnel Sine Integral;0;1;1;;;;http://dlmf.nist.gov/7.2#E8
+\Fresnelf@{z} ;Fresnel Auxiliaty Functions;0;1;1;;;;http://dlmf.nist.gov/7.2#E10
+\Fresnelg@{z};Fresnel Auxiliaty Functions;0;1;1;;;;http://dlmf.nist.gov/7.2#E11
+;;;;;;;;
+\EulerGamma@{z};Euler Gamma function;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/5.2#E1
+\incgamma@{a}{z};Incomplete Gamma function (lower);0;1;2;\Re(a) > 0;;dlmf-macro;http://dlmf.nist.gov/8.2#E1
+\IncGamma@{a}{z};Incomplete Gamma function (upper);0;1;2;;;dlmf-macro;http://dlmf.nist.gov/8.2#E2
+\digamma@{z};Digamma / Psi function;0;1;1;z not element of {0, -1, -2, ...};;dlmf-macro;http://dlmf.nist.gov/5.2#E2
+\polygamma{n}@{z};Polygamma function;1;1;1;;;dlmf-macro;http://dlmf.nist.gov/5.15
+\BarnesGamma@{z};Double Gamma / Barnes Gamma;0;1;1;;;dlmf-macro;http://dlmf.nist.gov/5.17#E1
+\GammaP@{a}{z};Normalized incomplete Gamma;0;1;2;;;dlmf-macro;http://dlmf.nist.gov/8.2#E4
+\GammaQ@{a}{z};Normalized incomplete Gamma;0;1;2;;;dlmf-macro;http://dlmf.nist.gov/8.2#E4
+\incgammastar@{a}{z};Incomplete Gamma star;0;1;2;\Re(a) > 0;;dlmf-macro;http://dlmf.nist.gov/8.2#E6
+\mEulerGamma{m}@{a};Multivariate Gamma;1;1;1;\Ra(a) > 1/2*(m-1);;dlmf-macro;http://dlmf.nist.gov/35.3#i
+;;;;;;;;
+\AGM@{a}{g};Arithmetic geometric mean;0;1;2;;;;http://dlmf.nist.gov/19.8#SS1.p1
+\GaussSum@{n}{\DirichletCharacter};Gauss sum;0;1;2;;;;http://dlmf.nist.gov/27.10#E9
+;;;;;;;;
+\GoodStat@{z};Goodwin-Staton integral;0;1;1;;;;http://dlmf.nist.gov/7.2#E12
+;;;;;;;;
+\HarmonicNumber{n};Harmonic number;0;0;1;;;;http://dlmf.nist.gov/25.11#E33
+\SphericalHarmonicY{l}{m}@{\theta}{\phi};Spherical harmonics;2;1;2;;;;http://dlmf.nist.gov/14.30#E1
+\SurfaceHarmonicY{l}{m}@{\theta}{\phi};Surface harmonics of the first kind;2;1;2;;;;http://dlmf.nist.gov/14.30#E2
+;;;;;;;;
+\HeavisideH@{x};Heaviside step function;0;1;1;;;;http://dlmf.nist.gov/1.16#E13
+;;;;;;;;
+\HeunLocal@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z};Local Heun function;0;2;7;;;;http://dlmf.nist.gov/31.3#E1
+\HeunFunction{m}{a}{b}@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z};General Heun functions;3;2;7;;;;http://dlmf.nist.gov/31.4#p1
+\HypergeoF@@@{a}{b}{c}{z};Hypergeometric function;0;3;4;;;;http://dlmf.nist.gov/15.2#E1
+\HyperboldpFq{2}{1}@{a,b}{c}{z};Hypergeometric function;2;1;3;;;;http://dlmf.nist.gov/15.2#E5
+\HyperpFq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};Generalized hypergeometric function;2;3;3;;;;http://dlmf.nist.gov/16.2#E1
+\HyperpHq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};Bilateral hypergeometric function;2;3;3;;;;http://dlmf.nist.gov/16.4#E16
+\HypergeoboldF@@@{a}{b}{c}{z};Olver's hypergeometric function;0;3;4;;;;http://dlmf.nist.gov/15.2#E2
 "\HyperboldpFq{p}{q}@@
-{\Vector{a}}{\Vector{b}}{z}";Olver's generalized hypergeometric function;2;2;3;;;;http://dlmf.nist.gov/16.2#E5;Vector problem
-\KummerM@{a}{b}{z};Kummer confluent hypergeometric functions M;0;1;3;;;;http://dlmf.nist.gov/13.2#E2;
-\KummerU@{a}{b}{z};Kummer confluent hypergeometric functions U;0;1;3;;;;http://dlmf.nist.gov/13.2#E6;
-\KummerboldM@{a}{b}{z};Olver's confluent hypergeometric functions U;0;1;3;;;;http://dlmf.nist.gov/13.2#E3;
-\HyperPsi@{a}{b}{\Matrix{T}};Confluent hypergeometric function of matrix argument of the second kind;0;1;3;;;;http://dlmf.nist.gov/35.6#E2;Matrix problem
-\LauricellaFD@{a}{b_1,...,b_n}{c}{z_1,...,z_n};Lauricella's multivariate hypergeometric function;0;1;4;;;;http://dlmf.nist.gov/19.15#p1;"see also ""Multivariate hypergeometric function"" under ""Elliptic Integrals"""
-\RiemannP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};Riemann's P-symbol;0;1;1;;;;http://dlmf.nist.gov/15.11#E3;
-;;;;;;;;;
-\idem@{\chi_1}{\chi_1,...,\chi_n};Idem function;0;1;2;;;;http://dlmf.nist.gov/17.1#p3;
-;;;;;;;;;
-\Jacobiphi{\alpha}{\beta}{\lambda}@{t};Jacobi function;3;1;1;;;;http://dlmf.nist.gov/15.9#E11;
-\AbstractJacobi{p}{q};Generic Jacobian elliptic function;0;0;2;;;;http://dlmf.nist.gov/22.2#E10;Should not translated maybe
-\Jacobiam@{z}{k};Jacobi's amplitude function;0;1;2;;;;http://dlmf.nist.gov/22.16#E1;
-\Jacobisn@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E4;
-\Jacobicn@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E5;
-\Jacobidn@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E6;
-\Jacobisd@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E7;
-\Jacobicd@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E8;
-\Jacobisc@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E9;
-\Jacobins@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E10;
-\Jacobinc@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E11;
-\Jacobind@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E12;
-\Jacobids@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E13;
-\Jacobidc@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E14;
-\Jacobics@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E15;
-\arcJacobisn@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1;
-\arcJacobicn@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1;
-\arcJacobidn@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1;
-\arcJacobisd@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1;
-\arcJacobicd@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1;
-\arcJacobisc@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1;
-\arcJacobins@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1;
-\arcJacobinc@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1;
-\arcJacobind@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1;
-\arcJacobids@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1;
-\arcJacobidc@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1;
-\arcJacobics@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1;
-\JacobiEpsilon@{x}{k};Jacobi's epsilon function;0;1;2;;;;http://dlmf.nist.gov/22.16#E14;
-\JacobiTheta{j}@{z}{q};Jacobi's theta function;1;1;2;;;;http://dlmf.nist.gov/20.2#i;Take care of 'j' in JacobiThetaj
-\JacobiThetaTau{j}@{z}{\tau};Jacobi's theta-tau function;1;1;2;;;;http://dlmf.nist.gov/20.2#i;Im(tau) > 0 and 0 < |exp(I*Pi*tau)| < 1
-\JacobiThetaCombined{n}{m}@{z}{q};Combined theta function;2;1;2;;;;http://dlmf.nist.gov/20.11#SS5.p2;
-\AThetaFunction@{x};Jacobi theta function alternative;0;1;1;;;;http://dlmf.nist.gov/27.13.E4;
-\JacobiZeta@{x}{k};Jacobi zeta function;0;1;2;;;;http://dlmf.nist.gov/22.16#E32;
-\JacobiSymbol{n}{P};Jacobi symbol;0;0;2;;;;http://dlmf.nist.gov/27.9#p3;
-;;;;;;;;;
-\Kelvinber{\nu}@@{x};Kelvin Function BER;1;2;1;;;;http://dlmf.nist.gov/10.61#E1;
-\Kelvinbei{\nu}@@{x};Kelvin Function BEI;1;2;1;;;;http://dlmf.nist.gov/10.61#E1;
-\Kelvinker{\nu}@@{x};Kelvin Function KER;1;2;1;;;;http://dlmf.nist.gov/10.61#E2;
-\Kelvinkei{\nu}@@{x};Kelvin Function KEI;1;2;1;;;;http://dlmf.nist.gov/10.61#E2;
-\LameEc{m}{\nu}@{z}{k^2};Lame function;2;1;2;;;;http://dlmf.nist.gov/29.3#SS4.p1;
-\LameEs{m}{\nu}@{z}{k^2};Lame function;2;1;2;;;;http://dlmf.nist.gov/29.3#SS4.p1;
-\Lamea{n}{\nu}@{k^2};Eigenvalues of Lame's equation;2;1;1;;;;http://dlmf.nist.gov/29.3#SS1.p1;
-\Lameb{n}{\nu}@{k^2};Eigenvalues of Lame's equation;2;1;1;;;;http://dlmf.nist.gov/29.3#SS1.p1;
-;;;;;;;;;
-\FerrersP[\mu]{\nu}@{z};Ferrers function of first kind;2;1;1;;;;http://dlmf.nist.gov/14.3#E1;
-\FerrersQ[\mu]{\nu}@{z};Ferrers function of second kind;2;1;1;;;;http://dlmf.nist.gov/14.3#E2;
-\LegendreP[\mu]{\nu}@{z};Associated Legendre function of first kind;2;1;1;;;;http://dlmf.nist.gov/14.3#E6;Different order in parameters, 1 < z
-\LegendreQ[\mu]{\nu}@{z};Associated Legendre function of second kind;2;1;1;;;;http://dlmf.nist.gov/14.3#E7;Different order in parameters, 1 < z
-\LegendreBlackQ[\mu]{\nu}@{z};Olver's associated Legendre function;2;1;1;;;;http://dlmf.nist.gov/14.3#E10;
-\FerrersHatQ[-\mu]{-\frac{1}{2}+i\tau}@{x};Conical function;2;1;1;;;;http://dlmf.nist.gov/14.20#E2;
-;;;;;;;;;
-\EllIntF@{\phi}{k};Legendre's incomplete elliptic integral of the first kind;0;1;2;;;;http://dlmf.nist.gov/19.2#E4;Maple first argument is the sine of the amplitude! In DLMF it is the amplitude itself
-\EllIntE@{\phi}{k};Legendre's incomplete elliptic integral of the second kind;0;1;2;;;;http://dlmf.nist.gov/19.2#E5;Maple first argument is the sine of the amplitude! In DLMF it is the amplitude itself
-\EllIntPi@{\phi}{\alpha^2}{k};Legendre's incomplete elliptic integral of the third kind;0;1;3;;;;http://dlmf.nist.gov/19.2#E7;Maple first argument is the sine of the amplitude! In DLMF it is the amplitude itself
-\EllIntD@{\phi}{k};Incomplete elliptic integral of Legendre's type;0;1;2;;;;http://dlmf.nist.gov/19.2#E6;Maple first argument is the sine of the amplitude! In DLMF it is the amplitude itself
-\CompEllIntK@{k};Legendre's elliptic integral of the first kind;0;1;1;;;;http://dlmf.nist.gov/19.2#E8;In Maple K(k) = F(1,k), because all other Elliptics are defined with the SINE of the amplitude
-\CompEllIntE@{k};Legendre's elliptic integral of the second kind;0;1;1;;;;http://dlmf.nist.gov/19.2#E8;In Maple E(k) = E(1,k)
-\CompEllIntPi@{\alpha^2}{k};Legendre's elliptic integral of the third kind;0;1;2;;;;http://dlmf.nist.gov/19.2#E8;In Maple Pi(nu, k) = Pi(1, nu, k)
-\CompEllIntD@{k};Complete elliptic integral of Legendre's type;0;1;1;;;;http://dlmf.nist.gov/19.2#E8;This translation assumes the sine of the amplitude. So D(k) = D(1,k)
-\CompEllIntCK@{k};Legendre's complementary complete elliptic integral of the first kind;0;1;1;;;;http://dlmf.nist.gov/19.2#E9;
-\CompEllIntCE@{k};Legendre's complementary complete elliptic integral of the second kind;0;1;1;;;;http://dlmf.nist.gov/19.2#E9;
-;;;;;;;;;
-\LerchPhi@{z}{s}{a};Lerch Phi function;0;1;3;;;;http://dlmf.nist.gov/25.14#E1;
-;;;;;;;;;
-\Lommels{\mu}{\nu}@{z};Lommel s;2;1;1;;;;http://dlmf.nist.gov/11.9#E3;
-\LommelS{\mu}{\nu}@{z};Lommel S;2;1;1;;;;http://dlmf.nist.gov/11.9#E5;
-;;;;;;;;;
-\MathieuEigenvaluea{n}@@{q};Mathieu eigenvalues;1;2;1;;;;http://dlmf.nist.gov/28.2#SS5.p1;
-\MathieuEigenvalueb{n}@@{q};Mathieu eigenvalues;1;2;1;;;;http://dlmf.nist.gov/28.2#SS5.p1;
-\MathieuEigenvaluelambda{m}@@{q};Mathieu eigenvalues;1;2;1;;;;http://dlmf.nist.gov/28.12#E3;
-\Mathieuce{n}@@{z}{q};Mathieu eigenvalue function;1;2;2;;;;http://dlmf.nist.gov/28.2#SS6.p1;Maple normalizes the values for n=0 (while DLMF doesn't)
-\Mathieuse{n}@@{z}{q};Mathieu eigenvalue function;1;2;2;;;;http://dlmf.nist.gov/28.2#SS6.p1;
-\Mathieume{n}@@{z}{q};Mathieu eigenvalue function;1;2;2;;;;;
-\MathieuCe{\nu}@@{z}{q};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E3;
-\MathieuSe{\nu}@@{z}{q};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E4;
-\MathieuMe{\nu}@@{z}{q};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E5;
-\MathieuFe{n}@@{z}{q};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E6;
-\MathieuGe{n}@@{z}{q};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E7;
-\MathieuM{j}{\nu}@@{z}{h};Modified Mathieu function;2;2;2;;;;http://dlmf.nist.gov/28.20#SS3.p1;
-\MathieuIe{n}@@{z}{h};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E17;
-\MathieuIo{n}@@{z}{h};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E18;
-\MathieuKe{n}@@{z}{h};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E19;
-\MathieuKo{n}@@{z}{h};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E20;
-\MathieuMc{j}{n}@@{z}{h};Radial Mathieu function;2;2;2;;;;http://dlmf.nist.gov/28.20#E15;
-\MathieuMs{j}{n}@@{z}{h};Radial Mathieu function;2;2;2;;;;http://dlmf.nist.gov/28.20#E16;
-\Mathieufe{n}@@{z}{q};Second solutions of Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.5#E1;
-\Mathieuge{n}@@{z}{q};Second solutions of Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.5#E2;
-\MathieuD{j}@{\nu}{\mu}{z};Cross-products of Mathieu function;1;1;3;;;;http://dlmf.nist.gov/28.28#E24;
-\MathieuDs{j}@{n}{m}{z};Cross-products of Mathieu function;1;1;3;;;;http://dlmf.nist.gov/28.28#E35;
-\MathieuDc{j}@{n}{m}{z};Cross-products of Mathieu function;1;1;3;;;;http://dlmf.nist.gov/28.28#E39;
-\MathieuDsc{j}@{n}{m}{z};Cross-products of Mathieu function;1;1;3;;;;http://dlmf.nist.gov/28.28#E40;
-\MathieuFc{m}@{z}{h};Cross-products of Mathieu function;1;1;2;;;;http://dlmf.nist.gov/28.26#E1;
-\MathieuFs{m}@{z}{h};Cross-products of Mathieu function;1;1;2;;;;http://dlmf.nist.gov/28.26#E2;
-\MathieuGc{m}@{z}{h};Cross-products of Mathieu function;1;1;2;;;;http://dlmf.nist.gov/28.26#E1;
-\MathieuGs{m}@{z}{h};Cross-products of Mathieu function;1;1;2;;;;http://dlmf.nist.gov/28.26#E2;
-\MeijerG{m}{n}{p}{q}@@@{z}{\Vector{a}}{\Vector{b}};Meijer-G function;4;3;3;;;;http://dlmf.nist.gov/16.17#E1;"MeijerG( [[],[]], [[],[]], z )
-In this notation, m,n,p,q are not needed for Maple (Maple -> LaTeX translation could be difficult)"
-;;;;;;;;;
-\Mills@{x};Mills' Ratio;0;1;1;;;;http://dlmf.nist.gov/7.8#E1;Maybe with(Statistics): MillsRatio(X,t)
-;;;;;;;;;
-\ModularLambda@{\tau};Elliptic modular function;0;1;1;;;;http://dlmf.nist.gov/23.15#E6;
-\ModularJ@{\tau};Klein's complete invariant;0;1;1;;;;http://dlmf.nist.gov/23.15#E7;
-\DedekindModularEta@{\tau};Dedikind's Eta function;0;1;1;;;;http://dlmf.nist.gov/23.15#E9;
-;;;;;;;;;
-\Pade{p}{q}{f};Pade approximation;0;0;3;;;;http://dlmf.nist.gov/3.11#SS4.p1;
-;;;;;;;;;
-\RamanujanSum{k}@{n};Ramanujan's sum;1;1;1;;;;http://dlmf.nist.gov/27.10#E4;
-\RamanujanTau@{n};Ramanujan's Tau function;0;1;1;;;;http://dlmf.nist.gov/27.14#E18;
-;;;;;;;;;
-\RayleighFun{n}@{\nu};Rayleigh function;1;1;1;;;;http://dlmf.nist.gov/10.21#E55;
-;;;;;;;;;
-\RiemannTheta@{\Vector{z}}{\Matrix{\Omega}};Riemann theta function;0;1;2;;;;http://dlmf.nist.gov/21.2#E1;Vector and Matrix
-\RiemannThetaChar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}};Riemann theta function with characteristics;2;1;2;;;;http://dlmf.nist.gov/21.2#E5;
-\RiemannThetaHat@{\Vector{z}}{\Matrix{\Omega}};Scaled Riemann theta function;0;1;2;;;;http://dlmf.nist.gov/21.2#E2;
-\RiemannXi@{s};Riemann's xi-function;0;1;1;;;;http://dlmf.nist.gov/25.4#E4;
-\RiemannZeta@{s};Riemann zeta function;0;1;1;;;;http://dlmf.nist.gov/25.2#E1;
-;;;;;;;;;
-\ScorerGi@{z};Scorer function Gi;0;1;1;;;;http://dlmf.nist.gov/9.12#i;
-\ScorerHi@{z};Scorer function Hi;0;1;1;;;;http://dlmf.nist.gov/9.12#i;Maple has issues to plot own integrals. Be careful with that
-;;;;;;;;;
-\SpheroidalEigenvalueLambda{m}{n}@{\gamma^2};Eigenvalues of the spheroidal differential equation;2;1;1;;;;http://dlmf.nist.gov/30.3#SS1.p1;
-\SpheroidalOnCutPs{m}{n}@{x}{\gamma^2};Spheroidal wave function of the first kind;2;1;2;;;;http://dlmf.nist.gov/30.4#i;
-\SpheroidalOnCutQs{m}{n}@{x}{\gamma^2};Spheroidal wave function of the second kind;2;1;2;;;;http://dlmf.nist.gov/30.5;
-\SpheroidalPs{m}{n}@{z}{\gamma^2};Spheroidal wave function of the first kind complex argument;2;1;2;;;;http://dlmf.nist.gov/30.6#p1;
-\SpheroidalQs{m}{n}@{z}{\gamma^2};Spheroidal wave function of the second kind complex argument;2;1;2;;;;http://dlmf.nist.gov/30.6#p1;
-\SpheroidalRadialS{m}{j}{n}@{z}{\gamma};Radial spheroidal wave function;3;1;2;;;;http://dlmf.nist.gov/30.11#E3;
-;;;;;;;;;
-\StirlingS@{n}{k};Stirling number of the first kind;0;1;2;;;;http://dlmf.nist.gov/26.8#SS1.p1;
-\StirlingSS@{n}{k};Stirling number of the second kind;0;1;2;;;;http://dlmf.nist.gov/26.8#SS1.p3;
-;;;;;;;;;
-\StruveH{\nu}@{z};Struve function;1;1;1;;;;http://dlmf.nist.gov/11.2#E1;
-\StruveK{\nu}@{z};Associated Struve funtion;1;1;1;;;;http://dlmf.nist.gov/11.2#E5;
-\StruveL{\nu}@{z};Modified Struve function;1;1;1;;;;http://dlmf.nist.gov/11.2#E2;
-\StruveM{\nu}@{z};Associated Modified Struve function;1;1;1;;;;http://dlmf.nist.gov/11.2#E6;
-;;;;;;;;;
-\LegendreSymbol{n}{p};Legendre symbol;0;0;2;;;;http://dlmf.nist.gov/27.9;with(numtheory) since Maplesoft 2016 use with(NumberTheory)
-\Kronecker{j}{k};Kronecker delta;0;0;2;;;;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r4;with(Physics)
-\NeumannFactor{n};Neumann factor;0;0;1;;;;http://drmf.wmflabs.org/wiki/Definition:NeumannFactor;with(Physics)
-\LeviCivita{j}{k}{l};Levi-Civita symbol;0;0;3;;;;http://dlmf.nist.gov/1.6#E14;with(Physics): The number of variables is not defined in Maple. LeviCivita[j,k,l,...]
-\RiemannP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};Riemann's P-symbol;0;1;1;;;;http://dlmf.nist.gov/15.11#E3;
-\pochhammer{a}{n};Pochhammer symbol;0;0;2;;;;http://dlmf.nist.gov/5.2#iii;
-\threej@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3};3j symbol;0;2;6;;;;http://dlmf.nist.gov/34.2#E4;
-\sixj@@{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l_{3}};6j symbol;0;2;6;;;;http://dlmf.nist.gov/34.4#E1;
-\ninej@@{j_{11}}{j_{12}}{j_{13}}{j_{21}}{j_{22}}{j_{23}}{j_{31}}{j_{32}}{j_{33}};9j symbol;0;2;9;;;;http://dlmf.nist.gov/34.6#E1;
-\wigner{j_1}{m_1}{j_2}{m_2}{j_3}{-m_3};Clebsch-Gordan coefficient;0;0;6;;;;http://dlmf.nist.gov/34.1#p4;
-;;;;;;;;;
-\terminant{p}@{z};Terminant function;1;1;1;;;;http://dlmf.nist.gov/2.11#E11;
-\rescaledTerminant{p}@{z};Rescaled terminant function;1;1;1;;;;http://dlmf.nist.gov/9.7#E22;
-;;;;;;;;;
-\FourierTrans@@{f}{s};Fourier transformation;0;2;2;;;;http://dlmf.nist.gov/1.14#E1;with(inttrans): f is a function with f(t), currently not used in DLMF (only in unpublished subsections of 1.14)
-\LaplaceTrans@{f}{s};Laplace transformation;0;1;2;;;;http://dlmf.nist.gov/1.14#E17;with(inttrans): f is a function with f(t)
-\MellinTrans@{f}{s};Mellin transformation;0;1;2;;;;http://dlmf.nist.gov/1.14#E32;with(inttrans): f is a function with f(t)
-\HilbertTrans@{f}{s};Hilbert transformation;0;1;2;;;;http://dlmf.nist.gov/1.14#SS5.p1;with(inttrans): f is a function with f(t)
-\StieltjesTrans@{f}{s};Stieltjes transformation;0;1;2;;;;http://dlmf.nist.gov/1.14#E47;
-;;;;;;;;;
-"\VariationalOp[a;b]@{f}";Total variation;1;1;1;;;;http://dlmf.nist.gov/1.4#E33;
-;;;;;;;;;
-\gradient f;Gradiant of differentiable scalar function;0;0;1;;;;http://dlmf.nist.gov/1.6#E20;with(VectorCalculus):, If you use other names for the coordinates in f you need to define the coordinates in Maple first. For instance SetCoordinates('polar'[r,eta]) if your f is defined for polar coordinates
-\divergence F;Divergence of a differentiable vector-valued function;0;0;1;;;;http://dlmf.nist.gov/1.6#E21;with(VectorCalculus):, In maple you need to define a set of coordinates first. Use SetCoordinates('cartesian'[x,y,z]) as an example. Then you can define a vector field by F := VectorField(<$x,$y,$z>)
-\curl F;Curl of vector-valued function;0;0;1;;;;http://dlmf.nist.gov/1.6#E22;with(VectorCalculus):, In maple you need to define a set of coordinates first. Use SetCoordinates('cartesian'[x,y,z]) as an example. Then you can define a vector field by F := VectorField(<$x,$y,$z>)
-\VoigtU@{x}{t};Voigt function U;0;1;2;;;;http://dlmf.nist.gov/7.19#E1;
-\VoigtV@{x}{t};Voigt function V;0;1;2;;;;http://dlmf.nist.gov/7.19#E2;
-\LinBrF@{a}{u};Line broadening function;0;1;2;;;;http://dlmf.nist.gov/7.19#E4;
-\Waringg@{k};Waring's function g;0;1;1;;;;http://dlmf.nist.gov/27.13#SS3.p1;
-\WaringG@{k};Waring's function G;0;1;1;;;;http://dlmf.nist.gov/27.13#SS3.p1;
-\NumSquaresR{k}@{n};Number of squares;1;1;1;;;;http://dlmf.nist.gov/27.13#SS4.p1;
-\WeierPInv@@{z}{g_2}{g_3};Weierstrass elliptic function;0;2;3;;;;http://dlmf.nist.gov/23.3#E8;
-\WeierPLat@@{z}{\Lattice{L}};Weierstrass elliptic function on lattice;0;2;2;;;;http://dlmf.nist.gov/23.2#E4;
-\WeierzetaInv@@{z}{g_2}{g_3};Weierstrass zeta function;0;2;3;;;;http://dlmf.nist.gov/23.1E5;
-\WeierzetaLat@@{z}{\Lattice{L}};Weierstrass zeta function on lattice;0;2;2;;;;http://dlmf.nist.gov/23.1E5;
-\WeiersigmaInv@@{z}{g_2}{g_3};Weierstrass sigma function;0;2;3;;;;http://dlmf.nist.gov/23.1E6;
-\WeiersigmaLat@@{z}{\Lattice{L}};Weierstrass sigma function on lattice;0;2;2;;;;http://dlmf.nist.gov/23.1E6;
-\WhitM{\kappa}{\mu}@{z};Whittaker confluent hypergeometric function;2;1;1;;;;http://dlmf.nist.gov/13.14#E2;
-\WhitW{\kappa}{\mu}@{z};Whittaker confluent hypergeometric function;2;1;1;;;;http://dlmf.nist.gov/13.14#E3;
-\RiemannZeta@{s};Riemann zeta function;0;1;1;;;;http://dlmf.nist.gov/25.2#E1;
-\HurwitzZeta@{s}{a};Hurwitz zeta function;0;1;2;;;;http://dlmf.nist.gov/25.11#E1;
-\WeierzetaInv@@{z}{g_2}{g_3};Weierstrass zeta function;0;2;3;;;;http://dlmf.nist.gov/23.1E5;
-\WeierzetaLat@@{z}{\Lattice{L}};Weierstrass zeta function on lattice;0;2;2;;;;http://dlmf.nist.gov/23.1E5;
-\JacobiZeta@{x}{k};Jacobi zeta function;0;1;2;;;;http://dlmf.nist.gov/22.16#E32;
-\PeriodicZeta@{x}{s};Periodic zeta function;0;1;2;;;;http://dlmf.nist.gov/25.13#E1;
-;;;;;;;;;
-\AlSalamChiharaQ{n}@{x}{a}{b}{q};Al-Salam-Chihara polynomial;1;1;4;;;;http://dlmf.nist.gov/18.28#E7;
-\AlSalamChihara{n}@@{x}{a}{b}{q};Al-Salam-Chihara polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:AlSalamChihara;
-\qinvAlSalamChihara{n}@{x}{a}{b}{q^{-1}};q-Invert-Al-Salam-Chihara polynomial;1;1;4;;;;http://dlmf.nist.gov/18.28#E9;
-\AlSalamCarlitzI{a}{n}@{x}{q};Al-Salam-Charlitz I polynomial;2;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:AlSalamCarlitzI;
-\AlSalamCarlitzII{a}{n}@{x}{q};Al-Salam-Charlitz II polynomial;2;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:AlSalamCarlitzII;
-\AlSalamIsmail{n}@{x}{s}{q};Al-Salam Ismail;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:AlSalamIsmail;
-\AskeyWilson{n}@{x}{a}{b}{c}{d}{q};Askey-Wilson polynomial;1;1;6;;;;http://dlmf.nist.gov/18.28#E1;
-\AskeyWilsonp{n}@{x}{a}{b}{c}{d}{q};Askey-Wilson polynomial;1;1;6;;;;http://dlmf.nist.gov/18.28#E1;
-\BernoulliB{n}@{x};Bernoulli polynomial;1;1;1;;;;http://dlmf.nist.gov/24.2#i;
-\GenBernoulliB{\ell}{n}@{x};Generalized Bernoulli polynomial;2;1;1;;;;http://dlmf.nist.gov/24.16#P1.p1;
-\PeriodicBernoulliB{n}@{x};Periodic Bernoulli polynomial;1;1;1;;;;http://dlmf.nist.gov/24.2#iii;
-\qBernoulli{n}@{x}{q};q-Bernoulli polynomial;1;1;2;;;;http://dlmf.nist.gov/17.3#E7;
-;;;;;;;;;
-\BellNumber@{n};Bell number;0;1;1;;;;http://dlmf.nist.gov/26.7#i;Alternative is bell(n) in Maple. But it is necessary to import it first: with(combinat, bell)
-\BesselPoly{n}@{x}{a};Bessel polynomial;1;1;2;;;;http://dlmf.nist.gov/18.34#E1;
-\BesselPolyy{n}@{x}{a};Bessel polynomial;1;1;2;;;;http://dlmf.nist.gov/18.34#E1;
-\BesselPolyIIparam{n}@{x}{a}{b};Bessel polynomial with two parameters;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:BesselPolyIIparam;
-\BesselPolyTheta{n}@{x}{a}{b};Bessel Theta polynomial with two parameters;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:BesselPolyTheta;
-;;;;;;;;;
-\Charlier{n}@{x}{a};Charlier polynomial;1;1;2;;;;http://dlmf.nist.gov/18.19#T1.t1.r5;
-\CharlierC{n}@{x}{a};Charlier polynomial;1;1;2;;;;http://dlmf.nist.gov/18.19#T1.t1.r5;
-;;;;;;;;;
-\ChebyT{n}@{x};Chebyshev polynomial first kind;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r4;
-\ChebyU{n}@{x};Chebyshev polynomial second kind;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r5;
-\ChebyV{n}@{x};Chebyshev polynomial third kind;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r6;
-\ChebyW{n}@{x};Chebyshev polynomial fourth kind;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r7;
-\ChebyTs{n}@{x};Shifted Chebyshev polynomial first kind;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r8;
-\ChebyUs{n}@{x};Shifted Chebyshev polynomial second kind;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r9;
-\ChebyC{n}@{x};Dilated Chebyshev polynomial first kind;1;1;1;;;;http://dlmf.nist.gov/18.1#E3;
-\ChebyS{n}@{x};Dilated Chebyshev polynomial second kind;1;1;1;;;;http://dlmf.nist.gov/18.1#E3;
-\CiglerqChebyT{n}@{x}{s}{q};Cigler q-Chebyshev polynomials;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:CiglerqChebyT;
-\CiglerqChebyU{n}@{x}{s}{q};Cigler q-Chebyshev polynomials;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:CiglerqChebyU;
-\monicChebyT{n}@@{x};Monic Chebyshev polynomials;1;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicChebyT;
-\monicChebyU{n}@@{x};Monic Chebyshev polynomials;1;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicChebyU;
-;;;;;;;;;
-\DiskOP{\alpha}{m}{n}@{z};Disk polynomial;3;1;1;;;;http://dlmf.nist.gov/18.37#E1;
-\EulerE{n}@{x};Euler polynomial;1;1;1;;;;http://dlmf.nist.gov/24.2#ii;
-\GenEulerE{\ell}{n}@{x};Generalized Euler polynomial;2;1;1;;;;http://dlmf.nist.gov/24.16#P1.p1;
-\PeriodicEulerE{n}@{x};Periodic Euler polynomial;1;1;1;;;;http://dlmf.nist.gov/24.2#iii;
-\Ultra{\lambda}{n}@{x};Ultraspherical Gegenbauer polynomial;2;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r3;
-\Ultraspherical{\lambda}{n}@{x};Ultraspherical Gegenbauer polynomial;2;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r3;
-\GenGegenbauerS{\alpha}{\beta}{n}@{x};Generalized Gegenbauer polynomial;3;1;1;;;;http://gw113.iu.xsede.org/wiki/index.php/Definition:GenGegenbauerS;
-\Hahn{n}@{x}{\alpha}{\beta}{N};Hahn polynomial;1;1;4;;;;http://dlmf.nist.gov/18.19#T1.t1.r2;
-\HahnQ{n}@{x}{\alpha}{\beta}{N};Hahn polynomial;1;1;4;;;;http://dlmf.nist.gov/18.19#T1.t1.r2;
-\HahnR{n}@{x}{\gamma}{\delta}{N};Dual Hahn polynomial;1;1;4;;;;http://dlmf.nist.gov/18.25#T1.t1.r5;
-\dualHahn{n}@@{\lambda(x)}{\gamma}{\delta}{N};Dual Hahn polynomial;1;2;4;;;;http://dlmf.nist.gov/18.25#T1.t1.r5;
-\HahnS{n}@{x}{a}{b}{c};Continuous dual Hahn polynomial;1;1;4;;;;http://dlmf.nist.gov/18.25#T1.t1.r3;
-\Hahnp{n}@{x}{a}{b}{\conj{a}}{\conj{b}};Continuous Hahn polynomial;1;1;5;;;;http://dlmf.nist.gov/18.19#P2.p1;
-\Hermite{n}@{x};Hermite polynomial;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r13;
-\HermiteH{n}@{x};Hermite polynomial;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r13;
-\HermiteHe{n}@{x};Hermite polynomial He;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r14;
-\GenHermite[\alpha]{n}@{x};Generalized Hermite polynomial;2;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:GenHermite;
-\HeunPolynom{n}{m}@@{a}{q}{-n}{\beta}{\gamma}{\delta}{z};Heun polynomials;2;2;7;;;;http://dlmf.nist.gov/31.5#E2;
-\Jacobi{\alpha}{\beta}{n}@{x};Jacobi polynomial;3;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r2;
-\JacobiP{\alpha}{\beta}{n}@{x};Jacobi polynomial;3;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r2;
-\JacobiG{n}@{p}{q}{x};Shifted Jacobi polynomial;1;1;3;;;;http://dlmf.nist.gov/18.1#E2;
-\AssJacobiP{\alpha}{\beta}{n}@{x}{c};Associated Jacobi polynomial;3;1;2;;;;http://dlmf.nist.gov/18.30#E4;
-\pseudoJacobi{n}@{x}{\nu}{N};Pseudo Jacobi polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:pseudoJacobi;
-\TriangleOP{\alpha}{\beta}{\gamma}{m}{n}@{x}{y};Triangle polynomial;5;1;2;;;;http://dlmf.nist.gov/18.37#E7;
-;;;;;;;;;
-\Krawtchouk{n}@{x}{p}{N};Krawtchouk polynomial;1;1;3;;;;http://dlmf.nist.gov/18.19#T1.t1.r3;never used in DLMF
-\KrawtchoukK{n}@{x}{p}{N};Krawtchouk polynomial;1;1;3;;;;http://dlmf.nist.gov/18.19#T1.t1.r3;
-\Laguerre[\alpha]{n}@{x};Laguerre polynomial;2;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r12;
-\LaguerreL[\alpha]{n}@{x};Laguerre polynomial;2;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r12;Equal to \Laguerre
-\GottliebLaguerre{n}@{x};Gottlieb-Laguerre polynomial;1;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:GottliebLaguerre;
-\LameuE{m}{2n}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E1;
-\LamesE{m}{2n+1}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E2;
-\LamecE{m}{2n+1}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E3;
-\LamedE{m}{2n+1}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E4;
-\LamescE{m}{2n+2}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E5;
-\LamesdE{m}{2n+2}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E6;
-\LamecdE{m}{2n+2}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E7;
-\LamescdE{m}{2n+3}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E8;
-\LegendrePoly{n}@{x};Legendre polynomial;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r10;with(orthopoly):
-\LegendrePolys{n}@{x};Shifted Legendre polynomial;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r11;
-\AssLegendrePoly{n}@{x}{c};Associated Legendre polynomial;1;1;2;;;;http://dlmf.nist.gov/18.30#E6;
-\Meixner{n}@{x}{\beta}{c};Meixner polynomial;1;1;3;;;;http://dlmf.nist.gov/18.19#T1.t1.r9;
-\MeixnerM{n}@{x}{\beta}{c};Meixner polynomial;1;1;3;;;;http://dlmf.nist.gov/18.19#T1.t1.r9;
-\MeixnerPollaczek{\lambda}{n}@{x}{\phi};Meixner-Pollaczek polynomial;2;1;2;;;;http://dlmf.nist.gov/18.19#P3.p1;
-\MeixnerPollaczekP{\lambda}{n}@{x}{\phi};Meixner-Pollaczek polynomial;2;1;2;;;;http://dlmf.nist.gov/18.19#P3.p1;
-\NeumannPoly{n}@{x};Neumann's polynomial;1;1;1;;;;http://dlmf.nist.gov/10.23#E12;
-\PollaczekP{\lambda}{n}@{x}{a}{b};Pollaczek polynomial;1;1;3;;;;http://dlmf.nist.gov/18.35#E4;
-\Racah{n}@{x}{\alpha}{\beta}{\gamma}{\delta};Racah polynomial;1;1;5;;;;http://dlmf.nist.gov/18.25#T1.t1.r4;
-\RacahR{n}@{x}{\alpha}{\beta}{\gamma}{\delta};Racah polynomial;1;1;5;;;;http://dlmf.nist.gov/18.25#T1.t1.r4;
-\StieltjesWigert{n}@@{x}{q};Stieltjes-Wigert polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:StieltjesWigert;
-\StieltjesWigertS{n}@{x}{q};Stieltjes-Wigert polynomial;1;1;2;;;;http://dlmf.nist.gov/18.27#E18;
-;;;;;;;;;
-\Wilson{n}@{x}{a}{b}{c}{d};Wilson polynomial;1;1;5;;;;http://dlmf.nist.gov/18.25#T1.t1.r2;
-\WilsonW{n}@{x}{a}{b}{c}{d};Wilson polynomial;1;1;5;;;;http://dlmf.nist.gov/18.25#T1.t1.r2;
-;;;;;;;;;
-\ZonalPoly{\kappa}@{\Matrix{T}};Zonal polynomial;1;1;1;;;;http://dlmf.nist.gov/35.4#SS1.p3;
-;;;;;;;;;
-\qSin{q}@@{x};q-Sine function;1;2;1;;;;http://dlmf.nist.gov/17.3#E4;
-\qsin{q}@@{x};q-Sine function;1;2;1;;;;http://dlmf.nist.gov/17.3#E3;
-\qSinKLS{q}@@{z};q-Sine function;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:qSinKLS;
-\qsinKLS{q}@@{z};q-Sine function;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:qsinKLS;
-\qCos{q}@@{x};q-Cosine functions;1;2;1;;;;http://dlmf.nist.gov/17.3#E6;
-\qcos{q}@@{x};q-Cosine functions;1;2;1;;;;http://dlmf.nist.gov/17.3#E5;
-\qCosKLS{q}@@{z};q-Cosine functions;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:qCosKLS;
-\qcosKLS{q}@@{z};q-Cosine functions;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:qcosKLS;
-\qExp{q}@@{x};q-Exponential function;1;2;1;;;;http://dlmf.nist.gov/17.3#E2;
-\qexp{q}@@{x};q-Exponential function;1;2;1;;;;http://dlmf.nist.gov/17.3#E1;
-\qExpKLS{q}@@{z};q-Exponential function;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:qExpKLS;
-\qexpKLS{q}@@{z};q-Exponential function;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:qExpKLS;
-\qAppelli@{a}{b}{b'}{c}{q}{x}{y};q-Appell function of first kind;0;1;7;;;;http://dlmf.nist.gov/17.4.E5;The university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation
-\qAppellii@{a}{b}{b'}{c}{c'}{q}{x}{y};q-Appell function of second kind;0;1;8;;;;http://dlmf.nist.gov/17.4.E6;http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
-\qAppelliii@{a}{a'}{b}{b'}{c}{q}{x}{y};q-Appell function of third kind;0;1;8;;;;http://dlmf.nist.gov/17.4.E7;
-\qAppelliv@{a}{b}{c}{c'}{q}{x}{y};q-Appell function of fourth kind;0;1;7;;;;http://dlmf.nist.gov/17.4.E8;
-\qBernoulli{n}@{x}{q};q-Bernoulli polynomial;1;1;2;;;;http://dlmf.nist.gov/17.3#E7;
-\qBesselPoly{n}@{x}{b}{q};q-Bessel polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:qBessel;
-\qBeta{q}@{a}{b};q-Beta function;1;1;2;;;;http://dlmf.nist.gov/5.18#E11;
-\qBinomial{n}{m}{q};q-Binomial coefficient / Gaussian polynomial;0;0;3;;;;http://dlmf.nist.gov/17.2#E27;
-\qCharlier{n}@{x}{c}{q};q-Charlier polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:qCharlier;
-\qderiv[n]{q}@{z};q-Derivative;2;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:qderiv;
-\qdiff{q}{x};q-Derivative;0;0;2;;;;http://dlmf.nist.gov/17.2#SS5.p1;
-\qGamma{q}@{z};q-Gamma;1;1;1;;;;http://dlmf.nist.gov/5.18#E4;
-\qDigamma{q}@{z};q-Digamma function;1;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:qDigamma;
-\qEuler{m}{s}@{q};q-Euler function;2;1;1;;;;http://dlmf.nist.gov/17.3#E8;
-\qFactorial{n}{q};q-Factorial function;0;0;2;;;;http://dlmf.nist.gov/5.18#E2;
-\qGamma{q}@{z};q-Gamma function;1;1;1;;;;http://dlmf.nist.gov/5.18#E4;
-\qHahn{n}@@{q^{-x}}{\alpha}{\beta}{N};q-Hahn polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:qHahn;
-\qHahnQ{n}@{x}{\alpha}{\beta}{N}{q};q-Hahn polynomial;1;1;5;;;;http://dlmf.nist.gov/18.27#E3;
-\dualqHahn{n}@@{\mu(x)}{\gamma}{\delta}{N}{q};dual q-Hahn polynomial;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:dualqHahn;
-\qHermiteH{n}@{x}{q};q-Hermite polynomial;1;1;2;;;;http://dlmf.nist.gov/18.28#E16;
-\qinvHermiteh{n}@{x}{q};q-Invert-Hermite polynomial;1;1;2;;;;http://dlmf.nist.gov/18.28#E18;
-\qHermitehI{n}@{x}{q};q-Hermite discrete I;1;1;2;;;;http://dlmf.nist.gov/18.27#E21;
-\qHermitehII{n}@{x}{q};q-Hermite discrete II;1;1;2;;;;http://dlmf.nist.gov/18.27#E23;
-\discrqHermiteI{n}@@{x}{q};q-Hermite discrete I;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:discrqHermiteI;
-\discrqHermiteII{n}@@{x}{q};q-Hermite discrete II;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:discrqHermiteII;
-\qJacobiP{n}@{x}{a}{b}{c}{q};q-Jacobi polynomial;1;1;5;;;;http://dlmf.nist.gov/18.27#E5;
-\bigqJacobi{n}@@{x}{a}{b}{c}{q};big q-Jacobi polynomial;1;2;5;;;;http://dlmf.nist.gov/18.27#E5;
-\qJacobiPP{\alpha}{\beta}{n}@{x}{c}{d}{q};q-Jacobi polynomial;3;1;4;;;;http://dlmf.nist.gov/18.27#E6;
-\bigqJacobiIVparam{n}@@{x}{a}{b}{c}{d}{q};big q-Jacobi polynomial;1;2;6;;;;http://dlmf.nist.gov/18.27#E6;
-\qJacobip{n}@{x}{a}{b}{q};q-Jacobi polynomial;1;1;4;;;;http://dlmf.nist.gov/18.27#E13;
-\littleqJacobi{n}@@{x}{a}{b}{q};little q-Jacobi polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:littleqJacobi;
-\qKrawtchouk{n}@@{q^{-x}}{p}{N}{q};q-Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:qKrawtchouk;
-\dualqKrawtchouk{n}@@{\lambda(x)}{c}{N}{q};dual q-Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:dualqKrawtchouk;
-\qtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};quantum q-Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:qtmqKrawtchouk;
-\AffqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};Affine q-Krawtchouck polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:AffqKrawtchouk;
-\qLaguerre[\alpha]{n}@@{x}{q};q-Laguerre polynomial;2;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:qLaguerre;
-\qLaguerreL[\alpha]{n}@{x}{q};q-Laguerre polynomial;2;1;2;;;;http://dlmf.nist.gov/18.27#E15;
-\bigqLaguerre{n}@{x}{a}{b}{q};big q-Laguerre polynomial;1;1;4;;;;http://drmf.wmflabs.org/wiki/Definition:bigqLaguerre;
-\littleqLaguerre{n}@{x}{a}{q};little q-Laguerre polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:littleqLaguerre;
-\qLegendre{n}@{x}{q};q-Legendre polynomial;1;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:qLegendre;
-\bigqLegendre{n}@{x}{c}{q};big q-Legendre polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:bigqLegendre;
-\littleqLegendre{m}@{x}{q};little q-Legendre polynomial;1;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:littleqLegendre;
-\qMeixner{n}@{x}{b}{c}{q};q-Meixner polynomial;1;1;4;;;;http://drmf.wmflabs.org/wiki/Definition:qMeixner;
-\qMeixnerPollaczek{n}@{x}{a}{q};q-Meixner-Pollaczek polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:qMeixnerPollaczek;
-\qPochhammer{a}{q}{n};q-Pochhammer symbol;0;0;3;;;;http://dlmf.nist.gov/17.2#SS1.p1;
-\qMultiPochhammer{a_1,\ldots,a_n}{q}{n};q-Multi-Pochhammer symbol;0;0;3;;;;http://dlmf.nist.gov/17.2.E5;
-\qPolygamma{n}{q}@{z};q-Polygamma function;2;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:qPolygamma;
-\qRacah{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};q-Racah polynomials;1;1;6;;;;http://dlmf.nist.gov/18.28#E19;
-\qRacahR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};q-Racah polynomials;1;1;6;;;;http://dlmf.nist.gov/18.28#E19;
-\qStirling{m}{s}@{q};q-Stirling number;2;1;1;;;;http://dlmf.nist.gov/17.3#E9;
-\qUltraspherical{n}@{x}{\beta}{q};q-Ultraspherical polynomial;1;1;3;;;;http://dlmf.nist.gov/18.28#E13;
-\qHyperrWs{r}{r+1}@@@{a_1}{a_4,a_5,...,a_{r+1}}{q}{z};very-well-poised basic hypergeometric (or $q$-hypergeometric) function;2;3;4;;;;http://drmf.wmflabs.org/wiki/Definition:qHyperrWs;
-\qHyperrphis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z};basic hypergeometric (or $q$-hypergeometric) function;2;3;4;;;;http://dlmf.nist.gov/17.4#E1;
-\qHyperrpsis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z};bilateral basic hypergeometric (or bilateral $q$-hypergeometric) function;2;3;4;;;;http://dlmf.nist.gov/17.4#E3;
-\qMultinomial{a_1+\ldots+a_n}{a_1,\ldots,a_n}{q};q-multinomial;0;0;3;;;;http://dlmf.nist.gov/26.16.E1;
-;;;;;;;;;
-\ctsHahn{n}@@{x}{a}{b}{c}{d};Continuous Hahn polynomial;1;2;5;;;;http://dlmf.nist.gov/18.19#P2.p1;
-\ctsbigqHermite{n}@{x}{a}{q};Continuous big q-Hermite polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:ctsbigqHermite;
-\ctsdualHahn{n}@@{x^2}{a}{b}{c};Continuous dual Hahn polynomial;1;2;4;;;;http://dlmf.nist.gov/18.25#T1.t1.r3;
-\ctsdualqHahn{n}@{x}{a}{b}{c}{q};Continuous dual q-Hahn polynomial;1;1;5;;;;http://drmf.wmflabs.org/wiki/Definition:ctsdualqHahn;
-\ctsqHahn{n}@{x}{a}{b}{c}{d}{q};Continuous q-Hahn polynomial;1;1;6;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqHahn;
-\ctsqHermite{n}@@{x}{q};Continuous q-Hermite polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqHermite;
-\ctsqJacobi{\alpha}{\beta}{m}@{x}{q};Continuous q-Jacobi polynomial;3;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqJacobi;
-\ctsqJacobiRahman{n}@@{x}{q};Continuous q-Jacobi polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqJacobiRahman;
-\ctsqLaguerre{\alpha}{n}@{x}{q};Continuous q-Laguerre polynomial;2;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqLaguerre;
-\ctsqLegendre{n}@@{x}{q};Continuous q-Legendre polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqLegendre;
-\ctsqLegendreRahman{n}@@{x}{q};Continuous q-Legendre-Rahman polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqLegendreRahman;
-\ctsqUltra{n}@{x}{\beta}{q};Continuous q-Ultraspherical polynomial;1;1;3;;;;http://dlmf.nist.gov/18.28#E13;
-\ctsqUltrae{n}@{e^{i\theta}}{\beta}{q};Continuous q-Ultraspherical polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqUltrae;
-;;;;;;;;;
-\monicAffqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};monic affine $q$-Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicAffqKrawtchouk;
-\monicAlSalamCarlitzI{a}{n}@@{x}{q};monic Al-Salam-Carlitz I polynomial;2;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicAlSalamCarlitzI;
-\monicAlSalamCarlitzII{a}{n}@@{x}{q};monic Al-Salam-Carlitz II polynomial;2;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicAlSalamCarlitzII;
-\monicAlSalamChihara{n}@@{x}{a}{b}{q};monic Al-Salam-Chihara polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicAlSalamChihara;
-\monicAskeyWilson{n}@@{x}{a}{b}{c}{d}{q};monic Askey-Wilson polynomial;1;2;6;;;;http://drmf.wmflabs.org/wiki/Definition:monicAskeyWilson;
-\monicBesselPoly{n}@@{x}{a};monic Bessel polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicBesselPoly;
-\monicCharlier{n}@@{x}{a};monic Charlier polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicCharlier;
-\monicChebyT{n}@@{x};monic Chebyshev polynomial of the first kind;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicChebyT;
-\monicChebyU{n}@@{x};monic Chebyshev polynomial of the second kind;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicChebyU;
-\monicHahn{n}@@{x}{\alpha}{\beta}{N};monic Hahn polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicHahn;
-\monicHermite{n}@@{x};monic Hermite polynomial;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicHermite;
-\monicJacobi{n}@@{x};monic Jacobi polynomial;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicJacobi;
-\monicKrawtchouk{n}@@{q^{-x}}{p}{N}{q};monic Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicKrawtchouk;
-\monicLaguerre{n}@@{x};monic Laguerre polynomial;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicLaguerre;
-\monicLegendrePoly{n}@@{x};monic Legendre polynomial;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicLegendrePoly;
-\monicMeixner{n}@@{x}{\beta}{c};monic Meixner polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicMeixner;
-\monicMeixnerPollaczek{\lambda}{n}@@{x}{\phi};monic Meixner-Pollaczek polynomial;2;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicMeixnerPollaczek;
-\monicRacah{n}@@{\lambda(x)}{\alpha}{\beta}{\gamma}{\delta};monic Racah polynomial;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:monicRacah;
-\monicStieltjesWigert{n}@@{x}{q};monic Stieltjes-Wigert polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicStieltjesWigert;
-\monicUltra{n}@@{x};monic ultraspherical/Gegenbauer polynomial;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicUltra;
-\monicWilson{n}@@{x^2}{a}{b}{c}{d};monic Wilson polynomial;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:monicWilson;
-\monicbigqJacobi{n}@@{x}{a}{b}{c}{q};monic big $q$-Jacobi polynomial;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:monicbigqJacobi;
-\monicbigqLaguerre{n}@@{x}{a}{b}{q};monic big $q$-Laguerre polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicbigqLaguerre;
-\monicbigqLegendre{n}@@{x}{c}{q};monic big $q$-Legendre polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicbigqLegendre;
-\monicctsHahn{n}@@{x}{a}{b}{c}{d};monic continuous Hahn polynomial;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsHahn;
-\monicctsbigqHermite{n}@@{x}{a}{q};monic continuous big $q$-Hermite polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsbigqHermite;
-\monicctsdualHahn{n}@@{x^2}{a}{b}{c}{d};monic continuous dual Hahn polynomial;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsdualHahn;
-\monicctsdualqHahn{n}@@{x^2}{a}{b}{c};monic continuous dual $q$-Hahn polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsdualqHahn;
-\monicctsqHahn{n}@@{x}{a}{b}{c}{d}{q};monic continuous $q$-Hahn polynomial;1;2;6;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsqHahn;
-\monicctsqHermite{n}@@{x}{q};monic continuous $q$-Hermite polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsqHermite;
-\monicctsqJacobi{n}@@{x}{q};monic continuous $q$-Jacobi polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsqJacobi;
-\monicctsqLaguerre{n}@@{x}{q};monic continuous $q$-Laguerre polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsqLaguerre;
-\monicctsqLegendre{n}@@{x}{q};monic continuous $q$-Legendre polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsqLegendre;
-\monicctsqUltra{n}@@{x}{\beta}{q};monic continuous $q$-ultraspherical/Rogers polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsqUltra;
-\monicdiscrqHermiteI{n}@@{x}{q};monic discrete $q$-Hermite I polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicdiscrqHermiteI;
-\monicdiscrqHermiteII{n}@@{x}{q};monic discrete $q$-Hermite II polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicdiscrqHermiteII;
-\monicdualHahn{n}@@{\lambda(x)}{\gamma}{\delta}{N};monic dual Hahn polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicdualHahn;
-\monicdualqHahn{n}@@{\mu(x)}{\gamma}{\delta}{N}{q};monic dual $q$-Hahn polynomial;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:monicdualqHahn;
-\monicdualqKrawtchouk{n}@@{\lambda(x)}{c}{N}{q};monic dual $q$-Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicdualqKrawtchouk;
-\moniclittleqJacobi{n}@@{x}{a}{b}{q};monic little $q$-Jacobi polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:moniclittleqJacobi;
-\moniclittleqLaguerre{n}@@{x}{a}{q};monic little $q$-Laguerre/Wall polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:moniclittleqLaguerre;
-\moniclittleqLegendre{n}@@{x}{q};monic little $q$-Legendre polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:moniclittleqLegendre;
-\monicpseudoJacobi{n}@@{x}{\nu}{N};monic pseudo-Jacobi polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicpseudoJacobi;
-\monicqBesselPoly{n}@@{x}{a}{q};monic $q$-Bessel polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicqBessel;
-\monicqCharlier{n}@@{q^{-x}}{a}{q};monic $q$-Charlier polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicqCharlier;
-\monicqHahn{n}@@{q^{-x}}{\alpha}{\beta}{N};monic $q$-Hahn polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicqHahn;
-\monicqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};monic $q$-Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicqKrawtchouk;
-\monicqLaguerre{n}@@{x}{q};monic $q$-Laguerre polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicqLaguerre;
-\monicqMeixner{n}@@{q^{-x}}{b}{c}{q};monic $q$-Meixner polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicqMeixner;
-\monicqMeixnerPollaczek{n}@@{x}{a}{q};monic $q$-Meixner-Pollaczek polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicqMeixnerPollaczek;
-\monicqRacah{n}@@{\mu(x)}{\alpha}{\beta}{\gamma}{\delta}{q};monic $q$-Racah polynomial;1;2;6;;;;http://drmf.wmflabs.org/wiki/Definition:monicqRacah;
-\monicqinvAlSalamChihara{n}@{x}{a}{b}{q^{-1}};monic $q$-inverse Al-Salam-Chihara polynomial;1;1;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicqinvAlSalamChihara;
-\monicqtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};monic quantum $q$-Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicqtmqKrawtchouk;
-;;;;;;;;;
-\normAskeyWilsonptilde{n}@@{x}{a}{b}{c}{d}{q};normalized Askey-Wilson polynomial ${\tilde p}$;1;2;6;;;;http://drmf.wmflabs.org/wiki/Definition:normAskeyWilsonptilde;
-\normJacobiR{\alpha}{\beta}{n}@{x};normalized Jacobi polynomial;3;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:normJacobiR;
-\normWilsonWtilde{n}@@{x^2}{a}{b}{c}{d};normalized Wilson polynomial ${\tilde W}$;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:normWilsonWtilde;
-\normctsHahnptilde{n}@@{x}{a}{b}{c}{d};normalized continuous Hahn polynomial ${\tilde p}$;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:normctsHahnptilde;
-\normctsdualHahnStilde{n}@@{x^2}{a}{b}{c}{d};normalized continuous dual Hahn polynomial ${\tilde S}$;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:normctsdualHahnStilde;
-\normctsdualqHahnptilde{n}@@{x}{a}{b}{c}{q};normalized continuous dual $q$-Hahn polynomial ${\tilde p}$;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:normctsdualqHahnptilde;
-\normctsqHahnptilde{n}@@{x}{a}{b}{c}{d}{q};normalized continuous $q$-Hahn polynomial ${\tilde p}$;1;2;6;;;;http://drmf.wmflabs.org/wiki/Definition:normctsqHahnptilde;
-\normctsqJacobiPtilde{n}@@{x}{q};normalized continuous $q$-Jacobi polynomial ${\tilde P}$;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:normctsqJacobiPtilde;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
-;;;;;;;;;
+{\Vector{a}}{\Vector{b}}{z}";Olver's generalized hypergeometric function;2;2;3;;;;http://dlmf.nist.gov/16.2#E5
+\KummerM@{a}{b}{z};Kummer confluent hypergeometric functions M;0;1;3;;;;http://dlmf.nist.gov/13.2#E2
+\KummerU@{a}{b}{z};Kummer confluent hypergeometric functions U;0;1;3;;;;http://dlmf.nist.gov/13.2#E6
+\KummerboldM@{a}{b}{z};Olver's confluent hypergeometric functions U;0;1;3;;;;http://dlmf.nist.gov/13.2#E3
+\HyperPsi@{a}{b}{\Matrix{T}};Confluent hypergeometric function of matrix argument of the second kind;0;1;3;;;;http://dlmf.nist.gov/35.6#E2
+\LauricellaFD@{a}{b_1,...,b_n}{c}{z_1,...,z_n};Lauricella's multivariate hypergeometric function;0;1;4;;;;http://dlmf.nist.gov/19.15#p1
+\RiemannP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};Riemann's P-symbol;0;1;1;;;;http://dlmf.nist.gov/15.11#E3
+;;;;;;;;
+\idem@{\chi_1}{\chi_1,...,\chi_n};Idem function;0;1;2;;;;http://dlmf.nist.gov/17.1#p3
+;;;;;;;;
+\Jacobiphi{\alpha}{\beta}{\lambda}@{t};Jacobi function;3;1;1;;;;http://dlmf.nist.gov/15.9#E11
+\AbstractJacobi{p}{q};Generic Jacobian elliptic function;0;0;2;;;;http://dlmf.nist.gov/22.2#E10
+\Jacobiam@{z}{k};Jacobi's amplitude function;0;1;2;;;;http://dlmf.nist.gov/22.16#E1
+\Jacobisn@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E4
+\Jacobicn@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E5
+\Jacobidn@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E6
+\Jacobisd@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E7
+\Jacobicd@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E8
+\Jacobisc@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E9
+\Jacobins@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E10
+\Jacobinc@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E11
+\Jacobind@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E12
+\Jacobids@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E13
+\Jacobidc@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E14
+\Jacobics@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E15
+\arcJacobisn@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1
+\arcJacobicn@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1
+\arcJacobidn@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1
+\arcJacobisd@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1
+\arcJacobicd@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1
+\arcJacobisc@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1
+\arcJacobins@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1
+\arcJacobinc@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1
+\arcJacobind@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1
+\arcJacobids@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1
+\arcJacobidc@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1
+\arcJacobics@@{z}{k};Inverse of Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.15#SS1.p1
+\JacobiEpsilon@{x}{k};Jacobi's epsilon function;0;1;2;;;;http://dlmf.nist.gov/22.16#E14
+\JacobiTheta{j}@{z}{q};Jacobi's theta function;1;1;2;;;;http://dlmf.nist.gov/20.2#i
+\JacobiThetaTau{j}@{z}{\tau};Jacobi's theta-tau function;1;1;2;Im(tau) > 0 and 0 < |exp(I*Pi*tau)| < 1;;;http://dlmf.nist.gov/20.2#i
+\JacobiThetaCombined{n}{m}@{z}{q};Combined theta function;2;1;2;;;;http://dlmf.nist.gov/20.11#SS5.p2
+\AThetaFunction@{x};Jacobi theta function alternative;0;1;1;;;;http://dlmf.nist.gov/27.13.E4
+\JacobiZeta@{x}{k};Jacobi zeta function;0;1;2;;;;http://dlmf.nist.gov/22.16#E32
+\JacobiSymbol{n}{P};Jacobi symbol;0;0;2;;;;http://dlmf.nist.gov/27.9#p3
+;;;;;;;;
+\Kelvinber{\nu}@@{x};Kelvin Function BER;1;2;1;;;;http://dlmf.nist.gov/10.61#E1
+\Kelvinbei{\nu}@@{x};Kelvin Function BEI;1;2;1;;;;http://dlmf.nist.gov/10.61#E1
+\Kelvinker{\nu}@@{x};Kelvin Function KER;1;2;1;;;;http://dlmf.nist.gov/10.61#E2
+\Kelvinkei{\nu}@@{x};Kelvin Function KEI;1;2;1;;;;http://dlmf.nist.gov/10.61#E2
+\LameEc{m}{\nu}@{z}{k^2};Lame function;2;1;2;;;;http://dlmf.nist.gov/29.3#SS4.p1
+\LameEs{m}{\nu}@{z}{k^2};Lame function;2;1;2;;;;http://dlmf.nist.gov/29.3#SS4.p1
+\Lamea{n}{\nu}@{k^2};Eigenvalues of Lame's equation;2;1;1;;;;http://dlmf.nist.gov/29.3#SS1.p1
+\Lameb{n}{\nu}@{k^2};Eigenvalues of Lame's equation;2;1;1;;;;http://dlmf.nist.gov/29.3#SS1.p1
+;;;;;;;;
+\FerrersP[\mu]{\nu}@{z};Ferrers function of first kind;2;1;1;;;;http://dlmf.nist.gov/14.3#E1
+\FerrersQ[\mu]{\nu}@{z};Ferrers function of second kind;2;1;1;;;;http://dlmf.nist.gov/14.3#E2
+\LegendreP[\mu]{\nu}@{z};Associated Legendre function of first kind;2;1;1;;;;http://dlmf.nist.gov/14.3#E6
+\LegendreQ[\mu]{\nu}@{z};Associated Legendre function of second kind;2;1;1;;;;http://dlmf.nist.gov/14.3#E7
+\LegendreBlackQ[\mu]{\nu}@{z};Olver's associated Legendre function;2;1;1;;;;http://dlmf.nist.gov/14.3#E10
+\FerrersHatQ[-\mu]{-\frac{1}{2}+i\tau}@{x};Conical function;2;1;1;;;;http://dlmf.nist.gov/14.20#E2
+;;;;;;;;
+\EllIntF@{\phi}{k};Legendre's incomplete elliptic integral of the first kind;0;1;2;;;;http://dlmf.nist.gov/19.2#E4
+\EllIntE@{\phi}{k};Legendre's incomplete elliptic integral of the second kind;0;1;2;;;;http://dlmf.nist.gov/19.2#E5
+\EllIntPi@{\phi}{\alpha^2}{k};Legendre's incomplete elliptic integral of the third kind;0;1;3;;;;http://dlmf.nist.gov/19.2#E7
+\EllIntD@{\phi}{k};Incomplete elliptic integral of Legendre's type;0;1;2;;;;http://dlmf.nist.gov/19.2#E6
+\CompEllIntK@{k};Legendre's elliptic integral of the first kind;0;1;1;;;;http://dlmf.nist.gov/19.2#E8
+\CompEllIntE@{k};Legendre's elliptic integral of the second kind;0;1;1;;;;http://dlmf.nist.gov/19.2#E8
+\CompEllIntPi@{\alpha^2}{k};Legendre's elliptic integral of the third kind;0;1;2;;;;http://dlmf.nist.gov/19.2#E8
+\CompEllIntD@{k};Complete elliptic integral of Legendre's type;0;1;1;;;;http://dlmf.nist.gov/19.2#E8
+\CompEllIntCK@{k};Legendre's complementary complete elliptic integral of the first kind;0;1;1;;;;http://dlmf.nist.gov/19.2#E9
+\CompEllIntCE@{k};Legendre's complementary complete elliptic integral of the second kind;0;1;1;;;;http://dlmf.nist.gov/19.2#E9
+;;;;;;;;
+\LerchPhi@{z}{s}{a};Lerch Phi function;0;1;3;;;;http://dlmf.nist.gov/25.14#E1
+;;;;;;;;
+\Lommels{\mu}{\nu}@{z};Lommel s;2;1;1;;;;http://dlmf.nist.gov/11.9#E3
+\LommelS{\mu}{\nu}@{z};Lommel S;2;1;1;;;;http://dlmf.nist.gov/11.9#E5
+;;;;;;;;
+\MathieuEigenvaluea{n}@@{q};Mathieu eigenvalues;1;2;1;;;;http://dlmf.nist.gov/28.2#SS5.p1
+\MathieuEigenvalueb{n}@@{q};Mathieu eigenvalues;1;2;1;;;;http://dlmf.nist.gov/28.2#SS5.p1
+\MathieuEigenvaluelambda{m}@@{q};Mathieu eigenvalues;1;2;1;;;;http://dlmf.nist.gov/28.12#E3
+\Mathieuce{n}@@{z}{q};Mathieu eigenvalue function;1;2;2;;;;http://dlmf.nist.gov/28.2#SS6.p1
+\Mathieuse{n}@@{z}{q};Mathieu eigenvalue function;1;2;2;;;;http://dlmf.nist.gov/28.2#SS6.p1
+\Mathieume{n}@@{z}{q};Mathieu eigenvalue function;1;2;2;;;;
+\MathieuCe{\nu}@@{z}{q};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E3
+\MathieuSe{\nu}@@{z}{q};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E4
+\MathieuMe{\nu}@@{z}{q};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E5
+\MathieuFe{n}@@{z}{q};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E6
+\MathieuGe{n}@@{z}{q};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E7
+\MathieuM{j}{\nu}@@{z}{h};Modified Mathieu function;2;2;2;;;;http://dlmf.nist.gov/28.20#SS3.p1
+\MathieuIe{n}@@{z}{h};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E17
+\MathieuIo{n}@@{z}{h};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E18
+\MathieuKe{n}@@{z}{h};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E19
+\MathieuKo{n}@@{z}{h};Modified Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.20#E20
+\MathieuMc{j}{n}@@{z}{h};Radial Mathieu function;2;2;2;;;;http://dlmf.nist.gov/28.20#E15
+\MathieuMs{j}{n}@@{z}{h};Radial Mathieu function;2;2;2;;;;http://dlmf.nist.gov/28.20#E16
+\Mathieufe{n}@@{z}{q};Second solutions of Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.5#E1
+\Mathieuge{n}@@{z}{q};Second solutions of Mathieu function;1;2;2;;;;http://dlmf.nist.gov/28.5#E2
+\MathieuD{j}@{\nu}{\mu}{z};Cross-products of Mathieu function;1;1;3;;;;http://dlmf.nist.gov/28.28#E24
+\MathieuDs{j}@{n}{m}{z};Cross-products of Mathieu function;1;1;3;;;;http://dlmf.nist.gov/28.28#E35
+\MathieuDc{j}@{n}{m}{z};Cross-products of Mathieu function;1;1;3;;;;http://dlmf.nist.gov/28.28#E39
+\MathieuDsc{j}@{n}{m}{z};Cross-products of Mathieu function;1;1;3;;;;http://dlmf.nist.gov/28.28#E40
+\MathieuFc{m}@{z}{h};Cross-products of Mathieu function;1;1;2;;;;http://dlmf.nist.gov/28.26#E1
+\MathieuFs{m}@{z}{h};Cross-products of Mathieu function;1;1;2;;;;http://dlmf.nist.gov/28.26#E2
+\MathieuGc{m}@{z}{h};Cross-products of Mathieu function;1;1;2;;;;http://dlmf.nist.gov/28.26#E1
+\MathieuGs{m}@{z}{h};Cross-products of Mathieu function;1;1;2;;;;http://dlmf.nist.gov/28.26#E2
+\MeijerG{m}{n}{p}{q}@@@{z}{\Vector{a}}{\Vector{b}};Meijer-G function;4;3;3;;;;http://dlmf.nist.gov/16.17#E1
+;;;;;;;;
+\Mills@{x};Mills' Ratio;0;1;1;;;;http://dlmf.nist.gov/7.8#E1
+;;;;;;;;
+\ModularLambda@{\tau};Elliptic modular function;0;1;1;;;;http://dlmf.nist.gov/23.15#E6
+\ModularJ@{\tau};Klein's complete invariant;0;1;1;;;;http://dlmf.nist.gov/23.15#E7
+\DedekindModularEta@{\tau};Dedikind's Eta function;0;1;1;;;;http://dlmf.nist.gov/23.15#E9
+;;;;;;;;
+\Pade{p}{q}{f};Pade approximation;0;0;3;;;;http://dlmf.nist.gov/3.11#SS4.p1
+;;;;;;;;
+\RamanujanSum{k}@{n};Ramanujan's sum;1;1;1;;;;http://dlmf.nist.gov/27.10#E4
+\RamanujanTau@{n};Ramanujan's Tau function;0;1;1;;;;http://dlmf.nist.gov/27.14#E18
+;;;;;;;;
+\RayleighFun{n}@{\nu};Rayleigh function;1;1;1;;;;http://dlmf.nist.gov/10.21#E55
+;;;;;;;;
+\RiemannTheta@{\Vector{z}}{\Matrix{\Omega}};Riemann theta function;0;1;2;;;;http://dlmf.nist.gov/21.2#E1
+\RiemannThetaChar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}};Riemann theta function with characteristics;2;1;2;;;;http://dlmf.nist.gov/21.2#E5
+\RiemannThetaHat@{\Vector{z}}{\Matrix{\Omega}};Scaled Riemann theta function;0;1;2;;;;http://dlmf.nist.gov/21.2#E2
+\RiemannXi@{s};Riemann's xi-function;0;1;1;;;;http://dlmf.nist.gov/25.4#E4
+\RiemannZeta@{s};Riemann zeta function;0;1;1;;;;http://dlmf.nist.gov/25.2#E1
+;;;;;;;;
+\ScorerGi@{z};Scorer function Gi;0;1;1;;;;http://dlmf.nist.gov/9.12#i
+\ScorerHi@{z};Scorer function Hi;0;1;1;;;;http://dlmf.nist.gov/9.12#i
+;;;;;;;;
+\SpheroidalEigenvalueLambda{m}{n}@{\gamma^2};Eigenvalues of the spheroidal differential equation;2;1;1;;;;http://dlmf.nist.gov/30.3#SS1.p1
+\SpheroidalOnCutPs{m}{n}@{x}{\gamma^2};Spheroidal wave function of the first kind;2;1;2;;;;http://dlmf.nist.gov/30.4#i
+\SpheroidalOnCutQs{m}{n}@{x}{\gamma^2};Spheroidal wave function of the second kind;2;1;2;;;;http://dlmf.nist.gov/30.5
+\SpheroidalPs{m}{n}@{z}{\gamma^2};Spheroidal wave function of the first kind complex argument;2;1;2;;;;http://dlmf.nist.gov/30.6#p1
+\SpheroidalQs{m}{n}@{z}{\gamma^2};Spheroidal wave function of the second kind complex argument;2;1;2;;;;http://dlmf.nist.gov/30.6#p1
+\SpheroidalRadialS{m}{j}{n}@{z}{\gamma};Radial spheroidal wave function;3;1;2;;;;http://dlmf.nist.gov/30.11#E3
+;;;;;;;;
+\StirlingS@{n}{k};Stirling number of the first kind;0;1;2;;;;http://dlmf.nist.gov/26.8#SS1.p1
+\StirlingSS@{n}{k};Stirling number of the second kind;0;1;2;;;;http://dlmf.nist.gov/26.8#SS1.p3
+;;;;;;;;
+\StruveH{\nu}@{z};Struve function;1;1;1;;;;http://dlmf.nist.gov/11.2#E1
+\StruveK{\nu}@{z};Associated Struve funtion;1;1;1;;;;http://dlmf.nist.gov/11.2#E5
+\StruveL{\nu}@{z};Modified Struve function;1;1;1;;;;http://dlmf.nist.gov/11.2#E2
+\StruveM{\nu}@{z};Associated Modified Struve function;1;1;1;;;;http://dlmf.nist.gov/11.2#E6
+;;;;;;;;
+\LegendreSymbol{n}{p};Legendre symbol;0;0;2;;;;http://dlmf.nist.gov/27.9
+\Kronecker{j}{k};Kronecker delta;0;0;2;;;;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r4
+\NeumannFactor{n};Neumann factor;0;0;1;;;;http://drmf.wmflabs.org/wiki/Definition:NeumannFactor
+\LeviCivita{j}{k}{l};Levi-Civita symbol;0;0;3;;;;http://dlmf.nist.gov/1.6#E14
+\RiemannP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};Riemann's P-symbol;0;1;1;;;;http://dlmf.nist.gov/15.11#E3
+\pochhammer{a}{n};Pochhammer symbol;0;0;2;;;;http://dlmf.nist.gov/5.2#iii
+\threej@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3};3j symbol;0;2;6;;;;http://dlmf.nist.gov/34.2#E4
+\sixj@@{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l_{3}};6j symbol;0;2;6;;;;http://dlmf.nist.gov/34.4#E1
+\ninej@@{j_{11}}{j_{12}}{j_{13}}{j_{21}}{j_{22}}{j_{23}}{j_{31}}{j_{32}}{j_{33}};9j symbol;0;2;9;;;;http://dlmf.nist.gov/34.6#E1
+\wigner{j_1}{m_1}{j_2}{m_2}{j_3}{-m_3};Clebsch-Gordan coefficient;0;0;6;;;;http://dlmf.nist.gov/34.1#p4
+;;;;;;;;
+\terminant{p}@{z};Terminant function;1;1;1;;;;http://dlmf.nist.gov/2.11#E11
+\rescaledTerminant{p}@{z};Rescaled terminant function;1;1;1;;;;http://dlmf.nist.gov/9.7#E22
+;;;;;;;;
+\FourierTrans@@{f}{s};Fourier transformation;0;2;2;;;;http://dlmf.nist.gov/1.14#E1
+\LaplaceTrans@{f}{s};Laplace transformation;0;1;2;;;;http://dlmf.nist.gov/1.14#E17
+\MellinTrans@{f}{s};Mellin transformation;0;1;2;;;;http://dlmf.nist.gov/1.14#E32
+\HilbertTrans@{f}{s};Hilbert transformation;0;1;2;;;;http://dlmf.nist.gov/1.14#SS5.p1
+\StieltjesTrans@{f}{s};Stieltjes transformation;0;1;2;;;;http://dlmf.nist.gov/1.14#E47
+;;;;;;;;
+"\VariationalOp[a;b]@{f}";Total variation;1;1;1;;;;http://dlmf.nist.gov/1.4#E33
+;;;;;;;;
+\gradient f;Gradiant of differentiable scalar function;0;0;1;;;;http://dlmf.nist.gov/1.6#E20
+\divergence F;Divergence of a differentiable vector-valued function;0;0;1;;;;http://dlmf.nist.gov/1.6#E21
+\curl F;Curl of vector-valued function;0;0;1;;;;http://dlmf.nist.gov/1.6#E22
+\VoigtU@{x}{t};Voigt function U;0;1;2;;;;http://dlmf.nist.gov/7.19#E1
+\VoigtV@{x}{t};Voigt function V;0;1;2;;;;http://dlmf.nist.gov/7.19#E2
+\LinBrF@{a}{u};Line broadening function;0;1;2;;;;http://dlmf.nist.gov/7.19#E4
+\Waringg@{k};Waring's function g;0;1;1;;;;http://dlmf.nist.gov/27.13#SS3.p1
+\WaringG@{k};Waring's function G;0;1;1;;;;http://dlmf.nist.gov/27.13#SS3.p1
+\NumSquaresR{k}@{n};Number of squares;1;1;1;;;;http://dlmf.nist.gov/27.13#SS4.p1
+\WeierPInv@@{z}{g_2}{g_3};Weierstrass elliptic function;0;2;3;;;;http://dlmf.nist.gov/23.3#E8
+\WeierPLat@@{z}{\Lattice{L}};Weierstrass elliptic function on lattice;0;2;2;;;;http://dlmf.nist.gov/23.2#E4
+\WeierzetaInv@@{z}{g_2}{g_3};Weierstrass zeta function;0;2;3;;;;http://dlmf.nist.gov/23.1E5
+\WeierzetaLat@@{z}{\Lattice{L}};Weierstrass zeta function on lattice;0;2;2;;;;http://dlmf.nist.gov/23.1E5
+\WeiersigmaInv@@{z}{g_2}{g_3};Weierstrass sigma function;0;2;3;;;;http://dlmf.nist.gov/23.1E6
+\WeiersigmaLat@@{z}{\Lattice{L}};Weierstrass sigma function on lattice;0;2;2;;;;http://dlmf.nist.gov/23.1E6
+\WhitM{\kappa}{\mu}@{z};Whittaker confluent hypergeometric function;2;1;1;;;;http://dlmf.nist.gov/13.14#E2
+\WhitW{\kappa}{\mu}@{z};Whittaker confluent hypergeometric function;2;1;1;;;;http://dlmf.nist.gov/13.14#E3
+\RiemannZeta@{s};Riemann zeta function;0;1;1;;;;http://dlmf.nist.gov/25.2#E1
+\HurwitzZeta@{s}{a};Hurwitz zeta function;0;1;2;;;;http://dlmf.nist.gov/25.11#E1
+\WeierzetaInv@@{z}{g_2}{g_3};Weierstrass zeta function;0;2;3;;;;http://dlmf.nist.gov/23.1E5
+\WeierzetaLat@@{z}{\Lattice{L}};Weierstrass zeta function on lattice;0;2;2;;;;http://dlmf.nist.gov/23.1E5
+\JacobiZeta@{x}{k};Jacobi zeta function;0;1;2;;;;http://dlmf.nist.gov/22.16#E32
+\PeriodicZeta@{x}{s};Periodic zeta function;0;1;2;;;;http://dlmf.nist.gov/25.13#E1
+;;;;;;;;
+\AlSalamChiharaQ{n}@{x}{a}{b}{q};Al-Salam-Chihara polynomial;1;1;4;;;;http://dlmf.nist.gov/18.28#E7
+\AlSalamChihara{n}@@{x}{a}{b}{q};Al-Salam-Chihara polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:AlSalamChihara
+\qinvAlSalamChihara{n}@{x}{a}{b}{q^{-1}};q-Invert-Al-Salam-Chihara polynomial;1;1;4;;;;http://dlmf.nist.gov/18.28#E9
+\AlSalamCarlitzI{a}{n}@{x}{q};Al-Salam-Charlitz I polynomial;2;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:AlSalamCarlitzI
+\AlSalamCarlitzII{a}{n}@{x}{q};Al-Salam-Charlitz II polynomial;2;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:AlSalamCarlitzII
+\AlSalamIsmail{n}@{x}{s}{q};Al-Salam Ismail;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:AlSalamIsmail
+\AskeyWilson{n}@{x}{a}{b}{c}{d}{q};Askey-Wilson polynomial;1;1;6;;;;http://dlmf.nist.gov/18.28#E1
+\AskeyWilsonp{n}@{x}{a}{b}{c}{d}{q};Askey-Wilson polynomial;1;1;6;;;;http://dlmf.nist.gov/18.28#E1
+\BernoulliB{n}@{x};Bernoulli polynomial;1;1;1;;;;http://dlmf.nist.gov/24.2#i
+\GenBernoulliB{\ell}{n}@{x};Generalized Bernoulli polynomial;2;1;1;;;;http://dlmf.nist.gov/24.16#P1.p1
+\PeriodicBernoulliB{n}@{x};Periodic Bernoulli polynomial;1;1;1;;;;http://dlmf.nist.gov/24.2#iii
+\qBernoulli{n}@{x}{q};q-Bernoulli polynomial;1;1;2;;;;http://dlmf.nist.gov/17.3#E7
+;;;;;;;;
+\BellNumber@{n};Bell number;0;1;1;;;;http://dlmf.nist.gov/26.7#i
+\BesselPoly{n}@{x}{a};Bessel polynomial;1;1;2;;;;http://dlmf.nist.gov/18.34#E1
+\BesselPolyy{n}@{x}{a};Bessel polynomial;1;1;2;;;;http://dlmf.nist.gov/18.34#E1
+\BesselPolyIIparam{n}@{x}{a}{b};Bessel polynomial with two parameters;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:BesselPolyIIparam
+\BesselPolyTheta{n}@{x}{a}{b};Bessel Theta polynomial with two parameters;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:BesselPolyTheta
+;;;;;;;;
+\Charlier{n}@{x}{a};Charlier polynomial;1;1;2;;;;http://dlmf.nist.gov/18.19#T1.t1.r5
+\CharlierC{n}@{x}{a};Charlier polynomial;1;1;2;;;;http://dlmf.nist.gov/18.19#T1.t1.r5
+;;;;;;;;
+\ChebyT{n}@{x};Chebyshev polynomial first kind;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r4
+\ChebyU{n}@{x};Chebyshev polynomial second kind;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r5
+\ChebyV{n}@{x};Chebyshev polynomial third kind;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r6
+\ChebyW{n}@{x};Chebyshev polynomial fourth kind;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r7
+\ChebyTs{n}@{x};Shifted Chebyshev polynomial first kind;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r8
+\ChebyUs{n}@{x};Shifted Chebyshev polynomial second kind;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r9
+\ChebyC{n}@{x};Dilated Chebyshev polynomial first kind;1;1;1;;;;http://dlmf.nist.gov/18.1#E3
+\ChebyS{n}@{x};Dilated Chebyshev polynomial second kind;1;1;1;;;;http://dlmf.nist.gov/18.1#E3
+\CiglerqChebyT{n}@{x}{s}{q};Cigler q-Chebyshev polynomials;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:CiglerqChebyT
+\CiglerqChebyU{n}@{x}{s}{q};Cigler q-Chebyshev polynomials;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:CiglerqChebyU
+\monicChebyT{n}@@{x};Monic Chebyshev polynomials;1;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicChebyT
+\monicChebyU{n}@@{x};Monic Chebyshev polynomials;1;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicChebyU
+;;;;;;;;
+\DiskOP{\alpha}{m}{n}@{z};Disk polynomial;3;1;1;;;;http://dlmf.nist.gov/18.37#E1
+\EulerE{n}@{x};Euler polynomial;1;1;1;;;;http://dlmf.nist.gov/24.2#ii
+\GenEulerE{\ell}{n}@{x};Generalized Euler polynomial;2;1;1;;;;http://dlmf.nist.gov/24.16#P1.p1
+\PeriodicEulerE{n}@{x};Periodic Euler polynomial;1;1;1;;;;http://dlmf.nist.gov/24.2#iii
+\Ultra{\lambda}{n}@{x};Ultraspherical Gegenbauer polynomial;2;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r3
+\Ultraspherical{\lambda}{n}@{x};Ultraspherical Gegenbauer polynomial;2;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r3
+\GenGegenbauerS{\alpha}{\beta}{n}@{x};Generalized Gegenbauer polynomial;3;1;1;;;;http://gw113.iu.xsede.org/wiki/index.php/Definition:GenGegenbauerS
+\Hahn{n}@{x}{\alpha}{\beta}{N};Hahn polynomial;1;1;4;;;;http://dlmf.nist.gov/18.19#T1.t1.r2
+\HahnQ{n}@{x}{\alpha}{\beta}{N};Hahn polynomial;1;1;4;;;;http://dlmf.nist.gov/18.19#T1.t1.r2
+\HahnR{n}@{x}{\gamma}{\delta}{N};Dual Hahn polynomial;1;1;4;;;;http://dlmf.nist.gov/18.25#T1.t1.r5
+\dualHahn{n}@@{\lambda(x)}{\gamma}{\delta}{N};Dual Hahn polynomial;1;2;4;;;;http://dlmf.nist.gov/18.25#T1.t1.r5
+\HahnS{n}@{x}{a}{b}{c};Continuous dual Hahn polynomial;1;1;4;;;;http://dlmf.nist.gov/18.25#T1.t1.r3
+\Hahnp{n}@{x}{a}{b}{\conj{a}}{\conj{b}};Continuous Hahn polynomial;1;1;5;;;;http://dlmf.nist.gov/18.19#P2.p1
+\Hermite{n}@{x};Hermite polynomial;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r13
+\HermiteH{n}@{x};Hermite polynomial;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r13
+\HermiteHe{n}@{x};Hermite polynomial He;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r14
+\GenHermite[\alpha]{n}@{x};Generalized Hermite polynomial;2;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:GenHermite
+\HeunPolynom{n}{m}@@{a}{q}{-n}{\beta}{\gamma}{\delta}{z};Heun polynomials;2;2;7;;;;http://dlmf.nist.gov/31.5#E2
+\Jacobi{\alpha}{\beta}{n}@{x};Jacobi polynomial;3;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r2
+\JacobiP{\alpha}{\beta}{n}@{x};Jacobi polynomial;3;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r2
+\JacobiG{n}@{p}{q}{x};Shifted Jacobi polynomial;1;1;3;;;;http://dlmf.nist.gov/18.1#E2
+\AssJacobiP{\alpha}{\beta}{n}@{x}{c};Associated Jacobi polynomial;3;1;2;;;;http://dlmf.nist.gov/18.30#E4
+\pseudoJacobi{n}@{x}{\nu}{N};Pseudo Jacobi polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:pseudoJacobi
+\TriangleOP{\alpha}{\beta}{\gamma}{m}{n}@{x}{y};Triangle polynomial;5;1;2;;;;http://dlmf.nist.gov/18.37#E7
+;;;;;;;;
+\Krawtchouk{n}@{x}{p}{N};Krawtchouk polynomial;1;1;3;;;;http://dlmf.nist.gov/18.19#T1.t1.r3
+\KrawtchoukK{n}@{x}{p}{N};Krawtchouk polynomial;1;1;3;;;;http://dlmf.nist.gov/18.19#T1.t1.r3
+\Laguerre[\alpha]{n}@{x};Laguerre polynomial;2;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r12
+\LaguerreL[\alpha]{n}@{x};Laguerre polynomial;2;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r12
+\GottliebLaguerre{n}@{x};Gottlieb-Laguerre polynomial;1;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:GottliebLaguerre
+\LameuE{m}{2n}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E1
+\LamesE{m}{2n+1}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E2
+\LamecE{m}{2n+1}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E3
+\LamedE{m}{2n+1}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E4
+\LamescE{m}{2n+2}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E5
+\LamesdE{m}{2n+2}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E6
+\LamecdE{m}{2n+2}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E7
+\LamescdE{m}{2n+3}@{z}{k^2};Lame polynomial;2;1;2;;;;http://dlmf.nist.gov/29.12#E8
+\LegendrePoly{n}@{x};Legendre polynomial;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r10
+\LegendrePolys{n}@{x};Shifted Legendre polynomial;1;1;1;;;;http://dlmf.nist.gov/18.3#T1.t1.r11
+\AssLegendrePoly{n}@{x}{c};Associated Legendre polynomial;1;1;2;;;;http://dlmf.nist.gov/18.30#E6
+\Meixner{n}@{x}{\beta}{c};Meixner polynomial;1;1;3;;;;http://dlmf.nist.gov/18.19#T1.t1.r9
+\MeixnerM{n}@{x}{\beta}{c};Meixner polynomial;1;1;3;;;;http://dlmf.nist.gov/18.19#T1.t1.r9
+\MeixnerPollaczek{\lambda}{n}@{x}{\phi};Meixner-Pollaczek polynomial;2;1;2;;;;http://dlmf.nist.gov/18.19#P3.p1
+\MeixnerPollaczekP{\lambda}{n}@{x}{\phi};Meixner-Pollaczek polynomial;2;1;2;;;;http://dlmf.nist.gov/18.19#P3.p1
+\NeumannPoly{n}@{x};Neumann's polynomial;1;1;1;;;;http://dlmf.nist.gov/10.23#E12
+\PollaczekP{\lambda}{n}@{x}{a}{b};Pollaczek polynomial;1;1;3;;;;http://dlmf.nist.gov/18.35#E4
+\Racah{n}@{x}{\alpha}{\beta}{\gamma}{\delta};Racah polynomial;1;1;5;;;;http://dlmf.nist.gov/18.25#T1.t1.r4
+\RacahR{n}@{x}{\alpha}{\beta}{\gamma}{\delta};Racah polynomial;1;1;5;;;;http://dlmf.nist.gov/18.25#T1.t1.r4
+\StieltjesWigert{n}@@{x}{q};Stieltjes-Wigert polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:StieltjesWigert
+\StieltjesWigertS{n}@{x}{q};Stieltjes-Wigert polynomial;1;1;2;;;;http://dlmf.nist.gov/18.27#E18
+;;;;;;;;
+\Wilson{n}@{x}{a}{b}{c}{d};Wilson polynomial;1;1;5;;;;http://dlmf.nist.gov/18.25#T1.t1.r2
+\WilsonW{n}@{x}{a}{b}{c}{d};Wilson polynomial;1;1;5;;;;http://dlmf.nist.gov/18.25#T1.t1.r2
+;;;;;;;;
+\ZonalPoly{\kappa}@{\Matrix{T}};Zonal polynomial;1;1;1;;;;http://dlmf.nist.gov/35.4#SS1.p3
+;;;;;;;;
+\qSin{q}@@{x};q-Sine function;1;2;1;;;;http://dlmf.nist.gov/17.3#E4
+\qsin{q}@@{x};q-Sine function;1;2;1;;;;http://dlmf.nist.gov/17.3#E3
+\qSinKLS{q}@@{z};q-Sine function;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:qSinKLS
+\qsinKLS{q}@@{z};q-Sine function;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:qsinKLS
+\qCos{q}@@{x};q-Cosine functions;1;2;1;;;;http://dlmf.nist.gov/17.3#E6
+\qcos{q}@@{x};q-Cosine functions;1;2;1;;;;http://dlmf.nist.gov/17.3#E5
+\qCosKLS{q}@@{z};q-Cosine functions;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:qCosKLS
+\qcosKLS{q}@@{z};q-Cosine functions;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:qcosKLS
+\qExp{q}@@{x};q-Exponential function;1;2;1;;;;http://dlmf.nist.gov/17.3#E2
+\qexp{q}@@{x};q-Exponential function;1;2;1;;;;http://dlmf.nist.gov/17.3#E1
+\qExpKLS{q}@@{z};q-Exponential function;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:qExpKLS
+\qexpKLS{q}@@{z};q-Exponential function;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:qExpKLS
+\qAppelli@{a}{b}{b'}{c}{q}{x}{y};q-Appell function of first kind;0;1;7;;;;http://dlmf.nist.gov/17.4.E5
+\qAppellii@{a}{b}{b'}{c}{c'}{q}{x}{y};q-Appell function of second kind;0;1;8;;;;http://dlmf.nist.gov/17.4.E6
+\qAppelliii@{a}{a'}{b}{b'}{c}{q}{x}{y};q-Appell function of third kind;0;1;8;;;;http://dlmf.nist.gov/17.4.E7
+\qAppelliv@{a}{b}{c}{c'}{q}{x}{y};q-Appell function of fourth kind;0;1;7;;;;http://dlmf.nist.gov/17.4.E8
+\qBernoulli{n}@{x}{q};q-Bernoulli polynomial;1;1;2;;;;http://dlmf.nist.gov/17.3#E7
+\qBesselPoly{n}@{x}{b}{q};q-Bessel polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:qBessel
+\qBeta{q}@{a}{b};q-Beta function;1;1;2;;;;http://dlmf.nist.gov/5.18#E11
+\qBinomial{n}{m}{q};q-Binomial coefficient / Gaussian polynomial;0;0;3;;;;http://dlmf.nist.gov/17.2#E27
+\qCharlier{n}@{x}{c}{q};q-Charlier polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:qCharlier
+\qderiv[n]{q}@{z};q-Derivative;2;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:qderiv
+\qdiff{q}{x};q-Derivative;0;0;2;;;;http://dlmf.nist.gov/17.2#SS5.p1
+\qGamma{q}@{z};q-Gamma;1;1;1;;;;http://dlmf.nist.gov/5.18#E4
+\qDigamma{q}@{z};q-Digamma function;1;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:qDigamma
+\qEuler{m}{s}@{q};q-Euler function;2;1;1;;;;http://dlmf.nist.gov/17.3#E8
+\qFactorial{n}{q};q-Factorial function;0;0;2;;;;http://dlmf.nist.gov/5.18#E2
+\qGamma{q}@{z};q-Gamma function;1;1;1;;;;http://dlmf.nist.gov/5.18#E4
+\qHahn{n}@@{q^{-x}}{\alpha}{\beta}{N};q-Hahn polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:qHahn
+\qHahnQ{n}@{x}{\alpha}{\beta}{N}{q};q-Hahn polynomial;1;1;5;;;;http://dlmf.nist.gov/18.27#E3
+\dualqHahn{n}@@{\mu(x)}{\gamma}{\delta}{N}{q};dual q-Hahn polynomial;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:dualqHahn
+\qHermiteH{n}@{x}{q};q-Hermite polynomial;1;1;2;;;;http://dlmf.nist.gov/18.28#E16
+\qinvHermiteh{n}@{x}{q};q-Invert-Hermite polynomial;1;1;2;;;;http://dlmf.nist.gov/18.28#E18
+\qHermitehI{n}@{x}{q};q-Hermite discrete I;1;1;2;;;;http://dlmf.nist.gov/18.27#E21
+\qHermitehII{n}@{x}{q};q-Hermite discrete II;1;1;2;;;;http://dlmf.nist.gov/18.27#E23
+\discrqHermiteI{n}@@{x}{q};q-Hermite discrete I;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:discrqHermiteI
+\discrqHermiteII{n}@@{x}{q};q-Hermite discrete II;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:discrqHermiteII
+\qJacobiP{n}@{x}{a}{b}{c}{q};q-Jacobi polynomial;1;1;5;;;;http://dlmf.nist.gov/18.27#E5
+\bigqJacobi{n}@@{x}{a}{b}{c}{q};big q-Jacobi polynomial;1;2;5;;;;http://dlmf.nist.gov/18.27#E5
+\qJacobiPP{\alpha}{\beta}{n}@{x}{c}{d}{q};q-Jacobi polynomial;3;1;4;;;;http://dlmf.nist.gov/18.27#E6
+\bigqJacobiIVparam{n}@@{x}{a}{b}{c}{d}{q};big q-Jacobi polynomial;1;2;6;;;;http://dlmf.nist.gov/18.27#E6
+\qJacobip{n}@{x}{a}{b}{q};q-Jacobi polynomial;1;1;4;;;;http://dlmf.nist.gov/18.27#E13
+\littleqJacobi{n}@@{x}{a}{b}{q};little q-Jacobi polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:littleqJacobi
+\qKrawtchouk{n}@@{q^{-x}}{p}{N}{q};q-Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:qKrawtchouk
+\dualqKrawtchouk{n}@@{\lambda(x)}{c}{N}{q};dual q-Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:dualqKrawtchouk
+\qtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};quantum q-Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:qtmqKrawtchouk
+\AffqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};Affine q-Krawtchouck polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:AffqKrawtchouk
+\qLaguerre[\alpha]{n}@@{x}{q};q-Laguerre polynomial;2;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:qLaguerre
+\qLaguerreL[\alpha]{n}@{x}{q};q-Laguerre polynomial;2;1;2;;;;http://dlmf.nist.gov/18.27#E15
+\bigqLaguerre{n}@{x}{a}{b}{q};big q-Laguerre polynomial;1;1;4;;;;http://drmf.wmflabs.org/wiki/Definition:bigqLaguerre
+\littleqLaguerre{n}@{x}{a}{q};little q-Laguerre polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:littleqLaguerre
+\qLegendre{n}@{x}{q};q-Legendre polynomial;1;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:qLegendre
+\bigqLegendre{n}@{x}{c}{q};big q-Legendre polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:bigqLegendre
+\littleqLegendre{m}@{x}{q};little q-Legendre polynomial;1;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:littleqLegendre
+\qMeixner{n}@{x}{b}{c}{q};q-Meixner polynomial;1;1;4;;;;http://drmf.wmflabs.org/wiki/Definition:qMeixner
+\qMeixnerPollaczek{n}@{x}{a}{q};q-Meixner-Pollaczek polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:qMeixnerPollaczek
+\qPochhammer{a}{q}{n};q-Pochhammer symbol;0;0;3;;;;http://dlmf.nist.gov/17.2#SS1.p1
+\qMultiPochhammer{a_1,\ldots,a_n}{q}{n};q-Multi-Pochhammer symbol;0;0;3;;;;http://dlmf.nist.gov/17.2.E5
+\qPolygamma{n}{q}@{z};q-Polygamma function;2;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:qPolygamma
+\qRacah{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};q-Racah polynomials;1;1;6;;;;http://dlmf.nist.gov/18.28#E19
+\qRacahR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};q-Racah polynomials;1;1;6;;;;http://dlmf.nist.gov/18.28#E19
+\qStirling{m}{s}@{q};q-Stirling number;2;1;1;;;;http://dlmf.nist.gov/17.3#E9
+\qUltraspherical{n}@{x}{\beta}{q};q-Ultraspherical polynomial;1;1;3;;;;http://dlmf.nist.gov/18.28#E13
+\qHyperrWs{r}{r+1}@@@{a_1}{a_4,a_5,...,a_{r+1}}{q}{z};very-well-poised basic hypergeometric (or $q$-hypergeometric) function;2;3;4;;;;http://drmf.wmflabs.org/wiki/Definition:qHyperrWs
+\qHyperrphis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z};basic hypergeometric (or $q$-hypergeometric) function;2;3;4;;;;http://dlmf.nist.gov/17.4#E1
+\qHyperrpsis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z};bilateral basic hypergeometric (or bilateral $q$-hypergeometric) function;2;3;4;;;;http://dlmf.nist.gov/17.4#E3
+\qMultinomial{a_1+\ldots+a_n}{a_1,\ldots,a_n}{q};q-multinomial;0;0;3;;;;http://dlmf.nist.gov/26.16.E1
+;;;;;;;;
+\ctsHahn{n}@@{x}{a}{b}{c}{d};Continuous Hahn polynomial;1;2;5;;;;http://dlmf.nist.gov/18.19#P2.p1
+\ctsbigqHermite{n}@{x}{a}{q};Continuous big q-Hermite polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:ctsbigqHermite
+\ctsdualHahn{n}@@{x^2}{a}{b}{c};Continuous dual Hahn polynomial;1;2;4;;;;http://dlmf.nist.gov/18.25#T1.t1.r3
+\ctsdualqHahn{n}@{x}{a}{b}{c}{q};Continuous dual q-Hahn polynomial;1;1;5;;;;http://drmf.wmflabs.org/wiki/Definition:ctsdualqHahn
+\ctsqHahn{n}@{x}{a}{b}{c}{d}{q};Continuous q-Hahn polynomial;1;1;6;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqHahn
+\ctsqHermite{n}@@{x}{q};Continuous q-Hermite polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqHermite
+\ctsqJacobi{\alpha}{\beta}{m}@{x}{q};Continuous q-Jacobi polynomial;3;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqJacobi
+\ctsqJacobiRahman{n}@@{x}{q};Continuous q-Jacobi polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqJacobiRahman
+\ctsqLaguerre{\alpha}{n}@{x}{q};Continuous q-Laguerre polynomial;2;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqLaguerre
+\ctsqLegendre{n}@@{x}{q};Continuous q-Legendre polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqLegendre
+\ctsqLegendreRahman{n}@@{x}{q};Continuous q-Legendre-Rahman polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqLegendreRahman
+\ctsqUltra{n}@{x}{\beta}{q};Continuous q-Ultraspherical polynomial;1;1;3;;;;http://dlmf.nist.gov/18.28#E13
+\ctsqUltrae{n}@{e^{i\theta}}{\beta}{q};Continuous q-Ultraspherical polynomial;1;1;3;;;;http://drmf.wmflabs.org/wiki/Definition:ctsqUltrae
+;;;;;;;;
+\monicAffqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};monic affine $q$-Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicAffqKrawtchouk
+\monicAlSalamCarlitzI{a}{n}@@{x}{q};monic Al-Salam-Carlitz I polynomial;2;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicAlSalamCarlitzI
+\monicAlSalamCarlitzII{a}{n}@@{x}{q};monic Al-Salam-Carlitz II polynomial;2;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicAlSalamCarlitzII
+\monicAlSalamChihara{n}@@{x}{a}{b}{q};monic Al-Salam-Chihara polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicAlSalamChihara
+\monicAskeyWilson{n}@@{x}{a}{b}{c}{d}{q};monic Askey-Wilson polynomial;1;2;6;;;;http://drmf.wmflabs.org/wiki/Definition:monicAskeyWilson
+\monicBesselPoly{n}@@{x}{a};monic Bessel polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicBesselPoly
+\monicCharlier{n}@@{x}{a};monic Charlier polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicCharlier
+\monicChebyT{n}@@{x};monic Chebyshev polynomial of the first kind;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicChebyT
+\monicChebyU{n}@@{x};monic Chebyshev polynomial of the second kind;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicChebyU
+\monicHahn{n}@@{x}{\alpha}{\beta}{N};monic Hahn polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicHahn
+\monicHermite{n}@@{x};monic Hermite polynomial;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicHermite
+\monicJacobi{n}@@{x};monic Jacobi polynomial;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicJacobi
+\monicKrawtchouk{n}@@{q^{-x}}{p}{N}{q};monic Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicKrawtchouk
+\monicLaguerre{n}@@{x};monic Laguerre polynomial;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicLaguerre
+\monicLegendrePoly{n}@@{x};monic Legendre polynomial;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicLegendrePoly
+\monicMeixner{n}@@{x}{\beta}{c};monic Meixner polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicMeixner
+\monicMeixnerPollaczek{\lambda}{n}@@{x}{\phi};monic Meixner-Pollaczek polynomial;2;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicMeixnerPollaczek
+\monicRacah{n}@@{\lambda(x)}{\alpha}{\beta}{\gamma}{\delta};monic Racah polynomial;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:monicRacah
+\monicStieltjesWigert{n}@@{x}{q};monic Stieltjes-Wigert polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicStieltjesWigert
+\monicUltra{n}@@{x};monic ultraspherical/Gegenbauer polynomial;1;2;1;;;;http://drmf.wmflabs.org/wiki/Definition:monicUltra
+\monicWilson{n}@@{x^2}{a}{b}{c}{d};monic Wilson polynomial;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:monicWilson
+\monicbigqJacobi{n}@@{x}{a}{b}{c}{q};monic big $q$-Jacobi polynomial;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:monicbigqJacobi
+\monicbigqLaguerre{n}@@{x}{a}{b}{q};monic big $q$-Laguerre polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicbigqLaguerre
+\monicbigqLegendre{n}@@{x}{c}{q};monic big $q$-Legendre polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicbigqLegendre
+\monicctsHahn{n}@@{x}{a}{b}{c}{d};monic continuous Hahn polynomial;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsHahn
+\monicctsbigqHermite{n}@@{x}{a}{q};monic continuous big $q$-Hermite polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsbigqHermite
+\monicctsdualHahn{n}@@{x^2}{a}{b}{c}{d};monic continuous dual Hahn polynomial;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsdualHahn
+\monicctsdualqHahn{n}@@{x^2}{a}{b}{c};monic continuous dual $q$-Hahn polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsdualqHahn
+\monicctsqHahn{n}@@{x}{a}{b}{c}{d}{q};monic continuous $q$-Hahn polynomial;1;2;6;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsqHahn
+\monicctsqHermite{n}@@{x}{q};monic continuous $q$-Hermite polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsqHermite
+\monicctsqJacobi{n}@@{x}{q};monic continuous $q$-Jacobi polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsqJacobi
+\monicctsqLaguerre{n}@@{x}{q};monic continuous $q$-Laguerre polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsqLaguerre
+\monicctsqLegendre{n}@@{x}{q};monic continuous $q$-Legendre polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsqLegendre
+\monicctsqUltra{n}@@{x}{\beta}{q};monic continuous $q$-ultraspherical/Rogers polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicctsqUltra
+\monicdiscrqHermiteI{n}@@{x}{q};monic discrete $q$-Hermite I polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicdiscrqHermiteI
+\monicdiscrqHermiteII{n}@@{x}{q};monic discrete $q$-Hermite II polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicdiscrqHermiteII
+\monicdualHahn{n}@@{\lambda(x)}{\gamma}{\delta}{N};monic dual Hahn polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicdualHahn
+\monicdualqHahn{n}@@{\mu(x)}{\gamma}{\delta}{N}{q};monic dual $q$-Hahn polynomial;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:monicdualqHahn
+\monicdualqKrawtchouk{n}@@{\lambda(x)}{c}{N}{q};monic dual $q$-Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicdualqKrawtchouk
+\moniclittleqJacobi{n}@@{x}{a}{b}{q};monic little $q$-Jacobi polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:moniclittleqJacobi
+\moniclittleqLaguerre{n}@@{x}{a}{q};monic little $q$-Laguerre/Wall polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:moniclittleqLaguerre
+\moniclittleqLegendre{n}@@{x}{q};monic little $q$-Legendre polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:moniclittleqLegendre
+\monicpseudoJacobi{n}@@{x}{\nu}{N};monic pseudo-Jacobi polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicpseudoJacobi
+\monicqBesselPoly{n}@@{x}{a}{q};monic $q$-Bessel polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicqBessel
+\monicqCharlier{n}@@{q^{-x}}{a}{q};monic $q$-Charlier polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicqCharlier
+\monicqHahn{n}@@{q^{-x}}{\alpha}{\beta}{N};monic $q$-Hahn polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicqHahn
+\monicqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};monic $q$-Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicqKrawtchouk
+\monicqLaguerre{n}@@{x}{q};monic $q$-Laguerre polynomial;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:monicqLaguerre
+\monicqMeixner{n}@@{q^{-x}}{b}{c}{q};monic $q$-Meixner polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicqMeixner
+\monicqMeixnerPollaczek{n}@@{x}{a}{q};monic $q$-Meixner-Pollaczek polynomial;1;2;3;;;;http://drmf.wmflabs.org/wiki/Definition:monicqMeixnerPollaczek
+\monicqRacah{n}@@{\mu(x)}{\alpha}{\beta}{\gamma}{\delta}{q};monic $q$-Racah polynomial;1;2;6;;;;http://drmf.wmflabs.org/wiki/Definition:monicqRacah
+\monicqinvAlSalamChihara{n}@{x}{a}{b}{q^{-1}};monic $q$-inverse Al-Salam-Chihara polynomial;1;1;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicqinvAlSalamChihara
+\monicqtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};monic quantum $q$-Krawtchouk polynomial;1;2;4;;;;http://drmf.wmflabs.org/wiki/Definition:monicqtmqKrawtchouk
+;;;;;;;;
+\normAskeyWilsonptilde{n}@@{x}{a}{b}{c}{d}{q};normalized Askey-Wilson polynomial ${\tilde p}$;1;2;6;;;;http://drmf.wmflabs.org/wiki/Definition:normAskeyWilsonptilde
+\normJacobiR{\alpha}{\beta}{n}@{x};normalized Jacobi polynomial;3;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:normJacobiR
+\normWilsonWtilde{n}@@{x^2}{a}{b}{c}{d};normalized Wilson polynomial ${\tilde W}$;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:normWilsonWtilde
+\normctsHahnptilde{n}@@{x}{a}{b}{c}{d};normalized continuous Hahn polynomial ${\tilde p}$;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:normctsHahnptilde
+\normctsdualHahnStilde{n}@@{x^2}{a}{b}{c}{d};normalized continuous dual Hahn polynomial ${\tilde S}$;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:normctsdualHahnStilde
+\normctsdualqHahnptilde{n}@@{x}{a}{b}{c}{q};normalized continuous dual $q$-Hahn polynomial ${\tilde p}$;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:normctsdualqHahnptilde
+\normctsqHahnptilde{n}@@{x}{a}{b}{c}{d}{q};normalized continuous $q$-Hahn polynomial ${\tilde p}$;1;2;6;;;;http://drmf.wmflabs.org/wiki/Definition:normctsqHahnptilde
+\normctsqJacobiPtilde{n}@@{x}{q};normalized continuous $q$-Jacobi polynomial ${\tilde P}$;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:normctsqJacobiPtilde
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;

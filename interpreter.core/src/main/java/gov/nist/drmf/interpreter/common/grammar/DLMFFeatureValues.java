@@ -3,8 +3,6 @@ package gov.nist.drmf.interpreter.common.grammar;
 import gov.nist.drmf.interpreter.common.Keys;
 import mlp.FeatureSet;
 
-import java.util.SortedSet;
-
 /**
  * @author Andre Greiner-Petter
  */
@@ -17,9 +15,6 @@ public enum DLMFFeatureValues implements IFeatureExtractor{
     ),
     meaning(
             t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_MEANINGS))
-    ),
-    extra_info(
-            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_EXTRA_INFO))
     ),
     dlmf_link(
             t -> DLMFFeatureValues.DLMF_LINK_PREFIX +
@@ -38,11 +33,22 @@ public enum DLMFFeatureValues implements IFeatureExtractor{
     CAS(
             t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.CAS_KEY))
     ),
+    CAS_Alternatives(
+            t -> IFeatureExtractor.getStringFromSet(
+                    t.getFeature( Keys.CAS_KEY + DLMFFeatureValues.ALTERNATIVE_SUFFIX ))
+    ),
     CAS_Link(
-            t -> DLMFFeatureValues.MAPLE_LINK_PREFIX +
+            t -> DLMFFeatureValues.CAS_LINK_PREFIX +
                     IFeatureExtractor.getStringFromSet(
-                            t.getFeature(Keys.CAS_KEY + DLMFFeatureValues.LINK_SUFFIX)
-                    )
+                    t.getFeature( Keys.CAS_KEY + DLMFFeatureValues.LINK_SUFFIX ))
+    ),
+    CAS_Comment(
+            t -> IFeatureExtractor.getStringFromSet(
+                    t.getFeature( Keys.CAS_KEY + DLMFFeatureValues.COMMENT_SUFFIX ))
+    ),
+    CAS_BranchCuts(
+            t -> IFeatureExtractor.getStringFromSet(
+                    t.getFeature( Keys.CAS_KEY + DLMFFeatureValues.BRANCH_CUTS_SUFFIX ))
     ),
     DLMF(
             t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.KEY_DLMF))
@@ -54,11 +60,17 @@ public enum DLMFFeatureValues implements IFeatureExtractor{
             t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_BRANCH_CUTS))
     );
 
-    private static final String LINK_SUFFIX = "-Link";
+    public static final String LINK_SUFFIX = "-Link";
+
+    public static final String COMMENT_SUFFIX = "-Comment";
+
+    public static final String ALTERNATIVE_SUFFIX = "-Alternatives";
+
+    public static final String BRANCH_CUTS_SUFFIX = "-Branch Cuts";
 
     private static final String DLMF_LINK_PREFIX = "http://";
 
-    private static final String MAPLE_LINK_PREFIX = "https://";
+    private static final String CAS_LINK_PREFIX = "https://";
 
     //private String key;
     private IFeatureExtractor extractor;
