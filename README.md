@@ -7,8 +7,19 @@
 4. If you working on an open task, drag and drop this task to _"accepted tasks"_.
 
 ## Structure
-1. [How to contribute?](#contribute)
-2. [The Team](#contributers)
+1. [How to use our program](#howTo)
+2. [Troubleshooting](#troubleshooting)
+3. [How to contribute?](#contribute)
+4. [The Team](#contributers)
+
+## How to use our program<a name="howTo"></a>
+TODO
+
+## Troubleshooting<a name="troubleshooting"></a>
+When you want to contribute or just run our program it could happen to get some errors. Here are some tips to avoid that. When every you found an error which is not explained here and you don't know how to fix it by your own, feel free to contact [André Greiner-Petter](https://github.com/AndreG-P) (or some of the [other contributers](#contributers)).
+
+1. You cannot translate your CSV file to our lexicon files. (typical exception like: MalformedInputException)
+This could happen when our program cannot find out the encoding of your CSV file. It is strongly recommended to set the encoding to UTF-8 (with or without BOM) of your CSV file.
 
 ## How to contribute<a name="contribute"></a>
 Abdou has uploaded the MLP.zip file. Unzip it and follow the instructions to run it. Besides the README you will find a guide called _"Software usage guide"_. Take a look to both documents as well. Abdou also provides a documentation (javadoc) for his project. How to import this doc depends on your IDE, but of course it is possible to work with it in a common browser anyway (start with index.html).
