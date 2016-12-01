@@ -11580,8 +11580,9 @@ Symbol: \leftarrowtriangle
 
   Feature Set: universal
 	Category: relation
-	Description: leftwards open-headed ar row
+	Description: leftwards open-headed arrow
 	Source: unicode-math
+	Subcategory: arrow
 	Unicode: u+021fd
 
 Symbol: \leftarrowx
@@ -35278,7 +35279,7 @@ Symbol: i
 	Areas: mathematics
 	Font-typeface: computer modern
 	Font-weight: plain
-	Meanings: the imaginary unit == the square root of -1
+	Meanings: the imaginary unit == the principal square root of -1
 	Role: mathematical constant
 
   Feature Set:
@@ -35416,7 +35417,7 @@ Symbol: j
 	Areas: electrical engineering
 	Font-typeface: computer modern
 	Font-weight: plain
-	Meanings: the imaginary unit == the square root of -1
+	Meanings: the imaginary unit == the principal square root of -1
 
   Feature Set:
 	Alphabet: Latin
@@ -36588,7 +36589,7 @@ Symbol: pi
 	Alphabet: Greek
 	Areas: mathematics
 	Font-weight: plain
-	Meanings: Archimedes' constant == the ratio of a circle's circumference to its diameter
+	Meanings: the ratio of a circle's circumference to its diameter == Archimedes' constant
 	Role: mathematical constant
 	Root-symbol: pi
 
