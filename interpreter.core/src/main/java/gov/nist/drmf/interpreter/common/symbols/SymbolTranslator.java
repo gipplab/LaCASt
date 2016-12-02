@@ -34,9 +34,13 @@ public class SymbolTranslator extends AbstractJSONLoader {
     }
 
     @Override
-    public String translate(String symbol) {
+    public String translate( String symbol ) {
         if ( symbol.startsWith("\\") )
             symbol = symbol.substring(1);
         return translate( FROM, TO, symbol );
+    }
+
+    public String translateFromMLPKey(String symbol){
+        return translate( KEY_NAME, TO, symbol );
     }
 }

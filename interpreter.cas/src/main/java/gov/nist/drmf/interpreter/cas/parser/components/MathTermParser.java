@@ -2,12 +2,14 @@ package gov.nist.drmf.interpreter.cas.parser.components;
 
 import com.sun.istack.internal.Nullable;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
 import gov.nist.drmf.interpreter.cas.parser.AbstractParser;
 import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
@@ -15,6 +17,9 @@ import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * The math term parser parses only math terms.
@@ -28,10 +33,15 @@ import mlp.PomTaggedExpression;
  * @see MathTermTags
  * @author Andre Greiner-Petter
  */
-public class MathTermParser extends AbstractParser {
+public class MathTermParser extends AbstractListParser {
     // some special characters which are useful for this parser
     // the caret uses for powers
     public static final String CHAR_CARET = "^";
+
+    @Override
+    public boolean parse( PomTaggedExpression exp ){
+        return parse( exp, new LinkedList<>() );
+    }
 
     /**
      * This parser only parses MathTerms. Only use this
@@ -39,20 +49,20 @@ public class MathTermParser extends AbstractParser {
      * cannot parse by any other specialized parser!
      *
      * @param exp has a not empty term!
+     * @param following_exp
      * @return true when everything is fine and there was no error
      */
     @Override
-    public boolean parse( PomTaggedExpression exp ) {
+    public boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following_exp ) {
         // it has to be checked before that this exp has a not empty term
-
         // get the MathTermTags object
         MathTerm term = exp.getRoot();
-        String tagExp = term.getTag();
-        MathTermTags tag = MathTermTags.getTagByKey(tagExp);
+        String termTag = term.getTag();
+        MathTermTags tag = MathTermTags.getTagByKey(termTag);
 
         // if the tag doesn't exists in the system -> stop
         if ( tag == null ){
-            ERROR_LOG.warning("Unknown tag: " + tagExp);
+            ERROR_LOG.warning("Unknown tag: " + termTag);
             return false;
         }
 
@@ -73,22 +83,22 @@ public class MathTermParser extends AbstractParser {
                 // so do nothing here and switch to command:
             case command:
                 // a latex-command could be:
-                //  1) greek letter -> translate via GreekLetters.translate
+                //  1) Greek letter -> translate via GreekLetters.translate
                 //  2) constant     -> translate via Constants.translate
                 //  3) A DLMF Macro -> this parser cannot handle DLMF-Macros
                 //  4) a function   -> Should parsed by FunctionParser and not here!
 
-                // is it a greek letter?
+                // is it a Greek letter?
                 if ( FeatureSetUtility.isGreekLetter(term) ){
-                    // is this greek letter also known constant?
+                    // is this Greek letter also known constant?
                     if ( constantSet != null ){
                         // inform the user about our choices
                         constantVsLetter( constantSet, term );
-                    } // if not, simply translate it as a greek letter
+                    } // if not, simply translate it as a Greek letter
                     return parseGreekLetter(term.getTermText());
                 }
 
-                // or is it a constant but not a greek letter?
+                // or is it a constant but not a Greek letter?
                 if ( constantSet != null ){
                     // simply try to translate it as a constant
                     return parseMathematicalConstant( constantSet, term.getTermText() );
@@ -108,6 +118,10 @@ public class MathTermParser extends AbstractParser {
                 ERROR_LOG.severe("MathTermParser cannot parse functions. Use the FunctionParser instead: "
                         + term.getTermText());
                 return false;
+            case multiply:
+                local_inner_exp.addTranslatedExpression(MULTIPLY);
+                global_exp.addTranslatedExpression(MULTIPLY);
+                return true;
             case letter:
                 // a letter can be one constant, but usually translate it simply
                 if ( constantSet != null ){
@@ -121,7 +135,6 @@ public class MathTermParser extends AbstractParser {
             case minus:
             case plus:
             case equals:
-            case multiply:
             case divide:
             case less_than:
             case greater_than: // all above should translated directly, right?
@@ -146,7 +159,7 @@ public class MathTermParser extends AbstractParser {
                 // that's why a constant here is the same like a alphanumeric expression
                 // ==> do nothing and switch to alphanumeric
             case alphanumeric:
-                // check first, if it is a constant or greek letter
+                // check first, if it is a constant or Greek letter
                 String alpha = term.getTermText();
                 if ( FeatureSetUtility.isGreekLetter( term ) ){
                     if ( constantSet != null ){
@@ -163,7 +176,7 @@ public class MathTermParser extends AbstractParser {
                 String output;
                 // add space to all objects except the last one
                 for ( int i = 0; i < alpha.length()-1; i++ ) {
-                    output = alpha.charAt(i) + " ";
+                    output = alpha.charAt(i) + MULTIPLY;
                     // add it to local and global
                     local_inner_exp.addTranslatedExpression( output );
                     global_exp.addTranslatedExpression(output);
@@ -175,39 +188,57 @@ public class MathTermParser extends AbstractParser {
                 global_exp.addTranslatedExpression(output);
                 return true;
             case comma:
-                // ignore?
+                // in general, translate them directly
+                local_inner_exp.addTranslatedExpression(term.getTermText());
+                global_exp.addTranslatedExpression(term.getTermText());
                 return true;
             case operation:
-                SymbolTranslator sT = SemanticLatexParser.getSymbolsTranslator();
-                String translation = sT.translate( term.getTermText() );
-                if ( translation == null ){
-                    ERROR_LOG.warning("Cannot parse operation " + term.getTermText());
-                    return false;
-                } else {
-                    INFO_LOG.addGeneralInfo(
-                            term.getTermText(),
-                            "was translated to " + translation);
-                    local_inner_exp.addTranslatedExpression( translation );
-                    global_exp.addTranslatedExpression( translation );
+                OperationParser opParser = new OperationParser();
+                // well, maybe not the best choice
+                if ( opParser.parse( exp, following_exp ) ){
+                    local_inner_exp.addTranslatedExpression( opParser.getTranslatedExpressionObject() );
                     return true;
+                } else return false;
+            case factorial:
+                String last = global_exp.removeLastExpression();
+                BasicFunctionsTranslator translator = SemanticLatexParser.getBasicFunctionParser();
+                String translation;
+
+                String prefix = "";
+                try {
+                    PomTaggedExpression next = following_exp.get(0);
+                    MathTermTags nextTag = MathTermTags.getTagByKey( next.getRoot().getTag() );
+                    if ( nextTag != null && nextTag.equals( tag ) ){
+                        following_exp.remove(0);
+                        prefix = "double ";
+                    }
+                } catch ( Exception e ){
+                    prefix = "";
                 }
-            case factorial: // TODO
-                INFO_LOG.addGeneralInfo( "!", "Found factorial! We currently working on better translations." );
-                local_inner_exp.addTranslatedExpression( term.getTermText() );
-                global_exp.addTranslatedExpression( term.getTermText() );
+                translation = translator.translate(new String[]{last}, prefix+tag.tag());
+
+                // probably we don't have to do anything with the local exp
+                //local_inner_exp.addTranslatedExpression( translation );
+                global_exp.addTranslatedExpression( translation );
                 return true;
             case caret:
                 return parseCaret( exp );
-            case mod: // TODO
-                ERROR_LOG.warning(
-                        "Well, mod is pretty hard to handle right now... " +
-                                "not supported yet.");
-                return false;
+            case ellipsis:
+                SymbolTranslator sT = SemanticLatexParser.getSymbolsTranslator();
+                String symbol = sT.translateFromMLPKey( tag.tag() );
+                local_inner_exp.addTranslatedExpression( symbol );
+                global_exp.addTranslatedExpression( symbol );
+                return true;
             case macro:
                 ERROR_LOG.warning(
                         "A macro? What is it? Please inform " +
                                 "Andre about this crazy shit: " +
                                 term.getTermText());
+                return false;
+            case abbreviation:
+                ERROR_LOG.warning(
+                        "This program cannot parse abbreviations like " + term.getTermText()
+                );
                 return false;
             default:
                 ERROR_LOG.warning("Unknown MathTerm Tag: "
@@ -218,16 +249,16 @@ public class MathTermParser extends AbstractParser {
 
     /**
      * Inform the user about the fact of decision we made to translate this
-     * constant or greek letter.
+     * constant or Greek letter.
      *
-     * This method only will invoke, if the term is a greek letter and maybe
+     * This method only will invoke, if the term is a Greek letter and maybe
      * a constant. So it is maybe a constant we know how to translate but don't
      * want to (like pi but the user should use \cpi instead)
-     * or it is a completely unknown constant, then we can translate it as a greek
+     * or it is a completely unknown constant, then we can translate it as a Greek
      * letter anyway (for instance \alpha, could be the 2nd Feigenbaum constant).
      *
      * @param constantSet the constant feature set
-     * @param term the greek letter term
+     * @param term the Greek letter term
      */
     private void constantVsLetter( FeatureSet constantSet, MathTerm term ){
         String dlmf = translateToDLMF(term.getTermText());
@@ -246,9 +277,9 @@ public class MathTermParser extends AbstractParser {
                 term.getTermText(),
                 "Could be " + DLMFFeatureValues.meaning.getFeatureValue(constantSet) + "."
                         + System.lineSeparator() +
-                        "But it is also a greek letter. " +
+                        "But it is also a Greek letter. " +
                         "Be aware, that this program translated the letter " +
-                        "as a normal greek letter and not as a constant!" + System.lineSeparator() +
+                        "as a normal Greek letter and not as a constant!" + System.lineSeparator() +
                         "Use the DLMF-Macro " +
                         dlmf + " to translate " + term.getTermText() + " as a constant." + System.lineSeparator()
         );
@@ -294,7 +325,7 @@ public class MathTermParser extends AbstractParser {
                                 DLMFFeatureValues.meaning.getFeatureValue(set) + "]." + System.lineSeparator() +
                                 "We keep it like it is! But you should know that " + Keys.CAS_KEY +
                                 " uses " + translated_const + " for this constant." + System.lineSeparator() +
-                                "If you want to translated as a constant, use the corresponding DLMF macro " +
+                                "If you want to translate it as a constant, use the corresponding DLMF macro " +
                                 dlmf + System.lineSeparator()
                 );
                 // and now, use this translation
@@ -302,7 +333,7 @@ public class MathTermParser extends AbstractParser {
             }
         }
 
-        // still null? try to translate it as a greek letter than if possible
+        // still null? try to translate it as a Greek letter than if possible
         if ( translated_const == null ){
             try {
                 String alphabet = set.getFeature( Keys.FEATURE_ALPHABET ).first();
@@ -311,7 +342,7 @@ public class MathTermParser extends AbstractParser {
                             constant,
                             "Unable to translate " + constant + " [" +
                                     DLMFFeatureValues.meaning.getFeatureValue(set) +
-                                    "]. But since it is a greek letter we translated it to a greek letter in "
+                                    "]. But since it is a Greek letter we translated it to a Greek letter in "
                                     + Keys.CAS_KEY + "."
                     );
                     return parseGreekLetter( constant );
@@ -343,27 +374,27 @@ public class MathTermParser extends AbstractParser {
     }
 
     /**
-     * Parsing a given greek letter.
-     * @param greekLetter the greek letter
+     * Parsing a given Greek letter.
+     * @param GreekLetter the Greek letter
      * @return true if it was parsed
      */
-    private boolean parseGreekLetter( String greekLetter ){
+    private boolean parseGreekLetter( String GreekLetter ){
         // try to translate
         GreekLetters l = SemanticLatexParser.getGreekLettersParser();
-        String translated_letter = l.translate(greekLetter);
+        String translated_letter = l.translate(GreekLetter);
 
         // if it's null, maybe a \ is missing
         if ( translated_letter == null ){
-            if ( !greekLetter.startsWith(CHAR_BACKSLASH) ){
-                greekLetter = CHAR_BACKSLASH + greekLetter;
-                translated_letter = l.translate(greekLetter);
+            if ( !GreekLetter.startsWith(CHAR_BACKSLASH) ){
+                GreekLetter = CHAR_BACKSLASH + GreekLetter;
+                translated_letter = l.translate(GreekLetter);
             }
         }
 
         // still null? inform the user, we cannot do more here
         if ( translated_letter == null ){
-            ERROR_LOG.warning("Cannot translate greek letter "
-                    + greekLetter);
+            ERROR_LOG.warning("Cannot translate Greek letter "
+                    + GreekLetter);
             return false;
         }
 
@@ -389,16 +420,21 @@ public class MathTermParser extends AbstractParser {
 
         // now we need to wrap parenthesis around the power
         Brackets b = Brackets.left_parenthesis;
-        String powerStr = CHAR_CARET +
-                b.symbol + power.toString() + b.counterpart;
+        String powerStr = CHAR_CARET;
+        if ( !testBrackets( power.toString() ) )
+                powerStr += b.symbol + power.toString() + b.counterpart;
+        else powerStr += power.toString();
 
         // the power becomes one big expression now.
         local_inner_exp.addTranslatedExpression( powerStr );
+        local_inner_exp.addAutoMergeLast(1);
 
         // remove all elements added from the power process
         global_exp.removeLastNExps( power.clear() );
         // and add the power with parenthesis (and the caret)
         global_exp.addTranslatedExpression( powerStr );
+        // merges last 2 expression, because after ^ it is one phrase than
+        global_exp.mergeLastNExpressions(2);
         return !isInnerError();
     }
 }

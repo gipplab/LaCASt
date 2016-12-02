@@ -29,11 +29,12 @@ public enum MathTermTags {
     comma("comma"),
     less_than("less-than"),
     greater_than("greater-then"),
-    mod("mod"),
     macro("macro"),
     caret("caret"),
     factorial("exclamation point"),
-    operation("operation");
+    operation("operation"),
+    ellipsis("ellipsis"),
+    abbreviation("abbreviation");
 
     private String tag;
 

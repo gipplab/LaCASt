@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
@@ -29,6 +30,12 @@ import java.util.List;
  * @author Andre Greiner-Petter
  */
 public class SequenceParser extends AbstractListParser {
+    public static final String SPECIAL_SYMBOL_PATTERN_FOR_SPACES =
+            "[\\^\\/\\_\\!]";
+
+    public static final String PATTERN_BASIC_OPERATIONS =
+            ".*[\\+\\-\\*\\/\\^\\_\\!\\(\\)\\{\\}\\[\\]\\<\\>\\s].*";
+
     // the open bracket if needed
     @Nullable
     private Brackets open_bracket;
@@ -50,6 +57,13 @@ public class SequenceParser extends AbstractListParser {
      */
     public SequenceParser( Brackets open_bracket ){
         this.open_bracket = open_bracket;
+    }
+
+    @Override
+    public boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following ){
+        if ( exp == null ) return parse(following);
+        else if ( following == null ) return parse(exp);
+        else return false;
     }
 
     /**
@@ -85,16 +99,31 @@ public class SequenceParser extends AbstractListParser {
             // only take the last object and check if it is
             // necessary to add a space character behind
             part = inner_translation.getLastExpression();
-            if ( addSpace( exp, exp_list ) ) {
+            boolean lastMerged = false;
+            if ( part == null ) {
+                part = global_exp.getLastExpression();
+                lastMerged = true;
+            }
+
+            if ( addMultiply( exp, exp_list ) ){
+                part += MULTIPLY;
+                // the global list already got each element before,
+                // so simply replace the last if necessary
+                String tmp = global_exp.getLastExpression();
+                global_exp.replaceLastExpression(tmp + MULTIPLY);
+            } else if ( addSpace( exp, exp_list ) ) {
                 part += SPACE;
                 // the global list already got each element before,
                 // so simply replace the last if necessary
-                global_exp.replaceLastExpression(part);
+                String tmp = global_exp.getLastExpression();
+                global_exp.replaceLastExpression(tmp + SPACE);
             }
 
             // finally add all elements to the inner list
-            inner_translation.replaceLastExpression(part);
-            local_inner_exp.addTranslatedExpression( inner_translation );
+            inner_translation.replaceLastExpression( part );
+            if ( lastMerged )
+                local_inner_exp.replaceLastExpression( inner_translation.toString() );
+            else local_inner_exp.addTranslatedExpression( inner_translation );
         }
 
         // finally return value
@@ -116,7 +145,6 @@ public class SequenceParser extends AbstractListParser {
      *                      with an open bracket
      * @return true when the parser finished without an error.
      */
-    @Override
     public boolean parse(List<PomTaggedExpression> following_exp) {
         if ( open_bracket == null ){
             ERROR_LOG.severe("Wrong parser method used. " +
@@ -130,29 +158,6 @@ public class SequenceParser extends AbstractListParser {
             // take the next expression
             PomTaggedExpression exp = following_exp.remove(0);
 
-            // if the next expression does not contains
-            // a math term object, simply parse it as a general expression
-            if ( !containsTerm(exp) ){
-                TranslatedExpression inner_translation =
-                        parseGeneralExpression(exp, following_exp);
-
-                // don't forget to check spaces:
-                String last = inner_translation.removeLastExpression();
-                if ( addSpace( exp, following_exp ) ){
-                    last += SPACE;
-                    global_exp.replaceLastExpression( last );
-                }
-                inner_translation.addTranslatedExpression( last );
-                local_inner_exp.addTranslatedExpression( inner_translation );
-                // don't need to add elements to global_exp because they were
-                // already added from other methods.
-
-                // if there was in error, we can stop here
-                if ( isInnerError() ) return false;
-                // otherwise take the next expression
-                else continue;
-            }
-
             // otherwise investigate the term
             MathTerm term = exp.getRoot();
             //If this term is a bracket there are three possible options
@@ -164,7 +169,7 @@ public class SequenceParser extends AbstractListParser {
             //      -> there is a bracket error in the sequence
 
             // open or closed brackets
-            if ( term.getTag().matches(PARENTHESIS_PATTERN) ){
+            if ( term != null && !term.isEmpty() && term.getTag().matches(PARENTHESIS_PATTERN) ){
                 // get the bracket
                 Brackets bracket = Brackets.getBracket( term.getTermText() );
 
@@ -216,13 +221,26 @@ public class SequenceParser extends AbstractListParser {
             TranslatedExpression inner_trans = parseGeneralExpression(exp, following_exp);
 
             // check, if we need to add space here
-            String last = inner_trans.removeLastExpression();
-            if ( addSpace( exp, following_exp ) ) {
-                last += SPACE;
-                global_exp.replaceLastExpression( last );
+            String last = inner_trans.getLastExpression();
+            boolean inner = false;
+            if ( last == null ) {
+                last = global_exp.getLastExpression();
+                inner = true;
             }
-            inner_trans.addTranslatedExpression( last );
-            local_inner_exp.addTranslatedExpression( inner_trans );
+
+            if ( addMultiply( exp, following_exp ) ){
+                last += MULTIPLY;
+                String tmp = global_exp.getLastExpression();
+                global_exp.replaceLastExpression( tmp + MULTIPLY );
+            } else if ( addSpace( exp, following_exp ) ) {
+                last += SPACE;
+                String tmp = global_exp.getLastExpression();
+                global_exp.replaceLastExpression( tmp + SPACE );
+            }
+
+            inner_trans.replaceLastExpression( last );
+            if ( inner ) local_inner_exp.replaceLastExpression( inner_trans.toString() );
+            else local_inner_exp.addTranslatedExpression( inner_trans );
 
             // if there was in error, its over here...
             if ( isInnerError() ) return false;
@@ -248,7 +266,23 @@ public class SequenceParser extends AbstractListParser {
             MathTerm curr = currExp.getRoot();
             MathTerm next = exp_list.get(0).getRoot();
             return !(curr.getTag().matches(PARENTHESIS_PATTERN)
-                    || next.getTag().matches(PARENTHESIS_PATTERN));
+                    || next.getTag().matches(PARENTHESIS_PATTERN)
+                    || next.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)
+            );
+        } catch ( Exception e ){ return false; }
+    }
+
+    private boolean addMultiply( PomTaggedExpression currExp, List<PomTaggedExpression> exp_list ){
+        try {
+            if ( exp_list == null || exp_list.size() < 1) return false;
+            MathTerm curr = currExp.getRoot();
+            MathTerm next = exp_list.get(0).getRoot();
+            return !(
+                    curr.getTermText().matches(PATTERN_BASIC_OPERATIONS )
+                    || next.getTermText().matches(PATTERN_BASIC_OPERATIONS )
+                    || curr.getTag().matches( MathTermTags.operation.tag() )
+                    || next.getTag().matches( MathTermTags.operation.tag() )
+            );
         } catch ( Exception e ){ return true; }
     }
 }

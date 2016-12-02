@@ -18,10 +18,8 @@ public abstract class AbstractListParser extends AbstractParser {
 
     /**
      * Use this method only when you know what you are doing.
-     * This class is implemented to use {@link #parse(List)}.
      *
      * @param exp single expression gets wrapped into a list
-     *            and invoke {@link #parse(List)}.
      * @return true if the parsing process finished correctly
      */
     @Override
@@ -30,6 +28,14 @@ public abstract class AbstractListParser extends AbstractParser {
         list.add(exp);
         return parse(exp);
     }
+
+    /**
+     *
+     * @param exp
+     * @param following_exp
+     * @return
+     */
+    public abstract boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following_exp );
 
     /**
      * The general method to parse a list of descendants.
@@ -43,7 +49,7 @@ public abstract class AbstractListParser extends AbstractParser {
      * @param following_exp the descendants of a previous expression
      * @return true if the parsing process finished successful
      */
-    public abstract boolean parse(List<PomTaggedExpression> following_exp);
+    //public abstract boolean parse(List<PomTaggedExpression> following_exp);
 
     /**
      * Returns parsed components. Be aware this could be null or

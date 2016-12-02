@@ -2,13 +2,13 @@ package gov.nist.drmf.interpreter.cas.parser.components;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
+import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
-import java.awt.*;
 import java.util.List;
 
 /**
@@ -49,79 +49,95 @@ public class MacroParser extends AbstractListParser {
 
     private String def_dlmf, def_cas;
 
-    private String translation_pattern;
+    private String translation_pattern, alternative_pattern;
 
-    private String branch_cuts;
+    private String branch_cuts, cas_branch_cuts;
+
+    private String cas_comment;
 
     public MacroParser(){}
 
     @Override
+    public boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following ){
+        return parse(exp) && parse(following);
+    }
+
+    @Override
     public boolean parse(PomTaggedExpression root_exp) {
+        // first of all, get the feature set named dlmf-macro
         MathTerm term = root_exp.getRoot();
         FeatureSet fset = term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
 
+        // if this set is null, it is simply not a dlmf-macro
         if ( fset == null ){
             ERROR_LOG.warning("You should not use MacroParser when the PomTaggedExpression is " +
                     "not a dlmf-macro!");
             return false;
         }
 
+        // now store all additional information
+        // first of all number of parameters, ats and vars
         numOfParams = Integer.parseInt(DLMFFeatureValues.params.getFeatureValue(fset));
         numOfAts    = Integer.parseInt(DLMFFeatureValues.ats.getFeatureValue(fset));
         numOfVars   = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset));
 
+        // now store additional information about the translation
+        // Meaning: name of the function (defined by DLMF)
+        // Description: same like meaning, but more rough. Usually there is only one of them defined (meaning|descreption)
+        // Constraints: of the DLMF definition
+        // Branch Cuts: of the DLMF definition
+        // DLMF: its the plain, smallest version of the macro. Like \JacobiP{a}{b}{c}@{d}
+        //      we can reference our Constraints to a, b, c and d now. That makes it easier to read
         meaning     = DLMFFeatureValues.meaning.getFeatureValue(fset);
         description = DLMFFeatureValues.description.getFeatureValue(fset);
         constraints = DLMFFeatureValues.constraints.getFeatureValue(fset);
         branch_cuts = DLMFFeatureValues.branch_cuts.getFeatureValue(fset);
         DLMF_example= DLMFFeatureValues.DLMF.getFeatureValue(fset);
 
+        // Translation information
+        translation_pattern = DLMFFeatureValues.CAS.getFeatureValue(fset);
+        alternative_pattern = DLMFFeatureValues.CAS_Alternatives.getFeatureValue(fset);
+        cas_comment         = DLMFFeatureValues.CAS_Comment.getFeatureValue(fset);
+        cas_branch_cuts     = DLMFFeatureValues.CAS_BranchCuts.getFeatureValue(fset);
+
+        // links to the definitions
         def_dlmf    = DLMFFeatureValues.dlmf_link.getFeatureValue(fset);
         def_cas     = DLMFFeatureValues.CAS_Link.getFeatureValue(fset);
 
-        translation_pattern = DLMFFeatureValues.CAS.getFeatureValue(fset);
+        // maybe the alternative pattern got multiple alternatives
+        if ( !alternative_pattern.isEmpty() ){
+            try{ alternative_pattern = alternative_pattern.split( Keys.ALTERNATIVE_SPLIT )[0]; }
+            catch ( Exception e ){}
+        }
 
+        // put all information to the info log
         INFO_LOG.addMacroInfo(
                 term.getTermText(),
                 createFurtherInformation()
         );
+
+
         components = new String[numOfParams + numOfVars];
         return true;
     }
 
-    @Override
-    public boolean parse(List<PomTaggedExpression> following_exps){
+    private boolean parse(List<PomTaggedExpression> following_exps){
         if ( components == null ) return false;
 
+        int inner_at_counter = 0;
         for ( int i = 0; !following_exps.isEmpty() && i < components.length; ){
             // get first expression
             PomTaggedExpression exp = following_exps.remove(0);
 
-
             if ( containsTerm(exp) ){
                 MathTerm term = exp.getRoot();
-                if ( term.getTag().matches(Keys.FEATURE_SET_AT) ){
-                    continue;
-                }
-                /*
-                if ( isSubSequence(term) ){
-                    Brackets bracket = Brackets.getBracket(term.getTermText());
-                    SequenceParser sp = new SequenceParser(bracket);
-
-                    if (!sp.parse(following_exps)){
-                        return false;
-                    }
-
-                    String translation = sp.getTranslatedExpression();
-                    if ( translation.matches( Brackets.OPEN_PATTERN + ".*" ) )
-                        components[i] = translation.substring(1,translation.length()-1);
-                    else components[i] = translation;
-                    i++;
-                    continue;
+                if ( inner_at_counter > numOfAts ){
+                    ERROR_LOG.severe("Not valid number of @s in a DLMF-macro. " + DLMF_example);
+                    return false;
                 } else if ( term.getTag().matches(Keys.FEATURE_SET_AT) ){
+                    inner_at_counter++;
                     continue;
                 }
-                */
             }
 
             TranslatedExpression inner_exp = parseGeneralExpression(exp, following_exps);
@@ -133,6 +149,7 @@ public class MacroParser extends AbstractListParser {
                 return false;
         }
 
+
         // finally fill the placeholders by values
         fillVars();
         return true;
@@ -142,27 +159,48 @@ public class MacroParser extends AbstractListParser {
      *
      */
     private void fillVars(){
+        // when the alternative mode is activated, it tries to translate
+        // the alternative translation
+        String pattern = (Keys.ALTERNATIVE_MODE && !alternative_pattern.isEmpty()) ?
+                alternative_pattern : translation_pattern;
+
         for ( int i = 0; i < components.length; i++ ){
-            translation_pattern =
-                    translation_pattern.replace(position_char + Integer.toString(i), components[i]);
+            pattern = pattern.replace(position_char + Integer.toString(i), components[i]);
         }
-        local_inner_exp.addTranslatedExpression(translation_pattern);
-        global_exp.addTranslatedExpression(translation_pattern);
+        local_inner_exp.addTranslatedExpression(pattern);
+        global_exp.addTranslatedExpression(pattern);
     }
 
     private String createFurtherInformation(){
         String extraInformation = "";
-        if ( !description.isEmpty() )
-            extraInformation += description;
-        if ( !description.isEmpty() && !meaning.isEmpty() )
-            extraInformation += " / " + meaning;
-        else if ( !meaning.isEmpty() )
+        if ( !meaning.isEmpty() )
             extraInformation += meaning;
+        else if ( !description.isEmpty() )
+            extraInformation += description;
+
         extraInformation += "; Example: " + DLMF_example + System.lineSeparator();
-        extraInformation += "Constraints: " + constraints + System.lineSeparator();
-        extraInformation += "Branch Cuts: " + branch_cuts + System.lineSeparator();
-        extraInformation += "Link to definitions: " + System.lineSeparator() +
-                def_dlmf + System.lineSeparator() + def_cas;
+
+        if ( !cas_comment.isEmpty() )
+            extraInformation += "Translation Information: " + cas_comment + System.lineSeparator();
+
+        if ( !constraints.isEmpty() )
+            extraInformation += "Constraints: " + constraints + System.lineSeparator();
+
+        if ( !branch_cuts.isEmpty() )
+            extraInformation += "Branch Cuts: " + branch_cuts + System.lineSeparator();
+
+        if ( !cas_branch_cuts.isEmpty() )
+            extraInformation += Keys.CAS_KEY + " uses other branch cuts: " + cas_branch_cuts
+                    + System.lineSeparator();
+
+        String TAB = SemanticLatexParser.TAB;
+        String tab = TAB.substring(0, TAB.length()-("DLMF: ").length());
+        extraInformation += "Relevant links to definitions:" + System.lineSeparator() +
+                "DLMF: " + tab + def_dlmf + System.lineSeparator();
+        tab = TAB.substring(0,
+                ((Keys.CAS_KEY+": ").length() >= TAB.length() ? 0 : (TAB.length()-(Keys.CAS_KEY+": ").length()))
+        );
+        extraInformation += Keys.CAS_KEY + ": " + tab + def_cas;
         return extraInformation;
     }
 }

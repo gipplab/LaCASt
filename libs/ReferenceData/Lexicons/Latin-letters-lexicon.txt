@@ -1092,7 +1092,7 @@ Symbol: i
 	Areas: mathematics
 	Font-typeface: computer modern
 	Font-weight: plain
-	Meanings: the imaginary unit == the square root of -1
+	Meanings: the imaginary unit == the principal square root of -1
 	Role: mathematical constant
 
   Feature Set:
@@ -1123,7 +1123,7 @@ Symbol: j
 	Areas: electrical engineering
 	Font-typeface: computer modern
 	Font-weight: plain
-	Meanings: the imaginary unit == the square root of -1
+	Meanings: the imaginary unit == the principal square root of -1
 
 Symbol: k
 

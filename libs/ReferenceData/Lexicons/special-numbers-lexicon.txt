@@ -317,7 +317,7 @@ Symbol: pi
 	Alphabet: Greek
 	Areas: mathematics
 	Font-weight: plain
-	Meanings: Archimedes' constant == the ratio of a circle's circumference to its diameter
+	Meanings: the ratio of a circle's circumference to its diameter == Archimedes' constant
 	Role: mathematical constant
 	Root-symbol: pi
 
