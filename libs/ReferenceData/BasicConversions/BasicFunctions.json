@@ -35,18 +35,62 @@
 		"LaTeX": "$0!",
 		"Maple": "factorial($0)",
 		"Mathematica": "$0!"
+	},
+	"Double Factorial": {
+		"MLP": "double exclamation point",
+		"LaTeX": "$0!!",
+		"Maple": "doublefactorial($0)",
+		"Mathematica": "$0!!"
+	},
+	"Modulo": {
+		"MLP": "modulo",
+		"LaTeX": "$0 \\mod $1",
+		"Maple": "`mod`($0,$1)",
+		"Mathematica": "Mod[$0,$1]"
 	}
   },
   "Symbol Languages": [
+	"MLP",
 	"LaTeX",
 	"Maple",
 	"Mathematica"
   ],
   "Symbols": {
+	"GeneralMultiplication": {
+		"MLP": "General Multiplication",
+		"LaTeX": "\\cdot",
+		"Maple": "*",
+		"Mathematica": " "
+	},
 	"Multiply": {
+		"MLP": "operation",
 		"LaTeX": "cdot",
 		"Maple": "*",
 		"Mathematica": "*"
+	},
+	"Lower dots":{
+		"MLP": "ellipsis",
+		"LaTeX": "ldots",
+		"Maple": "..",
+		"Mathematica": " ... "
+	},
+	"Equality":{
+		"MLP": "equals",
+		"LaTeX": "=",
+		"Maple": "=",
+		"Mathematica": "="
+	},
+	"Not Equality":{
+		"MLP": "relation_1",
+		"LaTeX": "neq",
+		"Maple": "<>",
+		"Mathematica": "\\[NotEqual]"
+	},
+	"Element of":{
+		"MLP": "relation_2",
+		"LaTeX": "in",
+		"Maple": "in",
+		"Mathematica": "\\[Element]"
 	}
   }
 }

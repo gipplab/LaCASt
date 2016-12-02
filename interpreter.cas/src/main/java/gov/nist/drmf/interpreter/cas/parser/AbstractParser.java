@@ -33,10 +33,9 @@ public abstract class AbstractParser implements IParser {
     public static final String PARENTHESIS_PATTERN =
             "(right|left)[-\\s](parenthesis|bracket|brace)";
 
-    public static final String SPECIAL_SYMBOL_PATTERN =
-            "[\\^\\/\\*\\+\\-\\_]";
-
     public static final String CHAR_BACKSLASH = "\\";
+
+    public static String MULTIPLY;
 
     protected static InformationLogger INFO_LOG;
 
@@ -73,8 +72,7 @@ public abstract class AbstractParser implements IParser {
             // first, is this a DLMF macro?
             if ( isDLMFMacro(term) ){ // BEFORE FUNCTION!
                 MacroParser mp = new MacroParser();
-                return_value = mp.parse(exp);
-                return_value &= mp.parse(exp_list);
+                return_value = mp.parse(exp, exp_list);
                 inner_parser = mp;
             } // second, it could be a sub sequence
             else if ( isSubSequence(term) ){
@@ -85,15 +83,13 @@ public abstract class AbstractParser implements IParser {
             } // this is special, could be a function like cos
             else if ( isFunction(term) ){
                 FunctionParser fp = new FunctionParser();
-                return_value = fp.parse(exp);
-                return_value &= fp.parse( exp_list );
-                int num = fp.local_inner_exp.mergeAll(); // a bit redundant, num is always 2!
-                global_exp.mergeLastNExpressions( num );
+                return_value = fp.parse(exp, exp_list);
                 inner_parser = fp;
             } // otherwise it is a general math term
             else {
-                inner_parser = new MathTermParser();
-                return_value = inner_parser.parse(exp);
+                MathTermParser mp = new MathTermParser();
+                return_value = mp.parse(exp, exp_list);
+                inner_parser = mp;
             }
         }
 
@@ -140,11 +136,34 @@ public abstract class AbstractParser implements IParser {
         return (t != null && !t.isEmpty());
     }
 
+    /**
+     * Simple test if the given string is wrapped by parenthesis.
+     * It only returns true if there is an open bracket at start and
+     * at the end AND the first open one is really closed in the end.
+     * Something like (1)/(2) would return false.
+     * @param str with or without brackets
+     * @return false if there are no brackets
+     */
+    protected boolean testBrackets( String str ){
+        if ( !str.matches(Brackets.OPEN_PATTERN + ".*" + Brackets.CLOSED_PATTERN) )
+            return false;
+
+        int open = 0;
+        for ( int i = 1; i < str.length(); i++ ){
+            if ( (""+str.charAt(i)).matches( Brackets.OPEN_PATTERN ) )
+                open++;
+            else if ( (""+str.charAt(i)).matches( Brackets.CLOSED_PATTERN ) )
+                open--;
+        }
+        return open == -1;
+    }
+
     @Override
     public abstract boolean parse(PomTaggedExpression expression);
 
     @Override
     public String getTranslatedExpression() {
+        // TODO
         return local_inner_exp.getTranslatedExpression();
     }
 
