@@ -16,6 +16,9 @@
 We want to create a software that translates generic LaTeX to a given computer algebra system (called CAS). To get a rough overview, take a look at our [usecase for the Jacobi polynomial](https://github.com/TU-Berlin/latex-grammar/blob/master/LaTeX2CAS.pdf).
 
 ## What should I know before I start?<a name="start"></a>
+### The IDE
+We usually working with IntelliJ. That's why you can find an .idea directory in the project. When you clone this repo to your local machine it should be possible to simple open the project folder (latex-grammar) with IntelliJ and everything is already setup. If something is wrong, you can create the normal project structure by maven. You should start with interpreter.core, since this is the main module of all other modules. To give it a try, you can nevigate to `gov.nist.drmf.interpreter.examlples` package in `interpreter.core` and run the `MLP.java`. This is an example usage of Abdou's math language processor.
+
 ### Math Language Processor (MLP)
 Abdou has uploaded a MLP.zip file. You can find it in [`libs/MLP/`](https://github.com/TU-Berlin/latex-grammar/tree/master/libs/MLP). The most important file is the MLP.jar in the same directory. Make sure your idea has included this jar. Abdou has also written a [_"Software usage guide"_](https://github.com/TU-Berlin/latex-grammar/tree/master/libs/MLP) and created a documentation for the MLP.jar [starts with the index.html](https://github.com/TU-Berlin/latex-grammar/tree/master/libs/MLP/javadoc). If you have any questions about the MLP, ask [Abdou Youssef](https://github.com/abdouyoussef) or [André Greiner-Petter](https://github.com/AndreG-P).
 
@@ -26,7 +29,7 @@ For precise tasks, take a look to the [issues](https://github.com/TU-Berlin/late
 TODO
 
 ## Troubleshooting<a name="troubleshooting"></a>
-When you want to contribute or just run our program it could happen to get some errors. Here are some tips to avoid that. When every you found an error which is not explained here and you don't know how to fix it by your own, feel free to contact [André Greiner-Petter](https://github.com/AndreG-P) (or some of the [other contributers](#contributers)).
+When you want to contribute or just run our program it could happen to get some errors. Here are some tips to avoid that. When ever you found an error which is not explained here and you don't know how to fix it by your own, feel free to contact [André Greiner-Petter](https://github.com/AndreG-P) (or some of the [other contributers](#contributers)).
 
-1. You cannot translate your CSV file to our lexicon files. (typical exception like: MalformedInputException)
+1. You cannot translate your CSV file to our lexicon files. (typical exception: MalformedInputException)
 This could happen when our program cannot find out the encoding of your CSV file. It is strongly recommended to set the encoding to UTF-8 (with or without BOM) of your CSV file.
