@@ -2,19 +2,17 @@ package gov.nist.drmf.interpreter.cas.mlp;
 
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.Keys;
-import jdk.nashorn.internal.objects.Global;
 import mlp.FeatureSet;
 import mlp.Lexicon;
 import mlp.LexiconFactory;
 
-import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -22,8 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author Andre Greiner-Petter
@@ -164,19 +160,24 @@ public class CSVtoLexiconConverter {
             return;
         }
 
-        // find out if it is a mathematical constant
-        String role = lineAnalyzer.getValue( Keys.FEATURE_ROLE );
-        if ( role.matches( Keys.FEATURE_VALUE_CONSTANT ) ){
-            // TODO handle constant
-            ERROR_LOG.info("Found a constant: " + macro);
-            return;
-        }
-
         // otherwise it is a usual DLMF macro and we can create our feature set for it
         // create a new feature set
         FeatureSet fset = new FeatureSet( Keys.KEY_DLMF_MACRO );
         // add the general representation for this macro
         fset.addFeature( Keys.KEY_DLMF, macro, SIGNAL_INLINE );
+
+        // find out if it is a mathematical constant
+        String role = lineAnalyzer.getValue( Keys.FEATURE_ROLE );
+        if ( role.matches( Keys.FEATURE_VALUE_CONSTANT ) ){
+            String dlmf_link = "DLMF-Link";
+            fset.addFeature( dlmf_link, lineAnalyzer.getValue(dlmf_link), SIGNAL_INLINE );
+            fset.addFeature( Keys.FEATURE_MEANINGS, lineAnalyzer.getValue(Keys.FEATURE_MEANINGS), SIGNAL_INLINE );
+            fset.addFeature( Keys.FEATURE_ROLE, Keys.FEATURE_VALUE_CONSTANT, SIGNAL_INLINE );
+            LinkedList<FeatureSet> fsets = new LinkedList<>();
+            fsets.add(fset);
+            dlmf_lexicon.setEntry( m.group(1), fsets );
+            return;
+        }
 
         // add all other information to the feature set
         for ( int i = 1; i < elements.length && i < header.length; i++ ){

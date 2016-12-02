@@ -132,7 +132,7 @@ public class MacroParser extends AbstractListParser {
 
             if ( containsTerm(exp) ){
                 MathTerm term = exp.getRoot();
-                if ( inner_at_counter >= numOfAts ){
+                if ( inner_at_counter > numOfAts ){
                     ERROR_LOG.severe("Not valid number of @s in a DLMF-macro. " + DLMF_example);
                     return false;
                 } else if ( term.getTag().matches(Keys.FEATURE_SET_AT) ){
