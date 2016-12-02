@@ -34,6 +34,8 @@ import java.util.logging.Logger;
 public class SemanticLatexParser extends AbstractParser {
     private static final String KEY_MULTIPLICATION = "General Multiplication";
 
+    public static String TAB = "";
+
     private static GreekLetters greekLetters;
     private static Constants constants;
     private static BasicFunctionsTranslator functions;
@@ -52,6 +54,9 @@ public class SemanticLatexParser extends AbstractParser {
         ERROR_LOG.setLevel(Level.WARNING);
 
         global_exp = new TranslatedExpression();
+        int length = Keys.CAS_KEY.length()+1 > "DLMF: ".length() ? (Keys.CAS_KEY.length()+2) : "DLMF: ".length();
+        for ( int i = 0; i <= length; i++ )
+            TAB += " ";
     }
 
     /**

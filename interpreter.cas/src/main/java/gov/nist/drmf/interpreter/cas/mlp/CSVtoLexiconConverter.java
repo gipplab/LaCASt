@@ -13,8 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -223,11 +222,43 @@ public class CSVtoLexiconConverter {
     }
 
     public static void main(String[] args){
+        String welcome =
+                "Welcome, this converter translates given CSV files to lexicon files.";
+        System.out.println(welcome);
+        ArrayList<String> csv_list = new ArrayList<>();
+
+        if ( args == null || args.length == 0 ){
+            System.out.println("You didn't specified CSV files (do not add DLMFMacro.csv).");
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Add a new CSV file and hit enter or enter \'-end\' to stop the adding process.");
+            String input = scanner.nextLine();
+            while ( input != null && !input.matches("\\s*[\'\"]*-end[\'\"]*\\s*") ){
+                csv_list.add( input );
+                input = scanner.nextLine();
+            }
+            System.out.println("You added: " + csv_list.toString());
+        }
+
+        Path[] csv_paths;
+        if ( args != null && args.length > 0 ){
+            csv_paths = new Path[args.length];
+            for ( int i = 0; i < args.length; i++ ){
+                csv_paths[i] = Paths.get( args[i] );
+            }
+        } else if ( !csv_list.isEmpty() ){
+            csv_paths = new Path[csv_list.size()];
+            for ( int i = 0; i < csv_list.size(); i++ ){
+                csv_paths[i] = Paths.get( csv_list.get(i) );
+            }
+        } else {
+            System.err.println("Something went wrong. There are no CSV files specified.");
+            return;
+        }
+
         long start = System.currentTimeMillis();
         try{
             CSVtoLexiconConverter csvConv = new CSVtoLexiconConverter(
-                Paths.get("DLMFMacro.csv"),
-                Paths.get("CAS_Maple.csv")
+                Paths.get("DLMFMacro.csv"), csv_paths
             );
             csvConv.generateLexiconFile();
         } catch (Exception e){

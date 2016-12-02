@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.cas.parser.components;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
+import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import mlp.FeatureSet;
@@ -31,8 +32,6 @@ import java.util.List;
 public class MacroParser extends AbstractListParser {
     // the positioning character used for placeholders.
     private static final String position_char = "$";
-
-    private static final String TAB = "          ";
 
     // the number of parameters, ats and variables
     private int
@@ -194,11 +193,12 @@ public class MacroParser extends AbstractListParser {
             extraInformation += Keys.CAS_KEY + " uses other branch cuts: " + cas_branch_cuts
                     + System.lineSeparator();
 
+        String TAB = SemanticLatexParser.TAB;
         String tab = TAB.substring(0, TAB.length()-("DLMF: ").length());
         extraInformation += "Relevant links to definitions:" + System.lineSeparator() +
                 "DLMF: " + tab + def_dlmf + System.lineSeparator();
         tab = TAB.substring(0,
-                ((Keys.CAS_KEY+": ").length() >= TAB.length() ? 1 : (TAB.length()-(Keys.CAS_KEY+": ").length()))
+                ((Keys.CAS_KEY+": ").length() >= TAB.length() ? 0 : (TAB.length()-(Keys.CAS_KEY+": ").length()))
         );
         extraInformation += Keys.CAS_KEY + ": " + tab + def_cas;
         return extraInformation;
