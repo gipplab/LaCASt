@@ -13,7 +13,9 @@
 4. [How to contribute](https://github.com/TU-Berlin/latex-grammar/edit/master/CONTRIBUTING.md)
 
 ## How to use our program<a name="howTo"></a>
-TODO
+You should found the `latex-grammar-<version_number>.zip` in the main directory of this repository. Download this zip and unzip it where ever you want. There are two jars in this zip file.
+* `latex-converter.jar`: This jar translates given formulae in semantic LaTeX into a given computer algebra system. Per default it supports translations to Maple and Mathematica (make sure you use a the correct notation). It has also some features on board. Run `latex-converter.jar -h` gives you an overview. There is a flag called `-extra` that gives you further information about the translation process. If you don't set this flag, it will simply translates your expression without any other information. Additionally you can add the `-debug` flag to give a little more information about time and elements of the output. In general you don't need that.
+* `lexicon-creator.jar`: This jar takes the CSV files in `libs/ReferenceData/CSVTables` and translate them to a lexicon file (the math language processors based on this lexicon files). You only have to add the CSV files for a CAS and not the DLMFMacro.csv file. This jar is only useful when you have any updates. For a detailed explanation how to add new translations or even support another computer algebra system take a look to the _[Update or add a new CAS to the translation process](https://github.com/TU-Berlin/latex-grammar/edit/master/CONTRIBUTING.md#howToUpdate)_ section in the contributing.md.
 
 ## Troubleshooting<a name="troubleshooting"></a>
 When you want to contribute or just run our program it could happen to get some errors. Here are some tips to avoid that. When every you found an error which is not explained here and you don't know how to fix it by your own, feel free to contact [André Greiner-Petter](https://github.com/AndreG-P) (or some of the [other contributers](#contributers)).
