@@ -1,4 +1,4 @@
-DLMF;Meanings;Number of Parameters;Number of Ats;Number of Variables;Constraints;Branch Cuts;Role;DLMF-Link
+﻿DLMF;Meanings;Number of Parameters;Number of Ats;Number of Variables;Constraints;Branch Cuts;Role;DLMF-Link
 \sin@@{z};Sine;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.14#E1
 \cos@@{z};Cosine;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.14#E2
 \tan@@{z};Tangent;0;2;1;z != (k+1/2)*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.14#E4
@@ -125,7 +125,7 @@ n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.
 \sup;Supremum;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r25
 \Sum{n}{k1}{k2}@{f(n)};Sum;3;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:Sum
 \Prod{n}{k1}{k2}@{f(n)};Product;3;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:Prod
-"\Wronskian@{w_1(z);w_2(z)}";Wronskian;0;1;2;;;;http://dlmf.nist.gov/1.13#E4
+\Wronskian@{w1(z),w2(z)};Wronskian;0;1;1;;;;http://dlmf.nist.gov/1.13#E4
 \Residue;Residue;0;0;0;;;symbol;http://dlmf.nist.gov/1.10#SS3.p5
 \card{A};Number of elements of a set;0;0;1;;;;http://dlmf.nist.gov/26.1#p2.t1.r5
 \cartprod;Cartesian product of groups;0;0;0;;;symbol;http://dlmf.nist.gov/23.1#p2.t1.r18
@@ -526,7 +526,7 @@ n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.
 \HilbertTrans@{f}{s};Hilbert transformation;0;1;2;;;;http://dlmf.nist.gov/1.14#SS5.p1
 \StieltjesTrans@{f}{s};Stieltjes transformation;0;1;2;;;;http://dlmf.nist.gov/1.14#E47
 ;;;;;;;;
-"\VariationalOp[a;b]@{f}";Total variation;1;1;1;;;;http://dlmf.nist.gov/1.4#E33
+\VariationalOp[a,b]@{f};Total variation;1;1;1;;;;http://dlmf.nist.gov/1.4#E33
 ;;;;;;;;
 \gradient f;Gradiant of differentiable scalar function;0;0;1;;;;http://dlmf.nist.gov/1.6#E20
 \divergence F;Divergence of a differentiable vector-valued function;0;0;1;;;;http://dlmf.nist.gov/1.6#E21

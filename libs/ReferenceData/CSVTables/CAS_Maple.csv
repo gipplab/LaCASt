@@ -1,4 +1,4 @@
-DLMF;Maple;Maple-Comment;Maple-Branch Cuts;Maple-Alternatives;Maple-Link
+﻿DLMF;Maple;Maple-Comment;Maple-Branch Cuts;Maple-Alternatives;Maple-Link
 \sin@@{z};sin($0);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=sin
 \cos@@{z};cos($0);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=cos
 \tan@@{z};tan($0);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=tan
@@ -87,7 +87,7 @@ DLMF;Maple;Maple-Comment;Maple-Branch Cuts;Maple-Alternatives;Maple-Link
 \sup;;;;;not defined
 \Sum{n}{k1}{k2}@{f(n)};sum($3), $0 = $1 .. $2);;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=sum
 \Prod{n}{k1}{k2}@{f(n)};product($3, $0 = $1 .. $2);;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=product
-"\Wronskian@{w_1(z);w_2(z)}";;;;;not defined
+\Wronskian@{w1(z),w2(z)};;;;;not defined
 \Residue;;;;;not defined
 \card{A};numelems(A);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=numelems
 \cartprod;;;;;not defined
@@ -519,7 +519,7 @@ In this notation, m,n,p,q are not needed for Maple (Maple -> LaTeX translation c
 \HilbertTrans@{f}{s};hilbert(f, t, s);with(inttrans): f is a function with f(t);;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/hilbert
 \StieltjesTrans@{f}{s};;;;;not defined
 ;;;;;
-"\VariationalOp[a;b]@{f}";;;;;not defined
+\VariationalOp[a,b]@{f};;;;;not defined
 ;;;;;
 \gradient f;Gradiant(f);with(VectorCalculus):;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Gradient
 \divergence F;Divergence(F);with(VectorCalculus):;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Divergence
@@ -625,8 +625,8 @@ DLMF;Maple;Maple-Comment;;;Maple-Link
 ;;;;;
 \HeunPolynom{n}{m}@@{a}{q}{-n}{\beta}{\gamma}{\delta}{z};;;;;not defined
 ;;;;;
-\Jacobi{\alpha}{\beta}{n}@{x};JacobiP($2, $0, $1, $3);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
-\JacobiP{\alpha}{\beta}{n}@{x};JacobiP($2, $0, $1, $3);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
+\Jacobi{\alpha}{\beta}{n}@{x};JacobiP(n, alpha, beta, x);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
+\JacobiP{\alpha}{\beta}{n}@{x};JacobiP(n, alpha, beta, x);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
 \JacobiG{n}@{p}{q}{x};JacobiP(n, p-q, q-1, 2*x-1) * n!/pochhammer(n+p, n);;;;not defined
 \AssJacobiP{\alpha}{\beta}{n}@{x}{c};;;;;not defined
 \pseudoJacobi{n}@{x}{\nu}{N};;;;;not defined

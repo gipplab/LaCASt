@@ -40,11 +40,11 @@ public class SemanticToCASInterpreter {
                     "it will ask you all necessary information." + NEW_LINE +
                     "But you are able to set flags at program start if you want.";
             help += NEW_LINE;
-            help += "-CAS=<NameOfCAS>   " + "   " + "<- Sets the CAS." + NEW_LINE;
-            help += "-Expression=\"<Exp>\"" + "   " + "<- Sets the expression you " +
+            help += "   -CAS=<NameOfCAS>   " + " " + "<- Sets the CAS." + NEW_LINE;
+            help += "   -Expression=\"<Exp>\"" + " " + "<- Sets the expression you " +
                     "want to translate. (Make sure you use \"..\")" + NEW_LINE;
-            help += "-extra" + "                " + "<- Shows extra information about the translation." + NEW_LINE;
-            help += "-debug" + "                " + "<- Sets the debug flag for a bit more detailed output.";
+            help += "   -extra" + "              " + "<- Shows extra information about the translation." + NEW_LINE;
+            help += "   -debug" + "              " + "<- Sets the debug flag for a bit more detailed output.";
             System.out.println(help);
             return;
         }
@@ -120,6 +120,7 @@ public class SemanticToCASInterpreter {
 
         System.out.println("Finished conversion to " + Keys.CAS_KEY + ":");
         System.out.println(latexParser.getTranslatedExpression());
+        System.out.println();
 
         if ( debug ){
             System.out.println( "DEBUGGING Components: " + NEW_LINE +
