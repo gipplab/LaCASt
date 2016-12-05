@@ -53,12 +53,6 @@ public class SemanticToCASInterpreter {
             return;
         }
 
-        String hello = NEW_LINE +
-                "This is a program that translated given LaTeX" + NEW_LINE +
-                "code into a specified computer algebra system" + NEW_LINE +
-                "representation." + NEW_LINE ;
-
-        System.out.println( hello );
         String CAS = null;
         String expression = null;
         boolean debug = false;
@@ -75,20 +69,28 @@ public class SemanticToCASInterpreter {
                     CAS = flag.substring(5);
                 } else if ( flag.matches( "-Expression=.+" ) ){
                     expression = flag.substring( "-Expression=".length() );
-                } else if ( flag.matches( "--?(d)|(debug)" ) )
+                } else if ( flag.matches( "--?(d|debug)" ) )
                     debug = true;
-                else if ( flag.matches( "--?(x)|(extra)" ) )
+                else if ( flag.matches( "--?(x|extra)" ) )
                     extra = true;
-                else if ( flag.matches( "--?(c)|(clean)" ) )
+                else if ( flag.matches( "--?(c|clean)" ) )
                     clean = true;
             }
+        }
+
+        if ( !clean ){
+            String hello = NEW_LINE +
+                    "This is a program that translated given LaTeX" + NEW_LINE +
+                    "code into a specified computer algebra system" + NEW_LINE +
+                    "representation." + NEW_LINE ;
+            System.out.println( hello );
         }
 
         if ( CAS == null ){
             System.out.println( "To which CAS you want to translate your expression:" );
             CAS = console.nextLine();
             System.out.println();
-        } else {
+        } else if ( !clean ){
             System.out.println("You set the following CAS: " + CAS + NEW_LINE);
         }
 
@@ -97,12 +99,12 @@ public class SemanticToCASInterpreter {
             return;
         }
 
-        if ( expression != null ){
-            System.out.println("You want to translate the following expression: " + expression + NEW_LINE);
-        } else {
+        if ( expression == null ){
             System.out.println("Which expression do you want to translate:");
             expression = console.nextLine();
             System.out.println();
+        } else if ( !clean ){
+            System.out.println("You want to translate the following expression: " + expression + NEW_LINE);
         }
 
         if ( expression == null || expression.isEmpty() ){
