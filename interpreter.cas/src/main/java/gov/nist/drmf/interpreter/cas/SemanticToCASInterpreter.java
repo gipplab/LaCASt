@@ -8,6 +8,9 @@ import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.io.Console;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -44,7 +47,8 @@ public class SemanticToCASInterpreter {
             help += "   -Expression=\"<Exp>\"" + " " + "<- Sets the expression you " +
                     "want to translate. (Make sure you use \"..\")" + NEW_LINE;
             help += "   -extra" + "              " + "<- Shows extra information about the translation." + NEW_LINE;
-            help += "   -debug" + "              " + "<- Sets the debug flag for a bit more detailed output.";
+            help += "   -debug" + "              " + "<- Sets the debug flag for a bit more detailed output." + NEW_LINE;
+            help += "   -clean" + "              " + "<- Shows no other output, only the translation";
             System.out.println(help);
             return;
         }
@@ -59,6 +63,10 @@ public class SemanticToCASInterpreter {
         String expression = null;
         boolean debug = false;
         boolean extra = false;
+        boolean clean = false;
+
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Clipboard clipboard = toolkit != null ? toolkit.getSystemClipboard() : null;
 
         if ( args != null ){
             for ( int i = 0; i < args.length; i++ ){
@@ -67,10 +75,12 @@ public class SemanticToCASInterpreter {
                     CAS = flag.substring(5);
                 } else if ( flag.matches( "-Expression=.+" ) ){
                     expression = flag.substring( "-Expression=".length() );
-                } else if ( flag.matches( "-debug" ) )
+                } else if ( flag.matches( "--?(d)|(debug)" ) )
                     debug = true;
-                else if ( flag.matches( "-extra" ) )
+                else if ( flag.matches( "--?(x)|(extra)" ) )
                     extra = true;
+                else if ( flag.matches( "--?(c)|(clean)" ) )
+                    clean = true;
             }
         }
 
@@ -100,6 +110,20 @@ public class SemanticToCASInterpreter {
             return;
         }
 
+        if ( clean ){
+            Keys.CAS_KEY = CAS;
+            SemanticLatexParser latexParser =
+                    new SemanticLatexParser( Keys.KEY_LATEX, Keys.CAS_KEY );
+            latexParser.init( GlobalConstants.PATH_REFERENCE_DATA );
+            latexParser.parse( expression );
+            if ( clipboard != null ){
+                StringSelection ss = new StringSelection( latexParser.getTranslatedExpression() );
+                clipboard.setContents( ss, ss );
+            }
+            System.out.println(latexParser.getTranslatedExpression());
+            return;
+        }
+
         System.out.println("Set global variable to given CAS.");
         init_ms = System.currentTimeMillis();
         Keys.CAS_KEY = CAS;
@@ -121,6 +145,11 @@ public class SemanticToCASInterpreter {
         System.out.println("Finished conversion to " + Keys.CAS_KEY + ":");
         System.out.println(latexParser.getTranslatedExpression());
         System.out.println();
+
+        if ( clipboard != null ){
+            StringSelection ss = new StringSelection( latexParser.getTranslatedExpression() );
+            clipboard.setContents( ss, ss );
+        }
 
         if ( debug ){
             System.out.println( "DEBUGGING Components: " + NEW_LINE +
