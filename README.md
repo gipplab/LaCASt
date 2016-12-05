@@ -20,7 +20,7 @@ You should found the `latex-grammar-<version_number>.zip` in the main directory 
     * `-Expression="<exp>"`: Sets the expression you want to translate. Make sure you don't forget the quotation marks. If you don't specify an expression, the program will ask you about it.
     * `--clean` or `-c`: Cleans the output and only shows the translation. (since version 1.0.1)
     * `--debug` or `-d`: Shows extra information for debugging like computation time and list of elements. It will not shown if you set `--clean` before.
-    * `--extra` or `-x`: Shows further information about translation of functions. Like branch cuts, DLMF-links and so on.
+    * `--extra` or `-x`: Shows further information about translation of functions. Like branch cuts, DLMF-links and so on. It will not shown if you set `--clean` before.
 
 * `lexicon-creator.jar`: This jar takes the CSV files in `libs/ReferenceData/CSVTables` and translate them to a lexicon file (the math language processors based on this lexicon files). You only have to add the CSV files for a CAS and not the `DLMFMacro.csv` file. This jar is only useful when you have any updates. For a detailed explanation how to add new translations or even support another computer algebra system take a look to the _[Update or add a new CAS to the translation process](https://github.com/TU-Berlin/latex-grammar/edit/master/CONTRIBUTING.md#howToUpdate)_ section in the contributing.md.
 
