@@ -20,7 +20,6 @@ public class MathMode extends LaTeXMode {
     }
 
     public String makeReplacements(String content) {
-        // placeholder
-        return content;
+        return delim + "a" + MathModeUtils.mathMode.get(delim); //for testing (as of now)
     }
 }

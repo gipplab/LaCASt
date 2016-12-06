@@ -8,9 +8,4 @@ public class TextMode extends LaTeXMode {
     public TextMode(int start) {
         super(start);
     }
-
-    public String makeReplacements(String content) {
-        // placeholder
-        return content;
-    }
 }

@@ -32,6 +32,16 @@ public abstract class LaTeXMode {
         return endIndex;
     }
 
-    public abstract String makeReplacements(String content);
+    public String makeReplacements(String content) {
+        int offset = 0;
+        for (LaTeXMode section : sections) {
+            int start = section.getStart() + offset;
+            int end = section.getEnd() + offset + 1;
+            String temp = section.makeReplacements(content.substring(start,end));
+            content = content.substring(0,start) + section.makeReplacements(content.substring(start,end)) + content.substring(end);
+            offset += temp.length() - end + start;
+        }
+        return content;
+    }
 
 }

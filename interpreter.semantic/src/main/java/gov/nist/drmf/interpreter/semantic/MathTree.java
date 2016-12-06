@@ -5,7 +5,7 @@ package gov.nist.drmf.interpreter.semantic;
  */
 public class MathTree {
 
-    public MathMode parseMath(String latex, int startIndex) throws InvalidLaTeXException {
+    public static MathMode parseMath(String latex, int startIndex) throws InvalidLaTeXException {
         MathMode mathSection = new MathMode(startIndex);
         mathSection.setDelim(MathModeUtils.firstDelim(latex, true));
         int i = mathSection.getDelim().length();
@@ -27,7 +27,7 @@ public class MathTree {
         throw new InvalidLaTeXException("Unterminated math sequence");
     }
 
-    public TextMode parseText(String latex, int startIndex) throws InvalidLaTeXException {
+    public static TextMode parseText(String latex, int startIndex) throws InvalidLaTeXException {
         TextMode textSection = new TextMode(startIndex);
         String delim = MathModeUtils.firstDelim(latex, false);
         if (!latex.startsWith(delim)) {
@@ -58,5 +58,18 @@ public class MathTree {
         }
         textSection.setEnd(startIndex + i - 1);
         return textSection;
+    }
+
+    public static String replaceText(String latex) {
+        try {
+            return parseText(latex, 0).makeReplacements(latex);
+        } catch (InvalidLaTeXException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(replaceText("potato $2$ potato")); //for testing
     }
 }
