@@ -1,31 +1,27 @@
-"C:\Program Files\Java\jdk1.8.0_112\bin\java" -Didea.launcher.port=7532 "-Didea.launcher.bin.path=C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 2016.2.5\bin" -Dfile.encoding=UTF-8 -classpath "C:\Program Files\Java\jdk1.8.0_112\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\rt.jar;C:\Users\Andre\IdeaProjects\latex-grammar\interpreter.core\target\classes;C:\Users\Andre\IdeaProjects\latex-grammar\libs\MLP\MLP.jar;C:\Users\Andre\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.0.0-M2\junit-jupiter-api-5.0.0-M2.jar;C:\Users\Andre\.m2\repository\org\opentest4j\opentest4j\1.0.0-M1\opentest4j-1.0.0-M1.jar;C:\Users\Andre\.m2\repository\org\junit\platform\junit-platform-commons\1.0.0-M2\junit-platform-commons-1.0.0-M2.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 2016.2.5\lib\idea_rt.jar" com.intellij.rt.execution.application.AppMain gov.nist.drmf.interpreter.examples.MLP
+"C:\Program Files\Java\jdk1.8.0_112\bin\java" -Didea.launcher.port=7535 "-Didea.launcher.bin.path=C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 2016.2.5\bin" -Dfile.encoding=UTF-8 -classpath "C:\Program Files\Java\jdk1.8.0_112\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\rt.jar;C:\Users\Andre\IdeaProjects\latex-grammar\interpreter.core\target\classes;C:\Users\Andre\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.0.0-M2\junit-jupiter-api-5.0.0-M2.jar;C:\Users\Andre\.m2\repository\org\opentest4j\opentest4j\1.0.0-M1\opentest4j-1.0.0-M1.jar;C:\Users\Andre\.m2\repository\org\junit\platform\junit-platform-commons\1.0.0-M2\junit-platform-commons-1.0.0-M2.jar;C:\Users\Andre\IdeaProjects\latex-grammar\libs\MLP\MLP.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 2016.2.5\lib\idea_rt.jar" com.intellij.rt.execution.application.AppMain gov.nist.drmf.interpreter.examples.MLP
 C:\Users\Andre\IdeaProjects\latex-grammar\.
-\JacobiP{\alpha}{\beta}{n}@{a\Theta}:
+\JacobiP{\alpha}{\beta}{n}@{\cos{a\Theta}}:
 expression-tags: sequence
- term: \JacobiP; 	tags: latex-command; 
+ term: \JacobiP; 	tags: latex-command;
     Feature Set: macro
 	  Areas:	special functions
 	  Constraints:	$0>-1;$1>-1
-	  DLMF-Link:	http:
+	  DLMF-Link:	dlmf.nist.gov/18.3#T1.t1.r2
 	  Description:	Jacobi polynomial
-	  Maple:	JacobiP($2,$0,$1,$3)
-	  Maple-Link:	https:
-	  Optional ats:	1
-	  Parameters:	3
+	  Maple Representation:	JacobiP($2,$0,$1,$3)
+	  Maple-Link:	www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
+	  Number of optional ats:	1
+	  Number of Parameters:	3
 	  Source:	dlmf-macro
-	  Variables:	1
- term: \alpha; 	tags: latex-command; 
-    ...
- term: \beta; 	tags: latex-command; 
-    ...
- term: n; 	tags: letter;  Latin; 
-    ...
- term: @; 	tags: at; 
-    ...
+	  Number of Variables:	1
+ term: \alpha; 	tags: latex-command;
+ term: \beta; 	tags: latex-command;
+ term: n; 	tags: letter;  Latin;
+ term: @; 	tags: at;
  expression-tags: sequence
-  term: a; 	tags: letter;  Latin; 
-    ...
-  term: \Theta; 	tags: latex-command; 
-    ...
+  term: \cos; 	tags: function;
+  expression-tags: sequence
+   term: a; 	tags: letter;  Latin;
+   term: \Theta; 	tags: latex-command;
 
 Process finished with exit code 0
