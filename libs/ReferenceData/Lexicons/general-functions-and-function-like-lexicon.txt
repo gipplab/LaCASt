@@ -167,8 +167,8 @@ Symbol: Delta
   Feature Set:
 	Alphabet: Greek
 	Areas: graph theory
+	Argument-data-type: (graph)
 	Argument-structure: (variable)
-	Argument-type: (graph)
 	Font-style: computer modern
 	Meanings: The maximum node degree of graph $arg1
 	Role: concept
@@ -687,8 +687,8 @@ Symbol: alpha
   Feature Set:
 	Alphabet: Greek
 	Areas: computer 				science || discrete mathematics || graph theory
+	Argument-data-type: (graph)
 	Argument-structure: (variable)
-	Argument-type: (graph)
 	Font-style: computer modern
 	Meanings: the independence number of graph $arg1
 	Role: concept
@@ -845,8 +845,8 @@ Symbol: chi
   Feature Set:
 	Alphabet: Greek
 	Areas: graph theory
+	Argument-data-type: (graph)
 	Argument-structure: (variable)
-	Argument-type: (graph)
 	Font-style: computer modern
 	Meanings: The chromatic number of graph $arg1
 	Role: concept
@@ -974,8 +974,8 @@ Symbol: delta
   Feature Set:
 	Alphabet: Greek
 	Areas: graph theory
+	Argument-data-type: (graph)
 	Argument-structure: (variable)
-	Argument-type: (graph)
 	Font-style: computer modern
 	Meanings: The minimum node degree of graph $arg1
 	Role: concept
@@ -1168,8 +1168,8 @@ Symbol: kappa
   Feature Set:
 	Alphabet: Greek
 	Areas: linear algebra || matrices || numerical analysis
+	Argument-data-type: (matrix)
 	Argument-structure: (variable)
-	Argument-type: (matrix)
 	Font-style: computer modern
 	Meanings: the condition number of matrix $arg1
 	Role: concept
@@ -1178,8 +1178,8 @@ Symbol: kappa
   Feature Set:
 	Alphabet: Greek
 	Areas: computer 				science || discrete mathematics || graph theory
+	Argument-data-type: (graph)
 	Argument-structure: (variable)
-	Argument-type: (graph)
 	Font-style: computer modern
 	Meanings: the connectivity of graph $arg1
 	Role: concept
@@ -1329,8 +1329,8 @@ Symbol: nu
   Feature Set:
 	Alphabet: Greek
 	Areas: graph theory
+	Argument-data-type: (graph)
 	Argument-structure: (variable)
-	Argument-type: (graph)
 	Font-style: computer modern
 	Meanings: The matching number of graph $arg1
 	Role: concept
@@ -1506,7 +1506,7 @@ Symbol: st
   Feature Set:
 	Alphabet: Latin
 	Areas: Mathematics of infinitesimals || calculus || non-standard analysis
-	Argument-structure: (hyperreal || (variable)
+	Argument-structure: (hyperreal) || (variable)
 	Font-style: upright
 	Font-weight: plain
 	Meanings: standard part

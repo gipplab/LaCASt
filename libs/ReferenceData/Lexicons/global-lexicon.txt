@@ -429,21 +429,21 @@ Symbol: B
 	Areas: mathematics
 	Font-typeface: script
 	Font-weight: plain
-	Meaning: a ball
+	Meanings: a ball
 
   Feature Set:
 	Alphabet: Latin
 	Areas: mathematics
 	Font-typeface: computer modern
 	Font-weight: plain
-	Meaning: a ball
+	Meanings: a ball
 
   Feature Set:
 	Alphabet: Latin
 	Areas: mathematics
 	Font-typeface: script
 	Font-weight: plain
-	Meaning: a basis of a filter || a basis of a vector space
+	Meanings: a basis of a filter || a basis of a vector space
 
   Feature Set:
 	Alphabet: Latin
@@ -913,8 +913,8 @@ Symbol: Delta
   Feature Set:
 	Alphabet: Greek
 	Areas: graph theory
+	Argument-data-type: (graph)
 	Argument-structure: (variable)
-	Argument-type: (graph)
 	Font-style: computer modern
 	Meanings: The maximum node degree of graph $arg1
 	Role: concept
@@ -3037,7 +3037,7 @@ Symbol: P
 	Font-weight: plain
 	Meanings: Pollaczek polynomials
 	Role: function
-	Subscript- size: 1
+	Subscript-size: 1
 	Subscript-type: integer
 	Superscript-parenthesized: yes
 	Superscript-size: 1
@@ -3671,7 +3671,7 @@ Symbol: R
 	Font-weight: plain
 	Meanings: dual Hahn polynomials
 	Role: function
-	Subscript- size: 1
+	Subscript-size: 1
 	Subscript-type: integer
 
   Feature Set:
@@ -11580,8 +11580,9 @@ Symbol: \leftarrowtriangle
 
   Feature Set: universal
 	Category: relation
-	Description: leftwards open-headed ar row
+	Description: leftwards open-headed arrow
 	Source: unicode-math
+	Subcategory: arrow
 	Unicode: u+021fd
 
 Symbol: \leftarrowx
@@ -24185,6 +24186,13 @@ Symbol: \mlcp
 	Source: unicode-math
 	Unicode: u+02adb
 
+Symbol: \mod
+
+  Feature Set:
+	Areas: algebra || arithmetic || number theory
+	Attributes: binary mod
+	Role: operation
+
 Symbol: \models
 
   Feature Set:
@@ -33418,8 +33426,8 @@ Symbol: alpha
   Feature Set:
 	Alphabet: Greek
 	Areas: computer 				science || discrete mathematics || graph theory
+	Argument-data-type: (graph)
 	Argument-structure: (variable)
-	Argument-type: (graph)
 	Font-style: computer modern
 	Meanings: the independence number of graph $arg1
 	Role: concept
@@ -34195,8 +34203,8 @@ Symbol: chi
   Feature Set:
 	Alphabet: Greek
 	Areas: graph theory
+	Argument-data-type: (graph)
 	Argument-structure: (variable)
-	Argument-type: (graph)
 	Font-style: computer modern
 	Meanings: The chromatic number of graph $arg1
 	Role: concept
@@ -34638,8 +34646,8 @@ Symbol: delta
   Feature Set:
 	Alphabet: Greek
 	Areas: graph theory
+	Argument-data-type: (graph)
 	Argument-structure: (variable)
-	Argument-type: (graph)
 	Font-style: computer modern
 	Meanings: The minimum node degree of graph $arg1
 	Role: concept
@@ -34771,8 +34779,7 @@ Symbol: e
 	Areas: mathematics
 	Font-typeface: computer modern
 	Font-weight: plain
-	Meanings:
-	   - the eccentricity of conic sections
+	Meanings: the eccentricity of conic sections
 
   Feature Set:
 	Alphabet: Latin
@@ -34802,7 +34809,8 @@ Symbol: e
 	Areas: mathematics
 	Font-typeface: computer modern
 	Font-weight: plain
-	Meanings: Euler's number == Napier's constant ==  2.71828182845...
+	Meanings: the mathematical constant e == Napier's constant ==  2.71828182845...
+	Role: mathematical constant
 
 Symbol: epsilon
 
@@ -35271,9 +35279,15 @@ Symbol: i
 	Areas: mathematics
 	Font-typeface: computer modern
 	Font-weight: plain
-	Meanings:
-	   - index
-	   - the imaginary unit == the square root of -1
+	Meanings: the imaginary unit == the principal square root of -1
+	Role: mathematical constant
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Role: index
 
   Feature Set:
 	Alphabet: Latin
@@ -35403,7 +35417,7 @@ Symbol: j
 	Areas: electrical engineering
 	Font-typeface: computer modern
 	Font-weight: plain
-	Meanings: the imaginary unit == the square root of -1
+	Meanings: the imaginary unit == the principal square root of -1
 
   Feature Set:
 	Alphabet: Latin
@@ -35466,7 +35480,7 @@ Symbol: k
 	Font-typeface: computer modern
 	Font-weight: plain
 	Meanings: the Boltzmann constant
-	Subcript-size: 1
+	Subscript-size: 1
 	Subscript-type: fixed
 	Subscript-value: B
 
@@ -35506,8 +35520,8 @@ Symbol: kappa
   Feature Set:
 	Alphabet: Greek
 	Areas: linear algebra || matrices || numerical analysis
+	Argument-data-type: (matrix)
 	Argument-structure: (variable)
-	Argument-type: (matrix)
 	Font-style: computer modern
 	Meanings: the condition number of matrix $arg1
 	Role: concept
@@ -35516,8 +35530,8 @@ Symbol: kappa
   Feature Set:
 	Alphabet: Greek
 	Areas: computer 				science || discrete mathematics || graph theory
+	Argument-data-type: (graph)
 	Argument-structure: (variable)
-	Argument-type: (graph)
 	Font-style: computer modern
 	Meanings: the connectivity of graph $arg1
 	Role: concept
@@ -36157,8 +36171,8 @@ Symbol: nu
   Feature Set:
 	Alphabet: Greek
 	Areas: graph theory
+	Argument-data-type: (graph)
 	Argument-structure: (variable)
-	Argument-type: (graph)
 	Font-style: computer modern
 	Meanings: The matching number of graph $arg1
 	Role: concept
@@ -36575,7 +36589,7 @@ Symbol: pi
 	Alphabet: Greek
 	Areas: mathematics
 	Font-weight: plain
-	Meanings: Archimedes' constant == the ratio of a circle's circumference to its diameter
+	Meanings: the ratio of a circle's circumference to its diameter == Archimedes' constant
 	Role: mathematical constant
 	Root-symbol: pi
 
@@ -37231,7 +37245,7 @@ Symbol: st
   Feature Set:
 	Alphabet: Latin
 	Areas: Mathematics of infinitesimals || calculus || non-standard analysis
-	Argument-structure: (hyperreal || (variable)
+	Argument-structure: (hyperreal) || (variable)
 	Font-style: upright
 	Font-weight: plain
 	Meanings: standard part

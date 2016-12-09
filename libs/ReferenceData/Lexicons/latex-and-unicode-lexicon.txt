@@ -5234,8 +5234,9 @@ Symbol: \nVleftrightarrow
 Symbol: \leftarrowtriangle
   Feature Set: universal
 	Category: relation
-	Description: leftwards open-headed ar row
+	Description: leftwards open-headed arrow
 	Source: unicode-math
+	Subcategory: arrow
 	Unicode: u+021fd
 Symbol: \rightarrowtriangle
   Feature Set: universal

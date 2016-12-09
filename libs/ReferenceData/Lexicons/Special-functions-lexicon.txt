@@ -1387,7 +1387,7 @@ Symbol: P
 	Font-weight: plain
 	Meanings: Pollaczek polynomials
 	Role: function
-	Subscript- size: 1
+	Subscript-size: 1
 	Subscript-type: integer
 	Superscript-parenthesized: yes
 	Superscript-size: 1
@@ -1837,7 +1837,7 @@ Symbol: R
 	Font-weight: plain
 	Meanings: dual Hahn polynomials
 	Role: function
-	Subscript- size: 1
+	Subscript-size: 1
 	Subscript-type: integer
 
   Feature Set:

@@ -75,21 +75,21 @@ Symbol: B
 	Areas: mathematics
 	Font-typeface: script
 	Font-weight: plain
-	Meaning: a ball
+	Meanings: a ball
 
   Feature Set:
 	Alphabet: Latin
 	Areas: mathematics
 	Font-typeface: computer modern
 	Font-weight: plain
-	Meaning: a ball
+	Meanings: a ball
 
   Feature Set:
 	Alphabet: Latin
 	Areas: mathematics
 	Font-typeface: script
 	Font-weight: plain
-	Meaning: a basis of a filter || a basis of a vector space
+	Meanings: a basis of a filter || a basis of a vector space
 
 Symbol: C
 
@@ -1008,8 +1008,7 @@ Symbol: e
 	Areas: mathematics
 	Font-typeface: computer modern
 	Font-weight: plain
-	Meanings:
-	   - the eccentricity of conic sections
+	Meanings: the eccentricity of conic sections
 
   Feature Set:
 	Alphabet: Latin
@@ -1093,9 +1092,15 @@ Symbol: i
 	Areas: mathematics
 	Font-typeface: computer modern
 	Font-weight: plain
-	Meanings:
-	   - index
-	   - the imaginary unit == the square root of -1
+	Meanings: the imaginary unit == the principal square root of -1
+	Role: mathematical constant
+
+  Feature Set:
+	Alphabet: Latin
+	Areas: mathematics
+	Font-typeface: computer modern
+	Font-weight: plain
+	Role: index
 
   Feature Set:
 	Alphabet: Latin
@@ -1118,7 +1123,7 @@ Symbol: j
 	Areas: electrical engineering
 	Font-typeface: computer modern
 	Font-weight: plain
-	Meanings: the imaginary unit == the square root of -1
+	Meanings: the imaginary unit == the principal square root of -1
 
 Symbol: k
 
