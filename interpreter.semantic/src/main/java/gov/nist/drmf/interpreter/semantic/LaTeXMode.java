@@ -38,7 +38,7 @@ public abstract class LaTeXMode {
             int start = section.getStart() + offset;
             int end = section.getEnd() + offset + 1;
             String temp = section.makeReplacements(content.substring(start,end));
-            content = content.substring(0,start) + section.makeReplacements(content.substring(start,end)) + content.substring(end);
+            content = content.substring(0,start) + temp + content.substring(end);
             offset += temp.length() - end + start;
         }
         return content;
