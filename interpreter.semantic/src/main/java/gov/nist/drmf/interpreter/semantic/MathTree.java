@@ -70,6 +70,6 @@ public class MathTree {
     }
 
     public static void main(String[] args) {
-        System.out.println(replaceText("potato $\\pochhammer{a}{b}$ potato")); //for testing
+        System.out.println(replaceText("potato $\\pochhammer{\\frac{7}{2}}{\\sqrt{\\CatalansConstant}}$ potato")); //for testing
     }
 }
