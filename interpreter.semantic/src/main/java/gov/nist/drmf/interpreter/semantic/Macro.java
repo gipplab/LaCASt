@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Macro {
 
     public Macro(ArrayList<String> params) {
-
+        System.out.println(params); //for testing
     }
 
 }
