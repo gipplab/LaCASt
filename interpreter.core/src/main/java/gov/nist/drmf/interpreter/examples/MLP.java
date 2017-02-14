@@ -58,10 +58,11 @@ public class MLP {
             // provide next an equation to parse
             String eq = eqs[0];
             //eq = "\\Mathieuce{123 a}@@{\\sqrt{2}b}{\\frac{1}{2}}";
-            //eq = "\\JacobiP{\\iunit}{5.5}@{23}";
+            //eq = "\\JacobiP{\\alpha}{\\beta}{n}@{\\cos@{a\\Theta}}";
             //eq = "\\FerrersP[\\frac{1}{2}]{\\nu}@{z}";
-            eq = "(ab^2c 1+2) \\cdot \\CatalansConstant 2";
-            //eq="\\left ( \\left ( y \\right ] \\right)";
+//            eq = "(ab^2c 1+2) \\cdot \\CatalansConstant 2";
+//            eq="\\left ( \\left ( y \\right ] \\right)";
+            eq = "\\sqrt \\frac{2}{4}";
 
             // parse/tag the equation and print it out 
             PomTaggedExpression pe = parser.parse(eq);
