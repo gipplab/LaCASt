@@ -1,4 +1,4 @@
-﻿DLMF;Meanings;Number of Parameters;Number of Ats;Number of Variables;Constraints;Branch Cuts;Role;DLMF-Link
+DLMF;Meanings;Number of Parameters;Number of Ats;Number of Variables;Constraints;Branch Cuts;Role;DLMF-Link
 \sin@@{z};Sine;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.14#E1
 \cos@@{z};Cosine;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/4.14#E2
 \tan@@{z};Tangent;0;2;1;z != (k+1/2)*\cpi \forall k \in \Integer;;dlmf-macro;http://dlmf.nist.gov/4.14#E4
@@ -85,13 +85,13 @@
 \CatalansConstant;Catalan's constant;0;0;0;;;mathematical constant;http://dlmf.nist.gov/25.11.E40
 \inf;Infinity;0;0;0;;;mathematical constant;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r24
 ;;;;;;;;
-\Matrix{A};Matrix;0;0;1;;;;http://drmf.wmflabs.org/wiki/Definition:Matrix
-\Vector{a};Vector;0;0;1;;;;http://drmf.wmflabs.org/wiki/Definition:Vector
-\trace;Trace of a matrix;0;0;1;;;;http://dlmf.nist.gov/35.1#p3.t1.r9
-\transpose;Transpose of matrix;0;0;1;;;;http://dlmf.nist.gov/1.3.E5
-\exptrace@{\Matrix{X}};Exponential of the trace of a matrix;0;1;1;;;;http://dlmf.nist.gov/35.1#p3.t1.r10
-\det A;Determinant;0;0;1;;;;http://dlmf.nist.gov/1.3#i
-\diag A;Diagonal part of matrix;0;0;1;;;;http://dlmf.nist.gov/21.1#p2.t1.r11
+\Matrix{A};Matrix;0;0;1;;;ignore;http://drmf.wmflabs.org/wiki/Definition:Matrix
+\Vector{a};Vector;0;0;1;;;ignore;http://drmf.wmflabs.org/wiki/Definition:Vector
+\trace;Trace of a matrix;0;0;1;;;ignore;http://dlmf.nist.gov/35.1#p3.t1.r9
+\transpose;Transpose of matrix;0;0;1;;;ignore;http://dlmf.nist.gov/1.3.E5
+\exptrace@{\Matrix{X}};Exponential of the trace of a matrix;0;1;1;;;ignore;http://dlmf.nist.gov/35.1#p3.t1.r10
+\det A;Determinant;0;0;1;;;ignore;http://dlmf.nist.gov/1.3#i
+\diag A;Diagonal part of matrix;0;0;1;;;ignore;http://dlmf.nist.gov/21.1#p2.t1.r11
 \ph@@{z};Phase / Argument of a complex number;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/1.9#E7
 \ph@@{z};Argument of a complex number;0;2;1;;;dlmf-macro;http://dlmf.nist.gov/1.9#E7
 ;;;;;;;;
@@ -125,9 +125,9 @@ n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.
 \sup;Supremum;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r25
 \Sum{n}{k1}{k2}@{f(n)};Sum;3;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:Sum
 \Prod{n}{k1}{k2}@{f(n)};Product;3;1;1;;;;http://drmf.wmflabs.org/wiki/Definition:Prod
-\Wronskian@{w1(z),w2(z)};Wronskian;0;1;1;;;;http://dlmf.nist.gov/1.13#E4
+\Wronskian@{w1(z),w2(z)};Wronskian;0;1;1;;;ignore;http://dlmf.nist.gov/1.13#E4
 \Residue;Residue;0;0;0;;;symbol;http://dlmf.nist.gov/1.10#SS3.p5
-\card{A};Number of elements of a set;0;0;1;;;;http://dlmf.nist.gov/26.1#p2.t1.r5
+\card{A};Number of elements of a set;0;0;1;;;ignore;http://dlmf.nist.gov/26.1#p2.t1.r5
 \cartprod;Cartesian product of groups;0;0;0;;;symbol;http://dlmf.nist.gov/23.1#p2.t1.r18
 \divides;Devides;0;0;0;;;symbol;http://dlmf.nist.gov/24.1#p2.t1.r4
 \liminf;Least limit point;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r4
@@ -147,7 +147,7 @@ n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.
 \AntiDer@{x}{f(x)};Anti-Derivative;0;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:AntiDer
 \Int{a}{b}@{x}{f(x)};Integral;2;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:Int
 \int;Indefinite Integral;0;0;0;;;symbol;http://dlmf.nist.gov/1.4#iv
-\pvint_{a}^{b} \f{f}@{x} \diff{x};Cauchy principle value;0;0;0;;;;http://dlmf.nist.gov/1.4#E24
+\pvint_{a}^{b} \f{f}@{x} \diff{x};Cauchy principle value;0;0;0;;;ignore;http://dlmf.nist.gov/1.4#E24
 \Schwarzian{z}{\zeta};Schwarzian derivative;0;0;2;;;;http://dlmf.nist.gov/1.13#E20
 \Complex;Set of complex numbers;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r1
 \Real;Set of real numbers;0;0;0;;;;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r14
@@ -224,8 +224,8 @@ n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.
 \SphBesselIi{n}@{z};Modified spherical Bessel function of the first kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E7
 \SphBesselIii{n}@{z};Modified spherical Bessel function of the first kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E8
 \SphBesselK{n}@{z};Modified spherical Bessel function of the second kind;1;1;1;;;;http://dlmf.nist.gov/10.47#E9
-\BesselA{\nu}@{\Matrix{T}};Bessel function with matrix argument;1;1;1;;;;http://dlmf.nist.gov/35.5#i
-\BesselB{\nu}@{\Matrix{T}};Bessel function with matrix argument;1;1;1;;;;http://dlmf.nist.gov/35.5#E3
+\BesselA{\nu}@{\Matrix{T}};Bessel function with matrix argument;1;1;1;;;ignore;http://dlmf.nist.gov/35.5#i
+\BesselB{\nu}@{\Matrix{T}};Bessel function with matrix argument;1;1;1;;;ignore;http://dlmf.nist.gov/35.5#E3
 \JacksonqBesselI{\nu}@{z}{q};Jackson q-Bessel function I;1;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:JacksonqBesselI
 \JacksonqBesselII{\nu}@{z}{q};Jackson q-Bessel function II;1;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:JacksonqBesselII
 \JacksonqBesselIII{\nu}@{z}{q};Jackson q-Bessel function III;1;1;2;;;;http://drmf.wmflabs.org/wiki/Definition:JacksonqBesselIII
@@ -237,20 +237,20 @@ n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.
 \IncI{x}@{a}{b};Regularized incomplete Beta function;1;1;2;;;;http://dlmf.nist.gov/8.17#E2
 \mEulerBeta{m}@{a}{b};Multivariate Euler-Beta function;1;1;2;R(a), R(b) > 1/2*(m-1);;;http://dlmf.nist.gov/35.3#E3
 ;;;;;;;;
-\CanonicInt{K}@{\Vector{x}};Canonical integral;1;1;1;;;;http://dlmf.nist.gov/36.2#E4
-\CanonicIntU@{\Vector{x}};Umbilic canonical integral;0;1;1;;;;http://dlmf.nist.gov/36.2#E5
-\CanonicIntE@{\Vector{x}};Elliptic umbilic canonical integral;0;1;1;;;;http://dlmf.nist.gov/36.2#E6
-\CanonicIntH@{\Vector{x}};hyperbolic umbilic canonical integral;0;1;1;;;;http://dlmf.nist.gov/36.2#E8
+\CanonicInt{K}@{\Vector{x}};Canonical integral;1;1;1;;;ignore;http://dlmf.nist.gov/36.2#E4
+\CanonicIntU@{\Vector{x}};Umbilic canonical integral;0;1;1;;;ignore;http://dlmf.nist.gov/36.2#E5
+\CanonicIntE@{\Vector{x}};Elliptic umbilic canonical integral;0;1;1;;;ignore;http://dlmf.nist.gov/36.2#E6
+\CanonicIntH@{\Vector{x}};hyperbolic umbilic canonical integral;0;1;1;;;ignore;http://dlmf.nist.gov/36.2#E8
 ;;;;;;;;
 \CatalanNumber@{n};Catalan number;0;1;1;;;;http://dlmf.nist.gov/26.5#E1
 ;;;;;;;;
-\CuspCat{K}@{t}{\Vector{x}};Cuspoid catastrophe;1;1;2;;;;http://dlmf.nist.gov/36.2#E1
-\UmbilicCatE@{s}{t}{\Vector{x}};Elliptic umbilic catastrophe;0;1;3;;;;http://dlmf.nist.gov/36.2#E2
-\UmbilicCatH@{s}{t}{\Vector{x}};Hyperbolic umbilic catastrophe;0;1;3;;;;http://dlmf.nist.gov/36.2#E3
-\DiffCat{K}@{\Vector{x}}{k};Diffraction catastrophe;1;1;2;;;;http://dlmf.nist.gov/36.2#E10
-\DiffCatU@{\Vector{x}}{k};Diffraction umbilic catastrophe;0;1;2;;;;http://dlmf.nist.gov/36.2#E11
-\DiffCatE@{\Vector{x}}{k};Diffraction elliptic umbilic catastrophe;0;1;2;;;;http://dlmf.nist.gov/36.2#E11
-\DiffCatH@{\Vector{x}}{k};Diffraction hyperbolic umbilic catastrophe;0;1;2;;;;http://dlmf.nist.gov/36.2#E11
+\CuspCat{K}@{t}{\Vector{x}};Cuspoid catastrophe;1;1;2;;;ignore;http://dlmf.nist.gov/36.2#E1
+\UmbilicCatE@{s}{t}{\Vector{x}};Elliptic umbilic catastrophe;0;1;3;;;ignore;http://dlmf.nist.gov/36.2#E2
+\UmbilicCatH@{s}{t}{\Vector{x}};Hyperbolic umbilic catastrophe;0;1;3;;;ignore;http://dlmf.nist.gov/36.2#E3
+\DiffCat{K}@{\Vector{x}}{k};Diffraction catastrophe;1;1;2;;;ignore;http://dlmf.nist.gov/36.2#E10
+\DiffCatU@{\Vector{x}}{k};Diffraction umbilic catastrophe;0;1;2;;;ignore;http://dlmf.nist.gov/36.2#E11
+\DiffCatE@{\Vector{x}}{k};Diffraction elliptic umbilic catastrophe;0;1;2;;;ignore;http://dlmf.nist.gov/36.2#E11
+\DiffCatH@{\Vector{x}}{k};Diffraction hyperbolic umbilic catastrophe;0;1;2;;;ignore;http://dlmf.nist.gov/36.2#E11
 ;;;;;;;;
 \ChebyshevPsi@{x};Chebyshev Psi-function;0;1;1;;;;http://dlmf.nist.gov/25.16#E1
 ;;;;;;;;
@@ -294,7 +294,7 @@ n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.
 \DivisorSigma{\alpha}@{n};Sum of powers of divisors;1;1;1;;;;http://dlmf.nist.gov/27.2#E10
 \DivisorSigma{1}@{n};Sum of divisors;1;1;1;;;;http://dlmf.nist.gov/27.2#E10
 \JordanJ{k}@{n};Jordan's function;1;1;1;;;;http://dlmf.nist.gov/27.2#E11
-\MoebiusMu@{n};Möbius function;0;1;1;;;;http://dlmf.nist.gov/27.2#E12
+\MoebiusMu@{n};M??s function;0;1;1;;;;http://dlmf.nist.gov/27.2#E12
 \LiouvilleLambda@{n};Liouville's function;0;1;1;;;;http://dlmf.nist.gov/27.2#E13
 \MangoldtLambda@{n};Mangoldt's function;0;1;1;;;;http://dlmf.nist.gov/27.2#E14
 ;;;;;;;;
@@ -302,7 +302,7 @@ n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.
 \EllIntelone@{x}{k_c};Bulirsch's incomplete elliptic integral of first kind;0;1;2;;;;http://dlmf.nist.gov/19.2#E15
 \EllInteltwo@{x}{k_c}{a}{b};Bulirsch's incomplete elliptic integral of second kind;0;1;4;;;;http://dlmf.nist.gov/19.2#E12
 \EllIntelthree@{x}{k_c}{p};Bulirsch's incomplete elliptic integral of third kind;0;1;3;;;;http://dlmf.nist.gov/19.2#E16
-\EllIntR{-a}@{\Vector{b}}{\Vector{z}};Multivariate hypergeometric function;1;1;2;;;;http://dlmf.nist.gov/19.16#E9
+\EllIntR{-a}@{\Vector{b}}{\Vector{z}};Multivariate hypergeometric function;1;1;2;;;ignore;http://dlmf.nist.gov/19.16#E9
 \EllIntRF@@{x}{y}{z};Symmetric elliptic integral of the first kind;0;2;3;;;;http://dlmf.nist.gov/19.16#E1
 \EllIntRJ@@{x}{y}{z}{p};Symmetric elliptic integral of the second kind;0;2;4;;;;http://dlmf.nist.gov/19.16#E2
 \EllIntRG@@{x}{y}{z};Symmetric elliptic integral of the third kind;0;2;3;;;;http://dlmf.nist.gov/19.16#E3
@@ -362,18 +362,18 @@ n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.
 \HyperpHq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};Bilateral hypergeometric function;2;3;3;;;;http://dlmf.nist.gov/16.4#E16
 \HypergeoboldF@@@{a}{b}{c}{z};Olver's hypergeometric function;0;3;4;;;;http://dlmf.nist.gov/15.2#E2
 "\HyperboldpFq{p}{q}@@
-{\Vector{a}}{\Vector{b}}{z}";Olver's generalized hypergeometric function;2;2;3;;;;http://dlmf.nist.gov/16.2#E5
+{\Vector{a}}{\Vector{b}}{z}";Olver's generalized hypergeometric function;2;2;3;;;ignore;http://dlmf.nist.gov/16.2#E5
 \KummerM@{a}{b}{z};Kummer confluent hypergeometric functions M;0;1;3;;;;http://dlmf.nist.gov/13.2#E2
 \KummerU@{a}{b}{z};Kummer confluent hypergeometric functions U;0;1;3;;;;http://dlmf.nist.gov/13.2#E6
 \KummerboldM@{a}{b}{z};Olver's confluent hypergeometric functions U;0;1;3;;;;http://dlmf.nist.gov/13.2#E3
-\HyperPsi@{a}{b}{\Matrix{T}};Confluent hypergeometric function of matrix argument of the second kind;0;1;3;;;;http://dlmf.nist.gov/35.6#E2
+\HyperPsi@{a}{b}{\Matrix{T}};Confluent hypergeometric function of matrix argument of the second kind;0;1;3;;;ignore;http://dlmf.nist.gov/35.6#E2
 \LauricellaFD@{a}{b_1,...,b_n}{c}{z_1,...,z_n};Lauricella's multivariate hypergeometric function;0;1;4;;;;http://dlmf.nist.gov/19.15#p1
-\RiemannP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};Riemann's P-symbol;0;1;1;;;;http://dlmf.nist.gov/15.11#E3
+\RiemannP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};Riemann's P-symbol;0;1;1;;;ignore;http://dlmf.nist.gov/15.11#E3
 ;;;;;;;;
 \idem@{\chi_1}{\chi_1,...,\chi_n};Idem function;0;1;2;;;;http://dlmf.nist.gov/17.1#p3
 ;;;;;;;;
 \Jacobiphi{\alpha}{\beta}{\lambda}@{t};Jacobi function;3;1;1;;;;http://dlmf.nist.gov/15.9#E11
-\AbstractJacobi{p}{q};Generic Jacobian elliptic function;0;0;2;;;;http://dlmf.nist.gov/22.2#E10
+\AbstractJacobi{p}{q};Generic Jacobian elliptic function;0;0;2;;;function;http://dlmf.nist.gov/22.2#E10
 \Jacobiam@{z}{k};Jacobi's amplitude function;0;1;2;;;;http://dlmf.nist.gov/22.16#E1
 \Jacobisn@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E4
 \Jacobicn@@{z}{k};Jacobian elliptic function;0;2;2;;;;http://dlmf.nist.gov/22.2#E5
@@ -467,7 +467,7 @@ n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.
 \MathieuFs{m}@{z}{h};Cross-products of Mathieu function;1;1;2;;;;http://dlmf.nist.gov/28.26#E2
 \MathieuGc{m}@{z}{h};Cross-products of Mathieu function;1;1;2;;;;http://dlmf.nist.gov/28.26#E1
 \MathieuGs{m}@{z}{h};Cross-products of Mathieu function;1;1;2;;;;http://dlmf.nist.gov/28.26#E2
-\MeijerG{m}{n}{p}{q}@@@{z}{\Vector{a}}{\Vector{b}};Meijer-G function;4;3;3;;;;http://dlmf.nist.gov/16.17#E1
+\MeijerG{m}{n}{p}{q}@@@{z}{\Vector{a}}{\Vector{b}};Meijer-G function;4;3;3;;;ignore;http://dlmf.nist.gov/16.17#E1
 ;;;;;;;;
 \Mills@{x};Mills' Ratio;0;1;1;;;;http://dlmf.nist.gov/7.8#E1
 ;;;;;;;;
@@ -482,9 +482,9 @@ n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.
 ;;;;;;;;
 \RayleighFun{n}@{\nu};Rayleigh function;1;1;1;;;;http://dlmf.nist.gov/10.21#E55
 ;;;;;;;;
-\RiemannTheta@{\Vector{z}}{\Matrix{\Omega}};Riemann theta function;0;1;2;;;;http://dlmf.nist.gov/21.2#E1
-\RiemannThetaChar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}};Riemann theta function with characteristics;2;1;2;;;;http://dlmf.nist.gov/21.2#E5
-\RiemannThetaHat@{\Vector{z}}{\Matrix{\Omega}};Scaled Riemann theta function;0;1;2;;;;http://dlmf.nist.gov/21.2#E2
+\RiemannTheta@{\Vector{z}}{\Matrix{\Omega}};Riemann theta function;0;1;2;;;ignore;http://dlmf.nist.gov/21.2#E1
+\RiemannThetaChar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}};Riemann theta function with characteristics;2;1;2;;;ignore;http://dlmf.nist.gov/21.2#E5
+\RiemannThetaHat@{\Vector{z}}{\Matrix{\Omega}};Scaled Riemann theta function;0;1;2;;;ignore;http://dlmf.nist.gov/21.2#E2
 \RiemannXi@{s};Riemann's xi-function;0;1;1;;;;http://dlmf.nist.gov/25.4#E4
 \RiemannZeta@{s};Riemann zeta function;0;1;1;;;;http://dlmf.nist.gov/25.2#E1
 ;;;;;;;;
@@ -510,7 +510,7 @@ n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.
 \Kronecker{j}{k};Kronecker delta;0;0;2;;;;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r4
 \NeumannFactor{n};Neumann factor;0;0;1;;;;http://drmf.wmflabs.org/wiki/Definition:NeumannFactor
 \LeviCivita{j}{k}{l};Levi-Civita symbol;0;0;3;;;;http://dlmf.nist.gov/1.6#E14
-\RiemannP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};Riemann's P-symbol;0;1;1;;;;http://dlmf.nist.gov/15.11#E3
+\RiemannP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};Riemann's P-symbol;0;1;1;;;ignore;http://dlmf.nist.gov/15.11#E3
 \pochhammer{a}{n};Pochhammer symbol;0;0;2;;;;http://dlmf.nist.gov/5.2#iii
 \threej@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3};3j symbol;0;2;6;;;;http://dlmf.nist.gov/34.2#E4
 \sixj@@{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l_{3}};6j symbol;0;2;6;;;;http://dlmf.nist.gov/34.4#E1
@@ -520,17 +520,17 @@ n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.
 \terminant{p}@{z};Terminant function;1;1;1;;;;http://dlmf.nist.gov/2.11#E11
 \rescaledTerminant{p}@{z};Rescaled terminant function;1;1;1;;;;http://dlmf.nist.gov/9.7#E22
 ;;;;;;;;
-\FourierTrans@@{f}{s};Fourier transformation;0;2;2;;;;http://dlmf.nist.gov/1.14#E1
-\LaplaceTrans@{f}{s};Laplace transformation;0;1;2;;;;http://dlmf.nist.gov/1.14#E17
-\MellinTrans@{f}{s};Mellin transformation;0;1;2;;;;http://dlmf.nist.gov/1.14#E32
-\HilbertTrans@{f}{s};Hilbert transformation;0;1;2;;;;http://dlmf.nist.gov/1.14#SS5.p1
-\StieltjesTrans@{f}{s};Stieltjes transformation;0;1;2;;;;http://dlmf.nist.gov/1.14#E47
+\FourierTrans@@{f}{s};Fourier transformation;0;2;2;;;ignore;http://dlmf.nist.gov/1.14#E1
+\LaplaceTrans@{f}{s};Laplace transformation;0;1;2;;;ignore;http://dlmf.nist.gov/1.14#E17
+\MellinTrans@{f}{s};Mellin transformation;0;1;2;;;ignore;http://dlmf.nist.gov/1.14#E32
+\HilbertTrans@{f}{s};Hilbert transformation;0;1;2;;;ignore;http://dlmf.nist.gov/1.14#SS5.p1
+\StieltjesTrans@{f}{s};Stieltjes transformation;0;1;2;;;ignore;http://dlmf.nist.gov/1.14#E47
 ;;;;;;;;
-\VariationalOp[a,b]@{f};Total variation;1;1;1;;;;http://dlmf.nist.gov/1.4#E33
+\VariationalOp[a,b]@{f};Total variation;1;1;1;;;ignore;http://dlmf.nist.gov/1.4#E33
 ;;;;;;;;
-\gradient f;Gradiant of differentiable scalar function;0;0;1;;;;http://dlmf.nist.gov/1.6#E20
-\divergence F;Divergence of a differentiable vector-valued function;0;0;1;;;;http://dlmf.nist.gov/1.6#E21
-\curl F;Curl of vector-valued function;0;0;1;;;;http://dlmf.nist.gov/1.6#E22
+\gradient f;Gradiant of differentiable scalar function;0;0;1;;;ignore;http://dlmf.nist.gov/1.6#E20
+\divergence F;Divergence of a differentiable vector-valued function;0;0;1;;;ignore;http://dlmf.nist.gov/1.6#E21
+\curl F;Curl of vector-valued function;0;0;1;;;ignore;http://dlmf.nist.gov/1.6#E22
 \VoigtU@{x}{t};Voigt function U;0;1;2;;;;http://dlmf.nist.gov/7.19#E1
 \VoigtV@{x}{t};Voigt function V;0;1;2;;;;http://dlmf.nist.gov/7.19#E2
 \LinBrF@{a}{u};Line broadening function;0;1;2;;;;http://dlmf.nist.gov/7.19#E4
@@ -642,7 +642,7 @@ n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.
 \Wilson{n}@{x}{a}{b}{c}{d};Wilson polynomial;1;1;5;;;;http://dlmf.nist.gov/18.25#T1.t1.r2
 \WilsonW{n}@{x}{a}{b}{c}{d};Wilson polynomial;1;1;5;;;;http://dlmf.nist.gov/18.25#T1.t1.r2
 ;;;;;;;;
-\ZonalPoly{\kappa}@{\Matrix{T}};Zonal polynomial;1;1;1;;;;http://dlmf.nist.gov/35.4#SS1.p3
+\ZonalPoly{\kappa}@{\Matrix{T}};Zonal polynomial;1;1;1;;;ignore;http://dlmf.nist.gov/35.4#SS1.p3
 ;;;;;;;;
 \qSin{q}@@{x};q-Sine function;1;2;1;;;;http://dlmf.nist.gov/17.3#E4
 \qsin{q}@@{x};q-Sine function;1;2;1;;;;http://dlmf.nist.gov/17.3#E3
@@ -788,614 +788,3 @@ n!!;Double factorial;0;0;0;;;symbol;http://dlmf.nist.gov/front/introduction#Sx4.
 \normctsdualqHahnptilde{n}@@{x}{a}{b}{c}{q};normalized continuous dual $q$-Hahn polynomial ${\tilde p}$;1;2;5;;;;http://drmf.wmflabs.org/wiki/Definition:normctsdualqHahnptilde
 \normctsqHahnptilde{n}@@{x}{a}{b}{c}{d}{q};normalized continuous $q$-Hahn polynomial ${\tilde p}$;1;2;6;;;;http://drmf.wmflabs.org/wiki/Definition:normctsqHahnptilde
 \normctsqJacobiPtilde{n}@@{x}{q};normalized continuous $q$-Jacobi polynomial ${\tilde P}$;1;2;2;;;;http://drmf.wmflabs.org/wiki/Definition:normctsqJacobiPtilde
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;
-;;;;;;;;

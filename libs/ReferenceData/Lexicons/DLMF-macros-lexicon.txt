@@ -17,7 +17,7 @@ Symbol: \AThetaFunction
   Feature Set: dlmf-macro
 	DLMF: \AThetaFunction@{x}
 	DLMF-Link: dlmf.nist.gov/27.13.E4
-	Maple: 1+2*(sum(x^(m^2), m = 1 .. infinity))
+	Maple-Alternatives: 1+2*(sum(($0)^(m^2), m = 1 .. infinity))
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: Jacobi theta function alternative
@@ -27,7 +27,7 @@ Symbol: \AThetaFunction
 
 Symbol: \AbstractJacobi
 
-  Feature Set: dlmf-macro
+  Feature Set: function
 	DLMF: \AbstractJacobi{p}{q}
 	DLMF-Link: dlmf.nist.gov/22.2#E10
 	Maple: 1/JacobiQP
@@ -38,6 +38,7 @@ Symbol: \AbstractJacobi
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: function
 
 Symbol: \Acos
 
@@ -122,6 +123,7 @@ Symbol: \AffqKrawtchouk
   Feature Set: dlmf-macro
 	DLMF: \AffqKrawtchouk{n}@@{q^{-x}}{p}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:AffqKrawtchouk
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: 
 	Mathematica-Link: 
 	Meanings: Affine q-Krawtchouck polynomial
@@ -508,8 +510,9 @@ Symbol: \BellNumber
   Feature Set: dlmf-macro
 	DLMF: \BellNumber@{n}
 	DLMF-Link: dlmf.nist.gov/26.7#i
-	Maple: BellB(n, 1)
-	Maple-Comment: Alternative is bell(n) in Maple. But it is necessary to import it first: with(combinat, bell)
+	Maple: BellB($0, 1)
+	Maple-Alternatives: bell($0)
+	Maple-Comment: bell(n) is an alternative translation. But it is necessary to import the extra package with(combinat, bell) if you planning to use the shorter version.
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=BellB
 	Mathematica-Link: 
 	Meanings: Bell number
@@ -522,8 +525,8 @@ Symbol: \BernoulliB
   Feature Set: dlmf-macro
 	DLMF: \BernoulliB{n}@{x}
 	DLMF-Link: dlmf.nist.gov/24.2#i
-	Maple: bernoulli(n) || bernoulli(n, x)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=bernoulli
+	Maple: bernoulli(n, x)
+	Maple-Comment: "Maple provides an extra function for x=0. You can call bernoulli(n).
 	Mathematica-Link: 
 	Meanings: Bernoulli polynomial
 	Number of Ats: 1
@@ -908,7 +911,7 @@ Symbol: \ChebyT
   Feature Set: dlmf-macro
 	DLMF: \ChebyT{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r4
-	Maple: ChebyshevT(n,x)
+	Maple: ChebyshevT($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevT
 	Mathematica-Link: 
 	Meanings: Chebyshev polynomial first kind
@@ -933,7 +936,7 @@ Symbol: \ChebyU
   Feature Set: dlmf-macro
 	DLMF: \ChebyU{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r5
-	Maple: ChebyshevU(n,x)
+	Maple: ChebyshevU($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevU
 	Mathematica-Link: 
 	Meanings: Chebyshev polynomial second kind
@@ -1018,7 +1021,8 @@ Symbol: \CompEllIntCE
   Feature Set: dlmf-macro
 	DLMF: \CompEllIntCE@{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E9
-	Maple: EllipticCE(k)
+	Maple: EllipticCE($0)
+	Maple-Comment: You should notice, that Maple assumes the sine of the amplitude, while DLMF is defined with the amplitude itself.
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCE
 	Mathematica-Link: 
 	Meanings: Legendre's complementary complete elliptic integral of the second kind
@@ -1031,7 +1035,8 @@ Symbol: \CompEllIntCK
   Feature Set: dlmf-macro
 	DLMF: \CompEllIntCK@{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E9
-	Maple: EllipticCK(k)
+	Maple: EllipticCK($0)
+	Maple-Comment: You should notice, that Maple assumes the sine of the amplitude, while DLMF is defined with the amplitude itself.
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCK
 	Mathematica-Link: 
 	Meanings: Legendre's complementary complete elliptic integral of the first kind
@@ -1044,8 +1049,8 @@ Symbol: \CompEllIntD
   Feature Set: dlmf-macro
 	DLMF: \CompEllIntD@{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E8
-	Maple: (EllipticK(k) - EllipticE(k)) / k^2
-	Maple-Comment: This translation assumes the sine of the amplitude. So D(k) = D(1,k)
+	Maple-Alternatives: (EllipticK($0) - EllipticE($0))/($0)^2
+	Maple-Comment: There is no direct translation. But you could use the alternative translation. Since Maple assumes the sine of the amplitude, D(k) = D(1,k) holds after the translation.
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: Complete elliptic integral of Legendre's type
@@ -1058,8 +1063,8 @@ Symbol: \CompEllIntE
   Feature Set: dlmf-macro
 	DLMF: \CompEllIntE@{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E8
-	Maple: EllipticE(k)
-	Maple-Comment: In Maple E(k) = E(1,k)
+	Maple: EllipticE($0)
+	Maple-Comment: Maple assumes the sine of the amplitude! So be aware that after the translation is E(k) = E(1,k).
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
 	Mathematica-Link: 
 	Meanings: Legendre's elliptic integral of the second kind
@@ -1072,8 +1077,8 @@ Symbol: \CompEllIntK
   Feature Set: dlmf-macro
 	DLMF: \CompEllIntK@{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E8
-	Maple: EllipticK(k)
-	Maple-Comment: In Maple K(k) = F(1,k), because all other Elliptics are defined with the SINE of the amplitude
+	Maple: EllipticK($0)
+	Maple-Comment: Maple assumes the sine of the amplitude! So be aware that after the translation is K(k) = F(1,k).
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticK
 	Mathematica-Link: 
 	Meanings: Legendre's elliptic integral of the first kind
@@ -1086,8 +1091,8 @@ Symbol: \CompEllIntPi
   Feature Set: dlmf-macro
 	DLMF: \CompEllIntPi@{\alpha^2}{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E8
-	Maple: EllipticPi(alpha^2, k)
-	Maple-Comment: In Maple Pi(nu, k) = Pi(1, nu, k)
+	Maple: EllipticPi($0, $1)
+	Maple-Comment: Maple assumes the sine of the amplitude! So be aware that after the translation is Pi(alpha, k) = Pi(1, alpha, k).
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
 	Mathematica-Link: 
 	Meanings: Legendre's elliptic integral of the third kind
@@ -1137,7 +1142,7 @@ Symbol: \CompositionsC
 	DLMF: \CompositionsC[m]@{n}
 	DLMF-Link: dlmf.nist.gov/26.11#p1
 	Maple: numbcomp($1, $0)
-	Maple-Comment: Maple needs an extra package. Load it with the following commant: with(combinat, numbcomp)
+	Maple-Comment: Maple needs an extra package. Load it with the following command: with(combinat, numbcomp)
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=combinat%2Fnumbcomp
 	Mathematica-Link: 
 	Meanings: Number of compositions
@@ -1591,8 +1596,8 @@ Symbol: \EllIntD
   Feature Set: dlmf-macro
 	DLMF: \EllIntD@{\phi}{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E6
-	Maple: (EllipticF(sin(phi),k) - EllipticE(sin(phi),k))/k^2
-	Maple-Comment: See above
+	Maple-Alternatives: (EllipticF(sin($0), $1) - EllipticE(sin($0), $1))/($1)^2
+	Maple-Comment: There is no direct translation. But you could use the alternative translation. Be aware that Maple's first argument is the sine of the amplitude and not the amplitude itself. DLMF assumes the amplitude!
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: Incomplete elliptic integral of Legendre's type
@@ -1605,8 +1610,8 @@ Symbol: \EllIntE
   Feature Set: dlmf-macro
 	DLMF: \EllIntE@{\phi}{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E5
-	Maple: EllipticE(sin(phi),k)
-	Maple-Comment: See above
+	Maple: EllipticE(sin($0), $1)
+	Maple-Comment: Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
 	Mathematica-Link: 
 	Meanings: Legendre's incomplete elliptic integral of the second kind
@@ -1619,8 +1624,8 @@ Symbol: \EllIntF
   Feature Set: dlmf-macro
 	DLMF: \EllIntF@{\phi}{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E4
-	Maple: EllipticF(sin(phi),k)
-	Maple-Comment: Maple first argument is the sine of the amplitude! In DLMF it is the amplitude itself
+	Maple: EllipticF(sin($0), $1)
+	Maple-Comment: Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticF
 	Mathematica-Link: 
 	Meanings: Legendre's incomplete elliptic integral of the first kind
@@ -1633,8 +1638,8 @@ Symbol: \EllIntPi
   Feature Set: dlmf-macro
 	DLMF: \EllIntPi@{\phi}{\alpha^2}{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E7
-	Maple: EllipticPi(sin(phi), alpha^2, k)
-	Maple-Comment: See above
+	Maple: EllipticPi(sin($0), $1, $2)
+	Maple-Comment: Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
 	Mathematica-Link: 
 	Meanings: Legendre's incomplete elliptic integral of the third kind
@@ -1791,7 +1796,7 @@ Symbol: \EulerE
   Feature Set: dlmf-macro
 	DLMF: \EulerE{n}@{x}
 	DLMF-Link: dlmf.nist.gov/24.2#ii
-	Maple: euler(n,x)
+	Maple: euler($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=euler
 	Mathematica-Link: 
 	Meanings: Euler polynomial
@@ -2355,7 +2360,7 @@ Symbol: \Hermite
   Feature Set: dlmf-macro
 	DLMF: \Hermite{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r13
-	Maple: HermiteH(n,x)
+	Maple: HermiteH($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
 	Mathematica-Link: 
 	Meanings: Hermite polynomial
@@ -2368,7 +2373,7 @@ Symbol: \HermiteH
   Feature Set: dlmf-macro
 	DLMF: \HermiteH{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r13
-	Maple: HermiteH(n,x)
+	Maple: HermiteH($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
 	Mathematica-Link: 
 	Meanings: Hermite polynomial
@@ -2405,8 +2410,8 @@ Symbol: \HeunLocal
   Feature Set: dlmf-macro
 	DLMF: \HeunLocal@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z}
 	DLMF-Link: dlmf.nist.gov/31.3#E1
-	Maple: HeunG(a, q, alpha, beta, gamma, delta, z)
-	Maple-Comment: Based on the differential equation on DLMF, Maple assumes w'(0) = q/(gamma*a) for the general solution HeunG(...).
+	Maple: HeunG($0, $1, $2, $3, $4, $5, $6)
+	Maple-Comment: Based on the differential equation on DLMF, Maple assumes w'(0) = q/(gamma*a) for the general solution.
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=HeunG
 	Mathematica-Link: 
 	Meanings: Local Heun function
@@ -2445,7 +2450,7 @@ Symbol: \HurwitzZeta
   Feature Set: dlmf-macro
 	DLMF: \HurwitzZeta@{s}{a}
 	DLMF-Link: dlmf.nist.gov/25.11#E1
-	Maple: Zeta(0, s, a)
+	Maple: Zeta(0, $0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
 	Mathematica-Link: 
 	Meanings: Hurwitz zeta function
@@ -2471,7 +2476,8 @@ Symbol: \HyperboldpFq
   Feature Set: dlmf-macro
 	DLMF: \HyperboldpFq{2}{1}@{a,b}{c}{z}
 	DLMF-Link: dlmf.nist.gov/15.2#E5
-	Maple: hypergeom([a, b], [c], z)
+	Maple: hypergeom([$2], [$3], $4)
+	Maple-Comment: This translation might be wrong, if your parameters are not 2 and 1!
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
 	Mathematica-Link: 
 	Meanings: Hypergeometric function
@@ -2484,7 +2490,7 @@ Symbol: \HypergeoF
   Feature Set: dlmf-macro
 	DLMF: \HypergeoF@@@{a}{b}{c}{z}
 	DLMF-Link: dlmf.nist.gov/15.2#E1
-	Maple: hypergeom([a, b], [c], z)
+	Maple: hypergeom([$0, $1], [$2], $3)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
 	Mathematica-Link: 
 	Meanings: Hypergeometric function
@@ -2497,7 +2503,7 @@ Symbol: \HypergeoboldF
   Feature Set: dlmf-macro
 	DLMF: \HypergeoboldF@@@{a}{b}{c}{z}
 	DLMF-Link: dlmf.nist.gov/15.2#E2
-	Maple: hypergeom([a,b], [c], z)/GAMMA(c)
+	Maple-Alternatives: hypergeom([$0, $1], [$2], $3)/GAMMA($2)
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: Olver's hypergeometric function
@@ -2510,7 +2516,9 @@ Symbol: \HyperpFq
   Feature Set: dlmf-macro
 	DLMF: \HyperpFq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}
 	DLMF-Link: dlmf.nist.gov/16.2#E1
-	Maple: "hypergeom([a_1 .. a_p],
+	Maple: hypergeom([$2], [$3], $4)
+	Maple-Comment: Maple extract p and q from the length of the arguments.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
 	Mathematica-Link: 
 	Meanings: Generalized hypergeometric function
 	Number of Ats: 3
@@ -2665,7 +2673,7 @@ Symbol: \Jacobi
   Feature Set: dlmf-macro
 	DLMF: \Jacobi{\alpha}{\beta}{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r2
-	Maple: JacobiP(n, alpha, beta, x)
+	Maple: JacobiP($2, $0, $1, $3)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
 	Mathematica-Link: 
 	Meanings: Jacobi polynomial
@@ -2690,7 +2698,7 @@ Symbol: \JacobiG
   Feature Set: dlmf-macro
 	DLMF: \JacobiG{n}@{p}{q}{x}
 	DLMF-Link: dlmf.nist.gov/18.1#E2
-	Maple: JacobiP(n, p-q, q-1, 2*x-1) * n!/pochhammer(n+p, n)
+	Maple-Alternatives: JacobiP($0, $1-$2, $2-1, 2*($3)-1) * ($0)!/pochhammer($0+$1, $0)
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: Shifted Jacobi polynomial
@@ -2703,7 +2711,7 @@ Symbol: \JacobiP
   Feature Set: dlmf-macro
 	DLMF: \JacobiP{\alpha}{\beta}{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r2
-	Maple: JacobiP(n, alpha, beta, x)
+	Maple: JacobiP($2, $0, $1, $3)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
 	Mathematica-Link: 
 	Meanings: Jacobi polynomial
@@ -2728,9 +2736,8 @@ Symbol: \JacobiTheta
   Feature Set: dlmf-macro
 	DLMF: \JacobiTheta{j}@{z}{q}
 	DLMF-Link: dlmf.nist.gov/20.2#i
-	Maple: JacobiTheta1(z,q) || JacobiTheta2(z,q) || JacobiTheta3(z,q) || JacobiTheta4(z,q) || JacobiThetaj(z,q)
-	Maple-Comment: Take care of 'j' in JacobiThetaj
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta1 || www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta2 || www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta3 || www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta4
+	Maple: JacobiTheta$0($1, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
 	Mathematica-Link: 
 	Meanings: Jacobi's theta function
 	Number of Ats: 1
@@ -2755,9 +2762,9 @@ Symbol: \JacobiThetaTau
 	Constraints: Im(tau) > 0 and 0 < |exp(I*Pi*tau)| < 1
 	DLMF: \JacobiThetaTau{j}@{z}{\tau}
 	DLMF-Link: dlmf.nist.gov/20.2#i
-	Maple: JacobiThetaj(z,exp(I*Pi*tau))
-	Maple-Comment: Im(tau) > 0 and 0 < |exp(I*Pi*tau)| < 1
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta1
+	Maple-Alternatives: JacobiTheta$0($1, exp(I*Pi*($2)))
+	Maple-Comment: The alternative translation is only allowed for: Im($2) > 0 and 0 < |exp(I*Pi*$2)| < 1
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
 	Mathematica-Link: 
 	Meanings: Jacobi's theta-tau function
 	Number of Ats: 1
@@ -2769,7 +2776,7 @@ Symbol: \JacobiZeta
   Feature Set: dlmf-macro
 	DLMF: \JacobiZeta@{x}{k}
 	DLMF-Link: dlmf.nist.gov/22.16#E32
-	Maple: JacobiZeta(z,k)
+	Maple: JacobiZeta($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiZeta
 	Mathematica-Link: 
 	Meanings: Jacobi zeta function
@@ -2782,7 +2789,7 @@ Symbol: \Jacobiam
   Feature Set: dlmf-macro
 	DLMF: \Jacobiam@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.16#E1
-	Maple: JacobiAM(z,k)
+	Maple: JacobiAM($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	Mathematica-Link: 
 	Meanings: Jacobi's amplitude function
@@ -2795,7 +2802,7 @@ Symbol: \Jacobicd
   Feature Set: dlmf-macro
 	DLMF: \Jacobicd@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E8
-	Maple: JacobiCD(z,k)
+	Maple: JacobiCD($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCD
 	Mathematica-Link: 
 	Meanings: Jacobian elliptic function
@@ -2808,7 +2815,7 @@ Symbol: \Jacobicn
   Feature Set: dlmf-macro
 	DLMF: \Jacobicn@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E5
-	Maple: JacobiCN(z,k)
+	Maple: JacobiCN($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCN
 	Mathematica-Link: 
 	Meanings: Jacobian elliptic function
@@ -2821,7 +2828,7 @@ Symbol: \Jacobics
   Feature Set: dlmf-macro
 	DLMF: \Jacobics@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E15
-	Maple: JacobiCS(z, k)
+	Maple: JacobiCS($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	Mathematica-Link: 
 	Meanings: Jacobian elliptic function
@@ -2834,7 +2841,7 @@ Symbol: \Jacobidc
   Feature Set: dlmf-macro
 	DLMF: \Jacobidc@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E14
-	Maple: JacobiDC(z, k)
+	Maple: JacobiDC($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	Mathematica-Link: 
 	Meanings: Jacobian elliptic function
@@ -2847,7 +2854,7 @@ Symbol: \Jacobidn
   Feature Set: dlmf-macro
 	DLMF: \Jacobidn@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E6
-	Maple: JacobiDN(z,k)
+	Maple: JacobiDN($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiDN
 	Mathematica-Link: 
 	Meanings: Jacobian elliptic function
@@ -2860,7 +2867,7 @@ Symbol: \Jacobids
   Feature Set: dlmf-macro
 	DLMF: \Jacobids@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E13
-	Maple: JacobiDS(z, k)
+	Maple: JacobiDS($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	Mathematica-Link: 
 	Meanings: Jacobian elliptic function
@@ -2873,7 +2880,7 @@ Symbol: \Jacobinc
   Feature Set: dlmf-macro
 	DLMF: \Jacobinc@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E11
-	Maple: JacobiNC(z, k)
+	Maple: JacobiNC($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	Mathematica-Link: 
 	Meanings: Jacobian elliptic function
@@ -2886,7 +2893,7 @@ Symbol: \Jacobind
   Feature Set: dlmf-macro
 	DLMF: \Jacobind@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E12
-	Maple: JacobiND(z, k)
+	Maple: JacobiND($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	Mathematica-Link: 
 	Meanings: Jacobian elliptic function
@@ -2899,7 +2906,7 @@ Symbol: \Jacobins
   Feature Set: dlmf-macro
 	DLMF: \Jacobins@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E10
-	Maple: JacobiNS(z, k)
+	Maple: JacobiNS($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	Mathematica-Link: 
 	Meanings: Jacobian elliptic function
@@ -2912,7 +2919,7 @@ Symbol: \Jacobiphi
   Feature Set: dlmf-macro
 	DLMF: \Jacobiphi{\alpha}{\beta}{\lambda}@{t}
 	DLMF-Link: dlmf.nist.gov/15.9#E11
-	Maple: hypergeom([(alpha+beta+1-I*lambda)/2, (alpha+beta+1+I*lambda)], [alpha+1], -sinh(t)^2)
+	Maple-Alternatives: hypergeom([(($0)+($1)+1-I*($2))/2, (($0)+($1)+1+I*($2))], [($0)+1], -sinh($3)^2)
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: Jacobi function
@@ -2925,7 +2932,7 @@ Symbol: \Jacobisc
   Feature Set: dlmf-macro
 	DLMF: \Jacobisc@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E9
-	Maple: JacobiSC(z,k)
+	Maple: JacobiSC($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSC
 	Mathematica-Link: 
 	Meanings: Jacobian elliptic function
@@ -2938,7 +2945,7 @@ Symbol: \Jacobisd
   Feature Set: dlmf-macro
 	DLMF: \Jacobisd@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E7
-	Maple: JacobiSD(z,k)
+	Maple: JacobiSD($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSD
 	Mathematica-Link: 
 	Meanings: Jacobian elliptic function
@@ -2951,7 +2958,7 @@ Symbol: \Jacobisn
   Feature Set: dlmf-macro
 	DLMF: \Jacobisn@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E4
-	Maple: JacobiSN(z,k)
+	Maple: JacobiSN($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSN
 	Mathematica-Link: 
 	Meanings: Jacobian elliptic function
@@ -2990,7 +2997,7 @@ Symbol: \Kelvinbei
   Feature Set: dlmf-macro
 	DLMF: \Kelvinbei{\nu}@@{x}
 	DLMF-Link: dlmf.nist.gov/10.61#E1
-	Maple: KelvinBei(nu, x)
+	Maple: KelvinBei($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBei
 	Mathematica-Link: 
 	Meanings: Kelvin Function BEI
@@ -3003,7 +3010,7 @@ Symbol: \Kelvinber
   Feature Set: dlmf-macro
 	DLMF: \Kelvinber{\nu}@@{x}
 	DLMF-Link: dlmf.nist.gov/10.61#E1
-	Maple: KelvinBer(nu, x)
+	Maple: KelvinBer($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBer
 	Mathematica-Link: 
 	Meanings: Kelvin Function BER
@@ -3016,7 +3023,7 @@ Symbol: \Kelvinkei
   Feature Set: dlmf-macro
 	DLMF: \Kelvinkei{\nu}@@{x}
 	DLMF-Link: dlmf.nist.gov/10.61#E2
-	Maple: KelvinKei(nu, x)
+	Maple: KelvinKei($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKei
 	Mathematica-Link: 
 	Meanings: Kelvin Function KEI
@@ -3029,7 +3036,7 @@ Symbol: \Kelvinker
   Feature Set: dlmf-macro
 	DLMF: \Kelvinker{\nu}@@{x}
 	DLMF-Link: dlmf.nist.gov/10.61#E2
-	Maple: KelvinKer(nu, x)
+	Maple: KelvinKer($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKer
 	Mathematica-Link: 
 	Meanings: Kelvin Function KER
@@ -3042,7 +3049,6 @@ Symbol: \Krawtchouk
   Feature Set: dlmf-macro
 	DLMF: \Krawtchouk{n}@{x}{p}{N}
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r3
-	Maple-Comment: never used in DLMF
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: Krawtchouk polynomial
@@ -3067,8 +3073,8 @@ Symbol: \Kronecker
   Feature Set: dlmf-macro
 	DLMF: \Kronecker{j}{k}
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r4
-	Maple: KroneckerDelta[j,k]
-	Maple-Comment: with(Physics)
+	Maple: KroneckerDelta[$0, $1]
+	Maple-Comment: This funcion needs an extra package. with(Physics)
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/KroneckerDelta
 	Mathematica-Link: 
 	Meanings: Kronecker delta
@@ -3107,7 +3113,7 @@ Symbol: \KummerboldM
   Feature Set: dlmf-macro
 	DLMF: \KummerboldM@{a}{b}{z}
 	DLMF-Link: dlmf.nist.gov/13.2#E3
-	Maple: KummerM(a, b, z)/GAMMA(b)
+	Maple-Alternatives: KummerM($0, $1, $2)/GAMMA($1)
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: Olver's confluent hypergeometric functions U
@@ -3120,7 +3126,7 @@ Symbol: \Laguerre
   Feature Set: dlmf-macro
 	DLMF: \Laguerre[\alpha]{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL(n, alpha, x)
+	Maple: LaguerreL($1, $0, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
 	Mathematica-Link: 
 	Meanings: Laguerre polynomial
@@ -3133,8 +3139,7 @@ Symbol: \LaguerreL
   Feature Set: dlmf-macro
 	DLMF: \LaguerreL[\alpha]{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL(n, alpha, x)
-	Maple-Comment: Equal to \Laguerre
+	Maple: LaguerreL($1, $0, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
 	Mathematica-Link: 
 	Meanings: Laguerre polynomial
@@ -3394,7 +3399,7 @@ Symbol: \LegendreP
   Feature Set: dlmf-macro
 	DLMF: \LegendreP[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E6
-	Maple: LegendreP(nu, mu, z)
+	Maple: LegendreP($1, $0, $2)
 	Maple-Comment: Different order in parameters, 1 < z
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	Mathematica: LegendreP[$1, $0, 3, $3]
@@ -3409,8 +3414,8 @@ Symbol: \LegendrePoly
   Feature Set: dlmf-macro
 	DLMF: \LegendrePoly{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r10
-	Maple: P(n,x)
-	Maple-Comment: with(orthopoly):
+	Maple: P($0, $1)
+	Maple-Comment: This funcion needs an extra package. with(orthopoly)
 	Maple-Link: not defined
 	Mathematica: LegendreP[$0, $1]
 	Mathematica-Link: reference.wolfram.com/language/ref/LegendreP.html
@@ -3436,7 +3441,7 @@ Symbol: \LegendreQ
   Feature Set: dlmf-macro
 	DLMF: \LegendreQ[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ(nu, mu, z)
+	Maple: LegendreQ($1, $0, $2)
 	Maple-Comment: Different order in parameters, 1 < z
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	Mathematica-Link: 
@@ -3450,8 +3455,8 @@ Symbol: \LegendreSymbol
   Feature Set: dlmf-macro
 	DLMF: \LegendreSymbol{n}{p}
 	DLMF-Link: dlmf.nist.gov/27.9
-	Maple: legendre(n,p)
-	Maple-Comment: with(numtheory) since Maplesoft 2016 use with(NumberTheory)
+	Maple: legendre($0, $1)
+	Maple-Comment: This funcion needs an extra package. For Maple 2016 or older use with(numtheory), otherwise use with(NumberTheory)
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory%2Flegendre%28deprecated%29
 	Mathematica-Link: 
 	Meanings: Legendre symbol
@@ -3464,7 +3469,7 @@ Symbol: \LerchPhi
   Feature Set: dlmf-macro
 	DLMF: \LerchPhi@{z}{s}{a}
 	DLMF-Link: dlmf.nist.gov/25.14#E1
-	Maple: LerchPhi(z, s, a)
+	Maple: LerchPhi($0, $1, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LerchPhi
 	Mathematica-Link: 
 	Meanings: Lerch Phi function
@@ -3477,8 +3482,8 @@ Symbol: \LeviCivita
   Feature Set: dlmf-macro
 	DLMF: \LeviCivita{j}{k}{l}
 	DLMF-Link: dlmf.nist.gov/1.6#E14
-	Maple: LeviCivita[j,k,l]
-	Maple-Comment: with(Physics): The number of variables is not defined in Maple. LeviCivita[j,k,l,...]
+	Maple: LeviCivita[$0, $1, $3]
+	Maple-Comment: This funcion needs an extra package: with(Physics). The number of variables is not defined in Maple. LeviCivita[j,k,l,...]
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/LeviCivita
 	Mathematica-Link: 
 	Meanings: Levi-Civita symbol
@@ -3547,7 +3552,7 @@ Symbol: \LommelS
   Feature Set: dlmf-macro
 	DLMF: \LommelS{\mu}{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/11.9#E5
-	Maple: LommelS2(mu, nu, z)
+	Maple: LommelS2($0, $1, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LommelS2
 	Mathematica-Link: 
 	Meanings: Lommel S
@@ -3560,7 +3565,7 @@ Symbol: \Lommels
   Feature Set: dlmf-macro
 	DLMF: \Lommels{\mu}{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/11.9#E3
-	Maple: LommelS1(mu, nu, z)
+	Maple: LommelS1($0, $1, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LommelS1
 	Mathematica-Link: 
 	Meanings: Lommel s
@@ -3669,7 +3674,7 @@ Symbol: \MathieuEigenvaluea
   Feature Set: dlmf-macro
 	DLMF: \MathieuEigenvaluea{n}@@{q}
 	DLMF-Link: dlmf.nist.gov/28.2#SS5.p1
-	Maple: MathieuA(n, q)
+	Maple: MathieuA($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuA
 	Mathematica-Link: 
 	Meanings: Mathieu eigenvalues
@@ -3682,7 +3687,7 @@ Symbol: \MathieuEigenvalueb
   Feature Set: dlmf-macro
 	DLMF: \MathieuEigenvalueb{n}@@{q}
 	DLMF-Link: dlmf.nist.gov/28.2#SS5.p1
-	Maple: MathieuB(n, q)
+	Maple: MathieuB($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuB
 	Mathematica-Link: 
 	Meanings: Mathieu eigenvalues
@@ -3887,9 +3892,8 @@ Symbol: \Mathieuce
   Feature Set: dlmf-macro
 	DLMF: \Mathieuce{n}@@{z}{q}
 	DLMF-Link: dlmf.nist.gov/28.2#SS6.p1
-	Maple: MathieuCE(n, q, z)
-	Maple-Comment: Maple normalizes the values for n=0 (while DLMF doesn't)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuCE
+	Maple: MathieuCE($0, $2, $1)
+	Maple-Comment: "Maple normalizes values if n=0. For n=0 use the alternative translation!
 	Mathematica-Link: 
 	Meanings: Mathieu eigenvalue function
 	Number of Ats: 2
@@ -3937,7 +3941,7 @@ Symbol: \Mathieuse
   Feature Set: dlmf-macro
 	DLMF: \Mathieuse{n}@@{z}{q}
 	DLMF-Link: dlmf.nist.gov/28.2#SS6.p1
-	Maple: MathieuSE(n, q, z)
+	Maple: MathieuSE($0, $2, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuSE
 	Mathematica-Link: 
 	Meanings: Mathieu eigenvalue function
@@ -4101,7 +4105,7 @@ Symbol: \MoebiusMu
 	DLMF-Link: dlmf.nist.gov/27.2#E12
 	Maple-Link: not defined
 	Mathematica-Link: 
-	Meanings: Möbius function
+	Meanings: M??s function
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
@@ -4123,8 +4127,8 @@ Symbol: \NeumannFactor
   Feature Set: dlmf-macro
 	DLMF: \NeumannFactor{n}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:NeumannFactor
-	Maple: 2-KroneckerDelta[n,0]
-	Maple-Comment: with(Physics)
+	Maple: 2-KroneckerDelta[$0, 0]
+	Maple-Comment: This funcion needs an extra package. with(Physics)
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: Neumann factor
@@ -4274,7 +4278,7 @@ Symbol: \PartitionsP
 	DLMF: \PartitionsP[k]@{n}
 	DLMF-Link: dlmf.nist.gov/26.9
 	Maple: numelems(partition($0))
-	Maple-Comment: Maple needs an extra package. Load it with the following commant: with(combinat,partition)
+	Maple-Comment: Maple needs an extra package. Load it with the following command: with(combinat,partition)
 	Maple-Link: not defined || www.maplesoft.com/support/help/Maple/view.aspx?path=combinat/partition
 	Mathematica-Link: 
 	Meanings: Number of partitions of nonnegative integer n into at most k parts
@@ -4324,7 +4328,7 @@ Symbol: \Permutations
 	DLMF: \Permutations{n}
 	DLMF-Link: dlmf.nist.gov/26.13
 	Maple: permute($0)
-	Maple-Comment: Maple needs an extra package. Load it with the following commant: with(combinat)
+	Maple-Comment: Maple needs an extra package. Load it with the following command: with(combinat)
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=combinat/permute
 	Mathematica-Link: 
 	Meanings: Set of permutations
@@ -4573,7 +4577,8 @@ Symbol: \RiemannXi
   Feature Set: dlmf-macro
 	DLMF: \RiemannXi@{s}
 	DLMF-Link: dlmf.nist.gov/25.4#E4
-	Maple: s(s-1)GAMMA(s/2) Pi^(-s/2) Zeta(s)/2
+	Maple-Alternatives: ($0)(($0)-1)GAMMA(($0)/2) Pi^(-($0)/2) Zeta(($0))/2
+	Maple-Comment: You could use the alternative translation!
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: Riemann's xi-function
@@ -4586,7 +4591,7 @@ Symbol: \RiemannZeta
   Feature Set: dlmf-macro
 	DLMF: \RiemannZeta@{s}
 	DLMF-Link: dlmf.nist.gov/25.2#E1
-	Maple: Zeta(s)
+	Maple: Zeta($0) || Zeta(s)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
 	Mathematica-Link: 
 	Meanings: Riemann zeta function
@@ -4611,7 +4616,8 @@ Symbol: \ScorerGi
   Feature Set: dlmf-macro
 	DLMF: \ScorerGi@{z}
 	DLMF-Link: dlmf.nist.gov/9.12#i
-	Maple: AiryBi(z)*(int(AiryAi(t), t = z .. infinity))+AiryAi(z)*(int(AiryBi(t), t = 0 .. z))
+	Maple-Alternatives: AiryBi($0)*(int(AiryAi(t), t = ($0) .. infinity))+AiryAi($0)*(int(AiryBi(t), t = 0 .. ($0)))
+	Maple-Comment: You could use the alternative translation. Since the given variable is used for limits of an Integral, a complex variable could produces trouble!
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: Scorer function Gi
@@ -4624,8 +4630,8 @@ Symbol: \ScorerHi
   Feature Set: dlmf-macro
 	DLMF: \ScorerHi@{z}
 	DLMF-Link: dlmf.nist.gov/9.12#i
-	Maple: AiryBi(z)*(int(AiryAi(t), t = -infinity .. z))-AiryAi(z)*(int(AiryBi(t), t = -infinity .. z))
-	Maple-Comment: Maple has issues to plot own integrals. Be careful with that
+	Maple-Alternatives: AiryBi($0)*(int(AiryAi(t), t = -infinity .. ($0)))-AiryAi($0)*(int(AiryBi(t), t = -infinity .. ($0)))
+	Maple-Comment: You could use the alternative translation. Since the given variable is used for limits of an Integral, a complex variable could produces trouble!
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: Scorer function Hi
@@ -4935,7 +4941,7 @@ Symbol: \StirlingS
   Feature Set: dlmf-macro
 	DLMF: \StirlingS@{n}{k}
 	DLMF-Link: dlmf.nist.gov/26.8#SS1.p1
-	Maple: Stirling1(n,k)
+	Maple: Stirling1($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Stirling1
 	Mathematica-Link: 
 	Meanings: Stirling number of the first kind
@@ -4948,7 +4954,7 @@ Symbol: \StirlingSS
   Feature Set: dlmf-macro
 	DLMF: \StirlingSS@{n}{k}
 	DLMF-Link: dlmf.nist.gov/26.8#SS1.p3
-	Maple: Stirling2(n,k)
+	Maple: Stirling2($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Stirling2
 	Mathematica-Link: 
 	Meanings: Stirling number of the second kind
@@ -4961,7 +4967,7 @@ Symbol: \StruveH
   Feature Set: dlmf-macro
 	DLMF: \StruveH{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/11.2#E1
-	Maple: StruveH(nu,z)
+	Maple: StruveH($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=StruveH
 	Mathematica-Link: 
 	Meanings: Struve function
@@ -4986,7 +4992,7 @@ Symbol: \StruveL
   Feature Set: dlmf-macro
 	DLMF: \StruveL{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/11.2#E2
-	Maple: StruveL(nu,z)
+	Maple: StruveL($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=StruveL
 	Mathematica-Link: 
 	Meanings: Modified Struve function
@@ -5048,7 +5054,7 @@ Symbol: \Ultra
   Feature Set: dlmf-macro
 	DLMF: \Ultra{\lambda}{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r3
-	Maple: GegenbauerC(n, lambda, x)
+	Maple: GegenbauerC($1, $0, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC
 	Mathematica-Link: 
 	Meanings: Ultraspherical Gegenbauer polynomial
@@ -5061,7 +5067,7 @@ Symbol: \Ultraspherical
   Feature Set: dlmf-macro
 	DLMF: \Ultraspherical{\lambda}{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r3
-	Maple: GegenbauerC(n, lambda, x)
+	Maple: GegenbauerC($1, $0, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC
 	Mathematica-Link: 
 	Meanings: Ultraspherical Gegenbauer polynomial
@@ -5184,7 +5190,7 @@ Symbol: \WeierPInv
   Feature Set: dlmf-macro
 	DLMF: \WeierPInv@@{z}{g_2}{g_3}
 	DLMF-Link: dlmf.nist.gov/23.3#E8
-	Maple: WeierstrassP(z,g_2,g_3)
+	Maple: WeierstrassP($0, $1, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassP
 	Mathematica-Link: 
 	Meanings: Weierstrass elliptic function
@@ -5209,7 +5215,7 @@ Symbol: \WeiersigmaInv
   Feature Set: dlmf-macro
 	DLMF: \WeiersigmaInv@@{z}{g_2}{g_3}
 	DLMF-Link: dlmf.nist.gov/23.1E6
-	Maple: WeierstrassSigma(z,g_2,g_3)
+	Maple: WeierstrassSigma($0, $1, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassSigma
 	Mathematica-Link: 
 	Meanings: Weierstrass sigma function
@@ -5234,7 +5240,7 @@ Symbol: \WeierzetaInv
   Feature Set: dlmf-macro
 	DLMF: \WeierzetaInv@@{z}{g_2}{g_3}
 	DLMF-Link: dlmf.nist.gov/23.1E5
-	Maple: WeierstrassZeta(z,g_2,g_3)
+	Maple: WeierstrassZeta($0, $1, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassZeta
 	Mathematica-Link: 
 	Meanings: Weierstrass zeta function
@@ -5273,7 +5279,7 @@ Symbol: \WhitM
   Feature Set: dlmf-macro
 	DLMF: \WhitM{\kappa}{\mu}@{z}
 	DLMF-Link: dlmf.nist.gov/13.14#E2
-	Maple: WhittakerM(kappa,mu,z)
+	Maple: WhittakerM($0, $1, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerM
 	Mathematica-Link: 
 	Meanings: Whittaker confluent hypergeometric function
@@ -5286,7 +5292,7 @@ Symbol: \WhitW
   Feature Set: dlmf-macro
 	DLMF: \WhitW{\kappa}{\mu}@{z}
 	DLMF-Link: dlmf.nist.gov/13.14#E3
-	Maple: WhittakerW(kappa,mu,z)
+	Maple: WhittakerW($0, $1, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerW
 	Mathematica-Link: 
 	Meanings: Whittaker confluent hypergeometric function
@@ -5566,7 +5572,7 @@ Symbol: \arcJacobicd
   Feature Set: dlmf-macro
 	DLMF: \arcJacobicd@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiCD(z,k)
+	Maple: InverseJacobiCD($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Mathematica-Link: 
 	Meanings: Inverse of Jacobian elliptic function
@@ -5579,7 +5585,7 @@ Symbol: \arcJacobicn
   Feature Set: dlmf-macro
 	DLMF: \arcJacobicn@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiCN(z,k)
+	Maple: InverseJacobiCN($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Mathematica-Link: 
 	Meanings: Inverse of Jacobian elliptic function
@@ -5592,7 +5598,7 @@ Symbol: \arcJacobics
   Feature Set: dlmf-macro
 	DLMF: \arcJacobics@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiCS(z, k)
+	Maple: InverseJacobiCS($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Mathematica-Link: 
 	Meanings: Inverse of Jacobian elliptic function
@@ -5605,7 +5611,7 @@ Symbol: \arcJacobidc
   Feature Set: dlmf-macro
 	DLMF: \arcJacobidc@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiDC(z, k)
+	Maple: InverseJacobiDC($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Mathematica-Link: 
 	Meanings: Inverse of Jacobian elliptic function
@@ -5618,7 +5624,7 @@ Symbol: \arcJacobidn
   Feature Set: dlmf-macro
 	DLMF: \arcJacobidn@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiDN(z,k)
+	Maple: InverseJacobiDN($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Mathematica-Link: 
 	Meanings: Inverse of Jacobian elliptic function
@@ -5631,7 +5637,7 @@ Symbol: \arcJacobids
   Feature Set: dlmf-macro
 	DLMF: \arcJacobids@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiDS(z, k)
+	Maple: InverseJacobiDS($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Mathematica-Link: 
 	Meanings: Inverse of Jacobian elliptic function
@@ -5644,7 +5650,7 @@ Symbol: \arcJacobinc
   Feature Set: dlmf-macro
 	DLMF: \arcJacobinc@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiNC(z, k)
+	Maple: InverseJacobiNC($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Mathematica-Link: 
 	Meanings: Inverse of Jacobian elliptic function
@@ -5657,7 +5663,7 @@ Symbol: \arcJacobind
   Feature Set: dlmf-macro
 	DLMF: \arcJacobind@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiND(z, k)
+	Maple: InverseJacobiND($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Mathematica-Link: 
 	Meanings: Inverse of Jacobian elliptic function
@@ -5670,7 +5676,7 @@ Symbol: \arcJacobins
   Feature Set: dlmf-macro
 	DLMF: \arcJacobins@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiNS(z, k)
+	Maple: InverseJacobiNS($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Mathematica-Link: 
 	Meanings: Inverse of Jacobian elliptic function
@@ -5683,7 +5689,7 @@ Symbol: \arcJacobisc
   Feature Set: dlmf-macro
 	DLMF: \arcJacobisc@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiSC(z,k)
+	Maple: InverseJacobiSC($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Mathematica-Link: 
 	Meanings: Inverse of Jacobian elliptic function
@@ -5696,7 +5702,7 @@ Symbol: \arcJacobisd
   Feature Set: dlmf-macro
 	DLMF: \arcJacobisd@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiSD(z,k)
+	Maple: InverseJacobiSD($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Mathematica-Link: 
 	Meanings: Inverse of Jacobian elliptic function
@@ -5709,7 +5715,7 @@ Symbol: \arcJacobisn
   Feature Set: dlmf-macro
 	DLMF: \arcJacobisn@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiSN(z,k)
+	Maple: InverseJacobiSN($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Mathematica-Link: 
 	Meanings: Inverse of Jacobian elliptic function
@@ -5837,6 +5843,7 @@ Symbol: \bigqJacobi
   Feature Set: dlmf-macro
 	DLMF: \bigqJacobi{n}@@{x}{a}{b}{c}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E5
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: big q-Jacobi polynomial
@@ -5849,6 +5856,7 @@ Symbol: \bigqJacobiIVparam
   Feature Set: dlmf-macro
 	DLMF: \bigqJacobiIVparam{n}@@{x}{a}{b}{c}{d}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E6
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: big q-Jacobi polynomial
@@ -5861,6 +5869,7 @@ Symbol: \bigqLaguerre
   Feature Set: dlmf-macro
 	DLMF: \bigqLaguerre{n}@{x}{a}{b}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:bigqLaguerre
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: big q-Laguerre polynomial
@@ -5873,6 +5882,7 @@ Symbol: \bigqLegendre
   Feature Set: dlmf-macro
 	DLMF: \bigqLegendre{n}@{x}{c}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:bigqLegendre
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: big q-Legendre polynomial
@@ -6306,6 +6316,7 @@ Symbol: \discrqHermiteI
   Feature Set: dlmf-macro
 	DLMF: \discrqHermiteI{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:discrqHermiteI
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Hermite discrete I
@@ -6318,6 +6329,7 @@ Symbol: \discrqHermiteII
   Feature Set: dlmf-macro
 	DLMF: \discrqHermiteII{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:discrqHermiteII
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Hermite discrete II
@@ -6355,6 +6367,7 @@ Symbol: \dualqHahn
   Feature Set: dlmf-macro
 	DLMF: \dualqHahn{n}@@{\mu(x)}{\gamma}{\delta}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:dualqHahn
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: dual q-Hahn polynomial
@@ -6367,6 +6380,7 @@ Symbol: \dualqKrawtchouk
   Feature Set: dlmf-macro
 	DLMF: \dualqKrawtchouk{n}@@{\lambda(x)}{c}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:dualqKrawtchouk
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: dual q-Krawtchouk polynomial
@@ -6451,7 +6465,7 @@ Symbol: \exptrace
 	DLMF: \exptrace@{\Matrix{X}}
 	DLMF-Link: dlmf.nist.gov/35.1#p3.t1.r10
 	Maple: exp(Trace(X))
-	Maple-Comment: Maple needs an extra package. Load it with the following commant: with(LinearAlgebra):
+	Maple-Comment: Maple needs an extra package. Load it with the following command: with(LinearAlgebra): || Maple needs an extra package. Load it with the following commant: with(LinearAlgebra):
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Trace
 	Mathematica-Link: 
 	Meanings: Exponential of the trace of a matrix
@@ -6690,6 +6704,7 @@ Symbol: \littleqJacobi
   Feature Set: dlmf-macro
 	DLMF: \littleqJacobi{n}@@{x}{a}{b}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:littleqJacobi
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: little q-Jacobi polynomial
@@ -6702,6 +6717,7 @@ Symbol: \littleqLaguerre
   Feature Set: dlmf-macro
 	DLMF: \littleqLaguerre{n}@{x}{a}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:littleqLaguerre
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: little q-Laguerre polynomial
@@ -6714,6 +6730,7 @@ Symbol: \littleqLegendre
   Feature Set: dlmf-macro
 	DLMF: \littleqLegendre{m}@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:littleqLegendre
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: little q-Legendre polynomial
@@ -7457,7 +7474,7 @@ Symbol: \multinomial
 	DLMF: \multinomial{m}{n_1,...,n_k}
 	DLMF-Link: dlmf.nist.gov/26.4.E2
 	Maple: multinomial($0, $1)
-	Maple-Comment: Maple needs an extra package. Load it with the following commant: with(combinat,multinomial):
+	Maple-Comment: Maple needs an extra package. Load it with the following command: with(combinat,multinomial):
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=combinat/multinomial
 	Mathematica: Multinomial[n_1,...,n_k]
 	Mathematica-Link: reference.wolfram.com/language/ref/Multinomial.html
@@ -7673,7 +7690,7 @@ Symbol: \pochhammer
   Feature Set: dlmf-macro
 	DLMF: \pochhammer{a}{n}
 	DLMF-Link: dlmf.nist.gov/5.2#iii
-	Maple: pochhammer(a, n)
+	Maple: pochhammer($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer
 	Mathematica: Pochhammer[$0, $1]
 	Mathematica-Link: reference.wolfram.com/language/ref/Pochhammer.html
@@ -7767,7 +7784,7 @@ Symbol: \qAppelli
   Feature Set: dlmf-macro
 	DLMF: \qAppelli@{a}{b}{b'}{c}{q}{x}{y}
 	DLMF-Link: dlmf.nist.gov/17.4.E5
-	Maple-Comment: The university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Appell function of first kind
@@ -7780,7 +7797,7 @@ Symbol: \qAppellii
   Feature Set: dlmf-macro
 	DLMF: \qAppellii@{a}{b}{b'}{c}{c'}{q}{x}{y}
 	DLMF-Link: dlmf.nist.gov/17.4.E6
-	Maple-Comment: www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Appell function of second kind
@@ -7793,6 +7810,7 @@ Symbol: \qAppelliii
   Feature Set: dlmf-macro
 	DLMF: \qAppelliii@{a}{a'}{b}{b'}{c}{q}{x}{y}
 	DLMF-Link: dlmf.nist.gov/17.4.E7
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Appell function of third kind
@@ -7805,6 +7823,7 @@ Symbol: \qAppelliv
   Feature Set: dlmf-macro
 	DLMF: \qAppelliv@{a}{b}{c}{c'}{q}{x}{y}
 	DLMF-Link: dlmf.nist.gov/17.4.E8
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Appell function of fourth kind
@@ -7817,6 +7836,7 @@ Symbol: \qBernoulli
   Feature Set: dlmf-macro
 	DLMF: \qBernoulli{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/17.3#E7
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Bernoulli polynomial
@@ -7829,6 +7849,7 @@ Symbol: \qBesselPoly
   Feature Set: dlmf-macro
 	DLMF: \qBesselPoly{n}@{x}{b}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qBessel
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Bessel polynomial
@@ -7841,6 +7862,7 @@ Symbol: \qBeta
   Feature Set: dlmf-macro
 	DLMF: \qBeta{q}@{a}{b}
 	DLMF-Link: dlmf.nist.gov/5.18#E11
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Beta function
@@ -7853,6 +7875,7 @@ Symbol: \qBinomial
   Feature Set: dlmf-macro
 	DLMF: \qBinomial{n}{m}{q}
 	DLMF-Link: dlmf.nist.gov/17.2#E27
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Binomial coefficient / Gaussian polynomial
@@ -7865,6 +7888,7 @@ Symbol: \qCharlier
   Feature Set: dlmf-macro
 	DLMF: \qCharlier{n}@{x}{c}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qCharlier
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Charlier polynomial
@@ -7877,6 +7901,7 @@ Symbol: \qCos
   Feature Set: dlmf-macro
 	DLMF: \qCos{q}@@{x}
 	DLMF-Link: dlmf.nist.gov/17.3#E6
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Cosine functions
@@ -7889,6 +7914,7 @@ Symbol: \qCosKLS
   Feature Set: dlmf-macro
 	DLMF: \qCosKLS{q}@@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qCosKLS
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Cosine functions
@@ -7901,6 +7927,7 @@ Symbol: \qDigamma
   Feature Set: dlmf-macro
 	DLMF: \qDigamma{q}@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qDigamma
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Digamma function
@@ -7913,6 +7940,7 @@ Symbol: \qEuler
   Feature Set: dlmf-macro
 	DLMF: \qEuler{m}{s}@{q}
 	DLMF-Link: dlmf.nist.gov/17.3#E8
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Euler function
@@ -7925,6 +7953,7 @@ Symbol: \qExp
   Feature Set: dlmf-macro
 	DLMF: \qExp{q}@@{x}
 	DLMF-Link: dlmf.nist.gov/17.3#E2
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Exponential function
@@ -7937,6 +7966,7 @@ Symbol: \qExpKLS
   Feature Set: dlmf-macro
 	DLMF: \qExpKLS{q}@@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qExpKLS
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Exponential function
@@ -7949,6 +7979,7 @@ Symbol: \qFactorial
   Feature Set: dlmf-macro
 	DLMF: \qFactorial{n}{q}
 	DLMF-Link: dlmf.nist.gov/5.18#E2
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Factorial function
@@ -7961,6 +7992,7 @@ Symbol: \qGamma
   Feature Set: dlmf-macro
 	DLMF: \qGamma{q}@{z}
 	DLMF-Link: dlmf.nist.gov/5.18#E4
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Gamma function
@@ -7973,6 +8005,7 @@ Symbol: \qHahn
   Feature Set: dlmf-macro
 	DLMF: \qHahn{n}@@{q^{-x}}{\alpha}{\beta}{N}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qHahn
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Hahn polynomial
@@ -7985,6 +8018,7 @@ Symbol: \qHahnQ
   Feature Set: dlmf-macro
 	DLMF: \qHahnQ{n}@{x}{\alpha}{\beta}{N}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E3
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Hahn polynomial
@@ -7997,6 +8031,7 @@ Symbol: \qHermiteH
   Feature Set: dlmf-macro
 	DLMF: \qHermiteH{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E16
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Hermite polynomial
@@ -8009,6 +8044,7 @@ Symbol: \qHermitehI
   Feature Set: dlmf-macro
 	DLMF: \qHermitehI{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E21
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Hermite discrete I
@@ -8021,6 +8057,7 @@ Symbol: \qHermitehII
   Feature Set: dlmf-macro
 	DLMF: \qHermitehII{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E23
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Hermite discrete II
@@ -8033,6 +8070,7 @@ Symbol: \qHyperrWs
   Feature Set: dlmf-macro
 	DLMF: \qHyperrWs{r}{r+1}@@@{a_1}{a_4,a_5,...,a_{r+1}}{q}{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qHyperrWs
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: very-well-poised basic hypergeometric (or $q$-hypergeometric) function
@@ -8045,6 +8083,7 @@ Symbol: \qHyperrphis
   Feature Set: dlmf-macro
 	DLMF: \qHyperrphis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z}
 	DLMF-Link: dlmf.nist.gov/17.4#E1
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: basic hypergeometric (or $q$-hypergeometric) function
@@ -8057,6 +8096,7 @@ Symbol: \qHyperrpsis
   Feature Set: dlmf-macro
 	DLMF: \qHyperrpsis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z}
 	DLMF-Link: dlmf.nist.gov/17.4#E3
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: bilateral basic hypergeometric (or bilateral $q$-hypergeometric) function
@@ -8069,6 +8109,7 @@ Symbol: \qJacobiP
   Feature Set: dlmf-macro
 	DLMF: \qJacobiP{n}@{x}{a}{b}{c}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E5
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Jacobi polynomial
@@ -8081,6 +8122,7 @@ Symbol: \qJacobiPP
   Feature Set: dlmf-macro
 	DLMF: \qJacobiPP{\alpha}{\beta}{n}@{x}{c}{d}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E6
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Jacobi polynomial
@@ -8093,6 +8135,7 @@ Symbol: \qJacobip
   Feature Set: dlmf-macro
 	DLMF: \qJacobip{n}@{x}{a}{b}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E13
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Jacobi polynomial
@@ -8105,6 +8148,7 @@ Symbol: \qKrawtchouk
   Feature Set: dlmf-macro
 	DLMF: \qKrawtchouk{n}@@{q^{-x}}{p}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qKrawtchouk
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Krawtchouk polynomial
@@ -8117,6 +8161,7 @@ Symbol: \qLaguerre
   Feature Set: dlmf-macro
 	DLMF: \qLaguerre[\alpha]{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qLaguerre
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Laguerre polynomial
@@ -8129,6 +8174,7 @@ Symbol: \qLaguerreL
   Feature Set: dlmf-macro
 	DLMF: \qLaguerreL[\alpha]{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E15
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Laguerre polynomial
@@ -8141,6 +8187,7 @@ Symbol: \qLegendre
   Feature Set: dlmf-macro
 	DLMF: \qLegendre{n}@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qLegendre
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Legendre polynomial
@@ -8153,6 +8200,7 @@ Symbol: \qMeixner
   Feature Set: dlmf-macro
 	DLMF: \qMeixner{n}@{x}{b}{c}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qMeixner
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Meixner polynomial
@@ -8165,6 +8213,7 @@ Symbol: \qMeixnerPollaczek
   Feature Set: dlmf-macro
 	DLMF: \qMeixnerPollaczek{n}@{x}{a}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qMeixnerPollaczek
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Meixner-Pollaczek polynomial
@@ -8177,6 +8226,7 @@ Symbol: \qMultiPochhammer
   Feature Set: dlmf-macro
 	DLMF: \qMultiPochhammer{a_1,\ldots,a_n}{q}{n}
 	DLMF-Link: dlmf.nist.gov/17.2.E5
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Multi-Pochhammer symbol
@@ -8189,6 +8239,7 @@ Symbol: \qMultinomial
   Feature Set: dlmf-macro
 	DLMF: \qMultinomial{a_1+\ldots+a_n}{a_1,\ldots,a_n}{q}
 	DLMF-Link: dlmf.nist.gov/26.16.E1
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-multinomial
@@ -8201,6 +8252,7 @@ Symbol: \qPochhammer
   Feature Set: dlmf-macro
 	DLMF: \qPochhammer{a}{q}{n}
 	DLMF-Link: dlmf.nist.gov/17.2#SS1.p1
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Pochhammer symbol
@@ -8213,6 +8265,7 @@ Symbol: \qPolygamma
   Feature Set: dlmf-macro
 	DLMF: \qPolygamma{n}{q}@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qPolygamma
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Polygamma function
@@ -8225,6 +8278,7 @@ Symbol: \qRacah
   Feature Set: dlmf-macro
 	DLMF: \qRacah{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E19
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Racah polynomials
@@ -8237,6 +8291,7 @@ Symbol: \qRacahR
   Feature Set: dlmf-macro
 	DLMF: \qRacahR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E19
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Racah polynomials
@@ -8249,6 +8304,7 @@ Symbol: \qSin
   Feature Set: dlmf-macro
 	DLMF: \qSin{q}@@{x}
 	DLMF-Link: dlmf.nist.gov/17.3#E4
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Sine function
@@ -8261,6 +8317,7 @@ Symbol: \qSinKLS
   Feature Set: dlmf-macro
 	DLMF: \qSinKLS{q}@@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qSinKLS
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Sine function
@@ -8273,6 +8330,7 @@ Symbol: \qStirling
   Feature Set: dlmf-macro
 	DLMF: \qStirling{m}{s}@{q}
 	DLMF-Link: dlmf.nist.gov/17.3#E9
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Stirling number
@@ -8285,6 +8343,7 @@ Symbol: \qUltraspherical
   Feature Set: dlmf-macro
 	DLMF: \qUltraspherical{n}@{x}{\beta}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E13
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Ultraspherical polynomial
@@ -8297,6 +8356,7 @@ Symbol: \qcos
   Feature Set: dlmf-macro
 	DLMF: \qcos{q}@@{x}
 	DLMF-Link: dlmf.nist.gov/17.3#E5
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Cosine functions
@@ -8309,6 +8369,7 @@ Symbol: \qcosKLS
   Feature Set: dlmf-macro
 	DLMF: \qcosKLS{q}@@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qcosKLS
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Cosine functions
@@ -8321,6 +8382,7 @@ Symbol: \qderiv
   Feature Set: dlmf-macro
 	DLMF: \qderiv[n]{q}@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qderiv
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Derivative
@@ -8333,6 +8395,7 @@ Symbol: \qdiff
   Feature Set: dlmf-macro
 	DLMF: \qdiff{q}{x}
 	DLMF-Link: dlmf.nist.gov/17.2#SS5.p1
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Derivative
@@ -8345,6 +8408,7 @@ Symbol: \qexp
   Feature Set: dlmf-macro
 	DLMF: \qexp{q}@@{x}
 	DLMF-Link: dlmf.nist.gov/17.3#E1
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Exponential function
@@ -8357,6 +8421,7 @@ Symbol: \qexpKLS
   Feature Set: dlmf-macro
 	DLMF: \qexpKLS{q}@@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qExpKLS
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Exponential function
@@ -8381,6 +8446,7 @@ Symbol: \qinvHermiteh
   Feature Set: dlmf-macro
 	DLMF: \qinvHermiteh{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E18
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Invert-Hermite polynomial
@@ -8393,6 +8459,7 @@ Symbol: \qsin
   Feature Set: dlmf-macro
 	DLMF: \qsin{q}@@{x}
 	DLMF-Link: dlmf.nist.gov/17.3#E3
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Sine function
@@ -8405,6 +8472,7 @@ Symbol: \qsinKLS
   Feature Set: dlmf-macro
 	DLMF: \qsinKLS{q}@@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qsinKLS
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: q-Sine function
@@ -8417,6 +8485,7 @@ Symbol: \qtmqKrawtchouk
   Feature Set: dlmf-macro
 	DLMF: \qtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qtmqKrawtchouk
+	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: quantum q-Krawtchouk polynomial
@@ -8444,7 +8513,7 @@ Symbol: \rescaledTerminant
   Feature Set: dlmf-macro
 	DLMF: \rescaledTerminant{p}@{z}
 	DLMF-Link: dlmf.nist.gov/9.7#E22
-	Maple: (exp(z)/(2*Pi))*GAMMA(p)*GAMMA(1-p,z)
+	Maple-Alternatives: (exp($1)/(2*Pi))*GAMMA($0)*GAMMA(1-$0,$1)
 	Maple-Link: not defined
 	Mathematica-Link: 
 	Meanings: Rescaled terminant function

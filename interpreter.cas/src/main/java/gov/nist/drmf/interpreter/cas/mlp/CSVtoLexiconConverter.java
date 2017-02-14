@@ -51,7 +51,15 @@ public class CSVtoLexiconConverter {
 
     private String[] header;
 
+//    private static int
+//            internal_dlmf_counter,
+//            internal_maple_trans_counter;
+
+
     public CSVtoLexiconConverter ( Path CSV_dlmf_file, Path... CSV_CAS_files ) throws Exception {
+//        internal_dlmf_counter = 0;
+//        internal_maple_trans_counter = 0;
+
         this.csv_dlmf_file =
                 GlobalConstants.PATH_REFERENCE_DATA_CSV.resolve(CSV_dlmf_file);
         if ( !csv_dlmf_file.toFile().exists() )
@@ -159,15 +167,21 @@ public class CSVtoLexiconConverter {
             return;
         }
 
-        // otherwise it is a usual DLMF macro and we can create our feature set for it
-        // create a new feature set
-        FeatureSet fset = new FeatureSet( Keys.KEY_DLMF_MACRO );
-        // add the general representation for this macro
-        fset.addFeature( Keys.KEY_DLMF, macro, SIGNAL_INLINE );
-
         // find out if it is a mathematical constant
         String role = lineAnalyzer.getValue( Keys.FEATURE_ROLE );
-        if ( role.matches( Keys.FEATURE_VALUE_CONSTANT ) ){
+
+        // otherwise it is a usual DLMF macro and we can create our feature set for it
+        // create a new feature set
+        FeatureSet fset;
+        if ( role.matches( Keys.FEATURE_VALUE_SYMBOL ) ) {
+            // TODO we should handle symbols in a different way
+            fset = new FeatureSet(Keys.KEY_DLMF_MACRO);
+        }
+        else if ( role.matches( Keys.FEATURE_VALUE_CONSTANT ) ){
+            fset = new FeatureSet(Keys.KEY_DLMF_MACRO);
+            // add the general representation for this macro
+            fset.addFeature( Keys.KEY_DLMF, macro, SIGNAL_INLINE );
+
             String dlmf_link = "DLMF-Link";
             fset.addFeature( dlmf_link, lineAnalyzer.getValue(dlmf_link), SIGNAL_INLINE );
             fset.addFeature( Keys.FEATURE_MEANINGS, lineAnalyzer.getValue(Keys.FEATURE_MEANINGS), SIGNAL_INLINE );
@@ -175,8 +189,16 @@ public class CSVtoLexiconConverter {
             LinkedList<FeatureSet> fsets = new LinkedList<>();
             fsets.add(fset);
             dlmf_lexicon.setEntry( m.group(1), fsets );
+            //internal_dlmf_counter++;
             return;
-        }
+        } else if ( role.matches( Keys.FEATURE_VALUE_FUNCTION ) ){
+            fset = new FeatureSet( Keys.FEATURE_VALUE_FUNCTION );
+        } else if ( role.matches( Keys.FEATURE_VALUE_IGNORE ) )
+            return;
+        else fset = new FeatureSet( Keys.KEY_DLMF_MACRO );
+
+        // add the general representation for this macro
+        fset.addFeature( Keys.KEY_DLMF, macro, SIGNAL_INLINE );
 
         // add all other information to the feature set
         for ( int i = 1; i < elements.length && i < header.length; i++ ){
@@ -192,6 +214,7 @@ public class CSVtoLexiconConverter {
         // group(1) is the DLMF macro without the suffix of parameters, ats and variables
         // just the plain macro
         dlmf_lexicon.setEntry( m.group(1), fsets );
+        //internal_dlmf_counter++;
     }
 
     private void handleCasAddOn( String[] elements ){
@@ -206,17 +229,21 @@ public class CSVtoLexiconConverter {
 
         List<FeatureSet> list = dlmf_lexicon.getFeatureSets( m.group(1) );
         if ( list == null || list.isEmpty() ){
-            ERROR_LOG.severe("Cannot find FeatureSet of " + m.group(1) );
+            ERROR_LOG.info("SKIP " + m.group(1) + " (Reason: Cannot find FeatureSet)" );
             return;
         }
 
         FeatureSet fset = list.get(0);
         for ( int i = 1; i < elements.length && i < header.length; i++ ){
             String value = lineAnalyzer.getValue( header[i] );
-            if ( value != null && !value.isEmpty() )
+            if ( value != null && !value.isEmpty() ){
                 fset.addFeature( header[i], value, SIGNAL_INLINE );
+            }
         }
 
+//        String value = lineAnalyzer.getValue( header[1] );
+//        if ( fset != null && value != null && !value.isEmpty() )
+//            internal_maple_trans_counter++;
         // hmm, i don't know if this is necessary because we are working on references
         //dlmf_lexicon.setEntry( m.group(1), fsets );
     }
@@ -265,5 +292,7 @@ public class CSVtoLexiconConverter {
             e.printStackTrace();
         }
         System.out.println(((System.currentTimeMillis()-start)/1000.) + " s");
+//        System.out.println("Number of DLMF-Macros: " + internal_dlmf_counter);
+//        System.out.println("Number of Maple translations: " + internal_maple_trans_counter);
     }
 }
