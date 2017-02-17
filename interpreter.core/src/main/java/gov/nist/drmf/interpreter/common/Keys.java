@@ -9,6 +9,8 @@ public class Keys {
 
     public static boolean ALTERNATIVE_MODE = false;
 
+    public static final String CONFIG_FILE = "config.properties";
+
     public static final String ALTERNATIVE_SPLIT = "||";
 
     // Key value for LaTeX
