@@ -6,7 +6,7 @@ import com.maplesoft.openmaple.Engine;
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
-import gov.nist.drmf.interpreter.maple.parser.components.AlgebraicListParser;
+import gov.nist.drmf.interpreter.maple.parser.components.AbstractAlgebraicParser;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 /**
  * Created by AndreG-P on 21.02.2017.
  */
-public class MapleInterface {
+public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
 
     public static final Logger LOG = Logger.getLogger(MapleInterface.class.toString());
 
@@ -33,10 +33,8 @@ public class MapleInterface {
     private MapleListener listener;
     private Engine e;
 
-    private AlgebraicListParser listParser;
-
     public MapleInterface(){
-        listParser = new AlgebraicListParser();
+
     }
 
     /**
@@ -78,15 +76,18 @@ public class MapleInterface {
     }
 
     public String parse( String maple_input ) throws MapleException {
-        Algebraic a = e.evaluate( callback_prefix + maple_input + callback_suffix);
+        Algebraic a = e.evaluate( "list_converter(ToInert('" + maple_input + "'));" );
+        //Algebraic a = e.evaluate( callback_prefix + maple_input + callback_suffix );
+        if ( !parse(a) ){
+            System.err.println("Something went wrong: " + internalErrorLog);
+            return "";
+        } else return translatedExpression;
+    }
 
-        if ( a instanceof List ){
-            List l = (List)a;
-            listParser.parse(l);
-            return listParser.getTranslatedExpression();
-        } else {
-            System.out.println("Something went wrong, its not a lot.");
-            throw new MapleException("The Algebraic object " + a + " is not a list.");
-        }
+    @Override
+    public boolean parse( Algebraic alg ){
+        translatedExpression = parseGeneralExpression(alg);
+        if ( translatedExpression == null ) return false;
+        else return true;
     }
 }
