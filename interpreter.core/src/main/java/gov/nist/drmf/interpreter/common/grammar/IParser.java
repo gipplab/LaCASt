@@ -10,7 +10,7 @@ import mlp.PomTaggedExpression;
  *
  * @author Andre Greiner-Petter
  */
-public interface IParser {
+public interface IParser<T> {
     /**
      * This method parses a given expression.
      * It returns true if the parsing process
@@ -23,14 +23,14 @@ public interface IParser {
      * @return  true if the parsing process finished
      *          without an error.
      */
-    boolean parse(PomTaggedExpression expression);
+    boolean parse(T expression);
 
     /**
      * Returns the translated expression. This
-     * value could be null, if the {@link #parse(PomTaggedExpression)}
+     * value could be null, if the {@link #parse(T)}
      * returns false before.
      * @return  the translated expression given in
-     *          {@link #parse(PomTaggedExpression)} or nul
+     *          {@link #parse(T)} or nul
      */
     @Nullable
     String getTranslatedExpression();

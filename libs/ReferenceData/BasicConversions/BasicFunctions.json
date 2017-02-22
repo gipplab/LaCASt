@@ -45,7 +45,7 @@
 	"Modulo": {
 		"MLP": "modulo",
 		"LaTeX": "$0 \\mod $1",
-		"Maple": "`mod`($0,$1)",
+		"Maple": "`modp`($0,$1)",
 		"Mathematica": "Mod[$0,$1]"
 	}
   },

@@ -1,9 +1,10 @@
 package gov.nist.drmf.interpreter.maple;
 
 import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Engine;
-import com.maplesoft.openmaple.EngineCallBacksDefault;
+import gov.nist.drmf.interpreter.maple.parser.MapleInterface;
 import gov.nist.drmf.interpreter.maple.setup.Initializer;
+
+import java.io.IOException;
 
 /**
  * Created by AndreG-P on 17.02.2017.
@@ -18,14 +19,16 @@ public class MapleToSemanticInterpreter {
             return;
         }
 
+
         try {
-            Engine e = new Engine( new String[]{"java"}, new EngineCallBacksDefault(), null, null );
-        } catch ( MapleException me ){
+            MapleInterface imaple = new MapleInterface();
+            imaple.init();
+            String result = imaple.parse( "sin(x+y)+2*z+5*s" );
+            System.out.println("Translated to: " + result);
+        } catch ( MapleException | IOException me ){
             System.out.println("Well, Maple-Exception... nice shit.");
             me.printStackTrace();
         }
-
-        System.out.println("MUHAHA");
     }
 
 }

@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author Andre Greiner-Petter
  */
-public abstract class AbstractParser implements IParser {
+public abstract class AbstractParser implements IParser<PomTaggedExpression> {
     public static final String SPACE = " ";
 
     public static final String OPEN_PARENTHESIS_PATTERN =
