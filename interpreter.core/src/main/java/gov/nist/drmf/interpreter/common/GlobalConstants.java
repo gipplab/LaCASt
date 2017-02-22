@@ -41,6 +41,9 @@ public class GlobalConstants {
     public static final Path PATH_BASIC_FUNCTIONS =
             Paths.get("libs", "ReferenceData", "BasicConversions", "BasicFunctions.json");
 
+    public static final Path PATH_MAPLE_PROCEDURE =
+            Paths.get("libs", "ReferenceData", "MapleProcedures", "maple_list_procedure.txt");
+
     // the name of the lexicon file
     public static final String DLMF_MACROS_LEXICON_NAME =
             "DLMF-macros-lexicon.txt";
