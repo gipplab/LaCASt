@@ -73,12 +73,13 @@ public class MapleListener implements EngineCallBacks {
 
     @Override
     public String callBackCallBack(Object o, String s) throws MapleException {
+        String call = "eval(parse(\"" + proc_name + "(ToInert('" + s + "'))\"));";
         if ( logging ) {
-            String str = "Pack input into conversion.";
+            String str = "Pack input into conversion: " + call;
             log.info(str);
         }
 
-        return proc_name + "(ToInert('" + s + "'));";
+        return call;
     }
 
     @Override
