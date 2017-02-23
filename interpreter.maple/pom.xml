@@ -11,6 +11,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <maple.path>C:/Program Files/Maple 2017</maple.path>
     </properties>
 
     <dependencies>
@@ -18,6 +19,22 @@
             <groupId>gov.nist.drmf.interpreter</groupId>
             <artifactId>interpreter.core</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Maple</artifactId>
+            <scope>system</scope>
+            <version>1.0-SNAPSHOT</version>
+            <systemPath>${maple.path}/java/Maple.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Maple-Call</artifactId>
+            <scope>system</scope>
+            <version>1.0-SNAPSHOT</version>
+            <systemPath>${maple.path}/java/externalcall.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

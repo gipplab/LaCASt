@@ -13,9 +13,11 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="interpreter.core" />
-    <orderEntry type="library" name="Maven: org.junit.jupiter:junit-jupiter-api:5.0.0-M2" level="project" />
+    <orderEntry type="library" name="Maven: org.junit.jupiter:junit-jupiter-api:5.0.0-M3" level="project" />
     <orderEntry type="library" name="Maven: org.opentest4j:opentest4j:1.0.0-M1" level="project" />
-    <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-commons:1.0.0-M2" level="project" />
+    <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-commons:1.0.0-M3" level="project" />
+    <orderEntry type="library" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.0.0-M3" level="project" />
+    <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-engine:1.0.0-M3" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.0" level="project" />
     <orderEntry type="module-library">
       <library name="Maven: gov.nist.drmf.interpreter:MLP:1.0-SNAPSHOT">
@@ -36,7 +38,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="Maven: gov.nist.drmf.interpreter:Maple_Caller:1.0-SNAPSHOT">
+      <library name="Maven: gov.nist.drmf.interpreter:Maple-Call:1.0-SNAPSHOT">
         <CLASSES>
           <root url="jar://C:/Program Files/Maple 2017/java/externalcall.jar!/" />
         </CLASSES>
