@@ -3,7 +3,6 @@ package gov.nist.drmf.interpreter.maple.parser;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.Engine;
-import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import gov.nist.drmf.interpreter.maple.parser.components.AbstractAlgebraicParser;
@@ -25,17 +24,15 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
 
     private final String
             define_symb = ":=",
-            callback_prefix = "callback(",
-            callback_suffix = ");";
+            to_inert_prefix = "ToInert('",
+            to_inert_suffix = "')";
 
     private String maple_procedure;
 
     private MapleListener listener;
-    private Engine e;
+    private static Engine e;
 
-    public MapleInterface(){
-
-    }
+    public MapleInterface(){}
 
     /**
      * Initialize the interface to the engine of Maple. You cannot initialize it twice!
@@ -54,30 +51,37 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
         if ( e != null ) return;
 
         // loading procedure from file.
-        String proc;
+        String procedure;
         // try to collect a stream.
         try ( Stream<String> stream = Files.lines( GlobalConstants.PATH_MAPLE_PROCEDURE ) ){
-            proc = stream.collect( Collectors.joining(System.lineSeparator()) );
+            procedure = stream.collect( Collectors.joining(System.lineSeparator()) );
             stream.close(); // not really necessary
-            maple_procedure = proc.split(define_symb)[0].trim();
+            maple_procedure = procedure.split(define_symb)[0].trim();
         } catch (IOException ioe){
             System.err.println("Cannot load procedure from file " + GlobalConstants.PATH_MAPLE_PROCEDURE);
             throw ioe;
         }
 
         // initialize callback listener
-        listener = new MapleListener(maple_procedure, true);
+        listener = new MapleListener(true);
 
         // initialize engine
         e = new Engine( maple_args, listener, null, null );
 
         // evaluate procedure
-        e.evaluate( proc );
+        e.evaluate( procedure );
     }
 
     public String parse( String maple_input ) throws MapleException {
-        Algebraic a = e.evaluate( "list_converter(ToInert('" + maple_input + "'));" );
-        //Algebraic a = e.evaluate( callback_prefix + maple_input + callback_suffix );
+        // Looks shitty? Right! It's Jürgen's shit...
+        Algebraic a =
+                e.evaluate(
+                        maple_procedure + "(" +
+                        to_inert_prefix + maple_input + to_inert_suffix +
+                        ");"
+                );
+
+
         if ( !parse(a) ){
             System.err.println("Something went wrong: " + internalErrorLog);
             return "";
@@ -89,5 +93,9 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
         translatedExpression = parseGeneralExpression(alg);
         if ( translatedExpression == null ) return false;
         else return true;
+    }
+
+    public static Algebraic evaluateExpression( String exp ) throws MapleException{
+        return e.evaluate( exp );
     }
 }

@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  */
 public abstract class AbstractAlgebraicParser<T extends Algebraic> implements IParser<T> {
 
-    public static final String SYNTAX_REGEX = "_Inert_([A-Z]+)";
+    private static final String SYNTAX_REGEX = "_Inert_([A-Z]+)";
 
     public static final Pattern PATTERN = Pattern.compile( SYNTAX_REGEX );
 

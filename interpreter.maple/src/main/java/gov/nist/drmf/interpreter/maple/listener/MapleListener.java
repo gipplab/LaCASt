@@ -15,10 +15,7 @@ public class MapleListener implements EngineCallBacks {
 
     private boolean interrupter;
 
-    private String proc_name;
-
-    public MapleListener( String procedure_name, boolean logging ){
-        this.proc_name = procedure_name;
+    public MapleListener( boolean logging ){
         this.logging = logging;
         this.interrupter = false;
     }
@@ -73,13 +70,12 @@ public class MapleListener implements EngineCallBacks {
 
     @Override
     public String callBackCallBack(Object o, String s) throws MapleException {
-        String call = "eval(parse(\"" + proc_name + "(ToInert('" + s + "'))\"));";
         if ( logging ) {
-            String str = "Pack input into conversion: " + call;
+            String str = "Stopped callback! This program doesn't allows callbacks. " +
+                    "Ask Jürgen Gerhard, if you can't believe it!";
             log.info(str);
         }
-
-        return call;
+        return null;
     }
 
     @Override

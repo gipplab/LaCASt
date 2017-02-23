@@ -23,7 +23,7 @@ public class MapleToSemanticInterpreter {
         try {
             MapleInterface imaple = new MapleInterface();
             imaple.init();
-            String result = imaple.parse( "3*I" );
+            String result = imaple.parse( "2/(-5)" );
             System.out.println("Translated to: " + result);
         } catch ( MapleException | IOException me ){
             System.out.println("Well, Maple-Exception... nice shit.");
