@@ -50,6 +50,7 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
                 case floating:
                     break;
                 case rational:
+
                     break;
                 default:
                     internalErrorLog += "Not a numerical element! " + root;
