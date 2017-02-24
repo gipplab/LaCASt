@@ -122,7 +122,7 @@ public class MacroParser extends AbstractListParser {
     }
 
     private boolean parse(List<PomTaggedExpression> following_exps){
-        if ( components == null ) return false;
+        if ( components == null || following_exps == null ) return false;
 
         int inner_at_counter = 0;
         for ( int i = 0; !following_exps.isEmpty() && i < components.length; ){
