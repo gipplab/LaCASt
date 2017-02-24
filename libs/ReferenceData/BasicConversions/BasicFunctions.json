@@ -47,6 +47,12 @@
 		"LaTeX": "$0 \\mod $1",
 		"Maple": "`modp`($0,$1)",
 		"Mathematica": "Mod[$0,$1]"
+	},
+	"Subscript":{
+		"MLP": "underscore",
+		"LaTeX": "$0_{$1}",
+		"Maple": "$0[$1]",
+		"Mathematica": "Subscript[$0, $1]"
 	}
   },
   "Symbol Languages": [
@@ -79,6 +85,12 @@
 		"LaTeX": "=",
 		"Maple": "=",
 		"Mathematica": "="
+	},
+	"Definition":{
+		"MLP": "definition",
+		"LaTeX": ":=",
+		"Maple": ":=",
+		"Mathematica": ":="
 	},
 	"Not Equality":{
 		"MLP": "relation_1",

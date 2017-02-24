@@ -37,6 +37,7 @@ public class MathTermParser extends AbstractListParser {
     // some special characters which are useful for this parser
     // the caret uses for powers
     public static final String CHAR_CARET = "^";
+    public static final String UNDERSCORE = "underscore";
 
     @Override
     public boolean parse( PomTaggedExpression exp ){
@@ -223,6 +224,8 @@ public class MathTermParser extends AbstractListParser {
                 return true;
             case caret:
                 return parseCaret( exp );
+            case underscore:
+                return parseUnderscores( exp );
             case ellipsis:
                 SymbolTranslator sT = SemanticLatexParser.getSymbolsTranslator();
                 String symbol = sT.translateFromMLPKey( tag.tag() );
@@ -435,6 +438,40 @@ public class MathTermParser extends AbstractListParser {
         global_exp.addTranslatedExpression( powerStr );
         // merges last 2 expression, because after ^ it is one phrase than
         global_exp.mergeLastNExpressions(2);
+        return !isInnerError();
+    }
+
+    /**
+     * Handle an underscore to indexing expressions.
+     *
+     * @param exp the underscore expression, it has child, the subscript expression.
+     * @return true if everything was fine.
+     */
+    private boolean parseUnderscores( PomTaggedExpression exp ){
+        // first of all, remove the previous expression. It becomes a whole new block.
+        String var = global_exp.removeLastExpression();
+
+        // get the subscript expression and parse it.
+        PomTaggedExpression subscript_exp = exp.getComponents().get(0);
+        TranslatedExpression subscript = parseGeneralExpression(subscript_exp, null);
+
+        // pack it into a list of arguments. The first one is the expression with an underscore
+        // the second is the underscore expression itself.
+        String[] args = new String[]{var, subscript.getTranslatedExpression()};
+
+        // remove the mess from global_exp and local_exp
+        global_exp.removeLastNExps( subscript.clear() );
+        local_inner_exp.clear();
+
+        // finally translate it as a function
+        BasicFunctionsTranslator parser = SemanticLatexParser.getBasicFunctionParser();
+        String translation = parser.translate(args, UNDERSCORE);
+
+        // keep the local_inner_exp clean to show we need to take the global_exp
+        //local_inner_exp.addTranslatedExpression( translation );
+
+        // add our final representation for subscripts to the global lexicon
+        global_exp.addTranslatedExpression( translation );
         return !isInnerError();
     }
 }

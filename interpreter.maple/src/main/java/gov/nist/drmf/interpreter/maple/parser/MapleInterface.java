@@ -4,6 +4,11 @@ import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.Engine;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
+import gov.nist.drmf.interpreter.common.symbols.Constants;
+import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
+import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import gov.nist.drmf.interpreter.maple.parser.components.AbstractAlgebraicParser;
 
@@ -32,7 +37,21 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
     private MapleListener listener;
     private static Engine e;
 
-    public MapleInterface(){}
+    private static GreekLetters greek;
+    private static Constants constants;
+    private static BasicFunctionsTranslator basicFunc;
+    private static SymbolTranslator symbolTranslator;
+
+    private String translateTo;
+
+    public MapleInterface( String translateTo ){
+        this.translateTo = translateTo;
+
+        greek = new GreekLetters(Keys.KEY_MAPLE, translateTo);
+        constants = new Constants(Keys.KEY_MAPLE, translateTo);
+        basicFunc = new BasicFunctionsTranslator(Keys.KEY_DLMF);
+        symbolTranslator = new SymbolTranslator(Keys.KEY_MAPLE, translateTo);
+    }
 
     /**
      * Initialize the interface to the engine of Maple. You cannot initialize it twice!
@@ -70,6 +89,12 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
 
         // evaluate procedure
         e.evaluate( procedure );
+
+        // init translators
+        greek.init();
+        constants.init();
+        basicFunc.init();
+        symbolTranslator.init();
     }
 
     public String parse( String maple_input ) throws MapleException {

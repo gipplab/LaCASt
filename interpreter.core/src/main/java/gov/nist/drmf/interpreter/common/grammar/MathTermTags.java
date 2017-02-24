@@ -31,6 +31,7 @@ public enum MathTermTags {
     greater_than("greater-then"),
     macro("macro"),
     caret("caret"),
+    underscore("underscore"),
     factorial("exclamation point"),
     operation("operation"),
     ellipsis("ellipsis"),
