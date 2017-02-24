@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.maple;
 
 import com.maplesoft.externalcall.MapleException;
+import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.maple.parser.MapleInterface;
 import gov.nist.drmf.interpreter.maple.setup.Initializer;
 
@@ -21,7 +22,7 @@ public class MapleToSemanticInterpreter {
 
 
         try {
-            MapleInterface imaple = new MapleInterface();
+            MapleInterface imaple = new MapleInterface(Keys.KEY_DLMF);
             imaple.init();
             String result = imaple.parse( "2/(-5)" );
             System.out.println("Translated to: " + result);

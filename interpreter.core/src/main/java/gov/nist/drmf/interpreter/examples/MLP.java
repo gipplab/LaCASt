@@ -62,7 +62,8 @@ public class MLP {
             //eq = "\\FerrersP[\\frac{1}{2}]{\\nu}@{z}";
 //            eq = "(ab^2c 1+2) \\cdot \\CatalansConstant 2";
 //            eq="\\left ( \\left ( y \\right ] \\right)";
-            eq = "\\sqrt \\frac{2}{4}";
+//            eq = "\\sqrt \\frac{2}{4}";
+            eq = "x_2";
 
             // parse/tag the equation and print it out 
             PomTaggedExpression pe = parser.parse(eq);
