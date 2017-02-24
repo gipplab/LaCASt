@@ -226,10 +226,13 @@ public class MathTermParser extends AbstractListParser {
                 return parseCaret( exp );
             case underscore:
                 return parseUnderscores( exp );
-            case ordinary: // ordinary are symbols as ellipsis
+            case ordinary:
             case ellipsis:
                 SymbolTranslator sT = SemanticLatexParser.getSymbolsTranslator();
-                String symbol = sT.translate( term.getTermText() );
+                String symbol;
+                if ( tag.equals(MathTermTags.ordinary) )
+                    symbol = sT.translate( term.getTermText() );
+                else symbol = sT.translateFromMLPKey( tag.tag() );
                 local_inner_exp.addTranslatedExpression( symbol );
                 global_exp.addTranslatedExpression( symbol );
                 return true;

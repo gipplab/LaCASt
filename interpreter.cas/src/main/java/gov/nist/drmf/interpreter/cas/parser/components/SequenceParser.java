@@ -282,6 +282,8 @@ public class SequenceParser extends AbstractListParser {
                     || next.getTermText().matches( PATTERN_BASIC_OPERATIONS )
                     || curr.getTag().matches( MathTermTags.operation.tag() )
                     || next.getTag().matches( MathTermTags.operation.tag() )
+                    || curr.getTag().matches( MathTermTags.ellipsis.tag() )
+                    || next.getTag().matches( MathTermTags.ellipsis.tag() )
             );
         } catch ( Exception e ){ return true; }
     }
