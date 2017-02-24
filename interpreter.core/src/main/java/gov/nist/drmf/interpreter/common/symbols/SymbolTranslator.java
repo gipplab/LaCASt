@@ -35,8 +35,6 @@ public class SymbolTranslator extends AbstractJSONLoader {
 
     @Override
     public String translate( String symbol ) {
-        if ( symbol.startsWith("\\") )
-            symbol = symbol.substring(1);
         return translate( FROM, TO, symbol );
     }
 

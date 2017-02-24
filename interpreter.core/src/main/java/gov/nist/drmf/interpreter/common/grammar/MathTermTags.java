@@ -32,6 +32,7 @@ public enum MathTermTags {
     macro("macro"),
     caret("caret"),
     underscore("underscore"),
+    ordinary("ordinary"),
     factorial("exclamation point"),
     operation("operation"),
     ellipsis("ellipsis"),

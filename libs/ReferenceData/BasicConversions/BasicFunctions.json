@@ -70,13 +70,13 @@
 	},
 	"Multiply": {
 		"MLP": "operation",
-		"LaTeX": "cdot",
+		"LaTeX": "\\cdot",
 		"Maple": "*",
 		"Mathematica": "*"
 	},
 	"Lower dots":{
 		"MLP": "ellipsis",
-		"LaTeX": "ldots",
+		"LaTeX": "\\ldots",
 		"Maple": "..",
 		"Mathematica": " ... "
 	},
@@ -94,15 +94,21 @@
 	},
 	"Not Equality":{
 		"MLP": "relation_1",
-		"LaTeX": "neq",
+		"LaTeX": "\\neq",
 		"Maple": "<>",
 		"Mathematica": "\\[NotEqual]"
 	},
 	"Element of":{
 		"MLP": "relation_2",
-		"LaTeX": "in",
+		"LaTeX": "\\in",
 		"Maple": "in",
 		"Mathematica": "\\[Element]"
+	},
+	"Infinity": {
+      "MLP": "ordinary",
+      "LaTeX": "\\infty",
+      "Maple": "infinity",
+      "Mathematica": "Infinity"
 	}
   }
 }
