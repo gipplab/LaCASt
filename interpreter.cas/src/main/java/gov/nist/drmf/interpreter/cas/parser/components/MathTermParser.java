@@ -172,10 +172,8 @@ public class MathTermParser extends AbstractListParser {
                     return parseMathematicalConstant( constantSet, alpha );
                 }
 
-                // maple, simply add spaces between all letters
-                // maybe there has to be other ways for other CAS?
                 String output;
-                // add space to all objects except the last one
+                // add multiplication symbol between all letters
                 for ( int i = 0; i < alpha.length()-1; i++ ) {
                     output = alpha.charAt(i) + MULTIPLY;
                     // add it to local and global

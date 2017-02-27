@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
+import java.util.HashMap;
+
 /**
  * @author Andre Greiner-Petter
  */
@@ -43,7 +45,20 @@ public enum Brackets {
             CLOSE_BRACKETS.right_angle_brackets.s,
             Brackets.CLOSED,
             CLOSE_BRACKETS.right_angle_brackets.counter
+    ),
+    left_latex_parenthesis(
+            Brackets.LATEX_LEFT + OPEN_BRACKETS.left_parenthesis.s,
+            Brackets.OPENED,
+            Brackets.LATEX_RIGHT + OPEN_BRACKETS.left_parenthesis.counter
+    ),
+    right_latex_parenthesis(
+            Brackets.LATEX_RIGHT + CLOSE_BRACKETS.right_parenthesis.s,
+            Brackets.CLOSED,
+            Brackets.LATEX_LEFT + CLOSE_BRACKETS.right_parenthesis.counter
     );
+
+    private static final String LATEX_LEFT = "\\left";
+    private static final String LATEX_RIGHT = "\\right";
 
     private enum OPEN_BRACKETS{
         left_parenthesis("(", ")"),
@@ -85,16 +100,22 @@ public enum Brackets {
     public final boolean opened;
     public final String counterpart;
 
+    private static class HOLDER {
+        static HashMap<String, Brackets> key_map = new HashMap<>();
+    }
+
     Brackets(String symbol, boolean opened, String counterpart){
         this.symbol = symbol;
         this.opened = opened;
         this.counterpart = counterpart;
+        HOLDER.key_map.put( symbol, this );
+    }
+
+    public Brackets getCounterPart(){
+        return HOLDER.key_map.get( counterpart );
     }
 
     public static Brackets getBracket(String bracket){
-        for ( Brackets b : Brackets.values() )
-            if ( b.symbol.equals(bracket) )
-                return b;
-        return null;
+        return HOLDER.key_map.get( bracket );
     }
 }

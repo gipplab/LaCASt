@@ -5,6 +5,7 @@ import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.Engine;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
@@ -24,6 +25,8 @@ import java.util.stream.Stream;
 public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
 
     public static final Logger LOG = Logger.getLogger(MapleInterface.class.toString());
+
+    public static final Brackets DEFAULT_LATEX_BRACKET = Brackets.left_latex_parenthesis;
 
     private final String[] maple_args = new String[]{"java"};
 
