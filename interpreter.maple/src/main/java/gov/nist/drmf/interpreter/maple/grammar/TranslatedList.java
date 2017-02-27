@@ -15,7 +15,7 @@ public class TranslatedList extends TranslatedExpression {
     private Brackets brackets;
 
     public TranslatedList(){
-        super("");
+        super();
         this.trans_list = new LinkedList<>();
     }
 
@@ -32,10 +32,6 @@ public class TranslatedList extends TranslatedExpression {
         this.addTranslatedExpression( list.merge() );
     }
 
-    public TranslatedExpression removeLastExpression(){
-        return trans_list.removeLast();
-    }
-
     public void addPreviousTranslatedExpression( String expression ){
         TranslatedExpression t = new TranslatedExpression( expression );
         this.addPreviousTranslatedExpression(t);
@@ -47,6 +43,10 @@ public class TranslatedList extends TranslatedExpression {
 
     public void addPreviousTranslatedExpression( TranslatedList list ){
         this.addPreviousTranslatedExpression( list.merge() );
+    }
+
+    public TranslatedExpression removeLastExpression(){
+        return trans_list.removeLast();
     }
 
     public TranslatedExpression removePreviousTranslatedExpression(){
@@ -77,6 +77,7 @@ public class TranslatedList extends TranslatedExpression {
      * @return
      */
     public String getAccurateString(){
+        if ( trans_list.isEmpty() ) return "";
         LinkedList<TranslatedExpression> copy = new LinkedList<>();
 
         TranslatedExpression prev = null;
