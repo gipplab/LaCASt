@@ -5,6 +5,7 @@ import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.grammar.IParser;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
+import gov.nist.drmf.interpreter.maple.grammar.TranslatedExpression;
 import gov.nist.drmf.interpreter.maple.parser.MapleInterface;
 
 import java.util.regex.Matcher;
