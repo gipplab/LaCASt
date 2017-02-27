@@ -1,7 +1,8 @@
 package gov.nist.drmf.interpreter.maple.grammar;
 
+import static gov.nist.drmf.interpreter.maple.common.MapleConstants.*;
+
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * This object is created to represent a translated expression.
@@ -11,16 +12,6 @@ import java.util.regex.Pattern;
  * Created by AndreG-P on 24.02.2017.
  */
 public class TranslatedExpression {
-    public static final String SUM_SIGN_PATTERN = "\\s*[+-]\\s*";
-
-    public static final String PREV_NEG_SIGN = "\\s*-\\s*([^\\s]+)";
-    public static final Pattern PREV_NEG_SIGN_PATTERN = Pattern.compile( PREV_NEG_SIGN );
-
-    public static final boolean POSITIVE = true;
-    public static final boolean NEGATIVE = false;
-
-    public static final char NEGATIVE_SIGN = '-';
-
     private String expression = "";
     private boolean sign = true;
 
@@ -29,12 +20,21 @@ public class TranslatedExpression {
     protected TranslatedExpression(){}
 
     public TranslatedExpression( String expression ){
-        if ( expression.matches( SUM_SIGN_PATTERN ) ) {
-            this.expression = expression;
+        Matcher m = PLUS_MINUS_SIGN_PATTER.matcher( expression );
+        if ( m.matches() ) {
             summation_symbol = true;
+            if ( m.group(1).equals(NEGATIVE_SIGN) ){
+                sign = NEGATIVE;
+                this.expression = NEGATIVE_SIGN;
+            }
+            else {
+                sign = POSITIVE;
+                this.expression = POSITIVE_SIGN;
+            }
+            return;
         }
 
-        Matcher m = PREV_NEG_SIGN_PATTERN.matcher( expression );
+        m = PREV_NEG_SIGN_PATTERN.matcher( expression );
         if ( m.matches() ){
             this.expression = m.group(1);
             this.sign = NEGATIVE;
@@ -46,6 +46,17 @@ public class TranslatedExpression {
         this.sign = sign;
     }
 
+    public TranslatedExpression( TranslatedExpression texp ){
+        this.expression = texp.expression;
+        this.sign = texp.sign;
+        this.summation_symbol = texp.summation_symbol;
+    }
+
+    /**
+     * Use this function carefully. Only the subclass should use this function
+     * because the class is probably no longer inherent after you called this method!
+     * @param expression
+     */
     protected void changeExpression( String expression ){
         this.expression = expression;
     }
@@ -53,7 +64,8 @@ public class TranslatedExpression {
     /**
      * Set the sign of this expression.
      *
-     * @param sign is {@link #POSITIVE} or {@link #NEGATIVE}.
+     * @param sign is {@link gov.nist.drmf.interpreter.maple.common.MapleConstants#POSITIVE}
+     *             or {@link gov.nist.drmf.interpreter.maple.common.MapleConstants#NEGATIVE}.
      */
     public void setSign( boolean sign ){
         this.sign = sign;

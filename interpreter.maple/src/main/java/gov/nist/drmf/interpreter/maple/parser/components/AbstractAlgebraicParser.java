@@ -15,11 +15,6 @@ import java.util.regex.Pattern;
  * Created by AndreG-P on 21.02.2017.
  */
 public abstract class AbstractAlgebraicParser<T extends Algebraic> implements IParser<T> {
-
-    private static final String SYNTAX_REGEX = "_Inert_([A-Z]+)";
-
-    public static final Pattern PATTERN = Pattern.compile( SYNTAX_REGEX );
-
     protected String translatedExpression = "";
 
     protected String internalErrorLog = "";
@@ -41,7 +36,8 @@ public abstract class AbstractAlgebraicParser<T extends Algebraic> implements IP
                     return null;
                 }
                 else {
-                    return lParser.translatedExpression;
+                    return translatedExpression;
+                    //return lParser.translatedExpression;
                 }
             } catch ( MapleException | IllegalArgumentException e ){
                 this.internalErrorLog += e.getMessage();

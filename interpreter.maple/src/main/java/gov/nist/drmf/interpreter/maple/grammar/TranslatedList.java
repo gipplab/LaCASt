@@ -1,11 +1,15 @@
 package gov.nist.drmf.interpreter.maple.grammar;
 
+import static gov.nist.drmf.interpreter.maple.common.MapleConstants.*;
+
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.maple.parser.MapleInterface;
 
 import java.util.LinkedList;
 
 /**
+ * TODO should we handle spaces here as well? I think so.
+ *
  * Created by AndreG-P on 24.02.2017.
  */
 public class TranslatedList extends TranslatedExpression {
@@ -84,30 +88,33 @@ public class TranslatedList extends TranslatedExpression {
         for ( int i = trans_list.size()-1; i >= 0; i-- ){
             TranslatedExpression curr = trans_list.get(i);
 
-            if ( i+1 < trans_list.size() && prev.isNegative() ){
+            if ( i+1 < trans_list.size() && prev.isNegative() && !prev.isSummationSymbol() ){
                 if ( curr.isSummationSymbol() ){
-                    if ( curr.getPlainExpression().matches("\\s*\\+\\s*") ){
-                        copy.addFirst( new TranslatedExpression(" - ") );
+                    if ( curr.isPositive() ){
+                        copy.addFirst( new TranslatedExpression( NEGATIVE_SIGN, POSITIVE ) );
                     } else {
-                        copy.addFirst( new TranslatedExpression(" + ") );
+                        copy.addFirst( new TranslatedExpression( POSITIVE_SIGN ) );
                     }
                     prev = curr;
                     continue;
                 } else {
                     TranslatedExpression e = copy.removeFirst();
-                    e.changeExpression( "(-" + e.getPlainExpression() + ")" );
+                    e.changeExpression( Brackets.left_parenthesis.symbol +
+                            NEGATIVE_SIGN + e.getPlainExpression() +
+                            Brackets.left_parenthesis.counterpart
+                    );
                     copy.addFirst(e);
                 }
             }
 
-            TranslatedExpression c = new TranslatedExpression( curr.getPlainExpression(), curr.isPositive() );
+            TranslatedExpression c = new TranslatedExpression( curr );
             copy.addFirst( c );
             prev = curr;
         }
 
         if ( trans_list.getFirst().isNegative() ){
             TranslatedExpression t = copy.removeFirst();
-            t.changeExpression("-" + t.getPlainExpression());
+            t.changeExpression(NEGATIVE_SIGN + t.getPlainExpression());
             copy.addFirst(t);
         }
 
