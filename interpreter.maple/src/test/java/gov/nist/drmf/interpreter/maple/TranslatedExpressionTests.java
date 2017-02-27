@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import static gov.nist.drmf.interpreter.maple.common.MapleConstants.*;
 
 /**
  * Created by AndreG-P on 27.02.2017.
@@ -50,7 +51,7 @@ public class TranslatedExpressionTests {
         transList.addTranslatedExpression("2");
         transList.addTranslatedExpression("+");
         transList.addTranslatedExpression("x");
-        transList.setSign( TranslatedExpression.NEGATIVE );
+        transList.setSign( NEGATIVE );
 
         String result = transList.getAccurateString().replaceAll("\\s+","");
         String regex = "-\\\\left\\(2\\+x\\\\right\\)";
@@ -83,7 +84,7 @@ public class TranslatedExpressionTests {
     public void simpleSubtraction(){
         transList.addTranslatedExpression("2");
         transList.addTranslatedExpression("+");
-        transList.addTranslatedExpression( new TranslatedExpression( "2", TranslatedExpression.NEGATIVE ));
+        transList.addTranslatedExpression( new TranslatedExpression( "2", NEGATIVE ));
 
         String result = transList.getAccurateString().replaceAll("\\s+","");
 
@@ -115,7 +116,7 @@ public class TranslatedExpressionTests {
     public void simpleNegativeProduction(){
         transList.addTranslatedExpression("2");
         transList.addTranslatedExpression("*");
-        transList.addTranslatedExpression( new TranslatedExpression("2", TranslatedExpression.NEGATIVE) );
+        transList.addTranslatedExpression( new TranslatedExpression("2", NEGATIVE) );
 
         String result = transList.getAccurateString().replaceAll("\\s+","");
 
@@ -131,7 +132,7 @@ public class TranslatedExpressionTests {
     public void summation(){
         transList.addTranslatedExpression("2");
         transList.addTranslatedExpression("+");
-        transList.addTranslatedExpression( new TranslatedExpression("2", TranslatedExpression.NEGATIVE) );
+        transList.addTranslatedExpression( new TranslatedExpression("2", NEGATIVE) );
         transList.addTranslatedExpression("+");
         transList.addTranslatedExpression("x");
 
@@ -169,7 +170,7 @@ public class TranslatedExpressionTests {
         transList.addTranslatedExpression("+");
         transList.addTranslatedExpression("x");
         transList.embrace( Brackets.left_parenthesis );
-        transList.setSign( TranslatedExpression.NEGATIVE );
+        transList.setSign( NEGATIVE );
 
         String result = transList.getAccurateString().replaceAll("\\s+", "");
         String left = '\\' + Brackets.left_parenthesis.symbol;
@@ -191,7 +192,7 @@ public class TranslatedExpressionTests {
         transList.addTranslatedExpression("\\cpi");
         transList.addTranslatedExpression("+");
         transList.addTranslatedExpression("x");
-        transList.setSign( TranslatedExpression.NEGATIVE );
+        transList.setSign( NEGATIVE );
 
         TranslatedList tl = new TranslatedList();
         tl.addTranslatedExpression( "2" );
@@ -211,9 +212,9 @@ public class TranslatedExpressionTests {
      */
     @Test
     public void complexNumberTest(){
-        TranslatedExpression three = new TranslatedExpression("\\iunit", TranslatedExpression.NEGATIVE);
-        TranslatedExpression two = new TranslatedExpression("3", TranslatedExpression.NEGATIVE);
-        TranslatedExpression one = new TranslatedExpression("x", TranslatedExpression.NEGATIVE);
+        TranslatedExpression three = new TranslatedExpression("\\iunit", NEGATIVE);
+        TranslatedExpression two = new TranslatedExpression("3", NEGATIVE);
+        TranslatedExpression one = new TranslatedExpression("x", NEGATIVE);
 
         transList.addTranslatedExpression(one);
         transList.addTranslatedExpression("+");

@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.maple.parser.components;
 
-import com.maplesoft.openmaple.Algebraic;
+import static gov.nist.drmf.interpreter.maple.common.MapleConstants.MAPLE_INTERNAL_PATTERN;
+
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 
@@ -15,7 +16,7 @@ public class ListParser extends AbstractAlgebraicParser<List> {
     private MapleInternal root;
 
     public ListParser( String root, int length ) throws IllegalArgumentException {
-        Matcher match = PATTERN.matcher(root);
+        Matcher match = MAPLE_INTERNAL_PATTERN.matcher(root);
         if ( !match.matches() )
             throw new IllegalArgumentException("Unknown name of maple object: " + root);
 

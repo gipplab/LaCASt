@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.maple.parser.components;
 
+import static gov.nist.drmf.interpreter.maple.common.MapleConstants.MAPLE_INTERNAL_PATTERN;
+
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
@@ -68,7 +70,7 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
                 case rational:
                     List numerator = (List)list.select(2);
                     List denominator = (List)list.select(3);
-                    Matcher m = PATTERN.matcher( numerator.select(1).toString() );
+                    Matcher m = MAPLE_INTERNAL_PATTERN.matcher( numerator.select(1).toString() );
                     m.matches();
                     MapleInternal mi = MapleInternal.getInternal(m.group(1));
 
