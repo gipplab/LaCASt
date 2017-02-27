@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -19,6 +20,12 @@ public class TranslatedExpressionTests {
     @BeforeEach
     public void setup(){
         transList = new TranslatedList();
+    }
+
+    @Test
+    public void emptyTest(){
+        String empty = transList.getAccurateString();
+        assertEquals( "", empty, "The default translated list is not empty." );
     }
 
     /**

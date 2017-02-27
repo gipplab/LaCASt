@@ -26,6 +26,8 @@ public class TranslatedExpression {
 
     private boolean summation_symbol = false;
 
+    protected TranslatedExpression(){}
+
     public TranslatedExpression( String expression ){
         if ( expression.matches( SUM_SIGN_PATTERN ) ) {
             this.expression = expression;
