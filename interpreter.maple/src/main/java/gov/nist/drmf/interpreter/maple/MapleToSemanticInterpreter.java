@@ -25,6 +25,7 @@ public class MapleToSemanticInterpreter {
             MapleInterface imaple = new MapleInterface();
             imaple.init();
             String result = imaple.parse( "(infinity+Catalan/2)^gamma" );
+
             System.out.println("Translated to: " + result);
             System.out.println("ErrorLOG: " + imaple.getInternalErrorLog());
         } catch ( MapleException | IOException me ){
