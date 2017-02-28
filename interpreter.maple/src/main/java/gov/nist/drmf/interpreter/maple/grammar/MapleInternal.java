@@ -26,8 +26,14 @@ public enum MapleInternal {
     intpos("INTPOS"),       // [INTPOS, integer]
     intneg("INTNEG"),       // [INTNEG, integer]
     complex("COMPLEX"),     // [COMPLEX, RE, IM] OR [COMPLEX, IM]
-    floating("FLOAT"),      // [FLOAT, integer_1, integer_2], means integer_1*10^integer_2
-    rational("RATIONAL"),   // [RATIONAL, integer, pos_integer], 5/(-2) is [RATIONAL, -5, 2]
+    rational("RATIONAL"),   // [RATIONAL, INTPOS or INTNEG, INTPOS]
+
+    /**
+     * We exclude the FLOAT object. That brings us to _Inert_VARBATIM.
+     *  [_Inert_VERBATIM, openmaple.Numeric]
+     * The second argument is a Numeric object.
+     */
+    floating("VERBATIM"),      // [VERBATIM, openmaple.Numeric]
 
     /**
      * Simple and complex computations

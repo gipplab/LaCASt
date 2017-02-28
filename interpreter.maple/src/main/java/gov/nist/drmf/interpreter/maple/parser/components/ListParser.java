@@ -1,11 +1,7 @@
 package gov.nist.drmf.interpreter.maple.parser.components;
 
-import static gov.nist.drmf.interpreter.maple.common.MapleConstants.MAPLE_INTERNAL_PATTERN;
-
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
-
-import java.util.regex.Matcher;
 
 /**
  * Created by AndreG-P on 22.02.2017.
@@ -27,40 +23,26 @@ public class ListParser extends AbstractAlgebraicParser<List> {
      */
     @Override
     public boolean parse( List list ){
+        AbstractAlgebraicParser generalParser = null;
         switch( root ){
             case sum:
             case prod:
             case exp:
-                SequenceParser sparser = new SequenceParser( root, length );
-                if (!sparser.parse( list )){
-                    this.internalErrorLog = sparser.internalErrorLog;
-                    return false;
-                } else {
-                    this.translatedList.addTranslatedExpression( sparser.translatedList );
-                    return true;
-                }
+                generalParser = new SequenceParser( root, length );
+                break;
             case intpos:
             case intneg:
             case complex:
             case floating:
             case rational:
-                NumericalParser nparser = new NumericalParser( root, length );
-                if (!nparser.parse( list )){
-                    this.internalErrorLog = nparser.internalErrorLog;
-                    return false;
-                } else {
-                    this.translatedList.addTranslatedExpression( nparser.translatedList );
-                    return true;
-                }
-            case power:
+                generalParser = new NumericalParser( root, length );
                 break;
             case function:
-                break;
-            case ass_name:
-                break;
+            case power:
             case name:
-                break;
             case string:
+            case ass_name:
+                generalParser = new FunctionAndVariableParser( root );
                 break;
             case equation:
                 break;
@@ -82,6 +64,15 @@ public class ListParser extends AbstractAlgebraicParser<List> {
                 break;
         }
 
-        return false;
+        if ( generalParser == null )
+            return false;
+
+        if (!generalParser.parse( list )){
+            this.internalErrorLog = generalParser.internalErrorLog;
+            return false;
+        } else {
+            this.translatedList.addTranslatedExpression( generalParser.translatedList );
+            return true;
+        }
     }
 }

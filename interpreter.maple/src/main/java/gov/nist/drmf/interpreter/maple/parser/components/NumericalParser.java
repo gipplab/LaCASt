@@ -3,6 +3,8 @@ package gov.nist.drmf.interpreter.maple.parser.components;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
+import com.maplesoft.openmaple.MString;
+import com.maplesoft.openmaple.Numeric;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedExpression;
 import gov.nist.drmf.interpreter.maple.parser.MapleInterface;
@@ -37,27 +39,7 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
             case intneg: return parseNegInt(list);
             case complex: return parseComplexNumber(list);
             case floating: return parseFloatingNumber(list);
-            case rational:
-                internalErrorLog += "Not yet implemented.";
-                return false;
-                /*
-                List numerator = (List)list.select(2);
-                List denominator = (List)list.select(3);
-                Matcher m = MAPLE_INTERNAL_PATTERN.matcher( numerator.select(1).toString() );
-                m.matches();
-                MapleInternal mi = MapleInternal.getInternal(m.group(1));
-
-                if ( mi.equals( MapleInternal.intneg ) ){
-                    translatedExpression += "-";
-                }
-                translatedExpression +=
-                        "\\frac{" +
-                                numerator.select(2).toString()
-                                + "}{" +
-                                denominator.select(2).toString()
-                                + "}";
-                return true;
-                */
+            case rational: return parseRationalNumber(list);
             default:
                 internalErrorLog += "Not a numerical element! " + root;
                 return false;
@@ -80,11 +62,36 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
 
     private String parseInt( List list ){
         try {
-            Algebraic a = list.select(2);
-            return a.toString();
+            Numeric n = (Numeric)list.select(2);
+            return Integer.toString( n.intValue() );
         } catch( MapleException me ){
-            internalErrorLog += "Could not parse positive integer!";
+            internalErrorLog += "Could not parse positive integer! " + me.getMessage();
             return null;
+        }
+    }
+
+    private boolean parseRationalNumber( List list ){
+        try {
+            List numerator = (List)list.select(2);
+            List denominator = (List)list.select(3);
+
+            String num = parseInt( numerator );
+            String denom = parseInt( denominator );
+
+            String pattern = "\\frac{" + num + "}{" + denom + "}";
+            TranslatedExpression t;
+            MapleInternal num_internal = getAbstractInternal(numerator.select(1).toString());
+            if ( num_internal.equals( MapleInternal.intneg ) ){
+                t = new TranslatedExpression( pattern, NEGATIVE );
+            } else if ( num_internal.equals( MapleInternal.intpos ) ){
+                t = new TranslatedExpression( pattern, POSITIVE );
+            } else throw new MapleException("Illegal argument in rational object. " + numerator);
+
+            translatedList.addTranslatedExpression( t );
+            return true;
+        } catch ( MapleException e ){
+            internalErrorLog += "Cannot parse rational numbers! " + e.getMessage();
+            return false;
         }
     }
 
@@ -97,34 +104,27 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
      */
     private boolean parseFloatingNumber( List list ){
         try{
-            List first_arg = (List)list.select(2);
-
-            // TODO probably we should change our list into Inert-Form and call FromInert(...)
-
-        } catch ( MapleException me ){
-            internalErrorLog += "Cannot calculate given double value.";
-            return false;
-        }
-
-        internalErrorLog += "Not yet implemented";
-        return false;
-
-        /*
-        String num_s = parseGeneralExpression(list.select(2));
-        String exponent_s = parseGeneralExpression(list.select(3));
-        try {
-            Algebraic tmp =
-                    MapleInterface.evaluateExpression(
-                            "evalf("+num_s + "*10^(" + exponent_s + "));"
-                    );
-            Double d = Double.parseDouble(tmp.toString());
-            translatedExpression += d;
+            Algebraic first = list.select(2);
+            if ( !(first instanceof Numeric) ){
+                internalErrorLog +=
+                        "A floating number is expected to be VERBATIM with openmaple.Numeric object " +
+                                "in the second argument but got: " + first;
+                return false;
+            }
+            Numeric n = (Numeric)first;
+            Double d = n.doubleValue();
+            TranslatedExpression t;
+            if ( d.equals( Double.POSITIVE_INFINITY ) )
+                t = new TranslatedExpression( "\\infty", POSITIVE );
+            else if ( d.equals( Double.NEGATIVE_INFINITY ) )
+                t = new TranslatedExpression( "\\infty", NEGATIVE );
+            else t = new TranslatedExpression( d.toString() );
+            translatedList.addTranslatedExpression( t );
             return true;
         } catch ( MapleException me ){
             internalErrorLog += "Cannot calculate given double value.";
             return false;
         }
-        */
     }
 
     /**
@@ -156,14 +156,14 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
             translatedList.addTranslatedExpression( imaginary );
             return true;
         } catch ( MapleException | IllegalArgumentException me ){
-            internalErrorLog += "Cannot parse complex number!";
+            internalErrorLog += "Cannot parse complex number! " + me.getMessage();
             return false;
         }
     }
 
     private TranslatedExpression parseComplexElement( List list )
             throws IllegalArgumentException, MapleException{
-        MapleInternal in = getAbstractInternal(list.select(0).toString());
+        MapleInternal in = getAbstractInternal(list.select(1).toString());
         String name;
         switch ( in ){
             case name:
@@ -174,11 +174,15 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
             case prod:
                 List l1 = (List)list.select(2);
                 List l2 = (List)list.select(3);
-                if ( !l1.select(2).toString().matches( INFINITY ) )
+                Algebraic a = l1.select(2);
+                if ( !(a instanceof MString) )
+                    throw new IllegalArgumentException("Illegal argument for complex numbers. " + l1 );
+                MString mString = (MString)a;
+                if ( !mString.stringValue().matches( INFINITY ) )
                     throw new IllegalArgumentException("Not allowed structure for -infinity. " + l1 );
-                MapleInternal i = getAbstractInternal( l2.select(2).toString() );
+                MapleInternal i = getAbstractInternal( l2.select(1).toString() );
                 if ( !i.equals(MapleInternal.intneg) )
-                    throw new IllegalArgumentException("Not allowed structure for -infinity. " + l2);
+                    throw new IllegalArgumentException("Not allowed structure for -infinity. " + l2 );
                 return new TranslatedExpression("\\infty", NEGATIVE);
             case intpos:
             case intneg:
