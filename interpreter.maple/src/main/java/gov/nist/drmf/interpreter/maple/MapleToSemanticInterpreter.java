@@ -24,7 +24,7 @@ public class MapleToSemanticInterpreter {
         try {
             MapleInterface imaple = new MapleInterface(Keys.KEY_DLMF);
             imaple.init();
-            String result = imaple.parse( "2/(-5)" );
+            String result = imaple.parse( "-2" );
             System.out.println("Translated to: " + result);
         } catch ( MapleException | IOException me ){
             System.out.println("Well, Maple-Exception... nice shit.");

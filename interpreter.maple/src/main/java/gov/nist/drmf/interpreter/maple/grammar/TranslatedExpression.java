@@ -23,13 +23,13 @@ public class TranslatedExpression {
         Matcher m = PLUS_MINUS_SIGN_PATTER.matcher( expression );
         if ( m.matches() ) {
             summation_symbol = true;
-            if ( m.group(1).equals(NEGATIVE_SIGN) ){
+            if ( m.group(1).equals(MINUS_SIGN) ){
                 sign = NEGATIVE;
-                this.expression = NEGATIVE_SIGN;
+                this.expression = MINUS_SIGN;
             }
             else {
                 sign = POSITIVE;
-                this.expression = POSITIVE_SIGN;
+                this.expression = PLUS_SIGN;
             }
             return;
         }
@@ -109,7 +109,7 @@ public class TranslatedExpression {
      */
     @Override
     public String toString(){
-        if ( !sign ) return NEGATIVE_SIGN + expression;
+        if ( !sign ) return MINUS_SIGN + expression;
         return expression;
     }
 }
