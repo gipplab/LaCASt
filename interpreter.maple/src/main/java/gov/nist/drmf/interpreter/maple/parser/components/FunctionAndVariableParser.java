@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.maple.parser.components;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
+import com.maplesoft.openmaple.Expseq;
 import com.maplesoft.openmaple.List;
 import com.maplesoft.openmaple.MString;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
@@ -30,6 +31,14 @@ public class FunctionAndVariableParser extends AbstractAlgebraicParser<List> {
             case name:
                 return parseString( list );
             case ass_name:
+                String name = null;
+                try {
+                    name = ((MString)list.select(2)).stringValue();
+                } catch ( Exception e ){}
+                internalErrorLog +=
+                        "Assigned names are only allowed in functions! " +
+                                "To find this here, means you previously defined the " +
+                                "name: " + name + ". Which is not allowed!";
                 return false;
             case function:
                 return false;
