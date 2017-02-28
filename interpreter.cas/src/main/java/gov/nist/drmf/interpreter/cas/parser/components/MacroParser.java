@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.parser.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
 import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
+import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import mlp.FeatureSet;
@@ -106,7 +107,7 @@ public class MacroParser extends AbstractListParser {
 
         // maybe the alternative pattern got multiple alternatives
         if ( !alternative_pattern.isEmpty() ){
-            try{ alternative_pattern = alternative_pattern.split( Keys.ALTERNATIVE_SPLIT )[0]; }
+            try{ alternative_pattern = alternative_pattern.split( GlobalConstants.ALTERNATIVE_SPLIT )[0]; }
             catch ( Exception e ){}
         }
 
@@ -161,7 +162,7 @@ public class MacroParser extends AbstractListParser {
     private void fillVars(){
         // when the alternative mode is activated, it tries to translate
         // the alternative translation
-        String pattern = (Keys.ALTERNATIVE_MODE && !alternative_pattern.isEmpty()) ?
+        String pattern = (GlobalConstants.ALTERNATIVE_MODE && !alternative_pattern.isEmpty()) ?
                 alternative_pattern : translation_pattern;
 
         for ( int i = 0; i < components.length; i++ ){
@@ -190,7 +191,7 @@ public class MacroParser extends AbstractListParser {
             extraInformation += "Branch Cuts: " + branch_cuts + System.lineSeparator();
 
         if ( !cas_branch_cuts.isEmpty() )
-            extraInformation += Keys.CAS_KEY + " uses other branch cuts: " + cas_branch_cuts
+            extraInformation += GlobalConstants.CAS_KEY + " uses other branch cuts: " + cas_branch_cuts
                     + System.lineSeparator();
 
         String TAB = SemanticLatexParser.TAB;
@@ -198,9 +199,10 @@ public class MacroParser extends AbstractListParser {
         extraInformation += "Relevant links to definitions:" + System.lineSeparator() +
                 "DLMF: " + tab + def_dlmf + System.lineSeparator();
         tab = TAB.substring(0,
-                ((Keys.CAS_KEY+": ").length() >= TAB.length() ? 0 : (TAB.length()-(Keys.CAS_KEY+": ").length()))
+                ((GlobalConstants.CAS_KEY+": ").length() >= TAB.length() ?
+                        0 : (TAB.length()-(GlobalConstants.CAS_KEY+": ").length()))
         );
-        extraInformation += Keys.CAS_KEY + ": " + tab + def_cas;
+        extraInformation += GlobalConstants.CAS_KEY + ": " + tab + def_cas;
         return extraInformation;
     }
 }

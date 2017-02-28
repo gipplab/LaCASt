@@ -18,6 +18,8 @@ import static gov.nist.drmf.interpreter.maple.common.MapleConstants.MAPLE_INTERN
  * Created by AndreG-P on 21.02.2017.
  */
 public abstract class AbstractAlgebraicParser<T extends Algebraic> implements IParser<T> {
+    public static String MULTIPLY, ADD, INFINITY;
+
     protected TranslatedList translatedList = new TranslatedList();
 
     protected String internalErrorLog = "";

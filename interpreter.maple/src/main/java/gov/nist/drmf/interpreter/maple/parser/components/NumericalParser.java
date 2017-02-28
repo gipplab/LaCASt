@@ -5,11 +5,13 @@ import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import com.maplesoft.openmaple.MString;
 import com.maplesoft.openmaple.Numeric;
+import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
+import gov.nist.drmf.interpreter.common.symbols.Constants;
+import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedExpression;
 import gov.nist.drmf.interpreter.maple.parser.MapleInterface;
-
-import java.util.regex.Matcher;
 
 import static gov.nist.drmf.interpreter.maple.common.MapleConstants.*;
 
@@ -78,7 +80,10 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
             String num = parseInt( numerator );
             String denom = parseInt( denominator );
 
-            String pattern = "\\frac{" + num + "}{" + denom + "}";
+            BasicFunctionsTranslator funcTrans = MapleInterface.getBasicFunctionsTranslator();
+            String[] args = new String[]{num, denom};
+            String pattern = funcTrans.translate( args, Keys.MLP_KEY_FRACTION );
+
             TranslatedExpression t;
             MapleInternal num_internal = getAbstractInternal(numerator.select(1).toString());
             if ( num_internal.equals( MapleInternal.intneg ) ){
@@ -115,9 +120,9 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
             Double d = n.doubleValue();
             TranslatedExpression t;
             if ( d.equals( Double.POSITIVE_INFINITY ) )
-                t = new TranslatedExpression( "\\infty", POSITIVE );
+                t = new TranslatedExpression( INFINITY, POSITIVE );
             else if ( d.equals( Double.NEGATIVE_INFINITY ) )
-                t = new TranslatedExpression( "\\infty", NEGATIVE );
+                t = new TranslatedExpression( INFINITY, NEGATIVE );
             else t = new TranslatedExpression( d.toString() );
             translatedList.addTranslatedExpression( t );
             return true;
@@ -152,7 +157,10 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
                 translatedList.addTranslatedExpression(second);
             }
 
-            TranslatedExpression imaginary = new TranslatedExpression("*\\iunit", POSITIVE);
+            Constants constants = MapleInterface.getConstantsTranslator();
+            String i_unit = constants.translate(MapleConstants.I_UNIT);
+
+            TranslatedExpression imaginary = new TranslatedExpression( MULTIPLY+i_unit , POSITIVE);
             translatedList.addTranslatedExpression( imaginary );
             return true;
         } catch ( MapleException | IllegalArgumentException me ){
@@ -170,7 +178,7 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
                 name = list.select(2).toString();
                 if ( !name.matches( INFINITY ) )
                     throw new IllegalArgumentException("Complex _Inert_NAME is not infinity! " + name);
-                return new TranslatedExpression("\\infty", POSITIVE);
+                return new TranslatedExpression(INFINITY, POSITIVE);
             case prod:
                 List l1 = (List)list.select(2);
                 List l2 = (List)list.select(3);
@@ -183,7 +191,7 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
                 MapleInternal i = getAbstractInternal( l2.select(1).toString() );
                 if ( !i.equals(MapleInternal.intneg) )
                     throw new IllegalArgumentException("Not allowed structure for -infinity. " + l2 );
-                return new TranslatedExpression("\\infty", NEGATIVE);
+                return new TranslatedExpression(INFINITY, NEGATIVE);
             case intpos:
             case intneg:
             case floating:

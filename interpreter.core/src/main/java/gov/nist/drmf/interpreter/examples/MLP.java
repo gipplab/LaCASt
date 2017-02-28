@@ -11,7 +11,7 @@ import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
 
 /**
  *
@@ -34,7 +34,7 @@ public class MLP {
         String refDataDir= GLOBAL_LEXICON_PATH;
 
         System.out.println(Paths.get(".").toAbsolutePath().toString());
-        System.out.println(GlobalConstants.PATH_REFERENCE_DATA.toAbsolutePath().toString());
+        System.out.println(GlobalPaths.PATH_REFERENCE_DATA.toAbsolutePath().toString());
         
         String[] eqs=equationsForTesting(); //equations to test the parser on
         
@@ -53,7 +53,7 @@ public class MLP {
             //location of the lexicons
             PomParser parser = new PomParser(refDataDir);
             parser.addMacros(macros);   //make the macros known to the parser
-            parser.addLexicons( GlobalConstants.DLMF_MACROS_LEXICON_NAME );
+            parser.addLexicons( GlobalPaths.DLMF_MACROS_LEXICON_NAME );
 
             // provide next an equation to parse
             String eq = eqs[0];

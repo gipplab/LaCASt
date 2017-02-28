@@ -1,6 +1,6 @@
 package gov.nist.drmf.core.tests;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.examples.ExampleParser;
 import mlp.ParseException;
 import org.junit.jupiter.api.BeforeAll;
@@ -51,7 +51,7 @@ public class JacobiPTests {
         parser = new ExampleParser();
         try {
             System.out.println("Parse: " + SIMPLE_TEST_EQ);
-            System.out.println(GlobalConstants.PATH_REFERENCE_DATA.toAbsolutePath().toString());
+            System.out.println(GlobalPaths.PATH_REFERENCE_DATA.toAbsolutePath().toString());
             parser.parse(SIMPLE_TEST_EQ);
         } catch ( ParseException pe ){
             System.err.println("Cannot parse given equation. Tests stopped.");

@@ -9,7 +9,7 @@ import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.Engine;
 import com.maplesoft.openmaple.EngineCallBacks;
 import com.maplesoft.openmaple.List;
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.maple.setup.Initializer;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -49,13 +49,13 @@ public class EngineTests {
         // try to collect a stream.
         System.out.println(Paths.get("").toAbsolutePath());
 
-        try ( Stream<String> stream = Files.lines( GlobalConstants.PATH_MAPLE_PROCEDURE ) ){
+        try ( Stream<String> stream = Files.lines( GlobalPaths.PATH_MAPLE_PROCEDURE ) ){
             proc = stream.collect( Collectors.joining(System.lineSeparator()) );
             stream.close(); // not really necessary
             procedure = proc.split(":=")[0].trim();
         } catch (IOException ioe){
             ioe.printStackTrace();
-            fail("Cannot load procedure from file: " + GlobalConstants.PATH_MAPLE_PROCEDURE );
+            fail("Cannot load procedure from file: " + GlobalPaths.PATH_MAPLE_PROCEDURE );
         }
 
         try{

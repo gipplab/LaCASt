@@ -4,6 +4,7 @@ import com.sun.istack.internal.Nullable;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
 import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
+import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
@@ -33,11 +34,6 @@ import java.util.List;
  * @author Andre Greiner-Petter
  */
 public class MathTermParser extends AbstractListParser {
-    // some special characters which are useful for this parser
-    // the caret uses for powers
-    public static final String CHAR_CARET = "^";
-    public static final String UNDERSCORE = "underscore";
-
     @Override
     public boolean parse( PomTaggedExpression exp ){
         return parse( exp, new LinkedList<>() );
@@ -319,7 +315,7 @@ public class MathTermParser extends AbstractListParser {
         // if it wasn't translated try some other stuff
         if ( translated_const == null ) {
             // try from LaTeX to CAS
-            translated_const = c.translate(Keys.KEY_LATEX, Keys.CAS_KEY, constant);
+            translated_const = c.translate(Keys.KEY_LATEX, GlobalConstants.CAS_KEY, constant);
             if ( translated_const != null ){
                 // if this works, inform the user, that we use this translation now!
                 String dlmf = c.translate( Keys.KEY_LATEX, Keys.KEY_DLMF, constant );
@@ -327,7 +323,7 @@ public class MathTermParser extends AbstractListParser {
                         constant,
                         "You use a typical letter for a constant [" +
                                 DLMFFeatureValues.meaning.getFeatureValue(set) + "]." + System.lineSeparator() +
-                                "We keep it like it is! But you should know that " + Keys.CAS_KEY +
+                                "We keep it like it is! But you should know that " + GlobalConstants.CAS_KEY +
                                 " uses " + translated_const + " for this constant." + System.lineSeparator() +
                                 "If you want to translate it as a constant, use the corresponding DLMF macro " +
                                 dlmf + System.lineSeparator()
@@ -347,7 +343,7 @@ public class MathTermParser extends AbstractListParser {
                             "Unable to translate " + constant + " [" +
                                     DLMFFeatureValues.meaning.getFeatureValue(set) +
                                     "]. But since it is a Greek letter we translated it to a Greek letter in "
-                                    + Keys.CAS_KEY + "."
+                                    + GlobalConstants.CAS_KEY + "."
                     );
                     return parseGreekLetter( constant );
                 } else {
@@ -424,7 +420,7 @@ public class MathTermParser extends AbstractListParser {
 
         // now we need to wrap parenthesis around the power
         Brackets b = Brackets.left_parenthesis;
-        String powerStr = CHAR_CARET;
+        String powerStr = GlobalConstants.CARET_CHAR;
         if ( !testBrackets( power.toString() ) )
                 powerStr += b.symbol + power.toString() + b.counterpart;
         else powerStr += power.toString();
@@ -466,7 +462,7 @@ public class MathTermParser extends AbstractListParser {
 
         // finally translate it as a function
         BasicFunctionsTranslator parser = SemanticLatexParser.getBasicFunctionParser();
-        String translation = parser.translate(args, UNDERSCORE);
+        String translation = parser.translate(args, Keys.MLP_KEY_UNDERSCORE);
 
         // keep the local_inner_exp clean to show we need to take the global_exp
         //local_inner_exp.addTranslatedExpression( translation );

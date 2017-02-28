@@ -5,6 +5,7 @@ import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
+import gov.nist.drmf.interpreter.maple.parser.MapleInterface;
 
 /**
  * Created by AndreG-P on 22.02.2017.
@@ -34,11 +35,12 @@ public class SequenceParser extends AbstractAlgebraicParser<List> {
     }
 
     private boolean parseProd( List list ){
-        return parseSequence(list, true, " \\cdot ");
+        MapleInterface.getSymbolTranslator();
+        return parseSequence(list, true, MULTIPLY);
     }
 
     private boolean parseSum( List list ){
-        return parseSequence(list, false, " + ");
+        return parseSequence(list, false, ADD);
     }
 
     private boolean parseExpSeq( List list ){

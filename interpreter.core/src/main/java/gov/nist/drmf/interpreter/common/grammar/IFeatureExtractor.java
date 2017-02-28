@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
-import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.GlobalConstants;
 import mlp.FeatureSet;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public interface IFeatureExtractor {
         String output = "";
         List<String> list = new ArrayList<>(set);
         while ( list.size() > 1 ){
-            output += list.remove(0) + Keys.ALTERNATIVE_SPLIT;
+            output += list.remove(0) + GlobalConstants.ALTERNATIVE_SPLIT;
         }
         output += list.remove(0);
         return output;

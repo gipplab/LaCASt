@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
+import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.Keys;
 import mlp.FeatureSet;
 
@@ -31,24 +32,24 @@ public enum DLMFFeatureValues implements IFeatureExtractor{
             t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.NUM_OF_VARS))
     ),
     CAS(
-            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.CAS_KEY))
+            t -> IFeatureExtractor.getStringFromSet(t.getFeature(GlobalConstants.CAS_KEY))
     ),
     CAS_Alternatives(
             t -> IFeatureExtractor.getStringFromSet(
-                    t.getFeature( Keys.CAS_KEY + DLMFFeatureValues.ALTERNATIVE_SUFFIX ))
+                    t.getFeature( GlobalConstants.CAS_KEY + DLMFFeatureValues.ALTERNATIVE_SUFFIX ))
     ),
     CAS_Link(
             t -> DLMFFeatureValues.CAS_LINK_PREFIX +
                     IFeatureExtractor.getStringFromSet(
-                    t.getFeature( Keys.CAS_KEY + DLMFFeatureValues.LINK_SUFFIX ))
+                    t.getFeature( GlobalConstants.CAS_KEY + DLMFFeatureValues.LINK_SUFFIX ))
     ),
     CAS_Comment(
             t -> IFeatureExtractor.getStringFromSet(
-                    t.getFeature( Keys.CAS_KEY + DLMFFeatureValues.COMMENT_SUFFIX ))
+                    t.getFeature( GlobalConstants.CAS_KEY + DLMFFeatureValues.COMMENT_SUFFIX ))
     ),
     CAS_BranchCuts(
             t -> IFeatureExtractor.getStringFromSet(
-                    t.getFeature( Keys.CAS_KEY + DLMFFeatureValues.BRANCH_CUTS_SUFFIX ))
+                    t.getFeature( GlobalConstants.CAS_KEY + DLMFFeatureValues.BRANCH_CUTS_SUFFIX ))
     ),
     DLMF(
             t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.KEY_DLMF))
