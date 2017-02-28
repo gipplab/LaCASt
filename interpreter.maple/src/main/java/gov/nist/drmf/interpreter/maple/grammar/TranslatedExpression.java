@@ -96,6 +96,15 @@ public class TranslatedExpression {
     }
 
     /**
+     * Returns the current sign of this expression.
+     * @return {@link gov.nist.drmf.interpreter.maple.common.MapleConstants#POSITIVE}
+     *          or {@link gov.nist.drmf.interpreter.maple.common.MapleConstants#NEGATIVE}.
+     */
+    protected boolean getSign(){
+        return sign;
+    }
+
+    /**
      * Returns if this is a + or -.
      * @return true if this expression is + or -
      */

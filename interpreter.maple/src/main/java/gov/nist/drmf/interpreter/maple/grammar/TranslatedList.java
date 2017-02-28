@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.maple.parser.MapleInterface;
 
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 /**
  * TODO should we handle spaces here as well? I think so.
@@ -33,6 +34,12 @@ public class TranslatedList extends TranslatedExpression {
     }
 
     public void addTranslatedExpression( TranslatedList list ){
+
+        if ( list.isEmbraced() ){
+            trans_list.add( list.merge() );
+            return;
+        }
+
         this.trans_list.addAll(list.trans_list);
     }
 
@@ -47,15 +54,34 @@ public class TranslatedList extends TranslatedExpression {
 
     public void addPreviousTranslatedExpression( TranslatedList list ){
         this.trans_list.addAll( 0, list.trans_list );
-        this.setSign( list.isPositive() );
     }
 
     public TranslatedExpression removeLastExpression(){
-        return trans_list.removeLast();
+        try {
+            TranslatedExpression last = trans_list.removeLast();
+            if ( trans_list.isEmpty() ) setSign( POSITIVE );
+            return last;
+        } catch ( NoSuchElementException e ){
+            return null;
+        }
     }
 
     public TranslatedExpression removePreviousTranslatedExpression(){
-        return trans_list.removeFirst();
+        try {
+            TranslatedExpression last = trans_list.removeFirst();
+            if ( trans_list.isEmpty() ) setSign( POSITIVE );
+            return last;
+        } catch ( NoSuchElementException e ){
+            return null;
+        }
+    }
+
+    public int getLength(){
+        return trans_list.size();
+    }
+
+    public void embrace(){
+        embrace( MapleInterface.DEFAULT_LATEX_BRACKET );
     }
 
     public void embrace( Brackets brackets ){
@@ -70,6 +96,22 @@ public class TranslatedList extends TranslatedExpression {
 
     public boolean isEmbraced(){
         return brackets != null;
+    }
+
+    public TranslatedExpression merge(){
+        String representation = getAccurateString();
+        return new TranslatedExpression( representation );
+    }
+
+    @Override
+    public void setSign( boolean sign ){
+        if ( sign != getSign() ){
+            super.setSign( sign );
+            if ( sign == NEGATIVE && !isEmbraced() ){
+                embrace( MapleInterface.DEFAULT_LATEX_BRACKET );
+            } else if ( sign == POSITIVE && isEmbraced() )
+                removeBrackets();
+        }
     }
 
     /**
@@ -120,6 +162,11 @@ public class TranslatedList extends TranslatedExpression {
 
         if ( isEmbraced() )
             str = brackets.symbol + str + brackets.counterpart;
+
+        if ( isNegative() )
+            str = MINUS_SIGN + str;
+
+        /*
         if ( isNegative() ){
             if ( !isEmbraced() ) {
                 str = MapleInterface.DEFAULT_LATEX_BRACKET.symbol + str;
@@ -127,6 +174,7 @@ public class TranslatedList extends TranslatedExpression {
             }
             str = "-" + str;
         }
+        */
 
         return str;
     }

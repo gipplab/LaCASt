@@ -10,11 +10,13 @@ import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
+import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import gov.nist.drmf.interpreter.maple.parser.components.AbstractAlgebraicParser;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Arrays;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -32,8 +34,9 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
 
     private final String
             define_symb = ":=",
+            exclude = Arrays.toString(MapleConstants.LIST_OF_EXCLUDES),
             to_inert_prefix = "ToInert('",
-            to_inert_suffix = "')";
+            to_inert_suffix = "',exclude=" + exclude + ")";
 
     private String maple_procedure;
 
@@ -109,7 +112,6 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
                         ");"
                 );
 
-
         if ( !parse(a) ){
             System.err.println("Something went wrong: " + internalErrorLog);
             return "";
@@ -119,7 +121,9 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
     @Override
     public boolean parse( Algebraic alg ){
         translatedList = parseGeneralExpression(alg);
-        return true;
+        if ( internalErrorLog.isEmpty() )
+            return true;
+        else return false;
     }
 
     public static Algebraic evaluateExpression( String exp ) throws MapleException{

@@ -39,4 +39,6 @@ public final class MapleConstants {
     public static final Pattern MAPLE_INTERNAL_PATTERN = Pattern.compile( MAPLE_INTERNAL_REGEX );
 
     public static final String INFINITY = "infinity";
+
+    public static final String[] LIST_OF_EXCLUDES = new String[]{"_Inert_FLOAT"};
 }

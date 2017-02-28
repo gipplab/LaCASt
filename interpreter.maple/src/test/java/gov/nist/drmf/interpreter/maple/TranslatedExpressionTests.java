@@ -227,4 +227,33 @@ public class TranslatedExpressionTests {
                 result.matches("-x-3\\+\\\\iunit"),
                 "Expected -x-3+\\iunit! But get: " + result );
     }
+
+    /**
+     * Test: (-3-x)^{-\iunit}
+     */
+    @Test
+    public void powerTest(){
+        TranslatedExpression exponent1 = new TranslatedExpression("\\iunit", NEGATIVE);
+        TranslatedExpression base1 = new TranslatedExpression("3", NEGATIVE);
+        TranslatedExpression base2 = new TranslatedExpression("x", NEGATIVE);
+
+        TranslatedList base = new TranslatedList();
+        base.addTranslatedExpression( base1 );
+        base.addTranslatedExpression( " + ");
+        base.addTranslatedExpression( base2 );
+        base.embrace( Brackets.left_parenthesis );
+
+        TranslatedList exponent = new TranslatedList();
+        exponent.addTranslatedExpression( exponent1 );
+        exponent.embrace( Brackets.left_braces );
+
+        transList.addTranslatedExpression( base );
+        transList.addTranslatedExpression( "^" );
+        transList.addTranslatedExpression( exponent );
+
+        String result = transList.getAccurateString().replaceAll("\\s+", "");
+        assertTrue(
+                result.matches("\\(-3-x\\)\\^\\{-\\\\iunit}"),
+                "Expected (3+x)^\\left(-\\iunit\\right)! But get: " + result );
+    }
 }

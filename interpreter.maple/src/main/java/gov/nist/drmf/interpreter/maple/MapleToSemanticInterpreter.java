@@ -24,8 +24,9 @@ public class MapleToSemanticInterpreter {
         try {
             MapleInterface imaple = new MapleInterface(Keys.KEY_DLMF);
             imaple.init();
-            String result = imaple.parse( "-2" );
+            String result = imaple.parse( "(a+b)^5" );
             System.out.println("Translated to: " + result);
+            System.out.println("ErrorLOG: " + imaple.getInternalErrorLog());
         } catch ( MapleException | IOException me ){
             System.out.println("Well, Maple-Exception... nice shit.");
             me.printStackTrace();
