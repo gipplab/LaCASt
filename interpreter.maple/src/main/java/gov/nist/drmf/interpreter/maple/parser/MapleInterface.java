@@ -50,13 +50,13 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
 
     private String translateTo;
 
-    public MapleInterface( String translateTo ){
+    public MapleInterface(){
         this.translateTo = translateTo;
 
-        greek = new GreekLetters(Keys.KEY_MAPLE, translateTo);
-        constants = new Constants(Keys.KEY_MAPLE, translateTo);
-        basicFunc = new BasicFunctionsTranslator(Keys.KEY_DLMF);
-        symbolTranslator = new SymbolTranslator(Keys.KEY_MAPLE, translateTo);
+        greek = new GreekLetters(Keys.KEY_MAPLE, Keys.KEY_LATEX);
+        constants = new Constants(Keys.KEY_MAPLE, Keys.KEY_DLMF );
+        basicFunc = new BasicFunctionsTranslator( Keys.KEY_LATEX );
+        symbolTranslator = new SymbolTranslator(Keys.KEY_MAPLE, Keys.KEY_LATEX);
     }
 
     /**
@@ -128,5 +128,21 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
 
     public static Algebraic evaluateExpression( String exp ) throws MapleException{
         return e.evaluate( exp );
+    }
+
+    public static GreekLetters getGreekTranslator(){
+        return greek;
+    }
+
+    public static SymbolTranslator getSymbolTranslator(){
+        return symbolTranslator;
+    }
+
+    public static Constants getConstantsTranslator(){
+        return constants;
+    }
+
+    public static BasicFunctionsTranslator getBasicFunctionsTranslator(){
+        return basicFunc;
     }
 }
