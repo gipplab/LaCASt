@@ -5,8 +5,12 @@ import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import com.maplesoft.openmaple.MString;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.common.symbols.Constants;
+import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
+import gov.nist.drmf.interpreter.maple.grammar.TranslatedExpression;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
+import gov.nist.drmf.interpreter.maple.parser.MapleInterface;
 
 /**
  * Created by AndreG-P on 28.02.2017.
@@ -42,7 +46,26 @@ public class FunctionAndVariableParser extends AbstractAlgebraicParser<List> {
             if ( !(a instanceof MString) )
                 throw new MapleException("Expected a MString object but get: " + a);
             MString ms = (MString)a;
-            translatedList.addTranslatedExpression( ms.stringValue() );
+            String str = ms.stringValue();
+
+            TranslatedExpression t;
+
+            // a possible greek letter
+            GreekLetters greek = MapleInterface.getGreekTranslator();
+            Constants constants = MapleInterface.getConstantsTranslator();
+
+            // TODO additional information here!
+            String constant = constants.translate( str );
+            if ( constant != null )
+                t = new TranslatedExpression(constant);
+            else {
+                String greekResult = greek.translate( str );
+                if ( greekResult != null )
+                    t = new TranslatedExpression(greekResult);
+                else t = new TranslatedExpression(str);
+            }
+
+            translatedList.addTranslatedExpression( t );
             return true;
         } catch ( MapleException e ){
             internalErrorLog += "Cannot parse string. " + e.getMessage();

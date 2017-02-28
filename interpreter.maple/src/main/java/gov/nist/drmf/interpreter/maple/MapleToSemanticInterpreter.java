@@ -22,9 +22,9 @@ public class MapleToSemanticInterpreter {
 
 
         try {
-            MapleInterface imaple = new MapleInterface(Keys.KEY_DLMF);
+            MapleInterface imaple = new MapleInterface();
             imaple.init();
-            String result = imaple.parse( "(a+b)^5" );
+            String result = imaple.parse( "(infinity+Catalan)^gamma" );
             System.out.println("Translated to: " + result);
             System.out.println("ErrorLOG: " + imaple.getInternalErrorLog());
         } catch ( MapleException | IOException me ){

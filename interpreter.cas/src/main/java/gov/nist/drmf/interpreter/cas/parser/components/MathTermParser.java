@@ -3,7 +3,6 @@ package gov.nist.drmf.interpreter.cas.parser.components;
 import com.sun.istack.internal.Nullable;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
-import gov.nist.drmf.interpreter.cas.parser.AbstractParser;
 import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
