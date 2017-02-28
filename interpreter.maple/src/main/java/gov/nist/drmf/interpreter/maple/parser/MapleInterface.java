@@ -113,14 +113,13 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
         if ( !parse(a) ){
             System.err.println("Something went wrong: " + internalErrorLog);
             return "";
-        } else return translatedExpression;
+        } else return translatedList.getAccurateString();
     }
 
     @Override
     public boolean parse( Algebraic alg ){
-        translatedExpression = parseGeneralExpression(alg);
-        if ( translatedExpression == null ) return false;
-        else return true;
+        translatedList = parseGeneralExpression(alg);
+        return true;
     }
 
     public static Algebraic evaluateExpression( String exp ) throws MapleException{

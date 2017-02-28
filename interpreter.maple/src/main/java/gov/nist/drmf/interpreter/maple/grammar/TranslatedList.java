@@ -33,7 +33,7 @@ public class TranslatedList extends TranslatedExpression {
     }
 
     public void addTranslatedExpression( TranslatedList list ){
-        this.addTranslatedExpression( list.merge() );
+        this.trans_list.addAll(list.trans_list);
     }
 
     public void addPreviousTranslatedExpression( String expression ){
@@ -46,7 +46,8 @@ public class TranslatedList extends TranslatedExpression {
     }
 
     public void addPreviousTranslatedExpression( TranslatedList list ){
-        this.addPreviousTranslatedExpression( list.merge() );
+        this.trans_list.addAll( 0, list.trans_list );
+        this.setSign( list.isPositive() );
     }
 
     public TranslatedExpression removeLastExpression(){
@@ -71,11 +72,6 @@ public class TranslatedList extends TranslatedExpression {
         return brackets != null;
     }
 
-    public TranslatedExpression merge(){
-        String s = getAccurateString();
-        return new TranslatedExpression( s, this.isPositive() );
-    }
-
     /**
      *
      * @return
@@ -91,16 +87,16 @@ public class TranslatedList extends TranslatedExpression {
             if ( i+1 < trans_list.size() && prev.isNegative() && !prev.isSummationSymbol() ){
                 if ( curr.isSummationSymbol() ){
                     if ( curr.isPositive() ){
-                        copy.addFirst( new TranslatedExpression( NEGATIVE_SIGN, POSITIVE ) );
+                        copy.addFirst( new TranslatedExpression(MINUS_SIGN, POSITIVE ) );
                     } else {
-                        copy.addFirst( new TranslatedExpression( POSITIVE_SIGN ) );
+                        copy.addFirst( new TranslatedExpression(PLUS_SIGN) );
                     }
                     prev = curr;
                     continue;
                 } else {
                     TranslatedExpression e = copy.removeFirst();
                     e.changeExpression( Brackets.left_parenthesis.symbol +
-                            NEGATIVE_SIGN + e.getPlainExpression() +
+                            MINUS_SIGN + e.getPlainExpression() +
                             Brackets.left_parenthesis.counterpart
                     );
                     copy.addFirst(e);
@@ -114,7 +110,7 @@ public class TranslatedList extends TranslatedExpression {
 
         if ( trans_list.getFirst().isNegative() ){
             TranslatedExpression t = copy.removeFirst();
-            t.changeExpression(NEGATIVE_SIGN + t.getPlainExpression());
+            t.changeExpression(MINUS_SIGN + t.getPlainExpression());
             copy.addFirst(t);
         }
 

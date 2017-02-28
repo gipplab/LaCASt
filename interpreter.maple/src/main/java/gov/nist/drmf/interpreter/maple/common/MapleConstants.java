@@ -28,8 +28,8 @@ public final class MapleConstants {
     /**
      * String representations of positive and negative signs.
      */
-    public static final String NEGATIVE_SIGN = "-";
-    public static final String POSITIVE_SIGN = "+";
+    public static final String MINUS_SIGN = "-";
+    public static final String PLUS_SIGN = "+";
 
     /**
      * All internal names should have this structure:
@@ -37,4 +37,6 @@ public final class MapleConstants {
      */
     private static final String MAPLE_INTERNAL_REGEX = "_Inert_([A-Z]+)";
     public static final Pattern MAPLE_INTERNAL_PATTERN = Pattern.compile( MAPLE_INTERNAL_REGEX );
+
+    public static final String INFINITY = "infinity";
 }

@@ -15,15 +15,8 @@ public class ListParser extends AbstractAlgebraicParser<List> {
     private int length;
     private MapleInternal root;
 
-    public ListParser( String root, int length ) throws IllegalArgumentException {
-        Matcher match = MAPLE_INTERNAL_PATTERN.matcher(root);
-        if ( !match.matches() )
-            throw new IllegalArgumentException("Unknown name of maple object: " + root);
-
-        this.root = MapleInternal.getInternal( match.group(1) );
-        if ( root == null )
-            throw new IllegalArgumentException("Not supported maple object: " + root);
-
+    public ListParser( MapleInternal in, int length ) {
+        this.root = in;
         this.length = length;
     }
 
@@ -43,7 +36,7 @@ public class ListParser extends AbstractAlgebraicParser<List> {
                     this.internalErrorLog = sparser.internalErrorLog;
                     return false;
                 } else {
-                    this.translatedExpression += sparser.translatedExpression;
+                    this.translatedList.addTranslatedExpression( sparser.translatedList );
                     return true;
                 }
             case intpos:
@@ -56,7 +49,7 @@ public class ListParser extends AbstractAlgebraicParser<List> {
                     this.internalErrorLog = nparser.internalErrorLog;
                     return false;
                 } else {
-                    this.translatedExpression += nparser.translatedExpression;
+                    this.translatedList.addTranslatedExpression( nparser.translatedList );
                     return true;
                 }
             case power:
