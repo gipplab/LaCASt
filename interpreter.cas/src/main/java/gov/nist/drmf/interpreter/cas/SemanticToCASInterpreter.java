@@ -1,20 +1,15 @@
 package gov.nist.drmf.interpreter.cas;
 
-import gov.nist.drmf.interpreter.cas.logging.InformationLogger;
 import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
-import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
-import gov.nist.drmf.interpreter.common.symbols.Constants;
-import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-import java.io.Console;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -113,10 +108,10 @@ public class SemanticToCASInterpreter {
         }
 
         if ( clean ){
-            Keys.CAS_KEY = CAS;
+            GlobalConstants.CAS_KEY = CAS;
             SemanticLatexParser latexParser =
-                    new SemanticLatexParser( Keys.KEY_LATEX, Keys.CAS_KEY );
-            latexParser.init( GlobalConstants.PATH_REFERENCE_DATA );
+                    new SemanticLatexParser( Keys.KEY_LATEX, GlobalConstants.CAS_KEY );
+            latexParser.init( GlobalPaths.PATH_REFERENCE_DATA );
             latexParser.parse( expression );
             if ( clipboard != null ){
                 StringSelection ss = new StringSelection( latexParser.getTranslatedExpression() );
@@ -128,14 +123,14 @@ public class SemanticToCASInterpreter {
 
         System.out.println("Set global variable to given CAS.");
         init_ms = System.currentTimeMillis();
-        Keys.CAS_KEY = CAS;
+        GlobalConstants.CAS_KEY = CAS;
 
         System.out.println("Set up parser...");
         SemanticLatexParser latexParser =
-                new SemanticLatexParser( Keys.KEY_LATEX, Keys.CAS_KEY );
+                new SemanticLatexParser( Keys.KEY_LATEX, GlobalConstants.CAS_KEY );
 
         System.out.println("Initialize parser...");
-        latexParser.init( GlobalConstants.PATH_REFERENCE_DATA );
+        latexParser.init( GlobalPaths.PATH_REFERENCE_DATA );
         init_ms = System.currentTimeMillis()-init_ms;
 
         System.out.println("Start translation...");
@@ -144,7 +139,7 @@ public class SemanticToCASInterpreter {
         latexParser.parse( expression );
         trans_ms = System.currentTimeMillis()-trans_ms;
 
-        System.out.println("Finished conversion to " + Keys.CAS_KEY + ":");
+        System.out.println("Finished conversion to " + GlobalConstants.CAS_KEY + ":");
         System.out.println(latexParser.getTranslatedExpression());
         System.out.println();
 
@@ -191,7 +186,7 @@ public class SemanticToCASInterpreter {
 //        test = "\\JacobiP{\\alpha\\sqrt[3]{x}\\sin(x\\alpha xyz)\\sqrt[2]{3}}{b\\frac{1}{\\pi}}{1+0\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}@{\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}";
 
 
-        latexParser.init( GlobalConstants.PATH_REFERENCE_DATA );
+        latexParser.init( GlobalPaths.PATH_REFERENCE_DATA );
         latexParser.parse(test);
         */
     }

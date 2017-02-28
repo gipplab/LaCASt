@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.cas.mlp;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
 import mlp.FeatureSet;
 import mlp.Lexicon;
@@ -61,7 +61,7 @@ public class CSVtoLexiconConverter {
 //        internal_maple_trans_counter = 0;
 
         this.csv_dlmf_file =
-                GlobalConstants.PATH_REFERENCE_DATA_CSV.resolve(CSV_dlmf_file);
+                GlobalPaths.PATH_REFERENCE_DATA_CSV.resolve(CSV_dlmf_file);
         if ( !csv_dlmf_file.toFile().exists() )
             throw new FileNotFoundException(
                     "The given link to the CSV-DLMF file doesn't exists! " + csv_dlmf_file.toString()
@@ -69,7 +69,7 @@ public class CSVtoLexiconConverter {
 
         this.csv_cas_files = CSV_CAS_files;
         for ( int i = 0; i < csv_cas_files.length; i++ ) {
-            csv_cas_files[i] = GlobalConstants.PATH_REFERENCE_DATA_CSV.resolve(csv_cas_files[i]);
+            csv_cas_files[i] = GlobalPaths.PATH_REFERENCE_DATA_CSV.resolve(csv_cas_files[i]);
             if (!csv_cas_files[i].toFile().exists())
                 throw new FileNotFoundException(
                         "The given CSV-CAS file doesn't exists. " + csv_cas_files[i].toString()
@@ -77,7 +77,7 @@ public class CSVtoLexiconConverter {
         }
 
         path_to_dlmf_lexicon =
-                GlobalConstants.PATH_LEXICONS.resolve( GlobalConstants.DLMF_MACROS_LEXICON_NAME );
+                GlobalPaths.PATH_LEXICONS.resolve( GlobalPaths.DLMF_MACROS_LEXICON_NAME );
         File dlmf_lexicon_file = path_to_dlmf_lexicon.toFile();
         if ( !dlmf_lexicon_file.exists() ) {
             try {

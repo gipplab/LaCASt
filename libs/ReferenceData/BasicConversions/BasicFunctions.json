@@ -74,6 +74,12 @@
 		"Maple": "*",
 		"Mathematica": "*"
 	},
+	"Addition":{
+		"MLP": "Addition",
+		"LaTeX": "+",
+		"Maple": "+",
+		"Mathematica": "+"
+	},
 	"Lower dots":{
 		"MLP": "ellipsis",
 		"LaTeX": "\\ldots",

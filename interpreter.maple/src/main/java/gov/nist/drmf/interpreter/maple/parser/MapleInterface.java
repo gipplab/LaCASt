@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.maple.parser;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.Engine;
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
@@ -64,12 +64,12 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
      * If the engine is already running, this function ignores other calls.
      *
      * First it is trying to load the procedure to convert the Inert-Form
-     * to a list. You can find this procedure in {@link GlobalConstants#PATH_MAPLE_PROCEDURE}.
+     * to a list. You can find this procedure in {@link GlobalPaths#PATH_MAPLE_PROCEDURE}.
      *
      * After that, it creates an Engine object of Maple and defines the procedure once.
      *
      * @throws MapleException if the Engine cannot be initialized or the evaluation of the procedure fails.
-     * @throws IOException if it cannot load the procedure from file {@link GlobalConstants#PATH_MAPLE_PROCEDURE}.
+     * @throws IOException if it cannot load the procedure from file {@link GlobalPaths#PATH_MAPLE_PROCEDURE}.
      */
     public void init() throws MapleException, IOException {
         // ignore calls if the engine already exists.
@@ -78,12 +78,12 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
         // loading procedure from file.
         String procedure;
         // try to collect a stream.
-        try ( Stream<String> stream = Files.lines( GlobalConstants.PATH_MAPLE_PROCEDURE ) ){
+        try ( Stream<String> stream = Files.lines( GlobalPaths.PATH_MAPLE_PROCEDURE ) ){
             procedure = stream.collect( Collectors.joining(System.lineSeparator()) );
             stream.close(); // not really necessary
             maple_procedure = procedure.split(define_symb)[0].trim();
         } catch (IOException ioe){
-            System.err.println("Cannot load procedure from file " + GlobalConstants.PATH_MAPLE_PROCEDURE);
+            System.err.println("Cannot load procedure from file " + GlobalPaths.PATH_MAPLE_PROCEDURE);
             throw ioe;
         }
 
@@ -101,6 +101,10 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
         constants.init();
         basicFunc.init();
         symbolTranslator.init();
+
+        MULTIPLY = symbolTranslator.translateFromMLPKey( Keys.MLP_KEY_MULTIPLICATION );
+        ADD = symbolTranslator.translateFromMLPKey( Keys.MLP_KEY_ADDITION );
+        INFINITY = constants.translate( MapleConstants.INFINITY );
     }
 
     public String parse( String maple_input ) throws MapleException {

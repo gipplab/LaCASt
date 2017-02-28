@@ -4,6 +4,7 @@ import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import com.maplesoft.openmaple.MString;
+import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
@@ -86,7 +87,7 @@ public class FunctionAndVariableParser extends AbstractAlgebraicParser<List> {
             trans_exponent.embrace( Brackets.left_braces );
 
             translatedList.addTranslatedExpression( trans_base );
-            translatedList.addTranslatedExpression( "^" );
+            translatedList.addTranslatedExpression( GlobalConstants.CARET_CHAR );
             translatedList.addTranslatedExpression( trans_exponent );
             return true;
         } catch ( MapleException e ){

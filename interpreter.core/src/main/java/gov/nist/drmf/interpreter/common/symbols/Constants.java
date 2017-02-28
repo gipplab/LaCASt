@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.common.symbols;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
 
 /**
  * This class contains all constants in CAS and the corresponding
@@ -28,7 +28,7 @@ public class Constants extends AbstractJSONLoader {
      */
     public void init(){
         super.init(
-                GlobalConstants.PATH_GREEK_LETTERS_AND_CONSTANTS_FILE,
+                GlobalPaths.PATH_GREEK_LETTERS_AND_CONSTANTS_FILE,
                 KEY_LANGUAGES,
                 KEY_CONSTANTS
         );

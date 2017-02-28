@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.semantic;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
@@ -29,8 +29,8 @@ public class MathMode extends LaTeXMode {
     public String makeReplacements(String content) {
         String math = content.substring(delim.length(), content.length() - MathModeUtils.mathMode.get(delim).length());
         System.out.println(math);
-        PomParser parser = new PomParser(GlobalConstants.PATH_REFERENCE_DATA);
-        parser.addLexicons(GlobalConstants.DLMF_MACROS_LEXICON_NAME);
+        PomParser parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA);
+        parser.addLexicons(GlobalPaths.DLMF_MACROS_LEXICON_NAME);
         String output = "";
         try {
             output = parser.parse(math).toString(); //more code for testing

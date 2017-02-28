@@ -4,13 +4,6 @@ package gov.nist.drmf.interpreter.common;
  * @author Andre Greiner-Petter
  */
 public class Keys {
-    // this will be setup on runtime
-    public static String CAS_KEY = "";
-
-    public static boolean ALTERNATIVE_MODE = false;
-
-    public static final String ALTERNATIVE_SPLIT = "||";
-
     // Key value for LaTeX
     public static final String KEY_LATEX = "LaTeX";
 
@@ -46,4 +39,10 @@ public class Keys {
             FEATURE_VALUE_FUNCTION  = "function",
             FEATURE_VALUE_CONSTANT  = "mathematical constant",
             FEATURE_VALUE_IGNORE    = "ignore";
+
+    public static final String
+            MLP_KEY_MULTIPLICATION  = "General Multiplication",
+            MLP_KEY_ADDITION        = "Addition",
+            MLP_KEY_FRACTION        = "fraction",
+            MLP_KEY_UNDERSCORE      = "underscore";
 }

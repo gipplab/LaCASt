@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.examples;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import mlp.*;
@@ -45,7 +45,7 @@ public class ExampleParser {
         greek.init();
 
         // initialize parser
-        parser = new PomParser(GlobalConstants.PATH_REFERENCE_DATA.toString());
+        parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA.toString());
     }
 
     /**

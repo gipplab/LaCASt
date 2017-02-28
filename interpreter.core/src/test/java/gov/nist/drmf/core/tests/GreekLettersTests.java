@@ -1,6 +1,5 @@
 package gov.nist.drmf.core.tests;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import org.junit.jupiter.api.BeforeAll;
