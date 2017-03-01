@@ -13,14 +13,6 @@ import java.io.IOException;
 public class MapleToSemanticInterpreter {
 
     public static void main (String[] args){
-        if ( Initializer.loadMapleNatives() )
-            System.out.println("Loading Maple Natives!");
-        else {
-            System.out.println("Cannot load maple native directory.");
-            return;
-        }
-
-
         try {
             MapleInterface imaple = new MapleInterface();
             imaple.init();
@@ -29,8 +21,8 @@ public class MapleToSemanticInterpreter {
             //test = "gamma+alpha^5-I^(x/5)+Catalan";
             //test = "x + x^2 + ((1-gamma)*x/2)^I";
             //test = "gamma + alpha^(5) +(1 * I)^(x *(1)/(5)) *(- 1)+ Catalan";
-            //test = "1/((a+2)/(b^(Catalan/I)/(alpha*q^I*x/3)*alpha))";
-            test = "((x^a)^b)^c";
+            test = "1/((a+2)/(b^(Catalan/I)/(alpha*q^I*x/3)*alpha))";
+            //test = "((x^a)^b)^c";
 
             String result = imaple.parse(test);
 

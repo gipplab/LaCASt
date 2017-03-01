@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/interpreter.cas/interpreter.cas.iml" filepath="$PROJECT_DIR$/interpreter.cas/interpreter.cas.iml" />
       <module fileurl="file://$PROJECT_DIR$/interpreter.core/interpreter.core.iml" filepath="$PROJECT_DIR$/interpreter.core/interpreter.core.iml" />
       <module fileurl="file://$PROJECT_DIR$/interpreter.maple/interpreter.maple.iml" filepath="$PROJECT_DIR$/interpreter.maple/interpreter.maple.iml" />
+      <module fileurl="file://$PROJECT_DIR$/interpreter.roundtrip/interpreter.roundtrip.iml" filepath="$PROJECT_DIR$/interpreter.roundtrip/interpreter.roundtrip.iml" />
       <module fileurl="file://$PROJECT_DIR$/interpreter.semantic/interpreter.semantic.iml" filepath="$PROJECT_DIR$/interpreter.semantic/interpreter.semantic.iml" />
     </modules>
   </component>
