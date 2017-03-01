@@ -2,11 +2,14 @@ package gov.nist.drmf.interpreter.maple.grammar;
 
 import static gov.nist.drmf.interpreter.maple.common.MapleConstants.*;
 
+import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.maple.parser.MapleInterface;
 
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * TODO should we handle spaces here as well? I think so.
@@ -14,6 +17,8 @@ import java.util.NoSuchElementException;
  * Created by AndreG-P on 24.02.2017.
  */
 public class TranslatedList extends TranslatedExpression {
+    public static final String LATEX_COMMAND = "\\\\[a-zA-Z\\(\\)\\[\\]\\{}]+";
+    public static final Pattern LATEX_COMMAND_PATTERN = Pattern.compile(LATEX_COMMAND);
 
     private LinkedList<TranslatedExpression> trans_list;
 
@@ -157,8 +162,13 @@ public class TranslatedList extends TranslatedExpression {
         }
 
         String str = "";
-        while ( !copy.isEmpty() )
-            str += copy.removeFirst().getPlainExpression();
+        String tmp;
+        while ( !copy.isEmpty() ){
+            tmp = copy.removeFirst().getPlainExpression();
+            if ( whiteSpaceCheck(tmp) )
+                str += tmp + GlobalConstants.WHITESPACE;
+            else str += tmp;
+        }
 
         if ( isEmbraced() )
             str = brackets.symbol + str + brackets.counterpart;
@@ -166,17 +176,12 @@ public class TranslatedList extends TranslatedExpression {
         if ( isNegative() )
             str = MINUS_SIGN + str;
 
-        /*
-        if ( isNegative() ){
-            if ( !isEmbraced() ) {
-                str = MapleInterface.DEFAULT_LATEX_BRACKET.symbol + str;
-                str += MapleInterface.DEFAULT_LATEX_BRACKET.counterpart;
-            }
-            str = "-" + str;
-        }
-        */
-
         return str;
+    }
+
+    private boolean whiteSpaceCheck( String s ){
+        Matcher m = LATEX_COMMAND_PATTERN.matcher( s );
+        return m.matches();
     }
 
     @Override
