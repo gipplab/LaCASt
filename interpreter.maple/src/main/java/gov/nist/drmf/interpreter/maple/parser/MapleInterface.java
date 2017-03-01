@@ -13,6 +13,7 @@ import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import gov.nist.drmf.interpreter.maple.parser.components.AbstractAlgebraicParser;
+import gov.nist.drmf.interpreter.maple.setup.Initializer;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -74,6 +75,13 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
     public void init() throws MapleException, IOException {
         // ignore calls if the engine already exists.
         if ( e != null ) return;
+
+        if ( Initializer.loadMapleNatives() )
+            System.out.println("Loading Maple Natives!");
+        else {
+            System.out.println("Cannot load maple native directory.");
+            return;
+        }
 
         // loading procedure from file.
         String procedure;
