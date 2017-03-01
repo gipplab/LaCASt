@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.common;
 
+import java.util.regex.Pattern;
+
 /**
  * Created by AndreG-P on 28.02.2017.
  */
@@ -8,6 +10,11 @@ public class GlobalConstants {
     public static final String ALTERNATIVE_SPLIT = "||";
 
     public static final String CARET_CHAR = "^";
+
+    public static final String WHITESPACE = " ";
+
+    public static final String LATEX_MULTIPLY = "\\\\cdot|\\*";
+    public static final Pattern LATEX_MULTIPLY_PATTERN = Pattern.compile(LATEX_MULTIPLY);
 
     /**
      * A flag to identify the CAS at runtime. It is used for the

@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.parser.components;
 import com.sun.istack.internal.Nullable;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
+import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -10,6 +11,7 @@ import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.List;
+import java.util.regex.Matcher;
 
 /**
  * There are two possible types of sequences in this code.
@@ -277,6 +279,10 @@ public class SequenceParser extends AbstractListParser {
             if ( exp_list == null || exp_list.size() < 1) return false;
             MathTerm curr = currExp.getRoot();
             MathTerm next = exp_list.get(0).getRoot();
+            Matcher m1 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(curr.getTermText());
+            Matcher m2 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(next.getTermText());
+            if ( m1.matches() || m2.matches() ) return false;
+
             return !(
                     curr.getTermText().matches( PATTERN_BASIC_OPERATIONS )
                     || next.getTermText().matches( PATTERN_BASIC_OPERATIONS )

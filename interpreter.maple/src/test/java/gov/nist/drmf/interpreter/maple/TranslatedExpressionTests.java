@@ -115,13 +115,13 @@ public class TranslatedExpressionTests {
     @Test
     public void simpleNegativeProduction(){
         transList.addTranslatedExpression("2");
-        transList.addTranslatedExpression("*");
+        transList.addTranslatedExpression("\\cdot");
         transList.addTranslatedExpression( new TranslatedExpression("2", NEGATIVE) );
 
         String result = transList.getAccurateString().replaceAll("\\s+","");
 
         assertTrue(
-                result.matches("2\\*\\(-2\\)"),
+                result.matches("2\\\\cdot\\s*\\(-2\\)"),
                 "Expected 2*(-2)! But get: " + result );
     }
 
@@ -255,5 +255,15 @@ public class TranslatedExpressionTests {
         assertTrue(
                 result.matches("\\(-3-x\\)\\^\\{-\\\\iunit}"),
                 "Expected (3+x)^\\left(-\\iunit\\right)! But get: " + result );
+    }
+
+    @Test
+    public void obligatorySpacesTest(){
+        transList.addTranslatedExpression(new TranslatedExpression("\\infty", NEGATIVE));
+        transList.addTranslatedExpression(new TranslatedExpression("\\cdot "));
+        transList.addTranslatedExpression(new TranslatedExpression("x"));
+        String result = transList.getAccurateString().trim();
+        assertTrue( result.matches("-\\\\infty\\s?\\\\cdot\\s+x"),
+                "Expected whitespaces \"-\\infty\\cdot x\"! But get: " + result );
     }
 }

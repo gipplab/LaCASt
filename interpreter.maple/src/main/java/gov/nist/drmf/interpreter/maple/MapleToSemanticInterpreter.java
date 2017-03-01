@@ -24,7 +24,15 @@ public class MapleToSemanticInterpreter {
         try {
             MapleInterface imaple = new MapleInterface();
             imaple.init();
-            String result = imaple.parse( "(infinity+Catalan/2)^gamma" );
+
+            String test = "(infinity+Catalan/2)^gamma";
+            //test = "gamma+alpha^5-I^(x/5)+Catalan";
+            //test = "x + x^2 + ((1-gamma)*x/2)^I";
+            //test = "gamma + alpha^(5) +(1 * I)^(x *(1)/(5)) *(- 1)+ Catalan";
+            //test = "1/((a+2)/(b^(Catalan/I)/(alpha*q^I*x/3)*alpha))";
+            test = "((x^a)^b)^c";
+
+            String result = imaple.parse(test);
 
             System.out.println("Translated to: " + result);
             System.out.println("ErrorLOG: " + imaple.getInternalErrorLog());
