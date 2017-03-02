@@ -1,8 +1,7 @@
-package gov.nist.drmf.interpreter.maple.parser.components;
+package gov.nist.drmf.interpreter.maple.translation.components;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
-import com.maplesoft.openmaple.Expseq;
 import com.maplesoft.openmaple.List;
 import com.maplesoft.openmaple.MString;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
@@ -12,20 +11,20 @@ import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedExpression;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
-import gov.nist.drmf.interpreter.maple.parser.MapleInterface;
+import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 
 /**
  * Created by AndreG-P on 28.02.2017.
  */
-public class FunctionAndVariableParser extends AbstractAlgebraicParser<List> {
+public class FunctionAndVariableTranslator extends AbstractAlgebraicTranslator<List> {
     private MapleInternal internal;
 
-    public FunctionAndVariableParser(MapleInternal internal){
+    public FunctionAndVariableTranslator(MapleInternal internal){
         this.internal = internal;
     }
 
     @Override
-    public boolean parse(List list) {
+    public boolean translate(List list) {
         switch ( internal ){
             case string:
             case name:
@@ -78,7 +77,7 @@ public class FunctionAndVariableParser extends AbstractAlgebraicParser<List> {
             translatedList.addTranslatedExpression( t );
             return true;
         } catch ( MapleException e ){
-            internalErrorLog += "Cannot parse string. " + e.getMessage();
+            internalErrorLog += "Cannot translate string. " + e.getMessage();
             return false;
         }
     }
@@ -100,7 +99,7 @@ public class FunctionAndVariableParser extends AbstractAlgebraicParser<List> {
             translatedList.addTranslatedExpression( trans_exponent );
             return true;
         } catch ( MapleException e ){
-            internalErrorLog += "Cannot parse power. " + e.getMessage();
+            internalErrorLog += "Cannot translate power. " + e.getMessage();
             return false;
         }
     }

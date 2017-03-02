@@ -1,16 +1,15 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
 import com.sun.istack.internal.Nullable;
-import mlp.PomTaggedExpression;
 
 /**
- * A general parser has at least two methods.
- * One to parse the expression and one to get
+ * A general translation has at least two methods.
+ * One to translate the expression and one to get
  * the result of the parsed expression.
  *
  * @author Andre Greiner-Petter
  */
-public interface IParser<T> {
+public interface ITranslator<T> {
     /**
      * This method parses a given expression.
      * It returns true if the parsing process
@@ -23,14 +22,14 @@ public interface IParser<T> {
      * @return  true if the parsing process finished
      *          without an error.
      */
-    boolean parse(T expression);
+    boolean translate(T expression);
 
     /**
      * Returns the translated expression. This
-     * value could be null, if the {@link #parse(T)}
+     * value could be null, if the {@link #translate(T)}
      * returns false before.
      * @return  the translated expression given in
-     *          {@link #parse(T)} or nul
+     *          {@link #translate(T)} or nul
      */
     @Nullable
     String getTranslatedExpression();

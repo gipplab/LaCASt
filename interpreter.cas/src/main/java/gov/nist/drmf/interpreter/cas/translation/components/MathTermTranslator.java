@@ -1,9 +1,10 @@
-package gov.nist.drmf.interpreter.cas.parser.components;
+package gov.nist.drmf.interpreter.cas.translation.components;
 
 import com.sun.istack.internal.Nullable;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
-import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
-import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
+import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
+import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
+import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
@@ -22,27 +23,27 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * The math term parser parses only math terms.
- * It is a inner parser and switches through all different
+ * The math term translation parses only math terms.
+ * It is a inner translation and switches through all different
  * kinds of math terms. All registered math terms can be
  * found in {@link MathTermTags}.
  *
- * @see gov.nist.drmf.interpreter.cas.parser.AbstractParser
+ * @see AbstractTranslator
  * @see Constants
  * @see GreekLetters
  * @see MathTermTags
  * @author Andre Greiner-Petter
  */
-public class MathTermParser extends AbstractListParser {
+public class MathTermTranslator extends AbstractListTranslator {
     @Override
-    public boolean parse( PomTaggedExpression exp ){
+    public boolean translate(PomTaggedExpression exp ){
         return parse( exp, new LinkedList<>() );
     }
 
     /**
-     * This parser only parses MathTerms. Only use this
+     * This translation only parses MathTerms. Only use this
      * when your expression has a non-empty term and
-     * cannot parse by any other specialized parser!
+     * cannot translate by any other specialized translation!
      *
      * @param exp has a not empty term!
      * @param following_exp
@@ -81,8 +82,8 @@ public class MathTermParser extends AbstractListParser {
                 // a latex-command could be:
                 //  1) Greek letter -> translate via GreekLetters.translate
                 //  2) constant     -> translate via Constants.translate
-                //  3) A DLMF Macro -> this parser cannot handle DLMF-Macros
-                //  4) a function   -> Should parsed by FunctionParser and not here!
+                //  3) A DLMF Macro -> this translation cannot handle DLMF-Macros
+                //  4) a function   -> Should parsed by FunctionTranslator and not here!
 
                 // is it a Greek letter?
                 if ( FeatureSetUtility.isGreekLetter(term) ){
@@ -103,7 +104,7 @@ public class MathTermParser extends AbstractListParser {
                 // no it is a DLMF macro or function
                 FeatureSet macro = term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
                 if ( macro != null ){
-                    ERROR_LOG.severe("MathTermParser cannot parse DLMF-Macro: " +
+                    ERROR_LOG.severe("MathTermTranslator cannot translate DLMF-Macro: " +
                             term.getTermText());
                 } else {
                     ERROR_LOG.severe("Reached unknown latex-command " +
@@ -111,7 +112,7 @@ public class MathTermParser extends AbstractListParser {
                 }
                 return false;
             case function:
-                ERROR_LOG.severe("MathTermParser cannot parse functions. Use the FunctionParser instead: "
+                ERROR_LOG.severe("MathTermTranslator cannot translate functions. Use the FunctionTranslator instead: "
                         + term.getTermText());
                 return false;
             case multiply:
@@ -143,7 +144,7 @@ public class MathTermParser extends AbstractListParser {
             case right_parenthesis:
             case right_bracket:
             case right_brace:
-                ERROR_LOG.severe("MathTermParser don't expected brackets but found "
+                ERROR_LOG.severe("MathTermTranslator don't expected brackets but found "
                         + term.getTermText());
                 return false;
             case at:
@@ -187,7 +188,7 @@ public class MathTermParser extends AbstractListParser {
                 global_exp.addTranslatedExpression(term.getTermText());
                 return true;
             case operation:
-                OperationParser opParser = new OperationParser();
+                OperationTranslator opParser = new OperationTranslator();
                 // well, maybe not the best choice
                 if ( opParser.parse( exp, following_exp ) ){
                     local_inner_exp.addTranslatedExpression( opParser.getTranslatedExpressionObject() );
@@ -195,7 +196,7 @@ public class MathTermParser extends AbstractListParser {
                 } else return false;
             case factorial:
                 String last = global_exp.removeLastExpression();
-                BasicFunctionsTranslator translator = SemanticLatexParser.getBasicFunctionParser();
+                BasicFunctionsTranslator translator = SemanticLatexTranslator.getBasicFunctionParser();
                 String translation;
 
                 String prefix = "";
@@ -221,7 +222,7 @@ public class MathTermParser extends AbstractListParser {
                 return parseUnderscores( exp );
             case ordinary:
             case ellipsis:
-                SymbolTranslator sT = SemanticLatexParser.getSymbolsTranslator();
+                SymbolTranslator sT = SemanticLatexTranslator.getSymbolsTranslator();
                 String symbol;
                 if ( tag.equals(MathTermTags.ordinary) )
                     symbol = sT.translate( term.getTermText() );
@@ -237,7 +238,7 @@ public class MathTermParser extends AbstractListParser {
                 return false;
             case abbreviation:
                 ERROR_LOG.warning(
-                        "This program cannot parse abbreviations like " + term.getTermText()
+                        "This program cannot translate abbreviations like " + term.getTermText()
                 );
                 return false;
             default:
@@ -293,7 +294,7 @@ public class MathTermParser extends AbstractListParser {
      */
     @Nullable
     private String translateToDLMF( String constant ){
-        Constants c = SemanticLatexParser.getConstantsParser();
+        Constants c = SemanticLatexTranslator.getConstantsParser();
         if ( !constant.startsWith(CHAR_BACKSLASH) ) constant = CHAR_BACKSLASH + constant;
         return c.translate( Keys.KEY_LATEX, Keys.KEY_DLMF, constant );
     }
@@ -308,8 +309,8 @@ public class MathTermParser extends AbstractListParser {
      * @return true if everything was fine
      */
     private boolean parseMathematicalConstant( FeatureSet set, String constant ){
-        // get the parser first and try to parse it
-        Constants c = SemanticLatexParser.getConstantsParser();
+        // get the translation first and try to translate it
+        Constants c = SemanticLatexTranslator.getConstantsParser();
         String translated_const = c.translate( constant );
 
         // if it wasn't translated try some other stuff
@@ -380,7 +381,7 @@ public class MathTermParser extends AbstractListParser {
      */
     private boolean parseGreekLetter( String GreekLetter ){
         // try to translate
-        GreekLetters l = SemanticLatexParser.getGreekLettersParser();
+        GreekLetters l = SemanticLatexTranslator.getGreekLettersParser();
         String translated_letter = l.translate(GreekLetter);
 
         // if it's null, maybe a \ is missing
@@ -415,7 +416,7 @@ public class MathTermParser extends AbstractListParser {
     private boolean parseCaret( PomTaggedExpression exp ){
         // get the power
         PomTaggedExpression sub_exp = exp.getComponents().get(0);
-        // and parse the power
+        // and translate the power
         TranslatedExpression power = parseGeneralExpression(sub_exp, null);
 
         // now we need to wrap parenthesis around the power
@@ -448,7 +449,7 @@ public class MathTermParser extends AbstractListParser {
         // first of all, remove the previous expression. It becomes a whole new block.
         String var = global_exp.removeLastExpression();
 
-        // get the subscript expression and parse it.
+        // get the subscript expression and translate it.
         PomTaggedExpression subscript_exp = exp.getComponents().get(0);
         TranslatedExpression subscript = parseGeneralExpression(subscript_exp, null);
 
@@ -461,7 +462,7 @@ public class MathTermParser extends AbstractListParser {
         local_inner_exp.clear();
 
         // finally translate it as a function
-        BasicFunctionsTranslator parser = SemanticLatexParser.getBasicFunctionParser();
+        BasicFunctionsTranslator parser = SemanticLatexTranslator.getBasicFunctionParser();
         String translation = parser.translate(args, Keys.MLP_KEY_UNDERSCORE);
 
         // keep the local_inner_exp clean to show we need to take the global_exp

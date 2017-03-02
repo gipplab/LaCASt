@@ -1,27 +1,27 @@
-package gov.nist.drmf.interpreter.maple.parser.components;
+package gov.nist.drmf.interpreter.maple.translation.components;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
-import gov.nist.drmf.interpreter.maple.parser.MapleInterface;
+import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 
 /**
  * Created by AndreG-P on 22.02.2017.
  */
-public class SequenceParser extends AbstractAlgebraicParser<List> {
+public class SequenceTranslator extends AbstractAlgebraicTranslator<List> {
 
     private int length;
     private MapleInternal internal;
 
-    public SequenceParser( MapleInternal internal, int length ){
+    public SequenceTranslator(MapleInternal internal, int length ){
         this.length = length;
         this.internal = internal;
     }
 
     @Override
-    public boolean parse( List expression ) {
+    public boolean translate(List expression ) {
         switch ( internal ){
             case sum:
                 return parseSum( expression );
@@ -71,7 +71,7 @@ public class SequenceParser extends AbstractAlgebraicParser<List> {
             translatedList.addTranslatedExpression( inner_list );
             return true;
         } catch ( MapleException me ){
-            internalErrorLog += "Cannot parse sum! " + me.getMessage();
+            internalErrorLog += "Cannot translate sum! " + me.getMessage();
             return false;
         }
     }

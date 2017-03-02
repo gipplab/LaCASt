@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.maple.parser.components;
+package gov.nist.drmf.interpreter.maple.translation.components;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
@@ -11,19 +11,19 @@ import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedExpression;
-import gov.nist.drmf.interpreter.maple.parser.MapleInterface;
+import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 
 import static gov.nist.drmf.interpreter.maple.common.MapleConstants.*;
 
 /**
  * Created by AndreG-P on 22.02.2017.
  */
-public class NumericalParser extends AbstractAlgebraicParser<List> {
+public class NumericalTranslator extends AbstractAlgebraicTranslator<List> {
 
     private MapleInternal root;
     private int length;
 
-    public NumericalParser( MapleInternal internal, int length )
+    public NumericalTranslator(MapleInternal internal, int length )
             throws IllegalArgumentException {
         if ( length < 2 || length > 3 )
             throw new IllegalArgumentException(
@@ -35,7 +35,7 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
     }
 
     @Override
-    public boolean parse( List list ) {
+    public boolean translate(List list ) {
         switch (root) {
             case intpos: return parsePosInt(list);
             case intneg: return parseNegInt(list);
@@ -67,7 +67,7 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
             Numeric n = (Numeric)list.select(2);
             return Integer.toString( n.intValue() );
         } catch( MapleException me ){
-            internalErrorLog += "Could not parse positive integer! " + me.getMessage();
+            internalErrorLog += "Could not translate positive integer! " + me.getMessage();
             return null;
         }
     }
@@ -95,7 +95,7 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
             translatedList.addTranslatedExpression( t );
             return true;
         } catch ( MapleException e ){
-            internalErrorLog += "Cannot parse rational numbers! " + e.getMessage();
+            internalErrorLog += "Cannot translate rational numbers! " + e.getMessage();
             return false;
         }
     }
@@ -164,7 +164,7 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
             translatedList.addTranslatedExpression( imaginary );
             return true;
         } catch ( MapleException | IllegalArgumentException me ){
-            internalErrorLog += "Cannot parse complex number! " + me.getMessage();
+            internalErrorLog += "Cannot translate complex number! " + me.getMessage();
             return false;
         }
     }
@@ -196,8 +196,8 @@ public class NumericalParser extends AbstractAlgebraicParser<List> {
             case intneg:
             case floating:
             case rational:
-                NumericalParser np = new NumericalParser( in, 2 );
-                if (!np.parse(list)) throw new MapleException("Cannot parse rational number.");
+                NumericalTranslator np = new NumericalTranslator( in, 2 );
+                if (!np.translate(list)) throw new MapleException("Cannot translate rational number.");
                 return np.translatedList.merge();
             default: throw new IllegalArgumentException("Illegal argument in complex!");
         }

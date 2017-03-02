@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.maple.parser;
+package gov.nist.drmf.interpreter.maple.translation;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
@@ -12,22 +12,23 @@ import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
-import gov.nist.drmf.interpreter.maple.parser.components.AbstractAlgebraicParser;
+import gov.nist.drmf.interpreter.maple.translation.components.AbstractAlgebraicTranslator;
 import gov.nist.drmf.interpreter.maple.setup.Initializer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
  * Created by AndreG-P on 21.02.2017.
  */
-public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
+public class MapleInterface extends AbstractAlgebraicTranslator<Algebraic> {
 
-    public static final Logger LOG = Logger.getLogger(MapleInterface.class.toString());
+    private static final Logger LOG = LogManager.getLogger(MapleInterface.class.toString());
 
     public static final Brackets DEFAULT_LATEX_BRACKET = Brackets.left_latex_parenthesis;
 
@@ -77,9 +78,9 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
         if ( e != null ) return;
 
         if ( Initializer.loadMapleNatives() )
-            System.out.println("Loading Maple Natives!");
+            LOG.info("Loading Maple Natives!");
         else {
-            System.out.println("Cannot load maple native directory.");
+            LOG.error("Cannot load maple native directory.");
             return;
         }
 
@@ -91,7 +92,7 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
             stream.close(); // not really necessary
             maple_procedure = procedure.split(define_symb)[0].trim();
         } catch (IOException ioe){
-            System.err.println("Cannot load procedure from file " + GlobalPaths.PATH_MAPLE_PROCEDURE);
+            LOG.error("Cannot load procedure from file " + GlobalPaths.PATH_MAPLE_PROCEDURE);
             throw ioe;
         }
 
@@ -116,22 +117,22 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
     }
 
     public String parse( String maple_input ) throws MapleException {
-        // Looks shitty? Right! It's Jürgen's shit...
         Algebraic a =
                 e.evaluate(
                         maple_procedure + "(" +
                         to_inert_prefix + maple_input + to_inert_suffix +
                         ");"
                 );
+        LOG.info("Parsed: " + maple_input);
 
-        if ( !parse(a) ){
-            System.err.println("Something went wrong: " + internalErrorLog);
+        if ( !translate(a) ){
+            LOG.error("Something went wrong: " + internalErrorLog);
             return "";
         } else return translatedList.getAccurateString();
     }
 
     @Override
-    public boolean parse( Algebraic alg ){
+    public boolean translate(Algebraic alg ){
         translatedList = parseGeneralExpression(alg);
         if ( internalErrorLog.isEmpty() )
             return true;
@@ -156,5 +157,9 @@ public class MapleInterface extends AbstractAlgebraicParser<Algebraic>{
 
     public static BasicFunctionsTranslator getBasicFunctionsTranslator(){
         return basicFunc;
+    }
+
+    public String getProcedureName(){
+        return maple_procedure;
     }
 }

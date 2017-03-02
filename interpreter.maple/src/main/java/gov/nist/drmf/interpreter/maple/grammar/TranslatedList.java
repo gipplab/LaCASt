@@ -4,7 +4,7 @@ import static gov.nist.drmf.interpreter.maple.common.MapleConstants.*;
 
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.maple.parser.MapleInterface;
+import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 
 import java.util.LinkedList;
 import java.util.NoSuchElementException;

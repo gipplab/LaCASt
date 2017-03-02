@@ -2,14 +2,14 @@ package gov.nist.drmf.interpreter.maple.listener;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.EngineCallBacks;
-
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Created by AndreG-P on 21.02.2017.
  */
 public class MapleListener implements EngineCallBacks {
-    private Logger log = Logger.getLogger( MapleListener.class.toString() );
+    private Logger log = LogManager.getLogger( MapleListener.class.toString() );
 
     private boolean logging;
 
@@ -35,7 +35,7 @@ public class MapleListener implements EngineCallBacks {
             if ( i >= 0 ) str += " occurred at offset " + i;
             if ( o != null ) str += "; Object: " + o;
             str += "; " + s;
-            log.severe(str);
+            log.error(str);
         }
     }
 
@@ -54,7 +54,7 @@ public class MapleListener implements EngineCallBacks {
     public String readLineCallBack(Object o, boolean b) throws MapleException {
         if ( logging ) {
             String str = "Cannot handle readline():";
-            log.severe(str);
+            log.warn(str);
         }
         return null;
     }
@@ -63,7 +63,7 @@ public class MapleListener implements EngineCallBacks {
     public boolean redirectCallBack(Object o, String s, boolean b) throws MapleException {
         if ( logging ) {
             String str = "Cannot handle writeto or appendto!";
-            log.severe(str);
+            log.warn(str);
         }
         return false;
     }
@@ -94,7 +94,7 @@ public class MapleListener implements EngineCallBacks {
     public String streamCallBack(Object o, String s, String[] strings) throws MapleException {
         if ( logging ){
             String str = "Cannot handle streams!";
-            log.severe(str);
+            log.warn(str);
         }
         return null;
     }

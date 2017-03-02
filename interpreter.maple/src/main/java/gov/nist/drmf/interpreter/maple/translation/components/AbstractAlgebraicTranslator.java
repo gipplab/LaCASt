@@ -1,24 +1,25 @@
-package gov.nist.drmf.interpreter.maple.parser.components;
+package gov.nist.drmf.interpreter.maple.translation.components;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
-import gov.nist.drmf.interpreter.common.grammar.IParser;
+import gov.nist.drmf.interpreter.common.grammar.ITranslator;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
-import gov.nist.drmf.interpreter.maple.grammar.TranslatedExpression;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
-import gov.nist.drmf.interpreter.maple.parser.MapleInterface;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static gov.nist.drmf.interpreter.maple.common.MapleConstants.MAPLE_INTERNAL_PATTERN;
 
 /**
  * Created by AndreG-P on 21.02.2017.
  */
-public abstract class AbstractAlgebraicParser<T extends Algebraic> implements IParser<T> {
+public abstract class AbstractAlgebraicTranslator<T extends Algebraic> implements ITranslator<T> {
     public static String MULTIPLY, ADD, INFINITY;
+
+    public static final Logger LOG = LogManager.getLogger( AbstractAlgebraicTranslator.class );
 
     protected TranslatedList translatedList = new TranslatedList();
 
@@ -36,9 +37,9 @@ public abstract class AbstractAlgebraicParser<T extends Algebraic> implements IP
             try{
                 String root = list.select(1).toString();
                 MapleInternal in = getAbstractInternal(root);
-                ListParser lParser = new ListParser( in, list.length() );
-                if ( !lParser.parse(list) ) {
-                    this.internalErrorLog += "ListParser crashes: " + lParser.internalErrorLog;
+                ListTranslator lParser = new ListTranslator( in, list.length() );
+                if ( !lParser.translate(list) ) {
+                    this.internalErrorLog += "ListTranslator crashes: " + lParser.internalErrorLog;
                     return null;
                 }
                 else {
@@ -52,7 +53,7 @@ public abstract class AbstractAlgebraicParser<T extends Algebraic> implements IP
 
         // otherwise it must be a usual Algebraic object.
         // TODO hmm, this should not happen.
-        System.err.println("Well, the general parser assumes a list in general.");
+        LOG.error( "Something went wrong. Found a not List object in the general expression method?" );
         return null;
     }
 
@@ -66,7 +67,7 @@ public abstract class AbstractAlgebraicParser<T extends Algebraic> implements IP
     }
 
     @Override
-    public abstract boolean parse( T element );
+    public abstract boolean translate(T element );
 
     public MapleInternal getAbstractInternal( String root ) throws IllegalArgumentException{
         Matcher match = MAPLE_INTERNAL_PATTERN.matcher(root);

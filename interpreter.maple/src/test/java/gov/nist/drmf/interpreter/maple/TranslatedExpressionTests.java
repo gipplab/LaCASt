@@ -44,7 +44,7 @@ public class TranslatedExpressionTests {
     /**
      * Test: -\left( 2+x \right)
      * Attention: We are using \left( \right) as default parenthesis
-     * @see gov.nist.drmf.interpreter.maple.parser.MapleInterface#DEFAULT_LATEX_BRACKET
+     * @see gov.nist.drmf.interpreter.maple.translation.MapleInterface#DEFAULT_LATEX_BRACKET
      */
     @Test
     public void singleEmbracedNegativeExpression(){
@@ -185,7 +185,7 @@ public class TranslatedExpressionTests {
     /**
      * Test: 2-\left( \cpi+x \right)
      * Attention: We are using \left( \right) as default parenthesis
-     * @see gov.nist.drmf.interpreter.maple.parser.MapleInterface#DEFAULT_LATEX_BRACKET
+     * @see gov.nist.drmf.interpreter.maple.translation.MapleInterface#DEFAULT_LATEX_BRACKET
      */
     @Test
     public void mergesWithoutEmbrace(){

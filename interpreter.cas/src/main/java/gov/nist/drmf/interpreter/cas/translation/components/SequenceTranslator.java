@@ -1,8 +1,9 @@
-package gov.nist.drmf.interpreter.cas.parser.components;
+package gov.nist.drmf.interpreter.cas.translation.components;
 
 import com.sun.istack.internal.Nullable;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
-import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
+import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
+import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
@@ -27,11 +28,11 @@ import java.util.regex.Matcher;
  *
  * @see ExpressionTags
  * @see Brackets
- * @see AbstractListParser
- * @see gov.nist.drmf.interpreter.cas.parser.AbstractParser
+ * @see AbstractListTranslator
+ * @see AbstractTranslator
  * @author Andre Greiner-Petter
  */
-public class SequenceParser extends AbstractListParser {
+public class SequenceTranslator extends AbstractListTranslator {
     public static final String SPECIAL_SYMBOL_PATTERN_FOR_SPACES =
             "[\\^\\/\\_\\!]";
 
@@ -46,7 +47,7 @@ public class SequenceParser extends AbstractListParser {
      * Uses only for a general sequence expression.
      * If the tag is sequence we don't need to check any parenthesis.
      */
-    public SequenceParser(){}
+    public SequenceTranslator(){}
 
     /**
      * Use this if the sequence is wrapped by parenthesis.
@@ -57,14 +58,14 @@ public class SequenceParser extends AbstractListParser {
      *                     the given bracket is the first open bracket of the following
      *                     sequence
      */
-    public SequenceParser( Brackets open_bracket ){
+    public SequenceTranslator(Brackets open_bracket ){
         this.open_bracket = open_bracket;
     }
 
     @Override
     public boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following ){
         if ( exp == null ) return parse(following);
-        else if ( following == null ) return parse(exp);
+        else if ( following == null ) return translate(exp);
         else return false;
     }
 
@@ -78,9 +79,9 @@ public class SequenceParser extends AbstractListParser {
      *          otherwise false
      */
     @Override
-    public boolean parse(PomTaggedExpression expression){
+    public boolean translate(PomTaggedExpression expression){
         if ( !ExpressionTags.sequence.tag().matches(expression.getTag()) ){
-            ERROR_LOG.severe("You used the wrong parser method. " +
+            ERROR_LOG.severe("You used the wrong translation method. " +
                     "The given expression is not a sequence! " +
                     expression.getTag());
             return false;
@@ -134,7 +135,7 @@ public class SequenceParser extends AbstractListParser {
 
     /**
      * Use this function ONLY when you created an object of this class
-     * with a given bracket {@link SequenceParser#SequenceParser(Brackets)}.
+     * with a given bracket {@link SequenceTranslator#SequenceTranslator(Brackets)}.
      *
      * This method goes through a given list of expressions until it
      * reached the closed bracket that matches to the given open bracket
@@ -145,12 +146,12 @@ public class SequenceParser extends AbstractListParser {
      *
      * @param following_exp the descendants of a previous expression
      *                      with an open bracket
-     * @return true when the parser finished without an error.
+     * @return true when the translation finished without an error.
      */
     public boolean parse(List<PomTaggedExpression> following_exp) {
         if ( open_bracket == null ){
-            ERROR_LOG.severe("Wrong parser method used. " +
-                    "You have to specify an open bracket to parse it like a sequence " +
+            ERROR_LOG.severe("Wrong translation method used. " +
+                    "You have to specify an open bracket to translate it like a sequence " +
                     "that way.");
             return false;
         }
@@ -179,11 +180,11 @@ public class SequenceParser extends AbstractListParser {
                 // bracket cannot be null, because we checked the tag of the term before
                 //noinspection ConstantConditions
                 if ( bracket.opened ){
-                    // create a new SequenceParser (2nd kind)
-                    SequenceParser sp = new SequenceParser( bracket );
-                    // parse the following expressions
+                    // create a new SequenceTranslator (2nd kind)
+                    SequenceTranslator sp = new SequenceTranslator( bracket );
+                    // translate the following expressions
                     if ( sp.parse(following_exp) ){
-                        // if the parser finished correctly, there is nothing to do here
+                        // if the translation finished correctly, there is nothing to do here
                         // only take all of the inner solutions
                         local_inner_exp.addTranslatedExpression( sp.local_inner_exp );
                         // we don't need to add/remove elements from global_exp here
