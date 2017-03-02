@@ -1,11 +1,11 @@
-package gov.nist.drmf.interpreter.cas.parser;
+package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.cas.logging.InformationLogger;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
-import gov.nist.drmf.interpreter.cas.parser.components.*;
+import gov.nist.drmf.interpreter.cas.translation.components.*;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.common.grammar.IParser;
+import gov.nist.drmf.interpreter.common.grammar.ITranslator;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.FeatureSet;
@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author Andre Greiner-Petter
  */
-public abstract class AbstractParser implements IParser<PomTaggedExpression> {
+public abstract class AbstractTranslator implements ITranslator<PomTaggedExpression> {
     public static final String SPACE = " ";
 
     public static final String OPEN_PARENTHESIS_PATTERN =
@@ -57,37 +57,37 @@ public abstract class AbstractParser implements IParser<PomTaggedExpression> {
     protected TranslatedExpression parseGeneralExpression(
             PomTaggedExpression exp,
             List<PomTaggedExpression> exp_list){
-        // create inner local parser (recursive)
-        AbstractParser inner_parser = null;
+        // create inner local translation (recursive)
+        AbstractTranslator inner_parser = null;
         // if there was an inner error
         boolean return_value;
 
         // handle all different cases
         // first, does this expression contains a term?
         if ( !containsTerm(exp) ){
-            inner_parser = new EmptyExpressionParser();
-            return_value = inner_parser.parse(exp);
+            inner_parser = new EmptyExpressionTranslator();
+            return_value = inner_parser.translate(exp);
         } else { // if not handle all different cases of terms
             MathTerm term = exp.getRoot();
             // first, is this a DLMF macro?
             if ( isDLMFMacro(term) ){ // BEFORE FUNCTION!
-                MacroParser mp = new MacroParser();
+                MacroTranslator mp = new MacroTranslator();
                 return_value = mp.parse(exp, exp_list);
                 inner_parser = mp;
             } // second, it could be a sub sequence
             else if ( isSubSequence(term) ){
                 Brackets bracket = Brackets.getBracket(term.getTermText());
-                SequenceParser sp = new SequenceParser(bracket);
+                SequenceTranslator sp = new SequenceTranslator(bracket);
                 return_value = sp.parse(exp_list);
                 inner_parser = sp;
             } // this is special, could be a function like cos
             else if ( isFunction(term) ){
-                FunctionParser fp = new FunctionParser();
+                FunctionTranslator fp = new FunctionTranslator();
                 return_value = fp.parse(exp, exp_list);
                 inner_parser = fp;
             } // otherwise it is a general math term
             else {
-                MathTermParser mp = new MathTermParser();
+                MathTermTranslator mp = new MathTermTranslator();
                 return_value = mp.parse(exp, exp_list);
                 inner_parser = mp;
             }
@@ -159,7 +159,7 @@ public abstract class AbstractParser implements IParser<PomTaggedExpression> {
     }
 
     @Override
-    public abstract boolean parse(PomTaggedExpression expression);
+    public abstract boolean translate(PomTaggedExpression expression);
 
     @Override
     public String getTranslatedExpression() {
@@ -177,5 +177,10 @@ public abstract class AbstractParser implements IParser<PomTaggedExpression> {
 
     protected boolean isInnerError(){
         return inner_Error;
+    }
+
+    public void reset(){
+        local_inner_exp = new TranslatedExpression();
+        global_exp = new TranslatedExpression();
     }
 }

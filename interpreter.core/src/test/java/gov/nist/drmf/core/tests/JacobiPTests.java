@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  * Created by Andre Greiner-Petter on 02.11.2016.
  */
 public class JacobiPTests {
-    // the example parser
+    // the example translation
     private static ExampleParser parser;
 
     private static final String

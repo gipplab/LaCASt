@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.cas;
 
-import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
+import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
@@ -109,8 +109,8 @@ public class SemanticToCASInterpreter {
 
         if ( clean ){
             GlobalConstants.CAS_KEY = CAS;
-            SemanticLatexParser latexParser =
-                    new SemanticLatexParser( Keys.KEY_LATEX, GlobalConstants.CAS_KEY );
+            SemanticLatexTranslator latexParser =
+                    new SemanticLatexTranslator( Keys.KEY_LATEX, GlobalConstants.CAS_KEY );
             latexParser.init( GlobalPaths.PATH_REFERENCE_DATA );
             latexParser.parse( expression );
             if ( clipboard != null ){
@@ -125,11 +125,11 @@ public class SemanticToCASInterpreter {
         init_ms = System.currentTimeMillis();
         GlobalConstants.CAS_KEY = CAS;
 
-        System.out.println("Set up parser...");
-        SemanticLatexParser latexParser =
-                new SemanticLatexParser( Keys.KEY_LATEX, GlobalConstants.CAS_KEY );
+        System.out.println("Set up translation...");
+        SemanticLatexTranslator latexParser =
+                new SemanticLatexTranslator( Keys.KEY_LATEX, GlobalConstants.CAS_KEY );
 
-        System.out.println("Initialize parser...");
+        System.out.println("Initialize translation...");
         latexParser.init( GlobalPaths.PATH_REFERENCE_DATA );
         init_ms = System.currentTimeMillis()-init_ms;
 
@@ -187,7 +187,7 @@ public class SemanticToCASInterpreter {
 
 
         latexParser.init( GlobalPaths.PATH_REFERENCE_DATA );
-        latexParser.parse(test);
+        latexParser.translate(test);
         */
     }
 }

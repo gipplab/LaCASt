@@ -1,8 +1,8 @@
-package gov.nist.drmf.interpreter.cas.parser.components;
+package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
-import gov.nist.drmf.interpreter.cas.parser.AbstractParser;
-import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
+import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
+import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -16,9 +16,9 @@ import java.util.List;
  * @see ExpressionTags
  * @author Andre Greiner-Petter
  */
-public class EmptyExpressionParser extends AbstractParser {
+public class EmptyExpressionTranslator extends AbstractTranslator {
     @Override
-    public boolean parse( PomTaggedExpression expression ) {
+    public boolean translate(PomTaggedExpression expression ) {
         // switch-case over tags
         String tag = expression.getTag();
         ExpressionTags expTag = ExpressionTags.getTagByKey(tag);
@@ -32,11 +32,11 @@ public class EmptyExpressionParser extends AbstractParser {
         // switch over all possible tags
         switch( expTag ){
             // it's a sequence!
-            case sequence: // in that case use the SequenceParser
+            case sequence: // in that case use the SequenceTranslator
                 // this don't write into global_exp!
-                // it only delegates the parsing process to the SequenceParser
-                SequenceParser p = new SequenceParser();
-                if ( p.parse( expression ) ){
+                // it only delegates the parsing process to the SequenceTranslator
+                SequenceTranslator p = new SequenceTranslator();
+                if ( p.translate( expression ) ){
                     local_inner_exp.addTranslatedExpression( p.getTranslatedExpressionObject() );
                     return true;
                 } else return false;
@@ -67,10 +67,10 @@ public class EmptyExpressionParser extends AbstractParser {
             return false;
         }
 
-        // first of all, parse components into translation
+        // first of all, translate components into translation
         local_inner_exp.addTranslatedExpression(
                 // try to translate the basic function
-                SemanticLatexParser.getBasicFunctionParser().translate(
+                SemanticLatexTranslator.getBasicFunctionParser().translate(
                         comps,
                         tag.tag()
                 )

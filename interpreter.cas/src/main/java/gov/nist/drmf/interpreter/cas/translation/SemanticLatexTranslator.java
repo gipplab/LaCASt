@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.cas.parser;
+package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.cas.logging.InformationLogger;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
@@ -18,21 +18,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * This parser parse semantic LaTeX formula using
+ * This translation translate semantic LaTeX formula using
  * the math processor language by Abdou Youssef.
  * It based on BNF grammar programmed with JavaCC.
  *
- * It is the top level parser objects. That means
- * you can use {@link #parse(String)} to parse an
+ * It is the top level translation objects. That means
+ * you can use {@link #parse(String)} to translate an
  * expression in general. To do so, you have to
  * invoke {@link #init(Path)} before you use this
- * parse method. On the other hand this parser can
- * handle also general PomTaggedExpression to parse.
+ * translate method. On the other hand this translation can
+ * handle also general PomTaggedExpression to translate.
  * @see PomTaggedExpression
  *
  * @author Andre Greiner-Petter
  */
-public class SemanticLatexParser extends AbstractParser {
+public class SemanticLatexTranslator extends AbstractTranslator {
     public static String TAB = "";
 
     private static GreekLetters greekLetters;
@@ -42,14 +42,14 @@ public class SemanticLatexParser extends AbstractParser {
 
     private PomParser parser;
 
-    public SemanticLatexParser( String from_language, String to_language ){
+    public SemanticLatexTranslator(String from_language, String to_language ){
         greekLetters = new GreekLetters(from_language, to_language);
         constants = new Constants(Keys.KEY_DLMF, to_language);
         functions = new BasicFunctionsTranslator(to_language);
         symbols = new SymbolTranslator(from_language, to_language);
 
         INFO_LOG = new InformationLogger();
-        ERROR_LOG = Logger.getLogger( SemanticLatexParser.class.toString() );
+        ERROR_LOG = Logger.getLogger( SemanticLatexTranslator.class.toString() );
         ERROR_LOG.setLevel(Level.WARNING);
 
         global_exp = new TranslatedExpression();
@@ -60,7 +60,7 @@ public class SemanticLatexParser extends AbstractParser {
     }
 
     /**
-     * Initialize parser.
+     * Initialize translation.
      * @param reference_dir_path
      */
     public void init( Path reference_dir_path ){
@@ -83,14 +83,15 @@ public class SemanticLatexParser extends AbstractParser {
     public boolean parse(String expression){
         try {
             PomTaggedExpression exp = parser.parse(expression);
-            return parse(exp);
+            return translate(exp);
         } catch ( ParseException pe ){
             return false;
         }
     }
 
     @Override
-    public boolean parse(PomTaggedExpression expression) {
+    public boolean translate(PomTaggedExpression expression) {
+        reset();
         local_inner_exp.addTranslatedExpression(
                 parseGeneralExpression(expression, null).getTranslatedExpression()
         );

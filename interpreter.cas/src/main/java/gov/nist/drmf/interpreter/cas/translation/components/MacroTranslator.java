@@ -1,8 +1,9 @@
-package gov.nist.drmf.interpreter.cas.parser.components;
+package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
-import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
-import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
+import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
+import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
+import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
@@ -13,7 +14,7 @@ import mlp.PomTaggedExpression;
 import java.util.List;
 
 /**
- * This parser parses all of the DLMF macros. A DLMF macro
+ * This translation parses all of the DLMF macros. A DLMF macro
  * has always a feature set named dlmf-macro {@link Keys#KEY_DLMF_MACRO}.
  * This feature set has a lot of important features, like the number of
  * variables and links and so on.
@@ -25,12 +26,12 @@ import java.util.List;
  * stored expressions.
  *
  * @see Keys
- * @see gov.nist.drmf.interpreter.cas.parser.AbstractParser
+ * @see AbstractTranslator
  * @see gov.nist.drmf.interpreter.cas.logging.TranslatedExpression
  * @see gov.nist.drmf.interpreter.cas.logging.InformationLogger
  * @author Andre Greiner-Petter
  */
-public class MacroParser extends AbstractListParser {
+public class MacroTranslator extends AbstractListTranslator {
     // the positioning character used for placeholders.
     private static final String position_char = "$";
 
@@ -56,22 +57,22 @@ public class MacroParser extends AbstractListParser {
 
     private String cas_comment;
 
-    public MacroParser(){}
+    public MacroTranslator(){}
 
     @Override
     public boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following ){
-        return parse(exp) && parse(following);
+        return translate(exp) && parse(following);
     }
 
     @Override
-    public boolean parse(PomTaggedExpression root_exp) {
+    public boolean translate(PomTaggedExpression root_exp) {
         // first of all, get the feature set named dlmf-macro
         MathTerm term = root_exp.getRoot();
         FeatureSet fset = term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
 
         // if this set is null, it is simply not a dlmf-macro
         if ( fset == null ){
-            ERROR_LOG.warning("You should not use MacroParser when the PomTaggedExpression is " +
+            ERROR_LOG.warning("You should not use MacroTranslator when the PomTaggedExpression is " +
                     "not a dlmf-macro!");
             return false;
         }
@@ -194,7 +195,7 @@ public class MacroParser extends AbstractListParser {
             extraInformation += GlobalConstants.CAS_KEY + " uses other branch cuts: " + cas_branch_cuts
                     + System.lineSeparator();
 
-        String TAB = SemanticLatexParser.TAB;
+        String TAB = SemanticLatexTranslator.TAB;
         String tab = TAB.substring(0, TAB.length()-("DLMF: ").length());
         extraInformation += "Relevant links to definitions:" + System.lineSeparator() +
                 "DLMF: " + tab + def_dlmf + System.lineSeparator();

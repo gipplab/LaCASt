@@ -1,8 +1,8 @@
-package gov.nist.drmf.interpreter.cas.parser.components;
+package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
-import gov.nist.drmf.interpreter.cas.parser.AbstractListParser;
-import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
+import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
+import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author Andre Greiner-Petter
  */
-public class OperationParser extends AbstractListParser {
+public class OperationTranslator extends AbstractListTranslator {
     @Override
     public boolean parse( PomTaggedExpression first_exp, List<PomTaggedExpression> following_exp ) {
         MathTerm top = first_exp.getRoot();
@@ -53,7 +53,7 @@ public class OperationParser extends AbstractListParser {
         // and get the string of the divisor
         String divisor  = divisorExp.toString();
 
-        BasicFunctionsTranslator fun = SemanticLatexParser.getBasicFunctionParser();
+        BasicFunctionsTranslator fun = SemanticLatexTranslator.getBasicFunctionParser();
         String[] arguments = new String[]{dividend, divisor};
         String translatedMod = fun.translate( arguments, "modulo" );
 
@@ -75,10 +75,10 @@ public class OperationParser extends AbstractListParser {
     }
 
     private boolean parseSymbol( MathTerm term ){
-        SymbolTranslator sT = SemanticLatexParser.getSymbolsTranslator();
+        SymbolTranslator sT = SemanticLatexTranslator.getSymbolsTranslator();
         String translation = sT.translate( term.getTermText() );
         if ( translation == null ){
-            ERROR_LOG.warning("Cannot parse operation " + term.getTermText());
+            ERROR_LOG.warning("Cannot translate operation " + term.getTermText());
             return false;
         } else {
             INFO_LOG.addGeneralInfo(

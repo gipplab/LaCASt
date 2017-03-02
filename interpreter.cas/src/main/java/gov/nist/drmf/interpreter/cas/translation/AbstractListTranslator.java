@@ -1,7 +1,6 @@
-package gov.nist.drmf.interpreter.cas.parser;
+package gov.nist.drmf.interpreter.cas.translation;
 
 import com.sun.istack.internal.Nullable;
-import gov.nist.drmf.interpreter.cas.parser.AbstractParser;
 import mlp.PomTaggedExpression;
 
 import java.util.LinkedList;
@@ -12,7 +11,7 @@ import java.util.List;
  *
  * @author Andre Greiner-Petter
  */
-public abstract class AbstractListParser extends AbstractParser {
+public abstract class AbstractListTranslator extends AbstractTranslator {
     // Array of parsed strings
     protected String[] components;
 
@@ -23,10 +22,10 @@ public abstract class AbstractListParser extends AbstractParser {
      * @return true if the parsing process finished correctly
      */
     @Override
-    public boolean parse(PomTaggedExpression exp){
+    public boolean translate(PomTaggedExpression exp){
         List<PomTaggedExpression> list = new LinkedList<>();
         list.add(exp);
-        return parse(exp);
+        return translate(exp);
     }
 
     /**
@@ -38,18 +37,18 @@ public abstract class AbstractListParser extends AbstractParser {
     public abstract boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following_exp );
 
     /**
-     * The general method to parse a list of descendants.
+     * The general method to translate a list of descendants.
      * The list should not contain the first element.
      *
      * For instance, let us assume our list contains:
      *      ( 2 + 3 )
-     * Than this method should parse only the following commands:
+     * Than this method should translate only the following commands:
      *        2 + 3 )
      *
      * @param following_exp the descendants of a previous expression
      * @return true if the parsing process finished successful
      */
-    //public abstract boolean parse(List<PomTaggedExpression> following_exp);
+    //public abstract boolean translate(List<PomTaggedExpression> following_exp);
 
     /**
      * Returns parsed components. Be aware this could be null or

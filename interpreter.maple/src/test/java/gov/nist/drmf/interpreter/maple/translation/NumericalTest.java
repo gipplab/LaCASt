@@ -1,7 +1,6 @@
-package gov.nist.drmf.interpreter.maple.parser;
+package gov.nist.drmf.interpreter.maple.translation;
 
 import com.maplesoft.openmaple.Engine;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

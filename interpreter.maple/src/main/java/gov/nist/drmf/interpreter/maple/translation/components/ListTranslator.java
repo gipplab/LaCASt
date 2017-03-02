@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.maple.parser.components;
+package gov.nist.drmf.interpreter.maple.translation.components;
 
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
@@ -6,12 +6,12 @@ import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 /**
  * Created by AndreG-P on 22.02.2017.
  */
-public class ListParser extends AbstractAlgebraicParser<List> {
+public class ListTranslator extends AbstractAlgebraicTranslator<List> {
 
     private int length;
     private MapleInternal root;
 
-    public ListParser( MapleInternal in, int length ) {
+    public ListTranslator(MapleInternal in, int length ) {
         this.root = in;
         this.length = length;
     }
@@ -22,27 +22,27 @@ public class ListParser extends AbstractAlgebraicParser<List> {
      * @return
      */
     @Override
-    public boolean parse( List list ){
-        AbstractAlgebraicParser generalParser = null;
+    public boolean translate(List list ){
+        AbstractAlgebraicTranslator generalParser = null;
         switch( root ){
             case sum:
             case prod:
             case exp:
-                generalParser = new SequenceParser( root, length );
+                generalParser = new SequenceTranslator( root, length );
                 break;
             case intpos:
             case intneg:
             case complex:
             case floating:
             case rational:
-                generalParser = new NumericalParser( root, length );
+                generalParser = new NumericalTranslator( root, length );
                 break;
             case function:
             case power:
             case name:
             case string:
             case ass_name:
-                generalParser = new FunctionAndVariableParser( root );
+                generalParser = new FunctionAndVariableTranslator( root );
                 break;
             case equation:
                 break;
@@ -67,7 +67,7 @@ public class ListParser extends AbstractAlgebraicParser<List> {
         if ( generalParser == null )
             return false;
 
-        if (!generalParser.parse( list )){
+        if (!generalParser.translate( list )){
             this.internalErrorLog = generalParser.internalErrorLog;
             return false;
         } else {

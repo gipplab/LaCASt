@@ -36,7 +36,7 @@ public class MLP {
         System.out.println(Paths.get(".").toAbsolutePath().toString());
         System.out.println(GlobalPaths.PATH_REFERENCE_DATA.toAbsolutePath().toString());
         
-        String[] eqs=equationsForTesting(); //equations to test the parser on
+        String[] eqs=equationsForTesting(); //equations to test the translation on
         
         //mock macros for testing purposes
         String[] macros={"\\newcommand{\\sinq}{\\sin_q +1}",
@@ -52,7 +52,7 @@ public class MLP {
             //create a PomParser object, providing it with the 
             //location of the lexicons
             PomParser parser = new PomParser(refDataDir);
-            parser.addMacros(macros);   //make the macros known to the parser
+            parser.addMacros(macros);   //make the macros known to the translation
             parser.addLexicons( GlobalPaths.DLMF_MACROS_LEXICON_NAME );
 
             // provide next an equation to parse
