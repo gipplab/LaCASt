@@ -11,9 +11,10 @@ import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
+import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
-import gov.nist.drmf.interpreter.maple.translation.components.AbstractAlgebraicTranslator;
 import gov.nist.drmf.interpreter.maple.setup.Initializer;
+import gov.nist.drmf.interpreter.maple.translation.components.AbstractAlgebraicTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,42 +25,69 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
+ * The interface to Maple.
+ *
+ * There is only one instance of this class allowed during the runtime. To get
+ * access to this instance, you have to initialize it first and invoke {@link #init()}
+ * and the instance with {@link #getUniqueMapleInterface()} after the initialization
+ * process has finished.
+ *
  * Created by AndreG-P on 21.02.2017.
  */
-public class MapleInterface extends AbstractAlgebraicTranslator<Algebraic> {
-
-    private static final Logger LOG = LogManager.getLogger(MapleInterface.class.toString());
-
+public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic> {
+    /**
+     * The default brackets Maple uses.
+     * @see Brackets
+     */
     public static final Brackets DEFAULT_LATEX_BRACKET = Brackets.left_latex_parenthesis;
 
+    /**
+     * The private Logger to log all information
+     */
+    private static final Logger LOG = LogManager.getLogger(MapleInterface.class.toString());
+
+    /**
+     * Inner constant to initialize Maple
+     */
     private final String[] maple_args = new String[]{"java"};
 
-    private final String
+    /**
+     * Inner constants to handle maple commands
+     */
+    private static final String
             define_symb = ":=",
             exclude = Arrays.toString(MapleConstants.LIST_OF_EXCLUDES),
             to_inert_prefix = "ToInert('",
             to_inert_suffix = "',exclude=" + exclude + ")";
 
+    /**
+     * The name of the procedure to convert the inner DAG structure
+     * to a list structure.
+     */
     private String maple_procedure;
 
-    private MapleListener listener;
-    private static Engine e;
+    /**
+     * The engine is the openmaple Interface to interact with Maple
+     */
+    private Engine engine;
 
-    private static GreekLetters greek;
-    private static Constants constants;
-    private static BasicFunctionsTranslator basicFunc;
-    private static SymbolTranslator symbolTranslator;
+    /**
+     * The basic translators.
+     *  GreekLetters: To translate greek letters
+     *  Constants: To translate mathematical constants
+     *  BasicFunctionsTranslator: To translate functions without an extra DLMF/DRMF macro
+     *  SymbolTranslator: To translate mathematical symbols
+     */
+    private GreekLetters greek;
+    private Constants constants;
+    private BasicFunctionsTranslator basicFunc;
+    private SymbolTranslator symbolTranslator;
 
-    private String translateTo;
-
-    public MapleInterface(){
-        this.translateTo = translateTo;
-
-        greek = new GreekLetters(Keys.KEY_MAPLE, Keys.KEY_LATEX);
-        constants = new Constants(Keys.KEY_MAPLE, Keys.KEY_DLMF );
-        basicFunc = new BasicFunctionsTranslator( Keys.KEY_LATEX );
-        symbolTranslator = new SymbolTranslator(Keys.KEY_MAPLE, Keys.KEY_LATEX);
-    }
+    /**
+     * There is only one instance at runtime allowed. You get access
+     * to this instance via {@link #init()} and {@link #getUniqueMapleInterface()}.
+     */
+    private MapleInterface(){}
 
     /**
      * Initialize the interface to the engine of Maple. You cannot initialize it twice!
@@ -73,10 +101,7 @@ public class MapleInterface extends AbstractAlgebraicTranslator<Algebraic> {
      * @throws MapleException if the Engine cannot be initialized or the evaluation of the procedure fails.
      * @throws IOException if it cannot load the procedure from file {@link GlobalPaths#PATH_MAPLE_PROCEDURE}.
      */
-    public void init() throws MapleException, IOException {
-        // ignore calls if the engine already exists.
-        if ( e != null ) return;
-
+    private void inner_init() throws MapleException, IOException {
         if ( Initializer.loadMapleNatives() )
             LOG.info("Loading Maple Natives!");
         else {
@@ -97,15 +122,19 @@ public class MapleInterface extends AbstractAlgebraicTranslator<Algebraic> {
         }
 
         // initialize callback listener
-        listener = new MapleListener(true);
+        MapleListener listener = new MapleListener(true);
 
         // initialize engine
-        e = new Engine( maple_args, listener, null, null );
+        engine = new Engine( maple_args, listener, null, null );
 
         // evaluate procedure
-        e.evaluate( procedure );
+        engine.evaluate( procedure );
 
         // init translators
+        greek = new GreekLetters( Keys.KEY_MAPLE, Keys.KEY_LATEX );
+        constants = new Constants( Keys.KEY_MAPLE, Keys.KEY_DLMF );
+        basicFunc = new BasicFunctionsTranslator( Keys.KEY_LATEX );
+        symbolTranslator = new SymbolTranslator( Keys.KEY_MAPLE, Keys.KEY_LATEX );
         greek.init();
         constants.init();
         basicFunc.init();
@@ -116,50 +145,125 @@ public class MapleInterface extends AbstractAlgebraicTranslator<Algebraic> {
         INFINITY = constants.translate( MapleConstants.INFINITY );
     }
 
-    public String parse( String maple_input ) throws MapleException {
-        Algebraic a =
-                e.evaluate(
-                        maple_procedure + "(" +
-                        to_inert_prefix + maple_input + to_inert_suffix +
-                        ");"
-                );
+    /**
+     * Translates a given maple expression. This expression should not end
+     * with a semicolon, otherwise you will produce a MapleException.
+     *
+     * @param maple_input maple expression in 1D representation without a semicolon at the end!
+     * @return the translated expression in semantic LaTeX
+     * @throws MapleException if the conversion to the inner form of Maple fails.
+     */
+    public String translate( String maple_input ) throws MapleException {
+        // Creates the command by wrapping all necessary information around the input
+        // to convert the given input into the internal maple datastructure
+        String cmd = to_inert_prefix + maple_input + to_inert_suffix;
+        // to convert the internal DAG into a list representation
+        cmd = maple_procedure + "(" + cmd + ");";
+
+        // evaluates the given expression
+        Algebraic a = engine.evaluate(cmd);
+        // log information
         LOG.info("Parsed: " + maple_input);
 
-        if ( !translate(a) ){
-            LOG.error("Something went wrong: " + internalErrorLog);
+        // try to translate the expression
+        // if it fails, translate will return false and the error information
+        // can be accessed by the internalErrorLog
+        try {
+            translatedList = translateGeneralExpression(a);
+            return translatedList.getAccurateString();
+        } catch ( Exception e ){
+            LOG.error( "Cannot translate given maple input.", e );
             return "";
-        } else return translatedList.getAccurateString();
+        }
     }
 
     @Override
-    public boolean translate(Algebraic alg ){
-        translatedList = parseGeneralExpression(alg);
-        if ( internalErrorLog.isEmpty() )
-            return true;
-        else return false;
+    public boolean translate( Algebraic alg ){
+        // TODO assumes an algebraic object in inert-form
+        return false;
     }
 
-    public static Algebraic evaluateExpression( String exp ) throws MapleException{
-        return e.evaluate( exp );
+    /**
+     * It evaluates the given expression via Maple.
+     * Make sure your expression ends with a semicolon.
+     * Otherwise you will produce a MapleException.
+     * @param exp syntactical correct Maple expression ended with a semicolon
+     * @return the algebraic object of the result.
+     * @throws MapleException if Maple produces an error
+     */
+    public Algebraic evaluateExpression( String exp ) throws MapleException {
+        return engine.evaluate( exp );
     }
 
-    public static GreekLetters getGreekTranslator(){
+    /**
+     * Returns the greek letters translator.
+     * @return greek letters translator
+     */
+    public GreekLetters getGreekTranslator(){
         return greek;
     }
 
-    public static SymbolTranslator getSymbolTranslator(){
+    /**
+     * Returns the symbol translator.
+     * @return symbol translator
+     */
+    public SymbolTranslator getSymbolTranslator(){
         return symbolTranslator;
     }
 
-    public static Constants getConstantsTranslator(){
+    /**
+     * Returns the constants translator
+     * @return constants translator
+     */
+    public Constants getConstantsTranslator(){
         return constants;
     }
 
-    public static BasicFunctionsTranslator getBasicFunctionsTranslator(){
+    /**
+     * Returns the basic functions translator object.
+     * @return basic functions translator
+     */
+    public BasicFunctionsTranslator getBasicFunctionsTranslator(){
         return basicFunc;
     }
 
+    /**
+     * Returns the name of the loaded procedure.
+     * @return name of loaded maple procedure
+     */
     public String getProcedureName(){
         return maple_procedure;
+    }
+
+    // The unique maple interface object
+    private static MapleInterface mInterface;
+
+    /**
+     * Instantiate the interface to Maple. If it is already
+     * instantiate, nothing will happen. You can get the instance
+     * by invoke {@link #getUniqueMapleInterface()}.
+     * @throws MapleException if it is not possible to connect with the
+     * openmaple API.
+     * @throws IOException if it is not possible to read the translations
+     * from the files in libs.
+     */
+    public static void init() throws MapleException, IOException {
+        if ( mInterface != null ) {
+            LOG.info("Maple interface already instantiated!");
+            return;
+        }
+        mInterface = new MapleInterface();
+        mInterface.inner_init();
+    }
+
+    /**
+     * Returns the unique interface to Maple. This might be
+     * null, if you haven't invoke {@link #init()} previously!
+     *
+     * @return the unique object of the interface to Maple. Can
+     * be null.
+     */
+    public static MapleInterface getUniqueMapleInterface(){
+        return mInterface;
     }
 }

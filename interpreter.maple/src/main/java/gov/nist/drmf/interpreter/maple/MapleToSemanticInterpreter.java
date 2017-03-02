@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.maple;
 
 import com.maplesoft.externalcall.MapleException;
+import gov.nist.drmf.interpreter.maple.grammar.lexicon.TranslationFailures;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,15 +19,10 @@ public class MapleToSemanticInterpreter {
                 "log4j2.configurationFile",
                 "interpreter.maple/src/main/resources/log4j2.xml" );
 
-        /*
-        LOG.info("Info Test");
-        LOG.warn("Warning");
-        LOG.error("FATAL");
-        */
         //*
         try {
-            MapleInterface imaple = new MapleInterface();
-            imaple.init();
+            MapleInterface.init();
+            MapleInterface mi = MapleInterface.getUniqueMapleInterface();
 
             String test = "(infinity+Catalan/2)^gamma";
 //            test = "gamma+alpha^5-I^(x/5)+Catalan";
@@ -35,19 +31,13 @@ public class MapleToSemanticInterpreter {
 //            test = "1/((a+2)/(b^(Catalan/I)/(alpha*q^I*x/3)*alpha))";
 //            test = "((x^a)^b)^c";
 
-            String result = imaple.parse(test);
-            String error = imaple.getInternalErrorLog();
-
-            if ( result != null && !result.isEmpty() ){
-                LOG.info( result );
-                System.out.println( "Translated to: " + result);
-            }
-            if ( error != null && !error.isEmpty() )
-                LOG.warn( error );
+            String result = mi.translate(test);
+            TranslationFailures tf = mi.getFailures();
+            System.out.println("Result:   " + result);
+            System.out.println("Failures: " + tf.getFailures());
         } catch ( MapleException | IOException me ){
             LOG.error( "Wasn't able to start the program.", me );
         }
         //*/
     }
-
 }
