@@ -21,8 +21,9 @@ public interface ITranslator<T> {
      * @param expression tagged expression
      * @return  true if the parsing process finished
      *          without an error.
+     * @throws Exception If the translation process failed.
      */
-    boolean translate(T expression);
+    boolean translate( T expression ) throws Exception;
 
     /**
      * Returns the translated expression. This

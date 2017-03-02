@@ -25,12 +25,51 @@ public class RoundTripInterface {
         // set translation for DLMF-site
         GlobalConstants.CAS_KEY = Keys.KEY_MAPLE;
         I_DLMF  = new SemanticLatexTranslator( Keys.KEY_LATEX, Keys.KEY_MAPLE );
-        I_MAPLE = new MapleInterface();
     }
 
     public void init() throws Exception {
-        I_MAPLE.init();
+        MapleInterface.init();
+        I_MAPLE = MapleInterface.getUniqueMapleInterface();
         I_DLMF.init(GlobalPaths.PATH_REFERENCE_DATA);
+    }
+
+    public synchronized String translateFromMaple( String mapleString ){
+        try {
+            return I_MAPLE.translate( mapleString );
+        } catch ( Exception e ){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public synchronized String translateFromLaTeX( String latexString ){
+        I_DLMF.parse( latexString );
+        return I_DLMF.getTranslatedExpression();
+    }
+
+    public synchronized boolean equivalenceValidationMaple( String exp1, String exp2 ) throws Exception {
+        try {
+            String cmd = MAPLE_VALIDATION + "((" + exp1 + ") - (" + exp2 + "))";
+            cmd = I_MAPLE.getProcedureName() + "(ToInert(" + cmd + "));";
+
+            LOG.info( cmd );
+
+            MapleInterface mi = MapleInterface.getUniqueMapleInterface();
+            Algebraic result = mi.evaluateExpression( cmd );
+            LOG.info( result.toString() );
+
+            if ( result instanceof List ){
+                List l = (List)result;
+                if ( l.length() != 2 ) return false;
+                Algebraic a = l.select( 2 );
+                if ( a instanceof Numeric ){
+                    Numeric n = (Numeric)a;
+                    return n.intValue() == 0;
+                } else return false;
+            } else return false;
+        } catch ( Exception e ){
+            throw e;
+        }
     }
 
     public static void main( String[] args ){
@@ -55,43 +94,6 @@ public class RoundTripInterface {
             System.out.println( "Simplifies to 0:   " + (equ ? "yes" : "no") );
         } catch ( Exception e ){
             e.printStackTrace();
-        }
-    }
-
-    public synchronized String translateFromMaple( String mapleString ){
-        try {
-            return I_MAPLE.parse( mapleString );
-        } catch ( Exception e ){
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public synchronized String translateFromLaTeX( String latexString ){
-        I_DLMF.parse( latexString );
-        return I_DLMF.getTranslatedExpression();
-    }
-
-    public synchronized boolean equivalenceValidationMaple( String exp1, String exp2 ) throws Exception {
-        try {
-            String cmd = MAPLE_VALIDATION + "((" + exp1 + ") - (" + exp2 + "))";
-            cmd = I_MAPLE.getProcedureName() + "(ToInert(" + cmd + "));";
-
-            LOG.info( cmd );
-            Algebraic result = MapleInterface.evaluateExpression( cmd );
-            LOG.info( result.toString() );
-
-            if ( result instanceof List ){
-                List l = (List)result;
-                if ( l.length() != 2 ) return false;
-                Algebraic a = l.select( 2 );
-                if ( a instanceof Numeric ){
-                    Numeric n = (Numeric)a;
-                    return n.intValue() == 0;
-                } else return false;
-            } else return false;
-        } catch ( Exception e ){
-            throw e;
         }
     }
 }

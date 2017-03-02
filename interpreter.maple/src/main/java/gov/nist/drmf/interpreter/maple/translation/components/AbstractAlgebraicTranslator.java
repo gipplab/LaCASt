@@ -6,6 +6,7 @@ import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.grammar.ITranslator;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
+import gov.nist.drmf.interpreter.maple.grammar.lexicon.TranslationFailures;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,44 +18,35 @@ import static gov.nist.drmf.interpreter.maple.common.MapleConstants.MAPLE_INTERN
  * Created by AndreG-P on 21.02.2017.
  */
 public abstract class AbstractAlgebraicTranslator<T extends Algebraic> implements ITranslator<T> {
-    public static String MULTIPLY, ADD, INFINITY;
+    protected static String MULTIPLY, ADD, INFINITY;
 
-    public static final Logger LOG = LogManager.getLogger( AbstractAlgebraicTranslator.class );
+    static final Logger LOG = LogManager.getLogger( AbstractAlgebraicTranslator.class );
 
     protected TranslatedList translatedList = new TranslatedList();
 
-    protected String internalErrorLog = "";
+    static TranslationFailures failures = new TranslationFailures();
 
     /**
      *
      * @param element
      * @return
      */
-    protected TranslatedList parseGeneralExpression( Algebraic element )  {
-        // First, test if the element is a list.
-        if ( element instanceof List ){
-            List list = (List)element;
-            try{
-                String root = list.select(1).toString();
-                MapleInternal in = getAbstractInternal(root);
-                ListTranslator lParser = new ListTranslator( in, list.length() );
-                if ( !lParser.translate(list) ) {
-                    this.internalErrorLog += "ListTranslator crashes: " + lParser.internalErrorLog;
-                    return null;
-                }
-                else {
-                    return lParser.translatedList;
-                }
-            } catch ( MapleException | IllegalArgumentException e ){
-                this.internalErrorLog += e.getMessage();
-                return null;
-            }
+    protected TranslatedList translateGeneralExpression( Algebraic element ) throws Exception {
+        if ( !(element instanceof List) ){
+            LOG.error(
+                    "The general translator assumes an algebraic object " +
+                    "in a Maple inert-form in a List structure but get: " +
+                    element
+            );
+            return null;
         }
 
-        // otherwise it must be a usual Algebraic object.
-        // TODO hmm, this should not happen.
-        LOG.error( "Something went wrong. Found a not List object in the general expression method?" );
-        return null;
+        List list = (List)element;
+        String root = list.select(1).toString();
+        MapleInternal in = getAbstractInternal(root);
+        ListTranslator lParser = new ListTranslator( in, list.length() );
+        lParser.translate( list );
+        return lParser.translatedList;
     }
 
     @Override
@@ -62,14 +54,14 @@ public abstract class AbstractAlgebraicTranslator<T extends Algebraic> implement
         return translatedList.getAccurateString();
     }
 
-    public String getInternalErrorLog(){
-        return internalErrorLog;
+    public TranslationFailures getFailures(){
+        return failures;
     }
 
     @Override
-    public abstract boolean translate(T element );
+    public abstract boolean translate( T element ) throws Exception ;
 
-    public MapleInternal getAbstractInternal( String root ) throws IllegalArgumentException{
+    MapleInternal getAbstractInternal( String root ) throws IllegalArgumentException{
         Matcher match = MAPLE_INTERNAL_PATTERN.matcher(root);
         if ( !match.matches() )
             throw new IllegalArgumentException("Unknown name of maple object: " + root);

@@ -22,14 +22,14 @@
         </File>
 
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%highlight{[%p-%d{HH:mm:ss,SSS}] [t:%t] %logger{1} - %msg%n}"/>
+            <PatternLayout pattern="%highlight{[%p %d{HH:mm:ss,SSS}] %logger{2} - %msg%n}"/>
             <Filters>
                 <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="ACCEPT"/>
             </Filters>
         </Console>
 
         <Console name="ErrorConsole" target="SYSTEM_ERR">
-            <PatternLayout pattern="[%p-%d{HH:mm:ss,SSS}] [Thread:%t] %logger{36} - %msg%n%throwable{full}%n"/>
+            <PatternLayout pattern="%highlight{[%p-%d{HH:mm:ss,SSS}] [Thread:%t] %logger{36} - %msg%n%throwable{full}%n}"/>
             <Filters>
                 <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>

@@ -8,10 +8,10 @@ import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
  */
 public class ListTranslator extends AbstractAlgebraicTranslator<List> {
 
-    private int length;
-    private MapleInternal root;
+    protected int length;
+    protected MapleInternal root;
 
-    public ListTranslator(MapleInternal in, int length ) {
+    ListTranslator( MapleInternal in, int length ) {
         this.root = in;
         this.length = length;
     }
@@ -22,7 +22,7 @@ public class ListTranslator extends AbstractAlgebraicTranslator<List> {
      * @return
      */
     @Override
-    public boolean translate(List list ){
+    public boolean translate( List list ) throws Exception {
         AbstractAlgebraicTranslator generalParser = null;
         switch( root ){
             case sum:
@@ -42,37 +42,25 @@ public class ListTranslator extends AbstractAlgebraicTranslator<List> {
             case name:
             case string:
             case ass_name:
-                generalParser = new FunctionAndVariableTranslator( root );
+                generalParser = new FunctionAndVariableTranslator( root, length );
                 break;
             case equation:
-                break;
             case ineq:
-                break;
             case lesseq:
-                break;
             case lessthan:
-                break;
             case imply:
-                break;
             case not:
-                break;
             case or:
-                break;
             case xor:
-                break;
             case set:
-                break;
+            default:
+                String message = "Found a not yet supported algebraic object: " + root;
+                failures.addFailure( message, ListTranslator.class, root.toString() );
+                return false;
         }
 
-        if ( generalParser == null )
-            return false;
-
-        if (!generalParser.translate( list )){
-            this.internalErrorLog = generalParser.internalErrorLog;
-            return false;
-        } else {
-            this.translatedList.addTranslatedExpression( generalParser.translatedList );
-            return true;
-        }
+        boolean b = generalParser.translate(list);
+        translatedList.addTranslatedExpression( generalParser.translatedList );
+        return b;
     }
 }
