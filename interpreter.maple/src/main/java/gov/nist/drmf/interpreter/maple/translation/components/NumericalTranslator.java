@@ -23,22 +23,42 @@ public class NumericalTranslator extends ListTranslator {
     NumericalTranslator( MapleInternal internal, int length )
             throws IllegalArgumentException {
         super( internal, length );
-        if ( length < 2 || length > 3 )
+        if ( length < 2 || length > 3 ){
+            LOG.error( "Illegal number of arguments in NumericalTranslator. " +
+                    "Only 2 or 3 arguments are allowed." );
             throw new IllegalArgumentException(
                     "Numerical objects are only 2 or 3 elements long. This has "
                             + length);
+        }
     }
 
     @Override
     public boolean translate( List list ) throws MapleException, IllegalArgumentException {
+        boolean b;
         switch (root) {
-            case intpos: translatePosInt(list); return true;
-            case intneg: translateNegInt(list); return true;
-            case complex: return parseComplexNumber(list);
-            case floating: return parseFloatingNumber(list);
-            case rational: parseRationalNumber(list); return true;
+            case intpos:
+                translatePosInt(list);
+                LOG.trace("Translated positive integer. " + translatedList.getLastExpression());
+                return true;
+            case intneg:
+                translateNegInt(list);
+                LOG.trace("Translated negative integer. " + translatedList.getLastExpression());
+                return true;
+            case complex:
+                b = parseComplexNumber(list);
+                LOG.trace("Translated complex number. " + translatedList.getLastExpression());
+                return b;
+            case floating:
+                b = parseFloatingNumber(list);
+                LOG.trace("Translated floating number. " + translatedList.getLastExpression());
+                return b;
+            case rational:
+                parseRationalNumber(list);
+                LOG.trace("Translated rational number. " + translatedList.getLastExpression());
+                return true;
             default:
                 String message = "Expected an Numeric object but get: " + root;
+                LOG.debug( message );
                 failures.addFailure( message, this.getClass(), root.toString() );
                 return false;
         }
@@ -59,7 +79,7 @@ public class NumericalTranslator extends ListTranslator {
             Numeric n = (Numeric)list.select(2);
             return Integer.toString( n.intValue() );
         } catch( MapleException me ){
-            LOG.error( "Cannot parse integer.", me );
+            LOG.fatal( "Cannot parse integer.", me );
             throw me;
         }
     }
@@ -91,7 +111,7 @@ public class NumericalTranslator extends ListTranslator {
             } else throw new MapleException("Illegal argument in rational object. " + numerator);
             translatedList.addTranslatedExpression( t );
         } catch ( MapleException e ){
-            LOG.error("Cannot translate a rational number!", e);
+            LOG.fatal("Cannot translate a rational number!", e);
             throw e;
         }
     }
@@ -165,7 +185,7 @@ public class NumericalTranslator extends ListTranslator {
             translatedList.addTranslatedExpression( imaginary );
             return true;
         } catch ( MapleException | IllegalArgumentException me ){
-            LOG.error("Cannot translate complex number! " + me.getMessage(), me);
+            LOG.fatal("Cannot translate complex number! " + me.getMessage(), me);
             return false;
         }
     }
@@ -210,6 +230,7 @@ public class NumericalTranslator extends ListTranslator {
                     return null;
                 return np.translatedList.merge();
             default:
+                LOG.warn("Illegal argument in complex number. " + in);
                 failures.addFailure( "Unkown element in a complex number!", this.getClass(), list.toString() );
                 return null;
         }

@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class OperationTranslator extends AbstractListTranslator {
     @Override
-    public boolean parse( PomTaggedExpression first_exp, List<PomTaggedExpression> following_exp ) {
+    public boolean translate( PomTaggedExpression first_exp, List<PomTaggedExpression> following_exp ) {
         MathTerm top = first_exp.getRoot();
         String first = top.getTermText();
 

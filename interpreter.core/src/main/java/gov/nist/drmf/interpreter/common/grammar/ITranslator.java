@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
-import com.sun.istack.internal.Nullable;
+import javax.annotation.Nullable;
 
 /**
  * A general translation has at least two methods.
@@ -30,7 +30,7 @@ public interface ITranslator<T> {
      * value could be null, if the {@link #translate(T)}
      * returns false before.
      * @return  the translated expression given in
-     *          {@link #translate(T)} or nul
+     *          {@link #translate(T)} or null
      */
     @Nullable
     String getTranslatedExpression();

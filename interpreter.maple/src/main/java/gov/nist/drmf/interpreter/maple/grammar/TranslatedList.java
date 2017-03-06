@@ -81,6 +81,10 @@ public class TranslatedList extends TranslatedExpression {
         }
     }
 
+    public String getLastExpression(){
+        return trans_list.getLast().toString();
+    }
+
     public int getLength(){
         return trans_list.size();
     }

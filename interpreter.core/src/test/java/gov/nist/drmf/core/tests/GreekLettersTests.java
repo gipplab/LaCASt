@@ -6,9 +6,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import static junit.framework.TestCase.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
@@ -21,7 +23,12 @@ public class GreekLettersTests {
     @BeforeAll
     static void init(){
         g = new GreekLetters("","");
-        g.init();
+        try { g.init(); }
+        catch ( IOException ioe ){
+            System.err.println(ioe.getMessage());
+            ioe.printStackTrace();
+            fail("Exception during initialization.");
+        }
     }
 
     /**

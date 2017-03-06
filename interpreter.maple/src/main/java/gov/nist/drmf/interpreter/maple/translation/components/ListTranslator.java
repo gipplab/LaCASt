@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.maple.translation.components;
 
+import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.List;
+import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 
 /**
@@ -22,7 +24,7 @@ public class ListTranslator extends AbstractAlgebraicTranslator<List> {
      * @return
      */
     @Override
-    public boolean translate( List list ) throws Exception {
+    public boolean translate( List list ) throws TranslationException, MapleException {
         AbstractAlgebraicTranslator generalParser = null;
         switch( root ){
             case sum:
@@ -55,10 +57,12 @@ public class ListTranslator extends AbstractAlgebraicTranslator<List> {
             case set:
             default:
                 String message = "Found a not yet supported algebraic object: " + root;
+                LOG.debug(message);
                 failures.addFailure( message, ListTranslator.class, root.toString() );
                 return false;
         }
 
+        @SuppressWarnings("unchecked")
         boolean b = generalParser.translate(list);
         translatedList.addTranslatedExpression( generalParser.translatedList );
         return b;

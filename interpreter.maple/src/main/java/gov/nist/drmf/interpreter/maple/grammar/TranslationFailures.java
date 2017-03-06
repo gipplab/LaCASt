@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.maple.grammar.lexicon;
+package gov.nist.drmf.interpreter.maple.grammar;
 
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedExpression;
 

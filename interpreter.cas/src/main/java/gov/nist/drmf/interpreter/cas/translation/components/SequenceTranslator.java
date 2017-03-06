@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
-import com.sun.istack.internal.Nullable;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
@@ -11,6 +10,7 @@ import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.regex.Matcher;
 
@@ -63,8 +63,8 @@ public class SequenceTranslator extends AbstractListTranslator {
     }
 
     @Override
-    public boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following ){
-        if ( exp == null ) return parse(following);
+    public boolean translate( PomTaggedExpression exp, List<PomTaggedExpression> following ){
+        if ( exp == null ) return translate(following);
         else if ( following == null ) return translate(exp);
         else return false;
     }
@@ -148,7 +148,7 @@ public class SequenceTranslator extends AbstractListTranslator {
      *                      with an open bracket
      * @return true when the translation finished without an error.
      */
-    public boolean parse(List<PomTaggedExpression> following_exp) {
+    public boolean translate(List<PomTaggedExpression> following_exp) {
         if ( open_bracket == null ){
             ERROR_LOG.severe("Wrong translation method used. " +
                     "You have to specify an open bracket to translate it like a sequence " +
@@ -183,7 +183,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                     // create a new SequenceTranslator (2nd kind)
                     SequenceTranslator sp = new SequenceTranslator( bracket );
                     // translate the following expressions
-                    if ( sp.parse(following_exp) ){
+                    if ( sp.translate(following_exp) ){
                         // if the translation finished correctly, there is nothing to do here
                         // only take all of the inner solutions
                         local_inner_exp.addTranslatedExpression( sp.local_inner_exp );

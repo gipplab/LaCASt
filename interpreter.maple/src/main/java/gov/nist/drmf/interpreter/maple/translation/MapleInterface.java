@@ -11,7 +11,6 @@ import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
-import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import gov.nist.drmf.interpreter.maple.setup.Initializer;
 import gov.nist.drmf.interpreter.maple.translation.components.AbstractAlgebraicTranslator;
@@ -177,10 +176,27 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         }
     }
 
+    /**
+     * Assumes an algebraic object of a Maple expression.
+     * Caused by technical issues, this method converts
+     * the given algebraic object into a String and evaluates
+     * the String. You can use {@link #translate(String)} for get
+     * the same effect.
+     * @param alg algebraic object of a maple expression
+     * @return true if the translation process finished without problems
+     * and false if there where some problems. You get access to the
+     * translated expression by {@link #getTranslatedExpression()}.
+     */
     @Override
     public boolean translate( Algebraic alg ){
-        // TODO assumes an algebraic object in inert-form
-        return false;
+        String maple_text = alg.toString();
+        try {
+            translate(maple_text);
+            return true;
+        } catch ( MapleException me ){
+            LOG.fatal("Cannot translate " + maple_text, me);
+            return false;
+        }
     }
 
     /**
@@ -242,10 +258,35 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
      * Instantiate the interface to Maple. If it is already
      * instantiate, nothing will happen. You can get the instance
      * by invoke {@link #getUniqueMapleInterface()}.
-     * @throws MapleException if it is not possible to connect with the
-     * openmaple API.
-     * @throws IOException if it is not possible to read the translations
-     * from the files in libs.
+     *
+     * The initialization process can be split into four parts.
+     *  1)  It tries to load the Maple native libraries into the
+     *      java.library.path with the {@link Initializer} class.
+     *      This is necessary to connect this java program with
+     *      Maple. You can define the path in libs/maple_config.properties.
+     *      This stage produces no exceptions but is necessary to
+     *      finish the initialization process of this program.
+     *      It stops if it is not possible to load the native libraries.
+     *
+     *  2)  It loads the Maple procedure from libs/ReferenceData/MapleProcedures
+     *      to convert the inert-form of a Maple expression to a
+     *      Maple list of the inert-form. This could produces an {@link IOException}
+     *      if it is not possible to load the procedure from the file.
+     *
+     *  3)  It starts the Maple engine. This could produces a {@link MapleException}
+     *      if the initialization of Maple's engine fails or the evaluation
+     *      of the loaded procedure fails.
+     *
+     *  4)  It loads the necessary translation files to translate greek letters,
+     *      mathematical constants and functions. Since it loads those translations
+     *      from files, this part can produces an {@link IOException} again.
+     *
+     * @throws MapleException   if it is not possible to initiate the {@link Engine}
+     *                          from the openmaple API or the evaluation of the
+     *                          pre-defined Maple procedure fails.
+     * @throws IOException  if it is not possible to read the translation information
+     *                      from the files in libs or the Maple procedure in the file
+     *                      maple_list_procedure.txt.
      */
     public static void init() throws MapleException, IOException {
         if ( mInterface != null ) {

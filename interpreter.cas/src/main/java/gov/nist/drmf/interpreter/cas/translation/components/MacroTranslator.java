@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import mlp.FeatureSet;
@@ -28,7 +29,7 @@ import java.util.List;
  * @see Keys
  * @see AbstractTranslator
  * @see gov.nist.drmf.interpreter.cas.logging.TranslatedExpression
- * @see gov.nist.drmf.interpreter.cas.logging.InformationLogger
+ * @see InformationLogger
  * @author Andre Greiner-Petter
  */
 public class MacroTranslator extends AbstractListTranslator {
@@ -60,7 +61,7 @@ public class MacroTranslator extends AbstractListTranslator {
     public MacroTranslator(){}
 
     @Override
-    public boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following ){
+    public boolean translate( PomTaggedExpression exp, List<PomTaggedExpression> following ){
         return translate(exp) && parse(following);
     }
 

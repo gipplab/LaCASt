@@ -11,7 +11,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="interpreter.core" />
-    <orderEntry type="module" module-name="interpreter.core" />
     <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-runner:1.0.0-M3" level="project" />
     <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-launcher:1.0.0-M3" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.12" level="project" />
@@ -23,6 +22,7 @@
     <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-engine:1.0.0-M3" level="project" />
     <orderEntry type="library" name="Maven: org.junit.vintage:junit-vintage-engine:4.12.0-M3" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:3.0.0" level="project" />
     <orderEntry type="module-library">
       <library name="Maven: gov.nist.drmf.interpreter:MLP:1.0-SNAPSHOT">
         <CLASSES>

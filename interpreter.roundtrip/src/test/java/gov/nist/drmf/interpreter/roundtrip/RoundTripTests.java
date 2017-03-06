@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.roundtrip;
 
-import org.junit.jupiter.api.Assertions;
+import com.maplesoft.externalcall.MapleException;
+import gov.nist.drmf.interpreter.Translator;
+import gov.nist.drmf.interpreter.common.TranslationException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -9,40 +11,40 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
+ *
  * Created by AndreG-P on 01.03.2017.
  */
 public class RoundTripTests {
 
-    private static RoundTripInterface roundtrip;
+    private static Translator translator;
 
     @BeforeAll
     public static void setup(){
-        roundtrip = new RoundTripInterface();
+        translator = new Translator();
         try {
-            roundtrip.init();
+            translator.init();
         } catch ( Exception e ){
             e.printStackTrace();
         }
     }
 
     private void tester( String maple_input ){
-        String latex_result = roundtrip.translateFromMaple( maple_input );
-        String back_to_maple = roundtrip.translateFromLaTeX( latex_result );
-
         try {
-            boolean b = roundtrip.equivalenceValidationMaple( maple_input, back_to_maple );
+            String latex_result = translator.translateFromMapleToLaTeXClean( maple_input );
+            String back_to_maple = translator.translateFromLaTeXToMapleClean( latex_result );
+            boolean b = translator.simplificationTester( maple_input, back_to_maple );
             assertTrue(b);
-        } catch (Exception e){
+        } catch ( TranslationException | MapleException e ){
             e.printStackTrace();
-            fail();
+            fail("Cannot test because: " + e.getMessage());
         }
     }
 
     @Test
-    public void alphaTest(){
+    public void alphaTest() throws Exception {
         String latex = "\\alpha";
-        String toMaple = roundtrip.translateFromLaTeX( latex );
-        String back = roundtrip.translateFromMaple( toMaple ).trim();
+        String toMaple = translator.translateFromLaTeXToMapleClean( latex );
+        String back = translator.translateFromMapleToLaTeXClean( toMaple ).trim();
         assertEquals( latex, back, "Expression is not the same!" );
     }
 
@@ -72,17 +74,27 @@ public class RoundTripTests {
     }
 
     @Test
-    public void multipleTranslationTest(){
+    public void sineFunctionTest(){
+        tester( "sin(alpha+1)" );
+    }
+
+    @Test
+    public void jacobiUseCaseTest(){
+        tester( "JacobiP(n, alpha, beta, cos(a Theta))" );
+    }
+
+    @Test
+    public void multipleTranslationTest() throws Exception {
         String test = "1/((a+2)/(b^(Catalan/I)/(alpha*q^I*x/3)*alpha))";
         String latex_result, back_to_maple = null;
 
         for ( int i = 0; i < 5; i++ ){
-            latex_result = roundtrip.translateFromMaple( test );
-            back_to_maple = roundtrip.translateFromLaTeX( latex_result );
+            latex_result = translator.translateFromMapleToLaTeXClean( test );
+            back_to_maple = translator.translateFromLaTeXToMapleClean( latex_result );
         }
 
         try {
-            boolean b = roundtrip.equivalenceValidationMaple( test, back_to_maple );
+            boolean b = translator.simplificationTester( test, back_to_maple );
             assertTrue(b);
         } catch (Exception e){
             e.printStackTrace();

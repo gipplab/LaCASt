@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.cas.logging;
+package gov.nist.drmf.interpreter.common;
 
 import java.util.Collections;
 import java.util.HashMap;

@@ -22,22 +22,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Maven: com.sun.istack:maven-istack-commons-plugin:2.11" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven:maven-plugin-api:2.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.shared:file-management:1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.shared:maven-shared-io:1.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven:maven-artifact:2.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven:maven-artifact-manager:2.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven:maven-repository-metadata:2.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.wagon:wagon-provider-api:1.0-alpha-6" level="project" />
-    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-utils:1.4.6" level="project" />
-    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-container-default:1.0-alpha-9" level="project" />
-    <orderEntry type="library" name="Maven: classworlds:classworlds:1.1-alpha-2" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.codemodel:codemodel:2.4" level="project" />
-    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-archiver:1.0-alpha-9" level="project" />
-    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-component-api:1.0-alpha-15" level="project" />
-    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-classworlds:1.2-alpha-6" level="project" />
-    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-io:1.0-alpha-1" level="project" />
     <orderEntry type="module" module-name="interpreter.core" />
     <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-runner:1.0.0-M3" level="project" />
     <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-launcher:1.0.0-M3" level="project" />
@@ -50,11 +34,12 @@
     <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-engine:1.0.0-M3" level="project" />
     <orderEntry type="library" name="Maven: org.junit.vintage:junit-vintage-engine:4.12.0-M3" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:3.0.0" level="project" />
     <orderEntry type="module" module-name="interpreter.maple" />
     <orderEntry type="module-library">
       <library name="Maven: gov.nist.drmf.interpreter:Maple:1.0-SNAPSHOT">
         <CLASSES>
-          <root url="jar://C:/Program Files/Maple 2017/java/Maple.jar!/" />
+          <root url="jar://C:/Program Files/Maple 2016/java/Maple.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -63,7 +48,7 @@
     <orderEntry type="module-library">
       <library name="Maven: gov.nist.drmf.interpreter:Maple-Call:1.0-SNAPSHOT">
         <CLASSES>
-          <root url="jar://C:/Program Files/Maple 2017/java/externalcall.jar!/" />
+          <root url="jar://C:/Program Files/Maple 2016/java/externalcall.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
+import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public class EmptyExpressionTranslator extends AbstractTranslator {
     @Override
-    public boolean translate(PomTaggedExpression expression ) {
+    public boolean translate(PomTaggedExpression expression ){
         // switch-case over tags
         String tag = expression.getTag();
         ExpressionTags expTag = ExpressionTags.getTagByKey(tag);
@@ -59,7 +60,8 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
         }
     }
 
-    private boolean parseBasicFunction( PomTaggedExpression top_exp, ExpressionTags tag ){
+    private boolean parseBasicFunction( PomTaggedExpression top_exp, ExpressionTags tag )
+            throws TranslationException {
         // extract all components from top expressions
         String[] comps = extractMultipleSubExpressions( top_exp );
         if ( isInnerError() ){

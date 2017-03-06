@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import mlp.*;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,7 +43,12 @@ public class ExampleParser {
     public ExampleParser(){
         constraints = new LinkedList<String>();
         greek = new GreekLetters( Keys.KEY_LATEX, Keys.KEY_MAPLE );
-        greek.init();
+        try {
+            greek.init();
+        } catch ( IOException ioe ){
+            System.err.println("Cannot load greek letters");
+            return;
+        }
 
         // initialize translation
         parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA.toString());

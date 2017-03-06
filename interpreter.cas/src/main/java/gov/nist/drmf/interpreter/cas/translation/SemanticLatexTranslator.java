@@ -1,10 +1,11 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
-import gov.nist.drmf.interpreter.cas.logging.InformationLogger;
+import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
@@ -13,6 +14,7 @@ import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,10 +62,17 @@ public class SemanticLatexTranslator extends AbstractTranslator {
     }
 
     /**
-     * Initialize translation.
-     * @param reference_dir_path
+     * Initializes the back end for the translation from semantic LaTeX to
+     * a computer algebra system. It loads all translation information
+     * from the files in the given path and instantiate the PomParser from
+     * Prof. Abdou Youssef.
+     * @param reference_dir_path the path to the ReferenceData directory.
+     *                           You can find the path in
+     *                           {@link GlobalPaths#PATH_REFERENCE_DATA}.
+     * @throws IOException if it is not possible to read the information
+     *                      from the files.
      */
-    public void init( Path reference_dir_path ){
+    public void init( Path reference_dir_path ) throws IOException {
         greekLetters.init();
         constants.init();
         functions.init();
@@ -80,22 +89,30 @@ public class SemanticLatexTranslator extends AbstractTranslator {
      * @param expression
      * @return
      */
-    public boolean parse(String expression){
+    public boolean translate( String expression ) throws TranslationException {
+        if ( expression == null || expression.isEmpty() ) return false;
         try {
             PomTaggedExpression exp = parser.parse(expression);
             return translate(exp);
         } catch ( ParseException pe ){
-            return false;
+            throw new TranslationException( Keys.KEY_LATEX, GlobalConstants.CAS_KEY, pe.getMessage(), pe );
         }
     }
 
     @Override
-    public boolean translate(PomTaggedExpression expression) {
+    public boolean translate( PomTaggedExpression expression ) throws TranslationException {
         reset();
         local_inner_exp.addTranslatedExpression(
                 parseGeneralExpression(expression, null).getTranslatedExpression()
         );
-        return !isInnerError();
+        if ( isInnerError() ){
+            throw new TranslationException(
+                    Keys.KEY_LATEX,
+                    GlobalConstants.CAS_KEY,
+                    "Wasn't able to translate the given expression."
+            );
+        }
+        return true;
     }
 
     public static GreekLetters getGreekLettersParser(){
