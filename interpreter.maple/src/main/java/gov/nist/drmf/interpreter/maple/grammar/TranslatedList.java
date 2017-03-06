@@ -39,7 +39,6 @@ public class TranslatedList extends TranslatedExpression {
     }
 
     public void addTranslatedExpression( TranslatedList list ){
-
         if ( list.isEmbraced() ){
             trans_list.add( list.merge() );
             return;
@@ -48,32 +47,9 @@ public class TranslatedList extends TranslatedExpression {
         this.trans_list.addAll(list.trans_list);
     }
 
-    public void addPreviousTranslatedExpression( String expression ){
-        TranslatedExpression t = new TranslatedExpression( expression );
-        this.addPreviousTranslatedExpression(t);
-    }
-
-    public void addPreviousTranslatedExpression( TranslatedExpression te ){
-        this.trans_list.addFirst( te );
-    }
-
-    public void addPreviousTranslatedExpression( TranslatedList list ){
-        this.trans_list.addAll( 0, list.trans_list );
-    }
-
     public TranslatedExpression removeLastExpression(){
         try {
             TranslatedExpression last = trans_list.removeLast();
-            if ( trans_list.isEmpty() ) setSign( POSITIVE );
-            return last;
-        } catch ( NoSuchElementException e ){
-            return null;
-        }
-    }
-
-    public TranslatedExpression removePreviousTranslatedExpression(){
-        try {
-            TranslatedExpression last = trans_list.removeFirst();
             if ( trans_list.isEmpty() ) setSign( POSITIVE );
             return last;
         } catch ( NoSuchElementException e ){
@@ -109,11 +85,24 @@ public class TranslatedList extends TranslatedExpression {
 
     public TranslatedExpression merge(){
         String representation = getAccurateString();
-        return new TranslatedExpression( representation );
+        boolean sign = POSITIVE;
+        String pattern_s = "\\s*-(.*)";
+        Matcher m = Pattern.compile(pattern_s).matcher(representation);
+        if ( m.matches() ){
+            representation = m.group(1);
+            sign = NEGATIVE;
+        }
+        TranslatedExpression te = new TranslatedExpression(representation, sign);
+        return te;
     }
 
     @Override
     public void setSign( boolean sign ){
+        if ( trans_list.size() == 1 ){
+            this.trans_list.getLast().setSign( sign );
+            return;
+        }
+
         if ( sign != getSign() ){
             super.setSign( sign );
             if ( sign == NEGATIVE && !isEmbraced() ){
