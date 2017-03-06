@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
-import gov.nist.drmf.interpreter.cas.logging.InformationLogger;
+import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.components.*;
 import gov.nist.drmf.interpreter.common.Keys;
@@ -56,7 +56,8 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
      */
     protected TranslatedExpression parseGeneralExpression(
             PomTaggedExpression exp,
-            List<PomTaggedExpression> exp_list){
+            List<PomTaggedExpression> exp_list)
+    {
         // create inner local translation (recursive)
         AbstractTranslator inner_parser = null;
         // if there was an inner error
@@ -72,23 +73,23 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
             // first, is this a DLMF macro?
             if ( isDLMFMacro(term) ){ // BEFORE FUNCTION!
                 MacroTranslator mp = new MacroTranslator();
-                return_value = mp.parse(exp, exp_list);
+                return_value = mp.translate(exp, exp_list);
                 inner_parser = mp;
             } // second, it could be a sub sequence
             else if ( isSubSequence(term) ){
                 Brackets bracket = Brackets.getBracket(term.getTermText());
                 SequenceTranslator sp = new SequenceTranslator(bracket);
-                return_value = sp.parse(exp_list);
+                return_value = sp.translate(exp_list);
                 inner_parser = sp;
             } // this is special, could be a function like cos
             else if ( isFunction(term) ){
                 FunctionTranslator fp = new FunctionTranslator();
-                return_value = fp.parse(exp, exp_list);
+                return_value = fp.translate(exp, exp_list);
                 inner_parser = fp;
             } // otherwise it is a general math term
             else {
                 MathTermTranslator mp = new MathTermTranslator();
-                return_value = mp.parse(exp, exp_list);
+                return_value = mp.translate(exp, exp_list);
                 inner_parser = mp;
             }
         }
@@ -163,7 +164,6 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 
     @Override
     public String getTranslatedExpression() {
-        // TODO
         return local_inner_exp.getTranslatedExpression();
     }
 

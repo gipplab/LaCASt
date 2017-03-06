@@ -5,6 +5,7 @@ import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import com.maplesoft.openmaple.MString;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
@@ -22,26 +23,32 @@ public class FunctionAndVariableTranslator extends ListTranslator {
     }
 
     @Override
-    public boolean translate( List list ) throws Exception {
+    public boolean translate( List list ) throws TranslationException, MapleException {
+        boolean b;
         switch ( root ){
             case string:
             case name:
-                return parseString( list );
+                b = parseString( list );
+                LOG.trace( "Translated " + root + ". " + translatedList.getLastExpression() );
+                return b;
             case ass_name:
                 Algebraic a = list.select(2);
                 String msg = "AssignedNames are not allowed in this program. " +
                         "To find this here, means you previously defined the " +
                         "name of the object. " + a.toString() + ". But this is not allowed!";
+                LOG.warn(msg);
                 failures.addFailure( msg, this.getClass(), list.toString() );
                 return false;
             case function:
                 failures.addFailure( "Cannot translate functions yet.", this.getClass(), list.toString() );
+                LOG.warn("Cannot translate functions yet.");
                 return false;
             case power:
                 parsePower( list );
                 return true;
             default:
                 failures.addFailure( "Wrong Parser for given element.", this.getClass(), list.toString() );
+                LOG.debug("Cannot translate " + root + " in FunctionAndVariableTranslator.");
                 return false;
         }
     }
@@ -80,7 +87,7 @@ public class FunctionAndVariableTranslator extends ListTranslator {
         return true;
     }
 
-    private void parsePower( List list ) throws Exception {
+    private void parsePower( List list ) throws TranslationException, MapleException {
         List base = (List)list.select(2);
         List exponent = (List)list.select(3);
 
@@ -94,5 +101,6 @@ public class FunctionAndVariableTranslator extends ListTranslator {
         translatedList.addTranslatedExpression( trans_base );
         translatedList.addTranslatedExpression( GlobalConstants.CARET_CHAR );
         translatedList.addTranslatedExpression( trans_exponent );
+        LOG.trace("Translated POWER. " + trans_base + GlobalConstants.CARET_CHAR + trans_exponent);
     }
 }

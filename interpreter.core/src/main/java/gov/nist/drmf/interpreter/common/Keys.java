@@ -10,6 +10,10 @@ public class Keys {
     // Key value for Maple
     public static final String KEY_MAPLE = "Maple";
 
+    public static final String KEY_MAPLE_BIN = "maple_bin";
+
+    public static final String KEY_SYSTEM_LOGGING = "log4j2.configurationFile";
+
     // Key value for Mathematica
     public static final String KEY_MATHEMATICA = "Mathematica";
 

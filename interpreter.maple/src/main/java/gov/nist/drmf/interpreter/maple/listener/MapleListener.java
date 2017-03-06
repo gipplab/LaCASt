@@ -24,7 +24,7 @@ public class MapleListener implements EngineCallBacks {
     public void textCallBack(Object o, int i, String s) throws MapleException {
         if ( logging ) {
             String str = getConstName(i) + "; Object: " + o + "; String: " + s;
-            log.info(str);
+            log.debug(str);
         }
     }
 
@@ -46,7 +46,7 @@ public class MapleListener implements EngineCallBacks {
             str += "; Bytes used: " + l;
             str += "; Bytes allocated: " + l1;
             str += "; Maple-CPU-Time: " + v;
-            log.info(str);
+            log.debug(str);
         }
     }
 
@@ -73,7 +73,7 @@ public class MapleListener implements EngineCallBacks {
         if ( logging ) {
             String str = "Stopped callback! This program doesn't allows callbacks. " +
                     "Ask Jürgen Gerhard, if you can't believe it!";
-            log.info(str);
+            log.debug(str);
         }
         return null;
     }
@@ -83,7 +83,7 @@ public class MapleListener implements EngineCallBacks {
         if ( interrupter ) {
             if ( logging ) {
                 String str = "Interrupted query!";
-                log.info(str);
+                log.debug(str);
             }
             this.interrupter = false;
             return true;
@@ -114,7 +114,7 @@ public class MapleListener implements EngineCallBacks {
     }
 
     public void interrupt(){
-        if ( logging ) log.info("Request interruption!");
+        if ( logging ) log.debug("Request interruption!");
         this.interrupter = true;
     }
 }

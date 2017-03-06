@@ -8,6 +8,7 @@ import gov.nist.drmf.interpreter.common.Keys;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -111,8 +112,13 @@ public class SemanticToCASInterpreter {
             GlobalConstants.CAS_KEY = CAS;
             SemanticLatexTranslator latexParser =
                     new SemanticLatexTranslator( Keys.KEY_LATEX, GlobalConstants.CAS_KEY );
-            latexParser.init( GlobalPaths.PATH_REFERENCE_DATA );
-            latexParser.parse( expression );
+            try { latexParser.init( GlobalPaths.PATH_REFERENCE_DATA ); }
+            catch ( IOException e ){
+                System.err.println("Cannot initiate translator.");
+                e.printStackTrace();
+                return;
+            }
+            latexParser.translate( expression );
             if ( clipboard != null ){
                 StringSelection ss = new StringSelection( latexParser.getTranslatedExpression() );
                 clipboard.setContents( ss, ss );
@@ -130,13 +136,18 @@ public class SemanticToCASInterpreter {
                 new SemanticLatexTranslator( Keys.KEY_LATEX, GlobalConstants.CAS_KEY );
 
         System.out.println("Initialize translation...");
-        latexParser.init( GlobalPaths.PATH_REFERENCE_DATA );
+        try { latexParser.init( GlobalPaths.PATH_REFERENCE_DATA ); }
+        catch ( IOException e ){
+            System.err.println("Cannot initiate translator.");
+            e.printStackTrace();
+            return;
+        }
         init_ms = System.currentTimeMillis()-init_ms;
 
         System.out.println("Start translation...");
         System.out.println();
         trans_ms = System.currentTimeMillis();
-        latexParser.parse( expression );
+        latexParser.translate( expression );
         trans_ms = System.currentTimeMillis()-trans_ms;
 
         System.out.println("Finished conversion to " + GlobalConstants.CAS_KEY + ":");

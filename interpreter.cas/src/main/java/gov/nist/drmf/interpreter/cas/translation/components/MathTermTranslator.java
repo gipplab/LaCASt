@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
-import com.sun.istack.internal.Nullable;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
@@ -19,6 +18,7 @@ import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
+import javax.annotation.Nullable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,7 +37,7 @@ import java.util.List;
 public class MathTermTranslator extends AbstractListTranslator {
     @Override
     public boolean translate(PomTaggedExpression exp ){
-        return parse( exp, new LinkedList<>() );
+        return translate( exp, new LinkedList<>() );
     }
 
     /**
@@ -50,7 +50,7 @@ public class MathTermTranslator extends AbstractListTranslator {
      * @return true when everything is fine and there was no error
      */
     @Override
-    public boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following_exp ) {
+    public boolean translate( PomTaggedExpression exp, List<PomTaggedExpression> following_exp ) {
         // it has to be checked before that this exp has a not empty term
         // get the MathTermTags object
         MathTerm term = exp.getRoot();
@@ -190,7 +190,7 @@ public class MathTermTranslator extends AbstractListTranslator {
             case operation:
                 OperationTranslator opParser = new OperationTranslator();
                 // well, maybe not the best choice
-                if ( opParser.parse( exp, following_exp ) ){
+                if ( opParser.translate( exp, following_exp ) ){
                     local_inner_exp.addTranslatedExpression( opParser.getTranslatedExpressionObject() );
                     return true;
                 } else return false;

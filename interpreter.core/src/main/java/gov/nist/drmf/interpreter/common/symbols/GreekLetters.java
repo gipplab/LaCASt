@@ -2,6 +2,8 @@ package gov.nist.drmf.interpreter.common.symbols;
 
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 
+import java.io.IOException;
+
 /**
  * This class translates a given greek letter from one language
  * to another. The default languages are LaTeX, Maple and Mathematica.
@@ -28,7 +30,7 @@ public class GreekLetters extends AbstractJSONLoader {
         this.TO = TO;
     }
 
-    public void init(){
+    public void init() throws IOException {
         super.init(
                 GlobalPaths.PATH_GREEK_LETTERS_AND_CONSTANTS_FILE,
                 KEY_LANGUAGES,

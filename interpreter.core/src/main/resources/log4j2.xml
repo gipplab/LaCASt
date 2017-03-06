@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO">
     <Properties>
-        <Property name="errorFileName">interpreter.maple/src/main/resources/logs/error-${date:dd-MMM-yyy}.log</Property>
-        <Property name="allFileName">interpreter.maple/src/main/resources/logs/session-${date:dd-MMM-yyy}.log</Property>
+        <Property name="errorFileName">libs/logs/error-${date:dd-MMM-yyy}.log</Property>
+        <Property name="allFileName">libs/logs/session-${date:dd-MMM-yyy}.log</Property>
     </Properties>
 
+    <!-- https://logging.apache.org/log4j/2.x/manual/layouts.html -->
     <Appenders>
-        <!-- https://logging.apache.org/log4j/2.x/manual/layouts.html -->
         <File name="LogFile" fileName="${allFileName}">
-            <PatternLayout pattern="%d{ABSOLUTE} [%level] %logger{2} - %msg%n"/>
+            <PatternLayout pattern="[%d{ABSOLUTE} %level] %logger{2}: %msg%n"/>
             <Filters>
                 <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="ACCEPT"/>
             </Filters>
         </File>
 
         <File name="ErrorFile" fileName="${errorFileName}">
-            <PatternLayout pattern="%d [%t] %logger{36} - %msg%n%throwable{full}%n"/>
+            <PatternLayout pattern="[%d{HH:mm:ss,SSS} %p] [Thread:%t] %logger{36} - %msg%n%throwable{full}%n"/>
             <Filters>
                 <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
         </File>
 
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%highlight{[%p %d{HH:mm:ss,SSS}] %logger{2} - %msg%n}"/>
+            <PatternLayout pattern="%highlight{[%d{mm:ss,SSS} %p] %logger{2} - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
             <Filters>
                 <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="ACCEPT"/>
             </Filters>
         </Console>
 
         <Console name="ErrorConsole" target="SYSTEM_ERR">
-            <PatternLayout pattern="%highlight{[%p-%d{HH:mm:ss,SSS}] [Thread:%t] %logger{36} - %msg%n%throwable{full}%n}"/>
+            <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] [Thread:%t] %logger{36} - %msg%n%throwable{full}%n}"/>
             <Filters>
                 <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
@@ -39,8 +39,8 @@
         <Root level="all">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="ErrorConsole"/>
-            <AppenderRef ref="LogFile"/>
-            <AppenderRef ref="ErrorFile"/>
+            <!--AppenderRef ref="LogFile"/>
+            <AppenderRef ref="ErrorFile"/-->
         </Root>
     </Loggers>
 </Configuration>

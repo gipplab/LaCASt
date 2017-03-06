@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
-import com.sun.istack.internal.Nullable;
+import javax.annotation.Nullable;
+import gov.nist.drmf.interpreter.common.TranslationException;
 import mlp.PomTaggedExpression;
 
 import java.util.LinkedList;
@@ -28,13 +29,7 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
         return translate(exp);
     }
 
-    /**
-     *
-     * @param exp
-     * @param following_exp
-     * @return
-     */
-    public abstract boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following_exp );
+    public abstract boolean translate( PomTaggedExpression exp, List<PomTaggedExpression> following_exp );
 
     /**
      * The general method to translate a list of descendants.

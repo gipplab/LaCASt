@@ -51,7 +51,8 @@ public abstract class AbstractJSONLoader {
             Path letters_json_path,
             String languages,
             String group_name
-    ){
+    ) throws IOException
+    {
         try {
             List<String> lines = Files.readAllLines(letters_json_path);
             String file = "";
@@ -87,8 +88,9 @@ public abstract class AbstractJSONLoader {
                 idx++;
             }
         } catch ( IOException ioe ){
-            System.err.println( "Unable to load greek symbols and constants from json directory in: " +
-                    letters_json_path.toString());
+            String s = "Unable to load greek symbols and constants from json directory in: " +
+                    letters_json_path.toString();
+            throw new IOException( s, ioe );
         }
     }
 

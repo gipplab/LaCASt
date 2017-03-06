@@ -11,7 +11,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <maple.path>C:/Program Files/Maple 2017</maple.path>
+        <maple.path>C:/Program Files/Maple 2016</maple.path>
     </properties>
 
     <dependencies>

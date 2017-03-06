@@ -16,6 +16,18 @@ public class GlobalConstants {
     public static final String LATEX_MULTIPLY = "\\\\cdot|\\*";
     public static final Pattern LATEX_MULTIPLY_PATTERN = Pattern.compile(LATEX_MULTIPLY);
 
+
+    public static final String PROPS_COMMENTS =
+            " Enter the command \"kernelopts(bindir);\" in Maple and put the given path into maple_bin.\n" +
+            "# Since this is a java program and \\ is an escape character, you have to write \\\\ for each \\.\n" +
+            "# In Unix based systems, this is not necessary.\n" +
+            "#\n" +
+            "# For example, in windows it could looks like this:\n" +
+            "# maple_bin=C:\\\\Program Files\\\\Maple 2017\\\\bin.X86_64_WINDOWS\n" +
+            "#\n" +
+            "# Or in linux it could looks like this:\n" +
+            "# maple_bin=/home/maple2016/bin.X86_64_LINUX";
+
     /**
      * A flag to identify the CAS at runtime. It is used for the
      * translation from DLMF to a given CAS.

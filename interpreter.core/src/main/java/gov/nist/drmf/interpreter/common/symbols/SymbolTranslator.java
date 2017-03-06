@@ -2,6 +2,8 @@ package gov.nist.drmf.interpreter.common.symbols;
 
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 
+import java.io.IOException;
+
 /**
  * @author Andre Greiner-Petter
  */
@@ -25,7 +27,7 @@ public class SymbolTranslator extends AbstractJSONLoader {
         this.TO = TO;
     }
 
-    public void init(){
+    public void init() throws IOException {
         super.init(
                 GlobalPaths.PATH_BASIC_FUNCTIONS,
                 KEY_LANGUAGES,

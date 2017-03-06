@@ -3,10 +3,12 @@ package gov.nist.drmf.interpreter.maple.translation.components;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
+import gov.nist.drmf.interpreter.common.InformationLogger;
+import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.ITranslator;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
-import gov.nist.drmf.interpreter.maple.grammar.lexicon.TranslationFailures;
+import gov.nist.drmf.interpreter.maple.grammar.TranslationFailures;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,14 +28,17 @@ public abstract class AbstractAlgebraicTranslator<T extends Algebraic> implement
 
     static TranslationFailures failures = new TranslationFailures();
 
+    static InformationLogger infos = new InformationLogger();
+
     /**
      *
      * @param element
      * @return
      */
-    protected TranslatedList translateGeneralExpression( Algebraic element ) throws Exception {
+    protected TranslatedList translateGeneralExpression( Algebraic element )
+            throws TranslationException, MapleException {
         if ( !(element instanceof List) ){
-            LOG.error(
+            LOG.fatal(
                     "The general translator assumes an algebraic object " +
                     "in a Maple inert-form in a List structure but get: " +
                     element
@@ -44,6 +49,7 @@ public abstract class AbstractAlgebraicTranslator<T extends Algebraic> implement
         List list = (List)element;
         String root = list.select(1).toString();
         MapleInternal in = getAbstractInternal(root);
+        LOG.trace( "Translate general expression: " + in );
         ListTranslator lParser = new ListTranslator( in, list.length() );
         lParser.translate( list );
         return lParser.translatedList;
@@ -58,8 +64,12 @@ public abstract class AbstractAlgebraicTranslator<T extends Algebraic> implement
         return failures;
     }
 
+    public InformationLogger getInfos(){
+        return infos;
+    }
+
     @Override
-    public abstract boolean translate( T element ) throws Exception ;
+    public abstract boolean translate( T element ) throws TranslationException, MapleException;
 
     MapleInternal getAbstractInternal( String root ) throws IllegalArgumentException{
         Matcher match = MAPLE_INTERNAL_PATTERN.matcher(root);

@@ -41,7 +41,7 @@ public class FunctionTranslator extends AbstractListTranslator {
      * @return
      */
     @Override
-    public boolean parse( PomTaggedExpression exp, List<PomTaggedExpression> following ){
+    public boolean translate( PomTaggedExpression exp, List<PomTaggedExpression> following ){
         boolean return_value;
         return_value = translate(exp);
         return_value &= parse(following);
