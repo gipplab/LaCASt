@@ -66,7 +66,7 @@ public class Translation {
     /**
      * Returns the algebraic object of the translated expression. Be aware this
      * could be null. This class only contains the Algebraic object if you invoke
-     * {@link Translator#translateFromLaTeXToMapleAlgebraic(String)} (06. March 2017).
+     * {@link MapleTranslator#translateFromLaTeXToMapleAlgebraic(String)} (06. March 2017).
      * @return the algebraic object of the translated expression
      */
     @Nullable

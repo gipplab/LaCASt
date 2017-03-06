@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.roundtrip;
 
 import com.maplesoft.externalcall.MapleException;
-import gov.nist.drmf.interpreter.Translator;
+import gov.nist.drmf.interpreter.MapleTranslator;
 import gov.nist.drmf.interpreter.common.TranslationException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -16,11 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class RoundTripTests {
 
-    private static Translator translator;
+    private static MapleTranslator translator;
 
     @BeforeAll
     public static void setup(){
-        translator = new Translator();
+        translator = new MapleTranslator();
         try {
             translator.init();
         } catch ( Exception e ){

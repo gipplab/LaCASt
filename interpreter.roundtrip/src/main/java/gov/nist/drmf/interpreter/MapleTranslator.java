@@ -31,7 +31,7 @@ import java.util.Scanner;
  * native libraries of your installed version of Maple. This path
  * is defined in the libs folder in the maple_config.properties
  * file. You can change the path directly in the file or invoke
- * the {@link #Translator(Path)} constructor. This will change the
+ * the {@link #MapleTranslator(Path)} constructor. This will change the
  * setting in the file automatically.
  *
  * Created by AndreG-P on 03.03.2017.
@@ -43,11 +43,11 @@ import java.util.Scanner;
  * @see gov.nist.drmf.interpreter.maple.translation.MapleInterface
  * @see gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator
  */
-public class Translator {
+public class MapleTranslator {
     /**
      * The logger.
      */
-    private static final Logger LOG = LogManager.getLogger( Translator.class );
+    private static final Logger LOG = LogManager.getLogger( MapleTranslator.class );
 
     /**
      * The interface to interact with the Maple translator
@@ -81,7 +81,7 @@ public class Translator {
 
         System.out.println("Initializing...");
         try {
-            Translator t = new Translator();
+            MapleTranslator t = new MapleTranslator();
             t.init();
             System.out.println("Initialized. Starting translation.");
             String latex_result = t.translateFromMapleToLaTeXClean( test );
@@ -100,13 +100,13 @@ public class Translator {
 
     /**
      * Creates an object of the translator class.
-     * It is highly recommended to just instantiate one Translator
+     * It is highly recommended to just instantiate one MapleTranslator
      * class at all!
      *
      * Before you start any translation process, you have to invoke
      * the {@link #init()} method once!
      */
-    public Translator(){
+    public MapleTranslator(){
         GlobalConstants.CAS_KEY = Keys.KEY_MAPLE;
     }
 
@@ -117,7 +117,7 @@ public class Translator {
      * This constructor changes the maple_config.properties file and
      * invoke the default constructor.
      *
-     * It is highly recommended to just instantiate one Translator
+     * It is highly recommended to just instantiate one MapleTranslator
      * class at all!
      *
      * Before you start any translation process, you have to invoke
@@ -129,7 +129,7 @@ public class Translator {
      *                  You can enter this path manually to the
      *                  libs/maple_config.properties file.
      */
-    public Translator(@Nonnull Path maple_dir ){
+    public MapleTranslator(@Nonnull Path maple_dir ){
         this();
         try (FileOutputStream out =
                      new FileOutputStream( GlobalPaths.PATH_MAPLE_CONFIG.toFile() )){
