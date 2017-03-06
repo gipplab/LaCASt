@@ -90,7 +90,8 @@ public abstract class AbstractJSONLoader {
         } catch ( IOException ioe ){
             String s = "Unable to load greek symbols and constants from json directory in: " +
                     letters_json_path.toString();
-            throw new IOException( s, ioe );
+            System.err.println(s);
+            throw ioe;
         }
     }
 

@@ -47,6 +47,7 @@ public class ExampleParser {
             greek.init();
         } catch ( IOException ioe ){
             System.err.println("Cannot load greek letters");
+            ioe.printStackTrace();
             return;
         }
 
