@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\lstset{
+    language=[LaTeX]Tex,
+    %showspaces=true,
+    keywordstyle=[1]\color{Blue},
+    keywordstyle=[2]\color{Orange},
+    keywordstyle=[3]\color{Sepia},
+    keywordstyle=[4]\color{PineGreen},
+    keywords=[1]{G,Catalan,CatalansConstant},
+    keywords=[2]{gamma,EulerConstant},
+    keywords=[3]{i,iunit},
+    keywords=[4]{x},
+    xleftmargin=.1\textwidth, 
+    xrightmargin=.1\textwidth
+}
+
+\begin{document}
+\begin{center}
+    \Large
+    Maple $\rightarrow$ \LaTeX $\rightarrow$ Maple\\[12pt]
+    \large Round Trip Example
+\end{center}
+
+\begin{equation}\label{eq:jacP}
+    x + \mathit{G} x^2 - \left( \frac{(1 - \gamma) \cdot x}{2}  \right)^i
+\end{equation}
+With $\mathit{G}$ as Catalan's constant, $\gamma$ as Euler-Mascheroni constant and $i$ as the imaginary unit.\\
+
+In Maple it looks like this:
+\begin{lstlisting}[mathescape]
+x + Catalan*x^2 - ((1-gamma)*x/2)^I
+\end{lstlisting}
+
+Translation to LaTeX brings us to:
+\begin{lstlisting}[mathescape]
+x+\CatalansConstant \cdot x^{2}+\left(
+    \left(
+        1+\EulerConstant \cdot (-1)
+    \right)\cdot x\cdot \frac{1}{2}
+\right)^{1\cdot\iunit}\cdot (-1)
+\end{lstlisting}
+
+And a translation back to Maple:
+\begin{lstlisting}[mathescape]
+x + Catalan * x^(2) +(
+    (1 + gamma *(- 1))* x *(1)/(2)
+)^(1 * I) *(- 1)
+\end{lstlisting}
+\end{document}
