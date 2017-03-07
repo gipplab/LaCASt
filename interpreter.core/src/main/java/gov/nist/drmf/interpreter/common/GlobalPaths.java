@@ -40,8 +40,16 @@ public class GlobalPaths {
     public static final Path PATH_BASIC_FUNCTIONS =
             PATH_REFERENCE_DATA_BASIC_CONVERSION.resolve("BasicFunctions.json");
 
-    public static final Path PATH_MAPLE_PROCEDURE =
-            PATH_REFERENCE_DATA.resolve( "MapleProcedures" ).resolve("maple_list_procedure.txt");
+    public static final Path PATH_MAPLE_PROCS =
+            PATH_REFERENCE_DATA.resolve( "MapleProcedures" );
+
+
+    public static final Path PATH_MAPLE_LIST_PROCEDURE =
+            PATH_MAPLE_PROCS.resolve("maple_list_procedure.txt");
+
+    public static final Path PATH_MAPLE_ORDER_PROCEDURE =
+            PATH_MAPLE_PROCS.resolve("maple_ordering_procedure.txt");
+
 
     // path variable to the resources of the core
     public static final Path PATH_CORE_RESOURCES =

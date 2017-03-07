@@ -19,6 +19,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -63,7 +64,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
      * The name of the procedure to convert the inner DAG structure
      * to a list structure.
      */
-    private String maple_procedure;
+    private String maple_list_procedure, maple_ordering_procedure;
 
     /**
      * The engine is the openmaple Interface to interact with Maple
@@ -93,12 +94,12 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
      * If the engine is already running, this function ignores other calls.
      *
      * First it is trying to load the procedure to convert the Inert-Form
-     * to a list. You can find this procedure in {@link GlobalPaths#PATH_MAPLE_PROCEDURE}.
+     * to a list. You can find this procedure in {@link GlobalPaths#PATH_MAPLE_PROCS}.
      *
      * After that, it creates an Engine object of Maple and defines the procedure once.
      *
      * @throws MapleException if the Engine cannot be initialized or the evaluation of the procedure fails.
-     * @throws IOException if it cannot load the procedure from file {@link GlobalPaths#PATH_MAPLE_PROCEDURE}.
+     * @throws IOException if it cannot load the procedure from file {@link GlobalPaths#PATH_MAPLE_PROCS}.
      */
     private void inner_init() throws MapleException, IOException {
         if ( Initializer.loadMapleNatives() )
@@ -108,17 +109,11 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
             return;
         }
 
-        // loading procedure from file.
-        String procedure;
-        // try to collect a stream.
-        try ( Stream<String> stream = Files.lines( GlobalPaths.PATH_MAPLE_PROCEDURE ) ){
-            procedure = stream.collect( Collectors.joining(System.lineSeparator()) );
-            stream.close(); // not really necessary
-            maple_procedure = procedure.split(define_symb)[0].trim();
-        } catch (IOException ioe){
-            LOG.error("Cannot load procedure from file " + GlobalPaths.PATH_MAPLE_PROCEDURE);
-            throw ioe;
-        }
+        String list_procedure = extractProcedure( GlobalPaths.PATH_MAPLE_LIST_PROCEDURE );
+        this.maple_list_procedure = extractNameOfProcedure(list_procedure);
+
+        String ordering_procedure = extractProcedure( GlobalPaths.PATH_MAPLE_ORDER_PROCEDURE );
+        this.maple_ordering_procedure = extractNameOfProcedure( ordering_procedure );
 
         // initialize callback listener
         MapleListener listener = new MapleListener(true);
@@ -127,7 +122,8 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         engine = new Engine( maple_args, listener, null, null );
 
         // evaluate procedure
-        engine.evaluate( procedure );
+        engine.evaluate( list_procedure );
+        engine.evaluate( ordering_procedure );
 
         // init translators
         greek = new GreekLetters( Keys.KEY_MAPLE, Keys.KEY_LATEX );
@@ -144,6 +140,22 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         INFINITY = constants.translate( MapleConstants.INFINITY );
     }
 
+    private String extractProcedure( Path maple_proc ) throws IOException {
+        // try to collect a stream.
+        try ( Stream<String> stream = Files.lines( maple_proc ) ){
+            String procedure = stream.collect( Collectors.joining(System.lineSeparator()) );
+            stream.close(); // not really necessary
+            return procedure;
+        } catch (IOException ioe){
+            LOG.error("Cannot load procedure from file " + maple_proc);
+            throw ioe;
+        }
+    }
+
+    private String extractNameOfProcedure( String maple_proc ){
+        return maple_proc.split(define_symb)[0].trim();
+    }
+
     /**
      * Translates a given maple expression. This expression should not end
      * with a semicolon, otherwise you will produce a MapleException.
@@ -157,11 +169,13 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         // to convert the given input into the internal maple datastructure
         String cmd = to_inert_prefix + maple_input + to_inert_suffix;
         // to convert the internal DAG into a list representation
-        cmd = maple_procedure + "(" + cmd + ");";
+        cmd = maple_ordering_procedure + "(" + cmd + ")";
+        cmd = maple_list_procedure + "(" + cmd + ");";
 
         // evaluates the given expression
         Algebraic a = engine.evaluate(cmd);
         // log information
+        LOG.debug("Wrapping: " + cmd);
         LOG.info("Parsed: " + maple_input);
 
         // try to translate the expression
@@ -247,9 +261,10 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
      * Returns the name of the loaded procedure.
      * @return name of loaded maple procedure
      */
-    public String getProcedureName(){
-        return maple_procedure;
-    }
+    //public String getListProcedureName(){
+    //    return maple_list_procedure;
+    //}
+
 
     // The unique maple interface object
     private static MapleInterface mInterface;
