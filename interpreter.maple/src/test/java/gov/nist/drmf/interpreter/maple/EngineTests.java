@@ -30,7 +30,7 @@ public class EngineTests {
             list,
             proc_alg;
 
-    private static String procedure;
+    private static String procedure_list, procedure_order;
 
     @BeforeAll
     public static void startEngine(){
@@ -45,24 +45,34 @@ public class EngineTests {
         }
 
         // loading procedure from file.
-        String proc = "";
+        String proc1 = "", proc2 = "";
         // try to collect a stream.
         System.out.println(Paths.get("").toAbsolutePath());
 
-        try ( Stream<String> stream = Files.lines( GlobalPaths.PATH_MAPLE_PROCEDURE ) ){
-            proc = stream.collect( Collectors.joining(System.lineSeparator()) );
+        try ( Stream<String> stream = Files.lines( GlobalPaths.PATH_MAPLE_LIST_PROCEDURE ) ){
+            proc1 = stream.collect( Collectors.joining(System.lineSeparator()) );
             stream.close(); // not really necessary
-            procedure = proc.split(":=")[0].trim();
+            procedure_list = proc1.split(":=")[0].trim();
         } catch (IOException ioe){
             ioe.printStackTrace();
-            fail("Cannot load procedure from file: " + GlobalPaths.PATH_MAPLE_PROCEDURE );
+            fail("Cannot load procedure from file: " + GlobalPaths.PATH_MAPLE_LIST_PROCEDURE );
+        }
+
+        try ( Stream<String> stream = Files.lines( GlobalPaths.PATH_MAPLE_ORDER_PROCEDURE ) ){
+            proc2 = stream.collect( Collectors.joining(System.lineSeparator()) );
+            stream.close(); // not really necessary
+            procedure_order = proc2.split(":=")[0].trim();
+        } catch (IOException ioe){
+            ioe.printStackTrace();
+            fail("Cannot load procedure from file: " + GlobalPaths.PATH_MAPLE_ORDER_PROCEDURE );
         }
 
         try{
-            t.evaluate(proc);
+            t.evaluate(proc1);
+            t.evaluate(proc2);
             example_query = t.evaluate("int(x,x);");
             list = t.evaluate("convert(ToInert('a+3'), list);");
-            proc_alg = t.evaluate( procedure + "(ToInert('a+3'));");
+            proc_alg = t.evaluate( procedure_list + "(" + procedure_order + "(ToInert('a+3')));");
         } catch ( MapleException me ){
             me.printStackTrace();
             fail("Cannot evaluate an expression.");
