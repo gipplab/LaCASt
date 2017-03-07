@@ -12,7 +12,7 @@ public class PolynomialTests extends AbstractRoundTrip {
             "(infinity+Catalan/2)^gamma",
             "gamma+alpha^5-I^(x/5)+Catalan",
             "alpha+2*beta+3*I-kappa/Theta+x*y^2.3",
-            "x + x^2 + ((1-gamma)*x/2)^I",
+            "x + x^2 - ((1-gamma)*x/2)^I",
             "1/((a+2)/(b^(Catalan/I)/(alpha*q^I*x/3)*alpha))",
             "((x^a)^b)^c"
     };

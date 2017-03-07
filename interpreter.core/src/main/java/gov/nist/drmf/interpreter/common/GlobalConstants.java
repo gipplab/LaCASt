@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
  * Created by AndreG-P on 28.02.2017.
  */
 public class GlobalConstants {
+    public static final String POSITION_MARKER = "$";
 
     public static final String ALTERNATIVE_SPLIT = "||";
 

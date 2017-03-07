@@ -1,11 +1,13 @@
 package gov.nist.drmf.interpreter.maple.grammar.lexicon;
 
+import gov.nist.drmf.interpreter.common.GlobalConstants;
+
 /**
- * Java bean for a maple function.
+ *
  * Created by AndreG-P on 01.03.2017.
  */
 public class MapleFunction {
-    public static final String POSITION_PREFIX = "$";
+    final String key;
 
     private final String MAPLE_Name;
     private final String MAPLE_Link;
@@ -32,12 +34,15 @@ public class MapleFunction {
         this.MAPLE_Name = MAPLE_Name;
         this.MAPLE_Link = MAPLE_Link;
         this.numberOfVariables = numberOfVariables;
+        this.key = MapleLexicon.buildKey( MAPLE_Name, numberOfVariables );
     }
 
     public String replacePlaceHolders( String[] arguments ){
         String copy = DLMF_Pattern;
         for ( int i = 0; i < arguments.length; i++ ){
-            copy = copy.replace( POSITION_PREFIX + i, arguments[i] );
+            copy = copy.replace(
+                    GlobalConstants.POSITION_MARKER + Integer.toString(i),
+                    arguments[i] );
         }
         return copy;
     }
