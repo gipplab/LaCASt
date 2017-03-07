@@ -33,9 +33,6 @@ import java.util.List;
  * @author Andre Greiner-Petter
  */
 public class MacroTranslator extends AbstractListTranslator {
-    // the positioning character used for placeholders.
-    private static final String position_char = "$";
-
     // the number of parameters, ats and variables
     private int
             numOfParams,
@@ -168,7 +165,10 @@ public class MacroTranslator extends AbstractListTranslator {
                 alternative_pattern : translation_pattern;
 
         for ( int i = 0; i < components.length; i++ ){
-            pattern = pattern.replace(position_char + Integer.toString(i), components[i]);
+            pattern = pattern.replace(
+                    GlobalConstants.POSITION_MARKER + Integer.toString(i),
+                    components[i]
+            );
         }
         local_inner_exp.addTranslatedExpression(pattern);
         global_exp.addTranslatedExpression(pattern);
