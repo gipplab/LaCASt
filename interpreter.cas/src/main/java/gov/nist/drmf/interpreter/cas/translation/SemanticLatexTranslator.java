@@ -10,6 +10,7 @@ import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
+import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
@@ -78,10 +79,12 @@ public class SemanticLatexTranslator extends AbstractTranslator {
         functions.init();
         symbols.init();
 
+        MacrosLexicon.init();
+
         MULTIPLY = symbols.translateFromMLPKey( Keys.MLP_KEY_MULTIPLICATION );
 
         parser = new PomParser(reference_dir_path.toString());
-        parser.addLexicons( GlobalPaths.DLMF_MACROS_LEXICON_NAME );
+        parser.addLexicons( MacrosLexicon.getDLMFMacroLexicon() );
     }
 
     /**

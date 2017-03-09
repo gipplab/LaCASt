@@ -14,6 +14,7 @@ import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import gov.nist.drmf.interpreter.maple.setup.Initializer;
 import gov.nist.drmf.interpreter.maple.translation.components.AbstractAlgebraicTranslator;
+import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -125,16 +126,21 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         engine.evaluate( list_procedure );
         engine.evaluate( ordering_procedure );
 
-        // init translators
+        // set up all translators, define the direction of translation
         greek = new GreekLetters( Keys.KEY_MAPLE, Keys.KEY_LATEX );
         constants = new Constants( Keys.KEY_MAPLE, Keys.KEY_DLMF );
         basicFunc = new BasicFunctionsTranslator( Keys.KEY_LATEX );
         symbolTranslator = new SymbolTranslator( Keys.KEY_MAPLE, Keys.KEY_LATEX );
+        // init all translators
         greek.init();
         constants.init();
         basicFunc.init();
         symbolTranslator.init();
 
+        // load the macro lexicon file
+        MacrosLexicon.init();
+
+        // translate useful symbols to speed the process a bit up.
         MULTIPLY = symbolTranslator.translateFromMLPKey( Keys.MLP_KEY_MULTIPLICATION );
         ADD = symbolTranslator.translateFromMLPKey( Keys.MLP_KEY_ADDITION );
         INFINITY = constants.translate( MapleConstants.INFINITY );

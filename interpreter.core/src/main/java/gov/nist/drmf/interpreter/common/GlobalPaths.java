@@ -32,6 +32,13 @@ public class GlobalPaths {
     public static final Path PATH_REFERENCE_DATA_BASIC_CONVERSION =
             PATH_REFERENCE_DATA.resolve( "BasicConversions" );
 
+    // the name of the lexicon file
+    public static final Path DLMF_MACROS_LEXICON =
+            PATH_LEXICONS.resolve("DLMF-macros-lexicon.txt");
+
+    public static final String DLMF_MACROS_LEXICON_NAME =
+            DLMF_MACROS_LEXICON.getFileName().toString();
+
     // path to the json file with greek letters and constants
     public static final Path PATH_GREEK_LETTERS_AND_CONSTANTS_FILE =
             PATH_REFERENCE_DATA_BASIC_CONVERSION.resolve("GreekLettersAndConstants.json");
@@ -57,7 +64,4 @@ public class GlobalPaths {
 
     public static final Path PATH_LOGGING_CONFIG =
             PATH_CORE_RESOURCES.resolve("log4j2.xml");
-
-    // the name of the lexicon file
-    public static final String DLMF_MACROS_LEXICON_NAME = "DLMF-macros-lexicon.txt";
 }

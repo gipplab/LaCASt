@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.cas.mlp;
 
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.FeatureSet;
 import mlp.Lexicon;
 import mlp.LexiconFactory;
@@ -27,14 +28,6 @@ public class CSVtoLexiconConverter {
     protected final Logger ERROR_LOG = Logger.getLogger( CSVtoLexiconConverter.class.toString() );
 
     public static final String DELIMITER = ";";
-
-    private static final String SIGNAL_ENTRY = "Symbol: ";
-
-    private static final String SIGNAL_FEATURESET = "Feature Set:";
-
-    private static final String SIGNAL_LINE = "-";
-
-    private static final String SIGNAL_INLINE = "\\|\\|";
 
     private static final Pattern PATTERN_MACRO =
             Pattern.compile("\\s*(\\\\\\w+)(\\[.*\\])*(\\{.*\\})*(@+\\{+.+\\}+)*\\s*");
@@ -76,8 +69,7 @@ public class CSVtoLexiconConverter {
                 );
         }
 
-        path_to_dlmf_lexicon =
-                GlobalPaths.PATH_LEXICONS.resolve( GlobalPaths.DLMF_MACROS_LEXICON_NAME );
+        path_to_dlmf_lexicon = GlobalPaths.DLMF_MACROS_LEXICON;
         File dlmf_lexicon_file = path_to_dlmf_lexicon.toFile();
         if ( !dlmf_lexicon_file.exists() ) {
             try {
@@ -94,10 +86,10 @@ public class CSVtoLexiconConverter {
         try {
             dlmf_lexicon = LexiconFactory.createLexicon(
                     path_to_dlmf_lexicon,
-                    SIGNAL_ENTRY,
-                    SIGNAL_FEATURESET,
-                    SIGNAL_LINE,
-                    SIGNAL_INLINE);
+                    MacrosLexicon.SIGNAL_ENTRY,
+                    MacrosLexicon.SIGNAL_FEATURESET,
+                    MacrosLexicon.SIGNAL_LINE,
+                    MacrosLexicon.SIGNAL_INLINE);
         } catch ( IOException ioe ){
             ERROR_LOG.log(
                     Level.SEVERE,
@@ -115,8 +107,8 @@ public class CSVtoLexiconConverter {
 
         LexiconFactory.outputLexiconMap(
                 dlmf_lexicon.getLexiconMap(),
-                SIGNAL_ENTRY,
-                SIGNAL_FEATURESET,
+                MacrosLexicon.SIGNAL_ENTRY,
+                MacrosLexicon.SIGNAL_FEATURESET,
                 path_to_dlmf_lexicon.toString()
         );
     }
@@ -180,12 +172,12 @@ public class CSVtoLexiconConverter {
         else if ( role.matches( Keys.FEATURE_VALUE_CONSTANT ) ){
             fset = new FeatureSet(Keys.KEY_DLMF_MACRO);
             // add the general representation for this macro
-            fset.addFeature( Keys.KEY_DLMF, macro, SIGNAL_INLINE );
+            fset.addFeature( Keys.KEY_DLMF, macro, MacrosLexicon.SIGNAL_INLINE );
 
             String dlmf_link = "DLMF-Link";
-            fset.addFeature( dlmf_link, lineAnalyzer.getValue(dlmf_link), SIGNAL_INLINE );
-            fset.addFeature( Keys.FEATURE_MEANINGS, lineAnalyzer.getValue(Keys.FEATURE_MEANINGS), SIGNAL_INLINE );
-            fset.addFeature( Keys.FEATURE_ROLE, Keys.FEATURE_VALUE_CONSTANT, SIGNAL_INLINE );
+            fset.addFeature( dlmf_link, lineAnalyzer.getValue(dlmf_link), MacrosLexicon.SIGNAL_INLINE );
+            fset.addFeature( Keys.FEATURE_MEANINGS, lineAnalyzer.getValue(Keys.FEATURE_MEANINGS), MacrosLexicon.SIGNAL_INLINE );
+            fset.addFeature( Keys.FEATURE_ROLE, Keys.FEATURE_VALUE_CONSTANT, MacrosLexicon.SIGNAL_INLINE );
             LinkedList<FeatureSet> fsets = new LinkedList<>();
             fsets.add(fset);
             dlmf_lexicon.setEntry( m.group(1), fsets );
@@ -198,13 +190,13 @@ public class CSVtoLexiconConverter {
         else fset = new FeatureSet( Keys.KEY_DLMF_MACRO );
 
         // add the general representation for this macro
-        fset.addFeature( Keys.KEY_DLMF, macro, SIGNAL_INLINE );
+        fset.addFeature( Keys.KEY_DLMF, macro, MacrosLexicon.SIGNAL_INLINE );
 
         // add all other information to the feature set
         for ( int i = 1; i < elements.length && i < header.length; i++ ){
             String value = lineAnalyzer.getValue( header[i] );
             if ( value != null && !value.isEmpty() )
-                fset.addFeature( header[i], value, SIGNAL_INLINE );
+                fset.addFeature( header[i], value, MacrosLexicon.SIGNAL_INLINE );
         }
 
         // since each DLMF macro has only one feature set, create a list with one element
@@ -237,7 +229,7 @@ public class CSVtoLexiconConverter {
         for ( int i = 1; i < elements.length && i < header.length; i++ ){
             String value = lineAnalyzer.getValue( header[i] );
             if ( value != null && !value.isEmpty() ){
-                fset.addFeature( header[i], value, SIGNAL_INLINE );
+                fset.addFeature( header[i], value, MacrosLexicon.SIGNAL_INLINE );
             }
         }
 

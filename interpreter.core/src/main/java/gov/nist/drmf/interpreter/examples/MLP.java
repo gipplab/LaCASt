@@ -4,9 +4,11 @@ package gov.nist.drmf.interpreter.examples;/*
  * and open the template in the editor.
  */
 
+import java.io.IOException;
 import java.util.*;
 import java.nio.file.Paths;
 
+import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
@@ -53,17 +55,19 @@ public class MLP {
             //location of the lexicons
             PomParser parser = new PomParser(refDataDir);
             parser.addMacros(macros);   //make the macros known to the translation
-            parser.addLexicons( GlobalPaths.DLMF_MACROS_LEXICON_NAME );
+
+            MacrosLexicon.init();
+            parser.addLexicons( MacrosLexicon.getDLMFMacroLexicon() );
 
             // provide next an equation to parse
             String eq = eqs[0];
             //eq = "\\Mathieuce{123 a}@@{\\sqrt{2}b}{\\frac{1}{2}}";
-            //eq = "\\JacobiP{\\alpha}{\\beta}{n}@{\\cos@{a\\Theta}}";
+            eq = "\\JacobiP{\\alpha}{\\beta}{n}@{\\cos@{a\\Theta}}";
             //eq = "\\FerrersP[\\frac{1}{2}]{\\nu}@{z}";
 //            eq = "(ab^2c 1+2) \\cdot \\CatalansConstant 2";
 //            eq="\\left ( \\left ( y \\right ] \\right)";
 //            eq = "\\sqrt \\frac{2}{4}";
-            eq = "ab13d";
+//            eq = "ab13d";
 
             // parse/tag the equation and print it out 
             PomTaggedExpression pe = parser.parse(eq);
@@ -72,7 +76,7 @@ public class MLP {
             //    System.out.println(key + ": " + features.get(key));
             print(eq+":\n"+pe.toString());
         }
-        catch(ParseException e){
+        catch(ParseException | IOException e){
                 print("Caught an exception: "+e.getMessage());
         }  
         
