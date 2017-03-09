@@ -181,7 +181,14 @@ public class NumericalTranslator extends ListTranslator {
             Constants constants = mi.getConstantsTranslator();
             String i_unit = constants.translate(MapleConstants.I_UNIT);
 
-            TranslatedExpression imaginary = new TranslatedExpression( MULTIPLY+i_unit , POSITIVE);
+            TranslatedExpression last = translatedList.removeLastExpression();
+            TranslatedExpression imaginary;
+            if ( last.getPlainExpression().matches("-?1") ){
+                imaginary = new TranslatedExpression( i_unit, last.getSign() );
+            } else {
+                translatedList.addTranslatedExpression(last);
+                imaginary = new TranslatedExpression( MULTIPLY+i_unit , POSITIVE);
+            }
             translatedList.addTranslatedExpression( imaginary );
             return true;
         } catch ( MapleException | IllegalArgumentException me ){

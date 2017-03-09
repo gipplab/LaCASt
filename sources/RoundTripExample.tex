@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage[margin=1in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
 \usepackage{amsmath}
@@ -8,47 +9,89 @@
     language=[LaTeX]Tex,
     %showspaces=true,
     keywordstyle=[1]\color{Blue},
-    keywordstyle=[2]\color{Orange},
-    keywordstyle=[3]\color{Sepia},
-    keywordstyle=[4]\color{PineGreen},
-    keywords=[1]{G,Catalan,CatalansConstant},
-    keywords=[2]{gamma,EulerConstant},
-    keywords=[3]{i,iunit},
-    keywords=[4]{x},
+    keywordstyle=[2]\color{Red},
+    keywordstyle=[3]\color{Orange},
+    keywordstyle=[4]\color{Plum},
+    keywordstyle=[5]\color{PineGreen},
+    keywords=[1]{frac,left,right,cdot},
+    keywords=[2]{EulerConstant,gamma,iunit,I},
+    keywords=[3]{beta,kappa,Theta},
+    keywords=[4]{x,y},
     xleftmargin=.1\textwidth, 
     xrightmargin=.1\textwidth
 }
 
+\newcommand{\iunit}{i}
+\newcommand{\CatalansConstant}{\mathit{G}}
+\newcommand{\EulerConstant}{\gamma}
+
 \begin{document}
 \begin{center}
-    \Large
-    Maple $\rightarrow$ \LaTeX $\rightarrow$ Maple\\[12pt]
-    \large Round Trip Example
+    \Large Round Trip Examples\\[12pt]
+    \large Maple $\rightarrow$ \LaTeX\ and \LaTeX $\rightarrow$ Maple
 \end{center}
 
-\begin{equation}\label{eq:jacP}
-    x + \mathit{G} x^2 - \left( \frac{(1 - \gamma) \cdot x}{2}  \right)^i
+\noindent Our example contains Greek letters, mathematical constants, fractions, powers and floating numbers. All representations on this page will use line breaks for a better readability.
+\begin{equation}\label{eq:poly_ex}
+    \EulerConstant - \frac{3 \cdot \beta}{4} - 3\iunit + 
+        \left( 
+            \frac{\kappa}{\Theta^y+x y^{2.3}} 
+        \right)^{-\iunit} 
 \end{equation}
-With $\mathit{G}$ as Catalan's constant, $\gamma$ as Euler-Mascheroni constant and $i$ as the imaginary unit.\\
-
-In Maple it looks like this:
-\begin{lstlisting}[mathescape]
-x + Catalan*x^2 - ((1-gamma)*x/2)^I
+\noindent With $\EulerConstant$ as Euler-Mascheroni's constant and $\iunit$ as the imaginary unit. We have two representations for our formulae \ref{eq:poly_ex} above.
+\begin{lstlisting}[mathescape,caption={Semantic \LaTeX\ representation of \ref{eq:poly_ex}}]
+\EulerConstant - \frac{3 \cdot \beta}{4} - 3\iunit + 
+    \left( 
+        \frac{\kappa}{\Theta^y+x y^{2.3}} 
+    \right)^{-\iunit} 
 \end{lstlisting}
+\begin{lstlisting}[mathescape,caption={Maple's representation of \ref{eq:poly_ex}}]
+gamma - (3*beta)/4 - 3*I + (kappa/(Theta^y + x*y^(2.3)))^(-I)
+\end{lstlisting}
+\noindent All white spaces are used to improve the readability. From now on, each white space really appears after the translation process but the output will not produce any line breaks. Each line break is manually set.
 
-Translation to LaTeX brings us to:
+\vspace{12pt}
+\begin{center}
+    \large Pre-Translation Steps\\
+\end{center}
+Maple automatically simplify simple arithmetic expressions and we are not able to prevent that. For instance an input like $2 \cdot 3$ will automatically computed to $6$. This steps happens before our first translation. That's why our input is most of the time not identical to our output representation. For the input above, just the first fraction $\frac{3 \cdot \beta}{4}$ is changed to $\frac{3}{4}\beta$.
+
+\vspace{12pt}
+\begin{center}
+    \large Maple $\rightarrow$ \LaTeX\\
+\end{center}
+\noindent Our program produces the following expression in semantic \LaTeX.
 \begin{lstlisting}[mathescape]
-x+\CatalansConstant \cdot x^{2}+\left(
+\EulerConstant-\frac{3}{4}\cdot\beta-3\cdot\iunit+
     \left(
-        1+\EulerConstant \cdot (-1)
-    \right)\cdot x\cdot \frac{1}{2}
-\right)^{1\cdot\iunit}\cdot (-1)
+        \kappa\cdot
+            \left(
+                \Theta^{y}+x\cdot y^{2.3}
+            \right)^{-1}
+    \right)^{-\iunit}
 \end{lstlisting}
+\noindent Besides the first fraction, also the second fractions changes. This is caused by the inner data structure of Maple. Internally all expressions in a denominator will be stored with negative power. In fact, fraction structures only appears with integer numerators and denominators in the internal representation of Maple. Since our translator working with the internal representation, we adopt those changes. Our Translated expression now looks like the equivalent formula \ref{eq:new}:
+\begin{equation}\label{eq:new}
+\EulerConstant-\frac{3}{4}\cdot\beta-3\cdot\iunit+
+    \left(
+        \kappa\cdot
+            \left(
+                \Theta^{y}+x\cdot y^{2.3}
+            \right)^{-1}
+    \right)^{-\iunit}
+\end{equation}
 
-And a translation back to Maple:
+\vspace{12pt}
+\begin{center}
+    \large \LaTeX\ $\rightarrow$ Maple\\
+\end{center}
+\noindent Our program translates the semantic \LaTeX\ representation of \ref{eq:poly_ex} to Maple in the following way:
 \begin{lstlisting}[mathescape]
-x + Catalan * x^(2) +(
-    (1 + gamma *(- 1))* x *(1)/(2)
-)^(1 * I) *(- 1)
+gamma -(3 * beta)/(4)- 3*I +((kappa)/(Theta^(y) + x*y^(2.3)))^(- I)
 \end{lstlisting}
+\newpage
+\begin{center}
+    \large Round Trip Tests
+\end{center}
+All test cases converges in a fix point, where the string representation is identical to the previous string representation. All round trip tests between Maple and semantic \LaTeX\ reaching this fix point after at most two cycles and a fix point representation is symbolically equivalent to the input representation. The reason for that, can be found in formulae \ref{eq:new}. Since Maple's internal representation is slightly different but mathematically equivalent to our input, we translate no longer the original structure but the internal representation. Once we adopted these changes from Maple, our translation process converges into the described fix point. Therefor, round trip tests starting from Maple needed a half cycle (one translation to semantic \LaTeX) to reach the fix point representation and round trip tests starting from semantic \LaTeX\ converges into the fix point after one full cycle (\LaTeX\ $\rightarrow$ Maple $\rightarrow$ \LaTeX).
 \end{document}

@@ -66,29 +66,47 @@ public class MapleTranslator {
      * @param args empty or a maple expression in the first argument
      */
     public static void main(String[] args){
-        String test;
+        String test = "-(x)^I";
+        test = "gamma-(3*beta)/4-3*I+(kappa/(Theta^y+x*y^2.3))^(-I)";
+        /*
+        Scanner sc = new Scanner(System.in);
         if ( args != null && args.length >= 1 ){
             test = args[0];
         } else {
             System.out.println("Please enter a polynomial without functions in Maple representation.");
-            Scanner sc = new Scanner(System.in);
             test = sc.nextLine().trim();
             if ( test.matches("stop") ){
                 System.out.println("You stopped the program.");
                 return;
             }
         }
+        */
 
         System.out.println("Initializing...");
         try {
             MapleTranslator t = new MapleTranslator();
             t.init();
-            System.out.println("Initialized. Starting translation.");
-            String latex_result = t.translateFromMapleToLaTeXClean( test );
-            String back_to_maple = t.translateFromLaTeXToMapleClean( latex_result );
-            System.out.println("Input Expression: " + test);
-            System.out.println("Translated to:    " + latex_result);
-            System.out.println("Backtranslation:  " + back_to_maple);
+            String s = "", latex_result = "", back_to_maple = "", inner = test, second = "";
+            int c = 0;
+
+//            System.out.println();
+            System.out.println(test);
+
+//            while ( !s.matches("-*(end|stop|e)") ){
+                latex_result = t.translateFromMapleToLaTeXClean( inner );
+//                System.out.println(latex_result);
+                back_to_maple = t.translateFromLaTeXToMapleClean( latex_result );
+//                System.out.println(back_to_maple);
+                inner = back_to_maple;
+//                break;
+//                s = sc.nextLine().trim();
+//                if ( c < 1 ) second = back_to_maple;
+                c++;
+//            }
+
+            System.out.println("Input Expression:  " + test);
+            System.out.println("Back-Translation:  " + back_to_maple);
+            System.out.println("LaTeX:             " + latex_result);
             boolean b = t.simplificationTester( test, back_to_maple );
             if ( b ){
                 System.out.println("Both expressions are symbolical equivalent.");
