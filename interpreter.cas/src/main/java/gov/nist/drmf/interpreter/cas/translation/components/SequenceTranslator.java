@@ -37,7 +37,7 @@ public class SequenceTranslator extends AbstractListTranslator {
             "[\\^\\/\\_\\!]";
 
     public static final String PATTERN_BASIC_OPERATIONS =
-            ".*[\\+\\-\\*\\/\\^\\_\\!\\(\\)\\{\\}\\[\\]\\<\\>\\s\\=].*";
+            ".*[+\\-*/\\^_!(){}\\[\\]<>\\s=]|\\\\cdot.*";
 
     // the open bracket if needed
     @Nullable
@@ -282,6 +282,7 @@ public class SequenceTranslator extends AbstractListTranslator {
             MathTerm next = exp_list.get(0).getRoot();
             Matcher m1 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(curr.getTermText());
             Matcher m2 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(next.getTermText());
+
             if ( m1.matches() || m2.matches() ) return false;
 
             return !(

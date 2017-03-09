@@ -63,7 +63,7 @@ public class MLP {
 //            eq = "(ab^2c 1+2) \\cdot \\CatalansConstant 2";
 //            eq="\\left ( \\left ( y \\right ] \\right)";
 //            eq = "\\sqrt \\frac{2}{4}";
-            eq = "\\cdot";
+            eq = "ab13d";
 
             // parse/tag the equation and print it out 
             PomTaggedExpression pe = parser.parse(eq);

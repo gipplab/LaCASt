@@ -217,7 +217,7 @@ public class MathTermTranslator extends AbstractListTranslator {
                 global_exp.addTranslatedExpression( translation );
                 return true;
             case caret:
-                return parseCaret( exp );
+                return parseCaret( exp, following_exp );
             case underscore:
                 return parseUnderscores( exp );
             case ordinary:
@@ -413,7 +413,7 @@ public class MathTermTranslator extends AbstractListTranslator {
      * @param exp the caret expression, it has one child for sure
      * @return true if everything was fine
      */
-    private boolean parseCaret( PomTaggedExpression exp ){
+    private boolean parseCaret( PomTaggedExpression exp, List<PomTaggedExpression> following_exp ){
         // get the power
         PomTaggedExpression sub_exp = exp.getComponents().get(0);
         // and translate the power
@@ -425,6 +425,15 @@ public class MathTermTranslator extends AbstractListTranslator {
         if ( !testBrackets( power.toString() ) )
                 powerStr += b.symbol + power.toString() + b.counterpart;
         else powerStr += power.toString();
+
+        if ( following_exp.size() > 0 ){
+            PomTaggedExpression next = following_exp.get(0);
+            MathTerm term = next.getRoot();
+            if ( term != null ){
+                if ( !term.getTermText().matches( SequenceTranslator.PATTERN_BASIC_OPERATIONS ) )
+                    powerStr += MULTIPLY;
+            }
+        }
 
         // the power becomes one big expression now.
         local_inner_exp.addTranslatedExpression( powerStr );

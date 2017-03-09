@@ -39,6 +39,13 @@ public class RoundTripTests {
         }
     }
 
+    @Nested
+    public class LaTeXInnerTester extends LaTeXRoundTripIdentityTests {
+        LaTeXInnerTester() {
+            super.translator = global_translator;
+        }
+    }
+
     @Test
     public void multipleTranslationTest() throws Exception {
         String test = "1/((a+2)/(b^(Catalan/I)/(alpha*q^I*x/3)*alpha))";
@@ -58,5 +65,27 @@ public class RoundTripTests {
             e.printStackTrace();
             fail("An exception appeared during multiple TranslationTests!");
         }
+    }
+
+    @Test void fixPointTest() throws Exception {
+        int threshold = 10;
+        String[] tests = PolynomialTests.test_polynomials;
+        String cycles = "";
+
+        String test_case = "", new_trans = "";
+        for ( String test : tests ){
+            test_case = test;
+            for ( int i = 1; i <= threshold; i++ ){
+                new_trans = global_translator.oneCycleRoundTripTranslationFromMaple( test_case );
+                if ( new_trans.equals( test_case ) ) {
+                    cycles += i + ", ";
+                    break;
+                }
+                test_case = new_trans;
+                if ( i == threshold )
+                    fail( test_case + System.lineSeparator() + new_trans );
+            }
+        }
+        System.out.println( cycles );
     }
 }

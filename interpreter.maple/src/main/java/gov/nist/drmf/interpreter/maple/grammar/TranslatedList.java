@@ -112,6 +112,17 @@ public class TranslatedList extends TranslatedExpression {
         }
     }
 
+    public void setSignWithoutEmbraceCheck( boolean sign ){
+        if ( trans_list.size() == 1 ){
+            this.trans_list.getLast().setSign( sign );
+            return;
+        }
+
+        if ( sign != getSign() ){
+            super.setSign( sign );
+        }
+    }
+
     /**
      *
      * @return
@@ -155,12 +166,15 @@ public class TranslatedList extends TranslatedExpression {
         }
 
         String str = "";
-        String tmp;
+        String curr, next;
         while ( !copy.isEmpty() ){
-            tmp = copy.removeFirst().getPlainExpression();
-            if ( whiteSpaceCheck(tmp) )
-                str += tmp + GlobalConstants.WHITESPACE;
-            else str += tmp;
+            curr = copy.removeFirst().getPlainExpression();
+            str += curr;
+            if ( copy.size() > 1 ){
+                next = copy.getFirst().getPlainExpression();
+                if ( whiteSpaceCheck(curr, next) )
+                    str += GlobalConstants.WHITESPACE;
+            }
         }
 
         if ( isEmbraced() )
@@ -172,9 +186,9 @@ public class TranslatedList extends TranslatedExpression {
         return str;
     }
 
-    private boolean whiteSpaceCheck( String s ){
+    private boolean whiteSpaceCheck( String s, String next ){
         Matcher m = LATEX_COMMAND_PATTERN.matcher( s );
-        return m.matches();
+        return m.matches() && next.matches( "[A-Za-z]+.*" );
     }
 
     @Override

@@ -100,7 +100,7 @@ public class TranslatedExpression {
      * @return {@link gov.nist.drmf.interpreter.maple.common.MapleConstants#POSITIVE}
      *          or {@link gov.nist.drmf.interpreter.maple.common.MapleConstants#NEGATIVE}.
      */
-    protected boolean getSign(){
+    public boolean getSign(){
         return sign;
     }
 
