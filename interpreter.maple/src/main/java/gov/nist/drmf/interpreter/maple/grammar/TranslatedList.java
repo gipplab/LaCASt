@@ -181,9 +181,9 @@ public class TranslatedList extends TranslatedExpression {
 
     @Override
     public boolean getSign(){
-        return sign;
-//        if ( trans_list.size() == 1 ) return trans_list.getFirst().getSign();
-//        else return super.getSign();
+        if ( !isEmbraced() && !trans_list.isEmpty() ){
+            return calcSign( sign, trans_list.getFirst().getSign() );
+        } else return sign;
     }
 
     @Override

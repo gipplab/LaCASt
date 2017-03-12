@@ -66,8 +66,8 @@ public class MapleTranslator {
      * @param args empty or a maple expression in the first argument
      */
     public static void main(String[] args){
-        String test = "-3*I-(x/3)^y";
-        test = "(kappa/(Theta^y+x*y^2.3))^(-I)";
+        String test = "-I";
+//        test = "gamma -(3 * beta)/(4)- 3*I +(((kappa)/((Theta)^(y) + x*(y)^(2.3))))^(- I)";
 
 
         /*

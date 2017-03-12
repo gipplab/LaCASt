@@ -182,6 +182,8 @@ public class NumericalTranslator extends ListTranslator {
                 translatedList.addTranslatedExpression(second);
             }
 
+            LOG.debug("Complex-Number: " + translatedList);
+
             MapleInterface mi = MapleInterface.getUniqueMapleInterface();
             Constants constants = mi.getConstantsTranslator();
             String i_unit = constants.translate(MapleConstants.I_UNIT);
@@ -189,7 +191,9 @@ public class NumericalTranslator extends ListTranslator {
             TranslatedExpression last = translatedList.removeLastExpression();
             TranslatedExpression imaginary;
 
-            if ( last.toString().matches("-?1") ){
+            LOG.debug("Multiple 1 test for: " + last);
+            if ( last.toString().matches("\\[*-?1]*") ){
+                // TODO bug...
                 imaginary = new TranslatedExpression( i_unit, last.getSign() );
             } else {
                 translatedList.addTranslatedExpression(last);
