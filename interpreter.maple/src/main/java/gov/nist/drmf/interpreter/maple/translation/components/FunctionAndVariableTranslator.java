@@ -108,9 +108,12 @@ public class FunctionAndVariableTranslator extends ListTranslator {
             );
         }
 
+        MapleInternal in = getAbstractInternal(base.select(1).toString());
         TranslatedList trans_base = translateGeneralExpression( base );
         if ( trans_base.getLength() > 1 )
             trans_base.embrace();
+        else if ( in.equals( MapleInternal.divide ) )
+            trans_base.embrace( Brackets.left_latex_parenthesis );
 
         TranslatedList trans_exponent = translateGeneralExpression( exponent );
         trans_exponent.embrace( Brackets.left_braces );
