@@ -67,7 +67,7 @@ public class MapleTranslator {
      */
     public static void main(String[] args){
         String test = "-I";
-//        test = "gamma -(3 * beta)/(4)- 3*I +(((kappa)/((Theta)^(y) + x*(y)^(2.3))))^(- I)";
+        test = "gamma -(3 * beta)/(4)- 3*I +( (kappa)/((Theta)^(y) + x*(y)^(2.3)) )^(- I)";
 
 
         /*

@@ -191,9 +191,7 @@ public class NumericalTranslator extends ListTranslator {
             TranslatedExpression last = translatedList.removeLastExpression();
             TranslatedExpression imaginary;
 
-            LOG.debug("Multiple 1 test for: " + last);
             if ( last.toString().matches("\\[*-?1]*") ){
-                // TODO bug...
                 imaginary = new TranslatedExpression( i_unit, last.getSign() );
             } else {
                 translatedList.addTranslatedExpression(last);
