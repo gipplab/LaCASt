@@ -17,6 +17,6 @@ public class GeneralTester {
 
     @Test
     public void testParenthesisChecker2(){
-        assertTrue( AbstractTranslator.testBrackets("((1)/(2))") );
+        assertTrue( AbstractTranslator.testBrackets("((1)/((2)^(3) + 4*(5)^(6)))") );
     }
 }
