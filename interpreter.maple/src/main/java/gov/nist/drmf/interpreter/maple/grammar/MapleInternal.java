@@ -29,11 +29,17 @@ public enum MapleInternal {
     rational("RATIONAL"),   // [RATIONAL, INTPOS or INTNEG, INTPOS]
 
     /**
-     * We exclude the FLOAT object. That brings us to _Inert_VARBATIM.
-     *  [_Inert_VERBATIM, openmaple.Numeric]
-     * The second argument is a Numeric object.
+     * MYFLOAT is a new internal type, created for this program.
+     * It just contains the string representation of a floating number
      */
-    floating("VERBATIM"),      // [VERBATIM, openmaple.Numeric]
+    floating("MYFLOAT"),    // [MYFLOAT, string]
+
+    /**
+     * A new internal type, created for this program.
+     * It explains a fraction and has two arguments. The numerator and the
+     * denominator.
+     */
+    divide("DIVIDE"),       // [DIVIDE, numerator, denominator]
 
     /**
      * Simple and complex computations

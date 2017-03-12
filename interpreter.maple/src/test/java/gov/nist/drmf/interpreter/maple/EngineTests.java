@@ -58,13 +58,13 @@ public class EngineTests {
             fail("Cannot load procedure from file: " + GlobalPaths.PATH_MAPLE_LIST_PROCEDURE );
         }
 
-        try ( Stream<String> stream = Files.lines( GlobalPaths.PATH_MAPLE_ORDER_PROCEDURE ) ){
+        try ( Stream<String> stream = Files.lines( GlobalPaths.PATH_MAPLE_TO_INERT_PROCEDURE ) ){
             proc2 = stream.collect( Collectors.joining(System.lineSeparator()) );
             stream.close(); // not really necessary
             procedure_order = proc2.split(":=")[0].trim();
         } catch (IOException ioe){
             ioe.printStackTrace();
-            fail("Cannot load procedure from file: " + GlobalPaths.PATH_MAPLE_ORDER_PROCEDURE );
+            fail("Cannot load procedure from file: " + GlobalPaths.PATH_MAPLE_TO_INERT_PROCEDURE );
         }
 
         try{
@@ -72,7 +72,7 @@ public class EngineTests {
             t.evaluate(proc2);
             example_query = t.evaluate("int(x,x);");
             list = t.evaluate("convert(ToInert('a+3'), list);");
-            proc_alg = t.evaluate( procedure_list + "(" + procedure_order + "(ToInert('a+3')));");
+            proc_alg = t.evaluate( procedure_list + "(" + procedure_order + "('a+3'));");
         } catch ( MapleException me ){
             me.printStackTrace();
             fail("Cannot evaluate an expression.");

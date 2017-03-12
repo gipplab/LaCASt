@@ -66,8 +66,10 @@ public class MapleTranslator {
      * @param args empty or a maple expression in the first argument
      */
     public static void main(String[] args){
-        String test = "-(x)^I";
-        test = "gamma-(3*beta)/4-3*I+(kappa/(Theta^y+x*y^2.3))^(-I)";
+        String test = "-3*I-(x/3)^y";
+        test = "(kappa/(Theta^y+x*y^2.3))^(-I)";
+
+
         /*
         Scanner sc = new Scanner(System.in);
         if ( args != null && args.length >= 1 ){
@@ -214,7 +216,7 @@ public class MapleTranslator {
             throws TranslationException {
         dlmfInterface.translate( latex_expression );
         return new Translation(
-                dlmfInterface.getTranslatedExpression(),
+                dlmfInterface.getGlobalExpressionObject().toString(),
                 dlmfInterface.getInfoLog().toString() );
     }
 

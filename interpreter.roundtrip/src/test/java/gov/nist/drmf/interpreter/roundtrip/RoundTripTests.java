@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.roundtrip;
 
 import gov.nist.drmf.interpreter.MapleTranslator;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -32,6 +33,7 @@ public class RoundTripTests {
         }
     }
 
+    @Disabled
     @Nested
     public class FunctionsInnerTester extends FunctionsTests {
         FunctionsInnerTester() {
