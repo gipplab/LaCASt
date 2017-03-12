@@ -84,6 +84,11 @@ public class NumericalTranslator extends ListTranslator {
         }
     }
 
+    /**
+     * Parse a fraction of two numerical expressions.
+     * @param list Type: RATIONAL, Struct: [RATIONAL, Numeric, Numeric]
+     * @throws MapleException extract elements from list or parse elements
+     */
     private void parseRationalNumber( List list ) throws MapleException {
         try {
             // get numerator and denominator
@@ -183,12 +188,14 @@ public class NumericalTranslator extends ListTranslator {
 
             TranslatedExpression last = translatedList.removeLastExpression();
             TranslatedExpression imaginary;
-            if ( last.getPlainExpression().matches("-?1") ){
+
+            if ( last.toString().matches("-?1") ){
                 imaginary = new TranslatedExpression( i_unit, last.getSign() );
             } else {
                 translatedList.addTranslatedExpression(last);
                 imaginary = new TranslatedExpression( MULTIPLY+i_unit , POSITIVE);
             }
+
             translatedList.addTranslatedExpression( imaginary );
             return true;
         } catch ( MapleException | IllegalArgumentException me ){
@@ -235,7 +242,8 @@ public class NumericalTranslator extends ListTranslator {
                 NumericalTranslator np = new NumericalTranslator( in, 2 );
                 if (!np.translate(list))
                     return null;
-                return np.translatedList.merge();
+                // TODO risky?
+                return np.translatedList;
             default:
                 LOG.warn("Illegal argument in complex number. " + in);
                 failures.addFailure( "Unkown element in a complex number!", this.getClass(), list.toString() );

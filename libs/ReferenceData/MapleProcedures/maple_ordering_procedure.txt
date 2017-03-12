@@ -1,5 +1,0 @@
-ordering_inert_converter := proc(a)
-    subsindets( a, specfunc(_Inert_PROD), proc (z) options operator, arrow; 
-      `if`( type(op(-1, z), specfunc({_Inert_COMPLEX, _Inert_VERBATIM, _Inert_INTNEG, _Inert_INTPOS, _Inert_RATIONAL})), _Inert_PROD(op(-1, z), op(1 .. -2, z)), z) 
-    end proc)
-end proc:

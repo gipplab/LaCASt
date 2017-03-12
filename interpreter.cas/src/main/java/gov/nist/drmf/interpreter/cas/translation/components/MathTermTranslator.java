@@ -414,13 +414,22 @@ public class MathTermTranslator extends AbstractListTranslator {
      * @return true if everything was fine
      */
     private boolean parseCaret( PomTaggedExpression exp, List<PomTaggedExpression> following_exp ){
+        Brackets b = Brackets.left_parenthesis;
+
+        boolean replaced = false;
+        String base = global_exp.removeLastExpression();
+        if ( !testBrackets(base) ){
+            base = b.symbol + base + b.counterpart;
+            replaced = true;
+        }
+        global_exp.addTranslatedExpression(base);
+
         // get the power
         PomTaggedExpression sub_exp = exp.getComponents().get(0);
         // and translate the power
         TranslatedExpression power = parseGeneralExpression(sub_exp, null);
 
         // now we need to wrap parenthesis around the power
-        Brackets b = Brackets.left_parenthesis;
         String powerStr = GlobalConstants.CARET_CHAR;
         if ( !testBrackets( power.toString() ) )
                 powerStr += b.symbol + power.toString() + b.counterpart;
@@ -445,6 +454,9 @@ public class MathTermTranslator extends AbstractListTranslator {
         global_exp.addTranslatedExpression( powerStr );
         // merges last 2 expression, because after ^ it is one phrase than
         global_exp.mergeLastNExpressions(2);
+
+        if ( replaced ) local_inner_exp.removeLastExpression();
+
         return !isInnerError();
     }
 

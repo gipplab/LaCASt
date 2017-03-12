@@ -44,6 +44,7 @@ public class ListTranslator extends AbstractAlgebraicTranslator<List> {
             case name:
             case string:
             case ass_name:
+            case divide:
                 generalParser = new FunctionAndVariableTranslator( root, length );
                 break;
             case equation:

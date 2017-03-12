@@ -55,17 +55,13 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
     /**
      * Inner constants to handle maple commands
      */
-    private static final String
-            define_symb = ":=",
-            exclude = Arrays.toString(MapleConstants.LIST_OF_EXCLUDES),
-            to_inert_prefix = "ToInert('",
-            to_inert_suffix = "',exclude=" + exclude + ")";
+    private static final String define_symb = ":=";
 
     /**
      * The name of the procedure to convert the inner DAG structure
      * to a list structure.
      */
-    private String maple_list_procedure, maple_ordering_procedure;
+    private String maple_list_procedure_name, maple_to_inert_procedure_name;
 
     /**
      * The engine is the openmaple Interface to interact with Maple
@@ -111,10 +107,10 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         }
 
         String list_procedure = extractProcedure( GlobalPaths.PATH_MAPLE_LIST_PROCEDURE );
-        this.maple_list_procedure = extractNameOfProcedure(list_procedure);
+        this.maple_list_procedure_name = extractNameOfProcedure(list_procedure);
 
-        String ordering_procedure = extractProcedure( GlobalPaths.PATH_MAPLE_ORDER_PROCEDURE );
-        this.maple_ordering_procedure = extractNameOfProcedure( ordering_procedure );
+        String to_inert_procedure = extractProcedure( GlobalPaths.PATH_MAPLE_TO_INERT_PROCEDURE );
+        this.maple_to_inert_procedure_name = extractNameOfProcedure( to_inert_procedure );
 
         // initialize callback listener
         MapleListener listener = new MapleListener(true);
@@ -124,7 +120,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
 
         // evaluate procedure
         engine.evaluate( list_procedure );
-        engine.evaluate( ordering_procedure );
+        engine.evaluate( to_inert_procedure );
 
         // set up all translators, define the direction of translation
         greek = new GreekLetters( Keys.KEY_MAPLE, Keys.KEY_LATEX );
@@ -173,10 +169,9 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
     public String translate( String maple_input ) throws MapleException {
         // Creates the command by wrapping all necessary information around the input
         // to convert the given input into the internal maple datastructure
-        String cmd = to_inert_prefix + maple_input + to_inert_suffix;
+        String cmd = maple_to_inert_procedure_name + "(" + maple_input + ")";
         // to convert the internal DAG into a list representation
-        cmd = maple_ordering_procedure + "(" + cmd + ")";
-        cmd = maple_list_procedure + "(" + cmd + ");";
+        cmd = maple_list_procedure_name + "(" + cmd + ");";
 
         // evaluates the given expression
         Algebraic a = engine.evaluate(cmd);

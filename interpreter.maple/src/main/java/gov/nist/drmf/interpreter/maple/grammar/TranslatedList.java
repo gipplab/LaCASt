@@ -5,6 +5,9 @@ import static gov.nist.drmf.interpreter.maple.common.MapleConstants.*;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
+import jdk.nashorn.internal.objects.Global;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
@@ -12,182 +15,297 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * TODO should we handle spaces here as well? I think so.
+ * Translated list handles a list of already translated expressions.
+ * It can be a translated expression by itself. In that case the list
+ * is merged to one element.
+ *
+ * Main features of this classes are:
+ *  1) Add translated expressions and lists
+ *  2) Embrace the list
+ *  3) Get an accurate string representation
+ *      - this takes care of white spaces between symbols
+ *      - handles signs
+ *      - handles brackets
  *
  * Created by AndreG-P on 24.02.2017.
  */
 public class TranslatedList extends TranslatedExpression {
-    public static final String LATEX_COMMAND = "\\\\[a-zA-Z\\(\\)\\[\\]\\{}]+";
-    public static final Pattern LATEX_COMMAND_PATTERN = Pattern.compile(LATEX_COMMAND);
+    private static final Logger LOG = LogManager.getLogger( TranslatedList.class );
 
+    /**
+     * List of translated expression. Can be empty.
+     */
     private LinkedList<TranslatedExpression> trans_list;
 
+    /**
+     * If this list should be wrapped by brackets.
+     * Otherwise this variable is null.
+     */
     private Brackets brackets;
 
+    /**
+     * Empty expression list.
+     */
     public TranslatedList(){
         super();
         this.trans_list = new LinkedList<>();
     }
 
+    /**
+     * Copy constructor
+     * @param list get copied
+     */
+    public TranslatedList( TranslatedList list ){
+        this();
+        this.trans_list = new LinkedList<>(list.trans_list);
+        this.brackets = list.brackets;
+        this.sign = list.sign;
+    }
+
+    /**
+     * Add a new translated expression to this list.
+     * Can be negative or positive also.
+     * @param expression gets transformed to TranslatedExpresison
+     */
     public void addTranslatedExpression( String expression ){
         TranslatedExpression t = new TranslatedExpression(expression);
         this.addTranslatedExpression(t);
     }
 
+    /**
+     * Add new translated expression to this list.
+     * @param te translated expression
+     */
     public void addTranslatedExpression( TranslatedExpression te ){
         this.trans_list.add( te );
     }
 
+    /**
+     * Add a whole other list to this list.
+     * @param list
+     */
     public void addTranslatedExpression( TranslatedList list ){
-        if ( list.isEmbraced() ){
-            trans_list.add( list.merge() );
-            return;
-        }
-
-        this.trans_list.addAll(list.trans_list);
+        if ( trans_list.isEmpty() && !list.isEmbraced() ){
+            this.trans_list = list.trans_list;
+            this.brackets = list.brackets;
+            this.sign = calcSign( sign, list.sign );
+        } else this.trans_list.add( list );
     }
 
+    private boolean calcSign( boolean sign1, boolean sign2 ){
+        if (( sign1 == POSITIVE && sign2 == POSITIVE ) ||
+                ( sign1 == NEGATIVE && sign2 == NEGATIVE )) return POSITIVE;
+        else return NEGATIVE;
+    }
+
+    /**
+     * Removes the last expression. Be aware this can be a whole translated list.
+     * @return the last expression (or the whole list)
+     */
     public TranslatedExpression removeLastExpression(){
         try {
             TranslatedExpression last = trans_list.removeLast();
-            if ( trans_list.isEmpty() ) setSign( POSITIVE );
+            if ( trans_list.isEmpty() ) {
+                setSign( POSITIVE );
+                brackets = null;
+            }
             return last;
         } catch ( NoSuchElementException e ){
             return null;
         }
     }
 
-    public String getLastExpression(){
-        return trans_list.getLast().toString();
+    /**
+     * Returns the last expression. Be aware this can be a whole translated list.
+     * @return last expression or whole last translated list
+     */
+    public TranslatedExpression getLastExpression(){
+        return trans_list.getLast();
     }
 
+    /**
+     * Returns the length of this list. The length
+     * is not the real length. Since this list also contains lists itself, a
+     * inner list will be counted as one.
+     * @return
+     */
     public int getLength(){
-        return trans_list.size();
+        if ( trans_list.isEmpty() ) return 0;
+        int counter = 0;
+        for ( TranslatedExpression te : trans_list ){
+            if ( te instanceof TranslatedList )
+                counter += ((TranslatedList)te).getLength();
+            else counter++;
+        }
+        return counter;
     }
 
+    /**
+     * Embrace this expression with default brackets.
+     * @see MapleInterface#DEFAULT_LATEX_BRACKET
+     */
     public void embrace(){
         embrace( MapleInterface.DEFAULT_LATEX_BRACKET );
     }
 
+    /**
+     * Embraces this expression with given brackets.
+     * Use the open bracket please.
+     * @param brackets open bracket
+     */
     public void embrace( Brackets brackets ){
         if ( !brackets.opened )
             this.brackets = brackets.getCounterPart();
         else this.brackets = brackets;
     }
 
+    /**
+     * Delete the brackets
+     */
     public void removeBrackets(){
         brackets = null;
     }
 
+    /**
+     * Returns true if this expression is embraced, otherwise false.
+     * @return true if this expression is embraced or false if not.
+     */
     public boolean isEmbraced(){
         return brackets != null;
     }
 
-    public TranslatedExpression merge(){
-        String representation = getAccurateString();
-        boolean sign = POSITIVE;
-        String pattern_s = "\\s*-(.*)";
-        Matcher m = Pattern.compile(pattern_s).matcher(representation);
-        if ( m.matches() ){
-            representation = m.group(1);
-            sign = NEGATIVE;
-        }
-        TranslatedExpression te = new TranslatedExpression(representation, sign);
-        return te;
+    @Override
+    public void setSign( boolean sign ) {
+        super.sign = sign;
     }
 
     @Override
-    public void setSign( boolean sign ){
-        if ( trans_list.size() == 1 ){
-            this.trans_list.getLast().setSign( sign );
-            return;
-        }
-
-        if ( sign != getSign() ){
-            super.setSign( sign );
-            if ( sign == NEGATIVE && !isEmbraced() ){
-                embrace( MapleInterface.DEFAULT_LATEX_BRACKET );
-            } else if ( sign == POSITIVE && isEmbraced() )
-                removeBrackets();
-        }
+    public boolean getSign(){
+        return sign;
+//        if ( trans_list.size() == 1 ) return trans_list.getFirst().getSign();
+//        else return super.getSign();
     }
 
-    public void setSignWithoutEmbraceCheck( boolean sign ){
-        if ( trans_list.size() == 1 ){
-            this.trans_list.getLast().setSign( sign );
-            return;
-        }
+    @Override
+    public boolean isNegative(){
+        return !isPositive();
+    }
 
-        if ( sign != getSign() ){
-            super.setSign( sign );
-        }
+    @Override
+    public boolean isPositive(){
+        return sign == POSITIVE;
+    }
+
+    @Override
+    boolean isSummationSymbol(){
+        if ( trans_list.size() != 1 ) return false;
+        else return trans_list.getFirst().isSummationSymbol();
+    }
+
+    private static boolean isInternalNegative( TranslatedExpression te ){
+        if ( te instanceof TranslatedList ){
+            TranslatedList tl = (TranslatedList)te;
+            if ( tl.isEmbraced() ) return tl.isNegative();
+            TranslatedExpression f = tl.trans_list.getFirst();
+            boolean inner_is_neg = isInternalNegative(f);
+            return (tl.isNegative() && !inner_is_neg) || (tl.isPositive() && inner_is_neg);
+        } else return te.isNegative();
+    }
+
+    private static void setLeadingPositive( TranslatedExpression te ){
+        if ( te instanceof TranslatedList ){
+            TranslatedList list = (TranslatedList)te;
+            if ( list.isNegative() ) list.setSign( POSITIVE );
+            else setLeadingPositive( list.trans_list.getFirst() );
+        } else te.setSign( POSITIVE );
     }
 
     /**
      *
      * @return
      */
-    public String getAccurateString(){
+    public String getAccurateString() throws IllegalArgumentException {
         if ( trans_list.isEmpty() ) return "";
-        LinkedList<TranslatedExpression> copy = new LinkedList<>();
 
-        TranslatedExpression prev = null;
-        for ( int i = trans_list.size()-1; i >= 0; i-- ){
-            TranslatedExpression curr = trans_list.get(i);
+        if ( trans_list.size() == 1 && !isEmbraced() ){
+            TranslatedExpression t = trans_list.getFirst();
+            if ( t instanceof TranslatedList ){
+                TranslatedList l = (TranslatedList)t;
+                t = new TranslatedExpression(l.getAccurateString());
+            }
+            if ( (isNegative() && t.isNegative())
+                    || (isPositive() && t.isPositive())) return t.getPlainExpression();
+            else return MINUS_SIGN + t.getPlainExpression();
+        }
 
-            if ( i+1 < trans_list.size() && prev.isNegative() && !prev.isSummationSymbol() ){
-                if ( curr.isSummationSymbol() ){
-                    if ( curr.isPositive() ){
-                        copy.addFirst( new TranslatedExpression(MINUS_SIGN, POSITIVE ) );
-                    } else {
-                        copy.addFirst( new TranslatedExpression(PLUS_SIGN) );
-                    }
-                    prev = curr;
+        LinkedList<TranslatedExpression> copy_elements_list = new LinkedList<>();
+
+        TranslatedList copy = new TranslatedList(this);
+        TranslatedExpression previous = null;
+        TranslatedExpression current;
+
+        // first, copy all and eliminate +/- problems
+        while ( !copy.trans_list.isEmpty() ){
+            current = copy.trans_list.removeLast();
+
+            if ( current.isSummationSymbol() ){
+                if ( previous == null )
                     continue;
+                //    throw new IllegalArgumentException("Expression cannot ends with a + or -.");
+                else if ( previous.isSummationSymbol() )
+                    throw new IllegalArgumentException("Two +/- symbols in a row is not allowed.");
+                else if ( isInternalNegative( previous ) ){
+                    if ( current.isPositive() )
+                        copy_elements_list.addFirst( new TranslatedExpression( MINUS_SIGN, POSITIVE ) );
+                    else copy_elements_list.addFirst( new TranslatedExpression( PLUS_SIGN, POSITIVE ) );
                 } else {
-                    TranslatedExpression e = copy.removeFirst();
-                    e.changeExpression( Brackets.left_parenthesis.symbol +
-                            MINUS_SIGN + e.getPlainExpression() +
-                            Brackets.left_parenthesis.counterpart
-                    );
-                    copy.addFirst(e);
+                    String s = previous.isNegative() ? MINUS_SIGN : PLUS_SIGN;
+                    copy_elements_list.addFirst( new TranslatedExpression( s, POSITIVE ) );
                 }
+
+                setLeadingPositive( previous );
+
+                previous = current;
+                continue;
             }
 
-            TranslatedExpression c = new TranslatedExpression( curr );
-            copy.addFirst( c );
-            prev = curr;
+            copy_elements_list.addFirst( current );
+            previous = current;
         }
 
-        if ( trans_list.getFirst().isNegative() ){
-            TranslatedExpression t = copy.removeFirst();
-            t.changeExpression(MINUS_SIGN + t.getPlainExpression());
-            copy.addFirst(t);
-        }
-
-        String str = "";
-        String curr, next;
-        while ( !copy.isEmpty() ){
-            curr = copy.removeFirst().getPlainExpression();
-            str += curr;
-            if ( copy.size() > 1 ){
-                next = copy.getFirst().getPlainExpression();
-                if ( whiteSpaceCheck(curr, next) )
-                    str += GlobalConstants.WHITESPACE;
+        // now build output string
+        LinkedList<String> str_list = new LinkedList<>();
+        while ( !copy_elements_list.isEmpty() ){
+            current = copy_elements_list.removeFirst();
+            if ( current instanceof TranslatedList ){
+                TranslatedList l = (TranslatedList)current;
+                str_list.add( l.getAccurateString() );
+            } else {
+                str_list.add( current.toString() );
             }
         }
 
-        if ( isEmbraced() )
-            str = brackets.symbol + str + brackets.counterpart;
+        String output = "", curr;
+        while ( !str_list.isEmpty() ){
+            curr = str_list.removeFirst();
+            if ( str_list.size() >= 1 && whiteSpaceCheck( curr, str_list.getFirst() ) )
+                curr += GlobalConstants.WHITESPACE;
+            output += curr;
+        }
 
-        if ( isNegative() )
-            str = MINUS_SIGN + str;
+        if ( isEmbraced() ){
+            output = brackets.symbol + output + brackets.counterpart;
+        }
 
-        return str;
+        if ( isNegative() ){
+            output = MINUS_SIGN + output;
+        }
+
+        return output;
     }
 
     private boolean whiteSpaceCheck( String s, String next ){
-        Matcher m = LATEX_COMMAND_PATTERN.matcher( s );
+        Matcher m = GlobalConstants.LATEX_COMMAND_PATTERN.matcher( s );
         return m.matches() && next.matches( "[A-Za-z]+.*" );
     }
 
@@ -195,8 +313,11 @@ public class TranslatedList extends TranslatedExpression {
     @Deprecated
     public String toString(){
         String str = "";
-        for ( TranslatedExpression s : trans_list )
-            str += s.toString();
+        str = trans_list.toString();
+        if ( isEmbraced() ) str = brackets.symbol + str + brackets.counterpart;
+        if ( isNegative() ) str = "-" + str;
+//        for ( TranslatedExpression s : trans_list )
+//            str += s.toString();
         return str;
     }
 }

@@ -5,10 +5,13 @@ import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import com.maplesoft.openmaple.MString;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
+import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedExpression;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
@@ -46,6 +49,9 @@ public class FunctionAndVariableTranslator extends ListTranslator {
             case power:
                 parsePower( list );
                 return true;
+            case divide:
+                parseFraction( list );
+                return false;
             default:
                 failures.addFailure( "Wrong Parser for given element.", this.getClass(), list.toString() );
                 LOG.debug("Cannot translate " + root + " in FunctionAndVariableTranslator.");
@@ -88,8 +94,19 @@ public class FunctionAndVariableTranslator extends ListTranslator {
     }
 
     private void parsePower( List list ) throws TranslationException, MapleException {
-        List base = (List)list.select(2);
-        List exponent = (List)list.select(3);
+        List base, exponent;
+
+        try {
+            base = (List)list.select(2);
+            exponent = (List)list.select(3);
+        } catch ( MapleException me ){
+            throw new TranslationException(
+                    Keys.KEY_MAPLE,
+                    Keys.KEY_LATEX,
+                    "Cannot translate power. Fail to extract base and exponent.",
+                    me
+            );
+        }
 
         TranslatedList trans_base = translateGeneralExpression( base );
         if ( trans_base.getLength() > 1 )
@@ -102,5 +119,51 @@ public class FunctionAndVariableTranslator extends ListTranslator {
         translatedList.addTranslatedExpression( GlobalConstants.CARET_CHAR );
         translatedList.addTranslatedExpression( trans_exponent );
         LOG.trace("Translated POWER. " + trans_base + GlobalConstants.CARET_CHAR + trans_exponent);
+    }
+
+    private void parseFraction( List list ) throws TranslationException, MapleException {
+        List numerator, denominator;
+        boolean sign = MapleConstants.POSITIVE;
+
+        try {
+            numerator = (List)list.select(2);
+            denominator = (List)list.select(3);
+        } catch ( MapleException me ){
+            throw new TranslationException(
+                    Keys.KEY_MAPLE,
+                    Keys.KEY_LATEX,
+                    "Cannot translate fraction. Fail to extract numerator and denominator.",
+                    me
+            );
+        }
+
+        LOG.trace("Extract numerator and denominator.");
+        TranslatedList numerator_trans = translateGeneralExpression( numerator );
+        LOG.info("Numerator Sign: " + numerator_trans.getSign() );
+        LOG.info("Numerator: " + numerator_trans.toString());
+        LOG.trace("Translated numerator!");
+        TranslatedList denominator_trans = translateGeneralExpression( denominator );
+        LOG.trace("Translated denominator!");
+
+        if ( numerator_trans.isNegative() ){
+            numerator_trans.setSign( MapleConstants.POSITIVE );
+            sign = MapleConstants.NEGATIVE;
+            LOG.trace("Found negative numerator and switch it!");
+        }
+
+        String[] args = new String[]{
+                numerator_trans.getAccurateString(),
+                denominator_trans.getAccurateString()
+        };
+
+        // get the pattern for fraction from the function translator
+        // and replace the place holders by numerator and denominator.
+        MapleInterface mi = MapleInterface.getUniqueMapleInterface();
+        BasicFunctionsTranslator funcTrans = mi.getBasicFunctionsTranslator();
+        String pattern = funcTrans.translate( args, Keys.MLP_KEY_FRACTION );
+        LOG.debug("Translated fraction: " + ((sign == MapleConstants.NEGATIVE) ? "-":"") + pattern);
+
+        TranslatedExpression trans = new TranslatedExpression( pattern, sign );
+        translatedList.addTranslatedExpression( trans );
     }
 }

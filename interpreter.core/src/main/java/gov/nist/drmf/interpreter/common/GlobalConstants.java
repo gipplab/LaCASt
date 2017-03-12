@@ -17,6 +17,8 @@ public class GlobalConstants {
     public static final String LATEX_MULTIPLY = "\\\\cdot|\\s\\*";
     public static final Pattern LATEX_MULTIPLY_PATTERN = Pattern.compile(LATEX_MULTIPLY);
 
+    public static final String LATEX_COMMAND = "\\\\[a-zA-Z\\(\\)\\[\\]\\{}]+";
+    public static final Pattern LATEX_COMMAND_PATTERN = Pattern.compile(LATEX_COMMAND);
 
     public static final String PROPS_COMMENTS =
             " Enter the command \"kernelopts(bindir);\" in Maple and put the given path into maple_bin.\n" +

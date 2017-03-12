@@ -49,7 +49,7 @@ public abstract class AbstractAlgebraicTranslator<T extends Algebraic> implement
         List list = (List)element;
         String root = list.select(1).toString();
         MapleInternal in = getAbstractInternal(root);
-        LOG.trace( "Translate general expression: " + in );
+        LOG.trace( "Translate general expression: " + list );
         ListTranslator lParser = new ListTranslator( in, list.length() );
         lParser.translate( list );
         return lParser.translatedList;

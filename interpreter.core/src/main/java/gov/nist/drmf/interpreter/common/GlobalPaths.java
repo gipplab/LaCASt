@@ -54,9 +54,8 @@ public class GlobalPaths {
     public static final Path PATH_MAPLE_LIST_PROCEDURE =
             PATH_MAPLE_PROCS.resolve("maple_list_procedure.txt");
 
-    public static final Path PATH_MAPLE_ORDER_PROCEDURE =
-            PATH_MAPLE_PROCS.resolve("maple_ordering_procedure.txt");
-
+    public static final Path PATH_MAPLE_TO_INERT_PROCEDURE =
+            PATH_MAPLE_PROCS.resolve("maple_toinert_procedure.txt");
 
     // path variable to the resources of the core
     public static final Path PATH_CORE_RESOURCES =

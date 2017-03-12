@@ -15,6 +15,7 @@ import mlp.PomTaggedExpression;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -145,18 +146,34 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
      * @param str with or without brackets
      * @return false if there are no brackets
      */
-    protected boolean testBrackets( String str ){
-        if ( !str.matches(Brackets.OPEN_PATTERN + ".*" + Brackets.CLOSED_PATTERN) )
+    protected static boolean testBrackets( String str ){
+        String tmp = str.trim();
+        if ( !tmp.matches(Brackets.OPEN_PATTERN + ".*" + Brackets.CLOSED_PATTERN) )
             return false;
 
-        int open = 0;
-        for ( int i = 1; i < str.length(); i++ ){
-            if ( (""+str.charAt(i)).matches( Brackets.OPEN_PATTERN ) )
-                open++;
-            else if ( (""+str.charAt(i)).matches( Brackets.CLOSED_PATTERN ) )
-                open--;
+        Brackets open = Brackets.getBracket(tmp.charAt(0)+"");
+        Brackets inner, inner_open = null;
+        String symbol;
+        boolean end = false;
+
+        for ( int i = 1; i < tmp.length(); i++ ){
+            if ( end ) return false;
+            symbol = ""+tmp.charAt(i);
+            inner = Brackets.getBracket(symbol);
+
+            if ( inner == null ) continue;
+            else if ( inner.opened ){
+                inner_open = inner;
+                continue;
+            } else if ( inner_open != null && inner_open.counterpart.equals(inner.symbol) ){
+                inner_open = null;
+                continue;
+            } else if ( open.counterpart.equals(inner.symbol) ){
+                end = true;
+                continue;
+            } else return false;
         }
-        return open == -1;
+        return end;
     }
 
     @Override

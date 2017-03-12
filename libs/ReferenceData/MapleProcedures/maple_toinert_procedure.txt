@@ -1,0 +1,70 @@
+MyToInert := proc(f)
+local r;
+    r := ToInert(f, exclude=[_Inert_FLOAT,_Inert_PROD]);
+    r := subsindets(r, 'specfunc(_Inert_VERBATIM)', HandleVERBATIM);
+    return r;
+end proc:
+
+HandleVERBATIM := proc(f::specfunc(_Inert_VERBATIM))
+local n, d, z, ni, di, zi, e;
+    if type(op(f),'float') then
+        return _Inert_MYFLOAT(op(f));
+    elif type(op(f),'`^`') then
+        e := op([1,2], f);
+        if e = -1 then
+            return _Inert_DIVIDE(_Inert_INTPOS(1),MyToInert(op([1,1],f)));
+        elif type(e, 'And(numeric,negative)') then
+            e := ToInert(-e, exclude=[_Inert_FLOAT]);
+            e := subs(_Inert_VERBATIM = _Inert_MYFLOAT, e);
+            return _Inert_DIVIDE(_Inert_INTPOS(1),
+                                 _Inert_POWER(MyToInert(op([1,1],f)), e));
+        else
+            return _Inert_POWER(MyToInert(op([1,1],f)), MyToInert(e));
+        end if;
+    end if;
+    ASSERT(type(op(f),'`*`'));
+    d, n := selectremove(type, [op(op(f))], 'anything^And(numeric,negative)');
+    z, n := selectremove(type, n, 'complex(numeric)');
+    if z <> [] then
+        ASSERT(numelems(z) = 1);
+        zi := ToInert(op(z), exclude=[_Inert_FLOAT]);
+        zi := subs(_Inert_VERBATIM = _Inert_MYFLOAT, zi);
+    end if;
+    if n = [] then
+        ni := _Inert_INTPOS(1);
+    elif numelems(n) = 1 then
+        ni := MyToInert(op(n));
+    else
+        ni := map(MyToInert, n);
+        ni := _Inert_PROD(op(ni));
+    end if;
+    di := map(x->MyToInert(1/x), d);
+    if numelems(di) = 1 then
+        di := op(di);
+    elif numelems(di) > 1 then
+        di := _Inert_PROD(op(di));
+    end if;
+    # zi: constant factor, ni: numerator, di: denominator
+    if z = [] then
+        # No constant factor
+        return `if`(d=[], ni, _Inert_DIVIDE(ni,di));
+    elif d = [] then
+        # No denominator; put constant factor first
+        ASSERT(n <> []); # otherwise f would not be a product
+        if op(0,ni) = _Inert_PROD then
+            return _Inert_PROD(zi, op(ni));
+        else
+            return _Inert_PROD(zi, ni);
+        end if;
+    elif op(0,zi) = _Inert_RATIONAL then
+        # fraction * (numerator/denominator)
+        return _Inert_PROD(zi, _Inert_DIVIDE(ni,di));
+    else# (constant*numerator)/denominator
+        if n = [] then
+            return _Inert_DIVIDE(zi, di);
+        elif op(0,ni) = _Inert_PROD then
+            ni := op(ni);
+        end if;
+        return _Inert_DIVIDE(_Inert_PROD(zi,ni), di);
+    end if;
+end proc:

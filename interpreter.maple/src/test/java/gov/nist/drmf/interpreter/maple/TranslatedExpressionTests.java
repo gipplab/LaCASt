@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.maple;
 
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedExpression;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,10 +36,63 @@ public class TranslatedExpressionTests {
     @Test
     public void singleNegativeExpression(){
         transList.addTranslatedExpression("-2");
+        System.out.println(transList.toString());
+
         String result = transList.getAccurateString().replaceAll("\\s+","");
         assertTrue(
                 result.matches("-2"),
                 "Expected -2! But get: " + result );
+    }
+
+    @Test
+    public void doubleNegativeExpression(){
+        transList.addTranslatedExpression("-2");
+        transList.setSign( NEGATIVE );
+        System.out.println(transList.toString());
+
+        String result = transList.getAccurateString().replaceAll("\\s+","");
+        assertTrue(
+                result.matches("2"),
+                "Expected 2! But get: " + result );
+    }
+
+    /**
+     * Expeted the output of ---2 -> -2
+     */
+    @Test
+    public void tripleNegativeExpression(){
+        TranslatedExpression neg = new TranslatedExpression("2", NEGATIVE);
+        TranslatedList tmp = new TranslatedList();
+
+        tmp.addTranslatedExpression(neg);
+        tmp.setSign(NEGATIVE);
+        System.out.println(tmp);
+
+        transList.setSign( NEGATIVE );
+        transList.addTranslatedExpression(tmp);
+
+        System.out.println(transList.toString());
+
+        String result = transList.getAccurateString().replaceAll("\\s+","");
+        assertTrue(
+                result.matches("-2"),
+                "Expected 2! But get: " + result );
+    }
+
+    /**
+     * Expeted the output of -(-2) -> -(-2)
+     */
+    @Test
+    public void negativeWithBracketsExpression(){
+        transList.addTranslatedExpression("-2");
+        transList.embrace( Brackets.left_parenthesis );
+        transList.setSign( NEGATIVE );
+        System.out.println(transList.toString());
+
+        String result = transList.getAccurateString().replaceAll("\\s+","");
+        assertTrue(
+                result.matches("-\\(-2\\)"),
+                "Expected -(-2)! But get: " + result );
     }
 
     /**
@@ -51,6 +105,7 @@ public class TranslatedExpressionTests {
         transList.addTranslatedExpression("2");
         transList.addTranslatedExpression("+");
         transList.addTranslatedExpression("x");
+        transList.embrace();
         transList.setSign( NEGATIVE );
 
         String result = transList.getAccurateString().replaceAll("\\s+","");
@@ -116,7 +171,11 @@ public class TranslatedExpressionTests {
     public void simpleNegativeProduction(){
         transList.addTranslatedExpression("2");
         transList.addTranslatedExpression("\\cdot");
-        transList.addTranslatedExpression( new TranslatedExpression("2", NEGATIVE) );
+
+        TranslatedList tl = new TranslatedList();
+        tl.addTranslatedExpression( new TranslatedExpression("2", NEGATIVE) );
+        tl.embrace( Brackets.left_parenthesis );
+        transList.addTranslatedExpression( tl );
 
         String result = transList.getAccurateString().replaceAll("\\s+","");
 
@@ -126,7 +185,7 @@ public class TranslatedExpressionTests {
     }
 
     /**
-     * Test: 2-2+x
+     * Test: -(2-2+x)
      */
     @Test
     public void summation(){
@@ -135,12 +194,14 @@ public class TranslatedExpressionTests {
         transList.addTranslatedExpression( new TranslatedExpression("2", NEGATIVE) );
         transList.addTranslatedExpression("+");
         transList.addTranslatedExpression("x");
+        transList.embrace( Brackets.left_parenthesis );
+        transList.setSign( NEGATIVE );
 
         String result = transList.getAccurateString().replaceAll("\\s+","");
 
         assertTrue(
-                result.matches("2-2\\+x"),
-                "Expected 2-2+x! But get: " + result );
+                result.matches("-\\(2-2\\+x\\)"),
+                "Expected -(2-2+x)! But get: " + result );
     }
 
     /**
@@ -192,6 +253,7 @@ public class TranslatedExpressionTests {
         transList.addTranslatedExpression("\\cpi");
         transList.addTranslatedExpression("+");
         transList.addTranslatedExpression("x");
+        transList.embrace();
         transList.setSign( NEGATIVE );
 
         TranslatedList tl = new TranslatedList();
@@ -208,24 +270,31 @@ public class TranslatedExpressionTests {
     }
 
     /**
-     * Test: -x-3+\iunit
+     * Test: -x-3+\iunit+5
      */
     @Test
     public void complexNumberTest(){
-        TranslatedExpression three = new TranslatedExpression("\\iunit", NEGATIVE);
-        TranslatedExpression two = new TranslatedExpression("3", NEGATIVE);
         TranslatedExpression one = new TranslatedExpression("x", NEGATIVE);
+        TranslatedExpression two = new TranslatedExpression("3", NEGATIVE);
+        TranslatedExpression three = new TranslatedExpression("\\iunit", NEGATIVE);
+
+        TranslatedList last_list = new TranslatedList();
+        last_list.addTranslatedExpression( new TranslatedExpression("5", NEGATIVE) );
 
         transList.addTranslatedExpression(one);
         transList.addTranslatedExpression("+");
         transList.addTranslatedExpression(two);
         transList.addTranslatedExpression("-");
         transList.addTranslatedExpression(three);
+        transList.addTranslatedExpression("+");
+        transList.addTranslatedExpression(last_list);
+
+        System.out.println(transList.toString());
 
         String result = transList.getAccurateString().replaceAll("\\s+", "");
         assertTrue(
-                result.matches("-x-3\\+\\\\iunit"),
-                "Expected -x-3+\\iunit! But get: " + result );
+                result.matches("-x-3\\+\\\\iunit-5"),
+                "Expected -x-3-\\iunit-5! But get: " + result );
     }
 
     /**
@@ -237,6 +306,7 @@ public class TranslatedExpressionTests {
         TranslatedExpression base1 = new TranslatedExpression("3", NEGATIVE);
         TranslatedExpression base2 = new TranslatedExpression("x", NEGATIVE);
 
+        // build (-3+-x) -> (-3-x)
         TranslatedList base = new TranslatedList();
         base.addTranslatedExpression( base1 );
         base.addTranslatedExpression( " + ");
@@ -254,7 +324,31 @@ public class TranslatedExpressionTests {
         String result = transList.getAccurateString().replaceAll("\\s+", "");
         assertTrue(
                 result.matches("\\(-3-x\\)\\^\\{-\\\\iunit}"),
-                "Expected (3+x)^\\left(-\\iunit\\right)! But get: " + result );
+                "Expected (-3-x)^{-\\iunit}! But get: " + result );
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void negativeTest(){
+        TranslatedExpression exponent1 = new TranslatedExpression("\\iunit");
+
+        TranslatedList trans1 = new TranslatedList();
+        trans1.addTranslatedExpression( exponent1 );
+        trans1.setSign(MapleConstants.NEGATIVE);
+
+        TranslatedList trans0 = new TranslatedList();
+        trans0.addTranslatedExpression( "x" );
+        trans0.addTranslatedExpression( "+" );
+
+        transList.addTranslatedExpression( trans0 );
+        transList.addTranslatedExpression( trans1 );
+
+        String result = transList.getAccurateString().replaceAll("\\s+", "");
+        assertTrue(
+                result.matches("x-\\\\iunit"),
+                "Expected x-\\iunit! But get: " + result );
     }
 
     @Test
