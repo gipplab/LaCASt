@@ -16,6 +16,7 @@ import javax.annotation.Nullable;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.LinkedList;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -67,7 +68,10 @@ public class MapleTranslator {
      */
     public static void main(String[] args){
         String test = "-I";
-        test = "gamma -(3 * beta)/(4)- 3*I +( (kappa)/((Theta)^(y) + x*(y)^(2.3)) )^(- I)";
+        test = "gamma -(3 * beta)/(4)- 3*I +\n" +
+                "    (\n" +
+                "        (kappa)/((Theta)^(y) + x*(y)^(2.3))\n" +
+                "    )^(- I)";
 
 
         /*
@@ -88,28 +92,40 @@ public class MapleTranslator {
         try {
             MapleTranslator t = new MapleTranslator();
             t.init();
-            String s = "", latex_result = "", back_to_maple = "", inner = test, second = "";
             int c = 0;
+            String tmp, last = "";
+            LinkedList<String> latex_results = new LinkedList<>();
+            LinkedList<String> maple_results = new LinkedList<>();
+            boolean latex_equ = false, maple_equ = false;
 
-//            System.out.println();
-            System.out.println(test);
+            maple_results.add(test);
 
-//            while ( !s.matches("-*(end|stop|e)") ){
-                latex_result = t.translateFromMapleToLaTeXClean( inner );
-//                System.out.println(latex_result);
-                back_to_maple = t.translateFromLaTeXToMapleClean( latex_result );
-//                System.out.println(back_to_maple);
-                inner = back_to_maple;
-//                break;
-//                s = sc.nextLine().trim();
-//                if ( c < 1 ) second = back_to_maple;
+            while ( c < 10 && !(latex_equ && maple_equ) ){
+                tmp = t.translateFromMapleToLaTeXClean( maple_results.getLast() );
+                latex_results.addLast( tmp );
+                if ( tmp.equals( last ) ) latex_equ = true;
+
+                last = maple_results.getLast();
+                tmp = t.translateFromLaTeXToMapleClean( latex_results.getLast() );
+                maple_results.addLast( tmp );
+                if ( tmp.equals( last ) ) maple_equ = true;
+
+                last = latex_results.getLast();
                 c++;
-//            }
+            }
 
-            System.out.println("Input Expression:  " + test);
-            System.out.println("Back-Translation:  " + back_to_maple);
-            System.out.println("LaTeX:             " + latex_result);
-            boolean b = t.simplificationTester( test, back_to_maple );
+            System.out.println("Fix-Point reached after " + c + " cycles.");
+            System.out.println("Start equation: " + maple_results.removeFirst());
+            System.out.println();
+
+            for ( int i = 0; i < latex_results.size(); i++ ){
+                System.out.println("Cycle: " + (i+1));
+                System.out.println( latex_results.get(i) );
+                System.out.println( maple_results.get(i) );
+                System.out.println();
+            }
+
+            boolean b = t.simplificationTester( test, maple_results.getLast() );
             if ( b ){
                 System.out.println("Both expressions are symbolical equivalent.");
             } else System.out.println("No equivalence found!");

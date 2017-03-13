@@ -25,73 +25,111 @@
 \newcommand{\CatalansConstant}{\mathit{G}}
 \newcommand{\EulerConstant}{\gamma}
 
+% Change name of listings from 'Listing #n' to 'Representation #1'
+\renewcommand{\lstlistingname}{Representation}
+
+% DOC START
 \begin{document}
 \begin{center}
     \Large Round Trip Examples\\[12pt]
     \large Maple $\rightarrow$ \LaTeX\ and \LaTeX $\rightarrow$ Maple
 \end{center}
 
+% INTRO
 \noindent Our example contains Greek letters, mathematical constants, fractions, powers and floating numbers. All representations on this page will use line breaks for a better readability.
 \begin{equation}\label{eq:poly_ex}
-    \EulerConstant - \frac{3 \cdot \beta}{4} - 3\iunit + 
-        \left( 
-            \frac{\kappa}{\Theta^y+x y^{2.3}} 
-        \right)^{-\iunit} 
+\EulerConstant - \frac{3 \cdot \beta}{4} - 3\iunit + 
+    \left( 
+        \frac{\kappa}{\Theta^y+x y^{2.3}} 
+    \right)^{-\iunit} 
 \end{equation}
 \noindent With $\EulerConstant$ as Euler-Mascheroni's constant and $\iunit$ as the imaginary unit. We have two representations for our formulae \ref{eq:poly_ex} above.
-\begin{lstlisting}[mathescape,caption={Semantic \LaTeX\ representation of \ref{eq:poly_ex}}]
+% -------- LATEX & MAPLE ---------
+\begin{lstlisting}[mathescape,label=rep_latex,caption={Semantic \LaTeX\ representation of \ref{eq:poly_ex}}]
 \EulerConstant - \frac{3 \cdot \beta}{4} - 3\iunit + 
     \left( 
         \frac{\kappa}{\Theta^y+x y^{2.3}} 
     \right)^{-\iunit} 
 \end{lstlisting}
-\begin{lstlisting}[mathescape,caption={Maple's representation of \ref{eq:poly_ex}}]
+\begin{lstlisting}[mathescape,label=rep_maple,caption={Maple's representation of \ref{eq:poly_ex}}]
 gamma - (3*beta)/4 - 3*I + (kappa/(Theta^y + x*y^(2.3)))^(-I)
 \end{lstlisting}
 \noindent All white spaces are used to improve the readability. From now on, each white space really appears after the translation process but the output will not produce any line breaks. Each line break is manually set.
 
+% ------- PRE TRANSLATION -------
 \vspace{12pt}
 \begin{center}
     \large Pre-Translation Steps\\
 \end{center}
-Maple automatically simplify simple arithmetic expressions and we are not able to prevent that. For instance an input like $2 \cdot 3$ will automatically computed to $6$. This steps happens before our first translation. That's why our input is most of the time not identical to our output representation. For the input above, just the first fraction $\frac{3 \cdot \beta}{4}$ is changed to $\frac{3}{4}\beta$.
+Maple automatically simplify simple arithmetic expressions and we are not able to prevent that. For instance an input like $2 \cdot 3$ will automatically simplified to $6$. This steps happens before our first translation. That's why our input is most of the time not identical to our output representation. For the input above, just the first fraction $\frac{3 \cdot \beta}{4}$ is changed to $\frac{3}{4}\beta$.
 
+% ------- MAPLE -> LATEX --------
 \vspace{12pt}
 \begin{center}
     \large Maple $\rightarrow$ \LaTeX\\
 \end{center}
-\noindent Our program produces the following expression in semantic \LaTeX.
-\begin{lstlisting}[mathescape]
+\noindent Starting from Maple's representation of formula \ref{eq:poly_ex}, our program computes the following semantic \LaTeX\ expression.
+\begin{lstlisting}[mathescape,label=maple-latex,caption={Maple $\rightarrow$ \LaTeX}]
 \EulerConstant-\frac{3}{4}\cdot\beta-3\cdot\iunit+
     \left(
-        \kappa\cdot
-            \left(
-                \Theta^{y}+x\cdot y^{2.3}
-            \right)^{-1}
+        \frac{\kappa}{\Theta^{y}+x\cdot y^{2.3}}
     \right)^{-\iunit}
 \end{lstlisting}
-\noindent Besides the first fraction, also the second fractions changes. This is caused by the inner data structure of Maple. Internally all expressions in a denominator will be stored with negative power. In fact, fraction structures only appears with integer numerators and denominators in the internal representation of Maple. Since our translator working with the internal representation, we adopt those changes. Our Translated expression now looks like the equivalent formula \ref{eq:new}:
+\noindent which produces the rendered version \ref{eq:new}:
 \begin{equation}\label{eq:new}
 \EulerConstant-\frac{3}{4}\cdot\beta-3\cdot\iunit+
     \left(
-        \kappa\cdot
-            \left(
-                \Theta^{y}+x\cdot y^{2.3}
-            \right)^{-1}
+        \frac{\kappa}{\Theta^{y}+x\cdot y^{2.3}}
     \right)^{-\iunit}
 \end{equation}
+As you can see, besides the changes described above (first fraction), it also creates \textbackslash cdot for multiplications. This can be changed, when the DLMF/DRMF supports invisible macros.
 
+%-------- LATEX -> MAPLE --------
 \vspace{12pt}
 \begin{center}
     \large \LaTeX\ $\rightarrow$ Maple\\
 \end{center}
-\noindent Our program translates the semantic \LaTeX\ representation of \ref{eq:poly_ex} to Maple in the following way:
-\begin{lstlisting}[mathescape]
-gamma -(3 * beta)/(4)- 3*I +((kappa)/(Theta^(y) + x*y^(2.3)))^(- I)
+\noindent Starting from the \LaTeX\ representation of \ref{eq:poly_ex} above, we get the following translation:
+\begin{lstlisting}[mathescape,label=latex-maple,caption={\LaTeX\ $\rightarrow$ Maple}]
+gamma -(3 * beta)/(4)- 3*I +
+    (
+        (kappa)/((Theta)^(y) + x*(y)^(2.3))
+    )^(- I)
 \end{lstlisting}
-\newpage
+which is almost identical to our \ref{rep_maple}. representation above. The only differences are additional parenthesis around the numerators and denominators of fractions and the exponent in power functions.
+
+\vspace{12pt}
 \begin{center}
     \large Round Trip Tests
 \end{center}
-All test cases converges in a fix point, where the string representation is identical to the previous string representation. All round trip tests between Maple and semantic \LaTeX\ reaching this fix point after at most two cycles and a fix point representation is symbolically equivalent to the input representation. The reason for that, can be found in formulae \ref{eq:new}. Since Maple's internal representation is slightly different but mathematically equivalent to our input, we translate no longer the original structure but the internal representation. Once we adopted these changes from Maple, our translation process converges into the described fix point. Therefor, round trip tests starting from Maple needed a half cycle (one translation to semantic \LaTeX) to reach the fix point representation and round trip tests starting from semantic \LaTeX\ converges into the fix point after one full cycle (\LaTeX\ $\rightarrow$ Maple $\rightarrow$ \LaTeX).
+All test cases converges in a fix point, where the string representation is identical to the previous string representation. All round trip tests between Maple and semantic \LaTeX\ reaching this fix point after at most two cycles and a fix point representation is symbolically equivalent to the input representation. 
+
+The reason for that, can be found in formula \ref{eq:new}. Since Maple's internal representation is slightly different but mathematically equivalent to our input, we translate no longer the original structure but the internal representation. Likewise, most computer algebra systems doesn't care redundant parenthesis and remove them from the input expression. Maple doesn't save parenthesis at all in its internal dataset, but the tree structure implies parenthesis. Thereby, we reaching the fix point without adding more and more redundant parenthesis.
+
+Once we adopted these changes from Maple, our translation process converges into the described fix point. To reach the fix point in semantic \LaTeX
+\begin{itemize}
+    \item starting from Maple:  Maple   $\rightarrow$ \LaTeX\
+    \item starting from \LaTeX: \LaTeX\ $\rightarrow$ Maple   $\rightarrow$ \LaTeX\
+\end{itemize}
+And finally to reach the fix point in Maple:
+\begin{itemize}
+    \item starting from Maple:  Maple   $\rightarrow$ \LaTeX\ $\rightarrow$ Maple
+    \item starting from \LaTeX: \LaTeX\ $\rightarrow$ Maple   $\rightarrow$ \LaTeX\  $\rightarrow$ Maple
+\end{itemize}
+
+\vspace{12pt}
+\noindent The fix point of our example above in \LaTeX\ is representation \ref{maple-latex}:
+\begin{lstlisting}[mathescape]
+\EulerConstant-\frac{3}{4}\cdot\beta-3\cdot\iunit+
+    \left(
+        \frac{\kappa}{\Theta^{y}+x\cdot y^{2.3}}
+    \right)^{-\iunit}
+\end{lstlisting}
+And the corresponding fix point in Maple is:
+\begin{lstlisting}[mathescape]
+gamma -(3)/(4)* beta - 3 * I +
+    (
+        (kappa)/((Theta)^(y) + x * (y)^(2.3))
+    )^(- I)
+\end{lstlisting}
 \end{document}
