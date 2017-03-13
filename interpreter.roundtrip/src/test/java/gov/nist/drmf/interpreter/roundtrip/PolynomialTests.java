@@ -1,7 +1,13 @@
 package gov.nist.drmf.interpreter.roundtrip;
 
 import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
+
+import java.util.LinkedList;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  *
@@ -37,4 +43,40 @@ public class PolynomialTests extends AbstractRoundTrip {
         return createFromMapleTestList( test_polynomials, test_names );
     }
 
+    @Test
+    void fixPointTest() {
+        int threshold = 10;
+        for ( String test : PolynomialTests.test_polynomials ){
+            int c = 0;
+            String tmp, last = "";
+            LinkedList<String> latex_results = new LinkedList<>();
+            LinkedList<String> maple_results = new LinkedList<>();
+            boolean latex_equ = false, maple_equ = false;
+
+            maple_results.add(test);
+
+            try {
+                while ( c < threshold && !(latex_equ && maple_equ) ){
+                    tmp = translator.translateFromMapleToLaTeXClean( maple_results.getLast() );
+                    latex_results.addLast( tmp );
+                    if ( tmp.equals( last ) ) latex_equ = true;
+
+                    last = maple_results.getLast();
+                    tmp = translator.translateFromLaTeXToMapleClean( latex_results.getLast() );
+                    maple_results.addLast( tmp );
+                    if ( tmp.equals( last ) ) maple_equ = true;
+
+                    last = latex_results.getLast();
+                    c++;
+                }
+
+                assertTrue(
+                        "Input expression and fix point are not equivalent! " + maple_results.getLast(),
+                        translator.simplificationTester( test, maple_results.getLast() )
+                );
+            } catch ( Exception e ){
+                fail( "Exception occurred!" );
+            }
+        }
+    }
 }

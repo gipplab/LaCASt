@@ -52,8 +52,9 @@ public class RoundTripTests {
     public void multipleTranslationTest() throws Exception {
         String test = "1/((a+2)/(b^(Catalan/I)/(alpha*q^I*x/3)*alpha))";
         String latex_result, back_to_maple = null;
+        int threshold = 20;
 
-        for ( int i = 0; i < 5; i++ ){
+        for ( int i = 0; i < threshold; i++ ){
             latex_result = global_translator.translateFromMapleToLaTeXClean( test );
             back_to_maple = global_translator.translateFromLaTeXToMapleClean( latex_result );
         }
