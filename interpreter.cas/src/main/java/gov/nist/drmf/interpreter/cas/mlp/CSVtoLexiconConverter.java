@@ -149,8 +149,7 @@ public class CSVtoLexiconConverter {
         lineAnalyzer.setLine(elements);
 
         // check if the input is a correct DLMF macro
-        // the DLMF macro always has to be on the first position
-        String macro = lineAnalyzer.getValue( header[0] );
+        String macro = lineAnalyzer.getValue( Keys.KEY_DLMF );
         Matcher m = GlobalConstants.DLMF_MACRO_PATTERN.matcher( macro );
         if ( !m.matches() ){
             ERROR_LOG.info("Found a not supported DLMF macro: " + macro);

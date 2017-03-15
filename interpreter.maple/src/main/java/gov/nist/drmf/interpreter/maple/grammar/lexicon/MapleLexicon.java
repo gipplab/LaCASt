@@ -54,7 +54,7 @@ public class MapleLexicon {
     private static MapleLexicon lexicon;
 
     public static void init() throws IOException {
-        Path csv_path = GlobalPaths.PATH_REFERENCE_DATA_CSV.resolve("CAS_Maple_test.csv");
+        Path csv_path = GlobalPaths.PATH_REFERENCE_DATA_CSV.resolve("MapleFunctions.csv");
         lexicon = MapleLexiconFactory.createLexiconFromCSVFile( csv_path );
         System.out.println(lexicon.function_map.keySet());
     }
