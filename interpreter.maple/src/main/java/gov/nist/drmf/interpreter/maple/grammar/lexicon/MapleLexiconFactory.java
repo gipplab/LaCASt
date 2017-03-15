@@ -12,10 +12,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -144,5 +141,23 @@ public class MapleLexiconFactory {
             LOG.fatal("Cannot find maple CSV file.", fnfe);
         }
         return null;
+    }
+
+    public static void storeLexiconInFile( Path lexicon_file, MapleLexicon lexicon ){
+        Map<String, MapleFunction> map = lexicon.getFunctionMap();
+        try ( BufferedWriter writer = Files.newBufferedWriter(lexicon_file) ){
+            map.keySet().stream()
+                    .sorted( String::compareTo )
+                    .map( map::get )
+                    .map( MapleFunction::toStorage )
+                    .forEach( s -> {
+                        try { writer.write(s); }
+                        catch ( IOException ioe ){
+                            LOG.error("Cannot write: " + s);
+                        }
+                    } );
+        } catch ( IOException ioe ){
+            ioe.printStackTrace();
+        }
     }
 }

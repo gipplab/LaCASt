@@ -60,4 +60,13 @@ public class MapleLexiconTests {
             ioe.printStackTrace();
         }
     }
+
+    @Test
+    public void littleWorkaroundTest(){
+        try {
+            MapleLexicon.init();
+        } catch ( IOException ioe ){
+            ioe.printStackTrace();
+        }
+    }
 }

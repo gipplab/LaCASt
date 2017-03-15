@@ -42,10 +42,7 @@ public class MapleLexicon {
         String nl = System.lineSeparator();
         String output = "LEXICON!" + nl;
         for ( String key : function_map.keySet() ){
-            output += key + nl;
-            String[] tmp = function_map.get(key).toStringArray();
-            for ( int i = 0; i < tmp.length; i++ )
-                output += "\t" + tmp[i] + nl;
+            output += MapleFunction.toStorage(function_map.get(key));
             output += nl;
         }
         return output;
@@ -56,7 +53,13 @@ public class MapleLexicon {
     public static void init() throws IOException {
         Path csv_path = GlobalPaths.PATH_REFERENCE_DATA_CSV.resolve("MapleFunctions.csv");
         lexicon = MapleLexiconFactory.createLexiconFromCSVFile( csv_path );
-        System.out.println(lexicon.function_map.keySet());
+        System.out.println("Finished... got lexicon. Now save Lexicon in new File!");
+        Path save = GlobalPaths.PATH_REFERENCE_DATA.resolve("MapleLexiconTest.txt");
+        save.toFile().createNewFile();
+        MapleLexiconFactory.storeLexiconInFile( save, lexicon );
+        System.out.println("Finished storage process.");
+
+        //System.out.println(lexicon.function_map.keySet());
     }
 
     public static MapleLexicon getLexicon(){
