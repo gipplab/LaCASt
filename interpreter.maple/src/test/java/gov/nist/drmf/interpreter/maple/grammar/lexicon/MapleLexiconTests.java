@@ -69,4 +69,10 @@ public class MapleLexiconTests {
             ioe.printStackTrace();
         }
     }
+
+    @Test
+    public void loadLexiconTest(){
+        Path lex_path = GlobalPaths.PATH_REFERENCE_DATA.resolve("MapleLexiconTest.txt");
+        MapleLexicon l = MapleLexiconFactory.loadLexicon( lex_path );
+    }
 }
