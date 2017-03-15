@@ -20,6 +20,12 @@ public class GlobalConstants {
     public static final String LATEX_COMMAND = "\\\\[a-zA-Z\\(\\)\\[\\]\\{}]+";
     public static final Pattern LATEX_COMMAND_PATTERN = Pattern.compile(LATEX_COMMAND);
 
+    public static final Pattern DLMF_MACRO_PATTERN =
+            Pattern.compile("\\s*(\\\\\\w+)(\\[.*\\])*(\\{.*\\})*(@+\\{+.+\\}+)*\\s*");
+
+    public static final String LINK_PREFIX = "http://";
+    public static final String LINK_S_PREFIX = "https://";
+
     public static final String PROPS_COMMENTS =
             " Enter the command \"kernelopts(bindir);\" in Maple and put the given path into maple_bin.\n" +
             "# Since this is a java program and \\ is an escape character, you have to write \\\\ for each \\.\n" +

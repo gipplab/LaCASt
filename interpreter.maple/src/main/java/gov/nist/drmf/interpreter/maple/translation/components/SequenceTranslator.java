@@ -7,6 +7,7 @@ import com.maplesoft.openmaple.List;
 import com.maplesoft.openmaple.Numeric;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.TranslationException;
+import gov.nist.drmf.interpreter.common.symbols.MapleTranslationException;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedExpression;
@@ -31,9 +32,7 @@ public class SequenceTranslator extends ListTranslator {
                 parseProd( expression );
                 return true;
             case exp:
-                throw new TranslationException(
-                        Keys.KEY_MAPLE,
-                        Keys.KEY_LATEX,
+                throw new MapleTranslationException(
                         "Cannot parse expression sequences here!" );
             default:
                 LOG.debug( "Unknown object reached. " + root );

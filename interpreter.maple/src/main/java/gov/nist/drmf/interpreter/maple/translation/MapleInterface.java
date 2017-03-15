@@ -11,6 +11,7 @@ import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
+import gov.nist.drmf.interpreter.maple.grammar.lexicon.MapleLexicon;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import gov.nist.drmf.interpreter.maple.setup.Initializer;
 import gov.nist.drmf.interpreter.maple.translation.components.AbstractAlgebraicTranslator;
@@ -135,6 +136,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
 
         // load the macro lexicon file
         MacrosLexicon.init();
+        MapleLexicon.init();
 
         // translate useful symbols to speed the process a bit up.
         MULTIPLY = symbolTranslator.translateFromMLPKey( Keys.MLP_KEY_MULTIPLICATION );

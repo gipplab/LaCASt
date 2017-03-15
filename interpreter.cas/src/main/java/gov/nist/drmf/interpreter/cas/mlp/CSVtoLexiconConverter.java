@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.cas.mlp;
 
+import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
@@ -28,9 +29,6 @@ public class CSVtoLexiconConverter {
     protected final Logger ERROR_LOG = Logger.getLogger( CSVtoLexiconConverter.class.toString() );
 
     public static final String DELIMITER = ";";
-
-    private static final Pattern PATTERN_MACRO =
-            Pattern.compile("\\s*(\\\\\\w+)(\\[.*\\])*(\\{.*\\})*(@+\\{+.+\\}+)*\\s*");
 
     private Path path_to_dlmf_lexicon;
 
@@ -153,7 +151,7 @@ public class CSVtoLexiconConverter {
         // check if the input is a correct DLMF macro
         // the DLMF macro always has to be on the first position
         String macro = lineAnalyzer.getValue( header[0] );
-        Matcher m = PATTERN_MACRO.matcher( macro );
+        Matcher m = GlobalConstants.DLMF_MACRO_PATTERN.matcher( macro );
         if ( !m.matches() ){
             ERROR_LOG.info("Found a not supported DLMF macro: " + macro);
             return;
@@ -174,7 +172,7 @@ public class CSVtoLexiconConverter {
             // add the general representation for this macro
             fset.addFeature( Keys.KEY_DLMF, macro, MacrosLexicon.SIGNAL_INLINE );
 
-            String dlmf_link = "DLMF-Link";
+            String dlmf_link = Keys.KEY_DLMF + Keys.KEY_LINK_SUFFIX;
             fset.addFeature( dlmf_link, lineAnalyzer.getValue(dlmf_link), MacrosLexicon.SIGNAL_INLINE );
             fset.addFeature( Keys.FEATURE_MEANINGS, lineAnalyzer.getValue(Keys.FEATURE_MEANINGS), MacrosLexicon.SIGNAL_INLINE );
             fset.addFeature( Keys.FEATURE_ROLE, Keys.FEATURE_VALUE_CONSTANT, MacrosLexicon.SIGNAL_INLINE );
@@ -213,7 +211,7 @@ public class CSVtoLexiconConverter {
         lineAnalyzer.setLine( elements );
 
         String macro = lineAnalyzer.getValue( header[0] );
-        Matcher m = PATTERN_MACRO.matcher( macro );
+        Matcher m = GlobalConstants.DLMF_MACRO_PATTERN.matcher( macro );
         if ( !m.matches() ){
             ERROR_LOG.info("Found a not supported DLMF macro for translation: " + macro);
             return;
@@ -232,12 +230,6 @@ public class CSVtoLexiconConverter {
                 fset.addFeature( header[i], value, MacrosLexicon.SIGNAL_INLINE );
             }
         }
-
-//        String value = lineAnalyzer.getValue( header[1] );
-//        if ( fset != null && value != null && !value.isEmpty() )
-//            internal_maple_trans_counter++;
-        // hmm, i don't know if this is necessary because we are working on references
-        //dlmf_lexicon.setEntry( m.group(1), fsets );
     }
 
     public static void main(String[] args){
@@ -277,7 +269,7 @@ public class CSVtoLexiconConverter {
         long start = System.currentTimeMillis();
         try{
             CSVtoLexiconConverter csvConv = new CSVtoLexiconConverter(
-                Paths.get("DLMFMacro.csv"), csv_paths
+                GlobalPaths.PATH_MACRO_CSV_FILE_NAME, csv_paths
             );
             csvConv.generateLexiconFile();
         } catch (Exception e){

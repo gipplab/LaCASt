@@ -17,6 +17,9 @@ public class GlobalPaths {
     public static final Path PATH_REFERENCE_DATA =
             PATH_LIBS.resolve( "ReferenceData" );
 
+    public static final Path PATH_MACRO_CSV_FILE_NAME =
+            Paths.get("DLMFMacro.csv");
+
     public static final Path PATH_MAPLE_CONFIG =
             PATH_LIBS.resolve( "maple_config.properties" );
 

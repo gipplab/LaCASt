@@ -10,6 +10,12 @@ public class Keys {
     // Key value for Maple
     public static final String KEY_MAPLE = "Maple";
 
+    public static final String KEY_LINK_SUFFIX = "-Link";
+
+    public static final String KEY_COMMENT_SUFFIX = "-Comment";
+
+    public static final String KEY_ALTERNATIVE_SUFFX = "-Alternatives";
+
     public static final String KEY_MAPLE_BIN = "maple_bin";
 
     public static final String KEY_SYSTEM_LOGGING = "log4j2.configurationFile";

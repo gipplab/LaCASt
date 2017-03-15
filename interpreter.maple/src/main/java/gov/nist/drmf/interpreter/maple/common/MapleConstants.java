@@ -20,6 +20,13 @@ public final class MapleConstants {
     public static final Pattern PREV_NEG_SIGN_PATTERN = Pattern.compile( PREV_NEG_SIGN );
 
     /**
+     * Maple Function pattern. Groups the function name,
+     * possible parameters in [] and variables in ().
+     */
+    public static final Pattern MAPLE_FUNC_PATTERN =
+            Pattern.compile("(\\w+)(\\[.+\\])*(\\(.+\\))+");
+
+    /**
      * Constants for positive and negative values
      */
     public static final boolean POSITIVE = true;
