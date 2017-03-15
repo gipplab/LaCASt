@@ -6,6 +6,7 @@ import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.ITranslator;
+import gov.nist.drmf.interpreter.common.symbols.MapleTranslationException;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
 import gov.nist.drmf.interpreter.maple.grammar.TranslationFailures;
@@ -17,6 +18,7 @@ import java.util.regex.Matcher;
 import static gov.nist.drmf.interpreter.maple.common.MapleConstants.MAPLE_INTERNAL_PATTERN;
 
 /**
+ *
  * Created by AndreG-P on 21.02.2017.
  */
 public abstract class AbstractAlgebraicTranslator<T extends Algebraic> implements ITranslator<T> {
@@ -81,5 +83,15 @@ public abstract class AbstractAlgebraicTranslator<T extends Algebraic> implement
             throw new IllegalArgumentException("Not supported maple object: " + root);
 
         return in;
+    }
+
+    String[] translateExpressionSequence( List exp_seq )
+            throws MapleTranslationException, MapleException {
+        String[] translations = new String[exp_seq.length()-1];
+        for ( int i = 2; i-2 < translations.length; i++ ){
+            TranslatedList tl = translateGeneralExpression( exp_seq.select(i) );
+            translations[i-2] = tl.getAccurateString();
+        }
+        return translations;
     }
 }

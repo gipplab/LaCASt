@@ -67,12 +67,17 @@ public class MapleTranslator {
      * @param args empty or a maple expression in the first argument
      */
     public static void main(String[] args){
-        String test = "-I";
-        test = "gamma -(3 * beta)/(4)- 3*I +\n" +
-                "    (\n" +
-                "        (kappa)/((Theta)^(y) + x*(y)^(2.3))\n" +
-                "    )^(- I)";
+        String test = "JacobiP(alpha, beta, n, cos(a*Theta))";
 
+        MapleTranslator mt = new MapleTranslator();
+        try {
+            mt.init();
+            Translation t = mt.translateFromMapleToLaTeX(test);
+            System.out.println( "Translated:  " + t.getTranslatedExpression() );
+            System.out.println( "Additional:  " + t.getAdditionalInformation() );
+        } catch ( Exception e ){
+            e.printStackTrace();
+        }
 
         /*
         Scanner sc = new Scanner(System.in);
@@ -88,6 +93,7 @@ public class MapleTranslator {
         }
         */
 
+        /*
         System.out.println("Initializing...");
         try {
             MapleTranslator t = new MapleTranslator();
@@ -132,6 +138,7 @@ public class MapleTranslator {
         } catch ( Exception e ){
             e.printStackTrace();
         }
+        */
     }
 
     /**

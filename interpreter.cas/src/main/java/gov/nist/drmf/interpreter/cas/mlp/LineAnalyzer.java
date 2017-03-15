@@ -1,14 +1,13 @@
 package gov.nist.drmf.interpreter.cas.mlp;
 
+import gov.nist.drmf.interpreter.common.GlobalConstants;
+
 import java.util.HashMap;
 
 /**
  * @author Andre Greiner-Petter
  */
 public class LineAnalyzer {
-    private static final String LINK_PREFIX = "http://";
-    private static final String LINK_S_PREFIX = "https://";
-
     private HashMap<String, Integer> idx_map;
 
     private String separator_symbol;
@@ -30,10 +29,10 @@ public class LineAnalyzer {
     public String getValue( String key ){
         try {
             String value = values[ idx_map.get(key) ];
-            if ( value.startsWith( LINK_PREFIX ) )
-                value = value.substring( LINK_PREFIX.length() );
-            else if ( value.startsWith( LINK_S_PREFIX ) )
-                value = value.substring( LINK_S_PREFIX.length() );
+            if ( value.startsWith(GlobalConstants.LINK_PREFIX ) )
+                value = value.substring( GlobalConstants.LINK_PREFIX.length() );
+            else if ( value.startsWith( GlobalConstants.LINK_S_PREFIX ) )
+                value = value.substring( GlobalConstants.LINK_S_PREFIX.length() );
             return value;
         } catch ( NullPointerException | IndexOutOfBoundsException e ){
             return "";
