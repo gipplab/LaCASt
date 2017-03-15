@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.maple;
 
 import gov.nist.drmf.interpreter.common.GlobalPaths;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
@@ -18,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Created by AndreG-P on 28.02.2017.
  */
 public class QuickTests {
+    @Disabled
     @Test
     public void arraysTest(){
         String[] empty = new String[]{};
@@ -25,6 +27,7 @@ public class QuickTests {
         System.out.println("blabla:".split(":").length);
     }
 
+    @Disabled
     @Test
     public void streamTest(){
         //Path p = Paths.get("interpreter.maple", "src", "test", "resources", "Test.txt");
