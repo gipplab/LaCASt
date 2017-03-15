@@ -9,6 +9,8 @@ import java.util.Arrays;
  * Created by AndreG-P on 01.03.2017.
  */
 public class MapleFunction {
+    public static final String INNER_DELIMITER = ":=";
+
     final String key;
 
     private final String MAPLE_Name;
@@ -130,23 +132,29 @@ public class MapleFunction {
         return dlmf_meaning;
     }
 
-    String[] toStringArray(){
-        String a = alternative_patterns == null ?
-                "" : Arrays.toString(alternative_patterns);
+    private String[] toStringArray(){
+        String alts = "";
+        for ( int i = 0; i < alternative_patterns.length; i++ ){
+            alts += alternative_patterns[i];
+            if ( i < alternative_patterns.length-1 )
+                alts += GlobalConstants.ALTERNATIVE_SPLIT;
+        }
+
         return new String[]{
-            "KEY: " + key,
-            "Maple-Func:     " + MAPLE_Name,
-            "DLMF-Pattern:   " + DLMF_Pattern,
-            "DLMF-Meaning:   " + dlmf_meaning,
-            "Alternatives:   " + a,
-            "Maple-Link:     " + MAPLE_Link,
-            "DLMF-Link:      " + dlmf_Link,
-            "NumberOfVars:   " + numberOfVariables,
-            "MapleComment:   " + maple_comment,
-            "MapleConstraint:" + maple_constraints,
-            "MapleBranchCuts:" + maple_branch_cuts,
-            "DLMFConstraints:" + dlmf_constraints,
-            "DLMFBranchCuts: " + dlmf_branch_cuts
+            key,
+            "Maple-Name"+ INNER_DELIMITER + " " + MAPLE_Name,
+            "DLMF-Pattern"+ INNER_DELIMITER + " " + DLMF_Pattern,
+            "Maple-Link"+ INNER_DELIMITER + " " + MAPLE_Link,
+            "NumberOfVars"+ INNER_DELIMITER + " " + numberOfVariables,
+
+            "MapleComment"+ INNER_DELIMITER + " " + maple_comment,
+            "MapleConstraint"+ INNER_DELIMITER + " " + maple_constraints,
+            "MapleBranchCuts"+ INNER_DELIMITER + " " + maple_branch_cuts,
+            "Alternatives"+ INNER_DELIMITER + " " + alts,
+            "DLMF-Meaning"+ INNER_DELIMITER + " " + dlmf_meaning,
+            "DLMF-Constraints"+ INNER_DELIMITER + " " + dlmf_constraints,
+            "DLMF-BranchCuts"+ INNER_DELIMITER + " " + dlmf_branch_cuts,
+            "DLMF-Link"+ INNER_DELIMITER + " " + dlmf_Link
         };
     }
 
@@ -158,5 +166,41 @@ public class MapleFunction {
         for ( int i = 0; i < output.length; i++ )
             str += output[i] + nl;
         return str;
+    }
+
+    public static String toStorage( MapleFunction mf ){
+        String nl = System.lineSeparator();
+        String[] a = mf.toStringArray();
+        String out = a[0];
+        for ( int i = 1; i < a.length; i++ )
+            out += "\t" + a[i] + nl;
+        return out+nl;
+    }
+
+    public static MapleFunction loadMapleFunction( String infos ){
+        try {
+            String[] infs = infos.split( System.lineSeparator() );
+            MapleFunction mf = new MapleFunction(
+                    infs[1].split(INNER_DELIMITER)[1].trim(),
+                    infs[2].split(INNER_DELIMITER)[1].trim(),
+                    infs[3].split(INNER_DELIMITER)[1].trim(),
+                    Integer.parseInt(infs[4].split(INNER_DELIMITER)[1].trim())
+            );
+
+            mf.maple_comment        = infs[4].split(INNER_DELIMITER)[1].trim();
+            mf.maple_constraints    = infs[5].split(INNER_DELIMITER)[1].trim();
+            mf.maple_branch_cuts    = infs[6].split(INNER_DELIMITER)[1].trim();
+            mf.alternative_patterns =
+                    infs[7].split(INNER_DELIMITER)[1].trim()
+                            .split( GlobalConstants.ALTERNATIVE_SPLIT );
+
+            mf.dlmf_meaning     = infs[8].split(INNER_DELIMITER)[1].trim();
+            mf.dlmf_constraints = infs[9].split(INNER_DELIMITER)[1].trim();
+            mf.dlmf_branch_cuts = infs[10].split(INNER_DELIMITER)[1].trim();
+            mf.dlmf_Link        = infs[11].split(INNER_DELIMITER)[1].trim();
+            return mf;
+        } catch ( Exception e ){
+            return null;
+        }
     }
 }
