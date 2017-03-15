@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -51,6 +52,7 @@ public class MapleLexiconTests {
         assertEquals( "dlmf.nist.gov/4.23#SS2.p1", mf.getDLMFLink() );
     }
 
+    @Disabled
     @Test
     public void createLexicon(){
         Path tester = GlobalPaths.PATH_REFERENCE_DATA_CSV.resolve("CAS_Maple_test.csv");
@@ -61,6 +63,7 @@ public class MapleLexiconTests {
         }
     }
 
+    @Disabled
     @Test
     public void littleWorkaroundTest(){
         try {
@@ -70,6 +73,7 @@ public class MapleLexiconTests {
         }
     }
 
+    @Disabled
     @Test
     public void loadLexiconTest(){
         Path lex_path = GlobalPaths.PATH_REFERENCE_DATA.resolve("MapleLexiconTest.txt");
