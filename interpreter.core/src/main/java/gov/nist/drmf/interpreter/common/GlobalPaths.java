@@ -42,6 +42,9 @@ public class GlobalPaths {
     public static final String DLMF_MACROS_LEXICON_NAME =
             DLMF_MACROS_LEXICON.getFileName().toString();
 
+    public static final Path PATH_MAPLE_FUNCTIONS_LEXICON_FILE =
+            PATH_LEXICONS.resolve("Maple-functions-lexicon.txt");
+
     // path to the json file with greek letters and constants
     public static final Path PATH_GREEK_LETTERS_AND_CONSTANTS_FILE =
             PATH_REFERENCE_DATA_BASIC_CONVERSION.resolve("GreekLettersAndConstants.json");

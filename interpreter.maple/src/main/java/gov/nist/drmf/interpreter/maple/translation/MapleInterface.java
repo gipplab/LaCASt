@@ -135,7 +135,6 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         symbolTranslator.init();
 
         // load the macro lexicon file
-        MacrosLexicon.init();
         MapleLexicon.init();
 
         // translate useful symbols to speed the process a bit up.
