@@ -160,4 +160,34 @@ public class MapleLexiconFactory {
             ioe.printStackTrace();
         }
     }
+
+    public static MapleLexicon loadLexicon( Path maple_lexicon ){
+        MapleLexicon lexicon = new MapleLexicon();
+        try ( BufferedReader reader = Files.newBufferedReader(maple_lexicon) ){
+            reader.lines()
+                    .filter( line -> !(line == null || line.isEmpty()) )
+                    .map( t -> innerLoader(reader) )
+                    .filter( Objects::nonNull )
+                    .forEach( lexicon::addFunction );
+            return lexicon;
+        } catch ( IOException ioe ){
+            ioe.printStackTrace();
+            return null;
+        }
+    }
+
+    private static final String NL = System.lineSeparator();
+
+    private static MapleFunction innerLoader( BufferedReader reader ){
+        String in = "-" + NL;
+        try {
+            for ( int i = 0; i < 12; i++ ){
+                in += reader.readLine() + NL;
+            }
+            return MapleFunction.loadMapleFunction( in );
+        } catch ( IOException ioe ){
+            ioe.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -171,7 +171,7 @@ public class MapleFunction {
     public static String toStorage( MapleFunction mf ){
         String nl = System.lineSeparator();
         String[] a = mf.toStringArray();
-        String out = a[0];
+        String out = a[0] + nl;
         for ( int i = 1; i < a.length; i++ )
             out += "\t" + a[i] + nl;
         return out+nl;
@@ -187,19 +187,21 @@ public class MapleFunction {
                     Integer.parseInt(infs[4].split(INNER_DELIMITER)[1].trim())
             );
 
-            mf.maple_comment        = infs[4].split(INNER_DELIMITER)[1].trim();
-            mf.maple_constraints    = infs[5].split(INNER_DELIMITER)[1].trim();
-            mf.maple_branch_cuts    = infs[6].split(INNER_DELIMITER)[1].trim();
+            mf.maple_comment        = infs[5].split(INNER_DELIMITER)[1].trim();
+            mf.maple_constraints    = infs[6].split(INNER_DELIMITER)[1].trim();
+            mf.maple_branch_cuts    = infs[7].split(INNER_DELIMITER)[1].trim();
             mf.alternative_patterns =
-                    infs[7].split(INNER_DELIMITER)[1].trim()
+                    infs[8].split(INNER_DELIMITER)[1].trim()
                             .split( GlobalConstants.ALTERNATIVE_SPLIT );
 
-            mf.dlmf_meaning     = infs[8].split(INNER_DELIMITER)[1].trim();
-            mf.dlmf_constraints = infs[9].split(INNER_DELIMITER)[1].trim();
-            mf.dlmf_branch_cuts = infs[10].split(INNER_DELIMITER)[1].trim();
-            mf.dlmf_Link        = infs[11].split(INNER_DELIMITER)[1].trim();
+            mf.dlmf_meaning     = infs[9].split(INNER_DELIMITER)[1].trim();
+            mf.dlmf_constraints = infs[10].split(INNER_DELIMITER)[1].trim();
+            mf.dlmf_branch_cuts = infs[11].split(INNER_DELIMITER)[1].trim();
+            mf.dlmf_Link        = infs[12].split(INNER_DELIMITER)[1].trim();
             return mf;
         } catch ( Exception e ){
+            System.err.println(infos);
+            e.printStackTrace();
             return null;
         }
     }
