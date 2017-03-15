@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.maple.grammar.lexicon;
 
 import gov.nist.drmf.interpreter.common.GlobalPaths;
+import mlp.LexiconFactory;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -51,16 +52,7 @@ public class MapleLexicon {
     private static MapleLexicon lexicon;
 
     public static void init() throws IOException {
-        Path csv_path = GlobalPaths.PATH_REFERENCE_DATA_CSV.resolve("MapleFunctions.csv");
-        lexicon = MapleLexiconFactory.createLexiconFromCSVFile( csv_path );
-        System.out.println("Finished... got lexicon. Now save Lexicon in new File!");
-        /*
-        Path save = GlobalPaths.PATH_REFERENCE_DATA.resolve("MapleLexiconTest.txt");
-        save.toFile().createNewFile();
-        MapleLexiconFactory.storeLexiconInFile( save, lexicon );
-        System.out.println("Finished storage process.");
-        */
-        //System.out.println(lexicon.function_map.keySet());
+        lexicon = MapleLexiconFactory.loadLexicon( GlobalPaths.PATH_MAPLE_FUNCTIONS_LEXICON_FILE );
     }
 
     public static MapleLexicon getLexicon(){

@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.maple.grammar.lexicon;
 
 import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
@@ -35,6 +36,9 @@ public class MapleLexiconFactory {
             if ( h != null ) indices.put( h, i );
         }
         dlmf_lex = MacrosLexicon.getDLMFMacroLexicon();
+        if ( dlmf_lex == null ){
+            LOG.error("Macro Lexicon is not yet initialized!");
+        }
     }
 
     /**
@@ -59,10 +63,12 @@ public class MapleLexiconFactory {
             String maple_func = getFunctionName( MapleConstants.MAPLE_FUNC_PATTERN, MAPLE );
             String dlmf = getFunctionName( GlobalConstants.DLMF_MACRO_PATTERN, DLMF );
 
+            errorMessage = "Cannot extract link or number of variables. " + Arrays.toString(values);
             String maple_link = extractInfoMaple( MapleHeader.Link, values );
             String numOfVars  = extractInfoMaple( MapleHeader.Num_Of_Vars, values );
             Integer vars = Integer.parseInt(numOfVars);
 
+            errorMessage = "Cannot create maple function object. " + Arrays.toString(values);
             MapleFunction mf = new MapleFunction(
                     maple_func,
                     DLMF,
@@ -70,9 +76,10 @@ public class MapleLexiconFactory {
                     vars
             );
 
+            errorMessage = "Cannot enrich the information of MapleFunction object. " + Arrays.toString(values);;
             return enrichFunctionInfos( mf, dlmf, values );
         } catch ( NullPointerException | IndexOutOfBoundsException | NumberFormatException e ){
-            LOG.warn(errorMessage);
+            LOG.warn(errorMessage, e);
             return null;
         }
     }
@@ -119,14 +126,13 @@ public class MapleLexiconFactory {
 
     public static MapleLexicon createLexiconFromCSVFile( Path maple_csv_file )
             throws IOException {
-
         try (BufferedReader reader = Files.newBufferedReader( maple_csv_file )){
             String header = reader.readLine();
             MapleLexiconFactory mlf = new MapleLexiconFactory(header.split( DELIMITER ));
             MapleLexicon mapleLexicon = new MapleLexicon();
 
             reader.lines()
-                    //.limit(20) // TODO DEBUG
+                    //.limit(3) // TODO DEBUG
                     .parallel()
                     .filter( line -> !line.startsWith(DELIMITER) )
                     .map( line -> line.split(DELIMITER) )
@@ -143,7 +149,7 @@ public class MapleLexiconFactory {
         return null;
     }
 
-    public static void storeLexiconInFile( Path lexicon_file, MapleLexicon lexicon ){
+    public static void storeLexicon( Path lexicon_file, MapleLexicon lexicon ){
         Map<String, MapleFunction> map = lexicon.getFunctionMap();
         try ( BufferedWriter writer = Files.newBufferedWriter(lexicon_file) ){
             map.keySet().stream()
@@ -188,6 +194,30 @@ public class MapleLexiconFactory {
         } catch ( IOException ioe ){
             ioe.printStackTrace();
             return null;
+        }
+    }
+
+    public static void main( String[] args ){
+        String csv_file;
+        if ( args == null || args.length < 1 ){
+            System.out.println("Please specify the name of the Maple-CSV file in CSVTables directory:");
+            Scanner sc = new Scanner(System.in);
+            String in = sc.nextLine();
+            if ( !in.toLowerCase().matches(".+\\.csv") ){
+                System.err.println("Your specification is not a csv file...");
+                return;
+            }
+            csv_file = in;
+        } else csv_file = args[0];
+
+        Path p = GlobalPaths.PATH_REFERENCE_DATA_CSV.resolve( csv_file );
+        try {
+            MacrosLexicon.init();
+            MapleLexicon lex = createLexiconFromCSVFile( p );
+            storeLexicon( GlobalPaths.PATH_MAPLE_FUNCTIONS_LEXICON_FILE, lex );
+            System.out.println("Done!");
+        } catch ( IOException ioe ){
+            ioe.printStackTrace();
         }
     }
 }
