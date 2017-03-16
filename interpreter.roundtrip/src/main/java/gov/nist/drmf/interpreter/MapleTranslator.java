@@ -68,13 +68,22 @@ public class MapleTranslator {
      */
     public static void main(String[] args){
         String test = "JacobiP(alpha, beta, n, cos(a*Theta))";
+        test = "EllipticF(z, k)";
+        test = "sin(2)";
 
         MapleTranslator mt = new MapleTranslator();
         try {
             mt.init();
             Translation t = mt.translateFromMapleToLaTeX(test);
+            String back = mt.translateFromLaTeXToMapleClean( t.getTranslatedExpression() );
+            boolean b = mt.simplificationTester( test, back );
+
+            System.out.println( "Input: " + test );
             System.out.println( "Translated:  " + t.getTranslatedExpression() );
             System.out.println( "Additional:  " + t.getAdditionalInformation() );
+            System.out.println( "BackTranslated: " + back );
+            System.out.println( "Simplification Test: " + b );
+
         } catch ( Exception e ){
             e.printStackTrace();
         }

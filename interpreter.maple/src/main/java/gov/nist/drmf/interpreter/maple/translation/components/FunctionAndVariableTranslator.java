@@ -118,7 +118,7 @@ public class FunctionAndVariableTranslator extends ListTranslator {
         List expression_seq_list = (List)list.select(3);
 
         MapleInternal in = getAbstractInternal( assigned_name_list.select(1).toString() );
-        if ( !in.equals( MapleInternal.ass_name ) )
+        if ( !(in.equals( MapleInternal.ass_name ) || in.equals( MapleInternal.name )) )
             throw new MapleTranslationException("Function doesn't contain assigned name!");
         in = getAbstractInternal( expression_seq_list.select(1).toString() );
         if ( !in.equals( MapleInternal.exp ) )

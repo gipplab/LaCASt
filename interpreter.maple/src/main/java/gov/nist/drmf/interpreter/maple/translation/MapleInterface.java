@@ -170,7 +170,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
     public String translate( String maple_input ) throws MapleException {
         // Creates the command by wrapping all necessary information around the input
         // to convert the given input into the internal maple datastructure
-        String cmd = maple_to_inert_procedure_name + "(" + maple_input + ")";
+        String cmd = maple_to_inert_procedure_name + "('" + maple_input + "')";
         // to convert the internal DAG into a list representation
         cmd = maple_list_procedure_name + "(" + cmd + ");";
 
@@ -179,6 +179,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         // log information
         LOG.debug("Wrapping: " + cmd);
         LOG.info("Parsed: " + maple_input);
+        LOG.debug("Algebraic Result: " + a.toString());
 
         // try to translate the expression
         // if it fails, translate will return false and the error information

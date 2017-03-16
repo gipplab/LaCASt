@@ -1,791 +1,784 @@
-Maple;DLMF;Number of Variables;Maple-Comment;Maple-Constraints;Maple-Branch Cuts;Maple-Alternatives;Maple-Link
-sin($0);\sin@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=sin
-cos($0);\cos@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=cos
-tan($0);\tan@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=tan
-sec($0);\sec@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=sec
-csc($0);\csc@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=csc
-cot($0);\cot@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=cot
-;;;;;;;
-sinh($0);\sinh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=sinh
-cosh($0);\cosh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=cosh
-tanh($0);\tanh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=tanh
-sech($0);\sech@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=sech
-csch($0);\csch@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=csch
-coth($0);\coth@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=coth
-;;;;;;;
-arcsin($0);\asin@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
-arccos($0);\acos@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
-arctan($0);\atan@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
-arctan($0,$1);\ph@@{$1+($0)*\iunit};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
-arcsec($0);\asec@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
-arccsc($0);\acsc@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
-arccot($0);\acot@@{$0};1;"Maple defines another branch cut than DLMF for the invert cotangent function. You can use an alternative translation to avoid that. With the arctan alternative you have the same branch cuts as DLMF. The 2nd alternative with logarithm can be used, when your z = 0 (mentioned in Equation 25 in ""According to Arbamowitz and Stegun or arccoth needn't be uncouth"" by R.M. Corless, D.J. Jeffrey, S.M. Watt).";;(- I infinity, - I ), ( I, I infinity );;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
-;;;;;;;
-arcsinh($0);\asinh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arcsinh
-arccosh($0);\acosh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arccosh
-arctanh($0);\atanh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arctanh
-arcsech($0);\asech@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arcsech
-arccsch($0);\acsch@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arccsch
-arccoth($0);\acoth@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arccoth
-;;;;;;;
-ln($0);\ln@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ln
-log($0);\log@@{$0};1;Without a given base, ln equals log.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=log
-log[$0]($1);\logb{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=log
-;;;;;;;
-exp($0);\exp@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=exp
-;;;;;;;
-LambertW($0);\LambertW@{$0};1;The DLMF defines two branches with extra macros. \LambertWp and \LambertWm. Take a look at http://dlmf.nist.gov/4.13 for further information.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LambertW
-LambertW($0, $1);\LambertW@{$1};2;The DLMF doesn't define other macros for the branches (only \LambertWp and \LambertWm when your first argument is -1 and your second argument is real-valued).;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LambertW
-;;;;;;;
-Si($0);\SinInt@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Si
-Ssi($0);\sinInt@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Ssi
-Ci($0);\CosInt@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Ci
-;\CosIntCin@{$0};;There is no definition in Maple but you can translate the function by the alternative version.;;;int((1-cos(t))/t, t = 0 .. $0);not defined
-Shi($0);\SinhInt@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Shi
-Chi($0);\CoshInt@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Chi
-;;;;;;;
-;\Gudermannian@@{x};;There is no definition in Maple but you can translate the function by the alternative version.;;;int(sech(t), t = 0 .. $0);not defined
-;\arcGudermannian@@{x};;There is no definition in Maple but you can translate the function by the alternative version.;;;int(sec(t), t = 0 .. $0);not defined
-;;;;;;;
-Ei($0);\ExpInti@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Ei
-Ei($0);\ExpInt@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Ei
-;\ExpIntEin@{z};;There is no definition in Maple but you can translate the function by the alternative version.;;;Ei($0)+ln($0)+gamma;not defined
-Ei($0, $1);\ExpIntn{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Ei
-Li($0);\LogInt@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Li
-dilog($0);\Dilogarithm@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=dilog
-polylog($0, $1);\Polylogarithm{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=polylog
-polylog($1, $0);\JonquierePhi@{$1}{$0};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=polylog
-;;;;;;;
-gamma($0);\StieltjesConstants{$0};1;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=initialconstants
-;;;;;;;
-Matrix([[],[]]);\Matrix{A};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Matrix
-Vector([$0]);\Vector{$0};1;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Vector
-Trace(X);\trace \Matrix{X};;Maple needs an extra package. Load it with the following command: with(LinearAlgebra):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Trace
-Transpose(X);\transpose \Matrix{X};;Maple needs an extra package. Load it with the following command: with(LinearAlgebra):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Transpose
-exp(Trace(X));\exptrace@{\Matrix{X}};;Maple needs an extra package. Load it with the following command: with(LinearAlgebra):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Trace
-Determinant(A);\det A;;Maple needs an extra package. Load it with the following command: with(LinearAlgebra):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Determinant
-;;;;;;;
-argument($0);\ph@@{$0};1;;;;;http://www.maplesoft.com/support/help/maple/view.aspx?path=argument
-conjugate($0);\conj{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=conjugate
-Re($0);\realpart{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Re
-Im($0);\imagpart{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Im
-sqrt($0);\sqrt{$0};1;You can use the csgn function, which is specialized for imaginary variables.;;;csgn($0);https://www.maplesoft.com/support/help/maple/view.aspx?path=sqrt
-surd($1, $0);\sqrt[$1]{$0};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=surd
-binomial($0, $1);\binom{$0}{$1};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=binomial
-binomial($0, $1);\binomial{m}{n};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=binomial
-multinomial($0, $1);\multinomial{m}{n_1,...,n_k};;Maple needs an extra package. Load it with the following command: with(combinat,multinomial):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=combinat/multinomial
-gcd($0);\pgcd{m,n};;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=gcd
-;;;;;;;
-$0($1);\f{f}@{x};;;;;;not defined
-($0)/($1);\ifrac{a}{b};;;;;;not defined
-($0)^($1);\power{x}{y};;;;;;not defined
-;\psfactorial{a}{\kappa};;;;;;not defined
-floor($0);\floor{x} ;;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=floor
-ceil($0);\ceiling{x};;Maple allows a second parameter like ceil(n,x).;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ceil
-signum($0);\sign@@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=signum
-;\inf;;;;;;not defined
-;\sup;;;;;;not defined
-sum($3), $0 = $1 .. $2);\Sum{n}{k1}{k2}@{f(n)};;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=sum
-product($3, $0 = $1 .. $2);\Prod{n}{k1}{k2}@{f(n)};;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=product
-;\Wronskian@{w1(z),w2(z)};;;;;;not defined
-;\Residue;;;;;;not defined
-numelems(A);\card{A};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=numelems
-;\cartprod;;;;;;not defined
-;\divides;;;;;;not defined
-;\liminf;;;;;;not defined
-;;;;;;;
-(-1);\opminus;;;;;;not defined
-;\poly{p}{n}@{x};;;;;;not defined
-numbcomp($1, $0);\CompositionsC[m]@{n};;Maple needs an extra package. Load it with the following command: with(combinat, numbcomp);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=combinat%2Fnumbcomp
-;\Distribution{f}{g};;;;;;not defined
-;\Lattice{L};;;;;;not defined
-;\fDiff[x];;;;;;not defined
-;\bDiff[x];;;;;;not defined
-;\cDiff[x];;;;;;not defined
-diff($0, $1);\deriv{f}{x};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=diff
-diff($0, $1);\pderiv{f}{x};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=diff
-;\diff{x};;;;;;not defined
-;\pdiff{x};;;;;;not defined
-int($1, $0);\AntiDer@{x}{f(x)};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=int
-int($3, $2 = $0 .. $1);\Int{a}{b}@{x}{f(x)};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=int
-;\int;;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=int
-int(f(x), x = a .. b, 'CauchyPrincipalValue');\pvint_{a}^{b} \f{f}@{x} \diff{x};;difficult to understand for parser;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=int/details
-;\Schwarzian{z}{\zeta};;;;;;not defined
-;\Complex;;;;;;not defined
-;\Real;;;;;;not defined
-;\Rational;;;;;;not defined
-;\Integer;;;;;;not defined
-;\NatNumber;;;;;;not defined
-;\Continuous@{A};;;;;;not defined
-;\SpaceTestFunTempered@{A};;;;;;not defined
-union;;;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=union
-intersect;;;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=intersect
-minus;\setminus;;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=minus
-subset;\subseteq;;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=subset
-;\subset;;;;;;not defined
-;\setmod;;;;;;not defined
-numelems(partition($0));\PartitionsP{n};;Maple needs an extra package. Load it with the following command: with(combinat,partition);;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=combinat/partition
-;\PartitionsP[k]@{n};;;;;;not defined
-permute($0);\Permutations{n};;Maple needs an extra package. Load it with the following command: with(combinat);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=combinat/permute
-;\PlanePartitionsPP@{n};;;;;;not defined
-;\RestrictedPartitionsP[k]@{\mathrm{condition}}{n};;;;;;not defined
-;\RestrictedCompositionsC@{\mathrm{condition}}{n};;;;;;not defined
-;\BigO@{x};;;;;;not defined
-;\littleo@{x};;;;;;not defined
-;\sim;;;;;;not defined
-;;;;;;;
-;;;;;;;
-;;;;;;;
-AiryAi($0);\AiryAi@{z};;Maple also supports the derivatives with AiryAi(n, z) and AiryBi(n, z);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Airy
-AiryBi($0);\AiryBi@{z};;Maple also supports the derivatives with AiryAi(n, z) and AiryBi(n, z);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Airy
-;\AiryModulusM@{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;sqrt(AiryAi($0)^2+AiryBi($0)^2);not defined
-;\AiryModulusN@{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;sqrt(AiryAi(1, $0)^2+AiryBi(1, $0)^2);not defined
-;\AiryPhasePhi@{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;arctan(AiryAi(1, $0)/AiryBi(1, $0));not defined
-;\AiryPhaseTheta@{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;arctan(AiryAi($0)/AiryBi($0));not defined
-;\ODEgenAiryA{n}@{z};;;;;;not defined
-;\ODEgenAiryB{n}@{z};;;;;;not defined
-;\IntgenAiryA{k}@{z}{p};;;;;;not defined
-;\IntgenAiryB{k}@{z}{p};;;;;;not defined
-;\ZeroAiryAi{k};;;;;;not defined
-;\ZeroAiryAiPrime{k};;;;;;not defined
-;\ZeroAiryBi{k};;;;;;not defined
-;\ZeroAiryBiPrime{k};;;;;;not defined
-;\ComplexZeroAiryBi{k};;;;;;not defined
-;\ComplexZeroAiryBiPrime{k};;;;;;not defined
-;;;;;;;
-AngerJ($0, $1);\AngerJ{v}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=AngerJ
-WeberE($0, $1);\WeberE{v}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=AngerJ
-;\AngerA{v}@{x};;;;;;not defined
-;;;;;;;
-;\AppellFi@{\alpha}{\beta}{\beta'}{\gamma}{x}{y};;;;;;not defined
-;\AppellFii@{\alpha}{\beta}{\beta'}{\gamma}{\gamma'}{x}{y};;;;;;not defined
-;\AppellFiii@{\alpha}{\alpha'}{\beta}{\beta'}{\gamma}{x}{y};;;;;;not defined
-;\AppellFiv@{\alpha}{\beta}{\gamma}{\gamma'}{x}{y};;;;;;not defined
-;;;;;;;
-BesselJ($0, $1);\BesselJ{v}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
-BesselY($0, $1);\BesselY{v}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
-HankelH1($0, $1);\HankelHi{v}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
-HankelH2($0, $1);\HankelHii{v}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
-;\BesselModulusM{\nu}@{x};;;;;;not defined
-;\BesselModulusN{\nu}@{x};;;;;;not defined
-;\BesselPhaseTheta{\nu}@{x};;;;;;not defined
-;\BesselPhasePhi{\nu}@{x};;;;;;not defined
-;\ZeroBesselJ{\nu}{m};;;;;;not defined
-;\ZeroBesselJPrime{\nu}{m};;;;;;not defined
-;\ZeroBesselY{\nu}{m};;;;;;not defined
-;\ZeroBesselYPrime{\nu}{m};;;;;;not defined
-;\BesselJtilde{\nu}@{x};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;sech((1/2)*Pi*($0))*Re(BesselJ(I*($0), $1));not defined
-;\BesselYtilde{\nu}@{x};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;sech((1/2)*Pi*($0))*Re(BesselY(I*($0), $1));not defined
-BesselI($0, $1);\BesselI{v}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
-BesselK($0, $1);\BesselK{v}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
-;\ModCylinder{\nu}@{z};;;;;;not defined
-;\BesselItilde{\nu}@{x};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;Re(BesselI(I*($0), $1));not defined
-;\BesselKtilde{\nu}@{x};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;BesselK(I*($0), $1);not defined
-;\GenBesselFun@{\rho}{\beta}{z};;;;;;not defined
-;\MittagLeffler{a}{b}@{z};;;;;;not defined
-;\SphBesselJ{n}@{z};;;;;;not defined
-;\SphBesselY{n}@{z};;;;;;not defined
-;\SphHankelHi{n}@{z};;;;;;not defined
-;\SphHankelHii{n}@{z};;;;;;not defined
-;\SphBesselIi{n}@{z};;;;;;not defined
-;\SphBesselIii{n}@{z};;;;;;not defined
-;\SphBesselK{n}@{z};;;;;;not defined
-;\BesselA{\nu}@{\Matrix{T}};;;;;;not defined
-;\BesselB{\nu}@{\Matrix{T}};;;;;;not defined
-;\JacksonqBesselI{\nu}@{z}{q};;;;;;not defined
-;\JacksonqBesselII{\nu}@{z}{q};;;;;;not defined
-;\JacksonqBesselIII{\nu}@{z}{q};;;;;;not defined
-;;;;;;;
-;\BickleyKi{\alpha}@{x};;;;;;not defined
-;;;;;;;
-Beta($0, $1);\EulerBeta@{a}{b};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Beta
-;\IncBeta{x}@{a}{b};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;int(t^($1-1)*(1-t)^($2-1), t = 0 .. $0);not defined
-;\IncI{x}@{a}{b};;;;;;not defined
-;\mEulerBeta{m}@{a}{b};;;;;;not defined
-;;;;;;;
-;\CanonicInt{K}@{\Vector{x}};;;;;;not defined
-;\CanonicIntU@{\Vector{x}};;;;;;not defined
-;\CanonicIntE@{\Vector{x}};;;;;;not defined
-;\CanonicIntH@{\Vector{x}};;;;;;not defined
-;;;;;;;
-;\CatalanNumber@{n};;;;;;not defined
-;;;;;;;
-;\CuspCat{K}@{t}{\Vector{x}};;;;;;not defined
-;\UmbilicCatE@{s}{t}{\Vector{x}};;;;;;not defined
-;\UmbilicCatH@{s}{t}{\Vector{x}};;;;;;not defined
-;\DiffCat{K}@{\Vector{x}}{k};;;;;;not defined
-;\DiffCatU@{\Vector{x}}{k};;;;;;not defined
-;\DiffCatE@{\Vector{x}}{k};;;;;;not defined
-;\DiffCatH@{\Vector{x}}{k};;;;;;not defined
-;;;;;;;
-;\ChebyshevPsi@{x};;;;;;not defined
-;;;;;;;
-CoulombF($0, $1, $2);\CoulombF{L}@{\eta}{\rho};;Only regular solution is supported by Maple ;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=CoulombF
-;\Coulombf@{\epsilon}{\ell}{r};;;;;;not defined
-;\Coulombc@{\epsilon}{\ell}{r};;;;;;not defined
-;\Coulombs@{\epsilon}{\ell}{r};;;;;;not defined
-;\Coulombh@{\epsilon}{\ell}{r};;;;;;not defined
-;\CoulombG{\ell}@{\eta}{\rho};;;;;;not defined
-;\CoulombH{\pm}{\ell}@{\eta}{\rho};;;;;;not defined
-;\CoulombC{\ell}@{\eta};;;;;;not defined
-;\CoulombTheta{\ell}@{\eta}{\rho};;;;;;not defined
-;\CoulombSigma{\ell}@{\eta};;;;;;not defined
-;\CoulombM{\ell}@{\eta}{\rho};;;;;;not defined
-;\Coulombrhotp@{\eta}{\ell};;;;;;not defined
-;\Coulombrtp@{\epsilon}{\ell};;;;;;not defined
-;;;;;;;
-;\Cylinder{\nu}@{z};;;;;;not defined
-CylinderU($0, $1);\ParabolicU@{a}{z};;For a=0, this can be computed with BesselK. But this produces branch cut issues;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=CylinderU
-;\ParabolicUbar@{a}{x};;;;;;not defined
-CylinderV($0, $1);\ParabolicV@{a}{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=CylinderV
-;\ParabolicW@{a}{x};;;;;;not defined
-CylinderD($0, $1);\WhitD{\nu}@{z};;CylinderU(a,x) = CylinderD(-a-1/2,x);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=CylinderD
-;;;;;;;
-dawson($0);\DawsonsInt@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=dawson
-;;;;;;;
-;\DedekindModularEta@{\tau};;;;;;not defined
-;;;;;;;
-Dirac($0);\Diracdelta@{x-a};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Dirac
-;\deltaDistribution;;;;;;not defined
-;;;;;;;
-;\DirichletL@{s}{\chi};;;;;;not defined
-;\DirichletCharacter@@{n}{k};;;;;;not defined
-;;;;;;;
-;\DiscriminantDelta@{\tau};;;;;;not defined
-;;;;;;;
-ifactor($0);\NumPrimeDivNu@{n};;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=ifactor
-;\NumPrimesLessPi@{x};;;;;;not defined
-;\DivisorFunctionD[k]@{n};;;;;;not defined
-numelems(divisors($0));\DivisorFunctionD@{n};;Maple needs an extra package. with(numtheory) and since Maplesoft 2016 with(NumberTheory);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29
-;\DivisorSigma{\alpha}@{n};;;;;;not defined
-add(divisors($0));\DivisorSigma{1}@{n};;Maple needs an extra package. with(numtheory) and since Maplesoft 2016 with(NumberTheory);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29
-;\JordanJ{k}@{n};;;;;;not defined
-;\MoebiusMu@{n};;;;;;not defined
-;\LiouvilleLambda@{n};;;;;;not defined
-;\MangoldtLambda@{n};;;;;;not defined
-;;;;;;;
-;\EllIntcel@{k_c}{p}{a}{b};;;;;;not defined
-;\EllIntelone@{x}{k_c};;;;;;not defined
-;\EllInteltwo@{x}{k_c}{a}{b};;;;;;not defined
-;\EllIntelthree@{x}{k_c}{p};;\EllIntRC@@{x}{y} = \EllIntRF@@{x}{y}{y};;;;not defined
-;\EllIntR{-a}@{\Vector{b}}{\Vector{z}};;;;;;not defined
-;\EllIntRF@@{x}{y}{z};;;;;;not defined
-;\EllIntRJ@@{x}{y}{z}{p};;;;;;not defined
-;\EllIntRG@@{x}{y}{z};;;;;;not defined
-;\EllIntRD@@{x}{y}{z};;;;;;not defined
-;\EllIntRC@@{x}{y};;;;;;not defined
-;;;;;;;
-;\EulerSumH@{s};;;;;;not defined
-;\GenEulerSumH@{s}{z};;;;;;not defined
-;\EulerPhi@{x};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;product(1-($0)^k, k = 1 .. infinity);not defined
-GAMMA($0);\EulerGamma@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
-;\EulerTotientPhi[k]@{n};;Maple has no extra function for this macro. But if k = 0, you can use phi(n) function. This funcion needs an extra package. For Maple 2016 use with(NumberTheory): otherwise use with(numtheory):;;;phi($0);http://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/phi%28deprecated%29
-;\EulerianNumber{n}{k};;;;;;not defined
-;;;;;;;
-erf($0);\erf@@{z};;Maple has a special function for imaginary variables called erfi(). The rule is: erfi(x) = -I*erf(I*x);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=erf
-erfc($0);\erfc@@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=erfc
-;\erfw@{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;exp(-($0)^2)*erfc(-I*($0));not defined
-;\inverf@@{x};;;;;;not defined
-;\inverfc@@{x};;;;;;not defined
-erfc($0, $1);\RepInterfc{n}@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=erfc
-;\FishersHh{n}@{z};;;;;;not defined
-;;;;;;;
-;\FibonacciNumber{n};;;;;;not defined
-;;;;;;;
-;\FresnelF@{z};;;;;;not defined
-FresnelC($0);\FresnelCos@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=FresnelC
-FresnelS($0);\FresnelSin@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=FresnelS
-Fresnelf($0);\Fresnelf@{z} ;;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelf
-Fresnelg($0);\Fresnelg@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelg
-;;;;;;;
-GAMMA($0);\EulerGamma@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
-;\incgamma@{a}{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;GAMMA($0)-GAMMA($0, $1);https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
-GAMMA($0, $1);\IncGamma@{a}{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
-lnGAMMA($1);\ln@@{\EulerGamma@{z}};;Equivalent for Re(z) >= 0 (for Re(z) < 0, Maple evaluates only the principal branch, which is defined by the analytic continuation from the positive real axis);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=lnGAMMA
-Psi($0);\digamma@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Psi
-Psi($0, $1);\polygamma{n}@{z};;Maple also allows complex n (and negative integer values);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Psi
-;\BarnesGamma@{z};;;;;;not defined
-;\GammaP@{a}{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;(GAMMA($0)-GAMMA($0, $1))/GAMMA($0);not defined
-;\GammaQ@{a}{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;GAMMA($0, $1)/GAMMA($0);not defined
-;\incgammastar@{a}{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;($1)^(-($0))*(GAMMA($0)-GAMMA($0, $1))/GAMMA($0);not defined
-;\mEulerGamma{m}@{a};;;;;;not defined
-;;;;;;;
-GaussAGM($0, $1);\AGM@{a}{g};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GaussAGM
-;\GaussSum@{n}{\DirichletCharacter};;;;;;not defined
-;;;;;;;
-;\GoodStat@{z};;;;;;not defined
-;;;;;;;
-harmonic($0);\HarmonicNumber{n};;Maple allow imaginary variables as well.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=harmonic
-SphericalY($0, $1, $2, $3);\SphericalHarmonicY{l}{m}@{\theta}{\phi};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=SphericalY
-;\SurfaceHarmonicY{l}{m}@{\theta}{\phi};;;;;;not defined
-;;;;;;;
-Heaviside($0);\HeavisideH@{x};;Heaviside(0) is undefined in Maple (but 0 in DLMF).;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Heaviside
-;;;;;;;
-HeunG($0, $1, $2, $3, $4, $5, $6);\HeunLocal@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z};;Based on the differential equation on DLMF, Maple assumes w'(0) = q/(gamma*a) for the general solution.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunG
-HeunC(alpha, beta, gamma, delta, eta, z);;;DLFM defines the confluent versions as well;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunC
-HeunB(alpha, beta, gamma, delta, z);;;but in a different way then Maple does;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunB
-HeunD(alpha, beta, gamma, delta, z);;;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunD
-HeunT(alpha, beta, gamma, z);;;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunT
-;\HeunFunction{m}{a}{b}@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z};;;;;;not defined
-;;;;;;;
-hypergeom([$0, $1], [$2], $3);\HypergeoF@@@{a}{b}{c}{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
-hypergeom([$2], [$3], $4);\HyperboldpFq{2}{1}@{a,b}{c}{z};;This translation might be wrong, if your parameters are not 2 and 1!;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
-hypergeom([$2], [$3], $4);\HyperpFq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};;Maple extract p and q from the length of the arguments.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
-;\HyperpHq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};;;;;;not defined
-;\HypergeoboldF@@@{a}{b}{c}{z};;;;;hypergeom([$0, $1], [$2], $3)/GAMMA($2);not defined
+Maple;DLMF;Number of Variables;Maple-Comment;Maple-Constraints;Maple-Branch Cuts;Maple-Alternatives;Maple-Link;;;;;;;;;;;;;;;;;;
+sin($0);\sin@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=sin;;;;;;;;;;;;;;;;;;
+cos($0);\cos@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=cos;;;;;;;;;;;;;;;;;;
+tan($0);\tan@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=tan;;;;;;;;;;;;;;;;;;
+sec($0);\sec@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=sec;;;;;;;;;;;;;;;;;;
+csc($0);\csc@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=csc;;;;;;;;;;;;;;;;;;
+cot($0);\cot@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=cot;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+sinh($0);\sinh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=sinh;;;;;;;;;;;;;;;;;;
+cosh($0);\cosh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=cosh;;;;;;;;;;;;;;;;;;
+tanh($0);\tanh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=tanh;;;;;;;;;;;;;;;;;;
+sech($0);\sech@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=sech;;;;;;;;;;;;;;;;;;
+csch($0);\csch@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=csch;;;;;;;;;;;;;;;;;;
+coth($0);\coth@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=coth;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+arcsin($0);\asin@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig;;;;;;;;;;;;;;;;;;
+arccos($0);\acos@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig;;;;;;;;;;;;;;;;;;
+arctan($0);\atan@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig;;;;;;;;;;;;;;;;;;
+arctan($0,$1);\ph@@{$1+($0)*\iunit};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig;;;;;;;;;;;;;;;;;;
+arcsec($0);\asec@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig;;;;;;;;;;;;;;;;;;
+arccsc($0);\acsc@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig;;;;;;;;;;;;;;;;;;
+arccot($0);\acot@@{$0};1;"Maple defines another branch cut than DLMF for the invert cotangent function. You can use an alternative translation to avoid that. With the arctan alternative you have the same branch cuts as DLMF. The 2nd alternative with logarithm can be used, when your z = 0 (mentioned in Equation 25 in ""According to Arbamowitz and Stegun or arccoth needn't be uncouth"" by R.M. Corless, D.J. Jeffrey, S.M. Watt).";;(- I infinity, - I ), ( I, I infinity );;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+arcsinh($0);\asinh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arcsinh;;;;;;;;;;;;;;;;;;
+arccosh($0);\acosh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arccosh;;;;;;;;;;;;;;;;;;
+arctanh($0);\atanh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arctanh;;;;;;;;;;;;;;;;;;
+arcsech($0);\asech@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arcsech;;;;;;;;;;;;;;;;;;
+arccsch($0);\acsch@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arccsch;;;;;;;;;;;;;;;;;;
+arccoth($0);\acoth@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arccoth;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+ln($0);\ln@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ln;;;;;;;;;;;;;;;;;;
+log($0);\log@@{$0};1;Without a given base, ln equals log.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=log;;;;;;;;;;;;;;;;;;
+log[$0]($1);\logb{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=log;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+exp($0);\exp@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=exp;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+LambertW($0);\LambertW@{$0};1;The DLMF defines two branches with extra macros. \LambertWp and \LambertWm. Take a look at http://dlmf.nist.gov/4.13 for further information.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LambertW;;;;;;;;;;;;;;;;;;
+LambertW($0, $1);\LambertW@{$1};2;The DLMF doesn't define other macros for the branches (only \LambertWp and \LambertWm when your first argument is -1 and your second argument is real-valued).;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LambertW;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+Si($0);\SinInt@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Si;;;;;;;;;;;;;;;;;;
+Ssi($0);\sinInt@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Ssi;;;;;;;;;;;;;;;;;;
+Ci($0);\CosInt@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Ci;;;;;;;;;;;;;;;;;;
+Shi($0);\SinhInt@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Shi;;;;;;;;;;;;;;;;;;
+Chi($0);\CoshInt@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Chi;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+Ei($0);\ExpInt@{$0};1;The alternative form is equivalent.;;;\ExpInti@{$0};https://www.maplesoft.com/support/help/maple/view.aspx?path=Ei;;;;;;;;;;;;;;;;;;
+Ei($0, $1);\ExpIntn{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Ei;;;;;;;;;;;;;;;;;;
+Li($0);\LogInt@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Li;;;;;;;;;;;;;;;;;;
+dilog($0);\Dilogarithm@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=dilog;;;;;;;;;;;;;;;;;;
+polylog($0, $1);\Polylogarithm{$0}@{$1};2;The alternative notation phi is an old notation for the same function. Be aware of the different order of the variables.;;;\JonquierePhi@{$1}{$0};https://www.maplesoft.com/support/help/maple/view.aspx?path=polylog;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+gamma($0);\StieltjesConstants{$0};1;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=initialconstants;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+Matrix([[],[]]);\Matrix{A};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Matrix;;;;;;;;;;;;;;;;;;
+Vector([$0]);\Vector{$0};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Vector;;;;;;;;;;;;;;;;;;
+Trace(X);\trace \Matrix{X};;Maple needs an extra package. Load it with the following command: with(LinearAlgebra):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Trace;;;;;;;;;;;;;;;;;;
+Transpose(X);\transpose \Matrix{X};;Maple needs an extra package. Load it with the following command: with(LinearAlgebra):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Transpose;;;;;;;;;;;;;;;;;;
+exp(Trace(X));\exptrace@{\Matrix{X}};;Maple needs an extra package. Load it with the following command: with(LinearAlgebra):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Trace;;;;;;;;;;;;;;;;;;
+Determinant(A);\det A;;Maple needs an extra package. Load it with the following command: with(LinearAlgebra):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Determinant;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+argument($0);\ph@@{$0};1;;;;;http://www.maplesoft.com/support/help/maple/view.aspx?path=argument;;;;;;;;;;;;;;;;;;
+conjugate($0);\conj{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=conjugate;;;;;;;;;;;;;;;;;;
+Re($0);\realpart{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Re;;;;;;;;;;;;;;;;;;
+Im($0);\imagpart{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Im;;;;;;;;;;;;;;;;;;
+sqrt($0);\sqrt{$0};1;You can use the csgn function, which is specialized for imaginary variables.;;;csgn($0);https://www.maplesoft.com/support/help/maple/view.aspx?path=sqrt;;;;;;;;;;;;;;;;;;
+csgn($0);\sign@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=csgn;;;;;;;;;;;;;;;;;;
+signum($0);\sign@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=signum;;;;;;;;;;;;;;;;;;
+surd($1, $0);\sqrt[$1]{$0};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=surd;;;;;;;;;;;;;;;;;;
+binomial($0, $1);\binom{$0}{$1};2;;;;\binomial{$0}{$1};https://www.maplesoft.com/support/help/maple/view.aspx?path=binomial;;;;;;;;;;;;;;;;;;
+multinomial($0, $1);\multinomial{m}{n_1,...,n_k};;Maple needs an extra package. Load it with the following command: with(combinat,multinomial):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=combinat/multinomial;;;;;;;;;;;;;;;;;;
+gcd($0, $1);\pgcd{$0, $1};1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=gcd;;;;;;;;;;;;;;;;;;
+factorial($0);($0)!;1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=factorial;;;;;;;;;;;;;;;;;;
+doublefactorial($0);($0)!!;1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=doublefactorial;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+floor($0);\floor{$0} ;1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=floor;;;;;;;;;;;;;;;;;;
+ceil($0);\ceiling{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ceil;;;;;;;;;;;;;;;;;;
+;\inf;;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\sup;;;;;;not defined;;;;;;;;;;;;;;;;;;
+sum($3, $0 = $1 .. $2);\Sum{$1}{$2}{$3}@{$0};4;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=sum;;;;;;;;;;;;;;;;;;
+product($3, $0 = $1 .. $2);\Prod{n}{k1}{k2}@{f(n)};4;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=product;;;;;;;;;;;;;;;;;;
+;\Wronskian@{w1(z),w2(z)};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Residue;;;;;;not defined;;;;;;;;;;;;;;;;;;
+numelems(A);\card{A};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=numelems;;;;;;;;;;;;;;;;;;
+;\cartprod;;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\divides;;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\liminf;;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\opminus;;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\poly{p}{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+numbcomp($1, $0);\CompositionsC[$1]@{$0};2;Maple needs an extra package. Load it with the following command: with(combinat, numbcomp);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=combinat%2Fnumbcomp;;;;;;;;;;;;;;;;;;
+;\Distribution{f}{g};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Lattice{L};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\fDiff[x];;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\bDiff[x];;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\cDiff[x];;;;;;not defined;;;;;;;;;;;;;;;;;;
+diff($0, $1);\deriv{$0}{$1};2;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=diff;;;;;;;;;;;;;;;;;;
+diff($0, $1);\pderiv{$0}{$1};2;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=diff;;;;;;;;;;;;;;;;;;
+;\diff{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\pdiff{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+int($1, $0);\AntiDer@{$1}{$0};2;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=int;;;;;;;;;;;;;;;;;;
+int($3, $2 = $0 .. $1);\Int{$2}{$3}@{$1}{$0};4;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=int;;;;;;;;;;;;;;;;;;
+;\Schwarzian{z}{\zeta};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Complex;;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Real;;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Rational;;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Integer;;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\NatNumber;;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Continuous@{A};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\SpaceTestFunTempered@{A};;;;;;not defined;;;;;;;;;;;;;;;;;;
+in;$0 \in $1;2;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=in;;;;;;;;;;;;;;;;;;
+union;;;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=union;;;;;;;;;;;;;;;;;;
+intersect;;;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=intersect;;;;;;;;;;;;;;;;;;
+minus;$0 \setminus $1;2;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=minus;;;;;;;;;;;;;;;;;;
+subset;$0 \subseteq $1;2;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=subset;;;;;;;;;;;;;;;;;;
+;\subset;;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\setmod;;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\PartitionsP{n};;Maple needs an extra package. Load it with the following command: with(combinat,partition);;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=combinat/partition;;;;;;;;;;;;;;;;;;
+;\PartitionsP[k]@{n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+permute($0);\Permutations{$0};;Maple needs an extra package. Load it with the following command: with(combinat);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=combinat/permute;;;;;;;;;;;;;;;;;;
+;\PlanePartitionsPP@{n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\RestrictedPartitionsP[k]@{\mathrm{condition}}{n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\RestrictedCompositionsC@{\mathrm{condition}}{n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\BigO@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\littleo@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\sim;;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+AiryAi($0);\AiryAi@{$0};1;Maple also supports the derivatives with AiryAi(n, z) and AiryBi(n, z);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Airy;;;;;;;;;;;;;;;;;;
+AiryBi($0);\AiryBi@{$0};1;Maple also supports the derivatives with AiryAi(n, z) and AiryBi(n, z);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Airy;;;;;;;;;;;;;;;;;;
+;\AiryModulusM@{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;sqrt(AiryAi($0)^2+AiryBi($0)^2);not defined;;;;;;;;;;;;;;;;;;
+;\AiryModulusN@{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;sqrt(AiryAi(1, $0)^2+AiryBi(1, $0)^2);not defined;;;;;;;;;;;;;;;;;;
+;\AiryPhasePhi@{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;arctan(AiryAi(1, $0)/AiryBi(1, $0));not defined;;;;;;;;;;;;;;;;;;
+;\AiryPhaseTheta@{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;arctan(AiryAi($0)/AiryBi($0));not defined;;;;;;;;;;;;;;;;;;
+;\ODEgenAiryA{n}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ODEgenAiryB{n}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\IntgenAiryA{k}@{z}{p};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\IntgenAiryB{k}@{z}{p};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ZeroAiryAi{k};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ZeroAiryAiPrime{k};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ZeroAiryBi{k};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ZeroAiryBiPrime{k};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ComplexZeroAiryBi{k};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ComplexZeroAiryBiPrime{k};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+AngerJ($0, $1);\AngerJ{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=AngerJ;;;;;;;;;;;;;;;;;;
+WeberE($0, $1);\WeberE{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=AngerJ;;;;;;;;;;;;;;;;;;
+;\AngerA{v}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\AppellFi@{\alpha}{\beta}{\beta'}{\gamma}{x}{y};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\AppellFii@{\alpha}{\beta}{\beta'}{\gamma}{\gamma'}{x}{y};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\AppellFiii@{\alpha}{\alpha'}{\beta}{\beta'}{\gamma}{x}{y};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\AppellFiv@{\alpha}{\beta}{\gamma}{\gamma'}{x}{y};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+BesselJ($0, $1);\BesselJ{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel;;;;;;;;;;;;;;;;;;
+BesselY($0, $1);\BesselY{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel;;;;;;;;;;;;;;;;;;
+HankelH1($0, $1);\HankelHi{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel;;;;;;;;;;;;;;;;;;
+HankelH2($0, $1);\HankelHii{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel;;;;;;;;;;;;;;;;;;
+;\BesselModulusM{\nu}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\BesselModulusN{\nu}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\BesselPhaseTheta{\nu}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\BesselPhasePhi{\nu}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ZeroBesselJ{\nu}{m};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ZeroBesselJPrime{\nu}{m};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ZeroBesselY{\nu}{m};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ZeroBesselYPrime{\nu}{m};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\BesselJtilde{\nu}@{x};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;sech((1/2)*Pi*($0))*Re(BesselJ(I*($0), $1));not defined;;;;;;;;;;;;;;;;;;
+;\BesselYtilde{\nu}@{x};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;sech((1/2)*Pi*($0))*Re(BesselY(I*($0), $1));not defined;;;;;;;;;;;;;;;;;;
+BesselI($0, $1);\BesselI{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel;;;;;;;;;;;;;;;;;;
+BesselK($0, $1);\BesselK{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel;;;;;;;;;;;;;;;;;;
+;\ModCylinder{\nu}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\BesselItilde{\nu}@{x};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;Re(BesselI(I*($0), $1));not defined;;;;;;;;;;;;;;;;;;
+;\BesselKtilde{\nu}@{x};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;BesselK(I*($0), $1);not defined;;;;;;;;;;;;;;;;;;
+;\GenBesselFun@{\rho}{\beta}{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MittagLeffler{a}{b}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\SphBesselJ{n}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\SphBesselY{n}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\SphHankelHi{n}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\SphHankelHii{n}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\SphBesselIi{n}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\SphBesselIii{n}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\SphBesselK{n}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\BesselA{\nu}@{\Matrix{T}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\BesselB{\nu}@{\Matrix{T}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\JacksonqBesselI{\nu}@{z}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\JacksonqBesselII{\nu}@{z}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\JacksonqBesselIII{\nu}@{z}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\BickleyKi{\alpha}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+Beta($0, $1);\EulerBeta@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Beta;;;;;;;;;;;;;;;;;;
+;\IncBeta{x}@{a}{b};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;int(t^($1-1)*(1-t)^($2-1), t = 0 .. $0);not defined;;;;;;;;;;;;;;;;;;
+;\IncI{x}@{a}{b};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\mEulerBeta{m}@{a}{b};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\CanonicInt{K}@{\Vector{x}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\CanonicIntU@{\Vector{x}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\CanonicIntE@{\Vector{x}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\CanonicIntH@{\Vector{x}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\CatalanNumber@{n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\CuspCat{K}@{t}{\Vector{x}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\UmbilicCatE@{s}{t}{\Vector{x}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\UmbilicCatH@{s}{t}{\Vector{x}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\DiffCat{K}@{\Vector{x}}{k};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\DiffCatU@{\Vector{x}}{k};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\DiffCatE@{\Vector{x}}{k};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\DiffCatH@{\Vector{x}}{k};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\ChebyshevPsi@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+CoulombF($0, $1, $2);\CoulombF{$0}@{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=CoulombF;;;;;;;;;;;;;;;;;;
+;\Coulombf@{\epsilon}{\ell}{r};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Coulombc@{\epsilon}{\ell}{r};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Coulombs@{\epsilon}{\ell}{r};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Coulombh@{\epsilon}{\ell}{r};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\CoulombG{\ell}@{\eta}{\rho};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\CoulombH{\pm}{\ell}@{\eta}{\rho};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\CoulombC{\ell}@{\eta};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\CoulombTheta{\ell}@{\eta}{\rho};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\CoulombSigma{\ell}@{\eta};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\CoulombM{\ell}@{\eta}{\rho};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Coulombrhotp@{\eta}{\ell};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Coulombrtp@{\epsilon}{\ell};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\Cylinder{\nu}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+CylinderU($0, $1);\ParabolicU@{$0}{$1};2;For a=0, this can be computed with BesselK. But this produces branch cut issues;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=CylinderU;;;;;;;;;;;;;;;;;;
+;\ParabolicUbar@{a}{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+CylinderV($0, $1);\ParabolicV@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=CylinderV;;;;;;;;;;;;;;;;;;
+;\ParabolicW@{a}{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+CylinderD($0, $1);\WhitD{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=CylinderD;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+dawson($0);\DawsonsInt@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=dawson;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\DedekindModularEta@{\tau};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+Dirac($0);\Diracdelta@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Dirac;;;;;;;;;;;;;;;;;;
+;\deltaDistribution;;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\DirichletL@{s}{\chi};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\DirichletCharacter@@{n}{k};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\DiscriminantDelta@{\tau};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+ifactor($0);\NumPrimeDivNu@{$0};1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=ifactor;;;;;;;;;;;;;;;;;;
+;\NumPrimesLessPi@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\DivisorFunctionD[k]@{n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+numelems(divisors($0));\DivisorFunctionD@{n};;Maple needs an extra package. with(numtheory) and since Maplesoft 2016 with(NumberTheory);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29;;;;;;;;;;;;;;;;;;
+;\DivisorSigma{\alpha}@{n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+add(divisors($0));\DivisorSigma{1}@{n};;Maple needs an extra package. with(numtheory) and since Maplesoft 2016 with(NumberTheory);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29;;;;;;;;;;;;;;;;;;
+;\JordanJ{k}@{n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MoebiusMu@{n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\LiouvilleLambda@{n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MangoldtLambda@{n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\EllIntcel@{k_c}{p}{a}{b};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\EllIntelone@{x}{k_c};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\EllInteltwo@{x}{k_c}{a}{b};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\EllIntelthree@{x}{k_c}{p};;\EllIntRC@@{x}{y} = \EllIntRF@@{x}{y}{y};;;;not defined;;;;;;;;;;;;;;;;;;
+;\EllIntR{-a}@{\Vector{b}}{\Vector{z}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\EllIntRF@@{x}{y}{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\EllIntRJ@@{x}{y}{z}{p};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\EllIntRG@@{x}{y}{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\EllIntRD@@{x}{y}{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\EllIntRC@@{x}{y};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\EulerSumH@{s};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\GenEulerSumH@{s}{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\EulerPhi@{x};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;product(1-($0)^k, k = 1 .. infinity);not defined;;;;;;;;;;;;;;;;;;
+;\EulerTotientPhi[k]@{n};;Maple has no extra function for this macro. But if k = 0, you can use phi(n) function. This funcion needs an extra package. For Maple 2016 use with(NumberTheory): otherwise use with(numtheory):;;;phi($0);http://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/phi%28deprecated%29;;;;;;;;;;;;;;;;;;
+;\EulerianNumber{n}{k};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+erf($0);\erf@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=erf;;;;;;;;;;;;;;;;;;
+erfi($0);-\iunit \erf@@{\iunit $0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=erfi;;;;;;;;;;;;;;;;;;
+erfc($0);\erfc@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=erfc;;;;;;;;;;;;;;;;;;
+;\erfw@{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;exp(-($0)^2)*erfc(-I*($0));not defined;;;;;;;;;;;;;;;;;;
+;\inverf@@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\inverfc@@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+erfc($0, $1);\RepInterfc{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=erfc;;;;;;;;;;;;;;;;;;
+;\FishersHh{n}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\FibonacciNumber{n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\FresnelF@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+FresnelC($0);\FresnelCos@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=FresnelC;;;;;;;;;;;;;;;;;;
+FresnelS($0);\FresnelSin@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=FresnelS;;;;;;;;;;;;;;;;;;
+Fresnelf($0);\Fresnelf@{$0} ;1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelf;;;;;;;;;;;;;;;;;;
+Fresnelg($0);\Fresnelg@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelg;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+GAMMA($0);\EulerGamma@{z};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA;;;;;;;;;;;;;;;;;;
+;\incgamma@{a}{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;GAMMA($0)-GAMMA($0, $1);https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA;;;;;;;;;;;;;;;;;;
+GAMMA($0, $1);\IncGamma@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA;;;;;;;;;;;;;;;;;;
+lnGAMMA($1);\ln@@{\EulerGamma@{$0}};1;Equivalent for Re(z) >= 0 (for Re(z) < 0, Maple evaluates only the principal branch, which is defined by the analytic continuation from the positive real axis);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=lnGAMMA;;;;;;;;;;;;;;;;;;
+Psi($0);\digamma@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Psi;;;;;;;;;;;;;;;;;;
+Psi($0, $1);\polygamma{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Psi;;;;;;;;;;;;;;;;;;
+;\BarnesGamma@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\GammaP@{a}{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;(GAMMA($0)-GAMMA($0, $1))/GAMMA($0);not defined;;;;;;;;;;;;;;;;;;
+;\GammaQ@{a}{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;GAMMA($0, $1)/GAMMA($0);not defined;;;;;;;;;;;;;;;;;;
+;\incgammastar@{a}{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;;($1)^(-($0))*(GAMMA($0)-GAMMA($0, $1))/GAMMA($0);not defined;;;;;;;;;;;;;;;;;;
+;\mEulerGamma{m}@{a};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+GaussAGM($0, $1);\AGM@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GaussAGM;;;;;;;;;;;;;;;;;;
+;\GaussSum@{n}{\DirichletCharacter};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\GoodStat@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+harmonic($0);\HarmonicNumber{n};1;DLMF assumes nonnegative integers.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=harmonic;;;;;;;;;;;;;;;;;;
+SphericalY($0, $1, $2, $3);\SphericalHarmonicY{$0}{$1}@{$2}{$3};4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=SphericalY;;;;;;;;;;;;;;;;;;
+;\SurfaceHarmonicY{l}{m}@{\theta}{\phi};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+Heaviside($0);\HeavisideH@{$0};1;Heaviside(0) is defined to be 0 in DLMF.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Heaviside;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+HeunG($0, $1, $2, $3, $4, $5, $6);\HeunLocal@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z};;Based on the differential equation on DLMF, Maple assumes w'(0) = q/(gamma*a) for the general solution.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunG;;;;;;;;;;;;;;;;;;
+HeunC(alpha, beta, gamma, delta, eta, z);;;DLFM defines the confluent versions as well;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunC;;;;;;;;;;;;;;;;;;
+HeunB(alpha, beta, gamma, delta, z);;;but in a different way then Maple does;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunB;;;;;;;;;;;;;;;;;;
+HeunD(alpha, beta, gamma, delta, z);;;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunD;;;;;;;;;;;;;;;;;;
+HeunT(alpha, beta, gamma, z);;;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunT;;;;;;;;;;;;;;;;;;
+;\HeunFunction{m}{a}{b}@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+hypergeom([$0, $1], [$2], $3);\HypergeoF@@@{$0}{$1}{$2}{$3};4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom;;;;;;;;;;;;;;;;;;
+hypergeom([$2], [$3], $4);\HyperboldpFq{2}{1}@{a,b}{c}{z};;2 Problems. 1) the first two parameters depending on the length of first and second argument. 2) Is this DLMF macro defined for other parameters?;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom;;;;;;;;;;;;;;;;;;
+hypergeom([$2], [$3], $4);\HyperpFq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};;Maple extract p and q from the length of the arguments.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom;;;;;;;;;;;;;;;;;;
+;\HyperpHq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\HypergeoboldF@@@{a}{b}{c}{z};;;;;hypergeom([$0, $1], [$2], $3)/GAMMA($2);not defined;;;;;;;;;;;;;;;;;;
 ;"\HyperboldpFq{p}{q}@@
-{\Vector{a}}{\Vector{b}}{z}";;Vector problem;;;hypergeom([a_1 .. a_p], [b_1 .. b_q], z)/(GAMMA(b_1)*..*GAMMA(b_q));not defined
-KummerM(a,b,z);\KummerM@{a}{b}{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KummerK
-KummerU(a,b,z);\KummerU@{a}{b}{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KummerU
-;\KummerboldM@{a}{b}{z};;;;;KummerM($0, $1, $2)/GAMMA($1);not defined
-;\HyperPsi@{a}{b}{\Matrix{T}};;Matrix problem;;;;not defined
-;\LauricellaFD@{a}{b_1,...,b_n}{c}{z_1,...,z_n};;"see also ""Multivariate hypergeometric function"" under ""Elliptic Integrals""";;;;not defined
-;\RiemannP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};;;;;;not defined
-;;;;;;;
-;\idem@{\chi_1}{\chi_1,...,\chi_n};;;;;;not defined
-;;;;;;;
-;\Jacobiphi{\alpha}{\beta}{\lambda}@{t};;;;;hypergeom([(($0)+($1)+1-I*($2))/2, (($0)+($1)+1+I*($2))], [($0)+1], -sinh($3)^2);not defined
-1/JacobiQP;\AbstractJacobi{p}{q};;Should not translated maybe;;;;not defined
-JacobiAM($0, $1);\Jacobiam@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-JacobiSN($0, $1);\Jacobisn@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSN
-JacobiCN($0, $1);\Jacobicn@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCN
-JacobiDN($0, $1);\Jacobidn@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiDN
-JacobiSD($0, $1);\Jacobisd@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSD
-JacobiCD($0, $1);\Jacobicd@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCD
-JacobiSC($0, $1);\Jacobisc@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSC
-JacobiNS($0, $1);\Jacobins@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-JacobiNC($0, $1);\Jacobinc@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-JacobiND($0, $1);\Jacobind@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-JacobiDS($0, $1);\Jacobids@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-JacobiDC($0, $1);\Jacobidc@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-JacobiCS($0, $1);\Jacobics@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-InverseJacobiSN($0, $1);\arcJacobisn@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiCN($0, $1);\arcJacobicn@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiDN($0, $1);\arcJacobidn@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiSD($0, $1);\arcJacobisd@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiCD($0, $1);\arcJacobicd@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiSC($0, $1);\arcJacobisc@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiNS($0, $1);\arcJacobins@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiNC($0, $1);\arcJacobinc@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiND($0, $1);\arcJacobind@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiDS($0, $1);\arcJacobids@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiDC($0, $1);\arcJacobidc@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiCS($0, $1);\arcJacobics@@{z}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-;\JacobiEpsilon@{x}{k};;;;;;not defined
-JacobiTheta$0($1, $2);\JacobiTheta{j}@{z}{q};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
-;\JacobiThetaTau{j}@{z}{\tau};;The alternative translation is only allowed for: Im($2) > 0 and 0 < |exp(I*Pi*$2)| < 1;;;JacobiTheta$0($1, exp(I*Pi*($2)));https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
-;\JacobiThetaCombined{n}{m}@{z}{q};;;;;;not defined
-;\AThetaFunction@{x};;;;;1+2*(sum(($0)^(m^2), m = 1 .. infinity));not defined
-JacobiZeta($0, $1);\JacobiZeta@{x}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiZeta
-;\JacobiSymbol{n}{P};;;;;;not defined
-;;;;;;;
-KelvinBer($0, $1);\Kelvinber{\nu}@@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBer
-KelvinBei($0, $1);\Kelvinbei{\nu}@@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBei
-KelvinKer($0, $1);\Kelvinker{\nu}@@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKer
-KelvinKei($0, $1);\Kelvinkei{\nu}@@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKei
-;;;;;;;
-;\LameEc{m}{\nu}@{z}{k^2};;;;;;not defined
-;\LameEs{m}{\nu}@{z}{k^2};;;;;;not defined
-;\Lamea{n}{\nu}@{k^2};;;;;;not defined
-;\Lameb{n}{\nu}@{k^2};;;;;;not defined
-;;;;;;;
-;\FerrersP[\mu]{\nu}@{z};;;;;;not defined
-;\FerrersQ[\mu]{\nu}@{z};;;;;;not defined
-LegendreP($1, $0, $2);\LegendreP[\mu]{\nu}@{z};;Different order in parameters, 1 < z;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-LegendreQ($1, $0, $2);\LegendreQ[\mu]{\nu}@{z};;Different order in parameters, 1 < z;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-;\LegendreBlackQ[\mu]{\nu}@{z};;;;;;not defined
-;\FerrersHatQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;;;;;not defined
-;;;;;;;
-EllipticF(sin($0), $1);\EllIntF@{\phi}{k};;Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticF
-EllipticE(sin($0), $1);\EllIntE@{\phi}{k};;Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
-EllipticPi(sin($0), $1, $2);\EllIntPi@{\phi}{\alpha^2}{k};;Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
-;\EllIntD@{\phi}{k};;There is no direct translation. But you could use the alternative translation. Be aware that Maple's first argument is the sine of the amplitude and not the amplitude itself. DLMF assumes the amplitude!;;;(EllipticF(sin($0), $1) - EllipticE(sin($0), $1))/($1)^2;not defined
-EllipticK($0);\CompEllIntK@{k};;Maple assumes the sine of the amplitude! So be aware that after the translation is K(k) = F(1,k).;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticK
-EllipticE($0);\CompEllIntE@{k};;Maple assumes the sine of the amplitude! So be aware that after the translation is E(k) = E(1,k).;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
-EllipticPi($0, $1);\CompEllIntPi@{\alpha^2}{k};;Maple assumes the sine of the amplitude! So be aware that after the translation is Pi(alpha, k) = Pi(1, alpha, k).;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
-;\CompEllIntD@{k};;There is no direct translation. But you could use the alternative translation. Since Maple assumes the sine of the amplitude, D(k) = D(1,k) holds after the translation.;;;(EllipticK($0) - EllipticE($0))/($0)^2;not defined
-EllipticCK($0);\CompEllIntCK@{k};;You should notice, that Maple assumes the sine of the amplitude, while DLMF is defined with the amplitude itself.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCK
-EllipticCE($0);\CompEllIntCE@{k};;You should notice, that Maple assumes the sine of the amplitude, while DLMF is defined with the amplitude itself.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCE
-;;;;;;;
-LerchPhi($0, $1, $2);\LerchPhi@{z}{s}{a};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LerchPhi
-;;;;;;;
-LommelS1($0, $1, $2);\Lommels{\mu}{\nu}@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LommelS1
-LommelS2($0, $1, $2);\LommelS{\mu}{\nu}@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LommelS2
-;;;;;;;
-MathieuA($0, $1);\MathieuEigenvaluea{n}@@{q};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuA
-MathieuB($0, $1);\MathieuEigenvalueb{n}@@{q};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuB
-;\MathieuEigenvaluelambda{m}@@{q};;;;;;not defined
-MathieuCE($0, $2, $1);\Mathieuce{n}@@{z}{q};;"Maple normalizes values if n=0. For n=0 use the alternative translation!
-";;;MathieuCE(0, $2, $1)/sqrt(2);https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuCE
-MathieuSE($0, $2, $1);\Mathieuse{n}@@{z}{q};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuSE
-;\Mathieume{n}@@{z}{q};;;;;;
-;\MathieuCe{\nu}@@{z}{q};;;;;;not defined
-;\MathieuSe{\nu}@@{z}{q};;;;;;not defined
-;\MathieuMe{\nu}@@{z}{q};;;;;;not defined
-;\MathieuFe{n}@@{z}{q};;;;;;not defined
-;\MathieuGe{n}@@{z}{q};;;;;;not defined
-;\MathieuM{j}{\nu}@@{z}{h};;;;;;not defined
-;\MathieuIe{n}@@{z}{h};;;;;;not defined
-;\MathieuIo{n}@@{z}{h};;;;;;not defined
-;\MathieuKe{n}@@{z}{h};;;;;;not defined
-;\MathieuKo{n}@@{z}{h};;;;;;not defined
-;\MathieuMc{j}{n}@@{z}{h};;;;;;not defined
-;\MathieuMs{j}{n}@@{z}{h};;;;;;not defined
-;\Mathieufe{n}@@{z}{q};;;;;;not defined
-;\Mathieuge{n}@@{z}{q};;;;;;not defined
-;\MathieuD{j}@{\nu}{\mu}{z};;;;;;not defined
-;\MathieuDs{j}@{n}{m}{z};;;;;;not defined
-;\MathieuDc{j}@{n}{m}{z};;;;;;not defined
-;\MathieuDsc{j}@{n}{m}{z};;;;;;not defined
-;\MathieuFc{m}@{z}{h};;;;;;not defined
-;\MathieuFs{m}@{z}{h};;;;;;not defined
-;\MathieuGc{m}@{z}{h};;;;;;not defined
-;\MathieuGs{m}@{z}{h};;;;;;not defined
-;;;;;;;
+{\Vector{a}}{\Vector{b}}{z}";;Vector problem;;;hypergeom([a_1 .. a_p], [b_1 .. b_q], z)/(GAMMA(b_1)*..*GAMMA(b_q));not defined;;;;;;;;;;;;;;;;;;
+KummerM(a,b,z);\KummerM@{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KummerK;;;;;;;;;;;;;;;;;;
+KummerU(a,b,z);\KummerU@{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KummerU;;;;;;;;;;;;;;;;;;
+;\KummerboldM@{a}{b}{z};;;;;KummerM($0, $1, $2)/GAMMA($1);not defined;;;;;;;;;;;;;;;;;;
+;\HyperPsi@{a}{b}{\Matrix{T}};;Matrix problem;;;;not defined;;;;;;;;;;;;;;;;;;
+;\LauricellaFD@{a}{b_1,...,b_n}{c}{z_1,...,z_n};;"see also ""Multivariate hypergeometric function"" under ""Elliptic Integrals""";;;;not defined;;;;;;;;;;;;;;;;;;
+;\RiemannP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\idem@{\chi_1}{\chi_1,...,\chi_n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\Jacobiphi{\alpha}{\beta}{\lambda}@{t};;;;;hypergeom([(($0)+($1)+1-I*($2))/2, (($0)+($1)+1+I*($2))], [($0)+1], -sinh($3)^2);not defined;;;;;;;;;;;;;;;;;;
+1/JacobiQP;\AbstractJacobi{p}{q};;Should not translated maybe;;;;not defined;;;;;;;;;;;;;;;;;;
+JacobiAM($0, $1);\Jacobiam@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM;;;;;;;;;;;;;;;;;;
+JacobiSN($0, $1);\Jacobisn@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSN;;;;;;;;;;;;;;;;;;
+JacobiCN($0, $1);\Jacobicn@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCN;;;;;;;;;;;;;;;;;;
+JacobiDN($0, $1);\Jacobidn@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiDN;;;;;;;;;;;;;;;;;;
+JacobiSD($0, $1);\Jacobisd@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSD;;;;;;;;;;;;;;;;;;
+JacobiCD($0, $1);\Jacobicd@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCD;;;;;;;;;;;;;;;;;;
+JacobiSC($0, $1);\Jacobisc@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSC;;;;;;;;;;;;;;;;;;
+JacobiNS($0, $1);\Jacobins@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM;;;;;;;;;;;;;;;;;;
+JacobiNC($0, $1);\Jacobinc@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM;;;;;;;;;;;;;;;;;;
+JacobiND($0, $1);\Jacobind@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM;;;;;;;;;;;;;;;;;;
+JacobiDS($0, $1);\Jacobids@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM;;;;;;;;;;;;;;;;;;
+JacobiDC($0, $1);\Jacobidc@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM;;;;;;;;;;;;;;;;;;
+JacobiCS($0, $1);\Jacobics@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM;;;;;;;;;;;;;;;;;;
+InverseJacobiSN($0, $1);\arcJacobisn@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM;;;;;;;;;;;;;;;;;;
+InverseJacobiCN($0, $1);\arcJacobicn@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM;;;;;;;;;;;;;;;;;;
+InverseJacobiDN($0, $1);\arcJacobidn@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM;;;;;;;;;;;;;;;;;;
+InverseJacobiSD($0, $1);\arcJacobisd@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM;;;;;;;;;;;;;;;;;;
+InverseJacobiCD($0, $1);\arcJacobicd@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM;;;;;;;;;;;;;;;;;;
+InverseJacobiSC($0, $1);\arcJacobisc@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM;;;;;;;;;;;;;;;;;;
+InverseJacobiNS($0, $1);\arcJacobins@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM;;;;;;;;;;;;;;;;;;
+InverseJacobiNC($0, $1);\arcJacobinc@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM;;;;;;;;;;;;;;;;;;
+InverseJacobiND($0, $1);\arcJacobind@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM;;;;;;;;;;;;;;;;;;
+InverseJacobiDS($0, $1);\arcJacobids@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM;;;;;;;;;;;;;;;;;;
+InverseJacobiDC($0, $1);\arcJacobidc@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM;;;;;;;;;;;;;;;;;;
+InverseJacobiCS($0, $1);\arcJacobics@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM;;;;;;;;;;;;;;;;;;
+;\JacobiEpsilon@{x}{k};;;;;;not defined;;;;;;;;;;;;;;;;;;
+JacobiTheta1($1, $2);\JacobiTheta{1}@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta;;;;;;;;;;;;;;;;;;
+JacobiTheta2($1, $2);\JacobiTheta{2}@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta;;;;;;;;;;;;;;;;;;
+JacobiTheta3($1, $2);\JacobiTheta{3}@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta;;;;;;;;;;;;;;;;;;
+JacobiTheta4($1, $2);\JacobiTheta{4}@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta;;;;;;;;;;;;;;;;;;
+;\JacobiThetaTau{j}@{z}{\tau};;The alternative translation is only allowed for: Im($2) > 0 and 0 < |exp(I*Pi*$2)| < 1;;;JacobiTheta$0($1, exp(I*Pi*($2)));https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta;;;;;;;;;;;;;;;;;;
+;\JacobiThetaCombined{n}{m}@{z}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\AThetaFunction@{x};;;;;1+2*(sum(($0)^(m^2), m = 1 .. infinity));not defined;;;;;;;;;;;;;;;;;;
+JacobiZeta($0, $1);\JacobiZeta@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiZeta;;;;;;;;;;;;;;;;;;
+;\JacobiSymbol{n}{P};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+KelvinBer($0, $1);\Kelvinber{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBer;;;;;;;;;;;;;;;;;;
+KelvinBei($0, $1);\Kelvinbei{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBei;;;;;;;;;;;;;;;;;;
+KelvinKer($0, $1);\Kelvinker{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKer;;;;;;;;;;;;;;;;;;
+KelvinKei($0, $1);\Kelvinkei{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKei;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\LameEc{m}{\nu}@{z}{k^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\LameEs{m}{\nu}@{z}{k^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Lamea{n}{\nu}@{k^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Lameb{n}{\nu}@{k^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\FerrersP[\mu]{\nu}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\FerrersQ[\mu]{\nu}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+LegendreP($1, $0, $2);\LegendreP[$1]{$0}@{$2};3;Different order in parameters, 1 < z;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP;;;;;;;;;;;;;;;;;;
+LegendreQ($1, $0, $2);\LegendreQ[$1]{$0}@{$2};3;Different order in parameters, 1 < z;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ;;;;;;;;;;;;;;;;;;
+;\LegendreBlackQ[\mu]{\nu}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\FerrersHatQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+EllipticF(sin($0), $1);\EllIntF@{\asin@{$0}}{$1};2;Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticF;;;;;;;;;;;;;;;;;;
+EllipticE(sin($0), $1);\EllIntE@{\asin@{$0}}{$1};2;Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE;;;;;;;;;;;;;;;;;;
+EllipticPi(sin($0), $1, $2);\EllIntPi@{\asin@{$0}}{$1}{$2};3;Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi;;;;;;;;;;;;;;;;;;
+;\EllIntD@{\phi}{k};;There is no direct translation. But you could use the alternative translation. Be aware that Maple's first argument is the sine of the amplitude and not the amplitude itself. DLMF assumes the amplitude!;;;(EllipticF(sin($0), $1) - EllipticE(sin($0), $1))/($1)^2;not defined;;;;;;;;;;;;;;;;;;
+EllipticK($0);\CompEllIntK@{$0};1;Maple assumes the sine of the amplitude! So be aware that after the translation is K(k) = F(1,k).;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticK;;;;;;;;;;;;;;;;;;
+EllipticE($0);\CompEllIntE@{$0};1;Maple assumes the sine of the amplitude! So be aware that after the translation is E(k) = E(1,k).;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE;;;;;;;;;;;;;;;;;;
+EllipticPi($0, $1);\CompEllIntPi@{$0}{$1};2;Maple assumes the sine of the amplitude! So be aware that after the translation is Pi(alpha, k) = Pi(1, alpha, k).;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi;;;;;;;;;;;;;;;;;;
+;\CompEllIntD@{k};;There is no direct translation. But you could use the alternative translation. Since Maple assumes the sine of the amplitude, D(k) = D(1,k) holds after the translation.;;;(EllipticK($0) - EllipticE($0))/($0)^2;not defined;;;;;;;;;;;;;;;;;;
+EllipticCK($0);\CompEllIntCK@{$0};1;You should notice, that Maple assumes the sine of the amplitude, while DLMF is defined with the amplitude itself.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCK;;;;;;;;;;;;;;;;;;
+EllipticCE($0);\CompEllIntCE@{$0};1;You should notice, that Maple assumes the sine of the amplitude, while DLMF is defined with the amplitude itself.;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCE;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+LerchPhi($0, $1, $2);\LerchPhi@{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LerchPhi;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+LommelS1($0, $1, $2);\Lommels{$0}{$1}@{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LommelS1;;;;;;;;;;;;;;;;;;
+LommelS2($0, $1, $2);\LommelS{$0}{$1}@{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LommelS2;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+MathieuA($0, $1);\MathieuEigenvaluea{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuA;;;;;;;;;;;;;;;;;;
+MathieuB($0, $1);\MathieuEigenvalueb{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuB;;;;;;;;;;;;;;;;;;
+;\MathieuEigenvaluelambda{m}@@{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+MathieuCE($0, $2, $1);\Mathieuce{$0}@@{$2}{$1};3;"Maple normalizes values if n=0. For n=0 use the alternative translation!
+";;;MathieuCE(0, $2, $1)/sqrt(2);https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuCE;;;;;;;;;;;;;;;;;;
+MathieuSE($0, $2, $1);\Mathieuse{$0}@@{$2}{$1};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuSE;;;;;;;;;;;;;;;;;;
+;\Mathieume{n}@@{z}{q};;;;;;;;;;;;;;;;;;;;;;;;
+;\MathieuCe{\nu}@@{z}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuSe{\nu}@@{z}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuMe{\nu}@@{z}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuFe{n}@@{z}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuGe{n}@@{z}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuM{j}{\nu}@@{z}{h};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuIe{n}@@{z}{h};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuIo{n}@@{z}{h};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuKe{n}@@{z}{h};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuKo{n}@@{z}{h};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuMc{j}{n}@@{z}{h};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuMs{j}{n}@@{z}{h};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Mathieufe{n}@@{z}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Mathieuge{n}@@{z}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuD{j}@{\nu}{\mu}{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuDs{j}@{n}{m}{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuDc{j}@{n}{m}{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuDsc{j}@{n}{m}{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuFc{m}@{z}{h};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuFs{m}@{z}{h};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuGc{m}@{z}{h};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MathieuGs{m}@{z}{h};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
 MeijerG([[a_1, .., a_n],[a_n+1, .., a_p]], [[b_1, .., b_m],[b_m+1, .., b_q]],z);\MeijerG{m}{n}{p}{q}@@@{z}{\Vector{a}}{\Vector{b}};;"MeijerG( [[],[]], [[],[]], z )
-In this notation, m,n,p,q are not needed for Maple (Maple -> LaTeX translation could be difficult)";;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MeijerG
-;;;;;;;
-;\Mills@{x};;Maybe with(Statistics): MillsRatio(X,t);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Statistics/MillsRatio
-;;;;;;;
-;\ModularLambda@{\tau};;;;;;not defined
-;\ModularJ@{\tau};;;;;;not defined
-;\DedekindModularEta@{\tau};;;;;;not defined
-;;;;;;;
-;\Pade{p}{q}{f};;;;;;not defined
-;;;;;;;
-;\RamanujanSum{k}@{n};;;;;;not defined
-;\RamanujanTau@{n};;;;;;not defined
-;;;;;;;
-;\RayleighFun{n}@{\nu};;;;;;not defined
-;;;;;;;
-RiemannTheta([z_1, .., z_g], Omega);\RiemannTheta@{\Vector{z}}{\Matrix{\Omega}};;Vector and Matrix;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=RiemannTheta
-;\RiemannThetaChar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}};;;;;;not defined
-;\RiemannThetaHat@{\Vector{z}}{\Matrix{\Omega}};;;;;;not defined
-;\RiemannXi@{s};;You could use the alternative translation!;;;($0)(($0)-1)GAMMA(($0)/2) Pi^(-($0)/2) Zeta(($0))/2;not defined
-Zeta(s);\RiemannZeta@{s};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
-;;;;;;;
-;\ScorerGi@{z};;You could use the alternative translation. Since the given variable is used for limits of an Integral, a complex variable could produces trouble!;;;AiryBi($0)*(int(AiryAi(t), t = ($0) .. infinity))+AiryAi($0)*(int(AiryBi(t), t = 0 .. ($0)));not defined
-;\ScorerHi@{z};;You could use the alternative translation. Since the given variable is used for limits of an Integral, a complex variable could produces trouble!;;;AiryBi($0)*(int(AiryAi(t), t = -infinity .. ($0)))-AiryAi($0)*(int(AiryBi(t), t = -infinity .. ($0)));not defined
-;;;;;;;
-;\SpheroidalEigenvalueLambda{m}{n}@{\gamma^2};;;;;;not defined
-;\SpheroidalOnCutPs{m}{n}@{x}{\gamma^2};;;;;;not defined
-;\SpheroidalOnCutQs{m}{n}@{x}{\gamma^2};;;;;;not defined
-;\SpheroidalPs{m}{n}@{z}{\gamma^2};;;;;;not defined
-;\SpheroidalQs{m}{n}@{z}{\gamma^2};;;;;;not defined
-;\SpheroidalRadialS{m}{j}{n}@{z}{\gamma};;;;;;not defined
-;;;;;;;
-Stirling1($0, $1);\StirlingS@{n}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Stirling1
-Stirling2($0, $1);\StirlingSS@{n}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Stirling2
-;;;;;;;
-StruveH($0, $1);\StruveH{\nu}@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=StruveH
-;\StruveK{\nu}@{z};;;;;;not defined
-StruveL($0, $1);\StruveL{\nu}@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=StruveL
-;\StruveM{\nu}@{z};;;;;;not defined
-;;;;;;;
-legendre($0, $1);\LegendreSymbol{n}{p};;This funcion needs an extra package. For Maple 2016 or older use with(numtheory), otherwise use with(NumberTheory);;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory%2Flegendre%28deprecated%29
-KroneckerDelta[$0, $1];\Kronecker{j}{k};;This funcion needs an extra package. with(Physics);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/KroneckerDelta
-2-KroneckerDelta[$0, 0];\NeumannFactor{n};;This funcion needs an extra package. with(Physics);;;;not defined
-LeviCivita[$0, $1, $3];\LeviCivita{j}{k}{l};;This funcion needs an extra package: with(Physics). The number of variables is not defined in Maple. LeviCivita[j,k,l,...];;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/LeviCivita
-;\RiemannP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};;;;;;not defined
-pochhammer($0, $1);\pochhammer{a}{n};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer
-;\threej@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3};;;;;;not defined
-;\sixj@@{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l_{3}};;;;;;not defined
-;\ninej@@{j_{11}}{j_{12}}{j_{13}}{j_{21}}{j_{22}}{j_{23}}{j_{31}}{j_{32}}{j_{33}};;;;;;not defined
-;\wigner{j_1}{m_1}{j_2}{m_2}{j_3}{-m_3};;;;;;not defined
-;;;;;;;
-;\terminant{p}@{z};;;;;;not defined
-;\rescaledTerminant{p}@{z};;;;;(exp($1)/(2*Pi))*GAMMA($0)*GAMMA(1-$0,$1);not defined
-;;;;;;;
-fourier(f, t, -x)/sqrt(2*Pi);\FourierTrans@@{f}{s};;with(inttrans): f is a function with f(t);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/fourier
-laplace(f, t, s);\LaplaceTrans@{f}{s};;with(inttrans): f is a function with f(t);;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/laplace
-mellin(f, t, s);\MellinTrans@{f}{s};;with(inttrans): f is a function with f(t);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/mellin
-hilbert(f, t, s);\HilbertTrans@{f}{s};;with(inttrans): f is a function with f(t);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/hilbert
-;\StieltjesTrans@{f}{s};;;;;;not defined
-;;;;;;;
-;\VariationalOp[a,b]@{f};;;;;;not defined
-;;;;;;;
-Gradiant(f);\gradient f;;with(VectorCalculus):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Gradient
-Divergence(F);\divergence F;;with(VectorCalculus):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Divergence
-Curl(F);\curl F;;with(VectorCalculus):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Curl
-;;;;;;;
-;\VoigtU@{x}{t};;;;;;not defined
-;\VoigtV@{x}{t};;;;;;not defined
-;\LinBrF@{a}{u};;;;;;not defined
-;;;;;;;
-;\Waringg@{k};;;;;;not defined
-;\WaringG@{k};;;;;;not defined
-;\NumSquaresR{k}@{n};;;;;;not defined
-;;;;;;;
-WeierstrassP($0, $1, $2);\WeierPInv@@{z}{g_2}{g_3};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassP
-;\WeierPLat@@{z}{\Lattice{L}};;;;;;not defined
-WeierstrassZeta($0, $1, $2);\WeierzetaInv@@{z}{g_2}{g_3};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassZeta
-;\WeierzetaLat@@{z}{\Lattice{L}};;;;;;not defined
-WeierstrassSigma($0, $1, $2);\WeiersigmaInv@@{z}{g_2}{g_3};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassSigma
-;\WeiersigmaLat@@{z}{\Lattice{L}};;;;;;not defined
-;;;;;;;
-WhittakerM($0, $1, $2);\WhitM{\kappa}{\mu}@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerM
-WhittakerW($0, $1, $2);\WhitW{\kappa}{\mu}@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerW
-;;;;;;;
-Zeta($0);\RiemannZeta@{s};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
-Zeta(0, $0, $1);\HurwitzZeta@{s}{a};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
-WeierstrassZeta($0, $1, $2);\WeierzetaInv@@{z}{g_2}{g_3};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassZeta
-;\WeierzetaLat@@{z}{\Lattice{L}};;;;;;not defined
-JacobiZeta($0, $1);\JacobiZeta@{x}{k};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiZeta
-;\PeriodicZeta@{x}{s};;;;;;not defined
-;;;;;;;
-;\AlSalamChiharaQ{n}@{x}{a}{b}{q};;;;;;not defined
-;\AlSalamChihara{n}@@{x}{a}{b}{q};;;;;;not defined
-;\qinvAlSalamChihara{n}@{x}{a}{b}{q^{-1}};;;;;;not defined
-;\AlSalamCarlitzI{a}{n}@{x}{q};;;;;;not defined
-;\AlSalamCarlitzII{a}{n}@{x}{q};;;;;;not defined
-;\AlSalamIsmail{n}@{x}{s}{q};;;;;;not defined
-;;;;;;;
-;\AskeyWilson{n}@{x}{a}{b}{c}{d}{q};;;;;;not defined
-;\AskeyWilsonp{n}@{x}{a}{b}{c}{d}{q};;;;;;not defined
-;;;;;;;
-bernoulli(n, x);\BernoulliB{n}@{x};;"Maple provides an extra function for x=0. You can call bernoulli(n).
-";;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=bernoulli
-;\GenBernoulliB{\ell}{n}@{x};;;;;;not defined
-;\PeriodicBernoulliB{n}@{x};;;;;;not defined
-;\qBernoulli{n}@{x}{q};;;;;;not defined
-;;;;;;;
-BellB($0, 1);\BellNumber@{n};;bell(n) is an alternative translation. But it is necessary to import the extra package with(combinat, bell) if you planning to use the shorter version.;;;bell($0);https://www.maplesoft.com/support/help/maple/view.aspx?path=BellB
-;;;;;;;
-;\BesselPoly{n}@{x}{a};;;;;;not defined
-;\BesselPolyy{n}@{x}{a};;;;;;not defined
-;\BesselPolyIIparam{n}@{x}{a}{b};;;;;;not defined
-;\BesselPolyTheta{n}@{x}{a}{b};;;;;;not defined
-;;;;;;;
-;\Charlier{n}@{x}{a};;;;;;not defined
-;\CharlierC{n}@{x}{a};;;;;;not defined
-;;;;;;;
-ChebyshevT($0, $1);\ChebyT{n}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevT
-ChebyshevU($0, $1);\ChebyU{n}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevU
-;\ChebyV{n}@{x};;;;;;not defined
-;\ChebyW{n}@{x};;;;;;not defined
-;\ChebyTs{n}@{x};;;;;;not defined
-;\ChebyUs{n}@{x};;;;;;not defined
-;\ChebyC{n}@{x};;;;;;not defined
-;\ChebyS{n}@{x};;;;;;not defined
-;\CiglerqChebyT{n}@{x}{s}{q};;;;;;not defined
-;\CiglerqChebyU{n}@{x}{s}{q};;;;;;not defined
-;\monicChebyT{n}@@{x};;;;;;not defined
-;\monicChebyU{n}@@{x};;;;;;not defined
-;;;;;;;
-;\DiskOP{\alpha}{m}{n}@{z};;;;;;not defined
-;;;;;;;
-euler($0, $1);\EulerE{n}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=euler
-;\GenEulerE{\ell}{n}@{x};;;;;;not defined
-;\PeriodicEulerE{n}@{x};;;;;;not defined
-;;;;;;;
-GegenbauerC($1, $0, $2);\Ultra{\lambda}{n}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC
-GegenbauerC($1, $0, $2);\Ultraspherical{\lambda}{n}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC
-;\GenGegenbauerS{\alpha}{\beta}{n}@{x};;;;;;not defined
-;;;;;;;
-;\Hahn{n}@{x}{\alpha}{\beta}{N};;;;;;not defined
-;\HahnQ{n}@{x}{\alpha}{\beta}{N};;;;;;not defined
-;\HahnR{n}@{x}{\gamma}{\delta}{N};;;;;;not defined
-;\dualHahn{n}@@{\lambda(x)}{\gamma}{\delta}{N};;;;;;not defined
-;\HahnS{n}@{x}{a}{b}{c};;;;;;not defined
-;\Hahnp{n}@{x}{a}{b}{\conj{a}}{\conj{b}};;;;;;not defined
-;;;;;;;
-HermiteH($0, $1);\Hermite{n}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
-HermiteH($0, $1);\HermiteH{n}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
-;\HermiteHe{n}@{x};;;;;;not defined
-;\GenHermite[\alpha]{n}@{x};;;;;;not defined
-;;;;;;;
-;\HeunPolynom{n}{m}@@{a}{q}{-n}{\beta}{\gamma}{\delta}{z};;;;;;not defined
-;;;;;;;
-JacobiP($2, $0, $1, $3);\Jacobi{$2}{$0}{$1}@{$3};4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
-;\JacobiG{n}@{p}{q}{x};;;;;JacobiP($0, $1-$2, $2-1, 2*($3)-1) * ($0)!/pochhammer($0+$1, $0);not defined
-;\AssJacobiP{\alpha}{\beta}{n}@{x}{c};;;;;;not defined
-;\pseudoJacobi{n}@{x}{\nu}{N};;;;;;not defined
-;\TriangleOP{\alpha}{\beta}{\gamma}{m}{n}@{x}{y};;;;;;not defined
-;;;;;;;
-;\Krawtchouk{n}@{x}{p}{N};;;;;;not defined
-;\KrawtchoukK{n}@{x}{p}{N};;;;;;not defined
-;;;;;;;
-LaguerreL($1, $0, $2);\Laguerre[\alpha]{n}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-LaguerreL($1, $0, $2);\LaguerreL[\alpha]{n}@{x};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-;\GottliebLaguerre{n}@{x};;;;;;not defined
-;;;;;;;
-;\LameuE{m}{2n}@{z}{k^2};;;;;;not defined
-;\LamesE{m}{2n+1}@{z}{k^2};;;;;;not defined
-;\LamecE{m}{2n+1}@{z}{k^2};;;;;;not defined
-;\LamedE{m}{2n+1}@{z}{k^2};;;;;;not defined
-;\LamescE{m}{2n+2}@{z}{k^2};;;;;;not defined
-;\LamesdE{m}{2n+2}@{z}{k^2};;;;;;not defined
-;\LamecdE{m}{2n+2}@{z}{k^2};;;;;;not defined
-;\LamescdE{m}{2n+3}@{z}{k^2};;;;;;not defined
-;;;;;;;
-P($0, $1);\LegendrePoly{n}@{x};;This funcion needs an extra package. with(orthopoly);;;;not defined
-;\LegendrePolys{n}@{x};;;;;;not defined
-;\AssLegendrePoly{n}@{x}{c};;;;;;not defined
-;;;;;;;
-;\Meixner{n}@{x}{\beta}{c};;;;;;not defined
-;\MeixnerM{n}@{x}{\beta}{c};;;;;;not defined
-;\MeixnerPollaczek{\lambda}{n}@{x}{\phi};;;;;;not defined
-;\MeixnerPollaczekP{\lambda}{n}@{x}{\phi};;;;;;not defined
-;;;;;;;
-;\NeumannPoly{n}@{x};;;;;;not defined
-;;;;;;;
-;\PollaczekP{\lambda}{n}@{x}{a}{b};;;;;;not defined
-;;;;;;;
-;\Racah{n}@{x}{\alpha}{\beta}{\gamma}{\delta};;;;;;not defined
-;\RacahR{n}@{x}{\alpha}{\beta}{\gamma}{\delta};;;;;;not defined
-;;;;;;;
-;\StieltjesWigert{n}@@{x}{q};;;;;;not defined
-;\StieltjesWigertS{n}@{x}{q};;;;;;not defined
-;;;;;;;
-;\Wilson{n}@{x}{a}{b}{c}{d};;;;;;not defined
-;\WilsonW{n}@{x}{a}{b}{c}{d};;;;;;not defined
-;;;;;;;
-;\ZonalPoly{\kappa}@{\Matrix{T}};;;;;;not defined
-;;;;;;;
-;;;;;;;
-;;;;;;;
-Maple;DLMF;;Maple-Comment;;;;Maple-Link
-;\qSin{q}@@{x};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qsin{q}@@{x};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qSinKLS{q}@@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qsinKLS{q}@@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qCos{q}@@{x};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qcos{q}@@{x};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qCosKLS{q}@@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qcosKLS{q}@@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qExp{q}@@{x};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qexp{q}@@{x};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qExpKLS{q}@@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qexpKLS{q}@@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qAppelli@{a}{b}{b'}{c}{q}{x}{y};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qAppellii@{a}{b}{b'}{c}{c'}{q}{x}{y};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qAppelliii@{a}{a'}{b}{b'}{c}{q}{x}{y};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qAppelliv@{a}{b}{c}{c'}{q}{x}{y};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qBernoulli{n}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qBesselPoly{n}@{x}{b}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qBeta{q}@{a}{b};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qBinomial{n}{m}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qCharlier{n}@{x}{c}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qderiv[n]{q}@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qdiff{q}{x};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qGamma{q}@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qDigamma{q}@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qEuler{m}{s}@{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qFactorial{n}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qGamma{q}@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qHahn{n}@@{q^{-x}}{\alpha}{\beta}{N};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qHahnQ{n}@{x}{\alpha}{\beta}{N}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\dualqHahn{n}@@{\mu(x)}{\gamma}{\delta}{N}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qHermiteH{n}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qinvHermiteh{n}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qHermitehI{n}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qHermitehII{n}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\discrqHermiteI{n}@@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\discrqHermiteII{n}@@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qJacobiP{n}@{x}{a}{b}{c}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\bigqJacobi{n}@@{x}{a}{b}{c}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qJacobiPP{\alpha}{\beta}{n}@{x}{c}{d}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\bigqJacobiIVparam{n}@@{x}{a}{b}{c}{d}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qJacobip{n}@{x}{a}{b}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\littleqJacobi{n}@@{x}{a}{b}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\dualqKrawtchouk{n}@@{\lambda(x)}{c}{N}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\AffqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;
-;\qLaguerre[\alpha]{n}@@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qLaguerreL[\alpha]{n}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\bigqLaguerre{n}@{x}{a}{b}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\littleqLaguerre{n}@{x}{a}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qLegendre{n}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\bigqLegendre{n}@{x}{c}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\littleqLegendre{m}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qMeixner{n}@{x}{b}{c}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qMeixnerPollaczek{n}@{x}{a}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qPochhammer{a}{q}{n};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qMultiPochhammer{a_1,\ldots,a_n}{q}{n};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qPolygamma{n}{q}@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qRacah{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qRacahR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qStirling{m}{s}@{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qUltraspherical{n}@{x}{\beta}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qHyperrWs{r}{r+1}@@@{a_1}{a_4,a_5,...,a_{r+1}}{q}{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qHyperrphis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qHyperrpsis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;\qMultinomial{a_1+\ldots+a_n}{a_1,\ldots,a_n}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined
-;;;;;;;
-;\ctsHahn{n}@@{x}{a}{b}{c}{d};;;;;;not defined
-;\ctsbigqHermite{n}@{x}{a}{q};;;;;;not defined
-;\ctsdualHahn{n}@@{x^2}{a}{b}{c};;;;;;not defined
-;\ctsdualqHahn{n}@{x}{a}{b}{c}{q};;;;;;not defined
-;\ctsqHahn{n}@{x}{a}{b}{c}{d}{q};;;;;;not defined
-;\ctsqHermite{n}@@{x}{q};;;;;;not defined
-;\ctsqJacobi{\alpha}{\beta}{m}@{x}{q};;;;;;not defined
-;\ctsqJacobiRahman{n}@@{x}{q};;;;;;not defined
-;\ctsqLaguerre{\alpha}{n}@{x}{q};;;;;;not defined
-;\ctsqLegendre{n}@@{x}{q};;;;;;not defined
-;\ctsqLegendreRahman{n}@@{x}{q};;;;;;not defined
-;\ctsqUltra{n}@{x}{\beta}{q};;;;;;not defined
-;\ctsqUltrae{n}@{e^{i\theta}}{\beta}{q};;;;;;not defined
-;;;;;;;
-;\monicAffqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;not defined
-;\monicAlSalamCarlitzI{a}{n}@@{x}{q};;;;;;not defined
-;\monicAlSalamCarlitzII{a}{n}@@{x}{q};;;;;;not defined
-;\monicAlSalamChihara{n}@@{x}{a}{b}{q};;;;;;not defined
-;\monicAskeyWilson{n}@@{x}{a}{b}{c}{d}{q};;;;;;not defined
-;\monicBesselPoly{n}@@{x}{a};;;;;;not defined
-;\monicCharlier{n}@@{x}{a};;;;;;not defined
-;\monicChebyT{n}@@{x};;;;;;not defined
-;\monicChebyU{n}@@{x};;;;;;not defined
-;\monicHahn{n}@@{x}{\alpha}{\beta}{N};;;;;;not defined
-;\monicHermite{n}@@{x};;;;;;not defined
-;\monicJacobi{n}@@{x};;;;;;not defined
-;\monicKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;not defined
-;\monicLaguerre{n}@@{x};;;;;;not defined
-;\monicLegendrePoly{n}@@{x};;;;;;not defined
-;\monicMeixner{n}@@{x}{\beta}{c};;;;;;not defined
-;\monicMeixnerPollaczek{\lambda}{n}@@{x}{\phi};;;;;;not defined
-;\monicRacah{n}@@{\lambda(x)}{\alpha}{\beta}{\gamma}{\delta};;;;;;not defined
-;\monicStieltjesWigert{n}@@{x}{q};;;;;;not defined
-;\monicUltra{n}@@{x};;;;;;not defined
-;\monicWilson{n}@@{x^2}{a}{b}{c}{d};;;;;;not defined
-;\monicbigqJacobi{n}@@{x}{a}{b}{c}{q};;;;;;not defined
-;\monicbigqLaguerre{n}@@{x}{a}{b}{q};;;;;;not defined
-;\monicbigqLegendre{n}@@{x}{c}{q};;;;;;not defined
-;\monicctsHahn{n}@@{x}{a}{b}{c}{d};;;;;;not defined
-;\monicctsbigqHermite{n}@@{x}{a}{q};;;;;;not defined
-;\monicctsdualHahn{n}@@{x^2}{a}{b}{c}{d};;;;;;not defined
-;\monicctsdualqHahn{n}@@{x^2}{a}{b}{c};;;;;;not defined
-;\monicctsqHahn{n}@@{x}{a}{b}{c}{d}{q};;;;;;not defined
-;\monicctsqHermite{n}@@{x}{q};;;;;;not defined
-;\monicctsqJacobi{n}@@{x}{q};;;;;;not defined
-;\monicctsqLaguerre{n}@@{x}{q};;;;;;not defined
-;\monicctsqLegendre{n}@@{x}{q};;;;;;not defined
-;\monicctsqUltra{n}@@{x}{\beta}{q};;;;;;not defined
-;\monicdiscrqHermiteI{n}@@{x}{q};;;;;;not defined
-;\monicdiscrqHermiteII{n}@@{x}{q};;;;;;not defined
-;\monicdualHahn{n}@@{\lambda(x)}{\gamma}{\delta}{N};;;;;;not defined
-;\monicdualqHahn{n}@@{\mu(x)}{\gamma}{\delta}{N}{q};;;;;;not defined
-;\monicdualqKrawtchouk{n}@@{\lambda(x)}{c}{N}{q};;;;;;not defined
-;\moniclittleqJacobi{n}@@{x}{a}{b}{q};;;;;;not defined
-;\moniclittleqLaguerre{n}@@{x}{a}{q};;;;;;not defined
-;\moniclittleqLegendre{n}@@{x}{q};;;;;;not defined
-;\monicpseudoJacobi{n}@@{x}{\nu}{N};;;;;;not defined
-;\monicqBesselPoly{n}@@{x}{a}{q};;;;;;not defined
-;\monicqCharlier{n}@@{q^{-x}}{a}{q};;;;;;not defined
-;\monicqHahn{n}@@{q^{-x}}{\alpha}{\beta}{N};;;;;;not defined
-;\monicqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;not defined
-;\monicqLaguerre{n}@@{x}{q};;;;;;not defined
-;\monicqMeixner{n}@@{q^{-x}}{b}{c}{q};;;;;;not defined
-;\monicqMeixnerPollaczek{n}@@{x}{a}{q};;;;;;not defined
-;\monicqRacah{n}@@{\mu(x)}{\alpha}{\beta}{\gamma}{\delta}{q};;;;;;not defined
-;\monicqinvAlSalamChihara{n}@{x}{a}{b}{q^{-1}};;;;;;not defined
-;\monicqtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;not defined
-;;;;;;;
-;\normAskeyWilsonptilde{n}@@{x}{a}{b}{c}{d}{q};;;;;;not defined
-;\normJacobiR{\alpha}{\beta}{n}@{x};;;;;;not defined
-;\normWilsonWtilde{n}@@{x^2}{a}{b}{c}{d};;;;;;not defined
-;\normctsHahnptilde{n}@@{x}{a}{b}{c}{d};;;;;;not defined
-;\normctsdualHahnStilde{n}@@{x^2}{a}{b}{c}{d};;;;;;not defined
-;\normctsdualqHahnptilde{n}@@{x}{a}{b}{c}{q};;;;;;not defined
-;\normctsqHahnptilde{n}@@{x}{a}{b}{c}{d}{q};;;;;;not defined
-;\normctsqJacobiPtilde{n}@@{x}{q};;;;;;not defined
+In this notation, m,n,p,q are not needed for Maple (Maple -> LaTeX translation could be difficult)";;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MeijerG;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\Mills@{x};;Maybe with(Statistics): MillsRatio(X,t);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Statistics/MillsRatio;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\ModularLambda@{\tau};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ModularJ@{\tau};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\DedekindModularEta@{\tau};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\Pade{p}{q}{f};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\RamanujanSum{k}@{n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\RamanujanTau@{n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\RayleighFun{n}@{\nu};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+RiemannTheta([z_1, .., z_g], Omega);\RiemannTheta@{\Vector{z}}{\Matrix{\Omega}};;Vector and Matrix;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=RiemannTheta;;;;;;;;;;;;;;;;;;
+;\RiemannThetaChar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\RiemannThetaHat@{\Vector{z}}{\Matrix{\Omega}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\RiemannXi@{s};;You could use the alternative translation!;;;($0)(($0)-1)GAMMA(($0)/2) Pi^(-($0)/2) Zeta(($0))/2;not defined;;;;;;;;;;;;;;;;;;
+Zeta(s);\RiemannZeta@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\ScorerGi@{z};;You could use the alternative translation. Since the given variable is used for limits of an Integral, a complex variable could produces trouble!;;;AiryBi($0)*(int(AiryAi(t), t = ($0) .. infinity))+AiryAi($0)*(int(AiryBi(t), t = 0 .. ($0)));not defined;;;;;;;;;;;;;;;;;;
+;\ScorerHi@{z};;You could use the alternative translation. Since the given variable is used for limits of an Integral, a complex variable could produces trouble!;;;AiryBi($0)*(int(AiryAi(t), t = -infinity .. ($0)))-AiryAi($0)*(int(AiryBi(t), t = -infinity .. ($0)));not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\SpheroidalEigenvalueLambda{m}{n}@{\gamma^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\SpheroidalOnCutPs{m}{n}@{x}{\gamma^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\SpheroidalOnCutQs{m}{n}@{x}{\gamma^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\SpheroidalPs{m}{n}@{z}{\gamma^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\SpheroidalQs{m}{n}@{z}{\gamma^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\SpheroidalRadialS{m}{j}{n}@{z}{\gamma};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+Stirling1($0, $1);\StirlingS@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Stirling1;;;;;;;;;;;;;;;;;;
+Stirling2($0, $1);\StirlingSS@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Stirling2;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+StruveH($0, $1);\StruveH{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=StruveH;;;;;;;;;;;;;;;;;;
+;\StruveK{\nu}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+StruveL($0, $1);\StruveL{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=StruveL;;;;;;;;;;;;;;;;;;
+;\StruveM{\nu}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+legendre($0, $1);\LegendreSymbol{$0}{$1};2;This funcion needs an extra package. For Maple 2016 or older use with(numtheory), otherwise use with(NumberTheory);;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory%2Flegendre%28deprecated%29;;;;;;;;;;;;;;;;;;
+KroneckerDelta[$0, $1];\Kronecker{$0}{$1};2;This funcion needs an extra package. with(Physics);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/KroneckerDelta;;;;;;;;;;;;;;;;;;
+2-KroneckerDelta[$0, 0];\NeumannFactor{n};;This funcion needs an extra package. with(Physics);;;;not defined;;;;;;;;;;;;;;;;;;
+LeviCivita[$0, $1, $2];\LeviCivita{$0}{$1}{$2};3;This funcion needs an extra package: with(Physics). The number of variables is not defined in Maple. LeviCivita[j,k,l,...];;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/LeviCivita;;;;;;;;;;;;;;;;;;
+;\RiemannP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+pochhammer($0, $1);\pochhammer{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer;;;;;;;;;;;;;;;;;;
+;\threej@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\sixj@@{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l_{3}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ninej@@{j_{11}}{j_{12}}{j_{13}}{j_{21}}{j_{22}}{j_{23}}{j_{31}}{j_{32}}{j_{33}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\wigner{j_1}{m_1}{j_2}{m_2}{j_3}{-m_3};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\terminant{p}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\rescaledTerminant{p}@{z};;;;;(exp($1)/(2*Pi))*GAMMA($0)*GAMMA(1-$0,$1);not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+fourier(f, t, -x)/sqrt(2*Pi);\FourierTrans@@{f}{s};;with(inttrans): f is a function with f(t);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/fourier;;;;;;;;;;;;;;;;;;
+laplace(f, t, s);\LaplaceTrans@{f}{s};;with(inttrans): f is a function with f(t);;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/laplace;;;;;;;;;;;;;;;;;;
+mellin(f, t, s);\MellinTrans@{f}{s};;with(inttrans): f is a function with f(t);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/mellin;;;;;;;;;;;;;;;;;;
+hilbert(f, t, s);\HilbertTrans@{f}{s};;with(inttrans): f is a function with f(t);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/hilbert;;;;;;;;;;;;;;;;;;
+;\StieltjesTrans@{f}{s};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\VariationalOp[a,b]@{f};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+Gradiant(f);\gradient $0;1;with(VectorCalculus):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Gradient;;;;;;;;;;;;;;;;;;
+Divergence(F);\divergence $0;1;with(VectorCalculus):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Divergence;;;;;;;;;;;;;;;;;;
+Curl(F);\curl $0;1;with(VectorCalculus):;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Curl;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\VoigtU@{x}{t};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\VoigtV@{x}{t};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\LinBrF@{a}{u};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\Waringg@{k};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\WaringG@{k};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\NumSquaresR{k}@{n};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+WeierstrassP($0, $1, $2);\WeierPInv@@{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassP;;;;;;;;;;;;;;;;;;
+;\WeierPLat@@{z}{\Lattice{L}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+WeierstrassZeta($0, $1, $2);\WeierzetaInv@@{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassZeta;;;;;;;;;;;;;;;;;;
+;\WeierzetaLat@@{z}{\Lattice{L}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+WeierstrassSigma($0, $1, $2);\WeiersigmaInv@@{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassSigma;;;;;;;;;;;;;;;;;;
+;\WeiersigmaLat@@{z}{\Lattice{L}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+WhittakerM($0, $1, $2);\WhitM{$0}{$1}@{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerM;;;;;;;;;;;;;;;;;;
+WhittakerW($0, $1, $2);\WhitW{$0}{$1}@{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerW;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+Zeta($0);\RiemannZeta@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta;;;;;;;;;;;;;;;;;;
+Zeta(0, $0, $1);\HurwitzZeta@{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta;;;;;;;;;;;;;;;;;;
+WeierstrassZeta($0, $1, $2);\WeierzetaInv@@{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassZeta;;;;;;;;;;;;;;;;;;
+;\WeierzetaLat@@{z}{\Lattice{L}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+JacobiZeta($0, $1);\JacobiZeta@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiZeta;;;;;;;;;;;;;;;;;;
+;\PeriodicZeta@{x}{s};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\AlSalamChiharaQ{n}@{x}{a}{b}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\AlSalamChihara{n}@@{x}{a}{b}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qinvAlSalamChihara{n}@{x}{a}{b}{q^{-1}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\AlSalamCarlitzI{a}{n}@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\AlSalamCarlitzII{a}{n}@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\AlSalamIsmail{n}@{x}{s}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\AskeyWilson{n}@{x}{a}{b}{c}{d}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\AskeyWilsonp{n}@{x}{a}{b}{c}{d}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+bernoulli(n, x);\BernoulliB{$0}@{$1};2;"Maple provides an extra function for x=0. You can call bernoulli(n).
+";;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=bernoulli;;;;;;;;;;;;;;;;;;
+;\GenBernoulliB{\ell}{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\PeriodicBernoulliB{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qBernoulli{n}@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+BellB($0, 1);\BellNumber@{$0};2;bell(n) is an alternative translation. But it is necessary to import the extra package with(combinat, bell) if you planning to use the shorter version.;;;bell($0);https://www.maplesoft.com/support/help/maple/view.aspx?path=BellB;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\BesselPoly{n}@{x}{a};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\BesselPolyy{n}@{x}{a};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\BesselPolyIIparam{n}@{x}{a}{b};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\BesselPolyTheta{n}@{x}{a}{b};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\Charlier{n}@{x}{a};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\CharlierC{n}@{x}{a};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+ChebyshevT($0, $1);\ChebyT{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevT;;;;;;;;;;;;;;;;;;
+ChebyshevU($0, $1);\ChebyU{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevU;;;;;;;;;;;;;;;;;;
+;\ChebyV{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ChebyW{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ChebyTs{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ChebyUs{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ChebyC{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ChebyS{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\CiglerqChebyT{n}@{x}{s}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\CiglerqChebyU{n}@{x}{s}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicChebyT{n}@@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicChebyU{n}@@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\DiskOP{\alpha}{m}{n}@{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+euler($0, $1);\EulerE{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=euler;;;;;;;;;;;;;;;;;;
+;\GenEulerE{\ell}{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\PeriodicEulerE{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+GegenbauerC($1, $0, $2);\Ultra{$1}{$0}@{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC;;;;;;;;;;;;;;;;;;
+GegenbauerC($1, $0, $2);\Ultraspherical{$1}{$0}@{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC;;;;;;;;;;;;;;;;;;
+;\GenGegenbauerS{\alpha}{\beta}{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\Hahn{n}@{x}{\alpha}{\beta}{N};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\HahnQ{n}@{x}{\alpha}{\beta}{N};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\HahnR{n}@{x}{\gamma}{\delta}{N};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\dualHahn{n}@@{\lambda(x)}{\gamma}{\delta}{N};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\HahnS{n}@{x}{a}{b}{c};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\Hahnp{n}@{x}{a}{b}{\conj{a}}{\conj{b}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+HermiteH($0, $1);\Hermite{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH;;;;;;;;;;;;;;;;;;
+HermiteH($0, $1);\HermiteH{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH;;;;;;;;;;;;;;;;;;
+;\HermiteHe{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\GenHermite[\alpha]{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\HeunPolynom{n}{m}@@{a}{q}{-n}{\beta}{\gamma}{\delta}{z};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+JacobiP($2, $0, $1, $3);\Jacobi{$1}{$2}{$0}@{$3};4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP;;;;;;;;;;;;;;;;;;
+JacobiP($2, $0, $1, $3);\JacobiP{$1}{$2}{$0}@{$3};4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP;;;;;;;;;;;;;;;;;;
+;\JacobiG{n}@{p}{q}{x};;;;;JacobiP($0, $1-$2, $2-1, 2*($3)-1) * ($0)!/pochhammer($0+$1, $0);not defined;;;;;;;;;;;;;;;;;;
+;\AssJacobiP{\alpha}{\beta}{n}@{x}{c};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\pseudoJacobi{n}@{x}{\nu}{N};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\TriangleOP{\alpha}{\beta}{\gamma}{m}{n}@{x}{y};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\Krawtchouk{n}@{x}{p}{N};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\KrawtchoukK{n}@{x}{p}{N};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+LaguerreL($1, $0, $2);\Laguerre[$1]{$0}@{$2};3;;;;\LaguerreL[\alpha]{n}@{x};https://www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL;;;;;;;;;;;;;;;;;;
+;\GottliebLaguerre{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\LameuE{m}{2n}@{z}{k^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\LamesE{m}{2n+1}@{z}{k^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\LamecE{m}{2n+1}@{z}{k^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\LamedE{m}{2n+1}@{z}{k^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\LamescE{m}{2n+2}@{z}{k^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\LamesdE{m}{2n+2}@{z}{k^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\LamecdE{m}{2n+2}@{z}{k^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\LamescdE{m}{2n+3}@{z}{k^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+P($0, $1);\LegendrePoly{$0}@{$1};2;This funcion needs an extra package. with(orthopoly);;;;not defined;;;;;;;;;;;;;;;;;;
+;\LegendrePolys{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\AssLegendrePoly{n}@{x}{c};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\Meixner{n}@{x}{\beta}{c};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MeixnerM{n}@{x}{\beta}{c};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MeixnerPollaczek{\lambda}{n}@{x}{\phi};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\MeixnerPollaczekP{\lambda}{n}@{x}{\phi};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\NeumannPoly{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\PollaczekP{\lambda}{n}@{x}{a}{b};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\Racah{n}@{x}{\alpha}{\beta}{\gamma}{\delta};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\RacahR{n}@{x}{\alpha}{\beta}{\gamma}{\delta};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\StieltjesWigert{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\StieltjesWigertS{n}@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\Wilson{n}@{x}{a}{b}{c}{d};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\WilsonW{n}@{x}{a}{b}{c}{d};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\ZonalPoly{\kappa}@{\Matrix{T}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+Maple;DLMF;;Maple-Comment;;;;Maple-Link;;;;;;;;;;;;;;;;;;
+;\qSin{q}@@{x};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qsin{q}@@{x};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qSinKLS{q}@@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qsinKLS{q}@@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qCos{q}@@{x};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qcos{q}@@{x};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qCosKLS{q}@@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qcosKLS{q}@@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qExp{q}@@{x};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qexp{q}@@{x};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qExpKLS{q}@@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qexpKLS{q}@@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qAppelli@{a}{b}{b'}{c}{q}{x}{y};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qAppellii@{a}{b}{b'}{c}{c'}{q}{x}{y};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qAppelliii@{a}{a'}{b}{b'}{c}{q}{x}{y};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qAppelliv@{a}{b}{c}{c'}{q}{x}{y};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qBernoulli{n}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qBesselPoly{n}@{x}{b}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qBeta{q}@{a}{b};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qBinomial{n}{m}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qCharlier{n}@{x}{c}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qderiv[n]{q}@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qdiff{q}{x};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qGamma{q}@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qDigamma{q}@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qEuler{m}{s}@{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qFactorial{n}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qGamma{q}@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qHahn{n}@@{q^{-x}}{\alpha}{\beta}{N};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qHahnQ{n}@{x}{\alpha}{\beta}{N}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\dualqHahn{n}@@{\mu(x)}{\gamma}{\delta}{N}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qHermiteH{n}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qinvHermiteh{n}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qHermitehI{n}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qHermitehII{n}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\discrqHermiteI{n}@@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\discrqHermiteII{n}@@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qJacobiP{n}@{x}{a}{b}{c}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\bigqJacobi{n}@@{x}{a}{b}{c}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qJacobiPP{\alpha}{\beta}{n}@{x}{c}{d}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\bigqJacobiIVparam{n}@@{x}{a}{b}{c}{d}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qJacobip{n}@{x}{a}{b}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\littleqJacobi{n}@@{x}{a}{b}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\dualqKrawtchouk{n}@@{\lambda(x)}{c}{N}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\AffqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;;;;;;;;;;;;;;;;;;;
+;\qLaguerre[\alpha]{n}@@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qLaguerreL[\alpha]{n}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\bigqLaguerre{n}@{x}{a}{b}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\littleqLaguerre{n}@{x}{a}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qLegendre{n}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\bigqLegendre{n}@{x}{c}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\littleqLegendre{m}@{x}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qMeixner{n}@{x}{b}{c}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qMeixnerPollaczek{n}@{x}{a}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qPochhammer{a}{q}{n};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qMultiPochhammer{a_1,\ldots,a_n}{q}{n};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qPolygamma{n}{q}@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qRacah{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qRacahR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qStirling{m}{s}@{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qUltraspherical{n}@{x}{\beta}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qHyperrWs{r}{r+1}@@@{a_1}{a_4,a_5,...,a_{r+1}}{q}{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qHyperrphis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qHyperrpsis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;\qMultinomial{a_1+\ldots+a_n}{a_1,\ldots,a_n}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf ;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\ctsHahn{n}@@{x}{a}{b}{c}{d};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ctsbigqHermite{n}@{x}{a}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ctsdualHahn{n}@@{x^2}{a}{b}{c};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ctsdualqHahn{n}@{x}{a}{b}{c}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ctsqHahn{n}@{x}{a}{b}{c}{d}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ctsqHermite{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ctsqJacobi{\alpha}{\beta}{m}@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ctsqJacobiRahman{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ctsqLaguerre{\alpha}{n}@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ctsqLegendre{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ctsqLegendreRahman{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ctsqUltra{n}@{x}{\beta}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\ctsqUltrae{n}@{e^{i\theta}}{\beta}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\monicAffqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicAlSalamCarlitzI{a}{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicAlSalamCarlitzII{a}{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicAlSalamChihara{n}@@{x}{a}{b}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicAskeyWilson{n}@@{x}{a}{b}{c}{d}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicBesselPoly{n}@@{x}{a};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicCharlier{n}@@{x}{a};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicChebyT{n}@@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicChebyU{n}@@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicHahn{n}@@{x}{\alpha}{\beta}{N};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicHermite{n}@@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicJacobi{n}@@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicLaguerre{n}@@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicLegendrePoly{n}@@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicMeixner{n}@@{x}{\beta}{c};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicMeixnerPollaczek{\lambda}{n}@@{x}{\phi};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicRacah{n}@@{\lambda(x)}{\alpha}{\beta}{\gamma}{\delta};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicStieltjesWigert{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicUltra{n}@@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicWilson{n}@@{x^2}{a}{b}{c}{d};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicbigqJacobi{n}@@{x}{a}{b}{c}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicbigqLaguerre{n}@@{x}{a}{b}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicbigqLegendre{n}@@{x}{c}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicctsHahn{n}@@{x}{a}{b}{c}{d};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicctsbigqHermite{n}@@{x}{a}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicctsdualHahn{n}@@{x^2}{a}{b}{c}{d};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicctsdualqHahn{n}@@{x^2}{a}{b}{c};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicctsqHahn{n}@@{x}{a}{b}{c}{d}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicctsqHermite{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicctsqJacobi{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicctsqLaguerre{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicctsqLegendre{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicctsqUltra{n}@@{x}{\beta}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicdiscrqHermiteI{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicdiscrqHermiteII{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicdualHahn{n}@@{\lambda(x)}{\gamma}{\delta}{N};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicdualqHahn{n}@@{\mu(x)}{\gamma}{\delta}{N}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicdualqKrawtchouk{n}@@{\lambda(x)}{c}{N}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\moniclittleqJacobi{n}@@{x}{a}{b}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\moniclittleqLaguerre{n}@@{x}{a}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\moniclittleqLegendre{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicpseudoJacobi{n}@@{x}{\nu}{N};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicqBesselPoly{n}@@{x}{a}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicqCharlier{n}@@{q^{-x}}{a}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicqHahn{n}@@{q^{-x}}{\alpha}{\beta}{N};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicqLaguerre{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicqMeixner{n}@@{q^{-x}}{b}{c}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicqMeixnerPollaczek{n}@@{x}{a}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicqRacah{n}@@{\mu(x)}{\alpha}{\beta}{\gamma}{\delta}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicqinvAlSalamChihara{n}@{x}{a}{b}{q^{-1}};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\monicqtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;\normAskeyWilsonptilde{n}@@{x}{a}{b}{c}{d}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\normJacobiR{\alpha}{\beta}{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\normWilsonWtilde{n}@@{x^2}{a}{b}{c}{d};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\normctsHahnptilde{n}@@{x}{a}{b}{c}{d};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\normctsdualHahnStilde{n}@@{x^2}{a}{b}{c}{d};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\normctsdualqHahnptilde{n}@@{x}{a}{b}{c}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\normctsqHahnptilde{n}@@{x}{a}{b}{c}{d}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\normctsqJacobiPtilde{n}@@{x}{q};;;;;;not defined;;;;;;;;;;;;;;;;;;

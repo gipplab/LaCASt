@@ -33,7 +33,7 @@ public class RoundTripTests {
         }
     }
 
-    @Disabled
+    //@Disabled
     @Nested
     public class FunctionsInnerTester extends FunctionsTests {
         FunctionsInnerTester() {

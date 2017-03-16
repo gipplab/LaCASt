@@ -1,0 +1,2 @@
+C:/Users/AndreG-P/IntelliJProjects/latex-grammar/libs/ReferenceData/MapleProcedures/maple_list_procedure.txt
+C:/Users/AndreG-P/IntelliJProjects/latex-grammar/libs/ReferenceData/MapleProcedures/maple_toinert_procedure.txt

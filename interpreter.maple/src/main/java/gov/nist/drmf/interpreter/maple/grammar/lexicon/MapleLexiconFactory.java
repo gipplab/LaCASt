@@ -76,10 +76,16 @@ public class MapleLexiconFactory {
                     vars
             );
 
-            errorMessage = "Cannot enrich the information of MapleFunction object. " + Arrays.toString(values);;
-            return enrichFunctionInfos( mf, dlmf, values );
+            try {
+                enrichFunctionInfos( mf, dlmf, values );
+            } catch ( NullPointerException npe ){
+                errorMessage = "Cannot enrich the information of MapleFunction object. "
+                        + Arrays.toString(values);;
+            }
+
+            return mf;
         } catch ( NullPointerException | IndexOutOfBoundsException | NumberFormatException e ){
-            LOG.warn(errorMessage, e);
+            LOG.warn(errorMessage);
             return null;
         }
     }
