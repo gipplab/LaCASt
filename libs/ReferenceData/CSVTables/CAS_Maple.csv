@@ -34,8 +34,8 @@ DLMF;Maple;Maple-Comment;Maple-Branch Cuts;Maple-Alternatives;Maple-Link
 \exp@@{z};exp($0);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=exp
 ;;;;;
 \LambertW@{x};LambertW($0);Maple's LambertW function only provides the principle branch of the Lambert W-function. Maple allows imaginary variables as well and to calculate other branches, you can call LambertW(k,z) instead.;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LambertW
-\LambertWp@{x};LambertW($0);LambertW calculates only the principle branch. Maple also allows imaginary variables. In that case the LambertW function has a branch cut.;( -\inf, -1/e );;https://www.maplesoft.com/support/help/maple/view.aspx?path=LambertW
-\LambertWm@{x};Re(LambertW(-1,$0));LambertW provides different branches by the first argument. Based on the DLMF-definition, it is only the real part of the general LambertW function. It also provides imaginary variables but it has a branch cut than.;( -\inf, 0 );;https://www.maplesoft.com/support/help/maple/view.aspx?path=LambertW
+\LambertWp@{x};LambertW($0);LambertW calculates only the principle branch. Maple also allows imaginary variables. In that case the LambertW function has a branch cut.;( -\infty, -1/e );;https://www.maplesoft.com/support/help/maple/view.aspx?path=LambertW
+\LambertWm@{x};Re(LambertW(-1,$0));LambertW provides different branches by the first argument. Based on the DLMF-definition, it is only the real part of the general LambertW function. It also provides imaginary variables but it has a branch cut than.;( -\infty, 0 );;https://www.maplesoft.com/support/help/maple/view.aspx?path=LambertW
 ;;;;;
 \SinInt@{z};Si($0);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Si
 \sinInt@{z};Ssi($0);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Ssi
@@ -59,7 +59,7 @@ DLMF;Maple;Maple-Comment;Maple-Branch Cuts;Maple-Alternatives;Maple-Link
 \StieltjesConstants{n};gamma($0);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=initialconstants
 ;;;;;
 \Matrix{A};Matrix([[],[]]);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Matrix
-\Vector{a};Vector([a_1, .., a_n]);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Vector
+\Vector{a};Vector([$0]);;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Vector
 \trace \Matrix{X};Trace(X);Maple needs an extra package. Load it with the following command: with(LinearAlgebra):;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Trace
 \transpose \Matrix{X};Transpose(X);Maple needs an extra package. Load it with the following command: with(LinearAlgebra):;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Transpose
 \exptrace@{\Matrix{X}};exp(Trace(X));Maple needs an extra package. Load it with the following command: with(LinearAlgebra):;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Trace
@@ -69,7 +69,7 @@ DLMF;Maple;Maple-Comment;Maple-Branch Cuts;Maple-Alternatives;Maple-Link
 \conj{z};conjugate($0);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=conjugate
 \realpart{z};Re($0);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Re
 \imagpart{z};Im($0);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Im
-\sqrt{z};sqrt($0);You can use the csgn function, which is specialized for imaginary variables.;;csgn($0);https://www.maplesoft.com/support/help/maple/view.aspx?path=sqrt
+\sqrt{z};sqrt($0);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=sqrt
 \sqrt[p]{z};surd($1, $0);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=surd
 \binom{m}{n};binomial($0, $1);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=binomial
 \binomial{m}{n};binomial($0, $1);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=binomial
@@ -82,10 +82,10 @@ DLMF;Maple;Maple-Comment;Maple-Branch Cuts;Maple-Alternatives;Maple-Link
 \psfactorial{a}{\kappa};;;;;not defined
 \floor{x} ;floor($0);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=floor
 \ceiling{x};ceil($0);Maple allows a second parameter like ceil(n,x).;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ceil
-\sign@@{x};signum($0);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=signum
+\sign@@{x};signum($0);You can use the csgn function, which is specialized for imaginary variables.;;csgn($0);https://www.maplesoft.com/support/help/maple/view.aspx?path=signum
 \inf;;;;;not defined
 \sup;;;;;not defined
-\Sum{n}{k1}{k2}@{f(n)};sum($3), $0 = $1 .. $2);;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=sum
+\Sum{n}{k1}{k2}@{f(n)};sum($3, $0 = $1 .. $2);;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=sum
 \Prod{n}{k1}{k2}@{f(n)};product($3, $0 = $1 .. $2);;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=product
 \Wronskian@{w1(z),w2(z)};;;;;not defined
 \Residue;;;;;not defined
@@ -301,7 +301,7 @@ DLMF;Maple;Maple-Comment;Maple-Branch Cuts;Maple-Alternatives;Maple-Link
 \EulerGamma@{z};GAMMA($0);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
 \incgamma@{a}{z};;Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.;;GAMMA($0)-GAMMA($0, $1);https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
 \IncGamma@{a}{z};GAMMA($0, $1);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
-\ln@@{\EulerGamma@{z}};lnGAMMA($1);Equivalent for Re(z) >= 0 (for Re(z) < 0, Maple evaluates only the principal branch, which is defined by the analytic continuation from the positive real axis);;;https://www.maplesoft.com/support/help/maple/view.aspx?path=lnGAMMA
+;lnGAMMA($0);Equivalent for Re(z) >= 0 (for Re(z) < 0, Maple evaluates only the principal branch, which is defined by the analytic continuation from the positive real axis);;;https://www.maplesoft.com/support/help/maple/view.aspx?path=lnGAMMA
 \digamma@{z};Psi($0);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Psi
 \polygamma{n}@{z};Psi($0, $1);Maple also allows complex n (and negative integer values);;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Psi
 \BarnesGamma@{z};;;;;not defined
@@ -485,7 +485,7 @@ In this notation, m,n,p,q are not needed for Maple (Maple -> LaTeX translation c
 \LegendreSymbol{n}{p};legendre($0, $1);This funcion needs an extra package. For Maple 2016 or older use with(numtheory), otherwise use with(NumberTheory);;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory%2Flegendre%28deprecated%29
 \Kronecker{j}{k};KroneckerDelta[$0, $1];This funcion needs an extra package. with(Physics);;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/KroneckerDelta
 \NeumannFactor{n};2-KroneckerDelta[$0, 0];This funcion needs an extra package. with(Physics);;;not defined
-\LeviCivita{j}{k}{l};LeviCivita[$0, $1, $3];This funcion needs an extra package: with(Physics). The number of variables is not defined in Maple. LeviCivita[j,k,l,...];;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/LeviCivita
+\LeviCivita{j}{k}{l};LeviCivita[$0, $1, $2];This funcion needs an extra package: with(Physics). The number of variables is not defined in Maple. LeviCivita[j,k,l,...];;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/LeviCivita
 \RiemannP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};;;;;not defined
 \pochhammer{a}{n};pochhammer($0, $1);;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer
 \threej@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3};;;;;not defined
@@ -790,3 +790,4 @@ DLMF;Maple;Maple-Comment;;;Maple-Link
 \normctsdualqHahnptilde{n}@@{x}{a}{b}{c}{q};;;;;not defined
 \normctsqHahnptilde{n}@@{x}{a}{b}{c}{d}{q};;;;;not defined
 \normctsqJacobiPtilde{n}@@{x}{q};;;;;not defined
+;;;;;
