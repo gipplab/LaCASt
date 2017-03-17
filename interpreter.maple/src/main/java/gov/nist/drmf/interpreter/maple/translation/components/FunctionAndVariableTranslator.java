@@ -23,6 +23,7 @@ import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import java.util.Arrays;
 
 /**
+ *
  * Created by AndreG-P on 28.02.2017.
  */
 public class FunctionAndVariableTranslator extends ListTranslator {
@@ -136,8 +137,16 @@ public class FunctionAndVariableTranslator extends ListTranslator {
         // translate function
         MapleLexicon lexicon = MapleLexicon.getLexicon();
         MapleFunction mapleFunction = lexicon.getFunction( function, arguments.length );
-        String translation = mapleFunction.replacePlaceHolders( arguments );
-        translatedList.addTranslatedExpression( translation );
+        if ( mapleFunction == null ){
+            LOG.warn("Not able to translate function " + function +
+                    " with " + arguments.length + " number of arguments.");
+        } else {
+            String translation = mapleFunction.replacePlaceHolders( arguments );
+            LOG.info("Function translated: " + translation);
+            translatedList.addTranslatedExpression( translation );
+            infos.addMacroInfo( function, mapleFunction.toString() );
+        }
+
     }
 
     private void translatePower( List list ) throws TranslationException, MapleException {

@@ -162,9 +162,19 @@ public class MapleFunction {
     public String toString(){
         String nl = System.lineSeparator();
         String str = "";
-        String[] output = toStringArray();
-        for ( int i = 0; i < output.length; i++ )
-            str += output[i] + nl;
+        if ( dlmf_meaning != null && !dlmf_meaning.isEmpty() )
+            str += dlmf_meaning + nl;
+        else str += nl;
+
+        if ( maple_comment != null && !maple_comment.isEmpty() )
+            str += "\tComment: " + maple_comment + nl;
+        if ( dlmf_constraints != null && !dlmf_constraints.isEmpty() )
+            str += "\tDLMF-Constraints: " + dlmf_constraints + nl;
+        if ( dlmf_branch_cuts != null && !dlmf_branch_cuts.isEmpty() )
+            str += "\tDLMF-Branch Cuts: " + dlmf_branch_cuts + nl;
+
+        str += "\tMaple-Link: " + MAPLE_Link + nl;
+        str += "\tDLMF-Link:  " + dlmf_Link;
         return str;
     }
 

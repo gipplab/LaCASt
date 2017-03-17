@@ -68,8 +68,8 @@ public class MapleTranslator {
      */
     public static void main(String[] args){
         String test = "JacobiP(alpha, beta, n, cos(a*Theta))";
-        test = "EllipticF(z, k)";
-        test = "sin(2)";
+//        test = "EllipticF(z, k)";
+        test = "cos(sin(I/2)+gamma^x*ln(x))-sin(Pi*x!)";
 
         MapleTranslator mt = new MapleTranslator();
         try {
@@ -80,7 +80,7 @@ public class MapleTranslator {
 
             System.out.println( "Input: " + test );
             System.out.println( "Translated:  " + t.getTranslatedExpression() );
-            System.out.println( "Additional:  " + t.getAdditionalInformation() );
+            System.out.println( t.getAdditionalInformation() );
             System.out.println( "BackTranslated: " + back );
             System.out.println( "Simplification Test: " + b );
 

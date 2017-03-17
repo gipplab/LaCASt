@@ -1482,6 +1482,48 @@ StruveL::2
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/11.2#E2
 
+Sum::2
+	Maple-Name:= Sum
+	DLMF-Pattern:= 
+	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=sum
+	NumberOfVars:= 2
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= null
+	DLMF-Constraints:= null
+	DLMF-BranchCuts:= null
+	DLMF-Link:= null
+
+Sum::3
+	Maple-Name:= Sum
+	DLMF-Pattern:= \Sum{$1}{$2}{$2}@{$0}
+	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=sum
+	NumberOfVars:= 3
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Sum
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://drmf.wmflabs.org/wiki/Definition:Sum
+
+Sum::4
+	Maple-Name:= Sum
+	DLMF-Pattern:= \Sum{$1}{$2}{$3}@{$0}
+	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=sum
+	NumberOfVars:= 4
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Sum
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://drmf.wmflabs.org/wiki/Definition:Sum
+
 WeberE::2
 	Maple-Name:= WeberE
 	DLMF-Pattern:= \WeberE{$0}@{$1}
@@ -2447,6 +2489,34 @@ sqrt::1
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://not defined
+
+sum::2
+	Maple-Name:= sum
+	DLMF-Pattern:= 
+	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=sum
+	NumberOfVars:= 2
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= null
+	DLMF-Constraints:= null
+	DLMF-BranchCuts:= null
+	DLMF-Link:= null
+
+sum::3
+	Maple-Name:= sum
+	DLMF-Pattern:= \Sum{$1}{$2}{$2}@{$0}
+	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=sum
+	NumberOfVars:= 3
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Sum
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://drmf.wmflabs.org/wiki/Definition:Sum
 
 sum::4
 	Maple-Name:= sum
