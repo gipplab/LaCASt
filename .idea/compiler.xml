@@ -14,6 +14,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
+      <module name="interpreter-root" target="1.5" />
       <module name="interpreter.cas" target="1.8" />
       <module name="interpreter.core" target="1.8" />
       <module name="interpreter.maple" target="1.8" />
