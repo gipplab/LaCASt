@@ -59,12 +59,12 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/interpreter.cas/pom.xml" />
         <option value="$PROJECT_DIR$/interpreter.core/pom.xml" />
-        <option value="$PROJECT_DIR$/interpreter.semantic/pom.xml" />
-        <option value="$PROJECT_DIR$/interpreter.roundtrip/pom.xml" />
         <option value="$PROJECT_DIR$/interpreter.maple/pom.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/interpreter.roundtrip/pom.xml" />
+        <option value="$PROJECT_DIR$/interpreter.semantic/pom.xml" />
       </list>
     </option>
   </component>

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/interpreter-root.iml" filepath="$PROJECT_DIR$/interpreter-root.iml" />
       <module fileurl="file://$PROJECT_DIR$/interpreter.cas/interpreter.cas.iml" filepath="$PROJECT_DIR$/interpreter.cas/interpreter.cas.iml" />
       <module fileurl="file://$PROJECT_DIR$/interpreter.core/interpreter.core.iml" filepath="$PROJECT_DIR$/interpreter.core/interpreter.core.iml" />
       <module fileurl="file://$PROJECT_DIR$/interpreter.maple/interpreter.maple.iml" filepath="$PROJECT_DIR$/interpreter.maple/interpreter.maple.iml" />
