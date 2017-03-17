@@ -1,7 +1,8 @@
 package gov.nist.drmf.interpreter;
 
 import com.maplesoft.openmaple.Algebraic;
-import com.sun.istack.internal.Nullable;
+
+import javax.annotation.Nullable;
 
 /**
  * A simple java container to collect the information of a translation process.

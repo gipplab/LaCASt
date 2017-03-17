@@ -64,6 +64,7 @@
         <option value="$PROJECT_DIR$/interpreter.semantic/pom.xml" />
         <option value="$PROJECT_DIR$/interpreter.roundtrip/pom.xml" />
         <option value="$PROJECT_DIR$/interpreter.maple/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
