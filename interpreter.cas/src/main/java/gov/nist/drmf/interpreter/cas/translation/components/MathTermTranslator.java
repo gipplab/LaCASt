@@ -56,6 +56,7 @@ public class MathTermTranslator extends AbstractListTranslator {
         MathTerm term = exp.getRoot();
         String termTag = term.getTag();
         MathTermTags tag = MathTermTags.getTagByKey(termTag);
+        SymbolTranslator sT = SemanticLatexTranslator.getSymbolsTranslator();
 
         // if the tag doesn't exists in the system -> stop
         if ( tag == null ){
@@ -99,6 +100,17 @@ public class MathTermTranslator extends AbstractListTranslator {
                 if ( constantSet != null ){
                     // simply try to translate it as a constant
                     return parseMathematicalConstant( constantSet, term.getTermText() );
+                }
+
+                sT = SemanticLatexTranslator.getSymbolsTranslator();
+                String t = sT.translate( term.getTermText() );
+                if ( t != null ) {
+                    INFO_LOG.addGeneralInfo(
+                            term.getTermText(),
+                            "was translated to " + t);
+                    local_inner_exp.addTranslatedExpression( t );
+                    global_exp.addTranslatedExpression( t );
+                    return true;
                 }
 
                 // no it is a DLMF macro or function
@@ -222,7 +234,6 @@ public class MathTermTranslator extends AbstractListTranslator {
                 return parseUnderscores( exp );
             case ordinary:
             case ellipsis:
-                SymbolTranslator sT = SemanticLatexTranslator.getSymbolsTranslator();
                 String symbol;
                 if ( tag.equals(MathTermTags.ordinary) )
                     symbol = sT.translate( term.getTermText() );

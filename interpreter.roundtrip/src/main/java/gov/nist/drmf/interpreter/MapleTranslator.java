@@ -67,9 +67,9 @@ public class MapleTranslator {
      * @param args empty or a maple expression in the first argument
      */
     public static void main(String[] args){
-        String test = "JacobiP(alpha, beta, n, cos(a*Theta))";
-//        test = "EllipticF(z, k)";
-        test = "cos(sin(I/2)+gamma^x*ln(x))-sin(Pi*x!)";
+        String test = "JacobiP(n,alpha,beta,cos(a*Theta)/2)";
+        test = "sum(cos(k!)/2,k=0..5)";
+//        test = "cos(sin(I/2)+gamma^x*ln(x))-sin(Pi*x!)";
 
         MapleTranslator mt = new MapleTranslator();
         try {
