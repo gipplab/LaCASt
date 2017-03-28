@@ -37,7 +37,7 @@ public class SequenceTranslator extends AbstractListTranslator {
             "[\\^\\/\\_\\!]";
 
     public static final String PATTERN_BASIC_OPERATIONS =
-            ".*[+\\-*/\\^_!(){}\\[\\]<>\\s=]|\\\\cdot.*";
+            ".*[+\\-*/\\^_!(){}\\[\\]<>\\s=]|\\\\[ci]dot.*";
 
     // the open bracket if needed
     @Nullable

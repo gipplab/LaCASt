@@ -1,6 +1,6 @@
 MyToInert := proc(f)
 local r;
-    r := convert_sum(ToInert(f, exclude=[_Inert_FLOAT,_Inert_PROD]));
+    r := convert_intlike(ToInert(f, exclude=[_Inert_FLOAT,_Inert_PROD]));
     r := subsindets(r, 'specfunc(_Inert_VERBATIM)', HandleVERBATIM);
     return r;
 end proc:
@@ -69,30 +69,25 @@ local n, d, z, ni, di, zi, e;
     end if;
 end proc:
 
-convert_sum := proc (a) 
+convert_intlike := proc (a) 
 	local name, expseq; 
-	if nops(a) = 1 then 
+	if nops(a) <= 1 or not type(a,'function') then 
 		return a;
-	else 
-		if substring(op(0, a), 8 .. 20) = FUNCTION then 
-			name := op(1, op(1, a)); 
-			if name = "sum" or name = "Sum" or name = "product" or name = "Product" then 
-				expseq := op(2, a); 
-				return _Inert_FUNCTION(op(1, a), _Inert_EXPSEQ(seq(replace_equation_and_range(op(i, expseq)), i = 1 .. nops(expseq))));
-			else 
-				return (op(0, a))(seq(convert_sum(op(i, a)), i = 1 .. nops(a)));
-			end if 
-		else 
-			return (op(0, a))(seq(convert_sum(op(i, a)), i = 1 .. nops(a)));
-		end if 
-	end if 
+	elif op(0,a) = _Inert_FUNCTION and op([1,0],a) in [_Inert_NAME,_Inert_ASSIGNEDNAME] then 
+		name := op([1,1], a); 
+		if name in ["sum", "Sum", "product", "Product", "int", "Int", "limit", "Limit", "eval", "Eval"] then 
+			expseq := map(replace_equation_and_range, op(2, a));
+                  return _Inert_FUNCTION(op(1,a), expseq); 
+		end if;
+      end if;
+	return map(thisproc, a);
 end proc: 
 
-replace_equation_and_range := proc (a) 
-	if type(FromInert(a), equation) then 
-		return replace_equation_and_range(op(1, a)), replace_equation_and_range(op(2, a));
-	elif type(FromInert(a), range) then 
-		return op(1, a), op(2, a);
+replace_equation_and_range := proc (a::function) 
+	if type(a, 'specfunc(_Inert_EQUATION)') then 
+		return thisproc(op(1, a)), thisproc(op(2, a));
+	elif type(a, 'specfunc(_Inert_RANGE)') then 
+		return op(a);
 	else return a; 
-	end if 
+	end if; 
 end proc:

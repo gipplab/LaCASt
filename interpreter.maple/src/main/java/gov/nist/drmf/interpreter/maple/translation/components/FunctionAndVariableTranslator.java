@@ -27,6 +27,8 @@ import java.util.Arrays;
  * Created by AndreG-P on 28.02.2017.
  */
 public class FunctionAndVariableTranslator extends ListTranslator {
+    private static final String MOD_NAME = "modulo";
+
     FunctionAndVariableTranslator( MapleInternal internal, int length ){
         super( internal, length );
     }
@@ -129,10 +131,21 @@ public class FunctionAndVariableTranslator extends ListTranslator {
         String function = func_name_string.stringValue();
 
         LOG.info("Found function: " + function);
-
         // translate arguments first.
         String[] arguments = translateExpressionSequence( expression_seq_list );
         LOG.info("Extracted arguments of function " + function + ": " + Arrays.toString(arguments));
+
+        /**
+         * Special case for modulo
+         */
+        if ( function.matches("mod[sp]?") ){
+            BasicFunctionsTranslator bft =
+                    MapleInterface.getUniqueMapleInterface().getBasicFunctionsTranslator();
+            String translation = bft.translate( arguments, MOD_NAME );
+            LOG.info("Translated modulo: " + translation);
+            translatedList.addTranslatedExpression( translation );
+            infos.addMacroInfo( function, " Translated as modulo." );
+        }
 
         // translate function
         MapleLexicon lexicon = MapleLexicon.getLexicon();

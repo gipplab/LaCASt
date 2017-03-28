@@ -68,6 +68,8 @@ public class MLP {
 //            eq="\\left ( \\left ( y \\right ] \\right)";
 //            eq = "\\sqrt \\frac{2}{4}";
 //            eq = "ab13d";
+//            eq = "3 mod 4";
+            eq = "2 \\cdot \\idot 3";
 
             // parse/tag the equation and print it out 
             PomTaggedExpression pe = parser.parse(eq);

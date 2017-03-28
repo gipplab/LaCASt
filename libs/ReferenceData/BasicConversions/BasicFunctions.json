@@ -64,13 +64,19 @@
   "Symbols": {
 	"GeneralMultiplication": {
 		"MLP": "General Multiplication",
-		"LaTeX": "\\cdot",
+		"LaTeX": "\\idot",
 		"Maple": "*",
 		"Mathematica": " "
 	},
 	"Multiply": {
 		"MLP": "operation",
 		"LaTeX": "\\cdot",
+		"Maple": "*",
+		"Mathematica": "*"
+	},
+	"Invisible Multiply": {
+		"MLP": "operation",
+		"LaTeX": "\\idot",
 		"Maple": "*",
 		"Mathematica": "*"
 	},
