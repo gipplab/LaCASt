@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.cas.mlp;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
@@ -27,6 +28,9 @@ import java.util.regex.Pattern;
  */
 public class CSVtoLexiconConverter {
     protected final Logger ERROR_LOG = Logger.getLogger( CSVtoLexiconConverter.class.toString() );
+
+    private Pattern cas_file_name_pattern =
+            Pattern.compile("CAS_(\\w+)(\\.(txt|csv|TXT|CSV))?");
 
     public static final String DELIMITER = ";";
 
@@ -113,7 +117,7 @@ public class CSVtoLexiconConverter {
 
     private void generateBasicDLMF(){
         try (BufferedReader br = Files.newBufferedReader(csv_dlmf_file) ){
-            startReadingProcess( br, this::handleDLMFElements );
+            startReadingProcess( null, br, this::handleDLMFElements );
         } catch ( IOException ioe ){
             ioe.printStackTrace();
         }
@@ -121,19 +125,28 @@ public class CSVtoLexiconConverter {
 
     private void addCAS( Path csv ){
         try ( BufferedReader br = Files.newBufferedReader( csv ) ){
-            startReadingProcess( br, this::handleCasAddOn );
+            String fname = csv.getFileName().toString();
+            Matcher m = cas_file_name_pattern.matcher(fname);
+            if ( !m.matches() ){
+                ERROR_LOG.warning("Wrong style of file name: " + fname + ". " +
+                        "Must be CAS_<cas_name>.csv");
+            } else {
+                startReadingProcess( m.group(1), br, this::handleCasAddOn );
+            }
         } catch ( IOException ioe ){
             ioe.printStackTrace();
         }
     }
 
-    private void startReadingProcess( BufferedReader br, Consumer<? super String[]> method )
+    private void startReadingProcess( String additional_prefix,
+                                      BufferedReader br,
+                                      Consumer<? super String[]> method )
             throws IOException {
         String headerLine = br.readLine();
 
         if ( headerLine != null && !headerLine.isEmpty() ){
             header = headerLine.split( DELIMITER );
-            lineAnalyzer = new LineAnalyzer( DELIMITER, header );
+            lineAnalyzer = new LineAnalyzer( additional_prefix, DELIMITER, header );
         } else {
             throw new IOException("The header is empty! " + csv_dlmf_file.toString());
         }
@@ -209,7 +222,7 @@ public class CSVtoLexiconConverter {
     private void handleCasAddOn( String[] elements ){
         lineAnalyzer.setLine( elements );
 
-        String macro = lineAnalyzer.getValue( header[0] );
+        String macro = lineAnalyzer.getValue( Keys.KEY_DLMF );
         Matcher m = GlobalConstants.DLMF_MACRO_PATTERN.matcher( macro );
         if ( !m.matches() ){
             ERROR_LOG.info("Found a not supported DLMF macro for translation: " + macro);
