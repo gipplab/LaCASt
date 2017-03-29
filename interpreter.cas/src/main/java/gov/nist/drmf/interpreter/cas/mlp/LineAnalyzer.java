@@ -14,16 +14,23 @@ public class LineAnalyzer {
 
     private String[] values;
 
-    public LineAnalyzer( String separator_symbol, String... headers) throws NullPointerException {
+    private String cas_prefix;
+
+    public LineAnalyzer( String cas_prefix, String separator_symbol, String... headers) throws NullPointerException {
         if ( headers == null ) throw new NullPointerException("Header should not be null!");
         this.separator_symbol = separator_symbol;
         idx_map = new HashMap<>();
         for ( int i = 0; i < headers.length; i++ )
             idx_map.put( headers[i], i );
+        this.cas_prefix = cas_prefix; // TODO
     }
 
     public void setLine( String[] elements ){
         values = elements;
+    }
+
+    String getCasPrefix(){
+        return cas_prefix;
     }
 
     public String getValue( String key ){
