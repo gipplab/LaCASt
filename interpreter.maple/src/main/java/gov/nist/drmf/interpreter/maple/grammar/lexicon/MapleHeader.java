@@ -15,7 +15,7 @@ public enum MapleHeader {
     Constraints( Keys.KEY_MAPLE + "-" + Keys.FEATURE_CONSTRAINTS ),
     Num_Of_Vars( Keys.NUM_OF_VARS ),
     Comment( Keys.KEY_MAPLE + Keys.KEY_COMMENT_SUFFIX ),
-    Alternatives( Keys.KEY_MAPLE + Keys.KEY_ALTERNATIVE_SUFFX );
+    Alternatives( Keys.KEY_DLMF + Keys.KEY_ALTERNATIVE_SUFFX );
 
     private static class Holder{
         static HashMap< String, MapleHeader > map = new HashMap<>();

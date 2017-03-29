@@ -13,8 +13,11 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.swing.*;
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedList;
 import java.util.Properties;
@@ -67,87 +70,88 @@ public class MapleTranslator {
      * @param args empty or a maple expression in the first argument
      */
     public static void main(String[] args){
-        String test = "JacobiP(n,alpha,beta,cos(a*Theta)/2)";
-        test = "sum(cos(k!)/2,k=0..5)";
-//        test = "cos(sin(I/2)+gamma^x*ln(x))-sin(Pi*x!)";
 
         MapleTranslator mt = new MapleTranslator();
-        try {
+        Path p = GlobalPaths.PATH_REFERENCE_DATA.resolve("TestCases.txt");
+        try (BufferedReader br = Files.newBufferedReader(p)){
             mt.init();
-            Translation t = mt.translateFromMapleToLaTeX(test);
-            String back = mt.translateFromLaTeXToMapleClean( t.getTranslatedExpression() );
-            boolean b = mt.simplificationTester( test, back );
+            String mapleLHS, mapleRHS;
+            String[] eq;
+            String line = br.readLine();
+            int counter = 1;
 
-            System.out.println( "Input: " + test );
-            System.out.println( "Translated:  " + t.getTranslatedExpression() );
-            System.out.println( t.getAdditionalInformation() );
-            System.out.println( "BackTranslated: " + back );
-            System.out.println( "Simplification Test: " + b );
+            String failures = "";
 
+            while ( line != null && !line.isEmpty() ){
+                eq = line.split("=");
+
+                try {
+                    mapleLHS = mt.translateFromLaTeXToMapleClean(eq[0]);
+                    mapleRHS = mt.translateFromLaTeXToMapleClean(eq[1]);
+                    if ( !mt.simplificationTester2( mt.commandSimple(mapleLHS,mapleRHS) ) ){
+                        if ( !mt.simplificationTester2( mt.commandExp(mapleLHS,mapleRHS) ) ){
+                            if ( !mt.simplificationTester2( mt.commandHyper(mapleLHS,mapleRHS) ) ){
+                                System.out.println(mt.commandHyper(mapleLHS,mapleRHS));
+                                failures += counter + "-NOT EQUAL: " + line + System.lineSeparator();
+                            }
+                        }
+                    }
+                } catch ( Exception e ){
+                    failures += counter + "-NOT EQUAL: " + line + System.lineSeparator();
+                }
+                line = br.readLine();
+                counter++;
+            }
+
+            System.out.println("PROBLEMS: " + failures);
+
+            /*
+            while ( !input.matches("-end") ){
+                System.out.println("TEST: " + input);
+                maple = mt.translateFromLaTeXToMapleClean(input);
+                latex_back = mt.translateFromMapleToLaTeXClean(maple);
+
+                Algebraic a = mt.simpli( maple );
+                System.out.println(  );
+                System.out.println( "SIMPLI: " + a.toString() );
+                System.out.println( latex_back );
+
+                input = sc.nextLine();
+            }
+            */
         } catch ( Exception e ){
             e.printStackTrace();
         }
+    }
 
-        /*
-        Scanner sc = new Scanner(System.in);
-        if ( args != null && args.length >= 1 ){
-            test = args[0];
-        } else {
-            System.out.println("Please enter a polynomial without functions in Maple representation.");
-            test = sc.nextLine().trim();
-            if ( test.matches("stop") ){
-                System.out.println("You stopped the program.");
-                return;
-            }
-        }
-        */
+    private Algebraic simpli( String maple ) throws MapleException {
+        return mapleInterface.evaluateExpression( "simplify(convert(" + maple + ",exp));" );
+    }
 
-        /*
-        System.out.println("Initializing...");
-        try {
-            MapleTranslator t = new MapleTranslator();
-            t.init();
-            int c = 0;
-            String tmp, last = "";
-            LinkedList<String> latex_results = new LinkedList<>();
-            LinkedList<String> maple_results = new LinkedList<>();
-            boolean latex_equ = false, maple_equ = false;
+    public String commandSimple( String maple1, String maple2 ){
+        return "simplify((" + maple1 + ")-("+maple2+ "));";
+    }
+    public String commandExp( String maple1, String maple2 ){
+        return "simplify(convert((" + maple1 + ")-("+maple2+ "),exp));";
+    }
+    public String commandHyper( String maple1, String maple2 ){
+        return "simplify(convert((" + maple1 + ")-("+maple2+ "),hypergeom));";
+    }
 
-            maple_results.add(test);
+    public boolean simplificationTester2(String cmd)
+            throws MapleException {
+        // otherwise build simplify command to test equivalence
+        String command = cmd;
+        // log for debugging
+        LOG.debug("Simplification-Test: " + command);
 
-            while ( c < 10 && !(latex_equ && maple_equ) ){
-                tmp = t.translateFromMapleToLaTeXClean( maple_results.getLast() );
-                latex_results.addLast( tmp );
-                if ( tmp.equals( last ) ) latex_equ = true;
-
-                last = maple_results.getLast();
-                tmp = t.translateFromLaTeXToMapleClean( latex_results.getLast() );
-                maple_results.addLast( tmp );
-                if ( tmp.equals( last ) ) maple_equ = true;
-
-                last = latex_results.getLast();
-                c++;
-            }
-
-            System.out.println("Fix-Point reached after " + c + " cycles.");
-            System.out.println("Start equation: " + maple_results.removeFirst());
-            System.out.println();
-
-            for ( int i = 0; i < latex_results.size(); i++ ){
-                System.out.println("Cycle: " + (i+1));
-                System.out.println( latex_results.get(i) );
-                System.out.println( maple_results.get(i) );
-                System.out.println();
-            }
-
-            boolean b = t.simplificationTester( test, maple_results.getLast() );
-            if ( b ){
-                System.out.println("Both expressions are symbolical equivalent.");
-            } else System.out.println("No equivalence found!");
-        } catch ( Exception e ){
-            e.printStackTrace();
-        }
-        */
+        // analyze the algebraic solution
+        Algebraic solution = mapleInterface.evaluateExpression( command );
+        // null solutions returns false
+        if ( solution == null || solution.isNULL() ) return false;
+        // analyze the output string and returns true when it matches "0".
+        String solution_str = solution.toString();
+        return solution_str.trim().matches("0");
     }
 
     /**
