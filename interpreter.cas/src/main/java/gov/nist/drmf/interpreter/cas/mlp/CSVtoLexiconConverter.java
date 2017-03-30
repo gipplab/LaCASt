@@ -235,6 +235,7 @@ public class CSVtoLexiconConverter {
             return;
         }
 
+        // TODO use DLMFTranslationHeaders instead of header...
         FeatureSet fset = list.get(0);
         for ( int i = 1; i < elements.length && i < header.length; i++ ){
             String value = lineAnalyzer.getValue( header[i] );
