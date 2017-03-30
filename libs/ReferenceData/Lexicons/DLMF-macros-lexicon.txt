@@ -1073,6 +1073,7 @@ Symbol: \CompEllIntK
 	Maple: EllipticK($0)
 	Maple-Comment: Maple assumes the sine of the amplitude! So be aware that after the translation is K(k) = F(1,k).
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticK
+	Mathematica: EllipticK[($0)^2]
 	Meanings: Legendre's elliptic integral of the first kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2794,6 +2795,8 @@ Symbol: \Jacobicd
 	DLMF-Link: dlmf.nist.gov/22.2#E8
 	Maple: JacobiCD($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCD
+	Mathematica: JacobiCD[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiCD.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2807,6 +2810,8 @@ Symbol: \Jacobicn
 	DLMF-Link: dlmf.nist.gov/22.2#E5
 	Maple: JacobiCN($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCN
+	Mathematica: JacobiCN[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiCN.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2820,6 +2825,8 @@ Symbol: \Jacobics
 	DLMF-Link: dlmf.nist.gov/22.2#E15
 	Maple: JacobiCS($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiCS[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiCS.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2833,6 +2840,8 @@ Symbol: \Jacobidc
 	DLMF-Link: dlmf.nist.gov/22.2#E14
 	Maple: JacobiDC($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiDC[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiDC.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2846,6 +2855,8 @@ Symbol: \Jacobidn
 	DLMF-Link: dlmf.nist.gov/22.2#E6
 	Maple: JacobiDN($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiDN
+	Mathematica: JacobiDN[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiDN.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2859,6 +2870,8 @@ Symbol: \Jacobids
 	DLMF-Link: dlmf.nist.gov/22.2#E13
 	Maple: JacobiDS($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiDS[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiDS.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2872,6 +2885,8 @@ Symbol: \Jacobinc
 	DLMF-Link: dlmf.nist.gov/22.2#E11
 	Maple: JacobiNC($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiNC[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiNC.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2885,6 +2900,8 @@ Symbol: \Jacobind
 	DLMF-Link: dlmf.nist.gov/22.2#E12
 	Maple: JacobiND($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiND[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiND.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2898,6 +2915,8 @@ Symbol: \Jacobins
 	DLMF-Link: dlmf.nist.gov/22.2#E10
 	Maple: JacobiNS($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiNS[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiNS.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2924,6 +2943,8 @@ Symbol: \Jacobisc
 	DLMF-Link: dlmf.nist.gov/22.2#E9
 	Maple: JacobiSC($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSC
+	Mathematica: JacobiSC[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiSC.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2937,6 +2958,8 @@ Symbol: \Jacobisd
 	DLMF-Link: dlmf.nist.gov/22.2#E7
 	Maple: JacobiSD($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSD
+	Mathematica: JacobiSD[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiSD.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2950,6 +2973,8 @@ Symbol: \Jacobisn
 	DLMF-Link: dlmf.nist.gov/22.2#E4
 	Maple: JacobiSN($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSN
+	Mathematica: JacobiSN[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiSN.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
