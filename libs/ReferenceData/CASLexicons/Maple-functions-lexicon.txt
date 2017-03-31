@@ -194,20 +194,6 @@ CoulombF::3
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/33.2#E3
 
-Curl::1
-	Maple-Name:= Curl
-	DLMF-Pattern:= \curl $0
-	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Curl
-	NumberOfVars:= 1
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= null
-	DLMF-Constraints:= null
-	DLMF-BranchCuts:= null
-	DLMF-Link:= null
-
 CylinderD::2
 	Maple-Name:= CylinderD
 	DLMF-Pattern:= \WhitD{$0}@{$1}
@@ -263,20 +249,6 @@ Dirac::1
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/1.17#E12
-
-Divergence::1
-	Maple-Name:= Divergence
-	DLMF-Pattern:= \divergence $0
-	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Divergence
-	NumberOfVars:= 1
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= null
-	DLMF-Constraints:= null
-	DLMF-BranchCuts:= null
-	DLMF-Link:= null
 
 Ei::1
 	Maple-Name:= Ei
@@ -343,38 +315,10 @@ EllipticE::1
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Legendre's elliptic integral of the second kind
+	DLMF-Meaning:= Legendre's complete elliptic integral of the second kind
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/19.2#E8
-
-EllipticE::2
-	Maple-Name:= EllipticE
-	DLMF-Pattern:= \EllIntE@{\asin@{$0}}{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Legendre's incomplete elliptic integral of the second kind
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/19.2#E5
-
-EllipticF::2
-	Maple-Name:= EllipticF
-	DLMF-Pattern:= \EllIntF@{\asin@{$0}}{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticF
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Legendre's incomplete elliptic integral of the first kind
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/19.2#E4
 
 EllipticK::1
 	Maple-Name:= EllipticK
@@ -385,7 +329,7 @@ EllipticK::1
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Legendre's elliptic integral of the first kind
+	DLMF-Meaning:= Legendre's complete elliptic integral of the first kind
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/19.2#E8
@@ -399,24 +343,10 @@ EllipticPi::2
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Legendre's elliptic integral of the third kind
+	DLMF-Meaning:= Legendre's complete elliptic integral of the third kind
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/19.2#E8
-
-EllipticPi::3
-	Maple-Name:= EllipticPi
-	DLMF-Pattern:= \EllIntPi@{\asin@{$0}}{$1}{$2}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
-	NumberOfVars:= 3
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Legendre's incomplete elliptic integral of the third kind
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/19.2#E7
 
 FresnelC::1
 	Maple-Name:= FresnelC
@@ -529,20 +459,6 @@ GegenbauerC::3
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/18.3#T1.t1.r3
-
-Gradiant::1
-	Maple-Name:= Gradiant
-	DLMF-Pattern:= \gradient $0
-	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Gradient
-	NumberOfVars:= 1
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= null
-	DLMF-Constraints:= null
-	DLMF-BranchCuts:= null
-	DLMF-Link:= null
 
 HankelH1::2
 	Maple-Name:= HankelH1
@@ -1174,6 +1090,20 @@ LambertW::2
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/4.13#p2
 
+LegendreP::2
+	Maple-Name:= LegendreP
+	DLMF-Pattern:= \LegendreP{$0}@{$1}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	NumberOfVars:= 2
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Legendre function of first kind
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/14.2#i
+
 LegendreP::3
 	Maple-Name:= LegendreP
 	DLMF-Pattern:= \LegendreP[$1]{$0}@{$2}
@@ -1186,7 +1116,21 @@ LegendreP::3
 	DLMF-Meaning:= Associated Legendre function of first kind
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/14.3#E6
+	DLMF-Link:= http://dlmf.nist.gov/14.3#E5
+
+LegendreQ::2
+	Maple-Name:= LegendreQ
+	DLMF-Pattern:= \LegendreQ{$0}@{$1}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	NumberOfVars:= 2
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Legendre function of second kind
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/14.2#i
 
 LegendreQ::3
 	Maple-Name:= LegendreQ
@@ -1327,20 +1271,6 @@ P::2
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/18.3#T1.t1.r10
-
-Product::2
-	Maple-Name:= Product
-	DLMF-Pattern:= 
-	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=product
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= null
-	DLMF-Constraints:= null
-	DLMF-BranchCuts:= null
-	DLMF-Link:= null
 
 Product::3
 	Maple-Name:= Product
@@ -1523,20 +1453,6 @@ StruveL::2
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/11.2#E2
-
-Sum::2
-	Maple-Name:= Sum
-	DLMF-Pattern:= 
-	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=sum
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= null
-	DLMF-Constraints:= null
-	DLMF-BranchCuts:= null
-	DLMF-Link:= null
 
 Sum::3
 	Maple-Name:= Sum
@@ -2070,20 +1986,6 @@ dilog::1
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/25.12#E1
 
-doublefactorial::1
-	Maple-Name:= doublefactorial
-	DLMF-Pattern:= ($0)!!
-	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=doublefactorial
-	NumberOfVars:= 1
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= null
-	DLMF-Constraints:= null
-	DLMF-BranchCuts:= null
-	DLMF-Link:= null
-
 erf::1
 	Maple-Name:= erf
 	DLMF-Pattern:= \erf@@{$0}
@@ -2126,20 +2028,6 @@ erfc::2
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/7.18#E2
 
-erfi::1
-	Maple-Name:= erfi
-	DLMF-Pattern:= -\iunit \erf@@{\iunit $0}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=erfi
-	NumberOfVars:= 1
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= null
-	DLMF-Constraints:= null
-	DLMF-BranchCuts:= null
-	DLMF-Link:= null
-
 euler::2
 	Maple-Name:= euler
 	DLMF-Pattern:= \EulerE{$0}@{$1}
@@ -2167,20 +2055,6 @@ exp::1
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/4.2#E19
-
-factorial::1
-	Maple-Name:= factorial
-	DLMF-Pattern:= ($0)!
-	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=factorial
-	NumberOfVars:= 1
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= null
-	DLMF-Constraints:= null
-	DLMF-BranchCuts:= null
-	DLMF-Link:= null
 
 floor::1
 	Maple-Name:= floor
@@ -2322,20 +2196,6 @@ ln::1
 	DLMF-BranchCuts:= (-\infty, 0]
 	DLMF-Link:= http://dlmf.nist.gov/4.2#E2
 
-lnGAMMA::1
-	Maple-Name:= lnGAMMA
-	DLMF-Pattern:= \ln@@{\EulerGamma@{$0}}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=lnGAMMA
-	NumberOfVars:= 1
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Natural logarithm
-	DLMF-Constraints:= z != 0
-	DLMF-BranchCuts:= (-\infty, 0]
-	DLMF-Link:= http://dlmf.nist.gov/4.2#E2
-
 log::1
 	Maple-Name:= log
 	DLMF-Pattern:= \log@@{$0}
@@ -2433,20 +2293,6 @@ polylog::2
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/25.12#E10
-
-product::2
-	Maple-Name:= product
-	DLMF-Pattern:= 
-	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=product
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= null
-	DLMF-Constraints:= null
-	DLMF-BranchCuts:= null
-	DLMF-Link:= null
 
 product::3
 	Maple-Name:= product
@@ -2559,20 +2405,6 @@ sqrt::1
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://not defined
-
-sum::2
-	Maple-Name:= sum
-	DLMF-Pattern:= 
-	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=sum
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= null
-	DLMF-Constraints:= null
-	DLMF-BranchCuts:= null
-	DLMF-Link:= null
 
 sum::3
 	Maple-Name:= sum
