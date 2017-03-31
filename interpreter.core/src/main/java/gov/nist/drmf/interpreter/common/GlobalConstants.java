@@ -14,14 +14,22 @@ public class GlobalConstants {
 
     public static final String WHITESPACE = " ";
 
-    public static final String LATEX_MULTIPLY = "\\\\cdot|\\s\\*";
+    public static final String LATEX_MULTIPLY = "\\\\cdot|\\\\idot|\\s\\*";
     public static final Pattern LATEX_MULTIPLY_PATTERN = Pattern.compile(LATEX_MULTIPLY);
 
-    public static final String LATEX_COMMAND = "\\\\[a-zA-Z\\(\\)\\[\\]\\{}]+";
+    public static final String LATEX_COMMAND = "\\\\[a-zA-Z()\\[\\]{}]+";
     public static final Pattern LATEX_COMMAND_PATTERN = Pattern.compile(LATEX_COMMAND);
 
+    private static final String macro_pattern =
+            "(X\\dX)*(\\\\\\w+)(\\[[^@]+])*(\\{[^@]+})*(@+)*(\\{[^@]+})*\\s*";
+
     public static final Pattern DLMF_MACRO_PATTERN =
-            Pattern.compile("\\s*(\\\\\\w+)(\\[.*\\])*(\\{.*\\})*(@+\\{+.+\\}+)*\\s*");
+            Pattern.compile(macro_pattern);
+
+    public static final int MACRO_PATTERN_INDEX_OPT_PARA = 1;
+    public static final int MACRO_PATTERN_INDEX_MACRO = 2;
+    public static final int MACRO_PATTERN_INDEX_ATS = 5;
+    public static final int MACRO_PATTERN_INDEX_OPT_PARAS_ELEMENTS = 3;
 
     public static final String LINK_PREFIX = "http://";
     public static final String LINK_S_PREFIX = "https://";

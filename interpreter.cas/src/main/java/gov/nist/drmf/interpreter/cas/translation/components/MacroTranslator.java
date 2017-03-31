@@ -8,11 +8,15 @@ import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
+import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This translation parses all of the DLMF macros. A DLMF macro
@@ -33,6 +37,9 @@ import java.util.List;
  * @author Andre Greiner-Petter
  */
 public class MacroTranslator extends AbstractListTranslator {
+    private static final Pattern optional_params_pattern =
+            Pattern.compile("\\s*\\[(.*)]\\s*");
+
     // the number of parameters, ats and variables
     private int
             numOfParams,
@@ -55,6 +62,8 @@ public class MacroTranslator extends AbstractListTranslator {
 
     private String cas_comment;
 
+    private MathTerm macro_term;
+
     public MacroTranslator(){}
 
     @Override
@@ -65,7 +74,9 @@ public class MacroTranslator extends AbstractListTranslator {
     @Override
     public boolean translate(PomTaggedExpression root_exp) {
         // first of all, get the feature set named dlmf-macro
-        MathTerm term = root_exp.getRoot();
+        macro_term = root_exp.getRoot();
+
+        /*
         FeatureSet fset = term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
 
         // if this set is null, it is simply not a dlmf-macro
@@ -75,6 +86,19 @@ public class MacroTranslator extends AbstractListTranslator {
             return false;
         }
 
+        storeInfos(fset);
+
+        // put all information to the info log
+        INFO_LOG.addMacroInfo(
+                term.getTermText(),
+                createFurtherInformation()
+        );
+        */
+
+        return true;
+    }
+
+    private void storeInfos( FeatureSet fset ){
         // now store all additional information
         // first of all number of parameters, ats and vars
         numOfParams = Integer.parseInt(DLMFFeatureValues.params.getFeatureValue(fset));
@@ -109,23 +133,70 @@ public class MacroTranslator extends AbstractListTranslator {
             try{ alternative_pattern = alternative_pattern.split( GlobalConstants.ALTERNATIVE_SPLIT )[0]; }
             catch ( Exception e ){}
         }
-
-        // put all information to the info log
-        INFO_LOG.addMacroInfo(
-                term.getTermText(),
-                createFurtherInformation()
-        );
-
-
-        components = new String[numOfParams + numOfVars];
-        return true;
     }
 
     private boolean parse(List<PomTaggedExpression> following_exps){
-        if ( components == null || following_exps == null ) return false;
+        LinkedList<String> optional_paras = new LinkedList<>();
+        PomTaggedExpression moveToEnd = null;
+
+        while ( !following_exps.isEmpty() ){
+            PomTaggedExpression first = following_exps.get(0);
+            MathTerm first_term = first.getRoot();
+
+            if ( first_term != null ){
+                MathTermTags tag = MathTermTags.getTagByKey( first_term.getTag() );
+                if ( tag == null ) break;
+                else if ( tag.equals(MathTermTags.caret) ){
+                    moveToEnd = following_exps.remove(0);
+                    //continue;
+                } else if ( tag.equals(MathTermTags.left_bracket) ){
+                    TranslatedExpression inner_exp =
+                            parseGeneralExpression(
+                                    following_exps.remove(0),
+                                    following_exps
+                            );
+                    String optional = inner_exp.toString();
+                    global_exp.removeLastNExps( inner_exp.getLength() );
+                    Matcher m = optional_params_pattern.matcher(optional);
+                    if ( m.matches() )
+                        optional_paras.add( m.group(1) );
+                    else optional_paras.add( optional );
+                } else {
+                    break;
+                }
+            }
+        }
+
+        FeatureSet fset = null;
+        if ( optional_paras.size() == 0 ){
+            fset = macro_term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
+        } else {
+            fset = macro_term.getNamedFeatureSet(
+                    Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX+optional_paras.size() );
+            if ( fset == null ){
+                ERROR_LOG.severe("Cannot find feature set with optional parameters.");
+                return false;
+            }
+        }
+
+        int start = optional_paras.size();
+        storeInfos(fset);
+
+        String info_key = macro_term.getTermText();
+        if ( start != 0 )
+            info_key += start;
+        // put all information to the info log
+        INFO_LOG.addMacroInfo(
+                info_key,
+                createFurtherInformation()
+        );
+
+        components = new String[ start + numOfParams + numOfVars ];
+        for ( int i = 0; !optional_paras.isEmpty() && i < components.length; i++ )
+            components[i] = optional_paras.removeFirst();
 
         int inner_at_counter = 0;
-        for ( int i = 0; !following_exps.isEmpty() && i < components.length; ){
+        for ( int i = start; !following_exps.isEmpty() && i < components.length; ){
             // get first expression
             PomTaggedExpression exp = following_exps.remove(0);
 
@@ -149,6 +220,9 @@ public class MacroTranslator extends AbstractListTranslator {
                 return false;
         }
 
+        if ( moveToEnd != null ){
+            following_exps.add(0, moveToEnd);
+        }
 
         // finally fill the placeholders by values
         fillVars();

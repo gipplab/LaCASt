@@ -9,6 +9,7 @@ import java.util.*;
 import java.nio.file.Paths;
 
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
+import mlp.FeatureSet;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
@@ -69,7 +70,7 @@ public class MLP {
 //            eq = "\\sqrt \\frac{2}{4}";
 //            eq = "ab13d";
 //            eq = "3 mod 4";
-            eq = "2 \\cdot \\idot 3";
+            eq = "\\LegendreP[0]{1}@{2}";
 
             // parse/tag the equation and print it out 
             PomTaggedExpression pe = parser.parse(eq);
@@ -77,6 +78,11 @@ public class MLP {
             //for ( String key : features.keySet() )
             //    System.out.println(key + ": " + features.get(key));
             print(eq+":\n"+pe.toString());
+
+//            List<FeatureSet> l = pe.getComponents().get(0).getRoot().getAlternativeFeatureSets();
+//            for ( FeatureSet f : l ){
+//                System.out.println(f.toString("    "));
+//            }
         }
         catch(ParseException | IOException e){
                 print("Caught an exception: "+e.getMessage());
