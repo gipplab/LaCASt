@@ -14,7 +14,7 @@ public enum MapleHeader {
     Branch_Cuts( Keys.KEY_MAPLE + "-" + Keys.FEATURE_BRANCH_CUTS ),
     Constraints( Keys.KEY_MAPLE + "-" + Keys.FEATURE_CONSTRAINTS ),
     Num_Of_Vars( Keys.NUM_OF_VARS ),
-    Comment( Keys.KEY_MAPLE + Keys.KEY_COMMENT_SUFFIX ),
+    Comment( Keys.KEY_MAPLE + "-" + Keys.KEY_DLMF + Keys.KEY_COMMENT_SUFFIX ),
     Alternatives( Keys.KEY_DLMF + Keys.KEY_ALTERNATIVE_SUFFX );
 
     private static class Holder{

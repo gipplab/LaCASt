@@ -3,7 +3,7 @@ AiryAi::1
 	DLMF-Pattern:= \AiryAi@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Airy
 	NumberOfVars:= 1
-	MapleComment:= Maple also supports the derivatives with AiryAi(n, z) and AiryBi(n, z)
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -17,7 +17,7 @@ AiryBi::1
 	DLMF-Pattern:= \AiryBi@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Airy
 	NumberOfVars:= 1
-	MapleComment:= Maple also supports the derivatives with AiryAi(n, z) and AiryBi(n, z)
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -45,10 +45,10 @@ BellB::2
 	DLMF-Pattern:= \BellNumber@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=BellB
 	NumberOfVars:= 2
-	MapleComment:= bell(n) is an alternative translation. But it is necessary to import the extra package with(combinat, bell) if you planning to use the shorter version.
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= b||e||l||l||(||$||0||)
+	Alternatives:= bell($0)
 	DLMF-Meaning:= Bell number
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
@@ -199,7 +199,7 @@ Curl::1
 	DLMF-Pattern:= \curl $0
 	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Curl
 	NumberOfVars:= 1
-	MapleComment:= with(VectorCalculus):
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -227,7 +227,7 @@ CylinderU::2
 	DLMF-Pattern:= \ParabolicU@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=CylinderU
 	NumberOfVars:= 2
-	MapleComment:= For a=0, this can be computed with BesselK. But this produces branch cut issues
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -269,7 +269,7 @@ Divergence::1
 	DLMF-Pattern:= \divergence $0
 	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Divergence
 	NumberOfVars:= 1
-	MapleComment:= with(VectorCalculus):
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -283,10 +283,10 @@ Ei::1
 	DLMF-Pattern:= \ExpInt@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Ei
 	NumberOfVars:= 1
-	MapleComment:= The alternative form is equivalent.
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= \||E||x||p||I||n||t||i||@||{||$||0||}
+	Alternatives:= \ExpInti@{$0}
 	DLMF-Meaning:= Exponential integral
 	DLMF-Constraints:= z != 0
 	DLMF-BranchCuts:= (-\infty, 0]
@@ -311,7 +311,7 @@ EllipticCE::1
 	DLMF-Pattern:= \CompEllIntCE@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCE
 	NumberOfVars:= 1
-	MapleComment:= You should notice, that Maple assumes the sine of the amplitude, while DLMF is defined with the amplitude itself.
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -325,7 +325,7 @@ EllipticCK::1
 	DLMF-Pattern:= \CompEllIntCK@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCK
 	NumberOfVars:= 1
-	MapleComment:= You should notice, that Maple assumes the sine of the amplitude, while DLMF is defined with the amplitude itself.
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -339,7 +339,7 @@ EllipticE::1
 	DLMF-Pattern:= \CompEllIntE@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
 	NumberOfVars:= 1
-	MapleComment:= Maple assumes the sine of the amplitude! So be aware that after the translation is E(k) = E(1,k).
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -353,7 +353,7 @@ EllipticE::2
 	DLMF-Pattern:= \EllIntE@{\asin@{$0}}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
 	NumberOfVars:= 2
-	MapleComment:= Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -367,7 +367,7 @@ EllipticF::2
 	DLMF-Pattern:= \EllIntF@{\asin@{$0}}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticF
 	NumberOfVars:= 2
-	MapleComment:= Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -381,7 +381,7 @@ EllipticK::1
 	DLMF-Pattern:= \CompEllIntK@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticK
 	NumberOfVars:= 1
-	MapleComment:= Maple assumes the sine of the amplitude! So be aware that after the translation is K(k) = F(1,k).
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -395,7 +395,7 @@ EllipticPi::2
 	DLMF-Pattern:= \CompEllIntPi@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
 	NumberOfVars:= 2
-	MapleComment:= Maple assumes the sine of the amplitude! So be aware that after the translation is Pi(alpha, k) = Pi(1, alpha, k).
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -409,7 +409,7 @@ EllipticPi::3
 	DLMF-Pattern:= \EllIntPi@{\asin@{$0}}{$1}{$2}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
 	NumberOfVars:= 3
-	MapleComment:= Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -535,7 +535,7 @@ Gradiant::1
 	DLMF-Pattern:= \gradient $0
 	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Gradient
 	NumberOfVars:= 1
-	MapleComment:= with(VectorCalculus):
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -577,7 +577,7 @@ Heaviside::1
 	DLMF-Pattern:= \HeavisideH@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Heaviside
 	NumberOfVars:= 1
-	MapleComment:= Heaviside(0) is defined to be 0 in DLMF.
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -1140,7 +1140,7 @@ LaguerreL::3
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= \||L||a||g||u||e||r||r||e||L||[||\||a||l||p||h||a||]||{||n||}||@||{||x||}
+	Alternatives:= \LaguerreL[\alpha]{n}@{x}
 	DLMF-Meaning:= Laguerre polynomial
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
@@ -1151,7 +1151,7 @@ LambertW::1
 	DLMF-Pattern:= \LambertW@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LambertW
 	NumberOfVars:= 1
-	MapleComment:= The DLMF defines two branches with extra macros. \LambertWp and \LambertWm. Take a look at http://dlmf.nist.gov/4.13 for further information.
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -1165,7 +1165,7 @@ LambertW::2
 	DLMF-Pattern:= \LambertW@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LambertW
 	NumberOfVars:= 2
-	MapleComment:= The DLMF doesn't define other macros for the branches (only \LambertWp and \LambertWm when your first argument is -1 and your second argument is real-valued).
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -1179,7 +1179,7 @@ LegendreP::3
 	DLMF-Pattern:= \LegendreP[$1]{$0}@{$2}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	NumberOfVars:= 3
-	MapleComment:= Different order in parameters, 1 < z
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -1193,7 +1193,7 @@ LegendreQ::3
 	DLMF-Pattern:= \LegendreQ[$1]{$0}@{$2}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	NumberOfVars:= 3
-	MapleComment:= Different order in parameters, 1 < z
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -1291,7 +1291,7 @@ MathieuCE::3
 	DLMF-Pattern:= \Mathieuce{$0}@@{$2}{$1}
 	Maple-Link:= 
 	NumberOfVars:= 3
-	MapleComment:= "Maple normalizes values if n=0. For n=0 use the alternative translation!
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -1319,7 +1319,7 @@ P::2
 	DLMF-Pattern:= \LegendrePoly{$0}@{$1}
 	Maple-Link:= not defined
 	NumberOfVars:= 2
-	MapleComment:= This funcion needs an extra package. with(orthopoly)
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -1327,6 +1327,48 @@ P::2
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/18.3#T1.t1.r10
+
+Product::2
+	Maple-Name:= Product
+	DLMF-Pattern:= 
+	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=product
+	NumberOfVars:= 2
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= null
+	DLMF-Constraints:= null
+	DLMF-BranchCuts:= null
+	DLMF-Link:= null
+
+Product::3
+	Maple-Name:= Product
+	DLMF-Pattern:= \Prod{$1}{$2}{$2}@{$0}
+	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=product
+	NumberOfVars:= 3
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Product
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://drmf.wmflabs.org/wiki/Definition:Prod
+
+Product::4
+	Maple-Name:= Product
+	DLMF-Pattern:= \Prod{$1}{$2}{$3}@{$0}
+	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=product
+	NumberOfVars:= 4
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Product
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://drmf.wmflabs.org/wiki/Definition:Prod
 
 Psi::1
 	Maple-Name:= Psi
@@ -1669,10 +1711,10 @@ arccot::1
 	DLMF-Pattern:= \acot@@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
 	NumberOfVars:= 1
-	MapleComment:= "Maple defines another branch cut than DLMF for the invert cotangent function. You can use an alternative translation to avoid that. With the arctan alternative you have the same branch cuts as DLMF. The 2nd alternative with logarithm can be used, when your z = 0 (mentioned in Equation 25 in ""According to Arbamowitz and Stegun or arccoth needn't be uncouth"" by R.M. Corless, D.J. Jeffrey, S.M. Watt)."
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= (- I infinity, - I ), ( I, I infinity )
-	Alternatives:= 
+	Alternatives:= \frac{\cpi}{2}-\atan@@{$0}
 	DLMF-Meaning:= Inverse cotangent
 	DLMF-Constraints:= z not element of {0,-\iunit,+\iunit}
 	DLMF-BranchCuts:= (-\iunit, \iunit)
@@ -1837,7 +1879,7 @@ bernoulli::2
 	DLMF-Pattern:= \BernoulliB{$0}@{$1}
 	Maple-Link:= 
 	NumberOfVars:= 2
-	MapleComment:= "Maple provides an extra function for x=0. You can call bernoulli(n).
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -1854,7 +1896,7 @@ binomial::2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= \||b||i||n||o||m||i||a||l||{||$||0||}||{||$||1||}
+	Alternatives:= \binomial{$0}{$1}
 	DLMF-Meaning:= Binomial coefficient
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
@@ -2187,7 +2229,7 @@ harmonic::1
 	DLMF-Pattern:= \HarmonicNumber{n}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=harmonic
 	NumberOfVars:= 1
-	MapleComment:= DLMF assumes nonnegative integers.
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -2257,7 +2299,7 @@ legendre::2
 	DLMF-Pattern:= \LegendreSymbol{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory%2Flegendre%28deprecated%29
 	NumberOfVars:= 2
-	MapleComment:= This funcion needs an extra package. For Maple 2016 or older use with(numtheory), otherwise use with(NumberTheory)
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -2285,7 +2327,7 @@ lnGAMMA::1
 	DLMF-Pattern:= \ln@@{\EulerGamma@{$0}}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=lnGAMMA
 	NumberOfVars:= 1
-	MapleComment:= Equivalent for Re(z) >= 0 (for Re(z) < 0, Maple evaluates only the principal branch, which is defined by the analytic continuation from the positive real axis)
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -2299,7 +2341,7 @@ log::1
 	DLMF-Pattern:= \log@@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=log
 	NumberOfVars:= 1
-	MapleComment:= Without a given base, ln equals log.
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -2327,7 +2369,7 @@ null::2
 	DLMF-Pattern:= \Kronecker{$0}{$1}
 	Maple-Link:= http://www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/KroneckerDelta
 	NumberOfVars:= 2
-	MapleComment:= This funcion needs an extra package. with(Physics)
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -2341,7 +2383,7 @@ null::3
 	DLMF-Pattern:= \LeviCivita{$0}{$1}{$2}
 	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/LeviCivita
 	NumberOfVars:= 3
-	MapleComment:= This funcion needs an extra package: with(Physics). The number of variables is not defined in Maple. LeviCivita[j,k,l,...]
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -2355,7 +2397,7 @@ numbcomp::2
 	DLMF-Pattern:= \CompositionsC[$1]@{$0}
 	Maple-Link:= http://www.maplesoft.com/support/help/Maple/view.aspx?path=combinat%2Fnumbcomp
 	NumberOfVars:= 2
-	MapleComment:= Maple needs an extra package. Load it with the following command: with(combinat, numbcomp)
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
@@ -2383,18 +2425,46 @@ polylog::2
 	DLMF-Pattern:= \Polylogarithm{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=polylog
 	NumberOfVars:= 2
-	MapleComment:= The alternative notation phi is an old notation for the same function. Be aware of the different order of the variables.
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= \||J||o||n||q||u||i||e||r||e||P||h||i||@||{||$||1||}||{||$||0||}
+	Alternatives:= \JonquierePhi@{$1}{$0}
 	DLMF-Meaning:= Polylogarithm
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/25.12#E10
 
+product::2
+	Maple-Name:= product
+	DLMF-Pattern:= 
+	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=product
+	NumberOfVars:= 2
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= null
+	DLMF-Constraints:= null
+	DLMF-BranchCuts:= null
+	DLMF-Link:= null
+
+product::3
+	Maple-Name:= product
+	DLMF-Pattern:= \Prod{$1}{$2}{$2}@{$0}
+	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=product
+	NumberOfVars:= 3
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Product
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://drmf.wmflabs.org/wiki/Definition:Prod
+
 product::4
 	Maple-Name:= product
-	DLMF-Pattern:= \Prod{n}{k1}{k2}@{f(n)}
+	DLMF-Pattern:= \Prod{$1}{$2}{$3}@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=product
 	NumberOfVars:= 4
 	MapleComment:= 
@@ -2481,10 +2551,10 @@ sqrt::1
 	DLMF-Pattern:= \sqrt{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=sqrt
 	NumberOfVars:= 1
-	MapleComment:= You can use the csgn function, which is specialized for imaginary variables.
+	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= c||s||g||n||(||$||0||)
+	Alternatives:= csgn($0)
 	DLMF-Meaning:= n-th root
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
