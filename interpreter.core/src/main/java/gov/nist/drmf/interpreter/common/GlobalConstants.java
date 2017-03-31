@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class GlobalConstants {
     public static final String POSITION_MARKER = "$";
 
-    public static final String ALTERNATIVE_SPLIT = "||";
+    public static final String ALTERNATIVE_SPLIT = "\\|\\|";
 
     public static final String CARET_CHAR = "^";
 
