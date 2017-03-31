@@ -235,25 +235,15 @@ public class CSVtoLexiconConverter {
             return;
         }
 
-        // TODO use DLMFTranslationHeaders instead of header...
         FeatureSet fset = list.get(0);
         String casPrefix = lineAnalyzer.getCasPrefix();
         for ( DLMFTranslationHeaders h : DLMFTranslationHeaders.values() ){
             String value = lineAnalyzer.getValue( h.getCSVKey( casPrefix ) );
-            System.err.println(h.getCSVKey( casPrefix ) + ": " + value);
+
             if ( value != null && !value.isEmpty() ){
                 fset.addFeature( h.getFeatureKey(casPrefix), value, MacrosLexicon.SIGNAL_INLINE );
             }
         }
-
-        /*
-        for ( int i = 1; i < elements.length && i < header.length; i++ ){
-            String value = lineAnalyzer.getValue( header[i] );
-            if ( value != null && !value.isEmpty() ){
-                fset.addFeature( header[i], value, MacrosLexicon.SIGNAL_INLINE );
-            }
-        }
-        */
     }
 
     public static void main(String[] args){
