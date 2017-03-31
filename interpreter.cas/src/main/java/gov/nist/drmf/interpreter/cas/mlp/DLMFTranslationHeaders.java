@@ -6,7 +6,9 @@ import gov.nist.drmf.interpreter.common.Keys;
  * Created by AndreG-P on 29.03.2017.
  */
 public enum DLMFTranslationHeaders {
-    dlmf_comment( Keys.KEY_DLMF, Keys.KEY_COMMENT_SUFFIX ),
+    cas("", ""),
+    dlmf_comment( Keys.KEY_DLMF + "-", Keys.KEY_COMMENT_SUFFIX ),
+    cas_comment( "", "-" + Keys.KEY_DLMF + Keys.KEY_COMMENT_SUFFIX ),
     cas_alternatives( "", Keys.KEY_ALTERNATIVE_SUFFX ),
     cas_branch_cuts("", "-" + Keys.FEATURE_BRANCH_CUTS ),
     cas_link("", Keys.KEY_LINK_SUFFIX ),
@@ -19,7 +21,13 @@ public enum DLMFTranslationHeaders {
         this.suf = suf;
     }
 
-    String getKey( String cas_prefix ){
+    String getCSVKey( String cas_prefix ){
         return pre + cas_prefix + suf;
+    }
+
+    String getFeatureKey( String cas_prefix ){
+        if (this.equals(cas_comment))
+            return  cas_prefix + Keys.KEY_COMMENT_SUFFIX;
+        return cas_prefix + suf;
     }
 }

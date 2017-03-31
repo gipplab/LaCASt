@@ -73,7 +73,6 @@ public enum DLMFFeatureValues implements IFeatureExtractor{
 
     private static final String CAS_LINK_PREFIX = "https://";
 
-    //private String key;
     private IFeatureExtractor extractor;
 
     DLMFFeatureValues( IFeatureExtractor extractor ){
