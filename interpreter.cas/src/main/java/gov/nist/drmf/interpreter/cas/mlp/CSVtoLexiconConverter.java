@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
+import jdk.nashorn.internal.objects.Global;
 import mlp.FeatureSet;
 import mlp.Lexicon;
 import mlp.LexiconFactory;
@@ -158,6 +159,36 @@ public class CSVtoLexiconConverter {
                 .forEach( method );
     }
 
+    private void handleOptionalParameters( Matcher m, String[] elements ){
+        String mac = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARA);
+        String numStr = mac.replace("X","");
+
+        System.out.println(numStr);
+        Integer opt_para = Integer.parseInt(numStr);
+
+        String macro = m.group(GlobalConstants.MACRO_PATTERN_INDEX_MACRO);
+        List<FeatureSet> sets = dlmf_lexicon.getFeatureSets( macro );
+        if ( sets == null )
+            sets = new LinkedList<>();
+
+        FeatureSet fset = new FeatureSet( Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + opt_para );
+        fset.addFeature(
+                Keys.KEY_DLMF,
+                m.group(0).substring(mac.length()),
+                MacrosLexicon.SIGNAL_INLINE
+        );
+
+        // add all other information to the feature set
+        for ( int i = 1; i < elements.length && i < header.length; i++ ){
+            String value = lineAnalyzer.getValue( header[i] );
+            if ( value != null && !value.isEmpty() )
+                fset.addFeature( header[i], value, MacrosLexicon.SIGNAL_INLINE );
+        }
+        sets.add(fset);
+
+        dlmf_lexicon.setEntry( macro, sets );
+    }
+
     private void handleDLMFElements( String[] elements ){
         lineAnalyzer.setLine(elements);
 
@@ -168,6 +199,14 @@ public class CSVtoLexiconConverter {
             ERROR_LOG.info("Found a not supported DLMF macro: " + macro);
             return;
         }
+
+        String optional_ats = m.group( GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARA );
+        if ( optional_ats != null ){
+            handleOptionalParameters(m, elements);
+            return;
+        }
+
+        String macro_name = m.group(GlobalConstants.MACRO_PATTERN_INDEX_MACRO);
 
         // find out if it is a mathematical constant
         String role = lineAnalyzer.getValue( Keys.FEATURE_ROLE );
@@ -188,9 +227,12 @@ public class CSVtoLexiconConverter {
             fset.addFeature( dlmf_link, lineAnalyzer.getValue(dlmf_link), MacrosLexicon.SIGNAL_INLINE );
             fset.addFeature( Keys.FEATURE_MEANINGS, lineAnalyzer.getValue(Keys.FEATURE_MEANINGS), MacrosLexicon.SIGNAL_INLINE );
             fset.addFeature( Keys.FEATURE_ROLE, Keys.FEATURE_VALUE_CONSTANT, MacrosLexicon.SIGNAL_INLINE );
-            LinkedList<FeatureSet> fsets = new LinkedList<>();
+            List<FeatureSet> fsets = new LinkedList<>();
             fsets.add(fset);
-            dlmf_lexicon.setEntry( m.group(1), fsets );
+            dlmf_lexicon.setEntry(
+                    macro_name,
+                    fsets
+            );
             //internal_dlmf_counter++;
             return;
         } else if ( role.matches( Keys.FEATURE_VALUE_FUNCTION ) ){
@@ -210,12 +252,12 @@ public class CSVtoLexiconConverter {
         }
 
         // since each DLMF macro has only one feature set, create a list with one element
-        LinkedList<FeatureSet> fsets = new LinkedList<>();
+        List<FeatureSet> fsets = new LinkedList<>();
         fsets.add(fset);
 
         // group(1) is the DLMF macro without the suffix of parameters, ats and variables
         // just the plain macro
-        dlmf_lexicon.setEntry( m.group(1), fsets );
+        dlmf_lexicon.setEntry( macro_name, fsets );
         //internal_dlmf_counter++;
     }
 
@@ -229,13 +271,48 @@ public class CSVtoLexiconConverter {
             return;
         }
 
-        List<FeatureSet> list = dlmf_lexicon.getFeatureSets( m.group(1) );
+        List<FeatureSet> list = dlmf_lexicon.getFeatureSets(
+                m.group(GlobalConstants.MACRO_PATTERN_INDEX_MACRO)
+        );
+
         if ( list == null || list.isEmpty() ){
-            ERROR_LOG.info("SKIP " + m.group(1) + " (Reason: Cannot find FeatureSet)" );
+            ERROR_LOG.info("SKIP "
+                    + m.group(GlobalConstants.MACRO_PATTERN_INDEX_MACRO)
+                    + " (Reason: Cannot find FeatureSet)" );
             return;
         }
 
-        FeatureSet fset = list.get(0);
+        FeatureSet alternativeF = null;
+        FeatureSet dlmfF = null;
+        for ( FeatureSet f : list ){
+            if ( f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO ) )
+                dlmfF = f;
+            else if ( f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX+"\\d+" ) )
+                alternativeF = f;
+        }
+
+        FeatureSet fset;
+        String opt_para = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARA);
+        String paras = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS_ELEMENTS);
+        if ( opt_para != null ){
+            if ( alternativeF == null ){
+                ERROR_LOG.warning("Null alternative set! " + macro);
+                return;
+            }
+            fset = alternativeF;
+        } else if (paras != null) {
+            ERROR_LOG.warning("Parameters not in special syntax. " +
+                    "Has to be defined as 'X<digit>X<Macro>'. " + macro);
+            return;
+        } else {
+            if ( dlmfF == null ){
+                ERROR_LOG.warning("There is no feature set for this term? " + macro);
+                return;
+            }
+            fset = dlmfF;
+        }
+
+        //FeatureSet fset = list.get(0);
         String casPrefix = lineAnalyzer.getCasPrefix();
         for ( DLMFTranslationHeaders h : DLMFTranslationHeaders.values() ){
             String value = lineAnalyzer.getValue( h.getCSVKey( casPrefix ) );
@@ -270,14 +347,11 @@ public class CSVtoLexiconConverter {
             for ( int i = 0; i < args.length; i++ ){
                 csv_paths[i] = Paths.get( args[i] );
             }
-        } else if ( !csv_list.isEmpty() ){
+        } else {
             csv_paths = new Path[csv_list.size()];
             for ( int i = 0; i < csv_list.size(); i++ ){
                 csv_paths[i] = Paths.get( csv_list.get(i) );
             }
-        } else {
-            System.err.println("Something went wrong. There are no CSV files specified.");
-            return;
         }
 
         long start = System.currentTimeMillis();
