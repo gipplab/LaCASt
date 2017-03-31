@@ -28,9 +28,6 @@ Symbol: \AbstractJacobi
   Feature Set: function
 	DLMF: \AbstractJacobi{p}{q}
 	DLMF-Link: dlmf.nist.gov/22.2#E10
-	Maple: 1/JacobiQP
-	Maple-Comment: Should not translated maybe
-	Maple-Link: not defined
 	Meanings: Generic Jacobian elliptic function
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -921,7 +918,7 @@ Symbol: \CompEllIntE
 	DLMF-Link: dlmf.nist.gov/19.2#E8
 	Maple: EllipticE($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
-	Meanings: Legendre's elliptic integral of the second kind
+	Meanings: Legendre's complete elliptic integral of the second kind
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
@@ -936,7 +933,7 @@ Symbol: \CompEllIntK
 	Maple-Alternatives: (EllipticK($0) - EllipticE($0))/($0)^2
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticK
 	Mathematica: EllipticK[($0)^2]
-	Meanings: Legendre's elliptic integral of the first kind
+	Meanings: Legendre's complete elliptic integral of the first kind
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
@@ -949,7 +946,7 @@ Symbol: \CompEllIntPi
 	DLMF-Link: dlmf.nist.gov/19.2#E8
 	Maple: EllipticPi($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
-	Meanings: Legendre's elliptic integral of the third kind
+	Meanings: Legendre's complete elliptic integral of the third kind
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
@@ -993,9 +990,6 @@ Symbol: \CompositionsC
   Feature Set: dlmf-macro
 	DLMF: \CompositionsC[m]@{n}
 	DLMF-Link: dlmf.nist.gov/26.11#p1
-	Maple: numbcomp($1, $0)
-	Maple-Comment: Maple needs an extra package. Load it with the following command: with(combinat, numbcomp)
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=combinat%2Fnumbcomp
 	Meanings: Number of compositions
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1373,9 +1367,6 @@ Symbol: \EllIntE
   Feature Set: dlmf-macro
 	DLMF: \EllIntE@{\phi}{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E5
-	Maple: EllipticE(sin($0), $1)
-	Maple-Comment: Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
 	Meanings: Legendre's incomplete elliptic integral of the second kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1387,10 +1378,6 @@ Symbol: \EllIntF
   Feature Set: dlmf-macro
 	DLMF: \EllIntF@{\phi}{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E4
-	Maple: EllipticF(sin($0), $1)
-	Maple-Alternatives: (EllipticF(sin($0), $1) - EllipticE(sin($0), $1))/($1)^2
-	Maple-Comment: Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticF
 	Meanings: Legendre's incomplete elliptic integral of the first kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1402,9 +1389,6 @@ Symbol: \EllIntPi
   Feature Set: dlmf-macro
 	DLMF: \EllIntPi@{\phi}{\alpha^2}{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E7
-	Maple: EllipticPi(sin($0), $1, $2)
-	Maple-Comment: Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
 	Meanings: Legendre's incomplete elliptic integral of the third kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1663,37 +1647,60 @@ Symbol: \ExpIntn
 Symbol: \FerrersHatQ
 
   Feature Set: dlmf-macro
-	DLMF: \FerrersHatQ[-\mu]{-\frac{1}{2}+i\tau}@{x}
+	DLMF: \FerrersHatQ{\tau}@{x}
 	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical function
+	Meanings: Conical / Mehler function
 	Number of Ats: 1
-	Number of Parameters: 2
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: 
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \FerrersHatQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
 
 Symbol: \FerrersP
 
   Feature Set: dlmf-macro
-	DLMF: \FerrersP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E1
-	Mathematica: LegendreP[$1, $0, 1, $3]
-	Mathematica-Link: reference.wolfram.com/language/ref/LegendreP.html
+	DLMF: \FerrersP{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.2#i
 	Meanings: Ferrers function of first kind
 	Number of Ats: 1
-	Number of Parameters: 2
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: 
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \FerrersP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E1
+	Meanings: Ferrers function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
 
 Symbol: \FerrersQ
 
   Feature Set: dlmf-macro
-	DLMF: \FerrersQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E2
-	Mathematica: LegendreQ[$1, $0, 1, $3]
-	Mathematica-Link: reference.wolfram.com/language/ref/LegendreQ.html
+	DLMF: \FerrersQ{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.2#i
 	Meanings: Ferrers function of second kind
 	Number of Ats: 1
-	Number of Parameters: 2
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: 
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \FerrersQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E2
+	Meanings: Ferrers function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
 
@@ -2775,8 +2782,6 @@ Symbol: \Laguerre
   Feature Set: dlmf-macro
 	DLMF: \Laguerre[\alpha]{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
 	Meanings: Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -2994,27 +2999,44 @@ Symbol: \LauricellaFD
 Symbol: \LegendreBlackQ
 
   Feature Set: dlmf-macro
+	DLMF: \LegendreBlackQ{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.2#i
+	Meanings: Olver's Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: 
+
+  Feature Set: dlmf-alternative-1
 	DLMF: \LegendreBlackQ[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E10
 	Meanings: Olver's associated Legendre function
 	Number of Ats: 1
-	Number of Parameters: 2
+	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
 
 Symbol: \LegendreP
 
   Feature Set: dlmf-macro
-	DLMF: \LegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E6
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: Different order in parameters, 1 < z
+	DLMF: \LegendreP{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.2#i
+	Maple: LegendreP($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Mathematica: LegendreP[$1, $0, 3, $3]
-	Mathematica-Link: reference.wolfram.com/language/ref/LegendreP.html
+	Meanings: Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: 
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Maple: LegendreP($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	Meanings: Associated Legendre function of first kind
 	Number of Ats: 1
-	Number of Parameters: 2
+	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
 
@@ -3048,14 +3070,24 @@ Symbol: \LegendrePolys
 Symbol: \LegendreQ
 
   Feature Set: dlmf-macro
+	DLMF: \LegendreQ{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.2#i
+	Maple: LegendreQ($0, $1)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: 
+
+  Feature Set: dlmf-alternative-1
 	DLMF: \LegendreQ[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E7
 	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: Different order in parameters, 1 < z
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	Meanings: Associated Legendre function of second kind
 	Number of Ats: 1
-	Number of Parameters: 2
+	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
 
@@ -5956,13 +5988,10 @@ Symbol: \ln
 	Constraints: z != 0
 	DLMF: \ln@@{z}
 	DLMF-Link: dlmf.nist.gov/4.2#E2
-	Maple: ln($0) || lnGAMMA($1)
-	Maple-Comment: Equivalent for Re(z) >= 0 (for Re(z) < 0, Maple evaluates only the principal branch, which is defined by the analytic continuation from the positive real axis)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ln || www.maplesoft.com/support/help/maple/view.aspx?path=lnGAMMA
-	Mathematica: LogGamma[$0] || Log[$0]
-	Mathematica-Branch Cuts: (-\inf, 0)
-	Mathematica-Comment: It's not the same like Log[Gamma[z]]
-	Mathematica-Link: reference.wolfram.com/language/ref/Log.html || reference.wolfram.com/language/ref/LogGamma.html
+	Maple: ln($0)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ln
+	Mathematica: Log[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Log.html
 	Meanings: Natural logarithm
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -7682,11 +7711,11 @@ Symbol: \sqrt
   Feature Set: dlmf-macro
 	DLMF: \sqrt[p]{z}
 	DLMF-Link: not defined
-	Maple: sqrt($0) || surd($1, $0)
+	Maple: sqrt($0)
 	Maple-Comment: You can use the csgn function, which is specialized for imaginary variables.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sqrt || www.maplesoft.com/support/help/maple/view.aspx?path=surd
-	Mathematica: Sqrt[$0] || Surd[$1, $0]
-	Mathematica-Link: reference.wolfram.com/language/ref/Sqrt.html || reference.wolfram.com/language/ref/Surd.html
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sqrt
+	Mathematica: Sqrt[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Sqrt.html
 	Meanings: n-th root
 	Number of Ats: 0
 	Number of Parameters: 1
