@@ -35,6 +35,9 @@ public class GlobalPaths {
     public static final Path PATH_REFERENCE_DATA_BASIC_CONVERSION =
             PATH_REFERENCE_DATA.resolve( "BasicConversions" );
 
+    public static final Path PATH_REFERENCE_DATA_CAS_LEXICONS =
+            PATH_REFERENCE_DATA.resolve( "CASLexicons" );
+
     // the name of the lexicon file
     public static final Path DLMF_MACROS_LEXICON =
             PATH_LEXICONS.resolve("DLMF-macros-lexicon.txt");
@@ -43,7 +46,7 @@ public class GlobalPaths {
             DLMF_MACROS_LEXICON.getFileName().toString();
 
     public static final Path PATH_MAPLE_FUNCTIONS_LEXICON_FILE =
-            PATH_LEXICONS.resolve("Maple-functions-lexicon.txt");
+            PATH_REFERENCE_DATA_CAS_LEXICONS.resolve("Maple-functions-lexicon.txt");
 
     // path to the json file with greek letters and constants
     public static final Path PATH_GREEK_LETTERS_AND_CONSTANTS_FILE =
@@ -54,8 +57,7 @@ public class GlobalPaths {
             PATH_REFERENCE_DATA_BASIC_CONVERSION.resolve("BasicFunctions.json");
 
     public static final Path PATH_MAPLE_PROCS =
-            PATH_REFERENCE_DATA.resolve( "MapleProcedures" );
-
+            PATH_REFERENCE_DATA_CAS_LEXICONS.resolve( "MapleProcedures" );
 
     public static final Path PATH_MAPLE_LIST_PROCEDURE =
             PATH_MAPLE_PROCS.resolve("maple_list_procedure.txt");
