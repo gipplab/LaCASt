@@ -134,6 +134,7 @@ Symbol: \AiryAi
 	Maple: AiryAi($0)
 	Maple-Comment: Maple also supports the derivatives with AiryAi(n, z) and AiryBi(n, z)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Airy
+	Mathematica: AiryAi[$0]
 	Meanings: Airy function of the first kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -148,6 +149,7 @@ Symbol: \AiryBi
 	Maple: AiryBi($0)
 	Maple-Comment: Maple also supports the derivatives with AiryAi(n, z) and AiryBi(n, z)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Airy
+	Mathematica: AiryBi[$0]
 	Meanings: Airy function of the second kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -463,6 +465,8 @@ Symbol: \BarnesGamma
   Feature Set: dlmf-macro
 	DLMF: \BarnesGamma@{z}
 	DLMF-Link: dlmf.nist.gov/5.17#E1
+	Mathematica: BarnesG[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/BarnesG.html
 	Meanings: Double Gamma / Barnes Gamma
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -528,6 +532,8 @@ Symbol: \BesselJ
 	DLMF-Link: dlmf.nist.gov/10.2#E2
 	Maple: BesselJ($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
+	Mathematica: BesselJ[$0, $1]
+	Mathematica-Link: reference.wolfram.com/language/ref/BesselJ.html
 	Meanings: Bessel function first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -665,6 +671,7 @@ Symbol: \BesselY
 	DLMF-Link: dlmf.nist.gov/10.2#E3
 	Maple: BesselY($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
+	Mathematica: BesselY[$0, $1]
 	Meanings: Bessel function second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -928,6 +935,7 @@ Symbol: \CompEllIntK
 	Maple: EllipticK($0)
 	Maple-Alternatives: (EllipticK($0) - EllipticE($0))/($0)^2
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticK
+	Mathematica: EllipticK[($0)^2]
 	Meanings: Legendre's elliptic integral of the first kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1012,6 +1020,8 @@ Symbol: \CosInt
 	DLMF-Link: dlmf.nist.gov/6.2#E13
 	Maple: Ci($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ci
+	Mathematica: CosIntegral[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/CosIntegral.html
 	Meanings: Cosine integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1048,6 +1058,8 @@ Symbol: \CoshInt
 	DLMF-Link: dlmf.nist.gov/6.2#E16
 	Maple: Chi($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Chi
+	Mathematica: CoshIntegral[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/CoshIntegral.html
 	Meanings: Hyperbolic cosine integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1217,6 +1229,8 @@ Symbol: \DawsonsInt
 	DLMF-Link: dlmf.nist.gov/7.2#E5
 	Maple: dawson($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=dawson
+	Mathematica: DawsonF[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/DawsonF.html
 	Meanings: Dawson integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1504,6 +1518,8 @@ Symbol: \EulerBeta
 	DLMF-Link: dlmf.nist.gov/5.12#E1
 	Maple: Beta($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Beta
+	Mathematica: Beta[$0, $1]
+	Mathematica-Link: reference.wolfram.com/language/ref/Beta.html
 	Meanings: Euler-Beta function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1538,6 +1554,8 @@ Symbol: \EulerGamma
 	DLMF-Link: dlmf.nist.gov/5.2#E1
 	Maple: GAMMA($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
+	Mathematica: Gamma[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Gamma.html
 	Meanings: Euler Gamma function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1658,6 +1676,8 @@ Symbol: \FerrersP
   Feature Set: dlmf-macro
 	DLMF: \FerrersP[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E1
+	Mathematica: LegendreP[$1, $0, 1, $3]
+	Mathematica-Link: reference.wolfram.com/language/ref/LegendreP.html
 	Meanings: Ferrers function of first kind
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -1669,6 +1689,8 @@ Symbol: \FerrersQ
   Feature Set: dlmf-macro
 	DLMF: \FerrersQ[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E2
+	Mathematica: LegendreQ[$1, $0, 1, $3]
+	Mathematica-Link: reference.wolfram.com/language/ref/LegendreQ.html
 	Meanings: Ferrers function of second kind
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -1704,6 +1726,8 @@ Symbol: \FresnelCos
 	DLMF-Link: dlmf.nist.gov/7.2#E7
 	Maple: FresnelC($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=FresnelC
+	Mathematica: FresnelC[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/FresnelC.html
 	Meanings: Fresnel Cosine Integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1728,6 +1752,8 @@ Symbol: \FresnelSin
 	DLMF-Link: dlmf.nist.gov/7.2#E8
 	Maple: FresnelS($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=FresnelS
+	Mathematica: FresnelS[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/FresnelS.html
 	Meanings: Fresnel Sine Integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1741,6 +1767,8 @@ Symbol: \Fresnelf
 	DLMF-Link: dlmf.nist.gov/7.2#E10
 	Maple: Fresnelf($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelf
+	Mathematica: FresnelF[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/FresnelF.html
 	Meanings: Fresnel Auxiliaty Functions
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1754,6 +1782,8 @@ Symbol: \Fresnelg
 	DLMF-Link: dlmf.nist.gov/7.2#E11
 	Maple: Fresnelg($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelg
+	Mathematica: FresnelG[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/FresnelG.html
 	Meanings: Fresnel Auxiliaty Functions
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1765,6 +1795,8 @@ Symbol: \GammaP
   Feature Set: dlmf-macro
 	DLMF: \GammaP@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.2#E4
+	Mathematica: GammaRegularized[$0, 0, $1]
+	Mathematica-Link: reference.wolfram.com/language/ref/GammaRegularized.html
 	Meanings: Normalized incomplete Gamma
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1776,6 +1808,8 @@ Symbol: \GammaQ
   Feature Set: dlmf-macro
 	DLMF: \GammaQ@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.2#E4
+	Mathematica: GammaRegularized[$0, $1]
+	Mathematica-Link: reference.wolfram.com/language/ref/GammaRegularized.html
 	Meanings: Normalized incomplete Gamma
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1886,6 +1920,9 @@ Symbol: \Gudermannian
   Feature Set: dlmf-macro
 	DLMF: \Gudermannian@@{x}
 	DLMF-Link: dlmf.nist.gov/4.23#E39
+	Mathematica: Gudermannian[$0]
+	Mathematica-Comment: Defined also for imaginary values.
+	Mathematica-Link: reference.wolfram.com/language/ref/Gudermannian.html
 	Meanings: Gudermannian function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2155,6 +2192,10 @@ Symbol: \IncBeta
   Feature Set: dlmf-macro
 	DLMF: \IncBeta{x}@{a}{b}
 	DLMF-Link: dlmf.nist.gov/8.17#E1
+	Mathematica: Beta[$0, $1, $2]
+	Mathematica-Branch Cuts: (-\inf, 0)
+	Mathematica-Comment: It has a branch cut for complex parameters (x in DLMF).
+	Mathematica-Link: reference.wolfram.com/language/ref/Beta.html
 	Meanings: Incomplete Beta function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2168,6 +2209,9 @@ Symbol: \IncGamma
 	DLMF-Link: dlmf.nist.gov/8.2#E2
 	Maple: GAMMA($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
+	Mathematica: Gamma[$0, $1]
+	Mathematica-Branch Cuts: (-\inf, 0)
+	Mathematica-Link: reference.wolfram.com/language/ref/Gamma.html
 	Meanings: Incomplete Gamma function (upper)
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2179,6 +2223,8 @@ Symbol: \IncI
   Feature Set: dlmf-macro
 	DLMF: \IncI{x}@{a}{b}
 	DLMF-Link: dlmf.nist.gov/8.17#E2
+	Mathematica: BetaRegularized[$0, $1, $2]
+	Mathematica-Link: reference.wolfram.com/language/ref/BetaRegularized.html
 	Meanings: Regularized incomplete Beta function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2393,6 +2439,8 @@ Symbol: \Jacobicd
 	DLMF-Link: dlmf.nist.gov/22.2#E8
 	Maple: JacobiCD($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCD
+	Mathematica: JacobiCD[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiCD.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2406,6 +2454,8 @@ Symbol: \Jacobicn
 	DLMF-Link: dlmf.nist.gov/22.2#E5
 	Maple: JacobiCN($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCN
+	Mathematica: JacobiCN[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiCN.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2419,6 +2469,8 @@ Symbol: \Jacobics
 	DLMF-Link: dlmf.nist.gov/22.2#E15
 	Maple: JacobiCS($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiCS[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiCS.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2432,6 +2484,8 @@ Symbol: \Jacobidc
 	DLMF-Link: dlmf.nist.gov/22.2#E14
 	Maple: JacobiDC($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiDC[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiDC.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2445,6 +2499,8 @@ Symbol: \Jacobidn
 	DLMF-Link: dlmf.nist.gov/22.2#E6
 	Maple: JacobiDN($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiDN
+	Mathematica: JacobiDN[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiDN.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2458,6 +2514,8 @@ Symbol: \Jacobids
 	DLMF-Link: dlmf.nist.gov/22.2#E13
 	Maple: JacobiDS($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiDS[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiDS.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2471,6 +2529,8 @@ Symbol: \Jacobinc
 	DLMF-Link: dlmf.nist.gov/22.2#E11
 	Maple: JacobiNC($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiNC[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiNC.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2484,6 +2544,8 @@ Symbol: \Jacobind
 	DLMF-Link: dlmf.nist.gov/22.2#E12
 	Maple: JacobiND($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiND[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiND.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2497,6 +2559,8 @@ Symbol: \Jacobins
 	DLMF-Link: dlmf.nist.gov/22.2#E10
 	Maple: JacobiNS($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiNS[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiNS.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2521,6 +2585,8 @@ Symbol: \Jacobisc
 	DLMF-Link: dlmf.nist.gov/22.2#E9
 	Maple: JacobiSC($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSC
+	Mathematica: JacobiSC[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiSC.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2534,6 +2600,8 @@ Symbol: \Jacobisd
 	DLMF-Link: dlmf.nist.gov/22.2#E7
 	Maple: JacobiSD($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSD
+	Mathematica: JacobiSD[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiSD.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2547,6 +2615,8 @@ Symbol: \Jacobisn
 	DLMF-Link: dlmf.nist.gov/22.2#E4
 	Maple: JacobiSN($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSN
+	Mathematica: JacobiSN[$0, ($1)^2]
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiSN.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2745,6 +2815,8 @@ Symbol: \LambertWm
 	Constraints: -1/e \leq x < 0
 	DLMF: \LambertWm@{x}
 	DLMF-Link: dlmf.nist.gov/4.13#p2
+	Mathematica: ProductLog[-1, $0]
+	Mathematica-Link: reference.wolfram.com/language/ref/ProductLog.html
 	Meanings: Another branch of Lambert W-Function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2757,6 +2829,8 @@ Symbol: \LambertWp
 	Constraints: -1/e \leq x < 0
 	DLMF: \LambertWp@{x}
 	DLMF-Link: dlmf.nist.gov/4.13#p2
+	Mathematica: ProductLog[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/ProductLog.html
 	Meanings: Principle branch of Lambert W-Function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2936,6 +3010,8 @@ Symbol: \LegendreP
 	Maple: LegendreP($1, $0, $2)
 	Maple-Comment: Different order in parameters, 1 < z
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	Mathematica: LegendreP[$1, $0, 3, $3]
+	Mathematica-Link: reference.wolfram.com/language/ref/LegendreP.html
 	Meanings: Associated Legendre function of first kind
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -2950,6 +3026,8 @@ Symbol: \LegendrePoly
 	Maple: P($0, $1)
 	Maple-Comment: This funcion needs an extra package. with(orthopoly)
 	Maple-Link: not defined
+	Mathematica: LegendreP[$0, $1]
+	Mathematica-Link: reference.wolfram.com/language/ref/LegendreP.html
 	Meanings: Legendre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3066,6 +3144,10 @@ Symbol: \LogInt
 	Maple: Li($0)
 	Maple-Alternatives: int(sec(t), t = 0 .. $0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Li
+	Mathematica: LogIntegral[$0]
+	Mathematica-Branch Cuts: (-\inf, 1)
+	Mathematica-Comment: Mathematica can compute the principle branch for x between 0 and 1 as well, while this is not defined in DLMF.
+	Mathematica-Link: reference.wolfram.com/language/ref/LogIntegral.html
 	Meanings: Logarithmic integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4027,6 +4109,8 @@ Symbol: \SinInt
 	DLMF-Link: dlmf.nist.gov/6.2#E9
 	Maple: Si($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Si
+	Mathematica: SinIntegral[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/SinIntegral.html
 	Meanings: Sine integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4053,6 +4137,8 @@ Symbol: \SinhInt
 	Maple: Shi($0)
 	Maple-Alternatives: int((1-cos(t))/t, t = 0 .. $0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Shi
+	Mathematica: SinhIntegral[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/SinhIntegral.html
 	Meanings: Hyperbolic sine integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4684,6 +4770,8 @@ Symbol: \acos
 	DLMF-Link: dlmf.nist.gov/4.23#SS2.p1
 	Maple: arccos($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+	Mathematica: ArcCos[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcCos.html
 	Meanings: Inverse cosine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -4699,6 +4787,8 @@ Symbol: \acosh
 	DLMF-Link: dlmf.nist.gov/4.37#SS2.p1
 	Maple: arccosh($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arccosh
+	Mathematica: ArcCosh[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcCosh.html
 	Meanings: Inverse hyperbolic cosine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -4717,6 +4807,8 @@ Symbol: \acot
 	Maple-Branch Cuts: (- I infinity, - I ), ( I, I infinity )
 	Maple-Comment: "Maple defines another branch cut than DLMF for the invert cotangent function. You can use an alternative translation to avoid that. With the arctan alternative you have the same branch cuts as DLMF. See also ""According to Arbamowitz and Stegun or arccoth needn't be uncouth"" by R.M. Corless, D.J. Jeffrey, S.M. Watt."
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+	Mathematica: ArcCot[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcCot.html
 	Meanings: Inverse cotangent
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -4732,6 +4824,8 @@ Symbol: \acoth
 	DLMF-Link: dlmf.nist.gov/4.37#SS2.p1
 	Maple: arccoth($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arccoth
+	Mathematica: ArcCoth[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcCoth.html
 	Meanings: Inverse hyperbolic cotangent
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -4747,6 +4841,8 @@ Symbol: \acsc
 	DLMF-Link: dlmf.nist.gov/4.23#SS2.p1
 	Maple: arccsc($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+	Mathematica: ArcCsc[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcCsc.html
 	Meanings: Inverse cosecant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -4762,6 +4858,8 @@ Symbol: \acsch
 	DLMF-Link: dlmf.nist.gov/4.37#SS2.p1
 	Maple: arccsch($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arccsch
+	Mathematica: ArcCsch[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcCsch.html
 	Meanings: Inverse hyperbolic cosecant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -4774,6 +4872,9 @@ Symbol: \arcGudermannian
 	Constraints: -(1/2) \cpi < x < (1/2) \cpi
 	DLMF: \arcGudermannian@@{x}
 	DLMF-Link: dlmf.nist.gov/4.23#E41
+	Mathematica: InverseGudermannian[$0]
+	Mathematica-Comment: Defined also for imaginary values.
+	Mathematica-Link: reference.wolfram.com/language/ref/InverseGudermannian.html
 	Meanings: Inverse Gudermannian function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -4945,6 +5046,8 @@ Symbol: \asec
 	DLMF-Link: dlmf.nist.gov/4.23#SS2.p1
 	Maple: arcsec($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+	Mathematica: ArcSec[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcSec.html
 	Meanings: Inverse secant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -4960,6 +5063,8 @@ Symbol: \asech
 	DLMF-Link: dlmf.nist.gov/4.37#SS2.p1
 	Maple: arcsech($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arcsech
+	Mathematica: ArcSech[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcSech.html
 	Meanings: Inverse hyperbolic secant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -4975,6 +5080,8 @@ Symbol: \asin
 	DLMF-Link: dlmf.nist.gov/4.23#SS2.p1
 	Maple: arcsin($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+	Mathematica: ArcSin[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcSin.html
 	Meanings: Inverse sine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -4990,6 +5097,8 @@ Symbol: \asinh
 	DLMF-Link: dlmf.nist.gov/4.37#SS2.p1
 	Maple: arcsinh($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arcsinh
+	Mathematica: ArcSinh[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcSinh.html
 	Meanings: Inverse hyperbolic sine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5005,6 +5114,8 @@ Symbol: \atan
 	DLMF-Link: dlmf.nist.gov/4.23#SS2.p1
 	Maple: arctan($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+	Mathematica: ArcTan[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcTan.html
 	Meanings: Inverse tangent
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5020,6 +5131,8 @@ Symbol: \atanh
 	DLMF-Link: dlmf.nist.gov/4.37#SS2.p1
 	Maple: arctanh($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arctanh
+	Mathematica: ArcTanh[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcTanh.html
 	Meanings: Inverse hyperbolic tangent
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5088,6 +5201,8 @@ Symbol: \binom
 	DLMF-Link: dlmf.nist.gov/1.2#E1
 	Maple: binomial($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=binomial
+	Mathematica: Binomial[$0, $1]
+	Mathematica-Link: reference.wolfram.com/language/ref/Binomial.html
 	Meanings: Binomial coefficient
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -5099,6 +5214,8 @@ Symbol: \binomial
   Feature Set: dlmf-macro
 	DLMF: \binomial{m}{n}
 	DLMF-Link: dlmf.nist.gov/1.2#E1
+	Mathematica: Binomial[$0, $1]
+	Mathematica-Link: reference.wolfram.com/language/ref/Binomial.html
 	Meanings: Binomial coefficient
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -5147,6 +5264,8 @@ Symbol: \conj
 	DLMF-Link: dlmf.nist.gov/1.9#E11
 	Maple: conjugate($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=conjugate
+	Mathematica: Conjugate[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Conjugate.html
 	Meanings: Conjugate complex number
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -5160,6 +5279,8 @@ Symbol: \cos
 	DLMF-Link: dlmf.nist.gov/4.14#E2
 	Maple: cos($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=cos
+	Mathematica: Cos[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Cos.html
 	Meanings: Cosine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5173,6 +5294,8 @@ Symbol: \cosh
 	DLMF-Link: dlmf.nist.gov/4.28#E2
 	Maple: cosh($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=cosh
+	Mathematica: Cos[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Cosh.html
 	Meanings: Hyperbolic cosine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5199,6 +5322,8 @@ Symbol: \cot
 	DLMF-Link: dlmf.nist.gov/4.14#E7
 	Maple: cot($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=cot
+	Mathematica: Cot[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Cot.html
 	Meanings: Cotangent
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5213,6 +5338,8 @@ Symbol: \coth
 	DLMF-Link: dlmf.nist.gov/4.28#E7
 	Maple: coth($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=coth
+	Mathematica: Cot[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Coth.html
 	Meanings: Hyperbolic cotangent
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5235,6 +5362,8 @@ Symbol: \csc
 	DLMF-Link: dlmf.nist.gov/4.14#E5
 	Maple: csc($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=csc
+	Mathematica: Csc[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Csc.html
 	Meanings: Cosecant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5249,6 +5378,8 @@ Symbol: \csch
 	DLMF-Link: dlmf.nist.gov/4.28#E5
 	Maple: csch($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=csch
+	Mathematica: Csc[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Csch.html
 	Meanings: Hyperbolic cosecant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5441,6 +5572,8 @@ Symbol: \digamma
 	DLMF-Link: dlmf.nist.gov/5.2#E2
 	Maple: Psi($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Psi
+	Mathematica: PolyGamma[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/PolyGamma.html
 	Meanings: Digamma / Psi function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5520,6 +5653,8 @@ Symbol: \erf
 	DLMF-Link: dlmf.nist.gov/7.2#E1
 	Maple: erf($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=erf
+	Mathematica: Erf[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Erf.html
 	Meanings: Error function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5533,6 +5668,8 @@ Symbol: \erfc
 	DLMF-Link: dlmf.nist.gov/7.2#E2
 	Maple: erfc($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=erfc
+	Mathematica: Erfc[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Erfc.html
 	Meanings: Complementary error function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5544,6 +5681,9 @@ Symbol: \erfw
   Feature Set: dlmf-macro
 	DLMF: \erfw@{z}
 	DLMF-Link: dlmf.nist.gov/7.2#E3
+	Mathematica: Exp[-$0^2]*Erfc[-I*$0]
+	Mathematica-Comment: There is no direct translation but you can use the alternative formula instead if you want.
+	Mathematica-Link: reference.wolfram.com/language/ref/Erfc.html
 	Meanings: Complementary error function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5557,6 +5697,8 @@ Symbol: \exp
 	DLMF-Link: dlmf.nist.gov/4.2#E19
 	Maple: exp($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=exp
+	Mathematica: Exp[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Exp.html
 	Meanings: Exponential function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5633,6 +5775,8 @@ Symbol: \ifrac
   Feature Set: dlmf-macro
 	DLMF: \ifrac{a}{b}
 	DLMF-Link: dlmf.nist.gov/4.2.E8
+	Mathematica: Divide[$0, $1]
+	Mathematica-Link: reference.wolfram.com/language/ref/Divide.html
 	Meanings: Fraction
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -5646,6 +5790,8 @@ Symbol: \imagpart
 	DLMF-Link: dlmf.nist.gov/1.9#E2
 	Maple: Im($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Im
+	Mathematica: Im[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Im.html
 	Meanings: Imaginary part of a complex num
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -5669,6 +5815,9 @@ Symbol: \incgamma
 	Constraints: \Re(a) > 0
 	DLMF: \incgamma@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.2#E1
+	Mathematica: Gamma[$0, 0, $1]
+	Mathematica-Comment: Mathematica's generalized incomplete gamma function defines variable intervals. The 2nd and 3rd argument defines the interval. Based on the DLMF definition, the interval is [0,z].
+	Mathematica-Link: reference.wolfram.com/language/ref/Gamma.html
 	Meanings: Incomplete Gamma function (lower)
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5715,6 +5864,8 @@ Symbol: \inverf
 	Constraints: -1 < x < 1
 	DLMF: \inverf@@{x}
 	DLMF-Link: dlmf.nist.gov/7.17#E1
+	Mathematica: InverseErf[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/InverseErf.html
 	Meanings: Inverse error function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5727,6 +5878,8 @@ Symbol: \inverfc
 	Constraints: 0 < x < 2
 	DLMF: \inverfc@@{x}
 	DLMF-Link: dlmf.nist.gov/7.17#E1
+	Mathematica: InverseErfc[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/InverseErfc.html
 	Meanings: Inverse complementary error function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5806,6 +5959,10 @@ Symbol: \ln
 	Maple: ln($0) || lnGAMMA($1)
 	Maple-Comment: Equivalent for Re(z) >= 0 (for Re(z) < 0, Maple evaluates only the principal branch, which is defined by the analytic continuation from the positive real axis)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ln || www.maplesoft.com/support/help/maple/view.aspx?path=lnGAMMA
+	Mathematica: LogGamma[$0] || Log[$0]
+	Mathematica-Branch Cuts: (-\inf, 0)
+	Mathematica-Comment: It's not the same like Log[Gamma[z]]
+	Mathematica-Link: reference.wolfram.com/language/ref/Log.html || reference.wolfram.com/language/ref/LogGamma.html
 	Meanings: Natural logarithm
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5822,6 +5979,8 @@ Symbol: \log
 	Maple: log($0)
 	Maple-Comment: Without a given base, ln equals log.
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=log
+	Mathematica: Log[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Log.html
 	Meanings: Logarithm
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5837,6 +5996,8 @@ Symbol: \logb
 	DLMF-Link: dlmf.nist.gov/4.2#EGx1
 	Maple: log[$0]($1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=log
+	Mathematica: Log[$0,$1]
+	Mathematica-Link: reference.wolfram.com/language/ref/Log.html
 	Meanings: Logarithm with different base
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6469,6 +6630,8 @@ Symbol: \multinomial
 	Maple: multinomial($0, $1)
 	Maple-Comment: Maple needs an extra package. Load it with the following command: with(combinat,multinomial):
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=combinat/multinomial
+	Mathematica: Multinomial[n_1,...,n_k]
+	Mathematica-Link: reference.wolfram.com/language/ref/Multinomial.html
 	Meanings: Multinomial coefficient
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6638,6 +6801,8 @@ Symbol: \pgcd
 	DLMF-Link: dlmf.nist.gov/27.1#p2.t1.r3
 	Maple: gcd($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=gcd
+	Mathematica: GCD[$0, $1]
+	Mathematica-Link: reference.wolfram.com/language/ref/GCD.html
 	Meanings: Greatest common divisor
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6651,6 +6816,8 @@ Symbol: \ph
 	DLMF-Link: dlmf.nist.gov/1.9#E7
 	Maple: arctan($0,$1) || argument($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=argument || www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+	Mathematica: Arg[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Arg.html
 	Meanings: Argument of a complex number
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6664,6 +6831,8 @@ Symbol: \pochhammer
 	DLMF-Link: dlmf.nist.gov/5.2#iii
 	Maple: pochhammer($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer
+	Mathematica: Pochhammer[$0, $1]
+	Mathematica-Link: reference.wolfram.com/language/ref/Pochhammer.html
 	Meanings: Pochhammer symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6688,6 +6857,8 @@ Symbol: \polygamma
 	DLMF-Link: dlmf.nist.gov/5.15
 	Maple: Psi($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Psi
+	Mathematica: PolyGamma[$0, $1]
+	Mathematica-Link: reference.wolfram.com/language/ref/PolyGamma.html
 	Meanings: Polygamma function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6699,6 +6870,8 @@ Symbol: \power
   Feature Set: dlmf-macro
 	DLMF: \power{x}{y}
 	DLMF-Link: dlmf.nist.gov/36.12#E9
+	Mathematica: Power[$0, $1]
+	Mathematica-Link: reference.wolfram.com/language/ref/Power.html
 	Meanings: Power
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -7339,6 +7512,8 @@ Symbol: \realpart
 	DLMF-Link: dlmf.nist.gov/1.9#E2
 	Maple: Re($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Re
+	Mathematica: Re[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Re.html
 	Meanings: Real part of a complex number
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -7364,6 +7539,8 @@ Symbol: \sec
 	DLMF-Link: dlmf.nist.gov/4.14#E6
 	Maple: sec($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sec
+	Mathematica: Sec[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Sec.html
 	Meanings: Secant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -7378,6 +7555,8 @@ Symbol: \sech
 	DLMF-Link: dlmf.nist.gov/4.28#E6
 	Maple: sech($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sech
+	Mathematica: Sec[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Sech.html
 	Meanings: Hyperbolic secant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -7437,6 +7616,8 @@ Symbol: \sin
 	DLMF-Link: dlmf.nist.gov/4.14#E1
 	Maple: sin($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sin
+	Mathematica: Sin[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Sin.html
 	Meanings: Sine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -7450,6 +7631,8 @@ Symbol: \sinInt
 	DLMF-Link: dlmf.nist.gov/6.2#E10
 	Maple: Ssi($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ssi
+	Mathematica: SinIntegral[$0] - Pi/2
+	Mathematica-Link: reference.wolfram.com/language/ref/SinIntegral.html
 	Meanings: Shifted sine integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -7463,6 +7646,8 @@ Symbol: \sinh
 	DLMF-Link: dlmf.nist.gov/4.28#E1
 	Maple: sinh($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sinh
+	Mathematica: Sin[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Sinh.html
 	Meanings: Hyperbolic sine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -7500,6 +7685,8 @@ Symbol: \sqrt
 	Maple: sqrt($0) || surd($1, $0)
 	Maple-Comment: You can use the csgn function, which is specialized for imaginary variables.
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sqrt || www.maplesoft.com/support/help/maple/view.aspx?path=surd
+	Mathematica: Sqrt[$0] || Surd[$1, $0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Sqrt.html || reference.wolfram.com/language/ref/Surd.html
 	Meanings: n-th root
 	Number of Ats: 0
 	Number of Parameters: 1
@@ -7547,6 +7734,8 @@ Symbol: \tan
 	DLMF-Link: dlmf.nist.gov/4.14#E4
 	Maple: tan($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=tan
+	Mathematica: Tan[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Tan.html
 	Meanings: Tangent
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -7561,6 +7750,8 @@ Symbol: \tanh
 	DLMF-Link: dlmf.nist.gov/4.28#E4
 	Maple: tanh($0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=tanh
+	Mathematica: Tan[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/Tanh.html
 	Meanings: Hyperbolic tangent
 	Number of Ats: 2
 	Number of Parameters: 0
