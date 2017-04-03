@@ -78,47 +78,45 @@ public class MapleTranslator {
             String mapleLHS, mapleRHS;
             String[] eq;
             String line = br.readLine();
-            int counter = 1;
+            int counter = 0;
 
             String failures = "";
+            boolean suc = true;
 
             while ( line != null && !line.isEmpty() ){
                 eq = line.split("=");
+                counter++;
+                suc = true;
 
                 try {
+                    LOG.info(counter+"-Start translation: " + eq[0] + " = " + eq[1]);
                     mapleLHS = mt.translateFromLaTeXToMapleClean(eq[0]);
+                    LOG.info(counter+"-LHS: " + mapleLHS);
                     mapleRHS = mt.translateFromLaTeXToMapleClean(eq[1]);
+                    LOG.info(counter+"-RHS: " + mapleRHS);
+                    //LOG.info(counter + "-Expect: " + mapleLHS + " = " + mapleRHS);
+
                     if ( !mt.simplificationTester2( mt.commandSimple(mapleLHS,mapleRHS) ) ){
                         if ( !mt.simplificationTester2( mt.commandExp(mapleLHS,mapleRHS) ) ){
                             if ( !mt.simplificationTester2( mt.commandHyper(mapleLHS,mapleRHS) ) ){
-                                System.out.println(mt.commandHyper(mapleLHS,mapleRHS));
+                                //System.out.println(mt.commandHyper(mapleLHS,mapleRHS));
+                                suc = false;
                                 failures += counter + "-NOT EQUAL: " + line + System.lineSeparator();
                             }
                         }
                     }
+
+                    if ( !suc ){
+                        LOG.info(counter+"-But is not equal!");
+                    }
                 } catch ( Exception e ){
+                    LOG.warn(counter+"-Error: " + e.getMessage(), e);
                     failures += counter + "-NOT EQUAL: " + line + System.lineSeparator();
                 }
                 line = br.readLine();
-                counter++;
             }
 
             System.out.println("PROBLEMS: " + failures);
-
-            /*
-            while ( !input.matches("-end") ){
-                System.out.println("TEST: " + input);
-                maple = mt.translateFromLaTeXToMapleClean(input);
-                latex_back = mt.translateFromMapleToLaTeXClean(maple);
-
-                Algebraic a = mt.simpli( maple );
-                System.out.println(  );
-                System.out.println( "SIMPLI: " + a.toString() );
-                System.out.println( latex_back );
-
-                input = sc.nextLine();
-            }
-            */
         } catch ( Exception e ){
             e.printStackTrace();
         }
@@ -147,6 +145,14 @@ public class MapleTranslator {
 
         // analyze the algebraic solution
         Algebraic solution = mapleInterface.evaluateExpression( command );
+
+        /*
+        if ( command.contains("ChebyshevT(n, x))-(hypergeom") ){
+            LOG.info("Cheby: " + solution.toString());
+            LOG.info("But: " + solution.toString().trim().matches("0"));
+        }
+        */
+
         // null solutions returns false
         if ( solution == null || solution.isNULL() ) return false;
         // analyze the output string and returns true when it matches "0".
