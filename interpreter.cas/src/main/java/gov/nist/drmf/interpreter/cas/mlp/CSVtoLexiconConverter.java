@@ -160,21 +160,20 @@ public class CSVtoLexiconConverter {
     }
 
     private void handleOptionalParameters( Matcher m, String[] elements ){
-        String mac = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARA);
-        String numStr = mac.replace("X","");
+        String mac = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS);
+        mac = mac.substring(1, mac.length()-1);
+        String[] info = mac.split( GlobalConstants.MACRO_OPT_PARAS_SPLITTER );
 
-        System.out.println(numStr);
-        Integer opt_para = Integer.parseInt(numStr);
+        Integer opt_para = Integer.parseInt(info[0]);
 
-        String macro = m.group(GlobalConstants.MACRO_PATTERN_INDEX_MACRO);
-        List<FeatureSet> sets = dlmf_lexicon.getFeatureSets( macro );
+        List<FeatureSet> sets = dlmf_lexicon.getFeatureSets( info[1] );
         if ( sets == null )
             sets = new LinkedList<>();
 
         FeatureSet fset = new FeatureSet( Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + opt_para );
         fset.addFeature(
                 Keys.KEY_DLMF,
-                m.group(0).substring(mac.length()),
+                m.group(0).substring(mac.length()+2),
                 MacrosLexicon.SIGNAL_INLINE
         );
 
@@ -186,7 +185,7 @@ public class CSVtoLexiconConverter {
         }
         sets.add(fset);
 
-        dlmf_lexicon.setEntry( macro, sets );
+        dlmf_lexicon.setEntry( info[1], sets );
     }
 
     private void handleDLMFElements( String[] elements ){
@@ -200,7 +199,7 @@ public class CSVtoLexiconConverter {
             return;
         }
 
-        String optional_ats = m.group( GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARA );
+        String optional_ats = m.group( GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS );
         if ( optional_ats != null ){
             handleOptionalParameters(m, elements);
             return;
@@ -264,16 +263,24 @@ public class CSVtoLexiconConverter {
     private void handleCasAddOn( String[] elements ){
         lineAnalyzer.setLine( elements );
 
-        String macro = lineAnalyzer.getValue( Keys.KEY_DLMF );
-        Matcher m = GlobalConstants.DLMF_MACRO_PATTERN.matcher( macro );
+        //TODO
+        //System.out.println( Arrays.toString(elements) );
+
+        String macro_col = lineAnalyzer.getValue( Keys.KEY_DLMF );
+        Matcher m = GlobalConstants.DLMF_MACRO_PATTERN.matcher( macro_col );
         if ( !m.matches() ){
-            ERROR_LOG.info("Found a not supported DLMF macro for translation: " + macro);
+            ERROR_LOG.info("Found a not supported DLMF macro for translation: " + macro_col);
             return;
         }
 
-        List<FeatureSet> list = dlmf_lexicon.getFeatureSets(
-                m.group(GlobalConstants.MACRO_PATTERN_INDEX_MACRO)
-        );
+        String macro = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS);
+        if ( macro == null ) {
+            macro = m.group( GlobalConstants.MACRO_PATTERN_INDEX_MACRO );
+        } else {
+            macro = macro.substring(1, macro.length()-1);
+            macro = macro.split( GlobalConstants.MACRO_OPT_PARAS_SPLITTER )[1];
+        }
+        List<FeatureSet> list = dlmf_lexicon.getFeatureSets(macro);
 
         if ( list == null || list.isEmpty() ){
             ERROR_LOG.info("SKIP "
@@ -285,28 +292,31 @@ public class CSVtoLexiconConverter {
         FeatureSet alternativeF = null;
         FeatureSet dlmfF = null;
         for ( FeatureSet f : list ){
-            if ( f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO ) )
+            if ( f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO ) ) {
                 dlmfF = f;
-            else if ( f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX+"\\d+" ) )
+            } else if ( f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX+"\\d+" ) ) {
                 alternativeF = f;
+            }
         }
 
         FeatureSet fset;
-        String opt_para = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARA);
+
+        String opt_para = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS);
         String paras = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS_ELEMENTS);
         if ( opt_para != null ){
+            ERROR_LOG.warning("OptPARA not null: " + opt_para);
             if ( alternativeF == null ){
-                ERROR_LOG.warning("Null alternative set! " + macro);
+                ERROR_LOG.warning("Null alternative set! " + macro_col);
                 return;
             }
             fset = alternativeF;
         } else if (paras != null) {
             ERROR_LOG.warning("Parameters not in special syntax. " +
-                    "Has to be defined as 'X<digit>X<Macro>'. " + macro);
+                    "Has to be defined as 'X<digit>X<Macro>'. " + macro_col);
             return;
         } else {
             if ( dlmfF == null ){
-                ERROR_LOG.warning("There is no feature set for this term? " + macro);
+                ERROR_LOG.warning("There is no feature set for this term? " + macro_col);
                 return;
             }
             fset = dlmfF;
@@ -316,14 +326,22 @@ public class CSVtoLexiconConverter {
         String casPrefix = lineAnalyzer.getCasPrefix();
         for ( DLMFTranslationHeaders h : DLMFTranslationHeaders.values() ){
             String value = lineAnalyzer.getValue( h.getCSVKey( casPrefix ) );
+            if ( opt_para != null ){
+                ERROR_LOG.warning(h.getCSVKey( casPrefix ) + ": " + value);
+            }
+
 
             if ( value != null && !value.isEmpty() ){
                 fset.addFeature( h.getFeatureKey(casPrefix), value, MacrosLexicon.SIGNAL_INLINE );
             }
         }
+
+        dlmf_lexicon.setEntry( macro, list );
     }
 
     public static void main(String[] args){
+        System.setProperty( Keys.KEY_SYSTEM_LOGGING, GlobalPaths.PATH_LOGGING_CONFIG.toString() );
+
         String welcome =
                 "Welcome, this converter translates given CSV files to lexicon files.";
         System.out.println(welcome);
