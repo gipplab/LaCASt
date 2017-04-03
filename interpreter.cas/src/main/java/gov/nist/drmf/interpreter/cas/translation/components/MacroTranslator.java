@@ -143,7 +143,7 @@ public class MacroTranslator extends AbstractListTranslator {
             PomTaggedExpression first = following_exps.get(0);
             MathTerm first_term = first.getRoot();
 
-            if ( first_term != null ){
+            if ( first_term != null && !first_term.isEmpty() ){
                 MathTermTags tag = MathTermTags.getTagByKey( first_term.getTag() );
                 if ( tag == null ) break;
                 else if ( tag.equals(MathTermTags.caret) ){
@@ -164,7 +164,7 @@ public class MacroTranslator extends AbstractListTranslator {
                 } else {
                     break;
                 }
-            }
+            } else break;
         }
 
         FeatureSet fset = null;

@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  * It based on BNF grammar programmed with JavaCC.
  *
  * It is the top level translation objects. That means
- * you can use {@link #parse(String)} to translate an
+ * you can use {@link #translate(String)} to translate an
  * expression in general. To do so, you have to
  * invoke {@link #init(Path)} before you use this
  * translate method. On the other hand this translation can
