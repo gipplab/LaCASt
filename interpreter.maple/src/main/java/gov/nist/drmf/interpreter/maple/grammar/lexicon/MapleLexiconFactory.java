@@ -70,15 +70,18 @@ public class MapleLexiconFactory {
             //LOG.info(indices.get(MapleHeader.DLMF_Pattern));
             String MAPLE = values[indices.get(MapleHeader.Function)];
             String DLMF = values[indices.get(MapleHeader.DLMF_Pattern)];
+            String dlmf = null;
 
-            //LOG.info(DLMF);
             int opt = 0;
             Matcher m = GlobalConstants.DLMF_MACRO_PATTERN.matcher(DLMF);
             if ( m.matches() ){
-                String opt_para = m.group( GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARA );
+                String opt_para = m.group( GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS );
                 if ( opt_para != null ) {
                     DLMF = DLMF.substring(opt_para.length());
-                    opt = Integer.parseInt(opt_para.replace("X",""));
+                    opt_para = opt_para.substring(1, opt_para.length()-1);
+                    String[] infos = opt_para.split( GlobalConstants.MACRO_OPT_PARAS_SPLITTER );
+                    opt = Integer.parseInt(infos[0]);
+                    dlmf = infos[1];
                 }
             } else {
                 LOG.warn("Not able to handle");
@@ -88,7 +91,7 @@ public class MapleLexiconFactory {
             errorMessage = "Cannot extract function name. " + Arrays.toString(values);
             // check style of function
             String maple_func = getMapleFunctionName( MAPLE );
-            String dlmf = getDLMFFunctionName( DLMF );
+            if (dlmf == null) dlmf = getDLMFFunctionName( DLMF );
 
             errorMessage = "Cannot extract link or number of variables. " + Arrays.toString(values);
             String maple_link = extractInfoMaple( MapleHeader.Link, values );

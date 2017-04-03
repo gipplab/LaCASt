@@ -21,12 +21,13 @@ public class GlobalConstants {
     public static final Pattern LATEX_COMMAND_PATTERN = Pattern.compile(LATEX_COMMAND);
 
     private static final String macro_pattern =
-            "(X\\dX)*(\\\\\\w+)(\\[[^@]+])*(\\{[^@]+})*(@+)*(\\{[^@]+})*\\s*";
+            "(X\\d:\\\\\\w+X)*(\\\\\\w+)(\\[[^@]+])*(\\{[^@]+})*(@+)*(\\{[^@]+})*\\s*";
 
     public static final Pattern DLMF_MACRO_PATTERN =
             Pattern.compile(macro_pattern);
 
-    public static final int MACRO_PATTERN_INDEX_OPT_PARA = 1;
+    public static final String MACRO_OPT_PARAS_SPLITTER = ":";
+    public static final int MACRO_PATTERN_INDEX_OPT_PARAS = 1;
     public static final int MACRO_PATTERN_INDEX_MACRO = 2;
     public static final int MACRO_PATTERN_INDEX_ATS = 5;
     public static final int MACRO_PATTERN_INDEX_OPT_PARAS_ELEMENTS = 3;
