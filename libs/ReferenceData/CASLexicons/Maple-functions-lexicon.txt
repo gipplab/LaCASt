@@ -1104,20 +1104,6 @@ LegendreP::2
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/14.2#i
 
-LegendreP::3
-	Maple-Name:= LegendreP
-	DLMF-Pattern:= \frac{\LegendreP[$1]{$0}@{$2}{\EulerGamma{1-$1}}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	NumberOfVars:= 3
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Associated Legendre function of first kind
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/14.3#E5
-
 LegendreQ::2
 	Maple-Name:= LegendreQ
 	DLMF-Pattern:= \LegendreQ{$0}@{$1}
@@ -1131,20 +1117,6 @@ LegendreQ::2
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/14.2#i
-
-LegendreQ::3
-	Maple-Name:= LegendreQ
-	DLMF-Pattern:= \LegendreQ[$1]{$0}@{$2}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	NumberOfVars:= 3
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Associated Legendre function of second kind
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/14.3#E7
 
 LerchPhi::3
 	Maple-Name:= LerchPhi
