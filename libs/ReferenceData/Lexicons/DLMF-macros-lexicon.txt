@@ -3032,7 +3032,7 @@ Symbol: \LegendreP
   Feature Set: dlmf-alternative-1
 	DLMF: \LegendreP[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
+	Maple: LegendreP($1, $0, $2)*GAMMA(1-$0)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	Meanings: Associated Legendre function of first kind
 	Number of Ats: 1

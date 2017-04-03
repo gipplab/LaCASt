@@ -1106,7 +1106,7 @@ LegendreP::2
 
 LegendreP::3
 	Maple-Name:= LegendreP
-	DLMF-Pattern:= \LegendreP[$1]{$0}@{$2}
+	DLMF-Pattern:= \frac{\LegendreP[$1]{$0}@{$2}{\EulerGamma{1-$1}}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	NumberOfVars:= 3
 	MapleComment:= 
