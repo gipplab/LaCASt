@@ -145,6 +145,7 @@ public class FunctionAndVariableTranslator extends ListTranslator {
             LOG.info("Translated modulo: " + translation);
             translatedList.addTranslatedExpression( translation );
             infos.addMacroInfo( function, " Translated as modulo." );
+            return;
         }
 
         // translate function
