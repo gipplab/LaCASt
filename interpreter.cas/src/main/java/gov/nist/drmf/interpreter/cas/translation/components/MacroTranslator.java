@@ -81,7 +81,7 @@ public class MacroTranslator extends AbstractListTranslator {
 
         // if this set is null, it is simply not a dlmf-macro
         if ( fset == null ){
-            ERROR_LOG.warning("You should not use MacroTranslator when the PomTaggedExpression is " +
+            LOG.warning("You should not use MacroTranslator when the PomTaggedExpression is " +
                     "not a dlmf-macro!");
             return false;
         }

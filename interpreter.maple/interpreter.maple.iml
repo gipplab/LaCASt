@@ -34,6 +34,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.2" level="project" />
     <orderEntry type="module-library">
       <library name="Maven: gov.nist.drmf.interpreter:Maple:1.0-SNAPSHOT">
         <CLASSES>
@@ -52,7 +54,5 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.2" level="project" />
   </component>
 </module>

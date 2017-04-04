@@ -24,7 +24,7 @@ public final class MapleConstants {
      * possible parameters in [] and variables in ().
      */
     public static final Pattern MAPLE_FUNC_PATTERN =
-            Pattern.compile("(\\w+)(\\[.+\\])*(\\(.+\\))+");
+            Pattern.compile("(\\w+)(\\[.+\\])*(\\(.+\\))*");
 
     /**
      * Constants for positive and negative values
