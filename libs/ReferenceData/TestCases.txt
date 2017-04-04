@@ -40,7 +40,7 @@
 \sinh@{4z} = 4 \sinh^3@@{z} \cosh@@{z} + 4 \cosh^3@@{z} \sinh@@{z}
 \cosh@{4z} = \cosh^4@@{z} + 6 \sinh^2@@{z} \cosh^2@@{z} + \sinh^4@@{z}
 \expe^{z} = 1+\frac{2z}{2-z} \subplus \frac{\frac{z^{2}}{6}}{1} \subplus \CFK{m}{3}{\infty}@@{\frac{1}{4\left(2m-3\right)\left(2m-1\right)}z^{2}}{1}
-\expe^{z}=1+\frac{2z}{2-z+\frac{z^{2}}{6\left(1+\CFK{k}{1}{\infty}@@{\frac{z^{2}}{4\left(1+2k\right)\left(3+2k\right)}}{1}\right}}
+\expe^{z}=1+\frac{2z}{2-z+\frac{z^{2}}{6\left(1+\CFK{k}{1}{\infty}@@{\frac{z^{2}}{4\left(1+2k\right)\left(3+2k\right)}}{1}\right)}}
 \JacobiP{\alpha}{\beta}{n}@{x} = \frac{\pochhammer{\alpha+1}{n}}{n!}\HypergeoF@@{-n}{n+\alpha+\beta+1}{\alpha+1}{\frac{1-x}{2}}
 \Ultraspherical{\lambda}{n}@{x} = \frac{\pochhammer{2\lambda}{n}}{n!} \HypergeoF@@{-n}{n+2\lambda}{\lambda+\frac{1}{2}}{\frac{1-x}{2}}
 \Ultraspherical{\lambda}{n}@{x} = (2x)^n \frac{\pochhammer{\lambda}{n}}{n!} \HypergeoF@@{-\frac{1}{2}n}{\frac{1}{2}(1-n)}{1-\lambda-n}{\frac{1}{x^2}}

@@ -14,17 +14,24 @@ public class GlobalConstants {
 
     public static final String WHITESPACE = " ";
 
-    public static final String LATEX_MULTIPLY = "\\\\cdot|\\\\idot|\\s\\*";
+    private static final String LATEX_MULTIPLY = "\\\\cdot|\\\\idot|\\s\\*";
     public static final Pattern LATEX_MULTIPLY_PATTERN = Pattern.compile(LATEX_MULTIPLY);
 
-    public static final String LATEX_COMMAND = "\\\\[a-zA-Z()\\[\\]{}]+";
+    private static final String LATEX_COMMAND = "\\\\[a-zA-Z()\\[\\]{}]+";
     public static final Pattern LATEX_COMMAND_PATTERN = Pattern.compile(LATEX_COMMAND);
 
     private static final String macro_pattern =
             "(X\\d:\\\\\\w+X)*(\\\\\\w+)(\\[[^@]+])*(\\{[^@]+})*(@+)*(\\{[^@]+})*\\s*";
-
     public static final Pattern DLMF_MACRO_PATTERN =
             Pattern.compile(macro_pattern);
+
+    private static final String general_trans_macro_pattern =
+            "(X\\d:\\\\\\w+X)*(\\\\\\w+)?.+";
+    public static final Pattern GENERAL_MACRO_TRANSLATION_PATTERN = Pattern.compile(general_trans_macro_pattern);
+
+    private static final String general_cas_func_pattern =
+            "(\\w+)[^\\w]?.*";
+    public static final Pattern GENERAL_CAS_FUNC_PATTERN = Pattern.compile(general_cas_func_pattern);
 
     public static final String MACRO_OPT_PARAS_SPLITTER = ":";
     public static final int MACRO_PATTERN_INDEX_OPT_PARAS = 1;

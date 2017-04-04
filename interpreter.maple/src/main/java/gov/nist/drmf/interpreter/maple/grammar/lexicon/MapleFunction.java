@@ -134,6 +134,7 @@ public class MapleFunction {
 
     private String[] toStringArray(){
         String alts = "";
+        if ( alternative_patterns == null ) alternative_patterns = new String[]{};
         for ( int i = 0; i < alternative_patterns.length; i++ ){
             alts += alternative_patterns[i];
             if ( i < alternative_patterns.length-1 )
@@ -142,19 +143,19 @@ public class MapleFunction {
 
         return new String[]{
             key,
-            "Maple-Name"+ INNER_DELIMITER + " " + MAPLE_Name,
-            "DLMF-Pattern"+ INNER_DELIMITER + " " + DLMF_Pattern,
-            "Maple-Link"+ INNER_DELIMITER + " " + MAPLE_Link,
+            "Maple-Name"+ INNER_DELIMITER + " " + (MAPLE_Name == null?"":MAPLE_Name),
+            "DLMF-Pattern"+ INNER_DELIMITER + " " + (DLMF_Pattern == null?"":DLMF_Pattern),
+            "Maple-Link"+ INNER_DELIMITER + " " + (MAPLE_Link == null?"":MAPLE_Link),
             "NumberOfVars"+ INNER_DELIMITER + " " + numberOfVariables,
 
-            "MapleComment"+ INNER_DELIMITER + " " + maple_comment,
-            "MapleConstraint"+ INNER_DELIMITER + " " + maple_constraints,
-            "MapleBranchCuts"+ INNER_DELIMITER + " " + maple_branch_cuts,
+            "MapleComment"+ INNER_DELIMITER + " " + (maple_comment == null?"":maple_comment),
+            "MapleConstraint"+ INNER_DELIMITER + " " + (maple_constraints == null?"":maple_constraints),
+            "MapleBranchCuts"+ INNER_DELIMITER + " " + (maple_branch_cuts == null?"":maple_branch_cuts),
             "Alternatives"+ INNER_DELIMITER + " " + alts,
-            "DLMF-Meaning"+ INNER_DELIMITER + " " + dlmf_meaning,
-            "DLMF-Constraints"+ INNER_DELIMITER + " " + dlmf_constraints,
-            "DLMF-BranchCuts"+ INNER_DELIMITER + " " + dlmf_branch_cuts,
-            "DLMF-Link"+ INNER_DELIMITER + " " + dlmf_Link
+            "DLMF-Meaning"+ INNER_DELIMITER + " " + (dlmf_meaning == null?"":dlmf_meaning),
+            "DLMF-Constraints"+ INNER_DELIMITER + " " + (dlmf_constraints == null?"":dlmf_constraints),
+            "DLMF-BranchCuts"+ INNER_DELIMITER + " " + (dlmf_branch_cuts == null?"":dlmf_branch_cuts),
+            "DLMF-Link"+ INNER_DELIMITER + " " + (dlmf_Link == null?"":dlmf_Link)
         };
     }
 

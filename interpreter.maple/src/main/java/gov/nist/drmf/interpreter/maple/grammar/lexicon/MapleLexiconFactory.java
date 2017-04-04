@@ -61,62 +61,112 @@ public class MapleLexiconFactory {
      * @return Maple function object
      */
     MapleFunction createMapleFunction( String[] values ){
+        // empty line
         if ( values == null ) return null;
-        String errorMessage = "";
+
+        // extract maple function and DLMF pattern
+        String MAPLE, DLMF;
         try {
-            errorMessage = "Wasn't able to extract information from array. " + Arrays.toString(values);
-            // get maple expression
-            //LOG.info(indices.get(MapleHeader.Function));
-            //LOG.info(indices.get(MapleHeader.DLMF_Pattern));
-            String MAPLE = values[indices.get(MapleHeader.Function)];
-            String DLMF = values[indices.get(MapleHeader.DLMF_Pattern)];
-            String dlmf = null;
-
-            int opt = 0;
-            Matcher m = GlobalConstants.DLMF_MACRO_PATTERN.matcher(DLMF);
-            if ( m.matches() ){
-                String opt_para = m.group( GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS );
-                if ( opt_para != null ) {
-                    DLMF = DLMF.substring(opt_para.length());
-                    opt_para = opt_para.substring(1, opt_para.length()-1);
-                    String[] infos = opt_para.split( GlobalConstants.MACRO_OPT_PARAS_SPLITTER );
-                    opt = Integer.parseInt(infos[0]);
-                    dlmf = infos[1];
-                }
-            } else {
-                LOG.warn("Not able to handle");
-                return null;
-            }
-
-            errorMessage = "Cannot extract function name. " + Arrays.toString(values);
-            // check style of function
-            String maple_func = getMapleFunctionName( MAPLE );
-            if (dlmf == null) dlmf = getDLMFFunctionName( DLMF );
-
-            errorMessage = "Cannot extract link or number of variables. " + Arrays.toString(values);
-            String maple_link = extractInfoMaple( MapleHeader.Link, values );
-            String numOfVars  = extractInfoMaple( MapleHeader.Num_Of_Vars, values );
-            Integer vars = Integer.parseInt(numOfVars);
-
-            errorMessage = "Cannot create maple function object. " + Arrays.toString(values);
-            MapleFunction mf = new MapleFunction(
-                    maple_func,
-                    DLMF,
-                    maple_link,
-                    vars
-            );
-
-            try {
-                enrichFunctionInfos( mf, dlmf, opt, values );
-            } catch ( NullPointerException npe ){
-                errorMessage = "Cannot enrich the information of MapleFunction object. "
-                        + Arrays.toString(values);;
-            }
-
-            return mf;
-        } catch ( NullPointerException | IndexOutOfBoundsException | NumberFormatException e ){
-            LOG.warn(errorMessage);
+            MAPLE = values[indices.get(MapleHeader.Function)];
+            DLMF = values[indices.get(MapleHeader.DLMF_Pattern)];
+        } catch ( Exception e ){
+            LOG.debug("Cannot extract Maple or DLMF pattern. " + Arrays.toString(values));
             return null;
+        }
+
+        if ( DLMF == null || DLMF.isEmpty() ) return null;
+
+        // Try to generate MapleFunction object first
+        String maple_func = getMapleFunctionName( MAPLE );
+        if ( maple_func == null ) return null;
+
+        String maple_link = extractInfoMaple( MapleHeader.Link, values );
+        String numOfVars  = extractInfoMaple( MapleHeader.Num_Of_Vars, values );
+        Integer vars;
+        try { vars = Integer.parseInt(numOfVars); }
+        catch( NumberFormatException nfe ){
+            LOG.debug( "Not able to parse number of variables: " + numOfVars + " for " + MAPLE );
+            return null;
+        }
+
+        // the pattern is a complex expression.
+        // if the pattern starts with X<num>:<macro>X...
+        // it means, the lexicon should reference to <macro> with <num> optional parameters.
+        Matcher m = GlobalConstants.GENERAL_MACRO_TRANSLATION_PATTERN.matcher(DLMF);
+        if ( !m.matches() ){
+            LOG.debug("Skip, illegal translation pattern: " + DLMF);
+            return null;
+        }
+
+        FeatureSet fset = null;
+        String alternate_pref = m.group(1);
+        String dlmf_pattern = null;
+        List<FeatureSet> feature_list;
+        if ( alternate_pref != null ){ // starts with X<num>:<macro>X...
+            dlmf_pattern = DLMF.substring( alternate_pref.length() );
+            alternate_pref = alternate_pref.substring( 1, alternate_pref.length()-1 );
+            String[] parts = alternate_pref.split( GlobalConstants.MACRO_OPT_PARAS_SPLITTER );
+            feature_list = dlmf_lex.getFeatureSets( parts[1] );
+            if (feature_list != null) {
+                for ( FeatureSet f : feature_list ){
+                    if ( parts[0].matches("0") && f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO ) ){
+                        fset = f;
+                        break;
+                    } else if ( f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX+parts[0] ) ){
+                        fset = f;
+                        break;
+                    }
+                }
+            }
+        } else { // no extra link
+            dlmf_pattern = DLMF;
+            String func_link = m.group(2);
+            if ( func_link == null ){
+                LOG.debug("Cannot recognize the DLMF macro and store plain info: " + DLMF);
+                return new MapleFunction(
+                        maple_func,
+                        dlmf_pattern,
+                        maple_link,
+                        vars
+                );
+            }
+
+            feature_list = dlmf_lex.getFeatureSets( func_link );
+            if ( feature_list != null) {
+                for ( FeatureSet f : feature_list ){
+                    if ( f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO ) ){
+                        fset = f;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // generate lexicon object
+        MapleFunction mf = new MapleFunction(
+                maple_func,
+                dlmf_pattern,
+                maple_link,
+                vars
+        );
+
+        try { mf = enrichFunctionWithMapleInfos( mf, values ); }
+        catch ( Exception npe ){
+            LOG.debug("Fail while enriching basic info for: " + maple_func +
+                    ". Reason: " + npe.getMessage());
+        }
+
+        // if fset is still null, return null
+        if ( fset == null ){
+            LOG.warn("Wasn't able to find FeatureSet of: " + DLMF);
+            return mf;
+        }
+
+        try { return enrichFunctionInfosFromLexicon( mf, fset ); }
+        catch ( Exception npe ){
+            LOG.debug("Not able to enrich " + maple_func +
+                    " with additional information! Reason: " + npe.getMessage());
+            return mf;
         }
     }
 
@@ -124,23 +174,21 @@ public class MapleLexiconFactory {
         Pattern pat = MapleConstants.MAPLE_FUNC_PATTERN;
         Matcher dlmfMatcher = pat.matcher(raw);
         if ( !dlmfMatcher.matches() ) {
-            LOG.warn("Not able to extract function from: " + raw);
+            LOG.warn("Not able to extract Maple function from: " + raw);
             return null;
         }
         return dlmfMatcher.group(1);
     }
 
-    private String getDLMFFunctionName( String raw ){
-        Pattern pat = GlobalConstants.DLMF_MACRO_PATTERN;
-        Matcher dlmfMatcher = pat.matcher(raw);
-        if ( !dlmfMatcher.matches() ) {
-            LOG.warn("Not able to extract function from: " + raw);
-            return null;
+    private String extractInfoMaple( MapleHeader h, String[] values ){
+        Integer i = indices.get( h );
+        try { return values[i]; }
+        catch ( NullPointerException | IndexOutOfBoundsException ie ){
+            return "";
         }
-        return dlmfMatcher.group( GlobalConstants.MACRO_PATTERN_INDEX_MACRO );
     }
 
-    private MapleFunction enrichFunctionInfos( MapleFunction mf, String dlmf_func, int opt, String[] values ){
+    private MapleFunction enrichFunctionWithMapleInfos( MapleFunction mf, String[] values ){
         // Maple comment, branch cuts and domains
         mf.setMapleComment( extractInfoMaple( MapleHeader.Comment, values ) );
         mf.setMapleBranchCuts( extractInfoMaple( MapleHeader.Branch_Cuts, values ) );
@@ -151,35 +199,15 @@ public class MapleLexiconFactory {
                 alternatives.split( GlobalConstants.ALTERNATIVE_SPLIT )
         );
 
-        List<FeatureSet> fsets = dlmf_lex.getFeatureSets( dlmf_func );
-        if ( fsets == null || fsets.isEmpty() ) return mf;
-        FeatureSet fset = null;
+        return mf;
+    }
 
-        for ( FeatureSet f : fsets ){
-            if ((f.getFeatureSetName().matches(Keys.KEY_DLMF_MACRO)&&opt == 0) ||
-                    f.getFeatureSetName().matches(Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX+opt)
-                    ){
-                fset = f;
-                break;
-            }
-        }
-
-        if ( fset == null ) return mf;
-
+    private MapleFunction enrichFunctionInfosFromLexicon( MapleFunction mf, FeatureSet fset ){
         mf.setDlmfBranchCuts(DLMFFeatureValues.branch_cuts.getFeatureValue(fset));
         mf.setDlmfConstraints(DLMFFeatureValues.constraints.getFeatureValue(fset));
         mf.setDlmfLink(DLMFFeatureValues.dlmf_link.getFeatureValue(fset));
         mf.setDlmfMeaning(DLMFFeatureValues.meaning.getFeatureValue(fset));
-
         return mf;
-    }
-
-    private String extractInfoMaple( MapleHeader h, String[] values ){
-        Integer i = indices.get( h );
-        try { return values[i]; }
-        catch ( NullPointerException | IndexOutOfBoundsException ie ){
-            return "";
-        }
     }
 
     public static MapleLexicon createLexiconFromCSVFile( Path maple_csv_file )

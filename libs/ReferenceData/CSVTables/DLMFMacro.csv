@@ -293,7 +293,7 @@ n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0
 \DivisorSigma{\alpha}@{n};http://dlmf.nist.gov/27.2#E10;Sum of powers of divisors;1;1;1;;;
 \DivisorSigma{1}@{n};http://dlmf.nist.gov/27.2#E10;Sum of divisors;1;1;1;;;
 \JordanJ{k}@{n};http://dlmf.nist.gov/27.2#E11;Jordan's function;1;1;1;;;
-\MoebiusMu@{n};http://dlmf.nist.gov/27.2#E12;Möbius function;0;1;1;;;
+\MoebiusMu@{n};http://dlmf.nist.gov/27.2#E12;M򢩵s function;0;1;1;;;
 \LiouvilleLambda@{n};http://dlmf.nist.gov/27.2#E13;Liouville's function;0;1;1;;;
 \MangoldtLambda@{n};http://dlmf.nist.gov/27.2#E14;Mangoldt's function;0;1;1;;;
 ;;;;;;;;

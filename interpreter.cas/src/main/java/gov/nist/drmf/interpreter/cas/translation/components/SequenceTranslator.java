@@ -282,9 +282,15 @@ public class SequenceTranslator extends AbstractListTranslator {
             MathTerm next = exp_list.get(0).getRoot();
             Matcher m1 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(curr.getTermText());
             Matcher m2 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(next.getTermText());
-
             if ( m1.matches() || m2.matches() ) return false;
 
+            /*
+            m1 = GlobalConstants.LATEX_COMMAND_PATTERN.matcher(curr.getTermText());
+            m2 = GlobalConstants.LATEX_COMMAND_PATTERN.matcher(next.getTermText());
+            if ( m1.matches() || m2.matches() ) return true;
+
+            if ( curr.isEmpty() || next.isEmpty() ) return true;
+            */
             return !(
                     curr.getTermText().matches( PATTERN_BASIC_OPERATIONS )
                     || next.getTermText().matches( PATTERN_BASIC_OPERATIONS )
