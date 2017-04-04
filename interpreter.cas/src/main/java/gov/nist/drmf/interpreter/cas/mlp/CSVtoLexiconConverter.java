@@ -75,15 +75,13 @@ public class CSVtoLexiconConverter {
 
         path_to_dlmf_lexicon = GlobalPaths.DLMF_MACROS_LEXICON;
         File dlmf_lexicon_file = path_to_dlmf_lexicon.toFile();
-        if ( !dlmf_lexicon_file.exists() ) {
-            try {
-                dlmf_lexicon_file.createNewFile();
-            } catch ( IOException ioe ){
-                LOG.error(
-                        "Cannot create a new lexicon file at " + path_to_dlmf_lexicon.toString(),
-                        ioe);
-                throw ioe;
-            }
+        try {
+            dlmf_lexicon_file.createNewFile();
+        } catch ( IOException ioe ){
+            LOG.error(
+                    "Cannot create a new lexicon file at " + path_to_dlmf_lexicon.toString(),
+                    ioe);
+            throw ioe;
         }
 
         cas_cache = new CASCache();

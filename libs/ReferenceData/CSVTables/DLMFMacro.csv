@@ -130,7 +130,6 @@ n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0
 \cartprod;http://dlmf.nist.gov/23.1#p2.t1.r18;Cartesian product of groups;0;0;0;;;symbol
 \divides;http://dlmf.nist.gov/24.1#p2.t1.r4;Devides;0;0;0;;;symbol
 \liminf;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r4;Least limit point;0;0;0;;;symbol
-\mod;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r10;Modulo;0;0;0;;;symbol
 \opminus;http://dlmf.nist.gov/5.7.E7;Negative unity to an integer power;0;0;0;;;symbol
 \poly{p}{n}@{x};http://drmf.wmflabs.org/wiki/Definition:poly;Polynomial;2;1;1;;;
 \CompositionsC[m]@{n};http://dlmf.nist.gov/26.11#p1;Number of compositions;1;1;1;;;
