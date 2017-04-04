@@ -14,7 +14,7 @@ public class GlobalConstants {
 
     public static final String WHITESPACE = " ";
 
-    private static final String LATEX_MULTIPLY = "\\\\cdot|\\\\idot|\\s\\*";
+    private static final String LATEX_MULTIPLY = "\\\\cdot|\\\\idot|\\s*\\*\\s*";
     public static final Pattern LATEX_MULTIPLY_PATTERN = Pattern.compile(LATEX_MULTIPLY);
 
     private static final String LATEX_COMMAND = "\\\\[a-zA-Z()\\[\\]{}]+";

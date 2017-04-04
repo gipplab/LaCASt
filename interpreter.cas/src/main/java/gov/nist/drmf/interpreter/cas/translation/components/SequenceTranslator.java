@@ -37,7 +37,7 @@ public class SequenceTranslator extends AbstractListTranslator {
             "[\\^\\/\\_\\!]";
 
     public static final String PATTERN_BASIC_OPERATIONS =
-            ".*[+\\-*/\\^_!(){}\\[\\]<>\\s=]|\\\\[ci]dot.*";
+            ".*[+\\-*/\\^_!{}\\[\\]<>\\s=]|\\\\[ci]dot.*";
 
     // the open bracket if needed
     @Nullable
@@ -108,7 +108,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                 lastMerged = true;
             }
 
-            if ( addMultiply( exp, exp_list ) ){
+            if ( addMultiply( exp, exp_list ) && !part.matches(".*\\*\\s*") ){
                 part += MULTIPLY;
                 // the global list already got each element before,
                 // so simply replace the last if necessary
@@ -204,6 +204,9 @@ public class SequenceTranslator extends AbstractListTranslator {
                                     local_inner_exp.removeLastExpression() + // removed all
                                     open_bracket.counterpart;
 
+                    if ( addMultiply(exp, following_exp) )
+                        seq += MULTIPLY;
+
                     // wrap parenthesis around sequence, this is one component of the sequence now
                     local_inner_exp.addTranslatedExpression( seq ); // replaced it
 
@@ -284,13 +287,13 @@ public class SequenceTranslator extends AbstractListTranslator {
             Matcher m2 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(next.getTermText());
             if ( m1.matches() || m2.matches() ) return false;
 
-            /*
-            m1 = GlobalConstants.LATEX_COMMAND_PATTERN.matcher(curr.getTermText());
-            m2 = GlobalConstants.LATEX_COMMAND_PATTERN.matcher(next.getTermText());
-            if ( m1.matches() || m2.matches() ) return true;
+            //System.out.println(curr.getTermText() + " <-> " + next.getTermText());
+            if ( curr.getTermText().matches( Brackets.CLOSED_PATTERN ) ) {
+                return !next.getTermText().matches( PATTERN_BASIC_OPERATIONS );
+            } else if ( next.getTermText().matches( Brackets.OPEN_PATTERN ) ){
+                return !curr.getTermText().matches( PATTERN_BASIC_OPERATIONS );
+            }
 
-            if ( curr.isEmpty() || next.isEmpty() ) return true;
-            */
             return !(
                     curr.getTermText().matches( PATTERN_BASIC_OPERATIONS )
                     || next.getTermText().matches( PATTERN_BASIC_OPERATIONS )
@@ -298,6 +301,10 @@ public class SequenceTranslator extends AbstractListTranslator {
                     || next.getTag().matches( MathTermTags.operation.tag() )
                     || curr.getTag().matches( MathTermTags.ellipsis.tag() )
                     || next.getTag().matches( MathTermTags.ellipsis.tag() )
+                    || curr.getTermText().matches( Brackets.CLOSED_PATTERN )
+                    || curr.getTermText().matches( Brackets.OPEN_PATTERN )
+                    || next.getTermText().matches( Brackets.CLOSED_PATTERN )
+                    || next.getTermText().matches( Brackets.OPEN_PATTERN )
             );
         } catch ( Exception e ){ return true; }
     }
