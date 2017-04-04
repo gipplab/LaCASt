@@ -7383,17 +7383,6 @@ Symbol: \mEulerGamma
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \mod
-
-  Feature Set: dlmf-macro
-	DLMF: \mod
-	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r10
-	Meanings: Modulo
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 0
-	Role: symbol
-
 Symbol: \monicAffqKrawtchouk
 
   Feature Set: dlmf-macro

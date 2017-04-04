@@ -47,7 +47,7 @@ public class Keys {
 
     public static final String
             FEATURE_VALUE_GREEK     = "Greek",
-            FEATURE_VALUE_SYMBOL    = "Symbol",
+            FEATURE_VALUE_SYMBOL    = "symbol",
             FEATURE_VALUE_FUNCTION  = "function",
             FEATURE_VALUE_CONSTANT  = "mathematical constant",
             FEATURE_VALUE_IGNORE    = "ignore";
