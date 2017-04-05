@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
+import java.util.HashMap;
+
 /**
  * @author Andre Greiner-Petter
  */
@@ -36,19 +38,23 @@ public enum MathTermTags {
     factorial("exclamation point"),
     operation("operation"),
     ellipsis("ellipsis"),
-    abbreviation("abbreviation");
+    abbreviation("abbreviation"),
+    spaces("controlled space"),
+    non_allowed("non-allowed escaped symbol");
 
     private String tag;
 
+    private static class HOLDER{
+        static HashMap<String, MathTermTags> keymap = new HashMap<>();
+    }
+
     MathTermTags (String tag){
         this.tag = tag;
+        HOLDER.keymap.put(tag, this);
     }
 
     public static MathTermTags getTagByKey(String key){
-        for (MathTermTags t : MathTermTags.values())
-            if ( t.tag.matches(key) )
-                return t;
-        return null;
+        return HOLDER.keymap.get(key);
     }
 
     public String tag(){
