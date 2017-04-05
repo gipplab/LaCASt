@@ -78,7 +78,7 @@ public class OperationTranslator extends AbstractListTranslator {
         SymbolTranslator sT = SemanticLatexTranslator.getSymbolsTranslator();
         String translation = sT.translate( term.getTermText() );
         if ( translation == null ){
-            ERROR_LOG.warn("Cannot translate operation " + term.getTermText());
+            LOG.warn("Cannot translate operation " + term.getTermText());
             return false;
         } else {
             INFO_LOG.addGeneralInfo(

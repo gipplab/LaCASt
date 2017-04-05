@@ -40,7 +40,7 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 
     protected static InformationLogger INFO_LOG;
 
-    protected static Logger ERROR_LOG;
+    protected static Logger LOG;
 
     protected TranslatedExpression local_inner_exp = new TranslatedExpression();
 
@@ -117,7 +117,7 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
         if ( tag.matches(OPEN_PARENTHESIS_PATTERN) ) {
             return true;
         } else if ( tag.matches(CLOSE_PARENTHESIS_PATTERN) ){
-            ERROR_LOG.error("Reached a closed bracket " + term.getTermText() +
+            LOG.error("Reached a closed bracket " + term.getTermText() +
                     " but there was not a corresponding" +
                     " open bracket before.");
             return false;

@@ -51,8 +51,8 @@ public class SemanticLatexTranslator extends AbstractTranslator {
         symbols = new SymbolTranslator(from_language, to_language);
 
         INFO_LOG = new InformationLogger();
-        ERROR_LOG = LogManager.getLogger( SemanticLatexTranslator.class.toString() );
-        //ERROR_LOG.setLevel(Level.WARNING);
+        LOG = LogManager.getLogger( SemanticLatexTranslator.class.toString() );
+        //LOG.setLevel(Level.WARNING);
 
         global_exp = new TranslatedExpression();
         int length = GlobalConstants.CAS_KEY.length()+1 > "DLMF: ".length() ?

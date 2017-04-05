@@ -174,7 +174,7 @@ public class MacroTranslator extends AbstractListTranslator {
             fset = macro_term.getNamedFeatureSet(
                     Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX+optional_paras.size() );
             if ( fset == null ){
-                ERROR_LOG.error("Cannot find feature set with optional parameters.");
+                LOG.error("Cannot find feature set with optional parameters.");
                 return false;
             }
         }
@@ -203,7 +203,7 @@ public class MacroTranslator extends AbstractListTranslator {
             if ( containsTerm(exp) ){
                 MathTerm term = exp.getRoot();
                 if ( inner_at_counter > numOfAts ){
-                    ERROR_LOG.error("Not valid number of @s in a DLMF-macro. " + DLMF_example);
+                    LOG.error("Not valid number of @s in a DLMF-macro. " + DLMF_example);
                     return false;
                 } else if ( term.getTag().matches(Keys.FEATURE_SET_AT) ){
                     inner_at_counter++;
