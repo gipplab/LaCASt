@@ -3,18 +3,12 @@
 46-NOT EQUAL: \Ultraspherical{\lambda}{n}@{x} = (2x)^n \frac{\pochhammer{\lambda}{n}}{n!} \HypergeoF@@{-\frac{1}{2}n}{\frac{1}{2}(1-n)}{1-\lambda-n}{\frac{1}{x^2}}
 49-NOT EQUAL: \LegendrePoly{n}@{x} = \HypergeoF@@{-n}{n+1}{1}{\frac{1-x}{2}}
 50-NOT EQUAL: \HypergeoboldF@@{a}{b}{2b}{z} = \frac{\sqrt{\cpi}}{\EulerGamma@{b}} z^{-b+(\ifrac{1}{2})} (1-z)^{(b-a-(\ifrac{1}{2}))/2} \LegendreP[-b+(\ifrac{1}{2})]{a-b-(\ifrac{1}{2})}@{\frac{2-z}{2\sqrt{1-z}}}
-51-NOT EQUAL: \HypergeoboldF@@{a}{b}{a-b+1}{z} = z^{\ifrac{(b-a)}{2}} (1-z)^{-b} \LegendreP[b-a]{-b}@{\frac{1+z}{1-z}}
 52-NOT EQUAL: \Jacobisn@{z}{k} = \frac{\JacobiTheta{3}@{0}{q}}{\JacobiTheta{2}@{0}{q}} \frac{\JacobiTheta{1}@{\zeta}{q}}{\JacobiTheta{4}@{\zeta}{q}} 
-58-NOT EQUAL: {k'}^2 \Jacobisc^2@{z}{k} + 1 = {k'}^2 \Jacobinc^2@{z}{k} + k^2
-59-NOT EQUAL: \Jacobidc^2@{z}{k} = {k'}^2 \Jacobinc^2@{z}{k} + k^2
-60-NOT EQUAL: -k^2 {k'}^2 \Jacobisd^2@{z}{k} = {k'}^2 (1 - \Jacobind^2@{z}{k})
-61-NOT EQUAL: k^2 (\Jacobicd^2@{z}{k} - 1) = {k'}^2 (1 - \Jacobind^2@{z}{k})
-69-NOT EQUAL: \EulerGamma@{nz} = (2\cpi)^{(1-n)/2} n^{nz-(1/2)} \prod_{k=0}^{n-1} \EulerGamma@{z+\frac{k}{n}}
-70-NOT EQUAL: \prod_{k=1}^{n-1} \EulerGamma@{\frac{k}{n}} = (2\cpi)^{(n-1)/2} n^{-1/2}
-72-NOT EQUAL: \digamma@{nz} = \frac{1}{n} \sum_{k=0}^{n-1} \digamma@{z+\frac{k}{n}} + \ln@@{n}
+69-NOT EQUAL: \EulerGamma@{nz} = (2\cpi)^{(1-n)/2} n^{nz-(1/2)} \Prod{k}{0}{n-1}@{\EulerGamma@{z+\frac{k}{n}}}
+70-NOT EQUAL: \Prod{k}{1}{n-1}@{\EulerGamma@{\frac{k}{n}}} = (2\cpi)^{(n-1)/2} n^{-1/2}
+72-NOT EQUAL: \digamma@{nz} = \frac{1}{n} \Sum{k}{0}{n-1}@{\digamma@{z+\frac{k}{n}} + \ln@@{n}}
 73-NOT EQUAL: \FerrersP[\mu]{\nu}@{x} = \left( \frac{1+x}{1-x} \right)^{\mu/2} \HypergeoboldF@{\nu+1}{-\nu}{1-\mu}{\tfrac{1}{2}-\tfrac{1}{2}x}
 74-NOT EQUAL: \FerrersQ[\mu]{\nu}@{x} = \frac{\cpi}{2 \sin@{\mu \cpi}} \left( \cos@{\mu \cpi} \left( \frac{1+x}{1-x} \right)^{\mu/2} \HypergeoboldF@{\nu+1}{-\nu}{1-\mu}{\tfrac{1}{2}-\tfrac{1}{2}x} - \frac{\EulerGamma@{\nu+\mu+1}}{\EulerGamma@{\nu-\mu+1}} \left( \frac{1-x}{1+x} \right)^{\mu/2} \HypergeoboldF@{\nu+1}{-\nu}{1+\mu}{\tfrac{1}{2}-\tfrac{1}{2}x} \right)
-75-NOT EQUAL: \HypergeoboldF@{a}{b}{c}{x} = \frac{1}{\EulerGamma@{c}} \HypergeoF@{a}{b}{c}{x}
 76-NOT EQUAL: \FerrersP[m]{\nu}@{x} = \opminus^m \frac{\EulerGamma@{\nu+m+1}}{2^m \EulerGamma@{\nu-m+1}} \left( 1 - x^2 \right)^{m/2} \HypergeoboldF@{\nu+m+1}{m-\nu}{m+1}{\tfrac{1}{2}-\tfrac{1}{2}x}
 77-NOT EQUAL: \LegendreP[\mu]{\nu}@{x} = \left( \frac{x+1}{x-1} \right)^{\mu/2} \HypergeoboldF@{\nu+1}{-\nu}{1-\mu}{\tfrac{1}{2}-\tfrac{1}{2}x}
 78-NOT EQUAL: \LegendreQ[\mu]{\nu}@{x} = e^{\mu \cpi i} \frac{\cpi^{1/2} \EulerGamma@{\nu+\mu+1} \left( x^2 - 1 \right)^{\mu/2}} {2^{\nu+1} x^{\nu+\mu+1}} \HypergeoboldF@{\tfrac{1}{2}\nu + \tfrac{1}{2}\mu + 1} {\tfrac{1}{2}\nu + \tfrac{1}{2}\mu + \tfrac{1}{2}} {\nu + \tfrac{3}{2}} {\frac{1}{x^2}}
@@ -33,14 +27,14 @@
 93-NOT EQUAL: \FerrersQ[-1/2]{\nu}@{\cos@@{\theta}} = - \left( \frac{\cpi}{2 \sin@@{\theta}} \right)^{1/2} \frac{\cos@{\left( \nu + \frac{1}{2} \right) \theta}} {\nu + \frac{1}{2}}
 94-NOT EQUAL: \LegendreP[1/2]{\nu}@{\cosh@@{\xi}} = \left( \frac{2}{\cpi \sinh@@{\xi}} \right)^{1/2} \cosh@{\left( \nu + \tfrac{1}{2} \right) \xi}
 95-NOT EQUAL: \LegendreP[-1/2]{\nu}@{\cosh@@{\xi}} = \left( \frac{2}{\cpi \sinh@@{\xi}} \right)^{1/2} \frac{\sinh@{\left( \nu + \frac{1}{2} \right) \xi}} {\nu + \frac{1}{2}}
-96-NOT EQUAL: \LegendreBlackQ[\pm 1/2]{\nu}@{\cosh@@{\xi}} = \left( \frac{\cpi}{2 \sinh@@{\xi}} \right)^{1/2} \frac{\exp@{-\left( \nu + \frac{1}{2} \right) \xi}} {\EulerGamma@{\nu + \frac{3}{2}}}
+96-NOT EQUAL: \LegendreBlackQ[1/2]{\nu}@{\cosh@@{\xi}} = \left( \frac{\cpi}{2 \sinh@@{\xi}} \right)^{1/2} \frac{\exp@{-\left( \nu + \frac{1}{2} \right) \xi}} {\EulerGamma@{\nu + \frac{3}{2}}}
 97-NOT EQUAL: \FerrersP[-\nu]{\nu}@{\cos@@{\theta}} = \frac{(\sin@@{\theta})^{\nu}}{2^{\nu} \EulerGamma@{\nu+1}}
 98-NOT EQUAL: \LegendreP[-\nu]{\nu}@{\cosh@@{\xi}} = \frac{(\sinh@@{\xi})^{\nu}}{2^{\nu} \EulerGamma@{\nu+1}}
 99-NOT EQUAL: \FerrersP{\frac{1}{2}}@{\cos@@{\theta}} = \frac{2}{\cpi} \left( 2\! \CompEllIntE@{\sin@{\tfrac{1}{2} \theta}} -   \CompEllIntK@{\sin@{\tfrac{1}{2} \theta}} \right)
 100-NOT EQUAL: \FerrersP{-\frac{1}{2}}@{\cos@@{\theta}} = \frac{2}{\cpi} \CompEllIntK@{\sin@{\tfrac{1}{2} \theta}}
 101-NOT EQUAL: \FerrersQ{\frac{1}{2}}@{\cos@@{\theta}} =   \CompEllIntK@{\cos@{\tfrac{1}{2} \theta}} - 2\! \CompEllIntE@{\cos@{\tfrac{1}{2} \theta}}
 102-NOT EQUAL: \FerrersQ{-\frac{1}{2}}@{\cos@@{\theta}} = \CompEllIntK@{\cos@{\tfrac{1}{2} \theta}}
-103-NOT EQUAL: \LegendreP{\frac{1}{2}}@{\cosh@@{\xi}} = \frac{2}{\cpi} e^{\xi/2} \CompEllIntE@{\left( 1 - e^{-2\xi} \right)^{1/2}}
+103-NOT EQUAL: \LegendreP{\frac{1}{2}}@{\cosh@@{\xi}} = \frac{2}{\cpi} \expe^{\xi/2} \CompEllIntE@{\left( 1 - \expe^{-2\xi} \right)^{1/2}}
 104-NOT EQUAL: \LegendreP{-\frac{1}{2}}@{\cosh@@{\xi}} = \frac{2}{\cpi \cosh@{\frac{1}{2} \xi}} \CompEllIntK@{\tanh@{\tfrac{1}{2} \xi}}
 105-NOT EQUAL: \LegendreBlackQ{\frac{1}{2}}@{\cosh@@{\xi}} = 2 \cpi^{-1/2} \cosh@@{\xi} \sech@{\tfrac{1}{2} \xi} \CompEllIntK@{\sech@{\tfrac{1}{2} \xi}} - 4 \cpi^{-1/2} \cosh@{\tfrac{1}{2} \xi} \CompEllIntE@{\sech@{\tfrac{1}{2} \xi}}
 106-NOT EQUAL: \LegendreBlackQ{-\frac{1}{2}}@{\cosh@@{\xi}} = 2 \cpi^{-1/2} e^{-\xi/2} \CompEllIntK@{e^{-\xi}}

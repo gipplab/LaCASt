@@ -1218,7 +1218,7 @@ LegendreP::2
 
 LegendreP::3
 	Maple-Name:= LegendreP
-	DLMF-Pattern:= \frac{\LegendreP[$1]{$0}@{$2}}{\EulerGamma@{1-$1}}
+	DLMF-Pattern:= \LegendreP[$1]{$0}@{$2}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	NumberOfVars:= 3
 	MapleComment:= 
@@ -1253,10 +1253,10 @@ LegendreQ::3
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Legendre function of second kind
+	DLMF-Meaning:= Associated Legendre function of second kind
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/14.2#i
+	DLMF-Link:= http://dlmf.nist.gov/14.3#E7
 
 LerchPhi::3
 	Maple-Name:= LerchPhi
