@@ -86,28 +86,32 @@ public class MapleTranslator {
             while ( line != null && !line.isEmpty() ){
                 eq = line.split("=");
                 counter++;
-                suc = true;
 
                 try {
-                    LOG.info(counter+"-Start translation: " + eq[0] + " = " + eq[1]);
-                    mapleLHS = mt.translateFromLaTeXToMapleClean(eq[0]);
-                    LOG.info(counter+"-LHS: " + mapleLHS);
-                    mapleRHS = mt.translateFromLaTeXToMapleClean(eq[1]);
-                    LOG.info(counter+"-RHS: " + mapleRHS);
-                    //LOG.info(counter + "-Expect: " + mapleLHS + " = " + mapleRHS);
+                    for ( int i = 0; i < eq.length; i++ ){
+                        suc = true;
+                        if ( eq.length <= 2 && i > 0 ) continue;
+                        int n = (i+1)%eq.length;
+                        LOG.info(counter+"-Start translation: " + eq[i] + " = " + eq[n]);
+                        mapleLHS = mt.translateFromLaTeXToMapleClean(eq[i]);
+                        LOG.info(counter+"-LHS: " + mapleLHS);
+                        mapleRHS = mt.translateFromLaTeXToMapleClean(eq[n]);
+                        LOG.info(counter+"-RHS: " + mapleRHS);
+                        //LOG.info(counter + "-Expect: " + mapleLHS + " = " + mapleRHS);
 
-                    if ( !mt.simplificationTester2( mt.commandSimple(mapleLHS,mapleRHS) ) ){
-                        if ( !mt.simplificationTester2( mt.commandExp(mapleLHS,mapleRHS) ) ){
-                            if ( !mt.simplificationTester2( mt.commandHyper(mapleLHS,mapleRHS) ) ){
-                                //System.out.println(mt.commandHyper(mapleLHS,mapleRHS));
-                                suc = false;
-                                failures += counter + "-NOT EQUAL: " + line + System.lineSeparator();
+                        if ( !mt.simplificationTester2( mt.commandSimple(mapleLHS,mapleRHS) ) ){
+                            if ( !mt.simplificationTester2( mt.commandExp(mapleLHS,mapleRHS) ) ){
+                                if ( !mt.simplificationTester2( mt.commandHyper(mapleLHS,mapleRHS) ) ){
+                                    //System.out.println(mt.commandHyper(mapleLHS,mapleRHS));
+                                    suc = false;
+                                    failures += counter + "-NOT EQUAL: " + line + System.lineSeparator();
+                                }
                             }
                         }
-                    }
 
-                    if ( !suc ){
-                        LOG.info(counter+"-But is not equal!");
+                        if ( !suc ){
+                            LOG.info(counter+"-But is not equal!");
+                        }
                     }
                 } catch ( Exception e ){
                     LOG.warn(counter+"-Error: " + e.getMessage(), e);
@@ -127,17 +131,27 @@ public class MapleTranslator {
     }
 
     public String commandSimple( String maple1, String maple2 ){
+        if ( maple1 == null || maple2 == null || maple1.isEmpty() || maple2.isEmpty() )
+            return null;
         return "simplify((" + maple1 + ")-("+maple2+ "));";
     }
     public String commandExp( String maple1, String maple2 ){
+        if ( maple1 == null || maple2 == null || maple1.isEmpty() || maple2.isEmpty() )
+            return null;
         return "simplify(convert((" + maple1 + ")-("+maple2+ "),exp));";
     }
     public String commandHyper( String maple1, String maple2 ){
+        if ( maple1 == null || maple2 == null || maple1.isEmpty() || maple2.isEmpty() )
+            return null;
         return "simplify(convert((" + maple1 + ")-("+maple2+ "),hypergeom));";
     }
 
     public boolean simplificationTester2(String cmd)
             throws MapleException {
+        if ( cmd == null ) {
+            LOG.debug("Input expression empty. Skipped!");
+            return false;
+        }
         // otherwise build simplify command to test equivalence
         String command = cmd;
         // log for debugging

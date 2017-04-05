@@ -52,4 +52,14 @@ public class QuickTests {
         reader.readLine();
         reader.readLine();
     }
+
+    @Disabled
+    @Test
+    public void modTest(){
+        String[] t = new String[]{"a", "b", "c"};
+        for ( int i = 0; i < t.length; i++ ){
+            int n = (i+1)%t.length;
+            System.out.println(t[i] + " = " + t[n]);
+        }
+    }
 }

@@ -55,10 +55,10 @@
 k^2 \Jacobisn^2@{z}{k} + \Jacobidn^2@{z}{k} = 1
 1 + \Jacobics^2@{z}{k} = \Jacobins^2@{z}{k}
 k^2 + \Jacobids^2@{z}{k} = \Jacobins^2@{z}{k}
-{k'}^2 \Jacobisc^2@{z}{k} + 1 = {k'}^2 \Jacobinc^2@{z}{k} + k^2
-\Jacobidc^2@{z}{k} = {k'}^2 \Jacobinc^2@{z}{k} + k^2
--k^2 {k'}^2 \Jacobisd^2@{z}{k} = {k'}^2 (1 - \Jacobind^2@{z}{k})
-k^2 (\Jacobicd^2@{z}{k} - 1) = {k'}^2 (1 - \Jacobind^2@{z}{k})
+{\sqrt{1-k^2}}^2 \Jacobisc^2@{z}{k} + 1 = {\sqrt{1-k^2}}^2 \Jacobinc^2@{z}{k} + k^2
+\Jacobidc^2@{z}{k} = {\sqrt{1-k^2}}^2 \Jacobinc^2@{z}{k} + k^2
+-k^2 {\sqrt{1-k^2}}^2 \Jacobisd^2@{z}{k} = {\sqrt{1-k^2}}^2 (1 - \Jacobind^2@{z}{k})
+k^2 (\Jacobicd^2@{z}{k} - 1) = {\sqrt{1-k^2}}^2 (1 - \Jacobind^2@{z}{k})
 \CompEllIntK@{k} = \EllIntF@{\cpi/2}{k}
 \CompEllIntE@{k} = \EllIntE@{\cpi/2}{k}
 \EulerGamma@{z+1} = z \EulerGamma@{z}
@@ -66,10 +66,10 @@ k^2 (\Jacobicd^2@{z}{k} - 1) = {k'}^2 (1 - \Jacobind^2@{z}{k})
 \EulerGamma@{z} \EulerGamma@{1-z} = \cpi / \sin@{\cpi z}
 \digamma@{z} - \digamma@{1-z} = -\cpi / \tan@{\cpi z}
 \EulerGamma@{2z} = \cpi^{-1/2} 2^{2z-1} \EulerGamma@{z} \EulerGamma@{z+\tfrac{1}{2}}
-\EulerGamma@{nz} = (2\cpi)^{(1-n)/2} n^{nz-(1/2)} \prod_{k=0}^{n-1} \EulerGamma@{z+\frac{k}{n}}
-\prod_{k=1}^{n-1} \EulerGamma@{\frac{k}{n}} = (2\cpi)^{(n-1)/2} n^{-1/2}
+\EulerGamma@{nz} = (2\cpi)^{(1-n)/2} n^{nz-(1/2)} \Prod{k}{0}{n-1}@{\EulerGamma@{z+\frac{k}{n}}}
+\Prod{k}{1}{n-1}@{\EulerGamma@{\frac{k}{n}}} = (2\cpi)^{(n-1)/2} n^{-1/2}
 \digamma@{2z} = \tfrac{1}{2} \left( \digamma@{z} + \digamma@{z+\tfrac{1}{2}} \right) + \ln@@{2}
-\digamma@{nz} = \frac{1}{n} \sum_{k=0}^{n-1} \digamma@{z+\frac{k}{n}} + \ln@@{n}
+\digamma@{nz} = \frac{1}{n} \Sum{k}{0}{n-1}@{\digamma@{z+\frac{k}{n}} + \ln@@{n}}
 \FerrersP[\mu]{\nu}@{x} = \left( \frac{1+x}{1-x} \right)^{\mu/2} \HypergeoboldF@{\nu+1}{-\nu}{1-\mu}{\tfrac{1}{2}-\tfrac{1}{2}x}
 \FerrersQ[\mu]{\nu}@{x} = \frac{\cpi}{2 \sin@{\mu \cpi}} \left( \cos@{\mu \cpi} \left( \frac{1+x}{1-x} \right)^{\mu/2} \HypergeoboldF@{\nu+1}{-\nu}{1-\mu}{\tfrac{1}{2}-\tfrac{1}{2}x} - \frac{\EulerGamma@{\nu+\mu+1}}{\EulerGamma@{\nu-\mu+1}} \left( \frac{1-x}{1+x} \right)^{\mu/2} \HypergeoboldF@{\nu+1}{-\nu}{1+\mu}{\tfrac{1}{2}-\tfrac{1}{2}x} \right)
 \HypergeoboldF@{a}{b}{c}{x} = \frac{1}{\EulerGamma@{c}} \HypergeoF@{a}{b}{c}{x}
@@ -93,14 +93,14 @@ k^2 (\Jacobicd^2@{z}{k} - 1) = {k'}^2 (1 - \Jacobind^2@{z}{k})
 \FerrersQ[-1/2]{\nu}@{\cos@@{\theta}} = - \left( \frac{\cpi}{2 \sin@@{\theta}} \right)^{1/2} \frac{\cos@{\left( \nu + \frac{1}{2} \right) \theta}} {\nu + \frac{1}{2}}
 \LegendreP[1/2]{\nu}@{\cosh@@{\xi}} = \left( \frac{2}{\cpi \sinh@@{\xi}} \right)^{1/2} \cosh@{\left( \nu + \tfrac{1}{2} \right) \xi}
 \LegendreP[-1/2]{\nu}@{\cosh@@{\xi}} = \left( \frac{2}{\cpi \sinh@@{\xi}} \right)^{1/2} \frac{\sinh@{\left( \nu + \frac{1}{2} \right) \xi}} {\nu + \frac{1}{2}}
-\LegendreBlackQ[\pm 1/2]{\nu}@{\cosh@@{\xi}} = \left( \frac{\cpi}{2 \sinh@@{\xi}} \right)^{1/2} \frac{\exp@{-\left( \nu + \frac{1}{2} \right) \xi}} {\EulerGamma@{\nu + \frac{3}{2}}}
+\LegendreBlackQ[1/2]{\nu}@{\cosh@@{\xi}} = \left( \frac{\cpi}{2 \sinh@@{\xi}} \right)^{1/2} \frac{\exp@{-\left( \nu + \frac{1}{2} \right) \xi}} {\EulerGamma@{\nu + \frac{3}{2}}}
 \FerrersP[-\nu]{\nu}@{\cos@@{\theta}} = \frac{(\sin@@{\theta})^{\nu}}{2^{\nu} \EulerGamma@{\nu+1}}
 \LegendreP[-\nu]{\nu}@{\cosh@@{\xi}} = \frac{(\sinh@@{\xi})^{\nu}}{2^{\nu} \EulerGamma@{\nu+1}}
 \FerrersP{\frac{1}{2}}@{\cos@@{\theta}} = \frac{2}{\cpi} \left( 2\! \CompEllIntE@{\sin@{\tfrac{1}{2} \theta}} -   \CompEllIntK@{\sin@{\tfrac{1}{2} \theta}} \right)
 \FerrersP{-\frac{1}{2}}@{\cos@@{\theta}} = \frac{2}{\cpi} \CompEllIntK@{\sin@{\tfrac{1}{2} \theta}}
 \FerrersQ{\frac{1}{2}}@{\cos@@{\theta}} =   \CompEllIntK@{\cos@{\tfrac{1}{2} \theta}} - 2\! \CompEllIntE@{\cos@{\tfrac{1}{2} \theta}}
 \FerrersQ{-\frac{1}{2}}@{\cos@@{\theta}} = \CompEllIntK@{\cos@{\tfrac{1}{2} \theta}}
-\LegendreP{\frac{1}{2}}@{\cosh@@{\xi}} = \frac{2}{\cpi} e^{\xi/2} \CompEllIntE@{\left( 1 - e^{-2\xi} \right)^{1/2}}
+\LegendreP{\frac{1}{2}}@{\cosh@@{\xi}} = \frac{2}{\cpi} \expe^{\xi/2} \CompEllIntE@{\left( 1 - \expe^{-2\xi} \right)^{1/2}}
 \LegendreP{-\frac{1}{2}}@{\cosh@@{\xi}} = \frac{2}{\cpi \cosh@{\frac{1}{2} \xi}} \CompEllIntK@{\tanh@{\tfrac{1}{2} \xi}}
 \LegendreBlackQ{\frac{1}{2}}@{\cosh@@{\xi}} = 2 \cpi^{-1/2} \cosh@@{\xi} \sech@{\tfrac{1}{2} \xi} \CompEllIntK@{\sech@{\tfrac{1}{2} \xi}} - 4 \cpi^{-1/2} \cosh@{\tfrac{1}{2} \xi} \CompEllIntE@{\sech@{\tfrac{1}{2} \xi}}
 \LegendreBlackQ{-\frac{1}{2}}@{\cosh@@{\xi}} = 2 \cpi^{-1/2} e^{-\xi/2} \CompEllIntK@{e^{-\xi}}

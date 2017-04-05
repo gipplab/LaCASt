@@ -2643,7 +2643,7 @@ Symbol: \HypergeoboldF
   Feature Set: dlmf-macro
 	DLMF: \HypergeoboldF@@@{a}{b}{c}{z}
 	DLMF-Link: dlmf.nist.gov/15.2#E2
-	Maple: 
+	Maple: hypergeom([$0, $1], [$2], $3)/GAMMA($2)
 	Maple-Alternatives: hypergeom([$0, $1], [$2], $3)/GAMMA($2)
 	Maple-Comment: 
 	Meanings: Olver's hypergeometric function
@@ -3323,12 +3323,9 @@ Symbol: \Kronecker
   Feature Set: dlmf-macro
 	DLMF: \Kronecker{j}{k}
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r4
-	Maple: KroneckerDelta[$0, $1]
-	Maple-Alternatives: 
-	Maple-Branch Cuts: 
+	Maple: 
+	Maple-Alternatives: KroneckerDelta[$0, $1]
 	Maple-Comment: This funcion needs an extra package. with(Physics)
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/KroneckerDelta
 	Meanings: Kronecker delta
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -3340,7 +3337,7 @@ Symbol: \KummerM
   Feature Set: dlmf-macro
 	DLMF: \KummerM@{a}{b}{z}
 	DLMF-Link: dlmf.nist.gov/13.2#E2
-	Maple: KummerM(a,b,z)
+	Maple: KummerM($0, $1, $2)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
 	Maple-Comment: 
@@ -3357,7 +3354,7 @@ Symbol: \KummerU
   Feature Set: dlmf-macro
 	DLMF: \KummerU@{a}{b}{z}
 	DLMF-Link: dlmf.nist.gov/13.2#E6
-	Maple: KummerU(a,b,z)
+	Maple: KummerU($0, $1, $2)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
 	Maple-Comment: 
@@ -3689,7 +3686,7 @@ Symbol: \LegendreP
   Feature Set: dlmf-alternative-1
 	DLMF: \LegendreP[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)*GAMMA(1-$0)
+	Maple: LegendreP($1, $0, $2)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
 	Maple-Comment: 
@@ -3706,12 +3703,9 @@ Symbol: \LegendrePoly
   Feature Set: dlmf-macro
 	DLMF: \LegendrePoly{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r10
-	Maple: P($0, $1)
-	Maple-Alternatives: 
-	Maple-Branch Cuts: 
+	Maple: 
+	Maple-Alternatives: P($0, $1)
 	Maple-Comment: This funcion needs an extra package. with(orthopoly)
-	Maple-Constraints: 
-	Maple-Link: not defined
 	Meanings: Legendre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3752,7 +3746,7 @@ Symbol: \LegendreQ
   Feature Set: dlmf-alternative-1
 	DLMF: \LegendreQ[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)*GAMMA(3/2+$0)
+	Maple: LegendreQ($1, $0, $2)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
 	Maple-Comment: 
@@ -3769,12 +3763,9 @@ Symbol: \LegendreSymbol
   Feature Set: dlmf-macro
 	DLMF: \LegendreSymbol{n}{p}
 	DLMF-Link: dlmf.nist.gov/27.9
-	Maple: legendre($0, $1)
-	Maple-Alternatives: 
-	Maple-Branch Cuts: 
+	Maple: 
+	Maple-Alternatives: legendre($0, $1)
 	Maple-Comment: This funcion needs an extra package. For Maple 2016 or older use with(numtheory), otherwise use with(NumberTheory)
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory%2Flegendre%28deprecated%29
 	Meanings: Legendre symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -3803,12 +3794,9 @@ Symbol: \LeviCivita
   Feature Set: dlmf-macro
 	DLMF: \LeviCivita{j}{k}{l}
 	DLMF-Link: dlmf.nist.gov/1.6#E14
-	Maple: LeviCivita[$0, $1, $2]
-	Maple-Alternatives: 
-	Maple-Branch Cuts: 
+	Maple: 
+	Maple-Alternatives: LeviCivita[$0, $1, $2]
 	Maple-Comment: This funcion needs an extra package: with(Physics). The number of variables is not defined in Maple. LeviCivita[j,k,l,...]
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/LeviCivita
 	Meanings: Levi-Civita symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -4506,8 +4494,8 @@ Symbol: \NeumannFactor
   Feature Set: dlmf-macro
 	DLMF: \NeumannFactor{n}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:NeumannFactor
-	Maple: 2-KroneckerDelta[$0, 0]
-	Maple-Alternatives: 
+	Maple: 
+	Maple-Alternatives: 2-KroneckerDelta[$0, 0]
 	Maple-Comment: This funcion needs an extra package. with(Physics)
 	Meanings: Neumann factor
 	Number of Ats: 0
