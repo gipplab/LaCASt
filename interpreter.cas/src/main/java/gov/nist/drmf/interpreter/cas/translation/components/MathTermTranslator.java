@@ -446,14 +446,10 @@ public class MathTermTranslator extends AbstractListTranslator {
                 powerStr += b.symbol + power.toString() + b.counterpart;
         else powerStr += power.toString();
 
-        if ( following_exp.size() > 0 ){
-            PomTaggedExpression next = following_exp.get(0);
-            MathTerm term = next.getRoot();
-            if ( term != null ){
-                if ( !term.getTermText().matches( SequenceTranslator.PATTERN_BASIC_OPERATIONS ) )
-                    powerStr += MULTIPLY;
-            }
-        }
+        MathTerm m = new MathTerm(")", MathTermTags.right_parenthesis.tag());
+        PomTaggedExpression last = new PomTaggedExpression(m);
+        if ( AbstractListTranslator.addMultiply( last, following_exp ) )
+            powerStr += MULTIPLY;
 
         // the power becomes one big expression now.
         local_inner_exp.addTranslatedExpression( powerStr );
