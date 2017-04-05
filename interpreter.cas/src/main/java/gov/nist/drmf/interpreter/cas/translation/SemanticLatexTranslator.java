@@ -14,11 +14,10 @@ import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
+import org.apache.logging.log4j.LogManager;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * This translation translate semantic LaTeX formula using
@@ -52,8 +51,8 @@ public class SemanticLatexTranslator extends AbstractTranslator {
         symbols = new SymbolTranslator(from_language, to_language);
 
         INFO_LOG = new InformationLogger();
-        ERROR_LOG = Logger.getLogger( SemanticLatexTranslator.class.toString() );
-        ERROR_LOG.setLevel(Level.WARNING);
+        ERROR_LOG = LogManager.getLogger( SemanticLatexTranslator.class.toString() );
+        //ERROR_LOG.setLevel(Level.WARNING);
 
         global_exp = new TranslatedExpression();
         int length = GlobalConstants.CAS_KEY.length()+1 > "DLMF: ".length() ?

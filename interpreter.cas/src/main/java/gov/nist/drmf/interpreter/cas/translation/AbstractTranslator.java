@@ -11,12 +11,11 @@ import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
+import org.apache.logging.log4j.Logger;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.SortedSet;
-import java.util.logging.Logger;
-import java.util.regex.Pattern;
 
 /**
  *
@@ -118,7 +117,7 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
         if ( tag.matches(OPEN_PARENTHESIS_PATTERN) ) {
             return true;
         } else if ( tag.matches(CLOSE_PARENTHESIS_PATTERN) ){
-            ERROR_LOG.severe("Reached a closed bracket " + term.getTermText() +
+            ERROR_LOG.error("Reached a closed bracket " + term.getTermText() +
                     " but there was not a corresponding" +
                     " open bracket before.");
             return false;

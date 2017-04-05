@@ -26,7 +26,7 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
 
         // no tag shouldn't happen
         if ( expTag == null ){
-            ERROR_LOG.warning("Could not find tag: " + tag);
+            ERROR_LOG.warn("Could not find tag: " + tag);
             return false;
         }
 
@@ -55,7 +55,7 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
             case denominator:
             case equation:
             default:
-                ERROR_LOG.warning("Reached unknown or not yet supported expression tag: " + tag);
+                ERROR_LOG.warn("Reached unknown or not yet supported expression tag: " + tag);
                 return false;
         }
     }
@@ -92,7 +92,7 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
         List<PomTaggedExpression> sub_exps = top_exp.getComponents();
         // the size is at least 2 because \left( and \right) are 2 elements
         if ( sub_exps.size() < 3 ){ // nothing between the parenthesis -> ignore
-            ERROR_LOG.warning("Found empty expression and ignored it.");
+            ERROR_LOG.warn("Found empty expression and ignored it.");
             return true;
         }
 
@@ -102,7 +102,7 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
 
         // test open-close style of first-last
         if ( !testParanthesis(first, last) ){
-            ERROR_LOG.severe("Error in delimiters. " +
+            ERROR_LOG.error("Error in delimiters. " +
                     "The open delimiter doesn't fit with the closed delimiter.");
             return false;
         }

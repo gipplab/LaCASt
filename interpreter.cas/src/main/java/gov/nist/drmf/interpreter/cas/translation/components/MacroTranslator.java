@@ -81,7 +81,7 @@ public class MacroTranslator extends AbstractListTranslator {
 
         // if this set is null, it is simply not a dlmf-macro
         if ( fset == null ){
-            LOG.warning("You should not use MacroTranslator when the PomTaggedExpression is " +
+            LOG.warn("You should not use MacroTranslator when the PomTaggedExpression is " +
                     "not a dlmf-macro!");
             return false;
         }
@@ -174,7 +174,7 @@ public class MacroTranslator extends AbstractListTranslator {
             fset = macro_term.getNamedFeatureSet(
                     Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX+optional_paras.size() );
             if ( fset == null ){
-                ERROR_LOG.severe("Cannot find feature set with optional parameters.");
+                ERROR_LOG.error("Cannot find feature set with optional parameters.");
                 return false;
             }
         }
@@ -203,7 +203,7 @@ public class MacroTranslator extends AbstractListTranslator {
             if ( containsTerm(exp) ){
                 MathTerm term = exp.getRoot();
                 if ( inner_at_counter > numOfAts ){
-                    ERROR_LOG.severe("Not valid number of @s in a DLMF-macro. " + DLMF_example);
+                    ERROR_LOG.error("Not valid number of @s in a DLMF-macro. " + DLMF_example);
                     return false;
                 } else if ( term.getTag().matches(Keys.FEATURE_SET_AT) ){
                     inner_at_counter++;
