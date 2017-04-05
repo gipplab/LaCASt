@@ -60,7 +60,7 @@ public class MathTermTranslator extends AbstractListTranslator {
 
         // if the tag doesn't exists in the system -> stop
         if ( tag == null ){
-            ERROR_LOG.warning("Unknown tag: " + termTag);
+            ERROR_LOG.warn("Unknown tag: " + termTag);
             return false;
         }
 
@@ -116,15 +116,15 @@ public class MathTermTranslator extends AbstractListTranslator {
                 // no it is a DLMF macro or function
                 FeatureSet macro = term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
                 if ( macro != null ){
-                    ERROR_LOG.severe("MathTermTranslator cannot translate DLMF-Macro: " +
+                    ERROR_LOG.error("MathTermTranslator cannot translate DLMF-Macro: " +
                             term.getTermText());
                 } else {
-                    ERROR_LOG.severe("Reached unknown latex-command " +
+                    ERROR_LOG.error("Reached unknown latex-command " +
                             term.getTermText());
                 }
                 return false;
             case function:
-                ERROR_LOG.severe("MathTermTranslator cannot translate functions. Use the FunctionTranslator instead: "
+                ERROR_LOG.error("MathTermTranslator cannot translate functions. Use the FunctionTranslator instead: "
                         + term.getTermText());
                 return false;
             case multiply:
@@ -156,7 +156,7 @@ public class MathTermTranslator extends AbstractListTranslator {
             case right_parenthesis:
             case right_bracket:
             case right_brace:
-                ERROR_LOG.severe("MathTermTranslator don't expected brackets but found "
+                ERROR_LOG.error("MathTermTranslator don't expected brackets but found "
                         + term.getTermText());
                 return false;
             case at:
@@ -242,18 +242,22 @@ public class MathTermTranslator extends AbstractListTranslator {
                 global_exp.addTranslatedExpression( symbol );
                 return true;
             case macro:
-                ERROR_LOG.warning(
+                ERROR_LOG.warn(
                         "A macro? What is it? Please inform " +
                                 "Andre about this crazy shit: " +
                                 term.getTermText());
                 return false;
             case abbreviation:
-                ERROR_LOG.warning(
+                ERROR_LOG.warn(
                         "This program cannot translate abbreviations like " + term.getTermText()
                 );
                 return false;
+            case spaces:
+            case non_allowed:
+
+                return true;
             default:
-                ERROR_LOG.warning("Unknown MathTerm Tag: "
+                ERROR_LOG.warn("Unknown MathTerm Tag: "
                         + term.getTag());
                 return false;
         }
@@ -359,7 +363,7 @@ public class MathTermTranslator extends AbstractListTranslator {
                     );
                     return parseGreekLetter( constant );
                 } else {
-                    ERROR_LOG.warning(
+                    ERROR_LOG.warn(
                             "Cannot translate mathematical constant " +
                                     constant + " - " + set.getFeature(Keys.FEATURE_MEANINGS)
                     );
@@ -405,7 +409,7 @@ public class MathTermTranslator extends AbstractListTranslator {
 
         // still null? inform the user, we cannot do more here
         if ( translated_letter == null ){
-            ERROR_LOG.warning("Cannot translate Greek letter "
+            ERROR_LOG.warn("Cannot translate Greek letter "
                     + GreekLetter);
             return false;
         }
