@@ -74,7 +74,7 @@ public class SequenceTranslator extends AbstractListTranslator {
     @Override
     public boolean translate(PomTaggedExpression expression){
         if ( !ExpressionTags.sequence.tag().matches(expression.getTag()) ){
-            ERROR_LOG.error("You used the wrong translation method. " +
+            LOG.error("You used the wrong translation method. " +
                     "The given expression is not a sequence! " +
                     expression.getTag());
             return false;
@@ -148,7 +148,7 @@ public class SequenceTranslator extends AbstractListTranslator {
      */
     public boolean translate(List<PomTaggedExpression> following_exp) {
         if ( open_bracket == null ){
-            ERROR_LOG.error("Wrong translation method used. " +
+            LOG.error("Wrong translation method used. " +
                     "You have to specify an open bracket to translate it like a sequence " +
                     "that way.");
             return false;
@@ -210,7 +210,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                     global_exp.addTranslatedExpression( seq );
                     return true;
                 } else { // otherwise there was an error in the bracket arrangements
-                    ERROR_LOG.error("Bracket-Error: open bracket "
+                    LOG.error("Bracket-Error: open bracket "
                             + open_bracket.symbol
                             + " reached " + bracket.symbol);
                     return false;
@@ -249,7 +249,7 @@ public class SequenceTranslator extends AbstractListTranslator {
 
         // this should not happen. It means the algorithm reached the end but a bracket is
         // left open.
-        ERROR_LOG.error(
+        LOG.error(
                 "Reached the end of sequence but a bracket is left open: " +
                         open_bracket.symbol);
         return false;
