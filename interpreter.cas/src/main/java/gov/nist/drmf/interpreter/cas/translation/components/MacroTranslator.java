@@ -38,7 +38,7 @@ import java.util.regex.Pattern;
  */
 public class MacroTranslator extends AbstractListTranslator {
     private static final Pattern optional_params_pattern =
-            Pattern.compile("\\s*\\[(.*)]\\s*");
+            Pattern.compile("\\s*\\[(.*)]\\s*\\*?\\s*");
 
     // the number of parameters, ats and variables
     private int

@@ -33,11 +33,6 @@ import java.util.regex.Matcher;
  * @author Andre Greiner-Petter
  */
 public class SequenceTranslator extends AbstractListTranslator {
-    public static final String SPECIAL_SYMBOL_PATTERN_FOR_SPACES =
-            "[\\^\\/\\_\\!]";
-
-    public static final String PATTERN_BASIC_OPERATIONS =
-            ".*[+\\-*/\\^_!{}\\[\\]<>\\s=]|\\\\[ci]dot.*";
 
     // the open bracket if needed
     @Nullable
@@ -108,7 +103,12 @@ public class SequenceTranslator extends AbstractListTranslator {
                 lastMerged = true;
             }
 
-            if ( addMultiply( exp, exp_list ) && !part.matches(".*\\*\\s*") ){
+            if ( part.matches( ".*\\)\\s*" ) ){
+                MathTerm tmp = new MathTerm(")", MathTermTags.right_parenthesis.tag());
+                exp = new PomTaggedExpression(tmp);
+            }
+
+            if ( addMultiply( exp, exp_list ) /*&& !part.matches(".*\\*\\s*")*/ ){
                 part += MULTIPLY;
                 // the global list already got each element before,
                 // so simply replace the last if necessary
@@ -204,9 +204,6 @@ public class SequenceTranslator extends AbstractListTranslator {
                                     local_inner_exp.removeLastExpression() + // removed all
                                     open_bracket.counterpart;
 
-                    if ( addMultiply(exp, following_exp) )
-                        seq += MULTIPLY;
-
                     // wrap parenthesis around sequence, this is one component of the sequence now
                     local_inner_exp.addTranslatedExpression( seq ); // replaced it
 
@@ -278,11 +275,16 @@ public class SequenceTranslator extends AbstractListTranslator {
         } catch ( Exception e ){ return false; }
     }
 
+    /*
     private boolean addMultiply( PomTaggedExpression currExp, List<PomTaggedExpression> exp_list ){
         try {
             if ( exp_list == null || exp_list.size() < 1) return false;
             MathTerm curr = currExp.getRoot();
             MathTerm next = exp_list.get(0).getRoot();
+
+            if ( next.getTermText().matches( Brackets.CLOSED_PATTERN ) )
+                return false;
+
             Matcher m1 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(curr.getTermText());
             Matcher m2 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(next.getTermText());
             if ( m1.matches() || m2.matches() ) return false;
@@ -307,5 +309,5 @@ public class SequenceTranslator extends AbstractListTranslator {
                     || next.getTermText().matches( Brackets.OPEN_PATTERN )
             );
         } catch ( Exception e ){ return true; }
-    }
+    }*/
 }

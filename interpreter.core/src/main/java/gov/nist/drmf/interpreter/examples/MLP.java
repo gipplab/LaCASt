@@ -70,7 +70,7 @@ public class MLP {
 //            eq = "\\sqrt \\frac{2}{4}";
 //            eq = "ab13d";
 //            eq = "3 \\mod 4";
-            eq = "\\left(n\\right)\\JacobiP{a}{b}{c}@{d}";
+            eq = "--3";
 
             // parse/tag the equation and print it out 
             PomTaggedExpression pe = parser.parse(eq);
