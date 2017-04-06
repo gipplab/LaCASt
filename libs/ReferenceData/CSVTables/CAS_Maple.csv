@@ -401,7 +401,7 @@ KelvinKei($0, $1);\Kelvinkei{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/h
 ;\FerrersP[\mu]{\nu}@{x};;;;;;;;;;;;;;;;;;;;;;;;
 ;\FerrersQ{\nu}@{x};;;;;;;;;;;;;;;;;;;;;;;;
 ;\FerrersQ[\mu]{\nu}@{x};;;;;;;;;;;;;;;;;;;;;;;;
-LegendreP($0, $1);\LegendreP{$0}@{$1};2;If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersP.;;;\FerrersP{$0}@{$1};https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP;;;;;;;;;;;;;;;;;;
+LegendreP($0, $1);\LegendreP{$0}@{$1};2;If you want to translate it, as the orthogonal polynomial, use the alternative \LegendrePoly. If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersP.;;;\FerrersP{$0}@{$1} || \LegendrePoly{$0}@{$1};https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP;;;;;;;;;;;;;;;;;;
 LegendreP($1, $0, $2);X1:\LegendrePX\LegendreP[$1]{$0}@{$2};3;If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersP.;;;\FerrersP[$1]{$0}@{$2};https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP;;;;;;;;;;;;;;;;;;
 LegendreQ($0, $1);\LegendreQ{$0}@{$1};2;If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersQ.;;;\FerrersQ{$0}@{$1};https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ;;;;;;;;;;;;;;;;;;
 LegendreQ($1, $0, $2);X1:\LegendreQX\LegendreQ[$1]{$0}@{$2};3;If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersQ.;;;\FerrersQ[$1]{$0}@{$2};https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ;;;;;;;;;;;;;;;;;;
@@ -629,7 +629,7 @@ LaguerreL($1, $0, $2);\Laguerre[$1]{$0}@{$2};3;;;;\LaguerreL[\alpha]{n}@{x};http
 ;\LamecdE{m}{2n+2}@{z}{k^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
 ;\LamescdE{m}{2n+3}@{z}{k^2};;;;;;not defined;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
-P($0, $1);\LegendrePoly{$0}@{$1};2;;;;;not defined;;;;;;;;;;;;;;;;;;
+;\LegendrePoly{$0}@{$1};;;;;;not defined;;;;;;;;;;;;;;;;;;
 ;\LegendrePolys{n}@{x};;;;;;not defined;;;;;;;;;;;;;;;;;;
 ;\AssLegendrePoly{n}@{x}{c};;;;;;not defined;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;

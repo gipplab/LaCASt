@@ -7,6 +7,7 @@ import java.util.HashMap;
  */
 public enum MathTermTags {
     dlmf_macro("dlmf-macro"),
+    symbol("symbol"),
     constant("mathematical constant"),
     command("latex-command"),
     function("function"),

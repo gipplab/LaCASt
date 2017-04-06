@@ -196,7 +196,7 @@ public class MapleLexiconFactory {
 
         String alternatives = extractInfoMaple( MapleHeader.Alternatives, values );
         mf.setAlternativePatterns(
-                alternatives.split( GlobalConstants.ALTERNATIVE_SPLIT )
+                alternatives.split( MacrosLexicon.SIGNAL_INLINE )
         );
 
         return mf;

@@ -106,7 +106,10 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
         FeatureSet dlmf = term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
         if ( dlmf != null ){
             SortedSet<String> role = dlmf.getFeature(Keys.FEATURE_ROLE);
-            if ( role != null && role.first().matches(Keys.FEATURE_VALUE_CONSTANT) )
+            if ( role != null &&
+                    (role.first().matches(Keys.FEATURE_VALUE_CONSTANT) ||
+                            role.first().matches(Keys.FEATURE_VALUE_SYMBOL)
+                    ) )
                 return false;
             else return true;
         } else return false;

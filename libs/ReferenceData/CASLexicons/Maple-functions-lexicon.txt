@@ -1207,10 +1207,10 @@ LegendreP::2
 	DLMF-Pattern:= \LegendreP{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	NumberOfVars:= 2
-	MapleComment:= If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersP.
+	MapleComment:= If you want to translate it, as the orthogonal polynomial, use the alternative \LegendrePoly. If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersP.
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= \FerrersP{$0}@{$1}
+	Alternatives:= \FerrersP{$0}@{$1}  ||  \LegendrePoly{$0}@{$1}
 	DLMF-Meaning:= Associated Legendre function of first kind
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= (-\infty, 1]
@@ -1383,20 +1383,6 @@ MathieuSE::3
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/28.2#SS6.p1
-
-P::2
-	Maple-Name:= P
-	DLMF-Pattern:= \LegendrePoly{$0}@{$1}
-	Maple-Link:= not defined
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Legendre polynomial
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/18.3#T1.t1.r10
 
 Product::3
 	Maple-Name:= Product
