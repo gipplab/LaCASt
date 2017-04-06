@@ -130,6 +130,7 @@ n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0
 \cartprod;http://dlmf.nist.gov/23.1#p2.t1.r18;Cartesian product of groups;0;0;0;;;symbol
 \divides;http://dlmf.nist.gov/24.1#p2.t1.r4;Devides;0;0;0;;;symbol
 \liminf;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r4;Least limit point;0;0;0;;;symbol
+\mod;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r10;Modulo;0;0;0;;;symbol
 \opminus;http://dlmf.nist.gov/5.7.E7;Negative unity to an integer power;0;0;0;;;symbol
 \poly{p}{n}@{x};http://drmf.wmflabs.org/wiki/Definition:poly;Polynomial;2;1;1;;;
 \CompositionsC[m]@{n};http://dlmf.nist.gov/26.11#p1;Number of compositions;1;1;1;;;
@@ -292,7 +293,7 @@ n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0
 \DivisorSigma{\alpha}@{n};http://dlmf.nist.gov/27.2#E10;Sum of powers of divisors;1;1;1;;;
 \DivisorSigma{1}@{n};http://dlmf.nist.gov/27.2#E10;Sum of divisors;1;1;1;;;
 \JordanJ{k}@{n};http://dlmf.nist.gov/27.2#E11;Jordan's function;1;1;1;;;
-\MoebiusMu@{n};http://dlmf.nist.gov/27.2#E12;M򢩵s function;0;1;1;;;
+\MoebiusMu@{n};http://dlmf.nist.gov/27.2#E12;Möbius function;0;1;1;;;
 \LiouvilleLambda@{n};http://dlmf.nist.gov/27.2#E13;Liouville's function;0;1;1;;;
 \MangoldtLambda@{n};http://dlmf.nist.gov/27.2#E14;Mangoldt's function;0;1;1;;;
 ;;;;;;;;
@@ -414,18 +415,18 @@ n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0
 \Lamea{n}{\nu}@{k^2};http://dlmf.nist.gov/29.3#SS1.p1;Eigenvalues of Lame's equation;2;1;1;;;
 \Lameb{n}{\nu}@{k^2};http://dlmf.nist.gov/29.3#SS1.p1;Eigenvalues of Lame's equation;2;1;1;;;
 ;;;;;;;;
-\FerrersP{\nu}@{z};http://dlmf.nist.gov/14.2#i;Ferrers function of first kind;1;1;1;;;
-X1:\FerrersPX\FerrersP[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E1;Ferrers function of first kind;1;1;1;;;
-\FerrersQ{\nu}@{z};http://dlmf.nist.gov/14.2#i;Ferrers function of second kind;1;1;1;;;
-X1:\FerrersQX\FerrersQ[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E2;Ferrers function of second kind;1;1;1;;;
-\LegendreP{\nu}@{z};http://dlmf.nist.gov/14.2#i;Legendre function of first kind;1;1;1;;;
-X1:\LegendrePX\LegendreP[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E5;Associated Legendre function of first kind;1;1;1;;;
-\LegendreQ{\nu}@{z};http://dlmf.nist.gov/14.2#i;Legendre function of second kind;1;1;1;;;
-X1:\LegendreQX\LegendreQ[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E7;Associated Legendre function of second kind;1;1;1;;;
-\LegendreBlackQ{\nu}@{z};http://dlmf.nist.gov/14.2#i;Olver's Legendre function;1;1;1;;;
-X1:\LegendreBlackQX\LegendreBlackQ[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E10;Olver's associated Legendre function;1;1;1;;;
-\FerrersHatQ{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical / Mehler function;1;1;1;;;
-X1:\FerrersHatQX\FerrersHatQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical / Mehler function;1;1;1;;;
+\FerrersP{\nu}@{x};http://dlmf.nist.gov/14.2#i;Ferrers function of first kind;1;1;1;-1 < x < 1, \mu, \nu \in \Real;;dlmf-macro
+X1:\FerrersPX\FerrersP[\mu]{\nu}@{x};http://dlmf.nist.gov/14.3#E1;Ferrers function of first kind;1;1;1;-1 < x < 1, \mu, \nu \in \Real;;dlmf-macro
+\FerrersQ{\nu}@{x};http://dlmf.nist.gov/14.2#i;Ferrers function of second kind;1;1;1;-1 < x < 1, \mu, \nu \in \Real;;dlmf-macro
+X1:\FerrersQX\FerrersQ[\mu]{\nu}@{x};http://dlmf.nist.gov/14.3#E2;Ferrers function of second kind;1;1;1;-1 < x < 1, \mu, \nu \in \Real;;dlmf-macro
+\LegendreP{\nu}@{z};http://dlmf.nist.gov/14.2#i;Associated Legendre function of first kind;1;1;1;;(-\infty, 1];dlmf-macro
+X1:\LegendrePX\LegendreP[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E5;Associated Legendre function of first kind;1;1;1;;(-\infty, 1];dlmf-macro
+\LegendreQ{\nu}@{z};http://dlmf.nist.gov/14.2#i;Associated Legendre function of second kind;1;1;1;;(-\infty, 1];dlmf-macro
+X1:\LegendreQX\LegendreQ[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E7;Associated Legendre function of second kind;1;1;1;;(-\infty, 1];dlmf-macro
+\LegendreBlackQ{\nu}@{z};http://dlmf.nist.gov/14.2#i;Olver's associated Legendre function;1;1;1;;;dlmf-macro
+X1:\LegendreBlackQX\LegendreBlackQ[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E10;Olver's associated Legendre function;1;1;1;;;dlmf-macro
+\FerrersHatQ{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical / Mehler function;1;1;1;;;dlmf-macro
+X1:\FerrersHatQX\FerrersHatQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical / Mehler function;1;1;1;;;dlmf-macro
 ;;;;;;;;
 \EllIntF@{\phi}{k};http://dlmf.nist.gov/19.2#E4;Legendre's incomplete elliptic integral of the first kind;0;1;2;;;
 \EllIntE@{\phi}{k};http://dlmf.nist.gov/19.2#E5;Legendre's incomplete elliptic integral of the second kind;0;1;2;;;
@@ -792,3 +793,5 @@ X1:\FerrersHatQX\FerrersHatQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conica
 \normctsdualqHahnptilde{n}@@{x}{a}{b}{c}{q};http://drmf.wmflabs.org/wiki/Definition:normctsdualqHahnptilde;normalized continuous dual $q$-Hahn polynomial ${\tilde p}$;1;2;5;;;
 \normctsqHahnptilde{n}@@{x}{a}{b}{c}{d}{q};http://drmf.wmflabs.org/wiki/Definition:normctsqHahnptilde;normalized continuous $q$-Hahn polynomial ${\tilde p}$;1;2;6;;;
 \normctsqJacobiPtilde{n}@@{x}{q};http://drmf.wmflabs.org/wiki/Definition:normctsqJacobiPtilde;normalized continuous $q$-Jacobi polynomial ${\tilde P}$;1;2;2;;;
+;;;;;;;;
+;;;;;;;;
