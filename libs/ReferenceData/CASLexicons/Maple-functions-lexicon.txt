@@ -48,7 +48,7 @@ BellB::2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= bell($0)
+	Alternatives:= 
 	DLMF-Meaning:= Bell number
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
@@ -1207,13 +1207,13 @@ LegendreP::2
 	DLMF-Pattern:= \LegendreP{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	NumberOfVars:= 2
-	MapleComment:= 
+	MapleComment:= If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersP.
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Legendre function of first kind
+	Alternatives:= \FerrersP{$0}@{$1}
+	DLMF-Meaning:= Associated Legendre function of first kind
 	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
+	DLMF-BranchCuts:= (-\infty, 1]
 	DLMF-Link:= http://dlmf.nist.gov/14.2#i
 
 LegendreP::3
@@ -1221,13 +1221,13 @@ LegendreP::3
 	DLMF-Pattern:= \LegendreP[$1]{$0}@{$2}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	NumberOfVars:= 3
-	MapleComment:= 
+	MapleComment:= If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersP.
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= 
+	Alternatives:= \FerrersP[$1]{$0}@{$2}
 	DLMF-Meaning:= Associated Legendre function of first kind
 	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
+	DLMF-BranchCuts:= (-\infty, 1]
 	DLMF-Link:= http://dlmf.nist.gov/14.3#E5
 
 LegendreQ::2
@@ -1235,13 +1235,13 @@ LegendreQ::2
 	DLMF-Pattern:= \LegendreQ{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	NumberOfVars:= 2
-	MapleComment:= 
+	MapleComment:= If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersQ.
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Legendre function of second kind
+	Alternatives:= \FerrersQ{$0}@{$1}
+	DLMF-Meaning:= Associated Legendre function of second kind
 	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
+	DLMF-BranchCuts:= (-\infty, 1]
 	DLMF-Link:= http://dlmf.nist.gov/14.2#i
 
 LegendreQ::3
@@ -1249,13 +1249,13 @@ LegendreQ::3
 	DLMF-Pattern:= \LegendreQ[$1]{$0}@{$2}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	NumberOfVars:= 3
-	MapleComment:= 
+	MapleComment:= If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersQ.
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= 
+	Alternatives:= \FerrersQ[$1]{$0}@{$2}
 	DLMF-Meaning:= Associated Legendre function of second kind
 	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
+	DLMF-BranchCuts:= (-\infty, 1]
 	DLMF-Link:= http://dlmf.nist.gov/14.3#E7
 
 LerchPhi::3
@@ -1364,7 +1364,7 @@ MathieuCE::3
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= MathieuCE(0, $2, $1)/sqrt(2)
+	Alternatives:= 
 	DLMF-Meaning:= Mathieu eigenvalue function
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
@@ -2638,7 +2638,7 @@ sqrt::1
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= csgn($0)
+	Alternatives:= 
 	DLMF-Meaning:= n-th root
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
