@@ -102,7 +102,6 @@ public class MathTermTranslator extends AbstractListTranslator {
                     return parseMathematicalConstant( constantSet, term.getTermText() );
                 }
 
-                sT = SemanticLatexTranslator.getSymbolsTranslator();
                 String t = sT.translate( term.getTermText() );
                 if ( t != null ) {
                     INFO_LOG.addGeneralInfo(
@@ -122,6 +121,18 @@ public class MathTermTranslator extends AbstractListTranslator {
                     LOG.error("Reached unknown latex-command " +
                             term.getTermText());
                 }
+                return false;
+            case symbol:
+                String sym = sT.translate( term.getTermText() );
+                if ( sym != null ) {
+                    INFO_LOG.addGeneralInfo(
+                            term.getTermText(),
+                            "was translated to " + sym);
+                    local_inner_exp.addTranslatedExpression( sym );
+                    global_exp.addTranslatedExpression( sym );
+                    return true;
+                }
+                LOG.error("Unknown symbol reached: " + term.getTermText());
                 return false;
             case function:
                 LOG.error("MathTermTranslator cannot translate functions. Use the FunctionTranslator instead: "
@@ -378,9 +389,11 @@ public class MathTermTranslator extends AbstractListTranslator {
         global_exp.addTranslatedExpression( translated_const );
 
         // if there wasn't a translation at all, return true
+        if ( translated_const == null ) return true;
 
         //noinspection ConstantConditions
         if ( translated_const.equals( constant ) ) return true;
+
         // otherwise inform the user about the translation
         INFO_LOG.addGeneralInfo(
                 constant,

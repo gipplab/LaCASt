@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
+import javafx.scene.effect.GlowBuilder;
 import mlp.FeatureSet;
 import mlp.Lexicon;
 import mlp.LexiconFactory;
@@ -11,6 +12,7 @@ import mlp.LexiconFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.crypto.Mac;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -183,7 +185,7 @@ public class CSVtoLexiconConverter {
                 .forEach( method );
     }
 
-    private void handleOptionalParameters( Matcher m, String[] elements ){
+    private void handleOptionalParametersByDLMF( Matcher m, String[] elements ){
         String mac = m.group( GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS );
         mac = mac.substring(1, mac.length()-1);
         String[] info = mac.split( GlobalConstants.MACRO_OPT_PARAS_SPLITTER );
@@ -208,46 +210,42 @@ public class CSVtoLexiconConverter {
                 fset.addFeature( header[i], value, MacrosLexicon.SIGNAL_INLINE );
         }
 
-        String curr_cas = lineAnalyzer.getCasPrefix();
-        String cas_func_pattern = lineAnalyzer.getValue( curr_cas );
-        //fset.addFeature( curr_cas, cas_func_pattern, MacrosLexicon.SIGNAL_INLINE );
-
-        // TODO
-        /*
-        DLMFTranslationHeaders h = DLMFTranslationHeaders.dlmf_comment;
-        fset.addFeature(
-                h.getFeatureKey(curr_cas),
-                lineAnalyzer.getValue( h.getCSVKey(curr_cas) ),
-                MacrosLexicon.SIGNAL_INLINE );
-        h = DLMFTranslationHeaders.cas_alternatives;
-        fset.addFeature(
-                h.getFeatureKey(curr_cas),
-                lineAnalyzer.getValue( h.getCSVKey(curr_cas) ),
-                MacrosLexicon.SIGNAL_INLINE );
-        */
-
-        m = GlobalConstants.GENERAL_CAS_FUNC_PATTERN.matcher(cas_func_pattern);
-        if ( !m.matches() ) {
-            sets.add(fset);
-            dlmf_lexicon.setEntry( info[1], sets );
-            return;
-        }
-
-        String cas_func = m.group(1);
-        String num_var_str = lineAnalyzer.getValue( Keys.NUM_OF_VARS );
-        Integer num;
-        try { num = Integer.parseInt(num_var_str); }
-        catch ( NumberFormatException nfe ){
-            sets.add(fset);
-            dlmf_lexicon.setEntry( info[1], sets );
-            return;
-        }
-
-        CASInfo casinfo = cas_cache.get( cas_func, num );
-        fillFeatureWithInfos(casinfo, fset, curr_cas);
-
         sets.add(fset);
         dlmf_lexicon.setEntry( info[1], sets );
+    }
+
+    private InfoHolder getFuncNameAndFillInteger(
+            String expression,
+            String error_message,
+            LineAnalyzer analyzer
+    ) throws NumberFormatException {
+        InfoHolder holder = new InfoHolder();
+        Matcher m = GlobalConstants.GENERAL_CAS_FUNC_PATTERN.matcher( expression );
+        if ( !m.matches() ) {
+            LOG.debug(error_message);
+            return null;
+        } else {
+            String str = m.group( GlobalConstants.GEN_CAS_FUNC_SPECIFIER );
+            if ( str != null ){
+                holder.pattern = expression.substring( str.length() );
+                String[] elms = str
+                        .substring(1, str.length()-1) // delete leading and last X
+                        .split( GlobalConstants.MACRO_OPT_PARAS_SPLITTER ); // split number:name
+                holder.cas_name = elms[1];
+                holder.num_vars = Integer.parseInt(elms[0]);
+
+            } else {
+                holder.cas_name = m.group( GlobalConstants.GEN_CAS_FUNC_PATTERN_NAME );
+                holder.pattern = expression;
+            }
+        }
+
+        if ( holder.num_vars == null ){
+            String num_vars_str = analyzer.getValue( Keys.NUM_OF_VARS );
+            holder.num_vars = Integer.parseInt(num_vars_str);
+        }
+
+        return holder;
     }
 
     private void fillFeatureWithInfos( CASInfo info, FeatureSet fset, String curr_cas ){
@@ -285,7 +283,8 @@ public class CSVtoLexiconConverter {
 
         String optional_ats = m.group( GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS );
         if ( optional_ats != null ){
-            handleOptionalParameters(m, elements);
+            LOG.debug("Found optional parameter. " + optional_ats);
+            handleOptionalParametersByDLMF(m, elements);
             return;
         }
 
@@ -346,20 +345,19 @@ public class CSVtoLexiconConverter {
 
     private void fillCache( String[] elements ){
         String cas_func = null;
+        InfoHolder holder = null;
         try {
             lineAnalyzer.setLine(elements);
             String curr_cas = lineAnalyzer.getCasPrefix();
 
             cas_func = lineAnalyzer.getValue( curr_cas );
-            Matcher m = GlobalConstants.GENERAL_CAS_FUNC_PATTERN.matcher(cas_func);
-            if ( !m.matches() ) {
-                LOG.debug("Skip cache entry: " + cas_func);
-                return;
-            }
-            else cas_func = m.group(1);
+            holder = getFuncNameAndFillInteger(
+                    cas_func,
+                    "Skip cache entry: " + cas_func,
+                    lineAnalyzer
+            );
 
-            String num_vars_str = lineAnalyzer.getValue( Keys.NUM_OF_VARS );
-            Integer num_vars    = Integer.parseInt(num_vars_str);
+            if ( holder == null ) return;
 
             CASInfo info = new CASInfo();
             info.constraints = lineAnalyzer.getValue(
@@ -369,11 +367,12 @@ public class CSVtoLexiconConverter {
             info.link = lineAnalyzer.getValue(
                     DLMFTranslationHeaders.cas_link.getCSVKey(curr_cas) );
 
-            cas_cache.add( cas_func, num_vars, info );
+            if ( holder.cas_name != null )
+                cas_cache.add( holder.cas_name, holder.num_vars, info );
         } catch ( NumberFormatException nfe ){
             LOG.debug("Skip cache entry, because number of variables is missing for: " + cas_func);
         } catch ( Exception e ){
-            LOG.debug("Skip cache entry for: " + Arrays.toString(elements), e);
+            LOG.debug("Error - Skip cache entry for: " + Arrays.toString(elements), e);
         }
 
     }
@@ -382,6 +381,7 @@ public class CSVtoLexiconConverter {
         lineAnalyzer.setLine( elements );
 
         String macro_col = lineAnalyzer.getValue( Keys.KEY_DLMF );
+        Integer num = null;
         Matcher m = GlobalConstants.DLMF_MACRO_PATTERN.matcher( macro_col );
         if ( !m.matches() ){
             LOG.info("Found a not supported DLMF macro for translation: " + macro_col);
@@ -393,7 +393,9 @@ public class CSVtoLexiconConverter {
             macro = m.group( GlobalConstants.MACRO_PATTERN_INDEX_MACRO );
         } else {
             macro = macro.substring(1, macro.length()-1);
-            macro = macro.split( GlobalConstants.MACRO_OPT_PARAS_SPLITTER )[1];
+            String[] infos = macro.split( GlobalConstants.MACRO_OPT_PARAS_SPLITTER );
+            macro = infos[1];
+            num = Integer.parseInt(infos[0]);
         }
 
         List<FeatureSet> list = dlmf_lexicon.getFeatureSets(macro);
@@ -409,7 +411,8 @@ public class CSVtoLexiconConverter {
         for ( FeatureSet f : list ){
             if ( f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO ) ) {
                 dlmfF = f;
-            } else if ( f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX+"\\d+" ) ) {
+            } else if (
+                    f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX+num ) ) {
                 alternativeF = f;
             }
         }
@@ -419,7 +422,6 @@ public class CSVtoLexiconConverter {
         String opt_para = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS);
         String paras = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS_ELEMENTS);
         if ( opt_para != null ){
-            LOG.warn("OptPARA not null: " + opt_para);
             if ( alternativeF == null ){
                 LOG.warn("Null alternative set! " + macro_col);
                 return;
@@ -427,7 +429,7 @@ public class CSVtoLexiconConverter {
             fset = alternativeF;
         } else if (paras != null) {
             LOG.warn("Parameters not in special syntax. " +
-                    "Has to be defined as 'X<digit>X<Macro>'. " + macro_col);
+                    "Has to be defined as 'X<digit>:<name>X<Macro>'. " + macro_col);
             return;
         } else {
             if ( dlmfF == null ){
@@ -442,6 +444,16 @@ public class CSVtoLexiconConverter {
 
         // get the name and pattern of the translation
         String cas_func_pattern = lineAnalyzer.getValue( casPrefix );
+        if ( cas_func_pattern == null || cas_func_pattern.isEmpty() )
+            return;
+
+        InfoHolder holder = getFuncNameAndFillInteger(
+                cas_func_pattern,
+                "Not able to link further information about " + cas_func_pattern,
+                lineAnalyzer
+        );
+
+        if ( holder != null ) cas_func_pattern = holder.pattern;
 
         // add infos from DLMF_<CAS>.csv first
         DLMFTranslationHeaders h;
@@ -455,21 +467,10 @@ public class CSVtoLexiconConverter {
                 lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
                 MacrosLexicon.SIGNAL_INLINE);
 
-        // try to get CASInfo
-        m = GlobalConstants.GENERAL_CAS_FUNC_PATTERN.matcher( cas_func_pattern );
-        if ( !m.matches() ) return;
-        // get name from pattern
-        String cas_func_name = m.group(1);
-        Integer num_vars;
-        try {
-            num_vars = Integer.parseInt(lineAnalyzer.getValue( Keys.NUM_OF_VARS ));
-        } catch ( NumberFormatException nfe ){
-            LOG.debug("Not able to parse number of variables. " + cas_func_pattern);
-            return;
+        if ( holder != null && holder.cas_name != null && holder.num_vars != null ){
+            CASInfo info = cas_cache.get( holder.cas_name, holder.num_vars );
+            fillFeatureWithInfos(info, fset, casPrefix);
         }
-
-        CASInfo info = cas_cache.get( cas_func_name, num_vars );
-        fillFeatureWithInfos(info, fset, casPrefix);
 
         dlmf_lexicon.setEntry( macro, list );
     }
@@ -519,5 +520,10 @@ public class CSVtoLexiconConverter {
         System.out.println(((System.currentTimeMillis()-start)/1000.) + " s");
 //        System.out.println("Number of DLMF-Macros: " + internal_dlmf_counter);
 //        System.out.println("Number of Maple translations: " + internal_maple_trans_counter);
+    }
+
+    private class InfoHolder{
+        String cas_name, pattern;
+        Integer num_vars;
     }
 }

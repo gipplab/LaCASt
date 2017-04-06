@@ -121,6 +121,12 @@
       "LaTeX": "\\infty",
       "Maple": "infinity",
       "Mathematica": "Infinity"
+	},
+	"opminus": {
+      "MLP": "opminus",
+      "LaTeX": "\\opminus",
+      "Maple": "(-1)",
+      "Mathematica": "(-1)"
 	}
   }
 }

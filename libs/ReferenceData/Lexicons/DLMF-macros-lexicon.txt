@@ -21,9 +21,6 @@ Symbol: \AThetaFunction
   Feature Set: dlmf-macro
 	DLMF: \AThetaFunction@{x}
 	DLMF-Link: dlmf.nist.gov/27.13.E4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Jacobi theta function alternative
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -124,9 +121,6 @@ Symbol: \AffqKrawtchouk
   Feature Set: dlmf-macro
 	DLMF: \AffqKrawtchouk{n}@@{q^{-x}}{p}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:AffqKrawtchouk
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: Affine q-Krawtchouck polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -172,9 +166,6 @@ Symbol: \AiryModulusM
   Feature Set: dlmf-macro
 	DLMF: \AiryModulusM@{z}
 	DLMF-Link: dlmf.nist.gov/9.8#i
-	Maple: 
-	Maple-Alternatives: sqrt(AiryAi($0)^2+AiryBi($0)^2)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Meanings: Airy modulus function M
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -186,9 +177,6 @@ Symbol: \AiryModulusN
   Feature Set: dlmf-macro
 	DLMF: \AiryModulusN@{z}
 	DLMF-Link: dlmf.nist.gov/9.8#i
-	Maple: 
-	Maple-Alternatives: sqrt(AiryAi(1, $0)^2+AiryBi(1, $0)^2)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Meanings: Airy modulus function N
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -200,9 +188,6 @@ Symbol: \AiryPhasePhi
   Feature Set: dlmf-macro
 	DLMF: \AiryPhasePhi@{z}
 	DLMF-Link: dlmf.nist.gov/9.8#i
-	Maple: 
-	Maple-Alternatives: arctan(AiryAi(1, $0)/AiryBi(1, $0))
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Meanings: Airy phase function Phi
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -214,9 +199,6 @@ Symbol: \AiryPhaseTheta
   Feature Set: dlmf-macro
 	DLMF: \AiryPhaseTheta@{z}
 	DLMF-Link: dlmf.nist.gov/9.8#i
-	Maple: 
-	Maple-Alternatives: arctan(AiryAi($0)/AiryBi($0))
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Meanings: Airy phase function Theta
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -228,9 +210,6 @@ Symbol: \AlSalamCarlitzI
   Feature Set: dlmf-macro
 	DLMF: \AlSalamCarlitzI{a}{n}@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:AlSalamCarlitzI
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Al-Salam-Charlitz I polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -242,9 +221,6 @@ Symbol: \AlSalamCarlitzII
   Feature Set: dlmf-macro
 	DLMF: \AlSalamCarlitzII{a}{n}@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:AlSalamCarlitzII
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Al-Salam-Charlitz II polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -256,9 +232,6 @@ Symbol: \AlSalamChihara
   Feature Set: dlmf-macro
 	DLMF: \AlSalamChihara{n}@@{x}{a}{b}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:AlSalamChihara
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Al-Salam-Chihara polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -270,9 +243,6 @@ Symbol: \AlSalamChiharaQ
   Feature Set: dlmf-macro
 	DLMF: \AlSalamChiharaQ{n}@{x}{a}{b}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E7
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Al-Salam-Chihara polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -284,9 +254,6 @@ Symbol: \AlSalamIsmail
   Feature Set: dlmf-macro
 	DLMF: \AlSalamIsmail{n}@{x}{s}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:AlSalamIsmail
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Al-Salam Ismail
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -299,9 +266,6 @@ Symbol: \AngerA
 	Constraints: Re(z) > 0
 	DLMF: \AngerA{v}@{z}
 	DLMF-Link: dlmf.nist.gov/11.10#E4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Associated Anger function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -347,9 +311,6 @@ Symbol: \AppellFi
   Feature Set: dlmf-macro
 	DLMF: \AppellFi@{\alpha}{\beta}{\beta'}{\gamma}{x}{y}
 	DLMF-Link: dlmf.nist.gov/16.13#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: First Appell function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -361,9 +322,6 @@ Symbol: \AppellFii
   Feature Set: dlmf-macro
 	DLMF: \AppellFii@{\alpha}{\beta}{\beta'}{\gamma}{\gamma'}{x}{y}
 	DLMF-Link: dlmf.nist.gov/16.13#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Second Appell function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -376,9 +334,6 @@ Symbol: \AppellFiii
 	Constraints: Re(z) > 0
 	DLMF: \AppellFiii@{\alpha}{\alpha'}{\beta}{\beta'}{\gamma}{x}{y}
 	DLMF-Link: dlmf.nist.gov/16.13#E4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Third Appell function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -390,9 +345,6 @@ Symbol: \AppellFiv
   Feature Set: dlmf-macro
 	DLMF: \AppellFiv@{\alpha}{\beta}{\gamma}{\gamma'}{x}{y}
 	DLMF-Link: dlmf.nist.gov/16.13#E5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Fourth Appell function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -456,9 +408,6 @@ Symbol: \AskeyWilson
   Feature Set: dlmf-macro
 	DLMF: \AskeyWilson{n}@{x}{a}{b}{c}{d}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Askey-Wilson polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -470,9 +419,6 @@ Symbol: \AskeyWilsonp
   Feature Set: dlmf-macro
 	DLMF: \AskeyWilsonp{n}@{x}{a}{b}{c}{d}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Askey-Wilson polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -484,9 +430,6 @@ Symbol: \AssJacobiP
   Feature Set: dlmf-macro
 	DLMF: \AssJacobiP{\alpha}{\beta}{n}@{x}{c}
 	DLMF-Link: dlmf.nist.gov/18.30#E4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Associated Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -498,9 +441,6 @@ Symbol: \AssLegendrePoly
   Feature Set: dlmf-macro
 	DLMF: \AssLegendrePoly{n}@{x}{c}
 	DLMF-Link: dlmf.nist.gov/18.30#E6
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Associated Legendre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -538,9 +478,6 @@ Symbol: \BarnesGamma
   Feature Set: dlmf-macro
 	DLMF: \BarnesGamma@{z}
 	DLMF-Link: dlmf.nist.gov/5.17#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Double Gamma / Barnes Gamma
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -603,9 +540,6 @@ Symbol: \BesselItilde
   Feature Set: dlmf-macro
 	DLMF: \BesselItilde{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.45#E2
-	Maple: 
-	Maple-Alternatives: Re(BesselI(I*($0), $1))
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Meanings: Modified Bessel of imaginary order first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -635,9 +569,6 @@ Symbol: \BesselJtilde
   Feature Set: dlmf-macro
 	DLMF: \BesselJtilde{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.24#Ex1
-	Maple: 
-	Maple-Alternatives: sech((1/2)*Pi*($0))*Re(BesselJ(I*($0), $1))
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Meanings: Bessel of imaginary order first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -666,9 +597,6 @@ Symbol: \BesselKtilde
   Feature Set: dlmf-macro
 	DLMF: \BesselKtilde{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.45#E2
-	Maple: 
-	Maple-Alternatives: BesselK(I*($0), $1)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Meanings: Modified Bessel of imaginary order second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -680,9 +608,6 @@ Symbol: \BesselModulusM
   Feature Set: dlmf-macro
 	DLMF: \BesselModulusM{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.18#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Modulus Bessel function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -694,9 +619,6 @@ Symbol: \BesselModulusN
   Feature Set: dlmf-macro
 	DLMF: \BesselModulusN{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.18#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Modulus derivative Bessel function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -708,9 +630,6 @@ Symbol: \BesselPhasePhi
   Feature Set: dlmf-macro
 	DLMF: \BesselPhasePhi{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.18#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Phase of derivative Bessel function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -722,9 +641,6 @@ Symbol: \BesselPhaseTheta
   Feature Set: dlmf-macro
 	DLMF: \BesselPhaseTheta{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.18#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Phase of Bessel function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -736,9 +652,6 @@ Symbol: \BesselPoly
   Feature Set: dlmf-macro
 	DLMF: \BesselPoly{n}@{x}{a}
 	DLMF-Link: dlmf.nist.gov/18.34#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Bessel polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -750,9 +663,6 @@ Symbol: \BesselPolyIIparam
   Feature Set: dlmf-macro
 	DLMF: \BesselPolyIIparam{n}@{x}{a}{b}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:BesselPolyIIparam
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Bessel polynomial with two parameters
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -764,9 +674,6 @@ Symbol: \BesselPolyTheta
   Feature Set: dlmf-macro
 	DLMF: \BesselPolyTheta{n}@{x}{a}{b}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:BesselPolyTheta
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Bessel Theta polynomial with two parameters
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -778,9 +685,6 @@ Symbol: \BesselPolyy
   Feature Set: dlmf-macro
 	DLMF: \BesselPolyy{n}@{x}{a}
 	DLMF-Link: dlmf.nist.gov/18.34#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Bessel polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -810,9 +714,6 @@ Symbol: \BesselYtilde
   Feature Set: dlmf-macro
 	DLMF: \BesselYtilde{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.24#Ex1
-	Maple: 
-	Maple-Alternatives: sech((1/2)*Pi*($0))*Re(BesselY(I*($0), $1))
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Meanings: Bessel of imaginary order second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -824,9 +725,6 @@ Symbol: \BickleyKi
   Feature Set: dlmf-macro
 	DLMF: \BickleyKi{\alpha}@{x}
 	DLMF-Link: dlmf.nist.gov/10.43#E11
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Bickley function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -838,9 +736,6 @@ Symbol: \BigO
   Feature Set: dlmf-macro
 	DLMF: \BigO@{x}
 	DLMF-Link: dlmf.nist.gov/2.1#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Landau notation O
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -852,9 +747,6 @@ Symbol: \CatalanNumber
   Feature Set: dlmf-macro
 	DLMF: \CatalanNumber@{n}
 	DLMF-Link: dlmf.nist.gov/26.5#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Catalan number
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -874,9 +766,6 @@ Symbol: \Charlier
   Feature Set: dlmf-macro
 	DLMF: \Charlier{n}@{x}{a}
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Charlier polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -888,9 +777,6 @@ Symbol: \CharlierC
   Feature Set: dlmf-macro
 	DLMF: \CharlierC{n}@{x}{a}
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Charlier polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -902,9 +788,6 @@ Symbol: \ChebyC
   Feature Set: dlmf-macro
 	DLMF: \ChebyC{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.1#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Dilated Chebyshev polynomial first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -916,9 +799,6 @@ Symbol: \ChebyS
   Feature Set: dlmf-macro
 	DLMF: \ChebyS{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.1#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Dilated Chebyshev polynomial second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -947,9 +827,6 @@ Symbol: \ChebyTs
   Feature Set: dlmf-macro
 	DLMF: \ChebyTs{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r8
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Shifted Chebyshev polynomial first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -978,9 +855,6 @@ Symbol: \ChebyUs
   Feature Set: dlmf-macro
 	DLMF: \ChebyUs{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r9
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Shifted Chebyshev polynomial second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -992,9 +866,6 @@ Symbol: \ChebyV
   Feature Set: dlmf-macro
 	DLMF: \ChebyV{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r6
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Chebyshev polynomial third kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1006,9 +877,6 @@ Symbol: \ChebyW
   Feature Set: dlmf-macro
 	DLMF: \ChebyW{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r7
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Chebyshev polynomial fourth kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1020,9 +888,6 @@ Symbol: \ChebyshevPsi
   Feature Set: dlmf-macro
 	DLMF: \ChebyshevPsi@{x}
 	DLMF-Link: dlmf.nist.gov/25.16#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Chebyshev Psi-function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1034,9 +899,6 @@ Symbol: \CiglerqChebyT
   Feature Set: dlmf-macro
 	DLMF: \CiglerqChebyT{n}@{x}{s}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:CiglerqChebyT
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Cigler q-Chebyshev polynomials
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1048,9 +910,6 @@ Symbol: \CiglerqChebyU
   Feature Set: dlmf-macro
 	DLMF: \CiglerqChebyU{n}@{x}{s}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:CiglerqChebyU
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Cigler q-Chebyshev polynomials
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1158,9 +1017,6 @@ Symbol: \Complex
   Feature Set: dlmf-macro
 	DLMF: \Complex
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Set of complex numbers
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -1172,9 +1028,6 @@ Symbol: \ComplexZeroAiryBi
   Feature Set: dlmf-macro
 	DLMF: \ComplexZeroAiryBi{k}
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Complex zeros of Airy function of the second kind
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -1186,9 +1039,6 @@ Symbol: \ComplexZeroAiryBiPrime
   Feature Set: dlmf-macro
 	DLMF: \ComplexZeroAiryBiPrime{k}
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Complex zeros of derivative of Airy function of the second kind
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -1211,9 +1061,6 @@ Symbol: \Continuous
   Feature Set: dlmf-macro
 	DLMF: \Continuous@{A}
 	DLMF-Link: dlmf.nist.gov/1.4#ii
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Space of continuous functions on a set
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1282,9 +1129,6 @@ Symbol: \CoulombC
   Feature Set: dlmf-macro
 	DLMF: \CoulombC{\ell}@{\eta}
 	DLMF-Link: dlmf.nist.gov/33.2#E5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Normalizing constant for Coulomb radial functions
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1313,9 +1157,6 @@ Symbol: \CoulombG
   Feature Set: dlmf-macro
 	DLMF: \CoulombG{\ell}@{\eta}{\rho}
 	DLMF-Link: dlmf.nist.gov/33.2#E11
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Irregular Coulomb function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1327,9 +1168,6 @@ Symbol: \CoulombH
   Feature Set: dlmf-macro
 	DLMF: \CoulombH{\pm}{\ell}@{\eta}{\rho}
 	DLMF-Link: dlmf.nist.gov/33.2#E7
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Irregular Coulomb radial function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -1341,9 +1179,6 @@ Symbol: \CoulombM
   Feature Set: dlmf-macro
 	DLMF: \CoulombM{\ell}@{\eta}{\rho}
 	DLMF-Link: dlmf.nist.gov/33.3#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Envelope of Coulomb function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1355,9 +1190,6 @@ Symbol: \CoulombSigma
   Feature Set: dlmf-macro
 	DLMF: \CoulombSigma{\ell}@{\eta}
 	DLMF-Link: dlmf.nist.gov/33.2#E10
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Coulomb phase shift
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1369,9 +1201,6 @@ Symbol: \CoulombTheta
   Feature Set: dlmf-macro
 	DLMF: \CoulombTheta{\ell}@{\eta}{\rho}
 	DLMF-Link: dlmf.nist.gov/33.2#E9
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Phase of Coulomb functions
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1383,9 +1212,6 @@ Symbol: \Coulombc
   Feature Set: dlmf-macro
 	DLMF: \Coulombc@{\epsilon}{\ell}{r}
 	DLMF-Link: dlmf.nist.gov/33.14#E9
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Regular Coulomb function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1397,9 +1223,6 @@ Symbol: \Coulombf
   Feature Set: dlmf-macro
 	DLMF: \Coulombf@{\epsilon}{\ell}{r}
 	DLMF-Link: dlmf.nist.gov/33.14#E4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Regular Coulomb function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1411,9 +1234,6 @@ Symbol: \Coulombh
   Feature Set: dlmf-macro
 	DLMF: \Coulombh@{\epsilon}{\ell}{r}
 	DLMF-Link: dlmf.nist.gov/33.14#E7
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Regular Coulomb function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1425,9 +1245,6 @@ Symbol: \Coulombrhotp
   Feature Set: dlmf-macro
 	DLMF: \Coulombrhotp@{\eta}{\ell}
 	DLMF-Link: dlmf.nist.gov/33.2#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Outer turning point for Coulomb radial functions
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1439,9 +1256,6 @@ Symbol: \Coulombrtp
   Feature Set: dlmf-macro
 	DLMF: \Coulombrtp@{\epsilon}{\ell}
 	DLMF-Link: dlmf.nist.gov/33.14#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Outer turning point for Coulomb functions
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1453,9 +1267,6 @@ Symbol: \Coulombs
   Feature Set: dlmf-macro
 	DLMF: \Coulombs@{\epsilon}{\ell}{r}
 	DLMF-Link: dlmf.nist.gov/33.14#E9
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Regular Coulomb function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1467,9 +1278,6 @@ Symbol: \Cylinder
   Feature Set: dlmf-macro
 	DLMF: \Cylinder{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/10.2#Px5.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Cylinder function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1498,9 +1306,6 @@ Symbol: \DedekindModularEta
   Feature Set: dlmf-macro
 	DLMF: \DedekindModularEta@{\tau}
 	DLMF-Link: dlmf.nist.gov/23.15#E9
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Dedikind's Eta function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1546,9 +1351,6 @@ Symbol: \DirichletCharacter
   Feature Set: dlmf-macro
 	DLMF: \DirichletCharacter@@{n}{k}
 	DLMF-Link: dlmf.nist.gov/27.8
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Dirichlet character
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -1560,9 +1362,6 @@ Symbol: \DirichletL
   Feature Set: dlmf-macro
 	DLMF: \DirichletL@{s}{\chi}
 	DLMF-Link: dlmf.nist.gov/25.15#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Dirichlet L-function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1574,9 +1373,6 @@ Symbol: \DiscriminantDelta
   Feature Set: dlmf-macro
 	DLMF: \DiscriminantDelta@{\tau}
 	DLMF-Link: dlmf.nist.gov/27.14#E16
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Discriminant function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1588,9 +1384,6 @@ Symbol: \DiskOP
   Feature Set: dlmf-macro
 	DLMF: \DiskOP{\alpha}{m}{n}@{z}
 	DLMF-Link: dlmf.nist.gov/18.37#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Disk polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -1602,9 +1395,6 @@ Symbol: \Distribution
   Feature Set: dlmf-macro
 	DLMF: \Distribution{f}{g}
 	DLMF-Link: dlmf.nist.gov/1.16#SS1.p5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Distribution
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -1633,10 +1423,10 @@ Symbol: \DivisorSigma
   Feature Set: dlmf-macro
 	DLMF: \DivisorSigma{1}@{n}
 	DLMF-Link: dlmf.nist.gov/27.2#E10
-	Maple:  || add(divisors($0))
+	Maple: add(divisors($0))
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
-	Maple-Comment:  || Maple needs an extra package. with(numtheory) and since Maplesoft 2016 with(NumberTheory)
+	Maple-Comment: Maple needs an extra package. with(numtheory) and since Maplesoft 2016 with(NumberTheory)
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29
 	Meanings: Sum of divisors
@@ -1650,9 +1440,6 @@ Symbol: \EllIntD
   Feature Set: dlmf-macro
 	DLMF: \EllIntD@{\phi}{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E6
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Incomplete elliptic integral of Legendre's type
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1715,9 +1502,6 @@ Symbol: \EllIntRC
   Feature Set: dlmf-macro
 	DLMF: \EllIntRC@@{x}{y}
 	DLMF-Link: dlmf.nist.gov/19.2#E17
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Carlson elliptic integral
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -1729,9 +1513,6 @@ Symbol: \EllIntRD
   Feature Set: dlmf-macro
 	DLMF: \EllIntRD@@{x}{y}{z}
 	DLMF-Link: dlmf.nist.gov/19.16#E5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Symmetric in only two variables
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -1743,9 +1524,6 @@ Symbol: \EllIntRF
   Feature Set: dlmf-macro
 	DLMF: \EllIntRF@@{x}{y}{z}
 	DLMF-Link: dlmf.nist.gov/19.16#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Symmetric elliptic integral of the first kind
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -1757,9 +1535,6 @@ Symbol: \EllIntRG
   Feature Set: dlmf-macro
 	DLMF: \EllIntRG@@{x}{y}{z}
 	DLMF-Link: dlmf.nist.gov/19.16#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Symmetric elliptic integral of the third kind
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -1771,9 +1546,6 @@ Symbol: \EllIntRJ
   Feature Set: dlmf-macro
 	DLMF: \EllIntRJ@@{x}{y}{z}{p}
 	DLMF-Link: dlmf.nist.gov/19.16#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Symmetric elliptic integral of the second kind
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -1785,9 +1557,6 @@ Symbol: \EllIntcel
   Feature Set: dlmf-macro
 	DLMF: \EllIntcel@{k_c}{p}{a}{b}
 	DLMF-Link: dlmf.nist.gov/19.2#E11
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Bulirsch's complete elliptic integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1799,9 +1568,6 @@ Symbol: \EllIntelone
   Feature Set: dlmf-macro
 	DLMF: \EllIntelone@{x}{k_c}
 	DLMF-Link: dlmf.nist.gov/19.2#E15
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Bulirsch's incomplete elliptic integral of first kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1813,9 +1579,6 @@ Symbol: \EllIntelthree
   Feature Set: dlmf-macro
 	DLMF: \EllIntelthree@{x}{k_c}{p}
 	DLMF-Link: dlmf.nist.gov/19.2#E16
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: \EllIntRC@@{x}{y} = \EllIntRF@@{x}{y}{y}
 	Meanings: Bulirsch's incomplete elliptic integral of third kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1827,9 +1590,6 @@ Symbol: \EllInteltwo
   Feature Set: dlmf-macro
 	DLMF: \EllInteltwo@{x}{k_c}{a}{b}
 	DLMF-Link: dlmf.nist.gov/19.2#E12
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Bulirsch's incomplete elliptic integral of second kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1901,9 +1661,6 @@ Symbol: \EulerPhi
   Feature Set: dlmf-macro
 	DLMF: \EulerPhi@{x}
 	DLMF-Link: dlmf.nist.gov/27.14#E2
-	Maple: 
-	Maple-Alternatives: product(1-($0)^k, k = 1 .. infinity)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Meanings: Euler's reciprocal function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1915,9 +1672,6 @@ Symbol: \EulerSumH
   Feature Set: dlmf-macro
 	DLMF: \EulerSumH@{s}
 	DLMF-Link: dlmf.nist.gov/25.16#SS2.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Euler sums
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1940,9 +1694,6 @@ Symbol: \EulerianNumber
   Feature Set: dlmf-macro
 	DLMF: \EulerianNumber{n}{k}
 	DLMF-Link: dlmf.nist.gov/26.14#SS1.p3
-	Maple: 
-	Maple-Alternatives: phi($0)
-	Maple-Comment: 
 	Meanings: Eulerian number
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -2014,9 +1765,6 @@ Symbol: \FerrersHatQ
   Feature Set: dlmf-macro
 	DLMF: \FerrersHatQ{\tau}@{x}
 	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Conical / Mehler function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2026,9 +1774,6 @@ Symbol: \FerrersHatQ
   Feature Set: dlmf-alternative-1
 	DLMF: \FerrersHatQ[\mu]{\tau}@{x}
 	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Conical / Mehler function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2044,7 +1789,7 @@ Symbol: \FerrersP
 	Maple: LegendreP($0, $1)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
-	Maple-Comment: "This translation is only correct, when you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. Use the ""restart"" command to clear the settings afterwards. More information can be found on Maple's website for LegendreP."
+	Maple-Comment: This translation is only correct, when you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to invoke forget(evalf) and forget(simplify), otherwise these functions never noticed the changes of _EnvLegendreCut.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	Meanings: Ferrers function of first kind
@@ -2060,7 +1805,7 @@ Symbol: \FerrersP
 	Maple: LegendreP($1, $0, $2)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
-	Maple-Comment: "This translation is only correct, when you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. Use the ""restart"" command to clear the settings afterwards. More information can be found on Maple's website for LegendreP."
+	Maple-Comment: This translation is only correct, when you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to invoke forget(evalf) and forget(simplify), otherwise these functions never noticed the changes of _EnvLegendreCut.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	Meanings: Ferrers function of first kind
@@ -2078,7 +1823,7 @@ Symbol: \FerrersQ
 	Maple: LegendreQ($0, $1)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
-	Maple-Comment: "This translation is only correct, when you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. Use the ""restart"" command to clear the settings afterwards. More information can be found on Maple's website for LegendreP."
+	Maple-Comment: This translation is only correct, when you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to invoke forget(evalf) and forget(simplify), otherwise these functions never noticed the changes of _EnvLegendreCut.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	Meanings: Ferrers function of second kind
@@ -2094,7 +1839,7 @@ Symbol: \FerrersQ
 	Maple: LegendreQ($1, $0, $2)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
-	Maple-Comment: "This translation is only correct, when you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. Use the ""restart"" command to clear the settings afterwards. More information can be found on Maple's website for LegendreP."
+	Maple-Comment: This translation is only correct, when you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to invoke forget(evalf) and forget(simplify), otherwise these functions never noticed the changes of _EnvLegendreCut.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	Meanings: Ferrers function of second kind
@@ -2108,9 +1853,6 @@ Symbol: \FibonacciNumber
   Feature Set: dlmf-macro
 	DLMF: \FibonacciNumber{n}
 	DLMF-Link: dlmf.nist.gov/26.11#E5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Fibonacci number
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -2122,9 +1864,6 @@ Symbol: \FishersHh
   Feature Set: dlmf-macro
 	DLMF: \FishersHh{n}@{z}
 	DLMF-Link: dlmf.nist.gov/7.18#E12
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Probability function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2153,9 +1892,6 @@ Symbol: \FresnelF
   Feature Set: dlmf-macro
 	DLMF: \FresnelF@{z}
 	DLMF-Link: dlmf.nist.gov/7.2#E6
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Fresnel Integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2218,9 +1954,6 @@ Symbol: \GammaP
   Feature Set: dlmf-macro
 	DLMF: \GammaP@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.2#E4
-	Maple: 
-	Maple-Alternatives: (GAMMA($0)-GAMMA($0, $1))/GAMMA($0)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Meanings: Normalized incomplete Gamma
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2232,9 +1965,6 @@ Symbol: \GammaQ
   Feature Set: dlmf-macro
 	DLMF: \GammaQ@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.2#E4
-	Maple: 
-	Maple-Alternatives: GAMMA($0, $1)/GAMMA($0)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Meanings: Normalized incomplete Gamma
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2246,9 +1976,6 @@ Symbol: \GaussSum
   Feature Set: dlmf-macro
 	DLMF: \GaussSum@{n}{\DirichletCharacter}
 	DLMF-Link: dlmf.nist.gov/27.10#E9
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Gauss sum
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2260,9 +1987,6 @@ Symbol: \GenBernoulliB
   Feature Set: dlmf-macro
 	DLMF: \GenBernoulliB{\ell}{n}@{x}
 	DLMF-Link: dlmf.nist.gov/24.16#P1.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Generalized Bernoulli polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -2274,9 +1998,6 @@ Symbol: \GenBesselFun
   Feature Set: dlmf-macro
 	DLMF: \GenBesselFun@{\rho}{\beta}{z}
 	DLMF-Link: dlmf.nist.gov/10.46#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Generalized Bessel
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2288,9 +2009,6 @@ Symbol: \GenEulerE
   Feature Set: dlmf-macro
 	DLMF: \GenEulerE{\ell}{n}@{x}
 	DLMF-Link: dlmf.nist.gov/24.16#P1.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Generalized Euler polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -2302,9 +2020,6 @@ Symbol: \GenEulerSumH
   Feature Set: dlmf-macro
 	DLMF: \GenEulerSumH@{s}{z}
 	DLMF-Link: dlmf.nist.gov/25.16#SS2.p7
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Generalized Euler sums
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2316,9 +2031,6 @@ Symbol: \GenGegenbauerS
   Feature Set: dlmf-macro
 	DLMF: \GenGegenbauerS{\alpha}{\beta}{n}@{x}
 	DLMF-Link: gw113.iu.xsede.org/wiki/index.php/Definition:GenGegenbauerS
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Generalized Gegenbauer polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -2341,9 +2053,6 @@ Symbol: \GoodStat
   Feature Set: dlmf-macro
 	DLMF: \GoodStat@{z}
 	DLMF-Link: dlmf.nist.gov/7.2#E12
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Goodwin-Staton integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2355,9 +2064,6 @@ Symbol: \GottliebLaguerre
   Feature Set: dlmf-macro
 	DLMF: \GottliebLaguerre{n}@{x}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:GottliebLaguerre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Gottlieb-Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2369,9 +2075,6 @@ Symbol: \Gudermannian
   Feature Set: dlmf-macro
 	DLMF: \Gudermannian@@{x}
 	DLMF-Link: dlmf.nist.gov/4.23#E39
-	Maple: 
-	Maple-Alternatives: arctan(sinh($0))
-	Maple-Comment: 
 	Meanings: Gudermannian function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2383,9 +2086,6 @@ Symbol: \Hahn
   Feature Set: dlmf-macro
 	DLMF: \Hahn{n}@{x}{\alpha}{\beta}{N}
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2397,9 +2097,6 @@ Symbol: \HahnQ
   Feature Set: dlmf-macro
 	DLMF: \HahnQ{n}@{x}{\alpha}{\beta}{N}
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2411,9 +2108,6 @@ Symbol: \HahnR
   Feature Set: dlmf-macro
 	DLMF: \HahnR{n}@{x}{\gamma}{\delta}{N}
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Dual Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2425,9 +2119,6 @@ Symbol: \HahnS
   Feature Set: dlmf-macro
 	DLMF: \HahnS{n}@{x}{a}{b}{c}
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Continuous dual Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2439,9 +2130,6 @@ Symbol: \Hahnp
   Feature Set: dlmf-macro
 	DLMF: \Hahnp{n}@{x}{a}{b}{\conj{a}}{\conj{b}}
 	DLMF-Link: dlmf.nist.gov/18.19#P2.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Continuous Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2555,9 +2243,6 @@ Symbol: \HermiteHe
   Feature Set: dlmf-macro
 	DLMF: \HermiteHe{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r14
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Hermite polynomial He
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2569,9 +2254,6 @@ Symbol: \HeunFunction
   Feature Set: dlmf-macro
 	DLMF: \HeunFunction{m}{a}{b}@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z}
 	DLMF-Link: dlmf.nist.gov/31.4#p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: General Heun functions
 	Number of Ats: 2
 	Number of Parameters: 3
@@ -2597,9 +2279,6 @@ Symbol: \HeunPolynom
   Feature Set: dlmf-macro
 	DLMF: \HeunPolynom{n}{m}@@{a}{q}{-n}{\beta}{\gamma}{\delta}{z}
 	DLMF-Link: dlmf.nist.gov/31.5#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Heun polynomials
 	Number of Ats: 2
 	Number of Parameters: 2
@@ -2687,9 +2366,6 @@ Symbol: \HyperpHq
   Feature Set: dlmf-macro
 	DLMF: \HyperpHq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}
 	DLMF-Link: dlmf.nist.gov/16.4#E16
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Bilateral hypergeometric function
 	Number of Ats: 3
 	Number of Parameters: 2
@@ -2701,9 +2377,6 @@ Symbol: \IncBeta
   Feature Set: dlmf-macro
 	DLMF: \IncBeta{x}@{a}{b}
 	DLMF-Link: dlmf.nist.gov/8.17#E1
-	Maple: 
-	Maple-Alternatives: int(t^($1-1)*(1-t)^($2-1), t = 0 .. $0)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Meanings: Incomplete Beta function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2732,9 +2405,6 @@ Symbol: \IncI
   Feature Set: dlmf-macro
 	DLMF: \IncI{x}@{a}{b}
 	DLMF-Link: dlmf.nist.gov/8.17#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Regularized incomplete Beta function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2763,9 +2433,6 @@ Symbol: \Integer
   Feature Set: dlmf-macro
 	DLMF: \Integer
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r20
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Set of integers
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -2777,9 +2444,6 @@ Symbol: \IntgenAiryA
   Feature Set: dlmf-macro
 	DLMF: \IntgenAiryA{k}@{z}{p}
 	DLMF-Link: dlmf.nist.gov/9.13#SS2.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Generalized Airy function integral
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2791,9 +2455,6 @@ Symbol: \IntgenAiryB
   Feature Set: dlmf-macro
 	DLMF: \IntgenAiryB{k}@{z}{p}
 	DLMF-Link: dlmf.nist.gov/9.13#SS2.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Generalized Bairy function integral
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2805,9 +2466,6 @@ Symbol: \JacksonqBesselI
   Feature Set: dlmf-macro
 	DLMF: \JacksonqBesselI{\nu}@{z}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:JacksonqBesselI
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Jackson q-Bessel function I
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2819,9 +2477,6 @@ Symbol: \JacksonqBesselII
   Feature Set: dlmf-macro
 	DLMF: \JacksonqBesselII{\nu}@{z}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:JacksonqBesselII
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Jackson q-Bessel function II
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2833,9 +2488,6 @@ Symbol: \JacksonqBesselIII
   Feature Set: dlmf-macro
 	DLMF: \JacksonqBesselIII{\nu}@{z}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:JacksonqBesselIII
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Jackson q-Bessel function III
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2864,9 +2516,6 @@ Symbol: \JacobiEpsilon
   Feature Set: dlmf-macro
 	DLMF: \JacobiEpsilon@{x}{k}
 	DLMF-Link: dlmf.nist.gov/22.16#E14
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Jacobi's epsilon function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2878,9 +2527,6 @@ Symbol: \JacobiG
   Feature Set: dlmf-macro
 	DLMF: \JacobiG{n}@{p}{q}{x}
 	DLMF-Link: dlmf.nist.gov/18.1#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Shifted Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2909,9 +2555,6 @@ Symbol: \JacobiSymbol
   Feature Set: dlmf-macro
 	DLMF: \JacobiSymbol{n}{P}
 	DLMF-Link: dlmf.nist.gov/27.9#p3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Jacobi symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -2937,9 +2580,6 @@ Symbol: \JacobiThetaCombined
   Feature Set: dlmf-macro
 	DLMF: \JacobiThetaCombined{n}{m}@{z}{q}
 	DLMF-Link: dlmf.nist.gov/20.11#SS5.p2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Combined theta function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -2952,9 +2592,6 @@ Symbol: \JacobiThetaTau
 	Constraints: Im(tau) > 0 and 0 < |exp(I*Pi*tau)| < 1
 	DLMF: \JacobiThetaTau{j}@{z}{\tau}
 	DLMF-Link: dlmf.nist.gov/20.2#i
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: The alternative translation is only allowed for: Im($2) > 0 and 0 < |exp(I*Pi*$2)| < 1
 	Meanings: Jacobi's theta-tau function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3153,9 +2790,6 @@ Symbol: \Jacobiphi
   Feature Set: dlmf-macro
 	DLMF: \Jacobiphi{\alpha}{\beta}{\lambda}@{t}
 	DLMF-Link: dlmf.nist.gov/15.9#E11
-	Maple: 
-	Maple-Alternatives: hypergeom([(($0)+($1)+1-I*($2))/2, (($0)+($1)+1+I*($2))], [($0)+1], -sinh($3)^2)
-	Maple-Comment: 
 	Meanings: Jacobi function
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -3229,9 +2863,6 @@ Symbol: \JordanJ
   Feature Set: dlmf-macro
 	DLMF: \JordanJ{k}@{n}
 	DLMF-Link: dlmf.nist.gov/27.2#E11
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Jordan's function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3311,9 +2942,6 @@ Symbol: \Krawtchouk
   Feature Set: dlmf-macro
 	DLMF: \Krawtchouk{n}@{x}{p}{N}
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Krawtchouk polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3325,9 +2953,6 @@ Symbol: \KrawtchoukK
   Feature Set: dlmf-macro
 	DLMF: \KrawtchoukK{n}@{x}{p}{N}
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Krawtchouk polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3339,9 +2964,6 @@ Symbol: \Kronecker
   Feature Set: dlmf-macro
 	DLMF: \Kronecker{j}{k}
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r4
-	Maple: 
-	Maple-Alternatives: KroneckerDelta[$0, $1]
-	Maple-Comment: This funcion needs an extra package. with(Physics)
 	Meanings: Kronecker delta
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -3387,9 +3009,6 @@ Symbol: \KummerboldM
   Feature Set: dlmf-macro
 	DLMF: \KummerboldM@{a}{b}{z}
 	DLMF-Link: dlmf.nist.gov/13.2#E3
-	Maple: 
-	Maple-Alternatives: KummerM($0, $1, $2)/GAMMA($1)
-	Maple-Comment: 
 	Meanings: Olver's confluent hypergeometric functions U
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3465,9 +3084,6 @@ Symbol: \LameEc
   Feature Set: dlmf-macro
 	DLMF: \LameEc{m}{\nu}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.3#SS4.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Lame function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3479,9 +3095,6 @@ Symbol: \LameEs
   Feature Set: dlmf-macro
 	DLMF: \LameEs{m}{\nu}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.3#SS4.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Lame function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3493,9 +3106,6 @@ Symbol: \Lamea
   Feature Set: dlmf-macro
 	DLMF: \Lamea{n}{\nu}@{k^2}
 	DLMF-Link: dlmf.nist.gov/29.3#SS1.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Eigenvalues of Lame's equation
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3507,9 +3117,6 @@ Symbol: \Lameb
   Feature Set: dlmf-macro
 	DLMF: \Lameb{n}{\nu}@{k^2}
 	DLMF-Link: dlmf.nist.gov/29.3#SS1.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Eigenvalues of Lame's equation
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3521,9 +3128,6 @@ Symbol: \LamecE
   Feature Set: dlmf-macro
 	DLMF: \LamecE{m}{2n+1}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3535,9 +3139,6 @@ Symbol: \LamecdE
   Feature Set: dlmf-macro
 	DLMF: \LamecdE{m}{2n+2}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E7
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3549,9 +3150,6 @@ Symbol: \LamedE
   Feature Set: dlmf-macro
 	DLMF: \LamedE{m}{2n+1}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3563,9 +3161,6 @@ Symbol: \LamesE
   Feature Set: dlmf-macro
 	DLMF: \LamesE{m}{2n+1}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3577,9 +3172,6 @@ Symbol: \LamescE
   Feature Set: dlmf-macro
 	DLMF: \LamescE{m}{2n+2}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3591,9 +3183,6 @@ Symbol: \LamescdE
   Feature Set: dlmf-macro
 	DLMF: \LamescdE{m}{2n+3}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E8
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3605,9 +3194,6 @@ Symbol: \LamesdE
   Feature Set: dlmf-macro
 	DLMF: \LamesdE{m}{2n+2}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E6
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3619,9 +3205,6 @@ Symbol: \LameuE
   Feature Set: dlmf-macro
 	DLMF: \LameuE{m}{2n}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3633,9 +3216,6 @@ Symbol: \Lattice
   Feature Set: dlmf-macro
 	DLMF: \Lattice{L}
 	DLMF-Link: dlmf.nist.gov/23.2#i
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Lattice
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -3647,9 +3227,6 @@ Symbol: \LauricellaFD
   Feature Set: dlmf-macro
 	DLMF: \LauricellaFD@{a}{b_1,...,b_n}{c}{z_1,...,z_n}
 	DLMF-Link: dlmf.nist.gov/19.15#p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: "see also ""Multivariate hypergeometric function"" under ""Elliptic Integrals"""
 	Meanings: Lauricella's multivariate hypergeometric function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3661,9 +3238,12 @@ Symbol: \LegendreBlackQ
   Feature Set: dlmf-macro
 	DLMF: \LegendreBlackQ{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.2#i
-	Maple: 
+	Maple: LegendreQ($0,$1)/GAMMA($0+1)
 	Maple-Alternatives: 
+	Maple-Branch Cuts: 
 	Maple-Comment: 
+	Maple-Constraints: 
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	Meanings: Olver's associated Legendre function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3673,9 +3253,12 @@ Symbol: \LegendreBlackQ
   Feature Set: dlmf-alternative-1
 	DLMF: \LegendreBlackQ[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: 
+	Maple: exp(-($1)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($0+$1+1)
 	Maple-Alternatives: 
+	Maple-Branch Cuts: 
 	Maple-Comment: 
+	Maple-Constraints: 
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	Meanings: Olver's associated Legendre function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3691,7 +3274,7 @@ Symbol: \LegendreP
 	Maple: LegendreP($0, $1)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
-	Maple-Comment: "If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it. Use the ""restart"" command, since other functions such as evalf and simplify are also involved by changes in _EnvLegendreCut."
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	Meanings: Associated Legendre function of first kind
@@ -3707,7 +3290,7 @@ Symbol: \LegendreP
 	Maple: LegendreP($1, $0, $2)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
-	Maple-Comment: "If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it. Use the ""restart"" command, since other functions such as evalf and simplify are also involved by changes in _EnvLegendreCut."
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	Meanings: Associated Legendre function of first kind
@@ -3721,9 +3304,12 @@ Symbol: \LegendrePoly
   Feature Set: dlmf-macro
 	DLMF: \LegendrePoly{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r10
-	Maple: 
-	Maple-Alternatives: P($0, $1)
-	Maple-Comment: This funcion needs an extra package. with(orthopoly)
+	Maple: LegendreP($0, $1)
+	Maple-Alternatives: 
+	Maple-Branch Cuts: 
+	Maple-Comment: Note that LegendreP is also the Legendre function.
+	Maple-Constraints: 
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	Meanings: Legendre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3735,9 +3321,12 @@ Symbol: \LegendrePolys
   Feature Set: dlmf-macro
 	DLMF: \LegendrePolys{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r11
-	Maple: 
+	Maple: LegendreP($0, 2*($1) - 1)
 	Maple-Alternatives: 
-	Maple-Comment: 
+	Maple-Branch Cuts: 
+	Maple-Comment: Note that LegendreP is also the Legendre function. This translation bases on DLMF 18.7.10.
+	Maple-Constraints: 
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	Meanings: Shifted Legendre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3753,7 +3342,7 @@ Symbol: \LegendreQ
 	Maple: LegendreQ($0, $1)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
-	Maple-Comment: "If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it. Use the ""restart"" command, since other functions such as evalf and simplify are also involved by changes in _EnvLegendreCut."
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	Meanings: Associated Legendre function of second kind
@@ -3769,7 +3358,7 @@ Symbol: \LegendreQ
 	Maple: LegendreQ($1, $0, $2)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
-	Maple-Comment: "If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it. Use the ""restart"" command, since other functions such as evalf and simplify are also involved by changes in _EnvLegendreCut."
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	Meanings: Associated Legendre function of second kind
@@ -3783,9 +3372,6 @@ Symbol: \LegendreSymbol
   Feature Set: dlmf-macro
 	DLMF: \LegendreSymbol{n}{p}
 	DLMF-Link: dlmf.nist.gov/27.9
-	Maple: 
-	Maple-Alternatives: legendre($0, $1)
-	Maple-Comment: This funcion needs an extra package. For Maple 2016 or older use with(numtheory), otherwise use with(NumberTheory)
 	Meanings: Legendre symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -3814,9 +3400,6 @@ Symbol: \LeviCivita
   Feature Set: dlmf-macro
 	DLMF: \LeviCivita{j}{k}{l}
 	DLMF-Link: dlmf.nist.gov/1.6#E14
-	Maple: 
-	Maple-Alternatives: LeviCivita[$0, $1, $2]
-	Maple-Comment: This funcion needs an extra package: with(Physics). The number of variables is not defined in Maple. LeviCivita[j,k,l,...]
 	Meanings: Levi-Civita symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -3828,9 +3411,6 @@ Symbol: \LinBrF
   Feature Set: dlmf-macro
 	DLMF: \LinBrF@{a}{u}
 	DLMF-Link: dlmf.nist.gov/7.19#E4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Line broadening function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3842,9 +3422,6 @@ Symbol: \LiouvilleLambda
   Feature Set: dlmf-macro
 	DLMF: \LiouvilleLambda@{n}
 	DLMF-Link: dlmf.nist.gov/27.2#E13
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Liouville's function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3943,9 +3520,6 @@ Symbol: \MangoldtLambda
   Feature Set: dlmf-macro
 	DLMF: \MangoldtLambda@{n}
 	DLMF-Link: dlmf.nist.gov/27.2#E14
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Mangoldt's function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3957,9 +3531,6 @@ Symbol: \MathieuCe
   Feature Set: dlmf-macro
 	DLMF: \MathieuCe{\nu}@@{z}{q}
 	DLMF-Link: dlmf.nist.gov/28.20#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -3971,9 +3542,6 @@ Symbol: \MathieuD
   Feature Set: dlmf-macro
 	DLMF: \MathieuD{j}@{\nu}{\mu}{z}
 	DLMF-Link: dlmf.nist.gov/28.28#E24
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3985,9 +3553,6 @@ Symbol: \MathieuDc
   Feature Set: dlmf-macro
 	DLMF: \MathieuDc{j}@{n}{m}{z}
 	DLMF-Link: dlmf.nist.gov/28.28#E39
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3999,9 +3564,6 @@ Symbol: \MathieuDs
   Feature Set: dlmf-macro
 	DLMF: \MathieuDs{j}@{n}{m}{z}
 	DLMF-Link: dlmf.nist.gov/28.28#E35
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4013,9 +3575,6 @@ Symbol: \MathieuDsc
   Feature Set: dlmf-macro
 	DLMF: \MathieuDsc{j}@{n}{m}{z}
 	DLMF-Link: dlmf.nist.gov/28.28#E40
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4061,9 +3620,6 @@ Symbol: \MathieuEigenvaluelambda
   Feature Set: dlmf-macro
 	DLMF: \MathieuEigenvaluelambda{m}@@{q}
 	DLMF-Link: dlmf.nist.gov/28.12#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Mathieu eigenvalues
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4075,9 +3631,6 @@ Symbol: \MathieuFc
   Feature Set: dlmf-macro
 	DLMF: \MathieuFc{m}@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.26#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4089,9 +3642,6 @@ Symbol: \MathieuFe
   Feature Set: dlmf-macro
 	DLMF: \MathieuFe{n}@@{z}{q}
 	DLMF-Link: dlmf.nist.gov/28.20#E6
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4103,9 +3653,6 @@ Symbol: \MathieuFs
   Feature Set: dlmf-macro
 	DLMF: \MathieuFs{m}@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.26#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4117,9 +3664,6 @@ Symbol: \MathieuGc
   Feature Set: dlmf-macro
 	DLMF: \MathieuGc{m}@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.26#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4131,9 +3675,6 @@ Symbol: \MathieuGe
   Feature Set: dlmf-macro
 	DLMF: \MathieuGe{n}@@{z}{q}
 	DLMF-Link: dlmf.nist.gov/28.20#E7
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4145,9 +3686,6 @@ Symbol: \MathieuGs
   Feature Set: dlmf-macro
 	DLMF: \MathieuGs{m}@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.26#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4159,9 +3697,6 @@ Symbol: \MathieuIe
   Feature Set: dlmf-macro
 	DLMF: \MathieuIe{n}@@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.20#E17
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4173,9 +3708,6 @@ Symbol: \MathieuIo
   Feature Set: dlmf-macro
 	DLMF: \MathieuIo{n}@@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.20#E18
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4187,9 +3719,6 @@ Symbol: \MathieuKe
   Feature Set: dlmf-macro
 	DLMF: \MathieuKe{n}@@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.20#E19
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4201,9 +3730,6 @@ Symbol: \MathieuKo
   Feature Set: dlmf-macro
 	DLMF: \MathieuKo{n}@@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.20#E20
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4215,9 +3741,6 @@ Symbol: \MathieuM
   Feature Set: dlmf-macro
 	DLMF: \MathieuM{j}{\nu}@@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.20#SS3.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 2
@@ -4229,9 +3752,6 @@ Symbol: \MathieuMc
   Feature Set: dlmf-macro
 	DLMF: \MathieuMc{j}{n}@@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.20#E15
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Radial Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 2
@@ -4243,9 +3763,6 @@ Symbol: \MathieuMe
   Feature Set: dlmf-macro
 	DLMF: \MathieuMe{\nu}@@{z}{q}
 	DLMF-Link: dlmf.nist.gov/28.20#E5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4257,9 +3774,6 @@ Symbol: \MathieuMs
   Feature Set: dlmf-macro
 	DLMF: \MathieuMs{j}{n}@@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.20#E16
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Radial Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 2
@@ -4271,9 +3785,6 @@ Symbol: \MathieuSe
   Feature Set: dlmf-macro
 	DLMF: \MathieuSe{\nu}@@{z}{q}
 	DLMF-Link: dlmf.nist.gov/28.20#E4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4302,9 +3813,6 @@ Symbol: \Mathieufe
   Feature Set: dlmf-macro
 	DLMF: \Mathieufe{n}@@{z}{q}
 	DLMF-Link: dlmf.nist.gov/28.5#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Second solutions of Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4316,9 +3824,6 @@ Symbol: \Mathieuge
   Feature Set: dlmf-macro
 	DLMF: \Mathieuge{n}@@{z}{q}
 	DLMF-Link: dlmf.nist.gov/28.5#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Second solutions of Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4329,9 +3834,6 @@ Symbol: \Mathieume
 
   Feature Set: dlmf-macro
 	DLMF: \Mathieume{n}@@{z}{q}
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Mathieu eigenvalue function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4360,9 +3862,6 @@ Symbol: \Meixner
   Feature Set: dlmf-macro
 	DLMF: \Meixner{n}@{x}{\beta}{c}
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r9
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Meixner polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4374,9 +3873,6 @@ Symbol: \MeixnerM
   Feature Set: dlmf-macro
 	DLMF: \MeixnerM{n}@{x}{\beta}{c}
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r9
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Meixner polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4388,9 +3884,6 @@ Symbol: \MeixnerPollaczek
   Feature Set: dlmf-macro
 	DLMF: \MeixnerPollaczek{\lambda}{n}@{x}{\phi}
 	DLMF-Link: dlmf.nist.gov/18.19#P3.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Meixner-Pollaczek polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -4402,9 +3895,6 @@ Symbol: \MeixnerPollaczekP
   Feature Set: dlmf-macro
 	DLMF: \MeixnerPollaczekP{\lambda}{n}@{x}{\phi}
 	DLMF-Link: dlmf.nist.gov/18.19#P3.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Meixner-Pollaczek polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -4416,9 +3906,6 @@ Symbol: \Mills
   Feature Set: dlmf-macro
 	DLMF: \Mills@{x}
 	DLMF-Link: dlmf.nist.gov/7.8#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: Maybe with(Statistics): MillsRatio(X,t)
 	Meanings: Mills' Ratio
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4430,9 +3917,6 @@ Symbol: \MittagLeffler
   Feature Set: dlmf-macro
 	DLMF: \MittagLeffler{a}{b}@{z}
 	DLMF-Link: dlmf.nist.gov/10.46#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Mittag-Leffler function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -4444,9 +3928,6 @@ Symbol: \ModCylinder
   Feature Set: dlmf-macro
 	DLMF: \ModCylinder{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/10.25#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Nontrivial linear combination of modified Bessel functions
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4458,9 +3939,6 @@ Symbol: \ModularJ
   Feature Set: dlmf-macro
 	DLMF: \ModularJ@{\tau}
 	DLMF-Link: dlmf.nist.gov/23.15#E7
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Klein's complete invariant
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4472,9 +3950,6 @@ Symbol: \ModularLambda
   Feature Set: dlmf-macro
 	DLMF: \ModularLambda@{\tau}
 	DLMF-Link: dlmf.nist.gov/23.15#E6
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Elliptic modular function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4486,9 +3961,6 @@ Symbol: \MoebiusMu
   Feature Set: dlmf-macro
 	DLMF: \MoebiusMu@{n}
 	DLMF-Link: dlmf.nist.gov/27.2#E12
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Möbius function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4500,9 +3972,6 @@ Symbol: \NatNumber
   Feature Set: dlmf-macro
 	DLMF: \NatNumber
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r11
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Set of positive integers
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -4514,9 +3983,6 @@ Symbol: \NeumannFactor
   Feature Set: dlmf-macro
 	DLMF: \NeumannFactor{n}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:NeumannFactor
-	Maple: 
-	Maple-Alternatives: 2-KroneckerDelta[$0, 0]
-	Maple-Comment: This funcion needs an extra package. with(Physics)
 	Meanings: Neumann factor
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -4528,9 +3994,6 @@ Symbol: \NeumannPoly
   Feature Set: dlmf-macro
 	DLMF: \NeumannPoly{n}@{x}
 	DLMF-Link: dlmf.nist.gov/10.23#E12
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Neumann's polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4559,9 +4022,6 @@ Symbol: \NumPrimesLessPi
   Feature Set: dlmf-macro
 	DLMF: \NumPrimesLessPi@{x}
 	DLMF-Link: dlmf.nist.gov/27.2#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Number of primes not exceeding x
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4573,9 +4033,6 @@ Symbol: \NumSquaresR
   Feature Set: dlmf-macro
 	DLMF: \NumSquaresR{k}@{n}
 	DLMF-Link: dlmf.nist.gov/27.13#SS4.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Number of squares
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4587,9 +4044,6 @@ Symbol: \ODEgenAiryA
   Feature Set: dlmf-macro
 	DLMF: \ODEgenAiryA{n}@{z}
 	DLMF-Link: dlmf.nist.gov/9.13#SS1.p2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Generalized Airy function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4601,9 +4055,6 @@ Symbol: \ODEgenAiryB
   Feature Set: dlmf-macro
 	DLMF: \ODEgenAiryB{n}@{z}
 	DLMF-Link: dlmf.nist.gov/9.13#SS1.p2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Generalized Bairy function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4615,9 +4066,6 @@ Symbol: \Pade
   Feature Set: dlmf-macro
 	DLMF: \Pade{p}{q}{f}
 	DLMF-Link: dlmf.nist.gov/3.11#SS4.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Pade approximation
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -4646,9 +4094,6 @@ Symbol: \ParabolicUbar
   Feature Set: dlmf-macro
 	DLMF: \ParabolicUbar@{a}{x}
 	DLMF-Link: dlmf.nist.gov/12.2#21
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Real parabolic cylinder function U
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4677,9 +4122,6 @@ Symbol: \ParabolicW
   Feature Set: dlmf-macro
 	DLMF: \ParabolicW@{a}{x}
 	DLMF-Link: dlmf.nist.gov/12.14.i
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Parabolic cylinder function W
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4691,9 +4133,6 @@ Symbol: \PartitionsP
   Feature Set: dlmf-macro
 	DLMF: \PartitionsP[k]@{n}
 	DLMF-Link: dlmf.nist.gov/26.9
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: Maple needs an extra package. Load it with the following command: with(combinat,partition)
 	Meanings: Number of partitions of nonnegative integer n into at most k parts
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4705,9 +4144,6 @@ Symbol: \PeriodicBernoulliB
   Feature Set: dlmf-macro
 	DLMF: \PeriodicBernoulliB{n}@{x}
 	DLMF-Link: dlmf.nist.gov/24.2#iii
-	Maple: 
-	Maple-Alternatives: bell($0)
-	Maple-Comment: 
 	Meanings: Periodic Bernoulli polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4719,9 +4155,6 @@ Symbol: \PeriodicEulerE
   Feature Set: dlmf-macro
 	DLMF: \PeriodicEulerE{n}@{x}
 	DLMF-Link: dlmf.nist.gov/24.2#iii
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Periodic Euler polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4733,9 +4166,6 @@ Symbol: \PeriodicZeta
   Feature Set: dlmf-macro
 	DLMF: \PeriodicZeta@{x}{s}
 	DLMF-Link: dlmf.nist.gov/25.13#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Periodic zeta function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4761,9 +4191,6 @@ Symbol: \PlanePartitionsPP
   Feature Set: dlmf-macro
 	DLMF: \PlanePartitionsPP@{n}
 	DLMF-Link: dlmf.nist.gov/26.12#SS1.p4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Number of plane partitions
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4775,9 +4202,6 @@ Symbol: \PollaczekP
   Feature Set: dlmf-macro
 	DLMF: \PollaczekP{\lambda}{n}@{x}{a}{b}
 	DLMF-Link: dlmf.nist.gov/18.35#E4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Pollaczek polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4823,9 +4247,6 @@ Symbol: \Racah
   Feature Set: dlmf-macro
 	DLMF: \Racah{n}@{x}{\alpha}{\beta}{\gamma}{\delta}
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Racah polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4837,9 +4258,6 @@ Symbol: \RacahR
   Feature Set: dlmf-macro
 	DLMF: \RacahR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Racah polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4851,9 +4269,6 @@ Symbol: \RamanujanSum
   Feature Set: dlmf-macro
 	DLMF: \RamanujanSum{k}@{n}
 	DLMF-Link: dlmf.nist.gov/27.10#E4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Ramanujan's sum
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4865,9 +4280,6 @@ Symbol: \RamanujanTau
   Feature Set: dlmf-macro
 	DLMF: \RamanujanTau@{n}
 	DLMF-Link: dlmf.nist.gov/27.14#E18
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Ramanujan's Tau function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4879,9 +4291,6 @@ Symbol: \Rational
   Feature Set: dlmf-macro
 	DLMF: \Rational
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r13
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Set of rational numbers
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -4893,9 +4302,6 @@ Symbol: \RayleighFun
   Feature Set: dlmf-macro
 	DLMF: \RayleighFun{n}@{\nu}
 	DLMF-Link: dlmf.nist.gov/10.21#E55
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Rayleigh function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4907,9 +4313,6 @@ Symbol: \Real
   Feature Set: dlmf-macro
 	DLMF: \Real
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r14
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Set of real numbers
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -4938,9 +4341,6 @@ Symbol: \Residue
   Feature Set: dlmf-macro
 	DLMF: \Residue
 	DLMF-Link: dlmf.nist.gov/1.10#SS3.p5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Residue
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -4952,9 +4352,6 @@ Symbol: \RestrictedCompositionsC
   Feature Set: dlmf-macro
 	DLMF: \RestrictedCompositionsC@{\mathrm{condition}}{n}
 	DLMF-Link: dlmf.nist.gov/26.10#i
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Restricted number of compositions
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4977,9 +4374,6 @@ Symbol: \RiemannXi
   Feature Set: dlmf-macro
 	DLMF: \RiemannXi@{s}
 	DLMF-Link: dlmf.nist.gov/25.4#E4
-	Maple: 
-	Maple-Alternatives: AiryBi($0)*(int(AiryAi(t), t = ($0) .. infinity))+AiryAi($0)*(int(AiryBi(t), t = 0 .. ($0)))
-	Maple-Comment: You could use the alternative translation!
 	Meanings: Riemann's xi-function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5008,9 +4402,6 @@ Symbol: \Schwarzian
   Feature Set: dlmf-macro
 	DLMF: \Schwarzian{z}{\zeta}
 	DLMF-Link: dlmf.nist.gov/1.13#E20
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Schwarzian derivative
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -5022,9 +4413,6 @@ Symbol: \ScorerGi
   Feature Set: dlmf-macro
 	DLMF: \ScorerGi@{z}
 	DLMF-Link: dlmf.nist.gov/9.12#i
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: You could use the alternative translation. Since the given variable is used for limits of an Integral, a complex variable could produces trouble!
 	Meanings: Scorer function Gi
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5036,9 +4424,6 @@ Symbol: \ScorerHi
   Feature Set: dlmf-macro
 	DLMF: \ScorerHi@{z}
 	DLMF-Link: dlmf.nist.gov/9.12#i
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: You could use the alternative translation. Since the given variable is used for limits of an Integral, a complex variable could produces trouble!
 	Meanings: Scorer function Hi
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5118,9 +4503,6 @@ Symbol: \SpaceTestFunTempered
   Feature Set: dlmf-macro
 	DLMF: \SpaceTestFunTempered@{A}
 	DLMF-Link: dlmf.nist.gov/1.16#v
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Space of test functions for tempered distributions
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5132,9 +4514,6 @@ Symbol: \SphBesselIi
   Feature Set: dlmf-macro
 	DLMF: \SphBesselIi{n}@{z}
 	DLMF-Link: dlmf.nist.gov/10.47#E7
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Modified spherical Bessel function of the first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5146,9 +4525,6 @@ Symbol: \SphBesselIii
   Feature Set: dlmf-macro
 	DLMF: \SphBesselIii{n}@{z}
 	DLMF-Link: dlmf.nist.gov/10.47#E8
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Modified spherical Bessel function of the first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5160,9 +4536,6 @@ Symbol: \SphBesselJ
   Feature Set: dlmf-macro
 	DLMF: \SphBesselJ{n}@{z}
 	DLMF-Link: dlmf.nist.gov/10.47#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Spherical Bessel function of the first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5174,9 +4547,6 @@ Symbol: \SphBesselK
   Feature Set: dlmf-macro
 	DLMF: \SphBesselK{n}@{z}
 	DLMF-Link: dlmf.nist.gov/10.47#E9
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Modified spherical Bessel function of the second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5188,9 +4558,6 @@ Symbol: \SphBesselY
   Feature Set: dlmf-macro
 	DLMF: \SphBesselY{n}@{z}
 	DLMF-Link: dlmf.nist.gov/10.47#E4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Spherical Bessel function of the second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5202,9 +4569,6 @@ Symbol: \SphHankelHi
   Feature Set: dlmf-macro
 	DLMF: \SphHankelHi{n}@{z}
 	DLMF-Link: dlmf.nist.gov/10.47#E5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Spherical Bessel function of the third kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5216,9 +4580,6 @@ Symbol: \SphHankelHii
   Feature Set: dlmf-macro
 	DLMF: \SphHankelHii{n}@{z}
 	DLMF-Link: dlmf.nist.gov/10.47#E6
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Spherical Bessel function of the third kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5247,9 +4608,6 @@ Symbol: \SpheroidalEigenvalueLambda
   Feature Set: dlmf-macro
 	DLMF: \SpheroidalEigenvalueLambda{m}{n}@{\gamma^2}
 	DLMF-Link: dlmf.nist.gov/30.3#SS1.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Eigenvalues of the spheroidal differential equation
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5261,9 +4619,6 @@ Symbol: \SpheroidalOnCutPs
   Feature Set: dlmf-macro
 	DLMF: \SpheroidalOnCutPs{m}{n}@{x}{\gamma^2}
 	DLMF-Link: dlmf.nist.gov/30.4#i
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Spheroidal wave function of the first kind
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5275,9 +4630,6 @@ Symbol: \SpheroidalOnCutQs
   Feature Set: dlmf-macro
 	DLMF: \SpheroidalOnCutQs{m}{n}@{x}{\gamma^2}
 	DLMF-Link: dlmf.nist.gov/30.5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Spheroidal wave function of the second kind
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5289,9 +4641,6 @@ Symbol: \SpheroidalPs
   Feature Set: dlmf-macro
 	DLMF: \SpheroidalPs{m}{n}@{z}{\gamma^2}
 	DLMF-Link: dlmf.nist.gov/30.6#p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Spheroidal wave function of the first kind complex argument
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5303,9 +4652,6 @@ Symbol: \SpheroidalQs
   Feature Set: dlmf-macro
 	DLMF: \SpheroidalQs{m}{n}@{z}{\gamma^2}
 	DLMF-Link: dlmf.nist.gov/30.6#p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Spheroidal wave function of the second kind complex argument
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5317,9 +4663,6 @@ Symbol: \SpheroidalRadialS
   Feature Set: dlmf-macro
 	DLMF: \SpheroidalRadialS{m}{j}{n}@{z}{\gamma}
 	DLMF-Link: dlmf.nist.gov/30.11#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Radial spheroidal wave function
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -5348,9 +4691,6 @@ Symbol: \StieltjesWigert
   Feature Set: dlmf-macro
 	DLMF: \StieltjesWigert{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:StieltjesWigert
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Stieltjes-Wigert polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -5362,9 +4702,6 @@ Symbol: \StieltjesWigertS
   Feature Set: dlmf-macro
 	DLMF: \StieltjesWigertS{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E18
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Stieltjes-Wigert polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5427,9 +4764,6 @@ Symbol: \StruveK
   Feature Set: dlmf-macro
 	DLMF: \StruveK{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/11.2#E5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Associated Struve funtion
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5458,9 +4792,6 @@ Symbol: \StruveM
   Feature Set: dlmf-macro
 	DLMF: \StruveM{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/11.2#E6
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Associated Modified Struve function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5489,9 +4820,6 @@ Symbol: \SurfaceHarmonicY
   Feature Set: dlmf-macro
 	DLMF: \SurfaceHarmonicY{l}{m}@{\theta}{\phi}
 	DLMF-Link: dlmf.nist.gov/14.30#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Surface harmonics of the first kind
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5503,9 +4831,6 @@ Symbol: \TriangleOP
   Feature Set: dlmf-macro
 	DLMF: \TriangleOP{\alpha}{\beta}{\gamma}{m}{n}@{x}{y}
 	DLMF-Link: dlmf.nist.gov/18.37#E7
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Triangle polynomial
 	Number of Ats: 1
 	Number of Parameters: 5
@@ -5551,9 +4876,6 @@ Symbol: \VoigtU
   Feature Set: dlmf-macro
 	DLMF: \VoigtU@{x}{t}
 	DLMF-Link: dlmf.nist.gov/7.19#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Voigt function U
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5565,9 +4887,6 @@ Symbol: \VoigtV
   Feature Set: dlmf-macro
 	DLMF: \VoigtV@{x}{t}
 	DLMF-Link: dlmf.nist.gov/7.19#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Voigt function V
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5579,9 +4898,6 @@ Symbol: \WaringG
   Feature Set: dlmf-macro
 	DLMF: \WaringG@{k}
 	DLMF-Link: dlmf.nist.gov/27.13#SS3.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Waring's function G
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5593,9 +4909,6 @@ Symbol: \Waringg
   Feature Set: dlmf-macro
 	DLMF: \Waringg@{k}
 	DLMF-Link: dlmf.nist.gov/27.13#SS3.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Waring's function g
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5641,9 +4954,6 @@ Symbol: \WeierPLat
   Feature Set: dlmf-macro
 	DLMF: \WeierPLat@@{z}{\Lattice{L}}
 	DLMF-Link: dlmf.nist.gov/23.2#E4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Weierstrass elliptic function on lattice
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5672,9 +4982,6 @@ Symbol: \WeiersigmaLat
   Feature Set: dlmf-macro
 	DLMF: \WeiersigmaLat@@{z}{\Lattice{L}}
 	DLMF-Link: dlmf.nist.gov/23.1E6
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Weierstrass sigma function on lattice
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5703,9 +5010,6 @@ Symbol: \WeierzetaLat
   Feature Set: dlmf-macro
 	DLMF: \WeierzetaLat@@{z}{\Lattice{L}}
 	DLMF-Link: dlmf.nist.gov/23.1E5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Weierstrass zeta function on lattice
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5768,9 +5072,6 @@ Symbol: \Wilson
   Feature Set: dlmf-macro
 	DLMF: \Wilson{n}@{x}{a}{b}{c}{d}
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Wilson polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5782,9 +5083,6 @@ Symbol: \WilsonW
   Feature Set: dlmf-macro
 	DLMF: \WilsonW{n}@{x}{a}{b}{c}{d}
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Wilson polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5796,9 +5094,6 @@ Symbol: \ZeroAiryAi
   Feature Set: dlmf-macro
 	DLMF: \ZeroAiryAi{k}
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Zeros of Airy function of the first kind
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -5810,9 +5105,6 @@ Symbol: \ZeroAiryAiPrime
   Feature Set: dlmf-macro
 	DLMF: \ZeroAiryAiPrime{k}
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Zeros of derivative Airy function of the first kind
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -5824,9 +5116,6 @@ Symbol: \ZeroAiryBi
   Feature Set: dlmf-macro
 	DLMF: \ZeroAiryBi{k}
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Zeros of Airy function  of the second kind
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -5838,9 +5127,6 @@ Symbol: \ZeroAiryBiPrime
   Feature Set: dlmf-macro
 	DLMF: \ZeroAiryBiPrime{k}
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Zeros of derivative Airy function of the second kind
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -5852,9 +5138,6 @@ Symbol: \ZeroBesselJ
   Feature Set: dlmf-macro
 	DLMF: \ZeroBesselJ{\nu}{m}
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Zeros of Bessel function first kind
 	Number of Ats: 0
 	Number of Parameters: 1
@@ -5866,9 +5149,6 @@ Symbol: \ZeroBesselJPrime
   Feature Set: dlmf-macro
 	DLMF: \ZeroBesselJPrime{\nu}{m}
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Zeros of derivative of Bessel function first kind
 	Number of Ats: 0
 	Number of Parameters: 1
@@ -5880,9 +5160,6 @@ Symbol: \ZeroBesselY
   Feature Set: dlmf-macro
 	DLMF: \ZeroBesselY{\nu}{m}
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Zeros of Bessel function second kind
 	Number of Ats: 0
 	Number of Parameters: 1
@@ -5894,9 +5171,6 @@ Symbol: \ZeroBesselYPrime
   Feature Set: dlmf-macro
 	DLMF: \ZeroBesselYPrime{\nu}{m}
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Zeros of derivative of Bessel function second kind
 	Number of Ats: 0
 	Number of Parameters: 1
@@ -6023,9 +5297,6 @@ Symbol: \arcGudermannian
 	Constraints: -(1/2) \cpi < x < (1/2) \cpi
 	DLMF: \arcGudermannian@@{x}
 	DLMF-Link: dlmf.nist.gov/4.23#E41
-	Maple: 
-	Maple-Alternatives: arctanh(sin($0))
-	Maple-Comment: 
 	Meanings: Inverse Gudermannian function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6366,9 +5637,6 @@ Symbol: \bigqJacobi
   Feature Set: dlmf-macro
 	DLMF: \bigqJacobi{n}@@{x}{a}{b}{c}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: big q-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6380,9 +5648,6 @@ Symbol: \bigqJacobiIVparam
   Feature Set: dlmf-macro
 	DLMF: \bigqJacobiIVparam{n}@@{x}{a}{b}{c}{d}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E6
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: big q-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6394,9 +5659,6 @@ Symbol: \bigqLaguerre
   Feature Set: dlmf-macro
 	DLMF: \bigqLaguerre{n}@{x}{a}{b}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:bigqLaguerre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: big q-Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6408,9 +5670,6 @@ Symbol: \bigqLegendre
   Feature Set: dlmf-macro
 	DLMF: \bigqLegendre{n}@{x}{c}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:bigqLegendre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: big q-Legendre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6461,9 +5720,6 @@ Symbol: \cartprod
   Feature Set: dlmf-macro
 	DLMF: \cartprod
 	DLMF-Link: dlmf.nist.gov/23.1#p2.t1.r18
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Cartesian product of groups
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6635,9 +5891,6 @@ Symbol: \ctsHahn
   Feature Set: dlmf-macro
 	DLMF: \ctsHahn{n}@@{x}{a}{b}{c}{d}
 	DLMF-Link: dlmf.nist.gov/18.19#P2.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Continuous Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6649,9 +5902,6 @@ Symbol: \ctsbigqHermite
   Feature Set: dlmf-macro
 	DLMF: \ctsbigqHermite{n}@{x}{a}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsbigqHermite
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Continuous big q-Hermite polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6663,9 +5913,6 @@ Symbol: \ctsdualHahn
   Feature Set: dlmf-macro
 	DLMF: \ctsdualHahn{n}@@{x^2}{a}{b}{c}
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Continuous dual Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6677,9 +5924,6 @@ Symbol: \ctsdualqHahn
   Feature Set: dlmf-macro
 	DLMF: \ctsdualqHahn{n}@{x}{a}{b}{c}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsdualqHahn
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Continuous dual q-Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6691,9 +5935,6 @@ Symbol: \ctsqHahn
   Feature Set: dlmf-macro
 	DLMF: \ctsqHahn{n}@{x}{a}{b}{c}{d}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqHahn
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Continuous q-Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6705,9 +5946,6 @@ Symbol: \ctsqHermite
   Feature Set: dlmf-macro
 	DLMF: \ctsqHermite{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqHermite
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Continuous q-Hermite polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6719,9 +5957,6 @@ Symbol: \ctsqJacobi
   Feature Set: dlmf-macro
 	DLMF: \ctsqJacobi{\alpha}{\beta}{m}@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqJacobi
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Continuous q-Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -6733,9 +5968,6 @@ Symbol: \ctsqJacobiRahman
   Feature Set: dlmf-macro
 	DLMF: \ctsqJacobiRahman{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqJacobiRahman
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Continuous q-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6747,9 +5979,6 @@ Symbol: \ctsqLaguerre
   Feature Set: dlmf-macro
 	DLMF: \ctsqLaguerre{\alpha}{n}@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqLaguerre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Continuous q-Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -6761,9 +5990,6 @@ Symbol: \ctsqLegendre
   Feature Set: dlmf-macro
 	DLMF: \ctsqLegendre{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqLegendre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Continuous q-Legendre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6775,9 +6001,6 @@ Symbol: \ctsqLegendreRahman
   Feature Set: dlmf-macro
 	DLMF: \ctsqLegendreRahman{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqLegendreRahman
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Continuous q-Legendre-Rahman polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6789,9 +6012,6 @@ Symbol: \ctsqUltra
   Feature Set: dlmf-macro
 	DLMF: \ctsqUltra{n}@{x}{\beta}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E13
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Continuous q-Ultraspherical polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6803,9 +6023,6 @@ Symbol: \ctsqUltrae
   Feature Set: dlmf-macro
 	DLMF: \ctsqUltrae{n}@{e^{i\theta}}{\beta}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqUltrae
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Continuous q-Ultraspherical polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6817,9 +6034,6 @@ Symbol: \deltaDistribution
   Feature Set: dlmf-macro
 	DLMF: \deltaDistribution
 	DLMF-Link: dlmf.nist.gov/1.17.i
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Dirac delta distribution
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6848,9 +6062,6 @@ Symbol: \diff
   Feature Set: dlmf-macro
 	DLMF: \diff{x}
 	DLMF-Link: dlmf.nist.gov/1.4#SS4.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Differential
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6880,9 +6091,6 @@ Symbol: \discrqHermiteI
   Feature Set: dlmf-macro
 	DLMF: \discrqHermiteI{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:discrqHermiteI
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Hermite discrete I
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6894,9 +6102,6 @@ Symbol: \discrqHermiteII
   Feature Set: dlmf-macro
 	DLMF: \discrqHermiteII{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:discrqHermiteII
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Hermite discrete II
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6908,9 +6113,6 @@ Symbol: \divides
   Feature Set: dlmf-macro
 	DLMF: \divides
 	DLMF-Link: dlmf.nist.gov/24.1#p2.t1.r4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Devides
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6922,9 +6124,6 @@ Symbol: \dualHahn
   Feature Set: dlmf-macro
 	DLMF: \dualHahn{n}@@{\lambda(x)}{\gamma}{\delta}{N}
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Dual Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6936,9 +6135,6 @@ Symbol: \dualqHahn
   Feature Set: dlmf-macro
 	DLMF: \dualqHahn{n}@@{\mu(x)}{\gamma}{\delta}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:dualqHahn
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: dual q-Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6950,9 +6146,6 @@ Symbol: \dualqKrawtchouk
   Feature Set: dlmf-macro
 	DLMF: \dualqKrawtchouk{n}@@{\lambda(x)}{c}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:dualqKrawtchouk
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: dual q-Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6998,9 +6191,6 @@ Symbol: \erfw
   Feature Set: dlmf-macro
 	DLMF: \erfw@{z}
 	DLMF-Link: dlmf.nist.gov/7.2#E3
-	Maple: 
-	Maple-Alternatives: exp(-($0)^2)*erfc(-I*($0))
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Meanings: Complementary error function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -7087,9 +6277,6 @@ Symbol: \idem
   Feature Set: dlmf-macro
 	DLMF: \idem@{\chi_1}{\chi_1,...,\chi_n}
 	DLMF-Link: dlmf.nist.gov/17.1#p3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Idem function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -7147,9 +6334,6 @@ Symbol: \incgamma
 	Constraints: \Re(a) > 0
 	DLMF: \incgamma@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.2#E1
-	Maple: 
-	Maple-Alternatives: GAMMA($0)-GAMMA($0, $1)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Meanings: Incomplete Gamma function (lower)
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -7162,9 +6346,6 @@ Symbol: \incgammastar
 	Constraints: \Re(a) > 0
 	DLMF: \incgammastar@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.2#E6
-	Maple: 
-	Maple-Alternatives: ($1)^(-($0))*(GAMMA($0)-GAMMA($0, $1))/GAMMA($0)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Meanings: Incomplete Gamma star
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -7176,9 +6357,6 @@ Symbol: \inf
   Feature Set: dlmf-macro
 	DLMF: \inf
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r24
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Infimum
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -7202,9 +6380,6 @@ Symbol: \inverf
 	Constraints: -1 < x < 1
 	DLMF: \inverf@@{x}
 	DLMF-Link: dlmf.nist.gov/7.17#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Inverse error function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -7217,9 +6392,6 @@ Symbol: \inverfc
 	Constraints: 0 < x < 2
 	DLMF: \inverfc@@{x}
 	DLMF-Link: dlmf.nist.gov/7.17#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Inverse complementary error function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -7239,9 +6411,6 @@ Symbol: \liminf
   Feature Set: dlmf-macro
 	DLMF: \liminf
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Least limit point
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -7253,9 +6422,6 @@ Symbol: \littleo
   Feature Set: dlmf-macro
 	DLMF: \littleo@{x}
 	DLMF-Link: dlmf.nist.gov/2.1#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Landau notation o
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -7267,9 +6433,6 @@ Symbol: \littleqJacobi
   Feature Set: dlmf-macro
 	DLMF: \littleqJacobi{n}@@{x}{a}{b}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:littleqJacobi
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: little q-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7281,9 +6444,6 @@ Symbol: \littleqLaguerre
   Feature Set: dlmf-macro
 	DLMF: \littleqLaguerre{n}@{x}{a}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:littleqLaguerre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: little q-Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -7295,9 +6455,6 @@ Symbol: \littleqLegendre
   Feature Set: dlmf-macro
 	DLMF: \littleqLegendre{m}@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:littleqLegendre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: little q-Legendre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -7367,9 +6524,6 @@ Symbol: \mEulerBeta
 	Constraints: R(a), R(b) > 1/2*(m-1)
 	DLMF: \mEulerBeta{m}@{a}{b}
 	DLMF-Link: dlmf.nist.gov/35.3#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Multivariate Euler-Beta function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -7382,9 +6536,6 @@ Symbol: \mEulerGamma
 	Constraints: \Ra(a) > 1/2*(m-1)
 	DLMF: \mEulerGamma{m}@{a}
 	DLMF-Link: dlmf.nist.gov/35.3#i
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Multivariate Gamma
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -7407,9 +6558,6 @@ Symbol: \monicAffqKrawtchouk
   Feature Set: dlmf-macro
 	DLMF: \monicAffqKrawtchouk{n}@@{q^{-x}}{p}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicAffqKrawtchouk
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic affine $q$-Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7421,9 +6569,6 @@ Symbol: \monicAlSalamCarlitzI
   Feature Set: dlmf-macro
 	DLMF: \monicAlSalamCarlitzI{a}{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicAlSalamCarlitzI
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Al-Salam-Carlitz I polynomial
 	Number of Ats: 2
 	Number of Parameters: 2
@@ -7435,9 +6580,6 @@ Symbol: \monicAlSalamCarlitzII
   Feature Set: dlmf-macro
 	DLMF: \monicAlSalamCarlitzII{a}{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicAlSalamCarlitzII
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Al-Salam-Carlitz II polynomial
 	Number of Ats: 2
 	Number of Parameters: 2
@@ -7449,9 +6591,6 @@ Symbol: \monicAlSalamChihara
   Feature Set: dlmf-macro
 	DLMF: \monicAlSalamChihara{n}@@{x}{a}{b}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicAlSalamChihara
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Al-Salam-Chihara polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7463,9 +6602,6 @@ Symbol: \monicAskeyWilson
   Feature Set: dlmf-macro
 	DLMF: \monicAskeyWilson{n}@@{x}{a}{b}{c}{d}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicAskeyWilson
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Askey-Wilson polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7477,9 +6613,6 @@ Symbol: \monicBesselPoly
   Feature Set: dlmf-macro
 	DLMF: \monicBesselPoly{n}@@{x}{a}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicBesselPoly
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Bessel polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7491,9 +6624,6 @@ Symbol: \monicCharlier
   Feature Set: dlmf-macro
 	DLMF: \monicCharlier{n}@@{x}{a}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicCharlier
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Charlier polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7505,9 +6635,6 @@ Symbol: \monicChebyT
   Feature Set: dlmf-macro
 	DLMF: \monicChebyT{n}@@{x}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicChebyT
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Chebyshev polynomial of the first kind
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7519,9 +6646,6 @@ Symbol: \monicChebyU
   Feature Set: dlmf-macro
 	DLMF: \monicChebyU{n}@@{x}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicChebyU
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Chebyshev polynomial of the second kind
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7533,9 +6657,6 @@ Symbol: \monicHahn
   Feature Set: dlmf-macro
 	DLMF: \monicHahn{n}@@{x}{\alpha}{\beta}{N}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicHahn
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7547,9 +6668,6 @@ Symbol: \monicHermite
   Feature Set: dlmf-macro
 	DLMF: \monicHermite{n}@@{x}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicHermite
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Hermite polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7561,9 +6679,6 @@ Symbol: \monicJacobi
   Feature Set: dlmf-macro
 	DLMF: \monicJacobi{n}@@{x}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicJacobi
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7575,9 +6690,6 @@ Symbol: \monicKrawtchouk
   Feature Set: dlmf-macro
 	DLMF: \monicKrawtchouk{n}@@{q^{-x}}{p}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicKrawtchouk
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7589,9 +6701,6 @@ Symbol: \monicLaguerre
   Feature Set: dlmf-macro
 	DLMF: \monicLaguerre{n}@@{x}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicLaguerre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Laguerre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7603,9 +6712,6 @@ Symbol: \monicLegendrePoly
   Feature Set: dlmf-macro
 	DLMF: \monicLegendrePoly{n}@@{x}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicLegendrePoly
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Legendre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7617,9 +6723,6 @@ Symbol: \monicMeixner
   Feature Set: dlmf-macro
 	DLMF: \monicMeixner{n}@@{x}{\beta}{c}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicMeixner
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Meixner polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7631,9 +6734,6 @@ Symbol: \monicMeixnerPollaczek
   Feature Set: dlmf-macro
 	DLMF: \monicMeixnerPollaczek{\lambda}{n}@@{x}{\phi}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicMeixnerPollaczek
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Meixner-Pollaczek polynomial
 	Number of Ats: 2
 	Number of Parameters: 2
@@ -7645,9 +6745,6 @@ Symbol: \monicRacah
   Feature Set: dlmf-macro
 	DLMF: \monicRacah{n}@@{\lambda(x)}{\alpha}{\beta}{\gamma}{\delta}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicRacah
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Racah polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7659,9 +6756,6 @@ Symbol: \monicStieltjesWigert
   Feature Set: dlmf-macro
 	DLMF: \monicStieltjesWigert{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicStieltjesWigert
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Stieltjes-Wigert polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7673,9 +6767,6 @@ Symbol: \monicUltra
   Feature Set: dlmf-macro
 	DLMF: \monicUltra{n}@@{x}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicUltra
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic ultraspherical/Gegenbauer polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7687,9 +6778,6 @@ Symbol: \monicWilson
   Feature Set: dlmf-macro
 	DLMF: \monicWilson{n}@@{x^2}{a}{b}{c}{d}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicWilson
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic Wilson polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7701,9 +6789,6 @@ Symbol: \monicbigqJacobi
   Feature Set: dlmf-macro
 	DLMF: \monicbigqJacobi{n}@@{x}{a}{b}{c}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicbigqJacobi
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic big $q$-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7715,9 +6800,6 @@ Symbol: \monicbigqLaguerre
   Feature Set: dlmf-macro
 	DLMF: \monicbigqLaguerre{n}@@{x}{a}{b}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicbigqLaguerre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic big $q$-Laguerre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7729,9 +6811,6 @@ Symbol: \monicbigqLegendre
   Feature Set: dlmf-macro
 	DLMF: \monicbigqLegendre{n}@@{x}{c}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicbigqLegendre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic big $q$-Legendre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7743,9 +6822,6 @@ Symbol: \monicctsHahn
   Feature Set: dlmf-macro
 	DLMF: \monicctsHahn{n}@@{x}{a}{b}{c}{d}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsHahn
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic continuous Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7757,9 +6833,6 @@ Symbol: \monicctsbigqHermite
   Feature Set: dlmf-macro
 	DLMF: \monicctsbigqHermite{n}@@{x}{a}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsbigqHermite
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic continuous big $q$-Hermite polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7771,9 +6844,6 @@ Symbol: \monicctsdualHahn
   Feature Set: dlmf-macro
 	DLMF: \monicctsdualHahn{n}@@{x^2}{a}{b}{c}{d}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsdualHahn
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic continuous dual Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7785,9 +6855,6 @@ Symbol: \monicctsdualqHahn
   Feature Set: dlmf-macro
 	DLMF: \monicctsdualqHahn{n}@@{x^2}{a}{b}{c}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsdualqHahn
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic continuous dual $q$-Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7799,9 +6866,6 @@ Symbol: \monicctsqHahn
   Feature Set: dlmf-macro
 	DLMF: \monicctsqHahn{n}@@{x}{a}{b}{c}{d}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsqHahn
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic continuous $q$-Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7813,9 +6877,6 @@ Symbol: \monicctsqHermite
   Feature Set: dlmf-macro
 	DLMF: \monicctsqHermite{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsqHermite
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic continuous $q$-Hermite polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7827,9 +6888,6 @@ Symbol: \monicctsqJacobi
   Feature Set: dlmf-macro
 	DLMF: \monicctsqJacobi{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsqJacobi
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic continuous $q$-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7841,9 +6899,6 @@ Symbol: \monicctsqLaguerre
   Feature Set: dlmf-macro
 	DLMF: \monicctsqLaguerre{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsqLaguerre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic continuous $q$-Laguerre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7855,9 +6910,6 @@ Symbol: \monicctsqLegendre
   Feature Set: dlmf-macro
 	DLMF: \monicctsqLegendre{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsqLegendre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic continuous $q$-Legendre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7869,9 +6921,6 @@ Symbol: \monicctsqUltra
   Feature Set: dlmf-macro
 	DLMF: \monicctsqUltra{n}@@{x}{\beta}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsqUltra
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic continuous $q$-ultraspherical/Rogers polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7883,9 +6932,6 @@ Symbol: \monicdiscrqHermiteI
   Feature Set: dlmf-macro
 	DLMF: \monicdiscrqHermiteI{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicdiscrqHermiteI
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic discrete $q$-Hermite I polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7897,9 +6943,6 @@ Symbol: \monicdiscrqHermiteII
   Feature Set: dlmf-macro
 	DLMF: \monicdiscrqHermiteII{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicdiscrqHermiteII
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic discrete $q$-Hermite II polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7911,9 +6954,6 @@ Symbol: \monicdualHahn
   Feature Set: dlmf-macro
 	DLMF: \monicdualHahn{n}@@{\lambda(x)}{\gamma}{\delta}{N}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicdualHahn
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic dual Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7925,9 +6965,6 @@ Symbol: \monicdualqHahn
   Feature Set: dlmf-macro
 	DLMF: \monicdualqHahn{n}@@{\mu(x)}{\gamma}{\delta}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicdualqHahn
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic dual $q$-Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7939,9 +6976,6 @@ Symbol: \monicdualqKrawtchouk
   Feature Set: dlmf-macro
 	DLMF: \monicdualqKrawtchouk{n}@@{\lambda(x)}{c}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicdualqKrawtchouk
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic dual $q$-Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7953,9 +6987,6 @@ Symbol: \moniclittleqJacobi
   Feature Set: dlmf-macro
 	DLMF: \moniclittleqJacobi{n}@@{x}{a}{b}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:moniclittleqJacobi
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic little $q$-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7967,9 +6998,6 @@ Symbol: \moniclittleqLaguerre
   Feature Set: dlmf-macro
 	DLMF: \moniclittleqLaguerre{n}@@{x}{a}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:moniclittleqLaguerre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic little $q$-Laguerre/Wall polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7981,9 +7009,6 @@ Symbol: \moniclittleqLegendre
   Feature Set: dlmf-macro
 	DLMF: \moniclittleqLegendre{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:moniclittleqLegendre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic little $q$-Legendre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7995,9 +7020,6 @@ Symbol: \monicpseudoJacobi
   Feature Set: dlmf-macro
 	DLMF: \monicpseudoJacobi{n}@@{x}{\nu}{N}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicpseudoJacobi
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic pseudo-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8009,9 +7031,6 @@ Symbol: \monicqBesselPoly
   Feature Set: dlmf-macro
 	DLMF: \monicqBesselPoly{n}@@{x}{a}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqBessel
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic $q$-Bessel polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8023,9 +7042,6 @@ Symbol: \monicqCharlier
   Feature Set: dlmf-macro
 	DLMF: \monicqCharlier{n}@@{q^{-x}}{a}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqCharlier
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic $q$-Charlier polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8037,9 +7053,6 @@ Symbol: \monicqHahn
   Feature Set: dlmf-macro
 	DLMF: \monicqHahn{n}@@{q^{-x}}{\alpha}{\beta}{N}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqHahn
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic $q$-Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8051,9 +7064,6 @@ Symbol: \monicqKrawtchouk
   Feature Set: dlmf-macro
 	DLMF: \monicqKrawtchouk{n}@@{q^{-x}}{p}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqKrawtchouk
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic $q$-Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8065,9 +7075,6 @@ Symbol: \monicqLaguerre
   Feature Set: dlmf-macro
 	DLMF: \monicqLaguerre{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqLaguerre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic $q$-Laguerre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8079,9 +7086,6 @@ Symbol: \monicqMeixner
   Feature Set: dlmf-macro
 	DLMF: \monicqMeixner{n}@@{q^{-x}}{b}{c}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqMeixner
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic $q$-Meixner polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8093,9 +7097,6 @@ Symbol: \monicqMeixnerPollaczek
   Feature Set: dlmf-macro
 	DLMF: \monicqMeixnerPollaczek{n}@@{x}{a}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqMeixnerPollaczek
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic $q$-Meixner-Pollaczek polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8107,9 +7108,6 @@ Symbol: \monicqRacah
   Feature Set: dlmf-macro
 	DLMF: \monicqRacah{n}@@{\mu(x)}{\alpha}{\beta}{\gamma}{\delta}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqRacah
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic $q$-Racah polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8121,9 +7119,6 @@ Symbol: \monicqinvAlSalamChihara
   Feature Set: dlmf-macro
 	DLMF: \monicqinvAlSalamChihara{n}@{x}{a}{b}{q^{-1}}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqinvAlSalamChihara
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic $q$-inverse Al-Salam-Chihara polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8135,9 +7130,6 @@ Symbol: \monicqtmqKrawtchouk
   Feature Set: dlmf-macro
 	DLMF: \monicqtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqtmqKrawtchouk
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: monic quantum $q$-Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8174,9 +7166,6 @@ Symbol: \ninej
   Feature Set: dlmf-macro
 	DLMF: \ninej@@{j_{11}}{j_{12}}{j_{13}}{j_{21}}{j_{22}}{j_{23}}{j_{31}}{j_{32}}{j_{33}}
 	DLMF-Link: dlmf.nist.gov/34.6#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: 9j symbol
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8188,9 +7177,6 @@ Symbol: \normAskeyWilsonptilde
   Feature Set: dlmf-macro
 	DLMF: \normAskeyWilsonptilde{n}@@{x}{a}{b}{c}{d}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normAskeyWilsonptilde
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: normalized Askey-Wilson polynomial ${\tilde p}$
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8202,9 +7188,6 @@ Symbol: \normJacobiR
   Feature Set: dlmf-macro
 	DLMF: \normJacobiR{\alpha}{\beta}{n}@{x}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normJacobiR
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: normalized Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -8216,9 +7199,6 @@ Symbol: \normWilsonWtilde
   Feature Set: dlmf-macro
 	DLMF: \normWilsonWtilde{n}@@{x^2}{a}{b}{c}{d}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normWilsonWtilde
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: normalized Wilson polynomial ${\tilde W}$
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8230,9 +7210,6 @@ Symbol: \normctsHahnptilde
   Feature Set: dlmf-macro
 	DLMF: \normctsHahnptilde{n}@@{x}{a}{b}{c}{d}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normctsHahnptilde
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: normalized continuous Hahn polynomial ${\tilde p}$
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8244,9 +7221,6 @@ Symbol: \normctsdualHahnStilde
   Feature Set: dlmf-macro
 	DLMF: \normctsdualHahnStilde{n}@@{x^2}{a}{b}{c}{d}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normctsdualHahnStilde
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: normalized continuous dual Hahn polynomial ${\tilde S}$
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8258,9 +7232,6 @@ Symbol: \normctsdualqHahnptilde
   Feature Set: dlmf-macro
 	DLMF: \normctsdualqHahnptilde{n}@@{x}{a}{b}{c}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normctsdualqHahnptilde
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: normalized continuous dual $q$-Hahn polynomial ${\tilde p}$
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8272,9 +7243,6 @@ Symbol: \normctsqHahnptilde
   Feature Set: dlmf-macro
 	DLMF: \normctsqHahnptilde{n}@@{x}{a}{b}{c}{d}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normctsqHahnptilde
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: normalized continuous $q$-Hahn polynomial ${\tilde p}$
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8286,9 +7254,6 @@ Symbol: \normctsqJacobiPtilde
   Feature Set: dlmf-macro
 	DLMF: \normctsqJacobiPtilde{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normctsqJacobiPtilde
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: normalized continuous $q$-Jacobi polynomial ${\tilde P}$
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8311,9 +7276,6 @@ Symbol: \opminus
   Feature Set: dlmf-macro
 	DLMF: \opminus
 	DLMF-Link: dlmf.nist.gov/5.7.E7
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Negative unity to an integer power
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8342,9 +7304,6 @@ Symbol: \pdiff
   Feature Set: dlmf-macro
 	DLMF: \pdiff{x}
 	DLMF-Link: dlmf.nist.gov/1.5#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Power of partial differential
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8407,9 +7366,6 @@ Symbol: \poly
   Feature Set: dlmf-macro
 	DLMF: \poly{p}{n}@{x}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:poly
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -8449,9 +7405,6 @@ Symbol: \pseudoJacobi
   Feature Set: dlmf-macro
 	DLMF: \pseudoJacobi{n}@{x}{\nu}{N}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:pseudoJacobi
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Pseudo Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8474,9 +7427,6 @@ Symbol: \qAppelli
   Feature Set: dlmf-macro
 	DLMF: \qAppelli@{a}{b}{b'}{c}{q}{x}{y}
 	DLMF-Link: dlmf.nist.gov/17.4.E5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Appell function of first kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -8488,9 +7438,6 @@ Symbol: \qAppellii
   Feature Set: dlmf-macro
 	DLMF: \qAppellii@{a}{b}{b'}{c}{c'}{q}{x}{y}
 	DLMF-Link: dlmf.nist.gov/17.4.E6
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Appell function of second kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -8502,9 +7449,6 @@ Symbol: \qAppelliii
   Feature Set: dlmf-macro
 	DLMF: \qAppelliii@{a}{a'}{b}{b'}{c}{q}{x}{y}
 	DLMF-Link: dlmf.nist.gov/17.4.E7
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Appell function of third kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -8516,9 +7460,6 @@ Symbol: \qAppelliv
   Feature Set: dlmf-macro
 	DLMF: \qAppelliv@{a}{b}{c}{c'}{q}{x}{y}
 	DLMF-Link: dlmf.nist.gov/17.4.E8
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Appell function of fourth kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -8530,9 +7471,6 @@ Symbol: \qBernoulli
   Feature Set: dlmf-macro
 	DLMF: \qBernoulli{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/17.3#E7
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment:  || But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Bernoulli polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8544,9 +7482,6 @@ Symbol: \qBesselPoly
   Feature Set: dlmf-macro
 	DLMF: \qBesselPoly{n}@{x}{b}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qBessel
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Bessel polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8558,9 +7493,6 @@ Symbol: \qBeta
   Feature Set: dlmf-macro
 	DLMF: \qBeta{q}@{a}{b}
 	DLMF-Link: dlmf.nist.gov/5.18#E11
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Beta function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8572,9 +7504,6 @@ Symbol: \qBinomial
   Feature Set: dlmf-macro
 	DLMF: \qBinomial{n}{m}{q}
 	DLMF-Link: dlmf.nist.gov/17.2#E27
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Binomial coefficient / Gaussian polynomial
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8586,9 +7515,6 @@ Symbol: \qCharlier
   Feature Set: dlmf-macro
 	DLMF: \qCharlier{n}@{x}{c}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qCharlier
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Charlier polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8600,9 +7526,6 @@ Symbol: \qCos
   Feature Set: dlmf-macro
 	DLMF: \qCos{q}@@{x}
 	DLMF-Link: dlmf.nist.gov/17.3#E6
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Cosine functions
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8614,9 +7537,6 @@ Symbol: \qCosKLS
   Feature Set: dlmf-macro
 	DLMF: \qCosKLS{q}@@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qCosKLS
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Cosine functions
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8628,9 +7548,6 @@ Symbol: \qDigamma
   Feature Set: dlmf-macro
 	DLMF: \qDigamma{q}@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qDigamma
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Digamma function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8642,9 +7559,6 @@ Symbol: \qEuler
   Feature Set: dlmf-macro
 	DLMF: \qEuler{m}{s}@{q}
 	DLMF-Link: dlmf.nist.gov/17.3#E8
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Euler function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -8656,9 +7570,6 @@ Symbol: \qExp
   Feature Set: dlmf-macro
 	DLMF: \qExp{q}@@{x}
 	DLMF-Link: dlmf.nist.gov/17.3#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Exponential function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8670,9 +7581,6 @@ Symbol: \qExpKLS
   Feature Set: dlmf-macro
 	DLMF: \qExpKLS{q}@@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qExpKLS
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Exponential function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8684,9 +7592,6 @@ Symbol: \qFactorial
   Feature Set: dlmf-macro
 	DLMF: \qFactorial{n}{q}
 	DLMF-Link: dlmf.nist.gov/5.18#E2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Factorial function
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8698,9 +7603,6 @@ Symbol: \qGamma
   Feature Set: dlmf-macro
 	DLMF: \qGamma{q}@{z}
 	DLMF-Link: dlmf.nist.gov/5.18#E4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Gamma function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8712,9 +7614,6 @@ Symbol: \qHahn
   Feature Set: dlmf-macro
 	DLMF: \qHahn{n}@@{q^{-x}}{\alpha}{\beta}{N}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qHahn
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8726,9 +7625,6 @@ Symbol: \qHahnQ
   Feature Set: dlmf-macro
 	DLMF: \qHahnQ{n}@{x}{\alpha}{\beta}{N}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8740,9 +7636,6 @@ Symbol: \qHermiteH
   Feature Set: dlmf-macro
 	DLMF: \qHermiteH{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E16
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Hermite polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8754,9 +7647,6 @@ Symbol: \qHermitehI
   Feature Set: dlmf-macro
 	DLMF: \qHermitehI{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E21
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Hermite discrete I
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8768,9 +7658,6 @@ Symbol: \qHermitehII
   Feature Set: dlmf-macro
 	DLMF: \qHermitehII{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E23
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Hermite discrete II
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8782,9 +7669,6 @@ Symbol: \qHyperrWs
   Feature Set: dlmf-macro
 	DLMF: \qHyperrWs{r}{r+1}@@@{a_1}{a_4,a_5,...,a_{r+1}}{q}{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qHyperrWs
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: very-well-poised basic hypergeometric (or $q$-hypergeometric) function
 	Number of Ats: 3
 	Number of Parameters: 2
@@ -8796,9 +7680,6 @@ Symbol: \qHyperrphis
   Feature Set: dlmf-macro
 	DLMF: \qHyperrphis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z}
 	DLMF-Link: dlmf.nist.gov/17.4#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: basic hypergeometric (or $q$-hypergeometric) function
 	Number of Ats: 3
 	Number of Parameters: 2
@@ -8810,9 +7691,6 @@ Symbol: \qHyperrpsis
   Feature Set: dlmf-macro
 	DLMF: \qHyperrpsis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z}
 	DLMF-Link: dlmf.nist.gov/17.4#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: bilateral basic hypergeometric (or bilateral $q$-hypergeometric) function
 	Number of Ats: 3
 	Number of Parameters: 2
@@ -8824,9 +7702,6 @@ Symbol: \qJacobiP
   Feature Set: dlmf-macro
 	DLMF: \qJacobiP{n}@{x}{a}{b}{c}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8838,9 +7713,6 @@ Symbol: \qJacobiPP
   Feature Set: dlmf-macro
 	DLMF: \qJacobiPP{\alpha}{\beta}{n}@{x}{c}{d}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E6
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -8852,9 +7724,6 @@ Symbol: \qJacobip
   Feature Set: dlmf-macro
 	DLMF: \qJacobip{n}@{x}{a}{b}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E13
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8866,9 +7735,6 @@ Symbol: \qKrawtchouk
   Feature Set: dlmf-macro
 	DLMF: \qKrawtchouk{n}@@{q^{-x}}{p}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qKrawtchouk
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8902,9 +7768,6 @@ Symbol: \qLegendre
   Feature Set: dlmf-macro
 	DLMF: \qLegendre{n}@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qLegendre
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Legendre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8916,9 +7779,6 @@ Symbol: \qMeixner
   Feature Set: dlmf-macro
 	DLMF: \qMeixner{n}@{x}{b}{c}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qMeixner
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Meixner polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8930,9 +7790,6 @@ Symbol: \qMeixnerPollaczek
   Feature Set: dlmf-macro
 	DLMF: \qMeixnerPollaczek{n}@{x}{a}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qMeixnerPollaczek
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Meixner-Pollaczek polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8944,9 +7801,6 @@ Symbol: \qMultiPochhammer
   Feature Set: dlmf-macro
 	DLMF: \qMultiPochhammer{a_1,\ldots,a_n}{q}{n}
 	DLMF-Link: dlmf.nist.gov/17.2.E5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Multi-Pochhammer symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8958,9 +7812,6 @@ Symbol: \qMultinomial
   Feature Set: dlmf-macro
 	DLMF: \qMultinomial{a_1+\ldots+a_n}{a_1,\ldots,a_n}{q}
 	DLMF-Link: dlmf.nist.gov/26.16.E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-multinomial
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8972,9 +7823,6 @@ Symbol: \qPochhammer
   Feature Set: dlmf-macro
 	DLMF: \qPochhammer{a}{q}{n}
 	DLMF-Link: dlmf.nist.gov/17.2#SS1.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Pochhammer symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8986,9 +7834,6 @@ Symbol: \qPolygamma
   Feature Set: dlmf-macro
 	DLMF: \qPolygamma{n}{q}@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qPolygamma
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Polygamma function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -9000,9 +7845,6 @@ Symbol: \qRacah
   Feature Set: dlmf-macro
 	DLMF: \qRacah{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E19
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Racah polynomials
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -9014,9 +7856,6 @@ Symbol: \qRacahR
   Feature Set: dlmf-macro
 	DLMF: \qRacahR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E19
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Racah polynomials
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -9028,9 +7867,6 @@ Symbol: \qSin
   Feature Set: dlmf-macro
 	DLMF: \qSin{q}@@{x}
 	DLMF-Link: dlmf.nist.gov/17.3#E4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Sine function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -9042,9 +7878,6 @@ Symbol: \qSinKLS
   Feature Set: dlmf-macro
 	DLMF: \qSinKLS{q}@@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qSinKLS
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Sine function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -9056,9 +7889,6 @@ Symbol: \qStirling
   Feature Set: dlmf-macro
 	DLMF: \qStirling{m}{s}@{q}
 	DLMF-Link: dlmf.nist.gov/17.3#E9
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Stirling number
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -9070,9 +7900,6 @@ Symbol: \qUltraspherical
   Feature Set: dlmf-macro
 	DLMF: \qUltraspherical{n}@{x}{\beta}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E13
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Ultraspherical polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -9084,9 +7911,6 @@ Symbol: \qcos
   Feature Set: dlmf-macro
 	DLMF: \qcos{q}@@{x}
 	DLMF-Link: dlmf.nist.gov/17.3#E5
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Cosine functions
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -9098,9 +7922,6 @@ Symbol: \qcosKLS
   Feature Set: dlmf-macro
 	DLMF: \qcosKLS{q}@@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qcosKLS
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Cosine functions
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -9123,9 +7944,6 @@ Symbol: \qdiff
   Feature Set: dlmf-macro
 	DLMF: \qdiff{q}{x}
 	DLMF-Link: dlmf.nist.gov/17.2#SS5.p1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Derivative
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -9137,9 +7955,6 @@ Symbol: \qexp
   Feature Set: dlmf-macro
 	DLMF: \qexp{q}@@{x}
 	DLMF-Link: dlmf.nist.gov/17.3#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Exponential function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -9151,9 +7966,6 @@ Symbol: \qexpKLS
   Feature Set: dlmf-macro
 	DLMF: \qexpKLS{q}@@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qExpKLS
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Exponential function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -9165,9 +7977,6 @@ Symbol: \qinvAlSalamChihara
   Feature Set: dlmf-macro
 	DLMF: \qinvAlSalamChihara{n}@{x}{a}{b}{q^{-1}}
 	DLMF-Link: dlmf.nist.gov/18.28#E9
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: q-Invert-Al-Salam-Chihara polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -9179,9 +7988,6 @@ Symbol: \qinvHermiteh
   Feature Set: dlmf-macro
 	DLMF: \qinvHermiteh{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E18
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Invert-Hermite polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -9193,9 +7999,6 @@ Symbol: \qsin
   Feature Set: dlmf-macro
 	DLMF: \qsin{q}@@{x}
 	DLMF-Link: dlmf.nist.gov/17.3#E3
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Sine function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -9207,9 +8010,6 @@ Symbol: \qsinKLS
   Feature Set: dlmf-macro
 	DLMF: \qsinKLS{q}@@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qsinKLS
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: q-Sine function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -9221,9 +8021,6 @@ Symbol: \qtmqKrawtchouk
   Feature Set: dlmf-macro
 	DLMF: \qtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qtmqKrawtchouk
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Meanings: quantum q-Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -9252,9 +8049,6 @@ Symbol: \rescaledTerminant
   Feature Set: dlmf-macro
 	DLMF: \rescaledTerminant{p}@{z}
 	DLMF-Link: dlmf.nist.gov/9.7#E22
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Rescaled terminant function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -9319,9 +8113,6 @@ Symbol: \setmod
   Feature Set: dlmf-macro
 	DLMF: \setmod
 	DLMF-Link: dlmf.nist.gov/21.1#p2.t1.r17
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Set of all elements of S_1 modulo elements of S_2
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -9350,9 +8141,6 @@ Symbol: \sim
   Feature Set: dlmf-macro
 	DLMF: \sim
 	DLMF-Link: dlmf.nist.gov/2.1#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Asymptotic equality
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -9427,9 +8215,6 @@ Symbol: \sixj
   Feature Set: dlmf-macro
 	DLMF: \sixj@@{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l_{3}}
 	DLMF-Link: dlmf.nist.gov/34.4#E1
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: 6j symbol
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -9458,9 +8243,6 @@ Symbol: \subset
   Feature Set: dlmf-macro
 	DLMF: \subset
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r2
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Subset
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -9489,9 +8271,6 @@ Symbol: \sup
   Feature Set: dlmf-macro
 	DLMF: \sup
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r25
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Supremum
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -9539,9 +8318,6 @@ Symbol: \terminant
   Feature Set: dlmf-macro
 	DLMF: \terminant{p}@{z}
 	DLMF-Link: dlmf.nist.gov/2.11#E11
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: Terminant function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -9553,9 +8329,6 @@ Symbol: \threej
   Feature Set: dlmf-macro
 	DLMF: \threej@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3}
 	DLMF-Link: dlmf.nist.gov/34.2#E4
-	Maple: 
-	Maple-Alternatives: 
-	Maple-Comment: 
 	Meanings: 3j symbol
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -9567,9 +8340,6 @@ Symbol: \wigner
   Feature Set: dlmf-macro
 	DLMF: \wigner{j_1}{m_1}{j_2}{m_2}{j_3}{-m_3}
 	DLMF-Link: dlmf.nist.gov/34.1#p4
-	Maple: 
-	Maple-Alternatives: (exp($1)/(2*Pi))*GAMMA($0)*GAMMA(1-$0,$1)
-	Maple-Comment: 
 	Meanings: Clebsch-Gordan coefficient
 	Number of Ats: 0
 	Number of Parameters: 0

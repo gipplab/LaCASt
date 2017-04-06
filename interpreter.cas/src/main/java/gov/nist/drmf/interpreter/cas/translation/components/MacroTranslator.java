@@ -9,6 +9,8 @@ import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
+import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -75,26 +77,6 @@ public class MacroTranslator extends AbstractListTranslator {
     public boolean translate(PomTaggedExpression root_exp) {
         // first of all, get the feature set named dlmf-macro
         macro_term = root_exp.getRoot();
-
-        /*
-        FeatureSet fset = term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
-
-        // if this set is null, it is simply not a dlmf-macro
-        if ( fset == null ){
-            LOG.warn("You should not use MacroTranslator when the PomTaggedExpression is " +
-                    "not a dlmf-macro!");
-            return false;
-        }
-
-        storeInfos(fset);
-
-        // put all information to the info log
-        INFO_LOG.addMacroInfo(
-                term.getTermText(),
-                createFurtherInformation()
-        );
-        */
-
         return true;
     }
 
@@ -130,7 +112,7 @@ public class MacroTranslator extends AbstractListTranslator {
 
         // maybe the alternative pattern got multiple alternatives
         if ( !alternative_pattern.isEmpty() ){
-            try{ alternative_pattern = alternative_pattern.split( GlobalConstants.ALTERNATIVE_SPLIT )[0]; }
+            try{ alternative_pattern = alternative_pattern.split( MacrosLexicon.SIGNAL_INLINE )[0]; }
             catch ( Exception e ){}
         }
     }

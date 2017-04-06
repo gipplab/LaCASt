@@ -8,8 +8,6 @@ import java.util.regex.Pattern;
 public class GlobalConstants {
     public static final String POSITION_MARKER = "$";
 
-    public static final String ALTERNATIVE_SPLIT = "\\|\\|";
-
     public static final String CARET_CHAR = "^";
 
     public static final String WHITESPACE = " ";
@@ -27,11 +25,16 @@ public class GlobalConstants {
 
     private static final String general_trans_macro_pattern =
             "(X\\d:\\\\\\w+X)*(\\\\\\w+)?.+";
-    public static final Pattern GENERAL_MACRO_TRANSLATION_PATTERN = Pattern.compile(general_trans_macro_pattern);
+    public static final Pattern GENERAL_MACRO_TRANSLATION_PATTERN =
+            Pattern.compile(general_trans_macro_pattern);
 
     private static final String general_cas_func_pattern =
-            "(\\w+)[^\\w]?.*";
-    public static final Pattern GENERAL_CAS_FUNC_PATTERN = Pattern.compile(general_cas_func_pattern);
+            "(X\\d:\\w+X)*(\\w+)[^\\w]?.*";
+    public static final Pattern GENERAL_CAS_FUNC_PATTERN =
+            Pattern.compile(general_cas_func_pattern);
+
+    public static final int GEN_CAS_FUNC_SPECIFIER = 1;
+    public static final int GEN_CAS_FUNC_PATTERN_NAME = 2;
 
     public static final String MACRO_OPT_PARAS_SPLITTER = ":";
     public static final int MACRO_PATTERN_INDEX_OPT_PARAS = 1;

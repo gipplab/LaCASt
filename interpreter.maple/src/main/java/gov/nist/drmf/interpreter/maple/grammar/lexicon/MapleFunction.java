@@ -138,7 +138,7 @@ public class MapleFunction {
         for ( int i = 0; i < alternative_patterns.length; i++ ){
             alts += alternative_patterns[i];
             if ( i < alternative_patterns.length-1 )
-                alts += GlobalConstants.ALTERNATIVE_SPLIT;
+                alts += " || ";
         }
 
         return new String[]{
@@ -203,7 +203,7 @@ public class MapleFunction {
             mf.maple_branch_cuts    = infs[7].split(INNER_DELIMITER)[1].trim();
             mf.alternative_patterns =
                     infs[8].split(INNER_DELIMITER)[1].trim()
-                            .split( GlobalConstants.ALTERNATIVE_SPLIT );
+                            .split( "\\|\\|" );
 
             mf.dlmf_meaning     = infs[9].split(INNER_DELIMITER)[1].trim();
             mf.dlmf_constraints = infs[10].split(INNER_DELIMITER)[1].trim();
