@@ -389,6 +389,7 @@ public class CSVtoLexiconConverter {
         }
 
         String macro = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS);
+        String opt_para = macro;
         if ( macro == null ){
             macro = m.group( GlobalConstants.MACRO_PATTERN_INDEX_MACRO );
         } else {
@@ -418,8 +419,6 @@ public class CSVtoLexiconConverter {
         }
 
         FeatureSet fset;
-
-        String opt_para = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS);
         String paras = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS_ELEMENTS);
         if ( opt_para != null ){
             if ( alternativeF == null ){
@@ -442,6 +441,17 @@ public class CSVtoLexiconConverter {
         // get current CAS name
         String casPrefix = lineAnalyzer.getCasPrefix();
 
+        // add infos from DLMF_<CAS>.csv first
+        DLMFTranslationHeaders h;
+        h = DLMFTranslationHeaders.dlmf_comment;
+        fset.addFeature( h.getFeatureKey(casPrefix),
+                lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
+                MacrosLexicon.SIGNAL_INLINE);
+        h = DLMFTranslationHeaders.cas_alternatives;
+        fset.addFeature( h.getFeatureKey(casPrefix),
+                lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
+                MacrosLexicon.SIGNAL_INLINE);
+
         // get the name and pattern of the translation
         String cas_func_pattern = lineAnalyzer.getValue( casPrefix );
         if ( cas_func_pattern == null || cas_func_pattern.isEmpty() )
@@ -455,24 +465,16 @@ public class CSVtoLexiconConverter {
 
         if ( holder != null ) cas_func_pattern = holder.pattern;
 
-        // add infos from DLMF_<CAS>.csv first
-        DLMFTranslationHeaders h;
+        // add translation info
         fset.addFeature( casPrefix, cas_func_pattern, MacrosLexicon.SIGNAL_INLINE );
-        h = DLMFTranslationHeaders.dlmf_comment;
-        fset.addFeature( h.getFeatureKey(casPrefix),
-                lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
-                MacrosLexicon.SIGNAL_INLINE);
-        h = DLMFTranslationHeaders.cas_alternatives;
-        fset.addFeature( h.getFeatureKey(casPrefix),
-                lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
-                MacrosLexicon.SIGNAL_INLINE);
 
         if ( holder != null && holder.cas_name != null && holder.num_vars != null ){
             CASInfo info = cas_cache.get( holder.cas_name, holder.num_vars );
             fillFeatureWithInfos(info, fset, casPrefix);
         }
 
-        dlmf_lexicon.setEntry( macro, list );
+        // not needed, we working on references here...
+        //dlmf_lexicon.setEntry( macro, list );
     }
 
     public static void main(String[] args){
