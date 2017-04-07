@@ -73,6 +73,14 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
             MathTerm curr = currExp.getRoot();
             MathTerm next = exp_list.get(0).getRoot();
 
+            MathTermTags ntag = MathTermTags.getTagByKey( next.getTag() );
+            if ( ntag != null &&
+                    (MathTermTags.spaces.equals(ntag) || MathTermTags.non_allowed.equals(ntag))
+                    ){
+                exp_list.remove(0); // remove the \! spaces
+                return addMultiply( currExp, exp_list );
+            }
+
             if ( next.getTermText().matches( Brackets.CLOSED_PATTERN ) )
                 return false;
 

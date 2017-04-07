@@ -272,40 +272,4 @@ public class SequenceTranslator extends AbstractListTranslator {
             );
         } catch ( Exception e ){ return false; }
     }
-
-    /*
-    private boolean addMultiply( PomTaggedExpression currExp, List<PomTaggedExpression> exp_list ){
-        try {
-            if ( exp_list == null || exp_list.size() < 1) return false;
-            MathTerm curr = currExp.getRoot();
-            MathTerm next = exp_list.get(0).getRoot();
-
-            if ( next.getTermText().matches( Brackets.CLOSED_PATTERN ) )
-                return false;
-
-            Matcher m1 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(curr.getTermText());
-            Matcher m2 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(next.getTermText());
-            if ( m1.matches() || m2.matches() ) return false;
-
-            //System.out.println(curr.getTermText() + " <-> " + next.getTermText());
-            if ( curr.getTermText().matches( Brackets.CLOSED_PATTERN ) ) {
-                return !next.getTermText().matches( PATTERN_BASIC_OPERATIONS );
-            } else if ( next.getTermText().matches( Brackets.OPEN_PATTERN ) ){
-                return !curr.getTermText().matches( PATTERN_BASIC_OPERATIONS );
-            }
-
-            return !(
-                    curr.getTermText().matches( PATTERN_BASIC_OPERATIONS )
-                    || next.getTermText().matches( PATTERN_BASIC_OPERATIONS )
-                    || curr.getTag().matches( MathTermTags.operation.tag() )
-                    || next.getTag().matches( MathTermTags.operation.tag() )
-                    || curr.getTag().matches( MathTermTags.ellipsis.tag() )
-                    || next.getTag().matches( MathTermTags.ellipsis.tag() )
-                    || curr.getTermText().matches( Brackets.CLOSED_PATTERN )
-                    || curr.getTermText().matches( Brackets.OPEN_PATTERN )
-                    || next.getTermText().matches( Brackets.CLOSED_PATTERN )
-                    || next.getTermText().matches( Brackets.OPEN_PATTERN )
-            );
-        } catch ( Exception e ){ return true; }
-    }*/
 }
