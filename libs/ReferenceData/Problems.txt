@@ -1,7 +1,6 @@
 42-NOT EQUAL: \expe^{z} = 1+\frac{2z}{2-z} \subplus \frac{\frac{z^{2}}{6}}{1} \subplus \CFK{m}{3}{\infty}@@{\frac{1}{4\left(2m-3\right)\left(2m-1\right)}z^{2}}{1}
 43-NOT EQUAL: \expe^{z}=1+\frac{2z}{2-z+\frac{z^{2}}{6\left(1+\CFK{k}{1}{\infty}@@{\frac{z^{2}}{4\left(1+2k\right)\left(3+2k\right)}}{1}\right)}}
 46-NOT EQUAL: \Ultraspherical{\lambda}{n}@{x} = (2x)^n \frac{\pochhammer{\lambda}{n}}{n!} \HypergeoF@@{-\frac{1}{2}n}{\frac{1}{2}(1-n)}{1-\lambda-n}{\frac{1}{x^2}}
-49-NOT EQUAL: \LegendrePoly{n}@{x} = \HypergeoF@@{-n}{n+1}{1}{\frac{1-x}{2}}
 50-NOT EQUAL: \HypergeoboldF@@{a}{b}{2b}{z} = \frac{\sqrt{\cpi}}{\EulerGamma@{b}} z^{-b+(\ifrac{1}{2})} (1-z)^{(b-a-(\ifrac{1}{2}))/2} \LegendreP[-b+(\ifrac{1}{2})]{a-b-(\ifrac{1}{2})}@{\frac{2-z}{2\sqrt{1-z}}}
 52-NOT EQUAL: \Jacobisn@{z}{k} = \frac{\JacobiTheta{3}@{0}{q}}{\JacobiTheta{2}@{0}{q}} \frac{\JacobiTheta{1}@{\zeta}{q}}{\JacobiTheta{4}@{\zeta}{q}} 
 69-NOT EQUAL: \EulerGamma@{nz} = (2\cpi)^{(1-n)/2} n^{nz-(1/2)} \Prod{k}{0}{n-1}@{\EulerGamma@{z+\frac{k}{n}}}
@@ -11,16 +10,13 @@
 74-NOT EQUAL: \FerrersQ[\mu]{\nu}@{x} = \frac{\cpi}{2 \sin@{\mu \cpi}} \left( \cos@{\mu \cpi} \left( \frac{1+x}{1-x} \right)^{\mu/2} \HypergeoboldF@{\nu+1}{-\nu}{1-\mu}{\tfrac{1}{2}-\tfrac{1}{2}x} - \frac{\EulerGamma@{\nu+\mu+1}}{\EulerGamma@{\nu-\mu+1}} \left( \frac{1-x}{1+x} \right)^{\mu/2} \HypergeoboldF@{\nu+1}{-\nu}{1+\mu}{\tfrac{1}{2}-\tfrac{1}{2}x} \right)
 76-NOT EQUAL: \FerrersP[m]{\nu}@{x} = \opminus^m \frac{\EulerGamma@{\nu+m+1}}{2^m \EulerGamma@{\nu-m+1}} \left( 1 - x^2 \right)^{m/2} \HypergeoboldF@{\nu+m+1}{m-\nu}{m+1}{\tfrac{1}{2}-\tfrac{1}{2}x}
 77-NOT EQUAL: \LegendreP[\mu]{\nu}@{x} = \left( \frac{x+1}{x-1} \right)^{\mu/2} \HypergeoboldF@{\nu+1}{-\nu}{1-\mu}{\tfrac{1}{2}-\tfrac{1}{2}x}
-78-NOT EQUAL: \LegendreQ[\mu]{\nu}@{x} = e^{\mu \cpi i} \frac{\cpi^{1/2} \EulerGamma@{\nu+\mu+1} \left( x^2 - 1 \right)^{\mu/2}} {2^{\nu+1} x^{\nu+\mu+1}} \HypergeoboldF@{\tfrac{1}{2}\nu + \tfrac{1}{2}\mu + 1} {\tfrac{1}{2}\nu + \tfrac{1}{2}\mu + \tfrac{1}{2}} {\nu + \tfrac{3}{2}} {\frac{1}{x^2}}
+78-NOT EQUAL: \LegendreQ[\mu]{\nu}@{x} = \expe^{\mu \cpi \iunit} \frac{\cpi^{1/2} \EulerGamma@{\nu+\mu+1} \left( x^2 - 1 \right)^{\mu/2}} {2^{\nu+1} x^{\nu+\mu+1}} \HypergeoboldF@{\tfrac{1}{2}\nu + \tfrac{1}{2}\mu + 1} {\tfrac{1}{2}\nu + \tfrac{1}{2}\mu + \tfrac{1}{2}} {\nu + \tfrac{3}{2}} {\frac{1}{x^2}}
 79-NOT EQUAL: \FerrersP[\mu]{\nu}@{x} = \frac{2^{\mu} \EulerGamma@{1-2\mu} \EulerGamma@{\nu+\mu+1}} {\EulerGamma@{\nu-\mu+1} \EulerGamma@{1-\mu} \left( 1 - x^2  \right)^{\mu/2}} \Ultraspherical{\frac{1}{2}-\mu}{\nu+\mu}@{x}
 80-NOT EQUAL: \LegendreP[\mu]{\nu}@{x} = \frac{2^{\mu} \EulerGamma@{1-2\mu} \EulerGamma@{\nu+\mu+1}} {\EulerGamma@{\nu-\mu+1} \EulerGamma@{1-\mu} \left( x^2 - 1 \right)^{\mu/2}} \Ultraspherical{\frac{1}{2}-\mu}{\nu+\mu}@{x}
 81-NOT EQUAL: \FerrersP[\mu]{\nu}@{0} = \frac{2^{\mu} \cpi^{1/2}} {\EulerGamma@{\frac{1}{2}\nu - \frac{1}{2}\mu + 1} \EulerGamma@{\frac{1}{2} - \frac{1}{2}\nu - \frac{1}{2}\mu}}
 82-NOT EQUAL: \FerrersQ[\mu]{\nu}@{0} = - \frac{2^{\mu-1} \cpi^{1/2} \sin@{\frac{1}{2} (\nu+\mu) \cpi} \EulerGamma@{\frac{1}{2}\nu + \frac{1}{2}\mu + \frac{1}{2}}} {\EulerGamma@{\frac{1}{2}\nu - \frac{1}{2}\mu +1}}
-83-NOT EQUAL: \FerrersP{0}@{x} = 1
-85-NOT EQUAL: \FerrersP{1}@{x} = x
 87-NOT EQUAL: \FerrersQ{0}@{x} = \frac{1}{2} \ln@{\frac{1+x}{1-x}}
 88-NOT EQUAL: \FerrersQ{1}@{x} = \frac{x}{2} \ln@{\frac{1+x}{1-x}} - 1
-89-NOT EQUAL: \LegendreBlackQ{0}@{x} = \frac{1}{2} \ln@{\frac{x+1}{x-1}}
 90-NOT EQUAL: \LegendreBlackQ{1}@{x} = \frac{x}{2} \ln@{\frac{x+1}{x-1}} - 1
 91-NOT EQUAL: \FerrersP[-1/2]{\nu}@{\cos@@{\theta}} = \left( \frac{2}{\cpi \sin@@{\theta}} \right)^{1/2} \frac{\sin@{\left( \nu + \frac{1}{2} \right) \theta}} {\nu + \frac{1}{2}}
 92-NOT EQUAL: \FerrersQ[1/2]{\nu}@{\cos@@{\theta}} = - \left( \frac{\cpi}{2 \sin@@{\theta}} \right)^{1/2} \sin@{\left( \nu + \tfrac{1}{2} \right) \theta}
@@ -37,7 +33,6 @@
 103-NOT EQUAL: \LegendreP{\frac{1}{2}}@{\cosh@@{\xi}} = \frac{2}{\cpi} \expe^{\xi/2} \CompEllIntE@{\left( 1 - \expe^{-2\xi} \right)^{1/2}}
 104-NOT EQUAL: \LegendreP{-\frac{1}{2}}@{\cosh@@{\xi}} = \frac{2}{\cpi \cosh@{\frac{1}{2} \xi}} \CompEllIntK@{\tanh@{\tfrac{1}{2} \xi}}
 105-NOT EQUAL: \LegendreBlackQ{\frac{1}{2}}@{\cosh@@{\xi}} = 2 \cpi^{-1/2} \cosh@@{\xi} \sech@{\tfrac{1}{2} \xi} \CompEllIntK@{\sech@{\tfrac{1}{2} \xi}} - 4 \cpi^{-1/2} \cosh@{\tfrac{1}{2} \xi} \CompEllIntE@{\sech@{\tfrac{1}{2} \xi}}
-106-NOT EQUAL: \LegendreBlackQ{-\frac{1}{2}}@{\cosh@@{\xi}} = 2 \cpi^{-1/2} e^{-\xi/2} \CompEllIntK@{e^{-\xi}}
-107-NOT EQUAL: \FerrersP{2}@{x} = \frac{3x^2 - 1}{2}
+106-NOT EQUAL: \LegendreBlackQ{-\frac{1}{2}}@{\cosh@@{\xi}} = 2 \cpi^{-1/2} \expe^{-\xi/2} \CompEllIntK@{\expe^{-\xi}}
 109-NOT EQUAL: \FerrersQ{2}@{x} = \frac{3x^2 - 1}{4} \ln@{\frac{1+x}{1-x}} - \frac{3}{2}x
 110-NOT EQUAL: \LegendreBlackQ{2}@{x} = \frac{3x^2 - 1}{8} \ln@{\frac{x+1}{x-1}} - \frac{3}{4}x
