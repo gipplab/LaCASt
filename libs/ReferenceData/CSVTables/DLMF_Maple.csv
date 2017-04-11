@@ -403,7 +403,7 @@ X1:\LegendrePX\LegendreP[$1]{$0}@{$2};LegendreP($1, $0, $2);3;If you previously 
 \LegendreQ{$0}@{$1};LegendreQ($0, $1);2;If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.;;;;;;;;;;;;;;;;;;;
 X1:\LegendreQX\LegendreQ[$1]{$0}@{$2};LegendreQ($1, $0, $2);3;If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.;;;;;;;;;;;;;;;;;;;
 \LegendreBlackQ{\nu}@{z};X2:LegendreQXLegendreQ($0,$1)/GAMMA($0+1);2;;;;;;;;;;;;;;;;;;;;
-X1:\LegendreBlackQX\LegendreBlackQ[\mu]{\nu}@{z};X3:LegendreQXexp(-($1)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($0+$1+1);3;;;;;;;;;;;;;;;;;;;;
+X1:\LegendreBlackQX\LegendreBlackQ[\mu]{\nu}@{z};X3:LegendreQXexp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1);3;;;;;;;;;;;;;;;;;;;;
 \FerrersHatQ{\tau}@{x};;;;;;;;;;;;;;;;;;;;;;
 X1:\FerrersHatQX\FerrersHatQ[\mu]{\tau}@{x};;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;

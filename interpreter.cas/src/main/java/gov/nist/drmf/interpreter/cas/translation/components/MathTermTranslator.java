@@ -187,8 +187,21 @@ public class MathTermTranslator extends AbstractListTranslator {
                     }
                     return parseGreekLetter( alpha );
                 }
+
                 if ( constantSet != null ){
-                    return parseMathematicalConstant( constantSet, alpha );
+                    try {
+                        PomTaggedExpression next = following_exp.get(0);
+                        MathTerm possibleCaret = next.getRoot();
+                        MathTermTags tagPossibleCaret =
+                                MathTermTags.getTagByKey(possibleCaret.getTag());
+                        if ( alpha.matches("\\\\expe") &&
+                                MathTermTags.caret.equals(tagPossibleCaret) ){
+                            // translate as exo(...) and not exp(1)^{...}
+                            return parseExponentialFunction( following_exp );
+                        } else return parseMathematicalConstant( constantSet, alpha );
+                    } catch ( Exception e ){
+                        return parseMathematicalConstant( constantSet, alpha );
+                    }
                 }
 
                 String output;
@@ -430,6 +443,26 @@ public class MathTermTranslator extends AbstractListTranslator {
         // otherwise add all
         local_inner_exp.addTranslatedExpression(translated_letter);
         global_exp.addTranslatedExpression(translated_letter);
+        return true;
+    }
+
+    private static final String EXPONENTIAL_MLP_KEY = "exponential";
+
+    private boolean parseExponentialFunction( List<PomTaggedExpression> following_exp ){
+        PomTaggedExpression caretPomExp = following_exp.remove(0);
+        PomTaggedExpression caretChild = caretPomExp.getComponents().get(0);
+
+        TranslatedExpression power = parseGeneralExpression(caretChild, null);
+        BasicFunctionsTranslator ft = SemanticLatexTranslator.getBasicFunctionParser();
+        String translation = ft.translate( new String[]{power.toString()}, EXPONENTIAL_MLP_KEY );
+        global_exp.removeLastNExps( power.clear() );
+
+        local_inner_exp.addTranslatedExpression( translation );
+        global_exp.addTranslatedExpression( translation );
+
+        INFO_LOG.addMacroInfo( "\\expe", "Recognizes e with power as the exponential function. " +
+                "It was translated as a function." );
+
         return true;
     }
 

@@ -53,6 +53,12 @@
 		"LaTeX": "$0_{$1}",
 		"Maple": "$0[$1]",
 		"Mathematica": "Subscript[$0, $1]"
+	},
+	"Exponential":{
+		"MLP": "exponential",
+		"LaTeX": "\\expe",
+		"Maple": "exp($0)",
+		"Mathematica": "Exp[$0]"
 	}
   },
   "Symbol Languages": [

@@ -49,7 +49,7 @@
 \LegendrePoly{n}@{x} = \HypergeoF@@{-n}{n+1}{1}{\frac{1-x}{2}}
 \HypergeoboldF@@{a}{b}{2b}{z} = \frac{\sqrt{\cpi}}{\EulerGamma@{b}} z^{-b+(\ifrac{1}{2})} (1-z)^{(b-a-(\ifrac{1}{2}))/2} \LegendreP[-b+(\ifrac{1}{2})]{a-b-(\ifrac{1}{2})}@{\frac{2-z}{2\sqrt{1-z}}}
 \HypergeoboldF@@{a}{b}{a-b+1}{z} = z^{\ifrac{(b-a)}{2}} (1-z)^{-b} \LegendreP[b-a]{-b}@{\frac{1+z}{1-z}}
-\Jacobisn@{z}{k} = \frac{\JacobiTheta{3}@{0}{q}}{\JacobiTheta{2}@{0}{q}} \frac{\JacobiTheta{1}@{\zeta}{q}}{\JacobiTheta{4}@{\zeta}{q}} 
+\Jacobisn@{z}{k} = \frac{\JacobiTheta{3}@{0}{\expe^{-\cpi \frac{\CompEllIntK@{\sqrt{1-k^2}}}{\CompEllIntK@{k}}}}}{\JacobiTheta{2}@{0}{\expe^{-\cpi \frac{\CompEllIntK@{\sqrt{1-k^2}}}{\CompEllIntK@{k}}}}} \frac{\JacobiTheta{1}@{\frac{\cpi z}{2 \CompEllIntK@{k}}}{\expe^{-\cpi \frac{\CompEllIntK@{\sqrt{1-k^2}}}{\CompEllIntK@{k}}}}}{\JacobiTheta{4}@{\frac{\cpi z}{2 \CompEllIntK@{k}}}{\expe^{-\cpi \frac{\CompEllIntK@{\sqrt{1-k^2}}}{\CompEllIntK@{k}}}}} 
 \Jacobisn@{z}{k} = \frac{1}{\Jacobins@{z}{k}} 
 \Jacobisn^2@{z}{k} + \Jacobicn^2@{z}{k} = 1
 k^2 \Jacobisn^2@{z}{k} + \Jacobidn^2@{z}{k} = 1
@@ -90,7 +90,7 @@ k^2 (\Jacobicd^2@{z}{k} - 1) = {\sqrt{1-k^2}}^2 (1 - \Jacobind^2@{z}{k})
 \LegendreBlackQ{1}@{x} = \frac{x}{2} \ln@{\frac{x+1}{x-1}} - 1
 \FerrersP[-1/2]{\nu}@{\cos@@{\theta}} = \left( \frac{2}{\cpi \sin@@{\theta}} \right)^{1/2} \frac{\sin@{\left( \nu + \frac{1}{2} \right) \theta}} {\nu + \frac{1}{2}}
 \FerrersQ[1/2]{\nu}@{\cos@@{\theta}} = - \left( \frac{\cpi}{2 \sin@@{\theta}} \right)^{1/2} \sin@{\left( \nu + \tfrac{1}{2} \right) \theta}
-\FerrersQ[-1/2]{\nu}@{\cos@@{\theta}} = - \left( \frac{\cpi}{2 \sin@@{\theta}} \right)^{1/2} \frac{\cos@{\left( \nu + \frac{1}{2} \right) \theta}} {\nu + \frac{1}{2}}
+\FerrersQ[-1/2]{\nu}@{\cos@@{\theta}} = \left( \frac{\cpi}{2 \sin@@{\theta}} \right)^{1/2} \frac{\cos@{\left( \nu + \frac{1}{2} \right) \theta}} {\nu + \frac{1}{2}}
 \LegendreP[1/2]{\nu}@{\cosh@@{\xi}} = \left( \frac{2}{\cpi \sinh@@{\xi}} \right)^{1/2} \cosh@{\left( \nu + \tfrac{1}{2} \right) \xi}
 \LegendreP[-1/2]{\nu}@{\cosh@@{\xi}} = \left( \frac{2}{\cpi \sinh@@{\xi}} \right)^{1/2} \frac{\sinh@{\left( \nu + \frac{1}{2} \right) \xi}} {\nu + \frac{1}{2}}
 \LegendreBlackQ[1/2]{\nu}@{\cosh@@{\xi}} = \left( \frac{\cpi}{2 \sinh@@{\xi}} \right)^{1/2} \frac{\exp@{-\left( \nu + \frac{1}{2} \right) \xi}} {\EulerGamma@{\nu + \frac{3}{2}}}
