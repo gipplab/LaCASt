@@ -3535,7 +3535,7 @@ Symbol: \LegendreBlackQ
   Feature Set: dlmf-alternative-1
 	DLMF: \LegendreBlackQ[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($1)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($0+$1+1)
+	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
 	Maple-Comment: 
