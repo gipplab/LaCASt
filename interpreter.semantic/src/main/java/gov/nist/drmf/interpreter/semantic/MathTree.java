@@ -1,10 +1,17 @@
 package gov.nist.drmf.interpreter.semantic;
 
 /**
- * Created by jrp4 on 11/29/16.
+ * Java class that represents tree of embedded math modes and text modes
  */
 public class MathTree {
 
+    /**
+     * Parses the math mode section beginning at the given start index and any contained text sections
+     * @param latex
+     * @param startIndex
+     * @return
+     * @throws InvalidLaTeXException
+     */
     public static MathMode parseMath(String latex, int startIndex) throws InvalidLaTeXException {
         MathMode mathSection = new MathMode(startIndex);
         mathSection.setDelim(MathModeUtils.firstDelim(latex, true));
@@ -27,6 +34,13 @@ public class MathTree {
         throw new InvalidLaTeXException("Unterminated math sequence");
     }
 
+    /**
+     * Parses the text mode section beginning at the given start index and any contained math sections
+     * @param latex
+     * @param startIndex
+     * @return
+     * @throws InvalidLaTeXException
+     */
     public static TextMode parseText(String latex, int startIndex) throws InvalidLaTeXException {
         TextMode textSection = new TextMode(startIndex);
         String delim = MathModeUtils.firstDelim(latex, false);
@@ -60,6 +74,11 @@ public class MathTree {
         return textSection;
     }
 
+    /**
+     * Performs macro replacements on a given LaTeX string
+     * @param latex
+     * @return
+     */
     public static String replaceText(String latex) {
         try {
             return parseText(latex, 0).makeReplacements(latex);
@@ -67,9 +86,5 @@ public class MathTree {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(replaceText("potato $\\pochhammer{\\frac{7}{2}}{\\sqrt{\\CatalansConstant}}$ potato")); //for testing
     }
 }
