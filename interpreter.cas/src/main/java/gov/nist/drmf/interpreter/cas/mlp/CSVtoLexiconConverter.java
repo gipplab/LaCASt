@@ -61,6 +61,15 @@ public class CSVtoLexiconConverter {
 
         this.csv_dlmf_file =
                 GlobalPaths.PATH_REFERENCE_DATA_CSV.resolve(CSV_dlmf_file);
+        File dlmf_file = csv_dlmf_file.toFile();
+        try {
+            dlmf_file.createNewFile();
+        } catch ( IOException ioe ){
+            LOG.error(
+                    "Cannot create MLP lexicon file at " + csv_dlmf_file.toString(),
+                    ioe);
+            throw ioe;
+        }
         if ( !csv_dlmf_file.toFile().exists() )
             throw new FileNotFoundException(
                     "The given link to the CSV-DLMF file doesn't exists! " + csv_dlmf_file.toString()
@@ -242,7 +251,10 @@ public class CSVtoLexiconConverter {
 
         if ( holder.num_vars == null ){
             String num_vars_str = analyzer.getValue( Keys.NUM_OF_VARS );
-            holder.num_vars = Integer.parseInt(num_vars_str);
+            try { holder.num_vars = Integer.parseInt(num_vars_str); }
+            catch( NumberFormatException nfe ){
+                //LOG.debug("Skip");
+            }
         }
 
         return holder;
@@ -371,6 +383,8 @@ public class CSVtoLexiconConverter {
                 cas_cache.add( holder.cas_name, holder.num_vars, info );
         } catch ( NumberFormatException nfe ){
             LOG.debug("Skip cache entry, because number of variables is missing for: " + cas_func);
+        } catch ( NullPointerException npe ){
+            LOG.debug("Skip cache entry, caused by missing information: " + Arrays.toString(elements));
         } catch ( Exception e ){
             LOG.debug("Error - Skip cache entry for: " + Arrays.toString(elements), e);
         }
