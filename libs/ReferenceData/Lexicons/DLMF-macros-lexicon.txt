@@ -10,6 +10,8 @@ Symbol: \AGM
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GaussAGM
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Arithmetic geometric mean
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -23,6 +25,8 @@ Symbol: \AThetaFunction
 	DLMF-Link: dlmf.nist.gov/27.13.E4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Jacobi theta function alternative
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -125,6 +129,8 @@ Symbol: \AffqKrawtchouk
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:AffqKrawtchouk
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Affine q-Krawtchouck polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -142,6 +148,12 @@ Symbol: \AiryAi
 	Maple-Comment: Maple also supports the derivatives with AiryAi(n, z) and AiryBi(n, z)
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Airy
+	Mathematica: AiryAi[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Meanings: Airy function of the first kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -159,6 +171,12 @@ Symbol: \AiryBi
 	Maple-Comment: Maple also supports the derivatives with AiryAi(n, z) and AiryBi(n, z)
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Airy
+	Mathematica: AiryBi[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Meanings: Airy function of the second kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -172,6 +190,8 @@ Symbol: \AiryModulusM
 	DLMF-Link: dlmf.nist.gov/9.8#i
 	Maple-Alternatives: sqrt(AiryAi($0)^2+AiryBi($0)^2)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Airy modulus function M
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -185,6 +205,8 @@ Symbol: \AiryModulusN
 	DLMF-Link: dlmf.nist.gov/9.8#i
 	Maple-Alternatives: sqrt(AiryAi(1, $0)^2+AiryBi(1, $0)^2)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Airy modulus function N
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -198,6 +220,8 @@ Symbol: \AiryPhasePhi
 	DLMF-Link: dlmf.nist.gov/9.8#i
 	Maple-Alternatives: arctan(AiryAi(1, $0)/AiryBi(1, $0))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Airy phase function Phi
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -211,6 +235,8 @@ Symbol: \AiryPhaseTheta
 	DLMF-Link: dlmf.nist.gov/9.8#i
 	Maple-Alternatives: arctan(AiryAi($0)/AiryBi($0))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Airy phase function Theta
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -224,6 +250,8 @@ Symbol: \AlSalamCarlitzI
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:AlSalamCarlitzI
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Al-Salam-Charlitz I polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -237,6 +265,8 @@ Symbol: \AlSalamCarlitzII
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:AlSalamCarlitzII
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Al-Salam-Charlitz II polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -250,6 +280,8 @@ Symbol: \AlSalamChihara
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:AlSalamChihara
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Al-Salam-Chihara polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -263,6 +295,8 @@ Symbol: \AlSalamChiharaQ
 	DLMF-Link: dlmf.nist.gov/18.28#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Al-Salam-Chihara polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -276,6 +310,8 @@ Symbol: \AlSalamIsmail
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:AlSalamIsmail
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Al-Salam Ismail
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -290,6 +326,8 @@ Symbol: \AngerA
 	DLMF-Link: dlmf.nist.gov/11.10#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Associated Anger function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -307,6 +345,8 @@ Symbol: \AngerJ
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=AngerJ
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Anger function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -324,6 +364,8 @@ Symbol: \AntiDer
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=int
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Anti-Derivative
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -337,6 +379,8 @@ Symbol: \AppellFi
 	DLMF-Link: dlmf.nist.gov/16.13#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: First Appell function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -350,6 +394,8 @@ Symbol: \AppellFii
 	DLMF-Link: dlmf.nist.gov/16.13#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Second Appell function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -364,6 +410,8 @@ Symbol: \AppellFiii
 	DLMF-Link: dlmf.nist.gov/16.13#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Third Appell function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -377,6 +425,8 @@ Symbol: \AppellFiv
 	DLMF-Link: dlmf.nist.gov/16.13#E5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Fourth Appell function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -442,6 +492,8 @@ Symbol: \AskeyWilson
 	DLMF-Link: dlmf.nist.gov/18.28#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Askey-Wilson polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -455,6 +507,8 @@ Symbol: \AskeyWilsonp
 	DLMF-Link: dlmf.nist.gov/18.28#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Askey-Wilson polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -468,6 +522,8 @@ Symbol: \AssJacobiP
 	DLMF-Link: dlmf.nist.gov/18.30#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Associated Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -481,6 +537,8 @@ Symbol: \AssLegendrePoly
 	DLMF-Link: dlmf.nist.gov/18.30#E6
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Associated Legendre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -520,6 +578,12 @@ Symbol: \BarnesGamma
 	DLMF-Link: dlmf.nist.gov/5.17#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica: BarnesG[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/BarnesG.html
 	Meanings: Double Gamma / Barnes Gamma
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -537,6 +601,8 @@ Symbol: \BellNumber
 	Maple-Comment: bell(n) is an alternative translation. But it is necessary to import the extra package with(combinat, bell) if you planning to use the shorter version.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=BellB
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bell number
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -554,6 +620,8 @@ Symbol: \BernoulliB
 	Maple-Comment: "Maple provides an extra function for x=0. You can call bernoulli(n).
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=bernoulli
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bernoulli polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -571,6 +639,8 @@ Symbol: \BesselI
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified Bessel function first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -584,6 +654,8 @@ Symbol: \BesselItilde
 	DLMF-Link: dlmf.nist.gov/10.45#E2
 	Maple-Alternatives: Re(BesselI(I*($0), $1))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified Bessel of imaginary order first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -602,6 +674,12 @@ Symbol: \BesselJ
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
+	Mathematica: BesselJ[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/BesselJ.html
 	Meanings: Bessel function first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -615,6 +693,8 @@ Symbol: \BesselJtilde
 	DLMF-Link: dlmf.nist.gov/10.24#Ex1
 	Maple-Alternatives: sech((1/2)*Pi*($0))*Re(BesselJ(I*($0), $1))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bessel of imaginary order first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -632,6 +712,8 @@ Symbol: \BesselK
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified Bessel function second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -645,6 +727,8 @@ Symbol: \BesselKtilde
 	DLMF-Link: dlmf.nist.gov/10.45#E2
 	Maple-Alternatives: BesselK(I*($0), $1)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified Bessel of imaginary order second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -658,6 +742,8 @@ Symbol: \BesselModulusM
 	DLMF-Link: dlmf.nist.gov/10.18#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modulus Bessel function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -671,6 +757,8 @@ Symbol: \BesselModulusN
 	DLMF-Link: dlmf.nist.gov/10.18#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modulus derivative Bessel function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -684,6 +772,8 @@ Symbol: \BesselPhasePhi
 	DLMF-Link: dlmf.nist.gov/10.18#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Phase of derivative Bessel function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -697,6 +787,8 @@ Symbol: \BesselPhaseTheta
 	DLMF-Link: dlmf.nist.gov/10.18#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Phase of Bessel function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -710,6 +802,8 @@ Symbol: \BesselPoly
 	DLMF-Link: dlmf.nist.gov/18.34#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bessel polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -723,6 +817,8 @@ Symbol: \BesselPolyIIparam
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:BesselPolyIIparam
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bessel polynomial with two parameters
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -736,6 +832,8 @@ Symbol: \BesselPolyTheta
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:BesselPolyTheta
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bessel Theta polynomial with two parameters
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -749,6 +847,8 @@ Symbol: \BesselPolyy
 	DLMF-Link: dlmf.nist.gov/18.34#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bessel polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -767,6 +867,12 @@ Symbol: \BesselY
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
+	Mathematica: BesselY[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Meanings: Bessel function second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -780,6 +886,8 @@ Symbol: \BesselYtilde
 	DLMF-Link: dlmf.nist.gov/10.24#Ex1
 	Maple-Alternatives: sech((1/2)*Pi*($0))*Re(BesselY(I*($0), $1))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bessel of imaginary order second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -793,6 +901,8 @@ Symbol: \BickleyKi
 	DLMF-Link: dlmf.nist.gov/10.43#E11
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bickley function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -806,6 +916,8 @@ Symbol: \BigO
 	DLMF-Link: dlmf.nist.gov/2.1#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Landau notation O
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -819,6 +931,8 @@ Symbol: \CatalanNumber
 	DLMF-Link: dlmf.nist.gov/26.5#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Catalan number
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -840,6 +954,8 @@ Symbol: \Charlier
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Charlier polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -853,6 +969,8 @@ Symbol: \CharlierC
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Charlier polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -866,6 +984,8 @@ Symbol: \ChebyC
 	DLMF-Link: dlmf.nist.gov/18.1#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Dilated Chebyshev polynomial first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -879,6 +999,8 @@ Symbol: \ChebyS
 	DLMF-Link: dlmf.nist.gov/18.1#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Dilated Chebyshev polynomial second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -896,6 +1018,8 @@ Symbol: \ChebyT
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevT
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Chebyshev polynomial first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -909,6 +1033,8 @@ Symbol: \ChebyTs
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r8
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Shifted Chebyshev polynomial first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -926,6 +1052,8 @@ Symbol: \ChebyU
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevU
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Chebyshev polynomial second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -939,6 +1067,8 @@ Symbol: \ChebyUs
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r9
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Shifted Chebyshev polynomial second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -952,6 +1082,8 @@ Symbol: \ChebyV
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r6
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Chebyshev polynomial third kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -965,6 +1097,8 @@ Symbol: \ChebyW
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r7
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Chebyshev polynomial fourth kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -978,6 +1112,8 @@ Symbol: \ChebyshevPsi
 	DLMF-Link: dlmf.nist.gov/25.16#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Chebyshev Psi-function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -991,6 +1127,8 @@ Symbol: \CiglerqChebyT
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:CiglerqChebyT
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Cigler q-Chebyshev polynomials
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1004,6 +1142,8 @@ Symbol: \CiglerqChebyU
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:CiglerqChebyU
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Cigler q-Chebyshev polynomials
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1021,6 +1161,8 @@ Symbol: \CompEllIntCE
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCE
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Legendre's complementary complete elliptic integral of the second kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1038,6 +1180,8 @@ Symbol: \CompEllIntCK
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCK
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Legendre's complementary complete elliptic integral of the first kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1049,6 +1193,8 @@ Symbol: \CompEllIntD
   Feature Set: dlmf-macro
 	DLMF: \CompEllIntD@{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E8
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Complete elliptic integral of Legendre's type
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1066,6 +1212,8 @@ Symbol: \CompEllIntE
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Legendre's complete elliptic integral of the second kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1083,6 +1231,12 @@ Symbol: \CompEllIntK
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticK
+	Mathematica: EllipticK[($0)^2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Meanings: Legendre's complete elliptic integral of the first kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1100,6 +1254,8 @@ Symbol: \CompEllIntPi
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Legendre's complete elliptic integral of the third kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1113,6 +1269,8 @@ Symbol: \Complex
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Set of complex numbers
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -1126,6 +1284,8 @@ Symbol: \ComplexZeroAiryBi
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Complex zeros of Airy function of the second kind
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -1139,6 +1299,8 @@ Symbol: \ComplexZeroAiryBiPrime
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Complex zeros of derivative of Airy function of the second kind
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -1163,6 +1325,8 @@ Symbol: \Continuous
 	DLMF-Link: dlmf.nist.gov/1.4#ii
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Space of continuous functions on a set
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1180,6 +1344,12 @@ Symbol: \CosInt
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ci
+	Mathematica: CosIntegral[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/CosIntegral.html
 	Meanings: Cosine integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1191,6 +1361,8 @@ Symbol: \CosIntCin
   Feature Set: dlmf-macro
 	DLMF: \CosIntCin@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E12
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Cosine integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1203,6 +1375,8 @@ Symbol: \CosIntg
 	Branch Cuts: z = 0
 	DLMF: \CosIntg@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.21#E2
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Generalized cosine integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1220,6 +1394,12 @@ Symbol: \CoshInt
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Chi
+	Mathematica: CoshIntegral[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/CoshIntegral.html
 	Meanings: Hyperbolic cosine integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1233,6 +1413,8 @@ Symbol: \CoulombC
 	DLMF-Link: dlmf.nist.gov/33.2#E5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Normalizing constant for Coulomb radial functions
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1250,6 +1432,8 @@ Symbol: \CoulombF
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CoulombF
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Regular Coulomb function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1263,6 +1447,8 @@ Symbol: \CoulombG
 	DLMF-Link: dlmf.nist.gov/33.2#E11
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Irregular Coulomb function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1276,6 +1462,8 @@ Symbol: \CoulombH
 	DLMF-Link: dlmf.nist.gov/33.2#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Irregular Coulomb radial function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -1289,6 +1477,8 @@ Symbol: \CoulombM
 	DLMF-Link: dlmf.nist.gov/33.3#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Envelope of Coulomb function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1302,6 +1492,8 @@ Symbol: \CoulombSigma
 	DLMF-Link: dlmf.nist.gov/33.2#E10
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Coulomb phase shift
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1315,6 +1507,8 @@ Symbol: \CoulombTheta
 	DLMF-Link: dlmf.nist.gov/33.2#E9
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Phase of Coulomb functions
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1328,6 +1522,8 @@ Symbol: \Coulombc
 	DLMF-Link: dlmf.nist.gov/33.14#E9
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Regular Coulomb function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1341,6 +1537,8 @@ Symbol: \Coulombf
 	DLMF-Link: dlmf.nist.gov/33.14#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Regular Coulomb function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1354,6 +1552,8 @@ Symbol: \Coulombh
 	DLMF-Link: dlmf.nist.gov/33.14#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Regular Coulomb function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1367,6 +1567,8 @@ Symbol: \Coulombrhotp
 	DLMF-Link: dlmf.nist.gov/33.2#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Outer turning point for Coulomb radial functions
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1380,6 +1582,8 @@ Symbol: \Coulombrtp
 	DLMF-Link: dlmf.nist.gov/33.14#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Outer turning point for Coulomb functions
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1393,6 +1597,8 @@ Symbol: \Coulombs
 	DLMF-Link: dlmf.nist.gov/33.14#E9
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Regular Coulomb function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1406,6 +1612,8 @@ Symbol: \Cylinder
 	DLMF-Link: dlmf.nist.gov/10.2#Px5.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Cylinder function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1423,6 +1631,12 @@ Symbol: \DawsonsInt
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=dawson
+	Mathematica: DawsonF[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/DawsonF.html
 	Meanings: Dawson integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1436,6 +1650,8 @@ Symbol: \DedekindModularEta
 	DLMF-Link: dlmf.nist.gov/23.15#E9
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Dedikind's Eta function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1453,6 +1669,8 @@ Symbol: \Dilogarithm
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=dilog
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Dilogarithm
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1470,6 +1688,8 @@ Symbol: \Diracdelta
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Dirac
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Dirac delta function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1483,6 +1703,8 @@ Symbol: \DirichletCharacter
 	DLMF-Link: dlmf.nist.gov/27.8
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Dirichlet character
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -1496,6 +1718,8 @@ Symbol: \DirichletL
 	DLMF-Link: dlmf.nist.gov/25.15#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Dirichlet L-function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1509,6 +1733,8 @@ Symbol: \DiscriminantDelta
 	DLMF-Link: dlmf.nist.gov/27.14#E16
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Discriminant function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1522,6 +1748,8 @@ Symbol: \DiskOP
 	DLMF-Link: dlmf.nist.gov/18.37#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Disk polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -1535,6 +1763,8 @@ Symbol: \Distribution
 	DLMF-Link: dlmf.nist.gov/1.16#SS1.p5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Distribution
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -1552,6 +1782,8 @@ Symbol: \DivisorFunctionD
 	Maple-Comment: Maple needs an extra package. with(numtheory) and since Maplesoft 2016 with(NumberTheory)
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Divisor function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1569,6 +1801,8 @@ Symbol: \DivisorSigma
 	Maple-Comment:  || Maple needs an extra package. with(numtheory) and since Maplesoft 2016 with(NumberTheory)
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Sum of divisors
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1582,6 +1816,8 @@ Symbol: \EllIntD
 	DLMF-Link: dlmf.nist.gov/19.2#E6
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Incomplete elliptic integral of Legendre's type
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1599,6 +1835,8 @@ Symbol: \EllIntE
 	Maple-Comment: Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Legendre's incomplete elliptic integral of the second kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1616,6 +1854,8 @@ Symbol: \EllIntF
 	Maple-Comment: Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticF
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Legendre's incomplete elliptic integral of the first kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1633,6 +1873,8 @@ Symbol: \EllIntPi
 	Maple-Comment: Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Legendre's incomplete elliptic integral of the third kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1646,6 +1888,8 @@ Symbol: \EllIntRC
 	DLMF-Link: dlmf.nist.gov/19.2#E17
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Carlson elliptic integral
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -1659,6 +1903,8 @@ Symbol: \EllIntRD
 	DLMF-Link: dlmf.nist.gov/19.16#E5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Symmetric in only two variables
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -1672,6 +1918,8 @@ Symbol: \EllIntRF
 	DLMF-Link: dlmf.nist.gov/19.16#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Symmetric elliptic integral of the first kind
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -1685,6 +1933,8 @@ Symbol: \EllIntRG
 	DLMF-Link: dlmf.nist.gov/19.16#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Symmetric elliptic integral of the third kind
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -1698,6 +1948,8 @@ Symbol: \EllIntRJ
 	DLMF-Link: dlmf.nist.gov/19.16#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Symmetric elliptic integral of the second kind
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -1711,6 +1963,8 @@ Symbol: \EllIntcel
 	DLMF-Link: dlmf.nist.gov/19.2#E11
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bulirsch's complete elliptic integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1724,6 +1978,8 @@ Symbol: \EllIntelone
 	DLMF-Link: dlmf.nist.gov/19.2#E15
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bulirsch's incomplete elliptic integral of first kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1737,6 +1993,8 @@ Symbol: \EllIntelthree
 	DLMF-Link: dlmf.nist.gov/19.2#E16
 	Maple-Alternatives: 
 	Maple-Comment: \EllIntRC@@{x}{y} = \EllIntRF@@{x}{y}{y}
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bulirsch's incomplete elliptic integral of third kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1750,6 +2008,8 @@ Symbol: \EllInteltwo
 	DLMF-Link: dlmf.nist.gov/19.2#E12
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bulirsch's incomplete elliptic integral of second kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1768,6 +2028,12 @@ Symbol: \EulerBeta
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Beta
+	Mathematica: Beta[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Beta.html
 	Meanings: Euler-Beta function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1793,6 +2059,8 @@ Symbol: \EulerE
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=euler
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Euler polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1810,6 +2078,12 @@ Symbol: \EulerGamma
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
+	Mathematica: Gamma[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Gamma.html
 	Meanings: Euler Gamma function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1823,6 +2097,8 @@ Symbol: \EulerPhi
 	DLMF-Link: dlmf.nist.gov/27.14#E2
 	Maple-Alternatives: product(1-($0)^k, k = 1 .. infinity)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Euler's reciprocal function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1836,6 +2112,8 @@ Symbol: \EulerSumH
 	DLMF-Link: dlmf.nist.gov/25.16#SS2.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Euler sums
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1860,6 +2138,8 @@ Symbol: \EulerianNumber
 	DLMF-Link: dlmf.nist.gov/26.14#SS1.p3
 	Maple-Alternatives: phi($0)
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Eulerian number
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -1879,6 +2159,8 @@ Symbol: \ExpInt
 	Maple-Comment: The alternative form is equivalent.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ei
+	Mathematica-Alternatives: -ExpIntegralEi[-($0)]
+	Mathematica-Comment: Mathematica uses another definition for the principle branch of the exponential integral. \ExpInt@{x} will be translated to -ExpIntegralEi[-x].
 	Meanings: Exponential integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1890,6 +2172,8 @@ Symbol: \ExpIntEin
   Feature Set: dlmf-macro
 	DLMF: \ExpIntEin@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E3
+	Mathematica-Alternatives: -ExpIntegralEi[-($0)] + Ln[$0] + EulerGamma
+	Mathematica-Comment: The translation based on the definition in DLMF.
 	Meanings: Complementary exponential integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1903,6 +2187,8 @@ Symbol: \ExpInti
 	Constraints: z != 0
 	DLMF: \ExpInti@{x}
 	DLMF-Link: dlmf.nist.gov/6.2#E1
+	Mathematica-Alternatives: -ExpIntegralEi[-($0)]
+	Mathematica-Comment: Mathematica uses another definition for the principle branch of the exponential integral. \ExpInti@{x} will be translated to -ExpIntegralEi[-x].
 	Meanings: Exponential integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1920,6 +2206,8 @@ Symbol: \ExpIntn
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ei
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Generalized exponential integral
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2025,6 +2313,8 @@ Symbol: \FibonacciNumber
 	DLMF-Link: dlmf.nist.gov/26.11#E5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Fibonacci number
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -2038,6 +2328,8 @@ Symbol: \FishersHh
 	DLMF-Link: dlmf.nist.gov/7.18#E12
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Probability function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2055,6 +2347,12 @@ Symbol: \FresnelCos
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=FresnelC
+	Mathematica: FresnelC[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/FresnelC.html
 	Meanings: Fresnel Cosine Integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2068,6 +2366,8 @@ Symbol: \FresnelF
 	DLMF-Link: dlmf.nist.gov/7.2#E6
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Fresnel Integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2085,6 +2385,12 @@ Symbol: \FresnelSin
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=FresnelS
+	Mathematica: FresnelS[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/FresnelS.html
 	Meanings: Fresnel Sine Integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2102,6 +2408,12 @@ Symbol: \Fresnelf
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelf
+	Mathematica: FresnelF[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/FresnelF.html
 	Meanings: Fresnel Auxiliaty Functions
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2119,6 +2431,12 @@ Symbol: \Fresnelg
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelg
+	Mathematica: FresnelG[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/FresnelG.html
 	Meanings: Fresnel Auxiliaty Functions
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2132,6 +2450,12 @@ Symbol: \GammaP
 	DLMF-Link: dlmf.nist.gov/8.2#E4
 	Maple-Alternatives: (GAMMA($0)-GAMMA($0, $1))/GAMMA($0)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
+	Mathematica: GammaRegularized[$0, 0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/GammaRegularized.html
 	Meanings: Normalized incomplete Gamma
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2145,6 +2469,12 @@ Symbol: \GammaQ
 	DLMF-Link: dlmf.nist.gov/8.2#E4
 	Maple-Alternatives: GAMMA($0, $1)/GAMMA($0)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
+	Mathematica: GammaRegularized[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/GammaRegularized.html
 	Meanings: Normalized incomplete Gamma
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2158,6 +2488,8 @@ Symbol: \GaussSum
 	DLMF-Link: dlmf.nist.gov/27.10#E9
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Gauss sum
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2171,6 +2503,8 @@ Symbol: \GenBernoulliB
 	DLMF-Link: dlmf.nist.gov/24.16#P1.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Generalized Bernoulli polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -2184,6 +2518,8 @@ Symbol: \GenBesselFun
 	DLMF-Link: dlmf.nist.gov/10.46#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Generalized Bessel
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2197,6 +2533,8 @@ Symbol: \GenEulerE
 	DLMF-Link: dlmf.nist.gov/24.16#P1.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Generalized Euler polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -2210,6 +2548,8 @@ Symbol: \GenEulerSumH
 	DLMF-Link: dlmf.nist.gov/25.16#SS2.p7
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Generalized Euler sums
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2223,6 +2563,8 @@ Symbol: \GenGegenbauerS
 	DLMF-Link: gw113.iu.xsede.org/wiki/index.php/Definition:GenGegenbauerS
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Generalized Gegenbauer polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -2247,6 +2589,8 @@ Symbol: \GoodStat
 	DLMF-Link: dlmf.nist.gov/7.2#E12
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Goodwin-Staton integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2260,6 +2604,8 @@ Symbol: \GottliebLaguerre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:GottliebLaguerre
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Gottlieb-Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2273,6 +2619,12 @@ Symbol: \Gudermannian
 	DLMF-Link: dlmf.nist.gov/4.23#E39
 	Maple-Alternatives: arctan(sinh($0))
 	Maple-Comment: 
+	Mathematica: Gudermannian[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: Defined also for imaginary values.
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Gudermannian.html
 	Meanings: Gudermannian function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2286,6 +2638,8 @@ Symbol: \Hahn
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2299,6 +2653,8 @@ Symbol: \HahnQ
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2312,6 +2668,8 @@ Symbol: \HahnR
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Dual Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2325,6 +2683,8 @@ Symbol: \HahnS
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Continuous dual Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2338,6 +2698,8 @@ Symbol: \Hahnp
 	DLMF-Link: dlmf.nist.gov/18.19#P2.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Continuous Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2355,6 +2717,8 @@ Symbol: \HankelHi
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bessel function third kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2372,6 +2736,8 @@ Symbol: \HankelHii
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bessel function third kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2389,6 +2755,8 @@ Symbol: \HarmonicNumber
 	Maple-Comment: DLMF assumes nonnegative integers.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=harmonic
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Harmonic number
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -2406,6 +2774,8 @@ Symbol: \HeavisideH
 	Maple-Comment: Heaviside(0) is defined to be 0 in DLMF.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Heaviside
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Heaviside step function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2423,6 +2793,8 @@ Symbol: \Hermite
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Hermite polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2440,6 +2812,8 @@ Symbol: \HermiteH
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Hermite polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2453,6 +2827,8 @@ Symbol: \HermiteHe
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r14
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Hermite polynomial He
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2466,6 +2842,8 @@ Symbol: \HeunFunction
 	DLMF-Link: dlmf.nist.gov/31.4#p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: General Heun functions
 	Number of Ats: 2
 	Number of Parameters: 3
@@ -2480,6 +2858,8 @@ Symbol: \HeunLocal
 	Maple: HeunG($0, $1, $2, $3, $4, $5, $6)
 	Maple-Alternatives: 
 	Maple-Comment: Based on the differential equation on DLMF, Maple assumes w'(0) = q/(gamma*a) for the general solution.
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Local Heun function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2493,6 +2873,8 @@ Symbol: \HeunPolynom
 	DLMF-Link: dlmf.nist.gov/31.5#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Heun polynomials
 	Number of Ats: 2
 	Number of Parameters: 2
@@ -2510,6 +2892,8 @@ Symbol: \HurwitzZeta
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Hurwitz zeta function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2524,6 +2908,8 @@ Symbol: \HyperboldpFq
 	Maple: hypergeom([$2], [$3], $4)
 	Maple-Alternatives: 
 	Maple-Comment: 2 Problems. 1) the first two parameters depending on the length of first and second argument. 2) Is this DLMF macro defined for other parameters?
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Hypergeometric function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -2541,6 +2927,8 @@ Symbol: \HypergeoF
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Hypergeometric function
 	Number of Ats: 3
 	Number of Parameters: 0
@@ -2555,6 +2943,8 @@ Symbol: \HypergeoboldF
 	Maple: hypergeom([$0, $1], [$2], $3)/GAMMA($2)
 	Maple-Alternatives: hypergeom([$0, $1], [$2], $3)/GAMMA($2)
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Olver's hypergeometric function
 	Number of Ats: 3
 	Number of Parameters: 0
@@ -2569,6 +2959,8 @@ Symbol: \HyperpFq
 	Maple: hypergeom([$2], [$3], $4)
 	Maple-Alternatives: 
 	Maple-Comment: Maple extract p and q from the length of the arguments.
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Generalized hypergeometric function
 	Number of Ats: 3
 	Number of Parameters: 2
@@ -2582,6 +2974,8 @@ Symbol: \HyperpHq
 	DLMF-Link: dlmf.nist.gov/16.4#E16
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Bilateral hypergeometric function
 	Number of Ats: 3
 	Number of Parameters: 2
@@ -2595,6 +2989,12 @@ Symbol: \IncBeta
 	DLMF-Link: dlmf.nist.gov/8.17#E1
 	Maple-Alternatives: int(t^($1-1)*(1-t)^($2-1), t = 0 .. $0)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
+	Mathematica: Beta[$0, $1, $2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: (-\inf, 0)
+	Mathematica-Comment: It has a branch cut for complex parameters (x in DLMF).
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Beta.html
 	Meanings: Incomplete Beta function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2612,6 +3012,12 @@ Symbol: \IncGamma
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
+	Mathematica: Gamma[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: (-\inf, 0)
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Gamma.html
 	Meanings: Incomplete Gamma function (upper)
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2625,6 +3031,12 @@ Symbol: \IncI
 	DLMF-Link: dlmf.nist.gov/8.17#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica: BetaRegularized[$0, $1, $2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/BetaRegularized.html
 	Meanings: Regularized incomplete Beta function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2642,6 +3054,8 @@ Symbol: \Int
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=int
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Integral
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -2655,6 +3069,8 @@ Symbol: \Integer
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r20
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Set of integers
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -2668,6 +3084,8 @@ Symbol: \IntgenAiryA
 	DLMF-Link: dlmf.nist.gov/9.13#SS2.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Generalized Airy function integral
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2681,6 +3099,8 @@ Symbol: \IntgenAiryB
 	DLMF-Link: dlmf.nist.gov/9.13#SS2.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Generalized Bairy function integral
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2694,6 +3114,8 @@ Symbol: \JacksonqBesselI
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:JacksonqBesselI
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Jackson q-Bessel function I
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2707,6 +3129,8 @@ Symbol: \JacksonqBesselII
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:JacksonqBesselII
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Jackson q-Bessel function II
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2720,6 +3144,8 @@ Symbol: \JacksonqBesselIII
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:JacksonqBesselIII
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Jackson q-Bessel function III
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2737,6 +3163,12 @@ Symbol: \Jacobi
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
+	Mathematica: JacobiP[$2, $0, $1, $3]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP
 	Meanings: Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -2750,6 +3182,8 @@ Symbol: \JacobiEpsilon
 	DLMF-Link: dlmf.nist.gov/22.16#E14
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Jacobi's epsilon function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2763,6 +3197,8 @@ Symbol: \JacobiG
 	DLMF-Link: dlmf.nist.gov/18.1#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Shifted Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2780,6 +3216,12 @@ Symbol: \JacobiP
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
+	Mathematica: JacobiP[$2, $0, $1, $3]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP
 	Meanings: Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -2793,6 +3235,8 @@ Symbol: \JacobiSymbol
 	DLMF-Link: dlmf.nist.gov/27.9#p3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Jacobi symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -2807,6 +3251,8 @@ Symbol: \JacobiTheta
 	Maple: JacobiTheta$0($1, $2)
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Jacobi's theta function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2820,6 +3266,8 @@ Symbol: \JacobiThetaCombined
 	DLMF-Link: dlmf.nist.gov/20.11#SS5.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Combined theta function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -2834,6 +3282,8 @@ Symbol: \JacobiThetaTau
 	DLMF-Link: dlmf.nist.gov/20.2#i
 	Maple-Alternatives: 
 	Maple-Comment: The alternative translation is only allowed for: Im($2) > 0 and 0 < |exp(I*Pi*$2)| < 1
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Jacobi's theta-tau function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2851,6 +3301,8 @@ Symbol: \JacobiZeta
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiZeta
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Jacobi zeta function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2868,6 +3320,8 @@ Symbol: \Jacobiam
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Jacobi's amplitude function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -2885,6 +3339,12 @@ Symbol: \Jacobicd
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCD
+	Mathematica: JacobiCD[$0, ($1)^2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiCD.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2902,6 +3362,12 @@ Symbol: \Jacobicn
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCN
+	Mathematica: JacobiCN[$0, ($1)^2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiCN.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2919,6 +3385,12 @@ Symbol: \Jacobics
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiCS[$0, ($1)^2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiCS.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2936,6 +3408,12 @@ Symbol: \Jacobidc
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiDC[$0, ($1)^2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiDC.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2953,6 +3431,12 @@ Symbol: \Jacobidn
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiDN
+	Mathematica: JacobiDN[$0, ($1)^2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiDN.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2970,6 +3454,12 @@ Symbol: \Jacobids
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiDS[$0, ($1)^2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiDS.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2987,6 +3477,12 @@ Symbol: \Jacobinc
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiNC[$0, ($1)^2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiNC.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -3004,6 +3500,12 @@ Symbol: \Jacobind
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiND[$0, ($1)^2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiND.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -3021,6 +3523,12 @@ Symbol: \Jacobins
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiNS[$0, ($1)^2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiNS.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -3034,6 +3542,8 @@ Symbol: \Jacobiphi
 	DLMF-Link: dlmf.nist.gov/15.9#E11
 	Maple-Alternatives: hypergeom([(($0)+($1)+1-I*($2))/2, (($0)+($1)+1+I*($2))], [($0)+1], -sinh($3)^2)
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Jacobi function
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -3051,6 +3561,12 @@ Symbol: \Jacobisc
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSC
+	Mathematica: JacobiSC[$0, ($1)^2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiSC.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -3068,6 +3584,12 @@ Symbol: \Jacobisd
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSD
+	Mathematica: JacobiSD[$0, ($1)^2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiSD.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -3085,6 +3607,12 @@ Symbol: \Jacobisn
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSN
+	Mathematica: JacobiSN[$0, ($1)^2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiSN.html
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -3096,6 +3624,8 @@ Symbol: \JonquierePhi
   Feature Set: dlmf-macro
 	DLMF: \JonquierePhi@{z}{s}
 	DLMF-Link: dlmf.nist.gov/25.1
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Polylogarithm
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3109,6 +3639,8 @@ Symbol: \JordanJ
 	DLMF-Link: dlmf.nist.gov/27.2#E11
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Jordan's function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3126,6 +3658,8 @@ Symbol: \Kelvinbei
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBei
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Kelvin Function BEI
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -3143,6 +3677,8 @@ Symbol: \Kelvinber
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBer
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Kelvin Function BER
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -3160,6 +3696,8 @@ Symbol: \Kelvinkei
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKei
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Kelvin Function KEI
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -3177,6 +3715,8 @@ Symbol: \Kelvinker
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKer
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Kelvin Function KER
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -3190,6 +3730,8 @@ Symbol: \Krawtchouk
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Krawtchouk polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3203,6 +3745,8 @@ Symbol: \KrawtchoukK
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Krawtchouk polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3216,6 +3760,8 @@ Symbol: \Kronecker
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r4
 	Maple-Alternatives: KroneckerDelta[$0, $1]
 	Maple-Comment: This funcion needs an extra package. with(Physics)
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Kronecker delta
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -3233,6 +3779,8 @@ Symbol: \KummerM
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KummerK
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Kummer confluent hypergeometric functions M
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3250,6 +3798,8 @@ Symbol: \KummerU
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KummerU
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Kummer confluent hypergeometric functions U
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3263,6 +3813,8 @@ Symbol: \KummerboldM
 	DLMF-Link: dlmf.nist.gov/13.2#E3
 	Maple-Alternatives: KummerM($0, $1, $2)/GAMMA($1)
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Olver's confluent hypergeometric functions U
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3303,6 +3855,8 @@ Symbol: \LambertW
 	Maple-Comment: The DLMF defines two branches with extra macros. \LambertWp and \LambertWm. Take a look at http://dlmf.nist.gov/4.13 for further information. || The DLMF doesn't define other macros for the branches (only \LambertWp and \LambertWm when your first argument is -1 and your second argument is real-valued).
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LambertW
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lambert W-Function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3315,6 +3869,9 @@ Symbol: \LambertWm
 	Constraints: -1/e \leq x < 0
 	DLMF: \LambertWm@{x}
 	DLMF-Link: dlmf.nist.gov/4.13#p2
+	Mathematica: ProductLog[-1, $0]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Another branch of Lambert W-Function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3327,6 +3884,12 @@ Symbol: \LambertWp
 	Constraints: -1/e \leq x < 0
 	DLMF: \LambertWp@{x}
 	DLMF-Link: dlmf.nist.gov/4.13#p2
+	Mathematica: ProductLog[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/ProductLog.html
 	Meanings: Principle branch of Lambert W-Function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3340,6 +3903,8 @@ Symbol: \LameEc
 	DLMF-Link: dlmf.nist.gov/29.3#SS4.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lame function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3353,6 +3918,8 @@ Symbol: \LameEs
 	DLMF-Link: dlmf.nist.gov/29.3#SS4.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lame function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3366,6 +3933,8 @@ Symbol: \Lamea
 	DLMF-Link: dlmf.nist.gov/29.3#SS1.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Eigenvalues of Lame's equation
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3379,6 +3948,8 @@ Symbol: \Lameb
 	DLMF-Link: dlmf.nist.gov/29.3#SS1.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Eigenvalues of Lame's equation
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3392,6 +3963,8 @@ Symbol: \LamecE
 	DLMF-Link: dlmf.nist.gov/29.12#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3405,6 +3978,8 @@ Symbol: \LamecdE
 	DLMF-Link: dlmf.nist.gov/29.12#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3418,6 +3993,8 @@ Symbol: \LamedE
 	DLMF-Link: dlmf.nist.gov/29.12#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3431,6 +4008,8 @@ Symbol: \LamesE
 	DLMF-Link: dlmf.nist.gov/29.12#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3444,6 +4023,8 @@ Symbol: \LamescE
 	DLMF-Link: dlmf.nist.gov/29.12#E5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3457,6 +4038,8 @@ Symbol: \LamescdE
 	DLMF-Link: dlmf.nist.gov/29.12#E8
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3470,6 +4053,8 @@ Symbol: \LamesdE
 	DLMF-Link: dlmf.nist.gov/29.12#E6
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3483,6 +4068,8 @@ Symbol: \LameuE
 	DLMF-Link: dlmf.nist.gov/29.12#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lame polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3496,6 +4083,8 @@ Symbol: \Lattice
 	DLMF-Link: dlmf.nist.gov/23.2#i
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lattice
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -3509,6 +4098,8 @@ Symbol: \LauricellaFD
 	DLMF-Link: dlmf.nist.gov/19.15#p1
 	Maple-Alternatives: 
 	Maple-Comment: "see also ""Multivariate hypergeometric function"" under ""Elliptic Integrals"""
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lauricella's multivariate hypergeometric function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3592,6 +4183,9 @@ Symbol: \LegendrePoly
 	Maple-Comment: Note that LegendreP is also the Legendre function.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	Mathematica: LegendreP[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Legendre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3609,6 +4203,8 @@ Symbol: \LegendrePolys
 	Maple-Comment: Note that LegendreP is also the Legendre function. This translation bases on DLMF 18.7.10.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Shifted Legendre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3656,6 +4252,8 @@ Symbol: \LegendreSymbol
 	DLMF-Link: dlmf.nist.gov/27.9
 	Maple-Alternatives: legendre($0, $1)
 	Maple-Comment: This funcion needs an extra package. For Maple 2016 or older use with(numtheory), otherwise use with(NumberTheory)
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Legendre symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -3673,6 +4271,8 @@ Symbol: \LerchPhi
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LerchPhi
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lerch Phi function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3686,6 +4286,8 @@ Symbol: \LeviCivita
 	DLMF-Link: dlmf.nist.gov/1.6#E14
 	Maple-Alternatives: LeviCivita[$0, $1, $2]
 	Maple-Comment: This funcion needs an extra package: with(Physics). The number of variables is not defined in Maple. LeviCivita[j,k,l,...]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Levi-Civita symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -3699,6 +4301,8 @@ Symbol: \LinBrF
 	DLMF-Link: dlmf.nist.gov/7.19#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Line broadening function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3712,6 +4316,8 @@ Symbol: \LiouvilleLambda
 	DLMF-Link: dlmf.nist.gov/27.2#E13
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Liouville's function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3725,6 +4331,8 @@ Symbol: \Ln
 	Constraints: z != 0
 	DLMF: \Ln@@{z}
 	DLMF-Link: dlmf.nist.gov/4.2#E1
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Multivalued natural logarithm
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -3743,6 +4351,12 @@ Symbol: \LogInt
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Li
+	Mathematica: LogIntegral[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: (-\inf, 1)
+	Mathematica-Comment: Mathematica can compute the principle branch for x between 0 and 1 as well, while this is not defined in DLMF.
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/LogIntegral.html
 	Meanings: Logarithmic integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3760,6 +4374,8 @@ Symbol: \LommelS
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LommelS2
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lommel S
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3777,6 +4393,8 @@ Symbol: \Lommels
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LommelS1
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Lommel s
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -3788,6 +4406,8 @@ Symbol: \Longleftrightarrow
   Feature Set: dlmf-macro
 	DLMF: \Longleftrightarrow
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r13
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Equivalence
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -3799,6 +4419,8 @@ Symbol: \Longrightarrow
   Feature Set: dlmf-macro
 	DLMF: \Longrightarrow
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r12
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Implies
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -3812,6 +4434,8 @@ Symbol: \MangoldtLambda
 	DLMF-Link: dlmf.nist.gov/27.2#E14
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Mangoldt's function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3825,6 +4449,8 @@ Symbol: \MathieuCe
 	DLMF-Link: dlmf.nist.gov/28.20#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -3838,6 +4464,8 @@ Symbol: \MathieuD
 	DLMF-Link: dlmf.nist.gov/28.28#E24
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3851,6 +4479,8 @@ Symbol: \MathieuDc
 	DLMF-Link: dlmf.nist.gov/28.28#E39
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3864,6 +4494,8 @@ Symbol: \MathieuDs
 	DLMF-Link: dlmf.nist.gov/28.28#E35
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3877,6 +4509,8 @@ Symbol: \MathieuDsc
 	DLMF-Link: dlmf.nist.gov/28.28#E40
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3894,6 +4528,8 @@ Symbol: \MathieuEigenvaluea
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuA
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Mathieu eigenvalues
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -3911,6 +4547,8 @@ Symbol: \MathieuEigenvalueb
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuB
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Mathieu eigenvalues
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -3924,6 +4562,8 @@ Symbol: \MathieuEigenvaluelambda
 	DLMF-Link: dlmf.nist.gov/28.12#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Mathieu eigenvalues
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -3937,6 +4577,8 @@ Symbol: \MathieuFc
 	DLMF-Link: dlmf.nist.gov/28.26#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3950,6 +4592,8 @@ Symbol: \MathieuFe
 	DLMF-Link: dlmf.nist.gov/28.20#E6
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -3963,6 +4607,8 @@ Symbol: \MathieuFs
 	DLMF-Link: dlmf.nist.gov/28.26#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3976,6 +4622,8 @@ Symbol: \MathieuGc
 	DLMF-Link: dlmf.nist.gov/28.26#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3989,6 +4637,8 @@ Symbol: \MathieuGe
 	DLMF-Link: dlmf.nist.gov/28.20#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4002,6 +4652,8 @@ Symbol: \MathieuGs
 	DLMF-Link: dlmf.nist.gov/28.26#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Cross-products of Mathieu function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4015,6 +4667,8 @@ Symbol: \MathieuIe
 	DLMF-Link: dlmf.nist.gov/28.20#E17
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4028,6 +4682,8 @@ Symbol: \MathieuIo
 	DLMF-Link: dlmf.nist.gov/28.20#E18
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4041,6 +4697,8 @@ Symbol: \MathieuKe
 	DLMF-Link: dlmf.nist.gov/28.20#E19
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4054,6 +4712,8 @@ Symbol: \MathieuKo
 	DLMF-Link: dlmf.nist.gov/28.20#E20
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4067,6 +4727,8 @@ Symbol: \MathieuM
 	DLMF-Link: dlmf.nist.gov/28.20#SS3.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 2
@@ -4080,6 +4742,8 @@ Symbol: \MathieuMc
 	DLMF-Link: dlmf.nist.gov/28.20#E15
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Radial Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 2
@@ -4093,6 +4757,8 @@ Symbol: \MathieuMe
 	DLMF-Link: dlmf.nist.gov/28.20#E5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4106,6 +4772,8 @@ Symbol: \MathieuMs
 	DLMF-Link: dlmf.nist.gov/28.20#E16
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Radial Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 2
@@ -4119,6 +4787,8 @@ Symbol: \MathieuSe
 	DLMF-Link: dlmf.nist.gov/28.20#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4136,6 +4806,8 @@ Symbol: \Mathieuce
 	Maple-Comment: "Maple normalizes values if n=0. For n=0 use the alternative translation!
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuCE
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Mathieu eigenvalue function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4149,6 +4821,8 @@ Symbol: \Mathieufe
 	DLMF-Link: dlmf.nist.gov/28.5#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Second solutions of Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4162,6 +4836,8 @@ Symbol: \Mathieuge
 	DLMF-Link: dlmf.nist.gov/28.5#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Second solutions of Mathieu function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4174,6 +4850,8 @@ Symbol: \Mathieume
 	DLMF: \Mathieume{n}@@{z}{q}
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Mathieu eigenvalue function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4191,6 +4869,8 @@ Symbol: \Mathieuse
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuSE
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Mathieu eigenvalue function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -4204,6 +4884,8 @@ Symbol: \Meixner
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r9
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Meixner polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4217,6 +4899,8 @@ Symbol: \MeixnerM
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r9
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Meixner polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4230,6 +4914,8 @@ Symbol: \MeixnerPollaczek
 	DLMF-Link: dlmf.nist.gov/18.19#P3.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Meixner-Pollaczek polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -4243,6 +4929,8 @@ Symbol: \MeixnerPollaczekP
 	DLMF-Link: dlmf.nist.gov/18.19#P3.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Meixner-Pollaczek polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -4256,6 +4944,8 @@ Symbol: \Mills
 	DLMF-Link: dlmf.nist.gov/7.8#E1
 	Maple-Alternatives: 
 	Maple-Comment: Maybe with(Statistics): MillsRatio(X,t)
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Mills' Ratio
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4269,6 +4959,8 @@ Symbol: \MittagLeffler
 	DLMF-Link: dlmf.nist.gov/10.46#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Mittag-Leffler function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -4282,6 +4974,8 @@ Symbol: \ModCylinder
 	DLMF-Link: dlmf.nist.gov/10.25#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Nontrivial linear combination of modified Bessel functions
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4295,6 +4989,8 @@ Symbol: \ModularJ
 	DLMF-Link: dlmf.nist.gov/23.15#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Klein's complete invariant
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4308,6 +5004,8 @@ Symbol: \ModularLambda
 	DLMF-Link: dlmf.nist.gov/23.15#E6
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Elliptic modular function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4321,7 +5019,9 @@ Symbol: \MoebiusMu
 	DLMF-Link: dlmf.nist.gov/27.2#E12
 	Maple-Alternatives: 
 	Maple-Comment: 
-	Meanings: Möbius function
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
+	Meanings: M򢩵s function
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
@@ -4334,6 +5034,8 @@ Symbol: \NatNumber
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r11
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Set of positive integers
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -4347,6 +5049,8 @@ Symbol: \NeumannFactor
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:NeumannFactor
 	Maple-Alternatives: 2-KroneckerDelta[$0, 0]
 	Maple-Comment: This funcion needs an extra package. with(Physics)
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Neumann factor
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -4360,6 +5064,8 @@ Symbol: \NeumannPoly
 	DLMF-Link: dlmf.nist.gov/10.23#E12
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Neumann's polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4377,6 +5083,8 @@ Symbol: \NumPrimeDivNu
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=ifactor
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Number of distinct primes dividing n
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4390,6 +5098,8 @@ Symbol: \NumPrimesLessPi
 	DLMF-Link: dlmf.nist.gov/27.2#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Number of primes not exceeding x
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4403,6 +5113,8 @@ Symbol: \NumSquaresR
 	DLMF-Link: dlmf.nist.gov/27.13#SS4.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Number of squares
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4416,6 +5128,8 @@ Symbol: \ODEgenAiryA
 	DLMF-Link: dlmf.nist.gov/9.13#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Generalized Airy function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4429,6 +5143,8 @@ Symbol: \ODEgenAiryB
 	DLMF-Link: dlmf.nist.gov/9.13#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Generalized Bairy function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4442,6 +5158,8 @@ Symbol: \Pade
 	DLMF-Link: dlmf.nist.gov/3.11#SS4.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Pade approximation
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -4459,6 +5177,8 @@ Symbol: \ParabolicU
 	Maple-Comment: For a=0, this can be computed with BesselK. But this produces branch cut issues
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CylinderU
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Parabolic cylinder function U
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4472,6 +5192,8 @@ Symbol: \ParabolicUbar
 	DLMF-Link: dlmf.nist.gov/12.2#21
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Real parabolic cylinder function U
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4489,6 +5211,8 @@ Symbol: \ParabolicV
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CylinderV
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Parabolic cylinder function V
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4502,6 +5226,8 @@ Symbol: \ParabolicW
 	DLMF-Link: dlmf.nist.gov/12.14.i
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Parabolic cylinder function W
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4515,6 +5241,8 @@ Symbol: \PartitionsP
 	DLMF-Link: dlmf.nist.gov/26.9
 	Maple-Alternatives: 
 	Maple-Comment: Maple needs an extra package. Load it with the following command: with(combinat,partition)
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Number of partitions of nonnegative integer n into at most k parts
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4528,6 +5256,8 @@ Symbol: \PeriodicBernoulliB
 	DLMF-Link: dlmf.nist.gov/24.2#iii
 	Maple-Alternatives: bell($0)
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Periodic Bernoulli polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4541,6 +5271,8 @@ Symbol: \PeriodicEulerE
 	DLMF-Link: dlmf.nist.gov/24.2#iii
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Periodic Euler polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4554,6 +5286,8 @@ Symbol: \PeriodicZeta
 	DLMF-Link: dlmf.nist.gov/25.13#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Periodic zeta function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4568,6 +5302,8 @@ Symbol: \Permutations
 	Maple: permute($0)
 	Maple-Alternatives: 
 	Maple-Comment: Maple needs an extra package. Load it with the following command: with(combinat)
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Set of permutations
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -4581,6 +5317,8 @@ Symbol: \PlanePartitionsPP
 	DLMF-Link: dlmf.nist.gov/26.12#SS1.p4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Number of plane partitions
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4594,6 +5332,8 @@ Symbol: \PollaczekP
 	DLMF-Link: dlmf.nist.gov/18.35#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Pollaczek polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4611,6 +5351,8 @@ Symbol: \Polylogarithm
 	Maple-Comment: The alternative notation phi is an old notation for the same function. Be aware of the different order of the variables.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=polylog
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Polylogarithm
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4628,6 +5370,8 @@ Symbol: \Prod
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=product
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Product
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -4641,6 +5385,8 @@ Symbol: \Racah
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Racah polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4654,6 +5400,8 @@ Symbol: \RacahR
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Racah polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4667,6 +5415,8 @@ Symbol: \RamanujanSum
 	DLMF-Link: dlmf.nist.gov/27.10#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Ramanujan's sum
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4680,6 +5430,8 @@ Symbol: \RamanujanTau
 	DLMF-Link: dlmf.nist.gov/27.14#E18
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Ramanujan's Tau function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4693,6 +5445,8 @@ Symbol: \Rational
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r13
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Set of rational numbers
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -4706,6 +5460,8 @@ Symbol: \RayleighFun
 	DLMF-Link: dlmf.nist.gov/10.21#E55
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Rayleigh function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4719,6 +5475,8 @@ Symbol: \Real
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r14
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Set of real numbers
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -4736,6 +5494,8 @@ Symbol: \RepInterfc
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=erfc
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Repeated / Iterated integral of complementary error function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4749,6 +5509,8 @@ Symbol: \Residue
 	DLMF-Link: dlmf.nist.gov/1.10#SS3.p5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Residue
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -4762,6 +5524,8 @@ Symbol: \RestrictedCompositionsC
 	DLMF-Link: dlmf.nist.gov/26.10#i
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Restricted number of compositions
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4786,6 +5550,8 @@ Symbol: \RiemannXi
 	DLMF-Link: dlmf.nist.gov/25.4#E4
 	Maple-Alternatives: AiryBi($0)*(int(AiryAi(t), t = ($0) .. infinity))+AiryAi($0)*(int(AiryBi(t), t = 0 .. ($0)))
 	Maple-Comment: You could use the alternative translation!
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Riemann's xi-function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4803,6 +5569,8 @@ Symbol: \RiemannZeta
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Riemann zeta function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4816,6 +5584,8 @@ Symbol: \Schwarzian
 	DLMF-Link: dlmf.nist.gov/1.13#E20
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Schwarzian derivative
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -4829,6 +5599,8 @@ Symbol: \ScorerGi
 	DLMF-Link: dlmf.nist.gov/9.12#i
 	Maple-Alternatives: 
 	Maple-Comment: You could use the alternative translation. Since the given variable is used for limits of an Integral, a complex variable could produces trouble!
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Scorer function Gi
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4842,6 +5614,8 @@ Symbol: \ScorerHi
 	DLMF-Link: dlmf.nist.gov/9.12#i
 	Maple-Alternatives: 
 	Maple-Comment: You could use the alternative translation. Since the given variable is used for limits of an Integral, a complex variable could produces trouble!
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Scorer function Hi
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4853,6 +5627,8 @@ Symbol: \SinCosIntf
   Feature Set: dlmf-macro
 	DLMF: \SinCosIntf@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E17
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Auxiliary function for sine and cosine integrals
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4864,6 +5640,8 @@ Symbol: \SinCosIntg
   Feature Set: dlmf-macro
 	DLMF: \SinCosIntg@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E18
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Auxiliary function for sine and cosine integrals
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4881,6 +5659,12 @@ Symbol: \SinInt
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Si
+	Mathematica: SinIntegral[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/SinIntegral.html
 	Meanings: Sine integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4893,6 +5677,8 @@ Symbol: \SinIntg
 	Branch Cuts: z = 0
 	DLMF: \SinIntg@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.21#E2
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Generalized sine integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4910,6 +5696,12 @@ Symbol: \SinhInt
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Shi
+	Mathematica: SinhIntegral[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/SinhIntegral.html
 	Meanings: Hyperbolic sine integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4923,6 +5715,8 @@ Symbol: \SpaceTestFunTempered
 	DLMF-Link: dlmf.nist.gov/1.16#v
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Space of test functions for tempered distributions
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4936,6 +5730,8 @@ Symbol: \SphBesselIi
 	DLMF-Link: dlmf.nist.gov/10.47#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified spherical Bessel function of the first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4949,6 +5745,8 @@ Symbol: \SphBesselIii
 	DLMF-Link: dlmf.nist.gov/10.47#E8
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified spherical Bessel function of the first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4962,6 +5760,8 @@ Symbol: \SphBesselJ
 	DLMF-Link: dlmf.nist.gov/10.47#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Spherical Bessel function of the first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4975,6 +5775,8 @@ Symbol: \SphBesselK
 	DLMF-Link: dlmf.nist.gov/10.47#E9
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified spherical Bessel function of the second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -4988,6 +5790,8 @@ Symbol: \SphBesselY
 	DLMF-Link: dlmf.nist.gov/10.47#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Spherical Bessel function of the second kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5001,6 +5805,8 @@ Symbol: \SphHankelHi
 	DLMF-Link: dlmf.nist.gov/10.47#E5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Spherical Bessel function of the third kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5014,6 +5820,8 @@ Symbol: \SphHankelHii
 	DLMF-Link: dlmf.nist.gov/10.47#E6
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Spherical Bessel function of the third kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5031,6 +5839,8 @@ Symbol: \SphericalHarmonicY
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=SphericalY
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Spherical harmonics
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5044,6 +5854,8 @@ Symbol: \SpheroidalEigenvalueLambda
 	DLMF-Link: dlmf.nist.gov/30.3#SS1.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Eigenvalues of the spheroidal differential equation
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5057,6 +5869,8 @@ Symbol: \SpheroidalOnCutPs
 	DLMF-Link: dlmf.nist.gov/30.4#i
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Spheroidal wave function of the first kind
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5070,6 +5884,8 @@ Symbol: \SpheroidalOnCutQs
 	DLMF-Link: dlmf.nist.gov/30.5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Spheroidal wave function of the second kind
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5083,6 +5899,8 @@ Symbol: \SpheroidalPs
 	DLMF-Link: dlmf.nist.gov/30.6#p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Spheroidal wave function of the first kind complex argument
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5096,6 +5914,8 @@ Symbol: \SpheroidalQs
 	DLMF-Link: dlmf.nist.gov/30.6#p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Spheroidal wave function of the second kind complex argument
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5109,6 +5929,8 @@ Symbol: \SpheroidalRadialS
 	DLMF-Link: dlmf.nist.gov/30.11#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Radial spheroidal wave function
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -5139,6 +5961,8 @@ Symbol: \StieltjesWigert
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:StieltjesWigert
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Stieltjes-Wigert polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -5152,6 +5976,8 @@ Symbol: \StieltjesWigertS
 	DLMF-Link: dlmf.nist.gov/18.27#E18
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Stieltjes-Wigert polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5169,6 +5995,8 @@ Symbol: \StirlingS
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Stirling1
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Stirling number of the first kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5186,6 +6014,8 @@ Symbol: \StirlingSS
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Stirling2
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Stirling number of the second kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5203,6 +6033,8 @@ Symbol: \StruveH
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=StruveH
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Struve function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5216,6 +6048,8 @@ Symbol: \StruveK
 	DLMF-Link: dlmf.nist.gov/11.2#E5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Associated Struve funtion
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5233,6 +6067,8 @@ Symbol: \StruveL
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=StruveL
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Modified Struve function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5246,6 +6082,8 @@ Symbol: \StruveM
 	DLMF-Link: dlmf.nist.gov/11.2#E6
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Associated Modified Struve function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5263,6 +6101,8 @@ Symbol: \Sum
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=sum
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Sum
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -5276,6 +6116,8 @@ Symbol: \SurfaceHarmonicY
 	DLMF-Link: dlmf.nist.gov/14.30#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Surface harmonics of the first kind
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5289,6 +6131,8 @@ Symbol: \TriangleOP
 	DLMF-Link: dlmf.nist.gov/18.37#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Triangle polynomial
 	Number of Ats: 1
 	Number of Parameters: 5
@@ -5306,6 +6150,8 @@ Symbol: \Ultra
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Ultraspherical Gegenbauer polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5323,6 +6169,8 @@ Symbol: \Ultraspherical
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Ultraspherical Gegenbauer polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5336,6 +6184,8 @@ Symbol: \VoigtU
 	DLMF-Link: dlmf.nist.gov/7.19#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Voigt function U
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5349,6 +6199,8 @@ Symbol: \VoigtV
 	DLMF-Link: dlmf.nist.gov/7.19#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Voigt function V
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5362,6 +6214,8 @@ Symbol: \WaringG
 	DLMF-Link: dlmf.nist.gov/27.13#SS3.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Waring's function G
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5375,6 +6229,8 @@ Symbol: \Waringg
 	DLMF-Link: dlmf.nist.gov/27.13#SS3.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Waring's function g
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5392,6 +6248,8 @@ Symbol: \WeberE
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=AngerJ
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Weber function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5409,6 +6267,8 @@ Symbol: \WeierPInv
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassP
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Weierstrass elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5422,6 +6282,8 @@ Symbol: \WeierPLat
 	DLMF-Link: dlmf.nist.gov/23.2#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Weierstrass elliptic function on lattice
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5439,6 +6301,8 @@ Symbol: \WeiersigmaInv
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassSigma
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Weierstrass sigma function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5452,6 +6316,8 @@ Symbol: \WeiersigmaLat
 	DLMF-Link: dlmf.nist.gov/23.1E6
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Weierstrass sigma function on lattice
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5469,6 +6335,8 @@ Symbol: \WeierzetaInv
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassZeta
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Weierstrass zeta function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5482,6 +6350,8 @@ Symbol: \WeierzetaLat
 	DLMF-Link: dlmf.nist.gov/23.1E5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Weierstrass zeta function on lattice
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5499,6 +6369,8 @@ Symbol: \WhitD
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CylinderD
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Whittaker's notation D for the parabolic cylinder function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5516,6 +6388,8 @@ Symbol: \WhitM
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerM
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Whittaker confluent hypergeometric function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5533,6 +6407,8 @@ Symbol: \WhitW
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerW
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Whittaker confluent hypergeometric function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -5546,6 +6422,8 @@ Symbol: \Wilson
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Wilson polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5559,6 +6437,8 @@ Symbol: \WilsonW
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Wilson polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5572,6 +6452,8 @@ Symbol: \ZeroAiryAi
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Zeros of Airy function of the first kind
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -5585,6 +6467,8 @@ Symbol: \ZeroAiryAiPrime
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Zeros of derivative Airy function of the first kind
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -5598,6 +6482,8 @@ Symbol: \ZeroAiryBi
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Zeros of Airy function  of the second kind
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -5611,6 +6497,8 @@ Symbol: \ZeroAiryBiPrime
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Zeros of derivative Airy function of the second kind
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -5624,6 +6512,8 @@ Symbol: \ZeroBesselJ
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Zeros of Bessel function first kind
 	Number of Ats: 0
 	Number of Parameters: 1
@@ -5637,6 +6527,8 @@ Symbol: \ZeroBesselJPrime
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Zeros of derivative of Bessel function first kind
 	Number of Ats: 0
 	Number of Parameters: 1
@@ -5650,6 +6542,8 @@ Symbol: \ZeroBesselY
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Zeros of Bessel function second kind
 	Number of Ats: 0
 	Number of Parameters: 1
@@ -5663,6 +6557,8 @@ Symbol: \ZeroBesselYPrime
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Zeros of derivative of Bessel function second kind
 	Number of Ats: 0
 	Number of Parameters: 1
@@ -5682,6 +6578,12 @@ Symbol: \acos
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+	Mathematica: ArcCos[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcCos.html
 	Meanings: Inverse cosine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5701,6 +6603,12 @@ Symbol: \acosh
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arccosh
+	Mathematica: ArcCosh[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcCosh.html
 	Meanings: Inverse hyperbolic cosine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5720,6 +6628,12 @@ Symbol: \acot
 	Maple-Comment: "Maple defines another branch cut than DLMF for the invert cotangent function. You can use an alternative translation to avoid that. With the arctan alternative you have the same branch cuts as DLMF. See also ""According to Arbamowitz and Stegun or arccoth needn't be uncouth"" by R.M. Corless, D.J. Jeffrey, S.M. Watt."
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+	Mathematica: ArcCot[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcCot.html
 	Meanings: Inverse cotangent
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5739,6 +6653,12 @@ Symbol: \acoth
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arccoth
+	Mathematica: ArcCoth[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcCoth.html
 	Meanings: Inverse hyperbolic cotangent
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5758,6 +6678,12 @@ Symbol: \acsc
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+	Mathematica: ArcCsc[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcCsc.html
 	Meanings: Inverse cosecant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5777,6 +6703,12 @@ Symbol: \acsch
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arccsch
+	Mathematica: ArcCsch[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcCsch.html
 	Meanings: Inverse hyperbolic cosecant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5791,6 +6723,12 @@ Symbol: \arcGudermannian
 	DLMF-Link: dlmf.nist.gov/4.23#E41
 	Maple-Alternatives: arctanh(sin($0))
 	Maple-Comment: 
+	Mathematica: InverseGudermannian[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: Defined also for imaginary values.
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/InverseGudermannian.html
 	Meanings: Inverse Gudermannian function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5808,6 +6746,8 @@ Symbol: \arcJacobicd
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5825,6 +6765,8 @@ Symbol: \arcJacobicn
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5842,6 +6784,8 @@ Symbol: \arcJacobics
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5859,6 +6803,8 @@ Symbol: \arcJacobidc
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5876,6 +6822,8 @@ Symbol: \arcJacobidn
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5893,6 +6841,8 @@ Symbol: \arcJacobids
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5910,6 +6860,8 @@ Symbol: \arcJacobinc
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5927,6 +6879,8 @@ Symbol: \arcJacobind
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5944,6 +6898,8 @@ Symbol: \arcJacobins
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5961,6 +6917,8 @@ Symbol: \arcJacobisc
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5978,6 +6936,8 @@ Symbol: \arcJacobisd
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -5995,6 +6955,8 @@ Symbol: \arcJacobisn
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6014,6 +6976,12 @@ Symbol: \asec
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+	Mathematica: ArcSec[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcSec.html
 	Meanings: Inverse secant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6033,6 +7001,12 @@ Symbol: \asech
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arcsech
+	Mathematica: ArcSech[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcSech.html
 	Meanings: Inverse hyperbolic secant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6052,6 +7026,12 @@ Symbol: \asin
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+	Mathematica: ArcSin[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcSin.html
 	Meanings: Inverse sine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6071,6 +7051,12 @@ Symbol: \asinh
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arcsinh
+	Mathematica: ArcSinh[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcSinh.html
 	Meanings: Inverse hyperbolic sine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6090,6 +7076,12 @@ Symbol: \atan
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+	Mathematica: ArcTan[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcTan.html
 	Meanings: Inverse tangent
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6109,6 +7101,12 @@ Symbol: \atanh
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arctanh
+	Mathematica: ArcTanh[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/ArcTanh.html
 	Meanings: Inverse hyperbolic tangent
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6133,6 +7131,8 @@ Symbol: \bigqJacobi
 	DLMF-Link: dlmf.nist.gov/18.27#E5
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: big q-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6146,6 +7146,8 @@ Symbol: \bigqJacobiIVparam
 	DLMF-Link: dlmf.nist.gov/18.27#E6
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: big q-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6159,6 +7161,8 @@ Symbol: \bigqLaguerre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:bigqLaguerre
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: big q-Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6172,6 +7176,8 @@ Symbol: \bigqLegendre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:bigqLegendre
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: big q-Legendre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6189,6 +7195,12 @@ Symbol: \binom
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=binomial
+	Mathematica: Binomial[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Binomial.html
 	Meanings: Binomial coefficient
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6200,6 +7212,12 @@ Symbol: \binomial
   Feature Set: dlmf-macro
 	DLMF: \binomial{m}{n}
 	DLMF-Link: dlmf.nist.gov/1.2#E1
+	Mathematica: Binomial[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Binomial.html
 	Meanings: Binomial coefficient
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6224,6 +7242,8 @@ Symbol: \cartprod
 	DLMF-Link: dlmf.nist.gov/23.1#p2.t1.r18
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Cartesian product of groups
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6241,6 +7261,8 @@ Symbol: \ceiling
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ceil
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Ceiling
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6258,6 +7280,12 @@ Symbol: \conj
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=conjugate
+	Mathematica: Conjugate[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Conjugate.html
 	Meanings: Conjugate complex number
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6275,6 +7303,12 @@ Symbol: \cos
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=cos
+	Mathematica: Cos[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Cosh.html
 	Meanings: Cosine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6292,6 +7326,9 @@ Symbol: \cosh
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=cosh
+	Mathematica: Cosh[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Hyperbolic cosine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6304,6 +7341,8 @@ Symbol: \cosintg
 	Branch Cuts: z = 0
 	DLMF: \cosintg@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.21#E1
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Generalized cosine integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -6322,6 +7361,12 @@ Symbol: \cot
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=cot
+	Mathematica: Cot[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Coth.html
 	Meanings: Cotangent
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6340,6 +7385,9 @@ Symbol: \coth
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=coth
+	Mathematica: Coth[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Hyperbolic cotangent
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6366,6 +7414,12 @@ Symbol: \csc
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=csc
+	Mathematica: Csc[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Csch.html
 	Meanings: Cosecant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6384,6 +7438,9 @@ Symbol: \csch
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=csch
+	Mathematica: Csch[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Hyperbolic cosecant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6397,6 +7454,8 @@ Symbol: \ctsHahn
 	DLMF-Link: dlmf.nist.gov/18.19#P2.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Continuous Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6410,6 +7469,8 @@ Symbol: \ctsbigqHermite
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsbigqHermite
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Continuous big q-Hermite polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6423,6 +7484,8 @@ Symbol: \ctsdualHahn
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Continuous dual Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6436,6 +7499,8 @@ Symbol: \ctsdualqHahn
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsdualqHahn
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Continuous dual q-Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6449,6 +7514,8 @@ Symbol: \ctsqHahn
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqHahn
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Continuous q-Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6462,6 +7529,8 @@ Symbol: \ctsqHermite
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqHermite
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Continuous q-Hermite polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6475,6 +7544,8 @@ Symbol: \ctsqJacobi
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqJacobi
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Continuous q-Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -6488,6 +7559,8 @@ Symbol: \ctsqJacobiRahman
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqJacobiRahman
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Continuous q-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6501,6 +7574,8 @@ Symbol: \ctsqLaguerre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqLaguerre
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Continuous q-Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -6514,6 +7589,8 @@ Symbol: \ctsqLegendre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqLegendre
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Continuous q-Legendre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6527,6 +7604,8 @@ Symbol: \ctsqLegendreRahman
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqLegendreRahman
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Continuous q-Legendre-Rahman polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6540,6 +7619,8 @@ Symbol: \ctsqUltra
 	DLMF-Link: dlmf.nist.gov/18.28#E13
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Continuous q-Ultraspherical polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6553,6 +7634,8 @@ Symbol: \ctsqUltrae
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:ctsqUltrae
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Continuous q-Ultraspherical polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6566,6 +7649,8 @@ Symbol: \deltaDistribution
 	DLMF-Link: dlmf.nist.gov/1.17.i
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Dirac delta distribution
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6583,6 +7668,8 @@ Symbol: \deriv
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=diff
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Derivative
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6596,6 +7683,8 @@ Symbol: \diff
 	DLMF-Link: dlmf.nist.gov/1.4#SS4.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Differential
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6614,6 +7703,12 @@ Symbol: \digamma
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Psi
+	Mathematica: PolyGamma[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/PolyGamma.html
 	Meanings: Digamma / Psi function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -6627,6 +7722,8 @@ Symbol: \discrqHermiteI
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:discrqHermiteI
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Hermite discrete I
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6640,6 +7737,8 @@ Symbol: \discrqHermiteII
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:discrqHermiteII
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Hermite discrete II
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6653,6 +7752,8 @@ Symbol: \divides
 	DLMF-Link: dlmf.nist.gov/24.1#p2.t1.r4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Devides
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6666,6 +7767,8 @@ Symbol: \dualHahn
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r5
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Dual Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6679,6 +7782,8 @@ Symbol: \dualqHahn
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:dualqHahn
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: dual q-Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6692,6 +7797,8 @@ Symbol: \dualqKrawtchouk
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:dualqKrawtchouk
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: dual q-Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -6709,6 +7816,12 @@ Symbol: \erf
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=erf
+	Mathematica: Erf[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Erf.html
 	Meanings: Error function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6726,6 +7839,12 @@ Symbol: \erfc
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=erfc
+	Mathematica: Erfc[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Erfc.html
 	Meanings: Complementary error function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6739,6 +7858,12 @@ Symbol: \erfw
 	DLMF-Link: dlmf.nist.gov/7.2#E3
 	Maple-Alternatives: exp(-($0)^2)*erfc(-I*($0))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
+	Mathematica: Exp[-$0^2]*Erfc[-I*$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: There is no direct translation but you can use the alternative formula instead if you want.
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Exp.html
 	Meanings: Complementary error function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -6756,6 +7881,12 @@ Symbol: \exp
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=exp
+	Mathematica: Exp[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Exp.html
 	Meanings: Exponential function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6775,6 +7906,8 @@ Symbol: \f
   Feature Set: dlmf-macro
 	DLMF: \f{f}@{x}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:f
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6803,6 +7936,8 @@ Symbol: \floor
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=floor
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Floor
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6814,6 +7949,8 @@ Symbol: \forall
   Feature Set: dlmf-macro
 	DLMF: \forall
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r11
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: For all
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6827,6 +7964,8 @@ Symbol: \idem
 	DLMF-Link: dlmf.nist.gov/17.1#p3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Idem function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -6838,6 +7977,12 @@ Symbol: \ifrac
   Feature Set: dlmf-macro
 	DLMF: \ifrac{a}{b}
 	DLMF-Link: dlmf.nist.gov/4.2.E8
+	Mathematica: Divide[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Divide.html
 	Meanings: Fraction
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6855,6 +8000,12 @@ Symbol: \imagpart
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Im
+	Mathematica: Im[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Im.html
 	Meanings: Imaginary part of a complex num
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6872,6 +8023,8 @@ Symbol: \in
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=in
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Element of
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6886,6 +8039,12 @@ Symbol: \incgamma
 	DLMF-Link: dlmf.nist.gov/8.2#E1
 	Maple-Alternatives: GAMMA($0)-GAMMA($0, $1)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
+	Mathematica: Gamma[$0, 0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: Mathematica's generalized incomplete gamma function defines variable intervals. The 2nd and 3rd argument defines the interval. Based on the DLMF definition, the interval is [0,z].
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Gamma.html
 	Meanings: Incomplete Gamma function (lower)
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -6900,6 +8059,8 @@ Symbol: \incgammastar
 	DLMF-Link: dlmf.nist.gov/8.2#E6
 	Maple-Alternatives: ($1)^(-($0))*(GAMMA($0)-GAMMA($0, $1))/GAMMA($0)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Incomplete Gamma star
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -6913,6 +8074,8 @@ Symbol: \inf
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r24
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Infimum
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6924,6 +8087,8 @@ Symbol: \int
   Feature Set: dlmf-macro
 	DLMF: \int
 	DLMF-Link: dlmf.nist.gov/1.4#iv
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Indefinite Integral
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6938,6 +8103,12 @@ Symbol: \inverf
 	DLMF-Link: dlmf.nist.gov/7.17#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica: InverseErf[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/InverseErf.html
 	Meanings: Inverse error function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6952,6 +8123,12 @@ Symbol: \inverfc
 	DLMF-Link: dlmf.nist.gov/7.17#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica: InverseErfc[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/InverseErfc.html
 	Meanings: Inverse complementary error function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -6973,6 +8150,8 @@ Symbol: \liminf
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Least limit point
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6986,6 +8165,8 @@ Symbol: \littleo
 	DLMF-Link: dlmf.nist.gov/2.1#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Landau notation o
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -6999,6 +8180,8 @@ Symbol: \littleqJacobi
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:littleqJacobi
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: little q-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7012,6 +8195,8 @@ Symbol: \littleqLaguerre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:littleqLaguerre
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: little q-Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -7025,6 +8210,8 @@ Symbol: \littleqLegendre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:littleqLegendre
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: little q-Legendre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -7044,6 +8231,12 @@ Symbol: \ln
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ln
+	Mathematica: Log[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Log.html
 	Meanings: Natural logarithm
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -7063,6 +8256,12 @@ Symbol: \log
 	Maple-Comment: Without a given base, ln equals log.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=log
+	Mathematica: Log[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Log.html
 	Meanings: Logarithm
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -7082,6 +8281,12 @@ Symbol: \logb
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=log
+	Mathematica: Log[$0,$1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Log.html
 	Meanings: Logarithm with different base
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7096,6 +8301,8 @@ Symbol: \mEulerBeta
 	DLMF-Link: dlmf.nist.gov/35.3#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Multivariate Euler-Beta function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -7110,22 +8317,13 @@ Symbol: \mEulerGamma
 	DLMF-Link: dlmf.nist.gov/35.3#i
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Multivariate Gamma
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
-
-Symbol: \mod
-
-  Feature Set: dlmf-macro
-	DLMF: \mod
-	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r10
-	Meanings: Modulo
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 0
-	Role: symbol
 
 Symbol: \monicAffqKrawtchouk
 
@@ -7134,6 +8332,8 @@ Symbol: \monicAffqKrawtchouk
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicAffqKrawtchouk
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic affine $q$-Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7147,6 +8347,8 @@ Symbol: \monicAlSalamCarlitzI
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicAlSalamCarlitzI
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Al-Salam-Carlitz I polynomial
 	Number of Ats: 2
 	Number of Parameters: 2
@@ -7160,6 +8362,8 @@ Symbol: \monicAlSalamCarlitzII
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicAlSalamCarlitzII
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Al-Salam-Carlitz II polynomial
 	Number of Ats: 2
 	Number of Parameters: 2
@@ -7173,6 +8377,8 @@ Symbol: \monicAlSalamChihara
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicAlSalamChihara
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Al-Salam-Chihara polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7186,6 +8392,8 @@ Symbol: \monicAskeyWilson
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicAskeyWilson
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Askey-Wilson polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7199,6 +8407,8 @@ Symbol: \monicBesselPoly
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicBesselPoly
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Bessel polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7212,6 +8422,8 @@ Symbol: \monicCharlier
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicCharlier
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Charlier polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7225,6 +8437,8 @@ Symbol: \monicChebyT
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicChebyT
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Chebyshev polynomial of the first kind
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7238,6 +8452,8 @@ Symbol: \monicChebyU
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicChebyU
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Chebyshev polynomial of the second kind
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7251,6 +8467,8 @@ Symbol: \monicHahn
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicHahn
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7264,6 +8482,8 @@ Symbol: \monicHermite
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicHermite
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Hermite polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7277,6 +8497,8 @@ Symbol: \monicJacobi
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicJacobi
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7290,6 +8512,8 @@ Symbol: \monicKrawtchouk
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicKrawtchouk
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7303,6 +8527,8 @@ Symbol: \monicLaguerre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicLaguerre
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Laguerre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7316,6 +8542,8 @@ Symbol: \monicLegendrePoly
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicLegendrePoly
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Legendre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7329,6 +8557,8 @@ Symbol: \monicMeixner
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicMeixner
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Meixner polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7342,6 +8572,8 @@ Symbol: \monicMeixnerPollaczek
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicMeixnerPollaczek
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Meixner-Pollaczek polynomial
 	Number of Ats: 2
 	Number of Parameters: 2
@@ -7355,6 +8587,8 @@ Symbol: \monicRacah
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicRacah
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Racah polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7368,6 +8602,8 @@ Symbol: \monicStieltjesWigert
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicStieltjesWigert
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Stieltjes-Wigert polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7381,6 +8617,8 @@ Symbol: \monicUltra
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicUltra
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic ultraspherical/Gegenbauer polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7394,6 +8632,8 @@ Symbol: \monicWilson
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicWilson
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic Wilson polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7407,6 +8647,8 @@ Symbol: \monicbigqJacobi
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicbigqJacobi
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic big $q$-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7420,6 +8662,8 @@ Symbol: \monicbigqLaguerre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicbigqLaguerre
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic big $q$-Laguerre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7433,6 +8677,8 @@ Symbol: \monicbigqLegendre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicbigqLegendre
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic big $q$-Legendre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7446,6 +8692,8 @@ Symbol: \monicctsHahn
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsHahn
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic continuous Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7459,6 +8707,8 @@ Symbol: \monicctsbigqHermite
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsbigqHermite
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic continuous big $q$-Hermite polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7472,6 +8722,8 @@ Symbol: \monicctsdualHahn
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsdualHahn
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic continuous dual Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7485,6 +8737,8 @@ Symbol: \monicctsdualqHahn
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsdualqHahn
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic continuous dual $q$-Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7498,6 +8752,8 @@ Symbol: \monicctsqHahn
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsqHahn
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic continuous $q$-Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7511,6 +8767,8 @@ Symbol: \monicctsqHermite
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsqHermite
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic continuous $q$-Hermite polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7524,6 +8782,8 @@ Symbol: \monicctsqJacobi
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsqJacobi
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic continuous $q$-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7537,6 +8797,8 @@ Symbol: \monicctsqLaguerre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsqLaguerre
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic continuous $q$-Laguerre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7550,6 +8812,8 @@ Symbol: \monicctsqLegendre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsqLegendre
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic continuous $q$-Legendre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7563,6 +8827,8 @@ Symbol: \monicctsqUltra
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicctsqUltra
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic continuous $q$-ultraspherical/Rogers polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7576,6 +8842,8 @@ Symbol: \monicdiscrqHermiteI
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicdiscrqHermiteI
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic discrete $q$-Hermite I polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7589,6 +8857,8 @@ Symbol: \monicdiscrqHermiteII
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicdiscrqHermiteII
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic discrete $q$-Hermite II polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7602,6 +8872,8 @@ Symbol: \monicdualHahn
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicdualHahn
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic dual Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7615,6 +8887,8 @@ Symbol: \monicdualqHahn
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicdualqHahn
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic dual $q$-Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7628,6 +8902,8 @@ Symbol: \monicdualqKrawtchouk
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicdualqKrawtchouk
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic dual $q$-Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7641,6 +8917,8 @@ Symbol: \moniclittleqJacobi
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:moniclittleqJacobi
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic little $q$-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7654,6 +8932,8 @@ Symbol: \moniclittleqLaguerre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:moniclittleqLaguerre
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic little $q$-Laguerre/Wall polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7667,6 +8947,8 @@ Symbol: \moniclittleqLegendre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:moniclittleqLegendre
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic little $q$-Legendre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7680,6 +8962,8 @@ Symbol: \monicpseudoJacobi
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicpseudoJacobi
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic pseudo-Jacobi polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7693,6 +8977,8 @@ Symbol: \monicqBesselPoly
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqBessel
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic $q$-Bessel polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7706,6 +8992,8 @@ Symbol: \monicqCharlier
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqCharlier
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic $q$-Charlier polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7719,6 +9007,8 @@ Symbol: \monicqHahn
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqHahn
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic $q$-Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7732,6 +9022,8 @@ Symbol: \monicqKrawtchouk
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqKrawtchouk
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic $q$-Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7745,6 +9037,8 @@ Symbol: \monicqLaguerre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqLaguerre
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic $q$-Laguerre polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7758,6 +9052,8 @@ Symbol: \monicqMeixner
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqMeixner
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic $q$-Meixner polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7771,6 +9067,8 @@ Symbol: \monicqMeixnerPollaczek
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqMeixnerPollaczek
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic $q$-Meixner-Pollaczek polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7784,6 +9082,8 @@ Symbol: \monicqRacah
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqRacah
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic $q$-Racah polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7797,6 +9097,8 @@ Symbol: \monicqinvAlSalamChihara
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqinvAlSalamChihara
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic $q$-inverse Al-Salam-Chihara polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -7810,6 +9112,8 @@ Symbol: \monicqtmqKrawtchouk
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:monicqtmqKrawtchouk
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: monic quantum $q$-Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7824,6 +9128,9 @@ Symbol: \multinomial
 	Maple: multinomial($0, $1)
 	Maple-Alternatives: 
 	Maple-Comment: Maple needs an extra package. Load it with the following command: with(combinat,multinomial):
+	Mathematica: Multinomial[n_1,...,n_k]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Multinomial coefficient
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -7835,6 +9142,8 @@ Symbol: \neq
   Feature Set: dlmf-macro
 	DLMF: \neq
 	DLMF-Link: not defined
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Not equal
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -7848,6 +9157,8 @@ Symbol: \ninej
 	DLMF-Link: dlmf.nist.gov/34.6#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: 9j symbol
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -7861,6 +9172,8 @@ Symbol: \normAskeyWilsonptilde
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normAskeyWilsonptilde
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: normalized Askey-Wilson polynomial ${\tilde p}$
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7874,6 +9187,8 @@ Symbol: \normJacobiR
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normJacobiR
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: normalized Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -7887,6 +9202,8 @@ Symbol: \normWilsonWtilde
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normWilsonWtilde
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: normalized Wilson polynomial ${\tilde W}$
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7900,6 +9217,8 @@ Symbol: \normctsHahnptilde
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normctsHahnptilde
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: normalized continuous Hahn polynomial ${\tilde p}$
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7913,6 +9232,8 @@ Symbol: \normctsdualHahnStilde
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normctsdualHahnStilde
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: normalized continuous dual Hahn polynomial ${\tilde S}$
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7926,6 +9247,8 @@ Symbol: \normctsdualqHahnptilde
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normctsdualqHahnptilde
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: normalized continuous dual $q$-Hahn polynomial ${\tilde p}$
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7939,6 +9262,8 @@ Symbol: \normctsqHahnptilde
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normctsqHahnptilde
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: normalized continuous $q$-Hahn polynomial ${\tilde p}$
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7952,6 +9277,8 @@ Symbol: \normctsqJacobiPtilde
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:normctsqJacobiPtilde
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: normalized continuous $q$-Jacobi polynomial ${\tilde P}$
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -7963,6 +9290,8 @@ Symbol: \notin
   Feature Set: dlmf-macro
 	DLMF: \notin
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r10
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Not element of
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -7976,6 +9305,8 @@ Symbol: \opminus
 	DLMF-Link: dlmf.nist.gov/5.7.E7
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Negative unity to an integer power
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -7993,6 +9324,8 @@ Symbol: \pderiv
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=diff
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Partial derivative
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8006,6 +9339,8 @@ Symbol: \pdiff
 	DLMF-Link: dlmf.nist.gov/1.5#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Power of partial differential
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8023,6 +9358,9 @@ Symbol: \pgcd
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=gcd
+	Mathematica: GCD[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Greatest common divisor
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8040,6 +9378,12 @@ Symbol: \ph
 	Maple-Comment: arctan($0,$1) is an alternative. With the real part in the first argument and the complex part in the second.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=argument
+	Mathematica: Arg[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Arg.html
 	Meanings: Argument of a complex number
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8057,6 +9401,9 @@ Symbol: \pochhammer
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer
+	Mathematica: Pochhammer[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Pochhammer symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8070,6 +9417,8 @@ Symbol: \poly
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:poly
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -8087,6 +9436,12 @@ Symbol: \polygamma
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Psi
+	Mathematica: PolyGamma[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/PolyGamma.html
 	Meanings: Polygamma function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8098,6 +9453,12 @@ Symbol: \power
   Feature Set: dlmf-macro
 	DLMF: \power{x}{y}
 	DLMF-Link: dlmf.nist.gov/36.12#E9
+	Mathematica: Power[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Power.html
 	Meanings: Power
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8111,6 +9472,8 @@ Symbol: \pseudoJacobi
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:pseudoJacobi
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Pseudo Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8122,6 +9485,8 @@ Symbol: \psfactorial
   Feature Set: dlmf-macro
 	DLMF: \psfactorial{a}{\kappa}
 	DLMF-Link: dlmf.nist.gov/35.4#E1
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Partitional shifted factorial
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8135,6 +9500,8 @@ Symbol: \qAppelli
 	DLMF-Link: dlmf.nist.gov/17.4.E5
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Appell function of first kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -8148,6 +9515,8 @@ Symbol: \qAppellii
 	DLMF-Link: dlmf.nist.gov/17.4.E6
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Appell function of second kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -8161,6 +9530,8 @@ Symbol: \qAppelliii
 	DLMF-Link: dlmf.nist.gov/17.4.E7
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Appell function of third kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -8174,6 +9545,8 @@ Symbol: \qAppelliv
 	DLMF-Link: dlmf.nist.gov/17.4.E8
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Appell function of fourth kind
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -8187,6 +9560,8 @@ Symbol: \qBernoulli
 	DLMF-Link: dlmf.nist.gov/17.3#E7
 	Maple-Alternatives: 
 	Maple-Comment:  || But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Bernoulli polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8200,6 +9575,8 @@ Symbol: \qBesselPoly
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qBessel
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Bessel polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8213,6 +9590,8 @@ Symbol: \qBeta
 	DLMF-Link: dlmf.nist.gov/5.18#E11
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Beta function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8226,6 +9605,8 @@ Symbol: \qBinomial
 	DLMF-Link: dlmf.nist.gov/17.2#E27
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Binomial coefficient / Gaussian polynomial
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8239,6 +9620,8 @@ Symbol: \qCharlier
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qCharlier
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Charlier polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8252,6 +9635,8 @@ Symbol: \qCos
 	DLMF-Link: dlmf.nist.gov/17.3#E6
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Cosine functions
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8265,6 +9650,8 @@ Symbol: \qCosKLS
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qCosKLS
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Cosine functions
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8278,6 +9665,8 @@ Symbol: \qDigamma
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qDigamma
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Digamma function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8291,6 +9680,8 @@ Symbol: \qEuler
 	DLMF-Link: dlmf.nist.gov/17.3#E8
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Euler function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -8304,6 +9695,8 @@ Symbol: \qExp
 	DLMF-Link: dlmf.nist.gov/17.3#E2
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Exponential function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8317,6 +9710,8 @@ Symbol: \qExpKLS
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qExpKLS
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Exponential function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8330,6 +9725,8 @@ Symbol: \qFactorial
 	DLMF-Link: dlmf.nist.gov/5.18#E2
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Factorial function
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8343,6 +9740,8 @@ Symbol: \qGamma
 	DLMF-Link: dlmf.nist.gov/5.18#E4
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Gamma function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8356,6 +9755,8 @@ Symbol: \qHahn
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qHahn
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Hahn polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8369,6 +9770,8 @@ Symbol: \qHahnQ
 	DLMF-Link: dlmf.nist.gov/18.27#E3
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8382,6 +9785,8 @@ Symbol: \qHermiteH
 	DLMF-Link: dlmf.nist.gov/18.28#E16
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Hermite polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8395,6 +9800,8 @@ Symbol: \qHermitehI
 	DLMF-Link: dlmf.nist.gov/18.27#E21
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Hermite discrete I
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8408,6 +9815,8 @@ Symbol: \qHermitehII
 	DLMF-Link: dlmf.nist.gov/18.27#E23
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Hermite discrete II
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8421,6 +9830,8 @@ Symbol: \qHyperrWs
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qHyperrWs
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: very-well-poised basic hypergeometric (or $q$-hypergeometric) function
 	Number of Ats: 3
 	Number of Parameters: 2
@@ -8434,6 +9845,8 @@ Symbol: \qHyperrphis
 	DLMF-Link: dlmf.nist.gov/17.4#E1
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: basic hypergeometric (or $q$-hypergeometric) function
 	Number of Ats: 3
 	Number of Parameters: 2
@@ -8447,6 +9860,8 @@ Symbol: \qHyperrpsis
 	DLMF-Link: dlmf.nist.gov/17.4#E3
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: bilateral basic hypergeometric (or bilateral $q$-hypergeometric) function
 	Number of Ats: 3
 	Number of Parameters: 2
@@ -8460,6 +9875,8 @@ Symbol: \qJacobiP
 	DLMF-Link: dlmf.nist.gov/18.27#E5
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8473,6 +9890,8 @@ Symbol: \qJacobiPP
 	DLMF-Link: dlmf.nist.gov/18.27#E6
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -8486,6 +9905,8 @@ Symbol: \qJacobip
 	DLMF-Link: dlmf.nist.gov/18.27#E13
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8499,6 +9920,8 @@ Symbol: \qKrawtchouk
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qKrawtchouk
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8534,6 +9957,8 @@ Symbol: \qLegendre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qLegendre
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Legendre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8547,6 +9972,8 @@ Symbol: \qMeixner
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qMeixner
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Meixner polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8560,6 +9987,8 @@ Symbol: \qMeixnerPollaczek
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qMeixnerPollaczek
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Meixner-Pollaczek polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8573,6 +10002,8 @@ Symbol: \qMultiPochhammer
 	DLMF-Link: dlmf.nist.gov/17.2.E5
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Multi-Pochhammer symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8586,6 +10017,8 @@ Symbol: \qMultinomial
 	DLMF-Link: dlmf.nist.gov/26.16.E1
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-multinomial
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8599,6 +10032,8 @@ Symbol: \qPochhammer
 	DLMF-Link: dlmf.nist.gov/17.2#SS1.p1
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Pochhammer symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8612,6 +10047,8 @@ Symbol: \qPolygamma
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qPolygamma
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Polygamma function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -8625,6 +10062,8 @@ Symbol: \qRacah
 	DLMF-Link: dlmf.nist.gov/18.28#E19
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Racah polynomials
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8638,6 +10077,8 @@ Symbol: \qRacahR
 	DLMF-Link: dlmf.nist.gov/18.28#E19
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Racah polynomials
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8651,6 +10092,8 @@ Symbol: \qSin
 	DLMF-Link: dlmf.nist.gov/17.3#E4
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Sine function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8664,6 +10107,8 @@ Symbol: \qSinKLS
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qSinKLS
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Sine function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8677,6 +10122,8 @@ Symbol: \qStirling
 	DLMF-Link: dlmf.nist.gov/17.3#E9
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Stirling number
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -8690,6 +10137,8 @@ Symbol: \qUltraspherical
 	DLMF-Link: dlmf.nist.gov/18.28#E13
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Ultraspherical polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8703,6 +10152,8 @@ Symbol: \qcos
 	DLMF-Link: dlmf.nist.gov/17.3#E5
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Cosine functions
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8716,6 +10167,8 @@ Symbol: \qcosKLS
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qcosKLS
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Cosine functions
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8740,6 +10193,8 @@ Symbol: \qdiff
 	DLMF-Link: dlmf.nist.gov/17.2#SS5.p1
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Derivative
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8753,6 +10208,8 @@ Symbol: \qexp
 	DLMF-Link: dlmf.nist.gov/17.3#E1
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Exponential function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8766,6 +10223,8 @@ Symbol: \qexpKLS
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qExpKLS
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Exponential function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8779,6 +10238,8 @@ Symbol: \qinvAlSalamChihara
 	DLMF-Link: dlmf.nist.gov/18.28#E9
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Invert-Al-Salam-Chihara polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8792,6 +10253,8 @@ Symbol: \qinvHermiteh
 	DLMF-Link: dlmf.nist.gov/18.28#E18
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Invert-Hermite polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8805,6 +10268,8 @@ Symbol: \qsin
 	DLMF-Link: dlmf.nist.gov/17.3#E3
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Sine function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8818,6 +10283,8 @@ Symbol: \qsinKLS
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qsinKLS
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: q-Sine function
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8831,6 +10298,8 @@ Symbol: \qtmqKrawtchouk
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qtmqKrawtchouk
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: quantum q-Krawtchouk polynomial
 	Number of Ats: 2
 	Number of Parameters: 1
@@ -8848,6 +10317,12 @@ Symbol: \realpart
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Re
+	Mathematica: Re[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Re.html
 	Meanings: Real part of a complex number
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8861,6 +10336,8 @@ Symbol: \rescaledTerminant
 	DLMF-Link: dlmf.nist.gov/9.7#E22
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Rescaled terminant function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -8879,6 +10356,12 @@ Symbol: \sec
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sec
+	Mathematica: Sec[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Sech.html
 	Meanings: Secant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8897,6 +10380,9 @@ Symbol: \sech
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sech
+	Mathematica: Sech[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Hyperbolic secant
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8914,6 +10400,8 @@ Symbol: \setminus
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=minus
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Set difference
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8927,6 +10415,8 @@ Symbol: \setmod
 	DLMF-Link: dlmf.nist.gov/21.1#p2.t1.r17
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Set of all elements of S_1 modulo elements of S_2
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8944,6 +10434,8 @@ Symbol: \sign
 	Maple-Comment: The sign($0) alternative is for polynomials! sign(x) is 1 always, because x has a positive sign.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=signum
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Signum
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8957,6 +10449,8 @@ Symbol: \sim
 	DLMF-Link: dlmf.nist.gov/2.1#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Asymptotic equality
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -8974,6 +10468,12 @@ Symbol: \sin
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sin
+	Mathematica: Sin[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Sinh.html
 	Meanings: Sine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8991,6 +10491,12 @@ Symbol: \sinInt
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ssi
+	Mathematica: SinIntegral[$0] - Pi/2
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/SinIntegral.html
 	Meanings: Shifted sine integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -9008,6 +10514,9 @@ Symbol: \sinh
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sinh
+	Mathematica: Sinh[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Hyperbolic sine
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -9020,6 +10529,8 @@ Symbol: \sinintg
 	Branch Cuts: z = 0
 	DLMF: \sinintg@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.21#E1
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Generalized sine integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -9033,6 +10544,8 @@ Symbol: \sixj
 	DLMF-Link: dlmf.nist.gov/34.4#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: 6j symbol
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -9050,6 +10563,12 @@ Symbol: \sqrt
 	Maple-Comment: You can use the csgn function, which is specialized for imaginary variables.
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sqrt
+	Mathematica: Sqrt[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Sqrt.html
 	Meanings: n-th root
 	Number of Ats: 0
 	Number of Parameters: 1
@@ -9063,6 +10582,8 @@ Symbol: \subset
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r2
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Subset
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -9080,6 +10601,8 @@ Symbol: \subseteq
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=subset
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Subset
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -9093,6 +10616,8 @@ Symbol: \sup
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r25
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Supremum
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -9111,6 +10636,12 @@ Symbol: \tan
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=tan
+	Mathematica: Tan[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Tanh.html
 	Meanings: Tangent
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -9129,6 +10660,9 @@ Symbol: \tanh
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=tanh
+	Mathematica: Tanh[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Hyperbolic tangent
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -9142,6 +10676,8 @@ Symbol: \terminant
 	DLMF-Link: dlmf.nist.gov/2.11#E11
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Terminant function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -9155,6 +10691,8 @@ Symbol: \threej
 	DLMF-Link: dlmf.nist.gov/34.2#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: 3j symbol
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -9168,6 +10706,8 @@ Symbol: \wigner
 	DLMF-Link: dlmf.nist.gov/34.1#p4
 	Maple-Alternatives: (exp($1)/(2*Pi))*GAMMA($0)*GAMMA(1-$0,$1)
 	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
 	Meanings: Clebsch-Gordan coefficient
 	Number of Ats: 0
 	Number of Parameters: 0

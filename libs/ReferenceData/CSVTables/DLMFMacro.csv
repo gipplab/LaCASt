@@ -114,8 +114,8 @@ DLMF;DLMF-Link;Meanings;Number of Parameters;Number of Ats;Number of Variables;C
 \neq;not defined;Not equal;0;0;0;;;symbol
 \ifrac{a}{b};http://dlmf.nist.gov/4.2.E8;Fraction;0;0;2;;;
 \power{x}{y};http://dlmf.nist.gov/36.12#E9;Power;0;0;2;;;
-n!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r14;Factorial;0;0;0;;;symbol
-n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0;;;symbol
+n!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r14;Factorial;0;0;0;;;ignore
+n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0;;;ignore
 \psfactorial{a}{\kappa};http://dlmf.nist.gov/35.4#E1;Partitional shifted factorial;0;0;2;;;
 \floor{x} ;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r16;Floor;0;0;1;;;
 \ceiling{x};http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r17;Ceiling;0;0;1;;;
@@ -130,7 +130,7 @@ n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0
 \cartprod;http://dlmf.nist.gov/23.1#p2.t1.r18;Cartesian product of groups;0;0;0;;;symbol
 \divides;http://dlmf.nist.gov/24.1#p2.t1.r4;Devides;0;0;0;;;symbol
 \liminf;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r4;Least limit point;0;0;0;;;symbol
-\mod;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r10;Modulo;0;0;0;;;symbol
+\mod;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r10;Modulo;0;0;0;;;ignore
 \opminus;http://dlmf.nist.gov/5.7.E7;Negative unity to an integer power;0;0;0;;;symbol
 \poly{p}{n}@{x};http://drmf.wmflabs.org/wiki/Definition:poly;Polynomial;2;1;1;;;
 \CompositionsC[m]@{n};http://dlmf.nist.gov/26.11#p1;Number of compositions;1;1;1;;;
@@ -293,7 +293,7 @@ n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0
 \DivisorSigma{\alpha}@{n};http://dlmf.nist.gov/27.2#E10;Sum of powers of divisors;1;1;1;;;
 \DivisorSigma{1}@{n};http://dlmf.nist.gov/27.2#E10;Sum of divisors;1;1;1;;;
 \JordanJ{k}@{n};http://dlmf.nist.gov/27.2#E11;Jordan's function;1;1;1;;;
-\MoebiusMu@{n};http://dlmf.nist.gov/27.2#E12;Möbius function;0;1;1;;;
+\MoebiusMu@{n};http://dlmf.nist.gov/27.2#E12;M򢩵s function;0;1;1;;;
 \LiouvilleLambda@{n};http://dlmf.nist.gov/27.2#E13;Liouville's function;0;1;1;;;
 \MangoldtLambda@{n};http://dlmf.nist.gov/27.2#E14;Mangoldt's function;0;1;1;;;
 ;;;;;;;;
