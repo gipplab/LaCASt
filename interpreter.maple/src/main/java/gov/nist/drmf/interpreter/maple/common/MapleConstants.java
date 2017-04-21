@@ -49,4 +49,13 @@ public final class MapleConstants {
     public static final String I_UNIT = "I";
 
     public static final String[] LIST_OF_EXCLUDES = new String[]{"_Inert_FLOAT"};
+
+    private static final String FORGET =
+            "forget(simplify);" + System.lineSeparator() + "forget(evalf);";
+
+    public static final String ENV_VAR_LEGENDRE_CUT_FERRER =
+            "_EnvLegendreCut := 1 .. infinity;" + System.lineSeparator() + FORGET;
+
+    public static final String ENV_VAR_LEGENDRE_CUT_LEGENDRE =
+            "_EnvLegendreCut := -1 .. 1;" + System.lineSeparator() + FORGET;
 }
