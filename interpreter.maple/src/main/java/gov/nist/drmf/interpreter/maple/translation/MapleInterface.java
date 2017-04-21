@@ -260,15 +260,6 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         return basicFunc;
     }
 
-    /**
-     * Returns the name of the loaded procedure.
-     * @return name of loaded maple procedure
-     */
-    //public String getListProcedureName(){
-    //    return maple_list_procedure;
-    //}
-
-
     // The unique maple interface object
     private static MapleInterface mInterface;
 

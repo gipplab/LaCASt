@@ -71,108 +71,7 @@ public class MapleTranslator {
      * @param args empty or a maple expression in the first argument
      */
     public static void main(String[] args){
-
-        MapleTranslator mt = new MapleTranslator();
-        Path p = GlobalPaths.PATH_REFERENCE_DATA.resolve("TestCases.txt");
-        try (BufferedReader br = Files.newBufferedReader(p)){
-            mt.init();
-            String mapleLHS, mapleRHS;
-            String[] eq;
-            String line = br.readLine();
-            int counter = 0;
-
-            String failures = "";
-            boolean suc = true;
-
-            while ( line != null && !line.isEmpty() ){
-                eq = line.split("=");
-                counter++;
-
-                try {
-                    for ( int i = 0; i < eq.length; i++ ){
-                        suc = true;
-                        if ( eq.length <= 2 && i > 0 ) continue;
-                        int n = (i+1)%eq.length;
-                        LOG.info(counter+"-Start translation: " + eq[i] + " = " + eq[n]);
-                        mapleLHS = mt.translateFromLaTeXToMapleClean(eq[i]);
-                        LOG.info(counter+"-LHS: " + mapleLHS);
-                        mapleRHS = mt.translateFromLaTeXToMapleClean(eq[n]);
-                        LOG.info(counter+"-RHS: " + mapleRHS);
-                        //LOG.info(counter + "-Expect: " + mapleLHS + " = " + mapleRHS);
-
-                        if ( !mt.simplificationTester2( mt.commandSimple(mapleLHS,mapleRHS) ) ){
-                            if ( !mt.simplificationTester2( mt.commandExp(mapleLHS,mapleRHS) ) ){
-                                if ( !mt.simplificationTester2( mt.commandHyper(mapleLHS,mapleRHS) ) ){
-                                    //System.out.println(mt.commandHyper(mapleLHS,mapleRHS));
-                                    suc = false;
-                                    failures += counter + "-NOT EQUAL: " + line + System.lineSeparator();
-                                }
-                            }
-                        }
-
-                        if ( !suc ){
-                            LOG.info(counter+"-But is not equal!");
-                        }
-                    }
-                } catch ( Exception e ){
-                    LOG.warn(counter+"-Error: " + e.getMessage(), e);
-                    failures += counter + "-NOT EQUAL: " + line + System.lineSeparator();
-                }
-                line = br.readLine();
-            }
-
-            System.out.println("PROBLEMS: " + failures);
-        } catch ( Exception e ){
-            e.printStackTrace();
-        }
-    }
-
-    private Algebraic simpli( String maple ) throws MapleException {
-        return mapleInterface.evaluateExpression( "simplify(convert(" + maple + ",exp));" );
-    }
-
-    public String commandSimple( String maple1, String maple2 ){
-        if ( maple1 == null || maple2 == null || maple1.isEmpty() || maple2.isEmpty() )
-            return null;
-        return "simplify((" + maple1 + ")-("+maple2+ "));";
-    }
-    public String commandExp( String maple1, String maple2 ){
-        if ( maple1 == null || maple2 == null || maple1.isEmpty() || maple2.isEmpty() )
-            return null;
-        return "simplify(convert((" + maple1 + ")-("+maple2+ "),exp));";
-    }
-    public String commandHyper( String maple1, String maple2 ){
-        if ( maple1 == null || maple2 == null || maple1.isEmpty() || maple2.isEmpty() )
-            return null;
-        return "simplify(convert((" + maple1 + ")-("+maple2+ "),hypergeom));";
-    }
-
-    public boolean simplificationTester2(String cmd)
-            throws MapleException {
-        if ( cmd == null ) {
-            LOG.debug("Input expression empty. Skipped!");
-            return false;
-        }
-        // otherwise build simplify command to test equivalence
-        String command = cmd;
-        // log for debugging
-        LOG.debug("Simplification-Test: " + command);
-
-        // analyze the algebraic solution
-        Algebraic solution = mapleInterface.evaluateExpression( command );
-
-        /*
-        if ( command.contains("ChebyshevT(n, x))-(hypergeom") ){
-            LOG.info("Cheby: " + solution.toString());
-            LOG.info("But: " + solution.toString().trim().matches("0"));
-        }
-        */
-
-        // null solutions returns false
-        if ( solution == null || solution.isNULL() ) return false;
-        // analyze the output string and returns true when it matches "0".
-        String solution_str = solution.toString();
-        return solution_str.trim().matches("0");
+        // TODO
     }
 
     /**
@@ -452,7 +351,48 @@ public class MapleTranslator {
         String command = "simplify((" + exp1 + ") - (" + exp2 + "));";
         // log for debugging
         LOG.debug("Simplification-Test: " + command);
+        return resultIsEqualToZeroTest( command );
+    }
 
+    /**
+     * This method takes two maple expressions and converts the difference
+     * to the specified function before it tries to simplify the difference.
+     *
+     * It works exactly in the same way as {@link #simplificationTester(String, String)},
+     * but converts the difference of {@param exp1} and {@param exp2} before it tries
+     * to simplify the new expression.
+     *
+     * @param exp1 Maple string of the first expression
+     * @param exp2 Maple string of the second expression
+     * @param conversion Specified the destination of the conversion. For example, "expe" or "hypergeom".
+     * @return true if both expressions are symbolically equivalent or false otherwise.
+     *          If it returns false, both expressions still can be mathematically equivalent!
+     * @throws MapleException If the test of equivalence produces an Maple error.
+     */
+    public boolean simplificationTesterWithConversion(
+            @Nullable String exp1, @Nullable String exp2, String conversion )
+            throws MapleException{
+        // test if one of the inputs is null
+        if ( exp1 == null || exp2 == null ) return false;
+        // if one of the expressions is empty, it only returns true when both are empty
+        if ( exp1.isEmpty() || exp2.isEmpty() ){
+            return exp1.isEmpty() && exp2.isEmpty();
+        }
+
+        // otherwise build simplify command to test equivalence
+        String command = "simplify(convert((" + exp1 + ") - (" + exp2 + "),"+ conversion +"));";
+        // log for debugging
+        LOG.debug("Simplification-Test: " + command);
+        return resultIsEqualToZeroTest( command );
+    }
+
+    /**
+     * Checks if the given command returns 0.
+     * @param command usually a simplify(...) commmand.
+     * @return true if the result is 0. False otherwise.
+     * @throws MapleException if the given command produces an error in Maple.
+     */
+    private boolean resultIsEqualToZeroTest( String command ) throws MapleException {
         // analyze the algebraic solution
         Algebraic solution = mapleInterface.evaluateExpression( command );
         // null solutions returns false
@@ -460,5 +400,26 @@ public class MapleTranslator {
         // analyze the output string and returns true when it matches "0".
         String solution_str = solution.toString();
         return solution_str.trim().matches("0");
+    }
+
+    /**
+     * This method gives you direct access to the Maple kernel. Only use this method,
+     * when you know what you do! The given expression must be a valid maple string
+     * in Maple's 1-D representation!
+     *
+     * This method is useful to predefine variables, reset predefinitions, declare
+     * assumptions are what else you want to do. In theory, it would be possible to
+     * build your own translation program and use this method to get access to
+     * the Maple kernel.
+     *
+     * Remember to reset defined variables if you don't want to use them any longer!
+     *
+     * @param mapleCommand a valid maple expression in Maple's 1D representation. (ending with ;)
+     * @return the algebraic object of the result. Might be useful or can be ignored.
+     * @throws MapleException if the given expression produces an error in Maple.
+     */
+    public Algebraic enterMapleCommand( String mapleCommand )
+            throws MapleException {
+        return mapleInterface.evaluateExpression(mapleCommand);
     }
 }
