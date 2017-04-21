@@ -47,6 +47,7 @@ import java.util.Scanner;
  * @see gov.nist.drmf.interpreter.maple.translation.MapleInterface
  * @see gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator
  */
+@SuppressWarnings("ALL")
 public class MapleTranslator {
     /**
      * The logger.
@@ -430,7 +431,7 @@ public class MapleTranslator {
      * even when this method returns false!
      *
      * Be also aware that null inputs always returns false, even when both inputs are null.
-     * And two empty expression like "" and "" returns true.
+     * However, two empty expression such as "" and "" returns true.
      *
      * @param exp1 Maple string of the first expression
      * @param exp2 Maple string of the second expression
