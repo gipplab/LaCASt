@@ -19,4 +19,10 @@ public class GeneralTester {
     public void testParenthesisChecker2(){
         assertTrue( AbstractTranslator.testBrackets("((1)/((2)^(3) + 4*(5)^(6)))") );
     }
+
+    @Test
+    public void startWithTest(){
+        String op = "\\left(";
+        assertTrue( op.matches( "\\\\(left|right).*" ) );
+    }
 }

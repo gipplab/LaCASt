@@ -290,6 +290,12 @@ public class MathTermTranslator extends AbstractListTranslator {
             case non_allowed:
                 LOG.debug( "Skip controlled space, such as \\!" );
                 return true;
+            case left_delimiter:
+                // TODO
+            case fence:
+            case right_delimiter:
+                LOG.error("NOT YET IMPLEMENTED DELIMITERS OR FENCES");
+                return false;
             default:
                 LOG.warn("Unknown MathTerm Tag: "
                         + term.getTag());

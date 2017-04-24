@@ -26,13 +26,13 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
     public static final String SPACE = " ";
 
     public static final String OPEN_PARENTHESIS_PATTERN =
-            "(left)[-\\s](parenthesis|bracket|brace)";
+            "(left)[-\\s](parenthesis|bracket|brace|delimiter)";
 
     public static final String CLOSE_PARENTHESIS_PATTERN =
-            "(right)[-\\s](parenthesis|bracket|brace)";
+            "(right)[-\\s](parenthesis|bracket|brace|delimiter)";
 
     public static final String PARENTHESIS_PATTERN =
-            "(right|left)[-\\s](parenthesis|bracket|brace)";
+            "(right|left)[-\\s](parenthesis|bracket|brace|delimiter)";
 
     public static final String CHAR_BACKSLASH = "\\";
 

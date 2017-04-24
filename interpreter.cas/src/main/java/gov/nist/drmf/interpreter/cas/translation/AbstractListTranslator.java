@@ -81,7 +81,8 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
                 return addMultiply( currExp, exp_list );
             }
 
-            if ( next.getTermText().matches( Brackets.CLOSED_PATTERN ) )
+            Brackets nextBracket = Brackets.getBracket( next.getTermText() );
+            if ( nextBracket != null && !nextBracket.opened )
                 return false;
 
             Matcher m1 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(curr.getTermText());
@@ -90,7 +91,9 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
 
             //System.out.println(curr.getTermText() + " <-> " + next.getTermText());
             if ( curr.getTermText().matches( Brackets.CLOSED_PATTERN ) ) {
-                return !next.getTermText().matches( PATTERN_BASIC_OPERATIONS );
+                return
+                        !next.getTermText().matches( PATTERN_BASIC_OPERATIONS ) &&
+                                !next.getTag().matches( MathTermTags.operation.tag() );
             } else if ( next.getTermText().matches( Brackets.OPEN_PATTERN ) ){
                 return !curr.getTermText().matches( PATTERN_BASIC_OPERATIONS );
             }

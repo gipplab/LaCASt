@@ -92,6 +92,22 @@ public enum Brackets {
             Brackets.LATEX_RIGHT + CLOSE_BRACKETS.right_parenthesis.s,
             Brackets.CLOSED,
             Brackets.LATEX_LEFT + CLOSE_BRACKETS.right_parenthesis.counter
+    ),
+    /**
+     * Left Opened LaTeX Pipe: \left|
+     */
+    left_latex_abs_val(
+            Brackets.LATEX_LEFT + "|",
+            Brackets.OPENED,
+            Brackets.LATEX_RIGHT + "|"
+    ),
+    /**
+     * Right Closed LaTeX Pipe: \right|
+     */
+    right_latex_abs_val(
+            Brackets.LATEX_RIGHT + "|",
+            Brackets.CLOSED,
+            Brackets.LATEX_LEFT + "|"
     );
 
     /**
@@ -180,6 +196,12 @@ public enum Brackets {
         HOLDER.key_map.put( symbol, this );
     }
 
+    public String getAppropriateString(){
+        if ( symbol.matches("\\\\(left|right).*") )
+            return symbol.substring( symbol.length()-1 );
+        else return symbol;
+    }
+
     /**
      * Returns the counter part of a bracket.
      * @return Bracket object of the counter part. For instance the counterpart
@@ -195,6 +217,7 @@ public enum Brackets {
      * @return the enum object
      */
     public static Brackets getBracket(String bracket){
+        bracket = bracket.replace("\\s", "");
         return HOLDER.key_map.get( bracket );
     }
 }

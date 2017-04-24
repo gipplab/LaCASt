@@ -49,7 +49,10 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
                 return parseBasicFunction( expression, expTag );
             case balanced_expression:
                 // balanced expressions are expressions in \left( x \right)
-                return parseBalancedExpression( expression );
+                List<PomTaggedExpression> sub_exps = expression.getComponents();
+                TranslatedExpression tr = parseGeneralExpression( sub_exps.remove(0), sub_exps );
+                local_inner_exp.addTranslatedExpression(tr);
+                return !isInnerError();
             case sub_super_script:
             case numerator:
             case denominator:
@@ -87,49 +90,6 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
         return true;
     }
 
-    private boolean parseBalancedExpression( PomTaggedExpression top_exp ){
-        // get subexpressions once more
-        List<PomTaggedExpression> sub_exps = top_exp.getComponents();
-        // the size is at least 2 because \left( and \right) are 2 elements
-        if ( sub_exps.size() < 3 ){ // nothing between the parenthesis -> ignore
-            LOG.warn("Found empty expression and ignored it.");
-            return true;
-        }
-
-        // get first and last (these are usually \left( and \right) )
-        PomTaggedExpression first = sub_exps.remove(0);
-        PomTaggedExpression last = sub_exps.remove( sub_exps.size()-1 );
-
-        // test open-close style of first-last
-        if ( !testParanthesis(first, last) ){
-            LOG.error("Error in delimiters. " +
-                    "The open delimiter doesn't fit with the closed delimiter.");
-            return false;
-        }
-
-        // finally we can translate the inner part
-        TranslatedExpression inner_translation =
-                parseGeneralExpression( sub_exps.remove(0), sub_exps );
-
-        if ( isInnerError() ) return false;
-
-        // merge all together because it is a sub-expression
-        int num = inner_translation.mergeAll();
-
-        // wrap it with parenthesis
-        local_inner_exp.addTranslatedExpression(
-                Brackets.left_parenthesis.symbol +
-                        inner_translation.toString() +
-                        Brackets.left_parenthesis.counterpart
-        );
-
-        // clear temporary last objects
-        global_exp.removeLastNExps( num );
-        // and update the last object with the whole last expression
-        global_exp.addTranslatedExpression( local_inner_exp );
-        return true;
-    }
-
     /**
      * A helper method to extract some sub-expressions. Useful for short
      * functions like \frac{a}{b}. The given argument is the parent expression
@@ -164,7 +124,7 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
      * first element and the last element are corresponding
      * brackets. Kind of the brackets doesn't matter but they
      * have to correspond to each other.
-     * @param first for istance \left(
+     * @param first for instance \left(
      * @param last for instance \right)
      * @return true if first and last matches else false
      */

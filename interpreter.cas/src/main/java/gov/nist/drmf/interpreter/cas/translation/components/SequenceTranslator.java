@@ -51,7 +51,7 @@ public class SequenceTranslator extends AbstractListTranslator {
      *                     the given bracket is the first open bracket of the following
      *                     sequence
      */
-    public SequenceTranslator(Brackets open_bracket ){
+    public SequenceTranslator( Brackets open_bracket ){
         this.open_bracket = open_bracket;
     }
 
@@ -101,7 +101,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                 lastMerged = true;
             }
 
-            if ( part.matches( ".*\\)\\s*" ) ){
+            if ( part.matches( ".*\\s*\\)\\s*" ) ){
                 MathTerm tmp = new MathTerm(")", MathTermTags.right_parenthesis.tag());
                 exp = new PomTaggedExpression(tmp);
             }
@@ -197,10 +197,9 @@ public class SequenceTranslator extends AbstractListTranslator {
                     int num = local_inner_exp.mergeAll();
 
                     // now, always wrap elements around this sequence
-                    String seq =
-                            open_bracket.symbol +
-                                    local_inner_exp.removeLastExpression() + // removed all
-                                    open_bracket.counterpart;
+                    String seq = open_bracket.getAppropriateString();
+                    seq += local_inner_exp.removeLastExpression();
+                    seq += open_bracket.getCounterPart().getAppropriateString();
 
                     // wrap parenthesis around sequence, this is one component of the sequence now
                     local_inner_exp.addTranslatedExpression( seq ); // replaced it
