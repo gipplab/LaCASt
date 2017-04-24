@@ -63,4 +63,11 @@ public class QuickTests {
             System.out.println(t[i] + " = " + t[n]);
         }
     }
+
+    @Test
+    public void replace(){
+        String bracket = "\\\\left |";
+        bracket = bracket.replaceAll("\\s", "");
+        System.out.println(bracket);
+    }
 }

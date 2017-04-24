@@ -162,16 +162,6 @@ public class MathTermTranslator extends AbstractListTranslator {
                 local_inner_exp.addTranslatedExpression(term.getTermText());
                 global_exp.addTranslatedExpression(term.getTermText());
                 return true;
-            case relation:
-                // TODO something like \leq, \neq and so on
-                translation = sT.translate( term.getTermText() );
-                if ( translation == null ){
-                    LOG.error("Unknown relation. Cannot translate: " + term.getTermText());
-                    return false;
-                }
-                local_inner_exp.addTranslatedExpression(translation);
-                global_exp.addTranslatedExpression(translation);
-                return true;
             case left_parenthesis: // the following should not reached!
             case left_bracket:
             case left_brace:
@@ -290,9 +280,28 @@ public class MathTermTranslator extends AbstractListTranslator {
             case non_allowed:
                 LOG.debug( "Skip controlled space, such as \\!" );
                 return true;
+            case relation:
+                if ( !term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN ) ){
+                    translation = sT.translate( term.getTermText() );
+                    if ( translation == null ){
+                        LOG.error("Unknown relation. Cannot translate: " + term.getTermText());
+                        return false;
+                    }
+                    local_inner_exp.addTranslatedExpression(translation);
+                    global_exp.addTranslatedExpression(translation);
+                    return true;
+                }
             case left_delimiter:
-                // TODO
+                if ( !term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN ) ){
+                    LOG.error("Cannot handle delimiters here! Found: " + term.getTermText());
+                    return false;
+                }
             case fence:
+                Brackets start = Brackets.left_latex_abs_val;
+                SequenceTranslator sq = new SequenceTranslator(start);
+                boolean result = sq.translate( following_exp );
+                this.local_inner_exp = sq.getTranslatedExpressionObject();
+                return result;
             case right_delimiter:
                 LOG.error("NOT YET IMPLEMENTED DELIMITERS OR FENCES");
                 return false;

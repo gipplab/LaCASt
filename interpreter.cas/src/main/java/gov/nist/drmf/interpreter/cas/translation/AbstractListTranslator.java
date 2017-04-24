@@ -20,10 +20,12 @@ import java.util.regex.Matcher;
  */
 public abstract class AbstractListTranslator extends AbstractTranslator {
     public static final String SPECIAL_SYMBOL_PATTERN_FOR_SPACES =
-            "[\\^\\/\\_\\!]";
+            "[\\^\\/\\_\\!|]";
 
     public static final String PATTERN_BASIC_OPERATIONS =
-            ".*[+\\-*/\\^_!{}\\[\\]<>\\s=]|\\\\[ci]dot.*";
+            ".*[+\\-*/\\^_!{}\\[\\]<>\\s=|]|\\\\[ci]dot.*";
+
+    public static final String ABSOLUTE_VAL_TERM_TEXT_PATTERN = "\\\\?\\|";
 
     // Array of parsed strings
     protected String[] components;
