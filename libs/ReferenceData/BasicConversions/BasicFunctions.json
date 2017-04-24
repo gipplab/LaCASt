@@ -116,6 +116,18 @@
 		"Maple": "<>",
 		"Mathematica": "\\[NotEqual]"
 	},
+	"Less Than or Equality":{
+		"MLP": "relation_2",
+		"LaTeX": "\\leq",
+		"Maple": "<=",
+		"Mathematica": "<="
+	},
+	"Greater Than or Equality":{
+		"MLP": "relation_3",
+		"LaTeX": "\\geq",
+		"Maple": ">=",
+		"Mathematica": ">="
+	},
 	"Element of":{
 		"MLP": "relation_2",
 		"LaTeX": "\\in",

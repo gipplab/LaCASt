@@ -31,7 +31,7 @@ public enum MathTermTags {
     alphanumeric("alphanumeric"),
     comma("comma"),
     less_than("less-than"),
-    greater_than("greater-then"),
+    greater_than("greater-than"),
     macro("macro"),
     caret("caret"),
     underscore("underscore"),
@@ -41,7 +41,8 @@ public enum MathTermTags {
     ellipsis("ellipsis"),
     abbreviation("abbreviation"),
     spaces("controlled space"),
-    non_allowed("non-allowed escaped symbol");
+    non_allowed("non-allowed escaped symbol"),
+    relation("relation");
 
     private String tag;
 
