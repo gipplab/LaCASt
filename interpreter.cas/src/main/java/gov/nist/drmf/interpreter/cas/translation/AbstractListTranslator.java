@@ -23,7 +23,7 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
             "[\\^\\/\\_\\!|]";
 
     public static final String PATTERN_BASIC_OPERATIONS =
-            ".*[+\\-*/\\^_!{}\\[\\]<>\\s=|]|\\\\[ci]dot.*";
+            ".*[,;.+\\-*/\\^_!{}\\[\\]<>\\s=|]|\\\\[ci]dot.*";
 
     public static final String ABSOLUTE_VAL_TERM_TEXT_PATTERN = "\\\\?\\|";
 
