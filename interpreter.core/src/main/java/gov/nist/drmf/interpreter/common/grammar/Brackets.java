@@ -217,7 +217,7 @@ public enum Brackets {
      * @return the enum object
      */
     public static Brackets getBracket(String bracket){
-        bracket = bracket.replace("\\s", "");
+        bracket = bracket.replaceAll("\\s", "");
         return HOLDER.key_map.get( bracket );
     }
 }

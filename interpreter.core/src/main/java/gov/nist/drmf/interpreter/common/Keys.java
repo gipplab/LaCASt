@@ -30,6 +30,8 @@ public class Keys {
 
     public static final String KEY_DLMF_MACRO_OPTIONAL_PREFIX = "dlmf-alternative-";
 
+    public static final String KEY_ABSOLUTE_VALUE = "absolute value";
+
     public static final String
             NUM_OF_VARS     = "Number of Variables",
             NUM_OF_ATS      = "Number of Ats",

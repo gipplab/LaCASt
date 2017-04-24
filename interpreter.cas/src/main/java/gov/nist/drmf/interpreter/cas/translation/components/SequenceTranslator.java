@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
+import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -172,9 +173,14 @@ public class SequenceTranslator extends AbstractListTranslator {
             //      -> there is a bracket error in the sequence
 
             // open or closed brackets
-            if ( term != null && !term.isEmpty() && term.getTag().matches(PARENTHESIS_PATTERN) ){
+            if ( term != null && !term.isEmpty() &&
+                    (term.getTag().matches(PARENTHESIS_PATTERN) ||
+                            term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN )) ){
                 // get the bracket
                 Brackets bracket = Brackets.getBracket( term.getTermText() );
+                if ( bracket == null && term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN )){
+                    bracket = Brackets.right_latex_abs_val;
+                }
 
                 // another open bracket -> reached a new sub sequence
                 // bracket cannot be null, because we checked the tag of the term before
@@ -204,7 +210,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                         BasicFunctionsTranslator bft = SemanticLatexTranslator.getBasicFunctionParser();
                         seq = bft.translate(
                                 new String[]{ local_inner_exp.removeLastExpression() },
-                                "absolute value"
+                                Keys.KEY_ABSOLUTE_VALUE
                                 );
                     } else {
                         seq = open_bracket.getAppropriateString();
