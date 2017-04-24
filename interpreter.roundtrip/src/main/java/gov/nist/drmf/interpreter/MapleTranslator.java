@@ -340,18 +340,11 @@ public class MapleTranslator {
      */
     public boolean simplificationTester(@Nullable String exp1, @Nullable String exp2 )
             throws MapleException {
-        // test if one of the inputs is null
-        if ( exp1 == null || exp2 == null ) return false;
-        // if one of the expressions is empty, it only returns true when both are empty
-        if ( exp1.isEmpty() || exp2.isEmpty() ){
-            return exp1.isEmpty() && exp2.isEmpty();
-        }
+        if ( nullChecker(exp1, exp2) ) return false;
 
         // otherwise build simplify command to test equivalence
-        String command = "simplify((" + exp1 + ") - (" + exp2 + "));";
-        // log for debugging
-        LOG.debug("Simplification-Test: " + command);
-        return resultIsEqualToZeroTest( command );
+        String command = "(" + exp1 + ") - (" + exp2 + ")";
+        return simplificationTesterOf( command );
     }
 
     /**
@@ -370,19 +363,40 @@ public class MapleTranslator {
      * @throws MapleException If the test of equivalence produces an Maple error.
      */
     public boolean simplificationTesterWithConversion(
-            @Nullable String exp1, @Nullable String exp2, String conversion )
+            @Nullable String exp1, @Nullable String exp2, @Nonnull String conversion )
             throws MapleException{
-        // test if one of the inputs is null
-        if ( exp1 == null || exp2 == null ) return false;
-        // if one of the expressions is empty, it only returns true when both are empty
-        if ( exp1.isEmpty() || exp2.isEmpty() ){
-            return exp1.isEmpty() && exp2.isEmpty();
-        }
+        if ( nullChecker(exp1, exp2) ) return false;
 
         // otherwise build simplify command to test equivalence
-        String command = "simplify(convert((" + exp1 + ") - (" + exp2 + "),"+ conversion +"));";
-        // log for debugging
-        LOG.debug("Simplification-Test: " + command);
+        String command = "convert((" + exp1 + ") - (" + exp2 + "),"+ conversion +")";
+        return simplificationTesterOf( command );
+    }
+
+    public boolean simplificationTesterWithExpension(
+            @Nullable String exp1, @Nullable String exp2, @Nullable String conversion
+    ) throws MapleException {
+        if ( nullChecker(exp1, exp2) ) return false;
+
+        // otherwise build simplify command to test equivalence
+        String command = "expand((" + exp1 + ") - (" + exp2 + ")";
+        command += conversion == null ? ")" : "," + conversion + ")";
+        return simplificationTesterOf( command );
+    }
+
+    private boolean nullChecker( String exp1, String exp2 ){
+        // test if one of the inputs is null
+        if ( exp1 == null || exp2 == null ) return true;
+        // if one of the expressions is empty, it only returns true when both are empty
+        if ( exp1.isEmpty() || exp2.isEmpty() ){
+            return !(exp1.isEmpty() && exp2.isEmpty());
+        }
+        return false;
+    }
+
+    private boolean simplificationTesterOf( String expression )
+            throws MapleException{
+        String command = "simplify(" + expression + ");";
+        LOG.debug("Simplification-Test: " + expression);
         return resultIsEqualToZeroTest( command );
     }
 

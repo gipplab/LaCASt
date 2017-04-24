@@ -133,6 +133,9 @@ public class EquationTestCases {
         if ( !resultB )
             resultB = mapleT.simplificationTesterWithConversion(mapleLHS, mapleRHS, "hypergeom");
 
+        if ( !resultB )
+            resultB = mapleT.simplificationTesterWithExpension(mapleLHS, mapleRHS, null);
+
         if ( afterCommand != null ){
             LOG.info("After command: " + afterCommand);
             mapleT.enterMapleCommand(afterCommand);

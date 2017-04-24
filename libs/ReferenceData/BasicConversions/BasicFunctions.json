@@ -59,6 +59,12 @@
 		"LaTeX": "\\expe",
 		"Maple": "exp($0)",
 		"Mathematica": "Exp[$0]"
+	},
+	"Absolute Value":{
+		"MLP": "absolute value",
+		"LaTeX": "| $0 |",
+		"Maple": "abs($0)",
+		"Mathematica": "Abs[$0]"
 	}
   },
   "Symbol Languages": [
