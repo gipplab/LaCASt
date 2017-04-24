@@ -14,6 +14,7 @@ import org.junit.jupiter.api.function.Executable;
 import java.io.BufferedReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,7 +29,7 @@ public class EquationTestCases {
 
     private static final String FERRER_DEF_ASS = "assume(-1 < x, x < 1);";
     private static final String LEGENDRE_DEF_ASS = "assume(1 < x);";
-    private static final String X_RESET = "x := 'x';";
+    private static final String RESET = "restart;";
 
     private static MapleTranslator mapleT;
     private static LinkedList<TestCaseInLaTeX> testCases;
@@ -43,18 +44,22 @@ public class EquationTestCases {
             mapleT.init();
 
             br.lines()
-                    .map( l -> l.split("=") )
-                    .map( e ->
-                    {
+                    .filter( l -> !l.startsWith(";") )
+                    .map( l -> l.split(";") )
+                    .map( e -> {
+                        String[] eq = e[0].split("=");
+                        String ass = null;
+                        if ( e.length > 1 ) ass = e[1];
+
                         ca[0]++;
-                        if ( e.length > 2 ){
-                            for ( int i = 0; i < e.length-1; i++ ){
+                        if ( eq.length > 2 ){
+                            for ( int i = 0; i < eq.length-1; i++ ){
                                 testCases.add(
-                                        new TestCaseInLaTeX(e[i], e[i+1],ca[0])
+                                        new TestCaseInLaTeX(eq[i], eq[i+1],ass,ca[0])
                                 );
                             }
-                            return new TestCaseInLaTeX(e[e.length-1], e[0],ca[0]);
-                        } else return new TestCaseInLaTeX(e[0], e[1],ca[0]);
+                            return new TestCaseInLaTeX(eq[eq.length-1], eq[0], ass, ca[0]);
+                        } else return new TestCaseInLaTeX(eq[0], eq[1], ass, ca[0]);
                     } )
                     .forEach( testCases::add );
         } catch ( Exception e ){
@@ -71,7 +76,7 @@ public class EquationTestCases {
             tests.add(
                     DynamicTest.dynamicTest(
                             "Test Line: " + test.line,
-                            createTestCase( test, null )
+                            createTestCase( test )
                     )
             );
         }
@@ -79,11 +84,18 @@ public class EquationTestCases {
         return tests;
     }
 
-    private Executable createTestCase( TestCaseInLaTeX test, String assumptions ){
-        return () -> testFunction( test, assumptions );
+    private Executable createTestCase( TestCaseInLaTeX test ){
+        return () -> testFunction( test, test.assumption );
     }
 
-    private void testFunction( TestCaseInLaTeX test, String assumption ){
+    private void testFunction( TestCaseInLaTeX test, String assumption ) throws MapleException{
+        String mapleAss = null;
+        if ( assumption != null ){
+            LOG.info("Found assumption: " + assumption);
+            mapleAss = mapleT.translateFromLaTeXToMapleClean(assumption);
+            LOG.info("Translated assumption to: " + mapleAss);
+        }
+
         LOG.info(test.toString());
         String mapleLHS = mapleT.translateFromLaTeXToMapleClean(test.LHS);
         String mapleRHS = mapleT.translateFromLaTeXToMapleClean(test.RHS);
@@ -95,13 +107,17 @@ public class EquationTestCases {
         if ( test.RHS.contains("\\Ferrer") || test.LHS.contains("\\Ferrer") ){
             prev_command = MapleConstants.ENV_VAR_LEGENDRE_CUT_FERRER;
             prev_command += System.lineSeparator();
-            prev_command += FERRER_DEF_ASS + System.lineSeparator();
             after_command = MapleConstants.ENV_VAR_LEGENDRE_CUT_LEGENDRE;
-            after_command += System.lineSeparator() + X_RESET;
+            after_command += System.lineSeparator() + RESET;
         } else if ( test.RHS.contains("\\Legendre") || test.LHS.contains("\\Legendre") ){
             prev_command = LEGENDRE_DEF_ASS;
-            after_command = X_RESET;
+            after_command = RESET;
         }
+
+        if ( prev_command != null )
+            prev_command += mapleAss == null ? "" : "assume("+mapleAss+");" + System.lineSeparator();
+        if ( prev_command == null && mapleAss != null )
+            prev_command = "assume("+mapleAss+");" + System.lineSeparator();
 
         try {
             assertTrue(
@@ -114,7 +130,7 @@ public class EquationTestCases {
                     "Simplification fails: " + test.line
             );
         } catch ( MapleException me ){
-            me.printStackTrace();
+            throw me;
         }
     }
 
@@ -147,10 +163,13 @@ public class EquationTestCases {
     public static class TestCaseInLaTeX{
         String LHS, RHS;
         int line;
-        public TestCaseInLaTeX( String LHS, String RHS, int line ){
+        String assumption;
+
+        public TestCaseInLaTeX( String LHS, String RHS, String assumption, int line ){
             this.LHS = LHS;
             this.RHS = RHS;
             this.line = line;
+            this.assumption = assumption;
         }
 
         @Override

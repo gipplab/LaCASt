@@ -66,8 +66,6 @@ public class QuickTests {
 
     @Test
     public void replace(){
-        String bracket = "\\\\left |";
-        bracket = bracket.replaceAll("\\s", "");
-        System.out.println(bracket);
+        System.out.println(Arrays.toString("asd asd".split(";")));
     }
 }
