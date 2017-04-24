@@ -102,6 +102,8 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
                             || next.getTag().matches( MathTermTags.operation.tag() )
                             || curr.getTag().matches( MathTermTags.ellipsis.tag() )
                             || next.getTag().matches( MathTermTags.ellipsis.tag() )
+                            || curr.getTag().matches( MathTermTags.relation.tag() )
+                            || next.getTag().matches( MathTermTags.relation.tag() )
                             || curr.getTermText().matches( Brackets.CLOSED_PATTERN )
                             || curr.getTermText().matches( Brackets.OPEN_PATTERN )
                             || next.getTermText().matches( Brackets.CLOSED_PATTERN )

@@ -149,8 +149,8 @@ public enum Brackets {
     /**
      * Patterns for open brackets and closed brackets
      */
-    public static final String OPEN_PATTERN = "[\\(\\[\\{\\<]";
-    public static final String CLOSED_PATTERN = "[\\)\\]\\}\\>]";
+    public static final String OPEN_PATTERN = "[\\(\\[\\{]";
+    public static final String CLOSED_PATTERN = "[\\)\\]\\}]";
 
     /**
      * Each bracket is open or closed and has a symbol and its counterpart symbol

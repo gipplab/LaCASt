@@ -10,7 +10,9 @@ import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.Console;
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * Created by AndreG-P on 17.02.2017.
@@ -45,17 +47,20 @@ public class MapleToSemanticInterpreter {
 //            test = "1.4/((a+2)/(b^(Catalan/I)/(alpha*q^I*x/3)*alpha))";
 //            test = "((x^a)^b)^c";
 
-            Algebraic a = mi.evaluateExpression( "ToInert('sin(x)');" );
-            System.out.println(a.toString());
+            System.out.println("Bro, give some input:");
+            Scanner console = new Scanner(System.in);
+            test = console.nextLine();
 
-            /*
+            //Algebraic a = mi.evaluateExpression( "ToInert('sin(x)');" );
+            //System.out.println(a.toString());
+
             String result = mi.translate(test);
             TranslationFailures tf = mi.getFailures();
 
             LOG.info( "Translated result: " + result );
             if ( !tf.isEmpty() )
                 LOG.warn( "Internal Problems: " + mi.getFailures() );
-            */
+
         } catch ( MapleException | IOException me ){
             LOG.fatal( "Wasn't able to start the program.", me );
         }

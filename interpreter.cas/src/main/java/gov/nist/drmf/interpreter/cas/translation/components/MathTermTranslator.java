@@ -74,6 +74,7 @@ public class MathTermTranslator extends AbstractListTranslator {
                         Keys.FEATURE_VALUE_CONSTANT
                 );
 
+        String translation;
         // otherwise switch due all cases
         switch( tag ){
             case dlmf_macro:
@@ -161,6 +162,16 @@ public class MathTermTranslator extends AbstractListTranslator {
                 local_inner_exp.addTranslatedExpression(term.getTermText());
                 global_exp.addTranslatedExpression(term.getTermText());
                 return true;
+            case relation:
+                // TODO something like \leq, \neq and so on
+                translation = sT.translate( term.getTermText() );
+                if ( translation == null ){
+                    LOG.error("Unknown relation. Cannot translate: " + term.getTermText());
+                    return false;
+                }
+                local_inner_exp.addTranslatedExpression(translation);
+                global_exp.addTranslatedExpression(translation);
+                return true;
             case left_parenthesis: // the following should not reached!
             case left_bracket:
             case left_brace:
@@ -233,7 +244,6 @@ public class MathTermTranslator extends AbstractListTranslator {
             case factorial:
                 String last = global_exp.removeLastExpression();
                 BasicFunctionsTranslator translator = SemanticLatexTranslator.getBasicFunctionParser();
-                String translation;
 
                 String prefix = "";
                 try {
