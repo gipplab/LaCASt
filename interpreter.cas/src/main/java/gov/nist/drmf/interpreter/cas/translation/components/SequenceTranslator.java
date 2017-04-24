@@ -3,9 +3,11 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
+import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
@@ -197,9 +199,18 @@ public class SequenceTranslator extends AbstractListTranslator {
                     int num = local_inner_exp.mergeAll();
 
                     // now, always wrap elements around this sequence
-                    String seq = open_bracket.getAppropriateString();
-                    seq += local_inner_exp.removeLastExpression();
-                    seq += open_bracket.getCounterPart().getAppropriateString();
+                    String seq;
+                    if ( open_bracket.equals( Brackets.left_latex_abs_val ) ){
+                        BasicFunctionsTranslator bft = SemanticLatexTranslator.getBasicFunctionParser();
+                        seq = bft.translate(
+                                new String[]{ local_inner_exp.removeLastExpression() },
+                                "absolute value"
+                                );
+                    } else {
+                        seq = open_bracket.getAppropriateString();
+                        seq += local_inner_exp.removeLastExpression();
+                        seq += open_bracket.getCounterPart().getAppropriateString();
+                    }
 
                     // wrap parenthesis around sequence, this is one component of the sequence now
                     local_inner_exp.addTranslatedExpression( seq ); // replaced it
