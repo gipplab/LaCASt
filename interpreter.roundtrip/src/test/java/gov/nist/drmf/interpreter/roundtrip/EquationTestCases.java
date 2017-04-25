@@ -3,9 +3,11 @@ package gov.nist.drmf.interpreter.roundtrip;
 import com.maplesoft.externalcall.MapleException;
 import gov.nist.drmf.interpreter.MapleTranslator;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
+import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
@@ -22,6 +24,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Runs the equation test cases.
@@ -43,14 +46,15 @@ public class EquationTestCases {
         Integer[] ca = new Integer[]{1};
         testCases = new LinkedList<>();
         mapleT = new MapleTranslator();
+        TestStatus.reset();
 
-        Path p = GlobalPaths.PATH_REFERENCE_DATA.resolve("TestCases.txt");
-        //Path p = Paths.get("C:", "Users", "AndreG-P", "Uni", "MasterarbeitPRIVAT", "lessformulas.txt");
+        //Path p = GlobalPaths.PATH_REFERENCE_DATA.resolve("TestCases.txt");
+        Path p = Paths.get("C:", "Users", "AndreG-P", "Uni", "MasterarbeitPRIVAT", "lessformulas.txt");
 
         try ( BufferedReader br = Files.newBufferedReader(p) ){
             mapleT.init();
 
-            br.lines().limit(200)
+            br.lines()//.limit(500)
                     .map( l -> analyzeLine( l, ca ))
                     .filter( Objects::nonNull )
                     .forEach( t -> {
@@ -60,6 +64,11 @@ public class EquationTestCases {
         } catch ( Exception e ){
             e.printStackTrace();
         }
+    }
+
+    @AfterAll
+    public static void end(){
+        LOG.info("Results:"+System.lineSeparator() + TestStatus.stats());
     }
 
     private static final String LABEL = "\\\\label";
@@ -112,6 +121,7 @@ public class EquationTestCases {
         }
         else {
             LOG.info("Cannot handle inequalities right now. Line: " + counter[0]++);
+            TestStatus.INEQUALITY.add( counter[0] );
             return null;
         }
     }
@@ -146,8 +156,20 @@ public class EquationTestCases {
         }
 
         LOG.info(test.toString());
-        String mapleLHS = mapleT.translateFromLaTeXToMapleClean(test.LHS);
-        String mapleRHS = mapleT.translateFromLaTeXToMapleClean(test.RHS);
+        String mapleLHS = null, mapleRHS = null;
+        try {
+            mapleLHS = mapleT.translateFromLaTeXToMapleClean(test.LHS);
+            mapleRHS = mapleT.translateFromLaTeXToMapleClean(test.RHS);
+        } catch ( TranslationException te ){
+            TranslationException.Reason r = te.getReason();
+            if ( r != null && r.equals(TranslationException.Reason.UNKNOWN_MACRO) )
+                TestStatus.ERROR_UNKNOWN_MACRO.add(test.line);
+            else TestStatus.ERROR_FORWARD_TRANS_UNKOWN.add(test.line);
+            fail("Cannot translate equation: "
+                    + test.LHS + "=" + test.RHS + System.lineSeparator()
+                    + "Reason: " + te.getMessage()
+            );
+        }
         LOG.info("Translated to: " + mapleLHS + " = " + mapleRHS);
 
         String prev_command = null;
@@ -174,17 +196,20 @@ public class EquationTestCases {
                             mapleLHS,
                             mapleRHS,
                             prev_command,
-                            after_command
+                            after_command,
+                            test.line
                     ),
                     "Simplification fails: " + test.line
             );
         } catch ( MapleException me ){
-            throw me;
+            LOG.debug("Maple Error occurred, line " + test.line, me);
+            TestStatus.ERROR_IN_MAPLE.add(test.line);
         }
     }
 
     private boolean simplifyTest( String mapleLHS, String mapleRHS,
-                                  String preCommand, String afterCommand )
+                                  String preCommand, String afterCommand,
+                                  int line )
             throws MapleException{
         if ( preCommand != null ){
             LOG.info("Previous command: " + preCommand);
@@ -192,14 +217,28 @@ public class EquationTestCases {
         }
 
         boolean resultB = mapleT.simplificationTester(mapleLHS, mapleRHS);
-        if ( !resultB ) {
+        if ( resultB )
+            TestStatus.SUCCESSFUL.add( line );
+        else {
             resultB = mapleT.simplificationTesterWithConversion(mapleLHS, mapleRHS, "exp");
+            if ( resultB )
+                TestStatus.SUCCESSFUL_EXP.add(line);
         }
-        if ( !resultB )
+
+        if ( !resultB ) {
             resultB = mapleT.simplificationTesterWithConversion(mapleLHS, mapleRHS, "hypergeom");
+            if ( resultB )
+                TestStatus.SUCCESSFUL_HYPER.add(line);
+        }
+
+        if ( !resultB ) {
+            resultB = mapleT.simplificationTesterWithExpension(mapleLHS, mapleRHS, null);
+            if ( resultB )
+                TestStatus.SUCCESSFUL_EXPAND.add(line);
+        }
 
         if ( !resultB )
-            resultB = mapleT.simplificationTesterWithExpension(mapleLHS, mapleRHS, null);
+            TestStatus.NOT_SUCCESSFUL.add(line);
 
         if ( afterCommand != null ){
             LOG.info("After command: " + afterCommand);
@@ -229,22 +268,60 @@ public class EquationTestCases {
         }
     }
 
-    public static class Statistics{
-        int line;
-
-        public Statistics( int line ){
-            this.line = line;
-        }
-    }
-
     private enum TestStatus {
-        SUCCESSFUL,
-        SUCCESSFUL_EXP,
-        SUCCESSFUL_HYPER,
-        SUCCESSFUL_EXPAND,
-        NOT_SUCCESSFUL,
-        ERROR_FORWARD_TRANS_UNKOWN,
-        ERROR_FORWARD_TRANS_MACRO,
-        ERROR_IN_MAPLE
+        SUCCESSFUL(0),
+        SUCCESSFUL_EXP(0),
+        SUCCESSFUL_HYPER(0),
+        SUCCESSFUL_EXPAND(0),
+        NOT_SUCCESSFUL(0),
+        ERROR_FORWARD_TRANS_UNKOWN(0),
+        ERROR_UNKNOWN_MACRO(0),
+        ERROR_IN_MAPLE(0),
+        INEQUALITY(0);
+
+        int num;
+        LinkedList<Integer> lines;
+
+        TestStatus(int num){
+            this.num = num;
+            this.lines = new LinkedList<>();
+        }
+
+        public void add( int line ){
+            num++;
+            lines.add(line);
+        }
+
+        public static void reset(){
+            for ( TestStatus t : TestStatus.values() ){
+                t.num = 0;
+                t.lines = new LinkedList<>();
+            }
+        }
+
+        private String state(){
+            return num + ", Lines: " + lines.toString();
+        }
+
+        public static String stats(){
+            String nl = System.lineSeparator();
+            String out =
+                    "Number of ignored Inequalities: " + INEQUALITY.state() + nl;
+            out += "Total Number of Success: " +
+                    (SUCCESSFUL.num+SUCCESSFUL_EXP.num+SUCCESSFUL_HYPER.num+SUCCESSFUL_EXPAND.num)
+                    + nl;
+            out += "Total Number of Failues: " +
+                    (NOT_SUCCESSFUL.num+ERROR_UNKNOWN_MACRO.num+ERROR_FORWARD_TRANS_UNKOWN.num+ERROR_IN_MAPLE.num)
+                    + nl+nl;
+            out += "Successful Tests after Simplify:       " + SUCCESSFUL.state() + nl;
+            out += "Successful Tests after Exp-Conv:       " + SUCCESSFUL_EXP.state() + nl;
+            out += "Successful Tests after Hypergeom-Conv: " + SUCCESSFUL_HYPER.state() + nl;
+            out += "Successful Tests after Expansion:      " + SUCCESSFUL_EXPAND.state() + nl+nl;
+            out += "Not Successful Tests:    " + NOT_SUCCESSFUL.state() + nl;
+            out += "Unknown DLMF/DRMF Macro: " + ERROR_UNKNOWN_MACRO.state() + nl;
+            out += "Error in Forward Trans:  " + ERROR_FORWARD_TRANS_UNKOWN.state() + nl;
+            out += "Error in Maple:          " + ERROR_IN_MAPLE.state() + nl;
+            return out;
+        }
     }
 }
