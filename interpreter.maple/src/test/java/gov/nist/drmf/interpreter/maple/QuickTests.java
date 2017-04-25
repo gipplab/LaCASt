@@ -66,6 +66,17 @@ public class QuickTests {
 
     @Test
     public void replace(){
-        System.out.println(Arrays.toString("asd asd".split(";")));
+        TENUM.T.n = 10;
+        System.out.println(TENUM.T.n);
+    }
+
+    private enum TENUM{
+        T(0);
+
+        int n;
+
+        TENUM(int n){
+            this.n = n;
+        }
     }
 }
