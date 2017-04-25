@@ -393,7 +393,7 @@ public class MapleTranslator {
         return false;
     }
 
-    private boolean simplificationTesterOf( String expression )
+    public boolean simplificationTesterOf( String expression )
             throws MapleException{
         String command = "simplify(" + expression + ");";
         LOG.debug("Simplification-Test: " + expression);

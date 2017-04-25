@@ -4,7 +4,9 @@ import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.TranslationException;
 
+import javax.sql.rowset.serial.SerialRef;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -147,7 +149,13 @@ public class SemanticToCASInterpreter {
         System.out.println("Start translation...");
         System.out.println();
         trans_ms = System.currentTimeMillis();
-        latexParser.translate( expression );
+        try {
+            latexParser.translate( expression );
+        } catch ( TranslationException e ){
+            System.out.println( "ERROR OCCURRED: " + e.getMessage() );
+            System.out.println( "Reason: " + e.getReason() );
+            return;
+        }
         trans_ms = System.currentTimeMillis()-trans_ms;
 
         System.out.println("Finished conversion to " + GlobalConstants.CAS_KEY + ":");

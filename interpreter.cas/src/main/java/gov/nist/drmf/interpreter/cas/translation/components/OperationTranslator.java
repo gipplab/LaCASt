@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
+import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
@@ -78,8 +79,8 @@ public class OperationTranslator extends AbstractListTranslator {
         SymbolTranslator sT = SemanticLatexTranslator.getSymbolsTranslator();
         String translation = sT.translate( term.getTermText() );
         if ( translation == null ){
-            LOG.warn("Cannot translate operation " + term.getTermText());
-            return false;
+            throw new TranslationException("Cannot translate operation " + term.getTermText(),
+                    TranslationException.Reason.UNKNOWN_OPERATION);
         } else {
             INFO_LOG.addGeneralInfo(
                     term.getTermText(),

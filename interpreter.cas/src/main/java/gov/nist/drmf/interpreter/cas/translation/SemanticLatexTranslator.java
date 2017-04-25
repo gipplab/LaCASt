@@ -45,6 +45,9 @@ public class SemanticLatexTranslator extends AbstractTranslator {
     private PomParser parser;
 
     public SemanticLatexTranslator(String from_language, String to_language ){
+        TranslationException.FROM_LANGUAGE_DEFAULT = from_language;
+        TranslationException.TO_LANGUAGE_DEFAULT = to_language;
+
         greekLetters = new GreekLetters(from_language, to_language);
         constants = new Constants(Keys.KEY_DLMF, to_language);
         functions = new BasicFunctionsTranslator(to_language);
@@ -97,7 +100,8 @@ public class SemanticLatexTranslator extends AbstractTranslator {
             PomTaggedExpression exp = parser.parse(expression);
             return translate(exp);
         } catch ( ParseException pe ){
-            throw new TranslationException( Keys.KEY_LATEX, GlobalConstants.CAS_KEY, pe.getMessage(), pe );
+            throw new TranslationException(
+                    pe.getMessage(), TranslationException.Reason.MLP_ERROR, pe );
         }
     }
 
@@ -109,8 +113,6 @@ public class SemanticLatexTranslator extends AbstractTranslator {
         );
         if ( isInnerError() ){
             throw new TranslationException(
-                    Keys.KEY_LATEX,
-                    GlobalConstants.CAS_KEY,
                     "Wasn't able to translate the given expression."
             );
         }

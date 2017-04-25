@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -60,8 +61,8 @@ public class MathTermTranslator extends AbstractListTranslator {
 
         // if the tag doesn't exists in the system -> stop
         if ( tag == null ){
-            LOG.warn("Unknown tag: " + termTag);
-            return false;
+            throw new TranslationException("Unknown MathTerm tag: " + termTag,
+                    TranslationException.Reason.UNKNOWN_MATHTERM_TAG);
         }
 
         // get the feature set for a constant, if this expression has one
@@ -116,13 +117,15 @@ public class MathTermTranslator extends AbstractListTranslator {
                 // no it is a DLMF macro or function
                 FeatureSet macro = term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
                 if ( macro != null ){
-                    LOG.error("MathTermTranslator cannot translate DLMF-Macro: " +
-                            term.getTermText());
+                    throw new TranslationException(
+                            "MathTermTranslator cannot translate DLMF-Macro: " +
+                            term.getTermText(),
+                            TranslationException.Reason.UNKNOWN_MACRO);
                 } else {
-                    LOG.error("Reached unknown latex-command " +
-                            term.getTermText());
+                    throw new TranslationException("Reached unknown latex-command " +
+                            term.getTermText(),
+                            TranslationException.Reason.UNKNOWN_LATEX_COMMAND);
                 }
-                return false;
             case symbol:
                 String sym = sT.translate( term.getTermText() );
                 if ( sym != null ) {
@@ -133,8 +136,9 @@ public class MathTermTranslator extends AbstractListTranslator {
                     global_exp.addTranslatedExpression( sym );
                     return true;
                 }
-                LOG.error("Unknown symbol reached: " + term.getTermText());
-                return false;
+                throw new TranslationException(
+                        "Unknown symbol reached: " + term.getTermText(),
+                        TranslationException.Reason.UNKNOWN_SYMBOL);
             case function:
                 LOG.error("MathTermTranslator cannot translate functions. Use the FunctionTranslator instead: "
                         + term.getTermText());
@@ -272,10 +276,10 @@ public class MathTermTranslator extends AbstractListTranslator {
                                 term.getTermText());
                 return false;
             case abbreviation:
-                LOG.warn(
-                        "This program cannot translate abbreviations like " + term.getTermText()
+                throw new TranslationException(
+                        "This program cannot translate abbreviations like " + term.getTermText(),
+                        TranslationException.Reason.ABBREVIATION
                 );
-                return false;
             case spaces:
             case non_allowed:
                 LOG.debug( "Skip controlled space, such as \\!" );
@@ -303,12 +307,14 @@ public class MathTermTranslator extends AbstractListTranslator {
                 this.local_inner_exp = sq.getTranslatedExpressionObject();
                 return result;
             case right_delimiter:
-                LOG.error("NOT YET IMPLEMENTED DELIMITERS OR FENCES");
+                LOG.error("Should not reach right-delimiters in MathTermTranslator!");
                 return false;
             default:
-                LOG.warn("Unknown MathTerm Tag: "
-                        + term.getTag());
-                return false;
+                throw new TranslationException(
+                        "Unknown MathTerm Tag: "
+                                + term.getTag(),
+                        TranslationException.Reason.UNKNOWN_MATHTERM_TAG
+                );
         }
     }
 
@@ -412,11 +418,9 @@ public class MathTermTranslator extends AbstractListTranslator {
                     );
                     return parseGreekLetter( constant );
                 } else {
-                    LOG.warn(
-                            "Cannot translate mathematical constant " +
-                                    constant + " - " + set.getFeature(Keys.FEATURE_MEANINGS)
-                    );
-                    return false;
+                    throw new TranslationException("Cannot translate mathematical constant " +
+                            constant + " - " + set.getFeature(Keys.FEATURE_MEANINGS),
+                            TranslationException.Reason.UNKNOWN_MATH_CONSTANT);
                 }
             } catch ( NullPointerException npe ){/* ignore it */}
         }
@@ -460,9 +464,9 @@ public class MathTermTranslator extends AbstractListTranslator {
 
         // still null? inform the user, we cannot do more here
         if ( translated_letter == null ){
-            LOG.warn("Cannot translate Greek letter "
-                    + GreekLetter);
-            return false;
+            throw new TranslationException("Cannot translate Greek letter "
+                    + GreekLetter,
+                    TranslationException.Reason.UNKNOWN_GREEK_LETTER);
         }
 
         // otherwise add all

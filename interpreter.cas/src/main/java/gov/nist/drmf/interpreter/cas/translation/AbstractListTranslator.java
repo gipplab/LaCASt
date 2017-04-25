@@ -75,12 +75,28 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
             MathTerm curr = currExp.getRoot();
             MathTerm next = exp_list.get(0).getRoot();
 
-            MathTermTags ntag = MathTermTags.getTagByKey( next.getTag() );
-            if ( ntag != null &&
-                    (MathTermTags.spaces.equals(ntag) || MathTermTags.non_allowed.equals(ntag))
-                    ){
-                exp_list.remove(0); // remove the \! spaces
-                return addMultiply( currExp, exp_list );
+            MathTermTags currMathTag = MathTermTags.getTagByKey(curr.getTag());
+            MathTermTags nextMathTag = MathTermTags.getTagByKey(next.getTag());
+
+            if ( currMathTag != null ){
+                switch(currMathTag){
+                    case relation:
+                    case operation:
+                    case ellipsis:
+                        return false;
+                }
+            }
+            if ( nextMathTag != null ){
+                switch(nextMathTag){
+                    case relation:
+                    case operation:
+                    case ellipsis:
+                        return false;
+                    case spaces:
+                    case non_allowed:
+                        exp_list.remove(0); // remove the \! spaces
+                        return addMultiply( currExp, exp_list );
+                }
             }
 
             Brackets nextBracket = Brackets.getBracket( next.getTermText() );
@@ -94,8 +110,7 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
             //System.out.println(curr.getTermText() + " <-> " + next.getTermText());
             if ( curr.getTermText().matches( Brackets.CLOSED_PATTERN ) ) {
                 return
-                        !next.getTermText().matches( PATTERN_BASIC_OPERATIONS ) &&
-                                !next.getTag().matches( MathTermTags.operation.tag() );
+                        !(next.getTermText().matches( PATTERN_BASIC_OPERATIONS ));
             } else if ( next.getTermText().matches( Brackets.OPEN_PATTERN ) ){
                 return !curr.getTermText().matches( PATTERN_BASIC_OPERATIONS );
             }
@@ -103,12 +118,6 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
             return !(
                     curr.getTermText().matches( PATTERN_BASIC_OPERATIONS )
                             || next.getTermText().matches( PATTERN_BASIC_OPERATIONS )
-                            || curr.getTag().matches( MathTermTags.operation.tag() )
-                            || next.getTag().matches( MathTermTags.operation.tag() )
-                            || curr.getTag().matches( MathTermTags.ellipsis.tag() )
-                            || next.getTag().matches( MathTermTags.ellipsis.tag() )
-                            || curr.getTag().matches( MathTermTags.relation.tag() )
-                            || next.getTag().matches( MathTermTags.relation.tag() )
                             || curr.getTermText().matches( Brackets.CLOSED_PATTERN )
                             || curr.getTermText().matches( Brackets.OPEN_PATTERN )
                             || next.getTermText().matches( Brackets.CLOSED_PATTERN )

@@ -69,7 +69,7 @@ public class MLP {
 //            eq="\\left ( \\left ( y \\right ] \\right)";
 //            eq = "\\sqrt \\frac{2}{4}";
 //            eq = "ab13d";
-            eq = "\\left( x \\right) + \\left | x \\right | + \\| x \\| + |x|";
+            eq = "1 \\leq 2";
 //            eq = "\\opminus^\\expe";
 
             // parse/tag the equation and print it out 
