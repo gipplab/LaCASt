@@ -14,8 +14,12 @@ import org.junit.jupiter.api.function.Executable;
 import java.io.BufferedReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -36,34 +40,79 @@ public class EquationTestCases {
 
     @BeforeAll
     public static void init(){
-        Integer[] ca = new Integer[]{0};
+        Integer[] ca = new Integer[]{1};
         testCases = new LinkedList<>();
         mapleT = new MapleTranslator();
+
         Path p = GlobalPaths.PATH_REFERENCE_DATA.resolve("TestCases.txt");
+        //Path p = Paths.get("C:", "Users", "AndreG-P", "Uni", "MasterarbeitPRIVAT", "lessformulas.txt");
+
         try ( BufferedReader br = Files.newBufferedReader(p) ){
             mapleT.init();
 
-            br.lines()
-                    .filter( l -> !l.startsWith(";") )
-                    .map( l -> l.split(";") )
-                    .map( e -> {
-                        String[] eq = e[0].split("=");
-                        String ass = null;
-                        if ( e.length > 1 ) ass = e[1];
-
-                        ca[0]++;
-                        if ( eq.length > 2 ){
-                            for ( int i = 0; i < eq.length-1; i++ ){
-                                testCases.add(
-                                        new TestCaseInLaTeX(eq[i], eq[i+1],ass,ca[0])
-                                );
-                            }
-                            return new TestCaseInLaTeX(eq[eq.length-1], eq[0], ass, ca[0]);
-                        } else return new TestCaseInLaTeX(eq[0], eq[1], ass, ca[0]);
-                    } )
-                    .forEach( testCases::add );
+            br.lines().limit(200)
+                    .map( l -> analyzeLine( l, ca ))
+                    .filter( Objects::nonNull )
+                    .forEach( t -> {
+                        testCases.add(t);
+                        LOG.info("Created test case: " + t);
+                    } );
         } catch ( Exception e ){
             e.printStackTrace();
+        }
+    }
+
+    private static final String LABEL = "\\\\label";
+    private static final String CONSTRAINT = "\\\\constraint";
+
+    private static final Pattern CONST_PATTERN =
+            Pattern.compile("\\s*\\{\\$(.*)\\$}\\s*");
+
+    private static final Pattern LABEL_PATTERN =
+            Pattern.compile("\\s*\\{(.*)}\\s*");
+
+    public static TestCaseInLaTeX analyzeLine( String line, Integer[] counter ){
+        String eq, constraint = null, label = null;
+        String[] constSplit = line.split( CONSTRAINT );
+        String[] labelSplit = line.split( LABEL );
+
+        // there is a constraint
+        if ( constSplit.length > 1 ){
+            labelSplit = constSplit[1].split( LABEL );
+            eq = constSplit[0];
+            constraint = labelSplit[0];
+            if ( labelSplit.length > 1 )
+                label = labelSplit[1];
+        } else if ( labelSplit.length > 1 ){
+            eq = labelSplit[0];
+            label = labelSplit[1];
+        } else {
+            eq = line;
+        }
+
+        eq = eq.replaceAll("[\\s,;.]*$","");
+
+        String[] lrHS = eq.split("=");
+        if ( constraint != null ){
+            Matcher m = CONST_PATTERN.matcher(constraint);
+            if ( m.matches() ){
+                constraint = m.group(1);
+            }
+        }
+
+        if ( label != null ){
+            Matcher m = LABEL_PATTERN.matcher(label);
+            if ( m.matches() ){
+                label = m.group(1);
+            }
+        }
+
+        if ( lrHS.length > 1 ){
+            return new TestCaseInLaTeX( lrHS[0], lrHS[1], constraint, label, counter[0]++ );
+        }
+        else {
+            LOG.info("Cannot handle inequalities right now. Line: " + counter[0]++);
+            return null;
         }
     }
 
@@ -164,17 +213,38 @@ public class EquationTestCases {
         String LHS, RHS;
         int line;
         String assumption;
+        String label;
 
-        public TestCaseInLaTeX( String LHS, String RHS, String assumption, int line ){
+        public TestCaseInLaTeX( String LHS, String RHS, String assumption, String label, int line ){
             this.LHS = LHS;
             this.RHS = RHS;
-            this.line = line;
             this.assumption = assumption;
+            this.label = label;
+            this.line = line;
         }
 
         @Override
         public String toString(){
-            return line + ": " + LHS + "=" + RHS;
+            return line + ": " + LHS + "=" + RHS + " CONSTR=" + assumption + " LABEL=" + label;
         }
+    }
+
+    public static class Statistics{
+        int line;
+
+        public Statistics( int line ){
+            this.line = line;
+        }
+    }
+
+    private enum TestStatus {
+        SUCCESSFUL,
+        SUCCESSFUL_EXP,
+        SUCCESSFUL_HYPER,
+        SUCCESSFUL_EXPAND,
+        NOT_SUCCESSFUL,
+        ERROR_FORWARD_TRANS_UNKOWN,
+        ERROR_FORWARD_TRANS_MACRO,
+        ERROR_IN_MAPLE
     }
 }

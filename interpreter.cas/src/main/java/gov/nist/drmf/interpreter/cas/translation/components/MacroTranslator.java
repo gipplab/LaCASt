@@ -7,6 +7,7 @@ import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
@@ -80,7 +81,7 @@ public class MacroTranslator extends AbstractListTranslator {
         return true;
     }
 
-    private void storeInfos( FeatureSet fset ){
+    private void storeInfos( FeatureSet fset ) throws TranslationException {
         // now store all additional information
         // first of all number of parameters, ats and vars
         numOfParams = Integer.parseInt(DLMFFeatureValues.params.getFeatureValue(fset));
@@ -113,7 +114,10 @@ public class MacroTranslator extends AbstractListTranslator {
         // maybe the alternative pattern got multiple alternatives
         if ( !alternative_pattern.isEmpty() ){
             try{ alternative_pattern = alternative_pattern.split( MacrosLexicon.SIGNAL_INLINE )[0]; }
-            catch ( Exception e ){}
+            catch ( Exception e ){
+                throw new TranslationException("Cannot split alternative macro pattern!",
+                        TranslationException.Reason.DLMF_MACRO_ERROR);
+            }
         }
     }
 
@@ -156,13 +160,21 @@ public class MacroTranslator extends AbstractListTranslator {
             fset = macro_term.getNamedFeatureSet(
                     Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX+optional_paras.size() );
             if ( fset == null ){
-                LOG.error("Cannot find feature set with optional parameters.");
-                return false;
+                throw new TranslationException(
+                        "Cannot find feature set with optional parameters.",
+                        TranslationException.Reason.UNKNOWN_MACRO);
             }
         }
 
         int start = optional_paras.size();
-        storeInfos(fset);
+        try {
+            storeInfos(fset);
+        } catch ( NullPointerException npe ){
+            throw new TranslationException(
+                    "Cannot extract infromation from feature set: " + macro_term.getTermText(),
+                    TranslationException.Reason.NULL,
+                    npe);
+        }
 
         String info_key = macro_term.getTermText();
         if ( start != 0 )
@@ -185,8 +197,10 @@ public class MacroTranslator extends AbstractListTranslator {
             if ( containsTerm(exp) ){
                 MathTerm term = exp.getRoot();
                 if ( inner_at_counter > numOfAts ){
-                    LOG.error("Not valid number of @s in a DLMF-macro. " + DLMF_example);
-                    return false;
+                    throw new TranslationException(
+                            "Not valid number of @s in a DLMF-macro. " + DLMF_example,
+                            TranslationException.Reason.DLMF_MACRO_ERROR
+                    );
                 } else if ( term.getTag().matches(Keys.FEATURE_SET_AT) ){
                     inner_at_counter++;
                     continue;

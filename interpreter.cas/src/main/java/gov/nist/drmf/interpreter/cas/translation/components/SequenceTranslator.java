@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -101,6 +102,8 @@ public class SequenceTranslator extends AbstractListTranslator {
             boolean lastMerged = false;
             if ( part == null ) {
                 part = global_exp.getLastExpression();
+                if ( part == null )
+                    return true;
                 lastMerged = true;
             }
 
@@ -226,10 +229,11 @@ public class SequenceTranslator extends AbstractListTranslator {
                     global_exp.addTranslatedExpression( seq );
                     return true;
                 } else { // otherwise there was an error in the bracket arrangements
-                    LOG.error("Bracket-Error: open bracket "
+                    throw new TranslationException(
+                            "Bracket-Error: open bracket "
                             + open_bracket.symbol
-                            + " reached " + bracket.symbol);
-                    return false;
+                            + " reached " + bracket.symbol,
+                            TranslationException.Reason.WRONG_PARENTHESIS);
                 }
             }
 
@@ -265,10 +269,11 @@ public class SequenceTranslator extends AbstractListTranslator {
 
         // this should not happen. It means the algorithm reached the end but a bracket is
         // left open.
-        LOG.error(
+        throw new TranslationException(
                 "Reached the end of sequence but a bracket is left open: " +
-                        open_bracket.symbol);
-        return false;
+                open_bracket.symbol,
+                TranslationException.Reason.WRONG_PARENTHESIS
+        );
     }
 
     /**

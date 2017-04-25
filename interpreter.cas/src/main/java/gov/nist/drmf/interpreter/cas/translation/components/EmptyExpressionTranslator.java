@@ -19,15 +19,17 @@ import java.util.List;
  */
 public class EmptyExpressionTranslator extends AbstractTranslator {
     @Override
-    public boolean translate(PomTaggedExpression expression ){
+    public boolean translate(PomTaggedExpression expression ) throws TranslationException {
         // switch-case over tags
         String tag = expression.getTag();
         ExpressionTags expTag = ExpressionTags.getTagByKey(tag);
 
         // no tag shouldn't happen
         if ( expTag == null ){
-            LOG.warn("Could not find tag: " + tag);
-            return false;
+            throw new TranslationException(
+                    "Cannot find tag: " + tag,
+                    TranslationException.Reason.UNKNOWN_EXPRESSION_TAG
+            );
         }
 
         // switch over all possible tags
@@ -59,7 +61,9 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
             case equation:
             default:
                 LOG.warn("Reached unknown or not yet supported expression tag: " + tag);
-                return false;
+                throw new TranslationException(
+                        "Reached unknown or not yet supported expression tag: " + tag,
+                        TranslationException.Reason.UNKNOWN_EXPRESSION_TAG);
         }
     }
 
@@ -80,6 +84,7 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
                         tag.tag()
                 )
         );
+
         // finally, global_exp needs to be updated
         // it doesn't contains sub expressions because
         // extractMultipleSubExpressions already deleted it.

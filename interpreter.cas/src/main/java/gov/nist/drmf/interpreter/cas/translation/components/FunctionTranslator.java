@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
+import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.MathTerm;
@@ -41,7 +42,8 @@ public class FunctionTranslator extends AbstractListTranslator {
      * @return
      */
     @Override
-    public boolean translate( PomTaggedExpression exp, List<PomTaggedExpression> following ){
+    public boolean translate( PomTaggedExpression exp, List<PomTaggedExpression> following )
+            throws TranslationException{
         boolean return_value;
         return_value = translate(exp);
         return_value &= parse(following);
@@ -59,8 +61,11 @@ public class FunctionTranslator extends AbstractListTranslator {
      * @return true when everything is good
      */
     @Override
-    public boolean translate(PomTaggedExpression exp){
+    public boolean translate(PomTaggedExpression exp) {
         MathTerm term = exp.getRoot();
+        if ( term == null || term.isEmpty() ){
+            throw new TranslationException("Function has no MathTerm!", TranslationException.Reason.NULL);
+        }
 
         // remove the starting backslash
         String output;
