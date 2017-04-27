@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.roundtrip;
 
 import com.maplesoft.externalcall.MapleException;
+import gov.nist.drmf.interpreter.MapleSimplifier;
 import gov.nist.drmf.interpreter.MapleTranslator;
 import gov.nist.drmf.interpreter.Translation;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
@@ -42,6 +43,7 @@ public class EquationTestCases {
     private static HashMap<String, String> link_librarie;
 
     private static MapleTranslator mapleT;
+    private static MapleSimplifier mapleS;
     private static LinkedList<TestCaseInLaTeX> testCases;
 
     private static HashMap<String, Integer> unknown_macro_counter;
@@ -85,6 +87,7 @@ public class EquationTestCases {
         Path p = private_repo.resolve("lessformulas.txt");
         try ( BufferedReader br = Files.newBufferedReader(p) ){
             mapleT.init();
+            mapleS = mapleT.getMapleSimplifier();
 
             br.lines()//.limit(500) // TODO debug limit
                     .filter( l -> {
@@ -297,23 +300,23 @@ public class EquationTestCases {
             mapleT.enterMapleCommand(preCommand);
         }
 
-        boolean resultB = mapleT.simplificationTester(mapleLHS, mapleRHS);
+        boolean resultB = mapleS.simplificationTester(mapleLHS, mapleRHS);
         if ( resultB )
             TestStatus.SUCCESSFUL.add( line );
         else {
-            resultB = mapleT.simplificationTesterWithConversion(mapleLHS, mapleRHS, "exp");
+            resultB = mapleS.simplificationTesterWithConversion(mapleLHS, mapleRHS, "exp");
             if ( resultB )
                 TestStatus.SUCCESSFUL_EXP.add(line);
         }
 
         if ( !resultB ) {
-            resultB = mapleT.simplificationTesterWithConversion(mapleLHS, mapleRHS, "hypergeom");
+            resultB = mapleS.simplificationTesterWithConversion(mapleLHS, mapleRHS, "hypergeom");
             if ( resultB )
                 TestStatus.SUCCESSFUL_HYPER.add(line);
         }
 
         if ( !resultB ) {
-            resultB = mapleT.simplificationTesterWithExpension(mapleLHS, mapleRHS, null);
+            resultB = mapleS.simplificationTesterWithExpension(mapleLHS, mapleRHS, null);
             if ( resultB )
                 TestStatus.SUCCESSFUL_EXPAND.add(line);
         }
