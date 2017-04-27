@@ -31,7 +31,7 @@ public abstract class AbstractRoundTrip {
             String message = "Not symbolically equivalent! Expected: " + maple_1 + System.lineSeparator();
             message += "But get: " + maple_2;
             assertTrue(
-                    translator.simplificationTester( maple_1, maple_2 ),
+                    translator.getMapleSimplifier().simplificationTester( maple_1, maple_2 ),
                     message
             );
         };

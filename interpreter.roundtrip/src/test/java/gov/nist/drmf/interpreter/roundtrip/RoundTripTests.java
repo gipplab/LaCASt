@@ -60,7 +60,7 @@ public class RoundTripTests {
         }
 
         try {
-            boolean b = global_translator.simplificationTester( test, back_to_maple );
+            boolean b = global_translator.getMapleSimplifier().simplificationTester( test, back_to_maple );
             assertTrue(b,
                     "Not symbolically equivalent! Expected: " + test + System.lineSeparator() +
                             "But get: " + back_to_maple);
