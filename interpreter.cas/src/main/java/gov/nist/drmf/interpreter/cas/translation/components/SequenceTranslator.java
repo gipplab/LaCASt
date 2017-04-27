@@ -40,6 +40,8 @@ public class SequenceTranslator extends AbstractListTranslator {
     @Nullable
     private Brackets open_bracket;
 
+    private boolean setMode = false;
+
     /**
      * Uses only for a general sequence expression.
      * If the tag is sequence we don't need to check any parenthesis.
@@ -57,6 +59,11 @@ public class SequenceTranslator extends AbstractListTranslator {
      */
     public SequenceTranslator( Brackets open_bracket ){
         this.open_bracket = open_bracket;
+    }
+
+    public SequenceTranslator( Brackets open_bracket, boolean setMode ){
+        this(open_bracket);
+        this.setMode = setMode;
     }
 
     @Override
@@ -190,7 +197,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                 //noinspection ConstantConditions
                 if ( bracket.opened ){
                     // create a new SequenceTranslator (2nd kind)
-                    SequenceTranslator sp = new SequenceTranslator( bracket );
+                    SequenceTranslator sp = new SequenceTranslator( bracket, setMode );
                     // translate the following expressions
                     if ( sp.translate(following_exp) ){
                         // if the translation finished correctly, there is nothing to do here
@@ -202,12 +209,16 @@ public class SequenceTranslator extends AbstractListTranslator {
                         // there was an error in the parsing process -> return false
                         return false;
                     }
-                } else if ( open_bracket.counterpart.equals( bracket.symbol ) ){
+                } else if ( // therefore, bracket is closed!
+                        open_bracket.counterpart.equals( bracket.symbol ) ||
+                                setMode
+                        ){
                     // this sequence ends her
                     // first of all, merge all elements together
                     int num = local_inner_exp.mergeAll();
 
-                    // now, always wrap elements around this sequence
+                    // now, always wrap brackets around this sequence
+                    // if the brackets are |.| for absolute value, translate it as a function
                     String seq;
                     if ( open_bracket.equals( Brackets.left_latex_abs_val ) ){
                         BasicFunctionsTranslator bft = SemanticLatexTranslator.getBasicFunctionParser();
@@ -215,7 +226,11 @@ public class SequenceTranslator extends AbstractListTranslator {
                                 new String[]{ local_inner_exp.removeLastExpression() },
                                 Keys.KEY_ABSOLUTE_VALUE
                                 );
-                    } else {
+                    } else if ( setMode ){ // in set mode, both parenthesis may not match!
+                        seq = open_bracket.getAppropriateString();
+                        seq += local_inner_exp.removeLastExpression();
+                        seq += bracket.getAppropriateString();
+                    } else { // otherwise, parenthesis must match each other, so close as it opened
                         seq = open_bracket.getAppropriateString();
                         seq += local_inner_exp.removeLastExpression();
                         seq += open_bracket.getCounterPart().getAppropriateString();

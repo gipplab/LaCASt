@@ -38,6 +38,8 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 
     public static String MULTIPLY;
 
+    private static boolean SET_MODE = false;
+
     protected static InformationLogger INFO_LOG;
 
     protected static Logger LOG;
@@ -79,7 +81,7 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
             } // second, it could be a sub sequence
             else if ( isSubSequence(term) ){
                 Brackets bracket = Brackets.getBracket(term.getTermText());
-                SequenceTranslator sp = new SequenceTranslator(bracket);
+                SequenceTranslator sp = new SequenceTranslator(bracket, SET_MODE);
                 return_value = sp.translate(exp_list);
                 inner_parser = sp;
             } // this is special, could be a function like cos
@@ -177,6 +179,16 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
             }
         }
         return open_list.isEmpty();
+    }
+
+    public static void activateSetMode(){
+        LOG.info("Set-Mode for sequences activated!");
+        SET_MODE = true;
+    }
+
+    public static void deactivateSetMode(){
+        LOG.info("Set-Mode for sequences deactivated!");
+        SET_MODE = false;
     }
 
     @Override

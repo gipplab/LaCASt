@@ -124,9 +124,9 @@ n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0
 \sup;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r25;Supremum;0;0;0;;;symbol
 \Sum{n}{k1}{k2}@{f(n)};http://drmf.wmflabs.org/wiki/Definition:Sum;Sum;3;1;1;;;
 \Prod{n}{k1}{k2}@{f(n)};http://drmf.wmflabs.org/wiki/Definition:Prod;Product;3;1;1;;;
-\Wronskian@{w1(z),w2(z)};http://dlmf.nist.gov/1.13#E4;Wronskian;0;1;1;;;ignore
+\Wronskian@{w1(z),w2(z)};http://dlmf.nist.gov/1.13#E4;Wronskian;0;1;1;;;
 \Residue;http://dlmf.nist.gov/1.10#SS3.p5;Residue;0;0;0;;;symbol
-\card{A};http://dlmf.nist.gov/26.1#p2.t1.r5;Number of elements of a set;0;0;1;;;ignore
+\card{A};http://dlmf.nist.gov/26.1#p2.t1.r5;Number of elements of a set;0;0;1;;;
 \cartprod;http://dlmf.nist.gov/23.1#p2.t1.r18;Cartesian product of groups;0;0;0;;;symbol
 \divides;http://dlmf.nist.gov/24.1#p2.t1.r4;Devides;0;0;0;;;symbol
 \liminf;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r4;Least limit point;0;0;0;;;symbol
@@ -148,11 +148,11 @@ n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0
 \int;http://dlmf.nist.gov/1.4#iv;Indefinite Integral;0;0;0;;;symbol
 \pvint_{a}^{b} \f{f}@{x} \diff{x};http://dlmf.nist.gov/1.4#E24;Cauchy principle value;0;0;0;;;ignore
 \Schwarzian{z}{\zeta};http://dlmf.nist.gov/1.13#E20;Schwarzian derivative;0;0;2;;;
-\Complex;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r1;Set of complex numbers;0;0;0;;;
-\Real;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r14;Set of real numbers;0;0;0;;;
-\Rational;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r13;Set of rational numbers;0;0;0;;;
-\Integer;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r20;Set of integers;0;0;0;;;
-\NatNumber;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r11;Set of positive integers;0;0;0;;;
+\Complex;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r1;Set of complex numbers;0;0;0;;;symbol
+\Real;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r14;Set of real numbers;0;0;0;;;symbol
+\Rational;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r13;Set of rational numbers;0;0;0;;;symbol
+\Integer;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r20;Set of integers;0;0;0;;;symbol
+\NatNumber;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r11;Set of positive integers;0;0;0;;;symbol
 \Continuous@{A};http://dlmf.nist.gov/1.4#ii;Space of continuous functions on a set;0;1;1;;;
 \SpaceTestFunTempered@{A};http://dlmf.nist.gov/1.16#v;Space of test functions for tempered distributions;0;1;1;;;
 \setminus;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r19;Set difference;0;0;0;;;
