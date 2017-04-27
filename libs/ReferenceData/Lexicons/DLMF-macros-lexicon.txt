@@ -1267,6 +1267,7 @@ Symbol: \Complex
   Feature Set: dlmf-macro
 	DLMF: \Complex
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r1
+	Maple: complex
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Mathematica-Alternatives: 
@@ -1275,7 +1276,7 @@ Symbol: \Complex
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 0
-	Role: 
+	Role: symbol
 
 Symbol: \ComplexZeroAiryBi
 
@@ -3067,6 +3068,7 @@ Symbol: \Integer
   Feature Set: dlmf-macro
 	DLMF: \Integer
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r20
+	Maple: integer
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Mathematica-Alternatives: 
@@ -3075,7 +3077,7 @@ Symbol: \Integer
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 0
-	Role: 
+	Role: symbol
 
 Symbol: \IntgenAiryA
 
@@ -5032,6 +5034,7 @@ Symbol: \NatNumber
   Feature Set: dlmf-macro
 	DLMF: \NatNumber
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r11
+	Maple: posint
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Mathematica-Alternatives: 
@@ -5040,7 +5043,7 @@ Symbol: \NatNumber
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 0
-	Role: 
+	Role: symbol
 
 Symbol: \NeumannFactor
 
@@ -5443,6 +5446,7 @@ Symbol: \Rational
   Feature Set: dlmf-macro
 	DLMF: \Rational
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r13
+	Maple: rational
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Mathematica-Alternatives: 
@@ -5451,7 +5455,7 @@ Symbol: \Rational
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 0
-	Role: 
+	Role: symbol
 
 Symbol: \RayleighFun
 
@@ -5473,6 +5477,7 @@ Symbol: \Real
   Feature Set: dlmf-macro
 	DLMF: \Real
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r14
+	Maple: real
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Mathematica-Alternatives: 
@@ -5481,7 +5486,7 @@ Symbol: \Real
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 0
-	Role: 
+	Role: symbol
 
 Symbol: \RepInterfc
 
@@ -6445,6 +6450,21 @@ Symbol: \WilsonW
 	Number of Variables: 5
 	Role: 
 
+Symbol: \Wronskian
+
+  Feature Set: dlmf-macro
+	DLMF: \Wronskian@{w1(z),w2(z)}
+	DLMF-Link: dlmf.nist.gov/1.13#E4
+	Maple-Alternatives: 
+	Maple-Comment: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
+	Meanings: Wronskian
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 1
+	Role: 
+
 Symbol: \ZeroAiryAi
 
   Feature Set: dlmf-macro
@@ -7233,6 +7253,25 @@ Symbol: \cDiff
 	Number of Ats: 0
 	Number of Parameters: 1
 	Number of Variables: 0
+	Role: 
+
+Symbol: \card
+
+  Feature Set: dlmf-macro
+	DLMF: \card{A}
+	DLMF-Link: dlmf.nist.gov/26.1#p2.t1.r5
+	Maple: numelems(A)
+	Maple-Alternatives: 
+	Maple-Branch Cuts: 
+	Maple-Comment: 
+	Maple-Constraints: 
+	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
+	Meanings: Number of elements of a set
+	Number of Ats: 0
+	Number of Parameters: 0
+	Number of Variables: 1
 	Role: 
 
 Symbol: \cartprod

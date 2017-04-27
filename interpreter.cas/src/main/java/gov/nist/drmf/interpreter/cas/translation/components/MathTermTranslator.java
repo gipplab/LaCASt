@@ -120,7 +120,8 @@ public class MathTermTranslator extends AbstractListTranslator {
                     throw new TranslationException(
                             "MathTermTranslator cannot translate DLMF-Macro: " +
                             term.getTermText(),
-                            TranslationException.Reason.UNKNOWN_MACRO);
+                            TranslationException.Reason.UNKNOWN_MACRO,
+                            term.getTermText());
                 } else {
                     throw new TranslationException("Reached unknown latex-command " +
                             term.getTermText(),
@@ -135,10 +136,23 @@ public class MathTermTranslator extends AbstractListTranslator {
                     local_inner_exp.addTranslatedExpression( sym );
                     global_exp.addTranslatedExpression( sym );
                     return true;
+                } else {
+                    FeatureSet fset = term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
+                    if ( fset != null ){
+                        String trans = DLMFFeatureValues.CAS.getFeatureValue(fset);
+                        if ( trans != null ){
+                            INFO_LOG.addMacroInfo(
+                                    term.getTermText(), "was translated to " + trans );
+                            local_inner_exp.addTranslatedExpression(trans);
+                            global_exp.addTranslatedExpression(trans);
+                            return true;
+                        }
+                    }
+
+                    throw new TranslationException(
+                            "Unknown symbol reached: " + term.getTermText(),
+                            TranslationException.Reason.UNKNOWN_SYMBOL);
                 }
-                throw new TranslationException(
-                        "Unknown symbol reached: " + term.getTermText(),
-                        TranslationException.Reason.UNKNOWN_SYMBOL);
             case function:
                 LOG.error("MathTermTranslator cannot translate functions. Use the FunctionTranslator instead: "
                         + term.getTermText());

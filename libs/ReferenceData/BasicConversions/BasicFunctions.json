@@ -151,6 +151,30 @@
       "LaTeX": "\\opminus",
       "Maple": "(-1)",
       "Mathematica": "(-1)"
+	},
+	"Complex Numbers": {
+      "MLP": "complex",
+      "LaTeX": "\\Complex",
+      "Maple": "complex",
+      "Mathematica": "Complex"
+	},
+	"Real Numbers": {
+      "MLP": "real",
+      "LaTeX": "\\Real",
+      "Maple": "real",
+      "Mathematica": "Real"
+	},
+	"Rational Numbers": {
+      "MLP": "rational",
+      "LaTeX": "\\Rational",
+      "Maple": "rational",
+      "Mathematica": "Rational"
+	},
+	"Integer Numbers": {
+      "MLP": "integer",
+      "LaTeX": "\\Integer",
+      "Maple": "integer",
+      "Mathematica": "Integer"
 	}
   }
 }

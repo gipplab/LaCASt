@@ -45,9 +45,9 @@ public class MacroTranslator extends AbstractListTranslator {
 
     // the number of parameters, ats and variables
     private int
-            numOfParams,
-            numOfAts,
-            numOfVars;
+            numOfParams = Integer.MIN_VALUE,
+            numOfAts    = Integer.MIN_VALUE,
+            numOfVars   = Integer.MIN_VALUE;
 
     private String DLMF_example;
 
@@ -118,12 +118,36 @@ public class MacroTranslator extends AbstractListTranslator {
                 throw new TranslationException("Cannot split alternative macro pattern!",
                         TranslationException.Reason.DLMF_MACRO_ERROR);
             }
+            if ( translation_pattern == null ){
+                LOG.info("No direct translation! Switch to alternative mode for " + macro_term.getTermText());
+                translation_pattern = alternative_pattern;
+            }
+        }
+
+        if ( translation_pattern == null || translation_pattern.isEmpty() ){
+            throw new TranslationException(
+                    "DLMF macro cannot be translated: " + macro_term.getTermText(),
+                    TranslationException.Reason.UNKNOWN_MACRO,
+                    macro_term.getTermText()
+            );
         }
     }
 
     private boolean parse(List<PomTaggedExpression> following_exps){
         LinkedList<String> optional_paras = new LinkedList<>();
         PomTaggedExpression moveToEnd = null;
+
+        FeatureSet fset = macro_term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
+        if ( fset != null ){
+            storeInfos(fset);
+            int sum = numOfAts+numOfVars+numOfParams;
+            if ( sum == 0 ){ // its a symbol
+                INFO_LOG.addMacroInfo(macro_term.getTermText(), createFurtherInformation());
+                local_inner_exp.addTranslatedExpression(translation_pattern);
+                global_exp.addTranslatedExpression(translation_pattern);
+                return true;
+            }
+        }
 
         while ( !following_exps.isEmpty() ){
             PomTaggedExpression first = following_exps.get(0);
@@ -153,16 +177,15 @@ public class MacroTranslator extends AbstractListTranslator {
             } else break;
         }
 
-        FeatureSet fset = null;
-        if ( optional_paras.size() == 0 ){
-            fset = macro_term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
-        } else {
+        if ( optional_paras.size() > 0 ) {
             fset = macro_term.getNamedFeatureSet(
                     Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX+optional_paras.size() );
             if ( fset == null ){
                 throw new TranslationException(
                         "Cannot find feature set with optional parameters.",
-                        TranslationException.Reason.UNKNOWN_MACRO);
+                        TranslationException.Reason.UNKNOWN_MACRO,
+                        macro_term.getTermText()
+                );
             }
         }
 
@@ -171,9 +194,10 @@ public class MacroTranslator extends AbstractListTranslator {
             storeInfos(fset);
         } catch ( NullPointerException npe ){
             throw new TranslationException(
-                    "Cannot extract infromation from feature set: " + macro_term.getTermText(),
+                    "Cannot extract information from feature set: " + macro_term.getTermText(),
                     TranslationException.Reason.NULL,
-                    npe);
+                    npe
+            );
         }
 
         String info_key = macro_term.getTermText();

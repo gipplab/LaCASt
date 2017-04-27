@@ -10,6 +10,7 @@ public class TranslationException extends RuntimeException {
     public static String TO_LANGUAGE_DEFAULT;
 
     private Reason reason;
+    private Object reason_Obj;
 
     public TranslationException( String message ){
         this ( FROM_LANGUAGE_DEFAULT, TO_LANGUAGE_DEFAULT, message );
@@ -20,9 +21,20 @@ public class TranslationException extends RuntimeException {
         this.reason = reason;
     }
 
+    public TranslationException( String message, Reason reason, Object reason_Obj ){
+        this(message);
+        this.reason = reason;
+        this.reason_Obj = reason_Obj;
+    }
+
     public TranslationException( String message, Reason reason, Throwable throwable ){
         this( FROM_LANGUAGE_DEFAULT, TO_LANGUAGE_DEFAULT, message, throwable);
         this.reason = reason;
+    }
+
+    public TranslationException( String message, Reason reason, Object reasonObj, Throwable throwable ){
+        this( message, reason, throwable);
+        this.reason_Obj = reasonObj;
     }
 
     public TranslationException( String from_language, String to_language, String message ){
@@ -44,6 +56,14 @@ public class TranslationException extends RuntimeException {
 
     public void setReason(Reason reason){
         this.reason = reason;
+    }
+
+    public Object getReasonObj(){
+        return reason_Obj;
+    }
+
+    public void setReason_Obj( Object reasonObj ){
+        this.reason_Obj = reasonObj;
     }
 
     public enum Reason{
