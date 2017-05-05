@@ -28,7 +28,7 @@ public class LaTeXRoundTripIdentityTests extends AbstractRoundTrip {
                 maple = translator.translateFromLaTeXToMapleClean( latex );
                 if ( latex.equals( prev_latex ) ){
                     latex_equ = true;
-                } else if ( translator.getMapleSimplifier().simplificationTester(firstMaple, maple) ){
+                } else if ( translator.getMapleSimplifier().isEquivalent(firstMaple, maple) ){
                     maple_equ = true;
                 }
                 if ( latex_equ && maple_equ ) break;

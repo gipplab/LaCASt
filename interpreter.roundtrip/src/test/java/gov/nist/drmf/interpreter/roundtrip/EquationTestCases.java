@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.roundtrip;
 import com.maplesoft.externalcall.MapleException;
 import gov.nist.drmf.interpreter.MapleSimplifier;
 import gov.nist.drmf.interpreter.MapleTranslator;
-import gov.nist.drmf.interpreter.Translation;
+import gov.nist.drmf.interpreter.RelationResults;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.TranslationException;
@@ -89,12 +89,12 @@ public class EquationTestCases {
             mapleT.init();
             mapleS = mapleT.getMapleSimplifier();
 
-            br.lines()//.limit(500) // TODO debug limit
+            br.lines()
+                    //.limit(100) // TODO debug limit
                     .filter( l -> {
                         if ( l.contains("'") ){
                             int line = ca[0]++;
                             TestStatus.SINGLE_QUOTES.add( line );
-                            //LOG.error("SEE... single line... in single QUOTES...");
                             return false;
                         } return true;
                     } )
@@ -134,7 +134,7 @@ public class EquationTestCases {
     private static final String CONSTRAINT = "\\\\constraint";
 
     private static final Pattern CONST_LABEL_PATTERN =
-            Pattern.compile("\\s*\\{(.*)}\\s*");
+            Pattern.compile("[\\s{,;'\\$]*(.*)");
 
     public static TestCaseInLaTeX analyzeLine( String line, Integer[] counter ){
         String eq, constraint = null, label = null;
@@ -157,15 +157,12 @@ public class EquationTestCases {
 
         String ending_deletion = "[\\s,;.]*$";
 
-        eq = eq.replaceAll(ending_deletion,"");
-
-        String[] lrHS = eq.split("=");
         if ( constraint != null ){
             Matcher m = CONST_LABEL_PATTERN.matcher(constraint);
             if ( m.matches() ){
                 constraint = m.group(1);
                 constraint = constraint.replaceAll("[.$]*","");
-                constraint = constraint.replaceAll(ending_deletion, "");
+                constraint = constraint.replaceAll("[}\\s,;.$]*$", "");
             }
         }
 
@@ -178,13 +175,50 @@ public class EquationTestCases {
             }
         }
 
-        if ( lrHS.length > 1 ){
+        eq = eq.replaceAll(ending_deletion,"");
+        String[] lrHS = eq.split("=");
+
+        if ( lrHS.length == 2 ){
             return new TestCaseInLaTeX( lrHS[0], lrHS[1], constraint, label, counter[0]++ );
-        }
-        else {
-            TestStatus.INEQUALITY.add( counter[0] );
-            LOG.info("Cannot handle inequalities right now. Line: " + counter[0]++);
-            return null;
+        } else {
+            String[] f = null;
+            String symb = null;
+            if ( eq.contains("<") ){
+                f = eq.split( "<" );
+                symb = "<";
+            } else if ( eq.contains("\\leq") ){
+                f = eq.split( "\\\\leq" );
+                symb = "<=";
+            } else if ( eq.contains("\\le") ){
+                f = eq.split( "\\\\le" );
+                symb = "<=";
+            } else if ( eq.contains( ">" ) ){
+                f = eq.split( ">" );
+                symb = ">";
+            } else if ( eq.contains( "\\geq" ) ){
+                f = eq.split( "\\\\geq" );
+                symb = ">=";
+            } else if ( eq.contains("\\ge") ){
+                f = eq.split( "\\\\geq" );
+                symb = ">=";
+            } else if ( eq.contains( "\\neq" ) ){
+                f = eq.split( "\\\\neq" );
+                symb = "<>";
+            }
+
+            if ( f == null || f.length < 2 ){
+                TestStatus.ERROR_LINE.add( counter[0] );
+                LOG.info("Line cannot be analyzed: " + counter[0]++ );
+                return null;
+            }
+
+            return new RelationInLaTeX(
+                    "(" + f[0] + ") - (" + f[1] + ")",
+                    symb,
+                    constraint,
+                    label,
+                    counter[0]++
+            );
         }
     }
 
@@ -192,7 +226,6 @@ public class EquationTestCases {
     Iterable<DynamicTest> iterateAllTestCases(){
         LinkedList<DynamicTest> tests = new LinkedList<>();
 
-        //*
         while( !testCases.isEmpty() ){
             TestCaseInLaTeX test = testCases.remove(0);
             tests.add(
@@ -202,7 +235,6 @@ public class EquationTestCases {
                     )
             );
         }
-        //*/
 
         return tests;
     }
@@ -211,21 +243,77 @@ public class EquationTestCases {
         return () -> testFunction( test, test.assumption );
     }
 
-    private void testFunction( TestCaseInLaTeX test, String assumption ) throws MapleException{
+    private String translateAssumption(String assumption, int line){
         String mapleAss = null;
         if ( assumption != null ){
             LOG.info("Found assumption: " + assumption);
+
+            String[] asses = assumption.split("[,;]");
+            String modAss = "";
+            for ( int i = 0; i < asses.length; i++ ){
+                modAss += splitAssumptions(asses[i]);
+                if ( i < asses.length-1 )
+                    modAss += ", ";
+            }
+            modAss = modAss.replaceAll("[\\s,;.{}]*$", "");
+
             AbstractTranslator.activateSetMode();
             try {
-                mapleAss = mapleT.translateFromLaTeXToMapleClean(assumption);
+                LOG.info("Split assumption: " + modAss);
+                mapleAss = mapleT.translateFromLaTeXToMapleClean(modAss);
                 LOG.info("Translated assumption to: " + mapleAss);
             } catch ( Exception e ){
-                LOG.error("Cannot translate assumption! -> Ignore Assumption, line " + test.line);
+                LOG.error("Cannot translate assumption! -> Ignore Assumption, line " + line);
                 e.printStackTrace();
-                TestStatus.ERROR_IN_ASSUMPTION_TRANSLATION.add(test.line);
+                TestStatus.ERROR_IN_ASSUMPTION_TRANSLATION.add(line);
             }
             AbstractTranslator.deactivateSetMode();
         }
+        return mapleAss;
+    }
+
+    private String splitAssumptions(String ass){
+        Pattern p = Pattern.compile("\\s*(\\\\[lg]eq?|[<>=]).*");
+        //String w = "0 < y \\leq z \\ge \\cpi, q > 0";
+        String[] els = ass.split("(\\\\[lg]eq?|[<>=])");
+        //System.out.println( Arrays.toString(els) );
+        if ( els.length == 1 ) return ass;
+
+        LinkedList<String> symbs = new LinkedList<>();
+        Matcher m;
+        for ( int i = 0; i < els.length; i++ ){
+            //System.out.println(ass);
+            String sub = ass.substring(els[i].length());
+            //System.out.println(sub);
+            m = p.matcher( sub );
+            if ( m.matches() ) {
+                String symb = m.group(1);
+                symbs.add(symb);
+                sub = sub.substring(symb.length());
+            }
+            ass = sub;
+        }
+
+        //System.out.println(symbs);
+        String out = "";
+        for ( int i = 0; i < els.length-1; i++ ){
+            out += els[i];
+            out += symbs.removeFirst();
+            out += els[i+1];
+            if ( i < els.length-2 )
+                out += ", ";
+        }
+
+        return out;
+    }
+
+    private void testFunction( TestCaseInLaTeX test, String assumption ) throws MapleException {
+        if ( test instanceof RelationInLaTeX ){
+            relationTest( (RelationInLaTeX)test, assumption );
+            return;
+        }
+
+        String mapleAss = translateAssumption( assumption, test.line );
 
         LOG.info(test.toString());
         String mapleLHS = null, mapleRHS = null;
@@ -233,54 +321,25 @@ public class EquationTestCases {
             mapleLHS = mapleT.translateFromLaTeXToMapleClean(test.LHS);
             mapleRHS = mapleT.translateFromLaTeXToMapleClean(test.RHS);
         } catch ( TranslationException te ){
-            TranslationException.Reason r = te.getReason();
-            if ( r != null && r.equals(TranslationException.Reason.UNKNOWN_MACRO) ) {
-                TestStatus.ERROR_UNKNOWN_MACRO.add(test.line);
-                String uM = (String)te.getReasonObj();
-                Integer i = unknown_macro_counter.get(uM);
-                if ( i == null ){
-                    unknown_macro_counter.put(uM, 1);
-                } else {
-                    unknown_macro_counter.put(uM, i+1);
-                }
-            } else TestStatus.ERROR_FORWARD_TRANS_UNKOWN.add(test.line);
-            fail("Cannot translate equation: "
-                    + test.LHS + "=" + test.RHS + System.lineSeparator()
-                    + "Reason: " + te.getMessage()
-            );
+            handleTransExcInPreTrans( te, test );
+            return;
         } catch ( Exception e ){
             TestStatus.ERROR_FORWARD_TRANS_UNKOWN.add(test.line);
             e.printStackTrace();
             fail("ERROR in line " + test.line + ", " + e.getMessage());
             return;
         }
+
         LOG.info("Translated to: " + mapleLHS + " = " + mapleRHS);
-
-        String prev_command = null;
-        String after_command = null;
-
-        if ( test.RHS.contains("\\Ferrer") || test.LHS.contains("\\Ferrer") ){
-            prev_command = MapleConstants.ENV_VAR_LEGENDRE_CUT_FERRER;
-            prev_command += System.lineSeparator();
-            after_command = MapleConstants.ENV_VAR_LEGENDRE_CUT_LEGENDRE;
-            after_command += System.lineSeparator() + RESET;
-        } else if ( test.RHS.contains("\\Legendre") || test.LHS.contains("\\Legendre") ){
-            prev_command = LEGENDRE_DEF_ASS;
-            after_command = RESET;
-        }
-
-        if ( prev_command != null )
-            prev_command += mapleAss == null ? "" : "assume("+mapleAss+");" + System.lineSeparator();
-        if ( prev_command == null && mapleAss != null )
-            prev_command = "assume("+mapleAss+");" + System.lineSeparator();
+        PreAfterCommands pac = getPrevCommand( test.LHS + "-" + test.RHS, mapleAss );
 
         try {
             assertTrue(
-                    simplifyTest(
+                    simplifyTestEquation(
                             mapleLHS,
                             mapleRHS,
-                            prev_command,
-                            after_command,
+                            pac.pre,
+                            pac.after,
                             test.line
                     ),
                     "Simplification fails: " + test.line
@@ -291,32 +350,141 @@ public class EquationTestCases {
         }
     }
 
-    private boolean simplifyTest( String mapleLHS, String mapleRHS,
+    private void relationTest(
+            RelationInLaTeX test, String assumption )
+            throws MapleException {
+        String mapleAss = translateAssumption( assumption, test.line );
+
+        LOG.info(test.toString());
+        String mapleLHS = null, mapleRelationSymb = null;
+        try {
+            mapleLHS = mapleT.translateFromLaTeXToMapleClean(test.LHS);
+            mapleRelationSymb = test.relationSymbol; //mapleT.translateFromLaTeXToMapleClean(test.relationSymbol);
+        } catch ( TranslationException te ){
+            handleTransExcInPreTrans( te, test );
+        } catch ( Exception e ){
+            TestStatus.ERROR_FORWARD_TRANS_UNKOWN.add(test.line);
+            e.printStackTrace();
+            fail("ERROR in line " + test.line + ", " + e.getMessage());
+            return;
+        }
+        LOG.info("Translated to: " + mapleLHS + mapleRelationSymb + "0");
+
+        PreAfterCommands pac = getPrevCommand( test.LHS, mapleAss );
+
+        try {
+            enterPreDefines(mapleLHS, null);
+
+            if ( pac.pre != null ){
+                LOG.info("Previous command: " + pac.pre);
+                mapleT.enterMapleCommand(pac.pre);
+            }
+
+            RelationResults result =
+                    mapleS.holdsRelation( mapleLHS + mapleRelationSymb + "0" );
+            switch( result ){
+                case TRUE:
+                    TestStatus.SUCCESSFUL_INEQ.add( test.line );
+                    return;
+                case FALSE:
+                    TestStatus.NOT_SUCCESSFUL.add( test.line );
+                    fail("Not successful relation!");
+                    return;
+                case FAIL:
+                    TestStatus.NOT_SUCCESSFUL.add( test.line );
+                    fail("Not successful relation!");
+                    return;
+                case ERROR:
+                    TestStatus.ERROR_IN_MAPLE.add( test.line );
+                    fail("Error or Fail in relation test.");
+            }
+        } catch ( MapleException me ){
+            LOG.debug("Maple Error occurred, line " + test.line, me);
+            TestStatus.ERROR_IN_MAPLE.add(test.line);
+        }
+    }
+
+    private PreAfterCommands getPrevCommand( String overAll, String mapleAss ){
+        PreAfterCommands pac = new PreAfterCommands();
+        if ( overAll.contains("\\Ferrer") ){
+            pac.pre = MapleConstants.ENV_VAR_LEGENDRE_CUT_FERRER;
+            pac.pre += System.lineSeparator();
+            pac.pre += FERRER_DEF_ASS + System.lineSeparator();
+            pac.after = MapleConstants.ENV_VAR_LEGENDRE_CUT_LEGENDRE;
+            pac.after += System.lineSeparator() + RESET;
+        } else if ( overAll.contains("\\Legendre") ){
+            pac.pre = LEGENDRE_DEF_ASS;
+            pac.after = RESET;
+        }
+
+        if ( pac.pre != null )
+            pac.pre += mapleAss == null ?
+                    "" :
+                    "assume("+mapleAss+");" + System.lineSeparator();
+        if ( pac.pre == null && mapleAss != null )
+            pac.pre = "assume("+mapleAss+");" + System.lineSeparator();
+        return pac;
+    }
+
+
+
+    private void handleTransExcInPreTrans( TranslationException te, TestCaseInLaTeX test ){
+        TranslationException.Reason r = te.getReason();
+        if ( r != null && r.equals(TranslationException.Reason.UNKNOWN_MACRO) ) {
+            TestStatus.ERROR_UNKNOWN_MACRO.add(test.line);
+            String uM = (String)te.getReasonObj();
+            Integer i = unknown_macro_counter.get(uM);
+            if ( i == null ){
+                unknown_macro_counter.put(uM, 1);
+            } else {
+                unknown_macro_counter.put(uM, i+1);
+            }
+        } else TestStatus.ERROR_FORWARD_TRANS_UNKOWN.add(test.line);
+        fail("Cannot translate equation: "
+                + test.LHS + "=" + test.RHS + System.lineSeparator()
+                + "Reason: " + te.getMessage()
+        );
+    }
+
+    private void enterPreDefines(String mapleLHS, String mapleRHS) throws MapleException{
+        if ( mapleRHS == null )
+            mapleT.enterMapleCommand("tmp := '" + mapleLHS + "';");
+        else
+            mapleT.enterMapleCommand("tmp := '" + mapleLHS +"-"+ mapleRHS + "';");
+        mapleT.enterMapleCommand("mySet := indets(tmp, name) minus {constants};");
+        //mapleT.enterMapleCommand("mySeq := seq('(op(myVar, mySet),Not(negative))', myVar = 1..nops(mySet), 1);");
+        mapleT.enterMapleCommand("mySeq := seq(Re(op(myVar,mySet))>0, myVar = 1..nops(mySet));");
+        mapleT.enterMapleCommand("assume(mySeq);");
+    }
+
+    private boolean simplifyTestEquation( String mapleLHS, String mapleRHS,
                                   String preCommand, String afterCommand,
                                   int line )
             throws MapleException{
+        enterPreDefines(mapleLHS, mapleRHS);
+
         if ( preCommand != null ){
             LOG.info("Previous command: " + preCommand);
             mapleT.enterMapleCommand(preCommand);
         }
 
-        boolean resultB = mapleS.simplificationTester(mapleLHS, mapleRHS);
+        boolean resultB = mapleS.isEquivalent(mapleLHS, mapleRHS);
         if ( resultB )
             TestStatus.SUCCESSFUL.add( line );
         else {
-            resultB = mapleS.simplificationTesterWithConversion(mapleLHS, mapleRHS, "exp");
+            resultB = mapleS.isEquivalentWithConversion(mapleLHS, mapleRHS, "exp");
             if ( resultB )
                 TestStatus.SUCCESSFUL_EXP.add(line);
         }
 
         if ( !resultB ) {
-            resultB = mapleS.simplificationTesterWithConversion(mapleLHS, mapleRHS, "hypergeom");
+            resultB = mapleS.isEquivalentWithConversion(mapleLHS, mapleRHS, "hypergeom");
             if ( resultB )
                 TestStatus.SUCCESSFUL_HYPER.add(line);
         }
 
         if ( !resultB ) {
-            resultB = mapleS.simplificationTesterWithExpension(mapleLHS, mapleRHS, null);
+            resultB = mapleS.isEquivalentWithExpension(mapleLHS, mapleRHS, null);
             if ( resultB )
                 TestStatus.SUCCESSFUL_EXPAND.add(line);
         }
@@ -330,6 +498,19 @@ public class EquationTestCases {
         }
 
         return resultB;
+    }
+
+    public static class PreAfterCommands{
+        private String pre, after;
+    }
+
+    public static class RelationInLaTeX extends TestCaseInLaTeX{
+        String relationSymbol;
+
+        public RelationInLaTeX( String LHS, String relationSymbol, String assumption, String label, int line ){
+            super( LHS, "0", assumption, label, line );
+            this.relationSymbol = relationSymbol;
+        }
     }
 
     public static class TestCaseInLaTeX{
@@ -355,6 +536,7 @@ public class EquationTestCases {
 
     private enum TestStatus {
         SUCCESSFUL(0),
+        SUCCESSFUL_INEQ(0),
         SUCCESSFUL_EXP(0),
         SUCCESSFUL_HYPER(0),
         SUCCESSFUL_EXPAND(0),
@@ -363,7 +545,7 @@ public class EquationTestCases {
         ERROR_IN_ASSUMPTION_TRANSLATION(0),
         ERROR_UNKNOWN_MACRO(0),
         ERROR_IN_MAPLE(0),
-        INEQUALITY(0),
+        ERROR_LINE(0),
         SINGLE_QUOTES(0);
 
         int num;
@@ -411,10 +593,12 @@ public class EquationTestCases {
             String nl = System.lineSeparator();
             String tab = "\t";
             String out =
-                    "Total Number of Ignored Inequalities: " +nl+tab+ INEQUALITY.state() + nl;
+                    "Total Number of Lines with non-equation, non-relations: "
+                            +nl+tab+ ERROR_LINE.state() + nl;
             out += "Total Number of Ignored Single Quotes ': "+nl+tab + SINGLE_QUOTES.state() + nl;
             out += "Total Number of Success:  " +
-                    (SUCCESSFUL.num+SUCCESSFUL_EXP.num+SUCCESSFUL_HYPER.num+SUCCESSFUL_EXPAND.num)
+                    (SUCCESSFUL.num+SUCCESSFUL_EXP.num+SUCCESSFUL_HYPER.num+
+                            SUCCESSFUL_EXPAND.num+SUCCESSFUL_INEQ.num)
                     + nl;
             out += "Total Number of Failures: " +
                     (NOT_SUCCESSFUL.num+ERROR_UNKNOWN_MACRO.num+ERROR_FORWARD_TRANS_UNKOWN.num+ERROR_IN_MAPLE.num)
@@ -426,7 +610,8 @@ public class EquationTestCases {
             out += "Successful Tests after Simplify:       " + SUCCESSFUL.state() + nl;
             out += "Successful Tests after Exp-Conv:       " + SUCCESSFUL_EXP.state() + nl;
             out += "Successful Tests after Hypergeom-Conv: " + SUCCESSFUL_HYPER.state() + nl;
-            out += "Successful Tests after Expansion:      " + SUCCESSFUL_EXPAND.state() + nl+nl;
+            out += "Successful Tests after Expansion:      " + SUCCESSFUL_EXPAND.state() + nl;
+            out += "Successful Tests of Relations (not =): " + SUCCESSFUL_INEQ.state() + nl + nl;
 
             out += "// No Errors, but each kind of simplify returns something different to 0!" + nl +
                     "Non-Successful Tests:   " + nl + tab +

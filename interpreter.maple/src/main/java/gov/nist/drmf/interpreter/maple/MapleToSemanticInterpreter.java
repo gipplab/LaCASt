@@ -40,14 +40,16 @@ public class MapleToSemanticInterpreter {
             MapleInterface.init();
             MapleInterface mi = MapleInterface.getUniqueMapleInterface();
 
-            String test = "sin(2)*I";
+            String test = "sin(x) > exp(x)";
 //            test = "gamma+alpha^5-I^(x/5)+Catalan";
 //            test = "x + x^2 + ((1-gamma)*x/2)^I";
 //            test = "gamma + alpha^(5) +(1 * I)^(x *(1)/(5)) *(- 1)+ Catalan";
 //            test = "1.4/((a+2)/(b^(Catalan/I)/(alpha*q^I*x/3)*alpha))";
 //            test = "((x^a)^b)^c";
 
-            System.out.println("Bro, give some input:");
+            System.out.println("Please enter a Maple expression in 1-D representation" +
+                    System.lineSeparator() +
+                    "(without ;):");
             Scanner console = new Scanner(System.in);
             test = console.nextLine();
 
@@ -56,6 +58,15 @@ public class MapleToSemanticInterpreter {
 
             String result = mi.translate(test);
             TranslationFailures tf = mi.getFailures();
+
+            if ( !tf.isEmpty() ){
+                System.out.println("Error in translation process:");
+                System.out.println(tf);
+            }
+
+            System.out.println("Translated expression:");
+            System.out.println(result);
+
 
             LOG.info( "Translated result: " + result );
             if ( !tf.isEmpty() )

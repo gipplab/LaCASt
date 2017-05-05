@@ -43,6 +43,8 @@ public class MacroTranslator extends AbstractListTranslator {
     private static final Pattern optional_params_pattern =
             Pattern.compile("\\s*\\[(.*)]\\s*\\*?\\s*");
 
+    private static final String deriv_special_case = "\\\\p?deriv";
+
     // the number of parameters, ats and variables
     private int
             numOfParams = Integer.MIN_VALUE,
@@ -82,6 +84,7 @@ public class MacroTranslator extends AbstractListTranslator {
     }
 
     private void storeInfos( FeatureSet fset ) throws TranslationException {
+        //LOG.info("Extract information for " + macro_term.getTermText());
         // now store all additional information
         // first of all number of parameters, ats and vars
         numOfParams = Integer.parseInt(DLMFFeatureValues.params.getFeatureValue(fset));
@@ -118,7 +121,8 @@ public class MacroTranslator extends AbstractListTranslator {
                 throw new TranslationException("Cannot split alternative macro pattern!",
                         TranslationException.Reason.DLMF_MACRO_ERROR);
             }
-            if ( translation_pattern == null ){
+
+            if ( translation_pattern.isEmpty() ){
                 LOG.info("No direct translation! Switch to alternative mode for " + macro_term.getTermText());
                 translation_pattern = alternative_pattern;
             }
@@ -151,6 +155,7 @@ public class MacroTranslator extends AbstractListTranslator {
 
         while ( !following_exps.isEmpty() ){
             PomTaggedExpression first = following_exps.get(0);
+            if ( first.isEmpty() ) break;
             MathTerm first_term = first.getRoot();
 
             if ( first_term != null && !first_term.isEmpty() ){
@@ -213,20 +218,44 @@ public class MacroTranslator extends AbstractListTranslator {
         for ( int i = 0; !optional_paras.isEmpty() && i < components.length; i++ )
             components[i] = optional_paras.removeFirst();
 
+        PomTaggedExpression exp;
+        boolean null_deriv_case = false;
+        if ( !following_exps.isEmpty() ){
+            exp = following_exps.get(0);
+            if ( exp.isEmpty() && macro_term.getTermText().matches( deriv_special_case ) ){
+                following_exps.remove(0);
+                start++;
+                null_deriv_case = true;
+            }
+        }
+
+        boolean passAts = false;
+
         int inner_at_counter = 0;
         for ( int i = start; !following_exps.isEmpty() && i < components.length; ){
             // get first expression
-            PomTaggedExpression exp = following_exps.remove(0);
+            exp = following_exps.remove(0);
 
             if ( containsTerm(exp) ){
                 MathTerm term = exp.getRoot();
+                MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
                 if ( inner_at_counter > numOfAts ){
                     throw new TranslationException(
                             "Not valid number of @s in a DLMF-macro. " + DLMF_example,
                             TranslationException.Reason.DLMF_MACRO_ERROR
                     );
                 } else if ( term.getTag().matches(Keys.FEATURE_SET_AT) ){
+                    passAts = true;
                     inner_at_counter++;
+                    continue;
+                } else if ( tag != null && tag.equals(MathTermTags.caret) && !passAts ){
+                    if ( moveToEnd != null ){
+                        throw new TranslationException(
+                                "Two times an exponent? That's not really allowed! " + macro_term.getTermText(),
+                                TranslationException.Reason.DLMF_MACRO_ERROR
+                        );
+                    }
+                    moveToEnd = following_exps.remove(0);
                     continue;
                 }
             }
@@ -240,6 +269,25 @@ public class MacroTranslator extends AbstractListTranslator {
                 return false;
         }
 
+        if ( null_deriv_case && !following_exps.isEmpty() ){
+            exp = following_exps.remove(0);
+            TranslatedExpression following_argument =
+                    parseGeneralExpression(exp, following_exps);
+            components[start-1] = following_argument.toString();
+
+            if ( checkForce( following_exps ) ){
+                exp = following_exps.remove(0);
+                TranslatedExpression tmp = parseGeneralExpression(exp, following_exps);
+                if ( tmp.getLastExpression() == null ){
+                    following_argument.removeLastExpression();
+                    following_argument.addTranslatedExpression( global_exp.removeLastExpression() );
+                    components[start-1] = following_argument.toString();
+                }
+            }
+
+            global_exp.removeLastNExps( following_argument.getLength() );
+        }
+
         if ( moveToEnd != null ){
             following_exps.add(0, moveToEnd);
         }
@@ -247,6 +295,22 @@ public class MacroTranslator extends AbstractListTranslator {
         // finally fill the placeholders by values
         fillVars();
         return true;
+    }
+
+    private boolean checkForce( List<PomTaggedExpression> following_exps ){
+        if ( following_exps.isEmpty() ) return false;
+        PomTaggedExpression next = following_exps.get(0);
+        if ( next.isEmpty() ) return false;
+        if ( next.getRoot().isEmpty() ) return false;
+
+        MathTermTags tag = MathTermTags.getTagByKey( next.getRoot().getTag() );
+        switch ( tag ){
+            case caret:
+            case factorial:
+            case underscore:
+                return true;
+            default: return false;
+        }
     }
 
     /**
@@ -259,6 +323,7 @@ public class MacroTranslator extends AbstractListTranslator {
                 alternative_pattern : translation_pattern;
 
         for ( int i = 0; i < components.length; i++ ){
+            //LOG.info("Fill pattern: " + pattern);
             pattern = pattern.replace(
                     GlobalConstants.POSITION_MARKER + Integer.toString(i),
                     components[i]

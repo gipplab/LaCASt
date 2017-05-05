@@ -379,6 +379,9 @@ public class CSVtoLexiconConverter {
             info.link = lineAnalyzer.getValue(
                     DLMFTranslationHeaders.cas_link.getCSVKey(curr_cas) );
 
+            if (info.extra_package != null && !info.extra_package.isEmpty())
+                LOG.debug("EXTRA PACKAGE: " + info.extra_package);
+
             if ( holder.cas_name != null )
                 cas_cache.add( holder.cas_name, holder.num_vars, info );
         } catch ( NumberFormatException nfe ){
@@ -462,6 +465,10 @@ public class CSVtoLexiconConverter {
                 lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
                 MacrosLexicon.SIGNAL_INLINE);
         h = DLMFTranslationHeaders.cas_alternatives;
+        fset.addFeature( h.getFeatureKey(casPrefix),
+                lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
+                MacrosLexicon.SIGNAL_INLINE);
+        h = DLMFTranslationHeaders.cas_package;
         fset.addFeature( h.getFeatureKey(casPrefix),
                 lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
                 MacrosLexicon.SIGNAL_INLINE);

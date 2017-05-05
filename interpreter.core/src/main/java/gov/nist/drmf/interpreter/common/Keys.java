@@ -16,6 +16,8 @@ public class Keys {
 
     public static final String KEY_ALTERNATIVE_SUFFX = "-Alternatives";
 
+    public static final String KEY_EXTRA_PACKAGE_SUFFIX = "-Package";
+
     public static final String KEY_MAPLE_BIN = "maple_bin";
 
     public static final String KEY_SYSTEM_LOGGING = "log4j2.configurationFile";
@@ -59,4 +61,10 @@ public class Keys {
             MLP_KEY_ADDITION        = "Addition",
             MLP_KEY_FRACTION        = "fraction",
             MLP_KEY_UNDERSCORE      = "underscore";
+
+    public static final String
+            MLP_KEY_EQ  = "equals",
+            MLP_KEY_NEQ = "relation_neq",
+            MLP_KEY_LEQ = "relation_leq",
+            MLP_KEY_GEQ = "relation_geq";
 }
