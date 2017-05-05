@@ -72,7 +72,7 @@ public class PolynomialTests extends AbstractRoundTrip {
 
                 assertTrue(
                         "Input expression and fix point are not equivalent! " + maple_results.getLast(),
-                        translator.getMapleSimplifier().simplificationTester( test, maple_results.getLast() )
+                        translator.getMapleSimplifier().isEquivalent( test, maple_results.getLast() )
                 );
             } catch ( Exception e ){
                 fail( "Exception occurred!" );

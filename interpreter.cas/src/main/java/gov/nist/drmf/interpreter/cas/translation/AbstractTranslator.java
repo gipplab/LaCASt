@@ -66,6 +66,11 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
         // if there was an inner error
         boolean return_value;
 
+        // if it is an empty exp...
+        if ( exp.isEmpty() ){
+            return local_inner_exp;
+        }
+
         // handle all different cases
         // first, does this expression contains a term?
         if ( !containsTerm(exp) ){

@@ -117,25 +117,37 @@
 		"Mathematica": ":="
 	},
 	"Not Equality":{
-		"MLP": "relation_1",
+		"MLP": "relation_neq",
 		"LaTeX": "\\neq",
 		"Maple": "<>",
 		"Mathematica": "\\[NotEqual]"
 	},
 	"Less Than or Equality":{
-		"MLP": "relation_2",
+		"MLP": "relation_leq",
 		"LaTeX": "\\leq",
 		"Maple": "<=",
 		"Mathematica": "<="
 	},
+	"Less Than or Equality 2":{
+		"MLP": "relation_leq2",
+		"LaTeX": "\\le",
+		"Maple": "<=",
+		"Mathematica": "<="
+	},
 	"Greater Than or Equality":{
-		"MLP": "relation_3",
+		"MLP": "relation_geq",
 		"LaTeX": "\\geq",
 		"Maple": ">=",
 		"Mathematica": ">="
 	},
+	"Greater Than or Equality2":{
+		"MLP": "relation_geq2",
+		"LaTeX": "\\ge",
+		"Maple": ">=",
+		"Mathematica": ">="
+	},
 	"Element of":{
-		"MLP": "relation_2",
+		"MLP": "in",
 		"LaTeX": "\\in",
 		"Maple": "in",
 		"Mathematica": "\\[Element]"

@@ -6,5 +6,6 @@ package gov.nist.drmf.interpreter.cas.mlp;
 public class CASInfo {
     String  link = "",
             constraints = "",
-            branch_cuts = "";
+            branch_cuts = "",
+            extra_package = "";
 }

@@ -51,6 +51,8 @@ public class ListTranslator extends AbstractAlgebraicTranslator<List> {
             case ineq:
             case lesseq:
             case lessthan:
+                generalParser = new RelationTranslator( root, length );
+                break;
             case imply:
             case not:
             case or:

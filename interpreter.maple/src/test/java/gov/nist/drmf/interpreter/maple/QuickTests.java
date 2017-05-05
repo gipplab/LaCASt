@@ -1,9 +1,11 @@
 package gov.nist.drmf.interpreter.maple;
 
+import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -12,6 +14,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -118,7 +123,45 @@ public class QuickTests {
 
     @Test
     public void singleQuote(){
-        String w = "w''";
-        System.out.println(w.contains("'"));
+        String w = "diff($0, [$1$$2]), $0";
+        for ( int i = 0; i < 3; i++ ){
+            w = w.replace("$"+i,"x");
+            System.out.println( w );
+        }
     }
+
+    @Test
+    public void hardcoreSplitter(){
+        Pattern p = Pattern.compile("\\s*(\\\\[lg]eq?|[<>=]).*");
+        String w = "0 < y \\leq z \\ge \\cpi, q > 0";
+        String[] els = w.split("(\\\\[lg]eq?|[<>=])");
+        System.out.println( Arrays.toString(els) );
+
+        LinkedList<String> symbs = new LinkedList<>();
+        Matcher m;
+        for ( int i = 0; i < els.length; i++ ){
+            //System.out.println(w);
+            String sub = w.substring(els[i].length());
+            //System.out.println(sub);
+            m = p.matcher( sub );
+            if ( m.matches() ) {
+                String symb = m.group(1);
+                symbs.add(symb);
+                sub = sub.substring(symb.length());
+            }
+            w = sub;
+        }
+
+        System.out.println(symbs);
+        String out = "";
+        for ( int i = 0; i < els.length-1; i++ ){
+            out += els[i];
+            out += symbs.removeFirst();
+            out += els[i+1];
+            if ( i < els.length-2 )
+                out += ", ";
+        }
+        System.out.println(out);
+    }
+
 }

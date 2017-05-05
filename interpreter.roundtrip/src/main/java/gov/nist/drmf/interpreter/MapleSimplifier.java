@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
+import com.maplesoft.openmaple.MString;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,6 +16,12 @@ import javax.annotation.Nullable;
  */
 public class MapleSimplifier {
     private static final Logger LOG = LogManager.getLogger(MapleSimplifier.class.toString());
+
+    /**
+     * This zero pattern allows expressions such as
+     *  0 or 0. or 0.0 or 0.000 and so on.
+     */
+    private static final String ZERO_PATTERN = "0\\.?0*";
 
     private MapleInterface mapleInterface;
 
@@ -37,20 +44,21 @@ public class MapleSimplifier {
      *          If it returns false, both expressions still can be mathematically equivalent!
      * @throws MapleException If the test of equivalence produces an Maple error.
      */
-    public boolean simplificationTester(@Nullable String exp1, @Nullable String exp2 )
+    public boolean isEquivalent( @Nullable String exp1, @Nullable String exp2 )
             throws MapleException {
-        if ( nullChecker(exp1, exp2) ) return false;
+        if ( isNullOrEmpty(exp1, exp2) ) return false;
 
         // otherwise build simplify command to test equivalence
         String command = "(" + exp1 + ") - (" + exp2 + ")";
-        return simplificationTesterOf( command );
+        Algebraic a = simplify( command );
+        return isZero(a);
     }
 
     /**
      * This method takes two maple expressions and converts the difference
      * to the specified function before it tries to simplify the difference.
      *
-     * It works exactly in the same way as {@link #simplificationTester(String, String)},
+     * It works exactly in the same way as {@link #isEquivalent(String, String)},
      * but converts the difference of {@param exp1} and {@param exp2} before it tries
      * to simplify the new expression.
      *
@@ -61,28 +69,93 @@ public class MapleSimplifier {
      *          If it returns false, both expressions still can be mathematically equivalent!
      * @throws MapleException If the test of equivalence produces an Maple error.
      */
-    public boolean simplificationTesterWithConversion(
-            @Nullable String exp1, @Nullable String exp2, @Nonnull String conversion )
+    public boolean isEquivalentWithConversion(
+            @Nullable String exp1,
+            @Nullable String exp2,
+            @Nonnull String conversion )
             throws MapleException{
-        if ( nullChecker(exp1, exp2) ) return false;
+        if ( isNullOrEmpty(exp1, exp2) ) return false;
 
         // otherwise build simplify command to test equivalence
         String command = "convert((" + exp1 + ") - (" + exp2 + "),"+ conversion +")";
-        return simplificationTesterOf( command );
+        Algebraic a = simplify( command );
+        return isZero(a);
     }
 
-    public boolean simplificationTesterWithExpension(
-            @Nullable String exp1, @Nullable String exp2, @Nullable String conversion
+    public boolean isEquivalentWithExpension(
+            @Nullable String exp1,
+            @Nullable String exp2,
+            @Nullable String conversion
     ) throws MapleException {
-        if ( nullChecker(exp1, exp2) ) return false;
+        if ( isNullOrEmpty(exp1, exp2) ) return false;
 
         // otherwise build simplify command to test equivalence
         String command = "expand((" + exp1 + ") - (" + exp2 + ")";
         command += conversion == null ? ")" : "," + conversion + ")";
-        return simplificationTesterOf( command );
+        Algebraic a = simplify( command );
+        return isZero(a);
     }
 
-    private boolean nullChecker( String exp1, String exp2 ){
+    /**
+     * Simplify given expression. Be aware, the given expression should not
+     * end with ';'.
+     * @param maple_expr given maple expression, without ';'
+     * @return the algebraic object of the result of simplify(maple_expr);
+     * @throws MapleException if the given expression cannot be evaluated.
+     * @see Algebraic
+     */
+    public Algebraic simplify( String maple_expr ) throws MapleException {
+        String command = "simplify(" + maple_expr + ");";
+        LOG.debug("Simplification: " + command);
+        return mapleInterface.evaluateExpression( command );
+    }
+
+    /**
+     *
+     * @param expr
+     * @return
+     */
+    public RelationResults holdsRelation( @Nullable String expr ) throws MapleException {
+        try {
+            String command = "op(1, ToInert(is(" + expr + ")));";
+            Algebraic a = mapleInterface.evaluateExpression( command );
+            if ( !(a instanceof MString) ) return RelationResults.ERROR;
+
+            MString ms = (MString) a;
+            String s = ms.stringValue();
+            if ( s.equals("true") ) return RelationResults.TRUE;
+            if ( s.equals("false") ) return RelationResults.FALSE;
+            if ( s.equals("FAIL") ) return RelationResults.FAIL;
+            return RelationResults.ERROR;
+        } catch ( MapleException me ){
+            return RelationResults.ERROR;
+        }
+    }
+
+    /**
+     * Checks if the given algebraic object is 0.
+     * @param a an algebraic object
+     * @return true if the result is 0. False otherwise.
+     * @throws MapleException if the given command produces an error in Maple.
+     */
+    private boolean isZero( Algebraic a ) throws MapleException {
+        // null solutions returns false
+        if ( a == null || a.isNULL() ) return false;
+        // analyze the output string and returns true when it matches "0".
+        String solution_str = a.toString();
+        return solution_str.trim().matches(ZERO_PATTERN);
+    }
+
+    /**
+     * If one of them is null, returns true.
+     * If none is null but one of them is empty, it returns true
+     * when both are empty, otherwise false.
+     * Otherwise returns false.
+     * @param exp1 string
+     * @param exp2 string
+     * @return true or false
+     */
+    private boolean isNullOrEmpty( String exp1, String exp2 ){
         // test if one of the inputs is null
         if ( exp1 == null || exp2 == null ) return true;
         // if one of the expressions is empty, it only returns true when both are empty
@@ -91,28 +164,4 @@ public class MapleSimplifier {
         }
         return false;
     }
-
-    public boolean simplificationTesterOf( String expression )
-            throws MapleException{
-        String command = "simplify(" + expression + ");";
-        LOG.debug("Simplification-Test: " + expression);
-        return resultIsEqualToZeroTest( command );
-    }
-
-    /**
-     * Checks if the given command returns 0.
-     * @param command usually a simplify(...) commmand.
-     * @return true if the result is 0. False otherwise.
-     * @throws MapleException if the given command produces an error in Maple.
-     */
-    private boolean resultIsEqualToZeroTest( String command ) throws MapleException {
-        // analyze the algebraic solution
-        Algebraic solution = mapleInterface.evaluateExpression( command );
-        // null solutions returns false
-        if ( solution == null || solution.isNULL() ) return false;
-        // analyze the output string and returns true when it matches "0".
-        String solution_str = solution.toString();
-        return solution_str.trim().matches("0");
-    }
-
 }

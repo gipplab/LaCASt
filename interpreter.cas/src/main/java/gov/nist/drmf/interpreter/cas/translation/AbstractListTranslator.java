@@ -74,6 +74,10 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
             if ( exp_list == null || exp_list.size() < 1) return false;
             MathTerm curr = currExp.getRoot();
             MathTerm next = exp_list.get(0).getRoot();
+            if ( next.isEmpty() ){
+                List<PomTaggedExpression> tmp = exp_list.get(0).getComponents();
+                return addMultiply( currExp, tmp );
+            }
 
             MathTermTags currMathTag = MathTermTags.getTagByKey(curr.getTag());
             MathTermTags nextMathTag = MathTermTags.getTagByKey(next.getTag());

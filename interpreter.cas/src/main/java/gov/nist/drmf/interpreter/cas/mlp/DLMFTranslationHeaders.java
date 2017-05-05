@@ -12,7 +12,8 @@ public enum DLMFTranslationHeaders {
     cas_alternatives( "", Keys.KEY_ALTERNATIVE_SUFFX ),
     cas_branch_cuts("", "-" + Keys.FEATURE_BRANCH_CUTS ),
     cas_link("", Keys.KEY_LINK_SUFFIX ),
-    cas_constraint("", "-" + Keys.FEATURE_CONSTRAINTS);
+    cas_constraint("", "-" + Keys.FEATURE_CONSTRAINTS),
+    cas_package("", Keys.KEY_EXTRA_PACKAGE_SUFFIX);
 
     private String pre, suf;
 
