@@ -8233,7 +8233,7 @@ Symbol: \cos
 	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
 	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Cosh.html
+	Mathematica-Link: reference.wolfram.com/language/ref/Cos.html
 	Mathematica-Package: 
 	Meanings: Cosine
 	Number of Ats: 2
@@ -8255,7 +8255,10 @@ Symbol: \cosh
 	Maple-Package: 
 	Mathematica: Cosh[$0]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Cosh.html
 	Mathematica-Package: 
 	Meanings: Hyperbolic cosine
 	Number of Ats: 2
@@ -8296,7 +8299,7 @@ Symbol: \cot
 	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
 	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Coth.html
+	Mathematica-Link: reference.wolfram.com/language/ref/Cot.html
 	Mathematica-Package: 
 	Meanings: Cotangent
 	Number of Ats: 2
@@ -8319,7 +8322,10 @@ Symbol: \coth
 	Maple-Package: 
 	Mathematica: Coth[$0]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Coth.html
 	Mathematica-Package: 
 	Meanings: Hyperbolic cotangent
 	Number of Ats: 2
@@ -8353,7 +8359,7 @@ Symbol: \csc
 	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
 	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Csch.html
+	Mathematica-Link: reference.wolfram.com/language/ref/Csc.html
 	Mathematica-Package: 
 	Meanings: Cosecant
 	Number of Ats: 2
@@ -8376,7 +8382,10 @@ Symbol: \csch
 	Maple-Package: 
 	Mathematica: Csch[$0]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Csch.html
 	Mathematica-Package: 
 	Meanings: Hyperbolic cosecant
 	Number of Ats: 2
@@ -11683,7 +11692,7 @@ Symbol: \sec
 	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
 	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Sech.html
+	Mathematica-Link: reference.wolfram.com/language/ref/Sec.html
 	Mathematica-Package: 
 	Meanings: Secant
 	Number of Ats: 2
@@ -11706,7 +11715,10 @@ Symbol: \sech
 	Maple-Package: 
 	Mathematica: Sech[$0]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Sech.html
 	Mathematica-Package: 
 	Meanings: Hyperbolic secant
 	Number of Ats: 2
@@ -11807,7 +11819,7 @@ Symbol: \sin
 	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
 	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Sinh.html
+	Mathematica-Link: reference.wolfram.com/language/ref/Sin.html
 	Mathematica-Package: 
 	Meanings: Sine
 	Number of Ats: 2
@@ -11854,7 +11866,10 @@ Symbol: \sinh
 	Maple-Package: 
 	Mathematica: Sinh[$0]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Sinh.html
 	Mathematica-Package: 
 	Meanings: Hyperbolic sine
 	Number of Ats: 2
@@ -11992,7 +12007,7 @@ Symbol: \tan
 	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
 	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Tanh.html
+	Mathematica-Link: reference.wolfram.com/language/ref/Tan.html
 	Mathematica-Package: 
 	Meanings: Tangent
 	Number of Ats: 2
@@ -12015,7 +12030,10 @@ Symbol: \tanh
 	Maple-Package: 
 	Mathematica: Tanh[$0]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Tanh.html
 	Mathematica-Package: 
 	Meanings: Hyperbolic tangent
 	Number of Ats: 2
