@@ -296,7 +296,7 @@ X1:\pderivX\pderiv[n]{f}{x};http://dlmf.nist.gov/1.5#E3;Partial derivative;0;0;2
 \DivisorSigma{\alpha}@{n};http://dlmf.nist.gov/27.2#E10;Sum of powers of divisors;1;1;1;;;
 \DivisorSigma{1}@{n};http://dlmf.nist.gov/27.2#E10;Sum of divisors;1;1;1;;;
 \JordanJ{k}@{n};http://dlmf.nist.gov/27.2#E11;Jordan's function;1;1;1;;;
-\MoebiusMu@{n};http://dlmf.nist.gov/27.2#E12;M򢩵s function;0;1;1;;;
+\MoebiusMu@{n};http://dlmf.nist.gov/27.2#E12;Möbius function;0;1;1;;;
 \LiouvilleLambda@{n};http://dlmf.nist.gov/27.2#E13;Liouville's function;0;1;1;;;
 \MangoldtLambda@{n};http://dlmf.nist.gov/27.2#E14;Mangoldt's function;0;1;1;;;
 ;;;;;;;;
@@ -422,9 +422,9 @@ X1:\pderivX\pderiv[n]{f}{x};http://dlmf.nist.gov/1.5#E3;Partial derivative;0;0;2
 X1:\FerrersPX\FerrersP[\mu]{\nu}@{x};http://dlmf.nist.gov/14.3#E1;Ferrers function of first kind;1;1;1;-1 < x < 1, \mu, \nu \in \Real;;dlmf-macro
 \FerrersQ{\nu}@{x};http://dlmf.nist.gov/14.2#i;Ferrers function of second kind;1;1;1;-1 < x < 1, \mu, \nu \in \Real;;dlmf-macro
 X1:\FerrersQX\FerrersQ[\mu]{\nu}@{x};http://dlmf.nist.gov/14.3#E2;Ferrers function of second kind;1;1;1;-1 < x < 1, \mu, \nu \in \Real;;dlmf-macro
-\LegendreP{\nu}@{z};http://dlmf.nist.gov/14.2#i;Associated Legendre function of first kind;1;1;1;;(-\infty, 1];dlmf-macro
+\LegendreP{\nu}@{z};http://dlmf.nist.gov/14.2#i;Legendre function of first kind;1;1;1;;(-\infty, 1];dlmf-macro
 X1:\LegendrePX\LegendreP[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E5;Associated Legendre function of first kind;1;1;1;;(-\infty, 1];dlmf-macro
-\LegendreQ{\nu}@{z};http://dlmf.nist.gov/14.2#i;Associated Legendre function of second kind;1;1;1;;(-\infty, 1];dlmf-macro
+\LegendreQ{\nu}@{z};http://dlmf.nist.gov/14.2#i;Legendre function of second kind;1;1;1;;(-\infty, 1];dlmf-macro
 X1:\LegendreQX\LegendreQ[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E7;Associated Legendre function of second kind;1;1;1;;(-\infty, 1];dlmf-macro
 \LegendreBlackQ{\nu}@{z};http://dlmf.nist.gov/14.2#i;Olver's associated Legendre function;1;1;1;;;dlmf-macro
 X1:\LegendreBlackQX\LegendreBlackQ[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E10;Olver's associated Legendre function;1;1;1;;;dlmf-macro
