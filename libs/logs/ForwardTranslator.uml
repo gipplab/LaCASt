@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>gov.nist.drmf.interpreter.cas.translation.components.EmptyExpressionTranslator</OriginalElement>
+  <nodes>
+    <node x="346.0" y="237.0">gov.nist.drmf.interpreter.cas.translation.components.FunctionTranslator</node>
+    <node x="338.5" y="158.0">gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator</node>
+    <node x="669.0" y="237.0">gov.nist.drmf.interpreter.cas.translation.components.MathTermTranslator</node>
+    <node x="521.5" y="158.0">gov.nist.drmf.interpreter.cas.translation.components.EmptyExpressionTranslator</node>
+    <node x="514.0" y="237.0">gov.nist.drmf.interpreter.cas.translation.components.MacroTranslator</node>
+    <node x="445.75" y="79.0">gov.nist.drmf.interpreter.cas.translation.AbstractTranslator</node>
+    <node x="172.0" y="237.0">gov.nist.drmf.interpreter.cas.translation.components.OperationTranslator</node>
+    <node x="466.25" y="0.0">gov.nist.drmf.interpreter.common.grammar.ITranslator</node>
+    <node x="0.0" y="237.0">gov.nist.drmf.interpreter.cas.translation.components.SequenceTranslator</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="gov.nist.drmf.interpreter.cas.translation.components.MacroTranslator" target="gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator">
+      <point x="0.0" y="-14.5" />
+      <point x="581.5" y="217.0" />
+      <point x="452.59999999999997" y="217.0" />
+      <point x="32.599999999999966" y="14.5" />
+    </edge>
+    <edge source="gov.nist.drmf.interpreter.cas.translation.components.FunctionTranslator" target="gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="gov.nist.drmf.interpreter.cas.translation.components.MathTermTranslator" target="gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator">
+      <point x="0.0" y="-14.5" />
+      <point x="747.5" y="207.0" />
+      <point x="485.2" y="207.0" />
+      <point x="65.19999999999999" y="14.5" />
+    </edge>
+    <edge source="gov.nist.drmf.interpreter.cas.translation.AbstractTranslator" target="gov.nist.drmf.interpreter.common.grammar.ITranslator">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="gov.nist.drmf.interpreter.cas.translation.components.OperationTranslator" target="gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator">
+      <point x="0.0" y="-14.5" />
+      <point x="249.0" y="217.0" />
+      <point x="387.4" y="217.0" />
+      <point x="-32.60000000000002" y="14.5" />
+    </edge>
+    <edge source="gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator" target="gov.nist.drmf.interpreter.cas.translation.AbstractTranslator">
+      <point x="0.0" y="-14.5" />
+      <point x="420.0" y="133.0" />
+      <point x="482.0" y="133.0" />
+      <point x="-36.25" y="14.5" />
+    </edge>
+    <edge source="gov.nist.drmf.interpreter.cas.translation.components.SequenceTranslator" target="gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator">
+      <point x="0.0" y="-14.5" />
+      <point x="76.0" y="207.0" />
+      <point x="354.8" y="207.0" />
+      <point x="-65.19999999999999" y="14.5" />
+    </edge>
+    <edge source="gov.nist.drmf.interpreter.cas.translation.components.EmptyExpressionTranslator" target="gov.nist.drmf.interpreter.cas.translation.AbstractTranslator">
+      <point x="0.0" y="-14.5" />
+      <point x="616.5" y="133.0" />
+      <point x="554.5" y="133.0" />
+      <point x="36.25" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="455.0" y="94.0" />
+  <SelectedNodes>
+    <node>gov.nist.drmf.interpreter.cas.translation.components.EmptyExpressionTranslator</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

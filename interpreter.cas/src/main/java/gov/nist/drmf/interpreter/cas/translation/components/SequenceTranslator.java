@@ -119,19 +119,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                 exp = new PomTaggedExpression(tmp);
             }
 
-            if ( addMultiply( exp, exp_list ) /*&& !part.matches(".*\\*\\s*")*/ ){
-                part += MULTIPLY;
-                // the global list already got each element before,
-                // so simply replace the last if necessary
-                String tmp = global_exp.getLastExpression();
-                global_exp.replaceLastExpression(tmp + MULTIPLY);
-            } else if ( addSpace( exp, exp_list ) ) {
-                part += SPACE;
-                // the global list already got each element before,
-                // so simply replace the last if necessary
-                String tmp = global_exp.getLastExpression();
-                global_exp.replaceLastExpression(tmp + SPACE);
-            }
+            part = checkMultiplyAddition(exp, exp_list, part);
 
             // finally add all elements to the inner list
             inner_translation.replaceLastExpression( part );
@@ -264,15 +252,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                 inner = true;
             }
 
-            if ( addMultiply( exp, following_exp ) ){
-                last += MULTIPLY;
-                String tmp = global_exp.getLastExpression();
-                global_exp.replaceLastExpression( tmp + MULTIPLY );
-            } else if ( addSpace( exp, following_exp ) ) {
-                last += SPACE;
-                String tmp = global_exp.getLastExpression();
-                global_exp.replaceLastExpression( tmp + SPACE );
-            }
+            last = checkMultiplyAddition(exp, following_exp, last);
 
             inner_trans.replaceLastExpression( last );
             if ( inner ) local_inner_exp.replaceLastExpression( inner_trans.toString() );
@@ -289,6 +269,23 @@ public class SequenceTranslator extends AbstractListTranslator {
                 open_bracket.symbol,
                 TranslationException.Reason.WRONG_PARENTHESIS
         );
+    }
+
+    private String checkMultiplyAddition( PomTaggedExpression exp, List<PomTaggedExpression> exp_list, String part ){
+        if ( addMultiply( exp, exp_list ) /*&& !part.matches(".*\\*\\s*")*/ ){
+            part += MULTIPLY;
+            // the global list already got each element before,
+            // so simply replace the last if necessary
+            String tmp = global_exp.getLastExpression();
+            global_exp.replaceLastExpression(tmp + MULTIPLY);
+        } else if ( addSpace( exp, exp_list ) ) {
+            part += SPACE;
+            // the global list already got each element before,
+            // so simply replace the last if necessary
+            String tmp = global_exp.getLastExpression();
+            global_exp.replaceLastExpression(tmp + SPACE);
+        }
+        return part;
     }
 
     /**
