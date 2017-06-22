@@ -1,4 +1,4 @@
-Results from: Fri May 05 02:15:46 CEST 2017
+Results from: Sat May 06 00:51:58 CEST 2017
 Total Number of Test Cases: 4165
 
 Total Number of Lines with non-equation, non-relations: 

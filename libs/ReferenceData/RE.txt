@@ -1,5 +1,4 @@
-Results from: Fri May 05 01:57:36 CEST 2017
-Time: ~6min 30sec.
+Results from: Fri May 05 22:41:12 CEST 2017
 Total Number of Test Cases: 4165
 
 Total Number of Lines with non-equation, non-relations: 

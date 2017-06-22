@@ -308,6 +308,12 @@ public class EquationTestCases {
     }
 
     private void testFunction( TestCaseInLaTeX test, String assumption ) throws MapleException {
+        if ( test.line == 90 ){
+            LOG.info("SKIP LINE 90");
+            TestStatus.NOT_SUCCESSFUL.add(test.line);
+            return;
+        }
+
         if ( test instanceof RelationInLaTeX ){
             relationTest( (RelationInLaTeX)test, assumption );
             return;
@@ -452,8 +458,8 @@ public class EquationTestCases {
         else
             mapleT.enterMapleCommand("tmp := '" + mapleLHS +"-"+ mapleRHS + "';");
         mapleT.enterMapleCommand("mySet := indets(tmp, name) minus {constants};");
-        //mapleT.enterMapleCommand("mySeq := seq('(op(myVar, mySet),Not(negative))', myVar = 1..nops(mySet), 1);");
-        mapleT.enterMapleCommand("mySeq := seq(Re(op(myVar,mySet))>0, myVar = 1..nops(mySet));");
+        mapleT.enterMapleCommand("mySeq := seq('(op(myVar, mySet),Not(negative))', myVar = 1..nops(mySet), 1);");
+//        mapleT.enterMapleCommand("mySeq := seq(Re(op(myVar,mySet))>0, myVar = 1..nops(mySet));");
         mapleT.enterMapleCommand("assume(mySeq);");
     }
 
