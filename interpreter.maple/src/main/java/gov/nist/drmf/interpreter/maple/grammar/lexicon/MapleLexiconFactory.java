@@ -31,8 +31,11 @@ public class MapleLexiconFactory {
     private HashMap<MapleHeader, Integer> indices;
     private Lexicon dlmf_lex;
 
+    private static int counter = 0;
+
     MapleLexiconFactory ( String[] keyWords ){
         indices = new HashMap<>();
+        counter = 0;
 
         //LOG.info(Arrays.toString(keyWords));
         for ( int i = 0; i < keyWords.length; i++ ){
@@ -75,6 +78,7 @@ public class MapleLexiconFactory {
         }
 
         if ( DLMF == null || DLMF.isEmpty() ) return null;
+        counter++;
 
         // Try to generate MapleFunction object first
         String maple_func = getMapleFunctionName( MAPLE );
@@ -301,6 +305,8 @@ public class MapleLexiconFactory {
             MapleLexicon lex = createLexiconFromCSVFile( p );
             storeLexicon( GlobalPaths.PATH_MAPLE_FUNCTIONS_LEXICON_FILE, lex );
             System.out.println("Done!");
+            System.out.println("#Trans" + lex.numberOfFunctions());
+            System.out.println("Out of: " + counter);
         } catch ( IOException ioe ){
             ioe.printStackTrace();
         }

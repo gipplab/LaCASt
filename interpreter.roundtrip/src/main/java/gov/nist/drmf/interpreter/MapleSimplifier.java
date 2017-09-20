@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.MString;
+import com.maplesoft.openmaple.Numeric;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -54,6 +55,16 @@ public class MapleSimplifier {
         return isZero(a);
     }
 
+    public Algebraic isMultipleEquivalent( @Nullable String exp1, @Nullable String exp2 )
+            throws MapleException {
+        if ( isNullOrEmpty(exp1, exp2) ) return null;
+
+        // otherwise build simplify command to test equivalence
+        String command = "(" + exp1 + ") / (" + exp2 + ")";
+        Algebraic a = simplify( command );
+        return a;
+    }
+
     /**
      * This method takes two maple expressions and converts the difference
      * to the specified function before it tries to simplify the difference.
@@ -82,6 +93,18 @@ public class MapleSimplifier {
         return isZero(a);
     }
 
+    public Algebraic isMultipleEquivalentWithConversion(
+            @Nullable String exp1,
+            @Nullable String exp2,
+            @Nonnull String conversion )
+            throws MapleException{
+        if ( isNullOrEmpty(exp1, exp2) ) return null;
+
+        // otherwise build simplify command to test equivalence
+        String command = "convert((" + exp1 + ") / (" + exp2 + "),"+ conversion +")";
+        return simplify( command );
+    }
+
     public boolean isEquivalentWithExpension(
             @Nullable String exp1,
             @Nullable String exp2,
@@ -96,6 +119,19 @@ public class MapleSimplifier {
         return isZero(a);
     }
 
+    public Algebraic isMultipleEquivalentWithExpension(
+            @Nullable String exp1,
+            @Nullable String exp2,
+            @Nullable String conversion
+    ) throws MapleException {
+        if ( isNullOrEmpty(exp1, exp2) ) return null;
+
+        // otherwise build simplify command to test equivalence
+        String command = "expand((" + exp1 + ") / (" + exp2 + ")";
+        command += conversion == null ? ")" : "," + conversion + ")";
+        return simplify( command );
+    }
+
     /**
      * Simplify given expression. Be aware, the given expression should not
      * end with ';'.
@@ -107,6 +143,16 @@ public class MapleSimplifier {
     public Algebraic simplify( String maple_expr ) throws MapleException {
         String command = "simplify(" + maple_expr + ");";
         LOG.debug("Simplification: " + command);
+        return mapleInterface.evaluateExpression( command );
+    }
+
+    public Algebraic numericalMagic( String maple_expr ) throws MapleException {
+        String command = "nTest := " + maple_expr + ":";
+        command += "nVars := indets(nTest,name) minus {constants}:";
+        command += "nVals := [sqrt(2)+I*sqrt(2),-sqrt(2)+I*sqrt(2),-sqrt(2)-I*sqrt(2),sqrt(2)-I*sqrt(2)]:";
+        command += "nTestVals := createListInList(nVars,nVals):";
+        command += "NumericalTester(nTest,nTestVals,0.0001,15);";
+        LOG.debug("NumericalMagic: " + command);
         return mapleInterface.evaluateExpression( command );
     }
 

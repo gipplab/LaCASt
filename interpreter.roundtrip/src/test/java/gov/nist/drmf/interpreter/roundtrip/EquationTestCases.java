@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.roundtrip;
 
 import com.maplesoft.externalcall.MapleException;
+import com.maplesoft.openmaple.*;
 import gov.nist.drmf.interpreter.MapleSimplifier;
 import gov.nist.drmf.interpreter.MapleTranslator;
 import gov.nist.drmf.interpreter.RelationResults;
@@ -8,6 +9,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
+import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterAll;
@@ -22,6 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -88,6 +91,9 @@ public class EquationTestCases {
         try ( BufferedReader br = Files.newBufferedReader(p) ){
             mapleT.init();
             mapleS = mapleT.getMapleSimplifier();
+            mapleT.enterMapleCommand(
+                    MapleInterface.extractProcedure( GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES )
+            );
 
             br.lines()
                     //.limit(100) // TODO debug limit
@@ -311,6 +317,7 @@ public class EquationTestCases {
         if ( test.line == 90 ){
             LOG.info("SKIP LINE 90");
             TestStatus.NOT_SUCCESSFUL.add(test.line);
+            fail("Skipped line 90!");
             return;
         }
 
@@ -453,6 +460,7 @@ public class EquationTestCases {
     }
 
     private void enterPreDefines(String mapleLHS, String mapleRHS) throws MapleException{
+        /*
         if ( mapleRHS == null )
             mapleT.enterMapleCommand("tmp := '" + mapleLHS + "';");
         else
@@ -461,6 +469,7 @@ public class EquationTestCases {
         mapleT.enterMapleCommand("mySeq := seq('(op(myVar, mySet),Not(negative))', myVar = 1..nops(mySet), 1);");
 //        mapleT.enterMapleCommand("mySeq := seq(Re(op(myVar,mySet))>0, myVar = 1..nops(mySet));");
         mapleT.enterMapleCommand("assume(mySeq);");
+        */
     }
 
     private boolean simplifyTestEquation( String mapleLHS, String mapleRHS,
@@ -474,13 +483,31 @@ public class EquationTestCases {
             mapleT.enterMapleCommand(preCommand);
         }
 
+        Algebraic a;
         boolean resultB = mapleS.isEquivalent(mapleLHS, mapleRHS);
         if ( resultB )
             TestStatus.SUCCESSFUL.add( line );
-        else {
+
+        if (!resultB) {
+            a = mapleS.isMultipleEquivalent(mapleLHS, mapleRHS);
+            if (a != null && a instanceof Numeric) {
+                TestStatus.SUCCESSFUL_DIVIDE.add(line);
+                resultB = true;
+            } else resultB = false;
+        }
+
+        if ( !resultB ){
             resultB = mapleS.isEquivalentWithConversion(mapleLHS, mapleRHS, "exp");
             if ( resultB )
                 TestStatus.SUCCESSFUL_EXP.add(line);
+        }
+
+        if (!resultB){
+            a = mapleS.isMultipleEquivalentWithConversion(mapleLHS, mapleRHS, "exp");
+            if ( a != null && a instanceof Numeric ) {
+                TestStatus.SUCCESSFUL_EXP_DIVIDE.add(line);
+                resultB = true;
+            } else resultB = false;
         }
 
         if ( !resultB ) {
@@ -489,10 +516,33 @@ public class EquationTestCases {
                 TestStatus.SUCCESSFUL_HYPER.add(line);
         }
 
+        if (!resultB){
+            a = mapleS.isMultipleEquivalentWithConversion(mapleLHS, mapleRHS, "hypergeom");
+            if ( a != null && a instanceof Numeric ) {
+                TestStatus.SUCCESSFUL_HYPER_DIVIDE.add(line);
+                resultB = true;
+            } else resultB = false;
+        }
+
         if ( !resultB ) {
             resultB = mapleS.isEquivalentWithExpension(mapleLHS, mapleRHS, null);
             if ( resultB )
                 TestStatus.SUCCESSFUL_EXPAND.add(line);
+        }
+
+        if (!resultB){
+            a = mapleS.isMultipleEquivalentWithExpension(mapleLHS, mapleRHS, null);
+            if ( a != null && a instanceof Numeric ) {
+                TestStatus.SUCCESSFUL_HYPER_DIVIDE.add(line);
+                resultB = true;
+            } else resultB = false;
+        }
+
+        if (!resultB){ // TODO numerical test
+            resultB = numericalTest("(" + mapleLHS + ") / (" + mapleRHS + ")", line);
+            if ( !resultB ){
+                resultB = numericalTest("(" + mapleRHS + ") / (" + mapleLHS + ")", line);
+            }
         }
 
         if ( !resultB )
@@ -503,6 +553,33 @@ public class EquationTestCases {
             mapleT.enterMapleCommand(afterCommand);
         }
 
+        return resultB;
+    }
+
+    private boolean numericalTest(String test, int line) throws MapleException{
+        boolean resultB = false;
+        Algebraic a = mapleS.numericalMagic( test );
+        System.out.println("Numerical Output: " + a.toString());
+        if ( a instanceof com.maplesoft.openmaple.List ){
+            com.maplesoft.openmaple.List aList = (com.maplesoft.openmaple.List)a;
+            if ( aList.length() == 0 ){
+                TestStatus.SUCCESSFUL_NUMERICAL_MAGIC.add(line);
+                resultB = true;
+            } else {
+                int l = aList.length();
+                for ( int i = 1; i <= l; i++ ){
+                    Algebraic e = aList.select(i);
+                    if ( e instanceof com.maplesoft.openmaple.List ){
+                        com.maplesoft.openmaple.List innerL = (com.maplesoft.openmaple.List)e;
+                        String num = innerL.select(1).toString();
+                        if ( num.matches( "[+-]?\\d*[.]?[^1-9]*" ) ){
+                            TestStatus.SPECIAL_INTEREST.add(line);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
         return resultB;
     }
 
@@ -542,17 +619,23 @@ public class EquationTestCases {
 
     private enum TestStatus {
         SUCCESSFUL(0),
+        SUCCESSFUL_DIVIDE(0),
         SUCCESSFUL_INEQ(0),
         SUCCESSFUL_EXP(0),
+        SUCCESSFUL_EXP_DIVIDE(0),
         SUCCESSFUL_HYPER(0),
+        SUCCESSFUL_HYPER_DIVIDE(0),
         SUCCESSFUL_EXPAND(0),
+        SUCCESSFUL_EXPAND_DIVIDE(0),
+        SUCCESSFUL_NUMERICAL_MAGIC(0),
         NOT_SUCCESSFUL(0),
         ERROR_FORWARD_TRANS_UNKOWN(0),
         ERROR_IN_ASSUMPTION_TRANSLATION(0),
         ERROR_UNKNOWN_MACRO(0),
         ERROR_IN_MAPLE(0),
         ERROR_LINE(0),
-        SINGLE_QUOTES(0);
+        SINGLE_QUOTES(0),
+        SPECIAL_INTEREST(0);
 
         int num;
         LinkedList<Integer> lines;
@@ -619,10 +702,18 @@ public class EquationTestCases {
             out += "Successful Tests after Expansion:      " + SUCCESSFUL_EXPAND.state() + nl;
             out += "Successful Tests of Relations (not =): " + SUCCESSFUL_INEQ.state() + nl + nl;
 
+            out += "Successful Tests after Simplify-DIV:      " + SUCCESSFUL_DIVIDE.state() + nl;
+            out += "Successful Tests after Exp-Conv-DIV:      " + SUCCESSFUL_EXP_DIVIDE.state() + nl;
+            out += "Successful Tests after Hypergeom-Conv-DIV:" + SUCCESSFUL_HYPER_DIVIDE.state() + nl;
+            out += "Successful Tests after Expansion-DIV:     " + SUCCESSFUL_EXPAND_DIVIDE.state() + nl + nl;
+
+            out += "Successful Numerical Tests: " + SUCCESSFUL_NUMERICAL_MAGIC.state() + nl + nl;
+
+            out += "Special Interest: " + SPECIAL_INTEREST.state() + nl + nl;
+
             out += "// No Errors, but each kind of simplify returns something different to 0!" + nl +
                     "Non-Successful Tests:   " + nl + tab +
                     NOT_SUCCESSFUL.state() + nl + nl;
-
 
             out += "DLMF/DRMF macro cannot be translated (see list below for details):" + nl + tab +
                     ERROR_UNKNOWN_MACRO.state() + nl;

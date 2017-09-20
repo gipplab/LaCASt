@@ -38,6 +38,10 @@ public class MapleLexicon {
         return function_map;
     }
 
+    public int numberOfFunctions(){
+        return function_map.keySet().size();
+    }
+
     @Override
     public String toString(){
         String nl = System.lineSeparator();

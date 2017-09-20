@@ -1160,15 +1160,29 @@ KummerU::3
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/13.2#E6
 
+LaguerreL::2
+	Maple-Name:= LaguerreL
+	DLMF-Pattern:= \LaguerreL{$0}@{$1}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	NumberOfVars:= 2
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= \Laguerre{$0}@{$2}
+	DLMF-Meaning:= Laguerre polynomial
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/18.1#I1.ix7.p1
+
 LaguerreL::3
 	Maple-Name:= LaguerreL
-	DLMF-Pattern:= \Laguerre[$1]{$0}@{$2}
+	DLMF-Pattern:= \LaguerreL[$1]{$0}@{$2}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
 	NumberOfVars:= 3
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= \LaguerreL[\alpha]{n}@{x}
+	Alternatives:= \Laguerre[$1]{$0}@{$2}
 	DLMF-Meaning:= Laguerre polynomial
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
@@ -1211,7 +1225,7 @@ LegendreP::2
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= \FerrersP{$0}@{$1}  ||  \LegendrePoly{$0}@{$1}
-	DLMF-Meaning:= Associated Legendre function of first kind
+	DLMF-Meaning:= Legendre function of first kind
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= (-\infty, 1]
 	DLMF-Link:= http://dlmf.nist.gov/14.2#i
@@ -1239,7 +1253,7 @@ LegendreQ::2
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= \FerrersQ{$0}@{$1}
-	DLMF-Meaning:= Associated Legendre function of second kind
+	DLMF-Meaning:= Legendre function of second kind
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= (-\infty, 1]
 	DLMF-Link:= http://dlmf.nist.gov/14.2#i
