@@ -50,14 +50,16 @@ public class CSVtoLexiconConverter {
 
     private CASCache cas_cache;
 
-//    private static int
-//            internal_dlmf_counter,
-//            internal_maple_trans_counter;
+    private static int
+            internal_dlmf_counter,
+            internal_maple_trans_counter;
+
+    private static boolean is_maple = false;
 
 
     public CSVtoLexiconConverter ( Path CSV_dlmf_file, Path... CSV_CAS_files ) throws Exception {
-//        internal_dlmf_counter = 0;
-//        internal_maple_trans_counter = 0;
+        internal_dlmf_counter = 0;
+        internal_maple_trans_counter = 0;
 
         this.csv_dlmf_file =
                 GlobalPaths.PATH_REFERENCE_DATA_CSV.resolve(CSV_dlmf_file);
@@ -154,6 +156,9 @@ public class CSVtoLexiconConverter {
         String cas_name = m.group(1);
         Path dlmf_trans_file = csv.getParent().resolve( getDLMFCasFileName(cas_name) );
 
+        // TODO maple flag
+        is_maple = cas_name.toLowerCase().contains("maple");
+
         LOG.info("Fill cache with "+cas_name+" function information.");
         try ( BufferedReader br = Files.newBufferedReader( csv ) ){
             startReadingProcess( cas_name, br, this::fillCache );
@@ -187,7 +192,7 @@ public class CSVtoLexiconConverter {
             throw new IOException("The header is empty! " + csv_dlmf_file.toString());
         }
 
-        br.lines()//.limit(320) // TODO limit for debug
+        br.lines()//.limit(21) // TODO limit for debug
                 .filter( line -> !line.startsWith( DELIMITER ) )
                 .map( line -> line += line.endsWith(DELIMITER) ? " " : "" )
                 .map( line -> line.split(DELIMITER) )
@@ -284,6 +289,7 @@ public class CSVtoLexiconConverter {
 
     private void handleDLMFElements( String[] elements ){
         lineAnalyzer.setLine(elements);
+        //System.out.println(Arrays.toString(elements));
 
         // check if the input is a correct DLMF macro
         String macro = lineAnalyzer.getValue( Keys.KEY_DLMF );
@@ -327,7 +333,7 @@ public class CSVtoLexiconConverter {
                     macro_name,
                     fsets
             );
-            //internal_dlmf_counter++;
+            internal_dlmf_counter++;
             return;
         } else if ( role.matches( Keys.FEATURE_VALUE_FUNCTION ) ){
             fset = new FeatureSet( Keys.FEATURE_VALUE_FUNCTION );
@@ -352,7 +358,7 @@ public class CSVtoLexiconConverter {
         // group(1) is the DLMF macro without the suffix of parameters, ats and variables
         // just the plain macro
         dlmf_lexicon.setEntry( macro_name, fsets );
-        //internal_dlmf_counter++;
+        internal_dlmf_counter++;
     }
 
     private void fillCache( String[] elements ){
@@ -488,6 +494,9 @@ public class CSVtoLexiconConverter {
 
         // add translation info
         fset.addFeature( casPrefix, cas_func_pattern, MacrosLexicon.SIGNAL_INLINE );
+        if ( is_maple ){
+            internal_maple_trans_counter++;
+        }
 
         if ( holder != null && holder.cas_name != null && holder.num_vars != null ){
             CASInfo info = cas_cache.get( holder.cas_name, holder.num_vars );
@@ -541,8 +550,8 @@ public class CSVtoLexiconConverter {
             e.printStackTrace();
         }
         System.out.println(((System.currentTimeMillis()-start)/1000.) + " s");
-//        System.out.println("Number of DLMF-Macros: " + internal_dlmf_counter);
-//        System.out.println("Number of Maple translations: " + internal_maple_trans_counter);
+        System.out.println("Number of DLMF-Macros: " + internal_dlmf_counter);
+        System.out.println("Number of Maple translations: " + internal_maple_trans_counter);
     }
 
     private class InfoHolder{

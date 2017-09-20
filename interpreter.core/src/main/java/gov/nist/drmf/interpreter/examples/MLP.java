@@ -70,7 +70,7 @@ public class MLP {
 //            eq = "\\sqrt \\frac{2}{4}";
 //            eq = "ab13d";
 //            eq = "\\deriv{}{x} a";
-            eq = "2+3*4+3";
+            eq = "Z = \\sum_{j} g_j \\cdot \\mathrm{e}^{- \\\\beta E_j}";
 
             // parse/tag the equation and print it out 
             PomTaggedExpression pe = parser.parse(eq);

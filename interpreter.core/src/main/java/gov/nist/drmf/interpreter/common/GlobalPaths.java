@@ -65,6 +65,9 @@ public class GlobalPaths {
     public static final Path PATH_MAPLE_TO_INERT_PROCEDURE =
             PATH_MAPLE_PROCS.resolve("maple_toinert_procedure.txt");
 
+    public static final Path PATH_MAPLE_NUMERICAL_PROCEDURES =
+            PATH_MAPLE_PROCS.resolve("maple_numerical_procedures.txt");
+
     // path variable to the resources of the core
     public static final Path PATH_CORE_RESOURCES =
             Paths.get("interpreter.core", "src", "main", "resources");

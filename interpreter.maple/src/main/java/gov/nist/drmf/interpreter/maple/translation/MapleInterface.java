@@ -143,7 +143,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         INFINITY = constants.translate( MapleConstants.INFINITY );
     }
 
-    private String extractProcedure( Path maple_proc ) throws IOException {
+    public static String extractProcedure( Path maple_proc ) throws IOException {
         // try to collect a stream.
         try ( Stream<String> stream = Files.lines( maple_proc ) ){
             String procedure = stream.collect( Collectors.joining(System.lineSeparator()) );
