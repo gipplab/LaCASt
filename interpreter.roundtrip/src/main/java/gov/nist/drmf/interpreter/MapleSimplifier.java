@@ -4,6 +4,7 @@ import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.MString;
 import com.maplesoft.openmaple.Numeric;
+import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,9 +26,14 @@ public class MapleSimplifier {
     private static final String ZERO_PATTERN = "0\\.?0*";
 
     private MapleInterface mapleInterface;
+    private MapleListener mapleListener;
+
+    private static final double INTERRUPTER_THRESHOLD = 50;
 
     MapleSimplifier( MapleInterface mapleInterface ){
         this.mapleInterface = mapleInterface;
+        this.mapleListener = mapleInterface.getUniqueMapleListener();
+        this.mapleListener.activateAutoInterrupt( INTERRUPTER_THRESHOLD );
     }
 
     /**
@@ -143,16 +149,18 @@ public class MapleSimplifier {
     public Algebraic simplify( String maple_expr ) throws MapleException {
         String command = "simplify(" + maple_expr + ");";
         LOG.debug("Simplification: " + command);
+        mapleListener.timerReset();
         return mapleInterface.evaluateExpression( command );
     }
 
     public Algebraic numericalMagic( String maple_expr ) throws MapleException {
         String command = "nTest := " + maple_expr + ":";
         command += "nVars := indets(nTest,name) minus {constants}:";
-        command += "nVals := [sqrt(2)+I*sqrt(2),-sqrt(2)+I*sqrt(2),-sqrt(2)-I*sqrt(2),sqrt(2)-I*sqrt(2)]:";
+        command += "nVals := [-3/2, -1, -1/2, 0, 1/2, 1, 3/2]:";
         command += "nTestVals := createListInList(nVars,nVals):";
         command += "NumericalTester(nTest,nTestVals,0.0001,15);";
         LOG.debug("NumericalMagic: " + command);
+        mapleListener.timerReset();
         return mapleInterface.evaluateExpression( command );
     }
 
@@ -164,6 +172,7 @@ public class MapleSimplifier {
     public RelationResults holdsRelation( @Nullable String expr ) throws MapleException {
         try {
             String command = "op(1, ToInert(is(" + expr + ")));";
+            mapleListener.timerReset();
             Algebraic a = mapleInterface.evaluateExpression( command );
             if ( !(a instanceof MString) ) return RelationResults.ERROR;
 

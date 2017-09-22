@@ -1,4 +1,4 @@
-Results from: Wed Sep 20 15:29:24 JST 2017
+Results from: Wed Sep 20 16:00:54 JST 2017
 Total Number of Test Cases: 4165
 
 Total Number of Lines with non-equation, non-relations: 
@@ -24,7 +24,7 @@ Successful Tests after Expansion-DIV:     0, Lines: []
 
 Successful Numerical Tests: 31, Lines: [2-12, 80-81, 162, 208, 377-378, 385, 387, 389, 391, 393, 395, 397, 447, 449, 451, 453, 458-459, 469]
 
-Special Interest: 4, Lines: [164, 195, 207, 223]
+Special Interest: 10, Lines: [164, 164, 195, 195, 207, 207, 223, 223, 247, 408]
 
 // No Errors, but each kind of simplify returns something different to 0!
 Non-Successful Tests:   
