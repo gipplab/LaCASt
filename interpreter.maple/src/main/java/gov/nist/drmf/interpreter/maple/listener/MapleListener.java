@@ -14,10 +14,14 @@ public class MapleListener implements EngineCallBacks {
     private boolean logging;
 
     private boolean interrupter;
+    private boolean auto_interrupt;
+    private double auto_interrupt_threshold;
+    private double last_process_time;
 
     public MapleListener( boolean logging ){
         this.logging = logging;
         this.interrupter = false;
+        this.auto_interrupt = false;
     }
 
     @Override
@@ -41,12 +45,22 @@ public class MapleListener implements EngineCallBacks {
 
     @Override
     public void statusCallBack(Object o, long l, long l1, double v) throws MapleException {
+        if ( auto_interrupt && last_process_time < 0 ){
+            last_process_time = v;
+        }
+
         if ( logging ) {
             String str = "Status update: " + o;
             str += "; Bytes used: " + l;
             str += "; Bytes allocated: " + l1;
             str += "; Maple-CPU-Time: " + v;
             log.debug(str);
+        }
+
+        if ( auto_interrupt && (v - last_process_time > auto_interrupt_threshold) ){
+            log.debug("Exceed auto interrupt threshold!");
+            last_process_time = -1;
+            interrupt();
         }
     }
 
@@ -79,7 +93,8 @@ public class MapleListener implements EngineCallBacks {
     }
 
     @Override
-    public boolean queryInterrupt(Object o) throws MapleException {
+    public boolean queryInterrupt( Object o ) throws MapleException {
+        if ( logging ) log.debug("Check Query Interruption Request (" + interrupter + ").");
         if ( interrupter ) {
             if ( logging ) {
                 String str = "Interrupted query!";
@@ -116,5 +131,19 @@ public class MapleListener implements EngineCallBacks {
     public void interrupt(){
         if ( logging ) log.debug("Request interruption!");
         this.interrupter = true;
+    }
+
+    public void activateAutoInterrupt( double threshold ){
+        this.auto_interrupt = true;
+        this.auto_interrupt_threshold = threshold;
+    }
+
+    public void deactivateAutoInterrupt(){
+        this.auto_interrupt = false;
+        this.auto_interrupt_threshold = 0;
+    }
+
+    public void timerReset(){
+        this.last_process_time = -1;
     }
 }

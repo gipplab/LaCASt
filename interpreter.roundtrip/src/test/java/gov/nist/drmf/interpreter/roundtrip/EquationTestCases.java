@@ -314,10 +314,9 @@ public class EquationTestCases {
     }
 
     private void testFunction( TestCaseInLaTeX test, String assumption ) throws MapleException {
-        if ( test.line == 90 ){
-            LOG.info("SKIP LINE 90");
+        if ( test.line == 458 ){
             TestStatus.NOT_SUCCESSFUL.add(test.line);
-            fail("Skipped line 90!");
+            fail("Skipped line 458!");
             return;
         }
 

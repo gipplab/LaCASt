@@ -82,6 +82,11 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
     private SymbolTranslator symbolTranslator;
 
     /**
+     * Unique listener of the process
+     */
+    private static MapleListener listener;
+
+    /**
      * There is only one instance at runtime allowed. You get access
      * to this instance via {@link #init()} and {@link #getUniqueMapleInterface()}.
      */
@@ -114,7 +119,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         this.maple_to_inert_procedure_name = extractNameOfProcedure( to_inert_procedure );
 
         // initialize callback listener
-        MapleListener listener = new MapleListener(true);
+        listener = new MapleListener(true);
 
         // initialize engine
         engine = new Engine( maple_args, listener, null, null );
@@ -316,4 +321,11 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
     public static MapleInterface getUniqueMapleInterface(){
         return mInterface;
     }
+
+    /**
+     * Return the unique listener of current Maple process.
+     *
+     * @return unique listener
+     */
+    public static MapleListener getUniqueMapleListener(){ return listener; }
 }
