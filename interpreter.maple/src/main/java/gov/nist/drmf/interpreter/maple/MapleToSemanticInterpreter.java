@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.maple;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
+import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.maple.grammar.TranslationFailures;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
@@ -58,6 +59,7 @@ public class MapleToSemanticInterpreter {
 
             String result = mi.translate(test);
             TranslationFailures tf = mi.getFailures();
+            InformationLogger il = mi.getInfos();
 
             if ( !tf.isEmpty() ){
                 System.out.println("Error in translation process:");
@@ -65,8 +67,10 @@ public class MapleToSemanticInterpreter {
             }
 
             System.out.println("Translated expression:");
-            System.out.println(result);
+            System.out.println( result );
 
+            System.out.println("Additional Information:");
+            System.out.println( il.toString() );
 
             LOG.info( "Translated result: " + result );
             if ( !tf.isEmpty() )
