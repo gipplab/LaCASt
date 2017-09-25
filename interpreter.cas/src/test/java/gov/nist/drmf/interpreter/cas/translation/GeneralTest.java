@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Created by AndreG-P on 12.03.2017.
  */
-public class GeneralTester {
+public class GeneralTest {
 
     @Test
     public void testParenthesisChecker1(){

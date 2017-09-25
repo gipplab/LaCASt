@@ -12,6 +12,7 @@ import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Ignore;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
@@ -228,6 +229,7 @@ public class EquationTestCases {
         }
     }
 
+    @Ignore
     @TestFactory
     Iterable<DynamicTest> iterateAllTestCases(){
         LinkedList<DynamicTest> tests = new LinkedList<>();

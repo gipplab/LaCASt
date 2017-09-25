@@ -15,7 +15,7 @@ import static gov.nist.drmf.interpreter.maple.common.MapleConstants.*;
 /**
  * Created by AndreG-P on 27.02.2017.
  */
-public class TranslatedExpressionTests {
+public class TranslatedExpressionTest {
 
     private TranslatedList transList;
 

@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Created by AndreG-P on 28.02.2017.
  */
-public class QuickTests {
+public class QuickTest {
     @Disabled
     @Test
     public void arraysTest(){

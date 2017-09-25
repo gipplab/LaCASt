@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 /**
  * @author Andre Greiner-Petter
  */
-public class ConstantTests {
+public class ConstantTest {
     private static Constants g;
 
     @BeforeAll
