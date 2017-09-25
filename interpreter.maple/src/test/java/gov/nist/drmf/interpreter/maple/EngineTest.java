@@ -23,7 +23,7 @@ import java.util.stream.Stream;
 /**
  * Created by AndreG-P on 23.02.2017.
  */
-public class EngineTests {
+public class EngineTest {
     private static Engine t;
     private static Algebraic
             example_query,

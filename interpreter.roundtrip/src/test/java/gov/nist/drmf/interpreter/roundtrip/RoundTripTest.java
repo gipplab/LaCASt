@@ -2,7 +2,6 @@ package gov.nist.drmf.interpreter.roundtrip;
 
 import gov.nist.drmf.interpreter.MapleTranslator;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  *
  * Created by AndreG-P on 01.03.2017.
  */
-public class RoundTripTests {
+public class RoundTripTest {
 
     private static MapleTranslator global_translator = new MapleTranslator();
 

@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 /**
  * Created by Andre Greiner-Petter on 10.11.2016.
  */
-public class GreekLettersTests {
+public class GreekLettersTest {
     private static GreekLetters g;
 
     @BeforeAll
