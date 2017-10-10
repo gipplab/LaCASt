@@ -4,7 +4,6 @@ import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
-import javafx.scene.effect.GlowBuilder;
 import mlp.FeatureSet;
 import mlp.Lexicon;
 import mlp.LexiconFactory;
@@ -12,7 +11,6 @@ import mlp.LexiconFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.crypto.Mac;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
