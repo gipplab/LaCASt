@@ -105,8 +105,9 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
      * @throws IOException if it cannot load the procedure from file {@link GlobalPaths#PATH_MAPLE_PROCS}.
      */
     private void inner_init() throws MapleException, IOException {
+        LOG.info("Start init! Load maple native libraries!");
         if ( Initializer.loadMapleNatives() )
-            LOG.info("Loading Maple Natives!");
+            LOG.info("Loaded Maple Natives!");
         else {
             LOG.error("Cannot load maple native directory.");
             return;
