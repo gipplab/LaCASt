@@ -24,6 +24,9 @@ public class Initializer {
      * @return true if everything went fine.
      */
     public static boolean loadMapleNatives() {
+        return true;
+
+        /*
         try ( FileInputStream in = new FileInputStream(GlobalPaths.PATH_MAPLE_CONFIG.toFile()) ){
             Properties props = new Properties();
             props.load(in);
@@ -37,6 +40,7 @@ public class Initializer {
             );
             return false;
         }
+        */
     }
 
     public static boolean loadMapleNatives( String maple_bin_dir ){
