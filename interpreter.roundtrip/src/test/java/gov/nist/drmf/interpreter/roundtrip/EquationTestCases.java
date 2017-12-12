@@ -66,7 +66,8 @@ public class EquationTestCases {
         unknown_macro_counter = new HashMap<>();
         TestStatus.reset();
 
-        Path private_repo = Paths.get("C:", "Users", "AndreG-P", "Uni", "MasterarbeitPRIVAT");
+        // /mnt/SharedPartition/Privacy/MAPrivate
+        Path private_repo = Paths.get("/", "mnt", "SharedPartition", "Privacy", "MAPrivate");
         Path lib = private_repo.resolve("BruceLabelLinks.txt");
         LOG.info("Start Link-Lib Init...");
 
@@ -229,7 +230,7 @@ public class EquationTestCases {
         }
     }
 
-    @Ignore
+    //@Ignore
     @TestFactory
     Iterable<DynamicTest> iterateAllTestCases(){
         LinkedList<DynamicTest> tests = new LinkedList<>();
@@ -362,6 +363,9 @@ public class EquationTestCases {
             LOG.debug("Maple Error occurred, line " + test.line, me);
             TestStatus.ERROR_IN_MAPLE.add(test.line);
         }
+
+        // garbage collection
+        mapleT.forceGC();
     }
 
     private void relationTest(
@@ -560,7 +564,10 @@ public class EquationTestCases {
     private boolean numericalTest(String test, int line) throws MapleException{
         boolean resultB = false;
         Algebraic a = mapleS.numericalMagic( test );
-        System.out.println("Numerical Output: " + a.toString());
+        if ( a != null )
+            LOG.debug("Numerical Output: " + a.toString());
+        else LOG.warn( "Hmm, numerical output is null..." );
+
         if ( a instanceof com.maplesoft.openmaple.List ){
             com.maplesoft.openmaple.List aList = (com.maplesoft.openmaple.List)a;
             if ( aList.length() == 0 ){

@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.roundtrip;
 
 import gov.nist.drmf.interpreter.MapleTranslator;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -51,11 +52,12 @@ public class RoundTripTest {
     public void multipleTranslationTest() throws Exception {
         String test = "1/((a+2)/(b^(Catalan/I)/(alpha*q^I*x/3)*alpha))";
         String latex_result, back_to_maple = null;
-        int threshold = 20;
+        int threshold = 40;
 
         for ( int i = 0; i < threshold; i++ ){
             latex_result = global_translator.translateFromMapleToLaTeXClean( test );
             back_to_maple = global_translator.translateFromLaTeXToMapleClean( latex_result );
+            global_translator.forceGC();
         }
 
         try {
@@ -87,6 +89,8 @@ public class RoundTripTest {
                 if ( i == threshold )
                     fail( test_case + System.lineSeparator() + new_trans );
             }
+
+            global_translator.forceGC();
         }
         System.out.println( cycles );
     }

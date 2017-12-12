@@ -35,10 +35,10 @@ public class MapleListener implements EngineCallBacks {
     @Override
     public void errorCallBack(Object o, int i, String s) throws MapleException {
         if ( logging ) {
-            String str = "ERROR";
-            if ( i >= 0 ) str += " occurred at offset " + i;
-            if ( o != null ) str += "; Object: " + o;
-            str += "; " + s;
+            String str = "ERROR[";
+            str += i >= 0 ? "Offset: " + i + "; ": "";
+            str += o != null ? "Object: " + o + "; ": "";
+            str += s + "]";
             log.error(str);
         }
     }
@@ -50,11 +50,12 @@ public class MapleListener implements EngineCallBacks {
         }
 
         if ( logging ) {
-            String str = "Status update: " + o;
-            str += "; Bytes used: " + l;
-            str += "; Bytes allocated: " + l1;
-            str += "; Maple-CPU-Time: " + v;
-            log.debug(str);
+            String str = "STATUS_UPDATE[";
+            str += o != null ? "Object: " + o + "; " : "";
+            str += "Usage: " + l + "KB; ";
+            str += "System Allocation: " + l1 + "KB; ";
+            str += "Maple-CPU-Time: " + v + "sec]";
+            log.info(str);
         }
 
         if ( auto_interrupt && (v - last_process_time > auto_interrupt_threshold) ){

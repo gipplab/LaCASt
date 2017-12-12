@@ -235,6 +235,25 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
     }
 
     /**
+     * TODO
+     * @return
+     * @throws MapleException
+     */
+    public void invokeGC() throws MapleException {
+        LOG.info("Manually invoke Maple's garbage collector. " +
+                "Maple listener should receive an update message about memory usage and cpu-time.");
+        engine.evaluate("gc();");
+
+        /*
+        Algebraic alloc = engine.evaluate( "kernelopts(bytesalloc)/1024;" );
+        LOG.info("Maple currently allocates: " + alloc.toString() + "KB");
+
+        Algebraic used = engine.evaluate( "kernelopts(bytesused)/1024;" );
+        LOG.info("Maple currently uses: " + used.toString() + "KB");
+        */
+    }
+
+    /**
      * Returns the greek letters translator.
      * @return greek letters translator
      */
