@@ -42,4 +42,20 @@
             <systemPath>${maple.path}/java/externalcall.jar</systemPath>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19</version>
+                <configuration>
+                    <environmentVariables>
+                        <MAPLE>${maple.path}</MAPLE>
+                        <LD_LIBRARY_PATH>${maple.path}/bin.X86_64_LINUX</LD_LIBRARY_PATH>
+                    </environmentVariables>
+                    <workingDirectory>${basedir}/../</workingDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

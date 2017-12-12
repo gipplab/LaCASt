@@ -358,4 +358,8 @@ public class MapleTranslator {
             throws MapleException {
         return mapleInterface.evaluateExpression(mapleCommand);
     }
+
+    public void forceGC() throws MapleException {
+        mapleInterface.invokeGC();
+    }
 }

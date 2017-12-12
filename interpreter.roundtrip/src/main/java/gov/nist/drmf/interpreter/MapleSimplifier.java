@@ -33,7 +33,7 @@ public class MapleSimplifier {
     MapleSimplifier( MapleInterface mapleInterface ){
         this.mapleInterface = mapleInterface;
         this.mapleListener = mapleInterface.getUniqueMapleListener();
-        this.mapleListener.activateAutoInterrupt( INTERRUPTER_THRESHOLD );
+        //this.mapleListener.activateAutoInterrupt( INTERRUPTER_THRESHOLD );
     }
 
     /**
@@ -158,9 +158,11 @@ public class MapleSimplifier {
         command += "nVars := indets(nTest,name) minus {constants}:";
         command += "nVals := [-3/2, -1, -1/2, 0, 1/2, 1, 3/2]:";
         command += "nTestVals := createListInList(nVars,nVals):";
-        command += "NumericalTester(nTest,nTestVals,0.0001,15);";
         LOG.debug("NumericalMagic: " + command);
-        mapleListener.timerReset();
+        mapleInterface.evaluateExpression( command );
+
+        command = "NumericalTester(nTest,nTestVals,0.0001,15);";
+        LOG.debug("Start numerical test: " + command);
         return mapleInterface.evaluateExpression( command );
     }
 

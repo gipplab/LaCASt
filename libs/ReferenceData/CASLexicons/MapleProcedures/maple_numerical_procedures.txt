@@ -17,7 +17,8 @@ NumericalTester := proc(expr, values::list, threshold::numeric, precision::posin
   combi := cartprod(values);
   while not combi[finished] do
     combo := combi[nextvalue]();
-    printf("Next test values: %q\n", combo);
+    # strange, the following line destroys the algebraic callback in linux -> comment this line
+    #printf("Next test values: %q\n", combo);
     try
       result := evalf[precision](eval(expr, combo));
       if abs(result-1) > threshold then
@@ -36,7 +37,8 @@ innerTesterMethod := proc(expr, values::list, threshold::numeric, precision::pos
   local result, output, i;
   output := NULL;
   for i from 1 to nops(values) do
-    printf("Next test values: %q\n", values[i]);
+    # strange, the following line destroys the algebraic callback in linux -> comment this line
+    #printf("Next test values: %q\n", values[i]);
     try
       result := evalf[precision](eval(expr, values[i]));
       if abs(result-1) > threshold then
