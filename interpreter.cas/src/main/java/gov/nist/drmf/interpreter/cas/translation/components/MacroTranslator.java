@@ -15,6 +15,8 @@ import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -40,6 +42,8 @@ import java.util.regex.Pattern;
  * @author Andre Greiner-Petter
  */
 public class MacroTranslator extends AbstractListTranslator {
+    private static final Logger LOG = LogManager.getLogger(MacroTranslator.class.getName());
+
     private static final Pattern optional_params_pattern =
             Pattern.compile("\\s*\\[(.*)]\\s*\\*?\\s*");
 

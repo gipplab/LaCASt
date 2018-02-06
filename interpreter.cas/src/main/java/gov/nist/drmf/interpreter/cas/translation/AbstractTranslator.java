@@ -11,6 +11,7 @@ import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.LinkedList;
@@ -42,7 +43,7 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 
     protected static InformationLogger INFO_LOG;
 
-    protected static Logger LOG;
+    private static Logger LOG = LogManager.getLogger(AbstractTranslator.class.getName());
 
     protected TranslatedExpression local_inner_exp = new TranslatedExpression();
 
