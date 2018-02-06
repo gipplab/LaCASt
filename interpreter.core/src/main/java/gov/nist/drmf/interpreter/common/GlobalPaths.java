@@ -10,7 +10,7 @@ import java.nio.file.Paths;
  */
 public class GlobalPaths {
     // path variable to libs folder
-    public static Path PATH_LIBS =
+    public static final Path PATH_LIBS =
             Paths.get("libs");
 
     // path variable to the ReferenceData directory

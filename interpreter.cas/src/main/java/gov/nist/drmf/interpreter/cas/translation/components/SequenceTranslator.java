@@ -12,6 +12,8 @@ import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -36,6 +38,8 @@ import java.util.List;
  */
 public class SequenceTranslator extends AbstractListTranslator {
 
+    private static final Logger LOG = LogManager.getLogger(SequenceTranslator.class.getName());
+    
     // the open bracket if needed
     @Nullable
     private Brackets open_bracket;

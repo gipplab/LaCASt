@@ -8,6 +8,8 @@ import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.PomTaggedExpression;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,8 @@ import java.util.List;
  * @author Andre Greiner-Petter
  */
 public class EmptyExpressionTranslator extends AbstractTranslator {
+    private static final Logger LOG = LogManager.getLogger(EmptyExpressionTranslator.class.getName());
+
     @Override
     public boolean translate(PomTaggedExpression expression ) throws TranslationException {
         // switch-case over tags

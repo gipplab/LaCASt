@@ -18,6 +18,8 @@ import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.LinkedList;
@@ -36,6 +38,8 @@ import java.util.List;
  * @author Andre Greiner-Petter
  */
 public class MathTermTranslator extends AbstractListTranslator {
+    private static final Logger LOG = LogManager.getLogger(MathTermTranslator.class.getName());
+    
     @Override
     public boolean translate(PomTaggedExpression exp ){
         return translate( exp, new LinkedList<>() );
