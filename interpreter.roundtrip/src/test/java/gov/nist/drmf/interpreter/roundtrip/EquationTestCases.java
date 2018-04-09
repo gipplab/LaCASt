@@ -98,7 +98,7 @@ public class EquationTestCases {
             );
 
             br.lines()
-                    //.limit(100) // TODO debug limit
+                    .limit(10) // TODO debug limit
                     .filter( l -> {
                         if ( l.contains("'") ){
                             int line = ca[0]++;

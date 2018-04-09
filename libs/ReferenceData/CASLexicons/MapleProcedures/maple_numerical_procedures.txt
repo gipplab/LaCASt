@@ -50,3 +50,42 @@ innerTesterMethod := proc(expr, values::list, threshold::numeric, precision::pos
   end do;
   return [output];
 end proc:
+
+SpecialNumericalTester := proc(expr, values::list, precision::posint)
+  local combi, combo, result, output;
+  output := NULL;
+  if nops(values) = 1 then
+    return SpecialInnerTesterMethod(expr, op(values), precision);
+  end if;
+  combi := cartprod(values);
+  while not combi[finished] do
+    combo := combi[nextvalue]();
+    # strange, the following line destroys the algebraic callback in linux -> comment this line
+    #printf("Next test values: %q\n", combo);
+    try
+      result := evalf[precision](eval(expr, combo));
+      output := output,[result, combo];
+    catch:
+	  printf("Error for test case %q; Message: %q", combo, lastexception);
+	  return lastexception;
+    end try;
+  end do;
+  printf("Done");
+  return [output];
+end proc:
+
+SpecialInnerTesterMethod := proc(expr, values::list, precision::posint)
+  local result, output, i;
+  output := NULL;
+  for i from 1 to nops(values) do
+    # strange, the following line destroys the algebraic callback in linux -> comment this line
+    #printf("Next test values: %q\n", values[i]);
+    try
+      result := evalf[precision](eval(expr, values[i]));
+      output := output,[result, values[i]];
+    catch:
+	  return lastexception;
+    end try;
+  end do;
+  return [output];
+end proc:

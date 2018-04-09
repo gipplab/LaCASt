@@ -166,6 +166,20 @@ public class MapleSimplifier {
         return mapleInterface.evaluateExpression( command );
     }
 
+    public Algebraic numericalTest( String maple_expr, String values, int precision )
+            throws MapleException {
+        String command = "nTest := " + maple_expr + ":";
+        command += "nVars := indets(nTest,name) minus {constants}:";
+        command += "nVals := " + values + ":";
+        command += "nTestVals := createListInList(nVars,nVals):";
+        LOG.debug("NumericalMagic: " + command);
+        mapleInterface.evaluateExpression( command );
+
+        command = "SpecialNumericalTester(nTest,nTestVals," + precision + ");";
+        LOG.debug("Start numerical test: " + command);
+        return mapleInterface.evaluateExpression( command );
+    }
+
     /**
      *
      * @param expr
