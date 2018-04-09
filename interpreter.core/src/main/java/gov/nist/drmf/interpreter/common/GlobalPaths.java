@@ -23,6 +23,9 @@ public class GlobalPaths {
     public static final Path PATH_MAPLE_CONFIG =
             PATH_LIBS.resolve( "maple_config.properties" );
 
+    public static final Path PATH_NUMERICA_SETUP =
+            PATH_LIBS.resolve( "numerical_tests.properties" );
+
     // path variable to the lexicon files in the reference data dir
     public static final Path PATH_LEXICONS =
             PATH_REFERENCE_DATA.resolve( "Lexicons" );
