@@ -39,6 +39,8 @@ public class NumericalEvaluator {
 
     private LinkedList<Case> testCases;
 
+    private HashMap<Integer, String> labelLib;
+
     private String[] lineResult;
 
     /**
@@ -53,6 +55,8 @@ public class NumericalEvaluator {
     public NumericalEvaluator() throws IOException {
         this.config = new NumericalConfig();
         labelLinker = new DLMFLinker(config.getLabelSet());
+        labelLib = new HashMap<>();
+
         output = config.getOutputPath();
         if (!Files.exists(output)) {
             Files.createFile(output);
@@ -66,7 +70,6 @@ public class NumericalEvaluator {
     public void init() throws IOException, MapleException {
         translator.init();
         simplifier = translator.getMapleSimplifier();
-
 
         translator.enterMapleCommand(
                 MapleInterface.extractProcedure(GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES)
@@ -100,7 +103,11 @@ public class NumericalEvaluator {
                         }
                         return true;
                     })
-                    .map(l -> CaseAnalyzer.analyzeLine(l, currLine[0]++, labelLinker))
+                    .map(l -> {
+                        Case c = CaseAnalyzer.analyzeLine(l, currLine[0]++, labelLinker);
+                        if ( c != null ) labelLib.put( c.getLine(), c.getDlmf() );
+                        return c;
+                    })
                     .filter( c -> {
                         boolean n = Objects.nonNull( c );
                         if ( !n ){
@@ -250,7 +257,12 @@ public class NumericalEvaluator {
         sb.append(NL);
 
         for ( int i = 1; i < lineResult.length; i++ ){
-            sb.append(i).append(": ");
+            sb.append(i);
+            String dlmf = labelLib.get(i);
+            if ( dlmf != null && !dlmf.isEmpty() ){
+                sb.append(" [").append(dlmf).append("]: ");
+            } else sb.append(": ");
+
             if ( lineResult[i] == null ){
                 sb.append("Skipped");
             } else sb.append(lineResult[i]);
