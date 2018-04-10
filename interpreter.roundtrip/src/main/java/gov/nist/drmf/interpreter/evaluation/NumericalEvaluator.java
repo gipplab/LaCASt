@@ -4,6 +4,7 @@ import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.MapleSimplifier;
 import gov.nist.drmf.interpreter.MapleTranslator;
+import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
@@ -14,8 +15,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 /**
@@ -56,6 +60,7 @@ public class NumericalEvaluator {
 
         translator = new MapleTranslator();
         this.testCases = new LinkedList<>();
+        Status.reset();
     }
 
     public void init() throws IOException, MapleException {
@@ -80,24 +85,42 @@ public class NumericalEvaluator {
                         .skip(subset[0] - 1)
                         .limit(subset[1]);
                 currLine[0] = subset[0];
+                Status.SKIPPED.set( subset[0]-1 );
             }
+
+            HashMap<Integer, String> skippedLinesInfo = new HashMap<>();
 
             lines   .filter(l -> {
                         if (l.contains("'")) {
                             LOG.debug("Skip line " + currLine[0] + " because of '.");
+                            skippedLinesInfo.put( currLine[0], "Skipped - Because of ambiguous single quote." );
                             currLine[0]++;
+                            Status.SKIPPED.add();
+                            return false;
                         }
                         return true;
                     })
                     .map(l -> CaseAnalyzer.analyzeLine(l, currLine[0]++, labelLinker))
-                    .filter(Objects::nonNull)
+                    .filter( c -> {
+                        boolean n = Objects.nonNull( c );
+                        if ( !n ){
+                            skippedLinesInfo.put( currLine[0], "Skipped - Because of NULL element after parsing line." );
+                            Status.SKIPPED.add();
+                        }
+                        return n;
+                    })
                     .forEach(c -> testCases.add(c));
 
-            lineResult = new String[testCases.getLast().getLine()];
+            lineResult = new String[currLine[0]];
+            for ( Integer i : skippedLinesInfo.keySet() )
+                lineResult[i] = skippedLinesInfo.get(i);
         } catch( IOException ioe ){
             LOG.fatal("Cannot load dataset!", ioe);
         }
     }
+
+    private static final Pattern nullPattern =
+            Pattern.compile("[\\s()\\[\\]{}]*0\\.?0*[\\s()\\[\\]{}]*");
 
     private String performSingleTest( Case c ){
         try {
@@ -106,6 +129,15 @@ public class NumericalEvaluator {
                 mapleAss = translator.translateFromLaTeXToMapleClean( c.getAssumption() );
             String mapleLHS = translator.translateFromLaTeXToMapleClean( c.getLHS() );
             String mapleRHS = translator.translateFromLaTeXToMapleClean( c.getRHS() );
+
+            Matcher nullLHSMatcher = nullPattern.matcher( mapleLHS );
+            Matcher nullRHSMatcher = nullPattern.matcher( mapleRHS );
+            if ( nullLHSMatcher.matches() ) {
+                mapleLHS = "";
+            }
+            if ( nullRHSMatcher.matches() ) {
+                mapleRHS = "";
+            }
 
             String expression = config.getTestExpression( mapleLHS, mapleRHS );
 
@@ -147,14 +179,18 @@ public class NumericalEvaluator {
             }
 
             if ( resultsList.isEmpty() ){
-                return c.getLine() + ": Successful";
+                lineResult[c.getLine()] = "Successful";
+                Status.SUCCESS.add();
             } else {
-                return c.getLine() + ": " + resultsList.toString();
+                lineResult[c.getLine()] = resultsList.toString();
+                Status.FAILURE.add();
             }
         } catch ( Exception e ){
             LOG.error("Cannot perform numerical test for line " + c.getLine(), e );
-            return c.getLine() + ": Error - " + e.toString();
+            lineResult[c.getLine()] = "Error - " + e.toString();
+            Status.ERROR.add();
         }
+        return c.getLine() + ": " + lineResult[c.getLine()];
     }
 
     private static final String FERRER_DEF_ASS = "assume(-1 < x, x < 1);";
@@ -192,10 +228,48 @@ public class NumericalEvaluator {
         return pac;
     }
 
+    private void performAllTests(){
+        LinkedList<Case> copy = new LinkedList<>();
+        while ( !testCases.isEmpty() ){
+            Case c = testCases.removeFirst();
+            performSingleTest(c);
+            copy.add(c);
+        }
+        testCases = copy;
+    }
+
+    private final static String NL = System.lineSeparator();
+
+    private String getResults(){
+        StringBuffer sb = new StringBuffer();
+
+        sb.append("Overall: ");
+        sb.append(Status.buildString());
+        sb.append(" for test expression: ");
+        sb.append(config.getRawTestExpression());
+        sb.append(NL);
+
+        for ( int i = 1; i < lineResult.length; i++ ){
+            sb.append(i).append(": ");
+            if ( lineResult[i] == null ){
+                sb.append("Skipped");
+            } else sb.append(lineResult[i]);
+            sb.append(NL);
+        }
+        return sb.toString();
+    }
+
+    private void writeOutput() throws IOException {
+        String results = getResults();
+        Files.write( output, results.getBytes() );
+    }
+
     public static void main(String[] args) throws Exception{
         NumericalEvaluator evaluator = new NumericalEvaluator();
         evaluator.init();
         evaluator.loadTestCases();
-        System.out.println(evaluator.performSingleTest( evaluator.testCases.getFirst() ));
+        evaluator.performAllTests();
+        evaluator.writeOutput();
+        //System.out.println(evaluator.performSingleTest( evaluator.testCases.getFirst() ));
     }
 }
