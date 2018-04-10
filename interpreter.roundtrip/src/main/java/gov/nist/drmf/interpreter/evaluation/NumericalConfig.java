@@ -68,8 +68,21 @@ public class NumericalConfig {
             PATTERN_RES = "#RESULT",
             PATTERN_THRESHOLD = "#THRESHOLD";
 
+    public String getRawTestExpression(){
+        return NumericalProperties.KEY_EXPR.value;
+    }
+
     public String getTestExpression( String LHS, String RHS ){
         String in = NumericalProperties.KEY_EXPR.value;
+
+        if ( LHS == null || LHS.isEmpty() ){
+            LOG.debug("LHS is 0, use special " + NumericalProperties.KEY_IF_LHS_NULL.key + " pattern.");
+            in = NumericalProperties.KEY_IF_LHS_NULL.value;
+        } else if ( RHS == null || RHS.isEmpty() ) {
+            LOG.debug("RHS is 0, use special " + NumericalProperties.KEY_IF_LHS_NULL.key + " pattern.");
+            in = NumericalProperties.KEY_IF_RHS_NULL.value;
+        }
+
         in = in.replaceAll( PATTERN_LHS, LHS );
         in = in.replaceAll( PATTERN_RHS, RHS );
         in = "evalf(" + in + ")";
@@ -103,6 +116,8 @@ public class NumericalConfig {
         KEY_EXPECT("test_expectation", null),
         KEY_THRESHOLD("test_threshold", null),
         KEY_PREC("test_precision", null),
+        KEY_IF_RHS_NULL("test_if_rhs_null", null),
+        KEY_IF_LHS_NULL("test_if_lhs_null", null),
         KEY_OUTPUT("output", null);
 
         private String key, value;
