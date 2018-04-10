@@ -107,6 +107,11 @@ public class NumericalConfig {
         return Integer.parseInt(in);
     }
 
+    public boolean showDLMFLinks(){
+        String in = NumericalProperties.KEY_DLMF_LINK.value;
+        return in.equals("true");
+    }
+
     private enum NumericalProperties{
         KEY_DATASET("dlmf_dataset", null),
         KEY_LABELSET("dlmf_labelset", null),
@@ -118,7 +123,8 @@ public class NumericalConfig {
         KEY_PREC("test_precision", null),
         KEY_IF_RHS_NULL("test_if_rhs_null", null),
         KEY_IF_LHS_NULL("test_if_lhs_null", null),
-        KEY_OUTPUT("output", null);
+        KEY_OUTPUT("output", null),
+        KEY_DLMF_LINK("show_dlmf_links", null);
 
         private String key, value;
 
