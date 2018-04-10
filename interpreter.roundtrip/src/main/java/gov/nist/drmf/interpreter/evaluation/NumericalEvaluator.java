@@ -95,8 +95,10 @@ public class NumericalEvaluator {
 
             lines   .filter(l -> {
                         if (l.contains("'")) {
+                            Case c = CaseAnalyzer.analyzeLine(l, currLine[0], labelLinker);
                             LOG.debug("Skip line " + currLine[0] + " because of '.");
                             skippedLinesInfo.put( currLine[0], "Skipped - Because of ambiguous single quote." );
+                            if ( c != null ) labelLib.put( c.getLine(), c.getDlmf() );
                             currLine[0]++;
                             Status.SKIPPED.add();
                             return false;
@@ -256,10 +258,13 @@ public class NumericalEvaluator {
         sb.append(config.getRawTestExpression());
         sb.append(NL);
 
+        boolean showDLMF = config.showDLMFLinks();
+
         for ( int i = 1; i < lineResult.length; i++ ){
             sb.append(i);
             String dlmf = labelLib.get(i);
-            if ( dlmf != null && !dlmf.isEmpty() ){
+
+            if ( dlmf != null && showDLMF ){
                 sb.append(" [").append(dlmf).append("]: ");
             } else sb.append(": ");
 
