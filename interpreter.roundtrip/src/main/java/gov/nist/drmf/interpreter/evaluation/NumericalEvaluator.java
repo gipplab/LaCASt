@@ -182,6 +182,8 @@ public class NumericalEvaluator {
 
                         if ( resBoolean.equals( "false" ) ){
                             resultsList.add(e.toString());
+                        } else if ( !resBoolean.equals("true") ){
+                            resultsList.add("ERROR for: " + e.toString());
                         }
                     }
                 }
