@@ -1,11 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
-import gov.nist.drmf.interpreter.common.InformationLogger;
+import gov.nist.drmf.interpreter.common.*;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
-import gov.nist.drmf.interpreter.common.GlobalConstants;
-import gov.nist.drmf.interpreter.common.GlobalPaths;
-import gov.nist.drmf.interpreter.common.Keys;
-import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
@@ -95,6 +91,7 @@ public class SemanticLatexTranslator extends AbstractTranslator {
      */
     public boolean translate( String expression ) throws TranslationException {
         if ( expression == null || expression.isEmpty() ) return false;
+        expression = TeXPreProcessor.preProcessingTeX(expression);
         try {
             PomTaggedExpression exp = parser.parse(expression);
             return translate(exp);
