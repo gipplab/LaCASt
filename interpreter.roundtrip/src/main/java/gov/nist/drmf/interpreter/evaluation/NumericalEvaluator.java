@@ -103,7 +103,7 @@ public class NumericalEvaluator {
                             Status.SKIPPED.add();
                             return false;
                         }
-                        return true;
+                        return currLine[0] < subset[1];
                     })
                     .map(l -> {
                         Case c = CaseAnalyzer.analyzeLine(l, currLine[0]++, labelLinker);
