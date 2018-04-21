@@ -166,14 +166,24 @@ public class MapleSimplifier {
         return mapleInterface.evaluateExpression( command );
     }
 
-    public Algebraic numericalTest( String maple_expr, String values, int precision )
-            throws MapleException {
+    public Algebraic numericalTest( String maple_expr, String values, int precision, int maxVars )
+            throws MapleException, IllegalArgumentException {
         String command = "nTest := " + maple_expr + ":";
         command += "nVars := indets(nTest,name) minus {constants}:";
         command += "nVals := " + values + ":";
         command += "nTestVals := createListInList(nVars,nVals):";
         LOG.debug("NumericalMagic: " + command);
         mapleInterface.evaluateExpression( command );
+
+        command = "nops(nVars);";
+        Algebraic numOfVars = mapleInterface.evaluateExpression(command);
+        try {
+            //System.out.println(numOfVars.toString());
+            int i = Integer.parseInt(numOfVars.toString());
+            if ( i >= maxVars ) throw new IllegalArgumentException("Too many variables: " + i);
+        } catch ( NumberFormatException e ){
+            throw new IllegalArgumentException("Cannot calculate number of variables!");
+        }
 
         command = "SpecialNumericalTester(nTest,nTestVals," + precision + ");";
         LOG.debug("Start numerical test: " + command);

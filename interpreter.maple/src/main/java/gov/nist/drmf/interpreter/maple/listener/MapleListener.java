@@ -28,7 +28,7 @@ public class MapleListener implements EngineCallBacks {
     public void textCallBack(Object o, int i, String s) throws MapleException {
         if ( logging ) {
             String str = getConstName(i) + "; Object: " + o + "; String: " + s;
-            log.debug(str);
+            log.trace(str);
         }
     }
 
@@ -55,7 +55,7 @@ public class MapleListener implements EngineCallBacks {
             str += "Usage: " + l + "KB; ";
             str += "System Allocation: " + l1 + "KB; ";
             str += "Maple-CPU-Time: " + v + "sec]";
-            log.info(str);
+            log.debug(str);
         }
 
         if ( auto_interrupt && (v - last_process_time > auto_interrupt_threshold) ){
