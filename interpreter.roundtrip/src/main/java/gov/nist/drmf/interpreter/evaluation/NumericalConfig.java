@@ -62,6 +62,10 @@ public class NumericalConfig {
         return NumericalProperties.KEY_VALUES.value;
     }
 
+    public int getMaximumNumberOfVariables(){
+        return Integer.parseInt(NumericalProperties.KEY_SKIP_VARS.value);
+    }
+
     private static final String
             PATTERN_LHS = "#LHS",
             PATTERN_RHS = "#RHS",
@@ -124,7 +128,8 @@ public class NumericalConfig {
         KEY_IF_RHS_NULL("test_if_rhs_null", null),
         KEY_IF_LHS_NULL("test_if_lhs_null", null),
         KEY_OUTPUT("output", null),
-        KEY_DLMF_LINK("show_dlmf_links", null);
+        KEY_DLMF_LINK("show_dlmf_links", null),
+        KEY_SKIP_VARS("skip_num_vars", null);
 
         private String key, value;
 

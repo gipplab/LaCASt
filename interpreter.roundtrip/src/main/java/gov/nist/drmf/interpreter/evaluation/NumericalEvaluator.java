@@ -94,6 +94,7 @@ public class NumericalEvaluator {
             HashMap<Integer, String> skippedLinesInfo = new HashMap<>();
 
             lines   .filter(l -> {
+                        if ( currLine[0] >= subset[1] ) return false;
                         if (l.contains("'")) {
                             Case c = CaseAnalyzer.analyzeLine(l, currLine[0], labelLinker);
                             LOG.debug("Skip line " + currLine[0] + " because of '.");
@@ -103,7 +104,7 @@ public class NumericalEvaluator {
                             Status.SKIPPED.add();
                             return false;
                         }
-                        return currLine[0] < subset[1];
+                        return true;
                     })
                     .map(l -> {
                         Case c = CaseAnalyzer.analyzeLine(l, currLine[0]++, labelLinker);
@@ -155,10 +156,12 @@ public class NumericalEvaluator {
             if ( preAndPostCommands[0] != null )
                 translator.enterMapleCommand(preAndPostCommands[0]);
 
+            LOG.debug("Start numerical calculations.");
             Algebraic results = simplifier.numericalTest(
                     expression,
                     config.getNumericalValues(),
-                    config.getPrecision()
+                    config.getPrecision(),
+                    config.getMaximumNumberOfVariables()
             );
 
             if ( preAndPostCommands[1] != null )
@@ -166,25 +169,38 @@ public class NumericalEvaluator {
 
             LinkedList<String> resultsList = new LinkedList<>();
 
+            LOG.debug("Start to check conditions.");
             if ( results instanceof com.maplesoft.openmaple.List ){
                 com.maplesoft.openmaple.List aList = (com.maplesoft.openmaple.List) results;
                 int l = aList.length();
-                for ( int i = 1; i <= l; i++ ){
+
+                String[] entries = new String[l];
+                String[] numbers = new String[l];
+
+                for ( int i = 1; i <= l; i++ ) {
                     Algebraic e = aList.select(i);
+                    entries[i-1] = e.toString();
                     if ( e instanceof com.maplesoft.openmaple.List ){
                         com.maplesoft.openmaple.List innerL = (com.maplesoft.openmaple.List)e;
-                        String num = innerL.select(1).toString();
+                        numbers[i-1] = innerL.select(1).toString();
+                    }
+                }
 
-                        String testResult = config.getExpectation( num );
-                        Algebraic testResultBoolean = translator.enterMapleCommand( testResult );
+                // garbage collection
+                translator.forceGC();
 
-                        String resBoolean = testResultBoolean.toString();
+                for ( int i = 0; i < l; i++ ){
+                    if ( numbers[i] == null || numbers[i].isEmpty() ) continue;
 
-                        if ( resBoolean.equals( "false" ) ){
-                            resultsList.add(e.toString());
-                        } else if ( !resBoolean.equals("true") ){
-                            resultsList.add("ERROR for: " + e.toString());
-                        }
+                    String testResult = config.getExpectation( numbers[i] );
+                    Algebraic testResultBoolean = translator.enterMapleCommand( testResult );
+
+                    String resBoolean = testResultBoolean.toString();
+
+                    if ( resBoolean.equals( "false" ) ){
+                        resultsList.add(entries[i]);
+                    } else if ( !resBoolean.equals("true") ){
+                        resultsList.add("NaN");
                     }
                 }
             }
@@ -196,8 +212,12 @@ public class NumericalEvaluator {
                 lineResult[c.getLine()] = resultsList.toString();
                 Status.FAILURE.add();
             }
+        } catch ( IllegalArgumentException iae ){
+            LOG.warn("Skip test, because " + iae.getMessage());
+            lineResult[c.getLine()] = "Skipped - " + iae.getMessage();
+            //Status.SKIPPED.add();
         } catch ( Exception e ){
-            LOG.error("Cannot perform numerical test for line " + c.getLine(), e );
+            LOG.warn("Error for line " + c.getLine() + ", because: " + e.toString());
             lineResult[c.getLine()] = "Error - " + e.toString();
             Status.ERROR.add();
         }
@@ -243,7 +263,9 @@ public class NumericalEvaluator {
         LinkedList<Case> copy = new LinkedList<>();
         while ( !testCases.isEmpty() ){
             Case c = testCases.removeFirst();
+            LOG.info("Start test for line: " + c.getLine());
             performSingleTest(c);
+            LOG.info("Finished test for line: " + c.getLine());
             copy.add(c);
         }
         testCases = copy;
