@@ -12,6 +12,8 @@ import org.apache.logging.log4j.Logger;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import static gov.nist.drmf.interpreter.examples.MLP.NL;
+
 /**
  *
  * Created by AndreG-P on 27.04.2017.
@@ -166,28 +168,73 @@ public class MapleSimplifier {
         return mapleInterface.evaluateExpression( command );
     }
 
-    public Algebraic numericalTest( String maple_expr, String values, int precision, int maxVars )
+
+    public Algebraic advancedNumericalTest(
+            String maple_expr,
+            String values,
+            String specialVariables,
+            String valuesSpecialVariables,
+            int precision,
+            int maxCombinations )
             throws MapleException, IllegalArgumentException {
-        String command = "nTest := " + maple_expr + ":";
-        command += "nVars := indets(nTest,name) minus {constants}:";
-        command += "nVals := " + values + ":";
-        command += "nTestVals := createListInList(nVars,nVals):";
-        LOG.debug("NumericalMagic: " + command);
+        String command = buildCommandTestValues(
+                maple_expr,
+                values,
+                specialVariables,
+                valuesSpecialVariables,
+                maxCombinations);
+        LOG.debug("Generate value-variable pairs.");
         mapleInterface.evaluateExpression( command );
 
-        command = "nops(nVars);";
-        Algebraic numOfVars = mapleInterface.evaluateExpression(command);
-        try {
-            //System.out.println(numOfVars.toString());
-            int i = Integer.parseInt(numOfVars.toString());
-            if ( i >= maxVars ) throw new IllegalArgumentException("Too many variables: " + i);
-        } catch ( NumberFormatException e ){
-            throw new IllegalArgumentException("Cannot calculate number of variables!");
+        command = "SpecialNumericalTester(nTest,nTestVals," + precision + ");";
+        LOG.debug("Start numerical test.");
+        return mapleInterface.evaluateExpression( command );
+    }
+
+    private String buildCommandTestValues (
+            String maple_expr,
+            String values,
+            String specialVariables,
+            String valuesSpecialVariables,
+            int maxCombinations )
+            throws MapleException, IllegalArgumentException {
+        boolean specialVarsSwitch = specialVariables != null && !specialVariables.isEmpty()
+                && valuesSpecialVariables != null && !valuesSpecialVariables.isEmpty();
+
+        String command = "nTest := " + maple_expr + ";";
+        LOG.debug("Numerical Test Expression: " + command);
+        Algebraic a = mapleInterface.evaluateExpression( command );
+
+        command = "nVars := indets(nTest,name) minus {constants}:" + NL;
+        command += "nVals1:= " + values + ":" + NL;
+
+        if ( specialVarsSwitch ) {
+            command += "nVals2:= " + valuesSpecialVariables + ":" + NL;
+            command += "nVars2:= nVars intersect " + specialVariables + ":" + NL;
+            command += "nVars1:= nVars minus nVars2:" + NL;
+            command += "inCombis := nops(nVals1)^nops(nVars1) + nops(nVals2)^nops(nVars2):";
+        } else {
+            command += "inCombis := nops(nVals1)^nops(nVars):";
         }
 
-        command = "SpecialNumericalTester(nTest,nTestVals," + precision + ");";
-        LOG.debug("Start numerical test: " + command);
-        return mapleInterface.evaluateExpression( command );
+        LOG.trace("Numerical Preloads: " + command);
+        mapleInterface.evaluateExpression( command );
+
+        Algebraic numOfCombis = mapleInterface.evaluateExpression("inCombis;");
+        try {
+            int i = Integer.parseInt(numOfCombis.toString());
+            if ( i >= maxCombinations ) throw new IllegalArgumentException("Too many combinations: " + i);
+        } catch ( NumberFormatException e ){
+            throw new IllegalArgumentException("Cannot calculate number of combinations!");
+        }
+
+        if ( specialVarsSwitch ) {
+            command = "nTestVals := [op(createListInList(nVars1, nVals1)), op(createListInList(nVars2, nVals2))]:";
+        } else {
+            command = "nTestVals := createListInList(nVars,nVals1):";
+        }
+
+        return command;
     }
 
     /**

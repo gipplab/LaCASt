@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
+import java.util.regex.Matcher;
 
 /**
  * @author Andre Greiner-Petter
@@ -62,8 +63,8 @@ public class NumericalConfig {
         return NumericalProperties.KEY_VALUES.value;
     }
 
-    public int getMaximumNumberOfVariables(){
-        return Integer.parseInt(NumericalProperties.KEY_SKIP_VARS.value);
+    public int getMaximumNumberOfCombs(){
+        return Integer.parseInt(NumericalProperties.KEY_SKIP_IF_MORE_COMBS.value);
     }
 
     private static final String
@@ -87,8 +88,8 @@ public class NumericalConfig {
             in = NumericalProperties.KEY_IF_RHS_NULL.value;
         }
 
-        in = in.replaceAll( PATTERN_LHS, LHS );
-        in = in.replaceAll( PATTERN_RHS, RHS );
+        in = in.replaceAll( PATTERN_LHS, Matcher.quoteReplacement(LHS) );
+        in = in.replaceAll( PATTERN_RHS, Matcher.quoteReplacement(RHS) );
         in = "evalf(" + in + ")";
         return in;
     }
@@ -116,6 +117,14 @@ public class NumericalConfig {
         return in.equals("true");
     }
 
+    public String getSpecialVariables(){
+        return NumericalProperties.KEY_SPECIAL_VARS.value;
+    }
+
+    public String getSpecialVariablesValues(){
+        return NumericalProperties.KEY_SPECIAL_VARS_VALUES.value;
+    }
+
     private enum NumericalProperties{
         KEY_DATASET("dlmf_dataset", null),
         KEY_LABELSET("dlmf_labelset", null),
@@ -129,7 +138,9 @@ public class NumericalConfig {
         KEY_IF_LHS_NULL("test_if_lhs_null", null),
         KEY_OUTPUT("output", null),
         KEY_DLMF_LINK("show_dlmf_links", null),
-        KEY_SKIP_VARS("skip_num_vars", null);
+        KEY_SKIP_IF_MORE_COMBS("skip_if_more_combintations", null),
+        KEY_SPECIAL_VARS("special_variables", null),
+        KEY_SPECIAL_VARS_VALUES("special_variables_values", null);
 
         private String key, value;
 

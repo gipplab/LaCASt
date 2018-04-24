@@ -157,11 +157,13 @@ public class NumericalEvaluator {
                 translator.enterMapleCommand(preAndPostCommands[0]);
 
             LOG.debug("Start numerical calculations.");
-            Algebraic results = simplifier.numericalTest(
+            Algebraic results = simplifier.advancedNumericalTest(
                     expression,
                     config.getNumericalValues(),
+                    config.getSpecialVariables(),
+                    config.getSpecialVariablesValues(),
                     config.getPrecision(),
-                    config.getMaximumNumberOfVariables()
+                    config.getMaximumNumberOfCombs()
             );
 
             if ( preAndPostCommands[1] != null )
@@ -283,8 +285,13 @@ public class NumericalEvaluator {
         sb.append(NL);
 
         boolean showDLMF = config.showDLMFLinks();
+        int starter = 1;
+        for ( int i = 1; i < lineResult.length; i++, starter++ ){
+            if ( lineResult[i] != null )
+                break;
+        }
 
-        for ( int i = 1; i < lineResult.length; i++ ){
+        for ( int i = starter; i < lineResult.length; i++ ){
             sb.append(i);
             String dlmf = labelLib.get(i);
 
