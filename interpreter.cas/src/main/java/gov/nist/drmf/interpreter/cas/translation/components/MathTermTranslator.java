@@ -137,6 +137,7 @@ public class MathTermTranslator extends AbstractListTranslator {
                             term.getTermText(),
                             TranslationException.Reason.UNKNOWN_LATEX_COMMAND);
                 }
+            case special_math_letter:
             case symbol:
                 String sym = sT.translate( term.getTermText() );
                 if ( sym != null ) {
