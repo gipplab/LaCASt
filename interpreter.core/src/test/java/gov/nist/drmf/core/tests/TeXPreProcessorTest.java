@@ -18,4 +18,28 @@ public class TeXPreProcessorTest {
         String output = TeXPreProcessor.preProcessingTeX( input );
         assertEquals( expect, output, "Clear displaystyle didn't work." );
     }
+
+    @Test
+    public void paranthesisTest(){
+        String input = "\\bigl( x \\bigr) \\bigg/ \\Big( y \\Big)";
+        String expect = "( x ) / ( y )";
+        String output = TeXPreProcessor.preProcessingTeX( input );
+        assertEquals( expect, output, "Clear displaystyle didn't work." );
+    }
+
+    @Test
+    public void stylesTest(){
+        String input = "{\\sf\\bf a}";
+        String expect = "{ a}";
+        String output = TeXPreProcessor.preProcessingTeX( input );
+        assertEquals( expect, output, "Clear displaystyle didn't work." );
+    }
+
+    @Test
+    public void hiderelTest(){
+        String input = "a \\hiderel{ - } b \\hiderel{=} c \\hiderel{ /} d";
+        String expect = "a - b = c / d";
+        String output = TeXPreProcessor.preProcessingTeX( input );
+        assertEquals( expect, output, "Clear displaystyle didn't work." );
+    }
 }

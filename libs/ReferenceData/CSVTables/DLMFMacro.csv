@@ -77,6 +77,8 @@ DLMF;DLMF-Link;Meanings;Number of Parameters;Number of Ats;Number of Variables;C
 \Polylogarithm{s}@{z};http://dlmf.nist.gov/25.12#E10;Polylogarithm;1;1;1;;;dlmf-macro
 \JonquierePhi@{z}{s};http://dlmf.nist.gov/25.1;Polylogarithm;0;1;2;;;dlmf-macro
 ;;;;;;;;
+\abs;https://dlmf.nist.gov/1.9#E7;Absolute Value;0;0;1;;;dlmf-macro
+;;;;;;;;
 \cpi;not defined;Pi;0;0;0;;;mathematical constant
 \iunit;http://dlmf.nist.gov/1.9.i;Imaginary unit;0;0;0;;;mathematical constant
 \EulerConstant;http://dlmf.nist.gov/5.2#E3;Euler-Mascheroni constant;0;0;0;;;mathematical constant
