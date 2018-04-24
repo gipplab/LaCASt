@@ -13,7 +13,10 @@ public class TeXPreProcessor {
     private static final Logger LOG = LogManager.getLogger(TeXPreProcessor.class.getName());
 
     private static final Pattern IGNORE_FONTS = Pattern.compile(
-            "\\\\displaystyle"
+                    "\\\\displaystyle|" +
+                    "\\\\[Bb]ig[lrg]?|" +
+                    "\\\\[sb]f|" +
+                    "(\\\\hiderel\\s*\\{\\s*([=<>/+\\-])\\s*})"
     );
 
     private TeXPreProcessor() {}
@@ -23,7 +26,11 @@ public class TeXPreProcessor {
         Matcher matcher = IGNORE_FONTS.matcher(tex);
 
         while ( matcher.find() ){
-            matcher.appendReplacement( buffer, "" );
+            if ( matcher.group(1) != null ){
+                matcher.appendReplacement( buffer, matcher.group(2) );
+            } else {
+                matcher.appendReplacement( buffer, "" );
+            }
         }
 
         matcher.appendTail(buffer);

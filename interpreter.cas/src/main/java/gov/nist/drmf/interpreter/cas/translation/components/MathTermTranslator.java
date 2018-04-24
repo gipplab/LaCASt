@@ -126,7 +126,13 @@ public class MathTermTranslator extends AbstractListTranslator {
                             term.getTermText(),
                             TranslationException.Reason.UNKNOWN_MACRO,
                             term.getTermText());
-                } else {
+                }
+
+                // not all greek letters are in the global lexicon
+                // so try again to translate it as a greek letter, just try...
+                try {
+                    return parseGreekLetter(term.getTermText());
+                } catch ( TranslationException te ){
                     throw new TranslationException("Reached unknown latex-command " +
                             term.getTermText(),
                             TranslationException.Reason.UNKNOWN_LATEX_COMMAND);
@@ -467,7 +473,7 @@ public class MathTermTranslator extends AbstractListTranslator {
      * @param GreekLetter the Greek letter
      * @return true if it was parsed
      */
-    private boolean parseGreekLetter( String GreekLetter ){
+    private boolean parseGreekLetter( String GreekLetter ) throws TranslationException {
         // try to translate
         GreekLetters l = SemanticLatexTranslator.getGreekLettersParser();
         String translated_letter = l.translate(GreekLetter);

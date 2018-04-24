@@ -2383,7 +2383,7 @@ Symbol: \ExpInt
 	DLMF: \ExpInt@{x}
 	DLMF-Link: dlmf.nist.gov/6.2#E1
 	Maple: Ei($0)
-	Maple-Alternatives: 
+	Maple-Alternatives: Ei($0)+ln($0)+gamma
 	Maple-Branch Cuts: 
 	Maple-Comment: The alternative form is equivalent.
 	Maple-Constraints: 
@@ -2434,7 +2434,7 @@ Symbol: \ExpIntn
 	DLMF: \ExpIntn{p}@{z}
 	DLMF-Link: dlmf.nist.gov/8.19#E1
 	Maple: Ei($0, $1)
-	Maple-Alternatives: int(sech(t), t = 0 .. $0)
+	Maple-Alternatives: Ei($0)+ln($0)+gamma
 	Maple-Branch Cuts: 
 	Maple-Comment: 
 	Maple-Constraints: 
@@ -4868,7 +4868,7 @@ Symbol: \LogInt
 	DLMF: \LogInt@{x}
 	DLMF-Link: dlmf.nist.gov/6.2#E8
 	Maple: Li($0)
-	Maple-Alternatives: int(sec(t), t = 0 .. $0)
+	Maple-Alternatives: 
 	Maple-Branch Cuts: 
 	Maple-Comment: 
 	Maple-Constraints: 
@@ -6665,7 +6665,7 @@ Symbol: \StieltjesConstants
 	DLMF: \StieltjesConstants{n}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:StieltjesConstants
 	Maple: gamma($0)
-	Maple-Alternatives: Ei($0)+ln($0)+gamma
+	Maple-Alternatives: 
 	Maple-Branch Cuts: 
 	Maple-Comment: 
 	Maple-Constraints: 
@@ -7400,6 +7400,24 @@ Symbol: \ZeroBesselYPrime
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+
+Symbol: \abs
+
+  Feature Set: dlmf-macro
+	DLMF: \abs
+	DLMF-Link: dlmf.nist.gov/1.9#E7
+	Maple: abs($0)
+	Maple-Alternatives: 
+	Maple-Branch Cuts: 
+	Maple-Comment: 
+	Maple-Constraints: 
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=abs
+	Maple-Package: 
+	Meanings: Absolute Value
+	Number of Ats: 0
+	Number of Parameters: 0
+	Number of Variables: 1
+	Role: dlmf-macro
 
 Symbol: \acos
 
