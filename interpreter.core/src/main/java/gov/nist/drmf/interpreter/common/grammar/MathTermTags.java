@@ -43,7 +43,8 @@ public enum MathTermTags {
     spaces("controlled space"),
     non_allowed("non-allowed escaped symbol"),
     relation("relation"),
-    fence("fence");
+    fence("fence"),
+    special_math_letter("special math letter");
 
     private String tag;
 

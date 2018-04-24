@@ -187,6 +187,12 @@
       "LaTeX": "\\Integer",
       "Maple": "integer",
       "Mathematica": "Integer"
-	}
+	},
+    "Ell": {
+      "MLP": "special math letter",
+      "LaTeX": "\\ell",
+      "Maple": "ell",
+      "Mathematica": "\\[ScriptL]"
+    }
   }
 }

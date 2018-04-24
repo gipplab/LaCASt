@@ -40,7 +40,6 @@ public class GreekLetters extends AbstractJSONLoader {
 
     @Override
     public String translate( String symbol ) {
-        System.out.println("Translate: " + symbol + " to " + super.translate( FROM, TO, symbol ));
         return super.translate( FROM, TO, symbol );
     }
 }
