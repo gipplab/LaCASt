@@ -7,6 +7,7 @@ import gov.nist.drmf.interpreter.MapleTranslator;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
+import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,9 +16,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Objects;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -25,9 +24,12 @@ import java.util.stream.Stream;
 /**
  * @author Andre Greiner-Petter
  */
-public class NumericalEvaluator {
+public class NumericalEvaluator implements Observer {
 
     private static final Logger LOG = LogManager.getLogger(NumericalEvaluator.class.getName());
+
+    // 0.6GB
+    public static final long MEMORY_NOTIFY_LIMIT_KB = 500_000;
 
     private static DLMFLinker labelLinker;
     private static Path output;
@@ -44,6 +46,8 @@ public class NumericalEvaluator {
     private String[] lineResult;
 
     private String numericalSievesMethod;
+
+    private LinkedList<String> mapleScripts;
 
     /**
      * Creates an object for numerical evaluations.
@@ -67,6 +71,8 @@ public class NumericalEvaluator {
         translator = new MapleTranslator();
         this.testCases = new LinkedList<>();
         Status.reset();
+
+        this.mapleScripts = new LinkedList<>();
     }
 
     public void init() throws IOException, MapleException {
@@ -74,10 +80,13 @@ public class NumericalEvaluator {
         translator.init();
         simplifier = translator.getMapleSimplifier();
 
+        translator.addMapleMemoryObserver(this);
+        MapleListener.setMemoryUsageLimit( MEMORY_NOTIFY_LIMIT_KB );
+
         // load special numerical test maple procedure
-        translator.enterMapleCommand(
-                MapleInterface.extractProcedure(GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES)
-        );
+        String numericalProc = MapleInterface.extractProcedure(GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES);
+        translator.enterMapleCommand( numericalProc );
+        mapleScripts.add(numericalProc);
 
         // load expectation of results template
         String expectationTemplate = config.getExpectationTemplate();
@@ -93,6 +102,13 @@ public class NumericalEvaluator {
 
         // load the new script into Maple
         translator.enterMapleCommand(sieve_procedure);
+        mapleScripts.add(sieve_procedure);
+    }
+
+    private void reloadScripts() throws MapleException {
+        for ( String proc : mapleScripts ){
+            translator.enterMapleCommand(proc);
+        }
     }
 
     public void loadTestCases() {
@@ -202,56 +218,6 @@ public class NumericalEvaluator {
                     Status.FAILURE.add();
                 }
             }
-
-            // garbage collection
-            translator.forceGC();
-
-            /*
-            LOG.debug("Start to check conditions.");
-            if ( results instanceof com.maplesoft.openmaple.List ){
-                com.maplesoft.openmaple.List aList = (com.maplesoft.openmaple.List) results;
-                int l = aList.length();
-
-                String[] entries = new String[l];
-                String[] numbers = new String[l];
-
-                for ( int i = 1; i <= l; i++ ) {
-                    Algebraic e = aList.select(i);
-                    entries[i-1] = e.toString();
-                    if ( e instanceof com.maplesoft.openmaple.List ){
-                        com.maplesoft.openmaple.List innerL = (com.maplesoft.openmaple.List)e;
-                        numbers[i-1] = innerL.select(1).toString();
-                    }
-                }
-
-                // garbage collection
-                translator.forceGC();
-
-                for ( int i = 0; i < l; i++ ){
-                    if ( numbers[i] == null || numbers[i].isEmpty() ) continue;
-
-                    String testResult = config.getExpectation( numbers[i] );
-                    Algebraic testResultBoolean = translator.enterMapleCommand( testResult );
-
-                    String resBoolean = testResultBoolean.toString();
-
-                    if ( resBoolean.equals( "false" ) ){
-                        resultsList.add(entries[i]);
-                    } else if ( !resBoolean.equals("true") ){
-                        resultsList.add("NaN");
-                        break;
-                    }
-                }
-            }
-
-            if ( resultsList.isEmpty() ){
-                lineResult[c.getLine()] = "Successful";
-                Status.SUCCESS.add();
-            } else {
-                lineResult[c.getLine()] = resultsList.toString();
-                Status.FAILURE.add();
-            }
-            */
         } catch ( IllegalArgumentException iae ){
             LOG.warn("Skip test, because " + iae.getMessage());
             lineResult[c.getLine()] = "Skipped - " + iae.getMessage();
@@ -260,6 +226,12 @@ public class NumericalEvaluator {
             LOG.warn("Error for line " + c.getLine() + ", because: " + e.toString());
             lineResult[c.getLine()] = "Error - " + e.toString();
             Status.ERROR.add();
+        } finally {
+            // garbage collection
+            try { translator.forceGC(); }
+            catch ( MapleException me ){
+                LOG.fatal("Cannot call Maple's garbage collector!", me);
+            }
         }
         return c.getLine() + ": " + lineResult[c.getLine()];
     }
@@ -299,9 +271,18 @@ public class NumericalEvaluator {
         return pac;
     }
 
+    private boolean requestedRestart = false;
+    private int factor = 1;
+
     private void performAllTests(){
         LinkedList<Case> copy = new LinkedList<>();
         while ( !testCases.isEmpty() ){
+            if ( requestedRestart ){
+                performMapleSessionRestart();
+                requestedRestart = false;
+                factor++;
+                MapleListener.setMemoryUsageLimit( factor*MEMORY_NOTIFY_LIMIT_KB );
+            }
             Case c = testCases.removeFirst();
             LOG.info("Start test for line: " + c.getLine());
             performSingleTest(c);
@@ -309,6 +290,19 @@ public class NumericalEvaluator {
             copy.add(c);
         }
         testCases = copy;
+    }
+
+    private void performMapleSessionRestart() throws RuntimeException {
+        try {
+            LOG.info("Try to restart Maple session.");
+            translator.restartMapleSession();
+            LOG.debug("Reloading procedures...");
+            reloadScripts();
+            LOG.info("Successfully restarted Maple session.");
+        } catch ( MapleException | IOException e ){
+            LOG.fatal("Cannot restart maple session!");
+            throw new RuntimeException("Restart maple session failed.", e);
+        }
     }
 
     private final static String NL = System.lineSeparator();
@@ -355,5 +349,11 @@ public class NumericalEvaluator {
         evaluator.performAllTests();
         evaluator.writeOutput();
         //System.out.println(evaluator.performSingleTest( evaluator.testCases.getFirst() ));
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        LOG.info("Observed memory limit was reached. Restart maple session soon!");
+        requestedRestart = true;
     }
 }

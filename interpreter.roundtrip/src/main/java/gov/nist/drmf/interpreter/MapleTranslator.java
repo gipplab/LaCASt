@@ -16,6 +16,7 @@ import javax.annotation.Nullable;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Observer;
 import java.util.Properties;
 
 /**
@@ -145,6 +146,22 @@ public class MapleTranslator {
         LOG.debug("Initialized DLMF LaTeX Interface.");
 
         simplifier = new MapleSimplifier( mapleInterface );
+    }
+
+    /**
+     * Restarts the maple session. This will clear the internal memory.
+     * In consequence, you have to reload all custom scripts and set all
+     * variables again. Try to avoid restarting the engine again and again!
+     *
+     * @throws MapleException if the restart throughs an error
+     * @throws IOException if the default scripts cannot be loaded
+     */
+    public void restartMapleSession() throws MapleException, IOException {
+        mapleInterface.restart();
+    }
+
+    public void addMapleMemoryObserver( Observer observer ){
+        mapleInterface.addMemoryObserver( observer );
     }
 
     /**

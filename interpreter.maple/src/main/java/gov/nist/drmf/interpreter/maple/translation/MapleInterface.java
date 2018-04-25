@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Observer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -113,21 +114,14 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
             return;
         }
 
-        String list_procedure = extractProcedure( GlobalPaths.PATH_MAPLE_LIST_PROCEDURE );
-        this.maple_list_procedure_name = extractNameOfProcedure(list_procedure);
-
-        String to_inert_procedure = extractProcedure( GlobalPaths.PATH_MAPLE_TO_INERT_PROCEDURE );
-        this.maple_to_inert_procedure_name = extractNameOfProcedure( to_inert_procedure );
-
         // initialize callback listener
         listener = new MapleListener(true);
 
         // initialize engine
         engine = new Engine( maple_args, listener, null, null );
 
-        // evaluate procedure
-        engine.evaluate( list_procedure );
-        engine.evaluate( to_inert_procedure );
+        // evaluate procedures
+        loadProcedures();
 
         // set up all translators, define the direction of translation
         greek = new GreekLetters( Keys.KEY_MAPLE, Keys.KEY_LATEX );
@@ -147,6 +141,17 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         MULTIPLY = symbolTranslator.translateFromMLPKey( Keys.MLP_KEY_MULTIPLICATION );
         ADD = symbolTranslator.translateFromMLPKey( Keys.MLP_KEY_ADDITION );
         INFINITY = constants.translate( MapleConstants.INFINITY );
+    }
+
+    private void loadProcedures() throws MapleException, IOException {
+        String list_procedure = extractProcedure( GlobalPaths.PATH_MAPLE_LIST_PROCEDURE );
+        this.maple_list_procedure_name = extractNameOfProcedure(list_procedure);
+
+        String to_inert_procedure = extractProcedure( GlobalPaths.PATH_MAPLE_TO_INERT_PROCEDURE );
+        this.maple_to_inert_procedure_name = extractNameOfProcedure( to_inert_procedure );
+
+        engine.evaluate( list_procedure );
+        engine.evaluate( to_inert_procedure );
     }
 
     public static String extractProcedure( Path maple_proc ) throws IOException {
@@ -240,17 +245,8 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
      * @throws MapleException
      */
     public void invokeGC() throws MapleException {
-        LOG.info("Manually invoke Maple's garbage collector. " +
-                "Maple listener should receive an update message about memory usage and cpu-time.");
+        LOG.info("Manually invoke Maple's garbage collector.");
         engine.evaluate("gc();");
-
-        /*
-        Algebraic alloc = engine.evaluate( "kernelopts(bytesalloc)/1024;" );
-        LOG.info("Maple currently allocates: " + alloc.toString() + "KB");
-
-        Algebraic used = engine.evaluate( "kernelopts(bytesused)/1024;" );
-        LOG.info("Maple currently uses: " + used.toString() + "KB");
-        */
     }
 
     /**
@@ -329,6 +325,23 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         }
         mInterface = new MapleInterface();
         mInterface.inner_init();
+    }
+
+    /**
+     * Restarts the Maple session and reloads the Maple procedures.
+     * Note that you have to reload your own settings again after a
+     * restart of the engine.
+     *
+     * @throws MapleException if the engine cannot be restarted
+     * @throws IOException if the procedures cannot be loaded
+     */
+    public void restart() throws MapleException, IOException {
+        engine.restart();
+        loadProcedures();
+    }
+
+    public void addMemoryObserver(Observer observer){
+        listener.addObserver(observer);
     }
 
     /**
