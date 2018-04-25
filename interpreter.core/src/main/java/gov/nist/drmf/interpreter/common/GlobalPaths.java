@@ -23,7 +23,7 @@ public class GlobalPaths {
     public static final Path PATH_MAPLE_CONFIG =
             PATH_LIBS.resolve( "maple_config.properties" );
 
-    public static final Path PATH_NUMERICA_SETUP =
+    public static final Path PATH_NUMERICAL_SETUP =
             PATH_LIBS.resolve( "numerical_tests.properties" );
 
     // path variable to the lexicon files in the reference data dir
@@ -70,6 +70,9 @@ public class GlobalPaths {
 
     public static final Path PATH_MAPLE_NUMERICAL_PROCEDURES =
             PATH_MAPLE_PROCS.resolve("maple_numerical_procedures.txt");
+
+    public static final Path PATH_MAPLE_NUMERICAL_SIEVE_PROCEDURE =
+            PATH_MAPLE_PROCS.resolve("maple_numerical_sieve.txt");
 
     // path variable to the resources of the core
     public static final Path PATH_CORE_RESOURCES =

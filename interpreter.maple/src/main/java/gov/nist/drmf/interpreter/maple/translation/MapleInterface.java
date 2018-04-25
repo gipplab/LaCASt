@@ -161,7 +161,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         }
     }
 
-    private String extractNameOfProcedure( String maple_proc ){
+    public static String extractNameOfProcedure( String maple_proc ){
         return maple_proc.split(define_symb)[0].trim();
     }
 

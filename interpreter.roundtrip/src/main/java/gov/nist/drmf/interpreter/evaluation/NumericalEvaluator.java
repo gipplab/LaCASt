@@ -43,6 +43,8 @@ public class NumericalEvaluator {
 
     private String[] lineResult;
 
+    private String numericalSievesMethod;
+
     /**
      * Creates an object for numerical evaluations.
      * Workflow:
@@ -68,46 +70,58 @@ public class NumericalEvaluator {
     }
 
     public void init() throws IOException, MapleException {
+        // init translator
         translator.init();
         simplifier = translator.getMapleSimplifier();
 
+        // load special numerical test maple procedure
         translator.enterMapleCommand(
                 MapleInterface.extractProcedure(GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES)
         );
+
+        // load expectation of results template
+        String expectationTemplate = config.getExpectationTemplate();
+        // load numerical sieve
+        String sieve_procedure = MapleInterface.extractProcedure( GlobalPaths.PATH_MAPLE_NUMERICAL_SIEVE_PROCEDURE );
+
+        // replace condition placeholder
+        this.numericalSievesMethod = MapleInterface.extractNameOfProcedure(sieve_procedure);
+        sieve_procedure = sieve_procedure.replaceAll(
+                NumericalTestConstants.KEY_NUMERICAL_SIEVES_CONDITION,
+                expectationTemplate
+        );
+
+        // load the new script into Maple
+        translator.enterMapleCommand(sieve_procedure);
     }
 
     public void loadTestCases() {
         int[] subset = config.getSubset();
-        int[] currLine = new int[] {1};
+        int[] currLine = new int[] {0};
 
         try (BufferedReader br = Files.newBufferedReader(config.getDataset())) {
             Stream<String> lines = br.lines();
 
-            if (subset != null) {
-                lines = lines
-                        .skip(subset[0] - 1)
-                        .limit(subset[1]);
-                currLine[0] = subset[0];
-                Status.SKIPPED.set( subset[0]-1 );
-            }
+            int start = subset[0];
+            int limit = subset[1];
 
             HashMap<Integer, String> skippedLinesInfo = new HashMap<>();
 
-            lines   .filter(l -> {
-                        if ( currLine[0] >= subset[1] ) return false;
+            lines   .peek(  l -> currLine[0]++) // line counter
+                    .filter(l -> start <= currLine[0] && currLine[0] < limit) // filter by limits
+                    .filter(l -> { // filter ' because of ambiguous meanings
                         if (l.contains("'")) {
                             Case c = CaseAnalyzer.analyzeLine(l, currLine[0], labelLinker);
                             LOG.debug("Skip line " + currLine[0] + " because of '.");
                             skippedLinesInfo.put( currLine[0], "Skipped - Because of ambiguous single quote." );
                             if ( c != null ) labelLib.put( c.getLine(), c.getDlmf() );
-                            currLine[0]++;
                             Status.SKIPPED.add();
                             return false;
                         }
                         return true;
                     })
                     .map(l -> {
-                        Case c = CaseAnalyzer.analyzeLine(l, currLine[0]++, labelLinker);
+                        Case c = CaseAnalyzer.analyzeLine(l, currLine[0], labelLinker);
                         if ( c != null ) labelLib.put( c.getLine(), c.getDlmf() );
                         return c;
                     })
@@ -157,7 +171,7 @@ public class NumericalEvaluator {
                 translator.enterMapleCommand(preAndPostCommands[0]);
 
             LOG.debug("Start numerical calculations.");
-            Algebraic results = simplifier.advancedNumericalTest(
+            String resultsName = simplifier.advancedNumericalTest(
                     expression,
                     config.getNumericalValues(),
                     config.getSpecialVariables(),
@@ -165,12 +179,34 @@ public class NumericalEvaluator {
                     config.getPrecision(),
                     config.getMaximumNumberOfCombs()
             );
+            LOG.debug("Finished numerical calculations.");
 
             if ( preAndPostCommands[1] != null )
                 translator.enterMapleCommand(preAndPostCommands[1]);
 
-            LinkedList<String> resultsList = new LinkedList<>();
+            LOG.debug("Start sieving results.");
+            String sieveMethod = this.numericalSievesMethod + "(" + resultsName + ");";
+            Algebraic results = translator.enterMapleCommand(sieveMethod);
+            LOG.debug("Finished sieving... save outcome.");
 
+            if ( results instanceof com.maplesoft.openmaple.List ) {
+                com.maplesoft.openmaple.List aList = (com.maplesoft.openmaple.List) results;
+                int l = aList.length();
+
+                // if l == 0, the list is empty so the test was successful
+                if ( l == 0 ){
+                    lineResult[c.getLine()] = "Successful";
+                    Status.SUCCESS.add();
+                } else { // otherwise the list contains errors or simple failures
+                    lineResult[c.getLine()] = aList.toString();
+                    Status.FAILURE.add();
+                }
+            }
+
+            // garbage collection
+            translator.forceGC();
+
+            /*
             LOG.debug("Start to check conditions.");
             if ( results instanceof com.maplesoft.openmaple.List ){
                 com.maplesoft.openmaple.List aList = (com.maplesoft.openmaple.List) results;
@@ -203,6 +239,7 @@ public class NumericalEvaluator {
                         resultsList.add(entries[i]);
                     } else if ( !resBoolean.equals("true") ){
                         resultsList.add("NaN");
+                        break;
                     }
                 }
             }
@@ -214,6 +251,7 @@ public class NumericalEvaluator {
                 lineResult[c.getLine()] = resultsList.toString();
                 Status.FAILURE.add();
             }
+            */
         } catch ( IllegalArgumentException iae ){
             LOG.warn("Skip test, because " + iae.getMessage());
             lineResult[c.getLine()] = "Skipped - " + iae.getMessage();
@@ -285,13 +323,11 @@ public class NumericalEvaluator {
         sb.append(NL);
 
         boolean showDLMF = config.showDLMFLinks();
-        int starter = 1;
-        for ( int i = 1; i < lineResult.length; i++, starter++ ){
-            if ( lineResult[i] != null )
-                break;
-        }
+        int[] limits = config.getSubset();
+        int start = limits[0];
+        int limit = limits[1];
 
-        for ( int i = starter; i < lineResult.length; i++ ){
+        for ( int i = start; i < lineResult.length && i < limit; i++ ){
             sb.append(i);
             String dlmf = labelLib.get(i);
 

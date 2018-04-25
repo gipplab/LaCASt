@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 import java.util.Properties;
 import java.util.regex.Matcher;
 
+import static gov.nist.drmf.interpreter.evaluation.NumericalTestConstants.*;
+
 /**
  * @author Andre Greiner-Petter
  */
@@ -19,7 +21,7 @@ public class NumericalConfig {
     private static final Logger LOG = LogManager.getLogger(NumericalConfig.class.getName());
 
     public NumericalConfig () {
-        try ( FileInputStream in = new FileInputStream(GlobalPaths.PATH_NUMERICA_SETUP.toFile()) ){
+        try ( FileInputStream in = new FileInputStream(GlobalPaths.PATH_NUMERICAL_SETUP.toFile()) ){
             Properties props = new Properties();
             props.load(in);
 
@@ -67,12 +69,6 @@ public class NumericalConfig {
         return Integer.parseInt(NumericalProperties.KEY_SKIP_IF_MORE_COMBS.value);
     }
 
-    private static final String
-            PATTERN_LHS = "#LHS",
-            PATTERN_RHS = "#RHS",
-            PATTERN_RES = "#RESULT",
-            PATTERN_THRESHOLD = "#THRESHOLD";
-
     public String getRawTestExpression(){
         return NumericalProperties.KEY_EXPR.value;
     }
@@ -94,11 +90,10 @@ public class NumericalConfig {
         return in;
     }
 
-    public String getExpectation( String result ){
+    public String getExpectationTemplate(){
         String in = NumericalProperties.KEY_EXPECT.value;
-        in = in.replaceAll( PATTERN_RES, result );
+        in = in.replaceAll( PATTERN_RES, PATTERN_SIEVE_METHOD_RESULT );
         in = in.replaceAll( PATTERN_THRESHOLD, Double.toString(getThreshold()) );
-        in = "evalb(" + in + ");";
         return in;
     }
 
