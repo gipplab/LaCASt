@@ -169,7 +169,7 @@ public class MapleSimplifier {
     }
 
 
-    public Algebraic advancedNumericalTest(
+    public String advancedNumericalTest(
             String maple_expr,
             String values,
             String specialVariables,
@@ -184,11 +184,14 @@ public class MapleSimplifier {
                 valuesSpecialVariables,
                 maxCombinations);
         LOG.debug("Generate value-variable pairs.");
+        LOG.trace("Run: " + command);
         mapleInterface.evaluateExpression( command );
 
-        command = "SpecialNumericalTester(nTest,nTestVals," + precision + ");";
+        command = "numResults := SpecialNumericalTester(nTest,nTestVals," + precision + ");";
         LOG.debug("Start numerical test.");
-        return mapleInterface.evaluateExpression( command );
+        mapleInterface.evaluateExpression( command );
+
+        return "numResults";
     }
 
     private String buildCommandTestValues (

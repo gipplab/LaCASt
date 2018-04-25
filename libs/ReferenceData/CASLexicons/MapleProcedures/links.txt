@@ -2,6 +2,6 @@ C:/Users/AndreG-P/IntelliJProjects/latex-grammar/libs/ReferenceData/CASLexicons/
 C:/Users/AndreG-P/IntelliJProjects/latex-grammar/libs/ReferenceData/CASLexicons/MapleProcedures/maple_toinert_procedure.txt
 C:/Users/AndreG-P/IntelliJProjects/latex-grammar/libs/ReferenceData/CASLexicons/MapleProcedures/maple_numerical_procedures.txt
 
-/home/andreg-p/Projects/latex-grammar/libs/ReferenceData/CASLexicons/MapleProcedures/maple_list_procedure.txt
-/home/andreg-p/Projects/latex-grammar/libs/ReferenceData/CASLexicons/MapleProcedures/maple_toinert_procedure.txt
-/home/andreg-p/Projects/latex-grammar/libs/ReferenceData/CASLexicons/MapleProcedures/maple_numerical_procedures.txt
+read("/home/andreg-p/Projects/latex-grammar/libs/ReferenceData/CASLexicons/MapleProcedures/maple_list_procedure.txt");
+read("/home/andreg-p/Projects/latex-grammar/libs/ReferenceData/CASLexicons/MapleProcedures/maple_toinert_procedure.txt");
+read("/home/andreg-p/Projects/latex-grammar/libs/ReferenceData/CASLexicons/MapleProcedures/maple_numerical_procedures.txt");
