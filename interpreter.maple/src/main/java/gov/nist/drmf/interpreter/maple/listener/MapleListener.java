@@ -5,10 +5,12 @@ import com.maplesoft.openmaple.EngineCallBacks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Observable;
+
 /**
  * Created by AndreG-P on 21.02.2017.
  */
-public class MapleListener implements EngineCallBacks {
+public class MapleListener extends Observable implements EngineCallBacks {
     private Logger log = LogManager.getLogger( MapleListener.class.toString() );
 
     private boolean logging;
@@ -18,10 +20,21 @@ public class MapleListener implements EngineCallBacks {
     private double auto_interrupt_threshold;
     private double last_process_time;
 
+    // default value is negative -> deactivated
+    private static long upperMemUsageLimit = -1;
+
     public MapleListener( boolean logging ){
         this.logging = logging;
         this.interrupter = false;
         this.auto_interrupt = false;
+    }
+
+    public static void setMemoryUsageLimit( long limitInKB ){
+        MapleListener.upperMemUsageLimit = limitInKB;
+    }
+
+    public static void deactivateMemoryUsageLimit(){
+        MapleListener.upperMemUsageLimit = -1;
     }
 
     @Override
@@ -58,6 +71,12 @@ public class MapleListener implements EngineCallBacks {
             log.debug(str);
         }
 
+        if ( l >= upperMemUsageLimit && upperMemUsageLimit > 0 ){
+            log.debug("Reached notification limit of memory usage! Notify all observers.");
+            setChanged();
+            notifyObservers();
+        }
+
         if ( auto_interrupt && (v - last_process_time > auto_interrupt_threshold) ){
             log.debug("Exceed auto interrupt threshold!");
             last_process_time = -1;
@@ -76,11 +95,8 @@ public class MapleListener implements EngineCallBacks {
 
     @Override
     public boolean redirectCallBack(Object o, String s, boolean b) throws MapleException {
-        if ( logging ) {
-            String str = "Cannot handle writeto or appendto!";
-            log.warn(str);
-        }
-        return false;
+        log.trace("Redirect output: " + o + " - to file " + s);
+        return true;
     }
 
     @Override
