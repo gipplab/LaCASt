@@ -4,7 +4,6 @@ import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.MapleSimplifier;
 import gov.nist.drmf.interpreter.MapleTranslator;
-import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
@@ -64,11 +63,6 @@ public class NumericalEvaluator implements Observer {
         labelLinker = new DLMFLinker(config.getLabelSet());
         labelLib = new HashMap<>();
 
-        output = config.getOutputPath();
-        if (!Files.exists(output)) {
-            Files.createFile(output);
-        }
-
         translator = new MapleTranslator();
         this.testCases = new LinkedList<>();
         Status.reset();
@@ -77,6 +71,13 @@ public class NumericalEvaluator implements Observer {
     }
 
     public void init() throws IOException, MapleException {
+        labelLinker = new DLMFLinker(config.getLabelSet());
+
+        output = config.getOutputPath();
+        if (!Files.exists(output)) {
+            Files.createFile(output);
+        }
+
         // init translator
         translator.init();
         simplifier = translator.getMapleSimplifier();
@@ -117,6 +118,18 @@ public class NumericalEvaluator implements Observer {
         mapleScripts.add(sieve_procedure_relation);
     }
 
+    protected void setTranslator( MapleTranslator translator ){
+        this.translator = translator;
+    }
+
+    protected void setLabelLinker( Path link ){
+        labelLinker = new DLMFLinker(link);
+    }
+
+    protected void addPreloadScript(String script){
+        this.mapleScripts.add(script);
+    }
+
     private void reloadScripts() throws MapleException {
         for ( String proc : mapleScripts ){
             translator.enterMapleCommand(proc);
@@ -125,15 +138,25 @@ public class NumericalEvaluator implements Observer {
 
     public void loadTestCases() {
         int[] subset = config.getSubset();
+        HashMap<Integer, String> skippedLinesInfo = new HashMap<>();
+
+        testCases = loadTestCases( subset, config.getDataset(), labelLib, skippedLinesInfo );
+
+        lineResult = new String[testCases.getLast().getLine()+1];
+        for ( Integer i : skippedLinesInfo.keySet() )
+            lineResult[i] = skippedLinesInfo.get(i);
+    }
+
+    public static LinkedList<Case> loadTestCases(int[] subset, Path dataset, HashMap<Integer, String> labelLib, HashMap<Integer, String> skippedLinesInfo) {
+        //int[] subset = config.getSubset();
+        LinkedList<Case> testCases = new LinkedList<>();
         int[] currLine = new int[] {0};
 
-        try (BufferedReader br = Files.newBufferedReader(config.getDataset())) {
+        try (BufferedReader br = Files.newBufferedReader(dataset)) {
             Stream<String> lines = br.lines();
 
             int start = subset[0];
             int limit = subset[1];
-
-            HashMap<Integer, String> skippedLinesInfo = new HashMap<>();
 
             lines   .peek(  l -> currLine[0]++) // line counter
                     .filter(l -> start <= currLine[0] && currLine[0] < limit) // filter by limits
@@ -161,20 +184,19 @@ public class NumericalEvaluator implements Observer {
                         }
                         return n;
                     })
-                    .forEach(c -> testCases.add(c));
+                    .forEach(testCases::add);
 
-            lineResult = new String[currLine[0]];
-            for ( Integer i : skippedLinesInfo.keySet() )
-                lineResult[i] = skippedLinesInfo.get(i);
+            return testCases;
         } catch( IOException ioe ){
             LOG.fatal("Cannot load dataset!", ioe);
+            return null;
         }
     }
 
     private static final Pattern nullPattern =
             Pattern.compile("[\\s()\\[\\]{}]*0\\.?0*[\\s()\\[\\]{}]*");
 
-    private String performSingleTest( Case c ){
+    protected String performSingleTest( Case c ){
         try {
             String mapleAss = null;
             if ( c.getAssumption() != null ){
@@ -267,6 +289,10 @@ public class NumericalEvaluator implements Observer {
         return c.getLine() + ": " + lineResult[c.getLine()];
     }
 
+    protected String[] getLineResults(){
+        return lineResult;
+    }
+
     private static final String FERRER_DEF_ASS = "assume(-1 < x, x < 1);";
     private static final String LEGENDRE_DEF_ASS = "assume(1 < x);";
     private static final String RESET = "restart;";
@@ -280,7 +306,7 @@ public class NumericalEvaluator implements Observer {
      * @param mapleAss
      * @return array of length 2 (0: previous commands, 1: after test commands)
      */
-    private String[] getPrevCommand( String overAll, String mapleAss ){
+    public static String[] getPrevCommand( String overAll, String mapleAss ){
         String[] pac = new String[2];
         if ( overAll.contains("\\Ferrer") ){
             pac[0] = MapleConstants.ENV_VAR_LEGENDRE_CUT_FERRER;
@@ -305,7 +331,7 @@ public class NumericalEvaluator implements Observer {
     private boolean requestedRestart = false;
     private int factor = 1;
 
-    private void performAllTests(){
+    protected void performAllTests(){
         LinkedList<Case> copy = new LinkedList<>();
         while ( !testCases.isEmpty() ){
             if ( requestedRestart ){
@@ -336,9 +362,9 @@ public class NumericalEvaluator implements Observer {
         }
     }
 
-    private final static String NL = System.lineSeparator();
+    public final static String NL = System.lineSeparator();
 
-    private String getResults(){
+    protected String getResults(){
         StringBuffer sb = new StringBuffer();
 
         sb.append("Overall: ");
@@ -347,12 +373,27 @@ public class NumericalEvaluator implements Observer {
         sb.append(config.getRawTestExpression());
         sb.append(NL);
 
-        boolean showDLMF = config.showDLMFLinks();
-        int[] limits = config.getSubset();
+        return buildResults(
+                sb.toString(),
+                labelLib,
+                config.showDLMFLinks(),
+                config.getSubset(),
+                lineResult
+        );
+    }
+
+    protected static String buildResults(
+            String intro,
+            HashMap<Integer, String> labelLib,
+            boolean showDLMF,
+            int[] limits,
+            String[] lineResults){
+        StringBuffer sb = new StringBuffer(intro);
+
         int start = limits[0];
         int limit = limits[1];
 
-        for ( int i = start; i < lineResult.length && i < limit; i++ ){
+        for ( int i = start; i < lineResults.length && i < limit; i++ ){
             sb.append(i);
             String dlmf = labelLib.get(i);
 
@@ -360,15 +401,15 @@ public class NumericalEvaluator implements Observer {
                 sb.append(" [").append(dlmf).append("]: ");
             } else sb.append(": ");
 
-            if ( lineResult[i] == null ){
+            if ( lineResults[i] == null ){
                 sb.append("Skipped");
-            } else sb.append(lineResult[i]);
+            } else sb.append(lineResults[i]);
             sb.append(NL);
         }
         return sb.toString();
     }
 
-    private void writeOutput() throws IOException {
+    protected void writeOutput( Path output ) throws IOException {
         String results = getResults();
         Files.write( output, results.getBytes() );
     }
@@ -378,7 +419,7 @@ public class NumericalEvaluator implements Observer {
         evaluator.init();
         evaluator.loadTestCases();
         evaluator.performAllTests();
-        evaluator.writeOutput();
+        evaluator.writeOutput( evaluator.config.getOutputPath() );
         //System.out.println(evaluator.performSingleTest( evaluator.testCases.getFirst() ));
     }
 

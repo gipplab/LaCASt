@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 /**
@@ -24,6 +25,7 @@ public class Initializer {
      * @return true if everything went fine.
      */
     public static boolean loadMapleNatives() {
+        LOG.info(Paths.get("").toAbsolutePath());
         try ( FileInputStream in = new FileInputStream(GlobalPaths.PATH_MAPLE_CONFIG.toFile()) ){
             Properties props = new Properties();
             props.load(in);

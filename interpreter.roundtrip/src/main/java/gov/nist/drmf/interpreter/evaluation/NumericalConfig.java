@@ -120,7 +120,7 @@ public class NumericalConfig {
         return NumericalProperties.KEY_SPECIAL_VARS_VALUES.value;
     }
 
-    private enum NumericalProperties{
+    public enum NumericalProperties{
         KEY_DATASET("dlmf_dataset", null),
         KEY_LABELSET("dlmf_labelset", null),
         KEY_SUBSET("subset_tests", null),
