@@ -67,7 +67,7 @@ public class EquationTestCases {
         TestStatus.reset();
 
         // /mnt/SharedPartition/Privacy/MAPrivate
-        Path private_repo = Paths.get("/", "mnt", "SharedPartition", "Private", "MAPrivate");
+        Path private_repo = Paths.get("/", "home", "andreg-p", "Howard");
         Path lib = private_repo.resolve("BruceLabelLinks.txt");
         LOG.info("Start Link-Lib Init...");
 
@@ -98,7 +98,7 @@ public class EquationTestCases {
             );
 
             br.lines()
-                    .limit(10) // TODO debug limit
+                    .limit(300) // TODO debug limit
                     .filter( l -> {
                         if ( l.contains("'") ){
                             int line = ca[0]++;

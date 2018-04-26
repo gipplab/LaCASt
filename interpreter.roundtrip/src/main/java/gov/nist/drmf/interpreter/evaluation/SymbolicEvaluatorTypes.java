@@ -4,6 +4,7 @@ package gov.nist.drmf.interpreter.evaluation;
  * @author Andre Greiner-Petter
  */
 public enum SymbolicEvaluatorTypes {
+    SIMPLE("Simple",    "Simple Simplify",                         true,  "", ""),
     CONV_EXP("ConvEXP", "EXPonential Conversion (ConvEXP)",        false, "convert(",  ", exp)" ),
     CONV_HYP("ConvHYP", "HYPergeometric Conversion (ConvHYP)",     false, "convert(",  ", hypergeom)" ),
     EXPAND("EXP", "Expansion (EXP)",                           false, "expand(",   ")"),
