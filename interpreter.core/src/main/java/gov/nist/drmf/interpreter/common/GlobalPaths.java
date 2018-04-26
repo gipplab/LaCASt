@@ -26,6 +26,9 @@ public class GlobalPaths {
     public static final Path PATH_NUMERICAL_SETUP =
             PATH_LIBS.resolve( "numerical_tests.properties" );
 
+    public static final Path PATH_SYMBOLIC_SETUP =
+            PATH_LIBS.resolve( "symbolic_tests.properties" );
+
     // path variable to the lexicon files in the reference data dir
     public static final Path PATH_LEXICONS =
             PATH_REFERENCE_DATA.resolve( "Lexicons" );

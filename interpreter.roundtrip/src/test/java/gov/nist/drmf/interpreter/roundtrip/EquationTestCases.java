@@ -67,7 +67,7 @@ public class EquationTestCases {
         TestStatus.reset();
 
         // /mnt/SharedPartition/Privacy/MAPrivate
-        Path private_repo = Paths.get("/", "mnt", "SharedPartition", "Privacy", "MAPrivate");
+        Path private_repo = Paths.get("/", "mnt", "SharedPartition", "Private", "MAPrivate");
         Path lib = private_repo.resolve("BruceLabelLinks.txt");
         LOG.info("Start Link-Lib Init...");
 
@@ -543,12 +543,14 @@ public class EquationTestCases {
             } else resultB = false;
         }
 
+        /*
         if (!resultB){ // TODO numerical test
             resultB = numericalTest("(" + mapleLHS + ") / (" + mapleRHS + ")", line);
             if ( !resultB ){
                 resultB = numericalTest("(" + mapleRHS + ") / (" + mapleLHS + ")", line);
             }
         }
+        */
 
         if ( !resultB )
             TestStatus.NOT_SUCCESSFUL.add(line);
