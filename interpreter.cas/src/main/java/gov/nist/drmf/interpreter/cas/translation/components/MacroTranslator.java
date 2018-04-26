@@ -259,7 +259,7 @@ public class MacroTranslator extends AbstractListTranslator {
                                 TranslationException.Reason.DLMF_MACRO_ERROR
                         );
                     }
-                    moveToEnd = following_exps.remove(0);
+                    moveToEnd = exp;
                     continue;
                 }
             }

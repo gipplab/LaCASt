@@ -46,6 +46,7 @@ public class NumericalEvaluator implements Observer {
     private String[] lineResult;
 
     private String numericalSievesMethod;
+    private String numericalSievesMethodRelations;
 
     private LinkedList<String> mapleScripts;
 
@@ -92,17 +93,28 @@ public class NumericalEvaluator implements Observer {
         String expectationTemplate = config.getExpectationTemplate();
         // load numerical sieve
         String sieve_procedure = MapleInterface.extractProcedure( GlobalPaths.PATH_MAPLE_NUMERICAL_SIEVE_PROCEDURE );
+        String sieve_procedure_relation = "rel" + sieve_procedure;
 
         // replace condition placeholder
         this.numericalSievesMethod = MapleInterface.extractNameOfProcedure(sieve_procedure);
+        this.numericalSievesMethodRelations = "rel" + numericalSievesMethod;
+
         sieve_procedure = sieve_procedure.replaceAll(
                 NumericalTestConstants.KEY_NUMERICAL_SIEVES_CONDITION,
                 expectationTemplate
         );
 
+        sieve_procedure_relation = sieve_procedure_relation.replaceAll(
+                NumericalTestConstants.KEY_NUMERICAL_SIEVES_CONDITION,
+                "result"
+        );
+
         // load the new script into Maple
         translator.enterMapleCommand(sieve_procedure);
+        translator.enterMapleCommand(sieve_procedure_relation);
+
         mapleScripts.add(sieve_procedure);
+        mapleScripts.add(sieve_procedure_relation);
     }
 
     private void reloadScripts() throws MapleException {
@@ -165,10 +177,16 @@ public class NumericalEvaluator implements Observer {
     private String performSingleTest( Case c ){
         try {
             String mapleAss = null;
-            if ( c.getAssumption() != null )
+            if ( c.getAssumption() != null ){
                 mapleAss = translator.translateFromLaTeXToMapleClean( c.getAssumption() );
+                LOG.info("Assumption translation: " + mapleAss);
+            }
+
             String mapleLHS = translator.translateFromLaTeXToMapleClean( c.getLHS() );
             String mapleRHS = translator.translateFromLaTeXToMapleClean( c.getRHS() );
+
+            LOG.info("Translate LHS to: " + mapleLHS);
+            LOG.info("Translate RHS to: " + mapleRHS);
 
             Matcher nullLHSMatcher = nullPattern.matcher( mapleLHS );
             Matcher nullRHSMatcher = nullPattern.matcher( mapleRHS );
@@ -183,8 +201,10 @@ public class NumericalEvaluator implements Observer {
 
             String[] preAndPostCommands = getPrevCommand( c.getLHS() + ", " + c.getRHS(), mapleAss );
 
-            if ( preAndPostCommands[0] != null )
+            if ( preAndPostCommands[0] != null ){
                 translator.enterMapleCommand(preAndPostCommands[0]);
+                LOG.debug("Enter pre-testing commands: " + preAndPostCommands[0]);
+            }
 
             LOG.debug("Start numerical calculations.");
             String resultsName = simplifier.advancedNumericalTest(
@@ -197,11 +217,22 @@ public class NumericalEvaluator implements Observer {
             );
             LOG.debug("Finished numerical calculations.");
 
-            if ( preAndPostCommands[1] != null )
+            if ( preAndPostCommands[1] != null ){
                 translator.enterMapleCommand(preAndPostCommands[1]);
+                LOG.debug("Enter post-testing commands: " + preAndPostCommands[1]);
+            }
 
             LOG.debug("Start sieving results.");
-            String sieveMethod = this.numericalSievesMethod + "(" + resultsName + ");";
+            String sieveMethod;
+
+            // switch sieve method if it is not an equation
+            // in that case, we use the values directly as true/false tests
+            if ( c.getRelation().equals( Relations.EQUAL ) ){
+                sieveMethod = this.numericalSievesMethod + "(" + resultsName + ");";
+            } else {
+                sieveMethod = this.numericalSievesMethodRelations + "(" + resultsName + ");";
+            }
+
             Algebraic results = translator.enterMapleCommand(sieveMethod);
             LOG.debug("Finished sieving... save outcome.");
 
