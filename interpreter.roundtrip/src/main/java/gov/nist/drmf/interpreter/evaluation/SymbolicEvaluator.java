@@ -170,11 +170,13 @@ public class SymbolicEvaluator extends NumericalEvaluator {
             for ( int i = 0; i < success.length; i++ ){
                 if ( success[i] ){
                     lineResults[c.getLine()] = "Successful " + Arrays.toString(successStr);
+                    Status.SUCCESS.add();
                     return lineResults[c.getLine()];
                 }
             }
 
             lineResults[c.getLine()] = "Failure " + Arrays.toString(successStr);
+            Status.FAILURE.add();
         } catch ( Exception e ){
             LOG.warn("Error for line " + c.getLine() + ", because: " + e.toString());
             lineResults[c.getLine()] = "Error - " + e.toString();
