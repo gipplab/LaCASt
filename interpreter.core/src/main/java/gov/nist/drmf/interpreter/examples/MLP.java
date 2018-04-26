@@ -72,7 +72,7 @@ public class MLP {
 //            eq = "ab13d";
 //            eq = "\\deriv{}{x} a";
             eq = "\\ell-l";
-            eq = "\\RiemannZeta'@{0} = - \\tfrac{1}{2} \\ln@{2\\cpi}";
+            eq = "\\overline{\\BesselJ{\\nu}@{z}}";
             //eq = "Z = \\sum_{j} g_j \\cdot \\mathrm{e}^{- \\\\beta E_j}";
 
             // parse/tag the equation and print it out
