@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
+import com.maplesoft.openmaple.List;
 import com.maplesoft.openmaple.MString;
 import com.maplesoft.openmaple.Numeric;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
@@ -185,13 +186,41 @@ public class MapleSimplifier {
                 maxCombinations);
         LOG.debug("Generate value-variable pairs.");
         LOG.trace("Run: " + command);
-        mapleInterface.evaluateExpression( command );
+        Algebraic nTestValsA = mapleInterface.evaluateExpression( command + NL + "nTestVals;" );
+        checkValues(nTestValsA);
 
         command = "numResults := SpecialNumericalTester(nTest,nTestVals," + precision + ");";
         LOG.debug("Start numerical test.");
         mapleInterface.evaluateExpression( command );
 
         return "numResults";
+    }
+
+    private void checkValues( Algebraic nTestValsA ) throws MapleException, IllegalArgumentException {
+        if (nTestValsA.isNULL()) {
+            if ( checkNumericalNTest() ){
+                // in this case, numResults is Null but nTest is numerical
+                // continue normal work by reset numResults to an empty array
+                mapleInterface.evaluateExpression( "nTestVals := [];" );
+                return;
+            }
+            throw new IllegalArgumentException("There are no valid test values.");
+        }
+
+        if ( nTestValsA instanceof List ){
+            if ( ((List) nTestValsA).length() <= 0 ){
+                if (checkNumericalNTest()){
+                    mapleInterface.evaluateExpression( "nTestVals := [];" );
+                    return;
+                } // else throw an exception
+                throw new IllegalArgumentException("There are no valid test values.");
+            }
+        }
+    }
+
+    private boolean checkNumericalNTest() throws MapleException {
+        Algebraic numericalCheck = mapleInterface.evaluateExpression("nTest;");
+        return numericalCheck instanceof Numeric;
     }
 
     private String buildCommandTestValues (
@@ -206,9 +235,8 @@ public class MapleSimplifier {
 
         String command = "nTest := " + maple_expr + ";";
         LOG.debug("Numerical Test Expression: " + command);
-        Algebraic a = mapleInterface.evaluateExpression( command );
 
-        command = "nVars := indets(nTest,name) minus {constants}:" + NL;
+        command += "nVars := indets(nTest,name) minus {constants}:" + NL;
         command += "nVals1:= " + values + ":" + NL;
 
         if ( specialVarsSwitch ) {

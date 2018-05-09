@@ -77,6 +77,7 @@ public class MLP {
 
             // parse/tag the equation and print it out
             PomTaggedExpression pe = parser.parse(eq);
+            System.out.println(pe);
             pe = clean(pe);
             System.out.println(pe.toString());
             //System.out.println(prettyPrint(pe, ""));

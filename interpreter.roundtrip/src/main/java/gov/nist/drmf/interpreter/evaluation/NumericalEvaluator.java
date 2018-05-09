@@ -274,9 +274,9 @@ public class NumericalEvaluator implements Observer {
         } catch ( IllegalArgumentException iae ){
             LOG.warn("Skip test, because " + iae.getMessage());
             lineResult[c.getLine()] = "Skipped - " + iae.getMessage();
-            //Status.SKIPPED.add();
+            Status.SKIPPED.add();
         } catch ( Exception e ){
-            LOG.warn("Error for line " + c.getLine() + ", because: " + e.toString());
+            LOG.warn("Error for line " + c.getLine() + ", because: " + e.toString(), e);
             lineResult[c.getLine()] = "Error - " + e.toString();
             Status.ERROR.add();
         } finally {
