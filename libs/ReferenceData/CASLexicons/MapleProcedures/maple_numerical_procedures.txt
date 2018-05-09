@@ -1,11 +1,11 @@
 with(combinat,cartprod):
 
 createListInList := proc(var::set, values::list)
-  return [seq(createListOfValues(v,values), v in var)];
+  return [seq(`if`(nops(createListOfValues(v,values))>0, createListOfValues(v,values), NULL), v in var)];
 end proc:
 
 createListOfValues := proc(var, values::list)
-  return [seq(var = val, val in values)];
+  return [seq(`if`(coulditbe(var = evalf(val)), var = val, NULL), val in values)];
 end proc:
 
 NumericalTester := proc(expr, values::list, threshold::numeric, precision::posint)
@@ -54,6 +54,12 @@ end proc:
 SpecialNumericalTester := proc(expr, values::list, precision::posint)
   local combi, combo, result, output;
   output := NULL;
+  if type(expr, numeric) then
+    return [[expr, "allValues"]];
+  end if;
+  if nops(values) = 0 then
+    return NULL;
+  end if;
   if nops(values) = 1 then
     return SpecialInnerTesterMethod(expr, op(values), precision);
   end if;
