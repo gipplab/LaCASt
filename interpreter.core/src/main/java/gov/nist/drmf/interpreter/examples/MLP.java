@@ -36,8 +36,8 @@ public class MLP {
          // the folder where the reference data (e.g., lexicons) are
         String refDataDir= GLOBAL_LEXICON_PATH;
 
-        System.out.println(Paths.get(".").toAbsolutePath().toString());
-        System.out.println(GlobalPaths.PATH_REFERENCE_DATA.toAbsolutePath().toString());
+//        System.out.println(Paths.get(".").toAbsolutePath().toString());
+//        System.out.println(GlobalPaths.PATH_REFERENCE_DATA.toAbsolutePath().toString());
 
         String[] eqs=equationsForTesting(); //equations to test the translation on
 
@@ -73,24 +73,33 @@ public class MLP {
 //            eq = "\\deriv{}{x} a";
             eq = "\\ell-l";
             eq = "\\overline{\\BesselJ{\\nu}@{z}}";
+            eq = "a = 2,3,4,\\ldots";
+            eq = "\\realpart{var1} < \\frac{1}{2}";
+            eq = "1 \\constraint{$n = 0,1,2, \\dots$, $z\\in \\mathbf{K}$} \\label{eq:BS.IN.9}";
             //eq = "Z = \\sum_{j} g_j \\cdot \\mathrm{e}^{- \\\\beta E_j}";
+
+            System.out.println();
+            System.out.println("Input: " + eq);
+            System.out.println();
 
             // parse/tag the equation and print it out
             PomTaggedExpression pe = parser.parse(eq);
-            System.out.println(pe);
+//            System.out.println(pe);
             pe = clean(pe);
             System.out.println(pe.toString());
-            //System.out.println(prettyPrint(pe, ""));
-            //Map<String,String> features = pe.getRoot().getNamedFeatures();
-            //for ( String key : features.keySet() )
-            //    System.out.println(key + ": " + features.get(key));
 
-            //print(eq+":\n"+pe.toString());
 
-            //List<FeatureSet> l = pe.getComponents().get(0).getRoot().getAlternativeFeatureSets();
-            //for ( FeatureSet f : l ){
-            //    System.out.println(f.toString("    "));
-            //}
+//            System.out.println(prettyPrint(pe, "  "));
+//            Map<String,String> features = pe.getRoot().getNamedFeatures();
+//            for ( String key : features.keySet() )
+//                System.out.println(key + ": " + features.get(key));
+//
+//            print(eq+":\n"+pe.toString());
+//
+//            List<FeatureSet> l = pe.getComponents().get(0).getRoot().getAlternativeFeatureSets();
+//            for ( FeatureSet f : l ){
+//                System.out.println(f.toString("    "));
+//            }
         }
         catch(ParseException | IOException e){
                 print("Caught an exception: "+e.getMessage());
@@ -107,6 +116,9 @@ public class MLP {
         for ( String f : fs.keySet() ){
             mother.removeNamedFeature(f);
         }
+
+//        List<FeatureSet> l = mother.getRoot().getAlternativeFeatureSets();
+        mother.getRoot().setAlternativeFeatureSets(new LinkedList());
 
         if ( mother.getRoot() != null )
             mother.getRoot().getAlternativeFeatureSets().clear();

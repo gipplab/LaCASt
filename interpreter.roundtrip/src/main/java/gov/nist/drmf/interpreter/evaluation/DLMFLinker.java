@@ -17,9 +17,11 @@ public class DLMFLinker {
 
     private final HashMap<String, String> link_librarie;
 
-    public DLMFLinker( Path definitionFile ) {
+    private static DLMFLinker linker;
+
+    private DLMFLinker( Path definitionFile ) {
         link_librarie = new HashMap<>();
-        LOG.info("Start Link-Lib Init...");
+        LOG.debug("Start Link-Lib Init...");
 
         try ( BufferedReader br = Files.newBufferedReader(definitionFile) ){
             br.lines()
@@ -38,5 +40,13 @@ public class DLMFLinker {
 
     public String getLink( String label ){
         return link_librarie.get(label);
+    }
+
+    public static DLMFLinker getLinkerInstance(){
+        if ( linker == null ){
+            Path p = NumericalConfig.config().getLabelSet();
+            linker = new DLMFLinker(p);
+        }
+        return linker;
     }
 }

@@ -66,6 +66,11 @@ public class TranslationException extends RuntimeException {
         this.reason_Obj = reasonObj;
     }
 
+    @Override
+    public String toString(){
+        return getLocalizedMessage();
+    }
+
     public enum Reason{
         UNKNOWN_MACRO("Unknown DLMF/DRMF Macro"),
         UNKNOWN_EXPRESSION_TAG("Unknown Expression Tag"),
@@ -79,7 +84,8 @@ public class TranslationException extends RuntimeException {
         ABBREVIATION("Abbreviations in Expression"),
         NULL("NULL"),
         DLMF_MACRO_ERROR("Error while translating DLMF/DRMF Macro"),
-        MLP_ERROR("CRITICAL! POM-Tagger Error Reached");
+        MLP_ERROR("CRITICAL! POM-Tagger Error Reached"),
+        NULL_ARGUMENT("Empty argument in DLMF/DRMF Macro");
 
         private String name;
 

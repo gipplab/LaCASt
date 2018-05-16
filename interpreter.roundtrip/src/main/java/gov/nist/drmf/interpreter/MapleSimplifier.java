@@ -173,18 +173,21 @@ public class MapleSimplifier {
     public String advancedNumericalTest(
             String maple_expr,
             String values,
-            String specialVariables,
-            String valuesSpecialVariables,
-            int precision,
-            int maxCombinations )
+            String constraintVariablesList,
+            String constraintVariablesValues,
+            String extraVariables,
+            String extraVariablesValues,
+            String constraints,
+            int precision )
             throws MapleException, IllegalArgumentException {
         String command = buildCommandTestValues(
                 maple_expr,
                 values,
-                specialVariables,
-                valuesSpecialVariables,
-                maxCombinations);
-        LOG.debug("Generate value-variable pairs.");
+                constraintVariablesList,
+                constraintVariablesValues,
+                extraVariables,
+                extraVariablesValues,
+                constraints);
         LOG.trace("Run: " + command);
         Algebraic nTestValsA = mapleInterface.evaluateExpression( command + NL + "nTestVals;" );
         checkValues(nTestValsA);
@@ -226,45 +229,51 @@ public class MapleSimplifier {
     private String buildCommandTestValues (
             String maple_expr,
             String values,
-            String specialVariables,
-            String valuesSpecialVariables,
-            int maxCombinations )
-            throws MapleException, IllegalArgumentException {
-        boolean specialVarsSwitch = specialVariables != null && !specialVariables.isEmpty()
-                && valuesSpecialVariables != null && !valuesSpecialVariables.isEmpty();
+            String constraintVariablesList,
+            String constraintVariablesValues,
+            String extraVariables,
+            String extraVariablesValues,
+            String constraints )
+            throws IllegalArgumentException {
+        String command = "nTest := " + maple_expr + ":" + NL;
 
-        String command = "nTest := " + maple_expr + ";";
         LOG.debug("Numerical Test Expression: " + command);
 
         command += "nVars := indets(nTest,name) minus {constants}:" + NL;
-        command += "nVals1:= " + values + ":" + NL;
+        command += "nVals := " + values + ":" + NL;
 
-        if ( specialVarsSwitch ) {
-            command += "nVals2:= " + valuesSpecialVariables + ":" + NL;
-            command += "nVars2:= nVars intersect " + specialVariables + ":" + NL;
-            command += "nVars1:= nVars minus nVars2:" + NL;
-            command += "inCombis := nops(nVals1)^nops(nVars1) + nops(nVals2)^nops(nVars2):";
+        if ( constraintVariablesList != null ){
+            LOG.debug("Special Variable-Value pairs: " + constraintVariablesList + " with " + constraintVariablesValues);
+            command += "nConstVarsL := " + constraintVariablesList + ":" + NL;
+            command += "nConstVals  := " + constraintVariablesValues + ":" + NL;
+
+            command += "nVars := nVars minus (indets(nConstVarsL,name) minus {constants}):" + NL;
+        }
+
+        if ( extraVariables != null ){
+            LOG.debug("Treat special variables with special values if left in nVars.");
+            command += "nSpecialVars := nVars intersect " + extraVariables + ":" + NL;
+            command += "nSpecialVals := " + extraVariablesValues + ":" + NL;
+            command += "nVars := nVars minus nSpecialVars:" + NL;
+        }
+
+        // setup test values
+        command += "nTestVals := [op(createListInList(nVars,nVals))";
+        if ( extraVariables != null )
+            command += ", op(createListInList(nSpecialVars,nSpecialVals))";
+        if ( constraintVariablesList != null )
+            command += ", specialVariables(nConstVarsL, nConstVals)";
+        command += "]:" + NL;
+
+        if ( constraints != null ){
+            LOG.debug("Setup constraints for this test case.");
+            command += "constraints := " + constraints + ":" + NL;
         } else {
-            command += "inCombis := nops(nVals1)^nops(nVars):";
+            command += "constraints := []:" + NL;
         }
 
-        LOG.trace("Numerical Preloads: " + command);
-        mapleInterface.evaluateExpression( command );
-
-        Algebraic numOfCombis = mapleInterface.evaluateExpression("inCombis;");
-        try {
-            int i = Integer.parseInt(numOfCombis.toString());
-            if ( i >= maxCombinations ) throw new IllegalArgumentException("Too many combinations: " + i);
-        } catch ( NumberFormatException e ){
-            throw new IllegalArgumentException("Cannot calculate number of combinations!");
-        }
-
-        if ( specialVarsSwitch ) {
-            command = "nTestVals := [op(createListInList(nVars1, nVals1)), op(createListInList(nVars2, nVals2))]:";
-        } else {
-            command = "nTestVals := createListInList(nVars,nVals1):";
-        }
-
+        // time to finally calculate set of test values by filter invalid combinations
+        command += "nTestVals := buildTestValues(constraints,nTestVals):";
         return command;
     }
 

@@ -5,9 +5,12 @@ import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.MapleSimplifier;
 import gov.nist.drmf.interpreter.MapleTranslator;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
+import gov.nist.drmf.interpreter.common.TranslationException;
+import gov.nist.drmf.interpreter.constraints.Constraints;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
+import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,10 +33,9 @@ public class NumericalEvaluator implements Observer {
     // 0.6GB
     public static final long MEMORY_NOTIFY_LIMIT_KB = 500_000;
 
-    private static DLMFLinker labelLinker;
     private static Path output;
 
-    private MapleTranslator translator;
+    private static MapleTranslator translator;
     private MapleSimplifier simplifier;
 
     private NumericalConfig config;
@@ -49,6 +51,16 @@ public class NumericalEvaluator implements Observer {
 
     private LinkedList<String> mapleScripts;
 
+    static {
+        translator = new MapleTranslator();
+        try {
+            LOG.info("Initiate translation engine.");
+            translator.init();
+        } catch (Exception e) {
+            LOG.fatal("Cannot initiate translation engine!", e);
+        }
+    }
+
     /**
      * Creates an object for numerical evaluations.
      * Workflow:
@@ -59,33 +71,34 @@ public class NumericalEvaluator implements Observer {
      * @throws IOException
      */
     public NumericalEvaluator() throws IOException {
-        this.config = new NumericalConfig();
-        labelLinker = new DLMFLinker(config.getLabelSet());
+        this.config = NumericalConfig.config();
         labelLib = new HashMap<>();
 
-        translator = new MapleTranslator();
         this.testCases = new LinkedList<>();
         Status.reset();
 
         this.mapleScripts = new LinkedList<>();
     }
 
-    public void init() throws IOException, MapleException {
-        labelLinker = new DLMFLinker(config.getLabelSet());
+    public static MapleTranslator getTranslator(){
+        return translator;
+    }
 
+    public void init() throws IOException, MapleException {
+        LOG.info("Setup numerical tests.");
         output = config.getOutputPath();
         if (!Files.exists(output)) {
             Files.createFile(output);
         }
 
-        // init translator
-        translator.init();
         simplifier = translator.getMapleSimplifier();
 
-        translator.addMapleMemoryObserver(this);
-        MapleListener.setMemoryUsageLimit( MEMORY_NOTIFY_LIMIT_KB );
+        //LOG.debug("Register for memory observer service.");
+        //translator.addMapleMemoryObserver(this);
+        //MapleListener.setMemoryUsageLimit( MEMORY_NOTIFY_LIMIT_KB );
 
         // load special numerical test maple procedure
+        LOG.info("Loading Maple internal procedures.");
         String numericalProc = MapleInterface.extractProcedure(GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES);
         translator.enterMapleCommand( numericalProc );
         mapleScripts.add(numericalProc);
@@ -116,14 +129,11 @@ public class NumericalEvaluator implements Observer {
 
         mapleScripts.add(sieve_procedure);
         mapleScripts.add(sieve_procedure_relation);
+        LOG.info("Setup done!");
     }
 
     protected void setTranslator( MapleTranslator translator ){
         this.translator = translator;
-    }
-
-    protected void setLabelLinker( Path link ){
-        labelLinker = new DLMFLinker(link);
     }
 
     protected void addPreloadScript(String script){
@@ -142,7 +152,7 @@ public class NumericalEvaluator implements Observer {
 
         testCases = loadTestCases( subset, config.getDataset(), labelLib, skippedLinesInfo );
 
-        lineResult = new String[testCases.getLast().getLine()+1];
+        lineResult = new String[subset[1]];
         for ( Integer i : skippedLinesInfo.keySet() )
             lineResult[i] = skippedLinesInfo.get(i);
     }
@@ -162,7 +172,7 @@ public class NumericalEvaluator implements Observer {
                     .filter(l -> start <= currLine[0] && currLine[0] < limit) // filter by limits
                     .filter(l -> { // filter ' because of ambiguous meanings
                         if (l.contains("'")) {
-                            Case c = CaseAnalyzer.analyzeLine(l, currLine[0], labelLinker);
+                            Case c = CaseAnalyzer.analyzeLine(l, currLine[0]);
                             LOG.debug("Skip line " + currLine[0] + " because of '.");
                             skippedLinesInfo.put( currLine[0], "Skipped - Because of ambiguous single quote." );
                             if ( c != null ) labelLib.put( c.getLine(), c.getDlmf() );
@@ -172,7 +182,7 @@ public class NumericalEvaluator implements Observer {
                         return true;
                     })
                     .map(l -> {
-                        Case c = CaseAnalyzer.analyzeLine(l, currLine[0], labelLinker);
+                        Case c = CaseAnalyzer.analyzeLine(l, currLine[0]);
                         if ( c != null ) labelLib.put( c.getLine(), c.getDlmf() );
                         return c;
                     })
@@ -198,44 +208,35 @@ public class NumericalEvaluator implements Observer {
 
     protected String performSingleTest( Case c ){
         try {
-            String mapleAss = null;
-            if ( c.getAssumption() != null ){
-                mapleAss = translator.translateFromLaTeXToMapleClean( c.getAssumption() );
-                LOG.info("Assumption translation: " + mapleAss);
+            LOG.info("Start test for line: " + c.getLine());
+            LOG.info("Test case: " + c);
+
+            Constraints con =  c.getConstraintObject();
+            if ( con != null ){
+                if ( !con.specialValuesInfo().isEmpty() )
+                    LOG.info(con.specialValuesInfo());
+                LOG.info(con.constraintInfo());
             }
 
-            String mapleLHS = translator.translateFromLaTeXToMapleClean( c.getLHS() );
-            String mapleRHS = translator.translateFromLaTeXToMapleClean( c.getRHS() );
+            String expression = getTestedExpression(c);
 
-            LOG.info("Translate LHS to: " + mapleLHS);
-            LOG.info("Translate RHS to: " + mapleRHS);
-
-            Matcher nullLHSMatcher = nullPattern.matcher( mapleLHS );
-            Matcher nullRHSMatcher = nullPattern.matcher( mapleRHS );
-            if ( nullLHSMatcher.matches() ) {
-                mapleLHS = "";
-            }
-            if ( nullRHSMatcher.matches() ) {
-                mapleRHS = "";
-            }
-
-            String expression = config.getTestExpression( mapleLHS, mapleRHS );
-
-            String[] preAndPostCommands = getPrevCommand( c.getLHS() + ", " + c.getRHS(), mapleAss );
+            String[] preAndPostCommands = getPrevCommand( c.getLHS() + ", " + c.getRHS() );
 
             if ( preAndPostCommands[0] != null ){
-                translator.enterMapleCommand(preAndPostCommands[0]);
                 LOG.debug("Enter pre-testing commands: " + preAndPostCommands[0]);
+                translator.enterMapleCommand(preAndPostCommands[0]);
             }
 
             LOG.debug("Start numerical calculations.");
             String resultsName = simplifier.advancedNumericalTest(
                     expression,
                     config.getNumericalValues(),
+                    c.getConstraintVariables(),
+                    c.getConstraintValues(),
                     config.getSpecialVariables(),
                     config.getSpecialVariablesValues(),
-                    config.getPrecision(),
-                    config.getMaximumNumberOfCombs()
+                    c.getConstraints(),
+                    config.getPrecision()
             );
             LOG.debug("Finished numerical calculations.");
 
@@ -249,7 +250,7 @@ public class NumericalEvaluator implements Observer {
 
             // switch sieve method if it is not an equation
             // in that case, we use the values directly as true/false tests
-            if ( c.getRelation().equals( Relations.EQUAL ) ){
+            if ( c.isEquation() ){
                 sieveMethod = this.numericalSievesMethod + "(" + resultsName + ");";
             } else {
                 sieveMethod = this.numericalSievesMethodRelations + "(" + resultsName + ");";
@@ -264,13 +265,24 @@ public class NumericalEvaluator implements Observer {
 
                 // if l == 0, the list is empty so the test was successful
                 if ( l == 0 ){
+                    if ( lineResult == null ){
+                        return "Successful";
+                    }
                     lineResult[c.getLine()] = "Successful";
                     Status.SUCCESS.add();
                 } else { // otherwise the list contains errors or simple failures
+                    if ( lineResult == null ){
+                        return aList.toString();
+                    }
                     lineResult[c.getLine()] = aList.toString();
                     Status.FAILURE.add();
                 }
             }
+            LOG.info("Finished test for line: " + c.getLine());
+        } catch ( TranslationException te ) {
+            LOG.error("Error in translation. " + te.toString());
+            lineResult[c.getLine()] = "Error - " + te.toString();
+            Status.ERROR.add();
         } catch ( IllegalArgumentException iae ){
             LOG.warn("Skip test, because " + iae.getMessage());
             lineResult[c.getLine()] = "Skipped - " + iae.getMessage();
@@ -289,6 +301,29 @@ public class NumericalEvaluator implements Observer {
         return c.getLine() + ": " + lineResult[c.getLine()];
     }
 
+    private String getTestedExpression(Case c){
+        String mapleLHS = translator.translateFromLaTeXToMapleClean( c.getLHS() );
+        String mapleRHS = translator.translateFromLaTeXToMapleClean( c.getRHS() );
+
+        LOG.info("Translate LHS to: " + mapleLHS);
+        LOG.info("Translate RHS to: " + mapleRHS);
+
+        if ( !c.isEquation() ){
+            return mapleLHS + c.getRelation().getSymbol() + mapleRHS;
+        }
+
+        Matcher nullLHSMatcher = nullPattern.matcher( mapleLHS );
+        Matcher nullRHSMatcher = nullPattern.matcher( mapleRHS );
+        if ( nullLHSMatcher.matches() ) {
+            mapleLHS = "";
+        }
+        if ( nullRHSMatcher.matches() ) {
+            mapleRHS = "";
+        }
+
+        return config.getTestExpression( mapleLHS, mapleRHS );
+    }
+
     protected String[] getLineResults(){
         return lineResult;
     }
@@ -303,12 +338,12 @@ public class NumericalEvaluator implements Observer {
      * before the numerical test gets performed while the second element
      * contains the reset functions if necessary.
      * @param overAll
-     * @param mapleAss
      * @return array of length 2 (0: previous commands, 1: after test commands)
      */
-    public static String[] getPrevCommand( String overAll, String mapleAss ){
+    public static String[] getPrevCommand( String overAll ){
         String[] pac = new String[2];
         if ( overAll.contains("\\Ferrer") ){
+            LOG.info("Found Ferrer function. Enter pre-commands for correct computations in Maple.");
             pac[0] = MapleConstants.ENV_VAR_LEGENDRE_CUT_FERRER;
             pac[0] += System.lineSeparator();
             pac[0] += FERRER_DEF_ASS + System.lineSeparator();
@@ -318,13 +353,6 @@ public class NumericalEvaluator implements Observer {
             pac[0] = LEGENDRE_DEF_ASS;
             pac[1] = RESET;
         }
-
-        if ( pac[0] != null )
-            pac[0] += mapleAss == null ?
-                    "" :
-                    "assume("+mapleAss+");" + System.lineSeparator();
-        if ( pac[0] == null && mapleAss != null )
-            pac[0] = "assume("+mapleAss+");" + System.lineSeparator();
         return pac;
     }
 
@@ -341,9 +369,7 @@ public class NumericalEvaluator implements Observer {
                 MapleListener.setMemoryUsageLimit( factor*MEMORY_NOTIFY_LIMIT_KB );
             }
             Case c = testCases.removeFirst();
-            LOG.info("Start test for line: " + c.getLine());
             performSingleTest(c);
-            LOG.info("Finished test for line: " + c.getLine());
             copy.add(c);
         }
         testCases = copy;
@@ -351,11 +377,11 @@ public class NumericalEvaluator implements Observer {
 
     private void performMapleSessionRestart() throws RuntimeException {
         try {
-            LOG.info("Try to restart Maple session.");
+            LOG.debug("Try to restart Maple session.");
             translator.restartMapleSession();
             LOG.debug("Reloading procedures...");
             reloadScripts();
-            LOG.info("Successfully restarted Maple session.");
+            LOG.debug("Successfully restarted Maple session.");
         } catch ( MapleException | IOException e ){
             LOG.fatal("Cannot restart maple session!");
             throw new RuntimeException("Restart maple session failed.", e);
@@ -414,13 +440,29 @@ public class NumericalEvaluator implements Observer {
         Files.write( output, results.getBytes() );
     }
 
+    public static String[] translateEach(String[] texStr){
+        return Arrays.stream(texStr)
+                .map( translator::translateFromLaTeXToMapleClean )
+                .toArray(String[]::new);
+    }
+
     public static void main(String[] args) throws Exception{
+//        NumericalEvaluator ne = new NumericalEvaluator();
+//        ne.init();
+//
+//        String test = "\\frac{x}{1+x} < \\ln@{1+x} < x \\constraint{$x > -1$, $x \\neq 0$} \\label{eq:EF.LO.IX}";
+//
+//        Case c = CaseAnalyzer.analyzeLine(test, 796);
+//
+//        System.out.println(c);
+//
+//        LOG.info(ne.performSingleTest(c));
+
         NumericalEvaluator evaluator = new NumericalEvaluator();
         evaluator.init();
         evaluator.loadTestCases();
         evaluator.performAllTests();
         evaluator.writeOutput( evaluator.config.getOutputPath() );
-        //System.out.println(evaluator.performSingleTest( evaluator.testCases.getFirst() ));
     }
 
     @Override

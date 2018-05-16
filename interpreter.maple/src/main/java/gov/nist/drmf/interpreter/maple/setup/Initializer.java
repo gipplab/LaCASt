@@ -30,7 +30,7 @@ public class Initializer {
             Properties props = new Properties();
             props.load(in);
             String maple_bin = props.getProperty(Keys.KEY_MAPLE_BIN);
-            LOG.info( "Extracted maple dir: " + maple_bin );
+            LOG.debug( "Extracted maple dir: " + maple_bin );
             return loadMapleNatives( maple_bin );
         } catch ( IOException ioe ){
             LOG.fatal("Cannot load the maple native directory " +
@@ -43,17 +43,17 @@ public class Initializer {
 
     public static boolean loadMapleNatives( String maple_bin_dir ){
         try {
-            LOG.info("Set java.library.path: " + maple_bin_dir);
+            LOG.debug("Set java.library.path: " + maple_bin_dir);
             // set java.library.path
             System.setProperty( java_lib_path, maple_bin_dir );
-            LOG.info("Hack: need to refresh sys_paths.");
+            LOG.debug("Hack: need to refresh sys_paths.");
             // refresh java.library.path, a bit hacky but it works fine.
             Field field = ClassLoader.class.getDeclaredField("sys_paths");
-            LOG.info("... get sys_paths field.");
+            LOG.debug("... get sys_paths field.");
             field.setAccessible(true);
-            LOG.info("... set Accessible true.");
+            LOG.debug("... set Accessible true.");
             field.set(null, null);
-            LOG.info("... refreshed!");
+            LOG.debug("... refreshed!");
             return true;
         } catch ( IllegalAccessException | NoSuchFieldException e ) {
             LOG.fatal("The program is not able to refresh " +

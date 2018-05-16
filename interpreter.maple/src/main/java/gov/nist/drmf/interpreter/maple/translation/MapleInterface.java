@@ -240,12 +240,12 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
     }
 
     /**
-     * TODO
+     *
      * @return
      * @throws MapleException
      */
     public void invokeGC() throws MapleException {
-        LOG.info("Manually invoke Maple's garbage collector.");
+        LOG.debug("Manually invoke Maple's garbage collector.");
         engine.evaluate("gc();");
     }
 
@@ -320,7 +320,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
      */
     public static void init() throws MapleException, IOException {
         if ( mInterface != null ) {
-            LOG.info("Maple interface already instantiated!");
+            //LOG.debug("Maple interface already instantiated!");
             return;
         }
         mInterface = new MapleInterface();
