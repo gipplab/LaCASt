@@ -127,7 +127,7 @@ public class MacroTranslator extends AbstractListTranslator {
             }
 
             if ( translation_pattern.isEmpty() ){
-                LOG.info("No direct translation! Switch to alternative mode for " + macro_term.getTermText());
+                LOG.trace("No direct translation! Switch to alternative mode for " + macro_term.getTermText());
                 translation_pattern = alternative_pattern;
             }
         }
@@ -328,10 +328,14 @@ public class MacroTranslator extends AbstractListTranslator {
 
         for ( int i = 0; i < components.length; i++ ){
             //LOG.info("Fill pattern: " + pattern);
-            pattern = pattern.replace(
-                    GlobalConstants.POSITION_MARKER + Integer.toString(i),
-                    components[i]
-            );
+            try {
+                pattern = pattern.replace(
+                        GlobalConstants.POSITION_MARKER + Integer.toString(i),
+                        components[i]
+                );
+            } catch ( NullPointerException npe ){
+                throw new TranslationException("Argument of macro seems to be missing for " + macro_term, TranslationException.Reason.NULL_ARGUMENT);
+            }
         }
         local_inner_exp.addTranslatedExpression(pattern);
         global_exp.addTranslatedExpression(pattern);

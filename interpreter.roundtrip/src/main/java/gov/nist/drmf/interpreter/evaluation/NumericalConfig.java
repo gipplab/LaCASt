@@ -20,7 +20,9 @@ public class NumericalConfig {
 
     private static final Logger LOG = LogManager.getLogger(NumericalConfig.class.getName());
 
-    public NumericalConfig () {
+    private static final NumericalConfig config = new NumericalConfig();
+
+    private NumericalConfig () {
         try ( FileInputStream in = new FileInputStream(GlobalPaths.PATH_NUMERICAL_SETUP.toFile()) ){
             Properties props = new Properties();
             props.load(in);
@@ -36,6 +38,10 @@ public class NumericalConfig {
                     " file.", ioe
             );
         }
+    }
+
+    public static NumericalConfig config(){
+        return config;
     }
 
     public Path getDataset(){

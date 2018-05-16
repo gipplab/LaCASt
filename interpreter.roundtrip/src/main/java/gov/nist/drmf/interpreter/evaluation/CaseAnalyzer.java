@@ -1,8 +1,16 @@
 package gov.nist.drmf.interpreter.evaluation;
 
+import gov.nist.drmf.interpreter.constraints.Constraints;
+import gov.nist.drmf.interpreter.constraints.MLPConstraintAnalyzer;
+import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import mlp.MathTerm;
+import mlp.ParseException;
+import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,10 +21,18 @@ public class CaseAnalyzer {
 
     private static final Logger LOG = LogManager.getLogger(CaseAnalyzer.class.getName());
 
-    private static final String LABEL = "\\\\label";
-    private static final String CONSTRAINT = "\\\\constraint";
+    private static final Pattern CONSTRAINT_LABEL_PATTERN = Pattern.compile(
+            "[\\s,;.]*(\\\\constraint\\{.*?}\\s?)?(\\\\label\\{.*})*\\s*$"
+    );
 
-    private static final Pattern CONST_LABEL_PATTERN = Pattern.compile("[\\s{,;'\\$]*(.*)");
+    private static final Pattern CONSTRAINT_SPLITTER_PATTERN = Pattern.compile(
+            "\\$.+?\\$"
+    );
+
+    private static final int CONSTRAINT_GRP = 1;
+    private static final int LABEL_GRP = 2;
+
+    private static MLPConstraintAnalyzer analyzer = MLPConstraintAnalyzer.getAnalyzerInstance();
 
     /**
      * Creates a case element from a line that contains a test case.
@@ -24,53 +40,31 @@ public class CaseAnalyzer {
      *
      * @param line the entire line with a test case, constraints and so on
      * @param lineNumber the current line number of this test case
-     * @param linker a linker object to transform the label in the line to a hyperlink to DLMF
      * @return Case object
      */
-    public static Case analyzeLine( String line, int lineNumber, DLMFLinker linker ){
-        String eq, constraint = null, label = null;
-        String[] constSplit = line.split( CONSTRAINT );
-        String[] labelSplit = line.split( LABEL );
+    public static Case analyzeLine( String line, int lineNumber ){
+        StringBuffer rawLineBuffer = new StringBuffer();
 
-        // there is a constraint
-        if ( constSplit.length > 1 ){
-            labelSplit = constSplit[1].split( LABEL );
-            eq = constSplit[0];
-            constraint = labelSplit[0];
-            if ( labelSplit.length > 1 )
-                label = labelSplit[1];
-        } else if ( labelSplit.length > 1 ){
-            eq = labelSplit[0];
-            label = labelSplit[1];
-        } else {
-            eq = line;
+        Matcher metaDataMatcher = CONSTRAINT_LABEL_PATTERN.matcher(line);
+
+        if ( !metaDataMatcher.find() ){
+            throw new IllegalArgumentException("Cannot analyze line! " + line);
         }
 
-        String ending_deletion = "[\\s,;.]*$";
+        String constraint = metaDataMatcher.group(CONSTRAINT_GRP);
+        String label = metaDataMatcher.group(LABEL_GRP);
 
-        if ( constraint != null ){
-            Matcher m = CONST_LABEL_PATTERN.matcher(constraint);
-            if ( m.matches() ){
-                constraint = m.group(1);
-                constraint = constraint.replaceAll("[.$]*","");
-                constraint = constraint.replaceAll("[}\\s,;.$]*$", "");
-            }
-        }
+        metaDataMatcher.appendReplacement(rawLineBuffer, "");
+        metaDataMatcher.appendTail(rawLineBuffer);
 
-        if ( label != null ){
-            Matcher m = CONST_LABEL_PATTERN.matcher(label);
-            if ( m.matches() ){
-                label = m.group(1);
-                label = label.replaceAll("[{}$,;]","");
-                label = label.replaceAll(ending_deletion, "");
-            }
-        }
+        String eq = rawLineBuffer.toString();
 
-        eq = eq.replaceAll(ending_deletion,"");
+        CaseMetaData metaData = extractMetaData(constraint, label, lineNumber);
+
         String[] lrHS = eq.split("=");
 
         if ( lrHS.length == 2 ){
-            return new Case( lrHS[0], lrHS[1], Relations.EQUAL, constraint, linker.getLink(label), lineNumber );
+            return new Case( lrHS[0], lrHS[1], Relations.EQUAL, metaData );
         } else {
             String[] f = null;
             Relations rel = null;
@@ -98,12 +92,65 @@ public class CaseAnalyzer {
             }
 
             if ( f == null || f.length < 2 ){
-                LOG.error("Line cannot be split into LHS and RHS and therefore will be skipped: " + lineNumber );
+                LOG.warn("Line cannot be split into LHS and RHS and therefore will be skipped: " + lineNumber );
                 return null;
             }
 
-            return new Case(f[0], f[1], rel, constraint, linker.getLink(label), lineNumber);
+            return new Case(f[0], f[1], rel, metaData);
         }
     }
 
+    private static CaseMetaData extractMetaData(String constraintStr, String labelStr, int lineNumber) {
+        // first, create label
+        Label label = null;
+        if ( labelStr != null ){
+            labelStr = labelStr.substring("\\\\label{".length()-1, labelStr.length()-1);
+            label = new Label(labelStr);
+        }
+
+        if ( constraintStr == null )
+            return new CaseMetaData(lineNumber, label, null);
+
+        // second, build list of constraints
+        LinkedList<String> cons = new LinkedList<>();
+        Matcher consMatcher = CONSTRAINT_SPLITTER_PATTERN.matcher(constraintStr);
+
+        while( consMatcher.find() ){
+            cons.add(consMatcher.group());
+        }
+
+        LinkedList<String> sieved = new LinkedList<>();
+        LinkedList<String[][]> varVals = new LinkedList<>();
+        int length = 0;
+
+        while ( !cons.isEmpty() ){
+            String con = cons.removeFirst();
+            try {
+                String[][] rule = analyzer.checkForBlueprintRules(con);
+                if ( rule != null ) {
+                    varVals.add(rule);
+                    length += rule[0].length;
+                }
+                else sieved.add(con);
+            } catch ( ParseException pe ){
+                LOG.warn("Cannot parse constraint of line " + lineNumber + ". Reason: " + pe.getMessage());
+            }
+        }
+
+        String[] specialVars = new String[length];
+        String[] specialVals = new String[length];
+
+        int idx = 0;
+        while ( !varVals.isEmpty() ){
+            String[][] varval = varVals.removeFirst();
+            for ( int i = 0; i < varval[0].length; i++, idx++ ){
+                specialVars[idx] = varval[0][i];
+                specialVals[idx] = varval[1][i];
+            }
+        }
+
+        String[] conArr = sieved.stream().toArray(String[]::new);
+        Constraints constraints = new Constraints(conArr, specialVars, specialVals);
+        return new CaseMetaData(lineNumber, label, constraints);
+    }
 }

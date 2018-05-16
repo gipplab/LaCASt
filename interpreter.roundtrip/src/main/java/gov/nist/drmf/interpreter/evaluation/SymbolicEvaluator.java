@@ -76,8 +76,6 @@ public class SymbolicEvaluator extends NumericalEvaluator {
 
     @Override
     public void init() throws IOException, MapleException {
-        super.setLabelLinker( config.getLabelSet() );
-
         // init translator
         translator.init();
         simplifier = translator.getMapleSimplifier();
@@ -102,11 +100,11 @@ public class SymbolicEvaluator extends NumericalEvaluator {
         }
 
         try {
-            String mapleAss = null;
-            if ( c.getAssumption() != null ){
-                mapleAss = translator.translateFromLaTeXToMapleClean( c.getAssumption() );
-                LOG.info("Assumption translation: " + mapleAss);
-            }
+//            String mapleAss = null;
+//            if ( c.getAssumption() != null ){
+//                mapleAss = translator.translateFromLaTeXToMapleClean( c.getAssumption() );
+//                LOG.info("Assumption translation: " + mapleAss);
+//            }
 
             String mapleLHS = translator.translateFromLaTeXToMapleClean( c.getLHS() );
             String mapleRHS = translator.translateFromLaTeXToMapleClean( c.getRHS() );
@@ -116,7 +114,7 @@ public class SymbolicEvaluator extends NumericalEvaluator {
 
             String expression = config.getTestExpression( mapleLHS, mapleRHS );
 
-            String[] preAndPostCommands = getPrevCommand( c.getLHS() + ", " + c.getRHS(), mapleAss );
+            String[] preAndPostCommands = getPrevCommand( c.getLHS() + ", " + c.getRHS() );
 
             if ( preAndPostCommands[0] != null ){
                 translator.enterMapleCommand(preAndPostCommands[0]);
