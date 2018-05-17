@@ -22,14 +22,18 @@
         </File>
 
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%highlight{[%d{mm:ss,SSS} %p] %logger{2} - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
+            <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] %logger{1}:%line - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
             <Filters>
+                <!-- Filter out error and fatal -->
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="FATAL" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <!-- Accept Info Level -->
                 <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
         </Console>
 
         <Console name="ErrorConsole" target="SYSTEM_ERR">
-            <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] [Thread:%t] %logger{36} - %msg%n%throwable{full}%n}"/>
+            <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] [Thread:%t] %logger{36}:%line - %msg%n%throwable{full}%n}"/>
             <Filters>
                 <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>

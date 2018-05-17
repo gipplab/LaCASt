@@ -178,7 +178,8 @@ public class MapleSimplifier {
             String extraVariables,
             String extraVariablesValues,
             String constraints,
-            int precision )
+            int precision,
+            int maxCombinations )
             throws MapleException, IllegalArgumentException {
         String command = buildCommandTestValues(
                 maple_expr,
@@ -187,7 +188,8 @@ public class MapleSimplifier {
                 constraintVariablesValues,
                 extraVariables,
                 extraVariablesValues,
-                constraints);
+                constraints,
+                maxCombinations );
         LOG.trace("Run: " + command);
         Algebraic nTestValsA = mapleInterface.evaluateExpression( command + NL + "nTestVals;" );
         checkValues(nTestValsA);
@@ -211,12 +213,20 @@ public class MapleSimplifier {
         }
 
         if ( nTestValsA instanceof List ){
-            if ( ((List) nTestValsA).length() <= 0 ){
+            List l = (List) nTestValsA;
+            int length = l.length();
+            if ( length <= 0 ){
                 if (checkNumericalNTest()){
                     mapleInterface.evaluateExpression( "nTestVals := [];" );
                     return;
                 } // else throw an exception
                 throw new IllegalArgumentException("There are no valid test values.");
+            } else {
+                String values = l.toString();
+                int min = Math.min(values.length(), 1000);
+                if ( min < length )
+                    values = values.substring(1, min) + "...";
+                LOG.info("Testing " + l.length() + " values: " + values);
             }
         }
     }
@@ -233,8 +243,9 @@ public class MapleSimplifier {
             String constraintVariablesValues,
             String extraVariables,
             String extraVariablesValues,
-            String constraints )
-            throws IllegalArgumentException {
+            String constraints,
+            int maxCombinations )
+            throws MapleException, IllegalArgumentException {
         String command = "nTest := " + maple_expr + ":" + NL;
 
         LOG.debug("Numerical Test Expression: " + command);
@@ -250,15 +261,31 @@ public class MapleSimplifier {
             command += "nVars := nVars minus (indets(nConstVarsL,name) minus {constants}):" + NL;
         }
 
+        String combis = "inCombis := nops(nVals)^nops(nVars)";
+
         if ( extraVariables != null ){
             LOG.debug("Treat special variables with special values if left in nVars.");
             command += "nSpecialVars := nVars intersect " + extraVariables + ":" + NL;
             command += "nSpecialVals := " + extraVariablesValues + ":" + NL;
             command += "nVars := nVars minus nSpecialVars:" + NL;
+            combis += " + nops(nSpecialVals)^nops(nSpecialVars)";
+        }
+
+        // Test until here and look for number of variables
+        command += combis + ":";
+        LOG.debug("Calculate number of combinations.");
+        mapleInterface.evaluateExpression( command );
+
+        Algebraic numOfCombis = mapleInterface.evaluateExpression("inCombis;");
+        try {
+            int i = Integer.parseInt(numOfCombis.toString());
+            if ( i >= maxCombinations ) throw new IllegalArgumentException("Too many combinations: " + i);
+        } catch ( NumberFormatException e ){
+            throw new IllegalArgumentException("Cannot calculate number of combinations!");
         }
 
         // setup test values
-        command += "nTestVals := [op(createListInList(nVars,nVals))";
+        command = "nTestVals := [op(createListInList(nVars,nVals))";
         if ( extraVariables != null )
             command += ", op(createListInList(nSpecialVars,nSpecialVals))";
         if ( constraintVariablesList != null )
