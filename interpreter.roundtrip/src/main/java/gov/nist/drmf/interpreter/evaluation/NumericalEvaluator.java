@@ -236,7 +236,8 @@ public class NumericalEvaluator implements Observer {
                     config.getSpecialVariables(),
                     config.getSpecialVariablesValues(),
                     c.getConstraints(),
-                    config.getPrecision()
+                    config.getPrecision(),
+                    config.getMaximumNumberOfCombs()
             );
             LOG.debug("Finished numerical calculations.");
 
@@ -304,11 +305,13 @@ public class NumericalEvaluator implements Observer {
     }
 
     private String getTestedExpression(Case c){
+        LOG.debug("Translating LHS: " + c.getLHS());
         String mapleLHS = translator.translateFromLaTeXToMapleClean( c.getLHS() );
-        String mapleRHS = translator.translateFromLaTeXToMapleClean( c.getRHS() );
+        LOG.info("Translated LHS to: " + mapleLHS);
 
-        LOG.info("Translate LHS to: " + mapleLHS);
-        LOG.info("Translate RHS to: " + mapleRHS);
+        LOG.debug("Translating RHS: " + c.getRHS());
+        String mapleRHS = translator.translateFromLaTeXToMapleClean( c.getRHS() );
+        LOG.info("Translated RHS to: " + mapleRHS);
 
         if ( !c.isEquation() ){
             return mapleLHS + c.getRelation().getSymbol() + mapleRHS;
