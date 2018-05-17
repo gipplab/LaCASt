@@ -125,6 +125,7 @@ public class MLPBlueprintTree {
     public static String preCleaning(String constraint){
         constraint = TeXPreProcessor.preProcessingTeX(constraint);
         constraint = constraint.replaceAll("\\\\[lc]?dots[cbmio]?", "\\\\dots");
+        constraint = constraint.replaceAll("([^,\\s])\\s*\\\\dots", "$1, \\\\dots");
         constraint = constraint.replaceAll("\\\\[it]?frac", "\\\\frac");
         constraint = constraint.replaceAll("\\\\ne[^\\w]", "\\\\neq");
         return constraint;

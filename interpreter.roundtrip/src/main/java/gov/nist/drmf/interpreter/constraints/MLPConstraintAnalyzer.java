@@ -91,7 +91,13 @@ public class MLPConstraintAnalyzer {
         MLPConstraintAnalyzer a = new MLPConstraintAnalyzer();
         a.init();
 
-        String[][] varvals = a.checkForBlueprintRules("a \\neq 0,-1,-2,\\dots");
+        String[][] varvals = a.checkForBlueprintRules("2 q \\ne -1,-2,-3, \\dotsc");
+        System.out.println(Arrays.toString(varvals[0]) + " - " + Arrays.toString(varvals[1]));
+
+        varvals = a.checkForBlueprintRules("2 q \\neq -1,-2,-3 \\ldotsc");
+        System.out.println(Arrays.toString(varvals[0]) + " - " + Arrays.toString(varvals[1]));
+
+        varvals = a.checkForBlueprintRules("2 q \\ne -1,-2,-3 \\cdotsb");
         System.out.println(Arrays.toString(varvals[0]) + " - " + Arrays.toString(varvals[1]));
     }
 
