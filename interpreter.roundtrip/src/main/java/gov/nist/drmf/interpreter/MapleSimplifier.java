@@ -213,18 +213,20 @@ public class MapleSimplifier {
         }
 
         if ( nTestValsA instanceof List ){
+            if (checkNumericalNTest()){
+                mapleInterface.evaluateExpression( "nTestVals := [];" );
+                return;
+            }
+
             List l = (List) nTestValsA;
             int length = l.length();
             if ( length <= 0 ){
-                if (checkNumericalNTest()){
-                    mapleInterface.evaluateExpression( "nTestVals := [];" );
-                    return;
-                } // else throw an exception
+                // else throw an exception
                 throw new IllegalArgumentException("There are no valid test values.");
             } else {
                 String values = l.toString();
-                int min = Math.min(values.length(), 1000);
-                if ( min < length )
+                int min = Math.min(values.length(), 300);
+                if ( min < values.length() )
                     values = values.substring(1, min) + "...";
                 LOG.info("Testing " + l.length() + " values: " + values);
             }

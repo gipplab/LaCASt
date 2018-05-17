@@ -21,7 +21,7 @@
             </Filters>
         </File>
 
-        <Console name="Console" target="SYSTEM_OUT">
+        <Console name="HowardConsole" target="SYSTEM_OUT">
             <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] %logger{1}:%line - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
             <Filters>
                 <!-- Filter out error and fatal -->
@@ -30,6 +30,10 @@
                 <!-- Accept Info Level -->
                 <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
+        </Console>
+
+        <Console name="DebugConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] %logger{1}:%line - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
         </Console>
 
         <Console name="ErrorConsole" target="SYSTEM_ERR">
@@ -41,7 +45,8 @@
     </Appenders>
     <Loggers>
         <Root level="all">
-            <AppenderRef ref="Console"/>
+            <AppenderRef ref="HowardConsole"/>
+            <!--AppenderRef ref="DebugConsole"/-->
             <AppenderRef ref="ErrorConsole"/>
             <!--AppenderRef ref="LogFile"/>
             <AppenderRef ref="ErrorFile"/-->
