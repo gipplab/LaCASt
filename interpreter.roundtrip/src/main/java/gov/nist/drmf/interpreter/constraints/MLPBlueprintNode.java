@@ -81,9 +81,9 @@ public class MLPBlueprintNode {
         // first, check if its a VAR.
         if (latex.matches(MLPBlueprintTree.VAR)) {
             if (possibleVar(other)) {
-                String mapleVar = translator.translateFromLaTeXToMapleClean(other.latex);
-                tree.setVariable(latex, mapleVar);
-                LOG.trace(String.format("Found variable match. Set %s = %s.",latex, mapleVar));
+                //String mapleVar = translator.translateFromLaTeXToMapleClean(other.latex);
+                tree.setVariable(latex, other.latex);
+                LOG.trace(String.format("Found variable match. Set %s = %s.",latex, other.latex));
                 return true;
             }
             return false;
@@ -92,9 +92,9 @@ public class MLPBlueprintNode {
         // equal function should be commutative, so try the other way around
         if (other.latex.matches(MLPBlueprintTree.VAR)) {
             if (possibleVar(this)) {
-                String mapleVar = translator.translateFromLaTeXToMapleClean(latex);
-                other.tree.setVariable(other.latex, mapleVar);
-                LOG.trace(String.format("Found variable match. Set %s = %s.",other.latex, mapleVar));
+                //String mapleVar = translator.translateFromLaTeXToMapleClean(latex);
+                other.tree.setVariable(other.latex, latex);
+                LOG.trace(String.format("Found variable match. Set %s = %s.",other.latex, latex));
                 return true;
             }
             return false;

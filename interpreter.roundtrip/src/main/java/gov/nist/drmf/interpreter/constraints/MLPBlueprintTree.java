@@ -47,7 +47,6 @@ public class MLPBlueprintTree {
 
     public static MLPBlueprintNode parseTree(String constraint) throws ParseException {
         String blueprint = preCleaning(constraint);
-        System.out.println(blueprint);
         PomTaggedExpression pte = MLPWrapper.getWrapperInstance().parse(blueprint);
         return createBlueprint(pte);
     }

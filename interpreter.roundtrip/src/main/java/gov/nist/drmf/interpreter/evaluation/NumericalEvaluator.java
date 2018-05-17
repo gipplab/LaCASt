@@ -265,12 +265,14 @@ public class NumericalEvaluator implements Observer {
 
                 // if l == 0, the list is empty so the test was successful
                 if ( l == 0 ){
+                    LOG.info("Test was successful");
                     if ( lineResult == null ){
                         return "Successful";
                     }
                     lineResult[c.getLine()] = "Successful";
                     Status.SUCCESS.add();
                 } else { // otherwise the list contains errors or simple failures
+                    LOG.info("Test was NOT successful.");
                     if ( lineResult == null ){
                         return aList.toString();
                     }
