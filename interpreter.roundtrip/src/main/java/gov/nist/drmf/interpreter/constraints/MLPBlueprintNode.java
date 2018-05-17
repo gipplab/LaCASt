@@ -111,7 +111,10 @@ public class MLPBlueprintNode {
     }
 
     private boolean possibleVar(MLPBlueprintNode node) {
-        return node.tag.equals("letter") || node.tag.equals("Latin") || node.tag.equals(GREEK);
+        return node.tag.equals("letter")
+                || node.tag.equals("Latin")
+                || node.tag.equals(GREEK)
+                || node.tag.equals("alphanumeric");
     }
 
     private boolean equalChildren(MLPBlueprintNode other) {

@@ -89,6 +89,9 @@ public class CaseAnalyzer {
             } else if ( eq.contains( "\\neq" ) ){
                 f = eq.split( "\\\\neq" );
                 rel = Relations.UNEQUAL;
+            } else if ( eq.contains( "\\ne" ) ){
+                f = eq.split( "\\\\ne" );
+                rel = Relations.UNEQUAL;
             }
 
             if ( f == null || f.length < 2 ){
