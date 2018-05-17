@@ -47,6 +47,7 @@ public class MLPBlueprintTree {
 
     public static MLPBlueprintNode parseTree(String constraint) throws ParseException {
         String blueprint = preCleaning(constraint);
+        System.out.println(blueprint);
         PomTaggedExpression pte = MLPWrapper.getWrapperInstance().parse(blueprint);
         return createBlueprint(pte);
     }
@@ -125,6 +126,7 @@ public class MLPBlueprintTree {
         constraint = TeXPreProcessor.preProcessingTeX(constraint);
         constraint = constraint.replaceAll("\\\\[lc]?dots[cbmio]?", "\\\\dots");
         constraint = constraint.replaceAll("\\\\[it]?frac", "\\\\frac");
+        constraint = constraint.replaceAll("\\\\ne[^\\w]", "\\\\neq");
         return constraint;
     }
 }

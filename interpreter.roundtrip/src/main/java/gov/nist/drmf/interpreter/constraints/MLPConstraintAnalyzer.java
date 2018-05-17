@@ -91,7 +91,7 @@ public class MLPConstraintAnalyzer {
         MLPConstraintAnalyzer a = new MLPConstraintAnalyzer();
         a.init();
 
-        String[][] varvals = a.checkForBlueprintRules("x, y \\in \\Real");
+        String[][] varvals = a.checkForBlueprintRules("a \\neq 0,-1,-2,\\dots");
         System.out.println(Arrays.toString(varvals[0]) + " - " + Arrays.toString(varvals[1]));
     }
 

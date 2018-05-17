@@ -104,6 +104,12 @@
 		"Maple": "..",
 		"Mathematica": " ... "
 	},
+    "Dots":{
+        "MLP": "ellipsis",
+        "LaTeX": "\\dots",
+        "Maple": "..",
+        "Mathematica": " ... "
+    },
 	"Equality":{
 		"MLP": "equals",
 		"LaTeX": "=",
@@ -122,6 +128,12 @@
 		"Maple": "<>",
 		"Mathematica": "\\[NotEqual]"
 	},
+    "Not Equality 2":{
+      "MLP": "relation_neq",
+      "LaTeX": "\\ne",
+      "Maple": "<>",
+      "Mathematica": "\\[NotEqual]"
+    },
 	"Less Than or Equality":{
 		"MLP": "relation_leq",
 		"LaTeX": "\\leq",
