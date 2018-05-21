@@ -6,6 +6,7 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.xml.transform.sax.SAXSource;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -88,17 +89,24 @@ public class MLPConstraintAnalyzer {
     }
 
     public static void main(String[] args) throws Exception {
-        MLPConstraintAnalyzer a = new MLPConstraintAnalyzer();
-        a.init();
+        String s = "var1-var2 odd";
+        MLPBlueprintTree t = new MLPBlueprintTree(new String[]{"5","2"});
+        t.setBlueprint(s);
 
-        String[][] varvals = a.checkForBlueprintRules("2 q \\ne -1,-2,-3, \\dotsc");
-        System.out.println(Arrays.toString(varvals[0]) + " - " + Arrays.toString(varvals[1]));
+        MLPBlueprintNode n = MLPBlueprintTree.parseTree("x-y odd");
 
-        varvals = a.checkForBlueprintRules("2 q \\neq -1,-2,-3 \\ldotsc");
-        System.out.println(Arrays.toString(varvals[0]) + " - " + Arrays.toString(varvals[1]));
+        System.out.println(t.matches(n));
+        String[][] st = t.getConstraintVariablesAndValues();
 
-        varvals = a.checkForBlueprintRules("2 q \\ne -1,-2,-3 \\cdotsb");
-        System.out.println(Arrays.toString(varvals[0]) + " - " + Arrays.toString(varvals[1]));
+        System.out.println(Arrays.toString(st[1]));
+        System.out.println(Arrays.toString(st[0]));
+
+//
+//        MLPConstraintAnalyzer a = new MLPConstraintAnalyzer();
+//        a.init();
+//
+//        String[][] varvals = a.checkForBlueprintRules("2 q \\ne -1,-2,-3, \\dotsc");
+//        System.out.println(Arrays.toString(varvals[0]) + " - " + Arrays.toString(varvals[1]));
     }
 
 }

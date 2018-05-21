@@ -127,6 +127,7 @@ public class MLPBlueprintTree {
         constraint = constraint.replaceAll("([^,\\s])\\s*\\\\dots", "$1, \\\\dots");
         constraint = constraint.replaceAll("\\\\[it]?frac", "\\\\frac");
         constraint = constraint.replaceAll("\\\\ne[^\\w]", "\\\\neq");
+        constraint = constraint.replaceAll("[\\s,;.]*$", "");
         return constraint;
     }
 }
