@@ -18,6 +18,7 @@ Symbol: \AGM
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \AThetaFunction
 
@@ -34,6 +35,7 @@ Symbol: \AThetaFunction
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \AbstractJacobi
 
@@ -139,6 +141,7 @@ Symbol: \AffqKrawtchouk
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \AiryAi
 
@@ -163,6 +166,7 @@ Symbol: \AiryAi
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \AiryBi
 
@@ -187,6 +191,7 @@ Symbol: \AiryBi
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \AiryModulusM
 
@@ -203,6 +208,7 @@ Symbol: \AiryModulusM
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \AiryModulusN
 
@@ -219,6 +225,7 @@ Symbol: \AiryModulusN
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \AiryPhasePhi
 
@@ -235,6 +242,7 @@ Symbol: \AiryPhasePhi
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \AiryPhaseTheta
 
@@ -251,6 +259,7 @@ Symbol: \AiryPhaseTheta
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \AlSalamCarlitzI
 
@@ -267,6 +276,7 @@ Symbol: \AlSalamCarlitzI
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \AlSalamCarlitzII
 
@@ -283,6 +293,7 @@ Symbol: \AlSalamCarlitzII
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \AlSalamChihara
 
@@ -299,6 +310,7 @@ Symbol: \AlSalamChihara
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \AlSalamChiharaQ
 
@@ -315,6 +327,7 @@ Symbol: \AlSalamChiharaQ
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \AlSalamIsmail
 
@@ -331,6 +344,7 @@ Symbol: \AlSalamIsmail
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \AngerA
 
@@ -348,6 +362,7 @@ Symbol: \AngerA
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \AngerJ
 
@@ -368,6 +383,7 @@ Symbol: \AngerJ
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \AntiDer
 
@@ -405,6 +421,7 @@ Symbol: \AppellFi
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 6
+	Role: 
 
 Symbol: \AppellFii
 
@@ -421,6 +438,7 @@ Symbol: \AppellFii
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 7
+	Role: 
 
 Symbol: \AppellFiii
 
@@ -438,6 +456,7 @@ Symbol: \AppellFiii
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 7
+	Role: 
 
 Symbol: \AppellFiv
 
@@ -454,6 +473,7 @@ Symbol: \AppellFiv
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 6
+	Role: 
 
 Symbol: \Asec
 
@@ -522,6 +542,7 @@ Symbol: \AskeyWilson
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 6
+	Role: 
 
 Symbol: \AskeyWilsonp
 
@@ -538,6 +559,7 @@ Symbol: \AskeyWilsonp
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 6
+	Role: 
 
 Symbol: \AssJacobiP
 
@@ -554,6 +576,7 @@ Symbol: \AssJacobiP
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 2
+	Role: 
 
 Symbol: \AssLegendrePoly
 
@@ -570,6 +593,7 @@ Symbol: \AssLegendrePoly
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Atan
 
@@ -637,6 +661,7 @@ Symbol: \BellNumber
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \BernoulliB
 
@@ -657,6 +682,7 @@ Symbol: \BernoulliB
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \BesselI
 
@@ -677,6 +703,7 @@ Symbol: \BesselI
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \BesselItilde
 
@@ -693,6 +720,7 @@ Symbol: \BesselItilde
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \BesselJ
 
@@ -735,6 +763,7 @@ Symbol: \BesselJtilde
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \BesselK
 
@@ -755,6 +784,7 @@ Symbol: \BesselK
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \BesselKtilde
 
@@ -771,6 +801,7 @@ Symbol: \BesselKtilde
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \BesselModulusM
 
@@ -787,6 +818,7 @@ Symbol: \BesselModulusM
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \BesselModulusN
 
@@ -803,6 +835,7 @@ Symbol: \BesselModulusN
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \BesselPhasePhi
 
@@ -819,6 +852,7 @@ Symbol: \BesselPhasePhi
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \BesselPhaseTheta
 
@@ -835,6 +869,7 @@ Symbol: \BesselPhaseTheta
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \BesselPoly
 
@@ -851,6 +886,7 @@ Symbol: \BesselPoly
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \BesselPolyIIparam
 
@@ -867,6 +903,7 @@ Symbol: \BesselPolyIIparam
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \BesselPolyTheta
 
@@ -883,6 +920,7 @@ Symbol: \BesselPolyTheta
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \BesselPolyy
 
@@ -899,6 +937,7 @@ Symbol: \BesselPolyy
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \BesselY
 
@@ -924,6 +963,7 @@ Symbol: \BesselY
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \BesselYtilde
 
@@ -940,6 +980,7 @@ Symbol: \BesselYtilde
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \BickleyKi
 
@@ -956,6 +997,7 @@ Symbol: \BickleyKi
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \BigO
 
@@ -972,6 +1014,7 @@ Symbol: \BigO
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \CatalanNumber
 
@@ -988,6 +1031,7 @@ Symbol: \CatalanNumber
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \CatalansConstant
 
@@ -1012,6 +1056,7 @@ Symbol: \Charlier
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \CharlierC
 
@@ -1028,6 +1073,7 @@ Symbol: \CharlierC
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \ChebyC
 
@@ -1044,6 +1090,7 @@ Symbol: \ChebyC
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ChebyS
 
@@ -1060,6 +1107,7 @@ Symbol: \ChebyS
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ChebyT
 
@@ -1080,6 +1128,7 @@ Symbol: \ChebyT
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ChebyTs
 
@@ -1096,6 +1145,7 @@ Symbol: \ChebyTs
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ChebyU
 
@@ -1116,6 +1166,7 @@ Symbol: \ChebyU
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ChebyUs
 
@@ -1132,6 +1183,7 @@ Symbol: \ChebyUs
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ChebyV
 
@@ -1148,6 +1200,7 @@ Symbol: \ChebyV
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ChebyW
 
@@ -1164,6 +1217,7 @@ Symbol: \ChebyW
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ChebyshevPsi
 
@@ -1180,6 +1234,7 @@ Symbol: \ChebyshevPsi
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \CiglerqChebyT
 
@@ -1196,6 +1251,7 @@ Symbol: \CiglerqChebyT
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \CiglerqChebyU
 
@@ -1212,6 +1268,7 @@ Symbol: \CiglerqChebyU
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \CompEllIntCE
 
@@ -1232,6 +1289,7 @@ Symbol: \CompEllIntCE
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \CompEllIntCK
 
@@ -1252,6 +1310,7 @@ Symbol: \CompEllIntCK
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \CompEllIntD
 
@@ -1268,6 +1327,7 @@ Symbol: \CompEllIntD
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \CompEllIntE
 
@@ -1288,6 +1348,7 @@ Symbol: \CompEllIntE
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \CompEllIntK
 
@@ -1312,6 +1373,7 @@ Symbol: \CompEllIntK
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \CompEllIntPi
 
@@ -1332,6 +1394,7 @@ Symbol: \CompEllIntPi
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Complex
 
@@ -1366,6 +1429,7 @@ Symbol: \ComplexZeroAiryBi
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ComplexZeroAiryBiPrime
 
@@ -1382,6 +1446,7 @@ Symbol: \ComplexZeroAiryBiPrime
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \CompositionsC
 
@@ -1392,6 +1457,7 @@ Symbol: \CompositionsC
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Continuous
 
@@ -1408,6 +1474,7 @@ Symbol: \Continuous
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \CosInt
 
@@ -1503,6 +1570,7 @@ Symbol: \CoulombC
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \CoulombF
 
@@ -1523,6 +1591,7 @@ Symbol: \CoulombF
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \CoulombG
 
@@ -1539,6 +1608,7 @@ Symbol: \CoulombG
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \CoulombH
 
@@ -1555,6 +1625,7 @@ Symbol: \CoulombH
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \CoulombM
 
@@ -1571,6 +1642,7 @@ Symbol: \CoulombM
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \CoulombSigma
 
@@ -1587,6 +1659,7 @@ Symbol: \CoulombSigma
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \CoulombTheta
 
@@ -1603,6 +1676,7 @@ Symbol: \CoulombTheta
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Coulombc
 
@@ -1619,6 +1693,7 @@ Symbol: \Coulombc
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \Coulombf
 
@@ -1635,6 +1710,7 @@ Symbol: \Coulombf
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \Coulombh
 
@@ -1651,6 +1727,7 @@ Symbol: \Coulombh
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \Coulombrhotp
 
@@ -1667,6 +1744,7 @@ Symbol: \Coulombrhotp
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Coulombrtp
 
@@ -1683,6 +1761,7 @@ Symbol: \Coulombrtp
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Coulombs
 
@@ -1699,6 +1778,7 @@ Symbol: \Coulombs
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \Cylinder
 
@@ -1715,6 +1795,7 @@ Symbol: \Cylinder
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \DawsonsInt
 
@@ -1739,6 +1820,7 @@ Symbol: \DawsonsInt
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \DedekindModularEta
 
@@ -1755,6 +1837,7 @@ Symbol: \DedekindModularEta
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Dilogarithm
 
@@ -1796,6 +1879,7 @@ Symbol: \Diracdelta
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \DirichletCharacter
 
@@ -1812,6 +1896,7 @@ Symbol: \DirichletCharacter
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \DirichletL
 
@@ -1828,6 +1913,7 @@ Symbol: \DirichletL
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \DiscriminantDelta
 
@@ -1844,6 +1930,7 @@ Symbol: \DiscriminantDelta
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \DiskOP
 
@@ -1860,6 +1947,7 @@ Symbol: \DiskOP
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Distribution
 
@@ -1893,6 +1981,7 @@ Symbol: \DivisorFunctionD
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \DivisorSigma
 
@@ -1909,6 +1998,7 @@ Symbol: \DivisorSigma
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \EllIntD
 
@@ -1925,6 +2015,7 @@ Symbol: \EllIntD
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \EllIntE
 
@@ -1945,6 +2036,7 @@ Symbol: \EllIntE
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \EllIntF
 
@@ -1965,6 +2057,7 @@ Symbol: \EllIntF
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \EllIntPi
 
@@ -1985,6 +2078,7 @@ Symbol: \EllIntPi
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \EllIntRC
 
@@ -2001,6 +2095,7 @@ Symbol: \EllIntRC
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \EllIntRD
 
@@ -2017,6 +2112,7 @@ Symbol: \EllIntRD
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \EllIntRF
 
@@ -2033,6 +2129,7 @@ Symbol: \EllIntRF
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \EllIntRG
 
@@ -2049,6 +2146,7 @@ Symbol: \EllIntRG
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \EllIntRJ
 
@@ -2065,6 +2163,7 @@ Symbol: \EllIntRJ
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 4
+	Role: 
 
 Symbol: \EllIntcel
 
@@ -2081,6 +2180,7 @@ Symbol: \EllIntcel
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 4
+	Role: 
 
 Symbol: \EllIntelone
 
@@ -2097,6 +2197,7 @@ Symbol: \EllIntelone
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \EllIntelthree
 
@@ -2113,6 +2214,7 @@ Symbol: \EllIntelthree
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \EllInteltwo
 
@@ -2129,6 +2231,7 @@ Symbol: \EllInteltwo
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 4
+	Role: 
 
 Symbol: \EulerBeta
 
@@ -2154,6 +2257,7 @@ Symbol: \EulerBeta
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \EulerConstant
 
@@ -2182,6 +2286,7 @@ Symbol: \EulerE
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \EulerGamma
 
@@ -2223,6 +2328,7 @@ Symbol: \EulerPhi
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \EulerSumH
 
@@ -2239,6 +2345,7 @@ Symbol: \EulerSumH
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \EulerTotientPhi
 
@@ -2249,6 +2356,7 @@ Symbol: \EulerTotientPhi
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \EulerianNumber
 
@@ -2265,6 +2373,7 @@ Symbol: \EulerianNumber
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \ExpInt
 
@@ -2495,6 +2604,7 @@ Symbol: \FresnelCos
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \FresnelF
 
@@ -2511,6 +2621,7 @@ Symbol: \FresnelF
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \FresnelSin
 
@@ -2535,6 +2646,7 @@ Symbol: \FresnelSin
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Fresnelf
 
@@ -2559,6 +2671,7 @@ Symbol: \Fresnelf
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Fresnelg
 
@@ -2583,6 +2696,7 @@ Symbol: \Fresnelg
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \GammaP
 
@@ -2641,6 +2755,7 @@ Symbol: \GaussSum
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \GenBernoulliB
 
@@ -2657,6 +2772,7 @@ Symbol: \GenBernoulliB
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \GenBesselFun
 
@@ -2673,6 +2789,7 @@ Symbol: \GenBesselFun
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \GenEulerE
 
@@ -2689,6 +2806,7 @@ Symbol: \GenEulerE
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \GenEulerSumH
 
@@ -2705,6 +2823,7 @@ Symbol: \GenEulerSumH
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \GenGegenbauerS
 
@@ -2721,6 +2840,7 @@ Symbol: \GenGegenbauerS
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 1
+	Role: 
 
 Symbol: \GenHermite
 
@@ -2731,6 +2851,7 @@ Symbol: \GenHermite
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \GoodStat
 
@@ -2747,6 +2868,7 @@ Symbol: \GoodStat
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \GottliebLaguerre
 
@@ -2763,6 +2885,7 @@ Symbol: \GottliebLaguerre
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Gudermannian
 
@@ -2800,6 +2923,7 @@ Symbol: \Hahn
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \HahnQ
 
@@ -2816,6 +2940,7 @@ Symbol: \HahnQ
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \HahnR
 
@@ -2832,6 +2957,7 @@ Symbol: \HahnR
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \HahnS
 
@@ -2848,6 +2974,7 @@ Symbol: \HahnS
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \Hahnp
 
@@ -2864,6 +2991,7 @@ Symbol: \Hahnp
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \HankelHi
 
@@ -2884,6 +3012,7 @@ Symbol: \HankelHi
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \HankelHii
 
@@ -2904,6 +3033,7 @@ Symbol: \HankelHii
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \HarmonicNumber
 
@@ -2924,6 +3054,7 @@ Symbol: \HarmonicNumber
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \HeavisideH
 
@@ -2944,6 +3075,7 @@ Symbol: \HeavisideH
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Hermite
 
@@ -2964,6 +3096,7 @@ Symbol: \Hermite
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \HermiteH
 
@@ -2984,6 +3117,7 @@ Symbol: \HermiteH
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \HermiteHe
 
@@ -3000,6 +3134,7 @@ Symbol: \HermiteHe
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \HeunFunction
 
@@ -3016,6 +3151,7 @@ Symbol: \HeunFunction
 	Number of Ats: 2
 	Number of Parameters: 3
 	Number of Variables: 7
+	Role: 
 
 Symbol: \HeunLocal
 
@@ -3033,6 +3169,7 @@ Symbol: \HeunLocal
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 7
+	Role: 
 
 Symbol: \HeunPolynom
 
@@ -3049,6 +3186,7 @@ Symbol: \HeunPolynom
 	Number of Ats: 2
 	Number of Parameters: 2
 	Number of Variables: 7
+	Role: 
 
 Symbol: \HurwitzZeta
 
@@ -3069,6 +3207,7 @@ Symbol: \HurwitzZeta
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \HyperboldpFq
 
@@ -3086,6 +3225,7 @@ Symbol: \HyperboldpFq
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 3
+	Role: 
 
 Symbol: \HypergeoF
 
@@ -3106,6 +3246,7 @@ Symbol: \HypergeoF
 	Number of Ats: 3
 	Number of Parameters: 0
 	Number of Variables: 4
+	Role: 
 
 Symbol: \HypergeoboldF
 
@@ -3123,6 +3264,7 @@ Symbol: \HypergeoboldF
 	Number of Ats: 3
 	Number of Parameters: 0
 	Number of Variables: 4
+	Role: 
 
 Symbol: \HyperpFq
 
@@ -3140,6 +3282,7 @@ Symbol: \HyperpFq
 	Number of Ats: 3
 	Number of Parameters: 2
 	Number of Variables: 3
+	Role: 
 
 Symbol: \HyperpHq
 
@@ -3156,6 +3299,7 @@ Symbol: \HyperpHq
 	Number of Ats: 3
 	Number of Parameters: 2
 	Number of Variables: 3
+	Role: 
 
 Symbol: \IncBeta
 
@@ -3176,6 +3320,7 @@ Symbol: \IncBeta
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \IncGamma
 
@@ -3221,6 +3366,7 @@ Symbol: \IncI
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Int
 
@@ -3241,6 +3387,7 @@ Symbol: \Int
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Integer
 
@@ -3275,6 +3422,7 @@ Symbol: \IntgenAiryA
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \IntgenAiryB
 
@@ -3291,6 +3439,7 @@ Symbol: \IntgenAiryB
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \JacksonqBesselI
 
@@ -3307,6 +3456,7 @@ Symbol: \JacksonqBesselI
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \JacksonqBesselII
 
@@ -3323,6 +3473,7 @@ Symbol: \JacksonqBesselII
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \JacksonqBesselIII
 
@@ -3339,6 +3490,7 @@ Symbol: \JacksonqBesselIII
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Jacobi
 
@@ -3363,6 +3515,7 @@ Symbol: \Jacobi
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 1
+	Role: 
 
 Symbol: \JacobiEpsilon
 
@@ -3379,6 +3532,7 @@ Symbol: \JacobiEpsilon
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \JacobiG
 
@@ -3395,6 +3549,7 @@ Symbol: \JacobiG
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \JacobiP
 
@@ -3419,6 +3574,7 @@ Symbol: \JacobiP
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 1
+	Role: 
 
 Symbol: \JacobiSymbol
 
@@ -3435,6 +3591,7 @@ Symbol: \JacobiSymbol
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \JacobiTheta
 
@@ -3452,6 +3609,7 @@ Symbol: \JacobiTheta
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \JacobiThetaCombined
 
@@ -3468,6 +3626,7 @@ Symbol: \JacobiThetaCombined
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \JacobiThetaTau
 
@@ -3485,6 +3644,7 @@ Symbol: \JacobiThetaTau
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \JacobiZeta
 
@@ -3505,6 +3665,7 @@ Symbol: \JacobiZeta
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Jacobiam
 
@@ -3525,6 +3686,7 @@ Symbol: \Jacobiam
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Jacobicd
 
@@ -3549,6 +3711,7 @@ Symbol: \Jacobicd
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Jacobicn
 
@@ -3573,6 +3736,7 @@ Symbol: \Jacobicn
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Jacobics
 
@@ -3597,6 +3761,7 @@ Symbol: \Jacobics
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Jacobidc
 
@@ -3621,6 +3786,7 @@ Symbol: \Jacobidc
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Jacobidn
 
@@ -3645,6 +3811,7 @@ Symbol: \Jacobidn
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Jacobids
 
@@ -3669,6 +3836,7 @@ Symbol: \Jacobids
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Jacobinc
 
@@ -3693,6 +3861,7 @@ Symbol: \Jacobinc
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Jacobind
 
@@ -3717,6 +3886,7 @@ Symbol: \Jacobind
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Jacobins
 
@@ -3741,6 +3911,7 @@ Symbol: \Jacobins
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Jacobiphi
 
@@ -3757,6 +3928,7 @@ Symbol: \Jacobiphi
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Jacobisc
 
@@ -3781,6 +3953,7 @@ Symbol: \Jacobisc
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Jacobisd
 
@@ -3805,6 +3978,7 @@ Symbol: \Jacobisd
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Jacobisn
 
@@ -3829,6 +4003,7 @@ Symbol: \Jacobisn
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \JonquierePhi
 
@@ -3859,6 +4034,7 @@ Symbol: \JordanJ
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Kelvinbei
 
@@ -3879,6 +4055,7 @@ Symbol: \Kelvinbei
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Kelvinber
 
@@ -3899,6 +4076,7 @@ Symbol: \Kelvinber
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Kelvinkei
 
@@ -3919,6 +4097,7 @@ Symbol: \Kelvinkei
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Kelvinker
 
@@ -3939,6 +4118,7 @@ Symbol: \Kelvinker
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Krawtchouk
 
@@ -3955,6 +4135,7 @@ Symbol: \Krawtchouk
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \KrawtchoukK
 
@@ -3971,6 +4152,7 @@ Symbol: \KrawtchoukK
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \Kronecker
 
@@ -3987,6 +4169,7 @@ Symbol: \Kronecker
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \KummerM
 
@@ -4007,6 +4190,7 @@ Symbol: \KummerM
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \KummerU
 
@@ -4027,6 +4211,7 @@ Symbol: \KummerU
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \KummerboldM
 
@@ -4043,6 +4228,7 @@ Symbol: \KummerboldM
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \Laguerre
 
@@ -4060,6 +4246,7 @@ Symbol: \Laguerre
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
   Feature Set: dlmf-alternative-1
 	DLMF: \Laguerre[\alpha]{n}@{x}
@@ -4075,6 +4262,7 @@ Symbol: \Laguerre
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \LaguerreL
 
@@ -4092,6 +4280,7 @@ Symbol: \LaguerreL
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
   Feature Set: dlmf-alternative-1
 	DLMF: \LaguerreL[\alpha]{n}@{x}
@@ -4107,6 +4296,7 @@ Symbol: \LaguerreL
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \LambertW
 
@@ -4194,6 +4384,7 @@ Symbol: \LameEc
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \LameEs
 
@@ -4210,6 +4401,7 @@ Symbol: \LameEs
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Lamea
 
@@ -4226,6 +4418,7 @@ Symbol: \Lamea
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Lameb
 
@@ -4242,6 +4435,7 @@ Symbol: \Lameb
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \LamecE
 
@@ -4258,6 +4452,7 @@ Symbol: \LamecE
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \LamecdE
 
@@ -4274,6 +4469,7 @@ Symbol: \LamecdE
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \LamedE
 
@@ -4290,6 +4486,7 @@ Symbol: \LamedE
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \LamesE
 
@@ -4306,6 +4503,7 @@ Symbol: \LamesE
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \LamescE
 
@@ -4322,6 +4520,7 @@ Symbol: \LamescE
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \LamescdE
 
@@ -4338,6 +4537,7 @@ Symbol: \LamescdE
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \LamesdE
 
@@ -4354,6 +4554,7 @@ Symbol: \LamesdE
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \LameuE
 
@@ -4370,6 +4571,7 @@ Symbol: \LameuE
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Lattice
 
@@ -4403,6 +4605,7 @@ Symbol: \LauricellaFD
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 4
+	Role: 
 
 Symbol: \LegendreBlackQ
 
@@ -4494,6 +4697,7 @@ Symbol: \LegendrePoly
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \LegendrePolys
 
@@ -4514,6 +4718,7 @@ Symbol: \LegendrePolys
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \LegendreQ
 
@@ -4566,6 +4771,7 @@ Symbol: \LegendreSymbol
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \LerchPhi
 
@@ -4586,6 +4792,7 @@ Symbol: \LerchPhi
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \LeviCivita
 
@@ -4602,6 +4809,25 @@ Symbol: \LeviCivita
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
+
+Symbol: \Lim
+
+  Feature Set: dlmf-macro
+	DLMF: \Lim{x}{y}@{z}
+	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r4
+	Maple: limit($2, $0 = $1)
+	Maple-Alternatives: 
+	Maple-Branch Cuts: 
+	Maple-Comment: 
+	Maple-Constraints: 
+	Maple-Link: 
+	Maple-Package: 
+	Meanings: Limit
+	Number of Ats: 1
+	Number of Parameters: 2
+	Number of Variables: 1
+	Role: 
 
 Symbol: \LinBrF
 
@@ -4618,6 +4844,7 @@ Symbol: \LinBrF
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \LiouvilleLambda
 
@@ -4634,6 +4861,7 @@ Symbol: \LiouvilleLambda
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Ln
 
@@ -4696,6 +4924,7 @@ Symbol: \LommelS
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Lommels
 
@@ -4716,6 +4945,7 @@ Symbol: \Lommels
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Longleftrightarrow
 
@@ -4760,6 +4990,7 @@ Symbol: \MangoldtLambda
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \MathieuCe
 
@@ -4776,6 +5007,7 @@ Symbol: \MathieuCe
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MathieuD
 
@@ -4792,6 +5024,7 @@ Symbol: \MathieuD
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \MathieuDc
 
@@ -4808,6 +5041,7 @@ Symbol: \MathieuDc
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \MathieuDs
 
@@ -4824,6 +5058,7 @@ Symbol: \MathieuDs
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \MathieuDsc
 
@@ -4840,6 +5075,7 @@ Symbol: \MathieuDsc
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \MathieuEigenvaluea
 
@@ -4860,6 +5096,7 @@ Symbol: \MathieuEigenvaluea
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \MathieuEigenvalueb
 
@@ -4880,6 +5117,7 @@ Symbol: \MathieuEigenvalueb
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \MathieuEigenvaluelambda
 
@@ -4896,6 +5134,7 @@ Symbol: \MathieuEigenvaluelambda
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \MathieuFc
 
@@ -4912,6 +5151,7 @@ Symbol: \MathieuFc
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MathieuFe
 
@@ -4928,6 +5168,7 @@ Symbol: \MathieuFe
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MathieuFs
 
@@ -4944,6 +5185,7 @@ Symbol: \MathieuFs
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MathieuGc
 
@@ -4960,6 +5202,7 @@ Symbol: \MathieuGc
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MathieuGe
 
@@ -4976,6 +5219,7 @@ Symbol: \MathieuGe
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MathieuGs
 
@@ -4992,6 +5236,7 @@ Symbol: \MathieuGs
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MathieuIe
 
@@ -5008,6 +5253,7 @@ Symbol: \MathieuIe
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MathieuIo
 
@@ -5024,6 +5270,7 @@ Symbol: \MathieuIo
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MathieuKe
 
@@ -5040,6 +5287,7 @@ Symbol: \MathieuKe
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MathieuKo
 
@@ -5056,6 +5304,7 @@ Symbol: \MathieuKo
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MathieuM
 
@@ -5072,6 +5321,7 @@ Symbol: \MathieuM
 	Number of Ats: 2
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MathieuMc
 
@@ -5088,6 +5338,7 @@ Symbol: \MathieuMc
 	Number of Ats: 2
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MathieuMe
 
@@ -5104,6 +5355,7 @@ Symbol: \MathieuMe
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MathieuMs
 
@@ -5120,6 +5372,7 @@ Symbol: \MathieuMs
 	Number of Ats: 2
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MathieuSe
 
@@ -5136,6 +5389,7 @@ Symbol: \MathieuSe
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Mathieuce
 
@@ -5156,6 +5410,7 @@ Symbol: \Mathieuce
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Mathieufe
 
@@ -5172,6 +5427,7 @@ Symbol: \Mathieufe
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Mathieuge
 
@@ -5188,6 +5444,7 @@ Symbol: \Mathieuge
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Mathieume
 
@@ -5203,6 +5460,7 @@ Symbol: \Mathieume
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Mathieuse
 
@@ -5223,6 +5481,7 @@ Symbol: \Mathieuse
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Meixner
 
@@ -5239,6 +5498,7 @@ Symbol: \Meixner
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \MeixnerM
 
@@ -5255,6 +5515,7 @@ Symbol: \MeixnerM
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \MeixnerPollaczek
 
@@ -5271,6 +5532,7 @@ Symbol: \MeixnerPollaczek
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \MeixnerPollaczekP
 
@@ -5287,6 +5549,7 @@ Symbol: \MeixnerPollaczekP
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Mills
 
@@ -5303,6 +5566,7 @@ Symbol: \Mills
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \MittagLeffler
 
@@ -5319,6 +5583,7 @@ Symbol: \MittagLeffler
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ModCylinder
 
@@ -5335,6 +5600,7 @@ Symbol: \ModCylinder
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ModularJ
 
@@ -5351,6 +5617,7 @@ Symbol: \ModularJ
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ModularLambda
 
@@ -5367,6 +5634,7 @@ Symbol: \ModularLambda
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \MoebiusMu
 
@@ -5379,10 +5647,11 @@ Symbol: \MoebiusMu
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
-	Meanings: M??s function
+	Meanings: Möbius function
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \NatNumber
 
@@ -5417,6 +5686,7 @@ Symbol: \NeumannFactor
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \NeumannPoly
 
@@ -5433,6 +5703,7 @@ Symbol: \NeumannPoly
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \NumPrimeDivNu
 
@@ -5453,6 +5724,7 @@ Symbol: \NumPrimeDivNu
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \NumPrimesLessPi
 
@@ -5469,6 +5741,7 @@ Symbol: \NumPrimesLessPi
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \NumSquaresR
 
@@ -5485,6 +5758,7 @@ Symbol: \NumSquaresR
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ODEgenAiryA
 
@@ -5501,6 +5775,7 @@ Symbol: \ODEgenAiryA
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ODEgenAiryB
 
@@ -5517,6 +5792,7 @@ Symbol: \ODEgenAiryB
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Pade
 
@@ -5533,6 +5809,7 @@ Symbol: \Pade
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \ParabolicU
 
@@ -5553,6 +5830,7 @@ Symbol: \ParabolicU
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \ParabolicUbar
 
@@ -5569,6 +5847,7 @@ Symbol: \ParabolicUbar
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \ParabolicV
 
@@ -5589,6 +5868,7 @@ Symbol: \ParabolicV
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \ParabolicW
 
@@ -5605,6 +5885,7 @@ Symbol: \ParabolicW
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \PartitionsP
 
@@ -5621,6 +5902,7 @@ Symbol: \PartitionsP
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \PeriodicBernoulliB
 
@@ -5637,6 +5919,7 @@ Symbol: \PeriodicBernoulliB
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \PeriodicEulerE
 
@@ -5653,6 +5936,7 @@ Symbol: \PeriodicEulerE
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \PeriodicZeta
 
@@ -5669,6 +5953,7 @@ Symbol: \PeriodicZeta
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Permutations
 
@@ -5686,6 +5971,7 @@ Symbol: \Permutations
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \PlanePartitionsPP
 
@@ -5702,6 +5988,7 @@ Symbol: \PlanePartitionsPP
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \PollaczekP
 
@@ -5718,6 +6005,7 @@ Symbol: \PollaczekP
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \Polylogarithm
 
@@ -5759,6 +6047,7 @@ Symbol: \Prod
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Racah
 
@@ -5775,6 +6064,7 @@ Symbol: \Racah
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \RacahR
 
@@ -5791,6 +6081,7 @@ Symbol: \RacahR
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \RamanujanSum
 
@@ -5807,6 +6098,7 @@ Symbol: \RamanujanSum
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \RamanujanTau
 
@@ -5823,6 +6115,7 @@ Symbol: \RamanujanTau
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Rational
 
@@ -5857,6 +6150,7 @@ Symbol: \RayleighFun
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Real
 
@@ -5929,6 +6223,7 @@ Symbol: \RestrictedCompositionsC
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \RestrictedPartitionsP
 
@@ -5939,6 +6234,7 @@ Symbol: \RestrictedPartitionsP
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \RiemannXi
 
@@ -5955,6 +6251,7 @@ Symbol: \RiemannXi
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \RiemannZeta
 
@@ -5975,6 +6272,7 @@ Symbol: \RiemannZeta
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Schwarzian
 
@@ -5991,6 +6289,7 @@ Symbol: \Schwarzian
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \ScorerGi
 
@@ -6007,6 +6306,7 @@ Symbol: \ScorerGi
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ScorerHi
 
@@ -6023,6 +6323,7 @@ Symbol: \ScorerHi
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \SinCosIntf
 
@@ -6132,6 +6433,7 @@ Symbol: \SpaceTestFunTempered
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \SphBesselIi
 
@@ -6148,6 +6450,7 @@ Symbol: \SphBesselIi
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \SphBesselIii
 
@@ -6164,6 +6467,7 @@ Symbol: \SphBesselIii
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \SphBesselJ
 
@@ -6180,6 +6484,7 @@ Symbol: \SphBesselJ
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \SphBesselK
 
@@ -6196,6 +6501,7 @@ Symbol: \SphBesselK
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \SphBesselY
 
@@ -6212,6 +6518,7 @@ Symbol: \SphBesselY
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \SphHankelHi
 
@@ -6228,6 +6535,7 @@ Symbol: \SphHankelHi
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \SphHankelHii
 
@@ -6244,6 +6552,7 @@ Symbol: \SphHankelHii
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \SphericalHarmonicY
 
@@ -6264,6 +6573,7 @@ Symbol: \SphericalHarmonicY
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \SpheroidalEigenvalueLambda
 
@@ -6280,6 +6590,7 @@ Symbol: \SpheroidalEigenvalueLambda
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \SpheroidalOnCutPs
 
@@ -6296,6 +6607,7 @@ Symbol: \SpheroidalOnCutPs
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \SpheroidalOnCutQs
 
@@ -6312,6 +6624,7 @@ Symbol: \SpheroidalOnCutQs
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \SpheroidalPs
 
@@ -6328,6 +6641,7 @@ Symbol: \SpheroidalPs
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \SpheroidalQs
 
@@ -6344,6 +6658,7 @@ Symbol: \SpheroidalQs
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \SpheroidalRadialS
 
@@ -6360,6 +6675,7 @@ Symbol: \SpheroidalRadialS
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 2
+	Role: 
 
 Symbol: \StieltjesConstants
 
@@ -6394,6 +6710,7 @@ Symbol: \StieltjesWigert
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \StieltjesWigertS
 
@@ -6410,6 +6727,7 @@ Symbol: \StieltjesWigertS
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \StirlingS
 
@@ -6430,6 +6748,7 @@ Symbol: \StirlingS
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \StirlingSS
 
@@ -6450,6 +6769,7 @@ Symbol: \StirlingSS
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \StruveH
 
@@ -6470,6 +6790,7 @@ Symbol: \StruveH
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \StruveK
 
@@ -6490,6 +6811,7 @@ Symbol: \StruveK
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \StruveL
 
@@ -6510,6 +6832,7 @@ Symbol: \StruveL
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \StruveM
 
@@ -6530,6 +6853,7 @@ Symbol: \StruveM
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Sum
 
@@ -6550,6 +6874,7 @@ Symbol: \Sum
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 1
+	Role: 
 
 Symbol: \SurfaceHarmonicY
 
@@ -6566,6 +6891,7 @@ Symbol: \SurfaceHarmonicY
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \TriangleOP
 
@@ -6582,6 +6908,7 @@ Symbol: \TriangleOP
 	Number of Ats: 1
 	Number of Parameters: 5
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Ultra
 
@@ -6602,6 +6929,7 @@ Symbol: \Ultra
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Ultraspherical
 
@@ -6622,6 +6950,7 @@ Symbol: \Ultraspherical
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \VoigtU
 
@@ -6638,6 +6967,7 @@ Symbol: \VoigtU
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \VoigtV
 
@@ -6654,6 +6984,7 @@ Symbol: \VoigtV
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \WaringG
 
@@ -6670,6 +7001,7 @@ Symbol: \WaringG
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Waringg
 
@@ -6686,6 +7018,7 @@ Symbol: \Waringg
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \WeberE
 
@@ -6706,6 +7039,7 @@ Symbol: \WeberE
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \WeierPInv
 
@@ -6726,6 +7060,7 @@ Symbol: \WeierPInv
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \WeierPLat
 
@@ -6742,6 +7077,7 @@ Symbol: \WeierPLat
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \WeiersigmaInv
 
@@ -6762,6 +7098,7 @@ Symbol: \WeiersigmaInv
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \WeiersigmaLat
 
@@ -6778,6 +7115,7 @@ Symbol: \WeiersigmaLat
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \WeierzetaInv
 
@@ -6798,6 +7136,7 @@ Symbol: \WeierzetaInv
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \WeierzetaLat
 
@@ -6814,6 +7153,7 @@ Symbol: \WeierzetaLat
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \WhitD
 
@@ -6834,6 +7174,7 @@ Symbol: \WhitD
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \WhitM
 
@@ -6854,6 +7195,7 @@ Symbol: \WhitM
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \WhitW
 
@@ -6874,6 +7216,7 @@ Symbol: \WhitW
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \Wilson
 
@@ -6890,6 +7233,7 @@ Symbol: \Wilson
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \WilsonW
 
@@ -6906,6 +7250,7 @@ Symbol: \WilsonW
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \Wron
 
@@ -6919,6 +7264,7 @@ Symbol: \Wron
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \Wronskian
 
@@ -6935,6 +7281,7 @@ Symbol: \Wronskian
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ZeroAiryAi
 
@@ -6951,6 +7298,7 @@ Symbol: \ZeroAiryAi
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ZeroAiryAiPrime
 
@@ -6967,6 +7315,7 @@ Symbol: \ZeroAiryAiPrime
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ZeroAiryBi
 
@@ -6983,6 +7332,7 @@ Symbol: \ZeroAiryBi
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ZeroAiryBiPrime
 
@@ -6999,6 +7349,7 @@ Symbol: \ZeroAiryBiPrime
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ZeroBesselJ
 
@@ -7015,6 +7366,7 @@ Symbol: \ZeroBesselJ
 	Number of Ats: 0
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ZeroBesselJPrime
 
@@ -7031,6 +7383,7 @@ Symbol: \ZeroBesselJPrime
 	Number of Ats: 0
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ZeroBesselY
 
@@ -7047,6 +7400,7 @@ Symbol: \ZeroBesselY
 	Number of Ats: 0
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \ZeroBesselYPrime
 
@@ -7063,6 +7417,7 @@ Symbol: \ZeroBesselYPrime
 	Number of Ats: 0
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \abs
 
@@ -7285,6 +7640,7 @@ Symbol: \arcJacobicd
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \arcJacobicn
 
@@ -7305,6 +7661,7 @@ Symbol: \arcJacobicn
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \arcJacobics
 
@@ -7325,6 +7682,7 @@ Symbol: \arcJacobics
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \arcJacobidc
 
@@ -7345,6 +7703,7 @@ Symbol: \arcJacobidc
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \arcJacobidn
 
@@ -7365,6 +7724,7 @@ Symbol: \arcJacobidn
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \arcJacobids
 
@@ -7385,6 +7745,7 @@ Symbol: \arcJacobids
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \arcJacobinc
 
@@ -7405,6 +7766,7 @@ Symbol: \arcJacobinc
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \arcJacobind
 
@@ -7425,6 +7787,7 @@ Symbol: \arcJacobind
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \arcJacobins
 
@@ -7445,6 +7808,7 @@ Symbol: \arcJacobins
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \arcJacobisc
 
@@ -7465,6 +7829,7 @@ Symbol: \arcJacobisc
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \arcJacobisd
 
@@ -7485,6 +7850,7 @@ Symbol: \arcJacobisd
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \arcJacobisn
 
@@ -7505,6 +7871,7 @@ Symbol: \arcJacobisn
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \asec
 
@@ -7694,6 +8061,7 @@ Symbol: \bigqJacobi
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \bigqJacobiIVparam
 
@@ -7710,6 +8078,7 @@ Symbol: \bigqJacobiIVparam
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 6
+	Role: 
 
 Symbol: \bigqLaguerre
 
@@ -7726,6 +8095,7 @@ Symbol: \bigqLaguerre
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \bigqLegendre
 
@@ -7742,6 +8112,7 @@ Symbol: \bigqLegendre
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \binom
 
@@ -7816,6 +8187,7 @@ Symbol: \card
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \cartprod
 
@@ -7853,6 +8225,7 @@ Symbol: \ceiling
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \conj
 
@@ -8071,6 +8444,7 @@ Symbol: \ctsHahn
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \ctsbigqHermite
 
@@ -8087,6 +8461,7 @@ Symbol: \ctsbigqHermite
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \ctsdualHahn
 
@@ -8103,6 +8478,7 @@ Symbol: \ctsdualHahn
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \ctsdualqHahn
 
@@ -8119,6 +8495,7 @@ Symbol: \ctsdualqHahn
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \ctsqHahn
 
@@ -8135,6 +8512,7 @@ Symbol: \ctsqHahn
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 6
+	Role: 
 
 Symbol: \ctsqHermite
 
@@ -8151,6 +8529,7 @@ Symbol: \ctsqHermite
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \ctsqJacobi
 
@@ -8167,6 +8546,7 @@ Symbol: \ctsqJacobi
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 2
+	Role: 
 
 Symbol: \ctsqJacobiRahman
 
@@ -8183,6 +8563,7 @@ Symbol: \ctsqJacobiRahman
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \ctsqLaguerre
 
@@ -8199,6 +8580,7 @@ Symbol: \ctsqLaguerre
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \ctsqLegendre
 
@@ -8215,6 +8597,7 @@ Symbol: \ctsqLegendre
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \ctsqLegendreRahman
 
@@ -8231,6 +8614,7 @@ Symbol: \ctsqLegendreRahman
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \ctsqUltra
 
@@ -8247,6 +8631,7 @@ Symbol: \ctsqUltra
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \ctsqUltrae
 
@@ -8263,6 +8648,7 @@ Symbol: \ctsqUltrae
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \deltaDistribution
 
@@ -8279,6 +8665,7 @@ Symbol: \deltaDistribution
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 0
+	Role: 
 
 Symbol: \deriv
 
@@ -8375,6 +8762,7 @@ Symbol: \discrqHermiteI
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \discrqHermiteII
 
@@ -8391,6 +8779,7 @@ Symbol: \discrqHermiteII
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \divides
 
@@ -8424,6 +8813,7 @@ Symbol: \dualHahn
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \dualqHahn
 
@@ -8440,6 +8830,7 @@ Symbol: \dualqHahn
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \dualqKrawtchouk
 
@@ -8456,6 +8847,7 @@ Symbol: \dualqKrawtchouk
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \erf
 
@@ -8573,6 +8965,7 @@ Symbol: \f
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \fDiff
 
@@ -8604,6 +8997,7 @@ Symbol: \floor
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \forall
 
@@ -8634,6 +9028,7 @@ Symbol: \idem
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \ideriv
 
@@ -8685,6 +9080,7 @@ Symbol: \ifrac
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \imagpart
 
@@ -8887,6 +9283,7 @@ Symbol: \littleo
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \littleqJacobi
 
@@ -8903,6 +9300,7 @@ Symbol: \littleqJacobi
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \littleqLaguerre
 
@@ -8919,6 +9317,7 @@ Symbol: \littleqLaguerre
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \littleqLegendre
 
@@ -8935,6 +9334,7 @@ Symbol: \littleqLegendre
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \ln
 
@@ -9033,6 +9433,7 @@ Symbol: \mEulerBeta
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \mEulerGamma
 
@@ -9067,6 +9468,7 @@ Symbol: \monicAffqKrawtchouk
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \monicAlSalamCarlitzI
 
@@ -9083,6 +9485,7 @@ Symbol: \monicAlSalamCarlitzI
 	Number of Ats: 2
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \monicAlSalamCarlitzII
 
@@ -9099,6 +9502,7 @@ Symbol: \monicAlSalamCarlitzII
 	Number of Ats: 2
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \monicAlSalamChihara
 
@@ -9115,6 +9519,7 @@ Symbol: \monicAlSalamChihara
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \monicAskeyWilson
 
@@ -9131,6 +9536,7 @@ Symbol: \monicAskeyWilson
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 6
+	Role: 
 
 Symbol: \monicBesselPoly
 
@@ -9147,6 +9553,7 @@ Symbol: \monicBesselPoly
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \monicCharlier
 
@@ -9163,6 +9570,7 @@ Symbol: \monicCharlier
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \monicChebyT
 
@@ -9179,6 +9587,7 @@ Symbol: \monicChebyT
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \monicChebyU
 
@@ -9195,6 +9604,7 @@ Symbol: \monicChebyU
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \monicHahn
 
@@ -9211,6 +9621,7 @@ Symbol: \monicHahn
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \monicHermite
 
@@ -9227,6 +9638,7 @@ Symbol: \monicHermite
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \monicJacobi
 
@@ -9243,6 +9655,7 @@ Symbol: \monicJacobi
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \monicKrawtchouk
 
@@ -9259,6 +9672,7 @@ Symbol: \monicKrawtchouk
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \monicLaguerre
 
@@ -9275,6 +9689,7 @@ Symbol: \monicLaguerre
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \monicLegendrePoly
 
@@ -9291,6 +9706,7 @@ Symbol: \monicLegendrePoly
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \monicMeixner
 
@@ -9307,6 +9723,7 @@ Symbol: \monicMeixner
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \monicMeixnerPollaczek
 
@@ -9323,6 +9740,7 @@ Symbol: \monicMeixnerPollaczek
 	Number of Ats: 2
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \monicRacah
 
@@ -9339,6 +9757,7 @@ Symbol: \monicRacah
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \monicStieltjesWigert
 
@@ -9355,6 +9774,7 @@ Symbol: \monicStieltjesWigert
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \monicUltra
 
@@ -9371,6 +9791,7 @@ Symbol: \monicUltra
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \monicWilson
 
@@ -9387,6 +9808,7 @@ Symbol: \monicWilson
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \monicbigqJacobi
 
@@ -9403,6 +9825,7 @@ Symbol: \monicbigqJacobi
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \monicbigqLaguerre
 
@@ -9419,6 +9842,7 @@ Symbol: \monicbigqLaguerre
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \monicbigqLegendre
 
@@ -9435,6 +9859,7 @@ Symbol: \monicbigqLegendre
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \monicctsHahn
 
@@ -9451,6 +9876,7 @@ Symbol: \monicctsHahn
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \monicctsbigqHermite
 
@@ -9467,6 +9893,7 @@ Symbol: \monicctsbigqHermite
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \monicctsdualHahn
 
@@ -9483,6 +9910,7 @@ Symbol: \monicctsdualHahn
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \monicctsdualqHahn
 
@@ -9499,6 +9927,7 @@ Symbol: \monicctsdualqHahn
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \monicctsqHahn
 
@@ -9515,6 +9944,7 @@ Symbol: \monicctsqHahn
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 6
+	Role: 
 
 Symbol: \monicctsqHermite
 
@@ -9531,6 +9961,7 @@ Symbol: \monicctsqHermite
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \monicctsqJacobi
 
@@ -9547,6 +9978,7 @@ Symbol: \monicctsqJacobi
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \monicctsqLaguerre
 
@@ -9563,6 +9995,7 @@ Symbol: \monicctsqLaguerre
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \monicctsqLegendre
 
@@ -9579,6 +10012,7 @@ Symbol: \monicctsqLegendre
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \monicctsqUltra
 
@@ -9595,6 +10029,7 @@ Symbol: \monicctsqUltra
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \monicdiscrqHermiteI
 
@@ -9611,6 +10046,7 @@ Symbol: \monicdiscrqHermiteI
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \monicdiscrqHermiteII
 
@@ -9627,6 +10063,7 @@ Symbol: \monicdiscrqHermiteII
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \monicdualHahn
 
@@ -9643,6 +10080,7 @@ Symbol: \monicdualHahn
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \monicdualqHahn
 
@@ -9659,6 +10097,7 @@ Symbol: \monicdualqHahn
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \monicdualqKrawtchouk
 
@@ -9675,6 +10114,7 @@ Symbol: \monicdualqKrawtchouk
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \moniclittleqJacobi
 
@@ -9691,6 +10131,7 @@ Symbol: \moniclittleqJacobi
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \moniclittleqLaguerre
 
@@ -9707,6 +10148,7 @@ Symbol: \moniclittleqLaguerre
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \moniclittleqLegendre
 
@@ -9723,6 +10165,7 @@ Symbol: \moniclittleqLegendre
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \monicpseudoJacobi
 
@@ -9739,6 +10182,7 @@ Symbol: \monicpseudoJacobi
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \monicqBesselPoly
 
@@ -9755,6 +10199,7 @@ Symbol: \monicqBesselPoly
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \monicqCharlier
 
@@ -9771,6 +10216,7 @@ Symbol: \monicqCharlier
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \monicqHahn
 
@@ -9787,6 +10233,7 @@ Symbol: \monicqHahn
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \monicqKrawtchouk
 
@@ -9803,6 +10250,7 @@ Symbol: \monicqKrawtchouk
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \monicqLaguerre
 
@@ -9819,6 +10267,7 @@ Symbol: \monicqLaguerre
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \monicqMeixner
 
@@ -9835,6 +10284,7 @@ Symbol: \monicqMeixner
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \monicqMeixnerPollaczek
 
@@ -9851,6 +10301,7 @@ Symbol: \monicqMeixnerPollaczek
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \monicqRacah
 
@@ -9867,6 +10318,7 @@ Symbol: \monicqRacah
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 6
+	Role: 
 
 Symbol: \monicqinvAlSalamChihara
 
@@ -9883,6 +10335,7 @@ Symbol: \monicqinvAlSalamChihara
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \monicqtmqKrawtchouk
 
@@ -9899,6 +10352,7 @@ Symbol: \monicqtmqKrawtchouk
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \multinomial
 
@@ -9948,6 +10402,7 @@ Symbol: \ninej
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 9
+	Role: 
 
 Symbol: \normAskeyWilsonptilde
 
@@ -9964,6 +10419,7 @@ Symbol: \normAskeyWilsonptilde
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 6
+	Role: 
 
 Symbol: \normJacobiR
 
@@ -9980,6 +10436,7 @@ Symbol: \normJacobiR
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 1
+	Role: 
 
 Symbol: \normWilsonWtilde
 
@@ -9996,6 +10453,7 @@ Symbol: \normWilsonWtilde
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \normctsHahnptilde
 
@@ -10012,6 +10470,7 @@ Symbol: \normctsHahnptilde
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \normctsdualHahnStilde
 
@@ -10028,6 +10487,7 @@ Symbol: \normctsdualHahnStilde
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \normctsdualqHahnptilde
 
@@ -10044,6 +10504,7 @@ Symbol: \normctsdualqHahnptilde
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \normctsqHahnptilde
 
@@ -10060,6 +10521,7 @@ Symbol: \normctsqHahnptilde
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 6
+	Role: 
 
 Symbol: \normctsqJacobiPtilde
 
@@ -10076,6 +10538,7 @@ Symbol: \normctsqJacobiPtilde
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \notin
 
@@ -10229,6 +10692,7 @@ Symbol: \pochhammer
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \poly
 
@@ -10245,6 +10709,7 @@ Symbol: \poly
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \polygamma
 
@@ -10287,6 +10752,7 @@ Symbol: \power
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \pseudoJacobi
 
@@ -10303,6 +10769,7 @@ Symbol: \pseudoJacobi
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \psfactorial
 
@@ -10316,6 +10783,7 @@ Symbol: \psfactorial
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \qAppelli
 
@@ -10332,6 +10800,7 @@ Symbol: \qAppelli
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 7
+	Role: 
 
 Symbol: \qAppellii
 
@@ -10348,6 +10817,7 @@ Symbol: \qAppellii
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 8
+	Role: 
 
 Symbol: \qAppelliii
 
@@ -10364,6 +10834,7 @@ Symbol: \qAppelliii
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 8
+	Role: 
 
 Symbol: \qAppelliv
 
@@ -10380,6 +10851,7 @@ Symbol: \qAppelliv
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 7
+	Role: 
 
 Symbol: \qBernoulli
 
@@ -10396,6 +10868,7 @@ Symbol: \qBernoulli
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \qBesselPoly
 
@@ -10412,6 +10885,7 @@ Symbol: \qBesselPoly
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \qBeta
 
@@ -10428,6 +10902,7 @@ Symbol: \qBeta
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \qBinomial
 
@@ -10444,6 +10919,7 @@ Symbol: \qBinomial
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \qCharlier
 
@@ -10460,6 +10936,7 @@ Symbol: \qCharlier
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \qCos
 
@@ -10476,6 +10953,7 @@ Symbol: \qCos
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qCosKLS
 
@@ -10492,6 +10970,7 @@ Symbol: \qCosKLS
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qDigamma
 
@@ -10508,6 +10987,7 @@ Symbol: \qDigamma
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qEuler
 
@@ -10524,6 +11004,7 @@ Symbol: \qEuler
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qExp
 
@@ -10540,6 +11021,7 @@ Symbol: \qExp
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qExpKLS
 
@@ -10556,6 +11038,7 @@ Symbol: \qExpKLS
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qFactorial
 
@@ -10572,6 +11055,7 @@ Symbol: \qFactorial
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \qGamma
 
@@ -10588,6 +11072,7 @@ Symbol: \qGamma
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qHahn
 
@@ -10604,6 +11089,7 @@ Symbol: \qHahn
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \qHahnQ
 
@@ -10620,6 +11106,7 @@ Symbol: \qHahnQ
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \qHermiteH
 
@@ -10636,6 +11123,7 @@ Symbol: \qHermiteH
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \qHermitehI
 
@@ -10652,6 +11140,7 @@ Symbol: \qHermitehI
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \qHermitehII
 
@@ -10668,6 +11157,7 @@ Symbol: \qHermitehII
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \qHyperrWs
 
@@ -10684,6 +11174,7 @@ Symbol: \qHyperrWs
 	Number of Ats: 3
 	Number of Parameters: 2
 	Number of Variables: 4
+	Role: 
 
 Symbol: \qHyperrphis
 
@@ -10700,6 +11191,7 @@ Symbol: \qHyperrphis
 	Number of Ats: 3
 	Number of Parameters: 2
 	Number of Variables: 4
+	Role: 
 
 Symbol: \qHyperrpsis
 
@@ -10716,6 +11208,7 @@ Symbol: \qHyperrpsis
 	Number of Ats: 3
 	Number of Parameters: 2
 	Number of Variables: 4
+	Role: 
 
 Symbol: \qJacobiP
 
@@ -10732,6 +11225,7 @@ Symbol: \qJacobiP
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 5
+	Role: 
 
 Symbol: \qJacobiPP
 
@@ -10748,6 +11242,7 @@ Symbol: \qJacobiPP
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 4
+	Role: 
 
 Symbol: \qJacobip
 
@@ -10764,6 +11259,7 @@ Symbol: \qJacobip
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \qKrawtchouk
 
@@ -10780,6 +11276,7 @@ Symbol: \qKrawtchouk
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \qLaguerre
 
@@ -10790,6 +11287,7 @@ Symbol: \qLaguerre
 	Number of Ats: 2
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \qLaguerreL
 
@@ -10800,6 +11298,7 @@ Symbol: \qLaguerreL
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 2
+	Role: 
 
 Symbol: \qLegendre
 
@@ -10816,6 +11315,7 @@ Symbol: \qLegendre
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \qMeixner
 
@@ -10832,6 +11332,7 @@ Symbol: \qMeixner
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \qMeixnerPollaczek
 
@@ -10848,6 +11349,7 @@ Symbol: \qMeixnerPollaczek
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \qMultiPochhammer
 
@@ -10864,6 +11366,7 @@ Symbol: \qMultiPochhammer
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \qMultinomial
 
@@ -10880,6 +11383,7 @@ Symbol: \qMultinomial
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \qPochhammer
 
@@ -10896,6 +11400,7 @@ Symbol: \qPochhammer
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 3
+	Role: 
 
 Symbol: \qPolygamma
 
@@ -10912,6 +11417,7 @@ Symbol: \qPolygamma
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qRacah
 
@@ -10928,6 +11434,7 @@ Symbol: \qRacah
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 6
+	Role: 
 
 Symbol: \qRacahR
 
@@ -10944,6 +11451,7 @@ Symbol: \qRacahR
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 6
+	Role: 
 
 Symbol: \qSin
 
@@ -10960,6 +11468,7 @@ Symbol: \qSin
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qSinKLS
 
@@ -10976,6 +11485,7 @@ Symbol: \qSinKLS
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qStirling
 
@@ -10992,6 +11502,7 @@ Symbol: \qStirling
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qUltraspherical
 
@@ -11008,6 +11519,7 @@ Symbol: \qUltraspherical
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 3
+	Role: 
 
 Symbol: \qcos
 
@@ -11024,6 +11536,7 @@ Symbol: \qcos
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qcosKLS
 
@@ -11040,6 +11553,7 @@ Symbol: \qcosKLS
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qderiv
 
@@ -11050,6 +11564,7 @@ Symbol: \qderiv
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qdiff
 
@@ -11066,6 +11581,7 @@ Symbol: \qdiff
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 2
+	Role: 
 
 Symbol: \qexp
 
@@ -11082,6 +11598,7 @@ Symbol: \qexp
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qexpKLS
 
@@ -11098,6 +11615,7 @@ Symbol: \qexpKLS
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qinvAlSalamChihara
 
@@ -11114,6 +11632,7 @@ Symbol: \qinvAlSalamChihara
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \qinvHermiteh
 
@@ -11130,6 +11649,7 @@ Symbol: \qinvHermiteh
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 2
+	Role: 
 
 Symbol: \qsin
 
@@ -11146,6 +11666,7 @@ Symbol: \qsin
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qsinKLS
 
@@ -11162,6 +11683,7 @@ Symbol: \qsinKLS
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \qtmqKrawtchouk
 
@@ -11178,6 +11700,7 @@ Symbol: \qtmqKrawtchouk
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 4
+	Role: 
 
 Symbol: \realpart
 
@@ -11219,6 +11742,7 @@ Symbol: \rescaledTerminant
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \sec
 
@@ -11329,6 +11853,7 @@ Symbol: \sign
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
+	Role: 
 
 Symbol: \sim
 
@@ -11345,6 +11870,7 @@ Symbol: \sim
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 0
+	Role: 
 
 Symbol: \sin
 
@@ -11451,6 +11977,7 @@ Symbol: \sixj
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 6
+	Role: 
 
 Symbol: \sqrt
 
@@ -11599,6 +12126,7 @@ Symbol: \terminant
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
+	Role: 
 
 Symbol: \threej
 
@@ -11615,6 +12143,7 @@ Symbol: \threej
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 6
+	Role: 
 
 Symbol: \wigner
 
@@ -11631,3 +12160,4 @@ Symbol: \wigner
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 6
+	Role: 

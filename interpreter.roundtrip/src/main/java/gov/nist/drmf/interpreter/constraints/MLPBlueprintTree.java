@@ -88,7 +88,9 @@ public class MLPBlueprintTree {
 
     public boolean matches(MLPBlueprintNode other){
         texVariables.clear();
-        return parent.equals(other);
+        boolean r = parent.equals(other);
+        if (!r) texVariables.clear();
+        return r;
     }
 
     protected void setVariable(String varPattern, String texVariable) {
@@ -128,6 +130,7 @@ public class MLPBlueprintTree {
         constraint = constraint.replaceAll("\\\\[it]?frac", "\\\\frac");
         constraint = constraint.replaceAll("\\\\ne[^\\w]", "\\\\neq");
         constraint = constraint.replaceAll("[\\s,;.]*$", "");
+        constraint = constraint.replaceAll("@*", "");
         return constraint;
     }
 }
