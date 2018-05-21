@@ -89,11 +89,11 @@ public class MLPConstraintAnalyzer {
     }
 
     public static void main(String[] args) throws Exception {
-        String s = "var1-var2 odd";
-        MLPBlueprintTree t = new MLPBlueprintTree(new String[]{"5","2"});
+        String s = "var1^2 var2^2 < 1";
+        MLPBlueprintTree t = new MLPBlueprintTree(new String[]{"1/4,1/2"});
         t.setBlueprint(s);
 
-        MLPBlueprintNode n = MLPBlueprintTree.parseTree("x-y odd");
+        MLPBlueprintNode n = MLPBlueprintTree.parseTree("a^2 q^2 < 1");
 
         System.out.println(t.matches(n));
         String[][] st = t.getConstraintVariablesAndValues();
@@ -101,7 +101,7 @@ public class MLPConstraintAnalyzer {
         System.out.println(Arrays.toString(st[1]));
         System.out.println(Arrays.toString(st[0]));
 
-//
+
 //        MLPConstraintAnalyzer a = new MLPConstraintAnalyzer();
 //        a.init();
 //

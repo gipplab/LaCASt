@@ -51,3 +51,4 @@ var1 = -var2 = \pm\tfrac{1}{2} ==> 1/2,-1/2
 var1 = var2 \pm \sqrt{(y-x)(z-x)} ==> 1/2+\sqrt{(y-x)(z-x)},1/2
 -\cpi \leq \pm\ph@{var} \leq \tfrac{1}{2}\cpi ==> 1/2
 -\tfrac{1}{2}\cpi \leq \pm\ph@@{var} \leq \cpi ==> 1/2
+var = 1,2,\dots,\floor{\tfrac{1}{2}n} ==> floor(n/2)

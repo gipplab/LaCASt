@@ -452,22 +452,22 @@ public class NumericalEvaluator implements Observer {
     }
 
     public static void main(String[] args) throws Exception{
-//        NumericalEvaluator ne = new NumericalEvaluator();
-//        ne.init();
-//
-//        String test = "\\frac{x}{1+x} < \\ln@{1+x} < x \\constraint{$x > -1$, $x \\neq 0$} \\label{eq:EF.LO.IX}";
-//
-//        Case c = CaseAnalyzer.analyzeLine(test, 796);
-//
-//        System.out.println(c);
-//
-//        LOG.info(ne.performSingleTest(c));
+        NumericalEvaluator ne = new NumericalEvaluator();
+        ne.init();
 
-        NumericalEvaluator evaluator = new NumericalEvaluator();
-        evaluator.init();
-        evaluator.loadTestCases();
-        evaluator.performAllTests();
-        evaluator.writeOutput( evaluator.config.getOutputPath() );
+        String test = "m + n < 1 \\constraint{$m = 1,2,\\dots,\\floor{\\tfrac{1}{2}n}$}";
+
+        Case c = CaseAnalyzer.analyzeLine(test, 796);
+
+        System.out.println(c);
+
+        LOG.info(ne.performSingleTest(c));
+
+//        NumericalEvaluator evaluator = new NumericalEvaluator();
+//        evaluator.init();
+//        evaluator.loadTestCases();
+//        evaluator.performAllTests();
+//        evaluator.writeOutput( evaluator.config.getOutputPath() );
     }
 
     @Override
