@@ -31,7 +31,7 @@ public class NumericalConfig {
                 String val = props.getProperty(np.key);
                 np.setValue(val);
             }
-            LOG.info( "Successfully loaded config for numerical tests." );
+            LOG.debug( "Successfully loaded config for numerical tests." );
         } catch ( IOException ioe ){
             LOG.fatal("Cannot load the maple native directory " +
                     "information from the given " + GlobalPaths.PATH_MAPLE_CONFIG.getFileName() +

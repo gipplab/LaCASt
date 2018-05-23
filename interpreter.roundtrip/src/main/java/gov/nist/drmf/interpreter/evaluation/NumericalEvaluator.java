@@ -33,6 +33,8 @@ public class NumericalEvaluator implements Observer {
     // 0.6GB
     public static final long MEMORY_NOTIFY_LIMIT_KB = 500_000;
 
+    public static final int MAX_LOG_LENGTH = 300;
+
     private static Path output;
 
     private static MapleTranslator translator;
@@ -54,7 +56,7 @@ public class NumericalEvaluator implements Observer {
     static {
         translator = new MapleTranslator();
         try {
-            LOG.info("Initiate translation engine.");
+            LOG.debug("Initiate translation engine.");
             translator.init();
         } catch (Exception e) {
             LOG.fatal("Cannot initiate translation engine!", e);
@@ -85,7 +87,7 @@ public class NumericalEvaluator implements Observer {
     }
 
     public void init() throws IOException, MapleException {
-        LOG.info("Setup numerical tests.");
+        LOG.info("Setup numerical tests...");
         output = config.getOutputPath();
         if (!Files.exists(output)) {
             Files.createFile(output);
@@ -98,7 +100,7 @@ public class NumericalEvaluator implements Observer {
         //MapleListener.setMemoryUsageLimit( MEMORY_NOTIFY_LIMIT_KB );
 
         // load special numerical test maple procedure
-        LOG.info("Loading Maple internal procedures.");
+        LOG.debug("Loading Maple internal procedures.");
         String numericalProc = MapleInterface.extractProcedure(GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES);
         translator.enterMapleCommand( numericalProc );
         mapleScripts.add(numericalProc);
@@ -129,7 +131,7 @@ public class NumericalEvaluator implements Observer {
 
         mapleScripts.add(sieve_procedure);
         mapleScripts.add(sieve_procedure_relation);
-        LOG.info("Setup done!");
+        LOG.debug("Setup done!");
     }
 
     protected void setTranslator( MapleTranslator translator ){
@@ -274,6 +276,13 @@ public class NumericalEvaluator implements Observer {
                     Status.SUCCESS.add();
                 } else { // otherwise the list contains errors or simple failures
                     LOG.info("Test was NOT successful.");
+
+//                    String output = aList.toString();
+//                    String postfix = output.length() > MAX_LOG_LENGTH/2 ? "..." : "";
+//                    output = output.substring(1, Math.min(output.length(), MAX_LOG_LENGTH/2));
+//                    output += postfix;
+//                    LOG.info("Test results: " + output);
+
                     if ( lineResult == null ){
                         return aList.toString();
                     }
@@ -452,22 +461,22 @@ public class NumericalEvaluator implements Observer {
     }
 
     public static void main(String[] args) throws Exception{
-        NumericalEvaluator ne = new NumericalEvaluator();
-        ne.init();
+//        NumericalEvaluator ne = new NumericalEvaluator();
+//        ne.init();
+//
+//        String test = "m + n < 1 \\constraint{$m = 1,2,\\dots,\\floor{\\tfrac{1}{2}n}$}";
+//
+//        Case c = CaseAnalyzer.analyzeLine(test, 796);
+//
+//        System.out.println(c);
+//
+//        LOG.info(ne.performSingleTest(c));
 
-        String test = "m + n < 1 \\constraint{$m = 1,2,\\dots,\\floor{\\tfrac{1}{2}n}$}";
-
-        Case c = CaseAnalyzer.analyzeLine(test, 796);
-
-        System.out.println(c);
-
-        LOG.info(ne.performSingleTest(c));
-
-//        NumericalEvaluator evaluator = new NumericalEvaluator();
-//        evaluator.init();
-//        evaluator.loadTestCases();
-//        evaluator.performAllTests();
-//        evaluator.writeOutput( evaluator.config.getOutputPath() );
+        NumericalEvaluator evaluator = new NumericalEvaluator();
+        evaluator.init();
+        evaluator.loadTestCases();
+        evaluator.performAllTests();
+        evaluator.writeOutput( evaluator.config.getOutputPath() );
     }
 
     @Override
