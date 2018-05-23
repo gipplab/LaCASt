@@ -72,10 +72,10 @@ public class MLP {
 //            eq = "ab13d";
 //            eq = "\\deriv{}{x} a";
             eq = "\\ell-l";
-            eq = "\\overline{\\BesselJ{\\nu}@{z}}";
-            eq = "a = 2,3,4,\\ldots";
-            eq = "\\realpart{var1} < \\frac{1}{2}";
-            eq = "1 \\constraint{$n = 0,1,2, \\dots$, $z\\in \\mathbf{K}$} \\label{eq:BS.IN.9}";
+            eq = "\\overline{a}";
+//            eq = "a = 2,3,4,\\ldots";
+//            eq = "\\realpart{var1} < \\frac{1}{2}";
+//            eq = "1 \\constraint{$n = 0,1,2, \\dots$, $z\\in \\mathbf{K}$} \\label{eq:BS.IN.9}";
             //eq = "Z = \\sum_{j} g_j \\cdot \\mathrm{e}^{- \\\\beta E_j}";
 
             System.out.println();
@@ -85,7 +85,8 @@ public class MLP {
             // parse/tag the equation and print it out
             PomTaggedExpression pe = parser.parse(eq);
 //            System.out.println(pe);
-            pe = clean(pe);
+//            pe = clean(pe);
+            System.out.println(pe.getRoot().getFeatureValue("accent"));
             System.out.println(pe.toString());
 
 

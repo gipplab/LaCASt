@@ -113,10 +113,9 @@ public class MapleTranslator {
             Properties props = new Properties();
             props.setProperty( Keys.KEY_MAPLE_BIN, maple_dir.toAbsolutePath().toString() );
             props.store(out, GlobalConstants.PROPS_COMMENTS);
-            System.out.println("Finished to setup the properties file.");
+            LOG.debug("Finished to setup the properties file.");
         } catch ( IOException ioe ){
-            System.err.println( "Cannot write the path into the properties file." );
-            ioe.printStackTrace();
+            LOG.fatal( "Cannot write the path into the properties file.", ioe );
         }
     }
 

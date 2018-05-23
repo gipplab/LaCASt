@@ -25,7 +25,7 @@ public class Initializer {
      * @return true if everything went fine.
      */
     public static boolean loadMapleNatives() {
-        LOG.info(Paths.get("").toAbsolutePath());
+        LOG.debug(Paths.get("").toAbsolutePath());
         try ( FileInputStream in = new FileInputStream(GlobalPaths.PATH_MAPLE_CONFIG.toFile()) ){
             Properties props = new Properties();
             props.load(in);

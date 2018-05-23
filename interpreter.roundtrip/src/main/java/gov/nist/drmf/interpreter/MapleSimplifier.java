@@ -5,6 +5,7 @@ import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import com.maplesoft.openmaple.MString;
 import com.maplesoft.openmaple.Numeric;
+import gov.nist.drmf.interpreter.evaluation.NumericalEvaluator;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
@@ -196,9 +197,19 @@ public class MapleSimplifier {
 
         command = "numResults := SpecialNumericalTester(nTest,nTestVals," + precision + ");";
         LOG.debug("Start numerical test.");
-        mapleInterface.evaluateExpression( command );
+        Algebraic numResults = mapleInterface.evaluateExpression( command );
+        logResults(numResults);
 
         return "numResults";
+    }
+
+    private void logResults(Algebraic a){
+        String out = a.toString();
+        String postfix = out.length() > NumericalEvaluator.MAX_LOG_LENGTH ? "..." : "";
+        out = out.substring(1, Math.min(out.length(), NumericalEvaluator.MAX_LOG_LENGTH));
+        out += postfix;
+        LOG.info("Test results: " + out);
+        LOG.trace("NumResults: " + a.toString());
     }
 
     private void checkValues( Algebraic nTestValsA ) throws MapleException, IllegalArgumentException {
@@ -225,7 +236,7 @@ public class MapleSimplifier {
                 throw new IllegalArgumentException("There are no valid test values.");
             } else {
                 String values = l.toString();
-                int min = Math.min(values.length(), 300);
+                int min = Math.min(values.length(), NumericalEvaluator.MAX_LOG_LENGTH);
                 if ( min < values.length() )
                     values = values.substring(1, min) + "...";
                 LOG.info("Testing " + l.length() + " values: " + values);
