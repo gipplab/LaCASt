@@ -13,6 +13,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="interpreter.cas" />
+    <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.4" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.6" level="project" />
     <orderEntry type="module-library">
       <library name="Maven: gov.nist.drmf.interpreter:MLP:1.0-SNAPSHOT">
         <CLASSES>
@@ -28,7 +30,7 @@
     <orderEntry type="module-library">
       <library name="Maven: gov.nist.drmf.interpreter:Maple:1.0-SNAPSHOT">
         <CLASSES>
-          <root url="jar:///opt/maple2016/java/Maple.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/gov/nist/drmf/interpreter/Maple/1.0-SNAPSHOT/Maple-1.0-SNAPSHOT.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -37,7 +39,7 @@
     <orderEntry type="module-library">
       <library name="Maven: gov.nist.drmf.interpreter:Maple-Call:1.0-SNAPSHOT">
         <CLASSES>
-          <root url="jar:///opt/maple2016/java/externalcall.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/gov/nist/drmf/interpreter/Maple-Call/1.0-SNAPSHOT/Maple-Call-1.0-SNAPSHOT.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

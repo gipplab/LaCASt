@@ -39,7 +39,7 @@ import java.util.List;
  */
 public class MathTermTranslator extends AbstractListTranslator {
     private static final Logger LOG = LogManager.getLogger(MathTermTranslator.class.getName());
-    
+
     @Override
     public boolean translate(PomTaggedExpression exp ){
         return translate( exp, new LinkedList<>() );
@@ -64,9 +64,12 @@ public class MathTermTranslator extends AbstractListTranslator {
         SymbolTranslator sT = SemanticLatexTranslator.getSymbolsTranslator();
 
         // if the tag doesn't exists in the system -> stop
-        if ( tag == null ){
-            throw new TranslationException("Unknown MathTerm tag: " + termTag,
-                    TranslationException.Reason.UNKNOWN_MATHTERM_TAG);
+        if ( handleNull( tag,
+            "Unknown MathTerm tag: ",
+            TranslationException.Reason.UNKNOWN_MATHTERM_TAG,
+            termTag,
+            null )){
+            return  true;
         }
 
         // get the feature set for a constant, if this expression has one
@@ -133,9 +136,13 @@ public class MathTermTranslator extends AbstractListTranslator {
                 try {
                     return parseGreekLetter(term.getTermText());
                 } catch ( TranslationException te ){
-                    throw new TranslationException("Reached unknown latex-command " +
-                            term.getTermText(),
-                            TranslationException.Reason.UNKNOWN_LATEX_COMMAND);
+                    if ( handleNull( null,
+                        "Reached unknown latex-command " + term.getTermText(),
+                        TranslationException.Reason.UNKNOWN_LATEX_COMMAND,
+                        term.getTermText(),
+                        te ) ) {
+                        return true;
+                    }
                 }
             case special_math_letter:
             case symbol:

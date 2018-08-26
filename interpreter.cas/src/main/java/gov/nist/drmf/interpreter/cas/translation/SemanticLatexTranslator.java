@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
-import gov.nist.drmf.interpreter.common.*;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.common.*;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
@@ -10,7 +10,6 @@ import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
-import org.apache.logging.log4j.LogManager;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -94,10 +93,9 @@ public class SemanticLatexTranslator extends AbstractTranslator {
         expression = TeXPreProcessor.preProcessingTeX(expression);
         try {
             PomTaggedExpression exp = parser.parse(expression);
-            return translate(exp);
+            return translate( exp );
         } catch ( ParseException pe ){
-            throw new TranslationException(
-                    pe.getMessage(), TranslationException.Reason.MLP_ERROR, pe );
+            return handleNull( null, pe.getMessage(), TranslationException.Reason.MLP_ERROR, expression, pe );
         }
     }
 
@@ -108,9 +106,11 @@ public class SemanticLatexTranslator extends AbstractTranslator {
                 parseGeneralExpression(expression, null).getTranslatedExpression()
         );
         if ( isInnerError() ){
-            throw new TranslationException(
-                    "Wasn't able to translate the given expression."
-            );
+            handleNull( null,
+                "Wasn't able to translate the given expression.",
+                TranslationException.Reason.NULL,
+                expression.toString(),
+                null);
         }
         return true;
     }
