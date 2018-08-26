@@ -13,7 +13,9 @@
 4. [How to contribute](https://github.com/TU-Berlin/latex-grammar/edit/master/CONTRIBUTING.md)
 
 ## How to use our program<a name="howTo"></a>
-You should found the `latex-grammar-<version_number>.zip` in the main directory of this repository. Download this zip and unzip it where ever you want. There are two jars in this zip file.
+You should find the `latex-grammar-<version_number>.zip` in the main directory of this repository.
+Download this zip file and unzip it where ever you want.
+There are two jars in this zip file.
 
 * `latex-converter.jar`: This jar translates given formulae in semantic LaTeX into a given computer algebra system. It has some optional flags to avoid some output. This are all flags you can set:
     * `-CAS=<NameOfCAS>`: Sets the computer algebra system you want to use. For instance `-CAS=Maple` uses Maple or `-CAS=Mathematica` uses Mathematica. If you don't set this flag, the program will ask you which CAS you want to use.
