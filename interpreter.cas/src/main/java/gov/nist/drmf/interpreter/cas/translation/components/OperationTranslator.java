@@ -78,9 +78,12 @@ public class OperationTranslator extends AbstractListTranslator {
     private boolean parseSymbol( MathTerm term ){
         SymbolTranslator sT = SemanticLatexTranslator.getSymbolsTranslator();
         String translation = sT.translate( term.getTermText() );
-        if ( translation == null ){
-            throw new TranslationException("Cannot translate operation " + term.getTermText(),
-                    TranslationException.Reason.UNKNOWN_OPERATION);
+        if ( handleNull( translation,
+            "Cannot translate operation " + term.getTermText(),
+            TranslationException.Reason.UNKNOWN_OPERATION,
+            term.getTermText(),
+            null) ){
+            return true;
         } else {
             INFO_LOG.addGeneralInfo(
                     term.getTermText(),

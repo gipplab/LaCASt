@@ -112,14 +112,7 @@ public class SemanticToCASInterpreter {
 
         if ( clean ){
             GlobalConstants.CAS_KEY = CAS;
-            SemanticLatexTranslator latexParser =
-                    new SemanticLatexTranslator( Keys.KEY_LATEX, GlobalConstants.CAS_KEY );
-            try { latexParser.init( GlobalPaths.PATH_REFERENCE_DATA ); }
-            catch ( IOException e ){
-                System.err.println("Cannot initiate translator.");
-                e.printStackTrace();
-                return;
-            }
+            SemanticLatexTranslator latexParser = getParser( true );
             latexParser.translate( expression );
             /*if ( clipboard != null ){
                 StringSelection ss = new StringSelection( latexParser.getTranslatedExpression() );
@@ -133,17 +126,8 @@ public class SemanticToCASInterpreter {
         init_ms = System.currentTimeMillis();
         GlobalConstants.CAS_KEY = CAS;
 
-        System.out.println("Set up translation...");
-        SemanticLatexTranslator latexParser =
-                new SemanticLatexTranslator( Keys.KEY_LATEX, GlobalConstants.CAS_KEY );
+        SemanticLatexTranslator latexParser = getParser( true );
 
-        System.out.println("Initialize translation...");
-        try { latexParser.init( GlobalPaths.PATH_REFERENCE_DATA ); }
-        catch ( IOException e ){
-            System.err.println("Cannot initiate translator.");
-            e.printStackTrace();
-            return;
-        }
         init_ms = System.currentTimeMillis()-init_ms;
 
         System.out.println("Start translation...");
@@ -209,5 +193,23 @@ public class SemanticToCASInterpreter {
         latexParser.init( GlobalPaths.PATH_REFERENCE_DATA );
         latexParser.translate(test);
         */
+    }
+
+    static SemanticLatexTranslator getParser( boolean verbose ) {
+        if ( verbose ) {
+            System.out.println( "Set up translation..." );
+        }
+        SemanticLatexTranslator latexParser = new SemanticLatexTranslator( Keys.KEY_LATEX, GlobalConstants.CAS_KEY );
+        if ( verbose ) {
+            System.out.println( "Initialize translation..." );
+        }
+        try {
+            latexParser.init( GlobalPaths.PATH_REFERENCE_DATA );
+        } catch ( IOException e ) {
+            System.err.println( "Cannot initiate translator." );
+            e.printStackTrace();
+            throw new RuntimeException( e );
+        }
+        return latexParser;
     }
 }
