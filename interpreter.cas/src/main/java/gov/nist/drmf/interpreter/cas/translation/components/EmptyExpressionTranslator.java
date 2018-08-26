@@ -29,21 +29,22 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
         ExpressionTags expTag = ExpressionTags.getTagByKey(tag);
 
         // no tag shouldn't happen
-        if ( expTag == null ){
-            throw new TranslationException(
-                    "Cannot find tag: " + tag,
-                    TranslationException.Reason.UNKNOWN_EXPRESSION_TAG
-            );
+        if ( handleNull( expTag,
+            "Cannot find tag: " + tag,
+            TranslationException.Reason.UNKNOWN_EXPRESSION_TAG,
+            tag,
+            null ) ) {
+            return true;
         }
-
+        try{
         // switch over all possible tags
-        switch( expTag ){
+        switch( expTag ) {
             // it's a sequence!
             case sequence: // in that case use the SequenceTranslator
                 // this don't write into global_exp!
                 // it only delegates the parsing process to the SequenceTranslator
                 SequenceTranslator p = new SequenceTranslator();
-                if ( p.translate( expression ) ){
+                if ( p.translate( expression ) ) {
                     local_inner_exp.addTranslatedExpression( p.getTranslatedExpressionObject() );
                     return true;
                 } else return false;
@@ -56,19 +57,27 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
             case balanced_expression:
                 // balanced expressions are expressions in \left( x \right)
                 List<PomTaggedExpression> sub_exps = expression.getComponents();
-                TranslatedExpression tr = parseGeneralExpression( sub_exps.remove(0), sub_exps );
-                local_inner_exp.addTranslatedExpression(tr);
+                TranslatedExpression tr = parseGeneralExpression( sub_exps.remove( 0 ), sub_exps );
+                local_inner_exp.addTranslatedExpression( tr );
                 return !isInnerError();
             case sub_super_script:
             case numerator:
             case denominator:
             case equation:
             default:
-                LOG.warn("Reached unknown or not yet supported expression tag: " + tag);
-                throw new TranslationException(
-                        "Reached unknown or not yet supported expression tag: " + tag,
-                        TranslationException.Reason.UNKNOWN_EXPRESSION_TAG);
+                handleNull( null,
+                    "Reached unknown or not yet supported expression tag: " + tag,
+                    TranslationException.Reason.UNKNOWN_EXPRESSION_TAG,
+                    tag,
+                    null );
+        }} catch ( Exception e ){
+            handleNull( null,
+                "Unknown translation error while translating " + tag,
+                TranslationException.Reason.NULL,
+                tag,
+                e );
         }
+        return true;
     }
 
     private boolean parseBasicFunction( PomTaggedExpression top_exp, ExpressionTags tag )

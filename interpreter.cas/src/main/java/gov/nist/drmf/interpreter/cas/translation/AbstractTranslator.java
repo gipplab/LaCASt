@@ -1,9 +1,11 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
-import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.components.*;
+import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.TranslationException;
+import gov.nist.drmf.interpreter.common.TranslationException.Reason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ITranslator;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -11,6 +13,7 @@ import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -50,6 +53,18 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
     protected static TranslatedExpression global_exp;
 
     private boolean inner_Error = false;
+
+	public boolean isMlpError() {
+		return mlpError;
+	}
+
+	private boolean mlpError = false;
+
+	public void setTolerant( boolean tolerant ) {
+		this.tolerant = tolerant;
+	}
+
+	private boolean tolerant = true;
 
     /**
      * This method simply handles a general expression and invoke
@@ -220,5 +235,44 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
     public void reset(){
         local_inner_exp = new TranslatedExpression();
         global_exp = new TranslatedExpression();
+        mlpError=false;
     }
+
+    protected void appendLocalErrorExpression(String tag){
+        LOG.debug("Adding fake Maple for error expression " + tag);
+        local_inner_exp.addTranslatedExpression("\"error" + StringEscapeUtils.escapeJava( tag ) +"\"");
+    }
+
+    protected boolean handleNull( Object o, String message, Reason reason, String token, Exception exception ) {
+        if ( o == null ) {
+            String exceptionString = "";
+            if ( LOG.isWarnEnabled() && exception != null ) {
+            	try {
+		            final StackTraceElement[] stackTrace = exception.getStackTrace();
+		            final StackTraceElement traceElement = stackTrace[ 0 ];
+		            exceptionString = traceElement.getClassName() + ":L"
+			            + traceElement.getLineNumber() + ":" + exception.getMessage();
+	            } catch ( Exception e ){
+            		//ignore
+	            }
+            }
+            if (reason == Reason.MLP_ERROR){
+            	mlpError = true;
+            }
+            LOG.warn( String.format(
+                "Translation error\n\tmessage:%s\n\ttoken:%s\n\treason:%s,\n\texception:%s", message, token, reason, exceptionString ) );
+            if ( tolerant ) {
+                appendLocalErrorExpression( token );
+                return true;
+            }
+            throw new TranslationException(
+                message,
+                reason,
+                token,
+                exception
+            );
+        }
+        return false;
+    }
+
 }
