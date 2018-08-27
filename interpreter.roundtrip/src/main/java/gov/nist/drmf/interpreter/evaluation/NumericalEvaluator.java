@@ -474,7 +474,15 @@ public class NumericalEvaluator implements Observer {
 
         NumericalEvaluator evaluator = new NumericalEvaluator();
         evaluator.init();
-        evaluator.loadTestCases();
+        if(args.length>0){
+            evaluator.testCases = new LinkedList<>();
+            evaluator.testCases.add(
+             //Note: Each instantiation of NumericalEvaluator overwrites the static variable labelLinker
+             CaseAnalyzer.analyzeLine(args[0], 0, labelLinker)
+            );
+        } else {
+            evaluator.loadTestCases();
+        }
         evaluator.performAllTests();
         evaluator.writeOutput( evaluator.config.getOutputPath() );
     }
