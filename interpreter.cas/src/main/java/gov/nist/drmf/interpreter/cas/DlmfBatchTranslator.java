@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 
 public class DlmfBatchTranslator {
@@ -56,29 +58,25 @@ public class DlmfBatchTranslator {
 		files.forEach( file -> {
 			try {
 				final String sTeX = FileUtils.readFileToString( file );
+				final String id = file.getPath().replace( "/", "-" ).replace( prefix, "" );
 				translator.reset();
+				translator.setId( id );
 				translator.translate( sTeX );
 				final String translatedExpression = translator.getTranslatedExpression();
 				if ( mlpfilter ) {
 					if ( translator.isMlpError() ) {
-						final File f = Paths.get(
-							finalOutPutDir.toString(),
-							file.getPath().replace( "/", "-" ).replace( prefix, "" )
-						).toFile();
+						final File f = Paths.get( finalOutPutDir.toString(), id ).toFile();
 						FileUtils.write( f, sTeX );
 					}
 				} else {
-					final File f = Paths.get(
-						finalOutPutDir.toString(),
-						file.getPath().replace( "/", "-" ).replace( prefix, "" )
-							+ ".maple" ).toFile();
+					final File f = Paths.get( finalOutPutDir.toString(), id + ".maple" ).toFile();
 					FileUtils.write( f, translatedExpression );
-
 				}
-
 			} catch ( IOException e ) {
 				e.printStackTrace();
 			}
 		} );
+		final Map<String, Map<Integer, Set<String>>> problemTokens = translator.getProblemTokens();
+
 	}
 }
