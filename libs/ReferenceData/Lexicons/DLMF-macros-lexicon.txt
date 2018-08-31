@@ -37,10 +37,10 @@ Symbol: \AThetaFunction
 	Number of Variables: 1
 	Role: 
 
-Symbol: \AbstractJacobi
+Symbol: \genJacobiellk
 
   Feature Set: function
-	DLMF: \AbstractJacobi{p}{q}
+	DLMF: \genJacobiellk{p}{q}
 	DLMF-Link: dlmf.nist.gov/22.2#E10
 	Meanings: Generic Jacobian elliptic function
 	Number of Ats: 0
@@ -193,10 +193,10 @@ Symbol: \AiryBi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \AiryModulusM
+Symbol: \AirymodM
 
   Feature Set: dlmf-macro
-	DLMF: \AiryModulusM@{z}
+	DLMF: \AirymodM@{z}
 	DLMF-Link: dlmf.nist.gov/9.8#i
 	Maple-Alternatives: sqrt(AiryAi($0)^2+AiryBi($0)^2)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
@@ -210,10 +210,10 @@ Symbol: \AiryModulusM
 	Number of Variables: 1
 	Role: 
 
-Symbol: \AiryModulusN
+Symbol: \AirymodderivN
 
   Feature Set: dlmf-macro
-	DLMF: \AiryModulusN@{z}
+	DLMF: \AirymodderivN@{z}
 	DLMF-Link: dlmf.nist.gov/9.8#i
 	Maple-Alternatives: sqrt(AiryAi(1, $0)^2+AiryBi(1, $0)^2)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
@@ -227,10 +227,10 @@ Symbol: \AiryModulusN
 	Number of Variables: 1
 	Role: 
 
-Symbol: \AiryPhasePhi
+Symbol: \Airyphasederivphi
 
   Feature Set: dlmf-macro
-	DLMF: \AiryPhasePhi@{z}
+	DLMF: \Airyphasederivphi@{z}
 	DLMF-Link: dlmf.nist.gov/9.8#i
 	Maple-Alternatives: arctan(AiryAi(1, $0)/AiryBi(1, $0))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
@@ -244,10 +244,10 @@ Symbol: \AiryPhasePhi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \AiryPhaseTheta
+Symbol: \Airyphasetheta
 
   Feature Set: dlmf-macro
-	DLMF: \AiryPhaseTheta@{z}
+	DLMF: \Airyphasetheta@{z}
 	DLMF-Link: dlmf.nist.gov/9.8#i
 	Maple-Alternatives: arctan(AiryAi($0)/AiryBi($0))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
@@ -312,10 +312,10 @@ Symbol: \AlSalamChihara
 	Number of Variables: 4
 	Role: 
 
-Symbol: \AlSalamChiharaQ
+Symbol: \AlSalamChiharapolyQ
 
   Feature Set: dlmf-macro
-	DLMF: \AlSalamChiharaQ{n}@{x}{a}{b}{q}
+	DLMF: \AlSalamChiharapolyQ{n}@{x}{a}{b}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -346,11 +346,11 @@ Symbol: \AlSalamIsmail
 	Number of Variables: 3
 	Role: 
 
-Symbol: \AngerA
+Symbol: \AngerWeberA
 
   Feature Set: dlmf-macro
 	Constraints: Re(z) > 0
-	DLMF: \AngerA{v}@{z}
+	DLMF: \AngerWeberA{v}@{z}
 	DLMF-Link: dlmf.nist.gov/11.10#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -406,10 +406,10 @@ Symbol: \AntiDer
 	Number of Variables: 2
 	Role: dlmf-macro
 
-Symbol: \AppellFi
+Symbol: \AppellF{1}
 
   Feature Set: dlmf-macro
-	DLMF: \AppellFi@{\alpha}{\beta}{\beta'}{\gamma}{x}{y}
+	DLMF: \AppellF{1}@{\alpha}{\beta}{\beta'}{\gamma}{x}{y}
 	DLMF-Link: dlmf.nist.gov/16.13#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -423,10 +423,10 @@ Symbol: \AppellFi
 	Number of Variables: 6
 	Role: 
 
-Symbol: \AppellFii
+Symbol: \AppellF{2}
 
   Feature Set: dlmf-macro
-	DLMF: \AppellFii@{\alpha}{\beta}{\beta'}{\gamma}{\gamma'}{x}{y}
+	DLMF: \AppellF{2}@{\alpha}{\beta}{\beta'}{\gamma}{\gamma'}{x}{y}
 	DLMF-Link: dlmf.nist.gov/16.13#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -440,11 +440,11 @@ Symbol: \AppellFii
 	Number of Variables: 7
 	Role: 
 
-Symbol: \AppellFiii
+Symbol: \AppellF{3}
 
   Feature Set: dlmf-macro
 	Constraints: Re(z) > 0
-	DLMF: \AppellFiii@{\alpha}{\alpha'}{\beta}{\beta'}{\gamma}{x}{y}
+	DLMF: \AppellF{3}@{\alpha}{\alpha'}{\beta}{\beta'}{\gamma}{x}{y}
 	DLMF-Link: dlmf.nist.gov/16.13#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -458,10 +458,10 @@ Symbol: \AppellFiii
 	Number of Variables: 7
 	Role: 
 
-Symbol: \AppellFiv
+Symbol: \AppellF{4}
 
   Feature Set: dlmf-macro
-	DLMF: \AppellFiv@{\alpha}{\beta}{\gamma}{\gamma'}{x}{y}
+	DLMF: \AppellF{4}@{\alpha}{\beta}{\gamma}{\gamma'}{x}{y}
 	DLMF-Link: dlmf.nist.gov/16.13#E5
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -544,10 +544,10 @@ Symbol: \AskeyWilson
 	Number of Variables: 6
 	Role: 
 
-Symbol: \AskeyWilsonp
+Symbol: \AskeyWilsonpolyp
 
   Feature Set: dlmf-macro
-	DLMF: \AskeyWilsonp{n}@{x}{a}{b}{c}{d}{q}
+	DLMF: \AskeyWilsonpolyp{n}@{x}{a}{b}{c}{d}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -561,10 +561,10 @@ Symbol: \AskeyWilsonp
 	Number of Variables: 6
 	Role: 
 
-Symbol: \AssJacobiP
+Symbol: \assJacobipolyP
 
   Feature Set: dlmf-macro
-	DLMF: \AssJacobiP{\alpha}{\beta}{n}@{x}{c}
+	DLMF: \assJacobipolyP{\alpha}{\beta}{n}@{x}{c}
 	DLMF-Link: dlmf.nist.gov/18.30#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -578,10 +578,10 @@ Symbol: \AssJacobiP
 	Number of Variables: 2
 	Role: 
 
-Symbol: \AssLegendrePoly
+Symbol: \assLegendrepoly
 
   Feature Set: dlmf-macro
-	DLMF: \AssLegendrePoly{n}@{x}{c}
+	DLMF: \assLegendrepoly{n}@{x}{c}
 	DLMF-Link: dlmf.nist.gov/18.30#E6
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -621,10 +621,10 @@ Symbol: \Atanh
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \BarnesGamma
+Symbol: \BarnesG
 
   Feature Set: dlmf-macro
-	DLMF: \BarnesGamma@{z}
+	DLMF: \BarnesG@{z}
 	DLMF-Link: dlmf.nist.gov/5.17#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -642,10 +642,10 @@ Symbol: \BarnesGamma
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \BellNumber
+Symbol: \Bellnumber
 
   Feature Set: dlmf-macro
-	DLMF: \BellNumber@{n}
+	DLMF: \Bellnumber@{n}
 	DLMF-Link: dlmf.nist.gov/26.7#i
 	Maple: BellB($0, 1)
 	Maple-Alternatives: bell($0)
@@ -663,10 +663,10 @@ Symbol: \BellNumber
 	Number of Variables: 1
 	Role: 
 
-Symbol: \BernoulliB
+Symbol: \BernoullipolyB
 
   Feature Set: dlmf-macro
-	DLMF: \BernoulliB{n}@{x}
+	DLMF: \BernoullipolyB{n}@{x}
 	DLMF-Link: dlmf.nist.gov/24.2#i
 	Maple: bernoulli($0, $1)
 	Maple-Alternatives: 
@@ -684,10 +684,10 @@ Symbol: \BernoulliB
 	Number of Variables: 1
 	Role: 
 
-Symbol: \BesselI
+Symbol: \modBesselI
 
   Feature Set: dlmf-macro
-	DLMF: \BesselI{v}@{x}
+	DLMF: \modBesselI{v}@{x}
 	DLMF-Link: dlmf.nist.gov/10.25#E2
 	Maple: BesselI($0, $1)
 	Maple-Alternatives: 
@@ -705,10 +705,10 @@ Symbol: \BesselI
 	Number of Variables: 1
 	Role: 
 
-Symbol: \BesselItilde
+Symbol: \modBesselIimag
 
   Feature Set: dlmf-macro
-	DLMF: \BesselItilde{\nu}@{x}
+	DLMF: \modBesselIimag{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.45#E2
 	Maple-Alternatives: Re(BesselI(I*($0), $1))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
@@ -725,7 +725,7 @@ Symbol: \BesselItilde
 Symbol: \BesselJ
 
   Feature Set: dlmf-macro
-	Branch Cuts: if v \notin \Integer: (-\infty, 0]
+	Branch Cuts: if v \notin \Integers: (-\infty, 0]
 	DLMF: \BesselJ{v}@{z}
 	DLMF-Link: dlmf.nist.gov/10.2#E2
 	Maple: BesselJ($0, $1)
@@ -748,10 +748,10 @@ Symbol: \BesselJ
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \BesselJtilde
+Symbol: \BesselJimag
 
   Feature Set: dlmf-macro
-	DLMF: \BesselJtilde{\nu}@{x}
+	DLMF: \BesselJimag{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.24#Ex1
 	Maple-Alternatives: sech((1/2)*Pi*($0))*Re(BesselJ(I*($0), $1))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
@@ -765,10 +765,10 @@ Symbol: \BesselJtilde
 	Number of Variables: 1
 	Role: 
 
-Symbol: \BesselK
+Symbol: \modBesselK
 
   Feature Set: dlmf-macro
-	DLMF: \BesselK{v}@{x}
+	DLMF: \modBesselK{v}@{x}
 	DLMF-Link: dlmf.nist.gov/10.25#E3
 	Maple: BesselK($0, $1)
 	Maple-Alternatives: 
@@ -786,10 +786,10 @@ Symbol: \BesselK
 	Number of Variables: 1
 	Role: 
 
-Symbol: \BesselKtilde
+Symbol: \modBesselKimag
 
   Feature Set: dlmf-macro
-	DLMF: \BesselKtilde{\nu}@{x}
+	DLMF: \modBesselKimag{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.45#E2
 	Maple-Alternatives: BesselK(I*($0), $1)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
@@ -803,10 +803,10 @@ Symbol: \BesselKtilde
 	Number of Variables: 1
 	Role: 
 
-Symbol: \BesselModulusM
+Symbol: \HankelmodM
 
   Feature Set: dlmf-macro
-	DLMF: \BesselModulusM{\nu}@{x}
+	DLMF: \HankelmodM{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.18#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -820,10 +820,10 @@ Symbol: \BesselModulusM
 	Number of Variables: 1
 	Role: 
 
-Symbol: \BesselModulusN
+Symbol: \HankelmodderivN
 
   Feature Set: dlmf-macro
-	DLMF: \BesselModulusN{\nu}@{x}
+	DLMF: \HankelmodderivN{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.18#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -837,10 +837,10 @@ Symbol: \BesselModulusN
 	Number of Variables: 1
 	Role: 
 
-Symbol: \BesselPhasePhi
+Symbol: \Hankelphasederivphi
 
   Feature Set: dlmf-macro
-	DLMF: \BesselPhasePhi{\nu}@{x}
+	DLMF: \Hankelphasederivphi{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.18#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -854,10 +854,10 @@ Symbol: \BesselPhasePhi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \BesselPhaseTheta
+Symbol: \Hankelphasetheta
 
   Feature Set: dlmf-macro
-	DLMF: \BesselPhaseTheta{\nu}@{x}
+	DLMF: \Hankelphasetheta{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.18#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -922,10 +922,10 @@ Symbol: \BesselPolyTheta
 	Number of Variables: 3
 	Role: 
 
-Symbol: \BesselPolyy
+Symbol: \Besselpolyy
 
   Feature Set: dlmf-macro
-	DLMF: \BesselPolyy{n}@{x}{a}
+	DLMF: \Besselpolyy{n}@{x}{a}
 	DLMF-Link: dlmf.nist.gov/18.34#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -965,10 +965,10 @@ Symbol: \BesselY
 	Number of Variables: 1
 	Role: 
 
-Symbol: \BesselYtilde
+Symbol: \BesselYimag
 
   Feature Set: dlmf-macro
-	DLMF: \BesselYtilde{\nu}@{x}
+	DLMF: \BesselYimag{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.24#Ex1
 	Maple-Alternatives: sech((1/2)*Pi*($0))*Re(BesselY(I*($0), $1))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
@@ -999,10 +999,10 @@ Symbol: \BickleyKi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \BigO
+Symbol: \bigO
 
   Feature Set: dlmf-macro
-	DLMF: \BigO@{x}
+	DLMF: \bigO@{x}
 	DLMF-Link: dlmf.nist.gov/2.1#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1016,10 +1016,10 @@ Symbol: \BigO
 	Number of Variables: 1
 	Role: 
 
-Symbol: \CatalanNumber
+Symbol: \Catalannumber
 
   Feature Set: dlmf-macro
-	DLMF: \CatalanNumber@{n}
+	DLMF: \Catalannumber@{n}
 	DLMF-Link: dlmf.nist.gov/26.5#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1058,10 +1058,10 @@ Symbol: \Charlier
 	Number of Variables: 2
 	Role: 
 
-Symbol: \CharlierC
+Symbol: \CharlierpolyC
 
   Feature Set: dlmf-macro
-	DLMF: \CharlierC{n}@{x}{a}
+	DLMF: \CharlierpolyC{n}@{x}{a}
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r5
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1075,10 +1075,10 @@ Symbol: \CharlierC
 	Number of Variables: 2
 	Role: 
 
-Symbol: \ChebyC
+Symbol: \dilChebyshevpolyC
 
   Feature Set: dlmf-macro
-	DLMF: \ChebyC{n}@{x}
+	DLMF: \dilChebyshevpolyC{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.1#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1092,10 +1092,10 @@ Symbol: \ChebyC
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ChebyS
+Symbol: \dilChebyshevpolyS
 
   Feature Set: dlmf-macro
-	DLMF: \ChebyS{n}@{x}
+	DLMF: \dilChebyshevpolyS{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.1#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1109,10 +1109,10 @@ Symbol: \ChebyS
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ChebyT
+Symbol: \ChebyshevpolyT
 
   Feature Set: dlmf-macro
-	DLMF: \ChebyT{n}@{x}
+	DLMF: \ChebyshevpolyT{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r4
 	Maple: ChebyshevT($0, $1)
 	Maple-Alternatives: 
@@ -1130,10 +1130,10 @@ Symbol: \ChebyT
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ChebyTs
+Symbol: \shiftChebyshevpolyT
 
   Feature Set: dlmf-macro
-	DLMF: \ChebyTs{n}@{x}
+	DLMF: \shiftChebyshevpolyT{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r8
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1147,10 +1147,10 @@ Symbol: \ChebyTs
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ChebyU
+Symbol: \ChebyshevpolyU
 
   Feature Set: dlmf-macro
-	DLMF: \ChebyU{n}@{x}
+	DLMF: \ChebyshevpolyU{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r5
 	Maple: ChebyshevU($0, $1)
 	Maple-Alternatives: 
@@ -1168,10 +1168,10 @@ Symbol: \ChebyU
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ChebyUs
+Symbol: \shiftChebyshevpolyU
 
   Feature Set: dlmf-macro
-	DLMF: \ChebyUs{n}@{x}
+	DLMF: \shiftChebyshevpolyU{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r9
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1185,10 +1185,10 @@ Symbol: \ChebyUs
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ChebyV
+Symbol: \ChebyshevpolyV
 
   Feature Set: dlmf-macro
-	DLMF: \ChebyV{n}@{x}
+	DLMF: \ChebyshevpolyV{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r6
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1202,10 +1202,10 @@ Symbol: \ChebyV
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ChebyW
+Symbol: \ChebyshevpolyW
 
   Feature Set: dlmf-macro
-	DLMF: \ChebyW{n}@{x}
+	DLMF: \ChebyshevpolyW{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r7
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1270,10 +1270,10 @@ Symbol: \CiglerqChebyU
 	Number of Variables: 3
 	Role: 
 
-Symbol: \CompEllIntCE
+Symbol: \ccompellintEk
 
   Feature Set: dlmf-macro
-	DLMF: \CompEllIntCE@{k}
+	DLMF: \ccompellintEk@{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E9
 	Maple: EllipticCE($0)
 	Maple-Alternatives: 
@@ -1291,10 +1291,10 @@ Symbol: \CompEllIntCE
 	Number of Variables: 1
 	Role: 
 
-Symbol: \CompEllIntCK
+Symbol: \ccompellintKk
 
   Feature Set: dlmf-macro
-	DLMF: \CompEllIntCK@{k}
+	DLMF: \ccompellintKk@{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E9
 	Maple: EllipticCK($0)
 	Maple-Alternatives: 
@@ -1312,10 +1312,10 @@ Symbol: \CompEllIntCK
 	Number of Variables: 1
 	Role: 
 
-Symbol: \CompEllIntD
+Symbol: \compellintDk
 
   Feature Set: dlmf-macro
-	DLMF: \CompEllIntD@{k}
+	DLMF: \compellintDk@{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E8
 	Maple-Alternatives: (EllipticK($0) - EllipticE($0))/($0)^2
 	Maple-Comment: 
@@ -1329,10 +1329,10 @@ Symbol: \CompEllIntD
 	Number of Variables: 1
 	Role: 
 
-Symbol: \CompEllIntE
+Symbol: \compellintEk
 
   Feature Set: dlmf-macro
-	DLMF: \CompEllIntE@{k}
+	DLMF: \compellintEk@{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E8
 	Maple: EllipticE($0)
 	Maple-Alternatives: 
@@ -1350,10 +1350,10 @@ Symbol: \CompEllIntE
 	Number of Variables: 1
 	Role: 
 
-Symbol: \CompEllIntK
+Symbol: \compellintKk
 
   Feature Set: dlmf-macro
-	DLMF: \CompEllIntK@{k}
+	DLMF: \compellintKk@{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E8
 	Maple: EllipticK($0)
 	Maple-Alternatives: 
@@ -1375,10 +1375,10 @@ Symbol: \CompEllIntK
 	Number of Variables: 1
 	Role: 
 
-Symbol: \CompEllIntPi
+Symbol: \compellintPik
 
   Feature Set: dlmf-macro
-	DLMF: \CompEllIntPi@{\alpha^2}{k}
+	DLMF: \compellintPik@{\alpha^2}{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E8
 	Maple: EllipticPi($0, $1)
 	Maple-Alternatives: 
@@ -1396,10 +1396,10 @@ Symbol: \CompEllIntPi
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Complex
+Symbol: \Complexes
 
   Feature Set: dlmf-macro
-	DLMF: \Complex
+	DLMF: \Complexes
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r1
 	Maple: complex
 	Maple-Alternatives: 
@@ -1414,10 +1414,10 @@ Symbol: \Complex
 	Number of Variables: 0
 	Role: symbol
 
-Symbol: \ComplexZeroAiryBi
+Symbol: \zAirybeta
 
   Feature Set: dlmf-macro
-	DLMF: \ComplexZeroAiryBi{k}
+	DLMF: \zAirybeta{k}
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1431,10 +1431,10 @@ Symbol: \ComplexZeroAiryBi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ComplexZeroAiryBiPrime
+Symbol: \zderivAirybeta
 
   Feature Set: dlmf-macro
-	DLMF: \ComplexZeroAiryBiPrime{k}
+	DLMF: \zderivAirybeta{k}
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1448,10 +1448,10 @@ Symbol: \ComplexZeroAiryBiPrime
 	Number of Variables: 1
 	Role: 
 
-Symbol: \CompositionsC
+Symbol: \ncompositions
 
   Feature Set: dlmf-macro
-	DLMF: \CompositionsC[m]@{n}
+	DLMF: \ncompositions[m]@{n}
 	DLMF-Link: dlmf.nist.gov/26.11#p1
 	Meanings: Number of compositions
 	Number of Ats: 1
@@ -1459,10 +1459,10 @@ Symbol: \CompositionsC
 	Number of Variables: 1
 	Role: 
 
-Symbol: \Continuous
+Symbol: \continuous
 
   Feature Set: dlmf-macro
-	DLMF: \Continuous@{A}
+	DLMF: \continuous@{A}
 	DLMF-Link: dlmf.nist.gov/1.4#ii
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1476,10 +1476,10 @@ Symbol: \Continuous
 	Number of Variables: 1
 	Role: 
 
-Symbol: \CosInt
+Symbol: \cosint
 
   Feature Set: dlmf-macro
-	DLMF: \CosInt@{z}
+	DLMF: \cosint@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E13
 	Maple: Ci($0)
 	Maple-Alternatives: 
@@ -1501,10 +1501,10 @@ Symbol: \CosInt
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \CosIntCin
+Symbol: \cosintCin
 
   Feature Set: dlmf-macro
-	DLMF: \CosIntCin@{z}
+	DLMF: \cosintCin@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E12
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -1515,11 +1515,11 @@ Symbol: \CosIntCin
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \CosIntg
+Symbol: \gencosint
 
   Feature Set: dlmf-macro
 	Branch Cuts: z = 0
-	DLMF: \CosIntg@{a}{z}
+	DLMF: \gencosint@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.21#E2
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -1530,10 +1530,10 @@ Symbol: \CosIntg
 	Number of Variables: 2
 	Role: dlmf-macro
 
-Symbol: \CoshInt
+Symbol: \coshint
 
   Feature Set: dlmf-macro
-	DLMF: \CoshInt@{z}
+	DLMF: \coshint@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E16
 	Maple: Chi($0)
 	Maple-Alternatives: 
@@ -1555,10 +1555,10 @@ Symbol: \CoshInt
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \CoulombC
+Symbol: \normCoulombC
 
   Feature Set: dlmf-macro
-	DLMF: \CoulombC{\ell}@{\eta}
+	DLMF: \normCoulombC{\ell}@{\eta}
 	DLMF-Link: dlmf.nist.gov/33.2#E5
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1572,10 +1572,10 @@ Symbol: \CoulombC
 	Number of Variables: 1
 	Role: 
 
-Symbol: \CoulombF
+Symbol: \regCoulombF
 
   Feature Set: dlmf-macro
-	DLMF: \CoulombF{L}@{\eta}{\rho}
+	DLMF: \regCoulombF{L}@{\eta}{\rho}
 	DLMF-Link: dlmf.nist.gov/33.2#E3
 	Maple: CoulombF($0, $1, $2)
 	Maple-Alternatives: 
@@ -1593,10 +1593,10 @@ Symbol: \CoulombF
 	Number of Variables: 2
 	Role: 
 
-Symbol: \CoulombG
+Symbol: \irregCoulombG
 
   Feature Set: dlmf-macro
-	DLMF: \CoulombG{\ell}@{\eta}{\rho}
+	DLMF: \irregCoulombG{\ell}@{\eta}{\rho}
 	DLMF-Link: dlmf.nist.gov/33.2#E11
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1610,10 +1610,10 @@ Symbol: \CoulombG
 	Number of Variables: 2
 	Role: 
 
-Symbol: \CoulombH
+Symbol: \irregCoulombH
 
   Feature Set: dlmf-macro
-	DLMF: \CoulombH{\pm}{\ell}@{\eta}{\rho}
+	DLMF: \irregCoulombH{\pm}{\ell}@{\eta}{\rho}
 	DLMF-Link: dlmf.nist.gov/33.2#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1627,10 +1627,10 @@ Symbol: \CoulombH
 	Number of Variables: 2
 	Role: 
 
-Symbol: \CoulombM
+Symbol: \envCoulumbM
 
   Feature Set: dlmf-macro
-	DLMF: \CoulombM{\ell}@{\eta}{\rho}
+	DLMF: \envCoulumbM{\ell}@{\eta}{\rho}
 	DLMF-Link: dlmf.nist.gov/33.3#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1644,10 +1644,10 @@ Symbol: \CoulombM
 	Number of Variables: 2
 	Role: 
 
-Symbol: \CoulombSigma
+Symbol: \Coulombphasesigma
 
   Feature Set: dlmf-macro
-	DLMF: \CoulombSigma{\ell}@{\eta}
+	DLMF: \Coulombphasesigma{\ell}@{\eta}
 	DLMF-Link: dlmf.nist.gov/33.2#E10
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1661,10 +1661,10 @@ Symbol: \CoulombSigma
 	Number of Variables: 1
 	Role: 
 
-Symbol: \CoulombTheta
+Symbol: \Coulombphasetheta
 
   Feature Set: dlmf-macro
-	DLMF: \CoulombTheta{\ell}@{\eta}{\rho}
+	DLMF: \Coulombphasetheta{\ell}@{\eta}{\rho}
 	DLMF-Link: dlmf.nist.gov/33.2#E9
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1678,10 +1678,10 @@ Symbol: \CoulombTheta
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Coulombc
+Symbol: \irregCoulombc
 
   Feature Set: dlmf-macro
-	DLMF: \Coulombc@{\epsilon}{\ell}{r}
+	DLMF: \irregCoulombc@{\epsilon}{\ell}{r}
 	DLMF-Link: dlmf.nist.gov/33.14#E9
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1695,10 +1695,10 @@ Symbol: \Coulombc
 	Number of Variables: 3
 	Role: 
 
-Symbol: \Coulombf
+Symbol: \regCoulombf
 
   Feature Set: dlmf-macro
-	DLMF: \Coulombf@{\epsilon}{\ell}{r}
+	DLMF: \regCoulombf@{\epsilon}{\ell}{r}
 	DLMF-Link: dlmf.nist.gov/33.14#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1712,10 +1712,10 @@ Symbol: \Coulombf
 	Number of Variables: 3
 	Role: 
 
-Symbol: \Coulombh
+Symbol: \irregCoulombh
 
   Feature Set: dlmf-macro
-	DLMF: \Coulombh@{\epsilon}{\ell}{r}
+	DLMF: \irregCoulombh@{\epsilon}{\ell}{r}
 	DLMF-Link: dlmf.nist.gov/33.14#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1729,10 +1729,10 @@ Symbol: \Coulombh
 	Number of Variables: 3
 	Role: 
 
-Symbol: \Coulombrhotp
+Symbol: \Coulombturnrho
 
   Feature Set: dlmf-macro
-	DLMF: \Coulombrhotp@{\eta}{\ell}
+	DLMF: \Coulombturnrho@{\eta}{\ell}
 	DLMF-Link: dlmf.nist.gov/33.2#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1746,10 +1746,10 @@ Symbol: \Coulombrhotp
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Coulombrtp
+Symbol: \Coulombturnr
 
   Feature Set: dlmf-macro
-	DLMF: \Coulombrtp@{\epsilon}{\ell}
+	DLMF: \Coulombturnr@{\epsilon}{\ell}
 	DLMF-Link: dlmf.nist.gov/33.14#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1763,10 +1763,10 @@ Symbol: \Coulombrtp
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Coulombs
+Symbol: \regCoulombs
 
   Feature Set: dlmf-macro
-	DLMF: \Coulombs@{\epsilon}{\ell}{r}
+	DLMF: \regCoulombs@{\epsilon}{\ell}{r}
 	DLMF-Link: dlmf.nist.gov/33.14#E9
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1780,10 +1780,10 @@ Symbol: \Coulombs
 	Number of Variables: 3
 	Role: 
 
-Symbol: \Cylinder
+Symbol: \BesselC
 
   Feature Set: dlmf-macro
-	DLMF: \Cylinder{\nu}@{z}
+	DLMF: \BesselC{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/10.2#Px5.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1797,10 +1797,10 @@ Symbol: \Cylinder
 	Number of Variables: 1
 	Role: 
 
-Symbol: \DawsonsInt
+Symbol: \DawsonsintF
 
   Feature Set: dlmf-macro
-	DLMF: \DawsonsInt@{z}
+	DLMF: \DawsonsintF@{z}
 	DLMF-Link: dlmf.nist.gov/7.2#E5
 	Maple: dawson($0)
 	Maple-Alternatives: 
@@ -1822,10 +1822,10 @@ Symbol: \DawsonsInt
 	Number of Variables: 1
 	Role: 
 
-Symbol: \DedekindModularEta
+Symbol: \Dedekindeta
 
   Feature Set: dlmf-macro
-	DLMF: \DedekindModularEta@{\tau}
+	DLMF: \Dedekindeta@{\tau}
 	DLMF-Link: dlmf.nist.gov/23.15#E9
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1839,10 +1839,10 @@ Symbol: \DedekindModularEta
 	Number of Variables: 1
 	Role: 
 
-Symbol: \Dilogarithm
+Symbol: \dilog
 
   Feature Set: dlmf-macro
-	DLMF: \Dilogarithm@{z}
+	DLMF: \dilog@{z}
 	DLMF-Link: dlmf.nist.gov/25.12#E1
 	Maple: dilog($0)
 	Maple-Alternatives: 
@@ -1881,10 +1881,10 @@ Symbol: \Diracdelta
 	Number of Variables: 1
 	Role: 
 
-Symbol: \DirichletCharacter
+Symbol: \Dirichletchar
 
   Feature Set: dlmf-macro
-	DLMF: \DirichletCharacter@@{n}{k}
+	DLMF: \Dirichletchar@@{n}{k}
 	DLMF-Link: dlmf.nist.gov/27.8
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1932,10 +1932,10 @@ Symbol: \DiscriminantDelta
 	Number of Variables: 1
 	Role: 
 
-Symbol: \DiskOP
+Symbol: \diskpoly
 
   Feature Set: dlmf-macro
-	DLMF: \DiskOP{\alpha}{m}{n}@{z}
+	DLMF: \diskpoly{\alpha}{m}{n}@{z}
 	DLMF-Link: dlmf.nist.gov/18.37#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1949,10 +1949,10 @@ Symbol: \DiskOP
 	Number of Variables: 1
 	Role: 
 
-Symbol: \Distribution
+Symbol: \intinnerprod
 
   Feature Set: dlmf-macro
-	DLMF: \Distribution{f}{g}
+	DLMF: \intinnerprod{f}{g}
 	DLMF-Link: dlmf.nist.gov/1.16#SS1.p5
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -1966,10 +1966,10 @@ Symbol: \Distribution
 	Number of Variables: 2
 	Role: dlmf-macro
 
-Symbol: \DivisorFunctionD
+Symbol: \ndivisors
 
   Feature Set: dlmf-macro
-	DLMF: \DivisorFunctionD@{n}
+	DLMF: \ndivisors@{n}
 	DLMF-Link: dlmf.nist.gov/27.2#E9
 	Maple-Alternatives: numelems(divisors($0))
 	Maple-Comment: Maple needs an extra package. with(numtheory) and since Maplesoft 2016 with(NumberTheory)
@@ -1983,10 +1983,10 @@ Symbol: \DivisorFunctionD
 	Number of Variables: 1
 	Role: 
 
-Symbol: \DivisorSigma
+Symbol: \sumdivisors
 
   Feature Set: dlmf-macro
-	DLMF: \DivisorSigma{1}@{n}
+	DLMF: \sumdivisors{1}@{n}
 	DLMF-Link: dlmf.nist.gov/27.2#E10
 	Maple-Alternatives:  || add(divisors($0))
 	Maple-Comment:  || Maple needs an extra package. with(numtheory) and since Maplesoft 2016 with(NumberTheory)
@@ -2000,10 +2000,10 @@ Symbol: \DivisorSigma
 	Number of Variables: 1
 	Role: 
 
-Symbol: \EllIntD
+Symbol: \incellintDk
 
   Feature Set: dlmf-macro
-	DLMF: \EllIntD@{\phi}{k}
+	DLMF: \incellintDk@{\phi}{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E6
 	Maple-Alternatives: (EllipticF(sin($0), $1) - EllipticE(sin($0), $1))/($1)^2
 	Maple-Comment: 
@@ -2017,10 +2017,10 @@ Symbol: \EllIntD
 	Number of Variables: 2
 	Role: 
 
-Symbol: \EllIntE
+Symbol: \incellintEk
 
   Feature Set: dlmf-macro
-	DLMF: \EllIntE@{\phi}{k}
+	DLMF: \incellintEk@{\phi}{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E5
 	Maple: EllipticE(sin($0), $1)
 	Maple-Alternatives: 
@@ -2038,10 +2038,10 @@ Symbol: \EllIntE
 	Number of Variables: 2
 	Role: 
 
-Symbol: \EllIntF
+Symbol: \incellintFk
 
   Feature Set: dlmf-macro
-	DLMF: \EllIntF@{\phi}{k}
+	DLMF: \incellintFk@{\phi}{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E4
 	Maple: EllipticF(sin($0), $1)
 	Maple-Alternatives: 
@@ -2059,10 +2059,10 @@ Symbol: \EllIntF
 	Number of Variables: 2
 	Role: 
 
-Symbol: \EllIntPi
+Symbol: \incellintPik
 
   Feature Set: dlmf-macro
-	DLMF: \EllIntPi@{\phi}{\alpha^2}{k}
+	DLMF: \incellintPik@{\phi}{\alpha^2}{k}
 	DLMF-Link: dlmf.nist.gov/19.2#E7
 	Maple: EllipticPi(sin($0), $1, $2)
 	Maple-Alternatives: 
@@ -2080,10 +2080,10 @@ Symbol: \EllIntPi
 	Number of Variables: 3
 	Role: 
 
-Symbol: \EllIntRC
+Symbol: \CarlsonellintRC
 
   Feature Set: dlmf-macro
-	DLMF: \EllIntRC@@{x}{y}
+	DLMF: \CarlsonellintRC@@{x}{y}
 	DLMF-Link: dlmf.nist.gov/19.2#E17
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2097,10 +2097,10 @@ Symbol: \EllIntRC
 	Number of Variables: 2
 	Role: 
 
-Symbol: \EllIntRD
+Symbol: \CarlsonsymellintRD
 
   Feature Set: dlmf-macro
-	DLMF: \EllIntRD@@{x}{y}{z}
+	DLMF: \CarlsonsymellintRD@@{x}{y}{z}
 	DLMF-Link: dlmf.nist.gov/19.16#E5
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2114,10 +2114,10 @@ Symbol: \EllIntRD
 	Number of Variables: 3
 	Role: 
 
-Symbol: \EllIntRF
+Symbol: \CarlsonsymellintRF
 
   Feature Set: dlmf-macro
-	DLMF: \EllIntRF@@{x}{y}{z}
+	DLMF: \CarlsonsymellintRF@@{x}{y}{z}
 	DLMF-Link: dlmf.nist.gov/19.16#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2131,10 +2131,10 @@ Symbol: \EllIntRF
 	Number of Variables: 3
 	Role: 
 
-Symbol: \EllIntRG
+Symbol: \CarlsonsymellintRG
 
   Feature Set: dlmf-macro
-	DLMF: \EllIntRG@@{x}{y}{z}
+	DLMF: \CarlsonsymellintRG@@{x}{y}{z}
 	DLMF-Link: dlmf.nist.gov/19.16#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2148,10 +2148,10 @@ Symbol: \EllIntRG
 	Number of Variables: 3
 	Role: 
 
-Symbol: \EllIntRJ
+Symbol: \CarlsonsymellintRJ
 
   Feature Set: dlmf-macro
-	DLMF: \EllIntRJ@@{x}{y}{z}{p}
+	DLMF: \CarlsonsymellintRJ@@{x}{y}{z}{p}
 	DLMF-Link: dlmf.nist.gov/19.16#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2165,10 +2165,10 @@ Symbol: \EllIntRJ
 	Number of Variables: 4
 	Role: 
 
-Symbol: \EllIntcel
+Symbol: \Bulirschcompellintcel
 
   Feature Set: dlmf-macro
-	DLMF: \EllIntcel@{k_c}{p}{a}{b}
+	DLMF: \Bulirschcompellintcel@{k_c}{p}{a}{b}
 	DLMF-Link: dlmf.nist.gov/19.2#E11
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2182,10 +2182,10 @@ Symbol: \EllIntcel
 	Number of Variables: 4
 	Role: 
 
-Symbol: \EllIntelone
+Symbol: \Bulirschincellintel{1}
 
   Feature Set: dlmf-macro
-	DLMF: \EllIntelone@{x}{k_c}
+	DLMF: \Bulirschincellintel{1}@{x}{k_c}
 	DLMF-Link: dlmf.nist.gov/19.2#E15
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2199,10 +2199,10 @@ Symbol: \EllIntelone
 	Number of Variables: 2
 	Role: 
 
-Symbol: \EllIntelthree
+Symbol: \Bulirschincellintel{3}
 
   Feature Set: dlmf-macro
-	DLMF: \EllIntelthree@{x}{k_c}{p}
+	DLMF: \Bulirschincellintel{3}@{x}{k_c}{p}
 	DLMF-Link: dlmf.nist.gov/19.2#E16
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2216,10 +2216,10 @@ Symbol: \EllIntelthree
 	Number of Variables: 3
 	Role: 
 
-Symbol: \EllInteltwo
+Symbol: \Bulirschincellintel{2}
 
   Feature Set: dlmf-macro
-	DLMF: \EllInteltwo@{x}{k_c}{a}{b}
+	DLMF: \Bulirschincellintel{2}@{x}{k_c}{a}{b}
 	DLMF-Link: dlmf.nist.gov/19.2#E12
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2267,10 +2267,10 @@ Symbol: \EulerConstant
 	Meanings: Euler-Mascheroni constant
 	Role: mathematical constant
 
-Symbol: \EulerE
+Symbol: \EulerpolyE
 
   Feature Set: dlmf-macro
-	DLMF: \EulerE{n}@{x}
+	DLMF: \EulerpolyE{n}@{x}
 	DLMF-Link: dlmf.nist.gov/24.2#ii
 	Maple: euler($0, $1)
 	Maple-Alternatives: 
@@ -2330,10 +2330,10 @@ Symbol: \EulerPhi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \EulerSumH
+Symbol: \EulersumH
 
   Feature Set: dlmf-macro
-	DLMF: \EulerSumH@{s}
+	DLMF: \EulersumH@{s}
 	DLMF-Link: dlmf.nist.gov/25.16#SS2.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2347,10 +2347,10 @@ Symbol: \EulerSumH
 	Number of Variables: 1
 	Role: 
 
-Symbol: \EulerTotientPhi
+Symbol: \Eulertotientphi
 
   Feature Set: dlmf-macro
-	DLMF: \EulerTotientPhi[k]@{n}
+	DLMF: \Eulertotientphi[k]@{n}
 	DLMF-Link: dlmf.nist.gov/27.2#E6
 	Meanings: Euler's totient function
 	Number of Ats: 1
@@ -2358,10 +2358,10 @@ Symbol: \EulerTotientPhi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \EulerianNumber
+Symbol: \Euleriannumber
 
   Feature Set: dlmf-macro
-	DLMF: \EulerianNumber{n}{k}
+	DLMF: \Euleriannumber{n}{k}
 	DLMF-Link: dlmf.nist.gov/26.14#SS1.p3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2375,12 +2375,12 @@ Symbol: \EulerianNumber
 	Number of Variables: 2
 	Role: 
 
-Symbol: \ExpInt
+Symbol: \expintE
 
   Feature Set: dlmf-macro
 	Branch Cuts: (-\infty, 0]
 	Constraints: z != 0
-	DLMF: \ExpInt@{x}
+	DLMF: \expintE@{x}
 	DLMF-Link: dlmf.nist.gov/6.2#E1
 	Maple: Ei($0)
 	Maple-Alternatives: Ei($0)+ln($0)+gamma
@@ -2390,7 +2390,7 @@ Symbol: \ExpInt
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ei
 	Maple-Package: 
 	Mathematica-Alternatives: -ExpIntegralEi[-($0)]
-	Mathematica-Comment: Mathematica uses another definition for the principle branch of the exponential integral. \ExpInt@{x} will be translated to -ExpIntegralEi[-x].
+	Mathematica-Comment: Mathematica uses another definition for the principle branch of the exponential integral. \expintE@{x} will be translated to -ExpIntegralEi[-x].
 	Mathematica-Package: 
 	Meanings: Exponential integral
 	Number of Ats: 1
@@ -2398,10 +2398,10 @@ Symbol: \ExpInt
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \ExpIntEin
+Symbol: \expintEin
 
   Feature Set: dlmf-macro
-	DLMF: \ExpIntEin@{z}
+	DLMF: \expintEin@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E3
 	Mathematica-Alternatives: -ExpIntegralEi[-($0)] + Ln[$0] + EulerGamma
 	Mathematica-Comment: The translation based on the definition in DLMF.
@@ -2412,15 +2412,15 @@ Symbol: \ExpIntEin
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \ExpInti
+Symbol: \expintEi
 
   Feature Set: dlmf-macro
 	Branch Cuts: (-\infty, 0]
 	Constraints: z != 0
-	DLMF: \ExpInti@{x}
+	DLMF: \expintEi@{x}
 	DLMF-Link: dlmf.nist.gov/6.2#E1
 	Mathematica-Alternatives: -ExpIntegralEi[-($0)]
-	Mathematica-Comment: Mathematica uses another definition for the principle branch of the exponential integral. \ExpInti@{x} will be translated to -ExpIntegralEi[-x].
+	Mathematica-Comment: Mathematica uses another definition for the principle branch of the exponential integral. \expintEi@{x} will be translated to -ExpIntegralEi[-x].
 	Mathematica-Package: 
 	Meanings: Exponential integral
 	Number of Ats: 1
@@ -2428,10 +2428,10 @@ Symbol: \ExpInti
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \ExpIntn
+Symbol: \genexpintE
 
   Feature Set: dlmf-macro
-	DLMF: \ExpIntn{p}@{z}
+	DLMF: \genexpintE{p}@{z}
 	DLMF-Link: dlmf.nist.gov/8.19#E1
 	Maple: Ei($0, $1)
 	Maple-Alternatives: Ei($0)+ln($0)+gamma
@@ -2449,10 +2449,10 @@ Symbol: \ExpIntn
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \FerrersHatQ
+Symbol: \DunsterQ
 
   Feature Set: dlmf-macro
-	DLMF: \FerrersHatQ{\tau}@{x}
+	DLMF: \DunsterQ{\tau}@{x}
 	DLMF-Link: dlmf.nist.gov/14.20#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2464,7 +2464,7 @@ Symbol: \FerrersHatQ
 	Role: dlmf-macro
 
   Feature Set: dlmf-alternative-1
-	DLMF: \FerrersHatQ[\mu]{\tau}@{x}
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
 	DLMF-Link: dlmf.nist.gov/14.20#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2478,7 +2478,7 @@ Symbol: \FerrersHatQ
 Symbol: \FerrersP
 
   Feature Set: dlmf-macro
-	Constraints: -1 < x < 1, \mu, \nu \in \Real
+	Constraints: -1 < x < 1, \mu, \nu \in \Reals
 	DLMF: \FerrersP{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/14.2#i
 	Maple: LegendreP($0, $1)
@@ -2495,7 +2495,7 @@ Symbol: \FerrersP
 	Role: dlmf-macro
 
   Feature Set: dlmf-alternative-1
-	Constraints: -1 < x < 1, \mu, \nu \in \Real
+	Constraints: -1 < x < 1, \mu, \nu \in \Reals
 	DLMF: \FerrersP[\mu]{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/14.3#E1
 	Maple: LegendreP($1, $0, $2)
@@ -2514,7 +2514,7 @@ Symbol: \FerrersP
 Symbol: \FerrersQ
 
   Feature Set: dlmf-macro
-	Constraints: -1 < x < 1, \mu, \nu \in \Real
+	Constraints: -1 < x < 1, \mu, \nu \in \Reals
 	DLMF: \FerrersQ{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/14.2#i
 	Maple: LegendreQ($0, $1)
@@ -2531,7 +2531,7 @@ Symbol: \FerrersQ
 	Role: dlmf-macro
 
   Feature Set: dlmf-alternative-1
-	Constraints: -1 < x < 1, \mu, \nu \in \Real
+	Constraints: -1 < x < 1, \mu, \nu \in \Reals
 	DLMF: \FerrersQ[\mu]{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/14.3#E2
 	Maple: LegendreQ($1, $0, $2)
@@ -2581,10 +2581,10 @@ Symbol: \FishersHh
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \FresnelCos
+Symbol: \Fresnelcosint
 
   Feature Set: dlmf-macro
-	DLMF: \FresnelCos@{z}
+	DLMF: \Fresnelcosint@{z}
 	DLMF-Link: dlmf.nist.gov/7.2#E7
 	Maple: FresnelC($0)
 	Maple-Alternatives: 
@@ -2606,10 +2606,10 @@ Symbol: \FresnelCos
 	Number of Variables: 1
 	Role: 
 
-Symbol: \FresnelF
+Symbol: \FresnelintF
 
   Feature Set: dlmf-macro
-	DLMF: \FresnelF@{z}
+	DLMF: \FresnelintF@{z}
 	DLMF-Link: dlmf.nist.gov/7.2#E6
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2623,10 +2623,10 @@ Symbol: \FresnelF
 	Number of Variables: 1
 	Role: 
 
-Symbol: \FresnelSin
+Symbol: \Fresnelsinint
 
   Feature Set: dlmf-macro
-	DLMF: \FresnelSin@{z}
+	DLMF: \Fresnelsinint@{z}
 	DLMF-Link: dlmf.nist.gov/7.2#E8
 	Maple: FresnelS($0)
 	Maple-Alternatives: 
@@ -2648,10 +2648,10 @@ Symbol: \FresnelSin
 	Number of Variables: 1
 	Role: 
 
-Symbol: \Fresnelf
+Symbol: \auxFresnelf
 
   Feature Set: dlmf-macro
-	DLMF: \Fresnelf@{z}
+	DLMF: \auxFresnelf@{z}
 	DLMF-Link: dlmf.nist.gov/7.2#E10
 	Maple: Fresnelf($0)
 	Maple-Alternatives: 
@@ -2673,10 +2673,10 @@ Symbol: \Fresnelf
 	Number of Variables: 1
 	Role: 
 
-Symbol: \Fresnelg
+Symbol: \auxFresnelg
 
   Feature Set: dlmf-macro
-	DLMF: \Fresnelg@{z}
+	DLMF: \auxFresnelg@{z}
 	DLMF-Link: dlmf.nist.gov/7.2#E11
 	Maple: Fresnelg($0)
 	Maple-Alternatives: 
@@ -2698,10 +2698,10 @@ Symbol: \Fresnelg
 	Number of Variables: 1
 	Role: 
 
-Symbol: \GammaP
+Symbol: \normincGammaP
 
   Feature Set: dlmf-macro
-	DLMF: \GammaP@{a}{z}
+	DLMF: \normincGammaP@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.2#E4
 	Maple-Alternatives: (GAMMA($0)-GAMMA($0, $1))/GAMMA($0)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
@@ -2719,10 +2719,10 @@ Symbol: \GammaP
 	Number of Variables: 2
 	Role: dlmf-macro
 
-Symbol: \GammaQ
+Symbol: \normincGammaQ
 
   Feature Set: dlmf-macro
-	DLMF: \GammaQ@{a}{z}
+	DLMF: \normincGammaQ@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.2#E4
 	Maple-Alternatives: GAMMA($0, $1)/GAMMA($0)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
@@ -2740,10 +2740,10 @@ Symbol: \GammaQ
 	Number of Variables: 2
 	Role: dlmf-macro
 
-Symbol: \GaussSum
+Symbol: \Gausssum
 
   Feature Set: dlmf-macro
-	DLMF: \GaussSum@{n}{\DirichletCharacter}
+	DLMF: \Gausssum@{n}{\Dirichletchar}
 	DLMF-Link: dlmf.nist.gov/27.10#E9
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2757,10 +2757,10 @@ Symbol: \GaussSum
 	Number of Variables: 2
 	Role: 
 
-Symbol: \GenBernoulliB
+Symbol: \genBernoullipolyB
 
   Feature Set: dlmf-macro
-	DLMF: \GenBernoulliB{\ell}{n}@{x}
+	DLMF: \genBernoullipolyB{\ell}{n}@{x}
 	DLMF-Link: dlmf.nist.gov/24.16#P1.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2774,10 +2774,10 @@ Symbol: \GenBernoulliB
 	Number of Variables: 1
 	Role: 
 
-Symbol: \GenBesselFun
+Symbol: \genBesselphi
 
   Feature Set: dlmf-macro
-	DLMF: \GenBesselFun@{\rho}{\beta}{z}
+	DLMF: \genBesselphi@{\rho}{\beta}{z}
 	DLMF-Link: dlmf.nist.gov/10.46#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2791,10 +2791,10 @@ Symbol: \GenBesselFun
 	Number of Variables: 3
 	Role: 
 
-Symbol: \GenEulerE
+Symbol: \genEulerpolyE
 
   Feature Set: dlmf-macro
-	DLMF: \GenEulerE{\ell}{n}@{x}
+	DLMF: \genEulerpolyE{\ell}{n}@{x}
 	DLMF-Link: dlmf.nist.gov/24.16#P1.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2808,10 +2808,10 @@ Symbol: \GenEulerE
 	Number of Variables: 1
 	Role: 
 
-Symbol: \GenEulerSumH
+Symbol: \genEulersumH
 
   Feature Set: dlmf-macro
-	DLMF: \GenEulerSumH@{s}{z}
+	DLMF: \genEulersumH@{s}{z}
 	DLMF-Link: dlmf.nist.gov/25.16#SS2.p7
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2853,10 +2853,10 @@ Symbol: \GenHermite
 	Number of Variables: 1
 	Role: 
 
-Symbol: \GoodStat
+Symbol: \GoodwinStatonint
 
   Feature Set: dlmf-macro
-	DLMF: \GoodStat@{z}
+	DLMF: \GoodwinStatonint@{z}
 	DLMF-Link: dlmf.nist.gov/7.2#E12
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2925,10 +2925,10 @@ Symbol: \Hahn
 	Number of Variables: 4
 	Role: 
 
-Symbol: \HahnQ
+Symbol: \HahnpolyQ
 
   Feature Set: dlmf-macro
-	DLMF: \HahnQ{n}@{x}{\alpha}{\beta}{N}
+	DLMF: \HahnpolyQ{n}@{x}{\alpha}{\beta}{N}
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2942,10 +2942,10 @@ Symbol: \HahnQ
 	Number of Variables: 4
 	Role: 
 
-Symbol: \HahnR
+Symbol: \dualHahnpolyR
 
   Feature Set: dlmf-macro
-	DLMF: \HahnR{n}@{x}{\gamma}{\delta}{N}
+	DLMF: \dualHahnpolyR{n}@{x}{\gamma}{\delta}{N}
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r5
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2959,10 +2959,10 @@ Symbol: \HahnR
 	Number of Variables: 4
 	Role: 
 
-Symbol: \HahnS
+Symbol: \contdualHahnpolyS
 
   Feature Set: dlmf-macro
-	DLMF: \HahnS{n}@{x}{a}{b}{c}
+	DLMF: \contdualHahnpolyS{n}@{x}{a}{b}{c}
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2976,10 +2976,10 @@ Symbol: \HahnS
 	Number of Variables: 4
 	Role: 
 
-Symbol: \Hahnp
+Symbol: \contHahnpolyp
 
   Feature Set: dlmf-macro
-	DLMF: \Hahnp{n}@{x}{a}{b}{\conj{a}}{\conj{b}}
+	DLMF: \contHahnpolyp{n}@{x}{a}{b}{\conj{a}}{\conj{b}}
 	DLMF-Link: dlmf.nist.gov/18.19#P2.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -2993,10 +2993,10 @@ Symbol: \Hahnp
 	Number of Variables: 5
 	Role: 
 
-Symbol: \HankelHi
+Symbol: \HankelH{1}
 
   Feature Set: dlmf-macro
-	DLMF: \HankelHi{v}@{z}
+	DLMF: \HankelH{1}{v}@{z}
 	DLMF-Link: dlmf.nist.gov/10.2#E5
 	Maple: HankelH1($0, $1)
 	Maple-Alternatives: 
@@ -3014,10 +3014,10 @@ Symbol: \HankelHi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \HankelHii
+Symbol: \HankelH{2}
 
   Feature Set: dlmf-macro
-	DLMF: \HankelHii{v}@{z}
+	DLMF: \HankelH{2}{v}@{z}
 	DLMF-Link: dlmf.nist.gov/10.2#E6
 	Maple: HankelH2($0, $1)
 	Maple-Alternatives: 
@@ -3098,10 +3098,10 @@ Symbol: \Hermite
 	Number of Variables: 1
 	Role: 
 
-Symbol: \HermiteH
+Symbol: \HermitepolyH
 
   Feature Set: dlmf-macro
-	DLMF: \HermiteH{n}@{x}
+	DLMF: \HermitepolyH{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r13
 	Maple: HermiteH($0, $1)
 	Maple-Alternatives: 
@@ -3119,10 +3119,10 @@ Symbol: \HermiteH
 	Number of Variables: 1
 	Role: 
 
-Symbol: \HermiteHe
+Symbol: \dilHermitepolyHe
 
   Feature Set: dlmf-macro
-	DLMF: \HermiteHe{n}@{x}
+	DLMF: \dilHermitepolyHe{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r14
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -3136,10 +3136,10 @@ Symbol: \HermiteHe
 	Number of Variables: 1
 	Role: 
 
-Symbol: \HeunFunction
+Symbol: \HeunHf
 
   Feature Set: dlmf-macro
-	DLMF: \HeunFunction{m}{a}{b}@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z}
+	DLMF: \HeunHf{m}{a}{b}@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z}
 	DLMF-Link: dlmf.nist.gov/31.4#p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -3153,10 +3153,10 @@ Symbol: \HeunFunction
 	Number of Variables: 7
 	Role: 
 
-Symbol: \HeunLocal
+Symbol: \HeunHl
 
   Feature Set: dlmf-macro
-	DLMF: \HeunLocal@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z}
+	DLMF: \HeunHl@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z}
 	DLMF-Link: dlmf.nist.gov/31.3#E1
 	Maple: HeunG($0, $1, $2, $3, $4, $5, $6)
 	Maple-Alternatives: 
@@ -3171,10 +3171,10 @@ Symbol: \HeunLocal
 	Number of Variables: 7
 	Role: 
 
-Symbol: \HeunPolynom
+Symbol: \HeunpolyHp
 
   Feature Set: dlmf-macro
-	DLMF: \HeunPolynom{n}{m}@@{a}{q}{-n}{\beta}{\gamma}{\delta}{z}
+	DLMF: \HeunpolyHp{n}{m}@@{a}{q}{-n}{\beta}{\gamma}{\delta}{z}
 	DLMF-Link: dlmf.nist.gov/31.5#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -3188,10 +3188,10 @@ Symbol: \HeunPolynom
 	Number of Variables: 7
 	Role: 
 
-Symbol: \HurwitzZeta
+Symbol: \Hurwitzzeta
 
   Feature Set: dlmf-macro
-	DLMF: \HurwitzZeta@{s}{a}
+	DLMF: \Hurwitzzeta@{s}{a}
 	DLMF-Link: dlmf.nist.gov/25.11#E1
 	Maple: Zeta(0, $0, $1)
 	Maple-Alternatives: 
@@ -3209,10 +3209,10 @@ Symbol: \HurwitzZeta
 	Number of Variables: 2
 	Role: 
 
-Symbol: \HyperboldpFq
+Symbol: \genhyperOlverF
 
   Feature Set: dlmf-macro
-	DLMF: \HyperboldpFq{2}{1}@{a,b}{c}{z}
+	DLMF: \genhyperOlverF{2}{1}@{a,b}{c}{z}
 	DLMF-Link: dlmf.nist.gov/15.2#E5
 	Maple: hypergeom([$2], [$3], $4)
 	Maple-Alternatives: 
@@ -3227,10 +3227,10 @@ Symbol: \HyperboldpFq
 	Number of Variables: 3
 	Role: 
 
-Symbol: \HypergeoF
+Symbol: \hyperF
 
   Feature Set: dlmf-macro
-	DLMF: \HypergeoF@@@{a}{b}{c}{z}
+	DLMF: \hyperF@@@{a}{b}{c}{z}
 	DLMF-Link: dlmf.nist.gov/15.2#E1
 	Maple: hypergeom([$0, $1], [$2], $3)
 	Maple-Alternatives: 
@@ -3248,10 +3248,10 @@ Symbol: \HypergeoF
 	Number of Variables: 4
 	Role: 
 
-Symbol: \HypergeoboldF
+Symbol: \hyperOlverF
 
   Feature Set: dlmf-macro
-	DLMF: \HypergeoboldF@@@{a}{b}{c}{z}
+	DLMF: \hyperOlverF@@@{a}{b}{c}{z}
 	DLMF-Link: dlmf.nist.gov/15.2#E2
 	Maple: hypergeom([$0, $1], [$2], $3)/GAMMA($2)
 	Maple-Alternatives: 
@@ -3266,10 +3266,10 @@ Symbol: \HypergeoboldF
 	Number of Variables: 4
 	Role: 
 
-Symbol: \HyperpFq
+Symbol: \genhyperF
 
   Feature Set: dlmf-macro
-	DLMF: \HyperpFq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}
+	DLMF: \genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}
 	DLMF-Link: dlmf.nist.gov/16.2#E1
 	Maple: hypergeom([$2], [$3], $4)
 	Maple-Alternatives: 
@@ -3284,10 +3284,10 @@ Symbol: \HyperpFq
 	Number of Variables: 3
 	Role: 
 
-Symbol: \HyperpHq
+Symbol: \genhyperH
 
   Feature Set: dlmf-macro
-	DLMF: \HyperpHq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}
+	DLMF: \genhyperH{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}
 	DLMF-Link: dlmf.nist.gov/16.4#E16
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -3301,10 +3301,10 @@ Symbol: \HyperpHq
 	Number of Variables: 3
 	Role: 
 
-Symbol: \IncBeta
+Symbol: \incBeta
 
   Feature Set: dlmf-macro
-	DLMF: \IncBeta{x}@{a}{b}
+	DLMF: \incBeta{x}@{a}{b}
 	DLMF-Link: dlmf.nist.gov/8.17#E1
 	Maple-Alternatives: int(t^($1-1)*(1-t)^($2-1), t = 0 .. $0)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
@@ -3322,10 +3322,10 @@ Symbol: \IncBeta
 	Number of Variables: 2
 	Role: 
 
-Symbol: \IncGamma
+Symbol: \incGamma
 
   Feature Set: dlmf-macro
-	DLMF: \IncGamma@{a}{z}
+	DLMF: \incGamma@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.2#E2
 	Maple: GAMMA($0, $1)
 	Maple-Alternatives: 
@@ -3347,10 +3347,10 @@ Symbol: \IncGamma
 	Number of Variables: 2
 	Role: dlmf-macro
 
-Symbol: \IncI
+Symbol: \normincBetaI
 
   Feature Set: dlmf-macro
-	DLMF: \IncI{x}@{a}{b}
+	DLMF: \normincBetaI{x}@{a}{b}
 	DLMF-Link: dlmf.nist.gov/8.17#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -3389,10 +3389,10 @@ Symbol: \Int
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Integer
+Symbol: \Integers
 
   Feature Set: dlmf-macro
-	DLMF: \Integer
+	DLMF: \Integers
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r20
 	Maple: integer
 	Maple-Alternatives: 
@@ -3407,10 +3407,10 @@ Symbol: \Integer
 	Number of Variables: 0
 	Role: symbol
 
-Symbol: \IntgenAiryA
+Symbol: \genAiryintA
 
   Feature Set: dlmf-macro
-	DLMF: \IntgenAiryA{k}@{z}{p}
+	DLMF: \genAiryintA{k}@{z}{p}
 	DLMF-Link: dlmf.nist.gov/9.13#SS2.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -3424,10 +3424,10 @@ Symbol: \IntgenAiryA
 	Number of Variables: 1
 	Role: 
 
-Symbol: \IntgenAiryB
+Symbol: \genAiryintB
 
   Feature Set: dlmf-macro
-	DLMF: \IntgenAiryB{k}@{z}{p}
+	DLMF: \genAiryintB{k}@{z}{p}
 	DLMF-Link: dlmf.nist.gov/9.13#SS2.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -3517,10 +3517,10 @@ Symbol: \Jacobi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \JacobiEpsilon
+Symbol: \JacobiEpsilonk
 
   Feature Set: dlmf-macro
-	DLMF: \JacobiEpsilon@{x}{k}
+	DLMF: \JacobiEpsilonk@{x}{k}
 	DLMF-Link: dlmf.nist.gov/22.16#E14
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -3534,10 +3534,10 @@ Symbol: \JacobiEpsilon
 	Number of Variables: 2
 	Role: 
 
-Symbol: \JacobiG
+Symbol: \shiftJacobipolyG
 
   Feature Set: dlmf-macro
-	DLMF: \JacobiG{n}@{p}{q}{x}
+	DLMF: \shiftJacobipolyG{n}@{p}{q}{x}
 	DLMF-Link: dlmf.nist.gov/18.1#E2
 	Maple-Alternatives: JacobiP($0, $1-$2, $2-1, 2*($3)-1)*(($0)!)/pochhammer($0+$1, $0)
 	Maple-Comment: 
@@ -3551,10 +3551,10 @@ Symbol: \JacobiG
 	Number of Variables: 3
 	Role: 
 
-Symbol: \JacobiP
+Symbol: \JacobipolyP
 
   Feature Set: dlmf-macro
-	DLMF: \JacobiP{\alpha}{\beta}{n}@{x}
+	DLMF: \JacobipolyP{\alpha}{\beta}{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r2
 	Maple: JacobiP($2, $0, $1, $3)
 	Maple-Alternatives: 
@@ -3576,10 +3576,10 @@ Symbol: \JacobiP
 	Number of Variables: 1
 	Role: 
 
-Symbol: \JacobiSymbol
+Symbol: \Jacobisym
 
   Feature Set: dlmf-macro
-	DLMF: \JacobiSymbol{n}{P}
+	DLMF: \Jacobisym{n}{P}
 	DLMF-Link: dlmf.nist.gov/27.9#p3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -3593,10 +3593,10 @@ Symbol: \JacobiSymbol
 	Number of Variables: 2
 	Role: 
 
-Symbol: \JacobiTheta
+Symbol: \Jacobithetaq
 
   Feature Set: dlmf-macro
-	DLMF: \JacobiTheta{j}@{z}{q}
+	DLMF: \Jacobithetaq{j}@{z}{q}
 	DLMF-Link: dlmf.nist.gov/20.2#i
 	Maple: JacobiTheta$0($1, $2)
 	Maple-Alternatives: 
@@ -3611,10 +3611,10 @@ Symbol: \JacobiTheta
 	Number of Variables: 2
 	Role: 
 
-Symbol: \JacobiThetaCombined
+Symbol: \Jacobithetacombinedq
 
   Feature Set: dlmf-macro
-	DLMF: \JacobiThetaCombined{n}{m}@{z}{q}
+	DLMF: \Jacobithetacombinedq{n}{m}@{z}{q}
 	DLMF-Link: dlmf.nist.gov/20.11#SS5.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -3628,11 +3628,11 @@ Symbol: \JacobiThetaCombined
 	Number of Variables: 2
 	Role: 
 
-Symbol: \JacobiThetaTau
+Symbol: \Jacobithetatau
 
   Feature Set: dlmf-macro
 	Constraints: Im(tau) > 0 and 0 < |exp(I*Pi*tau)| < 1
-	DLMF: \JacobiThetaTau{j}@{z}{\tau}
+	DLMF: \Jacobithetatau{j}@{z}{\tau}
 	DLMF-Link: dlmf.nist.gov/20.2#i
 	Maple-Alternatives: JacobiTheta$0($1,exp(I*Pi*$2))
 	Maple-Comment: The alternative translation is only allowed for: Im($2) > 0 and 0 < |exp(I*Pi*$2)| < 1
@@ -3646,10 +3646,10 @@ Symbol: \JacobiThetaTau
 	Number of Variables: 2
 	Role: 
 
-Symbol: \JacobiZeta
+Symbol: \JacobiZetak
 
   Feature Set: dlmf-macro
-	DLMF: \JacobiZeta@{x}{k}
+	DLMF: \JacobiZetak@{x}{k}
 	DLMF-Link: dlmf.nist.gov/22.16#E32
 	Maple: JacobiZeta($0, $1)
 	Maple-Alternatives: 
@@ -3667,10 +3667,10 @@ Symbol: \JacobiZeta
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Jacobiam
+Symbol: \Jacobiamk
 
   Feature Set: dlmf-macro
-	DLMF: \Jacobiam@{z}{k}
+	DLMF: \Jacobiamk@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.16#E1
 	Maple: JacobiAM($0, $1)
 	Maple-Alternatives: 
@@ -3688,10 +3688,10 @@ Symbol: \Jacobiam
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Jacobicd
+Symbol: \Jacobiellcdk
 
   Feature Set: dlmf-macro
-	DLMF: \Jacobicd@@{z}{k}
+	DLMF: \Jacobiellcdk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E8
 	Maple: JacobiCD($0, $1)
 	Maple-Alternatives: 
@@ -3713,10 +3713,10 @@ Symbol: \Jacobicd
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Jacobicn
+Symbol: \Jacobiellcnk
 
   Feature Set: dlmf-macro
-	DLMF: \Jacobicn@@{z}{k}
+	DLMF: \Jacobiellcnk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E5
 	Maple: JacobiCN($0, $1)
 	Maple-Alternatives: 
@@ -3738,10 +3738,10 @@ Symbol: \Jacobicn
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Jacobics
+Symbol: \Jacobiellcsk
 
   Feature Set: dlmf-macro
-	DLMF: \Jacobics@@{z}{k}
+	DLMF: \Jacobiellcsk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E15
 	Maple: JacobiCS($0, $1)
 	Maple-Alternatives: 
@@ -3763,10 +3763,10 @@ Symbol: \Jacobics
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Jacobidc
+Symbol: \Jacobielldck
 
   Feature Set: dlmf-macro
-	DLMF: \Jacobidc@@{z}{k}
+	DLMF: \Jacobielldck@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E14
 	Maple: JacobiDC($0, $1)
 	Maple-Alternatives: 
@@ -3788,10 +3788,10 @@ Symbol: \Jacobidc
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Jacobidn
+Symbol: \Jacobielldnk
 
   Feature Set: dlmf-macro
-	DLMF: \Jacobidn@@{z}{k}
+	DLMF: \Jacobielldnk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E6
 	Maple: JacobiDN($0, $1)
 	Maple-Alternatives: 
@@ -3813,10 +3813,10 @@ Symbol: \Jacobidn
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Jacobids
+Symbol: \Jacobielldsk
 
   Feature Set: dlmf-macro
-	DLMF: \Jacobids@@{z}{k}
+	DLMF: \Jacobielldsk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E13
 	Maple: JacobiDS($0, $1)
 	Maple-Alternatives: 
@@ -3838,10 +3838,10 @@ Symbol: \Jacobids
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Jacobinc
+Symbol: \Jacobiellnck
 
   Feature Set: dlmf-macro
-	DLMF: \Jacobinc@@{z}{k}
+	DLMF: \Jacobiellnck@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E11
 	Maple: JacobiNC($0, $1)
 	Maple-Alternatives: 
@@ -3863,10 +3863,10 @@ Symbol: \Jacobinc
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Jacobind
+Symbol: \Jacobiellndk
 
   Feature Set: dlmf-macro
-	DLMF: \Jacobind@@{z}{k}
+	DLMF: \Jacobiellndk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E12
 	Maple: JacobiND($0, $1)
 	Maple-Alternatives: 
@@ -3888,10 +3888,10 @@ Symbol: \Jacobind
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Jacobins
+Symbol: \Jacobiellnsk
 
   Feature Set: dlmf-macro
-	DLMF: \Jacobins@@{z}{k}
+	DLMF: \Jacobiellnsk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E10
 	Maple: JacobiNS($0, $1)
 	Maple-Alternatives: 
@@ -3930,10 +3930,10 @@ Symbol: \Jacobiphi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \Jacobisc
+Symbol: \Jacobiellsck
 
   Feature Set: dlmf-macro
-	DLMF: \Jacobisc@@{z}{k}
+	DLMF: \Jacobiellsck@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E9
 	Maple: JacobiSC($0, $1)
 	Maple-Alternatives: 
@@ -3955,10 +3955,10 @@ Symbol: \Jacobisc
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Jacobisd
+Symbol: \Jacobiellsdk
 
   Feature Set: dlmf-macro
-	DLMF: \Jacobisd@@{z}{k}
+	DLMF: \Jacobiellsdk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E7
 	Maple: JacobiSD($0, $1)
 	Maple-Alternatives: 
@@ -3980,10 +3980,10 @@ Symbol: \Jacobisd
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Jacobisn
+Symbol: \Jacobiellsnk
 
   Feature Set: dlmf-macro
-	DLMF: \Jacobisn@@{z}{k}
+	DLMF: \Jacobiellsnk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.2#E4
 	Maple: JacobiSN($0, $1)
 	Maple-Alternatives: 
@@ -4005,10 +4005,10 @@ Symbol: \Jacobisn
 	Number of Variables: 2
 	Role: 
 
-Symbol: \JonquierePhi
+Symbol: \Jonquierephi
 
   Feature Set: dlmf-macro
-	DLMF: \JonquierePhi@{z}{s}
+	DLMF: \Jonquierephi@{z}{s}
 	DLMF-Link: dlmf.nist.gov/25.1
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -4137,10 +4137,10 @@ Symbol: \Krawtchouk
 	Number of Variables: 3
 	Role: 
 
-Symbol: \KrawtchoukK
+Symbol: \KrawtchoukpolyK
 
   Feature Set: dlmf-macro
-	DLMF: \KrawtchoukK{n}@{x}{p}{N}
+	DLMF: \KrawtchoukpolyK{n}@{x}{p}{N}
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -4154,10 +4154,10 @@ Symbol: \KrawtchoukK
 	Number of Variables: 3
 	Role: 
 
-Symbol: \Kronecker
+Symbol: \Kroneckerdelta
 
   Feature Set: dlmf-macro
-	DLMF: \Kronecker{j}{k}
+	DLMF: \Kroneckerdelta{j}{k}
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r4
 	Maple-Alternatives: KroneckerDelta[$0, $1]
 	Maple-Comment: This funcion needs an extra package. with(Physics)
@@ -4171,10 +4171,10 @@ Symbol: \Kronecker
 	Number of Variables: 2
 	Role: 
 
-Symbol: \KummerM
+Symbol: \KummerconfhyperM
 
   Feature Set: dlmf-macro
-	DLMF: \KummerM@{a}{b}{z}
+	DLMF: \KummerconfhyperM@{a}{b}{z}
 	DLMF-Link: dlmf.nist.gov/13.2#E2
 	Maple: KummerM($0, $1, $2)
 	Maple-Alternatives: 
@@ -4192,10 +4192,10 @@ Symbol: \KummerM
 	Number of Variables: 3
 	Role: 
 
-Symbol: \KummerU
+Symbol: \KummerconfhyperU
 
   Feature Set: dlmf-macro
-	DLMF: \KummerU@{a}{b}{z}
+	DLMF: \KummerconfhyperU@{a}{b}{z}
 	DLMF-Link: dlmf.nist.gov/13.2#E6
 	Maple: KummerU($0, $1, $2)
 	Maple-Alternatives: 
@@ -4213,10 +4213,10 @@ Symbol: \KummerU
 	Number of Variables: 3
 	Role: 
 
-Symbol: \KummerboldM
+Symbol: \OlverconfhyperM
 
   Feature Set: dlmf-macro
-	DLMF: \KummerboldM@{a}{b}{z}
+	DLMF: \OlverconfhyperM@{a}{b}{z}
 	DLMF-Link: dlmf.nist.gov/13.2#E3
 	Maple-Alternatives: KummerM($0, $1, $2)/GAMMA($1)
 	Maple-Comment: 
@@ -4264,10 +4264,10 @@ Symbol: \Laguerre
 	Number of Variables: 1
 	Role: 
 
-Symbol: \LaguerreL
+Symbol: \LaguerrepolyL
 
   Feature Set: dlmf-macro
-	DLMF: \LaguerreL{n}@{x}
+	DLMF: \LaguerrepolyL{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.1#I1.ix7.p1
 	Maple: LaguerreL($0, $1)
 	Maple-Alternatives: 
@@ -4283,7 +4283,7 @@ Symbol: \LaguerreL
 	Role: 
 
   Feature Set: dlmf-alternative-1
-	DLMF: \LaguerreL[\alpha]{n}@{x}
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
 	Maple: LaguerreL($1, $0, $2)
 	Maple-Alternatives: 
@@ -4301,7 +4301,7 @@ Symbol: \LaguerreL
 Symbol: \LambertW
 
   Feature Set: dlmf-macro
-	Constraints: x in \Real
+	Constraints: x in \Reals
 	DLMF: \LambertW@{x}
 	DLMF-Link: dlmf.nist.gov/4.13#p2
 	Maple: LambertW($0)
@@ -4403,10 +4403,10 @@ Symbol: \LameEs
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Lamea
+Symbol: \Lameeigvala
 
   Feature Set: dlmf-macro
-	DLMF: \Lamea{n}{\nu}@{k^2}
+	DLMF: \Lameeigvala{n}{\nu}@{k^2}
 	DLMF-Link: dlmf.nist.gov/29.3#SS1.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -4420,10 +4420,10 @@ Symbol: \Lamea
 	Number of Variables: 1
 	Role: 
 
-Symbol: \Lameb
+Symbol: \Lameeigvalb
 
   Feature Set: dlmf-macro
-	DLMF: \Lameb{n}{\nu}@{k^2}
+	DLMF: \Lameeigvalb{n}{\nu}@{k^2}
 	DLMF-Link: dlmf.nist.gov/29.3#SS1.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -4437,10 +4437,10 @@ Symbol: \Lameb
 	Number of Variables: 1
 	Role: 
 
-Symbol: \LamecE
+Symbol: \LamepolycE
 
   Feature Set: dlmf-macro
-	DLMF: \LamecE{m}{2n+1}@{z}{k^2}
+	DLMF: \LamepolycE{m}{2n+1}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -4454,10 +4454,10 @@ Symbol: \LamecE
 	Number of Variables: 2
 	Role: 
 
-Symbol: \LamecdE
+Symbol: \LamepolycdE
 
   Feature Set: dlmf-macro
-	DLMF: \LamecdE{m}{2n+2}@{z}{k^2}
+	DLMF: \LamepolycdE{m}{2n+2}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -4471,10 +4471,10 @@ Symbol: \LamecdE
 	Number of Variables: 2
 	Role: 
 
-Symbol: \LamedE
+Symbol: \LamepolydE
 
   Feature Set: dlmf-macro
-	DLMF: \LamedE{m}{2n+1}@{z}{k^2}
+	DLMF: \LamepolydE{m}{2n+1}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -4488,10 +4488,10 @@ Symbol: \LamedE
 	Number of Variables: 2
 	Role: 
 
-Symbol: \LamesE
+Symbol: \LamepolysE
 
   Feature Set: dlmf-macro
-	DLMF: \LamesE{m}{2n+1}@{z}{k^2}
+	DLMF: \LamepolysE{m}{2n+1}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -4505,10 +4505,10 @@ Symbol: \LamesE
 	Number of Variables: 2
 	Role: 
 
-Symbol: \LamescE
+Symbol: \LamepolyscE
 
   Feature Set: dlmf-macro
-	DLMF: \LamescE{m}{2n+2}@{z}{k^2}
+	DLMF: \LamepolyscE{m}{2n+2}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E5
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -4522,10 +4522,10 @@ Symbol: \LamescE
 	Number of Variables: 2
 	Role: 
 
-Symbol: \LamescdE
+Symbol: \LamepolyscdE
 
   Feature Set: dlmf-macro
-	DLMF: \LamescdE{m}{2n+3}@{z}{k^2}
+	DLMF: \LamepolyscdE{m}{2n+3}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E8
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -4539,10 +4539,10 @@ Symbol: \LamescdE
 	Number of Variables: 2
 	Role: 
 
-Symbol: \LamesdE
+Symbol: \LamepolysdE
 
   Feature Set: dlmf-macro
-	DLMF: \LamesdE{m}{2n+2}@{z}{k^2}
+	DLMF: \LamepolysdE{m}{2n+2}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E6
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -4556,10 +4556,10 @@ Symbol: \LamesdE
 	Number of Variables: 2
 	Role: 
 
-Symbol: \LameuE
+Symbol: \LamepolyuE
 
   Feature Set: dlmf-macro
-	DLMF: \LameuE{m}{2n}@{z}{k^2}
+	DLMF: \LamepolyuE{m}{2n}@{z}{k^2}
 	DLMF-Link: dlmf.nist.gov/29.12#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -4607,10 +4607,10 @@ Symbol: \LauricellaFD
 	Number of Variables: 4
 	Role: 
 
-Symbol: \LegendreBlackQ
+Symbol: \assLegendreOlverQ
 
   Feature Set: dlmf-macro
-	DLMF: \LegendreBlackQ{\nu}@{z}
+	DLMF: \assLegendreOlverQ{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.2#i
 	Maple: LegendreQ($0,$1)/GAMMA($0+1)
 	Maple-Alternatives: 
@@ -4626,7 +4626,7 @@ Symbol: \LegendreBlackQ
 	Role: dlmf-macro
 
   Feature Set: dlmf-alternative-1
-	DLMF: \LegendreBlackQ[\mu]{\nu}@{z}
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E10
 	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
 	Maple-Alternatives: 
@@ -4641,11 +4641,11 @@ Symbol: \LegendreBlackQ
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \LegendreP
+Symbol: \assLegendreP
 
   Feature Set: dlmf-macro
 	Branch Cuts: (-\infty, 1]
-	DLMF: \LegendreP{\nu}@{z}
+	DLMF: \assLegendreP{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.2#i
 	Maple: LegendreP($0, $1)
 	Maple-Alternatives: 
@@ -4662,7 +4662,7 @@ Symbol: \LegendreP
 
   Feature Set: dlmf-alternative-1
 	Branch Cuts: (-\infty, 1]
-	DLMF: \LegendreP[\mu]{\nu}@{z}
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E5
 	Maple: LegendreP($1, $0, $2)
 	Maple-Alternatives: 
@@ -4677,10 +4677,10 @@ Symbol: \LegendreP
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \LegendrePoly
+Symbol: \LegendrepolyP
 
   Feature Set: dlmf-macro
-	DLMF: \LegendrePoly{n}@{x}
+	DLMF: \LegendrepolyP{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r10
 	Maple: LegendreP($0, $1)
 	Maple-Alternatives: 
@@ -4699,10 +4699,10 @@ Symbol: \LegendrePoly
 	Number of Variables: 1
 	Role: 
 
-Symbol: \LegendrePolys
+Symbol: \shiftLegendrepolyP
 
   Feature Set: dlmf-macro
-	DLMF: \LegendrePolys{n}@{x}
+	DLMF: \shiftLegendrepolyP{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r11
 	Maple: LegendreP($0, 2*($1) - 1)
 	Maple-Alternatives: 
@@ -4720,11 +4720,11 @@ Symbol: \LegendrePolys
 	Number of Variables: 1
 	Role: 
 
-Symbol: \LegendreQ
+Symbol: \assLegendreQ
 
   Feature Set: dlmf-macro
 	Branch Cuts: (-\infty, 1]
-	DLMF: \LegendreQ{\nu}@{z}
+	DLMF: \assLegendreQ{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.2#i
 	Maple: LegendreQ($0, $1)
 	Maple-Alternatives: 
@@ -4741,7 +4741,7 @@ Symbol: \LegendreQ
 
   Feature Set: dlmf-alternative-1
 	Branch Cuts: (-\infty, 1]
-	DLMF: \LegendreQ[\mu]{\nu}@{z}
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E7
 	Maple: LegendreQ($1, $0, $2)
 	Maple-Alternatives: 
@@ -4756,10 +4756,10 @@ Symbol: \LegendreQ
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \LegendreSymbol
+Symbol: \Legendresym
 
   Feature Set: dlmf-macro
-	DLMF: \LegendreSymbol{n}{p}
+	DLMF: \Legendresym{n}{p}
 	DLMF-Link: dlmf.nist.gov/27.9
 	Maple-Alternatives: legendre($0, $1)
 	Maple-Comment: This funcion needs an extra package. For Maple 2016 or older use with(numtheory), otherwise use with(NumberTheory)
@@ -4794,10 +4794,10 @@ Symbol: \LerchPhi
 	Number of Variables: 3
 	Role: 
 
-Symbol: \LeviCivita
+Symbol: \LeviCivitasym
 
   Feature Set: dlmf-macro
-	DLMF: \LeviCivita{j}{k}{l}
+	DLMF: \LeviCivitasym{j}{k}{l}
 	DLMF-Link: dlmf.nist.gov/1.6#E14
 	Maple-Alternatives: LeviCivita[$0, $1, $2]
 	Maple-Comment: This funcion needs an extra package: with(Physics). The number of variables is not defined in Maple. LeviCivita[j,k,l,...]
@@ -4829,10 +4829,10 @@ Symbol: \Lim
 	Number of Variables: 1
 	Role: 
 
-Symbol: \LinBrF
+Symbol: \VoigtH
 
   Feature Set: dlmf-macro
-	DLMF: \LinBrF@{a}{u}
+	DLMF: \VoigtH@{a}{u}
 	DLMF-Link: dlmf.nist.gov/7.19#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -4846,10 +4846,10 @@ Symbol: \LinBrF
 	Number of Variables: 2
 	Role: 
 
-Symbol: \LiouvilleLambda
+Symbol: \Liouvillelambda
 
   Feature Set: dlmf-macro
-	DLMF: \LiouvilleLambda@{n}
+	DLMF: \Liouvillelambda@{n}
 	DLMF-Link: dlmf.nist.gov/27.2#E13
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -4879,11 +4879,11 @@ Symbol: \Ln
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \LogInt
+Symbol: \logint
 
   Feature Set: dlmf-macro
 	Constraints: x > 1
-	DLMF: \LogInt@{x}
+	DLMF: \logint@{x}
 	DLMF-Link: dlmf.nist.gov/6.2#E8
 	Maple: Li($0)
 	Maple-Alternatives: 
@@ -4992,10 +4992,10 @@ Symbol: \MangoldtLambda
 	Number of Variables: 1
 	Role: 
 
-Symbol: \MathieuCe
+Symbol: \modMathieuCe
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuCe{\nu}@@{z}{q}
+	DLMF: \modMathieuCe{\nu}@@{z}{q}
 	DLMF-Link: dlmf.nist.gov/28.20#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5009,10 +5009,10 @@ Symbol: \MathieuCe
 	Number of Variables: 2
 	Role: 
 
-Symbol: \MathieuD
+Symbol: \modMathieuD
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuD{j}@{\nu}{\mu}{z}
+	DLMF: \modMathieuD{j}@{\nu}{\mu}{z}
 	DLMF-Link: dlmf.nist.gov/28.28#E24
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5026,10 +5026,10 @@ Symbol: \MathieuD
 	Number of Variables: 3
 	Role: 
 
-Symbol: \MathieuDc
+Symbol: \radMathieuDc
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuDc{j}@{n}{m}{z}
+	DLMF: \radMathieuDc{j}@{n}{m}{z}
 	DLMF-Link: dlmf.nist.gov/28.28#E39
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5043,10 +5043,10 @@ Symbol: \MathieuDc
 	Number of Variables: 3
 	Role: 
 
-Symbol: \MathieuDs
+Symbol: \radMathieuDs
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuDs{j}@{n}{m}{z}
+	DLMF: \radMathieuDs{j}@{n}{m}{z}
 	DLMF-Link: dlmf.nist.gov/28.28#E35
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5060,10 +5060,10 @@ Symbol: \MathieuDs
 	Number of Variables: 3
 	Role: 
 
-Symbol: \MathieuDsc
+Symbol: \radMathieuDsc
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuDsc{j}@{n}{m}{z}
+	DLMF: \radMathieuDsc{j}@{n}{m}{z}
 	DLMF-Link: dlmf.nist.gov/28.28#E40
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5077,10 +5077,10 @@ Symbol: \MathieuDsc
 	Number of Variables: 3
 	Role: 
 
-Symbol: \MathieuEigenvaluea
+Symbol: \Mathieueigvala
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuEigenvaluea{n}@@{q}
+	DLMF: \Mathieueigvala{n}@@{q}
 	DLMF-Link: dlmf.nist.gov/28.2#SS5.p1
 	Maple: MathieuA($0, $1)
 	Maple-Alternatives: 
@@ -5098,10 +5098,10 @@ Symbol: \MathieuEigenvaluea
 	Number of Variables: 1
 	Role: 
 
-Symbol: \MathieuEigenvalueb
+Symbol: \Mathieueigvalb
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuEigenvalueb{n}@@{q}
+	DLMF: \Mathieueigvalb{n}@@{q}
 	DLMF-Link: dlmf.nist.gov/28.2#SS5.p1
 	Maple: MathieuB($0, $1)
 	Maple-Alternatives: 
@@ -5119,10 +5119,10 @@ Symbol: \MathieuEigenvalueb
 	Number of Variables: 1
 	Role: 
 
-Symbol: \MathieuEigenvaluelambda
+Symbol: \Mathieueigvallambda
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuEigenvaluelambda{m}@@{q}
+	DLMF: \Mathieueigvallambda{m}@@{q}
 	DLMF-Link: dlmf.nist.gov/28.12#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5153,10 +5153,10 @@ Symbol: \MathieuFc
 	Number of Variables: 2
 	Role: 
 
-Symbol: \MathieuFe
+Symbol: \modMathieuFe
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuFe{n}@@{z}{q}
+	DLMF: \modMathieuFe{n}@@{z}{q}
 	DLMF-Link: dlmf.nist.gov/28.20#E6
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5204,10 +5204,10 @@ Symbol: \MathieuGc
 	Number of Variables: 2
 	Role: 
 
-Symbol: \MathieuGe
+Symbol: \modMathieuGe
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuGe{n}@@{z}{q}
+	DLMF: \modMathieuGe{n}@@{z}{q}
 	DLMF-Link: dlmf.nist.gov/28.20#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5238,10 +5238,10 @@ Symbol: \MathieuGs
 	Number of Variables: 2
 	Role: 
 
-Symbol: \MathieuIe
+Symbol: \modMathieuIe
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuIe{n}@@{z}{h}
+	DLMF: \modMathieuIe{n}@@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.20#E17
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5255,10 +5255,10 @@ Symbol: \MathieuIe
 	Number of Variables: 2
 	Role: 
 
-Symbol: \MathieuIo
+Symbol: \modMathieuIo
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuIo{n}@@{z}{h}
+	DLMF: \modMathieuIo{n}@@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.20#E18
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5272,10 +5272,10 @@ Symbol: \MathieuIo
 	Number of Variables: 2
 	Role: 
 
-Symbol: \MathieuKe
+Symbol: \modMathieuKe
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuKe{n}@@{z}{h}
+	DLMF: \modMathieuKe{n}@@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.20#E19
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5289,10 +5289,10 @@ Symbol: \MathieuKe
 	Number of Variables: 2
 	Role: 
 
-Symbol: \MathieuKo
+Symbol: \modMathieuKo
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuKo{n}@@{z}{h}
+	DLMF: \modMathieuKo{n}@@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.20#E20
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5306,10 +5306,10 @@ Symbol: \MathieuKo
 	Number of Variables: 2
 	Role: 
 
-Symbol: \MathieuM
+Symbol: \modMathieuM
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuM{j}{\nu}@@{z}{h}
+	DLMF: \modMathieuM{j}{\nu}@@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.20#SS3.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5323,10 +5323,10 @@ Symbol: \MathieuM
 	Number of Variables: 2
 	Role: 
 
-Symbol: \MathieuMc
+Symbol: \radMathieuMc
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuMc{j}{n}@@{z}{h}
+	DLMF: \radMathieuMc{j}{n}@@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.20#E15
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5340,10 +5340,10 @@ Symbol: \MathieuMc
 	Number of Variables: 2
 	Role: 
 
-Symbol: \MathieuMe
+Symbol: \modMathieuMe
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuMe{\nu}@@{z}{q}
+	DLMF: \modMathieuMe{\nu}@@{z}{q}
 	DLMF-Link: dlmf.nist.gov/28.20#E5
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5357,10 +5357,10 @@ Symbol: \MathieuMe
 	Number of Variables: 2
 	Role: 
 
-Symbol: \MathieuMs
+Symbol: \radMathieuMs
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuMs{j}{n}@@{z}{h}
+	DLMF: \radMathieuMs{j}{n}@@{z}{h}
 	DLMF-Link: dlmf.nist.gov/28.20#E16
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5374,10 +5374,10 @@ Symbol: \MathieuMs
 	Number of Variables: 2
 	Role: 
 
-Symbol: \MathieuSe
+Symbol: \modMathieuSe
 
   Feature Set: dlmf-macro
-	DLMF: \MathieuSe{\nu}@@{z}{q}
+	DLMF: \modMathieuSe{\nu}@@{z}{q}
 	DLMF-Link: dlmf.nist.gov/28.20#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5500,10 +5500,10 @@ Symbol: \Meixner
 	Number of Variables: 3
 	Role: 
 
-Symbol: \MeixnerM
+Symbol: \MeixnerpolyM
 
   Feature Set: dlmf-macro
-	DLMF: \MeixnerM{n}@{x}{\beta}{c}
+	DLMF: \MeixnerpolyM{n}@{x}{\beta}{c}
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r9
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5534,10 +5534,10 @@ Symbol: \MeixnerPollaczek
 	Number of Variables: 2
 	Role: 
 
-Symbol: \MeixnerPollaczekP
+Symbol: \MeixnerPollaczekpolyP
 
   Feature Set: dlmf-macro
-	DLMF: \MeixnerPollaczekP{\lambda}{n}@{x}{\phi}
+	DLMF: \MeixnerPollaczekpolyP{\lambda}{n}@{x}{\phi}
 	DLMF-Link: dlmf.nist.gov/18.19#P3.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5551,10 +5551,10 @@ Symbol: \MeixnerPollaczekP
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Mills
+Symbol: \MillsM
 
   Feature Set: dlmf-macro
-	DLMF: \Mills@{x}
+	DLMF: \MillsM@{x}
 	DLMF-Link: dlmf.nist.gov/7.8#E1
 	Maple-Alternatives: 
 	Maple-Comment: Maybe with(Statistics): MillsRatio(X,t)
@@ -5568,10 +5568,10 @@ Symbol: \Mills
 	Number of Variables: 1
 	Role: 
 
-Symbol: \MittagLeffler
+Symbol: \MittagLefflerE
 
   Feature Set: dlmf-macro
-	DLMF: \MittagLeffler{a}{b}@{z}
+	DLMF: \MittagLefflerE{a}{b}@{z}
 	DLMF-Link: dlmf.nist.gov/10.46#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5585,10 +5585,10 @@ Symbol: \MittagLeffler
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ModCylinder
+Symbol: \modcylinder
 
   Feature Set: dlmf-macro
-	DLMF: \ModCylinder{\nu}@{z}
+	DLMF: \modcylinder{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/10.25#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5602,10 +5602,10 @@ Symbol: \ModCylinder
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ModularJ
+Symbol: \KleincompinvarJtau
 
   Feature Set: dlmf-macro
-	DLMF: \ModularJ@{\tau}
+	DLMF: \KleincompinvarJtau@{\tau}
 	DLMF-Link: dlmf.nist.gov/23.15#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5619,10 +5619,10 @@ Symbol: \ModularJ
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ModularLambda
+Symbol: \modularlambdatau
 
   Feature Set: dlmf-macro
-	DLMF: \ModularLambda@{\tau}
+	DLMF: \modularlambdatau@{\tau}
 	DLMF-Link: dlmf.nist.gov/23.15#E6
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5636,10 +5636,10 @@ Symbol: \ModularLambda
 	Number of Variables: 1
 	Role: 
 
-Symbol: \MoebiusMu
+Symbol: \Moebiusmu
 
   Feature Set: dlmf-macro
-	DLMF: \MoebiusMu@{n}
+	DLMF: \Moebiusmu@{n}
 	DLMF-Link: dlmf.nist.gov/27.2#E12
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5653,10 +5653,10 @@ Symbol: \MoebiusMu
 	Number of Variables: 1
 	Role: 
 
-Symbol: \NatNumber
+Symbol: \natNumbers
 
   Feature Set: dlmf-macro
-	DLMF: \NatNumber
+	DLMF: \natNumbers
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r11
 	Maple: posint
 	Maple-Alternatives: 
@@ -5688,10 +5688,10 @@ Symbol: \NeumannFactor
 	Number of Variables: 1
 	Role: 
 
-Symbol: \NeumannPoly
+Symbol: \NeumannpolyO
 
   Feature Set: dlmf-macro
-	DLMF: \NeumannPoly{n}@{x}
+	DLMF: \NeumannpolyO{n}@{x}
 	DLMF-Link: dlmf.nist.gov/10.23#E12
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5705,10 +5705,10 @@ Symbol: \NeumannPoly
 	Number of Variables: 1
 	Role: 
 
-Symbol: \NumPrimeDivNu
+Symbol: \nprimesdiv
 
   Feature Set: dlmf-macro
-	DLMF: \NumPrimeDivNu@{n}
+	DLMF: \nprimesdiv@{n}
 	DLMF-Link: dlmf.nist.gov/27.2#E1
 	Maple: ifactor($0)
 	Maple-Alternatives: 
@@ -5726,10 +5726,10 @@ Symbol: \NumPrimeDivNu
 	Number of Variables: 1
 	Role: 
 
-Symbol: \NumPrimesLessPi
+Symbol: \nprimes
 
   Feature Set: dlmf-macro
-	DLMF: \NumPrimesLessPi@{x}
+	DLMF: \nprimes@{x}
 	DLMF-Link: dlmf.nist.gov/27.2#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5743,10 +5743,10 @@ Symbol: \NumPrimesLessPi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \NumSquaresR
+Symbol: \nsquares
 
   Feature Set: dlmf-macro
-	DLMF: \NumSquaresR{k}@{n}
+	DLMF: \nsquares{k}@{n}
 	DLMF-Link: dlmf.nist.gov/27.13#SS4.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5760,10 +5760,10 @@ Symbol: \NumSquaresR
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ODEgenAiryA
+Symbol: \genAiryODEA
 
   Feature Set: dlmf-macro
-	DLMF: \ODEgenAiryA{n}@{z}
+	DLMF: \genAiryODEA{n}@{z}
 	DLMF-Link: dlmf.nist.gov/9.13#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5777,10 +5777,10 @@ Symbol: \ODEgenAiryA
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ODEgenAiryB
+Symbol: \genAiryODEB
 
   Feature Set: dlmf-macro
-	DLMF: \ODEgenAiryB{n}@{z}
+	DLMF: \genAiryODEB{n}@{z}
 	DLMF-Link: dlmf.nist.gov/9.13#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5811,10 +5811,10 @@ Symbol: \Pade
 	Number of Variables: 3
 	Role: 
 
-Symbol: \ParabolicU
+Symbol: \paraU
 
   Feature Set: dlmf-macro
-	DLMF: \ParabolicU@{a}{z}
+	DLMF: \paraU@{a}{z}
 	DLMF-Link: dlmf.nist.gov/12.4#E1
 	Maple: CylinderU($0, $1)
 	Maple-Alternatives: 
@@ -5832,10 +5832,10 @@ Symbol: \ParabolicU
 	Number of Variables: 2
 	Role: 
 
-Symbol: \ParabolicUbar
+Symbol: \paraUbar
 
   Feature Set: dlmf-macro
-	DLMF: \ParabolicUbar@{a}{x}
+	DLMF: \paraUbar@{a}{x}
 	DLMF-Link: dlmf.nist.gov/12.2#21
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5849,10 +5849,10 @@ Symbol: \ParabolicUbar
 	Number of Variables: 2
 	Role: 
 
-Symbol: \ParabolicV
+Symbol: \paraV
 
   Feature Set: dlmf-macro
-	DLMF: \ParabolicV@{a}{z}
+	DLMF: \paraV@{a}{z}
 	DLMF-Link: dlmf.nist.gov/12.4#E2
 	Maple: CylinderV($0, $1)
 	Maple-Alternatives: 
@@ -5870,10 +5870,10 @@ Symbol: \ParabolicV
 	Number of Variables: 2
 	Role: 
 
-Symbol: \ParabolicW
+Symbol: \paraW
 
   Feature Set: dlmf-macro
-	DLMF: \ParabolicW@{a}{x}
+	DLMF: \paraW@{a}{x}
 	DLMF-Link: dlmf.nist.gov/12.14.i
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5887,10 +5887,10 @@ Symbol: \ParabolicW
 	Number of Variables: 2
 	Role: 
 
-Symbol: \PartitionsP
+Symbol: \npartitions
 
   Feature Set: dlmf-macro
-	DLMF: \PartitionsP[k]@{n}
+	DLMF: \npartitions[k]@{n}
 	DLMF-Link: dlmf.nist.gov/26.9
 	Maple-Alternatives: 
 	Maple-Comment: Maple needs an extra package. Load it with the following command: with(combinat,partition)
@@ -5904,10 +5904,10 @@ Symbol: \PartitionsP
 	Number of Variables: 1
 	Role: 
 
-Symbol: \PeriodicBernoulliB
+Symbol: \perBernoulliB
 
   Feature Set: dlmf-macro
-	DLMF: \PeriodicBernoulliB{n}@{x}
+	DLMF: \perBernoulliB{n}@{x}
 	DLMF-Link: dlmf.nist.gov/24.2#iii
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5921,10 +5921,10 @@ Symbol: \PeriodicBernoulliB
 	Number of Variables: 1
 	Role: 
 
-Symbol: \PeriodicEulerE
+Symbol: \perEulerE
 
   Feature Set: dlmf-macro
-	DLMF: \PeriodicEulerE{n}@{x}
+	DLMF: \perEulerE{n}@{x}
 	DLMF-Link: dlmf.nist.gov/24.2#iii
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5938,10 +5938,10 @@ Symbol: \PeriodicEulerE
 	Number of Variables: 1
 	Role: 
 
-Symbol: \PeriodicZeta
+Symbol: \perZeta
 
   Feature Set: dlmf-macro
-	DLMF: \PeriodicZeta@{x}{s}
+	DLMF: \perZeta@{x}{s}
 	DLMF-Link: dlmf.nist.gov/25.13#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5955,10 +5955,10 @@ Symbol: \PeriodicZeta
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Permutations
+Symbol: \npermutations
 
   Feature Set: dlmf-macro
-	DLMF: \Permutations{n}
+	DLMF: \npermutations{n}
 	DLMF-Link: dlmf.nist.gov/26.13
 	Maple: permute($0)
 	Maple-Alternatives: 
@@ -5973,10 +5973,10 @@ Symbol: \Permutations
 	Number of Variables: 1
 	Role: 
 
-Symbol: \PlanePartitionsPP
+Symbol: \nplanepartitions
 
   Feature Set: dlmf-macro
-	DLMF: \PlanePartitionsPP@{n}
+	DLMF: \nplanepartitions@{n}
 	DLMF-Link: dlmf.nist.gov/26.12#SS1.p4
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -5990,10 +5990,10 @@ Symbol: \PlanePartitionsPP
 	Number of Variables: 1
 	Role: 
 
-Symbol: \PollaczekP
+Symbol: \PollaczekpolyP
 
   Feature Set: dlmf-macro
-	DLMF: \PollaczekP{\lambda}{n}@{x}{a}{b}
+	DLMF: \PollaczekpolyP{\lambda}{n}@{x}{a}{b}
 	DLMF-Link: dlmf.nist.gov/18.35#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6007,10 +6007,10 @@ Symbol: \PollaczekP
 	Number of Variables: 3
 	Role: 
 
-Symbol: \Polylogarithm
+Symbol: \polylog
 
   Feature Set: dlmf-macro
-	DLMF: \Polylogarithm{s}@{z}
+	DLMF: \polylog{s}@{z}
 	DLMF-Link: dlmf.nist.gov/25.12#E10
 	Maple: polylog($0, $1)
 	Maple-Alternatives: 
@@ -6066,10 +6066,10 @@ Symbol: \Racah
 	Number of Variables: 5
 	Role: 
 
-Symbol: \RacahR
+Symbol: \RacahpolyR
 
   Feature Set: dlmf-macro
-	DLMF: \RacahR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}
+	DLMF: \RacahpolyR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r4
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6083,10 +6083,10 @@ Symbol: \RacahR
 	Number of Variables: 5
 	Role: 
 
-Symbol: \RamanujanSum
+Symbol: \Ramanujansum
 
   Feature Set: dlmf-macro
-	DLMF: \RamanujanSum{k}@{n}
+	DLMF: \Ramanujansum{k}@{n}
 	DLMF-Link: dlmf.nist.gov/27.10#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6100,10 +6100,10 @@ Symbol: \RamanujanSum
 	Number of Variables: 1
 	Role: 
 
-Symbol: \RamanujanTau
+Symbol: \Ramanujantau
 
   Feature Set: dlmf-macro
-	DLMF: \RamanujanTau@{n}
+	DLMF: \Ramanujantau@{n}
 	DLMF-Link: dlmf.nist.gov/27.14#E18
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6117,10 +6117,10 @@ Symbol: \RamanujanTau
 	Number of Variables: 1
 	Role: 
 
-Symbol: \Rational
+Symbol: \Rationals
 
   Feature Set: dlmf-macro
-	DLMF: \Rational
+	DLMF: \Rationals
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r13
 	Maple: rational
 	Maple-Alternatives: 
@@ -6135,10 +6135,10 @@ Symbol: \Rational
 	Number of Variables: 0
 	Role: symbol
 
-Symbol: \RayleighFun
+Symbol: \Rayleighsigma
 
   Feature Set: dlmf-macro
-	DLMF: \RayleighFun{n}@{\nu}
+	DLMF: \Rayleighsigma{n}@{\nu}
 	DLMF-Link: dlmf.nist.gov/10.21#E55
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6152,10 +6152,10 @@ Symbol: \RayleighFun
 	Number of Variables: 1
 	Role: 
 
-Symbol: \Real
+Symbol: \Reals
 
   Feature Set: dlmf-macro
-	DLMF: \Real
+	DLMF: \Reals
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r14
 	Maple: real
 	Maple-Alternatives: 
@@ -6170,10 +6170,10 @@ Symbol: \Real
 	Number of Variables: 0
 	Role: symbol
 
-Symbol: \RepInterfc
+Symbol: \repinterfc
 
   Feature Set: dlmf-macro
-	DLMF: \RepInterfc{n}@{z}
+	DLMF: \repinterfc{n}@{z}
 	DLMF-Link: dlmf.nist.gov/7.18#E2
 	Maple: erfc($0, $1)
 	Maple-Alternatives: 
@@ -6208,10 +6208,10 @@ Symbol: \Residue
 	Number of Variables: 0
 	Role: symbol
 
-Symbol: \RestrictedCompositionsC
+Symbol: \nrestcompositions
 
   Feature Set: dlmf-macro
-	DLMF: \RestrictedCompositionsC@{\mathrm{condition}}{n}
+	DLMF: \nrestcompositions@{\mathrm{condition}}{n}
 	DLMF-Link: dlmf.nist.gov/26.10#i
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6225,10 +6225,10 @@ Symbol: \RestrictedCompositionsC
 	Number of Variables: 2
 	Role: 
 
-Symbol: \RestrictedPartitionsP
+Symbol: \nrestpartitions
 
   Feature Set: dlmf-macro
-	DLMF: \RestrictedPartitionsP[k]@{\mathrm{condition}}{n}
+	DLMF: \nrestpartitions[k]@{\mathrm{condition}}{n}
 	DLMF-Link: dlmf.nist.gov/26.11#p1
 	Meanings: Restricted number of partitions
 	Number of Ats: 1
@@ -6236,10 +6236,10 @@ Symbol: \RestrictedPartitionsP
 	Number of Variables: 2
 	Role: 
 
-Symbol: \RiemannXi
+Symbol: \Riemannxi
 
   Feature Set: dlmf-macro
-	DLMF: \RiemannXi@{s}
+	DLMF: \Riemannxi@{s}
 	DLMF-Link: dlmf.nist.gov/25.4#E4
 	Maple-Alternatives: ($0)*($0-1)*GAMMA(($0)/2)*Pi^(-($0)/2)*Zeta($0)/2
 	Maple-Comment: You could use the alternative translation!
@@ -6253,10 +6253,10 @@ Symbol: \RiemannXi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \RiemannZeta
+Symbol: \Riemannzeta
 
   Feature Set: dlmf-macro
-	DLMF: \RiemannZeta@{s}
+	DLMF: \Riemannzeta@{s}
 	DLMF-Link: dlmf.nist.gov/25.2#E1
 	Maple: Zeta($0)
 	Maple-Alternatives: 
@@ -6325,10 +6325,10 @@ Symbol: \ScorerHi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \SinCosIntf
+Symbol: \auxsincosintf
 
   Feature Set: dlmf-macro
-	DLMF: \SinCosIntf@{z}
+	DLMF: \auxsincosintf@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E17
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -6339,10 +6339,10 @@ Symbol: \SinCosIntf
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \SinCosIntg
+Symbol: \auxsincosintg
 
   Feature Set: dlmf-macro
-	DLMF: \SinCosIntg@{z}
+	DLMF: \auxsincosintg@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E18
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -6353,10 +6353,10 @@ Symbol: \SinCosIntg
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \SinInt
+Symbol: \sinint
 
   Feature Set: dlmf-macro
-	DLMF: \SinInt@{z}
+	DLMF: \sinint@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E9
 	Maple: Si($0)
 	Maple-Alternatives: 
@@ -6378,11 +6378,11 @@ Symbol: \SinInt
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \SinIntg
+Symbol: \gensinint
 
   Feature Set: dlmf-macro
 	Branch Cuts: z = 0
-	DLMF: \SinIntg@{a}{z}
+	DLMF: \gensinint@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.21#E2
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -6393,10 +6393,10 @@ Symbol: \SinIntg
 	Number of Variables: 2
 	Role: dlmf-macro
 
-Symbol: \SinhInt
+Symbol: \sinhint
 
   Feature Set: dlmf-macro
-	DLMF: \SinhInt@{z}
+	DLMF: \sinhint@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E15
 	Maple: Shi($0)
 	Maple-Alternatives: int((1-cos(t))/t, t = 0 .. $0)
@@ -6435,10 +6435,10 @@ Symbol: \SpaceTestFunTempered
 	Number of Variables: 1
 	Role: 
 
-Symbol: \SphBesselIi
+Symbol: \modsphBesseli{1}
 
   Feature Set: dlmf-macro
-	DLMF: \SphBesselIi{n}@{z}
+	DLMF: \modsphBesseli{1}{n}@{z}
 	DLMF-Link: dlmf.nist.gov/10.47#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6452,10 +6452,10 @@ Symbol: \SphBesselIi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \SphBesselIii
+Symbol: \modsphBesseli{2}
 
   Feature Set: dlmf-macro
-	DLMF: \SphBesselIii{n}@{z}
+	DLMF: \modsphBesseli{2}{n}@{z}
 	DLMF-Link: dlmf.nist.gov/10.47#E8
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6469,10 +6469,10 @@ Symbol: \SphBesselIii
 	Number of Variables: 1
 	Role: 
 
-Symbol: \SphBesselJ
+Symbol: \sphBesselJ
 
   Feature Set: dlmf-macro
-	DLMF: \SphBesselJ{n}@{z}
+	DLMF: \sphBesselJ{n}@{z}
 	DLMF-Link: dlmf.nist.gov/10.47#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6486,10 +6486,10 @@ Symbol: \SphBesselJ
 	Number of Variables: 1
 	Role: 
 
-Symbol: \SphBesselK
+Symbol: \modsphBesselK
 
   Feature Set: dlmf-macro
-	DLMF: \SphBesselK{n}@{z}
+	DLMF: \modsphBesselK{n}@{z}
 	DLMF-Link: dlmf.nist.gov/10.47#E9
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6503,10 +6503,10 @@ Symbol: \SphBesselK
 	Number of Variables: 1
 	Role: 
 
-Symbol: \SphBesselY
+Symbol: \sphBesselY
 
   Feature Set: dlmf-macro
-	DLMF: \SphBesselY{n}@{z}
+	DLMF: \sphBesselY{n}@{z}
 	DLMF-Link: dlmf.nist.gov/10.47#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6520,10 +6520,10 @@ Symbol: \SphBesselY
 	Number of Variables: 1
 	Role: 
 
-Symbol: \SphHankelHi
+Symbol: \sphHankelh{1}
 
   Feature Set: dlmf-macro
-	DLMF: \SphHankelHi{n}@{z}
+	DLMF: \sphHankelh{1}{n}@{z}
 	DLMF-Link: dlmf.nist.gov/10.47#E5
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6537,10 +6537,10 @@ Symbol: \SphHankelHi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \SphHankelHii
+Symbol: \sphHankelh{2}
 
   Feature Set: dlmf-macro
-	DLMF: \SphHankelHii{n}@{z}
+	DLMF: \sphHankelh{2}{n}@{z}
 	DLMF-Link: dlmf.nist.gov/10.47#E6
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6554,10 +6554,10 @@ Symbol: \SphHankelHii
 	Number of Variables: 1
 	Role: 
 
-Symbol: \SphericalHarmonicY
+Symbol: \sphharmonicY
 
   Feature Set: dlmf-macro
-	DLMF: \SphericalHarmonicY{l}{m}@{\theta}{\phi}
+	DLMF: \sphharmonicY{l}{m}@{\theta}{\phi}
 	DLMF-Link: dlmf.nist.gov/14.30#E1
 	Maple: SphericalY($0, $1, $2, $3)
 	Maple-Alternatives: 
@@ -6575,10 +6575,10 @@ Symbol: \SphericalHarmonicY
 	Number of Variables: 2
 	Role: 
 
-Symbol: \SpheroidalEigenvalueLambda
+Symbol: \spheigvalLambda
 
   Feature Set: dlmf-macro
-	DLMF: \SpheroidalEigenvalueLambda{m}{n}@{\gamma^2}
+	DLMF: \spheigvalLambda{m}{n}@{\gamma^2}
 	DLMF-Link: dlmf.nist.gov/30.3#SS1.p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6592,10 +6592,10 @@ Symbol: \SpheroidalEigenvalueLambda
 	Number of Variables: 1
 	Role: 
 
-Symbol: \SpheroidalOnCutPs
+Symbol: \sphwavePsreal
 
   Feature Set: dlmf-macro
-	DLMF: \SpheroidalOnCutPs{m}{n}@{x}{\gamma^2}
+	DLMF: \sphwavePsreal{m}{n}@{x}{\gamma^2}
 	DLMF-Link: dlmf.nist.gov/30.4#i
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6609,10 +6609,10 @@ Symbol: \SpheroidalOnCutPs
 	Number of Variables: 2
 	Role: 
 
-Symbol: \SpheroidalOnCutQs
+Symbol: \sphwaveQsreal
 
   Feature Set: dlmf-macro
-	DLMF: \SpheroidalOnCutQs{m}{n}@{x}{\gamma^2}
+	DLMF: \sphwaveQsreal{m}{n}@{x}{\gamma^2}
 	DLMF-Link: dlmf.nist.gov/30.5
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6626,10 +6626,10 @@ Symbol: \SpheroidalOnCutQs
 	Number of Variables: 2
 	Role: 
 
-Symbol: \SpheroidalPs
+Symbol: \sphwavePs
 
   Feature Set: dlmf-macro
-	DLMF: \SpheroidalPs{m}{n}@{z}{\gamma^2}
+	DLMF: \sphwavePs{m}{n}@{z}{\gamma^2}
 	DLMF-Link: dlmf.nist.gov/30.6#p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6643,10 +6643,10 @@ Symbol: \SpheroidalPs
 	Number of Variables: 2
 	Role: 
 
-Symbol: \SpheroidalQs
+Symbol: \sphwaveQs
 
   Feature Set: dlmf-macro
-	DLMF: \SpheroidalQs{m}{n}@{z}{\gamma^2}
+	DLMF: \sphwaveQs{m}{n}@{z}{\gamma^2}
 	DLMF-Link: dlmf.nist.gov/30.6#p1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6660,10 +6660,10 @@ Symbol: \SpheroidalQs
 	Number of Variables: 2
 	Role: 
 
-Symbol: \SpheroidalRadialS
+Symbol: \radsphwaveS
 
   Feature Set: dlmf-macro
-	DLMF: \SpheroidalRadialS{m}{j}{n}@{z}{\gamma}
+	DLMF: \radsphwaveS{m}{j}{n}@{z}{\gamma}
 	DLMF-Link: dlmf.nist.gov/30.11#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6712,10 +6712,10 @@ Symbol: \StieltjesWigert
 	Number of Variables: 2
 	Role: 
 
-Symbol: \StieltjesWigertS
+Symbol: \StieltjesWigertpolyS
 
   Feature Set: dlmf-macro
-	DLMF: \StieltjesWigertS{n}@{x}{q}
+	DLMF: \StieltjesWigertpolyS{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E18
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6729,10 +6729,10 @@ Symbol: \StieltjesWigertS
 	Number of Variables: 2
 	Role: 
 
-Symbol: \StirlingS
+Symbol: \Stirlingnumbers
 
   Feature Set: dlmf-macro
-	DLMF: \StirlingS@{n}{k}
+	DLMF: \Stirlingnumbers@{n}{k}
 	DLMF-Link: dlmf.nist.gov/26.8#SS1.p1
 	Maple: Stirling1($0, $1)
 	Maple-Alternatives: 
@@ -6750,10 +6750,10 @@ Symbol: \StirlingS
 	Number of Variables: 2
 	Role: 
 
-Symbol: \StirlingSS
+Symbol: \StirlingnumberS
 
   Feature Set: dlmf-macro
-	DLMF: \StirlingSS@{n}{k}
+	DLMF: \StirlingnumberS@{n}{k}
 	DLMF-Link: dlmf.nist.gov/26.8#SS1.p3
 	Maple: Stirling2($0, $1)
 	Maple-Alternatives: 
@@ -6813,10 +6813,10 @@ Symbol: \StruveK
 	Number of Variables: 1
 	Role: 
 
-Symbol: \StruveL
+Symbol: \modStruveL
 
   Feature Set: dlmf-macro
-	DLMF: \StruveL{\nu}@{z}
+	DLMF: \modStruveL{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/11.2#E2
 	Maple: StruveL($0, $1)
 	Maple-Alternatives: 
@@ -6834,10 +6834,10 @@ Symbol: \StruveL
 	Number of Variables: 1
 	Role: 
 
-Symbol: \StruveM
+Symbol: \modStruveM
 
   Feature Set: dlmf-macro
-	DLMF: \StruveM{\nu}@{z}
+	DLMF: \modStruveM{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/11.2#E6
 	Maple: StruveL($0, $1) - BesselI($0, $1)
 	Maple-Alternatives: 
@@ -6876,10 +6876,10 @@ Symbol: \Sum
 	Number of Variables: 1
 	Role: 
 
-Symbol: \SurfaceHarmonicY
+Symbol: \surfharmonicY
 
   Feature Set: dlmf-macro
-	DLMF: \SurfaceHarmonicY{l}{m}@{\theta}{\phi}
+	DLMF: \surfharmonicY{l}{m}@{\theta}{\phi}
 	DLMF-Link: dlmf.nist.gov/14.30#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6893,10 +6893,10 @@ Symbol: \SurfaceHarmonicY
 	Number of Variables: 2
 	Role: 
 
-Symbol: \TriangleOP
+Symbol: \trianglepoly
 
   Feature Set: dlmf-macro
-	DLMF: \TriangleOP{\alpha}{\beta}{\gamma}{m}{n}@{x}{y}
+	DLMF: \trianglepoly{\alpha}{\beta}{\gamma}{m}{n}@{x}{y}
 	DLMF-Link: dlmf.nist.gov/18.37#E7
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -6931,10 +6931,10 @@ Symbol: \Ultra
 	Number of Variables: 1
 	Role: 
 
-Symbol: \Ultraspherical
+Symbol: \ultrasphpoly
 
   Feature Set: dlmf-macro
-	DLMF: \Ultraspherical{\lambda}{n}@{x}
+	DLMF: \ultrasphpoly{\lambda}{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r3
 	Maple: GegenbauerC($1, $0, $2)
 	Maple-Alternatives: 
@@ -7041,10 +7041,10 @@ Symbol: \WeberE
 	Number of Variables: 1
 	Role: 
 
-Symbol: \WeierPInv
+Symbol: \Weierstrasspinvar
 
   Feature Set: dlmf-macro
-	DLMF: \WeierPInv@@{z}{g_2}{g_3}
+	DLMF: \Weierstrasspinvar@@{z}{g_2}{g_3}
 	DLMF-Link: dlmf.nist.gov/23.3#E8
 	Maple: WeierstrassP($0, $1, $2)
 	Maple-Alternatives: 
@@ -7062,10 +7062,10 @@ Symbol: \WeierPInv
 	Number of Variables: 3
 	Role: 
 
-Symbol: \WeierPLat
+Symbol: \Weierstrassplatt
 
   Feature Set: dlmf-macro
-	DLMF: \WeierPLat@@{z}{\Lattice{L}}
+	DLMF: \Weierstrassplatt@@{z}{\Lattice{L}}
 	DLMF-Link: dlmf.nist.gov/23.2#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -7079,10 +7079,10 @@ Symbol: \WeierPLat
 	Number of Variables: 2
 	Role: 
 
-Symbol: \WeiersigmaInv
+Symbol: \Weierstrasssigmainvar
 
   Feature Set: dlmf-macro
-	DLMF: \WeiersigmaInv@@{z}{g_2}{g_3}
+	DLMF: \Weierstrasssigmainvar@@{z}{g_2}{g_3}
 	DLMF-Link: dlmf.nist.gov/23.1E6
 	Maple: WeierstrassSigma($0, $1, $2)
 	Maple-Alternatives: 
@@ -7100,10 +7100,10 @@ Symbol: \WeiersigmaInv
 	Number of Variables: 3
 	Role: 
 
-Symbol: \WeiersigmaLat
+Symbol: \Weierstrasssigmalatt
 
   Feature Set: dlmf-macro
-	DLMF: \WeiersigmaLat@@{z}{\Lattice{L}}
+	DLMF: \Weierstrasssigmalatt@@{z}{\Lattice{L}}
 	DLMF-Link: dlmf.nist.gov/23.1E6
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -7117,10 +7117,10 @@ Symbol: \WeiersigmaLat
 	Number of Variables: 2
 	Role: 
 
-Symbol: \WeierzetaInv
+Symbol: \Weierstrasszetainvar
 
   Feature Set: dlmf-macro
-	DLMF: \WeierzetaInv@@{z}{g_2}{g_3}
+	DLMF: \Weierstrasszetainvar@@{z}{g_2}{g_3}
 	DLMF-Link: dlmf.nist.gov/23.1E5
 	Maple: WeierstrassZeta($0, $1, $2)
 	Maple-Alternatives: 
@@ -7138,10 +7138,10 @@ Symbol: \WeierzetaInv
 	Number of Variables: 3
 	Role: 
 
-Symbol: \WeierzetaLat
+Symbol: \Weierstrasszetalatt
 
   Feature Set: dlmf-macro
-	DLMF: \WeierzetaLat@@{z}{\Lattice{L}}
+	DLMF: \Weierstrasszetalatt@@{z}{\Lattice{L}}
 	DLMF-Link: dlmf.nist.gov/23.1E5
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -7155,10 +7155,10 @@ Symbol: \WeierzetaLat
 	Number of Variables: 2
 	Role: 
 
-Symbol: \WhitD
+Symbol: \WhittakerparaD
 
   Feature Set: dlmf-macro
-	DLMF: \WhitD{\nu}@{z}
+	DLMF: \WhittakerparaD{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/12.1
 	Maple: CylinderD($0, $1)
 	Maple-Alternatives: 
@@ -7176,10 +7176,10 @@ Symbol: \WhitD
 	Number of Variables: 1
 	Role: 
 
-Symbol: \WhitM
+Symbol: \WhittakerconfhyperM
 
   Feature Set: dlmf-macro
-	DLMF: \WhitM{\kappa}{\mu}@{z}
+	DLMF: \WhittakerconfhyperM{\kappa}{\mu}@{z}
 	DLMF-Link: dlmf.nist.gov/13.14#E2
 	Maple: WhittakerM($0, $1, $2)
 	Maple-Alternatives: 
@@ -7197,10 +7197,10 @@ Symbol: \WhitM
 	Number of Variables: 1
 	Role: 
 
-Symbol: \WhitW
+Symbol: \WhittakerconfhyperW
 
   Feature Set: dlmf-macro
-	DLMF: \WhitW{\kappa}{\mu}@{z}
+	DLMF: \WhittakerconfhyperW{\kappa}{\mu}@{z}
 	DLMF-Link: dlmf.nist.gov/13.14#E3
 	Maple: WhittakerW($0, $1, $2)
 	Maple-Alternatives: 
@@ -7235,10 +7235,10 @@ Symbol: \Wilson
 	Number of Variables: 5
 	Role: 
 
-Symbol: \WilsonW
+Symbol: \WilsonpolyW
 
   Feature Set: dlmf-macro
-	DLMF: \WilsonW{n}@{x}{a}{b}{c}{d}
+	DLMF: \WilsonpolyW{n}@{x}{a}{b}{c}{d}
 	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -7283,10 +7283,10 @@ Symbol: \Wronskian
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ZeroAiryAi
+Symbol: \zAirya
 
   Feature Set: dlmf-macro
-	DLMF: \ZeroAiryAi{k}
+	DLMF: \zAirya{k}
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -7300,10 +7300,10 @@ Symbol: \ZeroAiryAi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ZeroAiryAiPrime
+Symbol: \zderivAirya
 
   Feature Set: dlmf-macro
-	DLMF: \ZeroAiryAiPrime{k}
+	DLMF: \zderivAirya{k}
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -7317,10 +7317,10 @@ Symbol: \ZeroAiryAiPrime
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ZeroAiryBi
+Symbol: \zAiryb
 
   Feature Set: dlmf-macro
-	DLMF: \ZeroAiryBi{k}
+	DLMF: \zAiryb{k}
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -7334,10 +7334,10 @@ Symbol: \ZeroAiryBi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ZeroAiryBiPrime
+Symbol: \zderivAiryb
 
   Feature Set: dlmf-macro
-	DLMF: \ZeroAiryBiPrime{k}
+	DLMF: \zderivAiryb{k}
 	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -7351,10 +7351,10 @@ Symbol: \ZeroAiryBiPrime
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ZeroBesselJ
+Symbol: \zBesselj
 
   Feature Set: dlmf-macro
-	DLMF: \ZeroBesselJ{\nu}{m}
+	DLMF: \zBesselj{\nu}{m}
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -7368,10 +7368,10 @@ Symbol: \ZeroBesselJ
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ZeroBesselJPrime
+Symbol: \zderivBesselj
 
   Feature Set: dlmf-macro
-	DLMF: \ZeroBesselJPrime{\nu}{m}
+	DLMF: \zderivBesselj{\nu}{m}
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -7385,10 +7385,10 @@ Symbol: \ZeroBesselJPrime
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ZeroBesselY
+Symbol: \zBessely
 
   Feature Set: dlmf-macro
-	DLMF: \ZeroBesselY{\nu}{m}
+	DLMF: \zBessely{\nu}{m}
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -7402,10 +7402,10 @@ Symbol: \ZeroBesselY
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ZeroBesselYPrime
+Symbol: \zderivBessely
 
   Feature Set: dlmf-macro
-	DLMF: \ZeroBesselYPrime{\nu}{m}
+	DLMF: \zderivBessely{\nu}{m}
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -7599,11 +7599,11 @@ Symbol: \acsch
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \arcGudermannian
+Symbol: \aGudermannian
 
   Feature Set: dlmf-macro
 	Constraints: -(1/2) \cpi < x < (1/2) \cpi
-	DLMF: \arcGudermannian@@{x}
+	DLMF: \aGudermannian@@{x}
 	DLMF-Link: dlmf.nist.gov/4.23#E41
 	Maple-Alternatives: arctanh(sin($0))
 	Maple-Comment: 
@@ -7621,10 +7621,10 @@ Symbol: \arcGudermannian
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \arcJacobicd
+Symbol: \aJacobiellcdk
 
   Feature Set: dlmf-macro
-	DLMF: \arcJacobicd@@{z}{k}
+	DLMF: \aJacobiellcdk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiCD($0, $1)
 	Maple-Alternatives: 
@@ -7642,10 +7642,10 @@ Symbol: \arcJacobicd
 	Number of Variables: 2
 	Role: 
 
-Symbol: \arcJacobicn
+Symbol: \aJacobiellcnk
 
   Feature Set: dlmf-macro
-	DLMF: \arcJacobicn@@{z}{k}
+	DLMF: \aJacobiellcnk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiCN($0, $1)
 	Maple-Alternatives: 
@@ -7663,10 +7663,10 @@ Symbol: \arcJacobicn
 	Number of Variables: 2
 	Role: 
 
-Symbol: \arcJacobics
+Symbol: \aJacobiellcsk
 
   Feature Set: dlmf-macro
-	DLMF: \arcJacobics@@{z}{k}
+	DLMF: \aJacobiellcsk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiCS($0, $1)
 	Maple-Alternatives: 
@@ -7684,10 +7684,10 @@ Symbol: \arcJacobics
 	Number of Variables: 2
 	Role: 
 
-Symbol: \arcJacobidc
+Symbol: \aJacobielldck
 
   Feature Set: dlmf-macro
-	DLMF: \arcJacobidc@@{z}{k}
+	DLMF: \aJacobielldck@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiDC($0, $1)
 	Maple-Alternatives: 
@@ -7705,10 +7705,10 @@ Symbol: \arcJacobidc
 	Number of Variables: 2
 	Role: 
 
-Symbol: \arcJacobidn
+Symbol: \aJacobielldnk
 
   Feature Set: dlmf-macro
-	DLMF: \arcJacobidn@@{z}{k}
+	DLMF: \aJacobielldnk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiDN($0, $1)
 	Maple-Alternatives: 
@@ -7726,10 +7726,10 @@ Symbol: \arcJacobidn
 	Number of Variables: 2
 	Role: 
 
-Symbol: \arcJacobids
+Symbol: \aJacobielldsk
 
   Feature Set: dlmf-macro
-	DLMF: \arcJacobids@@{z}{k}
+	DLMF: \aJacobielldsk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiDS($0, $1)
 	Maple-Alternatives: 
@@ -7747,10 +7747,10 @@ Symbol: \arcJacobids
 	Number of Variables: 2
 	Role: 
 
-Symbol: \arcJacobinc
+Symbol: \aJacobiellnck
 
   Feature Set: dlmf-macro
-	DLMF: \arcJacobinc@@{z}{k}
+	DLMF: \aJacobiellnck@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiNC($0, $1)
 	Maple-Alternatives: 
@@ -7768,10 +7768,10 @@ Symbol: \arcJacobinc
 	Number of Variables: 2
 	Role: 
 
-Symbol: \arcJacobind
+Symbol: \aJacobiellndk
 
   Feature Set: dlmf-macro
-	DLMF: \arcJacobind@@{z}{k}
+	DLMF: \aJacobiellndk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiND($0, $1)
 	Maple-Alternatives: 
@@ -7789,10 +7789,10 @@ Symbol: \arcJacobind
 	Number of Variables: 2
 	Role: 
 
-Symbol: \arcJacobins
+Symbol: \aJacobiellnsk
 
   Feature Set: dlmf-macro
-	DLMF: \arcJacobins@@{z}{k}
+	DLMF: \aJacobiellnsk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiNS($0, $1)
 	Maple-Alternatives: 
@@ -7810,10 +7810,10 @@ Symbol: \arcJacobins
 	Number of Variables: 2
 	Role: 
 
-Symbol: \arcJacobisc
+Symbol: \aJacobiellsck
 
   Feature Set: dlmf-macro
-	DLMF: \arcJacobisc@@{z}{k}
+	DLMF: \aJacobiellsck@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiSC($0, $1)
 	Maple-Alternatives: 
@@ -7831,10 +7831,10 @@ Symbol: \arcJacobisc
 	Number of Variables: 2
 	Role: 
 
-Symbol: \arcJacobisd
+Symbol: \aJacobiellsdk
 
   Feature Set: dlmf-macro
-	DLMF: \arcJacobisd@@{z}{k}
+	DLMF: \aJacobiellsdk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiSD($0, $1)
 	Maple-Alternatives: 
@@ -7852,10 +7852,10 @@ Symbol: \arcJacobisd
 	Number of Variables: 2
 	Role: 
 
-Symbol: \arcJacobisn
+Symbol: \aJacobiellsnk
 
   Feature Set: dlmf-macro
-	DLMF: \arcJacobisn@@{z}{k}
+	DLMF: \aJacobiellsnk@@{z}{k}
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiSN($0, $1)
 	Maple-Alternatives: 
@@ -8139,10 +8139,10 @@ Symbol: \binom
 	Number of Variables: 2
 	Role: dlmf-macro
 
-Symbol: \binomial
+Symbol: \binom
 
   Feature Set: dlmf-macro
-	DLMF: \binomial{m}{n}
+	DLMF: \binom{m}{n}
 	DLMF-Link: dlmf.nist.gov/1.2#E1
 	Mathematica: Binomial[$0, $1]
 	Mathematica-Alternatives: 
@@ -8302,11 +8302,11 @@ Symbol: \cosh
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \cosintg
+Symbol: \genshiftcosint
 
   Feature Set: dlmf-macro
 	Branch Cuts: z = 0
-	DLMF: \cosintg@{a}{z}
+	DLMF: \genshiftcosint@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.21#E1
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -8320,7 +8320,7 @@ Symbol: \cosintg
 Symbol: \cot
 
   Feature Set: dlmf-macro
-	Constraints: z != k*\cpi \forall k \in \Integer
+	Constraints: z != k*\cpi \forall k \in \Integers
 	DLMF: \cot@@{z}
 	DLMF-Link: dlmf.nist.gov/4.14#E7
 	Maple: cot($0)
@@ -8346,7 +8346,7 @@ Symbol: \cot
 Symbol: \coth
 
   Feature Set: dlmf-macro
-	Constraints: z != \iunit*k*\cpi \forall k \in \Integer
+	Constraints: z != \iunit*k*\cpi \forall k \in \Integers
 	DLMF: \coth@@{z}
 	DLMF-Link: dlmf.nist.gov/4.28#E7
 	Maple: coth($0)
@@ -8380,7 +8380,7 @@ Symbol: \cpi
 Symbol: \csc
 
   Feature Set: dlmf-macro
-	Constraints: z != k*\cpi \forall k \in \Integer
+	Constraints: z != k*\cpi \forall k \in \Integers
 	DLMF: \csc@@{z}
 	DLMF-Link: dlmf.nist.gov/4.14#E5
 	Maple: csc($0)
@@ -8406,7 +8406,7 @@ Symbol: \csc
 Symbol: \csch
 
   Feature Set: dlmf-macro
-	Constraints: z != \iunit*k*\cpi \forall k \in \Integer
+	Constraints: z != \iunit*k*\cpi \forall k \in \Integers
 	DLMF: \csch@@{z}
 	DLMF-Link: dlmf.nist.gov/4.28#E5
 	Maple: csch($0)
@@ -9082,10 +9082,10 @@ Symbol: \ifrac
 	Number of Variables: 2
 	Role: 
 
-Symbol: \imagpart
+Symbol: \imagpart@@
 
   Feature Set: dlmf-macro
-	DLMF: \imagpart{z}
+	DLMF: \imagpart@@{z}
 	DLMF-Link: dlmf.nist.gov/1.9#E2
 	Maple: Im($0)
 	Maple-Alternatives: 
@@ -9150,11 +9150,11 @@ Symbol: \incgamma
 	Number of Variables: 2
 	Role: dlmf-macro
 
-Symbol: \incgammastar
+Symbol: \scincgamma
 
   Feature Set: dlmf-macro
 	Constraints: \Re(a) > 0
-	DLMF: \incgammastar@{a}{z}
+	DLMF: \scincgamma@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.2#E6
 	Maple-Alternatives: ($1)^(-($0))*(GAMMA($0)-GAMMA($0, $1))/GAMMA($0)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
@@ -9390,12 +9390,12 @@ Symbol: \log
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \logb
+Symbol: \genlog
 
   Feature Set: dlmf-macro
 	Branch Cuts: (-\infty, 0]
 	Constraints: a not element of {0,1} and z != 0
-	DLMF: \logb{a}@@{z}
+	DLMF: \genlog{a}@@{z}
 	DLMF-Link: dlmf.nist.gov/4.2#EGx1
 	Maple: log[$0]($1)
 	Maple-Alternatives: 
@@ -9417,11 +9417,11 @@ Symbol: \logb
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \mEulerBeta
+Symbol: \multivarEulerBeta
 
   Feature Set: dlmf-macro
 	Constraints: R(a), R(b) > 1/2*(m-1)
-	DLMF: \mEulerBeta{m}@{a}{b}
+	DLMF: \multivarEulerBeta{m}@{a}{b}
 	DLMF-Link: dlmf.nist.gov/35.3#E3
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -9435,11 +9435,11 @@ Symbol: \mEulerBeta
 	Number of Variables: 2
 	Role: 
 
-Symbol: \mEulerGamma
+Symbol: \multivarEulerGamma
 
   Feature Set: dlmf-macro
 	Constraints: \Ra(a) > 1/2*(m-1)
-	DLMF: \mEulerGamma{m}@{a}
+	DLMF: \multivarEulerGamma{m}@{a}
 	DLMF-Link: dlmf.nist.gov/35.3#i
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -10387,10 +10387,10 @@ Symbol: \neq
 	Number of Variables: 0
 	Role: symbol
 
-Symbol: \ninej
+Symbol: \Wignerninejsym
 
   Feature Set: dlmf-macro
-	DLMF: \ninej@@{j_{11}}{j_{12}}{j_{13}}{j_{21}}{j_{22}}{j_{23}}{j_{31}}{j_{32}}{j_{33}}
+	DLMF: \Wignerninejsym@@{j_{11}}{j_{12}}{j_{13}}{j_{21}}{j_{22}}{j_{23}}{j_{31}}{j_{32}}{j_{33}}
 	DLMF-Link: dlmf.nist.gov/34.6#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -10647,10 +10647,10 @@ Symbol: \pgcd
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \ph
+Symbol: \phase
 
   Feature Set: dlmf-macro
-	DLMF: \ph@@{z}
+	DLMF: \phase@@{z}
 	DLMF-Link: dlmf.nist.gov/1.9#E7
 	Maple: argument($0)
 	Maple-Alternatives: 
@@ -10672,10 +10672,10 @@ Symbol: \ph
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \pochhammer
+Symbol: \Pochhammersym
 
   Feature Set: dlmf-macro
-	DLMF: \pochhammer{a}{n}
+	DLMF: \Pochhammersym{a}{n}
 	DLMF-Link: dlmf.nist.gov/5.2#iii
 	Maple: pochhammer($0, $1)
 	Maple-Alternatives: 
@@ -10771,10 +10771,10 @@ Symbol: \pseudoJacobi
 	Number of Variables: 3
 	Role: 
 
-Symbol: \psfactorial
+Symbol: \shiftfactorial
 
   Feature Set: dlmf-macro
-	DLMF: \psfactorial{a}{\kappa}
+	DLMF: \shiftfactorial{a}{\kappa}
 	DLMF-Link: dlmf.nist.gov/35.4#E1
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -10785,10 +10785,10 @@ Symbol: \psfactorial
 	Number of Variables: 2
 	Role: 
 
-Symbol: \qAppelli
+Symbol: \qAppellPhi{1}
 
   Feature Set: dlmf-macro
-	DLMF: \qAppelli@{a}{b}{b'}{c}{q}{x}{y}
+	DLMF: \qAppellPhi{1}@{a}{b}{b'}{c}{q}{x}{y}
 	DLMF-Link: dlmf.nist.gov/17.4.E5
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -10802,10 +10802,10 @@ Symbol: \qAppelli
 	Number of Variables: 7
 	Role: 
 
-Symbol: \qAppellii
+Symbol: \qAppellPhi{2}
 
   Feature Set: dlmf-macro
-	DLMF: \qAppellii@{a}{b}{b'}{c}{c'}{q}{x}{y}
+	DLMF: \qAppellPhi{2}@{a}{b}{b'}{c}{c'}{q}{x}{y}
 	DLMF-Link: dlmf.nist.gov/17.4.E6
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -10819,10 +10819,10 @@ Symbol: \qAppellii
 	Number of Variables: 8
 	Role: 
 
-Symbol: \qAppelliii
+Symbol: \qAppellPhi{3}
 
   Feature Set: dlmf-macro
-	DLMF: \qAppelliii@{a}{a'}{b}{b'}{c}{q}{x}{y}
+	DLMF: \qAppellPhi{3}@{a}{a'}{b}{b'}{c}{q}{x}{y}
 	DLMF-Link: dlmf.nist.gov/17.4.E7
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -10836,10 +10836,10 @@ Symbol: \qAppelliii
 	Number of Variables: 8
 	Role: 
 
-Symbol: \qAppelliv
+Symbol: \qAppellPhi{4}
 
   Feature Set: dlmf-macro
-	DLMF: \qAppelliv@{a}{b}{c}{c'}{q}{x}{y}
+	DLMF: \qAppellPhi{4}@{a}{b}{c}{c'}{q}{x}{y}
 	DLMF-Link: dlmf.nist.gov/17.4.E8
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -10853,10 +10853,10 @@ Symbol: \qAppelliv
 	Number of Variables: 7
 	Role: 
 
-Symbol: \qBernoulli
+Symbol: \qBernoullipolybeta
 
   Feature Set: dlmf-macro
-	DLMF: \qBernoulli{n}@{x}{q}
+	DLMF: \qBernoullipolybeta{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/17.3#E7
 	Maple-Alternatives: 
 	Maple-Comment:  || But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -10904,10 +10904,10 @@ Symbol: \qBeta
 	Number of Variables: 2
 	Role: 
 
-Symbol: \qBinomial
+Symbol: \qbinom
 
   Feature Set: dlmf-macro
-	DLMF: \qBinomial{n}{m}{q}
+	DLMF: \qbinom{n}{m}{q}
 	DLMF-Link: dlmf.nist.gov/17.2#E27
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -10989,10 +10989,10 @@ Symbol: \qDigamma
 	Number of Variables: 1
 	Role: 
 
-Symbol: \qEuler
+Symbol: \qEulernumberA
 
   Feature Set: dlmf-macro
-	DLMF: \qEuler{m}{s}@{q}
+	DLMF: \qEulernumberA{m}{s}@{q}
 	DLMF-Link: dlmf.nist.gov/17.3#E8
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11040,10 +11040,10 @@ Symbol: \qExpKLS
 	Number of Variables: 1
 	Role: 
 
-Symbol: \qFactorial
+Symbol: \qfactorial
 
   Feature Set: dlmf-macro
-	DLMF: \qFactorial{n}{q}
+	DLMF: \qfactorial{n}{q}
 	DLMF-Link: dlmf.nist.gov/5.18#E2
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11091,10 +11091,10 @@ Symbol: \qHahn
 	Number of Variables: 4
 	Role: 
 
-Symbol: \qHahnQ
+Symbol: \qHahnpolyQ
 
   Feature Set: dlmf-macro
-	DLMF: \qHahnQ{n}@{x}{\alpha}{\beta}{N}{q}
+	DLMF: \qHahnpolyQ{n}@{x}{\alpha}{\beta}{N}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E3
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11108,10 +11108,10 @@ Symbol: \qHahnQ
 	Number of Variables: 5
 	Role: 
 
-Symbol: \qHermiteH
+Symbol: \contqHermitepolyH
 
   Feature Set: dlmf-macro
-	DLMF: \qHermiteH{n}@{x}{q}
+	DLMF: \contqHermitepolyH{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E16
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11125,10 +11125,10 @@ Symbol: \qHermiteH
 	Number of Variables: 2
 	Role: 
 
-Symbol: \qHermitehI
+Symbol: \discqHermitepolyhI
 
   Feature Set: dlmf-macro
-	DLMF: \qHermitehI{n}@{x}{q}
+	DLMF: \discqHermitepolyhI{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E21
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11142,10 +11142,10 @@ Symbol: \qHermitehI
 	Number of Variables: 2
 	Role: 
 
-Symbol: \qHermitehII
+Symbol: \discqHermitepolyhII
 
   Feature Set: dlmf-macro
-	DLMF: \qHermitehII{n}@{x}{q}
+	DLMF: \discqHermitepolyhII{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E23
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11176,10 +11176,10 @@ Symbol: \qHyperrWs
 	Number of Variables: 4
 	Role: 
 
-Symbol: \qHyperrphis
+Symbol: \qgenhyperphi
 
   Feature Set: dlmf-macro
-	DLMF: \qHyperrphis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z}
+	DLMF: \qgenhyperphi{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z}
 	DLMF-Link: dlmf.nist.gov/17.4#E1
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11193,10 +11193,10 @@ Symbol: \qHyperrphis
 	Number of Variables: 4
 	Role: 
 
-Symbol: \qHyperrpsis
+Symbol: \qgenhyperpsi
 
   Feature Set: dlmf-macro
-	DLMF: \qHyperrpsis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z}
+	DLMF: \qgenhyperpsi{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z}
 	DLMF-Link: dlmf.nist.gov/17.4#E3
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11210,10 +11210,10 @@ Symbol: \qHyperrpsis
 	Number of Variables: 4
 	Role: 
 
-Symbol: \qJacobiP
+Symbol: \bigqJacobipolyP
 
   Feature Set: dlmf-macro
-	DLMF: \qJacobiP{n}@{x}{a}{b}{c}{q}
+	DLMF: \bigqJacobipolyP{n}@{x}{a}{b}{c}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E5
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11227,10 +11227,10 @@ Symbol: \qJacobiP
 	Number of Variables: 5
 	Role: 
 
-Symbol: \qJacobiPP
+Symbol: \scbigqJacobipolyP
 
   Feature Set: dlmf-macro
-	DLMF: \qJacobiPP{\alpha}{\beta}{n}@{x}{c}{d}{q}
+	DLMF: \scbigqJacobipolyP{\alpha}{\beta}{n}@{x}{c}{d}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E6
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11244,10 +11244,10 @@ Symbol: \qJacobiPP
 	Number of Variables: 4
 	Role: 
 
-Symbol: \qJacobip
+Symbol: \littleqJacobipolyp
 
   Feature Set: dlmf-macro
-	DLMF: \qJacobip{n}@{x}{a}{b}{q}
+	DLMF: \littleqJacobipolyp{n}@{x}{a}{b}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E13
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11289,10 +11289,10 @@ Symbol: \qLaguerre
 	Number of Variables: 2
 	Role: 
 
-Symbol: \qLaguerreL
+Symbol: \qLaguerrepolyL
 
   Feature Set: dlmf-macro
-	DLMF: \qLaguerreL[\alpha]{n}@{x}{q}
+	DLMF: \qLaguerrepolyL[\alpha]{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E15
 	Meanings: q-Laguerre polynomial
 	Number of Ats: 1
@@ -11351,10 +11351,10 @@ Symbol: \qMeixnerPollaczek
 	Number of Variables: 3
 	Role: 
 
-Symbol: \qMultiPochhammer
+Symbol: \qmultiPochhammersym
 
   Feature Set: dlmf-macro
-	DLMF: \qMultiPochhammer{a_1,\ldots,a_n}{q}{n}
+	DLMF: \qmultiPochhammersym{a_1,\ldots,a_n}{q}{n}
 	DLMF-Link: dlmf.nist.gov/17.2.E5
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11368,10 +11368,10 @@ Symbol: \qMultiPochhammer
 	Number of Variables: 3
 	Role: 
 
-Symbol: \qMultinomial
+Symbol: \qmultinomial
 
   Feature Set: dlmf-macro
-	DLMF: \qMultinomial{a_1+\ldots+a_n}{a_1,\ldots,a_n}{q}
+	DLMF: \qmultinomial{a_1+\ldots+a_n}{a_1,\ldots,a_n}{q}
 	DLMF-Link: dlmf.nist.gov/26.16.E1
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11402,10 +11402,10 @@ Symbol: \qPochhammer
 	Number of Variables: 3
 	Role: 
 
-Symbol: \qPolygamma
+Symbol: \qpolygamma
 
   Feature Set: dlmf-macro
-	DLMF: \qPolygamma{n}{q}@{z}
+	DLMF: \qpolygamma{n}{q}@{z}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qPolygamma
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11436,10 +11436,10 @@ Symbol: \qRacah
 	Number of Variables: 6
 	Role: 
 
-Symbol: \qRacahR
+Symbol: \qRacahpolyR
 
   Feature Set: dlmf-macro
-	DLMF: \qRacahR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q}
+	DLMF: \qRacahpolyR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E19
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11487,10 +11487,10 @@ Symbol: \qSinKLS
 	Number of Variables: 1
 	Role: 
 
-Symbol: \qStirling
+Symbol: \qStirlingnumbera
 
   Feature Set: dlmf-macro
-	DLMF: \qStirling{m}{s}@{q}
+	DLMF: \qStirlingnumbera{m}{s}@{q}
 	DLMF-Link: dlmf.nist.gov/17.3#E9
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11504,10 +11504,10 @@ Symbol: \qStirling
 	Number of Variables: 1
 	Role: 
 
-Symbol: \qUltraspherical
+Symbol: \contqultrasphpoly
 
   Feature Set: dlmf-macro
-	DLMF: \qUltraspherical{n}@{x}{\beta}{q}
+	DLMF: \contqultrasphpoly{n}@{x}{\beta}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E13
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11634,10 +11634,10 @@ Symbol: \qinvAlSalamChihara
 	Number of Variables: 4
 	Role: 
 
-Symbol: \qinvHermiteh
+Symbol: \contqinvHermitepolyh
 
   Feature Set: dlmf-macro
-	DLMF: \qinvHermiteh{n}@{x}{q}
+	DLMF: \contqinvHermitepolyh{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.28#E18
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
@@ -11702,10 +11702,10 @@ Symbol: \qtmqKrawtchouk
 	Number of Variables: 4
 	Role: 
 
-Symbol: \realpart
+Symbol: \realpart@@
 
   Feature Set: dlmf-macro
-	DLMF: \realpart{z}
+	DLMF: \realpart@@{z}
 	DLMF-Link: dlmf.nist.gov/1.9#E2
 	Maple: Re($0)
 	Maple-Alternatives: 
@@ -11727,10 +11727,10 @@ Symbol: \realpart
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \rescaledTerminant
+Symbol: \scterminant
 
   Feature Set: dlmf-macro
-	DLMF: \rescaledTerminant{p}@{z}
+	DLMF: \scterminant{p}@{z}
 	DLMF-Link: dlmf.nist.gov/9.7#E22
 	Maple-Alternatives: (exp($1)/(2*Pi))*GAMMA($0)*GAMMA(1-$0,$1)
 	Maple-Comment: 
@@ -11747,7 +11747,7 @@ Symbol: \rescaledTerminant
 Symbol: \sec
 
   Feature Set: dlmf-macro
-	Constraints: z != (k+1/2)*\cpi \forall k \in \Integer
+	Constraints: z != (k+1/2)*\cpi \forall k \in \Integers
 	DLMF: \sec@@{z}
 	DLMF-Link: dlmf.nist.gov/4.14#E6
 	Maple: sec($0)
@@ -11773,7 +11773,7 @@ Symbol: \sec
 Symbol: \sech
 
   Feature Set: dlmf-macro
-	Constraints: z != \iunit*(k+1/2)*\cpi \forall k \in \Integer
+	Constraints: z != \iunit*(k+1/2)*\cpi \forall k \in \Integers
 	DLMF: \sech@@{z}
 	DLMF-Link: dlmf.nist.gov/4.28#E6
 	Maple: sech($0)
@@ -11897,10 +11897,10 @@ Symbol: \sin
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \sinInt
+Symbol: \shiftsinint
 
   Feature Set: dlmf-macro
-	DLMF: \sinInt@{z}
+	DLMF: \shiftsinint@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E10
 	Maple: Ssi($0)
 	Maple-Alternatives: 
@@ -11947,11 +11947,11 @@ Symbol: \sinh
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \sinintg
+Symbol: \genshiftsinint
 
   Feature Set: dlmf-macro
 	Branch Cuts: z = 0
-	DLMF: \sinintg@{a}{z}
+	DLMF: \genshiftsinint@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.21#E1
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -11962,10 +11962,10 @@ Symbol: \sinintg
 	Number of Variables: 2
 	Role: dlmf-macro
 
-Symbol: \sixj
+Symbol: \Wignersixjsym
 
   Feature Set: dlmf-macro
-	DLMF: \sixj@@{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l_{3}}
+	DLMF: \Wignersixjsym@@{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l_{3}}
 	DLMF-Link: dlmf.nist.gov/34.4#E1
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -12062,7 +12062,7 @@ Symbol: \sup
 Symbol: \tan
 
   Feature Set: dlmf-macro
-	Constraints: z != (k+1/2)*\cpi \forall k \in \Integer
+	Constraints: z != (k+1/2)*\cpi \forall k \in \Integers
 	DLMF: \tan@@{z}
 	DLMF-Link: dlmf.nist.gov/4.14#E4
 	Maple: tan($0)
@@ -12088,7 +12088,7 @@ Symbol: \tan
 Symbol: \tanh
 
   Feature Set: dlmf-macro
-	Constraints: z != \iunit*(k+1/2)*\cpi \forall k \in \Integer
+	Constraints: z != \iunit*(k+1/2)*\cpi \forall k \in \Integers
 	DLMF: \tanh@@{z}
 	DLMF-Link: dlmf.nist.gov/4.28#E4
 	Maple: tanh($0)
@@ -12128,10 +12128,10 @@ Symbol: \terminant
 	Number of Variables: 1
 	Role: 
 
-Symbol: \threej
+Symbol: \Wignerthreejsym
 
   Feature Set: dlmf-macro
-	DLMF: \threej@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3}
+	DLMF: \Wignerthreejsym@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3}
 	DLMF-Link: dlmf.nist.gov/34.2#E4
 	Maple-Alternatives: 
 	Maple-Comment: 
@@ -12145,10 +12145,10 @@ Symbol: \threej
 	Number of Variables: 6
 	Role: 
 
-Symbol: \wigner
+Symbol: \ClebschGordan
 
   Feature Set: dlmf-macro
-	DLMF: \wigner{j_1}{m_1}{j_2}{m_2}{j_3}{-m_3}
+	DLMF: \ClebschGordan{j_1}{m_1}{j_2}{m_2}{j_3}{-m_3}
 	DLMF-Link: dlmf.nist.gov/34.1#p4
 	Maple-Alternatives: 
 	Maple-Comment: 
