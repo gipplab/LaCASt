@@ -33,17 +33,12 @@ public class DlmfBatchTranslator {
 		Options options = new Options();
 		options.addRequiredOption( "i", "input", true, "directory" );
 		options.addRequiredOption( "o", "output", true, "directory" );
+		options.addOption("s","subdir",true,"subdirectory for filtering");
 		options.addOption( "f", "filter", true, "filter" );
 		options.addOption( "e","error",true,"file for error report" );
 		CommandLineParser parser = new DefaultParser();
 		CommandLine cmd = parser.parse( options, args );
-		final String d = cmd.getOptionValue( "i" );
-		final File indir = new File( d );
-		Collection<File> files = FileUtils.listFiles(
-			indir,
-			new RegexFileFilter( "^(.*?).s.tex" ),
-			DirectoryFileFilter.DIRECTORY
-		);
+		Collection<File> files = getFiles( cmd );
 		final Path outPutDir = FileUtils.getFile( cmd.getOptionValue( "o" ) ).toPath();
 		GlobalConstants.CAS_KEY = "Maple";//TODO: Check with AGP
 		SemanticLatexTranslator translator = SemanticToCASInterpreter.getParser( false );
@@ -60,7 +55,7 @@ public class DlmfBatchTranslator {
 		}
 		Path finalOutPutDir = outPutDir;
 		// System.out.println("processing files" + files.size());
-		final String prefix = indir.getPath().replace( "/", "-" );
+		final String prefix = cmd.getOptionValue( "i" ).replace( "/", "-" );
 		files.forEach( file -> {
 			try {
 				final String sTeX = FileUtils.readFileToString( file );
@@ -88,5 +83,18 @@ public class DlmfBatchTranslator {
 			xstream.toXML( problemTokens, new FileWriter( cmd.getOptionValue( "e" ) ) );
 		}
 
+	}
+
+	static Collection<File> getFiles( CommandLine cmd ) {
+		String d = cmd.getOptionValue( "i" );
+		if (cmd.hasOption( 's' )){
+			d += "/" + cmd.getOptionValue( 's' );
+		}
+		final File indir = new File( d );
+		return FileUtils.listFiles(
+			indir,
+			new RegexFileFilter( "^(.*?).s.tex" ),
+			DirectoryFileFilter.DIRECTORY
+		);
 	}
 }
