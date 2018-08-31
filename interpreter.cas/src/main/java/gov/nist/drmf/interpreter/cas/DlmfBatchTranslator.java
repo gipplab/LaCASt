@@ -1,6 +1,9 @@
 package gov.nist.drmf.interpreter.cas;
 
 
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import org.apache.commons.cli.CommandLine;
@@ -12,6 +15,7 @@ import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.RegexFileFilter;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,6 +34,7 @@ public class DlmfBatchTranslator {
 		options.addRequiredOption( "i", "input", true, "directory" );
 		options.addRequiredOption( "o", "output", true, "directory" );
 		options.addOption( "f", "filter", true, "filter" );
+		options.addOption( "e","error",true,"file for error report" );
 		CommandLineParser parser = new DefaultParser();
 		CommandLine cmd = parser.parse( options, args );
 		final String d = cmd.getOptionValue( "i" );
@@ -54,6 +59,7 @@ public class DlmfBatchTranslator {
 			mlpfilter = false;
 		}
 		Path finalOutPutDir = outPutDir;
+		// System.out.println("processing files" + files.size());
 		final String prefix = indir.getPath().replace( "/", "-" );
 		files.forEach( file -> {
 			try {
@@ -76,7 +82,11 @@ public class DlmfBatchTranslator {
 				e.printStackTrace();
 			}
 		} );
-		final Map<String, Map<Integer, Set<String>>> problemTokens = translator.getProblemTokens();
+		if(cmd.hasOption( 'e' )) {
+			final Map<String, Map<Integer, Set<String>>> problemTokens = AbstractTranslator.getProblemTokens();
+			XStream xstream = new XStream( new DomDriver() );
+			xstream.toXML( problemTokens, new FileWriter( cmd.getOptionValue( "e" ) ) );
+		}
 
 	}
 }
