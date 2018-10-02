@@ -8,6 +8,7 @@
 .idea/artifacts/
 .idea/dictionaries/
 .idea/inspectionProfiles/
+.idea/libraries/
 
 # Not sure if we should share .idea/libraries/
 # It contains all maven dependencies.
