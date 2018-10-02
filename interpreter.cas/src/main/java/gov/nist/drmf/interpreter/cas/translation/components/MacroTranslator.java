@@ -10,7 +10,6 @@ import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.FeatureSet;
 import mlp.MathTerm;
@@ -133,11 +132,12 @@ public class MacroTranslator extends AbstractListTranslator {
         }
 
         if ( translation_pattern == null || translation_pattern.isEmpty() ){
-            throw new TranslationException(
-                    "DLMF macro cannot be translated: " + macro_term.getTermText(),
-                    TranslationException.Reason.UNKNOWN_MACRO,
-                    macro_term.getTermText()
-            );
+            handleNull( null,
+                "DLMF macro cannot be translated: " + macro_term.getTermText(),
+                TranslationException.Reason.UNKNOWN_MACRO,
+                macro_term.getTermText(),
+                null
+                );
         }
     }
 
@@ -188,13 +188,12 @@ public class MacroTranslator extends AbstractListTranslator {
 
         if ( optional_paras.size() > 0 ) {
             fset = macro_term.getNamedFeatureSet(
-                    Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX+optional_paras.size() );
-            if ( fset == null ){
-                throw new TranslationException(
-                        "Cannot find feature set with optional parameters.",
-                        TranslationException.Reason.UNKNOWN_MACRO,
-                        macro_term.getTermText()
-                );
+                Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + optional_paras.size() );
+            if ( handleNull( fset,
+                "Cannot find feature set with optional parameters.",
+                TranslationException.Reason.UNKNOWN_MACRO,
+                macro_term.getTermText(), null ) ) {
+                return true;
             }
         }
 
@@ -202,11 +201,11 @@ public class MacroTranslator extends AbstractListTranslator {
         try {
             storeInfos(fset);
         } catch ( NullPointerException npe ){
-            throw new TranslationException(
-                    "Cannot extract information from feature set: " + macro_term.getTermText(),
-                    TranslationException.Reason.NULL,
-                    npe
-            );
+            handleNull( null,
+                "Cannot extract information from feature set: " + macro_term.getTermText(),
+                TranslationException.Reason.NULL,
+                macro_term.getTermText(),
+                npe);
         }
 
         String info_key = macro_term.getTermText();
