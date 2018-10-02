@@ -7,6 +7,8 @@ import java.util.Arrays;
  */
 public enum Status {
     SUCCESS(0),
+    SUCCESS_SYMB(0),
+    SUCCESS_TRANS(0),
     FAILURE(0),
     SKIPPED(0),
     ERROR(0);

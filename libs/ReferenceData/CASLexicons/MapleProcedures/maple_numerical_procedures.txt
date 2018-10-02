@@ -105,9 +105,20 @@ SpecialNumericalTester := proc(expr, values::list, precision::posint)
       result := evalf[precision](eval(expr, values[i]));
       output := output,[result, values[i]];
     catch:
-      printf("Error for test case %q; Message: %q\n", combo, lastexception);
+      #printf("Error for test case %q; Message: %q\n", combo, lastexception);
       return lastexception;
     end try:
   end do:
   return [output];
+end proc:
+
+myIndets := proc(input)
+  local vars, set, element;
+  vars := indets(input,name);
+  for element in vars do
+    if evalb(substring(convert(element,string), 1..1) = '_') then
+      set := set, element;
+    end if:
+  end do:
+  return vars minus ({set} union {constants});
 end proc:

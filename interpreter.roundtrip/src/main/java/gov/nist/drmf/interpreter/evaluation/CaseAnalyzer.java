@@ -32,6 +32,8 @@ public class CaseAnalyzer {
     private static final int CONSTRAINT_GRP = 1;
     private static final int LABEL_GRP = 2;
 
+    public static boolean ACTIVE_BLUEPRINTS = true;
+
     private static MLPConstraintAnalyzer analyzer = MLPConstraintAnalyzer.getAnalyzerInstance();
 
     /**
@@ -59,6 +61,14 @@ public class CaseAnalyzer {
 
         String eq = rawLineBuffer.toString();
 
+//        try {
+//            NumericalEvaluator.getTranslator().translateFromLaTeXToMapleClean(eq);
+//            System.out.println(lineNumber + " SUCCESS");
+//        } catch ( Exception e ){
+//            System.out.println(lineNumber + " ERROR");
+//        }
+//        return null;
+
         CaseMetaData metaData = extractMetaData(constraint, label, lineNumber);
 
         String[] lrHS = eq.split("=");
@@ -71,26 +81,26 @@ public class CaseAnalyzer {
             if ( eq.contains("<") ){
                 f = eq.split( "<" );
                 rel = Relations.LESS_THAN;
-            } else if ( eq.contains("\\leq") ){
-                f = eq.split( "\\\\leq" );
+            } else if ( eq.matches(".*\\\\leq[^a-zA-Z].*") ){
+                f = eq.split( "\\\\leq[^a-zA-Z]" );
                 rel = Relations.LESS_EQ_THAN;
-            } else if ( eq.contains("\\le") ){
-                f = eq.split( "\\\\le" );
+            } else if ( eq.matches(".*\\\\le[^a-zA-Z].*") ){
+                f = eq.split( "\\\\le[^a-zA-Z]" );
                 rel = Relations.LESS_EQ_THAN;
             } else if ( eq.contains( ">" ) ){
                 f = eq.split( ">" );
                 rel = Relations.GREATER_THAN;
-            } else if ( eq.contains( "\\geq" ) ){
-                f = eq.split( "\\\\geq" );
+            } else if ( eq.matches( ".*\\\\geq[^a-zA-Z].*" ) ){
+                f = eq.split( "\\\\geq[^a-zA-Z]" );
                 rel = Relations.GREATER_EQ_THAN;
-            } else if ( eq.contains("\\ge") ){
-                f = eq.split( "\\\\geq" );
+            } else if ( eq.matches(".*\\\\ge[^a-zA-Z].*") ){
+                f = eq.split( "\\\\ge[^a-zA-Z]" );
                 rel = Relations.GREATER_EQ_THAN;
-            } else if ( eq.contains( "\\neq" ) ){
-                f = eq.split( "\\\\neq" );
+            } else if ( eq.matches( ".*\\\\neq[^a-zA-Z].*" ) ){
+                f = eq.split( "\\\\neq[^a-zA-Z]" );
                 rel = Relations.UNEQUAL;
-            } else if ( eq.contains( "\\ne" ) ){
-                f = eq.split( "\\\\ne" );
+            } else if ( eq.matches( ".*\\\\ne[^a-zA-Z].*" ) ){
+                f = eq.split( "\\\\ne[^a-zA-Z]" );
                 rel = Relations.UNEQUAL;
             }
 
@@ -109,6 +119,7 @@ public class CaseAnalyzer {
         if ( labelStr != null ){
             labelStr = labelStr.substring("\\\\label{".length()-1, labelStr.length()-1);
             label = new Label(labelStr);
+            System.out.println(lineNumber + ": " + label.getHyperlink());
         }
 
         if ( constraintStr == null )
@@ -130,7 +141,7 @@ public class CaseAnalyzer {
             String con = cons.removeFirst();
             try {
                 String[][] rule = analyzer.checkForBlueprintRules(con);
-                if ( rule != null ) {
+                if ( rule != null && ACTIVE_BLUEPRINTS ) {
                     varVals.add(rule);
                     length += rule[0].length;
                 }

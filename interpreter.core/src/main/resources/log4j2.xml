@@ -10,7 +10,7 @@
         <File name="LogFile" fileName="${allFileName}">
             <PatternLayout pattern="[%d{ABSOLUTE} %level] %logger{2}: %msg%n"/>
             <Filters>
-                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="ACCEPT"/>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
         </File>
 
@@ -45,11 +45,11 @@
     </Appenders>
     <Loggers>
         <Root level="all">
-            <AppenderRef ref="HowardConsole"/>
-            <!--AppenderRef ref="DebugConsole"/-->
+            <!--AppenderRef ref="HowardConsole"/-->
+            <AppenderRef ref="DebugConsole"/>
             <AppenderRef ref="ErrorConsole"/>
-            <!--AppenderRef ref="LogFile"/>
-            <AppenderRef ref="ErrorFile"/-->
+            <AppenderRef ref="LogFile"/>
+            <!--AppenderRef ref="ErrorFile"/-->
         </Root>
     </Loggers>
 </Configuration>
