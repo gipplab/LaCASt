@@ -72,11 +72,12 @@ public class MLP {
 //            eq = "ab13d";
 //            eq = "\\deriv{}{x} a";
             eq = "\\ell-l";
-            eq = "\\overline{a}";
+            eq = "x_1 x_2";
 //            eq = "a = 2,3,4,\\ldots";
 //            eq = "\\realpart{var1} < \\frac{1}{2}";
 //            eq = "1 \\constraint{$n = 0,1,2, \\dots$, $z\\in \\mathbf{K}$} \\label{eq:BS.IN.9}";
             //eq = "Z = \\sum_{j} g_j \\cdot \\mathrm{e}^{- \\\\beta E_j}";
+            eq = "\\deriv{}{x} S^{(1)}_{mn}(\\gamma,x)";
 
             System.out.println();
             System.out.println("Input: " + eq);

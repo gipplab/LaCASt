@@ -52,6 +52,9 @@ public class SymbolicEvaluator extends NumericalEvaluator {
     public SymbolicEvaluator() throws IOException {
         super();
 
+        CaseAnalyzer.ACTIVE_BLUEPRINTS = false; // take raw constraints
+        NumericalEvaluator.SKIP_SUC_SYMB = false;
+
         this.config = new SymbolicConfig();
 
         NumericalConfig.NumericalProperties.KEY_OUTPUT.setValue(config.getOutputPath().toString());
@@ -84,12 +87,17 @@ public class SymbolicEvaluator extends NumericalEvaluator {
         //translator.addMapleMemoryObserver(this);
         //MapleListener.setMemoryUsageLimit( MEMORY_NOTIFY_LIMIT_KB );
 
-        String assumption = config.getEntireTestSuiteAssumptions();
-        if ( assumption != null ){
-            assumption = "assume(" + assumption + ");";
-            LOG.info("Enter assumption for entire test suite: " + assumption);
-            translator.enterMapleCommand(assumption);
-            addPreloadScript(assumption);
+        overallAss = config.getEntireTestSuiteAssumptions();
+    }
+
+    private String overallAss;
+
+    private void setPreviousAssumption() throws MapleException {
+        if ( overallAss != null ){
+            overallAss = "assume(" + overallAss + ");";
+//            LOG.info("Enter assumption for entire test suite: " + overallAss);
+            translator.enterMapleCommand(overallAss);
+            addPreloadScript(overallAss);
         }
     }
 
@@ -106,6 +114,9 @@ public class SymbolicEvaluator extends NumericalEvaluator {
 //                LOG.info("Assumption translation: " + mapleAss);
 //            }
 
+            translator.enterMapleCommand("reset;");
+            setPreviousAssumption();
+
             String mapleLHS = translator.translateFromLaTeXToMapleClean( c.getLHS() );
             String mapleRHS = translator.translateFromLaTeXToMapleClean( c.getRHS() );
 
@@ -121,15 +132,17 @@ public class SymbolicEvaluator extends NumericalEvaluator {
                 LOG.debug("Enter pre-testing commands: " + preAndPostCommands[0]);
             }
 
+            String arrConstraints = c.getConstraints();
+            if ( arrConstraints != null ){
+                arrConstraints = arrConstraints.substring(1, arrConstraints.length()-2);
+                LOG.debug("Enter constraint as assumption: " + arrConstraints);
+                translator.enterMapleCommand("assume(" + arrConstraints + ");");
+            }
+
             // default values are false
             SymbolicEvaluatorTypes[] type = SymbolicEvaluatorTypes.values();
             String[] successStr = new String[type.length];
             boolean[] success = new boolean[type.length];
-
-            if ( preAndPostCommands[1] != null ){
-                translator.enterMapleCommand(preAndPostCommands[1]);
-                LOG.debug("Enter post-testing commands: " + preAndPostCommands[1]);
-            }
 
             LOG.info(c.getLine() + ": Start simplifications. Expected outcome is "
                     + (config.getExpectationValue() == null ? "numerical" : config.getExpectationValue()) );
@@ -162,6 +175,11 @@ public class SymbolicEvaluator extends NumericalEvaluator {
                 } else {
                     successStr[i] = type[i].getShortName() + ": NaN";
                 }
+            }
+
+            if ( preAndPostCommands[1] != null ){
+                translator.enterMapleCommand(preAndPostCommands[1]);
+                LOG.debug("Enter post-testing commands: " + preAndPostCommands[1]);
             }
 
             // if one of the above is true -> we are done

@@ -197,6 +197,7 @@ public class MapleSimplifier {
 
         command = "numResults := SpecialNumericalTester(nTest,nTestVals," + precision + ");";
         LOG.debug("Start numerical test.");
+        LOG.trace(command);
         Algebraic numResults = mapleInterface.evaluateExpression( command );
         logResults(numResults);
 
@@ -206,7 +207,7 @@ public class MapleSimplifier {
     private void logResults(Algebraic a){
         String out = a.toString();
         String postfix = out.length() > NumericalEvaluator.MAX_LOG_LENGTH ? "..." : "";
-        out = out.substring(1, Math.min(out.length(), NumericalEvaluator.MAX_LOG_LENGTH));
+        out = out.substring(0, Math.min(out.length(), NumericalEvaluator.MAX_LOG_LENGTH));
         out += postfix;
         LOG.info("Test results: " + out);
         LOG.trace("NumResults: " + a.toString());
@@ -263,7 +264,7 @@ public class MapleSimplifier {
 
         LOG.debug("Numerical Test Expression: " + command);
 
-        command += "nVars := indets(nTest,name) minus {constants}:" + NL;
+        command += "nVars := myIndets(nTest):" + NL;
         command += "nVals := " + values + ":" + NL;
 
         if ( constraintVariablesList != null ){
@@ -287,6 +288,7 @@ public class MapleSimplifier {
         // Test until here and look for number of variables
         command += combis + ":";
         LOG.debug("Calculate number of combinations.");
+        LOG.trace(command);
         mapleInterface.evaluateExpression( command );
 
         Algebraic numOfCombis = mapleInterface.evaluateExpression("inCombis;");
