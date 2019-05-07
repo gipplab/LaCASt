@@ -56,7 +56,9 @@ This could happen when our program cannot find out the encoding of your CSV file
 
 [André Greiner-Petter](https://github.com/AndreG-P): Developer (main task: translate semantic LaTeX to CAS)
 
-[Claude](https://github.com/ClaudeZou) & [Jagan](https://github.com/notjagan): Developer (main task: translate generic LaTeX to semantic LaTeX)
-
 ## How to contribute?
 Take a look to the [contributing guidelines](https://github.com/TU-Berlin/latex-grammar/edit/master/CONTRIBUTING.md)
+
+## Past contributors
+[Claude](https://github.com/ClaudeZou) & [Jagan](https://github.com/notjagan): Developer (main task: translate generic LaTeX to semantic LaTeX)
+
