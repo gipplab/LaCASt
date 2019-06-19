@@ -25,6 +25,8 @@ public class Keys {
     // Key value for Mathematica
     public static final String KEY_MATHEMATICA = "Mathematica";
 
+    public static final String KEY_MATHEMATICA_MATH_DIR = "mathematica_math";
+
     // Key value for DLMF
     public static final String KEY_DLMF = "DLMF";
 
