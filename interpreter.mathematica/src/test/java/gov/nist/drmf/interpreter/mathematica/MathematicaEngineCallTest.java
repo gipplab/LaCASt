@@ -22,6 +22,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MathematicaEngineCallTest {
 
     private static final String JACOBIP = "JacobiP[n,\\[Alpha],\\[Beta],Cos[a \\[CapitalTheta]]]";
+    private static final String TRIG_EQ = "Sinh[x+y I] - (Sinh[x] Cos[y] + I Cosh[x] Sin[y])";
+    private static final String SIMPLE_EVAL_TEST = "x Gamma[x]";
 
     private static final String LINK_TO_MATH = "/opt/Wolfram/Executables/math";
 
@@ -69,6 +71,15 @@ public class MathematicaEngineCallTest {
     public void getFullFormTest() {
         String fullForm = math.evaluateToOutputForm("FullForm[" + JACOBIP + "]", 0);
         System.out.println(fullForm);
+    }
+
+    @Test
+    public void evaluationTest() throws MathLinkException {
+        math.evaluate("FullSimplify["+ TRIG_EQ +"]");
+        math.waitForAnswer();
+
+        Expr expr = math.getExpr();
+        System.out.println(expr.toString());
     }
 
     @AfterAll
