@@ -12,28 +12,25 @@
 5. [Troubleshooting](#troubleshooting)
 
 ## How to start?<a name="start"></a>
-#### Download the project
-Use the following command to download the project sources
-```bash
-git clone https://github.com/ag-gipp/latex-grammar.git
-```
+#### Setup SSH for git
+* These steps only need to be done once
+* If you don't have a private-public ssh key authentication setup then generate a private key and upload it to GitHub
+* Run <code>ssh-keygen</code>
+* Display the public key by executing <code>cat ~/.ssh/id_rsa.pub</code>
+* Copy all of the code and paste it to your GitHub -> Settings -> SSH keys, namely https://github.com/settings/keys. Do this by hitting <code>New SSH key</code> button.
 
-Since this downloads only the master branch, you must checkout your working branch first. 
-For the summer projects, you work on the `summer-extensions` branch.
-```bash
-git fetch
-git checkout summer-extensions
-```
+Set up git username and email
+* Make sure to do this before you do your first commit otherwise you will have problems
+* Run <code>git config --global user.name "YOUR NAME"</code> to set the author's name
+* Run <code>git config --global user.email "YOUR_EMAIL@example.com"</code> to set the author's email
+* Run <code>git config --global core.editor "vim"</code> to set the author's editor
 
-If you want to use your own branches for specific tasks (which is recommended) you have to create
-a new branch. You can do this by simply checkout a branch that doesn't exist yet.
-```bash
-git checkout my_new_branch
-```
-
-When you create a new branch, keep in mind that you should be on the branch `summer-extensions` when
-you create it. The branch you create is a copy of the branch before. So if you are on the branch `master`
-and than create a new branch, the new branch is a copy of `master`. But this is not what we want.
+Download the project
+* Run <code>git clone git@github.com:ag-gipp/latex-grammar.git</code>
+* cd into the folder you downloaded `cd latex-grammer`
+* Run `git fetch` to fetch remote branches to your local machine
+* Run `git checkout summer-extensions` to checkout your main working branch. Do not work on the `master` branch!
+* You can create a new branch for your specific task if you want to. Take care this working branch takes the branch `summer-extensions` as a base. That means you should only create a new branch when you are on the `summer-extensions` branch.
 
 #### The IDE
 We are working with IntelliJ. If you download the project you should be able to open it directly
