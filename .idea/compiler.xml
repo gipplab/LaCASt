@@ -9,6 +9,7 @@
         <module name="interpreter.cas" />
         <module name="interpreter.core" />
         <module name="interpreter.maple" />
+        <module name="interpreter.mathematica" />
         <module name="interpreter.roundtrip" />
         <module name="interpreter.semantic" />
       </profile>
@@ -18,6 +19,7 @@
       <module name="interpreter.cas" target="1.8" />
       <module name="interpreter.core" target="1.8" />
       <module name="interpreter.maple" target="1.8" />
+      <module name="interpreter.mathematica" target="1.8" />
       <module name="interpreter.roundtrip" target="1.8" />
       <module name="interpreter.semantic" target="1.8" />
     </bytecodeTargetLevel>
