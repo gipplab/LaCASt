@@ -35,7 +35,7 @@ Download the project
 #### The IDE
 We are working with IntelliJ. If you download the project you should be able to open it directly
 with IntelliJ. Note that it is a maven project. To try out if everything work, navigate to the
-submodule `interpreter.core` and to the package `gov.nist.drmf.interpreter.examlples`. Here you
+submodule `interpreter.core` and to the package `gov.nist.drmf.interpreter.examples`. Here you
 can find `MLP.java`. Run this class to check if everything works.
 
 #### Push changes
