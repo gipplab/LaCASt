@@ -32,9 +32,24 @@ Download the project
 * Run `git checkout summer-extensions` to checkout your main working branch. Do not work on the `master` branch!
 * You can create a new branch for your specific task if you want to. Take care this working branch takes the branch `summer-extensions` as a base. That means you should only create a new branch when you are on the `summer-extensions` branch.
 
+#### Maven
+The project use maven as a build tool. This means we use maven to organize external packages.
+* Move to the main directory of the repository (if you haven't change the name, it's `latex-grammar`).
+* Run `mvn install`
+* If the previous call stopped because with failed test cases, you can install it by skipping the tests via: `mvn install -DskipTests`.
+
 #### The IDE
-We are working with IntelliJ. If you download the project you should be able to open it directly
-with IntelliJ. Note that it is a maven project. To try out if everything work, navigate to the
+We are working with IntelliJ. If you download the project open the project via IntelliJ in the following way:
+* Launch IntelliJ
+* Hit `Import Project`
+* Select the main directory of our repo (`latex-grammar`)
+* Select `Import project from external model` and select `Maven` from the list below.
+* Hit `Next`
+* Make sure the root directory is the main directory of the project and you select `Import Maven projects automatically`.
+* Hit `Next` until you reach `Finish` and hit `Finish`.
+* It may take a while until IntelliJ importated all packages. You can see the progress on the bottom right.
+
+To try out if everything work, navigate to the
 submodule `interpreter.core` and to the package `gov.nist.drmf.interpreter.examples`. Here you
 can find `MLP.java`. Run this class to check if everything works.
 
