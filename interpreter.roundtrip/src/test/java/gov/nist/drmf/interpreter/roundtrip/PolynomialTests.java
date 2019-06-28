@@ -75,6 +75,7 @@ public class PolynomialTests extends AbstractRoundTrip {
                         translator.getMapleSimplifier().isEquivalent( test, maple_results.getLast() )
                 );
             } catch ( Exception e ){
+                e.printStackTrace();
                 fail( "Exception occurred!" );
             }
         }
