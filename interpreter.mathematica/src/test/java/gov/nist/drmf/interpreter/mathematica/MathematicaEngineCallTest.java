@@ -4,6 +4,7 @@ import com.wolfram.jlink.*;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
@@ -35,7 +36,7 @@ public class MathematicaEngineCallTest {
 
     private static KernelLink math;
 
-    @BeforeAll
+//    @BeforeAll
     public static void setup() throws MathLinkException {
         Path mathPath = MathematicaConfig.loadMathematicaPath();
 
@@ -46,7 +47,7 @@ public class MathematicaEngineCallTest {
         math.discardAnswer();
     }
 
-    @Test
+//    @Test
     public void simpleEvaluationTest() {
         try {
             // request mathematica engine to parse expression
@@ -70,7 +71,7 @@ public class MathematicaEngineCallTest {
      * @throws MathLinkException
      * @throws ExprFormatException
      */
-    @Test
+//    @Test
     public void getParseTreeTest() throws MathLinkException, ExprFormatException {
         math.evaluate(JACOBIP);
         math.waitForAnswer();
@@ -85,13 +86,13 @@ public class MathematicaEngineCallTest {
         System.out.println(expr.toString());
     }
 
-    @Test
+//    @Test
     public void getFullFormTest() {
         String fullForm = math.evaluateToOutputForm("FullForm[" + JACOBIP + "]", 0);
         assertEquals(JACOBIP_FULL_FORM, fullForm, "Expected a different full form of JacobiP");
     }
 
-    @Test
+//    @Test
     public void evaluationTest() throws MathLinkException {
         math.evaluate("FullSimplify["+ TRIG_EQ +"]");
         math.waitForAnswer();
@@ -100,7 +101,7 @@ public class MathematicaEngineCallTest {
         assertEquals("0", expr.toString(), "The engine should be able to symbolically simplify the expression to 0.");
     }
 
-    @AfterAll
+//    @AfterAll
     public static void shutwodn() {
         math.close();
     }

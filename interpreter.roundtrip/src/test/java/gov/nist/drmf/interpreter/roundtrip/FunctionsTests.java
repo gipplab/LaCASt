@@ -13,7 +13,7 @@ public class FunctionsTests extends AbstractRoundTrip {
             "cos(sin(I/2)+gamma*ln(x))",
             "(x+1)!",
             "n*sum(1/(y^k),k=1..n)",
-            "Psi(3! mod x^3)"
+//            "Psi(3! mod x^3)"
     };
 
     static final String[] test_names = new String[]{
@@ -22,7 +22,7 @@ public class FunctionsTests extends AbstractRoundTrip {
             "Complex Sine, Cosine and Logarithm Test",
             "Factorial of Sum Test",
             "Summation Symbol Test",
-            "Tricky PolyGamma with Factorial and Modulus Test"
+//            "Tricky PolyGamma with Factorial and Modulus Test"
     };
 
     @TestFactory

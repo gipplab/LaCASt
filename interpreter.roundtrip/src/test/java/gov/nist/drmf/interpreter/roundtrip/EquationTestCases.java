@@ -13,10 +13,7 @@ import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Ignore;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.TestFactory;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.function.Executable;
 
 import java.io.BufferedReader;
@@ -230,7 +227,7 @@ public class EquationTestCases {
         }
     }
 
-    //@Ignore
+    @Disabled
     @TestFactory
     Iterable<DynamicTest> iterateAllTestCases(){
         LinkedList<DynamicTest> tests = new LinkedList<>();
