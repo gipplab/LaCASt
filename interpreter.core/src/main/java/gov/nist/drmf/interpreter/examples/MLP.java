@@ -68,16 +68,16 @@ public class MLP {
             //eq = "\\FerrersP[\\frac{1}{2}]{\\nu}@{z}";
 //            eq = "(ab^2c 1+2) \\cdot \\CatalansConstant 2";
 //            eq="\\left ( \\left ( y \\right ] \\right)";
-//            eq = "\\sqrt \\frac{2}{4}";
+            eq = "\\sqrt \\frac{2}{4}";
 //            eq = "ab13d";
 //            eq = "\\deriv{}{x} a";
-            eq = "\\ell-l";
-            eq = "x_1 x_2";
+//            eq = "\\ell-l";
+//            eq = "x_1 x_2";
 //            eq = "a = 2,3,4,\\ldots";
 //            eq = "\\realpart{var1} < \\frac{1}{2}";
 //            eq = "1 \\constraint{$n = 0,1,2, \\dots$, $z\\in \\mathbf{K}$} \\label{eq:BS.IN.9}";
             //eq = "Z = \\sum_{j} g_j \\cdot \\mathrm{e}^{- \\\\beta E_j}";
-            eq = "\\deriv{}{x} S^{(1)}_{mn}(\\gamma,x)";
+//            eq = "\\deriv{}{x} S^{(1)}_{mn}(\\gamma,x)";
 
             System.out.println();
             System.out.println("Input: " + eq);

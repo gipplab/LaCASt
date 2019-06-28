@@ -46,7 +46,7 @@
     <Loggers>
         <Root level="all">
             <!--AppenderRef ref="HowardConsole"/-->
-            <AppenderRef ref="DebugConsole"/>
+            <!--<AppenderRef ref="DebugConsole"/>-->
             <AppenderRef ref="ErrorConsole"/>
             <AppenderRef ref="LogFile"/>
             <!--AppenderRef ref="ErrorFile"/-->
