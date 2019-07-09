@@ -33,7 +33,7 @@ import java.util.regex.Pattern;
  * following 4 continuous expressions and store them in an array.
  * After that, it replaces all placeholder in the translation by these
  * stored expressions.
- *
+ *\s_{x=0}^{12}x^2
  * @see Keys
  * @see AbstractTranslator
  * @see gov.nist.drmf.interpreter.cas.logging.TranslatedExpression
@@ -145,6 +145,14 @@ public class MacroTranslator extends AbstractListTranslator {
         LinkedList<String> optional_paras = new LinkedList<>();
         PomTaggedExpression moveToEnd = null;
 
+        //keep track of whether addToArgs is true or not because about to add crap to sumArgs.
+        boolean flag = false;
+        if(SumTranslator.addToArgs)
+            flag = true;
+
+        //fill up sumArgs so that inner terms of the macro are not added to sumArgs
+        addCrap();
+
         FeatureSet fset = macro_term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
         if ( fset != null ){
             storeInfos(fset);
@@ -153,6 +161,7 @@ public class MacroTranslator extends AbstractListTranslator {
                 INFO_LOG.addMacroInfo(macro_term.getTermText(), createFurtherInformation());
                 local_inner_exp.addTranslatedExpression(translation_pattern);
                 global_exp.addTranslatedExpression(translation_pattern);
+
                 return true;
             }
         }
@@ -295,8 +304,27 @@ public class MacroTranslator extends AbstractListTranslator {
             following_exps.add(0, moveToEnd);
         }
 
+        //remove the crap from sumArgs so that the macro may be added to sumArgs
+        removeCrap();
+
+        //if addToArgs was true before we added crap, make it true again.
+        if(flag){
+            SumTranslator.addToArgs = true;
+        }
+
         // finally fill the placeholders by values
         fillVars();
+
+        //if there was a \sum and it still needs arguments,
+        //add this macro to the arguments list
+        //then remove it from local and global exp because
+        // it is already being used as an argument to \sum
+        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
+            SumTranslator.sumArgs.add(local_inner_exp.toString());
+            global_exp.removeLastNExps(local_inner_exp.getLength());
+            local_inner_exp.removeLastNExps(local_inner_exp.getLength());
+        }
+
         return true;
     }
 
@@ -372,5 +400,21 @@ public class MacroTranslator extends AbstractListTranslator {
         );
         extraInformation += GlobalConstants.CAS_KEY + ": " + tab + def_cas;
         return extraInformation;
+    }
+
+    private void addCrap(){
+        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
+            SumTranslator.sumArgs.add("djw09djAS");
+            SumTranslator.sumArgs.add("JADJS09qwjdas");
+            SumTranslator.sumArgs.add("D)(8hA(WDUHs");
+            SumTranslator.sumArgs.add("JNDW(*)ASDj09ADS");
+        }
+    }
+
+    private void removeCrap(){
+        SumTranslator.sumArgs.remove("djw09djAS");
+        SumTranslator.sumArgs.remove("JADJS09qwjdas");
+        SumTranslator.sumArgs.remove("D)(8hA(WDUHs");
+        SumTranslator.sumArgs.remove("JNDW(*)ASDj09ADS");
     }
 }
