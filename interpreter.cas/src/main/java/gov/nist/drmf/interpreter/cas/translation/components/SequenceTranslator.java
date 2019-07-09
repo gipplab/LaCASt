@@ -17,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * There are two possible types of sequences in this code.
@@ -39,7 +40,7 @@ import java.util.List;
 public class SequenceTranslator extends AbstractListTranslator {
 
     private static final Logger LOG = LogManager.getLogger(SequenceTranslator.class.getName());
-    
+
     // the open bracket if needed
     @Nullable
     private Brackets open_bracket;
@@ -94,16 +95,26 @@ public class SequenceTranslator extends AbstractListTranslator {
                     expression.getTag());
             return false;
         }
-
         // temporally string
         String part;
 
         // get all sub elements
         List<PomTaggedExpression> exp_list = expression.getComponents();
+        ArrayList<String> args = new ArrayList<String>();
+
+        //need to keep track of whether addToArgs is true or not because about to add crap
+        boolean flag = false;
+        if(SumTranslator.addToArgs)
+            flag = true;
+
+        //add crap to sumArgs to fill it up so that inner math terms inside the sequence do not get added
+        //as arguments to \sum because only the full sequence should be added.
+        addCrap();
 
         // run through each element
         while ( !exp_list.isEmpty() && !isInnerError() ){
             PomTaggedExpression exp = exp_list.remove(0);
+
             TranslatedExpression inner_translation =
                     parseGeneralExpression( exp, exp_list );
 
@@ -125,13 +136,40 @@ public class SequenceTranslator extends AbstractListTranslator {
 
             part = checkMultiplyAddition(exp, exp_list, part);
 
+
             // finally add all elements to the inner list
             inner_translation.replaceLastExpression( part );
+
             if ( lastMerged )
                 local_inner_exp.replaceLastExpression( inner_translation.toString() );
             else local_inner_exp.addTranslatedExpression( inner_translation );
+
         }
 
+        //remove the crap that was added so that the whole sequence can be added
+        //as an argument to \sum.
+        removeCrap();
+
+        //make addToArgs true again like it was before adding crap to sumArgs
+        if(flag){
+            SumTranslator.addToArgs = true;
+        }
+        //if sumArgs still has more than 3 arguments, this sequence is part of a bigger
+        //empty expression, so dont add the sequence to sumArgs.
+        //need to add the whole empty expression to sumArgs, not just this sequence, so we ignore it.
+        if(SumTranslator.sumArgs.size() >= 3){
+            SumTranslator.addToArgs = false;
+        }
+
+        //if there was a sum and it still needs arguments, add this sequence as an argument
+        //then remove it from global_exp and local_inner_exp because we are already
+        //using this sequence as an argument to \sum.
+        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
+            SumTranslator.sumArgs.add(local_inner_exp.toString());
+            global_exp.removeLastNExps(local_inner_exp.getLength());
+            local_inner_exp.removeLastNExps(local_inner_exp.getLength());
+
+        }
         // finally return value
         return !isInnerError();
     }
@@ -174,7 +212,7 @@ public class SequenceTranslator extends AbstractListTranslator {
             //  3) another closed bracket
             //      -> there is a bracket error in the sequence
 
-            // open or closed brackets
+             // open or closed brackets
             if ( term != null && !term.isEmpty() &&
                     (term.getTag().matches(PARENTHESIS_PATTERN) ||
                             term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN )) ){
@@ -308,5 +346,21 @@ public class SequenceTranslator extends AbstractListTranslator {
                     || next.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)
             );
         } catch ( Exception e ){ return false; }
+    }
+
+    private void addCrap(){
+        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
+            SumTranslator.sumArgs.add("Q(#@*RHIOSD");
+            SumTranslator.sumArgs.add("FH(*WR&#*DF");
+            SumTranslator.sumArgs.add("D(*#Y@RHIQDW");
+            SumTranslator.sumArgs.add("D(*#Q@HDSDSAWD#");
+        }
+    }
+
+    private void removeCrap(){
+        SumTranslator.sumArgs.remove("Q(#@*RHIOSD");
+        SumTranslator.sumArgs.remove("FH(*WR&#*DF");
+        SumTranslator.sumArgs.remove("D(*#Y@RHIQDW");
+        SumTranslator.sumArgs.remove("D(*#Q@HDSDSAWD#");
     }
 }

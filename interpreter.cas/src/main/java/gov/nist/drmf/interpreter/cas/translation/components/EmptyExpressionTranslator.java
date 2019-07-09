@@ -27,7 +27,6 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
         // switch-case over tags
         String tag = expression.getTag();
         ExpressionTags expTag = ExpressionTags.getTagByKey(tag);
-
         // no tag shouldn't happen
         if ( handleNull( expTag,
             "Cannot find tag: " + tag,
@@ -36,6 +35,7 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
             null ) ) {
             return true;
         }
+
         try{
         // switch over all possible tags
         switch( expTag ) {
@@ -43,9 +43,11 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
             case sequence: // in that case use the SequenceTranslator
                 // this don't write into global_exp!
                 // it only delegates the parsing process to the SequenceTranslator
+                //System.out.println("Sequence*");
                 SequenceTranslator p = new SequenceTranslator();
                 if ( p.translate( expression ) ) {
                     local_inner_exp.addTranslatedExpression( p.getTranslatedExpressionObject() );
+                    //System.out.println("End Sequence*");
                     return true;
                 } else return false;
             case fraction:
@@ -80,30 +82,54 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
         return true;
     }
 
-    private boolean parseBasicFunction( PomTaggedExpression top_exp, ExpressionTags tag )
+    protected boolean parseBasicFunction( PomTaggedExpression top_exp, ExpressionTags tag )
             throws TranslationException {
+
+        //about to add crap to sumArgs to make size > 3 so keep track of whether addToArgs is true or not
+        boolean flag = false;
+        if(SumTranslator.addToArgs)
+            flag = true;
+
+        //add a load of crap to make sumArgs.size() > 3 so that inner expressions dont get added to sumArgs
+        //so that only this outside empty expression gets added.
+        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3) {
+            addCrap();
+        }
         // extract all components from top expressions
         String[] comps = extractMultipleSubExpressions( top_exp );
+
+        //now that the inner stuff is done, remove the crap to make sumArgs normal again.
+        removeCrap();
+
+        //make addToArgs true if it was true before.
+        if(flag){
+            SumTranslator.addToArgs = true;
+        }
+
         if ( isInnerError() ){
             // something went wrong while extracting expressions
             return false;
         }
 
-        // first of all, translate components into translation
-        local_inner_exp.addTranslatedExpression(
-                // try to translate the basic function
-                SemanticLatexTranslator.getBasicFunctionParser().translate(
-                        comps,
-                        tag.tag()
-                )
-        );
-
-        // finally, global_exp needs to be updated
-        // it doesn't contains sub expressions because
-        // extractMultipleSubExpressions already deleted it.
-        global_exp.addTranslatedExpression(
-                local_inner_exp
-        );
+        //if there was a \sum and if there are still arguments left that the sum needs,
+        //add the translated expression to the sum argument list
+        //otherwise, there was not a sum or \sum already has all its arguments
+        //so this empty expression is not an argument to a sum, so add it to local_inner_exp and global_exp
+        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
+            SumTranslator.sumArgs.add(SemanticLatexTranslator.getBasicFunctionParser().translate(comps,tag.tag()));
+        } else {
+            SumTranslator.addToArgs = false;
+            // first of all, translate components into translation
+            local_inner_exp.addTranslatedExpression(
+                    // try to translate the basic function
+                    SemanticLatexTranslator.getBasicFunctionParser().translate(comps, tag.tag()));
+            // finally, global_exp needs to be updated
+            // it doesn't contains sub expressions because
+            // extractMultipleSubExpressions already deleted it.
+            global_exp.addTranslatedExpression(
+                    local_inner_exp
+            );
+        }
         // everything goes well
         return true;
     }
@@ -120,7 +146,6 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
     private String[] extractMultipleSubExpressions( PomTaggedExpression top_expression ){
         List<PomTaggedExpression> sub_expressions = top_expression.getComponents();
         ArrayList<TranslatedExpression> components = new ArrayList<>(sub_expressions.size());
-
         while ( !sub_expressions.isEmpty() ){
             PomTaggedExpression exp = sub_expressions.remove(0);
             TranslatedExpression inner_exp = parseGeneralExpression(exp, sub_expressions);
@@ -163,5 +188,28 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
         } catch ( Exception e ){
             return false;
         }
+    }
+
+    /**
+     * Add crap to fill up sumArgs
+     * This is so that inner expressions inside the empty expression like a single math term do not get added to sumArgs.
+     */
+    private void addCrap(){
+
+        SumTranslator.sumArgs.add("WIDOJWADs");
+        SumTranslator.sumArgs.add("JDOIWJ#@DS");
+        SumTranslator.sumArgs.add("AWJOD#@SAD");
+        SumTranslator.sumArgs.add("AF(*UHSDW(D)");
+    }
+
+    /**
+     * Remove the crap that was added.
+     * So that the whole empty expression can be added as an argument to \sum.
+     */
+    private void removeCrap(){
+        SumTranslator.sumArgs.remove("WIDOJWADs");
+        SumTranslator.sumArgs.remove("JDOIWJ#@DS");
+        SumTranslator.sumArgs.remove("AWJOD#@SAD");
+        SumTranslator.sumArgs.remove("AF(*UHSDW(D)");
     }
 }

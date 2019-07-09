@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.cas.translation.components.SumTranslator;
 import gov.nist.drmf.interpreter.common.*;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
@@ -105,6 +106,7 @@ public class SemanticLatexTranslator extends AbstractTranslator {
         local_inner_exp.addTranslatedExpression(
                 parseGeneralExpression(expression, null).getTranslatedExpression()
         );
+
         if ( isInnerError() ){
             handleNull( null,
                 "Wasn't able to translate the given expression.",
@@ -112,6 +114,7 @@ public class SemanticLatexTranslator extends AbstractTranslator {
                 expression.toString(),
                 null);
         }
+        addSumArgs();
         return true;
     }
 
@@ -123,9 +126,7 @@ public class SemanticLatexTranslator extends AbstractTranslator {
         return constants;
     }
 
-    public static BasicFunctionsTranslator getBasicFunctionParser(){
-        return functions;
-    }
+    public static BasicFunctionsTranslator getBasicFunctionParser(){ return functions; }
 
     public static SymbolTranslator getSymbolsTranslator(){
         return symbols;
@@ -133,5 +134,27 @@ public class SemanticLatexTranslator extends AbstractTranslator {
 
     public InformationLogger getInfoLog(){
         return INFO_LOG;
+    }
+
+    /**
+     * Now we need to add the arguments to the sum
+     * This method finds where Sum was added to the translated expression,
+     * Splits it at that point, adds in the arguments that sum needs,
+     * (adding commas and curly braces where necessary)
+     * and finally places the finished expression into local and global exp.
+     */
+    private void addSumArgs(){
+        if(SumTranslator.sumArgs.size() == 3){
+            int index = local_inner_exp.toString().indexOf("Sum[");
+            String newTrans = local_inner_exp.toString().substring(0, index + 4) + SumTranslator.sumArgs.get(2) +
+                    ", {" + SumTranslator.sumArgs.get(0) + "," + SumTranslator.sumArgs.get(1) + "}" +
+                    local_inner_exp.toString().substring(index + 4);
+            SumTranslator.sumArgs.clear();
+            SumTranslator.addToArgs = false;
+            local_inner_exp.clear();
+            local_inner_exp.addTranslatedExpression(newTrans);
+            global_exp.clear();
+            global_exp.addTranslatedExpression(newTrans);
+        }
     }
 }

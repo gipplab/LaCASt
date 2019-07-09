@@ -100,6 +100,21 @@ public class SemanticToCASInterpreter {
         if ( expression == null ){
             System.out.println("Which expression do you want to translate:");
             expression = console.nextLine();
+
+            //delete the underscore and caret in the sum if there is one because they suck
+            if(expression.contains("\\sum_{")){
+                for(int i = expression.indexOf("\\sum_{") + 7; i < expression.length() - 2; i++){
+                    if(expression.substring(i, i+2).equals("}^")){
+                        expression = expression.substring(0, i + 1) + expression.substring(i + 2);
+                        break;
+                    }
+                }
+            }
+            if(expression.contains("\\sum_")){
+                int index = expression.indexOf("\\sum_") + 4;
+                expression = expression.substring(0, index) + expression.substring(index + 1);
+            }
+
             System.out.println();
         } else if ( !clean ){
             System.out.println("You want to translate the following expression: " + expression + NEW_LINE);

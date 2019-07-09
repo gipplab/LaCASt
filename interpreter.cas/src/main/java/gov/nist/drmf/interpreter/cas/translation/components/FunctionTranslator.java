@@ -73,10 +73,14 @@ public class FunctionTranslator extends AbstractListTranslator {
             output = term.getTermText().substring(1);
         else output = term.getTermText();
 
-        // add it to global and local
-        local_inner_exp.addTranslatedExpression(output);
-        global_exp.addTranslatedExpression(output);
-
+        //if this function is an argument to a sum, add it to the list of sum arguments
+        // otherwise, add it to global and local normally
+        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
+            SumTranslator.sumArgs.add(output);
+        } else {
+            local_inner_exp.addTranslatedExpression(output);
+            global_exp.addTranslatedExpression(output);
+        }
         // inform the user that we usually don't know how to handle it.
         INFO_LOG.addGeneralInfo(
                 term.getTermText(),
