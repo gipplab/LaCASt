@@ -114,6 +114,7 @@ public class SemanticLatexTranslator extends AbstractTranslator {
                 expression.toString(),
                 null);
         }
+
         addSumArgs();
         return true;
     }
@@ -145,16 +146,50 @@ public class SemanticLatexTranslator extends AbstractTranslator {
      */
     private void addSumArgs(){
         if(SumTranslator.sumArgs.size() == 3){
-            int index = local_inner_exp.toString().indexOf("Sum[");
-            String newTrans = local_inner_exp.toString().substring(0, index + 4) + SumTranslator.sumArgs.get(2) +
-                    ", {" + SumTranslator.sumArgs.get(0) + "," + SumTranslator.sumArgs.get(1) + "}" +
-                    local_inner_exp.toString().substring(index + 4);
-            SumTranslator.sumArgs.clear();
-            SumTranslator.addToArgs = false;
-            local_inner_exp.clear();
-            local_inner_exp.addTranslatedExpression(newTrans);
-            global_exp.clear();
-            global_exp.addTranslatedExpression(newTrans);
+            if(GlobalConstants.CAS_KEY.equals("Mathematica")) {
+                int index = local_inner_exp.toString().indexOf("Sum[");
+                String newTrans = local_inner_exp.toString().substring(0, index + 4) + SumTranslator.sumArgs.get(2) +
+                        ", {" + SumTranslator.sumArgs.get(0) + "," + SumTranslator.sumArgs.get(1) + "}" +
+                        local_inner_exp.toString().substring(index + 4);
+                SumTranslator.sumArgs.clear();
+                SumTranslator.addToArgs = false;
+                local_inner_exp.clear();
+                local_inner_exp.addTranslatedExpression(newTrans);
+                global_exp.clear();
+                global_exp.addTranslatedExpression(newTrans);
+            }
+
+            if(GlobalConstants.CAS_KEY.equals("Maple")){
+                int index = local_inner_exp.toString().indexOf("sum(");
+                String newTrans = local_inner_exp.toString().substring(0, index + 4) + SumTranslator.sumArgs.get(2) +
+                        ", " + SumTranslator.sumArgs.get(0) + ".." + SumTranslator.sumArgs.get(1) +
+                        local_inner_exp.toString().substring(index + 4);
+                int count = 0;
+                int endIndex = 0;
+
+                //has some extra *'s at the end
+                //this removes it
+                for(int i = index + 3; i < newTrans.length(); i++){
+                    if(newTrans.charAt(i) == '(')
+                        count++;
+                    if(newTrans.charAt(i) == ')')
+                        count--;
+                    if(count == 0){
+                        endIndex = i;
+                        break;
+                    }
+                }
+                while(endIndex+1 < newTrans.length() && newTrans.charAt(endIndex+1) == '*'){
+                    newTrans = newTrans.substring(0, endIndex + 1) + newTrans.substring(endIndex + 2);
+                }
+
+                SumTranslator.sumArgs.clear();
+                SumTranslator.addToArgs = false;
+                local_inner_exp.clear();
+                local_inner_exp.addTranslatedExpression(newTrans);
+                global_exp.clear();
+                global_exp.addTranslatedExpression(newTrans);
+            }
         }
     }
 }

@@ -109,7 +109,7 @@ public class SequenceTranslator extends AbstractListTranslator {
 
         //add crap to sumArgs to fill it up so that inner math terms inside the sequence do not get added
         //as arguments to \sum because only the full sequence should be added.
-        addCrap();
+        addCrapOne();
 
         // run through each element
         while ( !exp_list.isEmpty() && !isInnerError() ){
@@ -148,28 +148,14 @@ public class SequenceTranslator extends AbstractListTranslator {
 
         //remove the crap that was added so that the whole sequence can be added
         //as an argument to \sum.
-        removeCrap();
+        removeCrapOne();
 
         //make addToArgs true again like it was before adding crap to sumArgs
         if(flag){
             SumTranslator.addToArgs = true;
         }
-        //if sumArgs still has more than 3 arguments, this sequence is part of a bigger
-        //empty expression, so dont add the sequence to sumArgs.
-        //need to add the whole empty expression to sumArgs, not just this sequence, so we ignore it.
-        if(SumTranslator.sumArgs.size() >= 3){
-            SumTranslator.addToArgs = false;
-        }
 
-        //if there was a sum and it still needs arguments, add this sequence as an argument
-        //then remove it from global_exp and local_inner_exp because we are already
-        //using this sequence as an argument to \sum.
-        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
-            SumTranslator.sumArgs.add(local_inner_exp.toString());
-            global_exp.removeLastNExps(local_inner_exp.getLength());
-            local_inner_exp.removeLastNExps(local_inner_exp.getLength());
-
-        }
+        addToSum();
         // finally return value
         return !isInnerError();
     }
@@ -196,9 +182,18 @@ public class SequenceTranslator extends AbstractListTranslator {
                     "that way.");
             return false;
         }
+        //need to keep track of whether addToArgs is true or not because about to add crap
+        boolean flag = false;
+        if(SumTranslator.addToArgs)
+            flag = true;
+
+        //add crap to sumArgs to fill it up so that inner math terms inside the sequence do not get added
+        //as arguments to \sum because only the full sequence should be added.
+
 
         // iterate through all elements
         while ( !following_exp.isEmpty() ){
+            addCrapTwo();
             // take the next expression
             PomTaggedExpression exp = following_exp.remove(0);
 
@@ -272,6 +267,19 @@ public class SequenceTranslator extends AbstractListTranslator {
                     // same for global_exp. But first delete all elements of this sequence
                     global_exp.removeLastNExps( num );
                     global_exp.addTranslatedExpression( seq );
+
+                    //remove the crap that was added so that the whole sequence can be added
+                    //as an argument to \sum.
+                    removeCrapTwo();
+
+                    //make addToArgs true again like it was before adding crap to sumArgs
+                    if(flag){
+                        SumTranslator.addToArgs = true;
+                    }
+                    //if sumArgs still has more than 3 arguments, this sequence is part of a bigger
+                    //empty expression, so dont add the sequence to sumArgs.
+                    //need to add the whole empty expression to sumArgs, not just this sequence, so we ignore it.
+                    addToSum();
                     return true;
                 } else { // otherwise there was an error in the bracket arrangements
                     throw new TranslationException(
@@ -302,7 +310,11 @@ public class SequenceTranslator extends AbstractListTranslator {
 
             // if there was in error, its over here...
             if ( isInnerError() ) return false;
+
+            removeCrapTwo();
+
         }
+
 
         // this should not happen. It means the algorithm reached the end but a bracket is
         // left open.
@@ -348,7 +360,7 @@ public class SequenceTranslator extends AbstractListTranslator {
         } catch ( Exception e ){ return false; }
     }
 
-    private void addCrap(){
+    private void addCrapOne(){
         if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
             SumTranslator.sumArgs.add("Q(#@*RHIOSD");
             SumTranslator.sumArgs.add("FH(*WR&#*DF");
@@ -357,10 +369,52 @@ public class SequenceTranslator extends AbstractListTranslator {
         }
     }
 
-    private void removeCrap(){
+    private void removeCrapOne(){
         SumTranslator.sumArgs.remove("Q(#@*RHIOSD");
         SumTranslator.sumArgs.remove("FH(*WR&#*DF");
         SumTranslator.sumArgs.remove("D(*#Y@RHIQDW");
         SumTranslator.sumArgs.remove("D(*#Q@HDSDSAWD#");
+    }
+
+    private void addCrapTwo(){
+        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
+            SumTranslator.sumArgs.add("d J(#@QEHS");
+            SumTranslator.sumArgs.add("H (#SAD W#TQD");
+            SumTranslator.sumArgs.add("A SDJ(Q@WWSA");
+            SumTranslator.sumArgs.add(" WHER(@QOISDA");
+        }
+    }
+
+    private void removeCrapTwo(){
+        SumTranslator.sumArgs.remove("d J(#@QEHS");
+        SumTranslator.sumArgs.remove("H (#SAD W#TQD");
+        SumTranslator.sumArgs.remove("A SDJ(Q@WWSA");
+        SumTranslator.sumArgs.remove(" WHER(@QOISDA");
+    }
+
+    /**
+     * Method to add the sequence to the sum arguments list if it is a sum.
+     *
+     *
+     * If sumArgs still has more than 3 arguments, this sequence is part of a bigger
+     * empty expression or sequence, so dont add the sequence to sumArgs.
+     * Need to add the bigger one to sumArgs, not just this subsequence, so we ignore it.
+     *
+     * Otherwise, this sequence is not part of a bigger one.
+     * If there was a sum and it still needs arguments, add this sequence as an argument
+     * then remove it from global_exp and local_inner_exp because we are already
+     * using this sequence as an argument to \sum.
+     */
+    private void addToSum(){
+        if(SumTranslator.sumArgs.size() >= 3){
+            SumTranslator.addToArgs = false;
+        }
+
+        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
+            SumTranslator.sumArgs.add(local_inner_exp.toString());
+            global_exp.removeLastNExps(local_inner_exp.getLength());
+            local_inner_exp.removeLastNExps(local_inner_exp.getLength());
+
+        }
     }
 }
