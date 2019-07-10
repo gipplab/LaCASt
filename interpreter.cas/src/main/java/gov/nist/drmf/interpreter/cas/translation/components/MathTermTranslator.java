@@ -40,6 +40,7 @@ import java.util.List;
 public class MathTermTranslator extends AbstractListTranslator {
     private static final Logger LOG = LogManager.getLogger(MathTermTranslator.class.getName());
 
+
     @Override
     public boolean translate(PomTaggedExpression exp ){
         return translate( exp, new LinkedList<>() );

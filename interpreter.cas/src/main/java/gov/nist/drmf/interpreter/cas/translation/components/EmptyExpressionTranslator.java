@@ -43,11 +43,11 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
             case sequence: // in that case use the SequenceTranslator
                 // this don't write into global_exp!
                 // it only delegates the parsing process to the SequenceTranslator
-                //System.out.println("Sequence*");
+                System.out.println("Sequence*");
                 SequenceTranslator p = new SequenceTranslator();
                 if ( p.translate( expression ) ) {
                     local_inner_exp.addTranslatedExpression( p.getTranslatedExpressionObject() );
-                    //System.out.println("End Sequence*");
+                    System.out.println("End Sequence*");
                     return true;
                 } else return false;
             case fraction:

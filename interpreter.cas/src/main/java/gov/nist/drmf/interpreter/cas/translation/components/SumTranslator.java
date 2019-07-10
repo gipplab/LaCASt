@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
+import gov.nist.drmf.interpreter.common.GlobalConstants;
 
 import mlp.PomTaggedExpression;
 import java.util.ArrayList;
@@ -31,8 +32,15 @@ public class SumTranslator extends AbstractListTranslator{
     public static boolean addToArgs = false;
 
     public boolean translate(PomTaggedExpression exp, List<PomTaggedExpression> list){
-        local_inner_exp.addTranslatedExpression("Sum[]");
-        global_exp.addTranslatedExpression("Sum[]");
+        if(GlobalConstants.CAS_KEY.equals("Mathematica")) {
+            local_inner_exp.addTranslatedExpression("Sum[]");
+            global_exp.addTranslatedExpression("Sum[]");
+        }
+
+        if(GlobalConstants.CAS_KEY.equals("Maple")){
+            local_inner_exp.addTranslatedExpression("sum()");
+            global_exp.addTranslatedExpression("sum()");
+        }
         addToArgs = true;
         return true;
     }
