@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
+import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
@@ -87,14 +88,14 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
 
         //about to add crap to sumArgs to make size > 3 so keep track of whether addToArgs is true or not
         boolean flag = false;
-        if(SumTranslator.addToArgs)
+        if(SumProductTranslator.addToArgs)
             flag = true;
 
-        //add a load of crap to make sumArgs.size() > 3 so that inner expressions dont get added to sumArgs
+        //add a load of crap to fill up sumArgs.size() so that inner expressions dont get added to sumArgs
         //so that only this outside empty expression gets added.
-        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3) {
+
             addCrap();
-        }
+
         // extract all components from top expressions
         String[] comps = extractMultipleSubExpressions( top_exp );
 
@@ -103,7 +104,7 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
 
         //make addToArgs true if it was true before.
         if(flag){
-            SumTranslator.addToArgs = true;
+            SumProductTranslator.addToArgs = true;
         }
 
         if ( isInnerError() ){
@@ -115,10 +116,10 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
         //add the translated expression to the sum argument list
         //otherwise, there was not a sum or \sum already has all its arguments
         //so this empty expression is not an argument to a sum, so add it to local_inner_exp and global_exp
-        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
-            SumTranslator.sumArgs.add(SemanticLatexTranslator.getBasicFunctionParser().translate(comps,tag.tag()));
+        if(SumProductTranslator.addToArgs && SumProductTranslator.sumArgs.size() < SemanticToCASInterpreter.numArgs){
+            SumProductTranslator.sumArgs.add(SemanticLatexTranslator.getBasicFunctionParser().translate(comps,tag.tag()));
         } else {
-            SumTranslator.addToArgs = false;
+            SumProductTranslator.addToArgs = false;
             // first of all, translate components into translation
             local_inner_exp.addTranslatedExpression(
                     // try to translate the basic function
@@ -195,11 +196,12 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
      * This is so that inner expressions inside the empty expression like a single math term do not get added to sumArgs.
      */
     private void addCrap(){
-
-        SumTranslator.sumArgs.add("WIDOJWADs");
-        SumTranslator.sumArgs.add("JDOIWJ#@DS");
-        SumTranslator.sumArgs.add("AWJOD#@SAD");
-        SumTranslator.sumArgs.add("AF(*UHSDW(D)");
+        if(SumProductTranslator.addToArgs && SumProductTranslator.sumArgs.size() < SemanticToCASInterpreter.numArgs) {
+            SumProductTranslator.sumArgs.add("WIDOJWADs");
+            SumProductTranslator.sumArgs.add("JDOIWJ#@DS");
+            SumProductTranslator.sumArgs.add("AWJOD#@SAD");
+            SumProductTranslator.sumArgs.add("AF(*UHSDW(D)");
+        }
     }
 
     /**
@@ -207,9 +209,9 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
      * So that the whole empty expression can be added as an argument to \sum.
      */
     private void removeCrap(){
-        SumTranslator.sumArgs.remove("WIDOJWADs");
-        SumTranslator.sumArgs.remove("JDOIWJ#@DS");
-        SumTranslator.sumArgs.remove("AWJOD#@SAD");
-        SumTranslator.sumArgs.remove("AF(*UHSDW(D)");
+        SumProductTranslator.sumArgs.remove("WIDOJWADs");
+        SumProductTranslator.sumArgs.remove("JDOIWJ#@DS");
+        SumProductTranslator.sumArgs.remove("AWJOD#@SAD");
+        SumProductTranslator.sumArgs.remove("AF(*UHSDW(D)");
     }
 }

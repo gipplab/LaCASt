@@ -28,6 +28,10 @@ public class SemanticToCASInterpreter {
 
     private static long init_ms, trans_ms;
 
+    public static int numArgs;
+
+    public static boolean reverse;
+
     public static void main(String[] args){
         Scanner console = new Scanner(System.in);
         if ( console == null ){
@@ -100,21 +104,7 @@ public class SemanticToCASInterpreter {
         if ( expression == null ){
             System.out.println("Which expression do you want to translate:");
             expression = console.nextLine();
-
-            //delete the underscore and caret in the sum if there is one because they suck
-            if(expression.contains("\\sum_{")){
-                for(int i = expression.indexOf("\\sum_{") + 7; i < expression.length() - 2; i++){
-                    if(expression.substring(i, i+2).equals("}^")){
-                        expression = expression.substring(0, i + 1) + expression.substring(i + 2);
-                        break;
-                    }
-                }
-            }
-            if(expression.contains("\\sum_")){
-                int index = expression.indexOf("\\sum_") + 4;
-                expression = expression.substring(0, index) + expression.substring(index + 1);
-            }
-
+            expression = removeSubSuperScript(expression);
             System.out.println();
         } else if ( !clean ){
             System.out.println("You want to translate the following expression: " + expression + NEW_LINE);
@@ -226,5 +216,86 @@ public class SemanticToCASInterpreter {
             throw new RuntimeException( e );
         }
         return latexParser;
+    }
+
+    /**
+     * This method deletes the _ and the ^ from the \sum or \prod if there is one.
+     * Also keeps track of how many arguments the sum or product needs
+     * and if the order of subscript/superscript is reversed.
+     *
+     * @param expression
+     * @return
+     */
+    private static String removeSubSuperScript(String expression){
+        boolean hasLower = false;
+        boolean hasUpper = false;
+        if(expression.contains("\\sum_{") || expression.contains("\\prod_{")){
+            hasLower = true;
+            int index = expression.indexOf("\\sum_{") + 5;
+            if(index == 4)
+                index = expression.indexOf("\\prod_{") + 6;
+            int count = 0;
+            for(int i = index; i < expression.length(); i++){
+                if(expression.charAt(i) == '{')
+                    count++;
+                if(expression.charAt(i) == '}')
+                    count--;
+                if(count == 0){
+                    if(expression.charAt(i + 1) == '^') {
+                        hasUpper = true;
+                        expression = expression.substring(0, i + 1) + expression.substring(i + 2);
+                    }
+                    break;
+                }
+            }
+        }
+        if(expression.contains("\\sum_") || expression.contains("\\prod_")){
+            hasLower = true;
+            int index = expression.indexOf("\\sum_") + 4;
+            if(index == 3)
+                index = expression.indexOf("\\prod_") + 5;
+            expression = expression.substring(0, index) + expression.substring(index + 1);
+        }
+
+        if(expression.contains("\\sum^{") || expression.contains("\\prod^{")){
+            hasUpper = true;
+            reverse = true;
+            int index = expression.indexOf("\\sum^{") + 5;
+            if(index == 4)
+                index = expression.indexOf("\\prod^{") + 6;
+            int count = 0;
+            for(int i = index; i < expression.length(); i++){
+                if(expression.charAt(i) == '{')
+                    count++;
+                if(expression.charAt(i) == '}')
+                    count--;
+                if(count == 0){
+                    if(expression.charAt(i + 1) == '_') {
+                        hasLower = true;
+                        expression = expression.substring(0, i + 1) + expression.substring(i + 2);
+                    }
+                    break;
+                }
+            }
+        }
+
+        if(expression.contains("\\sum^") || expression.contains("\\prod^")){
+            hasUpper = true;
+            reverse = true;
+            int index = expression.indexOf("\\sum^") + 4;
+            if(index == 3)
+                index = expression.indexOf("\\prod^") + 5;
+            expression = expression.substring(0, index) + expression.substring(index + 1);
+        }
+
+        if(hasLower && hasUpper){
+            numArgs = 3;
+        }
+        else if(hasLower || hasUpper){
+            numArgs = 2;
+        } else if(!hasLower && !hasUpper){
+            numArgs = 1;
+        }
+        return expression;
     }
 }
