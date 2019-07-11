@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
+import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.TranslationException;
@@ -525,7 +526,7 @@ public class MathTermTranslator extends AbstractListTranslator {
      */
     private boolean parseCaret( PomTaggedExpression exp, List<PomTaggedExpression> following_exp ){
         Brackets b = Brackets.left_parenthesis;
-
+        System.out.println("parsing caret");
         boolean replaced = false;
         String base = global_exp.removeLastExpression();
         if ( !testBrackets(base) ){
@@ -609,8 +610,8 @@ public class MathTermTranslator extends AbstractListTranslator {
      * @param toAdd
      */
     private void maybeUseAsSumArg(String toAdd){
-        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
-            SumTranslator.sumArgs.add(toAdd);
+        if(SumProductTranslator.addToArgs && SumProductTranslator.sumArgs.size() < SemanticToCASInterpreter.numArgs){
+            SumProductTranslator.sumArgs.add(toAdd);
         } else {
             local_inner_exp.addTranslatedExpression(toAdd);
             global_exp.addTranslatedExpression(toAdd);

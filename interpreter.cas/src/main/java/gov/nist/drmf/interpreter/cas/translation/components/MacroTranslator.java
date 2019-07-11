@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
+import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.Keys;
@@ -147,7 +148,7 @@ public class MacroTranslator extends AbstractListTranslator {
 
         //keep track of whether addToArgs is true or not because about to add crap to sumArgs.
         boolean flag = false;
-        if(SumTranslator.addToArgs)
+        if(SumProductTranslator.addToArgs)
             flag = true;
 
         //fill up sumArgs so that inner terms of the macro are not added to sumArgs
@@ -309,7 +310,7 @@ public class MacroTranslator extends AbstractListTranslator {
 
         //if addToArgs was true before we added crap, make it true again.
         if(flag){
-            SumTranslator.addToArgs = true;
+            SumProductTranslator.addToArgs = true;
         }
 
         // finally fill the placeholders by values
@@ -319,8 +320,8 @@ public class MacroTranslator extends AbstractListTranslator {
         //add this macro to the arguments list
         //then remove it from local and global exp because
         // it is already being used as an argument to \sum
-        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
-            SumTranslator.sumArgs.add(local_inner_exp.toString());
+        if(SumProductTranslator.addToArgs && SumProductTranslator.sumArgs.size() < SemanticToCASInterpreter.numArgs){
+            SumProductTranslator.sumArgs.add(local_inner_exp.toString());
             global_exp.removeLastNExps(local_inner_exp.getLength());
             local_inner_exp.removeLastNExps(local_inner_exp.getLength());
         }
@@ -403,18 +404,18 @@ public class MacroTranslator extends AbstractListTranslator {
     }
 
     private void addCrap(){
-        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
-            SumTranslator.sumArgs.add("djw09djAS");
-            SumTranslator.sumArgs.add("JADJS09qwjdas");
-            SumTranslator.sumArgs.add("D)(8hA(WDUHs");
-            SumTranslator.sumArgs.add("JNDW(*)ASDj09ADS");
+        if(SumProductTranslator.addToArgs && SumProductTranslator.sumArgs.size() < SemanticToCASInterpreter.numArgs){
+            SumProductTranslator.sumArgs.add("djw09djAS");
+            SumProductTranslator.sumArgs.add("JADJS09qwjdas");
+            SumProductTranslator.sumArgs.add("D)(8hA(WDUHs");
+            SumProductTranslator.sumArgs.add("JNDW(*)ASDj09ADS");
         }
     }
 
     private void removeCrap(){
-        SumTranslator.sumArgs.remove("djw09djAS");
-        SumTranslator.sumArgs.remove("JADJS09qwjdas");
-        SumTranslator.sumArgs.remove("D)(8hA(WDUHs");
-        SumTranslator.sumArgs.remove("JNDW(*)ASDj09ADS");
+        SumProductTranslator.sumArgs.remove("djw09djAS");
+        SumProductTranslator.sumArgs.remove("JADJS09qwjdas");
+        SumProductTranslator.sumArgs.remove("D)(8hA(WDUHs");
+        SumProductTranslator.sumArgs.remove("JNDW(*)ASDj09ADS");
     }
 }

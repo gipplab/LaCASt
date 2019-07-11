@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
+import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -75,8 +76,8 @@ public class FunctionTranslator extends AbstractListTranslator {
 
         //if this function is an argument to a sum, add it to the list of sum arguments
         // otherwise, add it to global and local normally
-        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
-            SumTranslator.sumArgs.add(output);
+        if(SumProductTranslator.addToArgs && SumProductTranslator.sumArgs.size() < SemanticToCASInterpreter.numArgs){
+            SumProductTranslator.sumArgs.add(output);
         } else {
             local_inner_exp.addTranslatedExpression(output);
             global_exp.addTranslatedExpression(output);

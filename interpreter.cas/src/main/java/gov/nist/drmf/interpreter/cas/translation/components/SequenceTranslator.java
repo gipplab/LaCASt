@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
+import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
@@ -104,7 +105,7 @@ public class SequenceTranslator extends AbstractListTranslator {
 
         //need to keep track of whether addToArgs is true or not because about to add crap
         boolean flag = false;
-        if(SumTranslator.addToArgs)
+        if(SumProductTranslator.addToArgs)
             flag = true;
 
         //add crap to sumArgs to fill it up so that inner math terms inside the sequence do not get added
@@ -152,7 +153,7 @@ public class SequenceTranslator extends AbstractListTranslator {
 
         //make addToArgs true again like it was before adding crap to sumArgs
         if(flag){
-            SumTranslator.addToArgs = true;
+            SumProductTranslator.addToArgs = true;
         }
 
         addToSum();
@@ -184,15 +185,14 @@ public class SequenceTranslator extends AbstractListTranslator {
         }
         //need to keep track of whether addToArgs is true or not because about to add crap
         boolean flag = false;
-        if(SumTranslator.addToArgs)
+        if(SumProductTranslator.addToArgs)
             flag = true;
-
-        //add crap to sumArgs to fill it up so that inner math terms inside the sequence do not get added
-        //as arguments to \sum because only the full sequence should be added.
-
 
         // iterate through all elements
         while ( !following_exp.isEmpty() ){
+            //add crap to sumArgs to fill it up so that inner math terms inside the sequence do not get added
+            //as arguments to \sum because only the full sequence should be added.
+            System.out.println("in while loop");
             addCrapTwo();
             // take the next expression
             PomTaggedExpression exp = following_exp.remove(0);
@@ -274,7 +274,7 @@ public class SequenceTranslator extends AbstractListTranslator {
 
                     //make addToArgs true again like it was before adding crap to sumArgs
                     if(flag){
-                        SumTranslator.addToArgs = true;
+                        SumProductTranslator.addToArgs = true;
                     }
                     //if sumArgs still has more than 3 arguments, this sequence is part of a bigger
                     //empty expression, so dont add the sequence to sumArgs.
@@ -361,35 +361,35 @@ public class SequenceTranslator extends AbstractListTranslator {
     }
 
     private void addCrapOne(){
-        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
-            SumTranslator.sumArgs.add("Q(#@*RHIOSD");
-            SumTranslator.sumArgs.add("FH(*WR&#*DF");
-            SumTranslator.sumArgs.add("D(*#Y@RHIQDW");
-            SumTranslator.sumArgs.add("D(*#Q@HDSDSAWD#");
+        if(SumProductTranslator.addToArgs && SumProductTranslator.sumArgs.size() < SemanticToCASInterpreter.numArgs){
+            SumProductTranslator.sumArgs.add("Q(#@*RHIOSD");
+            SumProductTranslator.sumArgs.add("FH(*WR&#*DF");
+            SumProductTranslator.sumArgs.add("D(*#Y@RHIQDW");
+            SumProductTranslator.sumArgs.add("D(*#Q@HDSDSAWD#");
         }
     }
 
     private void removeCrapOne(){
-        SumTranslator.sumArgs.remove("Q(#@*RHIOSD");
-        SumTranslator.sumArgs.remove("FH(*WR&#*DF");
-        SumTranslator.sumArgs.remove("D(*#Y@RHIQDW");
-        SumTranslator.sumArgs.remove("D(*#Q@HDSDSAWD#");
+        SumProductTranslator.sumArgs.remove("Q(#@*RHIOSD");
+        SumProductTranslator.sumArgs.remove("FH(*WR&#*DF");
+        SumProductTranslator.sumArgs.remove("D(*#Y@RHIQDW");
+        SumProductTranslator.sumArgs.remove("D(*#Q@HDSDSAWD#");
     }
 
     private void addCrapTwo(){
-        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
-            SumTranslator.sumArgs.add("d J(#@QEHS");
-            SumTranslator.sumArgs.add("H (#SAD W#TQD");
-            SumTranslator.sumArgs.add("A SDJ(Q@WWSA");
-            SumTranslator.sumArgs.add(" WHER(@QOISDA");
+        if(SumProductTranslator.addToArgs && SumProductTranslator.sumArgs.size() < SemanticToCASInterpreter.numArgs){
+            SumProductTranslator.sumArgs.add("d J(#@QEHS");
+            SumProductTranslator.sumArgs.add("H (#SAD W#TQD");
+            SumProductTranslator.sumArgs.add("A SDJ(Q@WWSA");
+            SumProductTranslator.sumArgs.add(" WHER(@QOISDA");
         }
     }
 
     private void removeCrapTwo(){
-        SumTranslator.sumArgs.remove("d J(#@QEHS");
-        SumTranslator.sumArgs.remove("H (#SAD W#TQD");
-        SumTranslator.sumArgs.remove("A SDJ(Q@WWSA");
-        SumTranslator.sumArgs.remove(" WHER(@QOISDA");
+        SumProductTranslator.sumArgs.remove("d J(#@QEHS");
+        SumProductTranslator.sumArgs.remove("H (#SAD W#TQD");
+        SumProductTranslator.sumArgs.remove("A SDJ(Q@WWSA");
+        SumProductTranslator.sumArgs.remove(" WHER(@QOISDA");
     }
 
     /**
@@ -406,12 +406,12 @@ public class SequenceTranslator extends AbstractListTranslator {
      * using this sequence as an argument to \sum.
      */
     private void addToSum(){
-        if(SumTranslator.sumArgs.size() >= 3){
-            SumTranslator.addToArgs = false;
+        if(SumProductTranslator.sumArgs.size() >= SemanticToCASInterpreter.numArgs){
+            SumProductTranslator.addToArgs = false;
         }
 
-        if(SumTranslator.addToArgs && SumTranslator.sumArgs.size() < 3){
-            SumTranslator.sumArgs.add(local_inner_exp.toString());
+        if(SumProductTranslator.addToArgs && SumProductTranslator.sumArgs.size() < SemanticToCASInterpreter.numArgs){
+            SumProductTranslator.sumArgs.add(local_inner_exp.toString());
             global_exp.removeLastNExps(local_inner_exp.getLength());
             local_inner_exp.removeLastNExps(local_inner_exp.getLength());
 

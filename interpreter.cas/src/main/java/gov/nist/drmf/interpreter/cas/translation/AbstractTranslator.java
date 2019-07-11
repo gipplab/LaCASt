@@ -118,7 +118,7 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 			}
 			else if (isSum(term)){
 				System.out.println("Sum");
-				SumTranslator sm = new SumTranslator();
+				SumProductTranslator sm = new SumProductTranslator();
 				return_value = sm.translate(exp, exp_list);
 				inner_parser = sm;
 				System.out.println("End Sum");
@@ -167,13 +167,13 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 	}
 
 	/**
-	 * Pom Tagger recognizes "\sum" as the term text, so if there is a sum
-	 * then the SumTranslator class is used.
+	 * Pom Tagger recognizes "\sum" and "\prod" as term text, so if there is a sum or prod
+	 * then the SumProductTranslator class is used.
 	 * @param term
 	 * @return
 	 */
 	protected boolean isSum(MathTerm term){
-		if(term.getTermText().equals("\\sum")){
+		if(term.getTermText().equals("\\sum") || term.getTermText().equals("\\prod")){
 			return true;
 		} else return false;
 	}
