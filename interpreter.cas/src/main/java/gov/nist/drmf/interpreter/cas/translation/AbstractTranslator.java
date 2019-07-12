@@ -102,48 +102,36 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 		// handle all different cases
 		// first, does this expression contains a term?
 		if ( !containsTerm( exp ) ) {
-			System.out.println("Empty Expression");
 			inner_parser = new EmptyExpressionTranslator();
 			return_value = inner_parser.translate( exp );
-			System.out.println("End Empty Expression");
 		} else { // if not handle all different cases of terms
 			MathTerm term = exp.getRoot();
 			// first, is this a DLMF macro?
 			if ( isDLMFMacro( term ) ) { // BEFORE FUNCTION!
-				System.out.println("DLMF Macro");
 				MacroTranslator mp = new MacroTranslator();
 				return_value = mp.translate( exp, exp_list );
 				inner_parser = mp;
-				System.out.println("End DLMF Macro");
 			}
 			else if (isSum(term)){
-				System.out.println("Sum");
 				SumProductTranslator sm = new SumProductTranslator();
 				return_value = sm.translate(exp, exp_list);
 				inner_parser = sm;
-				System.out.println("End Sum");
 			} // it could be a sub sequence
 			else if ( isSubSequence( term ) ) {
-				System.out.println("Sequence");
 				Brackets bracket = Brackets.getBracket( term.getTermText() );
 				SequenceTranslator sp = new SequenceTranslator( bracket, SET_MODE );
 				return_value = sp.translate( exp_list );
 				inner_parser = sp;
-				System.out.println("End Sequence");
 			} // this is special, could be a function like cos
 			else if ( isFunction( term ) ) {
-				System.out.println("Function");
 				FunctionTranslator fp = new FunctionTranslator();
 				return_value = fp.translate( exp, exp_list );
 				inner_parser = fp;
-				System.out.println("End Function");
 			} // otherwise it is a general math term
 			else {
-				System.out.println("Math Term");
 				MathTermTranslator mp = new MathTermTranslator();
 				return_value = mp.translate( exp, exp_list );
 				inner_parser = mp;
-				System.out.println("End Math Term");
 			}
 		}
 		inner_Error = !return_value;
@@ -167,8 +155,7 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 	}
 
 	/**
-	 * Pom Tagger recognizes "\sum" and "\prod" as term text, so if there is a sum or prod
-	 * then the SumProductTranslator class is used.
+	 * If the term is a "\sum" or "\prod" use the SumProductTranslator.
 	 * @param term
 	 * @return
 	 */
