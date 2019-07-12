@@ -4,7 +4,6 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.Keys;
@@ -34,7 +33,7 @@ import java.util.regex.Pattern;
  * following 4 continuous expressions and store them in an array.
  * After that, it replaces all placeholder in the translation by these
  * stored expressions.
- *\s_{x=0}^{12}x^2
+ *
  * @see Keys
  * @see AbstractTranslator
  * @see gov.nist.drmf.interpreter.cas.logging.TranslatedExpression
@@ -134,25 +133,17 @@ public class MacroTranslator extends AbstractListTranslator {
 
         if ( translation_pattern == null || translation_pattern.isEmpty() ){
             handleNull( null,
-                "DLMF macro cannot be translated: " + macro_term.getTermText(),
-                TranslationException.Reason.UNKNOWN_MACRO,
-                macro_term.getTermText(),
-                null
-                );
+                    "DLMF macro cannot be translated: " + macro_term.getTermText(),
+                    TranslationException.Reason.UNKNOWN_MACRO,
+                    macro_term.getTermText(),
+                    null
+            );
         }
     }
 
     private boolean parse(List<PomTaggedExpression> following_exps){
         LinkedList<String> optional_paras = new LinkedList<>();
         PomTaggedExpression moveToEnd = null;
-
-        //keep track of whether addToArgs is true or not because about to add crap to sumArgs.
-        boolean flag = false;
-        if(SumProductTranslator.addToArgs)
-            flag = true;
-
-        //fill up sumArgs so that inner terms of the macro are not added to sumArgs
-        addCrap();
 
         FeatureSet fset = macro_term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
         if ( fset != null ){
@@ -162,7 +153,6 @@ public class MacroTranslator extends AbstractListTranslator {
                 INFO_LOG.addMacroInfo(macro_term.getTermText(), createFurtherInformation());
                 local_inner_exp.addTranslatedExpression(translation_pattern);
                 global_exp.addTranslatedExpression(translation_pattern);
-
                 return true;
             }
         }
@@ -198,11 +188,11 @@ public class MacroTranslator extends AbstractListTranslator {
 
         if ( optional_paras.size() > 0 ) {
             fset = macro_term.getNamedFeatureSet(
-                Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + optional_paras.size() );
+                    Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + optional_paras.size() );
             if ( handleNull( fset,
-                "Cannot find feature set with optional parameters.",
-                TranslationException.Reason.UNKNOWN_MACRO,
-                macro_term.getTermText(), null ) ) {
+                    "Cannot find feature set with optional parameters.",
+                    TranslationException.Reason.UNKNOWN_MACRO,
+                    macro_term.getTermText(), null ) ) {
                 return true;
             }
         }
@@ -212,10 +202,10 @@ public class MacroTranslator extends AbstractListTranslator {
             storeInfos(fset);
         } catch ( NullPointerException npe ){
             handleNull( null,
-                "Cannot extract information from feature set: " + macro_term.getTermText(),
-                TranslationException.Reason.NULL,
-                macro_term.getTermText(),
-                npe);
+                    "Cannot extract information from feature set: " + macro_term.getTermText(),
+                    TranslationException.Reason.NULL,
+                    macro_term.getTermText(),
+                    npe);
         }
 
         String info_key = macro_term.getTermText();
@@ -305,27 +295,8 @@ public class MacroTranslator extends AbstractListTranslator {
             following_exps.add(0, moveToEnd);
         }
 
-        //remove the crap from sumArgs so that the macro may be added to sumArgs
-        removeCrap();
-
-        //if addToArgs was true before we added crap, make it true again.
-        if(flag){
-            SumProductTranslator.addToArgs = true;
-        }
-
         // finally fill the placeholders by values
         fillVars();
-
-        //if there was a \sum and it still needs arguments,
-        //add this macro to the arguments list
-        //then remove it from local and global exp because
-        // it is already being used as an argument to \sum
-        if(SumProductTranslator.addToArgs && SumProductTranslator.sumArgs.size() < SemanticToCASInterpreter.numArgs){
-            SumProductTranslator.sumArgs.add(local_inner_exp.toString());
-            global_exp.removeLastNExps(local_inner_exp.getLength());
-            local_inner_exp.removeLastNExps(local_inner_exp.getLength());
-        }
-
         return true;
     }
 
@@ -401,21 +372,5 @@ public class MacroTranslator extends AbstractListTranslator {
         );
         extraInformation += GlobalConstants.CAS_KEY + ": " + tab + def_cas;
         return extraInformation;
-    }
-
-    private void addCrap(){
-        if(SumProductTranslator.addToArgs && SumProductTranslator.sumArgs.size() < SemanticToCASInterpreter.numArgs){
-            SumProductTranslator.sumArgs.add("djw09djAS");
-            SumProductTranslator.sumArgs.add("JADJS09qwjdas");
-            SumProductTranslator.sumArgs.add("D)(8hA(WDUHs");
-            SumProductTranslator.sumArgs.add("JNDW(*)ASDj09ADS");
-        }
-    }
-
-    private void removeCrap(){
-        SumProductTranslator.sumArgs.remove("djw09djAS");
-        SumProductTranslator.sumArgs.remove("JADJS09qwjdas");
-        SumProductTranslator.sumArgs.remove("D)(8hA(WDUHs");
-        SumProductTranslator.sumArgs.remove("JNDW(*)ASDj09ADS");
     }
 }

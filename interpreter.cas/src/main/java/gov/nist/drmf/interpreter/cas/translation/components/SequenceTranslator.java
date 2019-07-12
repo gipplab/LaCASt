@@ -4,7 +4,6 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
@@ -18,7 +17,6 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  * There are two possible types of sequences in this code.
@@ -96,26 +94,16 @@ public class SequenceTranslator extends AbstractListTranslator {
                     expression.getTag());
             return false;
         }
+
         // temporally string
         String part;
 
         // get all sub elements
         List<PomTaggedExpression> exp_list = expression.getComponents();
-        ArrayList<String> args = new ArrayList<String>();
-
-        //need to keep track of whether addToArgs is true or not because about to add crap
-        boolean flag = false;
-        if(SumProductTranslator.addToArgs)
-            flag = true;
-
-        //add crap to sumArgs to fill it up so that inner math terms inside the sequence do not get added
-        //as arguments to \sum because only the full sequence should be added.
-        addCrapOne();
 
         // run through each element
         while ( !exp_list.isEmpty() && !isInnerError() ){
             PomTaggedExpression exp = exp_list.remove(0);
-
             TranslatedExpression inner_translation =
                     parseGeneralExpression( exp, exp_list );
 
@@ -137,26 +125,13 @@ public class SequenceTranslator extends AbstractListTranslator {
 
             part = checkMultiplyAddition(exp, exp_list, part);
 
-
             // finally add all elements to the inner list
             inner_translation.replaceLastExpression( part );
-
             if ( lastMerged )
                 local_inner_exp.replaceLastExpression( inner_translation.toString() );
             else local_inner_exp.addTranslatedExpression( inner_translation );
-
         }
 
-        //remove the crap that was added so that the whole sequence can be added
-        //as an argument to \sum.
-        removeCrapOne();
-
-        //make addToArgs true again like it was before adding crap to sumArgs
-        if(flag){
-            SumProductTranslator.addToArgs = true;
-        }
-
-        addToSum();
         // finally return value
         return !isInnerError();
     }
@@ -183,17 +158,9 @@ public class SequenceTranslator extends AbstractListTranslator {
                     "that way.");
             return false;
         }
-        //need to keep track of whether addToArgs is true or not because about to add crap
-        boolean flag = false;
-        if(SumProductTranslator.addToArgs)
-            flag = true;
 
         // iterate through all elements
         while ( !following_exp.isEmpty() ){
-            //add crap to sumArgs to fill it up so that inner math terms inside the sequence do not get added
-            //as arguments to \sum because only the full sequence should be added.
-            System.out.println("in while loop");
-            addCrapTwo();
             // take the next expression
             PomTaggedExpression exp = following_exp.remove(0);
 
@@ -207,7 +174,7 @@ public class SequenceTranslator extends AbstractListTranslator {
             //  3) another closed bracket
             //      -> there is a bracket error in the sequence
 
-             // open or closed brackets
+            // open or closed brackets
             if ( term != null && !term.isEmpty() &&
                     (term.getTag().matches(PARENTHESIS_PATTERN) ||
                             term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN )) ){
@@ -237,7 +204,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                 } else if ( // therefore, bracket is closed!
                         open_bracket.counterpart.equals( bracket.symbol ) ||
                                 setMode
-                        ){
+                ){
                     // this sequence ends her
                     // first of all, merge all elements together
                     int num = local_inner_exp.mergeAll();
@@ -250,7 +217,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                         seq = bft.translate(
                                 new String[]{ local_inner_exp.removeLastExpression() },
                                 Keys.KEY_ABSOLUTE_VALUE
-                                );
+                        );
                     } else if ( setMode ){ // in set mode, both parenthesis may not match!
                         seq = open_bracket.getAppropriateString();
                         seq += local_inner_exp.removeLastExpression();
@@ -267,25 +234,12 @@ public class SequenceTranslator extends AbstractListTranslator {
                     // same for global_exp. But first delete all elements of this sequence
                     global_exp.removeLastNExps( num );
                     global_exp.addTranslatedExpression( seq );
-
-                    //remove the crap that was added so that the whole sequence can be added
-                    //as an argument to \sum.
-                    removeCrapTwo();
-
-                    //make addToArgs true again like it was before adding crap to sumArgs
-                    if(flag){
-                        SumProductTranslator.addToArgs = true;
-                    }
-                    //if sumArgs still has more than 3 arguments, this sequence is part of a bigger
-                    //empty expression, so dont add the sequence to sumArgs.
-                    //need to add the whole empty expression to sumArgs, not just this sequence, so we ignore it.
-                    addToSum();
                     return true;
                 } else { // otherwise there was an error in the bracket arrangements
                     throw new TranslationException(
                             "Bracket-Error: open bracket "
-                            + open_bracket.symbol
-                            + " reached " + bracket.symbol,
+                                    + open_bracket.symbol
+                                    + " reached " + bracket.symbol,
                             TranslationException.Reason.WRONG_PARENTHESIS);
                 }
             }
@@ -310,17 +264,13 @@ public class SequenceTranslator extends AbstractListTranslator {
 
             // if there was in error, its over here...
             if ( isInnerError() ) return false;
-
-            removeCrapTwo();
-
         }
-
 
         // this should not happen. It means the algorithm reached the end but a bracket is
         // left open.
         throw new TranslationException(
                 "Reached the end of sequence but a bracket is left open: " +
-                open_bracket.symbol,
+                        open_bracket.symbol,
                 TranslationException.Reason.WRONG_PARENTHESIS
         );
     }
@@ -358,63 +308,5 @@ public class SequenceTranslator extends AbstractListTranslator {
                     || next.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)
             );
         } catch ( Exception e ){ return false; }
-    }
-
-    private void addCrapOne(){
-        if(SumProductTranslator.addToArgs && SumProductTranslator.sumArgs.size() < SemanticToCASInterpreter.numArgs){
-            SumProductTranslator.sumArgs.add("Q(#@*RHIOSD");
-            SumProductTranslator.sumArgs.add("FH(*WR&#*DF");
-            SumProductTranslator.sumArgs.add("D(*#Y@RHIQDW");
-            SumProductTranslator.sumArgs.add("D(*#Q@HDSDSAWD#");
-        }
-    }
-
-    private void removeCrapOne(){
-        SumProductTranslator.sumArgs.remove("Q(#@*RHIOSD");
-        SumProductTranslator.sumArgs.remove("FH(*WR&#*DF");
-        SumProductTranslator.sumArgs.remove("D(*#Y@RHIQDW");
-        SumProductTranslator.sumArgs.remove("D(*#Q@HDSDSAWD#");
-    }
-
-    private void addCrapTwo(){
-        if(SumProductTranslator.addToArgs && SumProductTranslator.sumArgs.size() < SemanticToCASInterpreter.numArgs){
-            SumProductTranslator.sumArgs.add("d J(#@QEHS");
-            SumProductTranslator.sumArgs.add("H (#SAD W#TQD");
-            SumProductTranslator.sumArgs.add("A SDJ(Q@WWSA");
-            SumProductTranslator.sumArgs.add(" WHER(@QOISDA");
-        }
-    }
-
-    private void removeCrapTwo(){
-        SumProductTranslator.sumArgs.remove("d J(#@QEHS");
-        SumProductTranslator.sumArgs.remove("H (#SAD W#TQD");
-        SumProductTranslator.sumArgs.remove("A SDJ(Q@WWSA");
-        SumProductTranslator.sumArgs.remove(" WHER(@QOISDA");
-    }
-
-    /**
-     * Method to add the sequence to the sum arguments list if it is a sum.
-     *
-     *
-     * If sumArgs still has more than 3 arguments, this sequence is part of a bigger
-     * empty expression or sequence, so dont add the sequence to sumArgs.
-     * Need to add the bigger one to sumArgs, not just this subsequence, so we ignore it.
-     *
-     * Otherwise, this sequence is not part of a bigger one.
-     * If there was a sum and it still needs arguments, add this sequence as an argument
-     * then remove it from global_exp and local_inner_exp because we are already
-     * using this sequence as an argument to \sum.
-     */
-    private void addToSum(){
-        if(SumProductTranslator.sumArgs.size() >= SemanticToCASInterpreter.numArgs){
-            SumProductTranslator.addToArgs = false;
-        }
-
-        if(SumProductTranslator.addToArgs && SumProductTranslator.sumArgs.size() < SemanticToCASInterpreter.numArgs){
-            SumProductTranslator.sumArgs.add(local_inner_exp.toString());
-            global_exp.removeLastNExps(local_inner_exp.getLength());
-            local_inner_exp.removeLastNExps(local_inner_exp.getLength());
-
-        }
     }
 }

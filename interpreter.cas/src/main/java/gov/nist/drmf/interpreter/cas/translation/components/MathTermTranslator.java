@@ -4,7 +4,6 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.TranslationException;
@@ -41,7 +40,6 @@ import java.util.List;
 public class MathTermTranslator extends AbstractListTranslator {
     private static final Logger LOG = LogManager.getLogger(MathTermTranslator.class.getName());
 
-
     @Override
     public boolean translate(PomTaggedExpression exp ){
         return translate( exp, new LinkedList<>() );
@@ -64,12 +62,13 @@ public class MathTermTranslator extends AbstractListTranslator {
         String termTag = term.getTag();
         MathTermTags tag = MathTermTags.getTagByKey(termTag);
         SymbolTranslator sT = SemanticLatexTranslator.getSymbolsTranslator();
+
         // if the tag doesn't exists in the system -> stop
         if ( handleNull( tag,
-            "Unknown MathTerm tag: ",
-            TranslationException.Reason.UNKNOWN_MATHTERM_TAG,
-            termTag,
-            null )){
+                "Unknown MathTerm tag: ",
+                TranslationException.Reason.UNKNOWN_MATHTERM_TAG,
+                termTag,
+                null )){
             return  true;
         }
 
@@ -117,7 +116,8 @@ public class MathTermTranslator extends AbstractListTranslator {
                     INFO_LOG.addGeneralInfo(
                             term.getTermText(),
                             "was translated to " + t);
-                    maybeUseAsSumArg(t);
+                    local_inner_exp.addTranslatedExpression( t );
+                    global_exp.addTranslatedExpression( t );
                     return true;
                 }
 
@@ -126,7 +126,7 @@ public class MathTermTranslator extends AbstractListTranslator {
                 if ( macro != null ){
                     throw new TranslationException(
                             "MathTermTranslator cannot translate DLMF-Macro: " +
-                            term.getTermText(),
+                                    term.getTermText(),
                             TranslationException.Reason.UNKNOWN_MACRO,
                             term.getTermText());
                 }
@@ -137,10 +137,10 @@ public class MathTermTranslator extends AbstractListTranslator {
                     return parseGreekLetter(term.getTermText());
                 } catch ( TranslationException te ){
                     if ( handleNull( null,
-                        "Reached unknown latex-command " + term.getTermText(),
-                        TranslationException.Reason.UNKNOWN_LATEX_COMMAND,
-                        term.getTermText(),
-                        te ) ) {
+                            "Reached unknown latex-command " + term.getTermText(),
+                            TranslationException.Reason.UNKNOWN_LATEX_COMMAND,
+                            term.getTermText(),
+                            te ) ) {
                         return true;
                     }
                 }
@@ -151,7 +151,8 @@ public class MathTermTranslator extends AbstractListTranslator {
                     INFO_LOG.addGeneralInfo(
                             term.getTermText(),
                             "was translated to " + sym);
-                    maybeUseAsSumArg(sym);
+                    local_inner_exp.addTranslatedExpression( sym );
+                    global_exp.addTranslatedExpression( sym );
                     return true;
                 } else {
                     FeatureSet fset = term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
@@ -160,7 +161,8 @@ public class MathTermTranslator extends AbstractListTranslator {
                         if ( trans != null ){
                             INFO_LOG.addMacroInfo(
                                     term.getTermText(), "was translated to " + trans );
-                            maybeUseAsSumArg(trans);
+                            local_inner_exp.addTranslatedExpression(trans);
+                            global_exp.addTranslatedExpression(trans);
                             return true;
                         }
                     }
@@ -193,7 +195,8 @@ public class MathTermTranslator extends AbstractListTranslator {
             case divide:
             case less_than:
             case greater_than: // all above should translated directly, right?
-                maybeUseAsSumArg(term.getTermText());
+                local_inner_exp.addTranslatedExpression(term.getTermText());
+                global_exp.addTranslatedExpression(term.getTermText());
                 return true;
             case left_parenthesis: // the following should not reached!
             case left_bracket:
@@ -243,12 +246,14 @@ public class MathTermTranslator extends AbstractListTranslator {
                 for ( int i = 0; i < alpha.length()-1; i++ ) {
                     output = alpha.charAt(i) + MULTIPLY;
                     // add it to local and global
-                    maybeUseAsSumArg(output);
+                    local_inner_exp.addTranslatedExpression( output );
+                    global_exp.addTranslatedExpression(output);
                 }
 
                 // add the last one, but without space
                 output = ""+alpha.charAt(alpha.length()-1);
-                maybeUseAsSumArg(output);
+                local_inner_exp.addTranslatedExpression( output );
+                global_exp.addTranslatedExpression(output);
                 return true;
             case comma:
                 // in general, translate them directly
@@ -293,7 +298,8 @@ public class MathTermTranslator extends AbstractListTranslator {
                 if ( tag.equals(MathTermTags.ordinary) )
                     symbol = sT.translate( term.getTermText() );
                 else symbol = sT.translateFromMLPKey( tag.tag() );
-                maybeUseAsSumArg(symbol);
+                local_inner_exp.addTranslatedExpression( symbol );
+                global_exp.addTranslatedExpression( symbol );
                 return true;
             case macro:
                 LOG.warn(
@@ -451,7 +457,10 @@ public class MathTermTranslator extends AbstractListTranslator {
             } catch ( NullPointerException npe ){/* ignore it */}
         }
 
-        maybeUseAsSumArg(translated_const);
+        // anyway, finally we translated it...
+        local_inner_exp.addTranslatedExpression( translated_const );
+        // add global_exp as well
+        global_exp.addTranslatedExpression( translated_const );
 
         // if there wasn't a translation at all, return true
         if ( translated_const == null ) return true;
@@ -493,7 +502,8 @@ public class MathTermTranslator extends AbstractListTranslator {
         }
 
         // otherwise add all
-        maybeUseAsSumArg(translated_letter);
+        local_inner_exp.addTranslatedExpression(translated_letter);
+        global_exp.addTranslatedExpression(translated_letter);
         return true;
     }
 
@@ -508,7 +518,8 @@ public class MathTermTranslator extends AbstractListTranslator {
         String translation = ft.translate( new String[]{power.toString()}, EXPONENTIAL_MLP_KEY );
         global_exp.removeLastNExps( power.clear() );
 
-        maybeUseAsSumArg(translation);
+        local_inner_exp.addTranslatedExpression( translation );
+        global_exp.addTranslatedExpression( translation );
 
         INFO_LOG.addMacroInfo( "\\expe", "Recognizes e with power as the exponential function. " +
                 "It was translated as a function." );
@@ -526,7 +537,7 @@ public class MathTermTranslator extends AbstractListTranslator {
      */
     private boolean parseCaret( PomTaggedExpression exp, List<PomTaggedExpression> following_exp ){
         Brackets b = Brackets.left_parenthesis;
-        System.out.println("parsing caret");
+
         boolean replaced = false;
         String base = global_exp.removeLastExpression();
         if ( !testBrackets(base) ){
@@ -543,7 +554,7 @@ public class MathTermTranslator extends AbstractListTranslator {
         // now we need to wrap parenthesis around the power
         String powerStr = GlobalConstants.CARET_CHAR;
         if ( !testBrackets( power.toString() ) )
-                powerStr += b.symbol + power.toString() + b.counterpart;
+            powerStr += b.symbol + power.toString() + b.counterpart;
         else powerStr += power.toString();
 
         MathTerm m = new MathTerm(")", MathTermTags.right_parenthesis.tag());
@@ -599,22 +610,5 @@ public class MathTermTranslator extends AbstractListTranslator {
         // add our final representation for subscripts to the global lexicon
         global_exp.addTranslatedExpression( translation );
         return !isInnerError();
-    }
-
-    /**
-     * If this math term is an argument to a \sum, add it to the arguments list.
-     * Otherwise, add it normally to local_inner_exp and global_exp.
-     *
-     * This method is used everywhere the translated term is normally added to local and global_exp
-     * and the term could possibly be an argument to \sum.
-     * @param toAdd
-     */
-    private void maybeUseAsSumArg(String toAdd){
-        if(SumProductTranslator.addToArgs && SumProductTranslator.sumArgs.size() < SemanticToCASInterpreter.numArgs){
-            SumProductTranslator.sumArgs.add(toAdd);
-        } else {
-            local_inner_exp.addTranslatedExpression(toAdd);
-            global_exp.addTranslatedExpression(toAdd);
-        }
     }
 }
