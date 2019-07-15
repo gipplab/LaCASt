@@ -125,7 +125,9 @@ public class SemanticLatexTranslator extends AbstractTranslator {
         return constants;
     }
 
-    public static BasicFunctionsTranslator getBasicFunctionParser(){ return functions; }
+    public static BasicFunctionsTranslator getBasicFunctionParser(){
+        return functions;
+    }
 
     public static SymbolTranslator getSymbolsTranslator(){
         return symbols;

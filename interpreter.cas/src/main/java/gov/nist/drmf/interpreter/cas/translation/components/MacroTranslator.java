@@ -133,11 +133,11 @@ public class MacroTranslator extends AbstractListTranslator {
 
         if ( translation_pattern == null || translation_pattern.isEmpty() ){
             handleNull( null,
-                    "DLMF macro cannot be translated: " + macro_term.getTermText(),
-                    TranslationException.Reason.UNKNOWN_MACRO,
-                    macro_term.getTermText(),
-                    null
-            );
+                "DLMF macro cannot be translated: " + macro_term.getTermText(),
+                TranslationException.Reason.UNKNOWN_MACRO,
+                macro_term.getTermText(),
+                null
+                );
         }
     }
 
@@ -190,9 +190,9 @@ public class MacroTranslator extends AbstractListTranslator {
             fset = macro_term.getNamedFeatureSet(
                     Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + optional_paras.size() );
             if ( handleNull( fset,
-                    "Cannot find feature set with optional parameters.",
-                    TranslationException.Reason.UNKNOWN_MACRO,
-                    macro_term.getTermText(), null ) ) {
+                "Cannot find feature set with optional parameters.",
+                TranslationException.Reason.UNKNOWN_MACRO,
+                macro_term.getTermText(), null ) ) {
                 return true;
             }
         }
