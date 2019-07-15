@@ -51,10 +51,6 @@ public class SumProductTranslator extends AbstractListTranslator{
             sumArgs.add(parseGeneralExpression(list.remove(0), list).toString());
         }
 
-        for(String ex : sumArgs){
-            System.out.println(ex);
-        }
-
         return addSumArgs();
     }
 
