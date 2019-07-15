@@ -98,7 +98,7 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 		if ( exp.isEmpty() ) {
 			return local_inner_exp;
 		}
-	//	String tag = exp.getTag();
+
 		// handle all different cases
 		// first, does this expression contains a term?
 		if ( !containsTerm( exp ) ) {
@@ -165,17 +165,11 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 		} else return false;
 	}
 
-	protected boolean isSubScript(String tag){
-		if(tag.equals("subsuperscript")){
-			return true;
-		} else return false;
-	}
-
 	protected boolean isSubSequence( MathTerm term ) {
 		String tag = term.getTag();
-		if ( tag != null && tag.matches( OPEN_PARENTHESIS_PATTERN ) ) {
+		if (tag.matches( OPEN_PARENTHESIS_PATTERN ) ) {
 			return true;
-		} else if ( tag != null && tag.matches( CLOSE_PARENTHESIS_PATTERN ) ) {
+		} else if (tag.matches( CLOSE_PARENTHESIS_PATTERN ) ) {
 			LOG.error( "Reached a closed bracket " + term.getTermText() +
 				" but there was not a corresponding" +
 				" open bracket before." );
@@ -188,11 +182,8 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 		if ( tag == null ) {
 			return FeatureSetUtility.isFunction( term );
 		}
-		if ( tag.equals( MathTermTags.function ) ){
-			return true; }
-		else {
-			return false;
-		}
+		if ( tag.equals( MathTermTags.function ) ) return true;
+		return false;
 	}
 
 	public boolean containsTerm( PomTaggedExpression e ) {
