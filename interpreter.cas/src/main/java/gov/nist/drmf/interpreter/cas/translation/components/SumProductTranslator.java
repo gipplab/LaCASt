@@ -86,8 +86,6 @@ public class SumProductTranslator extends AbstractListTranslator{
                     newTrans += local_inner_exp.toString().substring(0, index) + sumArgs.get(1)
                             + ", " + sumArgs.get(0) + local_inner_exp.toString().substring(index);
                     //cant have only 1 or 2 args.
-                } else {
-                    throw new TranslationException("Mathematica needs at least 2 arguments to a sum or product");
                 }
             }
             //if the CAS is Maple do this
@@ -112,8 +110,7 @@ public class SumProductTranslator extends AbstractListTranslator{
                     newTrans += local_inner_exp.toString().substring(0, index) + sumArgs.get(1)
                             + ", " + sumArgs.get(0) + local_inner_exp.toString().substring(index);
                     //if it only has 1 or 2 args then do this.
-                } else
-                    throw new TranslationException("Maple needs at least 2 arguments for a sum or product");
+                }
 
                 int count = 0;
                 int endIndex = 0;
@@ -142,6 +139,6 @@ public class SumProductTranslator extends AbstractListTranslator{
             global_exp.clear();
             global_exp.addTranslatedExpression(newTrans);
             return true;
-        } return false;
+        } throw new TranslationException("");
     }
 }

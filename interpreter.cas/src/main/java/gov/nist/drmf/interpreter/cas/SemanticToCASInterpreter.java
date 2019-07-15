@@ -241,7 +241,7 @@ public class SemanticToCASInterpreter {
                 if(expression.charAt(i) == '}')
                     count--;
                 if(count == 0){
-                    if(expression.charAt(i + 1) == '^') {
+                    if(i+1 < expression.length() && expression.charAt(i + 1) == '^') {
                         hasUpper = true;
                         expression = expression.substring(0, i + 1) + expression.substring(i + 2);
                     }
@@ -270,7 +270,7 @@ public class SemanticToCASInterpreter {
                 if(expression.charAt(i) == '}')
                     count--;
                 if(count == 0){
-                    if(expression.charAt(i + 1) == '_') {
+                    if(i+1 < expression.length() && expression.charAt(i + 1) == '_') {
                         hasLower = true;
                         expression = expression.substring(0, i + 1) + expression.substring(i + 2);
                     }
@@ -294,7 +294,10 @@ public class SemanticToCASInterpreter {
         else if(hasLower || hasUpper){
             numArgs = 2;
         } else if(!hasLower && !hasUpper){
-            numArgs = 1;
+            numArgs = -1;
+        }
+        if(!hasLower && hasUpper){
+            throw new TranslationException("You can't use a sum or product with only an upper limit!");
         }
         return expression;
     }
