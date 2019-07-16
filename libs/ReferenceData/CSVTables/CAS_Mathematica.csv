@@ -508,7 +508,7 @@ EllipticK[($0)^2];\compellintKk@{k};1;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;\Riemannthetachar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}};;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;\scRiemanntheta@{\Vector{z}}{\Matrix{\Omega}};;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;\Riemannxi@{s};;;;;;;;;;;;;;;;;;;;;;;;;;;
-;\Riemannzeta@{s};;;;;;;;;;;;;;;;;;;;;;;;;;;
+Zeta[$0];\Riemannzeta@{s};1;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;\ScorerGi@{z};;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;\ScorerHi@{z};;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -576,7 +576,7 @@ Pochhammer[$0, $1];\Pochhammersym{a}{n};;;;;;;https://reference.wolfram.com/lang
 ;\WhittakerconfhyperM{\kappa}{\mu}@{z};;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;\WhittakerconfhyperW{\kappa}{\mu}@{z};;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;\Riemannzeta@{s};;;;;;;;;;;;;;;;;;;;;;;;;;;
+Zeta[$0];\Riemannzeta@{s};1;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;\Hurwitzzeta@{s}{a};;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
