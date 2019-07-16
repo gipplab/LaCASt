@@ -1,18 +1,16 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
-import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
-import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
-import gov.nist.drmf.interpreter.common.GlobalConstants;
 
+import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
+import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.TranslationException;
 import mlp.PomTaggedExpression;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * SumProductTranslator manually adds "Sum[]" (or "sum()" for Maple) or "Prod[]" to local and global exp.
- * It stores the arguments to the sum in sumArgs
- * and then inserts them into the right places inside the Sum[]
+ * SumProductTranslator uses parseGeneralExpression to get the arguments to the sum/product.
+ * Then it uses BasicFunctionParser to put the arguments where they need to go.
  *
  * @author Rajen Dey
  *
@@ -20,125 +18,45 @@ import java.util.List;
  */
 public class SumProductTranslator extends AbstractListTranslator{
 
-    public static ArrayList<String> sumArgs = new ArrayList<>();
+    public static ArrayList<String> args = new ArrayList<>();
 
+    @Override
     public boolean translate(PomTaggedExpression exp, List<PomTaggedExpression> list){
-        //If the CAS is Mathematica do this
-        if(GlobalConstants.CAS_KEY.equals("Mathematica")) {
-            //If its a sum add "Sum[]"
-            if(exp.getRoot().getTermText().equals("\\sum")) {
-                local_inner_exp.addTranslatedExpression("Sum[]");
-                global_exp.addTranslatedExpression("Sum[]");
-                //Otherwise its a product so add "Prod[]"
-            } else {
-                local_inner_exp.addTranslatedExpression("Prod[]");
-                global_exp.addTranslatedExpression("Prod[]");
+        int numArgs;
+        PomTaggedExpression next = list.remove(0);
+        //case where there are only 2 terms
+        if(next.getRoot().getTermText().equals("_")){
+            numArgs = 2;
+            //this is the index and lower limit of summation
+            args.add(parseGeneralExpression(next.getComponents().get(0), list).toString());
+            //this is the function being summed
+            args.add(parseGeneralExpression(list.remove(0), list).toString());
+            //case with 3 terms
+        } else if(next.getTag().equals("subsuperscript")) {
+            numArgs = 3;
+            //this is the index and lower limit of summation
+            args.add(parseGeneralExpression(next.getComponents().get(0).getComponents().get(0), list).toString());
+            //this is the upper limit of summation
+            args.add(parseGeneralExpression(next.getComponents().get(1).getComponents().get(0), list).toString());
+            //if this is true, it means that the caret was first, so rearrange the arguments to reflect this.
+            if (!next.getComponents().get(1).getRoot().getTag().equals("caret")) {
+                args.add(args.remove(0));
             }
-        }
-        //If its Maple do this
-        if(GlobalConstants.CAS_KEY.equals("Maple")){
-            //if its a sum add "sum()"
-            if(exp.getRoot().getTermText().equals("\\sum")) {
-                local_inner_exp.addTranslatedExpression("sum()");
-                global_exp.addTranslatedExpression("sum()");
-                //Otherwise it is a product so add "product()"
-            } else {
-                local_inner_exp.addTranslatedExpression("product()");
-                global_exp.addTranslatedExpression("product()");
-            }
-        }
-        for(int i = 0; i < SemanticToCASInterpreter.numArgs; i++) {
-            sumArgs.add(parseGeneralExpression(list.remove(0), list).toString());
+            args.add(parseGeneralExpression(list.remove(0), list).toString());
+        } else {
+            throw new TranslationException("");
         }
 
-        return addSumArgs();
+        String[] argsArray = new String[args.size()];
+        for(int i = 0; i < args.size(); i++){
+            argsArray[i] = args.get(i);
+        }
+        local_inner_exp.addTranslatedExpression(SemanticLatexTranslator.getBasicFunctionParser().translate(argsArray, exp.getRoot().getTermText().substring(1) + numArgs));
+        global_exp.addTranslatedExpression(SemanticLatexTranslator.getBasicFunctionParser().translate(argsArray, exp.getRoot().getTermText().substring(1) + numArgs));
+        return true;
     }
 
-    /**
-     * Now we need to add the arguments to the sum or product
-     * This method finds where sum or product was added to the translated expression,
-     * Splits it at that point, adds in the arguments that sum or product needs,
-     * (adding commas and curly braces and dots and stuff where necessary)
-     * and finally places the finished expression into local and global exp.
-     */
-    private boolean addSumArgs(){
-        if(sumArgs.size() == SemanticToCASInterpreter.numArgs){
-            String newTrans = "";
-            //if the CAS is Mathematica do this
-            if(GlobalConstants.CAS_KEY.equals("Mathematica")) {
-                int index = local_inner_exp.toString().indexOf("Sum[") + 4;
-                //if there is no sum, then there must be a product
-                if(index == 3)
-                    index = local_inner_exp.toString().indexOf("Prod[") + 5;
-                //if the sum/prod needs 3 args do this
-                if(SemanticToCASInterpreter.numArgs == 3) {
-                    newTrans += local_inner_exp.toString().substring(0, index) + sumArgs.get(2) +
-                            ", {";
-                    if (!SemanticToCASInterpreter.reverse) {
-                        newTrans += sumArgs.get(0) + "," + sumArgs.get(1) + "}";
-                    } else {
-                        newTrans += sumArgs.get(1) + "," + sumArgs.get(0) + "}";
-                    }
-                    newTrans += local_inner_exp.toString().substring(index);
+    public void test(){
 
-                    //if it only needs 2 args do this. for example, only a lower limit defined.
-                } else if(SemanticToCASInterpreter.numArgs == 2){
-                    newTrans += local_inner_exp.toString().substring(0, index) + sumArgs.get(1)
-                            + ", " + sumArgs.get(0) + local_inner_exp.toString().substring(index);
-                    //cant have only 1 or 2 args.
-                }
-            }
-            //if the CAS is Maple do this
-            if(GlobalConstants.CAS_KEY.equals("Maple")){
-                int index = local_inner_exp.toString().indexOf("sum(") + 4;
-                //if there is no sum then there must be a product
-                if(index == 3)
-                    index = local_inner_exp.toString().indexOf("product(") + 8;
-                //if the sum/prod needs 3 args do this
-                if(SemanticToCASInterpreter.numArgs == 3) {
-                    newTrans += local_inner_exp.toString().substring(0, index) + sumArgs.get(2) +
-                            ", ";
-                    if (!SemanticToCASInterpreter.reverse) {
-                        newTrans += sumArgs.get(0) + ".." + sumArgs.get(1);
-                    } else {
-                        newTrans += sumArgs.get(1) + ".." + sumArgs.get(0);
-                    }
-                    newTrans += local_inner_exp.toString().substring(index);
-                }
-                //if it only needs 2 args do this
-                else if(SemanticToCASInterpreter.numArgs == 2){
-                    newTrans += local_inner_exp.toString().substring(0, index) + sumArgs.get(1)
-                            + ", " + sumArgs.get(0) + local_inner_exp.toString().substring(index);
-                    //if it only has 1 or 2 args then do this.
-                }
-
-                int count = 0;
-                int endIndex = 0;
-
-                //Translation to Maple generates some extra *'s at the end of the sum/product that we need to delete
-                //Find where the end of the sum/product is
-                for(int i = index - 1; i < newTrans.length(); i++){
-                    if(newTrans.charAt(i) == '(')
-                        count++;
-                    if(newTrans.charAt(i) == ')')
-                        count--;
-                    if(count == 0){
-                        endIndex = i;
-                        break;
-                    }
-                }
-                //delete the all the extra *'s
-                while(endIndex+1 < newTrans.length() && newTrans.charAt(endIndex+1) == '*'){
-                    newTrans = newTrans.substring(0, endIndex + 1) + newTrans.substring(endIndex + 2);
-                }
-            }
-            sumArgs.clear();
-            //clear local and global exp and add the new expression
-            local_inner_exp.clear();
-            local_inner_exp.addTranslatedExpression(newTrans);
-            global_exp.clear();
-            global_exp.addTranslatedExpression(newTrans);
-            return true;
-        } throw new TranslationException("");
     }
 }

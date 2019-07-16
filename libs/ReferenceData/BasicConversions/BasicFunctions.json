@@ -65,7 +65,31 @@
 		"LaTeX": "| $0 |",
 		"Maple": "abs($0)",
 		"Mathematica": "Abs[$0]"
-	}
+	},
+	  "SumThreeArgs": {
+		  "MLP": "sum3",
+		  "LaTeX": "\\sum_{$0}^{$1}{$2}",
+		  "Maple": "sum($2, $0..$1)",
+		  "Mathematica": "Sum[$2, {$0, $1}]"
+	  },
+	  "SumTwoArgs": {
+		  "MLP": "sum2",
+		  "LaTeX": "\\sum_{$0}{$1}",
+		  "Maple": "sum($1, $0)",
+		  "Mathematica": "Sum[$1, $0]"
+	  },
+	  "ProductThreeArgs": {
+		  "MLP": "prod3",
+		  "LaTeX": "\\prod_{$0}^{$1}{2}",
+		  "Maple": "product($2, $0..$1)",
+		  "Mathematica": "Prod[$2, {$0, $1}]"
+	  },
+	  "ProductTwoArgs": {
+		  "MLP": "prod2",
+		  "LaTeX": "\\prod_{$0}{$1}",
+		  "Maple": "product($1, $0)",
+		  "Mathematica": "Prod[$1, $0]"
+	  }
   },
   "Symbol Languages": [
 	"MLP",

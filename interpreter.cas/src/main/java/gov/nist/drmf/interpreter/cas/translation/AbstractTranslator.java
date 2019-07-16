@@ -98,7 +98,6 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 		if ( exp.isEmpty() ) {
 			return local_inner_exp;
 		}
-
 		// handle all different cases
 		// first, does this expression contains a term?
 		if ( !containsTerm( exp ) ) {
@@ -112,7 +111,7 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 				return_value = mp.translate( exp, exp_list );
 				inner_parser = mp;
 			}
-			else if (isSum(term)){
+			else if (isSumOrProduct(term)){
 				SumProductTranslator sm = new SumProductTranslator();
 				return_value = sm.translate(exp, exp_list);
 				inner_parser = sm;
@@ -159,7 +158,7 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 	 * @param term
 	 * @return
 	 */
-	protected boolean isSum(MathTerm term){
+	protected boolean isSumOrProduct(MathTerm term){
 		if(term.getTermText().equals("\\sum") || term.getTermText().equals("\\prod")){
 			return true;
 		} else return false;
