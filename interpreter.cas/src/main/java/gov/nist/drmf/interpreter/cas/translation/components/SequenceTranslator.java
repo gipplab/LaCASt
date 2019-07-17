@@ -204,7 +204,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                 } else if ( // therefore, bracket is closed!
                         open_bracket.counterpart.equals( bracket.symbol ) ||
                                 setMode
-                ){
+                        ){
                     // this sequence ends her
                     // first of all, merge all elements together
                     int num = local_inner_exp.mergeAll();
@@ -217,7 +217,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                         seq = bft.translate(
                                 new String[]{ local_inner_exp.removeLastExpression() },
                                 Keys.KEY_ABSOLUTE_VALUE
-                        );
+                                );
                     } else if ( setMode ){ // in set mode, both parenthesis may not match!
                         seq = open_bracket.getAppropriateString();
                         seq += local_inner_exp.removeLastExpression();
@@ -238,8 +238,8 @@ public class SequenceTranslator extends AbstractListTranslator {
                 } else { // otherwise there was an error in the bracket arrangements
                     throw new TranslationException(
                             "Bracket-Error: open bracket "
-                                    + open_bracket.symbol
-                                    + " reached " + bracket.symbol,
+                            + open_bracket.symbol
+                            + " reached " + bracket.symbol,
                             TranslationException.Reason.WRONG_PARENTHESIS);
                 }
             }
@@ -270,7 +270,7 @@ public class SequenceTranslator extends AbstractListTranslator {
         // left open.
         throw new TranslationException(
                 "Reached the end of sequence but a bracket is left open: " +
-                        open_bracket.symbol,
+                open_bracket.symbol,
                 TranslationException.Reason.WRONG_PARENTHESIS
         );
     }

@@ -107,10 +107,10 @@ public class SemanticLatexTranslator extends AbstractTranslator {
         );
         if ( isInnerError() ){
             handleNull( null,
-                    "Wasn't able to translate the given expression.",
-                    TranslationException.Reason.NULL,
-                    expression.toString(),
-                    null);
+                "Wasn't able to translate the given expression.",
+                TranslationException.Reason.NULL,
+                expression.toString(),
+                null);
         }
         return true;
     }
