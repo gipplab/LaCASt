@@ -105,15 +105,13 @@ public class SemanticLatexTranslator extends AbstractTranslator {
         local_inner_exp.addTranslatedExpression(
                 parseGeneralExpression(expression, null).getTranslatedExpression()
         );
-
         if ( isInnerError() ){
             handleNull( null,
-                "Wasn't able to translate the given expression.",
-                TranslationException.Reason.NULL,
-                expression.toString(),
-                null);
+                    "Wasn't able to translate the given expression.",
+                    TranslationException.Reason.NULL,
+                    expression.toString(),
+                    null);
         }
-
         return true;
     }
 
@@ -136,5 +134,4 @@ public class SemanticLatexTranslator extends AbstractTranslator {
     public InformationLogger getInfoLog(){
         return INFO_LOG;
     }
-
 }

@@ -94,10 +94,12 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 		AbstractTranslator inner_parser = null;
 		// if there was an inner error
 		boolean return_value;
+
 		// if it is an empty exp...
 		if ( exp.isEmpty() ) {
 			return local_inner_exp;
 		}
+
 		// handle all different cases
 		// first, does this expression contains a term?
 		if ( !containsTerm( exp ) ) {
@@ -110,7 +112,7 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 				MacroTranslator mp = new MacroTranslator();
 				return_value = mp.translate( exp, exp_list );
 				inner_parser = mp;
-			}
+			} //is it a sum or a product
 			else if (isSumOrProduct(term)){
 				SumProductTranslator sm = new SumProductTranslator();
 				return_value = sm.translate(exp, exp_list);
@@ -166,9 +168,9 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 
 	protected boolean isSubSequence( MathTerm term ) {
 		String tag = term.getTag();
-		if (tag.matches( OPEN_PARENTHESIS_PATTERN ) ) {
+		if ( tag.matches( OPEN_PARENTHESIS_PATTERN ) ) {
 			return true;
-		} else if (tag.matches( CLOSE_PARENTHESIS_PATTERN ) ) {
+		} else if ( tag.matches( CLOSE_PARENTHESIS_PATTERN ) ) {
 			LOG.error( "Reached a closed bracket " + term.getTermText() +
 				" but there was not a corresponding" +
 				" open bracket before." );

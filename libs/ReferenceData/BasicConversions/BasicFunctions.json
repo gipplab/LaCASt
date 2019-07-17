@@ -82,13 +82,13 @@
 		  "MLP": "prod3",
 		  "LaTeX": "\\prod_{$0}^{$1}{2}",
 		  "Maple": "product($2, $0..$1)",
-		  "Mathematica": "Prod[$2, {$0, $1}]"
+		  "Mathematica": "Product[$2, {$0, $1}]"
 	  },
 	  "ProductTwoArgs": {
 		  "MLP": "prod2",
 		  "LaTeX": "\\prod_{$0}{$1}",
 		  "Maple": "product($1, $0)",
-		  "Mathematica": "Prod[$1, $0]"
+		  "Mathematica": "Product[$1, $0]"
 	  }
   },
   "Symbol Languages": [
