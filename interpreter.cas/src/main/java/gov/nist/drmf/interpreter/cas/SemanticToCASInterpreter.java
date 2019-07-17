@@ -28,10 +28,6 @@ public class SemanticToCASInterpreter {
 
     private static long init_ms, trans_ms;
 
-    public static int numArgs;
-
-    public static boolean reverse;
-
     public static void main(String[] args){
         Scanner console = new Scanner(System.in);
         if ( console == null ){
@@ -104,7 +100,6 @@ public class SemanticToCASInterpreter {
         if ( expression == null ){
             System.out.println("Which expression do you want to translate:");
             expression = console.nextLine();
-           // expression = removeSubSuperScript(expression);
             System.out.println();
         } else if ( !clean ){
             System.out.println("You want to translate the following expression: " + expression + NEW_LINE);
