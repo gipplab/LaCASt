@@ -133,11 +133,11 @@ public class MacroTranslator extends AbstractListTranslator {
 
         if ( translation_pattern == null || translation_pattern.isEmpty() ){
             handleNull( null,
-                    "DLMF macro cannot be translated: " + macro_term.getTermText(),
-                    TranslationException.Reason.UNKNOWN_MACRO,
-                    macro_term.getTermText(),
-                    null
-            );
+                "DLMF macro cannot be translated: " + macro_term.getTermText(),
+                TranslationException.Reason.UNKNOWN_MACRO,
+                macro_term.getTermText(),
+                null
+                );
         }
     }
 
@@ -188,11 +188,11 @@ public class MacroTranslator extends AbstractListTranslator {
 
         if ( optional_paras.size() > 0 ) {
             fset = macro_term.getNamedFeatureSet(
-                    Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + optional_paras.size() );
+                Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + optional_paras.size() );
             if ( handleNull( fset,
-                    "Cannot find feature set with optional parameters.",
-                    TranslationException.Reason.UNKNOWN_MACRO,
-                    macro_term.getTermText(), null ) ) {
+                "Cannot find feature set with optional parameters.",
+                TranslationException.Reason.UNKNOWN_MACRO,
+                macro_term.getTermText(), null ) ) {
                 return true;
             }
         }
@@ -202,10 +202,10 @@ public class MacroTranslator extends AbstractListTranslator {
             storeInfos(fset);
         } catch ( NullPointerException npe ){
             handleNull( null,
-                    "Cannot extract information from feature set: " + macro_term.getTermText(),
-                    TranslationException.Reason.NULL,
-                    macro_term.getTermText(),
-                    npe);
+                "Cannot extract information from feature set: " + macro_term.getTermText(),
+                TranslationException.Reason.NULL,
+                macro_term.getTermText(),
+                npe);
         }
 
         String info_key = macro_term.getTermText();

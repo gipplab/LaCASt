@@ -65,10 +65,10 @@ public class MathTermTranslator extends AbstractListTranslator {
 
         // if the tag doesn't exists in the system -> stop
         if ( handleNull( tag,
-                "Unknown MathTerm tag: ",
-                TranslationException.Reason.UNKNOWN_MATHTERM_TAG,
-                termTag,
-                null )){
+            "Unknown MathTerm tag: ",
+            TranslationException.Reason.UNKNOWN_MATHTERM_TAG,
+            termTag,
+            null )){
             return  true;
         }
 
@@ -126,7 +126,7 @@ public class MathTermTranslator extends AbstractListTranslator {
                 if ( macro != null ){
                     throw new TranslationException(
                             "MathTermTranslator cannot translate DLMF-Macro: " +
-                                    term.getTermText(),
+                            term.getTermText(),
                             TranslationException.Reason.UNKNOWN_MACRO,
                             term.getTermText());
                 }
@@ -137,10 +137,10 @@ public class MathTermTranslator extends AbstractListTranslator {
                     return parseGreekLetter(term.getTermText());
                 } catch ( TranslationException te ){
                     if ( handleNull( null,
-                            "Reached unknown latex-command " + term.getTermText(),
-                            TranslationException.Reason.UNKNOWN_LATEX_COMMAND,
-                            term.getTermText(),
-                            te ) ) {
+                        "Reached unknown latex-command " + term.getTermText(),
+                        TranslationException.Reason.UNKNOWN_LATEX_COMMAND,
+                        term.getTermText(),
+                        te ) ) {
                         return true;
                     }
                 }
@@ -554,7 +554,7 @@ public class MathTermTranslator extends AbstractListTranslator {
         // now we need to wrap parenthesis around the power
         String powerStr = GlobalConstants.CARET_CHAR;
         if ( !testBrackets( power.toString() ) )
-            powerStr += b.symbol + power.toString() + b.counterpart;
+                powerStr += b.symbol + power.toString() + b.counterpart;
         else powerStr += power.toString();
 
         MathTerm m = new MathTerm(")", MathTermTags.right_parenthesis.tag());
