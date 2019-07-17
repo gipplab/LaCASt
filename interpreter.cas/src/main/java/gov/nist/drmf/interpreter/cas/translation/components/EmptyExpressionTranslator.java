@@ -66,12 +66,12 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
             case equation:
             default:
                 handleNull( null,
-                        "Reached unknown or not yet supported expression tag: " + tag,
-                        TranslationException.Reason.UNKNOWN_EXPRESSION_TAG,
-                        tag,
-                        null );
+                    "Reached unknown or not yet supported expression tag: " + tag,
+                    TranslationException.Reason.UNKNOWN_EXPRESSION_TAG,
+                    tag,
+                    null );
         }} catch ( Exception e ){
-        handleNull( null,
+            handleNull( null,
                 "Unknown translation error while translating " + tag,
                 TranslationException.Reason.NULL,
                 tag,
