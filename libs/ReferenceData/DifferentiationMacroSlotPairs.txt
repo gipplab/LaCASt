@@ -1,0 +1,103 @@
+\<macro name> <slot number>/<num args> <example(s) of where the macros show up in the dlmf>
+-------------------------------------------------------
+*WRONSKIANS*
+-------------------------------------------------------
+\FerrersP 1/1 14.2.3.eq:LE.DE.Wronskian1 14.2.4.eq:LE.DE.Wronskian2a 14.2.6.eq:LE.DE.Wronskian3 14.2.7.eq:LE.DE.Wronskian4 14.20.4.eq:LE.CMF.W4 14.20.5.eq:LE.CMF.W5
+\FerrersQ 1/1 14.2.4.eq:LE.DE.Wronskian2a 14.2.6.eq:LE.DE.Wronskian3
+\paraU 2/2 12.2.10.eq:PC.DE.W1 12.2.11.eq:PC.DE.W2 12.2.12.eq:PC.DE.W3
+\paraV 2/2 12.2.10.eq:PC.DE.W1
+\paraW 2/2 12.14.3.eq:PC.EW.W3
+\BesselJ 1/1 10.5.3.eq:BS.BH.WCP.5.3 10.5.4.eq:BS.BH.WCP.5.4 10.5.1.eq:BS.BH.WCP.5.1 10.5.2.eq:BS.BH.WCP.5.2
+\BesselY 1/1 10.5.2.eq:BS.BH.WCP.5.2
+\modBesselI 1/1 10.28.1.eq:BS.MDEF.WC.1 10.28.2.eq:BS.MDEF.WC.2
+\modBesselK 1/1 10.28.2.eq:BS.MDEF.WC.2
+\HankelH 1/1 10.5.3.eq:BS.BH.WCP.5.3 10.5.4.eq:BS.BH.WCP.5.4 10.5.3.eq:BS.BH.WCP.5.5
+\BesselJimag 1/1 10.24.5.eq:BS.FIO.5
+\BesselYimag 1/1 10.24.5.eq:BS.FIO.5
+\modBesselKimag 1/1 10.45.4.eq:BS.MFIO.4
+\modBesselIimag 1/1 10.45.4.eq:BS.MFIO.4
+\DunsterQ 1/1 14.20.5.eq:LE.CMF.W5
+\assLegendreP 1/1 14.2.7.eq:LE.DE.Wronskian4 14.2.8.eq:LE.DE.Wronskian5 14.2.10.eq:LE.DE.Wronskian7a
+\assLegendreQ 1/1 14.2.10.eq:LE.DE.Wronskian7a
+\assLegendreOlverQ 1/1 14.2.8.eq:LE.DE.Wronskian5 14.2.9.eq:LE.DE.Wronskian6
+\AiryAi 1/1 9.2.7.eq:AI.DE.W1 9.2.8.eq:AI.DE.W2 9.2.9.eq:AI.DE.W3 9.11.2.eq:AI.PR.WR
+\AiryBi 1/1 9.2.7.eq:AI.DE.W1 9.11.2.eq:AI.PR.WR
+\genAiryODEA 1/1 9.13.8.eq:AI.GN.DE8
+\genAiryODEB 1/1 9.13.8.eq:AI.GN.DE8
+\sphBesselJ 1/1 10.50.1.eq:BS.WCP.1
+\sphBesselY 1/1 10.50.1.eq:BS.WCP.1
+\sphHankelh 1/1 10.50.1.eq:BS.WCP.1
+\modsphBesseli 1/1 10.50.2.eq:BS.WCP.2
+\modsphBesselK 1/1 10.50.2.eq:BS.WCP.2
+\OlverconfhyperM 3/3 13.2.33.eq:CH.MU.DF.W1 13.2.34.eq:CH.MU.DF.W2 13.2.35.eq:CH.MU.DF.W3 13.2.36.eq:CH.MU.DF.W4 13.2.37.eq:CH.MU.DF.W5
+\KummerconfhyperU 3/3 13.2.34.eq:CH.MU.DF.W2 13.2.35.eq:CH.MU.DF.W3 13.2.36.eq:CH.MU.DF.W4 13.2.37.eq:CH.MU.DF.W5 13.2.38.eq:CH.MU.DF.W6
+\WhittakerconfhyperM 1/1 13.14.25.eq:CH.KM.DE.W1 13.14.26.eq:CH.KM.DE.W2 13.14.27.eq:CH.KM.DE.W3 13.14.28.eq:CH.KM.DE.W4 13.14.29.eq:CH.KM.DE.W5
+\WhittakerconfhyperW 1/1 13.14.26.eq:CH.KM.DE.W2 13.14.27.eq:CH.KM.DE.W3 13.14.28.eq:CH.KM.DE.W4 13.14.29.eq:CH.KM.DE.W5
+\radsphwaveS 1/2 30.11.7.eq:SW.SJ.WR
+\irregCoulombG 2/2 33.2.12.eq:CW.WRN.WR
+\regCoulombF 2/2 33.2.12.eq:CW.WRN.WR
+\irregCoulombH 2/2 33.2.12.eq:CW.WRN.WR
+\hyperF 4/4 15.10.3.eq:HY.DE.KU1a 15.10.5.eq:HY.DE.KU2a 15.10.7.eq:HY.DE.KU3a
+\regCoulombf 3/3 33.14.16.eq:CW.WRNrep.WR
+\regCoulombs 3/3 33.14.16.eq:CW.WRNrep.WR
+\irregCoulombh 3/3 33.14.16.eq:CW.WRNrep.WR
+\irregCoulombc 3/3 33.14.16.eq:CW.WRNrep.WR
+\Mathieuce 1/2 28.5.8.eq:MA.SE.W2
+\Mathieuse 1/2 28.5.8.eq:MA.SE.W2
+-------------------------------------------------------
+*UNVERIFIED WRONSKIANS, WITH INFERENCES BASED ON DLMF*
+-------------------------------------------------------
+\Mathieufe 1/2 28.5.8.eq:MA.SE.W2
+\Mathieuge 1/2 28.5.9.eq:MA.SE.W4
+\modMathieuM 1/2 28.20.21.eq:MA.MF.15
+\sphwavePsreal 1/2 30.5.4.eq:SW.SK.WR
+\sphwaveQsreal 1/2 30.5.4.eq:SW.SK.WR
+\LameEc 1/2 29.8.3.eq:LA.IE.MU
+\LameEs 1/2 29.8.3.eq:LA.IE.MU
+-------------------------------------------------------
+*PRIMES*
+-------------------------------------------------------
+\Hurwitzzeta 1/2 25.11.18.eq:ZE.HZE.DER2
+\Jacobithetaq 1/2 23.15.8.eq:WE.15.8new
+\Jacobithetatau 1/2 20.6.2.eq:TH.or.g
+\Besselpolyy 1/2 18.34.7.eq:OP.OO.BP.4b
+-------------------------------------------------------
+*PRIMES WITH ONLY 1 ARGUMENT, NOT NUMERICALLY CHECKED*
+-------------------------------------------------------
+\Riemannzeta 1/1 25.6.11.eq:ZE.INA.DER1
+\digamma 1/1 25.5.18.eq:ZE.INT.ADV5
+\EulerGamma 1/1 5.2.2.eq:GA.Def.GP.2
+\Weierstrassplatt 1/2 23.14.3.eq:WE.14.3
+\Weierstrasszetalatt 1/2 23.10.6.eq:WE.10.5
+\compellintKk 1/1 23.5.9.eq:WE.6.7a
+\Weierstrasspinvar 1/3 23.3.13.eq:WE.3.13
+\Weierstrasssigmalatt 1/2 23.2.16.eq:WE.wfdef.sigmader
+\WeberE 1/1 11.10.37.eq:ST.RRA.6
+\AngerJ 1/1 11.10.36.eq:ST.RRA.5
+\modStruveL 1/1 11.4.33.eq:ST.RR.11
+\StruveH 1/1 11.4.32.eq:ST.RR.10
+\HermitepolyH 1/1 32.10.21.eq:PT.SF.eq46
+\ChebyshevpolyU 1/1 18.5.2.eq:OP.CP.RE.TF.U
+\Faddeevaw 1/1 7.10.2.eq:ER.DE.D2
+\Kelvinkei 1/1 10.71.8.eq:BS.KIN.8
+\Kelvinker 1/1 10.71.8.eq:BS.KIN.8
+\Kelvinbei 1/1 10.71.8.eq:BS.KIN.8
+\Kelvinber 1/1 10.71.8.eq:BS.KIN.8
+\modcylinder 1/1 10.29.2.eq:BS.MRR.RR.2
+\BesselC 1/1 10.21.23.eq:BS.ZE.LO.22
+\HankelmodM 1/1 10.18.13.eq:BS.MP.DEF.13
+\Hankelphasetheta 1/1 10.18.16.eq:BS.MP.DEF.15
+\HankelmodderivN 1/1 10.18.10.eq:BS.MP.DEF.10
+\ScorerHi 1/1 9.12.28.eq:AI.SC.XHP
+\ScorerGi 1/1 9.12.26.eq:AI.SC.XGP
+\Airyphasetheta 1/1 9.8.19.eq:AI.MP.TDE
+\AirymodM 1/1 9.8.18.eq:AI.MP.MDE
+\AirymodderivN 1/1 9.8.14.eq:AI.MP.MN
+\Airyphasederivphi 1/1 9.8.14.eq:AI.MP.MN
+-------------------------------------------------------
+*UNVERIFIED PRIMES, WITH INFERENCES BASED ON DLMF*
+-------------------------------------------------------
+\radMathieuMc 1/2 28.22.11.eq:MA.CR.I4
+\radMathieuMs 1/2 28.22.10.eq:MA.CR.I2a
+\Mathieume 1/2 28.23.3.eq:MA.EC.03a
+\cuspcatastrophe 1/2 36.10.1.eq:IC.DE.A
