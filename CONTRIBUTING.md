@@ -96,13 +96,13 @@ We have two main goals.
 2. Support `lim` and similar macros generic macros (see #73)
 
 ## Update or add a new CAS to the translation process<a name="howToUpdate"></a>
-All translations are organized in `libs/ReferenceData` directory. Here you can find Excel files that keep
-track of the supported translations. We recommend you use the excel files to support more translations and
-export the translations to `CSV` files afterwards. Here are the most important files
-1. `Maple.xlsx` excel file that contains forward and backward translations to and from Maple
-2. `Mathematica.xlsx` excel file that contains forward and backward translations to and from Mathematica
-3. In `CSVTables` you find all `CSV` files
-4. `BasicConversions` contains the files for basic macro translations and Greek letters
+All translations are organized in `libs/ReferenceData/CSVTables` directory. Here you can find CSV files (semicolon separated) that keep
+track of the supported translations. You can use any editor you prefer to update the CSV files. Here are the most important files
+1. `DLMFMacro.csv` this file provides all information about the DLMF macros. There are no translations defined here.
+2. `DLMF_<CAS>.csv` these files define the _forward_ translations from DLMF macros to a CAS. For example, `DLMF_Maple.csv` defines
+the translations from DLMF to the CAS Maple. Always follow this naming convention if you add new CAS.
+3. `CAS_<name>` these files define the _backward_ translations from a CAS (`<name>`) back to the DLMF macros. For example, `CAS_Mathematica.csv`
+defines the backward translations from Mathematica back to the DLMF.
 
 #### Add new translations to the lexicon<a name="lexiconAddOn"></a>
 After you add a new entry or change an existing entry follow these instructions to add the changes to our program:
