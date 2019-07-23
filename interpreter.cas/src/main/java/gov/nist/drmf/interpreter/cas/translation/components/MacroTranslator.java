@@ -10,13 +10,17 @@ import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.appender.ConsoleAppender;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -50,9 +54,10 @@ public class MacroTranslator extends AbstractListTranslator {
 
     // the number of parameters, ats and variables
     private int
-            numOfParams = Integer.MIN_VALUE,
-            numOfAts    = Integer.MIN_VALUE,
-            numOfVars   = Integer.MIN_VALUE;
+            numOfParams           = Integer.MIN_VALUE,
+            numOfAts              = Integer.MIN_VALUE,
+            numOfVars             = Integer.MIN_VALUE,
+            slotOfDifferentiation = Integer.MIN_VALUE;
 
     private String DLMF_example;
 
@@ -72,6 +77,8 @@ public class MacroTranslator extends AbstractListTranslator {
 
     private MathTerm macro_term;
 
+    private BasicFunctionsTranslator deriv_translator;
+
     public MacroTranslator(){}
 
     @Override
@@ -90,9 +97,10 @@ public class MacroTranslator extends AbstractListTranslator {
         //LOG.info("Extract information for " + macro_term.getTermText());
         // now store all additional information
         // first of all number of parameters, ats and vars
-        numOfParams = Integer.parseInt(DLMFFeatureValues.params.getFeatureValue(fset));
-        numOfAts    = Integer.parseInt(DLMFFeatureValues.ats.getFeatureValue(fset));
-        numOfVars   = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset));
+        numOfParams           = Integer.parseInt(DLMFFeatureValues.params.getFeatureValue(fset));
+        numOfAts              = Integer.parseInt(DLMFFeatureValues.ats.getFeatureValue(fset));
+        numOfVars             = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset));
+        slotOfDifferentiation = numOfParams + 1; //TODO number for testing
 
         // now store additional information about the translation
         // Meaning: name of the function (defined by DLMF)
@@ -144,6 +152,14 @@ public class MacroTranslator extends AbstractListTranslator {
     private boolean parse(List<PomTaggedExpression> following_exps){
         LinkedList<String> optional_paras = new LinkedList<>();
         PomTaggedExpression moveToEnd = null;
+        deriv_translator = new BasicFunctionsTranslator(GlobalConstants.CAS_KEY);
+        try {
+            deriv_translator.init();
+        } catch ( IOException ioe ){
+            System.err.println( "Cannot initiate translator." );
+            ioe.printStackTrace();
+        }
+        int derivOrder = 0;
 
         FeatureSet fset = macro_term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
         if ( fset != null ){
@@ -164,8 +180,12 @@ public class MacroTranslator extends AbstractListTranslator {
 
             if ( first_term != null && !first_term.isEmpty() ){
                 MathTermTags tag = MathTermTags.getTagByKey( first_term.getTag() );
+                //System.out.println(tag);
                 if ( tag == null ) break;
-                else if ( tag.equals(MathTermTags.caret) ){
+                else if ( tag.equals(MathTermTags.prime) ){
+                    derivOrder++;
+                    following_exps.remove(0);
+                } else if ( tag.equals(MathTermTags.caret) ){
                     moveToEnd = following_exps.remove(0);
                     //continue;
                 } else if ( tag.equals(MathTermTags.left_bracket) ){
@@ -296,7 +316,7 @@ public class MacroTranslator extends AbstractListTranslator {
         }
 
         // finally fill the placeholders by values
-        fillVars();
+        fillVars( derivOrder );
         return true;
     }
 
@@ -319,14 +339,21 @@ public class MacroTranslator extends AbstractListTranslator {
     /**
      *
      */
-    private void fillVars(){
+    private void fillVars( int derivOrder ){
         // when the alternative mode is activated, it tries to translate
         // the alternative translation
         String pattern = (GlobalConstants.ALTERNATIVE_MODE && !alternative_pattern.isEmpty()) ?
                 alternative_pattern : translation_pattern;
 
+        System.out.println(pattern);
+        System.out.println(Arrays.toString(components));
+        String subbedExpression = null;
+        if( derivOrder > 0 ){
+            subbedExpression = components[slotOfDifferentiation - 1];
+            components[slotOfDifferentiation - 1] = "temp"; //TODO make global constant
+        }
         for ( int i = 0; i < components.length; i++ ){
-            //LOG.info("Fill pattern: " + pattern);
+            LOG.info("Fill pattern: " + pattern);
             try {
                 pattern = pattern.replace(
                         GlobalConstants.POSITION_MARKER + Integer.toString(i),
@@ -335,6 +362,11 @@ public class MacroTranslator extends AbstractListTranslator {
             } catch ( NullPointerException npe ){
                 throw new TranslationException("Argument of macro seems to be missing for " + macro_term, TranslationException.Reason.NULL_ARGUMENT);
             }
+        }
+        if ( derivOrder > 0 ){
+            String[] args = new String[]{pattern, subbedExpression, Integer.toString( derivOrder )};
+            System.out.println(Arrays.toString(args));
+            pattern = deriv_translator.translate( args, "derivative" );
         }
         local_inner_exp.addTranslatedExpression(pattern);
         global_exp.addTranslatedExpression(pattern);

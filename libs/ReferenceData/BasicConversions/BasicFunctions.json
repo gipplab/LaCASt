@@ -89,6 +89,12 @@
 		  "LaTeX": "\\prod_{$0}{$1}",
 		  "Maple": "product($1, $0)",
 		  "Mathematica": "Product[$1, $0]"
+	  },
+	  "Derivative":{
+		  "MLP": "derivative",
+		  "LaTeX": "\\deriv[$2]{$0}{$1}",
+		  "Maple": "subs( temp=$1, diff( $0, temp$$2 ) )",
+		  "Mathematica": "D[$0, {temp, $2}]/.temp-> $1"
 	  }
   },
   "Symbol Languages": [
