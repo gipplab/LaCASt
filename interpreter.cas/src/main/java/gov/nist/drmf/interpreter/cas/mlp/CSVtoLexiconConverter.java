@@ -260,6 +260,12 @@ public class CSVtoLexiconConverter {
             }
         }
 
+        String slot_diff_str = analyzer.getValue( Keys.SLOT_OF_DIFF );
+        try { holder.slot_diff = Integer.parseInt(slot_diff_str); }
+        catch( NumberFormatException nfe ){
+            //LOG.debug("Skip");
+        }
+
         return holder;
     }
 
@@ -554,6 +560,6 @@ public class CSVtoLexiconConverter {
 
     private class InfoHolder{
         String cas_name, pattern;
-        Integer num_vars;
+        Integer num_vars, slot_diff;
     }
 }
