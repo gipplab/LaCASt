@@ -50,6 +50,9 @@ public class MacroTranslator extends AbstractListTranslator {
     private static final Pattern optional_params_pattern =
             Pattern.compile("\\s*\\[(.*)]\\s*\\*?\\s*");
 
+    private static final Pattern leibniz_notation_pattern =
+            Pattern.compile("\\s*\\((.*)\\)\\s*");
+
     private static final String deriv_special_case = "\\\\p?deriv";
 
     // the number of parameters, ats and variables
@@ -75,6 +78,8 @@ public class MacroTranslator extends AbstractListTranslator {
 
     private String cas_comment;
 
+    private String deriv_order;
+
     private MathTerm macro_term;
 
     private BasicFunctionsTranslator deriv_translator;
@@ -89,7 +94,9 @@ public class MacroTranslator extends AbstractListTranslator {
     @Override
     public boolean translate(PomTaggedExpression root_exp) {
         // first of all, get the feature set named dlmf-macro
+        System.out.println(root_exp);
         macro_term = root_exp.getRoot();
+        System.out.println(macro_term.getTermText());
         return true;
     }
 
@@ -114,6 +121,7 @@ public class MacroTranslator extends AbstractListTranslator {
         constraints = DLMFFeatureValues.constraints.getFeatureValue(fset);
         branch_cuts = DLMFFeatureValues.branch_cuts.getFeatureValue(fset);
         DLMF_example= DLMFFeatureValues.DLMF.getFeatureValue(fset);
+        System.out.println(fset.getFeatureSetName());
 
         // Translation information
         translation_pattern = DLMFFeatureValues.CAS.getFeatureValue(fset);
@@ -152,6 +160,7 @@ public class MacroTranslator extends AbstractListTranslator {
     private boolean parse(List<PomTaggedExpression> following_exps){
         LinkedList<String> optional_paras = new LinkedList<>();
         PomTaggedExpression moveToEnd = null;
+        //System.out.println(following_exps.get(0));
         deriv_translator = new BasicFunctionsTranslator(GlobalConstants.CAS_KEY);
         try {
             deriv_translator.init();
@@ -159,7 +168,6 @@ public class MacroTranslator extends AbstractListTranslator {
             System.err.println( "Cannot initiate translator." );
             ioe.printStackTrace();
         }
-        int derivOrder = 0;
 
         FeatureSet fset = macro_term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
         if ( fset != null ){
@@ -173,8 +181,10 @@ public class MacroTranslator extends AbstractListTranslator {
             }
         }
 
+        int deriv_order_num = 0;
         while ( !following_exps.isEmpty() ){
             PomTaggedExpression first = following_exps.get(0);
+            System.out.println(first);
             if ( first.isEmpty() ) break;
             MathTerm first_term = first.getRoot();
 
@@ -183,10 +193,24 @@ public class MacroTranslator extends AbstractListTranslator {
                 //System.out.println(tag);
                 if ( tag == null ) break;
                 else if ( tag.equals(MathTermTags.prime) ){
-                    derivOrder++;
+                    deriv_order_num++;
                     following_exps.remove(0);
                 } else if ( tag.equals(MathTermTags.caret) ){
-                    moveToEnd = following_exps.remove(0);
+                    if ( first.getComponents().get(0).getComponents().get(0).getRoot().getTag().equals(MathTermTags.left_parenthesis.tag()) ){ // Leibniz notation
+                        PomTaggedExpression expression = following_exps.remove(0).getComponents().get(0);
+                        TranslatedExpression inner_exp =
+                                parseGeneralExpression(
+                                        expression,
+                                        following_exps
+                                );
+                        String order = inner_exp.toString();
+                        global_exp.removeLastNExps( inner_exp.getLength() );
+                        Matcher m = leibniz_notation_pattern.matcher(order);
+                        if ( m.matches() ){
+                            deriv_order = m.group(1);
+                        } else deriv_order = order;
+                        following_exps.remove(0);
+                    } else moveToEnd = following_exps.remove(0); // regular exponentiation
                     //continue;
                 } else if ( tag.equals(MathTermTags.left_bracket) ){
                     TranslatedExpression inner_exp =
@@ -204,6 +228,10 @@ public class MacroTranslator extends AbstractListTranslator {
                     break;
                 }
             } else break;
+        }
+
+        if ( deriv_order == null || deriv_order.isEmpty() ){
+            if ( deriv_order_num > 0 ) deriv_order = Integer.toString(deriv_order_num);
         }
 
         if ( optional_paras.size() > 0 ) {
@@ -316,7 +344,7 @@ public class MacroTranslator extends AbstractListTranslator {
         }
 
         // finally fill the placeholders by values
-        fillVars( derivOrder );
+        fillVars();
         return true;
     }
 
@@ -339,7 +367,7 @@ public class MacroTranslator extends AbstractListTranslator {
     /**
      *
      */
-    private void fillVars( int derivOrder ){
+    private void fillVars(){
         // when the alternative mode is activated, it tries to translate
         // the alternative translation
         String pattern = (GlobalConstants.ALTERNATIVE_MODE && !alternative_pattern.isEmpty()) ?
@@ -348,7 +376,7 @@ public class MacroTranslator extends AbstractListTranslator {
         System.out.println(pattern);
         System.out.println(Arrays.toString(components));
         String subbedExpression = null;
-        if( derivOrder > 0 ){
+        if( deriv_order != null && !deriv_order.isEmpty() ){
             subbedExpression = components[slotOfDifferentiation - 1];
             components[slotOfDifferentiation - 1] = "temp"; //TODO make global constant
         }
@@ -363,8 +391,8 @@ public class MacroTranslator extends AbstractListTranslator {
                 throw new TranslationException("Argument of macro seems to be missing for " + macro_term, TranslationException.Reason.NULL_ARGUMENT);
             }
         }
-        if ( derivOrder > 0 ){
-            String[] args = new String[]{pattern, subbedExpression, Integer.toString( derivOrder )};
+        if ( deriv_order != null && !deriv_order.isEmpty() ){
+            String[] args = new String[]{pattern, subbedExpression, deriv_order};
             System.out.println(Arrays.toString(args));
             pattern = deriv_translator.translate( args, "derivative" );
         }
