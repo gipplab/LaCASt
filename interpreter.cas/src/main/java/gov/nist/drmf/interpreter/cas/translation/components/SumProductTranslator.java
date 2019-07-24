@@ -4,6 +4,8 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.TranslationException;
+import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.PomTaggedExpression;
 
 import java.util.ArrayList;
@@ -26,142 +28,13 @@ public class SumProductTranslator extends AbstractListTranslator{
     @Override
     public boolean translate(PomTaggedExpression exp, List<PomTaggedExpression> list){
         num++;
+        //need to store tempNum in case there is a nested sum/product
         int tempNum = num;
-        int numArgs;
         //create a new arraylist to store the arguments to this sum/product
         args.add(new ArrayList<String>());
         PomTaggedExpression next = list.remove(0);
 
-        boolean possiblyTwoTerm = false;
-        try {
-            //if this statement throws an error, then the sum/product maybe has only an upper limit
-            next.getComponents().get(1).getRoot().getTag();
-        } catch(Exception e){
-            possiblyTwoTerm = true;
-        }
-
-        //case with only lower limit
-        if(next.getRoot().getTermText().equals("_")){
-            numArgs = 2;
-
-            int size = next.getComponents().get(0).getComponents().size();
-            //this is the index and lower limit of summation
-            args.get(num).add(parseGeneralExpression(next.getComponents().get(0), list).toString());
-            remove(size);
-
-            size = list.get(0).getComponents().size();
-            //this is the function being summed
-            args.get(num).add(parseGeneralExpression(list.remove(0), list).toString());
-            remove(size);
-
-            //case with only upper limit
-            //Maple does not handle these
-        } else if(next.getComponents().size() == 1 && next.getRoot().getTag().equals("caret") && possiblyTwoTerm){
-            if(GlobalConstants.CAS_KEY.equals("Maple")){
-                throw new TranslationException("Invalid sum/product!");
-            }
-            numArgs = 1;
-            int size = next.getComponents().get(0).getComponents().size();
-            args.get(num).add(parseGeneralExpression(next.getComponents().get(0), list).toString());
-            remove(size);
-
-            String storeIndex = "";
-            for(int i = 0; i < list.get(0).getComponents().size(); i++) {
-                char nextChar = list.get(0).getComponents().get(i).getRoot().getTermText().toCharArray()[0];
-                if(java.lang.Character.isLetter(nextChar)){
-                    storeIndex = Character.toString(nextChar);
-                    break;
-                }
-            }
-            if(!storeIndex.equals(""))
-                args.get(num).add(storeIndex);
-            else
-                args.get(num).add("i");
-
-            size = list.get(0).getComponents().size();
-            args.get(num).add(1, parseGeneralExpression(list.remove(0), list).toString());
-            remove(size);
-        }
-        //case with no upper or lower limit
-        else if(!"subsuperscript".equals(next.getTag())){
-            numArgs = 0;
-            String storeIndex = "";
-            //index of summation not specified, so assume that it is the first letter encountered.
-            for(int i = 0; i < next.getComponents().size(); i++) {
-                char nextChar = next.getComponents().get(i).getRoot().getTermText().toCharArray()[0];
-                if(java.lang.Character.isLetter(nextChar)){
-                    storeIndex = Character.toString(nextChar);
-                    break;
-                }
-            }
-            int size = next.getComponents().size();
-            args.get(num).add(parseGeneralExpression(next, list).toString());
-            remove(size);
-            if(!storeIndex.equals(""))
-                args.get(tempNum).add(storeIndex);
-            else
-                args.get(tempNum).add("i");
-
-            //case with lower limit before upper limit
-        } else if(next.getTag().equals("subsuperscript") && next.getComponents().get(1).getRoot().getTag().equals("caret")) {
-            numArgs = 3;
-            //Store the index of summation. Mathematica needs this.
-            String storeIndex = "";
-            try{
-                storeIndex = next.getComponents().get(0).getComponents().get(0).getComponents().get(0).getRoot().getTermText();
-            } catch(Exception e){
-                storeIndex = next.getComponents().get(0).getComponents().get(0).getRoot().getTermText();
-            }
-            //this is the index and lower limit of summation
-            int size = next.getComponents().get(0).getComponents().get(0).getComponents().size();
-
-            args.get(num).add(parseGeneralExpression(next.getComponents().get(0).getComponents().get(0), list).toString());
-            //remove the expression that parseGeneralExpression added to global_exp, because that expression is being used as a sum arg.
-            remove(size);
-            //this is the upper limit of summation
-            size = next.getComponents().get(1).getComponents().get(0).getComponents().size();
-            args.get(num).add(parseGeneralExpression(next.getComponents().get(1).getComponents().get(0), list).toString());
-
-            remove(size);
-
-            size = list.get(0).getComponents().size();
-            args.get(num).add(parseGeneralExpression(list.remove(0), list).toString());
-
-            remove(size);
-
-            //Add the index of summation to the args.
-            args.get(tempNum).add(storeIndex);
-
-            //case with upper limit before lower limit
-        } else if (next.getTag().equals("subsuperscript") && !next.getComponents().get(1).getRoot().getTag().equals("caret")) {
-            numArgs = 3;
-            //Store the index of summation. Mathematica needs this.
-            String storeIndex = "";
-            try {
-                storeIndex = next.getComponents().get(1).getComponents().get(0).getComponents().get(0).getRoot().getTermText();
-            } catch(Exception e){
-                storeIndex = next.getComponents().get(1).getComponents().get(0).getRoot().getTermText();
-            }
-
-            int size = next.getComponents().get(0).getComponents().get(0).getComponents().size();
-            args.get(num).add(parseGeneralExpression(next.getComponents().get(0).getComponents().get(0), list).toString());
-            remove(size);
-
-            size = next.getComponents().get(1).getComponents().get(0).getComponents().size();
-            //this is the upper limit of summation
-            args.get(num).add(parseGeneralExpression(next.getComponents().get(1).getComponents().get(0), list).toString());
-            remove(size);
-
-            args.get(num).add(args.get(num).remove(0));
-
-            size = list.get(0).getComponents().size();
-            args.get(num).add(parseGeneralExpression(list.remove(0), list).toString());
-            remove(size);
-            //Add the index of summation to the args.
-            args.get(tempNum).add(storeIndex);
-        } else {
-            throw new TranslationException("");
-        }
+        int numArgs = addToArgs(next, list);
 
         //put the args from the arraylist into an array so that it can be passed as an argument to parseBasicFunction
         String[] argsArray = new String[args.get(tempNum).size()];
@@ -176,14 +49,250 @@ public class SumProductTranslator extends AbstractListTranslator{
     /**
      * Method to remove expressions that are already being used as an argument to the sum/prod from global_exp
      * so that they don't get reused.
+     *
      * When size is 0, it is actually 1.
      * @param size
      */
-    public void remove(int size){
+    private void remove(int size){
         if(size != 0)
             global_exp.removeLastNExps(size);
         else
             global_exp.removeLastNExps(1);
     }
 
+    /**
+     * This method is called when the sum/prod has only a lower limit defined.
+     * Ex: \sum_{x=0}{x+5}
+     * @param next
+     * @param list
+     * @return
+     */
+    private int onlyLower(PomTaggedExpression next, List<PomTaggedExpression> list){
+        List<PomTaggedExpression> components = next.getComponents();
+        int size = components.get(0).getComponents().size();
+        //this is the index and lower limit of summation
+        PomTaggedExpression lowerLim = components.get(0);
+        args.get(num).add(parseGeneralExpression(lowerLim, list).toString());
+        remove(size);
+
+        size = list.get(0).getComponents().size();
+        //this is the function being summed
+        args.get(num).add(parseGeneralExpression(list.remove(0), list).toString());
+        remove(size);
+
+        return 2;
+    }
+
+    /**
+     * This method is called when the sum/prod has only an upper limit defined.
+     * Ex: \sum^{10}{x+5}
+     * @param next
+     * @param list
+     * @return
+     */
+    private int onlyUpper(PomTaggedExpression next, List<PomTaggedExpression> list){
+        if(GlobalConstants.CAS_KEY.equals("Maple")){
+            throw new TranslationException("Invalid sum/product!");
+        }
+        List<PomTaggedExpression> components = next.getComponents();
+        int size = components.get(0).getComponents().size();
+
+        //upper limit of summation
+        PomTaggedExpression upperLim = components.get(0);
+        args.get(num).add(parseGeneralExpression(upperLim, list).toString());
+        remove(size);
+
+        //find index of summation
+        String storeIndex = "";
+        List<PomTaggedExpression> listComponents = list.get(0).getComponents();
+        for(int i = 0; i < list.get(0).getComponents().size(); i++) {
+            char nextChar = listComponents.get(i).getRoot().getTermText().charAt(0);
+            if(java.lang.Character.isLetter(nextChar)){
+                storeIndex = Character.toString(nextChar);
+                break;
+            }
+        }
+        if(!storeIndex.isEmpty())
+            args.get(num).add(storeIndex);
+        else
+            args.get(num).add("i");
+
+        size = list.get(0).getComponents().size();
+        //summand
+        args.get(num).add(1, parseGeneralExpression(list.remove(0), list).toString());
+        remove(size);
+
+        return 1;
+    }
+
+    /**
+     * This method is called when the sum/prod has no lower or upper limit defined.
+     * Ex: \sum{x+5}
+     * @param next
+     * @param list
+     * @param tempNum
+     * @return
+     */
+    private int none(PomTaggedExpression next, List<PomTaggedExpression> list, int tempNum){
+        String storeIndex = "";
+        List<PomTaggedExpression> components = next.getComponents();
+
+        //find index of summation
+        for(int i = 0; i < components.size(); i++) {
+            char nextChar = components.get(i).getRoot().getTermText().charAt(0);
+            if(java.lang.Character.isLetter(nextChar)){
+                storeIndex = Character.toString(nextChar);
+                break;
+            }
+        }
+        int size = components.size();
+        //summand
+        args.get(num).add(parseGeneralExpression(next, list).toString());
+        remove(size);
+
+        //add index of summation
+        if(!storeIndex.isEmpty())
+            args.get(tempNum).add(storeIndex);
+        else
+            args.get(tempNum).add("i");
+
+        return 0;
+    }
+
+    /**
+     * This method is called when the sum/prod has its lower limit defined before its upper limit.
+     * Ex: \sum_{x=0}^{10}{x+5}
+     * @param next
+     * @param list
+     * @param tempNum
+     * @return
+     */
+    private int lowerThenUpper(PomTaggedExpression next, List<PomTaggedExpression> list, int tempNum){
+        //Store the index of summation. Mathematica needs this.
+        String storeIndex;
+        List<PomTaggedExpression> components = next.getComponents();
+        List<PomTaggedExpression> components2 = components.get(0).getComponents();
+        try{
+            List<PomTaggedExpression> components3 = components2.get(0).getComponents();
+            storeIndex = components3.get(0).getRoot().getTermText();
+        } catch(Exception e){
+            storeIndex = components2.get(0).getRoot().getTermText();
+        }
+        //index and lower limit of summation
+        PomTaggedExpression lowerLim = components2.get(0);
+        int size = lowerLim.getComponents().size();
+        args.get(num).add(parseGeneralExpression(lowerLim, list).toString());
+        //remove the expression that parseGeneralExpression added to global_exp, because that expression is being used as a sum arg.
+        remove(size);
+
+        //upper limit of summation
+        List<PomTaggedExpression> upperComponents = components.get(1).getComponents();
+        PomTaggedExpression upperLim = upperComponents.get(0);
+        size = upperLim.getComponents().size();
+        args.get(num).add(parseGeneralExpression(upperLim, list).toString());
+
+        remove(size);
+
+        size = list.get(0).getComponents().size();
+        //summand
+        args.get(num).add(parseGeneralExpression(list.remove(0), list).toString());
+
+        remove(size);
+
+        //add index of summation
+        args.get(tempNum).add(storeIndex);
+
+        return  3;
+    }
+
+    /**
+     * This method is called when the sum/prod has its upper limit defined before its lower limit.
+     * Ex: \sum^{10}_{x=0}{x+5}
+     * @param next
+     * @param list
+     * @param tempNum
+     * @return
+     */
+    private int upperThenLower(PomTaggedExpression next, List<PomTaggedExpression> list, int tempNum){
+        //Store the index of summation
+        String storeIndex = "";
+        List<PomTaggedExpression> components = next.getComponents();
+        List<PomTaggedExpression> components2 = components.get(1).getComponents();
+        try {
+            List<PomTaggedExpression> components3 = components2.get(0).getComponents();
+            storeIndex = components3.get(0).getRoot().getTermText();
+        } catch(Exception e){
+            storeIndex = components2.get(0).getRoot().getTermText();
+        }
+
+        //lower limit of summation
+        List<PomTaggedExpression> lowerComponents = components.get(0).getComponents();
+        PomTaggedExpression lowerLim = lowerComponents.get(0);
+        int size = lowerLim.getComponents().size();
+        args.get(num).add(parseGeneralExpression(lowerLim, list).toString());
+        remove(size);
+
+        //upper limit of summation
+        PomTaggedExpression upperLim = components2.get(0);
+        size = upperLim.getComponents().size();
+        args.get(num).add(parseGeneralExpression(components2.get(0), list).toString());
+        remove(size);
+
+        String lower = args.get(num).remove(0);
+        args.get(num).add(lower);
+
+        size = list.get(0).getComponents().size();
+        //summand
+        args.get(num).add(parseGeneralExpression(list.remove(0), list).toString());
+        remove(size);
+        //add index of summation
+        args.get(tempNum).add(storeIndex);
+
+        return 3;
+    }
+
+    /**
+     * Depending on what the tag is, this method calls different methods to add the right arguments to the arguments list.
+     * If the tag is null, the sum has either only a lower limit or only an upper limit.
+     * If the tag is sub_super_script, it has both.
+     * If the tag is sequence, it has none.
+     * Then some subcases are used to determine which exact case it is.
+     *
+     * @param next
+     * @param list
+     * @return
+     */
+    private int addToArgs(PomTaggedExpression next, List<PomTaggedExpression> list){
+        ExpressionTags tag = ExpressionTags.getTagByKey(next.getTag());
+        //only upper limit, only lower limit, or no limits with a summand of length 1.
+        if(tag == null){
+            MathTermTags termTag = MathTermTags.getTagByKey(next.getRoot().getTag());
+            //lower limit
+            if(termTag.equals(MathTermTags.underscore))
+                return onlyLower(next, list);
+            //upper limit
+            else if(termTag.equals(MathTermTags.caret))
+                return onlyUpper(next, list);
+            //none
+            else
+                return none(next, list, num);
+        } else {
+            switch (tag) {
+                //both lower and upper limit
+                case sub_super_script:
+                    //lower before upper
+                    if (MathTermTags.getTagByKey(next.getComponents().get(1).getRoot().getTag()).equals(MathTermTags.caret))
+                        return lowerThenUpper(next, list, num);
+                    //upper then lower
+                    else
+                        return upperThenLower(next, list, num);
+                //no limits defined
+                case sequence:
+                    return none(next, list, num);
+                default:
+                    throw new TranslationException("");
+
+            }
+        }
+    }
 }
