@@ -103,4 +103,13 @@ public abstract class FeatureSetUtility {
         FeatureSet set = getSetByFeatureValue(term, Keys.FEATURE_ROLE, MathTermTags.function.tag());
         return set != null;
     }
+
+    public static boolean isSum(MathTerm term){
+        return term.getTermText().equals("\\sum");
+    }
+
+    public static boolean isProduct(MathTerm term){
+        return term.getTermText().equals("\\prod");
+    }
+
 }
