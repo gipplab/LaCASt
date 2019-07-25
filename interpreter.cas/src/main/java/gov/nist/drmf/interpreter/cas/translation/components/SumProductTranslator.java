@@ -67,7 +67,7 @@ public class SumProductTranslator extends AbstractListTranslator{
      * @param list
      * @return
      */
-    private int onlyLower(PomTaggedExpression next, List<PomTaggedExpression> list){
+    protected int onlyLower(PomTaggedExpression next, List<PomTaggedExpression> list){
         List<PomTaggedExpression> components = next.getComponents();
         int size = components.get(0).getComponents().size();
         //this is the index and lower limit of summation
@@ -90,7 +90,7 @@ public class SumProductTranslator extends AbstractListTranslator{
      * @param list
      * @return
      */
-    private int onlyUpper(PomTaggedExpression next, List<PomTaggedExpression> list){
+    protected int onlyUpper(PomTaggedExpression next, List<PomTaggedExpression> list){
         if(GlobalConstants.CAS_KEY.equals("Maple")){
             throw new TranslationException("Invalid sum/product!");
         }
@@ -133,7 +133,7 @@ public class SumProductTranslator extends AbstractListTranslator{
      * @param tempNum
      * @return
      */
-    private int none(PomTaggedExpression next, List<PomTaggedExpression> list, int tempNum){
+    protected int none(PomTaggedExpression next, List<PomTaggedExpression> list, int tempNum){
         String storeIndex = "";
         List<PomTaggedExpression> components = next.getComponents();
 
@@ -160,95 +160,68 @@ public class SumProductTranslator extends AbstractListTranslator{
     }
 
     /**
-     * This method is called when the sum/prod has its lower limit defined before its upper limit.
+     * This method is called when the sum/prod has both an upper and a lower limit.
+     * Determines which limit (lower/upper) is defined first, and adds them to the sum args appropriately.
      * Ex: \sum_{x=0}^{10}{x+5}
+     * Ex: \sum^{10}_{x=0}{x+5}
+     *
      * @param next
      * @param list
      * @param tempNum
      * @return
      */
-    private int lowerThenUpper(PomTaggedExpression next, List<PomTaggedExpression> list, int tempNum){
-        //Store the index of summation. Mathematica needs this.
+    protected int lowerAndUpper(PomTaggedExpression next, List<PomTaggedExpression> list, int tempNum){
         String storeIndex;
+        PomTaggedExpression lowerLim;
+        PomTaggedExpression upperLim;
         List<PomTaggedExpression> components = next.getComponents();
-        List<PomTaggedExpression> components2 = components.get(0).getComponents();
-        try{
-            List<PomTaggedExpression> components3 = components2.get(0).getComponents();
-            storeIndex = components3.get(0).getRoot().getTermText();
-        } catch(Exception e){
-            storeIndex = components2.get(0).getRoot().getTermText();
+        //lower limit defined before upper limit
+        if(MathTermTags.getTagByKey(components.get(0).getRoot().getTag()).equals(MathTermTags.underscore)){
+            List<PomTaggedExpression> components2 = components.get(0).getComponents();
+            //Store the index of summation.
+            try{
+                List<PomTaggedExpression> components3 = components2.get(0).getComponents();
+                storeIndex = components3.get(0).getRoot().getTermText();
+            } catch(Exception e){
+                storeIndex = components2.get(0).getRoot().getTermText();
+            }
+            lowerLim = components2.get(0);
+            List<PomTaggedExpression> upperComponents = components.get(1).getComponents();
+            upperLim = upperComponents.get(0);
+        } //upper limit defined before lower limit
+        else {
+            List<PomTaggedExpression> components2 = components.get(1).getComponents();
+            //Store the index of summation.
+            try {
+                List<PomTaggedExpression> components3 = components2.get(0).getComponents();
+                storeIndex = components3.get(0).getRoot().getTermText();
+            } catch(Exception e){
+                storeIndex = components2.get(0).getRoot().getTermText();
+            }
+            lowerLim = components2.get(0);
+            List<PomTaggedExpression> upperComponents = components.get(0).getComponents();
+            upperLim = upperComponents.get(0);
         }
-        //index and lower limit of summation
-        PomTaggedExpression lowerLim = components2.get(0);
+
+        //lower limit of summation
         int size = lowerLim.getComponents().size();
         args.get(num).add(parseGeneralExpression(lowerLim, list).toString());
         //remove the expression that parseGeneralExpression added to global_exp, because that expression is being used as a sum arg.
         remove(size);
 
         //upper limit of summation
-        List<PomTaggedExpression> upperComponents = components.get(1).getComponents();
-        PomTaggedExpression upperLim = upperComponents.get(0);
         size = upperLim.getComponents().size();
         args.get(num).add(parseGeneralExpression(upperLim, list).toString());
-
         remove(size);
 
-        size = list.get(0).getComponents().size();
         //summand
+        size = list.get(0).getComponents().size();
         args.get(num).add(parseGeneralExpression(list.remove(0), list).toString());
-
         remove(size);
 
         //add index of summation
         args.get(tempNum).add(storeIndex);
-
         return  3;
-    }
-
-    /**
-     * This method is called when the sum/prod has its upper limit defined before its lower limit.
-     * Ex: \sum^{10}_{x=0}{x+5}
-     * @param next
-     * @param list
-     * @param tempNum
-     * @return
-     */
-    private int upperThenLower(PomTaggedExpression next, List<PomTaggedExpression> list, int tempNum){
-        //Store the index of summation
-        String storeIndex = "";
-        List<PomTaggedExpression> components = next.getComponents();
-        List<PomTaggedExpression> components2 = components.get(1).getComponents();
-        try {
-            List<PomTaggedExpression> components3 = components2.get(0).getComponents();
-            storeIndex = components3.get(0).getRoot().getTermText();
-        } catch(Exception e){
-            storeIndex = components2.get(0).getRoot().getTermText();
-        }
-
-        //lower limit of summation
-        List<PomTaggedExpression> lowerComponents = components.get(0).getComponents();
-        PomTaggedExpression lowerLim = lowerComponents.get(0);
-        int size = lowerLim.getComponents().size();
-        args.get(num).add(parseGeneralExpression(lowerLim, list).toString());
-        remove(size);
-
-        //upper limit of summation
-        PomTaggedExpression upperLim = components2.get(0);
-        size = upperLim.getComponents().size();
-        args.get(num).add(parseGeneralExpression(components2.get(0), list).toString());
-        remove(size);
-
-        String lower = args.get(num).remove(0);
-        args.get(num).add(lower);
-
-        size = list.get(0).getComponents().size();
-        //summand
-        args.get(num).add(parseGeneralExpression(list.remove(0), list).toString());
-        remove(size);
-        //add index of summation
-        args.get(tempNum).add(storeIndex);
-
-        return 3;
     }
 
     /**
@@ -262,7 +235,7 @@ public class SumProductTranslator extends AbstractListTranslator{
      * @param list
      * @return
      */
-    private int addToArgs(PomTaggedExpression next, List<PomTaggedExpression> list){
+    protected int addToArgs(PomTaggedExpression next, List<PomTaggedExpression> list){
         ExpressionTags tag = ExpressionTags.getTagByKey(next.getTag());
         //only upper limit, only lower limit, or no limits with a summand of length 1.
         if(tag == null){
@@ -280,12 +253,7 @@ public class SumProductTranslator extends AbstractListTranslator{
             switch (tag) {
                 //both lower and upper limit
                 case sub_super_script:
-                    //lower before upper
-                    if (MathTermTags.getTagByKey(next.getComponents().get(1).getRoot().getTag()).equals(MathTermTags.caret))
-                        return lowerThenUpper(next, list, num);
-                    //upper then lower
-                    else
-                        return upperThenLower(next, list, num);
+                    return lowerAndUpper(next, list, num);
                 //no limits defined
                 case sequence:
                     return none(next, list, num);
@@ -294,5 +262,11 @@ public class SumProductTranslator extends AbstractListTranslator{
 
             }
         }
+    }
+
+    protected String getTranslation(){
+        String exp = global_exp.toString();
+        global_exp.clear();
+        return exp;
     }
 }
