@@ -70,7 +70,7 @@
 		  "MLP": "sum3",
 		  "LaTeX": "\\sum_{$0}^{$1}{$2}",
 		  "Maple": "sum($2, $0..$1)",
-		  "Mathematica": "Sum[$2, {$0, $1}]"
+		  "Mathematica": "Sum[$2, {$3, $0, $1}]"
 	  },
 	  "SumTwoArgs": {
 		  "MLP": "sum2",
@@ -78,11 +78,23 @@
 		  "Maple": "sum($1, $0)",
 		  "Mathematica": "Sum[$1, $0]"
 	  },
+	  "SumOneArg": {
+		  "MLP": "sum1",
+		  "LaTeX": "\\sum^{$0}{$1}",
+		  "Maple": "",
+		  "Mathematica": "Sum[$1, {$2, $0}]"
+	  },
+	  "SumNoArgs": {
+		  "MLP": "sum0",
+		  "LaTeX": "\\sum{$0}",
+		  "Maple": "sum($0, $1)",
+		  "Mathematica": "Sum[$0, $1]"
+	  },
 	  "ProductThreeArgs": {
 		  "MLP": "prod3",
 		  "LaTeX": "\\prod_{$0}^{$1}{2}",
 		  "Maple": "product($2, $0..$1)",
-		  "Mathematica": "Product[$2, {$0, $1}]"
+		  "Mathematica": "Product[$2, {$3, $0, $1}]"
 	  },
 	  "ProductTwoArgs": {
 		  "MLP": "prod2",
@@ -90,7 +102,19 @@
 		  "Maple": "product($1, $0)",
 		  "Mathematica": "Product[$1, $0]"
 	  },
-	  "Derivative":{
+	  "ProductOneArg": {
+		  "MLP": "prod1",
+		  "LaTeX": "\\prod^{$0}{$1}",
+		  "Maple": "",
+		  "Mathematica": "Product[$1, {$2, $0}]"
+	  },
+	  "ProductNoArgs": {
+		  "MLP": "prod0",
+		  "LaTeX": "\\prod{$0}",
+		  "Maple": "product($0, $1)",
+		  "Mathematica": "Product[$0, $1]"
+    },
+    "Derivative":{
 		  "MLP": "derivative",
 		  "LaTeX": "\\deriv[$2]{$0}{$1}",
 		  "Maple": "subs( temp=$1, diff( $0, temp$$2 ) )",
