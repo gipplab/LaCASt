@@ -1,10 +1,25 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
+import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
+import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import mlp.PomParser;
+import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestFactory;
+
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class  SumProductTranslatorTest {
@@ -42,8 +57,8 @@ public class  SumProductTranslatorTest {
             "Finished conversion to Maple:\n";
 
     private static final String[] expression = {
-            "\\sum_{x}^{y}{z}", //maple does not handle sums with only variable as lower limit instead of something like x=0.
-            "\\prod_{x}^{y}{z}", //so the next couple tests don't work for maple
+            "\\sum_{x}^{y}{z}", //maple does not handle sums with only variable as lower limit {x} instead of something like {x=0}
+            "\\prod_{x}^{y}{z}", //so the next couple of expressions don't work for maple
             "\\sum^{t}_{y}{z}",
             "\\prod^{t}_{y}{z}",
             "\\sum_{t}{y}",
@@ -65,7 +80,7 @@ public class  SumProductTranslatorTest {
             "\\frac{2p}{y^2}+\\ln{2(3+p^2)}+\\prod^{\\infty}_{t=0}[t^2\\sin{t}]+2^t\\cos{y}",
             "\\frac{2p}{y^2}+\\ln{2(3+p^2)}+\\prod^{\\infty}_{x=0}(t^2\\sin{x})+2^t\\cos{y}",
             "z_{\\prod_{t=1}^{\\infty}{1/t^3}}",
-            "z^{\\sum^{100}{u}{t^2+2_v}+3}+\\frac{2\\tan{\\sum{\\prod_{t=0}^{63}{2+t^3}}+5f}}{37}", //does not work for maple because first sum only has upper limit
+            "z^{\\sum^{100}{u}{t^2+2_v}+3}+\\frac{2\\tan{\\sum{\\prod_{t=0}^{63}{2+t^3}}+5f}}{37}", //does not work for maple because the first sum only has upper limit
             "\\sum_{t}^{y}{\\sum^{100}{\\prod_{t=3}^{5}{\\sum^{\\infty}_{t=1}{\\prod{3t}}}}}", //this one too
             "q_{j}=\\gamma_{j}\\sum_{k=1}^{n}\\frac{1}{z_{k}-a_{j}}",
 
@@ -79,7 +94,7 @@ public class  SumProductTranslatorTest {
             "\\frac{{\\mathrm{d}}^{2}w}{{\\mathrm{d}z}^{2}}+\\left(\\sum_{j=1}^{N}\\frac{\\gamma_{j}}{z-a_{j}}\\right)\\frac{\\mathrm{d}w}{\\mathrm{d}z}+\\frac{\\Phi(z)}{\\prod_{j=1}^{N}(z-a_{j})}w=0"
 
 //a_b^c gives error        "\\sum_{j=1}^{N}\\frac{\\gamma_{j}}{t_{k}-a_{j}}+\\sum_{j=1}^{n-1}\\frac{1}{t_{k}-z_{j}^{\\prime}}=0",
-//subarrays don't work      "\\sum_{j=1}^{N}\\frac{\\gamma_{j}/2}{z_{k}-a_{j}}+\\sum_{\\begin{subarray}{c}j=1\\\\ j\\neq k\\end{subarray}}^{n}\\frac{1}{z_{k}-z_{j}}=0",
+//subarrays don't work     "\\sum_{j=1}^{N}\\frac{\\gamma_{j}/2}{z_{k}-a_{j}}+\\sum_{\\begin{subarray}{c}j=1\\\\ j\\neq k\\end{subarray}}^{n}\\frac{1}{z_{k}-z_{j}}=0",
             };
 
     private static final String[] translatedMaple = {
@@ -152,9 +167,32 @@ public class  SumProductTranslatorTest {
 
     @BeforeAll
     public static void setUp(){
+        SemanticLatexTranslator slt = new SemanticLatexTranslator(Keys.KEY_LATEX, Keys.KEY_MATHEMATICA);
+        try {
+            slt.init(GlobalPaths.PATH_REFERENCE_DATA);
+        } catch(IOException e){
+            throw new RuntimeException();
+        }
         result = new ByteArrayOutputStream();
         System.setOut(new PrintStream(result));
+
     }
+    @TestFactory
+    Stream<DynamicTest> sumMathematicaTest(){
+        PomParser parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA.toString());
+        SumProductTranslator spt = new SumProductTranslator();
+        List<String> expressions = Arrays.asList(expression);
+        List<String> output = Arrays.asList(translatedMathematica);
+        return expressions.stream().map(exp -> DynamicTest.dynamicTest("Expression: " + exp,
+                () -> {int index = expressions.indexOf(exp);
+                PomTaggedExpression ex = parser.parse(TeXPreProcessor.preProcessingTeX(expressions.get(index)));
+                List<PomTaggedExpression> components = ex.getComponents();
+                PomTaggedExpression first = components.remove(0);
+                spt.translate(first, components);
+                assertEquals(output.get(index), spt.getTranslation());}));
+    }
+
+
     @Test
     public void mathematicaTest(){
         String more = "";
@@ -179,11 +217,6 @@ public class  SumProductTranslatorTest {
             more += translatedMaple[i] + "\n\n";
             assertEquals(more, result.toString());
         }
-    }
-
-    @Test
-    public void prodTest(){
-
     }
 
 }
