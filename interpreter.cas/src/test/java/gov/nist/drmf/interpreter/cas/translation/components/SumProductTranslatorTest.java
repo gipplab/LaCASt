@@ -1,28 +1,27 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
-import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
+import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class  SumProductTranslatorTest {
+public class SumProductTranslatorTest {
 
     private static final String stuffBeforeMathematica = "\n" +
             "This is a program that translated given LaTeX\n" +
@@ -95,7 +94,7 @@ public class  SumProductTranslatorTest {
 
 //a_b^c gives error        "\\sum_{j=1}^{N}\\frac{\\gamma_{j}}{t_{k}-a_{j}}+\\sum_{j=1}^{n-1}\\frac{1}{t_{k}-z_{j}^{\\prime}}=0",
 //subarrays don't work     "\\sum_{j=1}^{N}\\frac{\\gamma_{j}/2}{z_{k}-a_{j}}+\\sum_{\\begin{subarray}{c}j=1\\\\ j\\neq k\\end{subarray}}^{n}\\frac{1}{z_{k}-z_{j}}=0",
-            };
+    };
 
     private static final String[] translatedMaple = {
             "sum(z, x..y)",
@@ -164,59 +163,71 @@ public class  SumProductTranslatorTest {
     };
 
     private static ByteArrayOutputStream result;
+    private static SemanticLatexTranslator slt;
 
     @BeforeAll
-    public static void setUp(){
-        SemanticLatexTranslator slt = new SemanticLatexTranslator(Keys.KEY_LATEX, Keys.KEY_MATHEMATICA);
+    public static void setUp() {
+        GlobalConstants.CAS_KEY = Keys.KEY_MATHEMATICA;
+        slt = new SemanticLatexTranslator(Keys.KEY_LATEX, Keys.KEY_MATHEMATICA);
         try {
             slt.init(GlobalPaths.PATH_REFERENCE_DATA);
-        } catch(IOException e){
+        } catch (IOException e) {
             throw new RuntimeException();
         }
         result = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(result));
-
+//        System.setOut(new PrintStream(result));
     }
+
     @TestFactory
-    Stream<DynamicTest> sumMathematicaTest(){
+    Stream<DynamicTest> sumMathematicaTest() {
         PomParser parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA.toString());
-        SumProductTranslator spt = new SumProductTranslator();
+        parser.addLexicons( MacrosLexicon.getDLMFMacroLexicon() );
+
+//        SumProductTranslator spt = new SumProductTranslator();
+
         List<String> expressions = Arrays.asList(expression);
         List<String> output = Arrays.asList(translatedMathematica);
-        return expressions.stream().map(exp -> DynamicTest.dynamicTest("Expression: " + exp,
-                () -> {int index = expressions.indexOf(exp);
-                PomTaggedExpression ex = parser.parse(TeXPreProcessor.preProcessingTeX(expressions.get(index)));
-                List<PomTaggedExpression> components = ex.getComponents();
-                PomTaggedExpression first = components.remove(0);
-                spt.translate(first, components);
-                assertEquals(output.get(index), spt.getTranslation());}));
+
+        return expressions
+                .stream()
+                .map(
+                        exp -> DynamicTest.dynamicTest("Expression: " + exp, () -> {
+                            int index = expressions.indexOf(exp);
+                            PomTaggedExpression ex = parser.parse(TeXPreProcessor.preProcessingTeX(expressions.get(index)));
+
+//                            List<PomTaggedExpression> components = ex.getComponents();
+//                            PomTaggedExpression first = components.remove(0);
+
+                            slt.translate(ex);
+                            assertEquals(output.get(index), slt.getTranslatedExpression());
+                        }));
     }
 
 
-    @Test
-    public void mathematicaTest(){
-        String more = "";
-        for(int i = 0; i < expression.length; i++){
-            String[] args = {"-CAS=Mathematica", "-Expression=" + expression[i]};
-            SemanticToCASInterpreter.main(args);
-            more += stuffBeforeMathematica.substring(0, stuffBeforeMathematica.indexOf("n: ") + 3) + expression[i]
-                    + stuffBeforeMathematica.substring(stuffBeforeMathematica.indexOf("n: ") + 3);
-            more += translatedMathematica[i] + "\n\n";
-            assertEquals(more, result.toString());
-        }
-    }
-
-    @Test
-    public void mapleTest(){
-        String more = "";
-        for(int i = 0; i < expression.length; i++){
-            String[] args = {"-CAS=Maple", "-Expression=" + expression[i]};
-            SemanticToCASInterpreter.main(args);
-            more += stuffBeforeMaple.substring(0, stuffBeforeMaple.indexOf("n: ") + 3) + expression[i]
-                    + stuffBeforeMaple.substring(stuffBeforeMaple.indexOf("n: ") + 3);
-            more += translatedMaple[i] + "\n\n";
-            assertEquals(more, result.toString());
-        }
-    }
+//    @Test
+//    public void mathematicaTest(){
+//        String more = "";
+//        for(int i = 0; i < expression.length; i++){
+//            String[] args = {"-CAS=Mathematica", "-Expression=" + expression[i]};
+//            SemanticToCASInterpreter.main(args);
+//            more += stuffBeforeMathematica.substring(0, stuffBeforeMathematica.indexOf("n: ") + 3) + expression[i]
+//                    + stuffBeforeMathematica.substring(stuffBeforeMathematica.indexOf("n: ") + 3);
+//            more += translatedMathematica[i] + "\n\n";
+//            assertEquals(more, result.toString());
+//        }
+//    }
+//
+//    @Test
+//    public void mapleTest(){
+//        String more = "";
+//        for(int i = 0; i < expression.length; i++){
+//            String[] args = {"-CAS=Maple", "-Expression=" + expression[i]};
+//            SemanticToCASInterpreter.main(args);
+//            more += stuffBeforeMaple.substring(0, stuffBeforeMaple.indexOf("n: ") + 3) + expression[i]
+//                    + stuffBeforeMaple.substring(stuffBeforeMaple.indexOf("n: ") + 3);
+//            more += translatedMaple[i] + "\n\n";
+//            assertEquals(more, result.toString());
+//        }
+//    }
 
 }
