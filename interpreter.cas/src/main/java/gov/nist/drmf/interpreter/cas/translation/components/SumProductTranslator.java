@@ -23,6 +23,8 @@ public class SumProductTranslator extends AbstractListTranslator{
 
     private static ArrayList<ArrayList<String>> args = new ArrayList<>();
 
+    private static ArrayList<String> indices = new ArrayList<>();
+
     private static int num = -1;
 
     @Override
@@ -35,7 +37,7 @@ public class SumProductTranslator extends AbstractListTranslator{
         PomTaggedExpression next = list.remove(0);
 
         int numArgs = addToArgs(next, list);
-
+        addMoreToSummand(indices.get(tempNum), tempNum, list);
         //put the args from the arraylist into an array so that it can be passed as an argument to parseBasicFunction
         String[] argsArray = new String[args.get(tempNum).size()];
         for(int i = 0; i < args.get(tempNum).size(); i++){
@@ -121,7 +123,7 @@ public class SumProductTranslator extends AbstractListTranslator{
         //summand
         args.get(num).add(1, parseGeneralExpression(list.remove(0), list).toString());
         remove(size);
-
+        indices.add(storeIndex);
         return 1;
     }
 
@@ -155,7 +157,7 @@ public class SumProductTranslator extends AbstractListTranslator{
             args.get(tempNum).add(storeIndex);
         else
             args.get(tempNum).add("i");
-
+        indices.add(storeIndex);
         return 0;
     }
 
@@ -221,6 +223,7 @@ public class SumProductTranslator extends AbstractListTranslator{
 
         //add index of summation
         args.get(tempNum).add(storeIndex);
+        indices.add(storeIndex);
         return  3;
     }
 
@@ -268,5 +271,44 @@ public class SumProductTranslator extends AbstractListTranslator{
         String exp = global_exp.toString();
         global_exp.clear();
         return exp;
+    }
+
+    /**
+     * If the variable that is the index of summation is also somewhere outside of the sum,
+     * then it should be included in the summand.
+     *
+     * @param index
+     * @param tempNum
+     * @param list
+     */
+    private void addMoreToSummand(String index, int tempNum, List<PomTaggedExpression> list){
+        String newSummand = args.get(tempNum).get(args.get(tempNum).size() - 2);
+        int lastIndexOfIndex = -1;
+        for(int i = 0; i < list.size(); i++){
+            if(list.get(i).getNumberOfNonemptyMathTerms() == 1 && list.get(i).getRoot().getTermText().equals(index)) {
+                lastIndexOfIndex = i;
+            }
+            else{
+                for(int k = 0; k < list.get(i).getComponents().size(); k++){
+                    if(list.get(i).getComponents().get(k).getNumberOfNonemptyMathTerms() == 1 && list.get(i).getComponents().get(k).getRoot().getTermText().equals(index)){
+                        lastIndexOfIndex = i;
+                    } else {
+                        for(int l = 0; l < list.get(i).getComponents().get(k).getComponents().size(); l++){
+                            if(list.get(i).getComponents().get(k).getComponents().get(l).getRoot().getTermText().equals(index)){
+                                lastIndexOfIndex = i;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        while(lastIndexOfIndex >= 0 && !list.isEmpty()) {
+            if(MathTermTags.getTagByKey(list.get(0).getRoot().getTag()).equals(MathTermTags.dlmf_macro))
+                lastIndexOfIndex--;
+            newSummand += parseGeneralExpression(list.remove(0), list);
+            global_exp.removeLastExpression();
+            lastIndexOfIndex--;
+        }
+        args.get(tempNum).set(args.get(tempNum).size() - 2, newSummand);
     }
 }
