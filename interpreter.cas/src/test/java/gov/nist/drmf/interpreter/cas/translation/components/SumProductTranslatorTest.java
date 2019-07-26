@@ -183,7 +183,7 @@ public class SumProductTranslatorTest {
         PomParser parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA.toString());
         parser.addLexicons( MacrosLexicon.getDLMFMacroLexicon() );
 
-//        SumProductTranslator spt = new SumProductTranslator();
+        SumProductTranslator spt = new SumProductTranslator();
 
         List<String> expressions = Arrays.asList(expression);
         List<String> output = Arrays.asList(translatedMathematica);
@@ -195,11 +195,11 @@ public class SumProductTranslatorTest {
                             int index = expressions.indexOf(exp);
                             PomTaggedExpression ex = parser.parse(TeXPreProcessor.preProcessingTeX(expressions.get(index)));
 
-//                            List<PomTaggedExpression> components = ex.getComponents();
-//                            PomTaggedExpression first = components.remove(0);
+                            List<PomTaggedExpression> components = ex.getComponents();
+                            PomTaggedExpression first = components.remove(0);
 
-                            slt.translate(ex);
-                            assertEquals(output.get(index), slt.getTranslatedExpression());
+                            spt.translate(first, components);
+                            assertEquals(output.get(index), spt.getTranslation());
                         }));
     }
 
