@@ -51,7 +51,7 @@ public class MacroTranslator extends AbstractListTranslator {
             Pattern.compile("\\s*\\[(.*)]\\s*\\*?\\s*");
 
     private static final Pattern leibniz_notation_pattern =
-            Pattern.compile("\\s*\\((.*)\\)\\s*");
+            Pattern.compile("\\s*(\\(.*\\))\\s*");
 
     private static final String deriv_special_case = "\\\\p?deriv";
 
@@ -82,8 +82,6 @@ public class MacroTranslator extends AbstractListTranslator {
 
     private MathTerm macro_term;
 
-    private BasicFunctionsTranslator deriv_translator;
-
     public MacroTranslator(){}
 
     @Override
@@ -94,9 +92,9 @@ public class MacroTranslator extends AbstractListTranslator {
     @Override
     public boolean translate(PomTaggedExpression root_exp) {
         // first of all, get the feature set named dlmf-macro
-        System.out.println(root_exp);
+        LOG.info(root_exp);
         macro_term = root_exp.getRoot();
-        System.out.println(macro_term.getTermText());
+        LOG.info(macro_term.getTermText());
         return true;
     }
 
@@ -121,7 +119,6 @@ public class MacroTranslator extends AbstractListTranslator {
         constraints = DLMFFeatureValues.constraints.getFeatureValue(fset);
         branch_cuts = DLMFFeatureValues.branch_cuts.getFeatureValue(fset);
         DLMF_example= DLMFFeatureValues.DLMF.getFeatureValue(fset);
-        System.out.println(fset.getFeatureSetName());
 
         // Translation information
         translation_pattern = DLMFFeatureValues.CAS.getFeatureValue(fset);
@@ -160,14 +157,7 @@ public class MacroTranslator extends AbstractListTranslator {
     private boolean parse(List<PomTaggedExpression> following_exps){
         LinkedList<String> optional_paras = new LinkedList<>();
         PomTaggedExpression moveToEnd = null;
-        //System.out.println(following_exps.get(0));
-        deriv_translator = new BasicFunctionsTranslator(GlobalConstants.CAS_KEY);
-        try {
-            deriv_translator.init();
-        } catch ( IOException ioe ){
-            System.err.println( "Cannot initiate translator." );
-            ioe.printStackTrace();
-        }
+        //LOG.info(following_exps.get(0));
 
         FeatureSet fset = macro_term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
         if ( fset != null ){
@@ -184,42 +174,23 @@ public class MacroTranslator extends AbstractListTranslator {
         int deriv_order_num = 0;
         while ( !following_exps.isEmpty() ){
             PomTaggedExpression first = following_exps.get(0);
-            System.out.println(first);
+            LOG.info(first);
             if ( first.isEmpty() ) break;
             MathTerm first_term = first.getRoot();
 
             if ( first_term != null && !first_term.isEmpty() ){
                 MathTermTags tag = MathTermTags.getTagByKey( first_term.getTag() );
-                //System.out.println(tag);
                 if ( tag == null ) break;
                 else if ( tag.equals(MathTermTags.prime) ){
                     deriv_order_num++;
                     following_exps.remove(0);
                 } else if ( tag.equals(MathTermTags.caret) ){
-                    if ( first.getComponents().get(0).getComponents().get(0).getRoot().getTag().equals(MathTermTags.left_parenthesis.tag()) ){ // Leibniz notation
-                        PomTaggedExpression expression = following_exps.remove(0).getComponents().get(0);
-                        TranslatedExpression inner_exp =
-                                parseGeneralExpression(
-                                        expression,
-                                        following_exps
-                                );
-                        String order = inner_exp.toString();
-                        global_exp.removeLastNExps( inner_exp.getLength() );
-                        Matcher m = leibniz_notation_pattern.matcher(order);
-                        if ( m.matches() ){
-                            deriv_order = m.group(1);
-                        } else deriv_order = order;
-                        following_exps.remove(0);
+                    if( isLeibnizNotation( following_exps )){
+                        parseLeibnizNotation( following_exps );
                     } else moveToEnd = following_exps.remove(0); // regular exponentiation
                     //continue;
                 } else if ( tag.equals(MathTermTags.left_bracket) ){
-                    TranslatedExpression inner_exp =
-                            parseGeneralExpression(
-                                    following_exps.remove(0),
-                                    following_exps
-                            );
-                    String optional = inner_exp.toString();
-                    global_exp.removeLastNExps( inner_exp.getLength() );
+                    String optional = translateInnerExp( following_exps.remove(0), following_exps );
                     Matcher m = optional_params_pattern.matcher(optional);
                     if ( m.matches() )
                         optional_paras.add( m.group(1) );
@@ -230,8 +201,8 @@ public class MacroTranslator extends AbstractListTranslator {
             } else break;
         }
 
-        if ( deriv_order == null || deriv_order.isEmpty() ){
-            if ( deriv_order_num > 0 ) deriv_order = Integer.toString(deriv_order_num);
+        if ( ( deriv_order == null || deriv_order.isEmpty() ) && deriv_order_num > 0){
+            deriv_order = Integer.toString(deriv_order_num);
         }
 
         if ( optional_paras.size() > 0 ) {
@@ -348,6 +319,33 @@ public class MacroTranslator extends AbstractListTranslator {
         return true;
     }
 
+    private String translateInnerExp( PomTaggedExpression expression, List<PomTaggedExpression> following_exps ){
+        TranslatedExpression inner_exp =
+                parseGeneralExpression(
+                        expression,
+                        following_exps
+                );
+        global_exp.removeLastNExps( inner_exp.getLength() );
+        return inner_exp.toString();
+    }
+
+    private boolean isLeibnizNotation( List<PomTaggedExpression> following_exps ){
+        PomTaggedExpression caret    = following_exps.get(0);
+        PomTaggedExpression sequence = caret.getComponents().get(0);
+        MathTerm term                = sequence.getComponents().get(0).getRoot();
+        return term.getTag().equals(MathTermTags.left_parenthesis.tag());
+    }
+
+    private void parseLeibnizNotation( List<PomTaggedExpression> following_exps ) {
+        PomTaggedExpression expression = following_exps.remove(0).getComponents().get(0);
+        String order = translateInnerExp(expression, following_exps);
+        Matcher m = leibniz_notation_pattern.matcher(order);
+        if (m.matches()) {
+            deriv_order = m.group(1);
+        } else deriv_order = order;
+        following_exps.remove(0);
+    }
+
     private boolean checkForce( List<PomTaggedExpression> following_exps ){
         if ( following_exps.isEmpty() ) return false;
         PomTaggedExpression next = following_exps.get(0);
@@ -373,8 +371,8 @@ public class MacroTranslator extends AbstractListTranslator {
         String pattern = (GlobalConstants.ALTERNATIVE_MODE && !alternative_pattern.isEmpty()) ?
                 alternative_pattern : translation_pattern;
 
-        System.out.println(pattern);
-        System.out.println(Arrays.toString(components));
+        LOG.info(pattern);
+        LOG.info(Arrays.toString(components));
         String subbedExpression = null;
         if( deriv_order != null && !deriv_order.isEmpty() ){
             subbedExpression = components[slotOfDifferentiation - 1];
@@ -392,9 +390,10 @@ public class MacroTranslator extends AbstractListTranslator {
             }
         }
         if ( deriv_order != null && !deriv_order.isEmpty() ){
+
             String[] args = new String[]{pattern, subbedExpression, deriv_order};
-            System.out.println(Arrays.toString(args));
-            pattern = deriv_translator.translate( args, "derivative" );
+            LOG.info(Arrays.toString(args));
+            pattern = SemanticLatexTranslator.getBasicFunctionParser().translate( args, "derivative" );
         }
         local_inner_exp.addTranslatedExpression(pattern);
         global_exp.addTranslatedExpression(pattern);
