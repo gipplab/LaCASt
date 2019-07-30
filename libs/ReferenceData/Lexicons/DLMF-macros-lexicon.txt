@@ -167,6 +167,7 @@ Symbol: \AiryAi
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \AiryBi
 
@@ -192,6 +193,7 @@ Symbol: \AiryBi
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \AiryModulusM
 
@@ -257,6 +259,7 @@ Symbol: \AirymodM
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \AirymodderivN
 
@@ -274,6 +277,7 @@ Symbol: \AirymodderivN
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Airyphasederivphi
 
@@ -291,6 +295,7 @@ Symbol: \Airyphasederivphi
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Airyphasetheta
 
@@ -308,6 +313,7 @@ Symbol: \Airyphasetheta
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \AlSalamCarlitzI
 
@@ -435,6 +441,7 @@ Symbol: \AngerJ
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \AngerWeberA
 
@@ -794,6 +801,7 @@ Symbol: \BesselC
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \BesselI
 
@@ -844,6 +852,7 @@ Symbol: \BesselJ
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \BesselJimag
 
@@ -861,6 +870,7 @@ Symbol: \BesselJimag
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \BesselJtilde
 
@@ -1024,6 +1034,7 @@ Symbol: \BesselY
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \BesselYimag
 
@@ -1041,6 +1052,7 @@ Symbol: \BesselYimag
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \BesselYtilde
 
@@ -1070,6 +1082,7 @@ Symbol: \Besselpolyy
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \BickleyKi
 
@@ -1417,6 +1430,7 @@ Symbol: \ChebyshevpolyT
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ChebyshevpolyU
 
@@ -1438,6 +1452,7 @@ Symbol: \ChebyshevpolyU
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ChebyshevpolyV
 
@@ -1455,6 +1470,7 @@ Symbol: \ChebyshevpolyV
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ChebyshevpolyW
 
@@ -1472,6 +1488,7 @@ Symbol: \ChebyshevpolyW
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \CiglerqChebyT
 
@@ -2150,6 +2167,7 @@ Symbol: \DunsterQ
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \EllIntD
 
@@ -2361,6 +2379,7 @@ Symbol: \EulerGamma
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \EulerPhi
 
@@ -2568,6 +2587,51 @@ Symbol: \FerrersHatQ
   Feature Set: dlmf-alternative-1
 	DLMF: \DunsterQ[\mu]{\tau}@{x}
 	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
@@ -2576,6 +2640,7 @@ Symbol: \FerrersHatQ
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \FerrersP
 
@@ -2595,6 +2660,7 @@ Symbol: \FerrersP
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
   Feature Set: dlmf-alternative-1
 	Constraints: -1 < x < 1, \mu, \nu \in \Reals
@@ -2612,6 +2678,7 @@ Symbol: \FerrersP
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \FerrersQ
 
@@ -2631,6 +2698,7 @@ Symbol: \FerrersQ
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
   Feature Set: dlmf-alternative-1
 	Constraints: -1 < x < 1, \mu, \nu \in \Reals
@@ -2648,6 +2716,7 @@ Symbol: \FerrersQ
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \FibonacciNumber
 
@@ -3100,6 +3169,7 @@ Symbol: \HankelH
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \HankelHi
 
@@ -3141,6 +3211,7 @@ Symbol: \HankelmodM
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \HankelmodderivN
 
@@ -3158,6 +3229,7 @@ Symbol: \HankelmodderivN
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Hankelphasederivphi
 
@@ -3175,6 +3247,7 @@ Symbol: \Hankelphasederivphi
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Hankelphasetheta
 
@@ -3192,6 +3265,7 @@ Symbol: \Hankelphasetheta
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \HarmonicNumber
 
@@ -3255,6 +3329,7 @@ Symbol: \Hermite
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \HermiteH
 
@@ -3298,6 +3373,7 @@ Symbol: \HermitepolyH
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \HeunFunction
 
@@ -3415,6 +3491,7 @@ Symbol: \Hurwitzzeta
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \HyperboldpFq
 
@@ -4387,6 +4464,7 @@ Symbol: \Jacobithetaq
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobithetatau
 
@@ -4405,6 +4483,7 @@ Symbol: \Jacobithetatau
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \JonquierePhi
 
@@ -4468,6 +4547,7 @@ Symbol: \Kelvinbei
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Kelvinber
 
@@ -4489,6 +4569,7 @@ Symbol: \Kelvinber
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Kelvinkei
 
@@ -4510,6 +4591,7 @@ Symbol: \Kelvinkei
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Kelvinker
 
@@ -4531,6 +4613,7 @@ Symbol: \Kelvinker
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \KleincompinvarJtau
 
@@ -4677,6 +4760,7 @@ Symbol: \KummerconfhyperM
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \KummerconfhyperU
 
@@ -4698,6 +4782,7 @@ Symbol: \KummerconfhyperU
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \Laguerre
 
@@ -4747,6 +4832,52 @@ Symbol: \LaguerreL
 
   Feature Set: dlmf-alternative-1
 	DLMF: \LaguerreL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
 	Maple: LaguerreL($1, $0, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
@@ -4886,6 +5017,7 @@ Symbol: \LameEc
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \LameEs
 
@@ -4903,6 +5035,7 @@ Symbol: \LameEs
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Lamea
 
@@ -5247,6 +5380,57 @@ Symbol: \LegendreBlackQ
 	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E10
 	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
 	Maple-Comment: 
@@ -5258,6 +5442,7 @@ Symbol: \LegendreBlackQ
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \LegendreP
 
@@ -5305,6 +5490,65 @@ Symbol: \LegendreP
 	DLMF: \assLegendreP[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E5
 	Maple: LegendreP($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Maple: LegendreP($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Maple: LegendreP($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Maple: LegendreP($1, $0, $2)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
 	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
@@ -5316,6 +5560,7 @@ Symbol: \LegendreP
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \LegendrePoly
 
@@ -5390,6 +5635,65 @@ Symbol: \LegendreQ
 	DLMF: \assLegendreQ[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E7
 	Maple: LegendreQ($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Maple: LegendreQ($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Maple: LegendreQ($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Maple: LegendreQ($1, $0, $2)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
 	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
@@ -5401,6 +5705,7 @@ Symbol: \LegendreQ
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \LegendreSymbol
 
@@ -5961,6 +6266,7 @@ Symbol: \Mathieuce
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Mathieueigvala
 
@@ -6037,6 +6343,7 @@ Symbol: \Mathieufe
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Mathieuge
 
@@ -6054,6 +6361,7 @@ Symbol: \Mathieuge
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Mathieume
 
@@ -6070,6 +6378,7 @@ Symbol: \Mathieume
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Mathieuse
 
@@ -6091,6 +6400,7 @@ Symbol: \Mathieuse
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Meixner
 
@@ -6416,6 +6726,7 @@ Symbol: \OlverconfhyperM
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \Pade
 
@@ -6924,6 +7235,7 @@ Symbol: \Riemannzeta
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Schwarzian
 
@@ -6958,6 +7270,7 @@ Symbol: \ScorerGi
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ScorerHi
 
@@ -6975,6 +7288,7 @@ Symbol: \ScorerHi
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \SinCosIntf
 
@@ -7348,6 +7662,7 @@ Symbol: \StruveH
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \StruveK
 
@@ -7573,6 +7888,7 @@ Symbol: \WeberE
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \WeierPInv
 
@@ -7638,6 +7954,7 @@ Symbol: \Weierstrasspinvar
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Weierstrassplatt
 
@@ -7655,6 +7972,7 @@ Symbol: \Weierstrassplatt
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Weierstrasssigmainvar
 
@@ -7693,6 +8011,7 @@ Symbol: \Weierstrasssigmalatt
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Weierstrasszetainvar
 
@@ -7810,6 +8129,7 @@ Symbol: \WhittakerconfhyperM
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \WhittakerconfhyperW
 
@@ -7831,6 +8151,7 @@ Symbol: \WhittakerconfhyperW
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \WhittakerparaD
 
@@ -8815,6 +9136,7 @@ Symbol: \assLegendreOlverQ
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \assLegendreP
 
@@ -8834,6 +9156,7 @@ Symbol: \assLegendreP
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \assLegendreQ
 
@@ -8853,6 +9176,7 @@ Symbol: \assLegendreQ
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \assLegendrepoly
 
@@ -9328,6 +9652,7 @@ Symbol: \compellintKk
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \compellintPik
 
@@ -10032,6 +10357,7 @@ Symbol: \digamma
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \dilChebyshevpolyC
 
@@ -10525,6 +10851,7 @@ Symbol: \genAiryODEA
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \genAiryODEB
 
@@ -10542,6 +10869,7 @@ Symbol: \genAiryODEB
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \genAiryintA
 
@@ -10837,6 +11165,7 @@ Symbol: \hyperF
 	Number of Parameters: 0
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 4
 
 Symbol: \hyperOlverF
 
@@ -11241,6 +11570,7 @@ Symbol: \irregCoulombG
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \irregCoulombH
 
@@ -11258,6 +11588,7 @@ Symbol: \irregCoulombH
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \irregCoulombc
 
@@ -11275,6 +11606,7 @@ Symbol: \irregCoulombc
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \irregCoulombh
 
@@ -11292,6 +11624,7 @@ Symbol: \irregCoulombh
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \iunit
 
@@ -11543,6 +11876,7 @@ Symbol: \modBesselI
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modBesselIimag
 
@@ -11560,6 +11894,7 @@ Symbol: \modBesselIimag
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modBesselK
 
@@ -11581,6 +11916,7 @@ Symbol: \modBesselK
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modBesselKimag
 
@@ -11598,6 +11934,7 @@ Symbol: \modBesselKimag
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modMathieuCe
 
@@ -11751,6 +12088,7 @@ Symbol: \modMathieuM
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modMathieuMe
 
@@ -11806,6 +12144,7 @@ Symbol: \modStruveL
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modStruveM
 
@@ -11844,6 +12183,7 @@ Symbol: \modcylinder
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modsphBesselK
 
@@ -11861,6 +12201,7 @@ Symbol: \modsphBesselK
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modsphBesseli
 
@@ -11878,6 +12219,7 @@ Symbol: \modsphBesseli
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modularlambdatau
 
@@ -13324,6 +13666,7 @@ Symbol: \paraU
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \paraUbar
 
@@ -13362,6 +13705,7 @@ Symbol: \paraV
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \paraW
 
@@ -13379,6 +13723,7 @@ Symbol: \paraW
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \pderiv
 
@@ -14740,6 +15085,7 @@ Symbol: \radMathieuMc
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \radMathieuMs
 
@@ -14757,6 +15103,7 @@ Symbol: \radMathieuMs
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \radsphwaveS
 
@@ -14774,6 +15121,7 @@ Symbol: \radsphwaveS
 	Number of Parameters: 3
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \realpart
 
@@ -14820,6 +15168,7 @@ Symbol: \regCoulombF
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \regCoulombf
 
@@ -14837,6 +15186,7 @@ Symbol: \regCoulombf
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \regCoulombs
 
@@ -14854,6 +15204,7 @@ Symbol: \regCoulombs
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \repinterfc
 
@@ -15331,6 +15682,7 @@ Symbol: \sphBesselJ
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \sphBesselY
 
@@ -15348,6 +15700,7 @@ Symbol: \sphBesselY
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \sphHankelh
 
@@ -15365,6 +15718,7 @@ Symbol: \sphHankelh
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \spheigvalLambda
 
@@ -15437,6 +15791,7 @@ Symbol: \sphwavePsreal
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \sphwaveQs
 
@@ -15471,6 +15826,7 @@ Symbol: \sphwaveQsreal
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \sqrt
 
