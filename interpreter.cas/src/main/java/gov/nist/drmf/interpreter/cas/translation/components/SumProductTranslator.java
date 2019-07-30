@@ -12,6 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Find out where summand ends:
+ * Multiplication
+ * Next in list not
+ *
+ *
+ *
+ * \sum_{x=0}^{\infty}2x(x+4)^2+4^x+2(3)
+ */
+
+
+/**
  * SumProductTranslator uses parseGeneralExpression to get the arguments to the sum/product.
  * Then it uses BasicFunctionParser to put the arguments where they need to go.
  *
@@ -37,7 +48,12 @@ public class SumProductTranslator extends AbstractListTranslator{
         PomTaggedExpression next = list.remove(0);
 
         int numArgs = addToArgs(next, list);
-        addMoreToSummand(indices.get(tempNum), tempNum, list);
+
+        addFactorsToSummand(list, tempNum, numArgs);
+
+//        if(tempNum < indices.size() && !indices.get(tempNum).isEmpty())
+//            addMoreToSummand(indices.get(tempNum), tempNum, list);
+
         //put the args from the arraylist into an array so that it can be passed as an argument to parseBasicFunction
         String[] argsArray = new String[args.get(tempNum).size()];
         for(int i = 0; i < args.get(tempNum).size(); i++){
@@ -71,17 +87,26 @@ public class SumProductTranslator extends AbstractListTranslator{
      */
     protected int onlyLower(PomTaggedExpression next, List<PomTaggedExpression> list){
         List<PomTaggedExpression> components = next.getComponents();
+        List<PomTaggedExpression> components2 = components.get(0).getComponents();
+        String storeIndex = "";
+        try{
+            storeIndex = components2.get(0).getRoot().getTermText();
+        } catch(Exception e){
+            storeIndex = components.get(0).getRoot().getTermText();
+        }
         int size = components.get(0).getComponents().size();
         //this is the index and lower limit of summation
         PomTaggedExpression lowerLim = components.get(0);
         args.get(num).add(parseGeneralExpression(lowerLim, list).toString());
         remove(size);
-
         size = list.get(0).getComponents().size();
         //this is the function being summed
-        args.get(num).add(parseGeneralExpression(list.remove(0), list).toString());
+        if(GlobalConstants.CAS_KEY.equals("Mathematica"))
+            args.get(num).add(0, parseGeneralExpression(list.remove(0), list).toString());
+        else
+            args.get(num).add(parseGeneralExpression(list.remove(0), list).toString());
         remove(size);
-
+        indices.add(storeIndex);
         return 2;
     }
 
@@ -106,12 +131,23 @@ public class SumProductTranslator extends AbstractListTranslator{
 
         //find index of summation
         String storeIndex = "";
+
         List<PomTaggedExpression> listComponents = list.get(0).getComponents();
-        for(int i = 0; i < list.get(0).getComponents().size(); i++) {
-            char nextChar = listComponents.get(i).getRoot().getTermText().charAt(0);
-            if(java.lang.Character.isLetter(nextChar)){
-                storeIndex = Character.toString(nextChar);
-                break;
+        if(list.get(0).getComponents().size() == 0){
+            for(int i = 0; i < list.size(); i++){
+                char nextChar = list.get(i).getRoot().getTermText().charAt(0);
+                if(Character.isLetter(nextChar)){
+                    storeIndex = Character.toString(nextChar);
+                    break;
+                }
+            }
+        } else {
+            for (int i = 0; i < list.get(0).getComponents().size(); i++) {
+                char nextChar = listComponents.get(i).getRoot().getTermText().charAt(0);
+                if (Character.isLetter(nextChar)) {
+                    storeIndex = Character.toString(nextChar);
+                    break;
+                }
             }
         }
         if(!storeIndex.isEmpty())
@@ -140,11 +176,23 @@ public class SumProductTranslator extends AbstractListTranslator{
         List<PomTaggedExpression> components = next.getComponents();
 
         //find index of summation
-        for(int i = 0; i < components.size(); i++) {
-            char nextChar = components.get(i).getRoot().getTermText().charAt(0);
-            if(java.lang.Character.isLetter(nextChar)){
-                storeIndex = Character.toString(nextChar);
-                break;
+        if(!(components.size() == 0)){
+            for (int i = 0; i < components.size(); i++) {
+                char nextChar = components.get(i).getRoot().getTermText().charAt(0);
+                if (Character.isLetter(nextChar)) {
+                    storeIndex = Character.toString(nextChar);
+                    break;
+                }
+            }
+        } else if(Character.isLetter(next.getRoot().getTermText().charAt(0))){
+            storeIndex = Character.toString(next.getRoot().getTermText().charAt(0));
+        } else {
+            for(int i = 0; i < list.size(); i++){
+                char nextChar = list.get(i).getRoot().getTermText().charAt(0);
+                if(Character.isLetter(nextChar)){
+                    storeIndex = Character.toString(nextChar);
+                    break;
+                }
             }
         }
         int size = components.size();
@@ -152,11 +200,15 @@ public class SumProductTranslator extends AbstractListTranslator{
         args.get(num).add(parseGeneralExpression(next, list).toString());
         remove(size);
 
+     //   if(storeIndex.isEmpty() && Character.isLetter(next.getRoot().getTermText().charAt(0)))
+   //         storeIndex = next.getRoot().getTermText();
         //add index of summation
         if(!storeIndex.isEmpty())
             args.get(tempNum).add(storeIndex);
         else
             args.get(tempNum).add("i");
+        if(GlobalConstants.CAS_KEY.equals("Maple"))
+            args.get(tempNum).add(args.get(tempNum).remove(0));
         indices.add(storeIndex);
         return 0;
     }
@@ -274,6 +326,111 @@ public class SumProductTranslator extends AbstractListTranslator{
     }
 
     /**
+     * If terms are being multiplied to the original summand, add them to the summand.
+     *
+     * If there is an addition, subtraction, or relational operator, that is the end of the summand.
+     * Otherwise, the term is part of the summand.
+     * @param list
+     * @param tempNum
+     * @param numArgs
+     */
+    protected void addFactorsToSummand(List<PomTaggedExpression> list, int tempNum, int numArgs){
+        //determine where to add the new summand to
+        int numFromEnd;
+        if(GlobalConstants.CAS_KEY.equals("Mathematica") || numArgs == 3)
+            numFromEnd = 2;
+        else
+            numFromEnd = 1;
+
+        String summand = args.get(tempNum).get(args.get(tempNum).size() - numFromEnd);
+
+        boolean endSummand = false;
+        //for each term in the expressions list following the summand, if its tag is something other than
+        //addition, subtraction, equals, etc. then add it to the summand.
+        for(int i = 0; i < list.size(); i++){
+            if(endSummand)
+                break;
+
+            MathTermTags tag = MathTermTags.getTagByKey(list.get(i).getRoot().getTag());
+            if(tag == null){
+                summand += parseGeneralExpression(list.remove(i), list);
+                global_exp.removeLastExpression();
+                i--;
+            } else {
+                switch (tag) {
+                    case plus:
+                    case minus:
+                    case equals:
+                    case less_than:
+                    case greater_than:
+                    case relation:
+                            endSummand = true;
+                            break;
+                    default:
+                        summand += parseGeneralExpression(list.remove(i), list);
+                        global_exp.removeLastExpression();
+                        i--;
+                        break;
+                }
+            }
+        }
+        //put the new summand in
+        args.get(tempNum).set(args.get(tempNum).size() - numFromEnd, summand);
+
+    }
+
+/*    private static List<PomTaggedExpression> caretParens(List<PomTaggedExpression> list){
+
+        PomParser parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA.toString());
+        for(int i = 0; i < list.size(); i++){
+            Dictionary<MathTermTags, Integer> dict = new Hashtable<>();
+            dict.put(MathTermTags.right_parenthesis, 0);
+            dict.put(MathTermTags.right_bracket, 0);
+            dict.put(MathTermTags.right_brace, 0);
+            dict.put(MathTermTags.right_delimiter, 0);
+            dict.put(MathTermTags.left_parenthesis, 0);
+            dict.put(MathTermTags.left_bracket, 0);
+            dict.put(MathTermTags.left_brace, 0);
+            dict.put(MathTermTags.left_delimiter, 0);
+            if(MathTermTags.getTagByKey(list.get(i).getRoot().getTag()).equals(MathTermTags.caret)){
+                int j = i;
+                while(j > 0){
+                    j--;
+                    MathTermTags tag = MathTermTags.getTagByKey(list.get(j).getRoot().getTag());
+                    if(tag.equals(MathTermTags.right_parenthesis) || tag.equals(MathTermTags.right_bracket)
+                            || tag.equals(MathTermTags.right_brace) || tag.equals(MathTermTags.right_delimiter))
+                        dict.put(tag, dict.get(tag) + 1);
+                    if(tag.equals(MathTermTags.left_parenthesis) || tag.equals(MathTermTags.left_bracket)
+                            || tag.equals(MathTermTags.left_brace) || tag.equals(MathTermTags.left_delimiter))
+                        dict.put(tag, dict.get(tag) + 1);
+                    boolean noParens = dict.get(MathTermTags.right_parenthesis) == dict.get(MathTermTags.left_parenthesis);
+                    boolean noBrackets = dict.get(MathTermTags.right_bracket) == dict.get(MathTermTags.left_bracket);
+                    boolean noBraces = dict.get(MathTermTags.right_brace) == dict.get(MathTermTags.left_brace);
+                    boolean noDelimiters = dict.get(MathTermTags.right_delimiter) == dict.get(MathTermTags.left_delimiter);
+                    boolean none = noParens && noBrackets && noBraces && noDelimiters;
+                    if(none) {
+                        try {
+                            list.add(j, parser.parse("("));
+                            list.add(i + 2, parser.parse(")"));
+                            i++;
+                        } catch (ParseException p) {
+
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        return list;
+    }
+
+ */
+
+
+
+
+
+    /**
      * If the variable that is the index of summation is also somewhere outside of the sum,
      * then it should be included in the summand.
      *
@@ -281,8 +438,15 @@ public class SumProductTranslator extends AbstractListTranslator{
      * @param tempNum
      * @param list
      */
-    private void addMoreToSummand(String index, int tempNum, List<PomTaggedExpression> list){
-        String newSummand = args.get(tempNum).get(args.get(tempNum).size() - 2);
+/*    private void addMoreToSummand(String index, int tempNum, List<PomTaggedExpression> list){
+        int numToSubtract;
+        if(GlobalConstants.CAS_KEY.equals("Maple"))
+            numToSubtract = 1;
+        else
+            numToSubtract = 2;
+        //SHOULD BE ARGS.GET(TEMPNUM).GET(NUMTOADD); NEED TO GO INSIDE ARRAYLIST OF ARRAYLIST THATS THE PROBLEM
+        int whereToAdd = args.get(tempNum).size()-numToSubtract;
+        String newSummand = args.get(tempNum).get(whereToAdd);
         int lastIndexOfIndex = -1;
         for(int i = 0; i < list.size(); i++){
             if(list.get(i).getNumberOfNonemptyMathTerms() == 1 && list.get(i).getRoot().getTermText().equals(index)) {
@@ -309,6 +473,8 @@ public class SumProductTranslator extends AbstractListTranslator{
             global_exp.removeLastExpression();
             lastIndexOfIndex--;
         }
-        args.get(tempNum).set(args.get(tempNum).size() - 2, newSummand);
+        args.get(tempNum).set(whereToAdd, newSummand);
     }
+
+ */
 }
