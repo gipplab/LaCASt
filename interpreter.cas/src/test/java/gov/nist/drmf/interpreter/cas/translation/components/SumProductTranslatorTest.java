@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
+import gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.GlobalPaths;
@@ -10,6 +11,7 @@ import mlp.PomParser;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 
 import java.io.ByteArrayOutputStream;
@@ -72,28 +74,21 @@ public class SumProductTranslatorTest {
             "\\prod_{t=3}{\\tan{t}}",
             "\\sum^{100}_{t=0}{12}",
             "\\prod^{100}_{t=0}{12}",
-            "\\cos{\\sum_{t=-12}^{24y}{-2\\ln{q}}}",
             "\\prod{A_{2\\sin{u}}}",
-            "\\frac{1}{z}+2z\\sum_{n=1}^{\\infty}\\frac{1}{z^{2}-n^{2}\\pi^{2}}",
             "\\sum_{n=1}^{\\infty}\\frac{(-1)^{n}2^{2n-1}B_{2n}}{n(2n)!}z^{2n}",
-            "\\frac{2p}{y^2}+\\ln{2(3+p^2)}+\\prod^{\\infty}_{t=0}[t^2\\sin{t}]+2^t\\cos{y}",
-            "\\frac{2p}{y^2}+\\ln{2(3+p^2)}+\\prod^{\\infty}_{x=0}(t^2\\sin{x})+2^t\\cos{y}",
-            "z_{\\prod_{t=1}^{\\infty}{1/t^3}}",
-            "z^{\\sum^{100}{u}{t^2+2_v}+3}+\\frac{2\\tan{\\sum{\\prod_{t=0}^{63}{2+t^3}}+5f}}{37}", //does not work for maple because the first sum only has upper limit
-            "\\sum_{t}^{y}{\\sum^{100}{\\prod_{t=3}^{5}{\\sum^{\\infty}_{t=1}{\\prod{3t}}}}}", //this one too
-            "q_{j}=\\gamma_{j}\\sum_{k=1}^{n}\\frac{1}{z_{k}-a_{j}}",
-
-            "\\prod_{t=7}^{\\infty}\\sum^{-72.3z}_{t=-2}\\prod^{12y}{\\frac{2}" +               // and this
+            "\\sum_{t}^{y}{\\sum^{100}{\\prod_{t=3}^{5}{\\sum^{\\infty}_{t=1}{\\prod{3t}}}}}",
+            "\\prod_{t=7}^{\\infty}\\sum^{-72.3z}_{t=-2}\\prod^{12y}{\\frac{2}" +
                     "{3g\\prod_{q=16\\pi}^{\\infty}{q\\sin{q}}}}\\prod_{h=23}^{\\infty}" +
                     "\\sum^{z}_{h=\\ln{p^2\\tan{i}}}" + "\\prod_{o=15}^{\\cos{321o+4}}" +
                     "{\\frac{\\sum{l=2}{y-3}+4}{r\\prod^{\\infty}_{l=y}{l}}} + 3.5",
+            "\\sum 3x46x(3c\\cos{2})(3ln{q})+3x+52",
+            "\\sum_{x=0}4x(y^2)x2t+2tx+3y",
+            "\\prod^{100}\\cos{i}2i(z_{2i^2})+2i^3-2f/3",
+            "\\prod_{x=0}^{\\infty}x\\sin{x^2}\\cos{t}+2sin{4}+3",
+            "\\sum^{50}_{r=0}r\\cos{\\Theta}r(3r^2-3)/23x+3q",
+            "\\prod 2x(3y)(3^2)=2x^2(3rt)",
+            "\\sum_{x=0}^{\\infty}23x(x+4)\\prod^{100}2x(x+2)(3y+2)",
 
-            "(b^2)\\sin{b^2}+4\\arccos{\\prod_{b=1}{12}{y^p\\log{b}}}+\\frac{b\\sum^{200}{3\\cos{b}}}{1.2n}",            //and this
-            "(b^2)\\sin{b^2}+4\\arccos{\\prod_{b=1}{12}{y^p\\log{b}}}+\\frac{b\\sum^{200}_{b=1}{3\\cos{b}}}{1.2n}",
-            "\\frac{{\\mathrm{d}}^{2}w}{{\\mathrm{d}z}^{2}}+\\left(\\sum_{j=1}^{N}\\frac{\\gamma_{j}}{z-a_{j}}\\right)\\frac{\\mathrm{d}w}{\\mathrm{d}z}+\\frac{\\Phi(z)}{\\prod_{j=1}^{N}(z-a_{j})}w=0"
-
-//a_b^c gives error        "\\sum_{j=1}^{N}\\frac{\\gamma_{j}}{t_{k}-a_{j}}+\\sum_{j=1}^{n-1}\\frac{1}{t_{k}-z_{j}^{\\prime}}=0",
-//subarrays don't work     "\\sum_{j=1}^{N}\\frac{\\gamma_{j}/2}{z_{k}-a_{j}}+\\sum_{\\begin{subarray}{c}j=1\\\\ j\\neq k\\end{subarray}}^{n}\\frac{1}{z_{k}-z_{j}}=0",
     };
 
     private static final String[] translatedMaple = {
@@ -136,30 +131,45 @@ public class SumProductTranslatorTest {
             "Product[z, {y, y, t}]",
             "Sum[y, t]",
             "Product[y, t]",
-            "Sum[y, {i, t}]",
-            "Product[y, {i, t}]",
-            "Sum[t, i]",
-            "Product[t, i]",
+            "Sum[y, {y, t}]",
+            "Product[y, {y, t}]",
+            "Sum[t, t]",
+            "Product[t, t]",
             "Sum[(t)^(2), {t, t = 0, Infinity}]",
             "Product[(t)^(2), {t, t = 0, Infinity}]",
             "Sum[Tan[t], t = 3]",
             "Product[Tan[t], t = 3]",
             "Sum[12, {t, t = 0, 100}]",
             "Product[12, {t, t = 0, 100}]",
-            "Cos[Sum[- 2 Log[q], {t, t = - 12, 24 y}]]",
             "Product[Subscript[A, 2 Sin[u]], A]",
-            "Divide[1,z]+ 2 z Sum[Divide[1,(z)^(2)- (n)^(2)  (\\[Pi])^(2)], {n, n = 1, Infinity}]",
             "Sum[Divide[(- 1)^(n)  (2)^(2 n - 1)  Subscript[B, 2 n],n (2 n)!], {n, n = 1, Infinity}] (z)^(2 n)",
-            "Divide[2 p,(y)^(2)]+ Log[2 (3 + (p)^(2))] + Product[[(t)^(2)  Sin[t]], {t, t = 0, Infinity}] + (2)^(t)  Cos[y]",
-            "Divide[2 p,(y)^(2)]+ Log[2 (3 + (p)^(2))] + Product[((t)^(2)  Sin[x]), {x, x = 0, Infinity}] + (2)^(t)  Cos[y]",
-            "Subscript[z, Product[1/ (t)^(3), {t, t = 1, Infinity}]]",
-            "(z)^(Sum[u, {i, 100}] (t)^(2)+ Subscript[2, v]+ 3)+Divide[2 Tan[Sum[Product[2 + (t)^(3), {t, t = 0, 63}], i] + 5 f],37]",
             "Sum[Sum[Product[Sum[Product[3 t, t], {t, t = 1, Infinity}], {t, t = 3, 5}], {i, 100}], {t, t, y}]",
-            "Subscript[q, j] = Subscript[\\[Gamma], j] Sum[Divide[1,Subscript[z, k] - Subscript[a, j]], {k, k = 1, n}]",
             "Product[Sum[Product[Divide[2,3 g Product[q Sin[q], {q, q = 16 \\[Pi], Infinity}]], {i, 12 y}], {t, t = - 2, - 72.3 z}], {t, t = 7, Infinity}] Product[Sum[Product[Divide[Sum[l = 2, l] y - 3+ 4,r Product[l, {l, l = y, Infinity}]], {o, o = 15, Cos[321 o + 4]}], {h, h = Log[(p)^(2)  Tan[i]], z}], {h, h = 23, Infinity}] + 3.5",
-            "((b)^(2)) Sin[(b)^(2)] + 4 arccos(Product[12, b = 1] (y)^(p)  Log[b])+Divide[b Sum[3 Cos[b], {b, 200}],1.2 n]",
-            "((b)^(2)) Sin[(b)^(2)] + 4 arccos(Product[12, b = 1] (y)^(p)  Log[b])+Divide[b Sum[3 Cos[b], {b, b = 1, 200}],1.2 n]",
-            "Divide[(d)^(2)  w,d (z)^(2)]+(Sum[Divide[Subscript[\\[Gamma], j],z - Subscript[a, j]], {j, j = 1, N}]) Divide[d w,d z]+Divide[\\[CapitalPhi] (z),Product[(z - Subscript[a, j]), {j, j = 1, N}]] w = 0"
+            "Sum[3x 4 6 x(3 c Cos[2])(3 ln(q)), x] + 3 x + 52",
+            "Sum[4x((y)^(2))x 2 t, x = 0] + 2 t x + 3 y",
+            "Product[Cos[i]2i(Subscript[z, 2 (i)^(2)]), {i, 100}] + 2 (i)^(3)- 2 f/ 3",
+            "Product[xSin[(x)^(2)]Cos[t], {x, x = 0, Infinity}] + 2 sin(4)+ 3",
+            "Sum[rCos[\\[CapitalTheta]]r(3 (r)^(2) - 3)/23x, {r, r = 0, 50}] + 3 q",
+            "Product[2x(3 y)((3)^(2)), x] = 2 (x)^(2)  (3 r t)",
+            "Sum[23x(x + 4)Product[2x(x + 2)(3 y + 2), {x, 100}], {x, x = 0, Infinity}]",
+
+
+    };
+
+    private static final String[] removedTestCases = {
+            "\\cos{\\sum_{t=-12}^{24y}{-2\\ln{q}}}",
+            "\\frac{1}{z}+2z\\sum_{n=1}^{\\infty}\\frac{1}{z^{2}-n^{2}\\pi^{2}}",
+            "\\frac{2p}{y^2}+\\ln{2(3+p^2)}+\\prod^{\\infty}_{t=0}[t^2\\sin{t}]+2^t\\cos{y}",
+            "\\frac{2p}{y^2}+\\ln{2(3+p^2)}+\\prod^{\\infty}_{x=0}(t^2\\sin{x})+2^t\\cos{y}",
+            "z_{\\prod_{t=1}^{\\infty}{1/t^3}}",
+            "z^{\\sum^{100}{u}{t^2+2_v}+3}+\\frac{2\\tan{\\sum{\\prod_{t=0}^{63}{2+t^3}}+5f}}{37}",
+            "q_{j}=\\gamma_{j}\\sum_{k=1}^{n}\\frac{1}{z_{k}-a_{j}}",
+            "(b^2)\\sin{b^2}+4\\arccos{\\prod_{b=1}{12}{y^p\\log{b}}}+\\frac{b\\sum^{200}{3\\cos{b}}}{1.2n}",            //and this
+            "(b^2)\\sin{b^2}+4\\arccos{\\prod_{b=1}{12}{y^p\\log{b}}}+\\frac{b\\sum^{200}_{b=1}{3\\cos{b}}}{1.2n}",
+            "\\frac{{\\mathrm{d}}^{2}w}{{\\mathrm{d}z}^{2}}+\\left(\\sum_{j=1}^{N}\\frac{\\gamma_{j}}{z-a_{j}}\\right)\\frac{\\mathrm{d}w}{\\mathrm{d}z}+\\frac{\\Phi(z)}{\\prod_{j=1}^{N}(z-a_{j})}w=0",
+            "\\sum_{j=1}^{N}\\frac{\\gamma_{j}}{t_{k}-a_{j}}+\\sum_{j=1}^{n-1}\\frac{1}{t_{k}-z_{j}^{\\prime}}=0",
+            //a_b^c gives error        "\\sum_{j=1}^{N}\\frac{\\gamma_{j}}{t_{k}-a_{j}}+\\sum_{j=1}^{n-1}\\frac{1}{t_{k}-z_{j}^{\\prime}}=0",
+            // subarrays don't work     "\\sum_{j=1}^{N}\\frac{\\gamma_{j}/2}{z_{k}-a_{j}}+\\sum_{\\begin{subarray}{c}j=1\\\\ j\\neq k\\end{subarray}}^{n}\\frac{1}{z_{k}-z_{j}}=0",
     };
 
     private static ByteArrayOutputStream result;
@@ -179,7 +189,7 @@ public class SumProductTranslatorTest {
     }
 
     @TestFactory
-    Stream<DynamicTest> sumMathematicaTest() {
+    Stream<DynamicTest>  sumMathematicaTest() {
         PomParser parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA.toString());
         parser.addLexicons( MacrosLexicon.getDLMFMacroLexicon() );
 
@@ -197,25 +207,24 @@ public class SumProductTranslatorTest {
 
                             List<PomTaggedExpression> components = ex.getComponents();
                             PomTaggedExpression first = components.remove(0);
-
                             spt.translate(first, components);
                             assertEquals(output.get(index), spt.getTranslation());
                         }));
     }
 
 
-//    @Test
-//    public void mathematicaTest(){
-//        String more = "";
-//        for(int i = 0; i < expression.length; i++){
-//            String[] args = {"-CAS=Mathematica", "-Expression=" + expression[i]};
-//            SemanticToCASInterpreter.main(args);
-//            more += stuffBeforeMathematica.substring(0, stuffBeforeMathematica.indexOf("n: ") + 3) + expression[i]
-//                    + stuffBeforeMathematica.substring(stuffBeforeMathematica.indexOf("n: ") + 3);
-//            more += translatedMathematica[i] + "\n\n";
-//            assertEquals(more, result.toString());
-//        }
-//    }
+    @Test
+    public void mathematicaTest(){
+        String more = "";
+        for(int i = 0; i < expression.length; i++){
+            String[] args = {"-CAS=Mathematica", "-Expression=" + expression[i]};
+            SemanticToCASInterpreter.main(args);
+            more += stuffBeforeMathematica.substring(0, stuffBeforeMathematica.indexOf("n: ") + 3) + expression[i]
+                    + stuffBeforeMathematica.substring(stuffBeforeMathematica.indexOf("n: ") + 3);
+            more += translatedMathematica[i] + "\n\n";
+            assertEquals(more, result.toString());
+        }
+    }
 //
 //    @Test
 //    public void mapleTest(){
