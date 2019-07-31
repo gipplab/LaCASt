@@ -1,11 +1,15 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
+import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import mlp.ParseException;
+import mlp.PomParser;
 import mlp.PomTaggedExpression;
 
 import java.util.ArrayList;
@@ -50,7 +54,6 @@ public class SumProductTranslator extends AbstractListTranslator{
         int numArgs = addToArgs(next, list);
 
         addFactorsToSummand(list, tempNum, numArgs);
-
 //        if(tempNum < indices.size() && !indices.get(tempNum).isEmpty())
 //            addMoreToSummand(indices.get(tempNum), tempNum, list);
 
@@ -184,9 +187,9 @@ public class SumProductTranslator extends AbstractListTranslator{
                     break;
                 }
             }
-        } else if(Character.isLetter(next.getRoot().getTermText().charAt(0))){
+        } if(storeIndex.isEmpty() && Character.isLetter(next.getRoot().getTermText().charAt(0))){
             storeIndex = Character.toString(next.getRoot().getTermText().charAt(0));
-        } else {
+        } if(storeIndex.isEmpty()) {
             for(int i = 0; i < list.size(); i++){
                 char nextChar = list.get(i).getRoot().getTermText().charAt(0);
                 if(Character.isLetter(nextChar)){
@@ -257,6 +260,15 @@ public class SumProductTranslator extends AbstractListTranslator{
             upperLim = upperComponents.get(0);
         }
 
+        if(!Character.isLetter(storeIndex.charAt(0))) {
+            for(int i = 0; i < list.size(); i++){
+                char nextChar = list.get(i).getRoot().getTermText().charAt(0);
+                if(Character.isLetter(nextChar)){
+                    storeIndex = Character.toString(nextChar);
+                    break;
+                }
+            }
+        }
         //lower limit of summation
         int size = lowerLim.getComponents().size();
         args.get(num).add(parseGeneralExpression(lowerLim, list).toString());
@@ -341,12 +353,11 @@ public class SumProductTranslator extends AbstractListTranslator{
             numFromEnd = 2;
         else
             numFromEnd = 1;
-
         String summand = args.get(tempNum).get(args.get(tempNum).size() - numFromEnd);
-
         boolean endSummand = false;
         //for each term in the expressions list following the summand, if its tag is something other than
         //addition, subtraction, equals, etc. then add it to the summand.
+        String lastExp = "";
         for(int i = 0; i < list.size(); i++){
             if(endSummand)
                 break;
@@ -354,7 +365,7 @@ public class SumProductTranslator extends AbstractListTranslator{
             MathTermTags tag = MathTermTags.getTagByKey(list.get(i).getRoot().getTag());
             if(tag == null){
                 summand += parseGeneralExpression(list.remove(i), list);
-                global_exp.removeLastExpression();
+                lastExp = global_exp.removeLastExpression();
                 i--;
             } else {
                 switch (tag) {
@@ -364,11 +375,19 @@ public class SumProductTranslator extends AbstractListTranslator{
                     case less_than:
                     case greater_than:
                     case relation:
-                            endSummand = true;
-                            break;
+                    case right_parenthesis:
+                        endSummand = true;
+                        break;
+                    case caret:
+                    case underscore:
+                        global_exp.addTranslatedExpression("(" + lastExp + ")");
+                        summand += parseGeneralExpression(list.remove(i), list);
+                        lastExp = global_exp.removeLastExpression();
+                        i--;
+                        break;
                     default:
                         summand += parseGeneralExpression(list.remove(i), list);
-                        global_exp.removeLastExpression();
+                        lastExp = global_exp.removeLastExpression();
                         i--;
                         break;
                 }
@@ -378,55 +397,6 @@ public class SumProductTranslator extends AbstractListTranslator{
         args.get(tempNum).set(args.get(tempNum).size() - numFromEnd, summand);
 
     }
-
-/*    private static List<PomTaggedExpression> caretParens(List<PomTaggedExpression> list){
-
-        PomParser parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA.toString());
-        for(int i = 0; i < list.size(); i++){
-            Dictionary<MathTermTags, Integer> dict = new Hashtable<>();
-            dict.put(MathTermTags.right_parenthesis, 0);
-            dict.put(MathTermTags.right_bracket, 0);
-            dict.put(MathTermTags.right_brace, 0);
-            dict.put(MathTermTags.right_delimiter, 0);
-            dict.put(MathTermTags.left_parenthesis, 0);
-            dict.put(MathTermTags.left_bracket, 0);
-            dict.put(MathTermTags.left_brace, 0);
-            dict.put(MathTermTags.left_delimiter, 0);
-            if(MathTermTags.getTagByKey(list.get(i).getRoot().getTag()).equals(MathTermTags.caret)){
-                int j = i;
-                while(j > 0){
-                    j--;
-                    MathTermTags tag = MathTermTags.getTagByKey(list.get(j).getRoot().getTag());
-                    if(tag.equals(MathTermTags.right_parenthesis) || tag.equals(MathTermTags.right_bracket)
-                            || tag.equals(MathTermTags.right_brace) || tag.equals(MathTermTags.right_delimiter))
-                        dict.put(tag, dict.get(tag) + 1);
-                    if(tag.equals(MathTermTags.left_parenthesis) || tag.equals(MathTermTags.left_bracket)
-                            || tag.equals(MathTermTags.left_brace) || tag.equals(MathTermTags.left_delimiter))
-                        dict.put(tag, dict.get(tag) + 1);
-                    boolean noParens = dict.get(MathTermTags.right_parenthesis) == dict.get(MathTermTags.left_parenthesis);
-                    boolean noBrackets = dict.get(MathTermTags.right_bracket) == dict.get(MathTermTags.left_bracket);
-                    boolean noBraces = dict.get(MathTermTags.right_brace) == dict.get(MathTermTags.left_brace);
-                    boolean noDelimiters = dict.get(MathTermTags.right_delimiter) == dict.get(MathTermTags.left_delimiter);
-                    boolean none = noParens && noBrackets && noBraces && noDelimiters;
-                    if(none) {
-                        try {
-                            list.add(j, parser.parse("("));
-                            list.add(i + 2, parser.parse(")"));
-                            i++;
-                        } catch (ParseException p) {
-
-                        }
-                        break;
-                    }
-                }
-            }
-        }
-        return list;
-    }
-
- */
-
-
 
 
 
