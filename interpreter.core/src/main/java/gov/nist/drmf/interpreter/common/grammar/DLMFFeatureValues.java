@@ -31,7 +31,9 @@ public enum DLMFFeatureValues implements IFeatureExtractor{
     variables(
             t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.NUM_OF_VARS))
     ),
-    CAS(
+    slot(
+            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.SLOT_OF_DIFF))
+    ), CAS(
             t -> IFeatureExtractor.getStringFromSet(t.getFeature(GlobalConstants.CAS_KEY))
     ),
     CAS_Alternatives(
