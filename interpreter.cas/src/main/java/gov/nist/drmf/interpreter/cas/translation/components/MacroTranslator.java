@@ -51,7 +51,7 @@ public class MacroTranslator extends AbstractListTranslator {
             Pattern.compile("\\s*\\[(.*)]\\s*\\*?\\s*");
 
     private static final Pattern leibniz_notation_pattern =
-            Pattern.compile("\\s*(\\(.*\\))\\s*");
+            Pattern.compile("\\s*\\(([^@]*)\\)\\s*");
 
     private static final String deriv_special_case = "\\\\p?deriv";
 
@@ -59,8 +59,9 @@ public class MacroTranslator extends AbstractListTranslator {
     private int
             numOfParams           = Integer.MIN_VALUE,
             numOfAts              = Integer.MIN_VALUE,
-            numOfVars             = Integer.MIN_VALUE,
-            slotOfDifferentiation = Integer.MIN_VALUE;
+            numOfVars             = Integer.MIN_VALUE;
+
+    private Integer slotOfDifferentiation = Integer.MIN_VALUE;
 
     private String DLMF_example;
 
@@ -105,9 +106,15 @@ public class MacroTranslator extends AbstractListTranslator {
         numOfParams           = Integer.parseInt(DLMFFeatureValues.params.getFeatureValue(fset));
         numOfAts              = Integer.parseInt(DLMFFeatureValues.ats.getFeatureValue(fset));
         numOfVars             = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset));
-        slotOfDifferentiation = numOfParams + 1; //TODO number for testing
 
-        // now store additional information about the translation
+        try {
+            slotOfDifferentiation = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset)) + numOfParams; // true slot is argument slot + numOfParams
+        } catch(NumberFormatException e) {
+            slotOfDifferentiation = null; // if slot isn't in lexicon, value is null
+        }
+
+
+        // now store additional inf ormation about the translation
         // Meaning: name of the function (defined by DLMF)
         // Description: same like meaning, but more rough. Usually there is only one of them defined (meaning|descreption)
         // Constraints: of the DLMF definition
@@ -157,13 +164,14 @@ public class MacroTranslator extends AbstractListTranslator {
     private boolean parse(List<PomTaggedExpression> following_exps){
         LinkedList<String> optional_paras = new LinkedList<>();
         PomTaggedExpression moveToEnd = null;
+        deriv_order = null;
         //LOG.info(following_exps.get(0));
 
-        FeatureSet fset = macro_term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
-        if ( fset != null ){
+        FeatureSet fset = macro_term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
+        if (fset != null) {
             storeInfos(fset);
-            int sum = numOfAts+numOfVars+numOfParams;
-            if ( sum == 0 ){ // its a symbol
+            int sum = numOfAts + numOfVars + numOfParams;
+            if (sum == 0) { // its a symbol
                 INFO_LOG.addMacroInfo(macro_term.getTermText(), createFurtherInformation());
                 local_inner_exp.addTranslatedExpression(translation_pattern);
                 global_exp.addTranslatedExpression(translation_pattern);
@@ -172,46 +180,57 @@ public class MacroTranslator extends AbstractListTranslator {
         }
 
         int deriv_order_num = 0;
-        while ( !following_exps.isEmpty() ){
+        while (!following_exps.isEmpty()) {
             PomTaggedExpression first = following_exps.get(0);
             LOG.info(first);
-            if ( first.isEmpty() ) break;
+            if (first.isEmpty()) break;
             MathTerm first_term = first.getRoot();
 
-            if ( first_term != null && !first_term.isEmpty() ){
-                MathTermTags tag = MathTermTags.getTagByKey( first_term.getTag() );
-                if ( tag == null ) break;
-                else if ( tag.equals(MathTermTags.prime) ){
+            if (first_term != null && !first_term.isEmpty()) {
+                MathTermTags tag = MathTermTags.getTagByKey(first_term.getTag());
+                if (tag == null) break;
+                else if (tag.equals(MathTermTags.prime)) {
+                    if (slotOfDifferentiation == null) {
+                        throw new TranslationException(
+                                "No information in lexicon for slot of differentiation of macro.",
+                                TranslationException.Reason.DLMF_MACRO_ERROR
+                        );
+                    } else if ( deriv_order != null && !deriv_order.isEmpty() )
+                        throwDifferentiationException();
                     deriv_order_num++;
                     following_exps.remove(0);
-                } else if ( tag.equals(MathTermTags.caret) ){
-                    if( isLeibnizNotation( following_exps )){
-                        parseLeibnizNotation( following_exps );
-                    } else moveToEnd = following_exps.remove(0); // regular exponentiation
+                } else if (tag.equals(MathTermTags.caret)) {
+                    if (isLeibnizNotation(following_exps)) {
+                        if( ( deriv_order == null || deriv_order.isEmpty() ) && deriv_order_num == 0 )
+                            parseLeibnizNotation(following_exps);
+                        else throwDifferentiationException();
+                    } else {
+                        moveToEnd = following_exps.remove(0); // regular exponentiation
+                    }
                     //continue;
-                } else if ( tag.equals(MathTermTags.left_bracket) ){
-                    String optional = translateInnerExp( following_exps.remove(0), following_exps );
+                } else if (tag.equals(MathTermTags.left_bracket)) {
+                    String optional = translateInnerExp(following_exps.remove(0), following_exps);
                     Matcher m = optional_params_pattern.matcher(optional);
-                    if ( m.matches() )
-                        optional_paras.add( m.group(1) );
-                    else optional_paras.add( optional );
+                    if (m.matches())
+                        optional_paras.add(m.group(1));
+                    else optional_paras.add(optional);
                 } else {
                     break;
                 }
             } else break;
         }
 
-        if ( ( deriv_order == null || deriv_order.isEmpty() ) && deriv_order_num > 0){
+        if ( ( deriv_order == null || deriv_order.isEmpty() ) && deriv_order_num > 0 ) {
             deriv_order = Integer.toString(deriv_order_num);
         }
 
-        if ( optional_paras.size() > 0 ) {
+        if (optional_paras.size() > 0) {
             fset = macro_term.getNamedFeatureSet(
-                Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + optional_paras.size() );
-            if ( handleNull( fset,
-                "Cannot find feature set with optional parameters.",
-                TranslationException.Reason.UNKNOWN_MACRO,
-                macro_term.getTermText(), null ) ) {
+                    Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + optional_paras.size());
+            if (handleNull(fset,
+                    "Cannot find feature set with optional parameters.",
+                    TranslationException.Reason.UNKNOWN_MACRO,
+                    macro_term.getTermText(), null)) {
                 return true;
             }
         }
@@ -219,16 +238,16 @@ public class MacroTranslator extends AbstractListTranslator {
         int start = optional_paras.size();
         try {
             storeInfos(fset);
-        } catch ( NullPointerException npe ){
-            handleNull( null,
-                "Cannot extract information from feature set: " + macro_term.getTermText(),
-                TranslationException.Reason.NULL,
-                macro_term.getTermText(),
-                npe);
+        } catch (NullPointerException npe) {
+            handleNull(null,
+                    "Cannot extract information from feature set: " + macro_term.getTermText(),
+                    TranslationException.Reason.NULL,
+                    macro_term.getTermText(),
+                    npe);
         }
 
         String info_key = macro_term.getTermText();
-        if ( start != 0 )
+        if (start != 0)
             info_key += start;
         // put all information to the info log
         INFO_LOG.addMacroInfo(
@@ -236,15 +255,15 @@ public class MacroTranslator extends AbstractListTranslator {
                 createFurtherInformation()
         );
 
-        components = new String[ start + numOfParams + numOfVars ];
-        for ( int i = 0; !optional_paras.isEmpty() && i < components.length; i++ )
+        components = new String[start + numOfParams + numOfVars];
+        for (int i = 0; !optional_paras.isEmpty() && i < components.length; i++)
             components[i] = optional_paras.removeFirst();
 
         PomTaggedExpression exp;
         boolean null_deriv_case = false;
-        if ( !following_exps.isEmpty() ){
+        if (!following_exps.isEmpty()) {
             exp = following_exps.get(0);
-            if ( exp.isEmpty() && macro_term.getTermText().matches( deriv_special_case ) ){
+            if (exp.isEmpty() && macro_term.getTermText().matches(deriv_special_case)) {
                 following_exps.remove(0);
                 start++;
                 null_deriv_case = true;
@@ -254,24 +273,24 @@ public class MacroTranslator extends AbstractListTranslator {
         boolean passAts = false;
 
         int inner_at_counter = 0;
-        for ( int i = start; !following_exps.isEmpty() && i < components.length; ){
+        for (int i = start; !following_exps.isEmpty() && i < components.length; ) {
             // get first expression
             exp = following_exps.remove(0);
 
-            if ( containsTerm(exp) ){
+            if (containsTerm(exp)) {
                 MathTerm term = exp.getRoot();
                 MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
-                if ( inner_at_counter > numOfAts ){
+                if (inner_at_counter > numOfAts) {
                     throw new TranslationException(
                             "Not valid number of @s in a DLMF-macro. " + DLMF_example,
                             TranslationException.Reason.DLMF_MACRO_ERROR
                     );
-                } else if ( term.getTag().matches(Keys.FEATURE_SET_AT) ){
+                } else if (term.getTag().matches(Keys.FEATURE_SET_AT)) {
                     passAts = true;
                     inner_at_counter++;
                     continue;
-                } else if ( tag != null && tag.equals(MathTermTags.caret) && !passAts ){
-                    if ( moveToEnd != null ){
+                } else if (tag != null && tag.equals(MathTermTags.caret) && !passAts) {
+                    if (moveToEnd != null) {
                         throw new TranslationException(
                                 "Two times an exponent? That's not really allowed! " + macro_term.getTermText(),
                                 TranslationException.Reason.DLMF_MACRO_ERROR
@@ -284,33 +303,33 @@ public class MacroTranslator extends AbstractListTranslator {
 
             TranslatedExpression inner_exp = parseGeneralExpression(exp, following_exps);
             components[i] = inner_exp.toString();
-            global_exp.removeLastNExps( inner_exp.getLength() );
+            global_exp.removeLastNExps(inner_exp.getLength());
 
             i++;
-            if ( isInnerError() )
+            if (isInnerError())
                 return false;
         }
 
-        if ( null_deriv_case && !following_exps.isEmpty() ){
+        if (null_deriv_case && !following_exps.isEmpty()) {
             exp = following_exps.remove(0);
             TranslatedExpression following_argument =
                     parseGeneralExpression(exp, following_exps);
-            components[start-1] = following_argument.toString();
+            components[start - 1] = following_argument.toString();
 
-            if ( checkForce( following_exps ) ){
+            if (checkForce(following_exps)) {
                 exp = following_exps.remove(0);
                 TranslatedExpression tmp = parseGeneralExpression(exp, following_exps);
-                if ( tmp.getLastExpression() == null ){
+                if (tmp.getLastExpression() == null) {
                     following_argument.removeLastExpression();
-                    following_argument.addTranslatedExpression( global_exp.removeLastExpression() );
-                    components[start-1] = following_argument.toString();
+                    following_argument.addTranslatedExpression(global_exp.removeLastExpression());
+                    components[start - 1] = following_argument.toString();
                 }
             }
 
-            global_exp.removeLastNExps( following_argument.getLength() );
+            global_exp.removeLastNExps(following_argument.getLength());
         }
 
-        if ( moveToEnd != null ){
+        if (moveToEnd != null) {
             following_exps.add(0, moveToEnd);
         }
 
@@ -329,21 +348,38 @@ public class MacroTranslator extends AbstractListTranslator {
         return inner_exp.toString();
     }
 
-    private boolean isLeibnizNotation( List<PomTaggedExpression> following_exps ){
-        PomTaggedExpression caret    = following_exps.get(0);
-        PomTaggedExpression sequence = caret.getComponents().get(0);
-        MathTerm term                = sequence.getComponents().get(0).getRoot();
+    private boolean isLeibnizNotation( List<PomTaggedExpression> following_exps ){ // checks if term after caret is a left parenthesis
+        if( slotOfDifferentiation == null ) return false;
+        MathTerm term;
+        try{
+            PomTaggedExpression caret    = following_exps.get(0);
+            PomTaggedExpression sequence = caret.getComponents().get(0);
+            term                = sequence.getComponents().get(0).getRoot();
+        } catch( IndexOutOfBoundsException e ){
+            return false;
+        }
         return term.getTag().equals(MathTermTags.left_parenthesis.tag());
     }
 
-    private void parseLeibnizNotation( List<PomTaggedExpression> following_exps ) {
+    private void parseLeibnizNotation( List<PomTaggedExpression> following_exps ) { // extracts order of Leibniz notation differentiation
         PomTaggedExpression expression = following_exps.remove(0).getComponents().get(0);
         String order = translateInnerExp(expression, following_exps);
         Matcher m = leibniz_notation_pattern.matcher(order);
         if (m.matches()) {
             deriv_order = m.group(1);
-        } else deriv_order = order;
-        following_exps.remove(0);
+        } else {
+            throw new TranslationException(
+                    "Correct Leibniz notation is '\\<macro>^{(<order>)}@<args>'.",
+                    TranslationException.Reason.WRONG_PARENTHESIS
+            );
+        }
+    }
+
+    private void throwDifferentiationException() throws TranslationException{
+        throw new TranslationException(
+                "Cannot combine prime differentiation notation with Leibniz notation differentiation ",
+                TranslationException.Reason.DLMF_MACRO_ERROR
+        );
     }
 
     private boolean checkForce( List<PomTaggedExpression> following_exps ){
@@ -389,14 +425,18 @@ public class MacroTranslator extends AbstractListTranslator {
                 throw new TranslationException("Argument of macro seems to be missing for " + macro_term, TranslationException.Reason.NULL_ARGUMENT);
             }
         }
-        if ( deriv_order != null && !deriv_order.isEmpty() ){
-
+        if ( deriv_order != null && !deriv_order.isEmpty() ){ // fillVars into derivative
             String[] args = new String[]{pattern, subbedExpression, deriv_order};
             LOG.info(Arrays.toString(args));
             pattern = SemanticLatexTranslator.getBasicFunctionParser().translate( args, "derivative" );
         }
         local_inner_exp.addTranslatedExpression(pattern);
         global_exp.addTranslatedExpression(pattern);
+    }
+
+    protected void clearTranslation(){
+        local_inner_exp.clear();
+        global_exp.clear();
     }
 
     private String createFurtherInformation(){
