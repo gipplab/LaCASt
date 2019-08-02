@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
+import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.*;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
@@ -39,17 +40,18 @@ class MacroTranslatorMapleTest {
     private static final String[] expression = {
             "\\AiryAi@{x}",
             "\\AiryAi'@{x}",
+            "\\AiryAi@'{x}",
             "\\AiryAi^{(5)}@{x}",
             "\\Hurwitzzeta@{s}{a}",
             "\\Hurwitzzeta'@{0}{a}",
             "\\ln@@{\\EulerGamma@{a}}",
-            "\\ln@{2\\pi}",
+            "\\ln@@{2\\pi}",
             "\\Hurwitzzeta^{(2+3n)}@{s}{a}",
             "\\Hurwitzzeta''''''''''@{s}{a}",
             "\\modBesselKimag{\\nu}@{x}",
-            "\\modBesselKimag'{\\nu}@{x}",
-            "\\modBesselKimag^{(5^3)}{\\nu}@{x}",
-            "\\modBesselKimag^{(5^3}{\\nu}@{x}",
+            "\\modBesselKimag{\\nu}'@{x}",
+            "\\modBesselKimag{\\nu}^{(5^3)}@{x}",
+            "\\modBesselKimag{\\nu}^{(5^3}@{x}",
             "\\hyperF@@@{a}{b}{c}{z}",
             "\\hyperF'@@@{a}{b}{c}{z}",
             "\\hyperF@'@@{a}{b}{c}{z}",
@@ -58,11 +60,22 @@ class MacroTranslatorMapleTest {
             "\\hyperF'@@@{a}{b}{\\ln@@{c}+2}{\\cos@@{2z}}",
             "\\hyperF^{(3)}'@@@{a}{b}{c}{z}",
             "\\hyperF'^{(3)}@@@{a}{b}{c}{z}",
+            "\\FerrersP[\\mu]{\\nu}@{x}",
+            "\\FerrersP[\\mu]{\\nu}'@{x}",
+            "\\FerrersP'[\\mu]{\\nu}@{x}",
+            "\\FerrersP[\\mu]'{\\nu}@{x}",
+            "\\FerrersP[\\mu]{\\nu}^{(6)}@{x}",
+            "\\notmacro@{x}",
+            "\\notmacro'@{x}",
+            "\\notmacro^{(3)}@{x}",
+            "\\pochhammer{a}{n}",
+            "\\pochhammer'{a}{n}",
     };
 
     private static final String[] translatedMaple = {
             "AiryAi(x)",
             "subs( temp=x, diff( AiryAi(temp), temp$1 ) )",
+            null,
             "subs( temp=x, diff( AiryAi(temp), temp$5 ) )",
             "Zeta(0, s, a)",
             "subs( temp=0, diff( Zeta(0, temp, a), temp$1 ) )",
@@ -82,11 +95,22 @@ class MacroTranslatorMapleTest {
             "subs( temp=cos(2*z), diff( hypergeom([a, b], [ln(c)+ 2], temp), temp$1 ) )",
             null,
             null,
+            "LegendreP(nu, mu, x)",
+            "subs( temp=x, diff( LegendreP(nu, mu, temp), temp$1 ) )",
+            null,
+            null,
+            "subs( temp=x, diff( LegendreP(nu, mu, temp), temp$6 ) )",
+            null,
+            null,
+            null,
+            "pochhammer(a, n)",
+            null,
     };
 
     private static final Class[] expectedExceptions = {
             null,
             null,
+            TranslationException.class,
             null,
             null,
             null,
@@ -105,6 +129,16 @@ class MacroTranslatorMapleTest {
             null,
             null,
             TranslationException.class,
+            TranslationException.class,
+            null,
+            null,
+            TranslationException.class,
+            TranslationException.class,
+            null,
+            TranslationException.class,
+            TranslationException.class,
+            TranslationException.class,
+            null,
             TranslationException.class,
     };
 
@@ -130,6 +164,8 @@ class MacroTranslatorMapleTest {
 
                             List<PomTaggedExpression> components = ex.getComponents();
                             PomTaggedExpression first = components.remove(0);
+
+                            //System.out.println(translator.parseGeneral( first, components ));
 
                             if( exceptions.get(index) != null ) {
                                 assertThrows( exceptions.get(index), () -> translator.translate(first, components) );
