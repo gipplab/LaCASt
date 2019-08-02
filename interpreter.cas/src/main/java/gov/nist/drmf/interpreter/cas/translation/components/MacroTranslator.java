@@ -55,7 +55,7 @@ public class MacroTranslator extends AbstractListTranslator {
 
     private static final String deriv_special_case = "\\\\p?deriv";
 
-    // the number of parameters, ats and variables
+    // the number of parameters, ats, and variables
     private int
             numOfParams           = Integer.MIN_VALUE,
             numOfAts              = Integer.MIN_VALUE,
@@ -107,8 +107,8 @@ public class MacroTranslator extends AbstractListTranslator {
         numOfAts              = Integer.parseInt(DLMFFeatureValues.ats.getFeatureValue(fset));
         numOfVars             = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset));
 
-        try {
-            slotOfDifferentiation = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset)) + numOfParams; // true slot is argument slot + numOfParams
+        try { // true slot is argument slot + numOfParams
+            slotOfDifferentiation = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset)) + numOfParams;
         } catch(NumberFormatException e) {
             slotOfDifferentiation = null; // if slot isn't in lexicon, value is null
         }
@@ -224,6 +224,15 @@ public class MacroTranslator extends AbstractListTranslator {
             deriv_order = Integer.toString(deriv_order_num);
         }
 
+        if ( deriv_order != null && !deriv_order.isEmpty() ){
+            if ( numOfParams > 0 ){
+                throw new TranslationException(
+                        "Differentiation occurs after parameters",
+                        TranslationException.Reason.DLMF_MACRO_ERROR
+                );
+            }
+        }
+
         if (optional_paras.size() > 0) {
             fset = macro_term.getNamedFeatureSet(
                     Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + optional_paras.size());
@@ -255,6 +264,7 @@ public class MacroTranslator extends AbstractListTranslator {
                 createFurtherInformation()
         );
 
+        if(!optional_paras.isEmpty()) slotOfDifferentiation += optional_paras.size();
         components = new String[start + numOfParams + numOfVars];
         for (int i = 0; !optional_paras.isEmpty() && i < components.length; i++)
             components[i] = optional_paras.removeFirst();
@@ -299,6 +309,44 @@ public class MacroTranslator extends AbstractListTranslator {
                     moveToEnd = exp;
                     continue;
                 }
+            }
+            //System.out.println(following_exps);
+
+            deriv_order_num = 0;
+            while (!following_exps.isEmpty()) { // look for differentiation after parameters
+                PomTaggedExpression first = following_exps.get(0);
+                LOG.info(first);
+                if (first.isEmpty()) break;
+                MathTerm first_term = first.getRoot();
+
+                if (first_term != null && !first_term.isEmpty()) {
+                    MathTermTags tag = MathTermTags.getTagByKey(first_term.getTag());
+                    if (tag == null) break;
+                    else if (tag.equals(MathTermTags.prime)) {
+                        if (slotOfDifferentiation == null) {
+                            throw new TranslationException(
+                                    "No information in lexicon for slot of differentiation of macro.",
+                                    TranslationException.Reason.DLMF_MACRO_ERROR
+                            );
+                        } else if ( deriv_order != null && !deriv_order.isEmpty() )
+                            throwDifferentiationException();
+                        deriv_order_num++;
+                        following_exps.remove(0);
+                    } else if (tag.equals(MathTermTags.caret)) {
+                        if (isLeibnizNotation(following_exps)) {
+                            if( ( deriv_order == null || deriv_order.isEmpty() ) && deriv_order_num == 0 )
+                                parseLeibnizNotation(following_exps);
+                            else throwDifferentiationException();
+                        } else {
+                            throwDifferentiationException();
+                        }
+                        //continue;
+                    } else break;
+                } else break;
+            }
+
+            if ( ( deriv_order == null || deriv_order.isEmpty() ) && deriv_order_num > 0 ) {
+                deriv_order = Integer.toString(deriv_order_num);
             }
 
             TranslatedExpression inner_exp = parseGeneralExpression(exp, following_exps);
@@ -432,6 +480,10 @@ public class MacroTranslator extends AbstractListTranslator {
         }
         local_inner_exp.addTranslatedExpression(pattern);
         global_exp.addTranslatedExpression(pattern);
+    }
+
+    protected TranslatedExpression parseGeneral( PomTaggedExpression exp, List<PomTaggedExpression> exp_list ){
+        return parseGeneralExpression( exp, exp_list );
     }
 
     protected void clearTranslation(){
