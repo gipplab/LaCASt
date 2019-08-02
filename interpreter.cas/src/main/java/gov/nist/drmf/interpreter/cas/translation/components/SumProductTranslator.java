@@ -348,23 +348,28 @@ public class SumProductTranslator extends AbstractListTranslator{
      */
     protected void addFactorsToSummand(List<PomTaggedExpression> list, int tempNum, int numArgs){
         //determine where to add the new summand to
+        //Mathematica is 2, and Maple is 1, except for the case with 3 args, then Maple is 2 also.
         int numFromEnd;
         if(GlobalConstants.CAS_KEY.equals("Mathematica") || numArgs == 3)
             numFromEnd = 2;
         else
             numFromEnd = 1;
+
+        List<String> sum = new ArrayList<>();
+        //this is the current summand
         String summand = args.get(tempNum).get(args.get(tempNum).size() - numFromEnd);
+        sum.add(summand);
+        String lastExp = summand;
         boolean endSummand = false;
         //for each term in the expressions list following the summand, if its tag is something other than
         //addition, subtraction, equals, etc. then add it to the summand.
-        String lastExp = "";
         for(int i = 0; i < list.size(); i++){
             if(endSummand)
                 break;
 
             MathTermTags tag = MathTermTags.getTagByKey(list.get(i).getRoot().getTag());
             if(tag == null){
-                summand += parseGeneralExpression(list.remove(i), list);
+                sum.add(parseGeneralExpression(list.remove(i), list).toString());
                 lastExp = global_exp.removeLastExpression();
                 i--;
             } else {
@@ -378,24 +383,35 @@ public class SumProductTranslator extends AbstractListTranslator{
                     case right_parenthesis:
                         endSummand = true;
                         break;
+                    //add the last translated term back into the global_exp
+                    //so that MathTermTranslator.parseCaret/Underscores can work
                     case caret:
-                    case underscore:
                         global_exp.addTranslatedExpression("(" + lastExp + ")");
-                        summand += parseGeneralExpression(list.remove(i), list);
+                        sum.add(parseGeneralExpression(list.remove(i), list).toString());
                         lastExp = global_exp.removeLastExpression();
                         i--;
                         break;
+                    case underscore:
+                        global_exp.addTranslatedExpression(lastExp);
+                        parseGeneralExpression(list.remove(i), list);
+                        lastExp = global_exp.removeLastExpression();
+                        sum.set(sum.size()-1, lastExp);
+                        i--;
+                        break;
                     default:
-                        summand += parseGeneralExpression(list.remove(i), list);
+                        sum.add(parseGeneralExpression(list.remove(i), list).toString());
                         lastExp = global_exp.removeLastExpression();
                         i--;
                         break;
                 }
             }
         }
+        String combine = "";
+        for(String str : sum){
+            combine += str;
+        }
         //put the new summand in
-        args.get(tempNum).set(args.get(tempNum).size() - numFromEnd, summand);
-
+        args.get(tempNum).set(args.get(tempNum).size() - numFromEnd, combine);
     }
 
 
