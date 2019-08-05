@@ -133,29 +133,8 @@ public class SumProductTranslator extends AbstractListTranslator{
         remove(size);
 
         //find index of summation
-        String storeIndex = "";
-        List<PomTaggedExpression> listComponents = list.get(0).getComponents();
-        if(listComponents.size() == 0){
-            for(int i = 0; i < list.size(); i++){
-                if(!list.get(i).getRoot().getTermText().isEmpty()) {
-                    char nextChar = list.get(i).getRoot().getTermText().charAt(0);
-                    if (Character.isLetter(nextChar)) {
-                        storeIndex = Character.toString(nextChar);
-                        break;
-                    }
-                }
-            }
-        } else {
-            for (int i = 0; i < list.get(0).getComponents().size(); i++) {
-                if(!listComponents.get(i).getRoot().getTermText().isEmpty()) {
-                    char nextChar = listComponents.get(i).getRoot().getTermText().charAt(0);
-                    if (Character.isLetter(nextChar)) {
-                        storeIndex = Character.toString(nextChar);
-                        break;
-                    }
-                }
-            }
-        }
+        String storeIndex = searchForIndex(list);
+
         if(!storeIndex.isEmpty())
             args.get(num).add(storeIndex);
         else
@@ -182,25 +161,11 @@ public class SumProductTranslator extends AbstractListTranslator{
         List<PomTaggedExpression> components = next.getComponents();
         //find index of summation
         if(!(components.size() == 0)){
-            for (int i = 0; i < components.size(); i++) {
-                char nextChar = components.get(i).getRoot().getTermText().charAt(0);
-                if (Character.isLetter(nextChar)) {
-                    storeIndex = Character.toString(nextChar);
-                    break;
-                }
-            }
+            storeIndex = searchForIndex(components);
         } if(storeIndex.isEmpty() && !next.getRoot().getTermText().isEmpty() && Character.isLetter(next.getRoot().getTermText().charAt(0))){
             storeIndex = Character.toString(next.getRoot().getTermText().charAt(0));
         } if(storeIndex.isEmpty()) {
-            for(int i = 0; i < list.size(); i++){
-                if(!list.get(i).getRoot().getTermText().isEmpty()) {
-                    char nextChar = list.get(i).getRoot().getTermText().charAt(0);
-                    if (Character.isLetter(nextChar)) {
-                        storeIndex = Character.toString(nextChar);
-                        break;
-                    }
-                }
-            }
+            storeIndex = searchForIndex(list);
         }
         int size = components.size();
         //summand
@@ -265,20 +230,15 @@ public class SumProductTranslator extends AbstractListTranslator{
         }
 
         if(!Character.isLetter(storeIndex.charAt(0))) {
-            for(int i = 0; i < list.size(); i++){
-                if(!list.get(i).getRoot().getTermText().isEmpty()) {
-                    char nextChar = list.get(i).getRoot().getTermText().charAt(0);
-                    if (Character.isLetter(nextChar)) {
-                        storeIndex = Character.toString(nextChar);
-                        break;
-                    }
-                }
-            }
+            storeIndex = searchForIndex(list);
+        }
+        if(!Character.isLetter(storeIndex.charAt(0))){
+            storeIndex = "i";
         }
         //lower limit of summation
         int size = lowerLim.getComponents().size();
         PomTaggedExpression toAdd = lowerLim;
-        if(toAdd.getComponents().size() != 0){
+        if(toAdd.getComponents().size() != 0 && GlobalConstants.CAS_KEY.equals("Mathematica")){
             toAdd = lowerLim.getComponents().get(lowerLim.getComponents().size()-1);
         }
         args.get(num).add(parseGeneralExpression(toAdd, list).toString());
@@ -326,16 +286,10 @@ public class SumProductTranslator extends AbstractListTranslator{
             //none
             else
                 return none(next, list, num);
-        } else {
-            switch (tag) {
-                //both lower and upper limit
-                case sub_super_script:
-                    return lowerAndUpper(next, list, num);
-                //no limits defined
-                default:
-                    return none(next, list, num);
-            }
-        }
+        } else if(tag.equals(ExpressionTags.sub_super_script)) {
+            return lowerAndUpper(next, list, num);
+        } else
+            return none(next, list, num);
     }
 
     protected String getTranslation(){
@@ -474,4 +428,22 @@ public class SumProductTranslator extends AbstractListTranslator{
         return false;
     }
 
+    /**
+     * Recursively searches for the first thing that is a letter. That is assumed to be the index.
+     * @param list
+     * @return
+     */
+    private String searchForIndex(List<PomTaggedExpression> list){
+        for(PomTaggedExpression ex : list) {
+            if (!ex.getRoot().getTermText().isEmpty()) {
+                char nextChar = ex.getRoot().getTermText().charAt(0);
+                if (Character.isLetter(nextChar))
+                    return Character.toString(nextChar);
+            }
+            if (ex.getComponents().size() != 0 && !searchForIndex(ex.getComponents()).isEmpty()) {
+                return searchForIndex(ex.getComponents());
+            }
+        }
+        return "";
+    }
 }
