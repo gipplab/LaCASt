@@ -134,22 +134,25 @@ public class SumProductTranslator extends AbstractListTranslator{
 
         //find index of summation
         String storeIndex = "";
-
         List<PomTaggedExpression> listComponents = list.get(0).getComponents();
-        if(list.get(0).getComponents().size() == 0){
+        if(listComponents.size() == 0){
             for(int i = 0; i < list.size(); i++){
-                char nextChar = list.get(i).getRoot().getTermText().charAt(0);
-                if(Character.isLetter(nextChar)){
-                    storeIndex = Character.toString(nextChar);
-                    break;
+                if(!list.get(i).getRoot().getTermText().isEmpty()) {
+                    char nextChar = list.get(i).getRoot().getTermText().charAt(0);
+                    if (Character.isLetter(nextChar)) {
+                        storeIndex = Character.toString(nextChar);
+                        break;
+                    }
                 }
             }
         } else {
             for (int i = 0; i < list.get(0).getComponents().size(); i++) {
-                char nextChar = listComponents.get(i).getRoot().getTermText().charAt(0);
-                if (Character.isLetter(nextChar)) {
-                    storeIndex = Character.toString(nextChar);
-                    break;
+                if(!listComponents.get(i).getRoot().getTermText().isEmpty()) {
+                    char nextChar = listComponents.get(i).getRoot().getTermText().charAt(0);
+                    if (Character.isLetter(nextChar)) {
+                        storeIndex = Character.toString(nextChar);
+                        break;
+                    }
                 }
             }
         }
@@ -177,7 +180,6 @@ public class SumProductTranslator extends AbstractListTranslator{
     protected int none(PomTaggedExpression next, List<PomTaggedExpression> list, int tempNum){
         String storeIndex = "";
         List<PomTaggedExpression> components = next.getComponents();
-
         //find index of summation
         if(!(components.size() == 0)){
             for (int i = 0; i < components.size(); i++) {
@@ -187,14 +189,16 @@ public class SumProductTranslator extends AbstractListTranslator{
                     break;
                 }
             }
-        } if(storeIndex.isEmpty() && Character.isLetter(next.getRoot().getTermText().charAt(0))){
+        } if(storeIndex.isEmpty() && !next.getRoot().getTermText().isEmpty() && Character.isLetter(next.getRoot().getTermText().charAt(0))){
             storeIndex = Character.toString(next.getRoot().getTermText().charAt(0));
         } if(storeIndex.isEmpty()) {
             for(int i = 0; i < list.size(); i++){
-                char nextChar = list.get(i).getRoot().getTermText().charAt(0);
-                if(Character.isLetter(nextChar)){
-                    storeIndex = Character.toString(nextChar);
-                    break;
+                if(!list.get(i).getRoot().getTermText().isEmpty()) {
+                    char nextChar = list.get(i).getRoot().getTermText().charAt(0);
+                    if (Character.isLetter(nextChar)) {
+                        storeIndex = Character.toString(nextChar);
+                        break;
+                    }
                 }
             }
         }
@@ -262,16 +266,22 @@ public class SumProductTranslator extends AbstractListTranslator{
 
         if(!Character.isLetter(storeIndex.charAt(0))) {
             for(int i = 0; i < list.size(); i++){
-                char nextChar = list.get(i).getRoot().getTermText().charAt(0);
-                if(Character.isLetter(nextChar)){
-                    storeIndex = Character.toString(nextChar);
-                    break;
+                if(!list.get(i).getRoot().getTermText().isEmpty()) {
+                    char nextChar = list.get(i).getRoot().getTermText().charAt(0);
+                    if (Character.isLetter(nextChar)) {
+                        storeIndex = Character.toString(nextChar);
+                        break;
+                    }
                 }
             }
         }
         //lower limit of summation
         int size = lowerLim.getComponents().size();
-        args.get(num).add(parseGeneralExpression(lowerLim, list).toString());
+        PomTaggedExpression toAdd = lowerLim;
+        if(toAdd.getComponents().size() != 0){
+            toAdd = lowerLim.getComponents().get(lowerLim.getComponents().size()-1);
+        }
+        args.get(num).add(parseGeneralExpression(toAdd, list).toString());
         //remove the expression that parseGeneralExpression added to global_exp, because that expression is being used as a sum arg.
         remove(size);
 
@@ -322,11 +332,8 @@ public class SumProductTranslator extends AbstractListTranslator{
                 case sub_super_script:
                     return lowerAndUpper(next, list, num);
                 //no limits defined
-                case sequence:
-                    return none(next, list, num);
                 default:
-                    throw new TranslationException("");
-
+                    return none(next, list, num);
             }
         }
     }
@@ -376,6 +383,13 @@ public class SumProductTranslator extends AbstractListTranslator{
                 switch (tag) {
                     case plus:
                     case minus:
+                        if(isIndexPresent(list, tempNum)){
+                            sum.add(parseGeneralExpression(list.remove(i), list).toString());
+                            lastExp = global_exp.removeLastExpression();
+                            i--;
+                        } else
+                            endSummand = true;
+                        break;
                     case equals:
                     case less_than:
                     case greater_than:
@@ -406,6 +420,7 @@ public class SumProductTranslator extends AbstractListTranslator{
                 }
             }
         }
+        //turn list into string
         String combine = "";
         for(String str : sum){
             combine += str;
@@ -414,53 +429,49 @@ public class SumProductTranslator extends AbstractListTranslator{
         args.get(tempNum).set(args.get(tempNum).size() - numFromEnd, combine);
     }
 
-
-
     /**
-     * If the variable that is the index of summation is also somewhere outside of the sum,
-     * then it should be included in the summand.
+     * Recursively searches for the index variable in the parse tree.
+     * If the index is present anywhere, returns true.
      *
-     * @param index
-     * @param tempNum
      * @param list
+     * @param tempNum
+     * @return
      */
-/*    private void addMoreToSummand(String index, int tempNum, List<PomTaggedExpression> list){
-        int numToSubtract;
-        if(GlobalConstants.CAS_KEY.equals("Maple"))
-            numToSubtract = 1;
-        else
-            numToSubtract = 2;
-        //SHOULD BE ARGS.GET(TEMPNUM).GET(NUMTOADD); NEED TO GO INSIDE ARRAYLIST OF ARRAYLIST THATS THE PROBLEM
-        int whereToAdd = args.get(tempNum).size()-numToSubtract;
-        String newSummand = args.get(tempNum).get(whereToAdd);
-        int lastIndexOfIndex = -1;
-        for(int i = 0; i < list.size(); i++){
-            if(list.get(i).getNumberOfNonemptyMathTerms() == 1 && list.get(i).getRoot().getTermText().equals(index)) {
-                lastIndexOfIndex = i;
+    private boolean isIndexPresent(List<PomTaggedExpression> list, int tempNum){
+        int numParen = 0;
+        for(PomTaggedExpression ex : list){
+            String text = ex.getRoot().getTermText();
+            MathTermTags tag = MathTermTags.getTagByKey(ex.getRoot().getTag());
+            //if the index is found, return true
+            if(text.equals(indices.get(tempNum))){
+                return true;
             }
-            else{
-                for(int k = 0; k < list.get(i).getComponents().size(); k++){
-                    if(list.get(i).getComponents().get(k).getNumberOfNonemptyMathTerms() == 1 && list.get(i).getComponents().get(k).getRoot().getTermText().equals(index)){
-                        lastIndexOfIndex = i;
-                    } else {
-                        for(int l = 0; l < list.get(i).getComponents().get(k).getComponents().size(); l++){
-                            if(list.get(i).getComponents().get(k).getComponents().get(l).getRoot().getTermText().equals(index)){
-                                lastIndexOfIndex = i;
-                            }
-                        }
-                    }
+            //if the expression has subcomponents, call isIndexPresent on the list of components
+            if(ex.getComponents().size() != 0 && isIndexPresent(ex.getComponents(), tempNum)){
+                return true;
+                //if the tag is null, don't do anything
+            } else if(tag != null){
+                //stop if there are any of these things
+                switch (tag) {
+                    case equals:
+                    case less_than:
+                    case greater_than:
+                    case relation:
+                        return false;
+                    //count the number of parenthesis
+                    //if there are more right parens than left parens, stop.
+                    case left_parenthesis:
+                        numParen++;
+                        break;
+                    case right_parenthesis:
+                        numParen--;
+                        if (numParen < 0)
+                            return false;
+                        break;
                 }
             }
         }
-        while(lastIndexOfIndex >= 0 && !list.isEmpty()) {
-            if(MathTermTags.getTagByKey(list.get(0).getRoot().getTag()).equals(MathTermTags.dlmf_macro))
-                lastIndexOfIndex--;
-            newSummand += parseGeneralExpression(list.remove(0), list);
-            global_exp.removeLastExpression();
-            lastIndexOfIndex--;
-        }
-        args.get(tempNum).set(whereToAdd, newSummand);
+        return false;
     }
 
- */
 }
