@@ -260,12 +260,6 @@ public class CSVtoLexiconConverter {
             }
         }
 
-        String slot_diff_str = analyzer.getValue( Keys.SLOT_OF_DIFF );
-        try { holder.slot_diff = Integer.parseInt(slot_diff_str); }
-        catch( NumberFormatException nfe ){
-            //LOG.debug("Skip");
-        }
-
         return holder;
     }
 
@@ -547,7 +541,7 @@ public class CSVtoLexiconConverter {
         long start = System.currentTimeMillis();
         try{
             CSVtoLexiconConverter csvConv = new CSVtoLexiconConverter(
-                GlobalPaths.PATH_MACRO_CSV_FILE_NAME, csv_paths
+                    GlobalPaths.PATH_MACRO_CSV_FILE_NAME, csv_paths
             );
             csvConv.generateLexiconFile();
         } catch (Exception e){
@@ -560,6 +554,6 @@ public class CSVtoLexiconConverter {
 
     private class InfoHolder{
         String cas_name, pattern;
-        Integer num_vars, slot_diff;
+        Integer num_vars;
     }
 }
