@@ -155,18 +155,6 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 		} else return false;
 	}
 
-	/**
-	 * If the term is a "\sum" or "\prod" use the SumProductTranslator.
-	 * @param term
-	 * @return
-	 */
-/*	protected boolean isSumOrProduct(MathTerm term){
-		if(term.getTermText().equals("\\sum") || term.getTermText().equals("\\prod")){
-			return true;
-		} else return false;
-	}
- */
-
 	protected boolean isSumOrProduct(MathTerm term){
 		if(term.getTag().equals(MathTermTags.operator.tag()))
 			return FeatureSetUtility.isSum(term) || FeatureSetUtility.isProduct(term);
