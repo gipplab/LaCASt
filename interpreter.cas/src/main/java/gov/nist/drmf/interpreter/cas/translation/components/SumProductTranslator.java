@@ -81,7 +81,6 @@ public class SumProductTranslator extends AbstractListTranslator{
         List<PomTaggedExpression> components = next.getComponents();
         List<PomTaggedExpression> components2 = components.get(0).getComponents();
         String storeIndex = searchForIndex(components);
-        System.out.println(storeIndex);
         int size = components.get(0).getComponents().size();
         //this is the index and lower limit of summation
         PomTaggedExpression lowerLim = components.get(0);

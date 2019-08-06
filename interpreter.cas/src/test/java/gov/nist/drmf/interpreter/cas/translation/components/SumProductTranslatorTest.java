@@ -179,7 +179,7 @@ public class SumProductTranslatorTest {
     private static SumProductTranslator spt;
 
     @BeforeAll
-    private static void setUp(){
+    private static void mathematicaSetUp(){
         GlobalConstants.CAS_KEY = Keys.KEY_MATHEMATICA;
         slt = new SemanticLatexTranslator(Keys.KEY_LATEX, Keys.KEY_MATHEMATICA);
         try {
@@ -192,74 +192,38 @@ public class SumProductTranslatorTest {
         spt = new SumProductTranslator();
     }
 
-
     @TestFactory
     Stream<DynamicTest>  sumMathematicaTest() {
         List<String> expressions = Arrays.asList(sums);
         List<String> output = Arrays.asList(translatedMathematicaSums);
-        return expressions
-                .stream()
-                .map(
-                        exp -> DynamicTest.dynamicTest("Expression: " + exp, () -> {
-                            int index = expressions.indexOf(exp);
-                            PomTaggedExpression ex = parser.parse(TeXPreProcessor.preProcessingTeX(expressions.get(index)));
-
-                            List<PomTaggedExpression> components = ex.getComponents();
-                            PomTaggedExpression first = components.remove(0);
-                            spt.translate(first, components);
-                            assertEquals(output.get(index), spt.getTranslation());
-                        }));
+        return test(expressions, output);
     }
 
     @TestFactory
     Stream<DynamicTest>  prodMathematicaTest() {
         List<String> expressions = Arrays.asList(prods);
         List<String> output = Arrays.asList(translatedMathematicaProds);
-
-        return expressions
-                .stream()
-                .map(
-                        exp -> DynamicTest.dynamicTest("Expression: " + exp, () -> {
-                            int index = expressions.indexOf(exp);
-                            PomTaggedExpression ex = parser.parse(TeXPreProcessor.preProcessingTeX(expressions.get(index)));
-
-                            List<PomTaggedExpression> components = ex.getComponents();
-                            PomTaggedExpression first = components.remove(0);
-                            spt.translate(first, components);
-                            assertEquals(output.get(index), spt.getTranslation());
-                        }));
+        return test(expressions, output);
     }
 
 
     @TestFactory
     Stream<DynamicTest>  sumMapleTest() {
-        GlobalConstants.CAS_KEY = Keys.KEY_MAPLE;
-        slt = new SemanticLatexTranslator(Keys.KEY_LATEX, Keys.KEY_MAPLE);
-        try {
-            slt.init(GlobalPaths.PATH_REFERENCE_DATA);
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-
+        mapleSetUp();
         List<String> expressions = Arrays.asList(sums);
         List<String> output = Arrays.asList(translatedMapleSums);
-
-        return expressions
-                .stream()
-                .map(
-                        exp -> DynamicTest.dynamicTest("Expression: " + exp, () -> {
-                            int index = expressions.indexOf(exp);
-                            PomTaggedExpression ex = parser.parse(TeXPreProcessor.preProcessingTeX(expressions.get(index)));
-
-                            List<PomTaggedExpression> components = ex.getComponents();
-                            PomTaggedExpression first = components.remove(0);
-                            spt.translate(first, components);
-                            assertEquals(output.get(index), spt.getTranslation());
-                        }));
+        return test(expressions, output);
     }
 
     @TestFactory
     Stream<DynamicTest>  prodMapleTest() {
+        mapleSetUp();
+        List<String> expressions = Arrays.asList(prods);
+        List<String> output = Arrays.asList(translatedMapleProds);
+        return test(expressions, output);
+    }
+
+    private void mapleSetUp(){
         GlobalConstants.CAS_KEY = Keys.KEY_MAPLE;
         slt = new SemanticLatexTranslator(Keys.KEY_LATEX, Keys.KEY_MAPLE);
         try {
@@ -267,9 +231,9 @@ public class SumProductTranslatorTest {
         } catch (IOException e) {
             throw new RuntimeException();
         }
-        List<String> expressions = Arrays.asList(prods);
-        List<String> output = Arrays.asList(translatedMapleProds);
+    }
 
+    private Stream<DynamicTest> test(List<String> expressions, List<String> output){
         return expressions
                 .stream()
                 .map(
