@@ -248,15 +248,18 @@ public class SumProductTranslator extends AbstractListTranslator{
                 break;
 
             MathTermTags tag = MathTermTags.getTagByKey(list.get(i).getRoot().getTag());
-            if(tag == null){
+            //if there is a sum with the same index of summation, stop.
+            if(list.get(i).getComponents().size() != 0 && isIndexPresent(list.get(i).getComponents(), tempNum) == -2) {
+                break;
+            } else if(tag == null){
                 sum.add(parseGeneralExpression(list.remove(i), list).toString());
                 lastExp = global_exp.removeLastExpression();
                 i--;
-            } else {
+            } else{
                 switch (tag) {
                     case plus:
                     case minus:
-                        if(isIndexPresent(list, tempNum)){
+                        if(isIndexPresent(list, tempNum) == 1){
                             sum.add(parseGeneralExpression(list.remove(i), list).toString());
                             lastExp = global_exp.removeLastExpression();
                             i--;
@@ -286,6 +289,12 @@ public class SumProductTranslator extends AbstractListTranslator{
                         sum.set(sum.size()-1, lastExp);
                         i--;
                         break;
+                    case operator:
+                        if(i+1 < list.size() && isIndexPresent(list.get(i+1).getComponents(), tempNum) == 1) {
+                            endSummand = true;
+                            break;
+                        }
+                        //no break here
                     default:
                         sum.add(parseGeneralExpression(list.remove(i), list).toString());
                         lastExp = global_exp.removeLastExpression();
@@ -305,26 +314,32 @@ public class SumProductTranslator extends AbstractListTranslator{
 
     /**
      * Recursively searches for the index variable in the parse tree.
-     * If the index is present anywhere in the list, returns true.
-     * If there is a relational operator or a right paren without a corresponding left paren,
-     * stops searching and returns false.
+     * If the index is present anywhere in the list, returns 1.
+     * If the index is not present, returns 0.
+     * If there is a stopping point where summand is sure to stop, stops searching and returns -1.
+     * If there is a sum with the same index of summation, returns -2.
      *
      * @param list, the list of following expressions after the sum.
      * @param tempNum, the current number of sums, used to access the right index.
      * @return
      */
-    private boolean isIndexPresent(List<PomTaggedExpression> list, int tempNum){
+    private int isIndexPresent(List<PomTaggedExpression> list, int tempNum){
         int numParen = 0;
+        MathTermTags lastTag = null;
         for(PomTaggedExpression ex : list){
             String text = ex.getRoot().getTermText();
             MathTermTags tag = MathTermTags.getTagByKey(ex.getRoot().getTag());
             //if the index is found, return true
             if(text.equals(indices.get(tempNum))){
-                return true;
+                return 1;
             }
+            //If theres a sum with the same index as this sum's index of summation, stop searching and return -1.
+            if(lastTag != null && lastTag.equals(MathTermTags.operator) && ex.getComponents().size() != 0 && isIndexPresent(ex.getComponents().get(0).getComponents(), tempNum) == 1)
+                return -2;
+            lastTag = tag;
             //if the expression has subcomponents, call isIndexPresent on the list of components
-            if(ex.getComponents().size() != 0 && isIndexPresent(ex.getComponents(), tempNum)){
-                return true;
+            if(ex.getComponents().size() != 0 && isIndexPresent(ex.getComponents(), tempNum) != 0){
+                return isIndexPresent(ex.getComponents(), tempNum);
                 //if the tag is null, don't do anything
             } else if(tag != null){
                 //stop if there are any of these things
@@ -333,7 +348,7 @@ public class SumProductTranslator extends AbstractListTranslator{
                     case less_than:
                     case greater_than:
                     case relation:
-                        return false;
+                        return -1;
                     //count the number of parenthesis
                     //if there are more right parens than left parens, stop.
                     case left_parenthesis:
@@ -342,12 +357,13 @@ public class SumProductTranslator extends AbstractListTranslator{
                     case right_parenthesis:
                         numParen--;
                         if (numParen < 0)
-                            return false;
+                            return -1;
                         break;
+                    case operator:
                 }
             }
         }
-        return false;
+        return 0;
     }
 
     /**
@@ -367,5 +383,18 @@ public class SumProductTranslator extends AbstractListTranslator{
             }
         }
         return "";
+    }
+
+    private boolean searchForOperator(List<PomTaggedExpression> list, int tempNum){
+        for(int i = 0; i < list.size(); i++){
+            MathTermTags tag = MathTermTags.getTagByKey(list.get(i).getRoot().getTag());
+            if(tag.equals(MathTermTags.operator) && i+1 < list.size() && isIndexPresent(list.get(i+1).getComponents(), tempNum) == 1){
+                return true;
+            }
+            if(list.get(i).getComponents().size() != 0){
+                return searchForOperator(list.get(i).getComponents(), tempNum);
+            }
+        }
+        return false;
     }
 }
