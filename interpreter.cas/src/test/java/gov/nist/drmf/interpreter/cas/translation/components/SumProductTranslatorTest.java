@@ -9,9 +9,7 @@ import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.TestFactory;
+import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -73,10 +71,16 @@ public class SumProductTranslatorTest {
             "\\sum_{n=-\\infty}^{\\infty}\\frac{\\pi}{\\sin@{\\pi (t - (n+\\frac{1}{2}) \\tau)}}",
             //22.12.2 part 2
             "\\sum_{n=-\\infty}^{\\infty} \\left( \\sum_{m=-\\infty}^{\\infty}\\frac{(-1)^m}{t - m - (n+\\frac{1}{2}) \\tau}\\right)",
-            //10.23.4
-            "\\sum_{k \\hiderel{=} 0}^{2n} \\opminus^k \\BesselJ{k}@{z} \\BesselJ{2n-k}@{z}+ 2 \\sum_{k \\hiderel{=} 1}^\\infty \\BesselJ{k}@{z} \\BesselJ{2n+k}@{z}",
-            //10.23.27
-            "\\sum_{k=0}^{n-1} \\frac{(\\tfrac{1}{2} z)^k \\BesselJ{k}@{z}}{k! (n-k)} + \\frac{2}{\\pi} \\left( \\ln@{\\tfrac{1}{2} z} - \\digamma@{n+1} \\right)\\BesselJ{n}@{z}- \\frac{2}{\\pi}\\sum_{k=1}^\\infty \\opminus^k \\frac{(n+2k) \\BesselJ{n+2k}@{z}}{k (n+k)}",
+            //10.23.4 all
+            "\\sum_{k \\hiderel{=} 0}^{2n} \\opminus^k \\BesselJ{k}@{z} \\BesselJ{2n-k}@{z} + 2 \\sum_{k \\hiderel{=} 1}^\\infty \\BesselJ{k}@{z} \\BesselJ{2n+k}@{z} = 0",
+            //10.23.4 part 1
+            "\\sum_{k \\hiderel{=} 0}^{2n} \\opminus^k \\BesselJ{k}@{z} \\BesselJ{2n-k}@{z}",
+            //10.23.4 part 2
+            "\\sum_{k \\hiderel{=} 1}^\\infty \\BesselJ{k}@{z} \\BesselJ{2n+k}@{z}",
+            //10.23.27 part 1
+            "\\sum_{k=0}^{n-1} \\frac{(\\tfrac{1}{2} z)^k \\BesselJ{k}@{z}}{k! (n-k)} + \\frac{2}{\\pi} \\left( \\ln@{\\tfrac{1}{2} z} - \\digamma@{n+1} \\right)\\BesselJ{n}@{z}",
+            //10.23.27 part 2
+            "\\sum_{k=1}^\\infty \\opminus^k \\frac{(n+2k) \\BesselJ{n+2k}@{z}}{k (n+k)}",
             //22.12.5 part 1
             "\\sum_{n=-\\infty}^{\\infty}\\frac{\\pi}{\\sin@{\\pi (t+\\frac{1}{2}-(n+\\frac{1}{2}) \\tau)}}",
             //22.12.5 part 2
@@ -87,6 +91,9 @@ public class SumProductTranslatorTest {
             "\\sum_{n=1}^\\infty \\frac{1}{n^s} \\sum_{m=1}^n \\frac{1}{m^z}",
             //18.2.6
             "\\sum_{x \\in X} x \\left( p_n(x) \\right)^2 w_x",
+            //16.11.2
+            "\\sum_{m=1}^p \\sum_{k=0}^\\infty \\frac{\\opminus^k}{k!} \\EulerGamma@{a_m + k} \\left(\\frac{\\prod_{\\ell=1}^p \\EulerGamma@{a_\\ell - a_m - k}} {\\prod_{\\ell=1}^q \\EulerGamma@{b_\\ell - a_m - k}}\\right) z^{-a_m - k}",
+
 
 
 
@@ -100,6 +107,21 @@ public class SumProductTranslatorTest {
             "\\prod_{t=3}{\\tan{t}}",
             "\\prod^{100}_{t=0}{12}",
             "\\prod_{x=0}^{\\infty}x\\sin{x^2}\\cos{t}+2sin{4}+3",
+            //26.12.4
+            "\\prod_{h=1}^r \\prod_{j=1}^s \\frac{h+j+t-1}{h+j-1}",
+            //5.14.4
+            "\\prod_{k=1}^m \\frac{a+(n-k)c}{a+b+(2n-k-1)c} \\prod_{k=1}^n \\frac{\\EulerGamma@{a+(n-k)c} \\EulerGamma@{b+(n-k)c} \\EulerGamma@{1+kc}} {\\EulerGamma@{a+b+(2n-k-1)c}}",
+            //20.5.1
+            "\\prod_{n=1}^{\\infty} {\\left( 1 - q^{2n} \\right)} {\\left( 1 - 2 q^{2n} \\cos@{2z} + q^{4n} \\right)}",
+            //4.22.2
+            "\\prod_{n=1}^\\infty \\left( 1 - \\frac{4z^2}{(2n - 1)^2 \\pi^2} \\right)",
+             //20.4.3
+            "\\prod_{n=1}^{\\infty} \\left( 1 - q^{2n} \\right) \\left( 1 + q^{2n} \\right)^2",
+            //27.4.1
+            "\\prod_p \\left( 1 + \\sum_{r=1}^\\infty f(p^r) \\right)",
+            //5.14.5
+            "\\prod_{k=1}^m (a + (n-k)c) \\frac{\\prod_{k=1}^n \\EulerGamma@{a+(n-k)c} \\EulerGamma@{1+kc}} {(\\EulerGamma@{1+c})^n}",
+
     };
 
     private static final String[] translatedMapleSums = {
@@ -109,21 +131,25 @@ public class SumProductTranslatorTest {
             "sum((t)^(2), t = 0..infinity)",
             "sum(tan(t), t = 3)",
             "sum(12, t = 0..100)",
-            "sum(x^(2)*(x + 2)((y)^(3) - 3)-2x, x = - infinity..infinity)+ y - 2",
+            "sum(x^(2)*(x + 2)((y)^(3) - 3)-2x, x = - infinity..infinity)",
             "sum(((- 1)^(n)* (2)^(2*n - 1)* B[2*n])/(n*factorial((2*n)))z^(2*n), n = 1..infinity)",
-            "sum(rcos(Theta)r(3*(r)^(2) - 3)/23x, r = 0..50)+ 3*q",
+            "sum(rcos(Theta)r(3*(r)^(2) - 3)/23x, r = 0..50)",
             "sum(x^(3)*(3*x + 2*y)^(25*(x)^(2))*(x + 2)x^(2)*(x + 3)+2x(x + 2)^(2), x = 0..infinity)",
             "sum(((-1)^(n)* (z)^(2*n + 1))/(factorial((2*n + 1))*(2*n + 1)), n = 0..infinity)",
             "sum((2*p + 1)B[2*p + 1], p = 0..infinity)",
             "sum((pi)/(sin(pi*(t -(n +(1)/(2))tau))), n = - infinity..infinity)",
             "sum((sum(((- 1)^(m))/(t - m -(n +(1)/(2))*tau), m = - infinity..infinity)), n = - infinity..infinity)",
-            "sum((-1)^(k)*BesselJ(k, z)BesselJ(2*n - k, z), k = 0..2*n)+2sum(BesselJ(k, z)BesselJ(2*n + k, z), k = 1..infinity)",
-            "sum((((1)/(2)*z)^(k)* BesselJ(k, z))/(factorial(k)*(n - k)), k = 0..n - 1)+(2)/(pi)(ln((1)/(2)*z) - Psi(n + 1))BesselJ(n, z)-(2)/(pi)sum((-1)^(k)*((n + 2*k)*BesselJ(n + 2*k, z))/(k*(n + k)), k = 1..infinity)",
+            "sum((-1)^(k)*BesselJ(k, z)BesselJ(2*n - k, z), k = 0..2*n)",
+            "sum((-1)^(k)*BesselJ(k, z)BesselJ(2*n - k, z), k = 0..2*n)",
+            "sum(BesselJ(k, z)BesselJ(2*n + k, z), k = 1..infinity)",
+            "sum((((1)/(2)*z)^(k)* BesselJ(k, z))/(factorial(k)*(n - k)), k = 0..n - 1)",
+            "sum((-1)^(k)*((n + 2*k)*BesselJ(n + 2*k, z))/(k*(n + k)), k = 1..infinity)",
             "sum((pi)/(sin(pi*(t +(1)/(2)-(n +(1)/(2))tau))), n = - infinity..infinity)",
             "sum((sum(((- 1)^(m))/(t +(1)/(2)- m -(n +(1)/(2))*tau), m = - infinity..infinity)), n = - infinity..infinity)",
             "sum((pochhammer(a, k)*pochhammer(c - a, k)*pochhammer(b, k)*pochhammer(c - b, k))/(factorial(k)*pochhammer(c, 2*k)*pochhammer(c -(1)/(2), k))(t[1] t[2])^(k), k = 0..infinity)",
             "sum((1)/((n)^(s))sum((1)/((m)^(z)), m = 1..n), n = 1..infinity)",
             "sum(x(p[n](x))^(2)*w[x], x in X)",
+            "sum(sum(((-1)^(k))/(factorial(k))GAMMA(a[m] + k)((product(GAMMA(a[ell] - a[m] - k), ell = 1..p))/(product(GAMMA(b[ell] - a[m] - k), ell = 1..q)))z^(- a[m] - k), k = 0..infinity), m = 1..p)",
 
     };
 
@@ -134,7 +160,14 @@ public class SumProductTranslatorTest {
             "product((t)^(2), t = 0..infinity)",
             "product(tan(t), t = 3)",
             "product(12, t = 0..100)",
-            "product(xsin((x)^(2))cos(t), x = 0..infinity)+ 2*sin(4)+ 3",
+            "product(xsin((x)^(2))cos(t), x = 0..infinity)",
+            "product(product((h + j + t - 1)/(h + j - 1), j = 1..s), h = 1..r)",
+            "product((a +(n - k)*c)/(a + b +(2*n - k - 1)*c), k = 1..m)",
+            "product((1 - (q)^(2*n))(1 - 2*(q)^(2*n)* cos(2*z) + (q)^(4*n)), n = 1..infinity)",
+            "product((1 -(4*(z)^(2))/((2*n - 1)^(2)* (pi)^(2))), n = 1..infinity)",
+            "product((1 - (q)^(2*n))(1 + (q)^(2*n))^(2), n = 1..infinity)",
+            "product((1 + sum(f((p)^(r)), r = 1..infinity)), p)",
+            "product((a +(n - k)c), k = 1..m)",
 
     };
 
@@ -145,21 +178,26 @@ public class SumProductTranslatorTest {
             "Sum[(t)^(2), {t, 0, Infinity}]",
             "Sum[Tan[t], t = 3]",
             "Sum[12, {t, 0, 100}]",
-            "Sum[x^(2) (x + 2)((y)^(3) - 3)-2x, {x, -Infinity, Infinity}] + y - 2",
+            "Sum[x^(2) (x + 2)((y)^(3) - 3)-2x, {x, -Infinity, Infinity}]",
             "Sum[Divide[(- 1)^(n)  (2)^(2 n - 1)  Subscript[B, 2 n],n (2 n)!]z^(2 n), {n, 1, Infinity}]",
-            "Sum[rCos[\\[CapitalTheta]]r(3 (r)^(2) - 3)/23x, {r, 0, 50}] + 3 q",
+            "Sum[rCos[\\[CapitalTheta]]r(3 (r)^(2) - 3)/23x, {r, 0, 50}]",
             "Sum[x^(3) (3 x + 2 y)^(25 (x)^(2)) (x + 2)x^(2) (x + 3)+2x(x + 2)^(2), {x, 0, Infinity}]",
             "Sum[Divide[(-1)^(n)  (z)^(2 n + 1),(2 n + 1)!(2 n + 1)], {n, 0, Infinity}]",
             "Sum[(2 p + 1)Subscript[B, 2 p + 1], {p, 0, Infinity}]",
             "Sum[Divide[\\[Pi],Sin[\\[Pi] (t -(n +Divide[1,2])\\[Tau])]], {n, -Infinity, Infinity}]",
             "Sum[(Sum[Divide[(- 1)^(m),t - m -(n +Divide[1,2]) \\[Tau]], {m, -Infinity, Infinity}]), {n, -Infinity, Infinity}]",
-            "Sum[(-1)^(k) BesselJ[k, z]BesselJ[2 n - k, z], {k, 0, 2 n}]+2Sum[BesselJ[k, z]BesselJ[2 n + k, z], {k, 1, Infinity}]",
-            "Sum[Divide[(Divide[1,2] z)^(k)  BesselJ[k, z],k!(n - k)], {k, 0, n - 1}]+Divide[2,\\[Pi]](Log[Divide[1,2] z] - PolyGamma[n + 1])BesselJ[n, z]-Divide[2,\\[Pi]]Sum[(-1)^(k) Divide[(n + 2 k) BesselJ[n + 2 k, z],k (n + k)], {k, 1, Infinity}]",
+            "Sum[(-1)^(k) BesselJ[k, z]BesselJ[2 n - k, z], {k, 0, 2 n}]",
+            "Sum[(-1)^(k) BesselJ[k, z]BesselJ[2 n - k, z], {k, 0, 2 n}]",
+            "Sum[BesselJ[k, z]BesselJ[2 n + k, z], {k, 1, Infinity}]",
+            "Sum[Divide[(Divide[1,2] z)^(k)  BesselJ[k, z],k!(n - k)], {k, 0, n - 1}]",
+            "Sum[(-1)^(k) Divide[(n + 2 k) BesselJ[n + 2 k, z],k (n + k)], {k, 1, Infinity}]",
             "Sum[Divide[\\[Pi],Sin[\\[Pi] (t +Divide[1,2]-(n +Divide[1,2])\\[Tau])]], {n, -Infinity, Infinity}]",
             "Sum[(Sum[Divide[(- 1)^(m),t +Divide[1,2]- m -(n +Divide[1,2]) \\[Tau]], {m, -Infinity, Infinity}]), {n, -Infinity, Infinity}]",
             "Sum[Divide[Pochhammer[a, k] Pochhammer[c - a, k] Pochhammer[b, k] Pochhammer[c - b, k],k! Pochhammer[c, 2 k] Pochhammer[c -Divide[1,2], k]](Subscript[t, 1] Subscript[t, 2])^(k), {k, 0, Infinity}]",
             "Sum[Divide[1,(n)^(s)]Sum[Divide[1,(m)^(z)], {m, 1, n}], {n, 1, Infinity}]",
             "Sum[x(Subscript[p, n](x))^(2) Subscript[w, x], x \\[Element] X]",
+            "Sum[Sum[Divide[(-1)^(k),k!]Gamma[Subscript[a, m] + k](Divide[Product[Gamma[Subscript[a, \\[ScriptL]] - Subscript[a, m] - k], {a, 1, p}],Product[Gamma[Subscript[b, \\[ScriptL]] - Subscript[a, m] - k], {b, 1, q}]])z^(- Subscript[a, m] - k), {k, 0, Infinity}], {m, 1, p}]",
+
 
     };
 
@@ -170,27 +208,20 @@ public class SumProductTranslatorTest {
             "Product[(t)^(2), {t, 0, Infinity}]",
             "Product[Tan[t], t = 3]",
             "Product[12, {t, 0, 100}]",
-            "Product[xSin[(x)^(2)]Cos[t], {x, 0, Infinity}] + 2 sin(4)+ 3",
+            "Product[xSin[(x)^(2)]Cos[t], {x, 0, Infinity}]",
+            "Product[Product[Divide[h + j + t - 1,h + j - 1], {j, 1, s}], {h, 1, r}]",
+            "Product[Divide[a +(n - k) c,a + b +(2 n - k - 1) c], {k, 1, m}]",
+            "Product[(1 - (q)^(2 n))(1 - 2 (q)^(2 n)  Cos[2 z] + (q)^(4 n)), {n, 1, Infinity}]",
+            "Product[(1 -Divide[4 (z)^(2),(2 n - 1)^(2)  (\\[Pi])^(2)]), {n, 1, Infinity}]",
+            "Product[(1 - (q)^(2 n))(1 + (q)^(2 n))^(2), {n, 1, Infinity}]",
+            "Product[(1 + Sum[f((p)^(r)), {r, 1, Infinity}]), p]",
+            "Product[(a +(n - k)c), {k, 1, m}]"
 
     };
 
     private static SemanticLatexTranslator slt;
     private static PomParser parser;
     private static SumProductTranslator spt;
-
-    @BeforeAll
-    private static void mathematicaSetUp(){
-        GlobalConstants.CAS_KEY = Keys.KEY_MATHEMATICA;
-        slt = new SemanticLatexTranslator(Keys.KEY_LATEX, Keys.KEY_MATHEMATICA);
-        try {
-            slt.init(GlobalPaths.PATH_REFERENCE_DATA);
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-        parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA);
-        parser.addLexicons(MacrosLexicon.getDLMFMacroLexicon());
-        spt = new SumProductTranslator();
-    }
 
     @TestFactory
     Stream<DynamicTest>  sumMathematicaTest() {
@@ -223,6 +254,20 @@ public class SumProductTranslatorTest {
         return test(expressions, output);
     }
 
+    @BeforeEach
+    private void mathematicaSetUp(){
+        GlobalConstants.CAS_KEY = Keys.KEY_MATHEMATICA;
+        slt = new SemanticLatexTranslator(Keys.KEY_LATEX, Keys.KEY_MATHEMATICA);
+        try {
+            slt.init(GlobalPaths.PATH_REFERENCE_DATA);
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+        parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA);
+        parser.addLexicons(MacrosLexicon.getDLMFMacroLexicon());
+        spt = new SumProductTranslator();
+    }
+
     private void mapleSetUp(){
         GlobalConstants.CAS_KEY = Keys.KEY_MAPLE;
         slt = new SemanticLatexTranslator(Keys.KEY_LATEX, Keys.KEY_MAPLE);
@@ -248,6 +293,12 @@ public class SumProductTranslatorTest {
                         }));
     }
 
+    @AfterEach
+    private void tearDown(){
+        slt = null;
+        parser = null;
+        spt = null;
+    }
 
 //    @Test
 //    public void mathematicaTest(){
