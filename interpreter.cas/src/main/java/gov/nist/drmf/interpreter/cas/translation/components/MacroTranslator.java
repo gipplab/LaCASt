@@ -108,6 +108,7 @@ public class MacroTranslator extends AbstractListTranslator {
         return true;
     }
 
+    // Works for 2 argument Wronskians, can be expanded to more arguments
     private void splitComma( List<PomTaggedExpression> following ){ // reads \Wronskian@{f1, f2} as if it were \Wronskian@{f1}{f2}
         PomTaggedExpression sequence = following.remove(1); // first element is "@"
         PomTaggedExpression firstHalf = new PomTaggedExpression();
