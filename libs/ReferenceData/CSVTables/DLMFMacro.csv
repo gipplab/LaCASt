@@ -126,7 +126,7 @@ n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0
 \Sum{n}{k1}{k2}@{f(n)};http://drmf.wmflabs.org/wiki/Definition:Sum;Sum;3;1;1;;;;
 \Prod{n}{k1}{k2}@{f(n)};http://drmf.wmflabs.org/wiki/Definition:Prod;Product;3;1;1;;;;
 \Wron{z}@{w1(z)}{w2(z)};http://dlmf.nist.gov/1.13#E4;Wronskian;1;1;2;;;;
-\Wronskian@{w1(z),w2(z)};http://dlmf.nist.gov/1.13#E4;Wronskian;0;1;1;;;;
+\Wronskian@{w1(z),w2(z)};http://dlmf.nist.gov/1.13#E4;Wronskian;0;1;2;;;;
 \Residue;http://dlmf.nist.gov/1.10#SS3.p5;Residue;0;0;0;;;;symbol
 \card{A};http://dlmf.nist.gov/26.1#p2.t1.r5;Number of elements of a set;0;0;1;;;;
 \cartprod;http://dlmf.nist.gov/23.1#p2.t1.r18;Cartesian product of groups;0;0;0;;;;symbol
@@ -326,6 +326,7 @@ X1:\iderivX\ideriv[n]{f}{x};http://dlmf.nist.gov/1.4#E4;Derivative;1;0;2;;;;dlmf
 \erf@@{z};http://dlmf.nist.gov/7.2#E1;Error function;0;2;1;;;;dlmf-macro
 \erfc@@{z};http://dlmf.nist.gov/7.2#E2;Complementary error function;0;2;1;;;;dlmf-macro
 \erfw@{z};http://dlmf.nist.gov/7.2#E3;Complementary error function;0;1;1;;;;dlmf-macro
+\Faddeevaw@{z};http://dlmf.nist.gov/7.2#E3;Faddeeva (or Faddeyeva) function;0;1;1;;;;dlmf-macro
 \inverf@@{x};http://dlmf.nist.gov/7.17#E1;Inverse error function;0;2;1;;-1 < x < 1;;dlmf-macro
 \inverfc@@{x};http://dlmf.nist.gov/7.17#E1;Inverse complementary error function;0;2;1;;0 < x < 2;;dlmf-macro
 \repinterfc{n}@{z};http://dlmf.nist.gov/7.18#E2;Repeated / Iterated integral of complementary error function;1;1;1;;;;dlmf-macro

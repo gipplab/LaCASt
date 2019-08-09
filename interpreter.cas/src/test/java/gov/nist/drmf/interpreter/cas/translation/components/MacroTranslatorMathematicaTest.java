@@ -68,6 +68,16 @@ class MacroTranslatorMathematicaTest {
             "\\AiryBi^{(3)}@{x}",
             "\\pochhammer{a}{n}",
             "\\pochhammer'{a}{n}",
+            "\\AiryAi'@{AiryBi@{x}}",
+            "\\AiryAi@{AiryBi''@{x}}",
+            "\\AiryAi'''@{AiryBi''@{x}}",
+            "\\AiryAi^{(n)}@{\\AiryBi'''@{x}}",
+            "\\AiryAi'''@{\\AiryBi^{(n)}@{x}}",
+            "\\AiryAi'''@{\\AiryBi^{(n)}@{\\EulerGamma@{z}}}",
+            "\\AiryAi'''@{\\AiryBi^{(n)}@{\\EulerGamma'@{z}}}",
+            "\\Wronskian@{\\AiryAi@{z}, \\AiryBi@{z}}",
+            "\\Wronskian@{\\OlverconfhyperM@{a}{b}{z}, z^{1-b} \\OlverconfhyperM@{a-b+1}{2-b}{z}}",
+            "\\Wronskian@{z^{1-b} \\OlverconfhyperM@{a-b+1}{2-b}{z}, \\KummerconfhyperU@{a}{b}{z}}"
     };
 
     private static final String[] translatedMathematica = {
@@ -101,6 +111,16 @@ class MacroTranslatorMathematicaTest {
             "D[AiryBi[temp], {temp, 3}]/.temp-> x",
             "Pochhammer[a, n]",
             null,
+            "D[AiryAi[temp], {temp, 1}]/.temp-> AiryBi[x]",
+            "AiryAi[D[AiryBi[temp], {temp, 2}]/.temp-> x]",
+            "D[AiryAi[temp], {temp, 3}]/.temp-> D[AiryBi[temp], {temp, 2}]/.temp-> x",
+            "D[AiryAi[temp], {temp, n}]/.temp-> D[AiryBi[temp], {temp, 3}]/.temp-> x",
+            "D[AiryAi[temp], {temp, 3}]/.temp-> D[AiryBi[temp], {temp, n}]/.temp-> x",
+            "D[AiryAi[temp], {temp, 3}]/.temp-> D[AiryBi[temp], {temp, n}]/.temp-> Gamma[z]",
+            "D[AiryAi[temp], {temp, 3}]/.temp-> D[AiryBi[temp], {temp, n}]/.temp-> D[Gamma[temp], {temp, 1}]/.temp-> z",
+            "Wronskian[{AiryAi[z], AiryBi[z]}, z]",
+            "Wronskian[{Hypergeometric1F1Regularized[a, b, z], (z)^(1 - b)  Hypergeometric1F1Regularized[a - b + 1, 2 - b, z]}, z]",
+            "Wronskian[{(z)^(1 - b)  Hypergeometric1F1Regularized[a - b + 1, 2 - b, z], HypergeometricU[a, b, z]}, z]"
     };
 
     private static final Class[] expectedExceptions = {
@@ -134,6 +154,16 @@ class MacroTranslatorMathematicaTest {
             null,
             null,
             TranslationException.class,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
     };
 
     @TestFactory
