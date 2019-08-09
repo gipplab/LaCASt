@@ -33,7 +33,8 @@ public enum DLMFFeatureValues implements IFeatureExtractor{
     ),
     slot(
             t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.SLOT_OF_DIFF))
-    ), CAS(
+    ),
+    CAS(
             t -> IFeatureExtractor.getStringFromSet(t.getFeature(GlobalConstants.CAS_KEY))
     ),
     CAS_Alternatives(

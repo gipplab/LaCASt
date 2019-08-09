@@ -91,8 +91,8 @@ X1:\sqrtX\sqrt[$1]{$0};surd($1, $0);2;;;;
 ;;;;;;
 ;;;;;;
 ;;;;;;
-\Wron{z}@{w1(z)}{w2(z)};;;;;;($1)*diff($2, $0)-diff($1, $0)*($2)
-\Wronskian@{w1(z),w2(z)};;;;;;
+\Wron{z}@{w1(z)}{w2(z)};($1)*diff($2, $0)-diff($1, $0)*($2);;;;;($1)*diff($2, $0)-diff($1, $0)*($2)
+\Wronskian@{w1(z),w2(z)};($1)*diff($2, $0)-diff($1, $0)*($2);;;;;
 \Residue;;;;;;
 \card{A};numelems(A);1;;;;
 \cartprod;;;;;;
@@ -302,7 +302,7 @@ X1:\iderivX\ideriv[$0]{$1}{$2};diff($1, [$2$($0)]);2;;;;
 \inverfc@@{x};;;;;;
 \repinterfc{$0}@{$1};erfc($0, $1);2;;;;
 \FishersHh{n}@{z};;;;;;
-;;;;;;
+\Faddeevaw@{z};;;;;;
 \FibonacciNumber{n};;;;;;
 ;;;;;;
 \FresnelintF@{z};;;;;;

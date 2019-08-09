@@ -862,6 +862,7 @@ Symbol: \BesselJimag
 	Maple-Alternatives: sech((1/2)*Pi*($0))*Re(BesselJ(I*($0), $1))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Maple-Package: 
+	Mathematica: Sech[1/2 Pi $0] Re[BesselJ[I $0, $1]]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -1044,6 +1045,7 @@ Symbol: \BesselYimag
 	Maple-Alternatives: sech((1/2)*Pi*($0))*Re(BesselY(I*($0), $1))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Maple-Package: 
+	Mathematica: Sech[1/2 Pi $0] Re[BesselY[I $0, $1]]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -1074,6 +1076,7 @@ Symbol: \Besselpolyy
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: Pochhammer[$0 + $2 - 1, $0] ($1/2)^$0 Hypergeometric1F1[-$0, -2 $0 - $2 + 2, 2/$1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -2555,6 +2558,23 @@ Symbol: \ExpIntn
 	Number of Variables: 1
 	Role: dlmf-macro
 
+Symbol: \Faddeevaw
+
+  Feature Set: dlmf-macro
+	DLMF: \Faddeevaw@{z}
+	DLMF-Link: dlmf.nist.gov/7.2#E3
+	Maple-Alternatives: 
+	Maple-Comment: 
+	Maple-Package: 
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
+	Mathematica-Package: 
+	Meanings: Faddeeva (or Faddeyeva) function
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 1
+	Role: dlmf-macro
+
 Symbol: \FerrersHatQ
 
   Feature Set: dlmf-macro
@@ -2628,6 +2648,66 @@ Symbol: \FerrersHatQ
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
 
   Feature Set: dlmf-alternative-1
 	DLMF: \DunsterQ[\mu]{\tau}@{x}
@@ -3161,6 +3241,7 @@ Symbol: \HankelH
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
 	Maple-Package: 
+	Mathematica: HankelH1[$1, $2] || HankelH2[$1, $2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -3483,6 +3564,7 @@ Symbol: \Hurwitzzeta
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
 	Maple-Package: 
+	Mathematica: HurwitzZeta[$0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -4456,6 +4538,7 @@ Symbol: \Jacobithetaq
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: EllipticTheta[$0, $1, $2] || EllipticTheta[1, $1, $2] || EllipticTheta[2, $1, $2] || EllipticTheta[3, $1, $2] || EllipticTheta[4, $1, $2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -4475,6 +4558,7 @@ Symbol: \Jacobithetatau
 	Maple-Alternatives: JacobiTheta$0($1,exp(I*Pi*$2))
 	Maple-Comment: The alternative translation is only allowed for: Im($2) > 0 and 0 < |exp(I*Pi*$2)| < 1
 	Maple-Package: 
+	Mathematica: EllipticTheta[$0, $1, $2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -4747,10 +4831,7 @@ Symbol: \KummerconfhyperM
 	DLMF-Link: dlmf.nist.gov/13.2#E2
 	Maple: KummerM($0, $1, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KummerK
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -4774,6 +4855,7 @@ Symbol: \KummerconfhyperU
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KummerU
 	Maple-Package: 
+	Mathematica: HypergeometricU[$0, $1, $2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -4871,6 +4953,66 @@ Symbol: \LaguerreL
   Feature Set: dlmf-alternative-1
 	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
 	Meanings: Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5431,6 +5573,78 @@ Symbol: \LegendreBlackQ
 	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E10
 	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
 	Maple-Comment: 
@@ -5543,6 +5757,90 @@ Symbol: \LegendreP
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Maple: LegendreP($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Maple: LegendreP($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Maple: LegendreP($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Maple: LegendreP($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Maple: LegendreP($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Maple: LegendreP($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
 
   Feature Set: dlmf-alternative-1
 	Branch Cuts: (-\infty, 1]
@@ -5688,6 +5986,90 @@ Symbol: \LegendreQ
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Maple: LegendreQ($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Maple: LegendreQ($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Maple: LegendreQ($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Maple: LegendreQ($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Maple: LegendreQ($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Maple: LegendreQ($1, $0, $2)
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
 
   Feature Set: dlmf-alternative-1
 	Branch Cuts: (-\infty, 1]
@@ -6258,6 +6640,7 @@ Symbol: \Mathieuce
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuCE
 	Maple-Package: 
+	Mathematica: MathieuC[$0, $2, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -6392,6 +6775,7 @@ Symbol: \Mathieuse
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuSE
 	Maple-Package: 
+	Mathematica: MathieuS[$0, $2, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -6718,6 +7102,7 @@ Symbol: \OlverconfhyperM
 	Maple-Alternatives: KummerM($0, $1, $2)/GAMMA($1)
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: Hypergeometric1F1Regularized[$0, $1, $2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -8121,6 +8506,7 @@ Symbol: \WhittakerconfhyperM
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerM
 	Maple-Package: 
+	Mathematica: WhittakerM[$0, $1, $2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -8143,6 +8529,7 @@ Symbol: \WhittakerconfhyperW
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerW
 	Maple-Package: 
+	Mathematica: WhittakerW[$0, $1, $2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -8274,6 +8661,7 @@ Symbol: \Wron
   Feature Set: dlmf-macro
 	DLMF: \Wron{z}@{w1(z)}{w2(z)}
 	DLMF-Link: dlmf.nist.gov/1.13#E4
+	Maple: ($1)*diff($2, $0)-diff($1, $0)*($2)
 	Maple-Alternatives: ($1)*diff($2, $0)-diff($1, $0)*($2)
 	Maple-Comment: 
 	Maple-Package: 
@@ -8288,16 +8676,18 @@ Symbol: \Wronskian
   Feature Set: dlmf-macro
 	DLMF: \Wronskian@{w1(z),w2(z)}
 	DLMF-Link: dlmf.nist.gov/1.13#E4
+	Maple: ($1)*diff($2, $0)-diff($1, $0)*($2)
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: Wronskian[{$1, $2}, $0]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Wronskian
 	Number of Ats: 1
 	Number of Parameters: 0
-	Number of Variables: 1
+	Number of Variables: 2
 	Role: 
 
 Symbol: \ZeroAiryAi
@@ -11157,6 +11547,7 @@ Symbol: \hyperF
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
 	Maple-Package: 
+	Mathematica: Hypergeometric2F1[$0, $1, $2, $3]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -11868,6 +12259,7 @@ Symbol: \modBesselI
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
 	Maple-Package: 
+	Mathematica: BesselI[$0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -11886,6 +12278,7 @@ Symbol: \modBesselIimag
 	Maple-Alternatives: Re(BesselI(I*($0), $1))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Maple-Package: 
+	Mathematica: Re[BesselI[I $0, $1]]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -11908,6 +12301,7 @@ Symbol: \modBesselK
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
 	Maple-Package: 
+	Mathematica: BesselK[$0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -11926,6 +12320,7 @@ Symbol: \modBesselKimag
 	Maple-Alternatives: BesselK(I*($0), $1)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Maple-Package: 
+	Mathematica: BesselK[I $0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -12193,6 +12588,7 @@ Symbol: \modsphBesselK
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: Sqrt[1/2 Pi /$1] BesselK[$0 + 1/2, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -12211,6 +12607,7 @@ Symbol: \modsphBesseli
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: Sqrt[1/2 Pi /$1] BesselI[$0 + 1/2, $1] || Sqrt[1/2 Pi /$1] BesselI[-$0 - 1/2, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -13658,6 +14055,7 @@ Symbol: \paraU
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CylinderU
 	Maple-Package: 
+	Mathematica: ParabolicCylinderD[-$0 - 1/2, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -15113,6 +15511,7 @@ Symbol: \radsphwaveS
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: SpheroidalS$1[$2, $0, $3, $4]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -15674,6 +16073,7 @@ Symbol: \sphBesselJ
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: SphericalBesselJ[$0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -15692,6 +16092,7 @@ Symbol: \sphBesselY
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: SphericalBesselY[$0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -15710,6 +16111,7 @@ Symbol: \sphHankelh
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: SphericalHankelH1[$0, $1] || SphericalHankelH2[$0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 

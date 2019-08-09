@@ -139,7 +139,7 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 		return inner_parser.local_inner_exp;
 	}
 
-	private boolean isDLMFMacro( MathTerm term ) {
+	protected boolean isDLMFMacro( MathTerm term ) {
 		MathTermTags tag = MathTermTags.getTagByKey( term.getTag() );
 		if ( tag != null && tag.equals( MathTermTags.dlmf_macro ) )
 			return true;
