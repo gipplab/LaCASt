@@ -3390,6 +3390,7 @@ Symbol: \HurwitzZeta
 	DLMF-Link: dlmf.nist.gov/25.11#E1
 	Maple: Zeta(0, $0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
+	Mathematica: HurwitzZeta[$0, $1]
 	Meanings: Hurwitz zeta function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -3406,7 +3407,8 @@ Symbol: \Hurwitzzeta
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
-	Maple-Package: 
+	Maple-Package:
+	Mathematica: HurwitzZeta[$0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
