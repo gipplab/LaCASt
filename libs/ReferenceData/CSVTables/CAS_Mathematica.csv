@@ -90,7 +90,7 @@ Round[$0];;1;;;;;;https://reference.wolfram.com/language/ref/Round.html
 Floor[$0];;1;;;;;;https://reference.wolfram.com/language/ref/Floor.html
 Min[x1, x2, ...];;;;;;;;https://reference.wolfram.com/language/ref/Min.html
 Max[x1, x2, ...];;;;;;;;https://reference.wolfram.com/language/ref/Max.html
-GCD[$0, $1];\pgcd{m,n};2;;;;;;https://reference.wolfram.com/language/ref/GCD.html
+GCD[$0];\pgcd{m,n};2;;;;;;https://reference.wolfram.com/language/ref/GCD.html
 LCM[m,n,...];;;;;;;;https://reference.wolfram.com/language/ref/LCM.html
 ;\f{f}@{x};;;;;;;
 ;\in;;;;;;;
@@ -127,7 +127,7 @@ Wronskian[{$1,$2},$0];\Wronskian@{w1(z),w2(z)};;;;;;;
 ;\fDiff[x];;;;;;;
 ;\bDiff[x];;;;;;;
 ;\cDiff[x];;;;;;;
-;\deriv{f}{x};;;;;;;
+D[$0, $1];\deriv{f}{x};;;;;;;
 ;\pderiv{f}{x};;;;;;;
 ;\diff{x};;;;;;;
 ;\pdiff{x};;;;;;;
@@ -520,8 +520,8 @@ EllipticK[($0)^2];\compellintKk@{k};1;;;;;;
 ;\sphwaveQs{m}{n}@{z}{\gamma^2};;;;;;;
 ;\radsphwaveS{m}{j}{n}@{z}{\gamma};;;;;;;
 ;;;;;;;;
-;\Stirlingnumbers@{n}{k};;;;;;;
-;\StirlingnumberS@{n}{k};;;;;;;
+StirlingS1[$0, $1];\Stirlingnumbers@{n}{k};;;;;;;
+StirlingS2[$0, $1];\StirlingnumberS@{n}{k};;;;;;;
 ;;;;;;;;
 ;\StruveH{\nu}@{z};;;;;;;
 ;\StruveK{\nu}@{z};;;;;;;

@@ -24,7 +24,7 @@ public class SumProductTranslator extends AbstractListTranslator{
 
     private static ArrayList<ArrayList<String>> args = new ArrayList<>();
 
-    private static ArrayList<String> indices = new ArrayList<>();
+    private String index;
 
     private static int num = -1;
 
@@ -39,9 +39,6 @@ public class SumProductTranslator extends AbstractListTranslator{
 
         //put the arguments to the sum in the list of sum args
         int numArgs = addToArgs(next, list);
-
-        //add factors to summand
-        addFactorsToSummand(list, tempNum, numArgs);
 
         //put the args from the arraylist into an array so that it can be passed as an argument to parseBasicFunction
         String[] argsArray = new String[args.get(tempNum).size()];
@@ -77,16 +74,22 @@ public class SumProductTranslator extends AbstractListTranslator{
      * @param list
      * @return
      */
-    private int onlyLower(PomTaggedExpression next, List<PomTaggedExpression> list){
+    private int onlyLower(PomTaggedExpression next, List<PomTaggedExpression> list, int tempNum){
         List<PomTaggedExpression> components = next.getComponents();
         List<PomTaggedExpression> components2 = components.get(0).getComponents();
-        String storeIndex = searchForIndex(components);
-        indices.add(storeIndex);
-        int size = components.get(0).getComponents().size();
+
+        index = searchForIndex(components);
+        int size = components2.size();
+
         //this is the index and lower limit of summation
         PomTaggedExpression lowerLim = components.get(0);
-        args.get(num).add(parseGeneralExpression(lowerLim, list).toString());
-        remove(size);
+        int size2 = lowerLim.getComponents().size();
+        if(lowerLim.getComponents().size() > 1 && GlobalConstants.CAS_KEY.equals("Mathematica")){
+            removeIndex(lowerLim, size2);
+        } else {
+            args.get(num).add(parseGeneralExpression(lowerLim, list).toString());
+            remove(size);
+        }
         size = list.get(0).getComponents().size();
         //this is the function being summed
         if(GlobalConstants.CAS_KEY.equals("Mathematica"))
@@ -94,6 +97,11 @@ public class SumProductTranslator extends AbstractListTranslator{
         else
             args.get(num).add(parseGeneralExpression(list.remove(0), list).toString());
         remove(size);
+
+        args.get(tempNum).add(index);
+        //add factors to summand
+        addFactorsToSummand(list, tempNum, 2, null);
+
         return 2;
     }
 
@@ -118,83 +126,42 @@ public class SumProductTranslator extends AbstractListTranslator{
      * @return
      */
     private int lowerAndUpper(PomTaggedExpression next, List<PomTaggedExpression> list, int tempNum){
-        String storeIndex;
-        PomTaggedExpression index2;
-        PomTaggedExpression lowerLim;
-        PomTaggedExpression upperLim;
         List<PomTaggedExpression> components = next.getComponents();
-        //lower limit defined before upper limit
-        if(MathTermTags.getTagByKey(components.get(0).getRoot().getTag()).equals(MathTermTags.underscore)){
-            List<PomTaggedExpression> components2 = components.get(0).getComponents();
-            //Store the index of summation.
-            try{
-                List<PomTaggedExpression> components3 = components2.get(0).getComponents();
-                storeIndex = components3.get(0).getRoot().getTermText();
-                index2 = components3.get(0);
-            } catch(IndexOutOfBoundsException e){
-                storeIndex = components2.get(0).getRoot().getTermText();
-                index2 = components2.get(0);
-            }
-            lowerLim = components2.get(0);
-            List<PomTaggedExpression> upperComponents = components.get(1).getComponents();
-            upperLim = upperComponents.get(0);
-        } //upper limit defined before lower limit
-        else {
-            List<PomTaggedExpression> components2 = components.get(1).getComponents();
-            //Store the index of summation.
-            try {
-                List<PomTaggedExpression> components3 = components2.get(0).getComponents();
-                storeIndex = components3.get(0).getRoot().getTermText();
-                index2 = components3.get(0);
-            } catch(IndexOutOfBoundsException e){
-                storeIndex = components2.get(0).getRoot().getTermText();
-                index2 = components2.get(0);
-            }
-            lowerLim = components2.get(0);
-            List<PomTaggedExpression> upperComponents = components.get(0).getComponents();
-            upperLim = upperComponents.get(0);
-        }
+        PomTaggedExpression[] lims = findLims(components);
+        PomTaggedExpression lowerLim = lims[0];
+        PomTaggedExpression upperLim = lims[1];
+        PomTaggedExpression index2 = lims[2];
+        String storeIndex = index2.getRoot().getTermText();
+
+        //if theres no index, find the first letter and assume it is the index
         boolean needNewIndex = !Character.isLetter(storeIndex.charAt(0)) && !MathTermTags.getTagByKey(index2.getRoot().getTag()).equals(MathTermTags.special_math_letter);
         if(needNewIndex) {
             storeIndex = searchForIndex(list);
         }
+        //if theres still no index, put in i
         if(needNewIndex){
             storeIndex = "i";
         }
-        indices.add(storeIndex);
+        index = storeIndex;
+
+        //check if there is a nested sum defined with a comma
+        String innerIndex = isAnotherSum(lowerLim);
+        boolean isInnerSum = !"".equals(innerIndex);
+
         //lower limit of summation
-        //remove the index from the lower limit
         int size = lowerLim.getComponents().size();
         if(lowerLim.getComponents().size() > 1 && GlobalConstants.CAS_KEY.equals("Mathematica")){
-            String newLowerLim = "";
-            String lastTemp = "";
-            boolean add = false;
-            int index = -1;
-            for(int i = 0; i < lowerLim.getComponents().size(); i++){
-                MathTermTags tag = MathTermTags.getTagByKey(lowerLim.getComponents().get(i).getRoot().getTag());
-                if(add){
-                    String temp = parseGeneralExpression(lowerLim.getComponents().remove(i), lowerLim.getComponents()).toString();
-                    if(temp.isEmpty()) {
-                        newLowerLim = newLowerLim.substring(0, newLowerLim.indexOf(lastTemp));
-                        newLowerLim += global_exp.removeLastExpression();
-                    } else{
-                        newLowerLim += temp;
-                        lastTemp = temp;
-                    }
-                    i--;
-                } else if(tag.equals(MathTermTags.relation) || tag.equals(MathTermTags.equals) || tag.equals(MathTermTags.greater_than) || tag.equals(MathTermTags.less_than)){
-                    index = i;
-                    add = true;
-                }
-            }
-            args.get(num).add(newLowerLim);
-            remove(size-index);
+            removeIndex(lowerLim, size);
         } else{
-            args.get(num).add(parseGeneralExpression(lowerLim, list).toString());
-            //remove the expression that parseGeneralExpression added to global_exp, because that expression is being used as a sum arg.
-            remove(size);
+            if(isInnerSum) {
+                String operator = removeIndex(lowerLim, size);
+                String currentLim = args.get(tempNum).get(0);
+                args.get(tempNum).set(0, innerIndex + operator + currentLim);
+            } else {
+                args.get(num).add(parseGeneralExpression(lowerLim, list).toString());
+                global_exp.removeLastNExps(size);
+            }
         }
-
 
         //upper limit of summation
         size = upperLim.getComponents().size();
@@ -214,7 +181,158 @@ public class SumProductTranslator extends AbstractListTranslator{
         } else {
             args.get(tempNum).add(storeIndex);
         }
+
+        //add factors to summand
+        if(isInnerSum)
+            addFactorsToSummand(list, tempNum, 3, innerIndex);
+        else
+            addFactorsToSummand(list, tempNum, 3, null);
+
+        //if theres a nested sum defined with a comma, ex: \sum_{n, k \hiderel{=} 0}^{\infty}\frac{x^n}{n!}y^k
+        //translate that here
+        if(isInnerSum) {
+            addNextSum(innerIndex, tempNum);
+        }
         return  3;
+    }
+
+    /**
+     * Finds the lower limit, uppper limit, and index of summation.
+     *
+     * @param components
+     * @return A list of these things
+     */
+    private PomTaggedExpression[] findLims(List<PomTaggedExpression> components){
+        PomTaggedExpression[] lims = new PomTaggedExpression[3];
+        PomTaggedExpression lowerLim;
+        PomTaggedExpression upperLim;
+        PomTaggedExpression index2;
+        //lower limit defined before upper limit
+        if(MathTermTags.getTagByKey(components.get(0).getRoot().getTag()).equals(MathTermTags.underscore)){
+            List<PomTaggedExpression> components2 = components.get(0).getComponents();
+            //Store the index of summation.
+            try{
+                List<PomTaggedExpression> components3 = components2.get(0).getComponents();
+                index2 = components3.get(0);
+            } catch(IndexOutOfBoundsException e){
+                index2 = components2.get(0);
+            }
+            lowerLim = components2.get(0);
+            List<PomTaggedExpression> upperComponents = components.get(1).getComponents();
+            upperLim = upperComponents.get(0);
+        } //upper limit defined before lower limit
+        else {
+            List<PomTaggedExpression> components2 = components.get(1).getComponents();
+            //Store the index of summation.
+            try {
+                List<PomTaggedExpression> components3 = components2.get(0).getComponents();
+                index2 = components3.get(0);
+            } catch(IndexOutOfBoundsException e){
+                index2 = components2.get(0);
+            }
+            lowerLim = components2.get(0);
+            List<PomTaggedExpression> upperComponents = components.get(0).getComponents();
+            upperLim = upperComponents.get(0);
+        }
+        lims[0] = lowerLim;
+        lims[1] = upperLim;
+        lims[2] = index2;
+        return lims;
+    }
+
+    /**
+     * Uses the current args as args to the nested sum.
+     * Translates the sum using BasicFunctionParser.
+     * Uses the nested sum as the argument to this sum.
+     * Plugs in the correct indexes of summation.
+     *
+     * @param nextIndex
+     * @param tempNum
+     */
+    private void addNextSum(String nextIndex, int tempNum){
+        args.get(tempNum).set(args.get(tempNum).size()-1, nextIndex);
+        String[] argsarray = new String[args.get(tempNum).size()];
+        for(int i = 0; i < args.get(tempNum).size(); i++){
+            argsarray[i] = args.get(tempNum).get(i);
+        }
+        //translate the inner sum
+        BasicFunctionsTranslator bft = SemanticLatexTranslator.getBasicFunctionParser();
+        String nextSum = bft.translate(argsarray, "sum3");
+
+        //put in the sum as the summand to this sum
+        args.get(tempNum).set(args.get(tempNum).size()-2, nextSum);
+
+        //put the old index back in
+        args.get(tempNum).set(args.get(tempNum).size()-1, index);
+        if(GlobalConstants.CAS_KEY.equals("Maple")){
+            String restOfLim = args.get(tempNum).get(0).substring(args.get(tempNum).get(0).indexOf(nextIndex)+1);
+            args.get(tempNum).set(0, index + restOfLim);
+        }
+    }
+
+    /**
+     * Removes the index of summation from the lower limit.
+     *
+     * @param lowerLim
+     * @param size
+     * @return the relational operator, which Maple needs for nested sums defined with a comma.
+     */
+    private String removeIndex(PomTaggedExpression lowerLim, int size){
+        String newLowerLim = "";
+        String lastTemp = "";
+        String relationalOperator = "";
+        boolean add = false;
+        int index = -1;
+        for(int i = 0; i < lowerLim.getComponents().size(); i++){
+            MathTermTags tag = MathTermTags.getTagByKey(lowerLim.getComponents().get(i).getRoot().getTag());
+            if(add){
+                String temp = parseGeneralExpression(lowerLim.getComponents().remove(i), lowerLim.getComponents()).toString();
+                if(temp.isEmpty()) {
+                    newLowerLim = newLowerLim.substring(0, newLowerLim.indexOf(lastTemp));
+                    newLowerLim += global_exp.removeLastExpression();
+                } else{
+                    newLowerLim += temp;
+                    lastTemp = temp;
+                }
+                i--;
+            } else if(tag.equals(MathTermTags.relation) || tag.equals(MathTermTags.equals) || tag.equals(MathTermTags.greater_than) || tag.equals(MathTermTags.less_than)){
+                index = i;
+                add = true;
+                relationalOperator = lowerLim.getComponents().get(i).getRoot().getTermText();
+            }
+        }
+        args.get(num).add(newLowerLim);
+        remove(size-index);
+        return relationalOperator;
+    }
+
+    /**
+     * If there is a comma followed by a letter inside the lower limit of summation, then this is a nested sum.
+     * That letter is the index of summation for the nested sum, return it.
+     *
+     * @param remainingExpression
+     * @return the letter
+     */
+    private String isAnotherSum(PomTaggedExpression remainingExpression){
+        List<PomTaggedExpression> components = remainingExpression.getComponents();
+        int size = components.size();
+        if(components.size() == 0)
+            return "";
+        else {
+            for(int i = 0; i < size; i++){
+                if(MathTermTags.getTagByKey(components.get(i).getRoot().getTag()).equals(MathTermTags.comma) && i + 1 < size){
+                    PomTaggedExpression next = components.get(i+1);
+                    MathTermTags tag = MathTermTags.getTagByKey(next.getRoot().getTag());
+                    if(tag.equals(MathTermTags.alphanumeric) || tag.equals(MathTermTags.letter) || tag.equals(MathTermTags.special_math_letter)){
+                        String index = parseGeneralExpression(next, null).toString();
+                        global_exp.removeLastExpression();
+                        return index;
+                    }
+                }
+
+            }
+            return "";
+        }
     }
 
     /**
@@ -232,7 +350,7 @@ public class SumProductTranslator extends AbstractListTranslator{
         ExpressionTags tag = ExpressionTags.getTagByKey(next.getTag());
         //only upper limit, only lower limit, or no limits with a summand of length 1.
         if(tag == null && MathTermTags.getTagByKey(next.getRoot().getTag()).equals(MathTermTags.underscore)){
-            return onlyLower(next, list);
+            return onlyLower(next, list, num);
         } else if(tag != null && tag.equals(ExpressionTags.sub_super_script)) {
             return lowerAndUpper(next, list, num);
         }
@@ -254,14 +372,16 @@ public class SumProductTranslator extends AbstractListTranslator{
      * @param tempNum
      * @param numArgs
      */
-    private void addFactorsToSummand(List<PomTaggedExpression> list, int tempNum, int numArgs){
+    private void addFactorsToSummand(List<PomTaggedExpression> list, int tempNum, int numArgs, String nextIndex){
         //determine where to add the new summand to
         //Mathematica is 2, and Maple is 1, except for the case with 3 args, then Maple is 2 also.
         int numFromEnd;
-        if(GlobalConstants.CAS_KEY.equals("Mathematica") || numArgs == 3)
+        if(GlobalConstants.CAS_KEY.equals("Mathematica") && numArgs == 3)
             numFromEnd = 2;
+        else if (GlobalConstants.CAS_KEY.equals("Mathematica"))
+            numFromEnd = 3;
         else
-            numFromEnd = 1;
+            numFromEnd = 2;
 
         List<String> sum = new ArrayList<>();
         //this is the current summand
@@ -277,7 +397,7 @@ public class SumProductTranslator extends AbstractListTranslator{
 
             MathTermTags tag = MathTermTags.getTagByKey(list.get(i).getRoot().getTag());
             //if there is a sum with the same index of summation, stop.
-            if(list.get(i).getComponents().size() != 0 && isIndexPresent(list.get(i).getComponents(), tempNum) == -2) {
+            if(list.get(i).getComponents().size() != 0 && isIndexPresent(list.get(i).getComponents(), tempNum, index, nextIndex) == -2) {
                 break;
             } else if(tag == null){
                 sum.add(parseGeneralExpression(list.remove(i), list).toString());
@@ -290,7 +410,7 @@ public class SumProductTranslator extends AbstractListTranslator{
                     //if its not, stop
                     case plus:
                     case minus:
-                        if(isIndexPresent(list, tempNum) == 1){
+                        if(isIndexPresent(list, tempNum, index, nextIndex) == 1){
                             sum.add(parseGeneralExpression(list.remove(i), list).toString());
                             lastExp = global_exp.removeLastExpression();
                             i--;
@@ -319,13 +439,16 @@ public class SumProductTranslator extends AbstractListTranslator{
                         break;
                     //if the sum/prod has the same index of summation, stop
                     case operator:
-                        List<PomTaggedExpression> components = list.get(i+1).getComponents();
-                        List<PomTaggedExpression> components2 = components.get(0).getComponents();
-                        List<PomTaggedExpression> components3 = components2.get(0).getComponents();
-                        String text = components3.get(0).getRoot().getTermText();
-                        if(text.equals(indices.get(tempNum))) {
-                            endSummand = true;
-                            break;
+                        try {
+                            List<PomTaggedExpression> components = list.get(i + 1).getComponents();
+                            List<PomTaggedExpression> components2 = components.get(0).getComponents();
+                            List<PomTaggedExpression> components3 = components2.get(0).getComponents();
+                            String text = components3.get(0).getRoot().getTermText();
+                            if (text.equals(index)) {
+                                endSummand = true;
+                                break;
+                            }
+                        } catch(IndexOutOfBoundsException e){
                         }
                         //no break here
                     default:
@@ -356,23 +479,23 @@ public class SumProductTranslator extends AbstractListTranslator{
      * @param tempNum, the current number of sums, used to access the right index.
      * @return
      */
-    private int isIndexPresent(List<PomTaggedExpression> list, int tempNum){
+    private int isIndexPresent(List<PomTaggedExpression> list, int tempNum, String index, String nextIndex){
         int numParen = 0;
         MathTermTags lastTag = null;
         for(PomTaggedExpression ex : list){
             String text = ex.getRoot().getTermText();
             MathTermTags tag = MathTermTags.getTagByKey(ex.getRoot().getTag());
             //if the index is found, return true
-            if(text.equals(indices.get(tempNum))){
+            if(text.equals(index)){
                 return 1;
             }
             //If theres a sum with the same index as this sum's index of summation, stop searching and return -1.
             boolean conds = lastTag != null && ex.getComponents().size() != 0;
-            if(conds && lastTag.equals(MathTermTags.operator) && isIndexPresent(ex.getComponents().get(0).getComponents(), tempNum) == 1)
+            if(conds && lastTag.equals(MathTermTags.operator) && isIndexPresent(ex.getComponents().get(0).getComponents(), tempNum, index, null) == 1)
                 return -2;
 
             if(ex.getComponents().size() != 0) {
-                int val = isIndexPresent(ex.getComponents(), tempNum);
+                int val = isIndexPresent(ex.getComponents(), tempNum, index, null);
                 if (val != 0)
                     return val;
             }
@@ -401,6 +524,11 @@ public class SumProductTranslator extends AbstractListTranslator{
                 }
             }
             lastTag = tag;
+        }
+
+        //If its a double sum, account for the inner sum's index too
+        if(nextIndex != null){
+            return isIndexPresent(list, tempNum, nextIndex, null);
         }
         return 0;
     }

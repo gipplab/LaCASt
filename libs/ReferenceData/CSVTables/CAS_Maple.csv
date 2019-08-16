@@ -71,7 +71,7 @@ signum($0);\sign@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.a
 surd($1, $0);\sqrt[$1]{$0};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=surd
 binomial($0, $1);\binom{$0}{$1};2;;;;\binom{$0}{$1};https://www.maplesoft.com/support/help/maple/view.aspx?path=binomial
 multinomial($0, $1);\multinomial{m}{n_1,...,n_k};;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=combinat/multinomial
-gcd($0, $1);\pgcd{$0, $1};1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=gcd
+gcd($0);\pgcd{$0, $1};1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=gcd
 factorial($0);($0)!;1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=factorial
 doublefactorial($0);($0)!!;1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=doublefactorial
 ;;;;;;;
