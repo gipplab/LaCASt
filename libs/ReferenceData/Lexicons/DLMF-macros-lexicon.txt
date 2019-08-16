@@ -7299,7 +7299,8 @@ Symbol: \StirlingnumberS
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Stirling2
-	Maple-Package: 
+	Maple-Package:
+	Mathematica: StirlingS2[$0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -7320,7 +7321,8 @@ Symbol: \Stirlingnumbers
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Stirling1
-	Maple-Package: 
+	Maple-Package:
+	Mathematica: StirlingS1[$0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -9966,7 +9968,8 @@ Symbol: \deriv
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=diff
-	Maple-Package: 
+	Maple-Package:
+	Mathematica: D[$0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -9985,7 +9988,8 @@ Symbol: \deriv
 	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=diff
-	Maple-Package: 
+	Maple-Package:
+	Mathematica: D[$1, {$2, $0}]
 	Meanings: Derivative
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -13499,7 +13503,7 @@ Symbol: \pgcd
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=gcd
 	Maple-Package: 
-	Mathematica: GCD[$0, $1]
+	Mathematica: GCD[$0]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 

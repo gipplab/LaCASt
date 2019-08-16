@@ -113,7 +113,7 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 				return_value = mp.translate( exp, exp_list );
 				inner_parser = mp;
 			} //is it a sum or a product
-			else if (isSumOrProduct(term)){
+			else if (isSumOrProductOrLimit(term)){
 				SumProductTranslator sm = new SumProductTranslator();
 				return_value = sm.translate(exp, exp_list);
 				inner_parser = sm;
@@ -155,9 +155,9 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 		} else return false;
 	}
 
-	protected boolean isSumOrProduct(MathTerm term){
+	protected boolean isSumOrProductOrLimit(MathTerm term){
 		if(term.getTag().equals(MathTermTags.operator.tag()))
-			return FeatureSetUtility.isSum(term) || FeatureSetUtility.isProduct(term);
+			return FeatureSetUtility.isSum(term) || FeatureSetUtility.isProduct(term) || FeatureSetUtility.isLimit(term);
 		return false;
 	}
 

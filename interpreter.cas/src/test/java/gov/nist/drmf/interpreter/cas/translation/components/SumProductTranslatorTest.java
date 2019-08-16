@@ -55,6 +55,7 @@ public class SumProductTranslatorTest {
     private static final String[] sums= {
             "\\sum_{i=0}^\\infty i^2\\log{i}^3+i(2+3)",
             "\\sum^{200}_{k=-3}3i+k+i^2",
+            "\\sum_{x, y = -\\infty}^{\\infty}\\sin{2^x}+\\cos{2^y}+23",
             "\\sum_{j=0}^{r}\\tan{x^3}^2\\sin{j}+\\frac{2^j}{x-3}",
             "\\sum_{x=-\\infty}^{\\infty}x^2(x+2)(y^3-3)-2x+y-2",
             "\\sum_{n=1}^{\\infty}\\frac{(-1)^{n}2^{2n-1}B_{2n}}{n(2n)!}z^{2n}",
@@ -106,12 +107,18 @@ public class SumProductTranslatorTest {
             "\\sum_{n=-\\infty}^\\infty a^{n(n+1)/2} b^{n(n-1)/2}",
             //7.6.4
             "\\sum_{n=0}^\\infty \\frac{\\opminus^n (\\frac{1}{2} \\pi)^{2n}}{(2n)! (4n+1)} z^{4n+1}",
-            //24.4.24 with removed \choose and (j+mx)^{n-1}
-            "\\sum_{k=1}^n \\sum_{j=0}^{k-1} \\opminus^j\\left( \\sum_{r=1}^{m-1} \\frac{e^{2\\pi i (k-j) r/m}}{(1 - e^{2\\pi ir/m})^n} \\right) j^n"
+            //24.4.24 with removed \choose
+            "\\sum_{k=1}^n \\sum_{j=0}^{k-1} \\opminus^j\\left( \\sum_{r=1}^{m-1} \\frac{e^{2\\pi i (k-j) r/m}}{(1 - e^{2\\pi ir/m})^n} \\right) (j+m*x)^{n-1}",
+            //31.15.1
+            "\\sum_{p=1}^{\\infty}{\\deriv[2]{w}{z} + \\left( \\sum_{j=1}^N \\frac{\\gamma_j}{z - a_j} \\right) \\deriv{w}{z} + \\frac{\\Phi(z)}{\\prod_{j=1}^N (z - a_j)} w}",
+            //26.8.9
+            "\\sum_{n, k \\hiderel{=} 0}^{\\infty} \\Stirlingnumbers@{n}{k} \\frac{x^n}{n!}y^k = (1+x)^y",
+
     };
 
     private static final String[] prods = {
             "\\prod_{i=0}^{\\infty}k^3",
+            "\\prod_{x \\in P}x^2+x^3-3",
             "\\prod_{i=0}^{k}i^2+\\prod_{j=0}^{k}i^3-3j+\\prod_{l=0}^{k}j+2+\\sin{l}",
             "\\prod_{i=0}^{10}i^2\\prod_{i=2}^{12}k",
             "\\prod_{i=0}^{10}i^2\\prod_{j=2}^{12}i",
@@ -143,9 +150,67 @@ public class SumProductTranslatorTest {
 
     };
 
+    private static final String[] lims = {
+            //4.31.1
+            "\\lim_{z \\to 0} \\frac{\\sinh@@{z}}{z}",
+            //4.31.3
+            "\\lim_{z \\to 0} \\frac{\\cosh@@{z} - 1}{z^2}",
+            //4.4.13
+            "\\lim_{x \\to \\infty} x^{-a} \\ln@@{x}",
+            //4.4.17
+            "\\lim_{n \\to \\infty} \\left( 1 + \\frac{z}{n} \\right)^n",
+            //22.12.4 all
+            "\\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\frac{\\pi}{\\tan@{\\pi (t - (n+\\frac{1}{2}) \\tau)}} = \\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\left( \\lim_{M \\to \\infty} \\sum_{m=-M}^M \\frac{1}{t - m - (n+\\frac{1}{2}) \\tau} \\right)",
+            //22.12.4 part 1
+            "\\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\frac{\\pi}{\\tan@{\\pi (t - (n+\\frac{1}{2}) \\tau)}}",
+            //22.12.4 part 2
+            "\\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\left( \\lim_{M \\to \\infty} \\sum_{m=-M}^M \\frac{1}{t - m - (n+\\frac{1}{2}) \\tau} \\right)",
+            //22.12.13 all
+            "\\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\frac{\\pi}{\\tan@{\\pi (t-n\\tau)}} = \\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\left( \\lim_{M \\to \\infty} \\sum_{m=-M}^M \\frac{1}{t - m - n \\tau} \\right)",
+            //22.12.13 part 1
+            "\\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\frac{\\pi}{\\tan@{\\pi (t-n\\tau)}}",
+            //22.12.13 part 2
+            "\\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\left( \\lim_{M \\to \\infty} \\sum_{m=-M}^M \\frac{1}{t - m - n \\tau} \\right)",
+            //20.5.15
+            "\\lim_{N \\to \\infty} \\prod_{n=-N}^{N} \\lim_{M \\to \\infty} \\prod_{m=1-M}^{M} \\left( 1 + \\frac{z}{(m - \\tfrac{1}{2} + n \\tau) \\pi} \\right)",
+            //20.5.17
+            "\\lim_{N \\to \\infty} \\prod_{n=1-N}^{N} \\lim_{M \\to \\infty} \\prod_{m=-M}^{M} \\left( 1 + \\frac{z}{(m + (n-\\tfrac{1}{2}) \\tau) \\pi} \\right)",
+
+    };
+
+    private static final String[] translatedMapleLims = {
+            "limit((sinh(z))/(z), z = 0)",
+            "limit((cosh(z)- 1)/((z)^(2)), z = 0)",
+            "limit((x)^(- a)*ln(x), x = infinity)",
+            "limit((1 +(z)/(n))^(n), n = infinity)",
+            "limit(sum((-1)^(n)*(pi)/(tan(pi*(t -(n +(1)/(2))tau))), n = - N..N), N = infinity)",
+            "limit(sum((-1)^(n)*(pi)/(tan(pi*(t -(n +(1)/(2))tau))), n = - N..N), N = infinity)",
+            "limit(sum((-1)^(n)*(limit(sum((1)/(t - m -(n +(1)/(2))*tau), m = - M..M), M = infinity)), n = - N..N), N = infinity)",
+            "limit(sum((-1)^(n)*(pi)/(tan(pi*(t - n*tau))), n = - N..N), N = infinity)",
+            "limit(sum((-1)^(n)*(pi)/(tan(pi*(t - n*tau))), n = - N..N), N = infinity)",
+            "limit(sum((-1)^(n)*(limit(sum((1)/(t - m - n*tau), m = - M..M), M = infinity)), n = - N..N), N = infinity)",
+            "limit(product(limit(product((1 +(z)/((m -(1)/(2)+ n*tau)*pi)), m = 1 - M..M), M = infinity), n = - N..N), N = infinity)",
+            "limit(product(limit(product((1 +(z)/((m +(n -(1)/(2))tau)*pi)), m = - M..M), M = infinity), n = 1 - N..N), N = infinity)",
+    };
+
+    private static final String[] translatedMathematicaLims = {
+            "Limit[Divide[Sinh[z],z], z -> 0]",
+            "Limit[Divide[Cosh[z] - 1,(z)^(2)], z -> 0]",
+            "Limit[(x)^(- a) Log[x], x -> Infinity]",
+            "Limit[(1 +Divide[z,n])^(n), n -> Infinity]",
+            "Limit[Sum[(-1)^(n) Divide[\\[Pi],Tan[\\[Pi] (t -(n +Divide[1,2])\\[Tau])]], {n, -N, N}], N -> Infinity]",
+            "Limit[Sum[(-1)^(n) Divide[\\[Pi],Tan[\\[Pi] (t -(n +Divide[1,2])\\[Tau])]], {n, -N, N}], N -> Infinity]",
+            "Limit[Sum[(-1)^(n) (Limit[Sum[Divide[1,t - m -(n +Divide[1,2]) \\[Tau]], {m, -M, M}], M -> Infinity]), {n, -N, N}], N -> Infinity]",
+            "Limit[Sum[(-1)^(n) Divide[\\[Pi],Tan[\\[Pi] (t - n \\[Tau])]], {n, -N, N}], N -> Infinity]",
+            "Limit[Sum[(-1)^(n) Divide[\\[Pi],Tan[\\[Pi] (t - n \\[Tau])]], {n, -N, N}], N -> Infinity]",
+            "Limit[Sum[(-1)^(n) (Limit[Sum[Divide[1,t - m - n \\[Tau]], {m, -M, M}], M -> Infinity]), {n, -N, N}], N -> Infinity]",
+            "Limit[Product[Limit[Product[(1 +Divide[z,(m -Divide[1,2]+ n \\[Tau]) \\[Pi]]), {m, 1-M, M}], M -> Infinity], {n, -N, N}], N -> Infinity]",
+            "Limit[Product[Limit[Product[(1 +Divide[z,(m +(n -Divide[1,2])\\[Tau]) \\[Pi]]), {m, -M, M}], M -> Infinity], {n, 1-N, N}], N -> Infinity]",
+    };
     private static final String[] translatedMapleSums = {
             "sum((i)^(2)*(log(i))^(3)+i(2 + 3), i = 0..infinity)",
             "sum(3i+k, k = - 3..200)",
+            "sum(sum(sin((2)^(x))+cos((2)^(y)), y=-infinity..infinity), x=-infinity..infinity)",
             "sum((tan((x)^(3)))^(2)*sin(j)+((2)^(j))/(x - 3), j = 0..r)",
             "sum((x)^(2)*(x + 2)((y)^(3) - 3)-2x, x = - infinity..infinity)",
             "sum(((- 1)^(n)* (2)^(2*n - 1)* B[2*n])/(n*factorial((2*n)))(z)^(2*n), n = 1..infinity)",
@@ -174,12 +239,15 @@ public class SumProductTranslatorTest {
             "sum(sum((m -(1)/(2)+(n -(1)/(2))tau)^(- 2*j), m = - infinity..infinity), n = - infinity..infinity)",
             "sum((a)^(n*(n + 1)/ 2)*(b)^(n*(n - 1)/ 2), n = - infinity..infinity)",
             "sum(((-1)^(n)*((1)/(2)*pi)^(2*n))/(factorial((2*n))*(4*n + 1))(z)^(4*n + 1), n = 0..infinity)",
-            "sum(sum((-1)^(j)*(sum(((e)^(2*pi*i*(k - j)*r/ m))/((1 - (e)^(2*pi*i*r/ m))^(n)), r = 1..m - 1))(j)^(n), j = 0..k - 1), k = 1..n)",
+            "sum(sum((-1)^(j)*(sum(((e)^(2*pi*i*(k - j)*r/ m))/((1 - (e)^(2*pi*i*r/ m))^(n)), r = 1..m - 1))(j + m * x)^(n - 1), j = 0..k - 1), k = 1..n)",
+            "sum(diff(w, [z$(2)])+(sum((gamma[j])/(z - a[j]), j = 1..N))*diff(w, z)+(Phi*(z))/(product((z - a[j]), j = 1..N))*w, p = 1..infinity)",
+            "sum(sum(Stirling1(n, k)((x)^(n))/(factorial(n))(y)^(k), k=0..infinity), n=0..infinity)",
 
     };
 
     private static final String[] translatedMapleProds = {
             "product((k)^(3), i = 0..infinity)",
+            "product((x)^(2)+(x)^(3), x in P)",
             "product((i)^(2)+product((i)^(3)-3j+product(j+2+sin(l), l = 0..k), j = 0..k), i = 0..k)",
             "product((i)^(2)*, i = 0..10)",
             "product((i)^(2)*product(i, j = 2..12), i = 0..10)",
@@ -204,6 +272,7 @@ public class SumProductTranslatorTest {
     private static final String[] translatedMathematicaSums = {
             "Sum[(i)^(2) (Log[i])^(3)+i(2 + 3), {i, 0, Infinity}]",
             "Sum[3i+k, {k, -3, 200}]",
+            "Sum[Sum[Sin[(2)^(x)]+Cos[(2)^(y)], {y, -Infinity, Infinity}], {x, -Infinity, Infinity}]",
             "Sum[(Tan[(x)^(3)])^(2) Sin[j]+Divide[(2)^(j),x - 3], {j, 0, r}]",
             "Sum[(x)^(2) (x + 2)((y)^(3) - 3)-2x, {x, -Infinity, Infinity}]",
             "Sum[Divide[(- 1)^(n)  (2)^(2 n - 1)  Subscript[B, 2 n],n (2 n)!](z)^(2 n), {n, 1, Infinity}]",
@@ -224,7 +293,7 @@ public class SumProductTranslatorTest {
             "Sum[(Sum[Divide[(- 1)^(m),t +Divide[1,2]- m -(n +Divide[1,2]) \\[Tau]], {m, -Infinity, Infinity}]), {n, -Infinity, Infinity}]",
             "Sum[Divide[Pochhammer[a, k] Pochhammer[c - a, k] Pochhammer[b, k] Pochhammer[c - b, k],k! Pochhammer[c, 2 k] Pochhammer[c -Divide[1,2], k]](Subscript[t, 1] Subscript[t, 2])^(k), {k, 0, Infinity}]",
             "Sum[Divide[1,(n)^(s)]Sum[Divide[1,(m)^(z)], {m, 1, n}], {n, 1, Infinity}]",
-            "Sum[x(Subscript[p, n](x))^(2) Subscript[w, x], x \\[Element] X]",
+            "Sum[x(Subscript[p, n](x))^(2) Subscript[w, x], {x, X}]",
             "Sum[Sum[Divide[(-1)^(k),k!]Gamma[Subscript[a, m] + k](Divide[Product[Gamma[Subscript[a, \\[ScriptL]] - Subscript[a, m] - k], {\\[ScriptL], 1, p}],Product[Gamma[Subscript[b, \\[ScriptL]] - Subscript[a, m] - k], {\\[ScriptL], 1, q}]])(z)^(- Subscript[a, m] - k), {k, 0, Infinity}], {m, 1, p}]",
             "Sum[Divide[(q)^((n)^(2)),(1 - q) (1 - (q)^(2)) ... (1 - (q)^(n))], {n, 1, Infinity}]",
             "Sum[Gamma[a + k, 0, x]Divide[(1 - \\[Lambda])^(k),k!], {k, 0, Infinity}]",
@@ -232,12 +301,14 @@ public class SumProductTranslatorTest {
             "Sum[Sum[(m -Divide[1,2]+(n -Divide[1,2])\\[Tau])^(- 2 j), {m, -Infinity, Infinity}], {n, -Infinity, Infinity}]",
             "Sum[(a)^(n (n + 1)/ 2) (b)^(n (n - 1)/ 2), {n, -Infinity, Infinity}]",
             "Sum[Divide[(-1)^(n)  (Divide[1,2] \\[Pi])^(2 n),(2 n)!(4 n + 1)](z)^(4 n + 1), {n, 0, Infinity}]",
-            "Sum[Sum[(-1)^(j) (Sum[Divide[(e)^(2 \\[Pi] i (k - j) r/ m),(1 - (e)^(2 \\[Pi] i r/ m))^(n)], {r, 1, m - 1}])(j)^(n), {j, 0, k - 1}], {k, 1, n}]",
-
+            "Sum[Sum[(-1)^(j) (Sum[Divide[(e)^(2 \\[Pi] i (k - j) r/ m),(1 - (e)^(2 \\[Pi] i r/ m))^(n)], {r, 1, m - 1}])(j + m   x)^(n - 1), {j, 0, k - 1}], {k, 1, n}]",
+            "Sum[D[w, {z, 2}] +(Sum[Divide[Subscript[\\[Gamma], j],z - Subscript[a, j]], {j, 1, N}]) D[w, z] +Divide[\\[CapitalPhi] (z),Product[(z - Subscript[a, j]), {j, 1, N}]] w, {p, 1, Infinity}]",
+            "Sum[Sum[StirlingS1[n, k]Divide[(x)^(n),n!](y)^(k), {k, 0, Infinity}], {n, 0, Infinity}]",
     };
 
     private static final String[] translatedMathematicaProds = {
             "Product[(k)^(3), {i, 0, Infinity}]",
+            "Product[(x)^(2)+(x)^(3), {x, P}]",
             "Product[(i)^(2)+Product[(i)^(3)-3j+Product[j+2+Sin[l], {l, 0, k}], {j, 0, k}], {i, 0, k}]",
             "Product[(i)^(2) , {i, 0, 10}]",
             "Product[(i)^(2) Product[i, {j, 2, 12}], {i, 0, 10}]",
@@ -251,7 +322,7 @@ public class SumProductTranslatorTest {
             "Product[(1 - (q)^(2 n))(1 - 2 (q)^(2 n)  Cos[2 z] + (q)^(4 n)), {n, 1, Infinity}]",
             "Product[(1 -Divide[4 (z)^(2),(2 n - 1)^(2)  (\\[Pi])^(2)]), {n, 1, Infinity}]",
             "Product[(1 - (q)^(2 n))(1 + (q)^(2 n))^(2), {n, 1, Infinity}]",
-            "Product[(1 + Sum[f((p)^(r)), {r, 1, Infinity}]), p]",
+            "Product[(1 + Sum[f((p)^(r)), {r, 1, Infinity}]), {p, p}]",
             "Product[(a +(n - k)c), {k, 1, m}]",
             "Product[Divide[1,(1 - (q)^(5 n + 1)) (1 - (q)^(5 n + 4))], {n, 0, Infinity}]",
             "Product[Divide[Sin[\\[Pi] (2 n Subscript[\\[Omega], 3] + z)/(2 Subscript[\\[Omega], 1])] Sin[\\[Pi] (2 n Subscript[\\[Omega], 3] - z)/(2 Subscript[\\[Omega], 1])],(Sin[\\[Pi] n Subscript[\\[Omega], 3]/ Subscript[\\[Omega], 1]])^(2)], {n, 1, Infinity}]",
@@ -276,8 +347,17 @@ public class SumProductTranslatorTest {
         List<String> output = Arrays.asList(translatedMathematicaProds);
         return test(expressions, output);
     }
+/*
+messed with onlyLower
+    @TestFactory
+    Stream<DynamicTest> limMathematicaTest(){
+        List<String> expressions = Arrays.asList(lims);
+        List<String> output = Arrays.asList(translatedMathematicaLims);
+        return test(expressions, output);
+    }
 
 
+ */
     @TestFactory
     Stream<DynamicTest>  sumMapleTest() {
         mapleSetUp();
@@ -293,6 +373,16 @@ public class SumProductTranslatorTest {
         List<String> output = Arrays.asList(translatedMapleProds);
         return test(expressions, output);
     }
+/*
+    @TestFactory
+    Stream<DynamicTest> limMapleTest(){
+        mapleSetUp();
+        List<String> expressions = Arrays.asList(lims);
+        List<String> output = Arrays.asList(translatedMapleLims);
+        return test(expressions, output);
+    }
+
+ */
 
     @BeforeEach
     private void mathematicaSetUp(){

@@ -76,7 +76,7 @@
 		  "MLP": "sum2",
 		  "LaTeX": "\\sum_{$0}{$1}",
 		  "Maple": "sum($1, $0)",
-		  "Mathematica": "Sum[$0, $1]"
+		  "Mathematica": "Sum[$0, {$2, $1}]"
 	  },
 	  "ProductThreeArgs": {
 		  "MLP": "prod3",
@@ -88,7 +88,13 @@
 		  "MLP": "prod2",
 		  "LaTeX": "\\prod_{$0}{$1}",
 		  "Maple": "product($1, $0)",
-		  "Mathematica": "Product[$0, $1]"
+		  "Mathematica": "Product[$0, {$2, $1}]"
+	  },
+	  "Limit": {
+		  "MLP": "lim2",
+		  "LaTeX": "\\lim_{$0}{$1}",
+		  "Maple": "limit($1, $0)",
+		  "Mathematica": "Limit[$0, $1]"
 	  }
   },
   "Symbol Languages": [
