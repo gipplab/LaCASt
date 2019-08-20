@@ -285,7 +285,7 @@ add(divisors($0));\sumdivisors{1}@{n};1;;;;;http://www.maplesoft.com/support/hel
 ;;;;;;;
 ;\EulersumH@{s};;;;;;not defined
 ;\genEulersumH@{s}{z};;;;;;not defined
-;\EulerPhi@{x};;;;;;not defined
+NumberTheory:-phi(n);\EulerPhi@{x};;;;;;not defined
 ;\Eulertotientphi[k]@{n};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/phi%28deprecated%29
 ;\Euleriannumber{n}{k};;;;;;not defined
 ;;;;;;;
@@ -298,7 +298,7 @@ erfc($0, $1);\inverfc@@{x};2;;;;;https://www.maplesoft.com/support/help/maple/vi
 ;\repinterfc{$0}@{$1};;;;;;not defined
 ;\FishersHh{n}@{z};;;;;;
 ;;;;;;;not defined
-;\FibonacciNumber{n};;;;;;
+fibonacci($0);\FibonacciNumber{n};;;;;;
 ;;;;;;;not defined
 FresnelC($0);\FresnelintF@{z};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=FresnelC
 FresnelS($0);\Fresnelcosint@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=FresnelS
@@ -491,8 +491,8 @@ Zeta(s);\Riemannxi@{s};1;;;;;https://www.maplesoft.com/support/help/maple/view.a
 Stirling1($0, $1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Stirling1
 Stirling2($0, $1);\Stirlingnumbers@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Stirling2
 ;\StirlingnumberS@{$0}{$1};;;;;;
-StruveH($0, $1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=StruveH
-;\StruveH{$0}@{$1};;;;;;not defined
+StruveH($0, $1);\StruveH{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=StruveH
+StruveH($0, $1);\StruveH{$0}@{$1};2;;;;;not defined
 StruveL($0, $1);\StruveK{\nu}@{z};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=StruveL
 ;\modStruveL{$0}@{$1};;;;;;not defined
 ;\modStruveM{\nu}@{z};;;;;;
@@ -572,9 +572,9 @@ BellB($0, 1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=
 ;;;;;;;not defined
 ;\Charlier{n}@{x}{a};;;;;;not defined
 ;\CharlierpolyC{n}@{x}{a};;;;;;
-ChebyshevT($0, $1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevT
-ChebyshevU($0, $1);\ChebyshevpolyT{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevU
-;\ChebyshevpolyU{$0}@{$1};;;;;;not defined
+;;;;;;;;
+ChebyshevT($0, $1);\ChebyshevpolyT{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevT
+ChebyshevU($0, $1);\ChebyshevpolyU{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevU
 ;\ChebyshevpolyV{n}@{x};;;;;;not defined
 ;\ChebyshevpolyW{n}@{x};;;;;;not defined
 ;\shiftChebyshevpolyT{n}@{x};;;;;;not defined
