@@ -34,7 +34,7 @@ Log[$0,$1];\genlog{a}@@{z};2;;;;;;https://reference.wolfram.com/language/ref/Log
 ;\Ln@@{z};;;;;;;
 Exp[$0];\exp@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Exp.html
 ;;;;;;;;
-;\LambertW@{x};;;;;;;
+ProductLog[$0];\LambertW@{x};;;;;;;
 ProductLog[$0];\LambertWp@{x};1;;;;;;http://reference.wolfram.com/language/ref/ProductLog.html
 ProductLog[-1, $0];\LambertWm@{x};2;;;;;;http://reference.wolfram.com/language/ref/ProductLog.html
 ;;;;;;;;
@@ -58,10 +58,10 @@ InverseGudermannian[$0];\aGudermannian@@{x};1;;;;;;https://reference.wolfram.com
 ;\expintEi@{x};;;;;-ExpIntegralEi[-($0)];;https://reference.wolfram.com/language/ref/ExpIntegralEi.html
 ;\expintE@{x};;;;;-ExpIntegralEi[-($0)];;https://reference.wolfram.com/language/ref/ExpIntegralEi.html
 ;\expintEin@{z};;;;;-ExpIntegralEi[-($0)] + Ln[$0] + EulerGamma;;https://reference.wolfram.com/language/ref/ExpIntegralEi.html
-;\genexpintE{p}@{z};;;;;;;
+Ei[$0, $1];\genexpintE{p}@{z};;;;;;;
 LogIntegral[$0];\logint@{x};1;;;(-\inf, 1);;;https://reference.wolfram.com/language/ref/LogIntegral.html
-;\dilog@{z};;;;;;;
-;\polylog{s}@{z};;;;;;;
+PolyLog[2, $0];\dilog@{z};;;;;;;
+PolyLog[$0, $1];\polylog{s}@{z};;;;;;;
 ;\Jonquierephi@{z}{s};;;;;;;
 ;;;;;;;;
 ;\Matrix{A};;;;;;;
@@ -79,15 +79,16 @@ Re[$0];\realpart@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Re.html
 Im[$0];\imagpart@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Im.html
 Sqrt[$0];\sqrt{z};1;;;;;;https://reference.wolfram.com/language/ref/Sqrt.html
 Surd[$1, $0];\sqrt[p]{z};2;;;;;;https://reference.wolfram.com/language/ref/Surd.html
-Sign[$0];;1;;;;;;https://reference.wolfram.com/language/ref/Sign.html
+Sign[$0];\sign@@{x};1;;;;;;https://reference.wolfram.com/language/ref/Sign.html
 Binomial[$0, $1];\binom{n}{k};2;;;;;;https://reference.wolfram.com/language/ref/Binomial.html
 Binomial[$0, $1];\binom{n}{k};2;;;;;;https://reference.wolfram.com/language/ref/Binomial.html
 Multinomial[n_1,...,n_k];\multinomial{m}{n_1,...,n_k};;;;;;;https://reference.wolfram.com/language/ref/Multinomial.html
 Abs[$0];|z|;1;;;;;;https://reference.wolfram.com/language/ref/Abs.html
 Abs[$0];\left|z\right|;1;;;;;;https://reference.wolfram.com/language/ref/Abs.html
+Abs[$0];\abs{x};;;;;;;
 FractionalPart[$0];;1;;;;;;https://reference.wolfram.com/language/ref/FractionalPart.html
 Round[$0];;1;;;;;;https://reference.wolfram.com/language/ref/Round.html
-Floor[$0];;1;;;;;;https://reference.wolfram.com/language/ref/Floor.html
+Floor[$0];\floor{x};1;;;;;;https://reference.wolfram.com/language/ref/Floor.html
 Min[x1, x2, ...];;;;;;;;https://reference.wolfram.com/language/ref/Min.html
 Max[x1, x2, ...];;;;;;;;https://reference.wolfram.com/language/ref/Max.html
 GCD[$0];\pgcd{m,n};2;;;;;;https://reference.wolfram.com/language/ref/GCD.html
@@ -105,9 +106,9 @@ Power[$0, $1];\power{x}{y};2;;;;;;https://reference.wolfram.com/language/ref/Pow
 $0!;n!;;;;;;;https://reference.wolfram.com/language/ref/Factorial.html
 $0!!;n!!;;;;;;;https://reference.wolfram.com/language/ref/Factorial2.html
 ;\shiftfactorial{a}{\kappa};;;;;;;
-;\floor{x} ;;;;;;;
-;\ceiling{x};;;;;;;
-;\sign@@{x};;;;;;;
+Floor[$0];\floor{x} ;;;;;;;
+Ceiling[$0];\ceiling{x};;;;;;;
+Sign[$0];\sign@@{x};;;;;;;
 ;\inf;;;;;;;
 ;\sup;;;;;;;
 ;\Sum{n}{k1}{k2}@{f(n)};;;;;;;
@@ -116,7 +117,7 @@ Wronskian[{$1,$2},$0];\Wronskian@{w1(z),w2(z)};;;;;;;
 ;\Residue;;;;;;;
 ;\card{A};;;;;;;
 ;\cartprod;;;;;;;
-;\divides;;;;;;;
+\[Divides];\divides;;;;;;;
 ;\liminf;;;;;;;
 ;\mod;;;;;;;
 ;\opminus;;;;;;;
@@ -128,15 +129,15 @@ Wronskian[{$1,$2},$0];\Wronskian@{w1(z),w2(z)};;;;;;;
 ;\bDiff[x];;;;;;;
 ;\cDiff[x];;;;;;;
 D[$0, $1];\deriv{f}{x};;;;;;;
-;\pderiv{f}{x};;;;;;;
+D[$0, $1];\pderiv{f}{x};;;;;;;
 ;\diff{x};;;;;;;
 ;\pdiff{x};;;;;;;
-;\AntiDer@{x}{f(x)};;;;;;;
-;\Int{a}{b}@{x}{f(x)};;;;;;;
+Integrate[$1, $0];\AntiDer@{x}{f(x)};;;;;;;
+Integrate[$3, {$2, $0, $1}];\Int{a}{b}@{x}{f(x)};;;;;;;
 ;\int;;;;;;;
 ;\pvint_{a}^{b} \f{f}@{x} \diff{x};;;;;;;
 ;\Schwarzian{z}{\zeta};;;;;;;
-;\Complexes;;;;;;;
+Complexes;\Complexes;;;;;;;
 ;\Reals;;;;;;;
 ;\Rationals;;;;;;;
 ;\Integers;;;;;;;
@@ -151,7 +152,7 @@ D[$0, $1];\deriv{f}{x};;;;;;;
 ;\setmod;;;;;;;
 ;\npartitions{n};;;;;;;
 ;\npartitions[k]@{n};;;;;;;
-;\npermutations{n};;;;;;;
+Permutations[$0];\npermutations{n};;;;;;;
 ;\nplanepartitions@{n};;;;;;;
 ;\nrestpartitions[k]@{\mathrm{condition}}{n};;;;;;;
 ;\nrestcompositions@{\mathrm{condition}}{n};;;;;;;
@@ -179,8 +180,8 @@ AiryBi[$0];\AiryBi@{z};1;;;;;;
 ;\zAirybeta{k};;;;;;;
 ;\zderivAirybeta{k};;;;;;;
 ;;;;;;;;
-;\AngerJ{v}@{x};;;;;;;
-;\WeberE{v}@{x};;;;;;;
+AngerA[$0, $1];\AngerJ{v}@{x};;;;;;;
+WeberE[$0, $1];\WeberE{v}@{x};;;;;;;
 ;\AngerWeberA{v}@{x};;;;;;;
 ;;;;;;;;
 ;\AppellF{1}@{\alpha}{\beta}{\beta'}{\gamma}{x}{y};;;;;;;
@@ -190,8 +191,8 @@ AiryBi[$0];\AiryBi@{z};1;;;;;;
 ;;;;;;;;
 BesselJ[$0, $1];\BesselJ{v}@{x};2;;;;;;https://reference.wolfram.com/language/ref/BesselJ.html
 BesselY[$0, $1];\BesselY{v}@{x};2;;;;;;
-;\HankelH{1}{v}@{x};;;;;;;
-;\HankelH{2}{v}@{x};;;;;;;
+HankelH1[$0, $1];\HankelH{1}{v}@{x};;;;;;;
+HankelH2[$0, $1];\HankelH{2}{v}@{x};;;;;;;
 ;\HankelmodM{\nu}@{x};;;;;;;
 ;\HankelmodderivN{\nu}@{x};;;;;;;
 ;\Hankelphasetheta{\nu}@{x};;;;;;;
@@ -202,9 +203,9 @@ BesselY[$0, $1];\BesselY{v}@{x};2;;;;;;
 ;\zderivBessely{\nu}{m};;;;;;;
 ;\BesselJimag{\nu}@{x};;;;;;;
 ;\BesselYimag{\nu}@{x};;;;;;;
-;\modBesselI{v}@{x};;;;;;;
-;\modBesselK{v}@{x};;;;;;;
-;\modcylinder{\nu}@{z};;;;;;;
+BesselI[$0, $1];\modBesselI{v}@{x};;;;;;;
+BesselK[$0, $1];\modBesselK{v}@{x};;;;;;;
+ParabolicCylinderD[$0, $1];\modcylinder{\nu}@{z};;;;;;;
 ;\modBesselIimag{\nu}@{x};;;;;;;
 ;\modBesselKimag{\nu}@{x};;;;;;;
 ;\genBesselphi@{\rho}{\beta}{z};;;;;;;
@@ -269,22 +270,22 @@ BetaRegularized[$0, $1, $2];\normincBetaI{x}@{a}{b};3;;;;;;https://reference.wol
 ;;;;;;;;
 DawsonF[$0];\DawsonsintF@{z};1;;;;;;https://reference.wolfram.com/language/ref/DawsonF.html
 ;;;;;;;;
-;\Dedekindeta@{\tau};;;;;;;
+DedekindEta[$0];\Dedekindeta@{\tau};;;;;;;
 ;;;;;;;;
-;\Diracdelta@{x-a};;;;;;;
+DiracDelta[$0];\Diracdelta@{x-a};;;;;;;
 ;\deltaDistribution;;;;;;;
 ;;;;;;;;
-;\DirichletL@{s}{\chi};;;;;;;
-;\Dirichletchar@@{n}{k};;;;;;;
+DirichletL[$0, $2, $1];\DirichletL@{s}{\chi};;;;;;;
+DirichletCharacter[$1, $2, $0];\Dirichletchar@@{n}{k};;;;;;;
 ;;;;;;;;
 ;\DiscriminantDelta@{\tau};;;;;;;
 ;;;;;;;;
-;\nprimesdiv@{n};;;;;;;
-;\nprimes@{x};;;;;;;
+PrimeNu[$0];\nprimesdiv@{n};;;;;;;
+PrimePi[$0];\nprimes@{x};;;;;;;
 ;\ndivisors[k]@{n};;;;;;;
-;\ndivisors@{n};;;;;;;
-;\sumdivisors{\alpha}@{n};;;;;;;
-;\sumdivisors{1}@{n};;;;;;;
+;\ndivisors@{n};;;;;Length[Divisors[$0]];;
+DivisorSigma[$0, $1];\sumdivisors{\alpha}@{n};;;;;;;
+DivisorSigma[1, $0];\sumdivisors{1}@{n};;;;;;;
 ;\JordanJ{k}@{n};;;;;;;
 ;\Moebiusmu@{n};;;;;;;
 ;\Liouvillelambda@{n};;;;;;;
@@ -303,7 +304,7 @@ DawsonF[$0];\DawsonsintF@{z};1;;;;;;https://reference.wolfram.com/language/ref/D
 ;;;;;;;;
 ;\EulersumH@{s};;;;;;;
 ;\genEulersumH@{s}{z};;;;;;;
-;\EulerPhi@{x};;;;;;;
+EulerPhi[$0];\EulerPhi@{x};;;;;;;
 Gamma[$0];\EulerGamma@{z};1;;;;;;https://reference.wolfram.com/language/ref/Gamma.html
 ;\Eulertotientphi[k]@{n};;;;;;;
 ;\Eulertotientphi[0]@{n};;;;;;;
@@ -318,7 +319,7 @@ InverseErfc[$0];\inverfc@@{x};1;;;;;;https://reference.wolfram.com/language/ref/
 ;-\iunit \erf@@{\iunit z};;;;;;;
 ;\FishersHh{n}@{z};;;;;;;
 ;;;;;;;;
-;\FibonacciNumber{n};;;;;;;
+Fibonacci[$0];\FibonacciNumber{n};;;;;;;
 ;;;;;;;;
 ;\FresnelintF@{z};;;;;;;
 FresnelC[$0];\Fresnelcosint@{z};1;;;;;;https://reference.wolfram.com/language/ref/FresnelC.html
@@ -338,12 +339,12 @@ GammaRegularized[$0, $1];\normincGammaQ@{a}{z};2;;;;;;https://reference.wolfram.
 ;\scincgamma@{a}{z};;;;;;;
 ;\multivarEulerGamma{m}@{a};;;;;;;
 ;;;;;;;;
-;\AGM@{a}{g};;;;;;;
+ArithmeticGeometricmean[$0, $1];\AGM@{a}{g};;;;;;;
 ;\Gausssum@{n}{\Dirichletchar};;;;;;;
 ;;;;;;;;
 ;\GoodwinStatonint@{z};;;;;;;
 ;;;;;;;;
-;\HarmonicNumber{n};;;;;;;
+HarmonicNumber[$0];\HarmonicNumber{n};;;;;;;
 ;\digamma@{z+1}+\EulerConstant;;;;;;;
 ;\sum_{k=1}^{n}\frac{1}{k^z};;;;;;;
 ;\sphharmonicY{l}{m}@{\theta}{\phi};;;;;;;
@@ -358,15 +359,15 @@ GammaRegularized[$0, $1];\normincGammaQ@{a}{z};2;;;;;;https://reference.wolfram.
 ;;;;;;;;
 ;\HeunHf{m}{a}{b}@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z};;;;;;;
 ;;;;;;;;
-;\hyperF@@@{a}{b}{c}{z};;;;;;;
+Hypergeometric2F1[$0, $1, $2, $3];\hyperF@@@{a}{b}{c}{z};;;;;;;
 ;\genhyperOlverF{2}{1}@{a,b}{c}{z};;;;;;;
 ;\genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};;;;;;;
 ;\genhyperH{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};;;;;;;
 ;\hyperOlverF@@@{a}{b}{c}{z};;;;;;;
 ;"\genhyperOlverF{p}{q}@@
 {\Vector{a}}{\Vector{b}}{z}";;;;;;;
-;\KummerconfhyperM@{a}{b}{z};;;;;;;
-;\KummerconfhyperU@{a}{b}{z};;;;;;;
+Hypergeometric1F1[$0, $1, $2];\KummerconfhyperM@{a}{b}{z};;;;;;;
+HypergeometricU[$0, $1, $2];\KummerconfhyperU@{a}{b}{z};;;;;;;
 ;\OlverconfhyperM@{a}{b}{z};;;;;;;
 ;\genhyperPsimat@{a}{b}{\Matrix{T}};;;;;;;
 ;\LauricellaFD@{a}{b_1,...,b_n}{c}{z_1,...,z_n};;;;;;;
@@ -390,18 +391,18 @@ JacobiND[$0, ($1)^2];\Jacobiellndk@@{z}{k};2;;;;;;https://reference.wolfram.com/
 JacobiDS[$0, ($1)^2];\Jacobielldsk@@{z}{k};2;;;;;;https://reference.wolfram.com/language/ref/JacobiDS.html
 JacobiDC[$0, ($1)^2];\Jacobielldck@@{z}{k};2;;;;;;https://reference.wolfram.com/language/ref/JacobiDC.html
 JacobiCS[$0, ($1)^2];\Jacobiellcsk@@{z}{k};2;;;;;;https://reference.wolfram.com/language/ref/JacobiCS.html
-;\aJacobiellsnk@@{z}{k};;;;;;;
-;\aJacobiellcnk@@{z}{k};;;;;;;
-;\aJacobielldnk@@{z}{k};;;;;;;
-;\aJacobiellsdk@@{z}{k};;;;;;;
-;\aJacobiellcdk@@{z}{k};;;;;;;
-;\aJacobiellsck@@{z}{k};;;;;;;
-;\aJacobiellnsk@@{z}{k};;;;;;;
-;\aJacobiellnck@@{z}{k};;;;;;;
-;\aJacobiellndk@@{z}{k};;;;;;;
-;\aJacobielldsk@@{z}{k};;;;;;;
-;\aJacobielldck@@{z}{k};;;;;;;
-;\aJacobiellcsk@@{z}{k};;;;;;;
+InverseJacobiSN[$0, $1];\aJacobiellsnk@@{z}{k};;;;;;;
+InverseJacobiCN[$0, $1];\aJacobiellcnk@@{z}{k};;;;;;;
+InverseJacobidN[$0, $1];\aJacobielldnk@@{z}{k};;;;;;;
+InverseJacobiSD[$0, $1];\aJacobiellsdk@@{z}{k};;;;;;;
+InverseJacobiCD[$0, $1];\aJacobiellcdk@@{z}{k};;;;;;;
+InverseJacobiSC[$0, $1];\aJacobiellsck@@{z}{k};;;;;;;
+InverseJacobiNS[$0, $1];\aJacobiellnsk@@{z}{k};;;;;;;
+InverseJacobiNC[$0, $1];\aJacobiellnck@@{z}{k};;;;;;;
+InverseJacobiND[$0, $1];\aJacobiellndk@@{z}{k};;;;;;;
+InverseJacobiDS[$0, $1];\aJacobielldsk@@{z}{k};;;;;;;
+InverseJacobiDC[$0, $1];\aJacobielldck@@{z}{k};;;;;;;
+InverseJacobiCS[$0, $1];\aJacobiellcsk@@{z}{k};;;;;;;
 ;\JacobiEpsilonk@{x}{k};;;;;;;
 ;\Jacobithetaq{1}@{z}{q};;;;;;;
 ;\Jacobithetaq{2}@{z}{q};;;;;;;
@@ -411,13 +412,13 @@ JacobiCS[$0, ($1)^2];\Jacobiellcsk@@{z}{k};2;;;;;;https://reference.wolfram.com/
 ;\Jacobithetatau{j}@{z}{\tau};;;;;;;
 ;\Jacobithetacombinedq{n}{m}@{z}{q};;;;;;;
 ;\AThetaFunction@{x};;;;;;;
-;\JacobiZetak@{x}{k};;;;;;;
+JacobiZeta[$0, $1];\JacobiZetak@{x}{k};;;;;;;
 ;\Jacobisym{n}{P};;;;;;;
 ;;;;;;;;
-;\Kelvinber{\nu}@@{x};;;;;;;
-;\Kelvinbei{\nu}@@{x};;;;;;;
-;\Kelvinker{\nu}@@{x};;;;;;;
-;\Kelvinkei{\nu}@@{x};;;;;;;
+KelvinBer[$0, $1];\Kelvinber{\nu}@@{x};;;;;;;
+Mathematica: KelvinBei[$0, $1];\Kelvinbei{\nu}@@{x};;;;;;;
+KelvinKer[$0, $1];\Kelvinker{\nu}@@{x};;;;;;;
+KelvinKei[$0, $1];\Kelvinkei{\nu}@@{x};;;;;;;
 ;\frac{1}{2}\HankelH{1}{\nu}@{x\left(-\frac{1}{2}\sqrt{2}+\frac{1}{2}\iunit\sqrt{2}\right)} + \frac{1}{2}\HankelH{2}{\nu}@{x\left(-\frac{1}{2}\sqrt{2}-\frac{1}{2}\iunit\sqrt{2}\right)};;;;;;;
 ;\frac{1}{2}\iunit\left(\HankelH{2}{\nu}@{x\left(-\frac{1}{2}\sqrt{2}-\frac{1}{2}\iunit\sqrt{2}\right)} - \HankelH{1}{\nu}@{x\left(-\frac{1}{2}\sqrt{2}+\frac{1}{2}\iunit\sqrt{2}\right)}\right);;;;;;;
 ;;;;;;;;
@@ -495,20 +496,20 @@ EllipticK[($0)^2];\compellintKk@{k};1;;;;;;
 ;;;;;;;;
 ;\modularlambdatau@{\tau};;;;;;;
 ;\KleincompinvarJtau@{\tau};;;;;;;
-;\Dedekindeta@{\tau};;;;;;;
+DedekindEta[$0];\Dedekindeta@{\tau};;;;;;;
 ;;;;;;;;
 ;\Pade{p}{q}{f};;;;;;;
 ;;;;;;;;
 ;\Ramanujansum{k}@{n};;;;;;;
 ;\Ramanujantau@{n};;;;;;;
 ;;;;;;;;
-;\Rayleighsigma{n}@{\nu};;;;;;;
+RayleightDistribution[$0];\Rayleighsigma{n}@{\nu};;;;;;;
 ;;;;;;;;
 ;\Riemanntheta@{\Vector{z}}{\Matrix{\Omega}};;;;;;;
 ;\Riemannthetachar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}};;;;;;;
 ;\scRiemanntheta@{\Vector{z}}{\Matrix{\Omega}};;;;;;;
-;\Riemannxi@{s};;;;;;;
-;\Riemannzeta@{s};;;;;;;
+RiemannXi[$0];\Riemannxi@{s};;;;;;;
+Zeta[$0];\Riemannzeta@{s};;;;;;;
 ;;;;;;;;
 ;\ScorerGi@{z};;;;;;;
 ;\ScorerHi@{z};;;;;;;
@@ -523,13 +524,13 @@ EllipticK[($0)^2];\compellintKk@{k};1;;;;;;
 StirlingS1[$0, $1];\Stirlingnumbers@{n}{k};;;;;;;
 StirlingS2[$0, $1];\StirlingnumberS@{n}{k};;;;;;;
 ;;;;;;;;
-;\StruveH{\nu}@{z};;;;;;;
+StruveH[$0, $1];\StruveH{\nu}@{z};;;;;;;
 ;\StruveK{\nu}@{z};;;;;;;
 ;\modStruveL{\nu}@{z};;;;;;;
 ;\modStruveM{\nu}@{z};;;;;;;
 ;;;;;;;;
 ;\Legendresym{n}{p};;;;;;;
-;\Kroneckerdelta{j}{k};;;;;;;
+KroneckerDelta[$0, $1];\Kroneckerdelta{j}{k};;;;;;;
 ;\NeumannFactor{n};;;;;;;
 ;\LeviCivitasym{j}{k}{l};;;;;;;
 ;\RiemannsymP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};;;;;;;
@@ -542,8 +543,8 @@ Pochhammer[$0, $1];\Pochhammersym{a}{n};;;;;;;https://reference.wolfram.com/lang
 ;\terminant{p}@{z};;;;;;;
 ;\scterminant{p}@{z};;;;;;;
 ;;;;;;;;
-;\FourierTrans@@{f}{s};;;;;;;
-;\LaplaceTrans@{f}{s};;;;;;;
+FourierTransform[$0, $1, $2];\FourierTrans@@{f}{s};;;;;;;
+LaplaceTransform[$0, $1, $2];\LaplaceTrans@{f}{s};;;;;;;
 ;\MellinTrans@{f}{s};;;;;;;
 ;\HilbertTrans@{f}{s};;;;;;;
 ;\StieltjesTrans@{f}{s};;;;;;;
@@ -576,13 +577,13 @@ Pochhammer[$0, $1];\Pochhammersym{a}{n};;;;;;;https://reference.wolfram.com/lang
 ;\WhittakerconfhyperM{\kappa}{\mu}@{z};;;;;;;
 ;\WhittakerconfhyperW{\kappa}{\mu}@{z};;;;;;;
 ;;;;;;;;
-;\Riemannzeta@{s};;;;;;;
+Zeta[$0];\Riemannzeta@{s};;;;;;;
 ;;;;;;;;
 HurwitzZeta[$0, $1];\Hurwitzzeta@{s}{a};2;;;;;;
 ;;;;;;;;
-;\Weierstrasszetainvar@@{z}{g_2}{g_3};;;;;;;
+WeierstrassZeta[$0, {$1, $2}];\Weierstrasszetainvar@@{z}{g_2}{g_3};;;;;;;
 ;\Weierstrasszetalatt@@{z}{\Lattice{L}};;;;;;;
-;\JacobiZetak@{x}{k};;;;;;;
+JacobiZeta[$0, $1];\JacobiZetak@{x}{k};;;;;;;
 ;\perZeta@{x}{s};;;;;;;
 ;;;;;;;;
 ;;;;;;;;
@@ -598,13 +599,13 @@ HurwitzZeta[$0, $1];\Hurwitzzeta@{s}{a};2;;;;;;
 ;\AskeyWilson{n}@{x}{a}{b}{c}{d}{q};;;;;;;
 ;\AskeyWilsonpolyp{n}@{x}{a}{b}{c}{d}{q};;;;;;;
 ;;;;;;;;
-;\BernoullipolyB{n}@{0};;;;;;;
-;\BernoullipolyB{n}@{x};;;;;;;
+BernoulliB[$0, $1];\BernoullipolyB{n}@{0};;;;;;;
+BernoulliB[$0, $1];\BernoullipolyB{n}@{x};;;;;;;
 ;\genBernoullipolyB{\ell}{n}@{x};;;;;;;
 ;\perBernoulliB{n}@{x};;;;;;;
 ;\qBernoullipolybeta{n}@{x}{q};;;;;;;
 ;;;;;;;;
-;\Bellnumber@{n};;;;;;;
+BellB[$0, $1];\Bellnumber@{n};;;;;;;
 ;;;;;;;;
 ;;;;;;;;
 ;;;;;;;;
@@ -617,8 +618,8 @@ HurwitzZeta[$0, $1];\Hurwitzzeta@{s}{a};2;;;;;;
 ;\Charlier{n}@{x}{a};;;;;;;
 ;\CharlierpolyC{n}@{x}{a};;;;;;;
 ;;;;;;;;
-;\ChebyshevpolyT{n}@{x};;;;;;;
-;\ChebyshevpolyU{n}@{x};;;;;;;
+ChebyshevT[$0, $1];\ChebyshevpolyT{n}@{x};;;;;;;
+ChebyshevU[$0, $1];\ChebyshevpolyU{n}@{x};;;;;;;
 ;\ChebyshevpolyV{n}@{x};;;;;;;
 ;\ChebyshevpolyW{n}@{x};;;;;;;
 ;\shiftChebyshevpolyT{n}@{x};;;;;;;
@@ -636,7 +637,7 @@ HurwitzZeta[$0, $1];\Hurwitzzeta@{s}{a};2;;;;;;
 ;\genEulerpolyE{\ell}{n}@{x};;;;;;;
 ;\perEulerE{n}@{x};;;;;;;
 ;;;;;;;;
-;\Ultra{\lambda}{n}@{x};;;;;;;
+GegenbauerC[$1, $0, $2];\Ultra{\lambda}{n}@{x};;;;;;;
 ;\ultrasphpoly{\lambda}{n}@{x};;;;;;;
 ;\GenGegenbauerS{\alpha}{\beta}{n}@{x};;;;;;;
 ;;;;;;;;
@@ -647,8 +648,8 @@ HurwitzZeta[$0, $1];\Hurwitzzeta@{s}{a};2;;;;;;
 ;\contdualHahnpolyS{n}@{x}{a}{b}{c};;;;;;;
 ;\contHahnpolyp{n}@{x}{a}{b}{\conj{a}}{\conj{b}};;;;;;;
 ;;;;;;;;
-;\Hermite{n}@{x};;;;;;;
-;\HermitepolyH{n}@{x};;;;;;;
+HermiteH[$0, $1];\Hermite{n}@{x};;;;;;;
+HermiteH[$0, $1];\HermitepolyH{n}@{x};;;;;;;
 ;\dilHermitepolyHe{n}@{x};;;;;;;
 ;\GenHermite[\alpha]{n}@{x};;;;;;;
 ;;;;;;;;
@@ -664,8 +665,8 @@ JacobiP[$2, $0, $1, $3];\JacobipolyP{\alpha}{\beta}{n}@{x};4;;;;;;https://refere
 ;\Krawtchouk{n}@{x}{p}{N};;;;;;;
 ;\KrawtchoukpolyK{n}@{x}{p}{N};;;;;;;
 ;;;;;;;;
-;\Laguerre[\alpha]{n}@{x};;;;;;;
-;\LaguerrepolyL[\alpha]{n}@{x};;;;;;;
+LaguerreL[$1, $0, $2];\Laguerre[\alpha]{n}@{x};;;;;;;
+LaguerreL[$1, $0, $2];\LaguerrepolyL[\alpha]{n}@{x};;;;;;;
 ;\GottliebLaguerre{n}@{x};;;;;;;
 ;;;;;;;;
 ;\LamepolyuE{m}{2n}@{z}{k^2};;;;;;;
@@ -679,7 +680,7 @@ JacobiP[$2, $0, $1, $3];\JacobipolyP{\alpha}{\beta}{n}@{x};4;;;;;;https://refere
 ;;;;;;;;
 LegendreP[$0, $1];\LegendrepolyP{n}@{x};;;;;;;https://reference.wolfram.com/language/ref/LegendreP.html
 ;\shiftLegendrepolyP{n}@{x};;;;;;;
-;\assLegendrepoly{n}@{x}{c};;;;;;;
+LegendreP[$0, $2, $1];\assLegendrepoly{n}@{x}{c};;;;;;;
 ;;;;;;;;
 ;\Meixner{n}@{x}{\beta}{c};;;;;;;
 ;\MeixnerpolyM{n}@{x}{\beta}{c};;;;;;;
@@ -690,8 +691,8 @@ LegendreP[$0, $1];\LegendrepolyP{n}@{x};;;;;;;https://reference.wolfram.com/lang
 ;;;;;;;;
 ;\PollaczekpolyP{\lambda}{n}@{x}{a}{b};;;;;;;
 ;;;;;;;;
-;\Racah{n}@{x}{\alpha}{\beta}{\gamma}{\delta};;;;;;;
-;\RacahpolyR{n}@{x}{\alpha}{\beta}{\gamma}{\delta};;;;;;;
+Racah[{$0, $1, $2}, {$3, $4, $5}];\Racah{n}@{x}{\alpha}{\beta}{\gamma}{\delta};;;;;;;
+Racah[{$0, $1, $2}, {$3, $4, $5}];\RacahpolyR{n}@{x}{\alpha}{\beta}{\gamma}{\delta};;;;;;;
 ;;;;;;;;
 ;\StieltjesWigert{n}@@{x}{q};;;;;;;
 ;\StieltjesWigertpolyS{n}@{x}{q};;;;;;;
@@ -723,15 +724,15 @@ LegendreP[$0, $1];\LegendrepolyP{n}@{x};;;;;;;https://reference.wolfram.com/lang
 ;\qBernoullipolybeta{n}@{x}{q};;;;;;;
 ;\qBesselPoly{n}@{x}{b}{q};;;;;;;
 ;\qBeta{q}@{a}{b};;;;;;;
-;\qbinom{n}{m}{q};;;;;;;
+ QBinomial[$0, $1, $2];\qbinom{n}{m}{q};;;;;;;
 ;\qCharlier{n}@{x}{c}{q};;;;;;;
 ;\qderiv[n]{q}@{z};;;;;;;
 ;\qdiff{q}{x};;;;;;;
-;\qGamma{q}@{z};;;;;;;
+QGamma[$1, $0];\qGamma{q}@{z};;;;;;;
 ;\qDigamma{q}@{z};;;;;;;
 ;\qEulernumberA{m}{s}@{q};;;;;;;
-;\qfactorial{n}{q};;;;;;;
-;\qGamma{q}@{z};;;;;;;
+QFactorial[$0, $1];\qfactorial{n}{q};;;;;;;
+QGamma[$1, $0];\qGamma{q}@{z};;;;;;;
 ;\qHahn{n}@@{q^{-x}}{\alpha}{\beta}{N};;;;;;;
 ;\qHahnpolyQ{n}@{x}{\alpha}{\beta}{N}{q};;;;;;;
 ;\dualqHahn{n}@@{\mu(x)}{\gamma}{\delta}{N}{q};;;;;;;
@@ -760,9 +761,9 @@ LegendreP[$0, $1];\LegendrepolyP{n}@{x};;;;;;;https://reference.wolfram.com/lang
 ;\littleqLegendre{m}@{x}{q};;;;;;;
 ;\qMeixner{n}@{x}{b}{c}{q};;;;;;;
 ;\qMeixnerPollaczek{n}@{x}{a}{q};;;;;;;
-;\qPochhammer{a}{q}{n};;;;;;;
+QPochhammer[$0, $1, $2];\qPochhammer{a}{q}{n};;;;;;;
 ;\qmultiPochhammersym{a_1,\ldots,a_n}{q}{n};;;;;;;
-;\qpolygamma{n}{q}@{z};;;;;;;
+ QPolyGamma[$0, $2, $1];\qpolygamma{n}{q}@{z};;;;;;;
 ;\qRacah{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};;;;;;;
 ;\qRacahpolyR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};;;;;;;
 ;\qStirlingnumbera{m}{s}@{q};;;;;;;
