@@ -53,6 +53,7 @@ public class SumProductTranslatorTest {
             "Finished conversion to Maple:\n";
 
     private static final String[] sums= {
+            "\\sum_{-\\infty < i < \\infty}i^2+2i+1",
             "\\sum_{i=0}^\\infty i^2\\log{i}^3+i(2+3)",
             "\\sum^{200}_{k=-3}3i+k+i^2",
             "\\sum_{x, y = -\\infty}^{\\infty}\\sin{2^x}+\\cos{2^y}+23",
@@ -113,10 +114,14 @@ public class SumProductTranslatorTest {
             "\\sum_{p=1}^{\\infty}{\\deriv[2]{w}{z} + \\left( \\sum_{j=1}^N \\frac{\\gamma_j}{z - a_j} \\right) \\deriv{w}{z} + \\frac{\\Phi(z)}{\\prod_{j=1}^N (z - a_j)} w}",
             //26.8.9
             "\\sum_{n, k \\hiderel{=} 0}^{\\infty} \\Stirlingnumbers@{n}{k} \\frac{x^n}{n!}y^k = (1+x)^y",
-
+            //25.9.1 all
+            "\\sum_{1 \\leq n \\leq x} \\frac{1}{n^s} + \\chi(s) \\sum_{1 \\leq n \\leq y} \\frac{1}{n^{1-s}} + \\bigO@{x^{-\\sigma}} + \\bigO@{y^{\\sigma-1} t^{\\frac{1}{2} - \\sigma}}",
+            //25.9.1 part 2
+            "\\sum_{1 \\leq n \\leq y} \\frac{1}{n^{1-s}} + \\bigO@{x^{-\\sigma}} + \\bigO@{y^{\\sigma-1} t^{\\frac{1}{2} - \\sigma}}",
     };
 
     private static final String[] prods = {
+            "\\prod_{n \\leq i \\leq m}\\sin{i} + \\sum_{n \\leq j \\leq m}i^2+j\\prod_{k=0}^{\\infty}k+j+i",
             "\\prod_{i=0}^{\\infty}k^3",
             "\\prod_{x \\in P}x^2+x^3-3",
             "\\prod_{i=0}^{k}i^2+\\prod_{j=0}^{k}i^3-3j+\\prod_{l=0}^{k}j+2+\\sin{l}",
@@ -208,6 +213,7 @@ public class SumProductTranslatorTest {
             "Limit[Product[Limit[Product[(1 +Divide[z,(m +(n -Divide[1,2])\\[Tau]) \\[Pi]]), {m, -M, M}], M -> Infinity], {n, 1-N, N}], N -> Infinity]",
     };
     private static final String[] translatedMapleSums = {
+            "sum((i)^(2)+2i, i=-infinity..infinity)",
             "sum((i)^(2)*(log(i))^(3)+i(2 + 3), i = 0..infinity)",
             "sum(3i+k, k = - 3..200)",
             "sum(sum(sin((2)^(x))+cos((2)^(y)), y=-infinity..infinity), x=-infinity..infinity)",
@@ -242,10 +248,12 @@ public class SumProductTranslatorTest {
             "sum(sum((-1)^(j)*(sum(((e)^(2*pi*i*(k - j)*r/ m))/((1 - (e)^(2*pi*i*r/ m))^(n)), r = 1..m - 1))(j + m * x)^(n - 1), j = 0..k - 1), k = 1..n)",
             "sum(diff(w, [z$(2)])+(sum((gamma[j])/(z - a[j]), j = 1..N))*diff(w, z)+(Phi*(z))/(product((z - a[j]), j = 1..N))*w, p = 1..infinity)",
             "sum(sum(Stirling1(n, k)((x)^(n))/(factorial(n))(y)^(k), k=0..infinity), n=0..infinity)",
-
+            "sum((1)/((n)^(s)), n=1..x)",
+            "sum((1)/((n)^(1 - s)), n=1..y)",
     };
 
     private static final String[] translatedMapleProds = {
+            "product(sin(i)+sum((i)^(2)+jproduct(k, k = 0..infinity)+j, j=n..m)+i, i=n..m)",
             "product((k)^(3), i = 0..infinity)",
             "product((x)^(2)+(x)^(3), x in P)",
             "product((i)^(2)+product((i)^(3)-3j+product(j+2+sin(l), l = 0..k), j = 0..k), i = 0..k)",
@@ -270,6 +278,7 @@ public class SumProductTranslatorTest {
     };
 
     private static final String[] translatedMathematicaSums = {
+            "Sum[(i)^(2)+2i, {i, -Infinity, Infinity}]",
             "Sum[(i)^(2) (Log[i])^(3)+i(2 + 3), {i, 0, Infinity}]",
             "Sum[3i+k, {k, -3, 200}]",
             "Sum[Sum[Sin[(2)^(x)]+Cos[(2)^(y)], {y, -Infinity, Infinity}], {x, -Infinity, Infinity}]",
@@ -304,9 +313,12 @@ public class SumProductTranslatorTest {
             "Sum[Sum[(-1)^(j) (Sum[Divide[(e)^(2 \\[Pi] i (k - j) r/ m),(1 - (e)^(2 \\[Pi] i r/ m))^(n)], {r, 1, m - 1}])(j + m   x)^(n - 1), {j, 0, k - 1}], {k, 1, n}]",
             "Sum[D[w, {z, 2}] +(Sum[Divide[Subscript[\\[Gamma], j],z - Subscript[a, j]], {j, 1, N}]) D[w, z] +Divide[\\[CapitalPhi] (z),Product[(z - Subscript[a, j]), {j, 1, N}]] w, {p, 1, Infinity}]",
             "Sum[Sum[StirlingS1[n, k]Divide[(x)^(n),n!](y)^(k), {k, 0, Infinity}], {n, 0, Infinity}]",
+            "Sum[Divide[1,(n)^(s)], {n, 1, x}]",
+            "Sum[Divide[1,(n)^(1 - s)], {n, 1, y}]",
     };
 
     private static final String[] translatedMathematicaProds = {
+            "Product[Sin[i]+Sum[(i)^(2)+jProduct[k, {k, 0, Infinity}]+j, {j, n, m}]+i, {i, n, m}]",
             "Product[(k)^(3), {i, 0, Infinity}]",
             "Product[(x)^(2)+(x)^(3), {x, P}]",
             "Product[(i)^(2)+Product[(i)^(3)-3j+Product[j+2+Sin[l], {l, 0, k}], {j, 0, k}], {i, 0, k}]",

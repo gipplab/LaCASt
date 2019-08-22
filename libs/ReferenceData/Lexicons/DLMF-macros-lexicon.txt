@@ -6804,6 +6804,7 @@ Symbol: \Ramanujantau
 	Maple-Alternatives:
 	Maple-Comment:
 	Maple-Package:
+	Mathematica: RamanujanTau[$0]
 	Mathematica-Alternatives:
 	Mathematica-Comment:
 	Mathematica-Package:
@@ -6819,6 +6820,7 @@ Symbol: \Rational
 	DLMF: \Rational
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r13
 	Maple: rational
+	Mathematica: Rationals
 	Meanings: Set of rational numbers
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6834,6 +6836,7 @@ Symbol: \Rationals
 	Maple-Alternatives:
 	Maple-Comment:
 	Maple-Package:
+	Mathematica: Rationals
 	Mathematica-Alternatives:
 	Mathematica-Comment:
 	Mathematica-Package:
@@ -6876,6 +6879,7 @@ Symbol: \Real
 	DLMF: \Real
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r14
 	Maple: real
+	Mathematica: Reals
 	Meanings: Set of real numbers
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -6891,6 +6895,7 @@ Symbol: \Reals
 	Maple-Alternatives:
 	Maple-Comment:
 	Maple-Package:
+	Mathematica: Reals
 	Mathematica-Alternatives:
 	Mathematica-Comment:
 	Mathematica-Package:
@@ -7041,6 +7046,7 @@ Symbol: \ScorerGi
 	Maple-Alternatives: AiryBi($0)*(int(AiryAi(t), t = ($0) .. infinity))+AiryAi($0)*(int(AiryBi(t), t = 0 .. ($0)))
 	Maple-Comment: You could use the alternative translation. Since the given variable is used for limits of an Integral, a complex variable could produces trouble!
 	Maple-Package:
+	Mathematica: ScorerGi[$0]
 	Mathematica-Alternatives:
 	Mathematica-Comment:
 	Mathematica-Package:
@@ -7058,6 +7064,7 @@ Symbol: \ScorerHi
 	Maple-Alternatives: AiryBi($0)*(int(AiryAi(t), t = -infinity .. ($0)))-AiryAi($0)*(int(AiryBi(t), t = -infinity .. ($0)))
 	Maple-Comment: You could use the alternative translation. Since the given variable is used for limits of an Integral, a complex variable could produces trouble!
 	Maple-Package:
+	Mathematica: ScorerHi[$0]
 	Mathematica-Alternatives:
 	Mathematica-Comment:
 	Mathematica-Package:
@@ -7680,6 +7687,7 @@ Symbol: \WeierPInv
 	DLMF-Link: dlmf.nist.gov/23.3#E8
 	Maple: WeierstrassP($0, $1, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassP
+	Mathematica: WeierstrassP[$0, {$1, $2}]
 	Meanings: Weierstrass elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -7839,6 +7847,7 @@ Symbol: \WeierzetaInv
 	DLMF-Link: dlmf.nist.gov/23.1E5
 	Maple: WeierstrassZeta($0, $1, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassZeta
+	Mathematica: WeierstrassZeta[$0, {$1, $2}]
 	Meanings: Weierstrass zeta function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -7886,6 +7895,7 @@ Symbol: \WhitW
 	DLMF-Link: dlmf.nist.gov/13.14#E3
 	Maple: WhittakerW($0, $1, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerW
+	Mathematica: WhittakerW[$0, $1, $2]
 	Meanings: Whittaker confluent hypergeometric function
 	Number of Ats: 1
 	Number of Parameters: 2
@@ -7903,6 +7913,7 @@ Symbol: \WhittakerconfhyperM
 	Maple-Constraints:
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerM
 	Maple-Package:
+	Mathematica: WhittakerM[$0, $1, $2]
 	Mathematica-Alternatives:
 	Mathematica-Comment:
 	Mathematica-Package:
@@ -7924,6 +7935,7 @@ Symbol: \WhittakerconfhyperW
 	Maple-Constraints:
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerW
 	Maple-Package:
+	Mathematica: WhittakerW[$0, $1, $2]
 	Mathematica-Alternatives:
 	Mathematica-Comment:
 	Mathematica-Package:
@@ -8239,7 +8251,7 @@ Symbol: \aJacobiellcsk
 	Maple-Constraints:
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package:
-	mathematica: InverseJacobiCD[$0, $1]
+	Mathematica: InverseJacobiCS[$0, $1]
 	Mathematica-Alternatives:
 	Mathematica-Comment:
 	Mathematica-Package:
@@ -8651,6 +8663,7 @@ Symbol: \arcJacobicd
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiCD($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica: InverseJacobiCD[$0, $1]
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8663,6 +8676,7 @@ Symbol: \arcJacobicn
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiCN($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica: InverseJacobiCN[$0, $1]
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8675,6 +8689,7 @@ Symbol: \arcJacobics
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiCS($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica: InverseJacobiCS[$0, $1]
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8687,6 +8702,7 @@ Symbol: \arcJacobidc
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiDC($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica: InverseJacobiDC[$0, $1]
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8699,6 +8715,7 @@ Symbol: \arcJacobidn
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiDN($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica: InverseJacobiDN[$0, $1]
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8711,6 +8728,7 @@ Symbol: \arcJacobids
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiDS($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica: InverseJacobiDS[$0, $1]
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8723,6 +8741,7 @@ Symbol: \arcJacobinc
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiNC($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica: InverseJacobiNC[$0, $1]
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8735,6 +8754,7 @@ Symbol: \arcJacobind
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiND($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica: InverseJacobiND[$0, $1]
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8747,6 +8767,7 @@ Symbol: \arcJacobins
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiNS($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica: InverseJacobiNS[$0, $1]
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8759,6 +8780,7 @@ Symbol: \arcJacobisc
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiSC($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica: InverseJacobiSC[$0, $1]
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8771,6 +8793,7 @@ Symbol: \arcJacobisd
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiSD($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica: InverseJacobiSD[$0, $1]
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -8783,6 +8806,7 @@ Symbol: \arcJacobisn
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiSN($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+	Mathematica: InverseJacobiSN[$0, $1]
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -10622,6 +10646,7 @@ Symbol: \forall
   Feature Set: dlmf-macro
 	DLMF: \forall
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r11
+	Mathematica: \[ForAll]
 	Mathematica-Alternatives:
 	Mathematica-Comment:
 	Mathematica-Package:
@@ -14525,7 +14550,7 @@ Symbol: \qbinom
 	Maple-Alternatives:
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Package:
-	Mathematica:  QBinomial[$0, $1, $2]
+	Mathematica: QBinomial[$0, $1, $2]
 	Mathematica-Alternatives:
 	Mathematica-Comment:
 	Mathematica-Package:
@@ -14753,7 +14778,7 @@ Symbol: \qpolygamma
 	Maple-Alternatives:
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Package:
-	Mathematica:  QPolyGamma[$0, $2, $1]
+	Mathematica: QPolyGamma[$0, $2, $1]
 	Mathematica-Alternatives:
 	Mathematica-Comment:
 	Mathematica-Package:

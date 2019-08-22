@@ -16,6 +16,8 @@ import java.util.List;
  * SumProductTranslator uses parseGeneralExpression to get the arguments to the sum/product.
  * Then it uses BasicFunctionParser to put the arguments where they need to go.
  *
+ * Method call order: translate -> addToArgs -> onlyLower/lowerAndUpper -> addFactorsToSummand
+ *
  * @author Rajen Dey
  *
  * July 2019
@@ -69,7 +71,8 @@ public class SumProductTranslator extends AbstractListTranslator{
 
     /**
      * This method is called when the sum/prod has only a lower limit defined.
-     * Ex: \sum_{x=0}{x+5}
+     *
+     * Ex: \sum_{x \in X}x+5
      * @param next
      * @param list
      * @return
@@ -77,48 +80,102 @@ public class SumProductTranslator extends AbstractListTranslator{
     private int onlyLower(PomTaggedExpression next, List<PomTaggedExpression> list, int tempNum){
         List<PomTaggedExpression> components = next.getComponents();
         List<PomTaggedExpression> components2 = components.get(0).getComponents();
-
-        index = searchForIndex(components);
+        PomTaggedExpression lowerLim = components.get(0);
         int size = components2.size();
 
-        //this is the index and lower limit of summation
-        PomTaggedExpression lowerLim = components.get(0);
-        int size2 = lowerLim.getComponents().size();
-        if(lowerLim.getComponents().size() > 1 && GlobalConstants.CAS_KEY.equals("Mathematica")){
-            removeIndex(lowerLim, size2);
+        index = searchForIndex(components);
+
+        String[] lims = doubleLTs(lowerLim);
+        boolean goToThree = !lims[2].isEmpty();
+        int addPlace = 0;
+        boolean isMaple = GlobalConstants.CAS_KEY.equals("Maple");
+        if(!lims[2].isEmpty()) {
+            index = lims[1];
+            if(isMaple){
+                args.get(num).add(lims[1]+ "=" + lims[0]);
+                args.get(num).add(lims[2]);
+            } else {
+                args.get(num).add(lims[0]);
+                args.get(num).add(lims[2]);
+                args.get(num).add(lims[1]);
+            }
+            addPlace = 2;
         } else {
-            args.get(num).add(parseGeneralExpression(lowerLim, list).toString());
-            remove(size);
+            //this is the index and lower limit of summation
+            int size2 = lowerLim.getComponents().size();
+            if (lowerLim.getComponents().size() > 1 && !isMaple) {
+                removeIndex(lowerLim, size2);
+            } else {
+                args.get(num).add(parseGeneralExpression(lowerLim, list).toString());
+                remove(size);
+            }
         }
         size = list.get(0).getComponents().size();
         //this is the function being summed
-        if(GlobalConstants.CAS_KEY.equals("Mathematica"))
-            args.get(num).add(0, parseGeneralExpression(list.remove(0), list).toString());
+        if(!isMaple)
+            args.get(num).add(addPlace, parseGeneralExpression(list.remove(0), list).toString());
         else
             args.get(num).add(parseGeneralExpression(list.remove(0), list).toString());
         remove(size);
 
-        args.get(tempNum).add(index);
-        //add factors to summand
-        addFactorsToSummand(list, tempNum, 2, null);
+        if(addPlace == 0)
+            args.get(tempNum).add(index);
 
-        return 2;
+        //add factors to summand
+        int num = 3;
+        if(isMaple)
+            num = -1;
+        if(goToThree) {
+            addFactorsToSummand(list, tempNum, num, null);
+            return 3;
+        } else {
+            addFactorsToSummand(list, tempNum, 2, null);
+            return 2;
+        }
+
+    }
+
+    private String[] doubleLTs(PomTaggedExpression lowerLim){
+        String[] lims = new String[3];
+        String beforeLTs = "";
+        String betweenLTs = "";
+        String afterLTs = "";
+        List<PomTaggedExpression> components = lowerLim.getComponents();
+        int numLTs = 0;
+
+        for(int i = 0; i < lowerLim.getComponents().size(); i++){
+            MathTermTags tag = MathTermTags.getTagByKey(components.get(i).getRoot().getTag());
+            if(tag.equals(MathTermTags.less_than) || tag.equals(MathTermTags.relation)) {
+                numLTs++;
+                continue;
+            }
+            switch(numLTs) {
+                case 0:
+                    beforeLTs += parseGeneralExpression(components.get(i), null);
+                    global_exp.removeLastExpression();
+                    break;
+                case 1:
+                    betweenLTs += parseGeneralExpression(components.get(i), null);
+                    global_exp.removeLastExpression();
+                    break;
+                case 2:
+                    afterLTs += parseGeneralExpression(components.get(i), null);
+                    global_exp.removeLastExpression();
+                    break;
+            }
+
+        }
+        lims[0] = beforeLTs;
+        lims[1] = betweenLTs;
+        lims[2] = afterLTs;
+        return lims;
     }
 
     /**
-     * This method is called when the sum/prod has no lower or upper limit defined.
-     * Ex: \sum{x+5}
-     * @param next
-     * @param list
-     * @param tempNum
-     * @return
-     */
-
-    /**
      * This method is called when the sum/prod has both an upper and a lower limit.
-     * Determines which limit (lower/upper) is defined first, and adds them to the sum args appropriately.
-     * Ex: \sum_{x=0}^{10}{x+5}
-     * Ex: \sum^{10}_{x=0}{x+5}
+     *
+     * Ex: \sum_{x=0}^{10}x+5
+     * Ex: \sum^{10}_{x=0}x+5
      *
      * @param next
      * @param list
@@ -198,6 +255,9 @@ public class SumProductTranslator extends AbstractListTranslator{
 
     /**
      * Finds the lower limit, uppper limit, and index of summation.
+     * Determines which limit (lower/upper) is defined first (^ or _) to extract the correct limits.
+     *
+     * Used in lowerAndUpper
      *
      * @param components
      * @return A list of these things
@@ -311,7 +371,7 @@ public class SumProductTranslator extends AbstractListTranslator{
      * That letter is the index of summation for the nested sum, return it.
      *
      * @param remainingExpression
-     * @return the letter
+     * @return the inner index
      */
     private String isAnotherSum(PomTaggedExpression remainingExpression){
         List<PomTaggedExpression> components = remainingExpression.getComponents();
@@ -364,9 +424,13 @@ public class SumProductTranslator extends AbstractListTranslator{
     }
 
     /**
-     * If terms are being multiplied to the original summand, add them to the summand.
+     * If terms are being multiplied to the original summand, add them to the summand. (default case)
+     * Add carets, factorials, and underscores to the summand.
+     * If there is a relational operator or a right delimiter without a corresponding left delimiter, that is the end of the summand.
+     * If there is a sum/prod with the same index of summation/multiplication, stop.
+     * If there is a + or -, if the index is still present in the list of following terms, continue adding to summand.
+     * If the index is not present, stop.
      *
-     * If there is an addition, subtraction, or relational operator, that is the end of the summand.
      * Otherwise, the term is part of the summand.
      * @param list
      * @param tempNum
@@ -380,6 +444,8 @@ public class SumProductTranslator extends AbstractListTranslator{
             numFromEnd = 2;
         else if (GlobalConstants.CAS_KEY.equals("Mathematica"))
             numFromEnd = 3;
+        else if(numArgs == -1)
+            numFromEnd = 1;
         else
             numFromEnd = 2;
 
@@ -477,7 +543,7 @@ public class SumProductTranslator extends AbstractListTranslator{
      *
      * @param list, the list of following expressions after the sum.
      * @param tempNum, the current number of sums, used to access the right index.
-     * @return
+     * @return integer representing what is found.
      */
     private int isIndexPresent(List<PomTaggedExpression> list, int tempNum, String index, String nextIndex){
         int numParen = 0;
@@ -536,7 +602,7 @@ public class SumProductTranslator extends AbstractListTranslator{
     /**
      * Recursively searches for the first thing that is a letter. That is assumed to be the index.
      * @param list, the list of expressions to be searched
-     * @return
+     * @return the index
      */
     private String searchForIndex(List<PomTaggedExpression> list){
         for(PomTaggedExpression ex : list) {
