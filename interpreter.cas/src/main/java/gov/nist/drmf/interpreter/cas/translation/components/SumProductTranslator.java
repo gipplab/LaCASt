@@ -83,13 +83,18 @@ public class SumProductTranslator extends AbstractListTranslator{
         PomTaggedExpression lowerLim = components.get(0);
         int size = components2.size();
 
+        //find index
         index = searchForIndex(components);
 
+        //case with sum with both lower and upper limits in the underscore.
         String[] lims = doubleLTs(lowerLim);
+        //if this boolean is true, then this case is true
         boolean goToThree = !lims[2].isEmpty();
         int addPlace = 0;
         boolean isMaple = GlobalConstants.CAS_KEY.equals("Maple");
-        if(!lims[2].isEmpty()) {
+        //do this if sum has 2 LTs
+        if(goToThree) {
+            //put in all the extracted lims and put them in their places in args
             index = lims[1];
             if(isMaple){
                 args.get(num).add(lims[1]+ "=" + lims[0]);
@@ -100,6 +105,8 @@ public class SumProductTranslator extends AbstractListTranslator{
                 args.get(num).add(lims[1]);
             }
             addPlace = 2;
+
+            //otherwise add lower limit to args normally
         } else {
             //this is the index and lower limit of summation
             int size2 = lowerLim.getComponents().size();
@@ -124,17 +131,28 @@ public class SumProductTranslator extends AbstractListTranslator{
         //add factors to summand
         int num = 3;
         if(isMaple)
+            //need this for addFactorsToSummand to work as intended
             num = -1;
+
         if(goToThree) {
             addFactorsToSummand(list, tempNum, num, null);
+            //now this sum/prod as all both a lower and upper limit, so need to return 3.
             return 3;
         } else {
             addFactorsToSummand(list, tempNum, 2, null);
+            //this sum/prod still has just a lower limit, so return 2.
             return 2;
         }
 
     }
 
+    /**
+     * For sums with two less thans ex: \sum_{0<i<10}i
+     * Extracts the lower limit, index, and upper limit and returns them in an array.
+     *
+     * @param lowerLim
+     * @return
+     */
     private String[] doubleLTs(PomTaggedExpression lowerLim){
         String[] lims = new String[3];
         String beforeLTs = "";
