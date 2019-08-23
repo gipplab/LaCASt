@@ -20,40 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SumProductTranslatorTest {
 
-    private static final String stuffBeforeMathematica = "\n" +
-            "This is a program that translated given LaTeX\n" +
-            "code into a specified computer algebra system\n" +
-            "representation.\n" +
-            "\n" +
-            "You set the following CAS: Mathematica\n" +
-            "\n" +
-            "You want to translate the following expression: " + "\n" +
-            "\n" +
-            "Set global variable to given CAS.\n" +
-            "Set up translation...\n" +
-            "Initialize translation...\n" +
-            "Start translation...\n" +
-            "\n" +
-            "Finished conversion to Mathematica:\n";
-
-    private static final String stuffBeforeMaple = "\n" +
-            "This is a program that translated given LaTeX\n" +
-            "code into a specified computer algebra system\n" +
-            "representation.\n" +
-            "\n" +
-            "You set the following CAS: Maple\n" +
-            "\n" +
-            "You want to translate the following expression: " + "\n" +
-            "\n" +
-            "Set global variable to given CAS.\n" +
-            "Set up translation...\n" +
-            "Initialize translation...\n" +
-            "Start translation...\n" +
-            "\n" +
-            "Finished conversion to Maple:\n";
-
     private static final String[] sums= {
-            "\\sum_{-\\infty < i < \\infty}i^2+2i+1",
+            "\\sum_{-100 \\leq i < 100}i^2+2i+1",
             "\\sum_{i=0}^\\infty i^2\\log{i}^3+i(2+3)",
             "\\sum^{200}_{k=-3}3i+k+i^2",
             "\\sum_{x, y = -\\infty}^{\\infty}\\sin{2^x}+\\cos{2^y}+23",
@@ -121,6 +89,7 @@ public class SumProductTranslatorTest {
     };
 
     private static final String[] prods = {
+            "\\prod_{-\\infty}^{\\infty}x^3",
             "\\prod_{n \\leq i \\leq m}\\sin{i} + \\sum_{n \\leq j \\leq m}i^2+j\\prod_{k=0}^{\\infty}k+j+i",
             "\\prod_{i=0}^{\\infty}k^3",
             "\\prod_{x \\in P}x^2+x^3-3",
@@ -213,7 +182,7 @@ public class SumProductTranslatorTest {
             "Limit[Product[Limit[Product[(1 +Divide[z,(m +(n -Divide[1,2])\\[Tau]) \\[Pi]]), {m, -M, M}], M -> Infinity], {n, 1-N, N}], N -> Infinity]",
     };
     private static final String[] translatedMapleSums = {
-            "sum((i)^(2)+2i, i=-infinity..infinity)",
+            "sum((i)^(2)+2i, i=-100..100-1)",
             "sum((i)^(2)*(log(i))^(3)+i(2 + 3), i = 0..infinity)",
             "sum(3i+k, k = - 3..200)",
             "sum(sum(sin((2)^(x))+cos((2)^(y)), y=-infinity..infinity), x=-infinity..infinity)",
@@ -253,6 +222,7 @@ public class SumProductTranslatorTest {
     };
 
     private static final String[] translatedMapleProds = {
+            "product((x)^(3), x=- infinity..infinity)",
             "product(sin(i)+sum((i)^(2)+jproduct(k, k = 0..infinity)+j, j=n..m)+i, i=n..m)",
             "product((k)^(3), i = 0..infinity)",
             "product((x)^(2)+(x)^(3), x in P)",
@@ -278,7 +248,7 @@ public class SumProductTranslatorTest {
     };
 
     private static final String[] translatedMathematicaSums = {
-            "Sum[(i)^(2)+2i, {i, -Infinity, Infinity}]",
+            "Sum[(i)^(2)+2i, {i, -100, 100-1}]",
             "Sum[(i)^(2) (Log[i])^(3)+i(2 + 3), {i, 0, Infinity}]",
             "Sum[3i+k, {k, -3, 200}]",
             "Sum[Sum[Sin[(2)^(x)]+Cos[(2)^(y)], {y, -Infinity, Infinity}], {x, -Infinity, Infinity}]",
@@ -318,6 +288,7 @@ public class SumProductTranslatorTest {
     };
 
     private static final String[] translatedMathematicaProds = {
+            "Product[(x)^(3), {x, - Infinity, Infinity}]",
             "Product[Sin[i]+Sum[(i)^(2)+jProduct[k, {k, 0, Infinity}]+j, {j, n, m}]+i, {i, n, m}]",
             "Product[(k)^(3), {i, 0, Infinity}]",
             "Product[(x)^(2)+(x)^(3), {x, P}]",
@@ -441,31 +412,5 @@ messed with onlyLower
         parser = null;
         spt = null;
     }
-
-//    @Test
-//    public void mathematicaTest(){
-//        String more = "";
-//        for(int i = 0; i < expression.length; i++){
-//            String[] args = {"-CAS=Mathematica", "-Expression=" + expression[i]};
-//            SemanticToCASInterpreter.main(args);
-//            more += stuffBeforeMathematica.substring(0, stuffBeforeMathematica.indexOf("n: ") + 3) + expression[i]
-//                    + stuffBeforeMathematica.substring(stuffBeforeMathematica.indexOf("n: ") + 3);
-//            more += translatedMathematica[i] + "\n\n";
-//            assertEquals(more, result.toString());
-//        }
-//    }
-//
-//    @Test
-//    public void mapleTest(){
-//        String more = "";
-//        for(int i = 0; i < expression.length; i++){
-//            String[] args = {"-CAS=Maple", "-Expression=" + expression[i]};
-//            SemanticToCASInterpreter.main(args);
-//            more += stuffBeforeMaple.substring(0, stuffBeforeMaple.indexOf("n: ") + 3) + expression[i]
-//                    + stuffBeforeMaple.substring(stuffBeforeMaple.indexOf("n: ") + 3);
-//            more += translatedMaple[i] + "\n\n";
-//            assertEquals(more, result.toString());
-//        }
-//    }
 
 }
