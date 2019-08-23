@@ -72,6 +72,7 @@ public class SumProductTranslator extends AbstractListTranslator{
     /**
      * This method is called when the sum/prod has only a lower limit defined.
      *
+     * Translates the index, lower limit, summand, and adds them into the list of arguments.
      * Ex: \sum_{x \in X}x+5
      * @param next
      * @param list
@@ -151,7 +152,7 @@ public class SumProductTranslator extends AbstractListTranslator{
      * Extracts the lower limit, index, and upper limit and returns them in an array.
      *
      * @param lowerLim
-     * @return
+     * @return an array containing the lower limit, index, and upper limit
      */
     private String[] doubleLTs(PomTaggedExpression lowerLim){
         String[] lims = new String[3];
@@ -159,23 +160,32 @@ public class SumProductTranslator extends AbstractListTranslator{
         String betweenLTs = "";
         String afterLTs = "";
         List<PomTaggedExpression> components = lowerLim.getComponents();
+        int numRels = 0;
         int numLTs = 0;
 
         for(int i = 0; i < lowerLim.getComponents().size(); i++){
             MathTermTags tag = MathTermTags.getTagByKey(components.get(i).getRoot().getTag());
-            if(tag.equals(MathTermTags.less_than) || tag.equals(MathTermTags.relation)) {
-                numLTs++;
+            if(tag.equals(MathTermTags.relation)) {
+                numRels++;
                 continue;
             }
-            switch(numLTs) {
+            if(tag.equals(MathTermTags.less_than)) {
+                numRels++;
+                numLTs ++;
+                continue;
+            }
+            switch(numRels) {
+                //before the first lt
                 case 0:
                     beforeLTs += parseGeneralExpression(components.get(i), null);
                     global_exp.removeLastExpression();
                     break;
+                //between the 2 lts
                 case 1:
                     betweenLTs += parseGeneralExpression(components.get(i), null);
                     global_exp.removeLastExpression();
                     break;
+                //after both lts
                 case 2:
                     afterLTs += parseGeneralExpression(components.get(i), null);
                     global_exp.removeLastExpression();
@@ -183,14 +193,27 @@ public class SumProductTranslator extends AbstractListTranslator{
             }
 
         }
+        //add +1s or -1s if there were "less thans" instead of "less than or equals tos"
+        if(numLTs == 1 && numRels == 1)
+            beforeLTs += "+1";
+        else if(numLTs == 1 && numRels == 2)
+            afterLTs += "-1";
+        else if (numLTs == 2) {
+            beforeLTs += "+1";
+            afterLTs += "-1";
+        }
+
         lims[0] = beforeLTs;
         lims[1] = betweenLTs;
         lims[2] = afterLTs;
+
         return lims;
     }
 
     /**
      * This method is called when the sum/prod has both an upper and a lower limit.
+     *
+     * Translates the index, lower limit, upper limit, summand, and adds them into the arguments list.
      *
      * Ex: \sum_{x=0}^{10}x+5
      * Ex: \sum^{10}_{x=0}x+5
@@ -208,11 +231,15 @@ public class SumProductTranslator extends AbstractListTranslator{
         PomTaggedExpression index2 = lims[2];
         String storeIndex = index2.getRoot().getTermText();
 
+        boolean wasIndex = true;
         //if theres no index, find the first letter and assume it is the index
         boolean needNewIndex = !Character.isLetter(storeIndex.charAt(0)) && !MathTermTags.getTagByKey(index2.getRoot().getTag()).equals(MathTermTags.special_math_letter);
         if(needNewIndex) {
             storeIndex = searchForIndex(list);
+            //if the index wasn't defined, make this false
+            wasIndex = false;
         }
+        needNewIndex = !Character.isLetter(storeIndex.charAt(0)) && !MathTermTags.getTagByKey(index2.getRoot().getTag()).equals(MathTermTags.special_math_letter);
         //if theres still no index, put in i
         if(needNewIndex){
             storeIndex = "i";
@@ -225,15 +252,20 @@ public class SumProductTranslator extends AbstractListTranslator{
 
         //lower limit of summation
         int size = lowerLim.getComponents().size();
-        if(lowerLim.getComponents().size() > 1 && GlobalConstants.CAS_KEY.equals("Mathematica")){
+        if(lowerLim.getComponents().size() > 1 && GlobalConstants.CAS_KEY.equals("Mathematica") && wasIndex) {
             removeIndex(lowerLim, size);
         } else{
             if(isInnerSum) {
                 String operator = removeIndex(lowerLim, size);
                 String currentLim = args.get(tempNum).get(0);
                 args.get(tempNum).set(0, innerIndex + operator + currentLim);
-            } else {
+                //translate lower limit normally
+            } else if(wasIndex || GlobalConstants.CAS_KEY.equals("Mathematica")){
                 args.get(num).add(parseGeneralExpression(lowerLim, list).toString());
+                global_exp.removeLastNExps(size);
+                //there was no index, so add the index in.
+            } else{
+                args.get(num).add(index + "=" + parseGeneralExpression(lowerLim, list).toString());
                 global_exp.removeLastNExps(size);
             }
         }
