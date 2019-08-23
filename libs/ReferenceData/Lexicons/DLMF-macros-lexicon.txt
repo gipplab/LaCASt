@@ -30,6 +30,7 @@ Symbol: \AThetaFunction
 	Maple-Alternatives: 1+2*(sum(($0)^(m^2), m = 1 .. infinity))
 	Maple-Comment:
 	Maple-Package:
+	Mathematica: JacobiZeta[$0, $1]
 	Mathematica-Alternatives: 1+2*Sum[($0)^(m^2), {m, 1, Infinity}]
 	Mathematica-Comment:
 	Mathematica-Package:
@@ -5526,6 +5527,7 @@ Symbol: \Legendresym
 	Maple-Alternatives: legendre($0, $1)
 	Maple-Comment: This funcion needs an extra package. For Maple 2016 or older use with(numtheory), otherwise use with(NumberTheory)
 	Maple-Package:
+	Mathematica: KroneckerDelta[$0, $1]
 	Mathematica-Alternatives:
 	Mathematica-Comment:
 	Mathematica-Package:
