@@ -28,7 +28,7 @@ ArcCsch[$0];\acsch@@{z};1;;;;;;https://reference.wolfram.com/language/ref/ArcCsc
 ArcCoth[$0];\acoth@@{z};1;;;;;;https://reference.wolfram.com/language/ref/ArcCoth.html
 ;;;;;;;;
 Log[$0];\ln@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Log.html
-;;;;;;;;
+Log[$0];\log@@{z};;;;;;;
 Log[$0,$1];\genlog{a}@@{z};2;;;;;;https://reference.wolfram.com/language/ref/Log.html
 ;;;;;;;;
 ;\Ln@@{z};;;;;;;
@@ -411,7 +411,7 @@ InverseJacobiCS[$0, $1];\aJacobiellcsk@@{z}{k};;;;;;;
 ;\Jacobithetaq{j}@{z}{q};;;;;;;
 ;\Jacobithetatau{j}@{z}{\tau};;;;;;;
 ;\Jacobithetacombinedq{n}{m}@{z}{q};;;;;;;
-;\AThetaFunction@{x};;;;;;;
+JacobiZeta[$0, $1];\AThetaFunction@{x};;;;;;;
 JacobiZeta[$0, $1];\JacobiZetak@{x}{k};;;;;;;
 ;\Jacobisym{n}{P};;;;;;;
 ;;;;;;;;
@@ -529,7 +529,7 @@ StruveH[$0, $1];\StruveH{\nu}@{z};;;;;;;
 ;\modStruveL{\nu}@{z};;;;;;;
 ;\modStruveM{\nu}@{z};;;;;;;
 ;;;;;;;;
-;\Legendresym{n}{p};;;;;;;
+KroneckerDelta[$0, $1];\Legendresym{n}{p};;;;;;;
 KroneckerDelta[$0, $1];\Kroneckerdelta{j}{k};;;;;;;
 ;\NeumannFactor{n};;;;;;;
 ;\LeviCivitasym{j}{k}{l};;;;;;;
@@ -569,7 +569,7 @@ LaplaceTransform[$0, $1, $2];\LaplaceTrans@{f}{s};;;;;;;
 ;\Weierstrasspinvar@@{z}{g_2}{g_3};;;;;;;
 ;\Weierstrassplatt@@{z}{\Lattice{L}};;;;;;;
 ;;;;;;;;
-;\Weierstrasszetainvar@@{z}{g_2}{g_3};;;;;;;
+WeierstrassZeta[$0, {$1, $2}];\Weierstrasszetainvar@@{z}{g_2}{g_3};;;;;;;
 ;\Weierstrasszetalatt@@{z}{\Lattice{L}};;;;;;;
 ;\Weierstrasssigmainvar@@{z}{g_2}{g_3};;;;;;;
 ;\Weierstrasssigmalatt@@{z}{\Lattice{L}};;;;;;;
