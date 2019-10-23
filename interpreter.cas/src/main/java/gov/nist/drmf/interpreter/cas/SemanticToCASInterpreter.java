@@ -1,21 +1,19 @@
 package gov.nist.drmf.interpreter.cas;
 
-import gov.nist.drmf.interpreter.cas.logging.InformationLogger;
-import gov.nist.drmf.interpreter.cas.parser.SemanticLatexParser;
+import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
-import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
-import gov.nist.drmf.interpreter.common.symbols.Constants;
-import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
+import gov.nist.drmf.interpreter.common.TranslationException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
-import java.io.Console;
+//import java.awt.*;
+//import java.awt.datatransfer.Clipboard;
+//import java.awt.datatransfer.StringSelection;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * The main class to translate semantic LaTeX
@@ -26,7 +24,7 @@ import java.util.logging.Logger;
 public class SemanticToCASInterpreter {
     public static final String NEW_LINE = System.lineSeparator();
 
-    public static final Logger LOG = Logger.getLogger( SemanticToCASInterpreter.class.toString() );
+    public static final Logger LOG = LogManager.getLogger( SemanticToCASInterpreter.class.toString() );
 
     private static long init_ms, trans_ms;
 
@@ -59,8 +57,8 @@ public class SemanticToCASInterpreter {
         boolean extra = false;
         boolean clean = false;
 
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Clipboard clipboard = toolkit != null ? toolkit.getSystemClipboard() : null;
+        //Toolkit toolkit = Toolkit.getDefaultToolkit();
+        //Clipboard clipboard = toolkit != null ? toolkit.getSystemClipboard() : null;
 
         if ( args != null ){
             for ( int i = 0; i < args.length; i++ ){
@@ -113,45 +111,46 @@ public class SemanticToCASInterpreter {
         }
 
         if ( clean ){
-            Keys.CAS_KEY = CAS;
-            SemanticLatexParser latexParser =
-                    new SemanticLatexParser( Keys.KEY_LATEX, Keys.CAS_KEY );
-            latexParser.init( GlobalConstants.PATH_REFERENCE_DATA );
-            latexParser.parse( expression );
-            if ( clipboard != null ){
+            GlobalConstants.CAS_KEY = CAS;
+            SemanticLatexTranslator latexParser = getParser( true );
+            latexParser.translate( expression );
+            /*if ( clipboard != null ){
                 StringSelection ss = new StringSelection( latexParser.getTranslatedExpression() );
                 clipboard.setContents( ss, ss );
-            }
+            }*/
             System.out.println(latexParser.getTranslatedExpression());
             return;
         }
 
         System.out.println("Set global variable to given CAS.");
         init_ms = System.currentTimeMillis();
-        Keys.CAS_KEY = CAS;
+        GlobalConstants.CAS_KEY = CAS;
 
-        System.out.println("Set up parser...");
-        SemanticLatexParser latexParser =
-                new SemanticLatexParser( Keys.KEY_LATEX, Keys.CAS_KEY );
+        SemanticLatexTranslator latexParser = getParser( true );
 
-        System.out.println("Initialize parser...");
-        latexParser.init( GlobalConstants.PATH_REFERENCE_DATA );
         init_ms = System.currentTimeMillis()-init_ms;
 
         System.out.println("Start translation...");
         System.out.println();
         trans_ms = System.currentTimeMillis();
-        latexParser.parse( expression );
+        try {
+            latexParser.translate( expression );
+        } catch ( TranslationException e ){
+            System.out.println( "ERROR OCCURRED: " + e.getMessage() );
+            System.out.println( "Reason: " + e.getReason() );
+            e.printStackTrace();
+            return;
+        }
         trans_ms = System.currentTimeMillis()-trans_ms;
 
-        System.out.println("Finished conversion to " + Keys.CAS_KEY + ":");
+        System.out.println("Finished conversion to " + GlobalConstants.CAS_KEY + ":");
         System.out.println(latexParser.getTranslatedExpression());
         System.out.println();
 
-        if ( clipboard != null ){
+        /*if ( clipboard != null ){
             StringSelection ss = new StringSelection( latexParser.getTranslatedExpression() );
             clipboard.setContents( ss, ss );
-        }
+        }*/
 
         if ( debug ){
             System.out.println( "DEBUGGING Components: " + NEW_LINE +
@@ -191,8 +190,26 @@ public class SemanticToCASInterpreter {
 //        test = "\\JacobiP{\\alpha\\sqrt[3]{x}\\sin(x\\alpha xyz)\\sqrt[2]{3}}{b\\frac{1}{\\pi}}{1+0\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}@{\\cos(\\sqrt{x}\\frac{ \\cos(\\cos(x\\frac{\\cos(x)}{\\sin(xz)}))}{\\tan(\\sin(\\sqrt[x]{absdsd}\\frac{\\cos(x)}{\\sin(xz)}))})}";
 
 
-        latexParser.init( GlobalConstants.PATH_REFERENCE_DATA );
-        latexParser.parse(test);
+        latexParser.init( GlobalPaths.PATH_REFERENCE_DATA );
+        latexParser.translate(test);
         */
+    }
+
+    static SemanticLatexTranslator getParser( boolean verbose ) {
+        if ( verbose ) {
+            System.out.println( "Set up translation..." );
+        }
+        SemanticLatexTranslator latexParser = new SemanticLatexTranslator( Keys.KEY_LATEX, GlobalConstants.CAS_KEY );
+        if ( verbose ) {
+            System.out.println( "Initialize translation..." );
+        }
+        try {
+            latexParser.init( GlobalPaths.PATH_REFERENCE_DATA );
+        } catch ( IOException e ) {
+            System.err.println( "Cannot initiate translator." );
+            e.printStackTrace();
+            throw new RuntimeException( e );
+        }
+        return latexParser;
     }
 }

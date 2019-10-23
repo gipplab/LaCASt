@@ -45,8 +45,26 @@
 	"Modulo": {
 		"MLP": "modulo",
 		"LaTeX": "$0 \\mod $1",
-		"Maple": "`mod`($0,$1)",
+		"Maple": "`modp`($0,$1)",
 		"Mathematica": "Mod[$0,$1]"
+	},
+	"Subscript":{
+		"MLP": "underscore",
+		"LaTeX": "$0_{$1}",
+		"Maple": "$0[$1]",
+		"Mathematica": "Subscript[$0, $1]"
+	},
+	"Exponential":{
+		"MLP": "exponential",
+		"LaTeX": "\\expe",
+		"Maple": "exp($0)",
+		"Mathematica": "Exp[$0]"
+	},
+	"Absolute Value":{
+		"MLP": "absolute value",
+		"LaTeX": "| $0 |",
+		"Maple": "abs($0)",
+		"Mathematica": "Abs[$0]"
 	}
   },
   "Symbol Languages": [
@@ -58,39 +76,135 @@
   "Symbols": {
 	"GeneralMultiplication": {
 		"MLP": "General Multiplication",
-		"LaTeX": "\\cdot",
+		"LaTeX": "\\idot",
 		"Maple": "*",
 		"Mathematica": " "
 	},
 	"Multiply": {
 		"MLP": "operation",
-		"LaTeX": "cdot",
+		"LaTeX": "\\cdot",
 		"Maple": "*",
 		"Mathematica": "*"
 	},
+	"Invisible Multiply": {
+		"MLP": "operation",
+		"LaTeX": "\\idot",
+		"Maple": "*",
+		"Mathematica": "*"
+	},
+	"Addition":{
+		"MLP": "Addition",
+		"LaTeX": "+",
+		"Maple": "+",
+		"Mathematica": "+"
+	},
 	"Lower dots":{
 		"MLP": "ellipsis",
-		"LaTeX": "ldots",
+		"LaTeX": "\\ldots",
 		"Maple": "..",
 		"Mathematica": " ... "
 	},
+    "Dots":{
+        "MLP": "ellipsis",
+        "LaTeX": "\\dots",
+        "Maple": "..",
+        "Mathematica": " ... "
+    },
 	"Equality":{
 		"MLP": "equals",
 		"LaTeX": "=",
 		"Maple": "=",
 		"Mathematica": "="
 	},
+	"Definition":{
+		"MLP": "definition",
+		"LaTeX": ":=",
+		"Maple": ":=",
+		"Mathematica": ":="
+	},
 	"Not Equality":{
-		"MLP": "relation_1",
-		"LaTeX": "neq",
+		"MLP": "relation_neq",
+		"LaTeX": "\\neq",
 		"Maple": "<>",
 		"Mathematica": "\\[NotEqual]"
 	},
+    "Not Equality 2":{
+      "MLP": "relation_neq",
+      "LaTeX": "\\ne",
+      "Maple": "<>",
+      "Mathematica": "\\[NotEqual]"
+    },
+	"Less Than or Equality":{
+		"MLP": "relation_leq",
+		"LaTeX": "\\leq",
+		"Maple": "<=",
+		"Mathematica": "<="
+	},
+	"Less Than or Equality 2":{
+		"MLP": "relation_leq2",
+		"LaTeX": "\\le",
+		"Maple": "<=",
+		"Mathematica": "<="
+	},
+	"Greater Than or Equality":{
+		"MLP": "relation_geq",
+		"LaTeX": "\\geq",
+		"Maple": ">=",
+		"Mathematica": ">="
+	},
+	"Greater Than or Equality2":{
+		"MLP": "relation_geq2",
+		"LaTeX": "\\ge",
+		"Maple": ">=",
+		"Mathematica": ">="
+	},
 	"Element of":{
-		"MLP": "relation_2",
-		"LaTeX": "in",
+		"MLP": "in",
+		"LaTeX": "\\in",
 		"Maple": "in",
 		"Mathematica": "\\[Element]"
-	}
+	},
+	"Infinity": {
+      "MLP": "ordinary",
+      "LaTeX": "\\infty",
+      "Maple": "infinity",
+      "Mathematica": "Infinity"
+	},
+	"opminus": {
+      "MLP": "opminus",
+      "LaTeX": "\\opminus",
+      "Maple": "(-1)",
+      "Mathematica": "(-1)"
+	},
+	"Complex Numbers": {
+      "MLP": "complex",
+      "LaTeX": "\\Complex",
+      "Maple": "complex",
+      "Mathematica": "Complex"
+	},
+	"Real Numbers": {
+      "MLP": "real",
+      "LaTeX": "\\Real",
+      "Maple": "real",
+      "Mathematica": "Real"
+	},
+	"Rational Numbers": {
+      "MLP": "rational",
+      "LaTeX": "\\Rational",
+      "Maple": "rational",
+      "Mathematica": "Rational"
+	},
+	"Integer Numbers": {
+      "MLP": "integer",
+      "LaTeX": "\\Integer",
+      "Maple": "integer",
+      "Mathematica": "Integer"
+	},
+    "Ell": {
+      "MLP": "special math letter",
+      "LaTeX": "\\ell",
+      "Maple": "ell",
+      "Mathematica": "\\[ScriptL]"
+    }
   }
 }

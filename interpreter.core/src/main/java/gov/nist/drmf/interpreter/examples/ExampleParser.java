@@ -1,15 +1,16 @@
 package gov.nist.drmf.interpreter.examples;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import mlp.*;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * This parser is a test suite for further computations.
+ * This translation is a test suite for further computations.
  * It is designed to handle JacobiP in semantic latex.
  * It is also necessary that the "global-lexicon" already contains
  * the JacobiP definition.
@@ -31,7 +32,7 @@ public class ExampleParser {
     // list of constraints, basic in string style
     private List<String> constraints;
 
-    // the parser itself
+    // the translation itself
     private PomParser parser;
 
     private GreekLetters greek;
@@ -42,10 +43,16 @@ public class ExampleParser {
     public ExampleParser(){
         constraints = new LinkedList<String>();
         greek = new GreekLetters( Keys.KEY_LATEX, Keys.KEY_MAPLE );
-        greek.init();
+        try {
+            greek.init();
+        } catch ( IOException ioe ){
+            System.err.println("Cannot load greek letters");
+            ioe.printStackTrace();
+            return;
+        }
 
-        // initialize parser
-        parser = new PomParser(GlobalConstants.PATH_REFERENCE_DATA.toString());
+        // initialize translation
+        parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA.toString());
     }
 
     /**

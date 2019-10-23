@@ -1,32 +1,21 @@
 package gov.nist.drmf.interpreter.mlp.extensions.mathml;
 
-import com.sun.istack.internal.Nullable;
-import gov.nist.drmf.interpreter.common.Keys;
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
-import gov.nist.drmf.interpreter.common.symbols.Constants;
-import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
-import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
-import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
-import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
- * The math term parser parses only math terms.
- * It is a inner parser and switches through all different
+ * The math term translation parses only math terms.
+ * It is a inner translation and switches through all different
  * kinds of math terms. All registered math terms can be
  * found in {@link MathTermTags}.
  *
  * @author Andre Greiner-Petter
  */
 public class MathMLMathTermParser {
-    // some special characters which are useful for this parser
+    // some special characters which are useful for this translation
     // the caret uses for powers
     public static final String CHAR_CARET = "^";
 

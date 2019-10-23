@@ -9,7 +9,7 @@ public enum ConstantTestCases {
     ImaginaryUnit("\\iunit", "I", "I"),
     EulerConstant("\\EulerConstant", "gamma", "EulerGamma"),
     CatalansConstant("\\CatalansConstant", "Catalan", "Catalan"),
-    Infinity("\\inf", "infinity", "Infinity");
+    Infinity("\\infty", "infinity", "Infinity");
 
     public String dlmf, maple, mathematica;
 

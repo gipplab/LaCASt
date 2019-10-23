@@ -2,12 +2,8 @@
 # But it would be better to keep the basics. That makes it a lot easier
 # for new contributers to open the program in IntelliJ.
 # Anyway, we ignore user specific directories and files
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/uiDesigner.xml
-.idea/artifacts/
-.idea/dictionaries/
-.idea/inspectionProfiles/
+.idea/
+*.iml
 
 # Not sure if we should share .idea/libraries/
 # It contains all maven dependencies.
@@ -20,3 +16,6 @@ target/
 
 # A bit redundant, but just to be sure, ignore all class files
 *.class
+
+# Working with logging files now. We should ignore these.
+*.log

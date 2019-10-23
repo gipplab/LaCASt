@@ -1,47 +1,73 @@
 package gov.nist.drmf.interpreter.common;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.regex.Pattern;
 
 /**
- * This class provides some useful global constants.
- *
- * Created by Andre Greiner-Petter on 02.11.2016.
+ * Created by AndreG-P on 28.02.2017.
  */
 public class GlobalConstants {
-    // path variable to libs folder
-    public static final Path PATH_LIBS =
-            Paths.get("libs");
+    public static final String POSITION_MARKER = "$";
 
-    // path variable to the ReferenceData directory
-    public static final Path PATH_REFERENCE_DATA =
-            Paths.get("libs", "ReferenceData");
+    public static final String CARET_CHAR = "^";
 
-    // path variable to the lexicon files in the reference data dir
-    public static final Path PATH_LEXICONS =
-            Paths.get("libs", "ReferenceData", "Lexicons");
+    public static final String WHITESPACE = " ";
 
-    // path variable to the csv files in the reference data dir
-    public static final Path PATH_REFERENCE_DATA_CSV =
-            Paths.get("libs", "ReferenceData", "CSVTables");
+    private static final String LATEX_MULTIPLY = "\\\\cdot|\\\\idot|\\s*\\*\\s*";
+    public static final Pattern LATEX_MULTIPLY_PATTERN = Pattern.compile(LATEX_MULTIPLY);
 
-    // path variable to the csv files in the reference data dir
-    public static final Path PATH_REFERENCE_DATA_BASIC_CONVERSION =
-            Paths.get("libs", "ReferenceData", "BasicConversions");
+    private static final String LATEX_COMMAND = "\\\\[a-zA-Z()\\[\\]{}]+";
+    public static final Pattern LATEX_COMMAND_PATTERN = Pattern.compile(LATEX_COMMAND);
 
-    // path variable to the resources of the core
-    public static final Path PATH_CORE_RESOURCES =
-            Paths.get("interpreter.core", "src", "main", "resources");
+    private static final String macro_pattern =
+            "(X\\d:\\\\\\w+X)*(\\\\\\w+)(\\[[^@]+])*(\\{[^@]+})*(@+)*(\\{[^@]+})*\\s*";
+    public static final Pattern DLMF_MACRO_PATTERN =
+            Pattern.compile(macro_pattern);
 
-    // path to the json file with greek letters and constants
-    public static final Path PATH_GREEK_LETTERS_AND_CONSTANTS_FILE =
-            Paths.get("libs", "ReferenceData", "BasicConversions", "GreekLettersAndConstants.json");
+    private static final String general_trans_macro_pattern =
+            "(X\\d:\\\\\\w+X)*(\\\\\\w+)?.+";
+    public static final Pattern GENERAL_MACRO_TRANSLATION_PATTERN =
+            Pattern.compile(general_trans_macro_pattern);
 
-    // path to the json file with basic functions
-    public static final Path PATH_BASIC_FUNCTIONS =
-            Paths.get("libs", "ReferenceData", "BasicConversions", "BasicFunctions.json");
+    private static final String general_cas_func_pattern =
+            "(X\\d:\\w+X)*(\\w+)[^\\w]?.*";
+    public static final Pattern GENERAL_CAS_FUNC_PATTERN =
+            Pattern.compile(general_cas_func_pattern);
 
-    // the name of the lexicon file
-    public static final String DLMF_MACROS_LEXICON_NAME =
-            "DLMF-macros-lexicon.txt";
+    public static final int GEN_CAS_FUNC_SPECIFIER = 1;
+    public static final int GEN_CAS_FUNC_PATTERN_NAME = 2;
+
+    public static final String MACRO_OPT_PARAS_SPLITTER = ":";
+    public static final int MACRO_PATTERN_INDEX_OPT_PARAS = 1;
+    public static final int MACRO_PATTERN_INDEX_MACRO = 2;
+    public static final int MACRO_PATTERN_INDEX_ATS = 5;
+    public static final int MACRO_PATTERN_INDEX_OPT_PARAS_ELEMENTS = 3;
+
+    public static final String LINK_PREFIX = "http://";
+    public static final String LINK_S_PREFIX = "https://";
+
+    public static final String PROPS_COMMENTS =
+            " Enter the command \"kernelopts(bindir);\" in Maple and put the given path into maple_bin.\n" +
+            "# Since this is a java program and \\ is an escape character, you have to write \\\\ for each \\.\n" +
+            "# In Unix based systems, this is not necessary.\n" +
+            "#\n" +
+            "# For example, in windows it could looks like this:\n" +
+            "# maple_bin=C:\\\\Program Files\\\\Maple 2017\\\\bin.X86_64_WINDOWS\n" +
+            "#\n" +
+            "# Or in linux it could looks like this:\n" +
+            "# maple_bin=/home/maple2016/bin.X86_64_LINUX";
+
+    /**
+     * A flag to identify the CAS at runtime. It is used for the
+     * translation from DLMF to a given CAS.
+     */
+    public static String CAS_KEY = "";
+
+    /**
+     * A flag to translate not the direct translation but the alternative translation.
+     * It is used by the MacroParser (interpreter.cas).
+     *
+     * It is probably useless because the alternative translation is not fully implemented
+     * yet.
+     */
+    public static boolean ALTERNATIVE_MODE = false;
 }

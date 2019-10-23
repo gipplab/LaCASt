@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.common.symbols;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
+
+import java.io.IOException;
 
 /**
  * @author Andre Greiner-Petter
@@ -23,9 +25,9 @@ public class BasicFunctionsTranslator extends AbstractJSONLoader {
         this.TO = TO;
     }
 
-    public void init(){
+    public void init() throws IOException {
         super.init(
-                GlobalConstants.PATH_BASIC_FUNCTIONS,
+                GlobalPaths.PATH_BASIC_FUNCTIONS,
                 KEY_LANGUAGES,
                 KEY_FUNCTIONS
         );
