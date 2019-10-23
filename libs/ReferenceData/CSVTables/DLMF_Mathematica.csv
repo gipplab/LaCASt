@@ -34,9 +34,9 @@ DLMF;Mathematica;Number of Variables;Slot of Differentiation;DLMF-Mathematica-Co
 \Ln@@{z};;;;;
 \exp@@{z};Exp[$0];1;;;
 ;;;;;
-\LambertW@{x};;;;;
-\LambertWp@{x};ProductLog[$0];1;;;
-\LambertWm@{x};ProductLog[-1, $0];;;;
+\LambertW@{x};ProductLog[$0];1;;;
+\LambertWp@{x};ProductLog[0, $0];2;;;
+\LambertWm@{x};ProductLog[-1, $0];2;;;
 ;;;;;
 \sinint@{z};SinIntegral[$0];1;;;
 \shiftsinint@{z};SinIntegral[$0] - Pi/2;1;;;
@@ -363,8 +363,6 @@ DRMF Macro;;;;;
 \genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};;;;;
 \genhyperH{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};;;;;
 \hyperOlverF@@@{a}{b}{c}{z};;;;;
-"\genhyperOlverF{p}{q}@@
-{\Vector{a}}{\Vector{b}}{z}";;;;;
 \KummerconfhyperM@{a}{b}{z};;;;;
 \KummerconfhyperU@{a}{b}{z};HypergeometricU[$0, $1, $2];3;3;;
 \OlverconfhyperM@{a}{b}{z};Hypergeometric1F1Regularized[$0, $1, $2];3;3;;
