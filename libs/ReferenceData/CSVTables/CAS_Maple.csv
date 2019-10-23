@@ -71,7 +71,7 @@ signum($0);\sign@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.a
 surd($1, $0);\sqrt[$1]{$0};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=surd
 binomial($0, $1);\binom{$0}{$1};2;;;;\binom{$0}{$1};https://www.maplesoft.com/support/help/maple/view.aspx?path=binomial
 multinomial($0, $1);\multinomial{m}{n_1,...,n_k};;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=combinat/multinomial
-gcd($0, $1);\pgcd{$0, $1};1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=gcd
+gcd($0, $1);\pgcd{$0, $1};2;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=gcd
 factorial($0);($0)!;1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=factorial
 doublefactorial($0);($0)!!;1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=doublefactorial
 ;;;;;;;
@@ -285,7 +285,7 @@ add(divisors($0));\sumdivisors{1}@{n};1;;;;;http://www.maplesoft.com/support/hel
 ;;;;;;;
 ;\EulersumH@{s};;;;;;not defined
 ;\genEulersumH@{s}{z};;;;;;not defined
-;\EulerPhi@{x};;;;;;not defined
+phi($0);\EulerPhi@{$0};1;;;;;not defined
 ;\Eulertotientphi[k]@{n};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/phi%28deprecated%29
 ;\Euleriannumber{n}{k};;;;;;not defined
 ;;;;;;;
@@ -298,7 +298,7 @@ erfc($0, $1);\inverfc@@{x};2;;;;;https://www.maplesoft.com/support/help/maple/vi
 ;\repinterfc{$0}@{$1};;;;;;not defined
 ;\FishersHh{n}@{z};;;;;;
 ;;;;;;;not defined
-;\FibonacciNumber{n};;;;;;
+fibonacci($0);\FibonacciNumber{n};1;;;;;
 ;;;;;;;not defined
 FresnelC($0);\FresnelintF@{z};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=FresnelC
 FresnelS($0);\Fresnelcosint@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=FresnelS
@@ -333,7 +333,7 @@ HeunC(alpha, beta, gamma, delta, eta, z);\HeunHl@@{$0}{$1}{$2}{$3}{$4}{$5}{$6};6
 HeunB(alpha, beta, gamma, delta, z);;5;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunB
 HeunD(alpha, beta, gamma, delta, z);;5;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunD
 HeunT(alpha, beta, gamma, z);;4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunT
-;;;;;;;not defined
+;;;;;;;
 ;\HeunHf{m}{a}{b}@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z};;;;;;
 hypergeom([$0, $1], [$2], $3);;4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
 hypergeom([$2], [$3], $4);\hyperF@@@{$0}{$1}{$2}{$3};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
@@ -398,7 +398,7 @@ KelvinKei($0, $1);\Kelvinker{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/h
 ;\LameEc{m}{\nu}@{z}{k^2};;;;;;not defined
 ;\LameEs{m}{\nu}@{z}{k^2};;;;;;not defined
 ;\Lameeigvala{n}{\nu}@{k^2};;;;;;not defined
-;\Lameeigvalb{n}{\nu}@{k^2};;;;;;
+;\Lameeigvalb{n}{\nu}@{k^2};;;;;;not defined
 ;;;;;;;
 ;\FerrersP{\nu}@{x};;;;;;
 ;\FerrersP[\mu]{\nu}@{x};;;;;;
@@ -491,8 +491,7 @@ Zeta(s);\Riemannxi@{s};1;;;;;https://www.maplesoft.com/support/help/maple/view.a
 Stirling1($0, $1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Stirling1
 Stirling2($0, $1);\Stirlingnumbers@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Stirling2
 ;\StirlingnumberS@{$0}{$1};;;;;;
-StruveH($0, $1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=StruveH
-;\StruveH{$0}@{$1};;;;;;not defined
+StruveH($0, $1);\StruveH{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=StruveH
 StruveL($0, $1);\StruveK{\nu}@{z};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=StruveL
 ;\modStruveL{$0}@{$1};;;;;;not defined
 ;\modStruveM{\nu}@{z};;;;;;
@@ -572,9 +571,9 @@ BellB($0, 1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=
 ;;;;;;;not defined
 ;\Charlier{n}@{x}{a};;;;;;not defined
 ;\CharlierpolyC{n}@{x}{a};;;;;;
-ChebyshevT($0, $1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevT
-ChebyshevU($0, $1);\ChebyshevpolyT{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevU
-;\ChebyshevpolyU{$0}@{$1};;;;;;not defined
+;;;;;;;;
+ChebyshevT($0, $1);\ChebyshevpolyT{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevT
+ChebyshevU($0, $1);\ChebyshevpolyU{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevU
 ;\ChebyshevpolyV{n}@{x};;;;;;not defined
 ;\ChebyshevpolyW{n}@{x};;;;;;not defined
 ;\shiftChebyshevpolyT{n}@{x};;;;;;not defined
@@ -602,28 +601,26 @@ GegenbauerC($1, $0, $2);\Ultra{$1}{$0}@{$2};3;;;;;https://www.maplesoft.com/supp
 ;\dualHahn{n}@@{\lambda(x)}{\gamma}{\delta}{N};;;;;;not defined
 ;\contdualHahnpolyS{n}@{x}{a}{b}{c};;;;;;not defined
 ;\contHahnpolyp{n}@{x}{a}{b}{\conj{a}}{\conj{b}};;;;;;
-HermiteH($0, $1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
 HermiteH($0, $1);\Hermite{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
-;\HermitepolyH{$0}@{$1};;;;;;not defined
 ;\dilHermitepolyHe{n}@{x};;;;;;not defined
 ;\GenHermite[\alpha]{n}@{x};;;;;;
 ;;;;;;;not defined
 ;\HeunpolyHp{n}{m}@@{a}{q}{-n}{\beta}{\gamma}{\delta}{z};;;;;;
 JacobiP($2, $0, $1, $3);;4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
 JacobiP($2, $0, $1, $3);\Jacobi{$1}{$2}{$0}@{$3};4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
-;\JacobipolyP{$1}{$2}{$0}@{$3};;;;;;not defined
+JacobiP($2, $0, $1, $3);\JacobipolyP{$1}{$2}{$0}@{$3};4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
 ;\shiftJacobipolyG{n}@{p}{q}{x};;;;;;not defined
 ;\assJacobipolyP{\alpha}{\beta}{n}@{x}{c};;;;;;not defined
 ;\pseudoJacobi{n}@{x}{\nu}{N};;;;;;not defined
 ;\trianglepoly{\alpha}{\beta}{\gamma}{m}{n}@{x}{y};;;;;;
 ;;;;;;;not defined
 ;\Krawtchouk{n}@{x}{p}{N};;;;;;not defined
-;\KrawtchoukpolyK{n}@{x}{p}{N};;;;;;
-LaguerreL($0, $1);;2;;;;\Laguerre{$0}@{$2};https://www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-LaguerreL($1, $0, $2);\LaguerrepolyL{$0}@{$1};3;;;;\Laguerre[$1]{$0}@{$2};https://www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-;X1:LaguerreLX\LaguerrepolyL[$1]{$0}@{$2};;;;;;not defined
-;\GottliebLaguerre{n}@{x};;;;;;
-;;;;;;;not defined
+;\KrawtchoukpolyK{n}@{x}{p}{N};;;;;;not defined
+;;;;;;;
+LaguerreL($0, $1);\LaguerrepolyL{$0}@{$1};2;;;;\Laguerre{$0}@{$2};https://www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+LaguerreL($1, $0, $2);X1:LaguerreLX\LaguerrepolyL[$1]{$0}@{$2};3;;;;\Laguerre[$1]{$0}@{$2};https://www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+;\GottliebLaguerre{n}@{x};;;;;;not defined
+;;;;;;;
 ;\LamepolyuE{m}{2n}@{z}{k^2};;;;;;not defined
 ;\LamepolysE{m}{2n+1}@{z}{k^2};;;;;;not defined
 ;\LamepolycE{m}{2n+1}@{z}{k^2};;;;;;not defined
@@ -659,7 +656,6 @@ LaguerreL($1, $0, $2);\LaguerrepolyL{$0}@{$1};3;;;;\Laguerre[$1]{$0}@{$2};https:
 ;;;;;;;
 ;;;;;;;
 ;;;;;;;
-;;;;;;;not defined
 ;\qSin{q}@@{x};;;;;;not defined
 ;\qsin{q}@@{x};;;;;;not defined
 ;\qSinKLS{q}@@{z};;;;;;not defined
@@ -705,8 +701,8 @@ LaguerreL($1, $0, $2);\LaguerrepolyL{$0}@{$1};3;;;;\Laguerre[$1]{$0}@{$2};https:
 ;\littleqJacobi{n}@@{x}{a}{b}{q};;;;;;not defined
 ;\qKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;not defined
 ;\dualqKrawtchouk{n}@@{\lambda(x)}{c}{N}{q};;;;;;not defined
-;\qtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;
-;\AffqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;not defined
+;\qtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;not defined
+;\AffqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;
 ;\qLaguerre[\alpha]{n}@@{x}{q};;;;;;not defined
 ;\qLaguerrepolyL[\alpha]{n}@{x}{q};;;;;;not defined
 ;\bigqLaguerre{n}@{x}{a}{b}{q};;;;;;not defined
@@ -726,8 +722,8 @@ LaguerreL($1, $0, $2);\LaguerrepolyL{$0}@{$1};3;;;;\Laguerre[$1]{$0}@{$2};https:
 ;\qHyperrWs{r}{r+1}@@@{a_1}{a_4,a_5,...,a_{r+1}}{q}{z};;;;;;not defined
 ;\qgenhyperphi{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z};;;;;;not defined
 ;\qgenhyperpsi{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z};;;;;;not defined
-;\qmultinomial{a_1+\ldots+a_n}{a_1,\ldots,a_n}{q};;;;;;
-;;;;;;;not defined
+;\qmultinomial{a_1+\ldots+a_n}{a_1,\ldots,a_n}{q};;;;;;not defined
+;;;;;;;
 ;\ctsHahn{n}@@{x}{a}{b}{c}{d};;;;;;not defined
 ;\ctsbigqHermite{n}@{x}{a}{q};;;;;;not defined
 ;\ctsdualHahn{n}@@{x^2}{a}{b}{c};;;;;;not defined
@@ -740,8 +736,8 @@ LaguerreL($1, $0, $2);\LaguerrepolyL{$0}@{$1};3;;;;\Laguerre[$1]{$0}@{$2};https:
 ;\ctsqLegendre{n}@@{x}{q};;;;;;not defined
 ;\ctsqLegendreRahman{n}@@{x}{q};;;;;;not defined
 ;\ctsqUltra{n}@{x}{\beta}{q};;;;;;not defined
-;\ctsqUltrae{n}@{e^{i\theta}}{\beta}{q};;;;;;
-;;;;;;;not defined
+;\ctsqUltrae{n}@{e^{i\theta}}{\beta}{q};;;;;;not defined
+;;;;;;;
 ;\monicAffqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;not defined
 ;\monicAlSalamCarlitzI{a}{n}@@{x}{q};;;;;;not defined
 ;\monicAlSalamCarlitzII{a}{n}@@{x}{q};;;;;;not defined
@@ -794,8 +790,8 @@ LaguerreL($1, $0, $2);\LaguerrepolyL{$0}@{$1};3;;;;\Laguerre[$1]{$0}@{$2};https:
 ;\monicqMeixnerPollaczek{n}@@{x}{a}{q};;;;;;not defined
 ;\monicqRacah{n}@@{\mu(x)}{\alpha}{\beta}{\gamma}{\delta}{q};;;;;;not defined
 ;\monicqinvAlSalamChihara{n}@{x}{a}{b}{q^{-1}};;;;;;not defined
-;\monicqtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;
-;;;;;;;not defined
+;\monicqtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};;;;;;not defined
+;;;;;;;
 ;\normAskeyWilsonptilde{n}@@{x}{a}{b}{c}{d}{q};;;;;;not defined
 ;\normJacobiR{\alpha}{\beta}{n}@{x};;;;;;not defined
 ;\normWilsonWtilde{n}@@{x^2}{a}{b}{c}{d};;;;;;not defined
@@ -803,4 +799,4 @@ LaguerreL($1, $0, $2);\LaguerrepolyL{$0}@{$1};3;;;;\Laguerre[$1]{$0}@{$2};https:
 ;\normctsdualHahnStilde{n}@@{x^2}{a}{b}{c}{d};;;;;;not defined
 ;\normctsdualqHahnptilde{n}@@{x}{a}{b}{c}{q};;;;;;not defined
 ;\normctsqHahnptilde{n}@@{x}{a}{b}{c}{d}{q};;;;;;not defined
-;\normctsqJacobiPtilde{n}@@{x}{q};;;;;;
+;\normctsqJacobiPtilde{n}@@{x}{q};;;;;;not defined

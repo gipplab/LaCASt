@@ -113,7 +113,7 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 				return_value = mp.translate( exp, exp_list );
 				inner_parser = mp;
 			} //is it a sum or a product
-			else if (isSumOrProduct(term)){
+			else if (isSumOrProductOrLimit(term)){
 				SumProductTranslator sm = new SumProductTranslator();
 				return_value = sm.translate(exp, exp_list);
 				inner_parser = sm;
@@ -155,15 +155,10 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 		} else return false;
 	}
 
-	/**
-	 * If the term is a "\sum" or "\prod" use the SumProductTranslator.
-	 * @param term
-	 * @return
-	 */
-	protected boolean isSumOrProduct(MathTerm term){
-		if(term.getTermText().equals("\\sum") || term.getTermText().equals("\\prod")){
-			return true;
-		} else return false;
+	protected boolean isSumOrProductOrLimit(MathTerm term){
+		if(term.getTag().equals(MathTermTags.operator.tag()))
+			return FeatureSetUtility.isSum(term) || FeatureSetUtility.isProduct(term) || FeatureSetUtility.isLimit(term);
+		return false;
 	}
 
 	protected boolean isSubSequence( MathTerm term ) {

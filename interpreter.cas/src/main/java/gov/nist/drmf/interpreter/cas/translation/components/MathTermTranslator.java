@@ -319,6 +319,12 @@ public class MathTermTranslator extends AbstractListTranslator {
             case relation:
                 if ( !term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN ) ){
                     translation = sT.translate( term.getTermText() );
+                    if(term.getTermText().equals("\\to")){
+                        if(GlobalConstants.CAS_KEY.equals("Mathematica"))
+                            translation = "->";
+                        else
+                            translation = "=";
+                    }
                     if ( translation == null ){
                         LOG.error("Unknown relation. Cannot translate: " + term.getTermText());
                         return false;
