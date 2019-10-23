@@ -26,7 +26,7 @@ public class MacroTests {
         PomParser parser = new PomParser(LOCAL_RESOURCE_PATH);
         String equation = EXAMPLE_FUNCTION;
         try{
-            //local_class.analyzeEquation(equation, parser);
+            //local_class.analyzeEquation(equation, translation);
             PomTaggedExpression exp = parser.parse(equation);
             System.out.println(exp.toString());
         } catch ( ParseException pe ){

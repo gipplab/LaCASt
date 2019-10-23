@@ -1,10 +1,13 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
+import java.util.HashMap;
+
 /**
  * @author Andre Greiner-Petter
  */
 public enum MathTermTags {
     dlmf_macro("dlmf-macro"),
+    symbol("symbol"),
     constant("mathematical constant"),
     command("latex-command"),
     function("function"),
@@ -28,25 +31,34 @@ public enum MathTermTags {
     alphanumeric("alphanumeric"),
     comma("comma"),
     less_than("less-than"),
-    greater_than("greater-then"),
+    greater_than("greater-than"),
     macro("macro"),
     caret("caret"),
+    underscore("underscore"),
+    ordinary("ordinary"),
     factorial("exclamation point"),
     operation("operation"),
     ellipsis("ellipsis"),
-    abbreviation("abbreviation");
+    abbreviation("abbreviation"),
+    spaces("controlled space"),
+    non_allowed("non-allowed escaped symbol"),
+    relation("relation"),
+    fence("fence"),
+    special_math_letter("special math letter");
 
     private String tag;
 
+    private static class HOLDER{
+        static HashMap<String, MathTermTags> keymap = new HashMap<>();
+    }
+
     MathTermTags (String tag){
         this.tag = tag;
+        HOLDER.keymap.put(tag, this);
     }
 
     public static MathTermTags getTagByKey(String key){
-        for (MathTermTags t : MathTermTags.values())
-            if ( t.tag.matches(key) )
-                return t;
-        return null;
+        return HOLDER.keymap.get(key);
     }
 
     public String tag(){

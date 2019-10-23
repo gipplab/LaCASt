@@ -1,7 +1,6 @@
 package gov.nist.drmf.interpreter.mlp.extensions.mathml;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
-import jdk.nashorn.internal.runtime.ParserException;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
@@ -27,7 +26,7 @@ public class MathMLInterpreter {
 
     public void init( String string_expression ){
         try {
-            parser = new PomParser(GlobalConstants.PATH_REFERENCE_DATA);
+            parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA);
             outputFile.createNewFile();
             topExpression = parser.parse(string_expression);
         } catch ( IOException | ParseException e ) {

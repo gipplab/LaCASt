@@ -1,0 +1,7 @@
+list_converter := proc(a)
+    if type(a, function) and type(op(0,a), symbol) and substring(op(0,a), 1..7) = _Inert_ then
+        return [op(0,a), seq(thisproc(op(i,a)), i=1..nops(a))];
+    else 
+		return a;
+    end if;
+end proc:

@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.common.symbols;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
+
+import java.io.IOException;
 
 /**
  * @author Andre Greiner-Petter
@@ -25,9 +27,9 @@ public class SymbolTranslator extends AbstractJSONLoader {
         this.TO = TO;
     }
 
-    public void init(){
+    public void init() throws IOException {
         super.init(
-                GlobalConstants.PATH_BASIC_FUNCTIONS,
+                GlobalPaths.PATH_BASIC_FUNCTIONS,
                 KEY_LANGUAGES,
                 KEY_SYMBOLS
         );
@@ -35,8 +37,6 @@ public class SymbolTranslator extends AbstractJSONLoader {
 
     @Override
     public String translate( String symbol ) {
-        if ( symbol.startsWith("\\") )
-            symbol = symbol.substring(1);
         return translate( FROM, TO, symbol );
     }
 

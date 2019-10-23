@@ -1,0 +1,42 @@
+Results from: Fri Jun 28 13:37:01 JST 2019
+Total Number of Test Cases: 300
+
+Total Number of Lines with non-equation, non-relations: 
+	1, Lines: [229]
+Total Number of Ignored Single Quotes ': 
+	59, Lines: [20-26, 30-32, 36-38, 42-44, 47-48, 51-52, 55-56, 60, 64, 67-68, 70, 72, 76, 78, 84-87, 93-104, 109-110, 113, 116, 120, 124, 142-143, 233, 250, 283, 290-291]
+Total Number of Success:  0
+Total Number of Failures: 0
+
+// Exp-Conv: simplify(convert(..., exp));
+// Hypergeom-Conv: simplify(convert(..., hypergeom));
+// Expansion: simplify(expand(...));
+Successful Tests after Simplify:       0, Lines: []
+Successful Tests after Exp-Conv:       0, Lines: []
+Successful Tests after Hypergeom-Conv: 0, Lines: []
+Successful Tests after Expansion:      0, Lines: []
+Successful Tests of Relations (not =): 0, Lines: []
+
+Successful Tests after Simplify-DIV:      0, Lines: []
+Successful Tests after Exp-Conv-DIV:      0, Lines: []
+Successful Tests after Hypergeom-Conv-DIV:0, Lines: []
+Successful Tests after Expansion-DIV:     0, Lines: []
+
+Successful Numerical Tests: 0, Lines: []
+
+Special Interest: 0, Lines: []
+
+// No Errors, but each kind of simplify returns something different to 0!
+Non-Successful Tests:   
+	0, Lines: []
+
+DLMF/DRMF macro cannot be translated (see list below for details):
+	0, Lines: []
+Error during forward translation process: 
+	0, Lines: []
+Error in Maple: 0, Lines: []
+Error in Constraints-Translations (not included in the sum of all errors):
+	0, Lines: []
+
+// The Unknown-Macros-Lib show used DLMF/DRMF macros, that cannot be translated.
+Unknown-Macros-Lib (macro: in how many lines it appears):

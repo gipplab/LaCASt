@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.common.symbols;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.GlobalPaths;
+
+import java.io.IOException;
 
 /**
  * This class translates a given greek letter from one language
@@ -8,7 +10,7 @@ import gov.nist.drmf.interpreter.common.GlobalConstants;
  *
  * You can add support for more languages (CAS) when you extend the
  * GreekLetters.json file in the libs directory. The key values can
- * be found in {@link gov.nist.drmf.interpreter.common.GlobalConstants}.
+ * be found in {@link GlobalPaths}.
  *
  * @author Andre Greiner-Petter
  */
@@ -28,9 +30,9 @@ public class GreekLetters extends AbstractJSONLoader {
         this.TO = TO;
     }
 
-    public void init(){
+    public void init() throws IOException {
         super.init(
-                GlobalConstants.PATH_GREEK_LETTERS_AND_CONSTANTS_FILE,
+                GlobalPaths.PATH_GREEK_LETTERS_AND_CONSTANTS_FILE,
                 KEY_LANGUAGES,
                 KEY_LETTERS
         );

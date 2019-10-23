@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Properties>
+        <Property name="errorFileName">libs/logs/error-${date:dd-MMM-yyy}.log</Property>
+        <Property name="allFileName">libs/logs/session-${date:dd-MMM-yyy}.log</Property>
+    </Properties>
+
+    <!-- https://logging.apache.org/log4j/2.x/manual/layouts.html -->
+    <Appenders>
+        <File name="LogFile" fileName="${allFileName}">
+            <PatternLayout pattern="[%d{ABSOLUTE} %level] %logger{2}: %msg%n"/>
+            <Filters>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </File>
+
+        <File name="ErrorFile" fileName="${errorFileName}">
+            <PatternLayout pattern="[%d{HH:mm:ss,SSS} %p] [Thread:%t] %logger{36} - %msg%n%throwable{full}%n"/>
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </File>
+
+        <Console name="HowardConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] %logger{1}:%line - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
+            <Filters>
+                <!-- Filter out error and fatal -->
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="FATAL" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <!-- Accept Info Level -->
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </Console>
+
+        <Console name="DebugConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] %logger{1}:%line - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
+        </Console>
+
+        <Console name="ErrorConsole" target="SYSTEM_ERR">
+            <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] [Thread:%t] %logger{36}:%line - %msg%n%throwable{full}%n}"/>
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="all">
+            <!--AppenderRef ref="HowardConsole"/-->
+            <!--<AppenderRef ref="DebugConsole"/>-->
+            <AppenderRef ref="ErrorConsole"/>
+            <AppenderRef ref="LogFile"/>
+            <!--AppenderRef ref="ErrorFile"/-->
+        </Root>
+    </Loggers>
+</Configuration>

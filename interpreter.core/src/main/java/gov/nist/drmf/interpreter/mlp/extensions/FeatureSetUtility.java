@@ -1,11 +1,11 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
-import com.sun.istack.internal.Nullable;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 /**
