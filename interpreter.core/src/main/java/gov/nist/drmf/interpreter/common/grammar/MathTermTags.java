@@ -45,6 +45,7 @@ public enum MathTermTags {
     relation("relation"),
     fence("fence"),
     special_math_letter("special math letter"),
+    prime("single quote"),
     operator("operator");
 
     private String tag;

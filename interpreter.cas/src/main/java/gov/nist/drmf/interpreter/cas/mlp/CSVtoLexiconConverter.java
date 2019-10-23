@@ -541,7 +541,7 @@ public class CSVtoLexiconConverter {
         long start = System.currentTimeMillis();
         try{
             CSVtoLexiconConverter csvConv = new CSVtoLexiconConverter(
-                GlobalPaths.PATH_MACRO_CSV_FILE_NAME, csv_paths
+                    GlobalPaths.PATH_MACRO_CSV_FILE_NAME, csv_paths
             );
             csvConv.generateLexiconFile();
         } catch (Exception e){
