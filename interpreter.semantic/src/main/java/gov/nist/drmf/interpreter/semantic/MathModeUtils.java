@@ -5,10 +5,14 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- * Created by jrp4 on 11/29/16.
+ * Java class containing utility methods for parsing LaTeX
  */
 public class MathModeUtils {
-    public static HashMap<String, String> mathMode = new HashMap<String, String>() {{ //initialize map with mathmode starting/ending strings
+
+    /**
+     * Initializes map with math mode starting and ending strings
+     */
+    public static HashMap<String, String> mathMode = new HashMap<String, String>() {{
         put("\\[","\\]");
         put("\\(","\\)");
         put("\\begin{equation}", "\\end{equation}");
@@ -21,8 +25,16 @@ public class MathModeUtils {
         put("$$", "$$");
     }};
 
+    /**
+     * Initializes text mode starting strings
+     */
     public static String[] textMode = new String[]{"\\hbox{", "\\mbox{", "\\text{"};
 
+    /**
+     * Checks if LaTeX string enters math mode
+     * @param latex
+     * @return
+     */
     public static boolean doesEnter(String latex) {
         for (String key : mathMode.keySet()) {
             if (latex.startsWith(key)) {
@@ -32,6 +44,11 @@ public class MathModeUtils {
         return false;
     }
 
+    /**
+     * Checks if LaTeX string exits math mode
+     * @param latex
+     * @return
+     */
     public static boolean doesExit(String latex) {
         for (String str : textMode) {
             if (latex.startsWith(str)) {
@@ -41,6 +58,12 @@ public class MathModeUtils {
         return false;
     }
 
+    /**
+     * Gets the first delimiter for math mode if enter is true and text mode if enter is false
+     * @param latex
+     * @param enter
+     * @return
+     */
     public static String firstDelim(String latex, boolean enter) {
         String min = "";
         for (String key : (enter ? mathMode.keySet() : new HashSet<>(Arrays.asList(textMode)))) {
@@ -55,6 +78,11 @@ public class MathModeUtils {
         return min;
     }
 
+    /**
+     * Returns number of indices at the beginning of the LaTeX string that are escaped
+     * @param latex
+     * @return
+     */
     public static int skipEscaped(String latex) {
         if (latex.startsWith("\\")) {
             for (String key : mathMode.keySet()) {
