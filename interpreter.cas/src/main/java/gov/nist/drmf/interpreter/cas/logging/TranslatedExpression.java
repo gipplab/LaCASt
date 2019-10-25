@@ -135,4 +135,8 @@ public class TranslatedExpression {
     public String toString(){
         return getTranslatedExpression();
     }
+
+    public String debugString() {
+        return trans_exps.toString();
+    }
 }

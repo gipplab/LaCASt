@@ -69,7 +69,7 @@
     "SumThreeArgs": {
       "MLP": "sum3",
       "LaTeX": "\\sum_{$0}^{$1}{$2}",
-      "Maple": "sum($2, $0..$1)",
+      "Maple": "sum($2, $3 = $0..$1)",
       "Mathematica": "Sum[$2, {$3, $0, $1}]"
     },
     "SumTwoArgs": {
@@ -138,13 +138,19 @@
       "MLP": "operation",
       "LaTeX": "\\idot",
       "Maple": "*",
-      "Mathematica": "*"
+      "Mathematica": " "
     },
     "Addition": {
-      "MLP": "Addition",
+      "MLP": "plus",
       "LaTeX": "+",
       "Maple": "+",
       "Mathematica": "+"
+    },
+    "Subtraction": {
+      "MLP": "minus",
+      "LaTeX": "-",
+      "Maple": "-",
+      "Mathematica": "-"
     },
     "Lower dots": {
       "MLP": "ellipsis",
