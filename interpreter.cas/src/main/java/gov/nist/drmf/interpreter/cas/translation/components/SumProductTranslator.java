@@ -7,9 +7,11 @@ import gov.nist.drmf.interpreter.common.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
+import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -666,5 +668,40 @@ public class SumProductTranslator extends AbstractListTranslator{
             }
         }
         return "";
+    }
+
+    private List<PomTaggedExpression> getPotentialArgumentsUntilEndOfScope(List<PomTaggedExpression> list) {
+        LinkedList<PomTaggedExpression> cache = new LinkedList<>();
+
+        // the very next element is always(!) part of the argument
+        if ( list.isEmpty() ) {
+            throw new TranslationException(
+                    "A limited expression ends with no argument left."
+            );
+        }
+        cache.add(list.remove(0));
+
+        // now add all until there is a stop expression
+        while ( !list.isEmpty() ) {
+            PomTaggedExpression curr = list.get(0); // do not remove yet!
+            MathTerm mt = curr.getRoot();
+            if ( mt != null && mt.getTag() != null ) {
+                MathTermTags tag = MathTermTags.getTagByKey(mt.getTag());
+                // stop only in case of a harsh stop symbol appears on the same level of the sum
+                // stoppers are relations (left-hand side and right-hand side).
+                switch (tag) {
+                    case relation:
+                    case equals:
+                    case less_than:
+                    case greater_than:
+                        // found stopper -> return the cache
+                        return cache;
+                }
+            } // if no stopper is found, just add it to the potential list
+            cache.addLast(list.remove(0));
+        }
+
+        // well, it might be the entire expression until the end, of course
+        return cache;
     }
 }
