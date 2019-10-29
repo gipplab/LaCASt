@@ -137,4 +137,16 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
             return true;
         }
     }
+
+    public static String stripMultiParentheses(String expr) {
+        if ( !expr.matches("\\(.*\\)") ) return expr;
+        int open = 1;
+        for ( int i = 1; i < expr.length(); i++ ) {
+            Character c = expr.charAt(i);
+            if ( c.equals(')') ) open--;
+            if ( c.equals('(') ) open++;
+            if ( open == 0 && i < expr.length()-1 ) return expr;
+        }
+        return expr.substring(1, expr.length()-1);
+    }
 }

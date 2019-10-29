@@ -71,7 +71,10 @@ public class OperationTranslator extends AbstractListTranslator {
         String divisor  = divisorExp.toString();
 
         BasicFunctionsTranslator fun = getConfig().getBasicFunctionsTranslator();
-        String[] arguments = new String[]{dividend, divisor};
+        String[] arguments = new String[]{
+                stripMultiParentheses(dividend),
+                stripMultiParentheses(divisor)
+        };
         String translatedMod = fun.translate( arguments, "modulo" );
 
         // the given translated expression is one complete phrase

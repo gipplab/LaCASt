@@ -288,6 +288,7 @@ public class MathTermTranslator extends AbstractListTranslator {
                 } else return false;
             case factorial:
                 String last = getGlobalTranslationList().removeLastExpression();
+                last = stripMultiParentheses(last);
                 BasicFunctionsTranslator translator = getConfig().getBasicFunctionsTranslator();
 
                 String prefix = "";
@@ -540,8 +541,15 @@ public class MathTermTranslator extends AbstractListTranslator {
         PomTaggedExpression caretChild = caretPomExp.getComponents().get(0);
 
         TranslatedExpression power = parseGeneralExpression(caretChild, null);
+
         BasicFunctionsTranslator ft = getConfig().getBasicFunctionsTranslator();
-        String translation = ft.translate( new String[]{power.toString()}, EXPONENTIAL_MLP_KEY );
+        String translation = ft.translate(
+                new String[]{
+                        stripMultiParentheses(power.toString())
+                },
+                EXPONENTIAL_MLP_KEY
+        );
+
         getGlobalTranslationList().removeLastNExps( power.clear() );
 
         localTranslations.addTranslatedExpression( translation );
@@ -620,7 +628,10 @@ public class MathTermTranslator extends AbstractListTranslator {
 
         // pack it into a list of arguments. The first one is the expression with an underscore
         // the second is the underscore expression itself.
-        String[] args = new String[]{var, subscript.getTranslatedExpression()};
+        String[] args = new String[]{
+                stripMultiParentheses(var),
+                stripMultiParentheses(subscript.getTranslatedExpression())
+        };
 
         // remove the mess from getGlobalTranslationList() and local_exp
         getGlobalTranslationList().removeLastNExps( subscript.clear() );

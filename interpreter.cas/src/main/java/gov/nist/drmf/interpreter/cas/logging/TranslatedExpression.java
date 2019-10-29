@@ -166,7 +166,8 @@ public class TranslatedExpression {
                 innerCache.addLast(element);
             } else { // now, check if var exists
                 // the var must be a subexpression isolated from other letters (otherwise m appears in sum)
-                if ( element.matches(".*[^\\p{Alpha}]" + varPattern + "[^\\p{Alpha}].*") ) {
+                if ( element.matches(".*[^\\p{Alpha}]" + varPattern + "[^\\p{Alpha}].*") ||
+                        element.matches("^\\s*" + varPattern + "\\s*$")) {
                     // contains element! so add it, but first, add remaining inner cache, if existing
                     while ( !innerCache.isEmpty() ) {
                         cache.trans_exps.addLast(innerCache.removeFirst());

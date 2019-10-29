@@ -9,7 +9,7 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException.Reason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.common.grammar.ITranslator;
+import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.FeatureSet;
@@ -19,7 +19,6 @@ import org.apache.commons.text.StringEscapeUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.util.*;
 import java.util.regex.Matcher;
 
@@ -135,8 +134,10 @@ public abstract class AbstractTranslator implements IForwardTranslator {
 
         // handle all different cases
         // first, does this expression contains a term?
-        if (!containsTerm(exp)) {
-            inner_parser = new EmptyExpressionTranslator(this);
+        if (isTaggedExpression(exp)) {
+            // the new version of sqrts are non-empty expressions but
+            // can be considered as empty
+            inner_parser = new TaggedExpressionTranslator(this);
             return_value = inner_parser.translate(exp);
         } else { // if not handle all different cases of terms
             MathTerm term = exp.getRoot();
@@ -173,43 +174,36 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         return inner_parser.getTranslatedExpressionObject();
     }
 
-    protected void setConfig(ForwardTranslationProcessConfig config) {
-        this.config = config;
+    /**
+     * Returns true if the given expression is tagged expression. That means the
+     * given PomTaggedExpression is either empty (no MathTerm) or is a square root.
+     * Square roots (and general roots) are currently the only tokens that are not
+     * empty but organized similar to empty expressions.
+     *
+     * @param e the expression
+     * @return true if the expression is a tagged super expression
+     */
+    private boolean isTaggedExpression(PomTaggedExpression e) {
+        return !containsTerm(e) || isSQRT(e);
     }
 
-    protected ForwardTranslationProcessConfig getConfig() {
-        return this.config;
+    /**
+     * Returns true if the expression does contain a math term
+     * @param e expression
+     * @return true if the expression contains a non-empty math term
+     */
+    protected boolean containsTerm(PomTaggedExpression e) {
+        MathTerm t = e.getRoot();
+        return t != null && !t.isEmpty();
     }
 
-    protected InformationLogger getInfoLogger() {
-        return this.infoLogger;
-    }
-
-    protected TranslatedExpression getGlobalTranslationList() {
-        if ( superTranslator == null ) return global_exp;
-        else return this.superTranslator.global_exp;
-    }
-
-    protected AbstractTranslator getSuperTranslator() {
-        return this.superTranslator;
-    }
-
-    public void activateSetMode() {
-        LOG.info("Set-Mode for sequences activated!");
-        SET_MODE = true;
-    }
-
-    public void deactivateSetMode() {
-        LOG.info("Set-Mode for sequences deactivated!");
-        SET_MODE = false;
-    }
-
-    public boolean isMlpError() {
-        return mlpError;
-    }
-
-    public void setTolerant(boolean tolerant) {
-        this.tolerant = tolerant;
+    private boolean isSQRT(PomTaggedExpression e) {
+        String etag = e.getTag();
+        if ( etag == null ) return false;
+        ExpressionTags et = ExpressionTags.getTagByKey(etag);
+        if ( et != null && (et.equals(ExpressionTags.square_root) || et.equals(ExpressionTags.general_root) ) ) {
+            return true;
+        } else return false;
     }
 
     protected boolean isDLMFMacro(MathTerm term) {
@@ -233,18 +227,19 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         }
     }
 
-    protected boolean isSumOrProductOrLimit(MathTerm term) {
-        if (term.getTag().equals(MathTermTags.operator.tag())) {
+    private boolean isSumOrProductOrLimit(MathTerm term) {
+        MathTermTags mtag = MathTermTags.getTagByKey(term.getTag());
+        if (mtag != null && mtag.equals(MathTermTags.operator)) {
             return FeatureSetUtility.isSum(term) || FeatureSetUtility.isProduct(term) || FeatureSetUtility.isLimit(term);
         }
         return false;
     }
 
-    protected boolean isSubSequence(MathTerm term) {
+    private boolean isSubSequence(MathTerm term) {
         String tag = term.getTag();
-        if (tag.matches(OPEN_PARENTHESIS_PATTERN)) {
+        if (tag != null && tag.matches(OPEN_PARENTHESIS_PATTERN)) {
             return true;
-        } else if (tag.matches(CLOSE_PARENTHESIS_PATTERN)) {
+        } else if (tag != null && tag.matches(CLOSE_PARENTHESIS_PATTERN)) {
             LOG.error("Reached a closed bracket " + term.getTermText() +
                     " but there was not a corresponding" +
                     " open bracket before.");
@@ -265,9 +260,64 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         return false;
     }
 
-    public boolean containsTerm(PomTaggedExpression e) {
-        MathTerm t = e.getRoot();
-        return (t != null && !t.isEmpty());
+    /**
+     * Sets the config for this abstract translator.
+     * @param config configuration
+     */
+    void setConfig(ForwardTranslationProcessConfig config) {
+        this.config = config;
+    }
+
+    /**
+     * Gets the configuration
+     * @return config
+     */
+    protected ForwardTranslationProcessConfig getConfig() {
+        return this.config;
+    }
+
+    /**
+     * Gets the information logger for the forward translation
+     * @return information logger
+     */
+    protected InformationLogger getInfoLogger() {
+        return this.infoLogger;
+    }
+
+    /**
+     * Gets the global translated expression
+     * @return global translated expression
+     */
+    protected TranslatedExpression getGlobalTranslationList() {
+        if ( superTranslator == null ) return global_exp;
+        else return this.superTranslator.global_exp;
+    }
+
+    /**
+     * Gets the super translator object, if any
+     * @return super AbstractTranslator
+     */
+    protected AbstractTranslator getSuperTranslator() {
+        return this.superTranslator;
+    }
+
+
+    public void activateSetMode() {
+        LOG.info("Set-Mode for sequences activated!");
+        SET_MODE = true;
+    }
+
+    public void deactivateSetMode() {
+        LOG.info("Set-Mode for sequences deactivated!");
+        SET_MODE = false;
+    }
+
+    public boolean isMlpError() {
+        return mlpError;
+    }
+
+    public void setTolerant(boolean tolerant) {
+        this.tolerant = tolerant;
     }
 
     protected boolean isInnerError() {

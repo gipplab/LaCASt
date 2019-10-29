@@ -230,7 +230,9 @@ public class SequenceTranslator extends AbstractListTranslator {
                     if ( open_bracket.equals( Brackets.left_latex_abs_val ) ){
                         BasicFunctionsTranslator bft = getConfig().getBasicFunctionsTranslator();
                         seq = bft.translate(
-                                new String[]{ localTranslations.removeLastExpression() },
+                                new String[]{
+                                        stripMultiParentheses(localTranslations.removeLastExpression())
+                                },
                                 Keys.KEY_ABSOLUTE_VALUE
                                 );
                     } else if ( setMode ){ // in set mode, both parenthesis may not match!

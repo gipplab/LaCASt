@@ -76,7 +76,7 @@ public class MLP {
             //eq = "Z = \\sum_{j} g_j \\cdot \\mathrm{e}^{- \\\\beta E_j}";
 //            eq = "\\deriv{}{x} S^{(1)}_{mn}(\\gamma,x)";
             eq = "\\sum_{n=0}^{10} n + \\cpi = \\sum_{n=0}^{10} n + \\cpi < \\leq \\frac{\\sum_{n} n}{n}";
-            eq = "\\sum_{n=0}^{10} + \\sum_{n=0} + \\sum^{10}_{n=0}";
+            eq = "\\sqrt{\\frac{1}{\\iunit}}";
 //            eq = "n_2";
 
             System.out.println();
