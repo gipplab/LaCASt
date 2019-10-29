@@ -68,7 +68,7 @@ public class MLP {
             //eq = "\\FerrersP[\\frac{1}{2}]{\\nu}@{z}";
 //            eq = "(ab^2c 1+2) \\cdot \\CatalansConstant 2";
 //            eq="\\left ( \\left ( y \\right ] \\right)";
-            eq = "x + y \\neq w";
+//            eq = "x + y \\neq w";
 //            eq = "\\sqrt \\frac{2}{4}";
 //            eq = "ab13d";
 //            eq = "\\deriv{}{x} a";
@@ -79,7 +79,9 @@ public class MLP {
 //            eq = "1 \\constraint{$n = 0,1,2, \\dots$, $z\\in \\mathbf{K}$} \\label{eq:BS.IN.9}";
             //eq = "Z = \\sum_{j} g_j \\cdot \\mathrm{e}^{- \\\\beta E_j}";
 //            eq = "\\deriv{}{x} S^{(1)}_{mn}(\\gamma,x)";
-//            eq = "\\sum_{n=0}^{10} n + \\cpi = \\sum_{n=0}^{10} n + \\cpi < \\leq \\frac{\\sum_{n} n}{n}";
+            eq = "\\sum_{n=0}^{10} n + \\cpi = \\sum_{n=0}^{10} n + \\cpi < \\leq \\frac{\\sum_{n} n}{n}";
+            eq = "\\sum_{n=0}^{10} + \\sum_{n=0} + \\sum^{10}_{n=0}";
+//            eq = "n_2";
 
             System.out.println();
             System.out.println("Input: " + eq);

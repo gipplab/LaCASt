@@ -1,4 +1,4 @@
-package gov.nist.drmf.core.tests;
+package gov.nist.drmf.interpreter.tests;
 
 /**
  * @author Andre Greiner-Petter

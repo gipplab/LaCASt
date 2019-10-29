@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.logging;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -122,6 +123,85 @@ public class TranslatedExpression {
         if ( !trans_exps.isEmpty() )
             trans_exps.removeLast();
         trans_exps.add(new_exp);
+    }
+
+    /**
+     *
+     * @param var
+     * @param multiplyChar
+     * @return
+     */
+    public TranslatedExpression removeUntilLastAppearanceOfVar(List<String> var, String multiplyChar) {
+        StringBuilder varPattern = new StringBuilder("(");
+        for ( int i = 0; i < var.size()-1; i++ ) {
+            varPattern.append(var.get(i)).append("|");
+        }
+        varPattern.append(var.get(var.size() - 1)).append(")");
+
+        TranslatedExpression cache = new TranslatedExpression();
+
+        // first element is ALWAYS part of the argument
+        cache.trans_exps.addFirst(trans_exps.removeFirst());
+
+        if ( multiplyChar.matches("\\*") ) {
+            multiplyChar = "\\*";
+        }
+
+        // check the rest of it
+        // does the previous element ends with a multiplication symbol?
+        boolean prevElementEndsWithMultiply = endsWithMultiply(cache.trans_exps.getLast(), multiplyChar);
+
+        LinkedList<String> innerCache = new LinkedList<>();
+
+        while ( !trans_exps.isEmpty() ){
+            String element = trans_exps.removeFirst();
+            if ( prevElementEndsWithMultiply ) {
+                while ( !innerCache.isEmpty() ) { // contains element! so add it, but first, add remaining inner cache, if existing
+                    cache.trans_exps.addLast(innerCache.removeFirst());
+                } // now, inner cache is clean. add new element
+                cache.trans_exps.addLast(element);
+                prevElementEndsWithMultiply = endsWithMultiply(element, multiplyChar);
+            } else if ( element.matches("\\s*([+-])\\s*") ){
+                // its multiple or so, so add if next element is a part
+                innerCache.addLast(element);
+            } else { // now, check if var exists
+                // the var must be a subexpression isolated from other letters (otherwise m appears in sum)
+                if ( element.matches(".*[^\\p{Alpha}]" + varPattern + "[^\\p{Alpha}].*") ) {
+                    // contains element! so add it, but first, add remaining inner cache, if existing
+                    while ( !innerCache.isEmpty() ) {
+                        cache.trans_exps.addLast(innerCache.removeFirst());
+                    } // now, inner cache is clean. add new element
+                    cache.trans_exps.addLast(element);
+                    prevElementEndsWithMultiply = endsWithMultiply(element, multiplyChar);
+                } else { // next element is NOT included! but maybe a later it comes...
+                    // so put it into the inner cache
+                    innerCache.addLast(element);
+                    prevElementEndsWithMultiply = endsWithMultiply(element, multiplyChar);
+                }
+            }
+        }
+
+        if ( innerCache.isEmpty() ) {
+            // well, all were part of the sum, so we are done here
+            return cache;
+        }
+
+        // otherwise, roll back inner cache expressions
+        while ( !innerCache.isEmpty() ) {
+            // be careful, reverse order here
+            this.trans_exps.addFirst(innerCache.removeLast());
+        }
+
+        return cache;
+    }
+
+    private boolean endsWithMultiply(String expression, String multiply) {
+        return expression.matches(".*\\*\\s*");
+    }
+
+    public static void main(String[] args) {
+        String expression = "2*";
+        System.out.println(expression.matches(".*\\*\\s*"));
     }
 
     public String getTranslatedExpression(){

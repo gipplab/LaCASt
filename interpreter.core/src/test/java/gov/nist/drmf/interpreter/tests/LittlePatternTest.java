@@ -1,8 +1,7 @@
-package gov.nist.drmf.core.tests;
+package gov.nist.drmf.interpreter.tests;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
