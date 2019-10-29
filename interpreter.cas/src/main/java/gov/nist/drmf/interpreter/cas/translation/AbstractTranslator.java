@@ -1,11 +1,13 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
+import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
+import gov.nist.drmf.interpreter.cas.common.IForwardTranslator;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.components.*;
 import gov.nist.drmf.interpreter.common.InformationLogger;
-import gov.nist.drmf.interpreter.common.Keys;
-import gov.nist.drmf.interpreter.common.TranslationException;
-import gov.nist.drmf.interpreter.common.TranslationException.Reason;
+import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException.Reason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ITranslator;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -17,104 +19,189 @@ import org.apache.commons.text.StringEscapeUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nullable;
 import java.util.*;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CLOSE_PARENTHESIS_PATTERN;
+import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.DLMF_ID_PATTERN;
+import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.OPEN_PARENTHESIS_PATTERN;
 
 /**
+ * The abstract translator delegates the translation process to the specialized sub-translator
+ * classes. All sub-translators must extend the {@link AbstractTranslator} or it's subclass
+ * {@link AbstractListTranslator}.
+ *
  * @author Andre Greiner-Petter
  */
-public abstract class AbstractTranslator implements ITranslator<PomTaggedExpression> {
-
-
-    public static final Map<String, Map<Integer, Set<String>>> problemTokens = new HashMap<>();
-
-    public static final String SPACE = " ";
-
-    public static final String OPEN_PARENTHESIS_PATTERN =
-            "(left)[-\\s](parenthesis|bracket|brace|delimiter)";
-
-    public static final String CLOSE_PARENTHESIS_PATTERN =
-            "(right)[-\\s](parenthesis|bracket|brace|delimiter)";
-
-    public static final String PARENTHESIS_PATTERN =
-            "(right|left)[-\\s](parenthesis|bracket|brace|delimiter)";
-
-    public static final String CHAR_BACKSLASH = "\\";
-    public static final Pattern DLMF_ID_PATTERN = Pattern.compile("-(\\d+)-\\d+-E\\d+.s.tex");
-
-    public static String MULTIPLY;
-    protected static InformationLogger INFO_LOG;
-    protected static TranslatedExpression global_exp;
-    private static boolean SET_MODE = false;
-    private static Logger LOG = LogManager.getLogger(AbstractTranslator.class.getName());
-    private static String id = "undefined";
-    protected TranslatedExpression local_inner_exp = new TranslatedExpression();
-    private boolean inner_Error = false;
-    private boolean tolerant = true;
-    private boolean mlpError = false;
-
-    public static Map<String, Map<Integer, Set<String>>> getProblemTokens() {
-        return problemTokens;
-    }
+public abstract class AbstractTranslator implements IForwardTranslator {
+    /**
+     * The logger, only on abstract level
+     */
+    private static final Logger LOG = LogManager.getLogger(AbstractTranslator.class.getName());
 
     /**
-     * Simple test if the given string is wrapped by parenthesis.
-     * It only returns true if there is an open bracket at start and
-     * at the end AND the first open one is really closed in the end.
-     * Something like (1)/(2) would return false.
-     *
-     * @param str with or without brackets
-     * @return false if there are no brackets
+     * Store problematic tokens for error analysis
      */
-    protected static boolean testBrackets(String str) {
-        String tmp = str.trim();
-        if (!tmp.matches(Brackets.OPEN_PATTERN + ".*" + Brackets.CLOSED_PATTERN)) {
-            return false;
-        }
+    private final Map<String, Map<Integer, Set<String>>> problemTokens = new HashMap<>();
 
-        Brackets open = Brackets.getBracket(tmp.charAt(0) + "");
-        Brackets inner, last;
-        LinkedList<Brackets> open_list = new LinkedList<>();
-        open_list.add(open);
-        String symbol;
+    /**
+     * The translator may work on a specific file -> this is the fileID.
+     * It is undefined if there is no such file.
+     */
+    private String fileID = "undefined";
 
-        for (int i = 1; i < tmp.length(); i++) {
-            if (open_list.isEmpty()) {
-                return false;
+    /**
+     * The global information logger
+     */
+    private InformationLogger infoLogger;
+
+    /**
+     * The global translated expression list
+     */
+    private TranslatedExpression global_exp;
+
+    /**
+     * Every translator has it's own local translator.
+     */
+//    private TranslatedExpression local_inner_exp = new TranslatedExpression();
+
+    /**
+     * Flags of each translator
+     */
+    private boolean SET_MODE    = false;
+    private boolean inner_Error = false;
+    private boolean tolerant    = true;
+    private boolean mlpError    = false;
+
+    /**
+     * The current forward translation config
+     */
+    private ForwardTranslationProcessConfig config;
+
+    /**
+     * The super translator object for handling global translations.
+     */
+    private final AbstractTranslator superTranslator;
+
+    /**
+     * Every translator has an abstract super translator object, which should be
+     * unique for each translation process. Thus, this
+     * @param superTranslator
+     */
+    protected AbstractTranslator(AbstractTranslator superTranslator) {
+        this.superTranslator = superTranslator;
+
+        if ( superTranslator != null ) {
+            // the following objects are shared among all translators
+            this.config = superTranslator.config;
+
+            if ( superTranslator.global_exp == null ) {
+                superTranslator.global_exp = new TranslatedExpression();
             }
+            this.global_exp = superTranslator.global_exp;
 
-            symbol = "" + tmp.charAt(i);
-            inner = Brackets.getBracket(symbol);
-
-            if (inner == null) {
-                continue;
-            } else if (inner.opened) {
-                open_list.addLast(inner);
-            } else {
-                last = open_list.getLast();
-                if (last.counterpart.equals(inner.symbol)) {
-                    open_list.removeLast();
-                } else {
-                    return false;
-                }
+            if ( superTranslator.infoLogger == null ) {
+                superTranslator.infoLogger = new InformationLogger();
             }
+            this.infoLogger = superTranslator.infoLogger;
+        } else {
+            global_exp = new TranslatedExpression();
+            infoLogger = new InformationLogger();
         }
-        return open_list.isEmpty();
     }
 
-    public static void activateSetMode() {
+    @Override
+    public abstract boolean translate(PomTaggedExpression expression);
+
+    /**
+     * The main function of the abstract translator. This function
+     * delegates a translation process to the specialized sub-translators.
+     *
+     * @param exp the current element
+     * @param exp_list siblings of the current element (might be null)
+     * @return the translated expression of this element
+     */
+    protected TranslatedExpression parseGeneralExpression(PomTaggedExpression exp, List<PomTaggedExpression> exp_list) {
+        // create inner local translation (recursive)
+        AbstractTranslator inner_parser = null;
+        // if there was an inner error
+        boolean return_value;
+
+        // if it is an empty exp
+        if (exp.isEmpty()) {
+            return global_exp;
+        }
+
+        // handle all different cases
+        // first, does this expression contains a term?
+        if (!containsTerm(exp)) {
+            inner_parser = new EmptyExpressionTranslator(this);
+            return_value = inner_parser.translate(exp);
+        } else { // if not handle all different cases of terms
+            MathTerm term = exp.getRoot();
+            // first, is this a DLMF macro?
+            if (isDLMFMacro(term)) { // BEFORE FUNCTION!
+                MacroTranslator mp = new MacroTranslator(this);
+                return_value = mp.translate(exp, exp_list);
+                inner_parser = mp;
+            } //is it a sum or a product
+            else if (isSumOrProductOrLimit(term)) {
+                SumProductTranslator sm = new SumProductTranslator(this);
+                return_value = sm.translate(exp, exp_list);
+                inner_parser = sm;
+            } // it could be a sub sequence
+            else if (isSubSequence(term)) {
+                Brackets bracket = Brackets.getBracket(term.getTermText());
+                SequenceTranslator sp = new SequenceTranslator(this, bracket, SET_MODE);
+                return_value = sp.translate(exp_list);
+                inner_parser = sp;
+            } // this is special, could be a function like cos
+            else if (isFunction(term)) {
+                FunctionTranslator fp = new FunctionTranslator(this);
+                return_value = fp.translate(exp, exp_list);
+                inner_parser = fp;
+            } // otherwise it is a general math term
+            else {
+                MathTermTranslator mp = new MathTermTranslator(this);
+                return_value = mp.translate(exp, exp_list);
+                inner_parser = mp;
+            }
+        }
+
+        inner_Error = !return_value;
+        return inner_parser.getTranslatedExpressionObject();
+    }
+
+    protected void setConfig(ForwardTranslationProcessConfig config) {
+        this.config = config;
+    }
+
+    protected ForwardTranslationProcessConfig getConfig() {
+        return this.config;
+    }
+
+    protected InformationLogger getInfoLogger() {
+        return this.infoLogger;
+    }
+
+    protected TranslatedExpression getGlobalTranslationList() {
+        if ( superTranslator == null ) return global_exp;
+        else return this.superTranslator.global_exp;
+    }
+
+    protected AbstractTranslator getSuperTranslator() {
+        return this.superTranslator;
+    }
+
+    public void activateSetMode() {
         LOG.info("Set-Mode for sequences activated!");
         SET_MODE = true;
     }
 
-    public static void deactivateSetMode() {
+    public void deactivateSetMode() {
         LOG.info("Set-Mode for sequences deactivated!");
         SET_MODE = false;
-    }
-
-    public void setId(String id) {
-        AbstractTranslator.id = id;
     }
 
     public boolean isMlpError() {
@@ -123,66 +210,6 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
 
     public void setTolerant(boolean tolerant) {
         this.tolerant = tolerant;
-    }
-
-    /**
-     * This method simply handles a general expression and invoke
-     * all special parses if needed!
-     *
-     * @param exp
-     * @param exp_list
-     * @return
-     */
-    protected TranslatedExpression parseGeneralExpression(
-            PomTaggedExpression exp,
-            List<PomTaggedExpression> exp_list) {
-        // create inner local translation (recursive)
-        AbstractTranslator inner_parser = null;
-        // if there was an inner error
-        boolean return_value;
-
-        // if it is an empty exp...
-        if (exp.isEmpty()) {
-            return local_inner_exp;
-        }
-
-        // handle all different cases
-        // first, does this expression contains a term?
-        if (!containsTerm(exp)) {
-            inner_parser = new EmptyExpressionTranslator();
-            return_value = inner_parser.translate(exp);
-        } else { // if not handle all different cases of terms
-            MathTerm term = exp.getRoot();
-            // first, is this a DLMF macro?
-            if (isDLMFMacro(term)) { // BEFORE FUNCTION!
-                MacroTranslator mp = new MacroTranslator();
-                return_value = mp.translate(exp, exp_list);
-                inner_parser = mp;
-            } //is it a sum or a product
-            else if (isSumOrProductOrLimit(term)) {
-                SumProductTranslator sm = new SumProductTranslator();
-                return_value = sm.translate(exp, exp_list);
-                inner_parser = sm;
-            } // it could be a sub sequence
-            else if (isSubSequence(term)) {
-                Brackets bracket = Brackets.getBracket(term.getTermText());
-                SequenceTranslator sp = new SequenceTranslator(bracket, SET_MODE);
-                return_value = sp.translate(exp_list);
-                inner_parser = sp;
-            } // this is special, could be a function like cos
-            else if (isFunction(term)) {
-                FunctionTranslator fp = new FunctionTranslator();
-                return_value = fp.translate(exp, exp_list);
-                inner_parser = fp;
-            } // otherwise it is a general math term
-            else {
-                MathTermTranslator mp = new MathTermTranslator();
-                return_value = mp.translate(exp, exp_list);
-                inner_parser = mp;
-            }
-        }
-        inner_Error = !return_value;
-        return inner_parser.local_inner_exp;
     }
 
     protected boolean isDLMFMacro(MathTerm term) {
@@ -243,35 +270,67 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
         return (t != null && !t.isEmpty());
     }
 
-    @Override
-    public abstract boolean translate(PomTaggedExpression expression);
-
-    @Override
-    public String getTranslatedExpression() {
-        return local_inner_exp.getTranslatedExpression();
-    }
-
-    public TranslatedExpression getTranslatedExpressionObject() {
-        return local_inner_exp;
-    }
-
-    public TranslatedExpression getGlobalExpressionObject() {
-        return global_exp;
-    }
-
     protected boolean isInnerError() {
         return inner_Error;
     }
 
     public void reset() {
-        local_inner_exp = new TranslatedExpression();
         global_exp = new TranslatedExpression();
         mlpError = false;
     }
 
     protected void appendLocalErrorExpression(String tag) {
         LOG.debug("Adding fake Maple for error expression " + tag);
-        local_inner_exp.addTranslatedExpression("\"error" + StringEscapeUtils.escapeJava(tag) + "\"");
+        global_exp.addTranslatedExpression("\"error" + StringEscapeUtils.escapeJava(tag) + "\"");
+    }
+
+    /**
+     * Simple test if the given string is wrapped by parenthesis.
+     * It only returns true if there is an open bracket at start and
+     * at the end AND the first open one is really closed in the end.
+     * Something like (1)/(2) would return false.
+     *
+     * @param str with or without brackets
+     * @return false if there are no brackets
+     */
+    protected static boolean testBrackets(String str) {
+        String tmp = str.trim();
+        if (!tmp.matches(Brackets.OPEN_PATTERN + ".*" + Brackets.CLOSED_PATTERN)) {
+            return false;
+        }
+
+        Brackets open = Brackets.getBracket(tmp.charAt(0) + "");
+        Brackets inner, last;
+        LinkedList<Brackets> open_list = new LinkedList<>();
+        open_list.add(open);
+        String symbol;
+
+        for (int i = 1; i < tmp.length(); i++) {
+            if (open_list.isEmpty()) {
+                return false;
+            }
+
+            symbol = "" + tmp.charAt(i);
+            inner = Brackets.getBracket(symbol);
+
+            if (inner == null) {
+                continue;
+            } else if (inner.opened) {
+                open_list.addLast(inner);
+            } else {
+                last = open_list.getLast();
+                if (last.counterpart.equals(inner.symbol)) {
+                    open_list.removeLast();
+                } else {
+                    return false;
+                }
+            }
+        }
+        return open_list.isEmpty();
+    }
+
+    public void setFileID(String fileID) {
+        this.fileID = fileID;
     }
 
     protected boolean handleNull(Object o, String message, Reason reason, String token, Exception exception) {
@@ -292,9 +351,9 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
             }
             final String errorMessage = String.format(
                     "Translation error in id '%s'\n\tmessage:%s\n\ttoken:%s\n\treason:%s,\n\texception:%s",
-                    this.id, message, token, reason, exceptionString);
+                    this.fileID, message, token, reason, exceptionString);
             LOG.warn(errorMessage);
-            final Matcher m = DLMF_ID_PATTERN.matcher(id);
+            final Matcher m = DLMF_ID_PATTERN.matcher(fileID);
             if (m.matches()) {
                 final int chapter = Integer.parseInt(m.group(1));
                 if (!problemTokens.containsKey(token)) {
@@ -321,4 +380,7 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
         return false;
     }
 
+    public Map<String, Map<Integer, Set<String>>> getProblemTokens() {
+        return problemTokens;
+    }
 }

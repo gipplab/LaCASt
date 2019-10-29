@@ -1,10 +1,8 @@
 package gov.nist.drmf.interpreter.cas;
 
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.GlobalConstants;
-import gov.nist.drmf.interpreter.common.GlobalPaths;
-import gov.nist.drmf.interpreter.common.Keys;
-import gov.nist.drmf.interpreter.common.TranslationException;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -111,8 +109,7 @@ public class SemanticToCASInterpreter {
         }
 
         if ( clean ){
-            GlobalConstants.CAS_KEY = CAS;
-            SemanticLatexTranslator latexParser = getParser( true );
+            SemanticLatexTranslator latexParser = getParser( true, CAS );
             latexParser.translate( expression );
             /*if ( clipboard != null ){
                 StringSelection ss = new StringSelection( latexParser.getTranslatedExpression() );
@@ -124,9 +121,8 @@ public class SemanticToCASInterpreter {
 
         System.out.println("Set global variable to given CAS.");
         init_ms = System.currentTimeMillis();
-        GlobalConstants.CAS_KEY = CAS;
 
-        SemanticLatexTranslator latexParser = getParser( true );
+        SemanticLatexTranslator latexParser = getParser( true, CAS );
 
         init_ms = System.currentTimeMillis()-init_ms;
 
@@ -143,7 +139,7 @@ public class SemanticToCASInterpreter {
         }
         trans_ms = System.currentTimeMillis()-trans_ms;
 
-        System.out.println("Finished conversion to " + GlobalConstants.CAS_KEY + ":");
+        System.out.println("Finished conversion to " + CAS + ":");
         System.out.println(latexParser.getTranslatedExpression());
         System.out.println();
 
@@ -154,7 +150,7 @@ public class SemanticToCASInterpreter {
 
         if ( debug ){
             System.out.println( "DEBUGGING Components: " + NEW_LINE +
-                    Arrays.toString(latexParser.getGlobalExpressionObject().trans_exps.toArray()));
+                    Arrays.toString(latexParser.getTranslatedExpressionObject().trans_exps.toArray()));
             System.out.println();
             System.out.println("Initialization takes: " + init_ms + "ms");
             System.out.println("Translation process takes: " + trans_ms + "ms");
@@ -162,7 +158,7 @@ public class SemanticToCASInterpreter {
         }
 
         if ( extra ){
-            System.out.println(latexParser.getInfoLog().toString());
+            System.out.println(latexParser.getInfoLogger().toString());
         }
 
         /*
@@ -195,11 +191,11 @@ public class SemanticToCASInterpreter {
         */
     }
 
-    static SemanticLatexTranslator getParser( boolean verbose ) {
+    static SemanticLatexTranslator getParser( boolean verbose, String cas ) {
         if ( verbose ) {
             System.out.println( "Set up translation..." );
         }
-        SemanticLatexTranslator latexParser = new SemanticLatexTranslator( Keys.KEY_LATEX, GlobalConstants.CAS_KEY );
+        SemanticLatexTranslator latexParser = new SemanticLatexTranslator( cas );
         if ( verbose ) {
             System.out.println( "Initialize translation..." );
         }

@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.tests;
 
-import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;

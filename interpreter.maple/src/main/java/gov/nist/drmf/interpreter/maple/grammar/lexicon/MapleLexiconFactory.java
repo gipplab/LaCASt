@@ -1,8 +1,8 @@
 package gov.nist.drmf.interpreter.maple.grammar.lexicon;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
-import gov.nist.drmf.interpreter.common.GlobalPaths;
-import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
@@ -12,7 +12,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;

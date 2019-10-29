@@ -3,12 +3,11 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Sums;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.TestCase;
-import gov.nist.drmf.interpreter.common.GlobalConstants;
-import gov.nist.drmf.interpreter.common.GlobalPaths;
-import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.PomParser;
-import org.junit.Before;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
@@ -17,7 +16,6 @@ import java.util.stream.Stream;
 
 import static gov.nist.drmf.interpreter.cas.translation.components.matcher.IgnoresAllWhitespacesMatcher.ignoresAllWhitespaces;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalToIgnoringWhiteSpace;
 
 public class SumProductTranslatorTest {
 
@@ -171,22 +169,16 @@ public class SumProductTranslatorTest {
     private static PomParser parser;
 
     //    @BeforeEach
-    private void mathematicaSetUp() {
-        GlobalConstants.CAS_KEY = Keys.KEY_MATHEMATICA;
-        slt = new SemanticLatexTranslator(Keys.KEY_LATEX, Keys.KEY_MATHEMATICA);
-        try {
-            slt.init(GlobalPaths.PATH_REFERENCE_DATA);
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
+    private void mathematicaSetUp() throws IOException {
+        slt = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
+        slt.init(GlobalPaths.PATH_REFERENCE_DATA);
         parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA);
         parser.addLexicons(MacrosLexicon.getDLMFMacroLexicon());
     }
 
     @BeforeEach
     void mapleSetUp() throws IOException {
-        GlobalConstants.CAS_KEY = Keys.KEY_MAPLE;
-        slt = new SemanticLatexTranslator(Keys.KEY_LATEX, Keys.KEY_MAPLE);
+        slt = new SemanticLatexTranslator(Keys.KEY_MAPLE);
         slt.init(GlobalPaths.PATH_REFERENCE_DATA);
 
 //        parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA);

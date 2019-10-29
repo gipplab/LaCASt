@@ -1,7 +1,6 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
-import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import mlp.FeatureSet;
 
 /**
@@ -9,59 +8,59 @@ import mlp.FeatureSet;
  */
 public enum DLMFFeatureValues implements IFeatureExtractor{
     areas(
-            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_AREAS))
+            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_AREAS))
     ),
     description(
-            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_DESCRIPTION))
+            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_DESCRIPTION))
     ),
     meaning(
-            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_MEANINGS))
+            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_MEANINGS))
     ),
     dlmf_link(
-            t -> DLMFFeatureValues.DLMF_LINK_PREFIX +
+            (t,c) -> DLMFFeatureValues.DLMF_LINK_PREFIX +
                     IFeatureExtractor.getStringFromSet(
                             t.getFeature(Keys.KEY_DLMF + DLMFFeatureValues.LINK_SUFFIX))
     ),
     params(
-            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.NUM_OF_PARAMS))
+            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.NUM_OF_PARAMS))
     ),
     ats(
-            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.NUM_OF_ATS))
+            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.NUM_OF_ATS))
     ),
     variables(
-            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.NUM_OF_VARS))
+            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.NUM_OF_VARS))
     ),
     slot(
-            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.SLOT_OF_DIFF))
+            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.SLOT_OF_DIFF))
     ),
     CAS(
-            t -> IFeatureExtractor.getStringFromSet(t.getFeature(GlobalConstants.CAS_KEY))
+            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(c))
     ),
     CAS_Alternatives(
-            t -> IFeatureExtractor.getStringFromSet(
-                    t.getFeature( GlobalConstants.CAS_KEY + DLMFFeatureValues.ALTERNATIVE_SUFFIX ))
+            (t,c) -> IFeatureExtractor.getStringFromSet(
+                    t.getFeature( c + DLMFFeatureValues.ALTERNATIVE_SUFFIX ))
     ),
     CAS_Link(
-            t -> DLMFFeatureValues.CAS_LINK_PREFIX +
+            (t,c) -> DLMFFeatureValues.CAS_LINK_PREFIX +
                     IFeatureExtractor.getStringFromSet(
-                    t.getFeature( GlobalConstants.CAS_KEY + DLMFFeatureValues.LINK_SUFFIX ))
+                    t.getFeature( c + DLMFFeatureValues.LINK_SUFFIX ))
     ),
     CAS_Comment(
-            t -> IFeatureExtractor.getStringFromSet(
-                    t.getFeature( GlobalConstants.CAS_KEY + DLMFFeatureValues.COMMENT_SUFFIX ))
+            (t,c) -> IFeatureExtractor.getStringFromSet(
+                    t.getFeature( c + DLMFFeatureValues.COMMENT_SUFFIX ))
     ),
     CAS_BranchCuts(
-            t -> IFeatureExtractor.getStringFromSet(
-                    t.getFeature( GlobalConstants.CAS_KEY + DLMFFeatureValues.BRANCH_CUTS_SUFFIX ))
+            (t,c) -> IFeatureExtractor.getStringFromSet(
+                    t.getFeature( c + DLMFFeatureValues.BRANCH_CUTS_SUFFIX ))
     ),
     DLMF(
-            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.KEY_DLMF))
+            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.KEY_DLMF))
     ),
     constraints(
-            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_CONSTRAINTS))
+            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_CONSTRAINTS))
     ),
     branch_cuts(
-            t -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_BRANCH_CUTS))
+            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_BRANCH_CUTS))
     );
 
     public static final String LINK_SUFFIX = "-Link";
@@ -82,7 +81,8 @@ public enum DLMFFeatureValues implements IFeatureExtractor{
         this.extractor = extractor;
     }
 
-    public String getFeatureValue( FeatureSet t ){
-        return extractor.getFeatureValue(t);
+    @Override
+    public String getFeatureValue( FeatureSet t, String cas ){
+        return extractor.getFeatureValue(t, cas);
     }
 }

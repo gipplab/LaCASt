@@ -1,8 +1,11 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
-import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.*;
+import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
@@ -21,14 +24,9 @@ class MacroTranslatorMathematicaTest {
     private static MacroTranslator translator;
 
     @BeforeAll
-    static void setUp() {
-        GlobalConstants.CAS_KEY = Keys.KEY_MATHEMATICA;
-        slt = new SemanticLatexTranslator(Keys.KEY_LATEX, Keys.KEY_MATHEMATICA);
-        try {
-            slt.init(GlobalPaths.PATH_REFERENCE_DATA);
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
+    static void setUp() throws IOException {
+        slt = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
+        slt.init(GlobalPaths.PATH_REFERENCE_DATA);
     }
 
     /*
@@ -171,7 +169,7 @@ class MacroTranslatorMathematicaTest {
         PomParser parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA.toString());
         parser.addLexicons( MacrosLexicon.getDLMFMacroLexicon() );
 
-        translator = new MacroTranslator();
+        translator = new MacroTranslator(slt);
 
         List<String> expressions = Arrays.asList(expression);
         List<String> output = Arrays.asList(translatedMathematica);
@@ -184,7 +182,8 @@ class MacroTranslatorMathematicaTest {
                             int index = expressions.indexOf(exp);
                             PomTaggedExpression ex = parser.parse(TeXPreProcessor.preProcessingTeX(expressions.get(index)));
 
-                            translator.clearTranslation();
+//                            translator.clearTranslation();
+
 
                             List<PomTaggedExpression> components = ex.getComponents();
                             PomTaggedExpression first = components.remove(0);

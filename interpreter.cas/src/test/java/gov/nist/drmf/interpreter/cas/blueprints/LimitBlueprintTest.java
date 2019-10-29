@@ -1,8 +1,9 @@
 package gov.nist.drmf.interpreter.cas.blueprints;
 
+import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.GlobalPaths;
-import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -20,9 +21,9 @@ public class LimitBlueprintTest {
 
     @BeforeAll
     public static void setup() throws IOException {
-        SemanticLatexTranslator slt = new SemanticLatexTranslator(Keys.KEY_LATEX, Keys.KEY_MAPLE);
-        slt.init(GlobalPaths.PATH_REFERENCE_DATA);
-        btmaster = new BlueprintMaster(slt);
+        SemanticLatexTranslator slt = new SemanticLatexTranslator(Keys.KEY_MAPLE);
+        slt.init( GlobalPaths.PATH_REFERENCE_DATA );
+        btmaster = slt.getBlueprintMaster();
     }
 
     @Test

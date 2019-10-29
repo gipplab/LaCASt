@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.cas.mlp;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 
 import java.util.HashMap;
 

@@ -5,7 +5,7 @@ import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import com.maplesoft.openmaple.MString;
 import com.maplesoft.openmaple.Numeric;
-import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;

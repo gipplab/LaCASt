@@ -1,8 +1,7 @@
 package gov.nist.drmf.interpreter.maple.grammar.lexicon;
 
-import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 /**

@@ -1,17 +1,19 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
+import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.common.*;
-import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
-import gov.nist.drmf.interpreter.common.symbols.Constants;
-import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
-import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -31,33 +33,58 @@ import java.nio.file.Path;
  * @author Andre Greiner-Petter
  */
 public class SemanticLatexTranslator extends AbstractTranslator {
+    private static final Logger LOG = LogManager.getLogger(SemanticLatexTranslator.class.getName());
 
-    public static String TAB = "";
-
-    private static GreekLetters greekLetters;
-    private static Constants constants;
-    private static BasicFunctionsTranslator functions;
-    private static SymbolTranslator symbols;
-    private static BlueprintMaster limitBTMaster;
-
+    /**
+     * The latex parser
+     */
     private PomParser parser;
 
-    public SemanticLatexTranslator(String from_language, String to_language ){
-        TranslationException.FROM_LANGUAGE_DEFAULT = from_language;
-        TranslationException.TO_LANGUAGE_DEFAULT = to_language;
+    private ForwardTranslationProcessConfig config;
 
-        greekLetters = new GreekLetters(from_language, to_language);
-        constants = new Constants(Keys.KEY_DLMF, to_language);
-        functions = new BasicFunctionsTranslator(to_language);
-        symbols = new SymbolTranslator(from_language, to_language);
+    private TranslatedExpression localTranslations;
 
-        INFO_LOG = new InformationLogger();
+    /**
+     * Creates a forward translator to the specified language.
+     * @param to_language the language key
+     * @see gov.nist.drmf.interpreter.common.constants.Keys
+     */
+    public SemanticLatexTranslator( String to_language ){
+        this(new ForwardTranslationProcessConfig(to_language));
+    }
 
-        global_exp = new TranslatedExpression();
-        int length = GlobalConstants.CAS_KEY.length()+1 > "DLMF: ".length() ?
-                (GlobalConstants.CAS_KEY.length()+2) : "DLMF: ".length();
-        for ( int i = 0; i <= length; i++ )
-            TAB += " ";
+    /**
+     * Creates a forward translator based on a the given config.
+     * If the config does not contain a {@link BlueprintMaster} object
+     * yet, it will be initialized in the {@link #init(Path)} function
+     * and added to the config object.
+     *
+     * @param config config (with or without BlueprintMaster object)
+     * @see BlueprintMaster
+     */
+    public SemanticLatexTranslator( ForwardTranslationProcessConfig config ) {
+        super(null);
+        super.setConfig(config);
+        this.config = config;
+        this.localTranslations = new TranslatedExpression();
+    }
+
+    /**
+     * Copy constructor
+     * @param orig the original translator
+     */
+    private SemanticLatexTranslator( SemanticLatexTranslator orig ) {
+        super(null);
+        super.setConfig(orig.getConfig());
+        this.config = orig.config;
+        this.parser = orig.parser;
+        this.localTranslations = new TranslatedExpression();
+    }
+
+    @Nullable
+    @Override
+    public TranslatedExpression getTranslatedExpressionObject() {
+        return localTranslations;
     }
 
     /**
@@ -65,6 +92,10 @@ public class SemanticLatexTranslator extends AbstractTranslator {
      * a computer algebra system. It loads all translation information
      * from the files in the given path and instantiate the PomParser from
      * Prof. Abdou Youssef.
+     *
+     * Note, that if the config did not contain a {@link BlueprintMaster}
+     * object, it will be initialized and added to the config automatically.
+     *
      * @param reference_dir_path the path to the ReferenceData directory.
      *                           You can find the path in
      *                           {@link GlobalPaths#PATH_REFERENCE_DATA}.
@@ -72,74 +103,82 @@ public class SemanticLatexTranslator extends AbstractTranslator {
      *                      from the files.
      */
     public void init( Path reference_dir_path ) throws IOException {
-        greekLetters.init();
-        constants.init();
-        functions.init();
-        symbols.init();
-
-        MacrosLexicon.init();
-
-        MULTIPLY = symbols.translateFromMLPKey( Keys.MLP_KEY_MULTIPLICATION );
+        config.init();
 
         parser = new PomParser(reference_dir_path.toString());
         parser.addLexicons( MacrosLexicon.getDLMFMacroLexicon() );
 
-        limitBTMaster = new BlueprintMaster(this);
+        if ( config.getLimitParser() == null ) {
+            BlueprintMaster bm = new BlueprintMaster(
+                    new SemanticLatexTranslator(this) // copy
+            );
+            bm.init();
+            config.setLimitParser(bm);
+        }
     }
 
     /**
-     *
-     * @param expression
-     * @return
+     * Translates a given string to the another language.
+     * @param expression the expression that should get translated.
+     * @return the translated expression.
+     * @throws TranslationException if an error occurred due translation
      */
-    public boolean translate( String expression ) throws TranslationException {
-        if ( expression == null || expression.isEmpty() ) return false;
+    public String translate( String expression ) throws TranslationException {
+        if ( expression == null || expression.isEmpty() ) {
+            LOG.warn("Tried to translate an empty expression");
+            return "";
+        }
+
         expression = TeXPreProcessor.preProcessingTeX(expression);
+        LOG.debug("Preprocessed input string. Parsing: " + expression);
+
         try {
             PomTaggedExpression exp = parser.parse(expression);
-            return translate( exp );
+            if (translate( exp )) {
+                return super.getGlobalTranslationList().getTranslatedExpression();
+            } else {
+                handleNull(
+                        null,
+                        "Wasn't able to translate the given expression.",
+                        TranslationException.Reason.NULL,
+                        expression,
+                        null);
+            }
         } catch ( ParseException pe ){
-            return handleNull( null, pe.getMessage(), TranslationException.Reason.MLP_ERROR, expression, pe );
+            handleNull(
+                    null,
+                    pe.getMessage(),
+                    TranslationException.Reason.MLP_ERROR,
+                    expression,
+                    pe
+            );
         }
+        // this cannot happen -> a translation exception will be thrown
+        return null;
     }
 
     @Override
     public boolean translate( PomTaggedExpression expression ) throws TranslationException {
         reset();
-        local_inner_exp.addTranslatedExpression(
-                parseGeneralExpression(expression, null).getTranslatedExpression()
+        localTranslations = new TranslatedExpression();
+        TranslatedExpression global = super.getGlobalTranslationList();
+
+        localTranslations.addTranslatedExpression(
+                parseGeneralExpression(expression, null)
         );
-        if ( isInnerError() ){
-            handleNull( null,
-                "Wasn't able to translate the given expression.",
-                TranslationException.Reason.NULL,
-                expression.toString(),
-                null);
-        }
-        return true;
+
+        global.clear();
+        global.addTranslatedExpression(localTranslations);
+
+        return !isInnerError();
     }
 
-    public static GreekLetters getGreekLettersParser(){
-        return greekLetters;
+    @Override
+    public InformationLogger getInfoLogger(){
+        return super.getInfoLogger();
     }
 
-    public static Constants getConstantsParser(){
-        return constants;
-    }
-
-    public static BasicFunctionsTranslator getBasicFunctionParser(){
-        return functions;
-    }
-
-    public static SymbolTranslator getSymbolsTranslator(){
-        return symbols;
-    }
-
-    public static BlueprintMaster getLimitedBlueprintMaster() {
-        return limitBTMaster;
-    }
-
-    public InformationLogger getInfoLog(){
-        return INFO_LOG;
+    public BlueprintMaster getBlueprintMaster() {
+        return config.getLimitParser();
     }
 }

@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.common.symbols;
 
-import gov.nist.drmf.interpreter.common.GlobalPaths;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 
 import java.io.IOException;
 

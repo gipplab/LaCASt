@@ -1,26 +1,24 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
+import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.InformationLogger;
-import gov.nist.drmf.interpreter.common.Keys;
-import gov.nist.drmf.interpreter.common.TranslationException;
+import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.appender.ConsoleAppender;
 
-import java.io.IOException;
-import java.util.Arrays;
+import javax.annotation.Nullable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -90,9 +88,25 @@ public class MacroTranslator extends AbstractListTranslator {
 
     private PomTaggedExpression moveToEnd;
 
-    LinkedList<String> optional_paras;
+    private LinkedList<String> optional_paras;
 
-    public MacroTranslator(){}
+    private TranslatedExpression localTranslations;
+
+    private String[] components;
+
+    private final String CAS;
+
+    public MacroTranslator(AbstractTranslator superTranslator){
+        super(superTranslator);
+        this.localTranslations = new TranslatedExpression();
+        this.CAS = getConfig().getTO_LANGUAGE();
+    }
+
+    @Nullable
+    @Override
+    public TranslatedExpression getTranslatedExpressionObject() {
+        return localTranslations;
+    }
 
     @Override
     public boolean translate( PomTaggedExpression exp, List<PomTaggedExpression> following ){
@@ -132,16 +146,15 @@ public class MacroTranslator extends AbstractListTranslator {
         //LOG.info("Extract information for " + macro_term.getTermText());
         // now store all additional information
         // first of all number of parameters, ats and vars
-        numOfParams           = Integer.parseInt(DLMFFeatureValues.params.getFeatureValue(fset));
-        numOfAts              = Integer.parseInt(DLMFFeatureValues.ats.getFeatureValue(fset));
-        numOfVars             = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset));
+        numOfParams = Integer.parseInt(DLMFFeatureValues.params.getFeatureValue(fset, CAS));
+        numOfAts    = Integer.parseInt(DLMFFeatureValues.ats.getFeatureValue(fset, CAS));
+        numOfVars   = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset, CAS));
 
         try { // true slot is argument slot + numOfParams
-            slotOfDifferentiation = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset)) + numOfParams;
+            slotOfDifferentiation = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset, CAS)) + numOfParams;
         } catch(NumberFormatException e) {
             slotOfDifferentiation = null; // if slot isn't in lexicon, value is null
         }
-
 
         // now store additional information about the translation
         // Meaning: name of the function (defined by DLMF)
@@ -150,21 +163,21 @@ public class MacroTranslator extends AbstractListTranslator {
         // Branch Cuts: of the DLMF definition
         // DLMF: its the plain, smallest version of the macro. Like \JacobiP{a}{b}{c}@{d}
         //      we can reference our Constraints to a, b, c and d now. That makes it easier to read
-        meaning     = DLMFFeatureValues.meaning.getFeatureValue(fset);
-        description = DLMFFeatureValues.description.getFeatureValue(fset);
-        constraints = DLMFFeatureValues.constraints.getFeatureValue(fset);
-        branch_cuts = DLMFFeatureValues.branch_cuts.getFeatureValue(fset);
-        DLMF_example= DLMFFeatureValues.DLMF.getFeatureValue(fset);
+        meaning     = DLMFFeatureValues.meaning.getFeatureValue(fset, CAS);
+        description = DLMFFeatureValues.description.getFeatureValue(fset, CAS);
+        constraints = DLMFFeatureValues.constraints.getFeatureValue(fset, CAS);
+        branch_cuts = DLMFFeatureValues.branch_cuts.getFeatureValue(fset, CAS);
+        DLMF_example= DLMFFeatureValues.DLMF.getFeatureValue(fset, CAS);
 
         // Translation information
-        translation_pattern = DLMFFeatureValues.CAS.getFeatureValue(fset);
-        alternative_pattern = DLMFFeatureValues.CAS_Alternatives.getFeatureValue(fset);
-        cas_comment         = DLMFFeatureValues.CAS_Comment.getFeatureValue(fset);
-        cas_branch_cuts     = DLMFFeatureValues.CAS_BranchCuts.getFeatureValue(fset);
+        translation_pattern = DLMFFeatureValues.CAS.getFeatureValue(fset, CAS);
+        alternative_pattern = DLMFFeatureValues.CAS_Alternatives.getFeatureValue(fset, CAS);
+        cas_comment         = DLMFFeatureValues.CAS_Comment.getFeatureValue(fset, CAS);
+        cas_branch_cuts     = DLMFFeatureValues.CAS_BranchCuts.getFeatureValue(fset, CAS);
 
         // links to the definitions
-        def_dlmf    = DLMFFeatureValues.dlmf_link.getFeatureValue(fset);
-        def_cas     = DLMFFeatureValues.CAS_Link.getFeatureValue(fset);
+        def_dlmf    = DLMFFeatureValues.dlmf_link.getFeatureValue(fset, CAS);
+        def_cas     = DLMFFeatureValues.CAS_Link.getFeatureValue(fset, CAS);
 
         // maybe the alternative pattern got multiple alternatives
         if ( !alternative_pattern.isEmpty() ){
@@ -201,9 +214,14 @@ public class MacroTranslator extends AbstractListTranslator {
             storeInfos(fset);
             int sum = numOfAts + numOfVars + numOfParams;
             if (sum == 0) { // its a symbol
-                INFO_LOG.addMacroInfo(macro_term.getTermText(), createFurtherInformation());
-                local_inner_exp.addTranslatedExpression(translation_pattern);
-                global_exp.addTranslatedExpression(translation_pattern);
+                super.getInfoLogger().addMacroInfo(
+                        macro_term.getTermText(),
+                        createFurtherInformation()
+                );
+
+                localTranslations.addTranslatedExpression(translation_pattern);
+                super.getGlobalTranslationList()
+                        .addTranslatedExpression(translation_pattern);
                 return true;
             }
         }
@@ -249,7 +267,7 @@ public class MacroTranslator extends AbstractListTranslator {
         if (start != 0)
             info_key += start;
         // put all information to the info log
-        INFO_LOG.addMacroInfo(
+        getInfoLogger().addMacroInfo(
                 info_key,
                 createFurtherInformation()
         );
@@ -283,12 +301,18 @@ public class MacroTranslator extends AbstractListTranslator {
                 TranslatedExpression tmp = parseGeneralExpression(exp, following_exps);
                 if (tmp.getLastExpression() == null) {
                     following_argument.removeLastExpression();
-                    following_argument.addTranslatedExpression(global_exp.removeLastExpression());
+                    following_argument.addTranslatedExpression(
+                            getGlobalTranslationList().removeLastExpression()
+//                            global_exp.removeLastExpression()
+                    );
                     components[start - 1] = following_argument.toString();
                 }
             }
 
-            global_exp.removeLastNExps(following_argument.getLength());
+            getGlobalTranslationList().removeLastNExps(
+                    following_argument.getLength()
+            );
+//            global_exp.removeLastNExps(following_argument.getLength());
         }
 
         if (moveToEnd != null) {
@@ -384,7 +408,7 @@ public class MacroTranslator extends AbstractListTranslator {
             }
             TranslatedExpression inner_exp = parseGeneralExpression(exp, following_exps);
             components[i] = inner_exp.toString();
-            global_exp.removeLastNExps(inner_exp.getLength());
+            getGlobalTranslationList().removeLastNExps(inner_exp.getLength());
 
             i++;
             if (isInnerError())
@@ -437,11 +461,11 @@ public class MacroTranslator extends AbstractListTranslator {
             if (isDLMFMacro(exp.getRoot())) { // found macro term
                 FeatureSet fset = exp.getRoot().getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
                 // get variable of differentiation from variable used in dlmf expression of macro
-                String dlmf_expression = DLMFFeatureValues.DLMF.getFeatureValue(fset);
-                int args = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset));
+                String dlmf_expression = DLMFFeatureValues.DLMF.getFeatureValue(fset, CAS);
+                int args = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset, CAS));
                 int slot = 0;
                 try {
-                    slot = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset));
+                    slot = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset, CAS));
                 } catch (NumberFormatException e) {
                     throwSlotError();
                 }
@@ -474,7 +498,7 @@ public class MacroTranslator extends AbstractListTranslator {
                         expression,
                         following_exps
                 );
-        global_exp.removeLastNExps( inner_exp.getLength() );
+        getGlobalTranslationList().removeLastNExps( inner_exp.getLength() );
         return inner_exp.toString();
     }
 
@@ -543,7 +567,7 @@ public class MacroTranslator extends AbstractListTranslator {
     private void fillVars(){
         // when the alternative mode is activated, it tries to translate
         // the alternative translation
-        String pattern = (GlobalConstants.ALTERNATIVE_MODE && !alternative_pattern.isEmpty()) ?
+        String pattern = (getConfig().isAlternativeMode() && !alternative_pattern.isEmpty()) ?
                 alternative_pattern : translation_pattern;
 
         String subbedExpression = null;
@@ -573,19 +597,11 @@ public class MacroTranslator extends AbstractListTranslator {
         // apply derivative and plug in the subbed out expression to replace temp during execution in CAS
         if ( deriv_order != null && !deriv_order.isEmpty() ){
             String[] args = new String[]{pattern, subbedExpression, deriv_order};
-            pattern = SemanticLatexTranslator.getBasicFunctionParser().translate( args, "derivative" );
+            pattern = getConfig().getBasicFunctionsTranslator().translate( args, "derivative" );
         }
-        local_inner_exp.addTranslatedExpression(pattern);
-        global_exp.addTranslatedExpression(pattern);
-    }
 
-    protected TranslatedExpression parseGeneral( PomTaggedExpression exp, List<PomTaggedExpression> exp_list ){
-        return parseGeneralExpression( exp, exp_list );
-    }
-
-    protected void clearTranslation(){
-        local_inner_exp.clear();
-        global_exp.clear();
+        localTranslations.addTranslatedExpression(pattern);
+        getGlobalTranslationList().addTranslatedExpression(pattern);
     }
 
     private String createFurtherInformation(){
@@ -607,18 +623,18 @@ public class MacroTranslator extends AbstractListTranslator {
             extraInformation += "Branch Cuts: " + branch_cuts + System.lineSeparator();
 
         if ( !cas_branch_cuts.isEmpty() )
-            extraInformation += GlobalConstants.CAS_KEY + " uses other branch cuts: " + cas_branch_cuts
+            extraInformation += CAS + " uses other branch cuts: " + cas_branch_cuts
                     + System.lineSeparator();
 
-        String TAB = SemanticLatexTranslator.TAB;
+        String TAB = getConfig().getTAB();
         String tab = TAB.substring(0, TAB.length()-("DLMF: ").length());
         extraInformation += "Relevant links to definitions:" + System.lineSeparator() +
                 "DLMF: " + tab + def_dlmf + System.lineSeparator();
         tab = TAB.substring(0,
-                ((GlobalConstants.CAS_KEY+": ").length() >= TAB.length() ?
-                        0 : (TAB.length()-(GlobalConstants.CAS_KEY+": ").length()))
+                ((CAS+": ").length() >= TAB.length() ?
+                        0 : (TAB.length()-(CAS+": ").length()))
         );
-        extraInformation += GlobalConstants.CAS_KEY + ": " + tab + def_cas;
+        extraInformation += CAS + ": " + tab + def_cas;
         return extraInformation;
     }
 }
