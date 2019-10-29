@@ -1,7 +1,7 @@
-package gov.nist.drmf.core.tests;
+package gov.nist.drmf.interpreter.tests;
 
 import gov.nist.drmf.interpreter.common.Keys;
-import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
+import gov.nist.drmf.interpreter.common.symbols.Constants;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
@@ -15,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 /**
- * Created by Andre Greiner-Petter on 10.11.2016.
+ * @author Andre Greiner-Petter
  */
-public class GreekLettersTest {
-    private static GreekLetters g;
+public class ConstantTest {
+    private static Constants g;
 
     @BeforeAll
     static void init(){
-        g = new GreekLetters("","");
+        g = new Constants("","");
         try { g.init(); }
         catch ( IOException ioe ){
             System.err.println(ioe.getMessage());
@@ -32,19 +32,19 @@ public class GreekLettersTest {
     }
 
     /**
-     * Test LaTeX to Maple for all test cases
+     * Test dlmf to Maple for all test cases
      * @return
      */
     @TestFactory
-    Iterable<DynamicTest> latexToMapleTests(){
+    Iterable<DynamicTest> dlmfToMapleTests(){
         List<DynamicTest> list = new LinkedList();
-        for ( GreekLetterTestCases test : GreekLetterTestCases.values() ){
-            if ( test.latex == null ) continue;
+        for ( ConstantTestCases test : ConstantTestCases.values() ){
+            if ( test.dlmf == null ) continue;
             list.add( dynamicTest(
-                    "LaTeX->Maple" + ": " + test.latex,
+                    "dlmf->Maple" + ": " + test.dlmf,
                     () -> assertEquals(
                             test.maple,
-                            g.translate(Keys.KEY_LATEX, Keys.KEY_MAPLE, test.latex)
+                            g.translate(Keys.KEY_DLMF, Keys.KEY_MAPLE, test.dlmf)
                     )
                     )
             );
@@ -53,19 +53,19 @@ public class GreekLettersTest {
     }
 
     /**
-     * Test LaTeX to Mathematica for all test cases
+     * Test dlmf to Mathematica for all test cases
      * @return
      */
     @TestFactory
-    Iterable<DynamicTest> latexToMathematicaTests(){
+    Iterable<DynamicTest> dlmfToMathematicaTests(){
         List<DynamicTest> list = new LinkedList();
-        for ( GreekLetterTestCases test : GreekLetterTestCases.values() ){
-            if ( test.latex == null ) continue;
+        for ( ConstantTestCases test : ConstantTestCases.values() ){
+            if ( test.dlmf == null ) continue;
             list.add( dynamicTest(
-                    "LaTeX->Mathematica" + ": " + test.latex,
+                    "dlmf->Mathematica" + ": " + test.dlmf,
                     () -> assertEquals(
                             test.mathematica,
-                            g.translate(Keys.KEY_LATEX, Keys.KEY_MATHEMATICA, test.latex)
+                            g.translate(Keys.KEY_DLMF, Keys.KEY_MATHEMATICA, test.dlmf)
                     )
                     )
             );
@@ -74,19 +74,19 @@ public class GreekLettersTest {
     }
 
     /**
-     * Test Maple to LaTeX for all test cases
+     * Test Maple to dlmf for all test cases
      * @return
      */
     @TestFactory
-    Iterable<DynamicTest> mapleToLaTeXTests(){
+    Iterable<DynamicTest> mapleTodlmfTests(){
         List<DynamicTest> list = new LinkedList();
-        for ( GreekLetterTestCases test : GreekLetterTestCases.values() ){
+        for ( ConstantTestCases test : ConstantTestCases.values() ){
             if ( test.maple == null ) continue;
             list.add( dynamicTest(
-                    "Maple->LaTeX" + ": " + test.maple,
+                    "Maple->dlmf" + ": " + test.maple,
                     () -> assertEquals(
-                            test.latex,
-                            g.translate(Keys.KEY_MAPLE, Keys.KEY_LATEX, test.maple)
+                            test.dlmf,
+                            g.translate(Keys.KEY_MAPLE, Keys.KEY_DLMF, test.maple)
                     )
                     )
             );
@@ -95,19 +95,19 @@ public class GreekLettersTest {
     }
 
     /**
-     * Test Mathematica to LaTeX for all test cases
+     * Test Mathematica to dlmf for all test cases
      * @return
      */
     @TestFactory
-    Iterable<DynamicTest> mathematicaToLaTeXTests(){
+    Iterable<DynamicTest> mathematicaTodlmfTests(){
         List<DynamicTest> list = new LinkedList();
-        for ( GreekLetterTestCases test : GreekLetterTestCases.values() ){
+        for ( ConstantTestCases test : ConstantTestCases.values() ){
             if ( test.mathematica == null ) continue;
             list.add( dynamicTest(
-                    "Mathematica->LaTeX" + ": " + test.mathematica,
+                    "Mathematica->dlmf" + ": " + test.mathematica,
                     () -> assertEquals(
-                            test.latex,
-                            g.translate(Keys.KEY_MATHEMATICA, Keys.KEY_LATEX, test.mathematica)
+                            test.dlmf,
+                            g.translate(Keys.KEY_MATHEMATICA, Keys.KEY_DLMF, test.mathematica)
                     )
                     )
             );

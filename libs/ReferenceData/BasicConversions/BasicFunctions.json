@@ -66,17 +66,17 @@
       "Maple": "abs($0)",
       "Mathematica": "Abs[$0]"
     },
-    "SumThreeArgs": {
-      "MLP": "sum3",
-      "LaTeX": "\\sum_{$0}^{$1}{$2}",
-      "Maple": "sum($2, $3 = $0..$1)",
-      "Mathematica": "Sum[$2, {$3, $0, $1}]"
+    "Sum": {
+      "MLP": "sum",
+      "LaTeX": "\\sum_{$0 = $1}^{$2}{$3}",
+      "Maple": "sum($3, $0 = $1..$2)",
+      "Mathematica": "Sum[$3, {$0, $1, $2}]"
     },
-    "SumTwoArgs": {
-      "MLP": "sum2",
-      "LaTeX": "\\sum_{$0}{$1}",
-      "Maple": "sum($1, $0)",
-      "Mathematica": "Sum[$0, {$2, $1}]"
+    "SumSet": {
+      "MLP": "sumSet",
+      "LaTeX": "\\sum_{$0 \\in $1}{$2}",
+      "Maple": "sum($2, $0 in $1)",
+      "Mathematica": "Sum[$2, {$0, $1}]"
     },
     "ProductThreeArgs": {
       "MLP": "prod3",

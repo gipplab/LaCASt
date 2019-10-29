@@ -8,6 +8,7 @@ import gov.nist.drmf.interpreter.common.GlobalPaths;
 import gov.nist.drmf.interpreter.common.Keys;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.PomParser;
+import org.junit.Before;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
@@ -183,16 +184,13 @@ public class SumProductTranslatorTest {
     }
 
     @BeforeEach
-    void mapleSetUp() {
+    void mapleSetUp() throws IOException {
         GlobalConstants.CAS_KEY = Keys.KEY_MAPLE;
         slt = new SemanticLatexTranslator(Keys.KEY_LATEX, Keys.KEY_MAPLE);
-        try {
-            slt.init(GlobalPaths.PATH_REFERENCE_DATA);
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-        parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA);
-        parser.addLexicons(MacrosLexicon.getDLMFMacroLexicon());
+        slt.init(GlobalPaths.PATH_REFERENCE_DATA);
+
+//        parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA);
+//        parser.addLexicons(MacrosLexicon.getDLMFMacroLexicon());
     }
 
 //    @Test
@@ -260,12 +258,12 @@ messed with onlyLower
                     slt.translate(in);
                     String result = slt.getTranslatedExpression();
 
-                    System.out.println(result);
+                    System.out.println("Result: " + result);
 
-                    expected = expected.replaceAll("\\s+", "");
-                    System.out.println(expected);
+                    result = result.replaceAll("\\s+", "");
+                    System.out.println("Expected: "+ expected);
 
-                    assertThat(expected, ignoresAllWhitespaces(result));
+                    assertThat(result, ignoresAllWhitespaces(expected));
                 }));
     }
 

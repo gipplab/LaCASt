@@ -136,8 +136,6 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
     protected TranslatedExpression parseGeneralExpression(
             PomTaggedExpression exp,
             List<PomTaggedExpression> exp_list) {
-        System.out.println("Global: " + global_exp.debugString());
-        System.out.println("Local: " + local_inner_exp.debugString());
         // create inner local translation (recursive)
         AbstractTranslator inner_parser = null;
         // if there was an inner error
@@ -184,8 +182,6 @@ public abstract class AbstractTranslator implements ITranslator<PomTaggedExpress
             }
         }
         inner_Error = !return_value;
-        System.out.println("Global: " + global_exp.debugString());
-        System.out.println("Local: " + local_inner_exp.debugString());
         return inner_parser.local_inner_exp;
     }
 

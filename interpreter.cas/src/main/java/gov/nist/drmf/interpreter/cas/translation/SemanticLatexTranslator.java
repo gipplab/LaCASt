@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
+import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.common.*;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
@@ -37,6 +38,7 @@ public class SemanticLatexTranslator extends AbstractTranslator {
     private static Constants constants;
     private static BasicFunctionsTranslator functions;
     private static SymbolTranslator symbols;
+    private static BlueprintMaster limitBTMaster;
 
     private PomParser parser;
 
@@ -81,6 +83,8 @@ public class SemanticLatexTranslator extends AbstractTranslator {
 
         parser = new PomParser(reference_dir_path.toString());
         parser.addLexicons( MacrosLexicon.getDLMFMacroLexicon() );
+
+        limitBTMaster = new BlueprintMaster(this);
     }
 
     /**
@@ -129,6 +133,10 @@ public class SemanticLatexTranslator extends AbstractTranslator {
 
     public static SymbolTranslator getSymbolsTranslator(){
         return symbols;
+    }
+
+    public static BlueprintMaster getLimitedBlueprintMaster() {
+        return limitBTMaster;
     }
 
     public InformationLogger getInfoLog(){

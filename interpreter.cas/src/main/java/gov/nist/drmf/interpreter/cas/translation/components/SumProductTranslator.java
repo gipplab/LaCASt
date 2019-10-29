@@ -1,14 +1,19 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
+import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
+import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.common.TranslationException;
+import gov.nist.drmf.interpreter.cas.blueprints.Limits;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -20,11 +25,13 @@ import java.util.List;
  *
  * Method call order: translate -> addToArgs -> onlyLower/lowerAndUpper -> addFactorsToSummand
  *
+ * @author Andre Greiner-Petter
  * @author Rajen Dey
  *
  * July 2019
  */
 public class SumProductTranslator extends AbstractListTranslator{
+    private static final Logger LOG = LogManager.getLogger(SumProductTranslator.class.getName());
 
     private static ArrayList<ArrayList<String>> args = new ArrayList<>();
 
@@ -32,8 +39,11 @@ public class SumProductTranslator extends AbstractListTranslator{
 
     private static int num = -1;
 
-    @Override
-    public boolean translate(PomTaggedExpression exp, List<PomTaggedExpression> list){
+    // perform translation and put everything into global_exp
+    private BasicFunctionsTranslator bft = SemanticLatexTranslator.getBasicFunctionParser();
+
+    //    @Override
+    public boolean translateOLD(PomTaggedExpression exp, List<PomTaggedExpression> list){
         num++;
         //need to store tempNum in case there is a nested sum/product
         int tempNum = num;
@@ -670,6 +680,137 @@ public class SumProductTranslator extends AbstractListTranslator{
         return "";
     }
 
+    @Override
+    public boolean translate(PomTaggedExpression exp, List<PomTaggedExpression> list){
+        // exp is sum/prod/lim
+
+        if (list.isEmpty()) {
+            throw new TranslationException("Limited expression in the end are illegal!");
+        }
+
+        PomTaggedExpression limitExpression = list.remove(0);
+        Limits limit = extractLimits(limitExpression);
+
+        List<PomTaggedExpression> potentialArguments = getPotentialArgumentsUntilEndOfScope(list);
+        // the potential arguments is a theoretical sequence, so handle it as a sequence!
+        PomTaggedExpression topPTE = new PomTaggedExpression(new MathTerm("",""), "sequence");
+        for ( PomTaggedExpression pte : potentialArguments ) topPTE.addComponent(pte);
+
+        SequenceTranslator p = new SequenceTranslator();
+        boolean successful = p.translate( topPTE );
+
+        if ( !successful ) { // well, there were an error... stop here
+            return false;
+        }
+
+        // next, we translate the expressions to search for the variables
+        TranslatedExpression translatedPotentialArguments = p.getTranslatedExpressionObject();
+
+        // first, clear global expression
+        global_exp.removeLastNExps(translatedPotentialArguments.getLength());
+
+        // find elements that are part of the argument:
+        // next, split into argument parts and the rest
+        TranslatedExpression transArgs = removeUntilLastAppearence(
+                translatedPotentialArguments,
+                limit.getVars()
+        );
+
+        int lastIdx = limit.getVars().size()-1;
+
+        // start with inner -> last elements in limit
+        String finalTranslation = translatePattern(
+                limit,
+                lastIdx,
+                transArgs.getTranslatedExpression(),
+                "sum"
+        );
+
+        if ( lastIdx > 0 ) {
+            for ( int i = lastIdx-1; i >= 0; i-- ) {
+                finalTranslation = translatePattern(
+                        limit,
+                        i,
+                        finalTranslation,
+                        "sum"
+                );
+            }
+        }
+
+        // add translation and the rest of the translation
+        local_inner_exp.addTranslatedExpression(finalTranslation);
+        local_inner_exp.addTranslatedExpression(translatedPotentialArguments);
+        global_exp.addTranslatedExpression(finalTranslation);
+        global_exp.addTranslatedExpression(translatedPotentialArguments);
+
+        return true;
+    }
+
+    private String translatePattern(Limits limit, int idx, String arg, String key) {
+        if ( !limit.isLimitOverSet() ) {
+            String[] args = new String[]{
+                    limit.getVars().get(idx),
+                    limit.getLower().get(idx),
+                    limit.getUpper().get(idx),
+                    arg,
+            };
+            return bft.translate(args, key);
+        } else {
+            String[] args = new String[]{
+                    limit.getVars().get(idx),
+                    limit.getLower().get(idx),
+                    arg,
+            };
+            return bft.translate(args, key+"Set");
+        }
+    }
+
+    private Limits extractLimits(PomTaggedExpression limitSuperExpr) {
+        MathTerm term = limitSuperExpr.getRoot();
+
+        PomTaggedExpression limitExpression = null;
+        List<PomTaggedExpression> upperBound = null;
+
+        // in case it is a MathTerm, it MUST be a lower bound!
+        if ( term != null && !term.isEmpty() ) {
+            MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
+            if ( !tag.equals(MathTermTags.underscore) ) {
+                throw new TranslationException("Illegal expression followed a limited expression: " + term.getTermText());
+            }
+            // underscore always has only one child!
+            limitExpression = limitSuperExpr.getComponents().get(0);
+        } else {
+            String tagS = limitSuperExpr.getTag();
+            ExpressionTags tag = ExpressionTags.getTagByKey(tagS);
+            if ( tag.equals(ExpressionTags.sub_super_script) ) {
+                List<PomTaggedExpression> els = limitSuperExpr.getComponents();
+                for ( PomTaggedExpression pte : els ) {
+                    MathTermTags t = MathTermTags.getTagByKey(pte.getRoot().getTag());
+                    if ( t.equals(MathTermTags.underscore) ) {
+                        limitExpression = pte.getComponents().get(0);
+                    } else if ( t.equals(MathTermTags.caret) ) {
+                        upperBound = pte.getComponents();
+                    }
+                }
+            } else {
+                throw new TranslationException("A limited expression without limits is not allowed: " + term.getTermText());
+            }
+        }
+
+        // now we have limitExpression and an optional upperBound. Parse it:
+        BlueprintMaster btm = SemanticLatexTranslator.getLimitedBlueprintMaster();
+        Limits limit = btm.findMatchingLimit(limitExpression);
+
+        // if an upper bound was explicitly given, overwrite the parsed upper bound
+        if ( upperBound != null ) {
+            TranslatedExpression te = parseGeneralExpression(upperBound.remove(0), upperBound);
+            global_exp.removeLastNExps(te.getLength());
+            limit.overwriteUpperLimit(te.getTranslatedExpression());
+        }
+
+        return limit;
+    }
+
     private List<PomTaggedExpression> getPotentialArgumentsUntilEndOfScope(List<PomTaggedExpression> list) {
         LinkedList<PomTaggedExpression> cache = new LinkedList<>();
 
@@ -703,5 +844,9 @@ public class SumProductTranslator extends AbstractListTranslator{
 
         // well, it might be the entire expression until the end, of course
         return cache;
+    }
+
+    private TranslatedExpression removeUntilLastAppearence(TranslatedExpression te, List<String> vars) {
+        return te.removeUntilLastAppearanceOfVar(vars, MULTIPLY);
     }
 }
