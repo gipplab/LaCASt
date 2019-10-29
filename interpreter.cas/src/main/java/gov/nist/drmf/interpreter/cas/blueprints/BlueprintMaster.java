@@ -1,7 +1,8 @@
 package gov.nist.drmf.interpreter.cas.blueprints;
 
+import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.GlobalPaths;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -21,21 +22,17 @@ public class BlueprintMaster {
     private LinkedList<BlueprintLimitTree> constraintsBTTrees;
     private SemanticLatexTranslator slt;
 
+    private Path limitBTFile;
+
     public BlueprintMaster(SemanticLatexTranslator slt) {
         Path constraintsBT = GlobalPaths.PATH_LIBS.resolve("blueprints.txt");
-        Path limitBT = GlobalPaths.PATH_LIBS.resolve("limit-blueprints.txt");
+        limitBTFile = GlobalPaths.PATH_LIBS.resolve("limit-blueprints.txt");
         this.slt = slt;
-
-        try {
-            initLimitBTs(limitBT);
-        } catch (IOException e) {
-            LOG.error("Cannot load blueprints for limits.", e);
-        }
     }
 
-    private void initLimitBTs(Path p) throws IOException {
+    public void init() throws IOException {
         constraintsBTTrees = new LinkedList<>();
-        Files.readAllLines(p)
+        Files.readAllLines(limitBTFile)
                 .stream()
                 .forEach( l -> {
                     String[] s = l.split(" ==> ");

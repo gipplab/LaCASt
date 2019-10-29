@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation;
 
-import gov.nist.drmf.interpreter.common.GlobalPaths;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

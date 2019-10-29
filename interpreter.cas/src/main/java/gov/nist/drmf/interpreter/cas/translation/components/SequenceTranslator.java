@@ -4,8 +4,8 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.Keys;
-import gov.nist.drmf.interpreter.common.TranslationException;
+import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -17,6 +17,8 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.List;
+
+import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.*;
 
 /**
  * There are two possible types of sequences in this code.
@@ -46,11 +48,22 @@ public class SequenceTranslator extends AbstractListTranslator {
 
     private boolean setMode = false;
 
+    private TranslatedExpression localTranslations;
+
     /**
      * Uses only for a general sequence expression.
      * If the tag is sequence we don't need to check any parenthesis.
      */
-    public SequenceTranslator(){}
+    public SequenceTranslator(AbstractTranslator superTranslator){
+        super(superTranslator);
+        localTranslations = new TranslatedExpression();
+    }
+
+    @Nullable
+    @Override
+    public TranslatedExpression getTranslatedExpressionObject() {
+        return localTranslations;
+    }
 
     /**
      * Use this if the sequence is wrapped by parenthesis.
@@ -61,12 +74,13 @@ public class SequenceTranslator extends AbstractListTranslator {
      *                     the given bracket is the first open bracket of the following
      *                     sequence
      */
-    public SequenceTranslator( Brackets open_bracket ){
+    public SequenceTranslator( AbstractTranslator superTranslator, Brackets open_bracket ){
+        this(superTranslator);
         this.open_bracket = open_bracket;
     }
 
-    public SequenceTranslator( Brackets open_bracket, boolean setMode ){
-        this(open_bracket);
+    public SequenceTranslator( AbstractTranslator superTranslator, Brackets open_bracket, boolean setMode ){
+        this(superTranslator, open_bracket);
         this.setMode = setMode;
     }
 
@@ -104,15 +118,16 @@ public class SequenceTranslator extends AbstractListTranslator {
         // run through each element
         while ( !exp_list.isEmpty() && !isInnerError() ){
             PomTaggedExpression exp = exp_list.remove(0);
-            TranslatedExpression inner_translation =
-                    parseGeneralExpression( exp, exp_list );
+            TranslatedExpression inner_translation = parseGeneralExpression( exp, exp_list );
 
             // only take the last object and check if it is
             // necessary to add a space character behind
             part = inner_translation.getLastExpression();
+            TranslatedExpression global = super.getGlobalTranslationList();
+
             boolean lastMerged = false;
             if ( part == null ) {
-                part = global_exp.getLastExpression();
+                part = global.getLastExpression();
                 if ( part == null )
                     return true;
                 lastMerged = true;
@@ -128,8 +143,8 @@ public class SequenceTranslator extends AbstractListTranslator {
             // finally add all elements to the inner list
             inner_translation.replaceLastExpression( part );
             if ( lastMerged )
-                local_inner_exp.replaceLastExpression( inner_translation.toString() );
-            else local_inner_exp.addTranslatedExpression( inner_translation );
+                localTranslations.replaceLastExpression( inner_translation.toString() );
+            else localTranslations.addTranslatedExpression( inner_translation );
         }
 
         // finally return value
@@ -138,7 +153,7 @@ public class SequenceTranslator extends AbstractListTranslator {
 
     /**
      * Use this function ONLY when you created an object of this class
-     * with a given bracket {@link SequenceTranslator#SequenceTranslator(Brackets)}.
+     * with a given bracket {@link SequenceTranslator#SequenceTranslator(AbstractTranslator,Brackets)}.
      *
      * This method goes through a given list of expressions until it
      * reached the closed bracket that matches to the given open bracket
@@ -189,12 +204,12 @@ public class SequenceTranslator extends AbstractListTranslator {
                 //noinspection ConstantConditions
                 if ( bracket.opened ){
                     // create a new SequenceTranslator (2nd kind)
-                    SequenceTranslator sp = new SequenceTranslator( bracket, setMode );
+                    SequenceTranslator sp = new SequenceTranslator( super.getSuperTranslator(), bracket, setMode );
                     // translate the following expressions
                     if ( sp.translate(following_exp) ){
                         // if the translation finished correctly, there is nothing to do here
                         // only take all of the inner solutions
-                        local_inner_exp.addTranslatedExpression( sp.local_inner_exp );
+                        localTranslations.addTranslatedExpression( sp.getTranslatedExpressionObject() );
                         // we don't need to add/remove elements from global_exp here
                         continue;
                     } else {
@@ -207,33 +222,34 @@ public class SequenceTranslator extends AbstractListTranslator {
                         ){
                     // this sequence ends her
                     // first of all, merge all elements together
-                    int num = local_inner_exp.mergeAll();
+                    int num = localTranslations.mergeAll();
 
                     // now, always wrap brackets around this sequence
                     // if the brackets are |.| for absolute value, translate it as a function
                     String seq;
                     if ( open_bracket.equals( Brackets.left_latex_abs_val ) ){
-                        BasicFunctionsTranslator bft = SemanticLatexTranslator.getBasicFunctionParser();
+                        BasicFunctionsTranslator bft = getConfig().getBasicFunctionsTranslator();
                         seq = bft.translate(
-                                new String[]{ local_inner_exp.removeLastExpression() },
+                                new String[]{ localTranslations.removeLastExpression() },
                                 Keys.KEY_ABSOLUTE_VALUE
                                 );
                     } else if ( setMode ){ // in set mode, both parenthesis may not match!
                         seq = open_bracket.getAppropriateString();
-                        seq += local_inner_exp.removeLastExpression();
+                        seq += localTranslations.removeLastExpression();
                         seq += bracket.getAppropriateString();
                     } else { // otherwise, parenthesis must match each other, so close as it opened
                         seq = open_bracket.getAppropriateString();
-                        seq += local_inner_exp.removeLastExpression();
+                        seq += localTranslations.removeLastExpression();
                         seq += open_bracket.getCounterPart().getAppropriateString();
                     }
 
                     // wrap parenthesis around sequence, this is one component of the sequence now
-                    local_inner_exp.addTranslatedExpression( seq ); // replaced it
+                    localTranslations.addTranslatedExpression( seq ); // replaced it
 
                     // same for global_exp. But first delete all elements of this sequence
-                    global_exp.removeLastNExps( num );
-                    global_exp.addTranslatedExpression( seq );
+                    TranslatedExpression global = super.getGlobalTranslationList();
+                    global.removeLastNExps( num );
+                    global.addTranslatedExpression( seq );
                     return true;
                 } else { // otherwise there was an error in the bracket arrangements
                     throw new TranslationException(
@@ -252,22 +268,22 @@ public class SequenceTranslator extends AbstractListTranslator {
             String last = inner_trans.getLastExpression();
             boolean inner = false;
             if ( last == null ) {
-                last = global_exp.getLastExpression();
+                TranslatedExpression global = super.getGlobalTranslationList();
+                last = global.getLastExpression();
                 inner = true;
             }
 
             last = checkMultiplyAddition(exp, following_exp, last);
 
             inner_trans.replaceLastExpression( last );
-            if ( inner ) local_inner_exp.replaceLastExpression( inner_trans.toString() );
-            else local_inner_exp.addTranslatedExpression( inner_trans );
+            if ( inner ) localTranslations.replaceLastExpression( inner_trans.toString() );
+            else localTranslations.addTranslatedExpression( inner_trans );
 
             // if there was in error, its over here...
             if ( isInnerError() ) return false;
         }
 
-        // this should not happen. It means the algorithm reached the end but a bracket is
-        // left open.
+        // this should not happen. It means the algorithm reached the end but a bracket is left open.
         throw new TranslationException(
                 "Reached the end of sequence but a bracket is left open: " +
                 open_bracket.symbol,
@@ -276,18 +292,21 @@ public class SequenceTranslator extends AbstractListTranslator {
     }
 
     private String checkMultiplyAddition( PomTaggedExpression exp, List<PomTaggedExpression> exp_list, String part ){
+        String MULTIPLY = getConfig().getMULTIPLY();
+        TranslatedExpression global = getGlobalTranslationList();
+
         if ( addMultiply( exp, exp_list ) /*&& !part.matches(".*\\*\\s*")*/ ){
             part += MULTIPLY;
             // the global list already got each element before,
             // so simply replace the last if necessary
-            String tmp = global_exp.getLastExpression();
-            global_exp.replaceLastExpression(tmp + MULTIPLY);
+            String tmp = global.getLastExpression();
+            global.replaceLastExpression(tmp + MULTIPLY);
         } else if ( addSpace( exp, exp_list ) ) {
             part += SPACE;
             // the global list already got each element before,
             // so simply replace the last if necessary
-            String tmp = global_exp.getLastExpression();
-            global_exp.replaceLastExpression(tmp + SPACE);
+            String tmp = global.getLastExpression();
+            global.replaceLastExpression(tmp + SPACE);
         }
         return part;
     }

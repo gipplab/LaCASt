@@ -1,7 +1,6 @@
-package gov.nist.drmf.interpreter.common.symbols;
+package gov.nist.drmf.interpreter.common.exceptions;
 
-import gov.nist.drmf.interpreter.common.Keys;
-import gov.nist.drmf.interpreter.common.TranslationException;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 
 /**
  * Created by AndreG-P on 14.03.2017.

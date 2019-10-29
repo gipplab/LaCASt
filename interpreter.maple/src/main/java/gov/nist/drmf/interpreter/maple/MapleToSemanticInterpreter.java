@@ -1,17 +1,14 @@
 package gov.nist.drmf.interpreter.maple;
 
 import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
-import gov.nist.drmf.interpreter.common.GlobalPaths;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.InformationLogger;
-import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.maple.grammar.TranslationFailures;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
-import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.Console;
 import java.io.IOException;
 import java.util.Scanner;
 

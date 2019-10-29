@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.common;
+package gov.nist.drmf.interpreter.common.constants;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

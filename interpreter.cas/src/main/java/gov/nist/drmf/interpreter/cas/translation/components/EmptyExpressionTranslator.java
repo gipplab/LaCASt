@@ -2,8 +2,7 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
-import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -11,6 +10,7 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +22,22 @@ import java.util.List;
 public class EmptyExpressionTranslator extends AbstractTranslator {
     private static final Logger LOG = LogManager.getLogger(EmptyExpressionTranslator.class.getName());
 
+    private TranslatedExpression localTranslations;
+
+    public EmptyExpressionTranslator(AbstractTranslator abstractTranslator) {
+        super(abstractTranslator);
+        this.localTranslations = new TranslatedExpression();
+    }
+
+    @Nullable
+    @Override
+    public TranslatedExpression getTranslatedExpressionObject() {
+        return localTranslations;
+    }
+
     @Override
     public boolean translate(PomTaggedExpression expression ) throws TranslationException {
+        LOG.debug("Triggers empty expression translator process.");
         // switch-case over tags
         String tag = expression.getTag();
         ExpressionTags expTag = ExpressionTags.getTagByKey(tag);
@@ -43,9 +57,11 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
             case sequence: // in that case use the SequenceTranslator
                 // this don't write into global_exp!
                 // it only delegates the parsing process to the SequenceTranslator
-                SequenceTranslator p = new SequenceTranslator();
+                SequenceTranslator p = new SequenceTranslator(super.getSuperTranslator());
                 if ( p.translate( expression ) ) {
-                    local_inner_exp.addTranslatedExpression( p.getTranslatedExpressionObject() );
+                    localTranslations.addTranslatedExpression(
+                            p.getTranslatedExpressionObject()
+                    );
                     return true;
                 } else return false;
             case fraction:
@@ -58,7 +74,7 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
                 // balanced expressions are expressions in \left( x \right)
                 List<PomTaggedExpression> sub_exps = expression.getComponents();
                 TranslatedExpression tr = parseGeneralExpression( sub_exps.remove( 0 ), sub_exps );
-                local_inner_exp.addTranslatedExpression( tr );
+                localTranslations.addTranslatedExpression( tr );
                 return !isInnerError();
             case sub_super_script:
             case numerator:
@@ -90,9 +106,9 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
         }
 
         // first of all, translate components into translation
-        local_inner_exp.addTranslatedExpression(
+        localTranslations.addTranslatedExpression(
                 // try to translate the basic function
-                SemanticLatexTranslator.getBasicFunctionParser().translate(
+                getConfig().getBasicFunctionsTranslator().translate(
                         comps,
                         tag.tag()
                 )
@@ -101,9 +117,11 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
         // finally, global_exp needs to be updated
         // it doesn't contains sub expressions because
         // extractMultipleSubExpressions already deleted it.
-        global_exp.addTranslatedExpression(
-                local_inner_exp
+        TranslatedExpression global = super.getGlobalTranslationList();
+        global.addTranslatedExpression(
+                localTranslations
         );
+
         // everything goes well
         return true;
     }
@@ -126,7 +144,9 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
             TranslatedExpression inner_exp = parseGeneralExpression(exp, sub_expressions);
             int num = inner_exp.mergeAll();
             components.add(inner_exp);
-            global_exp.removeLastNExps( num ); // remove all previous sub-elements
+
+            TranslatedExpression global = super.getGlobalTranslationList();
+            global.removeLastNExps( num ); // remove all previous sub-elements
         }
 
         String[] output = new String[components.size()];

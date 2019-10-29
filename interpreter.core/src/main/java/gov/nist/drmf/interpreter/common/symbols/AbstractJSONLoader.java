@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -101,7 +102,7 @@ public abstract class AbstractJSONLoader {
      * Translates a given symbol from a given language to another given language.
      * The given symbol must be in language {@param from_language}. The string
      * languages must be the same as in the json file. Take a look at
-     * {@link gov.nist.drmf.interpreter.common.Keys#KEY_LATEX} for example.
+     * {@link Keys#KEY_LATEX} for example.
      * @param from_language the given symbol must be in this language
      * @param to_language another language
      * @param symbol symbol to translate

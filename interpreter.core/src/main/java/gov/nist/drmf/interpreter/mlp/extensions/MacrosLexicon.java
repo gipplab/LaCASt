@@ -1,7 +1,6 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
-import gov.nist.drmf.interpreter.common.GlobalPaths;
-import jdk.nashorn.internal.objects.Global;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import mlp.Lexicon;
 import mlp.LexiconFactory;
 

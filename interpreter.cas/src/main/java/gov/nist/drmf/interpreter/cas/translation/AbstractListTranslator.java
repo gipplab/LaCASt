@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
+import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.MathTerm;
@@ -11,23 +11,52 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 
+import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.PATTERN_BASIC_OPERATIONS;
+
 /**
  * TODO
  *
  * @author Andre Greiner-Petter
  */
 public abstract class AbstractListTranslator extends AbstractTranslator {
-    public static final String SPECIAL_SYMBOL_PATTERN_FOR_SPACES =
-            "[\\^\\/\\_\\!|]";
+    protected AbstractListTranslator(AbstractTranslator abstractTranslator) {
+        super(abstractTranslator);
+    }
 
-    public static final String PATTERN_BASIC_OPERATIONS =
-            ".*[,;.+\\-*/\\^_!{}\\[\\]<>\\s=|]|\\\\[ci]dot.*";
+    /**
+     * Use this method only when you know what you are doing.
+     *
+     * @param exp single expression gets wrapped into a list
+     * @return true if the parsing process finished correctly
+     */
+    @Override
+    public boolean translate(PomTaggedExpression exp) {
+        List<PomTaggedExpression> list = new LinkedList<>();
+        list.add(exp);
+        return translate(exp);
+    }
 
-    public static final String ABSOLUTE_VAL_TERM_TEXT_PATTERN = "\\\\?\\|";
+    /**
+     * The general method to translate a list of descendants.
+     * The list should not contain the first element.
+     *
+     * For instance, let us assume our list contains:
+     *      ( 2 + 3 )
+     * Than this method should translate only the following commands:
+     *        2 + 3 )
+     *
+     * @param following_exp the descendants of a previous expression
+     * @return true if the parsing process finished successful
+     */
+    public abstract boolean translate(PomTaggedExpression exp, List<PomTaggedExpression> following_exp);
 
-    // Array of parsed strings
-    protected String[] components;
-
+    /**
+     * Checks weather a multiplication symbol should be added after the current {@param currExp} and
+     * the following element (which is the first element of {@param exp_list}).
+     * @param currExp the current node
+     * @param exp_list the following siblings
+     * @return true if between current and the next sibling should be a multiplication symbol, otherwise false
+     */
     public static boolean addMultiply(PomTaggedExpression currExp, List<PomTaggedExpression> exp_list) {
         try {
             if (exp_list == null || exp_list.size() < 1) {
@@ -107,45 +136,5 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
         } catch (Exception e) {
             return true;
         }
-    }
-
-    /**
-     * Use this method only when you know what you are doing.
-     *
-     * @param exp single expression gets wrapped into a list
-     * @return true if the parsing process finished correctly
-     */
-    @Override
-    public boolean translate(PomTaggedExpression exp) {
-        List<PomTaggedExpression> list = new LinkedList<>();
-        list.add(exp);
-        return translate(exp);
-    }
-
-    /**
-     * The general method to translate a list of descendants.
-     * The list should not contain the first element.
-     *
-     * For instance, let us assume our list contains:
-     *      ( 2 + 3 )
-     * Than this method should translate only the following commands:
-     *        2 + 3 )
-     *
-     * @param following_exp the descendants of a previous expression
-     * @return true if the parsing process finished successful
-     */
-    //public abstract boolean translate(List<PomTaggedExpression> following_exp);
-
-    public abstract boolean translate(PomTaggedExpression exp, List<PomTaggedExpression> following_exp);
-
-    /**
-     * Returns parsed components. Be aware this could be null or
-     * could contain older results!
-     *
-     * @return array of components.
-     */
-    @Nullable
-    public String[] getComponents() {
-        return components;
     }
 }

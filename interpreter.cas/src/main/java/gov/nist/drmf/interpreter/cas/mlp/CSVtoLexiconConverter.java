@@ -1,8 +1,8 @@
 package gov.nist.drmf.interpreter.cas.mlp;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
-import gov.nist.drmf.interpreter.common.GlobalPaths;
-import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.FeatureSet;
 import mlp.Lexicon;

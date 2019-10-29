@@ -6,15 +6,11 @@ package gov.nist.drmf.interpreter.examples;/*
 
 import java.io.IOException;
 import java.util.*;
-import java.nio.file.Paths;
 
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
-import mlp.FeatureSet;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
-
-import gov.nist.drmf.interpreter.common.GlobalPaths;
 
 /**
  *

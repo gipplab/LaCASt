@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.common;
+package gov.nist.drmf.interpreter.common.constants;
 
 /**
  * @author Andre Greiner-Petter

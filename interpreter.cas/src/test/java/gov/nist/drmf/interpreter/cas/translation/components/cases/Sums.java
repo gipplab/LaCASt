@@ -45,17 +45,17 @@ public enum Sums implements TestCase {
             "Sum[n, {n, 0, 10}] = 2 n"
     ),
     SIMPLE_MULTI_SUM_INSIDE(
-            "\\sum_{n=0}^{10} \\sum_{n=0}^{10} k n",
+            "\\sum_{n=0}^{10} \\sum_{k=0}^{10} k n",
             "sum(sum(k*n, k = 0..10), n = 0..10)",
             "Sum[Sum[k n, {k, 0, 10}], {n, 0, 10}]"
     ),
     SIMPLE_MULTI_SUM_INSIDE_GAP(
-            "\\sum_{n=0}^{10} 1 + \\sum_{n=0}^{10} k n",
+            "\\sum_{n=0}^{10} 1 + \\sum_{k=0}^{10} k n",
             "sum(1 + sum(k*n, k = 0..10), n = 0..10)",
             "Sum[1 + Sum[k n, {k, 0, 10}], {n, 0, 10}]"
     ),
     SIMPLE_MULTI_SUM_OUTSIDE(
-            "\\sum_{n=0}^{10} n \\sum_{n=0}^{10} k",
+            "\\sum_{n=0}^{10} n \\sum_{k=0}^{10} k",
             "sum(n, n = 0..10)*sum(k, k = 0..10)",
             "Sum[n, {n, 0, 10}] Sum[k, {k, 0, 10}]"
     ),

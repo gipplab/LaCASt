@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.maple.translation.components;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
-import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;

@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.common;
+package gov.nist.drmf.interpreter.common.constants;
 
 import java.util.regex.Pattern;
 
@@ -55,19 +55,4 @@ public class GlobalConstants {
             "#\n" +
             "# Or in linux it could looks like this:\n" +
             "# maple_bin=/home/maple2016/bin.X86_64_LINUX";
-
-    /**
-     * A flag to identify the CAS at runtime. It is used for the
-     * translation from DLMF to a given CAS.
-     */
-    public static String CAS_KEY = "";
-
-    /**
-     * A flag to translate not the direct translation but the alternative translation.
-     * It is used by the MacroParser (interpreter.cas).
-     *
-     * It is probably useless because the alternative translation is not fully implemented
-     * yet.
-     */
-    public static boolean ALTERNATIVE_MODE = false;
 }
