@@ -55,14 +55,19 @@ public enum Sums implements TestCase {
             "Sum[1 + Sum[k n, {k, 0, 10}], {n, 0, 10}]"
     ),
     SIMPLE_MULTI_SUM_OUTSIDE(
-            "\\sum_{n=0}^{10} n \\sum_{k=0}^{10} k",
-            "sum(n, n = 0..10)*sum(k, k = 0..10)",
-            "Sum[n, {n, 0, 10}] Sum[k, {k, 0, 10}]"
+            "\\sum_{n=0}^{10} n + \\sum_{k=0}^{10} k",
+            "sum(n, n = 0..10) + sum(k, k = 0..10)",
+            "Sum[n, {n, 0, 10}] + Sum[k, {k, 0, 10}]"
+    ),
+    SIMPLE_MULTI_SUM_MULTIPLY(
+            "\\sum_{n=0}^{10} n \\cdot \\sum_{k=0}^{10} k",
+            "sum(n*sum(k, k = 0..10), n = 0..10)",
+            "Sum[n*Sum[k, {k, 0, 10}], {n, 0, 10}]"
     ),
     SUB_ONLY_RANGE(
             "\\sum_{-100 \\leq i < 100}i^2+2i+1",
-            "sum((i)^(2)+2i, i=-100..100-1)+1",
-            "Sum[(i)^(2)+2i, {i, -100, 100-1}]+1"
+            "sum((i)^(2)+2*i, i=-100..100-1)+1",
+            "Sum[(i)^(2)+2 i, {i, -100, 100-1}]+1"
     ),
     NORM_MULTIPLE_SUMMANDS_FUNCS(
             "\\sum_{i=0}^\\infty i^2\\log{i}^3+i(2+3)",
@@ -71,13 +76,13 @@ public enum Sums implements TestCase {
     ),
     NORM_MULTIPLE_SUMMANDS_EASY(
             "\\sum^{200}_{k=-3}3i+k+i^2",
-            "sum(3i+k, k = - 3..200)",
-            "Sum[3i+k, {k, -3, 200}]"
+            "sum(3*i+k, k = - 3..200)+(i)^(2)",
+            "Sum[3 i+k, {k, -3, 200}]+(i)^(2)"
     ),
     MULTI_VAR_SUM_MULTIPLE_SUMMANDS(
             "\\sum_{x, y = -\\infty}^{\\infty}\\sin{2^x}+\\cos{2^y}+23",
-            "sum(sum(sin((2)^(x))+cos((2)^(y)), y=-infinity..infinity), x=-infinity..infinity)",
-            "Sum[Sum[Sin[(2)^(x)]+Cos[(2)^(y)], {y, -Infinity, Infinity}], {x, -Infinity, Infinity}]"
+            "sum(sum(sin((2)^(x))+cos((2)^(y)), y=-infinity..infinity), x=-infinity..infinity) + 23",
+            "Sum[Sum[Sin[(2)^(x)]+Cos[(2)^(y)], {y, -Infinity, Infinity}], {x, -Infinity, Infinity}] + 23"
     ),
     NORM_MULTIPLE_SUMMANDS_ARG_GAP(
             "\\sum_{j=0}^{r}\\tan{x^3}^2\\sin{j}+\\frac{2^j}{x-3}",
@@ -86,18 +91,18 @@ public enum Sums implements TestCase {
     ),
     NORM_MULTIPLE_SUMMANDS_ARG_GAP_2(
             "\\sum_{x=-\\infty}^{\\infty}x^2(x+2)(y^3-3)-2x+y-2",
-            "sum((x)^(2)*(x + 2)((y)^(3) - 3)-2x, x = - infinity..infinity)",
-            "Sum[(x)^(2) (x + 2)((y)^(3) - 3)-2x, {x, -Infinity, Infinity}]"
+            "sum((x)^(2)*(x + 2)*((y)^(3) - 3)-2*x, x = - infinity..infinity)+y-2",
+            "Sum[(x)^(2) (x + 2) ((y)^(3) - 3)-2 x, {x, -Infinity, Infinity}]+y-2"
     ),
     NORM_MULTIPLE_SUMMANDS_HARD(
             "\\sum_{n=1}^{\\infty}\\frac{(-1)^{n}2^{2n-1}B_{2n}}{n(2n)!}z^{2n}",
-            "sum(((- 1)^(n)* (2)^(2*n - 1)* B[2*n])/(n*factorial((2*n)))(z)^(2*n), n = 1..infinity)",
-            "Sum[Divide[(- 1)^(n)  (2)^(2 n - 1)  Subscript[B, 2 n],n (2 n)!](z)^(2 n), {n, 1, Infinity}]"
+            "sum(((- 1)^(n)* (2)^(2*n - 1)* B[2*n])/(n*factorial(2*n))*(z)^(2*n), n = 1..infinity)",
+            "Sum[Divide[(- 1)^(n)  (2)^(2 n - 1)  Subscript[B, 2 n],n (2 n)!] (z)^(2 n), {n, 1, Infinity}]"
     ),
     NORM_MULTIPLE_SUMMANDS_HARD_FRAC(
             "\\sum^{50}_{r=0}r\\cos{\\Theta}r(3r^2-3)/23x+3q",
-            "sum(rcos(Theta)r(3*(r)^(2) - 3)/23x, r = 0..50)",
-            "Sum[rCos[\\[CapitalTheta]]r(3 (r)^(2) - 3)/23x, {r, 0, 50}]"
+            "sum(r*cos(Theta)*r*(3*(r)^(2) - 3)/23*x, r = 0..50) + 3*q",
+            "Sum[r Cos[\\[CapitalTheta]]r(3 (r)^(2) - 3)/23x, {r, 0, 50}]+ 3 q"
     ),
     NORM_MULTIPLE_SUMMANDS_HARD_LONG(
             "\\sum_{x=0}^{\\infty}x^3(3x+2y)^{25x^2}(x+2)x^2(x+3)+2x(x+2)^2",

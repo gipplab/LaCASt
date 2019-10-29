@@ -62,4 +62,19 @@ public class SimpleTranslationTests {
         assertEquals(eout, out);
     }
 
+    @Test
+    public void simpleLong() {
+        String in = "\\sqrt{\\frac{1}{\\iunit}}";
+        String eout = "sqrt((1)/(I))";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    public void log() {
+        String in = "\\log{x}^3";
+        String eout = "log(x)^3";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
 }

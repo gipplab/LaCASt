@@ -588,7 +588,7 @@ public class MacroTranslator extends AbstractListTranslator {
             try {
                 pattern = pattern.replace(
                         GlobalConstants.POSITION_MARKER + Integer.toString(i),
-                        components[i]
+                        stripMultiParentheses(components[i])
                 );
             } catch ( NullPointerException npe ){
                 throw new TranslationException("Argument of macro seems to be missing for " + macro_term, TranslationException.Reason.NULL_ARGUMENT);

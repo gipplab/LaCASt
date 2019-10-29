@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
@@ -19,12 +20,12 @@ import java.util.List;
  * @see ExpressionTags
  * @author Andre Greiner-Petter
  */
-public class EmptyExpressionTranslator extends AbstractTranslator {
-    private static final Logger LOG = LogManager.getLogger(EmptyExpressionTranslator.class.getName());
+public class TaggedExpressionTranslator extends AbstractTranslator {
+    private static final Logger LOG = LogManager.getLogger(TaggedExpressionTranslator.class.getName());
 
     private TranslatedExpression localTranslations;
 
-    public EmptyExpressionTranslator(AbstractTranslator abstractTranslator) {
+    public TaggedExpressionTranslator(AbstractTranslator abstractTranslator) {
         super(abstractTranslator);
         this.localTranslations = new TranslatedExpression();
     }
@@ -127,31 +128,40 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
     }
 
     /**
+     * A wrapper method for {@link #extractMultipleSubExpressions(List)}.
+     *
+     * @param top_expression parent expression of underlying sub-expressions.
+     * @return true if the parsing process finished successful
+     * @see #extractMultipleSubExpressions(List)
+     */
+    private String[] extractMultipleSubExpressions( PomTaggedExpression top_expression ){
+        return extractMultipleSubExpressions(top_expression.getComponents());
+    }
+
+    /**
      * A helper method to extract some sub-expressions. Useful for short
      * functions like \frac{a}{b}. The given argument is the parent expression
      * of several children. As an example a fraction expression has two children,
      * the numerator and the denominator.
      *
-     * @param top_expression parent expression of underlying sub-expressions.
+     * @param sub_expressions parent expression of underlying sub-expressions.
      * @return true if the parsing process finished successful
      */
-    private String[] extractMultipleSubExpressions( PomTaggedExpression top_expression ){
-        List<PomTaggedExpression> sub_expressions = top_expression.getComponents();
+    private String[] extractMultipleSubExpressions( List<PomTaggedExpression> sub_expressions ) {
         ArrayList<TranslatedExpression> components = new ArrayList<>(sub_expressions.size());
+        TranslatedExpression global = super.getGlobalTranslationList();
 
         while ( !sub_expressions.isEmpty() ){
             PomTaggedExpression exp = sub_expressions.remove(0);
             TranslatedExpression inner_exp = parseGeneralExpression(exp, sub_expressions);
             int num = inner_exp.mergeAll();
             components.add(inner_exp);
-
-            TranslatedExpression global = super.getGlobalTranslationList();
             global.removeLastNExps( num ); // remove all previous sub-elements
         }
 
         String[] output = new String[components.size()];
         for ( int i = 0; i < output.length; i++ )
-            output[i] = components.get(i).toString();
+            output[i] = AbstractListTranslator.stripMultiParentheses(components.get(i).toString());
 
         return output;
     }
