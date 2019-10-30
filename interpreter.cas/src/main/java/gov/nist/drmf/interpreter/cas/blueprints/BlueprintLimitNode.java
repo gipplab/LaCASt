@@ -212,8 +212,10 @@ public class BlueprintLimitNode {
                 }
             }
             else { // must be another token, only exact matches are allowed!
-                if ( ref.latex.matches("\\\\in") ) parentTree.overSet(true);
-                if ( !pattern.latex.equals(ref.latex) ) return false;
+                if ( ref.latex.matches("\\\\in") )
+                    parentTree.overSet(true);
+                if ( !pattern.latex.equals(ref.latex) )
+                    return false;
             }
         }
 

@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
+import gov.nist.drmf.interpreter.cas.blueprints.BlueprintLimitTree;
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -66,5 +68,13 @@ public class GeneralTest {
         String inner = "(x)/(y)";
         String innerOut = AbstractListTranslator.stripMultiParentheses(inner);
         assertEquals(inner, innerOut);
+    }
+
+    @Test
+    public void texPreprocessing() {
+        String l = "n \\hiderel{=} 1";
+        String out = BlueprintLimitTree.preCleaning(l);
+        assertEquals("n = 1", out);
+        assertFalse("=".matches("\\\\in"));
     }
 }

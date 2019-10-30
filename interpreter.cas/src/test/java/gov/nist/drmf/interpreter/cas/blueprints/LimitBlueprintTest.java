@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * @author Andre Greiner-Petter
@@ -166,6 +167,18 @@ public class LimitBlueprintTest {
         assertEquals("x", limit.getVars().get(0));
         assertEquals("Omega[n]", limit.getLower().get(0));
         assertTrue(limit.isLimitOverSet());
+
+        assertEquals(1, limit.getVars().size());
+        assertEquals(1, limit.getLower().size());
+    }
+
+    @Test
+    public void hideRelTest() {
+        String str = "n \\hiderel{=} 1";
+        Limits limit = btmaster.findMatchingLimit(str);
+        assertEquals("n", limit.getVars().get(0));
+        assertEquals("1", limit.getLower().get(0));
+        assertFalse(limit.isLimitOverSet());
 
         assertEquals(1, limit.getVars().size());
         assertEquals(1, limit.getLower().size());
