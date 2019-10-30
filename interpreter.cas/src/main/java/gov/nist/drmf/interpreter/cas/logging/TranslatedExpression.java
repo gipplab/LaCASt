@@ -126,6 +126,9 @@ public class TranslatedExpression {
     }
 
     /**
+     * This method extracts all terms that contains the given variables in {@param var}.
+     * The strategy is as following. Note that the first element is always part of the argument.
+     * 1)
      *
      * @param var
      * @param multiplyChar
@@ -150,36 +153,91 @@ public class TranslatedExpression {
         // check the rest of it
         // does the previous element ends with a multiplication symbol?
         boolean prevElementEndsWithMultiply = endsWithMultiply(cache.trans_exps.getLast(), multiplyChar);
+        boolean prevElementInnerCache = false;
 
         LinkedList<String> innerCache = new LinkedList<>();
 
         while ( !trans_exps.isEmpty() ){
             String element = trans_exps.removeFirst();
-            if ( prevElementEndsWithMultiply ) {
-                while ( !innerCache.isEmpty() ) { // contains element! so add it, but first, add remaining inner cache, if existing
+            if (    element.matches("^(?:.*[^\\p{Alpha}]|\\s*)" + varPattern + "(?:[^\\p{Alpha}].*|\\s*)$") //||
+                    //element.matches("^\\s*" + varPattern + "\\s*$")
+                    ) {
+                // contains element! so add it, but first, add remaining inner cache, if existing
+                while ( !innerCache.isEmpty() ) {
                     cache.trans_exps.addLast(innerCache.removeFirst());
                 } // now, inner cache is clean. add new element
                 cache.trans_exps.addLast(element);
+                prevElementInnerCache = false;
                 prevElementEndsWithMultiply = endsWithMultiply(element, multiplyChar);
-            } else if ( element.matches("\\s*([+-])\\s*") ){
-                // its multiple or so, so add if next element is a part
-                innerCache.addLast(element);
-            } else { // now, check if var exists
-                // the var must be a subexpression isolated from other letters (otherwise m appears in sum)
-                if ( element.matches(".*[^\\p{Alpha}]" + varPattern + "[^\\p{Alpha}].*") ||
-                        element.matches("^\\s*" + varPattern + "\\s*$")) {
-                    // contains element! so add it, but first, add remaining inner cache, if existing
-                    while ( !innerCache.isEmpty() ) {
-                        cache.trans_exps.addLast(innerCache.removeFirst());
-                    } // now, inner cache is clean. add new element
-                    cache.trans_exps.addLast(element);
+            } else { // in case it DOES not contain a var... move on, maybe it comes later
+                // the previous element stops with a multiply symbol, so it is part of the argument:
+                if ( prevElementEndsWithMultiply ) {
+                    if ( prevElementInnerCache ) {
+                        // the previous element went to innerCache, so fill up the innerCache
+                        innerCache.addLast(element);
+                    } else { // otherwise the previous element went to the cache directly, so put it there
+//                        //
+//                        while ( !innerCache.isEmpty() ) {
+//                            cache.trans_exps.addLast(innerCache.removeFirst());
+//                        } // now, inner cache is clean. add new element
+                        cache.trans_exps.addLast(element);
+                    }
+                    // note, here also, prev element does not change
                     prevElementEndsWithMultiply = endsWithMultiply(element, multiplyChar);
-                } else { // next element is NOT included! but maybe a later it comes...
-                    // so put it into the inner cache
+                } else if ( element.matches("\\s*[+-]\\s*") ){
+                    // next element is + or -... so fill up inner cache
                     innerCache.addLast(element);
+                    prevElementEndsWithMultiply = false;
+                    prevElementInnerCache = true;
+                } else if ( element.matches("\\s*[/*]\\s*") ){
+                    // multiply symbols may appear isolated in single elements. If so treat them as a multiply
+                    if ( prevElementInnerCache )
+                        innerCache.addLast(element);
+                    else cache.trans_exps.addLast(element);
+                    // note, prevElementInnerCache does not change here... of course
+                    prevElementEndsWithMultiply = true;
+                } else {
+                    // in any other case, its something not related, so just do the normal work
+                    innerCache.addLast(element);
+                    prevElementInnerCache = true;
                     prevElementEndsWithMultiply = endsWithMultiply(element, multiplyChar);
                 }
             }
+
+
+//            if ( prevElementEndsWithMultiply ) {
+//                if ( prevElementInnerCache ) { // connects to inner cache, not normal cache
+//                    innerCache.addLast(element);
+//                    prevElementInnerCache = true;
+//                } else { // connects to cache element
+//                    while ( !innerCache.isEmpty() ) { // contains element! so add it, but first, add remaining inner cache, if existing
+//                        cache.trans_exps.addLast(innerCache.removeFirst());
+//                    } // now, inner cache is clean. add new element
+//                    cache.trans_exps.addLast(element);
+//                    prevElementInnerCache = false;
+//                }
+//                prevElementEndsWithMultiply = endsWithMultiply(element, multiplyChar);
+//            } else if ( element.matches("\\s*([+-])\\s*") ){
+//                // its multiple or so, so add if next element is a part
+//                innerCache.addLast(element);
+//            } else { // now, check if var exists
+//                // the var must be a subexpression isolated from other letters (otherwise m appears in sum)
+//                if ( element.matches(".*[^\\p{Alpha}]" + varPattern + "[^\\p{Alpha}].*") ||
+//                        element.matches("^\\s*" + varPattern + "\\s*$")) {
+//                    // contains element! so add it, but first, add remaining inner cache, if existing
+//                    while ( !innerCache.isEmpty() ) {
+//                        cache.trans_exps.addLast(innerCache.removeFirst());
+//                    } // now, inner cache is clean. add new element
+//                    cache.trans_exps.addLast(element);
+//                    prevElementInnerCache = false;
+//                    prevElementEndsWithMultiply = endsWithMultiply(element, multiplyChar);
+//                } else { // next element is NOT included! but maybe a later it comes...
+//                    // so put it into the inner cache
+//                    innerCache.addLast(element);
+//                    prevElementInnerCache = true;
+//                    prevElementEndsWithMultiply = endsWithMultiply(element, multiplyChar);
+//                }
+//            }
         }
 
         if ( innerCache.isEmpty() ) {
@@ -196,8 +254,14 @@ public class TranslatedExpression {
         return cache;
     }
 
+    /**
+     * TODO ! not yet used the real multiply symbol
+     * @param expression
+     * @param multiply
+     * @return
+     */
     private boolean endsWithMultiply(String expression, String multiply) {
-        return expression.matches(".*\\*\\s*");
+        return expression.matches(".*[*/]\\s*");
     }
 
     public static void main(String[] args) {

@@ -77,4 +77,28 @@ public class SimpleTranslationTests {
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
+
+    @Test
+    public void cos() {
+        String in = "\\cos^2{x}";
+        String eout = "(cos(x))^(2)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    public void trickyMultiply() {
+        String in = "\\pi (t - (n+\\frac{1}{2}) \\tau)";
+        String eout = "(pi)/(sin(pi*(t -(n +(1)/(2))tau)))";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    public void fracMultiply() {
+        String in = "(\\frac{x}{y})+1";
+        String eout = "((x)/(y))+ 1";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
 }

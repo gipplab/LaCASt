@@ -199,6 +199,7 @@ public class BlueprintLimitTree {
         vars = new LinkedList<>();
         lowerLimits = new LinkedList<>();
         upperLimits = new LinkedList<>();
+        isOverSet = false;
     }
 
     public boolean matches(String texLimit) throws ParseException {

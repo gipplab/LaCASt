@@ -106,17 +106,17 @@ public enum Sums implements TestCase {
     ),
     NORM_MULTIPLE_SUMMANDS_HARD_LONG(
             "\\sum_{x=0}^{\\infty}x^3(3x+2y)^{25x^2}(x+2)x^2(x+3)+2x(x+2)^2",
-            "sum((x)^(3)*(3*x + 2*y)^(25*(x)^(2))*(x + 2)(x)^(2)*(x + 3)+2x(x + 2)^(2), x = 0..infinity)",
-            "Sum[(x)^(3) (3 x + 2 y)^(25 (x)^(2)) (x + 2)(x)^(2) (x + 3)+2x(x + 2)^(2), {x, 0, Infinity}]"
+            "sum((x)^(3)*(3*x + 2*y)^(25*(x)^(2))*(x + 2)*(x)^(2)*(x + 3)+2*x*(x + 2)^(2), x = 0..infinity)",
+            "Sum[(x)^(3) (3 x + 2 y)^(25 (x)^(2)) (x + 2) (x)^(2) (x + 3)+2 x (x + 2)^(2), {x, 0, Infinity}]"
     ),
     DLMF_NORM_EASY( // 6.6.5
             "\\sum_{n=0}^\\infty \\frac{\\opminus^n z^{2n+1}}{(2n+1)!(2n+1)}",
-            "sum(((-1)^(n)* (z)^(2*n + 1))/(factorial((2*n + 1))*(2*n + 1)), n = 0..infinity)",
+            "sum(((-1)^(n)* (z)^(2*n + 1))/(factorial(2*n + 1)*(2*n + 1)), n = 0..infinity)",
             "Sum[Divide[(-1)^(n)  (z)^(2 n + 1),(2 n + 1)!(2 n + 1)], {n, 0, Infinity}]"
     ),
     DLMF_ADVANCED_MULTI_ARG_EASY( // 29.6.36
             "\\sum_{p \\hiderel{=} 0}^{\\infty} (2p+1) B_{2p+1}",
-            "sum((2*p + 1)B[2*p + 1], p = 0..infinity)",
+            "sum((2*p + 1)*B[2*p + 1], p = 0..infinity)",
             "Sum[(2 p + 1)Subscript[B, 2 p + 1], {p, 0, Infinity}]"
     ),
     DLMF_MULTI_SUM_LONG( //22.12.2 all
@@ -136,22 +136,22 @@ public enum Sums implements TestCase {
     ),
     DLMF_MULTI_SUM_SPECIAL_FUNC( //10.23.4 all
             "\\sum_{k \\hiderel{=} 0}^{2n} \\opminus^k \\BesselJ{k}@{z} \\BesselJ{2n-k}@{z} + 2 \\sum_{k \\hiderel{=} 1}^\\infty \\BesselJ{k}@{z} \\BesselJ{2n+k}@{z} = 0",
-            "sum((-1)^(k)*BesselJ(k, z)BesselJ(2*n - k, z), k = 0..2*n) + 2*sum(BesselJ(k, z)BesselJ(2*n + k, z), k = 1..infinity) = 0",
-            "Sum[(-1)^(k) BesselJ[k, z]BesselJ[2 n - k, z], {k, 0, 2 n}] + 2 Sum[BesselJ[k, z]BesselJ[2 n + k, z], {k, 1, Infinity}] = 0"
+            "sum((-1)^(k)*BesselJ(k, z)*BesselJ(2*n - k, z), k = 0..2*n) + 2*sum(BesselJ(k, z)*BesselJ(2*n + k, z), k = 1..infinity) = 0",
+            "Sum[(-1)^(k) BesselJ[k, z] BesselJ[2 n - k, z], {k, 0, 2 n}] + 2 Sum[BesselJ[k, z] BesselJ[2 n + k, z], {k, 1, Infinity}] = 0"
     ),
     DLMF_MULTI_SUM_SPECIAL_FUNC_PART1( //10.23.4 part 1
             "\\sum_{k \\hiderel{=} 0}^{2n} \\opminus^k \\BesselJ{k}@{z} \\BesselJ{2n-k}@{z}",
-            "sum((-1)^(k)*BesselJ(k, z)BesselJ(2*n - k, z), k = 0..2*n)",
-            "Sum[(-1)^(k) BesselJ[k, z]BesselJ[2 n - k, z], {k, 0, 2 n}]"
+            "sum((-1)^(k)*BesselJ(k, z)*BesselJ(2*n - k, z), k = 0..2*n)",
+            "Sum[(-1)^(k) BesselJ[k, z] BesselJ[2 n - k, z], {k, 0, 2 n}]"
     ),
     DLMF_MULTI_SUM_SPECIAL_FUNC_PART2( //10.23.4 part 2
             "\\sum_{k \\hiderel{=} 1}^\\infty \\BesselJ{k}@{z} \\BesselJ{2n+k}@{z}",
-            "sum(BesselJ(k, z)BesselJ(2*n + k, z), k = 1..infinity)",
-            "Sum[BesselJ[k, z]BesselJ[2 n + k, z], {k, 1, Infinity}]"
+            "sum(BesselJ(k, z)*BesselJ(2*n + k, z), k = 1..infinity)",
+            "Sum[BesselJ[k, z] BesselJ[2 n + k, z], {k, 1, Infinity}]"
     ),
     DLMF_MULTI_SUM_SPECIAL_FUNC_LONG( //10.23.17 all
             "\\sum_{k=0}^{n-1} \\frac{(\\tfrac{1}{2} z)^k \\BesselJ{k}@{z}}{k! (n-k)} + \\sum_{m=1}^\\infty \\opminus^m \\frac{(n+2m) \\BesselJ{n+2m}@{z}}{m (n+m)}",
-            "sum((((1)/(2)*z)^(k)* BesselJ(k, z))/(factorial(k)*(n - k)), k = 0..n - 1) + sum((-1)^(m)*((n + 2*m)*BesselJ(n + 2*m, z))/(m*(n + m)), m = 1..infinity)",
+            "sum((((1)/(2)*z)^(k)*BesselJ(k, z))/(factorial(k)*(n - k)), k = 0..n - 1) + sum((-1)^(m)*((n + 2*m)*BesselJ(n + 2*m, z))/(m*(n + m)), m = 1..infinity)",
             "Sum[Divide[(Divide[1,2] z)^(k)  BesselJ[k, z],k!(n - k)], {k, 0, n - 1}] + Sum[(-1)^(k) Divide[(n + 2 k) BesselJ[n + 2 k, z],k (n + k)], {k, 1, Infinity}]"
     ),
     DLMF_MULTI_SUM_SPECIAL_FUNC_LONG_PART1( //10.23.17 part 1
@@ -176,22 +176,22 @@ public enum Sums implements TestCase {
     ),
     DLMF_NORM_POCHHAMMER( //35.7.3
             "\\sum_{k=0}^\\infty\\frac{\\Pochhammersym{a}{k} \\Pochhammersym{c-a}{k}\\Pochhammersym{b}{k} \\Pochhammersym{c-b}{k}}{k! \\, \\Pochhammersym{c}{2k} \\Pochhammersym{c-\\tfrac{1}{2}}{k}}(t_1 t_2)^k",
-            "sum((pochhammer(a, k)*pochhammer(c - a, k)*pochhammer(b, k)*pochhammer(c - b, k))/(factorial(k)*pochhammer(c, 2*k)*pochhammer(c -(1)/(2), k))(t[1] t[2])^(k), k = 0..infinity)",
-            "Sum[Divide[Pochhammer[a, k] Pochhammer[c - a, k] Pochhammer[b, k] Pochhammer[c - b, k],k! Pochhammer[c, 2 k] Pochhammer[c -Divide[1,2], k]](Subscript[t, 1] Subscript[t, 2])^(k), {k, 0, Infinity}]"
+            "sum((pochhammer(a, k)*pochhammer(c - a, k)*pochhammer(b, k)*pochhammer(c - b, k))/(factorial(k)*pochhammer(c, 2*k)*pochhammer(c -(1)/(2), k))*(t[1] t[2])^(k), k = 0..infinity)",
+            "Sum[Divide[Pochhammer[a, k] Pochhammer[c - a, k] Pochhammer[b, k] Pochhammer[c - b, k],k! Pochhammer[c, 2 k] Pochhammer[c -Divide[1,2], k]] (Subscript[t, 1] Subscript[t, 2])^(k), {k, 0, Infinity}]"
     ),
     DLMF_INNER_SUMS_TRICKY( //25.16.11
             "\\sum_{n=1}^\\infty \\frac{1}{n^s} \\sum_{m=1}^n \\frac{1}{m^z}",
-            "sum((1)/((n)^(s))sum((1)/((m)^(z)), m = 1..n), n = 1..infinity)",
-            "Sum[Divide[1,(n)^(s)]Sum[Divide[1,(m)^(z)], {m, 1, n}], {n, 1, Infinity}]"
+            "sum((1)/((n)^(s))*sum((1)/((m)^(z)), m = 1..n), n = 1..infinity)",
+            "Sum[Divide[1,(n)^(s)] Sum[Divide[1,(m)^(z)], {m, 1, n}], {n, 1, Infinity}]"
     ),
     DLMF_SET_INDEX( //18.2.6
             "\\sum_{x \\in X} x \\left( p_n(x) \\right)^2 w_x",
-            "sum(x(p[n](x))^(2)*w[x], x in X)",
-            "Sum[x(Subscript[p, n](x))^(2) Subscript[w, x], {x, X}]"
+            "sum(x*(p[n](x))^(2)*w[x], x in X)",
+            "Sum[x (Subscript[p, n](x))^(2) Subscript[w, x], {x, X}]"
     ),
     DLMF_SUM_CHAIN_SPECIAL_FUNC( //16.11.2
             "\\sum_{m=1}^p \\sum_{k=0}^\\infty \\frac{\\opminus^k}{k!} \\EulerGamma@{a_m + k} \\left(\\frac{\\prod_{\\ell=1}^p \\EulerGamma@{a_\\ell - a_m - k}} {\\prod_{\\ell=1}^q \\EulerGamma@{b_\\ell - a_m - k}}\\right) z^{-a_m - k}",
-            "sum(sum(((-1)^(k))/(factorial(k))GAMMA(a[m] + k)((product(GAMMA(a[ell] - a[m] - k), ell = 1..p))/(product(GAMMA(b[ell] - a[m] - k), ell = 1..q)))(z)^(- a[m] - k), k = 0..infinity), m = 1..p)",
+            "sum(sum(((-1)^(k))/(factorial(k))*GAMMA(a[m] + k)((product(GAMMA(a[ell] - a[m] - k), ell = 1..p))/(product(GAMMA(b[ell] - a[m] - k), ell = 1..q)))(z)^(- a[m] - k), k = 0..infinity), m = 1..p)",
             "Sum[Sum[Divide[(-1)^(k),k!]Gamma[Subscript[a, m] + k](Divide[Product[Gamma[Subscript[a, \\[ScriptL]] - Subscript[a, m] - k], {\\[ScriptL], 1, p}],Product[Gamma[Subscript[b, \\[ScriptL]] - Subscript[a, m] - k], {\\[ScriptL], 1, q}]])(z)^(- Subscript[a, m] - k), {k, 0, Infinity}], {m, 1, p}]"
     ),
     DLMF_NORM_DOTS( //17.2.49
@@ -201,12 +201,12 @@ public enum Sums implements TestCase {
     ),
     DLMF_NORM_SPECIAL_FUNC( //8.15.1
             "\\sum_{k=0}^\\infty \\incgamma@{a+k}{x} \\frac{(1-\\lambda)^k}{k!}",
-            "sum(GAMMA(a + k)-GAMMA(a + k, x)((1 - lambda)^(k))/(factorial(k)), k = 0..infinity)",
+            "sum(GAMMA(a + k)-GAMMA(a + k, x)*((1 - lambda)^(k))/(factorial(k)), k = 0..infinity)",
             "Sum[Gamma[a + k, 0, x]Divide[(1 - \\[Lambda])^(k),k!], {k, 0, Infinity}]"
     ),
     DLMF_NORM_ABSTRACT( //26.18.3
             "\\sum_{t \\hiderel{=} 1}^n \\opminus^t r_t(B) (n-t)!",
-            "sum((-1)^(t)*r[t](B)factorial((n - t)), t = 1..n)",
+            "sum((-1)^(t)*r[t](B)*factorial(n - t), t = 1..n)",
             "Sum[(-1)^(t) Subscript[r, t](B)(n - t)!, {t, 1, n}]"
     ),
     DLMF_NORM_MULTIPLE_SUM( //20.6.8
@@ -221,7 +221,7 @@ public enum Sums implements TestCase {
     ),
     DLMF_NORM_LONG_SIMPLE( //7.6.4
             "\\sum_{n=0}^\\infty \\frac{\\opminus^n (\\frac{1}{2} \\pi)^{2n}}{(2n)! (4n+1)} z^{4n+1}",
-            "sum(((-1)^(n)*((1)/(2)*pi)^(2*n))/(factorial((2*n))*(4*n + 1))(z)^(4*n + 1), n = 0..infinity)",
+            "sum(((-1)^(n)*((1)/(2)*pi)^(2*n))/(factorial(2*n)*(4*n + 1))*(z)^(4*n + 1), n = 0..infinity)",
             "Sum[Divide[(-1)^(n)  (Divide[1,2] \\[Pi])^(2 n),(2 n)!(4 n + 1)](z)^(4 n + 1), {n, 0, Infinity}]"
     ),
     DLMF_NORM_MULTIPLE_SUM_LONG( //24.4.24 with removed \choose
@@ -236,7 +236,7 @@ public enum Sums implements TestCase {
     ),
     DLMF_MULTI_VAR_EQUALITY( //26.8.9
             "\\sum_{n, k \\hiderel{=} 0}^{\\infty} \\Stirlingnumbers@{n}{k} \\frac{x^n}{n!}y^k = (1+x)^y",
-            "sum(sum(Stirling1(n, k)((x)^(n))/(factorial(n))(y)^(k), k=0..infinity), n=0..infinity) = (1+x)^(y)",
+            "sum(sum(Stirling1(n, k)*((x)^(n))/(factorial(n))*(y)^(k), k=0..infinity), n=0..infinity) = (1+x)^(y)",
             "Sum[Sum[StirlingS1[n, k]Divide[(x)^(n),n!](y)^(k), {k, 0, Infinity}], {n, 0, Infinity}]"
     ),
     DLMF_RANGE_VAR_LONG( //25.9.1 all

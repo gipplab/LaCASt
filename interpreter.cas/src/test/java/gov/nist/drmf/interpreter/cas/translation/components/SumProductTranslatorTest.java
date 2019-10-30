@@ -250,7 +250,7 @@ messed with onlyLower
                     slt.translate(in);
                     String result = slt.getTranslatedExpression();
 
-                    System.out.println("Result: " + result);
+                    System.out.println("Result:   " + result);
 
                     result = result.replaceAll("\\s+", "");
                     System.out.println("Expected: "+ expected);
