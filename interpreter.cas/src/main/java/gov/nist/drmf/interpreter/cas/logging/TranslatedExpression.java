@@ -261,7 +261,7 @@ public class TranslatedExpression {
      * @return
      */
     private boolean endsWithMultiply(String expression, String multiply) {
-        return expression.matches(".*[*/]\\s*");
+        return expression.matches(".*["+multiply+"/]\\s*");
     }
 
     public static void main(String[] args) {

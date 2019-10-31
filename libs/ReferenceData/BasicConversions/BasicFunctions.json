@@ -34,13 +34,13 @@
       "MLP": "exclamation point",
       "LaTeX": "$0!",
       "Maple": "factorial($0)",
-      "Mathematica": "$0!"
+      "Mathematica": "($0)!"
     },
     "Double Factorial": {
       "MLP": "double exclamation point",
       "LaTeX": "$0!!",
       "Maple": "doublefactorial($0)",
-      "Mathematica": "$0!!"
+      "Mathematica": "($0)!!"
     },
     "Modulo": {
       "MLP": "modulo",
@@ -114,7 +114,7 @@
       "MLP": "General Multiplication",
       "LaTeX": "\\idot",
       "Maple": "*",
-      "Mathematica": " "
+      "Mathematica": "*"
     },
     "Multiply": {
       "MLP": "operation",
@@ -126,7 +126,7 @@
       "MLP": "operation",
       "LaTeX": "\\idot",
       "Maple": "*",
-      "Mathematica": " "
+      "Mathematica": "*"
     },
     "Addition": {
       "MLP": "plus",

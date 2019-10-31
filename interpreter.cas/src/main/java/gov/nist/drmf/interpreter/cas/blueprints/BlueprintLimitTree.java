@@ -62,7 +62,7 @@ public class BlueprintLimitTree {
         varPattern = varPattern.replaceAll("\\*", "\\\\*");
 
         return Pattern.compile(
-                "("+lowBPattern+"|"+varPattern+"|"+upBPattern+")[*]?(\\d+)"
+                "("+lowBPattern+"|"+varPattern+"|"+upBPattern+").?(\\d+)"
         );
     }
 

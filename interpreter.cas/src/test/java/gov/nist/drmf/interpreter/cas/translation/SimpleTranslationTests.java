@@ -141,4 +141,12 @@ public class SimpleTranslationTests {
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
+
+    @Test
+    public void subscriptMultiplyTest() {
+        String in = "x_t x";
+        String eout = "x[t]*x";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
 }

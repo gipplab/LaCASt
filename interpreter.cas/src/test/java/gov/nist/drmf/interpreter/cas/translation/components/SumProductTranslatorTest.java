@@ -168,108 +168,51 @@ public class SumProductTranslatorTest {
 
     };
 
-    private static SemanticLatexTranslator slt;
-    private static PomParser parser;
-
-    //    @BeforeEach
-    private void mathematicaSetUp() throws IOException {
-        slt = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
-        slt.init(GlobalPaths.PATH_REFERENCE_DATA);
-        parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA);
-        parser.addLexicons(MacrosLexicon.getDLMFMacroLexicon());
-    }
+    private static SemanticLatexTranslator sltMap, sltMath;
 
     @BeforeEach
     void mapleSetUp() throws IOException {
-        slt = new SemanticLatexTranslator(Keys.KEY_MAPLE);
-        slt.init(GlobalPaths.PATH_REFERENCE_DATA);
+        sltMap = new SemanticLatexTranslator(Keys.KEY_MAPLE);
+        sltMap.init(GlobalPaths.PATH_REFERENCE_DATA);
 
-//        parser = new PomParser(GlobalPaths.PATH_REFERENCE_DATA);
-//        parser.addLexicons(MacrosLexicon.getDLMFMacroLexicon());
+        sltMath = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
+        sltMath.init(GlobalPaths.PATH_REFERENCE_DATA);
     }
-
-//    @Test
-//    public void singleTest() {
-//        String first = "hello";
-//        String second = "   Hello   ";
-//
-//        assertThat(first, equalToIgnoringWhiteSpace(second));
-//    }
 
     @TestFactory
-    Stream<DynamicTest> sumTest() {
-        return test(Sums.values());
+    Stream<DynamicTest> sumsMapleTest() {
+        return test(Sums.values(), true);
     }
 
-//    @TestFactory
-//    Stream<DynamicTest>  prodMathematicaTest() {
-//        List<String> expressions = Arrays.asList(prods);
-//        List<String> output = Arrays.asList(translatedMathematicaProds);
-//        return test(expressions, output);
-//    }
-/*
-messed with onlyLower
     @TestFactory
-    Stream<DynamicTest> limMathematicaTest(){
-        List<String> expressions = Arrays.asList(lims);
-        List<String> output = Arrays.asList(translatedMathematicaLims);
-        return test(expressions, output);
+    Stream<DynamicTest> sumsMathematicaTest() {
+        return test(Sums.values(), false);
     }
 
-
- */
-//    @TestFactory
-//    Stream<DynamicTest>  sumMapleTest() {
-//        mapleSetUp();
-//        List<String> expressions = Arrays.asList(sums);
-//        List<String> output = Arrays.asList(translatedMapleSums);
-//        return test(expressions, output);
-//    }
-
-//    @TestFactory
-//    Stream<DynamicTest>  prodMapleTest() {
-//        mapleSetUp();
-//        List<String> expressions = Arrays.asList(prods);
-//        List<String> output = Arrays.asList(translatedMapleProds);
-//        return test(expressions, output);
-//    }
-/*
-    @TestFactory
-    Stream<DynamicTest> limMapleTest(){
-        mapleSetUp();
-        List<String> expressions = Arrays.asList(lims);
-        List<String> output = Arrays.asList(translatedMapleLims);
-        return test(expressions, output);
-    }
-
- */
-
-
-    private Stream<DynamicTest> test(TestCase[] cases) {
+    private Stream<DynamicTest> test(TestCase[] cases, boolean maple) {
         return Arrays.stream(cases)
                 .map(exp -> DynamicTest.dynamicTest(exp.getTitle() + ": " + exp.getTeX(), () -> {
                     LOG.debug("Testing " + exp.getTitle());
                     LOG.trace("Input:  " + exp.getTeX());
                     String in = exp.getTeX();
-                    String expected = exp.getMaple();
-                    slt.translate(in);
-                    String result = slt.getTranslatedExpression();
+                    String expected = maple ? exp.getMaple() : exp.getMathematica();
 
-                    LOG.trace("Result: " + result);
-                    System.out.println("In:       " + exp.getTeX());
-                    System.out.println("Result:   " + result);
+                    if ( maple ) {
+                        sltMap.translate(in);
+                    } else {
+                        sltMath.translate(in);
+                    }
+
+                    String result = maple ?
+                            sltMap.getTranslatedExpression() :
+                            sltMath.getTranslatedExpression();
+
+                    LOG.debug("Expected: " + expected);
+                    LOG.debug("Result:   " + result);
 
                     result = result.replaceAll("\\s+", "");
-                    System.out.println("Expected: "+ expected);
 
                     assertThat(result, ignoresAllWhitespaces(expected));
                 }));
     }
-
-    @AfterEach
-    void tearDown() {
-        slt = null;
-        parser = null;
-    }
-
 }
