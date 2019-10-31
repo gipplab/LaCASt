@@ -410,11 +410,11 @@ X1:\FerrersPX\FerrersP[\mu]{\nu}@{x};LegendreP($1, $0, $2);3;1;This translation 
 \FerrersQ{\nu}@{x};LegendreQ($0, $1);2;1;This translation is only correct, when you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to invoke forget(evalf) and forget(simplify), otherwise these functions never noticed the changes of _EnvLegendreCut.;;
 X1:\FerrersQX\FerrersQ[\mu]{\nu}@{x};LegendreQ($1, $0, $2);3;1;This translation is only correct, when you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to invoke forget(evalf) and forget(simplify), otherwise these functions never noticed the changes of _EnvLegendreCut.;;
 \assLegendreP{$0}@{$1};LegendreP($0, $1);2;1;If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.;;
-X1:\LegendrePX\assLegendreP[$1]{$0}@{$2};LegendreP($1, $0, $2);3;1;If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.;;
+X1:\assLegendrePX\assLegendreP[$1]{$0}@{$2};LegendreP($1, $0, $2);3;1;If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.;;
 \assLegendreQ{$0}@{$1};LegendreQ($0, $1);2;1;If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.;;
-X1:\LegendreQX\assLegendreQ[$1]{$0}@{$2};LegendreQ($1, $0, $2);3;1;If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.;;
+X1:\assLegendreQX\assLegendreQ[$1]{$0}@{$2};LegendreQ($1, $0, $2);3;1;If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.;;
 \assLegendreOlverQ{\nu}@{z};X2:LegendreQXLegendreQ($0,$1)/GAMMA($0+1);2;1;;;
-X1:\LegendreBlackQX\assLegendreOlverQ[\mu]{\nu}@{z};X3:LegendreQXexp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1);3;1;;;
+X1:\assLegendreOlverQX\assLegendreOlverQ[\mu]{\nu}@{z};X3:LegendreQXexp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1);3;1;;;
 \DunsterQ{\tau}@{x};;2;1;;;
 X1:\FerrersHatQX\DunsterQ[\mu]{\tau}@{x};;3;1;;;
 ;;;;;;
@@ -545,8 +545,8 @@ In this notation, m,n,p,q are not needed for Maple (Maple -> LaTeX translation c
 \Weierstrasssigmainvar@@{$0}{$1}{$2};WeierstrassSigma($0, $1, $2);3;;;;
 \Weierstrasssigmalatt@@{z}{\Lattice{L}};;2;1;;;
 ;;;;;;
-\WhittakerconfhyperM{$0}{$1}@{$2};WhittakerM($0, $1, $2);3;1;;;
-\WhittakerconfhyperW{$0}{$1}@{$2};WhittakerW($0, $1, $2);3;1;;;
+\WhittakerconfhyperM{$0}{$1}@{$2};WhittakerM($0, $1, $2);3;3;;;
+\WhittakerconfhyperW{$0}{$1}@{$2};WhittakerW($0, $1, $2);3;3;;;
 ;;;;;;
 \Riemannzeta@{$0};Zeta($0);1;1;;;
 \Hurwitzzeta@{$1}{$2};Zeta(0, $0, $1);3;1;;;

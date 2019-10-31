@@ -47,7 +47,7 @@ public class IndependentTranslatorTests {
     public void parallelTranslatorsTest() {
         String in = "\\JacobiP{\\alpha}{\\beta}{n}@{\\cos@{a\\Theta\\sqrt{\\frac{1}{\\iunit}}}}";
         String expOutMaple = "JacobiP(n, alpha, beta, cos(a*Theta*sqrt((1)/(I))))";
-        String expOutMath = "JacobiP[n, \\[Alpha], \\[Beta], Cos[a \\[CapitalTheta] Sqrt[Divide[1,I]]]]";
+        String expOutMath = "JacobiP[n, \\[Alpha], \\[Beta], Cos[a*\\[CapitalTheta]*Sqrt[Divide[1,I]]]]";
 
         ForkJoinPool pool = new ForkJoinPool(2);
         String[] outMaple = new String[]{""};

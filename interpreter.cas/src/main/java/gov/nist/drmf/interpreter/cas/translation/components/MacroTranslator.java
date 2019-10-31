@@ -346,7 +346,7 @@ public class MacroTranslator extends AbstractListTranslator {
                     deriv_order_num++;
                     following_exps.remove(0);
                 } else if (tag.equals(MathTermTags.caret)) {
-                    if (isLeibnizNotation(following_exps)) {
+                    if (isLeibnizNotation(following_exps)) { // TODO fix leibniz quatsch
                         if( ( deriv_order == null || deriv_order.isEmpty() ) && deriv_order_num == 0 )
                             parseLeibnizNotation(following_exps);
                         else throwDifferentiationException();
