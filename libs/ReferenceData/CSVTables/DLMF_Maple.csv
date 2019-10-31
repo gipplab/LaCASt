@@ -19,7 +19,7 @@ DLMF;Maple;Number of Variables;Slot of Differentiation;DLMF-Maple-Comment;Maple-
 ;;;;;;
 \asec@@{$0};arcsec($0);1;;;;
 \acsc@@{$0};arccsc($0);1;;;;
-\acot@@{$0};arccot($0);1;;"Maple defines another branch cut than DLMF for the invert cotangent function. You can use an alternative translation to avoid that. With the arctan alternative you have the same branch cuts as DLMF. See also ""According to Arbamowitz and Stegun or arccoth needn't be uncouth"" by R.M. Corless, D.J. Jeffrey, S.M. Watt.";;arctan(1/($0)) || I/2*ln(($0-I)/($0+I) )
+\acot@@{$0};arccot($0);1;;Maple defines another branch cut than DLMF for the invert cotangent function. You can use an alternative translation to avoid that. With the arctan alternative you have the same branch cuts as DLMF. See also 'According to Arbamowitz and Stegun or arccoth needn't be uncouth' by R.M. Corless, D.J. Jeffrey, S.M. Watt.;;arctan(1/($0)) || I/2*ln(($0-I)/($0+I) )
 ;;;;;;
 \asinh@@{$0};arcsinh($0);1;;;;
 \acosh@@{$0};arccosh($0);1;;;;
@@ -109,11 +109,11 @@ X1:\sqrtX\sqrt[$1]{$0};surd($1, $0);2;;;;
 \cDiff[x];;;;;;
 \deriv{$0}{$1};diff($0, $1);2;;;;
 \pderiv{$0}{$1};diff($0, $1);2;;;;
-X1:\derivX\deriv[$0]{$1}{$2};diff($1, [$2$($0)]);2;;;;
-X1:\pderivX\pderiv[$0]{$1}{$2};diff($1, [$2$($0)]);2;;;;
+X1:\derivX\deriv[$0]{$1}{$2};diff($1, [$2$($0)]);3;;;;
+X1:\pderivX\pderiv[$0]{$1}{$2};diff($1, [$2$($0)]);3;;;;
 ;;;;;;
 \ideriv{$0}{$1};diff($0, $1);2;;;;
-X1:\iderivX\ideriv[$0]{$1}{$2};diff($1, [$2$($0)]);2;;;;
+X1:\iderivX\ideriv[$0]{$1}{$2};diff($1, [$2$($0)]);3;;;;
 ;;;;;;
 \diff{x};;;;;;
 \pdiff{x};;;;;;

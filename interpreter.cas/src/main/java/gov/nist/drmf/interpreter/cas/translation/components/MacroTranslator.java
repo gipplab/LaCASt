@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.TEMPORARY_VARIABLE_NAME;
+
 /**
  * This translation parses all of the DLMF macros. A DLMF macro
  * has always a feature set named dlmf-macro {@link Keys#KEY_DLMF_MACRO}.
@@ -60,7 +62,7 @@ public class MacroTranslator extends AbstractListTranslator {
             numOfVars             = Integer.MIN_VALUE,
             deriv_order_num       = 0;
 
-    private Integer slotOfDifferentiation = Integer.MIN_VALUE;
+    private int slotOfDifferentiation = 1; //Integer.MIN_VALUE;
 
     private String DLMF_example;
 
@@ -153,7 +155,7 @@ public class MacroTranslator extends AbstractListTranslator {
         try { // true slot is argument slot + numOfParams
             slotOfDifferentiation = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset, CAS)) + numOfParams;
         } catch(NumberFormatException e) {
-            slotOfDifferentiation = null; // if slot isn't in lexicon, value is null
+            slotOfDifferentiation = 1; // if slot isn't in lexicon, value is null
         }
 
         // now store additional information about the translation
@@ -337,7 +339,7 @@ public class MacroTranslator extends AbstractListTranslator {
                 MathTermTags tag = MathTermTags.getTagByKey(first_term.getTag());
                 if (tag == null) break;
                 else if (tag.equals(MathTermTags.prime)) {
-                    if (slotOfDifferentiation == null) {
+                    if (slotOfDifferentiation < 1) {
                         throwSlotError();
                     } else if ( deriv_order != null && !deriv_order.isEmpty() )
                         throwDifferentiationException();
@@ -431,7 +433,7 @@ public class MacroTranslator extends AbstractListTranslator {
                 MathTermTags tag = MathTermTags.getTagByKey(first_term.getTag());
                 if (tag == null) break;
                 else if (tag.equals(MathTermTags.prime)) {
-                    if (slotOfDifferentiation == null) {
+                    if (slotOfDifferentiation < 1) {
                         throwSlotError();
                     } else if ( deriv_order != null && !deriv_order.isEmpty() )
                         throwDifferentiationException();
@@ -506,7 +508,7 @@ public class MacroTranslator extends AbstractListTranslator {
 
     // checks whether term after caret is a left parenthesis, meaning there is Leibniz notation
     private boolean isLeibnizNotation( List<PomTaggedExpression> following_exps ){
-        if( slotOfDifferentiation == null ) return false;
+        if( slotOfDifferentiation < 1 ) return false;
         MathTerm term;
         try{
             PomTaggedExpression caret    = following_exps.get(0);
@@ -575,7 +577,7 @@ public class MacroTranslator extends AbstractListTranslator {
         String subbedExpression = null;
         if( deriv_order != null && !deriv_order.isEmpty() ){ // substitute out argument in slot of differentiation
             subbedExpression = components[slotOfDifferentiation - 1];
-            components[slotOfDifferentiation - 1] = "temp"; //TODO make global constant
+            components[slotOfDifferentiation - 1] = TEMPORARY_VARIABLE_NAME;
         }
         if( isWronskian ){ // plugs in variable of differentiation
             String[] newComponents = new String[ components.length + 1 ];

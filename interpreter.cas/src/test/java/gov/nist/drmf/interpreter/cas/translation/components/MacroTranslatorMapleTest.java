@@ -29,12 +29,6 @@ class MacroTranslatorMapleTest {
         slt.init(GlobalPaths.PATH_REFERENCE_DATA);
     }
 
-    /*
-    @AfterEach
-    void tearDown() {
-    }
-    */
-
     private static final String[] expression = {
             "\\AiryAi@{x}",
             "\\AiryAi'@{x}",

@@ -250,9 +250,9 @@ public enum Sums implements TestCase {
             "Sum[Sum[(-1)^(j)*(Sum[Divide[(e)^(2*Pi*i*(k - j)*r/ m),(1 - (e)^(2*Pi*i*r/ m))^(n)], {r, 1, m - 1}])*(j + m*x)^(n - 1), {j, 0, k - 1}], {k, 1, n}]"
     ),
     DLMF_NORM_SUM_PROD_HARD( //31.15.1
-            "\\sum_{p=1}^{\\infty}{\\deriv[2]{w}{z} + \\left( \\sum_{j=1}^N \\frac{\\gamma_j}{z - a_j} \\right) \\deriv{w}{z} + \\frac{\\Phi(z)}{\\prod_{j=1}^N (z - a_j)} w}",
-            "sum(diff(w, [z$(2)])+(sum((gamma[j])/(z - a[j]), j = 1..N))*diff(w, z)+(Phi*(z))/(product((z - a[j]), j = 1..N))*w, p = 1..infinity)",
-            "Sum[D[w, {z, 2}] +(Sum[Divide[Subscript[\\[Gamma], j],z - Subscript[a, j]], {j, 1, N}])*D[w, z] +Divide[\\[CapitalPhi]*(z),Product[(z - Subscript[a, j]), {j, 1, N}]] w, {p, 1, Infinity}]"
+            "\\deriv[2]{w}{z} + \\left( \\sum_{j=1}^N \\frac{\\gamma_j}{z - a_j} \\right) \\deriv{w}{z} + \\frac{\\Phi(z)}{\\prod_{j=1}^N (z - a_j)}w",
+            "diff(w, [z$(2)])+(sum((gamma[j])/(z - a[j]), j = 1..N))*diff(w, z)+(Phi*(z))/(product(z - a[j], j = 1..N))*w",
+            "D[w, {z, 2}] +(Sum[Divide[Subscript[\\[Gamma], j],z - Subscript[a, j]], {j, 1, N}])*D[w, z] +Divide[\\[CapitalPhi]*(z),Product[z - Subscript[a, j], {j, 1, N}]]*w"
     ),
     DLMF_MULTI_VAR_EQUALITY( //26.8.9
             "\\sum_{n, k \\hiderel{=} 0}^{\\infty} \\Stirlingnumbers@{n}{k} \\frac{x^n}{n!}y^k = (1+x)^y",

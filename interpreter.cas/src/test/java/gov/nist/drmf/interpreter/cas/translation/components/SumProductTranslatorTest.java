@@ -77,58 +77,6 @@ public class SumProductTranslatorTest {
             "Limit[Product[Limit[Product[(1 +Divide[z,(m +(n -Divide[1,2])\\[Tau]) \\[Pi]]), {m, -M, M}], M -> Infinity], {n, 1-N, N}], N -> Infinity]",
     };
 
-    private static final String[] translatedMapleProds = {
-            "product((x)^(3), x=- infinity..infinity)",
-            "product(sin(i)+sum((i)^(2)+jproduct(k, k = 0..infinity)+j, j=n..m)+i, i=n..m)",
-            "product((k)^(3), i = 0..infinity)",
-            "product((x)^(2)+(x)^(3), x in P)",
-            "product((i)^(2)+product((i)^(3)-3j+product(j+2+sin(l), l = 0..k), j = 0..k), i = 0..k)",
-            "product((i)^(2)*, i = 0..10)",
-            "product((i)^(2)*product(i, j = 2..12), i = 0..10)",
-            "product(sum(i+sin((j)^(2)), j = 2..12), i = 0..10)",
-            "product(product((j)^(2), j = 2..12)+i, i = 0..10)",
-            "product(product(sum((j + k)^(2), k = - infinity..infinity)-3j, j = 2..12)+2+(log(i))^(2), i = 0..10)",
-            "product(sin(product((k)^(3)-2k, k = 0..r)), i = 0..infinity)",
-            "product(xsin((x)^(2))cos(t), x = 0..infinity)",
-            "product(product((h + j + t - 1)/(h + j - 1), j = 1..s), h = 1..r)",
-            "product((a +(n - k)*c)/(a + b +(2*n - k - 1)*c), k = 1..m)",
-            "product((1 - (q)^(2*n))(1 - 2*(q)^(2*n)* cos(2*z) + (q)^(4*n)), n = 1..infinity)",
-            "product((1 -(4*(z)^(2))/((2*n - 1)^(2)* (pi)^(2))), n = 1..infinity)",
-            "product((1 - (q)^(2*n))(1 + (q)^(2*n))^(2), n = 1..infinity)",
-            "product((1 + sum(f((p)^(r)), r = 1..infinity)), p)",
-            "product((a +(n - k)c), k = 1..m)",
-            "product((1)/((1 - (q)^(5*n + 1))*(1 - (q)^(5*n + 4))), n = 0..infinity)",
-            "product((sin(pi*(2*n*omega[3] + z)/(2*omega[1]))*sin(pi*(2*n*omega[3] - z)/(2*omega[1])))/((sin(pi*n*omega[3]/ omega[1]))^(2)), n = 1..infinity)",
-            "product((t - k), k = n[0]..n[1])",
-
-    };
-
-    private static final String[] translatedMathematicaProds = {
-            "Product[(x)^(3), {x, - Infinity, Infinity}]",
-            "Product[Sin[i]+Sum[(i)^(2)+jProduct[k, {k, 0, Infinity}]+j, {j, n, m}]+i, {i, n, m}]",
-            "Product[(k)^(3), {i, 0, Infinity}]",
-            "Product[(x)^(2)+(x)^(3), {x, P}]",
-            "Product[(i)^(2)+Product[(i)^(3)-3j+Product[j+2+Sin[l], {l, 0, k}], {j, 0, k}], {i, 0, k}]",
-            "Product[(i)^(2) , {i, 0, 10}]",
-            "Product[(i)^(2) Product[i, {j, 2, 12}], {i, 0, 10}]",
-            "Product[Sum[i+Sin[(j)^(2)], {j, 2, 12}], {i, 0, 10}]",
-            "Product[Product[(j)^(2), {j, 2, 12}]+i, {i, 0, 10}]",
-            "Product[Product[Sum[(j + k)^(2), {k, -Infinity, Infinity}]-3j, {j, 2, 12}]+2+(Log[i])^(2), {i, 0, 10}]",
-            "Product[Sin[Product[(k)^(3)-2k, {k, 0, r}]], {i, 0, Infinity}]",
-            "Product[xSin[(x)^(2)]Cos[t], {x, 0, Infinity}]",
-            "Product[Product[Divide[h + j + t - 1,h + j - 1], {j, 1, s}], {h, 1, r}]",
-            "Product[Divide[a +(n - k) c,a + b +(2 n - k - 1) c], {k, 1, m}]",
-            "Product[(1 - (q)^(2 n))(1 - 2 (q)^(2 n)  Cos[2 z] + (q)^(4 n)), {n, 1, Infinity}]",
-            "Product[(1 -Divide[4 (z)^(2),(2 n - 1)^(2)  (\\[Pi])^(2)]), {n, 1, Infinity}]",
-            "Product[(1 - (q)^(2 n))(1 + (q)^(2 n))^(2), {n, 1, Infinity}]",
-            "Product[(1 + Sum[f((p)^(r)), {r, 1, Infinity}]), {p, p}]",
-            "Product[(a +(n - k)c), {k, 1, m}]",
-            "Product[Divide[1,(1 - (q)^(5 n + 1)) (1 - (q)^(5 n + 4))], {n, 0, Infinity}]",
-            "Product[Divide[Sin[\\[Pi] (2 n Subscript[\\[Omega], 3] + z)/(2 Subscript[\\[Omega], 1])] Sin[\\[Pi] (2 n Subscript[\\[Omega], 3] - z)/(2 Subscript[\\[Omega], 1])],(Sin[\\[Pi] n Subscript[\\[Omega], 3]/ Subscript[\\[Omega], 1]])^(2)], {n, 1, Infinity}]",
-            "Product[(t - k), {k, Subscript[n, 0], Subscript[n, 1]}]",
-
-    };
-
     private static SemanticLatexTranslator sltMap, sltMath;
 
     @BeforeEach

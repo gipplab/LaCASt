@@ -77,7 +77,7 @@ public class MLP {
 //            eq = "\\deriv{}{x} S^{(1)}_{mn}(\\gamma,x)";
             eq = "\\sum_{n=0}^{10} n + \\cpi = \\sum_{n=0}^{10} n + \\cpi < \\leq \\frac{\\sum_{n} n}{n}";
             eq = "\\sqrt{\\frac{1}{\\iunit}}";
-            eq = "a+{b+c}";
+            eq = "\\int_{0}^{1} \\theta \\mathrm{d}\\theta";
 //            eq = "n_2";
 
             System.out.println();
