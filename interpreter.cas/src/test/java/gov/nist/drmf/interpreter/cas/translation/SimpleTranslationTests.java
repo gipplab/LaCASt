@@ -71,9 +71,17 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void log() {
-        String in = "\\log{x}^3";
-        String eout = "log(x)^3";
+    public void sinPower() {
+        String in = "\\sin{x}^3";
+        String eout = "(sin(x))^(3)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    public void cosPowerArgument() {
+        String in = "\\cos{x^3}";
+        String eout = "cos((x)^(3))";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
@@ -89,7 +97,7 @@ public class SimpleTranslationTests {
     @Test
     public void trickyMultiply() {
         String in = "\\pi (t - (n+\\frac{1}{2}) \\tau)";
-        String eout = "(pi)/(sin(pi*(t -(n +(1)/(2))tau)))";
+        String eout = "pi*(t -(n +(1)/(2))*tau)";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
@@ -98,6 +106,38 @@ public class SimpleTranslationTests {
     public void fracMultiply() {
         String in = "(\\frac{x}{y})+1";
         String eout = "((x)/(y))+ 1";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    public void fracMultiply2() {
+        String in = "(\\frac{x}{y})x";
+        String eout = "((x)/(y))* x";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    public void paraMultiplyTest() {
+        String in = "(x+y)(x-y)";
+        String eout = "(x + y)*(x - y)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    public void plusMinusMultiplyTest() {
+        String in = "(t+\\frac{1}{2}-(n+1))";
+        String eout = "(t +(1)/(2)-(n + 1))";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    public void derivTest() {
+        String in = "\\deriv[2]{w}{z}";
+        String eout = "diff(w, [z$(2)]";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }

@@ -235,6 +235,7 @@ public class BlueprintLimitNode {
     private boolean possibleVar(BlueprintLimitNode node){
         return node.tag.equals("letter")
                 || node.tag.equals("Latin")
+                || node.tag.equals("special math letter")
                 || node.tag.equals(GREEK_TAG)
                 || node.tag.equals("alphanumeric");
     }

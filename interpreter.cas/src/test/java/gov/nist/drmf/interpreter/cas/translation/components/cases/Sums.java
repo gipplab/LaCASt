@@ -9,6 +9,11 @@ public enum Sums implements TestCase {
             "sum(n, n = 0..10)",
             "Sum[n, {n, 0, 10}]"
     ),
+    SIMPLE_LONG_LIMITS(
+            "\\sum_{n=0}^{m+1}{n}",
+            "sum(n, n = 0..m + 1)",
+            "Sum[n, {n, 0, m + 1}]"
+    ),
     SIMPLE_BEFORE(
             "\\cpi + \\sum_{n=0}^{10} n",
             "Pi + sum(n, n = 0..10)",
@@ -64,6 +69,21 @@ public enum Sums implements TestCase {
             "sum(n*sum(k, k = 0..10), n = 0..10)",
             "Sum[n*Sum[k, {k, 0, 10}], {n, 0, 10}]"
     ),
+    SIMPLE_MULTI_SUM_IN_PARENTHESIS(
+            "\\sum_{n=0}^{10} \\left( n + \\sum_{k=0}^{10} k \\right)",
+            "sum(n + sum(k, k = 0..10), n = 0..10)",
+            "Sum[n + Sum[k, {k, 0, 10}], {n, 0, 10}]"
+    ),
+    SIMPLE_MULTI_SUM_SHARE_VAR(
+            "\\sum_{n=0}^{10} n + \\sum_{n=0}^{10} n",
+            "sum(n, n = 0..10) + sum(n, n = 0..10)",
+            "Sum[n, {n, 0, 10}] + Sum[n, {n, 0, 10}]"
+    ),
+    SIMPLE_MULTI_SUM_LONG_LIMIT(
+            "\\sum_{n=0}^{10} n + \\sum_{m=0}^{k+1} m",
+            "sum(n, n = 0..10) + sum(m, m = 0..k+1)",
+            "Sum[n, {n, 0, 10}] + Sum[m, {m, 0, k+1}]"
+    ),
     SUB_ONLY_RANGE(
             "\\sum_{-100 \\leq i < 100}i^2+2i+1",
             "sum((i)^(2)+2*i, i=-100..100-1)+1",
@@ -71,8 +91,8 @@ public enum Sums implements TestCase {
     ),
     NORM_MULTIPLE_SUMMANDS_FUNCS(
             "\\sum_{i=0}^\\infty i^2\\log{i}^3+i(2+3)",
-            "sum((i)^(2)*(log(i))^(3)+i(2 + 3), i = 0..infinity)",
-            "Sum[(i)^(2) (Log[i])^(3)+i(2 + 3), {i, 0, Infinity}]"
+            "sum((i)^(2)*(log(i))^(3)+i*(2 + 3), i = 0..infinity)",
+            "Sum[(i)^(2) (Log[i])^(3)+i (2 + 3), {i, 0, Infinity}]"
     ),
     NORM_MULTIPLE_SUMMANDS_EASY(
             "\\sum^{200}_{k=-3}3i+k+i^2",
@@ -121,17 +141,17 @@ public enum Sums implements TestCase {
     ),
     DLMF_MULTI_SUM_LONG( //22.12.2 all
             "\\sum_{n=-\\infty}^{\\infty} \\frac{\\pi}{\\sin@{\\pi (t - (n+\\frac{1}{2}) \\tau)}} = \\sum_{n=-\\infty}^{\\infty} \\left( \\sum_{m=-\\infty}^{\\infty} \\frac{(-1)^m}{t - m - (n+\\frac{1}{2}) \\tau} \\right)",
-            "sum((pi)/(sin(pi*(t -(n +(1)/(2))tau))), n = - infinity..infinity) = sum((sum(((- 1)^(m))/(t - m -(n +(1)/(2))*tau), m = - infinity..infinity)), n = - infinity..infinity)",
+            "sum((pi)/(sin(pi*(t -(n +(1)/(2))*tau))), n = - infinity..infinity) = sum(sum(((- 1)^(m))/(t - m -(n +(1)/(2))*tau), m = - infinity..infinity), n = - infinity..infinity)",
             "Sum[Divide[\\[Pi],Sin[\\[Pi] (t -(n +Divide[1,2])\\[Tau])]], {n, -Infinity, Infinity}] = Sum[(Sum[Divide[(- 1)^(m),t - m -(n +Divide[1,2]) \\[Tau]], {m, -Infinity, Infinity}]), {n, -Infinity, Infinity}]"
     ),
     DLMF_MULTI_SUM_LONG_PART1( //22.12.2 part 1
             "\\sum_{n=-\\infty}^{\\infty}\\frac{\\pi}{\\sin@{\\pi (t - (n+\\frac{1}{2}) \\tau)}}",
-            "sum((pi)/(sin(pi*(t -(n +(1)/(2))tau))), n = - infinity..infinity)",
-            "Sum[Divide[\\[Pi],Sin[\\[Pi] (t -(n +Divide[1,2])\\[Tau])]], {n, -Infinity, Infinity}]"
+            "sum((pi)/(sin(pi*(t -(n +(1)/(2))*tau))), n = - infinity..infinity)",
+            "Sum[Divide[\\[Pi],Sin[\\[Pi] (t -(n +Divide[1,2]) \\[Tau])]], {n, -Infinity, Infinity}]"
     ),
     DLMF_MULTI_SUM_LONG_PART2( //22.12.2 part 2
             "\\sum_{n=-\\infty}^{\\infty} \\left( \\sum_{m=-\\infty}^{\\infty}\\frac{(-1)^m}{t - m - (n+\\frac{1}{2}) \\tau}\\right)",
-            "sum((sum(((- 1)^(m))/(t - m -(n +(1)/(2))*tau), m = - infinity..infinity)), n = - infinity..infinity)",
+            "sum(sum(((- 1)^(m))/(t - m -(n +(1)/(2))* tau), m = - infinity..infinity), n = - infinity..infinity)",
             "Sum[(Sum[Divide[(- 1)^(m),t - m -(n +Divide[1,2]) \\[Tau]], {m, -Infinity, Infinity}]), {n, -Infinity, Infinity}]"
     ),
     DLMF_MULTI_SUM_SPECIAL_FUNC( //10.23.4 all
@@ -166,12 +186,12 @@ public enum Sums implements TestCase {
     ),
     DLMF_NORM_EASY_2( //22.12.5 part 1
             "\\sum_{n=-\\infty}^{\\infty}\\frac{\\pi}{\\sin@{\\pi (t+\\frac{1}{2}-(n+\\frac{1}{2}) \\tau)}}",
-            "sum((pi)/(sin(pi*(t +(1)/(2)-(n +(1)/(2))tau))), n = - infinity..infinity)",
+            "sum((pi)/(sin(pi*(t +(1)/(2)-(n +(1)/(2))*tau))), n = - infinity..infinity)",
             "Sum[Divide[\\[Pi],Sin[\\[Pi] (t +Divide[1,2]-(n +Divide[1,2])\\[Tau])]], {n, -Infinity, Infinity}]"
     ),
     DLMF_INNER_SUMS( //22.12.5 part 2
             "\\sum_{n=-\\infty}^{\\infty} \\left( \\sum_{m=-\\infty}^{\\infty} \\frac{(-1)^m}{t + \\frac{1}{2} - m - (n+\\frac{1}{2}) \\tau}\\right)",
-            "sum((sum(((- 1)^(m))/(t +(1)/(2)- m -(n +(1)/(2))*tau), m = - infinity..infinity)), n = - infinity..infinity)",
+            "sum(sum(((- 1)^(m))/(t +(1)/(2)- m -(n +(1)/(2))* tau), m = - infinity..infinity), n = - infinity..infinity)",
             "Sum[(Sum[Divide[(- 1)^(m),t +Divide[1,2]- m -(n +Divide[1,2]) \\[Tau]], {m, -Infinity, Infinity}]), {n, -Infinity, Infinity}]"
     ),
     DLMF_NORM_POCHHAMMER( //35.7.3
@@ -191,8 +211,8 @@ public enum Sums implements TestCase {
     ),
     DLMF_SUM_CHAIN_SPECIAL_FUNC( //16.11.2
             "\\sum_{m=1}^p \\sum_{k=0}^\\infty \\frac{\\opminus^k}{k!} \\EulerGamma@{a_m + k} \\left(\\frac{\\prod_{\\ell=1}^p \\EulerGamma@{a_\\ell - a_m - k}} {\\prod_{\\ell=1}^q \\EulerGamma@{b_\\ell - a_m - k}}\\right) z^{-a_m - k}",
-            "sum(sum(((-1)^(k))/(factorial(k))*GAMMA(a[m] + k)((product(GAMMA(a[ell] - a[m] - k), ell = 1..p))/(product(GAMMA(b[ell] - a[m] - k), ell = 1..q)))(z)^(- a[m] - k), k = 0..infinity), m = 1..p)",
-            "Sum[Sum[Divide[(-1)^(k),k!]Gamma[Subscript[a, m] + k](Divide[Product[Gamma[Subscript[a, \\[ScriptL]] - Subscript[a, m] - k], {\\[ScriptL], 1, p}],Product[Gamma[Subscript[b, \\[ScriptL]] - Subscript[a, m] - k], {\\[ScriptL], 1, q}]])(z)^(- Subscript[a, m] - k), {k, 0, Infinity}], {m, 1, p}]"
+            "sum(sum(((-1)^(k))/(factorial(k))*GAMMA(a[m] + k)*((product(GAMMA(a[ell] - a[m] - k), ell = 1..p))/(product(GAMMA(b[ell] - a[m] - k), ell = 1..q)))*(z)^(- a[m] - k), k = 0..infinity), m = 1..p)",
+            "Sum[Sum[Divide[(-1)^(k),k!]Gamma[Subscript[a, m] + k](Divide[Product[Gamma[Subscript[a, \\[ScriptL]] - Subscript[a, m] - k], {\\[ScriptL], 1, p}],Sum[Gamma[Subscript[b, \\[ScriptL]] - Subscript[a, m] - k], {\\[ScriptL], 1, q}]])(z)^(- Subscript[a, m] - k), {k, 0, Infinity}], {m, 1, p}]"
     ),
     DLMF_NORM_DOTS( //17.2.49
             "\\sum_{n \\hiderel{=} 1}^\\infty \\frac{q^{n^2}}{(1 - q) (1 - q^2) \\cdots (1 - q^n)}",
@@ -211,7 +231,7 @@ public enum Sums implements TestCase {
     ),
     DLMF_NORM_MULTIPLE_SUM( //20.6.8
             "\\sum_{n=-\\infty}^{\\infty} \\sum_{m=-\\infty}^{\\infty} (m - \\tfrac{1}{2} + (n-\\tfrac{1}{2}) \\tau)^{-2j}",
-            "sum(sum((m -(1)/(2)+(n -(1)/(2))tau)^(- 2*j), m = - infinity..infinity), n = - infinity..infinity)",
+            "sum(sum((m -(1)/(2)+(n -(1)/(2))*tau)^(- 2*j), m = - infinity..infinity), n = - infinity..infinity)",
             "Sum[Sum[(m -Divide[1,2]+(n -Divide[1,2])\\[Tau])^(- 2 j), {m, -Infinity, Infinity}], {n, -Infinity, Infinity}]"
     ),
     DLMF_NORM_POWER_SUMMANDS( //20.11.3
@@ -226,7 +246,7 @@ public enum Sums implements TestCase {
     ),
     DLMF_NORM_MULTIPLE_SUM_LONG( //24.4.24 with removed \choose
             "\\sum_{k=1}^n \\sum_{j=0}^{k-1} \\opminus^j\\left( \\sum_{r=1}^{m-1} \\frac{e^{2\\cpi i (k-j) r/m}}{(1 - e^{2\\cpi ir/m})^n} \\right) (j+m*x)^{n-1}",
-            "sum(sum((-1)^(j)*(sum(((e)^(2*pi*i*(k - j)*r/ m))/((1 - (e)^(2*pi*i*r/ m))^(n)), r = 1..m - 1))(j + m * x)^(n - 1), j = 0..k - 1), k = 1..n)",
+            "sum(sum((-1)^(j)*(sum(((e)^(2*Pi*i*(k - j)*r/ m))/((1 - (e)^(2*Pi*i*r/ m))^(n)), r = 1..m - 1))*(j + m * x)^(n - 1), j = 0..k - 1), k = 1..n)",
             "Sum[Sum[(-1)^(j) (Sum[Divide[(e)^(2 \\[Pi] i (k - j) r/ m),(1 - (e)^(2 \\[Pi] i r/ m))^(n)], {r, 1, m - 1}])(j + m   x)^(n - 1), {j, 0, k - 1}], {k, 1, n}]"
     ),
     DLMF_NORM_SUM_PROD_HARD( //31.15.1
@@ -256,6 +276,10 @@ public enum Sums implements TestCase {
         this.tex = tex;
         this.maple = maple;
         this.mathematica = mathematica;
+    }
+
+    public String getTitle() {
+        return this.name();
     }
 
     public String getTeX() {

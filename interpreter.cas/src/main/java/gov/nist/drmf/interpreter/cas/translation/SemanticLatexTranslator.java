@@ -163,12 +163,12 @@ public class SemanticLatexTranslator extends AbstractTranslator {
         localTranslations = new TranslatedExpression();
         TranslatedExpression global = super.getGlobalTranslationList();
 
-        localTranslations.addTranslatedExpression(
-                parseGeneralExpression(expression, null)
-        );
+        parseGeneralExpression(expression, null);
 
-        global.clear();
-        global.addTranslatedExpression(localTranslations);
+        localTranslations.clear();
+        localTranslations.addTranslatedExpression(
+                global
+        );
 
         return !isInnerError();
     }

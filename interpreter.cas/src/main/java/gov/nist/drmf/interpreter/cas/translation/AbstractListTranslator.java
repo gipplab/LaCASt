@@ -90,6 +90,10 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
                     case non_allowed:
                         exp_list.remove(0); // remove the \! spaces
                         return addMultiply(currExp, exp_list);
+                    case right_brace:
+                    case right_parenthesis:
+                    case right_bracket:
+                        return false;
                 }
             }
 
