@@ -137,7 +137,7 @@ public class SimpleTranslationTests {
     @Test
     public void derivTest() {
         String in = "\\deriv[2]{w}{z}";
-        String eout = "diff(w, [z$(2)]";
+        String eout = "diff(w, [z$(2)])";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }

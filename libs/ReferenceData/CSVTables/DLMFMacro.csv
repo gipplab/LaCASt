@@ -120,7 +120,7 @@ n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0
 \shiftfactorial{a}{\kappa};http://dlmf.nist.gov/35.4#E1;Partitional shifted factorial;0;0;2;;;;
 \floor{x} ;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r16;Floor;0;0;1;;;;
 \ceiling{x};http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r17;Ceiling;0;0;1;;;;
-\sign@@{x};http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r18;Signum;0;2;1;;;;
+\sign@@{x};http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r18;Signum;0;2;1;;;;dlmf-macro
 \inf;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r24;Infimum;0;0;0;;;;symbol
 \sup;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r25;Supremum;0;0;0;;;;symbol
 \Sum{n}{k1}{k2}@{f(n)};http://drmf.wmflabs.org/wiki/Definition:Sum;Sum;3;1;1;;;;

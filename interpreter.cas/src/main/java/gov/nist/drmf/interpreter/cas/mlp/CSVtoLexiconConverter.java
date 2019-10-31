@@ -50,7 +50,8 @@ public class CSVtoLexiconConverter {
 
     private static int
             internal_dlmf_counter,
-            internal_maple_trans_counter;
+            internal_maple_trans_counter,
+            internal_mathematica_trans_counter;
 
     private static boolean is_maple = false;
 
@@ -58,6 +59,7 @@ public class CSVtoLexiconConverter {
     public CSVtoLexiconConverter ( Path CSV_dlmf_file, Path... CSV_CAS_files ) throws Exception {
         internal_dlmf_counter = 0;
         internal_maple_trans_counter = 0;
+        internal_mathematica_trans_counter = 0;
 
         this.csv_dlmf_file =
                 GlobalPaths.PATH_REFERENCE_DATA_CSV.resolve(CSV_dlmf_file);
@@ -494,6 +496,8 @@ public class CSVtoLexiconConverter {
         fset.addFeature( casPrefix, cas_func_pattern, MacrosLexicon.SIGNAL_INLINE );
         if ( is_maple ){
             internal_maple_trans_counter++;
+        } else {
+            internal_mathematica_trans_counter++;
         }
 
         if ( holder != null && holder.cas_name != null && holder.num_vars != null ){
@@ -519,7 +523,15 @@ public class CSVtoLexiconConverter {
             System.out.println("Add a new CSV file and hit enter or enter \'-end\' to stop the adding process.");
             String input = scanner.nextLine();
             while ( input != null && !input.matches("\\s*[\'\"]*-end[\'\"]*\\s*") ){
-                csv_list.add( input );
+                if ( input.matches("CAS_.*\\.(?:csv|CSV)") ) {
+                    csv_list.add( input );
+                } else if ( input.matches("[aA][lL]{2}") ) {
+                    csv_list.add("CAS_Maple.csv");
+                    csv_list.add("CAS_Mathematica.csv");
+                } else {
+                    csv_list.add( "CAS_" + input + ".csv" );
+                }
+                System.out.println("Current list: " + csv_list);
                 input = scanner.nextLine();
             }
             System.out.println("You added: " + csv_list.toString());
@@ -550,6 +562,7 @@ public class CSVtoLexiconConverter {
         System.out.println(((System.currentTimeMillis()-start)/1000.) + " s");
         System.out.println("Number of DLMF-Macros: " + internal_dlmf_counter);
         System.out.println("Number of Maple translations: " + internal_maple_trans_counter);
+        System.out.println("Number of Mathematica translations: " + internal_mathematica_trans_counter);
     }
 
     private class InfoHolder{
