@@ -307,7 +307,7 @@ public class SequenceTranslator extends AbstractListTranslator {
         String MULTIPLY = getConfig().getMULTIPLY();
         TranslatedExpression global = getGlobalTranslationList();
 
-        if ( part.matches( ".*\\s*[)]\\s*" ) ){
+        if ( part.matches( STRING_END_TREAT_AS_CLOSED_PARANTHESIS ) ){
             MathTerm tmp = new MathTerm(")", MathTermTags.right_parenthesis.tag());
             exp = new PomTaggedExpression(tmp);
         } else if ( part.matches( ".*\\*\\s*" ) ) {
