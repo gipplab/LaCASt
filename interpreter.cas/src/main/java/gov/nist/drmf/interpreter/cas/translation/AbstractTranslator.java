@@ -421,6 +421,8 @@ public abstract class AbstractTranslator implements IForwardTranslator {
                 return true;
             }
             throw new TranslationException(
+                    config.getFROM_LANGUAGE(),
+                    config.getTO_LANGUAGE(),
                     message,
                     reason,
                     token,

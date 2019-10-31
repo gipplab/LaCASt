@@ -183,4 +183,16 @@ public class LimitBlueprintTest {
         assertEquals(1, limit.getVars().size());
         assertEquals(1, limit.getLower().size());
     }
+
+    @Test
+    public void longVarNameTest() {
+        String str = "\\ell = 0";
+        Limits limit = btmaster.findMatchingLimit(str);
+        assertEquals("ell", limit.getVars().get(0));
+        assertEquals("0", limit.getLower().get(0));
+        assertFalse(limit.isLimitOverSet());
+
+        assertEquals(1, limit.getVars().size());
+        assertEquals(1, limit.getLower().size());
+    }
 }

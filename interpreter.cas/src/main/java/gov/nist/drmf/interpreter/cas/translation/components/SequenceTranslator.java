@@ -133,10 +133,10 @@ public class SequenceTranslator extends AbstractListTranslator {
                 lastMerged = true;
             }
 
-            if ( part.matches( ".*\\s*\\)\\s*" ) ){
-                MathTerm tmp = new MathTerm(")", MathTermTags.right_parenthesis.tag());
-                exp = new PomTaggedExpression(tmp);
-            }
+//            if ( part.matches( ".*\\s*\\)\\s*" ) ){
+//                MathTerm tmp = new MathTerm(")", MathTermTags.right_parenthesis.tag());
+//                exp = new PomTaggedExpression(tmp);
+//            }
 
             part = checkMultiplyAddition(exp, exp_list, part);
 
@@ -190,11 +190,8 @@ public class SequenceTranslator extends AbstractListTranslator {
             //      -> there is a bracket error in the sequence
 
             // open or closed brackets
-            if ( term != null && !term.isEmpty() &&
-                    (term.getTag().matches(PARENTHESIS_PATTERN) ||
-                            term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN )) ){
-                // get the bracket
-                Brackets bracket = Brackets.getBracket( term.getTermText() );
+            Brackets bracket = ifIsBracketTransform(term);
+            if ( bracket != null ){
                 if ( bracket == null && term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN )){
                     bracket = Brackets.right_latex_abs_val;
                 }
@@ -245,6 +242,14 @@ public class SequenceTranslator extends AbstractListTranslator {
                         seq += open_bracket.getCounterPart().getAppropriateString();
                     }
 
+                    // check if need to add multiply here
+//                    if ( seq.matches( ".*\\s*\\)\\s*" ) ){
+//                        MathTerm tmp = new MathTerm(")", MathTermTags.right_parenthesis.tag());
+//                        exp = new PomTaggedExpression(tmp);
+//                    }
+
+                    seq = checkMultiplyAddition(exp, following_exp, seq);
+
                     // wrap parenthesis around sequence, this is one component of the sequence now
                     localTranslations.addTranslatedExpression( seq ); // replaced it
 
@@ -275,6 +280,11 @@ public class SequenceTranslator extends AbstractListTranslator {
                 inner = true;
             }
 
+//            if ( last.matches( ".*\\s*\\)\\s*" ) ){
+//                MathTerm tmp = new MathTerm(")", MathTermTags.right_parenthesis.tag());
+//                exp = new PomTaggedExpression(tmp);
+//            }
+
             last = checkMultiplyAddition(exp, following_exp, last);
 
             inner_trans.replaceLastExpression( last );
@@ -297,7 +307,17 @@ public class SequenceTranslator extends AbstractListTranslator {
         String MULTIPLY = getConfig().getMULTIPLY();
         TranslatedExpression global = getGlobalTranslationList();
 
-        if ( addMultiply( exp, exp_list ) /*&& !part.matches(".*\\*\\s*")*/ ){
+        if ( part.matches( ".*\\s*[)]\\s*" ) ){
+            MathTerm tmp = new MathTerm(")", MathTermTags.right_parenthesis.tag());
+            exp = new PomTaggedExpression(tmp);
+        } else if ( part.matches( ".*\\*\\s*" ) ) {
+            exp = new PomTaggedExpression(new MathTerm("*", MathTermTags.multiply.tag()));
+        }
+
+//        if ( part.endsWith(MULTIPLY) ){
+//            return part;
+//        } else
+            if ( addMultiply( exp, exp_list ) /*&& !part.matches(".*\\*\\s*")*/ ){
             part += MULTIPLY;
             // the global list already got each element before,
             // so simply replace the last if necessary
@@ -329,5 +349,14 @@ public class SequenceTranslator extends AbstractListTranslator {
                     || next.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)
             );
         } catch ( Exception e ){ return false; }
+    }
+
+    public static Brackets ifIsBracketTransform(MathTerm term) {
+        if ( term == null || term.isEmpty() ) return null;
+        if ( term.getTag() != null && (
+                term.getTag().matches(PARENTHESIS_PATTERN) || term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN ))
+                ) {
+            return Brackets.getBracket(term.getTermText());
+        } else return null;
     }
 }

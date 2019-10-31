@@ -37,6 +37,11 @@ public class TranslationException extends RuntimeException {
         this.reason_Obj = reasonObj;
     }
 
+    public TranslationException( String from_language, String to_language, String message, Reason reason, Object reasonObj, Throwable throwable ){
+        this( "(" + from_language + " -> " + to_language + ") " + message, reason, throwable);
+        this.reason_Obj = reasonObj;
+    }
+
     public TranslationException( String from_language, String to_language, String message ){
         super(
                 "(" + from_language + " -> " + to_language + ") " + message

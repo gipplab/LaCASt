@@ -272,6 +272,7 @@ public class MacroTranslator extends AbstractListTranslator {
                 createFurtherInformation()
         );
 
+        // TODO bug
         if(!optional_paras.isEmpty()) slotOfDifferentiation += optional_paras.size();
         components = new String[start + numOfParams + numOfVars];
         for (int i = 0; !optional_paras.isEmpty() && i < components.length; i++)
@@ -396,7 +397,8 @@ public class MacroTranslator extends AbstractListTranslator {
                 }
             }
 
-            parseDifferentiation(following_exps); // if there is differentiation after a parameter, it will get parsed here
+            // TODO parseDifferentiation is not correct
+//            parseDifferentiation(following_exps); // if there is differentiation after a parameter, it will get parsed here
 
             if ( ( deriv_order == null || deriv_order.isEmpty() ) && deriv_order_num > 0 ) {
                 deriv_order = Integer.toString(deriv_order_num);

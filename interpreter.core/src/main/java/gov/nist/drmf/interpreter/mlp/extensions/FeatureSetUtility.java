@@ -112,6 +112,8 @@ public abstract class FeatureSetUtility {
         return term.getTermText().equals("\\prod");
     }
 
-    public static boolean isLimit(MathTerm term){ return term.getTermText().equals("\\lim"); }
+    public static boolean isLimit(MathTerm term){
+        return term.getTermText().equals("\\lim");
+    }
 
 }

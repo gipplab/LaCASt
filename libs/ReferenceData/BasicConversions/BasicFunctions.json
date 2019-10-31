@@ -78,29 +78,17 @@
       "Maple": "sum($2, $0 in $1)",
       "Mathematica": "Sum[$2, {$0, $1}]"
     },
-    "ProductThreeArgs": {
-      "MLP": "prod3",
-      "LaTeX": "\\prod_{$0}^{$1}{2}",
-      "Maple": "product($2, $0..$1)",
-      "Mathematica": "Product[$2, {$3, $0, $1}]"
+    "Product": {
+      "MLP": "prod",
+      "LaTeX": "\\prod_{$0 = $1}^{$2}{$3}",
+      "Maple": "product($3, $0 = $1..$2)",
+      "Mathematica": "Product[$3, {$0, $1, $2}]"
     },
-    "ProductTwoArgs": {
-      "MLP": "prod2",
-      "LaTeX": "\\prod_{$0}{$1}",
-      "Maple": "product($1, $0)",
-      "Mathematica": "Product[$0, {$2, $1}]"
-    },
-    "ProductOneArg": {
-      "MLP": "prod1",
-      "LaTeX": "\\prod^{$0}{$1}",
-      "Maple": "",
-      "Mathematica": "Product[$1, {$2, $0}]"
-    },
-    "ProductNoArgs": {
-      "MLP": "prod0",
-      "LaTeX": "\\prod{$0}",
-      "Maple": "product($0, $1)",
-      "Mathematica": "Product[$0, $1]"
+    "ProductSet": {
+      "MLP": "prodSet",
+      "LaTeX": "\\prod_{$0 \\in $1}{$2}",
+      "Maple": "product($2, $0 in $1)",
+      "Mathematica": "Product[$2, {$0, $1}]"
     },
     "Derivative": {
       "MLP": "derivative",
