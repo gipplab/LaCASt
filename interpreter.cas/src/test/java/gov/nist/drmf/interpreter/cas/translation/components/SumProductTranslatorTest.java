@@ -12,6 +12,9 @@ import mlp.PomParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -20,6 +23,13 @@ import java.util.stream.Stream;
 import static gov.nist.drmf.interpreter.cas.translation.components.matcher.IgnoresAllWhitespacesMatcher.ignoresAllWhitespaces;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+/**
+ * Note that we use TestFactory rather than parameterized tests over enum sources, since
+ * the factory solution is way faster (20sec vs 1sec).
+ *
+ * @author Avi Trost
+ * @author Andre Greiner-Petter
+ */
 public class SumProductTranslatorTest {
     private static final Logger LOG = LogManager.getLogger(SumProductTranslatorTest.class.getName());
 
@@ -77,61 +87,30 @@ public class SumProductTranslatorTest {
             "Limit[Product[Limit[Product[(1 +Divide[z,(m +(n -Divide[1,2])\\[Tau]) \\[Pi]]), {m, -M, M}], M -> Infinity], {n, 1-N, N}], N -> Infinity]",
     };
 
-    private static SemanticLatexTranslator sltMap, sltMath;
+    private static TranslationTester tester;
 
     @BeforeEach
     void mapleSetUp() throws IOException {
-        sltMap = new SemanticLatexTranslator(Keys.KEY_MAPLE);
-        sltMap.init(GlobalPaths.PATH_REFERENCE_DATA);
-
-        sltMath = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
-        sltMath.init(GlobalPaths.PATH_REFERENCE_DATA);
+        tester = new TranslationTester();
     }
 
     @TestFactory
     Stream<DynamicTest> sumsMapleTest() {
-        return test(Sums.values(), true);
+        return tester.test(Sums.values(), true);
     }
 
     @TestFactory
     Stream<DynamicTest> sumsMathematicaTest() {
-        return test(Sums.values(), false);
+        return tester.test(Sums.values(), false);
     }
 
     @TestFactory
     Stream<DynamicTest> prodsMapleTest() {
-        return test(Products.values(), true);
+        return tester.test(Products.values(), true);
     }
 
     @TestFactory
     Stream<DynamicTest> prodsMathematicaTest() {
-        return test(Products.values(), false);
-    }
-
-    private Stream<DynamicTest> test(TestCase[] cases, boolean maple) {
-        return Arrays.stream(cases)
-                .map(exp -> DynamicTest.dynamicTest(exp.getTitle() + ": " + exp.getTeX(), () -> {
-                    LOG.debug("Testing " + exp.getTitle());
-                    LOG.trace("Input:  " + exp.getTeX());
-                    String in = exp.getTeX();
-                    String expected = maple ? exp.getMaple() : exp.getMathematica();
-
-                    if ( maple ) {
-                        sltMap.translate(in);
-                    } else {
-                        sltMath.translate(in);
-                    }
-
-                    String result = maple ?
-                            sltMap.getTranslatedExpression() :
-                            sltMath.getTranslatedExpression();
-
-                    LOG.debug("Expected: " + expected);
-                    LOG.debug("Result:   " + result);
-
-                    result = result.replaceAll("\\s+", "");
-
-                    assertThat(result, ignoresAllWhitespaces(expected));
-                }));
+        return tester.test(Products.values(), false);
     }
 }

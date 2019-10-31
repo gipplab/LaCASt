@@ -32,5 +32,5 @@ public class DLMFPatterns {
 
     public static final Pattern DLMF_ID_PATTERN = Pattern.compile("-(\\d+)-\\d+-E\\d+.s.tex");
 
-    public static final String TEMPORARY_VARIABLE_NAME = "tmp";
+    public static final String TEMPORARY_VARIABLE_NAME = "temp";
 }

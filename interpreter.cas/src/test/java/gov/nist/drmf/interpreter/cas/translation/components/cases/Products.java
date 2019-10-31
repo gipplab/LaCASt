@@ -88,18 +88,22 @@ public enum Products implements TestCase {
         this.mathematica = mathematica;
     }
 
+    @Override
     public String getTitle() {
         return this.name();
     }
 
+    @Override
     public String getTeX() {
         return tex;
     }
 
+    @Override
     public String getMaple() {
         return maple;
     }
 
+    @Override
     public String getMathematica() {
         return mathematica;
     }
