@@ -195,4 +195,17 @@ public class LimitBlueprintTest {
         assertEquals(1, limit.getVars().size());
         assertEquals(1, limit.getLower().size());
     }
+
+    @Test
+    public void singleExpressionTest() {
+        String str = "q";
+        Limits limit = btmaster.findMatchingLimit(str);
+        assertEquals("q", limit.getVars().get(0));
+        // expecting default value here
+        assertEquals("- infinity", limit.getLower().get(0));
+        assertFalse(limit.isLimitOverSet());
+
+        assertEquals(1, limit.getVars().size());
+        assertEquals(1, limit.getLower().size());
+    }
 }
