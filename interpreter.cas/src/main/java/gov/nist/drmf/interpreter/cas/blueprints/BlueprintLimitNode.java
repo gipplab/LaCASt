@@ -81,18 +81,6 @@ public class BlueprintLimitNode {
         return prefix;
     }
 
-    //    public boolean isVariablePlaceHolder() {
-//        return isVariablePlaceHolder;
-//    }
-//
-//    public boolean isUpperBound() {
-//        return isUpperBound;
-//    }
-//
-//    public boolean isLowerBound() {
-//        return isLowerBound;
-//    }
-
     @Override
     public boolean equals(Object obj) {
         if ( !(obj instanceof BlueprintLimitNode) ) {
@@ -106,10 +94,10 @@ public class BlueprintLimitNode {
             return false;
         }
 
-        if ( isLeaf ) {
-            LOG.error("A pattern seems to be broken. Check it! " + parentTree);
-            return false;
-        }
+//        if ( isLeaf ) {
+//            LOG.error("A pattern seems to be broken. Check it! " + parentTree);
+//            return false;
+//        }
 
         // so both are sequences: check the children
         return equalChildren(other);
@@ -129,12 +117,21 @@ public class BlueprintLimitNode {
      * @return
      */
     private boolean equalChildren( BlueprintLimitNode other ) {
-        if ( children.size() > other.children.size() ) {
-            return false; // the pattern cannot be bigger than the actual limit
-        }
+        LinkedList<BlueprintLimitNode> patternCopy, refCopy;
 
-        LinkedList<BlueprintLimitNode> patternCopy = new LinkedList<>(this.children);
-        LinkedList<BlueprintLimitNode> refCopy = new LinkedList<>(other.children);
+        if ( children == null || children.isEmpty() ) {
+            if ( other.children != null && other.children.isEmpty() ) return false;
+            patternCopy = new LinkedList<>();
+            refCopy = new LinkedList<>();
+            patternCopy.add(this);
+            refCopy.add(other);
+        } else {
+            if ( children.size() > other.children.size() ) {
+                return false; // the pattern cannot be bigger than the actual limit
+            }
+            patternCopy = new LinkedList<>(this.children);
+            refCopy = new LinkedList<>(other.children);
+        }
 
         while ( !patternCopy.isEmpty() ) {
             BlueprintLimitNode pattern = patternCopy.removeFirst();
@@ -159,6 +156,7 @@ public class BlueprintLimitNode {
 
                 if ( pattern.latex.matches(VAR_TOKEN+"N") ) { // multi vars
                     parentTree.addVar(ref);
+                    if ( refCopy.isEmpty() ) break;
                     ref = refCopy.removeFirst();
                     while ( isListSplitter(ref) ) {
                         ref = refCopy.removeFirst();

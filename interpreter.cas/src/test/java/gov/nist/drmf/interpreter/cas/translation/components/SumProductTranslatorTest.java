@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
+import gov.nist.drmf.interpreter.cas.translation.components.cases.Products;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Sums;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.TestCase;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
@@ -21,42 +22,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SumProductTranslatorTest {
     private static final Logger LOG = LogManager.getLogger(SumProductTranslatorTest.class.getName());
-
-    private static final String[] prods = {
-            "\\prod_{-\\infty}^{\\infty}x^3",
-            "\\prod_{n \\leq i \\leq m}\\sin{i} + \\sum_{n \\leq j \\leq m}i^2+j\\prod_{k=0}^{\\infty}k+j+i",
-            "\\prod_{i=0}^{\\infty}k^3",
-            "\\prod_{x \\in P}x^2+x^3-3",
-            "\\prod_{i=0}^{k}i^2+\\prod_{j=0}^{k}i^3-3j+\\prod_{l=0}^{k}j+2+\\sin{l}",
-            "\\prod_{i=0}^{10}i^2\\prod_{i=2}^{12}k",
-            "\\prod_{i=0}^{10}i^2\\prod_{j=2}^{12}i",
-            "\\prod_{i=0}^{10}\\sum_{j=2}^{12}i+\\sin{j^2}",
-            "\\prod_{i=0}^{10}\\prod_{j=2}^{12}j^2+i",
-            "\\prod_{i=0}^{10}\\prod_{j=2}^{12}\\sum_{k=-\\infty}^\\infty {j+k}^2-3j+2+\\log{i}^2-5",
-            "\\prod_{i=0}^{\\infty}\\sin{\\prod_{k=0}^{r}k^3-2k}\\sum_{i=0}^{r}12i^2+k",
-            "\\prod_{x=0}^{\\infty}x\\sin{x^2}\\cos{t}+2sin{4}+3",
-            //26.12.4
-            "\\prod_{h=1}^r \\prod_{j=1}^s \\frac{h+j+t-1}{h+j-1}",
-            //5.14.4
-            "\\prod_{k=1}^m \\frac{a+(n-k)c}{a+b+(2n-k-1)c} \\prod_{k=1}^n \\frac{\\EulerGamma@{a+(n-k)c} \\EulerGamma@{b+(n-k)c} \\EulerGamma@{1+kc}} {\\EulerGamma@{a+b+(2n-k-1)c}}",
-            //20.5.1
-            "\\prod_{n=1}^{\\infty} {\\left( 1 - q^{2n} \\right)} {\\left( 1 - 2 q^{2n} \\cos@{2z} + q^{4n} \\right)}",
-            //4.22.2
-            "\\prod_{n=1}^\\infty \\left( 1 - \\frac{4z^2}{(2n - 1)^2 \\pi^2} \\right)",
-            //20.4.3
-            "\\prod_{n=1}^{\\infty} \\left( 1 - q^{2n} \\right) \\left( 1 + q^{2n} \\right)^2",
-            //27.4.1
-            "\\prod_p \\left( 1 + \\sum_{r=1}^\\infty f(p^r) \\right)",
-            //5.14.5
-            "\\prod_{k=1}^m (a + (n-k)c) \\frac{\\prod_{k=1}^n \\EulerGamma@{a+(n-k)c} \\EulerGamma@{1+kc}} {(\\EulerGamma@{1+c})^n}",
-            //17.2.49 part 2
-            "\\prod_{n=0}^\\infty \\frac{1}{(1 - q^{5n+1}) (1 - q^{5n+4})}",
-            //23.8.7
-            "\\prod_{n=1}^\\infty \\frac{\\sin@{\\pi (2n \\omega_3 + z) / (2 \\omega_1)} \\sin@{\\pi (2n \\omega_3 - z) / (2 \\omega_1)}} {\\sin^2@{\\pi n \\omega_3 / \\omega_1}}",
-            //3.4.3
-            "\\prod_{k = n_0}^{n_1}(t-k)+f^{(n+2)}(\\xi_1)\\prod_{k = n_0}^{n_1}(t-k)",
-
-    };
 
     private static final String[] lims = {
             //4.31.1
@@ -92,9 +57,7 @@ public class SumProductTranslatorTest {
             "limit((x)^(- a)*ln(x), x = infinity)",
             "limit((1 +(z)/(n))^(n), n = infinity)",
             "limit(sum((-1)^(n)*(pi)/(tan(pi*(t -(n +(1)/(2))tau))), n = - N..N), N = infinity)",
-            "limit(sum((-1)^(n)*(pi)/(tan(pi*(t -(n +(1)/(2))tau))), n = - N..N), N = infinity)",
             "limit(sum((-1)^(n)*(limit(sum((1)/(t - m -(n +(1)/(2))*tau), m = - M..M), M = infinity)), n = - N..N), N = infinity)",
-            "limit(sum((-1)^(n)*(pi)/(tan(pi*(t - n*tau))), n = - N..N), N = infinity)",
             "limit(sum((-1)^(n)*(pi)/(tan(pi*(t - n*tau))), n = - N..N), N = infinity)",
             "limit(sum((-1)^(n)*(limit(sum((1)/(t - m - n*tau), m = - M..M), M = infinity)), n = - N..N), N = infinity)",
             "limit(product(limit(product((1 +(z)/((m -(1)/(2)+ n*tau)*pi)), m = 1 - M..M), M = infinity), n = - N..N), N = infinity)",
@@ -107,9 +70,7 @@ public class SumProductTranslatorTest {
             "Limit[(x)^(- a) Log[x], x -> Infinity]",
             "Limit[(1 +Divide[z,n])^(n), n -> Infinity]",
             "Limit[Sum[(-1)^(n) Divide[\\[Pi],Tan[\\[Pi] (t -(n +Divide[1,2])\\[Tau])]], {n, -N, N}], N -> Infinity]",
-            "Limit[Sum[(-1)^(n) Divide[\\[Pi],Tan[\\[Pi] (t -(n +Divide[1,2])\\[Tau])]], {n, -N, N}], N -> Infinity]",
             "Limit[Sum[(-1)^(n) (Limit[Sum[Divide[1,t - m -(n +Divide[1,2]) \\[Tau]], {m, -M, M}], M -> Infinity]), {n, -N, N}], N -> Infinity]",
-            "Limit[Sum[(-1)^(n) Divide[\\[Pi],Tan[\\[Pi] (t - n \\[Tau])]], {n, -N, N}], N -> Infinity]",
             "Limit[Sum[(-1)^(n) Divide[\\[Pi],Tan[\\[Pi] (t - n \\[Tau])]], {n, -N, N}], N -> Infinity]",
             "Limit[Sum[(-1)^(n) (Limit[Sum[Divide[1,t - m - n \\[Tau]], {m, -M, M}], M -> Infinity]), {n, -N, N}], N -> Infinity]",
             "Limit[Product[Limit[Product[(1 +Divide[z,(m -Divide[1,2]+ n \\[Tau]) \\[Pi]]), {m, 1-M, M}], M -> Infinity], {n, -N, N}], N -> Infinity]",
@@ -187,6 +148,16 @@ public class SumProductTranslatorTest {
     @TestFactory
     Stream<DynamicTest> sumsMathematicaTest() {
         return test(Sums.values(), false);
+    }
+
+    @TestFactory
+    Stream<DynamicTest> prodsMapleTest() {
+        return test(Products.values(), true);
+    }
+
+    @TestFactory
+    Stream<DynamicTest> prodsMathematicaTest() {
+        return test(Products.values(), false);
     }
 
     private Stream<DynamicTest> test(TestCase[] cases, boolean maple) {
