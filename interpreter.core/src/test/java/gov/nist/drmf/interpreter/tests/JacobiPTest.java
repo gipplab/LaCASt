@@ -1,9 +1,8 @@
-package gov.nist.drmf.core.tests;
+package gov.nist.drmf.interpreter.tests;
 
-import gov.nist.drmf.interpreter.common.GlobalPaths;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.examples.ExampleParser;
 import mlp.ParseException;
-import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

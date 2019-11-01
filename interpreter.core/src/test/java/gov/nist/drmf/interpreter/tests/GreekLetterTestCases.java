@@ -1,4 +1,4 @@
-package gov.nist.drmf.core.tests;
+package gov.nist.drmf.interpreter.tests;
 
 /**
  * This enum is a list of all greek symbols in all CAS.

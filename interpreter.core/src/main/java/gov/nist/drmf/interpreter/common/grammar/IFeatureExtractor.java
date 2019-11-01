@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.FeatureSet;
 
@@ -12,7 +11,7 @@ import java.util.SortedSet;
  * @author Andre Greiner-Petter
  */
 public interface IFeatureExtractor {
-    String getFeatureValue(FeatureSet feature_set);
+    String getFeatureValue(FeatureSet feature_set, String cas);
 
     static String getStringFromSet( SortedSet<String> set ){
         if ( set == null ) return "";

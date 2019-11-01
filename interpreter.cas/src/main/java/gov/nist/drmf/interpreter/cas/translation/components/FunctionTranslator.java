@@ -3,16 +3,22 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
-import gov.nist.drmf.interpreter.common.TranslationException;
+import gov.nist.drmf.interpreter.common.InformationLogger;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
+import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CHAR_BACKSLASH;
+
 /**
- * The function translation parses simple functions and not special functions.
+ * The function translation parses simple functions and not special functions!
  * These "simple" functions are functions without a DLMF macro. We don't
  * really know how to translate these functions. So we will translate them
  * by simply remove the backslash.
@@ -35,20 +41,34 @@ import java.util.List;
  * @author Andre Greiner-Petter
  */
 public class FunctionTranslator extends AbstractListTranslator {
-    /**
-     *
-     * @param exp
-     * @param following
-     * @return
-     */
+    private static final Logger LOG = LogManager.getLogger(FunctionTranslator.class.getName());
+
+    private TranslatedExpression localTranslations;
+
+    public FunctionTranslator(AbstractTranslator superTranslator) {
+        super(superTranslator);
+        this.localTranslations = new TranslatedExpression();
+    }
+
+    @Nullable
+    @Override
+    public TranslatedExpression getTranslatedExpressionObject() {
+        return localTranslations;
+    }
+
     @Override
     public boolean translate( PomTaggedExpression exp, List<PomTaggedExpression> following )
             throws TranslationException{
+        LOG.debug("Trigger general function translator");
         boolean return_value;
         return_value = translate(exp);
         return_value &= parse(following);
-        int num = local_inner_exp.mergeAll(); // a bit redundant, num is always 2!
-        global_exp.mergeLastNExpressions( num );
+
+        // a bit redundant, num is always 2!
+        int num = localTranslations.mergeAll();
+
+        TranslatedExpression global = super.getGlobalTranslationList();
+        global.mergeLastNExpressions( num );
         return return_value;
     }
 
@@ -74,11 +94,13 @@ public class FunctionTranslator extends AbstractListTranslator {
         else output = term.getTermText();
 
         // add it to global and local
-        local_inner_exp.addTranslatedExpression(output);
-        global_exp.addTranslatedExpression(output);
+        localTranslations.addTranslatedExpression(output);
+        TranslatedExpression global = super.getGlobalTranslationList();
+        global.addTranslatedExpression(output);
 
         // inform the user that we usually don't know how to handle it.
-        INFO_LOG.addGeneralInfo(
+        InformationLogger infoLogger = super.getInfoLogger();
+        infoLogger.addGeneralInfo(
                 term.getTermText(),
                 "Function without DLMF-Definition. " +
                         "We cannot translate it and keep it like it is (but delete prefix \\ if necessary)."
@@ -87,7 +109,7 @@ public class FunctionTranslator extends AbstractListTranslator {
     }
 
     /**
-     * The second part of the translation function simply parses the argument part of
+     * The second part of the translation function parses the argument part of
      * an unknown function. For instance if \cos(2+2), this translate method gets
      * 2+2 as argument list.
      * @param following_exp the descendants of a previous function {@link #translate(PomTaggedExpression)}
@@ -112,12 +134,13 @@ public class FunctionTranslator extends AbstractListTranslator {
                 caret = true;
 
                 // since the MathTermTranslator handles this, use this class
-                MathTermTranslator mp = new MathTermTranslator();
+                MathTermTranslator mp = new MathTermTranslator(getSuperTranslator());
                 if ( !mp.translate( first ) ) return false;
                 powerExp = mp.getTranslatedExpressionObject();
 
                 // remove the power from global_exp first
-                global_exp.removeLastNExps( powerExp.getLength() );
+                TranslatedExpression global = super.getGlobalTranslationList();
+                global.removeLastNExps( powerExp.getLength() );
 
                 // and now, merge the power to one object and put parenthesis around it
                 // if necessary
@@ -140,16 +163,21 @@ public class FunctionTranslator extends AbstractListTranslator {
         } else {
             num = translation.mergeAll();
         }
-        local_inner_exp.addTranslatedExpression( translation );
+
+        // take over the parsed expression
+        localTranslations.addTranslatedExpression( translation );
+
+        // update global
+        TranslatedExpression global = super.getGlobalTranslationList();
         // remove all variables and put them together as one object
-        global_exp.removeLastNExps( num );
-        global_exp.addTranslatedExpression( translation );
+        global.removeLastNExps( num );
+        global.addTranslatedExpression( translation );
 
         // shit, if there was a caret before the arguments, we need to add
         // these now
         if ( caret ){
-            local_inner_exp.replaceLastExpression( translation + powerExp.toString() );
-            global_exp.replaceLastExpression( translation + powerExp.toString() );
+            localTranslations.replaceLastExpression( translation + powerExp.toString() );
+            global.replaceLastExpression( translation + powerExp.toString() );
         }
 
         return true;

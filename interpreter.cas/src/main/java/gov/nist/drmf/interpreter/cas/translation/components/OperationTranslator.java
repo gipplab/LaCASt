@@ -2,20 +2,36 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
+import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
  * @author Andre Greiner-Petter
  */
 public class OperationTranslator extends AbstractListTranslator {
+
+    private TranslatedExpression localTranslations;
+
+    public OperationTranslator(AbstractTranslator superTranslator) {
+        super(superTranslator);
+        this.localTranslations = new TranslatedExpression();
+    }
+
+    @Nullable
+    @Override
+    public TranslatedExpression getTranslatedExpressionObject() {
+        return localTranslations;
+    }
+
     @Override
     public boolean translate( PomTaggedExpression first_exp, List<PomTaggedExpression> following_exp ) {
         MathTerm top = first_exp.getRoot();
@@ -36,7 +52,7 @@ public class OperationTranslator extends AbstractListTranslator {
                     parseGeneralExpression( following_exp.remove(0), following_exp );
             String last = extended_divisor.getLastExpression();
             if ( last == null ) {
-                last = global_exp.getLastExpression();
+                last = getGlobalTranslationList().getLastExpression();
                 divisorExp.removeLastExpression();
             }
             extended_divisor.replaceLastExpression( last );
@@ -47,20 +63,23 @@ public class OperationTranslator extends AbstractListTranslator {
         int num = divisorExp.mergeAll();
 
         // delete those last elements from global list
-        global_exp.removeLastNExps( num );
+        getGlobalTranslationList().removeLastNExps( num );
 
         // remove the previous one (which is the dividend)
-        String dividend = global_exp.removeLastExpression();
+        String dividend = getGlobalTranslationList().removeLastExpression();
         // and get the string of the divisor
         String divisor  = divisorExp.toString();
 
-        BasicFunctionsTranslator fun = SemanticLatexTranslator.getBasicFunctionParser();
-        String[] arguments = new String[]{dividend, divisor};
+        BasicFunctionsTranslator fun = getConfig().getBasicFunctionsTranslator();
+        String[] arguments = new String[]{
+                stripMultiParentheses(dividend),
+                stripMultiParentheses(divisor)
+        };
         String translatedMod = fun.translate( arguments, "modulo" );
 
         // the given translated expression is one complete phrase
         // so add it to the global lexicon
-        global_exp.addTranslatedExpression( translatedMod );
+        getGlobalTranslationList().addTranslatedExpression( translatedMod );
 
         // since we replaced the last phrase in global_exp
         // global_exp and local_inner_exp are the same. Theoretically
@@ -76,7 +95,7 @@ public class OperationTranslator extends AbstractListTranslator {
     }
 
     private boolean parseSymbol( MathTerm term ){
-        SymbolTranslator sT = SemanticLatexTranslator.getSymbolsTranslator();
+        SymbolTranslator sT = getConfig().getSymbolTranslator();
         String translation = sT.translate( term.getTermText() );
         if ( handleNull( translation,
             "Cannot translate operation " + term.getTermText(),
@@ -85,11 +104,11 @@ public class OperationTranslator extends AbstractListTranslator {
             null) ){
             return true;
         } else {
-            INFO_LOG.addGeneralInfo(
+            getInfoLogger().addGeneralInfo(
                     term.getTermText(),
                     "was translated to " + translation);
-            local_inner_exp.addTranslatedExpression( translation );
-            global_exp.addTranslatedExpression( translation );
+            localTranslations.addTranslatedExpression( translation );
+            getGlobalTranslationList().addTranslatedExpression( translation );
             return true;
         }
     }

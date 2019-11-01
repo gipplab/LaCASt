@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.common;
+package gov.nist.drmf.interpreter.common.exceptions;
 
 /**
  *
@@ -6,14 +6,14 @@ package gov.nist.drmf.interpreter.common;
  * Created by AndreG-P on 03.03.2017.
  */
 public class TranslationException extends RuntimeException {
-    public static String FROM_LANGUAGE_DEFAULT;
-    public static String TO_LANGUAGE_DEFAULT;
+    private String FROM_LANGUAGE_DEFAULT;
+    private static String TO_LANGUAGE_DEFAULT;
 
     private Reason reason;
     private Object reason_Obj;
 
     public TranslationException( String message ){
-        this ( FROM_LANGUAGE_DEFAULT, TO_LANGUAGE_DEFAULT, message );
+        this ( "ukn", "ukn", message );
     }
 
     public TranslationException( String message, Reason reason ){
@@ -28,12 +28,17 @@ public class TranslationException extends RuntimeException {
     }
 
     public TranslationException( String message, Reason reason, Throwable throwable ){
-        this( FROM_LANGUAGE_DEFAULT, TO_LANGUAGE_DEFAULT, message, throwable);
+        this( "ukn", "ukn", message, throwable);
         this.reason = reason;
     }
 
     public TranslationException( String message, Reason reason, Object reasonObj, Throwable throwable ){
         this( message, reason, throwable);
+        this.reason_Obj = reasonObj;
+    }
+
+    public TranslationException( String from_language, String to_language, String message, Reason reason, Object reasonObj, Throwable throwable ){
+        this( "(" + from_language + " -> " + to_language + ") " + message, reason, throwable);
         this.reason_Obj = reasonObj;
     }
 

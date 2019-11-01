@@ -1,8 +1,6 @@
 package gov.nist.drmf.interpreter.maple.grammar.lexicon;
 
-import gov.nist.drmf.interpreter.common.GlobalConstants;
-
-import java.util.Arrays;
+import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 
 /**
  *

@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.examples;
 
-import gov.nist.drmf.interpreter.common.GlobalPaths;
-import gov.nist.drmf.interpreter.common.Keys;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import mlp.*;
 

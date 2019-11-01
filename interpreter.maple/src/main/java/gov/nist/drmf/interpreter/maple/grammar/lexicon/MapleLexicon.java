@@ -1,10 +1,8 @@
 package gov.nist.drmf.interpreter.maple.grammar.lexicon;
 
-import gov.nist.drmf.interpreter.common.GlobalPaths;
-import mlp.LexiconFactory;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.HashMap;
 
 /**

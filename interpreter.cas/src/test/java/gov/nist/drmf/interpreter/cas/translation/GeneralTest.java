@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
+import gov.nist.drmf.interpreter.cas.blueprints.BlueprintLimitTree;
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -8,6 +10,7 @@ import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -54,5 +57,24 @@ public class GeneralTest {
         System.out.println(eq);
         System.out.println(con);
         System.out.println(labelS);
+    }
+
+    @Test
+    public void stripParenthesesTest() {
+        String simply = "(x+y)";
+        String simplyOut = AbstractListTranslator.stripMultiParentheses(simply);
+        assertEquals("x+y", simplyOut);
+
+        String inner = "(x)/(y)";
+        String innerOut = AbstractListTranslator.stripMultiParentheses(inner);
+        assertEquals(inner, innerOut);
+    }
+
+    @Test
+    public void texPreprocessing() {
+        String l = "n \\hiderel{=} 1";
+        String out = BlueprintLimitTree.preCleaning(l);
+        assertEquals("n = 1", out);
+        assertFalse("=".matches("\\\\in"));
     }
 }

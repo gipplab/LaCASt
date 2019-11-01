@@ -1,9 +1,9 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
-import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -11,6 +11,7 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,11 +20,25 @@ import java.util.List;
  * @see ExpressionTags
  * @author Andre Greiner-Petter
  */
-public class EmptyExpressionTranslator extends AbstractTranslator {
-    private static final Logger LOG = LogManager.getLogger(EmptyExpressionTranslator.class.getName());
+public class TaggedExpressionTranslator extends AbstractTranslator {
+    private static final Logger LOG = LogManager.getLogger(TaggedExpressionTranslator.class.getName());
+
+    private TranslatedExpression localTranslations;
+
+    public TaggedExpressionTranslator(AbstractTranslator abstractTranslator) {
+        super(abstractTranslator);
+        this.localTranslations = new TranslatedExpression();
+    }
+
+    @Nullable
+    @Override
+    public TranslatedExpression getTranslatedExpressionObject() {
+        return localTranslations;
+    }
 
     @Override
     public boolean translate(PomTaggedExpression expression ) throws TranslationException {
+        LOG.debug("Triggers empty expression translator process.");
         // switch-case over tags
         String tag = expression.getTag();
         ExpressionTags expTag = ExpressionTags.getTagByKey(tag);
@@ -43,9 +58,11 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
             case sequence: // in that case use the SequenceTranslator
                 // this don't write into global_exp!
                 // it only delegates the parsing process to the SequenceTranslator
-                SequenceTranslator p = new SequenceTranslator();
+                SequenceTranslator p = new SequenceTranslator(super.getSuperTranslator());
                 if ( p.translate( expression ) ) {
-                    local_inner_exp.addTranslatedExpression( p.getTranslatedExpressionObject() );
+                    localTranslations.addTranslatedExpression(
+                            p.getTranslatedExpressionObject()
+                    );
                     return true;
                 } else return false;
             case fraction:
@@ -58,7 +75,7 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
                 // balanced expressions are expressions in \left( x \right)
                 List<PomTaggedExpression> sub_exps = expression.getComponents();
                 TranslatedExpression tr = parseGeneralExpression( sub_exps.remove( 0 ), sub_exps );
-                local_inner_exp.addTranslatedExpression( tr );
+                localTranslations.addTranslatedExpression( tr );
                 return !isInnerError();
             case sub_super_script:
             case numerator:
@@ -70,10 +87,10 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
                     TranslationException.Reason.UNKNOWN_EXPRESSION_TAG,
                     tag,
                     null );
-        }} catch ( Exception e ){
+        }} catch ( TranslationException e ){
             handleNull( null,
                 "Unknown translation error while translating " + tag,
-                TranslationException.Reason.NULL,
+                e.getReason(),
                 tag,
                 e );
         }
@@ -90,9 +107,9 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
         }
 
         // first of all, translate components into translation
-        local_inner_exp.addTranslatedExpression(
+        localTranslations.addTranslatedExpression(
                 // try to translate the basic function
-                SemanticLatexTranslator.getBasicFunctionParser().translate(
+                getConfig().getBasicFunctionsTranslator().translate(
                         comps,
                         tag.tag()
                 )
@@ -101,11 +118,24 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
         // finally, global_exp needs to be updated
         // it doesn't contains sub expressions because
         // extractMultipleSubExpressions already deleted it.
-        global_exp.addTranslatedExpression(
-                local_inner_exp
+        TranslatedExpression global = super.getGlobalTranslationList();
+        global.addTranslatedExpression(
+                localTranslations
         );
+
         // everything goes well
         return true;
+    }
+
+    /**
+     * A wrapper method for {@link #extractMultipleSubExpressions(List)}.
+     *
+     * @param top_expression parent expression of underlying sub-expressions.
+     * @return true if the parsing process finished successful
+     * @see #extractMultipleSubExpressions(List)
+     */
+    private String[] extractMultipleSubExpressions( PomTaggedExpression top_expression ){
+        return extractMultipleSubExpressions(top_expression.getComponents());
     }
 
     /**
@@ -114,24 +144,24 @@ public class EmptyExpressionTranslator extends AbstractTranslator {
      * of several children. As an example a fraction expression has two children,
      * the numerator and the denominator.
      *
-     * @param top_expression parent expression of underlying sub-expressions.
+     * @param sub_expressions parent expression of underlying sub-expressions.
      * @return true if the parsing process finished successful
      */
-    private String[] extractMultipleSubExpressions( PomTaggedExpression top_expression ){
-        List<PomTaggedExpression> sub_expressions = top_expression.getComponents();
+    private String[] extractMultipleSubExpressions( List<PomTaggedExpression> sub_expressions ) {
         ArrayList<TranslatedExpression> components = new ArrayList<>(sub_expressions.size());
+        TranslatedExpression global = super.getGlobalTranslationList();
 
         while ( !sub_expressions.isEmpty() ){
             PomTaggedExpression exp = sub_expressions.remove(0);
             TranslatedExpression inner_exp = parseGeneralExpression(exp, sub_expressions);
             int num = inner_exp.mergeAll();
             components.add(inner_exp);
-            global_exp.removeLastNExps( num ); // remove all previous sub-elements
+            global.removeLastNExps( num ); // remove all previous sub-elements
         }
 
         String[] output = new String[components.size()];
         for ( int i = 0; i < output.length; i++ )
-            output[i] = components.get(i).toString();
+            output[i] = AbstractListTranslator.stripMultiParentheses(components.get(i).toString());
 
         return output;
     }
