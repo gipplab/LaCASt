@@ -1,12 +1,11 @@
 package gov.nist.drmf.interpreter.constraints;
 
-import gov.nist.drmf.interpreter.common.GlobalPaths;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.xml.transform.sax.SAXSource;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

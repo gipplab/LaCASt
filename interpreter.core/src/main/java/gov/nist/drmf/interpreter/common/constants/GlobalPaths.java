@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.common;
+package gov.nist.drmf.interpreter.common.constants;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -80,9 +80,9 @@ public class GlobalPaths {
     public static final Path PATH_MAPLE_NUMERICAL_SIEVE_PROCEDURE =
             PATH_MAPLE_PROCS.resolve("maple_numerical_sieve.txt");
 
-    // path variable to the resources of the core
+    // path variable to the resources of the interpreter
     public static final Path PATH_CORE_RESOURCES =
-            Paths.get("interpreter.core", "src", "main", "resources");
+            Paths.get("interpreter.interpreter", "src", "main", "resources");
 
     public static final Path PATH_LOGGING_CONFIG =
             PATH_CORE_RESOURCES.resolve("log4j2.xml");

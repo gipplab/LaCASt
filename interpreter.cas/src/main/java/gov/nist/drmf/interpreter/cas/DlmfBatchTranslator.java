@@ -3,9 +3,7 @@ package gov.nist.drmf.interpreter.cas;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.GlobalConstants;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -40,8 +38,7 @@ public class DlmfBatchTranslator {
 		CommandLine cmd = parser.parse( options, args );
 		Collection<File> files = getFiles( cmd );
 		final Path outPutDir = FileUtils.getFile( cmd.getOptionValue( "o" ) ).toPath();
-		GlobalConstants.CAS_KEY = "Maple";//TODO: Check with AGP
-		SemanticLatexTranslator translator = SemanticToCASInterpreter.getParser( false );
+		SemanticLatexTranslator translator = SemanticToCASInterpreter.getParser( false, "Maple" );
 		translator.setTolerant( true );
 		final boolean mlpfilter;
 		if ( cmd.hasOption( "f" ) ) {
@@ -61,7 +58,7 @@ public class DlmfBatchTranslator {
 				final String sTeX = FileUtils.readFileToString( file );
 				final String id = file.getPath().replace( "/", "-" ).replace( prefix, "" );
 				translator.reset();
-				translator.setId( id );
+				translator.setFileID( id );
 				translator.translate( sTeX );
 				final String translatedExpression = translator.getTranslatedExpression();
 				if ( mlpfilter ) {
@@ -76,9 +73,9 @@ public class DlmfBatchTranslator {
 			} catch ( IOException e ) {
 				e.printStackTrace();
 			}
-		} );
+		});
 		if(cmd.hasOption( 'e' )) {
-			final Map<String, Map<Integer, Set<String>>> problemTokens = AbstractTranslator.getProblemTokens();
+			final Map<String, Map<Integer, Set<String>>> problemTokens = translator.getProblemTokens();
 			XStream xstream = new XStream( new DomDriver() );
 			xstream.toXML( problemTokens, new FileWriter( cmd.getOptionValue( "e" ) ) );
 		}

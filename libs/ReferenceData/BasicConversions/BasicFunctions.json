@@ -1,205 +1,247 @@
 {
   "Languages": [
-	"MLP",
+    "MLP",
     "LaTeX",
     "Maple",
     "Mathematica"
   ],
   "Functions": {
-	"Fraction": {
-		"MLP": "fraction",
-		"LaTeX": "\\frac{$0}{$1}",
-		"Maple": "($0)/($1)",
-		"Mathematica": "Divide[$0,$1]"
-	},
-	"Binomial": {
-		"MLP": "binomial coefficient",
-		"LaTeX": "\\binom{$0}{$1}",
-		"Maple": "binomial($0,$1)",
-		"Mathematica": "Binomial[$0,$1]"
-	},
-	"Square Root": {
-		"MLP": "square root",
-		"LaTeX": "\\sqrt{$0}",
-		"Maple": "sqrt($0)",
-		"Mathematica": "Sqrt[$0]"
-	},
-	"Surd Root": {
-		"MLP": "radical with a specified index",
-		"LaTeX": "\\sqrt[$0]{$1}",
-		"Maple": "surd($1,$0)",
-		"Mathematica": "Surd[$1,$0]"
-	},
-	"Factorial": {
-		"MLP": "exclamation point",
-		"LaTeX": "$0!",
-		"Maple": "factorial($0)",
-		"Mathematica": "$0!"
-	},
-	"Double Factorial": {
-		"MLP": "double exclamation point",
-		"LaTeX": "$0!!",
-		"Maple": "doublefactorial($0)",
-		"Mathematica": "$0!!"
-	},
-	"Modulo": {
-		"MLP": "modulo",
-		"LaTeX": "$0 \\mod $1",
-		"Maple": "`modp`($0,$1)",
-		"Mathematica": "Mod[$0,$1]"
-	},
-	"Subscript":{
-		"MLP": "underscore",
-		"LaTeX": "$0_{$1}",
-		"Maple": "$0[$1]",
-		"Mathematica": "Subscript[$0, $1]"
-	},
-	"Exponential":{
-		"MLP": "exponential",
-		"LaTeX": "\\expe",
-		"Maple": "exp($0)",
-		"Mathematica": "Exp[$0]"
-	},
-	"Absolute Value":{
-		"MLP": "absolute value",
-		"LaTeX": "| $0 |",
-		"Maple": "abs($0)",
-		"Mathematica": "Abs[$0]"
-	}
+    "Fraction": {
+      "MLP": "fraction",
+      "LaTeX": "\\frac{$0}{$1}",
+      "Maple": "($0)/($1)",
+      "Mathematica": "Divide[$0,$1]"
+    },
+    "Binomial": {
+      "MLP": "binomial coefficient",
+      "LaTeX": "\\binom{$0}{$1}",
+      "Maple": "binomial($0,$1)",
+      "Mathematica": "Binomial[$0,$1]"
+    },
+    "Square Root": {
+      "MLP": "square root",
+      "LaTeX": "\\sqrt{$0}",
+      "Maple": "sqrt($0)",
+      "Mathematica": "Sqrt[$0]"
+    },
+    "Surd Root": {
+      "MLP": "radical with a specified index",
+      "LaTeX": "\\sqrt[$0]{$1}",
+      "Maple": "surd($1,$0)",
+      "Mathematica": "Surd[$1,$0]"
+    },
+    "Factorial": {
+      "MLP": "exclamation point",
+      "LaTeX": "$0!",
+      "Maple": "factorial($0)",
+      "Mathematica": "($0)!"
+    },
+    "Double Factorial": {
+      "MLP": "double exclamation point",
+      "LaTeX": "$0!!",
+      "Maple": "doublefactorial($0)",
+      "Mathematica": "($0)!!"
+    },
+    "Modulo": {
+      "MLP": "modulo",
+      "LaTeX": "$0 \\mod $1",
+      "Maple": "`modp`($0,$1)",
+      "Mathematica": "Mod[$0,$1]"
+    },
+    "Subscript": {
+      "MLP": "underscore",
+      "LaTeX": "$0_{$1}",
+      "Maple": "$0[$1]",
+      "Mathematica": "Subscript[$0, $1]"
+    },
+    "Exponential": {
+      "MLP": "exponential",
+      "LaTeX": "\\expe",
+      "Maple": "exp($0)",
+      "Mathematica": "Exp[$0]"
+    },
+    "Absolute Value": {
+      "MLP": "absolute value",
+      "LaTeX": "| $0 |",
+      "Maple": "abs($0)",
+      "Mathematica": "Abs[$0]"
+    },
+    "Sum": {
+      "MLP": "sum",
+      "LaTeX": "\\sum_{$0 = $1}^{$2}{$3}",
+      "Maple": "sum($3, $0 = $1..$2)",
+      "Mathematica": "Sum[$3, {$0, $1, $2}]"
+    },
+    "SumSet": {
+      "MLP": "sumSet",
+      "LaTeX": "\\sum_{$0 \\in $1}{$2}",
+      "Maple": "sum($2, $0 in $1)",
+      "Mathematica": "Sum[$2, {$0, $1}]"
+    },
+    "Product": {
+      "MLP": "prod",
+      "LaTeX": "\\prod_{$0 = $1}^{$2}{$3}",
+      "Maple": "product($3, $0 = $1..$2)",
+      "Mathematica": "Product[$3, {$0, $1, $2}]"
+    },
+    "ProductSet": {
+      "MLP": "prodSet",
+      "LaTeX": "\\prod_{$0 \\in $1}{$2}",
+      "Maple": "product($2, $0 in $1)",
+      "Mathematica": "Product[$2, {$0, $1}]"
+    },
+    "Derivative": {
+      "MLP": "derivative",
+      "LaTeX": "\\deriv[$2]{$0}{$1}",
+      "Maple": "subs( temp=$1, diff( $0, temp$($2) ) )",
+      "Mathematica": "D[$0, {temp, $2}]/.temp-> $1"
+    },
+    "Limit": {
+      "MLP": "lim2",
+      "LaTeX": "\\lim_{$0}{$1}",
+      "Maple": "limit($1, $0)",
+      "Mathematica": "Limit[$0, $1]"
+    }
   },
   "Symbol Languages": [
-	"MLP",
-	"LaTeX",
-	"Maple",
-	"Mathematica"
+    "MLP",
+    "LaTeX",
+    "Maple",
+    "Mathematica"
   ],
   "Symbols": {
-	"GeneralMultiplication": {
-		"MLP": "General Multiplication",
-		"LaTeX": "\\idot",
-		"Maple": "*",
-		"Mathematica": " "
-	},
-	"Multiply": {
-		"MLP": "operation",
-		"LaTeX": "\\cdot",
-		"Maple": "*",
-		"Mathematica": "*"
-	},
-	"Invisible Multiply": {
-		"MLP": "operation",
-		"LaTeX": "\\idot",
-		"Maple": "*",
-		"Mathematica": "*"
-	},
-	"Addition":{
-		"MLP": "Addition",
-		"LaTeX": "+",
-		"Maple": "+",
-		"Mathematica": "+"
-	},
-	"Lower dots":{
-		"MLP": "ellipsis",
-		"LaTeX": "\\ldots",
-		"Maple": "..",
-		"Mathematica": " ... "
-	},
-    "Dots":{
-        "MLP": "ellipsis",
-        "LaTeX": "\\dots",
-        "Maple": "..",
-        "Mathematica": " ... "
+    "GeneralMultiplication": {
+      "MLP": "General Multiplication",
+      "LaTeX": "\\idot",
+      "Maple": "*",
+      "Mathematica": "*"
     },
-	"Equality":{
-		"MLP": "equals",
-		"LaTeX": "=",
-		"Maple": "=",
-		"Mathematica": "="
-	},
-	"Definition":{
-		"MLP": "definition",
-		"LaTeX": ":=",
-		"Maple": ":=",
-		"Mathematica": ":="
-	},
-	"Not Equality":{
-		"MLP": "relation_neq",
-		"LaTeX": "\\neq",
-		"Maple": "<>",
-		"Mathematica": "\\[NotEqual]"
-	},
-    "Not Equality 2":{
+    "Multiply": {
+      "MLP": "operation",
+      "LaTeX": "\\cdot",
+      "Maple": "*",
+      "Mathematica": "*"
+    },
+    "Invisible Multiply": {
+      "MLP": "operation",
+      "LaTeX": "\\idot",
+      "Maple": "*",
+      "Mathematica": "*"
+    },
+    "Addition": {
+      "MLP": "plus",
+      "LaTeX": "+",
+      "Maple": "+",
+      "Mathematica": "+"
+    },
+    "Subtraction": {
+      "MLP": "minus",
+      "LaTeX": "-",
+      "Maple": "-",
+      "Mathematica": "-"
+    },
+    "Lower dots": {
+      "MLP": "ellipsis",
+      "LaTeX": "\\ldots",
+      "Maple": "..",
+      "Mathematica": " ... "
+    },
+    "Dots": {
+      "MLP": "ellipsis",
+      "LaTeX": "\\dots",
+      "Maple": "..",
+      "Mathematica": " ... "
+    },
+    "Equality": {
+      "MLP": "equals",
+      "LaTeX": "=",
+      "Maple": "=",
+      "Mathematica": "="
+    },
+    "Definition": {
+      "MLP": "definition",
+      "LaTeX": ":=",
+      "Maple": ":=",
+      "Mathematica": ":="
+    },
+    "Not Equality": {
+      "MLP": "relation_neq",
+      "LaTeX": "\\neq",
+      "Maple": "<>",
+      "Mathematica": "\\[NotEqual]"
+    },
+    "Not Equality 2": {
       "MLP": "relation_neq",
       "LaTeX": "\\ne",
       "Maple": "<>",
       "Mathematica": "\\[NotEqual]"
     },
-	"Less Than or Equality":{
-		"MLP": "relation_leq",
-		"LaTeX": "\\leq",
-		"Maple": "<=",
-		"Mathematica": "<="
-	},
-	"Less Than or Equality 2":{
-		"MLP": "relation_leq2",
-		"LaTeX": "\\le",
-		"Maple": "<=",
-		"Mathematica": "<="
-	},
-	"Greater Than or Equality":{
-		"MLP": "relation_geq",
-		"LaTeX": "\\geq",
-		"Maple": ">=",
-		"Mathematica": ">="
-	},
-	"Greater Than or Equality2":{
-		"MLP": "relation_geq2",
-		"LaTeX": "\\ge",
-		"Maple": ">=",
-		"Mathematica": ">="
-	},
-	"Element of":{
-		"MLP": "in",
-		"LaTeX": "\\in",
-		"Maple": "in",
-		"Mathematica": "\\[Element]"
-	},
-	"Infinity": {
+    "Less Than or Equality": {
+      "MLP": "relation_leq",
+      "LaTeX": "\\leq",
+      "Maple": "<=",
+      "Mathematica": "<="
+    },
+    "Less Than or Equality 2": {
+      "MLP": "relation_leq2",
+      "LaTeX": "\\le",
+      "Maple": "<=",
+      "Mathematica": "<="
+    },
+    "Greater Than or Equality": {
+      "MLP": "relation_geq",
+      "LaTeX": "\\geq",
+      "Maple": ">=",
+      "Mathematica": ">="
+    },
+    "Greater Than or Equality2": {
+      "MLP": "relation_geq2",
+      "LaTeX": "\\ge",
+      "Maple": ">=",
+      "Mathematica": ">="
+    },
+    "Element of": {
+      "MLP": "in",
+      "LaTeX": "\\in",
+      "Maple": "in",
+      "Mathematica": "\\[Element]"
+    },
+    "Infinity": {
       "MLP": "ordinary",
       "LaTeX": "\\infty",
       "Maple": "infinity",
       "Mathematica": "Infinity"
-	},
-	"opminus": {
+    },
+    "opminus": {
       "MLP": "opminus",
       "LaTeX": "\\opminus",
       "Maple": "(-1)",
       "Mathematica": "(-1)"
-	},
-	"Complex Numbers": {
+    },
+    "Complex Numbers": {
       "MLP": "complex",
       "LaTeX": "\\Complex",
       "Maple": "complex",
       "Mathematica": "Complex"
-	},
-	"Real Numbers": {
+    },
+    "Real Numbers": {
       "MLP": "real",
       "LaTeX": "\\Real",
       "Maple": "real",
       "Mathematica": "Real"
-	},
-	"Rational Numbers": {
+    },
+    "Rational Numbers": {
       "MLP": "rational",
       "LaTeX": "\\Rational",
       "Maple": "rational",
       "Mathematica": "Rational"
-	},
-	"Integer Numbers": {
+    },
+    "Integer Numbers": {
       "MLP": "integer",
       "LaTeX": "\\Integer",
       "Maple": "integer",
       "Mathematica": "Integer"
-	},
+    },
     "Ell": {
       "MLP": "special math letter",
       "LaTeX": "\\ell",

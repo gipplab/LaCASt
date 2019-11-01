@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.semantic;
 
-import gov.nist.drmf.interpreter.common.GlobalPaths;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
