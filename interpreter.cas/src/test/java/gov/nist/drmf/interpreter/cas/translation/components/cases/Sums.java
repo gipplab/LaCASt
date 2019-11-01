@@ -49,6 +49,16 @@ public enum Sums implements TestCase {
             "sum(n, n = 0..10) = 2*n",
             "Sum[n, {n, 0, 10}] = 2*n"
     ),
+    SIMPLE_PARENTHESES(
+            "\\sum_{n=0}^{10} k - (n+2)",
+            "sum(k - (n + 2), n = 0..10)",
+            "Sum[k - (n + 2), {n, 0, 10}]"
+    ),
+    SIMPLE_PARENTHESES_LATER(
+            "\\sum_{n=0}^{10} k + (k+2)^n",
+            "sum(k + (k+2)^(n), n = 0..10)",
+            "Sum[k + (k+2)^(n), {n, 0, 10}]"
+    ),
     SIMPLE_MULTI_SUM_INSIDE(
             "\\sum_{n=0}^{10} \\sum_{k=0}^{10} k n",
             "sum(sum(k*n, k = 0..10), n = 0..10)",

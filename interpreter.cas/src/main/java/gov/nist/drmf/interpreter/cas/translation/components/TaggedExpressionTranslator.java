@@ -87,10 +87,10 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
                     TranslationException.Reason.UNKNOWN_EXPRESSION_TAG,
                     tag,
                     null );
-        }} catch ( Exception e ){
+        }} catch ( TranslationException e ){
             handleNull( null,
                 "Unknown translation error while translating " + tag,
-                TranslationException.Reason.NULL,
+                e.getReason(),
                 tag,
                 e );
         }

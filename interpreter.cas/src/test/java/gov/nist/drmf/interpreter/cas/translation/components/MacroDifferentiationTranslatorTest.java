@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  * @author Avi Trost
  * @author Andre Greiner-Petter
  */
-class MacroTranslatorMapleTest {
+class MacroDifferentiationTranslatorTest {
     private static TranslationTester tester;
 
     @BeforeAll
