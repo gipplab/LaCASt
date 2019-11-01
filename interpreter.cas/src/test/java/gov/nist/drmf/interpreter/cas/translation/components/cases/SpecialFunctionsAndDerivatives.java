@@ -69,12 +69,12 @@ public enum SpecialFunctionsAndDerivatives implements TestCase {
     MODIFIED_BESSEL_K_PRIME(
             "\\modBesselKimag{\\nu}'@{x}",
             "subs( temp=x, diff( BesselK(I*(nu), temp), temp$(1) ) )",
-            "D[BesselK[\\[Nu], temp], {temp, 1}]/.temp-> x"
+            "D[BesselK[I*\\[Nu], temp], {temp, 1}]/.temp-> x"
     ),
     MODIFIED_BESSEL_K_LAGRANGE(
             "\\modBesselKimag{\\nu}^{(5^3)}@{x}",
             "subs( temp=x, diff( BesselK(I*(nu), temp), temp$((5)^(3)) ) )",
-            "D[BesselK[\\[Nu], temp], {temp, 5^3}]/.temp-> x"
+            "D[BesselK[I*\\[Nu], temp], {temp, (5)^(3)}]/.temp-> x"
     ),
     HYPER_F(
             "\\hyperF@@@{a}{b}{c}{z}",

@@ -207,7 +207,7 @@ DRMF Macro;;;;;
 \modBesselI{v}@{x};BesselI[$0, $1];2;1;;
 \modBesselK{v}@{x};BesselK[$0, $1];2;1;;
 \modcylinder{\nu}@{z};;2;1;;
-\modBesselIimag{\nu}@{x};Re[BesselI[I $0, $1]];2;1;;
+\modBesselIimag{\nu}@{x};Re[BesselI[I*$0, $1]];2;1;;
 \modBesselKimag{\nu}@{x};BesselK[I*$0, $1];2;1;;
 \genBesselphi@{\rho}{\beta}{z};;;;;
 \MittagLefflerE{a}{b}@{z};;;;;

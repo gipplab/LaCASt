@@ -70,8 +70,12 @@ public abstract class AbstractTranslator implements IForwardTranslator {
      */
     private boolean SET_MODE    = false;
     private boolean inner_Error = false;
-    private boolean tolerant    = true;
     private boolean mlpError    = false;
+
+    /**
+     * Tolerant mode means, an error gets ignored
+     */
+    private boolean tolerant    = false;
 
     /**
      * The current forward translation config
@@ -171,6 +175,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         }
 
         inner_Error = !return_value;
+        LOG.debug("Global translation list: " + global_exp.debugString());
         return inner_parser.getTranslatedExpressionObject();
     }
 
@@ -386,12 +391,13 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     protected boolean handleNull(Object o, String message, Reason reason, String token, Exception exception) {
         if (o == null) {
             String exceptionString = "";
+            String location = "";
             if (LOG.isWarnEnabled() && exception != null) {
                 try {
                     final StackTraceElement[] stackTrace = exception.getStackTrace();
                     final StackTraceElement traceElement = stackTrace[0];
-                    exceptionString = traceElement.getClassName() + ":L"
-                            + traceElement.getLineNumber() + ":" + exception.getMessage();
+                    location = traceElement.getClassName() + ":L" + traceElement.getLineNumber();
+                    exceptionString = exception.getMessage();
                 } catch (Exception e) {
                     //ignore
                 }
@@ -400,8 +406,22 @@ public abstract class AbstractTranslator implements IForwardTranslator {
                 mlpError = true;
             }
             final String errorMessage = String.format(
-                    "Translation error in id '%s'\n\tmessage:%s\n\ttoken:%s\n\treason:%s,\n\texception:%s",
-                    this.fileID, message, token, reason, exceptionString);
+                    "Translation error in id '%s'\n\t" +
+                            "message:     %s,\n\t" +
+                            "token:       %s,\n\t" +
+                            "reason:      %s,\n\t" +
+                            "location:    %s,\n\t" +
+                            "translation: %s -> %s,\n\t" +
+                            "exception:   %s",
+                    this.fileID,
+                    message,
+                    token,
+                    reason,
+                    location,
+                    config.getFROM_LANGUAGE(),
+                    config.getTO_LANGUAGE(),
+                    exceptionString
+            );
             LOG.warn(errorMessage);
             final Matcher m = DLMF_ID_PATTERN.matcher(fileID);
             if (m.matches()) {
@@ -420,7 +440,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
                 appendLocalErrorExpression(token);
                 return true;
             }
-            throw new TranslationException(
+            TranslationException te = new TranslationException(
                     config.getFROM_LANGUAGE(),
                     config.getTO_LANGUAGE(),
                     message,
@@ -428,6 +448,8 @@ public abstract class AbstractTranslator implements IForwardTranslator {
                     token,
                     exception
             );
+//            LOG.error("Error due translation process.", exception);
+            throw te;
         }
         return false;
     }
