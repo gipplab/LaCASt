@@ -276,6 +276,10 @@ public class TranslatedExpression {
         return output;
     }
 
+    public String debugToString() {
+        return trans_exps.toString();
+    }
+
     @Override
     public String toString(){
         return getTranslatedExpression();
