@@ -268,7 +268,7 @@ public class MacroTranslator extends AbstractListTranslator {
                 MathTermTags tag = MathTermTags.getTagByKey(first_term.getTag());
 
                 if (tag.equals(MathTermTags.left_bracket)) {
-                    String optional = translateInnerExp(following_exps.remove(0), following_exps);
+                    String optional = translateInnerExp(following_exps.remove(0), following_exps).toString();
                     Matcher m = optional_params_pattern.matcher(optional);
                     if (m.matches()) {
                         optionalArguments.add(m.group(1));
@@ -303,7 +303,7 @@ public class MacroTranslator extends AbstractListTranslator {
             }
 
             // ok, everything's valid, lets move on
-            String translatedPara = translateInnerExp(exp, following_exps);
+            String translatedPara = translateInnerExp(exp, following_exps).toString();
             parameters.addLast(translatedPara);
         }
 
@@ -407,7 +407,7 @@ public class MacroTranslator extends AbstractListTranslator {
                 }
             }
 
-            String translation = translateInnerExp(exp, following_exps);
+            String translation = translateInnerExp(exp, following_exps).toString();
             arguments.addLast(translation);
             passAts = true;
         }
@@ -456,22 +456,6 @@ public class MacroTranslator extends AbstractListTranslator {
                 exp = exp.getNextSibling();
             }
         }
-    }
-
-    /**
-     * A generic function that translates the next {@param expression} and cleans the the global translation list afterwards
-     * @param expression translate expression
-     * @param following_exps the following expressions
-     * @return the translated expression
-     */
-    private String translateInnerExp(PomTaggedExpression expression, List<PomTaggedExpression> following_exps) {
-        TranslatedExpression inner_exp =
-                parseGeneralExpression(
-                        expression,
-                        following_exps
-                );
-        getGlobalTranslationList().removeLastNExps(inner_exp.getLength());
-        return inner_exp.toString();
     }
 
     /**

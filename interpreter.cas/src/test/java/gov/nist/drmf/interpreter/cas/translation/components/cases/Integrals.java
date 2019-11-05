@@ -5,10 +5,51 @@ package gov.nist.drmf.interpreter.cas.translation.components.cases;
  */
 public enum Integrals implements TestCase {
     SIMPLE(
-            "\\int_{0}^{1} x \\mathrm{d}x",
+            "\\int_{0}^{1} x \\diff{x}",
             "int(x, x = 0..1)",
             "Integrate[x, {x, 0, 1}]"
-    );
+    ),
+    SIMPLE_DIFFD(
+            "\\int_{0}^{1} x \\diffd x",
+            "int(x, x = 0..1)",
+            "Integrate[x, {x, 0, 1}]"
+    ),
+    SIMPLE_REVERSE(
+            "\\int^{1}_0 x \\diff{x}",
+            "int(x, x = 0..1)",
+            "Integrate[x, {x, 0, 1}]"
+    ),
+    SIMPLE_AFTER(
+            "\\int_{0}^1 x \\diff{x} + x^2",
+            "int(x, x = 0..1) + (x)^(2)",
+            "Integrate[x, {x, 0, 1}] + (x)^(2)"
+    ),
+    SIMPLE_MULTI_INNER(
+            "\\int_{0}^{1} \\int_{0}^{1} yx \\diff{y} \\diff{x}",
+            "int(int(y*x, y = 0..1), x = 0..1)",
+            "Integrate[Integrate[y*x, {y, 0, 1}], {x, 0, 1}]"
+    ),
+    SIMPLE_MULTI_CHAIN(
+            "\\int_{0}^{1} x \\diff{x} \\int_{0}^{1} y \\diff{y}",
+            "int(x, x = 0..1)*int(y, y = 0..1)",
+            "Integrate[x, {x, 0, 1}]*Integrate[y, {y, 0, 1}]"
+    ),
+    SIMPLE_FRAC_DIFF(
+            "\\int_{0}^{1} \\frac{\\diff{x}}{x}",
+            "int((1)/(x), x = 0..1)",
+            "Integrate[Divide[1, x], {x, 0, 1}]"
+    ),
+    SIMPLE_MULTI_INNER_FRAC_DIFF(
+            "\\int_{0}^{1} \\int_{0}^{1} \\frac{\\diff{x} \\diff{y}}{xy}",
+            "int(int((1)/(x*y), x = 0..1), y = 0..1)",
+            "Integrate[Integrate[Divide[1, x*y], {x, 0, 1}], {y, 0, 1}]"
+    ),
+    DLMF_EQUAL( // 6.7#E13
+            "\\int_0^{\\infty} \\frac{\\sin@{t}}{t+z} \\diff{t} = \\int_0^{\\infty} \\frac{\\expe^{-zt} \\diff{t}}{t^2+z}",
+            "int((sin(t))/(t+z), t = 0..infinity) = int((exp(-z*t))/((t)^(2)+z), t = 0..infinity)",
+            "Integrate[Divide[Sin[t], t+z], {t, 0, Infinity}] = Integrate[Divide[Exp[-z*t], (t)^(2)+z], {t, 0, Infinity}]"
+    )
+    ;
 
     private String tex, maple, mathematica;
 

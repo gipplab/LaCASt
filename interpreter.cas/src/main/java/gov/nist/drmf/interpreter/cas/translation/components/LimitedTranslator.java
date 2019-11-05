@@ -4,8 +4,6 @@ import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
-import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.cas.blueprints.Limits;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
@@ -23,10 +21,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import static gov.nist.drmf.interpreter.common.exceptions.TranslationException.Reason.MLP_ERROR;
-
 /**
- * SumProductTranslator uses parseGeneralExpression to get the arguments to the sum/product.
+ * LimitedTranslator uses parseGeneralExpression to get the arguments to the sum/product.
  * Then it uses BasicFunctionParser to put the arguments where they need to go.
  *
  * Method call order: translate -> addToArgs -> onlyLower/lowerAndUpper -> addFactorsToSummand
@@ -36,8 +32,8 @@ import static gov.nist.drmf.interpreter.common.exceptions.TranslationException.R
  *
  * July 2019
  */
-public class SumProductTranslator extends AbstractListTranslator {
-    private static final Logger LOG = LogManager.getLogger(SumProductTranslator.class.getName());
+public class LimitedTranslator extends AbstractListTranslator {
+    private static final Logger LOG = LogManager.getLogger(LimitedTranslator.class.getName());
 
     private static ArrayList<ArrayList<String>> args = new ArrayList<>();
 
@@ -50,7 +46,7 @@ public class SumProductTranslator extends AbstractListTranslator {
 
     private TranslatedExpression localTranslations;
 
-    public SumProductTranslator(AbstractTranslator superTranslator) {
+    public LimitedTranslator(AbstractTranslator superTranslator) {
         super(superTranslator);
         this.localTranslations = new TranslatedExpression();
         this.bft = super.getConfig().getBasicFunctionsTranslator();
@@ -74,10 +70,13 @@ public class SumProductTranslator extends AbstractListTranslator {
         String category;
         if (FeatureSetUtility.isSum(root) ) category = "sum";
         else if ( FeatureSetUtility.isProduct(root) ) category = "prod";
+        else if ( FeatureSetUtility.isIntegral(root) ) category = "int";
         else throw new TranslationException("Other limited expressions than sum/prod are not yet supported.");
 
         PomTaggedExpression limitExpression = list.remove(0);
-        Limits limit = extractLimits(limitExpression);
+        Limits limit = category.matches("int") ?
+                extractIntegralLimits(limitExpression) :
+                extractLimits(limitExpression);
 
         List<PomTaggedExpression> potentialArguments = getPotentialArgumentsUntilEndOfScope(list, limit.getVars());
         // the potential arguments is a theoretical sequence, so handle it as a sequence!
@@ -99,10 +98,12 @@ public class SumProductTranslator extends AbstractListTranslator {
 
         // find elements that are part of the argument:
         // next, split into argument parts and the rest
-        TranslatedExpression transArgs = removeUntilLastAppearence(
-                translatedPotentialArguments,
-                limit.getVars()
-        );
+        TranslatedExpression transArgs = category.matches("int") ?
+                translatedPotentialArguments :
+                removeUntilLastAppearence(
+                        translatedPotentialArguments,
+                        limit.getVars()
+                );
 
         int lastIdx = limit.getVars().size()-1;
 
@@ -129,10 +130,12 @@ public class SumProductTranslator extends AbstractListTranslator {
 
         // add translation and the rest of the translation
         localTranslations.addTranslatedExpression(finalTranslation);
-        localTranslations.addTranslatedExpression(translatedPotentialArguments);
-
         getGlobalTranslationList().addTranslatedExpression(finalTranslation);
-        getGlobalTranslationList().addTranslatedExpression(translatedPotentialArguments);
+
+        if ( !category.matches("int") ){
+            localTranslations.addTranslatedExpression(translatedPotentialArguments);
+            getGlobalTranslationList().addTranslatedExpression(translatedPotentialArguments);
+        }
 
         return true;
     }
@@ -162,15 +165,38 @@ public class SumProductTranslator extends AbstractListTranslator {
 
         // if an upper bound was explicitly given, overwrite the parsed upper bound
         if ( !upperBound.isEmpty() ) {
-            TranslatedExpression te = parseGeneralExpression(upperBound.remove(0), upperBound);
-            getGlobalTranslationList().removeLastNExps(te.getLength());
+            TranslatedExpression te = translateInnerExp(upperBound.remove(0), upperBound);
             limit.overwriteUpperLimit(te.getTranslatedExpression());
         }
 
         return limit;
     }
 
+    private Limits extractIntegralLimits(PomTaggedExpression limitSuperExpr) {
+        LinkedList<PomTaggedExpression> upperBound = new LinkedList<>();
+        PomTaggedExpression lower = getLowerUpper(limitSuperExpr, upperBound);
+
+        TranslatedExpression upperTrans = translateInnerExp(upperBound.removeFirst(), upperBound);
+        TranslatedExpression lowerTrans = translateInnerExp(lower, new LinkedList<>());
+
+        LinkedList<String> u = new LinkedList<>();
+        LinkedList<String> l = new LinkedList<>();
+
+        u.add(upperTrans.toString());
+        l.add(lowerTrans.toString());
+
+        return new Limits(new LinkedList<>(), l, u);
+    }
+
     private Limits extractLimitsWithoutParsing(PomTaggedExpression limitSuperExpr, List<PomTaggedExpression> upperBound) {
+        PomTaggedExpression limitExpression = getLowerUpper(limitSuperExpr, upperBound);
+
+        // now we have limitExpression and an optional upperBound. Parse it:
+        BlueprintMaster btm = getConfig().getLimitParser();
+        return btm.findMatchingLimit(limitExpression);
+    }
+
+    private PomTaggedExpression getLowerUpper(PomTaggedExpression limitSuperExpr, List<PomTaggedExpression> upperBound) {
         MathTerm term = limitSuperExpr.getRoot();
 
         PomTaggedExpression limitExpression = null;
@@ -201,9 +227,7 @@ public class SumProductTranslator extends AbstractListTranslator {
             }
         }
 
-        // now we have limitExpression and an optional upperBound. Parse it:
-        BlueprintMaster btm = getConfig().getLimitParser();
-        return btm.findMatchingLimit(limitExpression);
+        return limitExpression;
     }
 
     /**
@@ -214,9 +238,14 @@ public class SumProductTranslator extends AbstractListTranslator {
      * @param list
      * @return
      */
-    private List<PomTaggedExpression> getPotentialArgumentsUntilEndOfScope(List<PomTaggedExpression> list, List<String> currVars) {
+    private List<PomTaggedExpression> getPotentialArgumentsUntilEndOfScope(
+            List<PomTaggedExpression> list,
+            List<String> currVars
+    ) {
         LinkedList<PomTaggedExpression> cache = new LinkedList<>();
         LinkedList<Brackets> parenthesisCache = new LinkedList<>();
+        LinkedList<PomTaggedExpression> fracList = null;
+        int innerInts = 0;
 
         // the very next element is always(!) part of the argument
         if ( list.isEmpty() ) {
@@ -233,6 +262,18 @@ public class SumProductTranslator extends AbstractListTranslator {
         if ( bracket != null ) {
             if ( !bracket.opened ) throw new TranslationException("No arguments for limited expression found.");
             parenthesisCache.addLast(bracket);
+        }
+
+        if ( !first.getRoot().isEmpty() && FeatureSetUtility.isIntegral(first.getRoot())){
+            innerInts++;
+        }
+
+        fracList = isDiffFrac(first);
+        if ( fracList != null ) {
+            cache.removeFirst();
+            while (!fracList.isEmpty())
+                list.add(0, fracList.removeLast());
+            cache.add(list.remove(0));
         }
 
         // now add all until there is a stop expression
@@ -259,6 +300,9 @@ public class SumProductTranslator extends AbstractListTranslator {
                             throw new TranslationException("Open and close parentheses does not match!");
                         }
                     }
+                } else if ( !parenthesisCache.isEmpty() ) {
+                    cache.addLast(list.remove(0));
+                    continue;
                 } else if ( FeatureSetUtility.isSum(mt) || FeatureSetUtility.isProduct(mt) ) {
                     // there is a special case where we also have to stop...
                     // if a new limited expression is coming that shares the same variable
@@ -281,6 +325,17 @@ public class SumProductTranslator extends AbstractListTranslator {
                             return cache;
                         }
                     }
+                } else if ( mt.getTermText().matches("\\\\diffd?") ) {
+                    if ( innerInts > 0 ) innerInts--;
+                    else {
+                        list.remove(0); // diff or diffd... so get next for arg
+                        PomTaggedExpression argPTE = list.remove(0);
+                        TranslatedExpression argTe = translateInnerExp(argPTE, list);
+                        currVars.add(argTe.toString());
+                        return cache;
+                    }
+                } else if ( FeatureSetUtility.isIntegral(mt) ) {
+                    innerInts++;
                 } else {
                     MathTermTags tag = MathTermTags.getTagByKey(mt.getTag());
                     // stop only in case of a harsh stop symbol appears on the same level of the sum
@@ -295,12 +350,60 @@ public class SumProductTranslator extends AbstractListTranslator {
                             return cache;
                     }
                 }
-            } // if no stopper is found, just add it to the potential list
+            } else if ( (fracList = isDiffFrac(curr)) != null ) {
+                list.remove(0);
+                while (!fracList.isEmpty())
+                    list.add(0, fracList.removeLast());
+            }
+
+            // if no stopper is found, just add it to the potential list
             cache.addLast(list.remove(0));
         }
 
         // well, it might be the entire expression until the end, of course
         return cache;
+    }
+
+    private LinkedList<PomTaggedExpression> isDiffFrac(PomTaggedExpression pte) {
+        ExpressionTags pt = ExpressionTags.getTagByKey(pte.getTag());
+        if ( pt != null && pt.equals(ExpressionTags.fraction) ) {
+            PomTaggedExpression numeratorPTE = pte.getComponents().get(0);
+            ExpressionTags it = ExpressionTags.getTagByKey(numeratorPTE.getTag());
+
+            if ( it != null && !it.equals(ExpressionTags.sequence) )
+                return null;
+
+            LinkedList<PomTaggedExpression> list = new LinkedList<>();
+            LinkedList<PomTaggedExpression> temp = new LinkedList<>();
+
+            List<PomTaggedExpression> seq = numeratorPTE.getComponents();
+            while ( !seq.isEmpty() ) {
+                PomTaggedExpression e = seq.remove(0);
+
+                MathTerm mt = e.getRoot();
+                if ( mt != null && !mt.isEmpty() ) {
+                    if ( mt.getTermText().matches("\\\\diffd?") ) {
+                        list.addLast(e);
+                        list.addLast(seq.remove(0));
+                        continue;
+                    }
+                }
+
+                temp.addLast(e);
+            }
+
+            if ( !temp.isEmpty() ) {
+                for ( PomTaggedExpression t : temp )
+                    numeratorPTE.addComponent(t);
+            } else {
+                MathTerm oneMT = new MathTerm("1", "digit", "numeric", "numerator");
+                numeratorPTE.addComponent(0, oneMT);
+            }
+
+            list.addFirst(pte);
+            return list;
+        }
+        return null;
     }
 
     private TranslatedExpression removeUntilLastAppearence(TranslatedExpression te, List<String> vars) {

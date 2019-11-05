@@ -112,6 +112,10 @@ public abstract class FeatureSetUtility {
         return term.getTermText().equals("\\prod");
     }
 
+    public static boolean isIntegral(MathTerm term){
+        return term.getTermText().equals("\\int");
+    }
+
     public static boolean isLimit(MathTerm term){
         return term.getTermText().equals("\\lim");
     }
