@@ -1,26 +1,14 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
-import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Products;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Sums;
-import gov.nist.drmf.interpreter.cas.translation.components.cases.TestCase;
-import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
-import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
-import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
-import mlp.PomParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.function.Executable;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.stream.Stream;
 
-import static gov.nist.drmf.interpreter.cas.translation.components.matcher.IgnoresAllWhitespacesMatcher.ignoresAllWhitespaces;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
@@ -30,8 +18,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author Avi Trost
  * @author Andre Greiner-Petter
  */
-public class SumProductTranslatorTest {
-    private static final Logger LOG = LogManager.getLogger(SumProductTranslatorTest.class.getName());
+public class LimitedExpressionTranslatorTest {
+    private static final Logger LOG = LogManager.getLogger(LimitedExpressionTranslatorTest.class.getName());
 
     private static final String[] lims = {
             //4.31.1
