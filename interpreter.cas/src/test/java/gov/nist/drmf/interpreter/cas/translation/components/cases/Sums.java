@@ -9,6 +9,11 @@ public enum Sums implements TestCase {
             "sum(n, n = 0..10)",
             "Sum[n, {n, 0, 10}]"
     ),
+    SIMPLE_REVERSE(
+            "\\sum^{10}_{n=0} n",
+            "sum(n, n = 0..10)",
+            "Sum[n, {n, 0, 10}]"
+    ),
     SIMPLE_LONG_LIMITS(
             "\\sum_{n=0}^{m+1}{n}",
             "sum(n, n = 0..m + 1)",
