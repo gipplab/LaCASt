@@ -90,6 +90,12 @@
       "Maple": "product($2, $0 in $1)",
       "Mathematica": "Product[$2, {$0, $1}]"
     },
+    "Integral": {
+      "MLP": "int",
+      "LaTeX": "\\int_{$1}^{$2}{$3} \\diff{$0}",
+      "Maple": "int($3, $0 = $1..$2)",
+      "Mathematica": "Integrate[$3, {$0, $1, $2}]"
+    },
     "Derivative": {
       "MLP": "derivative",
       "LaTeX": "\\deriv[$2]{$0}{$1}",

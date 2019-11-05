@@ -152,7 +152,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
                 inner_parser = mp;
             } //is it a sum or a product
             else if (isSumOrProductOrLimit(term)) {
-                SumProductTranslator sm = new SumProductTranslator(this);
+                LimitedTranslator sm = new LimitedTranslator(this);
                 return_value = sm.translate(exp, exp_list);
                 inner_parser = sm;
             } // it could be a sub sequence
@@ -177,6 +177,22 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         inner_Error = !return_value;
         LOG.debug("Global translation list: " + global_exp.debugString());
         return inner_parser.getTranslatedExpressionObject();
+    }
+
+    /**
+     * A generic function that translates the next {@param expression} and cleans the the global translation list afterwards
+     * @param expression translate expression
+     * @param following_exps the following expressions
+     * @return the translated expression
+     */
+    protected TranslatedExpression translateInnerExp(PomTaggedExpression expression, List<PomTaggedExpression> following_exps) {
+        TranslatedExpression inner_exp =
+                parseGeneralExpression(
+                        expression,
+                        following_exps
+                );
+        getGlobalTranslationList().removeLastNExps(inner_exp.getLength());
+        return inner_exp;
     }
 
     /**
@@ -235,7 +251,10 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     private boolean isSumOrProductOrLimit(MathTerm term) {
         MathTermTags mtag = MathTermTags.getTagByKey(term.getTag());
         if (mtag != null && mtag.equals(MathTermTags.operator)) {
-            return FeatureSetUtility.isSum(term) || FeatureSetUtility.isProduct(term) || FeatureSetUtility.isLimit(term);
+            return FeatureSetUtility.isSum(term) ||
+                    FeatureSetUtility.isProduct(term) ||
+                    FeatureSetUtility.isIntegral(term) ||
+                    FeatureSetUtility.isLimit(term);
         }
         return false;
     }

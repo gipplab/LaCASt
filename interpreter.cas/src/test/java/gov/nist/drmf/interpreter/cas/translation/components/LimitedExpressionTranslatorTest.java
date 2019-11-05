@@ -1,9 +1,11 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
+import gov.nist.drmf.interpreter.cas.translation.components.cases.Integrals;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Products;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Sums;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Before;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
@@ -77,8 +79,8 @@ public class LimitedExpressionTranslatorTest {
 
     private static TranslationTester tester;
 
-    @BeforeEach
-    void mapleSetUp() throws IOException {
+    @BeforeAll
+    public static void mapleSetUp() throws IOException {
         tester = new TranslationTester();
     }
 
@@ -100,5 +102,15 @@ public class LimitedExpressionTranslatorTest {
     @TestFactory
     Stream<DynamicTest> prodsMathematicaTest() {
         return tester.test(Products.values(), false);
+    }
+
+    @TestFactory
+    Stream<DynamicTest> intsMapleTest() {
+        return tester.test(Integrals.values(), true);
+    }
+
+    @TestFactory
+    Stream<DynamicTest> intsMathematicaTest() {
+        return tester.test(Integrals.values(), false);
     }
 }
