@@ -30,6 +30,18 @@ public enum Lims implements TestCase {
             "limit((1 +(z)/(n))^(n), n = infinity)",
             "Limit[(1 +Divide[z,n])^(n), n -> Infinity]"
     ),
+    @DLMF("6.2.14")
+    SIN_INT(
+            "\\lim_{x \\to \\infty} \\sinint@{x} = \\frac{1}{2} \\cpi",
+            "limit(Si(x), x = infinity) = (1)/(2)*Pi",
+            "Limit[SinIntegral[x], x -> Infinity] = Divide[1,2]*Pi"
+    ),
+    @DLMF("6.2.14")
+    COS_INT(
+            "\\lim_{x \\to \\infty} \\cosint@{x} = 0",
+            "limit(Ci(x), x = infinity) = 0",
+            "Limit[CosIntegral[x], x -> Infinity] = 0"
+    ),
     @DLMF("22.12.4")
     LONG_MULTI(
             "\\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\frac{\\cpi}{\\tan@{\\cpi (t - (n+\\frac{1}{2}) \\tau)}} = \\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\left( \\lim_{M \\to \\infty} \\sum_{m=-M}^M \\frac{1}{t - m - (n+\\frac{1}{2}) \\tau} \\right)",
