@@ -168,12 +168,6 @@ public class MacroTranslator extends AbstractListTranslator {
             info_key += extractedOptParameter;
         }
 
-        // put all information to the info log
-        getInfoLogger().addMacroInfo(
-                info_key,
-                createFurtherInformation(info)
-        );
-
         int slotOfDifferentiation = info.getSlotOfDifferentiation();
         if ( slotOfDifferentiation < 1 && diffPowerHolder.getDifferentiation() != null ) {
             throw new TranslationException("No slot of differentiation available for " + macro_term.getTermText() + ", " +
@@ -198,6 +192,7 @@ public class MacroTranslator extends AbstractListTranslator {
         // finally fill the placeholders by values
         fillVars(
                 args,
+                info_key,
                 info,
                 diffPowerHolder,
                 slotOfDifferentiation
@@ -626,6 +621,7 @@ public class MacroTranslator extends AbstractListTranslator {
      */
     private void fillVars(
             String[] args,
+            String info_key,
             DLMFMacroInfoHolder info,
             DiffAndPowerHolder diffHolder,
             int slotOfDifferentiation
@@ -654,8 +650,8 @@ public class MacroTranslator extends AbstractListTranslator {
         }
 
         // finally, fill up pattern with arguments
+        LOG.debug("Fill pattern: " + pattern);
         for (int i = 0; i < args.length; i++) {
-            LOG.debug("Fill pattern: " + pattern);
             try {
                 pattern = pattern.replace(
                         GlobalConstants.POSITION_MARKER + Integer.toString(i),
@@ -668,7 +664,7 @@ public class MacroTranslator extends AbstractListTranslator {
                 );
             }
         }
-        LOG.info("Translated DLMF macro to: " + pattern);
+        LOG.debug("Translated DLMF macro to: " + pattern);
 
         // apply derivative and plug in the subbed out expression to replace temp during execution in CAS
         if (subbedExpression != null) {
@@ -681,12 +677,18 @@ public class MacroTranslator extends AbstractListTranslator {
                     diffHolder.differentiation
             };
             pattern = bft.translate(diffArgs, "derivative");
-            LOG.info("Translated diff: " + pattern);
+            LOG.debug("Translated diff: " + pattern);
         }
 
         // finally, update translation lists
         localTranslations.addTranslatedExpression(pattern);
         getGlobalTranslationList().addTranslatedExpression(pattern);
+
+        // put all information to the info log
+        getInfoLogger().addMacroInfo(
+                info_key,
+                createFurtherInformation(info)
+        );
     }
 
     private String createFurtherInformation(DLMFMacroInfoHolder info) {
@@ -698,6 +700,7 @@ public class MacroTranslator extends AbstractListTranslator {
         }
 
         extraInformation += "; Example: " + info.getDLMFExample() + System.lineSeparator();
+        extraInformation += "Will be translated to: " + info.getTranslationPattern() + System.lineSeparator();
 
         if (!info.getCasComment().isEmpty()) {
             extraInformation += "Translation Information: " + info.getCasComment() + System.lineSeparator();

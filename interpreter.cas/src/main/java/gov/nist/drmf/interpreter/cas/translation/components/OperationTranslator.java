@@ -106,7 +106,7 @@ public class OperationTranslator extends AbstractListTranslator {
         } else {
             getInfoLogger().addGeneralInfo(
                     term.getTermText(),
-                    "was translated to " + translation);
+                    "was translated to: " + translation);
             localTranslations.addTranslatedExpression( translation );
             getGlobalTranslationList().addTranslatedExpression( translation );
             return true;

@@ -130,11 +130,13 @@ public class SemanticLatexTranslator extends AbstractTranslator {
         }
 
         expression = TeXPreProcessor.preProcessingTeX(expression);
-        LOG.debug("Preprocessed input string. Parsing: " + expression);
+        LOG.trace("Preprocessed input string. Parsing: " + expression);
 
         try {
             PomTaggedExpression exp = parser.parse(expression);
             if (translate( exp )) {
+                LOG.debug("Successfully translated " + expression);
+                if ( !super.getInfoLogger().isEmpty() ) LOG.info(super.getInfoLogger().toString());
                 return super.getGlobalTranslationList().getTranslatedExpression();
             } else {
                 handleNull(

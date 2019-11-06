@@ -54,7 +54,7 @@ public class TranslationTester {
     public Executable createTest(TestCase tc, boolean maple) {
         return () -> {
             LOG.debug("Testing " + tc.getTitle());
-            LOG.trace("Input:  " + tc.getTeX());
+            LOG.info("Test: " + tc.getTeX());
             String in = tc.getTeX();
             String expected = maple ? tc.getMaple() : tc.getMathematica();
 
@@ -70,6 +70,7 @@ public class TranslationTester {
 
             LOG.debug("Expected: " + expected);
             LOG.debug("Result:   " + result);
+            LOG.info( "Translated to: " + result);
 
             result = result.replaceAll("\\s+", "");
 

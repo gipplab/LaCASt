@@ -29,6 +29,11 @@ public class InformationLogger {
         macro_info_map.put(macro_name, info);
     }
 
+    public boolean isEmpty() {
+        return gen_info_map.isEmpty() && macro_info_map.isEmpty();
+    }
+
+    @Override
     public String toString(){
         String info = "Information about the conversion process:" + new_line;
         for ( String key : macro_info_map.keySet() ){
