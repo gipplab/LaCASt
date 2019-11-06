@@ -185,14 +185,42 @@ public class BlueprintLimitNode {
                 if ( m.matches() ){
                     int idx = Integer.parseInt(m.group(1));
 
-                    String prefix = "";
-                    if ( ref.isLeaf && ref.latex.matches("-") ){
-                        prefix = "- ";
-                        ref = refCopy.removeFirst();
-                        ref.addPrefexToLatex(prefix);
+                    PomTaggedExpression seq = new PomTaggedExpression(new MathTerm("",""), "sequence");
+                    PomTaggedExpression first = ref.pte;
+                    seq.addComponent(first);
+
+                    if ( patternCopy.isEmpty() ) {
+                        // just add all the rest
+                        while( !refCopy.isEmpty() )
+                            seq.addComponent(refCopy.removeFirst().pte);
+                    } else {
+                        BlueprintLimitNode nextPattern = patternCopy.get(0);
+                        BlueprintLimitNode nextRef = refCopy.remove(0);
+                        while( !nextRef.equals(nextPattern) ) {
+                            if ( nextRef.latex != null && nextRef.latex.matches(
+                                    "\\\\[ci]dot.*|\\\\(?:ne|ge|le)q?|[<>=].*") ){
+                                break;
+                            }
+
+                            seq.addComponent(nextRef.pte);
+                            if ( refCopy.isEmpty() ) return false;
+                            nextRef = refCopy.remove(0);
+                        }
+                        // if it reaches this point, the last two equaled or we reached a stop signal
+                        refCopy.addFirst(nextRef);
                     }
-                    checkIfNextIsConnected(refCopy, ref);
+
+                    if ( seq.getComponents().size() > 1 ) ref.setPTE(seq);
                     parentTree.addUpperLimit(ref, idx);
+
+//                    String prefix = "";
+//                    if ( ref.isLeaf && ref.latex.matches("-") ){
+//                        prefix = "- ";
+//                        ref = refCopy.removeFirst();
+//                        ref.addPrefexToLatex(prefix);
+//                    }
+//                    checkIfNextIsConnected(refCopy, ref);
+//                    parentTree.addUpperLimit(ref, idx);
                 }
             } // 3) its a lower bound
             else if ( pattern.isLowerBound ) {
@@ -213,7 +241,7 @@ public class BlueprintLimitNode {
                         BlueprintLimitNode nextRef = refCopy.remove(0);
                         while( !nextRef.equals(nextPattern) ) {
                             if ( nextRef.latex != null && nextRef.latex.matches(
-                                    DLMFPatterns.PATTERN_BASIC_OPERATIONS+"|\\\\(?:ne|ge|le)q?.*") ){
+                                    "\\\\[ci]dot.*|\\\\(?:ne|ge|le)q?|[<>=].*") ){
                                 break;
                             }
 
@@ -227,18 +255,6 @@ public class BlueprintLimitNode {
 
                     if ( seq.getComponents().size() > 1 ) ref.setPTE(seq);
                     parentTree.addLowerLimit(ref, idx);
-
-
-//                    while ( !nextRef.equals(nextPattern) )
-//
-//                    String prefix = "";
-//                    if ( ref.isLeaf && ref.latex.matches("-") ){
-//                        prefix = "- ";
-//                        ref = refCopy.removeFirst();
-//                        ref.addPrefexToLatex(prefix);
-//                    }
-//                    checkIfNextIsConnected(refCopy, ref);
-//                    parentTree.addLowerLimit(ref, idx);
                 }
             }
             else { // must be another token, only exact matches are allowed!

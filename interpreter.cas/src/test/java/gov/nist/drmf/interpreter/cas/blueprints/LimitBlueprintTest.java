@@ -157,6 +157,23 @@ public class LimitBlueprintTest {
     }
 
     @Test
+    public void longLowerAndUpperStressTest() {
+        String str = "m-1 \\leq n, k \\leq m+1";
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
+        assertEquals("n", limit.getVars().get(0));
+        assertEquals("m - 1", limit.getLower().get(0));
+        assertEquals("m + 1", limit.getUpper().get(0));
+
+        assertEquals("k", limit.getVars().get(1));
+        assertEquals("m - 1", limit.getLower().get(1));
+        assertEquals("m + 1", limit.getUpper().get(1));
+
+        assertEquals(2, limit.getVars().size());
+        assertEquals(2, limit.getLower().size());
+        assertEquals(2, limit.getUpper().size());
+    }
+
+    @Test
     public void subscriptTest() {
         String str = "n_k = 1";
         Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
@@ -262,7 +279,6 @@ public class LimitBlueprintTest {
     }
 
     @Test
-//    @Disabled
     public void limExpressionLongTest() {
         String str = "x \\to -m-l";
         Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIM, str);
