@@ -10,6 +10,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException.Reason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.FeatureSet;
@@ -244,14 +245,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     }
 
     private boolean isSumOrProductOrLimit(MathTerm term) {
-        MathTermTags mtag = MathTermTags.getTagByKey(term.getTag());
-        if (mtag != null && mtag.equals(MathTermTags.operator)) {
-            return FeatureSetUtility.isSum(term) ||
-                    FeatureSetUtility.isProduct(term) ||
-                    FeatureSetUtility.isIntegral(term) ||
-                    FeatureSetUtility.isLimit(term);
-        }
-        return false;
+        return LimitedExpressions.isLimitedExpression(term);
     }
 
     private boolean isSubSequence(MathTerm term) {

@@ -1,16 +1,16 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
+import gov.nist.drmf.interpreter.cas.blueprints.Limits;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.cas.blueprints.Limits;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
-import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -67,16 +67,26 @@ public class LimitedTranslator extends AbstractListTranslator {
         }
 
         MathTerm root = exp.getRoot();
-        String category;
-        if (FeatureSetUtility.isSum(root) ) category = "sum";
-        else if ( FeatureSetUtility.isProduct(root) ) category = "prod";
-        else if ( FeatureSetUtility.isIntegral(root) ) category = "int";
-        else throw new TranslationException("Other limited expressions than sum/prod are not yet supported.");
+        LimitedExpressions category = LimitedExpressions.getExpression(root);
+        if ( category == null ) {
+            throw new TranslationException("Unsupported limited expressions." + root.getTermText());
+        }
 
         PomTaggedExpression limitExpression = list.remove(0);
-        Limits limit = category.matches("int") ?
-                extractIntegralLimits(limitExpression) :
-                extractLimits(limitExpression);
+        Limits limit = null;
+
+        switch( category ) {
+            case INT:
+                limit = extractIntegralLimits(limitExpression);
+                break;
+            case SUM:
+            case PROD:
+                limit = extractLimits(limitExpression, BlueprintMaster.LIMITED);
+                break;
+            case LIM:
+                limit = extractLimits(limitExpression, BlueprintMaster.LIM);
+                break;
+        }
 
         List<PomTaggedExpression> potentialArguments = getPotentialArgumentsUntilEndOfScope(list, limit.getVars());
         // the potential arguments is a theoretical sequence, so handle it as a sequence!
@@ -98,7 +108,7 @@ public class LimitedTranslator extends AbstractListTranslator {
 
         // find elements that are part of the argument:
         // next, split into argument parts and the rest
-        TranslatedExpression transArgs = category.matches("int") ?
+        TranslatedExpression transArgs = category.equals(LimitedExpressions.INT) ?
                 translatedPotentialArguments :
                 removeUntilLastAppearence(
                         translatedPotentialArguments,
@@ -106,6 +116,8 @@ public class LimitedTranslator extends AbstractListTranslator {
                 );
 
         int lastIdx = limit.getVars().size()-1;
+
+
 
         // start with inner -> last elements in limit
         String finalTranslation = translatePattern(
@@ -132,7 +144,7 @@ public class LimitedTranslator extends AbstractListTranslator {
         localTranslations.addTranslatedExpression(finalTranslation);
         getGlobalTranslationList().addTranslatedExpression(finalTranslation);
 
-        if ( !category.matches("int") ){
+        if ( !category.equals(LimitedExpressions.INT) ){
             localTranslations.addTranslatedExpression(translatedPotentialArguments);
             getGlobalTranslationList().addTranslatedExpression(translatedPotentialArguments);
         }
@@ -140,28 +152,37 @@ public class LimitedTranslator extends AbstractListTranslator {
         return true;
     }
 
-    private String translatePattern(Limits limit, int idx, String arg, String key) {
+    private String translatePattern(Limits limit, int idx, String arg, LimitedExpressions category) {
         if ( !limit.isLimitOverSet() ) {
-            String[] args = new String[]{
-                    limit.getVars().get(idx),
-                    limit.getLower().get(idx),
-                    limit.getUpper().get(idx),
-                    arg,
-            };
-            return bft.translate(args, key);
+            if ( limit.getDirection() != null ) {
+                String[] args = new String[]{
+                        limit.getVars().get(idx),
+                        limit.getLower().get(idx),
+                        arg,
+                };
+                return bft.translate(args, category.getDirectionKey(limit.getDirection()));
+            } else {
+                String[] args = new String[]{
+                        limit.getVars().get(idx),
+                        limit.getLower().get(idx),
+                        limit.getUpper().get(idx),
+                        arg,
+                };
+                return bft.translate(args, category.getKey());
+            }
         } else {
             String[] args = new String[]{
                     limit.getVars().get(idx),
                     limit.getLower().get(idx),
                     arg,
             };
-            return bft.translate(args, key+"Set");
+            return bft.translate(args, category.getSetKey());
         }
     }
 
-    private Limits extractLimits(PomTaggedExpression limitSuperExpr) {
+    private Limits extractLimits(PomTaggedExpression limitSuperExpr, boolean lim) {
         LinkedList<PomTaggedExpression> upperBound = new LinkedList<>();
-        Limits limit = extractLimitsWithoutParsing(limitSuperExpr, upperBound);
+        Limits limit = extractLimitsWithoutParsing(limitSuperExpr, upperBound, lim);
 
         // if an upper bound was explicitly given, overwrite the parsed upper bound
         if ( !upperBound.isEmpty() ) {
@@ -188,12 +209,12 @@ public class LimitedTranslator extends AbstractListTranslator {
         return new Limits(new LinkedList<>(), l, u);
     }
 
-    private Limits extractLimitsWithoutParsing(PomTaggedExpression limitSuperExpr, List<PomTaggedExpression> upperBound) {
+    private Limits extractLimitsWithoutParsing(PomTaggedExpression limitSuperExpr, List<PomTaggedExpression> upperBound, boolean lim) {
         PomTaggedExpression limitExpression = getLowerUpper(limitSuperExpr, upperBound);
 
         // now we have limitExpression and an optional upperBound. Parse it:
         BlueprintMaster btm = getConfig().getLimitParser();
-        return btm.findMatchingLimit(limitExpression);
+        return btm.findMatchingLimit(lim, limitExpression);
     }
 
     private PomTaggedExpression getLowerUpper(PomTaggedExpression limitSuperExpr, List<PomTaggedExpression> upperBound) {
@@ -264,7 +285,7 @@ public class LimitedTranslator extends AbstractListTranslator {
             parenthesisCache.addLast(bracket);
         }
 
-        if ( !first.getRoot().isEmpty() && FeatureSetUtility.isIntegral(first.getRoot())){
+        if ( !first.getRoot().isEmpty() && LimitedExpressions.isIntegral(first.getRoot())){
             innerInts++;
         }
 
@@ -303,13 +324,13 @@ public class LimitedTranslator extends AbstractListTranslator {
                 } else if ( !parenthesisCache.isEmpty() ) {
                     cache.addLast(list.remove(0));
                     continue;
-                } else if ( FeatureSetUtility.isSum(mt) || FeatureSetUtility.isProduct(mt) ) {
+                } else if ( LimitedExpressions.isSum(mt) || LimitedExpressions.isProduct(mt) ) {
                     // there is a special case where we also have to stop...
                     // if a new limited expression is coming that shares the same variable
 
                     // in this case, the next element are the limits. So lets analyze them in advance
                     PomTaggedExpression nextLimits = list.get(1);
-                    Limits nextL = extractLimitsWithoutParsing(nextLimits, new LinkedList<>());
+                    Limits nextL = extractLimitsWithoutParsing(nextLimits, new LinkedList<>(), BlueprintMaster.LIMITED);
                     for ( String nextVar : nextL.getVars() ){
                         if ( currVars.contains(nextVar) ) {
                             LOG.debug("Limited expression breakpoint reached (reason: sharing variables)");
@@ -334,7 +355,7 @@ public class LimitedTranslator extends AbstractListTranslator {
                         currVars.add(argTe.toString());
                         return cache;
                     }
-                } else if ( FeatureSetUtility.isIntegral(mt) ) {
+                } else if ( LimitedExpressions.isIntegral(mt) ) {
                     innerInts++;
                 } else {
                     MathTermTags tag = MathTermTags.getTagByKey(mt.getTag());

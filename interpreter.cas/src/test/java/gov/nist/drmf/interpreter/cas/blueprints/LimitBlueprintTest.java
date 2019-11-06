@@ -3,7 +3,9 @@ package gov.nist.drmf.interpreter.cas.blueprints;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.grammar.LimDirections;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -29,7 +31,7 @@ public class LimitBlueprintTest {
     @Test
     public void simpleEquationTest() {
         String str = "a = 1";
-        Limits limit = btmaster.findMatchingLimit(str);
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
         assertEquals("a", limit.getVars().get(0));
         assertEquals("1", limit.getLower().get(0));
         assertEquals("infinity", limit.getUpper().get(0));
@@ -42,7 +44,7 @@ public class LimitBlueprintTest {
     @Test
     public void simpleEquationLongerTest() {
         String str = "n = -\\infty";
-        Limits limit = btmaster.findMatchingLimit(str);
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
         assertEquals("n", limit.getVars().get(0));
         assertEquals("- infinity", limit.getLower().get(0));
         assertEquals("infinity", limit.getUpper().get(0));
@@ -55,7 +57,7 @@ public class LimitBlueprintTest {
     @Test
     public void multiEquationTest() {
         String str = "a, b, c = 1";
-        Limits limit = btmaster.findMatchingLimit(str);
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
         assertEquals("a", limit.getVars().get(0));
         assertEquals("1", limit.getLower().get(0));
         assertEquals("infinity", limit.getUpper().get(0));
@@ -76,7 +78,7 @@ public class LimitBlueprintTest {
     @Test
     public void simpleRelationTest() {
         String str = "1 \\leq n \\leq 10";
-        Limits limit = btmaster.findMatchingLimit(str);
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
         assertEquals("n", limit.getVars().get(0));
         assertEquals("1", limit.getLower().get(0));
         assertEquals("10", limit.getUpper().get(0));
@@ -89,7 +91,7 @@ public class LimitBlueprintTest {
     @Test
     public void multiRelationTest() {
         String str = "1 \\le n, k \\leq 10";
-        Limits limit = btmaster.findMatchingLimit(str);
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
         assertEquals("n", limit.getVars().get(0));
         assertEquals("1", limit.getLower().get(0));
         assertEquals("10", limit.getUpper().get(0));
@@ -106,7 +108,7 @@ public class LimitBlueprintTest {
     @Test
     public void multiRelationHardTest() {
         String str = "1 \\le j < k \\le n";
-        Limits limit = btmaster.findMatchingLimit(str);
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
         assertEquals("j", limit.getVars().get(0));
         assertEquals("1", limit.getLower().get(0));
         assertEquals("k - 1", limit.getUpper().get(0));
@@ -123,7 +125,7 @@ public class LimitBlueprintTest {
     @Test
     public void infinityTest() {
         String str = "-\\infty < n < \\infty";
-        Limits limit = btmaster.findMatchingLimit(str);
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
         assertEquals("n", limit.getVars().get(0));
         assertEquals("- infinity", limit.getLower().get(0));
         assertEquals("infinity", limit.getUpper().get(0));
@@ -136,7 +138,7 @@ public class LimitBlueprintTest {
     @Test
     public void subscriptTest() {
         String str = "n_k = 1";
-        Limits limit = btmaster.findMatchingLimit(str);
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
         assertEquals("n[k]", limit.getVars().get(0));
         assertEquals("1", limit.getLower().get(0));
         assertEquals("infinity", limit.getUpper().get(0));
@@ -149,7 +151,7 @@ public class LimitBlueprintTest {
     @Test
     public void superscriptTest() {
         String str = "p^m \\leq x";
-        Limits limit = btmaster.findMatchingLimit(str);
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
         assertEquals("(p)^(m)", limit.getVars().get(0));
         assertEquals("- infinity", limit.getLower().get(0));
         assertEquals("x", limit.getUpper().get(0));
@@ -162,7 +164,7 @@ public class LimitBlueprintTest {
     @Test
     public void setSumTest() {
         String str = "x \\in \\Omega_n";
-        Limits limit = btmaster.findMatchingLimit(str);
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
         assertEquals("x", limit.getVars().get(0));
         assertEquals("Omega[n]", limit.getLower().get(0));
         assertTrue(limit.isLimitOverSet());
@@ -174,7 +176,7 @@ public class LimitBlueprintTest {
     @Test
     public void hideRelTest() {
         String str = "n \\hiderel{=} 1";
-        Limits limit = btmaster.findMatchingLimit(str);
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
         assertEquals("n", limit.getVars().get(0));
         assertEquals("1", limit.getLower().get(0));
         assertFalse(limit.isLimitOverSet());
@@ -186,7 +188,7 @@ public class LimitBlueprintTest {
     @Test
     public void longVarNameTest() {
         String str = "\\ell = 0";
-        Limits limit = btmaster.findMatchingLimit(str);
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
         assertEquals("ell", limit.getVars().get(0));
         assertEquals("0", limit.getLower().get(0));
         assertFalse(limit.isLimitOverSet());
@@ -198,7 +200,7 @@ public class LimitBlueprintTest {
     @Test
     public void singleExpressionTest() {
         String str = "q";
-        Limits limit = btmaster.findMatchingLimit(str);
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
         assertEquals("q", limit.getVars().get(0));
         // expecting default value here
         assertEquals("- infinity", limit.getLower().get(0));
@@ -206,5 +208,46 @@ public class LimitBlueprintTest {
 
         assertEquals(1, limit.getVars().size());
         assertEquals(1, limit.getLower().size());
+    }
+
+    @Test
+    public void limExpressionTest() {
+        String str = "x \\to 0";
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIM, str);
+        assertEquals("x", limit.getVars().get(0));
+        assertEquals("0", limit.getLower().get(0));
+        assertFalse(limit.isLimitOverSet());
+        assertEquals(LimDirections.NONE, limit.getDirection());
+    }
+
+    @Test
+    public void limExpressionLeftTest() {
+        String str = "x \\to 1-";
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIM, str);
+        assertEquals("x", limit.getVars().get(0));
+        assertEquals("1", limit.getLower().get(0));
+        assertFalse(limit.isLimitOverSet());
+        assertEquals(LimDirections.RIGHT, limit.getDirection());
+    }
+
+    @Test
+    public void limExpressionRightTest() {
+        String str = "x \\to 2+";
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIM, str);
+        assertEquals("x", limit.getVars().get(0));
+        assertEquals("2", limit.getLower().get(0));
+        assertFalse(limit.isLimitOverSet());
+        assertEquals(LimDirections.LEFT, limit.getDirection());
+    }
+
+    @Test
+    @Disabled
+    public void limExpressionLongTest() {
+        String str = "x \\to -m-l";
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIM, str);
+        assertEquals("x", limit.getVars().get(0));
+        assertEquals("-m-l", limit.getLower().get(0));
+        assertFalse(limit.isLimitOverSet());
+        assertEquals(LimDirections.NONE, limit.getDirection());
     }
 }
