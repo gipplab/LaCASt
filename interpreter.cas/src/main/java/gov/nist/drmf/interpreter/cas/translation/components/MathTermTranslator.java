@@ -134,7 +134,7 @@ public class MathTermTranslator extends AbstractListTranslator {
                 if ( t != null ) {
                     getInfoLogger().addGeneralInfo(
                             term.getTermText(),
-                            "was translated to " + t);
+                            "was translated to: " + t);
                     localTranslations.addTranslatedExpression( t );
                     getGlobalTranslationList().addTranslatedExpression( t );
                     return true;
@@ -169,7 +169,7 @@ public class MathTermTranslator extends AbstractListTranslator {
                 if ( sym != null ) {
                     getInfoLogger().addGeneralInfo(
                             term.getTermText(),
-                            "was translated to " + sym);
+                            "was translated to: " + sym);
                     localTranslations.addTranslatedExpression( sym );
                     getGlobalTranslationList().addTranslatedExpression( sym );
                     return true;
@@ -179,7 +179,7 @@ public class MathTermTranslator extends AbstractListTranslator {
                         String trans = DLMFFeatureValues.CAS.getFeatureValue(fset, getConfig().getTO_LANGUAGE());
                         if ( trans != null ){
                             getInfoLogger().addMacroInfo(
-                                    term.getTermText(), "was translated to " + trans );
+                                    term.getTermText(), "was translated to: " + trans );
                             localTranslations.addTranslatedExpression(trans);
                             getGlobalTranslationList().addTranslatedExpression(trans);
                             return true;

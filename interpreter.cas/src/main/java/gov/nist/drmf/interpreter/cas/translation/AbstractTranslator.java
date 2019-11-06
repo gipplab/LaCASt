@@ -61,11 +61,6 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     private TranslatedExpression global_exp;
 
     /**
-     * Every translator has it's own local translator.
-     */
-//    private TranslatedExpression local_inner_exp = new TranslatedExpression();
-
-    /**
      * Flags of each translator
      */
     private boolean SET_MODE    = false;
@@ -175,7 +170,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         }
 
         inner_Error = !return_value;
-        LOG.debug("Global translation list: " + global_exp.debugString());
+        LOG.trace("Global translation list: " + global_exp.debugString());
         return inner_parser.getTranslatedExpressionObject();
     }
 
@@ -351,6 +346,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     public void reset() {
         global_exp = new TranslatedExpression();
         mlpError = false;
+        infoLogger = new InformationLogger();
     }
 
     protected void appendLocalErrorExpression(String tag) {
@@ -467,7 +463,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
                     token,
                     exception
             );
-//            LOG.error("Error due translation process.", exception);
+            LOG.error("Error due translation process.", te);
             throw te;
         }
         return false;
