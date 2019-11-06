@@ -81,8 +81,8 @@ public enum Lims implements TestCase {
     @DLMF("20.5.15")
     LONG_PROD(
             "\\lim_{N \\to \\infty} \\prod_{n=-N}^{N} \\lim_{M \\to \\infty} \\prod_{m=1-M}^{M} \\left( 1 + \\frac{z}{(m - \\tfrac{1}{2} + n \\tau) \\cpi} \\right)",
-            "limit(product(limit(product(1+(z)/(m-(1)/(2)+(n-(1)/(2))*\\tau)*Pi),m = 1-M .. M),M = infinity),n = -N .. N), N = infinity)",
-            "Limit[Product[Limit[Product[1+Divide[z, (m - Divide[1,2] + n*\\[Tau])*\\[Pi]], {m, 1-M, M}], M -> Infinity], {n, -N, N}], N -> Infinity]"
+            "limit(product(limit(product(1+(z)/((m-(1)/(2)+n*tau)*Pi),m = 1-M .. M),M = infinity),n = -N .. N), N = infinity)",
+            "Limit[Product[Limit[Product[1+Divide[z, (m - Divide[1,2] + n*\\[Tau])*Pi], {m, 1-M, M}], M -> Infinity], {n, -N, N}], N -> Infinity]"
     );
 
     private String tex, maple, mathematica;
