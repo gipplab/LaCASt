@@ -279,6 +279,7 @@ public class MathTermTranslator extends AbstractListTranslator {
                 localTranslations.addTranslatedExpression(term.getTermText());
                 getGlobalTranslationList().addTranslatedExpression(term.getTermText());
                 return true;
+            case modulo:
             case operation:
                 OperationTranslator opParser = new OperationTranslator(getSuperTranslator());
                 // well, maybe not the best choice
