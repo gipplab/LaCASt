@@ -78,7 +78,7 @@ public class MLP {
 //            eq = "\\sum_{n=0}^{10} n + \\cpi = \\sum_{n=0}^{10} n + \\cpi < \\leq \\frac{\\sum_{n} n}{n}";
 //            eq = "\\sqrt{\\frac{1}{\\iunit}}";
 //            eq = "\\int_{0}^{1} \\theta \\mathrm{d}\\theta";
-//            eq = "\\diff{x} \\diffd x";
+            eq = "k \\mod x";
 
             System.out.println();
             System.out.println("Input: " + eq);

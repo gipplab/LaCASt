@@ -143,6 +143,14 @@ public class SimpleTranslationTests {
     }
 
     @Test
+    public void modTest() {
+        String in = "(k-1) \\mod m";
+        String eout = "`modp`(k - 1,m)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
     public void subscriptMultiplyTest() {
         String in = "x_t x";
         String eout = "x[t]*x";

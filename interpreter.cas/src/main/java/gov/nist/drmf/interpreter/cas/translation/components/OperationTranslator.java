@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
+import gov.nist.drmf.interpreter.cas.common.DLMFPatterns;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
@@ -13,6 +14,7 @@ import mlp.PomTaggedExpression;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.regex.Matcher;
 
 /**
  * @author Andre Greiner-Petter
@@ -67,6 +69,11 @@ public class OperationTranslator extends AbstractListTranslator {
 
         // remove the previous one (which is the dividend)
         String dividend = getGlobalTranslationList().removeLastExpression();
+        Matcher m = DLMFPatterns.ENDS_ON_STAR_PATTERN.matcher(dividend);
+        if ( m.matches() ){
+            dividend = m.group(1);
+        }
+
         // and get the string of the divisor
         String divisor  = divisorExp.toString();
 
