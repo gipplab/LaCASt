@@ -76,6 +76,27 @@ public class LimitBlueprintTest {
     }
 
     @Test
+    public void multiEquationLongTest() {
+        String str = "a, b, c = -1";
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
+        assertEquals("a", limit.getVars().get(0));
+        assertEquals("- 1", limit.getLower().get(0));
+        assertEquals("infinity", limit.getUpper().get(0));
+
+        assertEquals("b", limit.getVars().get(1));
+        assertEquals("- 1", limit.getLower().get(1));
+        assertEquals("infinity", limit.getUpper().get(1));
+
+        assertEquals("c", limit.getVars().get(2));
+        assertEquals("- 1", limit.getLower().get(2));
+        assertEquals("infinity", limit.getUpper().get(2));
+
+        assertEquals(3, limit.getVars().size());
+        assertEquals(3, limit.getLower().size());
+        assertEquals(3, limit.getUpper().size());
+    }
+
+    @Test
     public void simpleRelationTest() {
         String str = "1 \\leq n \\leq 10";
         Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
@@ -241,12 +262,12 @@ public class LimitBlueprintTest {
     }
 
     @Test
-    @Disabled
+//    @Disabled
     public void limExpressionLongTest() {
         String str = "x \\to -m-l";
         Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIM, str);
         assertEquals("x", limit.getVars().get(0));
-        assertEquals("-m-l", limit.getLower().get(0));
+        assertEquals("- m - l", limit.getLower().get(0));
         assertFalse(limit.isLimitOverSet());
         assertEquals(LimDirections.NONE, limit.getDirection());
     }

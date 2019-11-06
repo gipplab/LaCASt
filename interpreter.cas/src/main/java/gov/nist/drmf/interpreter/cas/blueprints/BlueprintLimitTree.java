@@ -175,19 +175,19 @@ public class BlueprintLimitTree {
                 // lower index replacement
                 int idx = Integer.parseInt(matcher.group(2));
                 BlueprintLimitNode l = this.lowerLimits.get(idx-1);
-                String trans = l.getPrefix() + translate(l.getMLPNode());
+                String trans = l.getPrefix() + translate(copy(l.getMLPNode()));
                 matcher.appendReplacement(buffer, Matcher.quoteReplacement(trans));
             } else if ( matcher.group(1).matches(upBPattern) ) {
                 // lower index replacement
                 int idx = Integer.parseInt(matcher.group(2));
                 BlueprintLimitNode l = this.upperLimits.get(idx-1);
-                String trans = l.getPrefix() + translate(l.getMLPNode());
+                String trans = l.getPrefix() + translate(copy(l.getMLPNode()));
                 matcher.appendReplacement(buffer, Matcher.quoteReplacement(trans));
             } else if ( matcher.group(1).matches(varPattern) ) {
                 // lower index replacement
                 int idx = Integer.parseInt(matcher.group(2));
                 BlueprintLimitNode l = this.vars.get(idx-1);
-                String trans = l.getPrefix() + translate(l.getMLPNode());
+                String trans = l.getPrefix() + translate(copy(l.getMLPNode()));
                 matcher.appendReplacement(buffer, trans);
             }
         }
@@ -200,6 +200,17 @@ public class BlueprintLimitTree {
         lowerLimits = new LinkedList<>();
         upperLimits = new LinkedList<>();
         isOverSet = false;
+    }
+
+    private PomTaggedExpression copy(PomTaggedExpression in) {
+        if ( in.getTag() != null && in.getTag().matches("sequence") ) {
+            PomTaggedExpression c = new PomTaggedExpression(new MathTerm("",""), "sequence");
+            for ( PomTaggedExpression child : in.getComponents() ) {
+                c.addComponent(child);
+            }
+            return c;
+        }
+        return in;
     }
 
     public boolean matches(String texLimit) throws ParseException {
