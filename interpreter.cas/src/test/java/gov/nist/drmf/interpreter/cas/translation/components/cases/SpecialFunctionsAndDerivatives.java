@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation.components.cases;
 
-import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.meta.DLMF;
 
 /**
  * @author Andre Greiner-Petter
@@ -8,6 +8,11 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 public enum SpecialFunctionsAndDerivatives implements TestCase {
     AIRY(
             "\\AiryAi@{x}",
+            "AiryAi(x)",
+            "AiryAi[x]"
+    ),
+    AIRY_NO_ATS(
+            "\\AiryAi{x}",
             "AiryAi(x)",
             "AiryAi[x]"
     ),
@@ -38,6 +43,11 @@ public enum SpecialFunctionsAndDerivatives implements TestCase {
     ),
     HURWITZ_ZETA_PRIME(
             "\\Hurwitzzeta'@{0}{a}",
+            "subs( temp=0, diff( Zeta(0, temp, a), temp$(1) ) )",
+            "D[HurwitzZeta[temp, a], {temp, 1}]/.temp-> 0"
+    ),
+    HURWITZ_ZETA_PRIME_NO_ATS(
+            "\\Hurwitzzeta'{0}{a}",
             "subs( temp=0, diff( Zeta(0, temp, a), temp$(1) ) )",
             "D[HurwitzZeta[temp, a], {temp, 1}]/.temp-> 0"
     ),
@@ -156,16 +166,25 @@ public enum SpecialFunctionsAndDerivatives implements TestCase {
             "subs( temp=subs( temp=subs( temp=z, diff( GAMMA(temp), temp$(1) ) ), diff( AiryBi(temp), temp$(n) ) ), diff( AiryAi(temp), temp$(3) ) )",
             "D[AiryAi[temp], {temp, 3}]/.temp-> D[AiryBi[temp], {temp, n}]/.temp-> D[Gamma[temp], {temp, 1}]/.temp-> z"
     ),
+    @DLMF("9.2.7")
     WRONSKIAN_AI(
-            "\\Wronskian@{\\AiryAi@{z}, \\AiryBi@{z}}",
-            "(AiryAi(z))*diff(AiryBi(z), z)-diff(AiryAi(z), z)*(AiryBi(z))",
-            "Wronskian[{AiryAi[z], AiryBi[z]}, z]"
+            "\\Wronskian@{\\AiryAi@{z}, \\AiryBi@{z}} = \\frac{1}{\\cpi}",
+            "(AiryAi(z))*diff(AiryBi(z), z)-diff(AiryAi(z), z)*(AiryBi(z)) = (1)/(Pi)",
+            "Wronskian[{AiryAi[z], AiryBi[z]}, z] = Divide[1, Pi]"
     ),
+    @DLMF("9.2.8")
+    WRONSKIAN_AI_COMPLEX(
+            "\\Wronskian@{\\AiryAi@{z}, \\AiryAi@{z \\expe^{-2 \\cpi \\iunit/3}}} = \\frac{\\expe^{\\cpi \\iunit /6}}{2\\cpi}",
+            "(AiryAi(z))*diff(AiryAi(z*exp(-2*Pi*I/3)), z)-diff(AiryAi(z), z)*(AiryAi(z*exp(-2*Pi*I/3))) = (exp(Pi*I/6))/(2*Pi)",
+            "Wronskian[{AiryAi[z], AiryAi[z*Exp[-2*Pi*I/3]]}, z] = Divide[Exp[Pi*I/6], 2*Pi]"
+    ),
+    @DLMF("13.2.33")
     WRONSKIAN_OLVER(
-            "\\Wronskian@{\\OlverconfhyperM@{a}{b}{z}, z^{1-b} \\OlverconfhyperM@{a-b+1}{2-b}{z}}",
-            "(KummerM(a, b, z)/GAMMA(b))*diff((z)^(1 - b)* KummerM(a - b + 1, 2 - b, z)/GAMMA(2 - b), z)-diff(KummerM(a, b, z)/GAMMA(b), z)*((z)^(1 - b)* KummerM(a - b + 1, 2 - b, z)/GAMMA(2 - b))",
-            "Wronskian[{Hypergeometric1F1Regularized[a, b, z], (z)^(1 - b)*Hypergeometric1F1Regularized[a - b + 1, 2 - b, z]}, z]"
+            "\\Wronskian@{\\OlverconfhyperM@{a}{b}{z}, z^{1-b} \\OlverconfhyperM@{a-b+1}{2-b}{z}} = \\sin@{\\cpi b} z^{-b} \\expe^z / \\cpi",
+            "(KummerM(a, b, z)/GAMMA(b))*diff((z)^(1 - b)* KummerM(a - b + 1, 2 - b, z)/GAMMA(2 - b), z)-diff(KummerM(a, b, z)/GAMMA(b), z)*((z)^(1 - b)* KummerM(a - b + 1, 2 - b, z)/GAMMA(2 - b)) = sin(Pi*b)*(z)^(-b)*exp(z)/Pi",
+            "Wronskian[{Hypergeometric1F1Regularized[a, b, z], (z)^(1 - b)*Hypergeometric1F1Regularized[a - b + 1, 2 - b, z]}, z] = Sin[Pi*b]*(z)^(-b)*Exp[z]/Pi"
     ),
+    @DLMF("13.2.34")
     WRONSKIAN_OLVER_2(
             "\\Wronskian@{z^{1-b} \\OlverconfhyperM@{a-b+1}{2-b}{z}, \\KummerconfhyperU@{a}{b}{z}}",
             "((z)^(1 - b)* KummerM(a - b + 1, 2 - b, z)/GAMMA(2 - b))*diff(KummerU(a, b, z), z)-diff((z)^(1 - b)* KummerM(a - b + 1, 2 - b, z)/GAMMA(2 - b), z)*(KummerU(a, b, z))",

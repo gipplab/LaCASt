@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.cas.blueprints;
 
+import gov.nist.drmf.interpreter.common.grammar.LimDirections;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class Limits {
     public static String DEFAULT_UPPER_LIMIT = "\\infty";
 
     private List<String> vars, upper, lower;
+    private LimDirections direction;
 
     private boolean isLimitOverSet = false;
 
@@ -26,6 +29,10 @@ public class Limits {
         isLimitOverSet = limitOverSet;
     }
 
+    public void setDirection(LimDirections direction) {
+        this.direction = direction;
+    }
+
     public List<String> getVars() {
         return vars;
     }
@@ -36,6 +43,10 @@ public class Limits {
 
     public List<String> getLower() {
         return lower;
+    }
+
+    public LimDirections getDirection() {
+        return direction;
     }
 
     public boolean isLimitOverSet() {

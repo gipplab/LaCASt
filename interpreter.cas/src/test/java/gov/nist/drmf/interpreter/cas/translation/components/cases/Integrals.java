@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation.components.cases;
 
+import gov.nist.drmf.interpreter.common.meta.DLMF;
+
 /**
  * @author Andre Greiner-Petter
  */
@@ -44,7 +46,8 @@ public enum Integrals implements TestCase {
             "int(int((1)/(x*y), x = 0..1), y = 0..1)",
             "Integrate[Integrate[Divide[1, x*y], {x, 0, 1}], {y, 0, 1}]"
     ),
-    DLMF_EQUAL( // 6.7#E13
+    @DLMF("6.7.13")
+    DLMF_EQUAL(
             "\\int_0^{\\infty} \\frac{\\sin@{t}}{t+z} \\diff{t} = \\int_0^{\\infty} \\frac{\\expe^{-zt} \\diff{t}}{t^2+z}",
             "int((sin(t))/(t+z), t = 0..infinity) = int((exp(-z*t))/((t)^(2)+z), t = 0..infinity)",
             "Integrate[Divide[Sin[t], t+z], {t, 0, Infinity}] = Integrate[Divide[Exp[-z*t], (t)^(2)+z], {t, 0, Infinity}]"

@@ -103,10 +103,22 @@
       "Mathematica": "D[$0, {temp, $2}]/.temp-> $1"
     },
     "Limit": {
-      "MLP": "lim2",
-      "LaTeX": "\\lim_{$0}{$1}",
-      "Maple": "limit($1, $0)",
-      "Mathematica": "Limit[$0, $1]"
+      "MLP": "lim",
+      "LaTeX": "\\lim_{$0 \\to $1}{$2}",
+      "Maple": "limit($2, $0 = $1)",
+      "Mathematica": "Limit[$2, $0 -> $1]"
+    },
+    "LimitLeft": {
+      "MLP": "limleft",
+      "LaTeX": "\\lim_{$0 \\to $1^{-}}{$2}",
+      "Maple": "limit($2, $0 = $1, left)",
+      "Mathematica": "Limit[$2, $0 -> $1, Direction -> \"FromBelow\"]"
+    },
+    "LimitRight": {
+      "MLP": "limright",
+      "LaTeX": "\\lim_{$0 \\to $1^{+}}{$2}",
+      "Maple": "limit($2, $0 = $1, right)",
+      "Mathematica": "Limit[$2, $0 -> $1, Direction -> \"FromAbove\"]"
     }
   },
   "Symbol Languages": [
