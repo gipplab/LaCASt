@@ -95,11 +95,6 @@ public class BlueprintLimitNode {
             return false;
         }
 
-//        if ( isLeaf ) {
-//            LOG.error("A pattern seems to be broken. Check it! " + parentTree);
-//            return false;
-//        }
-
         // so both are sequences: check the children
         return equalChildren(other);
     }
@@ -189,38 +184,10 @@ public class BlueprintLimitNode {
                     PomTaggedExpression first = ref.pte;
                     seq.addComponent(first);
 
-                    if ( patternCopy.isEmpty() ) {
-                        // just add all the rest
-                        while( !refCopy.isEmpty() )
-                            seq.addComponent(refCopy.removeFirst().pte);
-                    } else {
-                        BlueprintLimitNode nextPattern = patternCopy.get(0);
-                        BlueprintLimitNode nextRef = refCopy.remove(0);
-                        while( !nextRef.equals(nextPattern) ) {
-                            if ( nextRef.latex != null && nextRef.latex.matches(
-                                    "\\\\[ci]dot.*|\\\\(?:ne|ge|le)q?|[<>=].*") ){
-                                break;
-                            }
-
-                            seq.addComponent(nextRef.pte);
-                            if ( refCopy.isEmpty() ) return false;
-                            nextRef = refCopy.remove(0);
-                        }
-                        // if it reaches this point, the last two equaled or we reached a stop signal
-                        refCopy.addFirst(nextRef);
-                    }
+                    if (!addUntilEnd(patternCopy, refCopy, seq)) return false;
 
                     if ( seq.getComponents().size() > 1 ) ref.setPTE(seq);
                     parentTree.addUpperLimit(ref, idx);
-
-//                    String prefix = "";
-//                    if ( ref.isLeaf && ref.latex.matches("-") ){
-//                        prefix = "- ";
-//                        ref = refCopy.removeFirst();
-//                        ref.addPrefexToLatex(prefix);
-//                    }
-//                    checkIfNextIsConnected(refCopy, ref);
-//                    parentTree.addUpperLimit(ref, idx);
                 }
             } // 3) its a lower bound
             else if ( pattern.isLowerBound ) {
@@ -232,26 +199,7 @@ public class BlueprintLimitNode {
                     PomTaggedExpression first = ref.pte;
                     seq.addComponent(first);
 
-                    if ( patternCopy.isEmpty() ) {
-                        // just add all the rest
-                        while( !refCopy.isEmpty() )
-                            seq.addComponent(refCopy.removeFirst().pte);
-                    } else {
-                        BlueprintLimitNode nextPattern = patternCopy.get(0);
-                        BlueprintLimitNode nextRef = refCopy.remove(0);
-                        while( !nextRef.equals(nextPattern) ) {
-                            if ( nextRef.latex != null && nextRef.latex.matches(
-                                    "\\\\[ci]dot.*|\\\\(?:ne|ge|le)q?|[<>=].*") ){
-                                break;
-                            }
-
-                            seq.addComponent(nextRef.pte);
-                            if ( refCopy.isEmpty() ) return false;
-                            nextRef = refCopy.remove(0);
-                        }
-                        // if it reaches this point, the last two equaled or we reached a stop signal
-                        refCopy.addFirst(nextRef);
-                    }
+                    if (!addUntilEnd(patternCopy, refCopy, seq)) return false;
 
                     if ( seq.getComponents().size() > 1 ) ref.setPTE(seq);
                     parentTree.addLowerLimit(ref, idx);
@@ -266,6 +214,30 @@ public class BlueprintLimitNode {
         }
 
         return refCopy.isEmpty();
+    }
+
+    private boolean addUntilEnd(LinkedList<BlueprintLimitNode> patternCopy, LinkedList<BlueprintLimitNode> refCopy, PomTaggedExpression seq) {
+        if ( patternCopy.isEmpty() ) {
+            // just add all the rest
+            while( !refCopy.isEmpty() )
+                seq.addComponent(refCopy.removeFirst().pte);
+        } else {
+            BlueprintLimitNode nextPattern = patternCopy.get(0);
+            BlueprintLimitNode nextRef = refCopy.remove(0);
+            while( !nextRef.equals(nextPattern) ) {
+                if ( nextRef.latex != null && nextRef.latex.matches(
+                        "\\\\[ci]dot.*|\\\\(?:ne|ge|le)q?|[<>=].*") ){
+                    break;
+                }
+
+                seq.addComponent(nextRef.pte);
+                if ( refCopy.isEmpty() ) return false;
+                nextRef = refCopy.remove(0);
+            }
+            // if it reaches this point, the last two equaled or we reached a stop signal
+            refCopy.addFirst(nextRef);
+        }
+        return true;
     }
 
     private void checkIfNextIsConnected(LinkedList<BlueprintLimitNode> refCopy, BlueprintLimitNode ref) {
