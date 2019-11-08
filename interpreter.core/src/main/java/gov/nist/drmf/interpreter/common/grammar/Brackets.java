@@ -97,17 +97,25 @@ public enum Brackets {
      * Left Opened LaTeX Pipe: \left|
      */
     left_latex_abs_val(
-            Brackets.LATEX_LEFT + "|",
+            Brackets.LATEX_LEFT + OPEN_BRACKETS.left_vbar.s,
             Brackets.OPENED,
-            Brackets.LATEX_RIGHT + "|"
+            Brackets.LATEX_RIGHT + OPEN_BRACKETS.left_vbar.counter
     ),
     /**
      * Right Closed LaTeX Pipe: \right|
      */
     right_latex_abs_val(
-            Brackets.LATEX_RIGHT + "|",
+            Brackets.LATEX_RIGHT + CLOSE_BRACKETS.right_vbar.s,
             Brackets.CLOSED,
-            Brackets.LATEX_LEFT + "|"
+            Brackets.LATEX_LEFT + CLOSE_BRACKETS.right_vbar.counter
+    ),
+    /**
+     * Left Opened LaTeX Pipe: |
+     */
+    abs_val(
+            OPEN_BRACKETS.left_vbar.s,
+            Brackets.OPENED,
+            OPEN_BRACKETS.left_vbar.counter
     );
 
     /**
@@ -125,7 +133,8 @@ public enum Brackets {
         left_parenthesis("(", ")"),
         left_brackets("[", "]"),
         left_braces("{", "}"),
-        left_angle_brackets("<", ">");
+        left_angle_brackets("<", ">"),
+        left_vbar("|", "|");
 
         final String s;
         final String counter;
@@ -145,7 +154,8 @@ public enum Brackets {
         right_parenthesis(")", "("),
         right_brackets("]", "["),
         right_braces("}", "{"),
-        right_angle_brackets(">", "<");
+        right_angle_brackets(">", "<"),
+        right_vbar("|", "|");
 
         final String s;
         final String counter;
@@ -165,8 +175,8 @@ public enum Brackets {
     /**
      * Patterns for open brackets and closed brackets
      */
-    public static final String OPEN_PATTERN = "[\\(\\[\\{]";
-    public static final String CLOSED_PATTERN = "[\\)\\]\\}]";
+    public static final String OPEN_PATTERN = "[\\(\\[\\{|]";
+    public static final String CLOSED_PATTERN = "[\\)\\]\\}|]";
 
     /**
      * Each bracket is open or closed and has a symbol and its counterpart symbol
@@ -184,10 +194,10 @@ public enum Brackets {
 
     /**
      * Bracket with symbol and counterpart symbol and if its closed or not.
-     * @param symbol (, [, {, <, ), ], } or >
+     * @param symbol (, [, {, <, ), ], }, >, or |
      * @param opened true or false (opened or closed)
      * @param counterpart Depending on the symbol.
-     *                    ), ], }, >, (, [, { or <
+     *                    ), ], }, >, (, [, {, <, or |
      */
     Brackets(String symbol, boolean opened, String counterpart){
         this.symbol = symbol;

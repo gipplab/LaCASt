@@ -159,4 +159,20 @@ public class SimpleTranslationTests {
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
+
+    @Test
+    public void absoluteValueTest() {
+        String in = "\\left| \\frac{z_1}{z_2} \\right| = \\frac{|z_1|}{|z_2|}";
+        String eout = "abs((z[1])/(z[2]))=(abs(z[1]))/(abs(z[2]))";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    public void absoluteValueBalancedTest() {
+        String in = "\\left| x \\right|";
+        String eout = "abs(x)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
 }

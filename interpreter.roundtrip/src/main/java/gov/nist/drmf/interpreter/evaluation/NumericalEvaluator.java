@@ -56,6 +56,8 @@ public class NumericalEvaluator implements Observer {
 
     private LinkedList<String> mapleScripts;
 
+    private int gcCaller = 0;
+
     static {
         translator = new MapleTranslator();
         try {
@@ -398,6 +400,7 @@ public class NumericalEvaluator implements Observer {
     private int factor = 1;
 
     protected void performAllTests(){
+        this.gcCaller = 0;
         LinkedList<Case> copy = new LinkedList<>();
         while ( !testCases.isEmpty() ){
             if ( requestedRestart ){
@@ -509,6 +512,18 @@ public class NumericalEvaluator implements Observer {
         }
         evaluator.performAllTests();
         evaluator.writeOutput( evaluator.config.getOutputPath() );
+    }
+
+    protected int getGcCaller() {
+        return gcCaller;
+    }
+
+    protected void stepGcCaller() {
+        this.gcCaller++;
+    }
+
+    protected void resetGcCaller() {
+        this.gcCaller = 0;
     }
 
     @Override

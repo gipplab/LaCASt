@@ -47,7 +47,8 @@ public enum MathTermTags {
     special_math_letter("special math letter"),
     prime("single quote"),
     operator("operator"),
-    modulo("modulo");
+    modulo("modulo"),
+    vbar("vertical-bar");
 
     private String tag;
 

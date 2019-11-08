@@ -93,16 +93,19 @@ public class SymbolicEvaluator extends NumericalEvaluator {
     private String overallAss;
 
     private void setPreviousAssumption() throws MapleException {
-        if ( overallAss != null ){
-            overallAss = "assume(" + overallAss + ");";
-//            LOG.info("Enter assumption for entire test suite: " + overallAss);
-            translator.enterMapleCommand(overallAss);
-            addPreloadScript(overallAss);
+        if ( overallAss != null && !overallAss.isEmpty() ){
+            String cmd = "assume(" + overallAss + ");";
+            LOG.debug("Enter assumption for entire test suite: " + cmd);
+            translator.enterMapleCommand(cmd);
+            addPreloadScript(cmd);
         }
     }
 
     @Override
     protected String performSingleTest( Case c ){
+        LOG.info("Start test for line: " + c.getLine());
+        LOG.info("Test case: " + c);
+
         if ( lineResults == null ){
             lineResults = getLineResults();
         }
@@ -187,6 +190,17 @@ public class SymbolicEvaluator extends NumericalEvaluator {
                 if ( success[i] ){
                     lineResults[c.getLine()] = "Successful " + Arrays.toString(successStr);
                     Status.SUCCESS.add();
+
+                    // garbage collection
+                    try {
+                        if ( getGcCaller() % 10 == 0 ) {
+                            translator.forceGC();
+                            resetGcCaller();
+                        } else stepGcCaller();
+                    } catch ( MapleException me ){
+                        LOG.fatal("Cannot call Maple's garbage collector!", me);
+                    }
+
                     return lineResults[c.getLine()];
                 }
             }
@@ -198,11 +212,11 @@ public class SymbolicEvaluator extends NumericalEvaluator {
             lineResults[c.getLine()] = "Error - " + e.toString();
             Status.ERROR.add();
         } finally {
-            // garbage collection
-            try { translator.forceGC(); }
-            catch ( MapleException me ){
-                LOG.fatal("Cannot call Maple's garbage collector!", me);
-            }
+//            // garbage collection
+//            try { translator.forceGC(); }
+//            catch ( MapleException me ){
+//                LOG.fatal("Cannot call Maple's garbage collector!", me);
+//            }
         }
         return c.getLine() + ": " + lineResults[c.getLine()];
     }

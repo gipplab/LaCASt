@@ -191,15 +191,14 @@ public class SequenceTranslator extends AbstractListTranslator {
 
             // open or closed brackets
             Brackets bracket = ifIsBracketTransform(term);
-            if ( bracket != null ){
-                if ( bracket == null && term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN )){
-                    bracket = Brackets.right_latex_abs_val;
-                }
+            if ( bracket == null && term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN )){
+                bracket = Brackets.abs_val;
+            }
 
+            if ( bracket != null ){
                 // another open bracket -> reached a new sub sequence
                 // bracket cannot be null, because we checked the tag of the term before
-                //noinspection ConstantConditions
-                if ( bracket.opened ){
+                if ( bracket.opened && !bracket.equals(Brackets.abs_val) ){
                     // create a new SequenceTranslator (2nd kind)
                     SequenceTranslator sp = new SequenceTranslator( super.getSuperTranslator(), bracket, setMode );
                     // translate the following expressions
@@ -224,7 +223,8 @@ public class SequenceTranslator extends AbstractListTranslator {
                     // now, always wrap brackets around this sequence
                     // if the brackets are |.| for absolute value, translate it as a function
                     String seq;
-                    if ( open_bracket.equals( Brackets.left_latex_abs_val ) ){
+                    if ( open_bracket.equals( Brackets.left_latex_abs_val ) ||
+                            open_bracket.equals( Brackets.abs_val ) ){
                         BasicFunctionsTranslator bft = getConfig().getBasicFunctionsTranslator();
                         seq = bft.translate(
                                 new String[]{
@@ -317,7 +317,16 @@ public class SequenceTranslator extends AbstractListTranslator {
 //        if ( part.endsWith(MULTIPLY) ){
 //            return part;
 //        } else
-            if ( addMultiply( exp, exp_list ) /*&& !part.matches(".*\\*\\s*")*/ ){
+        if ( open_bracket != null &&
+                open_bracket.equals(Brackets.abs_val) &&
+                exp_list != null &&
+                !exp_list.isEmpty() ) {
+            MathTerm mt = exp_list.get(0).getRoot();
+            if ( mt != null && mt.getTermText().matches(ABSOLUTE_VAL_TERM_TEXT_PATTERN))
+                return part;
+        }
+
+        if ( addMultiply( exp, exp_list ) /*&& !part.matches(".*\\*\\s*")*/ ){
             part += MULTIPLY;
             // the global list already got each element before,
             // so simply replace the last if necessary

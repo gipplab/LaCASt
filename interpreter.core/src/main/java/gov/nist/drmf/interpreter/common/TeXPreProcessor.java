@@ -16,7 +16,9 @@ public class TeXPreProcessor {
                     "\\\\displaystyle|" +
                     "\\\\[Bb]ig[lrg]?|" +
                     "\\\\[sb]f|" +
-                    "(\\\\hiderel\\s*\\{\\s*([=<>/+\\-])\\s*})"
+                    "[.;<>^\\-+/\\t\\s]+$|" +
+                    "(\\\\hiderel\\s*\\{\\s*([=<>/+\\-])\\s*})|" +
+                    "(\\d)\\s+(\\d)"
     );
 
     private TeXPreProcessor() {}
@@ -28,6 +30,8 @@ public class TeXPreProcessor {
         while ( matcher.find() ){
             if ( matcher.group(1) != null ){
                 matcher.appendReplacement( buffer, matcher.group(2) );
+            } else if ( matcher.group(3) != null ) {
+                matcher.appendReplacement( buffer, matcher.group(3) + matcher.group(4));
             } else {
                 matcher.appendReplacement( buffer, "" );
             }
