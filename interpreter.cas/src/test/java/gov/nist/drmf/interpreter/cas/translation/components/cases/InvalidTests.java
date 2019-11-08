@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation.components.cases;
 
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.tests.ExceptionalTestCase;
 
 /**
  * @author Andre Greiner-Petter
@@ -52,7 +53,7 @@ public enum InvalidTests implements ExceptionalTestCase {
     }
 
     @Override
-    public String getTex() {
+    public String getTeX() {
         return tex;
     }
 

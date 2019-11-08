@@ -11,7 +11,10 @@ import mlp.Lexicon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -206,10 +209,10 @@ public class MapleLexiconFactory {
     }
 
     private MapleFunction enrichFunctionInfosFromLexicon( MapleFunction mf, FeatureSet fset ){
-        mf.setDlmfBranchCuts(DLMFFeatureValues.branch_cuts.getFeatureValue(fset));
-        mf.setDlmfConstraints(DLMFFeatureValues.constraints.getFeatureValue(fset));
-        mf.setDlmfLink(DLMFFeatureValues.dlmf_link.getFeatureValue(fset));
-        mf.setDlmfMeaning(DLMFFeatureValues.meaning.getFeatureValue(fset));
+        mf.setDlmfBranchCuts(DLMFFeatureValues.branch_cuts.getFeatureValue(fset, null));
+        mf.setDlmfConstraints(DLMFFeatureValues.constraints.getFeatureValue(fset, null));
+        mf.setDlmfLink(DLMFFeatureValues.dlmf_link.getFeatureValue(fset, null));
+        mf.setDlmfMeaning(DLMFFeatureValues.meaning.getFeatureValue(fset, null));
         return mf;
     }
 

@@ -1,8 +1,7 @@
-package gov.nist.drmf.interpreter.roundtrip;
+package gov.nist.drmf.interpreter.roundtrip.nested;
 
+import gov.nist.drmf.interpreter.roundtrip.AbstractRoundTrip;
 import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestFactory;
 
 import java.util.LinkedList;
 
@@ -13,8 +12,8 @@ import static org.junit.Assert.fail;
  *
  * Created by AndreG-P on 06.03.2017.
  */
-public class PolynomialTests extends AbstractRoundTrip {
-    static final String[] test_polynomials = new String[]{
+public abstract class PolynomialTests extends AbstractRoundTrip {
+    private static final String[] test_polynomials = new String[]{
             "x-3-y-(z^3-4)",
             "(infinity+Catalan/2)^gamma",
             "gamma+alpha^5-I^(x/5)+Catalan",
@@ -26,7 +25,7 @@ public class PolynomialTests extends AbstractRoundTrip {
             "gamma-(3*beta)/4-3*I+(kappa/(Theta^y+x*y^2.3))^(-I)"
     };
 
-    static final String[] test_names = new String[]{
+    private static final String[] test_names = new String[]{
             "Simple Minus Sum Test",
             "Simple Constants Test",
             "Greek letters and Constants Test 1/2",
@@ -38,13 +37,15 @@ public class PolynomialTests extends AbstractRoundTrip {
             "Tricky Negative Fractions and Powers"
     };
 
-    @TestFactory
-    Iterable<DynamicTest> polynomialRoundTripTests(){
-        return createFromMapleTestList( test_polynomials, test_names );
+    public static String[] getTestPolynomials() {
+        return test_polynomials;
     }
 
-    @Test
-    void fixPointTest() {
+    protected Iterable<DynamicTest> polynomialRoundTripTests() {
+        return createFromMapleTestList( test_polynomials, test_polynomials );
+    }
+
+    protected void fixPointTest() {
         int threshold = 10;
         for ( String test : PolynomialTests.test_polynomials ){
             int c = 0;

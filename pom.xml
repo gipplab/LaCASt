@@ -22,11 +22,18 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <maple.path>/opt/maple2016</maple.path>
-        <mlp.path>${project.basedir}/../libs/MLP/MLP.jar</mlp.path>
+        <maven.compiler.version>3.8.1</maven.compiler.version>
         <junit.launcher.version>1.5.2</junit.launcher.version>
         <junit.version>5.5.2</junit.version>
+        <maven.surefire.version>2.22.2</maven.surefire.version>
+
+        <maple.path>/opt/maple2016</maple.path>
+        <maple.version>2016.2</maple.version>
+        <mlp.path>${project.basedir}/../libs/MLP/MLP.jar</mlp.path>
+        <mlp.version>1.1</mlp.version>
+
         <log4j2.version>2.12.1</log4j2.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -42,7 +49,8 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
-            <scope>test</scope>
+            <!-- We writing custom conditions, thus we need it at
+             runtime not only in test scope. -->
         </dependency>
 
         <dependency>
@@ -64,6 +72,20 @@
             <artifactId>junit-vintage-engine</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <!--  Gson: Java to Json conversion -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+
+        <!-- For Better Tests -->
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>java-hamcrest</artifactId>
+            <version>2.0.0.0</version>
         </dependency>
 
         <!-- Logging via log4j2 -->
@@ -88,42 +110,31 @@
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
-                <configuration>
-                    <workingDirectory>${basedir}/../</workingDirectory>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.2</version>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.version}</version>
+                    <configuration>
+                        <workingDirectory>${basedir}/../</workingDirectory>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven.surefire.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.version}</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
-
-    <!--<build>-->
-    <!--<plugins>-->
-    <!--<plugin>-->
-    <!--<artifactId>maven-surefire-plugin</artifactId>-->
-    <!--<version>2.19</version>-->
-    <!--<dependencies>-->
-    <!--<dependency>-->
-    <!--<groupId>org.junit.platform</groupId>-->
-    <!--<artifactId>junit-platform-surefire-provider</artifactId>-->
-    <!--<version>1.0.0-M5</version>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-    <!--<groupId>org.junit.jupiter</groupId>-->
-    <!--<artifactId>junit-jupiter-engine</artifactId>-->
-    <!--<version>5.0.0-M5</version>-->
-    <!--</dependency>-->
-    <!--</dependencies>-->
-    <!--<configuration>-->
-    <!--<workingDirectory>${basedir}/../</workingDirectory>-->
-    <!--</configuration>-->
-    <!--</plugin>-->
-    <!--</plugins>-->
-    <!--</build>-->
 </project>

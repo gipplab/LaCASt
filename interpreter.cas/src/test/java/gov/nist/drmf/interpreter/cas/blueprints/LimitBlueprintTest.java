@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.grammar.LimDirections;
+import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 /**
  * @author Andre Greiner-Petter
  */
+@AssumeMLPAvailability
 public class LimitBlueprintTest {
 
     private static BlueprintMaster btmaster;

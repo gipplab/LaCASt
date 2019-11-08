@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.maple;
+package gov.nist.drmf.interpreter.maple.translation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,6 +10,7 @@ import com.maplesoft.openmaple.Engine;
 import com.maplesoft.openmaple.EngineCallBacks;
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
 import gov.nist.drmf.interpreter.maple.setup.Initializer;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,7 @@ import java.util.stream.Stream;
 /**
  * Created by AndreG-P on 23.02.2017.
  */
+@AssumeMapleAvailability
 public class EngineTest {
     private static Engine t;
     private static Algebraic
@@ -33,16 +35,20 @@ public class EngineTest {
     private static String procedure_list, procedure_order;
 
     @BeforeAll
-    public static void startEngine(){
-        assertTrue( Initializer.loadMapleNatives(), "Cannot load maples native libs.");
+    public static void startEngine() throws IOException {
+        MapleInterface mi = MapleInterface.getUniqueMapleInterface();
 
-        String[] args = new String[]{"java"};
-        try {
-            t = new Engine( args, new CallBacks(), null, null );
-        } catch ( MapleException me ){
-            me.printStackTrace();
-            fail("Cannot initialize engine: " + me.getMessage());
-        }
+//        assertTrue( Initializer.loadMapleNatives(), "Cannot load maples native libs.");
+//
+//        String[] args = new String[]{"java"};
+//        try {
+//            t = new Engine( args, new CallBacks(), null, null );
+//        } catch ( MapleException me ){
+//            me.printStackTrace();
+//            fail("Cannot initialize engine: " + me.getMessage());
+//        }
+
+        t = mi.getEngine();
 
         // loading procedure from file.
         String proc1 = "", proc2 = "";

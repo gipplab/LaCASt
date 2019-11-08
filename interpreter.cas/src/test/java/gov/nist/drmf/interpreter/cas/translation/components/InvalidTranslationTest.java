@@ -1,12 +1,11 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
-import gov.nist.drmf.interpreter.cas.translation.components.cases.ExceptionalTestCase;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.InvalidTests;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
-import org.junit.jupiter.api.function.Executable;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -17,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * @author Andre Greiner-Petter
  */
+@AssumeMLPAvailability
 public class InvalidTranslationTest {
     private static TranslationTester tester;
 
@@ -30,9 +30,9 @@ public class InvalidTranslationTest {
         return Arrays.stream(InvalidTests.values())
                 .map(exp ->
                         DynamicTest.dynamicTest(
-                                exp.getTitle() + ": " + exp.getTex(),
+                                exp.getTitle() + ": " + exp.getTeX(),
                                 () -> {
-                                    String in = exp.getTex();
+                                    String in = exp.getTeX();
                                     assertThrows(
                                             TranslationException.class,
                                             () -> tester.getMapleTranslator().translate(in)

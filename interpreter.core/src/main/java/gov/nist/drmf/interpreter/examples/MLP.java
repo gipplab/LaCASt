@@ -78,7 +78,7 @@ public class MLP {
 //            eq = "\\sum_{n=0}^{10} n + \\cpi = \\sum_{n=0}^{10} n + \\cpi < \\leq \\frac{\\sum_{n} n}{n}";
 //            eq = "\\sqrt{\\frac{1}{\\iunit}}";
 //            eq = "\\int_{0}^{1} \\theta \\mathrm{d}\\theta";
-            eq = "k \\mod x";
+            eq = "n\\idot\\Sum{k}{1}{n}@{\\frac{1}{y^{k}}}";
 
             System.out.println();
             System.out.println("Input: " + eq);
@@ -87,7 +87,7 @@ public class MLP {
             // parse/tag the equation and print it out
             PomTaggedExpression pe = parser.parse(eq);
 //            System.out.println(pe);
-            pe = clean(pe);
+//            pe = clean(pe);
             System.out.println(pe.getRoot().getFeatureValue("accent"));
             System.out.println(pe.toString());
 

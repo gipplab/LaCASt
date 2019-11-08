@@ -5,7 +5,6 @@ import com.maplesoft.openmaple.*;
 import gov.nist.drmf.interpreter.MapleSimplifier;
 import gov.nist.drmf.interpreter.MapleTranslator;
 import gov.nist.drmf.interpreter.RelationResults;
-import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
@@ -95,13 +94,13 @@ public class EquationTestCases {
 
             br.lines()
                     .limit(300) // TODO debug limit
-                    .filter( l -> {
-                        if ( l.contains("'") ){
-                            int line = ca[0]++;
-                            TestStatus.SINGLE_QUOTES.add( line );
-                            return false;
-                        } return true;
-                    } )
+//                    .filter( l -> {
+//                        if ( l.contains("'") ){
+//                            int line = ca[0]++;
+//                            TestStatus.SINGLE_QUOTES.add( line );
+//                            return false;
+//                        } return true;
+//                    } )
                     .map( l -> analyzeLine( l, ca ))
                     .filter( Objects::nonNull )
                     .forEach( t -> {
@@ -226,8 +225,14 @@ public class EquationTestCases {
         }
     }
 
+    /**
+     * @deprecated There are newer versions available to perform tests more reliable.
+     * @see gov.nist.drmf.interpreter.evaluation.SymbolicEvaluator
+     * @see gov.nist.drmf.interpreter.evaluation.NumericalEvaluator
+     */
     @Disabled
     @TestFactory
+    @Deprecated
     Iterable<DynamicTest> iterateAllTestCases(){
         LinkedList<DynamicTest> tests = new LinkedList<>();
 
@@ -262,17 +267,15 @@ public class EquationTestCases {
             }
             modAss = modAss.replaceAll("[\\s,;.{}]*$", "");
 
-            AbstractTranslator.activateSetMode();
             try {
                 LOG.info("Split assumption: " + modAss);
-                mapleAss = mapleT.translateFromLaTeXToMapleClean(modAss);
+                mapleAss = mapleT.translateFromLaTeXToMapleSetModeClean(modAss);
                 LOG.info("Translated assumption to: " + mapleAss);
             } catch ( Exception e ){
                 LOG.error("Cannot translate assumption! -> Ignore Assumption, line " + line);
                 e.printStackTrace();
                 TestStatus.ERROR_IN_ASSUMPTION_TRANSLATION.add(line);
             }
-            AbstractTranslator.deactivateSetMode();
         }
         return mapleAss;
     }
@@ -358,6 +361,7 @@ public class EquationTestCases {
         } catch ( MapleException me ){
             LOG.debug("Maple Error occurred, line " + test.line, me);
             TestStatus.ERROR_IN_MAPLE.add(test.line);
+            fail("ERROR in line " + test.line + ", " + me.getMessage());
         }
 
         // garbage collection

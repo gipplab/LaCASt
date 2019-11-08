@@ -23,16 +23,6 @@ public class MapleToSemanticInterpreter {
     public static void main (String[] args){
         System.setProperty( Keys.KEY_SYSTEM_LOGGING, GlobalPaths.PATH_LOGGING_CONFIG.toString() );
 
-        /*
-        LOG.trace("Test");
-        LOG.debug("TEST");
-        LOG.info("TEST");
-        LOG.warn("TEST");
-        LOG.error("TEST");
-        LOG.fatal("TEST");
-        */
-
-        //*
         try {
             //MacrosLexicon.init();
             MapleInterface.init();

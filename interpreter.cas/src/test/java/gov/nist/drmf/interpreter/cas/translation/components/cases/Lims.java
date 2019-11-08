@@ -5,7 +5,7 @@ import gov.nist.drmf.interpreter.common.meta.DLMF;
 /**
  * @author Andre Greiner-Petter
  */
-public enum Lims implements TestCase {
+public enum Lims implements ForwardTestCase {
     @DLMF("4.31.1")
     FRAC(
             "\\lim_{z \\to 0} \\frac{\\sinh@@{z}}{z}",

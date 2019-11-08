@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.cas.common;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
-import gov.nist.drmf.interpreter.common.grammar.ITranslator;
+import gov.nist.drmf.interpreter.common.grammar.ITranslatorComponent;
 import mlp.PomTaggedExpression;
 
 import javax.annotation.Nullable;
@@ -9,13 +9,10 @@ import javax.annotation.Nullable;
 /**
  * @author Andre Greiner-Petter
  */
-public interface IForwardTranslator extends ITranslator<PomTaggedExpression> {
+public interface IForwardTranslator extends ITranslatorComponent<PomTaggedExpression> {
     /**
-     * Returns the translated expression. This
-     * value could be null, if the {@link #translate(Object)}
-     * returns false before.
-     * @return  the translated expression given in
-     *          {@link #translate(Object)} or null
+     * Returns the translated expression.
+     * @return  the translated expression given
      */
     @Nullable
     TranslatedExpression getTranslatedExpressionObject();

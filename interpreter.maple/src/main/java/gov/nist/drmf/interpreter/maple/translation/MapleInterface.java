@@ -5,7 +5,9 @@ import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.Engine;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.common.grammar.ITranslator;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
@@ -35,7 +37,7 @@ import java.util.stream.Stream;
  *
  * Created by AndreG-P on 21.02.2017.
  */
-public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic> {
+public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic> implements ITranslator {
     /**
      * The default brackets Maple uses.
      * @see Brackets
@@ -50,7 +52,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
     /**
      * Inner constant to initialize Maple
      */
-    private final String[] maple_args = new String[]{"java"};
+    private static final String[] maple_args = new String[]{"java"};
 
     /**
      * Inner constants to handle maple commands
@@ -108,8 +110,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         if ( Initializer.loadMapleNatives() )
             LOG.debug("Loaded Maple Natives!");
         else {
-            LOG.error("Cannot load maple native directory.");
-            return;
+            throw new IOException("Cannot load maple libraries");
         }
 
         // initialize callback listener
@@ -176,29 +177,37 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
      * @return the translated expression in semantic LaTeX
      * @throws MapleException if the conversion to the inner form of Maple fails.
      */
-    public String translate( String maple_input ) throws MapleException {
+    @Override
+    public String translate( String maple_input ) throws TranslationException {
         // Creates the command by wrapping all necessary information around the input
         // to convert the given input into the internal maple datastructure
         String cmd = maple_to_inert_procedure_name + "('" + maple_input + "')";
         // to convert the internal DAG into a list representation
         cmd = maple_list_procedure_name + "(" + cmd + ");";
 
-        // evaluates the given expression
-        Algebraic a = engine.evaluate(cmd);
-        // log information
-        LOG.debug("Wrapping: " + cmd);
-        LOG.info("Parsed: " + maple_input);
-        LOG.debug("Algebraic Result: " + a.toString());
-
-        // try to translate the expression
-        // if it fails, translate will return false and the error information
-        // can be accessed by the internalErrorLog
         try {
+            // evaluates the given expression
+            Algebraic a = engine.evaluate(cmd);
+
+            // log information
+            LOG.debug("Wrapping: " + cmd);
+            LOG.info("Parsed: " + maple_input);
+            LOG.debug("Algebraic Result: " + a.toString());
+
+            // try to translate the expression
+            // if it fails, translate will return false and the error information
+            // can be accessed by the internalErrorLog
+
             translatedList = translateGeneralExpression(a);
             return translatedList.getAccurateString();
-        } catch ( Exception e ){
-            LOG.error( "Cannot translate given maple input.", e );
-            return "";
+        } catch (Exception e) {
+            throw new TranslationException(
+                    Keys.KEY_MAPLE,
+                    Keys.KEY_LATEX,
+                    "Cannot evaluate Maple input.",
+                    TranslationException.Reason.PARSING_ERROR,
+                    e
+            );
         }
     }
 
@@ -219,7 +228,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         try {
             translate(maple_text);
             return true;
-        } catch ( MapleException me ){
+        } catch ( TranslationException me ){
             LOG.fatal("Cannot translate " + maple_text, me);
             return false;
         }
@@ -338,6 +347,10 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
         loadProcedures();
     }
 
+    Engine getEngine() {
+        return engine;
+    }
+
     public void addMemoryObserver(Observer observer){
         listener.addObserver(observer);
     }
@@ -359,4 +372,11 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
      * @return unique listener
      */
     public static MapleListener getUniqueMapleListener(){ return listener; }
+
+    public static boolean isMaplePresent() {
+        try {
+            MapleInterface.init();
+            return true;
+        } catch ( Exception e ) { return false; }
+    }
 }

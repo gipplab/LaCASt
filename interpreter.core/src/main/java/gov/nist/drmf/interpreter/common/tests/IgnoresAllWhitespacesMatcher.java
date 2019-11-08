@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.cas.translation.components.matcher;
+package gov.nist.drmf.interpreter.common.tests;
 
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;

@@ -5,7 +5,7 @@ import gov.nist.drmf.interpreter.common.meta.DLMF;
 /**
  * @author Andre Greiner-Petter
  */
-public enum Products implements TestCase {
+public enum Products implements ForwardTestCase {
     SIMPLE(
             "\\prod_{-\\infty < x < \\infty}x^3",
             "product((x)^(3), x=- infinity..infinity)",

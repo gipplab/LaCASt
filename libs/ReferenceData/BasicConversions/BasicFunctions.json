@@ -147,7 +147,7 @@
       "Mathematica": "*"
     },
     "Addition": {
-      "MLP": "plus",
+      "MLP": "Addition",
       "LaTeX": "+",
       "Maple": "+",
       "Mathematica": "+"

@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.mathematica.config;
 
+import com.wolfram.jlink.KernelLink;
+import com.wolfram.jlink.MathLinkFactory;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import org.apache.logging.log4j.LogManager;
@@ -28,6 +30,21 @@ public class MathematicaConfig {
         } catch (IOException e) {
             LOG.fatal( "Cannot write the path into the properties file.", e );
             return null;
+        }
+    }
+
+    public static boolean isMathematicaPresent() {
+        try {
+            Path mathPath = MathematicaConfig.loadMathematicaPath();
+
+            KernelLink math = MathLinkFactory.createKernelLink(new String[]{
+                    "-linkmode", "launch",
+                    "-linkname", mathPath.toString(), "-mathlink"
+            });
+            math.close();
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 }

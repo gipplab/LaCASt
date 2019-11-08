@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.file.Paths;
+import java.util.NoSuchElementException;
 import java.util.Properties;
 
 /**
@@ -24,7 +25,7 @@ public class Initializer {
      *
      * @return true if everything went fine.
      */
-    public static boolean loadMapleNatives() {
+    public static boolean loadMapleNatives() throws IOException {
         LOG.debug(Paths.get("").toAbsolutePath());
         try ( FileInputStream in = new FileInputStream(GlobalPaths.PATH_MAPLE_CONFIG.toFile()) ){
             Properties props = new Properties();
@@ -32,16 +33,16 @@ public class Initializer {
             String maple_bin = props.getProperty(Keys.KEY_MAPLE_BIN);
             LOG.debug( "Extracted maple dir: " + maple_bin );
             return loadMapleNatives( maple_bin );
-        } catch ( IOException ioe ){
-            LOG.fatal("Cannot load the maple native directory " +
+        } catch ( IOException | NoSuchFieldException | IllegalAccessException ioe ){
+            LOG.debug("Cannot load the maple native directory " +
                     "information from the given " + GlobalPaths.PATH_MAPLE_CONFIG.getFileName() +
                     " file.", ioe
             );
-            return false;
+            throw new IOException("Cannot load the maple native library.", ioe);
         }
     }
 
-    public static boolean loadMapleNatives( String maple_bin_dir ){
+    public static boolean loadMapleNatives( String maple_bin_dir ) throws NoSuchFieldException, IllegalAccessException {
         try {
             LOG.debug("Set java.library.path: " + maple_bin_dir);
             // set java.library.path
@@ -56,12 +57,12 @@ public class Initializer {
             LOG.debug("... refreshed!");
             return true;
         } catch ( IllegalAccessException | NoSuchFieldException e ) {
-            LOG.fatal("The program is not able to refresh " +
+            LOG.warn("The program is not able to refresh " +
                     "the java.library.path at the runtime! " +
                     "An alternative is to start the JVM with the following flag: " +
-                    "-Djava.library.path=\"" + maple_bin_dir + "\"", e
+                    "-Djava.library.path=\"" + maple_bin_dir + "\""
             );
-            return false;
+            throw e;
         }
     }
 }

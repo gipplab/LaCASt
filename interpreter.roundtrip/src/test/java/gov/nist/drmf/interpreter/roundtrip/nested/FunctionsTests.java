@@ -1,7 +1,7 @@
-package gov.nist.drmf.interpreter.roundtrip;
+package gov.nist.drmf.interpreter.roundtrip.nested;
 
+import gov.nist.drmf.interpreter.roundtrip.AbstractRoundTrip;
 import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.TestFactory;
 
 /**
  * Created by AndreG-P on 06.03.2017.
@@ -25,8 +25,7 @@ public class FunctionsTests extends AbstractRoundTrip {
 //            "Tricky PolyGamma with Factorial and Modulus Test"
     };
 
-    @TestFactory
-    Iterable<DynamicTest> functionsRoundTripTests(){
+    protected Iterable<DynamicTest> functionsRoundTripTests(){
         return createFromMapleTestList( test_functions, test_names );
     }
 }

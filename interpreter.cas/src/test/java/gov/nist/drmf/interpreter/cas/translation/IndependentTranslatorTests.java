@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * @author Andre Greiner-Petter
  */
+@AssumeMLPAvailability
 public class IndependentTranslatorTests {
     private static final Logger LOG = LogManager.getLogger(IndependentTranslatorTests.class.getName());
 

@@ -52,7 +52,7 @@ public class MapleTranslator {
     /**
      * The interface to interact with the Maple translator
      */
-    private MapleInterface mapleInterface;
+    private static MapleInterface mapleInterface;
 
     /**
      * The maple simplifier
@@ -70,8 +70,14 @@ public class MapleTranslator {
      * not the program asks you about it.
      * @param args empty or a maple expression in the first argument
      */
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException, MapleException {
         // TODO
+
+        String in = "n\\idot\\Sum{k}{1}{n}@{\\frac{1}{y^{k}}}";
+        MapleTranslator t = new MapleTranslator();
+        t.init();
+        String maple = t.translateFromLaTeXToMapleClean(in);
+        System.out.println(maple);
     }
 
     /**
@@ -82,9 +88,7 @@ public class MapleTranslator {
      * Before you start any translation process, you have to invoke
      * the {@link #init()} method once!
      */
-    public MapleTranslator(){
-        GlobalConstants.CAS_KEY = Keys.KEY_MAPLE;
-    }
+    public MapleTranslator(){}
 
     /**
      * Creates an object of the translator class with a specified
@@ -139,7 +143,7 @@ public class MapleTranslator {
         mapleInterface = MapleInterface.getUniqueMapleInterface();
         LOG.debug("Initialized Maple Interface.");
 
-        dlmfInterface = new SemanticLatexTranslator( Keys.KEY_LATEX, Keys.KEY_MAPLE );
+        dlmfInterface = new SemanticLatexTranslator( Keys.KEY_MAPLE );
         dlmfInterface.init( GlobalPaths.PATH_REFERENCE_DATA );
         LOG.debug("Initialized DLMF LaTeX Interface.");
 
@@ -187,6 +191,20 @@ public class MapleTranslator {
     }
 
     /**
+     * Translates a given semantic LaTeX expression in Set mode into an equivalent Maple string.
+     * @param latex_expression expression in semantic LaTeX
+     * @return equivalent expression in Maple syntax
+     * @throws TranslationException if the translation fails.
+     */
+    public String translateFromLaTeXToMapleSetModeClean(@Nonnull String latex_expression )
+            throws TranslationException{
+        dlmfInterface.activateSetMode();
+        String translation = translateFromLaTeXToMaple( latex_expression ).getTranslatedExpression();
+        dlmfInterface.deactivateSetMode();
+        return translation;
+    }
+
+    /**
      * Translates a given semantic LaTeX expression into an equivalent Maple expression.
      * The {@link Translation} is a java bean to save the translated expression and
      * further information about the translation. This object doesn't contains an
@@ -200,10 +218,10 @@ public class MapleTranslator {
      */
     public Translation translateFromLaTeXToMaple(@Nonnull String latex_expression )
             throws TranslationException {
-        dlmfInterface.translate( latex_expression );
+        String translation = dlmfInterface.translate( latex_expression );
         return new Translation(
-                dlmfInterface.getGlobalExpressionObject().toString(),
-                dlmfInterface.getInfoLog().toString() );
+                translation,
+                dlmfInterface.getInfoLogger().toString() );
     }
 
     /**

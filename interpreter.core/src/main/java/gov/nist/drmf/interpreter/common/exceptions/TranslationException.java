@@ -28,7 +28,7 @@ public class TranslationException extends RuntimeException {
     }
 
     public TranslationException( String message, Reason reason, Throwable throwable ){
-        this( "ukn", "ukn", message, throwable);
+        super( message, throwable);
         this.reason = reason;
     }
 
@@ -39,6 +39,8 @@ public class TranslationException extends RuntimeException {
 
     public TranslationException( String from_language, String to_language, String message, Reason reason, Object reasonObj, Throwable throwable ){
         this( "(" + from_language + " -> " + to_language + ") " + message, reason, throwable);
+        FROM_LANGUAGE_DEFAULT = from_language;
+        TO_LANGUAGE_DEFAULT = to_language;
         this.reason_Obj = reasonObj;
     }
 
@@ -52,6 +54,12 @@ public class TranslationException extends RuntimeException {
         super(
                 "(" + from_language + " -> " + to_language + ") " + message,
                 throwable
+        );
+    }
+
+    public TranslationException( String from_language, String to_language, String message, Reason reason, Throwable throwable ){
+        this(
+                "(" + from_language + " -> " + to_language + ") " + message, reason, throwable
         );
     }
 
@@ -90,7 +98,8 @@ public class TranslationException extends RuntimeException {
         NULL("NULL"),
         DLMF_MACRO_ERROR("Error while translating DLMF/DRMF Macro"),
         MLP_ERROR("CRITICAL! POM-Tagger Error Reached"),
-        NULL_ARGUMENT("Empty argument in DLMF/DRMF Macro");
+        NULL_ARGUMENT("Empty argument in DLMF/DRMF Macro"),
+        PARSING_ERROR("Cannot parse the given input");
 
         private String name;
 
