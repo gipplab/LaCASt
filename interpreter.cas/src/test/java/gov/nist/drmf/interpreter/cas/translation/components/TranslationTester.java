@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.cas.translation.components.cases.TestCase;
+import gov.nist.drmf.interpreter.cas.translation.components.cases.ForwardTestCase;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import org.apache.logging.log4j.LogManager;
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import static gov.nist.drmf.interpreter.cas.translation.components.matcher.IgnoresAllWhitespacesMatcher.ignoresAllWhitespaces;
+import static gov.nist.drmf.interpreter.common.tests.IgnoresAllWhitespacesMatcher.ignoresAllWhitespaces;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
@@ -41,7 +41,7 @@ public class TranslationTester {
         return sltMathematica;
     }
 
-    public Stream<DynamicTest> test(TestCase[] cases, boolean maple) {
+    public Stream<DynamicTest> test(ForwardTestCase[] cases, boolean maple) {
         return Arrays.stream(cases)
                 .map(exp ->
                         DynamicTest.dynamicTest(
@@ -51,7 +51,7 @@ public class TranslationTester {
                 );
     }
 
-    public Executable createTest(TestCase tc, boolean maple) {
+    public Executable createTest(ForwardTestCase tc, boolean maple) {
         return () -> {
             LOG.debug("Testing " + tc.getTitle());
             LOG.info("Test: " + tc.getTeX());

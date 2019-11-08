@@ -5,7 +5,7 @@ import gov.nist.drmf.interpreter.common.meta.DLMF;
 /**
  * @author Andre Greiner-Petter
  */
-public enum Integrals implements TestCase {
+public enum Integrals implements ForwardTestCase {
     SIMPLE(
             "\\int_{0}^{1} x \\diff{x}",
             "int(x, x = 0..1)",

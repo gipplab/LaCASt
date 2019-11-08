@@ -40,23 +40,9 @@ AngerJ::2
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/11.10#E1
 
-BellB::2
-	Maple-Name:= BellB
-	DLMF-Pattern:= \BellNumber@{$0}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=BellB
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Bell number
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/26.7#i
-
 BesselI::2
 	Maple-Name:= BesselI
-	DLMF-Pattern:= \BesselI{$0}@{$1}
+	DLMF-Pattern:= \modBesselI{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -79,12 +65,12 @@ BesselJ::2
 	Alternatives:= 
 	DLMF-Meaning:= Bessel function first kind
 	DLMF-Constraints:= 
-	DLMF-BranchCuts:= if v \notin \Integer: (-\infty, 0]
+	DLMF-BranchCuts:= if v \notin \Integers: (-\infty, 0]
 	DLMF-Link:= http://dlmf.nist.gov/10.2#E2
 
 BesselK::2
 	Maple-Name:= BesselK
-	DLMF-Pattern:= \BesselK{$0}@{$1}
+	DLMF-Pattern:= \modBesselK{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -126,7 +112,7 @@ Beta::2
 
 ChebyshevT::2
 	Maple-Name:= ChebyshevT
-	DLMF-Pattern:= \ChebyT{$0}@{$1}
+	DLMF-Pattern:= \ChebyshevpolyT{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevT
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -140,7 +126,7 @@ ChebyshevT::2
 
 ChebyshevU::2
 	Maple-Name:= ChebyshevU
-	DLMF-Pattern:= \ChebyU{$0}@{$1}
+	DLMF-Pattern:= \ChebyshevpolyU{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevU
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -154,7 +140,7 @@ ChebyshevU::2
 
 Chi::1
 	Maple-Name:= Chi
-	DLMF-Pattern:= \CoshInt@{$0}
+	DLMF-Pattern:= \coshint@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Chi
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -168,7 +154,7 @@ Chi::1
 
 Ci::1
 	Maple-Name:= Ci
-	DLMF-Pattern:= \CosInt@{$0}
+	DLMF-Pattern:= \cosint@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Ci
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -182,7 +168,7 @@ Ci::1
 
 CoulombF::3
 	Maple-Name:= CoulombF
-	DLMF-Pattern:= \CoulombF{$0}@{$1}{$2}
+	DLMF-Pattern:= \regCoulombF{$0}@{$1}{$2}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=CoulombF
 	NumberOfVars:= 3
 	MapleComment:= 
@@ -196,7 +182,7 @@ CoulombF::3
 
 Curl::1
 	Maple-Name:= Curl
-	DLMF-Pattern:= \curl $0
+	DLMF-Pattern:= \divergence $0
 	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Curl
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -210,7 +196,7 @@ Curl::1
 
 CylinderD::2
 	Maple-Name:= CylinderD
-	DLMF-Pattern:= \WhitD{$0}@{$1}
+	DLMF-Pattern:= \WhittakerparaD{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=CylinderD
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -224,7 +210,7 @@ CylinderD::2
 
 CylinderU::2
 	Maple-Name:= CylinderU
-	DLMF-Pattern:= \ParabolicU@{$0}{$1}
+	DLMF-Pattern:= \paraU@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=CylinderU
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -238,7 +224,7 @@ CylinderU::2
 
 CylinderV::2
 	Maple-Name:= CylinderV
-	DLMF-Pattern:= \ParabolicV@{$0}{$1}
+	DLMF-Pattern:= \paraV@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=CylinderV
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -266,7 +252,7 @@ Dirac::1
 
 Divergence::1
 	Maple-Name:= Divergence
-	DLMF-Pattern:= \divergence $0
+	DLMF-Pattern:= \gradient $0
 	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Divergence
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -280,13 +266,13 @@ Divergence::1
 
 Ei::1
 	Maple-Name:= Ei
-	DLMF-Pattern:= \ExpInt@{$0}
+	DLMF-Pattern:= \expintE@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Ei
 	NumberOfVars:= 1
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= \ExpInti@{$0}
+	Alternatives:= \expintEi@{$0}
 	DLMF-Meaning:= Exponential integral
 	DLMF-Constraints:= z != 0
 	DLMF-BranchCuts:= (-\infty, 0]
@@ -294,7 +280,7 @@ Ei::1
 
 Ei::2
 	Maple-Name:= Ei
-	DLMF-Pattern:= \ExpIntn{$0}@{$1}
+	DLMF-Pattern:= \genexpintE{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Ei
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -308,22 +294,8 @@ Ei::2
 
 EllipticCE::1
 	Maple-Name:= EllipticCE
-	DLMF-Pattern:= \CompEllIntCE@{$0}
+	DLMF-Pattern:= \ccompellintKk@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCE
-	NumberOfVars:= 1
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Legendre's complementary complete elliptic integral of the second kind
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/19.2#E9
-
-EllipticCK::1
-	Maple-Name:= EllipticCK
-	DLMF-Pattern:= \CompEllIntCK@{$0}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCK
 	NumberOfVars:= 1
 	MapleComment:= 
 	MapleConstraint:= 
@@ -336,36 +308,22 @@ EllipticCK::1
 
 EllipticE::1
 	Maple-Name:= EllipticE
-	DLMF-Pattern:= \CompEllIntE@{$0}
+	DLMF-Pattern:= \compellintKk@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
 	NumberOfVars:= 1
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Legendre's complete elliptic integral of the second kind
+	DLMF-Meaning:= Legendre's complete elliptic integral of the first kind
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/19.2#E8
 
 EllipticE::2
 	Maple-Name:= EllipticE
-	DLMF-Pattern:= \EllIntE@{\asin@{$0}}{$1}
+	DLMF-Pattern:= \incellintFk@{\asin@{$0}}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Legendre's incomplete elliptic integral of the second kind
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/19.2#E5
-
-EllipticF::2
-	Maple-Name:= EllipticF
-	DLMF-Pattern:= \EllIntF@{\asin@{$0}}{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticF
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
@@ -378,50 +336,64 @@ EllipticF::2
 
 EllipticK::1
 	Maple-Name:= EllipticK
-	DLMF-Pattern:= \CompEllIntK@{$0}
+	DLMF-Pattern:= \incellintDk@{\phi}{k}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticK
 	NumberOfVars:= 1
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Legendre's complete elliptic integral of the first kind
+	DLMF-Meaning:= Incomplete elliptic integral of Legendre's type
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/19.2#E8
+	DLMF-Link:= http://dlmf.nist.gov/19.2#E6
 
 EllipticPi::2
 	Maple-Name:= EllipticPi
-	DLMF-Pattern:= \CompEllIntPi@{$0}{$1}
+	DLMF-Pattern:= \compellintEk@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Legendre's complete elliptic integral of the third kind
+	DLMF-Meaning:= Legendre's complete elliptic integral of the second kind
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/19.2#E8
 
 EllipticPi::3
 	Maple-Name:= EllipticPi
-	DLMF-Pattern:= \EllIntPi@{\asin@{$0}}{$1}{$2}
+	DLMF-Pattern:= \incellintEk@{\asin@{$0}}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
 	NumberOfVars:= 3
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Legendre's incomplete elliptic integral of the third kind
+	DLMF-Meaning:= Legendre's incomplete elliptic integral of the second kind
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/19.2#E7
+	DLMF-Link:= http://dlmf.nist.gov/19.2#E5
 
 FresnelC::1
 	Maple-Name:= FresnelC
-	DLMF-Pattern:= \FresnelCos@{$0}
+	DLMF-Pattern:= \FresnelintF@{z}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=FresnelC
+	NumberOfVars:= 1
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Fresnel Integral
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/7.2#E6
+
+FresnelS::1
+	Maple-Name:= FresnelS
+	DLMF-Pattern:= \Fresnelcosint@{$0}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=FresnelS
 	NumberOfVars:= 1
 	MapleComment:= 
 	MapleConstraint:= 
@@ -432,10 +404,10 @@ FresnelC::1
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/7.2#E7
 
-FresnelS::1
-	Maple-Name:= FresnelS
-	DLMF-Pattern:= \FresnelSin@{$0}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=FresnelS
+Fresnelf::1
+	Maple-Name:= Fresnelf
+	DLMF-Pattern:= \Fresnelsinint@{$0}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelf
 	NumberOfVars:= 1
 	MapleComment:= 
 	MapleConstraint:= 
@@ -446,10 +418,10 @@ FresnelS::1
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/7.2#E8
 
-Fresnelf::1
-	Maple-Name:= Fresnelf
-	DLMF-Pattern:= \Fresnelf@{$0} 
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelf
+Fresnelg::1
+	Maple-Name:= Fresnelg
+	DLMF-Pattern:= \auxFresnelf@{$0} 
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelg
 	NumberOfVars:= 1
 	MapleComment:= 
 	MapleConstraint:= 
@@ -460,65 +432,23 @@ Fresnelf::1
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/7.2#E10
 
-Fresnelg::1
-	Maple-Name:= Fresnelg
-	DLMF-Pattern:= \Fresnelg@{$0}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelg
-	NumberOfVars:= 1
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Fresnel Auxiliaty Functions
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/7.2#E11
-
-GAMMA::1
-	Maple-Name:= GAMMA
-	DLMF-Pattern:= \EulerGamma@{z}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
-	NumberOfVars:= 1
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Euler Gamma function
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/5.2#E1
-
 GAMMA::2
 	Maple-Name:= GAMMA
-	DLMF-Pattern:= \IncGamma@{$0}{$1}
+	DLMF-Pattern:= \incgamma@{a}{z}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Incomplete Gamma function (upper)
-	DLMF-Constraints:= 
+	DLMF-Meaning:= Incomplete Gamma function (lower)
+	DLMF-Constraints:= \Re(a) > 0
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/8.2#E2
-
-GaussAGM::2
-	Maple-Name:= GaussAGM
-	DLMF-Pattern:= \AGM@{$0}{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=GaussAGM
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Arithmetic geometric mean
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/19.8#SS1.p1
+	DLMF-Link:= http://dlmf.nist.gov/8.2#E1
 
 GegenbauerC::3
 	Maple-Name:= GegenbauerC
-	DLMF-Pattern:= \Ultraspherical{$1}{$0}@{$2}
+	DLMF-Pattern:= \Ultra{$1}{$0}@{$2}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC
 	NumberOfVars:= 3
 	MapleComment:= 
@@ -530,37 +460,9 @@ GegenbauerC::3
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/18.3#T1.t1.r3
 
-Gradiant::1
-	Maple-Name:= Gradiant
-	DLMF-Pattern:= \gradient $0
-	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Gradient
-	NumberOfVars:= 1
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= 
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= 
-
 HankelH1::2
 	Maple-Name:= HankelH1
-	DLMF-Pattern:= \HankelHi{$0}@{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Bessel function third kind
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/10.2#E5
-
-HankelH2::2
-	Maple-Name:= HankelH2
-	DLMF-Pattern:= \HankelHii{$0}@{$1}
+	DLMF-Pattern:= \HankelH{1}{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -572,23 +474,23 @@ HankelH2::2
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/10.2#E6
 
-Heaviside::1
-	Maple-Name:= Heaviside
-	DLMF-Pattern:= \HeavisideH@{$0}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Heaviside
-	NumberOfVars:= 1
+HankelH2::2
+	Maple-Name:= HankelH2
+	DLMF-Pattern:= \HankelH{2}{$0}@{$1}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
+	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Heaviside step function
+	DLMF-Meaning:= Bessel function third kind
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/1.16#E13
+	DLMF-Link:= http://dlmf.nist.gov/10.2#E6
 
 HermiteH::2
 	Maple-Name:= HermiteH
-	DLMF-Pattern:= \HermiteH{$0}@{$1}
+	DLMF-Pattern:= \Hermite{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -600,10 +502,10 @@ HermiteH::2
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/18.3#T1.t1.r13
 
-HeunG::6
-	Maple-Name:= HeunG
-	DLMF-Pattern:= \HeunLocal@@{$0}{$1}{$2}{$3}{$4}{$5}{$6}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunG
+HeunC::6
+	Maple-Name:= HeunC
+	DLMF-Pattern:= \HeunHl@@{$0}{$1}{$2}{$3}{$4}{$5}{$6}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunC
 	NumberOfVars:= 6
 	MapleComment:= 
 	MapleConstraint:= 
@@ -616,7 +518,7 @@ HeunG::6
 
 Im::1
 	Maple-Name:= Im
-	DLMF-Pattern:= \imagpart{$0}
+	DLMF-Pattern:= \imagpart@@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Im
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -630,7 +532,7 @@ Im::1
 
 InverseJacobiCD::2
 	Maple-Name:= InverseJacobiCD
-	DLMF-Pattern:= \arcJacobicd@@{$0}{$1}
+	DLMF-Pattern:= \aJacobiellsdk@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -644,7 +546,7 @@ InverseJacobiCD::2
 
 InverseJacobiCN::2
 	Maple-Name:= InverseJacobiCN
-	DLMF-Pattern:= \arcJacobicn@@{$0}{$1}
+	DLMF-Pattern:= \aJacobiellsnk@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -658,7 +560,7 @@ InverseJacobiCN::2
 
 InverseJacobiCS::2
 	Maple-Name:= InverseJacobiCS
-	DLMF-Pattern:= \arcJacobics@@{$0}{$1}
+	DLMF-Pattern:= \aJacobielldck@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -672,7 +574,7 @@ InverseJacobiCS::2
 
 InverseJacobiDC::2
 	Maple-Name:= InverseJacobiDC
-	DLMF-Pattern:= \arcJacobidc@@{$0}{$1}
+	DLMF-Pattern:= \aJacobielldsk@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -686,7 +588,7 @@ InverseJacobiDC::2
 
 InverseJacobiDN::2
 	Maple-Name:= InverseJacobiDN
-	DLMF-Pattern:= \arcJacobidn@@{$0}{$1}
+	DLMF-Pattern:= \aJacobiellcnk@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -700,7 +602,7 @@ InverseJacobiDN::2
 
 InverseJacobiDS::2
 	Maple-Name:= InverseJacobiDS
-	DLMF-Pattern:= \arcJacobids@@{$0}{$1}
+	DLMF-Pattern:= \aJacobiellndk@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -714,7 +616,7 @@ InverseJacobiDS::2
 
 InverseJacobiNC::2
 	Maple-Name:= InverseJacobiNC
-	DLMF-Pattern:= \arcJacobinc@@{$0}{$1}
+	DLMF-Pattern:= \aJacobiellnsk@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -728,7 +630,7 @@ InverseJacobiNC::2
 
 InverseJacobiND::2
 	Maple-Name:= InverseJacobiND
-	DLMF-Pattern:= \arcJacobind@@{$0}{$1}
+	DLMF-Pattern:= \aJacobiellnck@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -742,7 +644,7 @@ InverseJacobiND::2
 
 InverseJacobiNS::2
 	Maple-Name:= InverseJacobiNS
-	DLMF-Pattern:= \arcJacobins@@{$0}{$1}
+	DLMF-Pattern:= \aJacobiellsck@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -756,7 +658,7 @@ InverseJacobiNS::2
 
 InverseJacobiSC::2
 	Maple-Name:= InverseJacobiSC
-	DLMF-Pattern:= \arcJacobisc@@{$0}{$1}
+	DLMF-Pattern:= \aJacobiellcdk@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -770,7 +672,7 @@ InverseJacobiSC::2
 
 InverseJacobiSD::2
 	Maple-Name:= InverseJacobiSD
-	DLMF-Pattern:= \arcJacobisd@@{$0}{$1}
+	DLMF-Pattern:= \aJacobielldnk@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -784,64 +686,8 @@ InverseJacobiSD::2
 
 InverseJacobiSN::2
 	Maple-Name:= InverseJacobiSN
-	DLMF-Pattern:= \arcJacobisn@@{$0}{$1}
+	DLMF-Pattern:= \Jacobiellcsk@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Inverse of Jacobian elliptic function
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/22.15#SS1.p1
-
-JacobiAM::2
-	Maple-Name:= JacobiAM
-	DLMF-Pattern:= \Jacobiam@{$0}{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Jacobi's amplitude function
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/22.16#E1
-
-JacobiCD::2
-	Maple-Name:= JacobiCD
-	DLMF-Pattern:= \Jacobicd@@{$0}{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCD
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Jacobian elliptic function
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/22.2#E8
-
-JacobiCN::2
-	Maple-Name:= JacobiCN
-	DLMF-Pattern:= \Jacobicn@@{$0}{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCN
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Jacobian elliptic function
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/22.2#E5
-
-JacobiCS::2
-	Maple-Name:= JacobiCS
-	DLMF-Pattern:= \Jacobics@@{$0}{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
@@ -852,9 +698,51 @@ JacobiCS::2
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/22.2#E15
 
-JacobiDC::2
-	Maple-Name:= JacobiDC
-	DLMF-Pattern:= \Jacobidc@@{$0}{$1}
+JacobiAM::2
+	Maple-Name:= JacobiAM
+	DLMF-Pattern:= \genJacobiellk{p}{q}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	NumberOfVars:= 2
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= 
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= 
+
+JacobiCD::2
+	Maple-Name:= JacobiCD
+	DLMF-Pattern:= \Jacobiellsdk@@{$0}{$1}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCD
+	NumberOfVars:= 2
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Jacobian elliptic function
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/22.2#E7
+
+JacobiCN::2
+	Maple-Name:= JacobiCN
+	DLMF-Pattern:= \Jacobiellsnk@@{$0}{$1}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCN
+	NumberOfVars:= 2
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Jacobian elliptic function
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/22.2#E4
+
+JacobiCS::2
+	Maple-Name:= JacobiCS
+	DLMF-Pattern:= \Jacobielldck@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -866,23 +754,9 @@ JacobiDC::2
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/22.2#E14
 
-JacobiDN::2
-	Maple-Name:= JacobiDN
-	DLMF-Pattern:= \Jacobidn@@{$0}{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiDN
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Jacobian elliptic function
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/22.2#E6
-
-JacobiDS::2
-	Maple-Name:= JacobiDS
-	DLMF-Pattern:= \Jacobids@@{$0}{$1}
+JacobiDC::2
+	Maple-Name:= JacobiDC
+	DLMF-Pattern:= \Jacobielldsk@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -894,10 +768,10 @@ JacobiDS::2
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/22.2#E13
 
-JacobiNC::2
-	Maple-Name:= JacobiNC
-	DLMF-Pattern:= \Jacobinc@@{$0}{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+JacobiDN::2
+	Maple-Name:= JacobiDN
+	DLMF-Pattern:= \Jacobiellcnk@@{$0}{$1}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiDN
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
@@ -906,11 +780,11 @@ JacobiNC::2
 	DLMF-Meaning:= Jacobian elliptic function
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/22.2#E11
+	DLMF-Link:= http://dlmf.nist.gov/22.2#E5
 
-JacobiND::2
-	Maple-Name:= JacobiND
-	DLMF-Pattern:= \Jacobind@@{$0}{$1}
+JacobiDS::2
+	Maple-Name:= JacobiDS
+	DLMF-Pattern:= \Jacobiellndk@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -922,9 +796,9 @@ JacobiND::2
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/22.2#E12
 
-JacobiNS::2
-	Maple-Name:= JacobiNS
-	DLMF-Pattern:= \Jacobins@@{$0}{$1}
+JacobiNC::2
+	Maple-Name:= JacobiNC
+	DLMF-Pattern:= \Jacobiellnsk@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -936,9 +810,37 @@ JacobiNS::2
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/22.2#E10
 
+JacobiND::2
+	Maple-Name:= JacobiND
+	DLMF-Pattern:= \Jacobiellnck@@{$0}{$1}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	NumberOfVars:= 2
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Jacobian elliptic function
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/22.2#E11
+
+JacobiNS::2
+	Maple-Name:= JacobiNS
+	DLMF-Pattern:= \Jacobiellsck@@{$0}{$1}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	NumberOfVars:= 2
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Jacobian elliptic function
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/22.2#E9
+
 JacobiP::4
 	Maple-Name:= JacobiP
-	DLMF-Pattern:= \JacobiP{$1}{$2}{$0}@{$3}
+	DLMF-Pattern:= \JacobipolyP{$1}{$2}{$0}@{$3}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
 	NumberOfVars:= 4
 	MapleComment:= 
@@ -952,7 +854,7 @@ JacobiP::4
 
 JacobiSC::2
 	Maple-Name:= JacobiSC
-	DLMF-Pattern:= \Jacobisc@@{$0}{$1}
+	DLMF-Pattern:= \Jacobiellcdk@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSC
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -962,11 +864,11 @@ JacobiSC::2
 	DLMF-Meaning:= Jacobian elliptic function
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/22.2#E9
+	DLMF-Link:= http://dlmf.nist.gov/22.2#E8
 
 JacobiSD::2
 	Maple-Name:= JacobiSD
-	DLMF-Pattern:= \Jacobisd@@{$0}{$1}
+	DLMF-Pattern:= \Jacobielldnk@@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSD
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -976,39 +878,39 @@ JacobiSD::2
 	DLMF-Meaning:= Jacobian elliptic function
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/22.2#E7
+	DLMF-Link:= http://dlmf.nist.gov/22.2#E6
 
 JacobiSN::2
 	Maple-Name:= JacobiSN
-	DLMF-Pattern:= \Jacobisn@@{$0}{$1}
+	DLMF-Pattern:= \Jacobiamk@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSN
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Jacobian elliptic function
+	DLMF-Meaning:= Jacobi's amplitude function
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/22.2#E4
+	DLMF-Link:= http://dlmf.nist.gov/22.16#E1
 
 JacobiTheta1::2
 	Maple-Name:= JacobiTheta1
-	DLMF-Pattern:= \JacobiTheta{1}@{$0}{$1}
+	DLMF-Pattern:= \JacobiEpsilonk@{x}{k}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Jacobi's theta function
+	DLMF-Meaning:= Jacobi's epsilon function
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/20.2#i
+	DLMF-Link:= http://dlmf.nist.gov/22.16#E14
 
 JacobiTheta2::2
 	Maple-Name:= JacobiTheta2
-	DLMF-Pattern:= \JacobiTheta{2}@{$0}{$1}
+	DLMF-Pattern:= \Jacobithetaq{1}@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -1022,7 +924,7 @@ JacobiTheta2::2
 
 JacobiTheta3::2
 	Maple-Name:= JacobiTheta3
-	DLMF-Pattern:= \JacobiTheta{3}@{$0}{$1}
+	DLMF-Pattern:= \Jacobithetaq{2}@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -1036,7 +938,7 @@ JacobiTheta3::2
 
 JacobiTheta4::2
 	Maple-Name:= JacobiTheta4
-	DLMF-Pattern:= \JacobiTheta{4}@{$0}{$1}
+	DLMF-Pattern:= \Jacobithetaq{3}@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -1050,36 +952,22 @@ JacobiTheta4::2
 
 JacobiZeta::2
 	Maple-Name:= JacobiZeta
-	DLMF-Pattern:= \JacobiZeta@{$0}{$1}
+	DLMF-Pattern:= \Weierstrasszetalatt@@{z}{\Lattice{L}}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiZeta
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Jacobi zeta function
+	DLMF-Meaning:= Weierstrass zeta function on lattice
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/22.16#E32
+	DLMF-Link:= http://dlmf.nist.gov/23.1E5
 
 KelvinBei::2
 	Maple-Name:= KelvinBei
-	DLMF-Pattern:= \Kelvinbei{$0}@@{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBei
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Kelvin Function BEI
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/10.61#E1
-
-KelvinBer::2
-	Maple-Name:= KelvinBer
 	DLMF-Pattern:= \Kelvinber{$0}@@{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBer
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBei
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
@@ -1092,22 +980,8 @@ KelvinBer::2
 
 KelvinKei::2
 	Maple-Name:= KelvinKei
-	DLMF-Pattern:= \Kelvinkei{$0}@@{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKei
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Kelvin Function KEI
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/10.61#E2
-
-KelvinKer::2
-	Maple-Name:= KelvinKer
 	DLMF-Pattern:= \Kelvinker{$0}@@{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKer
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKei
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
@@ -1118,24 +992,38 @@ KelvinKer::2
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/10.61#E2
 
+KelvinKer::2
+	Maple-Name:= KelvinKer
+	DLMF-Pattern:= \Kelvinbei{$0}@@{$1}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKer
+	NumberOfVars:= 2
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Kelvin Function BEI
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/10.61#E1
+
 KroneckerDelta::2
 	Maple-Name:= KroneckerDelta
-	DLMF-Pattern:= \Kronecker{$0}{$1}
+	DLMF-Pattern:= \Legendresym{$0}{$1}
 	Maple-Link:= http://www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/KroneckerDelta
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Kronecker delta
+	DLMF-Meaning:= Legendre symbol
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r4
+	DLMF-Link:= http://dlmf.nist.gov/27.9
 
-KummerM::3
-	Maple-Name:= KummerM
-	DLMF-Pattern:= \KummerM@{$0}{$1}{$2}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=KummerK
+KummerU::3
+	Maple-Name:= KummerU
+	DLMF-Pattern:= \KummerconfhyperM@{$0}{$1}{$2}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=KummerU
 	NumberOfVars:= 3
 	MapleComment:= 
 	MapleConstraint:= 
@@ -1146,23 +1034,9 @@ KummerM::3
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/13.2#E2
 
-KummerU::3
-	Maple-Name:= KummerU
-	DLMF-Pattern:= \KummerU@{$0}{$1}{$2}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=KummerU
-	NumberOfVars:= 3
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Kummer confluent hypergeometric functions U
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/13.2#E6
-
 LaguerreL::2
 	Maple-Name:= LaguerreL
-	DLMF-Pattern:= \LaguerreL{$0}@{$1}
+	DLMF-Pattern:= \LaguerrepolyL{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -1176,17 +1050,17 @@ LaguerreL::2
 
 LaguerreL::3
 	Maple-Name:= LaguerreL
-	DLMF-Pattern:= \LaguerreL[$1]{$0}@{$2}
+	DLMF-Pattern:= X1:LaguerreLX\LaguerrepolyL[$1]{$0}@{$2}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
 	NumberOfVars:= 3
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= \Laguerre[$1]{$0}@{$2}
-	DLMF-Meaning:= Laguerre polynomial
+	Alternatives:= 
+	DLMF-Meaning:= 
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/18.3#T1.t1.r12
+	DLMF-Link:= 
 
 LambertW::1
 	Maple-Name:= LambertW
@@ -1198,7 +1072,7 @@ LambertW::1
 	MapleBranchCuts:= 
 	Alternatives:= 
 	DLMF-Meaning:= Lambert W-Function
-	DLMF-Constraints:= x in \Real
+	DLMF-Constraints:= x in \Reals
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/4.13#p2
 
@@ -1212,97 +1086,83 @@ LambertW::2
 	MapleBranchCuts:= 
 	Alternatives:= 
 	DLMF-Meaning:= Lambert W-Function
-	DLMF-Constraints:= x in \Real
+	DLMF-Constraints:= x in \Reals
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/4.13#p2
 
 LegendreP::2
 	Maple-Name:= LegendreP
-	DLMF-Pattern:= \LegendreP{$0}@{$1}
+	DLMF-Pattern:= \FerrersQ[\mu]{\nu}@{x}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	NumberOfVars:= 2
-	MapleComment:= If you want to translate it, as the orthogonal polynomial, use the alternative \LegendrePoly. If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersP.
+	MapleComment:= If you want to translate it, as the orthogonal polynomial, use the alternative \LegendrepolyP. If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersP.
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= \FerrersP{$0}@{$1}  ||  \LegendrePoly{$0}@{$1}
-	DLMF-Meaning:= Legendre function of first kind
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= (-\infty, 1]
+	Alternatives:= \FerrersP{$0}@{$1}  ||  \LegendrepolyP{$0}@{$1}
+	DLMF-Meaning:= Ferrers function of second kind
+	DLMF-Constraints:= -1 < x < 1, \mu, \nu \in \Reals
+	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/14.2#i
 
 LegendreP::3
 	Maple-Name:= LegendreP
-	DLMF-Pattern:= \LegendreP[$1]{$0}@{$2}
+	DLMF-Pattern:= \assLegendreP{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	NumberOfVars:= 3
 	MapleComment:= If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersP.
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= \FerrersP[$1]{$0}@{$2}
-	DLMF-Meaning:= Associated Legendre function of first kind
+	DLMF-Meaning:= Legendre function of first kind
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= (-\infty, 1]
-	DLMF-Link:= http://dlmf.nist.gov/14.3#E5
+	DLMF-Link:= http://dlmf.nist.gov/14.2#i
 
 LegendreQ::2
 	Maple-Name:= LegendreQ
-	DLMF-Pattern:= \LegendreQ{$0}@{$1}
+	DLMF-Pattern:= \assLegendreP[$1]{$0}@{$2}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	NumberOfVars:= 2
 	MapleComment:= If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersQ.
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= \FerrersQ{$0}@{$1}
-	DLMF-Meaning:= Legendre function of second kind
+	DLMF-Meaning:= Associated Legendre function of first kind
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= (-\infty, 1]
-	DLMF-Link:= http://dlmf.nist.gov/14.2#i
+	DLMF-Link:= http://dlmf.nist.gov/14.3#E5
 
 LegendreQ::3
 	Maple-Name:= LegendreQ
-	DLMF-Pattern:= \LegendreQ[$1]{$0}@{$2}
+	DLMF-Pattern:= \assLegendreQ{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	NumberOfVars:= 3
 	MapleComment:= If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersQ.
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= \FerrersQ[$1]{$0}@{$2}
-	DLMF-Meaning:= Associated Legendre function of second kind
+	DLMF-Meaning:= Legendre function of second kind
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= (-\infty, 1]
-	DLMF-Link:= http://dlmf.nist.gov/14.3#E7
-
-LerchPhi::3
-	Maple-Name:= LerchPhi
-	DLMF-Pattern:= \LerchPhi@{$0}{$1}{$2}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LerchPhi
-	NumberOfVars:= 3
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Lerch Phi function
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/25.14#E1
+	DLMF-Link:= http://dlmf.nist.gov/14.2#i
 
 LeviCivita::3
 	Maple-Name:= LeviCivita
-	DLMF-Pattern:= \LeviCivita{$0}{$1}{$2}
+	DLMF-Pattern:= \NeumannFactor{n}
 	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/LeviCivita
 	NumberOfVars:= 3
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Levi-Civita symbol
+	DLMF-Meaning:= Neumann factor
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/1.6#E14
+	DLMF-Link:= http://drmf.wmflabs.org/wiki/Definition:NeumannFactor
 
 Li::1
 	Maple-Name:= Li
-	DLMF-Pattern:= \LogInt@{$0}
+	DLMF-Pattern:= \logint@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Li
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -1314,10 +1174,10 @@ Li::1
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/6.2#E8
 
-LommelS1::3
-	Maple-Name:= LommelS1
+LommelS2::3
+	Maple-Name:= LommelS2
 	DLMF-Pattern:= \Lommels{$0}{$1}@{$2}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LommelS1
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LommelS2
 	NumberOfVars:= 3
 	MapleComment:= 
 	MapleConstraint:= 
@@ -1328,37 +1188,9 @@ LommelS1::3
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/11.9#E3
 
-LommelS2::3
-	Maple-Name:= LommelS2
-	DLMF-Pattern:= \LommelS{$0}{$1}@{$2}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=LommelS2
-	NumberOfVars:= 3
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Lommel S
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/11.9#E5
-
-MathieuA::2
-	Maple-Name:= MathieuA
-	DLMF-Pattern:= \MathieuEigenvaluea{$0}@@{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuA
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Mathieu eigenvalues
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/28.2#SS5.p1
-
 MathieuB::2
 	Maple-Name:= MathieuB
-	DLMF-Pattern:= \MathieuEigenvalueb{$0}@@{$1}
+	DLMF-Pattern:= \Mathieueigvala{$0}@@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuB
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -1372,21 +1204,21 @@ MathieuB::2
 
 MathieuCE::3
 	Maple-Name:= MathieuCE
-	DLMF-Pattern:= \Mathieuce{$0}@@{$2}{$1}
+	DLMF-Pattern:= \Mathieueigvallambda{m}@@{q}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuCE
 	NumberOfVars:= 3
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Mathieu eigenvalue function
+	DLMF-Meaning:= Mathieu eigenvalues
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/28.2#SS6.p1
+	DLMF-Link:= http://dlmf.nist.gov/28.12#E3
 
 MathieuSE::3
 	Maple-Name:= MathieuSE
-	DLMF-Pattern:= \Mathieuse{$0}@@{$2}{$1}
+	DLMF-Pattern:= \Mathieuce{$0}@@{$2}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuSE
 	NumberOfVars:= 3
 	MapleComment:= 
@@ -1428,35 +1260,35 @@ Product::4
 
 Psi::1
 	Maple-Name:= Psi
-	DLMF-Pattern:= \digamma@{$0}
+	DLMF-Pattern:= \ln@@{\EulerGamma@{$0}}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Psi
 	NumberOfVars:= 1
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Digamma / Psi function
-	DLMF-Constraints:= z not element of {0, -1, -2, ...}
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/5.2#E2
+	DLMF-Meaning:= Natural logarithm
+	DLMF-Constraints:= z != 0
+	DLMF-BranchCuts:= (-\infty, 0]
+	DLMF-Link:= http://dlmf.nist.gov/4.2#E2
 
 Psi::2
 	Maple-Name:= Psi
-	DLMF-Pattern:= \polygamma{$0}@{$1}
+	DLMF-Pattern:= \assLegendreP[$1]{$0}@{$2}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Psi
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Polygamma function
+	DLMF-Meaning:= Associated Legendre function of first kind
 	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/5.15
+	DLMF-BranchCuts:= (-\infty, 1]
+	DLMF-Link:= http://dlmf.nist.gov/14.3#E5
 
 Re::1
 	Maple-Name:= Re
-	DLMF-Pattern:= \realpart{$0}
+	DLMF-Pattern:= \realpart@@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Re
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -1470,7 +1302,7 @@ Re::1
 
 Shi::1
 	Maple-Name:= Shi
-	DLMF-Pattern:= \SinhInt@{$0}
+	DLMF-Pattern:= \sinhint@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Shi
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -1484,7 +1316,7 @@ Shi::1
 
 Si::1
 	Maple-Name:= Si
-	DLMF-Pattern:= \SinInt@{$0}
+	DLMF-Pattern:= \sinint@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Si
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -1498,21 +1330,21 @@ Si::1
 
 SphericalY::4
 	Maple-Name:= SphericalY
-	DLMF-Pattern:= \SphericalHarmonicY{$0}{$1}@{$2}{$3}
+	DLMF-Pattern:= \HarmonicNumber{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=SphericalY
 	NumberOfVars:= 4
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Spherical harmonics
+	DLMF-Meaning:= Harmonic number
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/14.30#E1
+	DLMF-Link:= http://dlmf.nist.gov/25.11#E33
 
 Ssi::1
 	Maple-Name:= Ssi
-	DLMF-Pattern:= \sinInt@{$0}
+	DLMF-Pattern:= \shiftsinint@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Ssi
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -1524,10 +1356,10 @@ Ssi::1
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/6.2#E10
 
-Stirling1::2
-	Maple-Name:= Stirling1
-	DLMF-Pattern:= \StirlingS@{$0}{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Stirling1
+Stirling2::2
+	Maple-Name:= Stirling2
+	DLMF-Pattern:= \Stirlingnumbers@{$0}{$1}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Stirling2
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
@@ -1537,20 +1369,6 @@ Stirling1::2
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/26.8#SS1.p1
-
-Stirling2::2
-	Maple-Name:= Stirling2
-	DLMF-Pattern:= \StirlingSS@{$0}{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Stirling2
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Stirling number of the second kind
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/26.8#SS1.p3
 
 StruveH::2
 	Maple-Name:= StruveH
@@ -1568,17 +1386,17 @@ StruveH::2
 
 StruveL::2
 	Maple-Name:= StruveL
-	DLMF-Pattern:= \StruveL{$0}@{$1}
+	DLMF-Pattern:= \StruveK{\nu}@{z}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=StruveL
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Modified Struve function
+	DLMF-Meaning:= Associated Struve funtion
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/11.2#E2
+	DLMF-Link:= http://dlmf.nist.gov/11.2#E5
 
 Sum::3
 	Maple-Name:= Sum
@@ -1622,94 +1440,24 @@ WeberE::2
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/11.10#E2
 
-WeierstrassP::3
-	Maple-Name:= WeierstrassP
-	DLMF-Pattern:= \WeierPInv@@{$0}{$1}{$2}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassP
-	NumberOfVars:= 3
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Weierstrass elliptic function
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/23.3#E8
-
 WeierstrassSigma::3
 	Maple-Name:= WeierstrassSigma
-	DLMF-Pattern:= \WeiersigmaInv@@{$0}{$1}{$2}
+	DLMF-Pattern:= \Weierstrasszetalatt@@{z}{\Lattice{L}}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassSigma
 	NumberOfVars:= 3
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Weierstrass sigma function
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/23.1E6
-
-WeierstrassZeta::3
-	Maple-Name:= WeierstrassZeta
-	DLMF-Pattern:= \WeierzetaInv@@{$0}{$1}{$2}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassZeta
-	NumberOfVars:= 3
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Weierstrass zeta function
+	DLMF-Meaning:= Weierstrass zeta function on lattice
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/23.1E5
 
-WhittakerM::3
-	Maple-Name:= WhittakerM
-	DLMF-Pattern:= \WhitM{$0}{$1}@{$2}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerM
-	NumberOfVars:= 3
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Whittaker confluent hypergeometric function
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/13.14#E2
-
-WhittakerW::3
-	Maple-Name:= WhittakerW
-	DLMF-Pattern:= \WhitW{$0}{$1}@{$2}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerW
-	NumberOfVars:= 3
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Whittaker confluent hypergeometric function
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/13.14#E3
-
-Zeta::1
-	Maple-Name:= Zeta
-	DLMF-Pattern:= \RiemannZeta@{$0}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
-	NumberOfVars:= 1
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Riemann zeta function
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/25.2#E1
-
-Zeta::3
-	Maple-Name:= Zeta
-	DLMF-Pattern:= \HurwitzZeta@{$1}{$2}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
+WeierstrassZeta::3
+	Maple-Name:= WeierstrassZeta
+	DLMF-Pattern:= \Hurwitzzeta@{$1}{$2}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassZeta
 	NumberOfVars:= 3
 	MapleComment:= 
 	MapleConstraint:= 
@@ -1720,9 +1468,65 @@ Zeta::3
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/25.11#E1
 
+WhittakerW::3
+	Maple-Name:= WhittakerW
+	DLMF-Pattern:= \WhittakerconfhyperM{$0}{$1}@{$2}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerW
+	NumberOfVars:= 3
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Whittaker confluent hypergeometric function
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/13.14#E2
+
+Zeta::1
+	Maple-Name:= Zeta
+	DLMF-Pattern:= \Riemannxi@{s}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
+	NumberOfVars:= 1
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Riemann's xi-function
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/25.4#E4
+
+Zeta::3
+	Maple-Name:= Zeta
+	DLMF-Pattern:= \Riemannzeta@{$0}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
+	NumberOfVars:= 3
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Riemann zeta function
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/25.2#E1
+
+abs::1
+	Maple-Name:= abs
+	DLMF-Pattern:= \abs{$0}
+	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=abs
+	NumberOfVars:= 1
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Absolute Value
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/1.9#E7
+
 add::1
 	Maple-Name:= add
-	DLMF-Pattern:= \DivisorSigma{1}@{n}
+	DLMF-Pattern:= \sumdivisors{1}@{n}
 	Maple-Link:= http://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -1890,7 +1694,7 @@ arctan::1
 
 arctan::2
 	Maple-Name:= arctan
-	DLMF-Pattern:= \ph@@{$1+($0)*\iunit}
+	DLMF-Pattern:= \phase@@{$1+($0)*\iunit}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -1918,7 +1722,7 @@ arctanh::1
 
 argument::1
 	Maple-Name:= argument
-	DLMF-Pattern:= \ph@@{$0}
+	DLMF-Pattern:= \phase@@{$0}
 	Maple-Link:= http://www.maplesoft.com/support/help/maple/view.aspx?path=argument
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -1930,20 +1734,6 @@ argument::1
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/1.9#E7
 
-bernoulli::2
-	Maple-Name:= bernoulli
-	DLMF-Pattern:= \BernoulliB{$0}@{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=bernoulli
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Bernoulli polynomial
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/24.2#i
-
 binomial::2
 	Maple-Name:= binomial
 	DLMF-Pattern:= \binom{$0}{$1}
@@ -1952,7 +1742,7 @@ binomial::2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= \binomial{$0}{$1}
+	Alternatives:= \binom{$0}{$1}
 	DLMF-Meaning:= Binomial coefficient
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
@@ -2024,7 +1814,7 @@ cot::1
 	MapleBranchCuts:= 
 	Alternatives:= 
 	DLMF-Meaning:= Cotangent
-	DLMF-Constraints:= z != k*\cpi \forall k \in \Integer
+	DLMF-Constraints:= z != k*\cpi \forall k \in \Integers
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/4.14#E7
 
@@ -2038,7 +1828,7 @@ coth::1
 	MapleBranchCuts:= 
 	Alternatives:= 
 	DLMF-Meaning:= Hyperbolic cotangent
-	DLMF-Constraints:= z != \iunit*k*\cpi \forall k \in \Integer
+	DLMF-Constraints:= z != \iunit*k*\cpi \forall k \in \Integers
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/4.28#E7
 
@@ -2052,7 +1842,7 @@ csc::1
 	MapleBranchCuts:= 
 	Alternatives:= 
 	DLMF-Meaning:= Cosecant
-	DLMF-Constraints:= z != k*\cpi \forall k \in \Integer
+	DLMF-Constraints:= z != k*\cpi \forall k \in \Integers
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/4.14#E5
 
@@ -2066,7 +1856,7 @@ csch::1
 	MapleBranchCuts:= 
 	Alternatives:= 
 	DLMF-Meaning:= Hyperbolic cosecant
-	DLMF-Constraints:= z != \iunit*k*\cpi \forall k \in \Integer
+	DLMF-Constraints:= z != \iunit*k*\cpi \forall k \in \Integers
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/4.28#E5
 
@@ -2086,7 +1876,7 @@ csgn::1
 
 dawson::1
 	Maple-Name:= dawson
-	DLMF-Pattern:= \DawsonsInt@{$0}
+	DLMF-Pattern:= \DawsonsintF@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=dawson
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -2114,7 +1904,7 @@ diff::2
 
 dilog::1
 	Maple-Name:= dilog
-	DLMF-Pattern:= \Dilogarithm@{$0}
+	DLMF-Pattern:= \dilog@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=dilog
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -2170,17 +1960,17 @@ erfc::1
 
 erfc::2
 	Maple-Name:= erfc
-	DLMF-Pattern:= \RepInterfc{$0}@{$1}
+	DLMF-Pattern:= \inverfc@@{x}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=erfc
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Repeated / Iterated integral of complementary error function
-	DLMF-Constraints:= 
+	DLMF-Meaning:= Inverse complementary error function
+	DLMF-Constraints:= 0 < x < 2
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/7.18#E2
+	DLMF-Link:= http://dlmf.nist.gov/7.17#E1
 
 erfi::1
 	Maple-Name:= erfi
@@ -2195,20 +1985,6 @@ erfi::1
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
 	DLMF-Link:= 
-
-euler::2
-	Maple-Name:= euler
-	DLMF-Pattern:= \EulerE{$0}@{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=euler
-	NumberOfVars:= 2
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Euler polynomial
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/24.2#ii
 
 exp::1
 	Maple-Name:= exp
@@ -2238,6 +2014,20 @@ factorial::1
 	DLMF-BranchCuts:= 
 	DLMF-Link:= 
 
+fibonacci::1
+	Maple-Name:= fibonacci
+	DLMF-Pattern:= \FibonacciNumber{n}
+	Maple-Link:= 
+	NumberOfVars:= 1
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Fibonacci number
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/26.11#E5
+
 floor::1
 	Maple-Name:= floor
 	DLMF-Pattern:= \floor{$0} 
@@ -2266,11 +2056,11 @@ gamma::1
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://drmf.wmflabs.org/wiki/Definition:StieltjesConstants
 
-gcd::1
+gcd::2
 	Maple-Name:= gcd
 	DLMF-Pattern:= \pgcd{$0, $1}
 	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=gcd
-	NumberOfVars:= 1
+	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
@@ -2280,37 +2070,23 @@ gcd::1
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/27.1#p2.t1.r3
 
-harmonic::1
-	Maple-Name:= harmonic
-	DLMF-Pattern:= \HarmonicNumber{$0}
-	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=harmonic
-	NumberOfVars:= 1
-	MapleComment:= 
-	MapleConstraint:= 
-	MapleBranchCuts:= 
-	Alternatives:= 
-	DLMF-Meaning:= Harmonic number
-	DLMF-Constraints:= 
-	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/25.11#E33
-
 hypergeom::4
 	Maple-Name:= hypergeom
-	DLMF-Pattern:= \HyperpFq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}
+	DLMF-Pattern:= \genhyperOlverF{2}{1}@{a,b}{c}{z}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
 	NumberOfVars:= 4
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Generalized hypergeometric function
+	DLMF-Meaning:= Hypergeometric function
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/16.2#E1
+	DLMF-Link:= http://dlmf.nist.gov/15.2#E5
 
 ifactor::1
 	Maple-Name:= ifactor
-	DLMF-Pattern:= \NumPrimeDivNu@{$0}
+	DLMF-Pattern:= \nprimesdiv@{$0}
 	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=ifactor
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -2364,19 +2140,19 @@ int::4
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://drmf.wmflabs.org/wiki/Definition:Int
 
-legendre::2
-	Maple-Name:= legendre
-	DLMF-Pattern:= \LegendreSymbol{$0}{$1}
-	Maple-Link:= https://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory%2Flegendre%28deprecated%29
-	NumberOfVars:= 2
+limit::3
+	Maple-Name:= limit
+	DLMF-Pattern:= \Lim{$1}{$2}@{$0}
+	Maple-Link:= 
+	NumberOfVars:= 3
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Legendre symbol
+	DLMF-Meaning:= Limit
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/27.9
+	DLMF-Link:= http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r4
 
 ln::1
 	Maple-Name:= ln
@@ -2394,17 +2170,17 @@ ln::1
 
 lnGAMMA::1
 	Maple-Name:= lnGAMMA
-	DLMF-Pattern:= \ln@@{\EulerGamma@{$0}}
+	DLMF-Pattern:= \incGamma@{$0}{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=lnGAMMA
 	NumberOfVars:= 1
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Natural logarithm
-	DLMF-Constraints:= z != 0
-	DLMF-BranchCuts:= (-\infty, 0]
-	DLMF-Link:= http://dlmf.nist.gov/4.2#E2
+	DLMF-Meaning:= Incomplete Gamma function (upper)
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/8.2#E2
 
 log::1
 	Maple-Name:= log
@@ -2422,7 +2198,7 @@ log::1
 
 log::2
 	Maple-Name:= log
-	DLMF-Pattern:= \logb{$0}@@{$1}
+	DLMF-Pattern:= \genlog{$0}@@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=log
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -2478,7 +2254,7 @@ modp::2
 
 numbcomp::2
 	Maple-Name:= numbcomp
-	DLMF-Pattern:= \CompositionsC[$1]@{$0}
+	DLMF-Pattern:= \ncompositions[$1]@{$0}
 	Maple-Link:= http://www.maplesoft.com/support/help/Maple/view.aspx?path=combinat%2Fnumbcomp
 	NumberOfVars:= 2
 	MapleComment:= 
@@ -2492,7 +2268,7 @@ numbcomp::2
 
 numelems::1
 	Maple-Name:= numelems
-	DLMF-Pattern:= \DivisorFunctionD@{n}
+	DLMF-Pattern:= \ndivisors@{n}
 	Maple-Link:= http://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29
 	NumberOfVars:= 1
 	MapleComment:= 
@@ -2504,29 +2280,43 @@ numelems::1
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/27.2#E9
 
+phi::1
+	Maple-Name:= phi
+	DLMF-Pattern:= \EulerPhi@{$0}
+	Maple-Link:= not defined
+	NumberOfVars:= 1
+	MapleComment:= 
+	MapleConstraint:= 
+	MapleBranchCuts:= 
+	Alternatives:= 
+	DLMF-Meaning:= Euler's reciprocal function
+	DLMF-Constraints:= 
+	DLMF-BranchCuts:= 
+	DLMF-Link:= http://dlmf.nist.gov/27.14#E2
+
 pochhammer::2
 	Maple-Name:= pochhammer
-	DLMF-Pattern:= \pochhammer{$0}{$1}
+	DLMF-Pattern:= \RiemannsymP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
 	Alternatives:= 
-	DLMF-Meaning:= Pochhammer symbol
+	DLMF-Meaning:= 
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
-	DLMF-Link:= http://dlmf.nist.gov/5.2#iii
+	DLMF-Link:= 
 
 polylog::2
 	Maple-Name:= polylog
-	DLMF-Pattern:= \Polylogarithm{$0}@{$1}
+	DLMF-Pattern:= \polylog{$0}@{$1}
 	Maple-Link:= https://www.maplesoft.com/support/help/maple/view.aspx?path=polylog
 	NumberOfVars:= 2
 	MapleComment:= 
 	MapleConstraint:= 
 	MapleBranchCuts:= 
-	Alternatives:= \JonquierePhi@{$1}{$0}
+	Alternatives:= \Jonquierephi@{$1}{$0}
 	DLMF-Meaning:= Polylogarithm
 	DLMF-Constraints:= 
 	DLMF-BranchCuts:= 
@@ -2570,7 +2360,7 @@ sec::1
 	MapleBranchCuts:= 
 	Alternatives:= 
 	DLMF-Meaning:= Secant
-	DLMF-Constraints:= z != (k+1/2)*\cpi \forall k \in \Integer
+	DLMF-Constraints:= z != (k+1/2)*\cpi \forall k \in \Integers
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/4.14#E6
 
@@ -2584,7 +2374,7 @@ sech::1
 	MapleBranchCuts:= 
 	Alternatives:= 
 	DLMF-Meaning:= Hyperbolic secant
-	DLMF-Constraints:= z != \iunit*(k+1/2)*\cpi \forall k \in \Integer
+	DLMF-Constraints:= z != \iunit*(k+1/2)*\cpi \forall k \in \Integers
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/4.28#E6
 
@@ -2710,7 +2500,7 @@ tan::1
 	MapleBranchCuts:= 
 	Alternatives:= 
 	DLMF-Meaning:= Tangent
-	DLMF-Constraints:= z != (k+1/2)*\cpi \forall k \in \Integer
+	DLMF-Constraints:= z != (k+1/2)*\cpi \forall k \in \Integers
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/4.14#E4
 
@@ -2724,7 +2514,7 @@ tanh::1
 	MapleBranchCuts:= 
 	Alternatives:= 
 	DLMF-Meaning:= Hyperbolic tangent
-	DLMF-Constraints:= z != \iunit*(k+1/2)*\cpi \forall k \in \Integer
+	DLMF-Constraints:= z != \iunit*(k+1/2)*\cpi \forall k \in \Integers
 	DLMF-BranchCuts:= 
 	DLMF-Link:= http://dlmf.nist.gov/4.28#E4
 

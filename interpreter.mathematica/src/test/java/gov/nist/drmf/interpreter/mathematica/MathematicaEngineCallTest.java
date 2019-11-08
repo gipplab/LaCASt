@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.mathematica;
 
 import com.wolfram.jlink.*;
+import gov.nist.drmf.interpreter.common.meta.DLMF;
+import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -23,20 +25,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  *
  * @author Andre Greiner-Petter
  */
+@AssumeMathematicaAvailability
 public class MathematicaEngineCallTest {
 
     private static final String JACOBIP = "JacobiP[n,\\[Alpha],\\[Beta],Cos[a \\[CapitalTheta]]]";
     private static final String JACOBIP_FULL_FORM = "JacobiP[n, \\[Alpha], \\[Beta], Cos[Times[a, \\[CapitalTheta]]]]";
 
     private static final String TRIG_EQ = "Sinh[x+y I] - (Sinh[x] Cos[y] + I Cosh[x] Sin[y])";
-    private static final String SIMPLE_EVAL_TEST = "x Gamma[x]";
+
+    @DLMF("9.2.3")
+    private static final String complTestMathS = "(AiryAi[0]) - Divide[1, Power[3, Divide[2, 3]] * Gamma[Divide[2, 3]]]";
+
+    @DLMF("9.2.4")
+    private static final String complTestMath = "(D[AiryAi[temp], {temp, 1}]/.temp-> 0) - (- Divide[1, Power[3, Divide[1, 3]] * Gamma[Divide[1, 3]]])";
 
     private static final int TYPE_FUNCTION = 100;
     private static final int TYPE_IDENTIFIER = 4;
 
     private static KernelLink math;
 
-//    @BeforeAll
+    @BeforeAll
     public static void setup() throws MathLinkException {
         Path mathPath = MathematicaConfig.loadMathematicaPath();
 
@@ -44,11 +52,12 @@ public class MathematicaEngineCallTest {
                 "-linkmode", "launch",
                 "-linkname", mathPath.toString(), "-mathlink"
         });
+
         math.discardAnswer();
     }
 
-//    @Test
-    public void simpleEvaluationTest() {
+    @Test
+    public void simpleParseTest() {
         try {
             // request mathematica engine to parse expression
             math.evaluate("2+2");
@@ -71,7 +80,7 @@ public class MathematicaEngineCallTest {
      * @throws MathLinkException
      * @throws ExprFormatException
      */
-//    @Test
+    @Test
     public void getParseTreeTest() throws MathLinkException, ExprFormatException {
         math.evaluate(JACOBIP);
         math.waitForAnswer();
@@ -86,14 +95,14 @@ public class MathematicaEngineCallTest {
         System.out.println(expr.toString());
     }
 
-//    @Test
+    @Test
     public void getFullFormTest() {
         String fullForm = math.evaluateToOutputForm("FullForm[" + JACOBIP + "]", 0);
         assertEquals(JACOBIP_FULL_FORM, fullForm, "Expected a different full form of JacobiP");
     }
 
-//    @Test
-    public void evaluationTest() throws MathLinkException {
+    @Test
+    public void simpleEvaluationTest() throws MathLinkException {
         math.evaluate("FullSimplify["+ TRIG_EQ +"]");
         math.waitForAnswer();
 
@@ -101,7 +110,25 @@ public class MathematicaEngineCallTest {
         assertEquals("0", expr.toString(), "The engine should be able to symbolically simplify the expression to 0.");
     }
 
-//    @AfterAll
+    @Test
+    public void complexEvaluationTest() throws MathLinkException {
+        math.evaluate("FullSimplify["+ complTestMathS +"]");
+        math.waitForAnswer();
+
+        Expr expr = math.getExpr();
+        assertEquals("0", expr.toString(), "The engine should be able to symbolically simplify the expression to 0.");
+    }
+
+    @Test
+    public void complexPrimeEvaluationTest() throws MathLinkException {
+        math.evaluate("FullSimplify["+ complTestMath +"]");
+        math.waitForAnswer();
+
+        Expr expr = math.getExpr();
+        assertEquals("0", expr.toString(), "The engine should be able to symbolically simplify the expression to 0.");
+    }
+
+    @AfterAll
     public static void shutwodn() {
         math.close();
     }

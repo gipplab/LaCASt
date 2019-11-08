@@ -1,24 +1,23 @@
 package gov.nist.drmf.interpreter.roundtrip.constraints;
 
+import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.constraints.MLPBlueprintNode;
 import gov.nist.drmf.interpreter.constraints.MLPBlueprintTree;
 import gov.nist.drmf.interpreter.evaluation.NumericalEvaluator;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
-import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.ParseException;
-import mlp.PomParser;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static gov.nist.drmf.interpreter.examples.MLP.GLOBAL_LEXICON_PATH;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Andre Greiner-Petter
  */
+@AssumeMLPAvailability
 public class ConstraintsMatcherTests {
 
     private static MLPWrapper wrapper;
@@ -28,6 +27,18 @@ public class ConstraintsMatcherTests {
         // kick of instantiation of evaluator
         new NumericalEvaluator();
         wrapper = MLPWrapper.getWrapperInstance();
+    }
+
+    private static void generalCheck(String blueprint, String constraint, String[] vars, String[] vals) throws ParseException {
+        MLPBlueprintTree bt = new MLPBlueprintTree(vals);
+        bt.setBlueprint(blueprint);
+
+        MLPBlueprintNode constraintTree = MLPBlueprintTree.parseTree(constraint);
+        assertTrue(bt.matches(constraintTree));
+
+        String[][] v = bt.getConstraintVariablesAndValues();
+        assertArrayEquals(v[0], vars);
+        assertArrayEquals(v[1], vals);
     }
 
     @Test
@@ -50,7 +61,7 @@ public class ConstraintsMatcherTests {
         String blueprintConstraint = "var = 1,2";
         String actualConstraint = "n = 1,2";
 
-        generalCheck(blueprintConstraint, actualConstraint, new String[]{"n"}, new String[]{"1"});
+        generalCheck(blueprintConstraint, actualConstraint, new String[] {"n"}, new String[] {"1"});
     }
 
     @Test
@@ -58,7 +69,7 @@ public class ConstraintsMatcherTests {
         String blueprintConstraint = "var1,var2,var3 > 0";
         String actualConstraint = "a, b, c > 0";
 
-        generalCheck(blueprintConstraint, actualConstraint, new String[]{"a","b","c"}, new String[]{"1","1","1"});
+        generalCheck(blueprintConstraint, actualConstraint, new String[] {"a", "b", "c"}, new String[] {"1", "1", "1"});
     }
 
     @Test
@@ -66,7 +77,7 @@ public class ConstraintsMatcherTests {
         String blueprintConstraint = "var1-var2 even";
         String actualConstraint = "v - w even";
 
-        generalCheck(blueprintConstraint, actualConstraint, new String[]{"v","w"}, new String[]{"2","0"});
+        generalCheck(blueprintConstraint, actualConstraint, new String[] {"v", "w"}, new String[] {"2", "0"});
     }
 
     @Test
@@ -74,7 +85,7 @@ public class ConstraintsMatcherTests {
         String blueprintConstraint = "var \\in \\Complex \\setminus [0,\\infty)";
         String actualConstraint = "z \\in \\Complex \\setminus [0, \\infty)";
 
-        generalCheck(blueprintConstraint, actualConstraint, new String[]{"z"}, new String[]{"-1"});
+        generalCheck(blueprintConstraint, actualConstraint, new String[] {"z"}, new String[] {"-1"});
     }
 
     @Test
@@ -82,7 +93,7 @@ public class ConstraintsMatcherTests {
         String blueprint = "2 var \\neq -1,-2,-3, \\dotsc";
         String constraint = "2\\nu\\neq -1, -2, -3, \\dotsc";
 
-        generalCheck(blueprint, constraint, new String[]{"\\nu"}, new String[]{"1/4"});
+        generalCheck(blueprint, constraint, new String[] {"\\nu"}, new String[] {"1/4"});
     }
 
     @Test
@@ -90,7 +101,7 @@ public class ConstraintsMatcherTests {
         String blueprint = "\\realpart{var} < \\frac{1}{2}, \\frac{3}{2}, \\dots";
         String constraint = "\\realpart{m} < \\ifrac{1}{2}, \\tfrac{3}{2}, \\ldots";
 
-        generalCheck(blueprint, constraint, new String[]{"m"}, new String[]{"3/2"});
+        generalCheck(blueprint, constraint, new String[] {"m"}, new String[] {"3/2"});
     }
 
     @Test
@@ -98,26 +109,14 @@ public class ConstraintsMatcherTests {
         String blueprint = "\\realpart{var} > 1";
         String constraint = "n = 1,2";
 
-        MLPBlueprintTree bt = new MLPBlueprintTree(new String[]{});
+        MLPBlueprintTree bt = new MLPBlueprintTree(new String[] {});
         bt.setBlueprint(blueprint);
 
         MLPBlueprintNode constraintTree = MLPBlueprintTree.parseTree(constraint);
-        assertFalse( bt.matches(constraintTree) );
+        assertFalse(bt.matches(constraintTree));
 
         String[][] v = bt.getConstraintVariablesAndValues();
-        assertEquals( v[0].length, 0 );
-        assertEquals( v[1].length, 0 );
-    }
-
-    private static void generalCheck(String blueprint, String constraint, String[] vars, String[] vals) throws ParseException {
-        MLPBlueprintTree bt = new MLPBlueprintTree(vals);
-        bt.setBlueprint(blueprint);
-
-        MLPBlueprintNode constraintTree = MLPBlueprintTree.parseTree(constraint);
-        assertTrue( bt.matches(constraintTree) );
-
-        String[][] v = bt.getConstraintVariablesAndValues();
-        assertArrayEquals(v[0], vars);
-        assertArrayEquals(v[1], vals);
+        assertEquals(v[0].length, 0);
+        assertEquals(v[1].length, 0);
     }
 }

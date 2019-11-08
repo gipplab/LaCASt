@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.roundtrip;
 
 import gov.nist.drmf.interpreter.MapleTranslator;
+import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.function.Executable;
 
@@ -14,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Created by AndreG-P on 06.03.2017.
  */
 public abstract class AbstractRoundTrip {
-    MapleTranslator translator;
+    protected MapleTranslator translator;
 
-    Iterable<DynamicTest> createFromMapleTestList( String[] tests, String[] names ){
+    protected Iterable<DynamicTest> createFromMapleTestList( String[] tests, String[] names ){
         List<DynamicTest> list = new LinkedList<>();
         for ( int i = 0; i < tests.length; i++ ){
             Executable exc = createFromMapleTestCase( tests[i] );

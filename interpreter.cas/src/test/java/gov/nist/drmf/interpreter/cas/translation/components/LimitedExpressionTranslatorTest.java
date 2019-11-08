@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.translation.components.cases.Integrals;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Lims;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Products;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Sums;
+import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
@@ -21,6 +22,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author Avi Trost
  * @author Andre Greiner-Petter
  */
+@AssumeMLPAvailability
 public class LimitedExpressionTranslatorTest {
     private static TranslationTester tester;
 

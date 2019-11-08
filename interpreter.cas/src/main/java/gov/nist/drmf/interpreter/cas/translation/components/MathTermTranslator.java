@@ -252,10 +252,10 @@ public class MathTermTranslator extends AbstractListTranslator {
                                 MathTermTags.getTagByKey(possibleCaret.getTag());
                         if ( alpha.matches("\\\\expe") &&
                                 MathTermTags.caret.equals(tagPossibleCaret) ){
-                            // translate as exo(...) and not exp(1)^{...}
+                            // translate as exp(...) and not exp(1)^{...}
                             return parseExponentialFunction( following_exp );
                         } else return parseMathematicalConstant( constantSet, alpha );
-                    } catch ( Exception e ){
+                    } catch ( IndexOutOfBoundsException | NullPointerException e ){
                         return parseMathematicalConstant( constantSet, alpha );
                     }
                 }

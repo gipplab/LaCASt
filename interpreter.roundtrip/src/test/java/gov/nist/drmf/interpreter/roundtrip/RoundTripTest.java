@@ -1,10 +1,13 @@
 package gov.nist.drmf.interpreter.roundtrip;
 
+import com.maplesoft.externalcall.MapleException;
 import gov.nist.drmf.interpreter.MapleTranslator;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
+import gov.nist.drmf.interpreter.roundtrip.nested.FunctionsTests;
+import gov.nist.drmf.interpreter.roundtrip.nested.LaTeXRoundTripIdentityTests;
+import gov.nist.drmf.interpreter.roundtrip.nested.PolynomialTests;
+import org.junit.jupiter.api.*;
 
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,8 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  *
  * Created by AndreG-P on 01.03.2017.
  */
+@AssumeMapleAvailability
+@AssumeMLPAvailability
 public class RoundTripTest {
-
     private static MapleTranslator global_translator = new MapleTranslator();
 
     @BeforeAll
@@ -31,13 +35,30 @@ public class RoundTripTest {
         PolynomialInnerTester() {
             super.translator = global_translator;
         }
+
+        @TestFactory
+        @Override
+        public Iterable<DynamicTest> polynomialRoundTripTests() {
+            return super.polynomialRoundTripTests();
+        }
+
+        @Test
+        @Override
+        public void fixPointTest() {
+            super.fixPointTest();
+        }
     }
 
-//    @Disabled
     @Nested
     public class FunctionsInnerTester extends FunctionsTests {
         FunctionsInnerTester() {
             super.translator = global_translator;
+        }
+
+        @TestFactory
+        @Override
+        public Iterable<DynamicTest> functionsRoundTripTests() {
+            return super.functionsRoundTripTests();
         }
     }
 
@@ -45,6 +66,12 @@ public class RoundTripTest {
     public class LaTeXInnerTester extends LaTeXRoundTripIdentityTests {
         LaTeXInnerTester() {
             super.translator = global_translator;
+        }
+
+        @Test
+        @Override
+        public void straight() throws MapleException {
+            super.straight();
         }
     }
 
@@ -67,13 +94,13 @@ public class RoundTripTest {
                             "But get: " + back_to_maple);
         } catch (Exception e){
             e.printStackTrace();
-            fail("An exception appeared during multiple TranslationTests!");
+            fail("An exception appeared during multiple TranslationTestCases!");
         }
     }
 
     @Test void fixPointTest() throws Exception {
         int threshold = 10;
-        String[] tests = PolynomialTests.test_polynomials;
+        String[] tests = PolynomialTests.getTestPolynomials();
         String cycles = "";
 
         String test_case = "", new_trans = "";

@@ -48,7 +48,7 @@ public class MapleLexiconTests {
         assertEquals( test[0], mf.getDLMFPattern() );
         assertTrue( 1 == mf.getNumberOfVariables() );
         assertEquals( test[3], mf.getMAPLELink() );
-        assertEquals( "dlmf.nist.gov/4.23#SS2.p1", mf.getDLMFLink() );
+        assertEquals( "http://dlmf.nist.gov/4.23#SS2.p1", mf.getDLMFLink() );
     }
 
     @Disabled

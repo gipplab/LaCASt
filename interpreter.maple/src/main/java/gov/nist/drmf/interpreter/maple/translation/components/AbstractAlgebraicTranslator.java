@@ -5,7 +5,7 @@ import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.grammar.ITranslator;
+import gov.nist.drmf.interpreter.common.grammar.IBackwardTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.MapleTranslationException;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
@@ -21,7 +21,7 @@ import static gov.nist.drmf.interpreter.maple.common.MapleConstants.MAPLE_INTERN
  *
  * Created by AndreG-P on 21.02.2017.
  */
-public abstract class AbstractAlgebraicTranslator<T extends Algebraic> implements ITranslator<T> {
+public abstract class AbstractAlgebraicTranslator<T extends Algebraic> implements IBackwardTranslator<T> {
     protected static String MULTIPLY, ADD, INFINITY;
 
     static final Logger LOG = LogManager.getLogger( AbstractAlgebraicTranslator.class );

@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.common.*;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.grammar.ITranslator;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.ParseException;
 import mlp.PomParser;
@@ -32,7 +33,7 @@ import java.nio.file.Path;
  *
  * @author Andre Greiner-Petter
  */
-public class SemanticLatexTranslator extends AbstractTranslator {
+public class SemanticLatexTranslator extends AbstractTranslator implements ITranslator {
     private static final Logger LOG = LogManager.getLogger(SemanticLatexTranslator.class.getName());
 
     /**
@@ -105,6 +106,9 @@ public class SemanticLatexTranslator extends AbstractTranslator {
     public void init( Path reference_dir_path ) throws IOException {
         config.init();
 
+        // TODO do I must to that?
+        MacrosLexicon.init();
+
         parser = new PomParser(reference_dir_path.toString());
         parser.addLexicons( MacrosLexicon.getDLMFMacroLexicon() );
 
@@ -123,6 +127,7 @@ public class SemanticLatexTranslator extends AbstractTranslator {
      * @return the translated expression.
      * @throws TranslationException if an error occurred due translation
      */
+    @Override
     public String translate( String expression ) throws TranslationException {
         if ( expression == null || expression.isEmpty() ) {
             LOG.warn("Tried to translate an empty expression");

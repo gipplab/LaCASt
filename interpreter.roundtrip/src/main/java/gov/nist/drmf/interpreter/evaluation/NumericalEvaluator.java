@@ -189,18 +189,18 @@ public class NumericalEvaluator implements Observer {
 //                        }
 //                        return true;
 //                    })
-                    .filter(l -> { // filter ' because of ambiguous meanings
-                        if (l.contains("'")) {
+//                    .filter(l -> { // filter ' because of ambiguous meanings
+//                        if (l.contains("'")) {
 //                            Case c = CaseAnalyzer.analyzeLine(l, currLine[0]);
 //                            LOG.debug("Skip line " + currLine[0] + " because of '.");
 //                            skippedLinesInfo.put( currLine[0], "Skipped - Because of ambiguous single quote." );
 //                            if ( c != null ) labelLib.put( c.getLine(), c.getDlmf() );
 //                            Status.SKIPPED.add();
-                            System.out.println(currLine[0] + " SKIPPED because '.");
-                            return false;
-                        }
-                        return true;
-                    })
+//                            System.out.println(currLine[0] + " SKIPPED because '.");
+//                            return false;
+//                        }
+//                        return true;
+//                    })
                     .map(l -> {
                         Case c = CaseAnalyzer.analyzeLine(l, currLine[0]);
                         if ( c != null ) labelLib.put( c.getLine(), c.getDlmf() );

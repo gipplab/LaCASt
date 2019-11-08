@@ -5,7 +5,7 @@ import gov.nist.drmf.interpreter.common.meta.DLMF;
 /**
  * @author Andre Greiner-Petter
  */
-public enum SpecialFunctionsAndDerivatives implements TestCase {
+public enum SpecialFunctionsAndDerivatives implements ForwardTestCase {
     AIRY(
             "\\AiryAi@{x}",
             "AiryAi(x)",

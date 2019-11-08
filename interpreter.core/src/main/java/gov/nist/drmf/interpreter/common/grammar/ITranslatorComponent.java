@@ -1,24 +1,27 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
-import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-
 /**
- * A general translation has at least two methods.
- * One to translate the expression and one to get
- * the result of the parsed expression.
- *
  * @author Andre Greiner-Petter
  */
-public interface ITranslator {
+public interface ITranslatorComponent<T> {
     /**
      * This method parses a given expression.
      * It returns true if the parsing process
      * finished without an error.
+     * If the parsing process finished without an
+     * error, the translated expression can get
+     * by {@link #getTranslatedExpression()}.
      *
      * @param expression tagged expression
      * @return  true if the parsing process finished
      *          without an error.
      * @throws Exception If the translation process failed.
      */
-    String translate( String expression ) throws TranslationException;
+    boolean translate( T expression ) throws Exception;
+
+    /**
+     * Returns the string representation of the translated expression.
+     * @return string (might be empty)
+     */
+    String getTranslatedExpression();
 }

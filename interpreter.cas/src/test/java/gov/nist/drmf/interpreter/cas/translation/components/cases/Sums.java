@@ -5,7 +5,12 @@ import gov.nist.drmf.interpreter.common.meta.DLMF;
 /**
  * @author Andre Greiner-Petter
  */
-public enum Sums implements TestCase {
+public enum Sums implements ForwardTestCase {
+    SEMANTIC(
+            "\\Sum{k}{1}{n}@{\\frac{1}{y^{k}}}",
+            "sum((1)/((y)^(k)), k = 1..n)",
+            "Sum[Divide[1, (y)^(k)], {k, 1, n}]"
+    ),
     SIMPLE(
             "\\sum_{n=0}^{10} n",
             "sum(n, n = 0..10)",

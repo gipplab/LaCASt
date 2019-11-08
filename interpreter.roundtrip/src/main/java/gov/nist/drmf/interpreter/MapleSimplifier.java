@@ -29,14 +29,14 @@ public class MapleSimplifier {
      */
     private static final String ZERO_PATTERN = "0\\.?0*";
 
-    private MapleInterface mapleInterface;
-    private MapleListener mapleListener;
+    private static MapleInterface mapleInterface;
+    private static MapleListener mapleListener;
 
     private static final double INTERRUPTER_THRESHOLD = 50;
 
     MapleSimplifier( MapleInterface mapleInterface ){
-        this.mapleInterface = mapleInterface;
-        this.mapleListener = mapleInterface.getUniqueMapleListener();
+        MapleSimplifier.mapleInterface = mapleInterface;
+        MapleSimplifier.mapleListener = mapleInterface.getUniqueMapleListener();
         //this.mapleListener.activateAutoInterrupt( INTERRUPTER_THRESHOLD );
     }
 

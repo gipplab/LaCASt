@@ -41,4 +41,13 @@ public class MLPWrapper {
     public PomTaggedExpression parse(String latex) throws ParseException {
         return parser.parse(latex);
     }
+
+    public static boolean isMLPPresent() {
+        try {
+            PomParser pp = new PomParser(GLOBAL_LEXICON_PATH);
+            return true;
+        } catch ( Exception e ) {
+            return false;
+        }
+    }
 }
