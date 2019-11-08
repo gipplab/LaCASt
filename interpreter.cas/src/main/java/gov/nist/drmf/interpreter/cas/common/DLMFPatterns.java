@@ -9,13 +9,13 @@ public class DLMFPatterns {
     public static final String SPACE = " ";
 
     public static final String OPEN_PARENTHESIS_PATTERN =
-            "(left)[-\\s](parenthesis|bracket|brace|delimiter)";
+            "(left)[-\\s](parenthesis|bracket|brace|delimiter)|vertical-bar";
 
     public static final String CLOSE_PARENTHESIS_PATTERN =
-            "(right)[-\\s](parenthesis|bracket|brace|delimiter)";
+            "(right)[-\\s](parenthesis|bracket|brace|delimiter)|vertical-bar";
 
     public static final String PARENTHESIS_PATTERN =
-            "(right|left)[-\\s](parenthesis|bracket|brace|delimiter)";
+            "(right|left)[-\\s](parenthesis|bracket|brace|delimiter)|vertical-bar";
 
     public static final String SPECIAL_SYMBOL_PATTERN_FOR_SPACES =
             "[\\^\\/\\_\\!|]";

@@ -372,7 +372,7 @@ public class MathTermTranslator extends AbstractListTranslator {
             default:
                 throw new TranslationException(
                         "Unknown MathTerm Tag: "
-                                + term.getTag(),
+                                + term.getTag() + " for " + term.getTermText(),
                         TranslationException.Reason.UNKNOWN_MATHTERM_TAG
                 );
         }

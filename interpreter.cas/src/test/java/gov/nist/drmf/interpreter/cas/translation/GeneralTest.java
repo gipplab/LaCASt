@@ -4,15 +4,7 @@ import gov.nist.drmf.interpreter.cas.blueprints.BlueprintLimitTree;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.regex.MatchResult;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by AndreG-P on 12.03.2017.
@@ -76,5 +68,12 @@ public class GeneralTest {
         String out = BlueprintLimitTree.preCleaning(l);
         assertEquals("n = 1", out);
         assertFalse("=".matches("\\\\in"));
+    }
+
+    @Test
+    public void texPreprocessing2Test() {
+        String l = "1.32 34 34";
+        String out = TeXPreProcessor.preProcessingTeX(l);
+        assertEquals("1.323434", out);
     }
 }
