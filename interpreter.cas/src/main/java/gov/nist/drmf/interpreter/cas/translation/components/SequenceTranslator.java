@@ -190,15 +190,15 @@ public class SequenceTranslator extends AbstractListTranslator {
             //      -> there is a bracket error in the sequence
 
             // open or closed brackets
-            Brackets bracket = ifIsBracketTransform(term);
-            if ( bracket == null && term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN )){
-                bracket = Brackets.abs_val;
-            }
+            Brackets bracket = ifIsBracketTransform(term, open_bracket);
+//            if ( bracket == null && term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN )){
+//                bracket = Brackets.abs_val;
+//            }
 
             if ( bracket != null ){
                 // another open bracket -> reached a new sub sequence
                 // bracket cannot be null, because we checked the tag of the term before
-                if ( bracket.opened && !bracket.equals(Brackets.abs_val) ){
+                if ( bracket.opened ){
                     // create a new SequenceTranslator (2nd kind)
                     SequenceTranslator sp = new SequenceTranslator( super.getSuperTranslator(), bracket, setMode );
                     // translate the following expressions
@@ -224,7 +224,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                     // if the brackets are |.| for absolute value, translate it as a function
                     String seq;
                     if ( open_bracket.equals( Brackets.left_latex_abs_val ) ||
-                            open_bracket.equals( Brackets.abs_val ) ){
+                            open_bracket.equals( Brackets.abs_val_open ) ){
                         BasicFunctionsTranslator bft = getConfig().getBasicFunctionsTranslator();
                         seq = bft.translate(
                                 new String[]{
@@ -318,7 +318,7 @@ public class SequenceTranslator extends AbstractListTranslator {
 //            return part;
 //        } else
         if ( open_bracket != null &&
-                open_bracket.equals(Brackets.abs_val) &&
+                (open_bracket.equals(Brackets.abs_val_close) || open_bracket.equals(Brackets.abs_val_open) ) &&
                 exp_list != null &&
                 !exp_list.isEmpty() ) {
             MathTerm mt = exp_list.get(0).getRoot();
@@ -360,12 +360,23 @@ public class SequenceTranslator extends AbstractListTranslator {
         } catch ( Exception e ){ return false; }
     }
 
-    public static Brackets ifIsBracketTransform(MathTerm term) {
+    /**
+     *
+     * @param term
+     * @param currentOpenBracket
+     * @return
+     */
+    public static Brackets ifIsBracketTransform(MathTerm term, Brackets currentOpenBracket) {
         if ( term == null || term.isEmpty() ) return null;
         if ( term.getTag() != null && (
                 term.getTag().matches(PARENTHESIS_PATTERN) || term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN ))
                 ) {
-            return Brackets.getBracket(term.getTermText());
+            Brackets bracket = Brackets.getBracket(term.getTermText());
+            if ( currentOpenBracket != null && bracket != null &&
+                    bracket.equals(Brackets.abs_val_open) &&
+                    currentOpenBracket.equals(Brackets.abs_val_open) ) {
+                return Brackets.abs_val_close;
+            } else return bracket;
         } else return null;
     }
 }

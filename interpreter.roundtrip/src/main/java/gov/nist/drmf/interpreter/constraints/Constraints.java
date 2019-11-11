@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.constraints;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
@@ -68,4 +70,24 @@ public class Constraints {
 
         return s;
     }
+
+    private static final Pattern MATH_PATTERN = Pattern.compile("^\\$?([^$]*)\\$?$");
+
+    public static String stripDollar(String in) {
+        Matcher m = MATH_PATTERN.matcher(in);
+        if ( m.matches() )
+            return m.group(1);
+        return in;
+    }
+
+    public static final Pattern SIMPLE_ASS_SPLITTER = Pattern.compile("(.*)([<=>]+)([^<=>]+)([<=>]+)(.*)");
+
+    public static String splitMultiAss(String ass) {
+        Matcher m = SIMPLE_ASS_SPLITTER.matcher(ass);
+        if ( m.matches() ) {
+            return m.group(1) + m.group(2) + m.group(3) + ", " + m.group(3) + m.group(4) + m.group(5);
+        }
+        return ass;
+    }
+
 }

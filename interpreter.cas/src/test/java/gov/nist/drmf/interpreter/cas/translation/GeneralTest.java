@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.cas.blueprints.BlueprintLimitTree;
+import gov.nist.drmf.interpreter.cas.common.DLMFPatterns;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import org.junit.jupiter.api.Test;
 
@@ -75,5 +76,17 @@ public class GeneralTest {
         String l = "1.32 34 34";
         String out = TeXPreProcessor.preProcessingTeX(l);
         assertEquals("1.323434", out);
+    }
+
+    @Test
+    public void matchDerivTest() {
+        assertTrue("\\deriv".matches(DLMFPatterns.DERIV_NOTATION));
+        assertTrue("\\tderiv".matches(DLMFPatterns.DERIV_NOTATION));
+        assertTrue("\\ideriv".matches(DLMFPatterns.DERIV_NOTATION));
+        assertTrue("\\pderiv".matches(DLMFPatterns.DERIV_NOTATION));
+        assertTrue("\\tpderiv".matches(DLMFPatterns.DERIV_NOTATION));
+        assertTrue("\\ipderiv".matches(DLMFPatterns.DERIV_NOTATION));
+        assertFalse("\\tipderiv".matches(DLMFPatterns.DERIV_NOTATION));
+        assertFalse("\\ptderiv".matches(DLMFPatterns.DERIV_NOTATION));
     }
 }

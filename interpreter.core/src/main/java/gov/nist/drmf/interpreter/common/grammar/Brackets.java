@@ -94,6 +94,22 @@ public enum Brackets {
             Brackets.LATEX_LEFT + CLOSE_BRACKETS.right_parenthesis.counter
     ),
     /**
+     * Left Open LaTeX Parenthesis: \left(
+     */
+    left_latex_brackets(
+            Brackets.LATEX_LEFT + OPEN_BRACKETS.left_brackets.s,
+            Brackets.OPENED,
+            Brackets.LATEX_RIGHT + OPEN_BRACKETS.left_brackets.counter
+    ),
+    /**
+     * Right Closed LaTeX Parenthesis: \right)
+     */
+    right_latex_brackets(
+            Brackets.LATEX_RIGHT + CLOSE_BRACKETS.right_brackets.s,
+            Brackets.CLOSED,
+            Brackets.LATEX_LEFT + CLOSE_BRACKETS.right_brackets.counter
+    ),
+    /**
      * Left Opened LaTeX Pipe: \left|
      */
     left_latex_abs_val(
@@ -110,9 +126,17 @@ public enum Brackets {
             Brackets.LATEX_LEFT + CLOSE_BRACKETS.right_vbar.counter
     ),
     /**
+     * Right Closed LaTeX Pipe: |
+     */
+    abs_val_close(
+            OPEN_BRACKETS.left_vbar.s,
+            Brackets.CLOSED,
+            OPEN_BRACKETS.left_vbar.counter
+    ),
+    /**
      * Left Opened LaTeX Pipe: |
      */
-    abs_val(
+    abs_val_open(
             OPEN_BRACKETS.left_vbar.s,
             Brackets.OPENED,
             OPEN_BRACKETS.left_vbar.counter

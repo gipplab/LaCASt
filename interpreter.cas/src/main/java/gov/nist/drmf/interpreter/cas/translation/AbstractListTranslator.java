@@ -110,10 +110,24 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
                 return true;
             }
 
+            Brackets thisBracket = Brackets.getBracket(curr.getTermText());
             Brackets nextBracket = Brackets.getBracket(next.getTermText());
+//            if ( thisBracket != null && nextBracket != null ) {
+//                if ( thisBracket.equals(Brackets.abs_val) && nextBracket.equals(Brackets.abs_val) )
+//                    return true;
+//                if ( thisBracket.equals(Brackets.abs_val) )
+//                    return nextBracket.opened; // if next is open, add *, otherwise not
+//                if ( nextBracket.equals(Brackets.abs_val) )
+//                    return !thisBracket.opened;
+//            }
+
             if (nextBracket != null && !nextBracket.opened) {
                 return false;
             }
+
+//            if ( thisBracket != null && nextBracket != null ) {
+//                return !thisBracket.opened && nextBracket.opened;
+//            }
 
             Matcher m1 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(curr.getTermText());
             Matcher m2 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(next.getTermText());

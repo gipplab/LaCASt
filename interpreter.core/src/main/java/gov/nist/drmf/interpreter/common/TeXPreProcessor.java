@@ -14,11 +14,12 @@ public class TeXPreProcessor {
 
     private static final Pattern IGNORE_FONTS = Pattern.compile(
                     "\\\\displaystyle|" +
+                    "\\\\hbox|" +
                     "\\\\[Bb]ig[lrg]?|" +
                     "\\\\[sb]f|" +
-                    "[.;<>^\\-+/\\t\\s]+$|" +
+                    "[.;<>^/\\t\\s]+$|" +
                     "(\\\\hiderel\\s*\\{\\s*([=<>/+\\-])\\s*})|" +
-                    "(\\d)\\s+(\\d)"
+                    "(\\d)(?:\\s|\\\\[;,!])+(\\d)"
     );
 
     private TeXPreProcessor() {}

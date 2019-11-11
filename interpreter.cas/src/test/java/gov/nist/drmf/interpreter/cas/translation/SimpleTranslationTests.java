@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Andre Greiner-Petter
@@ -169,9 +171,48 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void absoluteValueBalancedTest() {
-        String in = "\\left| x \\right|";
-        String eout = "abs(x)";
+    public void absoluteValueInvalidTest() {
+        String in = "\\left| x |";
+        assertThrows(TranslationException.class, () -> slt.translate(in));
+    }
+
+    @Test
+    public void emptyDerivTest() {
+        String in = "\\deriv{}{z} z^a = az^{a-1}";
+        String eout = "diff((z)^(a), z)= a*(z)^(a - 1)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+        //\tfrac{1}{4} |z|
+    }
+
+    @Test
+    public void multiplyBeforeBarTest() {
+        String in = "\\tfrac{1}{4} |z|";
+        String eout = "(1)/(4)*abs(z)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    public void multiplyTrickyBarTest() {
+        String in = "(\\tfrac{1}{4} + |z|)n";
+        String eout = "((1)/(4)+abs(z))* n";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    public void multiplyTrickyBar2Test() {
+        String in = "(\\tfrac{1}{4} + \\left|z \\right|)n";
+        String eout = "((1)/(4)+abs(z))* n";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    public void generalBracketTest() {
+        String in = "\\left[ x \\right] + \\left( y \\right) + \\left| z \\right|";
+        String eout = "[x]+(y)+abs(z)";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }

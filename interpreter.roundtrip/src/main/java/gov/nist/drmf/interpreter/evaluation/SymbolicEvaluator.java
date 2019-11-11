@@ -135,11 +135,16 @@ public class SymbolicEvaluator extends NumericalEvaluator {
                 LOG.debug("Enter pre-testing commands: " + preAndPostCommands[0]);
             }
 
-            String arrConstraints = c.getConstraints();
-            if ( arrConstraints != null ){
-                arrConstraints = arrConstraints.substring(1, arrConstraints.length()-2);
-                LOG.debug("Enter constraint as assumption: " + arrConstraints);
-                translator.enterMapleCommand("assume(" + arrConstraints + ");");
+            try {
+                String arrConstraints = c.getConstraints();
+                LOG.debug("Extract constraints: " + arrConstraints);
+                if ( arrConstraints != null && arrConstraints.length() > 3 ){
+                    arrConstraints = arrConstraints.substring(1, arrConstraints.length()-1);
+                    LOG.debug("Enter constraint as assumption: " + arrConstraints);
+                    translator.enterMapleCommand("assume(" + arrConstraints + ");");
+                }
+            } catch ( Exception e ) {
+                LOG.warn("Error when parsing constraint => Ignoring Constraint.", e);
             }
 
             // default values are false
@@ -205,10 +210,19 @@ public class SymbolicEvaluator extends NumericalEvaluator {
                 }
             }
 
+            // garbage collection
+            try {
+                if ( getGcCaller() % 10 == 0 ) {
+                    translator.forceGC();
+                    resetGcCaller();
+                } else stepGcCaller();
+            } catch ( MapleException me ){
+                LOG.fatal("Cannot call Maple's garbage collector!", me);
+            }
             lineResults[c.getLine()] = "Failure " + Arrays.toString(successStr);
             Status.FAILURE.add();
         } catch ( Exception e ){
-            LOG.warn("Error for line " + c.getLine() + ", because: " + e.toString());
+            LOG.warn("Error for line " + c.getLine() + ", because: " + e.toString(), e);
             lineResults[c.getLine()] = "Error - " + e.toString();
             Status.ERROR.add();
         } finally {

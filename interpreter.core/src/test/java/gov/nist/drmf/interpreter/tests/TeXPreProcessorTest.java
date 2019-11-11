@@ -42,4 +42,12 @@ public class TeXPreProcessorTest {
         String output = TeXPreProcessor.preProcessingTeX( input );
         assertEquals( expect, output);
     }
+
+    @Test
+    public void numericalTest(){
+        String input = "2.03\\;04\\,33 1";
+        String expect = "2.0304331";
+        String output = TeXPreProcessor.preProcessingTeX( input );
+        assertEquals( expect, output);
+    }
 }

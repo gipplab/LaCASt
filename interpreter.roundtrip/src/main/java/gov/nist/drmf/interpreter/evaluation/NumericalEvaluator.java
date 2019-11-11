@@ -483,7 +483,9 @@ public class NumericalEvaluator implements Observer {
 
     public static String[] translateEach(String[] texStr){
         return Arrays.stream(texStr)
+                .map( Constraints::stripDollar )
                 .map( translator::translateFromLaTeXToMapleClean )
+                .map( Constraints::splitMultiAss )
                 .toArray(String[]::new);
     }
 

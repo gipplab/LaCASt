@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.common.DLMFMacroInfoHolder;
+import gov.nist.drmf.interpreter.cas.common.DLMFPatterns;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
@@ -10,6 +11,7 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import mlp.FeatureSet;
@@ -53,8 +55,6 @@ public class MacroTranslator extends AbstractListTranslator {
     private static final Pattern leibniz_notation_pattern =
             Pattern.compile("\\s*\\(([^@]*)\\)\\s*");
 
-    private static final String deriv_special_case = "\\\\p?deriv";
-
     private final String CAS;
 
     private TranslatedExpression localTranslations;
@@ -62,14 +62,19 @@ public class MacroTranslator extends AbstractListTranslator {
     private String macro;
 
     private boolean isWronskian = false;
+    private boolean isDeriv = false;
+
     private List<PomTaggedExpression> tempArgList;
     private String varOfDiff;
+
+    private TranslatedExpression translatedInAdvance;
 
     public MacroTranslator(AbstractTranslator superTranslator) {
         super(superTranslator);
         this.localTranslations = new TranslatedExpression();
         this.CAS = getConfig().getTO_LANGUAGE();
         this.tempArgList = new LinkedList<>();
+        this.translatedInAdvance = null;
     }
 
     @Nullable
@@ -80,7 +85,14 @@ public class MacroTranslator extends AbstractListTranslator {
 
     @Override
     public boolean translate(PomTaggedExpression exp, List<PomTaggedExpression> following) {
-        isWronskian = exp.getRoot().getTermText().equals("\\Wronskian");
+        MathTerm mt = exp.getRoot();
+        if (mt == null || mt.isEmpty()) {
+            throw new TranslationException("The wrong translator is used, the expression is not a DLMF macro.");
+        }
+
+        isWronskian = mt.getTermText().equals("\\Wronskian");
+        isDeriv = mt.getTermText().matches(DLMFPatterns.DERIV_NOTATION);
+
         if (isWronskian) {
             splitComma(following);
         }
@@ -154,9 +166,10 @@ public class MacroTranslator extends AbstractListTranslator {
         // parse derivatives, lagrange notation or primes
         DiffAndPowerHolder diffPowerHolder = parseDerivatives(following_exps, info);
 
-        LinkedList<String> arguments = isWronskian ?
-                parseArguments(tempArgList, info) :
-                parseArguments(following_exps, info);
+        LinkedList<String> arguments;
+        if ( isWronskian ) arguments = parseArguments(tempArgList, info);
+        else if ( isDeriv ) arguments = parseDerivArguments(following_exps, info);
+        else arguments = parseArguments(following_exps, info);
 
         if ( isWronskian ) {
             skipAts(following_exps);
@@ -197,6 +210,17 @@ public class MacroTranslator extends AbstractListTranslator {
                 diffPowerHolder,
                 slotOfDifferentiation
         );
+
+        // in case we translated an expression in advance, we need to fill up the translation lists
+        if ( isDeriv && translatedInAdvance != null ) {
+            localTranslations.addTranslatedExpression(translatedInAdvance);
+            getGlobalTranslationList().addTranslatedExpression(translatedInAdvance);
+
+            // just in case, reset the variable
+            translatedInAdvance = null;
+        }
+
+        // now we are done
         return true;
     }
 
@@ -410,6 +434,69 @@ public class MacroTranslator extends AbstractListTranslator {
         return arguments;
     }
 
+    /**
+     *
+     * @param followingExps
+     * @param info
+     * @return
+     */
+    private LinkedList<String> parseDerivArguments(List<PomTaggedExpression> followingExps, DLMFMacroInfoHolder info ){
+        // there are two options here, one easy and one complex
+        // first the easy, the next element is not empty:
+        PomTaggedExpression next = followingExps.get(0);
+        if ( !next.isEmpty() ) {
+            // nothing special, just go ahead and parse it as usual
+            return parseArguments(followingExps, info);
+        }
+
+        // first, get rid of the empty element
+        followingExps.remove(0);
+
+        // otherwise! we have a problem similar to sums. When does the argument ends?
+        // so lets follow sums approach
+        PomTaggedExpression variablePTE = followingExps.remove(0);
+        TranslatedExpression varTE = translateInnerExp(variablePTE, new LinkedList<>());
+
+        LinkedList<String> vars = new LinkedList<>();
+        vars.add(varTE.toString());
+
+        List<PomTaggedExpression> potentialArgs = LimitedTranslator.getPotentialArgumentsUntilEndOfScope(
+                followingExps,
+                vars,
+                this
+        );
+
+        // the potential arguments is a theoretical sequence, so handle it as a sequence!
+        PomTaggedExpression topSeqPTE = new PomTaggedExpression(new MathTerm("",""), "sequence");
+        for ( PomTaggedExpression pte : potentialArgs ) topSeqPTE.addComponent(pte);
+
+        SequenceTranslator p = new SequenceTranslator(getSuperTranslator());
+        boolean successful = p.translate( topSeqPTE );
+
+        if ( !successful ) { // well, there were an error... stop here
+            throw new TranslationException(
+                    "Unable to translate potential arguments of deriv!",
+                    TranslationException.Reason.DLMF_MACRO_ERROR);
+        }
+
+        // clean up first
+        TranslatedExpression translatedPotentialArguments = p.getTranslatedExpressionObject();
+        getGlobalTranslationList().removeLastNExps(translatedPotentialArguments.getLength());
+
+        // now, search for the next argument
+        TranslatedExpression transArgs =
+                translatedPotentialArguments.removeUntilLastAppearanceOfVar(
+                        vars,
+                        getConfig().getMULTIPLY()
+                );
+
+        translatedInAdvance = translatedPotentialArguments;
+        LinkedList<String> args = new LinkedList<>();
+        args.add(transArgs.toString());
+        args.add(vars.getFirst());
+        return args;
+    }
+
     private void extractVariableOfDiff(PomTaggedExpression exp) {
         while (!exp.isEmpty()) { // look for a macro term in the expression and infer variable of diff based on that
             if (exp.getTag() != null && exp.getTag().equals("sequence")) {
@@ -527,9 +614,6 @@ public class MacroTranslator extends AbstractListTranslator {
         tempArgList = new LinkedList<>();
         tempArgList.add(firstHalf);
         tempArgList.add(secondHalf);
-
-//        following.add(0, secondHalf);
-//        following.add(0, firstHalf);
     }
 
     private void skipAts(List<PomTaggedExpression> following_exps) {
