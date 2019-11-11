@@ -143,10 +143,16 @@ n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0
 \cDiff[x];http://dlmf.nist.gov/18.1#EGx3;Central difference;1;0;0;;;;dlmf-macro
 \deriv{f}{x};http://dlmf.nist.gov/1.4#E4;Derivative;0;0;2;;;;dlmf-macro
 \pderiv{f}{x};http://dlmf.nist.gov/1.5#E3;Partial derivative;0;0;2;;;;dlmf-macro
+\ideriv{f}{x};http://dlmf.nist.gov/1.4#E4;Derivative;0;0;2;;;;dlmf-macro
+\tderiv{f}{x};http://dlmf.nist.gov/1.5#E3;Partial derivative;0;0;2;;;;dlmf-macro
+\tpderiv{f}{x};http://dlmf.nist.gov/1.5#E3;Partial derivative;0;0;2;;;;dlmf-macro
+\ipderiv{f}{x};http://dlmf.nist.gov/1.5#E3;Partial derivative;0;0;2;;;;dlmf-macro
 X1:\derivX\deriv[n]{f}{x};http://dlmf.nist.gov/1.4#E4;Derivative;0;0;2;;;;dlmf-macro
 X1:\pderivX\pderiv[n]{f}{x};http://dlmf.nist.gov/1.5#E3;Partial derivative;0;0;2;;;;dlmf-macro
-\ideriv{f}{x};http://dlmf.nist.gov/1.4#E4;Derivative;0;0;2;;;;dlmf-macro
 X1:\iderivX\ideriv[n]{f}{x};http://dlmf.nist.gov/1.4#E4;Derivative;1;0;2;;;;dlmf-macro
+X1:\tderivX\tderiv[n]{f}{x};http://dlmf.nist.gov/1.4#E4;Derivative;1;0;2;;;;dlmf-macro
+X1:\tpderivX\tpderiv[n]{f}{x};http://dlmf.nist.gov/1.4#E4;Derivative;1;0;2;;;;dlmf-macro
+X1:\ipderivX\ipderiv[n]{f}{x};http://dlmf.nist.gov/1.4#E4;Derivative;1;0;2;;;;dlmf-macro
 \diff{x};http://dlmf.nist.gov/1.4#SS4.p1;Differential;0;0;1;;;;dlmf-macro
 \pdiff{x};http://dlmf.nist.gov/1.5#E3;Power of partial differential;0;0;1;;;;dlmf-macro
 \AntiDer@{x}{f(x)};http://drmf.wmflabs.org/wiki/Definition:AntiDer;Anti-Derivative;0;1;2;;;;dlmf-macro

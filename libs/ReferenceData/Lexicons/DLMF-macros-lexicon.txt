@@ -2830,6 +2830,16 @@ Symbol: \FerrersHatQ
   Feature Set: dlmf-alternative-1
 	DLMF: \DunsterQ[\mu]{\tau}@{x}
 	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
@@ -5291,6 +5301,16 @@ Symbol: \LaguerreL
 	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
 	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
 	Maple-Comment: 
@@ -6011,6 +6031,16 @@ Symbol: \LegendreBlackQ
 	Role: dlmf-macro
 	Slot of Differentiation: 1
 
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
 Symbol: \LegendreP
 
   Feature Set: dlmf-macro
@@ -6290,6 +6320,17 @@ Symbol: \LegendreP
 	Maple: LegendreP($1, $0, $2)
 	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
 	Meanings: Associated Legendre function of first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6676,6 +6717,17 @@ Symbol: \LegendreQ
 	Role: dlmf-macro
 	Slot of Differentiation: 1
 
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
 Symbol: \LegendreSymbol
 
   Feature Set: dlmf-macro
@@ -6839,8 +6891,19 @@ Symbol: \Ln
 	Constraints: z != 0
 	DLMF: \Ln@@{z}
 	DLMF-Link: dlmf.nist.gov/4.2#E1
+	Maple: ln($0)
+	Maple-Alternatives: 
+	Maple-Branch Cuts: 
+	Maple-Comment: 
+	Maple-Constraints: 
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ln
+	Maple-Package: 
+	Mathematica: Log[$0]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/Log.html
 	Mathematica-Package: 
 	Meanings: Multivalued natural logarithm
 	Number of Ats: 2
@@ -12612,6 +12675,48 @@ Symbol: \inverfc
 	Number of Variables: 1
 	Role: dlmf-macro
 
+Symbol: \ipderiv
+
+  Feature Set: dlmf-macro
+	DLMF: \ipderiv{f}{x}
+	DLMF-Link: dlmf.nist.gov/1.5#E3
+	Maple: diff($0, $1)
+	Maple-Alternatives: 
+	Maple-Branch Cuts: 
+	Maple-Comment: 
+	Maple-Constraints: 
+	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=diff
+	Maple-Package: 
+	Mathematica: D[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
+	Mathematica-Package: 
+	Meanings: Partial derivative
+	Number of Ats: 0
+	Number of Parameters: 0
+	Number of Variables: 2
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \ipderiv[n]{f}{x}
+	DLMF-Link: dlmf.nist.gov/1.4#E4
+	Maple: diff($1, [$2$($0)])
+	Maple-Alternatives: 
+	Maple-Comment: 
+	Maple-Package: 
+	Mathematica: D[$1, {$2, $0}]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
+	Mathematica-Package: 
+	Meanings: Derivative
+	Number of Ats: 0
+	Number of Parameters: 1
+	Number of Variables: 2
+	Role: dlmf-macro
+
 Symbol: \irregCoulombG
 
   Feature Set: dlmf-macro
@@ -17090,6 +17195,48 @@ Symbol: \tanh
 	Number of Variables: 1
 	Role: dlmf-macro
 
+Symbol: \tderiv
+
+  Feature Set: dlmf-macro
+	DLMF: \tderiv{f}{x}
+	DLMF-Link: dlmf.nist.gov/1.5#E3
+	Maple: diff($0, $1)
+	Maple-Alternatives: 
+	Maple-Branch Cuts: 
+	Maple-Comment: 
+	Maple-Constraints: 
+	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=diff
+	Maple-Package: 
+	Mathematica: D[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
+	Mathematica-Package: 
+	Meanings: Partial derivative
+	Number of Ats: 0
+	Number of Parameters: 0
+	Number of Variables: 2
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \tderiv[n]{f}{x}
+	DLMF-Link: dlmf.nist.gov/1.4#E4
+	Maple: diff($1, [$2$($0)])
+	Maple-Alternatives: 
+	Maple-Comment: 
+	Maple-Package: 
+	Mathematica: D[$1, {$2, $0}]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
+	Mathematica-Package: 
+	Meanings: Derivative
+	Number of Ats: 0
+	Number of Parameters: 1
+	Number of Variables: 2
+	Role: dlmf-macro
+
 Symbol: \terminant
 
   Feature Set: dlmf-macro
@@ -17116,6 +17263,48 @@ Symbol: \threej
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 6
+
+Symbol: \tpderiv
+
+  Feature Set: dlmf-macro
+	DLMF: \tpderiv{f}{x}
+	DLMF-Link: dlmf.nist.gov/1.5#E3
+	Maple: diff($0, $1)
+	Maple-Alternatives: 
+	Maple-Branch Cuts: 
+	Maple-Comment: 
+	Maple-Constraints: 
+	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=diff
+	Maple-Package: 
+	Mathematica: D[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
+	Mathematica-Package: 
+	Meanings: Partial derivative
+	Number of Ats: 0
+	Number of Parameters: 0
+	Number of Variables: 2
+	Role: dlmf-macro
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \tpderiv[n]{f}{x}
+	DLMF-Link: dlmf.nist.gov/1.4#E4
+	Maple: diff($1, [$2$($0)])
+	Maple-Alternatives: 
+	Maple-Comment: 
+	Maple-Package: 
+	Mathematica: D[$1, {$2, $0}]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
+	Mathematica-Package: 
+	Meanings: Derivative
+	Number of Ats: 0
+	Number of Parameters: 1
+	Number of Variables: 2
+	Role: dlmf-macro
 
 Symbol: \trianglepoly
 

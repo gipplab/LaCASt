@@ -88,7 +88,12 @@ public class LimitedTranslator extends AbstractListTranslator {
                 break;
         }
 
-        List<PomTaggedExpression> potentialArguments = getPotentialArgumentsUntilEndOfScope(list, limit.getVars());
+        List<PomTaggedExpression> potentialArguments = getPotentialArgumentsUntilEndOfScope(
+                list,
+                limit.getVars(),
+                this
+        );
+
         // the potential arguments is a theoretical sequence, so handle it as a sequence!
         PomTaggedExpression topPTE = new PomTaggedExpression(new MathTerm("",""), "sequence");
         for ( PomTaggedExpression pte : potentialArguments ) topPTE.addComponent(pte);
@@ -182,7 +187,12 @@ public class LimitedTranslator extends AbstractListTranslator {
 
     private Limits extractLimits(PomTaggedExpression limitSuperExpr, boolean lim) {
         LinkedList<PomTaggedExpression> upperBound = new LinkedList<>();
-        Limits limit = extractLimitsWithoutParsing(limitSuperExpr, upperBound, lim);
+        Limits limit = extractLimitsWithoutParsing(
+                limitSuperExpr,
+                upperBound,
+                lim,
+                getConfig().getLimitParser()
+        );
 
         // if an upper bound was explicitly given, overwrite the parsed upper bound
         if ( !upperBound.isEmpty() ) {
@@ -209,15 +219,20 @@ public class LimitedTranslator extends AbstractListTranslator {
         return new Limits(new LinkedList<>(), l, u);
     }
 
-    private Limits extractLimitsWithoutParsing(PomTaggedExpression limitSuperExpr, List<PomTaggedExpression> upperBound, boolean lim) {
+    private static Limits extractLimitsWithoutParsing(
+            PomTaggedExpression limitSuperExpr,
+            List<PomTaggedExpression> upperBound,
+            boolean lim,
+            BlueprintMaster btm ) {
         PomTaggedExpression limitExpression = getLowerUpper(limitSuperExpr, upperBound);
 
         // now we have limitExpression and an optional upperBound. Parse it:
-        BlueprintMaster btm = getConfig().getLimitParser();
         return btm.findMatchingLimit(lim, limitExpression);
     }
 
-    private PomTaggedExpression getLowerUpper(PomTaggedExpression limitSuperExpr, List<PomTaggedExpression> upperBound) {
+    private static PomTaggedExpression getLowerUpper(
+            PomTaggedExpression limitSuperExpr,
+            List<PomTaggedExpression> upperBound) {
         MathTerm term = limitSuperExpr.getRoot();
 
         PomTaggedExpression limitExpression = null;
@@ -259,9 +274,10 @@ public class LimitedTranslator extends AbstractListTranslator {
      * @param list
      * @return
      */
-    private List<PomTaggedExpression> getPotentialArgumentsUntilEndOfScope(
+    protected static List<PomTaggedExpression> getPotentialArgumentsUntilEndOfScope(
             List<PomTaggedExpression> list,
-            List<String> currVars
+            List<String> currVars,
+            AbstractTranslator abstractTranslator
     ) {
         LinkedList<PomTaggedExpression> cache = new LinkedList<>();
         LinkedList<Brackets> parenthesisCache = new LinkedList<>();
@@ -279,7 +295,7 @@ public class LimitedTranslator extends AbstractListTranslator {
         cache.add(first);
 
         // first element could be a parenthesis also... than take all elements until this parenthesis is closed
-        Brackets bracket = SequenceTranslator.ifIsBracketTransform(first.getRoot());
+        Brackets bracket = SequenceTranslator.ifIsBracketTransform(first.getRoot(), null);
         if ( bracket != null ) {
             if ( !bracket.opened ) throw new TranslationException("No arguments for limited expression found.");
             parenthesisCache.addLast(bracket);
@@ -302,7 +318,7 @@ public class LimitedTranslator extends AbstractListTranslator {
             PomTaggedExpression curr = list.get(0); // do not remove yet!
             MathTerm mt = curr.getRoot();
             if ( mt != null && mt.getTag() != null ) {
-                bracket = SequenceTranslator.ifIsBracketTransform(mt);
+                bracket = SequenceTranslator.ifIsBracketTransform(mt, null);
                 // check for brackets
                 if ( bracket != null ) {
                     // if new bracket opens, add it to cache
@@ -330,7 +346,12 @@ public class LimitedTranslator extends AbstractListTranslator {
 
                     // in this case, the next element are the limits. So lets analyze them in advance
                     PomTaggedExpression nextLimits = list.get(1);
-                    Limits nextL = extractLimitsWithoutParsing(nextLimits, new LinkedList<>(), BlueprintMaster.LIMITED);
+                    Limits nextL = extractLimitsWithoutParsing(
+                            nextLimits,
+                            new LinkedList<>(),
+                            BlueprintMaster.LIMITED,
+                            abstractTranslator.getConfig().getLimitParser()
+                    );
                     for ( String nextVar : nextL.getVars() ){
                         if ( currVars.contains(nextVar) ) {
                             LOG.debug("Limited expression breakpoint reached (reason: sharing variables)");
@@ -351,7 +372,7 @@ public class LimitedTranslator extends AbstractListTranslator {
                     else {
                         list.remove(0); // diff or diffd... so get next for arg
                         PomTaggedExpression argPTE = list.remove(0);
-                        TranslatedExpression argTe = translateInnerExp(argPTE, list);
+                        TranslatedExpression argTe = abstractTranslator.translateInnerExp(argPTE, list);
                         currVars.add(argTe.toString());
                         return cache;
                     }
@@ -385,7 +406,7 @@ public class LimitedTranslator extends AbstractListTranslator {
         return cache;
     }
 
-    private LinkedList<PomTaggedExpression> isDiffFrac(PomTaggedExpression pte) {
+    private static LinkedList<PomTaggedExpression> isDiffFrac(PomTaggedExpression pte) {
         ExpressionTags pt = ExpressionTags.getTagByKey(pte.getTag());
         if ( pt != null && pt.equals(ExpressionTags.fraction) ) {
             PomTaggedExpression numeratorPTE = pte.getComponents().get(0);

@@ -181,7 +181,10 @@ public abstract class AbstractTranslator implements IForwardTranslator {
      * @param following_exps the following expressions
      * @return the translated expression
      */
-    protected TranslatedExpression translateInnerExp(PomTaggedExpression expression, List<PomTaggedExpression> following_exps) {
+    public TranslatedExpression translateInnerExp(
+            PomTaggedExpression expression,
+            List<PomTaggedExpression> following_exps
+    ) {
         TranslatedExpression inner_exp =
                 parseGeneralExpression(
                         expression,
@@ -285,7 +288,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
      * Gets the configuration
      * @return config
      */
-    protected ForwardTranslationProcessConfig getConfig() {
+    public ForwardTranslationProcessConfig getConfig() {
         return this.config;
     }
 

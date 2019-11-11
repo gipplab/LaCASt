@@ -21,10 +21,12 @@ public class DLMFPatterns {
             "[\\^\\/\\_\\!|]";
 
     public static final String PATTERN_BASIC_OPERATIONS =
-            ".*[,;.+\\-*/\\^_!{}\\[\\]<>\\s=|]|\\\\[ci]dot.*";
+            ".*[,;.+\\-*/\\^_!{}\\[\\]<>\\s=]|\\\\[ci]dot.*";
 
     public static final String STRING_END_TREAT_AS_CLOSED_PARANTHESIS =
             ".*\\s*[)\\]}!]\\s*";
+
+    public static final String DERIV_NOTATION = "\\\\(?:[tip]|tp|ip)?deriv";
 
     public static final Pattern ENDS_ON_STAR_PATTERN = Pattern.compile("(.*)\\*\\s*$");
 
