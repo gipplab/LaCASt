@@ -127,6 +127,10 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         // if there was an inner error
         boolean return_value;
 
+        if ( isAccented(exp) ){
+            throw new TranslationException("Accents are not supported.");
+        }
+
         // if it is an empty exp
         if (exp.isEmpty()) {
             return global_exp;
@@ -317,6 +321,26 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         return this.superTranslator;
     }
 
+    public boolean isAccented( PomTaggedExpression pte ) {
+        List<String> tags = pte.getSecondaryTags();
+        for ( String t : tags ) {
+            if ( t.matches(ExpressionTags.accented.tag()) ) {
+                return true;
+            }
+        }
+
+        MathTerm mt = pte.getRoot();
+        if ( mt != null && !mt.isEmpty() ){
+            List<String> mtags = mt.getSecondaryTags();
+            for ( String t : mtags ) {
+                if ( t.matches(ExpressionTags.accented.tag()) ) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 
     public void activateSetMode() {
         LOG.info("Set-Mode for sequences activated!");

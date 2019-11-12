@@ -228,4 +228,10 @@ public class SimpleTranslationTests {
         assertEquals(eout, out);
         assertEquals(eout, outRev);
     }
+
+    @Test
+    public void overlineTest() {
+        assertThrows(TranslationException.class, () -> slt.translate("\\overline{z}"));
+        assertThrows(TranslationException.class, () -> slt.translate("\\overline{z+1}"));
+    }
 }
