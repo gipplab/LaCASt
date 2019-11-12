@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -37,79 +38,67 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
     }
 
     @Override
-    public boolean translate(PomTaggedExpression expression ) throws TranslationException {
+    public TranslatedExpression translate( PomTaggedExpression expression ) throws TranslationException {
         LOG.debug("Triggers empty expression translator process.");
         // switch-case over tags
         String tag = expression.getTag();
         ExpressionTags expTag = ExpressionTags.getTagByKey(tag);
 
         // no tag shouldn't happen
-        if ( handleNull( expTag,
-            "Cannot find tag: " + tag,
-            TranslationException.Reason.UNKNOWN_EXPRESSION_TAG,
-            tag,
-            null ) ) {
-            return true;
+        if ( expTag == null ) {
+            throw buildException("Empty expression tag",
+                    TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
         }
-        try{
+
         // switch over all possible tags
         switch( expTag ) {
             case sub_super_script:
                 // in case of sub-super scripts, we first normalize the order, subscript first!
-                expression = AbstractListTranslator.normalizeSubSuperScripts(expression);
+                try {
+                    expression = AbstractListTranslator.normalizeSubSuperScripts(expression);
+                } catch (IndexOutOfBoundsException iobe) {
+                    throw buildException(
+                            "SubSuperScript does not have two children.",
+                            TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT,
+                            iobe
+                    );
+                }
                 // than we fake it as a sequence, since there is no difference to a sequence anymore
                 expression.setTag( ExpressionTags.sequence.tag() );
             case sequence: // in that case use the SequenceTranslator
                 // this don't write into global_exp!
                 // it only delegates the parsing process to the SequenceTranslator
                 SequenceTranslator p = new SequenceTranslator(super.getSuperTranslator());
-                if ( p.translate( expression ) ) {
-                    localTranslations.addTranslatedExpression(
-                            p.getTranslatedExpressionObject()
-                    );
-                    return true;
-                } else return false;
+                localTranslations.addTranslatedExpression( p.translate( expression ) );
+                break;
             case fraction:
             case binomial:
             case square_root:
             case general_root:
                 // all of them has sub-elements.
-                return parseBasicFunction( expression, expTag );
+                parseBasicFunction( expression, expTag );
+                break;
             case balanced_expression:
                 // balanced expressions are expressions in \left( x \right)
                 List<PomTaggedExpression> sub_exps = expression.getComponents();
                 TranslatedExpression tr = parseGeneralExpression( sub_exps.remove( 0 ), sub_exps );
                 localTranslations.addTranslatedExpression( tr );
-                return !isInnerError();
-//            case sub_super_script:
-//                return parseSubSuperScripts( expression );
+                break;
             case numerator:
             case denominator:
             case equation:
             default:
-                handleNull( null,
-                    "Reached unknown or not yet supported expression tag: " + tag,
-                    TranslationException.Reason.UNKNOWN_EXPRESSION_TAG,
-                    tag,
-                    null );
-        }} catch ( TranslationException e ){
-            handleNull( null,
-                "Unknown translation error while translating " + tag,
-                e.getReason(),
-                tag,
-                e );
+                throw buildException("Reached unknown or not yet supported expression tag: " + tag,
+                        TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
         }
-        return true;
+
+        return localTranslations;
     }
 
-    private boolean parseBasicFunction( PomTaggedExpression top_exp, ExpressionTags tag )
+    private void parseBasicFunction( PomTaggedExpression top_exp, ExpressionTags tag )
             throws TranslationException {
         // extract all components from top expressions
         String[] comps = extractMultipleSubExpressions( top_exp );
-        if ( isInnerError() ){
-            // something went wrong while extracting expressions
-            return false;
-        }
 
         // first of all, translate components into translation
         localTranslations.addTranslatedExpression(
@@ -127,9 +116,6 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
         global.addTranslatedExpression(
                 localTranslations
         );
-
-        // everything goes well
-        return true;
     }
 
     /**

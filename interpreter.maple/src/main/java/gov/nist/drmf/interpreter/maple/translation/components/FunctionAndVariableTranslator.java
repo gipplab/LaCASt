@@ -7,6 +7,7 @@ import com.maplesoft.openmaple.MString;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
@@ -34,7 +35,15 @@ public class FunctionAndVariableTranslator extends ListTranslator {
     }
 
     @Override
-    public boolean translate( List list ) throws TranslationException, MapleException {
+    public Boolean translate( List list ) throws TranslationException {
+        try {
+            return innerTranslate( list );
+        } catch (MapleException me) {
+            throw createException("Maple error in list translator.", me);
+        }
+    }
+
+    private boolean innerTranslate( List list ) throws TranslationException, MapleException {
         boolean b;
         switch ( root ){
             case string:
@@ -170,9 +179,7 @@ public class FunctionAndVariableTranslator extends ListTranslator {
             base = (List)list.select(2);
             exponent = (List)list.select(3);
         } catch ( MapleException me ){
-            throw new TranslationException(
-                    Keys.KEY_MAPLE,
-                    Keys.KEY_LATEX,
+            throw createException(
                     "Cannot translate power. Fail to extract base and exponent.",
                     me
             );
@@ -202,9 +209,7 @@ public class FunctionAndVariableTranslator extends ListTranslator {
             numerator = (List)list.select(2);
             denominator = (List)list.select(3);
         } catch ( MapleException me ){
-            throw new TranslationException(
-                    Keys.KEY_MAPLE,
-                    Keys.KEY_LATEX,
+            throw createException(
                     "Cannot translate fraction. Fail to extract numerator and denominator.",
                     me
             );
