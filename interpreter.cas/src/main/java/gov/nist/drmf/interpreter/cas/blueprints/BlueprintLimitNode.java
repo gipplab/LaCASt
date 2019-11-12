@@ -34,6 +34,7 @@ public class BlueprintLimitNode {
     private boolean isVariablePlaceHolder;
     private boolean isUpperBound;
     private boolean isLowerBound;
+    private boolean isLeafAndParent;
 
     private LinkedList<BlueprintLimitNode> children;
 
@@ -57,6 +58,7 @@ public class BlueprintLimitNode {
         this.latex = latex;
         this.tag = tag;
         this.pte = pte;
+        this.isLeafAndParent = false;
     }
 
     public BlueprintLimitNode(
@@ -68,6 +70,20 @@ public class BlueprintLimitNode {
         this.isLeaf = false;
         this.children = children;
         this.pte = pte;
+        this.isLeafAndParent = false;
+    }
+
+    public BlueprintLimitNode(
+            BlueprintLimitTree parentTree,
+            LinkedList<BlueprintLimitNode> children,
+            PomTaggedExpression pte,
+            String latex,
+            String tag
+    ) {
+        this(parentTree, latex, tag, pte);
+        this.isLeaf = false;
+        this.children = children;
+        this.isLeafAndParent = true;
     }
 
     public boolean isLeaf() {
@@ -134,10 +150,10 @@ public class BlueprintLimitNode {
             BlueprintLimitNode ref = refCopy.removeFirst();
 
             // first, if the pattern expects subexpression, go deeper!
-            if ( !pattern.isLeaf ){
-                // ok check if this subexpression matches, if NOT return false
+            // ok check if this subexpression matches, if NOT return false
+            if ( pattern.isLeafAndParent || !pattern.isLeaf) {
                 if ( !pattern.equals(ref) ) return false;
-                // if it matches, move on till the end
+                // if its true, we check if this pattern also matches
             }
 
             // ok, pattern is a leaf... there are some options now

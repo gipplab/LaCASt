@@ -1,3 +1,5 @@
-var1 \to numL1+ ==> left
-var1 \to numL1- ==> right
+var1 \to numL1+ ==> right
+var1 \to numL1^+ ==> right
+var1 \to numL1- ==> left
+var1 \to numL1^- ==> left
 var1 \to numL1 ==> none

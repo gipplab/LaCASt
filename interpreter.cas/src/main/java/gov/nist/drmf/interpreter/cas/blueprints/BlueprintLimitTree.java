@@ -85,12 +85,23 @@ public class BlueprintLimitTree {
                 tag = BlueprintLimitNode.GREEK_TAG;
             }
 
-            return new BlueprintLimitNode(
-                    this,
-                    term.getTermText(),
-                    tag,
-                    blueprint
-            );
+            // its a sequence, first analyze all kids
+            List<PomTaggedExpression> list = blueprint.getComponents();
+            LinkedList<BlueprintLimitNode> kids = new LinkedList<>();
+            if ( list != null && !list.isEmpty() ) {
+                for (PomTaggedExpression pte : list) {
+                    kids.add(createBlueprint(pte));
+                }
+                return new BlueprintLimitNode(this, kids, blueprint, term.getTermText(), tag);
+            } else {
+                return new BlueprintLimitNode(
+                        this,
+                        term.getTermText(),
+                        tag,
+                        blueprint
+                );
+            }
+
         }
     }
 

@@ -6,6 +6,17 @@ import gov.nist.drmf.interpreter.common.meta.DLMF;
  * @author Andre Greiner-Petter
  */
 public enum Lims implements ForwardTestCase {
+    SIMPLE(
+            "\\lim_{x \\to 0^{+}} \\frac{1}{x}",
+            "limit((1)/(x), x = 0, right)",
+            "Limit[Divide[1, x], x -> 0, Direction -> \"FromAbove\"]"
+    ),
+    @DLMF("1.15.3")
+    SUM_LEFT_SIDED(
+            "\\lim_{z \\to 1-} \\sum_{n = 0}^{\\infty} a_n x^n = s",
+            "limit(sum(a[n]*(x)^(n), n = 0 .. infinity), z = 1, left) = s",
+            "Limit[Sum[Subscript[a, n]*(x)^(n), {n, 0, Infinity}], z -> 1, Direction -> \"FromBelow\"] = s"
+    ),
     @DLMF("4.31.1")
     FRAC(
             "\\lim_{z \\to 0} \\frac{\\sinh@@{z}}{z}",
