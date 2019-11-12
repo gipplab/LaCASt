@@ -216,4 +216,16 @@ public class SimpleTranslationTests {
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
+
+    @Test
+    public void superSubScriptTest() {
+        String in = "x_2^4";
+        String inRev = "x^4_2";
+
+        String eout = "(x[2])^(4)";
+        String out = slt.translate(in);
+        String outRev = slt.translate(inRev);
+        assertEquals(eout, out);
+        assertEquals(eout, outRev);
+    }
 }

@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
+import gov.nist.drmf.interpreter.cas.translation.components.MathTermTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.MathTerm;
@@ -154,6 +156,31 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
         } catch (Exception e) {
             return true;
         }
+    }
+
+    /**
+     * Sub-Super scripts will be normalized, so that the subscript is always in front
+     * @param pte
+     * @return
+     */
+    public static PomTaggedExpression normalizeSubSuperScripts( PomTaggedExpression pte ) {
+        List<PomTaggedExpression> comps = pte.getComponents();
+        if ( comps.size() != 2 ) throw new TranslationException("Subsuperscript does not have 2 children!");
+
+        PomTaggedExpression first = comps.remove(0);
+        PomTaggedExpression second = comps.remove(0);
+
+        MathTerm firstMT = first.getRoot();
+        MathTermTags ftag = MathTermTags.getTagByKey(firstMT.getTag());
+        if ( ftag.equals(MathTermTags.caret) ) {
+            // caret first, switch the order!
+            pte.addComponent(second);
+            pte.addComponent(first);
+        } else {
+            pte.addComponent(first);
+            pte.addComponent(second);
+        }
+        return pte;
     }
 
     public static String stripMultiParentheses(String expr) {

@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.cas.blueprints;
 
 import gov.nist.drmf.interpreter.cas.common.DLMFPatterns;
+import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -196,7 +198,7 @@ public class BlueprintLimitNode {
                 if ( m.matches() ){
                     int idx = Integer.parseInt(m.group(1));
 
-                    PomTaggedExpression seq = new PomTaggedExpression(new MathTerm("",""), "sequence");
+                    PomTaggedExpression seq = new PomTaggedExpression(new MathTerm("",""), ExpressionTags.sequence.tag());
                     PomTaggedExpression first = ref.pte;
                     seq.addComponent(first);
 
@@ -211,7 +213,7 @@ public class BlueprintLimitNode {
                 if ( m.matches() ){
                     int idx = Integer.parseInt(m.group(1));
 
-                    PomTaggedExpression seq = new PomTaggedExpression(new MathTerm("",""), "sequence");
+                    PomTaggedExpression seq = new PomTaggedExpression(new MathTerm("",""), ExpressionTags.sequence.tag());
                     PomTaggedExpression first = ref.pte;
                     seq.addComponent(first);
 
@@ -258,8 +260,10 @@ public class BlueprintLimitNode {
 
     private void checkIfNextIsConnected(LinkedList<BlueprintLimitNode> refCopy, BlueprintLimitNode ref) {
         if ( refCopy.isEmpty() ) return;
-        if ( refCopy.get(0).tag.matches("underscore|caret") ) {
-            PomTaggedExpression pte = new PomTaggedExpression(new MathTerm("", ""), "sequence");
+        if ( refCopy.get(0).tag.matches(
+                MathTermTags.underscore.tag() + "|" + MathTermTags.caret.tag()
+        ) ) {
+            PomTaggedExpression pte = new PomTaggedExpression(new MathTerm("", ""), ExpressionTags.sequence.tag());
             pte.addComponent(ref.pte);
             pte.addComponent(refCopy.removeFirst().pte);
             ref.setPTE(pte);
@@ -267,14 +271,14 @@ public class BlueprintLimitNode {
     }
 
     private boolean possibleVar(BlueprintLimitNode node){
-        return node.tag.equals("letter")
+        return node.tag.equals(MathTermTags.letter.tag())
                 || node.tag.equals("Latin")
-                || node.tag.equals("special math letter")
+                || node.tag.equals(MathTermTags.special_math_letter.tag())
                 || node.tag.equals(GREEK_TAG)
-                || node.tag.equals("alphanumeric");
+                || node.tag.equals(MathTermTags.alphanumeric.tag());
     }
 
     private boolean isListSplitter(BlueprintLimitNode node){
-        return node.tag.equals("comma");
+        return node.tag.equals(MathTermTags.comma.tag());
     }
 }
