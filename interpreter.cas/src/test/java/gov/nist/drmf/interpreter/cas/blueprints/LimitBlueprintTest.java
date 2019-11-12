@@ -267,7 +267,17 @@ public class LimitBlueprintTest {
         assertEquals("x", limit.getVars().get(0));
         assertEquals("1", limit.getLower().get(0));
         assertFalse(limit.isLimitOverSet());
-        assertEquals(LimDirections.RIGHT, limit.getDirection());
+        assertEquals(LimDirections.LEFT, limit.getDirection());
+    }
+
+    @Test
+    public void limExpressionLeftPowerTest() {
+        String str = "x \\to 1^{-}";
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIM, str);
+        assertEquals("x", limit.getVars().get(0));
+        assertEquals("1", limit.getLower().get(0));
+        assertFalse(limit.isLimitOverSet());
+        assertEquals(LimDirections.LEFT, limit.getDirection());
     }
 
     @Test
@@ -277,7 +287,7 @@ public class LimitBlueprintTest {
         assertEquals("x", limit.getVars().get(0));
         assertEquals("2", limit.getLower().get(0));
         assertFalse(limit.isLimitOverSet());
-        assertEquals(LimDirections.LEFT, limit.getDirection());
+        assertEquals(LimDirections.RIGHT, limit.getDirection());
     }
 
     @Test

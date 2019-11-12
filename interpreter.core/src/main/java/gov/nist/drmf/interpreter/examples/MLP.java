@@ -76,10 +76,10 @@ public class MLP {
             //eq = "Z = \\sum_{j} g_j \\cdot \\mathrm{e}^{- \\\\beta E_j}";
 //            eq = "\\deriv{}{x} S^{(1)}_{mn}(\\gamma,x)";
 //            eq = "\\sum_{n=0}^{10} n + \\cpi = \\sum_{n=0}^{10} n + \\cpi < \\leq \\frac{\\sum_{n} n}{n}";
-//            eq = "\\sqrt{\\frac{1}{\\iunit}}";
+            eq = "var1 \\to numL1^-";
 //            eq = "\\int_{0}^{1} \\theta \\mathrm{d}\\theta";
-            eq = "\\deriv{}{z} \\sin@@{z}";
-            eq = "\\begin{subarray}{c} x \\end{subarray}";
+//            eq = "\\deriv{}{z} \\sin@@{z}";
+//            eq = "\\begin{subarray}{c} x \\end{subarray}";
 
             System.out.println();
             System.out.println("Input: " + eq);
