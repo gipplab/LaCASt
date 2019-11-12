@@ -4,7 +4,9 @@ import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.InformationLogger;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.IBackwardTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.MapleTranslationException;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
@@ -21,7 +23,8 @@ import static gov.nist.drmf.interpreter.maple.common.MapleConstants.MAPLE_INTERN
  *
  * Created by AndreG-P on 21.02.2017.
  */
-public abstract class AbstractAlgebraicTranslator<T extends Algebraic> implements IBackwardTranslator<T> {
+public abstract class AbstractAlgebraicTranslator<T extends Algebraic>
+        implements IBackwardTranslator<T, Boolean> {
     protected static String MULTIPLY, ADD, INFINITY;
 
     static final Logger LOG = LogManager.getLogger( AbstractAlgebraicTranslator.class );
@@ -71,9 +74,9 @@ public abstract class AbstractAlgebraicTranslator<T extends Algebraic> implement
     }
 
     @Override
-    public abstract boolean translate( T element ) throws TranslationException, MapleException;
+    public abstract Boolean translate( T element ) throws TranslationException;
 
-    MapleInternal getAbstractInternal( String root ) throws IllegalArgumentException{
+    MapleInternal getAbstractInternal(String root ) throws IllegalArgumentException{
         Matcher match = MAPLE_INTERNAL_PATTERN.matcher(root);
         if ( !match.matches() )
             throw new IllegalArgumentException("Unknown name of maple object: " + root);
@@ -93,5 +96,36 @@ public abstract class AbstractAlgebraicTranslator<T extends Algebraic> implement
             translations[i-2] = tl.getAccurateString();
         }
         return translations;
+    }
+
+    public static TranslationException createException(String message) {
+        return createException(message, TranslationExceptionReason.MAPLE_TRANSLATION_ERROR);
+    }
+
+    public static TranslationException createException(String message, Throwable throwable) {
+        return createException(message, TranslationExceptionReason.MAPLE_TRANSLATION_ERROR, throwable);
+    }
+
+    public static TranslationException createException(String message, TranslationExceptionReason reason) {
+        return new TranslationException(
+                Keys.KEY_MAPLE,
+                Keys.KEY_LATEX,
+                message,
+                reason
+        );
+    }
+
+    public static TranslationException createException(
+            String message,
+            TranslationExceptionReason reason,
+            Throwable throwable
+            ) {
+        return new TranslationException(
+                Keys.KEY_MAPLE,
+                Keys.KEY_LATEX,
+                message,
+                reason,
+                throwable
+        );
     }
 }

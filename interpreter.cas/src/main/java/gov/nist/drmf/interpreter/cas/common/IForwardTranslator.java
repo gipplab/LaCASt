@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
 /**
  * @author Andre Greiner-Petter
  */
-public interface IForwardTranslator extends ITranslatorComponent<PomTaggedExpression> {
+public interface IForwardTranslator extends ITranslatorComponent<PomTaggedExpression, TranslatedExpression> {
     /**
      * Returns the translated expression.
      * @return  the translated expression given

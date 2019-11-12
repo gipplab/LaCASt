@@ -7,6 +7,7 @@ import com.maplesoft.openmaple.Numeric;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.MapleTranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
@@ -20,7 +21,15 @@ public class SequenceTranslator extends ListTranslator {
     }
 
     @Override
-    public boolean translate( List expression ) throws TranslationException, MapleException {
+    public Boolean translate( List list ) throws TranslationException {
+        try {
+            return innerTranslate( list );
+        } catch (MapleException me) {
+            throw createException("Maple error in numerical translator.", me);
+        }
+    }
+
+    public boolean innerTranslate( List expression ) throws TranslationException, MapleException {
         switch ( root ){
             case sum:
                 parseSum( expression );
@@ -69,9 +78,10 @@ public class SequenceTranslator extends ListTranslator {
         for ( int i = start_index; i <= length; i++ ){
             factor = list.select(i);
             if ( !(factor instanceof List) )
-                throw new TranslationException(
-                        Keys.KEY_MAPLE, Keys.KEY_LATEX,
-                        "Expected inner list in product but get: " + factor );
+                throw createException(
+                        "Expected inner list in product but get: " + factor,
+                        TranslationExceptionReason.IMPLEMENTATION_ERROR
+                );
             flist = (List)factor;
             maple_internal = getAbstractInternal( flist.select(1).toString() );
 

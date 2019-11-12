@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.cas.common;
 
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.FeatureSet;
@@ -39,8 +41,11 @@ public class DLMFMacroInfoHolder {
             try {
                 alternativePattern = alternativePattern.split(MacrosLexicon.SIGNAL_INLINE)[0];
             } catch (Exception e) {
-                throw new TranslationException("Cannot split alternative macro pattern!",
-                        TranslationException.Reason.DLMF_MACRO_ERROR);
+                throw new TranslationException(
+                        Keys.KEY_LATEX,
+                        CAS,
+                        "Cannot split alternative macro pattern!",
+                        TranslationExceptionReason.DLMF_MACRO_ERROR);
             }
 
             if (translationPattern.isEmpty()) {

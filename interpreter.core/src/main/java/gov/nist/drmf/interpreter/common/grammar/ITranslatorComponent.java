@@ -1,9 +1,11 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+
 /**
  * @author Andre Greiner-Petter
  */
-public interface ITranslatorComponent<T> {
+public interface ITranslatorComponent<IN, OUT> {
     /**
      * This method parses a given expression.
      * It returns true if the parsing process
@@ -17,7 +19,7 @@ public interface ITranslatorComponent<T> {
      *          without an error.
      * @throws Exception If the translation process failed.
      */
-    boolean translate( T expression ) throws Exception;
+    OUT translate( IN expression ) throws TranslationException;
 
     /**
      * Returns the string representation of the translated expression.

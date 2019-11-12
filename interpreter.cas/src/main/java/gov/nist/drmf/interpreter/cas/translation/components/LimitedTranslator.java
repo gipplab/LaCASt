@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
@@ -52,17 +53,17 @@ public class LimitedTranslator extends AbstractListTranslator {
     }
 
     @Override
-    public boolean translate(PomTaggedExpression exp, List<PomTaggedExpression> list){
-        // exp is sum/prod/lim
-
+    public TranslatedExpression translate(PomTaggedExpression exp, List<PomTaggedExpression> list){
         if (list.isEmpty()) {
-            throw new TranslationException("Limited expression in the end are illegal!");
+            throw buildException("Limited expression in the end are illegal!",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT);
         }
 
         MathTerm root = exp.getRoot();
         LimitedExpressions category = LimitedExpressions.getExpression(root);
         if ( category == null ) {
-            throw new TranslationException("Unsupported limited expressions." + root.getTermText());
+            throw buildException("Unsupported limited expressions." + root.getTermText(),
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION);
         }
 
         PomTaggedExpression limitExpression = list.remove(0);
@@ -70,7 +71,7 @@ public class LimitedTranslator extends AbstractListTranslator {
 
         switch( category ) {
             case INT:
-                limit = extractIntegralLimits(limitExpression);
+                limit = extractIntegralLimits(limitExpression, this);
                 break;
             case SUM:
             case PROD:
@@ -88,18 +89,12 @@ public class LimitedTranslator extends AbstractListTranslator {
         );
 
         // the potential arguments is a theoretical sequence, so handle it as a sequence!
-        PomTaggedExpression topPTE = new PomTaggedExpression(new MathTerm("",""), "sequence");
+        PomTaggedExpression topPTE = new PomTaggedExpression(new MathTerm("",""), ExpressionTags.sequence.tag());
         for ( PomTaggedExpression pte : potentialArguments ) topPTE.addComponent(pte);
 
-        SequenceTranslator p = new SequenceTranslator(getSuperTranslator());
-        boolean successful = p.translate( topPTE );
-
-        if ( !successful ) { // well, there were an error... stop here
-            return false;
-        }
-
         // next, we translate the expressions to search for the variables
-        TranslatedExpression translatedPotentialArguments = p.getTranslatedExpressionObject();
+        SequenceTranslator p = new SequenceTranslator(getSuperTranslator());
+        TranslatedExpression translatedPotentialArguments = p.translate( topPTE );
 
         // first, clear global expression
         getGlobalTranslationList().removeLastNExps(translatedPotentialArguments.getLength());
@@ -147,7 +142,7 @@ public class LimitedTranslator extends AbstractListTranslator {
             getGlobalTranslationList().addTranslatedExpression(translatedPotentialArguments);
         }
 
-        return true;
+        return localTranslations;
     }
 
     private String translatePattern(Limits limit, int idx, String arg, LimitedExpressions category) {
@@ -184,7 +179,8 @@ public class LimitedTranslator extends AbstractListTranslator {
                 limitSuperExpr,
                 upperBound,
                 lim,
-                getConfig().getLimitParser()
+                getConfig().getLimitParser(),
+                this
         );
 
         // if an upper bound was explicitly given, overwrite the parsed upper bound
@@ -196,9 +192,9 @@ public class LimitedTranslator extends AbstractListTranslator {
         return limit;
     }
 
-    private Limits extractIntegralLimits(PomTaggedExpression limitSuperExpr) {
+    private Limits extractIntegralLimits(PomTaggedExpression limitSuperExpr, AbstractTranslator parentTranslator) {
         LinkedList<PomTaggedExpression> upperBound = new LinkedList<>();
-        PomTaggedExpression lower = getLowerUpper(limitSuperExpr, upperBound);
+        PomTaggedExpression lower = getLowerUpper(limitSuperExpr, upperBound, parentTranslator);
 
         TranslatedExpression upperTrans = translateInnerExp(upperBound.removeFirst(), upperBound);
         TranslatedExpression lowerTrans = translateInnerExp(lower, new LinkedList<>());
@@ -216,8 +212,9 @@ public class LimitedTranslator extends AbstractListTranslator {
             PomTaggedExpression limitSuperExpr,
             List<PomTaggedExpression> upperBound,
             boolean lim,
-            BlueprintMaster btm ) {
-        PomTaggedExpression limitExpression = getLowerUpper(limitSuperExpr, upperBound);
+            BlueprintMaster btm,
+            AbstractTranslator parentTranslator) {
+        PomTaggedExpression limitExpression = getLowerUpper(limitSuperExpr, upperBound, parentTranslator);
 
         // now we have limitExpression and an optional upperBound. Parse it:
         return btm.findMatchingLimit(lim, limitExpression);
@@ -225,7 +222,9 @@ public class LimitedTranslator extends AbstractListTranslator {
 
     private static PomTaggedExpression getLowerUpper(
             PomTaggedExpression limitSuperExpr,
-            List<PomTaggedExpression> upperBound) {
+            List<PomTaggedExpression> upperBound,
+            AbstractTranslator parentTranslator
+    ) {
         MathTerm term = limitSuperExpr.getRoot();
 
         PomTaggedExpression limitExpression = null;
@@ -234,7 +233,9 @@ public class LimitedTranslator extends AbstractListTranslator {
         if ( term != null && !term.isEmpty() ) {
             MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
             if ( !tag.equals(MathTermTags.underscore) ) {
-                throw new TranslationException("Illegal expression followed a limited expression: " + term.getTermText());
+                throw parentTranslator.buildException(
+                        "Illegal expression followed a limited expression: " + term.getTermText(),
+                        TranslationExceptionReason.INVALID_LATEX_INPUT);
             }
             // underscore always has only one child!
             limitExpression = limitSuperExpr.getComponents().get(0);
@@ -252,7 +253,9 @@ public class LimitedTranslator extends AbstractListTranslator {
                     }
                 }
             } else {
-                throw new TranslationException("A limited expression without limits is not allowed: " + term.getTermText());
+                throw parentTranslator.buildException(
+                        "A limited expression without limits is not allowed: " + term.getTermText(),
+                        TranslationExceptionReason.INVALID_LATEX_INPUT);
             }
         }
 
@@ -281,9 +284,8 @@ public class LimitedTranslator extends AbstractListTranslator {
 
         // the very next element is always(!) part of the argument
         if ( list.isEmpty() ) {
-            throw new TranslationException(
-                    "A limited expression ends with no argument left."
-            );
+            throw abstractTranslator.buildException( "A limited expression ends with no argument left.",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT);
         }
 
         PomTaggedExpression first = list.remove(0);
@@ -292,7 +294,9 @@ public class LimitedTranslator extends AbstractListTranslator {
         // first element could be a parenthesis also... than take all elements until this parenthesis is closed
         Brackets bracket = SequenceTranslator.ifIsBracketTransform(first.getRoot(), null);
         if ( bracket != null ) {
-            if ( !bracket.opened ) throw new TranslationException("No arguments for limited expression found.");
+            if ( !bracket.opened ) throw abstractTranslator.buildException(
+                    "Empty arguments for limited expressions are invalid math.",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT);
             parenthesisCache.addLast(bracket);
         }
 
@@ -329,7 +333,9 @@ public class LimitedTranslator extends AbstractListTranslator {
                             // in case the bracket closes a previously opened bracket, update cache
                             parenthesisCache.removeLast();
                         } else { // well, that's an illegal situation, parentheses does not match
-                            throw new TranslationException("Open and close parentheses does not match!");
+                            throw abstractTranslator.buildException(
+                                    "Open and close parentheses does not match!",
+                                    TranslationExceptionReason.WRONG_PARENTHESIS);
                         }
                     }
                 } else if ( !parenthesisCache.isEmpty() ) {
@@ -345,7 +351,8 @@ public class LimitedTranslator extends AbstractListTranslator {
                             nextLimits,
                             new LinkedList<>(),
                             BlueprintMaster.LIMITED,
-                            abstractTranslator.getConfig().getLimitParser()
+                            abstractTranslator.getConfig().getLimitParser(),
+                            abstractTranslator
                     );
                     for ( String nextVar : nextL.getVars() ){
                         if ( currVars.contains(nextVar) ) {

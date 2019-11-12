@@ -9,6 +9,7 @@ import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
@@ -84,10 +85,11 @@ public class MacroTranslator extends AbstractListTranslator {
     }
 
     @Override
-    public boolean translate(PomTaggedExpression exp, List<PomTaggedExpression> following) {
+    public TranslatedExpression translate(PomTaggedExpression exp, List<PomTaggedExpression> following) {
         MathTerm mt = exp.getRoot();
         if (mt == null || mt.isEmpty()) {
-            throw new TranslationException("The wrong translator is used, the expression is not a DLMF macro.");
+            throw buildException("The wrong translator is used, the expression is not a DLMF macro.",
+                    TranslationExceptionReason.IMPLEMENTATION_ERROR);
         }
 
         isWronskian = mt.getTermText().equals("\\Wronskian");
@@ -97,11 +99,6 @@ public class MacroTranslator extends AbstractListTranslator {
             splitComma(following);
         }
         return parse(exp, following);
-    }
-
-    @Override
-    public boolean translate(PomTaggedExpression root_exp) {
-        throw new TranslationException("Used the wrong translation for DLMF macros.");
     }
 
     /**
@@ -121,12 +118,8 @@ public class MacroTranslator extends AbstractListTranslator {
      * @param following_exps following expressions of the DLMF macro
      * @return true if the translation was successful, otherwise false
      */
-    private boolean parse(PomTaggedExpression exp, List<PomTaggedExpression> following_exps) {
+    private TranslatedExpression parse(PomTaggedExpression exp, List<PomTaggedExpression> following_exps) {
         MathTerm macro_term = exp.getRoot();
-        if (macro_term == null || macro_term.isEmpty()) {
-            throw new TranslationException("The wrong translator is used, the expression is not a DLMF macro.");
-        }
-
         this.macro = macro_term.getTermText();
 
         // ok first, get the feature set!
@@ -145,8 +138,9 @@ public class MacroTranslator extends AbstractListTranslator {
             localTranslations.addTranslatedExpression(info.getTranslationPattern());
             super.getGlobalTranslationList()
                     .addTranslatedExpression(info.getTranslationPattern());
+
             // done
-            return true;
+            return localTranslations;
         }
 
         // now check for optional parameters, if any
@@ -183,8 +177,9 @@ public class MacroTranslator extends AbstractListTranslator {
 
         int slotOfDifferentiation = info.getSlotOfDifferentiation();
         if ( slotOfDifferentiation < 1 && diffPowerHolder.getDifferentiation() != null ) {
-            throw new TranslationException("No slot of differentiation available for " + macro_term.getTermText() + ", " +
-                    "but found differentiation notation " + diffPowerHolder.getDifferentiation());
+            String errorMsg = "No slot of differentiation available for " + macro_term.getTermText() + ", " +
+                    "but found differentiation notation " + diffPowerHolder.getDifferentiation();
+            throw throwMacroException(errorMsg);
         }
 
         // if we found optional parameter, the slot of differentiation changes
@@ -221,38 +216,34 @@ public class MacroTranslator extends AbstractListTranslator {
         }
 
         // now we are done
-        return true;
+        return localTranslations;
     }
 
     /**
-     * A secure version to store information from an fset.
-     *
-     * @param fset
+     * A secure version to store information from an feature set.
+     * @param fset future set
+     * @param macro the macro
+     * @return information about the macro
      */
     private DLMFMacroInfoHolder getInfos(FeatureSet fset, String macro) {
-        handleNull(fset,
-                "Cannot extract information from feature set: " + macro,
-                TranslationException.Reason.UNKNOWN_MACRO,
-                macro,
-                new TranslationException("Cannot find macro information in lexicon for " + macro)
-        );
+        if ( fset == null ) {
+            throw buildException("Cannot extract information from feature set: " + macro,
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION);
+        }
 
         // try to extract the information
         try {
             DLMFMacroInfoHolder info = new DLMFMacroInfoHolder(fset, CAS, macro);
 
             if (info.getTranslationPattern() == null || info.getTranslationPattern().isEmpty()) {
-                throw new TranslationException("There are no translation patterns available for this macro.");
+                throw buildException("There are no translation patterns available for: " + macro,
+                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION);
             }
 
             return info;
         } catch (NullPointerException | TranslationException npe) {
-            handleNull(null,
-                    "Cannot extract information from feature set: " + macro,
-                    TranslationException.Reason.UNKNOWN_MACRO,
-                    macro,
-                    npe);
-            return null;
+            throw buildException("Cannot extract information from feature set: " + macro,
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION);
         }
     }
 
@@ -317,7 +308,8 @@ public class MacroTranslator extends AbstractListTranslator {
                 switch (tag) {
                     case prime:
                     case caret:
-                        throw new TranslationException("Prime and carets are not allowed before parameters!");
+                        throw buildException("Prime and carets are not allowed before parameters!",
+                                TranslationExceptionReason.INVALID_LATEX_INPUT);
                 }
             }
 
@@ -356,9 +348,12 @@ public class MacroTranslator extends AbstractListTranslator {
                         // check if it's the lagrange notation
                         if (isLagrangeNotation(exp.getComponents())) {
                             if ( info.getSlotOfDifferentiation() < 0 ) {
-                                throwDifferentiationException();
+                                throw throwDifferentiationException();
                             } else if ( holder.getDifferentiation() != null ) {
-                                throw new TranslationException("Cannot parse lagrange notation twice for the same macro!");
+                                throw buildException(
+                                        "Cannot parse lagrange notation twice for the same macro!",
+                                        TranslationExceptionReason.INVALID_LATEX_INPUT
+                                );
                             } else {
                                 following_exps.remove(0);
                                 parseLagrangeNotation(exp.getComponents(), holder);
@@ -377,8 +372,10 @@ public class MacroTranslator extends AbstractListTranslator {
                     default: // in any other case, we also reached the end...
                         if ( numberOfDerivative > 0 ) {
                             if ( holder.getDifferentiation() != null ) {
-                                throw new TranslationException("It's not allowed to mix prime and " +
-                                        "numeric differentiation notation within one function.");
+                                throw buildException(
+                                        "It's not allowed to mix prime and " +
+                                        "numeric differentiation notation within one function call.",
+                                        TranslationExceptionReason.INVALID_LATEX_INPUT);
                             }
                             holder.setDifferentiation(Integer.toString(numberOfDerivative));
                         }
@@ -467,20 +464,13 @@ public class MacroTranslator extends AbstractListTranslator {
         );
 
         // the potential arguments is a theoretical sequence, so handle it as a sequence!
-        PomTaggedExpression topSeqPTE = new PomTaggedExpression(new MathTerm("",""), "sequence");
+        PomTaggedExpression topSeqPTE = new PomTaggedExpression(new MathTerm("",""), ExpressionTags.sequence.tag());
         for ( PomTaggedExpression pte : potentialArgs ) topSeqPTE.addComponent(pte);
 
         SequenceTranslator p = new SequenceTranslator(getSuperTranslator());
-        boolean successful = p.translate( topSeqPTE );
-
-        if ( !successful ) { // well, there were an error... stop here
-            throw new TranslationException(
-                    "Unable to translate potential arguments of deriv!",
-                    TranslationException.Reason.DLMF_MACRO_ERROR);
-        }
+        TranslatedExpression translatedPotentialArguments = p.translate( topSeqPTE );
 
         // clean up first
-        TranslatedExpression translatedPotentialArguments = p.getTranslatedExpressionObject();
         getGlobalTranslationList().removeLastNExps(translatedPotentialArguments.getLength());
 
         // now, search for the next argument
@@ -499,7 +489,7 @@ public class MacroTranslator extends AbstractListTranslator {
 
     private void extractVariableOfDiff(PomTaggedExpression exp) {
         while (!exp.isEmpty()) { // look for a macro term in the expression and infer variable of diff based on that
-            if (exp.getTag() != null && exp.getTag().equals("sequence")) {
+            if (exp.getTag() != null && exp.getTag().equals(ExpressionTags.sequence.tag())) {
                 for (PomTaggedExpression expression : exp.getComponents()) {
                     if (isDLMFMacro(expression.getRoot())) {
                         exp = expression;
@@ -515,7 +505,7 @@ public class MacroTranslator extends AbstractListTranslator {
                 try {
                     slot = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset, CAS));
                 } catch (NumberFormatException e) {
-                    throwSlotError();
+                    throw throwSlotError();
                 }
                 String arg_extractor_single = "\\{([^{}]*)\\}";
                 String arg_extractor_string = "@";
@@ -529,10 +519,7 @@ public class MacroTranslator extends AbstractListTranslator {
                     varOfDiff = m.group(slot); // extract argument that matches slot
                     return;
                 } else {
-                    throw new TranslationException(
-                            "Unable to extract argument from " + dlmf_expression,
-                            TranslationException.Reason.DLMF_MACRO_ERROR
-                    );
+                    throw throwMacroException("Unable to extract argument from " + dlmf_expression);
                 }
             } else {
                 exp = exp.getNextSibling();
@@ -598,9 +585,9 @@ public class MacroTranslator extends AbstractListTranslator {
     private void splitComma(List<PomTaggedExpression> following) { // reads \Wronskian@{f1, f2} as if it were \Wronskian@{f1}{f2}
         PomTaggedExpression sequence = following.remove(1); // first element is "@"
         PomTaggedExpression firstHalf = new PomTaggedExpression();
-        firstHalf.setTag("sequence");
+        firstHalf.setTag(ExpressionTags.sequence.tag());
         PomTaggedExpression secondHalf = new PomTaggedExpression();
-        secondHalf.setTag("sequence");
+        secondHalf.setTag(ExpressionTags.sequence.tag());
         boolean passedComma = false;
         for (PomTaggedExpression exp : sequence.getComponents()) {
             MathTermTags tag = MathTermTags.getTagByKey(exp.getRoot().getTag());
@@ -632,20 +619,6 @@ public class MacroTranslator extends AbstractListTranslator {
                 } else return;
             }
         }
-    }
-
-    private void throwSlotError() throws TranslationException {
-        throw new TranslationException(
-                "No information in lexicon for slot of differentiation of macro.",
-                TranslationException.Reason.DLMF_MACRO_ERROR
-        );
-    }
-
-    private void throwDifferentiationException() throws TranslationException {
-        throw new TranslationException(
-                "Cannot combine prime differentiation notation with Leibniz notation differentiation ",
-                TranslationException.Reason.DLMF_MACRO_ERROR
-        );
     }
 
     private boolean checkForce(List<PomTaggedExpression> following_exps) {
@@ -742,10 +715,7 @@ public class MacroTranslator extends AbstractListTranslator {
                         stripMultiParentheses(args[i])
                 );
             } catch (NullPointerException npe) {
-                throw new TranslationException(
-                        "Argument of macro seems to be missing for " + macro,
-                        TranslationException.Reason.NULL_ARGUMENT
-                );
+                throw throwMacroException("Argument of macro seems to be missing for " + macro);
             }
         }
         LOG.debug("Translated DLMF macro to: " + pattern);
@@ -813,6 +783,23 @@ public class MacroTranslator extends AbstractListTranslator {
         );
         extraInformation += CAS + ": " + tab + info.getDefCas();
         return extraInformation;
+    }
+
+
+    private TranslationException throwSlotError() throws TranslationException {
+        return throwMacroException(
+                "No information in lexicon for slot of differentiation of macro."
+        );
+    }
+
+    private TranslationException throwDifferentiationException() throws TranslationException {
+        return throwMacroException(
+                "Cannot combine prime differentiation notation with Leibniz notation differentiation "
+        );
+    }
+
+    private TranslationException throwMacroException(String message) {
+        return buildException(message, TranslationExceptionReason.DLMF_MACRO_ERROR);
     }
 
     private class DiffAndPowerHolder {
