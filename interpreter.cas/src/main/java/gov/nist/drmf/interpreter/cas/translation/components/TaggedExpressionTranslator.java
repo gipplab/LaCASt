@@ -54,7 +54,11 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
         try{
         // switch over all possible tags
         switch( expTag ) {
-            // it's a sequence!
+            case sub_super_script:
+                // in case of sub-super scripts, we first normalize the order, subscript first!
+                expression = AbstractListTranslator.normalizeSubSuperScripts(expression);
+                // than we fake it as a sequence, since there is no difference to a sequence anymore
+                expression.setTag( ExpressionTags.sequence.tag() );
             case sequence: // in that case use the SequenceTranslator
                 // this don't write into global_exp!
                 // it only delegates the parsing process to the SequenceTranslator
@@ -77,7 +81,8 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
                 TranslatedExpression tr = parseGeneralExpression( sub_exps.remove( 0 ), sub_exps );
                 localTranslations.addTranslatedExpression( tr );
                 return !isInnerError();
-            case sub_super_script:
+//            case sub_super_script:
+//                return parseSubSuperScripts( expression );
             case numerator:
             case denominator:
             case equation:

@@ -17,7 +17,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,12 +33,6 @@ import java.util.List;
  */
 public class LimitedTranslator extends AbstractListTranslator {
     private static final Logger LOG = LogManager.getLogger(LimitedTranslator.class.getName());
-
-    private static ArrayList<ArrayList<String>> args = new ArrayList<>();
-
-    private String index;
-
-    private static int num = -1;
 
     // perform translation and put everything into global_exp
     private BasicFunctionsTranslator bft;
@@ -271,17 +264,19 @@ public class LimitedTranslator extends AbstractListTranslator {
      * This does not check for appearances of variables, it simply takes all expressions until a
      * breakpoint is reached. Breakpoints are relations (equal signs etc.) and closed brackets (if
      * the brackets are was not opened inside in the scope).
-     * @param list
-     * @return
+     * @param list following expressions, will be modified by this function
+     * @param currVars list of variables
+     * @param abstractTranslator the translator object that should be invoked, if necessary
+     * @return a sublist of {@param list}, note that {@param list} will be shortened
      */
-    protected static List<PomTaggedExpression> getPotentialArgumentsUntilEndOfScope(
+    static List<PomTaggedExpression> getPotentialArgumentsUntilEndOfScope(
             List<PomTaggedExpression> list,
             List<String> currVars,
             AbstractTranslator abstractTranslator
     ) {
         LinkedList<PomTaggedExpression> cache = new LinkedList<>();
         LinkedList<Brackets> parenthesisCache = new LinkedList<>();
-        LinkedList<PomTaggedExpression> fracList = null;
+        LinkedList<PomTaggedExpression> fracList;
         int innerInts = 0;
 
         // the very next element is always(!) part of the argument

@@ -17,7 +17,7 @@ public enum ExpressionTags {
     equation("equation"),
     balanced_expression("balanced-expression");
 
-    public String tag;
+    private final String tag;
 
     ExpressionTags(String tag) {
         this.tag = tag;

@@ -77,6 +77,7 @@ public class MLP {
 //            eq = "\\deriv{}{x} S^{(1)}_{mn}(\\gamma,x)";
 //            eq = "\\sum_{n=0}^{10} n + \\cpi = \\sum_{n=0}^{10} n + \\cpi < \\leq \\frac{\\sum_{n} n}{n}";
             eq = "var1 \\to numL1^-";
+            eq = "x_2^4 + x^4_2";
 //            eq = "\\int_{0}^{1} \\theta \\mathrm{d}\\theta";
 //            eq = "\\deriv{}{z} \\sin@@{z}";
 //            eq = "\\begin{subarray}{c} x \\end{subarray}";
