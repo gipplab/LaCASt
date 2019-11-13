@@ -4,6 +4,7 @@ import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
@@ -25,7 +26,15 @@ public class RelationTranslator extends ListTranslator {
     }
 
     @Override
-    public boolean translate( List list ) throws MapleException, IllegalArgumentException {
+    public Boolean translate( List list ) throws TranslationException {
+        try {
+            return innerTranslate( list );
+        } catch (MapleException me) {
+            throw createException("Maple error in numerical translator.", me);
+        }
+    }
+
+    public boolean innerTranslate( List list ) throws MapleException, IllegalArgumentException {
         SymbolTranslator symbolTranslator =
                 MapleInterface.getUniqueMapleInterface().getSymbolTranslator();
         String translated_symb;

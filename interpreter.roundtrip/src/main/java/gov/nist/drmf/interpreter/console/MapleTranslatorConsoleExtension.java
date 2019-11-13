@@ -8,11 +8,11 @@ import gov.nist.drmf.interpreter.MapleTranslator;
  * @see MapleTranslator
  * Created by AndreG-P on 21.04.2017.
  */
-public class MapleTranslatorConsoleExtention {
+public class MapleTranslatorConsoleExtension {
 
     private final MapleTranslator mapleT;
 
-    private MapleTranslatorConsoleExtention(MapleTranslator mapleT){
+    private MapleTranslatorConsoleExtension(MapleTranslator mapleT){
         this.mapleT = mapleT;
     }
 

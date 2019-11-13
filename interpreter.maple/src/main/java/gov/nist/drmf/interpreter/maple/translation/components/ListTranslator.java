@@ -24,7 +24,7 @@ public class ListTranslator extends AbstractAlgebraicTranslator<List> {
      * @return
      */
     @Override
-    public boolean translate( List list ) throws TranslationException, MapleException {
+    public Boolean translate( List list ) throws TranslationException {
         AbstractAlgebraicTranslator generalParser = null;
         switch( root ){
             case sum:

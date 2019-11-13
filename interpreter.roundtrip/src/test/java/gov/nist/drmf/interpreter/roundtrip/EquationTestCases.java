@@ -7,6 +7,7 @@ import gov.nist.drmf.interpreter.MapleTranslator;
 import gov.nist.drmf.interpreter.RelationResults;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
@@ -447,8 +448,8 @@ public class EquationTestCases {
 
 
     private void handleTransExcInPreTrans( TranslationException te, TestCaseInLaTeX test ){
-        TranslationException.Reason r = te.getReason();
-        if ( r != null && r.equals(TranslationException.Reason.UNKNOWN_MACRO) ) {
+        TranslationExceptionReason r = te.getReason();
+        if ( r != null && r.equals(TranslationExceptionReason.DLMF_MACRO_ERROR) ) {
             TestStatus.ERROR_UNKNOWN_MACRO.add(test.line);
             String uM = (String)te.getReasonObj();
             Integer i = unknown_macro_counter.get(uM);

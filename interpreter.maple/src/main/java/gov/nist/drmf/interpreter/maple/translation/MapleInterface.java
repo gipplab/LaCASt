@@ -6,6 +6,7 @@ import com.maplesoft.openmaple.Engine;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ITranslator;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
@@ -205,7 +206,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
                     Keys.KEY_MAPLE,
                     Keys.KEY_LATEX,
                     "Cannot evaluate Maple input.",
-                    TranslationException.Reason.PARSING_ERROR,
+                    TranslationExceptionReason.MLP_ERROR,
                     e
             );
         }
@@ -223,7 +224,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
      * translated expression by {@link #getTranslatedExpression()}.
      */
     @Override
-    public boolean translate( Algebraic alg ){
+    public Boolean translate( Algebraic alg ){
         String maple_text = alg.toString();
         try {
             translate(maple_text);

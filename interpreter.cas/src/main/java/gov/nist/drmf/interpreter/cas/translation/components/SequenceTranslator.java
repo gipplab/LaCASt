@@ -3,9 +3,8 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
-import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -17,34 +16,35 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.*;
 
 /**
  * There are two possible types of sequences in this code.
- *  1) It is an empty expression by itself, tagged with sequence.
- *      In that case, a sequence is simply a row of elements where
- *      each element is a stand alone element.
- *      Be aware, a sequence can be one element by it self.
- *      There will be no parenthesis added to this kind of sequence.
- *  2) It is a row of expressions wrapped by parenthesis.
- *      In that case, it is not really a sequence object (from MLP)
- *      but a sequence in parenthesis. It produces only one
- *      TranslatedExpression.
+ * 1) It is an empty expression by itself, tagged with sequence.
+ * In that case, a sequence is simply a row of elements where
+ * each element is a stand alone element.
+ * Be aware, a sequence can be one element by it self.
+ * There will be no parenthesis added to this kind of sequence.
+ * 2) It is a row of expressions wrapped by parenthesis.
+ * In that case, it is not really a sequence object (from MLP)
+ * but a sequence in parenthesis. It produces only one
+ * TranslatedExpression.
  *
+ * @author Andre Greiner-Petter
  * @see ExpressionTags
  * @see Brackets
  * @see AbstractListTranslator
  * @see AbstractTranslator
- * @author Andre Greiner-Petter
  */
 public class SequenceTranslator extends AbstractListTranslator {
 
     private static final Logger LOG = LogManager.getLogger(SequenceTranslator.class.getName());
 
     // the open bracket if needed
-    @Nullable
-    private Brackets open_bracket;
+    private Brackets openBracket;
 
     private boolean setMode = false;
 
@@ -54,9 +54,60 @@ public class SequenceTranslator extends AbstractListTranslator {
      * Uses only for a general sequence expression.
      * If the tag is sequence we don't need to check any parenthesis.
      */
-    public SequenceTranslator(AbstractTranslator superTranslator){
+    public SequenceTranslator(AbstractTranslator superTranslator) {
         super(superTranslator);
         localTranslations = new TranslatedExpression();
+    }
+
+    /**
+     * Use this if the sequence is wrapped by parenthesis.
+     * In that we don't know the length of the sequence. The sequence
+     * ends when we reach the next corresponding bracket, matches to
+     * the open bracket.
+     *
+     * @param openBracket the following sequence is wrapped by brackets
+     *                    the given bracket is the first open bracket of the following
+     *                    sequence
+     */
+    public SequenceTranslator(AbstractTranslator superTranslator, Brackets openBracket) {
+        this(superTranslator);
+        this.openBracket = openBracket;
+    }
+
+    public SequenceTranslator(AbstractTranslator superTranslator, Brackets openBracket, boolean setMode) {
+        this(superTranslator, openBracket);
+        this.setMode = setMode;
+    }
+
+    /**
+     * Checks if the given term is a bracket and returns the bracket.
+     * It checks also if the next bracket is considered to be closed or opened
+     * in case of vertical bars. It is a closed bracket if {@param currentOpenBracket}
+     * is an opened vertical bar.
+     *
+     * @param term               the term to check if its a bracket
+     * @param currentOpenBracket previously opened (not yet closed) bracket (can be null)
+     * @return bracket or null
+     */
+    @Nullable
+    public static Brackets ifIsBracketTransform(MathTerm term, @Nullable Brackets currentOpenBracket) {
+        if (term == null || term.isEmpty()) {
+            return null;
+        }
+        if (term.getTag() != null && (
+                term.getTag().matches(PARENTHESIS_PATTERN) || term.getTermText().matches(ABSOLUTE_VAL_TERM_TEXT_PATTERN))
+        ) {
+            Brackets bracket = Brackets.getBracket(term.getTermText());
+            if (currentOpenBracket != null && bracket != null &&
+                    bracket.equals(Brackets.abs_val_open) &&
+                    currentOpenBracket.equals(Brackets.abs_val_open)) {
+                return Brackets.abs_val_close;
+            } else {
+                return bracket;
+            }
+        } else {
+            return null;
+        }
     }
 
     @Nullable
@@ -65,48 +116,34 @@ public class SequenceTranslator extends AbstractListTranslator {
         return localTranslations;
     }
 
-    /**
-     * Use this if the sequence is wrapped by parenthesis.
-     * In that we don't know the length of the sequence. The sequence
-     * ends when we reach the next corresponding bracket, matches to
-     * the open bracket.
-     * @param open_bracket the following sequence is wrapped by brackets
-     *                     the given bracket is the first open bracket of the following
-     *                     sequence
-     */
-    public SequenceTranslator( AbstractTranslator superTranslator, Brackets open_bracket ){
-        this(superTranslator);
-        this.open_bracket = open_bracket;
-    }
-
-    public SequenceTranslator( AbstractTranslator superTranslator, Brackets open_bracket, boolean setMode ){
-        this(superTranslator, open_bracket);
-        this.setMode = setMode;
-    }
-
     @Override
-    public boolean translate( PomTaggedExpression exp, List<PomTaggedExpression> following ){
-        if ( exp == null ) return translate(following);
-        else if ( following == null ) return translate(exp);
-        else return false;
+    public TranslatedExpression translate(PomTaggedExpression exp, List<PomTaggedExpression> following) {
+        if (exp == null) {
+            return translate(following);
+        } else if (following == null) {
+            return translate(exp);
+        } else {
+            return localTranslations;
+        }
     }
 
     /**
      * This method parses a PomTaggedExpression of type sequence and
      * only these expressions! There will be no parenthesis added
      *
-     * @see ExpressionTags#sequence
      * @param expression with "sequence" tag!
      * @return true if the parsing process finish correctly
-     *          otherwise false
+     * otherwise false
+     * @see ExpressionTags#sequence
      */
     @Override
-    public boolean translate(PomTaggedExpression expression){
-        if ( !ExpressionTags.sequence.tag().matches(expression.getTag()) ){
-            LOG.error("You used the wrong translation method. " +
-                    "The given expression is not a sequence! " +
-                    expression.getTag());
-            return false;
+    public TranslatedExpression translate(PomTaggedExpression expression) {
+        if (!ExpressionTags.sequence.tag().matches(expression.getTag())) {
+            throw buildException("You used the wrong translation method. " +
+                            "The given expression is not a sequence! " +
+                            expression.getTag(),
+                    TranslationExceptionReason.IMPLEMENTATION_ERROR
+            );
         }
 
         // temporally string
@@ -116,49 +153,48 @@ public class SequenceTranslator extends AbstractListTranslator {
         List<PomTaggedExpression> exp_list = expression.getComponents();
 
         // run through each element
-        while ( !exp_list.isEmpty() && !isInnerError() ){
+        while (!exp_list.isEmpty()) {
             PomTaggedExpression exp = exp_list.remove(0);
-            TranslatedExpression inner_translation = parseGeneralExpression( exp, exp_list );
+            TranslatedExpression innerTranslation = parseGeneralExpression(exp, exp_list);
 
             // only take the last object and check if it is
             // necessary to add a space character behind
-            part = inner_translation.getLastExpression();
+            part = innerTranslation.getLastExpression();
             TranslatedExpression global = super.getGlobalTranslationList();
 
+            // the last expression was merged, if part is empty!
             boolean lastMerged = false;
-            if ( part == null ) {
+            if (part == null) {
                 part = global.getLastExpression();
-                if ( part == null )
-                    return true;
+                if (part == null) {
+                    return innerTranslation;
+                }
                 lastMerged = true;
             }
-
-//            if ( part.matches( ".*\\s*\\)\\s*" ) ){
-//                MathTerm tmp = new MathTerm(")", MathTermTags.right_parenthesis.tag());
-//                exp = new PomTaggedExpression(tmp);
-//            }
 
             part = checkMultiplyAddition(exp, exp_list, part);
 
             // finally add all elements to the inner list
-            inner_translation.replaceLastExpression( part );
-            if ( lastMerged )
-                localTranslations.replaceLastExpression( inner_translation.toString() );
-            else localTranslations.addTranslatedExpression( inner_translation );
+            innerTranslation.replaceLastExpression(part);
+            if (lastMerged) {
+                localTranslations.replaceLastExpression(innerTranslation.toString());
+            } else {
+                localTranslations.addTranslatedExpression(innerTranslation);
+            }
         }
 
         // finally return value
-        return !isInnerError();
+        return localTranslations;
     }
 
     /**
      * Use this function ONLY when you created an object of this class
-     * with a given bracket {@link SequenceTranslator#SequenceTranslator(AbstractTranslator,Brackets)}.
-     *
+     * with a given bracket {@link SequenceTranslator#SequenceTranslator(AbstractTranslator, Brackets)}.
+     * <p>
      * This method goes through a given list of expressions until it
      * reached the closed bracket that matches to the given open bracket
      * in the constructor.
-     *
+     * <p>
      * Than it will return true and organize merges all parts in the
      * global list of translated expressions.
      *
@@ -166,16 +202,16 @@ public class SequenceTranslator extends AbstractListTranslator {
      *                      with an open bracket
      * @return true when the translation finished without an error.
      */
-    public boolean translate(List<PomTaggedExpression> following_exp) {
-        if ( open_bracket == null ){
-            LOG.error("Wrong translation method used. " +
-                    "You have to specify an open bracket to translate it like a sequence " +
-                    "that way.");
-            return false;
+    public TranslatedExpression translate(List<PomTaggedExpression> following_exp) {
+        if (openBracket == null) {
+            throw buildException("Wrong translation method used. " +
+                            "You have to specify an open bracket to translate it like a sequence.",
+                    TranslationExceptionReason.IMPLEMENTATION_ERROR
+            );
         }
 
         // iterate through all elements
-        while ( !following_exp.isEmpty() ){
+        while (!following_exp.isEmpty()) {
             // take the next expression
             PomTaggedExpression exp = following_exp.remove(0);
 
@@ -190,32 +226,20 @@ public class SequenceTranslator extends AbstractListTranslator {
             //      -> there is a bracket error in the sequence
 
             // open or closed brackets
-            Brackets bracket = ifIsBracketTransform(term, open_bracket);
-//            if ( bracket == null && term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN )){
-//                bracket = Brackets.abs_val;
-//            }
-
-            if ( bracket != null ){
+            Brackets bracket = ifIsBracketTransform(term, openBracket);
+            if (bracket != null) {
                 // another open bracket -> reached a new sub sequence
                 // bracket cannot be null, because we checked the tag of the term before
-                if ( bracket.opened ){
+                if (bracket.opened) {
                     // create a new SequenceTranslator (2nd kind)
-                    SequenceTranslator sp = new SequenceTranslator( super.getSuperTranslator(), bracket, setMode );
+                    SequenceTranslator sp = new SequenceTranslator(super.getSuperTranslator(), bracket, setMode);
                     // translate the following expressions
-                    if ( sp.translate(following_exp) ){
-                        // if the translation finished correctly, there is nothing to do here
-                        // only take all of the inner solutions
-                        localTranslations.addTranslatedExpression( sp.getTranslatedExpressionObject() );
-                        // we don't need to add/remove elements from global_exp here
-                        continue;
-                    } else {
-                        // there was an error in the parsing process -> return false
-                        return false;
-                    }
+                    localTranslations.addTranslatedExpression(sp.translate(following_exp));
+                    continue;
                 } else if ( // therefore, bracket is closed!
-                        open_bracket.counterpart.equals( bracket.symbol ) ||
+                        openBracket.counterpart.equals(bracket.symbol) ||
                                 setMode
-                        ){
+                ) {
                     // this sequence ends her
                     // first of all, merge all elements together
                     int num = localTranslations.mergeAll();
@@ -223,47 +247,40 @@ public class SequenceTranslator extends AbstractListTranslator {
                     // now, always wrap brackets around this sequence
                     // if the brackets are |.| for absolute value, translate it as a function
                     String seq;
-                    if ( open_bracket.equals( Brackets.left_latex_abs_val ) ||
-                            open_bracket.equals( Brackets.abs_val_open ) ){
+                    if (openBracket.equals(Brackets.left_latex_abs_val) ||
+                            openBracket.equals(Brackets.abs_val_open)) {
                         BasicFunctionsTranslator bft = getConfig().getBasicFunctionsTranslator();
                         seq = bft.translate(
-                                new String[]{
+                                new String[] {
                                         stripMultiParentheses(localTranslations.removeLastExpression())
                                 },
                                 Keys.KEY_ABSOLUTE_VALUE
-                                );
-                    } else if ( setMode ){ // in set mode, both parenthesis may not match!
-                        seq = open_bracket.getAppropriateString();
+                        );
+                    } else if (setMode) { // in set mode, both parenthesis may not match!
+                        seq = openBracket.getAppropriateString();
                         seq += localTranslations.removeLastExpression();
                         seq += bracket.getAppropriateString();
                     } else { // otherwise, parenthesis must match each other, so close as it opened
-                        seq = open_bracket.getAppropriateString();
+                        seq = openBracket.getAppropriateString();
                         seq += localTranslations.removeLastExpression();
-                        seq += open_bracket.getCounterPart().getAppropriateString();
+                        seq += openBracket.getCounterPart().getAppropriateString();
                     }
-
-                    // check if need to add multiply here
-//                    if ( seq.matches( ".*\\s*\\)\\s*" ) ){
-//                        MathTerm tmp = new MathTerm(")", MathTermTags.right_parenthesis.tag());
-//                        exp = new PomTaggedExpression(tmp);
-//                    }
 
                     seq = checkMultiplyAddition(exp, following_exp, seq);
 
                     // wrap parenthesis around sequence, this is one component of the sequence now
-                    localTranslations.addTranslatedExpression( seq ); // replaced it
+                    localTranslations.addTranslatedExpression(seq); // replaced it
 
                     // same for global_exp. But first delete all elements of this sequence
                     TranslatedExpression global = super.getGlobalTranslationList();
-                    global.removeLastNExps( num );
-                    global.addTranslatedExpression( seq );
-                    return true;
+                    global.removeLastNExps(num);
+                    global.addTranslatedExpression(seq);
+                    return localTranslations;
                 } else { // otherwise there was an error in the bracket arrangements
-                    throw new TranslationException(
-                            "Bracket-Error: open bracket "
-                            + open_bracket.symbol
-                            + " reached " + bracket.symbol,
-                            TranslationException.Reason.WRONG_PARENTHESIS);
+                    throw buildException("Bracket-Error: open bracket "
+                                    + openBracket.symbol
+                                    + " reached " + bracket.symbol,
+                            TranslationExceptionReason.WRONG_PARENTHESIS);
                 }
             }
 
@@ -274,65 +291,62 @@ public class SequenceTranslator extends AbstractListTranslator {
             // check, if we need to add space here
             String last = inner_trans.getLastExpression();
             boolean inner = false;
-            if ( last == null ) {
+            if (last == null) {
                 TranslatedExpression global = super.getGlobalTranslationList();
                 last = global.getLastExpression();
                 inner = true;
             }
 
-//            if ( last.matches( ".*\\s*\\)\\s*" ) ){
-//                MathTerm tmp = new MathTerm(")", MathTermTags.right_parenthesis.tag());
-//                exp = new PomTaggedExpression(tmp);
-//            }
-
             last = checkMultiplyAddition(exp, following_exp, last);
 
-            inner_trans.replaceLastExpression( last );
-            if ( inner ) localTranslations.replaceLastExpression( inner_trans.toString() );
-            else localTranslations.addTranslatedExpression( inner_trans );
-
-            // if there was in error, its over here...
-            if ( isInnerError() ) return false;
+            inner_trans.replaceLastExpression(last);
+            if (inner) {
+                localTranslations.replaceLastExpression(inner_trans.toString());
+            } else {
+                localTranslations.addTranslatedExpression(inner_trans);
+            }
         }
 
         // this should not happen. It means the algorithm reached the end but a bracket is left open.
-        throw new TranslationException(
-                "Reached the end of sequence but a bracket is left open: " +
-                open_bracket.symbol,
-                TranslationException.Reason.WRONG_PARENTHESIS
-        );
+        throw buildException("Reached the end of sequence but a bracket is left open: " +
+                        openBracket.symbol,
+                TranslationExceptionReason.WRONG_PARENTHESIS);
     }
 
-    private String checkMultiplyAddition( PomTaggedExpression exp, List<PomTaggedExpression> exp_list, String part ){
+    private String checkMultiplyAddition(PomTaggedExpression exp, List<PomTaggedExpression> exp_list, String part) {
         String MULTIPLY = getConfig().getMULTIPLY();
+        Pattern p = Pattern.compile("(.*)"+Pattern.quote(MULTIPLY)+"\\s*");
         TranslatedExpression global = getGlobalTranslationList();
 
-        if ( part.matches( STRING_END_TREAT_AS_CLOSED_PARANTHESIS ) ){
+        if (part.matches(STRING_END_TREAT_AS_CLOSED_PARANTHESIS)) {
             MathTerm tmp = new MathTerm(")", MathTermTags.right_parenthesis.tag());
             exp = new PomTaggedExpression(tmp);
-        } else if ( part.matches( ".*\\*\\s*" ) ) {
-            exp = new PomTaggedExpression(new MathTerm("*", MathTermTags.multiply.tag()));
+        } else if (p.matcher(part).matches()) {
+            exp = new PomTaggedExpression(new MathTerm(MULTIPLY, MathTermTags.multiply.tag()));
         }
 
 //        if ( part.endsWith(MULTIPLY) ){
 //            return part;
 //        } else
-        if ( open_bracket != null &&
-                (open_bracket.equals(Brackets.abs_val_close) || open_bracket.equals(Brackets.abs_val_open) ) &&
+        if (openBracket != null &&
+                (openBracket.equals(Brackets.abs_val_close) || openBracket.equals(Brackets.abs_val_open)) &&
                 exp_list != null &&
-                !exp_list.isEmpty() ) {
+                !exp_list.isEmpty()) {
             MathTerm mt = exp_list.get(0).getRoot();
-            if ( mt != null && mt.getTermText().matches(ABSOLUTE_VAL_TERM_TEXT_PATTERN))
-                return part;
+            if (mt != null && mt.getTermText().matches(ABSOLUTE_VAL_TERM_TEXT_PATTERN)) {
+                Matcher m = p.matcher(part);
+                if ( m.matches() ) return m.group(1);
+                else return part;
+            }
         }
 
-        if ( addMultiply( exp, exp_list ) /*&& !part.matches(".*\\*\\s*")*/ ){
+        if (addMultiply(exp, exp_list) /*&& !part.matches(".*\\*\\s*")*/) {
             part += MULTIPLY;
             // the global list already got each element before,
             // so simply replace the last if necessary
             String tmp = global.getLastExpression();
             global.replaceLastExpression(tmp + MULTIPLY);
-        } else if ( addSpace( exp, exp_list ) ) {
+        } else if (addSpace(exp, exp_list)) {
             part += SPACE;
             // the global list already got each element before,
             // so simply replace the last if necessary
@@ -344,39 +358,24 @@ public class SequenceTranslator extends AbstractListTranslator {
 
     /**
      * Returns true if there has to be a space symbol following the current expression.
-     * @param currExp the current expression
+     *
+     * @param currExp  the current expression
      * @param exp_list the following expressions
      * @return true if the current expressions needs an white space symbol behind its translation
      */
-    private boolean addSpace(PomTaggedExpression currExp, List<PomTaggedExpression> exp_list ){
+    private boolean addSpace(PomTaggedExpression currExp, List<PomTaggedExpression> exp_list) {
         try {
-            if ( exp_list == null || exp_list.size() < 1) return false;
+            if (exp_list == null || exp_list.size() < 1) {
+                return false;
+            }
             MathTerm curr = currExp.getRoot();
             MathTerm next = exp_list.get(0).getRoot();
             return !(curr.getTag().matches(PARENTHESIS_PATTERN)
                     || next.getTag().matches(PARENTHESIS_PATTERN)
                     || next.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)
             );
-        } catch ( Exception e ){ return false; }
-    }
-
-    /**
-     *
-     * @param term
-     * @param currentOpenBracket
-     * @return
-     */
-    public static Brackets ifIsBracketTransform(MathTerm term, Brackets currentOpenBracket) {
-        if ( term == null || term.isEmpty() ) return null;
-        if ( term.getTag() != null && (
-                term.getTag().matches(PARENTHESIS_PATTERN) || term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN ))
-                ) {
-            Brackets bracket = Brackets.getBracket(term.getTermText());
-            if ( currentOpenBracket != null && bracket != null &&
-                    bracket.equals(Brackets.abs_val_open) &&
-                    currentOpenBracket.equals(Brackets.abs_val_open) ) {
-                return Brackets.abs_val_close;
-            } else return bracket;
-        } else return null;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

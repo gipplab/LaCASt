@@ -6,6 +6,7 @@ import com.maplesoft.openmaple.List;
 import com.maplesoft.openmaple.MString;
 import com.maplesoft.openmaple.Numeric;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
@@ -33,7 +34,15 @@ public class NumericalTranslator extends ListTranslator {
     }
 
     @Override
-    public boolean translate( List list ) throws MapleException, IllegalArgumentException {
+    public Boolean translate( List list ) throws TranslationException {
+        try {
+            return innerTranslate( list );
+        } catch (MapleException me) {
+            throw createException("Maple error in numerical translator.", me);
+        }
+    }
+
+    public boolean innerTranslate( List list ) throws MapleException, IllegalArgumentException {
         boolean b;
         switch (root) {
             case intpos:
