@@ -62,8 +62,9 @@ public class LimitedTranslator extends AbstractListTranslator {
         MathTerm root = exp.getRoot();
         LimitedExpressions category = LimitedExpressions.getExpression(root);
         if ( category == null ) {
-            throw buildException("Unsupported limited expressions." + root.getTermText(),
-                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION);
+            throw buildExceptionObj("Unsupported limited expressions." + root.getTermText(),
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                    root.getTermText());
         }
 
         PomTaggedExpression limitExpression = list.remove(0);

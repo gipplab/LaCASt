@@ -6,32 +6,7 @@ package gov.nist.drmf.interpreter.common.exceptions;
 public class TranslationException extends RuntimeException {
     private String toLang, fromLang;
     private TranslationExceptionReason reason;
-//    private Object reason_Obj;
-
-//    public TranslationException( String message ){
-//        this ( "ukn", "ukn", message );
-//    }
-//
-//    public TranslationException( String message, TranslationExceptionReason reason ){
-//        this(message);
-//        this.reason = reason;
-//    }
-//
-//    public TranslationException( String message, Reason reason, Object reason_Obj ){
-//        this(message);
-//        this.reason = reason;
-//        this.reason_Obj = reason_Obj;
-//    }
-//
-//    public TranslationException( String message, Reason reason, Throwable throwable ){
-//        super( message, throwable);
-//        this.reason = reason;
-//    }
-//
-//    public TranslationException( String message, Reason reason, Object reasonObj, Throwable throwable ){
-//        this( message, reason, throwable);
-//        this.reason_Obj = reasonObj;
-//    }
+    private Object reason_Obj;
 
     public TranslationException(
             String from_language,
@@ -62,10 +37,20 @@ public class TranslationException extends RuntimeException {
         return reason;
     }
 
+    public Object getReasonObj() {
+        return reason_Obj;
+    }
+
+    public void setReasonObj(Object reason_Obj) {
+        this.reason_Obj = reason_Obj;
+    }
+
     @Override
     public String toString(){
         String out = "(" + fromLang + " -> " + toLang + ") ";
-        out += reason.toString() + " - ";
-        return out + getLocalizedMessage();
+        out += reason.toString();
+        out += ": " + getLocalizedMessage();
+        out += reason_Obj != null ? " [" + reason_Obj + "]" : "";
+        return out;
     }
 }

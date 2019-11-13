@@ -16,6 +16,8 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.*;
 
@@ -313,13 +315,14 @@ public class SequenceTranslator extends AbstractListTranslator {
 
     private String checkMultiplyAddition(PomTaggedExpression exp, List<PomTaggedExpression> exp_list, String part) {
         String MULTIPLY = getConfig().getMULTIPLY();
+        Pattern p = Pattern.compile("(.*)"+Pattern.quote(MULTIPLY)+"\\s*");
         TranslatedExpression global = getGlobalTranslationList();
 
         if (part.matches(STRING_END_TREAT_AS_CLOSED_PARANTHESIS)) {
             MathTerm tmp = new MathTerm(")", MathTermTags.right_parenthesis.tag());
             exp = new PomTaggedExpression(tmp);
-        } else if (part.matches(".*\\*\\s*")) {
-            exp = new PomTaggedExpression(new MathTerm("*", MathTermTags.multiply.tag()));
+        } else if (p.matcher(part).matches()) {
+            exp = new PomTaggedExpression(new MathTerm(MULTIPLY, MathTermTags.multiply.tag()));
         }
 
 //        if ( part.endsWith(MULTIPLY) ){
@@ -331,7 +334,9 @@ public class SequenceTranslator extends AbstractListTranslator {
                 !exp_list.isEmpty()) {
             MathTerm mt = exp_list.get(0).getRoot();
             if (mt != null && mt.getTermText().matches(ABSOLUTE_VAL_TERM_TEXT_PATTERN)) {
-                return part;
+                Matcher m = p.matcher(part);
+                if ( m.matches() ) return m.group(1);
+                else return part;
             }
         }
 

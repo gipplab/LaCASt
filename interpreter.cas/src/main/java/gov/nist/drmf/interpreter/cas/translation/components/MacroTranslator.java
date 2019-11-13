@@ -227,8 +227,9 @@ public class MacroTranslator extends AbstractListTranslator {
      */
     private DLMFMacroInfoHolder getInfos(FeatureSet fset, String macro) {
         if ( fset == null ) {
-            throw buildException("Cannot extract information from feature set: " + macro,
-                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION);
+            throw buildExceptionObj("Cannot extract information from feature set: " + macro,
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                    macro);
         }
 
         // try to extract the information
@@ -236,14 +237,16 @@ public class MacroTranslator extends AbstractListTranslator {
             DLMFMacroInfoHolder info = new DLMFMacroInfoHolder(fset, CAS, macro);
 
             if (info.getTranslationPattern() == null || info.getTranslationPattern().isEmpty()) {
-                throw buildException("There are no translation patterns available for: " + macro,
-                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION);
+                throw buildExceptionObj("There are no translation patterns available for: " + macro,
+                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                        macro);
             }
 
             return info;
         } catch (NullPointerException | TranslationException npe) {
-            throw buildException("Cannot extract information from feature set: " + macro,
-                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION);
+            throw buildExceptionObj("Cannot extract information from feature set: " + macro,
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                    macro);
         }
     }
 
@@ -799,7 +802,7 @@ public class MacroTranslator extends AbstractListTranslator {
     }
 
     private TranslationException throwMacroException(String message) {
-        return buildException(message, TranslationExceptionReason.DLMF_MACRO_ERROR);
+        return buildExceptionObj(message, TranslationExceptionReason.DLMF_MACRO_ERROR, macro);
     }
 
     private class DiffAndPowerHolder {
