@@ -19,6 +19,10 @@ public enum LimitedExpressions {
         return name().toLowerCase() + "Set";
     }
 
+    public String getIndefKey() {
+        return name().toLowerCase() + "Indef";
+    }
+
     public String getDirectionKey(LimDirections dir) {
         return name().toLowerCase() + dir.getKey();
     }

@@ -141,7 +141,8 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
         try {
             PomTaggedExpression exp = parser.parse(expression);
             translate(exp); // return value can be ignored here
-            LOG.debug("Successfully translated " + expression);
+            LOG.debug("Input:  " + expression);
+            LOG.debug("Output: " + getGlobalTranslationList().toString());
             if ( !super.getInfoLogger().isEmpty() ) LOG.info(super.getInfoLogger().toString());
             return super.getGlobalTranslationList().getTranslatedExpression();
         } catch ( ParseException pe ){

@@ -12,9 +12,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * @author Andre Greiner-Petter
@@ -37,6 +35,7 @@ public class SymbolicEvaluator extends NumericalEvaluator {
     private LinkedList<Case> testCases;
 
     private HashMap<Integer, String> labelLib;
+    private Set<String> skips;
 
     private String[] lineResults;
 
@@ -72,6 +71,10 @@ public class SymbolicEvaluator extends NumericalEvaluator {
         }
 
         this.labelLib = new HashMap<>();
+        this.skips = new HashSet<>();
+
+        String[] skipArr = LONG_RUNTIME_SKIP.split(",");
+        for ( String s : skipArr ) skips.add(s);
 
         translator = new MapleTranslator();
         Status.reset();
@@ -105,6 +108,13 @@ public class SymbolicEvaluator extends NumericalEvaluator {
     protected String performSingleTest( Case c ){
         LOG.info("Start test for line: " + c.getLine());
         LOG.info("Test case: " + c);
+
+        if ( skips.contains(Integer.toString(c.getLine())) ) {
+            LOG.info("Skip because long running evaluation.");
+            lineResults[c.getLine()] = "Skipped - Long running test";
+            Status.SKIPPED.add();
+            return c.getLine() + ": " + lineResults[c.getLine()];
+        }
 
         if ( lineResults == null ){
             lineResults = getLineResults();
