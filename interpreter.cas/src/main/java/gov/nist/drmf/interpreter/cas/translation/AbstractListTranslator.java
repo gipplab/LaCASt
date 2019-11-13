@@ -1,8 +1,10 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
+import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.components.MathTermTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.MathTerm;
@@ -32,10 +34,9 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
      * @return true if the parsing process finished correctly
      */
     @Override
-    public boolean translate(PomTaggedExpression exp) {
-        List<PomTaggedExpression> list = new LinkedList<>();
-        list.add(exp);
-        return translate(exp);
+    public TranslatedExpression translate(PomTaggedExpression exp) {
+        throw buildException("List translators need the following arguments to translate them correctly.",
+                TranslationExceptionReason.IMPLEMENTATION_ERROR);
     }
 
     /**
@@ -47,10 +48,14 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
      * Than this method should translate only the following commands:
      *        2 + 3 )
      *
+     * @param exp the current expression
      * @param following_exp the descendants of a previous expression
-     * @return true if the parsing process finished successful
+     * @return the translated expression
      */
-    public abstract boolean translate(PomTaggedExpression exp, List<PomTaggedExpression> following_exp);
+    public abstract TranslatedExpression translate(
+            PomTaggedExpression exp,
+            List<PomTaggedExpression> following_exp
+    );
 
     /**
      * Checks weather a multiplication symbol should be added after the current {@param currExp} and
@@ -165,7 +170,6 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
      */
     public static PomTaggedExpression normalizeSubSuperScripts( PomTaggedExpression pte ) {
         List<PomTaggedExpression> comps = pte.getComponents();
-        if ( comps.size() != 2 ) throw new TranslationException("Subsuperscript does not have 2 children!");
 
         PomTaggedExpression first = comps.remove(0);
         PomTaggedExpression second = comps.remove(0);

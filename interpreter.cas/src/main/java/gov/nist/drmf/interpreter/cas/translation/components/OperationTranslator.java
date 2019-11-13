@@ -4,8 +4,7 @@ import gov.nist.drmf.interpreter.cas.common.DLMFPatterns;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
-import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
@@ -35,7 +34,7 @@ public class OperationTranslator extends AbstractListTranslator {
     }
 
     @Override
-    public boolean translate( PomTaggedExpression first_exp, List<PomTaggedExpression> following_exp ) {
+    public TranslatedExpression translate( PomTaggedExpression first_exp, List<PomTaggedExpression> following_exp ) {
         MathTerm top = first_exp.getRoot();
         String first = top.getTermText();
 
@@ -44,10 +43,11 @@ public class OperationTranslator extends AbstractListTranslator {
         else return parseSymbol( top );
     }
 
-    private boolean parseModulo( List<PomTaggedExpression> following_exp ){
-        TranslatedExpression divisorExp =
-                parseGeneralExpression( following_exp.remove(0), following_exp );
-        if ( isInnerError() ) return false;
+    private TranslatedExpression parseModulo( List<PomTaggedExpression> following_exp ){
+        TranslatedExpression divisorExp = parseGeneralExpression(
+                following_exp.remove(0),
+                following_exp
+        );
 
         while ( !following_exp.isEmpty() && forceNext( following_exp.get(0) ) ){
             TranslatedExpression extended_divisor =
@@ -86,11 +86,12 @@ public class OperationTranslator extends AbstractListTranslator {
 
         // the given translated expression is one complete phrase
         // so add it to the global lexicon
+        localTranslations.addTranslatedExpression( translatedMod );
         getGlobalTranslationList().addTranslatedExpression( translatedMod );
 
         // since we replaced the last phrase in global_exp
         // global_exp and local_inner_exp are the same. Theoretically
-        return true;
+        return localTranslations;
     }
 
     private boolean forceNext( PomTaggedExpression next_exp ){
@@ -101,22 +102,20 @@ public class OperationTranslator extends AbstractListTranslator {
         } else return false;
     }
 
-    private boolean parseSymbol( MathTerm term ){
+    private TranslatedExpression parseSymbol( MathTerm term ){
         SymbolTranslator sT = getConfig().getSymbolTranslator();
         String translation = sT.translate( term.getTermText() );
-        if ( handleNull( translation,
-            "Cannot translate operation " + term.getTermText(),
-            TranslationException.Reason.UNKNOWN_OPERATION,
-            term.getTermText(),
-            null) ){
-            return true;
+        if ( translation == null ) {
+            throw buildException(
+                    "Cannot translate operation " + term.getTermText(),
+                    TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
         } else {
             getInfoLogger().addGeneralInfo(
                     term.getTermText(),
                     "was translated to: " + translation);
             localTranslations.addTranslatedExpression( translation );
             getGlobalTranslationList().addTranslatedExpression( translation );
-            return true;
+            return localTranslations;
         }
     }
 }

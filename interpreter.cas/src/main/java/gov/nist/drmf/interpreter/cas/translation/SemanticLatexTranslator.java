@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.common.*;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.ITranslator;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.ParseException;
@@ -139,33 +140,21 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
 
         try {
             PomTaggedExpression exp = parser.parse(expression);
-            if (translate( exp )) {
-                LOG.debug("Successfully translated " + expression);
-                if ( !super.getInfoLogger().isEmpty() ) LOG.info(super.getInfoLogger().toString());
-                return super.getGlobalTranslationList().getTranslatedExpression();
-            } else {
-                handleNull(
-                        null,
-                        "Wasn't able to translate the given expression.",
-                        TranslationException.Reason.NULL,
-                        expression,
-                        null);
-            }
+            translate(exp); // return value can be ignored here
+            LOG.debug("Successfully translated " + expression);
+            if ( !super.getInfoLogger().isEmpty() ) LOG.info(super.getInfoLogger().toString());
+            return super.getGlobalTranslationList().getTranslatedExpression();
         } catch ( ParseException pe ){
-            handleNull(
-                    null,
+            throw buildException(
                     pe.getMessage(),
-                    TranslationException.Reason.MLP_ERROR,
-                    expression,
+                    TranslationExceptionReason.MLP_ERROR,
                     pe
             );
         }
-        // this cannot happen -> a translation exception will be thrown
-        return null;
     }
 
     @Override
-    public boolean translate( PomTaggedExpression expression ) throws TranslationException {
+    public TranslatedExpression translate( PomTaggedExpression expression ) throws TranslationException {
         reset();
         localTranslations = new TranslatedExpression();
         TranslatedExpression global = super.getGlobalTranslationList();
@@ -177,7 +166,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
                 global
         );
 
-        return !isInnerError();
+        return localTranslations;
     }
 
     @Override

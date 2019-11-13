@@ -203,6 +203,14 @@ public class SimpleTranslationTests {
 
     @Test
     public void multiplyTrickyBar2Test() {
+        String in = "|z^a|";
+        String eout = "abs((z)^(a))";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    public void multiplyTrickyBar3Test() {
         String in = "(\\tfrac{1}{4} + \\left|z \\right|)n";
         String eout = "((1)/(4)+abs(z))* n";
         String out = slt.translate(in);

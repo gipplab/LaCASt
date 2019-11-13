@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.MathTerm;
@@ -57,19 +58,19 @@ public class FunctionTranslator extends AbstractListTranslator {
     }
 
     @Override
-    public boolean translate( PomTaggedExpression exp, List<PomTaggedExpression> following )
+    public TranslatedExpression translate( PomTaggedExpression exp, List<PomTaggedExpression> following )
             throws TranslationException{
         LOG.debug("Trigger general function translator");
         boolean return_value;
-        return_value = translate(exp);
-        return_value &= parse(following);
+        translate(exp);
+        parse(following);
 
         // a bit redundant, num is always 2!
         int num = localTranslations.mergeAll();
 
         TranslatedExpression global = super.getGlobalTranslationList();
         global.mergeLastNExpressions( num );
-        return return_value;
+        return localTranslations;
     }
 
     /**
@@ -81,10 +82,11 @@ public class FunctionTranslator extends AbstractListTranslator {
      * @return true when everything is good
      */
     @Override
-    public boolean translate(PomTaggedExpression exp) {
+    public TranslatedExpression translate(PomTaggedExpression exp) {
         MathTerm term = exp.getRoot();
         if ( term == null || term.isEmpty() ){
-            throw new TranslationException("Function has no MathTerm!", TranslationException.Reason.NULL);
+            throw buildException("Function has no MathTerm!",
+                    TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
         }
 
         // remove the starting backslash
@@ -105,7 +107,8 @@ public class FunctionTranslator extends AbstractListTranslator {
                 "Function without DLMF-Definition. " +
                         "We cannot translate it and keep it like it is (but delete prefix \\ if necessary)."
         );
-        return true;
+
+        return localTranslations;
     }
 
     /**
@@ -115,7 +118,7 @@ public class FunctionTranslator extends AbstractListTranslator {
      * @param following_exp the descendants of a previous function {@link #translate(PomTaggedExpression)}
      * @return true if everything was fine
      */
-    private boolean parse(List<PomTaggedExpression> following_exp) {
+    private TranslatedExpression parse(List<PomTaggedExpression> following_exp) {
         // get first expression
         PomTaggedExpression first = following_exp.remove(0);
 
@@ -135,8 +138,7 @@ public class FunctionTranslator extends AbstractListTranslator {
 
                 // since the MathTermTranslator handles this, use this class
                 MathTermTranslator mp = new MathTermTranslator(getSuperTranslator());
-                if ( !mp.translate( first ) ) return false;
-                powerExp = mp.getTranslatedExpressionObject();
+                powerExp = mp.translate( first );
 
                 // remove the power from global_exp first
                 TranslatedExpression global = super.getGlobalTranslationList();
@@ -180,6 +182,6 @@ public class FunctionTranslator extends AbstractListTranslator {
             global.replaceLastExpression( translation + powerExp.toString() );
         }
 
-        return true;
+        return localTranslations;
     }
 }

@@ -3,10 +3,10 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
-import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -34,17 +34,16 @@ import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CHAR_BACKSLASH;
  * kinds of math terms. All registered math terms can be
  * found in {@link MathTermTags}.
  *
+ * @author Andre Greiner-Petter
  * @see AbstractTranslator
  * @see Constants
  * @see GreekLetters
  * @see MathTermTags
- * @author Andre Greiner-Petter
  */
 public class MathTermTranslator extends AbstractListTranslator {
     private static final Logger LOG = LogManager.getLogger(MathTermTranslator.class.getName());
-
+    private static final String EXPONENTIAL_MLP_KEY = "exponential";
     private TranslatedExpression localTranslations;
-
     private String CAS;
 
     public MathTermTranslator(AbstractTranslator superTranslator) {
@@ -60,8 +59,8 @@ public class MathTermTranslator extends AbstractListTranslator {
     }
 
     @Override
-    public boolean translate(PomTaggedExpression exp ){
-        return translate( exp, new LinkedList<>() );
+    public TranslatedExpression translate(PomTaggedExpression exp) {
+        return translate(exp, new LinkedList<>());
     }
 
     /**
@@ -69,12 +68,12 @@ public class MathTermTranslator extends AbstractListTranslator {
      * when your expression has a non-empty term and
      * cannot translate by any other specialized translation!
      *
-     * @param exp has a not empty term!
+     * @param exp           has a not empty term!
      * @param following_exp
      * @return true when everything is fine and there was no error
      */
     @Override
-    public boolean translate( PomTaggedExpression exp, List<PomTaggedExpression> following_exp ) {
+    public TranslatedExpression translate(PomTaggedExpression exp, List<PomTaggedExpression> following_exp) {
         // it has to be checked before that this exp has a not empty term
         // get the MathTermTags object
         MathTerm term = exp.getRoot();
@@ -82,13 +81,10 @@ public class MathTermTranslator extends AbstractListTranslator {
         MathTermTags tag = MathTermTags.getTagByKey(termTag);
         SymbolTranslator sT = getConfig().getSymbolTranslator();
 
-        // if the tag doesn't exists in the system -> stop
-        if ( handleNull( tag,
-            "Unknown MathTerm tag: ",
-            TranslationException.Reason.UNKNOWN_MATHTERM_TAG,
-            termTag,
-            null )){
-            return  true;
+        // no tag shouldn't happen
+        if (tag == null) {
+            throw buildException("Empty math term tag",
+                    TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
         }
 
         // get the feature set for a constant, if this expression has one
@@ -103,7 +99,7 @@ public class MathTermTranslator extends AbstractListTranslator {
 
         String translation;
         // otherwise switch due all cases
-        switch( tag ){
+        switch (tag) {
             case dlmf_macro:
                 // a dlmf-macro at this state will be simple translated as a command
                 // so do nothing here and switch to command:
@@ -115,99 +111,97 @@ public class MathTermTranslator extends AbstractListTranslator {
                 //  4) a function   -> Should parsed by FunctionTranslator and not here!
 
                 // is it a Greek letter?
-                if ( FeatureSetUtility.isGreekLetter(term) ){
+                if (FeatureSetUtility.isGreekLetter(term)) {
                     // is this Greek letter also known constant?
-                    if ( constantSet != null ){
+                    if (constantSet != null) {
                         // inform the user about our choices
-                        constantVsLetter( constantSet, term );
+                        constantVsLetter(constantSet, term);
                     } // if not, simply translate it as a Greek letter
                     return parseGreekLetter(term.getTermText());
                 }
 
                 // or is it a constant but not a Greek letter?
-                if ( constantSet != null ){
+                if (constantSet != null) {
                     // simply try to translate it as a constant
-                    return parseMathematicalConstant( constantSet, term.getTermText() );
+                    return parseMathematicalConstant(constantSet, term.getTermText());
                 }
 
-                String t = sT.translate( term.getTermText() );
-                if ( t != null ) {
+                String t = sT.translate(term.getTermText());
+                if (t != null) {
                     getInfoLogger().addGeneralInfo(
                             term.getTermText(),
                             "was translated to: " + t);
-                    localTranslations.addTranslatedExpression( t );
-                    getGlobalTranslationList().addTranslatedExpression( t );
-                    return true;
+                    localTranslations.addTranslatedExpression(t);
+                    getGlobalTranslationList().addTranslatedExpression(t);
+                    return localTranslations;
                 }
 
                 // no it is a DLMF macro or function
                 FeatureSet macro = term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
-                if ( macro != null ){
-                    throw new TranslationException(
+                if (macro != null) {
+                    throw buildException(
                             "MathTermTranslator cannot translate DLMF-Macro: " +
-                            term.getTermText(),
-                            TranslationException.Reason.UNKNOWN_MACRO,
-                            term.getTermText());
+                                    term.getTermText(),
+                            TranslationExceptionReason.IMPLEMENTATION_ERROR
+                    );
                 }
 
                 // not all greek letters are in the global lexicon
                 // so try again to translate it as a greek letter, just try...
                 try {
                     return parseGreekLetter(term.getTermText());
-                } catch ( TranslationException te ){
-                    if ( handleNull( null,
-                        "Reached unknown latex-command " + term.getTermText(),
-                        TranslationException.Reason.UNKNOWN_LATEX_COMMAND,
-                        term.getTermText(),
-                        te ) ) {
-                        return true;
-                    }
+                } catch (TranslationException te) {
+                    throw buildExceptionObj(
+                            "Reached unknown latex-command " + term.getTermText(),
+                            TranslationExceptionReason.LATEX_MACRO_ERROR,
+                            term.getTermText()
+                    );
                 }
             case special_math_letter:
             case symbol:
-                String sym = sT.translate( term.getTermText() );
-                if ( sym != null ) {
+                String sym = sT.translate(term.getTermText());
+                if (sym != null) {
                     getInfoLogger().addGeneralInfo(
                             term.getTermText(),
                             "was translated to: " + sym);
-                    localTranslations.addTranslatedExpression( sym );
-                    getGlobalTranslationList().addTranslatedExpression( sym );
-                    return true;
+                    localTranslations.addTranslatedExpression(sym);
+                    getGlobalTranslationList().addTranslatedExpression(sym);
+                    return localTranslations;
                 } else {
-                    FeatureSet fset = term.getNamedFeatureSet( Keys.KEY_DLMF_MACRO );
-                    if ( fset != null ){
+                    FeatureSet fset = term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
+                    if (fset != null) {
                         String trans = DLMFFeatureValues.CAS.getFeatureValue(fset, getConfig().getTO_LANGUAGE());
-                        if ( trans != null ){
+                        if (trans != null) {
                             getInfoLogger().addMacroInfo(
-                                    term.getTermText(), "was translated to: " + trans );
+                                    term.getTermText(), "was translated to: " + trans);
                             localTranslations.addTranslatedExpression(trans);
                             getGlobalTranslationList().addTranslatedExpression(trans);
-                            return true;
+                            return localTranslations;
                         }
                     }
 
-                    throw new TranslationException(
+                    throw buildException(
                             "Unknown symbol reached: " + term.getTermText(),
-                            TranslationException.Reason.UNKNOWN_SYMBOL);
+                            TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
                 }
             case function:
-                LOG.error("MathTermTranslator cannot translate functions. Use the FunctionTranslator instead: "
-                        + term.getTermText());
-                return false;
+                throw buildException(
+                        "MathTermTranslator cannot translate functions. Use the FunctionTranslator instead: "
+                                + term.getTermText(),
+                        TranslationExceptionReason.IMPLEMENTATION_ERROR
+                );
             case multiply:
                 localTranslations.addTranslatedExpression(getConfig().getMULTIPLY());
                 getGlobalTranslationList().addTranslatedExpression(getConfig().getMULTIPLY());
-                return true;
+                return localTranslations;
             case letter:
                 // a letter can be one constant, but usually translate it simply
-                if ( constantSet != null ){
-                    // lol a constant
-                    if ( parseMathematicalConstant( constantSet, term.getTermText() ) ){
-                        return true;
-                    }
+                if (constantSet != null) {
+                    return parseMathematicalConstant(constantSet, term.getTermText());
                 }
             case digit:
             case numeric:
+            case comma:
             case minus:
             case plus:
             case equals:
@@ -216,19 +210,20 @@ public class MathTermTranslator extends AbstractListTranslator {
             case greater_than: // all above should translated directly, right?
                 localTranslations.addTranslatedExpression(term.getTermText());
                 getGlobalTranslationList().addTranslatedExpression(term.getTermText());
-                return true;
+                return localTranslations;
             case left_parenthesis: // the following should not reached!
             case left_bracket:
             case left_brace:
             case right_parenthesis:
             case right_bracket:
             case right_brace:
-                LOG.error("MathTermTranslator don't expected brackets but found "
-                        + term.getTermText());
-                return false;
+                throw buildException(
+                        "MathTermTranslator don't expected brackets but found " + term.getTermText(),
+                        TranslationExceptionReason.IMPLEMENTATION_ERROR
+                );
             case at:
                 // simply ignore it...
-                return true;
+                break;
             case constant:
                 // a constant in this state is simply not a command
                 // so there is no \ in front of the text.
@@ -237,56 +232,52 @@ public class MathTermTranslator extends AbstractListTranslator {
             case alphanumeric:
                 // check first, if it is a constant or Greek letter
                 String alpha = term.getTermText();
-                if ( FeatureSetUtility.isGreekLetter( term ) ){
-                    if ( constantSet != null ){
-                        constantVsLetter( constantSet, term );
+                if (FeatureSetUtility.isGreekLetter(term)) {
+                    if (constantSet != null) {
+                        constantVsLetter(constantSet, term);
                     }
-                    return parseGreekLetter( alpha );
+                    return parseGreekLetter(alpha);
                 }
 
-                if ( constantSet != null ){
+                if (constantSet != null) {
                     try {
                         PomTaggedExpression next = following_exp.get(0);
                         MathTerm possibleCaret = next.getRoot();
                         MathTermTags tagPossibleCaret =
                                 MathTermTags.getTagByKey(possibleCaret.getTag());
-                        if ( alpha.matches("\\\\expe") &&
-                                MathTermTags.caret.equals(tagPossibleCaret) ){
+                        if (alpha.matches("\\\\expe") &&
+                                MathTermTags.caret.equals(tagPossibleCaret)) {
                             // translate as exp(...) and not exp(1)^{...}
-                            return parseExponentialFunction( following_exp );
-                        } else return parseMathematicalConstant( constantSet, alpha );
-                    } catch ( IndexOutOfBoundsException | NullPointerException e ){
-                        return parseMathematicalConstant( constantSet, alpha );
+                            return parseExponentialFunction(following_exp);
+                        } else {
+                            return parseMathematicalConstant(constantSet, alpha);
+                        }
+                    } catch (IndexOutOfBoundsException | NullPointerException e) {
+                        return parseMathematicalConstant(constantSet, alpha);
                     }
                 }
 
                 String output;
                 // add multiplication symbol between all letters
-                for ( int i = 0; i < alpha.length()-1; i++ ) {
+                for (int i = 0; i < alpha.length() - 1; i++) {
                     output = alpha.charAt(i) + getConfig().getMULTIPLY();
                     // add it to local and global
-                    localTranslations.addTranslatedExpression( output );
+                    localTranslations.addTranslatedExpression(output);
                     getGlobalTranslationList().addTranslatedExpression(output);
                 }
 
                 // add the last one, but without space
-                output = ""+alpha.charAt(alpha.length()-1);
-                localTranslations.addTranslatedExpression( output );
+                output = "" + alpha.charAt(alpha.length() - 1);
+                localTranslations.addTranslatedExpression(output);
                 getGlobalTranslationList().addTranslatedExpression(output);
-                return true;
-            case comma:
-                // in general, translate them directly
-                localTranslations.addTranslatedExpression(term.getTermText());
-                getGlobalTranslationList().addTranslatedExpression(term.getTermText());
-                return true;
+                return localTranslations;
             case modulo:
             case operation:
                 OperationTranslator opParser = new OperationTranslator(getSuperTranslator());
-                // well, maybe not the best choice
-                if ( opParser.translate( exp, following_exp ) ){
-                    localTranslations.addTranslatedExpression( opParser.getTranslatedExpressionObject() );
-                    return true;
-                } else return false;
+                localTranslations.addTranslatedExpression(
+                        opParser.translate(exp, following_exp)
+                );
+                return localTranslations;
             case factorial:
                 String last = getGlobalTranslationList().removeLastExpression();
                 last = stripMultiParentheses(last);
@@ -295,93 +286,96 @@ public class MathTermTranslator extends AbstractListTranslator {
                 String prefix = "";
                 try {
                     PomTaggedExpression next = following_exp.get(0);
-                    MathTermTags nextTag = MathTermTags.getTagByKey( next.getRoot().getTag() );
-                    if ( nextTag != null && nextTag.equals( tag ) ){
+                    MathTermTags nextTag = MathTermTags.getTagByKey(next.getRoot().getTag());
+                    if (nextTag != null && nextTag.equals(tag)) {
                         following_exp.remove(0);
                         prefix = "double ";
                     }
-                } catch ( Exception e ){
+                } catch (Exception e) {
                     prefix = "";
                 }
-                translation = translator.translate(new String[]{last}, prefix+tag.tag());
+                translation = translator.translate(new String[] {last}, prefix + tag.tag());
 
-                // probably we don't have to do anything with the local exp
-                //localTranslations.addTranslatedExpression( translation );
-                getGlobalTranslationList().addTranslatedExpression( translation );
-                return true;
+                // caution! do not add elements to localTranslations if your replaced global before
+                getGlobalTranslationList().addTranslatedExpression(translation);
+                return localTranslations;
             case caret:
-                return parseCaret( exp, following_exp );
+                return parseCaret(exp, following_exp);
             case underscore:
-                return parseUnderscores( exp );
+                return parseUnderscores(exp);
             case ordinary:
             case ellipsis:
                 String symbol;
-                if ( tag.equals(MathTermTags.ordinary) )
-                    symbol = sT.translate( term.getTermText() );
-                else symbol = sT.translateFromMLPKey( tag.tag() );
-                localTranslations.addTranslatedExpression( symbol );
-                getGlobalTranslationList().addTranslatedExpression( symbol );
-                return true;
+                if (tag.equals(MathTermTags.ordinary)) {
+                    symbol = sT.translate(term.getTermText());
+                } else {
+                    symbol = sT.translateFromMLPKey(tag.tag());
+                }
+                localTranslations.addTranslatedExpression(symbol);
+                getGlobalTranslationList().addTranslatedExpression(symbol);
+                break;
             case macro:
-                LOG.warn(
-                        "A macro? What is it? Please inform " +
-                                "Andre about this crazy shit: " +
-                                term.getTermText());
-                return false;
+                throw buildException(
+                        "There shouldn't be a macro in MathTermTranslator: " + term.getTermText(),
+                        TranslationExceptionReason.IMPLEMENTATION_ERROR
+                );
             case abbreviation:
-                throw new TranslationException(
+                throw buildExceptionObj(
                         "This program cannot translate abbreviations like " + term.getTermText(),
-                        TranslationException.Reason.ABBREVIATION
+                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                        term.getTermText()
                 );
             case spaces:
             case non_allowed:
-                LOG.debug( "Skip controlled space, such as \\!" );
-                return true;
+                LOG.debug("Skip controlled space, such as \\!");
+                break;
             case relation:
-                if ( !term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN ) ){
-                    translation = sT.translate( term.getTermText() );
-                    if(term.getTermText().equals("\\to")){
-                        if(getConfig().getTO_LANGUAGE().equals("Mathematica"))
+                if (!term.getTermText().matches(ABSOLUTE_VAL_TERM_TEXT_PATTERN)) {
+                    translation = sT.translate(term.getTermText());
+                    if (term.getTermText().equals("\\to")) {
+                        if (getConfig().getTO_LANGUAGE().equals("Mathematica")) {
                             translation = "->";
-                        else
+                        } else {
                             translation = "=";
+                        }
                     }
-                    if ( translation == null ){
-                        LOG.error("Unknown relation. Cannot translate: " + term.getTermText());
-                        return false;
+                    if (translation == null) {
+                        throw buildExceptionObj(
+                                "Unknown relation. Cannot translate: " + term.getTermText(),
+                                TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                                term.getTermText()
+                        );
                     }
                     localTranslations.addTranslatedExpression(translation);
                     getGlobalTranslationList().addTranslatedExpression(translation);
-                    return true;
+                    return localTranslations;
                 }
             case left_delimiter:
-                if ( !term.getTermText().matches( ABSOLUTE_VAL_TERM_TEXT_PATTERN ) ){
-                    LOG.error("Cannot handle delimiters here! Found: " + term.getTermText());
-                    return false;
+                if (!term.getTermText().matches(ABSOLUTE_VAL_TERM_TEXT_PATTERN)) {
+                    throw buildException("Cannot handle delimiters here! Found: " + term.getTermText(),
+                            TranslationExceptionReason.IMPLEMENTATION_ERROR);
                 }
             case fence:
                 Brackets start = Brackets.left_latex_abs_val;
                 SequenceTranslator sq = new SequenceTranslator(getSuperTranslator(), start);
-                boolean result = sq.translate( following_exp );
-                // TODO not sure if adding here is correct
-                this.localTranslations.addTranslatedExpression(sq.getTranslatedExpressionObject());
-                return result;
+                this.localTranslations.addTranslatedExpression(sq.translate(following_exp));
+                return localTranslations;
             case right_delimiter:
-                LOG.error("Should not reach right-delimiters in MathTermTranslator!");
-                return false;
+                throw buildException("Should not reach right-delimiters in MathTermTranslator!",
+                        TranslationExceptionReason.IMPLEMENTATION_ERROR);
             default:
-                throw new TranslationException(
-                        "Unknown MathTerm Tag: "
+                throw buildException("Unknown MathTerm Tag: "
                                 + term.getTag() + " for " + term.getTermText(),
-                        TranslationException.Reason.UNKNOWN_MATHTERM_TAG
-                );
+                        TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
         }
+
+        return localTranslations;
     }
 
     /**
      * Inform the user about the fact of decision we made to translate this
      * constant or Greek letter.
-     *
+     * <p>
      * This method only will invoke, if the term is a Greek letter and maybe
      * a constant. So it is maybe a constant we know how to translate but don't
      * want to (like pi but the user should use \cpi instead)
@@ -389,11 +383,11 @@ public class MathTermTranslator extends AbstractListTranslator {
      * letter anyway (for instance \alpha, could be the 2nd Feigenbaum constant).
      *
      * @param constantSet the constant feature set
-     * @param term the Greek letter term
+     * @param term        the Greek letter term
      */
-    private void constantVsLetter( FeatureSet constantSet, MathTerm term ){
+    private void constantVsLetter(FeatureSet constantSet, MathTerm term) {
         String dlmf = translateToDLMF(term.getTermText());
-        if ( dlmf == null ){
+        if (dlmf == null) {
             getInfoLogger().addGeneralInfo(
                     term.getTermText(),
                     "Could be " + DLMFFeatureValues.meaning.getFeatureValue(constantSet, CAS) + "."
@@ -419,14 +413,17 @@ public class MathTermTranslator extends AbstractListTranslator {
     /**
      * Translate a given LaTeX constant (starts with \ or not) to
      * the DLMF macro if possible.
+     *
      * @param constant in LaTeX
      * @return null or the DLMF macro for the given latex constant
      */
     @Nullable
-    private String translateToDLMF( String constant ){
+    private String translateToDLMF(String constant) {
         Constants c = getConfig().getConstantsTranslator();
-        if ( !constant.startsWith(CHAR_BACKSLASH) ) constant = CHAR_BACKSLASH + constant;
-        return c.translate( Keys.KEY_LATEX, Keys.KEY_DLMF, constant );
+        if (!constant.startsWith(CHAR_BACKSLASH)) {
+            constant = CHAR_BACKSLASH + constant;
+        }
+        return c.translate(Keys.KEY_LATEX, Keys.KEY_DLMF, constant);
     }
 
     /**
@@ -434,22 +431,22 @@ public class MathTermTranslator extends AbstractListTranslator {
      * some typical other ways to translate them. Like add \ and translate
      * it to a CAS or to DLMF macro and inform the user about all of them.
      *
-     * @param set the feature set with information about the constant
+     * @param set      the feature set with information about the constant
      * @param constant the constant itself
      * @return true if everything was fine
      */
-    private boolean parseMathematicalConstant( FeatureSet set, String constant ){
+    private TranslatedExpression parseMathematicalConstant(FeatureSet set, String constant) {
         // get the translation first and try to translate it
         Constants c = getConfig().getConstantsTranslator();
-        String translated_const = c.translate( constant );
+        String translated_const = c.translate(constant);
 
         // if it wasn't translated try some other stuff
-        if ( translated_const == null ) {
+        if (translated_const == null) {
             // try from LaTeX to CAS
             translated_const = c.translate(Keys.KEY_LATEX, CAS, constant);
-            if ( translated_const != null ){
+            if (translated_const != null) {
                 // if this works, inform the user, that we use this translation now!
-                String dlmf = c.translate( Keys.KEY_LATEX, Keys.KEY_DLMF, constant );
+                String dlmf = c.translate(Keys.KEY_LATEX, Keys.KEY_DLMF, constant);
                 getInfoLogger().addGeneralInfo(
                         constant,
                         "You use a typical letter for a constant [" +
@@ -465,10 +462,10 @@ public class MathTermTranslator extends AbstractListTranslator {
         }
 
         // still null? try to translate it as a Greek letter than if possible
-        if ( translated_const == null ){
+        if (translated_const == null) {
             try {
-                String alphabet = set.getFeature( Keys.FEATURE_ALPHABET ).first();
-                if ( alphabet.contains( Keys.FEATURE_VALUE_GREEK ) ){
+                String alphabet = set.getFeature(Keys.FEATURE_ALPHABET).first();
+                if (alphabet.contains(Keys.FEATURE_VALUE_GREEK)) {
                     getInfoLogger().addGeneralInfo(
                             constant,
                             "Unable to translate " + constant + " [" +
@@ -476,68 +473,72 @@ public class MathTermTranslator extends AbstractListTranslator {
                                     "]. But since it is a Greek letter we translated it to a Greek letter in "
                                     + CAS + "."
                     );
-                    return parseGreekLetter( constant );
+                    return parseGreekLetter(constant);
                 } else {
-                    throw new TranslationException("Cannot translate mathematical constant " +
-                            constant + " - " + set.getFeature(Keys.FEATURE_MEANINGS),
-                            TranslationException.Reason.UNKNOWN_MATH_CONSTANT);
+                    throw buildExceptionObj("Cannot translate mathematical constant " +
+                                    constant + " - " + set.getFeature(Keys.FEATURE_MEANINGS),
+                            TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                            constant);
                 }
-            } catch ( NullPointerException npe ){/* ignore it */}
+            } catch (NullPointerException npe) {/* ignore it */}
         }
 
         // anyway, finally we translated it...
-        localTranslations.addTranslatedExpression( translated_const );
+        localTranslations.addTranslatedExpression(translated_const);
         // add getGlobalTranslationList() as well
-        getGlobalTranslationList().addTranslatedExpression( translated_const );
+        getGlobalTranslationList().addTranslatedExpression(translated_const);
 
         // if there wasn't a translation at all, return true
-        if ( translated_const == null ) return true;
+        if (translated_const == null) {
+            return localTranslations;
+        }
 
-        //noinspection ConstantConditions
-        if ( translated_const.equals( constant ) ) return true;
+        if (translated_const.equals(constant)) {
+            return localTranslations;
+        }
 
         // otherwise inform the user about the translation
         getInfoLogger().addGeneralInfo(
                 constant,
                 DLMFFeatureValues.meaning.getFeatureValue(set, CAS) + " was translated to: " + translated_const
         );
-        return true;
+
+        return localTranslations;
     }
 
     /**
      * Parsing a given Greek letter.
+     *
      * @param GreekLetter the Greek letter
      * @return true if it was parsed
      */
-    private boolean parseGreekLetter( String GreekLetter ) throws TranslationException {
+    private TranslatedExpression parseGreekLetter(String GreekLetter) throws TranslationException {
         // try to translate
         GreekLetters l = getConfig().getGreekLettersTranslator();
         String translated_letter = l.translate(GreekLetter);
 
         // if it's null, maybe a \ is missing
-        if ( translated_letter == null ){
-            if ( !GreekLetter.startsWith(CHAR_BACKSLASH) ){
+        if (translated_letter == null) {
+            if (!GreekLetter.startsWith(CHAR_BACKSLASH)) {
                 GreekLetter = CHAR_BACKSLASH + GreekLetter;
                 translated_letter = l.translate(GreekLetter);
             }
         }
 
         // still null? inform the user, we cannot do more here
-        if ( translated_letter == null ){
-            throw new TranslationException("Cannot translate Greek letter "
-                    + GreekLetter,
-                    TranslationException.Reason.UNKNOWN_GREEK_LETTER);
+        if (translated_letter == null) {
+            throw buildExceptionObj("Cannot translate Greek letter " + GreekLetter,
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                    GreekLetter);
         }
 
         // otherwise add all
         localTranslations.addTranslatedExpression(translated_letter);
         getGlobalTranslationList().addTranslatedExpression(translated_letter);
-        return true;
+        return localTranslations;
     }
 
-    private static final String EXPONENTIAL_MLP_KEY = "exponential";
-
-    private boolean parseExponentialFunction( List<PomTaggedExpression> following_exp ){
+    private TranslatedExpression parseExponentialFunction(List<PomTaggedExpression> following_exp) {
         PomTaggedExpression caretPomExp = following_exp.remove(0);
         PomTaggedExpression caretChild = caretPomExp.getComponents().get(0);
 
@@ -545,21 +546,21 @@ public class MathTermTranslator extends AbstractListTranslator {
 
         BasicFunctionsTranslator ft = getConfig().getBasicFunctionsTranslator();
         String translation = ft.translate(
-                new String[]{
+                new String[] {
                         stripMultiParentheses(power.toString())
                 },
                 EXPONENTIAL_MLP_KEY
         );
 
-        getGlobalTranslationList().removeLastNExps( power.clear() );
+        getGlobalTranslationList().removeLastNExps(power.clear());
 
-        localTranslations.addTranslatedExpression( translation );
-        getGlobalTranslationList().addTranslatedExpression( translation );
+        localTranslations.addTranslatedExpression(translation);
+        getGlobalTranslationList().addTranslatedExpression(translation);
 
-        getInfoLogger().addMacroInfo( "\\expe", "Recognizes e with power as the exponential function. " +
-                "It was translated as a function." );
+        getInfoLogger().addMacroInfo("\\expe", "Recognizes e with power as the exponential function. " +
+                "It was translated as a function.");
 
-        return true;
+        return localTranslations;
     }
 
     /**
@@ -570,12 +571,12 @@ public class MathTermTranslator extends AbstractListTranslator {
      * @param exp the caret expression, it has one child for sure
      * @return true if everything was fine
      */
-    private boolean parseCaret( PomTaggedExpression exp, List<PomTaggedExpression> following_exp ){
+    private TranslatedExpression parseCaret(PomTaggedExpression exp, List<PomTaggedExpression> following_exp) {
         Brackets b = Brackets.left_parenthesis;
 
         boolean replaced = false;
         String base = getGlobalTranslationList().removeLastExpression();
-        if ( !testBrackets(base) ){
+        if (!testBrackets(base)) {
             base = b.symbol + base + b.counterpart;
             replaced = true;
         }
@@ -588,29 +589,33 @@ public class MathTermTranslator extends AbstractListTranslator {
 
         // now we need to wrap parenthesis around the power
         String powerStr = GlobalConstants.CARET_CHAR;
-        if ( !testBrackets( power.toString() ) )
-                powerStr += b.symbol + power.toString() + b.counterpart;
-        else powerStr += power.toString();
+        if (!testBrackets(power.toString())) {
+            powerStr += b.symbol + power.toString() + b.counterpart;
+        } else {
+            powerStr += power.toString();
+        }
 
         MathTerm m = new MathTerm(")", MathTermTags.right_parenthesis.tag());
         PomTaggedExpression last = new PomTaggedExpression(m);
-        if ( AbstractListTranslator.addMultiply( last, following_exp ) )
+        if (AbstractListTranslator.addMultiply(last, following_exp)) {
             powerStr += getConfig().getMULTIPLY();
+        }
 
         // the power becomes one big expression now.
-        localTranslations.addTranslatedExpression( powerStr );
+        localTranslations.addTranslatedExpression(powerStr);
         localTranslations.addAutoMergeLast(1);
 
         // remove all elements added from the power process
-        getGlobalTranslationList().removeLastNExps( power.clear() );
+        getGlobalTranslationList().removeLastNExps(power.clear());
         // and add the power with parenthesis (and the caret)
-        getGlobalTranslationList().addTranslatedExpression( powerStr );
+        getGlobalTranslationList().addTranslatedExpression(powerStr);
         // merges last 2 expression, because after ^ it is one phrase than
         getGlobalTranslationList().mergeLastNExpressions(2);
 
-        if ( replaced ) localTranslations.removeLastExpression();
-
-        return !isInnerError();
+        if (replaced) {
+            localTranslations.removeLastExpression();
+        }
+        return localTranslations;
     }
 
     /**
@@ -619,7 +624,7 @@ public class MathTermTranslator extends AbstractListTranslator {
      * @param exp the underscore expression, it has child, the subscript expression.
      * @return true if everything was fine.
      */
-    private boolean parseUnderscores( PomTaggedExpression exp ){
+    private TranslatedExpression parseUnderscores(PomTaggedExpression exp) {
         // first of all, remove the previous expression. It becomes a whole new block.
         String var = getGlobalTranslationList().removeLastExpression();
 
@@ -629,13 +634,13 @@ public class MathTermTranslator extends AbstractListTranslator {
 
         // pack it into a list of arguments. The first one is the expression with an underscore
         // the second is the underscore expression itself.
-        String[] args = new String[]{
+        String[] args = new String[] {
                 stripMultiParentheses(var),
                 stripMultiParentheses(subscript.getTranslatedExpression())
         };
 
         // remove the mess from getGlobalTranslationList() and local_exp
-        getGlobalTranslationList().removeLastNExps( subscript.clear() );
+        getGlobalTranslationList().removeLastNExps(subscript.clear());
         localTranslations.clear();
 
         // finally translate it as a function
@@ -646,7 +651,8 @@ public class MathTermTranslator extends AbstractListTranslator {
         //localTranslations.addTranslatedExpression( translation );
 
         // add our final representation for subscripts to the global lexicon
-        getGlobalTranslationList().addTranslatedExpression( translation );
-        return !isInnerError();
+//        localTranslations.addTranslatedExpression(translation);
+        getGlobalTranslationList().addTranslatedExpression(translation);
+        return localTranslations;
     }
 }
