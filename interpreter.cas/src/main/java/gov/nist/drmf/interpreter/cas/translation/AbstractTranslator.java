@@ -511,6 +511,17 @@ public abstract class AbstractTranslator implements IForwardTranslator {
 //        return false;
 //    }
 
+    public TranslationException buildExceptionObj( String message, TranslationExceptionReason reason, Object obj) {
+        TranslationException te = new TranslationException(
+                config.getFROM_LANGUAGE(),
+                config.getTO_LANGUAGE(),
+                message,
+                reason
+        );
+        te.setReasonObj(obj);
+        return te;
+    }
+
     public TranslationException buildException( String message, TranslationExceptionReason reason ) {
         return new TranslationException(
                 config.getFROM_LANGUAGE(),
