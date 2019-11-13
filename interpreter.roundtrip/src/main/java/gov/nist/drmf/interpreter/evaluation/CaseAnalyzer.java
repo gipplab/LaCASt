@@ -22,7 +22,12 @@ public class CaseAnalyzer {
     private static final Logger LOG = LogManager.getLogger(CaseAnalyzer.class.getName());
 
     private static final Pattern CONSTRAINT_LABEL_PATTERN = Pattern.compile(
-            "[\\s,;.]*(\\\\constraint\\{.*?}\\s?)?(\\\\label\\{.*})*\\s*$"
+            "[\\s,;.]*(\\\\constraint\\{.*?}\\s?)?" +
+                    "(\\\\keyphrase\\{.*?}\\s)?" +
+                    "(\\\\authorproof\\{.*?}\\s)?" +
+                    "(\\\\source.*?\\{.*?}\\s)?" +
+                    "(\\\\label\\{.*?})?\\s*" +
+                    "(\\\\ccode\\{.*?})?\\s*$"
     );
 
     private static final Pattern CONSTRAINT_SPLITTER_PATTERN = Pattern.compile(
@@ -30,7 +35,8 @@ public class CaseAnalyzer {
     );
 
     private static final int CONSTRAINT_GRP = 1;
-    private static final int LABEL_GRP = 2;
+    private static final int LABEL_GRP = 5;
+    private static final int CODE_GRP = 6;
 
     public static boolean ACTIVE_BLUEPRINTS = true;
 
@@ -55,6 +61,7 @@ public class CaseAnalyzer {
 
         String constraint = metaDataMatcher.group(CONSTRAINT_GRP);
         String label = metaDataMatcher.group(LABEL_GRP);
+        String code = metaDataMatcher.group(CODE_GRP);
 
         metaDataMatcher.appendReplacement(rawLineBuffer, "");
         metaDataMatcher.appendTail(rawLineBuffer);
@@ -69,7 +76,7 @@ public class CaseAnalyzer {
 //        }
 //        return null;
 
-        CaseMetaData metaData = extractMetaData(constraint, label, lineNumber);
+        CaseMetaData metaData = extractMetaData(constraint, label, code, lineNumber);
 
         String[] lrHS = eq.split("=");
 
@@ -113,7 +120,7 @@ public class CaseAnalyzer {
         }
     }
 
-    private static CaseMetaData extractMetaData(String constraintStr, String labelStr, int lineNumber) {
+    private static CaseMetaData extractMetaData(String constraintStr, String labelStr, String codeStr, int lineNumber) {
         // first, create label
         Label label = null;
         if ( labelStr != null ){
@@ -122,8 +129,13 @@ public class CaseAnalyzer {
             System.out.println(lineNumber + ": " + label.getHyperlink());
         }
 
+        String code = null;
+        if ( codeStr != null ){
+            code = codeStr.substring("\\\\ccode{".length()-1, codeStr.length()-1);
+        }
+
         if ( constraintStr == null )
-            return new CaseMetaData(lineNumber, label, null);
+            return new CaseMetaData(lineNumber, label, null, code);
 
         // second, build list of constraints
         LinkedList<String> cons = new LinkedList<>();
@@ -165,6 +177,6 @@ public class CaseAnalyzer {
 
         String[] conArr = sieved.stream().toArray(String[]::new);
         Constraints constraints = new Constraints(conArr, specialVars, specialVals);
-        return new CaseMetaData(lineNumber, label, constraints);
+        return new CaseMetaData(lineNumber, label, constraints, code);
     }
 }
