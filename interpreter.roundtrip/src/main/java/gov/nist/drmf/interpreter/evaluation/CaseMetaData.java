@@ -8,12 +8,14 @@ import gov.nist.drmf.interpreter.constraints.Constraints;
 public class CaseMetaData {
     private Label label;
     private Constraints constraints;
+    private String code;
     private int linenumber;
 
-    public CaseMetaData(int linenumber, Label label, Constraints constraints){
+    public CaseMetaData(int linenumber, Label label, Constraints constraints, String code){
         this.label = label;
         this.constraints = constraints;
         this.linenumber = linenumber;
+        this.code = code;
     }
 
     public Label getLabel() {
@@ -22,6 +24,10 @@ public class CaseMetaData {
 
     public Constraints getConstraints() {
         return constraints;
+    }
+
+    public String getCode() {
+        return code;
     }
 
     public int getLinenumber() {
