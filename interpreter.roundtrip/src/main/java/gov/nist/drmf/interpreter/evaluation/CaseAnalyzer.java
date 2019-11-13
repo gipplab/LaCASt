@@ -23,11 +23,11 @@ public class CaseAnalyzer {
 
     private static final Pattern CONSTRAINT_LABEL_PATTERN = Pattern.compile(
             "[\\s,;.]*(\\\\constraint\\{.*?}\\s?)?" +
-                    "(\\\\keyphrase\\{.*?}\\s)?" +
-                    "(\\\\authorproof\\{.*?}\\s)?" +
-                    "(\\\\source.*?\\{.*?}\\s)?" +
-                    "(\\\\label\\{.*?})?\\s*" +
-                    "(\\\\ccode\\{.*?})?\\s*$"
+                    "(\\\\keyphrase\\{.*?}\\s)*" +
+                    "(\\\\authorproof\\{.*}\\s)*" +
+                    "(\\\\source.*?\\{.*?}\\s)*" +
+                    "(\\\\label\\{.*?})\\s*" +
+                    "(\\\\ccode\\{.*?})\\s*$"
     );
 
     private static final Pattern CONSTRAINT_SPLITTER_PATTERN = Pattern.compile(

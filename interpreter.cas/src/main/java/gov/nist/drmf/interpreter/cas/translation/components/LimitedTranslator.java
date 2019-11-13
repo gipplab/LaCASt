@@ -40,6 +40,8 @@ public class LimitedTranslator extends AbstractListTranslator {
 
     private TranslatedExpression localTranslations;
 
+    private boolean indef = false;
+
     public LimitedTranslator(AbstractTranslator superTranslator) {
         super(superTranslator);
         this.localTranslations = new TranslatedExpression();
@@ -83,6 +85,11 @@ public class LimitedTranslator extends AbstractListTranslator {
                 break;
         }
 
+        if ( this.indef ) {
+            // when there are no limits, we accidentally removed the first argument -> rollback
+            list.add(0, limitExpression);
+        }
+
         List<PomTaggedExpression> potentialArguments = getPotentialArgumentsUntilEndOfScope(
                 list,
                 limit.getVars(),
@@ -110,8 +117,6 @@ public class LimitedTranslator extends AbstractListTranslator {
                 );
 
         int lastIdx = limit.getVars().size()-1;
-
-
 
         // start with inner -> last elements in limit
         String finalTranslation = translatePattern(
@@ -147,6 +152,13 @@ public class LimitedTranslator extends AbstractListTranslator {
     }
 
     private String translatePattern(Limits limit, int idx, String arg, LimitedExpressions category) {
+        if ( indef ) {
+            String[] args = new String[]{
+                    limit.getVars().get(idx),
+                    arg
+            };
+            return bft.translate(args, category.getIndefKey());
+        }
         if ( !limit.isLimitOverSet() ) {
             if ( limit.getDirection() != null ) {
                 String[] args = new String[]{
@@ -195,7 +207,16 @@ public class LimitedTranslator extends AbstractListTranslator {
 
     private Limits extractIntegralLimits(PomTaggedExpression limitSuperExpr, AbstractTranslator parentTranslator) {
         LinkedList<PomTaggedExpression> upperBound = new LinkedList<>();
-        PomTaggedExpression lower = getLowerUpper(limitSuperExpr, upperBound, parentTranslator);
+        PomTaggedExpression lower = getLowerUpper(limitSuperExpr, upperBound, parentTranslator, true);
+
+        if ( lower == null ) {
+            this.indef = true;
+            return new Limits(
+                    new LinkedList<>(),
+                    new LinkedList<>(),
+                    new LinkedList<>()
+            );
+        }
 
         TranslatedExpression upperTrans = translateInnerExp(upperBound.removeFirst(), upperBound);
         TranslatedExpression lowerTrans = translateInnerExp(lower, new LinkedList<>());
@@ -215,7 +236,7 @@ public class LimitedTranslator extends AbstractListTranslator {
             boolean lim,
             BlueprintMaster btm,
             AbstractTranslator parentTranslator) {
-        PomTaggedExpression limitExpression = getLowerUpper(limitSuperExpr, upperBound, parentTranslator);
+        PomTaggedExpression limitExpression = getLowerUpper(limitSuperExpr, upperBound, parentTranslator, false);
 
         // now we have limitExpression and an optional upperBound. Parse it:
         return btm.findMatchingLimit(lim, limitExpression);
@@ -224,7 +245,8 @@ public class LimitedTranslator extends AbstractListTranslator {
     private static PomTaggedExpression getLowerUpper(
             PomTaggedExpression limitSuperExpr,
             List<PomTaggedExpression> upperBound,
-            AbstractTranslator parentTranslator
+            AbstractTranslator parentTranslator,
+            boolean allowIndefinite
     ) {
         MathTerm term = limitSuperExpr.getRoot();
 
@@ -234,7 +256,8 @@ public class LimitedTranslator extends AbstractListTranslator {
         if ( term != null && !term.isEmpty() ) {
             MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
             if ( !tag.equals(MathTermTags.underscore) ) {
-                throw parentTranslator.buildException(
+                if ( allowIndefinite ) return null;
+                else throw parentTranslator.buildException(
                         "Illegal expression followed a limited expression: " + term.getTermText(),
                         TranslationExceptionReason.INVALID_LATEX_INPUT);
             }
@@ -254,7 +277,8 @@ public class LimitedTranslator extends AbstractListTranslator {
                     }
                 }
             } else {
-                throw parentTranslator.buildException(
+                if ( allowIndefinite ) return null;
+                else throw parentTranslator.buildException(
                         "A limited expression without limits is not allowed: " + term.getTermText(),
                         TranslationExceptionReason.INVALID_LATEX_INPUT);
             }

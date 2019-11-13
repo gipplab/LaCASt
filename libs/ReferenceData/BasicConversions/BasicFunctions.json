@@ -96,6 +96,12 @@
       "Maple": "int($3, $0 = $1..$2)",
       "Mathematica": "Integrate[$3, {$0, $1, $2}]"
     },
+    "IntegralIndef": {
+      "MLP": "intIndef",
+      "LaTeX": "\\int{$1} \\diff{$0}",
+      "Maple": "int($1, $0)",
+      "Mathematica": "Integrate[$1, $0]"
+    },
     "Derivative": {
       "MLP": "derivative",
       "LaTeX": "\\deriv[$2]{$0}{$1}",

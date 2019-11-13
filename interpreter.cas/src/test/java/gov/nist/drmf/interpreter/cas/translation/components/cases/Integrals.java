@@ -16,6 +16,11 @@ public enum Integrals implements ForwardTestCase {
             "int(x, x = 0..1)",
             "Integrate[x, {x, 0, 1}]"
     ),
+    SIMPLE_INDEF(
+            "\\int \\sin@{x} \\diff{x}",
+            "int(sin(x), x)",
+            "Integrate[Sin[x], x]"
+    ),
     SIMPLE_REVERSE(
             "\\int^{1}_0 x \\diff{x}",
             "int(x, x = 0..1)",
