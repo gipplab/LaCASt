@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation;
 
+import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.constraints.Constraints;
 import gov.nist.drmf.interpreter.constraints.MLPConstraintAnalyzer;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
@@ -21,13 +22,17 @@ public class CaseAnalyzer {
 
     private static final Logger LOG = LogManager.getLogger(CaseAnalyzer.class.getName());
 
-    private static final Pattern CONSTRAINT_LABEL_PATTERN = Pattern.compile(
-            "[\\s,;.]*(\\\\constraint\\{.*?}\\s?)?" +
-                    "(\\\\keyphrase\\{.*?}\\s)*" +
-                    "(\\\\authorproof\\{.*}\\s)*" +
-                    "(\\\\source.*?\\{.*?}\\s)*" +
-                    "(\\\\label\\{.*?})\\s*" +
-                    "(\\\\ccode\\{.*?})\\s*$"
+    private static final Pattern META_INFO_PATTERN = Pattern.compile(
+                    "\\\\constraint\\{(.*?)}|" +
+                    "\\\\label\\{(.*?)}|" +
+                    "\\\\ccode\\{(.*?)}|" +
+                    "\\\\source|\\\\authorproof|\\\\keyphrase|\\\\cite"
+    );
+
+    private static final String EOL = "<EOL>";
+
+    private static final Pattern END_OF_MATH_MATCHER = Pattern.compile(
+            "^(.*?)[\\\\,;.\\s]*"+EOL+".*$"
     );
 
     private static final Pattern CONSTRAINT_SPLITTER_PATTERN = Pattern.compile(
@@ -35,8 +40,8 @@ public class CaseAnalyzer {
     );
 
     private static final int CONSTRAINT_GRP = 1;
-    private static final int LABEL_GRP = 5;
-    private static final int CODE_GRP = 6;
+    private static final int LABEL_GRP = 2;
+    private static final int CODE_GRP = 3;
 
     public static boolean ACTIVE_BLUEPRINTS = true;
 
@@ -50,92 +55,138 @@ public class CaseAnalyzer {
      * @param lineNumber the current line number of this test case
      * @return Case object
      */
-    public static Case analyzeLine( String line, int lineNumber ){
-        StringBuffer rawLineBuffer = new StringBuffer();
-
-        Matcher metaDataMatcher = CONSTRAINT_LABEL_PATTERN.matcher(line);
-
-        if ( !metaDataMatcher.find() ){
-            throw new IllegalArgumentException("Cannot analyze line! " + line);
+    public static LinkedList<Case> analyzeLine( String line, int lineNumber ){
+        if ( line.contains("\\pm") || line.contains("\\mp") ) {
+            String one = line.replaceAll("\\\\pm", "+");
+            one = one.replaceAll("\\\\mp", "-");
+            String two = line.replaceAll("\\\\pm", "-");
+            two = two.replaceAll("\\\\mp", "+");
+            LinkedList<Case> firstCases = analyzeLine(one, lineNumber);
+            LinkedList<Case> secondCases = analyzeLine(two, lineNumber);
+            firstCases.addAll(secondCases);
+            return firstCases;
         }
 
-        String constraint = metaDataMatcher.group(CONSTRAINT_GRP);
-        String label = metaDataMatcher.group(LABEL_GRP);
-        String code = metaDataMatcher.group(CODE_GRP);
+        Matcher metaDataMatcher = META_INFO_PATTERN.matcher(line);
+        StringBuffer mathSB = new StringBuffer();
 
-        metaDataMatcher.appendReplacement(rawLineBuffer, "");
-        metaDataMatcher.appendTail(rawLineBuffer);
+        String constraint = null;
+        String label = null;
+        String code = null;
 
-        String eq = rawLineBuffer.toString();
+        while( metaDataMatcher.find() ) {
+            if ( metaDataMatcher.group(CONSTRAINT_GRP) != null ) {
+                constraint = metaDataMatcher.group(CONSTRAINT_GRP);
+            } else if ( metaDataMatcher.group(LABEL_GRP) != null ) {
+                label = metaDataMatcher.group(LABEL_GRP);
+            } else if ( metaDataMatcher.group(CODE_GRP) != null ) {
+                code = metaDataMatcher.group(CODE_GRP);
+            }
+            metaDataMatcher.appendReplacement(mathSB, EOL);
+        }
 
-//        try {
-//            NumericalEvaluator.getTranslator().translateFromLaTeXToMapleClean(eq);
-//            System.out.println(lineNumber + " SUCCESS");
-//        } catch ( Exception e ){
-//            System.out.println(lineNumber + " ERROR");
-//        }
-//        return null;
+        metaDataMatcher.appendTail(mathSB);
 
+        Matcher mathMatcher = END_OF_MATH_MATCHER.matcher(mathSB.toString());
+        if ( !mathMatcher.matches() )
+            throw new IllegalArgumentException("Cannot analyze line! " + line);
+
+        String eq = mathMatcher.group(1);
         CaseMetaData metaData = extractMetaData(constraint, label, code, lineNumber);
 
-        String[] lrHS = eq.split("=");
+        LinkedList<Case> cases = equationSplitter(eq, metaData);
+        return cases;
+    }
 
-        if ( lrHS.length == 2 ){
-            return new Case( lrHS[0], lrHS[1], Relations.EQUAL, metaData );
-        } else {
-            String[] f = null;
-            Relations rel = null;
-            if ( eq.contains("<") ){
-                f = eq.split( "<" );
-                rel = Relations.LESS_THAN;
-            } else if ( eq.matches(".*\\\\leq[^a-zA-Z].*") ){
-                f = eq.split( "\\\\leq[^a-zA-Z]" );
-                rel = Relations.LESS_EQ_THAN;
-            } else if ( eq.matches(".*\\\\le[^a-zA-Z].*") ){
-                f = eq.split( "\\\\le[^a-zA-Z]" );
-                rel = Relations.LESS_EQ_THAN;
-            } else if ( eq.contains( ">" ) ){
-                f = eq.split( ">" );
-                rel = Relations.GREATER_THAN;
-            } else if ( eq.matches( ".*\\\\geq[^a-zA-Z].*" ) ){
-                f = eq.split( "\\\\geq[^a-zA-Z]" );
-                rel = Relations.GREATER_EQ_THAN;
-            } else if ( eq.matches(".*\\\\ge[^a-zA-Z].*") ){
-                f = eq.split( "\\\\ge[^a-zA-Z]" );
-                rel = Relations.GREATER_EQ_THAN;
-            } else if ( eq.matches( ".*\\\\neq[^a-zA-Z].*" ) ){
-                f = eq.split( "\\\\neq[^a-zA-Z]" );
-                rel = Relations.UNEQUAL;
-            } else if ( eq.matches( ".*\\\\ne[^a-zA-Z].*" ) ){
-                f = eq.split( "\\\\ne[^a-zA-Z]" );
-                rel = Relations.UNEQUAL;
+    private static Pattern RELATION_MATCHER = Pattern.compile(
+            "(\\s*[<>=][<>=]?|\\s*\\\\[ngl]eq?)[^a-zA-Z]\\s*|\\s*([()\\[\\]{}|])\\s*"
+    );
+
+    public static LinkedList<Case> equationSplitter( String latex, CaseMetaData metaData ) {
+        LinkedList<Brackets> bracketStack = new LinkedList<>();
+        LinkedList<String> parts = new LinkedList<>();
+        LinkedList<Relations> rels = new LinkedList<>();
+
+        StringBuffer bf = new StringBuffer();
+
+        Matcher relM = RELATION_MATCHER.matcher(latex);
+        while ( relM.find() ) {
+            if ( relM.group(1) != null ) {
+                String relStr = relM.group(1);
+                Relations rel = getRelation(relStr);
+                if ( rel == null ) {
+                    return null;
+                }
+
+                if ( bracketStack.isEmpty() ){
+                    relM.appendReplacement(bf, "");
+                    String p = bf.toString();
+                    p = p.trim();
+                    parts.addLast(p);
+                    rels.addLast(rel);
+                    bf = new StringBuffer(); // reset buffer
+                } else {
+//                    relM.appendReplacement(bf, relStr);
+                }
+            } else if ( relM.group(2) != null ) {
+                String relStr = relM.group(2);
+                Brackets b = Brackets.getBracket(relStr);
+                if ( !bracketStack.isEmpty() ){
+                    Brackets last = bracketStack.getLast();
+                    if ( last.opened && last.counterpart.equals(b.symbol) ) {
+                        bracketStack.removeLast();
+                    } else bracketStack.addLast(b);
+                } else bracketStack.addLast(b);
             }
-
-            if ( f == null || f.length < 2 ){
-                LOG.warn("Line cannot be split into LHS and RHS and therefore will be skipped: " + lineNumber );
-                return null;
-            }
-
-            return new Case(f[0], f[1], rel, metaData);
         }
+
+        relM.appendTail(bf);
+        parts.add( bf.toString() );
+
+        LinkedList<Case> cases = new LinkedList<>();
+        while ( !rels.isEmpty() ) {
+            Relations r = rels.removeFirst();
+            String left = parts.removeFirst();
+            String right = parts.get(0);
+            cases.add(new Case(left, right, r, metaData));
+        }
+
+        return cases;
+    }
+
+    public static Relations getRelation(String eq) {
+        if ( eq.matches(".*(?:\\\\leq?|<=).*") ){
+            return Relations.LESS_EQ_THAN;
+        }
+        else if ( eq.matches( ".*(?:\\\\geq?|=>).*" ) ){
+            return Relations.GREATER_EQ_THAN;
+        }
+        else if ( eq.matches( ".*(?:\\\\neq?|<>).*" ) ){
+            return Relations.UNEQUAL;
+        }
+        else if ( eq.contains("<") ){
+            return Relations.LESS_THAN;
+        }
+        else if ( eq.contains( ">" ) ){
+            return Relations.GREATER_THAN;
+        }
+        else if ( eq.contains( "=" ) ) {
+            return Relations.EQUAL;
+        }
+        else return null;
     }
 
     private static CaseMetaData extractMetaData(String constraintStr, String labelStr, String codeStr, int lineNumber) {
         // first, create label
         Label label = null;
         if ( labelStr != null ){
-            labelStr = labelStr.substring("\\\\label{".length()-1, labelStr.length()-1);
+//            labelStr = labelStr.substring("\\\\label{".length()-1, labelStr.length()-1);
             label = new Label(labelStr);
             System.out.println(lineNumber + ": " + label.getHyperlink());
         }
 
-        String code = null;
-        if ( codeStr != null ){
-            code = codeStr.substring("\\\\ccode{".length()-1, codeStr.length()-1);
-        }
-
         if ( constraintStr == null )
-            return new CaseMetaData(lineNumber, label, null, code);
+            return new CaseMetaData(lineNumber, label, null, codeStr);
 
         // second, build list of constraints
         LinkedList<String> cons = new LinkedList<>();
@@ -177,6 +228,6 @@ public class CaseAnalyzer {
 
         String[] conArr = sieved.stream().toArray(String[]::new);
         Constraints constraints = new Constraints(conArr, specialVars, specialVals);
-        return new CaseMetaData(lineNumber, label, constraints, code);
+        return new CaseMetaData(lineNumber, label, constraints, codeStr);
     }
 }

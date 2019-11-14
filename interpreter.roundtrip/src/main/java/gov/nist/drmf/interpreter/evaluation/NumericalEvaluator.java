@@ -205,17 +205,25 @@ public class NumericalEvaluator implements Observer {
 //                        }
 //                        return true;
 //                    })
-                    .map(l -> {
-                        Case c = CaseAnalyzer.analyzeLine(l, currLine[0]);
-                        if ( c != null ) labelLib.put( c.getLine(), c.getDlmf() );
-                        return c;
+                    .flatMap(l -> {
+                        LinkedList<Case> cc = CaseAnalyzer.analyzeLine(l, currLine[0]);
+                        if ( cc != null && !cc.isEmpty() ) {
+                            Case c = cc.get(0);
+                            labelLib.put( c.getLine(), c.getDlmf() );
+                            return cc.stream();
+                        } else {
+                            System.out.println(currLine[0] + ": unable to extract test case.");
+                            skippedLinesInfo.put( currLine[0], "Skipped - Because of NULL element after parsing line." );
+                            Status.SKIPPED.add();
+                            return null;
+                        }
                     })
                     .filter( c -> {
                         boolean n = Objects.nonNull( c );
-                        if ( !n ){
-                            skippedLinesInfo.put( currLine[0], "Skipped - Because of NULL element after parsing line." );
-                            Status.SKIPPED.add();
-                        }
+//                        if ( !n ){
+//                            skippedLinesInfo.put( currLine[0], "Skipped - Because of NULL element after parsing line." );
+//                            Status.SKIPPED.add();
+//                        }
                         return n;
                     })
                     .forEach(testCases::add);
@@ -507,7 +515,7 @@ public class NumericalEvaluator implements Observer {
         evaluator.init();
         if(args.length>0){
             evaluator.testCases = new LinkedList<>();
-            evaluator.testCases.add(
+            evaluator.testCases.addAll(
              //Note: Each instantiation of NumericalEvaluator overwrites the static variable labelLinker
              CaseAnalyzer.analyzeLine(args[0], 0)
             );

@@ -37,7 +37,7 @@ public class SymbolicEvaluator extends NumericalEvaluator {
     private HashMap<Integer, String> labelLib;
     private Set<String> skips;
 
-    private String[] lineResults;
+    private LinkedList<String>[] lineResults;
 
     /**
      * Creates an object for numerical evaluations.
@@ -111,13 +111,18 @@ public class SymbolicEvaluator extends NumericalEvaluator {
 
         if ( skips.contains(Integer.toString(c.getLine())) ) {
             LOG.info("Skip because long running evaluation.");
-            lineResults[c.getLine()] = "Skipped - Long running test";
+            lineResults[c.getLine()].add("Skipped - Long running test");
             Status.SKIPPED.add();
             return c.getLine() + ": " + lineResults[c.getLine()];
         }
 
         if ( lineResults == null ){
-            lineResults = getLineResults();
+            String[] old = getLineResults();
+            lineResults = new LinkedList[old.length];
+            for ( int i = 0; i < old.length; i++ ) {
+                lineResults[i] = new LinkedList<String>();
+                if ( old[i] != null ) lineResults[i].add(old[i]);
+            }
         }
 
         try {
@@ -203,7 +208,7 @@ public class SymbolicEvaluator extends NumericalEvaluator {
             // if one of the above is true -> we are done
             for ( int i = 0; i < success.length; i++ ){
                 if ( success[i] ){
-                    lineResults[c.getLine()] = "Successful " + Arrays.toString(successStr);
+                    lineResults[c.getLine()].add("Successful " + Arrays.toString(successStr));
                     Status.SUCCESS.add();
 
                     // garbage collection
@@ -216,7 +221,7 @@ public class SymbolicEvaluator extends NumericalEvaluator {
                         LOG.fatal("Cannot call Maple's garbage collector!", me);
                     }
 
-                    return lineResults[c.getLine()];
+                    return lineResults[c.getLine()].getLast();
                 }
             }
 
@@ -229,11 +234,11 @@ public class SymbolicEvaluator extends NumericalEvaluator {
             } catch ( MapleException me ){
                 LOG.fatal("Cannot call Maple's garbage collector!", me);
             }
-            lineResults[c.getLine()] = "Failure " + Arrays.toString(successStr);
+            lineResults[c.getLine()].add("Failure " + Arrays.toString(successStr));
             Status.FAILURE.add();
         } catch ( Exception e ){
             LOG.warn("Error for line " + c.getLine() + ", because: " + e.toString(), e);
-            lineResults[c.getLine()] = "Error - " + e.toString();
+            lineResults[c.getLine()].add("Error - " + e.toString());
             Status.ERROR.add();
         } finally {
 //            // garbage collection
@@ -265,6 +270,49 @@ public class SymbolicEvaluator extends NumericalEvaluator {
                 config.getSubset(),
                 lineResults
         );
+    }
+
+    protected static String buildResults(
+            String intro,
+            HashMap<Integer, String> labelLib,
+            boolean showDLMF,
+            int[] limits,
+            LinkedList<String>[] lineResults){
+        StringBuffer sb = new StringBuffer(intro);
+
+        int start = limits[0];
+        int limit = limits[1];
+
+        for ( int i = start; i < lineResults.length && i < limit; i++ ){
+            sb.append(i);
+
+            LinkedList<String> lineResult = lineResults[i];
+            boolean first = true;
+            Character c = 'a';
+
+            if ( lineResults[i] == null ){
+                sb.append(": Skipped (is null)").append(NL);
+                return sb.toString();
+            }
+
+            for ( String s : lineResult ) {
+                if ( !first ) {
+                    sb.append(i+"-"+c);
+                    c++;
+                } else first = false;
+
+                String dlmf = labelLib.get(i);
+                if ( dlmf != null && showDLMF ){
+                    sb.append(" [").append(dlmf).append("]: ");
+                } else sb.append(": ");
+
+                sb.append(s);
+                sb.append(NL);
+            }
+
+
+        }
+        return sb.toString();
     }
 
     public static void main(String[] args) throws Exception {
