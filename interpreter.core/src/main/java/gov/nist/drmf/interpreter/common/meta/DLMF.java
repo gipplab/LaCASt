@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * An annotation to show which tests come from DLMF
  * @author Andre Greiner-Petter
  */
-@Target({ElementType.FIELD})
+@Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface DLMF {
     String value() default "";

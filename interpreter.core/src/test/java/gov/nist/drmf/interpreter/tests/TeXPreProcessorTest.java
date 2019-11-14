@@ -45,9 +45,13 @@ public class TeXPreProcessorTest {
 
     @Test
     public void numericalTest(){
-        String input = "2.03\\;04\\,33 1";
-        String expect = "2.0304331";
+        String input = "2.03\\;04\\,33 1\\* x";
+        String i = "2.71828 \\ 18284 \\ 59045 \\  23536";
+        String expect = "2.0304331* x";
+        String iExp = "2.71828182845904523536";
         String output = TeXPreProcessor.preProcessingTeX( input );
+        String iOut = TeXPreProcessor.preProcessingTeX( i );
         assertEquals( expect, output);
+        assertEquals( iExp, iOut);
     }
 }

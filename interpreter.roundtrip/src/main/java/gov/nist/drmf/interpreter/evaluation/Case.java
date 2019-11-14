@@ -86,9 +86,13 @@ public class Case {
         return con.toString();
     }
 
+    public CaseMetaData getMetaData() {
+        return metaData;
+    }
+
     @Override
     public String toString(){
-        String s = getLine() + ": " + LHS + relation + RHS + "; ";
+        String s = getLine() + ": " + LHS + " " + relation + " " + RHS + "; ";
 //        s += metaData.getConstraints().toString();
         s += getDlmf();
         return s;
