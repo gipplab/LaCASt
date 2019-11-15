@@ -56,17 +56,6 @@ public class CaseAnalyzer {
      * @return Case object
      */
     public static LinkedList<Case> analyzeLine( String line, int lineNumber ){
-        if ( line.contains("\\pm") || line.contains("\\mp") ) {
-            String one = line.replaceAll("\\\\pm", "+");
-            one = one.replaceAll("\\\\mp", "-");
-            String two = line.replaceAll("\\\\pm", "-");
-            two = two.replaceAll("\\\\mp", "+");
-            LinkedList<Case> firstCases = analyzeLine(one, lineNumber);
-            LinkedList<Case> secondCases = analyzeLine(two, lineNumber);
-            firstCases.addAll(secondCases);
-            return firstCases;
-        }
-
         Matcher metaDataMatcher = META_INFO_PATTERN.matcher(line);
         StringBuffer mathSB = new StringBuffer();
 
@@ -88,18 +77,35 @@ public class CaseAnalyzer {
         metaDataMatcher.appendTail(mathSB);
 
         Matcher mathMatcher = END_OF_MATH_MATCHER.matcher(mathSB.toString());
-        if ( !mathMatcher.matches() )
-            throw new IllegalArgumentException("Cannot analyze line! " + line);
+        String eq = "";
+        if ( !mathMatcher.matches() ){
+            eq = mathSB.toString();
+//            throw new IllegalArgumentException("Cannot analyze line! " + line);
+        } else eq = mathMatcher.group(1);
 
-        String eq = mathMatcher.group(1);
+        if ( eq.matches(".*\\\\[cl]?dots.*") ) {
+            LOG.error("Test case " + lineNumber + " contains dots -> a translation does not make sense. -> SKIP");
+            return null;
+        }
+
         CaseMetaData metaData = extractMetaData(constraint, label, code, lineNumber);
 
-        LinkedList<Case> cases = equationSplitter(eq, metaData);
-        return cases;
+        if ( eq.contains("\\pm") || eq.contains("\\mp") ) {
+            String one = eq.replaceAll("\\\\pm", "+");
+            one = one.replaceAll("\\\\mp", "-");
+            String two = eq.replaceAll("\\\\pm", "-");
+            two = two.replaceAll("\\\\mp", "+");
+            LinkedList<Case> firstCases = equationSplitter(one, metaData);
+            LinkedList<Case> secondCases = equationSplitter(two, metaData);
+            firstCases.addAll(secondCases);
+            return firstCases;
+        } else {
+            return equationSplitter(eq, metaData);
+        }
     }
 
     private static Pattern RELATION_MATCHER = Pattern.compile(
-            "(\\s*[<>=][<>=]?|\\s*\\\\[ngl]eq?)[^a-zA-Z]\\s*|\\s*([()\\[\\]{}|])\\s*"
+            "\\s*(?:([<>=][<>=]?)|(\\\\[ngl]eq?)[^a-zA-Z]|([()\\[\\]{}|]))\\s*"
     );
 
     public static LinkedList<Case> equationSplitter( String latex, CaseMetaData metaData ) {
@@ -111,8 +117,8 @@ public class CaseAnalyzer {
 
         Matcher relM = RELATION_MATCHER.matcher(latex);
         while ( relM.find() ) {
-            if ( relM.group(1) != null ) {
-                String relStr = relM.group(1);
+            if ( relM.group(1) != null || relM.group(2) != null ) {
+                String relStr = relM.group(1) != null ? relM.group(1) : relM.group(2);
                 Relations rel = getRelation(relStr);
                 if ( rel == null ) {
                     return null;
@@ -125,11 +131,9 @@ public class CaseAnalyzer {
                     parts.addLast(p);
                     rels.addLast(rel);
                     bf = new StringBuffer(); // reset buffer
-                } else {
-//                    relM.appendReplacement(bf, relStr);
                 }
-            } else if ( relM.group(2) != null ) {
-                String relStr = relM.group(2);
+            } else if ( relM.group(3) != null ) {
+                String relStr = relM.group(3);
                 Brackets b = Brackets.getBracket(relStr);
                 if ( !bracketStack.isEmpty() ){
                     Brackets last = bracketStack.getLast();

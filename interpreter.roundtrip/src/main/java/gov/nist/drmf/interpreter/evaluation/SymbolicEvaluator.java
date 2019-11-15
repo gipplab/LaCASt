@@ -5,6 +5,7 @@ import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.Numeric;
 import gov.nist.drmf.interpreter.MapleSimplifier;
 import gov.nist.drmf.interpreter.MapleTranslator;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -212,40 +213,45 @@ public class SymbolicEvaluator extends NumericalEvaluator {
                     Status.SUCCESS.add();
 
                     // garbage collection
-                    try {
-                        if ( getGcCaller() % 10 == 0 ) {
-                            translator.forceGC();
-                            resetGcCaller();
-                        } else stepGcCaller();
-                    } catch ( MapleException me ){
-                        LOG.fatal("Cannot call Maple's garbage collector!", me);
-                    }
+//                    try {
+//                        if ( getGcCaller() % 2 == 0 ) {
+//                            translator.forceGC();
+//                            resetGcCaller();
+//                        } else stepGcCaller();
+//                    } catch ( MapleException me ){
+//                        LOG.fatal("Cannot call Maple's garbage collector!", me);
+//                    }
 
                     return lineResults[c.getLine()].getLast();
                 }
             }
 
             // garbage collection
+//            try {
+//                if ( getGcCaller() % 2 == 0 ) {
+//                    translator.forceGC();
+//                    resetGcCaller();
+//                } else stepGcCaller();
+//            } catch ( MapleException me ){
+//                LOG.fatal("Cannot call Maple's garbage collector!", me);
+//            }
+            lineResults[c.getLine()].add("Failure " + Arrays.toString(successStr));
+            Status.FAILURE.add();
+        } catch ( Exception e ){
+            LOG.warn("Error for line " + c.getLine() + ", because: " + e.toString(), e);
+            if ( e instanceof TranslationException)
+                lineResults[c.getLine()].add("Error - " + e.toString());
+            else lineResults[c.getLine()].add("Error - " + e.toString() + " [" + c.toString() + "]");
+            Status.ERROR.add();
+        } finally {
             try {
-                if ( getGcCaller() % 10 == 0 ) {
+                if ( getGcCaller() % 1 == 0 ) {
                     translator.forceGC();
                     resetGcCaller();
                 } else stepGcCaller();
             } catch ( MapleException me ){
                 LOG.fatal("Cannot call Maple's garbage collector!", me);
             }
-            lineResults[c.getLine()].add("Failure " + Arrays.toString(successStr));
-            Status.FAILURE.add();
-        } catch ( Exception e ){
-            LOG.warn("Error for line " + c.getLine() + ", because: " + e.toString(), e);
-            lineResults[c.getLine()].add("Error - " + e.toString());
-            Status.ERROR.add();
-        } finally {
-//            // garbage collection
-//            try { translator.forceGC(); }
-//            catch ( MapleException me ){
-//                LOG.fatal("Cannot call Maple's garbage collector!", me);
-//            }
         }
         return c.getLine() + ": " + lineResults[c.getLine()];
     }
