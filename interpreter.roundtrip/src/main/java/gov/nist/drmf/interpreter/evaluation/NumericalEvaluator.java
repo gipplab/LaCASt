@@ -25,7 +25,7 @@ import java.util.stream.Stream;
 /**
  * @author Andre Greiner-Petter
  */
-public class NumericalEvaluator implements Observer {
+public class NumericalEvaluator {//implements Observer {
 
     private static final Logger LOG = LogManager.getLogger(NumericalEvaluator.class.getName());
 
@@ -538,9 +538,9 @@ public class NumericalEvaluator implements Observer {
         this.gcCaller = 0;
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        LOG.info("Observed memory limit was reached. Restart maple session soon!");
-        requestedRestart = true;
-    }
+//    @Override
+//    public void update(Observable o, Object arg) {
+//        LOG.info("Observed memory limit was reached. Restart maple session soon!");
+//        requestedRestart = true;
+//    }
 }
