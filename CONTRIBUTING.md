@@ -1,59 +1,57 @@
 # Contributing to LaTeX-Grammar
 
-# Rules
+# General Rules
 1. It is strictly prohibited to share any files from this repository without permission!
 2. Do not push to the master branch of the project. Please checkout a different branch and create a pull request!
 
 ## Structure
-1. [How to start?](#start)
+1. [Setup Project](#start)
 2. [Goals for the summer extensions](#summer-extensions)
 3. [Update or add a new CAS to the translation process](#howToUpdate)
 4. [The program structure and important main classes](#program)
 5. [Troubleshooting](#troubleshooting)
 
-## How to start?<a name="start"></a>
-#### Setup SSH for git
+## Setup Project<a name="start"></a>
+#### 1. Setup SSH for git
 * These steps only need to be done once
 * If you don't have a private-public ssh key authentication setup then generate a private key and upload it to GitHub
 * Run <code>ssh-keygen</code>
 * Display the public key by executing <code>cat ~/.ssh/id_rsa.pub</code>
-* Copy all of the code and paste it to your GitHub -> Settings -> SSH keys, namely https://github.com/settings/keys. Do this by hitting <code>New SSH key</code> button.
+* Copy all of the output and paste it to your GitHub -> Settings -> SSH keys, namely https://github.com/settings/keys. Do this by hitting <code>New SSH key</code> button.
 
-Set up git username and email
+#### 2. Setup Git
 * Make sure to do this before you do your first commit otherwise you will have problems
 * Run <code>git config --global user.name "YOUR NAME"</code> to set the author's name
 * Run <code>git config --global user.email "YOUR_EMAIL@example.com"</code> to set the author's email
 * Run <code>git config --global core.editor "vim"</code> to set the author's editor
 
-Download the project
+#### 3. Download the project
 * Run <code>git clone git@github.com:ag-gipp/latex-grammar.git</code>
 * cd into the folder you downloaded `cd latex-grammer`
 * Run `git fetch` to fetch remote branches to your local machine
-* Run `git checkout summer-extensions` to checkout your main working branch. Do not work on the `master` branch!
-* You can create a new branch for your specific task if you want to. Take care this working branch takes the branch `summer-extensions` as a base. That means you should only create a new branch when you are on the `summer-extensions` branch.
+* Run `git checkout -b extensions` to create a new branch with name `extensions`. Do not work on the `master` branch!
 
-#### Maven
-The project use maven as a build tool. This means we use maven to organize external packages.
-* Move to the main directory of the repository (if you haven't change the name, it's `latex-grammar`).
-* Run `mvn install`
-* If the previous call stopped because with failed test cases, you can install it by skipping the tests via: `mvn install -DskipTests`.
+#### 4. Setup Maven
+The project use maven as a build tool, maven 3 in particular. This means we use maven to organize external packages.
+* Make sure you have maven 3 (`mvn --version`)
 
-#### The IDE
+#### 5. Setup IntelliJ
 We are working with IntelliJ. If you download the project open the project via IntelliJ in the following way:
 * Launch IntelliJ
 * Hit `Import Project`
 * Select the main directory of our repo (`latex-grammar`)
-* Select `Import project from external model` and select `Maven` from the list below.
-* Hit `Next`
-* Make sure the root directory is the main directory of the project and you select `Import Maven projects automatically`.
-* Hit `Next` until you reach `Finish` and hit `Finish`.
-* It may take a while until IntelliJ importated all packages. You can see the progress on the bottom right.
+* Select `Import project from external model` and select `maven`
+* Next, see the settings in the image:
+![Maven Setup](https://github.com/ag-gipp/latex-grammar/blob/restructure/misc/setupmaven.png)
+* Intellij should show you one module `gov.nist.drmf.interpreter:nterpreter:2.1-SNAPSHOT`. Only select this, hit next until you finish.
 
-To try out if everything work, navigate to the
-submodule `interpreter.core` and to the package `gov.nist.drmf.interpreter.examples`. Here you
-can find `MLP.java`. Run this class to check if everything works.
+#### 6. Build and Run in IntelliJ with Maven
+* In IntelliJ, open Maven and run `Semantic Translator (root)` -> `install`.
+* To test if the forward translation works, go to `interpreter.lacast -> src -> main -> java -> gov.nist.drmf.interpreter.cas` and run `SemanticToCASInterpreter.java`. 
 
-#### Push changes
+**IMPORTANT:** For all classes or test cases you start, make sure Intellij uses the root directory `latex-grammar` as the `Working Directory`. You can set this up in `Run/Debug Configurations` via `Run -> Edit Configurations...`.
+
+#### 7. Push changes
 When you make changes you have to commit them to git. First lets check if there are unstaged changes
 ```bash
 git status
@@ -77,7 +75,7 @@ A commit does not push the changes to GitHub. You have to push your commits via
 git push
 ```
 
-#### Create a pull request
+#### 8. Create a pull request
 We can easy track your changes when you create a pull request for your branch. To do so, go to the
 GitHub repository and click on `Pull requests`. Here you can hit `New pull request`. The base should
 be the `master` branch and you want to compare with your working branch `summer-extensions`. If you
@@ -85,7 +83,7 @@ created your own sub-branches of `summer-extensions` you should request a merge 
 instead of the `master` branch. In this case the base will be `summer-extensions` and the compare branch
 is your own specified branch.
 
-#### Orginzing tasks via issues
+#### 9. Organizing tasks via issues
 We organize the work via issues in [issues](https://github.com/TU-Berlin/latex-grammar/issues).
 So please use issues if you have questions or problems. And also use them to define your next tasks.
 
@@ -123,9 +121,9 @@ The program my show you some errors. You must solve all severe errors, if any.
 
 ## The program structure and important main classes<a name="program"></a>
 There are a couple of main classes in the project.
-* `interpreter.core  -> ...interpreter.examples.MLP.java`: This is an example of Abdou's math language processors. It runs a hard-coded example of the analyzing process.
-* `interpreter.cas   -> ...interpreter.cas.SemanticToCASInterpreter.java`: That's the main class to translate formulae to a computer algebra system.
-* `interpreter.cas   -> ...interpreter.cas.mlp.CSVtoLexiconConverter.java`: This class translates given CSV files to lexicon files. You only have to add the translation CSV files and not the DLMFMacro.csv itself to create a correct lexicon.
+* `interpreter.common  -> ...interpreter.examples.MLP.java`: This is an example of Abdou's math language processors. It runs a hard-coded example of the analyzing process.
+* `interpreter.lacast   -> ...interpreter.cas.SemanticToCASInterpreter.java`: That's the main class to translate formulae to a computer algebra system.
+* `interpreter.lacast   -> ...interpreter.cas.mlp.CSVtoLexiconConverter.java`: This class translates given CSV files to lexicon files. You only have to add the translation CSV files and not the DLMFMacro.csv itself to create a correct lexicon.
 * `interpreter.maple -> ...interpreter.maple.MapleToSemanticInterpreter`: This class translates Maple expressions back to semantic LaTeX.
 
 ## Troubleshooting<a name="troubleshooting"></a>

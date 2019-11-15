@@ -11,12 +11,13 @@
     <version>2.1-SNAPSHOT</version>
 
     <modules>
-        <module>interpreter.core</module>
-        <module>interpreter.cas</module>
+        <module>interpreter.common</module>
+        <module>interpreter.lacast</module>
         <module>interpreter.maple</module>
         <module>interpreter.mathematica</module>
+        <module>interpreter.core</module>
         <module>interpreter.roundtrip</module>
-        <module>interpreter.semantic</module>
+        <module>interpreter.semantify</module>
     </modules>
 
     <properties>
