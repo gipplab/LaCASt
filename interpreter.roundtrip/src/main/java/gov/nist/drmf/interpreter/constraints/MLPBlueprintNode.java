@@ -1,7 +1,5 @@
 package gov.nist.drmf.interpreter.constraints;
 
-import gov.nist.drmf.interpreter.MapleTranslator;
-import gov.nist.drmf.interpreter.evaluation.NumericalEvaluator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,19 +22,19 @@ public class MLPBlueprintNode {
 
     private MLPBlueprintTree tree;
 
-    private MapleTranslator translator;
+//    private MapleTranslator translator;
 
     public MLPBlueprintNode(MLPBlueprintTree tree, String latex, String tag) {
         this.tree = tree;
         this.latex = latex;
         this.tag = tag;
-        this.translator = NumericalEvaluator.getTranslator();
+//        this.translator = NumericalEvaluator.getTranslator();
     }
 
     public MLPBlueprintNode(MLPBlueprintTree tree, ArrayList<MLPBlueprintNode> children) {
         this.tree = tree;
         this.children = children;
-        this.translator = NumericalEvaluator.getTranslator();
+//        this.translator = NumericalEvaluator.getTranslator();
     }
 
     public boolean isLeaf() {

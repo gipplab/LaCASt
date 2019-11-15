@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.evaluation;
 
-import gov.nist.drmf.interpreter.MapleTranslator;
 import gov.nist.drmf.interpreter.constraints.Constraints;
 
 import java.util.Arrays;
@@ -93,7 +92,6 @@ public class Case {
     @Override
     public String toString(){
         String s = getLine() + ": " + LHS + " " + relation + " " + RHS + "; ";
-//        s += metaData.getConstraints().toString();
         s += getDlmf();
         return s;
     }

@@ -17,11 +17,6 @@ import java.util.*;
 
 /**
  * @author Andre Greiner-Petter
- *
- * TODO Andre!
- * TODO Please don't keep it that way. It's shit.
- * TODO Create an abstract Evaluator class!
- * TODO Create an abstract Config class!
  */
 public class SymbolicEvaluator extends NumericalEvaluator {
     private static final Logger LOG = LogManager.getLogger(SymbolicEvaluator.class.getName());
