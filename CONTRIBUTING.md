@@ -40,8 +40,18 @@ We are working with IntelliJ. If you download the project open the project via I
 * Launch IntelliJ
 * Hit `Import Project`
 * Select the main directory of our repo (`latex-grammar`)
+* Select `Import project from external model` and select `maven`
+* Next, see the settings in the image:
+![Maven Setup](https://github.com/ag-gipp/latex-grammar/blob/restructure/misc/setupmaven.png)
+* Intellij should show you one module `gov.nist.drmf.interpreter:nterpreter:2.1-SNAPSHOT`. Only select this, hit next until you finish.
 
-#### 6. Push changes
+#### 6. Build and Run in IntelliJ with Maven
+* In IntelliJ, open Maven and run `Semantic Translator (root)` -> `install`.
+* To test if the forward translation works, go to `interpreter.lacast -> src -> main -> java -> gov.nist.drmf.interpreter.cas` and run `SemanticToCASInterpreter.java`. 
+
+**IMPORTANT:** For all classes or test cases you start, make sure Intellij uses the root directory `latex-grammar` as the `Working Directory`. You can set this up in `Run/Debug Configurations` via `Run -> Edit Configurations...`.
+
+#### 7. Push changes
 When you make changes you have to commit them to git. First lets check if there are unstaged changes
 ```bash
 git status
@@ -65,7 +75,7 @@ A commit does not push the changes to GitHub. You have to push your commits via
 git push
 ```
 
-#### 7. Create a pull request
+#### 8. Create a pull request
 We can easy track your changes when you create a pull request for your branch. To do so, go to the
 GitHub repository and click on `Pull requests`. Here you can hit `New pull request`. The base should
 be the `master` branch and you want to compare with your working branch `summer-extensions`. If you
@@ -73,7 +83,7 @@ created your own sub-branches of `summer-extensions` you should request a merge 
 instead of the `master` branch. In this case the base will be `summer-extensions` and the compare branch
 is your own specified branch.
 
-#### 8. Organizing tasks via issues
+#### 9. Organizing tasks via issues
 We organize the work via issues in [issues](https://github.com/TU-Berlin/latex-grammar/issues).
 So please use issues if you have questions or problems. And also use them to define your next tasks.
 
