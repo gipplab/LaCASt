@@ -211,8 +211,7 @@ X1:\ipderivX\ipderiv[n]{f}{x};http://dlmf.nist.gov/1.4#E4;Derivative;1;0;2;;;;dl
 ;;;;;;;;;
 \BesselJ{v}@{z};http://dlmf.nist.gov/10.2#E2;Bessel function first kind;1;1;1;1;;if v \notin \Integers: (-\infty, 0];dlmf-macro
 \BesselY{v}@{z};http://dlmf.nist.gov/10.2#E3;Bessel function second kind;1;1;1;1;;(-\infty, 0];
-\HankelH{1}{v}@{z};http://dlmf.nist.gov/10.2#E5;Bessel function third kind;1;1;1;1;;;
-\HankelH{2}{v}@{z};http://dlmf.nist.gov/10.2#E6;Bessel function third kind;1;1;1;1;;;
+\HankelH{1}{v}@{z};http://dlmf.nist.gov/10.2#E5;Bessel function third kind;2;1;1;1;;;
 \HankelmodM{\nu}@{x};http://dlmf.nist.gov/10.18#E1;Modulus Bessel function;1;1;1;1;;;
 \HankelmodderivN{\nu}@{x};http://dlmf.nist.gov/10.18#E2;Modulus derivative Bessel function;1;1;1;1;;;
 \Hankelphasetheta{\nu}@{x};http://dlmf.nist.gov/10.18#E3;Phase of Bessel function;1;1;1;1;;;

@@ -7,6 +7,8 @@ import gov.nist.drmf.interpreter.evaluation.Relations;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -14,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 /**
  * @author Andre Greiner-Petter
  */
-@AssumeMLPAvailability
+//@AssumeMLPAvailability
 public class CaseAnalyzerTests {
     @Test
     public void simpleTest() {
@@ -80,8 +82,6 @@ public class CaseAnalyzerTests {
         assertEquals("- 1", c.getLHS());
         assertEquals("- + 1", c.getRHS());
         assertEquals(Relations.EQUAL, c.getRelation());
-
-        String t = "\\sqrt{z^2} = \\begin{cases} z, & \\realpart@@{z} \\geq 0, -z, & \\realpart@@{z} \\leq 0. \\end{cases} \\label{eq:EF.PVEX} \\ccode{EF}";
     }
 
     @Test
@@ -92,5 +92,22 @@ public class CaseAnalyzerTests {
         Case c = cc.get(0);
         assertEquals("\\sqrt{z^2}", c.getLHS());
         assertEquals(Relations.EQUAL, c.getRelation());
+    }
+
+    @Test
+    public void equal0Test() {
+        String line = "\\AiryAi@{z}+\\expe^{-2\\cpi\\iunit/3} \\AiryAi@{z\\expe^{-2\\cpi\\iunit/3}}+" +
+                "\\expe^{2\\cpi\\iunit/3}\\AiryAi@{z\\expe^{2\\cpi\\iunit/3}}=0, " +
+                "\\source{(8.03), p.~414}{Olver:1997:ASF} \\label{eq:AI.DE.CF3} \\ccode{AI}";
+
+        LinkedList<Case> cc = CaseAnalyzer.analyzeLine(line, 1);
+        Case c = cc.get(0);
+        assertEquals("\\AiryAi@{z}+\\expe^{-2\\cpi\\iunit/3} \\AiryAi@{z\\expe^{-2\\cpi\\iunit/3}}+\\expe^{2\\cpi\\iunit/3}\\AiryAi@{z\\expe^{2\\cpi\\iunit/3}}", c.getLHS());
+        assertEquals("0", c.getRHS());
+        assertEquals(Relations.EQUAL, c.getRelation());
+
+        assertNull(c.getConstraints());
+        assertEquals("eq:AI.DE.CF3", c.getMetaData().getLabel().getTex());
+        assertEquals("AI", c.getMetaData().getCode());
     }
 }

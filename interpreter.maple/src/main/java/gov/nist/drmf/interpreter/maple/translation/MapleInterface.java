@@ -53,7 +53,10 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
     /**
      * Inner constant to initialize Maple
      */
-    private static final String[] maple_args = new String[]{"java"};
+    private static final String[] maple_args = new String[]{
+            "java",
+            "--init-commit-mem=8192m"
+    };
 
     /**
      * Inner constants to handle maple commands

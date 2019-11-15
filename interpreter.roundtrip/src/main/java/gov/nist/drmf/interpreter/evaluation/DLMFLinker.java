@@ -58,8 +58,8 @@ public class DLMFLinker {
     public static void main(String[] args) {
         Path base = Paths.get("/home/andreg-p/Howard/");
         Path linksP = base.resolve("BruceLabelLinks.txt");
-        Path formulaP = base.resolve("formulas-3.txt");
-        Path out = base.resolve("line-links.txt");
+        Path formulaP = base.resolve("lessformulas.txt");
+        Path out = base.resolve("line-links-lessform.txt");
 
         DLMFLinker linker = new DLMFLinker(linksP);
 //        System.out.println(linker.getLink("eq:AL.DE.sd.3"));
