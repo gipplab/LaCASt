@@ -266,11 +266,13 @@ public class NumericalEvaluator {//implements Observer {
             String resultsName = simplifier.advancedNumericalTest(
                     expression,
                     config.getNumericalValues(),
-                    c.getConstraintVariables(),
+                    null, // TODO
+//                    c.getConstraintVariables(),
                     c.getConstraintValues(),
                     config.getSpecialVariables(),
                     config.getSpecialVariablesValues(),
-                    c.getConstraints(),
+                    null, // TODO
+//                    c.getConstraints(),
                     config.getPrecision(),
                     config.getMaximumNumberOfCombs()
             );
@@ -491,14 +493,6 @@ public class NumericalEvaluator {//implements Observer {
     protected void writeOutput( Path output ) throws IOException {
         String results = getResults();
         Files.write( output, results.getBytes() );
-    }
-
-    public static String[] translateEach(String[] texStr){
-        return Arrays.stream(texStr)
-                .map( Constraints::stripDollar )
-                .map( translator::translateFromLaTeXToMapleClean )
-                .map( Constraints::splitMultiAss )
-                .toArray(String[]::new);
     }
 
     public static void main(String[] args) throws Exception{

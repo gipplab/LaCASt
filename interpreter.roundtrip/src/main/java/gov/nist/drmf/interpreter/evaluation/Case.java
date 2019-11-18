@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.evaluation;
 
 import gov.nist.drmf.interpreter.constraints.Constraints;
+import gov.nist.drmf.interpreter.constraints.IConstraintTranslator;
 
 import java.util.Arrays;
 
@@ -42,10 +43,10 @@ public class Case {
         return relation;
     }
 
-    public String getConstraintVariables() {
+    public String getConstraintVariables(IConstraintTranslator ae) {
         try {
             String[] vars = metaData.getConstraints().getSpecialConstraintVariables();
-            vars = NumericalEvaluator.translateEach(vars);
+            vars = ae.translateEachConstraint(vars);
             return Arrays.toString(vars);
         } catch ( NullPointerException npe ){
             return null;
@@ -65,10 +66,10 @@ public class Case {
         return metaData.getConstraints();
     }
 
-    public String getConstraints() {
+    public String getConstraints( IConstraintTranslator ae ) {
         try {
             String[] cons = metaData.getConstraints().getTexConstraints();
-            cons = NumericalEvaluator.translateEach(cons);
+            cons = ae.translateEachConstraint(cons);
             return Arrays.toString(cons);
         } catch ( NullPointerException npe ){
             return null;

@@ -20,27 +20,33 @@ public class SymbolicEquivalenceChecker {
         this.engine = engine;
     }
 
-    public boolean fullSimplifyDifference( String LHS, String RHS, String assumtpions ) throws MathLinkException {
+    public boolean fullSimplifyDifference( String LHS, String RHS, String assumption ) throws MathLinkException {
         String eq = LHS + " - (" + RHS + ")";
-        String simplify = Commands.FULL_SIMPLIFY.build(eq);
-        String test = Commands.ASSUMING.build(assumtpions, simplify);
-
-        engine.evaluate(test);
-        engine.waitForAnswer();
-        return testZero();
+        Expr ex = fullSimplify(eq, assumption);
+        return testZero(ex);
     }
 
     public boolean fullSimplifyDifference( String LHS, String RHS ) throws MathLinkException {
         String eq = LHS + " - (" + RHS + ")";
-        String simplify = Commands.FULL_SIMPLIFY.build(eq);
-
-        engine.evaluate(simplify);
-        engine.waitForAnswer();
-        return testZero();
+        Expr ex = fullSimplify(eq);
+        return testZero(ex);
     }
 
-    private boolean testZero() throws MathLinkException {
-        Expr expr = engine.getExpr();
+    public Expr fullSimplify(String test) throws MathLinkException {
+        return fullSimplify(test, null);
+    }
+
+    public Expr fullSimplify(String test, String assumption) throws MathLinkException {
+        String simplify = Commands.FULL_SIMPLIFY.build(test);
+        String expr = assumption == null ? simplify : Commands.ASSUMING.build(assumption, simplify);
+
+        engine.evaluate(expr);
+        engine.waitForAnswer();
+        return engine.getExpr();
+    }
+
+    public boolean testZero(Expr expr) throws MathLinkException {
+//        Expr expr = engine.getExpr();
         if ( expr.numberQ() ) {
             try {
                 double d = expr.asDouble();
