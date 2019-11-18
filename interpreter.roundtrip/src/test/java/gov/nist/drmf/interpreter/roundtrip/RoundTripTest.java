@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.roundtrip;
 
 import com.maplesoft.externalcall.MapleException;
 import gov.nist.drmf.interpreter.MapleTranslator;
+import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
 import gov.nist.drmf.interpreter.roundtrip.nested.FunctionsTests;
@@ -70,7 +71,7 @@ public class RoundTripTest {
 
         @Test
         @Override
-        public void straight() throws MapleException {
+        public void straight() throws ComputerAlgebraSystemEngineException, MapleException {
             super.straight();
         }
     }

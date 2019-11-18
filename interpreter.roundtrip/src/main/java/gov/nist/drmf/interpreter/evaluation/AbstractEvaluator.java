@@ -25,6 +25,14 @@ public abstract class AbstractEvaluator<T> {
     private ITranslator forwardTranslator;
     private IComputerAlgebraSystemEngine<T> engine;
 
+    public AbstractEvaluator(
+            ITranslator forwardTranslator,
+            IComputerAlgebraSystemEngine<T> engine
+    ) {
+        this.forwardTranslator = forwardTranslator;
+        this.engine = engine;
+    }
+
     public String forwardTranslate(String in) throws TranslationException {
         return forwardTranslator.translate(in);
     }
@@ -33,15 +41,11 @@ public abstract class AbstractEvaluator<T> {
         return engine.enterCommand(cmd);
     }
 
-    public abstract void init() throws Exception;
-
-    public void init(
-            ITranslator forwardTranslator,
-            IComputerAlgebraSystemEngine<T> engine
-    ) {
-        this.forwardTranslator = forwardTranslator;
-        this.engine = engine;
+    public void forceGC() throws ComputerAlgebraSystemEngineException {
+        this.engine.forceGC();
     }
+
+//    public abstract void init() throws Exception;
 
     public abstract void performSingleTest(Case testCase);
 

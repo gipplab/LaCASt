@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.MapleSimplifier;
 import gov.nist.drmf.interpreter.MapleTranslator;
 import gov.nist.drmf.interpreter.RelationResults;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
@@ -316,7 +317,7 @@ public class EquationTestCases {
         return out;
     }
 
-    private void testFunction( TestCaseInLaTeX test, String assumption ) throws MapleException {
+    private void testFunction( TestCaseInLaTeX test, String assumption ) throws MapleException, ComputerAlgebraSystemEngineException {
         if ( test.line == 458 ){
             TestStatus.NOT_SUCCESSFUL.add(test.line);
             fail("Skipped line 458!");
@@ -481,7 +482,7 @@ public class EquationTestCases {
     private boolean simplifyTestEquation( String mapleLHS, String mapleRHS,
                                   String preCommand, String afterCommand,
                                   int line )
-            throws MapleException{
+            throws ComputerAlgebraSystemEngineException, MapleException {
         enterPreDefines(mapleLHS, mapleRHS);
 
         if ( preCommand != null ){

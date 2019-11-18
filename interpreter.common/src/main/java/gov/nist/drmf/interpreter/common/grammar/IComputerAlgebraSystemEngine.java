@@ -7,4 +7,6 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
  */
 public interface IComputerAlgebraSystemEngine<T> {
     T enterCommand(String command) throws ComputerAlgebraSystemEngineException;
+
+    void forceGC() throws ComputerAlgebraSystemEngineException;
 }
