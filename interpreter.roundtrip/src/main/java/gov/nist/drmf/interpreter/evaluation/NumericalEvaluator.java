@@ -25,6 +25,7 @@ import java.util.stream.Stream;
 /**
  * @author Andre Greiner-Petter
  */
+@SuppressWarnings("ALL")
 public class NumericalEvaluator {//implements Observer {
 
     private static final Logger LOG = LogManager.getLogger(NumericalEvaluator.class.getName());

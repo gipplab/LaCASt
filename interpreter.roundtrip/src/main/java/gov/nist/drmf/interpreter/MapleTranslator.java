@@ -6,7 +6,10 @@ import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.grammar.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.grammar.ITranslator;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,7 +46,7 @@ import java.util.Properties;
  * @see gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator
  */
 @SuppressWarnings("ALL")
-public class MapleTranslator {
+public class MapleTranslator implements ITranslator, IComputerAlgebraSystemEngine<Algebraic> {
     /**
      * The logger.
      */
@@ -148,6 +151,20 @@ public class MapleTranslator {
         LOG.debug("Initialized DLMF LaTeX Interface.");
 
         simplifier = new MapleSimplifier( mapleInterface );
+    }
+
+    @Override
+    public Algebraic enterCommand(String command) throws ComputerAlgebraSystemEngineException {
+        try {
+            return enterMapleCommand(command);
+        } catch ( MapleException me ) {
+            throw new ComputerAlgebraSystemEngineException(me);
+        }
+    }
+
+    @Override
+    public String translate(String expression) throws TranslationException {
+        return translateFromLaTeXToMapleClean(expression);
     }
 
     /**

@@ -5,8 +5,9 @@ import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.Numeric;
 import gov.nist.drmf.interpreter.MapleSimplifier;
 import gov.nist.drmf.interpreter.MapleTranslator;
+import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.maple.listener.MapleListener;
+import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,7 +19,8 @@ import java.util.*;
 /**
  * @author Andre Greiner-Petter
  */
-public class SymbolicEvaluator extends NumericalEvaluator {
+@SuppressWarnings("ALL")
+public class SymbolicEvaluator extends AbstractEvaluator<Algebraic> {
     private static final Logger LOG = LogManager.getLogger(SymbolicEvaluator.class.getName());
 
     private static Path output;
@@ -28,12 +30,12 @@ public class SymbolicEvaluator extends NumericalEvaluator {
 
     private SymbolicConfig config;
 
-    private LinkedList<Case> testCases;
-
     private HashMap<Integer, String> labelLib;
-    private Set<String> skips;
+    private Set<Integer> skips;
 
     private LinkedList<String>[] lineResults;
+
+    private String overallAss;
 
     /**
      * Creates an object for numerical evaluations.
@@ -57,7 +59,7 @@ public class SymbolicEvaluator extends NumericalEvaluator {
         NumericalConfig.NumericalProperties.KEY_LABELSET.setValue(config.getLabelSet().toString());
         NumericalConfig.NumericalProperties.KEY_DLMF_LINK.setValue(""+config.showDLMFLinks());
 
-        String subset = config.getSubset()[0] + "," + config.getSubset()[1];
+        String subset = config.getSubSetInterval()[0] + "," + config.getSubSetInterval()[1];
         NumericalConfig.NumericalProperties.KEY_SUBSET.setValue(subset);
 
 
@@ -69,19 +71,19 @@ public class SymbolicEvaluator extends NumericalEvaluator {
         this.labelLib = new HashMap<>();
         this.skips = new HashSet<>();
 
-        String[] skipArr = LONG_RUNTIME_SKIP.split(",");
-        for ( String s : skipArr ) skips.add(s);
+        String[] skipArr = NumericalEvaluator.LONG_RUNTIME_SKIP.split(",");
+        for ( String s : skipArr ) skips.add(Integer.parseInt(s));
 
-        translator = new MapleTranslator();
         Status.reset();
     }
 
     @Override
     public void init() throws IOException, MapleException {
         // init translator
+        translator = new MapleTranslator();
         translator.init();
         simplifier = translator.getMapleSimplifier();
-        super.setTranslator(translator);
+        super.init(translator, translator);
 
         //translator.addMapleMemoryObserver(this);
         //MapleListener.setMemoryUsageLimit( MEMORY_NOTIFY_LIMIT_KB );
@@ -89,37 +91,88 @@ public class SymbolicEvaluator extends NumericalEvaluator {
         overallAss = config.getEntireTestSuiteAssumptions();
     }
 
-    private String overallAss;
+    @Override
+    public LinkedList<Case> loadTestCases() {
+        int[] subset = config.getSubSetInterval();
+        HashMap<Integer, String> skippedLinesInfo = new HashMap<>();
 
-    private void setPreviousAssumption() throws MapleException {
-        if ( overallAss != null && !overallAss.isEmpty() ){
-            String cmd = "assume(" + overallAss + ");";
-            LOG.debug("Enter assumption for entire test suite: " + cmd);
-            translator.enterMapleCommand(cmd);
-            addPreloadScript(cmd);
+        LinkedList<Case> testCases = loadTestCases(
+                subset,
+                skips,
+                config.getDataset(),
+                labelLib,
+                skippedLinesInfo
+        );
+
+        lineResults = new LinkedList[subset[1]];
+        for ( Integer i : skippedLinesInfo.keySet() ) {
+            lineResults[i] = new LinkedList<>();
+            lineResults[i].add(skippedLinesInfo.get(i));
         }
+
+        return testCases;
     }
 
     @Override
-    protected String performSingleTest( Case c ){
+    public EvaluationConfig getConfig() {
+        return config;
+    }
+
+    @Override
+    public HashMap<Integer, String> getLabelLibrary() {
+        return labelLib;
+    }
+
+    @Override
+    public LinkedList<String>[] getLineResults() {
+        return lineResults;
+    }
+
+    private void setPreviousAssumption() throws ComputerAlgebraSystemEngineException {
+        if ( overallAss != null && !overallAss.isEmpty() ){
+            String cmd = "assume(" + overallAss + ");";
+            LOG.debug("Enter assumption for entire test suite: " + cmd);
+
+            enterEngineCommand(cmd);
+//            translator.enterMapleCommand(cmd);
+
+            // todo we may need that?
+//            addPreloadScript(cmd);
+        }
+    }
+
+    public static String[] getPrevCommand( String overAll ){
+        String[] pac = new String[2];
+        if ( overAll.contains("\\Ferrer") ){
+            LOG.info("Found Ferrer function. Enter pre-commands for correct computations in Maple.");
+            pac[0] = MapleConstants.ENV_VAR_LEGENDRE_CUT_FERRER;
+            pac[0] += System.lineSeparator();
+            //pac[0] += FERRER_DEF_ASS + System.lineSeparator();
+            pac[1] = MapleConstants.ENV_VAR_LEGENDRE_CUT_LEGENDRE;
+            //pac[1] += System.lineSeparator() + RESET;
+        } else if ( overAll.contains("\\Legendre") ){
+            //pac[0] = LEGENDRE_DEF_ASS;
+            //pac[1] = RESET;
+        }
+        return pac;
+    }
+
+    @Override
+    public void performSingleTest( Case c ){
         LOG.info("Start test for line: " + c.getLine());
         LOG.info("Test case: " + c);
+
+        if ( lineResults[c.getLine()] == null ){
+            lineResults[c.getLine()] = new LinkedList<String>();
+        }
 
         if ( skips.contains(Integer.toString(c.getLine())) ) {
             LOG.info("Skip because long running evaluation.");
             lineResults[c.getLine()].add("Skipped - Long running test");
             Status.SKIPPED.add();
-            return c.getLine() + ": " + lineResults[c.getLine()];
+            return;
         }
 
-        if ( lineResults == null ){
-            String[] old = getLineResults();
-            lineResults = new LinkedList[old.length];
-            for ( int i = 0; i < old.length; i++ ) {
-                lineResults[i] = new LinkedList<String>();
-                if ( old[i] != null ) lineResults[i].add(old[i]);
-            }
-        }
 
         try {
 //            String mapleAss = null;
@@ -128,11 +181,11 @@ public class SymbolicEvaluator extends NumericalEvaluator {
 //                LOG.info("Assumption translation: " + mapleAss);
 //            }
 
-            translator.enterMapleCommand("reset;");
+            enterEngineCommand("reset;");
             setPreviousAssumption();
 
-            String mapleLHS = translator.translateFromLaTeXToMapleClean( c.getLHS() );
-            String mapleRHS = translator.translateFromLaTeXToMapleClean( c.getRHS() );
+            String mapleLHS = forwardTranslate( c.getLHS() );
+            String mapleRHS = forwardTranslate( c.getRHS() );
 
             LOG.info("Translate LHS to: " + mapleLHS);
             LOG.info("Translate RHS to: " + mapleRHS);
@@ -142,7 +195,7 @@ public class SymbolicEvaluator extends NumericalEvaluator {
             String[] preAndPostCommands = getPrevCommand( c.getLHS() + ", " + c.getRHS() );
 
             if ( preAndPostCommands[0] != null ){
-                translator.enterMapleCommand(preAndPostCommands[0]);
+                enterEngineCommand(preAndPostCommands[0]);
                 LOG.debug("Enter pre-testing commands: " + preAndPostCommands[0]);
             }
 
@@ -152,7 +205,7 @@ public class SymbolicEvaluator extends NumericalEvaluator {
                 if ( arrConstraints != null && arrConstraints.length() > 3 ){
                     arrConstraints = arrConstraints.substring(1, arrConstraints.length()-1);
                     LOG.debug("Enter constraint as assumption: " + arrConstraints);
-                    translator.enterMapleCommand("assume(" + arrConstraints + ");");
+                    enterEngineCommand("assume(" + arrConstraints + ");");
                 }
             } catch ( Exception e ) {
                 LOG.warn("Error when parsing constraint => Ignoring Constraint.", e);
@@ -197,7 +250,7 @@ public class SymbolicEvaluator extends NumericalEvaluator {
             }
 
             if ( preAndPostCommands[1] != null ){
-                translator.enterMapleCommand(preAndPostCommands[1]);
+                enterEngineCommand(preAndPostCommands[1]);
                 LOG.debug("Enter post-testing commands: " + preAndPostCommands[1]);
             }
 
@@ -206,30 +259,10 @@ public class SymbolicEvaluator extends NumericalEvaluator {
                 if ( success[i] ){
                     lineResults[c.getLine()].add("Successful " + Arrays.toString(successStr));
                     Status.SUCCESS.add();
-
-                    // garbage collection
-//                    try {
-//                        if ( getGcCaller() % 2 == 0 ) {
-//                            translator.forceGC();
-//                            resetGcCaller();
-//                        } else stepGcCaller();
-//                    } catch ( MapleException me ){
-//                        LOG.fatal("Cannot call Maple's garbage collector!", me);
-//                    }
-
-                    return lineResults[c.getLine()].getLast();
+                    return;
+//                    return lineResults[c.getLine()].getLast();
                 }
             }
-
-            // garbage collection
-//            try {
-//                if ( getGcCaller() % 2 == 0 ) {
-//                    translator.forceGC();
-//                    resetGcCaller();
-//                } else stepGcCaller();
-//            } catch ( MapleException me ){
-//                LOG.fatal("Cannot call Maple's garbage collector!", me);
-//            }
             lineResults[c.getLine()].add("Failure " + Arrays.toString(successStr));
             Status.FAILURE.add();
         } catch ( Exception e ){
@@ -248,79 +281,30 @@ public class SymbolicEvaluator extends NumericalEvaluator {
                 LOG.fatal("Cannot call Maple's garbage collector!", me);
             }
         }
-        return c.getLine() + ": " + lineResults[c.getLine()];
+
+        return;
+//        return c.getLine() + ": " + lineResults[c.getLine()];
     }
 
-    @Override
-    protected String getResults(){
-        StringBuffer sb = new StringBuffer();
+    private int gcCaller = 0;
 
-        sb.append("Overall: ");
-        sb.append(Status.buildString());
-        sb.append(" for test expression: ");
-        sb.append(config.getRawTestExpression());
-        sb.append(NL);
-
-        sb.append(Arrays.toString(SymbolicEvaluatorTypes.values()));
-        sb.append(NL);
-
-        return buildResults(
-                sb.toString(),
-                labelLib,
-                config.showDLMFLinks(),
-                config.getSubset(),
-                lineResults
-        );
+    private int getGcCaller() {
+        return gcCaller;
     }
 
-    protected static String buildResults(
-            String intro,
-            HashMap<Integer, String> labelLib,
-            boolean showDLMF,
-            int[] limits,
-            LinkedList<String>[] lineResults){
-        StringBuffer sb = new StringBuffer(intro);
+    private void stepGcCaller() {
+        this.gcCaller++;
+    }
 
-        int start = limits[0];
-        int limit = limits[1];
-
-        for ( int i = start; i < lineResults.length && i < limit; i++ ){
-            sb.append(i);
-
-            LinkedList<String> lineResult = lineResults[i];
-            boolean first = true;
-            Character c = 'a';
-
-            if ( lineResults[i] == null ){
-                sb.append(": Skipped (is null)").append(NL);
-                return sb.toString();
-            }
-
-            for ( String s : lineResult ) {
-                if ( !first ) {
-                    sb.append(i+"-"+c);
-                    c++;
-                } else first = false;
-
-                String dlmf = labelLib.get(i);
-                if ( dlmf != null && showDLMF ){
-                    sb.append(" [").append(dlmf).append("]: ");
-                } else sb.append(": ");
-
-                sb.append(s);
-                sb.append(NL);
-            }
-
-
-        }
-        return sb.toString();
+    private void resetGcCaller() {
+        this.gcCaller = 0;
     }
 
     public static void main(String[] args) throws Exception {
         SymbolicEvaluator evaluator = new SymbolicEvaluator();
         evaluator.init();
-        evaluator.loadTestCases();
-        evaluator.performAllTests();
-        evaluator.writeOutput( evaluator.config.getOutputPath() );
+        LinkedList<Case> tests = evaluator.loadTestCases();
+        evaluator.performAllTests(tests);
+        evaluator.writeResults();
     }
 }
