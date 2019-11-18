@@ -5,6 +5,7 @@ import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.MapleSimplifier;
 import gov.nist.drmf.interpreter.MapleTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.constraints.Constraints;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
@@ -343,7 +344,7 @@ public class NumericalEvaluator {//implements Observer {
         } finally {
             // garbage collection
             try { translator.forceGC(); }
-            catch ( MapleException me ){
+            catch ( ComputerAlgebraSystemEngineException me ){
                 LOG.fatal("Cannot call Maple's garbage collector!", me);
             }
         }

@@ -409,7 +409,11 @@ public class MapleTranslator implements ITranslator, IComputerAlgebraSystemEngin
         return mapleInterface.evaluateExpression(mapleCommand);
     }
 
-    public void forceGC() throws MapleException {
-        mapleInterface.invokeGC();
+    public void forceGC() throws ComputerAlgebraSystemEngineException {
+        try {
+            mapleInterface.invokeGC();
+        } catch (MapleException me) {
+            throw new ComputerAlgebraSystemEngineException(me);
+        }
     }
 }

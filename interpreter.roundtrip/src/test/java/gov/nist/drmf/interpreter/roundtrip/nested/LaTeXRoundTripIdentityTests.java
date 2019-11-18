@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.roundtrip.nested;
 
 import com.maplesoft.externalcall.MapleException;
 import gov.nist.drmf.interpreter.MapleTranslator;
+import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
 import gov.nist.drmf.interpreter.roundtrip.AbstractRoundTrip;
@@ -22,7 +23,7 @@ public class LaTeXRoundTripIdentityTests extends AbstractRoundTrip {
             "x+x^3-\\frac{(\\iunit*\\alpha+y)*3}{\\left( y^2+x^3 \\right)^z}"
     };
 
-    protected void straight() throws MapleException {
+    protected void straight() throws ComputerAlgebraSystemEngineException, MapleException {
         boolean latex_equ = false, maple_equ = false;
         int threshold = 10;
         String maple, latex, firstMaple, prev_latex, prev_maple;

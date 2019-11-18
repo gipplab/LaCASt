@@ -7,6 +7,8 @@ import gov.nist.drmf.interpreter.MapleSimplifier;
 import gov.nist.drmf.interpreter.MapleTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.grammar.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.grammar.ITranslator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,13 +22,13 @@ import java.util.*;
  * @author Andre Greiner-Petter
  */
 @SuppressWarnings("ALL")
-public class SymbolicEvaluator extends AbstractEvaluator<Algebraic> {
+public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
     private static final Logger LOG = LogManager.getLogger(SymbolicEvaluator.class.getName());
 
     private static Path output;
 
-    private MapleTranslator translator;
-    private MapleSimplifier simplifier;
+//    private MapleTranslator translator;
+//    private MapleSimplifier simplifier;
 
     private SymbolicConfig config;
 
@@ -46,8 +48,12 @@ public class SymbolicEvaluator extends AbstractEvaluator<Algebraic> {
      *
      * @throws IOException
      */
-    public SymbolicEvaluator() throws IOException {
-        super();
+    public SymbolicEvaluator(
+            ITranslator forwardTranslator,
+            IComputerAlgebraSystemEngine<T> engine,
+            ICASEngineSymbolicEvaluator<T> symbolicEvaluator
+    ) throws IOException {
+        super( forwardTranslator, engine, symbolicEvaluator );
 
         CaseAnalyzer.ACTIVE_BLUEPRINTS = false; // take raw constraints
         NumericalEvaluator.SKIP_SUC_SYMB = false;
@@ -77,13 +83,18 @@ public class SymbolicEvaluator extends AbstractEvaluator<Algebraic> {
         Status.reset();
     }
 
-    @Override
+//    @Override
     public void init() throws IOException, MapleException {
         // init translator
-        translator = new MapleTranslator();
-        translator.init();
-        simplifier = translator.getMapleSimplifier();
-        super.init(translator, translator);
+//        MapleTranslator translator = new MapleTranslator();
+//        translator.init();
+//        ICASEngineSymbolicEvaluator<Algebraic> simplifier = translator.getMapleSimplifier();
+//
+//        super.init(
+//                translator,
+//                translator,
+//                simplifier
+//        );
 
         //translator.addMapleMemoryObserver(this);
         //MapleListener.setMemoryUsageLimit( MEMORY_NOTIFY_LIMIT_KB );
@@ -226,25 +237,20 @@ public class SymbolicEvaluator extends AbstractEvaluator<Algebraic> {
                 }
 
                 String testStr = type[i].buildCommand(expression);
-                Algebraic a = simplifier.simplify(testStr);
-                if ( a == null )
-                    throw new IllegalArgumentException("Error in Maple!");
 
-                String aStr = a.toString();
-                LOG.info(c.getLine() + ": " + type[i].getShortName() + " - Simplified expression: " + aStr);
+                T res = simplify( testStr );
+                if ( res == null ) {
+                    throw new IllegalArgumentException("Error in CAS!");
+                }
 
-                String expectedValue = config.getExpectationValue();
-                if ( expectedValue == null ){
-                    if ( a instanceof Numeric ){
-                        success[i] = true;
-                        successStr[i] = type[i].getShortName() + ": " + aStr;
-                    } else {
-                        successStr[i] = type[i].getShortName() + ": NaN";
-                    }
-                } else if ( aStr.matches(expectedValue) ) {
+                String strRes = res.toString();
+                LOG.info(c.getLine() + ": " + type[i].getShortName() + " - Simplified expression: " + strRes);
+
+                if ( validOutCome(strRes, config.getExpectationValue()) ) {
                     success[i] = true;
-                    successStr[i] = type[i].getShortName() + ": Success";
+                    successStr[i] = type[i].getShortName() + ": " + strRes;
                 } else {
+                    success[i] = false;
                     successStr[i] = type[i].getShortName() + ": NaN";
                 }
             }
@@ -274,10 +280,10 @@ public class SymbolicEvaluator extends AbstractEvaluator<Algebraic> {
         } finally {
             try {
                 if ( getGcCaller() % 1 == 0 ) {
-                    translator.forceGC();
+                    forceGC();
                     resetGcCaller();
                 } else stepGcCaller();
-            } catch ( MapleException me ){
+            } catch ( ComputerAlgebraSystemEngineException me ){
                 LOG.fatal("Cannot call Maple's garbage collector!", me);
             }
         }
@@ -301,7 +307,16 @@ public class SymbolicEvaluator extends AbstractEvaluator<Algebraic> {
     }
 
     public static void main(String[] args) throws Exception {
-        SymbolicEvaluator evaluator = new SymbolicEvaluator();
+        MapleTranslator translator = new MapleTranslator();
+        translator.init();
+        MapleSimplifier simplifier = translator.getMapleSimplifier();
+
+        SymbolicEvaluator evaluator = new SymbolicEvaluator(
+                translator,
+                translator,
+                simplifier
+        );
+
         evaluator.init();
         LinkedList<Case> tests = evaluator.loadTestCases();
         evaluator.performAllTests(tests);

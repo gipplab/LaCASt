@@ -5,6 +5,8 @@ import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import com.maplesoft.openmaple.MString;
 import com.maplesoft.openmaple.Numeric;
+import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.evaluation.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.evaluation.NumericalEvaluator;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
@@ -20,7 +22,7 @@ import static gov.nist.drmf.interpreter.examples.MLP.NL;
  *
  * Created by AndreG-P on 27.04.2017.
  */
-public class MapleSimplifier {
+public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
     private static final Logger LOG = LogManager.getLogger(MapleSimplifier.class.toString());
 
     /**
@@ -56,17 +58,21 @@ public class MapleSimplifier {
      * @throws MapleException If the test of equivalence produces an Maple error.
      */
     public boolean isEquivalent( @Nullable String exp1, @Nullable String exp2 )
-            throws MapleException {
+            throws ComputerAlgebraSystemEngineException {
         if ( isNullOrEmpty(exp1, exp2) ) return false;
 
         // otherwise build simplify command to test equivalence
         String command = "(" + exp1 + ") - (" + exp2 + ")";
         Algebraic a = simplify( command );
-        return isZero(a);
+        try {
+            return isZero(a);
+        } catch ( MapleException me ) {
+            throw new ComputerAlgebraSystemEngineException(me);
+        }
     }
 
     public Algebraic isMultipleEquivalent( @Nullable String exp1, @Nullable String exp2 )
-            throws MapleException {
+            throws ComputerAlgebraSystemEngineException {
         if ( isNullOrEmpty(exp1, exp2) ) return null;
 
         // otherwise build simplify command to test equivalence
@@ -94,7 +100,7 @@ public class MapleSimplifier {
             @Nullable String exp1,
             @Nullable String exp2,
             @Nonnull String conversion )
-            throws MapleException{
+            throws ComputerAlgebraSystemEngineException, MapleException {
         if ( isNullOrEmpty(exp1, exp2) ) return false;
 
         // otherwise build simplify command to test equivalence
@@ -107,7 +113,7 @@ public class MapleSimplifier {
             @Nullable String exp1,
             @Nullable String exp2,
             @Nonnull String conversion )
-            throws MapleException{
+            throws ComputerAlgebraSystemEngineException{
         if ( isNullOrEmpty(exp1, exp2) ) return null;
 
         // otherwise build simplify command to test equivalence
@@ -119,7 +125,7 @@ public class MapleSimplifier {
             @Nullable String exp1,
             @Nullable String exp2,
             @Nullable String conversion
-    ) throws MapleException {
+    ) throws ComputerAlgebraSystemEngineException, MapleException {
         if ( isNullOrEmpty(exp1, exp2) ) return false;
 
         // otherwise build simplify command to test equivalence
@@ -133,7 +139,7 @@ public class MapleSimplifier {
             @Nullable String exp1,
             @Nullable String exp2,
             @Nullable String conversion
-    ) throws MapleException {
+    ) throws ComputerAlgebraSystemEngineException {
         if ( isNullOrEmpty(exp1, exp2) ) return null;
 
         // otherwise build simplify command to test equivalence
@@ -150,14 +156,51 @@ public class MapleSimplifier {
      * @throws MapleException if the given expression cannot be evaluated.
      * @see Algebraic
      */
-    public Algebraic simplify( String maple_expr ) throws MapleException {
+    public Algebraic mapleSimplify( String maple_expr ) throws MapleException {
         String command = "simplify(" + maple_expr + ");";
         LOG.debug("Simplification: " + command);
         mapleListener.timerReset();
         return mapleInterface.evaluateExpression( command );
     }
 
-    public Algebraic numericalMagic( String maple_expr ) throws MapleException {
+    @Override
+    public Algebraic simplify( String input ) throws ComputerAlgebraSystemEngineException {
+        try {
+            return mapleSimplify(input);
+        } catch ( MapleException me ) {
+            throw new ComputerAlgebraSystemEngineException(me);
+        }
+    }
+
+    @Override
+    public boolean isAsExpected( String in, String expect ) {
+        if ( expect == null ){
+            try {
+                double d = Double.parseDouble(in);
+                return true;
+            } catch ( NumberFormatException nfe ) {};
+//            if ( in instanceof Numeric ){
+//                return true;
+//                success[i] = true;
+//                successStr[i] = type[i].getShortName() + ": " + aStr;
+            return false;
+            //else {
+//                successStr[i] = type[i].getShortName() + ": NaN";
+//            }
+        } else if ( in.matches(expect) ) {
+            return true;
+        } else {
+            return false;
+        }
+
+//            success[i] = true;
+//            successStr[i] = type[i].getShortName() + ": Success";
+//        } else {
+//            successStr[i] = type[i].getShortName() + ": NaN";
+//        }
+    }
+
+    public Algebraic numericalMagic(String maple_expr ) throws MapleException {
         String command = "nTest := " + maple_expr + ":";
         command += "nVars := indets(nTest,name) minus {constants}:";
         command += "nVals := [-3/2, -1, -1/2, 0, 1/2, 1, 3/2]:";
