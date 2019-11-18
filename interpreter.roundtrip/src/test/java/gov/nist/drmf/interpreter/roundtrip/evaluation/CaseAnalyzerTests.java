@@ -1,11 +1,15 @@
 package gov.nist.drmf.interpreter.roundtrip.evaluation;
 
+import gov.nist.drmf.interpreter.DLMFTranslator;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.evaluation.Case;
 import gov.nist.drmf.interpreter.evaluation.CaseAnalyzer;
 import gov.nist.drmf.interpreter.evaluation.Relations;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,8 +20,15 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 /**
  * @author Andre Greiner-Petter
  */
-//@AssumeMLPAvailability
+@AssumeMLPAvailability
 public class CaseAnalyzerTests {
+    private static DLMFTranslator dlmfTrans;
+
+    @BeforeAll
+    public static void setup() throws IOException {
+        dlmfTrans = new DLMFTranslator(Keys.KEY_MAPLE);
+    }
+
     @Test
     public void simpleTest() {
         String line = "\\Ln@@{z} = \\int_1^z \\frac{\\diff{t}}{t} \\constraint{$z\\neq 0$}, \\label{eq:EF.LO.LL} \\ccode{EF}";
@@ -28,7 +39,7 @@ public class CaseAnalyzerTests {
         assertEquals("\\int_1^z \\frac{\\diff{t}}{t}", c.getRHS());
         assertEquals(Relations.EQUAL, c.getRelation());
 
-        assertEquals("[z <> 0]", c.getConstraints());
+        assertEquals("[z <> 0]", c.getConstraints(dlmfTrans));
         assertEquals("eq:EF.LO.LL", c.getMetaData().getLabel().getTex());
         assertEquals("EF", c.getMetaData().getCode());
     }
@@ -43,7 +54,7 @@ public class CaseAnalyzerTests {
         assertEquals("1", c.getRHS());
         assertEquals(Relations.GREATER_THAN, c.getRelation());
 
-        assertNull(c.getConstraints());
+        assertNull(c.getConstraints(dlmfTrans));
         assertEquals("eq:AI.DE.CF2", c.getMetaData().getLabel().getTex());
         assertEquals("AI", c.getMetaData().getCode());
     }
@@ -58,7 +69,7 @@ public class CaseAnalyzerTests {
         assertEquals("1", c.getRHS());
         assertEquals(Relations.GREATER_THAN, c.getRelation());
 
-        assertNull(c.getConstraints());
+        assertNull(c.getConstraints(dlmfTrans));
         assertEquals("tmp", c.getMetaData().getLabel().getTex());
         assertEquals("TMP", c.getMetaData().getCode());
 
@@ -106,7 +117,7 @@ public class CaseAnalyzerTests {
         assertEquals("0", c.getRHS());
         assertEquals(Relations.EQUAL, c.getRelation());
 
-        assertNull(c.getConstraints());
+        assertNull(c.getConstraints(dlmfTrans));
         assertEquals("eq:AI.DE.CF3", c.getMetaData().getLabel().getTex());
         assertEquals("AI", c.getMetaData().getCode());
     }

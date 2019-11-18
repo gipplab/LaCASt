@@ -4,6 +4,8 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.grammar.ITranslator;
+import gov.nist.drmf.interpreter.constraints.Constraints;
+import gov.nist.drmf.interpreter.constraints.IConstraintTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,11 +24,11 @@ public abstract class AbstractEvaluator<T> {
 
     public final static String NL = System.lineSeparator();
 
-    private ITranslator forwardTranslator;
+    private IConstraintTranslator forwardTranslator;
     private IComputerAlgebraSystemEngine<T> engine;
 
     public AbstractEvaluator(
-            ITranslator forwardTranslator,
+            IConstraintTranslator forwardTranslator,
             IComputerAlgebraSystemEngine<T> engine
     ) {
         this.forwardTranslator = forwardTranslator;
@@ -41,11 +43,13 @@ public abstract class AbstractEvaluator<T> {
         return engine.enterCommand(cmd);
     }
 
+    public IConstraintTranslator getThisConstraintTranslator() {
+        return forwardTranslator;
+    }
+
     public void forceGC() throws ComputerAlgebraSystemEngineException {
         this.engine.forceGC();
     }
-
-//    public abstract void init() throws Exception;
 
     public abstract void performSingleTest(Case testCase);
 
@@ -128,7 +132,7 @@ public abstract class AbstractEvaluator<T> {
         sb.append(config.getTestExpression());
         sb.append(NL);
 
-        sb.append(Arrays.toString(SymbolicEvaluatorTypes.values()));
+        sb.append(Arrays.toString(SymbolicMapleEvaluatorTypes.values()));
         sb.append(NL);
 
         return buildResults(

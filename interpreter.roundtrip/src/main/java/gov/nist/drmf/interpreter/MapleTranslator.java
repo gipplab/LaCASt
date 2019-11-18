@@ -10,6 +10,7 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.grammar.ITranslator;
+import gov.nist.drmf.interpreter.constraints.IConstraintTranslator;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,7 +47,7 @@ import java.util.Properties;
  * @see gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator
  */
 @SuppressWarnings("ALL")
-public class MapleTranslator implements ITranslator, IComputerAlgebraSystemEngine<Algebraic> {
+public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraSystemEngine<Algebraic> {
     /**
      * The logger.
      */

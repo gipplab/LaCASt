@@ -10,6 +10,8 @@ public interface ICASEngineSymbolicEvaluator<T> {
 
     T simplify( String expr ) throws ComputerAlgebraSystemEngineException;
 
-    boolean isAsExpected(String in, String expect);
+    T simplify( String expr, String assumption ) throws ComputerAlgebraSystemEngineException;
+
+    boolean isAsExpected(T in, String expect);
 
 }

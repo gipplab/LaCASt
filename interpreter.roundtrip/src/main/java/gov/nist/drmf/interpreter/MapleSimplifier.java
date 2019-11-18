@@ -173,10 +173,23 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
     }
 
     @Override
-    public boolean isAsExpected( String in, String expect ) {
+    public Algebraic simplify( String input, String assumption ) throws ComputerAlgebraSystemEngineException {
+        try {
+            String cmd = "simplify(" + input + ") assuming " + assumption + ";";
+            LOG.debug("Simplification: " + cmd);
+            mapleListener.timerReset();
+            return mapleInterface.evaluateExpression( cmd );
+        } catch ( MapleException me ) {
+            throw new ComputerAlgebraSystemEngineException(me);
+        }
+    }
+
+    @Override
+    public boolean isAsExpected( Algebraic in, String expect ) {
+        String str = in.toString();
         if ( expect == null ){
             try {
-                double d = Double.parseDouble(in);
+                double d = Double.parseDouble(str);
                 return true;
             } catch ( NumberFormatException nfe ) {};
 //            if ( in instanceof Numeric ){
@@ -187,7 +200,7 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
             //else {
 //                successStr[i] = type[i].getShortName() + ": NaN";
 //            }
-        } else if ( in.matches(expect) ) {
+        } else if ( str.matches(expect) ) {
             return true;
         } else {
             return false;

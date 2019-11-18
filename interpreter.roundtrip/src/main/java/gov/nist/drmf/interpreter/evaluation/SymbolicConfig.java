@@ -31,11 +31,14 @@ public class SymbolicConfig implements EvaluationConfig {
                 np.setValue(val);
             }
 
-            SymbolicEvaluatorTypes.CONV_EXP.setActivated(enabledConvEXP());
-            SymbolicEvaluatorTypes.CONV_HYP.setActivated(enabledConvHYP());
-            SymbolicEvaluatorTypes.EXPAND.setActivated(enabledExpand());
-            SymbolicEvaluatorTypes.EXPAND_EXP.setActivated(enabledExpandWithEXP());
-            SymbolicEvaluatorTypes.EXPAND_HYP.setActivated(enabledExpandWithHYP());
+            SymbolicMathematicaEvaluatorTypes.SIMPLE.setActivated(true); // always on
+            SymbolicMapleEvaluatorTypes.SIMPLE.setActivated(true); // always on
+
+            SymbolicMapleEvaluatorTypes.CONV_EXP.setActivated(enabledConvEXP());
+            SymbolicMapleEvaluatorTypes.CONV_HYP.setActivated(enabledConvHYP());
+            SymbolicMapleEvaluatorTypes.EXPAND.setActivated(enabledExpand());
+            SymbolicMapleEvaluatorTypes.EXPAND_EXP.setActivated(enabledExpandWithEXP());
+            SymbolicMapleEvaluatorTypes.EXPAND_HYP.setActivated(enabledExpandWithHYP());
 
             LOG.info( "Successfully loaded config for symbolic tests." );
         } catch ( IOException ioe ){
