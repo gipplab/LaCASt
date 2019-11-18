@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.mathematica.config;
 
 import com.wolfram.jlink.KernelLink;
+import com.wolfram.jlink.MathLinkException;
 import com.wolfram.jlink.MathLinkFactory;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
@@ -30,6 +31,17 @@ public class MathematicaConfig {
         } catch (IOException e) {
             LOG.fatal( "Cannot write the path into the properties file.", e );
             return null;
+        }
+    }
+
+    public static void setCharacterEncoding(KernelLink engine){
+        try {
+            engine.evaluate("$CharacterEncoding = \"ASCII\"");
+            engine.discardAnswer();
+        } catch (MathLinkException mle) {
+            LOG.warn("Cannot change character encoding in Mathematica.");
+            engine.clearError();
+            engine.newPacket();
         }
     }
 
