@@ -17,7 +17,7 @@ import static gov.nist.drmf.interpreter.evaluation.NumericalTestConstants.PATTER
 /**
  * @author Andre Greiner-Petter
  */
-public class SymbolicConfig {
+public class SymbolicConfig implements EvaluationConfig {
 
     private static final Logger LOG = LogManager.getLogger(SymbolicConfig.class.getName());
 
@@ -58,7 +58,8 @@ public class SymbolicConfig {
         return Paths.get(SymbolicConfig.SymbolicProperties.KEY_OUTPUT.value);
     }
 
-    public int[] getSubset(){
+    @Override
+    public int[] getSubSetInterval(){
         String in = SymbolicConfig.SymbolicProperties.KEY_SUBSET.value;
         if ( in == null ) return null;
 
@@ -69,7 +70,8 @@ public class SymbolicConfig {
         };
     }
 
-    public String getRawTestExpression(){
+    @Override
+    public String getTestExpression(){
         return SymbolicConfig.SymbolicProperties.KEY_EXPR.value;
     }
 
@@ -84,6 +86,7 @@ public class SymbolicConfig {
         return SymbolicConfig.SymbolicProperties.KEY_EXPECT.value;
     }
 
+    @Override
     public boolean showDLMFLinks(){
         return Boolean.parseBoolean(SymbolicProperties.KEY_DLMF_LINK.value);
     }

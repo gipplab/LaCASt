@@ -22,15 +22,8 @@ public abstract class AbstractEvaluator<T> {
 
     public final static String NL = System.lineSeparator();
 
-    private boolean interrupt = false;
-
     private ITranslator forwardTranslator;
     private IComputerAlgebraSystemEngine<T> engine;
-
-    public AbstractEvaluator(ITranslator forwardTranslator, IComputerAlgebraSystemEngine<T> engine) {
-        this.forwardTranslator = forwardTranslator;
-        this.engine = engine;
-    }
 
     public String forwardTranslate(String in) throws TranslationException {
         return forwardTranslator.translate(in);
@@ -42,6 +35,14 @@ public abstract class AbstractEvaluator<T> {
 
     public abstract void init() throws Exception;
 
+    public void init(
+            ITranslator forwardTranslator,
+            IComputerAlgebraSystemEngine<T> engine
+    ) {
+        this.forwardTranslator = forwardTranslator;
+        this.engine = engine;
+    }
+
     public abstract void performSingleTest(Case testCase);
 
     public void performAllTests(LinkedList<Case> testCases) {
@@ -49,6 +50,8 @@ public abstract class AbstractEvaluator<T> {
             performSingleTest(test);
         }
     }
+
+    public abstract LinkedList<Case> loadTestCases();
 
     public LinkedList<Case> loadTestCases(
             int[] subset,
@@ -90,5 +93,87 @@ public abstract class AbstractEvaluator<T> {
             LOG.fatal("Cannot load dataset!", ioe);
             return null;
         }
+    }
+
+    public abstract EvaluationConfig getConfig();
+    public abstract HashMap<Integer, String> getLabelLibrary();
+    public abstract LinkedList<String>[] getLineResults();
+
+    public void writeResults() throws IOException {
+        String results = getResults(
+                this.getConfig(),
+                this.getLabelLibrary(),
+                this.getLineResults()
+        );
+        Files.write(
+                this.getConfig().getOutputPath(),
+                results.getBytes()
+        );
+    }
+
+    private String getResults(
+            EvaluationConfig config,
+            HashMap<Integer, String> labelLib,
+            LinkedList<String>[] lineResults
+    ){
+        StringBuffer sb = new StringBuffer();
+
+        sb.append("Overall: ");
+        sb.append(Status.buildString());
+        sb.append(" for test expression: ");
+        sb.append(config.getTestExpression());
+        sb.append(NL);
+
+        sb.append(Arrays.toString(SymbolicEvaluatorTypes.values()));
+        sb.append(NL);
+
+        return buildResults(
+                sb,
+                labelLib,
+                config.showDLMFLinks(),
+                config.getSubSetInterval(),
+                lineResults
+        );
+    }
+
+    private String buildResults(
+            StringBuffer sb,
+            HashMap<Integer, String> labelLib,
+            boolean showDLMF,
+            int[] limits,
+            LinkedList<String>[] lineResults){
+        int start = limits[0];
+        int limit = limits[1];
+
+        for ( int i = start; i < lineResults.length && i < limit; i++ ){
+            sb.append(i);
+
+            LinkedList<String> lineResult = lineResults[i];
+            boolean first = true;
+            Character c = 'a';
+
+            if ( lineResults[i] == null ){
+                sb.append(": Skipped (is null)").append(NL);
+                return sb.toString();
+            }
+
+            for ( String s : lineResult ) {
+                if ( !first ) {
+                    sb.append(i+"-"+c);
+                    c++;
+                } else first = false;
+
+                String dlmf = labelLib.get(i);
+                if ( dlmf != null && showDLMF ){
+                    sb.append(" [").append(dlmf).append("]: ");
+                } else sb.append(": ");
+
+                sb.append(s);
+                sb.append(NL);
+            }
+
+
+        }
+        return sb.toString();
     }
 }
