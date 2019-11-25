@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.MapleTranslator;
 import gov.nist.drmf.interpreter.MathematicaTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.grammar.ITranslator;
 import gov.nist.drmf.interpreter.constraints.IConstraintTranslator;
@@ -24,9 +25,6 @@ import java.util.*;
 @SuppressWarnings({"WeakerAccess", "unchecked"})
 public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
     private static final Logger LOG = LogManager.getLogger(SymbolicEvaluator.class.getName());
-
-    //    private MapleTranslator translator;
-//    private MapleSimplifier simplifier;
 
     private SymbolicConfig config;
 
@@ -141,10 +139,11 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
 
     private void setPreviousAssumption() throws ComputerAlgebraSystemEngineException {
         if ( overallAss != null && !overallAss.isEmpty() ){
-            String cmd = "assume(" + overallAss + ");";
+//            String cmd = "assume(" + overallAss + ");";
+            String cmd = "And[" + overallAss + "]";
             LOG.debug("Enter assumption for entire test suite: " + cmd);
 
-            enterEngineCommand(cmd);
+//            enterEngineCommand(cmd);
 //            translator.enterMapleCommand(cmd);
 
             // todo we may need that?
@@ -176,7 +175,7 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
             return this.defaultPrevAfterCmds;
 //        } else if ( overAll.contains("\\Legendre") ){
             //pac[0] = LEGENDRE_DEF_ASS;
-            //pac[1] = RESET;
+            //pac[1] = RESETIntegrate[Divide[1, (1+t^2)^(1/2)], {t, 0, 1/ z}];
         }
         return null;
     }
@@ -256,16 +255,22 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
                     throw new IllegalArgumentException("Error in CAS!");
                 }
 
-//                String strRes = res.toString();
-                LOG.info(c.getLine() + ": " + type[i].getShortName() + " - Simplified expression: " + res);
-
-                if ( validOutCome(res, config.getExpectationValue()) ) {
-                    success[i] = true;
-                    successStr[i] = type[i].getShortName() + ": " + res;
-                } else {
+                if ( isAbortedResult(res) ) {
                     success[i] = false;
-                    successStr[i] = type[i].getShortName() + ": NaN";
+                    successStr[i] = type[i].getShortName() + ": Aborted";
+                } else {
+    //                String strRes = res.toString();
+                    LOG.info(c.getLine() + ": " + type[i].getShortName() + " - Simplified expression: " + res);
+
+                    if ( validOutCome(res, config.getExpectationValue()) ) {
+                        success[i] = true;
+                        successStr[i] = type[i].getShortName() + ": " + res;
+                    } else {
+                        success[i] = false;
+                        successStr[i] = type[i].getShortName() + ": NaN";
+                    }
                 }
+
             }
 
             if ( preAndPostCommands != null ){
@@ -286,10 +291,22 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
             Status.FAILURE.add();
         } catch ( Exception e ){
             LOG.warn("Error for line " + c.getLine() + ", because: " + e.toString(), e);
-            if ( e instanceof TranslationException)
+            if ( e instanceof TranslationException){
                 lineResults[c.getLine()].add("Error - " + e.toString());
-            else lineResults[c.getLine()].add("Error - " + e.toString() + " [" + c.toString() + "]");
-            Status.ERROR.add();
+                TranslationException te = (TranslationException)e;
+                if (
+                        te.getReason().equals( TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION ) ||
+                        te.getReason().equals( TranslationExceptionReason.LATEX_MACRO_ERROR ) ||
+                        te.getReason().equals( TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT )
+                ) {
+                    Status.MISSING.add();
+                    if ( te.getReasonObj() != null )
+                        addMissingMacro(te.getReasonObj().toString());
+                } else Status.ERROR.add();
+            } else {
+                lineResults[c.getLine()].add("Error - " + e.toString() + " [" + c.toString() + "]");
+                Status.ERROR.add();
+            }
         } finally {
             try {
                 if ( getGcCaller() % 1 == 0 ) {

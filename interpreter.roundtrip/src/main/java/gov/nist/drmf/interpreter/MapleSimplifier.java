@@ -213,6 +213,16 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
 //        }
     }
 
+    @Override
+    public void abort() throws ComputerAlgebraSystemEngineException {
+        LOG.warn("Abortion is not supported by Maple.");
+    }
+
+    @Override
+    public boolean wasAborted(Algebraic result) {
+        return false; // there is no such a signal in Maple?
+    }
+
     public Algebraic numericalMagic(String maple_expr ) throws MapleException {
         String command = "nTest := " + maple_expr + ":";
         command += "nVars := indets(nTest,name) minus {constants}:";

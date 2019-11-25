@@ -86,6 +86,16 @@ public class Case {
         return con.toString();
     }
 
+    public String getRawConstraint() {
+        if ( metaData.getConstraints() != null )
+            return Arrays.toString(metaData.getConstraints().getTexConstraints());
+        else return null;
+    }
+
+    public void removeConstraint() {
+        metaData.deleteConstraints();
+    }
+
     public CaseMetaData getMetaData() {
         return metaData;
     }

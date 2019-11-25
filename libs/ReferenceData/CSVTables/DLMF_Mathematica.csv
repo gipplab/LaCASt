@@ -12,6 +12,13 @@ DLMF;Mathematica;Number of Variables;Slot of Differentiation;DLMF-Mathematica-Co
 \sech@@{z};Sech[$0];1;;;
 \csch@@{z};Csch[$0];1;;;
 \coth@@{z};Coth[$0];1;;;
+;;;;;;;;;
+\Asin@@{z};;1;;;Integrate[Divide[1, (1-t^2)^(1/2)], {t, 0, $0}]
+\Acos@@{z};;1;;;Integrate[Divide[1, (1-t^2)^(1/2)], {t, $0, 1}]
+\Atan@@{z};;1;;;Integrate[Divide[1, 1+t^2], {t, 0, $0}]
+\Asec@@{z};;1;;;Integrate[Divide[1, (1-t^2)^(1/2)], {t, Divide[1,$0], 1}]
+\Acsc@@{z};;1;;;Integrate[Divide[1, (1-t^2)^(1/2)], {t, 0, Divide[1,$0]}]
+\Acot@@{z};;1;;;Integrate[Divide[1, 1+t^2], {t, 0, Divide[1,$0]}]
 ;;;;;
 \asin@@{z};ArcSin[$0];1;;;
 \acos@@{z};ArcCos[$0];1;;;
@@ -19,6 +26,13 @@ DLMF;Mathematica;Number of Variables;Slot of Differentiation;DLMF-Mathematica-Co
 \asec@@{z};ArcSec[$0];1;;;
 \acsc@@{z};ArcCsc[$0];1;;;
 \acot@@{z};ArcCot[$0];1;;;
+;;;;;
+\Asinh@@{z};;1;;;Integrate[Divide[1, (1+t^2)^(1/2)], {t, 0, $0}]
+\Acosh@@{z};;1;;;Integrate[Divide[1, (t^2-1)^(1/2)], {t, 1, $0}]
+\Atanh@@{z};;1;;;Integrate[Divide[1, 1-t^2], {t, 0, $0}]
+\Asech@@{z};;1;;;Integrate[Divide[1, (t^2-1)^(1/2)], {t, 1, Divide[1,$0]}]
+\Acsch@@{z};;1;;;Integrate[Divide[1, (1+t^2)^(1/2)], {t, 0, Divide[1,$0]}]
+\Acoth@@{z};;1;;;Integrate[Divide[1, 1-t^2], {t, 0, Divide[1,$0]}]
 ;;;;;
 \asinh@@{z};ArcSinh[$0];1;;;
 \acosh@@{z};ArcCosh[$0];1;;;
@@ -139,8 +153,6 @@ X1:\iderivX\ideriv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;;
 X1:\pderivX\pderiv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;;
 X1:\tpderivX\tpderiv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;;
 X1:\ipderivX\ipderiv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;;
-\diff{x};;;;;
-\pdiff{x};;;;;
 \AntiDer@{x}{f(x)};;;;;
 \Int{a}{b}@{x}{f(x)};;;;;
 \int;;;;;
@@ -168,10 +180,10 @@ X1:\ipderivX\ipderiv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;;
 \bigO@{x};;;;;
 \littleo@{x};;;;;
 \sim;;;;;
+\abs{$0};Abs[$0];1;;;;
 ;;;;;
 ;;;;;
 ;;;;;
-DRMF Macro;;;;;
 \AiryAi@{z};AiryAi[$0];1;1;;
 \AiryBi@{z};AiryBi[$0];1;1;;
 \AirymodM@{z};;1;1;;
@@ -189,11 +201,11 @@ DRMF Macro;;;;;
 \zAirybeta{k};;;;;
 \zderivAirybeta{k};;;;;
 ;;;;;
-\AngerJ{v}@{x};;2;1;;
-\WeberE{v}@{x};;2;1;;
+\AngerJ{v}@{x};AngerJ[$0, $1];2;1;;
+\WeberE{v}@{x};WeberE[$0, $1];2;1;;
 \AngerWeberA{v}@{x};;;;;
 ;;;;;
-\AppellF{1}@{\alpha}{\beta}{\beta'}{\gamma}{x}{y};;;;;
+\AppellF{1}@{\alpha}{\beta}{\beta'}{\gamma}{x}{y};AppellF[$0, $1, $2, $3, $4, $5];6;;;
 \AppellF{2}@{\alpha}{\beta}{\beta'}{\gamma}{\gamma'}{x}{y};;;;;
 \AppellF{3}@{\alpha}{\alpha'}{\beta}{\beta'}{\gamma}{x}{y};;;;;
 \AppellF{4}@{\alpha}{\beta}{\gamma}{\gamma'}{x}{y};;;;;
@@ -274,7 +286,7 @@ DRMF Macro;;;;;
 \paraUbar@{a}{x};;;;;
 \paraV@{a}{z};;2;2;;
 \paraW@{a}{x};;2;2;;
-\WhittakerparaD{\nu}@{z};;;;;
+\WhittakerparaD{\nu}@{z};ParabolicCylinderD[$0, $1];2;1;;
 ;;;;;
 \DawsonsintF@{z};DawsonF[$0];1;;;
 ;;;;;
@@ -410,10 +422,6 @@ DRMF Macro;;;;;
 \aJacobielldck@@{z}{k};;;;;
 \aJacobiellcsk@@{z}{k};;;;;
 \JacobiEpsilonk@{x}{k};;;;;
-\Jacobithetaq{1}@{z}{q};EllipticTheta[1, $1, $2];3;1;;
-\Jacobithetaq{2}@{z}{q};EllipticTheta[2, $1, $2];3;1;;
-\Jacobithetaq{3}@{z}{q};EllipticTheta[3, $1, $2];3;1;;
-\Jacobithetaq{4}@{z}{q};EllipticTheta[4, $1, $2];3;1;;
 \Jacobithetaq{j}@{z}{q};EllipticTheta[$0, $1, $2];3;1;;
 \Jacobithetatau{j}@{z}{\tau};EllipticTheta[$0, $1, $2];3;1;;
 \Jacobithetacombinedq{n}{m}@{z}{q};;;;;
@@ -521,10 +529,10 @@ X1:DunsterQX\DunsterQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;3;1;;
 \Riemannthetachar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}};;;;;
 \scRiemanntheta@{\Vector{z}}{\Matrix{\Omega}};;;;;
 \Riemannxi@{s};;;;;
-\Riemannzeta@{s};;1;1;;
+\Riemannzeta@{s};Zeta[$0];1;1;;
 ;;;;;
-\ScorerGi@{z};;1;1;;
-\ScorerHi@{z};;1;1;;
+\ScorerGi@{z};ScorerGi[$0];1;1;;
+\ScorerHi@{z};ScorerHi[$0];1;1;;
 ;;;;;
 \spheigvalLambda{m}{n}@{\gamma^2};;;;;
 \sphwavePsreal{m}{n}@{x}{\gamma^2};;4;1;;
@@ -536,10 +544,10 @@ X1:DunsterQX\DunsterQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;3;1;;
 \Stirlingnumbers@{n}{k};StirlingS1[$0, $1];2;;;
 \StirlingnumberS@{n}{k};StirlingS2[$0, $1];2;;;
 ;;;;;
-\StruveH{\nu}@{z};;2;1;;
-\StruveK{\nu}@{z};;2;1;;
-\modStruveL{\nu}@{z};;2;1;;
-\modStruveM{\nu}@{z};;;;;
+\StruveH{\nu}@{z};StruveH[$0, $1];2;1;;
+\StruveK{\nu}@{z};StruveH[$0, $1] - BesselY[$0, $1];2;1;;
+\modStruveL{\nu}@{z};StruveL[$0, $1];2;1;;
+\modStruveM{\nu}@{z};StruveL[$0, $1] - BesselI[$0, $1];2;1;;
 ;;;;;
 \Legendresym{n}{p};;;;;
 \Kroneckerdelta{j}{k};;;;;

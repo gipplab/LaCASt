@@ -9,7 +9,8 @@ public enum Commands {
     FULL_FORM("FullForm[XXX-1]", 1),
     EXTRACT_VARIABLES("Reduce`FreeVariables[XXX-1]", 1),
     ASSUMING("Assuming[XXX-1, XXX-2]", 2),
-    FULL_SIMPLIFY("FullSimplify[XXX-1]", 1);
+    FULL_SIMPLIFY("FullSimplify[XXX-1]", 1),
+    FULL_SIMPLIFY_ASSUMPTION("FullSimplify[XXX-1, And[XXX-2]]", 2);
 
 
     private static final String PLACE_HOLDER = "XXX";

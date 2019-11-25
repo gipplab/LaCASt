@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
@@ -26,6 +27,8 @@ public class MathematicaTranslator implements
         ICASEngineSymbolicEvaluator<Expr>
 {
     private static final Logger LOG = LogManager.getLogger(MathematicaTranslator.class.getName());
+
+    public static final String MATH_ABORTION_SIGNAL = "$Aborted";
 
     /**
      * Interface to Mathematica
@@ -100,5 +103,15 @@ public class MathematicaTranslator implements
             LOG.error("Cannot check if expression is zero " + in.toString());
             return false;
         }
+    }
+
+    @Override
+    public void abort() {
+        miEquiChecker.abort();
+    }
+
+    @Override
+    public boolean wasAborted(Expr result) {
+        return result.toString().matches(Pattern.quote(MATH_ABORTION_SIGNAL));
     }
 }

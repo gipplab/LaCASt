@@ -82,7 +82,7 @@ public class GlobalPaths {
 
     // path variable to the resources of the interpreter
     public static final Path PATH_CORE_RESOURCES =
-            Paths.get("interpreter.interpreter", "src", "main", "resources");
+            Paths.get("interpreter.common", "src", "main", "resources");
 
     public static final Path PATH_LOGGING_CONFIG =
             PATH_CORE_RESOURCES.resolve("log4j2.xml");

@@ -257,6 +257,7 @@ X1:\iderivX\ideriv[$0]{$1}{$2};diff($1, [$2$($0)]);3;;;;
 ;;;;;;
 \BesselC{\nu}@{z};;2;1;;;
 \paraU@{$0}{$1};CylinderU($0, $1);2;2;For a=0, this can be computed with BesselK. But this produces branch cut issues;;
+\ParabolicU@{$0}{$1};CylinderU($0, $1);2;2;For a=0, this can be computed with BesselK. But this produces branch cut issues;;
 \paraUbar@{a}{x};;;;;;
 \paraV@{$0}{$1};CylinderV($0, $1);2;2;;;
 \paraW@{a}{x};;;2;;;
@@ -492,7 +493,7 @@ In this notation, m,n,p,q are not needed for Maple (Maple -> LaTeX translation c
 \Riemannthetachar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}};;;;;;
 \scRiemanntheta@{\Vector{z}}{\Matrix{\Omega}};;;;;;
 \Riemannxi@{s};;;;You could use the alternative translation!;;($0)*($0-1)*GAMMA(($0)/2)*Pi^(-($0)/2)*Zeta($0)/2
-\Riemannzeta@{$0};Zeta($0);1;;;;
+\Riemannzeta@{$0};Zeta($0);1;1;;;
 ;;;;;;
 \ScorerGi@{z};;1;1;You could use the alternative translation. Since the given variable is used for limits of an Integral, a complex variable could produces trouble!;;AiryBi($0)*(int(AiryAi(t), t = ($0) .. infinity))+AiryAi($0)*(int(AiryBi(t), t = 0 .. ($0)))
 \ScorerHi@{z};;1;1;You could use the alternative translation. Since the given variable is used for limits of an Integral, a complex variable could produces trouble!;;AiryBi($0)*(int(AiryAi(t), t = -infinity .. ($0)))-AiryAi($0)*(int(AiryBi(t), t = -infinity .. ($0)))
