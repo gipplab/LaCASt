@@ -13,6 +13,7 @@ public interface IConstraintTranslator extends ITranslator {
                 .filter( c -> !c.matches(".*\\\\[cl]?dots.*") )
                 .map( Constraints::stripDollar )
                 .map( this::translate )
+                .map( c -> c.replaceAll("\\*", " ") )
                 .map( Constraints::splitMultiAss )
                 .toArray(String[]::new);
     }

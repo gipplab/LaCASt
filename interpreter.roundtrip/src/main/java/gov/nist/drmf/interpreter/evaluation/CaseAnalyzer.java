@@ -22,11 +22,18 @@ public class CaseAnalyzer {
 
     private static final Logger LOG = LogManager.getLogger(CaseAnalyzer.class.getName());
 
+//    private static final Pattern META_INFO_PATTERN = Pattern.compile(
+//                    "\\\\constraint\\{(.*?)}|" +
+//                    "\\\\label\\{(.*?)}|" +
+//                    "\\\\ccode\\{(.*?)}|" +
+//                    "\\\\source|\\\\authorproof|\\\\keyphrase|\\\\cite"
+//    );
+
     private static final Pattern META_INFO_PATTERN = Pattern.compile(
-                    "\\\\constraint\\{(.*?)}|" +
-                    "\\\\label\\{(.*?)}|" +
-                    "\\\\ccode\\{(.*?)}|" +
-                    "\\\\source|\\\\authorproof|\\\\keyphrase|\\\\cite"
+            "\\\\constraint\\{(.*?)}|" +
+            "\\\\url\\{(.*?)}|" +
+            "\\\\symbolsDefined\\{(.*?)}|" +
+            "\\\\source|\\\\authorproof|\\\\keyphrase|\\\\cite|\\\\comments"
     );
 
     private static final String EOL = "<EOL>";
@@ -40,8 +47,10 @@ public class CaseAnalyzer {
     );
 
     private static final int CONSTRAINT_GRP = 1;
-    private static final int LABEL_GRP = 2;
-    private static final int CODE_GRP = 3;
+//    private static final int LABEL_GRP = 2;
+//    private static final int CODE_GRP = 3;
+    private static final int URL_GRP = 2;
+    private static final int SYMB_DEF_GRP = 3;
 
     public static boolean ACTIVE_BLUEPRINTS = true;
 
@@ -59,17 +68,19 @@ public class CaseAnalyzer {
         Matcher metaDataMatcher = META_INFO_PATTERN.matcher(line);
         StringBuffer mathSB = new StringBuffer();
 
-        String constraint = null;
-        String label = null;
-        String code = null;
+        LinkedList<String> constraints = new LinkedList();
+//        String label = null;
+//        String code = null;
+        String link = null;
+        String symbDef = null;
 
         while( metaDataMatcher.find() ) {
             if ( metaDataMatcher.group(CONSTRAINT_GRP) != null ) {
-                constraint = metaDataMatcher.group(CONSTRAINT_GRP);
-            } else if ( metaDataMatcher.group(LABEL_GRP) != null ) {
-                label = metaDataMatcher.group(LABEL_GRP);
-            } else if ( metaDataMatcher.group(CODE_GRP) != null ) {
-                code = metaDataMatcher.group(CODE_GRP);
+                constraints.add(metaDataMatcher.group(CONSTRAINT_GRP));
+            } else if ( metaDataMatcher.group(URL_GRP) != null ) {
+                link = metaDataMatcher.group(URL_GRP);
+            } else if ( metaDataMatcher.group(SYMB_DEF_GRP) != null ) {
+                symbDef = metaDataMatcher.group(SYMB_DEF_GRP);
             }
             metaDataMatcher.appendReplacement(mathSB, EOL);
         }
@@ -83,12 +94,12 @@ public class CaseAnalyzer {
 //            throw new IllegalArgumentException("Cannot analyze line! " + line);
         } else eq = mathMatcher.group(1);
 
-        if ( eq.matches(".*\\\\[cl]?dots.*") ) {
-            LOG.error("Test case " + lineNumber + " contains dots -> a translation does not make sense. -> SKIP");
-            return null;
-        }
+//        if ( eq.matches(".*\\\\[cl]?dots.*") ) {
+//            LOG.error("Test case " + lineNumber + " contains dots -> a translation does not make sense. -> SKIP");
+//            return null;
+//        }
 
-        CaseMetaData metaData = extractMetaData(constraint, label, code, lineNumber);
+        CaseMetaData metaData = extractMetaData(constraints, link, null, lineNumber);
 
         if ( eq.contains("\\pm") || eq.contains("\\mp") ) {
             String one = eq.replaceAll("\\\\pm", "+");
@@ -180,7 +191,7 @@ public class CaseAnalyzer {
         else return null;
     }
 
-    private static CaseMetaData extractMetaData(String constraintStr, String labelStr, String codeStr, int lineNumber) {
+    private static CaseMetaData extractMetaData(LinkedList<String> constraints, String labelStr, String codeStr, int lineNumber) {
         // first, create label
         Label label = null;
         if ( labelStr != null ){
@@ -189,15 +200,17 @@ public class CaseAnalyzer {
             System.out.println(lineNumber + ": " + label.getHyperlink());
         }
 
-        if ( constraintStr == null )
+        if ( constraints.isEmpty() )
             return new CaseMetaData(lineNumber, label, null, codeStr);
 
         // second, build list of constraints
         LinkedList<String> cons = new LinkedList<>();
-        Matcher consMatcher = CONSTRAINT_SPLITTER_PATTERN.matcher(constraintStr);
+        for ( String con : constraints ) {
+            Matcher consMatcher = CONSTRAINT_SPLITTER_PATTERN.matcher(con);
 
-        while( consMatcher.find() ){
-            cons.add(consMatcher.group());
+            while( consMatcher.find() ){
+                cons.add(consMatcher.group());
+            }
         }
 
         LinkedList<String> sieved = new LinkedList<>();
@@ -231,7 +244,7 @@ public class CaseAnalyzer {
         }
 
         String[] conArr = sieved.stream().toArray(String[]::new);
-        Constraints constraints = new Constraints(conArr, specialVars, specialVals);
-        return new CaseMetaData(lineNumber, label, constraints, codeStr);
+        Constraints finalConstr = new Constraints(conArr, specialVars, specialVals);
+        return new CaseMetaData(lineNumber, label, finalConstr, codeStr);
     }
 }

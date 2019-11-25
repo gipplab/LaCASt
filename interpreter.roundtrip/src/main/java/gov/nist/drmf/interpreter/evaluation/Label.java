@@ -10,7 +10,8 @@ public class Label {
 
     public Label(String tex){
         this.tex = tex;
-        this.hyperlink = DLMFLinker.getLinkerInstance().getLink(tex);
+//        this.hyperlink = DLMFLinker.getLinkerInstance().getLink(tex);
+        this.hyperlink = tex;
     }
 
     public String getTex() {

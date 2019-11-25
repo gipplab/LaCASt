@@ -57,8 +57,14 @@ public class SymbolicConfig implements EvaluationConfig {
         return Paths.get(SymbolicConfig.SymbolicProperties.KEY_LABELSET.value);
     }
 
+    @Override
     public Path getOutputPath(){
-        return Paths.get(SymbolicConfig.SymbolicProperties.KEY_OUTPUT.value);
+        return Paths.get(SymbolicProperties.KEY_OUTPUT.value);
+    }
+
+    @Override
+    public Path getMissingMacrosOutputPath() {
+        return Paths.get(SymbolicProperties.KEY_MISSING_MACRO_OUTPUT.value);
     }
 
     @Override
@@ -125,6 +131,7 @@ public class SymbolicConfig implements EvaluationConfig {
         KEY_EXPR("test_expression", null),
         KEY_EXPECT("test_expectation", null),
         KEY_OUTPUT("output", null),
+        KEY_MISSING_MACRO_OUTPUT("missing_macro_output", null),
         KEY_DLMF_LINK("show_dlmf_links", null),
         KEY_ENABLE_CONV_EXP("enable_conversion_exp", null),
         KEY_ENABLE_CONV_HYP("enable_conversion_hypergeom", null),

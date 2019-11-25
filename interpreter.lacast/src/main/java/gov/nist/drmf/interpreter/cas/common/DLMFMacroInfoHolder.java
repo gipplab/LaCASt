@@ -71,7 +71,8 @@ public class DLMFMacroInfoHolder {
         try { // true slot is argument slot + numOfParams
             slotOfDifferentiation = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset, CAS)) + numOfParams;
         } catch (NumberFormatException e) {
-            slotOfDifferentiation = -1; // if slot isn't in lexicon, value is null
+            //TODO should default be 1 or throw an exception?
+            slotOfDifferentiation = 1; // if slot isn't in lexicon, value is null
         }
 
         // now store additional information about the translation

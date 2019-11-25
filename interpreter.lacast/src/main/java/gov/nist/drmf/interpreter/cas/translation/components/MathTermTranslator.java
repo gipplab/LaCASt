@@ -364,9 +364,10 @@ public class MathTermTranslator extends AbstractListTranslator {
                 throw buildException("Should not reach right-delimiters in MathTermTranslator!",
                         TranslationExceptionReason.IMPLEMENTATION_ERROR);
             default:
-                throw buildException("Unknown MathTerm Tag: "
+                throw buildExceptionObj("Unknown MathTerm Tag: "
                                 + term.getTag() + " for " + term.getTermText(),
-                        TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
+                        TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT,
+                        term.getTermText());
         }
 
         return localTranslations;
@@ -375,7 +376,7 @@ public class MathTermTranslator extends AbstractListTranslator {
     /**
      * Inform the user about the fact of decision we made to translate this
      * constant or Greek letter.
-     * <p>
+     *
      * This method only will invoke, if the term is a Greek letter and maybe
      * a constant. So it is maybe a constant we know how to translate but don't
      * want to (like pi but the user should use \cpi instead)

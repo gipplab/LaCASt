@@ -11,6 +11,8 @@ public enum Status {
     SUCCESS_TRANS(0),
     FAILURE(0),
     SKIPPED(0),
+    IGNORE(0),
+    MISSING(0),
     ERROR(0);
 
     private int counter;

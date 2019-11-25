@@ -3,10 +3,13 @@ package gov.nist.drmf.interpreter.evaluation;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.grammar.IComputerAlgebraSystemEngine;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * @author Andre Greiner-Petter
  */
-public interface ICASEngineSymbolicEvaluator<T> {
+public interface ICASEngineSymbolicEvaluator<T> extends Observer {
 
     T simplify( String expr ) throws ComputerAlgebraSystemEngineException;
 
@@ -14,4 +17,16 @@ public interface ICASEngineSymbolicEvaluator<T> {
 
     boolean isAsExpected(T in, String expect);
 
+    void abort() throws ComputerAlgebraSystemEngineException;
+
+    boolean wasAborted(T result);
+
+    @Override
+    default void update(Observable o, Object arg) {
+        try {
+            abort();
+        } catch ( ComputerAlgebraSystemEngineException casee ) {
+            casee.printStackTrace();
+        }
+    }
 }

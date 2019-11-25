@@ -8,6 +8,9 @@ import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * @author Andre Greiner-Petter
  */
@@ -37,11 +40,14 @@ public class SymbolicEquivalenceChecker {
     }
 
     public Expr fullSimplify(String test, String assumption) throws MathLinkException {
-        String simplify = Commands.FULL_SIMPLIFY.build(test);
-        String expr = assumption == null ? simplify : Commands.ASSUMING.build(assumption, simplify);
+//        String simplify = Commands.FULL_SIMPLIFY.build(test);
+        String expr = assumption == null ?
+                Commands.FULL_SIMPLIFY.build(test) :
+                Commands.FULL_SIMPLIFY_ASSUMPTION.build(test, assumption);
 
         engine.evaluate(expr);
         engine.waitForAnswer();
+
         return engine.getExpr();
     }
 
@@ -56,5 +62,10 @@ public class SymbolicEquivalenceChecker {
             }
         }
         return false;
+    }
+
+    public void abort() {
+        LOG.warn("Register an abortion request. Call abort evaluation now!");
+        engine.abortEvaluation();
     }
 }

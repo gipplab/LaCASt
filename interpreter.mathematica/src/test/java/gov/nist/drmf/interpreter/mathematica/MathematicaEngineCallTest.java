@@ -145,6 +145,39 @@ public class MathematicaEngineCallTest {
         }
     }
 
+    @Test
+    public void abortTest() {
+        KernelLink engine = mi.getMathKernel();
+        String test = "Integrate[Divide[1,t], {t, 1, Divide[1,z]}]";
+        test = test + " - " + test;
+
+        Thread abortThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("Finished delay, call abort evaluation.");
+                engine.abortEvaluation();
+            }
+        });
+
+        abortThread.start();
+        try {
+            engine.evaluate(test);
+            engine.waitForAnswer();
+            System.out.println(engine.getExpr());
+            engine.newPacket();
+        } catch (MathLinkException e) {
+            e.printStackTrace();
+            System.out.println(engine.getLastError());
+            engine.clearError();
+            engine.newPacket();
+        }
+    }
+
     @AfterAll
     public static void shutwodn() {
         mi.shutdown();

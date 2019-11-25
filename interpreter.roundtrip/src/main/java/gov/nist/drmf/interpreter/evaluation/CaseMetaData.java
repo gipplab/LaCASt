@@ -33,4 +33,8 @@ public class CaseMetaData {
     public int getLinenumber() {
         return linenumber;
     }
+
+    public void deleteConstraints() {
+        this.constraints = null;
+    }
 }

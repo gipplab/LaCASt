@@ -13,4 +13,6 @@ public interface EvaluationConfig {
     boolean showDLMFLinks();
 
     Path getOutputPath();
+
+    Path getMissingMacrosOutputPath();
 }
