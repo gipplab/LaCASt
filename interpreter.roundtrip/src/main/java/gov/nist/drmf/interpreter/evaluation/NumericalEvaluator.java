@@ -27,7 +27,7 @@ import java.util.stream.Stream;
  * @author Andre Greiner-Petter
  */
 @SuppressWarnings("ALL")
-public class NumericalEvaluator {//implements Observer {
+public class NumericalEvaluator extends AbstractEvaluator {//implements Observer {
 
     private static final Logger LOG = LogManager.getLogger(NumericalEvaluator.class.getName());
 
@@ -171,6 +171,16 @@ public class NumericalEvaluator {//implements Observer {
         lineResult = new String[subset[1]];
         for ( Integer i : skippedLinesInfo.keySet() )
             lineResult[i] = skippedLinesInfo.get(i);
+    }
+
+    @Override
+    public EvaluationConfig getConfig() {
+        return null;
+    }
+
+    @Override
+    public HashMap<Integer, String> getLabelLibrary() {
+        return null;
     }
 
     public static LinkedList<Case> loadTestCases(int[] subset, Path dataset, HashMap<Integer, String> labelLib, HashMap<Integer, String> skippedLinesInfo) {
