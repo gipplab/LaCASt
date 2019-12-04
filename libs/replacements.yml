@@ -1,0 +1,2 @@
+generalReplacements:
+  - pattern: \\(?:displaystyle|hbox|[Bb]ig[lrg]?|[sb]f)
