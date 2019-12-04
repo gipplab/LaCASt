@@ -15,6 +15,10 @@ public class DLMFConditionalReplacementImpl extends ConditionalReplacementRule i
             "\\d+(?:\\.\\d+)*(?:" + EXP_IDX + ")?"
     );
 
+    public static final Pattern DLMF_URL_PATTERN = Pattern.compile(
+            "^(?:https?://)?dlmf\\.nist\\.gov/(.+)$"
+    );
+
     private int[] hierarchy;
 
     public DLMFConditionalReplacementImpl(){};
@@ -78,5 +82,18 @@ public class DLMFConditionalReplacementImpl extends ConditionalReplacementRule i
         }
 
         return 0;
+    }
+
+    /**
+     * Extracts the equation label from a full DLMF url. If the given URL is invalid,
+     * the returned string is empty.
+     * @param dlmfURL DLMF equation URL
+     * @return equation label in url
+     */
+    public static final String extractEquationLabelFromURL(String dlmfURL) {
+        Matcher matcher = DLMF_URL_PATTERN.matcher(dlmfURL);
+        if ( matcher.matches() ) {
+            return matcher.group(1);
+        } else return "";
     }
 }

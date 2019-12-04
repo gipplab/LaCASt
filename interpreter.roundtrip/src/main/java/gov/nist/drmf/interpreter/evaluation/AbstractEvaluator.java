@@ -46,8 +46,8 @@ public abstract class AbstractEvaluator<T> {
         this.missingMacrosLib = new HashMap<>();
     }
 
-    public String forwardTranslate(String in) throws TranslationException {
-        return forwardTranslator.translate(in);
+    public String forwardTranslate( String in, String label ) throws TranslationException {
+        return forwardTranslator.translate(in, label);
     }
 
     public T enterEngineCommand(String cmd) throws ComputerAlgebraSystemEngineException {

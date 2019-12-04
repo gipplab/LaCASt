@@ -360,11 +360,11 @@ public class NumericalEvaluator {//implements Observer {
 
     private String getTestedExpression(Case c){
         LOG.debug("Translating LHS: " + c.getLHS());
-        String mapleLHS = translator.translateFromLaTeXToMapleClean( c.getLHS() );
+        String mapleLHS = translator.translateFromLaTeXToMapleClean( c.getLHS(), c.getEquationLabel() );
         LOG.info("Translated LHS to: " + mapleLHS);
 
         LOG.debug("Translating RHS: " + c.getRHS());
-        String mapleRHS = translator.translateFromLaTeXToMapleClean( c.getRHS() );
+        String mapleRHS = translator.translateFromLaTeXToMapleClean( c.getRHS(), c.getEquationLabel() );
         LOG.info("Translated RHS to: " + mapleRHS);
 
         if ( !c.isEquation() ){

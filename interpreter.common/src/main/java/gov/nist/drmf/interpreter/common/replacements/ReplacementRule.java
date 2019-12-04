@@ -30,6 +30,11 @@ public class ReplacementRule {
         this.groups = groups;
     }
 
+    @Override
+    public String toString() {
+        return "[Repl-Rule: " + pattern + " --> " + replacement + "]";
+    }
+
     public String replace( String input ) {
         Matcher m = pattern.matcher(input);
         StringBuffer sb = new StringBuffer();

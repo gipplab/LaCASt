@@ -5,8 +5,6 @@ import gov.nist.drmf.interpreter.common.replacements.ReplacementConfig;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
