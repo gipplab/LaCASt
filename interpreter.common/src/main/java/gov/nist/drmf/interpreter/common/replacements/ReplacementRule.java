@@ -1,0 +1,52 @@
+package gov.nist.drmf.interpreter.common.replacements;
+
+import com.fasterxml.jackson.annotation.JsonSetter;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * @author Andre Greiner-Petter
+ */
+public class ReplacementRule {
+    private Pattern pattern = null;
+    private String replacement = "";
+    private int groups = 0;
+
+    public ReplacementRule(){};
+
+    @JsonSetter("pattern")
+    public void setPattern(String pattern) {
+        this.pattern = Pattern.compile(pattern);
+    }
+
+    @JsonSetter("replacement")
+    public void setReplacement(String replacement) {
+        this.replacement = replacement == null ? "" : replacement;
+    }
+
+    @JsonSetter("groups")
+    public void setGroups(int groups) {
+        this.groups = groups;
+    }
+
+    public String replace( String input ) {
+        Matcher m = pattern.matcher(input);
+        StringBuffer sb = new StringBuffer();
+        while ( m.find() ) {
+            String replaceStr = replaceByGroupMatch(m);
+            m.appendReplacement(sb, replaceStr);
+        }
+        m.appendTail(sb);
+        return sb.toString();
+    }
+
+    private String replaceByGroupMatch( Matcher m ) {
+        // replace \ by \\
+        String repl = replacement;
+        for ( int i = 1; i <= this.groups; i++ ) {
+            repl = repl.replaceAll("\\$"+i, m.group(i));
+        }
+        return repl;
+    }
+}

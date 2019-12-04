@@ -1,6 +1,19 @@
 package gov.nist.drmf.interpreter.common.replacements;
 
 /**
+ * Conditional replacement objects are comparable objects and matchable. This means,
+ * another conditional object could {@link #match(IReplacementCondition)} other conditional objects.
+ * Note that a match is not necessarily commutative, i.e., a conditional object A could match B, but B
+ * does not match A.
+ *
+ * To provide an example, the {@link DLMFConditionalReplacementImpl} is an implementation of this interface.
+ * A DLMF condition is an equation label, e.g., 9.6#E3. Consider a replacement rule for all equations in
+ * subsection 9.6. In this case, every equation in subsection 9.6, such as 9.6#E3 matches 9.6. However,
+ * obviously, 9.6 does not match 9.6#E3.
+ *
+ * @see DLMFConditionalReplacementImpl
+ * @see ConditionalReplacementRule
+ * @see Comparable
  * @author Andre Greiner-Petter
  */
 public interface IReplacementCondition extends Comparable<IReplacementCondition> {
@@ -11,15 +24,6 @@ public interface IReplacementCondition extends Comparable<IReplacementCondition>
      * @return true if the reference condition matches this conditional object, otherwise false
      */
     boolean match(IReplacementCondition refCon);
-
-    /**
-     * Equals is not accurate for conditions. Thus, it was replaced by {@link #match(IReplacementCondition)}.
-     * @param refCon reference condition
-     * @return  true if the reference condition matches this condition
-     */
-    default boolean equals(IReplacementCondition refCon) {
-        return match(refCon);
-    }
 
     /**
      * Returns true if the reference condition {@param ref} is within the range of {@param rangeStart} to

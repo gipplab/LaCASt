@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.common;
 
+import gov.nist.drmf.interpreter.common.replacements.ReplacementConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,9 +24,22 @@ public class TeXPreProcessor {
                     "(\\\\\\*)"
     );
 
+    private static ReplacementConfig replacementConfig = ReplacementConfig.getInstance();
+
     private TeXPreProcessor() {}
 
-    public static String preProcessingTeX( String tex ){
+    public static String preProcessingTeX( String tex ) {
+        return preProcessingTeX(tex, null);
+    }
+
+    public static String preProcessingTeX( String tex, String label ) {
+        if ( replacementConfig == null ) {
+            LOG.warn("No replacement rules loaded, fallback to standard replacements.");
+            return fallbackReplacements(tex);
+        } else return replacementConfig.replace(tex, label);
+    }
+
+    private static String fallbackReplacements( String tex ){
         StringBuffer buffer = new StringBuffer();
         Matcher matcher = IGNORE_FONTS.matcher(tex);
 

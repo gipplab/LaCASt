@@ -31,8 +31,8 @@ public class BlueprintMaster {
 
     public BlueprintMaster(SemanticLatexTranslator slt) {
 //        Path constraintsBT = GlobalPaths.PATH_LIBS.resolve("blueprints.txt");
-        limitBTFile = GlobalPaths.PATH_LIBS.resolve("limit-blueprints.txt");
-        limBTFile = GlobalPaths.PATH_LIBS.resolve("lim-blueprints.txt");
+        limitBTFile = GlobalPaths.PATH_LIMITED_BLUEPRINTS;
+        limBTFile = GlobalPaths.PATH_LIMES_BLUEPRINTS;
         limitedTrees = new LinkedList<>();
         limTrees = new LinkedList<>();
         this.slt = slt;

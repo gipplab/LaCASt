@@ -1,7 +1,6 @@
-package gov.nist.drmf.interpreter.replacements;
+package gov.nist.drmf.interpreter.tests.replacements;
 
-import gov.nist.drmf.interpreter.common.meta.DLMF;
-import gov.nist.drmf.interpreter.common.replacements.DLMFReplacementCondition;
+import gov.nist.drmf.interpreter.common.replacements.DLMFConditionalReplacementImpl;
 import gov.nist.drmf.interpreter.common.replacements.IReplacementCondition;
 import org.junit.jupiter.api.Test;
 
@@ -13,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DLMFReplacementConditionTests {
     @Test
     void illegalPatternTest() {
-        assertThrows( IllegalArgumentException.class, ()->new DLMFReplacementCondition("ab.e1") );
+        assertThrows( IllegalArgumentException.class, ()->new DLMFConditionalReplacementImpl("ab.e1") );
     }
 
     @Test
     void matchTest(){
-        DLMFReplacementCondition d1 = new DLMFReplacementCondition("10.3");
-        DLMFReplacementCondition d2 = new DLMFReplacementCondition("10.3#E3");
+        DLMFConditionalReplacementImpl d1 = new DLMFConditionalReplacementImpl("10.3");
+        DLMFConditionalReplacementImpl d2 = new DLMFConditionalReplacementImpl("10.3#E3");
 
         assertTrue( d1.match(d2) );
         assertFalse( d2.match(d1) );
@@ -28,8 +27,8 @@ public class DLMFReplacementConditionTests {
 
     @Test
     void matchFailTest() {
-        DLMFReplacementCondition d1 = new DLMFReplacementCondition("11.3");
-        DLMFReplacementCondition d2 = new DLMFReplacementCondition("10.3#E3");
+        DLMFConditionalReplacementImpl d1 = new DLMFConditionalReplacementImpl("11.3");
+        DLMFConditionalReplacementImpl d2 = new DLMFConditionalReplacementImpl("10.3#E3");
 
         assertFalse( d1.match(d2) );
         assertFalse( d2.match(d1) );
@@ -39,9 +38,9 @@ public class DLMFReplacementConditionTests {
 
     @Test
     void rangeTest(){
-        DLMFReplacementCondition d1 = new DLMFReplacementCondition("10.1#E1");
-        DLMFReplacementCondition d2 = new DLMFReplacementCondition("10.3#E3");
-        DLMFReplacementCondition d3 = new DLMFReplacementCondition("11.5#E5");
+        DLMFConditionalReplacementImpl d1 = new DLMFConditionalReplacementImpl("10.1#E1");
+        DLMFConditionalReplacementImpl d2 = new DLMFConditionalReplacementImpl("10.3#E3");
+        DLMFConditionalReplacementImpl d3 = new DLMFConditionalReplacementImpl("11.5#E5");
 
         assertTrue(IReplacementCondition.withinRange(d1, d3, d2));
         assertTrue(IReplacementCondition.withinRange(d3, d1, d2));

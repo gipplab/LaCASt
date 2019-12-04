@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /**
  * @author Andre Greiner-Petter
  */
-public class DLMFReplacementCondition implements IReplacementCondition {
+public class DLMFConditionalReplacementImpl extends ConditionalReplacementRule implements IReplacementCondition {
     private static final String EXP_IDX = "[#.]Ex?(\\d+)";
 
     private static final Pattern DLMF_EXP_PATTERN = Pattern.compile(EXP_IDX);
@@ -17,12 +17,14 @@ public class DLMFReplacementCondition implements IReplacementCondition {
 
     private int[] hierarchy;
 
+    public DLMFConditionalReplacementImpl(){};
+
     /**
      * Generates a replacement condition for a given string.
      * @param link the string to build a condition
      * @throws IllegalArgumentException if the given link is not a valid conditional string
      */
-    public DLMFReplacementCondition(String link) throws IllegalArgumentException {
+    public DLMFConditionalReplacementImpl(String link) throws IllegalArgumentException {
         Matcher m = DLMF_CONDITION_PATTERN.matcher(link);
         if ( !m.matches() ) throw new IllegalArgumentException("Invalid DLMF link " + link);
 
@@ -44,11 +46,16 @@ public class DLMFReplacementCondition implements IReplacementCondition {
     }
 
     @Override
+    IReplacementCondition generateReplacementConditionalObject(String link) {
+        return new DLMFConditionalReplacementImpl(link);
+    }
+
+    @Override
     public boolean match(IReplacementCondition refCon) {
-        if ( !(refCon instanceof DLMFReplacementCondition) )
+        if ( !(refCon instanceof DLMFConditionalReplacementImpl) )
             return false; // or exception?
 
-        DLMFReplacementCondition ref = (DLMFReplacementCondition)refCon;
+        DLMFConditionalReplacementImpl ref = (DLMFConditionalReplacementImpl)refCon;
         for ( int i = 0; i < hierarchy.length; i++ ) {
             if ( i >= ref.hierarchy.length ) return false;
             if ( hierarchy[i] != ref.hierarchy[i] ) return false;
@@ -59,10 +66,10 @@ public class DLMFReplacementCondition implements IReplacementCondition {
 
     @Override
     public int compareTo(IReplacementCondition refCon) {
-        if ( !(refCon instanceof DLMFReplacementCondition) )
+        if ( !(refCon instanceof DLMFConditionalReplacementImpl) )
             throw new IllegalArgumentException("DLMF conditions cannot compared to other conditions.");
 
-        DLMFReplacementCondition ref = (DLMFReplacementCondition)refCon;
+        DLMFConditionalReplacementImpl ref = (DLMFConditionalReplacementImpl)refCon;
         for ( int i = 0; i < hierarchy.length; i++ ) {
             if ( i >= ref.hierarchy.length ) return 0;
             if ( hierarchy[i] != ref.hierarchy[i] ) {
