@@ -1,7 +1,7 @@
-package gov.nist.drmf.interpreter.replacements;
+package gov.nist.drmf.interpreter.tests.replacements;
 
 import gov.nist.drmf.interpreter.common.meta.DLMF;
-import gov.nist.drmf.interpreter.common.replacements.DLMFReplacementConfig;
+import gov.nist.drmf.interpreter.common.replacements.ReplacementConfig;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -13,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Andre Greiner-Petter
  */
 public class DLMFReplacementTest {
-    private static DLMFReplacementConfig CONFIG;
+    private static ReplacementConfig CONFIG;
 
     @BeforeAll
-    static void setup() throws IOException {
-        CONFIG = DLMFReplacementConfig.getInstance();
+    static void setup() {
+        CONFIG = ReplacementConfig.getInstance();
     }
 
     @Test

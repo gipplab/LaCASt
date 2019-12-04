@@ -1,4 +1,17 @@
-replacementRules:
+# =================================================================================================
+# This config contains the replacement rules for the DLMF equations
+#
+# Each rule contains the following information
+#   pattern: java regex replacement rule
+#   replacement (optional): the replacement string ($1 addresses group 1 of the pattern), no
+#                           replacement will delete the match (replace my empty string).
+#   groups (optional): when the replacement handles groups, specify the number of groups here
+#   condition (optional): a list of DLMF equation numbers. The replacements will be applied only
+#                         to the equation that matches these labels. If you specify 2, the rule
+#                         will be applied to all equations in the 2nd section. You can also specify
+#                         ranges by adding '-', e.g., 5.6#E3-5.6#E4.
+# =================================================================================================
+dlmfReplacementRules:
   - pattern: (^|[^a-zA-Z])i([^a-zA-Z]|$)
     replacement: $1\\iunit$2
     groups: 2

@@ -33,7 +33,7 @@ public class MLPConstraintAnalyzer {
     private static MLPConstraintAnalyzer analyzer;
 
     private MLPConstraintAnalyzer() {
-        btPath = GlobalPaths.PATH_LIBS.resolve("blueprints.txt");
+        btPath = GlobalPaths.PATH_BLUEPRINTS;
         blueprints = new LinkedList<>();
     }
 
