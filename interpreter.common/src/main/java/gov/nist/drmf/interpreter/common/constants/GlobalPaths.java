@@ -32,6 +32,12 @@ public class GlobalPaths {
     public static final Path PATH_SYMBOLIC_SETUP =
             PATH_LIBS.resolve( "symbolic_tests.properties" );
 
+    public static final Path PATH_DLMF_REPLACEMENT_RULES =
+            PATH_LIBS.resolve("dlmf-replacements.yml");
+
+    public static final Path PATH_REPLACEMENT_RULES =
+            PATH_LIBS.resolve("replacements.yml");
+
     // path variable to the lexicon files in the reference data dir
     public static final Path PATH_LEXICONS =
             PATH_REFERENCE_DATA.resolve( "Lexicons" );
