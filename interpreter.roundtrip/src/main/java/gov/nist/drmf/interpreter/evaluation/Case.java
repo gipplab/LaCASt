@@ -39,6 +39,11 @@ public class Case {
         return metaData.getLabel().getHyperlink();
     }
 
+    public String getEquationLabel() {
+        if ( metaData.getLabel() == null ) return null;
+        return metaData.getLabel().getLabel();
+    }
+
     public Relations getRelation() {
         return relation;
     }

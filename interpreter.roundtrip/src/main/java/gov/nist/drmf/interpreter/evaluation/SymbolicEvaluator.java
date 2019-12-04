@@ -206,8 +206,8 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
 //            enterEngineCommand("reset;");
 //            setPreviousAssumption();
 
-            String mapleLHS = forwardTranslate( c.getLHS() );
-            String mapleRHS = forwardTranslate( c.getRHS() );
+            String mapleLHS = forwardTranslate( c.getLHS(), c.getEquationLabel() );
+            String mapleRHS = forwardTranslate( c.getRHS(), c.getEquationLabel() );
 
             LOG.info("Translate LHS to: " + mapleLHS);
             LOG.info("Translate RHS to: " + mapleRHS);

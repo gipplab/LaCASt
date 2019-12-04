@@ -14,6 +14,10 @@
     <version>2.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <jackson.version>2.10.1</jackson.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -21,6 +25,18 @@
             <scope>system</scope>
             <version>${mlp.version}</version>
             <systemPath>${mlp.path}</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
     </dependencies>
 
