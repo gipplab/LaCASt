@@ -25,7 +25,7 @@ public class DLMFTranslator implements IConstraintTranslator {
     }
 
     @Override
-    public String translate(String expression) throws TranslationException {
-        return dlmfInterface.translate(expression);
+    public String translate(String expression, String label) throws TranslationException {
+        return dlmfInterface.translate(expression, label);
     }
 }

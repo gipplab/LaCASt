@@ -44,6 +44,14 @@ public class TeXPreProcessorTest {
     }
 
     @Test
+    public void endingCommasTest(){
+        String input = "a+b=x; .";
+        String expect = "a+b=x";
+        String output = TeXPreProcessor.preProcessingTeX( input );
+        assertEquals( expect, output);
+    }
+
+    @Test
     public void numericalTest(){
         String input = "2.03\\;04\\,33 1\\* x";
         String i = "2.71828 \\ 18284 \\ 59045 \\  23536";

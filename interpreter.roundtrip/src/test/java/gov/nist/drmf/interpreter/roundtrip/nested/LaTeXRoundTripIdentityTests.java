@@ -29,11 +29,11 @@ public class LaTeXRoundTripIdentityTests extends AbstractRoundTrip {
         String maple, latex, firstMaple, prev_latex, prev_maple;
         for ( int i = 0; i < latex_test_polynomials.length; i++ ){
             prev_latex = latex_test_polynomials[i];
-            firstMaple = translator.translateFromLaTeXToMapleClean( prev_latex );
+            firstMaple = translator.translateFromLaTeXToMapleClean( prev_latex, null );
             prev_maple = firstMaple;
             for ( int j = 0; j < threshold; j++ ){
                 latex = translator.translateFromMapleToLaTeXClean( prev_maple );
-                maple = translator.translateFromLaTeXToMapleClean( latex );
+                maple = translator.translateFromLaTeXToMapleClean( latex, null );
                 if ( latex.equals( prev_latex ) ){
                     latex_equ = true;
                 } else if ( translator.getMapleSimplifier().isEquivalent(firstMaple, maple) ){

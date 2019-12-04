@@ -271,7 +271,7 @@ public class EquationTestCases {
 
             try {
                 LOG.info("Split assumption: " + modAss);
-                mapleAss = mapleT.translateFromLaTeXToMapleSetModeClean(modAss);
+                mapleAss = mapleT.translateFromLaTeXToMapleSetModeClean(modAss, null);
                 LOG.info("Translated assumption to: " + mapleAss);
             } catch ( Exception e ){
                 LOG.error("Cannot translate assumption! -> Ignore Assumption, line " + line);
@@ -334,8 +334,8 @@ public class EquationTestCases {
         LOG.info(test.toString());
         String mapleLHS = null, mapleRHS = null;
         try {
-            mapleLHS = mapleT.translateFromLaTeXToMapleClean(test.LHS);
-            mapleRHS = mapleT.translateFromLaTeXToMapleClean(test.RHS);
+            mapleLHS = mapleT.translateFromLaTeXToMapleClean(test.LHS, null);
+            mapleRHS = mapleT.translateFromLaTeXToMapleClean(test.RHS, null);
         } catch ( TranslationException te ){
             handleTransExcInPreTrans( te, test );
             return;
@@ -378,7 +378,7 @@ public class EquationTestCases {
         LOG.info(test.toString());
         String mapleLHS = null, mapleRelationSymb = null;
         try {
-            mapleLHS = mapleT.translateFromLaTeXToMapleClean(test.LHS);
+            mapleLHS = mapleT.translateFromLaTeXToMapleClean(test.LHS, null);
             mapleRelationSymb = test.relationSymbol; //mapleT.translateFromLaTeXToMapleClean(test.relationSymbol);
         } catch ( TranslationException te ){
             handleTransExcInPreTrans( te, test );
