@@ -123,6 +123,31 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
     }
 
     /**
+     * Translates a given string to the another language with a given label.
+     * The label is used to specify additional pre-processing steps.
+     *
+     * @param expression the input expression (will be pre-processed)
+     * @param label specifies the label of the input expression. This trigger additional
+     *              pre-processing steps if the label matches defined replacement rules.
+     * @return the translated expression
+     * @throws TranslationException if an error occurred due translation
+     *
+     * @see TeXPreProcessor
+     * @see gov.nist.drmf.interpreter.common.replacements.ConditionalReplacementRule
+     * @see gov.nist.drmf.interpreter.common.replacements.IReplacementCondition
+     */
+    public String translate( String expression, String label ) throws TranslationException {
+        if ( expression == null || expression.isEmpty() ) {
+            LOG.warn("Tried to translate an empty expression");
+            return "";
+        }
+
+        expression = TeXPreProcessor.preProcessingTeX(expression, label);
+        LOG.trace("Preprocessed input string. Parsing: " + expression);
+        return innerTranslate(expression);
+    }
+
+    /**
      * Translates a given string to the another language.
      * @param expression the expression that should get translated.
      * @return the translated expression.
@@ -130,14 +155,10 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      */
     @Override
     public String translate( String expression ) throws TranslationException {
-        if ( expression == null || expression.isEmpty() ) {
-            LOG.warn("Tried to translate an empty expression");
-            return "";
-        }
+        return translate(expression, null);
+    }
 
-        expression = TeXPreProcessor.preProcessingTeX(expression);
-        LOG.trace("Preprocessed input string. Parsing: " + expression);
-
+    private String innerTranslate( String expression ) throws TranslationException {
         try {
             PomTaggedExpression exp = parser.parse(expression);
             translate(exp); // return value can be ignored here

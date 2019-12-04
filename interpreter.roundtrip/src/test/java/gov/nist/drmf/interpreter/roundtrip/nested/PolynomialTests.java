@@ -63,7 +63,7 @@ public abstract class PolynomialTests extends AbstractRoundTrip {
                     if ( tmp.equals( last ) ) latex_equ = true;
 
                     last = maple_results.getLast();
-                    tmp = translator.translateFromLaTeXToMapleClean( latex_results.getLast() );
+                    tmp = translator.translateFromLaTeXToMapleClean( latex_results.getLast(), null );
                     maple_results.addLast( tmp );
                     if ( tmp.equals( last ) ) maple_equ = true;
 

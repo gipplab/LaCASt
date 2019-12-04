@@ -1,18 +1,28 @@
 package gov.nist.drmf.interpreter.constraints;
 
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.ITranslator;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 
 /**
  * @author Andre Greiner-Petter
  */
-public interface IConstraintTranslator extends ITranslator {
+public interface IConstraintTranslator {
+    /**
+     * @param expression the expression to translate
+     * @param label label of the latex expression (can be null if there is none)
+     * @return translated expression
+     * @throws TranslationException if an error occurred
+     */
+    String translate( String expression, String label ) throws TranslationException;
+
     default String[] translateEachConstraint(String[] constraints) {
         return Arrays.stream(constraints)
                 .filter( c -> !c.matches(".*\\\\[cl]?dots.*") )
                 .map( Constraints::stripDollar )
-                .map( this::translate )
+                .map( c -> translate(c, null) )
                 .map( c -> c.replaceAll("\\*", " ") )
                 .map( Constraints::splitMultiAss )
                 .toArray(String[]::new);

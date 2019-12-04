@@ -1,16 +1,16 @@
 package gov.nist.drmf.interpreter.evaluation;
 
+import gov.nist.drmf.interpreter.common.replacements.DLMFConditionalReplacementImpl;
+
 /**
  * @author Andre Greiner-Petter
  */
 public class Label {
-
     private String tex;
     private String hyperlink;
 
     public Label(String tex){
         this.tex = tex;
-//        this.hyperlink = DLMFLinker.getLinkerInstance().getLink(tex);
         this.hyperlink = tex;
     }
 
@@ -20,5 +20,9 @@ public class Label {
 
     public String getHyperlink() {
         return hyperlink;
+    }
+
+    public String getLabel() {
+        return DLMFConditionalReplacementImpl.extractEquationLabelFromURL(hyperlink);
     }
 }

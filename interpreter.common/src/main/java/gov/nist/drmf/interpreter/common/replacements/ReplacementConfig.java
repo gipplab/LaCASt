@@ -72,13 +72,17 @@ public class ReplacementConfig {
             input = rule.replace(input);
         }
 
+        LOG.debug("Applied generalized replacement rules.");
+
         if ( link == null ) return input;
 
         for ( ConditionalReplacementRule rule : dlmfRules ) {
             if ( rule.applicable(link) ) {
                 input = rule.replace(input);
+                LOG.debug("Applied conditional replacement rule " + rule);
             }
         }
+
         return input;
     }
 }
