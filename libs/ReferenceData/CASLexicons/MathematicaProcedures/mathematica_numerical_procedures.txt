@@ -1,0 +1,20 @@
+createListOfTestCases[vars_, vals_] := Tuples[Table[tmp1 -> tmp2, {tmp1, vars}, {tmp2, vals}]]
+
+filterTestCases[ass_, tests_] := Select[tests, ReplaceAll[And @@ ass, #]&]
+
+numericalAutoTest[expr_, tests_] :=
+    Module[{tests, results, output},
+        tests = createListOfTestCases[vars, vals];
+        results = N[ReplaceAll[expr, tests]];
+        output = {};
+        Do[
+            Module[{},
+                If[
+                    Or[
+                        Not[NumericQ[Part[results, i]]],
+                        Abs[Part[results, i]]>THRESHOLD
+                    ],
+                    AppendTo[output, {Part[results, i], Part[tests, i]}]]
+            ], {i, Length[tests]}];
+        Return[output]
+    ]

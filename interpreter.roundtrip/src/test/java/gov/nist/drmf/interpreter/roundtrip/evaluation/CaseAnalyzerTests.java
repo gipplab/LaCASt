@@ -31,7 +31,7 @@ public class CaseAnalyzerTests {
 
     @Test
     public void simpleTest() {
-        String line = "\\Ln@@{z} = \\int_1^z \\frac{\\diff{t}}{t} \\constraint{$z\\neq 0$}, \\label{eq:EF.LO.LL} \\ccode{EF}";
+        String line = "\\Ln@@{z} = \\int_1^z \\frac{\\diff{t}}{t} \\constraint{$z\\neq 0$}, \\url{http://dlmf.nist.gov/1.2.E1}";
 
         LinkedList<Case> cc = CaseAnalyzer.analyzeLine(line, 1);
         Case c = cc.get(0);
@@ -39,14 +39,13 @@ public class CaseAnalyzerTests {
         assertEquals("\\int_1^z \\frac{\\diff{t}}{t}", c.getRHS());
         assertEquals(Relations.EQUAL, c.getRelation());
 
-        assertEquals("[z <> 0]", c.getConstraints(dlmfTrans));
-        assertEquals("eq:EF.LO.LL", c.getMetaData().getLabel().getTex());
-        assertEquals("EF", c.getMetaData().getCode());
+        assertEquals("[z <> 0]", c.getConstraints(dlmfTrans, null).toString());
+        assertEquals("http://dlmf.nist.gov/1.2.E1", c.getMetaData().getLabel().getTex());
     }
 
     @Test
     public void simpleTest2() {
-        String line = "\\sum_{k=0}^n k > 1 \\source{(8.04), p.~414}{Olver:1997:ASF} \\keyphrase{z} \\keyphrase{y} \\label{eq:AI.DE.CF2} \\ccode{AI}";
+        String line = "\\sum_{k=0}^n k > 1 \\source{(8.04), p.~414}{Olver:1997:ASF} \\keyphrase{z} \\keyphrase{y} \\url{http://dlmf.nist.gov/1.2.E1} \\ccode{AI}";
 
         LinkedList<Case> cc = CaseAnalyzer.analyzeLine(line, 1);
         Case c = cc.get(0);
@@ -54,14 +53,13 @@ public class CaseAnalyzerTests {
         assertEquals("1", c.getRHS());
         assertEquals(Relations.GREATER_THAN, c.getRelation());
 
-        assertNull(c.getConstraints(dlmfTrans));
-        assertEquals("eq:AI.DE.CF2", c.getMetaData().getLabel().getTex());
-        assertEquals("AI", c.getMetaData().getCode());
+        assertNull(c.getConstraints(dlmfTrans, null));
+        assertEquals("http://dlmf.nist.gov/1.2.E1", c.getMetaData().getLabel().getTex());
     }
 
     @Test
     public void multiTest() {
-        String line = "\\sum_{k=0}^n k > 1 > 0 \\label{tmp} \\ccode{TMP}";
+        String line = "\\sum_{k=0}^n k > 1 > 0 \\url{tmp} \\url{http://dlmf.nist.gov/1.2.E1}";
 
         LinkedList<Case> cc = CaseAnalyzer.analyzeLine(line, 1);
         Case c = cc.get(0);
@@ -69,9 +67,8 @@ public class CaseAnalyzerTests {
         assertEquals("1", c.getRHS());
         assertEquals(Relations.GREATER_THAN, c.getRelation());
 
-        assertNull(c.getConstraints(dlmfTrans));
-        assertEquals("tmp", c.getMetaData().getLabel().getTex());
-        assertEquals("TMP", c.getMetaData().getCode());
+        assertNull(c.getConstraints(dlmfTrans, null));
+        assertEquals("http://dlmf.nist.gov/1.2.E1", c.getMetaData().getLabel().getTex());
 
         c = cc.get(1);
         assertEquals("1", c.getLHS());
@@ -81,7 +78,7 @@ public class CaseAnalyzerTests {
 
     @Test
     public void pmTest() {
-        String line = "\\pm 1 = - \\mp 1 \\label{tmp} \\ccode{TMP}";
+        String line = "\\pm 1 = - \\mp 1 \\url{http://dlmf.nist.gov/1.2.E1}";
 
         LinkedList<Case> cc = CaseAnalyzer.analyzeLine(line, 1);
         Case c = cc.get(0);
@@ -109,7 +106,7 @@ public class CaseAnalyzerTests {
     public void equal0Test() {
         String line = "\\AiryAi@{z}+\\expe^{-2\\cpi\\iunit/3} \\AiryAi@{z\\expe^{-2\\cpi\\iunit/3}}+" +
                 "\\expe^{2\\cpi\\iunit/3}\\AiryAi@{z\\expe^{2\\cpi\\iunit/3}}=0, " +
-                "\\source{(8.03), p.~414}{Olver:1997:ASF} \\label{eq:AI.DE.CF3} \\ccode{AI}";
+                "\\source{(8.03), p.~414}{Olver:1997:ASF} \\url{http://dlmf.nist.gov/1.2.E1} \\ccode{AI}";
 
         LinkedList<Case> cc = CaseAnalyzer.analyzeLine(line, 1);
         Case c = cc.get(0);
@@ -117,8 +114,7 @@ public class CaseAnalyzerTests {
         assertEquals("0", c.getRHS());
         assertEquals(Relations.EQUAL, c.getRelation());
 
-        assertNull(c.getConstraints(dlmfTrans));
-        assertEquals("eq:AI.DE.CF3", c.getMetaData().getLabel().getTex());
-        assertEquals("AI", c.getMetaData().getCode());
+        assertNull(c.getConstraints(dlmfTrans, null));
+        assertEquals("http://dlmf.nist.gov/1.2.E1", c.getMetaData().getLabel().getTex());
     }
 }

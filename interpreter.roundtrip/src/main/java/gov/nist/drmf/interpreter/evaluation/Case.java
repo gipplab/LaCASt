@@ -4,6 +4,8 @@ import gov.nist.drmf.interpreter.constraints.Constraints;
 import gov.nist.drmf.interpreter.constraints.IConstraintTranslator;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Andre Greiner-Petter
@@ -48,20 +50,20 @@ public class Case {
         return relation;
     }
 
-    public String getConstraintVariables(IConstraintTranslator ae) {
+    public List<String> getConstraintVariables(IConstraintTranslator ae, String label) {
         try {
             String[] vars = metaData.getConstraints().getSpecialConstraintVariables();
-            vars = ae.translateEachConstraint(vars);
-            return Arrays.toString(vars);
+            vars = ae.translateEachConstraint(vars, label);
+            return new LinkedList<>(Arrays.asList(vars));
         } catch ( NullPointerException npe ){
             return null;
         }
     }
 
-    public String getConstraintValues() {
+    public List<String> getConstraintValues() {
         try {
             String[] vals = metaData.getConstraints().getSpecialConstraintValues();
-            return Arrays.toString(vals);
+            return new LinkedList<>(Arrays.asList(vals));
         } catch ( NullPointerException npe ){
             return null;
         }
@@ -71,11 +73,11 @@ public class Case {
         return metaData.getConstraints();
     }
 
-    public String getConstraints( IConstraintTranslator ae ) {
+    public List<String> getConstraints(IConstraintTranslator ae, String label ) {
         try {
             String[] cons = metaData.getConstraints().getTexConstraints();
-            cons = ae.translateEachConstraint(cons);
-            return Arrays.toString(cons);
+            cons = ae.translateEachConstraint(cons, label);
+            return new LinkedList<>(Arrays.asList(cons));
         } catch ( NullPointerException npe ){
             return null;
         }

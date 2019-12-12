@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.evaluation;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.common.grammar.ITranslator;
+import gov.nist.drmf.interpreter.constraints.IConstraintTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -8,6 +10,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Properties;
 import java.util.regex.Matcher;
 
@@ -16,9 +21,11 @@ import static gov.nist.drmf.interpreter.evaluation.NumericalTestConstants.*;
 /**
  * @author Andre Greiner-Petter
  */
-public class NumericalConfig {
+public class NumericalConfig implements EvaluationConfig {
 
     private static final Logger LOG = LogManager.getLogger(NumericalConfig.class.getName());
+
+    public static final String ENTRY_SPLITTER = ",";
 
     private static final NumericalConfig config = new NumericalConfig();
 
@@ -56,7 +63,8 @@ public class NumericalConfig {
         return Paths.get(NumericalProperties.KEY_OUTPUT.value);
     }
 
-    public int[] getSubset(){
+    @Override
+    public int[] getSubSetInterval(){
         String in = NumericalProperties.KEY_SUBSET.value;
         if ( in == null ) return null;
 
@@ -122,14 +130,66 @@ public class NumericalConfig {
         return NumericalProperties.KEY_SPECIAL_VARS.value;
     }
 
+    public Path getSymbolicResultsPath() {
+        return Paths.get(NumericalProperties.KEY_PREV_RESULTS.value);
+    }
+
     public String getSpecialVariablesValues(){
         return NumericalProperties.KEY_SPECIAL_VARS_VALUES.value;
+    }
+
+    private List<String> numericalValues = null, specVars = null, specVarsVals = null;
+
+    public List<String> getListOfNumericalValues(IConstraintTranslator translator, String label) {
+        if ( numericalValues == null ) {
+            numericalValues = translateElements(translator, getNumericalValues(), label);
+        }
+        return numericalValues;
+    }
+
+    public List<String> getListOfSpecialVariables(IConstraintTranslator translator, String label) {
+        if ( specVars == null ) {
+            specVars = translateElements(translator, getSpecialVariables(), label);
+        }
+        return specVars;
+    }
+
+    public List<String> getListOfSpecialVariableValues( IConstraintTranslator translator, String label ) {
+        if ( specVarsVals == null ) {
+            specVarsVals = translateElements(translator, getSpecialVariablesValues(), label);
+        }
+        return specVarsVals;
+    }
+
+    private List<String> translateElements(IConstraintTranslator translator, String str, String label) {
+        LinkedList<String> results = new LinkedList<>();
+
+        if ( str == null || str.length() < 2 ) return results;
+
+        str = str.substring(1, str.length()-1);
+        String[] elements = str.split(ENTRY_SPLITTER);
+        String[] transEls = translator.translateEachConstraint(elements, label);
+        results.addAll(Arrays.asList(transEls));
+        return results;
+    }
+
+    @Override
+    public String getTestExpression() {
+        return getRawTestExpression();
+    }
+
+    @Override
+    public Path getMissingMacrosOutputPath() {
+        if ( NumericalProperties.KEY_MISSING_MACRO_OUTPUT.value != null )
+            return Paths.get(NumericalProperties.KEY_MISSING_MACRO_OUTPUT.value);
+        else return null;
     }
 
     public enum NumericalProperties{
         KEY_DATASET("dlmf_dataset", null),
         KEY_LABELSET("dlmf_labelset", null),
         KEY_SUBSET("subset_tests", null),
+        KEY_MISSING_MACRO_OUTPUT("missing_macro_output", null),
         KEY_VALUES("numerical_values", null),
         KEY_EXPR("test_expression", null),
         KEY_EXPECT("test_expectation", null),
@@ -141,7 +201,8 @@ public class NumericalConfig {
         KEY_DLMF_LINK("show_dlmf_links", null),
         KEY_SKIP_IF_MORE_COMBS("skip_if_more_combintations", null),
         KEY_SPECIAL_VARS("special_variables", null),
-        KEY_SPECIAL_VARS_VALUES("special_variables_values", null);
+        KEY_SPECIAL_VARS_VALUES("special_variables_values", null),
+        KEY_PREV_RESULTS("symbolic_results_data", null);
 
         private String key, value;
 

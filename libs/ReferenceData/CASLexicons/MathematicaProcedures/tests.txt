@@ -1,0 +1,62 @@
+In[139]:= vars := {x, y}
+
+In[140]:= vals := {1/2, 1/3}
+
+In[141]:= combs := Table[{tmp1 -> tmp2}, {tmp1,vars}, {tmp2,vals}]
+
+In[142]:= allCombs := Tuples[combs]
+
+In[143]:= allCombs
+
+                  1         1           1         1           1         1           1         1
+Out[143]= {{{x -> -}, {y -> -}}, {{x -> -}, {y -> -}}, {{x -> -}, {y -> -}}, {{x -> -}, {y -> -}}}
+                  2         2           2         3           3         2           3         3
+
+In[208]:= Map[Flatten, allCombs]
+
+                 1       1         1       1         1       1         1       1
+Out[208]= {{x -> -, y -> -}, {x -> -, y -> -}, {x -> -, y -> -}, {x -> -, y -> -}}
+                 2       2         2       3         3       2         3       3
+
+In[209]:= tmp
+
+           x + y
+Out[209]= E
+
+In[210]:= testValues := Map[Flatten, allCombs]
+
+In[211]:= N[ReplaceAll[tmp, testValues], 20]
+
+Out[211]= {2.7182818284590452354, 2.3009758908928249279, 2.3009758908928249279, 1.9477340410546758566}
+
+
+numericalTest[expr_, vals_] :=
+    Module[{vars, allCombs},
+        vars = Reduce`FreeVariables[expr];
+        allCombs = Tuples[Table[tmp1 -> tmp2, {tmp1, vars}, {tmp2, vals}]];
+        N[ReplaceAll[expr, allCombs], 20]]
+
+
+
+
+
+numericalAutoTest[expr_, vals_] :=
+    Module[{vars, tests, results, output},
+        vars = Reduce`FreeVariables[expr];
+        tests = createListOfTestCases[vars, vals];
+        results = N[ReplaceAll[expr, tests]];
+        output = {};
+        Do[
+            Module[{},
+                If[
+                    Or[
+                        Not[NumericQ[Part[results, i]]],
+                        Abs[Part[results, i]]>THRESHOLD
+                    ],
+                    AppendTo[output, {Part[results, i], Part[tests, i]}]]
+            ], {i, Length[tests]}];
+        Return[output]
+    ]
+
+
+Select[results, Or[Not[NumericQ[#]],Abs[#]>THRESHOLD]&]

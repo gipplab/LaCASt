@@ -9,12 +9,17 @@ import org.apache.logging.log4j.Logger;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
  */
 public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> {
     private static final Logger LOG = LogManager.getLogger(AbstractSymbolicEvaluator.class.getName());
+
+    public static final Pattern SYMBOLIC_LINE_PATTERN = Pattern.compile(
+            "^(\\d+-?[a-z]?): ([A-Za-z]*) .*$"
+    );
 
     public static int DEFAULT_TIMEOUT_MS = 1_000; // 1 seconds
 
