@@ -53,9 +53,9 @@ public class SymbolicConfig implements EvaluationConfig {
         return Paths.get(SymbolicConfig.SymbolicProperties.KEY_DATASET.value);
     }
 
-    public Path getLabelSet(){
-        return Paths.get(SymbolicConfig.SymbolicProperties.KEY_LABELSET.value);
-    }
+//    public Path getLabelSet(){
+//        return Paths.get(SymbolicConfig.SymbolicProperties.KEY_LABELSET.value);
+//    }
 
     @Override
     public Path getOutputPath(){
@@ -126,7 +126,7 @@ public class SymbolicConfig implements EvaluationConfig {
 
     private enum SymbolicProperties{
         KEY_DATASET("dlmf_dataset", null),
-        KEY_LABELSET("dlmf_labelset", null),
+//        KEY_LABELSET("dlmf_labelset", null),
         KEY_SUBSET("subset_tests", null),
         KEY_EXPR("test_expression", null),
         KEY_EXPECT("test_expectation", null),
