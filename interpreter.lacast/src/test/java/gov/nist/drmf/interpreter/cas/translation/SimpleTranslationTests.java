@@ -16,18 +16,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * @author Andre Greiner-Petter
  */
 @AssumeMLPAvailability
-public class SimpleTranslationTests {
+class SimpleTranslationTests {
 
     private static SemanticLatexTranslator slt;
 
     @BeforeAll
-    public static void setup() throws IOException {
+    static void setup() throws IOException {
         slt = new SemanticLatexTranslator(Keys.KEY_MAPLE);
         slt.init(GlobalPaths.PATH_REFERENCE_DATA);
     }
 
     @Test
-    public void singleSymbolTest() {
+    void singleSymbolTest() {
         String in = "\\cpi";
         String eout = "Pi";
         String out = slt.translate(in);
@@ -35,7 +35,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void negativeTest() {
+    void negativeTest() {
         String in = "-\\cpi";
         String eout = "- Pi";
         String out = slt.translate(in);
@@ -43,7 +43,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void sequenceTest() {
+    void sequenceTest() {
         String in = "a+b";
         String eout = "a + b";
         String out = slt.translate(in);
@@ -51,7 +51,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void functionTest() {
+    void functionTest() {
         String in = "\\cos(x)";
         String eout = "cos(x)";
         String out = slt.translate(in);
@@ -59,7 +59,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void macroTest() {
+    void macroTest() {
         String in = "\\JacobiP{\\alpha}{\\beta}{n}@{\\cos@{a\\Theta}}";
         String eout = "JacobiP(n, alpha, beta, cos(a*Theta))";
         String out = slt.translate(in);
@@ -67,7 +67,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void simpleLong() {
+    void simpleLong() {
         String in = "\\sqrt{\\frac{1}{\\iunit}}";
         String eout = "sqrt((1)/(I))";
         String out = slt.translate(in);
@@ -75,7 +75,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void sinPower() {
+    void sinPower() {
         String in = "\\sin{x}^3";
         String eout = "(sin(x))^(3)";
         String out = slt.translate(in);
@@ -83,7 +83,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void cosPowerArgument() {
+    void cosPowerArgument() {
         String in = "\\cos{x^3}";
         String eout = "cos((x)^(3))";
         String out = slt.translate(in);
@@ -91,7 +91,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void cos() {
+    void cos() {
         String in = "\\cos^2{x}";
         String eout = "(cos(x))^(2)";
         String out = slt.translate(in);
@@ -99,7 +99,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void trickyMultiply() {
+    void trickyMultiply() {
         String in = "\\pi (t - (n+\\frac{1}{2}) \\tau)";
         String eout = "pi*(t -(n +(1)/(2))*tau)";
         String out = slt.translate(in);
@@ -107,7 +107,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void fracMultiply() {
+    void fracMultiply() {
         String in = "(\\frac{x}{y})+1";
         String eout = "((x)/(y))+ 1";
         String out = slt.translate(in);
@@ -115,7 +115,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void fracMultiply2() {
+    void fracMultiply2() {
         String in = "(\\frac{x}{y})x";
         String eout = "((x)/(y))* x";
         String out = slt.translate(in);
@@ -123,7 +123,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void paraMultiplyTest() {
+    void paraMultiplyTest() {
         String in = "(x+y)(x-y)";
         String eout = "(x + y)*(x - y)";
         String out = slt.translate(in);
@@ -131,7 +131,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void plusMinusMultiplyTest() {
+    void plusMinusMultiplyTest() {
         String in = "(t+\\frac{1}{2}-(n+1))";
         String eout = "(t +(1)/(2)-(n + 1))";
         String out = slt.translate(in);
@@ -139,7 +139,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void derivTest() {
+    void derivTest() {
         String in = "\\deriv[2]{w}{z}";
         String eout = "diff(w, [z$(2)])";
         String out = slt.translate(in);
@@ -147,7 +147,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void modTest() {
+    void modTest() {
         String in = "(k-1) \\mod m";
         String eout = "`modp`(k - 1,m)";
         String out = slt.translate(in);
@@ -155,7 +155,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void subscriptMultiplyTest() {
+    void subscriptMultiplyTest() {
         String in = "x_t x";
         String eout = "x[t]*x";
         String out = slt.translate(in);
@@ -163,7 +163,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void absoluteValueTest() {
+    void absoluteValueTest() {
         String in = "\\left| \\frac{z_1}{z_2} \\right| = \\frac{|z_1|}{|z_2|}";
         String eout = "abs((z[1])/(z[2]))=(abs(z[1]))/(abs(z[2]))";
         String out = slt.translate(in);
@@ -171,13 +171,13 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void absoluteValueInvalidTest() {
+    void absoluteValueInvalidTest() {
         String in = "\\left| x |";
         assertThrows(TranslationException.class, () -> slt.translate(in));
     }
 
     @Test
-    public void emptyDerivTest() {
+    void emptyDerivTest() {
         String in = "\\deriv{}{z} z^a = az^{a-1}";
         String eout = "diff((z)^(a), z)= a*(z)^(a - 1)";
         String out = slt.translate(in);
@@ -186,7 +186,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void multiplyBeforeBarTest() {
+    void multiplyBeforeBarTest() {
         String in = "\\tfrac{1}{4} |z|";
         String eout = "(1)/(4)*abs(z)";
         String out = slt.translate(in);
@@ -194,7 +194,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void multiplyTrickyBarTest() {
+    void multiplyTrickyBarTest() {
         String in = "(\\tfrac{1}{4} + |z|)n";
         String eout = "((1)/(4)+abs(z))* n";
         String out = slt.translate(in);
@@ -202,7 +202,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void multiplyTrickyBar2Test() {
+    void multiplyTrickyBar2Test() {
         String in = "|z^a|";
         String eout = "abs((z)^(a))";
         String out = slt.translate(in);
@@ -210,7 +210,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void multiplyTrickyBar3Test() {
+    void multiplyTrickyBar3Test() {
         String in = "(\\tfrac{1}{4} + \\left|z \\right|)n";
         String eout = "((1)/(4)+abs(z))* n";
         String out = slt.translate(in);
@@ -218,7 +218,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void generalBracketTest() {
+    void generalBracketTest() {
         String in = "\\left[ x \\right] + \\left( y \\right) + \\left| z \\right|";
         String eout = "[x]+(y)+abs(z)";
         String out = slt.translate(in);
@@ -226,7 +226,7 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void superSubScriptTest() {
+    void superSubScriptTest() {
         String in = "x_2^4";
         String inRev = "x^4_2";
 
@@ -238,7 +238,15 @@ public class SimpleTranslationTests {
     }
 
     @Test
-    public void overlineTest() {
+    void multiplyIunitTest() {
+        String in = "\\sqrt{2}+\\sqrt{2} \\iunit";
+        String out = "sqrt(2)+sqrt(2)*I";
+
+        assertEquals(out, slt.translate(in));
+    }
+
+    @Test
+    void overlineTest() {
         assertThrows(TranslationException.class, () -> slt.translate("\\overline{z}"));
         assertThrows(TranslationException.class, () -> slt.translate("\\overline{z+1}"));
     }

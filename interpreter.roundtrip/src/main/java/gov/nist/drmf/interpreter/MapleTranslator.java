@@ -20,6 +20,7 @@ import javax.annotation.Nullable;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Observer;
 import java.util.Properties;
 
@@ -425,5 +426,13 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
         } catch (MapleException me) {
             throw new ComputerAlgebraSystemEngineException(me);
         }
+    }
+
+    @Override
+    public String buildList(List<String> list) {
+        String listStr = MapleSimplifier.makeMapleList(list);
+        if ( listStr != null && listStr.length() > 3 )
+            return listStr.substring(1, listStr.length()-1);
+        return listStr;
     }
 }

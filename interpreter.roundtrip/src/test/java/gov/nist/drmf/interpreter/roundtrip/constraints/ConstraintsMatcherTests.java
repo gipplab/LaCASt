@@ -25,7 +25,7 @@ public class ConstraintsMatcherTests {
     @BeforeAll
     static void init() throws IOException {
         // kick of instantiation of evaluator
-        new NumericalEvaluator();
+//        new NumericalEvaluator();
         wrapper = MLPWrapper.getWrapperInstance();
     }
 

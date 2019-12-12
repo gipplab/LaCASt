@@ -29,7 +29,8 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
     private SymbolicConfig config;
 
     private HashMap<Integer, String> labelLib;
-    private Set<Integer> skips;
+    private Set<ID> skips;
+    private Set<Integer> idSkips;
 
     private LinkedList<String>[] lineResults;
 
@@ -54,7 +55,6 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         super( forwardTranslator, engine, symbolicEvaluator, testCases );
 
         CaseAnalyzer.ACTIVE_BLUEPRINTS = false; // take raw constraints
-        NumericalEvaluator.SKIP_SUC_SYMB = false;
 
         this.config = new SymbolicConfig();
 
@@ -73,30 +73,20 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
 
         this.labelLib = new HashMap<>();
         this.skips = new HashSet<>();
+        this.idSkips = new HashSet<>();
         this.defaultPrevAfterCmds = defaultPrevAfterCmds;
 
         String[] skipArr = NumericalEvaluator.LONG_RUNTIME_SKIP.split(",");
-        for ( String s : skipArr ) skips.add(Integer.parseInt(s));
+        for ( String s : skipArr ) {
+            skips.add(new ID(Integer.parseInt(s)));
+            idSkips.add(Integer.parseInt(s));
+        }
 
         Status.reset();
     }
 
 //    @Override
     public void init() {
-        // init translator
-//        MapleTranslator translator = new MapleTranslator();
-//        translator.init();
-//        ICASEngineSymbolicEvaluator<Algebraic> simplifier = translator.getMapleSimplifier();
-//
-//        super.init(
-//                translator,
-//                translator,
-//                simplifier
-//        );
-
-        //translator.addMapleMemoryObserver(this);
-        //MapleListener.setMemoryUsageLimit( MEMORY_NOTIFY_LIMIT_KB );
-
         overallAss = config.getEntireTestSuiteAssumptions();
     }
 
@@ -189,12 +179,18 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
             lineResults[c.getLine()] = new LinkedList();
         }
 
-        if ( skips.contains(Integer.toString(c.getLine())) ) {
-            LOG.info("Skip because long running evaluation.");
-            lineResults[c.getLine()].add("Skipped - Long running test");
+        if ( c instanceof AbstractEvaluator.DummyCase ) {
+            lineResults[c.getLine()].add("Skip - ");
             Status.SKIPPED.add();
             return;
         }
+
+//        if ( skips.contains(Integer.toString(c.getLine())) ) {
+//            LOG.info("Skip because long running evaluation.");
+//            lineResults[c.getLine()].add("Skipped - Long running test");
+//            Status.SKIPPED.add();
+//            return;
+//        }
 
         try {
 //            String mapleAss = null;
@@ -223,13 +219,9 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
 
             String arrConstraints = null;
             try {
-                arrConstraints = c.getConstraints(this.getThisConstraintTranslator());
-                LOG.debug("Extract constraints: " + arrConstraints);
-                if ( arrConstraints != null && arrConstraints.length() > 3 ){
-                    arrConstraints = arrConstraints.substring(1, arrConstraints.length()-1);
-//                    LOG.debug("Enter constraint as assumption: " + arrConstraints);
-//                    enterEngineCommand("assume(" + arrConstraints + ");");
-                } else arrConstraints = null;
+                List<String> consList = c.getConstraints(this.getThisConstraintTranslator(), c.getEquationLabel());
+                LOG.debug("Extract constraints: " + consList);
+                arrConstraints = getCASListRepresentation(consList);
             } catch ( Exception e ) {
                 LOG.warn("Error when parsing constraint => Ignoring Constraint.", e);
             }
@@ -317,8 +309,6 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
                 LOG.fatal("Cannot call CAS garbage collector!", me);
             }
         }
-
-        return;
 //        return c.getLine() + ": " + lineResults[c.getLine()];
     }
 
@@ -376,8 +366,8 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
     }
 
     public static void main(String[] args) throws Exception {
-//        SymbolicEvaluator evaluator = createStandardMapleEvaluator();
-        SymbolicEvaluator evaluator = createStandardMathematicaEvaluator();
+        SymbolicEvaluator evaluator = createStandardMapleEvaluator();
+//        SymbolicEvaluator evaluator = createStandardMathematicaEvaluator();
         startTestAndWriteResults(evaluator);
     }
 }

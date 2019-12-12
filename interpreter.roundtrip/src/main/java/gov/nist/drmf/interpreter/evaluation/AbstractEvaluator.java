@@ -54,6 +54,10 @@ public abstract class AbstractEvaluator<T> {
         return engine.enterCommand(cmd);
     }
 
+    public String getCASListRepresentation( List<String> list ) {
+        return engine.buildList(list);
+    }
+
     public IConstraintTranslator getThisConstraintTranslator() {
         return forwardTranslator;
     }
@@ -98,11 +102,40 @@ public abstract class AbstractEvaluator<T> {
 
     public LinkedList<Case> loadTestCases(
             int[] subset,
-            Set<Integer> skipLines,
+            Set<ID> skipLines,
             Path dataset,
             HashMap<Integer, String> labelLib,
             HashMap<Integer, String> skippedLinesInfo
     ) {
+        return loadTestCases(
+                subset,
+                skipLines,
+                dataset,
+                labelLib,
+                skippedLinesInfo,
+                false
+        );
+    }
+
+    public LinkedList<Case> loadTestCases(
+            int[] subset,
+            Set<ID> skipLines,
+            Path dataset,
+            HashMap<Integer, String> labelLib,
+            HashMap<Integer, String> skippedLinesInfo,
+            boolean reverseSkipLines
+    ) {
+        HashMap<Integer, Set<Integer>> skipLineIDs = new HashMap<>();
+        skipLines.forEach(s -> {
+            Set<Integer> subIds = skipLineIDs.get(s.id);
+            if ( subIds == null ) {
+                Set<Integer> subs = new HashSet<>();
+                subs.add(s.subID);
+                skipLineIDs.put(s.id, subs);
+            } else {
+                subIds.add(s.subID);
+            }
+        } );
         LinkedList<Case> testCases = new LinkedList<>();
         int[] currLine = new int[] {0};
 
@@ -112,17 +145,18 @@ public abstract class AbstractEvaluator<T> {
             int start = subset[0];
             int limit = subset[1];
 
+            // TODO somewhere here is a bug
             lines.sequential()
                     .peek(l -> currLine[0]++) // line counter
                     .filter(l -> start <= currLine[0] && currLine[0] < limit) // filter by limits
                     .filter(l -> {
-                        if ( !skipLines.contains(currLine[0]) ) {
-                            return true;
-                        } else {
-                            skippedLinesInfo.put(currLine[0], "Skipped - (user defined).");
+                        boolean skip = skipLineIDs.containsKey(currLine[0]);
+                        if ( reverseSkipLines ) skip = !skip;
+                        if ( skip ){
+                            skippedLinesInfo.put(currLine[0], "Skipped - (user defined)");
                             Status.SKIPPED.add();
                             return false;
-                        }
+                        } else return true;
                     }) // skip entries if wanted
                     .flatMap(l -> {
                         if ( l.contains("comments{Warning") ) {
@@ -139,7 +173,9 @@ public abstract class AbstractEvaluator<T> {
                             return null;
                         }
 
+                        Set<Integer> subIds = skipLineIDs.get(currLine[0]);
                         LinkedList<Case> testCC = new LinkedList<>();
+                        int counter = 0;
                         String reason = "";
                         for ( Case ic : cc ) {
                             String test = ic.getLHS() + " " + ic.getRHS();
@@ -150,7 +186,17 @@ public abstract class AbstractEvaluator<T> {
                                     Matcher cm = filterCases.matcher(conStr);
                                     if ( cm.find() ) ic.removeConstraint();
                                 }
-                                testCC.add(ic);
+
+                                boolean addBoolean = subIds == null || !subIds.contains(counter);
+                                addBoolean = reverseSkipLines != addBoolean;
+
+                                if ( addBoolean ) {
+                                    testCC.add(ic);
+                                    counter++;
+                                } else {
+                                    testCC.add(new DummyCase(ic.getMetaData()));
+                                    counter++;
+                                }
                             } else {
                                 LOG.warn("Ignore " + currLine[0] + " because: " + test);
                                 if ( !reason.isEmpty() ) reason += ", ";
@@ -205,6 +251,14 @@ public abstract class AbstractEvaluator<T> {
         );
     }
 
+    public int[] getResultInterval() {
+        return getConfig().getSubSetInterval();
+    }
+
+    public String getOverviewString() {
+        return Status.buildString();
+    }
+
     protected String getResults(
             EvaluationConfig config,
             HashMap<Integer, String> labelLib,
@@ -213,7 +267,7 @@ public abstract class AbstractEvaluator<T> {
         StringBuffer sb = new StringBuffer();
 
         sb.append("Overall: ");
-        sb.append(Status.buildString());
+        sb.append(getOverviewString());
         sb.append(" for test expression: ");
         sb.append(config.getTestExpression());
         sb.append(NL);
@@ -222,7 +276,7 @@ public abstract class AbstractEvaluator<T> {
                 sb,
                 labelLib,
                 config.showDLMFLinks(),
-                config.getSubSetInterval(),
+                getResultInterval(),
                 lineResults
         );
     }
@@ -243,9 +297,9 @@ public abstract class AbstractEvaluator<T> {
             }
 
             LinkedList<String> tmp = lineResults[i];
-            LinkedList<String> lineResult = new LinkedList();
+            LinkedList<String> lineResult = new LinkedList<>();
             for ( String s : tmp ) {
-                if ( !s.contains("Ignore") ) lineResult.add(s);
+                if ( !s.contains("Ignore") && !s.contains("Skipped - (user defined)") ) lineResult.add(s);
             }
 
             if ( lineResult.isEmpty() ) continue;
@@ -272,5 +326,42 @@ public abstract class AbstractEvaluator<T> {
 
         }
         return sb.toString();
+    }
+
+    public class ID {
+        Integer id;
+        Integer subID;
+
+        public ID(Integer id) {
+            this.id = id;
+            this.subID = null;
+        }
+
+        public ID(String id) {
+            String[] ids = id.split("-");
+            this.id = Integer.parseInt(ids[0]);
+            if ( ids.length > 1 ) {
+                char a = ids[1].charAt(0);
+                this.subID = 'a' - a + 1;
+            } else this.subID = 0;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if ( obj instanceof AbstractEvaluator.ID ) {
+                AbstractEvaluator.ID ref = (AbstractEvaluator.ID) obj;
+                if ( this.id.equals(ref.id) ){
+                    if ( this.subID != null && ref.subID != null )
+                        return this.subID.equals(ref.subID);
+                }
+            }
+            return false;
+        }
+    }
+
+    public class DummyCase extends Case {
+        public DummyCase(CaseMetaData metaData) {
+            super(null, null, null, metaData);
+        }
     }
 }

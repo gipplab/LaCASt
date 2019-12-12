@@ -16,6 +16,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Observable;
 import java.util.regex.Pattern;
 
 /**
@@ -113,5 +115,16 @@ public class MathematicaTranslator implements
     @Override
     public boolean wasAborted(Expr result) {
         return result.toString().matches(Pattern.quote(MATH_ABORTION_SIGNAL));
+    }
+
+    @Override
+    public String buildList(List<String> list) {
+        String ls = list.toString();
+        return ls.substring(1, ls.length()-1);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        // nothing to do here
     }
 }

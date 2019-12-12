@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.evaluation;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.grammar.IComputerAlgebraSystemEngine;
 
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 

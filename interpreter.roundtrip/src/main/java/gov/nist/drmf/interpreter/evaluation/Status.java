@@ -42,4 +42,13 @@ public enum Status {
     public static String buildString(){
         return Arrays.toString(Status.values());
     }
+
+    public static String buildNumericalString() {
+        String out = "[SUCCESS: " + SUCCESS.counter + ", ";
+        out += "FAILURE: " + FAILURE.counter + ", ";
+        out += "LIMIT_SKIPS: " + MISSING.counter + ", ";
+        out += "TESTED: " + SUCCESS_TRANS.counter + ", ";
+        out += "ERROR: " + ERROR.counter + "]";
+        return out;
+    }
 }
