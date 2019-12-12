@@ -19,15 +19,7 @@ import java.util.regex.Pattern;
  * @author Andre Greiner-Petter
  */
 public class CaseAnalyzer {
-
     private static final Logger LOG = LogManager.getLogger(CaseAnalyzer.class.getName());
-
-//    private static final Pattern META_INFO_PATTERN = Pattern.compile(
-//                    "\\\\constraint\\{(.*?)}|" +
-//                    "\\\\label\\{(.*?)}|" +
-//                    "\\\\ccode\\{(.*?)}|" +
-//                    "\\\\source|\\\\authorproof|\\\\keyphrase|\\\\cite"
-//    );
 
     private static final Pattern META_INFO_PATTERN = Pattern.compile(
             "\\\\constraint\\{(.*?)}|" +

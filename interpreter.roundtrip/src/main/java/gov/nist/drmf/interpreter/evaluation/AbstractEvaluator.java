@@ -145,7 +145,6 @@ public abstract class AbstractEvaluator<T> {
             int start = subset[0];
             int limit = subset[1];
 
-            // TODO somewhere here is a bug
             lines.sequential()
                     .peek(l -> currLine[0]++) // line counter
                     .filter(l -> start <= currLine[0] && currLine[0] < limit) // filter by limits
