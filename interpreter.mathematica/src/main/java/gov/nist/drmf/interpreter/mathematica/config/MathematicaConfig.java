@@ -48,6 +48,7 @@ public class MathematicaConfig {
     public static boolean isMathematicaPresent() {
         try {
             Path mathPath = MathematicaConfig.loadMathematicaPath();
+            System.out.println(mathPath);
 
             KernelLink math = MathLinkFactory.createKernelLink(new String[]{
                     "-linkmode", "launch",

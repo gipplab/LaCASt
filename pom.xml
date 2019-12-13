@@ -28,10 +28,12 @@
         <junit.version>5.5.2</junit.version>
         <maven.surefire.version>2.22.2</maven.surefire.version>
 
-        <maple.path>/opt/maple2016</maple.path>
-        <maple.version>2016.2</maple.version>
         <mlp.path>${project.basedir}/../libs/MLP/MLP.jar</mlp.path>
         <mlp.version>1.1</mlp.version>
+        <maple.path>/opt/maple2016</maple.path>
+        <maple.version>2016.2</maple.version>
+        <mathematica.jlink.path>/opt/Wolfram/SystemFiles/Links/JLink/JLink.jar</mathematica.jlink.path>
+        <mathematica.jlink.version>1.1</mathematica.jlink.version>
 
         <log4j2.version>2.12.1</log4j2.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -134,6 +136,69 @@
                         <source>${maven.compiler.source}</source>
                         <target>${maven.compiler.target}</target>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>3.0.0-M1</version>
+                    <executions>
+                        <execution>
+                            <id>mlp-install</id>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>install-file</goal>
+                            </goals>
+                            <configuration>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>MLP</artifactId>
+                                <version>${mlp.version}</version>
+                                <packaging>jar</packaging>
+                                <file>${mlp.path}</file>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>maple-install</id>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>install-file</goal>
+                            </goals>
+                            <configuration>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>Maple</artifactId>
+                                <version>${maple.version}</version>
+                                <packaging>jar</packaging>
+                                <file>${maple.path}/java/Maple.jar</file>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>maple-call-install</id>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>install-file</goal>
+                            </goals>
+                            <configuration>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>Maple-Call</artifactId>
+                                <version>${maple.version}</version>
+                                <packaging>jar</packaging>
+                                <file>${maple.path}/java/externalcall.jar</file>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>mathematica-install</id>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>install-file</goal>
+                            </goals>
+                            <configuration>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>wolfram</artifactId>
+                                <version>${mathematica.jlink.version}</version>
+                                <packaging>jar</packaging>
+                                <file>${mathematica.jlink.path}</file>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

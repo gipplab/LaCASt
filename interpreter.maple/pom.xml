@@ -24,26 +24,13 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Maple</artifactId>
-            <scope>system</scope>
             <version>${maple.version}</version>
-            <systemPath>${maple.path}/java/Maple.jar</systemPath>
         </dependency>
 
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Maple-Call</artifactId>
-            <scope>system</scope>
             <version>${maple.version}</version>
-            <systemPath>${maple.path}/java/externalcall.jar</systemPath>
-        </dependency>
-
-        <!-- To create backward translation lexicons -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>MLP</artifactId>
-            <scope>system</scope>
-            <version>${mlp.version}</version>
-            <systemPath>${mlp.path}</systemPath>
         </dependency>
     </dependencies>
 
@@ -58,6 +45,9 @@
                     </environmentVariables>
                     <workingDirectory>${basedir}/../</workingDirectory>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

@@ -22,9 +22,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>MLP</artifactId>
-            <scope>system</scope>
             <version>${mlp.version}</version>
-            <systemPath>${mlp.path}</systemPath>
         </dependency>
 
         <dependency>
@@ -47,6 +45,9 @@
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
