@@ -60,7 +60,7 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
 
         NumericalConfig.NumericalProperties.KEY_OUTPUT.setValue(config.getOutputPath().toString());
         NumericalConfig.NumericalProperties.KEY_DATASET.setValue(config.getDataset().toString());
-        NumericalConfig.NumericalProperties.KEY_LABELSET.setValue(config.getLabelSet().toString());
+//        NumericalConfig.NumericalProperties.KEY_LABELSET.setValue(config.getLabelSet().toString());
         NumericalConfig.NumericalProperties.KEY_DLMF_LINK.setValue(""+config.showDLMFLinks());
 
         String subset = config.getSubSetInterval()[0] + "," + config.getSubSetInterval()[1];

@@ -62,6 +62,7 @@ public class MathematicaInterface {
     public Set<String> getVariables(String expression) throws MathLinkException {
         String extract = Commands.EXTRACT_VARIABLES.build(expression);
         Expr exs = evaluateToExpression("ToString["+extract+", CharacterEncoding -> \"ASCII\"]");
+//        Expr exs = evaluateToExpression(extract);
 
         Expr[] argsExp = exs.args();
         Set<String> output = new HashSet<>();

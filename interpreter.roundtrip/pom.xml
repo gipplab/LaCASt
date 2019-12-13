@@ -21,29 +21,27 @@
             <version>2.1-SNAPSHOT</version>
         </dependency>
 
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>Maple</artifactId>
-            <scope>system</scope>
-            <version>${maple.version}</version>
-            <systemPath>${maple.path}/java/Maple.jar</systemPath>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>${project.groupId}</groupId>-->
+<!--            <artifactId>Maple</artifactId>-->
+<!--            <scope>system</scope>-->
+<!--            <version>${maple.version}</version>-->
+<!--            <systemPath>${maple.path}/java/Maple.jar</systemPath>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>Maple-Call</artifactId>
-            <scope>system</scope>
-            <version>${maple.version}</version>
-            <systemPath>${maple.path}/java/externalcall.jar</systemPath>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>${project.groupId}</groupId>-->
+<!--            <artifactId>Maple-Call</artifactId>-->
+<!--            <scope>system</scope>-->
+<!--            <version>${maple.version}</version>-->
+<!--            <systemPath>${maple.path}/java/externalcall.jar</systemPath>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>gov.nist.drmf.interpreter</groupId>
-            <artifactId>MLP</artifactId>
-            <version>${mlp.version}</version>
-            <scope>system</scope>
-            <systemPath>${mlp.path}</systemPath>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>gov.nist.drmf.interpreter</groupId>-->
+<!--            <artifactId>MLP</artifactId>-->
+<!--            <version>${mlp.version}</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>

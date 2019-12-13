@@ -2,19 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
     <parent>
-        <artifactId>interpreter</artifactId>
         <groupId>gov.nist.drmf.interpreter</groupId>
+        <artifactId>interpreter</artifactId>
         <version>2.1-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
     <artifactId>interpreter.mathematica</artifactId>
     <version>2.1-SNAPSHOT</version>
-
-    <properties>
-        <mathematica.jlink.path>/opt/Wolfram/SystemFiles/Links/JLink/JLink.jar</mathematica.jlink.path>
-    </properties>
+<!--    <packaging>jar</packaging>-->
 
     <dependencies>
         <dependency>
@@ -26,8 +24,40 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>wolfram</artifactId>
             <scope>system</scope>
-            <version>1.0-SNAPSHOT</version>
-            <systemPath>${mathematica.jlink.path}</systemPath>
+            <version>1.1</version>
+            <systemPath>/opt/Wolfram/SystemFiles/Links/JLink/JLink.jar</systemPath>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <executions>
+                    <execution>
+                        <id>mathematica-install</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>wolfram</artifactId>
+                            <version>1.1</version>
+                            <packaging>jar</packaging>
+                            <file>${mathematica.jlink.path}</file>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

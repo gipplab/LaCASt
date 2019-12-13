@@ -122,6 +122,7 @@ public class MathematicaEngineCallTest {
     }
 
     @Test
+    @Disabled
     public void extractVariableTest() throws MathLinkException {
         Set<String> vars = mi.getVariables(JACOBIP);
         assertTrue(vars.contains("a"));
