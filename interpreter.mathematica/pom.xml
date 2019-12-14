@@ -12,7 +12,7 @@
 
     <artifactId>interpreter.mathematica</artifactId>
     <version>2.1-SNAPSHOT</version>
-<!--    <packaging>jar</packaging>-->
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
@@ -23,9 +23,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>wolfram</artifactId>
-            <scope>system</scope>
             <version>1.1</version>
-            <systemPath>/opt/Wolfram/SystemFiles/Links/JLink/JLink.jar</systemPath>
         </dependency>
     </dependencies>
 
@@ -33,30 +31,14 @@
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <environmentVariables>
+                        <LD_LIBRARY_PATH>${mathematica.jlink.path}/SystemFiles/Libraries/Linux-x86-64</LD_LIBRARY_PATH>
+                    </environmentVariables>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>3.0.0-M1</version>
-                <executions>
-                    <execution>
-                        <id>mathematica-install</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>wolfram</artifactId>
-                            <version>1.1</version>
-                            <packaging>jar</packaging>
-                            <file>${mathematica.jlink.path}</file>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

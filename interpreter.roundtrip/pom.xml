@@ -57,6 +57,9 @@
                     <workingDirectory>${basedir}/../</workingDirectory>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
 </project>
