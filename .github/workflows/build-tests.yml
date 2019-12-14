@@ -13,7 +13,7 @@ jobs:
     - name: Maven Install
       run: mvn install -DskipTests -B -pl \!interpreter.maple,\!interpreter.mathematica,\!interpreter.core,\!interpreter.roundtrip
     - name: Maven Tests
-      run: mvn clean test jacoco:report coveralls:report -pl \!interpreter.maple,\!interpreter.mathematica,\!interpreter.core,\!interpreter.roundtrip
+      run: mvn clean test jacoco:report coveralls:report -DrepoToken=${{ secrets.TEST_COVERAGE_TOKEN }} -pl \!interpreter.maple,\!interpreter.mathematica,\!interpreter.core,\!interpreter.roundtrip
     - name: Coveralls
       uses: coverallsapp/github-action@v1.0.1
       with:
