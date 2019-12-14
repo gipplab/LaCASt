@@ -11,7 +11,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Maven Build and Test
-      run: mvn -B test
+      run: mvn -B -pl \!interpreter.maple,\!interpreter.mathematica,\!interpreter.core,\!interpreter.roundtrip test
     - name: Coveralls
       uses: coverallsapp/github-action@v1.0.1
       with:
