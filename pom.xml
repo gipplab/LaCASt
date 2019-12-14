@@ -21,6 +21,7 @@
     </modules>
 
     <properties>
+        <main.basedir>${project.basedir}</main.basedir>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.version>3.8.1</maven.compiler.version>
@@ -28,7 +29,8 @@
         <junit.version>5.5.2</junit.version>
         <maven.surefire.version>2.22.2</maven.surefire.version>
 
-        <mlp.path>${project.basedir}/../libs/MLP/MLP.jar</mlp.path>
+        <mlp.path>${main.basedir}/libs/MLP/MLP.jar</mlp.path>
+
         <mlp.version>1.1</mlp.version>
         <maple.path>/opt/maple2016</maple.path>
         <maple.version>2016.2</maple.version>
