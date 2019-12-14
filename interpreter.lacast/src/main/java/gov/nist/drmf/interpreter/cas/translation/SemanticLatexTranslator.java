@@ -107,7 +107,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
     public void init( Path reference_dir_path ) throws IOException {
         config.init();
 
-        // TODO do I must to that?
+        // todo is that necessary?
         MacrosLexicon.init();
 
         parser = new PomParser(reference_dir_path.toString());
