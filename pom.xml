@@ -244,6 +244,7 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <!-- The install plugin should be triggered for all modules, otherwise some dependencies are missing -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
