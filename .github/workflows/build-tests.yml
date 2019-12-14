@@ -1,7 +1,7 @@
 name: translator-build-tests
 on: [push]
 jobs:
-  setup:
+  build:
     runs-on: ubuntu-latest
     steps:
     - name: Git Checkout Repo
@@ -10,8 +10,10 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Maven Build and Test
-      run: mvn -B -pl \!interpreter.maple,\!interpreter.mathematica,\!interpreter.core,\!interpreter.roundtrip test
+    - name: Maven Install
+      run: mvn install -DskipTests -B -pl \!interpreter.maple,\!interpreter.mathematica,\!interpreter.core,\!interpreter.roundtrip
+    - name: Maven Tests
+      run: mvn clean test jacoco:report coveralls:report -pl \!interpreter.maple,\!interpreter.mathematica,\!interpreter.core,\!interpreter.roundtrip
     - name: Coveralls
       uses: coverallsapp/github-action@v1.0.1
       with:
