@@ -1,3 +1,5 @@
+[![Tests](https://github.com/ag-gipp/latex-grammar/workflows/translator-build-tests/badge.svg)](https://github.com/ag-gipp/latex-grammar/workflows/translator-build-tests/badge.svg) [![Maintainability](https://api.codeclimate.com/v1/badges/3960df830b098ef0afa9/maintainability)](https://codeclimate.com/repos/5df6328a606a9501a1001189/maintainability) 
+
 # LaCASt - A LaTeX Translator for Computer Algebra Systems
 
 # Preface
