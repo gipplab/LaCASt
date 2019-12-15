@@ -21,6 +21,18 @@
     </modules>
 
     <properties>
+        <!--
+            TODO
+            The following two variables has to be updated for every user!
+            Enter the installation folder (without / in the end) for maple
+            and Mathematica. If you did not install the CAS on your system,
+            just set the variables to your home directory.
+        -->
+<!--        <maple.installation.dir>/opt/maple2016</maple.installation.dir>-->
+        <maple.installation.dir>/home/andreg-p</maple.installation.dir>
+<!--        <mathematica.installation.dir>/opt/Wolfram</mathematica.installation.dir>-->
+        <mathematica.installation.dir>/home/andreg-p</mathematica.installation.dir>
+
         <main.basedir>${project.basedir}</main.basedir>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -30,12 +42,13 @@
         <maven.surefire.version>2.22.2</maven.surefire.version>
 
         <mlp.path>${main.basedir}/libs/MLP/MLP.jar</mlp.path>
-
         <mlp.version>1.1</mlp.version>
-        <maple.path>/opt/maple2016</maple.path>
+
+        <maple.path>${main.basedir}/libs/Maple</maple.path>
         <maple.version>2016.2</maple.version>
-        <mathematica.jlink.path>/opt/Wolfram/SystemFiles/Links/JLink</mathematica.jlink.path>
-        <mathematica.jlink.version>1.1</mathematica.jlink.version>
+
+        <mathematica.jlink.path>${main.basedir}/libs/Mathematica</mathematica.jlink.path>
+        <mathematica.jlink.version>1.0</mathematica.jlink.version>
 
         <log4j2.version>2.12.1</log4j2.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -114,89 +127,6 @@
         </dependency>
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>include-maple</id>
-            <activation>
-                <file>
-                    <exists>${maple.path}/java/Maple.jar</exists>
-                </file>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-install-plugin</artifactId>
-                        <version>3.0.0-M1</version>
-                        <executions>
-                            <execution>
-                                <id>maple-install</id>
-                                <phase>initialize</phase>
-                                <goals>
-                                    <goal>install-file</goal>
-                                </goals>
-                                <configuration>
-                                    <groupId>${project.groupId}</groupId>
-                                    <artifactId>Maple</artifactId>
-                                    <version>${maple.version}</version>
-                                    <packaging>jar</packaging>
-                                    <file>${maple.path}/java/Maple.jar</file>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>maple-call-install</id>
-                                <phase>initialize</phase>
-                                <goals>
-                                    <goal>install-file</goal>
-                                </goals>
-                                <configuration>
-                                    <groupId>${project.groupId}</groupId>
-                                    <artifactId>Maple-Call</artifactId>
-                                    <version>${maple.version}</version>
-                                    <packaging>jar</packaging>
-                                    <file>${maple.path}/java/externalcall.jar</file>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>include-mathematica</id>
-            <activation>
-                <file>
-                    <exists>${mathematica.jlink.path}/JLink.jar</exists>
-                </file>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-install-plugin</artifactId>
-                        <version>3.0.0-M1</version>
-                        <executions>
-                            <execution>
-                                <id>mathematica-install</id>
-                                <phase>initialize</phase>
-                                <goals>
-                                    <goal>install-file</goal>
-                                </goals>
-                                <configuration>
-                                    <groupId>${project.groupId}</groupId>
-                                    <artifactId>wolfram</artifactId>
-                                    <version>${mathematica.jlink.version}</version>
-                                    <packaging>jar</packaging>
-                                    <file>${mathematica.jlink.path}/JLink.jar</file>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
     <build>
         <pluginManagement>
             <plugins>
@@ -205,7 +135,7 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven.surefire.version}</version>
                     <configuration>
-                        <workingDirectory>${basedir}/../</workingDirectory>
+                        <workingDirectory>${main.basedir}/</workingDirectory>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -235,10 +165,52 @@
                             </goals>
                             <configuration>
                                 <groupId>${project.groupId}</groupId>
-                                <artifactId>MLP</artifactId>
+                                <artifactId>mlp</artifactId>
                                 <version>${mlp.version}</version>
                                 <packaging>jar</packaging>
                                 <file>${mlp.path}</file>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>maple-install</id>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>install-file</goal>
+                            </goals>
+                            <configuration>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>maple</artifactId>
+                                <version>${maple.version}</version>
+                                <packaging>jar</packaging>
+                                <file>${maple.path}/Maple.jar</file>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>maple-call-install</id>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>install-file</goal>
+                            </goals>
+                            <configuration>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>maple-call</artifactId>
+                                <version>${maple.version}</version>
+                                <packaging>jar</packaging>
+                                <file>${maple.path}/externalcall.jar</file>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>mathematica-install</id>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>install-file</goal>
+                            </goals>
+                            <configuration>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>mathematica</artifactId>
+                                <version>${mathematica.jlink.version}</version>
+                                <packaging>jar</packaging>
+                                <file>${mathematica.jlink.path}/JLink.jar</file>
                             </configuration>
                         </execution>
                     </executions>
@@ -250,38 +222,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <version>4.3.0</version>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.6.201602180812</version>
-                <executions>
-                    <execution>
-                        <id>prepare-agent</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>post-unit-test</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

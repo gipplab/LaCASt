@@ -55,10 +55,11 @@
                 <version>${maven.surefire.version}</version>
                 <configuration>
                     <environmentVariables>
-                        <MAPLE>${maple.path}</MAPLE>
-                        <LD_LIBRARY_PATH>${maple.path}/bin.X86_64_LINUX</LD_LIBRARY_PATH>
+                        <MAPLE>${maple.installation.dir}</MAPLE>
+                        <LD_LIBRARY_PATH>${maple.installation.dir}/bin.X86_64_LINUX</LD_LIBRARY_PATH>
+                        <LD_LIBRARY_PATH>${mathematica.installation.dir}/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64</LD_LIBRARY_PATH>
                     </environmentVariables>
-                    <workingDirectory>${basedir}/../</workingDirectory>
+                    <workingDirectory>${main.basedir}/</workingDirectory>
                 </configuration>
             </plugin>
             <plugin>
