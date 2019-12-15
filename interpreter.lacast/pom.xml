@@ -14,6 +14,10 @@
     <version>2.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <main.basedir>${project.parent.basedir}</main.basedir>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>gov.nist.drmf.interpreter</groupId>
@@ -48,7 +52,7 @@
         <!-- Maven surefire does not load these transitive dependencies from core... -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>MLP</artifactId>
+            <artifactId>mlp</artifactId>
             <version>${mlp.version}</version>
         </dependency>
     </dependencies>
@@ -84,7 +88,7 @@
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
-                            <outputDirectory>${project.basedir}/../bin/</outputDirectory>
+                            <outputDirectory>${main.basedir}/bin/</outputDirectory>
                             <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                     </execution>
@@ -106,7 +110,7 @@
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
-                            <outputDirectory>${project.basedir}/../bin/</outputDirectory>
+                            <outputDirectory>${main.basedir}/bin/</outputDirectory>
                             <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                     </execution>

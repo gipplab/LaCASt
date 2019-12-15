@@ -14,6 +14,10 @@
     <version>2.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <main.basedir>${project.parent.basedir}</main.basedir>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>gov.nist.drmf.interpreter</groupId>
@@ -22,8 +26,8 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>wolfram</artifactId>
-            <version>1.1</version>
+            <artifactId>mathematica</artifactId>
+            <version>${mathematica.jlink.version}</version>
         </dependency>
     </dependencies>
 
@@ -33,7 +37,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <environmentVariables>
-                        <LD_LIBRARY_PATH>${mathematica.jlink.path}/SystemFiles/Libraries/Linux-x86-64</LD_LIBRARY_PATH>
+                        <LD_LIBRARY_PATH>${mathematica.installation.dir}/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64</LD_LIBRARY_PATH>
                     </environmentVariables>
                 </configuration>
             </plugin>
