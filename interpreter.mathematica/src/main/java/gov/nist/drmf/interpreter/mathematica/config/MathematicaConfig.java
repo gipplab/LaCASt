@@ -86,9 +86,10 @@ public class MathematicaConfig {
                     "-linkmode", "launch",
                     "-linkname", mathPath.toString(), "-mathlink"
             });
+
             math.close();
             return true;
-        } catch (Exception e) {
+        } catch (Exception | Error e) {
             return false;
         }
     }

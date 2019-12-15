@@ -22,7 +22,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>MLP</artifactId>
+            <artifactId>mlp</artifactId>
             <version>${mlp.version}</version>
         </dependency>
 

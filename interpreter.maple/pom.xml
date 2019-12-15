@@ -27,13 +27,13 @@
 
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>Maple</artifactId>
+            <artifactId>maple</artifactId>
             <version>${maple.version}</version>
         </dependency>
 
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>Maple-Call</artifactId>
+            <artifactId>maple-call</artifactId>
             <version>${maple.version}</version>
         </dependency>
     </dependencies>
@@ -44,11 +44,14 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <environmentVariables>
-                        <MAPLE>${maple.path}</MAPLE>
-                        <LD_LIBRARY_PATH>${maple.path}/bin.X86_64_LINUX</LD_LIBRARY_PATH>
+                        <MAPLE>${maple.installation.dir}</MAPLE>
+                        <LD_LIBRARY_PATH>${maple.installation.dir}/bin.X86_64_LINUX</LD_LIBRARY_PATH>
                     </environmentVariables>
-                    <workingDirectory>${basedir}/../</workingDirectory>
+                    <workingDirectory>${main.basedir}</workingDirectory>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
             </plugin>
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
@@ -75,7 +78,7 @@
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
-                            <outputDirectory>${project.basedir}/../bin/</outputDirectory>
+                            <outputDirectory>${main.basedir}/bin/</outputDirectory>
                             <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                     </execution>
