@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.common;
 
-import com.sun.xml.internal.ws.api.wsdl.parser.MetaDataResolver;
 import gov.nist.drmf.interpreter.evaluation.CaseMetaData;
 
 /**
