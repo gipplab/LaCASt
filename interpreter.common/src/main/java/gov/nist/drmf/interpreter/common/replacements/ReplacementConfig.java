@@ -72,7 +72,7 @@ public class ReplacementConfig {
             input = rule.replace(input);
         }
 
-        LOG.debug("Applied generalized replacement rules.");
+//        LOG.debug("Applied generalized replacement rules.");
 
         if ( link == null ) return input;
 

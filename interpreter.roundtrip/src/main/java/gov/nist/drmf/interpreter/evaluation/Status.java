@@ -10,7 +10,9 @@ public enum Status {
     SUCCESS_SYMB(0),
     SUCCESS_TRANS(0),
     FAILURE(0),
+    STARTED_TEST_CASES(0),
     SKIPPED(0),
+    DEFINITIONS(0),
     IGNORE(0),
     MISSING(0),
     ERROR(0);

@@ -40,6 +40,10 @@ public class ReplacementRule {
         StringBuffer sb = new StringBuffer();
         while ( m.find() ) {
             String replaceStr = replaceByGroupMatch(m);
+
+            // yeah... I know... that's freaking crazy but it's necessary
+            replaceStr = replaceStr.replaceAll("\\\\$", "\\\\\\\\");
+
             m.appendReplacement(sb, replaceStr);
         }
         m.appendTail(sb);
@@ -50,7 +54,12 @@ public class ReplacementRule {
         // replace \ by \\
         String repl = replacement;
         for ( int i = 1; i <= this.groups; i++ ) {
-            repl = repl.replaceAll("\\$"+i, m.group(i));
+            String insert = m.group(i);
+            if ( insert.equals("\\") ) {
+                repl = repl.replaceAll("\\$"+i, "\\\\");
+            } else {
+                repl = repl.replaceAll("\\$"+i, m.group(i));
+            }
         }
         return repl;
     }
