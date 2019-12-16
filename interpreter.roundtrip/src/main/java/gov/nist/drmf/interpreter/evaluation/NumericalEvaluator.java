@@ -36,10 +36,10 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
 //    protected static final String LONG_RUNTIME_SKIP = "89,90,91,99,100,102";
     //TODO MATHEMATICA SKIPS
-    protected static final String LONG_RUNTIME_SKIP =
-        "103,402,1248,1315,1316,1317,1318,1319,1320,1321,1322,1323,1324,1325,1326,1410," +
-                "1445,1460,1461,1462,1463,1464,1465,1466,1467,1468,1469,1470,1471,1542," +
-                "2562,2563,2564,2565,2566";
+//    protected static final String LONG_RUNTIME_SKIP =
+//        "103,402,1248,1315,1316,1317,1318,1319,1320,1321,1322,1323,1324,1325,1326,1410," +
+//                "1445,1460,1461,1462,1463,1464,1465,1466,1467,1468,1469,1470,1471,1542," +
+//                "2562,2563,2564,2565,2566";
 
     private static final Pattern nullPattern =
             Pattern.compile("[\\s()\\[\\]{}]*0\\.?0*[\\s()\\[\\]{}]*");
@@ -60,11 +60,6 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
     private LinkedList<String>[] lineResult;
 
     private int[] subset;
-
-//    private String numericalSievesMethod;
-//    private String numericalSievesMethodRelations;
-
-//    private LinkedList<String> mapleScripts;
 
     private int gcCaller = 0;
 
@@ -96,7 +91,6 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
         this.config = config;
         this.labelLib = new HashMap<>();
-//        this.testCases = new LinkedList<>();
 
         setUpScripts(procedures);
 
@@ -109,44 +103,6 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         if (!Files.exists(output)) {
             Files.createFile(output);
         }
-
-        //LOG.debug("Register for memory observer service.");
-        //translator.addMapleMemoryObserver(this);
-        //MapleListener.setMemoryUsageLimit( MEMORY_NOTIFY_LIMIT_KB );
-
-        // load special numerical test maple procedure
-//        LOG.debug("Loading Maple internal procedures.");
-//        String numericalProc = MapleInterface.extractProcedure(GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES);
-//        translator.enterMapleCommand( numericalProc );
-//        mapleScripts.add(numericalProc);
-//
-//        // load expectation of results template
-//        String expectationTemplate = config.getExpectationTemplate();
-//        // load numerical sieve
-//        String sieve_procedure = MapleInterface.extractProcedure( GlobalPaths.PATH_MAPLE_NUMERICAL_SIEVE_PROCEDURE );
-//        String sieve_procedure_relation = "rel" + sieve_procedure;
-//
-//        // replace condition placeholder
-//        this.numericalSievesMethod = MapleInterface.extractNameOfProcedure(sieve_procedure);
-//        this.numericalSievesMethodRelations = "rel" + numericalSievesMethod;
-//
-//        sieve_procedure = sieve_procedure.replaceAll(
-//                NumericalTestConstants.KEY_NUMERICAL_SIEVES_CONDITION,
-//                expectationTemplate
-//        );
-//
-//        sieve_procedure_relation = sieve_procedure_relation.replaceAll(
-//                NumericalTestConstants.KEY_NUMERICAL_SIEVES_CONDITION,
-//                "result"
-//        );
-//
-//        // load the new script into Maple
-//        translator.enterMapleCommand(sieve_procedure);
-//        translator.enterMapleCommand(sieve_procedure_relation);
-//
-//        mapleScripts.add(sieve_procedure);
-//        mapleScripts.add(sieve_procedure_relation);
-//        LOG.debug("Setup done!");
     }
 
     @Override
@@ -241,7 +197,6 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
                     config.getListOfSpecialVariables(getThisConstraintTranslator(), label),
                     config.getListOfSpecialVariableValues(getThisConstraintTranslator(), label),
                     scriptHandler.getPostProcessingScriptName(c),
-//                    c.isEquation() ? this.numericalSievesMethod : this.numericalSievesMethodRelations,
                     config.getPrecision(),
                     config.getMaximumNumberOfCombs()
             );
@@ -252,21 +207,6 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
                 enterEngineCommand(preAndPostCommands[1]);
                 LOG.debug("Enter post-testing commands: " + preAndPostCommands[1]);
             }
-
-//            LOG.debug("Start sieving results.");
-//            String sieveMethod;
-//
-//            // switch sieve method if it is not an equation
-//            // in that case, we use the values directly as true/false tests
-//            if ( c.isEquation() ){
-//                sieveMethod = this.numericalSievesMethod + "(numResults);";
-//            } else {
-//                sieveMethod = this.numericalSievesMethodRelations + "(numResults);";
-//            }
-//
-//            LOG.trace(sieveMethod);
-//            T results = enterEngineCommand(sieveMethod);
-//            LOG.debug("Finished sieving... save outcome.");
 
             ICASEngineNumericalEvaluator.ResultType resType = testResult(results);
             String evaluation = "";
@@ -290,76 +230,6 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             }
 
             LOG.info("Finished test for line: " + c.getLine());
-
-//            String resultsName = simplifier.advancedNumericalTest(
-//                    expression,
-//                    config.getNumericalValues(),
-//                    null, // TODO
-////                    c.getConstraintVariables(),
-//                    c.getConstraintValues(),
-//                    config.getSpecialVariables(),
-//                    config.getSpecialVariablesValues(),
-//                    null, // TODO
-////                    c.getConstraints(),
-//                    config.getPrecision(),
-//                    config.getMaximumNumberOfCombs()
-//            );
-//
-//            LOG.debug("Finished numerical calculations.");
-//
-//            if ( preAndPostCommands[1] != null ){
-//                translator.enterMapleCommand(preAndPostCommands[1]);
-//                LOG.debug("Enter post-testing commands: " + preAndPostCommands[1]);
-//            }
-//
-//            LOG.debug("Start sieving results.");
-//            String sieveMethod;
-//
-//            // switch sieve method if it is not an equation
-//            // in that case, we use the values directly as true/false tests
-//            if ( c.isEquation() ){
-//                sieveMethod = this.numericalSievesMethod + "(" + resultsName + ");";
-//            } else {
-//                sieveMethod = this.numericalSievesMethodRelations + "(" + resultsName + ");";
-//            }
-//
-//            LOG.trace(sieveMethod);
-//            Algebraic results = translator.enterMapleCommand(sieveMethod);
-//            LOG.debug("Finished sieving... save outcome.");
-
-//            if ( results instanceof com.maplesoft.openmaple.List ) {
-//                com.maplesoft.openmaple.List aList = (com.maplesoft.openmaple.List) results;
-//                int l = aList.length();
-//
-//                // if l == 0, the list is empty so the test was successful
-//                if ( l == 0 ){
-//                    LOG.info("Test was successful");
-//                    if ( lineResult == null ){
-//                        return "Successful";
-//                    }
-//                    lineResult[c.getLine()] = "Successful";
-//                    Status.SUCCESS.add();
-//                } else { // otherwise the list contains errors or simple failures
-//                    LOG.info("Test was NOT successful.");
-//
-//                    String evaluation = aList.toString();
-//
-//                    if ( lineResult == null ){
-//                        return evaluation;
-//                    }
-//                    lineResult[c.getLine()] = evaluation;
-//
-//                    if ( evaluation.contains("Error") ){
-//                        Status.ERROR.add();
-//                    } else {
-//                        Status.FAILURE.add();
-//                    }
-//                }
-//            } else {
-//                LOG.warn("Sieved list was not a list object... " + results.toString());
-//                Status.ERROR.add();
-//            }
-//            LOG.info("Finished test for line: " + c.getLine());
         } catch ( TranslationException te ) {
             LOG.error("Error in translation. " + te.toString());
             lineResult[c.getLine()].add("Error - " + te.toString());
@@ -444,90 +314,11 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
     private boolean requestedRestart = false;
     private int factor = 1;
 
-//    protected void performAllTests(){
-//        this.gcCaller = 0;
-//        LinkedList<Case> copy = new LinkedList<>();
-//        while ( !testCases.isEmpty() ){
-//            if ( requestedRestart ){
-//                performMapleSessionRestart();
-//                requestedRestart = false;
-//                factor++;
-//                MapleListener.setMemoryUsageLimit( factor*MEMORY_NOTIFY_LIMIT_KB );
-//            }
-//            Case c = testCases.removeFirst();
-//            performSingleTest(c);
-//            copy.add(c);
-//        }
-//        testCases = copy;
-//    }
-
-//    private void performMapleSessionRestart() throws RuntimeException {
-//        try {
-//            LOG.debug("Try to restart Maple session.");
-//            translator.restartMapleSession();
-//            LOG.debug("Reloading procedures...");
-//            reloadScripts();
-//            LOG.debug("Successfully restarted Maple session.");
-//        } catch ( MapleException | IOException e ){
-//            LOG.fatal("Cannot restart maple session!");
-//            throw new RuntimeException("Restart maple session failed.", e);
-//        }
-//    }
-
-//    public final static String NL = System.lineSeparator();
-//
-//    protected String getResults(){
-//        StringBuffer sb = new StringBuffer();
-//
-//        sb.append("Overall: ");
-//        sb.append(Status.buildString());
-//        sb.append(" for test expression: ");
-//        sb.append(config.getRawTestExpression());
-//        sb.append(NL);
-//
-//        return buildResults(
-//                sb.toString(),
-//                labelLib,
-//                config.showDLMFLinks(),
-//                config.getSubset(),
-//                lineResult
-//        );
-//    }
-
-//    protected static String buildResults(
-//            String intro,
-//            HashMap<Integer, String> labelLib,
-//            boolean showDLMF,
-//            int[] limits,
-//            String[] lineResults){
-//        StringBuffer sb = new StringBuffer(intro);
-//
-//        int start = limits[0];
-//        int limit = limits[1];
-//
-//        for ( int i = start; i < lineResults.length && i < limit; i++ ){
-//            sb.append(i);
-//            String dlmf = labelLib.get(i);
-//
-//            if ( dlmf != null && showDLMF ){
-//                sb.append(" [").append(dlmf).append("]: ");
-//            } else sb.append(": ");
-//
-//            if ( lineResults[i] == null ){
-//                sb.append("Skipped");
-//            } else sb.append(lineResults[i]);
-//            sb.append(NL);
-//        }
-//        return sb.toString();
-//    }
-
     public static NumericalEvaluator createStandardMapleEvaluator()
             throws IOException, MapleException, ComputerAlgebraSystemEngineException {
         String[] mapleScripts = new String[3];
         String numericalProc = MapleInterface.extractProcedure(GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES);
         mapleScripts[0] = numericalProc;
-//        translator.enterMapleCommand( numericalProc );
-//        mapleScripts.add(numericalProc);
 
         // load expectation of results template
         NumericalConfig config =  NumericalConfig.config();
@@ -550,12 +341,6 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
                 "result"
         );
 
-        // load the new script into Maple
-//        translator.enterMapleCommand(sieve_procedure);
-//        translator.enterMapleCommand(sieve_procedure_relation);
-
-//        mapleScripts.add(sieve_procedure);
-//        mapleScripts.add(sieve_procedure_relation);
         mapleScripts[1] = sieve_procedure;
         mapleScripts[2] = sieve_procedure_relation;
         LOG.debug("Setup done!");
@@ -577,11 +362,6 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         return evaluator;
     }
 
-//    protected void writeOutput( Path output ) throws IOException {
-//        String results = getResults();
-//        Files.write( output, results.getBytes() );
-//    }
-
     private static void startTestAndWriteResults( NumericalEvaluator evaluator ) throws IOException {
         LinkedList<Case> tests = evaluator.loadTestCases();
         evaluator.performAllTests(tests);
@@ -591,31 +371,6 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
     public static void main(String[] args) throws Exception{
         NumericalEvaluator evaluator = createStandardMapleEvaluator();
         evaluator.startTestAndWriteResults(evaluator);
-
-//        NumericalEvaluator ne = new NumericalEvaluator();
-//        ne.init();
-//
-//        String test = "m + n < 1 \\constraint{$m = 1,2,\\dots,\\floor{\\tfrac{1}{2}n}$}";
-//
-//        Case c = CaseAnalyzer.analyzeLine(test, 796);
-//
-//        System.out.println(c);
-//
-//        LOG.info(ne.performSingleTest(c));
-
-//        NumericalEvaluator evaluator = new NumericalEvaluator();
-//        evaluator.init();
-//        if(args.length>0){
-//            evaluator.testCases = new LinkedList<>();
-//            evaluator.testCases.addAll(
-//             //Note: Each instantiation of NumericalEvaluator overwrites the static variable labelLinker
-//             CaseAnalyzer.analyzeLine(args[0], 0)
-//            );
-//        } else {
-//            evaluator.loadTestCases();
-//        }
-//        evaluator.performAllTests();
-//        evaluator.writeOutput( evaluator.config.getOutputPath() );
     }
 
     protected int getGcCaller() {
@@ -629,10 +384,4 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
     protected void resetGcCaller() {
         this.gcCaller = 0;
     }
-
-//    @Override
-//    public void update(Observable o, Object arg) {
-//        LOG.info("Observed memory limit was reached. Restart maple session soon!");
-//        requestedRestart = true;
-//    }
 }
