@@ -1,6 +1,9 @@
 package gov.nist.drmf.interpreter.evaluation;
 
+import gov.nist.drmf.interpreter.common.SymbolTag;
 import gov.nist.drmf.interpreter.constraints.Constraints;
+
+import java.util.LinkedList;
 
 /**
  * @author Andre Greiner-Petter
@@ -8,14 +11,16 @@ import gov.nist.drmf.interpreter.constraints.Constraints;
 public class CaseMetaData {
     private Label label;
     private Constraints constraints;
-    private String code;
+
+    private LinkedList<SymbolTag> symbolsUsed;
+
     private int linenumber;
 
-    public CaseMetaData(int linenumber, Label label, Constraints constraints, String code){
+    public CaseMetaData(int linenumber, Label label, Constraints constraints, LinkedList<SymbolTag> symbolsUsed){
         this.label = label;
         this.constraints = constraints;
         this.linenumber = linenumber;
-        this.code = code;
+        this.symbolsUsed = symbolsUsed;
     }
 
     public Label getLabel() {
@@ -26,15 +31,15 @@ public class CaseMetaData {
         return constraints;
     }
 
-    public String getCode() {
-        return code;
-    }
-
     public int getLinenumber() {
         return linenumber;
     }
 
     public void deleteConstraints() {
         this.constraints = null;
+    }
+
+    public LinkedList<SymbolTag> getSymbolsUsed() {
+        return symbolsUsed;
     }
 }

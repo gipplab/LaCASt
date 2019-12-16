@@ -1,20 +1,26 @@
 package gov.nist.drmf.interpreter.evaluation;
 
+import gov.nist.drmf.interpreter.common.SymbolDefinedLibrary;
+import gov.nist.drmf.interpreter.common.SymbolTag;
 import gov.nist.drmf.interpreter.constraints.Constraints;
 import gov.nist.drmf.interpreter.constraints.IConstraintTranslator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
  */
 public class Case {
+    private static final Logger LOG = LogManager.getLogger(Case.class.getName());
 
     private String LHS, RHS;
-
     private Relations relation;
+
     private CaseMetaData metaData;
 
     public Case( String LHS, String RHS, Relations relation, CaseMetaData metaData ){
@@ -114,4 +120,16 @@ public class Case {
         return s;
     }
 
+    public Case replaceSymbolsUsed(SymbolDefinedLibrary library) {
+        LinkedList<SymbolTag> used = metaData.getSymbolsUsed();
+        for ( SymbolTag use : used ) {
+            SymbolTag def = library.getSymbolDefinition(use.getId());
+            if ( def != null ) {
+                LOG.info("Found symbol definition! Replacing " + use.getSymbol() + " by " + def.getDefinition());
+                this.LHS = this.LHS.replaceAll(Pattern.quote(use.getSymbol()), def.getDefinition().replaceAll("\\\\", "\\\\\\\\"));
+                this.RHS = this.RHS.replaceAll(Pattern.quote(use.getSymbol()), def.getDefinition().replaceAll("\\\\", "\\\\\\\\"));
+            }
+        }
+        return this;
+    }
 }

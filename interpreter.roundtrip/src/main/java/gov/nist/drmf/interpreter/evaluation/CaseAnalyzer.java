@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.evaluation;
 
+import gov.nist.drmf.interpreter.common.SymbolDefinedLibrary;
+import gov.nist.drmf.interpreter.common.SymbolTag;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.constraints.Constraints;
 import gov.nist.drmf.interpreter.constraints.MLPConstraintAnalyzer;
@@ -24,7 +26,8 @@ public class CaseAnalyzer {
     private static final Pattern META_INFO_PATTERN = Pattern.compile(
             "\\\\constraint\\{(.*?)}|" +
             "\\\\url\\{(.*?)}|" +
-            "\\\\symbolsDefined\\{(.*?)}|" +
+            "\\\\symbolDefined\\[(.*?)]\\{([a-zA-Z0-9.]*?)}|" +
+            "\\\\symbolUsed\\[(.*?)]\\{([a-zA-Z0-9.]*?)}|" +
             "\\\\source|\\\\authorproof|\\\\keyphrase|\\\\cite|\\\\comments"
     );
 
@@ -39,10 +42,11 @@ public class CaseAnalyzer {
     );
 
     private static final int CONSTRAINT_GRP = 1;
-//    private static final int LABEL_GRP = 2;
-//    private static final int CODE_GRP = 3;
     private static final int URL_GRP = 2;
-    private static final int SYMB_DEF_GRP = 3;
+    private static final int SYMB_DEF_GRP_SYMB = 3;
+    private static final int SYMB_DEF_GRP_ID = 4;
+    private static final int SYMB_USED_GRP_ID = 5;
+    private static final int SYMB_USED_GRP_SYMB = 6;
 
     public static boolean ACTIVE_BLUEPRINTS = true;
 
@@ -56,42 +60,76 @@ public class CaseAnalyzer {
      * @param lineNumber the current line number of this test case
      * @return Case object
      */
-    public static LinkedList<Case> analyzeLine( String line, int lineNumber ){
+    public static LinkedList<Case> analyzeLine(String line, int lineNumber, SymbolDefinedLibrary symbDefLib ){
+        // matching group
         Matcher metaDataMatcher = META_INFO_PATTERN.matcher(line);
         StringBuffer mathSB = new StringBuffer();
 
-        LinkedList<String> constraints = new LinkedList();
-//        String label = null;
-//        String code = null;
         String link = null;
-        String symbDef = null;
+        LinkedList<String> constraints = new LinkedList();
+        LinkedList<SymbolTag> symbolsUsed = new LinkedList<>();
 
+        String symbolDefSymb = null;
+        String symbolDefID = null;
+
+        // extract all information
         while( metaDataMatcher.find() ) {
             if ( metaDataMatcher.group(CONSTRAINT_GRP) != null ) {
                 constraints.add(metaDataMatcher.group(CONSTRAINT_GRP));
             } else if ( metaDataMatcher.group(URL_GRP) != null ) {
                 link = metaDataMatcher.group(URL_GRP);
-            } else if ( metaDataMatcher.group(SYMB_DEF_GRP) != null ) {
-                symbDef = metaDataMatcher.group(SYMB_DEF_GRP);
+            } else if ( metaDataMatcher.group(SYMB_DEF_GRP_ID) != null ) {
+                symbolDefSymb = metaDataMatcher.group(SYMB_DEF_GRP_SYMB);
+                symbolDefID = metaDataMatcher.group(SYMB_DEF_GRP_ID);
+                if ( symbolDefSymb.contains("\\NVar") ) {
+                    LOG.warn("Found potential definition of macros. Ignore this definition and treat it as normal test case.");
+                    symbolDefSymb = null;
+                    symbolDefID = null;
+                }
+            } else if ( metaDataMatcher.group(SYMB_USED_GRP_ID) != null ) {
+                String id = metaDataMatcher.group(SYMB_USED_GRP_ID);
+                String symb = metaDataMatcher.group(SYMB_USED_GRP_SYMB);
+
+                if ( !symb.contains("\\NVar") ){
+                    SymbolTag used = new SymbolTag(id, symb);
+                    symbolsUsed.add(used);
+                }
             }
             metaDataMatcher.appendReplacement(mathSB, EOL);
         }
-
         metaDataMatcher.appendTail(mathSB);
 
+        // clip meta data from test expression
         Matcher mathMatcher = END_OF_MATH_MATCHER.matcher(mathSB.toString());
         String eq = "";
         if ( !mathMatcher.matches() ){
             eq = mathSB.toString();
-//            throw new IllegalArgumentException("Cannot analyze line! " + line);
         } else eq = mathMatcher.group(1);
 
-//        if ( eq.matches(".*\\\\[cl]?dots.*") ) {
-//            LOG.error("Test case " + lineNumber + " contains dots -> a translation does not make sense. -> SKIP");
-//            return null;
-//        }
+        CaseMetaData metaData = extractMetaData(constraints, symbolsUsed, link, lineNumber);
 
-        CaseMetaData metaData = extractMetaData(constraints, link, null, lineNumber);
+        if ( symbolDefID != null && !symbolDefSymb.contains("\\NVar") ) {
+            // TODO you know what, fuck \zeta(z)
+            if ( symbolDefSymb.equals("\\zeta(z)") ) symbolDefSymb = "\\zeta";
+
+            LinkedList<Case> caseList = equationSplitter(eq, metaData);
+            if ( caseList == null || caseList.isEmpty() ) return null;
+
+            Case c = caseList.get(0);
+            if ( c.getLHS().equals( symbolDefSymb ) ) {
+                LOG.info("Store line definition: " + symbolDefSymb + " is defined as " + c.getRHS());
+                symbDefLib.add(
+                        symbolDefID,
+                        symbolDefSymb,
+                        c.getRHS(),
+                        metaData
+                );
+            } else {
+                LOG.warn("LHS does not match defined symbol:" + c.getLHS() + " vs " + symbolDefSymb);
+            }
+
+            return null;
+        }
 
         if ( eq.contains("\\pm") || eq.contains("\\mp") ) {
             String one = eq.replaceAll("\\\\pm", "+");
@@ -108,7 +146,8 @@ public class CaseAnalyzer {
     }
 
     private static Pattern RELATION_MATCHER = Pattern.compile(
-            "\\s*(?:([<>=][<>=]?)|(\\\\[ngl]eq?)[^a-zA-Z]|([()\\[\\]{}|]))\\s*"
+            // TODO: god damn it... fix this [^a-zA-Z] problem -.-
+            "\\s*(?:([<>=][<>=]?)|(\\\\[ngl]eq?)([^a-zA-Z])|([()\\[\\]{}|]))\\s*"
     );
 
     public static LinkedList<Case> equationSplitter( String latex, CaseMetaData metaData ) {
@@ -119,6 +158,8 @@ public class CaseAnalyzer {
         StringBuffer bf = new StringBuffer();
 
         Matcher relM = RELATION_MATCHER.matcher(latex);
+        String cacheReplacement = null;
+
         while ( relM.find() ) {
             if ( relM.group(1) != null || relM.group(2) != null ) {
                 String relStr = relM.group(1) != null ? relM.group(1) : relM.group(2);
@@ -130,13 +171,20 @@ public class CaseAnalyzer {
                 if ( bracketStack.isEmpty() ){
                     relM.appendReplacement(bf, "");
                     String p = bf.toString();
+                    if ( cacheReplacement != null ) {
+                        p = cacheReplacement + p;
+                        cacheReplacement = null;
+                    }
                     p = p.trim();
                     parts.addLast(p);
                     rels.addLast(rel);
                     bf = new StringBuffer(); // reset buffer
+                    if ( relM.group(2) != null ) {
+                        cacheReplacement = relM.group(3);
+                    }
                 }
-            } else if ( relM.group(3) != null ) {
-                String relStr = relM.group(3);
+            } else if ( relM.group(4) != null ) {
+                String relStr = relM.group(4);
                 Brackets b = Brackets.getBracket(relStr);
                 if ( !bracketStack.isEmpty() ){
                     Brackets last = bracketStack.getLast();
@@ -148,14 +196,37 @@ public class CaseAnalyzer {
         }
 
         relM.appendTail(bf);
-        parts.add( bf.toString() );
+        String lastPart = bf.toString();
+        if ( cacheReplacement != null ) {
+            lastPart = cacheReplacement + lastPart;
+            cacheReplacement = null;
+        }
+        parts.add( lastPart.trim() );
+
+        // well, tests working better without this setting o.O
+        boolean allequals = false;
+        for ( Relations r : rels ) {
+            if ( !r.equals(Relations.EQUAL) ){
+                allequals = false;
+                break;
+            }
+        }
 
         LinkedList<Case> cases = new LinkedList<>();
-        while ( !rels.isEmpty() ) {
-            Relations r = rels.removeFirst();
+
+        if ( allequals ) {
             String left = parts.removeFirst();
-            String right = parts.get(0);
-            cases.add(new Case(left, right, r, metaData));
+            while ( !parts.isEmpty() ) {
+                String right = parts.removeFirst();
+                cases.add(new Case(left, right, Relations.EQUAL, metaData));
+            }
+        } else {
+            while ( !rels.isEmpty() ) {
+                Relations r = rels.removeFirst();
+                String left = parts.removeFirst();
+                String right = parts.get(0);
+                cases.add(new Case(left, right, r, metaData));
+            }
         }
 
         return cases;
@@ -183,17 +254,20 @@ public class CaseAnalyzer {
         else return null;
     }
 
-    private static CaseMetaData extractMetaData(LinkedList<String> constraints, String labelStr, String codeStr, int lineNumber) {
+    private static CaseMetaData extractMetaData(
+            LinkedList<String> constraints,
+            LinkedList<SymbolTag> symbolsUsed,
+            String labelStr,
+            int lineNumber
+    ) {
         // first, create label
         Label label = null;
         if ( labelStr != null ){
-//            labelStr = labelStr.substring("\\\\label{".length()-1, labelStr.length()-1);
             label = new Label(labelStr);
-            System.out.println(lineNumber + ": " + label.getHyperlink());
         }
 
         if ( constraints.isEmpty() )
-            return new CaseMetaData(lineNumber, label, null, codeStr);
+            return new CaseMetaData(lineNumber, label, null, symbolsUsed);
 
         // second, build list of constraints
         LinkedList<String> cons = new LinkedList<>();
@@ -237,6 +311,6 @@ public class CaseAnalyzer {
 
         String[] conArr = sieved.stream().toArray(String[]::new);
         Constraints finalConstr = new Constraints(conArr, specialVars, specialVals);
-        return new CaseMetaData(lineNumber, label, finalConstr, codeStr);
+        return new CaseMetaData(lineNumber, label, finalConstr, symbolsUsed);
     }
 }

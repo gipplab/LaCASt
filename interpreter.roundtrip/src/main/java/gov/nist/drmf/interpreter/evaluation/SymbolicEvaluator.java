@@ -202,11 +202,13 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
 //            enterEngineCommand("reset;");
 //            setPreviousAssumption();
 
+            Status.STARTED_TEST_CASES.add();
             String mapleLHS = forwardTranslate( c.getLHS(), c.getEquationLabel() );
             String mapleRHS = forwardTranslate( c.getRHS(), c.getEquationLabel() );
 
             LOG.info("Translate LHS to: " + mapleLHS);
             LOG.info("Translate RHS to: " + mapleRHS);
+            Status.SUCCESS_TRANS.add();
 
             String expression = config.getTestExpression( mapleLHS, mapleRHS );
 
@@ -221,7 +223,9 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
             try {
                 List<String> consList = c.getConstraints(this.getThisConstraintTranslator(), c.getEquationLabel());
                 LOG.debug("Extract constraints: " + consList);
-                arrConstraints = getCASListRepresentation(consList);
+                if ( consList != null ) {
+                    arrConstraints = getCASListRepresentation(consList);
+                }
             } catch ( Exception e ) {
                 LOG.warn("Error when parsing constraint => Ignoring Constraint.", e);
             }
@@ -275,6 +279,7 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
                 if ( success[i] ){
                     lineResults[c.getLine()].add("Successful " + Arrays.toString(successStr));
                     Status.SUCCESS.add();
+                    Status.SUCCESS_SYMB.add();
                     return;
 //                    return lineResults[c.getLine()].getLast();
                 }

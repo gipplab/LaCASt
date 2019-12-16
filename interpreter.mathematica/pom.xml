@@ -38,6 +38,9 @@
                 <configuration>
                     <environmentVariables>
                         <LD_LIBRARY_PATH>${mathematica.installation.dir}/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64</LD_LIBRARY_PATH>
+                        <!--
+                        LD_LIBRARY_PATH=/opt/maple2016/bin.X86_64_LINUX:/opt/Wolfram/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64
+                        -->
                     </environmentVariables>
                 </configuration>
             </plugin>

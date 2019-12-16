@@ -28,10 +28,10 @@
             and Mathematica. If you did not install the CAS on your system,
             just set the variables to your home directory.
         -->
-<!--        <maple.installation.dir>/opt/maple2016</maple.installation.dir>-->
-        <maple.installation.dir>/home/andreg-p</maple.installation.dir>
-<!--        <mathematica.installation.dir>/opt/Wolfram</mathematica.installation.dir>-->
-        <mathematica.installation.dir>/home/andreg-p</mathematica.installation.dir>
+        <maple.installation.dir>/opt/maple2016</maple.installation.dir>
+<!--        <maple.installation.dir>/home/andreg-p</maple.installation.dir>-->
+        <mathematica.installation.dir>/opt/Wolfram</mathematica.installation.dir>
+<!--        <mathematica.installation.dir>/home/andreg-p</mathematica.installation.dir>-->
 
         <main.basedir>${project.basedir}</main.basedir>
         <maven.compiler.source>1.8</maven.compiler.source>

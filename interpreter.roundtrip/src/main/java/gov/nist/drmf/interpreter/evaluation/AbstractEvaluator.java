@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation;
 
+import gov.nist.drmf.interpreter.common.SymbolDefinedLibrary;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.IComputerAlgebraSystemEngine;
@@ -31,8 +32,10 @@ public abstract class AbstractEvaluator<T> {
 
     private HashMap<String, Integer> missingMacrosLib;
 
+    private SymbolDefinedLibrary symbolDefinitionLibrary;
+
     public static final Pattern filterCases = Pattern.compile(
-            "\\\\(BigO|littleo|[fdc]Diff|asymp|sim|[lc]?dots)[^a-zA-Z]|" +
+            "\\\\(BigO|littleo|[fdc]Diff|asymp|sim|[lc]?dots)(?:[^a-zA-Z]|$)|" +
                     "\\{(cases|array|[bBvp]matrix|Matrix|Lattice)}|" +
                     "([fg](?:\\\\left)?\\()"
     );
@@ -44,6 +47,7 @@ public abstract class AbstractEvaluator<T> {
         this.forwardTranslator = forwardTranslator;
         this.engine = engine;
         this.missingMacrosLib = new HashMap<>();
+        this.symbolDefinitionLibrary = new SymbolDefinedLibrary();
     }
 
     public String forwardTranslate( String in, String label ) throws TranslationException {
@@ -94,6 +98,7 @@ public abstract class AbstractEvaluator<T> {
 
     public void performAllTests(LinkedList<Case> testCases) {
         for ( Case test : testCases ) {
+            test.replaceSymbolsUsed(symbolDefinitionLibrary);
             performSingleTest(test);
         }
     }
@@ -158,18 +163,25 @@ public abstract class AbstractEvaluator<T> {
                         } else return true;
                     }) // skip entries if wanted
                     .flatMap(l -> {
-                        if ( l.contains("comments{Warning") ) {
+                        if ( l.contains("comments{Warning") && !l.contains("symbolDefined") ) {
                             skippedLinesInfo.put(currLine[0], "Ignore - No semantic math.");
                             Status.IGNORE.add();
                             return null;
                         }
 
-                        LinkedList<Case> cc = CaseAnalyzer.analyzeLine(l, currLine[0]);
+                        LinkedList<Case> cc = CaseAnalyzer.analyzeLine(l, currLine[0], symbolDefinitionLibrary);
                         if ( cc == null || cc.isEmpty() ) {
-                            System.out.println(currLine[0] + ": unable to extract test case.");
-                            skippedLinesInfo.put(currLine[0], "Skipped - Unable to analyze test case.");
-                            Status.SKIPPED.add();
-                            return null;
+                            if ( l.contains("symbolDefined") ) {
+                                LOG.info(currLine[0] + ": Ignored, because it's a definition.");
+                                skippedLinesInfo.put(currLine[0], "Skipped - Line is a definition.");
+                                Status.DEFINITIONS.add();
+                                return null;
+                            } else {
+                                LOG.warn(currLine[0] + ": unable to extract test case.");
+                                skippedLinesInfo.put(currLine[0], "Skipped - Unable to analyze test case.");
+                                Status.SKIPPED.add();
+                                return null;
+                            }
                         }
 
                         Set<Integer> subIds = skipLineIDs.get(currLine[0]);
@@ -177,7 +189,7 @@ public abstract class AbstractEvaluator<T> {
                         int counter = 0;
                         String reason = "";
                         for ( Case ic : cc ) {
-                            String test = ic.getLHS() + " " + ic.getRHS();
+                            String test = ic.getLHS() + " " + ic.getRelation().getSymbol() + " " + ic.getRHS();
                             Matcher m = filterCases.matcher(test);
                             if ( !m.find() ) {
                                 String conStr = ic.getRawConstraint();
@@ -197,7 +209,7 @@ public abstract class AbstractEvaluator<T> {
                                     counter++;
                                 }
                             } else {
-                                LOG.warn("Ignore " + currLine[0] + " because: " + test);
+                                LOG.warn("Ignore " + currLine[0] + ": " + test);
                                 if ( !reason.isEmpty() ) reason += ", ";
 
                                 if ( m.group(1) != null ) reason += m.group(1);
@@ -298,7 +310,10 @@ public abstract class AbstractEvaluator<T> {
             LinkedList<String> tmp = lineResults[i];
             LinkedList<String> lineResult = new LinkedList<>();
             for ( String s : tmp ) {
-                if ( !s.contains("Ignore") && !s.contains("Skipped - (user defined)") ) lineResult.add(s);
+                if (    !s.contains("Ignore") &&
+                        !s.contains("Skipped - (user defined)") &&
+                        !s.contains("Skipped - Line is a definition")
+                ) lineResult.add(s);
             }
 
             if ( lineResult.isEmpty() ) continue;
