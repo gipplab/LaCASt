@@ -4,7 +4,7 @@
 # LaCASt - A LaTeX Translator for Computer Algebra Systems
 
 # Preface
-1. This is a private repository with non-public sources. It is strictly **_prohibited to share_** without permission.
+1. This is a private repository with non-public sources. It is strictly **_prohibited to share_** any files without permission.
 2. If you wish to contribute, read the [contribution guidelines](CONTRIBUTING.md) first.
 
 ## Structure
@@ -13,31 +13,24 @@
 3. [Team Members](#contributers)
 
 ## How to use our program<a name="howTo"></a>
-The executable jar for the translator can be found in the `bin` subdirectory. If you don't need to checkout the entire
-repository, you will find a `zip` file in the `bin` subdirectory that contains all necessary files to run the program.
-
-Run the jar always in the root directory of this repository, not inside the `bin` directory. Hence, you start the program
-via 
+The executable jar for the translator can be found in the `bin` subdirectory. A standalone version can be found in the `bin/*.zip` file. Unzip the archive where you want and run the jar from the root folder of the respository
 ``` shell script
 java -jar bin/latex-to-cas-converter.jar
 ```
 
-Without additional information, the jar will run as a client program. However, you can start the program to directly trigger
-the translation process.    
-* `-CAS=<NameOfCAS>`: Sets the computer algebra system you want to use. For instance `-CAS=Maple` uses Maple or `-CAS=Mathematica` uses Mathematica. If you don't set this flag, the program will ask you which CAS you want to use.
-* `-Expression="<exp>"`: Sets the expression you want to translate. Make sure you don't forget the quotation marks. If you don't specify an expression, the program will ask you about it.
-* `--clean` or `-c`: Only returns the translated expression without any other information. (since version 1.0.1)
-* `--debug` or `-d`: Returns extra information for debugging, such as computation time and list of elements. The `--clean` flag would override this effect.
-* `--extra` or `-x`: Shows further information about translation of functions. Like branch cuts, DLMF-links and so on. The `--clean` flag would override this effect.
+Without additional information, the jar runs as an interactive program. You can start the program to directly trigger
+the translation process or set further flags (every flag is optional):
+* `-CAS=<NameOfCAS>`: Sets the computer algebra system you want to translate to, e.g., `-CAS=Maple` for Maple;
+* `-Expression="<exp>"`: Sets the expression you want to translate. Double qutation marks are mandatory;
+* `--clean` or `-c`: Only returns the translated expression without any other information. (since v1.0.1)
+* `--debug` or `-d`: Returns extra information for debugging, such as computation time and list of elements. (`--clean` overrides this setting).
+* `--extra` or `-x`: Shows further information about translation of functions, e.g., branch cuts, DLMF-links and more. (`--clean` flag overrides this setting)
 
+### Update Translation Patterns
 The translation patterns are defined in `libs/ReferenceData/CSVTables`. If you wish to add translation patterns you need to
-compile the changes before the translator can use them. To update the translations, use the `lexicon-creator.jar`.
-* `lexicon-creator.jar`: This jar takes the CSV files in `libs/ReferenceData/CSVTables` and translate them to a lexicon 
-file (the math language processors based on this lexicon files). Running this jar will ask you to enter the names of 
-the CAS you want to update (one CAS per line). If you want to update all at once, just enter `all`. For further information check 
-_[contribution guidelines](CONTRIBUTING.md)_.
+compile the changes before the translator can use them. To update the translations, use the `lexicon-creator.jar`. Simply run the jar and follow the instructions. It will ask you to enter the names of the CAS you want to update (one CAS per line). If you want to update all at once, just enter `all`. For further information check _[contribution guidelines](CONTRIBUTING.md)_.
 
-#### Custom Replacements
+### Update Pre-Processing Replacement Rules
 The pre-processing replacement rules are defined `config/replacements.yml` and `config/dlmf-replacements.yml`. Each config
 contains further explanations how to add replacement rules. The replacement rules are applied without further compilation.
 Just change the files to add, modify, or remove rules.
