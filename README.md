@@ -19,7 +19,7 @@ repository, you will find a `zip` file in the `bin` subdirectory that contains a
 Run the jar always in the root directory of this repository, not inside the `bin` directory. Hence, you start the program
 via 
 ``` shell script
-java -jar latex-to-cas-converter.jar
+java -jar bin/latex-to-cas-converter.jar
 ```
 
 Without additional information, the jar will run as a client program. However, you can start the program to directly trigger
