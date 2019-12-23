@@ -37,9 +37,12 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 //    protected static final String LONG_RUNTIME_SKIP = "89,90,91,99,100,102";
     //TODO MATHEMATICA SKIPS
     protected static final String LONG_RUNTIME_SKIP =
-        "103,402,1248,1315,1316,1317,1318,1319,1320,1321,1322,1323,1324,1325,1326,1410," +
+        "103,402,640,649,1248,1315,1316,1317,1318,1319,1320,1321,1322,1323,1324,1325,1326,1410," +
                 "1445,1460,1461,1462,1463,1464,1465,1466,1467,1468,1469,1470,1471,1542," +
-                "2562,2563,2564,2565,2566";
+                "2068,2498,2562,2563,2564,2565,2566," +
+                "3035,3358,3494,3816,3817," +
+                "4212,4213,4214,4485,4486,4818,4831,4832,4964," +
+                "5061,5062,5063,5064";
 
     private static final Pattern nullPattern =
             Pattern.compile("[\\s()\\[\\]{}]*0\\.?0*[\\s()\\[\\]{}]*");
