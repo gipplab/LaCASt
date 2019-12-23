@@ -371,8 +371,8 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
     }
 
     public static void main(String[] args) throws Exception {
-//        SymbolicEvaluator evaluator = createStandardMapleEvaluator();
-        SymbolicEvaluator evaluator = createStandardMathematicaEvaluator();
+        SymbolicEvaluator evaluator = createStandardMapleEvaluator();
+//        SymbolicEvaluator evaluator = createStandardMathematicaEvaluator();
         startTestAndWriteResults(evaluator);
     }
 }

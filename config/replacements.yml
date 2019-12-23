@@ -9,10 +9,10 @@
 # =================================================================================================
 generalReplacements:
   -
-    pattern: \\(?:displaystyle|hbox|[Bb]ig[lrg]?|[sb]f)
+    pattern: \\(?:displaystyle|hbox|[Bb]ig[lrg]?|[sb]f|[!,; ]|\\ )
   -
     # you need single quotes here
-    pattern: '[.;<>^/\t\s]+$'
+    pattern: '(?:[.;<>^/\t\s]|\\\\ )+$'
   -
     pattern: (\\hiderel\s*\{\s*([=<>/+\-])\s*})
     replacement: $2
