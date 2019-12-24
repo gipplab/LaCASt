@@ -1,0 +1,164 @@
+Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 22, FAILURE: 22, STARTED_TEST_CASES: 129, SKIPPED: 33, DEFINITIONS: 9, IGNORE: 57, MISSING: 107, ERROR: 0] for test expression: (#LHS)-(#RHS)
+[SIMPLE]
+9832 [http://dlmf.nist.gov/33.2.E1]: Failure [Simple: NaN]
+9833 [http://dlmf.nist.gov/33.2.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Coulombturnrho [\Coulombturnrho]
+9834 [http://dlmf.nist.gov/33.2.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9834-a [http://dlmf.nist.gov/33.2.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9835 [http://dlmf.nist.gov/33.2.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9835-a [http://dlmf.nist.gov/33.2.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9836 [http://dlmf.nist.gov/33.2.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \normCoulombC [\normCoulombC]
+9837 [http://dlmf.nist.gov/33.2.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \normCoulombC [\normCoulombC]
+9838 [http://dlmf.nist.gov/33.2.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9838-a [http://dlmf.nist.gov/33.2.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9839 [http://dlmf.nist.gov/33.2.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9839-a [http://dlmf.nist.gov/33.2.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9840 [http://dlmf.nist.gov/33.2.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Coulombphasetheta [\Coulombphasetheta]
+9841 [http://dlmf.nist.gov/33.2.E10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Coulombphasesigma [\Coulombphasesigma]
+9842 [https://dlmf.nist.gov/33.2#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9843 [https://dlmf.nist.gov/33.2#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9844 [http://dlmf.nist.gov/33.2.E12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombG [\irregCoulombG]
+9844-a [http://dlmf.nist.gov/33.2.E12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombG [\irregCoulombG]
+9844-b [http://dlmf.nist.gov/33.2.E12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9844-c [http://dlmf.nist.gov/33.2.E12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9845 [http://dlmf.nist.gov/33.2.E13]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9846 [http://dlmf.nist.gov/33.3.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \envCoulumbM [\envCoulumbM]
+9846-a [http://dlmf.nist.gov/33.3.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9846-b [http://dlmf.nist.gov/33.3.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9853: Skipped - Unable to analyze test case.
+9854: Skipped - Unable to analyze test case.
+9855: Skipped - Unable to analyze test case.
+9856: Skipped - Unable to analyze test case.
+9857 [https://dlmf.nist.gov/33.5#Ex5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9858 [https://dlmf.nist.gov/33.5#Ex6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombG [\irregCoulombG]
+9859 [https://dlmf.nist.gov/33.5#Ex7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9860 [https://dlmf.nist.gov/33.5#Ex8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombG [\irregCoulombG]
+9861 [https://dlmf.nist.gov/33.5#Ex9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9862 [https://dlmf.nist.gov/33.5#Ex10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombG [\irregCoulombG]
+9863 [https://dlmf.nist.gov/33.5#Ex11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9863-a [https://dlmf.nist.gov/33.5#Ex11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9864 [http://dlmf.nist.gov/33.5.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \normCoulombC [\normCoulombC]
+9864-a [http://dlmf.nist.gov/33.5.E6]: Failure [Simple: NaN]
+9865: Skipped - Unable to analyze test case.
+9866: Skipped - Unable to analyze test case.
+9867: Skipped - Unable to analyze test case.
+9868: Skipped - Unable to analyze test case.
+9869 [http://dlmf.nist.gov/33.6.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9870 [http://dlmf.nist.gov/33.6.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9872 [http://dlmf.nist.gov/33.6.E4]: Failure [Simple: NaN]
+9873 [http://dlmf.nist.gov/33.6.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9873-a [http://dlmf.nist.gov/33.6.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9874 [http://dlmf.nist.gov/33.7.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9875 [http://dlmf.nist.gov/33.7.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9876 [http://dlmf.nist.gov/33.7.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9877 [http://dlmf.nist.gov/33.7.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9880 [https://dlmf.nist.gov/33.8#Ex1]: Failure [Simple: NaN]
+9880-a [https://dlmf.nist.gov/33.8#Ex1]: Failure [Simple: NaN]
+9881 [https://dlmf.nist.gov/33.8#Ex2]: Failure [Simple: NaN]
+9881-a [https://dlmf.nist.gov/33.8#Ex2]: Failure [Simple: NaN]
+9882 [https://dlmf.nist.gov/33.8#Ex3]: Failure [Simple: NaN]
+9882-a [https://dlmf.nist.gov/33.8#Ex3]: Failure [Simple: NaN]
+9883 [https://dlmf.nist.gov/33.8#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9883-a [https://dlmf.nist.gov/33.8#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9884 [https://dlmf.nist.gov/33.8#Ex5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9885 [https://dlmf.nist.gov/33.8#Ex6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombG [\irregCoulombG]
+9886 [https://dlmf.nist.gov/33.8#Ex7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombG [\irregCoulombG]
+9887 [http://dlmf.nist.gov/33.9.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9889 [http://dlmf.nist.gov/33.9.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9890 [http://dlmf.nist.gov/33.9.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9892: Skipped - Unable to analyze test case.
+9896: Skipped - Unable to analyze test case.
+9897: Skipped - Unable to analyze test case.
+9898: Skipped - Unable to analyze test case.
+9899: Skipped - Unable to analyze test case.
+9900: Skipped - Unable to analyze test case.
+9901: Skipped - Unable to analyze test case.
+9902: Skipped - Unable to analyze test case.
+9904: Skipped - Unable to analyze test case.
+9912: Skipped - Unable to analyze test case.
+9913 [http://dlmf.nist.gov/33.11.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9913-a [http://dlmf.nist.gov/33.11.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9914 [https://dlmf.nist.gov/33.11#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9915 [https://dlmf.nist.gov/33.11#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombG [\irregCoulombG]
+9916 [https://dlmf.nist.gov/33.11#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9917 [https://dlmf.nist.gov/33.11#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombG [\irregCoulombG]
+9918 [http://dlmf.nist.gov/33.11.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9918-a [http://dlmf.nist.gov/33.11.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombH [\irregCoulombH]
+9919: Skipped - Unable to analyze test case.
+9920: Skipped - Unable to analyze test case.
+9921: Skipped - Unable to analyze test case.
+9922: Skipped - Unable to analyze test case.
+9932: Skipped - Unable to analyze test case.
+9933: Skipped - Unable to analyze test case.
+9940: Skipped - Unable to analyze test case.
+9941: Skipped - Unable to analyze test case.
+9942 [http://dlmf.nist.gov/33.12.E8]: Failure [Simple: NaN]
+9943 [http://dlmf.nist.gov/33.13.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \normCoulombC [\normCoulombC]
+9944 [http://dlmf.nist.gov/33.13.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \normCoulombC [\normCoulombC]
+9945 [http://dlmf.nist.gov/33.14.E1]: Failure [Simple: NaN]
+9948 [http://dlmf.nist.gov/33.14.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Coulombturnr [\Coulombturnr]
+9949 [http://dlmf.nist.gov/33.14.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombf [\regCoulombf]
+9950 [http://dlmf.nist.gov/33.14.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombf [\regCoulombf]
+9952 [http://dlmf.nist.gov/33.14.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombh [\irregCoulombh]
+9954 [https://dlmf.nist.gov/33.14#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombs [\regCoulombs]
+9955 [https://dlmf.nist.gov/33.14#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombc [\irregCoulombc]
+9958 [http://dlmf.nist.gov/33.14.E12]: Failure [Simple: NaN]
+9959 [http://dlmf.nist.gov/33.14.E13]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombs [\regCoulombs]
+9961 [http://dlmf.nist.gov/33.14.E15]: Failure [Simple: NaN]
+9962 [https://dlmf.nist.gov/33.14#Ex5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombh [\irregCoulombh]
+9963 [https://dlmf.nist.gov/33.14#Ex6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombc [\irregCoulombc]
+9964 [http://dlmf.nist.gov/33.16.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombF [\regCoulombF]
+9965 [http://dlmf.nist.gov/33.16.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombG [\irregCoulombG]
+9967 [http://dlmf.nist.gov/33.16.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombf [\regCoulombf]
+9968 [http://dlmf.nist.gov/33.16.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombh [\irregCoulombh]
+9969 [http://dlmf.nist.gov/33.16.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombf [\regCoulombf]
+9970 [http://dlmf.nist.gov/33.16.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombh [\irregCoulombh]
+9972 [https://dlmf.nist.gov/33.16#Ex1]: Failure [Simple: NaN]
+9973 [https://dlmf.nist.gov/33.16#Ex2]: Failure [Simple: NaN]
+9974 [http://dlmf.nist.gov/33.16.E10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombf [\regCoulombf]
+9975 [http://dlmf.nist.gov/33.16.E11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombh [\irregCoulombh]
+9976 [http://dlmf.nist.gov/33.16.E12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombf [\regCoulombf]
+9977 [http://dlmf.nist.gov/33.16.E13]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombh [\irregCoulombh]
+9978 [https://dlmf.nist.gov/33.16#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombs [\regCoulombs]
+9979 [https://dlmf.nist.gov/33.16#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombc [\irregCoulombc]
+9980 [https://dlmf.nist.gov/33.16#Ex5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombs [\regCoulombs]
+9981 [https://dlmf.nist.gov/33.16#Ex6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombc [\irregCoulombc]
+9983 [https://dlmf.nist.gov/33.16#Ex7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombs [\regCoulombs]
+9984 [https://dlmf.nist.gov/33.16#Ex8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombc [\irregCoulombc]
+9985 [https://dlmf.nist.gov/33.16#Ex9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombs [\regCoulombs]
+9986 [https://dlmf.nist.gov/33.16#Ex10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombc [\irregCoulombc]
+9987 [http://dlmf.nist.gov/33.17.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombf [\regCoulombf]
+9988 [http://dlmf.nist.gov/33.17.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombh [\irregCoulombh]
+9989 [http://dlmf.nist.gov/33.17.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombf [\regCoulombf]
+9990 [http://dlmf.nist.gov/33.17.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombh [\irregCoulombh]
+9991: Skipped - Unable to analyze test case.
+9992: Skipped - Unable to analyze test case.
+9993 [http://dlmf.nist.gov/33.19.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombf [\regCoulombf]
+9997 [http://dlmf.nist.gov/33.19.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombh [\irregCoulombh]
+9999 [https://dlmf.nist.gov/33.19#Ex4]: Failure [Simple: NaN]
+10000 [https://dlmf.nist.gov/33.19#Ex5]: Failure [Simple: NaN]
+10003 [https://dlmf.nist.gov/33.20#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombf [\regCoulombf]
+10004 [https://dlmf.nist.gov/33.20#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombh [\irregCoulombh]
+10005 [https://dlmf.nist.gov/33.20#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombf [\regCoulombf]
+10006 [https://dlmf.nist.gov/33.20#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \irregCoulombh [\irregCoulombh]
+10007 [http://dlmf.nist.gov/33.20.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombf [\regCoulombf]
+10008 [http://dlmf.nist.gov/33.20.E4]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
+10009 [http://dlmf.nist.gov/33.20.E5]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
+10012: Skipped - Unable to analyze test case.
+10013 [http://dlmf.nist.gov/33.20.E8]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
+10014 [http://dlmf.nist.gov/33.20.E9]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
+10015: Skipped - Unable to analyze test case.
+10016: Skipped - Unable to analyze test case.
+10017: Skipped - Unable to analyze test case.
+10018: Skipped - Unable to analyze test case.
+10019 [http://dlmf.nist.gov/33.22.E1]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \hbar [\hbar]
+10021 [https://dlmf.nist.gov/33.22#Ex2]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \finestructureconst [\finestructureconst]
+10023 [http://dlmf.nist.gov/33.22.E3]: Failure [Simple: NaN]
+10025 [https://dlmf.nist.gov/33.22#Ex5]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \finestructureconst [\finestructureconst]
+10026 [https://dlmf.nist.gov/33.22#Ex6]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \lightspeed [\lightspeed]
+10027 [https://dlmf.nist.gov/33.22#Ex7]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \lightspeed [\lightspeed]
+10028 [https://dlmf.nist.gov/33.22#Ex8]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \hbar [\hbar]
+10029 [https://dlmf.nist.gov/33.22#Ex9]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \finestructureconst [\finestructureconst]
+10032 [https://dlmf.nist.gov/33.22#Ex12]: Failure [Simple: NaN]
+10033 [https://dlmf.nist.gov/33.22#Ex13]: Failure [Simple: NaN]
+10034 [https://dlmf.nist.gov/33.22#Ex14]: Failure [Simple: NaN]
+10035 [https://dlmf.nist.gov/33.22#Ex15]: Failure [Simple: NaN]

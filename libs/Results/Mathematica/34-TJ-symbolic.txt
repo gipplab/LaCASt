@@ -1,0 +1,127 @@
+Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 1, FAILURE: 1, STARTED_TEST_CASES: 57, SKIPPED: 68, DEFINITIONS: 3, IGNORE: 7, MISSING: 48, ERROR: 8] for test expression: (#LHS)-(#RHS)
+[SIMPLE]
+10042: Skipped - Unable to analyze test case.
+10043: Skipped - Unable to analyze test case.
+10044: Skipped - Unable to analyze test case.
+10045 [http://dlmf.nist.gov/34.1.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \ClebschGordan [\ClebschGordan]
+10046: Skipped - Unable to analyze test case.
+10050 [http://dlmf.nist.gov/34.2.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10051: Skipped - Unable to analyze test case.
+10053 [http://dlmf.nist.gov/34.2.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10054: Skipped - Unable to analyze test case.
+10055: Skipped - Unable to analyze test case.
+10056 [http://dlmf.nist.gov/34.3.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10057: Skipped - Unable to analyze test case.
+10058 [http://dlmf.nist.gov/34.3.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10059: Skipped - Unable to analyze test case.
+10060 [http://dlmf.nist.gov/34.3.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10061: Skipped - Unable to analyze test case.
+10064: Skipped - Unable to analyze test case.
+10065 [http://dlmf.nist.gov/34.3.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10066: Skipped - Unable to analyze test case.
+10067 [http://dlmf.nist.gov/34.3.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10068: Skipped - Unable to analyze test case.
+10069 [http://dlmf.nist.gov/34.3.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10069-a [http://dlmf.nist.gov/34.3.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10070: Skipped - Unable to analyze test case.
+10071 [http://dlmf.nist.gov/34.3.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10072: Skipped - Unable to analyze test case.
+10073 [http://dlmf.nist.gov/34.3.E10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10074: Skipped - Unable to analyze test case.
+10075 [http://dlmf.nist.gov/34.3.E11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10076: Skipped - Unable to analyze test case.
+10077 [http://dlmf.nist.gov/34.3.E12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10078: Skipped - Unable to analyze test case.
+10079 [http://dlmf.nist.gov/34.3.E13]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10080: Skipped - Unable to analyze test case.
+10081 [http://dlmf.nist.gov/34.3.E14]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10082: Skipped - Unable to analyze test case.
+10083 [http://dlmf.nist.gov/34.3.E15]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10084: Skipped - Unable to analyze test case.
+10085 [http://dlmf.nist.gov/34.3.E16]: Error - java.lang.NullPointerException [10085: \sum_{m_{1}m_{2}}(2j_{3}+1)\Wignerthreejsym{j_{1}}{j_{2}}{j_{3}}{m_{1}}{m_{2}}{m_{3}}\Wignerthreejsym{j_{1}}{j_{2}}{j^{\prime}_{3}}{m_{1}}{m_{2}}{m^{\prime}_{3}} EQUAL \Kroneckerdelta{j_{3}}{j^{\prime}_{3}}\Kroneckerdelta{m_{3}}{m^{\prime}_{3}}; http://dlmf.nist.gov/34.3.E16]
+10086: Skipped - Unable to analyze test case.
+10087 [http://dlmf.nist.gov/34.3.E17]: Error - java.lang.NullPointerException [10087: \sum_{j_{3}m_{3}}(2j_{3}+1)\Wignerthreejsym{j_{1}}{j_{2}}{j_{3}}{m_{1}}{m_{2}}{m_{3}}\Wignerthreejsym{j_{1}}{j_{2}}{j_{3}}{m^{\prime}_{1}}{m^{\prime}_{2}}{m_{3}} EQUAL \Kroneckerdelta{m_{1}}{m^{\prime}_{1}}\Kroneckerdelta{m_{2}}{m^{\prime}_{2}}; http://dlmf.nist.gov/34.3.E17]
+10088: Skipped - Unable to analyze test case.
+10089 [http://dlmf.nist.gov/34.3.E18]: Error - java.lang.NullPointerException [10089: \sum_{m_{1}m_{2}m_{3}}\Wignerthreejsym{j_{1}}{j_{2}}{j_{3}}{m_{1}}{m_{2}}{m_{3}}\Wignerthreejsym{j_{1}}{j_{2}}{j_{3}}{m_{1}}{m_{2}}{m_{3}} EQUAL 1; http://dlmf.nist.gov/34.3.E18]
+10090: Skipped - Unable to analyze test case.
+10091 [http://dlmf.nist.gov/34.3.E19]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \assLegendreP [\assLegendreP]
+10092: Skipped - Unable to analyze test case.
+10093 [http://dlmf.nist.gov/34.3.E20]: Error - java.util.NoSuchElementException [10093: \sphharmonicY{l_{1}}{m_{1}}@{\theta}{\phi}\sphharmonicY{l_{2}}{m_{2}}@{\theta}{\phi} EQUAL \sum_{l,m}\left(\frac{(2l_{1}+1)(2l_{2}+1)(2l+1)}{4\pi}\right)^{\frac{1}{2}}\Wignerthreejsym{l_{1}}{l_{2}}{l}{m_{1}}{m_{2}}{m}\conj{\sphharmonicY{l}{m}@{\theta}{\phi}}\Wignerthreejsym{l_{1}}{l_{2}}{l}{0}{0}{0}; http://dlmf.nist.gov/34.3.E20]
+10094: Skipped - Unable to analyze test case.
+10095 [http://dlmf.nist.gov/34.3.E21]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \assLegendreP [\assLegendreP]
+10096: Skipped - Unable to analyze test case.
+10097 [http://dlmf.nist.gov/34.3.E22]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10098: Skipped - Unable to analyze test case.
+10099 [http://dlmf.nist.gov/34.4.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10100: Skipped - Unable to analyze test case.
+10101: Skipped - Unable to analyze test case.
+10102 [http://dlmf.nist.gov/34.4.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10103: Skipped - Unable to analyze test case.
+10104 [http://dlmf.nist.gov/34.4.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10105: Skipped - Unable to analyze test case.
+10106: Skipped - Unable to analyze test case.
+10107 [http://dlmf.nist.gov/34.5.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10108: Skipped - Unable to analyze test case.
+10109 [http://dlmf.nist.gov/34.5.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10110: Skipped - Unable to analyze test case.
+10111 [http://dlmf.nist.gov/34.5.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10112: Skipped - Unable to analyze test case.
+10113 [http://dlmf.nist.gov/34.5.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10114: Skipped - Unable to analyze test case.
+10115 [http://dlmf.nist.gov/34.5.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10116: Skipped - Unable to analyze test case.
+10117 [http://dlmf.nist.gov/34.5.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10118: Skipped - Unable to analyze test case.
+10119 [http://dlmf.nist.gov/34.5.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10120: Skipped - Unable to analyze test case.
+10121 [http://dlmf.nist.gov/34.5.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10121-a [http://dlmf.nist.gov/34.5.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10122: Skipped - Unable to analyze test case.
+10123 [http://dlmf.nist.gov/34.5.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10124: Skipped - Unable to analyze test case.
+10125 [http://dlmf.nist.gov/34.5.E10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10126: Skipped - Unable to analyze test case.
+10127 [http://dlmf.nist.gov/34.5.E11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10128: Skipped - Unable to analyze test case.
+10132 [http://dlmf.nist.gov/34.5.E14]: Error - java.lang.NullPointerException [10132: \sum_{j_{3}}(2j_{3}+1)(2l_{3}+1)\Wignersixjsym{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l_{3}}\Wignersixjsym{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l^{\prime}_{3}} EQUAL \Kroneckerdelta{l_{3}}{l^{\prime}_{3}}; http://dlmf.nist.gov/34.5.E14]
+10133: Skipped - Unable to analyze test case.
+10134 [http://dlmf.nist.gov/34.5.E15]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
+10135: Skipped - Unable to analyze test case.
+10136 [http://dlmf.nist.gov/34.5.E16]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
+10137: Skipped - Unable to analyze test case.
+10138 [http://dlmf.nist.gov/34.5.E17]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10139: Skipped - Unable to analyze test case.
+10140 [http://dlmf.nist.gov/34.5.E18]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10141: Skipped - Unable to analyze test case.
+10142 [http://dlmf.nist.gov/34.5.E19]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10143: Skipped - Unable to analyze test case.
+10144 [http://dlmf.nist.gov/34.5.E20]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10145: Skipped - Unable to analyze test case.
+10146 [http://dlmf.nist.gov/34.5.E21]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10147: Skipped - Unable to analyze test case.
+10148 [http://dlmf.nist.gov/34.5.E22]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignersixjsym [\Wignersixjsym]
+10149: Skipped - Unable to analyze test case.
+10150 [http://dlmf.nist.gov/34.5.E23]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10151: Skipped - Unable to analyze test case.
+10152: Skipped - Unable to analyze test case.
+10153 [http://dlmf.nist.gov/34.6.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerninejsym [\Wignerninejsym]
+10154: Skipped - Unable to analyze test case.
+10155: Skipped - Unable to analyze test case.
+10156 [http://dlmf.nist.gov/34.6.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerninejsym [\Wignerninejsym]
+10157: Skipped - Unable to analyze test case.
+10158: Skipped - Unable to analyze test case.
+10159 [http://dlmf.nist.gov/34.7.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerninejsym [\Wignerninejsym]
+10160: Skipped - Unable to analyze test case.
+10161: Skipped - Unable to analyze test case.
+10162 [http://dlmf.nist.gov/34.7.E2]: Error - java.lang.NullPointerException [10162: \sum_{j_{12}\,j_{34}}(2j_{12}+1)(2j_{34}+1)(2j_{13}+1)(2j_{24}+1)\Wignerninejsym{j_{1}}{j_{2}}{j_{12}}{j_{3}}{j_{4}}{j_{34}}{j_{13}}{j_{24}}{j}\Wignerninejsym{j_{1}}{j_{2}}{j_{12}}{j_{3}}{j_{4}}{j_{34}}{j^{\prime}_{13}}{j^{\prime}_{24}}{j} EQUAL \Kroneckerdelta{j_{13}}{j^{\prime}_{13}}\Kroneckerdelta{j_{24}}{j^{\prime}_{24}}; http://dlmf.nist.gov/34.7.E2]
+10163: Skipped - Unable to analyze test case.
+10164 [http://dlmf.nist.gov/34.7.E3]: Error - java.lang.NullPointerException [10164: \sum_{j_{13}\,j_{24}}(-1)^{2j_{2}+j_{24}+j_{23}-j_{34}}(2j_{13}+1)(2j_{24}+1)\Wignerninejsym{j_{1}}{j_{2}}{j_{12}}{j_{3}}{j_{4}}{j_{34}}{j_{13}}{j_{24}}{j}\Wignerninejsym{j_{1}}{j_{3}}{j_{13}}{j_{4}}{j_{2}}{j_{24}}{j_{14}}{j_{23}}{j} EQUAL \Wignerninejsym{j_{1}}{j_{2}}{j_{12}}{j_{4}}{j_{3}}{j_{34}}{j_{14}}{j_{23}}{j}; http://dlmf.nist.gov/34.7.E3]
+10165: Skipped - Unable to analyze test case.
+10166 [http://dlmf.nist.gov/34.7.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
+10167: Skipped - Unable to analyze test case.
+10168: Skipped - Unable to analyze test case.
+10169 [http://dlmf.nist.gov/34.7.E5]: Error - java.lang.NullPointerException [10169: \sum_{j^{\prime}}(2j^{\prime}+1)\Wignerninejsym{j_{11}}{j_{12}}{j^{\prime}}{j_{21}}{j_{22}}{j_{23}}{j_{31}}{j_{32}}{j_{33}}\Wignersixjsym{j_{11}}{j_{12}}{j^{\prime}}{j_{23}}{j_{33}}{j} EQUAL {(-1)^{2j}}\Wignersixjsym{j_{21}}{j_{22}}{j_{23}}{j_{12}}{j}{j_{32}}\Wignersixjsym{j_{31}}{j_{32}}{j_{33}}{j}{j_{11}}{j_{21}}; http://dlmf.nist.gov/34.7.E5]
+10170: Skipped - Unable to analyze test case.
+10171: Skipped - Unable to analyze test case.
+10173: Skipped - Unable to analyze test case.
+10174 [http://dlmf.nist.gov/34.8.E2]: Failure [Simple: NaN]

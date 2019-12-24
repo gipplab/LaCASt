@@ -1,0 +1,7 @@
+\expintEi, 12
+\auxsincosintg, 11
+\expintEin, 11
+\auxsincosintf, 9
+\cosintCin, 3
+\pvint, 3
+\sphBesselJ, 1

@@ -371,8 +371,23 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
     }
 
     public static void main(String[] args) throws Exception {
+        SymbolicEvaluator evaluator = null;
+        if ( args == null || args.length < 1 ){
+            System.out.println("Start Mathematica Evaluator");
+            evaluator = createStandardMathematicaEvaluator();
+        } else if ( args[0].matches("--?mathematica") ) {
+            System.out.println("Start Mathematica Evaluator");
+            evaluator = createStandardMathematicaEvaluator();
+        } else if ( args[0].matches("--?maple") ) {
+            System.out.println("Start Maple Evaluator");
+            evaluator = createStandardMapleEvaluator();
+        } else {
+            System.out.println("Choose maple or mathematica (e.g., argument -math)");
+            return;
+        }
+
 //        SymbolicEvaluator evaluator = createStandardMapleEvaluator();
-        SymbolicEvaluator evaluator = createStandardMathematicaEvaluator();
+//        SymbolicEvaluator evaluator = createStandardMathematicaEvaluator();
         startTestAndWriteResults(evaluator);
     }
 }
