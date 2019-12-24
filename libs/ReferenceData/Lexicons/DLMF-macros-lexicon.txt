@@ -273,7 +273,7 @@ Symbol: \AirymodM
 	Maple-Alternatives: sqrt(AiryAi($0)^2+AiryBi($0)^2)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: Sqrt[AiryAi[$0]^2 + AiryBi[$0]^2]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Airy modulus function M
@@ -291,7 +291,7 @@ Symbol: \AirymodderivN
 	Maple-Alternatives: sqrt(AiryAi(1, $0)^2+AiryBi(1, $0)^2)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: Sqrt[AiryAiPrime[$0]^2 + AiryBiPrime[$0]^2]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Airy modulus function N
@@ -309,7 +309,7 @@ Symbol: \Airyphasederivphi
 	Maple-Alternatives: arctan(AiryAi(1, $0)/AiryBi(1, $0))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: ArcTan[Divide[AiryAiPrime[$0], AiryBiPrime[$0]]]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Airy phase function Phi
@@ -327,7 +327,7 @@ Symbol: \Airyphasetheta
 	Maple-Alternatives: arctan(AiryAi($0)/AiryBi($0))
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: ArcTan[Divide[AiryAi[$0], AiryBi[$0]]]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Airy phase function Theta
@@ -787,6 +787,7 @@ Symbol: \Bellnumber
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=BellB
 	Maple-Package: 
+	Mathematica: BellB[$0]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -810,6 +811,28 @@ Symbol: \BernoulliB
 	Number of Parameters: 1
 	Number of Variables: 1
 
+Symbol: \BernoullinumberB
+
+  Feature Set: dlmf-macro
+	DLMF: \BernoullinumberB{n}
+	DLMF-Link: dlmf.nist.gov/24.2#i
+	Maple: bernoulli($0)
+	Maple-Alternatives: 
+	Maple-Branch Cuts: 
+	Maple-Comment: 
+	Maple-Constraints: 
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=bernoulli
+	Maple-Package: 
+	Mathematica: BernoulliB[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
+	Mathematica-Package: 
+	Meanings: Bernoulli polynomial
+	Number of Ats: 0
+	Number of Parameters: 0
+	Number of Variables: 1
+	Role: 
+
 Symbol: \BernoullipolyB
 
   Feature Set: dlmf-macro
@@ -818,12 +841,16 @@ Symbol: \BernoullipolyB
 	Maple: bernoulli($0, $1)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
-	Maple-Comment: "Maple provides an extra function for x=0. You can call bernoulli(n).
+	Maple-Comment: 
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=bernoulli
 	Maple-Package: 
+	Mathematica: BernoulliB[$0, $1]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Bernoulli polynomial
 	Number of Ats: 1
@@ -1478,8 +1505,12 @@ Symbol: \ChebyshevpolyT
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevT
 	Maple-Package: 
+	Mathematica: ChebyshevT[$0, $1]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Chebyshev polynomial first kind
 	Number of Ats: 1
@@ -1500,8 +1531,12 @@ Symbol: \ChebyshevpolyU
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevU
 	Maple-Package: 
+	Mathematica: ChebyshevU[$0, $1]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Chebyshev polynomial second kind
 	Number of Ats: 1
@@ -1711,6 +1746,7 @@ Symbol: \Complexes
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: Complexes
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -2096,8 +2132,12 @@ Symbol: \Diracdelta
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Dirac
 	Maple-Package: 
+	Mathematica: DiracDelta[$0]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Dirac delta function
 	Number of Ats: 1
@@ -2513,6 +2553,24 @@ Symbol: \Euleriannumber
 	Number of Variables: 2
 	Role: 
 
+Symbol: \EulernumberE
+
+  Feature Set: dlmf-macro
+	DLMF: \EulernumberE{n}
+	DLMF-Link: dlmf.nist.gov/24.2#ii
+	Maple-Alternatives: 
+	Maple-Comment: 
+	Maple-Package: 
+	Mathematica: EulerE[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
+	Mathematica-Package: 
+	Meanings: Euler polynomial
+	Number of Ats: 0
+	Number of Parameters: 0
+	Number of Variables: 1
+	Role: 
+
 Symbol: \EulerpolyE
 
   Feature Set: dlmf-macro
@@ -2525,6 +2583,7 @@ Symbol: \EulerpolyE
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=euler
 	Maple-Package: 
+	Mathematica: EulerE[$0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -2958,6 +3017,76 @@ Symbol: \FerrersHatQ
   Feature Set: dlmf-alternative-1
 	DLMF: \DunsterQ[\mu]{\tau}@{x}
 	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
+	Meanings: Conical / Mehler function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \DunsterQ[\mu]{\tau}@{x}
+	DLMF-Link: dlmf.nist.gov/14.20#E2
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
@@ -3071,8 +3200,12 @@ Symbol: \FibonacciNumber
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: Fibonacci[$0]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Fibonacci number
 	Number of Ats: 0
@@ -3624,8 +3757,12 @@ Symbol: \HarmonicNumber
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=harmonic
 	Maple-Package: 
+	Mathematica: HarmonicNumber[$0]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Harmonic number
 	Number of Ats: 0
@@ -3645,6 +3782,7 @@ Symbol: \HeavisideH
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Heaviside
 	Maple-Package: 
+	Mathematica: HeavisideTheta[$0]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -3666,8 +3804,12 @@ Symbol: \Hermite
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
 	Maple-Package: 
+	Mathematica: HermiteH[$0, $1]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Hermite polynomial
 	Number of Ats: 1
@@ -3711,8 +3853,12 @@ Symbol: \HermitepolyH
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
 	Maple-Package: 
+	Mathematica: HermiteH[$0, $1]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Hermite polynomial
 	Number of Ats: 1
@@ -3987,6 +4133,7 @@ Symbol: \Integers
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: Integers
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -4213,8 +4360,12 @@ Symbol: \JacobiZetak
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiZeta
 	Maple-Package: 
+	Mathematica: JacobiZeta[$0, $1]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Jacobi zeta function
 	Number of Ats: 1
@@ -4899,8 +5050,12 @@ Symbol: \Kelvinbei
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBei
 	Maple-Package: 
+	Mathematica: KelvinBei[$0, $1]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Kelvin Function BEI
 	Number of Ats: 2
@@ -4921,8 +5076,12 @@ Symbol: \Kelvinber
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBer
 	Maple-Package: 
+	Mathematica: KelvinBer[$0, $1]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Kelvin Function BER
 	Number of Ats: 2
@@ -4943,8 +5102,12 @@ Symbol: \Kelvinkei
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKei
 	Maple-Package: 
+	Mathematica: KelvinKei[$0, $1]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Kelvin Function KEI
 	Number of Ats: 2
@@ -4965,8 +5128,12 @@ Symbol: \Kelvinker
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKer
 	Maple-Package: 
+	Mathematica: KelvinKer[$0, $1]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Kelvin Function KER
 	Number of Ats: 2
@@ -5056,8 +5223,12 @@ Symbol: \Kroneckerdelta
 	Maple-Alternatives: KroneckerDelta[$0, $1]
 	Maple-Comment: This funcion needs an extra package. with(Physics)
 	Maple-Package: 
+	Mathematica: KroneckerDelta[$0, $1]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Kronecker delta
 	Number of Ats: 0
@@ -5327,6 +5498,76 @@ Symbol: \LaguerreL
 	Maple: LaguerreL($1, $0, $2)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
 	Mathematica: LaguerreL[$1, $0, $2]
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
 	Meanings: Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -5943,7 +6184,7 @@ Symbol: \LauricellaFD
 	DLMF: \LauricellaFD@{a}{b_1,...,b_n}{c}{z_1,...,z_n}
 	DLMF-Link: dlmf.nist.gov/19.15#p1
 	Maple-Alternatives: 
-	Maple-Comment: "see also ""Multivariate hypergeometric function"" under ""Elliptic Integrals"""
+	Maple-Comment: "see also Multivariate hypergeometric function under Elliptic Integrals"
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -6189,6 +6430,76 @@ Symbol: \LegendreBlackQ
 	DLMF-Link: dlmf.nist.gov/14.3#E10
 	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
+	Meanings: Olver's associated Legendre function
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E10
 	Meanings: Olver's associated Legendre function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -6595,6 +6906,83 @@ Symbol: \LegendreP
 	Maple: LegendreP($1, $0, $2)
 	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
+	Meanings: Associated Legendre function of first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreP[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E5
 	Meanings: Associated Legendre function of first kind
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -7179,6 +7567,83 @@ Symbol: \LegendreQ
 	Role: dlmf-macro
 	Slot of Differentiation: 1
 
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	Branch Cuts: (-\infty, 1]
+	DLMF: \assLegendreQ[\mu]{\nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.3#E7
+	Meanings: Associated Legendre function of second kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: dlmf-macro
+	Slot of Differentiation: 1
+
 Symbol: \LegendreSymbol
 
   Feature Set: dlmf-macro
@@ -7242,6 +7707,7 @@ Symbol: \LerchPhi
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LerchPhi
 	Maple-Package: 
+	Mathematica: LerchPhi[$0, $1, $2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -7271,7 +7737,7 @@ Symbol: \LeviCivitasym
 	Maple-Alternatives: LeviCivita[$0, $1, $2]
 	Maple-Comment: This funcion needs an extra package: with(Physics). The number of variables is not defined in Maple. LeviCivita[j,k,l,...]
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: Part[LeviCivitaTensor[3,List], $0, $1, $2]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Levi-Civita symbol
@@ -7735,9 +8201,9 @@ Symbol: \Mathieuce
 	DLMF: \Mathieuce{n}@@{z}{q}
 	DLMF-Link: dlmf.nist.gov/28.2#SS6.p1
 	Maple: MathieuCE($0, $2, $1)
-	Maple-Alternatives: 
+	Maple-Alternatives: MathieuCE(0, $2, $1)/sqrt(2)
 	Maple-Branch Cuts: 
-	Maple-Comment: "Maple normalizes values if n=0. For n=0 use the alternative translation!
+	Maple-Comment: "Maple normalizes values if n=0. For n=0 use the alternative translation!"
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuCE
 	Maple-Package: 
@@ -7767,6 +8233,7 @@ Symbol: \Mathieueigvala
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuA
 	Maple-Package: 
+	Mathematica: MathieuCharacteristicA[$0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -7788,6 +8255,7 @@ Symbol: \Mathieueigvalb
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuB
 	Maple-Package: 
+	Mathematica: MathieuCharacteristicB[$0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -7857,7 +8325,7 @@ Symbol: \Mathieume
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: Sqrt[2]*MathieuC[$0, $2, $1]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Mathieu eigenvalue function
@@ -8530,8 +8998,12 @@ Symbol: \Ramanujantau
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: RamanujanTau[$0]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Ramanujan's Tau function
 	Number of Ats: 1
@@ -8561,6 +9033,7 @@ Symbol: \Rationals
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: Rationals
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -8619,6 +9092,7 @@ Symbol: \Reals
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: Reals
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -9298,8 +9772,12 @@ Symbol: \Ultra
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC
 	Maple-Package: 
+	Mathematica: GegenbauerC[$1, $0, $2]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Ultraspherical Gegenbauer polynomial
 	Number of Ats: 1
@@ -9972,8 +10450,12 @@ Symbol: \aJacobiellcdk
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
+	Mathematica: InverseJacobiCD[$0, ($1)^2]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
@@ -9993,8 +10475,12 @@ Symbol: \aJacobiellcnk
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
+	Mathematica: InverseJacobiCN[$0, ($1)^2]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
@@ -10014,8 +10500,12 @@ Symbol: \aJacobiellcsk
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
+	Mathematica: InverseJacobiCS[$0, ($1)^2]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
@@ -10035,8 +10525,12 @@ Symbol: \aJacobielldck
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
+	Mathematica: InverseJacobiDC[$0, ($1)^2]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
@@ -10056,6 +10550,7 @@ Symbol: \aJacobielldnk
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
+	Mathematica: InverseJacobiDN[$0, ($1)^2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -10077,8 +10572,12 @@ Symbol: \aJacobielldsk
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
+	Mathematica: InverseJacobiDS[$0, ($1)^2]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
@@ -10098,8 +10597,12 @@ Symbol: \aJacobiellnck
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
+	Mathematica: InverseJacobiNC[$0, ($1)^2]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
@@ -10119,8 +10622,12 @@ Symbol: \aJacobiellndk
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
+	Mathematica: InverseJacobiND[$0, ($1)^2]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
@@ -10140,8 +10647,12 @@ Symbol: \aJacobiellnsk
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
+	Mathematica: InverseJacobiNS[$0, ($1)^2]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
@@ -10161,8 +10672,12 @@ Symbol: \aJacobiellsck
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
+	Mathematica: InverseJacobiSC[$0, ($1)^2]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
@@ -10182,8 +10697,12 @@ Symbol: \aJacobiellsdk
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
+	Mathematica: InverseJacobiSD[$0, ($1)^2]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
@@ -10203,8 +10722,12 @@ Symbol: \aJacobiellsnk
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
+	Mathematica: InverseJacobiSN[$0, ($1)^2]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
@@ -10893,6 +11416,9 @@ Symbol: \auxsincosintf
   Feature Set: dlmf-macro
 	DLMF: \auxsincosintf@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E17
+	Maple-Alternatives: 
+	Maple-Comment: 
+	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -10907,6 +11433,9 @@ Symbol: \auxsincosintg
   Feature Set: dlmf-macro
 	DLMF: \auxsincosintg@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E18
+	Maple-Alternatives: 
+	Maple-Comment: 
+	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -11128,6 +11657,7 @@ Symbol: \ccompellintEk
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCE
 	Maple-Package: 
+	Mathematica: EllipticE[1-($0)^2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -11149,8 +11679,12 @@ Symbol: \ccompellintKk
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCK
 	Maple-Package: 
+	Mathematica: EllipticK[1-($0)^2]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Legendre's complementary complete elliptic integral of the first kind
 	Number of Ats: 1
@@ -11191,7 +11725,7 @@ Symbol: \compellintDk
 	Maple-Alternatives: (EllipticK($0) - EllipticE($0))/($0)^2
 	Maple-Comment: 
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: Divide[EllipticK[($0)^2] - EllipticE[($0)^2], ($0)^4]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Complete elliptic integral of Legendre's type
@@ -11212,6 +11746,7 @@ Symbol: \compellintEk
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
 	Maple-Package: 
+	Mathematica: EllipticE[($0)^2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -11259,6 +11794,7 @@ Symbol: \compellintPik
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
 	Maple-Package: 
+	Mathematica: EllipticPi[$0, ($1)^2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -11500,6 +12036,9 @@ Symbol: \cosintCin
   Feature Set: dlmf-macro
 	DLMF: \cosintCin@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E12
+	Maple-Alternatives: 
+	Maple-Comment: 
+	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -12017,6 +12556,7 @@ Symbol: \dilog
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=dilog
 	Maple-Package: 
+	Mathematica: PolyLog[2, $0]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -12589,6 +13129,9 @@ Symbol: \gencosint
 	Branch Cuts: z = 0
 	DLMF: \gencosint@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.21#E2
+	Maple-Alternatives: 
+	Maple-Comment: 
+	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -12610,6 +13153,7 @@ Symbol: \genexpintE
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ei
 	Maple-Package: 
+	Mathematica: ExpIntegralE[$0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -12628,6 +13172,7 @@ Symbol: \genhyperF
 	Maple-Alternatives: 
 	Maple-Comment: Maple extract p and q from the length of the arguments.
 	Maple-Package: 
+	Mathematica: HypergeometricPFQ[{$2}, {$3}, $4]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -12661,8 +13206,9 @@ Symbol: \genhyperOlverF
 	DLMF-Link: dlmf.nist.gov/15.2#E5
 	Maple: hypergeom([$2], [$3], $4)
 	Maple-Alternatives: 
-	Maple-Comment: 2 Problems. 1) the first two parameters depending on the length of first and second argument. 2) Is this DLMF macro defined for other parameters?
+	Maple-Comment: 2 Problems. 1) the first two parameters depending on the length of first and second argument. 2) Is this DLMF macro defined for other parameters? || Vector problem
 	Maple-Package: 
+	Mathematica: HypergeometricPFQRegularized[{$2}, {$3}, $4]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -12705,6 +13251,9 @@ Symbol: \genshiftcosint
 	Branch Cuts: z = 0
 	DLMF: \genshiftcosint@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.21#E1
+	Maple-Alternatives: 
+	Maple-Comment: 
+	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -12720,6 +13269,9 @@ Symbol: \genshiftsinint
 	Branch Cuts: z = 0
 	DLMF: \genshiftsinint@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.21#E1
+	Maple-Alternatives: 
+	Maple-Comment: 
+	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -12735,6 +13287,9 @@ Symbol: \gensinint
 	Branch Cuts: z = 0
 	DLMF: \gensinint@{a}{z}
 	DLMF-Link: dlmf.nist.gov/8.21#E2
+	Maple-Alternatives: 
+	Maple-Comment: 
+	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -12776,6 +13331,7 @@ Symbol: \hyperOlverF
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: Hypergeometric2F1Regularized[$0, $1, $2, $3]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -12962,7 +13518,7 @@ Symbol: \incellintDk
 	Maple-Alternatives: (EllipticF(sin($0), $1) - EllipticE(sin($0), $1))/($1)^2
 	Maple-Comment: 
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: Divide[EllipticF[$0, ($1)^2] - EllipticE[$0, ($1)^2], ($1)^4]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Incomplete elliptic integral of Legendre's type
@@ -12983,6 +13539,7 @@ Symbol: \incellintEk
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
 	Maple-Package: 
+	Mathematica: EllipticE[$0, ($1)^2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -13004,6 +13561,7 @@ Symbol: \incellintFk
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticF
 	Maple-Package: 
+	Mathematica: EllipticF[$0, ($1)^2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -13025,6 +13583,7 @@ Symbol: \incellintPik
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
 	Maple-Package: 
+	Mathematica: EllipticPi[$1, $0,($2)^2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -14870,6 +15429,7 @@ Symbol: \natNumbers
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: PositiveIntegers
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -15630,6 +16190,7 @@ Symbol: \polylog
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=polylog
 	Maple-Package: 
+	Mathematica: PolyLog[$0, $1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -16892,7 +17453,7 @@ Symbol: \repinterfc
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=erfc
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: I^($0)*Erfc[$1]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Repeated / Iterated integral of complementary error function
@@ -17436,6 +17997,7 @@ Symbol: \sphharmonicY
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=SphericalY
 	Maple-Package: 
+	Mathematica: SphericalHarmonicY[$0, $1, $2, $3]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -17821,8 +18383,12 @@ Symbol: \ultrasphpoly
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC
 	Maple-Package: 
+	Mathematica: GegenbauerC[$1, $0, $2]
 	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Ultraspherical Gegenbauer polynomial
 	Number of Ats: 1

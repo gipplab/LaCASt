@@ -41,9 +41,16 @@ DLMF;Maple;Number of Variables;Slot of Differentiation;DLMF-Maple-Comment;Maple-
 ;;;;;;
 \sinint@{$0};Si($0);1;;;;
 \shiftsinint@{$0};Ssi($0);1;;;;
+\gensinint@{a}{z};;;;;
+\genshiftsinint@{a}{z};;;;;
 \cosint@{$0};Ci($0);1;;;;
 \sinhint@{$0};Shi($0);1;;;;int((1-cos(t))/t, t = 0 .. $0)
 \coshint@{$0};Chi($0);1;;;;
+\cosintCin@{z};;;;;
+\gencosint@{a}{z};;;;;
+\genshiftcosint@{a}{z};;;;;
+\auxsincosintf@{z};;;;;
+\auxsincosintg@{z};;;;;
 ;;;;;;
 \Gudermannian@@{x};;;;;;arctan(sinh($0))
 \aGudermannian@@{x};;;;;;arctanh(sin($0))
@@ -355,13 +362,12 @@ X1:\iderivX\ideriv[$0]{$1}{$2};diff($1, [$2$($0)]);3;;;;
 \genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};hypergeom([$2], [$3], $4);3;;Maple extract p and q from the length of the arguments.;;
 \genhyperH{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};;;;;;
 \hyperOlverF@@@{a}{b}{c}{z};hypergeom([$0, $1], [$2], $3)/GAMMA($2);3;;;;
-"\genhyperOlverF{p}{q}@@
-{\Vector{a}}{\Vector{b}}{z}";;;;Vector problem;;
+\genhyperOlverF{p}{q}@@{\Vector{a}}{\Vector{b}}{z};;;;Vector problem;;
 \KummerconfhyperM@{$0}{$1}{$2};KummerM($0, $1, $2);3;3;;;
 \KummerconfhyperU@{$0}{$1}{$2};KummerU($0, $1, $2);3;3;;;
 \OlverconfhyperM@{a}{b}{z};;3;3;;;KummerM($0, $1, $2)/GAMMA($1)
 \genhyperPsimat@{a}{b}{\Matrix{T}};;;;Matrix problem;;
-\LauricellaFD@{a}{b_1,...,b_n}{c}{z_1,...,z_n};;;;"see also ""Multivariate hypergeometric function"" under ""Elliptic Integrals""";;
+\LauricellaFD@{a}{b_1,...,b_n}{c}{z_1,...,z_n};;;;"see also Multivariate hypergeometric function under Elliptic Integrals";;
 \RiemannsymP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};;;;;;
 ;;;;;;
 \idem@{\chi_1}{\chi_1,...,\chi_n};;;;;;
@@ -446,8 +452,7 @@ X1:\FerrersHatQX\DunsterQ[\mu]{\tau}@{x};;3;1;;;
 \Mathieueigvala{$0}@@{$1};MathieuA($0, $1);2;;;;
 \Mathieueigvalb{$0}@@{$1};MathieuB($0, $1);2;;;;
 \Mathieueigvallambda{m}@@{q};;;;;;
-\Mathieuce{$0}@@{$2}{$1};MathieuCE($0, $2, $1);3;1;"Maple normalizes values if n=0. For n=0 use the alternative translation!
-";;MathieuCE(0, $2, $1)/sqrt(2)
+\Mathieuce{$0}@@{$2}{$1};MathieuCE($0, $2, $1);3;1;"Maple normalizes values if n=0. For n=0 use the alternative translation!";;MathieuCE(0, $2, $1)/sqrt(2)
 \Mathieuse{$0}@@{$2}{$1};MathieuSE($0, $2, $1);3;1;;;
 \Mathieume{n}@@{z}{q};;3;1;;;
 \modMathieuCe{\nu}@@{z}{q};;;;;;
@@ -473,8 +478,7 @@ X1:\FerrersHatQX\DunsterQ[\mu]{\tau}@{x};;3;1;;;
 \MathieuGc{m}@{z}{h};;;;;;
 \MathieuGs{m}@{z}{h};;;;;;
 ;;;;;;
-\MeijerG{m}{n}{p}{q}@@@{z}{\Vector{a}}{\Vector{b}};MeijerG([[a_1, .., a_n],[a_n+1, .., a_p]], [[b_1, .., b_m],[b_m+1, .., b_q]],z);;;"MeijerG( [[],[]], [[],[]], z )
-In this notation, m,n,p,q are not needed for Maple (Maple -> LaTeX translation could be difficult)";;
+\MeijerG{m}{n}{p}{q}@@@{z}{\Vector{a}}{\Vector{b}};MeijerG([[a_1, .., a_n],[a_n+1, .., a_p]], [[b_1, .., b_m],[b_m+1, .., b_q]],z);;;"MeijerG( [[],[]], [[],[]], z ) In this notation, m,n,p,q are not needed for Maple (Maple -> LaTeX translation could be difficult)";;
 ;;;;;;
 \MillsM@{x};;;;Maybe with(Statistics): MillsRatio(X,t);;
 ;;;;;;
@@ -489,7 +493,7 @@ In this notation, m,n,p,q are not needed for Maple (Maple -> LaTeX translation c
 ;;;;;;
 \Rayleighsigma{n}@{\nu};;;;;;
 ;;;;;;
-\Riemanntheta@{\Vector{z}}{\Matrix{\Omega}};RiemannTheta([z_1, .., z_g], Omega);2;;Vector and Matrix;;
+\Riemanntheta@{\Vector{z}}{\Matrix{\Omega}};RiemannTheta($0, $1);2;;Vector and Matrix;;
 \Riemannthetachar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}};;;;;;
 \scRiemanntheta@{\Vector{z}}{\Matrix{\Omega}};;;;;;
 \Riemannxi@{s};;;;You could use the alternative translation!;;($0)*($0-1)*GAMMA(($0)/2)*Pi^(-($0)/2)*Zeta($0)/2
@@ -574,8 +578,8 @@ In this notation, m,n,p,q are not needed for Maple (Maple -> LaTeX translation c
 \AskeyWilson{n}@{x}{a}{b}{c}{d}{q};;;;;;
 \AskeyWilsonpolyp{n}@{x}{a}{b}{c}{d}{q};;;;;;
 ;;;;;;
-\BernoullipolyB{$0}@{$1};bernoulli($0, $1);2;;"Maple provides an extra function for x=0. You can call bernoulli(n).
-";;
+\BernoullipolyB{$0}@{$1};bernoulli($0, $1);2;;
+\BernoullinumberB{$0};bernoulli($0);2;;
 \genBernoullipolyB{\ell}{n}@{x};;;;;;
 \perBernoulliB{n}@{x};;;;;;
 \qBernoullipolybeta{n}@{x}{q};;;;;;
@@ -605,6 +609,7 @@ In this notation, m,n,p,q are not needed for Maple (Maple -> LaTeX translation c
 ;;;;;;
 \diskpoly{\alpha}{m}{n}@{z};;;;;;
 ;;;;;;
+\EulernumberE{n};;1;;;;
 \EulerpolyE{$0}@{$1};euler($0, $1);2;;;;
 \genEulerpolyE{\ell}{n}@{x};;;;;;
 \perEulerE{n}@{x};;;;;;
@@ -621,7 +626,7 @@ In this notation, m,n,p,q are not needed for Maple (Maple -> LaTeX translation c
 \contHahnpolyp{n}@{x}{a}{b}{\conj{a}}{\conj{b}};;;;;;
 ;;;;;;
 \Hermite{$0}@{$1};HermiteH($0, $1);2;1;;;
-\HermitepolyH{$0}@{$1};HermiteH($0, $1);2;;;;
+\HermitepolyH{$0}@{$1};HermiteH($0, $1);2;1;;;
 \dilHermitepolyHe{n}@{x};;;;;;
 \GenHermite[\alpha]{n}@{x};;;;;;
 ;;;;;;
