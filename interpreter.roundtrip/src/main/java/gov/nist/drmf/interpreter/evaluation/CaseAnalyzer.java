@@ -131,22 +131,21 @@ public class CaseAnalyzer {
             return null;
         }
 
-        if ( eq.contains("\\pm") || eq.contains("\\mp") ) {
-            String one = eq.replaceAll("\\\\pm", "+");
-            one = one.replaceAll("\\\\mp", "-");
-            String two = eq.replaceAll("\\\\pm", "-");
-            two = two.replaceAll("\\\\mp", "+");
-            LinkedList<Case> firstCases = equationSplitter(one, metaData);
-            LinkedList<Case> secondCases = equationSplitter(two, metaData);
-            firstCases.addAll(secondCases);
-            return firstCases;
-        } else {
+//        if ( eq.contains("\\pm") || eq.contains("\\mp") ) {
+//            String one = eq.replaceAll("\\\\pm", "+");
+//            one = one.replaceAll("\\\\mp", "-");
+//            String two = eq.replaceAll("\\\\pm", "-");
+//            two = two.replaceAll("\\\\mp", "+");
+//            LinkedList<Case> firstCases = equationSplitter(one, metaData);
+//            LinkedList<Case> secondCases = equationSplitter(two, metaData);
+//            firstCases.addAll(secondCases);
+//            return firstCases;
+//        } else {
             return equationSplitter(eq, metaData);
-        }
+//        }
     }
 
     private static Pattern RELATION_MATCHER = Pattern.compile(
-            // TODO: god damn it... fix this [^a-zA-Z] problem -.-
             "\\s*(?:([<>=][<>=]?)|(\\\\[ngl]eq?)([^a-zA-Z])|([()\\[\\]{}|]))\\s*"
     );
 
@@ -218,15 +217,47 @@ public class CaseAnalyzer {
             String left = parts.removeFirst();
             while ( !parts.isEmpty() ) {
                 String right = parts.removeFirst();
-                cases.add(new Case(left, right, Relations.EQUAL, metaData));
+                splitPMs(left, right, Relations.EQUAL, metaData, cases);
             }
         } else {
             while ( !rels.isEmpty() ) {
                 Relations r = rels.removeFirst();
                 String left = parts.removeFirst();
                 String right = parts.get(0);
-                cases.add(new Case(left, right, r, metaData));
+                splitPMs(left, right, r, metaData, cases);
             }
+        }
+
+        return cases;
+    }
+
+    private static LinkedList<Case> splitPMs( String left, String right, Relations rel, CaseMetaData metaData, LinkedList<Case> cases ) {
+        String lone = null, ltwo = null, rone = null, rtwo = null;
+        if ( left.contains("\\pm") || left.contains("\\mp") ) {
+            lone = left.replaceAll("\\\\pm", "+");
+            lone = lone.replaceAll("\\\\mp", "-");
+            ltwo = left.replaceAll("\\\\pm", "-");
+            ltwo = ltwo.replaceAll("\\\\mp", "+");
+        }
+
+        if ( right.contains("\\pm") || right.contains("\\mp") ) {
+            rone = right.replaceAll("\\\\pm", "+");
+            rone = rone.replaceAll("\\\\mp", "-");
+            rtwo = right.replaceAll("\\\\pm", "-");
+            rtwo = rtwo.replaceAll("\\\\mp", "+");
+        }
+
+        if ( lone != null && rone != null ) {
+            cases.add(new Case(lone, rone, rel, metaData));
+            cases.add(new Case(ltwo, rtwo, rel, metaData));
+        } else if ( lone == null && rone != null ) {
+            cases.add(new Case(left, rone, rel, metaData));
+            cases.add(new Case(left, rtwo, rel, metaData));
+        } else if ( lone != null && rone == null ) {
+            cases.add(new Case(lone, right, rel, metaData));
+            cases.add(new Case(ltwo, right, rel, metaData));
+        } else {
+            cases.add(new Case(left, right, rel, metaData));
         }
 
         return cases;

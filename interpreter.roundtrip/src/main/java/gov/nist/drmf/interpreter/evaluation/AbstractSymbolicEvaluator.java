@@ -21,7 +21,7 @@ public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> 
             "^(\\d+-?[a-z]?): ([A-Za-z]*) .*$"
     );
 
-    public static int DEFAULT_TIMEOUT_MS = 1_000; // 1 seconds
+    public static int DEFAULT_TIMEOUT_MS = 4_000; // 4 seconds
 
     private ICASEngineSymbolicEvaluator<T> symbolicEvaluator;
     private ISymbolicTestCases[] symbolicTestCases;

@@ -580,6 +580,7 @@ X1:\FerrersHatQX\DunsterQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical /
 \AskeyWilson{n}@{x}{a}{b}{c}{d}{q};http://dlmf.nist.gov/18.28#E1;Askey-Wilson polynomial;1;1;6;;;;
 \AskeyWilsonpolyp{n}@{x}{a}{b}{c}{d}{q};http://dlmf.nist.gov/18.28#E1;Askey-Wilson polynomial;1;1;6;;;;
 \BernoullipolyB{n}@{x};http://dlmf.nist.gov/24.2#i;Bernoulli polynomial;1;1;1;;;;
+\BernoullinumberB{n};http://dlmf.nist.gov/24.2#i;Bernoulli polynomial;0;0;1;;;;
 \genBernoullipolyB{\ell}{n}@{x};http://dlmf.nist.gov/24.16#P1.p1;Generalized Bernoulli polynomial;2;1;1;;;;
 \perBernoulliB{n}@{x};http://dlmf.nist.gov/24.2#iii;Periodic Bernoulli polynomial;1;1;1;;;;
 \qBernoullipolybeta{n}@{x}{q};http://dlmf.nist.gov/17.3#E7;q-Bernoulli polynomial;1;1;2;;;;
@@ -607,6 +608,7 @@ X1:\FerrersHatQX\DunsterQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical /
 \monicChebyU{n}@@{x};http://drmf.wmflabs.org/wiki/Definition:monicChebyU;Monic Chebyshev polynomials;1;1;1;;;;
 ;;;;;;;;;
 \diskpoly{\alpha}{m}{n}@{z};http://dlmf.nist.gov/18.37#E1;Disk polynomial;3;1;1;;;;
+\EulernumberE{n};http://dlmf.nist.gov/24.2#ii;Euler polynomial;0;0;1;;;;
 \EulerpolyE{n}@{x};http://dlmf.nist.gov/24.2#ii;Euler polynomial;1;1;1;;;;
 \genEulerpolyE{\ell}{n}@{x};http://dlmf.nist.gov/24.16#P1.p1;Generalized Euler polynomial;2;1;1;;;;
 \perEulerE{n}@{x};http://dlmf.nist.gov/24.2#iii;Periodic Euler polynomial;1;1;1;;;;
