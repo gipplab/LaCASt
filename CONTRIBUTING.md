@@ -131,3 +131,12 @@ When you want to contribute or just run our program it could happen to get some 
 
 1. You cannot translate your CSV file to our lexicon files. (typical exception: MalformedInputException)
 This could happen when our program cannot find out the encoding of your CSV file. It is strongly recommended to set the encoding to UTF-8 (with or without BOM) of your CSV file.
+
+## Useful Counting Methods
+
+Sum up number of ... (CASES or something else).
+```shell script
+find . -name "*symbolic*" | xargs -n 1 gawk 'match($0, /.*CASES: ([0-9]+),.*/, arr) {sum = arr[1]}; END {print sum}' | paste -sd+ - | bc
+find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*TRANS: ([0-9]+),.*CASES: ([0-9]+),.*MISSING: ([0-9]+),.*/, arr) {cases=arr[2]; trans=arr[1]; transavg=arr[1]/arr[2]; miss=arr[3]}; END {print cases, trans, transavg, miss}'
+
+```

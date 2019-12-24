@@ -1,0 +1,4 @@
+\auxsincosintg, 11
+\auxsincosintf, 9
+\cosintCin, 5
+\pvint, 4

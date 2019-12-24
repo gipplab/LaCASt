@@ -1,0 +1,15 @@
+\qgenhyperphi, 65
+\qPochhammer, 53
+\qbinom, 12
+\qmultiPochhammersym, 12
+\qgenhyperpsi, 9
+\qAppellPhi, 7
+\qexp, 3
+\qExp, 3
+\qBernoullipolybeta, 1
+\qcos, 1
+\qCos, 1
+\qEulernumberA, 1
+\qStirlingnumbera, 1
+\qSin, 1
+\qsin, 1

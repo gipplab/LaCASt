@@ -1,0 +1,142 @@
+Overall: [SUCCESS: 3, SUCCESS_SYMB: 3, SUCCESS_TRANS: 23, FAILURE: 18, STARTED_TEST_CASES: 55, SKIPPED: 85, DEFINITIONS: 4, IGNORE: 44, MISSING: 30, ERROR: 4] for test expression: (#LHS)-(#RHS)
+[Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
+5190: Skipped - Unable to analyze test case.
+5192 [http://dlmf.nist.gov/16.2.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5193: Skipped - Unable to analyze test case.
+5194 [http://dlmf.nist.gov/16.2.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5195: Skipped - Unable to analyze test case.
+5197: Skipped - Unable to analyze test case.
+5198: Skipped - Unable to analyze test case.
+5200: Skipped - Unable to analyze test case.
+5202: Skipped - Unable to analyze test case.
+5204: Skipped - Unable to analyze test case.
+5206: Skipped - Unable to analyze test case.
+5207 [http://dlmf.nist.gov/16.3.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5208 [http://dlmf.nist.gov/16.3.E6]: Error - java.lang.IllegalArgumentException: Error in CAS! [5208: z\genhyperF{0}{1}@{-}{b+1}{z}+b(b-1)\genhyperF{0}{1}@{-}{b}{z}-b(b-1)\genhyperF{0}{1}@{-}{b-1}{z} EQUAL 0; http://dlmf.nist.gov/16.3.E6]
+5209: Skipped - Unable to analyze test case.
+5210 [http://dlmf.nist.gov/16.3.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5211: Skipped - Unable to analyze test case.
+5214 [http://dlmf.nist.gov/16.4.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5215: Skipped - Unable to analyze test case.
+5216 [http://dlmf.nist.gov/16.4.E4]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+5217: Skipped - Unable to analyze test case.
+5219: Skipped - Unable to analyze test case.
+5220 [http://dlmf.nist.gov/16.4.E6]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+5221: Skipped - Unable to analyze test case.
+5222 [http://dlmf.nist.gov/16.4.E7]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+5223: Skipped - Unable to analyze test case.
+5224 [http://dlmf.nist.gov/16.4.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5225: Skipped - Unable to analyze test case.
+5226 [http://dlmf.nist.gov/16.4.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5227: Skipped - Unable to analyze test case.
+5228 [http://dlmf.nist.gov/16.4.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5229: Skipped - Unable to analyze test case.
+5230 [http://dlmf.nist.gov/16.4.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5231: Skipped - Unable to analyze test case.
+5232 [http://dlmf.nist.gov/16.4.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5233: Skipped - Unable to analyze test case.
+5234 [http://dlmf.nist.gov/16.4.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5235: Skipped - Unable to analyze test case.
+5236 [http://dlmf.nist.gov/16.4.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5237: Skipped - Unable to analyze test case.
+5238 [http://dlmf.nist.gov/16.4.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5239: Skipped - Unable to analyze test case.
+5241: Skipped - Unable to analyze test case.
+5242 [http://dlmf.nist.gov/16.4.E17]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genhyperH [\genhyperH]
+5243: Skipped - Unable to analyze test case.
+5245: Skipped - Unable to analyze test case.
+5247: Skipped - Unable to analyze test case.
+5249: Skipped - Unable to analyze test case.
+5251: Skipped - Unable to analyze test case.
+5252 [http://dlmf.nist.gov/16.6.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5253: Skipped - Unable to analyze test case.
+5254 [http://dlmf.nist.gov/16.6.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5255: Skipped - Unable to analyze test case.
+5257 [https://dlmf.nist.gov/16.8#Ex1]: Error - (LaTeX -> Maple) The input LaTeX is invalid: A limited expression ends with no argument left.
+5258 [https://dlmf.nist.gov/16.8#Ex2]: Error - (LaTeX -> Maple) The input LaTeX is invalid: A limited expression ends with no argument left.
+5263: Skipped - Unable to analyze test case.
+5265: Skipped - Unable to analyze test case.
+5267: Skipped - Unable to analyze test case.
+5269: Skipped - Unable to analyze test case.
+5271: Skipped - Unable to analyze test case.
+5273: Skipped - Unable to analyze test case.
+5275: Skipped - Unable to analyze test case.
+5277: Skipped - Unable to analyze test case.
+5286: Skipped - Unable to analyze test case.
+5287: Skipped - Unable to analyze test case.
+5288: Skipped - Unable to analyze test case.
+5289: Skipped - Unable to analyze test case.
+5290: Skipped - Unable to analyze test case.
+5291: Skipped - Unable to analyze test case.
+5292: Skipped - Unable to analyze test case.
+5294: Skipped - Unable to analyze test case.
+5296: Skipped - Unable to analyze test case.
+5297 [http://dlmf.nist.gov/16.12.E1]: Error - java.lang.IllegalArgumentException: Error in CAS! [5297: \genhyperF{0}{1}@{-}{a}{z}\genhyperF{0}{1}@{-}{b}{z} EQUAL \genhyperF{2}{3}@@{\frac{1}{2}(a+b),\frac{1}{2}(a+b-1)}{a,b,a+b-1}{4z}; http://dlmf.nist.gov/16.12.E1]
+5298: Skipped - Unable to analyze test case.
+5299 [http://dlmf.nist.gov/16.12.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5300: Skipped - Unable to analyze test case.
+5301 [http://dlmf.nist.gov/16.12.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+5302: Skipped - Unable to analyze test case.
+5303 [http://dlmf.nist.gov/16.13.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5304: Skipped - Unable to analyze test case.
+5305 [http://dlmf.nist.gov/16.13.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5306: Skipped - Unable to analyze test case.
+5307 [http://dlmf.nist.gov/16.13.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5308: Skipped - Unable to analyze test case.
+5309 [http://dlmf.nist.gov/16.13.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5310: Skipped - Unable to analyze test case.
+5311 [https://dlmf.nist.gov/16.14#Ex1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5312 [https://dlmf.nist.gov/16.14#Ex2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5313 [https://dlmf.nist.gov/16.14#Ex3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5314 [https://dlmf.nist.gov/16.14#Ex4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5315 [https://dlmf.nist.gov/16.14#Ex5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5316 [https://dlmf.nist.gov/16.14#Ex6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5317 [https://dlmf.nist.gov/16.14#Ex7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5318 [https://dlmf.nist.gov/16.14#Ex8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5319 [http://dlmf.nist.gov/16.14.E5]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+5320 [http://dlmf.nist.gov/16.14.E6]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+5321 [http://dlmf.nist.gov/16.15.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5322: Skipped - Unable to analyze test case.
+5323 [http://dlmf.nist.gov/16.15.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5324: Skipped - Unable to analyze test case.
+5325 [http://dlmf.nist.gov/16.15.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5326: Skipped - Unable to analyze test case.
+5327 [http://dlmf.nist.gov/16.15.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5328: Skipped - Unable to analyze test case.
+5329 [http://dlmf.nist.gov/16.16.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5330: Skipped - Unable to analyze test case.
+5331 [http://dlmf.nist.gov/16.16.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5332: Skipped - Unable to analyze test case.
+5333 [http://dlmf.nist.gov/16.16.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5334: Skipped - Unable to analyze test case.
+5335: Skipped - Unable to analyze test case.
+5336 [http://dlmf.nist.gov/16.16.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5337: Skipped - Unable to analyze test case.
+5338: Skipped - Unable to analyze test case.
+5339 [http://dlmf.nist.gov/16.16.E5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5340: Skipped - Unable to analyze test case.
+5341 [http://dlmf.nist.gov/16.16.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5342: Skipped - Unable to analyze test case.
+5343 [http://dlmf.nist.gov/16.16.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5344: Skipped - Unable to analyze test case.
+5345 [http://dlmf.nist.gov/16.16.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5345-a [http://dlmf.nist.gov/16.16.E8]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+5346: Skipped - Unable to analyze test case.
+5347 [http://dlmf.nist.gov/16.16.E9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5348: Skipped - Unable to analyze test case.
+5349 [http://dlmf.nist.gov/16.16.E10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AppellF [\AppellF]
+5350: Skipped - Unable to analyze test case.
+5352: Skipped - Unable to analyze test case.
+5354: Skipped - Unable to analyze test case.
+5355: Skipped - Unable to analyze test case.
+5358: Skipped - Unable to analyze test case.
+5359: Skipped - Unable to analyze test case.
+5361: Skipped - Unable to analyze test case.
+5363: Skipped - Unable to analyze test case.
+5365: Skipped - Unable to analyze test case.
+5367: Skipped - Unable to analyze test case.
+5369: Skipped - Unable to analyze test case.
+5371: Skipped - Unable to analyze test case.
+5373: Skipped - Unable to analyze test case.
+5374: Skipped - Unable to analyze test case.
+5375 [http://dlmf.nist.gov/16.23.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]

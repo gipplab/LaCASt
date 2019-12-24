@@ -1,0 +1,6 @@
+\paraV, 19
+\paraW, 13
+\paraUbar, 4
+\dilHermitepolyHe, 3
+\FishersHh, 2
+\nabla, 1
