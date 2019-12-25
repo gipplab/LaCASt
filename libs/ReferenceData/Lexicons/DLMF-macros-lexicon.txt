@@ -37,17 +37,6 @@ Symbol: \AThetaFunction
 	Number of Variables: 1
 	Role: 
 
-Symbol: \AbstractJacobi
-
-  Feature Set: function
-	DLMF: \AbstractJacobi{p}{q}
-	DLMF-Link: dlmf.nist.gov/22.2#E10
-	Meanings: Generic Jacobian elliptic function
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 2
-	Role: function
-
 Symbol: \Acos
 
   Feature Set: dlmf-macro
@@ -213,58 +202,6 @@ Symbol: \AiryBi
 	Role: 
 	Slot of Differentiation: 1
 
-Symbol: \AiryModulusM
-
-  Feature Set: dlmf-macro
-	DLMF: \AiryModulusM@{z}
-	DLMF-Link: dlmf.nist.gov/9.8#i
-	Maple-Alternatives: sqrt(AiryAi($0)^2+AiryBi($0)^2)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
-	Mathematica-Alternatives: Sqrt[AiryAi[$0]^2+AiryBi[$0]^2]
-	Meanings: Airy modulus function M
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \AiryModulusN
-
-  Feature Set: dlmf-macro
-	DLMF: \AiryModulusN@{z}
-	DLMF-Link: dlmf.nist.gov/9.8#i
-	Maple-Alternatives: sqrt(AiryAi(1, $0)^2+AiryBi(1, $0)^2)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
-	Mathematica-Alternatives: Sqrt[AiryAi[1, $0]^2+AiryBi[1, $0]^2]
-	Meanings: Airy modulus function N
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \AiryPhasePhi
-
-  Feature Set: dlmf-macro
-	DLMF: \AiryPhasePhi@{z}
-	DLMF-Link: dlmf.nist.gov/9.8#i
-	Maple-Alternatives: arctan(AiryAi(1, $0)/AiryBi(1, $0))
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
-	Mathematica-Alternatives: ArcTan[AiryAi[1, $0]/AiryBi[1, $0]]
-	Meanings: Airy phase function Phi
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \AiryPhaseTheta
-
-  Feature Set: dlmf-macro
-	DLMF: \AiryPhaseTheta@{z}
-	DLMF-Link: dlmf.nist.gov/9.8#i
-	Maple-Alternatives: arctan(AiryAi($0)/AiryBi($0))
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
-	Mathematica-Alternatives: ArcTan[AiryAi[$0]/AiryBi[$0]]
-	Meanings: Airy phase function Theta
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
 Symbol: \AirymodM
 
   Feature Set: dlmf-macro
@@ -388,16 +325,6 @@ Symbol: \AlSalamChihara
 	Number of Variables: 4
 	Role: 
 
-Symbol: \AlSalamChiharaQ
-
-  Feature Set: dlmf-macro
-	DLMF: \AlSalamChiharaQ{n}@{x}{a}{b}{q}
-	DLMF-Link: dlmf.nist.gov/18.28#E7
-	Meanings: Al-Salam-Chihara polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 4
-
 Symbol: \AlSalamChiharapolyQ
 
   Feature Set: dlmf-macro
@@ -431,17 +358,6 @@ Symbol: \AlSalamIsmail
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
-
-Symbol: \AngerA
-
-  Feature Set: dlmf-macro
-	Constraints: Re(z) > 0
-	DLMF: \AngerA{v}@{z}
-	DLMF-Link: dlmf.nist.gov/11.10#E4
-	Meanings: Associated Anger function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
 
 Symbol: \AngerJ
 
@@ -522,48 +438,6 @@ Symbol: \AppellF
 	Number of Parameters: 0
 	Number of Variables: 6
 	Role: 
-
-Symbol: \AppellFi
-
-  Feature Set: dlmf-macro
-	DLMF: \AppellFi@{\alpha}{\beta}{\beta'}{\gamma}{x}{y}
-	DLMF-Link: dlmf.nist.gov/16.13#E2
-	Mathematica: AppellF1[$0, $1, $2, $3, $4, $5]
-	Meanings: First Appell function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 6
-
-Symbol: \AppellFii
-
-  Feature Set: dlmf-macro
-	DLMF: \AppellFii@{\alpha}{\beta}{\beta'}{\gamma}{\gamma'}{x}{y}
-	DLMF-Link: dlmf.nist.gov/16.13#E3
-	Meanings: Second Appell function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 7
-
-Symbol: \AppellFiii
-
-  Feature Set: dlmf-macro
-	Constraints: Re(z) > 0
-	DLMF: \AppellFiii@{\alpha}{\alpha'}{\beta}{\beta'}{\gamma}{x}{y}
-	DLMF-Link: dlmf.nist.gov/16.13#E4
-	Meanings: Third Appell function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 7
-
-Symbol: \AppellFiv
-
-  Feature Set: dlmf-macro
-	DLMF: \AppellFiv@{\alpha}{\beta}{\gamma}{\gamma'}{x}{y}
-	DLMF-Link: dlmf.nist.gov/16.13#E5
-	Meanings: Fourth Appell function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 6
 
 Symbol: \Asec
 
@@ -646,16 +520,6 @@ Symbol: \AskeyWilson
 	Number of Variables: 6
 	Role: 
 
-Symbol: \AskeyWilsonp
-
-  Feature Set: dlmf-macro
-	DLMF: \AskeyWilsonp{n}@{x}{a}{b}{c}{d}{q}
-	DLMF-Link: dlmf.nist.gov/18.28#E1
-	Meanings: Askey-Wilson polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 6
-
 Symbol: \AskeyWilsonpolyp
 
   Feature Set: dlmf-macro
@@ -672,27 +536,6 @@ Symbol: \AskeyWilsonpolyp
 	Number of Parameters: 1
 	Number of Variables: 6
 	Role: 
-
-Symbol: \AssJacobiP
-
-  Feature Set: dlmf-macro
-	DLMF: \AssJacobiP{\alpha}{\beta}{n}@{x}{c}
-	DLMF-Link: dlmf.nist.gov/18.30#E4
-	Meanings: Associated Jacobi polynomial
-	Number of Ats: 1
-	Number of Parameters: 3
-	Number of Variables: 2
-
-Symbol: \AssLegendrePoly
-
-  Feature Set: dlmf-macro
-	DLMF: \AssLegendrePoly{n}@{x}{c}
-	DLMF-Link: dlmf.nist.gov/18.30#E6
-	Mathematica: LegendreP[$0, $2, $1]
-	Meanings: Associated Legendre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
 
 Symbol: \Atan
 
@@ -747,34 +590,6 @@ Symbol: \BarnesG
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \BarnesGamma
-
-  Feature Set: dlmf-macro
-	DLMF: \BarnesGamma@{z}
-	DLMF-Link: dlmf.nist.gov/5.17#E1
-	Mathematica: BarnesG[$0]
-	Mathematica-Link: reference.wolfram.com/language/ref/BarnesG.html
-	Meanings: Double Gamma / Barnes Gamma
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
-Symbol: \BellNumber
-
-  Feature Set: dlmf-macro
-	DLMF: \BellNumber@{n}
-	DLMF-Link: dlmf.nist.gov/26.7#i
-	Maple: BellB($0, 1)
-	Maple-Alternatives: bell($0)
-	Maple-Comment: bell(n) is an alternative translation. But it is necessary to import the extra package with(combinat, bell) if you planning to use the shorter version.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=BellB
-	Mathematica: BellB[$0, $1]
-	Meanings: Bell number
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
 Symbol: \Bellnumber
 
   Feature Set: dlmf-macro
@@ -796,20 +611,6 @@ Symbol: \Bellnumber
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
-
-Symbol: \BernoulliB
-
-  Feature Set: dlmf-macro
-	DLMF: \BernoulliB{n}@{x}
-	DLMF-Link: dlmf.nist.gov/24.2#i
-	Maple: bernoulli($0, $1)
-	Maple-Comment: "Maple provides an extra function for x=0. You can call bernoulli(n).
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=bernoulli
-	Mathematica: BernoulliB[$0, $1]
-	Meanings: Bernoulli polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
 
 Symbol: \BernoullinumberB
 
@@ -876,32 +677,6 @@ Symbol: \BesselC
 	Role: 
 	Slot of Differentiation: 1
 
-Symbol: \BesselI
-
-  Feature Set: dlmf-macro
-	DLMF: \BesselI{v}@{x}
-	DLMF-Link: dlmf.nist.gov/10.25#E2
-	Maple: BesselI($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
-	Mathematica: BesselI[$0, $1]
-	Meanings: Modified Bessel function first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \BesselItilde
-
-  Feature Set: dlmf-macro
-	DLMF: \BesselItilde{\nu}@{x}
-	DLMF-Link: dlmf.nist.gov/10.45#E2
-	Maple-Alternatives: Re(BesselI(I*($0), $1))
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
-	Mathematica-Alternatives: Re[BesselI[I*($0), $1]]
-	Meanings: Modified Bessel of imaginary order first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
 Symbol: \BesselJ
 
   Feature Set: dlmf-macro
@@ -947,85 +722,6 @@ Symbol: \BesselJimag
 	Number of Variables: 1
 	Role: 
 	Slot of Differentiation: 1
-
-Symbol: \BesselJtilde
-
-  Feature Set: dlmf-macro
-	DLMF: \BesselJtilde{\nu}@{x}
-	DLMF-Link: dlmf.nist.gov/10.24#Ex1
-	Maple-Alternatives: sech((1/2)*Pi*($0))*Re(BesselJ(I*($0), $1))
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
-	Mathematica-Alternatives: Sech[(1/2)*Pi*($0)]*Re[BesselJ[I*($0), $1]]
-	Meanings: Bessel of imaginary order first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \BesselK
-
-  Feature Set: dlmf-macro
-	DLMF: \BesselK{v}@{x}
-	DLMF-Link: dlmf.nist.gov/10.25#E3
-	Maple: BesselK($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
-	Mathematica: BesselK[$0, $1]
-	Meanings: Modified Bessel function second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \BesselKtilde
-
-  Feature Set: dlmf-macro
-	DLMF: \BesselKtilde{\nu}@{x}
-	DLMF-Link: dlmf.nist.gov/10.45#E2
-	Maple-Alternatives: BesselK(I*($0), $1)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
-	Mathematica-Alternatives: BesselK[I*($0), $1]
-	Meanings: Modified Bessel of imaginary order second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \BesselModulusM
-
-  Feature Set: dlmf-macro
-	DLMF: \BesselModulusM{\nu}@{x}
-	DLMF-Link: dlmf.nist.gov/10.18#E1
-	Meanings: Modulus Bessel function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \BesselModulusN
-
-  Feature Set: dlmf-macro
-	DLMF: \BesselModulusN{\nu}@{x}
-	DLMF-Link: dlmf.nist.gov/10.18#E2
-	Meanings: Modulus derivative Bessel function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \BesselPhasePhi
-
-  Feature Set: dlmf-macro
-	DLMF: \BesselPhasePhi{\nu}@{x}
-	DLMF-Link: dlmf.nist.gov/10.18#E3
-	Meanings: Phase of derivative Bessel function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \BesselPhaseTheta
-
-  Feature Set: dlmf-macro
-	DLMF: \BesselPhaseTheta{\nu}@{x}
-	DLMF-Link: dlmf.nist.gov/10.18#E3
-	Meanings: Phase of Bessel function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
 
 Symbol: \BesselPoly
 
@@ -1078,16 +774,6 @@ Symbol: \BesselPolyTheta
 	Number of Variables: 3
 	Role: 
 
-Symbol: \BesselPolyy
-
-  Feature Set: dlmf-macro
-	DLMF: \BesselPolyy{n}@{x}{a}
-	DLMF-Link: dlmf.nist.gov/18.34#E1
-	Meanings: Bessel polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
 Symbol: \BesselY
 
   Feature Set: dlmf-macro
@@ -1134,18 +820,6 @@ Symbol: \BesselYimag
 	Role: 
 	Slot of Differentiation: 1
 
-Symbol: \BesselYtilde
-
-  Feature Set: dlmf-macro
-	DLMF: \BesselYtilde{\nu}@{x}
-	DLMF-Link: dlmf.nist.gov/10.24#Ex1
-	Maple-Alternatives: sech((1/2)*Pi*($0))*Re(BesselY(I*($0), $1))
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
-	Meanings: Bessel of imaginary order second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
 Symbol: \Besselpolyy
 
   Feature Set: dlmf-macro
@@ -1181,16 +855,6 @@ Symbol: \BickleyKi
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
-
-Symbol: \BigO
-
-  Feature Set: dlmf-macro
-	DLMF: \BigO@{x}
-	DLMF-Link: dlmf.nist.gov/2.1#E3
-	Meanings: Landau notation O
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
 
 Symbol: \Bulirschcompellintcel
 
@@ -1311,16 +975,6 @@ Symbol: \CarlsonsymellintRJ
 	Number of Variables: 4
 	Role: 
 
-Symbol: \CatalanNumber
-
-  Feature Set: dlmf-macro
-	DLMF: \CatalanNumber@{n}
-	DLMF-Link: dlmf.nist.gov/26.5#E1
-	Meanings: Catalan number
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
 Symbol: \Catalannumber
 
   Feature Set: dlmf-macro
@@ -1363,16 +1017,6 @@ Symbol: \Charlier
 	Number of Variables: 2
 	Role: 
 
-Symbol: \CharlierC
-
-  Feature Set: dlmf-macro
-	DLMF: \CharlierC{n}@{x}{a}
-	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r5
-	Meanings: Charlier polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
 Symbol: \CharlierpolyC
 
   Feature Set: dlmf-macro
@@ -1389,92 +1033,6 @@ Symbol: \CharlierpolyC
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
-
-Symbol: \ChebyC
-
-  Feature Set: dlmf-macro
-	DLMF: \ChebyC{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.1#E3
-	Meanings: Dilated Chebyshev polynomial first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \ChebyS
-
-  Feature Set: dlmf-macro
-	DLMF: \ChebyS{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.1#E3
-	Meanings: Dilated Chebyshev polynomial second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \ChebyT
-
-  Feature Set: dlmf-macro
-	DLMF: \ChebyT{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r4
-	Maple: ChebyshevT($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevT
-	Mathematica: ChebyshevT[$0, $1]
-	Meanings: Chebyshev polynomial first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \ChebyTs
-
-  Feature Set: dlmf-macro
-	DLMF: \ChebyTs{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r8
-	Meanings: Shifted Chebyshev polynomial first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \ChebyU
-
-  Feature Set: dlmf-macro
-	DLMF: \ChebyU{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r5
-	Maple: ChebyshevU($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevU
-	Mathematica: ChebyshevU[$0, $1]
-	Meanings: Chebyshev polynomial second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \ChebyUs
-
-  Feature Set: dlmf-macro
-	DLMF: \ChebyUs{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r9
-	Meanings: Shifted Chebyshev polynomial second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \ChebyV
-
-  Feature Set: dlmf-macro
-	DLMF: \ChebyV{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r6
-	Meanings: Chebyshev polynomial third kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \ChebyW
-
-  Feature Set: dlmf-macro
-	DLMF: \ChebyW{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r7
-	Meanings: Chebyshev polynomial fourth kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
 
 Symbol: \ChebyshevPsi
 
@@ -1632,111 +1190,6 @@ Symbol: \ClebschGordan
 	Number of Variables: 6
 	Role: 
 
-Symbol: \CompEllIntCE
-
-  Feature Set: dlmf-macro
-	DLMF: \CompEllIntCE@{k}
-	DLMF-Link: dlmf.nist.gov/19.2#E9
-	Maple: EllipticCE($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCE
-	Meanings: Legendre's complementary complete elliptic integral of the second kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \CompEllIntCK
-
-  Feature Set: dlmf-macro
-	DLMF: \CompEllIntCK@{k}
-	DLMF-Link: dlmf.nist.gov/19.2#E9
-	Maple: EllipticCK($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCK
-	Meanings: Legendre's complementary complete elliptic integral of the first kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \CompEllIntD
-
-  Feature Set: dlmf-macro
-	DLMF: \CompEllIntD@{k}
-	DLMF-Link: dlmf.nist.gov/19.2#E8
-	Maple-Alternatives: (EllipticK($0) - EllipticE($0))/($0)^2
-	Meanings: Complete elliptic integral of Legendre's type
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \CompEllIntE
-
-  Feature Set: dlmf-macro
-	DLMF: \CompEllIntE@{k}
-	DLMF-Link: dlmf.nist.gov/19.2#E8
-	Maple: EllipticE($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
-	Meanings: Legendre's complete elliptic integral of the second kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \CompEllIntK
-
-  Feature Set: dlmf-macro
-	DLMF: \CompEllIntK@{k}
-	DLMF-Link: dlmf.nist.gov/19.2#E8
-	Maple: EllipticK($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticK
-	Mathematica: EllipticK[($0)^2]
-	Meanings: Legendre's complete elliptic integral of the first kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \CompEllIntPi
-
-  Feature Set: dlmf-macro
-	DLMF: \CompEllIntPi@{\alpha^2}{k}
-	DLMF-Link: dlmf.nist.gov/19.2#E8
-	Maple: EllipticPi($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
-	Meanings: Legendre's complete elliptic integral of the third kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \Complex
-
-  Feature Set: dlmf-macro
-	DLMF: \Complex
-	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r1
-	Maple: complex
-	Mathematica: Complexes
-	Meanings: Set of complex numbers
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 0
-	Role: symbol
-
-Symbol: \ComplexZeroAiryBi
-
-  Feature Set: dlmf-macro
-	DLMF: \ComplexZeroAiryBi{k}
-	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
-	Meanings: Complex zeros of Airy function of the second kind
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \ComplexZeroAiryBiPrime
-
-  Feature Set: dlmf-macro
-	DLMF: \ComplexZeroAiryBiPrime{k}
-	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
-	Meanings: Complex zeros of derivative of Airy function of the second kind
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 1
-
 Symbol: \Complexes
 
   Feature Set: dlmf-macro
@@ -1755,181 +1208,6 @@ Symbol: \Complexes
 	Number of Parameters: 0
 	Number of Variables: 0
 	Role: symbol
-
-Symbol: \CompositionsC
-
-  Feature Set: dlmf-macro
-	DLMF: \CompositionsC[m]@{n}
-	DLMF-Link: dlmf.nist.gov/26.11#p1
-	Meanings: Number of compositions
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \Continuous
-
-  Feature Set: dlmf-macro
-	DLMF: \Continuous@{A}
-	DLMF-Link: dlmf.nist.gov/1.4#ii
-	Meanings: Space of continuous functions on a set
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \CosInt
-
-  Feature Set: dlmf-macro
-	DLMF: \CosInt@{z}
-	DLMF-Link: dlmf.nist.gov/6.2#E13
-	Maple: Ci($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ci
-	Mathematica: CosIntegral[$0]
-	Mathematica-Link: reference.wolfram.com/language/ref/CosIntegral.html
-	Meanings: Cosine integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
-Symbol: \CosIntCin
-
-  Feature Set: dlmf-macro
-	DLMF: \CosIntCin@{z}
-	DLMF-Link: dlmf.nist.gov/6.2#E12
-	Meanings: Cosine integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
-Symbol: \CosIntg
-
-  Feature Set: dlmf-macro
-	Branch Cuts: z = 0
-	DLMF: \CosIntg@{a}{z}
-	DLMF-Link: dlmf.nist.gov/8.21#E2
-	Meanings: Generalized cosine integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-	Role: dlmf-macro
-
-Symbol: \CoshInt
-
-  Feature Set: dlmf-macro
-	DLMF: \CoshInt@{z}
-	DLMF-Link: dlmf.nist.gov/6.2#E16
-	Maple: Chi($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Chi
-	Mathematica: CoshIntegral[$0]
-	Mathematica-Link: reference.wolfram.com/language/ref/CoshIntegral.html
-	Meanings: Hyperbolic cosine integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
-Symbol: \CoulombC
-
-  Feature Set: dlmf-macro
-	DLMF: \CoulombC{\ell}@{\eta}
-	DLMF-Link: dlmf.nist.gov/33.2#E5
-	Meanings: Normalizing constant for Coulomb radial functions
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \CoulombF
-
-  Feature Set: dlmf-macro
-	DLMF: \CoulombF{L}@{\eta}{\rho}
-	DLMF-Link: dlmf.nist.gov/33.2#E3
-	Maple: CoulombF($0, $1, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CoulombF
-	Meanings: Regular Coulomb function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \CoulombG
-
-  Feature Set: dlmf-macro
-	DLMF: \CoulombG{\ell}@{\eta}{\rho}
-	DLMF-Link: dlmf.nist.gov/33.2#E11
-	Meanings: Irregular Coulomb function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \CoulombH
-
-  Feature Set: dlmf-macro
-	DLMF: \CoulombH{\pm}{\ell}@{\eta}{\rho}
-	DLMF-Link: dlmf.nist.gov/33.2#E7
-	Meanings: Irregular Coulomb radial function
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \CoulombM
-
-  Feature Set: dlmf-macro
-	DLMF: \CoulombM{\ell}@{\eta}{\rho}
-	DLMF-Link: dlmf.nist.gov/33.3#E1
-	Meanings: Envelope of Coulomb function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \CoulombSigma
-
-  Feature Set: dlmf-macro
-	DLMF: \CoulombSigma{\ell}@{\eta}
-	DLMF-Link: dlmf.nist.gov/33.2#E10
-	Meanings: Coulomb phase shift
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \CoulombTheta
-
-  Feature Set: dlmf-macro
-	DLMF: \CoulombTheta{\ell}@{\eta}{\rho}
-	DLMF-Link: dlmf.nist.gov/33.2#E9
-	Meanings: Phase of Coulomb functions
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \Coulombc
-
-  Feature Set: dlmf-macro
-	DLMF: \Coulombc@{\epsilon}{\ell}{r}
-	DLMF-Link: dlmf.nist.gov/33.14#E9
-	Meanings: Regular Coulomb function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 3
-
-Symbol: \Coulombf
-
-  Feature Set: dlmf-macro
-	DLMF: \Coulombf@{\epsilon}{\ell}{r}
-	DLMF-Link: dlmf.nist.gov/33.14#E4
-	Meanings: Regular Coulomb function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 3
-
-Symbol: \Coulombh
-
-  Feature Set: dlmf-macro
-	DLMF: \Coulombh@{\epsilon}{\ell}{r}
-	DLMF-Link: dlmf.nist.gov/33.14#E7
-	Meanings: Regular Coulomb function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 3
 
 Symbol: \Coulombphasesigma
 
@@ -1965,36 +1243,6 @@ Symbol: \Coulombphasetheta
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Coulombrhotp
-
-  Feature Set: dlmf-macro
-	DLMF: \Coulombrhotp@{\eta}{\ell}
-	DLMF-Link: dlmf.nist.gov/33.2#E2
-	Meanings: Outer turning point for Coulomb radial functions
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \Coulombrtp
-
-  Feature Set: dlmf-macro
-	DLMF: \Coulombrtp@{\epsilon}{\ell}
-	DLMF-Link: dlmf.nist.gov/33.14#E3
-	Meanings: Outer turning point for Coulomb functions
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \Coulombs
-
-  Feature Set: dlmf-macro
-	DLMF: \Coulombs@{\epsilon}{\ell}{r}
-	DLMF-Link: dlmf.nist.gov/33.14#E9
-	Meanings: Regular Coulomb function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 3
-
 Symbol: \Coulombturnr
 
   Feature Set: dlmf-macro
@@ -2029,30 +1277,6 @@ Symbol: \Coulombturnrho
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Cylinder
-
-  Feature Set: dlmf-macro
-	DLMF: \Cylinder{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/10.2#Px5.p1
-	Meanings: Cylinder function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \DawsonsInt
-
-  Feature Set: dlmf-macro
-	DLMF: \DawsonsInt@{z}
-	DLMF-Link: dlmf.nist.gov/7.2#E5
-	Maple: dawson($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=dawson
-	Mathematica: DawsonF[$0]
-	Mathematica-Link: reference.wolfram.com/language/ref/DawsonF.html
-	Meanings: Dawson integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
 Symbol: \DawsonsintF
 
   Feature Set: dlmf-macro
@@ -2078,17 +1302,6 @@ Symbol: \DawsonsintF
 	Number of Variables: 1
 	Role: 
 
-Symbol: \DedekindModularEta
-
-  Feature Set: dlmf-macro
-	DLMF: \DedekindModularEta@{\tau}
-	DLMF-Link: dlmf.nist.gov/23.15#E9
-	Mathematica: DedekindEta[$0]
-	Meanings: Dedikind's Eta function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
 Symbol: \Dedekindeta
 
   Feature Set: dlmf-macro
@@ -2105,20 +1318,6 @@ Symbol: \Dedekindeta
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
-
-Symbol: \Dilogarithm
-
-  Feature Set: dlmf-macro
-	DLMF: \Dilogarithm@{z}
-	DLMF-Link: dlmf.nist.gov/25.12#E1
-	Maple: dilog($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=dilog
-	Mathematica: PolyLog[2, $0]
-	Meanings: Dilogarithm
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
 
 Symbol: \Diracdelta
 
@@ -2144,17 +1343,6 @@ Symbol: \Diracdelta
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
-
-Symbol: \DirichletCharacter
-
-  Feature Set: dlmf-macro
-	DLMF: \DirichletCharacter@@{n}{k}
-	DLMF-Link: dlmf.nist.gov/27.8
-	Mathematica: DirichletCharacter[$1, $2, $0]
-	Meanings: Dirichlet character
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
 
 Symbol: \DirichletL
 
@@ -2207,54 +1395,6 @@ Symbol: \DiscriminantDelta
 	Number of Variables: 1
 	Role: 
 
-Symbol: \DiskOP
-
-  Feature Set: dlmf-macro
-	DLMF: \DiskOP{\alpha}{m}{n}@{z}
-	DLMF-Link: dlmf.nist.gov/18.37#E1
-	Meanings: Disk polynomial
-	Number of Ats: 1
-	Number of Parameters: 3
-	Number of Variables: 1
-
-Symbol: \Distribution
-
-  Feature Set: dlmf-macro
-	DLMF: \Distribution{f}{g}
-	DLMF-Link: dlmf.nist.gov/1.16#SS1.p5
-	Meanings: Distribution
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 2
-	Role: dlmf-macro
-
-Symbol: \DivisorFunctionD
-
-  Feature Set: dlmf-macro
-	DLMF: \DivisorFunctionD@{n}
-	DLMF-Link: dlmf.nist.gov/27.2#E9
-	Maple-Alternatives: numelems(divisors($0))
-	Maple-Comment: Maple needs an extra package. with(numtheory) and since Maplesoft 2016 with(NumberTheory)
-	Maple-Package: NumberTheory
-	Meanings: Divisor function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \DivisorSigma
-
-  Feature Set: dlmf-macro
-	DLMF: \DivisorSigma{1}@{n}
-	DLMF-Link: dlmf.nist.gov/27.2#E10
-	Maple-Alternatives:  || add(divisors($0))
-	Maple-Comment:  || Maple needs an extra package. with(numtheory) and since Maplesoft 2016 with(NumberTheory)
-	Maple-Package:  || NumberTheory
-	Mathematica: DivisorSigma[1, $0]
-	Meanings: Sum of divisors
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
 Symbol: \DunsterQ
 
   Feature Set: dlmf-macro
@@ -2272,149 +1412,6 @@ Symbol: \DunsterQ
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
-
-Symbol: \EllIntD
-
-  Feature Set: dlmf-macro
-	DLMF: \EllIntD@{\phi}{k}
-	DLMF-Link: dlmf.nist.gov/19.2#E6
-	Maple-Alternatives: (EllipticF(sin($0), $1) - EllipticE(sin($0), $1))/($1)^2
-	Meanings: Incomplete elliptic integral of Legendre's type
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \EllIntE
-
-  Feature Set: dlmf-macro
-	DLMF: \EllIntE@{\phi}{k}
-	DLMF-Link: dlmf.nist.gov/19.2#E5
-	Maple: EllipticE(sin($0), $1)
-	Maple-Comment: Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
-	Mathematica: EllipticE[$0, $1]
-	Meanings: Legendre's incomplete elliptic integral of the second kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \EllIntF
-
-  Feature Set: dlmf-macro
-	DLMF: \EllIntF@{\phi}{k}
-	DLMF-Link: dlmf.nist.gov/19.2#E4
-	Maple: EllipticF(sin($0), $1)
-	Maple-Comment: Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticF
-	Mathematica: EllipticF[$0, $1]
-	Meanings: Legendre's incomplete elliptic integral of the first kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \EllIntPi
-
-  Feature Set: dlmf-macro
-	DLMF: \EllIntPi@{\phi}{\alpha^2}{k}
-	DLMF-Link: dlmf.nist.gov/19.2#E7
-	Maple: EllipticPi(sin($0), $1, $2)
-	Maple-Comment: Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
-	Mathematica: EllipticPi[$2, $0, $1]
-	Meanings: Legendre's incomplete elliptic integral of the third kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 3
-
-Symbol: \EllIntRC
-
-  Feature Set: dlmf-macro
-	DLMF: \EllIntRC@@{x}{y}
-	DLMF-Link: dlmf.nist.gov/19.2#E17
-	Meanings: Carlson elliptic integral
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \EllIntRD
-
-  Feature Set: dlmf-macro
-	DLMF: \EllIntRD@@{x}{y}{z}
-	DLMF-Link: dlmf.nist.gov/19.16#E5
-	Meanings: Symmetric in only two variables
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 3
-
-Symbol: \EllIntRF
-
-  Feature Set: dlmf-macro
-	DLMF: \EllIntRF@@{x}{y}{z}
-	DLMF-Link: dlmf.nist.gov/19.16#E1
-	Meanings: Symmetric elliptic integral of the first kind
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 3
-
-Symbol: \EllIntRG
-
-  Feature Set: dlmf-macro
-	DLMF: \EllIntRG@@{x}{y}{z}
-	DLMF-Link: dlmf.nist.gov/19.16#E3
-	Meanings: Symmetric elliptic integral of the third kind
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 3
-
-Symbol: \EllIntRJ
-
-  Feature Set: dlmf-macro
-	DLMF: \EllIntRJ@@{x}{y}{z}{p}
-	DLMF-Link: dlmf.nist.gov/19.16#E2
-	Meanings: Symmetric elliptic integral of the second kind
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 4
-
-Symbol: \EllIntcel
-
-  Feature Set: dlmf-macro
-	DLMF: \EllIntcel@{k_c}{p}{a}{b}
-	DLMF-Link: dlmf.nist.gov/19.2#E11
-	Meanings: Bulirsch's complete elliptic integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 4
-
-Symbol: \EllIntelone
-
-  Feature Set: dlmf-macro
-	DLMF: \EllIntelone@{x}{k_c}
-	DLMF-Link: dlmf.nist.gov/19.2#E15
-	Meanings: Bulirsch's incomplete elliptic integral of first kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \EllIntelthree
-
-  Feature Set: dlmf-macro
-	DLMF: \EllIntelthree@{x}{k_c}{p}
-	DLMF-Link: dlmf.nist.gov/19.2#E16
-	Meanings: Bulirsch's incomplete elliptic integral of third kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 3
-
-Symbol: \EllInteltwo
-
-  Feature Set: dlmf-macro
-	DLMF: \EllInteltwo@{x}{k_c}{a}{b}
-	DLMF-Link: dlmf.nist.gov/19.2#E12
-	Meanings: Bulirsch's incomplete elliptic integral of second kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 4
 
 Symbol: \EulerBeta
 
@@ -2449,19 +1446,6 @@ Symbol: \EulerConstant
 	DLMF-Link: dlmf.nist.gov/5.2#E3
 	Meanings: Euler-Mascheroni constant
 	Role: mathematical constant
-
-Symbol: \EulerE
-
-  Feature Set: dlmf-macro
-	DLMF: \EulerE{n}@{x}
-	DLMF-Link: dlmf.nist.gov/24.2#ii
-	Maple: euler($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=euler
-	Mathematica: Euler[$0, $1]
-	Meanings: Euler polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
 
 Symbol: \EulerGamma
 
@@ -2505,36 +1489,6 @@ Symbol: \EulerPhi
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
-
-Symbol: \EulerSumH
-
-  Feature Set: dlmf-macro
-	DLMF: \EulerSumH@{s}
-	DLMF-Link: dlmf.nist.gov/25.16#SS2.p1
-	Meanings: Euler sums
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \EulerTotientPhi
-
-  Feature Set: dlmf-macro
-	DLMF: \EulerTotientPhi[k]@{n}
-	DLMF-Link: dlmf.nist.gov/27.2#E6
-	Meanings: Euler's totient function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \EulerianNumber
-
-  Feature Set: dlmf-macro
-	DLMF: \EulerianNumber{n}{k}
-	DLMF-Link: dlmf.nist.gov/26.14#SS1.p3
-	Meanings: Eulerian number
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 2
 
 Symbol: \Euleriannumber
 
@@ -2621,68 +1575,6 @@ Symbol: \Eulertotientphi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ExpInt
-
-  Feature Set: dlmf-macro
-	Branch Cuts: (-\infty, 0]
-	Constraints: z != 0
-	DLMF: \ExpInt@{x}
-	DLMF-Link: dlmf.nist.gov/6.2#E1
-	Maple: Ei($0)
-	Maple-Alternatives: Ei($0)+ln($0)+gamma
-	Maple-Comment: The alternative form is equivalent.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ei
-	Mathematica-Alternatives: -ExpIntegralEi[-($0)]
-	Mathematica-Comment: Mathematica uses another definition for the principle branch of the exponential integral. \ExpInt@{x} will be translated to -ExpIntegralEi[-x].
-	Meanings: Exponential integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
-Symbol: \ExpIntEin
-
-  Feature Set: dlmf-macro
-	DLMF: \ExpIntEin@{z}
-	DLMF-Link: dlmf.nist.gov/6.2#E3
-	Mathematica-Alternatives: -ExpIntegralEi[-($0)] + Ln[$0] + EulerGamma
-	Mathematica-Comment: The translation based on the definition in DLMF.
-	Meanings: Complementary exponential integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
-Symbol: \ExpInti
-
-  Feature Set: dlmf-macro
-	Branch Cuts: (-\infty, 0]
-	Constraints: z != 0
-	DLMF: \ExpInti@{x}
-	DLMF-Link: dlmf.nist.gov/6.2#E1
-	Mathematica-Alternatives: -ExpIntegralEi[-($0)]
-	Mathematica-Comment: Mathematica uses another definition for the principle branch of the exponential integral. \ExpInti@{x} will be translated to -ExpIntegralEi[-x].
-	Meanings: Exponential integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
-Symbol: \ExpIntn
-
-  Feature Set: dlmf-macro
-	DLMF: \ExpIntn{p}@{z}
-	DLMF-Link: dlmf.nist.gov/8.19#E1
-	Maple: Ei($0, $1)
-	Maple-Alternatives: Ei($0)+ln($0)+gamma
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ei
-	Mathematica: Ei[$0, $1]
-	Meanings: Generalized exponential integral
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
 Symbol: \Faddeevaw
 
   Feature Set: dlmf-macro
@@ -2701,388 +1593,6 @@ Symbol: \Faddeevaw
 	Role: dlmf-macro
 
 Symbol: \FerrersHatQ
-
-  Feature Set: dlmf-macro
-	DLMF: \FerrersHatQ{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \FerrersHatQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \DunsterQ[\mu]{\tau}@{x}
-	DLMF-Link: dlmf.nist.gov/14.20#E2
-	Meanings: Conical / Mehler function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
 
   Feature Set: dlmf-alternative-1
 	DLMF: \DunsterQ[\mu]{\tau}@{x}
@@ -3230,44 +1740,6 @@ Symbol: \FishersHh
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \FresnelCos
-
-  Feature Set: dlmf-macro
-	DLMF: \FresnelCos@{z}
-	DLMF-Link: dlmf.nist.gov/7.2#E7
-	Maple: FresnelC($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=FresnelC
-	Mathematica: FresnelC[$0]
-	Mathematica-Link: reference.wolfram.com/language/ref/FresnelC.html
-	Meanings: Fresnel Cosine Integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \FresnelF
-
-  Feature Set: dlmf-macro
-	DLMF: \FresnelF@{z}
-	DLMF-Link: dlmf.nist.gov/7.2#E6
-	Meanings: Fresnel Integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \FresnelSin
-
-  Feature Set: dlmf-macro
-	DLMF: \FresnelSin@{z}
-	DLMF-Link: dlmf.nist.gov/7.2#E8
-	Maple: FresnelS($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=FresnelS
-	Mathematica: FresnelS[$0]
-	Mathematica-Link: reference.wolfram.com/language/ref/FresnelS.html
-	Meanings: Fresnel Sine Integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
 Symbol: \Fresnelcosint
 
   Feature Set: dlmf-macro
@@ -3292,34 +1764,6 @@ Symbol: \Fresnelcosint
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
-
-Symbol: \Fresnelf
-
-  Feature Set: dlmf-macro
-	DLMF: \Fresnelf@{z}
-	DLMF-Link: dlmf.nist.gov/7.2#E10
-	Maple: Fresnelf($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelf
-	Mathematica: FresnelF[$0]
-	Mathematica-Link: reference.wolfram.com/language/ref/FresnelF.html
-	Meanings: Fresnel Auxiliaty Functions
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \Fresnelg
-
-  Feature Set: dlmf-macro
-	DLMF: \Fresnelg@{z}
-	DLMF-Link: dlmf.nist.gov/7.2#E11
-	Maple: Fresnelg($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelg
-	Mathematica: FresnelG[$0]
-	Mathematica-Link: reference.wolfram.com/language/ref/FresnelG.html
-	Meanings: Fresnel Auxiliaty Functions
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
 
 Symbol: \FresnelintF
 
@@ -3363,46 +1807,6 @@ Symbol: \Fresnelsinint
 	Number of Variables: 1
 	Role: 
 
-Symbol: \GammaP
-
-  Feature Set: dlmf-macro
-	DLMF: \GammaP@{a}{z}
-	DLMF-Link: dlmf.nist.gov/8.2#E4
-	Maple-Alternatives: (GAMMA($0)-GAMMA($0, $1))/GAMMA($0)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
-	Mathematica: GammaRegularized[$0, 0, $1]
-	Mathematica-Link: reference.wolfram.com/language/ref/GammaRegularized.html
-	Meanings: Normalized incomplete Gamma
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-	Role: dlmf-macro
-
-Symbol: \GammaQ
-
-  Feature Set: dlmf-macro
-	DLMF: \GammaQ@{a}{z}
-	DLMF-Link: dlmf.nist.gov/8.2#E4
-	Maple-Alternatives: GAMMA($0, $1)/GAMMA($0)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
-	Mathematica: GammaRegularized[$0, $1]
-	Mathematica-Link: reference.wolfram.com/language/ref/GammaRegularized.html
-	Meanings: Normalized incomplete Gamma
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-	Role: dlmf-macro
-
-Symbol: \GaussSum
-
-  Feature Set: dlmf-macro
-	DLMF: \GaussSum@{n}{\DirichletCharacter}
-	DLMF-Link: dlmf.nist.gov/27.10#E9
-	Meanings: Gauss sum
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
 Symbol: \Gausssum
 
   Feature Set: dlmf-macro
@@ -3419,46 +1823,6 @@ Symbol: \Gausssum
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
-
-Symbol: \GenBernoulliB
-
-  Feature Set: dlmf-macro
-	DLMF: \GenBernoulliB{\ell}{n}@{x}
-	DLMF-Link: dlmf.nist.gov/24.16#P1.p1
-	Meanings: Generalized Bernoulli polynomial
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 1
-
-Symbol: \GenBesselFun
-
-  Feature Set: dlmf-macro
-	DLMF: \GenBesselFun@{\rho}{\beta}{z}
-	DLMF-Link: dlmf.nist.gov/10.46#E1
-	Meanings: Generalized Bessel
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 3
-
-Symbol: \GenEulerE
-
-  Feature Set: dlmf-macro
-	DLMF: \GenEulerE{\ell}{n}@{x}
-	DLMF-Link: dlmf.nist.gov/24.16#P1.p1
-	Meanings: Generalized Euler polynomial
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 1
-
-Symbol: \GenEulerSumH
-
-  Feature Set: dlmf-macro
-	DLMF: \GenEulerSumH@{s}{z}
-	DLMF-Link: dlmf.nist.gov/25.16#SS2.p7
-	Meanings: Generalized Euler sums
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
 
 Symbol: \GenGegenbauerS
 
@@ -3487,16 +1851,6 @@ Symbol: \GenHermite
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
-
-Symbol: \GoodStat
-
-  Feature Set: dlmf-macro
-	DLMF: \GoodStat@{z}
-	DLMF-Link: dlmf.nist.gov/7.2#E12
-	Meanings: Goodwin-Staton integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
 
 Symbol: \GoodwinStatonint
 
@@ -3570,46 +1924,6 @@ Symbol: \Hahn
 	Number of Variables: 4
 	Role: 
 
-Symbol: \HahnQ
-
-  Feature Set: dlmf-macro
-	DLMF: \HahnQ{n}@{x}{\alpha}{\beta}{N}
-	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r2
-	Meanings: Hahn polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 4
-
-Symbol: \HahnR
-
-  Feature Set: dlmf-macro
-	DLMF: \HahnR{n}@{x}{\gamma}{\delta}{N}
-	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r5
-	Meanings: Dual Hahn polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 4
-
-Symbol: \HahnS
-
-  Feature Set: dlmf-macro
-	DLMF: \HahnS{n}@{x}{a}{b}{c}
-	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r3
-	Meanings: Continuous dual Hahn polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 4
-
-Symbol: \Hahnp
-
-  Feature Set: dlmf-macro
-	DLMF: \Hahnp{n}@{x}{a}{b}{\conj{a}}{\conj{b}}
-	DLMF-Link: dlmf.nist.gov/18.19#P2.p1
-	Meanings: Continuous Hahn polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 5
-
 Symbol: \HahnpolyQ
 
   Feature Set: dlmf-macro
@@ -3646,32 +1960,6 @@ Symbol: \HankelH
 	Number of Variables: 1
 	Role: 
 	Slot of Differentiation: 1
-
-Symbol: \HankelHi
-
-  Feature Set: dlmf-macro
-	DLMF: \HankelHi{v}@{z}
-	DLMF-Link: dlmf.nist.gov/10.2#E5
-	Maple: HankelH1($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
-	Mathematica: HankelH1[$0, $1]
-	Meanings: Bessel function third kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \HankelHii
-
-  Feature Set: dlmf-macro
-	DLMF: \HankelHii{v}@{z}
-	DLMF-Link: dlmf.nist.gov/10.2#E6
-	Maple: HankelH2($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
-	Mathematica: HankelH2[$0, $1]
-	Meanings: Bessel function third kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
 
 Symbol: \HankelmodM
 
@@ -3818,29 +2106,6 @@ Symbol: \Hermite
 	Role: 
 	Slot of Differentiation: 1
 
-Symbol: \HermiteH
-
-  Feature Set: dlmf-macro
-	DLMF: \HermiteH{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r13
-	Maple: HermiteH($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
-	Mathematica: HermiteH[$0, $1]
-	Meanings: Hermite polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \HermiteHe
-
-  Feature Set: dlmf-macro
-	DLMF: \HermiteHe{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r14
-	Meanings: Hermite polynomial He
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
 Symbol: \HermitepolyH
 
   Feature Set: dlmf-macro
@@ -3866,16 +2131,6 @@ Symbol: \HermitepolyH
 	Number of Variables: 1
 	Role: 
 	Slot of Differentiation: 1
-
-Symbol: \HeunFunction
-
-  Feature Set: dlmf-macro
-	DLMF: \HeunFunction{m}{a}{b}@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z}
-	DLMF-Link: dlmf.nist.gov/31.4#p1
-	Meanings: General Heun functions
-	Number of Ats: 2
-	Number of Parameters: 3
-	Number of Variables: 7
 
 Symbol: \HeunHf
 
@@ -3912,28 +2167,6 @@ Symbol: \HeunHl
 	Number of Variables: 7
 	Role: 
 
-Symbol: \HeunLocal
-
-  Feature Set: dlmf-macro
-	DLMF: \HeunLocal@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z}
-	DLMF-Link: dlmf.nist.gov/31.3#E1
-	Maple: HeunG($0, $1, $2, $3, $4, $5, $6)
-	Maple-Comment: Based on the differential equation on DLMF, Maple assumes w'(0) = q/(gamma*a) for the general solution.
-	Meanings: Local Heun function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 7
-
-Symbol: \HeunPolynom
-
-  Feature Set: dlmf-macro
-	DLMF: \HeunPolynom{n}{m}@@{a}{q}{-n}{\beta}{\gamma}{\delta}{z}
-	DLMF-Link: dlmf.nist.gov/31.5#E2
-	Meanings: Heun polynomials
-	Number of Ats: 2
-	Number of Parameters: 2
-	Number of Variables: 7
-
 Symbol: \HeunpolyHp
 
   Feature Set: dlmf-macro
@@ -3950,19 +2183,6 @@ Symbol: \HeunpolyHp
 	Number of Parameters: 2
 	Number of Variables: 7
 	Role: 
-
-Symbol: \HurwitzZeta
-
-  Feature Set: dlmf-macro
-	DLMF: \HurwitzZeta@{s}{a}
-	DLMF-Link: dlmf.nist.gov/25.11#E1
-	Maple: Zeta(0, $0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
-	Mathematica: HurwitzZeta[$0, $1]
-	Meanings: Hurwitz zeta function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
 
 Symbol: \Hurwitzzeta
 
@@ -3990,107 +2210,6 @@ Symbol: \Hurwitzzeta
 	Role: 
 	Slot of Differentiation: 1
 
-Symbol: \HyperboldpFq
-
-  Feature Set: dlmf-macro
-	DLMF: \HyperboldpFq{2}{1}@{a,b}{c}{z}
-	DLMF-Link: dlmf.nist.gov/15.2#E5
-	Maple: hypergeom([$2], [$3], $4)
-	Maple-Comment: 2 Problems. 1) the first two parameters depending on the length of first and second argument. 2) Is this DLMF macro defined for other parameters?
-	Meanings: Hypergeometric function
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 3
-
-Symbol: \HypergeoF
-
-  Feature Set: dlmf-macro
-	DLMF: \HypergeoF@@@{a}{b}{c}{z}
-	DLMF-Link: dlmf.nist.gov/15.2#E1
-	Maple: hypergeom([$0, $1], [$2], $3)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
-	Meanings: Hypergeometric function
-	Number of Ats: 3
-	Number of Parameters: 0
-	Number of Variables: 4
-
-Symbol: \HypergeoboldF
-
-  Feature Set: dlmf-macro
-	DLMF: \HypergeoboldF@@@{a}{b}{c}{z}
-	DLMF-Link: dlmf.nist.gov/15.2#E2
-	Maple: hypergeom([$0, $1], [$2], $3)/GAMMA($2)
-	Meanings: Olver's hypergeometric function
-	Number of Ats: 3
-	Number of Parameters: 0
-	Number of Variables: 4
-
-Symbol: \HyperpFq
-
-  Feature Set: dlmf-macro
-	DLMF: \HyperpFq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}
-	DLMF-Link: dlmf.nist.gov/16.2#E1
-	Maple: hypergeom([$2], [$3], $4)
-	Maple-Comment: Maple extract p and q from the length of the arguments.
-	Meanings: Generalized hypergeometric function
-	Number of Ats: 3
-	Number of Parameters: 2
-	Number of Variables: 3
-
-Symbol: \HyperpHq
-
-  Feature Set: dlmf-macro
-	DLMF: \HyperpHq{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}
-	DLMF-Link: dlmf.nist.gov/16.4#E16
-	Meanings: Bilateral hypergeometric function
-	Number of Ats: 3
-	Number of Parameters: 2
-	Number of Variables: 3
-
-Symbol: \IncBeta
-
-  Feature Set: dlmf-macro
-	DLMF: \IncBeta{x}@{a}{b}
-	DLMF-Link: dlmf.nist.gov/8.17#E1
-	Maple-Alternatives: int(t^($1-1)*(1-t)^($2-1), t = 0 .. $0)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
-	Mathematica: Beta[$0, $1, $2]
-	Mathematica-Branch Cuts: (-\inf, 0)
-	Mathematica-Comment: It has a branch cut for complex parameters (x in DLMF).
-	Mathematica-Link: reference.wolfram.com/language/ref/Beta.html
-	Meanings: Incomplete Beta function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \IncGamma
-
-  Feature Set: dlmf-macro
-	DLMF: \IncGamma@{a}{z}
-	DLMF-Link: dlmf.nist.gov/8.2#E2
-	Maple: GAMMA($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
-	Mathematica: Gamma[$0, $1]
-	Mathematica-Branch Cuts: (-\inf, 0)
-	Mathematica-Link: reference.wolfram.com/language/ref/Gamma.html
-	Meanings: Incomplete Gamma function (upper)
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-	Role: dlmf-macro
-
-Symbol: \IncI
-
-  Feature Set: dlmf-macro
-	DLMF: \IncI{x}@{a}{b}
-	DLMF-Link: dlmf.nist.gov/8.17#E2
-	Mathematica: BetaRegularized[$0, $1, $2]
-	Mathematica-Link: reference.wolfram.com/language/ref/BetaRegularized.html
-	Meanings: Regularized incomplete Beta function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
 Symbol: \Int
 
   Feature Set: dlmf-macro
@@ -4112,18 +2231,6 @@ Symbol: \Int
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Integer
-
-  Feature Set: dlmf-macro
-	DLMF: \Integer
-	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r20
-	Maple: integer
-	Meanings: Set of integers
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 0
-	Role: symbol
-
 Symbol: \Integers
 
   Feature Set: dlmf-macro
@@ -4142,26 +2249,6 @@ Symbol: \Integers
 	Number of Parameters: 0
 	Number of Variables: 0
 	Role: symbol
-
-Symbol: \IntgenAiryA
-
-  Feature Set: dlmf-macro
-	DLMF: \IntgenAiryA{k}@{z}{p}
-	DLMF-Link: dlmf.nist.gov/9.13#SS2.p1
-	Meanings: Generalized Airy function integral
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \IntgenAiryB
-
-  Feature Set: dlmf-macro
-	DLMF: \IntgenAiryB{k}@{z}{p}
-	DLMF-Link: dlmf.nist.gov/9.13#SS2.p1
-	Meanings: Generalized Bairy function integral
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
 
 Symbol: \JacksonqBesselI
 
@@ -4239,16 +2326,6 @@ Symbol: \Jacobi
 	Number of Variables: 1
 	Role: 
 
-Symbol: \JacobiEpsilon
-
-  Feature Set: dlmf-macro
-	DLMF: \JacobiEpsilon@{x}{k}
-	DLMF-Link: dlmf.nist.gov/22.16#E14
-	Meanings: Jacobi's epsilon function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
 Symbol: \JacobiEpsilonk
 
   Feature Set: dlmf-macro
@@ -4265,88 +2342,6 @@ Symbol: \JacobiEpsilonk
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
-
-Symbol: \JacobiG
-
-  Feature Set: dlmf-macro
-	DLMF: \JacobiG{n}@{p}{q}{x}
-	DLMF-Link: dlmf.nist.gov/18.1#E2
-	Maple-Alternatives: JacobiP($0, $1-$2, $2-1, 2*($3)-1)*(($0)!)/pochhammer($0+$1, $0)
-	Meanings: Shifted Jacobi polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 3
-
-Symbol: \JacobiP
-
-  Feature Set: dlmf-macro
-	DLMF: \JacobiP{\alpha}{\beta}{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r2
-	Maple: JacobiP($2, $0, $1, $3)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
-	Mathematica: JacobiP[$2, $0, $1, $3]
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP
-	Meanings: Jacobi polynomial
-	Number of Ats: 1
-	Number of Parameters: 3
-	Number of Variables: 1
-
-Symbol: \JacobiSymbol
-
-  Feature Set: dlmf-macro
-	DLMF: \JacobiSymbol{n}{P}
-	DLMF-Link: dlmf.nist.gov/27.9#p3
-	Meanings: Jacobi symbol
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \JacobiTheta
-
-  Feature Set: dlmf-macro
-	DLMF: \JacobiTheta{j}@{z}{q}
-	DLMF-Link: dlmf.nist.gov/20.2#i
-	Maple: JacobiTheta$0($1, $2)
-	Meanings: Jacobi's theta function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \JacobiThetaCombined
-
-  Feature Set: dlmf-macro
-	DLMF: \JacobiThetaCombined{n}{m}@{z}{q}
-	DLMF-Link: dlmf.nist.gov/20.11#SS5.p2
-	Meanings: Combined theta function
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \JacobiThetaTau
-
-  Feature Set: dlmf-macro
-	Constraints: Im(tau) > 0 and 0 < |exp(I*Pi*tau)| < 1
-	DLMF: \JacobiThetaTau{j}@{z}{\tau}
-	DLMF-Link: dlmf.nist.gov/20.2#i
-	Maple-Alternatives: JacobiTheta$0($1,exp(I*Pi*$2))
-	Maple-Comment: The alternative translation is only allowed for: Im($2) > 0 and 0 < |exp(I*Pi*$2)| < 1
-	Meanings: Jacobi's theta-tau function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \JacobiZeta
-
-  Feature Set: dlmf-macro
-	DLMF: \JacobiZeta@{x}{k}
-	DLMF-Link: dlmf.nist.gov/22.16#E32
-	Maple: JacobiZeta($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiZeta
-	Mathematica: JacobiZeta[$0, $1]
-	Meanings: Jacobi zeta function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
 
 Symbol: \JacobiZetak
 
@@ -4373,18 +2368,6 @@ Symbol: \JacobiZetak
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Jacobiam
-
-  Feature Set: dlmf-macro
-	DLMF: \Jacobiam@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.16#E1
-	Maple: JacobiAM($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-	Meanings: Jacobi's amplitude function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
 Symbol: \Jacobiamk
 
   Feature Set: dlmf-macro
@@ -4405,90 +2388,6 @@ Symbol: \Jacobiamk
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
-
-Symbol: \Jacobicd
-
-  Feature Set: dlmf-macro
-	DLMF: \Jacobicd@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.2#E8
-	Maple: JacobiCD($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCD
-	Mathematica: JacobiCD[$0, ($1)^2]
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiCD.html
-	Meanings: Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \Jacobicn
-
-  Feature Set: dlmf-macro
-	DLMF: \Jacobicn@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.2#E5
-	Maple: JacobiCN($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCN
-	Mathematica: JacobiCN[$0, ($1)^2]
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiCN.html
-	Meanings: Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \Jacobics
-
-  Feature Set: dlmf-macro
-	DLMF: \Jacobics@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.2#E15
-	Maple: JacobiCS($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-	Mathematica: JacobiCS[$0, ($1)^2]
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiCS.html
-	Meanings: Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \Jacobidc
-
-  Feature Set: dlmf-macro
-	DLMF: \Jacobidc@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.2#E14
-	Maple: JacobiDC($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-	Mathematica: JacobiDC[$0, ($1)^2]
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiDC.html
-	Meanings: Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \Jacobidn
-
-  Feature Set: dlmf-macro
-	DLMF: \Jacobidn@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.2#E6
-	Maple: JacobiDN($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiDN
-	Mathematica: JacobiDN[$0, ($1)^2]
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiDN.html
-	Meanings: Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \Jacobids
-
-  Feature Set: dlmf-macro
-	DLMF: \Jacobids@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.2#E13
-	Maple: JacobiDS($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-	Mathematica: JacobiDS[$0, ($1)^2]
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiDS.html
-	Meanings: Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
 
 Symbol: \Jacobiellcdk
 
@@ -4790,48 +2689,6 @@ Symbol: \Jacobiellsnk
 	Number of Variables: 2
 	Role: 
 
-Symbol: \Jacobinc
-
-  Feature Set: dlmf-macro
-	DLMF: \Jacobinc@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.2#E11
-	Maple: JacobiNC($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-	Mathematica: JacobiNC[$0, ($1)^2]
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiNC.html
-	Meanings: Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \Jacobind
-
-  Feature Set: dlmf-macro
-	DLMF: \Jacobind@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.2#E12
-	Maple: JacobiND($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-	Mathematica: JacobiND[$0, ($1)^2]
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiND.html
-	Meanings: Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \Jacobins
-
-  Feature Set: dlmf-macro
-	DLMF: \Jacobins@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.2#E10
-	Maple: JacobiNS($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-	Mathematica: JacobiNS[$0, ($1)^2]
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiNS.html
-	Meanings: Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
 Symbol: \Jacobiphi
 
   Feature Set: dlmf-macro
@@ -4873,48 +2730,6 @@ Symbol: \JacobipolyP
 	Number of Parameters: 3
 	Number of Variables: 1
 	Role: 
-
-Symbol: \Jacobisc
-
-  Feature Set: dlmf-macro
-	DLMF: \Jacobisc@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.2#E9
-	Maple: JacobiSC($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSC
-	Mathematica: JacobiSC[$0, ($1)^2]
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiSC.html
-	Meanings: Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \Jacobisd
-
-  Feature Set: dlmf-macro
-	DLMF: \Jacobisd@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.2#E7
-	Maple: JacobiSD($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSD
-	Mathematica: JacobiSD[$0, ($1)^2]
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiSD.html
-	Meanings: Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \Jacobisn
-
-  Feature Set: dlmf-macro
-	DLMF: \Jacobisn@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.2#E4
-	Maple: JacobiSN($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSN
-	Mathematica: JacobiSN[$0, ($1)^2]
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiSN.html
-	Meanings: Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
 
 Symbol: \Jacobisym
 
@@ -4995,17 +2810,6 @@ Symbol: \Jacobithetatau
 	Number of Variables: 2
 	Role: 
 	Slot of Differentiation: 1
-
-Symbol: \JonquierePhi
-
-  Feature Set: dlmf-macro
-	DLMF: \JonquierePhi@{z}{s}
-	DLMF-Link: dlmf.nist.gov/25.1
-	Meanings: Polylogarithm
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-	Role: dlmf-macro
 
 Symbol: \Jonquierephi
 
@@ -5176,16 +2980,6 @@ Symbol: \Krawtchouk
 	Number of Variables: 3
 	Role: 
 
-Symbol: \KrawtchoukK
-
-  Feature Set: dlmf-macro
-	DLMF: \KrawtchoukK{n}@{x}{p}{N}
-	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r3
-	Meanings: Krawtchouk polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 3
-
 Symbol: \KrawtchoukpolyK
 
   Feature Set: dlmf-macro
@@ -5202,18 +2996,6 @@ Symbol: \KrawtchoukpolyK
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
-
-Symbol: \Kronecker
-
-  Feature Set: dlmf-macro
-	DLMF: \Kronecker{j}{k}
-	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r4
-	Maple-Alternatives: KroneckerDelta[$0, $1]
-	Maple-Comment: This funcion needs an extra package. with(Physics)
-	Meanings: Kronecker delta
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 2
 
 Symbol: \Kroneckerdelta
 
@@ -5235,41 +3017,6 @@ Symbol: \Kroneckerdelta
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
-
-Symbol: \KummerM
-
-  Feature Set: dlmf-macro
-	DLMF: \KummerM@{a}{b}{z}
-	DLMF-Link: dlmf.nist.gov/13.2#E2
-	Maple: KummerM($0, $1, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KummerK
-	Meanings: Kummer confluent hypergeometric functions M
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 3
-
-Symbol: \KummerU
-
-  Feature Set: dlmf-macro
-	DLMF: \KummerU@{a}{b}{z}
-	DLMF-Link: dlmf.nist.gov/13.2#E6
-	Maple: KummerU($0, $1, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KummerU
-	Meanings: Kummer confluent hypergeometric functions U
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 3
-
-Symbol: \KummerboldM
-
-  Feature Set: dlmf-macro
-	DLMF: \KummerboldM@{a}{b}{z}
-	DLMF-Link: dlmf.nist.gov/13.2#E3
-	Maple-Alternatives: KummerM($0, $1, $2)/GAMMA($1)
-	Meanings: Olver's confluent hypergeometric functions U
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 3
 
 Symbol: \KummerconfhyperM
 
@@ -5352,396 +3099,6 @@ Symbol: \Laguerre
 	Role: 
 
 Symbol: \LaguerreL
-
-  Feature Set: dlmf-macro
-	DLMF: \LaguerreL{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.1#I1.ix7.p1
-	Maple: LaguerreL($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Mathematica: LaguerreL[$0, $1]
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerreL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Mathematica: LaguerreL[$1, $0, $2]
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Mathematica: LaguerreL[$1, $0, $2]
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Mathematica: LaguerreL[$1, $0, $2]
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
 
   Feature Set: dlmf-alternative-1
 	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
@@ -5890,56 +3247,6 @@ Symbol: \LameEs
 	Number of Variables: 2
 	Role: 
 	Slot of Differentiation: 1
-
-Symbol: \Lamea
-
-  Feature Set: dlmf-macro
-	DLMF: \Lamea{n}{\nu}@{k^2}
-	DLMF-Link: dlmf.nist.gov/29.3#SS1.p1
-	Meanings: Eigenvalues of Lame's equation
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 1
-
-Symbol: \Lameb
-
-  Feature Set: dlmf-macro
-	DLMF: \Lameb{n}{\nu}@{k^2}
-	DLMF-Link: dlmf.nist.gov/29.3#SS1.p1
-	Meanings: Eigenvalues of Lame's equation
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 1
-
-Symbol: \LamecE
-
-  Feature Set: dlmf-macro
-	DLMF: \LamecE{m}{2n+1}@{z}{k^2}
-	DLMF-Link: dlmf.nist.gov/29.12#E3
-	Meanings: Lame polynomial
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \LamecdE
-
-  Feature Set: dlmf-macro
-	DLMF: \LamecdE{m}{2n+2}@{z}{k^2}
-	DLMF-Link: dlmf.nist.gov/29.12#E7
-	Meanings: Lame polynomial
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \LamedE
-
-  Feature Set: dlmf-macro
-	DLMF: \LamedE{m}{2n+1}@{z}{k^2}
-	DLMF-Link: dlmf.nist.gov/29.12#E4
-	Meanings: Lame polynomial
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
 
 Symbol: \Lameeigvala
 
@@ -6111,56 +3418,6 @@ Symbol: \LamepolyuE
 	Number of Variables: 2
 	Role: 
 
-Symbol: \LamesE
-
-  Feature Set: dlmf-macro
-	DLMF: \LamesE{m}{2n+1}@{z}{k^2}
-	DLMF-Link: dlmf.nist.gov/29.12#E2
-	Meanings: Lame polynomial
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \LamescE
-
-  Feature Set: dlmf-macro
-	DLMF: \LamescE{m}{2n+2}@{z}{k^2}
-	DLMF-Link: dlmf.nist.gov/29.12#E5
-	Meanings: Lame polynomial
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \LamescdE
-
-  Feature Set: dlmf-macro
-	DLMF: \LamescdE{m}{2n+3}@{z}{k^2}
-	DLMF-Link: dlmf.nist.gov/29.12#E8
-	Meanings: Lame polynomial
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \LamesdE
-
-  Feature Set: dlmf-macro
-	DLMF: \LamesdE{m}{2n+2}@{z}{k^2}
-	DLMF-Link: dlmf.nist.gov/29.12#E6
-	Meanings: Lame polynomial
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \LameuE
-
-  Feature Set: dlmf-macro
-	DLMF: \LameuE{m}{2n}@{z}{k^2}
-	DLMF-Link: dlmf.nist.gov/29.12#E1
-	Meanings: Lame polynomial
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
-
 Symbol: \Lattice
 
   Feature Set: dlmf-macro
@@ -6197,426 +3454,6 @@ Symbol: \LauricellaFD
 
 Symbol: \LegendreBlackQ
 
-  Feature Set: dlmf-macro
-	DLMF: \LegendreBlackQ{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.2#i
-	Maple: LegendreQ($0,$1)/GAMMA($0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LegendreBlackQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Maple: exp(-($0)*Pi*I)*LegendreQ($1,$0,$2)/GAMMA($1+$0+1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E10
-	Meanings: Olver's associated Legendre function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
   Feature Set: dlmf-alternative-1
 	DLMF: \assLegendreOlverQ[\mu]{\nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.3#E10
@@ -6629,290 +3466,6 @@ Symbol: \LegendreBlackQ
 
 Symbol: \LegendreP
 
-  Feature Set: dlmf-macro
-	Branch Cuts: (-\infty, 1]
-	DLMF: \LegendreP{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.2#i
-	Maple: LegendreP($0, $1)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Mathematica: LegendreP[$0, $1]
-	Meanings: Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \LegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Mathematica: LegendreP[$1, $0, $2]
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Mathematica: LegendreP[$1, $0, $2]
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Mathematica: LegendreP[$1, $0, $2]
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Maple: LegendreP($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
   Feature Set: dlmf-alternative-1
 	Branch Cuts: (-\infty, 1]
 	DLMF: \assLegendreP[\mu]{\nu}@{z}
@@ -6923,518 +3476,9 @@ Symbol: \LegendreP
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E5
-	Meanings: Associated Legendre function of first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-Symbol: \LegendrePoly
-
-  Feature Set: dlmf-macro
-	DLMF: \LegendrePoly{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r10
-	Maple: LegendreP($0, $1)
-	Maple-Comment: Note that LegendreP is also the Legendre function.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Mathematica: LegendreP[$0, $1]
-	Meanings: Legendre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \LegendrePolys
-
-  Feature Set: dlmf-macro
-	DLMF: \LegendrePolys{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r11
-	Maple: LegendreP($0, 2*($1) - 1)
-	Maple-Comment: Note that LegendreP is also the Legendre function. This translation bases on DLMF 18.7.10.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-	Meanings: Shifted Legendre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
 
 Symbol: \LegendreQ
 
-  Feature Set: dlmf-macro
-	Branch Cuts: (-\infty, 1]
-	DLMF: \LegendreQ{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.2#i
-	Maple: LegendreQ($0, $1)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Mathematica: LegendreQ[$0, $1]
-	Meanings: Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \LegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Mathematica: LegendreQ[$1, $0, 1, $3]
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Mathematica: LegendreQ[$1, $0, 1, $3]
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Mathematica: LegendreQ[$1, $0, 1, $3]
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Maple: LegendreQ($1, $0, $2)
-	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
   Feature Set: dlmf-alternative-1
 	Branch Cuts: (-\infty, 1]
 	DLMF: \assLegendreQ[\mu]{\nu}@{z}
@@ -7445,216 +3489,6 @@ Symbol: \LegendreQ
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreQ[\mu]{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.3#E7
-	Meanings: Associated Legendre function of second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
-
-Symbol: \LegendreSymbol
-
-  Feature Set: dlmf-macro
-	DLMF: \LegendreSymbol{n}{p}
-	DLMF-Link: dlmf.nist.gov/27.9
-	Maple-Alternatives: legendre($0, $1)
-	Maple-Comment: This funcion needs an extra package. For Maple 2016 or older use with(numtheory), otherwise use with(NumberTheory)
-	Meanings: Legendre symbol
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 2
 
 Symbol: \LegendrepolyP
 
@@ -7717,18 +3551,6 @@ Symbol: \LerchPhi
 	Number of Variables: 3
 	Role: 
 
-Symbol: \LeviCivita
-
-  Feature Set: dlmf-macro
-	DLMF: \LeviCivita{j}{k}{l}
-	DLMF-Link: dlmf.nist.gov/1.6#E14
-	Maple-Alternatives: LeviCivita[$0, $1, $2]
-	Maple-Comment: This funcion needs an extra package: with(Physics). The number of variables is not defined in Maple. LeviCivita[j,k,l,...]
-	Meanings: Levi-Civita symbol
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 3
-
 Symbol: \LeviCivitasym
 
   Feature Set: dlmf-macro
@@ -7763,26 +3585,6 @@ Symbol: \Lim
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
-
-Symbol: \LinBrF
-
-  Feature Set: dlmf-macro
-	DLMF: \LinBrF@{a}{u}
-	DLMF-Link: dlmf.nist.gov/7.19#E4
-	Meanings: Line broadening function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \LiouvilleLambda
-
-  Feature Set: dlmf-macro
-	DLMF: \LiouvilleLambda@{n}
-	DLMF-Link: dlmf.nist.gov/27.2#E13
-	Meanings: Liouville's function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
 
 Symbol: \Liouvillelambda
 
@@ -7824,24 +3626,6 @@ Symbol: \Ln
 	Mathematica-Package: 
 	Meanings: Multivalued natural logarithm
 	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
-Symbol: \LogInt
-
-  Feature Set: dlmf-macro
-	Constraints: x > 1
-	DLMF: \LogInt@{x}
-	DLMF-Link: dlmf.nist.gov/6.2#E8
-	Maple: Li($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Li
-	Mathematica: LogIntegral[$0]
-	Mathematica-Branch Cuts: (-\inf, 1)
-	Mathematica-Comment: Mathematica can compute the principle branch for x between 0 and 1 as well, while this is not defined in DLMF.
-	Mathematica-Link: reference.wolfram.com/language/ref/LogIntegral.html
-	Meanings: Logarithmic integral
-	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
@@ -7933,90 +3717,6 @@ Symbol: \MangoldtLambda
 	Number of Variables: 1
 	Role: 
 
-Symbol: \MathieuCe
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuCe{\nu}@@{z}{q}
-	DLMF-Link: dlmf.nist.gov/28.20#E3
-	Meanings: Modified Mathieu function
-	Number of Ats: 2
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \MathieuD
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuD{j}@{\nu}{\mu}{z}
-	DLMF-Link: dlmf.nist.gov/28.28#E24
-	Meanings: Cross-products of Mathieu function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 3
-
-Symbol: \MathieuDc
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuDc{j}@{n}{m}{z}
-	DLMF-Link: dlmf.nist.gov/28.28#E39
-	Meanings: Cross-products of Mathieu function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 3
-
-Symbol: \MathieuDs
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuDs{j}@{n}{m}{z}
-	DLMF-Link: dlmf.nist.gov/28.28#E35
-	Meanings: Cross-products of Mathieu function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 3
-
-Symbol: \MathieuDsc
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuDsc{j}@{n}{m}{z}
-	DLMF-Link: dlmf.nist.gov/28.28#E40
-	Meanings: Cross-products of Mathieu function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 3
-
-Symbol: \MathieuEigenvaluea
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuEigenvaluea{n}@@{q}
-	DLMF-Link: dlmf.nist.gov/28.2#SS5.p1
-	Maple: MathieuA($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuA
-	Meanings: Mathieu eigenvalues
-	Number of Ats: 2
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \MathieuEigenvalueb
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuEigenvalueb{n}@@{q}
-	DLMF-Link: dlmf.nist.gov/28.2#SS5.p1
-	Maple: MathieuB($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuB
-	Meanings: Mathieu eigenvalues
-	Number of Ats: 2
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \MathieuEigenvaluelambda
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuEigenvaluelambda{m}@@{q}
-	DLMF-Link: dlmf.nist.gov/28.12#E3
-	Meanings: Mathieu eigenvalues
-	Number of Ats: 2
-	Number of Parameters: 1
-	Number of Variables: 1
-
 Symbol: \MathieuFc
 
   Feature Set: dlmf-macro
@@ -8033,16 +3733,6 @@ Symbol: \MathieuFc
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
-
-Symbol: \MathieuFe
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuFe{n}@@{z}{q}
-	DLMF-Link: dlmf.nist.gov/28.20#E6
-	Meanings: Modified Mathieu function
-	Number of Ats: 2
-	Number of Parameters: 1
-	Number of Variables: 2
 
 Symbol: \MathieuFs
 
@@ -8078,16 +3768,6 @@ Symbol: \MathieuGc
 	Number of Variables: 2
 	Role: 
 
-Symbol: \MathieuGe
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuGe{n}@@{z}{q}
-	DLMF-Link: dlmf.nist.gov/28.20#E7
-	Meanings: Modified Mathieu function
-	Number of Ats: 2
-	Number of Parameters: 1
-	Number of Variables: 2
-
 Symbol: \MathieuGs
 
   Feature Set: dlmf-macro
@@ -8104,96 +3784,6 @@ Symbol: \MathieuGs
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
-
-Symbol: \MathieuIe
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuIe{n}@@{z}{h}
-	DLMF-Link: dlmf.nist.gov/28.20#E17
-	Meanings: Modified Mathieu function
-	Number of Ats: 2
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \MathieuIo
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuIo{n}@@{z}{h}
-	DLMF-Link: dlmf.nist.gov/28.20#E18
-	Meanings: Modified Mathieu function
-	Number of Ats: 2
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \MathieuKe
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuKe{n}@@{z}{h}
-	DLMF-Link: dlmf.nist.gov/28.20#E19
-	Meanings: Modified Mathieu function
-	Number of Ats: 2
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \MathieuKo
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuKo{n}@@{z}{h}
-	DLMF-Link: dlmf.nist.gov/28.20#E20
-	Meanings: Modified Mathieu function
-	Number of Ats: 2
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \MathieuM
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuM{j}{\nu}@@{z}{h}
-	DLMF-Link: dlmf.nist.gov/28.20#SS3.p1
-	Meanings: Modified Mathieu function
-	Number of Ats: 2
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \MathieuMc
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuMc{j}{n}@@{z}{h}
-	DLMF-Link: dlmf.nist.gov/28.20#E15
-	Meanings: Radial Mathieu function
-	Number of Ats: 2
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \MathieuMe
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuMe{\nu}@@{z}{q}
-	DLMF-Link: dlmf.nist.gov/28.20#E5
-	Meanings: Modified Mathieu function
-	Number of Ats: 2
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \MathieuMs
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuMs{j}{n}@@{z}{h}
-	DLMF-Link: dlmf.nist.gov/28.20#E16
-	Meanings: Radial Mathieu function
-	Number of Ats: 2
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \MathieuSe
-
-  Feature Set: dlmf-macro
-	DLMF: \MathieuSe{\nu}@@{z}{q}
-	DLMF-Link: dlmf.nist.gov/28.20#E4
-	Meanings: Modified Mathieu function
-	Number of Ats: 2
-	Number of Parameters: 1
-	Number of Variables: 2
 
 Symbol: \Mathieuce
 
@@ -8378,16 +3968,6 @@ Symbol: \Meixner
 	Number of Variables: 3
 	Role: 
 
-Symbol: \MeixnerM
-
-  Feature Set: dlmf-macro
-	DLMF: \MeixnerM{n}@{x}{\beta}{c}
-	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r9
-	Meanings: Meixner polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 3
-
 Symbol: \MeixnerPollaczek
 
   Feature Set: dlmf-macro
@@ -8404,16 +3984,6 @@ Symbol: \MeixnerPollaczek
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
-
-Symbol: \MeixnerPollaczekP
-
-  Feature Set: dlmf-macro
-	DLMF: \MeixnerPollaczekP{\lambda}{n}@{x}{\phi}
-	DLMF-Link: dlmf.nist.gov/18.19#P3.p1
-	Meanings: Meixner-Pollaczek polynomial
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
 
 Symbol: \MeixnerPollaczekpolyP
 
@@ -8449,17 +4019,6 @@ Symbol: \MeixnerpolyM
 	Number of Variables: 3
 	Role: 
 
-Symbol: \Mills
-
-  Feature Set: dlmf-macro
-	DLMF: \Mills@{x}
-	DLMF-Link: dlmf.nist.gov/7.8#E1
-	Maple-Comment: Maybe with(Statistics): MillsRatio(X,t)
-	Meanings: Mills' Ratio
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
 Symbol: \MillsM
 
   Feature Set: dlmf-macro
@@ -8476,16 +4035,6 @@ Symbol: \MillsM
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
-
-Symbol: \MittagLeffler
-
-  Feature Set: dlmf-macro
-	DLMF: \MittagLeffler{a}{b}@{z}
-	DLMF-Link: dlmf.nist.gov/10.46#E3
-	Meanings: Mittag-Leffler function
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 1
 
 Symbol: \MittagLefflerE
 
@@ -8504,47 +4053,6 @@ Symbol: \MittagLefflerE
 	Number of Variables: 1
 	Role: 
 
-Symbol: \ModCylinder
-
-  Feature Set: dlmf-macro
-	DLMF: \ModCylinder{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/10.25#E3
-	Mathematica: ParabolicCylinderD[$0, $1]
-	Meanings: Nontrivial linear combination of modified Bessel functions
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \ModularJ
-
-  Feature Set: dlmf-macro
-	DLMF: \ModularJ@{\tau}
-	DLMF-Link: dlmf.nist.gov/23.15#E7
-	Meanings: Klein's complete invariant
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \ModularLambda
-
-  Feature Set: dlmf-macro
-	DLMF: \ModularLambda@{\tau}
-	DLMF-Link: dlmf.nist.gov/23.15#E6
-	Meanings: Elliptic modular function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \MoebiusMu
-
-  Feature Set: dlmf-macro
-	DLMF: \MoebiusMu@{n}
-	DLMF-Link: dlmf.nist.gov/27.2#E12
-	Meanings: Möbius function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
 Symbol: \Moebiusmu
 
   Feature Set: dlmf-macro
@@ -8561,18 +4069,6 @@ Symbol: \Moebiusmu
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
-
-Symbol: \NatNumber
-
-  Feature Set: dlmf-macro
-	DLMF: \NatNumber
-	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r11
-	Maple: posint
-	Meanings: Set of positive integers
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 0
-	Role: symbol
 
 Symbol: \NeumannFactor
 
@@ -8591,16 +4087,6 @@ Symbol: \NeumannFactor
 	Number of Variables: 1
 	Role: 
 
-Symbol: \NeumannPoly
-
-  Feature Set: dlmf-macro
-	DLMF: \NeumannPoly{n}@{x}
-	DLMF-Link: dlmf.nist.gov/10.23#E12
-	Meanings: Neumann's polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
 Symbol: \NeumannpolyO
 
   Feature Set: dlmf-macro
@@ -8617,58 +4103,6 @@ Symbol: \NeumannpolyO
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
-
-Symbol: \NumPrimeDivNu
-
-  Feature Set: dlmf-macro
-	DLMF: \NumPrimeDivNu@{n}
-	DLMF-Link: dlmf.nist.gov/27.2#E1
-	Maple: ifactor($0)
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=ifactor
-	Meanings: Number of distinct primes dividing n
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \NumPrimesLessPi
-
-  Feature Set: dlmf-macro
-	DLMF: \NumPrimesLessPi@{x}
-	DLMF-Link: dlmf.nist.gov/27.2#E2
-	Meanings: Number of primes not exceeding x
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \NumSquaresR
-
-  Feature Set: dlmf-macro
-	DLMF: \NumSquaresR{k}@{n}
-	DLMF-Link: dlmf.nist.gov/27.13#SS4.p1
-	Meanings: Number of squares
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \ODEgenAiryA
-
-  Feature Set: dlmf-macro
-	DLMF: \ODEgenAiryA{n}@{z}
-	DLMF-Link: dlmf.nist.gov/9.13#SS1.p2
-	Meanings: Generalized Airy function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \ODEgenAiryB
-
-  Feature Set: dlmf-macro
-	DLMF: \ODEgenAiryB{n}@{z}
-	DLMF-Link: dlmf.nist.gov/9.13#SS1.p2
-	Meanings: Generalized Bairy function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
 
 Symbol: \OlverconfhyperM
 
@@ -8709,120 +4143,6 @@ Symbol: \Pade
 	Number of Variables: 3
 	Role: 
 
-Symbol: \ParabolicU
-
-  Feature Set: dlmf-macro
-	DLMF: \ParabolicU@{a}{z}
-	DLMF-Link: dlmf.nist.gov/12.4#E1
-	Maple: CylinderU($0, $1)
-	Maple-Alternatives: 
-	Maple-Branch Cuts: 
-	Maple-Comment: For a=0, this can be computed with BesselK. But this produces branch cut issues
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CylinderU
-	Maple-Package: 
-	Meanings: Parabolic cylinder function U
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \ParabolicUbar
-
-  Feature Set: dlmf-macro
-	DLMF: \ParabolicUbar@{a}{x}
-	DLMF-Link: dlmf.nist.gov/12.2#21
-	Meanings: Real parabolic cylinder function U
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \ParabolicV
-
-  Feature Set: dlmf-macro
-	DLMF: \ParabolicV@{a}{z}
-	DLMF-Link: dlmf.nist.gov/12.4#E2
-	Maple: CylinderV($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CylinderV
-	Meanings: Parabolic cylinder function V
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \ParabolicW
-
-  Feature Set: dlmf-macro
-	DLMF: \ParabolicW@{a}{x}
-	DLMF-Link: dlmf.nist.gov/12.14.i
-	Meanings: Parabolic cylinder function W
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \PartitionsP
-
-  Feature Set: dlmf-macro
-	DLMF: \PartitionsP[k]@{n}
-	DLMF-Link: dlmf.nist.gov/26.9
-	Maple-Comment: Maple needs an extra package. Load it with the following command: with(combinat,partition)
-	Maple-Package: combinat,partition
-	Meanings: Number of partitions of nonnegative integer n into at most k parts
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \PeriodicBernoulliB
-
-  Feature Set: dlmf-macro
-	DLMF: \PeriodicBernoulliB{n}@{x}
-	DLMF-Link: dlmf.nist.gov/24.2#iii
-	Meanings: Periodic Bernoulli polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \PeriodicEulerE
-
-  Feature Set: dlmf-macro
-	DLMF: \PeriodicEulerE{n}@{x}
-	DLMF-Link: dlmf.nist.gov/24.2#iii
-	Meanings: Periodic Euler polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \PeriodicZeta
-
-  Feature Set: dlmf-macro
-	DLMF: \PeriodicZeta@{x}{s}
-	DLMF-Link: dlmf.nist.gov/25.13#E1
-	Meanings: Periodic zeta function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \Permutations
-
-  Feature Set: dlmf-macro
-	DLMF: \Permutations{n}
-	DLMF-Link: dlmf.nist.gov/26.13
-	Maple: permute($0)
-	Maple-Comment: Maple needs an extra package. Load it with the following command: with(combinat)
-	Maple-Package: combinat
-	Meanings: Set of permutations
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \PlanePartitionsPP
-
-  Feature Set: dlmf-macro
-	DLMF: \PlanePartitionsPP@{n}
-	DLMF-Link: dlmf.nist.gov/26.12#SS1.p4
-	Meanings: Number of plane partitions
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
 Symbol: \Pochhammersym
 
   Feature Set: dlmf-macro
@@ -8845,16 +4165,6 @@ Symbol: \Pochhammersym
 	Number of Variables: 2
 	Role: 
 
-Symbol: \PollaczekP
-
-  Feature Set: dlmf-macro
-	DLMF: \PollaczekP{\lambda}{n}@{x}{a}{b}
-	DLMF-Link: dlmf.nist.gov/18.35#E4
-	Meanings: Pollaczek polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 3
-
 Symbol: \PollaczekpolyP
 
   Feature Set: dlmf-macro
@@ -8871,20 +4181,6 @@ Symbol: \PollaczekpolyP
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
-
-Symbol: \Polylogarithm
-
-  Feature Set: dlmf-macro
-	DLMF: \Polylogarithm{s}@{z}
-	DLMF-Link: dlmf.nist.gov/25.12#E10
-	Maple: polylog($0, $1)
-	Maple-Comment: The alternative notation phi is an old notation for the same function. Be aware of the different order of the variables.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=polylog
-	Meanings: Polylogarithm
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
 
 Symbol: \Prod
 
@@ -8925,17 +4221,6 @@ Symbol: \Racah
 	Number of Variables: 5
 	Role: 
 
-Symbol: \RacahR
-
-  Feature Set: dlmf-macro
-	DLMF: \RacahR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}
-	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r4
-	Mathematica: Racah[{$0, $1, $2}, {$3, $4, $5}]
-	Meanings: Racah polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 5
-
 Symbol: \RacahpolyR
 
   Feature Set: dlmf-macro
@@ -8952,26 +4237,6 @@ Symbol: \RacahpolyR
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
-
-Symbol: \RamanujanSum
-
-  Feature Set: dlmf-macro
-	DLMF: \RamanujanSum{k}@{n}
-	DLMF-Link: dlmf.nist.gov/27.10#E4
-	Meanings: Ramanujan's sum
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \RamanujanTau
-
-  Feature Set: dlmf-macro
-	DLMF: \RamanujanTau@{n}
-	DLMF-Link: dlmf.nist.gov/27.14#E18
-	Meanings: Ramanujan's Tau function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
 
 Symbol: \Ramanujansum
 
@@ -9011,19 +4276,6 @@ Symbol: \Ramanujantau
 	Number of Variables: 1
 	Role: 
 
-Symbol: \Rational
-
-  Feature Set: dlmf-macro
-	DLMF: \Rational
-	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r13
-	Maple: rational
-	Mathematica: Rationals
-	Meanings: Set of rational numbers
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 0
-	Role: symbol
-
 Symbol: \Rationals
 
   Feature Set: dlmf-macro
@@ -9043,16 +4295,6 @@ Symbol: \Rationals
 	Number of Variables: 0
 	Role: symbol
 
-Symbol: \RayleighFun
-
-  Feature Set: dlmf-macro
-	DLMF: \RayleighFun{n}@{\nu}
-	DLMF-Link: dlmf.nist.gov/10.21#E55
-	Meanings: Rayleigh function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
 Symbol: \Rayleighsigma
 
   Feature Set: dlmf-macro
@@ -9069,19 +4311,6 @@ Symbol: \Rayleighsigma
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
-
-Symbol: \Real
-
-  Feature Set: dlmf-macro
-	DLMF: \Real
-	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r14
-	Maple: real
-	Mathematica: Reals
-	Meanings: Set of real numbers
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 0
-	Role: symbol
 
 Symbol: \Reals
 
@@ -9102,19 +4331,6 @@ Symbol: \Reals
 	Number of Variables: 0
 	Role: symbol
 
-Symbol: \RepInterfc
-
-  Feature Set: dlmf-macro
-	DLMF: \RepInterfc{n}@{z}
-	DLMF-Link: dlmf.nist.gov/7.18#E2
-	Maple: erfc($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=erfc
-	Meanings: Repeated / Iterated integral of complementary error function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
 Symbol: \Residue
 
   Feature Set: dlmf-macro
@@ -9131,52 +4347,6 @@ Symbol: \Residue
 	Number of Parameters: 0
 	Number of Variables: 0
 	Role: symbol
-
-Symbol: \RestrictedCompositionsC
-
-  Feature Set: dlmf-macro
-	DLMF: \RestrictedCompositionsC@{\mathrm{condition}}{n}
-	DLMF-Link: dlmf.nist.gov/26.10#i
-	Meanings: Restricted number of compositions
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \RestrictedPartitionsP
-
-  Feature Set: dlmf-macro
-	DLMF: \RestrictedPartitionsP[k]@{\mathrm{condition}}{n}
-	DLMF-Link: dlmf.nist.gov/26.11#p1
-	Meanings: Restricted number of partitions
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \RiemannXi
-
-  Feature Set: dlmf-macro
-	DLMF: \RiemannXi@{s}
-	DLMF-Link: dlmf.nist.gov/25.4#E4
-	Maple-Alternatives: ($0)*($0-1)*GAMMA(($0)/2)*Pi^(-($0)/2)*Zeta($0)/2
-	Maple-Comment: You could use the alternative translation!
-	Mathematica: RiemannXi[$0]
-	Meanings: Riemann's xi-function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \RiemannZeta
-
-  Feature Set: dlmf-macro
-	DLMF: \RiemannZeta@{s}
-	DLMF-Link: dlmf.nist.gov/25.2#E1
-	Maple: Zeta($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
-	Mathematica: Zeta[$0]
-	Meanings: Riemann zeta function
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
 
 Symbol: \Riemannxi
 
@@ -9282,71 +4452,6 @@ Symbol: \ScorerHi
 	Role: 
 	Slot of Differentiation: 1
 
-Symbol: \SinCosIntf
-
-  Feature Set: dlmf-macro
-	DLMF: \SinCosIntf@{z}
-	DLMF-Link: dlmf.nist.gov/6.2#E17
-	Meanings: Auxiliary function for sine and cosine integrals
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
-Symbol: \SinCosIntg
-
-  Feature Set: dlmf-macro
-	DLMF: \SinCosIntg@{z}
-	DLMF-Link: dlmf.nist.gov/6.2#E18
-	Meanings: Auxiliary function for sine and cosine integrals
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
-Symbol: \SinInt
-
-  Feature Set: dlmf-macro
-	DLMF: \SinInt@{z}
-	DLMF-Link: dlmf.nist.gov/6.2#E9
-	Maple: Si($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Si
-	Mathematica: SinIntegral[$0]
-	Mathematica-Link: reference.wolfram.com/language/ref/SinIntegral.html
-	Meanings: Sine integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
-Symbol: \SinIntg
-
-  Feature Set: dlmf-macro
-	Branch Cuts: z = 0
-	DLMF: \SinIntg@{a}{z}
-	DLMF-Link: dlmf.nist.gov/8.21#E2
-	Meanings: Generalized sine integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-	Role: dlmf-macro
-
-Symbol: \SinhInt
-
-  Feature Set: dlmf-macro
-	DLMF: \SinhInt@{z}
-	DLMF-Link: dlmf.nist.gov/6.2#E15
-	Maple: Shi($0)
-	Maple-Alternatives: int((1-cos(t))/t, t = 0 .. $0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Shi
-	Mathematica: SinhIntegral[$0]
-	Mathematica-Link: reference.wolfram.com/language/ref/SinhIntegral.html
-	Meanings: Hyperbolic sine integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
 Symbol: \SpaceTestFunTempered
 
   Feature Set: dlmf-macro
@@ -9363,148 +4468,6 @@ Symbol: \SpaceTestFunTempered
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
-
-Symbol: \SphBesselIi
-
-  Feature Set: dlmf-macro
-	DLMF: \SphBesselIi{n}@{z}
-	DLMF-Link: dlmf.nist.gov/10.47#E7
-	Meanings: Modified spherical Bessel function of the first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \SphBesselIii
-
-  Feature Set: dlmf-macro
-	DLMF: \SphBesselIii{n}@{z}
-	DLMF-Link: dlmf.nist.gov/10.47#E8
-	Meanings: Modified spherical Bessel function of the first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \SphBesselJ
-
-  Feature Set: dlmf-macro
-	DLMF: \SphBesselJ{n}@{z}
-	DLMF-Link: dlmf.nist.gov/10.47#E3
-	Meanings: Spherical Bessel function of the first kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \SphBesselK
-
-  Feature Set: dlmf-macro
-	DLMF: \SphBesselK{n}@{z}
-	DLMF-Link: dlmf.nist.gov/10.47#E9
-	Meanings: Modified spherical Bessel function of the second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \SphBesselY
-
-  Feature Set: dlmf-macro
-	DLMF: \SphBesselY{n}@{z}
-	DLMF-Link: dlmf.nist.gov/10.47#E4
-	Meanings: Spherical Bessel function of the second kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \SphHankelHi
-
-  Feature Set: dlmf-macro
-	DLMF: \SphHankelHi{n}@{z}
-	DLMF-Link: dlmf.nist.gov/10.47#E5
-	Meanings: Spherical Bessel function of the third kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \SphHankelHii
-
-  Feature Set: dlmf-macro
-	DLMF: \SphHankelHii{n}@{z}
-	DLMF-Link: dlmf.nist.gov/10.47#E6
-	Meanings: Spherical Bessel function of the third kind
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \SphericalHarmonicY
-
-  Feature Set: dlmf-macro
-	DLMF: \SphericalHarmonicY{l}{m}@{\theta}{\phi}
-	DLMF-Link: dlmf.nist.gov/14.30#E1
-	Maple: SphericalY($0, $1, $2, $3)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=SphericalY
-	Meanings: Spherical harmonics
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \SpheroidalEigenvalueLambda
-
-  Feature Set: dlmf-macro
-	DLMF: \SpheroidalEigenvalueLambda{m}{n}@{\gamma^2}
-	DLMF-Link: dlmf.nist.gov/30.3#SS1.p1
-	Meanings: Eigenvalues of the spheroidal differential equation
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 1
-
-Symbol: \SpheroidalOnCutPs
-
-  Feature Set: dlmf-macro
-	DLMF: \SpheroidalOnCutPs{m}{n}@{x}{\gamma^2}
-	DLMF-Link: dlmf.nist.gov/30.4#i
-	Meanings: Spheroidal wave function of the first kind
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \SpheroidalOnCutQs
-
-  Feature Set: dlmf-macro
-	DLMF: \SpheroidalOnCutQs{m}{n}@{x}{\gamma^2}
-	DLMF-Link: dlmf.nist.gov/30.5
-	Meanings: Spheroidal wave function of the second kind
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \SpheroidalPs
-
-  Feature Set: dlmf-macro
-	DLMF: \SpheroidalPs{m}{n}@{z}{\gamma^2}
-	DLMF-Link: dlmf.nist.gov/30.6#p1
-	Meanings: Spheroidal wave function of the first kind complex argument
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \SpheroidalQs
-
-  Feature Set: dlmf-macro
-	DLMF: \SpheroidalQs{m}{n}@{z}{\gamma^2}
-	DLMF-Link: dlmf.nist.gov/30.6#p1
-	Meanings: Spheroidal wave function of the second kind complex argument
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \SpheroidalRadialS
-
-  Feature Set: dlmf-macro
-	DLMF: \SpheroidalRadialS{m}{j}{n}@{z}{\gamma}
-	DLMF-Link: dlmf.nist.gov/30.11#E3
-	Meanings: Radial spheroidal wave function
-	Number of Ats: 1
-	Number of Parameters: 3
-	Number of Variables: 2
 
 Symbol: \StieltjesConstants
 
@@ -9541,16 +4504,6 @@ Symbol: \StieltjesWigert
 	Number of Variables: 2
 	Role: 
 
-Symbol: \StieltjesWigertS
-
-  Feature Set: dlmf-macro
-	DLMF: \StieltjesWigertS{n}@{x}{q}
-	DLMF-Link: dlmf.nist.gov/18.27#E18
-	Meanings: Stieltjes-Wigert polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
 Symbol: \StieltjesWigertpolyS
 
   Feature Set: dlmf-macro
@@ -9567,30 +4520,6 @@ Symbol: \StieltjesWigertpolyS
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
-
-Symbol: \StirlingS
-
-  Feature Set: dlmf-macro
-	DLMF: \StirlingS@{n}{k}
-	DLMF-Link: dlmf.nist.gov/26.8#SS1.p1
-	Maple: Stirling1($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Stirling1
-	Meanings: Stirling number of the first kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \StirlingSS
-
-  Feature Set: dlmf-macro
-	DLMF: \StirlingSS@{n}{k}
-	DLMF-Link: dlmf.nist.gov/26.8#SS1.p3
-	Maple: Stirling2($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Stirling2
-	Meanings: Stirling number of the second kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
 
 Symbol: \StirlingnumberS
 
@@ -9693,31 +4622,6 @@ Symbol: \StruveK
 	Number of Variables: 1
 	Role: 
 
-Symbol: \StruveL
-
-  Feature Set: dlmf-macro
-	DLMF: \StruveL{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/11.2#E2
-	Maple: StruveL($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=StruveL
-	Mathematica: StruveL[$0, $1]
-	Meanings: Modified Struve function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \StruveM
-
-  Feature Set: dlmf-macro
-	DLMF: \StruveM{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/11.2#E6
-	Maple: StruveL($0, $1) - BesselI($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=StruveL
-	Meanings: Associated Modified Struve function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
 Symbol: \Sum
 
   Feature Set: dlmf-macro
@@ -9739,26 +4643,6 @@ Symbol: \Sum
 	Number of Parameters: 3
 	Number of Variables: 1
 	Role: 
-
-Symbol: \SurfaceHarmonicY
-
-  Feature Set: dlmf-macro
-	DLMF: \SurfaceHarmonicY{l}{m}@{\theta}{\phi}
-	DLMF-Link: dlmf.nist.gov/14.30#E2
-	Meanings: Surface harmonics of the first kind
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
-
-Symbol: \TriangleOP
-
-  Feature Set: dlmf-macro
-	DLMF: \TriangleOP{\alpha}{\beta}{\gamma}{m}{n}@{x}{y}
-	DLMF-Link: dlmf.nist.gov/18.37#E7
-	Meanings: Triangle polynomial
-	Number of Ats: 1
-	Number of Parameters: 5
-	Number of Variables: 2
 
 Symbol: \Ultra
 
@@ -9784,19 +4668,6 @@ Symbol: \Ultra
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
-
-Symbol: \Ultraspherical
-
-  Feature Set: dlmf-macro
-	DLMF: \Ultraspherical{\lambda}{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r3
-	Maple: GegenbauerC($1, $0, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC
-	Mathematica: GegenbauerC[$1, $0, $2]
-	Meanings: Ultraspherical Gegenbauer polynomial
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 1
 
 Symbol: \VoigtH
 
@@ -9908,51 +4779,6 @@ Symbol: \WeberE
 	Number of Variables: 1
 	Role: 
 	Slot of Differentiation: 1
-
-Symbol: \WeierPInv
-
-  Feature Set: dlmf-macro
-	DLMF: \WeierPInv@@{z}{g_2}{g_3}
-	DLMF-Link: dlmf.nist.gov/23.3#E8
-	Maple: WeierstrassP($0, $1, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassP
-	Mathematica: WeierstrassP[$0, {$1, $2}]
-	Meanings: Weierstrass elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 3
-
-Symbol: \WeierPLat
-
-  Feature Set: dlmf-macro
-	DLMF: \WeierPLat@@{z}{\Lattice{L}}
-	DLMF-Link: dlmf.nist.gov/23.2#E4
-	Meanings: Weierstrass elliptic function on lattice
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \WeiersigmaInv
-
-  Feature Set: dlmf-macro
-	DLMF: \WeiersigmaInv@@{z}{g_2}{g_3}
-	DLMF-Link: dlmf.nist.gov/23.1E6
-	Maple: WeierstrassSigma($0, $1, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassSigma
-	Meanings: Weierstrass sigma function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 3
-
-Symbol: \WeiersigmaLat
-
-  Feature Set: dlmf-macro
-	DLMF: \WeiersigmaLat@@{z}{\Lattice{L}}
-	DLMF-Link: dlmf.nist.gov/23.1E6
-	Meanings: Weierstrass sigma function on lattice
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
 
 Symbol: \Weierstrasspinvar
 
@@ -10070,67 +4896,6 @@ Symbol: \Weierstrasszetalatt
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
-
-Symbol: \WeierzetaInv
-
-  Feature Set: dlmf-macro
-	DLMF: \WeierzetaInv@@{z}{g_2}{g_3}
-	DLMF-Link: dlmf.nist.gov/23.1E5
-	Maple: WeierstrassZeta($0, $1, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassZeta
-	Mathematica: WeierstrassZeta[$0, {$1, $2}]
-	Meanings: Weierstrass zeta function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 3
-
-Symbol: \WeierzetaLat
-
-  Feature Set: dlmf-macro
-	DLMF: \WeierzetaLat@@{z}{\Lattice{L}}
-	DLMF-Link: dlmf.nist.gov/23.1E5
-	Meanings: Weierstrass zeta function on lattice
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \WhitD
-
-  Feature Set: dlmf-macro
-	DLMF: \WhitD{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/12.1
-	Maple: CylinderD($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CylinderD
-	Mathematica: ParabolicCylinderD[$0, $1]
-	Meanings: Whittaker's notation D for the parabolic cylinder function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \WhitM
-
-  Feature Set: dlmf-macro
-	DLMF: \WhitM{\kappa}{\mu}@{z}
-	DLMF-Link: dlmf.nist.gov/13.14#E2
-	Maple: WhittakerM($0, $1, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerM
-	Meanings: Whittaker confluent hypergeometric function
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 1
-
-Symbol: \WhitW
-
-  Feature Set: dlmf-macro
-	DLMF: \WhitW{\kappa}{\mu}@{z}
-	DLMF-Link: dlmf.nist.gov/13.14#E3
-	Maple: WhittakerW($0, $1, $2)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerW
-	Mathematica: WhittakerW[$0, $1, $2]
-	Meanings: Whittaker confluent hypergeometric function
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 1
 
 Symbol: \WhittakerconfhyperM
 
@@ -10271,16 +5036,6 @@ Symbol: \Wilson
 	Number of Variables: 5
 	Role: 
 
-Symbol: \WilsonW
-
-  Feature Set: dlmf-macro
-	DLMF: \WilsonW{n}@{x}{a}{b}{c}{d}
-	DLMF-Link: dlmf.nist.gov/18.25#T1.t1.r2
-	Meanings: Wilson polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 5
-
 Symbol: \WilsonpolyW
 
   Feature Set: dlmf-macro
@@ -10335,86 +5090,6 @@ Symbol: \Wronskian
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
-
-Symbol: \ZeroAiryAi
-
-  Feature Set: dlmf-macro
-	DLMF: \ZeroAiryAi{k}
-	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
-	Meanings: Zeros of Airy function of the first kind
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \ZeroAiryAiPrime
-
-  Feature Set: dlmf-macro
-	DLMF: \ZeroAiryAiPrime{k}
-	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
-	Meanings: Zeros of derivative Airy function of the first kind
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \ZeroAiryBi
-
-  Feature Set: dlmf-macro
-	DLMF: \ZeroAiryBi{k}
-	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
-	Meanings: Zeros of Airy function  of the second kind
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \ZeroAiryBiPrime
-
-  Feature Set: dlmf-macro
-	DLMF: \ZeroAiryBiPrime{k}
-	DLMF-Link: dlmf.nist.gov/9.9#SS1.p2
-	Meanings: Zeros of derivative Airy function of the second kind
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 1
-
-Symbol: \ZeroBesselJ
-
-  Feature Set: dlmf-macro
-	DLMF: \ZeroBesselJ{\nu}{m}
-	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
-	Meanings: Zeros of Bessel function first kind
-	Number of Ats: 0
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \ZeroBesselJPrime
-
-  Feature Set: dlmf-macro
-	DLMF: \ZeroBesselJPrime{\nu}{m}
-	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
-	Meanings: Zeros of derivative of Bessel function first kind
-	Number of Ats: 0
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \ZeroBesselY
-
-  Feature Set: dlmf-macro
-	DLMF: \ZeroBesselY{\nu}{m}
-	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
-	Meanings: Zeros of Bessel function second kind
-	Number of Ats: 0
-	Number of Parameters: 1
-	Number of Variables: 1
-
-Symbol: \ZeroBesselYPrime
-
-  Feature Set: dlmf-macro
-	DLMF: \ZeroBesselYPrime{\nu}{m}
-	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
-	Meanings: Zeros of derivative of Bessel function second kind
-	Number of Ats: 0
-	Number of Parameters: 1
-	Number of Variables: 1
 
 Symbol: \aGudermannian
 
@@ -10922,178 +5597,6 @@ Symbol: \acsch
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \arcGudermannian
-
-  Feature Set: dlmf-macro
-	Constraints: -(1/2) \cpi < x < (1/2) \cpi
-	DLMF: \arcGudermannian@@{x}
-	DLMF-Link: dlmf.nist.gov/4.23#E41
-	Maple-Alternatives: arctanh(sin($0))
-	Mathematica: InverseGudermannian[$0]
-	Mathematica-Comment: Defined also for imaginary values.
-	Mathematica-Link: reference.wolfram.com/language/ref/InverseGudermannian.html
-	Meanings: Inverse Gudermannian function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
-Symbol: \arcJacobicd
-
-  Feature Set: dlmf-macro
-	DLMF: \arcJacobicd@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiCD($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-	Mathematica: InverseJacobiCD[$0, $1]
-	Meanings: Inverse of Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \arcJacobicn
-
-  Feature Set: dlmf-macro
-	DLMF: \arcJacobicn@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiCN($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-	Mathematica: InverseJacobiCN[$0, $1]
-	Meanings: Inverse of Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \arcJacobics
-
-  Feature Set: dlmf-macro
-	DLMF: \arcJacobics@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiCS($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-	Mathematica: InverseJacobiCS[$0, $1]
-	Meanings: Inverse of Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \arcJacobidc
-
-  Feature Set: dlmf-macro
-	DLMF: \arcJacobidc@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiDC($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-	Mathematica: InverseJacobiDC[$0, $1]
-	Meanings: Inverse of Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \arcJacobidn
-
-  Feature Set: dlmf-macro
-	DLMF: \arcJacobidn@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiDN($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-	Mathematica: InverseJacobiDN[$0, $1]
-	Meanings: Inverse of Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \arcJacobids
-
-  Feature Set: dlmf-macro
-	DLMF: \arcJacobids@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiDS($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-	Mathematica: InverseJacobiDS[$0, $1]
-	Meanings: Inverse of Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \arcJacobinc
-
-  Feature Set: dlmf-macro
-	DLMF: \arcJacobinc@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiNC($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-	Mathematica: InverseJacobiNC[$0, $1]
-	Meanings: Inverse of Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \arcJacobind
-
-  Feature Set: dlmf-macro
-	DLMF: \arcJacobind@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiND($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-	Mathematica: InverseJacobiND[$0, $1]
-	Meanings: Inverse of Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \arcJacobins
-
-  Feature Set: dlmf-macro
-	DLMF: \arcJacobins@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiNS($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-	Mathematica: InverseJacobiNS[$0, $1]
-	Meanings: Inverse of Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \arcJacobisc
-
-  Feature Set: dlmf-macro
-	DLMF: \arcJacobisc@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiSC($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-	Mathematica: InverseJacobiSC[$0, $1]
-	Meanings: Inverse of Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \arcJacobisd
-
-  Feature Set: dlmf-macro
-	DLMF: \arcJacobisd@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiSD($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-	Mathematica: InverseJacobiSD[$0, $1]
-	Meanings: Inverse of Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
-Symbol: \arcJacobisn
-
-  Feature Set: dlmf-macro
-	DLMF: \arcJacobisn@@{z}{k}
-	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
-	Maple: InverseJacobiSN($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-	Mathematica: InverseJacobiSN[$0, $1]
-	Meanings: Inverse of Jacobian elliptic function
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 2
-
 Symbol: \asec
 
   Feature Set: dlmf-macro
@@ -11245,9 +5748,8 @@ Symbol: \assLegendreOlverQ
 Symbol: \assLegendreP
 
   Feature Set: dlmf-macro
-	Branch Cuts: (-\infty, 1]
-	DLMF: \assLegendreP{\nu}@{z}
-	DLMF-Link: dlmf.nist.gov/14.2#i
+	DLMF: \assLegendreP{nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.21#Ex1
 	Maple: LegendreP($0, $1)
 	Maple-Alternatives: 
 	Maple-Branch Cuts: 
@@ -11259,12 +5761,34 @@ Symbol: \assLegendreP
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
-	Meanings: Legendre function of first kind
+	Meanings: associated Legendre polynomial of the first kind
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
-	Role: dlmf-macro
-	Slot of Differentiation: 1
+	Role: 
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \assLegendreP[mu]{nu}@{z}
+	DLMF-Link: dlmf.nist.gov/14.21#Ex1
+	Maple: LegendreP($1, $0, $2)
+	Maple-Alternatives: 
+	Maple-Branch Cuts: 
+	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
+	Maple-Constraints: 
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+	Maple-Package: 
+	Mathematica: LegendreP[$1, $0, 3, $2]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: 
+	Mathematica-Package: 
+	Meanings: associated Legendre polynomial of the first kind
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: 
 
 Symbol: \assLegendreQ
 
@@ -11577,19 +6101,6 @@ Symbol: \binom
 	Mathematica-Constraints: 
 	Mathematica-Link: reference.wolfram.com/language/ref/Binomial.html
 	Mathematica-Package: 
-	Meanings: Binomial coefficient
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 2
-	Role: dlmf-macro
-
-Symbol: \binomial
-
-  Feature Set: dlmf-macro
-	DLMF: \binomial{m}{n}
-	DLMF-Link: dlmf.nist.gov/1.2#E1
-	Mathematica: Binomial[$0, $1]
-	Mathematica-Link: reference.wolfram.com/language/ref/Binomial.html
 	Meanings: Binomial coefficient
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -12046,18 +6557,6 @@ Symbol: \cosintCin
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
-	Role: dlmf-macro
-
-Symbol: \cosintg
-
-  Feature Set: dlmf-macro
-	Branch Cuts: z = 0
-	DLMF: \cosintg@{a}{z}
-	DLMF-Link: dlmf.nist.gov/8.21#E1
-	Meanings: Generalized cosine integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
 	Role: dlmf-macro
 
 Symbol: \cot
@@ -13615,20 +8114,6 @@ Symbol: \incgamma
 	Number of Variables: 2
 	Role: dlmf-macro
 
-Symbol: \incgammastar
-
-  Feature Set: dlmf-macro
-	Constraints: \Re(a) > 0
-	DLMF: \incgammastar@{a}{z}
-	DLMF-Link: dlmf.nist.gov/8.2#E6
-	Maple-Alternatives: ($1)^(-($0))*(GAMMA($0)-GAMMA($0, $1))/GAMMA($0)
-	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
-	Meanings: Incomplete Gamma star
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-	Role: dlmf-macro
-
 Symbol: \inf
 
   Feature Set: dlmf-macro
@@ -13999,23 +8484,6 @@ Symbol: \log
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \logb
-
-  Feature Set: dlmf-macro
-	Branch Cuts: (-\infty, 0]
-	Constraints: a not element of {0,1} and z != 0
-	DLMF: \logb{a}@@{z}
-	DLMF-Link: dlmf.nist.gov/4.2#EGx1
-	Maple: log[$0]($1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=log
-	Mathematica: Log[$0,$1]
-	Mathematica-Link: reference.wolfram.com/language/ref/Log.html
-	Meanings: Logarithm with different base
-	Number of Ats: 2
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: dlmf-macro
-
 Symbol: \logint
 
   Feature Set: dlmf-macro
@@ -14039,29 +8507,6 @@ Symbol: \logint
 	Meanings: Logarithmic integral
 	Number of Ats: 1
 	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
-Symbol: \mEulerBeta
-
-  Feature Set: dlmf-macro
-	Constraints: R(a), R(b) > 1/2*(m-1)
-	DLMF: \mEulerBeta{m}@{a}{b}
-	DLMF-Link: dlmf.nist.gov/35.3#E3
-	Meanings: Multivariate Euler-Beta function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \mEulerGamma
-
-  Feature Set: dlmf-macro
-	Constraints: \Ra(a) > 1/2*(m-1)
-	DLMF: \mEulerGamma{m}@{a}
-	DLMF-Link: dlmf.nist.gov/35.3#i
-	Meanings: Multivariate Gamma
-	Number of Ats: 1
-	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
 
@@ -15481,16 +9926,6 @@ Symbol: \neq
 	Number of Variables: 0
 	Role: symbol
 
-Symbol: \ninej
-
-  Feature Set: dlmf-macro
-	DLMF: \ninej@@{j_{11}}{j_{12}}{j_{13}}{j_{21}}{j_{22}}{j_{23}}{j_{31}}{j_{32}}{j_{33}}
-	DLMF-Link: dlmf.nist.gov/34.6#E1
-	Meanings: 9j symbol
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 9
-
 Symbol: \normAskeyWilsonptilde
 
   Feature Set: dlmf-macro
@@ -16082,22 +10517,6 @@ Symbol: \pgcd
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \ph
-
-  Feature Set: dlmf-macro
-	DLMF: \ph@@{z}
-	DLMF-Link: dlmf.nist.gov/1.9#E7
-	Maple: argument($0)
-	Maple-Comment: arctan($0,$1) is an alternative. With the real part in the first argument and the complex part in the second.
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=argument
-	Mathematica: Arg[$0]
-	Mathematica-Link: reference.wolfram.com/language/ref/Arg.html
-	Meanings: Argument of a complex number
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
 Symbol: \phase
 
   Feature Set: dlmf-macro
@@ -16122,19 +10541,6 @@ Symbol: \phase
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
-
-Symbol: \pochhammer
-
-  Feature Set: dlmf-macro
-	DLMF: \pochhammer{a}{n}
-	DLMF-Link: dlmf.nist.gov/5.2#iii
-	Maple: pochhammer($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer
-	Mathematica: Pochhammer[$0, $1]
-	Meanings: Pochhammer symbol
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 2
 
 Symbol: \poly
 
@@ -16235,16 +10641,6 @@ Symbol: \pseudoJacobi
 	Number of Variables: 3
 	Role: 
 
-Symbol: \psfactorial
-
-  Feature Set: dlmf-macro
-	DLMF: \psfactorial{a}{\kappa}
-	DLMF-Link: dlmf.nist.gov/35.4#E1
-	Meanings: Partitional shifted factorial
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 2
-
 Symbol: \qAppellPhi
 
   Feature Set: dlmf-macro
@@ -16261,61 +10657,6 @@ Symbol: \qAppellPhi
 	Number of Parameters: 0
 	Number of Variables: 7
 	Role: 
-
-Symbol: \qAppelli
-
-  Feature Set: dlmf-macro
-	DLMF: \qAppelli@{a}{b}{b'}{c}{q}{x}{y}
-	DLMF-Link: dlmf.nist.gov/17.4.E5
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Appell function of first kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 7
-
-Symbol: \qAppellii
-
-  Feature Set: dlmf-macro
-	DLMF: \qAppellii@{a}{b}{b'}{c}{c'}{q}{x}{y}
-	DLMF-Link: dlmf.nist.gov/17.4.E6
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Appell function of second kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 8
-
-Symbol: \qAppelliii
-
-  Feature Set: dlmf-macro
-	DLMF: \qAppelliii@{a}{a'}{b}{b'}{c}{q}{x}{y}
-	DLMF-Link: dlmf.nist.gov/17.4.E7
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Appell function of third kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 8
-
-Symbol: \qAppelliv
-
-  Feature Set: dlmf-macro
-	DLMF: \qAppelliv@{a}{b}{c}{c'}{q}{x}{y}
-	DLMF-Link: dlmf.nist.gov/17.4.E8
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Appell function of fourth kind
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 7
-
-Symbol: \qBernoulli
-
-  Feature Set: dlmf-macro
-	DLMF: \qBernoulli{n}@{x}{q}
-	DLMF-Link: dlmf.nist.gov/17.3#E7
-	Maple-Comment:  || But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Bernoulli polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
 
 Symbol: \qBernoullipolybeta
 
@@ -16367,18 +10708,6 @@ Symbol: \qBeta
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
-
-Symbol: \qBinomial
-
-  Feature Set: dlmf-macro
-	DLMF: \qBinomial{n}{m}{q}
-	DLMF-Link: dlmf.nist.gov/17.2#E27
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Mathematica: QBinomial[$0, $1, $2]
-	Meanings: q-Binomial coefficient / Gaussian polynomial
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 3
 
 Symbol: \qCharlier
 
@@ -16448,17 +10777,6 @@ Symbol: \qDigamma
 	Number of Variables: 1
 	Role: 
 
-Symbol: \qEuler
-
-  Feature Set: dlmf-macro
-	DLMF: \qEuler{m}{s}@{q}
-	DLMF-Link: dlmf.nist.gov/17.3#E8
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Euler function
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 1
-
 Symbol: \qEulernumberA
 
   Feature Set: dlmf-macro
@@ -16510,18 +10828,6 @@ Symbol: \qExpKLS
 	Number of Variables: 1
 	Role: 
 
-Symbol: \qFactorial
-
-  Feature Set: dlmf-macro
-	DLMF: \qFactorial{n}{q}
-	DLMF-Link: dlmf.nist.gov/5.18#E2
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Mathematica: QFactorial[$0, $1]
-	Meanings: q-Factorial function
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 2
-
 Symbol: \qGamma
 
   Feature Set: dlmf-macro
@@ -16556,17 +10862,6 @@ Symbol: \qHahn
 	Number of Variables: 4
 	Role: 
 
-Symbol: \qHahnQ
-
-  Feature Set: dlmf-macro
-	DLMF: \qHahnQ{n}@{x}{\alpha}{\beta}{N}{q}
-	DLMF-Link: dlmf.nist.gov/18.27#E3
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Hahn polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 5
-
 Symbol: \qHahnpolyQ
 
   Feature Set: dlmf-macro
@@ -16584,39 +10879,6 @@ Symbol: \qHahnpolyQ
 	Number of Variables: 5
 	Role: 
 
-Symbol: \qHermiteH
-
-  Feature Set: dlmf-macro
-	DLMF: \qHermiteH{n}@{x}{q}
-	DLMF-Link: dlmf.nist.gov/18.28#E16
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Hermite polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \qHermitehI
-
-  Feature Set: dlmf-macro
-	DLMF: \qHermitehI{n}@{x}{q}
-	DLMF-Link: dlmf.nist.gov/18.27#E21
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Hermite discrete I
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
-Symbol: \qHermitehII
-
-  Feature Set: dlmf-macro
-	DLMF: \qHermitehII{n}@{x}{q}
-	DLMF-Link: dlmf.nist.gov/18.27#E23
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Hermite discrete II
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-
 Symbol: \qHyperrWs
 
   Feature Set: dlmf-macro
@@ -16633,61 +10895,6 @@ Symbol: \qHyperrWs
 	Number of Parameters: 2
 	Number of Variables: 4
 	Role: 
-
-Symbol: \qHyperrphis
-
-  Feature Set: dlmf-macro
-	DLMF: \qHyperrphis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z}
-	DLMF-Link: dlmf.nist.gov/17.4#E1
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: basic hypergeometric (or $q$-hypergeometric) function
-	Number of Ats: 3
-	Number of Parameters: 2
-	Number of Variables: 4
-
-Symbol: \qHyperrpsis
-
-  Feature Set: dlmf-macro
-	DLMF: \qHyperrpsis{r}{s}@@@{a_1,...,a_r}{b_1,...,b_s}{q}{z}
-	DLMF-Link: dlmf.nist.gov/17.4#E3
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: bilateral basic hypergeometric (or bilateral $q$-hypergeometric) function
-	Number of Ats: 3
-	Number of Parameters: 2
-	Number of Variables: 4
-
-Symbol: \qJacobiP
-
-  Feature Set: dlmf-macro
-	DLMF: \qJacobiP{n}@{x}{a}{b}{c}{q}
-	DLMF-Link: dlmf.nist.gov/18.27#E5
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Jacobi polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 5
-
-Symbol: \qJacobiPP
-
-  Feature Set: dlmf-macro
-	DLMF: \qJacobiPP{\alpha}{\beta}{n}@{x}{c}{d}{q}
-	DLMF-Link: dlmf.nist.gov/18.27#E6
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Jacobi polynomial
-	Number of Ats: 1
-	Number of Parameters: 3
-	Number of Variables: 4
-
-Symbol: \qJacobip
-
-  Feature Set: dlmf-macro
-	DLMF: \qJacobip{n}@{x}{a}{b}{q}
-	DLMF-Link: dlmf.nist.gov/18.27#E13
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Jacobi polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 4
 
 Symbol: \qKrawtchouk
 
@@ -16716,16 +10923,6 @@ Symbol: \qLaguerre
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
-
-Symbol: \qLaguerreL
-
-  Feature Set: dlmf-macro
-	DLMF: \qLaguerreL[\alpha]{n}@{x}{q}
-	DLMF-Link: dlmf.nist.gov/18.27#E15
-	Meanings: q-Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 2
 
 Symbol: \qLaguerrepolyL
 
@@ -16789,28 +10986,6 @@ Symbol: \qMeixnerPollaczek
 	Number of Variables: 3
 	Role: 
 
-Symbol: \qMultiPochhammer
-
-  Feature Set: dlmf-macro
-	DLMF: \qMultiPochhammer{a_1,\ldots,a_n}{q}{n}
-	DLMF-Link: dlmf.nist.gov/17.2.E5
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Multi-Pochhammer symbol
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 3
-
-Symbol: \qMultinomial
-
-  Feature Set: dlmf-macro
-	DLMF: \qMultinomial{a_1+\ldots+a_n}{a_1,\ldots,a_n}{q}
-	DLMF-Link: dlmf.nist.gov/26.16.E1
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-multinomial
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 3
-
 Symbol: \qPochhammer
 
   Feature Set: dlmf-macro
@@ -16828,18 +11003,6 @@ Symbol: \qPochhammer
 	Number of Variables: 3
 	Role: 
 
-Symbol: \qPolygamma
-
-  Feature Set: dlmf-macro
-	DLMF: \qPolygamma{n}{q}@{z}
-	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qPolygamma
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Mathematica: QPolyGamma[$0, $2, $1]
-	Meanings: q-Polygamma function
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 1
-
 Symbol: \qRacah
 
   Feature Set: dlmf-macro
@@ -16856,17 +11019,6 @@ Symbol: \qRacah
 	Number of Parameters: 1
 	Number of Variables: 6
 	Role: 
-
-Symbol: \qRacahR
-
-  Feature Set: dlmf-macro
-	DLMF: \qRacahR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q}
-	DLMF-Link: dlmf.nist.gov/18.28#E19
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Racah polynomials
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 6
 
 Symbol: \qRacahpolyR
 
@@ -16919,17 +11071,6 @@ Symbol: \qSinKLS
 	Number of Variables: 1
 	Role: 
 
-Symbol: \qStirling
-
-  Feature Set: dlmf-macro
-	DLMF: \qStirling{m}{s}@{q}
-	DLMF-Link: dlmf.nist.gov/17.3#E9
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Stirling number
-	Number of Ats: 1
-	Number of Parameters: 2
-	Number of Variables: 1
-
 Symbol: \qStirlingnumbera
 
   Feature Set: dlmf-macro
@@ -16946,17 +11087,6 @@ Symbol: \qStirlingnumbera
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
-
-Symbol: \qUltraspherical
-
-  Feature Set: dlmf-macro
-	DLMF: \qUltraspherical{n}@{x}{\beta}{q}
-	DLMF-Link: dlmf.nist.gov/18.28#E13
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Ultraspherical polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 3
 
 Symbol: \qbinom
 
@@ -17138,17 +11268,6 @@ Symbol: \qinvAlSalamChihara
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
-
-Symbol: \qinvHermiteh
-
-  Feature Set: dlmf-macro
-	DLMF: \qinvHermiteh{n}@{x}{q}
-	DLMF-Link: dlmf.nist.gov/18.28#E18
-	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http:
-	Meanings: q-Invert-Hermite polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
 
 Symbol: \qmultiPochhammersym
 
@@ -17461,17 +11580,6 @@ Symbol: \repinterfc
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
-
-Symbol: \rescaledTerminant
-
-  Feature Set: dlmf-macro
-	DLMF: \rescaledTerminant{p}@{z}
-	DLMF-Link: dlmf.nist.gov/9.7#E22
-	Maple-Alternatives: (exp($1)/(2*Pi))*GAMMA($0)*GAMMA(1-$0,$1)
-	Meanings: Rescaled terminant function
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
 
 Symbol: \scbigqJacobipolyP
 
@@ -17793,21 +11901,6 @@ Symbol: \sin
 	Number of Variables: 1
 	Role: dlmf-macro
 
-Symbol: \sinInt
-
-  Feature Set: dlmf-macro
-	DLMF: \sinInt@{z}
-	DLMF-Link: dlmf.nist.gov/6.2#E10
-	Maple: Ssi($0)
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ssi
-	Mathematica: SinIntegral[$0] - Pi/2
-	Mathematica-Link: reference.wolfram.com/language/ref/SinIntegral.html
-	Meanings: Shifted sine integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 1
-	Role: dlmf-macro
-
 Symbol: \sinh
 
   Feature Set: dlmf-macro
@@ -17882,28 +11975,6 @@ Symbol: \sinint
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
-
-Symbol: \sinintg
-
-  Feature Set: dlmf-macro
-	Branch Cuts: z = 0
-	DLMF: \sinintg@{a}{z}
-	DLMF-Link: dlmf.nist.gov/8.21#E1
-	Meanings: Generalized sine integral
-	Number of Ats: 1
-	Number of Parameters: 0
-	Number of Variables: 2
-	Role: dlmf-macro
-
-Symbol: \sixj
-
-  Feature Set: dlmf-macro
-	DLMF: \sixj@@{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l_{3}}
-	DLMF-Link: dlmf.nist.gov/34.4#E1
-	Meanings: 6j symbol
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 6
 
 Symbol: \sphBesselJ
 
@@ -18302,16 +12373,6 @@ Symbol: \terminant
 	Number of Variables: 1
 	Role: 
 
-Symbol: \threej
-
-  Feature Set: dlmf-macro
-	DLMF: \threej@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3}
-	DLMF-Link: dlmf.nist.gov/34.2#E4
-	Meanings: 3j symbol
-	Number of Ats: 2
-	Number of Parameters: 0
-	Number of Variables: 6
-
 Symbol: \tpderiv
 
   Feature Set: dlmf-macro
@@ -18395,16 +12456,6 @@ Symbol: \ultrasphpoly
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
-
-Symbol: \wigner
-
-  Feature Set: dlmf-macro
-	DLMF: \wigner{j_1}{m_1}{j_2}{m_2}{j_3}{-m_3}
-	DLMF-Link: dlmf.nist.gov/34.1#p4
-	Meanings: Clebsch-Gordan coefficient
-	Number of Ats: 0
-	Number of Parameters: 0
-	Number of Variables: 6
 
 Symbol: \zAirya
 

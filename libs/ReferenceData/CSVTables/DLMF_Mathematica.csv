@@ -693,7 +693,7 @@ X1:DunsterQX\DunsterQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;3;1;;
 \LamepolycdE{m}{2n+2}@{z}{k^2};;;;;
 \LamepolyscdE{m}{2n+3}@{z}{k^2};;;;;
 ;;;;;
-\LegendrepolyP{n}@{x};LegendreP[$0, $1];;;;
+\LegendrepolyP{n}@{x};LegendreP[$0, $1];2;1;;
 \shiftLegendrepolyP{n}@{x};;;;;
 \assLegendrepoly{n}@{x}{c};;;;;
 ;;;;;
