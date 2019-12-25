@@ -246,6 +246,14 @@ class SimpleTranslationTests {
     }
 
     @Test
+    void wronksianTest() {
+        String in = "\\Wronskian\\left\\{\\FerrersP[-\\mu]{\\nu}@{x},\\FerrersP[-\\mu]{\\nu}@{-x}\\right\\}";
+        String expect = "(LegendreP(nu, - mu, x))*diff(LegendreP(nu, - mu, - x), x)-diff(LegendreP(nu, - mu, x), x)*(LegendreP(nu, - mu, - x))";
+        String out = slt.translate(in);
+        assertEquals(expect, out);
+    }
+
+    @Test
     void overlineTest() {
         assertThrows(TranslationException.class, () -> slt.translate("\\overline{z}"));
         assertThrows(TranslationException.class, () -> slt.translate("\\overline{z+1}"));

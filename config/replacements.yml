@@ -27,3 +27,7 @@ generalReplacements:
     # replace \* with *
     pattern: \\\*
     replacement: \*
+  -
+    pattern: \\Wronskian(?:\\left)*\\\{(.*?)(?:\\right)\\}
+    replacement: \\Wronskian@{$1}
+    groups: 1

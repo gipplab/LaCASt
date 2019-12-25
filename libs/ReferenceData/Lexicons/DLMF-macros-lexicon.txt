@@ -2343,6 +2343,31 @@ Symbol: \JacobiEpsilonk
 	Number of Variables: 2
 	Role: 
 
+Symbol: \JacobiP
+
+  Feature Set: dlmf-macro
+	DLMF: \JacobiP{\alpha}{\beta}{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r2
+	Maple: JacobiP($2, $0, $1, $3)
+	Maple-Alternatives: 
+	Maple-Branch Cuts: 
+	Maple-Comment: 
+	Maple-Constraints: 
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
+	Maple-Package: 
+	Mathematica: JacobiP[$2, $0, $1, $3]
+	Mathematica-Alternatives: 
+	Mathematica-Branch Cuts: 
+	Mathematica-Comment: 
+	Mathematica-Constraints: 
+	Mathematica-Link: reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP
+	Mathematica-Package: 
+	Meanings: Jacobi polynomial
+	Number of Ats: 1
+	Number of Parameters: 3
+	Number of Variables: 1
+	Role: 
+
 Symbol: \JacobiZetak
 
   Feature Set: dlmf-macro
@@ -10541,6 +10566,28 @@ Symbol: \phase
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+
+Symbol: \pochhammer
+
+  Feature Set: dlmf-macro
+	DLMF: \pochhammer{a}{n}
+	DLMF-Link: dlmf.nist.gov/5.2#iii
+	Maple: pochhammer($0, $1)
+	Maple-Alternatives: 
+	Maple-Branch Cuts: 
+	Maple-Comment: 
+	Maple-Constraints: 
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer
+	Maple-Package: 
+	Mathematica: Pochhammer[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
+	Mathematica-Package: 
+	Meanings: Pochhammer symbol
+	Number of Ats: 0
+	Number of Parameters: 0
+	Number of Variables: 2
+	Role: 
 
 Symbol: \poly
 
