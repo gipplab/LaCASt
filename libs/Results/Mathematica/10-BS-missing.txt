@@ -1,11 +1,9 @@
 \HankelmodM, 32
 \BesselC, 28
-\assLegendreP, 16
 \modcylinder, 15
 \HankelmodderivN, 14
 \zBesselj, 14
 \Hankelphasetheta, 9
-\assLegendreQ, 9
 \zBessely, 8
 \zderivBesselj, 8
 \Hankelphasederivphi, 7
@@ -18,5 +16,6 @@
 \NeumannpolyO, 2
 \genBesselphi, 2
 \MittagLefflerE, 1
+\assLegendreQ, 1
 \Rayleighsigma, 1
 im, 1

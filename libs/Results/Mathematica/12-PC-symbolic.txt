@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 6, SUCCESS_SYMB: 6, SUCCESS_TRANS: 57, FAILURE: 50, STARTED_TEST_CASES: 107, SKIPPED: 35, DEFINITIONS: 28, IGNORE: 55, MISSING: 44, ERROR: 7] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 6, SUCCESS_SYMB: 6, SUCCESS_TRANS: 60, FAILURE: 53, STARTED_TEST_CASES: 107, SKIPPED: 35, DEFINITIONS: 28, IGNORE: 55, MISSING: 46, ERROR: 2] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 4068 [http://dlmf.nist.gov/12.2.E2]: Failure [Simple: NaN]
 4069 [http://dlmf.nist.gov/12.2.E3]: Failure [Simple: NaN]
@@ -8,10 +8,10 @@ Overall: [SUCCESS: 6, SUCCESS_SYMB: 6, SUCCESS_TRANS: 57, FAILURE: 50, STARTED_T
 4073 [http://dlmf.nist.gov/12.2.E7]: Successful [Simple: 0]
 4074 [http://dlmf.nist.gov/12.2.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraV [\paraV]
 4075 [http://dlmf.nist.gov/12.2.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraV [\paraV]
-4076 [http://dlmf.nist.gov/12.2.E10]: Error - java.lang.NullPointerException [4076: \Wronskian\left\{\paraU@{a}{z},\paraV@{a}{z}\right\} EQUAL \sqrt{2/\pi}; http://dlmf.nist.gov/12.2.E10]
-4077 [http://dlmf.nist.gov/12.2.E11]: Error - java.lang.NullPointerException [4077: \Wronskian\left\{\paraU@{a}{z},\paraU@{a}{-z}\right\} EQUAL \frac{\sqrt{2\pi}}{\EulerGamma@{\frac{1}{2}+a}}; http://dlmf.nist.gov/12.2.E11]
-4078 [http://dlmf.nist.gov/12.2.E12]: Error - java.lang.NullPointerException [4078: \Wronskian\left\{\paraU@{a}{z},\paraU@{-a}{+ iz}\right\} EQUAL - ie^{+ i\pi(\frac{1}{2}a+\frac{1}{4})}; http://dlmf.nist.gov/12.2.E12]
-4078-a [http://dlmf.nist.gov/12.2.E12]: Error - java.lang.NullPointerException [4078: \Wronskian\left\{\paraU@{a}{z},\paraU@{-a}{- iz}\right\} EQUAL + ie^{- i\pi(\frac{1}{2}a+\frac{1}{4})}; http://dlmf.nist.gov/12.2.E12]
+4076 [http://dlmf.nist.gov/12.2.E10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: paraV [paraV]
+4077 [http://dlmf.nist.gov/12.2.E11]: Failure [Simple: NaN]
+4078 [http://dlmf.nist.gov/12.2.E12]: Failure [Simple: NaN]
+4078-a [http://dlmf.nist.gov/12.2.E12]: Failure [Simple: NaN]
 4079 [http://dlmf.nist.gov/12.2.E13]: Failure [Simple: NaN]
 4080 [http://dlmf.nist.gov/12.2.E14]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraV [\paraV]
 4081 [http://dlmf.nist.gov/12.2.E15]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraV [\paraV]
@@ -106,7 +106,7 @@ Overall: [SUCCESS: 6, SUCCESS_SYMB: 6, SUCCESS_TRANS: 57, FAILURE: 50, STARTED_T
 4216 [http://dlmf.nist.gov/12.13.E6]: Error - (LaTeX -> Mathematica) The current implementation is wrong: Wrong translation method used. You have to specify an open bracket to translate it like a sequence.
 4217 [http://dlmf.nist.gov/12.14.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
 4218 [http://dlmf.nist.gov/12.14.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
-4219 [http://dlmf.nist.gov/12.14.E3]: Error - java.lang.NullPointerException [4219: \Wronskian\left\{\paraW@{a}{x},\paraW@{a}{-x}\right\} EQUAL 1; http://dlmf.nist.gov/12.14.E3]
+4219 [http://dlmf.nist.gov/12.14.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: paraW [paraW]
 4220 [http://dlmf.nist.gov/12.14.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
 4225 [http://dlmf.nist.gov/12.14.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
 4234 [http://dlmf.nist.gov/12.14.E13]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]

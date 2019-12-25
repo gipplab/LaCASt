@@ -19,13 +19,13 @@ while read line; do
   read -ra ADDR <<< $line;
 
   cat $CONFIGFILEBASE >> $CONFIGFILE;
-  echo "output=/home/andreg-p/Howard/Results/AutoMath/${ADDR[0]}-symbolic.txt" >> $CONFIGFILE;
-  echo "missing_macro_output=/home/andreg-p/Howard/Results/AutoMath/${ADDR[0]}-missing.txt" >> $CONFIGFILE;
+  echo "output=/home/andreg-p/Howard/Results/AutoMaple/${ADDR[0]}-symbolic.txt" >> $CONFIGFILE;
+  echo "missing_macro_output=/home/andreg-p/Howard/Results/AutoMaple/${ADDR[0]}-missing.txt" >> $CONFIGFILE;
   echo "subset_tests=${ADDR[1]}" >> $CONFIGFILE;
 
   echo "Done creating file for ${ADDR[0]}"
   echo "Start processing..."
-  java -Xmx6g -jar ./bin/symbolic-tester.jar -mathematica;
+  java -Xmx6g -jar ./bin/symbolic-tester.jar -maple;
   echo "Done ${ADDR[0]}"
 
   RESSTR="${RESSTR}${ADDR[0]}: $? $NEWLINE"

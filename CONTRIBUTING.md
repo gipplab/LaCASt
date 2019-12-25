@@ -136,7 +136,7 @@ This could happen when our program cannot find out the encoding of your CSV file
 
 Calculate all results per file:
 ```shell script
-find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*TRANS: ([0-9]+),.*CASES: ([0-9]+),.*MISSING: ([0-9]+),.*/, arr) {cases=arr[2]; trans=arr[1]; transavg=arr[1]/arr[2]; miss=arr[3]}; END {print cases, trans, transavg, miss}'
+find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*TRANS: ([0-9]+),.*CASES: ([0-9]+),.*MISSING: ([0-9]+),.*/, arr) {cases=arr[2]; trans=arr[1]; transavg=arr[1]/arr[2]; miss=arr[3]; line=line+1}; END {print line": "cases, trans, transavg, miss}'
 ```
 
 Count total number of test cases:

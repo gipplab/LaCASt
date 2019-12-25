@@ -44,11 +44,11 @@ Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 1, FAILURE: 1, STARTED_TES
 10088: Skipped - Unable to analyze test case.
 10089 [http://dlmf.nist.gov/34.3.E18]: Error - java.lang.NullPointerException [10089: \sum_{m_{1}m_{2}m_{3}}\Wignerthreejsym{j_{1}}{j_{2}}{j_{3}}{m_{1}}{m_{2}}{m_{3}}\Wignerthreejsym{j_{1}}{j_{2}}{j_{3}}{m_{1}}{m_{2}}{m_{3}} EQUAL 1; http://dlmf.nist.gov/34.3.E18]
 10090: Skipped - Unable to analyze test case.
-10091 [http://dlmf.nist.gov/34.3.E19]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \assLegendreP [\assLegendreP]
+10091 [http://dlmf.nist.gov/34.3.E19]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
 10092: Skipped - Unable to analyze test case.
 10093 [http://dlmf.nist.gov/34.3.E20]: Error - java.util.NoSuchElementException [10093: \sphharmonicY{l_{1}}{m_{1}}@{\theta}{\phi}\sphharmonicY{l_{2}}{m_{2}}@{\theta}{\phi} EQUAL \sum_{l,m}\left(\frac{(2l_{1}+1)(2l_{2}+1)(2l+1)}{4\pi}\right)^{\frac{1}{2}}\Wignerthreejsym{l_{1}}{l_{2}}{l}{m_{1}}{m_{2}}{m}\conj{\sphharmonicY{l}{m}@{\theta}{\phi}}\Wignerthreejsym{l_{1}}{l_{2}}{l}{0}{0}{0}; http://dlmf.nist.gov/34.3.E20]
 10094: Skipped - Unable to analyze test case.
-10095 [http://dlmf.nist.gov/34.3.E21]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \assLegendreP [\assLegendreP]
+10095 [http://dlmf.nist.gov/34.3.E21]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
 10096: Skipped - Unable to analyze test case.
 10097 [http://dlmf.nist.gov/34.3.E22]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Wignerthreejsym [\Wignerthreejsym]
 10098: Skipped - Unable to analyze test case.
