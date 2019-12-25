@@ -530,6 +530,7 @@ X1:\FerrersHatQX\DunsterQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical /
 \NeumannFactor{n};http://drmf.wmflabs.org/wiki/Definition:NeumannFactor;Neumann factor;0;0;1;;;;
 \LeviCivitasym{j}{k}{l};http://dlmf.nist.gov/1.6#E14;Levi-Civita symbol;0;0;3;;;;
 \RiemannsymP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};http://dlmf.nist.gov/15.11#E3;Riemann's P-symbol;0;1;1;;;;ignore
+\pochhammer{a}{n};http://dlmf.nist.gov/5.2#iii;Pochhammer symbol;0;0;2;;;;
 \Pochhammersym{a}{n};http://dlmf.nist.gov/5.2#iii;Pochhammer symbol;0;0;2;;;;
 \Wignerthreejsym@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3};http://dlmf.nist.gov/34.2#E4;3j symbol;0;2;6;;;;
 \Wignersixjsym@@{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l_{3}};http://dlmf.nist.gov/34.4#E1;6j symbol;0;2;6;;;;
@@ -627,6 +628,7 @@ X1:\FerrersHatQX\DunsterQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical /
 \GenHermite[\alpha]{n}@{x};http://drmf.wmflabs.org/wiki/Definition:GenHermite;Generalized Hermite polynomial;2;1;1;;;;
 \HeunpolyHp{n}{m}@@{a}{q}{-n}{\beta}{\gamma}{\delta}{z};http://dlmf.nist.gov/31.5#E2;Heun polynomials;2;2;7;;;;
 \Jacobi{\alpha}{\beta}{n}@{x};http://dlmf.nist.gov/18.3#T1.t1.r2;Jacobi polynomial;3;1;1;;;;
+\JacobiP{\alpha}{\beta}{n}@{x};http://dlmf.nist.gov/18.3#T1.t1.r2;Jacobi polynomial;3;1;1;;;;
 \JacobipolyP{\alpha}{\beta}{n}@{x};http://dlmf.nist.gov/18.3#T1.t1.r2;Jacobi polynomial;3;1;1;;;;
 \shiftJacobipolyG{n}@{p}{q}{x};http://dlmf.nist.gov/18.1#E2;Shifted Jacobi polynomial;1;1;3;;;;
 \assJacobipolyP{\alpha}{\beta}{n}@{x}{c};http://dlmf.nist.gov/18.30#E4;Associated Jacobi polynomial;3;1;2;;;;
