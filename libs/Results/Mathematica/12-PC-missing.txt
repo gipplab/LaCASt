@@ -3,4 +3,6 @@
 \paraUbar, 4
 \dilHermitepolyHe, 3
 \FishersHh, 2
+paraW, 1
+paraV, 1
 \nabla, 1

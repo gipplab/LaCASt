@@ -11,10 +11,8 @@
 \Hankelphasetheta, 9
 \zderivBesselj, 8
 \BickleyKi, 7
-\assLegendreP, 7
 \Hankelphasederivphi, 7
 \zBessely, 7
-\assLegendreQ, 6
 \rselection, 6
 \nabla, 4
 \paraW, 4
@@ -22,5 +20,6 @@
 \NeumannpolyO, 2
 \genBesselphi, 2
 \MittagLefflerE, 1
+\assLegendreQ, 1
 im, 1
 \Rayleighsigma, 1

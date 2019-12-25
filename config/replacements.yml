@@ -28,6 +28,6 @@ generalReplacements:
     pattern: \\\*
     replacement: \*
   -
-    pattern: \\Wronskian(?:\\left)*\\\{(.*?)(?:\\right)\\}
+    pattern: \\Wronskian(?:\\left)*\\\{(.*?)(?:\\right)*\\}
     replacement: \\Wronskian@{$1}
     groups: 1
