@@ -649,6 +649,8 @@ X1:\LaguerreLX\LaguerrepolyL[\alpha]{n}@{x};http://dlmf.nist.gov/18.3#T1.t1.r12;
 \LamepolycdE{m}{2n+2}@{z}{k^2};http://dlmf.nist.gov/29.12#E7;Lame polynomial;2;1;2;;;;
 \LamepolyscdE{m}{2n+3}@{z}{k^2};http://dlmf.nist.gov/29.12#E8;Lame polynomial;2;1;2;;;;
 \LegendrepolyP{n}@{x};http://dlmf.nist.gov/18.3#T1.t1.r10;Legendre polynomial;1;1;1;;;;
+\assLegendreP{nu}@{z};http://dlmf.nist.gov/14.21#Ex1;associated Legendre polynomial of the first kind;1;1;1;;;;
+X1:\assLegendrePX\assLegendreP[mu]{nu}@{z};http://dlmf.nist.gov/14.21#Ex1;associated Legendre polynomial of the first kind;1;1;1;;;;
 \shiftLegendrepolyP{n}@{x};http://dlmf.nist.gov/18.3#T1.t1.r11;Shifted Legendre polynomial;1;1;1;;;;
 \assLegendrepoly{n}@{x}{c};http://dlmf.nist.gov/18.30#E6;Associated Legendre polynomial;1;1;2;;;;
 \Meixner{n}@{x}{\beta}{c};http://dlmf.nist.gov/18.19#T1.t1.r9;Meixner polynomial;1;1;3;;;;

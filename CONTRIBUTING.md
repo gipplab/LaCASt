@@ -134,9 +134,17 @@ This could happen when our program cannot find out the encoding of your CSV file
 
 ## Useful Counting Methods
 
-Sum up number of ... (CASES or something else).
+Calculate all results per file:
+```shell script
+find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*TRANS: ([0-9]+),.*CASES: ([0-9]+),.*MISSING: ([0-9]+),.*/, arr) {cases=arr[2]; trans=arr[1]; transavg=arr[1]/arr[2]; miss=arr[3]}; END {print cases, trans, transavg, miss}'
+```
+
+Count total number of test cases:
 ```shell script
 find . -name "*symbolic*" | xargs -n 1 gawk 'match($0, /.*CASES: ([0-9]+),.*/, arr) {sum = arr[1]}; END {print sum}' | paste -sd+ - | bc
-find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*TRANS: ([0-9]+),.*CASES: ([0-9]+),.*MISSING: ([0-9]+),.*/, arr) {cases=arr[2]; trans=arr[1]; transavg=arr[1]/arr[2]; miss=arr[3]}; END {print cases, trans, transavg, miss}'
+```
 
+Group and count all missing macros:
+```shell script
+awk -F, '{arr[$1] += $2;} END {for (a in arr) print arr[a]", "a}' *missing* | sort -n -r >> ../maple-missing.txt
 ```

@@ -11,6 +11,8 @@ generalReplacements:
   -
     pattern: \\(?:displaystyle|hbox|[Bb]ig[lrg]?|[sb]f|[!,; ]|\\ )
   -
+    pattern: \[\s*\]
+  -
     # you need single quotes here
     pattern: '(?:[.;<>^/\t\s]|\\\\ )+$'
   -
