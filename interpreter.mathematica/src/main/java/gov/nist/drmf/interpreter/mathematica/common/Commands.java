@@ -10,7 +10,11 @@ public enum Commands {
     EXTRACT_VARIABLES("Reduce`FreeVariables[XXX-1]", 1),
     ASSUMING("Assuming[XXX-1, XXX-2]", 2),
     FULL_SIMPLIFY("FullSimplify[XXX-1]", 1),
-    FULL_SIMPLIFY_ASSUMPTION("FullSimplify[XXX-1, And[XXX-2]]", 2);
+    FULL_SIMPLIFY_ASSUMPTION("FullSimplify[XXX-1, And[XXX-2]]", 2),
+    LENGTH_OF_LIST("Length[XXX-1]", 1),
+    NUMERICAL_TEST("numericalAutoTest[XXX-1, XXX-2]", 2),
+    FILTER_TEST_CASES("filterTestCases[XXX-1, XXX-2]", 2),
+    CREATE_TEST_CASES("createTestCases[XXX-1, XXX-2, XXX-3, XXX-4, XXX-5, XXX-6]", 6);
 
 
     private static final String PLACE_HOLDER = "XXX";

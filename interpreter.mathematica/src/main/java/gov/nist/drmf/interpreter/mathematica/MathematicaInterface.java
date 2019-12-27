@@ -4,15 +4,20 @@ import com.wolfram.jlink.Expr;
 import com.wolfram.jlink.KernelLink;
 import com.wolfram.jlink.MathLinkException;
 import com.wolfram.jlink.MathLinkFactory;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Andre Greiner-Petter
@@ -77,6 +82,12 @@ public class MathematicaInterface {
         return output;
     }
 
+    public void extractAndStoreVariables(String varName, String expression) throws MathLinkException {
+        String cmd = Commands.EXTRACT_VARIABLES.build(expression);
+        cmd = varName + " := " + cmd + ";";
+        evaluate(cmd);
+    }
+
     public SymbolicEquivalenceChecker getEvaluationChecker() {
         return evalChecker;
     }
@@ -105,7 +116,6 @@ public class MathematicaInterface {
 
         // set encoding to avoid UTF-8 chars of greek letters
         MathematicaConfig.setCharacterEncoding(mathKernel);
-
         mathematicaInterface = new MathematicaInterface(mathKernel);
         LOG.info("Successfully instantiated mathematica interface");
     }

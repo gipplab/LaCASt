@@ -103,6 +103,10 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
         return numericalEvaluator.getStatusOfResult(results);
     }
 
+    public ICASEngineNumericalEvaluator getNumericalEvaluator() {
+        return numericalEvaluator;
+    }
+
     public Set<ID> getFailures(Path dataset) {
         Set<ID> set = new HashSet<>();
         if ( dataset == null || !Files.exists(dataset) ) return set;

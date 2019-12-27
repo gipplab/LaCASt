@@ -2,8 +2,10 @@ package gov.nist.drmf.interpreter.evaluation;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
+import com.wolfram.jlink.Expr;
 import gov.nist.drmf.interpreter.MapleSimplifier;
 import gov.nist.drmf.interpreter.MapleTranslator;
+import gov.nist.drmf.interpreter.MathematicaTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
@@ -282,7 +284,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             mapleRHS = "";
         }
 
-        return config.getTestExpression( mapleLHS, mapleRHS );
+        return config.getTestExpression( this.getNumericalEvaluator(), mapleLHS, mapleRHS );
     }
 
     @Override
@@ -369,6 +371,55 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         return evaluator;
     }
 
+    public static NumericalEvaluator createStandardMathematicaEvaluator() throws IOException, ComputerAlgebraSystemEngineException {
+//        String[] mapleScripts = new String[3];
+//        String numericalProc = MapleInterface.extractProcedure(GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES);
+//        mapleScripts[0] = numericalProc;
+//
+//        // load expectation of results template
+//        NumericalConfig config =  NumericalConfig.config();
+//        String expectationTemplate = config.getExpectationTemplate();
+//        // load numerical sieve
+//        String sieve_procedure = MapleInterface.extractProcedure( GlobalPaths.PATH_MAPLE_NUMERICAL_SIEVE_PROCEDURE );
+//        String sieve_procedure_relation = "rel" + sieve_procedure;
+//
+//        // replace condition placeholder
+//        String numericalSievesMethod = MapleInterface.extractNameOfProcedure(sieve_procedure);
+//        String numericalSievesMethodRelations = "rel" + numericalSievesMethod;
+//
+//        sieve_procedure = sieve_procedure.replaceAll(
+//                NumericalTestConstants.KEY_NUMERICAL_SIEVES_CONDITION,
+//                expectationTemplate
+//        );
+//
+//        sieve_procedure_relation = sieve_procedure_relation.replaceAll(
+//                NumericalTestConstants.KEY_NUMERICAL_SIEVES_CONDITION,
+//                "result"
+//        );
+//
+//        mapleScripts[1] = sieve_procedure;
+//        mapleScripts[2] = sieve_procedure_relation;
+//        LOG.debug("Setup done!");
+
+        NumericalConfig config =  NumericalConfig.config();
+        MathematicaTranslator translator = new MathematicaTranslator();
+        translator.init();
+
+        String script = translator.getNumericalProcedures();
+
+        NumericalEvaluator evaluator = new NumericalEvaluator<Expr>(
+                translator,
+                translator,
+                translator,
+                (c -> c.isEquation() ? "" : ""),
+                null,
+                new String[]{script},
+                config
+        );
+
+        return evaluator;
+    }
+
     private static void startTestAndWriteResults( NumericalEvaluator evaluator ) throws IOException {
         LinkedList<Case> tests = evaluator.loadTestCases();
         evaluator.performAllTests(tests);
@@ -376,7 +427,8 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
     }
 
     public static void main(String[] args) throws Exception{
-        NumericalEvaluator evaluator = createStandardMapleEvaluator();
+//        NumericalEvaluator evaluator = createStandardMapleEvaluator();
+        NumericalEvaluator evaluator = createStandardMathematicaEvaluator();
         evaluator.startTestAndWriteResults(evaluator);
     }
 
