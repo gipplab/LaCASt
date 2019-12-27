@@ -95,6 +95,12 @@ public class GlobalPaths {
     public static final Path PATH_MAPLE_NUMERICAL_SIEVE_PROCEDURE =
             PATH_MAPLE_PROCS.resolve("maple_numerical_sieve.txt");
 
+    public static final Path PATH_MATHEMATICA_PROCS =
+            PATH_REFERENCE_DATA_CAS_LEXICONS.resolve( "MathematicaProcedures" );
+
+    public static final Path PATH_MATHEMATICA_NUMERICAL_PROCEDURES =
+            PATH_MATHEMATICA_PROCS.resolve("mathematica_numerical_procedures.txt");
+
     // path variable to the resources of the interpreter
     private static final Path PATH_CORE_RESOURCES =
             Paths.get("interpreter.common", "src", "main", "resources");

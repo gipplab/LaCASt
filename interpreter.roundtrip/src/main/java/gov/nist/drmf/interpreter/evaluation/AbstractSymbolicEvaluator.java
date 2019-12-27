@@ -18,7 +18,7 @@ public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> 
     private static final Logger LOG = LogManager.getLogger(AbstractSymbolicEvaluator.class.getName());
 
     public static final Pattern SYMBOLIC_LINE_PATTERN = Pattern.compile(
-            "^(\\d+-?[a-z]?): ([A-Za-z]*) .*$"
+            "^(\\d+-?[a-z]?)(?: \\[.*])?: ([A-Za-z]*) .*$"
     );
 
     public static int DEFAULT_TIMEOUT_MS = 4_000; // 4 seconds

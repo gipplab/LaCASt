@@ -13,21 +13,26 @@ import gov.nist.drmf.interpreter.evaluation.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.evaluation.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.evaluation.INumericalEvaluationScripts;
 import gov.nist.drmf.interpreter.mathematica.MathematicaInterface;
+import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Andre Greiner-Petter
  */
 public class MathematicaTranslator implements
         IConstraintTranslator,
-        IComputerAlgebraSystemEngine<String>,
+        IComputerAlgebraSystemEngine<Expr>,
         ICASEngineSymbolicEvaluator<Expr>,
         ICASEngineNumericalEvaluator<Expr>
 {
@@ -69,9 +74,10 @@ public class MathematicaTranslator implements
     }
 
     @Override
-    public String enterCommand(String command) throws ComputerAlgebraSystemEngineException {
+    public Expr enterCommand(String command) throws ComputerAlgebraSystemEngineException {
         try {
-            return mi.evaluate(command);
+            return mi.evaluateToExpression(command);
+//            return mi.evaluate(command);
         } catch (MathLinkException e) {
             throw new ComputerAlgebraSystemEngineException(e);
         }
@@ -142,46 +148,137 @@ public class MathematicaTranslator implements
      *  3.1) Special Variables from Variables
      *  3.2) Special Variables - Value Pairs
      * 4) Rest of Variables - Value pairs
-     * 1) Variables - Values paris
+     * 5) Variables - Values paris
      */
+    private static final String NL = System.lineSeparator();
+    private StringBuilder sb;
 
+    /**
+     * Extracts variables and stores them.
+     * @param expression mathematical expression (already translated)
+     * @param testValues list of values
+     * @return variable name
+     */
     @Override
     public String storeVariables(String expression, List<String> testValues) {
-        return null;
+        String varName = "vars";
+        String valsName = generateValuesVarName(varName);
+
+        sb = new StringBuilder();
+        String extract = Commands.EXTRACT_VARIABLES.build(expression);
+        addVarDefinitionNL(sb, varName, extract);
+        addVarDefinitionNL(sb, valsName, buildMathList(testValues));
+        return varName;
     }
 
     @Override
     public String storeConstraintVariables(String variableName, List<String> constraintVariables, List<String> constraintValues) {
-        // 1) variableName := Complement[variableName, contVars]
-        // 2)
-
-        // first, get constraint variables that are actually in var
-        // Intersection[list1,list2];
-        return null;
+        String eVars = "constVars";
+        String eVals = generateValuesVarName(eVars);
+        addVarDefinitionNL(sb, eVars, buildMathList(constraintVariables));
+        addVarDefinitionNL(sb, eVals, buildMathList(constraintValues));
+        return eVars;
     }
 
     @Override
     public String storeExtraVariables(String variableName, List<String> extraVariables, List<String> extraValues) {
-        return null;
+        String eVars = "extraVars";
+        String eVals = generateValuesVarName(eVars);
+        addVarDefinitionNL(sb, eVars, buildMathList(extraVariables));
+        addVarDefinitionNL(sb, eVals, buildMathList(extraValues));
+        return eVars;
     }
 
     @Override
     public String setConstraints(List<String> constraints) {
-        return null;
+        String cons = "assumptions";
+        addVarDefinitionNL(sb, cons, buildMathList(constraints));
+        return cons;
     }
 
     @Override
     public String buildTestCases(String constraintsName, String variableNames, String constraintVariableNames, String extraVariableNames, int maxCombis) throws ComputerAlgebraSystemEngineException, IllegalArgumentException {
-        return null;
+        String testCasesVar = "testCases";
+
+        // create test cases first
+        String testCasesCmd = Commands.CREATE_TEST_CASES.build(
+                variableNames,
+                generateValuesVarName(variableNames),
+                constraintVariableNames,
+                generateValuesVarName(constraintVariableNames),
+                extraVariableNames,
+                generateValuesVarName(extraVariableNames)
+        );
+
+        // filter cases based on constraints
+        testCasesCmd = Commands.FILTER_TEST_CASES.build(constraintsName, testCasesCmd);
+        addVarDefinitionNL(sb, testCasesVar, testCasesCmd);
+
+        // check if number of test cases is below definition
+        String lengthCmd = Commands.LENGTH_OF_LIST.build(testCasesVar);
+        sb.append(lengthCmd);
+
+        String commandString = sb.toString();
+        LOG.trace("Numerical Test Commands:"+NL+commandString);
+
+        try {
+            String res = mi.evaluate(commandString);
+            LOG.debug("Generated test cases: " + res);
+            int nT = Integer.parseInt(res);
+            if ( nT > maxCombis ) throw new IllegalArgumentException("Too many test combinations.");
+            // res should be an integer, testing how many test commands there are!
+        } catch (MathLinkException | NumberFormatException e) {
+            throw new ComputerAlgebraSystemEngineException(e);
+        }
+
+        return testCasesVar;
     }
 
     @Override
     public Expr performNumericalTests(String expression, String testCasesName, String postProcessingMethodName, int precision) throws ComputerAlgebraSystemEngineException {
-        return null;
+        try {
+            String cmd = Commands.NUMERICAL_TEST.build(expression, testCasesName);
+            LOG.info("Compute numerical test for " + expression);
+            return mi.evaluateToExpression(cmd);
+        } catch (MathLinkException e) {
+            throw new ComputerAlgebraSystemEngineException(e);
+        }
     }
 
     @Override
     public ResultType getStatusOfResult(Expr results) throws ComputerAlgebraSystemEngineException {
+        LOG.info("Numerical test finished. Result: " + results.toString());
         return null;
+    }
+
+    private void addVarDefinitionNL(StringBuilder sb, String varName, String def) {
+        sb.append(varName).append(" := ").append(def).append(";").append(NL);
+    }
+
+    private static String generateValuesVarName(String var) {
+        return var + "Vals";
+    }
+
+    private static String buildMathList(List<String> list) {
+        if ( list == null || list.isEmpty() ) return "{}";
+        String l = MapleSimplifier.makeListWithDelimiter(list);
+        return "{"+l+"}";
+    }
+
+    public String getNumericalProcedures() {
+        try (Stream<String> stream = Files.lines(GlobalPaths.PATH_MATHEMATICA_NUMERICAL_PROCEDURES ) ){
+            String procedures = stream.collect( Collectors.joining(System.lineSeparator()) );
+            stream.close(); // not really necessary
+            LOG.debug("Successfully loaded procedures");
+            return procedures;
+        } catch (IOException ioe){
+            LOG.error("Cannot load mathematica procedure file.", ioe);
+            return null;
+        }
+    }
+
+    @Override
+    public String generateNumericalTestExpression(String input) {
+        return input;
     }
 }

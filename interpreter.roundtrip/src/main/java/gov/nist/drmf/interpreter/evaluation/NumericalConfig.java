@@ -87,7 +87,7 @@ public class NumericalConfig implements EvaluationConfig {
         return NumericalProperties.KEY_EXPR.value;
     }
 
-    public String getTestExpression( String LHS, String RHS ){
+    public String getTestExpression( ICASEngineNumericalEvaluator evaluator, String LHS, String RHS ){
         String in = NumericalProperties.KEY_EXPR.value;
 
         if ( LHS == null || LHS.isEmpty() ){
@@ -100,8 +100,8 @@ public class NumericalConfig implements EvaluationConfig {
 
         in = in.replaceAll( PATTERN_LHS, Matcher.quoteReplacement(LHS) );
         in = in.replaceAll( PATTERN_RHS, Matcher.quoteReplacement(RHS) );
-        in = "evalf(" + in + ")";
-        return in;
+//        in = "evalf(" + in + ")";
+        return evaluator.generateNumericalTestExpression(in);
     }
 
     public String getExpectationTemplate(){

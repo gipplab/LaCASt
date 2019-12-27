@@ -662,4 +662,9 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
         }
         return false;
     }
+
+    @Override
+    public String generateNumericalTestExpression(String input) {
+        return "evalf(" + input + ")";
+    }
 }

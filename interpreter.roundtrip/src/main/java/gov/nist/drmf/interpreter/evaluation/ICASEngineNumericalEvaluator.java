@@ -63,6 +63,13 @@ public interface ICASEngineNumericalEvaluator<T> extends Observer {
     ResultType getStatusOfResult(T results) throws ComputerAlgebraSystemEngineException;
 
     /**
+     * In Maple its evalf( input );
+     * @param input
+     * @return
+     */
+    String generateNumericalTestExpression(String input);
+
+    /**
      * Returns the name of the values-variable for the variable names.
      * @param variableName when vars is the variable that holds the variables,
      *                     you can call this method with {@param variableName} vars
