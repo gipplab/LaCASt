@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.mathematica;
 
 import com.wolfram.jlink.MathLinkException;
+import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * @author Andre Greiner-Petter
  */
+@AssumeMathematicaAvailability
 public class MathematicaNumericalMethodsTests {
 
     private static MathematicaInterface mi;
