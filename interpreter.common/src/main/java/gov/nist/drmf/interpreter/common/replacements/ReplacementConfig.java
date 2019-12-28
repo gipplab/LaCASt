@@ -79,7 +79,7 @@ public class ReplacementConfig {
         for ( ConditionalReplacementRule rule : dlmfRules ) {
             if ( rule.applicable(link) ) {
                 input = rule.replace(input);
-                LOG.debug("Applied conditional replacement rule " + rule);
+                LOG.trace("Applied conditional replacement rule " + rule);
             }
         }
 

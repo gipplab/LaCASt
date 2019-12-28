@@ -34,6 +34,8 @@ public abstract class AbstractEvaluator<T> {
 
     private SymbolDefinedLibrary symbolDefinitionLibrary;
 
+    public static int DEFAULT_OUTPUT_LENGTH = 150;
+
     public static final Pattern filterCases = Pattern.compile(
             "\\\\(BigO|littleo|[fdc]Diff|asymp|sim|[lc]?dots)(?:[^a-zA-Z]|$)|" +
                     "\\{(cases|array|[bBvp]matrix|Matrix|Lattice)}|" +
@@ -88,6 +90,12 @@ public abstract class AbstractEvaluator<T> {
         }
 
         return output;
+    }
+
+    public String shortenOutput(String msg) {
+        if ( msg.length() > DEFAULT_OUTPUT_LENGTH ) {
+            return msg.substring(0, DEFAULT_OUTPUT_LENGTH) + "...";
+        } else return msg;
     }
 
     public void forceGC() throws ComputerAlgebraSystemEngineException {
@@ -235,6 +243,34 @@ public abstract class AbstractEvaluator<T> {
             LOG.fatal("Cannot load dataset!", ioe);
             return null;
         }
+    }
+
+    public static int DEFAULT_TIMEOUT_MS = 4_000; // 4 seconds
+
+    protected static Thread getAbortionThread(IAbortEvaluator evaluator) {
+        return getAbortionThread(evaluator, DEFAULT_TIMEOUT_MS);
+    }
+
+    protected static Thread getAbortionThread(IAbortEvaluator evaluator, int timeout) {
+        return new Thread(() -> {
+            boolean interrupted = false;
+            LOG.debug("Start waiting for abortion.");
+            try {
+                Thread.sleep(timeout);
+            } catch ( InterruptedException ie ) {
+                LOG.debug("Interrupted, no abortion necessary.");
+                interrupted = true;
+            }
+
+            if ( !interrupted ) {
+                try {
+                    LOG.warn("Abort current evaluation!");
+                    evaluator.abort();
+                } catch ( ComputerAlgebraSystemEngineException casee ) {
+                    LOG.error("Cannot abort computation.");
+                }
+            }
+        });
     }
 
     public abstract EvaluationConfig getConfig();

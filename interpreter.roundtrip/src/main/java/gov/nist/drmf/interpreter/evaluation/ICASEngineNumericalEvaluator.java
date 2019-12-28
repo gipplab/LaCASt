@@ -8,7 +8,7 @@ import java.util.Observer;
 /**
  * @author Andre Greiner-Petter
  */
-public interface ICASEngineNumericalEvaluator<T> extends Observer {
+public interface ICASEngineNumericalEvaluator<T> extends Observer, IAbortEvaluator<T> {
     /**
      * Stores the variables of the given expression and returns the
      * name of the variable that stores the information.

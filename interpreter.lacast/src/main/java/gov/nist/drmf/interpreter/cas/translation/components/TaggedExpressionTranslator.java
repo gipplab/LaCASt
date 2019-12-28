@@ -39,7 +39,7 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
 
     @Override
     public TranslatedExpression translate( PomTaggedExpression expression ) throws TranslationException {
-        LOG.debug("Triggers empty expression translator process.");
+//        LOG.debug("Triggers empty expression translator process.");
         // switch-case over tags
         String tag = expression.getTag();
         ExpressionTags expTag = ExpressionTags.getTagByKey(tag);

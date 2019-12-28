@@ -21,8 +21,6 @@ public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> 
             "^(\\d+-?[a-z]?)(?: \\[.*])?: ([A-Za-z]*) .*$"
     );
 
-    public static int DEFAULT_TIMEOUT_MS = 4_000; // 4 seconds
-
     private ICASEngineSymbolicEvaluator<T> symbolicEvaluator;
     private ISymbolicTestCases[] symbolicTestCases;
 
@@ -38,7 +36,7 @@ public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> 
     }
 
     public T simplify( String command ) throws ComputerAlgebraSystemEngineException {
-        Thread abortThread = getAbortionThread();
+        Thread abortThread = getAbortionThread(symbolicEvaluator);
         abortThread.start();
         T result = symbolicEvaluator.simplify(command);
         // waits for an answer, once the answer is received, we finished the process
@@ -48,7 +46,7 @@ public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> 
     }
 
     public T simplify( String command, String assumption ) throws ComputerAlgebraSystemEngineException {
-        Thread abortThread = getAbortionThread();
+        Thread abortThread = getAbortionThread(symbolicEvaluator);
         abortThread.start();
         LOG.info("Started abortion thread.");
 
@@ -66,28 +64,6 @@ public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> 
 
     public boolean isAbortedResult(T result) {
         return symbolicEvaluator.wasAborted(result);
-    }
-
-    private Thread getAbortionThread() {
-        return new Thread(() -> {
-            boolean interrupted = false;
-            LOG.debug("Start waiting for abortion.");
-            try {
-                Thread.sleep(DEFAULT_TIMEOUT_MS);
-            } catch ( InterruptedException ie ) {
-                LOG.debug("Interrupted, no abortion necessary.");
-                interrupted = true;
-            }
-
-            if ( !interrupted ) {
-                try {
-                    LOG.warn("Abort current evaluation!");
-                    symbolicEvaluator.abort();
-                } catch ( ComputerAlgebraSystemEngineException casee ) {
-                    LOG.error("Cannot abort computation.");
-                }
-            }
-        });
     }
 
     public ISymbolicTestCases[] getSymbolicTestCases() {

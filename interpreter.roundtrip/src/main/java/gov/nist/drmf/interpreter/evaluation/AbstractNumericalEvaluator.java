@@ -76,6 +76,9 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
         // next, store the actual constraints
         String constraintN = numericalEvaluator.setConstraints(constraints);
 
+        Thread abortThread = getAbortionThread(numericalEvaluator, DEFAULT_TIMEOUT_MS*2);
+        abortThread.start();
+
         // finally, generate all test cases that fit the constraints
         String testValuesN = numericalEvaluator.buildTestCases(
                 constraintN,
@@ -86,12 +89,19 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
         );
 
         // perform the test
-        return numericalEvaluator.performNumericalTests(
+        T res = numericalEvaluator.performNumericalTests(
                 testExpression,
                 testValuesN,
                 postProcessingMethodName,
                 precision
         );
+
+        abortThread.interrupt();
+        return res;
+    }
+
+    public boolean isAbortedResult(T result) {
+        return numericalEvaluator.wasAborted(result);
     }
 
     @Override

@@ -34,6 +34,13 @@
 
         <Console name="DebugConsole" target="SYSTEM_OUT">
             <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] %logger{1}:%line - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
+            <Filters>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </Console>
+
+        <Console name="TraceConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] %logger{1}:%line - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
         </Console>
 
         <Console name="ErrorConsole" target="SYSTEM_ERR">
@@ -47,6 +54,7 @@
         <Root level="all">
 <!--            <AppenderRef ref="HowardConsole"/>-->
             <AppenderRef ref="DebugConsole"/>
+<!--            <AppenderRef ref="TraceConsole"/>-->
 <!--            <AppenderRef ref="ErrorConsole"/>-->
 <!--            <AppenderRef ref="LogFile"/>-->
 <!--            <AppenderRef ref="ErrorFile"/>-->
