@@ -74,6 +74,9 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
     private final INumericalEvaluationScripts scriptHandler;
 
+    private int currentTestCase = 0;
+    private int currentNumOfTestCases = 0;
+
     /**
      * Creates an object for numerical evaluations.
      * Workflow:
@@ -143,6 +146,8 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             lineResult[i].add(skippedLinesInfo.get(i));
         }
 
+        currentNumOfTestCases = testCases.size();
+        currentTestCase = 0;
         return testCases;
     }
 
@@ -165,6 +170,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
     public void performSingleTest( Case c ){
         LOG.info("Start test for line: " + c.getLine());
         LOG.info("Test case: " + c);
+        LOG.info("Test case " + (currentTestCase++) + " of " + currentNumOfTestCases);
 
         if ( lineResult[c.getLine()] == null ){
             lineResult[c.getLine()] = new LinkedList();
@@ -211,32 +217,39 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             );
 
             LOG.debug("Finished numerical calculations.");
-
             if ( preAndPostCommands[1] != null ){
                 enterEngineCommand(preAndPostCommands[1]);
                 LOG.debug("Enter post-testing commands: " + preAndPostCommands[1]);
             }
 
-            ICASEngineNumericalEvaluator.ResultType resType = testResult(results);
-            String evaluation = "";
-            switch (resType) {
-                case SUCCESS:
-                    lineResult[c.getLine()].add("Successful");
-                    Status.SUCCESS.add();
-                    break;
-                case FAILURE:
-                    LOG.info("Test was NOT successful.");
-                    evaluation = results.toString();
-                    lineResult[c.getLine()].add(evaluation);
-                    Status.FAILURE.add();
-                    break;
-                case ERROR:
-                    LOG.info("Test was NOT successful.");
-                    evaluation = results.toString();
-                    lineResult[c.getLine()].add(evaluation);
-                    Status.ERROR.add();
-                    break;
+            boolean wasAborted = isAbortedResult(results);
+            if ( wasAborted ) {
+                LOG.info("Skip test because it took too much time.");
+                lineResult[c.getLine()].add("Skipped - Because timed out");
+                Status.FAILURE.add();
+            } else {
+                ICASEngineNumericalEvaluator.ResultType resType = testResult(results);
+                String evaluation = "";
+                switch (resType) {
+                    case SUCCESS:
+                        lineResult[c.getLine()].add("Successful");
+                        Status.SUCCESS.add();
+                        break;
+                    case FAILURE:
+                        LOG.info("Test was NOT successful.");
+                        evaluation = shortenOutput(results.toString());
+                        lineResult[c.getLine()].add(evaluation);
+                        Status.FAILURE.add();
+                        break;
+                    case ERROR:
+                        LOG.info("Test was NOT successful.");
+                        evaluation = shortenOutput(results.toString());
+                        lineResult[c.getLine()].add(evaluation);
+                        Status.ERROR.add();
+                        break;
+                }
             }
+
 
             LOG.info("Finished test for line: " + c.getLine());
         } catch ( TranslationException te ) {

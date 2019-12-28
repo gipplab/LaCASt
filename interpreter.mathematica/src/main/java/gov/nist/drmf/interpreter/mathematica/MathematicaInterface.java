@@ -53,7 +53,7 @@ public class MathematicaInterface {
     }
 
     public Expr evaluateToExpression(String input) throws MathLinkException {
-        LOG.debug("Evaluate: " + input);
+//        LOG.debug("Evaluate: " + input);
         mathKernel.evaluate(input);
         mathKernel.waitForAnswer();
         return mathKernel.getExpr();

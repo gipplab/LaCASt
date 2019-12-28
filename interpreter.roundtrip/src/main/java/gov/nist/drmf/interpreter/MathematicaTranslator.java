@@ -193,11 +193,19 @@ public class MathematicaTranslator implements
     public String setConstraints(List<String> constraints) {
         String cons = "assumptions";
         addVarDefinitionNL(sb, cons, buildMathList(constraints));
-        return cons;
+        return (constraints == null || constraints.isEmpty()) ? null : cons;
     }
 
     @Override
     public String buildTestCases(String constraintsName, String variableNames, String constraintVariableNames, String extraVariableNames, int maxCombis) throws ComputerAlgebraSystemEngineException, IllegalArgumentException {
+        try {
+            LOG.info("Setup variables for numerical test case.");
+            mi.evaluate(sb.toString());
+            sb = new StringBuilder();
+        } catch (MathLinkException e) {
+            e.printStackTrace();
+        }
+
         String testCasesVar = "testCases";
 
         // create test cases first
@@ -210,8 +218,10 @@ public class MathematicaTranslator implements
                 generateValuesVarName(extraVariableNames)
         );
 
-        // filter cases based on constraints
-        testCasesCmd = Commands.FILTER_TEST_CASES.build(constraintsName, testCasesCmd);
+        if ( constraintsName != null ) {
+            // filter cases based on constraints
+            testCasesCmd = Commands.FILTER_TEST_CASES.build(constraintsName, testCasesCmd);
+        }
         addVarDefinitionNL(sb, testCasesVar, testCasesCmd);
 
         // check if number of test cases is below definition
@@ -247,8 +257,9 @@ public class MathematicaTranslator implements
 
     @Override
     public ResultType getStatusOfResult(Expr results) throws ComputerAlgebraSystemEngineException {
-        LOG.info("Numerical test finished. Result: " + results.toString());
-        return null;
+        String resStr = results.toString();
+        LOG.info("Numerical test finished. Result: " + resStr);
+        return resStr.matches("\\{}") ? ResultType.SUCCESS : ResultType.FAILURE;
     }
 
     private void addVarDefinitionNL(StringBuilder sb, String varName, String def) {

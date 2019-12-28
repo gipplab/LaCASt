@@ -20,6 +20,7 @@ numericalAutoTest[expr_, tests_] :=
             Module[{},
                 If[
                     Or[
+                        And[BooleanQ[Part[results, i], Not[Part[results, i]]]]
                         Not[NumericQ[Part[results, i]]],
                         Abs[Part[results, i]] > 0.001
                     ],
