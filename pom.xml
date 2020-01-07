@@ -15,8 +15,8 @@
         <module>interpreter.lacast</module>
         <module>interpreter.maple</module>
         <module>interpreter.mathematica</module>
-        <module>interpreter.core</module>
-        <module>interpreter.roundtrip</module>
+        <module>interpreter.api</module>
+        <module>interpreter.evaluation</module>
         <module>interpreter.semantify</module>
     </modules>
 
@@ -29,9 +29,7 @@
             just set the variables to your home directory.
         -->
         <maple.installation.dir>/opt/maple2016</maple.installation.dir>
-<!--        <maple.installation.dir>/home/andreg-p</maple.installation.dir>-->
         <mathematica.installation.dir>/opt/Wolfram</mathematica.installation.dir>
-<!--        <mathematica.installation.dir>/home/andreg-p</mathematica.installation.dir>-->
 
         <main.basedir>${project.basedir}</main.basedir>
         <maven.compiler.source>1.8</maven.compiler.source>
