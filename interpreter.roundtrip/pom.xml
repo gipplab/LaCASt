@@ -24,28 +24,6 @@
             <artifactId>interpreter.core</artifactId>
             <version>2.1-SNAPSHOT</version>
         </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>${project.groupId}</groupId>-->
-<!--            <artifactId>Maple</artifactId>-->
-<!--            <scope>system</scope>-->
-<!--            <version>${maple.version}</version>-->
-<!--            <systemPath>${maple.path}/java/Maple.jar</systemPath>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>${project.groupId}</groupId>-->
-<!--            <artifactId>Maple-Call</artifactId>-->
-<!--            <scope>system</scope>-->
-<!--            <version>${maple.version}</version>-->
-<!--            <systemPath>${maple.path}/java/externalcall.jar</systemPath>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>gov.nist.drmf.interpreter</groupId>-->
-<!--            <artifactId>MLP</artifactId>-->
-<!--            <version>${mlp.version}</version>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -71,7 +49,7 @@
                 <version>3.2.0</version>
                 <executions>
                     <execution>
-                        <id>compile-translator</id>
+                        <id>compile-symbolic-tester</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
@@ -82,6 +60,28 @@
                                 <manifest>
                                     <mainClass>
                                         gov.nist.drmf.interpreter.evaluation.SymbolicEvaluator
+                                    </mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <outputDirectory>${main.basedir}/bin/</outputDirectory>
+                            <appendAssemblyId>false</appendAssemblyId>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>compile-numeric-tester</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>numeric-tester</finalName>
+                            <archive>
+                                <manifest>
+                                    <mainClass>
+                                        gov.nist.drmf.interpreter.evaluation.NumericalEvaluator
                                     </mainClass>
                                 </manifest>
                             </archive>

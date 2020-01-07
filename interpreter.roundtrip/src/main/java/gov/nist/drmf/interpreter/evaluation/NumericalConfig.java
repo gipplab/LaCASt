@@ -131,7 +131,11 @@ public class NumericalConfig implements EvaluationConfig {
     }
 
     public Path getSymbolicResultsPath() {
-        return Paths.get(NumericalProperties.KEY_PREV_RESULTS.value);
+        try {
+            return Paths.get(NumericalProperties.KEY_PREV_RESULTS.value);
+        } catch (NullPointerException npe) {
+            return null;
+        }
     }
 
     public String getSpecialVariablesValues(){

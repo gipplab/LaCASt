@@ -1,0 +1,45 @@
+Overall: [SUCCESS: 13, FAILURE: 16, LIMIT_SKIPS: 9, TESTED: 43, ERROR: 5] for test expression: (#LHS)-(#RHS)
+1075: Successful
+1087: Skipped - Too many test combinations.
+1191: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+1192: Skipped - Because timed out
+1193: Skipped - Too many test combinations.
+1194: Skipped - Too many test combinations.
+1195: Skipped - Too many test combinations.
+1196: Skipped - Too many test combinations.
+1202: Skipped - Too many test combinations.
+1210: Skipped - Because timed out
+1220: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+1222: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+1232: Successful
+1233: Skipped - Because timed out
+1234: {{Complex[-1.727379091216698, 1.4142135623730951]}, {Complex[-0.1565827644218014, 1.4142135623730951]}, {Complex[0.3670160111764975, 1.4142135623730951]}, {Complex[-1.727379091216698, -1.4142135623730951]}, {Complex[-0.1565827644218014, -1.4142135623730951]}, {Complex[0.3670160111764975, -1.4142135623730951]}, {Complex[-4.555806215962888, -1.4142135623730951]}, {Complex[-2.9850098891679915, -1.4142135623730951]}, {Complex[-2.4614111135696928, -1.4142135623730951]}, {Complex[-4.555806215962888, 1.4142135623730951]}, {Complex[-2.9850098891679915, 1.4142135623730951]}, {Complex[-2.4614111135696928, 1.4142135623730951]}}
+1235: Successful
+1236: Successful
+1237: Successful
+1238: Successful
+1238-a: Successful
+1239: Successful
+1240: Successful
+1243: Skipped - Because timed out
+1246: Successful
+1249: Successful
+1251: {{Complex[1.4142135623730951, 1.4142135623730951]}, {Complex[3.5215743053061357, 2.8284271247461903]}, {Complex[5.341252975787396, 4.242640687119286]}, {Complex[1.4142135623730951, -1.4142135623730951]}, {Complex[3.5215743053061357, -2.8284271247461903]}, {Complex[5.341252975787396, -4.242640687119286]}, {Complex[-1.4142135623730951, -1.4142135623730951]}, {Complex[-2.135279944186245, -2.8284271247461903]}, {Complex[-3.1440283984511757, -4.242640687119286]}, {Complex[-1.4142135623730951, 1.4142135623730951]}, {Complex[-2.135279944186245, 2.8284271247461903]}, {Complex[-3.1440283984511757, 4.242640687119286]}}
+1260: $Failed
+1266: $Failed
+1268: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+1269: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+1287: Successful
+1334: $Failed
+1337: {{Complex[0.6440232508700339, 1.4142135623730951]}, {Complex[-0.04813130374017138, 2.8284271247461903]}, {Complex[-153.41391694554147, 4.242640687119286]}, {Complex[0.6440232508700339, -1.4142135623730951]}, {Complex[-0.04813130374017138, -2.8284271247461903]}, {Complex[-153.41391694554147, -4.242640687119286]}, {Complex[-2.184403873876156, -1.4142135623730951]}, {Complex[-5.704985553232552, -2.8284271247461903]}, {Complex[-161.89919831978006, -4.242640687119286]}, {Complex[-2.184403873876156, 1.4142135623730951]}, {Complex[-5.704985553232552, 2.8284271247461903]}, {Complex[-161.89919831978006, 4.242640687119286]}}
+1349: {{Complex[1.4142135623730951, 1.4142135623730951]}, {Complex[1.4142135623730951, -1.4142135623730951]}, {Complex[-1.4142135623730951, -1.4142135623730951]}, {Complex[-1.4142135623730951, 1.4142135623730951]}}
+1352: {{4.309980412182177*^7}}
+1371: Skipped - Because timed out
+1372: Skipped - Because timed out
+1417: $Failed
+1417-a: $Failed
+1417-b: Skip - symbolical successful subtest
+1422: Skipped - Too many test combinations.
+1453: Skipped - Too many test combinations.
+1455: Skipped - Too many test combinations.
+1459: Successful

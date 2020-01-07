@@ -1,0 +1,232 @@
+Overall: [SUCCESS: 15, FAILURE: 103, LIMIT_SKIPS: 4, TESTED: 224, ERROR: 102] for test expression: (#LHS)-(#RHS)
+4272: {{Complex[0.0, -4.0]}, {-4.0}, {Complex[0.0, 4.0]}, {4.0}, {-4.0}, {Complex[0.0, 4.0]}, {4.0}, {Complex[0.0, -4.0]}, {Complex[0.0, 4.0]}, {4.0}, {Complex[0.0, -4.0]}, {-4.0}, {4.0}, {Complex[0.0, -4.0]}, {-4.0}, {Complex[0.0, 4.0]}}
+4276: Skip - symbolical successful subtest
+4276-a: Skipped - Because timed out
+4278: Successful
+4278-a: Skip - symbolical successful subtest
+4279: Successful
+4279-a: Successful
+4280: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4281: Successful
+4281-a: Skip - symbolical successful subtest
+4283: Skipped - Because timed out
+4284: Skipped - Because timed out
+4285: Skipped - Because timed out
+4286: Skipped - Because timed out
+4287: Skipped - Because timed out
+4288: Skipped - Because timed out
+4289: Skipped - Because timed out
+4290: Skipped - Because timed out
+4291: Skipped - Because timed out
+4292: Skipped - Because timed out
+4293: Skipped - Because timed out
+4306: Skipped - Because timed out
+4307: Skipped - Because timed out
+4308: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4308-a: Skipped - Because timed out
+4309: Skipped - Because timed out
+4310: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4310-a: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4311: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4311-a: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4314: Skipped - Because timed out
+4314-a: Skipped - Because timed out
+4331: Skipped - Because timed out
+4332: Skipped - Because timed out
+4333: Skipped - Because timed out
+4334: Skipped - Because timed out
+4335: Skipped - Because timed out
+4336: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4339: Skipped - Because timed out
+4340: Skipped - Because timed out
+4341: Skipped - Because timed out
+4342: Skipped - Because timed out
+4343: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4344: {{Complex[0.0, -4.0]}, {Complex[28.284271247461902, -28.284271247461902]}, {Complex[0.0, 4.0]}, {Complex[28.284271247461902, 28.284271247461902]}, {Complex[0.0, -4.0]}, {Complex[-28.284271247461902, 28.284271247461902]}, {Complex[0.0, 4.0]}, {Complex[-28.284271247461902, -28.284271247461902]}}
+4345: Skipped - Because timed out
+4346: Skipped - Because timed out
+4347: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4348: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4349: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4350: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4351: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4352: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4354: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4355: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4356: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4357: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4359: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4360: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4361: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4363: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4364: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4365: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4379: {{Complex[3.0758862951142576, 2.0757440991874905]}, {Complex[3.0758862951142576, -2.0757440991874905]}}
+4382: {{Complex[0.12871133806471044, -0.32502842978110724]}, {Complex[0.12871133806471044, 0.32502842978110724]}}
+4383: {{Complex[5.265954078844872, 2.598925568096585]}, {Complex[16.95026324285485, 24.471606828175403]}, {Complex[16.95026324285485, -24.471606828175403]}, {Complex[5.265954078844872, -2.598925568096585]}, {Complex[7.176160506926335, 20.686866348665873]}, {Complex[4.2840198549590935, -0.5516982442412757]}, {Complex[4.2840198549590935, 0.5516982442412757]}, {Complex[7.176160506926335, -20.686866348665873]}}
+4384: {{Complex[-4.996298332347829, 0.8383991090064162]}, {Complex[3.9154332288113323, -20.407910193592727]}, {Complex[3.9154332288113323, 20.407910193592727]}, {Complex[-4.996298332347829, -0.8383991090064162]}, {Complex[-13.33745684509345, -6.736258274563069]}, {Complex[2.4738332954461826, 2.674034075732304]}, {Complex[2.4738332954461826, -2.674034075732304]}, {Complex[-13.33745684509345, 6.736258274563069]}}
+4387: Successful
+4388: Successful
+4389: {{Complex[2.4748737341529163, 3.181980515339464]}, {Complex[2.474873734152916, -3.181980515339464]}}
+4390: Successful
+4390-a: Skip - symbolical successful subtest
+4391: Successful
+4391-a: Skip - symbolical successful subtest
+4392: $Failed
+4397: Skipped - Because timed out
+4403: {{Complex[-0.1565827644218014, 1.4142135623730951]}, {Complex[0.8284271247461903, 2.8284271247461903]}, {Complex[1.8864461969269408, 4.242640687119286]}, {Complex[-0.1565827644218014, -1.4142135623730951]}, {Complex[0.8284271247461903, -2.8284271247461903]}, {Complex[1.8864461969269408, -4.242640687119286]}, {Complex[-2.9850098891679915, -1.4142135623730951]}, {Complex[-4.82842712474619, -2.8284271247461903]}, {Complex[-6.5988351773116305, -4.242640687119286]}, {Complex[-2.9850098891679915, 1.4142135623730951]}, {Complex[-4.82842712474619, 2.8284271247461903]}, {Complex[-6.5988351773116305, 4.242640687119286]}}
+4407: $Failed
+4411: Skipped - Because timed out
+4413: $Failed
+4416: Skipped - Because timed out
+4417: Skipped - Because timed out
+4418: Skipped - Too many test combinations.
+4425: Skipped - Too many test combinations.
+4426: Skipped - Too many test combinations.
+4427: Skipped - Because timed out
+4428: Skipped - Because timed out
+4429: $Failed
+4432: $Failed
+4433: $Failed
+4434: $Failed
+4436: Skipped - Too many test combinations.
+4437: Skipped - Because timed out
+4437-a: Skipped - Because timed out
+4438: Skipped - Because timed out
+4439: $Failed
+4440: $Failed
+4442: $Failed
+4444: Skipped - Because timed out
+4445: Skipped - Because timed out
+4447: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4449: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4450: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4451: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4452: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4454: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4455: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4456: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4457: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4458: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4459: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4460: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4461: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4463: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4464: Skipped - Because timed out
+4465: Skipped - Because timed out
+4478: Skipped - Because timed out
+4483: Skip - symbolical successful subtest
+4483-a: Skipped - Because timed out
+4487: {{Complex[-170.7233281137989, -52.66673241325771]}, {Complex[-253.74846171929062, -500.51361552060405]}, {Complex[-27.726012706068122, -46.132000771477266]}, {Complex[-52.00289849528395, 25.53895774298251]}, {Complex[-156.7833635417097, 147.76975126580453]}, {Complex[-1336.3293012153467, -1299.0010073665994]}, {Complex[13.567482135419885, -36.936365970710575]}, {Complex[-2.6144703540529446, 5.648276978861849]}, {Complex[-33.382286556504994, 57.22536701938698]}, {Complex[-1441.2301518585523, 452.8503941401812]}, {Complex[237.5573370375432, -300.23001876669065]}, {Complex[-6.1334503561107905, -3.8078618799627013]}, {Complex[-56.84567804073182, -14.116833633908687]}, {Complex[-464.58220414464165, 111.02969172843329]}, {Complex[-144.65591010205068, -134.4795070575774]}, {Complex[-16.3875613539105, -21.728019858669395]}, {Complex[5.614866185848199, -0.19613917161816166]}, {Complex[4338.981053496486, -2443.697051627543]}, {Complex[-1834.8281735398336, 1409.662052902203]}, {Complex[-2.0611704714793313, 1.071630854562255]}, {Complex[17.757993914442338, 0.6206610683765639]}, {Complex[4031.1093958024344, 3933.985774295391]}, {Complex[-588.8389189369063, 173.2143479528108]}, {Complex[1.7530558318097857, 4.147784635411157]}, {Complex[11.082434936525736, -18.912267000356934]}, {Complex[16193.56250292432, 8560.737638426603]}, {Complex[-86.39792207350436, -522.0638793059528]}, {Complex[0.03814675682985699, 0.4612516100779975]}, {Complex[1.3093949674707013, -6.469186036832333]}, {Complex[12798.682086814919, -8180.730671562349]}, {Complex[-3683.5498520233728, -3270.1223640157714]}, {Complex[-0.45881210718600324, 0.43618779501855853]}}
+4487-a: {{Complex[-1336.3293012153467, 1299.0010073665994]}, {Complex[-156.7833635417097, -147.76975126580453]}, {Complex[-2.6144703540529446, -5.648276978861849]}, {Complex[13.567482135419885, 36.936365970710575]}, {Complex[-253.74846171929062, 500.51361552060405]}, {Complex[-170.7233281137989, 52.66673241325771]}, {Complex[-52.00289849528395, -25.53895774298251]}, {Complex[-27.726012706068122, 46.132000771477266]}, {Complex[-464.58220414464165, -111.02969172843329]}, {Complex[-56.84567804073182, 14.116833633908687]}, {Complex[-16.3875613539105, 21.728019858669395]}, {Complex[-144.65591010205068, 134.4795070575774]}, {Complex[-1441.2301518585523, -452.8503941401812]}, {Complex[-33.382286556504994, -57.22536701938698]}, {Complex[-6.1334503561107905, 3.8078618799627013]}, {Complex[237.5573370375432, 300.23001876669065]}, {Complex[4031.1093958024344, -3933.985774295391]}, {Complex[17.757993914442338, -0.6206610683765639]}, {Complex[1.7530558318097857, -4.147784635411157]}, {Complex[-588.8389189369063, -173.2143479528108]}, {Complex[4338.981053496486, 2443.697051627543]}, {Complex[5.614866185848199, 0.19613917161816166]}, {Complex[-2.0611704714793313, -1.071630854562255]}, {Complex[-1834.8281735398336, -1409.662052902203]}, {Complex[12798.682086814919, 8180.730671562349]}, {Complex[1.3093949674707013, 6.469186036832333]}, {Complex[-0.45881210718600324, -0.43618779501855853]}, {Complex[-3683.5498520233728, 3270.1223640157714]}, {Complex[16193.56250292432, -8560.737638426603]}, {Complex[11.082434936525736, 18.912267000356934]}, {Complex[0.03814675682985699, -0.4612516100779975]}, {Complex[-86.39792207350436, 522.0638793059528]}}
+4488: Skipped - Because timed out
+4489: Skipped - Because timed out
+4490: Skipped - Because timed out
+4491: Skipped - Because timed out
+4492: Skipped - Because timed out
+4492-a: Skipped - Because timed out
+4493: Skipped - Because timed out
+4494: Skipped - Because timed out
+4495: Skipped - Because timed out
+4496: Skipped - Because timed out
+4505: Successful
+4506: Skipped - Because timed out
+4507: Skipped - Because timed out
+4507-a: Skipped - Because timed out
+4508: Skipped - Because timed out
+4509: Skipped - Because timed out
+4509-a: Skipped - Because timed out
+4510: Skipped - Because timed out
+4510-a: Skipped - Because timed out
+4512: Skipped - Because timed out
+4512-a: Skipped - Because timed out
+4513: Skipped - Because timed out
+4515: Successful
+4516: Successful
+4517: Successful
+4518: Successful
+4519: Successful
+4520: Successful
+4521: Skipped - Because timed out
+4522: Skipped - Because timed out
+4523: Skipped - Because timed out
+4525: Skipped - Because timed out
+4526: Skipped - Because timed out
+4527: Skipped - Because timed out
+4528: Skipped - Because timed out
+4529: Skipped - Because timed out
+4530: Skipped - Because timed out
+4531: Skipped - Because timed out
+4532: Skipped - Because timed out
+4533: Skipped - Because timed out
+4534: Skipped - Because timed out
+4535: Skipped - Because timed out
+4536: Skipped - Because timed out
+4537: Skipped - Because timed out
+4538: Skipped - Because timed out
+4539: Skipped - Because timed out
+4540: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4541: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4542: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4543: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4544: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4545: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4546: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4547: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4548: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4550: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4550-a: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4551: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4552: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4564: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4565: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4565-a: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4568: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4570: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4571: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4572: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4573: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4574: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4575: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4575-a: Skip - symbolical successful subtest
+4579: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4580: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4582: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4583: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4587: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4588: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4588-a: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4589: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4590: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4591: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4592: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4593: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4602: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4603: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4604: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4608: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4609: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4623: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4624: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4625: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4626: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4627: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4629: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4630: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4631: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4632: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4633: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4635: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4636: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4638: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4641: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4642: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4643: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4644: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4658: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4659: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4662: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4663: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4665: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4666: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
+4672: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: MathLinkException: 1: MathLink connection was lost.
