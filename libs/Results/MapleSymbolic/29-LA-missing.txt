@@ -1,0 +1,13 @@
+\LameEc, 19
+\LameEs, 17
+\Lameeigvala, 10
+\Lameeigvalb, 9
+\LamepolydE, 3
+\LamepolyscE, 3
+\LamepolycE, 3
+\LamepolycdE, 3
+\LamepolyuE, 3
+\LamepolysE, 3
+\LamepolyscdE, 3
+\LamepolysdE, 3
+\Weierstrassplatt, 1

@@ -1,0 +1,143 @@
+Overall: [SUCCESS: 19, FAILURE: 48, LIMIT_SKIPS: 12, TESTED: 123, ERROR: 44] for test expression: (#LHS)-(#RHS)
+4973: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+4975: Skipped - Because timed out
+4976: Skip - symbolical successful subtest
+4976-a: Skipped - Because timed out
+4981: Successful
+4988: Successful
+4990: Successful
+4991: Successful
+4992: Successful
+4993: Successful
+4994: Successful
+4995: Successful
+4996: Successful
+5000: Skipped - Because timed out
+5002: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+5003: Skipped - Because timed out
+5004: Successful
+5005: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+5009: Successful
+5010: Successful
+5011: Successful
+5012: Successful
+5013: Successful
+5016: Skipped - Because timed out
+5017: Skipped - Because timed out
+5018: Skipped - Because timed out
+5019: Skipped - Because timed out
+5020: Skipped - Because timed out
+5021: Skipped - Because timed out
+5022: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+5023: {{Complex[0.0, -4.0]}, {Complex[28.284271247461902, -28.284271247461902]}, {Complex[0.0, 4.0]}, {Complex[28.284271247461902, 28.284271247461902]}, {Complex[0.0, -4.0]}, {Complex[-28.284271247461902, 28.284271247461902]}, {Complex[0.0, 4.0]}, {Complex[-28.284271247461902, -28.284271247461902]}}
+5054: Skipped - Because timed out
+5054-a: Skipped - Because timed out
+5054-b: Skip - symbolical successful subtest
+5055: Skipped - Because timed out
+5056: Skipped - Because timed out
+5057: Skipped - Because timed out
+5058: Skipped - Because timed out
+5059: Skipped - Because timed out
+5059-a: Skipped - Because timed out
+5060: Skipped - Because timed out
+5060-a: Skipped - Because timed out
+5066: Skipped - Because timed out
+5067: Skipped - Because timed out
+5068: Skipped - Because timed out
+5069: Skipped - Because timed out
+5070: Skipped - Because timed out
+5071: Skipped - Because timed out
+5072: Skipped - Because timed out
+5073: Skipped - Because timed out
+5074: Skipped - Because timed out
+5075: Skipped - Because timed out
+5076: Skipped - Because timed out
+5077: Skipped - Because timed out
+5078: Skipped - Because timed out
+5079: Skipped - Because timed out
+5080: Skipped - Because timed out
+5081: Skipped - Because timed out
+5082: {{Complex[1.372516027919868, 1.8258052682131423]}, {Complex[-0.6051524788001073, -3.068921398743132]}, {Complex[0.29757939171102116, -0.5999898475376467]}, {Complex[0.09905183258496669, -9.951495092476645]}, {Complex[-0.6051524788001073, 3.068921398743132]}, {Complex[1.372516027919868, -1.8258052682131423]}, {Complex[0.09905183258496669, 9.951495092476645]}, {Complex[0.29757939171102116, 0.5999898475376467]}, {Complex[1.2199179896958465, -9.343049773807751]}, {Complex[-6.035720521611865, 6.544027692053282]}, {Complex[75.1538620975506, 91.03369605269671]}, {Complex[2.853589008706137, 2.2634080072125404]}, {Complex[-6.035720521611865, -6.544027692053282]}, {Complex[1.2199179896958465, 9.343049773807751]}, {Complex[2.853589008706137, -2.2634080072125404]}, {Complex[75.1538620975506, -91.03369605269671]}}
+5083: Successful
+5083-a: {{Complex[1.372516027919873, 1.825805268213136]}, {Complex[-0.605152478800107, -3.0689213987431314]}, {Complex[0.2975793917110212, -0.5999898475376467]}, {Complex[0.09905183258496181, -9.951495092476698]}, {Complex[-0.605152478800107, 3.0689213987431314]}, {Complex[1.372516027919873, -1.825805268213136]}, {Complex[0.09905183258496694, 9.951495092476698]}, {Complex[0.2975793917110212, 0.5999898475376467]}, {Complex[1.2199179896958476, -9.343049773807753]}, {Complex[-6.035720521611909, 6.544027692053344]}, {Complex[75.15386209755042, 91.03369605269681]}, {Complex[2.853589008706137, 2.263408007212539]}, {Complex[-6.035720521611909, -6.544027692053344]}, {Complex[1.2199179896958476, 9.343049773807753]}, {Complex[2.853589008706137, -2.263408007212539]}, {Complex[75.15386209755042, -91.0336960526968]}}
+5084: Successful
+5085: $Failed
+5086: {{Complex[-0.010742539950905128, -1.7361248428967333]}, {Complex[-0.010742539950905128, 1.7361248428967333]}, {Complex[3.107241800778924, 0.40090134898439433]}, {Complex[3.107241800778924, -0.40090134898439433]}}
+5089: Successful
+5090: Skipped - Because timed out
+5092: Successful
+5102: Skipped - Because timed out
+5103: Skipped - Because timed out
+5105: Skipped - Because timed out
+5106: Skipped - Because timed out
+5110: {{Complex[5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, -5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, 5.656854249492381]}, {Complex[5.656854249492381, -5.656854249492381]}, {Complex[-5.656854249492381, -5.656854249492381]}}
+5111: Skipped - Too many test combinations.
+5112: Skipped - Too many test combinations.
+5114: Skipped - Too many test combinations.
+5115: Skipped - Too many test combinations.
+5117: Skipped - Too many test combinations.
+5118: Skipped - Too many test combinations.
+5123: Skipped - Too many test combinations.
+5123-a: Skip - symbolical successful subtest
+5123-b: Skip - symbolical successful subtest
+5123-c: Skip - symbolical successful subtest
+5124: Skipped - Too many test combinations.
+5124-a: Skip - symbolical successful subtest
+5124-b: Skip - symbolical successful subtest
+5124-c: Skip - symbolical successful subtest
+5125: Skipped - Too many test combinations.
+5125-a: Skip - symbolical successful subtest
+5125-b: Skip - symbolical successful subtest
+5125-c: Skip - symbolical successful subtest
+5126: Skipped - Too many test combinations.
+5126-a: Skip - symbolical successful subtest
+5126-b: Skip - symbolical successful subtest
+5126-c: Skip - symbolical successful subtest
+5127: Skipped - Too many test combinations.
+5127-a: Skipped - Because timed out
+5127-b: Skip - symbolical successful subtest
+5127-c: Skip - symbolical successful subtest
+5128: Skipped - Too many test combinations.
+5128-a: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: ""In[2]:= ""
+5128-b: Skip - symbolical successful subtest
+5128-c: Skip - symbolical successful subtest
+5129: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5130: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5131: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5132: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+5133: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5134: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5135: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5136: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5137: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5138: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5139: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5140: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5141: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5142: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5143: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5144: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5145: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5146: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5147: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5148: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5167: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Failed"
+5167-a: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Failed"
+5168: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5171: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Failed"
+5172: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Failed"
+5173: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5174: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5175: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Failed"
+5176: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Failed"
+5177: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Failed"
+5181: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Failed"
+5181-a: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5181-b: Skip - symbolical successful subtest
+5182: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5183: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5184: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5185: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5186: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Failed"
+5187: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Null"
+5188: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"

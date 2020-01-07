@@ -24,7 +24,7 @@ numericalAutoTest[expr_, tests_] :=
                         Not[NumericQ[Part[results, i]]],
                         Abs[Part[results, i]] > 0.001
                     ],
-                    AppendTo[output, {Part[results, i], Part[tests, i]}]]
+                    AppendTo[output, {Part[results, i]}]]
             ], {i, Length[tests]}];
         Return[output]
     ]

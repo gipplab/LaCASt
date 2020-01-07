@@ -1,0 +1,145 @@
+Overall: [SUCCESS: 30, FAILURE: 74, LIMIT_SKIPS: 0, TESTED: 120, ERROR: 16] for test expression: (#LHS)-(#RHS)
+2724: $Failed
+2724-a: $Failed
+2730: Successful
+2730-a: Successful
+2731: Successful
+2732: Successful
+2733: Successful
+2733-a: Successful
+2734: Successful
+2735: Successful
+2736: Successful
+2737: Successful
+2743: Skipped - Because timed out
+2744: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2745: Skipped - Because timed out
+2746: Skipped - Because timed out
+2747: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2748: {{Complex[1.4142135623730951, 1.4142135623730951]}, {Complex[1.4142135623730951, -1.4142135623730951]}, {Complex[-1.4142135623730951, -1.4142135623730951]}, {Complex[-1.4142135623730951, 1.4142135623730951]}}
+2749: Skipped - Because timed out
+2750: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2752: {{Complex[2.8337652800788264, -0.3039461861802381]}, {Complex[2.8337652800788264, 0.3039461861802381]}}
+2752-a: {{Complex[2.8337652800788264, -0.3039461861802381]}, {Complex[2.8337652800788264, 0.3039461861802381]}}
+2752-b: Skip - symbolical successful subtest
+2752-c: Skip - symbolical successful subtest
+2752-d: Skip - symbolical successful subtest
+2752-e: Skip - symbolical successful subtest
+2752-f: Skip - symbolical successful subtest
+2752-g: Skip - symbolical successful subtest
+2753: {{Complex[-0.7883076520663912, 3.485863960601928]}, {Complex[-0.7883076520663912, -3.485863960601928]}}
+2753-a: {{Complex[-0.7883076520663912, 3.485863960601928]}, {Complex[-0.7883076520663912, -3.485863960601928]}}
+2753-b: Skip - symbolical successful subtest
+2753-c: Skip - symbolical successful subtest
+2753-d: Skip - symbolical successful subtest
+2753-e: Skip - symbolical successful subtest
+2753-f: Skip - symbolical successful subtest
+2753-g: Skip - symbolical successful subtest
+2754: {{Complex[0.032309126109843156, 0.11672583064563491]}, {Complex[0.032309126109843156, -0.11672583064563491]}}
+2754-a: {{Complex[-0.16812765614504083, -1.4752455553622306]}, {Complex[-0.16812765614504083, 1.4752455553622306]}}
+2754-b: Skip - symbolical successful subtest
+2755: {{Complex[0.18153969005752768, 0.026744504839266825]}, {Complex[0.18153969005752768, -0.026744504839266825]}}
+2755-a: {{Complex[1.6521621352721998, 0.3807815736135619]}, {Complex[1.6521621352721998, -0.3807815736135619]}}
+2755-b: Skip - symbolical successful subtest
+2756: {{Complex[-0.5274645818155765, -0.0765225723412053]}, {Complex[-0.5274645818155765, 0.0765225723412053]}}
+2756-a: Successful
+2756-b: Skip - symbolical successful subtest
+2757: {{Complex[-0.6239178317433629, -0.1120108405877985]}, {Complex[-0.6239178317433629, 0.1120108405877985]}}
+2757-a: Successful
+2757-b: Skip - symbolical successful subtest
+2758: {{Complex[0.41117479327057227, 1.355498750084894]}, {Complex[0.41117479327057227, -1.355498750084894]}}
+2758-a: Successful
+2758-b: Skip - symbolical successful subtest
+2759: {{Complex[-1.338452844987923, 1.884861589266007]}, {Complex[-1.338452844987923, -1.884861589266007]}}
+2759-a: Successful
+2759-b: Skip - symbolical successful subtest
+2761: {{Complex[-0.531417918807772, 1.09821419470116]}, {Complex[-0.531417918807772, -1.09821419470116]}}
+2761-a: {{Complex[0.8096382422763857, -0.0023450862884800416]}, {Complex[0.8096382422763857, 0.0023450862884800416]}}
+2762: {{Complex[-0.22298228919670726, 1.2584141341459216]}, {Complex[-0.22298228919670726, -1.2584141341459216]}}
+2762-a: {{Complex[0.5575879428157583, 0.7154547769715692]}, {Complex[0.5575879428157583, -0.7154547769715692]}}
+2763: {{Complex[1.5065278006053275, 2.6078654586738588]}, {Complex[1.5065278006053275, -2.6078654586738588]}}
+2763-a: {{Complex[-1.3895935221249858, -2.6991319545588484]}, {Complex[-1.3895935221249858, 2.6991319545588484]}}
+2764: {{Complex[1.4943690186714658, 2.219325646151564]}, {Complex[1.4943690186714658, -2.219325646151564]}}
+2764-a: {{Complex[-1.366821518925578, -2.3141179507576517]}, {Complex[-1.366821518925578, 2.3141179507576517]}}
+2765: {{Complex[-5.252983013913404, -9.625828534114124]}, {Complex[-5.252983013913404, 9.625828534114124]}}
+2765-a: {{Complex[-5.252983013913404, -9.625828534114124]}, {Complex[-5.252983013913404, 9.625828534114124]}}
+2766: {{Complex[-5.189625578046477, -8.222757113865619]}, {Complex[-5.189625578046477, 8.222757113865619]}}
+2766-a: {{Complex[-5.189625578046477, -8.222757113865619]}, {Complex[-5.189625578046477, 8.222757113865619]}}
+2767: Skip - symbolical successful subtest
+2767-a: {{Complex[-1.1681800521462087, -0.14348979802367162]}, {Complex[0.10534421453066467, -2.3399181874259916]}}
+2768: Skip - symbolical successful subtest
+2768-a: {{Complex[1.3296994660595483, 0.7433059210750237]}, {Complex[-1.775664044452963, -1.7735223472168191]}}
+2769: Skip - symbolical successful subtest
+2769-a: {{Complex[0.10534421453066467, 2.3399181874259916]}, {Complex[-1.1681800521462087, 0.14348979802367162]}}
+2770: Skip - symbolical successful subtest
+2770-a: {{Complex[-1.775664044452963, 1.7735223472168191]}, {Complex[1.3296994660595483, -0.7433059210750237]}}
+2772: {{Complex[0.008914834946421868, -0.06051323001917441]}, {Complex[0.008914834946421868, 0.06051323001917441]}}
+2772-a: {{Complex[-3.1615464995420756*^-4, -0.024177416299250604]}, {Complex[-3.1615464995420756*^-4, 0.024177416299250604]}, {Complex[1.587390116444673, 1.153455375076458]}, {Complex[1.587390116444673, -1.153455375076458]}}
+2773: {{Complex[-0.30394618618023905, -2.8337652800788256]}, {Complex[-0.30394618618023905, 2.8337652800788256]}}
+2774: {{Complex[3.485863960601927, 0.7883076520663903]}, {Complex[3.485863960601927, -0.7883076520663903]}}
+2775: {{Complex[0.014716817548916183, 0.07120252241962582]}, {Complex[0.014716817548916183, -0.07120252241962582]}, {Complex[-1.474010305021376, -1.7725971311665962]}, {Complex[-1.474010305021376, 1.7725971311665962]}}
+2776: {{Complex[0.0522018904439151, -0.11170228512421254]}, {Complex[0.0522018904439151, 0.11170228512421254]}, {Complex[2.5833607207543476, 2.078187024166196]}, {Complex[2.5833607207543476, -2.078187024166196]}}
+2792: Successful
+2793: Successful
+2794: Successful
+2795: Successful
+2797: Skipped - Because timed out
+2798: Skipped - Because timed out
+2802: $Failed
+2803: Successful
+2804: Successful
+2807: Successful
+2808: Successful
+2811: {{Complex[1.1590890245070966, -0.004715107328741586]}, {Complex[15.06764807713232, -0.004715107328741586]}, {Complex[340.9777188366776, -0.004715107328741586]}, {Complex[1.1590890245070966, 0.004715107328741586]}, {Complex[15.06764807713232, 0.004715107328741586]}, {Complex[340.9777188366776, 0.004715107328741586]}, {Complex[1.1529324301847828, -0.021587562167012547]}, {Complex[15.061491482810007, -0.021587562167012547]}, {Complex[340.9715622423553, -0.021587562167012547]}, {Complex[1.1529324301847828, 0.021587562167012547]}, {Complex[15.061491482810007, 0.021587562167012547]}, {Complex[340.9715622423553, 0.021587562167012547]}}
+2812: {{Complex[0.5749530907924223, 0.0067943920267909685]}, {Complex[11.572601490351364, 0.0067943920267909685]}, {Complex[303.0362323510325, 0.0067943920267909685]}, {Complex[0.5749530907924223, -0.0067943920267909685]}, {Complex[11.572601490351364, -0.0067943920267909685]}, {Complex[303.0362323510325, -0.0067943920267909685]}, {Complex[0.5801544351344989, 0.026187329972932327]}, {Complex[11.57780283469344, 0.026187329972932327]}, {Complex[303.0414336953745, 0.026187329972932327]}, {Complex[0.5801544351344989, -0.026187329972932327]}, {Complex[11.57780283469344, -0.026187329972932327]}, {Complex[303.0414336953745, -0.026187329972932327]}}
+2813: {{Complex[-2.062235934109286, -1.435552557338311]}, {Complex[-2.163232204380712, -1.435552557338311]}, {Complex[-2.17335144762396, -1.435552557338311]}, {Complex[-2.062235934109286, 1.435552557338311]}, {Complex[-2.163232204380712, 1.435552557338311]}, {Complex[-2.17335144762396, 1.435552557338311]}, {Complex[-2.4528910462808704, 1.446224854011234]}, {Complex[-2.5538873165522964, 1.446224854011234]}, {Complex[-2.564006559795544, 1.446224854011234]}, {Complex[-2.4528910462808704, -1.446224854011234]}, {Complex[-2.5538873165522964, -1.446224854011234]}, {Complex[-2.564006559795544, -1.446224854011234]}}
+2814: {{Complex[-0.8340487867218234, -1.3841578383770126]}, {Complex[-0.6779445554392751, -1.3841578383770126]}, {Complex[-0.6655182713247128, -1.3841578383770126]}, {Complex[-0.8340487867218234, 1.3841578383770126]}, {Complex[-0.6779445554392751, 1.3841578383770126]}, {Complex[-0.6655182713247128, 1.3841578383770126]}, {Complex[-1.0439459252817185, 1.377572426699353]}, {Complex[-0.8878416939991702, 1.377572426699353]}, {Complex[-0.8754154098846079, 1.377572426699353]}, {Complex[-1.0439459252817185, -1.377572426699353]}, {Complex[-0.8878416939991702, -1.377572426699353]}, {Complex[-0.8754154098846079, -1.377572426699353]}}
+2815: Successful
+2823: {{-2.2684122541643257}, {-24.266750191340662}, {157.2404952502784}}
+2853: {{Complex[1.4142135623730951, 1.4142135623730951]}, {Complex[1.4142135623730951, -1.4142135623730951]}, {Complex[-1.4142135623730951, -1.4142135623730951]}, {Complex[-1.4142135623730951, 1.4142135623730951]}}
+2854: Skipped - Because timed out
+2855: Skipped - Because timed out
+2855-a: Skip - symbolical successful subtest
+2855-b: Skip - symbolical successful subtest
+2858: Skipped - Because timed out
+2859: Skipped - Because timed out
+2864: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2865: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2866: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2867: {{Complex[1.4142135623730951, 1.4142135623730951]}, {Complex[1.4142135623730951, -1.4142135623730951]}, {Complex[-1.4142135623730951, -1.4142135623730951]}, {Complex[-1.4142135623730951, 1.4142135623730951]}}
+2868: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2869: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2871: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2872: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2875: Skipped - Because timed out
+2876: Skipped - Because timed out
+2878: {{Complex[-2.8284271247461903, -2.8284271247461903]}, {Complex[-2.8284271247461903, 2.8284271247461903]}, {Complex[2.8284271247461903, 2.8284271247461903]}, {Complex[2.8284271247461903, -2.8284271247461903]}}
+2879: {{Complex[-0.060040962617560416, -0.006097999474625239]}, {Complex[-0.060040962617560416, 0.006097999474625239]}, {Complex[-21.329093714189053, 6.905982810760452]}, {Complex[-21.329093714189053, -6.905982810760452]}}
+2880: Skipped - Because timed out
+2881: {{Complex[1.4142135623730951, 1.4142135623730951]}, {Complex[1.4142135623730951, -1.4142135623730951]}, {Complex[-1.4142135623730951, -1.4142135623730951]}, {Complex[-1.4142135623730951, 1.4142135623730951]}}
+2890: Successful
+2891: Successful
+2892: Skipped - Because timed out
+2893: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2894: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2895: {{Complex[1.4095755333126005, 1.4142135623730951]}, {Complex[1.4095755333126005, -1.4142135623730951]}, {Complex[-1.4188515914335897, -1.4142135623730951]}, {Complex[-1.4188515914335897, 1.4142135623730951]}}
+2896: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2896-a: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2897: {{Complex[-0.3183098861837907, -4.0]}, {-4.3183098861837905}, {Complex[-0.3183098861837907, 4.0]}, {3.6816901138162095}, {-4.3183098861837905}, {Complex[-0.3183098861837907, 4.0]}, {3.6816901138162095}, {Complex[-0.3183098861837907, -4.0]}, {Complex[-0.3183098861837907, 4.0]}, {3.6816901138162095}, {Complex[-0.3183098861837907, -4.0]}, {-4.3183098861837905}, {3.6816901138162095}, {Complex[-0.3183098861837907, -4.0]}, {-4.3183098861837905}, {Complex[-0.3183098861837907, 4.0]}}
+2902: {{Complex[1.4142135623730951, 1.4142135623730951]}, {Complex[1.4142135623730951, -1.4142135623730951]}, {Complex[-1.4142135623730951, -1.4142135623730951]}, {Complex[-1.4142135623730951, 1.4142135623730951]}}
+2903: Skipped - Because timed out
+2910: Successful
+2911: Successful
+2911-a: Successful
+2912: Successful
+2912-a: Successful
+2917: Skipped - Because timed out
+2918: {{Complex[1.4142135623730951, 1.4142135623730951]}, {Complex[1.4142135623730951, -1.4142135623730951]}, {Complex[-1.4142135623730951, -1.4142135623730951]}, {Complex[-1.4142135623730951, 1.4142135623730951]}}
+2919: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2920: Skipped - Because timed out
+2922: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+2945: {{-0.25}, {Complex[-1.4142135623730951, -1.4142135623730951]}, {Complex[0.0, -9.0]}, {Complex[0.0, 0.25]}, {Complex[-1.4142135623730951, 1.4142135623730951]}, {-9.0}, {0.25}, {Complex[1.4142135623730951, 1.4142135623730951]}, {Complex[0.0, 9.0]}, {Complex[0.0, -0.25]}, {Complex[1.4142135623730951, -1.4142135623730951]}, {9.0}, {Complex[0.0, -0.25]}, {Complex[-1.4142135623730951, -1.4142135623730951]}, {-9.0}, {-0.25}, {Complex[-1.4142135623730951, 1.4142135623730951]}, {Complex[0.0, 9.0]}, {Complex[0.0, 0.25]}, {Complex[1.4142135623730951, 1.4142135623730951]}, {9.0}, {0.25}, {Complex[1.4142135623730951, -1.4142135623730951]}, {Complex[0.0, -9.0]}, {0.25}, {Complex[-1.4142135623730951, -1.4142135623730951]}, {Complex[0.0, 9.0]}, {Complex[0.0, -0.25]}, {Complex[-1.4142135623730951, 1.4142135623730951]}, {9.0}, {-0.25}, {Complex[1.4142135623730951, 1.4142135623730951]}, {Complex[0.0, -9.0]}, {Complex[0.0, 0.25]}, {Complex[1.4142135623730951, -1.4142135623730951]}, {-9.0}, {Complex[0.0, 0.25]}, {Complex[-1.4142135623730951, -1.4142135623730951]}, {9.0}, {0.25}, {Complex[-1.4142135623730951, 1.4142135623730951]}, {Complex[0.0, -9.0]}, {Complex[0.0, -0.25]}, {Complex[1.4142135623730951, 1.4142135623730951]}, {-9.0}, {-0.25}, {Complex[1.4142135623730951, -1.4142135623730951]}, {Complex[0.0, 9.0]}}
+2953: $Failed
+2954: $Failed
+2957: $Failed
+2958: $Failed

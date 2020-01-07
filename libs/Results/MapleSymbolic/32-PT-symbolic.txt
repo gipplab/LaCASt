@@ -1,0 +1,87 @@
+Overall: [SUCCESS: 3, SUCCESS_SYMB: 3, SUCCESS_TRANS: 61, FAILURE: 56, STARTED_TEST_CASES: 71, SKIPPED: 15, DEFINITIONS: 1, IGNORE: 255, MISSING: 10, ERROR: 2] for test expression: (#LHS)-(#RHS)
+[Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
+9490 [http://dlmf.nist.gov/32.2.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9491 [http://dlmf.nist.gov/32.2.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9492 [http://dlmf.nist.gov/32.2.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9493 [http://dlmf.nist.gov/32.2.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9494 [http://dlmf.nist.gov/32.2.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9495 [http://dlmf.nist.gov/32.2.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9496 [http://dlmf.nist.gov/32.2.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9499 [http://dlmf.nist.gov/32.2.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9500 [http://dlmf.nist.gov/32.2.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9501 [http://dlmf.nist.gov/32.2.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9502 [http://dlmf.nist.gov/32.2.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9503 [http://dlmf.nist.gov/32.2.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9504 [http://dlmf.nist.gov/32.2.E14]: Error - java.lang.IllegalArgumentException: Error in CAS! [9504: I EQUAL z(1-z)\deriv[2]{}{z}+(1-2z)\deriv{}{z}-\frac{1}{4}; http://dlmf.nist.gov/32.2.E14]
+9505 [https://dlmf.nist.gov/32.2#Ex3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9506 [https://dlmf.nist.gov/32.2#Ex4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9507 [https://dlmf.nist.gov/32.2#Ex5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9511 [https://dlmf.nist.gov/32.2#Ex6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9512 [https://dlmf.nist.gov/32.2#Ex7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9513 [https://dlmf.nist.gov/32.2#Ex8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9514 [https://dlmf.nist.gov/32.2#Ex9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9523 [http://dlmf.nist.gov/32.2.E27]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9549: Skipped - Unable to analyze test case.
+9550 [http://dlmf.nist.gov/32.3.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9551: Skipped - Unable to analyze test case.
+9553: Skipped - Unable to analyze test case.
+9555 [https://dlmf.nist.gov/32.4#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9556 [https://dlmf.nist.gov/32.4#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9557 [http://dlmf.nist.gov/32.4.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
+9558 [http://dlmf.nist.gov/32.4.E3]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+9574: Skipped - Unable to analyze test case.
+9575 [https://dlmf.nist.gov/32.6#Ex1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+9576 [https://dlmf.nist.gov/32.6#Ex2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+9617 [http://dlmf.nist.gov/32.7.E3]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+9618 [http://dlmf.nist.gov/32.7.E4]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+9689 [http://dlmf.nist.gov/32.8.E5]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+9696 [http://dlmf.nist.gov/32.8.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9697 [http://dlmf.nist.gov/32.8.E9]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+9725 [http://dlmf.nist.gov/32.9.E2]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+9731 [http://dlmf.nist.gov/32.9.E8]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+9741 [http://dlmf.nist.gov/32.10.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9744 [http://dlmf.nist.gov/32.10.E8]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+9750 [http://dlmf.nist.gov/32.10.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9755 [http://dlmf.nist.gov/32.10.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9756 [http://dlmf.nist.gov/32.10.E20]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+9757 [http://dlmf.nist.gov/32.10.E21]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+9763 [http://dlmf.nist.gov/32.10.E27]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9766 [https://dlmf.nist.gov/32.10#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9768 [http://dlmf.nist.gov/32.10.E31]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9769 [http://dlmf.nist.gov/32.10.E32]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9770 [http://dlmf.nist.gov/32.10.E33]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9773 [http://dlmf.nist.gov/32.11.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9774: Skipped - Unable to analyze test case.
+9778 [http://dlmf.nist.gov/32.11.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9779 [http://dlmf.nist.gov/32.11.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9780 [http://dlmf.nist.gov/32.11.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9781: Skipped - Unable to analyze test case.
+9782: Skipped - Unable to analyze test case.
+9784 [http://dlmf.nist.gov/32.11.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9785 [http://dlmf.nist.gov/32.11.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9786 [http://dlmf.nist.gov/32.11.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9787: Skipped - Unable to analyze test case.
+9788 [http://dlmf.nist.gov/32.11.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9789 [http://dlmf.nist.gov/32.11.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9790 [http://dlmf.nist.gov/32.11.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9791 [http://dlmf.nist.gov/32.11.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9792 [http://dlmf.nist.gov/32.11.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9793 [http://dlmf.nist.gov/32.11.E22]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9794 [http://dlmf.nist.gov/32.11.E23]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9796: Skipped - Unable to analyze test case.
+9797: Skipped - Unable to analyze test case.
+9798 [http://dlmf.nist.gov/32.11.E27]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9799 [http://dlmf.nist.gov/32.11.E28]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9802 [http://dlmf.nist.gov/32.11.E31]: Error - java.lang.IllegalArgumentException: Error in CAS! [9802: h^{*} EQUAL \ifrac{1}{\left(\pi^{1/2}\EulerGamma@{\nu+1}\right)}; http://dlmf.nist.gov/32.11.E31]
+9803: Skipped - Unable to analyze test case.
+9804 [http://dlmf.nist.gov/32.11.E33]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9805 [http://dlmf.nist.gov/32.11.E34]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9806 [http://dlmf.nist.gov/32.11.E35]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9807 [http://dlmf.nist.gov/32.11.E36]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9808 [http://dlmf.nist.gov/32.11.E37]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9809: Skipped - Unable to analyze test case.
+9818 [http://dlmf.nist.gov/32.13.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9826 [http://dlmf.nist.gov/32.14.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+9827: Skipped - Unable to analyze test case.
+9828: Skipped - Unable to analyze test case.
+9829 [http://dlmf.nist.gov/32.15.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]

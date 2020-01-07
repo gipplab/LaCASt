@@ -1,0 +1,3 @@
+\KrawtchoukpolyK, 1
+\MeixnerpolyM, 1
+\MeixnerPollaczekpolyP, 1

@@ -1,0 +1,8 @@
+\spheigvalLambda, 12
+\radsphwaveS, 11
+\sphwavePsreal, 11
+\sphwaveQsreal, 4
+\cal, 4
+\sphwavePs, 3
+\sphwaveQs, 3
+\nabla, 2

@@ -1,0 +1,3 @@
+\JacobiEpsilonk, 21
+\Asin, 4
+\Acos, 2

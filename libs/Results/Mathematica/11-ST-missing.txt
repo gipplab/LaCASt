@@ -1,4 +1,0 @@
-\Lommels, 7
-\AngerWeberA, 4
-\LommelS, 2
-\cal, 1

@@ -362,7 +362,7 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
             String extVals = ICASEngineNumericalEvaluator.getValuesName(extraVariableNames);
             commandsList.append(", op(createListInList(")
                     .append(extraVariableNames).append(",").append(extVals).append("))");
-            combis += " + nops("+extVals+")^nops("+extraVariableNames+")";
+            combis += " * nops("+extVals+")^nops("+extraVariableNames+")";
         }
 
         if ( constraintVariableNames != null ) {

@@ -1,0 +1,93 @@
+Overall: [SUCCESS: 1, FAILURE: 0, LIMIT_SKIPS: 0, TESTED: 45, ERROR: 44] for test expression: (#LHS)-(#RHS)
+7014: Error - java.lang.NullPointerException
+7014-a: Skip - symbolical successful subtest
+7015: Error - java.lang.NullPointerException
+7015-a: Skip - symbolical successful subtest
+7016: Error - java.lang.NullPointerException
+7016-a: Skip - symbolical successful subtest
+7017: Error - java.lang.NullPointerException
+7017-a: Skip - symbolical successful subtest
+7019: Error - java.lang.NullPointerException
+7020: Error - java.lang.NullPointerException
+7021: Error - java.lang.NullPointerException
+7022: Error - java.lang.NullPointerException
+7024: Skip - symbolical successful subtest
+7024-a: Error - java.lang.NullPointerException
+7024-b: Skip - symbolical successful subtest
+7025: Skip - symbolical successful subtest
+7025-a: Error - java.lang.NullPointerException
+7025-b: Skip - symbolical successful subtest
+7026: Skip - symbolical successful subtest
+7026-a: Error - java.lang.NullPointerException
+7026-b: Skip - symbolical successful subtest
+7027: Skip - symbolical successful subtest
+7027-a: Error - java.lang.NullPointerException
+7027-b: Skip - symbolical successful subtest
+7028: Successful
+7028-a: Error - java.lang.NullPointerException
+7028-b: Skip - symbolical successful subtest
+7028-c: Skip - symbolical successful subtest
+7033: Error - java.lang.NullPointerException
+7034: Error - java.lang.NullPointerException
+7034-a: Error - java.lang.NullPointerException
+7034-b: Skip - symbolical successful subtest
+7034-c: Skip - symbolical successful subtest
+7035: Skip - int/sum/prod/lim
+7036: Skip - int/sum/prod/lim
+7037: Skip - int/sum/prod/lim
+7038: Skip - int/sum/prod/lim
+7039: Error - java.lang.NullPointerException
+7044: Skip - int/sum/prod/lim
+7045: Skip - int/sum/prod/lim
+7046: Skip - int/sum/prod/lim
+7047: Skip - int/sum/prod/lim
+7049: Skip - int/sum/prod/lim
+7049-a: Skip - int/sum/prod/lim
+7050: Skip - int/sum/prod/lim
+7050-a: Skip - int/sum/prod/lim
+7051: Skip - int/sum/prod/lim
+7051-a: Skip - int/sum/prod/lim
+7052: Skip - int/sum/prod/lim
+7052-a: Skip - int/sum/prod/lim
+7054: Skip - int/sum/prod/lim
+7055: Skip - int/sum/prod/lim
+7056: Skip - int/sum/prod/lim
+7058: Skip - int/sum/prod/lim
+7059: Skip - int/sum/prod/lim
+7060: Skip - int/sum/prod/lim
+7061: Skip - int/sum/prod/lim
+7068: Error - java.lang.NullPointerException
+7069: Error - java.lang.NullPointerException
+7070: Error - java.lang.NullPointerException
+7071: Error - java.lang.NullPointerException
+7073: Error - java.lang.NullPointerException
+7074: Error - java.lang.NullPointerException
+7075: Error - java.lang.NullPointerException
+7076: Error - java.lang.NullPointerException
+7077: Error - java.lang.NullPointerException
+7078: Error - java.lang.NullPointerException
+7078-a: Error - java.lang.NullPointerException
+7079: Error - java.lang.NullPointerException
+7079-a: Error - java.lang.NullPointerException
+7080: Error - java.lang.NullPointerException
+7081: Error - java.lang.NullPointerException
+7083: Error - java.lang.NullPointerException
+7086: Error - java.lang.NullPointerException
+7092: Error - java.lang.NullPointerException
+7093: Error - java.lang.NullPointerException
+7094: Error - java.lang.NullPointerException
+7095: Error - java.lang.NullPointerException
+7096: Error - java.lang.NullPointerException
+7101: Error - java.lang.NullPointerException
+7101-a: Error - java.lang.NullPointerException
+7102: Skip - int/sum/prod/lim
+7104: Error - java.lang.NullPointerException
+7105: Error - java.lang.NullPointerException
+7109: Skip - int/sum/prod/lim
+7110: Skip - int/sum/prod/lim
+7111: Skip - int/sum/prod/lim
+7112: Skip - int/sum/prod/lim
+7112-a: Skip - int/sum/prod/lim
+7113: Skip - int/sum/prod/lim
+7113-a: Skip - int/sum/prod/lim
+7118: Error - java.lang.NullPointerException

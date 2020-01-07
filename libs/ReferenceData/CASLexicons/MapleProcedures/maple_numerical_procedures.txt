@@ -95,7 +95,7 @@ SpecialNumericalTester := proc(expr, values::list, precision::posint)
   local result, output, i;
   output := NULL;
   if type(expr, numeric) then
-    return [[expr, "allValues"]];
+    return [[expr]];
   end if;
   if nops(values) = 0 then
     return NULL;
@@ -103,7 +103,7 @@ SpecialNumericalTester := proc(expr, values::list, precision::posint)
   for i from 1 to nops(values) do
     try
       result := evalf[precision](eval(expr, values[i]));
-      output := output,[result, values[i]];
+      output := output,[result];
     catch:
       #printf("Error for test case %q; Message: %q\n", combo, lastexception);
       return lastexception;

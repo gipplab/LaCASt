@@ -1,0 +1,15 @@
+\Asin, 9
+\Atan, 9
+\Asinh, 9
+\Atanh, 9
+\Acos, 6
+\Acosh, 6
+\Longleftrightarrowz, 2
+\diff, 1
+\Asech, 1
+\Acsch, 1
+\pvint, 1
+\Acot, 1
+\Acoth, 1
+\Asec, 1
+\Acsc, 1

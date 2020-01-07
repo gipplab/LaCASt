@@ -1,0 +1,861 @@
+Overall: [SUCCESS: 83, SUCCESS_SYMB: 83, SUCCESS_TRANS: 504, FAILURE: 421, STARTED_TEST_CASES: 708, SKIPPED: 156, DEFINITIONS: 26, IGNORE: 158, MISSING: 179, ERROR: 25] for test expression: (#LHS)-(#RHS)
+[SIMPLE]
+2975 [http://dlmf.nist.gov/10.2.E1]: Failure [Simple: NaN]
+2976 [http://dlmf.nist.gov/10.2.E2]: Successful [Simple: 0]
+2977 [http://dlmf.nist.gov/10.2.E3]: Successful [Simple: 0]
+2978 [http://dlmf.nist.gov/10.2.E4]: Error - (LaTeX -> Mathematica) The current implementation is wrong: Wrong translation method used. You have to specify an open bracket to translate it like a sequence.
+2981 [https://dlmf.nist.gov/10.4#Ex1]: Failure [Simple: NaN]
+2982 [https://dlmf.nist.gov/10.4#Ex2]: Failure [Simple: NaN]
+2983 [https://dlmf.nist.gov/10.4#Ex3]: Failure [Simple: NaN]
+2984 [https://dlmf.nist.gov/10.4#Ex4]: Failure [Simple: NaN]
+2985 [https://dlmf.nist.gov/10.4#Ex5]: Successful [Simple: 0]
+2986 [https://dlmf.nist.gov/10.4#Ex6]: Successful [Simple: 0]
+2987 [https://dlmf.nist.gov/10.4#Ex7]: Successful [Simple: 0]
+2988 [https://dlmf.nist.gov/10.4#Ex8]: Successful [Simple: 0]
+2989 [http://dlmf.nist.gov/10.4.E5]: Successful [Simple: 0]
+2990 [https://dlmf.nist.gov/10.4#Ex9]: Failure [Simple: NaN]
+2991 [https://dlmf.nist.gov/10.4#Ex10]: Failure [Simple: NaN]
+2992 [http://dlmf.nist.gov/10.4.E7]: Successful [Simple: 0]
+2992-a [http://dlmf.nist.gov/10.4.E7]: Successful [Simple: 0]
+2993 [http://dlmf.nist.gov/10.4.E8]: Successful [Simple: 0]
+2993-a [http://dlmf.nist.gov/10.4.E8]: Successful [Simple: 0]
+2994 [http://dlmf.nist.gov/10.5.E1]: Successful [Simple: 0]
+2994-a [http://dlmf.nist.gov/10.5.E1]: Successful [Simple: 0]
+2995 [http://dlmf.nist.gov/10.5.E2]: Successful [Simple: 0]
+2995-a [http://dlmf.nist.gov/10.5.E2]: Successful [Simple: 0]
+2996 [http://dlmf.nist.gov/10.5.E3]: Successful [Simple: 0]
+2996-a [http://dlmf.nist.gov/10.5.E3]: Successful [Simple: 0]
+2997 [http://dlmf.nist.gov/10.5.E4]: Successful [Simple: 0]
+2997-a [http://dlmf.nist.gov/10.5.E4]: Successful [Simple: 0]
+2998 [http://dlmf.nist.gov/10.5.E5]: Successful [Simple: 0]
+2998-a [http://dlmf.nist.gov/10.5.E5]: Successful [Simple: 0]
+2999 [https://dlmf.nist.gov/10.6#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3000 [https://dlmf.nist.gov/10.6#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3001 [https://dlmf.nist.gov/10.6#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3002 [https://dlmf.nist.gov/10.6#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3011 [https://dlmf.nist.gov/10.6#Ex9]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Empty arguments for limited expressions are invalid math.
+3012 [https://dlmf.nist.gov/10.6#Ex10]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Empty arguments for limited expressions are invalid math.
+3013 [http://dlmf.nist.gov/10.6.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3014 [https://dlmf.nist.gov/10.6#Ex11]: Failure [Simple: NaN]
+3015 [https://dlmf.nist.gov/10.6#Ex12]: Failure [Simple: NaN]
+3016 [https://dlmf.nist.gov/10.6#Ex13]: Failure [Simple: NaN]
+3017 [https://dlmf.nist.gov/10.6#Ex14]: Failure [Simple: Aborted]
+3023: Skipped - Unable to analyze test case.
+3024: Skipped - Unable to analyze test case.
+3025: Skipped - Unable to analyze test case.
+3026: Skipped - Unable to analyze test case.
+3027: Skipped - Unable to analyze test case.
+3028: Skipped - Unable to analyze test case.
+3030: Skipped - Unable to analyze test case.
+3033 [http://dlmf.nist.gov/10.8.E1]: Failure [Simple: Aborted]
+3036 [http://dlmf.nist.gov/10.9.E1]: Failure [Simple: NaN]
+3036-a [http://dlmf.nist.gov/10.9.E1]: Failure [Simple: NaN]
+3037 [http://dlmf.nist.gov/10.9.E2]: Failure [Simple: Aborted]
+3037-a [http://dlmf.nist.gov/10.9.E2]: Failure [Simple: Aborted]
+3038 [http://dlmf.nist.gov/10.9.E3]: Failure [Simple: Aborted]
+3039 [http://dlmf.nist.gov/10.9.E4]: Failure [Simple: NaN]
+3039-a [http://dlmf.nist.gov/10.9.E4]: Failure [Simple: Aborted]
+3040 [http://dlmf.nist.gov/10.9.E5]: Failure [Simple: Aborted]
+3041 [http://dlmf.nist.gov/10.9.E6]: Failure [Simple: Aborted]
+3042 [http://dlmf.nist.gov/10.9.E7]: Failure [Simple: Aborted]
+3043 [https://dlmf.nist.gov/10.9#Ex1]: Failure [Simple: Aborted]
+3044 [https://dlmf.nist.gov/10.9#Ex2]: Failure [Simple: Aborted]
+3045 [https://dlmf.nist.gov/10.9#Ex3]: Failure [Simple: Aborted]
+3046 [https://dlmf.nist.gov/10.9#Ex4]: Failure [Simple: Aborted]
+3047 [http://dlmf.nist.gov/10.9.E10]: Failure [Simple: Aborted]
+3048 [http://dlmf.nist.gov/10.9.E11]: Failure [Simple: Aborted]
+3049 [https://dlmf.nist.gov/10.9#Ex5]: Failure [Simple: Aborted]
+3050 [https://dlmf.nist.gov/10.9#Ex6]: Failure [Simple: Aborted]
+3051 [http://dlmf.nist.gov/10.9.E13]: Failure [Simple: NaN]
+3052 [http://dlmf.nist.gov/10.9.E14]: Failure [Simple: NaN]
+3053 [http://dlmf.nist.gov/10.9.E15]: Failure [Simple: NaN]
+3054 [http://dlmf.nist.gov/10.9.E16]: Failure [Simple: NaN]
+3055 [http://dlmf.nist.gov/10.9.E17]: Failure [Simple: NaN]
+3056 [https://dlmf.nist.gov/10.9#Ex7]: Failure [Simple: Aborted]
+3057 [https://dlmf.nist.gov/10.9#Ex8]: Failure [Simple: Aborted]
+3058 [http://dlmf.nist.gov/10.9.E19]: Failure [Simple: NaN]
+3059 [http://dlmf.nist.gov/10.9.E20]: Failure [Simple: NaN]
+3060 [https://dlmf.nist.gov/10.9#Ex9]: Failure [Simple: NaN]
+3061 [https://dlmf.nist.gov/10.9#Ex10]: Failure [Simple: NaN]
+3062 [http://dlmf.nist.gov/10.9.E22]: Failure [Simple: Aborted]
+3063 [http://dlmf.nist.gov/10.9.E23]: Failure [Simple: NaN]
+3064 [http://dlmf.nist.gov/10.9.E24]: Failure [Simple: Aborted]
+3065 [http://dlmf.nist.gov/10.9.E25]: Failure [Simple: Aborted]
+3066 [http://dlmf.nist.gov/10.9.E26]: Failure [Simple: Aborted]
+3067 [http://dlmf.nist.gov/10.9.E27]: Failure [Simple: NaN]
+3068 [http://dlmf.nist.gov/10.9.E28]: Failure [Simple: NaN]
+3069 [http://dlmf.nist.gov/10.9.E29]: Failure [Simple: Aborted]
+3070 [http://dlmf.nist.gov/10.9.E30]: Failure [Simple: Aborted]
+3073 [http://dlmf.nist.gov/10.11.E1]: Failure [Simple: NaN]
+3074 [http://dlmf.nist.gov/10.11.E2]: Failure [Simple: NaN]
+3075 [http://dlmf.nist.gov/10.11.E3]: Failure [Simple: NaN]
+3076 [http://dlmf.nist.gov/10.11.E4]: Failure [Simple: NaN]
+3077 [https://dlmf.nist.gov/10.11#Ex1]: Failure [Simple: NaN]
+3078 [https://dlmf.nist.gov/10.11#Ex2]: Failure [Simple: NaN]
+3079 [http://dlmf.nist.gov/10.11.E6]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for im [im]
+3080 [http://dlmf.nist.gov/10.11.E7]: Failure [Simple: NaN]
+3081 [http://dlmf.nist.gov/10.11.E8]: Failure [Simple: NaN]
+3086 [http://dlmf.nist.gov/10.12.E1]: Successful [Simple: 0]
+3087 [https://dlmf.nist.gov/10.12#Ex1]: Successful [Simple: 0]
+3088 [https://dlmf.nist.gov/10.12#Ex2]: Successful [Simple: 0]
+3089 [https://dlmf.nist.gov/10.12#Ex3]: Successful [Simple: 0]
+3090 [https://dlmf.nist.gov/10.12#Ex4]: Successful [Simple: 0]
+3104: Skipped - Unable to analyze test case.
+3108 [https://dlmf.nist.gov/10.14#Ex1]: Failure [Simple: NaN]
+3109 [https://dlmf.nist.gov/10.14#Ex2]: Failure [Simple: NaN]
+3110 [http://dlmf.nist.gov/10.14.E2]: Failure [Simple: NaN]
+3110-a [http://dlmf.nist.gov/10.14.E2]: Failure [Simple: NaN]
+3111 [http://dlmf.nist.gov/10.14.E3]: Failure [Simple: NaN]
+3112 [http://dlmf.nist.gov/10.14.E4]: Failure [Simple: NaN]
+3113 [http://dlmf.nist.gov/10.14.E5]: Failure [Simple: NaN]
+3114 [http://dlmf.nist.gov/10.14.E6]: Failure [Simple: NaN]
+3115 [http://dlmf.nist.gov/10.14.E7]: Failure [Simple: NaN]
+3115-a [http://dlmf.nist.gov/10.14.E7]: Failure [Simple: NaN]
+3116 [http://dlmf.nist.gov/10.14.E8]: Failure [Simple: NaN]
+3117 [http://dlmf.nist.gov/10.14.E9]: Failure [Simple: NaN]
+3118 [http://dlmf.nist.gov/10.15.E1]: Failure [Simple: NaN]
+3118-a [http://dlmf.nist.gov/10.15.E1]: Failure [Simple: Aborted]
+3119 [http://dlmf.nist.gov/10.15.E2]: Failure [Simple: NaN]
+3120: Skipped - Unable to analyze test case.
+3121: Skipped - Unable to analyze test case.
+3122 [http://dlmf.nist.gov/10.15.E5]: Error - (LaTeX -> Mathematica) The current implementation is wrong: Wrong translation method used. You have to specify an open bracket to translate it like a sequence.
+3123: Skipped - Unable to analyze test case.
+3124: Skipped - Unable to analyze test case.
+3125: Skipped - Unable to analyze test case.
+3126: Skipped - Unable to analyze test case.
+3127 [https://dlmf.nist.gov/10.16#Ex1]: Successful [Simple: 0]
+3127-a [https://dlmf.nist.gov/10.16#Ex1]: Failure [Simple: NaN]
+3128 [https://dlmf.nist.gov/10.16#Ex2]: Successful [Simple: 0]
+3128-a [https://dlmf.nist.gov/10.16#Ex2]: Failure [Simple: NaN]
+3129 [https://dlmf.nist.gov/10.16#Ex3]: Successful [Simple: 0]
+3129-a [https://dlmf.nist.gov/10.16#Ex3]: Failure [Simple: NaN]
+3130 [https://dlmf.nist.gov/10.16#Ex4]: Successful [Simple: 0]
+3130-a [https://dlmf.nist.gov/10.16#Ex4]: Failure [Simple: NaN]
+3131 [https://dlmf.nist.gov/10.16#Ex5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+3132 [https://dlmf.nist.gov/10.16#Ex6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+3133 [https://dlmf.nist.gov/10.16#Ex7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+3134 [https://dlmf.nist.gov/10.16#Ex8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+3135 [http://dlmf.nist.gov/10.16.E5]: Failure [Simple: NaN]
+3135-a [http://dlmf.nist.gov/10.16.E5]: Failure [Simple: NaN]
+3136 [http://dlmf.nist.gov/10.16.E6]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \rselection [\rselection]
+3136-a [http://dlmf.nist.gov/10.16.E6]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \rselection [\rselection]
+3137 [http://dlmf.nist.gov/10.16.E7]: Failure [Simple: NaN]
+3137-a [http://dlmf.nist.gov/10.16.E7]: Failure [Simple: NaN]
+3138 [http://dlmf.nist.gov/10.16.E8]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \rselection [\rselection]
+3138-a [http://dlmf.nist.gov/10.16.E8]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \rselection [\rselection]
+3139 [http://dlmf.nist.gov/10.16.E9]: Failure [Simple: NaN]
+3140: Skipped - Unable to analyze test case.
+3141 [http://dlmf.nist.gov/10.16.E10]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Illegal expression followed a limited expression: \genhyperOlverF
+3142: Skipped - Unable to analyze test case.
+3145: Skipped - Unable to analyze test case.
+3146: Skipped - Unable to analyze test case.
+3147: Skipped - Unable to analyze test case.
+3148: Skipped - Unable to analyze test case.
+3149 [http://dlmf.nist.gov/10.17.E7]: Failure [Simple: NaN]
+3151: Skipped - Unable to analyze test case.
+3152: Skipped - Unable to analyze test case.
+3153: Skipped - Unable to analyze test case.
+3154: Skipped - Unable to analyze test case.
+3155 [http://dlmf.nist.gov/10.17.E13]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \rselection [\rselection]
+3155-a [http://dlmf.nist.gov/10.17.E13]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \rselection [\rselection]
+3158 [http://dlmf.nist.gov/10.17.E16]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \scterminant [\scterminant]
+3159 [http://dlmf.nist.gov/10.17.E17]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \scterminant [\scterminant]
+3159-a [http://dlmf.nist.gov/10.17.E17]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \scterminant [\scterminant]
+3161 [http://dlmf.nist.gov/10.18.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3162 [http://dlmf.nist.gov/10.18.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
+3163: Skipped - Unable to analyze test case.
+3164: Skipped - Unable to analyze test case.
+3165 [https://dlmf.nist.gov/10.18#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3166 [https://dlmf.nist.gov/10.18#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3167 [https://dlmf.nist.gov/10.18#Ex5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
+3168 [https://dlmf.nist.gov/10.18#Ex6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
+3169 [https://dlmf.nist.gov/10.18#Ex7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3170 [https://dlmf.nist.gov/10.18#Ex8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
+3171 [https://dlmf.nist.gov/10.18#Ex9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasetheta [\Hankelphasetheta]
+3172 [https://dlmf.nist.gov/10.18#Ex10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasederivphi [\Hankelphasederivphi]
+3173 [https://dlmf.nist.gov/10.18#Ex11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3174 [https://dlmf.nist.gov/10.18#Ex12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
+3175 [http://dlmf.nist.gov/10.18.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
+3175-a [http://dlmf.nist.gov/10.18.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3176 [http://dlmf.nist.gov/10.18.E10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3177 [http://dlmf.nist.gov/10.18.E11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasederivphi [\Hankelphasederivphi]
+3177-a [http://dlmf.nist.gov/10.18.E11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3178 [http://dlmf.nist.gov/10.18.E12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3179 [http://dlmf.nist.gov/10.18.E13]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3182 [http://dlmf.nist.gov/10.18.E16]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasetheta [\Hankelphasetheta]
+3183: Skipped - Unable to analyze test case.
+3184: Skipped - Unable to analyze test case.
+3185: Skipped - Unable to analyze test case.
+3187: Skipped - Unable to analyze test case.
+3188: Skipped - Unable to analyze test case.
+3189: Skipped - Unable to analyze test case.
+3190: Skipped - Unable to analyze test case.
+3191: Skipped - Unable to analyze test case.
+3192: Skipped - Unable to analyze test case.
+3193: Skipped - Unable to analyze test case.
+3195: Skipped - Unable to analyze test case.
+3196: Skipped - Unable to analyze test case.
+3197: Skipped - Unable to analyze test case.
+3198: Skipped - Unable to analyze test case.
+3199: Skipped - Unable to analyze test case.
+3200: Skipped - Unable to analyze test case.
+3201: Skipped - Unable to analyze test case.
+3202 [https://dlmf.nist.gov/10.19#Ex11]: Failure [Simple: NaN]
+3203 [https://dlmf.nist.gov/10.19#Ex12]: Failure [Simple: NaN]
+3204 [https://dlmf.nist.gov/10.19#Ex13]: Failure [Simple: NaN]
+3205 [https://dlmf.nist.gov/10.19#Ex14]: Failure [Simple: NaN]
+3206 [https://dlmf.nist.gov/10.19#Ex15]: Failure [Simple: NaN]
+3207 [https://dlmf.nist.gov/10.19#Ex16]: Failure [Simple: NaN]
+3208 [https://dlmf.nist.gov/10.19#Ex17]: Failure [Simple: NaN]
+3209 [https://dlmf.nist.gov/10.19#Ex18]: Failure [Simple: NaN]
+3210 [https://dlmf.nist.gov/10.19#Ex19]: Failure [Simple: NaN]
+3211: Skipped - Unable to analyze test case.
+3212: Skipped - Unable to analyze test case.
+3213: Skipped - Unable to analyze test case.
+3223 [http://dlmf.nist.gov/10.20.E1]: Failure [Simple: NaN]
+3224 [http://dlmf.nist.gov/10.20.E2]: Failure [Simple: NaN]
+3224-a [http://dlmf.nist.gov/10.20.E2]: Failure [Simple: Aborted]
+3225 [http://dlmf.nist.gov/10.20.E3]: Failure [Simple: NaN]
+3225-a [http://dlmf.nist.gov/10.20.E3]: Failure [Simple: Aborted]
+3226: Skipped - Unable to analyze test case.
+3227: Skipped - Unable to analyze test case.
+3228: Skipped - Unable to analyze test case.
+3229: Skipped - Unable to analyze test case.
+3230: Skipped - Unable to analyze test case.
+3231: Skipped - Unable to analyze test case.
+3246 [http://dlmf.nist.gov/10.20.E17]: Failure [Simple: NaN]
+3246-a [http://dlmf.nist.gov/10.20.E17]: Failure [Simple: NaN]
+3248 [https://dlmf.nist.gov/10.21#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zderivBesselj [\zderivBesselj]
+3249 [https://dlmf.nist.gov/10.21#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zderivBesselj [\zderivBesselj]
+3250 [https://dlmf.nist.gov/10.21#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
+3250-a [https://dlmf.nist.gov/10.21#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
+3250-b [https://dlmf.nist.gov/10.21#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
+3250-c [https://dlmf.nist.gov/10.21#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
+3251 [https://dlmf.nist.gov/10.21#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBessely [\zBessely]
+3251-a [https://dlmf.nist.gov/10.21#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBessely [\zBessely]
+3251-b [https://dlmf.nist.gov/10.21#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBessely [\zBessely]
+3251-c [https://dlmf.nist.gov/10.21#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBessely [\zBessely]
+3252 [http://dlmf.nist.gov/10.21.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zderivBesselj [\zderivBesselj]
+3252-a [http://dlmf.nist.gov/10.21.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zderivBesselj [\zderivBesselj]
+3252-b [http://dlmf.nist.gov/10.21.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBessely [\zBessely]
+3252-c [http://dlmf.nist.gov/10.21.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zderivBessely [\zderivBessely]
+3252-d [http://dlmf.nist.gov/10.21.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
+3252-e [http://dlmf.nist.gov/10.21.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zderivBesselj [\zderivBesselj]
+3253 [http://dlmf.nist.gov/10.21.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3254 [http://dlmf.nist.gov/10.21.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3254-a [http://dlmf.nist.gov/10.21.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3255 [http://dlmf.nist.gov/10.21.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3255-a [http://dlmf.nist.gov/10.21.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3257 [https://dlmf.nist.gov/10.21#Ex6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zderivBesselj [\zderivBesselj]
+3258 [https://dlmf.nist.gov/10.21#Ex7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
+3259 [https://dlmf.nist.gov/10.21#Ex8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBessely [\zBessely]
+3260 [https://dlmf.nist.gov/10.21#Ex9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zderivBesselj [\zderivBesselj]
+3261 [https://dlmf.nist.gov/10.21#Ex10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zderivBessely [\zderivBessely]
+3262 [https://dlmf.nist.gov/10.21#Ex11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3263 [https://dlmf.nist.gov/10.21#Ex12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3264 [http://dlmf.nist.gov/10.21.E11]: Successful [Simple: 0]
+3265 [https://dlmf.nist.gov/10.21#Ex13]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasetheta [\Hankelphasetheta]
+3266 [https://dlmf.nist.gov/10.21#Ex14]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasetheta [\Hankelphasetheta]
+3267 [https://dlmf.nist.gov/10.21#Ex15]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasederivphi [\Hankelphasederivphi]
+3268 [https://dlmf.nist.gov/10.21#Ex16]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasederivphi [\Hankelphasederivphi]
+3271 [http://dlmf.nist.gov/10.21.E15]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
+3272 [http://dlmf.nist.gov/10.21.E16]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zderivBesselj [\zderivBesselj]
+3273 [http://dlmf.nist.gov/10.21.E17]: Failure [Simple: Aborted]
+3274 [http://dlmf.nist.gov/10.21.E18]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
+3275: Skipped - Unable to analyze test case.
+3276: Skipped - Unable to analyze test case.
+3277: Skipped - Unable to analyze test case.
+3278: Skipped - Unable to analyze test case.
+3279: Skipped - Unable to analyze test case.
+3292: Skipped - Unable to analyze test case.
+3293: Skipped - Unable to analyze test case.
+3304: Skipped - Unable to analyze test case.
+3305: Skipped - Unable to analyze test case.
+3306: Skipped - Unable to analyze test case.
+3307: Skipped - Unable to analyze test case.
+3308: Skipped - Unable to analyze test case.
+3309: Skipped - Unable to analyze test case.
+3310: Skipped - Unable to analyze test case.
+3311: Skipped - Unable to analyze test case.
+3312: Skipped - Unable to analyze test case.
+3313: Skipped - Unable to analyze test case.
+3314: Skipped - Unable to analyze test case.
+3315: Skipped - Unable to analyze test case.
+3316: Skipped - Unable to analyze test case.
+3317: Skipped - Unable to analyze test case.
+3318: Skipped - Unable to analyze test case.
+3319: Skipped - Unable to analyze test case.
+3320 [http://dlmf.nist.gov/10.21.E41]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
+3321 [http://dlmf.nist.gov/10.21.E42]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
+3322 [http://dlmf.nist.gov/10.21.E43]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
+3323 [http://dlmf.nist.gov/10.21.E44]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
+3325 [http://dlmf.nist.gov/10.21.E46]: Failure [Simple: NaN]
+3327: Skipped - Unable to analyze test case.
+3328: Skipped - Unable to analyze test case.
+3338: Skipped - Unable to analyze test case.
+3343 [http://dlmf.nist.gov/10.21.E55]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Rayleighsigma [\Rayleighsigma]
+3344 [https://dlmf.nist.gov/10.22#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3345 [https://dlmf.nist.gov/10.22#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3346 [http://dlmf.nist.gov/10.22.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3347 [https://dlmf.nist.gov/10.22#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3348 [https://dlmf.nist.gov/10.22#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3349 [http://dlmf.nist.gov/10.22.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3350 [http://dlmf.nist.gov/10.22.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3351 [http://dlmf.nist.gov/10.22.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3352 [https://dlmf.nist.gov/10.22#Ex5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3353 [https://dlmf.nist.gov/10.22#Ex6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3354 [http://dlmf.nist.gov/10.22.E8]: Failure [Simple: Aborted]
+3355 [http://dlmf.nist.gov/10.22.E9]: Failure [Simple: NaN]
+3355-a [http://dlmf.nist.gov/10.22.E9]: Failure [Simple: NaN]
+3356 [http://dlmf.nist.gov/10.22.E10]: Failure [Simple: NaN]
+3357 [http://dlmf.nist.gov/10.22.E11]: Failure [Simple: NaN]
+3359 [http://dlmf.nist.gov/10.22.E13]: Failure [Simple: NaN]
+3360 [http://dlmf.nist.gov/10.22.E14]: Failure [Simple: Aborted]
+3361 [http://dlmf.nist.gov/10.22.E15]: Failure [Simple: Aborted]
+3362 [http://dlmf.nist.gov/10.22.E16]: Failure [Simple: NaN]
+3363 [http://dlmf.nist.gov/10.22.E17]: Failure [Simple: NaN]
+3364 [http://dlmf.nist.gov/10.22.E18]: Failure [Simple: NaN]
+3365 [http://dlmf.nist.gov/10.22.E19]: Failure [Simple: Aborted]
+3366 [http://dlmf.nist.gov/10.22.E20]: Failure [Simple: Aborted]
+3367 [http://dlmf.nist.gov/10.22.E21]: Failure [Simple: Aborted]
+3368 [http://dlmf.nist.gov/10.22.E22]: Failure [Simple: Aborted]
+3369 [http://dlmf.nist.gov/10.22.E23]: Failure [Simple: Aborted]
+3370 [http://dlmf.nist.gov/10.22.E24]: Failure [Simple: Aborted]
+3371 [http://dlmf.nist.gov/10.22.E25]: Failure [Simple: Aborted]
+3372 [http://dlmf.nist.gov/10.22.E26]: Error - java.lang.NullPointerException [3372: \int_{0}^{\frac{1}{2}\pi}\BesselJ{\mu}@{z\sin@@{\theta}}\BesselJ{\nu}@{\zeta\cos@@{\theta}}(\sin@@{\theta})^{\mu+1}(\cos@@{\theta})^{\nu+1}\diff{\theta} EQUAL \frac{z^{\mu}\zeta^{\nu}\BesselJ{\mu+\nu+1}@{\sqrt{\zeta^{2}+z^{2}}}}{(\zeta^{2}+z^{2})^{\frac{1}{2}(\mu+\nu+1)}}; http://dlmf.nist.gov/10.22.E26]
+3373 [http://dlmf.nist.gov/10.22.E27]: Failure [Simple: Aborted]
+3374 [http://dlmf.nist.gov/10.22.E28]: Failure [Simple: Aborted]
+3375 [http://dlmf.nist.gov/10.22.E29]: Successful [Simple: 0]
+3376 [http://dlmf.nist.gov/10.22.E30]: Failure [Simple: Aborted]
+3376-a [http://dlmf.nist.gov/10.22.E30]: Failure [Simple: NaN]
+3377 [http://dlmf.nist.gov/10.22.E31]: Failure [Simple: NaN]
+3378 [http://dlmf.nist.gov/10.22.E32]: Failure [Simple: NaN]
+3379 [http://dlmf.nist.gov/10.22.E33]: Failure [Simple: Aborted]
+3380 [http://dlmf.nist.gov/10.22.E34]: Failure [Simple: Aborted]
+3381 [http://dlmf.nist.gov/10.22.E35]: Failure [Simple: Aborted]
+3382 [http://dlmf.nist.gov/10.22.E36]: Failure [Simple: Aborted]
+3383 [http://dlmf.nist.gov/10.22.E37]: Failure [Simple: Aborted]
+3384 [http://dlmf.nist.gov/10.22.E38]: Failure [Simple: Aborted]
+3385 [http://dlmf.nist.gov/10.22.E39]: Failure [Simple: NaN]
+3385-a [http://dlmf.nist.gov/10.22.E39]: Failure [Simple: NaN]
+3386 [http://dlmf.nist.gov/10.22.E40]: Failure [Simple: Aborted]
+3387 [http://dlmf.nist.gov/10.22.E41]: Failure [Simple: Aborted]
+3388 [http://dlmf.nist.gov/10.22.E42]: Failure [Simple: Aborted]
+3389 [http://dlmf.nist.gov/10.22.E43]: Failure [Simple: Aborted]
+3390 [http://dlmf.nist.gov/10.22.E44]: Failure [Simple: Aborted]
+3391 [http://dlmf.nist.gov/10.22.E45]: Failure [Simple: Aborted]
+3392 [http://dlmf.nist.gov/10.22.E46]: Failure [Simple: Aborted]
+3393 [http://dlmf.nist.gov/10.22.E47]: Failure [Simple: Aborted]
+3394 [http://dlmf.nist.gov/10.22.E48]: Failure [Simple: Aborted]
+3395 [http://dlmf.nist.gov/10.22.E49]: Failure [Simple: Aborted]
+3396 [http://dlmf.nist.gov/10.22.E50]: Failure [Simple: Aborted]
+3397 [http://dlmf.nist.gov/10.22.E51]: Failure [Simple: Aborted]
+3398 [http://dlmf.nist.gov/10.22.E52]: Failure [Simple: Aborted]
+3399 [http://dlmf.nist.gov/10.22.E53]: Failure [Simple: Aborted]
+3400 [http://dlmf.nist.gov/10.22.E54]: Failure [Simple: Aborted]
+3401 [http://dlmf.nist.gov/10.22.E55]: Failure [Simple: NaN]
+3402 [http://dlmf.nist.gov/10.22.E56]: Failure [Simple: Aborted]
+3403 [http://dlmf.nist.gov/10.22.E57]: Failure [Simple: Aborted]
+3404 [http://dlmf.nist.gov/10.22.E58]: Failure [Simple: Aborted]
+3405 [http://dlmf.nist.gov/10.22.E59]: Failure [Simple: NaN]
+3405-a [http://dlmf.nist.gov/10.22.E59]: Failure [Simple: NaN]
+3406 [http://dlmf.nist.gov/10.22.E60]: Failure [Simple: NaN]
+3406-a [http://dlmf.nist.gov/10.22.E60]: Failure [Simple: NaN]
+3407 [http://dlmf.nist.gov/10.22.E61]: Failure [Simple: NaN]
+3407-a [http://dlmf.nist.gov/10.22.E61]: Failure [Simple: NaN]
+3408 [http://dlmf.nist.gov/10.22.E62]: Failure [Simple: NaN]
+3408-a [http://dlmf.nist.gov/10.22.E62]: Failure [Simple: NaN]
+3409 [http://dlmf.nist.gov/10.22.E63]: Failure [Simple: NaN]
+3409-a [http://dlmf.nist.gov/10.22.E63]: Failure [Simple: NaN]
+3409-b [http://dlmf.nist.gov/10.22.E63]: Failure [Simple: NaN]
+3410 [http://dlmf.nist.gov/10.22.E64]: Failure [Simple: NaN]
+3410-a [http://dlmf.nist.gov/10.22.E64]: Failure [Simple: NaN]
+3410-b [http://dlmf.nist.gov/10.22.E64]: Failure [Simple: NaN]
+3411 [http://dlmf.nist.gov/10.22.E65]: Failure [Simple: NaN]
+3411-a [http://dlmf.nist.gov/10.22.E65]: Failure [Simple: NaN]
+3411-b [http://dlmf.nist.gov/10.22.E65]: Failure [Simple: NaN]
+3411-c [http://dlmf.nist.gov/10.22.E65]: Failure [Simple: NaN]
+3411-d [http://dlmf.nist.gov/10.22.E65]: Failure [Simple: NaN]
+3412 [http://dlmf.nist.gov/10.22.E66]: Failure [Simple: Aborted]
+3413 [http://dlmf.nist.gov/10.22.E67]: Failure [Simple: Aborted]
+3414 [http://dlmf.nist.gov/10.22.E68]: Failure [Simple: Aborted]
+3416 [http://dlmf.nist.gov/10.22.E70]: Failure [Simple: Aborted]
+3417 [http://dlmf.nist.gov/10.22.E71]: Failure [Simple: Aborted]
+3418: Skipped - Unable to analyze test case.
+3419 [http://dlmf.nist.gov/10.22.E72]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \assLegendreQ [\assLegendreQ]
+3420: Skipped - Unable to analyze test case.
+3424 [http://dlmf.nist.gov/10.22.E75]: Failure [Simple: NaN]
+3424-a [http://dlmf.nist.gov/10.22.E75]: Failure [Simple: NaN]
+3424-b [http://dlmf.nist.gov/10.22.E75]: Failure [Simple: NaN]
+3427 [http://dlmf.nist.gov/10.23.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3427-a [http://dlmf.nist.gov/10.23.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3428 [http://dlmf.nist.gov/10.23.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3428-a [http://dlmf.nist.gov/10.23.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3429 [http://dlmf.nist.gov/10.23.E3]: Successful [Simple: 0]
+3430 [http://dlmf.nist.gov/10.23.E4]: Failure [Simple: Aborted]
+3431 [http://dlmf.nist.gov/10.23.E5]: Failure [Simple: Aborted]
+3432 [https://dlmf.nist.gov/10.23#Ex1]: Failure [Simple: NaN]
+3433 [https://dlmf.nist.gov/10.23#Ex2]: Failure [Simple: NaN]
+3434 [https://dlmf.nist.gov/10.23#Ex3]: Failure [Simple: NaN]
+3435 [http://dlmf.nist.gov/10.23.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3436 [http://dlmf.nist.gov/10.23.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
+3437 [http://dlmf.nist.gov/10.23.E9]: Failure [Simple: NaN]
+3440 [http://dlmf.nist.gov/10.23.E12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \NeumannpolyO [\NeumannpolyO]
+3441 [http://dlmf.nist.gov/10.23.E13]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \NeumannpolyO [\NeumannpolyO]
+3443 [http://dlmf.nist.gov/10.23.E15]: Successful [Simple: 0]
+3444 [http://dlmf.nist.gov/10.23.E16]: Successful [Simple: 0]
+3445 [http://dlmf.nist.gov/10.23.E17]: Failure [Simple: NaN]
+3449 [http://dlmf.nist.gov/10.23.E21]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
+3450 [http://dlmf.nist.gov/10.24.E1]: Failure [Simple: NaN]
+3451 [https://dlmf.nist.gov/10.24#Ex1]: Successful [Simple: 0]
+3452 [https://dlmf.nist.gov/10.24#Ex2]: Successful [Simple: 0]
+3453 [http://dlmf.nist.gov/10.24.E3]: Failure [Simple: NaN]
+3454 [https://dlmf.nist.gov/10.24#Ex3]: Failure [Simple: NaN]
+3455 [https://dlmf.nist.gov/10.24#Ex4]: Failure [Simple: NaN]
+3456 [http://dlmf.nist.gov/10.24.E5]: Failure [Simple: Aborted]
+3457 [https://dlmf.nist.gov/10.24#Ex5]: Failure [Simple: NaN]
+3458 [https://dlmf.nist.gov/10.24#Ex6]: Failure [Simple: NaN]
+3459 [http://dlmf.nist.gov/10.24.E7]: Failure [Simple: NaN]
+3460 [http://dlmf.nist.gov/10.24.E8]: Failure [Simple: NaN]
+3461 [http://dlmf.nist.gov/10.24.E9]: Failure [Simple: NaN]
+3461-a [http://dlmf.nist.gov/10.24.E9]: Failure [Simple: NaN]
+3462 [http://dlmf.nist.gov/10.25.E1]: Failure [Simple: NaN]
+3463 [http://dlmf.nist.gov/10.25.E2]: Successful [Simple: 0]
+3465 [http://dlmf.nist.gov/10.27.E1]: Failure [Simple: NaN]
+3466 [http://dlmf.nist.gov/10.27.E2]: Successful [Simple: 0]
+3467 [http://dlmf.nist.gov/10.27.E3]: Successful [Simple: 0]
+3468 [http://dlmf.nist.gov/10.27.E4]: Successful [Simple: 0]
+3469 [http://dlmf.nist.gov/10.27.E5]: Error - (LaTeX -> Mathematica) The current implementation is wrong: Wrong translation method used. You have to specify an open bracket to translate it like a sequence.
+3470 [http://dlmf.nist.gov/10.27.E6]: Failure [Simple: NaN]
+3470-a [http://dlmf.nist.gov/10.27.E6]: Failure [Simple: NaN]
+3471 [http://dlmf.nist.gov/10.27.E7]: Failure [Simple: NaN]
+3471-a [http://dlmf.nist.gov/10.27.E7]: Failure [Simple: NaN]
+3472 [http://dlmf.nist.gov/10.27.E8]: Failure [Simple: NaN]
+3472-a [http://dlmf.nist.gov/10.27.E8]: Failure [Simple: NaN]
+3473 [http://dlmf.nist.gov/10.27.E9]: Failure [Simple: NaN]
+3474 [http://dlmf.nist.gov/10.27.E10]: Failure [Simple: NaN]
+3475 [http://dlmf.nist.gov/10.27.E11]: Failure [Simple: NaN]
+3475-a [http://dlmf.nist.gov/10.27.E11]: Failure [Simple: NaN]
+3476 [http://dlmf.nist.gov/10.28.E1]: Failure [Simple: NaN]
+3476-a [http://dlmf.nist.gov/10.28.E1]: Successful [Simple: 0]
+3477 [http://dlmf.nist.gov/10.28.E2]: Failure [Simple: NaN]
+3477-a [http://dlmf.nist.gov/10.28.E2]: Successful [Simple: 0]
+3478 [https://dlmf.nist.gov/10.29#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+3479 [https://dlmf.nist.gov/10.29#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+3480 [https://dlmf.nist.gov/10.29#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+3481 [https://dlmf.nist.gov/10.29#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+3482 [https://dlmf.nist.gov/10.29#Ex5]: Successful [Simple: 0]
+3483 [https://dlmf.nist.gov/10.29#Ex6]: Successful [Simple: 0]
+3484 [https://dlmf.nist.gov/10.29#Ex7]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Empty arguments for limited expressions are invalid math.
+3485 [https://dlmf.nist.gov/10.29#Ex8]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Empty arguments for limited expressions are invalid math.
+3487: Skipped - Unable to analyze test case.
+3488: Skipped - Unable to analyze test case.
+3489: Skipped - Unable to analyze test case.
+3490: Skipped - Unable to analyze test case.
+3491: Skipped - Unable to analyze test case.
+3492 [http://dlmf.nist.gov/10.31.E1]: Failure [Simple: Aborted]
+3495 [http://dlmf.nist.gov/10.32.E1]: Successful [Simple: 0]
+3495-a [http://dlmf.nist.gov/10.32.E1]: Successful [Simple: 0]
+3495-b [http://dlmf.nist.gov/10.32.E1]: Failure [Simple: Aborted]
+3495-c [http://dlmf.nist.gov/10.32.E1]: Failure [Simple: Aborted]
+3496 [http://dlmf.nist.gov/10.32.E2]: Failure [Simple: Aborted]
+3496-a [http://dlmf.nist.gov/10.32.E2]: Failure [Simple: Aborted]
+3496-b [http://dlmf.nist.gov/10.32.E2]: Failure [Simple: Aborted]
+3496-c [http://dlmf.nist.gov/10.32.E2]: Failure [Simple: Aborted]
+3497 [http://dlmf.nist.gov/10.32.E3]: Failure [Simple: Aborted]
+3498 [http://dlmf.nist.gov/10.32.E4]: Failure [Simple: Aborted]
+3499 [http://dlmf.nist.gov/10.32.E5]: Failure [Simple: Aborted]
+3499-a [http://dlmf.nist.gov/10.32.E5]: Failure [Simple: Aborted]
+3500 [http://dlmf.nist.gov/10.32.E6]: Failure [Simple: Aborted]
+3500-a [http://dlmf.nist.gov/10.32.E6]: Failure [Simple: Aborted]
+3501 [http://dlmf.nist.gov/10.32.E7]: Failure [Simple: Aborted]
+3501-a [http://dlmf.nist.gov/10.32.E7]: Failure [Simple: Aborted]
+3502 [http://dlmf.nist.gov/10.32.E8]: Failure [Simple: Aborted]
+3502-a [http://dlmf.nist.gov/10.32.E8]: Failure [Simple: Aborted]
+3503 [http://dlmf.nist.gov/10.32.E9]: Failure [Simple: Aborted]
+3504 [http://dlmf.nist.gov/10.32.E10]: Failure [Simple: Aborted]
+3505 [http://dlmf.nist.gov/10.32.E11]: Failure [Simple: Aborted]
+3506 [http://dlmf.nist.gov/10.32.E12]: Failure [Simple: NaN]
+3507 [http://dlmf.nist.gov/10.32.E13]: Failure [Simple: Aborted]
+3508 [http://dlmf.nist.gov/10.32.E14]: Failure [Simple: Aborted]
+3509 [http://dlmf.nist.gov/10.32.E15]: Failure [Simple: Aborted]
+3510 [http://dlmf.nist.gov/10.32.E16]: Failure [Simple: Aborted]
+3510-a [http://dlmf.nist.gov/10.32.E16]: Failure [Simple: Aborted]
+3511 [http://dlmf.nist.gov/10.32.E17]: Failure [Simple: Aborted]
+3511-a [http://dlmf.nist.gov/10.32.E17]: Failure [Simple: Aborted]
+3512 [http://dlmf.nist.gov/10.32.E18]: Failure [Simple: NaN]
+3513 [http://dlmf.nist.gov/10.32.E19]: Failure [Simple: Aborted]
+3514: Skipped - Unable to analyze test case.
+3517 [http://dlmf.nist.gov/10.34.E1]: Failure [Simple: NaN]
+3518 [http://dlmf.nist.gov/10.34.E2]: Failure [Simple: NaN]
+3519 [http://dlmf.nist.gov/10.34.E3]: Failure [Simple: NaN]
+3519-a [http://dlmf.nist.gov/10.34.E3]: Failure [Simple: NaN]
+3520 [http://dlmf.nist.gov/10.34.E4]: Failure [Simple: NaN]
+3520-a [http://dlmf.nist.gov/10.34.E4]: Failure [Simple: NaN]
+3521 [http://dlmf.nist.gov/10.34.E5]: Failure [Simple: NaN]
+3522 [http://dlmf.nist.gov/10.34.E6]: Failure [Simple: NaN]
+3522-a [http://dlmf.nist.gov/10.34.E6]: Failure [Simple: NaN]
+3523 [https://dlmf.nist.gov/10.34#Ex1]: Failure [Simple: NaN]
+3524 [https://dlmf.nist.gov/10.34#Ex2]: Failure [Simple: NaN]
+3525 [http://dlmf.nist.gov/10.35.E1]: Failure [Simple: Aborted]
+3526 [http://dlmf.nist.gov/10.35.E2]: Successful [Simple: 0]
+3527 [http://dlmf.nist.gov/10.35.E3]: Failure [Simple: Aborted]
+3534 [http://dlmf.nist.gov/10.37.E1]: Failure [Simple: NaN]
+3535 [http://dlmf.nist.gov/10.38.E1]: Failure [Simple: NaN]
+3535-a [http://dlmf.nist.gov/10.38.E1]: Failure [Simple: NaN]
+3536 [http://dlmf.nist.gov/10.38.E2]: Failure [Simple: NaN]
+3537: Skipped - Unable to analyze test case.
+3538: Skipped - Unable to analyze test case.
+3539: Skipped - Unable to analyze test case.
+3540: Skipped - Unable to analyze test case.
+3541: Skipped - Unable to analyze test case.
+3542: Skipped - Unable to analyze test case.
+3543 [https://dlmf.nist.gov/10.39#Ex1]: Failure [Simple: NaN]
+3544 [https://dlmf.nist.gov/10.39#Ex2]: Failure [Simple: NaN]
+3545 [http://dlmf.nist.gov/10.39.E2]: Successful [Simple: 0]
+3545-a [http://dlmf.nist.gov/10.39.E2]: Failure [Simple: NaN]
+3546 [http://dlmf.nist.gov/10.39.E3]: Failure [Simple: NaN]
+3547 [http://dlmf.nist.gov/10.39.E4]: Failure [Simple: NaN]
+3548 [http://dlmf.nist.gov/10.39.E5]: Successful [Simple: 0]
+3548-a [http://dlmf.nist.gov/10.39.E5]: Successful [Simple: 0]
+3549 [http://dlmf.nist.gov/10.39.E6]: Successful [Simple: 0]
+3550 [http://dlmf.nist.gov/10.39.E7]: Successful [Simple: 0]
+3551 [http://dlmf.nist.gov/10.39.E8]: Failure [Simple: NaN]
+3552 [http://dlmf.nist.gov/10.39.E9]: Failure [Simple: NaN]
+3553: Skipped - Unable to analyze test case.
+3554 [http://dlmf.nist.gov/10.39.E10]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Illegal expression followed a limited expression: \genhyperOlverF
+3555: Skipped - Unable to analyze test case.
+3556: Skipped - Unable to analyze test case.
+3557: Skipped - Unable to analyze test case.
+3558: Skipped - Unable to analyze test case.
+3559: Skipped - Unable to analyze test case.
+3560: Skipped - Unable to analyze test case.
+3561: Skipped - Unable to analyze test case.
+3562: Skipped - Unable to analyze test case.
+3563: Skipped - Unable to analyze test case.
+3565 [http://dlmf.nist.gov/10.40.E10]: Failure [Simple: NaN]
+3567 [http://dlmf.nist.gov/10.40.E12]: Failure [Simple: NaN]
+3568 [http://dlmf.nist.gov/10.40.E13]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \scterminant [\scterminant]
+3570: Skipped - Unable to analyze test case.
+3571: Skipped - Unable to analyze test case.
+3572: Skipped - Unable to analyze test case.
+3573: Skipped - Unable to analyze test case.
+3574: Skipped - Unable to analyze test case.
+3575: Skipped - Unable to analyze test case.
+3578 [https://dlmf.nist.gov/10.41#Ex1]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
+3586 [http://dlmf.nist.gov/10.41.E12]: Failure [Simple: NaN]
+3587 [http://dlmf.nist.gov/10.41.E13]: Failure [Simple: NaN]
+3588 [http://dlmf.nist.gov/10.41.E14]: Failure [Simple: NaN]
+3589 [http://dlmf.nist.gov/10.41.E15]: Failure [Simple: NaN]
+3590 [https://dlmf.nist.gov/10.43#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+3591 [https://dlmf.nist.gov/10.43#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+3592 [http://dlmf.nist.gov/10.43.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+3593 [https://dlmf.nist.gov/10.43#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+3593-a [https://dlmf.nist.gov/10.43#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+3594 [https://dlmf.nist.gov/10.43#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+3594-a [https://dlmf.nist.gov/10.43#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+3595 [http://dlmf.nist.gov/10.43.E4]: Failure [Simple: Aborted]
+3595-a [http://dlmf.nist.gov/10.43.E4]: Failure [Simple: NaN]
+3596 [http://dlmf.nist.gov/10.43.E5]: Failure [Simple: Aborted]
+3597 [http://dlmf.nist.gov/10.43.E6]: Failure [Simple: Aborted]
+3598 [http://dlmf.nist.gov/10.43.E7]: Failure [Simple: Aborted]
+3598-a [http://dlmf.nist.gov/10.43.E7]: Failure [Simple: Aborted]
+3599 [http://dlmf.nist.gov/10.43.E8]: Failure [Simple: Aborted]
+3599-a [http://dlmf.nist.gov/10.43.E8]: Successful [Simple: 0]
+3600 [http://dlmf.nist.gov/10.43.E9]: Failure [Simple: Aborted]
+3600-a [http://dlmf.nist.gov/10.43.E9]: Failure [Simple: Aborted]
+3601 [http://dlmf.nist.gov/10.43.E10]: Failure [Simple: Aborted]
+3602 [http://dlmf.nist.gov/10.43.E11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BickleyKi [\BickleyKi]
+3603 [http://dlmf.nist.gov/10.43.E12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BickleyKi [\BickleyKi]
+3604 [http://dlmf.nist.gov/10.43.E13]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BickleyKi [\BickleyKi]
+3605 [http://dlmf.nist.gov/10.43.E14]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BickleyKi [\BickleyKi]
+3606 [http://dlmf.nist.gov/10.43.E15]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BickleyKi [\BickleyKi]
+3607 [http://dlmf.nist.gov/10.43.E16]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BickleyKi [\BickleyKi]
+3608 [http://dlmf.nist.gov/10.43.E17]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \BickleyKi [\BickleyKi]
+3609 [http://dlmf.nist.gov/10.43.E18]: Failure [Simple: Aborted]
+3610 [http://dlmf.nist.gov/10.43.E19]: Failure [Simple: Aborted]
+3611 [http://dlmf.nist.gov/10.43.E20]: Failure [Simple: Aborted]
+3612 [http://dlmf.nist.gov/10.43.E21]: Failure [Simple: Aborted]
+3613 [http://dlmf.nist.gov/10.43.E22]: Failure [Simple: NaN]
+3613-a [http://dlmf.nist.gov/10.43.E22]: Failure [Simple: NaN]
+3614 [http://dlmf.nist.gov/10.43.E23]: Failure [Simple: NaN]
+3615 [http://dlmf.nist.gov/10.43.E24]: Failure [Simple: Aborted]
+3616 [http://dlmf.nist.gov/10.43.E25]: Failure [Simple: Aborted]
+3617 [http://dlmf.nist.gov/10.43.E26]: Failure [Simple: Aborted]
+3618 [http://dlmf.nist.gov/10.43.E27]: Failure [Simple: Aborted]
+3619 [http://dlmf.nist.gov/10.43.E28]: Failure [Simple: Aborted]
+3620 [http://dlmf.nist.gov/10.43.E29]: Failure [Simple: Aborted]
+3623: Skipped - Unable to analyze test case.
+3624: Skipped - Unable to analyze test case.
+3625 [http://dlmf.nist.gov/10.44.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+3625-a [http://dlmf.nist.gov/10.44.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+3626 [https://dlmf.nist.gov/10.44#Ex1]: Successful [Simple: 0]
+3627 [https://dlmf.nist.gov/10.44#Ex2]: Failure [Simple: NaN]
+3628 [http://dlmf.nist.gov/10.44.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+3628-a [http://dlmf.nist.gov/10.44.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+3629 [http://dlmf.nist.gov/10.44.E4]: Failure [Simple: NaN]
+3630 [http://dlmf.nist.gov/10.44.E5]: Successful [Simple: 0]
+3631 [http://dlmf.nist.gov/10.44.E6]: Failure [Simple: Aborted]
+3632 [http://dlmf.nist.gov/10.45.E1]: Failure [Simple: NaN]
+3633 [http://dlmf.nist.gov/10.45.E2]: Successful [Simple: 0]
+3634 [http://dlmf.nist.gov/10.45.E2]: Successful [Simple: 0]
+3637 [http://dlmf.nist.gov/10.45.E4]: Failure [Simple: Aborted]
+3638 [https://dlmf.nist.gov/10.45#Ex2]: Failure [Simple: NaN]
+3639 [https://dlmf.nist.gov/10.45#Ex3]: Failure [Simple: NaN]
+3640 [http://dlmf.nist.gov/10.45.E6]: Failure [Simple: NaN]
+3641 [http://dlmf.nist.gov/10.45.E7]: Failure [Simple: NaN]
+3642 [http://dlmf.nist.gov/10.45.E8]: Successful [Simple: 0]
+3642-a [http://dlmf.nist.gov/10.45.E8]: Failure [Simple: NaN]
+3643 [http://dlmf.nist.gov/10.46.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \genBesselphi [\genBesselphi]
+3644 [http://dlmf.nist.gov/10.46.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \genBesselphi [\genBesselphi]
+3645 [http://dlmf.nist.gov/10.46.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \MittagLefflerE [\MittagLefflerE]
+3646 [http://dlmf.nist.gov/10.47.E1]: Failure [Simple: NaN]
+3647 [http://dlmf.nist.gov/10.47.E2]: Failure [Simple: NaN]
+3648 [http://dlmf.nist.gov/10.47.E3]: Failure [Simple: NaN]
+3648-a [http://dlmf.nist.gov/10.47.E3]: Failure [Simple: NaN]
+3649 [http://dlmf.nist.gov/10.47.E4]: Failure [Simple: NaN]
+3649-a [http://dlmf.nist.gov/10.47.E4]: Failure [Simple: NaN]
+3650 [http://dlmf.nist.gov/10.47.E5]: Failure [Simple: NaN]
+3650-a [http://dlmf.nist.gov/10.47.E5]: Failure [Simple: Aborted]
+3651 [http://dlmf.nist.gov/10.47.E6]: Failure [Simple: NaN]
+3651-a [http://dlmf.nist.gov/10.47.E6]: Failure [Simple: Aborted]
+3652 [http://dlmf.nist.gov/10.47.E7]: Failure [Simple: NaN]
+3653 [http://dlmf.nist.gov/10.47.E8]: Failure [Simple: NaN]
+3654 [http://dlmf.nist.gov/10.47.E9]: Successful [Simple: 0]
+3654-a [http://dlmf.nist.gov/10.47.E9]: Successful [Simple: 0]
+3655 [https://dlmf.nist.gov/10.47#Ex1]: Failure [Simple: NaN]
+3656 [https://dlmf.nist.gov/10.47#Ex2]: Failure [Simple: NaN]
+3657 [http://dlmf.nist.gov/10.47.E11]: Failure [Simple: NaN]
+3658 [https://dlmf.nist.gov/10.47#Ex3]: Failure [Simple: NaN]
+3659 [https://dlmf.nist.gov/10.47#Ex4]: Failure [Simple: NaN]
+3660 [http://dlmf.nist.gov/10.47.E13]: Failure [Simple: NaN]
+3660-a [http://dlmf.nist.gov/10.47.E13]: Failure [Simple: NaN]
+3667 [http://dlmf.nist.gov/10.47.E17]: Failure [Simple: NaN]
+3669 [http://dlmf.nist.gov/10.49.E2]: Failure [Simple: NaN]
+3670 [https://dlmf.nist.gov/10.49#Ex1]: Successful [Simple: 0]
+3671 [https://dlmf.nist.gov/10.49#Ex2]: Successful [Simple: 0]
+3672 [https://dlmf.nist.gov/10.49#Ex3]: Successful [Simple: 0]
+3673 [http://dlmf.nist.gov/10.49.E4]: Failure [Simple: NaN]
+3674 [https://dlmf.nist.gov/10.49#Ex4]: Successful [Simple: 0]
+3675 [https://dlmf.nist.gov/10.49#Ex5]: Successful [Simple: 0]
+3676 [https://dlmf.nist.gov/10.49#Ex6]: Successful [Simple: 0]
+3677 [http://dlmf.nist.gov/10.49.E6]: Failure [Simple: NaN]
+3678 [http://dlmf.nist.gov/10.49.E7]: Failure [Simple: NaN]
+3679 [http://dlmf.nist.gov/10.49.E8]: Failure [Simple: NaN]
+3680 [https://dlmf.nist.gov/10.49#Ex7]: Failure [Simple: NaN]
+3681 [https://dlmf.nist.gov/10.49#Ex8]: Failure [Simple: NaN]
+3682 [https://dlmf.nist.gov/10.49#Ex9]: Failure [Simple: NaN]
+3683 [http://dlmf.nist.gov/10.49.E10]: Failure [Simple: NaN]
+3684 [https://dlmf.nist.gov/10.49#Ex10]: Failure [Simple: NaN]
+3685 [https://dlmf.nist.gov/10.49#Ex11]: Failure [Simple: NaN]
+3686 [https://dlmf.nist.gov/10.49#Ex12]: Failure [Simple: NaN]
+3687 [http://dlmf.nist.gov/10.49.E12]: Failure [Simple: NaN]
+3688 [https://dlmf.nist.gov/10.49#Ex13]: Failure [Simple: NaN]
+3689 [https://dlmf.nist.gov/10.49#Ex14]: Failure [Simple: NaN]
+3690 [https://dlmf.nist.gov/10.49#Ex15]: Failure [Simple: NaN]
+3691 [https://dlmf.nist.gov/10.49#Ex16]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Empty arguments for limited expressions are invalid math.
+3692 [https://dlmf.nist.gov/10.49#Ex17]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Empty arguments for limited expressions are invalid math.
+3693 [https://dlmf.nist.gov/10.49#Ex18]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Empty arguments for limited expressions are invalid math.
+3694 [https://dlmf.nist.gov/10.49#Ex19]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Empty arguments for limited expressions are invalid math.
+3695 [http://dlmf.nist.gov/10.49.E16]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Empty arguments for limited expressions are invalid math.
+3697 [http://dlmf.nist.gov/10.49.E18]: Failure [Simple: NaN]
+3698 [https://dlmf.nist.gov/10.49#Ex20]: Successful [Simple: 0]
+3699 [https://dlmf.nist.gov/10.49#Ex21]: Successful [Simple: 0]
+3700 [https://dlmf.nist.gov/10.49#Ex22]: Successful [Simple: 0]
+3701 [http://dlmf.nist.gov/10.49.E20]: Failure [Simple: NaN]
+3702: Skipped - Unable to analyze test case.
+3703: Skipped - Unable to analyze test case.
+3704: Skipped - Unable to analyze test case.
+3705 [https://dlmf.nist.gov/10.50#Ex1]: Successful [Simple: 0]
+3706 [https://dlmf.nist.gov/10.50#Ex2]: Failure [Simple: NaN]
+3707 [https://dlmf.nist.gov/10.50#Ex3]: Failure [Simple: NaN]
+3708 [https://dlmf.nist.gov/10.50#Ex4]: Error - java.lang.NullPointerException [3708: \Wronskian@{\modsphBesseli{1}{n}@{z},\modsphBesselK{n}@{z}} EQUAL \Wronskian@{\modsphBesseli{2}{n}@{z},\modsphBesselK{n}@{z}}\\; https://dlmf.nist.gov/10.50#Ex4]
+3708-a [https://dlmf.nist.gov/10.50#Ex4]: Error - java.lang.NullPointerException [3708: \Wronskian@{\modsphBesseli{2}{n}@{z},\modsphBesselK{n}@{z}}\\ EQUAL -\tfrac{1}{2}\pi z^{-2}; https://dlmf.nist.gov/10.50#Ex4]
+3709 [https://dlmf.nist.gov/10.50#Ex5]: Successful [Simple: 0]
+3710 [https://dlmf.nist.gov/10.50#Ex6]: Failure [Simple: NaN]
+3711 [http://dlmf.nist.gov/10.50.E4]: Failure [Simple: NaN]
+3716 [https://dlmf.nist.gov/10.51#Ex5]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Empty arguments for limited expressions are invalid math.
+3717 [https://dlmf.nist.gov/10.51#Ex6]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Empty arguments for limited expressions are invalid math.
+3722 [https://dlmf.nist.gov/10.51#Ex11]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Empty arguments for limited expressions are invalid math.
+3723 [https://dlmf.nist.gov/10.51#Ex12]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Empty arguments for limited expressions are invalid math.
+3724: Skipped - Unable to analyze test case.
+3725: Skipped - Unable to analyze test case.
+3726 [https://dlmf.nist.gov/10.52#Ex1]: Failure [Simple: NaN]
+3727 [https://dlmf.nist.gov/10.52#Ex2]: Failure [Simple: NaN]
+3728: Skipped - Unable to analyze test case.
+3729: Skipped - Unable to analyze test case.
+3730: Skipped - Unable to analyze test case.
+3731: Skipped - Unable to analyze test case.
+3732 [http://dlmf.nist.gov/10.53.E1]: Failure [Simple: NaN]
+3733 [http://dlmf.nist.gov/10.53.E2]: Failure [Simple: Aborted]
+3734 [http://dlmf.nist.gov/10.53.E3]: Failure [Simple: NaN]
+3735 [http://dlmf.nist.gov/10.53.E4]: Failure [Simple: NaN]
+3736 [http://dlmf.nist.gov/10.54.E1]: Failure [Simple: NaN]
+3737 [http://dlmf.nist.gov/10.54.E2]: Failure [Simple: Aborted]
+3738 [http://dlmf.nist.gov/10.54.E3]: Failure [Simple: Aborted]
+3739 [http://dlmf.nist.gov/10.54.E4]: Failure [Simple: NaN]
+3740 [https://dlmf.nist.gov/10.54#Ex1]: Failure [Simple: NaN]
+3741 [https://dlmf.nist.gov/10.54#Ex2]: Failure [Simple: NaN]
+3742 [http://dlmf.nist.gov/10.56.E1]: Error - java.lang.NullPointerException [3742: \frac{\cos@@{\sqrt{z^{2}-2zt}}}{z} EQUAL \frac{\cos@@{z}}{z}+\sum_{n=1}^{\infty}\frac{t^{n}}{n!}\sphBesselJ{n-1}@{z}; http://dlmf.nist.gov/10.56.E1]
+3743 [http://dlmf.nist.gov/10.56.E2]: Error - java.lang.NullPointerException [3743: \frac{\sin@@{\sqrt{z^{2}-2zt}}}{z} EQUAL \frac{\sin@@{z}}{z}+\sum_{n=1}^{\infty}\frac{t^{n}}{n!}\sphBesselY{n-1}@{z}; http://dlmf.nist.gov/10.56.E2]
+3744 [http://dlmf.nist.gov/10.56.E3]: Error - java.lang.NullPointerException [3744: \frac{\cosh@@{\sqrt{z^{2}+2izt}}}{z} EQUAL \frac{\cosh@@{z}}{z}+\sum_{n=1}^{\infty}\frac{(it)^{n}}{n!}\modsphBesseli{1}{n-1}@{z}; http://dlmf.nist.gov/10.56.E3]
+3745 [http://dlmf.nist.gov/10.56.E4]: Error - java.lang.NullPointerException [3745: \frac{\sinh@@{\sqrt{z^{2}+2izt}}}{z} EQUAL \frac{\sinh@@{z}}{z}+\sum_{n=1}^{\infty}\frac{(it)^{n}}{n!}\modsphBesseli{2}{n-1}@{z}; http://dlmf.nist.gov/10.56.E4]
+3746 [http://dlmf.nist.gov/10.56.E5]: Failure [Simple: Aborted]
+3747 [http://dlmf.nist.gov/10.57.E1]: Successful [Simple: 0]
+3748 [https://dlmf.nist.gov/10.58#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
+3749 [https://dlmf.nist.gov/10.58#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBessely [\zBessely]
+3750 [https://dlmf.nist.gov/10.58#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
+3751 [https://dlmf.nist.gov/10.58#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zBessely [\zBessely]
+3752 [http://dlmf.nist.gov/10.59.E1]: Failure [Simple: NaN]
+3752-a [http://dlmf.nist.gov/10.59.E1]: Failure [Simple: NaN]
+3752-b [http://dlmf.nist.gov/10.59.E1]: Failure [Simple: NaN]
+3752-c [http://dlmf.nist.gov/10.59.E1]: Failure [Simple: NaN]
+3753 [http://dlmf.nist.gov/10.60.E1]: Failure [Simple: NaN]
+3754 [http://dlmf.nist.gov/10.60.E2]: Failure [Simple: NaN]
+3755 [http://dlmf.nist.gov/10.60.E3]: Failure [Simple: NaN]
+3756 [http://dlmf.nist.gov/10.60.E4]: Failure [Simple: Aborted]
+3757 [http://dlmf.nist.gov/10.60.E5]: Failure [Simple: Aborted]
+3758 [http://dlmf.nist.gov/10.60.E6]: Failure [Simple: Aborted]
+3759 [http://dlmf.nist.gov/10.60.E7]: Failure [Simple: NaN]
+3760 [http://dlmf.nist.gov/10.60.E8]: Failure [Simple: NaN]
+3761 [http://dlmf.nist.gov/10.60.E9]: Failure [Simple: NaN]
+3762 [http://dlmf.nist.gov/10.60.E10]: Failure [Simple: NaN]
+3763 [http://dlmf.nist.gov/10.60.E11]: Successful [Simple: 0]
+3764 [http://dlmf.nist.gov/10.60.E12]: Failure [Simple: NaN]
+3765 [http://dlmf.nist.gov/10.60.E13]: Failure [Simple: NaN]
+3766 [http://dlmf.nist.gov/10.60.E14]: Failure [Simple: Aborted]
+3767 [http://dlmf.nist.gov/10.61.E1]: Failure [Simple: NaN]
+3767-a [http://dlmf.nist.gov/10.61.E1]: Failure [Simple: NaN]
+3767-b [http://dlmf.nist.gov/10.61.E1]: Failure [Simple: NaN]
+3767-c [http://dlmf.nist.gov/10.61.E1]: Failure [Simple: NaN]
+3768 [http://dlmf.nist.gov/10.61.E2]: Failure [Simple: NaN]
+3768-a [http://dlmf.nist.gov/10.61.E2]: Failure [Simple: NaN]
+3768-b [http://dlmf.nist.gov/10.61.E2]: Failure [Simple: NaN]
+3769 [http://dlmf.nist.gov/10.61.E3]: Failure [Simple: NaN]
+3770: Skipped - Unable to analyze test case.
+3771: Skipped - Unable to analyze test case.
+3772: Skipped - Unable to analyze test case.
+3773 [http://dlmf.nist.gov/10.61.E4]: Failure [Simple: NaN]
+3774: Skipped - Unable to analyze test case.
+3775 [https://dlmf.nist.gov/10.61#Ex1]: Failure [Simple: NaN]
+3776 [https://dlmf.nist.gov/10.61#Ex2]: Failure [Simple: NaN]
+3777 [https://dlmf.nist.gov/10.61#Ex3]: Failure [Simple: NaN]
+3778 [https://dlmf.nist.gov/10.61#Ex4]: Failure [Simple: NaN]
+3779 [https://dlmf.nist.gov/10.61#Ex5]: Failure [Simple: NaN]
+3780 [https://dlmf.nist.gov/10.61#Ex6]: Failure [Simple: NaN]
+3781 [https://dlmf.nist.gov/10.61#Ex7]: Failure [Simple: NaN]
+3781-a [https://dlmf.nist.gov/10.61#Ex7]: Failure [Simple: NaN]
+3782 [https://dlmf.nist.gov/10.61#Ex8]: Failure [Simple: NaN]
+3782-a [https://dlmf.nist.gov/10.61#Ex8]: Failure [Simple: NaN]
+3783 [https://dlmf.nist.gov/10.61#Ex9]: Failure [Simple: NaN]
+3784 [https://dlmf.nist.gov/10.61#Ex10]: Successful [Simple: 0]
+3785 [https://dlmf.nist.gov/10.61#Ex11]: Successful [Simple: 0]
+3786 [https://dlmf.nist.gov/10.61#Ex12]: Successful [Simple: 0]
+3787 [http://dlmf.nist.gov/10.61.E11]: Successful [Simple: 0]
+3787-a [http://dlmf.nist.gov/10.61.E11]: Failure [Simple: NaN]
+3788 [http://dlmf.nist.gov/10.61.E12]: Successful [Simple: 0]
+3788-a [http://dlmf.nist.gov/10.61.E12]: Failure [Simple: NaN]
+3789: Skipped - Unable to analyze test case.
+3790: Skipped - Unable to analyze test case.
+3791: Skipped - Unable to analyze test case.
+3792: Skipped - Unable to analyze test case.
+3797 [https://dlmf.nist.gov/10.63#Ex9]: Failure [Simple: NaN]
+3798 [https://dlmf.nist.gov/10.63#Ex10]: Failure [Simple: NaN]
+3799 [https://dlmf.nist.gov/10.63#Ex11]: Failure [Simple: Aborted]
+3800 [https://dlmf.nist.gov/10.63#Ex12]: Failure [Simple: Aborted]
+3801 [https://dlmf.nist.gov/10.63#Ex13]: Failure [Simple: NaN]
+3802 [https://dlmf.nist.gov/10.63#Ex14]: Failure [Simple: Aborted]
+3803 [https://dlmf.nist.gov/10.63#Ex15]: Failure [Simple: Aborted]
+3804 [https://dlmf.nist.gov/10.63#Ex16]: Failure [Simple: Aborted]
+3810 [http://dlmf.nist.gov/10.64.E1]: Failure [Simple: Aborted]
+3811 [http://dlmf.nist.gov/10.64.E2]: Failure [Simple: Aborted]
+3812 [https://dlmf.nist.gov/10.65#Ex1]: Failure [Simple: NaN]
+3813 [https://dlmf.nist.gov/10.65#Ex2]: Failure [Simple: NaN]
+3818 [https://dlmf.nist.gov/10.65#Ex5]: Failure [Simple: Aborted]
+3819 [https://dlmf.nist.gov/10.65#Ex6]: Failure [Simple: NaN]
+3820 [http://dlmf.nist.gov/10.65.E6]: Successful [Simple: 0]
+3821 [http://dlmf.nist.gov/10.65.E7]: Successful [Simple: 0]
+3822 [http://dlmf.nist.gov/10.65.E8]: Successful [Simple: 0]
+3823 [http://dlmf.nist.gov/10.65.E9]: Failure [Simple: Aborted]
+3824 [http://dlmf.nist.gov/10.66.E1]: Failure [Simple: NaN]
+3824-a [http://dlmf.nist.gov/10.66.E1]: Failure [Simple: NaN]
+3825 [https://dlmf.nist.gov/10.66#Ex1]: Failure [Simple: Aborted]
+3826 [https://dlmf.nist.gov/10.66#Ex2]: Failure [Simple: Aborted]
+3827: Skipped - Unable to analyze test case.
+3828: Skipped - Unable to analyze test case.
+3829: Skipped - Unable to analyze test case.
+3830: Skipped - Unable to analyze test case.
+3831: Skipped - Unable to analyze test case.
+3832: Skipped - Unable to analyze test case.
+3833: Skipped - Unable to analyze test case.
+3834: Skipped - Unable to analyze test case.
+3835: Skipped - Unable to analyze test case.
+3836: Skipped - Unable to analyze test case.
+3837: Skipped - Unable to analyze test case.
+3838: Skipped - Unable to analyze test case.
+3839: Skipped - Unable to analyze test case.
+3840: Skipped - Unable to analyze test case.
+3841: Skipped - Unable to analyze test case.
+3842: Skipped - Unable to analyze test case.
+3843 [http://dlmf.nist.gov/10.68.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3844 [http://dlmf.nist.gov/10.68.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
+3845 [https://dlmf.nist.gov/10.68#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3846 [https://dlmf.nist.gov/10.68#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3847 [https://dlmf.nist.gov/10.68#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
+3848 [https://dlmf.nist.gov/10.68#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
+3849 [https://dlmf.nist.gov/10.68#Ex5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3850 [https://dlmf.nist.gov/10.68#Ex6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
+3851 [https://dlmf.nist.gov/10.68#Ex7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasetheta [\Hankelphasetheta]
+3852 [https://dlmf.nist.gov/10.68#Ex8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasederivphi [\Hankelphasederivphi]
+3853 [https://dlmf.nist.gov/10.68#Ex9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3854 [https://dlmf.nist.gov/10.68#Ex10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasetheta [\Hankelphasetheta]
+3855 [http://dlmf.nist.gov/10.68.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3855-a [http://dlmf.nist.gov/10.68.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3855-b [http://dlmf.nist.gov/10.68.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3856 [http://dlmf.nist.gov/10.68.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3856-a [http://dlmf.nist.gov/10.68.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3856-b [http://dlmf.nist.gov/10.68.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3857 [https://dlmf.nist.gov/10.68#Ex11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3858 [https://dlmf.nist.gov/10.68#Ex12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3859 [http://dlmf.nist.gov/10.68.E11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3859-a [http://dlmf.nist.gov/10.68.E11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3860 [http://dlmf.nist.gov/10.68.E12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasetheta [\Hankelphasetheta]
+3860-a [http://dlmf.nist.gov/10.68.E12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3861 [https://dlmf.nist.gov/10.68#Ex13]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3862 [https://dlmf.nist.gov/10.68#Ex14]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasetheta [\Hankelphasetheta]
+3863 [https://dlmf.nist.gov/10.68#Ex15]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3864 [https://dlmf.nist.gov/10.68#Ex16]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3865 [https://dlmf.nist.gov/10.68#Ex17]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
+3866 [https://dlmf.nist.gov/10.68#Ex18]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasederivphi [\Hankelphasederivphi]
+3867 [http://dlmf.nist.gov/10.68.E16]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3868 [http://dlmf.nist.gov/10.68.E17]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3869 [http://dlmf.nist.gov/10.68.E18]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasetheta [\Hankelphasetheta]
+3870 [http://dlmf.nist.gov/10.68.E19]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
+3871 [http://dlmf.nist.gov/10.68.E20]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
+3872 [http://dlmf.nist.gov/10.68.E21]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Hankelphasederivphi [\Hankelphasederivphi]
+3874: Skipped - Unable to analyze test case.
+3875: Skipped - Unable to analyze test case.
+3876: Skipped - Unable to analyze test case.
+3877: Skipped - Unable to analyze test case.
+3879: Skipped - Unable to analyze test case.
+3880: Skipped - Unable to analyze test case.
+3881: Skipped - Unable to analyze test case.
+3882: Skipped - Unable to analyze test case.
+3883 [http://dlmf.nist.gov/10.71.E1]: Failure [Simple: NaN]
+3883-a [http://dlmf.nist.gov/10.71.E1]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
+3884 [http://dlmf.nist.gov/10.71.E2]: Failure [Simple: NaN]
+3884-a [http://dlmf.nist.gov/10.71.E2]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
+3885 [http://dlmf.nist.gov/10.71.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Accents are not supported.
+3885-a [http://dlmf.nist.gov/10.71.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Accents are not supported.
+3886 [http://dlmf.nist.gov/10.71.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Accents are not supported.
+3887 [http://dlmf.nist.gov/10.71.E5]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
+3887-a [http://dlmf.nist.gov/10.71.E5]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
+3888 [http://dlmf.nist.gov/10.71.E6]: Failure [Simple: NaN]
+3889 [http://dlmf.nist.gov/10.71.E7]: Failure [Simple: NaN]
+3890 [https://dlmf.nist.gov/10.71#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
+3891 [https://dlmf.nist.gov/10.71#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
+3893 [http://dlmf.nist.gov/10.73.E1]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
+3893-a [http://dlmf.nist.gov/10.73.E1]: Successful [Simple: 0]
+3894 [http://dlmf.nist.gov/10.73.E2]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
+3895 [http://dlmf.nist.gov/10.73.E3]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
+3896 [http://dlmf.nist.gov/10.73.E4]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]

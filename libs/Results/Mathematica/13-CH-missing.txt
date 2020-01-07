@@ -1,6 +1,0 @@
-\envBesselY, 3
-\envparaUbar, 2
-\envparaU, 2
-\LaguerrepolyL, 2
-\CharlierpolyC, 1
-\envBesselJ, 1

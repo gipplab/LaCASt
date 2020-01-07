@@ -1,7 +1,0 @@
-\DirichletL, 8
-\EulersumH, 7
-\perBernoulliB, 6
-\perZeta, 3
-\genEulersumH, 2
-\ChebyshevPsi, 2
-rk, 1

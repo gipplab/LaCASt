@@ -1,0 +1,335 @@
+Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 110, FAILURE: 99, STARTED_TEST_CASES: 304, SKIPPED: 29, DEFINITIONS: 20, IGNORE: 133, MISSING: 189, ERROR: 9] for test expression: (#LHS)-(#RHS)
+[Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
+8423: Skipped - Unable to analyze test case.
+8424: Skipped - Unable to analyze test case.
+8425: Skipped - Unable to analyze test case.
+8430 [https://dlmf.nist.gov/28.1#Ex8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8431 [https://dlmf.nist.gov/28.1#Ex9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8432 [https://dlmf.nist.gov/28.1#Ex10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8433 [https://dlmf.nist.gov/28.1#Ex11]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8440 [https://dlmf.nist.gov/28.1#Ex14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuMe [\modMathieuMe]
+8441 [https://dlmf.nist.gov/28.1#Ex15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8442 [https://dlmf.nist.gov/28.1#Ex16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8443 [https://dlmf.nist.gov/28.1#Ex17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8444 [https://dlmf.nist.gov/28.1#Ex18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8445 [http://dlmf.nist.gov/28.2.E1]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+8452 [http://dlmf.nist.gov/28.2.E6]: Error - java.lang.NullPointerException [8452: \Wronskian@{w_{\mbox{\tiny I}},w_{\mbox{\tiny II}}} EQUAL 1; http://dlmf.nist.gov/28.2.E6]
+8460 [http://dlmf.nist.gov/28.2.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8462 [http://dlmf.nist.gov/28.2.E16]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8462-a [http://dlmf.nist.gov/28.2.E16]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8463 [http://dlmf.nist.gov/28.2.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8464 [http://dlmf.nist.gov/28.2.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8467 [http://dlmf.nist.gov/28.2.E21]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8467-a [http://dlmf.nist.gov/28.2.E21]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8468 [http://dlmf.nist.gov/28.2.E22]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8468-a [http://dlmf.nist.gov/28.2.E22]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8469 [http://dlmf.nist.gov/28.2.E23]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+8470 [http://dlmf.nist.gov/28.2.E24]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+8471 [http://dlmf.nist.gov/28.2.E25]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8471-a [http://dlmf.nist.gov/28.2.E25]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8471-b [http://dlmf.nist.gov/28.2.E25]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8471-c [http://dlmf.nist.gov/28.2.E25]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8471-d [http://dlmf.nist.gov/28.2.E25]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8471-e [http://dlmf.nist.gov/28.2.E25]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8471-f [http://dlmf.nist.gov/28.2.E25]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8471-g [http://dlmf.nist.gov/28.2.E25]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8472 [http://dlmf.nist.gov/28.2.E26]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8473 [http://dlmf.nist.gov/28.2.E27]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8474 [http://dlmf.nist.gov/28.2.E28]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8475 [https://dlmf.nist.gov/28.2#Ex4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8476 [https://dlmf.nist.gov/28.2#Ex5]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+8477 [https://dlmf.nist.gov/28.2#Ex6]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+8478 [https://dlmf.nist.gov/28.2#Ex7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8479 [https://dlmf.nist.gov/28.2#Ex8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8480 [http://dlmf.nist.gov/28.2.E31]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8481 [http://dlmf.nist.gov/28.2.E32]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8482 [http://dlmf.nist.gov/28.2.E33]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8483 [http://dlmf.nist.gov/28.2.E34]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8484 [http://dlmf.nist.gov/28.2.E35]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8485 [http://dlmf.nist.gov/28.2.E36]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8486 [http://dlmf.nist.gov/28.2.E37]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8487 [http://dlmf.nist.gov/28.2.E38]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8488 [http://dlmf.nist.gov/28.2.E39]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8489 [http://dlmf.nist.gov/28.4.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8490 [http://dlmf.nist.gov/28.4.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8491 [http://dlmf.nist.gov/28.4.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8492 [http://dlmf.nist.gov/28.4.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8495: Skipped - Unable to analyze test case.
+8497: Skipped - Unable to analyze test case.
+8499: Skipped - Unable to analyze test case.
+8501: Skipped - Unable to analyze test case.
+8518 [http://dlmf.nist.gov/28.4.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8519 [http://dlmf.nist.gov/28.4.E22]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \rselection [\rselection]
+8520 [http://dlmf.nist.gov/28.4.E23]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \rselection [\rselection]
+8521 [http://dlmf.nist.gov/28.4.E24]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8522 [http://dlmf.nist.gov/28.4.E25]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8523 [http://dlmf.nist.gov/28.4.E26]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8524 [http://dlmf.nist.gov/28.4.E27]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8525 [http://dlmf.nist.gov/28.5.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieufe [\Mathieufe]
+8526 [http://dlmf.nist.gov/28.5.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieuge [\Mathieuge]
+8529 [http://dlmf.nist.gov/28.5.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8529-a [http://dlmf.nist.gov/28.5.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8533 [https://dlmf.nist.gov/28.5#Ex4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieufe [\Mathieufe]
+8534 [https://dlmf.nist.gov/28.5#Ex5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieufe [\Mathieufe]
+8535 [https://dlmf.nist.gov/28.5#Ex6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieuge [\Mathieuge]
+8536 [http://dlmf.nist.gov/28.5.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieufe [\Mathieufe]
+8537 [http://dlmf.nist.gov/28.5.E9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieuge [\Mathieuge]
+8552 [http://dlmf.nist.gov/28.6.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8557 [http://dlmf.nist.gov/28.6.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8564 [http://dlmf.nist.gov/28.7.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8565 [http://dlmf.nist.gov/28.7.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8566 [http://dlmf.nist.gov/28.7.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8567 [http://dlmf.nist.gov/28.7.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8568: Skipped - Unable to analyze test case.
+8569 [http://dlmf.nist.gov/28.8.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8570 [https://dlmf.nist.gov/28.8#Ex1]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+8571 [https://dlmf.nist.gov/28.8#Ex2]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+8574: Skipped - Unable to analyze test case.
+8575: Skipped - Unable to analyze test case.
+8576 [https://dlmf.nist.gov/28.8#Ex3]: Error - java.lang.IllegalArgumentException: Error in CAS! [8576: \dfrac{\Mathieuce{m}@{x}{h^{2}}}{\Mathieuce{m}@{0}{h^{2}}} EQUAL \dfrac{2^{m-(\ifrac{1}{2})}}{\sigma_{m}}\left(W_{m}^{+}(x)(P_{m}(x)-Q_{m}(x))+W_{m}^{-}(x)(P_{m}(x)+Q_{m}(x))\right); https://dlmf.nist.gov/28.8#Ex3]
+8577 [https://dlmf.nist.gov/28.8#Ex4]: Error - java.lang.IllegalArgumentException: Error in CAS! [8577: \dfrac{\Mathieuse{m+1}@{x}{h^{2}}}{\Mathieuse{m+1}'@{0}{h^{2}}} EQUAL \dfrac{2^{m-(\ifrac{1}{2})}}{\tau_{m+1}}\left(W_{m}^{+}(x)(P_{m}(x)-Q_{m}(x))-W_{m}^{-}(x)(P_{m}(x)+Q_{m}(x))\right); https://dlmf.nist.gov/28.8#Ex4]
+8579: Skipped - Unable to analyze test case.
+8580: Skipped - Unable to analyze test case.
+8583 [http://dlmf.nist.gov/28.10.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8584 [http://dlmf.nist.gov/28.10.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8585 [http://dlmf.nist.gov/28.10.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8586 [http://dlmf.nist.gov/28.10.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8587 [http://dlmf.nist.gov/28.10.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8588 [http://dlmf.nist.gov/28.10.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8589 [http://dlmf.nist.gov/28.10.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8590 [http://dlmf.nist.gov/28.10.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8591 [http://dlmf.nist.gov/28.10.E9]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8592 [http://dlmf.nist.gov/28.10.E10]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8596 [http://dlmf.nist.gov/28.11.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8597 [http://dlmf.nist.gov/28.11.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8598 [http://dlmf.nist.gov/28.11.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8599 [http://dlmf.nist.gov/28.11.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8600 [http://dlmf.nist.gov/28.11.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8601 [http://dlmf.nist.gov/28.12.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieueigvallambda [\Mathieueigvallambda]
+8602 [http://dlmf.nist.gov/28.12.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieueigvallambda [\Mathieueigvallambda]
+8602-a [http://dlmf.nist.gov/28.12.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieueigvallambda [\Mathieueigvallambda]
+8604 [http://dlmf.nist.gov/28.12.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8605 [http://dlmf.nist.gov/28.12.E5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8606 [http://dlmf.nist.gov/28.12.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8607: Skipped - Unable to analyze test case.
+8608 [http://dlmf.nist.gov/28.12.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8609 [http://dlmf.nist.gov/28.12.E9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8610 [http://dlmf.nist.gov/28.12.E10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8611 [https://dlmf.nist.gov/28.12#Ex1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8612 [https://dlmf.nist.gov/28.12#Ex2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8613 [http://dlmf.nist.gov/28.12.E12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8614 [http://dlmf.nist.gov/28.12.E13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8615 [http://dlmf.nist.gov/28.12.E14]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+8615-a [http://dlmf.nist.gov/28.12.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8616 [http://dlmf.nist.gov/28.12.E15]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+8616-a [http://dlmf.nist.gov/28.12.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8617 [http://dlmf.nist.gov/28.14.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8618 [http://dlmf.nist.gov/28.14.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8619 [http://dlmf.nist.gov/28.14.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8622 [http://dlmf.nist.gov/28.14.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8622-a [http://dlmf.nist.gov/28.14.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8627 [http://dlmf.nist.gov/28.14.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8631: Skipped - Unable to analyze test case.
+8635 [http://dlmf.nist.gov/28.19.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8636 [http://dlmf.nist.gov/28.20.E1]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+8638 [http://dlmf.nist.gov/28.20.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuCe [\modMathieuCe]
+8638-a [http://dlmf.nist.gov/28.20.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuCe [\modMathieuCe]
+8639 [http://dlmf.nist.gov/28.20.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuSe [\modMathieuSe]
+8639-a [http://dlmf.nist.gov/28.20.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuSe [\modMathieuSe]
+8640 [http://dlmf.nist.gov/28.20.E5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuMe [\modMathieuMe]
+8641 [http://dlmf.nist.gov/28.20.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuFe [\modMathieuFe]
+8641-a [http://dlmf.nist.gov/28.20.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuFe [\modMathieuFe]
+8642 [http://dlmf.nist.gov/28.20.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuGe [\modMathieuGe]
+8642-a [http://dlmf.nist.gov/28.20.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuGe [\modMathieuGe]
+8644 [http://dlmf.nist.gov/28.20.E9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8645 [http://dlmf.nist.gov/28.20.E10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8646 [http://dlmf.nist.gov/28.20.E11]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8647 [http://dlmf.nist.gov/28.20.E12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8648 [http://dlmf.nist.gov/28.20.E13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8649 [http://dlmf.nist.gov/28.20.E14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8650 [http://dlmf.nist.gov/28.20.E15]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8651 [http://dlmf.nist.gov/28.20.E16]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8652 [http://dlmf.nist.gov/28.20.E17]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuIe [\modMathieuIe]
+8653 [http://dlmf.nist.gov/28.20.E18]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuIo [\modMathieuIo]
+8654 [https://dlmf.nist.gov/28.20#Ex1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuKe [\modMathieuKe]
+8655 [https://dlmf.nist.gov/28.20#Ex2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuKe [\modMathieuKe]
+8656 [https://dlmf.nist.gov/28.20#Ex3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuKo [\modMathieuKo]
+8657 [https://dlmf.nist.gov/28.20#Ex4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuKo [\modMathieuKo]
+8658 [https://dlmf.nist.gov/28.20#Ex5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8658-a [https://dlmf.nist.gov/28.20#Ex5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8659 [https://dlmf.nist.gov/28.20#Ex6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8659-a [https://dlmf.nist.gov/28.20#Ex6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8660 [http://dlmf.nist.gov/28.20.E22]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8660-a [http://dlmf.nist.gov/28.20.E22]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8661 [https://dlmf.nist.gov/28.20#Ex7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8661-a [https://dlmf.nist.gov/28.20#Ex7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8662 [https://dlmf.nist.gov/28.20#Ex8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8662-a [https://dlmf.nist.gov/28.20#Ex8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8663 [https://dlmf.nist.gov/28.20#Ex9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8663-a [https://dlmf.nist.gov/28.20#Ex9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8664 [https://dlmf.nist.gov/28.20#Ex10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8664-a [https://dlmf.nist.gov/28.20#Ex10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8665 [https://dlmf.nist.gov/28.20#Ex11]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8666 [https://dlmf.nist.gov/28.20#Ex12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8667 [https://dlmf.nist.gov/28.20#Ex13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8668 [https://dlmf.nist.gov/28.20#Ex14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8669 [http://dlmf.nist.gov/28.22.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8670 [http://dlmf.nist.gov/28.22.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8671 [http://dlmf.nist.gov/28.22.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8672 [http://dlmf.nist.gov/28.22.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8673 [http://dlmf.nist.gov/28.22.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8674 [http://dlmf.nist.gov/28.22.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8675 [http://dlmf.nist.gov/28.22.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8676 [http://dlmf.nist.gov/28.22.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8677 [http://dlmf.nist.gov/28.22.E9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8678 [http://dlmf.nist.gov/28.22.E10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8679 [https://dlmf.nist.gov/28.22#Ex1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8680 [https://dlmf.nist.gov/28.22#Ex2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8681 [https://dlmf.nist.gov/28.22#Ex3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieufe [\Mathieufe]
+8682 [https://dlmf.nist.gov/28.22#Ex4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieuge [\Mathieuge]
+8683 [http://dlmf.nist.gov/28.22.E13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8684 [http://dlmf.nist.gov/28.22.E14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8685 [https://dlmf.nist.gov/28.23#Ex1]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \cal [\cal]
+8686 [https://dlmf.nist.gov/28.23#Ex2]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \cal [\cal]
+8687 [https://dlmf.nist.gov/28.23#Ex3]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \cal [\cal]
+8688 [https://dlmf.nist.gov/28.23#Ex4]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \cal [\cal]
+8689 [http://dlmf.nist.gov/28.23.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8690 [http://dlmf.nist.gov/28.23.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8691 [http://dlmf.nist.gov/28.23.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8692 [http://dlmf.nist.gov/28.23.E5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8693 [http://dlmf.nist.gov/28.23.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8694 [http://dlmf.nist.gov/28.23.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8695 [http://dlmf.nist.gov/28.23.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8696 [http://dlmf.nist.gov/28.23.E9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8697 [http://dlmf.nist.gov/28.23.E10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8698 [http://dlmf.nist.gov/28.23.E11]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8699 [http://dlmf.nist.gov/28.23.E12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8700 [http://dlmf.nist.gov/28.23.E13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8701 [http://dlmf.nist.gov/28.24.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8702 [http://dlmf.nist.gov/28.24.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8703 [http://dlmf.nist.gov/28.24.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8704 [http://dlmf.nist.gov/28.24.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8705 [http://dlmf.nist.gov/28.24.E5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8706 [http://dlmf.nist.gov/28.24.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuIe [\modMathieuIe]
+8707 [http://dlmf.nist.gov/28.24.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuIo [\modMathieuIo]
+8708 [http://dlmf.nist.gov/28.24.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuIe [\modMathieuIe]
+8709 [http://dlmf.nist.gov/28.24.E9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuIo [\modMathieuIo]
+8710 [http://dlmf.nist.gov/28.24.E10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuKe [\modMathieuKe]
+8711 [http://dlmf.nist.gov/28.24.E11]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuKo [\modMathieuKo]
+8712 [http://dlmf.nist.gov/28.24.E12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuKe [\modMathieuKe]
+8713 [http://dlmf.nist.gov/28.24.E13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuKo [\modMathieuKo]
+8714: Skipped - Unable to analyze test case.
+8717 [http://dlmf.nist.gov/28.25.E3]: Error - java.lang.IllegalArgumentException: Error in CAS! [8717: (m+1)D^{+}_{m+1}+{\left((m+\tfrac{1}{2})^{2}+(m+\tfrac{1}{4})8\iunit h+2h^{2}-a\right)D^{+}_{m}}+(m-\tfrac{1}{2})\left(8\iunit hm\right)D_{m-1}^{+} EQUAL 0; http://dlmf.nist.gov/28.25.E3]
+8717-a [http://dlmf.nist.gov/28.25.E3]: Error - java.lang.IllegalArgumentException: Error in CAS! [8717: (m+1)D^{-}_{m+1}+{\left((m+\tfrac{1}{2})^{2}-(m+\tfrac{1}{4})8\iunit h+2h^{2}-a\right)D^{-}_{m}}-(m-\tfrac{1}{2})\left(8\iunit hm\right)D_{m-1}^{-} EQUAL 0; http://dlmf.nist.gov/28.25.E3]
+8718: Skipped - Unable to analyze test case.
+8719: Skipped - Unable to analyze test case.
+8720 [http://dlmf.nist.gov/28.26.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8721 [http://dlmf.nist.gov/28.26.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8722 [http://dlmf.nist.gov/28.26.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8723: Skipped - Unable to analyze test case.
+8724: Skipped - Unable to analyze test case.
+8725 [http://dlmf.nist.gov/28.28.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8726 [http://dlmf.nist.gov/28.28.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8727 [http://dlmf.nist.gov/28.28.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8728 [http://dlmf.nist.gov/28.28.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8729 [http://dlmf.nist.gov/28.28.E5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8730: Skipped - Unable to analyze test case.
+8731: Skipped - Unable to analyze test case.
+8734 [http://dlmf.nist.gov/28.28.E7]: Error - java.util.NoSuchElementException [8734: \dfrac{1}{\pi}\int_{\mathcal{L}_{j}}e^{2\iunit hw}\Mathieume{\nu}@{t}{h^{2}}\diff{t} EQUAL e^{\iunit\nu\pi/{2}}\Mathieume{\nu}@{\alpha}{h^{2}}\modMathieuM{j}{\nu}@{z}{h}; http://dlmf.nist.gov/28.28.E7]
+8735 [http://dlmf.nist.gov/28.28.E8]: Error - java.util.NoSuchElementException [8735: \dfrac{1}{\pi}\int_{\mathcal{L}_{j}}2\iunit h\pderiv{w}{\alpha}e^{2\iunit hw}\Mathieume{\nu}@{t}{h^{2}}\diff{t} EQUAL e^{\iunit\nu\pi/{2}}\Mathieume{\nu}'@{\alpha}{h^{2}}\modMathieuM{j}{\nu}@{z}{h}; http://dlmf.nist.gov/28.28.E8]
+8736 [http://dlmf.nist.gov/28.28.E9]: Error - java.util.NoSuchElementException [8736: \dfrac{1}{2\pi}\int_{\mathcal{L}_{1}}e^{2\iunit hw}\Mathieume{\nu}@{t}{h^{2}}\diff{t} EQUAL e^{\iunit\nu\pi/{2}}\Mathieume{\nu}@{\alpha}{h^{2}}\modMathieuM{1}{\nu}@{z}{h}; http://dlmf.nist.gov/28.28.E9]
+8737 [http://dlmf.nist.gov/28.28.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8737-a [http://dlmf.nist.gov/28.28.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8737-b [http://dlmf.nist.gov/28.28.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8737-c [http://dlmf.nist.gov/28.28.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8738 [http://dlmf.nist.gov/28.28.E11]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuCe [\modMathieuCe]
+8739 [http://dlmf.nist.gov/28.28.E12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuSe [\modMathieuSe]
+8740 [http://dlmf.nist.gov/28.28.E13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuFe [\modMathieuFe]
+8741 [http://dlmf.nist.gov/28.28.E14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuGe [\modMathieuGe]
+8742 [http://dlmf.nist.gov/28.28.E15]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuCe [\modMathieuCe]
+8743 [http://dlmf.nist.gov/28.28.E16]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuCe [\modMathieuCe]
+8743-a [http://dlmf.nist.gov/28.28.E16]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuCe [\modMathieuCe]
+8744 [http://dlmf.nist.gov/28.28.E17]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8745 [https://dlmf.nist.gov/28.28#Ex4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8746 [https://dlmf.nist.gov/28.28#Ex5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8747 [https://dlmf.nist.gov/28.28#Ex6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8749 [http://dlmf.nist.gov/28.28.E20]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8750 [http://dlmf.nist.gov/28.28.E21]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
+8751 [http://dlmf.nist.gov/28.28.E22]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8752 [http://dlmf.nist.gov/28.28.E23]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMs [\radMathieuMs]
+8753 [https://dlmf.nist.gov/28.28#Ex8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuD [\modMathieuD]
+8754 [https://dlmf.nist.gov/28.28#Ex9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuD [\modMathieuD]
+8755 [http://dlmf.nist.gov/28.28.E25]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8756 [http://dlmf.nist.gov/28.28.E26]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8758 [http://dlmf.nist.gov/28.28.E28]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8758-a [http://dlmf.nist.gov/28.28.E28]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8759 [http://dlmf.nist.gov/28.28.E29]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8760 [http://dlmf.nist.gov/28.28.E30]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8761 [http://dlmf.nist.gov/28.28.E31]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8762 [http://dlmf.nist.gov/28.28.E32]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
+8764 [http://dlmf.nist.gov/28.28.E34]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \pvint [\pvint]
+8765 [https://dlmf.nist.gov/28.28#Ex10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuDs [\radMathieuDs]
+8766 [https://dlmf.nist.gov/28.28#Ex11]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuDs [\radMathieuDs]
+8767 [https://dlmf.nist.gov/28.28#Ex12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuDs [\radMathieuDs]
+8768 [http://dlmf.nist.gov/28.28.E36]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+8769 [http://dlmf.nist.gov/28.28.E37]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+8770 [http://dlmf.nist.gov/28.28.E38]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+8770-a [http://dlmf.nist.gov/28.28.E38]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuDs [\radMathieuDs]
+8771 [https://dlmf.nist.gov/28.28#Ex13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuDc [\radMathieuDc]
+8772 [https://dlmf.nist.gov/28.28#Ex14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuDc [\radMathieuDc]
+8773 [https://dlmf.nist.gov/28.28#Ex15]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuDsc [\radMathieuDsc]
+8774 [https://dlmf.nist.gov/28.28#Ex16]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuDsc [\radMathieuDsc]
+8775 [http://dlmf.nist.gov/28.28.E41]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+8776 [http://dlmf.nist.gov/28.28.E42]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+8777 [http://dlmf.nist.gov/28.28.E43]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+8777-a [http://dlmf.nist.gov/28.28.E43]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuDsc [\radMathieuDsc]
+8778 [http://dlmf.nist.gov/28.28.E44]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+8779 [http://dlmf.nist.gov/28.28.E45]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+8780 [http://dlmf.nist.gov/28.28.E46]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+8780-a [http://dlmf.nist.gov/28.28.E46]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuDsc [\radMathieuDsc]
+8781 [http://dlmf.nist.gov/28.28.E47]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+8782 [http://dlmf.nist.gov/28.28.E48]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+8783 [http://dlmf.nist.gov/28.28.E49]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+8783-a [http://dlmf.nist.gov/28.28.E49]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuDc [\radMathieuDc]
+8786 [http://dlmf.nist.gov/28.29.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8789 [http://dlmf.nist.gov/28.29.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8789-a [http://dlmf.nist.gov/28.29.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8790 [http://dlmf.nist.gov/28.29.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8792 [http://dlmf.nist.gov/28.29.E9]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8796 [http://dlmf.nist.gov/28.29.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8797 [http://dlmf.nist.gov/28.29.E14]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+8810 [http://dlmf.nist.gov/28.30.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8813 [http://dlmf.nist.gov/28.31.E1]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+8817 [https://dlmf.nist.gov/28.31#Ex4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8818 [http://dlmf.nist.gov/28.31.E3]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+8819 [http://dlmf.nist.gov/28.31.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8820 [http://dlmf.nist.gov/28.31.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8832: Skipped - Unable to analyze test case.
+8833 [http://dlmf.nist.gov/28.31.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8833-a [http://dlmf.nist.gov/28.31.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8834: Skipped - Unable to analyze test case.
+8836: Skipped - Unable to analyze test case.
+8837: Skipped - Unable to analyze test case.
+8839: Skipped - Unable to analyze test case.
+8840: Skipped - Unable to analyze test case.
+8845: Skipped - Unable to analyze test case.
+8846 [http://dlmf.nist.gov/28.31.E18]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+8851 [http://dlmf.nist.gov/28.31.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8851-a [http://dlmf.nist.gov/28.31.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8852 [http://dlmf.nist.gov/28.31.E22]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8853 [http://dlmf.nist.gov/28.31.E23]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8854 [http://dlmf.nist.gov/28.31.E24]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8855 [https://dlmf.nist.gov/28.32#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8856 [https://dlmf.nist.gov/28.32#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8857 [http://dlmf.nist.gov/28.32.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8858 [http://dlmf.nist.gov/28.32.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8859 [http://dlmf.nist.gov/28.32.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8860: Skipped - Unable to analyze test case.
+8861 [http://dlmf.nist.gov/28.32.E6]: Error - java.util.NoSuchElementException [8861: w(z) EQUAL \int_{\mathcal{L}}K(z,\zeta)u(\zeta)\diff{\zeta}; http://dlmf.nist.gov/28.32.E6]
+8862 [https://dlmf.nist.gov/28.32#Ex3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8863 [https://dlmf.nist.gov/28.32#Ex4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8864 [https://dlmf.nist.gov/28.32#Ex5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8866 [http://dlmf.nist.gov/28.33.E1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+8867 [http://dlmf.nist.gov/28.33.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8868 [http://dlmf.nist.gov/28.33.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
+8869 [http://dlmf.nist.gov/28.33.E4]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
