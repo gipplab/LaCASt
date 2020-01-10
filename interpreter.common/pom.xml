@@ -14,13 +14,28 @@
     <version>2.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <main.basedir>${project.parent.basedir}</main.basedir>
+        <jackson.version>2.10.1</jackson.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>MLP</artifactId>
-            <scope>system</scope>
+            <artifactId>mlp</artifactId>
             <version>${mlp.version}</version>
-            <systemPath>${mlp.path}</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
     </dependencies>
 
@@ -31,6 +46,9 @@
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

@@ -1,0 +1,8 @@
+\Weierstrasselatt, 33
+\Weierstrassplatt, 31
+\Weierstrassinvarlatt, 20
+\Weierstrasszetalatt, 18
+\Weierstrasssigmalatt, 17
+\Dedekindeta, 7
+\modularlambdatau, 6
+\KleincompinvarJtau, 6

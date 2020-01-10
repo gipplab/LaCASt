@@ -1,67 +1,78 @@
-# From LaTeX to CAS
+<a href="https://go.java/index.html"><img align="right" src="https://forthebadge.com/images/badges/made-with-java.svg" alt="Made With Java" height="20"></a><a href="https://www.latex-project.org/"><img align="right" src="https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg" alt="Made With LaTeX" height="20"></a> 
+[![Tests](https://github.com/ag-gipp/latex-grammar/workflows/translator-build-tests/badge.svg)](https://github.com/ag-gipp/latex-grammar/actions) [![Maintainability](https://api.codeclimate.com/v1/badges/3960df830b098ef0afa9/maintainability)](https://codeclimate.com/repos/5df6328a606a9501a1001189/maintainability) 
 
-# Rules
-1. We are working with [Abdou's](https://github.com/abdouyoussef) PoM-Tagger, which is not public yet. It is strictly **_prohibited to upload or share_**  this JAR with other people (even with other contributers). More details or permissions can be granted by [Howard Cohl](https://github.com/HowardCohl) and [Abdou Youssef](https://github.com/abdouyoussef).
-2. If you wish to contribute, you have to read the [contribution guidelines](CONTRIBUTING.md).
+# LaCASt - A LaTeX Translator for Computer Algebra Systems
+
+# Preface
+1. This is a private repository with non-public sources. It is strictly **_prohibited to share_** any files without permission.
+2. If you wish to contribute, read the [contribution guidelines](CONTRIBUTING.md) first.
 
 ## Structure
-1. [How to use our program](#howTo)
+1. [How to use the program](#howTo)
 2. [Setup Round Trip Tests and Backward Translations](#roundtrip)
-3. [Troubleshooting](#troubleshooting)
-4. [The Team](#contributers)
-5. [How to contribute](https://github.com/TU-Berlin/latex-grammar/edit/master/CONTRIBUTING.md)
+3. [Team Members](#contributers)
 
 ## How to use our program<a name="howTo"></a>
-You should find the `latex-grammar-<version_number>.zip` in the main directory of this repository.
-Download this zip file and unzip it where ever you want.
-There are two jars in this zip file.
+The executable jar for the translator can be found in the `bin` subdirectory. A standalone version can be found in the `bin/*.zip` file. Unzip the archive where you want and run the jar from the root folder of the respository
+``` shell script
+java -jar bin/latex-to-cas-converter.jar
+```
 
-* `latex-converter.jar`: This jar translates given formulae in semantic LaTeX into a given computer algebra system. It has the following optional flags to control the output
-    * `-CAS=<NameOfCAS>`: Sets the computer algebra system you want to use. For instance `-CAS=Maple` uses Maple or `-CAS=Mathematica` uses Mathematica. If you don't set this flag, the program will ask you which CAS you want to use.
-    * `-Expression="<exp>"`: Sets the expression you want to translate. Make sure you don't forget the quotation marks. If you don't specify an expression, the program will ask you about it.
-    * `--clean` or `-c`: Only returns the translated expression without any other information. (since version 1.0.1)
-    * `--debug` or `-d`: Returns extra information for debugging, such as computation time and list of elements. The `--clean` flag would override this effect.
-    * `--extra` or `-x`: Shows further information about translation of functions. Like branch cuts, DLMF-links and so on. The `--clean` flag would override this effect.
+Without additional information, the jar runs as an interactive program. You can start the program to directly trigger
+the translation process or set further flags (every flag is optional):
+* `-CAS=<NameOfCAS>`: Sets the computer algebra system you want to translate to, e.g., `-CAS=Maple` for Maple;
+* `-Expression="<exp>"`: Sets the expression you want to translate. Double qutation marks are mandatory;
+* `--clean` or `-c`: Only returns the translated expression without any other information. (since v1.0.1)
+* `--debug` or `-d`: Returns extra information for debugging, such as computation time and list of elements. (`--clean` overrides this setting).
+* `--extra` or `-x`: Shows further information about translation of functions, e.g., branch cuts, DLMF-links and more. (`--clean` flag overrides this setting)
 
-* `lexicon-creator.jar`: This jar takes the CSV files in `libs/ReferenceData/CSVTables` and translate them to a lexicon file (the math language processors based on this lexicon files). You only have to add the CSV files for a CAS and not the `DLMFMacro.csv` file. This jar is only useful when you have any updates. For a detailed explanation how to add new translations or even support another computer algebra system take a look to the _[Update or add a new CAS to the translation process](https://github.com/TU-Berlin/latex-grammar/edit/master/CONTRIBUTING.md#howToUpdate)_ section in the contributing.md.
+### Update Translation Patterns
+The translation patterns are defined in `libs/ReferenceData/CSVTables`. If you wish to add translation patterns you need to
+compile the changes before the translator can use them. To update the translations, use the `lexicon-creator.jar`. Simply run the jar and follow the instructions. It will ask you to enter the names of the CAS you want to update (one CAS per line). If you want to update all at once, just enter `all`. For further information check _[contribution guidelines](CONTRIBUTING.md)_.
+
+### Update Pre-Processing Replacement Rules
+The pre-processing replacement rules are defined `config/replacements.yml` and `config/dlmf-replacements.yml`. Each config
+contains further explanations how to add replacement rules. The replacement rules are applied without further compilation.
+Just change the files to add, modify, or remove rules.
 
 ## Round Trip Test Setup<a name="roundtrip"></a>
+To run the round trip tests (and symbolic as well as numerical tests), you will find executable jars in the `bin` directory
+for all of the tests. The tests require some settings. 
 
-The round trip tests are written with JUnit 5. Please read the [contribution guidelines](CONTRIBUTING.md) before you proceed. Otherwise it might be difficult to follow the next steps.
-
-For round trip tests you have to specify environment variables in order to allow the engine to call the OpenMaple API native methods. 
-In [libs/maple_config.properties](libs/maple_config.properties) you have to specify the path to the binary files of your local Maple instance.
-It might be necessary to set the following environment variables in addition to the previous settings
+For the tests you have to specify environment variables in order to use CAS engines.
+* [config/maple_config.properties](config/maple_config.properties): sets the maple bin directory
+``` properties
+maple_bin=/opt/maple2016/bin.X86_64_LINUX
 ```
-export LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:<Maple-BinDir>
+* [config/mathematica_config.properties](config/mathematica_config.properties): sets the mathematica bin directory
+``` properties
+mathematica_math=/opt/Wolfram/Executables/math
+```
+
+Further you have to set system environment variables.
+```
+export LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:<Maple-BinDir>:<Mathematica-LibDir>"
 export MAPLE="<Maple-Directory>"
 ```
-Where `<Maple-Directory>` points to the directory where you installed your Maple version, e.g., `/opt/maple2016`, and `<Maple-BinDir>` points to the binary folder of your installed Maple version, e.g., `/opt/maple2016/bin.X86_64_LINUX`.
-You can ask Maple where those directories are by entering the following commands in Maple
+Where 
+* `<Maple-Directory>` points to the directory where you installed your Maple version, e.g., `/opt/maple2016`. 
+* `<Maple-BinDir>` points to the binary folder of your installed Maple version, e.g., `/opt/maple2016/bin.X86_64_LINUX`.
+* `<Mathematica-LibDir>` points to the system library directory of the Mathematica installation, e.g., 
+`/opt/Wolfram/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64`. Note that the final directory is system 
+dependent, e.g., for Windows it should be `Windows`.
+
+You can fetch the information from Maple when you enter the following commands
 ```
 kernelopts( bindir );   <- returns <Maple-BinDir>
 kernelopts( mapledir ); <- returns <Maple-Directory>
 ```
 
-## Troubleshooting<a name="troubleshooting"></a>
-When you want to contribute or just run our program it could happen to get some errors. Here are some tips to avoid that. When every you found an error which is not explained here and you don't know how to fix it by your own, feel free to contact [André Greiner-Petter](https://github.com/AndreG-P) (or some of the [other contributers](#contributers)).
+## Contributors<a name="contributers"></a>
 
-1. You cannot translate your CSV file to our lexicon files. (typical exception like: MalformedInputException)
-This could happen when our program cannot find out the encoding of your CSV file. It is strongly recommended to set the encoding to UTF-8 (with or without BOM) of your CSV file.
-
-## Current contributers and their roles<a name="contributers"></a>
-
-[Howard Cohl](https://github.com/HowardCohl): Supervisor
-
-[Abdou Youssef](https://github.com/abdouyoussef) & [Moritz Shubotz](https://github.com/physikerwelt): Advisor
-
-[André Greiner-Petter](https://github.com/AndreG-P): Main Developer
-
-[Avi Trost](https://github.com/avitrost) & [Rajen Dey](https://github.com/Nejiv): Student Developers
-
-## How to contribute?
-Take a look to the [contributing guidelines](https://github.com/TU-Berlin/latex-grammar/edit/master/CONTRIBUTING.md)
-
-## Other contributors
-[Claude](https://github.com/ClaudeZou) & [Jagan](https://github.com/notjagan): Student Developers
-
+| Role | Name | Contact |
+| :---: | :---: | :---: |
+| **Main Developer** | [André Greiner-Petter](https://github.com/AndreG-P) | [andre.greiner-petter@t-online.de](mailto:andre.greiner-petter@t-online.de) |
+| **Supervisor** | [Dr. Howard Cohl](https://github.com/HowardCohl) | [howard.cohl@nist.gov](mailto:howard.cohl@nist.gov) |
+| **Advisor** | [Dr. Moritz Schubotz](https://github.com/physikerwelt) | [schubotz@uni-wuppertal.de](mailto:schubotz@uni-wuppertal.de) |
+| **Advisor** | [Prof. Abdou Youssef](https://github.com/abdouyoussef) | [abdou.youssef@nist.gov](mailto:abdou.youssef@nist.gov) |
+| **Student Developers** | [Avi Trost](https://github.com/avitrost) & [Rajen Dey](https://github.com/Nejiv) & [Claude](https://github.com/ClaudeZou) & [Jagan](https://github.com/notjagan) | |

@@ -36,9 +36,9 @@ public enum InvalidTests implements ExceptionalTestCase {
     ),
     FAKE_MACRO_LAGRANGE(
             "\\notmacro^{(3)}@{x}"
-    ),
-    POCHHAMMER_ILLEGAL_PRIME(
-            "\\pochhammer'{a}{n}"
+//    ),
+//    POCHHAMMER_ILLEGAL_PRIME(
+//            "\\pochhammer'{a}{n}"
     );
 
     private String tex;

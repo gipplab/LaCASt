@@ -1,0 +1,5 @@
+\nabla, 6
+\pdiff, 3
+\min, 1
+\cal, 1
+\rm, 1

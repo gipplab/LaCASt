@@ -106,7 +106,7 @@
       "MLP": "derivative",
       "LaTeX": "\\deriv[$2]{$0}{$1}",
       "Maple": "subs( temp=$1, diff( $0, temp$($2) ) )",
-      "Mathematica": "D[$0, {temp, $2}]/.temp-> $1"
+      "Mathematica": "(D[$0, {temp, $2}]/.temp-> $1)"
     },
     "Limit": {
       "MLP": "lim",
@@ -246,25 +246,25 @@
       "MLP": "complex",
       "LaTeX": "\\Complex",
       "Maple": "complex",
-      "Mathematica": "Complex"
+      "Mathematica": "Complexes"
     },
     "Real Numbers": {
       "MLP": "real",
       "LaTeX": "\\Real",
       "Maple": "real",
-      "Mathematica": "Real"
+      "Mathematica": "Reals"
     },
     "Rational Numbers": {
       "MLP": "rational",
       "LaTeX": "\\Rational",
       "Maple": "rational",
-      "Mathematica": "Rational"
+      "Mathematica": "Rationals"
     },
     "Integer Numbers": {
       "MLP": "integer",
       "LaTeX": "\\Integer",
       "Maple": "integer",
-      "Mathematica": "Integer"
+      "Mathematica": "Integers"
     },
     "Ell": {
       "MLP": "special math letter",

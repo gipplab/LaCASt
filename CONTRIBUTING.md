@@ -131,3 +131,20 @@ When you want to contribute or just run our program it could happen to get some 
 
 1. You cannot translate your CSV file to our lexicon files. (typical exception: MalformedInputException)
 This could happen when our program cannot find out the encoding of your CSV file. It is strongly recommended to set the encoding to UTF-8 (with or without BOM) of your CSV file.
+
+## Useful Counting Methods
+
+Calculate all results per file:
+```shell script
+find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*SUCCESS_SYMB: ([0-9]+),.*TRANS: ([0-9]+),.*CASES: ([0-9]+),.*MISSING: ([0-9]+),.*/, arr) {success=arr[1]; cases=arr[3]; trans=arr[2]; transavg=arr[2]/arr[3]; succavg=arr[1]/arr[2]; miss=arr[4];}; END {print FILENAME"\t"cases"\t"trans"\t"transavg"\t"miss"\t"success"\t"succavg}'
+```
+
+Count total number of test cases:
+```shell script
+find . -name "*symbolic*" | xargs -n 1 gawk 'match($0, /.*CASES: ([0-9]+),.*/, arr) {sum = arr[1]}; END {print sum}' | paste -sd+ - | bc
+```
+
+Group and count all missing macros:
+```shell script
+awk -F, '{arr[$1] += $2;} END {for (a in arr) print arr[a]", "a}' *missing* | sort -n -r >> ../maple-missing.txt
+```

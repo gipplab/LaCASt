@@ -51,6 +51,21 @@ public enum Integrals implements ForwardTestCase {
             "int(int((1)/(x*y), x = 0..1), y = 0..1)",
             "Integrate[Integrate[Divide[1, x*y], {x, 0, 1}], {y, 0, 1}]"
     ),
+    SIMPLE_IINT(
+            "\\iint_0^1 x \\diff{x}",
+            "int(int(x, x = 0..1), x = 0..1)",
+            "Integrate[Integrate[x, {x, 0, 1}], {x, 0, 1}]"
+    ),
+    SIMPLE_IIINT(
+            "\\iiint_0^1 x \\diff{x}",
+            "int(int(int(x, x = 0..1), x = 0..1), x = 0..1)",
+            "Integrate[Integrate[Integrate[x, {x, 0, 1}], {x, 0, 1}], {x, 0, 1}]"
+    ),
+    SIMPLE_IIIINT(
+            "\\iiiint_0^1 x \\diff{x}",
+            "int(int(int(int(x, x = 0..1), x = 0..1), x = 0..1), x = 0..1)",
+            "Integrate[Integrate[Integrate[Integrate[x, {x, 0, 1}], {x, 0, 1}], {x, 0, 1}], {x, 0, 1}]"
+    ),
     @DLMF("6.7.13")
     DLMF_EQUAL(
             "\\int_0^{\\infty} \\frac{\\sin@{t}}{t+z} \\diff{t} = \\int_0^{\\infty} \\frac{\\expe^{-zt} \\diff{t}}{t^2+z}",

@@ -510,7 +510,7 @@ public class CSVtoLexiconConverter {
     }
 
     public static void main(String[] args){
-        System.setProperty( Keys.KEY_SYSTEM_LOGGING, GlobalPaths.PATH_LOGGING_CONFIG.toString() );
+//        System.setProperty( Keys.KEY_SYSTEM_LOGGING, GlobalPaths.PATH_LOGGING_CONFIG.toString() );
 
         String welcome =
                 "Welcome, this converter translates given CSV files to lexicon files.";

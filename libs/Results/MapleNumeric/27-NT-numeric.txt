@@ -1,0 +1,12 @@
+Overall: [SUCCESS: 1, FAILURE: 0, LIMIT_SKIPS: 10, TESTED: 4, ERROR: 0] for test expression: (#LHS)-(#RHS)
+8317: Skip - int/sum/prod/lim
+8317-a: Skip - int/sum/prod/lim
+8327: Skip - int/sum/prod/lim
+8358: Skipped - Cannot calculate number of combinations!
+8359: Skipped - Cannot calculate number of combinations!
+8360: Skipped - Cannot calculate number of combinations!
+8367: Skip - int/sum/prod/lim
+8380: Skip - int/sum/prod/lim
+8382: Skip - int/sum/prod/lim
+8389: Successful
+8401: Skip - int/sum/prod/lim

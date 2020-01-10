@@ -1,0 +1,861 @@
+Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 143, FAILURE: 89, STARTED_TEST_CASES: 708, SKIPPED: 156, DEFINITIONS: 26, IGNORE: 158, MISSING: 0, ERROR: 612] for test expression: (#LHS)-(#RHS)
+[Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
+2975 [http://dlmf.nist.gov/10.2.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2976 [http://dlmf.nist.gov/10.2.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2977 [http://dlmf.nist.gov/10.2.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2978 [http://dlmf.nist.gov/10.2.E4]: Error - (null -> null) Unknown Error: Wasn't able to translate the given expression.
+2981 [https://dlmf.nist.gov/10.4#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2982 [https://dlmf.nist.gov/10.4#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2983 [https://dlmf.nist.gov/10.4#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2984 [https://dlmf.nist.gov/10.4#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2985 [https://dlmf.nist.gov/10.4#Ex5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2986 [https://dlmf.nist.gov/10.4#Ex6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2987 [https://dlmf.nist.gov/10.4#Ex7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2988 [https://dlmf.nist.gov/10.4#Ex8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2989 [http://dlmf.nist.gov/10.4.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2990 [https://dlmf.nist.gov/10.4#Ex9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2991 [https://dlmf.nist.gov/10.4#Ex10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2992 [http://dlmf.nist.gov/10.4.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2992-a [http://dlmf.nist.gov/10.4.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2993 [http://dlmf.nist.gov/10.4.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2993-a [http://dlmf.nist.gov/10.4.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2994 [http://dlmf.nist.gov/10.5.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2994-a [http://dlmf.nist.gov/10.5.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2995 [http://dlmf.nist.gov/10.5.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2995-a [http://dlmf.nist.gov/10.5.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2996 [http://dlmf.nist.gov/10.5.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2996-a [http://dlmf.nist.gov/10.5.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2997 [http://dlmf.nist.gov/10.5.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2997-a [http://dlmf.nist.gov/10.5.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2998 [http://dlmf.nist.gov/10.5.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2998-a [http://dlmf.nist.gov/10.5.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+2999 [https://dlmf.nist.gov/10.6#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3000 [https://dlmf.nist.gov/10.6#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3001 [https://dlmf.nist.gov/10.6#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3002 [https://dlmf.nist.gov/10.6#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3011 [https://dlmf.nist.gov/10.6#Ex9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3012 [https://dlmf.nist.gov/10.6#Ex10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3013 [http://dlmf.nist.gov/10.6.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3014 [https://dlmf.nist.gov/10.6#Ex11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3015 [https://dlmf.nist.gov/10.6#Ex12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3016 [https://dlmf.nist.gov/10.6#Ex13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3017 [https://dlmf.nist.gov/10.6#Ex14]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3023: Skipped - Unable to analyze test case.
+3024: Skipped - Unable to analyze test case.
+3025: Skipped - Unable to analyze test case.
+3026: Skipped - Unable to analyze test case.
+3027: Skipped - Unable to analyze test case.
+3028: Skipped - Unable to analyze test case.
+3030: Skipped - Unable to analyze test case.
+3033 [http://dlmf.nist.gov/10.8.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3036 [http://dlmf.nist.gov/10.9.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3036-a [http://dlmf.nist.gov/10.9.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3037 [http://dlmf.nist.gov/10.9.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3037-a [http://dlmf.nist.gov/10.9.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3038 [http://dlmf.nist.gov/10.9.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3039 [http://dlmf.nist.gov/10.9.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3039-a [http://dlmf.nist.gov/10.9.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3040 [http://dlmf.nist.gov/10.9.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3041 [http://dlmf.nist.gov/10.9.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3042 [http://dlmf.nist.gov/10.9.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3043 [https://dlmf.nist.gov/10.9#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3044 [https://dlmf.nist.gov/10.9#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3045 [https://dlmf.nist.gov/10.9#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3046 [https://dlmf.nist.gov/10.9#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3047 [http://dlmf.nist.gov/10.9.E10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3048 [http://dlmf.nist.gov/10.9.E11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3049 [https://dlmf.nist.gov/10.9#Ex5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3050 [https://dlmf.nist.gov/10.9#Ex6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3051 [http://dlmf.nist.gov/10.9.E13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3052 [http://dlmf.nist.gov/10.9.E14]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3053 [http://dlmf.nist.gov/10.9.E15]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3054 [http://dlmf.nist.gov/10.9.E16]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3055 [http://dlmf.nist.gov/10.9.E17]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3056 [https://dlmf.nist.gov/10.9#Ex7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3057 [https://dlmf.nist.gov/10.9#Ex8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3058 [http://dlmf.nist.gov/10.9.E19]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3059 [http://dlmf.nist.gov/10.9.E20]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3060 [https://dlmf.nist.gov/10.9#Ex9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3061 [https://dlmf.nist.gov/10.9#Ex10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3062 [http://dlmf.nist.gov/10.9.E22]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3063 [http://dlmf.nist.gov/10.9.E23]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3064 [http://dlmf.nist.gov/10.9.E24]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3065 [http://dlmf.nist.gov/10.9.E25]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3066 [http://dlmf.nist.gov/10.9.E26]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3067 [http://dlmf.nist.gov/10.9.E27]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3068 [http://dlmf.nist.gov/10.9.E28]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3069 [http://dlmf.nist.gov/10.9.E29]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3070 [http://dlmf.nist.gov/10.9.E30]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3073 [http://dlmf.nist.gov/10.11.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3074 [http://dlmf.nist.gov/10.11.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3075 [http://dlmf.nist.gov/10.11.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3076 [http://dlmf.nist.gov/10.11.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3077 [https://dlmf.nist.gov/10.11#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3078 [https://dlmf.nist.gov/10.11#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3079 [http://dlmf.nist.gov/10.11.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3080 [http://dlmf.nist.gov/10.11.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3081 [http://dlmf.nist.gov/10.11.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3086 [http://dlmf.nist.gov/10.12.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3087 [https://dlmf.nist.gov/10.12#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3088 [https://dlmf.nist.gov/10.12#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3089 [https://dlmf.nist.gov/10.12#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3090 [https://dlmf.nist.gov/10.12#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3104: Skipped - Unable to analyze test case.
+3108 [https://dlmf.nist.gov/10.14#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3109 [https://dlmf.nist.gov/10.14#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3110 [http://dlmf.nist.gov/10.14.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3110-a [http://dlmf.nist.gov/10.14.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3111 [http://dlmf.nist.gov/10.14.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3112 [http://dlmf.nist.gov/10.14.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3113 [http://dlmf.nist.gov/10.14.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3114 [http://dlmf.nist.gov/10.14.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3115 [http://dlmf.nist.gov/10.14.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3115-a [http://dlmf.nist.gov/10.14.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3116 [http://dlmf.nist.gov/10.14.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3117 [http://dlmf.nist.gov/10.14.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3118 [http://dlmf.nist.gov/10.15.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3118-a [http://dlmf.nist.gov/10.15.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3119 [http://dlmf.nist.gov/10.15.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3120: Skipped - Unable to analyze test case.
+3121: Skipped - Unable to analyze test case.
+3122 [http://dlmf.nist.gov/10.15.E5]: Error - java.lang.IllegalArgumentException: Error in CAS! [3122: \left.\pderiv{\BesselJ{\nu}@{z}}{\nu}\right|_{\nu=0}=\frac{\pi}{2}\BesselY{0}@{z},\quad\left.\pderiv{\BesselY{\nu}@{z}}{\nu}\right|_{\nu=0} EQUAL -\frac{\pi}{2}\BesselJ{0}@{z}; http://dlmf.nist.gov/10.15.E5]
+3123: Skipped - Unable to analyze test case.
+3124: Skipped - Unable to analyze test case.
+3125: Skipped - Unable to analyze test case.
+3126: Skipped - Unable to analyze test case.
+3127 [https://dlmf.nist.gov/10.16#Ex1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+3127-a [https://dlmf.nist.gov/10.16#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3128 [https://dlmf.nist.gov/10.16#Ex2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+3128-a [https://dlmf.nist.gov/10.16#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3129 [https://dlmf.nist.gov/10.16#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3129-a [https://dlmf.nist.gov/10.16#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3130 [https://dlmf.nist.gov/10.16#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3130-a [https://dlmf.nist.gov/10.16#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3131 [https://dlmf.nist.gov/10.16#Ex5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3132 [https://dlmf.nist.gov/10.16#Ex6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3133 [https://dlmf.nist.gov/10.16#Ex7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3134 [https://dlmf.nist.gov/10.16#Ex8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3135 [http://dlmf.nist.gov/10.16.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3135-a [http://dlmf.nist.gov/10.16.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3136 [http://dlmf.nist.gov/10.16.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3136-a [http://dlmf.nist.gov/10.16.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3137 [http://dlmf.nist.gov/10.16.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3137-a [http://dlmf.nist.gov/10.16.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3138 [http://dlmf.nist.gov/10.16.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3138-a [http://dlmf.nist.gov/10.16.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3139 [http://dlmf.nist.gov/10.16.E9]: Error - java.lang.IllegalArgumentException: Error in CAS! [3139: \BesselJ{\nu}@{z} EQUAL \frac{(\tfrac{1}{2}z)^{\nu}}{\EulerGamma@{\nu+1}}\genhyperF{0}{1}@{-}{\nu+1}{-\tfrac{1}{4}z^{2}}; http://dlmf.nist.gov/10.16.E9]
+3140: Skipped - Unable to analyze test case.
+3141 [http://dlmf.nist.gov/10.16.E10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3142: Skipped - Unable to analyze test case.
+3145: Skipped - Unable to analyze test case.
+3146: Skipped - Unable to analyze test case.
+3147: Skipped - Unable to analyze test case.
+3148: Skipped - Unable to analyze test case.
+3149 [http://dlmf.nist.gov/10.17.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3151: Skipped - Unable to analyze test case.
+3152: Skipped - Unable to analyze test case.
+3153: Skipped - Unable to analyze test case.
+3154: Skipped - Unable to analyze test case.
+3155 [http://dlmf.nist.gov/10.17.E13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3155-a [http://dlmf.nist.gov/10.17.E13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3158 [http://dlmf.nist.gov/10.17.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3159 [http://dlmf.nist.gov/10.17.E17]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3159-a [http://dlmf.nist.gov/10.17.E17]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3161 [http://dlmf.nist.gov/10.18.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3162 [http://dlmf.nist.gov/10.18.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3163: Skipped - Unable to analyze test case.
+3164: Skipped - Unable to analyze test case.
+3165 [https://dlmf.nist.gov/10.18#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3166 [https://dlmf.nist.gov/10.18#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3167 [https://dlmf.nist.gov/10.18#Ex5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3168 [https://dlmf.nist.gov/10.18#Ex6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3169 [https://dlmf.nist.gov/10.18#Ex7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3170 [https://dlmf.nist.gov/10.18#Ex8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3171 [https://dlmf.nist.gov/10.18#Ex9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3172 [https://dlmf.nist.gov/10.18#Ex10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3173 [https://dlmf.nist.gov/10.18#Ex11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3174 [https://dlmf.nist.gov/10.18#Ex12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3175 [http://dlmf.nist.gov/10.18.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3175-a [http://dlmf.nist.gov/10.18.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3176 [http://dlmf.nist.gov/10.18.E10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3177 [http://dlmf.nist.gov/10.18.E11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3177-a [http://dlmf.nist.gov/10.18.E11]: Error - (null -> null) Unknown Error: Unknown translation error while translating fraction
+3178 [http://dlmf.nist.gov/10.18.E12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3179 [http://dlmf.nist.gov/10.18.E13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3182 [http://dlmf.nist.gov/10.18.E16]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3183: Skipped - Unable to analyze test case.
+3184: Skipped - Unable to analyze test case.
+3185: Skipped - Unable to analyze test case.
+3187: Skipped - Unable to analyze test case.
+3188: Skipped - Unable to analyze test case.
+3189: Skipped - Unable to analyze test case.
+3190: Skipped - Unable to analyze test case.
+3191: Skipped - Unable to analyze test case.
+3192: Skipped - Unable to analyze test case.
+3193: Skipped - Unable to analyze test case.
+3195: Skipped - Unable to analyze test case.
+3196: Skipped - Unable to analyze test case.
+3197: Skipped - Unable to analyze test case.
+3198: Skipped - Unable to analyze test case.
+3199: Skipped - Unable to analyze test case.
+3200: Skipped - Unable to analyze test case.
+3201: Skipped - Unable to analyze test case.
+3202 [https://dlmf.nist.gov/10.19#Ex11]: Error - java.lang.IllegalArgumentException: Error in CAS! [3202: \assLegendreP[]{0}@{a} EQUAL 1; https://dlmf.nist.gov/10.19#Ex11]
+3203 [https://dlmf.nist.gov/10.19#Ex12]: Error - java.lang.IllegalArgumentException: Error in CAS! [3203: \assLegendreP[]{1}@{a} EQUAL -\tfrac{1}{5}a; https://dlmf.nist.gov/10.19#Ex12]
+3204 [https://dlmf.nist.gov/10.19#Ex13]: Error - java.lang.IllegalArgumentException: Error in CAS! [3204: \assLegendreP[]{2}@{a} EQUAL -\tfrac{9}{100}a^{5}+\tfrac{3}{35}a^{2}; https://dlmf.nist.gov/10.19#Ex13]
+3205 [https://dlmf.nist.gov/10.19#Ex14]: Error - java.lang.IllegalArgumentException: Error in CAS! [3205: \assLegendreP[]{3}@{a} EQUAL \tfrac{957}{7000}a^{6}-\tfrac{173}{3150}a^{3}-\tfrac{1}{225}; https://dlmf.nist.gov/10.19#Ex14]
+3206 [https://dlmf.nist.gov/10.19#Ex15]: Error - java.lang.IllegalArgumentException: Error in CAS! [3206: \assLegendreP[]{4}@{a} EQUAL \tfrac{27}{20000}a^{10}-\tfrac{23573}{1\;47000}a^{7}+\tfrac{5903}{1\;38600}a^{4}+\tfrac{947}{3\;46500}a; https://dlmf.nist.gov/10.19#Ex15]
+3207 [https://dlmf.nist.gov/10.19#Ex16]: Error - java.lang.IllegalArgumentException: Error in CAS! [3207: \assLegendreQ[]{0}@{a} EQUAL \tfrac{3}{10}a^{2}; https://dlmf.nist.gov/10.19#Ex16]
+3208 [https://dlmf.nist.gov/10.19#Ex17]: Error - java.lang.IllegalArgumentException: Error in CAS! [3208: \assLegendreQ[]{1}@{a} EQUAL -\tfrac{17}{70}a^{3}+\tfrac{1}{70}; https://dlmf.nist.gov/10.19#Ex17]
+3209 [https://dlmf.nist.gov/10.19#Ex18]: Error - java.lang.IllegalArgumentException: Error in CAS! [3209: \assLegendreQ[]{2}@{a} EQUAL -\tfrac{9}{1000}a^{7}+\tfrac{611}{3150}a^{4}-\tfrac{37}{3150}a; https://dlmf.nist.gov/10.19#Ex18]
+3210 [https://dlmf.nist.gov/10.19#Ex19]: Error - java.lang.IllegalArgumentException: Error in CAS! [3210: \assLegendreQ[]{3}@{a} EQUAL \tfrac{549}{28000}a^{8}-\tfrac{1\;10767}{6\;93000}a^{5}+\tfrac{79}{12375}a^{2}; https://dlmf.nist.gov/10.19#Ex19]
+3211: Skipped - Unable to analyze test case.
+3212: Skipped - Unable to analyze test case.
+3213: Skipped - Unable to analyze test case.
+3223 [http://dlmf.nist.gov/10.20.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3224 [http://dlmf.nist.gov/10.20.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3224-a [http://dlmf.nist.gov/10.20.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3225 [http://dlmf.nist.gov/10.20.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3225-a [http://dlmf.nist.gov/10.20.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3226: Skipped - Unable to analyze test case.
+3227: Skipped - Unable to analyze test case.
+3228: Skipped - Unable to analyze test case.
+3229: Skipped - Unable to analyze test case.
+3230: Skipped - Unable to analyze test case.
+3231: Skipped - Unable to analyze test case.
+3246 [http://dlmf.nist.gov/10.20.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3246-a [http://dlmf.nist.gov/10.20.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3248 [https://dlmf.nist.gov/10.21#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3249 [https://dlmf.nist.gov/10.21#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3250 [https://dlmf.nist.gov/10.21#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3250-a [https://dlmf.nist.gov/10.21#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3250-b [https://dlmf.nist.gov/10.21#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3250-c [https://dlmf.nist.gov/10.21#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3251 [https://dlmf.nist.gov/10.21#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3251-a [https://dlmf.nist.gov/10.21#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3251-b [https://dlmf.nist.gov/10.21#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3251-c [https://dlmf.nist.gov/10.21#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3252 [http://dlmf.nist.gov/10.21.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3252-a [http://dlmf.nist.gov/10.21.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3252-b [http://dlmf.nist.gov/10.21.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3252-c [http://dlmf.nist.gov/10.21.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3252-d [http://dlmf.nist.gov/10.21.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3252-e [http://dlmf.nist.gov/10.21.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3253 [http://dlmf.nist.gov/10.21.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3254 [http://dlmf.nist.gov/10.21.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3254-a [http://dlmf.nist.gov/10.21.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3255 [http://dlmf.nist.gov/10.21.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3255-a [http://dlmf.nist.gov/10.21.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3257 [https://dlmf.nist.gov/10.21#Ex6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3258 [https://dlmf.nist.gov/10.21#Ex7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3259 [https://dlmf.nist.gov/10.21#Ex8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3260 [https://dlmf.nist.gov/10.21#Ex9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3261 [https://dlmf.nist.gov/10.21#Ex10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3262 [https://dlmf.nist.gov/10.21#Ex11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3263 [https://dlmf.nist.gov/10.21#Ex12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3264 [http://dlmf.nist.gov/10.21.E11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3265 [https://dlmf.nist.gov/10.21#Ex13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3266 [https://dlmf.nist.gov/10.21#Ex14]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3267 [https://dlmf.nist.gov/10.21#Ex15]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3268 [https://dlmf.nist.gov/10.21#Ex16]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3271 [http://dlmf.nist.gov/10.21.E15]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3272 [http://dlmf.nist.gov/10.21.E16]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3273 [http://dlmf.nist.gov/10.21.E17]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3274 [http://dlmf.nist.gov/10.21.E18]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3275: Skipped - Unable to analyze test case.
+3276: Skipped - Unable to analyze test case.
+3277: Skipped - Unable to analyze test case.
+3278: Skipped - Unable to analyze test case.
+3279: Skipped - Unable to analyze test case.
+3292: Skipped - Unable to analyze test case.
+3293: Skipped - Unable to analyze test case.
+3304: Skipped - Unable to analyze test case.
+3305: Skipped - Unable to analyze test case.
+3306: Skipped - Unable to analyze test case.
+3307: Skipped - Unable to analyze test case.
+3308: Skipped - Unable to analyze test case.
+3309: Skipped - Unable to analyze test case.
+3310: Skipped - Unable to analyze test case.
+3311: Skipped - Unable to analyze test case.
+3312: Skipped - Unable to analyze test case.
+3313: Skipped - Unable to analyze test case.
+3314: Skipped - Unable to analyze test case.
+3315: Skipped - Unable to analyze test case.
+3316: Skipped - Unable to analyze test case.
+3317: Skipped - Unable to analyze test case.
+3318: Skipped - Unable to analyze test case.
+3319: Skipped - Unable to analyze test case.
+3320 [http://dlmf.nist.gov/10.21.E41]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3321 [http://dlmf.nist.gov/10.21.E42]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3322 [http://dlmf.nist.gov/10.21.E43]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3323 [http://dlmf.nist.gov/10.21.E44]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3325 [http://dlmf.nist.gov/10.21.E46]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3327: Skipped - Unable to analyze test case.
+3328: Skipped - Unable to analyze test case.
+3338: Skipped - Unable to analyze test case.
+3343 [http://dlmf.nist.gov/10.21.E55]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3344 [https://dlmf.nist.gov/10.22#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3345 [https://dlmf.nist.gov/10.22#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3346 [http://dlmf.nist.gov/10.22.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3347 [https://dlmf.nist.gov/10.22#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3348 [https://dlmf.nist.gov/10.22#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3349 [http://dlmf.nist.gov/10.22.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3350 [http://dlmf.nist.gov/10.22.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3351 [http://dlmf.nist.gov/10.22.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3352 [https://dlmf.nist.gov/10.22#Ex5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3353 [https://dlmf.nist.gov/10.22#Ex6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3354 [http://dlmf.nist.gov/10.22.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3355 [http://dlmf.nist.gov/10.22.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3355-a [http://dlmf.nist.gov/10.22.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3356 [http://dlmf.nist.gov/10.22.E10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3357 [http://dlmf.nist.gov/10.22.E11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3359 [http://dlmf.nist.gov/10.22.E13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3360 [http://dlmf.nist.gov/10.22.E14]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3361 [http://dlmf.nist.gov/10.22.E15]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3362 [http://dlmf.nist.gov/10.22.E16]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3363 [http://dlmf.nist.gov/10.22.E17]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3364 [http://dlmf.nist.gov/10.22.E18]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3365 [http://dlmf.nist.gov/10.22.E19]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3366 [http://dlmf.nist.gov/10.22.E20]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3367 [http://dlmf.nist.gov/10.22.E21]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3368 [http://dlmf.nist.gov/10.22.E22]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3369 [http://dlmf.nist.gov/10.22.E23]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3370 [http://dlmf.nist.gov/10.22.E24]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3371 [http://dlmf.nist.gov/10.22.E25]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3372 [http://dlmf.nist.gov/10.22.E26]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3373 [http://dlmf.nist.gov/10.22.E27]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3374 [http://dlmf.nist.gov/10.22.E28]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3375 [http://dlmf.nist.gov/10.22.E29]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3376 [http://dlmf.nist.gov/10.22.E30]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3376-a [http://dlmf.nist.gov/10.22.E30]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3377 [http://dlmf.nist.gov/10.22.E31]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3378 [http://dlmf.nist.gov/10.22.E32]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3379 [http://dlmf.nist.gov/10.22.E33]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3380 [http://dlmf.nist.gov/10.22.E34]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3381 [http://dlmf.nist.gov/10.22.E35]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3382 [http://dlmf.nist.gov/10.22.E36]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3383 [http://dlmf.nist.gov/10.22.E37]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3384 [http://dlmf.nist.gov/10.22.E38]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3385 [http://dlmf.nist.gov/10.22.E39]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3385-a [http://dlmf.nist.gov/10.22.E39]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3386 [http://dlmf.nist.gov/10.22.E40]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3387 [http://dlmf.nist.gov/10.22.E41]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3388 [http://dlmf.nist.gov/10.22.E42]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3389 [http://dlmf.nist.gov/10.22.E43]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3390 [http://dlmf.nist.gov/10.22.E44]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3391 [http://dlmf.nist.gov/10.22.E45]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3392 [http://dlmf.nist.gov/10.22.E46]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3393 [http://dlmf.nist.gov/10.22.E47]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3394 [http://dlmf.nist.gov/10.22.E48]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3395 [http://dlmf.nist.gov/10.22.E49]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3396 [http://dlmf.nist.gov/10.22.E50]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3397 [http://dlmf.nist.gov/10.22.E51]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3398 [http://dlmf.nist.gov/10.22.E52]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3399 [http://dlmf.nist.gov/10.22.E53]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3400 [http://dlmf.nist.gov/10.22.E54]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3401 [http://dlmf.nist.gov/10.22.E55]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3402 [http://dlmf.nist.gov/10.22.E56]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3403 [http://dlmf.nist.gov/10.22.E57]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3404 [http://dlmf.nist.gov/10.22.E58]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3405 [http://dlmf.nist.gov/10.22.E59]: Error - java.lang.IllegalArgumentException: Error in CAS! [3405: b LESS_THAN a,\\ \dfrac{ia^{\mu}\exp@{\frac{1}{2}\mu\pi i}}{(b^{2}-a^{2})^{\frac{1}{2}}\left(b+(b^{2}-a^{2})^{\frac{1}{2}}\right)^{\mu}},&0; http://dlmf.nist.gov/10.22.E59]
+3405-a [http://dlmf.nist.gov/10.22.E59]: Error - java.lang.IllegalArgumentException: Error in CAS! [3405: a,\\ \dfrac{ia^{\mu}\exp@{\frac{1}{2}\mu\pi i}}{(b^{2}-a^{2})^{\frac{1}{2}}\left(b+(b^{2}-a^{2})^{\frac{1}{2}}\right)^{\mu}},&0 LESS_THAN a; http://dlmf.nist.gov/10.22.E59]
+3406 [http://dlmf.nist.gov/10.22.E60]: Error - java.lang.IllegalArgumentException: Error in CAS! [3406: b LESS_THAN a,\\ (b^{2}-a^{2})^{-\frac{1}{2}}\left(-1+\dfrac{2i}{\pi}\ln@{\dfrac{a}{b+(b^{2}-a^{2})^{\frac{1}{2}}}}\right),&0; http://dlmf.nist.gov/10.22.E60]
+3406-a [http://dlmf.nist.gov/10.22.E60]: Error - java.lang.IllegalArgumentException: Error in CAS! [3406: a,\\ (b^{2}-a^{2})^{-\frac{1}{2}}\left(-1+\dfrac{2i}{\pi}\ln@{\dfrac{a}{b+(b^{2}-a^{2})^{\frac{1}{2}}}}\right),&0 LESS_THAN a; http://dlmf.nist.gov/10.22.E60]
+3407 [http://dlmf.nist.gov/10.22.E61]: Error - java.lang.IllegalArgumentException: Error in CAS! [3407: b LESS_EQ_THAN a,\\ \dfrac{a^{\mu}\exp@{\frac{1}{2}\mu\pi i}}{\mu\left(b+(b^{2}-a^{2})^{\frac{1}{2}}\right)^{\mu}},&0; http://dlmf.nist.gov/10.22.E61]
+3407-a [http://dlmf.nist.gov/10.22.E61]: Error - java.lang.IllegalArgumentException: Error in CAS! [3407: a,\\ \dfrac{a^{\mu}\exp@{\frac{1}{2}\mu\pi i}}{\mu\left(b+(b^{2}-a^{2})^{\frac{1}{2}}\right)^{\mu}},&0 LESS_THAN a; http://dlmf.nist.gov/10.22.E61]
+3408 [http://dlmf.nist.gov/10.22.E62]: Error - java.lang.IllegalArgumentException: Error in CAS! [3408: b LESS_THAN a,\\ \dfrac{2^{\mu-\nu+1}a^{\mu}(b^{2}-a^{2})^{\nu-\mu-1}}{b^{\nu}\EulerGamma@{\nu-\mu}},&0; http://dlmf.nist.gov/10.22.E62]
+3408-a [http://dlmf.nist.gov/10.22.E62]: Error - java.lang.IllegalArgumentException: Error in CAS! [3408: a,\\ \dfrac{2^{\mu-\nu+1}a^{\mu}(b^{2}-a^{2})^{\nu-\mu-1}}{b^{\nu}\EulerGamma@{\nu-\mu}},&0 LESS_THAN a; http://dlmf.nist.gov/10.22.E62]
+3409 [http://dlmf.nist.gov/10.22.E63]: Error - java.lang.IllegalArgumentException: Error in CAS! [3409: b LESS_THAN a,\\ (2b)^{-1},&b; http://dlmf.nist.gov/10.22.E63]
+3409-a [http://dlmf.nist.gov/10.22.E63]: Error - java.lang.IllegalArgumentException: Error in CAS! [3409: a,\\ (2b)^{-1},&b EQUAL a(>0),\\ 0,&0; http://dlmf.nist.gov/10.22.E63]
+3409-b [http://dlmf.nist.gov/10.22.E63]: Error - java.lang.IllegalArgumentException: Error in CAS! [3409: a(>0),\\ 0,&0 LESS_THAN a; http://dlmf.nist.gov/10.22.E63]
+3410 [http://dlmf.nist.gov/10.22.E64]: Error - java.lang.IllegalArgumentException: Error in CAS! [3410: b LESS_THAN a,\\ (-1)^{n}/(2a),&b; http://dlmf.nist.gov/10.22.E64]
+3410-a [http://dlmf.nist.gov/10.22.E64]: Error - java.lang.IllegalArgumentException: Error in CAS! [3410: a,\\ (-1)^{n}/(2a),&b EQUAL a(>0),\\ 0,&0; http://dlmf.nist.gov/10.22.E64]
+3410-b [http://dlmf.nist.gov/10.22.E64]: Error - java.lang.IllegalArgumentException: Error in CAS! [3410: a(>0),\\ 0,&0 LESS_THAN a; http://dlmf.nist.gov/10.22.E64]
+3411 [http://dlmf.nist.gov/10.22.E65]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3411-a [http://dlmf.nist.gov/10.22.E65]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3411-b [http://dlmf.nist.gov/10.22.E65]: Error - java.lang.IllegalArgumentException: Error in CAS! [3411: c LESS_EQ_THAN a,\\ \ln@{c/a},&0; http://dlmf.nist.gov/10.22.E65]
+3411-c [http://dlmf.nist.gov/10.22.E65]: Error - java.lang.IllegalArgumentException: Error in CAS! [3411: a,\\ \ln@{c/a},&0 LESS_EQ_THAN b; http://dlmf.nist.gov/10.22.E65]
+3411-d [http://dlmf.nist.gov/10.22.E65]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3412 [http://dlmf.nist.gov/10.22.E66]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3413 [http://dlmf.nist.gov/10.22.E67]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3414 [http://dlmf.nist.gov/10.22.E68]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3416 [http://dlmf.nist.gov/10.22.E70]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3417 [http://dlmf.nist.gov/10.22.E71]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3418: Skipped - Unable to analyze test case.
+3419 [http://dlmf.nist.gov/10.22.E72]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3420: Skipped - Unable to analyze test case.
+3424 [http://dlmf.nist.gov/10.22.E75]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3424-a [http://dlmf.nist.gov/10.22.E75]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3424-b [http://dlmf.nist.gov/10.22.E75]: Error - java.lang.IllegalArgumentException: Error in CAS! [3424: a LESS_THAN b+c,\\ \dfrac{(abc)^{\nu}(-A)^{-\nu-\frac{1}{2}}}{\pi^{\frac{1}{2}}2^{\nu+1}\EulerGamma@{\frac{1}{2}-\nu}},&a; http://dlmf.nist.gov/10.22.E75]
+3427 [http://dlmf.nist.gov/10.23.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3427-a [http://dlmf.nist.gov/10.23.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3428 [http://dlmf.nist.gov/10.23.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3428-a [http://dlmf.nist.gov/10.23.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3429 [http://dlmf.nist.gov/10.23.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3430 [http://dlmf.nist.gov/10.23.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3431 [http://dlmf.nist.gov/10.23.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3432 [https://dlmf.nist.gov/10.23#Ex1]: Error - java.lang.NullPointerException [3432: w EQUAL \sqrt{u^{2}+v^{2}-2uv\cos@@{\alpha}}; https://dlmf.nist.gov/10.23#Ex1]
+3433 [https://dlmf.nist.gov/10.23#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3434 [https://dlmf.nist.gov/10.23#Ex3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3435 [http://dlmf.nist.gov/10.23.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3436 [http://dlmf.nist.gov/10.23.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating fraction
+3437 [http://dlmf.nist.gov/10.23.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3440 [http://dlmf.nist.gov/10.23.E12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3441 [http://dlmf.nist.gov/10.23.E13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3443 [http://dlmf.nist.gov/10.23.E15]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3444 [http://dlmf.nist.gov/10.23.E16]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3445 [http://dlmf.nist.gov/10.23.E17]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3449 [http://dlmf.nist.gov/10.23.E21]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3450 [http://dlmf.nist.gov/10.24.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3451 [https://dlmf.nist.gov/10.24#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3452 [https://dlmf.nist.gov/10.24#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3453 [http://dlmf.nist.gov/10.24.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3454 [https://dlmf.nist.gov/10.24#Ex3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3455 [https://dlmf.nist.gov/10.24#Ex4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3456 [http://dlmf.nist.gov/10.24.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3457 [https://dlmf.nist.gov/10.24#Ex5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3458 [https://dlmf.nist.gov/10.24#Ex6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3459 [http://dlmf.nist.gov/10.24.E7]: Error - java.lang.IllegalArgumentException: Error in CAS! [3459: \BesselJimag{\nu}@{x} EQUAL \left(\frac{2\tanh@{\frac{1}{2}\cpi\nu}}{\cpi\nu}\right)^{\frac{1}{2}}\cos@{\nu\ln@{\tfrac{1}{2}x}-\gamma_{\nu}}+\bigO@{x^{2}}; http://dlmf.nist.gov/10.24.E7]
+3460 [http://dlmf.nist.gov/10.24.E8]: Error - java.lang.IllegalArgumentException: Error in CAS! [3460: \BesselYimag{\nu}@{x} EQUAL \left(\frac{2\coth@{\frac{1}{2}\cpi\nu}}{\cpi\nu}\right)^{\frac{1}{2}}\*\sin@{\nu\ln@{\tfrac{1}{2}x}-\gamma_{\nu}}+\bigO@{x^{2}}; http://dlmf.nist.gov/10.24.E8]
+3461 [http://dlmf.nist.gov/10.24.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3461-a [http://dlmf.nist.gov/10.24.E9]: Error - java.lang.IllegalArgumentException: Error in CAS! [3461: \BesselY{0}@{x} EQUAL \frac{2}{\pi}\left(\ln@{\tfrac{1}{2}x}+\EulerConstant\right)+\bigO@{x^{2}\ln@@{x}}; http://dlmf.nist.gov/10.24.E9]
+3462 [http://dlmf.nist.gov/10.25.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3463 [http://dlmf.nist.gov/10.25.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3465 [http://dlmf.nist.gov/10.27.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3466 [http://dlmf.nist.gov/10.27.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3467 [http://dlmf.nist.gov/10.27.E3]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+3468 [http://dlmf.nist.gov/10.27.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3469 [http://dlmf.nist.gov/10.27.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3470 [http://dlmf.nist.gov/10.27.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3470-a [http://dlmf.nist.gov/10.27.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3471 [http://dlmf.nist.gov/10.27.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3471-a [http://dlmf.nist.gov/10.27.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3472 [http://dlmf.nist.gov/10.27.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3472-a [http://dlmf.nist.gov/10.27.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3473 [http://dlmf.nist.gov/10.27.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3474 [http://dlmf.nist.gov/10.27.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3475 [http://dlmf.nist.gov/10.27.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3475-a [http://dlmf.nist.gov/10.27.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3476 [http://dlmf.nist.gov/10.28.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3476-a [http://dlmf.nist.gov/10.28.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3477 [http://dlmf.nist.gov/10.28.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3477-a [http://dlmf.nist.gov/10.28.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3478 [https://dlmf.nist.gov/10.29#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3479 [https://dlmf.nist.gov/10.29#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3480 [https://dlmf.nist.gov/10.29#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3481 [https://dlmf.nist.gov/10.29#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3482 [https://dlmf.nist.gov/10.29#Ex5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3483 [https://dlmf.nist.gov/10.29#Ex6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3484 [https://dlmf.nist.gov/10.29#Ex7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3485 [https://dlmf.nist.gov/10.29#Ex8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3487: Skipped - Unable to analyze test case.
+3488: Skipped - Unable to analyze test case.
+3489: Skipped - Unable to analyze test case.
+3490: Skipped - Unable to analyze test case.
+3491: Skipped - Unable to analyze test case.
+3492 [http://dlmf.nist.gov/10.31.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3495 [http://dlmf.nist.gov/10.32.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3495-a [http://dlmf.nist.gov/10.32.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3495-b [http://dlmf.nist.gov/10.32.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3495-c [http://dlmf.nist.gov/10.32.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3496 [http://dlmf.nist.gov/10.32.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3496-a [http://dlmf.nist.gov/10.32.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3496-b [http://dlmf.nist.gov/10.32.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3496-c [http://dlmf.nist.gov/10.32.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3497 [http://dlmf.nist.gov/10.32.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3498 [http://dlmf.nist.gov/10.32.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3499 [http://dlmf.nist.gov/10.32.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3499-a [http://dlmf.nist.gov/10.32.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3500 [http://dlmf.nist.gov/10.32.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3500-a [http://dlmf.nist.gov/10.32.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3501 [http://dlmf.nist.gov/10.32.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3501-a [http://dlmf.nist.gov/10.32.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3502 [http://dlmf.nist.gov/10.32.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3502-a [http://dlmf.nist.gov/10.32.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3503 [http://dlmf.nist.gov/10.32.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3504 [http://dlmf.nist.gov/10.32.E10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3505 [http://dlmf.nist.gov/10.32.E11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3506 [http://dlmf.nist.gov/10.32.E12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3507 [http://dlmf.nist.gov/10.32.E13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3508 [http://dlmf.nist.gov/10.32.E14]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3509 [http://dlmf.nist.gov/10.32.E15]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3510 [http://dlmf.nist.gov/10.32.E16]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3510-a [http://dlmf.nist.gov/10.32.E16]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3511 [http://dlmf.nist.gov/10.32.E17]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3511-a [http://dlmf.nist.gov/10.32.E17]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3512 [http://dlmf.nist.gov/10.32.E18]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3513 [http://dlmf.nist.gov/10.32.E19]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3514: Skipped - Unable to analyze test case.
+3517 [http://dlmf.nist.gov/10.34.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3518 [http://dlmf.nist.gov/10.34.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3519 [http://dlmf.nist.gov/10.34.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3519-a [http://dlmf.nist.gov/10.34.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3520 [http://dlmf.nist.gov/10.34.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3520-a [http://dlmf.nist.gov/10.34.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3521 [http://dlmf.nist.gov/10.34.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3522 [http://dlmf.nist.gov/10.34.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3522-a [http://dlmf.nist.gov/10.34.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3523 [https://dlmf.nist.gov/10.34#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3524 [https://dlmf.nist.gov/10.34#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3525 [http://dlmf.nist.gov/10.35.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3526 [http://dlmf.nist.gov/10.35.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3527 [http://dlmf.nist.gov/10.35.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3534 [http://dlmf.nist.gov/10.37.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3535 [http://dlmf.nist.gov/10.38.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3535-a [http://dlmf.nist.gov/10.38.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3536 [http://dlmf.nist.gov/10.38.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3537: Skipped - Unable to analyze test case.
+3538: Skipped - Unable to analyze test case.
+3539: Skipped - Unable to analyze test case.
+3540: Skipped - Unable to analyze test case.
+3541: Skipped - Unable to analyze test case.
+3542: Skipped - Unable to analyze test case.
+3543 [https://dlmf.nist.gov/10.39#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3544 [https://dlmf.nist.gov/10.39#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3545 [http://dlmf.nist.gov/10.39.E2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+3545-a [http://dlmf.nist.gov/10.39.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3546 [http://dlmf.nist.gov/10.39.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3547 [http://dlmf.nist.gov/10.39.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3548 [http://dlmf.nist.gov/10.39.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3548-a [http://dlmf.nist.gov/10.39.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3549 [http://dlmf.nist.gov/10.39.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3550 [http://dlmf.nist.gov/10.39.E7]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+3551 [http://dlmf.nist.gov/10.39.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3552 [http://dlmf.nist.gov/10.39.E9]: Error - java.lang.IllegalArgumentException: Error in CAS! [3552: \modBesselI{\nu}@{z} EQUAL \frac{(\frac{1}{2}z)^{\nu}}{\EulerGamma@{\nu+1}}\genhyperF{0}{1}@{-}{\nu+1}{\tfrac{1}{4}z^{2}}; http://dlmf.nist.gov/10.39.E9]
+3553: Skipped - Unable to analyze test case.
+3554 [http://dlmf.nist.gov/10.39.E10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3555: Skipped - Unable to analyze test case.
+3556: Skipped - Unable to analyze test case.
+3557: Skipped - Unable to analyze test case.
+3558: Skipped - Unable to analyze test case.
+3559: Skipped - Unable to analyze test case.
+3560: Skipped - Unable to analyze test case.
+3561: Skipped - Unable to analyze test case.
+3562: Skipped - Unable to analyze test case.
+3563: Skipped - Unable to analyze test case.
+3565 [http://dlmf.nist.gov/10.40.E10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3567 [http://dlmf.nist.gov/10.40.E12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3568 [http://dlmf.nist.gov/10.40.E13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3570: Skipped - Unable to analyze test case.
+3571: Skipped - Unable to analyze test case.
+3572: Skipped - Unable to analyze test case.
+3573: Skipped - Unable to analyze test case.
+3574: Skipped - Unable to analyze test case.
+3575: Skipped - Unable to analyze test case.
+3578 [https://dlmf.nist.gov/10.41#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3586 [http://dlmf.nist.gov/10.41.E12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3587 [http://dlmf.nist.gov/10.41.E13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3588 [http://dlmf.nist.gov/10.41.E14]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3589 [http://dlmf.nist.gov/10.41.E15]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3590 [https://dlmf.nist.gov/10.43#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3591 [https://dlmf.nist.gov/10.43#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3592 [http://dlmf.nist.gov/10.43.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3593 [https://dlmf.nist.gov/10.43#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3593-a [https://dlmf.nist.gov/10.43#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3594 [https://dlmf.nist.gov/10.43#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3594-a [https://dlmf.nist.gov/10.43#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3595 [http://dlmf.nist.gov/10.43.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3595-a [http://dlmf.nist.gov/10.43.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3596 [http://dlmf.nist.gov/10.43.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3597 [http://dlmf.nist.gov/10.43.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3598 [http://dlmf.nist.gov/10.43.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3598-a [http://dlmf.nist.gov/10.43.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3599 [http://dlmf.nist.gov/10.43.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3599-a [http://dlmf.nist.gov/10.43.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3600 [http://dlmf.nist.gov/10.43.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3600-a [http://dlmf.nist.gov/10.43.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3601 [http://dlmf.nist.gov/10.43.E10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3602 [http://dlmf.nist.gov/10.43.E11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3603 [http://dlmf.nist.gov/10.43.E12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3604 [http://dlmf.nist.gov/10.43.E13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3605 [http://dlmf.nist.gov/10.43.E14]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3606 [http://dlmf.nist.gov/10.43.E15]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3607 [http://dlmf.nist.gov/10.43.E16]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3608 [http://dlmf.nist.gov/10.43.E17]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3609 [http://dlmf.nist.gov/10.43.E18]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3610 [http://dlmf.nist.gov/10.43.E19]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3611 [http://dlmf.nist.gov/10.43.E20]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3612 [http://dlmf.nist.gov/10.43.E21]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3613 [http://dlmf.nist.gov/10.43.E22]: Error - java.lang.IllegalArgumentException: Error in CAS! [3613: a LESS_THAN 1,\\ \left(\frac{1}{2}\pi\right)^{\frac{1}{2}}\EulerGamma@{\mu-\nu}\EulerGamma@{\mu+\nu}(a^{2}-1)^{-\frac{1}{2}\mu+\frac{1}{4}}\assLegendreP[-\mu+\frac{1}{2}]{\nu-\frac{1}{2}}@{a},&\realpart@@{a}; http://dlmf.nist.gov/10.43.E22]
+3613-a [http://dlmf.nist.gov/10.43.E22]: Error - java.lang.IllegalArgumentException: Error in CAS! [3613: 1,\\ \left(\frac{1}{2}\pi\right)^{\frac{1}{2}}\EulerGamma@{\mu-\nu}\EulerGamma@{\mu+\nu}(a^{2}-1)^{-\frac{1}{2}\mu+\frac{1}{4}}\assLegendreP[-\mu+\frac{1}{2}]{\nu-\frac{1}{2}}@{a},&\realpart@@{a} GREATER_EQ_THAN 0,a; http://dlmf.nist.gov/10.43.E22]
+3614 [http://dlmf.nist.gov/10.43.E23]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3615 [http://dlmf.nist.gov/10.43.E24]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3616 [http://dlmf.nist.gov/10.43.E25]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3617 [http://dlmf.nist.gov/10.43.E26]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3618 [http://dlmf.nist.gov/10.43.E27]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3619 [http://dlmf.nist.gov/10.43.E28]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3620 [http://dlmf.nist.gov/10.43.E29]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3623: Skipped - Unable to analyze test case.
+3624: Skipped - Unable to analyze test case.
+3625 [http://dlmf.nist.gov/10.44.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3625-a [http://dlmf.nist.gov/10.44.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3626 [https://dlmf.nist.gov/10.44#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3627 [https://dlmf.nist.gov/10.44#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3628 [http://dlmf.nist.gov/10.44.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3628-a [http://dlmf.nist.gov/10.44.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3629 [http://dlmf.nist.gov/10.44.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3630 [http://dlmf.nist.gov/10.44.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3631 [http://dlmf.nist.gov/10.44.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3632 [http://dlmf.nist.gov/10.45.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3633 [http://dlmf.nist.gov/10.45.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3634 [http://dlmf.nist.gov/10.45.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3637 [http://dlmf.nist.gov/10.45.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3638 [https://dlmf.nist.gov/10.45#Ex2]: Error - java.lang.IllegalArgumentException: Error in CAS! [3638: \modBesselIimag{\nu}@{x} EQUAL (2\pi x)^{-\frac{1}{2}}e^{x}\left(1+\bigO@{x^{-1}}\right); https://dlmf.nist.gov/10.45#Ex2]
+3639 [https://dlmf.nist.gov/10.45#Ex3]: Error - java.lang.IllegalArgumentException: Error in CAS! [3639: \modBesselKimag{\nu}@{x} EQUAL (\pi/(2x))^{\frac{1}{2}}e^{-x}\left(1+\bigO@{x^{-1}}\right); https://dlmf.nist.gov/10.45#Ex3]
+3640 [http://dlmf.nist.gov/10.45.E6]: Error - java.lang.IllegalArgumentException: Error in CAS! [3640: \modBesselIimag{\nu}@{x} EQUAL \left(\frac{\sinh@{\pi\nu}}{\pi\nu}\right)^{\frac{1}{2}}\cos@{\nu\ln@{\tfrac{1}{2}x}-\gamma_{\nu}}+\bigO@{x^{2}}; http://dlmf.nist.gov/10.45.E6]
+3641 [http://dlmf.nist.gov/10.45.E7]: Error - java.lang.IllegalArgumentException: Error in CAS! [3641: \modBesselKimag{\nu}@{x} EQUAL -\left(\frac{\pi}{\nu\sinh@{\pi\nu}}\right)^{\frac{1}{2}}\*\sin@{\nu\ln@{\tfrac{1}{2}x}-\gamma_{\nu}}+\bigO@{x^{2}}; http://dlmf.nist.gov/10.45.E7]
+3642 [http://dlmf.nist.gov/10.45.E8]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+3642-a [http://dlmf.nist.gov/10.45.E8]: Error - java.lang.IllegalArgumentException: Error in CAS! [3642: \modBesselK{0}@{x} EQUAL -\ln@{\tfrac{1}{2}x}-\EulerConstant+\bigO@{x^{2}\ln@@{x}}; http://dlmf.nist.gov/10.45.E8]
+3643 [http://dlmf.nist.gov/10.46.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3644 [http://dlmf.nist.gov/10.46.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3645 [http://dlmf.nist.gov/10.46.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3646 [http://dlmf.nist.gov/10.47.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3647 [http://dlmf.nist.gov/10.47.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3648 [http://dlmf.nist.gov/10.47.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3648-a [http://dlmf.nist.gov/10.47.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3649 [http://dlmf.nist.gov/10.47.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3649-a [http://dlmf.nist.gov/10.47.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3650 [http://dlmf.nist.gov/10.47.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3650-a [http://dlmf.nist.gov/10.47.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3651 [http://dlmf.nist.gov/10.47.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3651-a [http://dlmf.nist.gov/10.47.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3652 [http://dlmf.nist.gov/10.47.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3653 [http://dlmf.nist.gov/10.47.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3654 [http://dlmf.nist.gov/10.47.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3654-a [http://dlmf.nist.gov/10.47.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3655 [https://dlmf.nist.gov/10.47#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3656 [https://dlmf.nist.gov/10.47#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3657 [http://dlmf.nist.gov/10.47.E11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3658 [https://dlmf.nist.gov/10.47#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3659 [https://dlmf.nist.gov/10.47#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3660 [http://dlmf.nist.gov/10.47.E13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3660-a [http://dlmf.nist.gov/10.47.E13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3667 [http://dlmf.nist.gov/10.47.E17]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3669 [http://dlmf.nist.gov/10.49.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3670 [https://dlmf.nist.gov/10.49#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3671 [https://dlmf.nist.gov/10.49#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3672 [https://dlmf.nist.gov/10.49#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3673 [http://dlmf.nist.gov/10.49.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3674 [https://dlmf.nist.gov/10.49#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3675 [https://dlmf.nist.gov/10.49#Ex5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3676 [https://dlmf.nist.gov/10.49#Ex6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3677 [http://dlmf.nist.gov/10.49.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3678 [http://dlmf.nist.gov/10.49.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3679 [http://dlmf.nist.gov/10.49.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3680 [https://dlmf.nist.gov/10.49#Ex7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3681 [https://dlmf.nist.gov/10.49#Ex8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3682 [https://dlmf.nist.gov/10.49#Ex9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3683 [http://dlmf.nist.gov/10.49.E10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3684 [https://dlmf.nist.gov/10.49#Ex10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3685 [https://dlmf.nist.gov/10.49#Ex11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3686 [https://dlmf.nist.gov/10.49#Ex12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3687 [http://dlmf.nist.gov/10.49.E12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3688 [https://dlmf.nist.gov/10.49#Ex13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3689 [https://dlmf.nist.gov/10.49#Ex14]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3690 [https://dlmf.nist.gov/10.49#Ex15]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3691 [https://dlmf.nist.gov/10.49#Ex16]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3692 [https://dlmf.nist.gov/10.49#Ex17]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3693 [https://dlmf.nist.gov/10.49#Ex18]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3694 [https://dlmf.nist.gov/10.49#Ex19]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3695 [http://dlmf.nist.gov/10.49.E16]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3697 [http://dlmf.nist.gov/10.49.E18]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3698 [https://dlmf.nist.gov/10.49#Ex20]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3699 [https://dlmf.nist.gov/10.49#Ex21]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3700 [https://dlmf.nist.gov/10.49#Ex22]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3701 [http://dlmf.nist.gov/10.49.E20]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3702: Skipped - Unable to analyze test case.
+3703: Skipped - Unable to analyze test case.
+3704: Skipped - Unable to analyze test case.
+3705 [https://dlmf.nist.gov/10.50#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3706 [https://dlmf.nist.gov/10.50#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3707 [https://dlmf.nist.gov/10.50#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3708 [https://dlmf.nist.gov/10.50#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3708-a [https://dlmf.nist.gov/10.50#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3709 [https://dlmf.nist.gov/10.50#Ex5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3710 [https://dlmf.nist.gov/10.50#Ex6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3711 [http://dlmf.nist.gov/10.50.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3716 [https://dlmf.nist.gov/10.51#Ex5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3717 [https://dlmf.nist.gov/10.51#Ex6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3722 [https://dlmf.nist.gov/10.51#Ex11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3723 [https://dlmf.nist.gov/10.51#Ex12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3724: Skipped - Unable to analyze test case.
+3725: Skipped - Unable to analyze test case.
+3726 [https://dlmf.nist.gov/10.52#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3727 [https://dlmf.nist.gov/10.52#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3728: Skipped - Unable to analyze test case.
+3729: Skipped - Unable to analyze test case.
+3730: Skipped - Unable to analyze test case.
+3731: Skipped - Unable to analyze test case.
+3732 [http://dlmf.nist.gov/10.53.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3733 [http://dlmf.nist.gov/10.53.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3734 [http://dlmf.nist.gov/10.53.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3735 [http://dlmf.nist.gov/10.53.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3736 [http://dlmf.nist.gov/10.54.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3737 [http://dlmf.nist.gov/10.54.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3738 [http://dlmf.nist.gov/10.54.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3739 [http://dlmf.nist.gov/10.54.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3740 [https://dlmf.nist.gov/10.54#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3741 [https://dlmf.nist.gov/10.54#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3742 [http://dlmf.nist.gov/10.56.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating fraction
+3743 [http://dlmf.nist.gov/10.56.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating fraction
+3744 [http://dlmf.nist.gov/10.56.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating fraction
+3745 [http://dlmf.nist.gov/10.56.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating fraction
+3746 [http://dlmf.nist.gov/10.56.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating fraction
+3747 [http://dlmf.nist.gov/10.57.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3748 [https://dlmf.nist.gov/10.58#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3749 [https://dlmf.nist.gov/10.58#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3750 [https://dlmf.nist.gov/10.58#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3751 [https://dlmf.nist.gov/10.58#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3752 [http://dlmf.nist.gov/10.59.E1]: Error - java.lang.IllegalArgumentException: Error in CAS! [3752: b LESS_THAN 1,\\ \frac{1}{2}\pi(+\iunit)^{n},&b; http://dlmf.nist.gov/10.59.E1]
+3752-a [http://dlmf.nist.gov/10.59.E1]: Error - java.lang.IllegalArgumentException: Error in CAS! [3752: b LESS_THAN 1,\\ \frac{1}{2}\pi(-\iunit)^{n},&b; http://dlmf.nist.gov/10.59.E1]
+3752-b [http://dlmf.nist.gov/10.59.E1]: Error - java.lang.IllegalArgumentException: Error in CAS! [3752: 1,\\ \frac{1}{2}\pi(+\iunit)^{n},&b EQUAL + 1,\\ 0,&+ b; http://dlmf.nist.gov/10.59.E1]
+3752-c [http://dlmf.nist.gov/10.59.E1]: Error - java.lang.IllegalArgumentException: Error in CAS! [3752: 1,\\ \frac{1}{2}\pi(-\iunit)^{n},&b EQUAL - 1,\\ 0,&- b; http://dlmf.nist.gov/10.59.E1]
+3753 [http://dlmf.nist.gov/10.60.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3754 [http://dlmf.nist.gov/10.60.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3755 [http://dlmf.nist.gov/10.60.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3756 [http://dlmf.nist.gov/10.60.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3757 [http://dlmf.nist.gov/10.60.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3758 [http://dlmf.nist.gov/10.60.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3759 [http://dlmf.nist.gov/10.60.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3760 [http://dlmf.nist.gov/10.60.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3761 [http://dlmf.nist.gov/10.60.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3762 [http://dlmf.nist.gov/10.60.E10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3763 [http://dlmf.nist.gov/10.60.E11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3764 [http://dlmf.nist.gov/10.60.E12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3765 [http://dlmf.nist.gov/10.60.E13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3766 [http://dlmf.nist.gov/10.60.E14]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3767 [http://dlmf.nist.gov/10.61.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3767-a [http://dlmf.nist.gov/10.61.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3767-b [http://dlmf.nist.gov/10.61.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3767-c [http://dlmf.nist.gov/10.61.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3768 [http://dlmf.nist.gov/10.61.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3768-a [http://dlmf.nist.gov/10.61.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3768-b [http://dlmf.nist.gov/10.61.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3769 [http://dlmf.nist.gov/10.61.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3770: Skipped - Unable to analyze test case.
+3771: Skipped - Unable to analyze test case.
+3772: Skipped - Unable to analyze test case.
+3773 [http://dlmf.nist.gov/10.61.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3774: Skipped - Unable to analyze test case.
+3775 [https://dlmf.nist.gov/10.61#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3776 [https://dlmf.nist.gov/10.61#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3777 [https://dlmf.nist.gov/10.61#Ex3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3778 [https://dlmf.nist.gov/10.61#Ex4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3779 [https://dlmf.nist.gov/10.61#Ex5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3780 [https://dlmf.nist.gov/10.61#Ex6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3781 [https://dlmf.nist.gov/10.61#Ex7]: Error - java.lang.IllegalArgumentException: Error in CAS! [3781: \Kelvinber{-n}@@{x} EQUAL (-1)^{n}\Kelvinber{n}@@{x},~{}\Kelvinbei{-n}@@{x}; https://dlmf.nist.gov/10.61#Ex7]
+3781-a [https://dlmf.nist.gov/10.61#Ex7]: Error - java.lang.IllegalArgumentException: Error in CAS! [3781: (-1)^{n}\Kelvinber{n}@@{x},~{}\Kelvinbei{-n}@@{x} EQUAL (-1)^{n}\Kelvinbei{n}@@{x}; https://dlmf.nist.gov/10.61#Ex7]
+3782 [https://dlmf.nist.gov/10.61#Ex8]: Error - java.lang.IllegalArgumentException: Error in CAS! [3782: \Kelvinker{-n}@@{x} EQUAL (-1)^{n}\Kelvinker{n}@@{x},~{}\Kelvinkei{-n}@@{x}; https://dlmf.nist.gov/10.61#Ex8]
+3782-a [https://dlmf.nist.gov/10.61#Ex8]: Error - java.lang.IllegalArgumentException: Error in CAS! [3782: (-1)^{n}\Kelvinker{n}@@{x},~{}\Kelvinkei{-n}@@{x} EQUAL (-1)^{n}\Kelvinkei{n}@@{x}; https://dlmf.nist.gov/10.61#Ex8]
+3783 [https://dlmf.nist.gov/10.61#Ex9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3784 [https://dlmf.nist.gov/10.61#Ex10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3785 [https://dlmf.nist.gov/10.61#Ex11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3786 [https://dlmf.nist.gov/10.61#Ex12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3787 [http://dlmf.nist.gov/10.61.E11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3787-a [http://dlmf.nist.gov/10.61.E11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3788 [http://dlmf.nist.gov/10.61.E12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3788-a [http://dlmf.nist.gov/10.61.E12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3789: Skipped - Unable to analyze test case.
+3790: Skipped - Unable to analyze test case.
+3791: Skipped - Unable to analyze test case.
+3792: Skipped - Unable to analyze test case.
+3797 [https://dlmf.nist.gov/10.63#Ex9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3798 [https://dlmf.nist.gov/10.63#Ex10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3799 [https://dlmf.nist.gov/10.63#Ex11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3800 [https://dlmf.nist.gov/10.63#Ex12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3801 [https://dlmf.nist.gov/10.63#Ex13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3802 [https://dlmf.nist.gov/10.63#Ex14]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3803 [https://dlmf.nist.gov/10.63#Ex15]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3804 [https://dlmf.nist.gov/10.63#Ex16]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3810 [http://dlmf.nist.gov/10.64.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3811 [http://dlmf.nist.gov/10.64.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3812 [https://dlmf.nist.gov/10.65#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3813 [https://dlmf.nist.gov/10.65#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3818 [https://dlmf.nist.gov/10.65#Ex5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3819 [https://dlmf.nist.gov/10.65#Ex6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3820 [http://dlmf.nist.gov/10.65.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3821 [http://dlmf.nist.gov/10.65.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3822 [http://dlmf.nist.gov/10.65.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3823 [http://dlmf.nist.gov/10.65.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3824 [http://dlmf.nist.gov/10.66.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3824-a [http://dlmf.nist.gov/10.66.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3825 [https://dlmf.nist.gov/10.66#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3826 [https://dlmf.nist.gov/10.66#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3827: Skipped - Unable to analyze test case.
+3828: Skipped - Unable to analyze test case.
+3829: Skipped - Unable to analyze test case.
+3830: Skipped - Unable to analyze test case.
+3831: Skipped - Unable to analyze test case.
+3832: Skipped - Unable to analyze test case.
+3833: Skipped - Unable to analyze test case.
+3834: Skipped - Unable to analyze test case.
+3835: Skipped - Unable to analyze test case.
+3836: Skipped - Unable to analyze test case.
+3837: Skipped - Unable to analyze test case.
+3838: Skipped - Unable to analyze test case.
+3839: Skipped - Unable to analyze test case.
+3840: Skipped - Unable to analyze test case.
+3841: Skipped - Unable to analyze test case.
+3842: Skipped - Unable to analyze test case.
+3843 [http://dlmf.nist.gov/10.68.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3844 [http://dlmf.nist.gov/10.68.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3845 [https://dlmf.nist.gov/10.68#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3846 [https://dlmf.nist.gov/10.68#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3847 [https://dlmf.nist.gov/10.68#Ex3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3848 [https://dlmf.nist.gov/10.68#Ex4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3849 [https://dlmf.nist.gov/10.68#Ex5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3850 [https://dlmf.nist.gov/10.68#Ex6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3851 [https://dlmf.nist.gov/10.68#Ex7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3852 [https://dlmf.nist.gov/10.68#Ex8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3853 [https://dlmf.nist.gov/10.68#Ex9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3854 [https://dlmf.nist.gov/10.68#Ex10]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3855 [http://dlmf.nist.gov/10.68.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3855-a [http://dlmf.nist.gov/10.68.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3855-b [http://dlmf.nist.gov/10.68.E8]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3856 [http://dlmf.nist.gov/10.68.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3856-a [http://dlmf.nist.gov/10.68.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3856-b [http://dlmf.nist.gov/10.68.E9]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3857 [https://dlmf.nist.gov/10.68#Ex11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3858 [https://dlmf.nist.gov/10.68#Ex12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3859 [http://dlmf.nist.gov/10.68.E11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3859-a [http://dlmf.nist.gov/10.68.E11]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3860 [http://dlmf.nist.gov/10.68.E12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3860-a [http://dlmf.nist.gov/10.68.E12]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3861 [https://dlmf.nist.gov/10.68#Ex13]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3862 [https://dlmf.nist.gov/10.68#Ex14]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3863 [https://dlmf.nist.gov/10.68#Ex15]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3864 [https://dlmf.nist.gov/10.68#Ex16]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3865 [https://dlmf.nist.gov/10.68#Ex17]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3866 [https://dlmf.nist.gov/10.68#Ex18]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3867 [http://dlmf.nist.gov/10.68.E16]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3868 [http://dlmf.nist.gov/10.68.E17]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3869 [http://dlmf.nist.gov/10.68.E18]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3870 [http://dlmf.nist.gov/10.68.E19]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3871 [http://dlmf.nist.gov/10.68.E20]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3872 [http://dlmf.nist.gov/10.68.E21]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3874: Skipped - Unable to analyze test case.
+3875: Skipped - Unable to analyze test case.
+3876: Skipped - Unable to analyze test case.
+3877: Skipped - Unable to analyze test case.
+3879: Skipped - Unable to analyze test case.
+3880: Skipped - Unable to analyze test case.
+3881: Skipped - Unable to analyze test case.
+3882: Skipped - Unable to analyze test case.
+3883 [http://dlmf.nist.gov/10.71.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3883-a [http://dlmf.nist.gov/10.71.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3884 [http://dlmf.nist.gov/10.71.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3884-a [http://dlmf.nist.gov/10.71.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3885 [http://dlmf.nist.gov/10.71.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3885-a [http://dlmf.nist.gov/10.71.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3886 [http://dlmf.nist.gov/10.71.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3887 [http://dlmf.nist.gov/10.71.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3887-a [http://dlmf.nist.gov/10.71.E5]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3888 [http://dlmf.nist.gov/10.71.E6]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3889 [http://dlmf.nist.gov/10.71.E7]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3890 [https://dlmf.nist.gov/10.71#Ex1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3891 [https://dlmf.nist.gov/10.71#Ex2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3893 [http://dlmf.nist.gov/10.73.E1]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3893-a [http://dlmf.nist.gov/10.73.E1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+3894 [http://dlmf.nist.gov/10.73.E2]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3895 [http://dlmf.nist.gov/10.73.E3]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence
+3896 [http://dlmf.nist.gov/10.73.E4]: Error - (null -> null) Unknown Error: Unknown translation error while translating sequence

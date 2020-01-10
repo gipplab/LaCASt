@@ -1,0 +1,131 @@
+9.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+9.tex:\lxDeclare[replace=$\iunit$]{$i$}% Imaginary i
+9.tex:\lxDeclare[replace=$\expe$]{$e$}% Exponential e, except with subscript!!!
+9.tex:\lxDeclare[replace=$\EulerConstant$]{$\gamma$}%  Euler's constant
+1.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+1.tex:\lxDeclare[replace=$\iunit$]{$i$}% Imaginary i
+1.tex:\lxDeclare[replace=$\expe$]{$e$}% Exponential e, except with subscript!!!
+2.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+2.tex:\lxDeclare[replace=$\iunit$]{$i$}% Imaginary i
+2.tex:\lxDeclare[replace=$\expe$]{$e$}% Exponential e, except with subscript!!!
+24.tex:\lxDeclare[replace=$\cpi$]{$\pi$}%
+24.tex:\lxDeclare[replace=$\expe$]{$e$}%
+24.tex:\lxDeclare[replace=$\iunit$]{$i$}%
+10.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+10.tex:\lxDeclare[replace=$\iunit$]{$i$}% Imaginary i
+10.tex:\lxDeclare[replace=$\expe$]{$e$}% Exponential e, except with subscript!!!
+13.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+13.tex:\lxDeclare[replace=$\expe$]{$e$}% Exponential e, except with subscript!!!
+13.tex:\lxDeclare[replace=$\EulerConstant$]{$\gamma$}%
+33.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+33.tex:\lxDeclare[replace=$\expe$]{$e$}% Exponential e, except with subscript!!!
+4.tex:\lxDeclare[replace=$\expe$]{$e$}%
+4.tex:\lxDeclare[replace=$\iunit$]{$i$}%
+4.tex:\lxDeclare[replace=$\cpi$]{$\pi$}%
+19.tex:\lxDeclare[replace=$\iunit$]{$i$}%
+19.tex:\lxDeclare[replace=$\cpi$]{$\pi$}%
+7.tex:\lxDeclare[replace=$\expe$]{$e$}%
+7.tex:\lxDeclare[replace=$\iunit$]{$i$}%
+7.tex:\lxDeclare[replace=$\cpi$]{$\pi$}%
+6.tex:\lxDeclare[replace=$\expe$]{$e$}%
+6.tex:\lxDeclare[replace=$\iunit$]{$i$}%
+6.tex:\lxDeclare[replace=$\cpi$]{$\pi$}%
+35.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+5.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+5.tex:\lxDeclare[replace=$\iunit$]{$i$}% Imaginary i
+5.tex:\lxDeclare[replace=$\expe$]{$e$}% Exponential e, except with subscript!!!
+16.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+31.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+31.tex:\lxDeclare[replace=$\iunit$]{$i$}% Imaginary i
+15.tex:\lxDeclare[replace=$\cpi$]{$\pi$}%
+15.tex:\lxDeclare[replace=$\expe$]{$e$}%
+36.tex:\lxDeclare[replace=$\iunit$]{$i$}% Imaginary i
+36.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+8.tex:\lxDeclare[replace=$\cpi$]{$\pi$}%
+8.tex:\lxDeclare[replace=$\iunit$]{$i$}%
+8.tex:\lxDeclare[replace=$\expe$]{$e$}%
+22.tex:\lxDeclare[replace=$\expe$]{$e$}%
+22.tex:\lxDeclare[replace=$\iunit$]{$i$}%
+22.tex:\lxDeclare[replace=$\cpi$]{$\pi$}%
+22.tex:\lxDeclare[replace=$\compellintKk@@{k}$]{$K$}%
+22.tex:\lxDeclare[replace=$\ccompellintKk@@{k}$]{$K'$}%
+29.tex:\lxDeclare[replace=$\cpi$]{$\pi$}%
+14.tex:\lxDeclare[replace=$\expe$]{$e$}%
+14.tex:\lxDeclare[replace=$\iunit$]{$i$}%
+14.tex:\lxDeclare[replace=$\cpi$]{$\pi$}%
+28.tex:\lxDeclare[replace=$\cpi$]{$\pi$}%
+28.tex:\lxDeclare[replace=$\expe$]{$e$}%
+21.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+21.tex:\lxDeclare[replace=$\iunit$]{$i$}% Imaginary i
+21.tex:\lxDeclare[replace=$\expe$]{$e$}% Exponential e, except with subscript!!!
+3.tex:\lxDeclare[replace=$\iunit$]{$i$}% Imaginary i
+3.tex:\lxDeclare[replace=$\expe$]{$e$}% Exponential e, except with subscript!!!
+27.tex:\lxDeclare[replace=$\expe$]{$e$}%
+18.tex:\lxDeclare[replace=$\expe$]{$e$}%
+18.tex:\lxDeclare[replace=$\iunit$]{$i$}%
+18.tex:\lxDeclare[replace=$\cpi$]{$\pi$}%
+12.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+12.tex:\lxDeclare[replace=$\iunit$]{$i$}% Imaginary i
+12.tex:\lxDeclare[replace=$\expe$]{$e$}% Exponential e
+32.tex:\lxDeclare[replace=$\expe$]{$e$}%
+32.tex:\lxDeclare[replace=$\iunit$]{$i$}%
+32.tex:\lxDeclare[replace=$\cpi$]{$\pi$}%
+17.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+17.tex:\lxDeclare[replace=$\iunit$]{$i$}% Imaginary i
+11.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+11.tex:\lxDeclare[replace=$\iunit$]{$i$}% Imaginary i
+11.tex:\lxDeclare[replace=$\expe$]{$e$}% Exponential e, except with subscript!!!
+30.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+30.tex:\lxDeclare[replace=$\iunit$]{$i$}% Imaginary i
+30.tex:\lxDeclare[replace=$\expe$]{$e$}% Exponential e, except with subscript!!!
+20.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+20.tex:\lxDeclare[replace=$\iunit$]{$i$}% Imaginary i
+20.tex:\lxDeclare[replace=$\expe$]{$e$}% Exponential e, except with subscript!!!
+34.tex:\lxDeclare[replace=$\cpi$]{$\pi$}% Circular pi
+23.tex:\lxDeclare[replace=$\expe$]{$e$}%
+23.tex:\lxDeclare[replace=$\iunit$]{$i$}%
+23.tex:\lxDeclare[replace=$\cpi$]{$\pi$}%
+25.tex:\lxDeclare[replace=$\cpi$]{$\pi$}%
+25.tex:\lxDeclare[replace=$\iunit$]{$i$}%
+25.tex:\lxDeclare[replace=$\expe$]{$e$}%
+
+
+{
+  "replacements": {
+    "replaceAL": {"find":"AL", "replace":"1"},
+    "replaceAS": {"find":"AS", "replace":"2"},
+    "replaceNM": {"find":"NM", "replace":"3"},
+    "replaceEF": {"find":"EF", "replace":"4"},
+    "replaceGA": {"find":"GA", "replace":"5"},
+    "replaceEX": {"find":"EX", "replace":"6"},
+    "replaceER": {"find":"ER", "replace":"7"},
+    "replaceIG": {"find":"IG", "replace":"8"},
+    "replaceAI": {"find":"AI", "replace":"9"},
+    "replaceBS": {"find":"BS", "replace":"10"},
+    "replaceST": {"find":"ST", "replace":"11"},
+    "replacePC": {"find":"PC", "replace":"12"},
+    "replaceCH": {"find":"CH", "replace":"13"},
+    "replaceLE": {"find":"LE", "replace":"14"},
+    "replaceHY": {"find":"HY", "replace":"15"},
+    "replaceGH": {"find":"GH", "replace":"16"},
+    "replaceQH": {"find":"QH", "replace":"17"},
+    "replaceOP": {"find":"OP", "replace":"18"},
+    "replaceEL": {"find":"EL", "replace":"19"},
+    "replaceTH": {"find":"TH", "replace":"20"},
+    "replaceMT": {"find":"MT", "replace":"21"},
+    "replaceJA": {"find":"JA", "replace":"22"},
+    "replaceWE": {"find":"WE", "replace":"23"},
+    "replaceBP": {"find":"BP", "replace":"24"},
+    "replaceZE": {"find":"ZE", "replace":"25"},
+    "replaceCM": {"find":"CM", "replace":"26"},
+    "replaceNT": {"find":"NT", "replace":"27"},
+    "replaceMA": {"find":"MA", "replace":"28"},
+    "replaceLA": {"find":"LA", "replace":"29"},
+    "replaceSW": {"find":"SW", "replace":"30"},
+    "replaceHE": {"find":"HE", "replace":"31"},
+    "replacePT": {"find":"PT", "replace":"32"},
+    "replaceCW": {"find":"CW", "replace":"33"},
+    "replaceTJ": {"find":"TJ", "replace":"34"},
+    "replaceFM": {"find":"FM", "replace":"35"},
+    "replaceIC": {"find":"IC", "replace":"36"}}
+}

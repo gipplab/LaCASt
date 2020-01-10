@@ -10,27 +10,42 @@ import java.nio.file.Paths;
  */
 public class GlobalPaths {
     // path variable to libs folder
-    public static final Path PATH_LIBS =
+    private static final Path PATH_LIBS =
             Paths.get("libs");
+
+    private static final Path PATH_CONFIGS =
+            Paths.get("config");
 
     // path variable to the ReferenceData directory
     public static final Path PATH_REFERENCE_DATA =
             PATH_LIBS.resolve( "ReferenceData" );
 
-    public static final Path PATH_MACRO_CSV_FILE_NAME =
-            Paths.get("DLMFMacro.csv");
-
     public static final Path PATH_MAPLE_CONFIG =
-            PATH_LIBS.resolve( "maple_config.properties" );
+            PATH_CONFIGS.resolve( "maple_config.properties" );
 
     public static final Path PATH_MATHEMATICA_CONFIG =
-            PATH_LIBS.resolve( "mathematica_config.properties" );
+            PATH_CONFIGS.resolve( "mathematica_config.properties" );
 
     public static final Path PATH_NUMERICAL_SETUP =
-            PATH_LIBS.resolve( "numerical_tests.properties" );
+            PATH_CONFIGS.resolve( "numerical_tests.properties" );
 
     public static final Path PATH_SYMBOLIC_SETUP =
-            PATH_LIBS.resolve( "symbolic_tests.properties" );
+            PATH_CONFIGS.resolve( "symbolic_tests.properties" );
+
+    public static final Path PATH_DLMF_REPLACEMENT_RULES =
+            PATH_CONFIGS.resolve("dlmf-replacements.yml");
+
+    public static final Path PATH_REPLACEMENT_RULES =
+            PATH_CONFIGS.resolve("replacements.yml");
+
+    public static final Path PATH_BLUEPRINTS =
+            PATH_CONFIGS.resolve("blueprints.txt");
+
+    public static final Path PATH_LIMES_BLUEPRINTS =
+            PATH_CONFIGS.resolve("lim-blueprints.txt");
+
+    public static final Path PATH_LIMITED_BLUEPRINTS =
+            PATH_CONFIGS.resolve("limit-blueprints.txt");
 
     // path variable to the lexicon files in the reference data dir
     public static final Path PATH_LEXICONS =
@@ -80,10 +95,22 @@ public class GlobalPaths {
     public static final Path PATH_MAPLE_NUMERICAL_SIEVE_PROCEDURE =
             PATH_MAPLE_PROCS.resolve("maple_numerical_sieve.txt");
 
+    public static final Path PATH_MATHEMATICA_PROCS =
+            PATH_REFERENCE_DATA_CAS_LEXICONS.resolve( "MathematicaProcedures" );
+
+    public static final Path PATH_MATHEMATICA_NUMERICAL_PROCEDURES =
+            PATH_MATHEMATICA_PROCS.resolve("mathematica_numerical_procedures.txt");
+
+    public static final Path PATH_MATHEMATICA_DIFFERENCE_PROCEDURES =
+            PATH_MATHEMATICA_PROCS.resolve("difference_calc.txt");
+
     // path variable to the resources of the interpreter
-    public static final Path PATH_CORE_RESOURCES =
-            Paths.get("interpreter.interpreter", "src", "main", "resources");
+    private static final Path PATH_CORE_RESOURCES =
+            Paths.get("interpreter.common", "src", "main", "resources");
 
     public static final Path PATH_LOGGING_CONFIG =
             PATH_CORE_RESOURCES.resolve("log4j2.xml");
+
+    public static final Path PATH_MACRO_CSV_FILE_NAME =
+            Paths.get("DLMFMacro.csv");
 }

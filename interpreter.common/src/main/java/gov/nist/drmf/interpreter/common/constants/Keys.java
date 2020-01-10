@@ -70,4 +70,6 @@ public class Keys {
             MLP_KEY_NEQ = "relation_neq",
             MLP_KEY_LEQ = "relation_leq",
             MLP_KEY_GEQ = "relation_geq";
+
+    public static final String ABORTION_SIGNAL = "ABORT";
 }

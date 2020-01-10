@@ -15,12 +15,23 @@
         <module>interpreter.lacast</module>
         <module>interpreter.maple</module>
         <module>interpreter.mathematica</module>
-        <module>interpreter.core</module>
-        <module>interpreter.roundtrip</module>
+        <module>interpreter.api</module>
+        <module>interpreter.evaluation</module>
         <module>interpreter.semantify</module>
     </modules>
 
     <properties>
+        <!--
+            TODO
+            The following two variables has to be updated for every user!
+            Enter the installation folder (without / in the end) for maple
+            and Mathematica. If you did not install the CAS on your system,
+            just set the variables to your home directory.
+        -->
+        <maple.installation.dir>/opt/maple2016</maple.installation.dir>
+        <mathematica.installation.dir>/opt/Wolfram</mathematica.installation.dir>
+
+        <main.basedir>${project.basedir}</main.basedir>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.version>3.8.1</maven.compiler.version>
@@ -28,10 +39,14 @@
         <junit.version>5.5.2</junit.version>
         <maven.surefire.version>2.22.2</maven.surefire.version>
 
-        <maple.path>/opt/maple2016</maple.path>
-        <maple.version>2016.2</maple.version>
-        <mlp.path>${project.basedir}/../libs/MLP/MLP.jar</mlp.path>
+        <mlp.path>${main.basedir}/libs/MLP/MLP.jar</mlp.path>
         <mlp.version>1.1</mlp.version>
+
+        <maple.path>${main.basedir}/libs/Maple</maple.path>
+        <maple.version>2016.2</maple.version>
+
+        <mathematica.jlink.path>${main.basedir}/libs/Mathematica</mathematica.jlink.path>
+        <mathematica.jlink.version>1.0</mathematica.jlink.version>
 
         <log4j2.version>2.12.1</log4j2.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -118,7 +133,7 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven.surefire.version}</version>
                     <configuration>
-                        <workingDirectory>${basedir}/../</workingDirectory>
+                        <workingDirectory>${main.basedir}/</workingDirectory>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -135,7 +150,77 @@
                         <target>${maven.compiler.target}</target>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>3.0.0-M1</version>
+                    <executions>
+                        <execution>
+                            <id>mlp-install</id>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>install-file</goal>
+                            </goals>
+                            <configuration>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>mlp</artifactId>
+                                <version>${mlp.version}</version>
+                                <packaging>jar</packaging>
+                                <file>${mlp.path}</file>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>maple-install</id>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>install-file</goal>
+                            </goals>
+                            <configuration>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>maple</artifactId>
+                                <version>${maple.version}</version>
+                                <packaging>jar</packaging>
+                                <file>${maple.path}/Maple.jar</file>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>maple-call-install</id>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>install-file</goal>
+                            </goals>
+                            <configuration>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>maple-call</artifactId>
+                                <version>${maple.version}</version>
+                                <packaging>jar</packaging>
+                                <file>${maple.path}/externalcall.jar</file>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>mathematica-install</id>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>install-file</goal>
+                            </goals>
+                            <configuration>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>mathematica</artifactId>
+                                <version>${mathematica.jlink.version}</version>
+                                <packaging>jar</packaging>
+                                <file>${mathematica.jlink.path}/JLink.jar</file>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <!-- The install plugin should be triggered for all modules, otherwise some dependencies are missing -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+            </plugin>
+        </plugins>
     </build>
 </project>

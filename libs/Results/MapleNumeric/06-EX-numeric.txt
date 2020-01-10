@@ -1,0 +1,54 @@
+Overall: [SUCCESS: 5, FAILURE: 12, LIMIT_SKIPS: 30, TESTED: 19, ERROR: 0] for test expression: (#LHS)-(#RHS)
+2179: Skip - int/sum/prod/lim
+2180: Skip - int/sum/prod/lim
+2184: Skip - symbolical successful subtest
+2184-a: Skip - int/sum/prod/lim
+2203: [[.6e-8+18.84955592*I, [z = 2^(1/2)+I*2^(1/2), m = 3]], [-.6e-8+18.84955592*I, [z = 2^(1/2)-I*2^(1/2), m = 3]], [-.34e-9+18.84955592*I, [z = -2^(1/2)-I*2^(1/2), m = 3]], [.34e-9+18.84955592*I, [z = -2^(1/2)+I*2^(1/2), m = 3]]]
+2205: [[0.-6.283185307*I, [z = 2^(1/2)+I*2^(1/2)]], [0.-6.283185307*I, [z = -2^(1/2)+I*2^(1/2)]]]
+2205-a: [[0.+6.283185307*I, [z = 2^(1/2)-I*2^(1/2)]], [0.+6.283185307*I, [z = -2^(1/2)-I*2^(1/2)]]]
+2206: [[0.-6.283185307*I, [z = 2^(1/2)+I*2^(1/2)]], [0.-6.283185307*I, [z = -2^(1/2)+I*2^(1/2)]]]
+2206-a: [[0.+6.283185307*I, [z = 2^(1/2)-I*2^(1/2)]], [0.+6.283185307*I, [z = -2^(1/2)-I*2^(1/2)]]]
+2211: Skip - symbolical successful subtest
+2211-a: Successful
+2212: Skip - symbolical successful subtest
+2212-a: Successful
+2213: [[-3.141592654+0.*I, [z = 2^(1/2)+I*2^(1/2)]], [-3.141592654+0.*I, [z = 2^(1/2)-I*2^(1/2)]]]
+2214: [[2.208978234-.399630454*I, [z = 2^(1/2)+I*2^(1/2)]], [2.208978234+.399630454*I, [z = 2^(1/2)-I*2^(1/2)]], [2.208978234-3.541223107*I, [z = -2^(1/2)-I*2^(1/2)]], [2.208978234+3.541223107*I, [z = -2^(1/2)+I*2^(1/2)]]]
+2217: Skip - int/sum/prod/lim
+2222: Skip - int/sum/prod/lim
+2222-a: Skip - int/sum/prod/lim
+2224: Skip - int/sum/prod/lim
+2225: Skip - int/sum/prod/lim
+2226: Skip - int/sum/prod/lim
+2227: Skip - int/sum/prod/lim
+2230: Skip - int/sum/prod/lim
+2234: Skip - symbolical successful subtest
+2234-a: Skip - int/sum/prod/lim
+2235: Skip - symbolical successful subtest
+2235-a: Skip - int/sum/prod/lim
+2238: Successful
+2238-a: [[5.151464321 < .6931471806, [x = 1]], [36.60711558 < .4054651081, [x = 2]], [199.5263609 < .2876820722, [x = 3]]]
+2239: Successful
+2239-a: [[5.151464321 < .6666666667, [x = 1]], [73.21423116 < .7500000000, [x = 2]], [598.5790827 < .8000000000, [x = 3]]]
+2240: Successful
+2240-a: [[5.151464321 < .6153846154, [x = 1]], [73.21423116 < .7272727273, [x = 2]], [598.5790827 < .7878787879, [x = 3]]]
+2254: [[2.208978234+3.541223107*I, [z = 2^(1/2)+I*2^(1/2)]], [2.208978234-3.541223107*I, [z = 2^(1/2)-I*2^(1/2)]], [2.208978234-2.741962200*I, [z = -2^(1/2)-I*2^(1/2)]], [2.208978234+2.741962200*I, [z = -2^(1/2)+I*2^(1/2)]]]
+2255: [[2.208978234+3.541223107*I, [z = 2^(1/2)+I*2^(1/2)]], [2.208978234-3.541223107*I, [z = 2^(1/2)-I*2^(1/2)]], [2.208978234-2.741962200*I, [z = -2^(1/2)-I*2^(1/2)]], [2.208978234+2.741962200*I, [z = -2^(1/2)+I*2^(1/2)]]]
+2267: Skip - int/sum/prod/lim
+2268: Skip - int/sum/prod/lim
+2269: Skip - int/sum/prod/lim
+2270: Skip - int/sum/prod/lim
+2271: Skip - int/sum/prod/lim
+2271-a: Skip - symbolical successful subtest
+2272: Skip - int/sum/prod/lim
+2272-a: Skip - int/sum/prod/lim
+2273: Skip - int/sum/prod/lim
+2274: Skip - int/sum/prod/lim
+2275: Skip - int/sum/prod/lim
+2276: Skip - int/sum/prod/lim
+2277: Skip - int/sum/prod/lim
+2281: Skipped - Cannot calculate number of combinations!
+2282: Skipped - Cannot calculate number of combinations!
+2283: Skip - int/sum/prod/lim
+2284: Skip - int/sum/prod/lim
+2285: Skip - int/sum/prod/lim

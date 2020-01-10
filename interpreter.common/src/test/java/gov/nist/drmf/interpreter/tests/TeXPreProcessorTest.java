@@ -13,7 +13,7 @@ public class TeXPreProcessorTest {
     @Test
     public void displayStyleTest(){
         String input = "{\\displaystyle{\\displaystyle{\\displaystyle\\ctsHahn{n}@{x}{a}{b}{c}{d}{}={%&#10;\\mathrm{i}^{n}}\\frac{\\pochhammer{a+c}{n}\\pochhammer{a+d}{n}}{n!}\\,\\HyperpFq{3}%&#10;{2}@@{-n,n+a+b+c+d-1,a+\\mathrm{i}x}{a+c,a+d}{1}}}}";
-        String expect = "{{{\\ctsHahn{n}@{x}{a}{b}{c}{d}{}={%&#10;\\mathrm{i}^{n}}\\frac{\\pochhammer{a+c}{n}\\pochhammer{a+d}{n}}{n!}\\,\\HyperpFq{3}%&#10;{2}@@{-n,n+a+b+c+d-1,a+\\mathrm{i}x}{a+c,a+d}{1}}}}";
+        String expect = "{{{\\ctsHahn{n}@{x}{a}{b}{c}{d}{}={%&#10;\\mathrm{i}^{n}}\\frac{\\pochhammer{a+c}{n}\\pochhammer{a+d}{n}}{n!}\\HyperpFq{3}%&#10;{2}@@{-n,n+a+b+c+d-1,a+\\mathrm{i}x}{a+c,a+d}{1}}}}";
 
         String output = TeXPreProcessor.preProcessingTeX( input );
         assertEquals( expect, output, "Clear displaystyle didn't work." );
@@ -39,6 +39,14 @@ public class TeXPreProcessorTest {
     public void hiderelTest(){
         String input = "a \\hiderel{ - } b \\hiderel{=} c \\hiderel{ /} d";
         String expect = "a - b = c / d";
+        String output = TeXPreProcessor.preProcessingTeX( input );
+        assertEquals( expect, output);
+    }
+
+    @Test
+    public void endingCommasTest(){
+        String input = "a+b=x; .";
+        String expect = "a+b=x";
         String output = TeXPreProcessor.preProcessingTeX( input );
         assertEquals( expect, output);
     }

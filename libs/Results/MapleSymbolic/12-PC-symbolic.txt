@@ -1,0 +1,141 @@
+Overall: [SUCCESS: 23, SUCCESS_SYMB: 23, SUCCESS_TRANS: 78, FAILURE: 52, STARTED_TEST_CASES: 107, SKIPPED: 35, DEFINITIONS: 28, IGNORE: 55, MISSING: 27, ERROR: 5] for test expression: (#LHS)-(#RHS)
+[Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
+4068 [http://dlmf.nist.gov/12.2.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4069 [http://dlmf.nist.gov/12.2.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4070 [http://dlmf.nist.gov/12.2.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4071 [http://dlmf.nist.gov/12.2.E5]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4072 [http://dlmf.nist.gov/12.2.E6]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+4073 [http://dlmf.nist.gov/12.2.E7]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+4074 [http://dlmf.nist.gov/12.2.E8]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+4075 [http://dlmf.nist.gov/12.2.E9]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+4076 [http://dlmf.nist.gov/12.2.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4077 [http://dlmf.nist.gov/12.2.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4078 [http://dlmf.nist.gov/12.2.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4078-a [http://dlmf.nist.gov/12.2.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4079 [http://dlmf.nist.gov/12.2.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4080 [http://dlmf.nist.gov/12.2.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4081 [http://dlmf.nist.gov/12.2.E15]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4082 [http://dlmf.nist.gov/12.2.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4083 [http://dlmf.nist.gov/12.2.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4083-a [http://dlmf.nist.gov/12.2.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4084 [http://dlmf.nist.gov/12.2.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4084-a [http://dlmf.nist.gov/12.2.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4085 [http://dlmf.nist.gov/12.2.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4085-a [http://dlmf.nist.gov/12.2.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4086 [http://dlmf.nist.gov/12.2.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4086-a [http://dlmf.nist.gov/12.2.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4087 [http://dlmf.nist.gov/12.2.E21]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraUbar [\paraUbar]
+4088 [http://dlmf.nist.gov/12.2.E22]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraUbar [\paraUbar]
+4089 [http://dlmf.nist.gov/12.2.E23]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraUbar [\paraUbar]
+4090 [http://dlmf.nist.gov/12.4.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4091 [http://dlmf.nist.gov/12.4.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4096 [http://dlmf.nist.gov/12.5.E1]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4097 [http://dlmf.nist.gov/12.5.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4098 [http://dlmf.nist.gov/12.5.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4099 [http://dlmf.nist.gov/12.5.E4]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4100 [http://dlmf.nist.gov/12.5.E5]: Error - java.lang.IllegalArgumentException: Error in CAS! [4100: \paraU@{a}{z} EQUAL \frac{\EulerGamma@{\frac{1}{2}-a}}{2\pi i}e^{-\frac{1}{4}z^{2}}\int_{-\infty}^{(0+)}e^{zt-\frac{1}{2}t^{2}}t^{a-\frac{1}{2}}\diff{t}; http://dlmf.nist.gov/12.5.E5]
+4101 [http://dlmf.nist.gov/12.5.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4102 [http://dlmf.nist.gov/12.5.E7]: Error - (LaTeX -> Maple) The input LaTeX is invalid: A limited expression ends with no argument left.
+4103 [http://dlmf.nist.gov/12.5.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4104 [http://dlmf.nist.gov/12.5.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4105 [http://dlmf.nist.gov/12.7.E1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+4105-a [http://dlmf.nist.gov/12.7.E1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+4106 [http://dlmf.nist.gov/12.7.E2]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4106-a [http://dlmf.nist.gov/12.7.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \dilHermitepolyHe [\dilHermitepolyHe]
+4106-b [http://dlmf.nist.gov/12.7.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \dilHermitepolyHe [\dilHermitepolyHe]
+4107 [http://dlmf.nist.gov/12.7.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \dilHermitepolyHe [\dilHermitepolyHe]
+4107-a [http://dlmf.nist.gov/12.7.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \dilHermitepolyHe [\dilHermitepolyHe]
+4108 [http://dlmf.nist.gov/12.7.E4]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4109 [http://dlmf.nist.gov/12.7.E5]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+4109-a [http://dlmf.nist.gov/12.7.E5]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+4110 [http://dlmf.nist.gov/12.7.E6]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4110-a [http://dlmf.nist.gov/12.7.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4111 [http://dlmf.nist.gov/12.7.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \FishersHh [\FishersHh]
+4111-a [http://dlmf.nist.gov/12.7.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \FishersHh [\FishersHh]
+4112 [http://dlmf.nist.gov/12.7.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4113 [http://dlmf.nist.gov/12.7.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4114 [http://dlmf.nist.gov/12.7.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4115 [http://dlmf.nist.gov/12.7.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4118 [http://dlmf.nist.gov/12.7.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4118-a [http://dlmf.nist.gov/12.7.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4118-b [http://dlmf.nist.gov/12.7.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4118-c [http://dlmf.nist.gov/12.7.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4119 [http://dlmf.nist.gov/12.8.E1]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4120 [http://dlmf.nist.gov/12.8.E2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+4121 [http://dlmf.nist.gov/12.8.E3]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4122 [http://dlmf.nist.gov/12.8.E4]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4123 [http://dlmf.nist.gov/12.8.E5]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4124 [http://dlmf.nist.gov/12.8.E6]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4125 [http://dlmf.nist.gov/12.8.E7]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+4126 [http://dlmf.nist.gov/12.8.E8]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4127 [http://dlmf.nist.gov/12.8.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4128 [http://dlmf.nist.gov/12.8.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4129 [http://dlmf.nist.gov/12.8.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4130 [http://dlmf.nist.gov/12.8.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4131: Skipped - Unable to analyze test case.
+4132: Skipped - Unable to analyze test case.
+4133: Skipped - Unable to analyze test case.
+4134: Skipped - Unable to analyze test case.
+4137 [http://dlmf.nist.gov/12.10.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4137-a [http://dlmf.nist.gov/12.10.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4138: Skipped - Unable to analyze test case.
+4139: Skipped - Unable to analyze test case.
+4140: Skipped - Unable to analyze test case.
+4141: Skipped - Unable to analyze test case.
+4161: Skipped - Unable to analyze test case.
+4162: Skipped - Unable to analyze test case.
+4163: Skipped - Unable to analyze test case.
+4164: Skipped - Unable to analyze test case.
+4170: Skipped - Unable to analyze test case.
+4171 [http://dlmf.nist.gov/12.10.E26]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+4173: Skipped - Unable to analyze test case.
+4174: Skipped - Unable to analyze test case.
+4176: Skipped - Unable to analyze test case.
+4181: Skipped - Unable to analyze test case.
+4182: Skipped - Unable to analyze test case.
+4183: Skipped - Unable to analyze test case.
+4184: Skipped - Unable to analyze test case.
+4198 [http://dlmf.nist.gov/12.11.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4206: Skipped - Unable to analyze test case.
+4207 [http://dlmf.nist.gov/12.12.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4208 [http://dlmf.nist.gov/12.12.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4209 [http://dlmf.nist.gov/12.12.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4210 [http://dlmf.nist.gov/12.12.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraUbar [\paraUbar]
+4211 [http://dlmf.nist.gov/12.13.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4215 [http://dlmf.nist.gov/12.13.E5]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+4216 [http://dlmf.nist.gov/12.13.E6]: Error - (LaTeX -> Maple) The current implementation is wrong: Wrong translation method used. You have to specify an open bracket to translate it like a sequence.
+4217 [http://dlmf.nist.gov/12.14.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+4218 [http://dlmf.nist.gov/12.14.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+4219 [http://dlmf.nist.gov/12.14.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: paraW [paraW]
+4220 [http://dlmf.nist.gov/12.14.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+4225 [http://dlmf.nist.gov/12.14.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+4234 [http://dlmf.nist.gov/12.14.E13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+4234-a [http://dlmf.nist.gov/12.14.E13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+4235 [http://dlmf.nist.gov/12.14.E14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+4235-a [http://dlmf.nist.gov/12.14.E14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+4236 [http://dlmf.nist.gov/12.14.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4236-a [http://dlmf.nist.gov/12.14.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4237 [http://dlmf.nist.gov/12.14.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4237-a [http://dlmf.nist.gov/12.14.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4238 [http://dlmf.nist.gov/12.14.E17]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+4239 [http://dlmf.nist.gov/12.14.E18]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+4241: Skipped - Unable to analyze test case.
+4242: Skipped - Unable to analyze test case.
+4244: Skipped - Unable to analyze test case.
+4245 [http://dlmf.nist.gov/12.14.E24]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4246: Skipped - Unable to analyze test case.
+4247: Skipped - Unable to analyze test case.
+4250: Skipped - Unable to analyze test case.
+4254: Skipped - Unable to analyze test case.
+4255: Skipped - Unable to analyze test case.
+4256: Skipped - Unable to analyze test case.
+4257: Skipped - Unable to analyze test case.
+4258: Skipped - Unable to analyze test case.
+4260 [http://dlmf.nist.gov/12.14.E37]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+4261 [http://dlmf.nist.gov/12.14.E38]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
+4262 [http://dlmf.nist.gov/12.15.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4264 [http://dlmf.nist.gov/12.17.E2]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
+4268 [http://dlmf.nist.gov/12.17.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4269 [https://dlmf.nist.gov/12.17#Ex4]: Error - java.lang.IllegalArgumentException: Error in CAS! [4269: \deriv[2]{\paraU}{\xi}+\left(\sigma\xi^{2}+\lambda\right)\paraU EQUAL 0; https://dlmf.nist.gov/12.17#Ex4]
+4270 [https://dlmf.nist.gov/12.17#Ex5]: Error - java.lang.IllegalArgumentException: Error in CAS! [4270: \deriv[2]{\paraV}{\eta}+\left(\sigma\eta^{2}-\lambda\right)\paraV EQUAL 0; https://dlmf.nist.gov/12.17#Ex5]
+4271 [https://dlmf.nist.gov/12.17#Ex6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]

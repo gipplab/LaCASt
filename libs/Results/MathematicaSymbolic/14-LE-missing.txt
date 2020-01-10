@@ -1,0 +1,10 @@
+\assLegendreOlverQ, 37
+\assLegendreQ, 7
+\DunsterQ, 5
+\paraUbar, 3
+\envBesselY, 2
+\envBesselJ, 2
+\surfharmonicY, 1
+\hbar, 1
+\envparaU, 1
+\Jacobiphi, 1
