@@ -1,0 +1,6 @@
+\Weierstrasselatt, 7
+\defeq, 2
+\HeunpolyHp, 2
+\BesselC, 1
+\HeunHf, 1
+\Weierstrassplatt, 1

@@ -1,0 +1,11 @@
+\nrestpartitions, 17
+\Euleriannumber, 13
+\Catalannumber, 9
+\npartitions, 8
+\ncompositions, 4
+\qbinom, 4
+\mathop, 2
+\nrestcompositions, 2
+\atop, 1
+\defeq, 1
+\nplanepartitions, 1

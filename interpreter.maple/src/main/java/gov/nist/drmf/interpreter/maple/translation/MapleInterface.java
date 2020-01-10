@@ -377,10 +377,17 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
      */
     public static MapleListener getUniqueMapleListener(){ return listener; }
 
+    private static void unsetInterfaceAfterError() {
+        mInterface = null;
+    }
+
     public static boolean isMaplePresent() {
         try {
             MapleInterface.init();
             return true;
-        } catch ( Exception e ) { return false; }
+        } catch ( Exception | Error e ) {
+            MapleInterface.unsetInterfaceAfterError();
+            return false;
+        }
     }
 }

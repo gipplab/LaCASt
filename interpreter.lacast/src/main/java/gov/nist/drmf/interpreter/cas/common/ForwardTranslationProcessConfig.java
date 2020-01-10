@@ -22,6 +22,8 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
 
     private boolean isInit = false;
 
+    private boolean extensiveOutput = false;
+
     public ForwardTranslationProcessConfig(String to_language) {
         this(to_language, false);
     }
@@ -44,6 +46,10 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
         this.isInit = true;
     }
 
+    public void setShortOutput() {
+        extensiveOutput = false;
+    }
+
     public String getTAB() {
         return TAB;
     }
@@ -62,5 +68,9 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
 
     public boolean isAlternativeMode() {
         return alternativeMode;
+    }
+
+    public boolean shortOutput() {
+        return !extensiveOutput;
     }
 }

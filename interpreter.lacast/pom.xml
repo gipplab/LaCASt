@@ -14,6 +14,10 @@
     <version>2.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <main.basedir>${project.parent.basedir}</main.basedir>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>gov.nist.drmf.interpreter</groupId>
@@ -48,10 +52,8 @@
         <!-- Maven surefire does not load these transitive dependencies from core... -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>MLP</artifactId>
-            <scope>system</scope>
+            <artifactId>mlp</artifactId>
             <version>${mlp.version}</version>
-            <systemPath>${mlp.path}</systemPath>
         </dependency>
     </dependencies>
 
@@ -59,6 +61,60 @@
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>compile-translator</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>latex-to-cas-translator</finalName>
+                            <archive>
+                                <manifest>
+                                    <mainClass>
+                                        gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter
+                                    </mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <outputDirectory>${main.basedir}/bin/</outputDirectory>
+                            <appendAssemblyId>false</appendAssemblyId>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>compile-lexicon-creator</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>lexicon-creator</finalName>
+                            <archive>
+                                <manifest>
+                                    <mainClass>
+                                        gov.nist.drmf.interpreter.cas.mlp.CSVtoLexiconConverter
+                                    </mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <outputDirectory>${main.basedir}/bin/</outputDirectory>
+                            <appendAssemblyId>false</appendAssemblyId>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

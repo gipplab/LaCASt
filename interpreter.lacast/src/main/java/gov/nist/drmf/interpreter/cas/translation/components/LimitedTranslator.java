@@ -125,7 +125,8 @@ public class LimitedTranslator extends AbstractListTranslator {
                 stripMultiParentheses(
                     transArgs.getTranslatedExpression()
                 ),
-                category
+                category,
+                root
         );
 
         if ( lastIdx > 0 ) {
@@ -134,7 +135,8 @@ public class LimitedTranslator extends AbstractListTranslator {
                         limit,
                         i,
                         stripMultiParentheses(finalTranslation),
-                        category
+                        category,
+                        root
                 );
             }
         }
@@ -151,39 +153,57 @@ public class LimitedTranslator extends AbstractListTranslator {
         return localTranslations;
     }
 
-    private String translatePattern(Limits limit, int idx, String arg, LimitedExpressions category) {
+    private String translatePattern(Limits limit, int idx, String arg, LimitedExpressions category, MathTerm mathTerm) {
+        String[] arguments = null;
+        String categoryKey = null;
+
         if ( indef ) {
-            String[] args = new String[]{
+            arguments = new String[]{
                     limit.getVars().get(idx),
                     arg
             };
-            return bft.translate(args, category.getIndefKey());
-        }
-        if ( !limit.isLimitOverSet() ) {
+            categoryKey = category.getIndefKey();
+        } else if ( !limit.isLimitOverSet() ) {
             if ( limit.getDirection() != null ) {
-                String[] args = new String[]{
+                arguments = new String[]{
                         limit.getVars().get(idx),
                         limit.getLower().get(idx),
                         arg,
                 };
-                return bft.translate(args, category.getDirectionKey(limit.getDirection()));
+                categoryKey = category.getDirectionKey(limit.getDirection());
             } else {
-                String[] args = new String[]{
+                arguments = new String[]{
                         limit.getVars().get(idx),
                         limit.getLower().get(idx),
                         limit.getUpper().get(idx),
                         arg,
                 };
-                return bft.translate(args, category.getKey());
+                categoryKey = category.getKey();
             }
         } else {
-            String[] args = new String[]{
+            arguments = new String[]{
                     limit.getVars().get(idx),
                     limit.getLower().get(idx),
                     arg,
             };
-            return bft.translate(args, category.getSetKey());
+            categoryKey = category.getSetKey();
         }
+
+        if ( category.equals(LimitedExpressions.INT) ) {
+            int degree = LimitedExpressions.getMultiIntDegree(mathTerm);
+            return recursiveIntTranslation( categoryKey, arguments, degree );
+        } else return bft.translate(arguments, categoryKey);
+    }
+
+    private String recursiveIntTranslation( String translationKey, String[] args, int degree ) {
+        if ( degree < 1 ) return "";
+
+        String newArg = recursiveIntTranslation(translationKey, args, degree-1);
+        // the real argument is always the last in the array
+        if ( !newArg.isEmpty() )
+            args[args.length-1] = newArg;
+
+        return bft.translate(args, translationKey);
     }
 
     private Limits extractLimits(PomTaggedExpression limitSuperExpr, boolean lim) {
