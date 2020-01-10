@@ -35,7 +35,7 @@ public class CaseAnalyzerTests {
 
     @Test
     public void simpleTest() {
-        String line = "\\Ln@@{z} = \\int_1^z \\frac{\\diff{t}}{t} \\constraint{$z\\neq 0$}, \\url{http://dlmf.nist.gov/1.2.E1}";
+        String line = "\\Ln@@{z} = \\int_1^z \\frac{\\diff{t}}{t} \\constraint{$z\\neq 0$} \\url{http://dlmf.nist.gov/1.2.E1}";
 
         LinkedList<Case> cc = CaseAnalyzer.analyzeLine(line, 1, new SymbolDefinedLibrary());
         Case c = cc.get(0);
