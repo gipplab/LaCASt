@@ -1,0 +1,14 @@
+differenceCalculator[setMath_, setMap_, setVal_, prec_] :=
+    Module[{output},
+        output := {};
+        Do[
+            Module[{result},
+                result := Abs[Part[setMath, i] - Part[setMap, i]];
+                If[
+                    result > prec,
+                    AppendTo[output, {result, Part[setVal, i]}]
+                ]
+            ], {i, Length[setMath]}
+        ];
+        Return[output]
+    ]

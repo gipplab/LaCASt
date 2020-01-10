@@ -45,7 +45,6 @@
 \shiftJacobipolyG, 1
 \contqinvHermitepolyh, 1
 \paraV, 1
-\assLegendreQ, 1
 \shiftChebyshevpolyU, 1
 \shiftChebyshevpolyT, 1
 \max, 1

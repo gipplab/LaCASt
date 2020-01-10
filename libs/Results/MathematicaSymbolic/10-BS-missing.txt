@@ -18,4 +18,3 @@
 \MittagLefflerE, 1
 \assLegendreQ, 1
 \Rayleighsigma, 1
-im, 1

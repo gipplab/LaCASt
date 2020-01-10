@@ -306,9 +306,9 @@ Overall: [SUCCESS: 61, SUCCESS_SYMB: 61, SUCCESS_TRANS: 287, FAILURE: 224, START
 4570 [http://dlmf.nist.gov/13.18.E12]: Failure [Simple: NaN]
 4571 [http://dlmf.nist.gov/13.18.E13]: Failure [Simple: NaN]
 4572 [http://dlmf.nist.gov/13.18.E14]: Failure [Simple: NaN]
-4573 [http://dlmf.nist.gov/13.18.E15]: Failure [Simple: NaN]
+4573 [http://dlmf.nist.gov/13.18.E15]: Failure [Simple: Aborted]
 4574 [http://dlmf.nist.gov/13.18.E16]: Failure [Simple: Aborted]
-4575 [http://dlmf.nist.gov/13.18.E17]: Failure [Simple: Aborted]
+4575 [http://dlmf.nist.gov/13.18.E17]: Failure [Simple: NaN]
 4575-a [http://dlmf.nist.gov/13.18.E17]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \LaguerrepolyL [\LaguerrepolyL]
 4576: Skipped - Unable to analyze test case.
 4577: Skipped - Unable to analyze test case.
@@ -349,22 +349,22 @@ Overall: [SUCCESS: 61, SUCCESS_SYMB: 61, SUCCESS_TRANS: 287, FAILURE: 224, START
 4621 [http://dlmf.nist.gov/13.21.E24]: Error - (LaTeX -> Mathematica) No translation possible for given token: Accents are not supported.
 4622 [http://dlmf.nist.gov/13.21.E25]: Error - (LaTeX -> Mathematica) No translation possible for given token: Accents are not supported.
 4623 [http://dlmf.nist.gov/13.22.E1]: Failure [Simple: NaN]
-4624 [http://dlmf.nist.gov/13.23.E1]: Failure [Simple: Aborted]
+4624 [http://dlmf.nist.gov/13.23.E1]: Failure [Simple: NaN]
 4625 [http://dlmf.nist.gov/13.23.E2]: Failure [Simple: Aborted]
 4626 [http://dlmf.nist.gov/13.23.E3]: Failure [Simple: Aborted]
-4627 [http://dlmf.nist.gov/13.23.E4]: Failure [Simple: Aborted]
+4627 [http://dlmf.nist.gov/13.23.E4]: Failure [Simple: NaN]
 4628: Skipped - Unable to analyze test case.
 4629 [http://dlmf.nist.gov/13.23.E5]: Failure [Simple: Aborted]
-4630 [http://dlmf.nist.gov/13.23.E6]: Failure [Simple: NaN]
+4630 [http://dlmf.nist.gov/13.23.E6]: Failure [Simple: Aborted]
 4631 [http://dlmf.nist.gov/13.23.E7]: Failure [Simple: NaN]
-4632 [http://dlmf.nist.gov/13.23.E8]: Failure [Simple: Aborted]
+4632 [http://dlmf.nist.gov/13.23.E8]: Failure [Simple: NaN]
 4633 [http://dlmf.nist.gov/13.23.E9]: Failure [Simple: Aborted]
 4634: Skipped - Unable to analyze test case.
-4635 [http://dlmf.nist.gov/13.23.E10]: Failure [Simple: Aborted]
+4635 [http://dlmf.nist.gov/13.23.E10]: Failure [Simple: NaN]
 4636 [http://dlmf.nist.gov/13.23.E11]: Failure [Simple: Aborted]
 4637: Skipped - Unable to analyze test case.
 4638 [http://dlmf.nist.gov/13.23.E12]: Failure [Simple: Aborted]
-4641 [http://dlmf.nist.gov/13.24.E1]: Failure [Simple: NaN]
+4641 [http://dlmf.nist.gov/13.24.E1]: Failure [Simple: Aborted]
 4642 [http://dlmf.nist.gov/13.24.E2]: Failure [Simple: NaN]
 4643 [http://dlmf.nist.gov/13.24.E3]: Failure [Simple: NaN]
 4644 [http://dlmf.nist.gov/13.25.E1]: Failure [Simple: NaN]
@@ -385,8 +385,8 @@ Overall: [SUCCESS: 61, SUCCESS_SYMB: 61, SUCCESS_TRANS: 287, FAILURE: 224, START
 4662 [http://dlmf.nist.gov/13.29.E3]: Failure [Simple: NaN]
 4663 [http://dlmf.nist.gov/13.29.E4]: Failure [Simple: NaN]
 4665 [http://dlmf.nist.gov/13.29.E6]: Failure [Simple: NaN]
-4666 [http://dlmf.nist.gov/13.29.E7]: Failure [Simple: Aborted]
+4666 [http://dlmf.nist.gov/13.29.E7]: Failure [Simple: NaN]
 4667: Skipped - Unable to analyze test case.
 4669: Skipped - Unable to analyze test case.
 4671: Skipped - Unable to analyze test case.
-4672 [http://dlmf.nist.gov/13.31.E3]: Failure [Simple: NaN]
+4672 [http://dlmf.nist.gov/13.31.E3]: Failure [Simple: Aborted]

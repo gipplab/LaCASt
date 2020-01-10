@@ -247,6 +247,9 @@ public class MathematicaTranslator implements
     @Override
     public Expr performNumericalTests(String expression, String testCasesName, String postProcessingMethodName, int precision) throws ComputerAlgebraSystemEngineException {
         try {
+            String testCasesStr = mi.evaluate(testCasesName);
+            LOG.trace("Test cases: " + testCasesStr);
+
             String cmd = Commands.NUMERICAL_TEST.build(expression, testCasesName);
             LOG.info("Compute numerical test for " + expression);
             return mi.evaluateToExpression(cmd);
@@ -274,18 +277,6 @@ public class MathematicaTranslator implements
         if ( list == null || list.isEmpty() ) return "{}";
         String l = MapleSimplifier.makeListWithDelimiter(list);
         return "{"+l+"}";
-    }
-
-    public String getNumericalProcedures() {
-        try (Stream<String> stream = Files.lines(GlobalPaths.PATH_MATHEMATICA_NUMERICAL_PROCEDURES ) ){
-            String procedures = stream.collect( Collectors.joining(System.lineSeparator()) );
-            stream.close(); // not really necessary
-            LOG.debug("Successfully loaded procedures");
-            return procedures;
-        } catch (IOException ioe){
-            LOG.error("Cannot load mathematica procedure file.", ioe);
-            return null;
-        }
     }
 
     @Override

@@ -258,4 +258,13 @@ class SimpleTranslationTests {
         assertThrows(TranslationException.class, () -> slt.translate("\\overline{z}"));
         assertThrows(TranslationException.class, () -> slt.translate("\\overline{z+1}"));
     }
+
+    @Test
+    void replaceTranslationTest() {
+        String in = "e^{z}=(\\exp@@{z})\\exp@{2kz\\pi\\iunit}";
+        String label = "4.2.E33";
+        String res = slt.translate(in, label);
+        System.out.println(res);
+        assertEquals("exp(z)=(exp(z))* exp(2*k*z*Pi*I)", res);
+    }
 }

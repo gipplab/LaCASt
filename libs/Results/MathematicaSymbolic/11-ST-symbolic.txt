@@ -77,7 +77,7 @@ Overall: [SUCCESS: 28, SUCCESS_SYMB: 28, SUCCESS_TRANS: 109, FAILURE: 81, STARTE
 3974 [http://dlmf.nist.gov/11.7.E4]: Successful [Simple: 0]
 3975 [http://dlmf.nist.gov/11.7.E5]: Failure [Simple: NaN]
 3976 [http://dlmf.nist.gov/11.7.E6]: Failure [Simple: NaN]
-3977 [http://dlmf.nist.gov/11.7.E7]: Failure [Simple: Aborted]
+3977 [http://dlmf.nist.gov/11.7.E7]: Failure [Simple: NaN]
 3978 [https://dlmf.nist.gov/11.7#Ex1]: Successful [Simple: 0]
 3979 [https://dlmf.nist.gov/11.7#Ex2]: Successful [Simple: 0]
 3980 [http://dlmf.nist.gov/11.7.E9]: Failure [Simple: Aborted]

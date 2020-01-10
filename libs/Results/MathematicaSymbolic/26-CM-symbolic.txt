@@ -158,7 +158,7 @@ Overall: [SUCCESS: 17, SUCCESS_SYMB: 17, SUCCESS_TRANS: 73, FAILURE: 56, STARTED
 8267 [http://dlmf.nist.gov/26.14.E16]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Euleriannumber [\Euleriannumber]
 8275 [http://dlmf.nist.gov/26.15.E8]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \defeq [\defeq]
 8276 [http://dlmf.nist.gov/26.15.E9]: Failure [Simple: NaN]
-8277 [http://dlmf.nist.gov/26.15.E10]: Failure [Simple: NaN]
+8277 [http://dlmf.nist.gov/26.15.E10]: Failure [Simple: Aborted]
 8280 [http://dlmf.nist.gov/26.15.E13]: Failure [Simple: NaN]
 8282: Skipped - Unable to analyze test case.
 8284: Skipped - Unable to analyze test case.

@@ -8,7 +8,7 @@ customResultSieve := proc(values::list)
         output := output,values[i];
       end if;
     catch:
-      output := output,[Error, values[i][1]];
+      output := output,[Error, values[i][2]];
     end try;
   end do;
   return [output];

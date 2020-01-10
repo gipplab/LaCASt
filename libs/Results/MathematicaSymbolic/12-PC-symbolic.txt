@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 6, SUCCESS_SYMB: 6, SUCCESS_TRANS: 60, FAILURE: 53, STARTED_TEST_CASES: 107, SKIPPED: 35, DEFINITIONS: 28, IGNORE: 55, MISSING: 46, ERROR: 2] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 60, FAILURE: 52, STARTED_TEST_CASES: 107, SKIPPED: 35, DEFINITIONS: 28, IGNORE: 55, MISSING: 46, ERROR: 2] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 4068 [http://dlmf.nist.gov/12.2.E2]: Failure [Simple: NaN]
 4069 [http://dlmf.nist.gov/12.2.E3]: Failure [Simple: NaN]
@@ -34,7 +34,7 @@ Overall: [SUCCESS: 6, SUCCESS_SYMB: 6, SUCCESS_TRANS: 60, FAILURE: 53, STARTED_T
 4098 [http://dlmf.nist.gov/12.5.E3]: Failure [Simple: Aborted]
 4099 [http://dlmf.nist.gov/12.5.E4]: Failure [Simple: Aborted]
 4100 [http://dlmf.nist.gov/12.5.E5]: Failure [Simple: NaN]
-4101 [http://dlmf.nist.gov/12.5.E6]: Failure [Simple: Aborted]
+4101 [http://dlmf.nist.gov/12.5.E6]: Failure [Simple: NaN]
 4102 [http://dlmf.nist.gov/12.5.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraV [\paraV]
 4103 [http://dlmf.nist.gov/12.5.E8]: Failure [Simple: Aborted]
 4104 [http://dlmf.nist.gov/12.5.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraV [\paraV]
@@ -116,7 +116,7 @@ Overall: [SUCCESS: 6, SUCCESS_SYMB: 6, SUCCESS_TRANS: 60, FAILURE: 53, STARTED_T
 4236 [http://dlmf.nist.gov/12.14.E15]: Failure [Simple: NaN]
 4236-a [http://dlmf.nist.gov/12.14.E15]: Successful [Simple: 0]
 4237 [http://dlmf.nist.gov/12.14.E16]: Failure [Simple: NaN]
-4237-a [http://dlmf.nist.gov/12.14.E16]: Failure [Simple: NaN]
+4237-a [http://dlmf.nist.gov/12.14.E16]: Successful [Simple: 0]
 4238 [http://dlmf.nist.gov/12.14.E17]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
 4239 [http://dlmf.nist.gov/12.14.E18]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraW [\paraW]
 4241: Skipped - Unable to analyze test case.

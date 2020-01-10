@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 2, SUCCESS_SYMB: 2, SUCCESS_TRANS: 88, FAILURE: 86, STARTED_TEST_CASES: 168, SKIPPED: 75, DEFINITIONS: 12, IGNORE: 139, MISSING: 68, ERROR: 12] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 3, SUCCESS_SYMB: 3, SUCCESS_TRANS: 89, FAILURE: 86, STARTED_TEST_CASES: 168, SKIPPED: 75, DEFINITIONS: 12, IGNORE: 139, MISSING: 67, ERROR: 12] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 653: Skipped - Unable to analyze test case.
 655 [http://dlmf.nist.gov/2.1.E6]: Failure [Simple: NaN]
@@ -50,7 +50,7 @@ Overall: [SUCCESS: 2, SUCCESS_SYMB: 2, SUCCESS_TRANS: 88, FAILURE: 86, STARTED_T
 746 [http://dlmf.nist.gov/2.5.E5]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \Mellintrans [\Mellintrans]
 747 [http://dlmf.nist.gov/2.5.E6]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Illegal expression followed a limited expression: \limits
 748 [http://dlmf.nist.gov/2.5.E7]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \Mellintrans [\Mellintrans]
-749 [http://dlmf.nist.gov/2.5.E8]: Failure [Simple: Aborted]
+749 [http://dlmf.nist.gov/2.5.E8]: Failure [Simple: NaN]
 750 [http://dlmf.nist.gov/2.5.E9]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \Mellintrans [\Mellintrans]
 751 [http://dlmf.nist.gov/2.5.E10]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \Mellintrans [\Mellintrans]
 752 [http://dlmf.nist.gov/2.5.E11]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \Mellintrans [\Mellintrans]
@@ -203,11 +203,11 @@ Overall: [SUCCESS: 2, SUCCESS_SYMB: 2, SUCCESS_TRANS: 88, FAILURE: 86, STARTED_T
 967 [http://dlmf.nist.gov/2.10.E15]: Failure [Simple: NaN]
 968 [http://dlmf.nist.gov/2.10.E16]: Failure [Simple: NaN]
 969 [http://dlmf.nist.gov/2.10.E17]: Failure [Simple: NaN]
-970 [http://dlmf.nist.gov/2.10.E18]: Error - (LaTeX -> Mathematica) No translation possible for given token: Unknown relation. Cannot translate: in [in]
+970 [http://dlmf.nist.gov/2.10.E18]: Failure [Simple: NaN]
 971 [http://dlmf.nist.gov/2.10.E19]: Failure [Simple: NaN]
 972: Skipped - Unable to analyze test case.
 973 [http://dlmf.nist.gov/2.10.E20]: Error - java.util.NoSuchElementException [973: \sum_{j=0}^{n-1}\frac{x^{j}}{(j!)^{3}} EQUAL \frac{1}{2i}\int_{\mathscr{C}}\frac{x^{t}}{(\EulerGamma@{t+1})^{3}}\cot@{\pi t}\diff{t}; http://dlmf.nist.gov/2.10.E20]
-974 [http://dlmf.nist.gov/2.10.E21]: Failure [Simple: NaN]
+974 [http://dlmf.nist.gov/2.10.E21]: Successful [Simple: 0]
 974-a [http://dlmf.nist.gov/2.10.E21]: Successful [Simple: 0]
 975 [http://dlmf.nist.gov/2.10.E22]: Error - java.util.NoSuchElementException [975: \sum_{j=0}^{n-1}\frac{x^{j}}{(j!)^{3}} EQUAL \int_{-1/2}^{n-(1/2)}\frac{x^{t}}{(\EulerGamma@{t+1})^{3}}\diff{t}-\int_{\mathscr{C}_{1}}\frac{x^{t}}{(\EulerGamma@{t+1})^{3}}\frac{\diff{t}}{e^{-2\pi it}-1}+\int_{\mathscr{C}_{2}}\frac{x^{t}}{(\EulerGamma@{t+1})^{3}}\frac{\diff{t}}{e^{2\pi it}-1}; http://dlmf.nist.gov/2.10.E22]
 976 [http://dlmf.nist.gov/2.10.E23]: Failure [Simple: NaN]

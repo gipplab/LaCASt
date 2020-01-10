@@ -101,6 +101,9 @@ public class GlobalPaths {
     public static final Path PATH_MATHEMATICA_NUMERICAL_PROCEDURES =
             PATH_MATHEMATICA_PROCS.resolve("mathematica_numerical_procedures.txt");
 
+    public static final Path PATH_MATHEMATICA_DIFFERENCE_PROCEDURES =
+            PATH_MATHEMATICA_PROCS.resolve("difference_calc.txt");
+
     // path variable to the resources of the interpreter
     private static final Path PATH_CORE_RESOURCES =
             Paths.get("interpreter.common", "src", "main", "resources");

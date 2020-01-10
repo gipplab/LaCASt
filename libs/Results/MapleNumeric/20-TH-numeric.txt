@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 1, FAILURE: 0, LIMIT_SKIPS: 0, TESTED: 45, ERROR: 44] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 1, FAILURE: 0, LIMIT_SKIPS: 31, TESTED: 45, ERROR: 44] for test expression: (#LHS)-(#RHS)
 7014: Error - java.lang.NullPointerException
 7014-a: Skip - symbolical successful subtest
 7015: Error - java.lang.NullPointerException

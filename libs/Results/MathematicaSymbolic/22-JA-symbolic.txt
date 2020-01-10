@@ -260,7 +260,7 @@ Overall: [SUCCESS: 26, SUCCESS_SYMB: 26, SUCCESS_TRANS: 228, FAILURE: 202, START
 7465 [http://dlmf.nist.gov/22.19.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Jacobiamk [\Jacobiamk]
 7466 [http://dlmf.nist.gov/22.19.E4]: Failure [Simple: NaN]
 7468 [http://dlmf.nist.gov/22.19.E6]: Failure [Simple: NaN]
-7469 [http://dlmf.nist.gov/22.19.E7]: Failure [Simple: NaN]
+7469 [http://dlmf.nist.gov/22.19.E7]: Failure [Simple: Aborted]
 7470 [http://dlmf.nist.gov/22.19.E8]: Failure [Simple: NaN]
 7471 [http://dlmf.nist.gov/22.19.E9]: Failure [Simple: NaN]
 7477 [http://dlmf.nist.gov/22.20.E4]: Failure [Simple: NaN]

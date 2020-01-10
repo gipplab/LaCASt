@@ -14,7 +14,6 @@
 \det, 1
 \Fouriertrans, 1
 \variation, 1
-Re, 1
 \Fouriersintrans, 1
 \regCoulombs, 1
 \Fouriercostrans, 1
