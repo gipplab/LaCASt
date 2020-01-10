@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 24, SUCCESS_SYMB: 24, SUCCESS_TRANS: 102, FAILURE: 78, STARTED_TEST_CASES: 229, SKIPPED: 17, DEFINITIONS: 41, IGNORE: 400, MISSING: 104, ERROR: 23] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 25, SUCCESS_SYMB: 25, SUCCESS_TRANS: 103, FAILURE: 78, STARTED_TEST_CASES: 229, SKIPPED: 17, DEFINITIONS: 41, IGNORE: 400, MISSING: 103, ERROR: 23] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 1 [http://dlmf.nist.gov/1.2.E1]: Successful [Simple: 0]
 1-a [http://dlmf.nist.gov/1.2.E1]: Successful [Simple: 0]
@@ -110,8 +110,8 @@ Overall: [SUCCESS: 24, SUCCESS_SYMB: 24, SUCCESS_TRANS: 102, FAILURE: 78, STARTE
 267 [http://dlmf.nist.gov/1.9.E26]: Successful [Simple: 0]
 267-a [http://dlmf.nist.gov/1.9.E26]: Successful [Simple: 0]
 268 [http://dlmf.nist.gov/1.9.E27]: Successful [Simple: 0]
-274 [http://dlmf.nist.gov/1.9.E33]: Failure [Simple: NaN]
-275 [http://dlmf.nist.gov/1.9.E34]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for Re [Re]
+274 [http://dlmf.nist.gov/1.9.E33]: Successful [Simple: 0]
+275 [http://dlmf.nist.gov/1.9.E34]: Failure [Simple: Aborted]
 311 [http://dlmf.nist.gov/1.9.E63]: Failure [Simple: NaN]
 318 [http://dlmf.nist.gov/1.9.E68]: Error - java.util.NoSuchElementException [318: \int_{C}\sum^{\infty}_{n=0}f_{n}(z)\diff{z} EQUAL \sum^{\infty}_{n=0}\int_{C}f_{n}(z)\diff{z}; http://dlmf.nist.gov/1.9.E68]
 319 [http://dlmf.nist.gov/1.9.E69]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \diff [\diff]
@@ -234,7 +234,7 @@ Overall: [SUCCESS: 24, SUCCESS_SYMB: 24, SUCCESS_TRANS: 102, FAILURE: 78, STARTE
 637 [http://dlmf.nist.gov/1.17.E13]: Failure [Simple: Aborted]
 638 [http://dlmf.nist.gov/1.17.E14]: Failure [Simple: Aborted]
 639 [http://dlmf.nist.gov/1.17.E15]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \regCoulombs [\regCoulombs]
-641 [http://dlmf.nist.gov/1.17.E17]: Failure [Simple: Aborted]
+641 [http://dlmf.nist.gov/1.17.E17]: Failure [Simple: NaN]
 642 [http://dlmf.nist.gov/1.17.E18]: Failure [Simple: Aborted]
 643 [http://dlmf.nist.gov/1.17.E19]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \Diracdeltaseq [\Diracdeltaseq]
 644 [http://dlmf.nist.gov/1.17.E20]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \Diracdeltaseq [\Diracdeltaseq]

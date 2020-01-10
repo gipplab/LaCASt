@@ -9,4 +9,3 @@
 \Stieltjestrans, 2
 \perBernoulliB, 1
 \defeq, 1
-in, 1

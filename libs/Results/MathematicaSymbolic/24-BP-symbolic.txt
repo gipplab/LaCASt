@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 13, SUCCESS_SYMB: 13, SUCCESS_TRANS: 112, FAILURE: 99, STARTED_TEST_CASES: 185, SKIPPED: 22, DEFINITIONS: 0, IGNORE: 36, MISSING: 65, ERROR: 8] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 14, SUCCESS_SYMB: 14, SUCCESS_TRANS: 112, FAILURE: 98, STARTED_TEST_CASES: 185, SKIPPED: 22, DEFINITIONS: 0, IGNORE: 36, MISSING: 65, ERROR: 8] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 7677 [http://dlmf.nist.gov/23.21.E1]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \Weierstrasselatt [\Weierstrasselatt]
 7680 [https://dlmf.nist.gov/23.21#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrassplatt [\Weierstrassplatt]
@@ -16,10 +16,10 @@ Overall: [SUCCESS: 13, SUCCESS_SYMB: 13, SUCCESS_TRANS: 112, FAILURE: 99, STARTE
 7694 [http://dlmf.nist.gov/24.2.E1]: Successful [Simple: 0]
 7695 [https://dlmf.nist.gov/24.2#Ex1]: Failure [Simple: NaN]
 7696 [https://dlmf.nist.gov/24.2#Ex2]: Failure [Simple: NaN]
-7697 [http://dlmf.nist.gov/24.2.E3]: Failure [Simple: NaN]
+7697 [http://dlmf.nist.gov/24.2.E3]: Successful [Simple: 0]
 7698 [http://dlmf.nist.gov/24.2.E4]: Successful [Simple: 0]
 7699 [http://dlmf.nist.gov/24.2.E5]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \choose [\choose]
-7700 [http://dlmf.nist.gov/24.2.E6]: Successful [Simple: 0]
+7700 [http://dlmf.nist.gov/24.2.E6]: Failure [Simple: NaN]
 7701 [https://dlmf.nist.gov/24.2#Ex3]: Failure [Simple: NaN]
 7702 [https://dlmf.nist.gov/24.2#Ex4]: Failure [Simple: NaN]
 7703 [http://dlmf.nist.gov/24.2.E8]: Successful [Simple: 0]
@@ -56,7 +56,7 @@ Overall: [SUCCESS: 13, SUCCESS_SYMB: 13, SUCCESS_TRANS: 112, FAILURE: 99, STARTE
 7733 [http://dlmf.nist.gov/24.4.E24]: Error - (LaTeX -> Mathematica) No translation possible for given token: This program cannot translate abbreviations like mx [mx]
 7734 [http://dlmf.nist.gov/24.4.E25]: Failure [Simple: NaN]
 7734-a [http://dlmf.nist.gov/24.4.E25]: Failure [Simple: NaN]
-7735 [http://dlmf.nist.gov/24.4.E26]: Failure [Simple: NaN]
+7735 [http://dlmf.nist.gov/24.4.E26]: Successful [Simple: 0]
 7735-a [http://dlmf.nist.gov/24.4.E26]: Failure [Simple: NaN]
 7736 [http://dlmf.nist.gov/24.4.E27]: Successful [Simple: 0]
 7737 [http://dlmf.nist.gov/24.4.E28]: Successful [Simple: 0]

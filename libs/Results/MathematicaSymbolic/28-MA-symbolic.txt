@@ -101,7 +101,7 @@ Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 123, FAILURE: 116, STARTED
 8591 [http://dlmf.nist.gov/28.10.E9]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty expression tag
 8592 [http://dlmf.nist.gov/28.10.E10]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty expression tag
 8596 [http://dlmf.nist.gov/28.11.E3]: Failure [Simple: Aborted]
-8597 [http://dlmf.nist.gov/28.11.E4]: Failure [Simple: Aborted]
+8597 [http://dlmf.nist.gov/28.11.E4]: Failure [Simple: NaN]
 8598 [http://dlmf.nist.gov/28.11.E5]: Failure [Simple: Aborted]
 8599 [http://dlmf.nist.gov/28.11.E6]: Failure [Simple: Aborted]
 8600 [http://dlmf.nist.gov/28.11.E7]: Failure [Simple: Aborted]

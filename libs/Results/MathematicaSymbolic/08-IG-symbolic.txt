@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 49, SUCCESS_SYMB: 49, SUCCESS_TRANS: 158, FAILURE: 109, STARTED_TEST_CASES: 207, SKIPPED: 27, DEFINITIONS: 6, IGNORE: 62, MISSING: 47, ERROR: 2] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 48, SUCCESS_SYMB: 48, SUCCESS_TRANS: 158, FAILURE: 110, STARTED_TEST_CASES: 207, SKIPPED: 27, DEFINITIONS: 6, IGNORE: 62, MISSING: 47, ERROR: 2] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 2450 [http://dlmf.nist.gov/8.2.E1]: Failure [Simple: NaN]
 2451 [http://dlmf.nist.gov/8.2.E2]: Failure [Simple: Aborted]
@@ -172,7 +172,7 @@ Overall: [SUCCESS: 49, SUCCESS_SYMB: 49, SUCCESS_TRANS: 158, FAILURE: 109, START
 2658 [http://dlmf.nist.gov/8.19.E2]: Failure [Simple: Aborted]
 2659 [http://dlmf.nist.gov/8.19.E3]: Failure [Simple: Aborted]
 2660 [http://dlmf.nist.gov/8.19.E4]: Failure [Simple: Aborted]
-2661 [http://dlmf.nist.gov/8.19.E5]: Successful [Simple: 0]
+2661 [http://dlmf.nist.gov/8.19.E5]: Failure [Simple: NaN]
 2662 [http://dlmf.nist.gov/8.19.E6]: Failure [Simple: NaN]
 2663 [http://dlmf.nist.gov/8.19.E7]: Failure [Simple: NaN]
 2664 [http://dlmf.nist.gov/8.19.E8]: Error - java.lang.NullPointerException [2664: \genexpintE{n}@{z} EQUAL \frac{(-z)^{n-1}}{(n-1)!}(\digamma@{n}-\ln@@{z})-\sum_{\begin{subarray}{c}k=0\\ k\neq n-1\end{subarray}}^{\infty}\frac{(-z)^{k}}{k!(1-n+k)}; http://dlmf.nist.gov/8.19.E8]

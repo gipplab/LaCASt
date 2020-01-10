@@ -27,6 +27,8 @@ public abstract class AbstractEvaluator<T> {
 
     public final static String NL = System.lineSeparator();
 
+    public static int DEFAULT_TIMEOUT_MS = 4_000; // 4 seconds
+
     private IConstraintTranslator forwardTranslator;
     private IComputerAlgebraSystemEngine<T> engine;
 
@@ -107,9 +109,14 @@ public abstract class AbstractEvaluator<T> {
     public abstract void performSingleTest(Case testCase);
 
     public void performAllTests(LinkedList<Case> testCases) {
+//        HashSet<Integer> m = new HashSet<>();
+//        for ( Integer i : NumericalEvaluator.POT_DIFF ) m.add(i);
+
         for ( Case test : testCases ) {
-            test.replaceSymbolsUsed(symbolDefinitionLibrary);
-            performSingleTest(test);
+//            if ( m.contains(test.getLine()) ) {
+                test.replaceSymbolsUsed(symbolDefinitionLibrary);
+                performSingleTest(test);
+//            }
         }
     }
 
@@ -247,8 +254,6 @@ public abstract class AbstractEvaluator<T> {
         }
     }
 
-    public static int DEFAULT_TIMEOUT_MS = 4_000; // 4 seconds
-
     protected static Thread getAbortionThread(IAbortEvaluator evaluator) {
         return getAbortionThread(evaluator, DEFAULT_TIMEOUT_MS);
     }
@@ -340,9 +345,10 @@ public abstract class AbstractEvaluator<T> {
         int limit = limits[1];
 
         for ( int i = start; i < lineResults.length && i < limit; i++ ){
-            if ( lineResults[i] == null ){
-                sb.append(i).append(": Skipped (is null)").append(NL);
-                return sb.toString();
+            if ( lineResults[i] == null || lineResults[i].isEmpty() ){
+//                sb.append(i).append(": Skipped (is null)").append(NL);
+//                return sb.toString();
+                continue;
             }
 
             LinkedList<String> tmp = lineResults[i];

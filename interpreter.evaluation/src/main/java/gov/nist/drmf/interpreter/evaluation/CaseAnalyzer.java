@@ -24,7 +24,7 @@ public class CaseAnalyzer {
     private static final Logger LOG = LogManager.getLogger(CaseAnalyzer.class.getName());
 
     private static final Pattern META_INFO_PATTERN = Pattern.compile(
-            "\\\\constraint\\{(.*?)}|" +
+            "\\\\constraint\\{(.*?)} |" +
             "\\\\url\\{(.*?)}|" +
             "\\\\symbolDefined\\[(.*?)]\\{([a-zA-Z0-9.]*?)}|" +
             "\\\\symbolUsed\\[(.*?)]\\{([a-zA-Z0-9.]*?)}|" +
@@ -37,9 +37,9 @@ public class CaseAnalyzer {
             "^(.*?)[\\\\,;.\\s]*"+EOL+".*$"
     );
 
-    private static final Pattern CONSTRAINT_SPLITTER_PATTERN = Pattern.compile(
-            "\\$.+?\\$"
-    );
+//    private static final Pattern CONSTRAINT_SPLITTER_PATTERN = Pattern.compile(
+//            "\\$.+?\\$"
+//    );
 
     private static final int CONSTRAINT_GRP = 1;
     private static final int URL_GRP = 2;
@@ -301,23 +301,45 @@ public class CaseAnalyzer {
             return new CaseMetaData(lineNumber, label, null, symbolsUsed);
 
         // second, build list of constraints
-        LinkedList<String> cons = new LinkedList<>();
-        for ( String con : constraints ) {
-            Matcher consMatcher = CONSTRAINT_SPLITTER_PATTERN.matcher(con);
-
-            while( consMatcher.find() ){
-                cons.add(consMatcher.group());
-            }
-        }
+//        LinkedList<String> cons = new LinkedList<>();
+//        for ( String con : constraints ) {
+//            Matcher consMatcher = CONSTRAINT_SPLITTER_PATTERN.matcher(con);
+//
+//            while( consMatcher.find() ){
+//                cons.add(consMatcher.group());
+//            }
+//        }
 
         LinkedList<String> sieved = new LinkedList<>();
         LinkedList<String[][]> varVals = new LinkedList<>();
         int length = 0;
 
-        while ( !cons.isEmpty() ){
-            String con = cons.removeFirst();
+        while ( !constraints.isEmpty() ){
+            String con = constraints.removeFirst();
             try {
                 String[][] rule = analyzer.checkForBlueprintRules(con);
+                // some constraints are buggy... consider \nu\geq 1,x\in\Reals
+                if ( rule == null ) {
+                    LinkedList<String[][]> innerRulesList = new LinkedList<>();
+                    LinkedList<String> innerSieved = new LinkedList<>();
+                    String[] multiCon = con.split(",");
+                    for ( String c : multiCon ) {
+                        String[][] innerRule = analyzer.checkForBlueprintRules(c);
+                        if ( innerRule != null ) innerRulesList.addLast(innerRule);
+                        else innerSieved.add(c);
+                    }
+                    if ( !innerRulesList.isEmpty() ){
+                        for ( String[][] tmp : innerRulesList ) {
+                            varVals.add(tmp);
+                            length += tmp[0].length;
+                        }
+                        for ( String c : innerSieved ) {
+                            sieved.add(c);
+                        }
+                        continue;
+                    }
+                }
+
                 if ( rule != null && ACTIVE_BLUEPRINTS ) {
                     varVals.add(rule);
                     length += rule[0].length;
