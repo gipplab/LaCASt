@@ -18,4 +18,4 @@ target/
 *.class
 
 # Working with logging files now. We should ignore these.
-*.log
+logs/
