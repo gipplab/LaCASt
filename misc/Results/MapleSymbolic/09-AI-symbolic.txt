@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 49, SUCCESS_SYMB: 49, SUCCESS_TRANS: 175, FAILURE: 126, STARTED_TEST_CASES: 234, SKIPPED: 36, DEFINITIONS: 24, IGNORE: 13, MISSING: 59, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 50, SUCCESS_SYMB: 50, SUCCESS_TRANS: 171, FAILURE: 121, STARTED_TEST_CASES: 228, SKIPPED: 37, DEFINITIONS: 24, IGNORE: 18, MISSING: 57, ERROR: 0] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
 2724 [http://dlmf.nist.gov/9.2.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2724-a [http://dlmf.nist.gov/9.2.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -22,7 +22,7 @@ Overall: [SUCCESS: 49, SUCCESS_SYMB: 49, SUCCESS_TRANS: 175, FAILURE: 126, START
 2745 [http://dlmf.nist.gov/9.5.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2746 [http://dlmf.nist.gov/9.5.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2747 [http://dlmf.nist.gov/9.5.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2748 [http://dlmf.nist.gov/9.5.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2748 [http://dlmf.nist.gov/9.5.E6]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2749 [http://dlmf.nist.gov/9.5.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2750 [http://dlmf.nist.gov/9.5.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2752 [http://dlmf.nist.gov/9.6.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -104,7 +104,6 @@ Overall: [SUCCESS: 49, SUCCESS_SYMB: 49, SUCCESS_TRANS: 175, FAILURE: 126, START
 2797 [http://dlmf.nist.gov/9.7.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2798 [http://dlmf.nist.gov/9.7.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2801 [http://dlmf.nist.gov/9.7.E22]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2802 [http://dlmf.nist.gov/9.7.E23]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2803 [http://dlmf.nist.gov/9.8.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2804 [http://dlmf.nist.gov/9.8.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2805 [http://dlmf.nist.gov/9.8.E3]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
@@ -163,8 +162,6 @@ Overall: [SUCCESS: 49, SUCCESS_SYMB: 49, SUCCESS_TRANS: 175, FAILURE: 126, START
 2855-b [http://dlmf.nist.gov/9.10.E3]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
 2856: Skipped - Unable to analyze test case.
 2857: Skipped - Unable to analyze test case.
-2858 [http://dlmf.nist.gov/9.10.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2859 [http://dlmf.nist.gov/9.10.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2860 [http://dlmf.nist.gov/9.10.E8]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
 2861 [http://dlmf.nist.gov/9.10.E9]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
 2863 [https://dlmf.nist.gov/9.10#Ex1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
@@ -174,7 +171,7 @@ Overall: [SUCCESS: 49, SUCCESS_SYMB: 49, SUCCESS_TRANS: 175, FAILURE: 126, START
 2867 [http://dlmf.nist.gov/9.10.E14]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2868 [http://dlmf.nist.gov/9.10.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2869 [http://dlmf.nist.gov/9.10.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2871 [http://dlmf.nist.gov/9.10.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2871 [http://dlmf.nist.gov/9.10.E18]: Skip - 
 2872 [https://dlmf.nist.gov/9.10#Ex3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2873 [http://dlmf.nist.gov/9.10.E19]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \pvint [\pvint]
 2874 [https://dlmf.nist.gov/9.10#Ex4]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \pvint [\pvint]
@@ -246,8 +243,6 @@ Overall: [SUCCESS: 49, SUCCESS_SYMB: 49, SUCCESS_TRANS: 175, FAILURE: 126, START
 2937 [https://dlmf.nist.gov/9.13#Ex6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEA [\genAiryODEA]
 2937-a [https://dlmf.nist.gov/9.13#Ex6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEB [\genAiryODEB]
 2940 [http://dlmf.nist.gov/9.13.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEA [\genAiryODEA]
-2941 [http://dlmf.nist.gov/9.13.E9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEA [\genAiryODEA]
-2943 [http://dlmf.nist.gov/9.13.E11]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEB [\genAiryODEB]
 2945 [http://dlmf.nist.gov/9.13.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2946: Skipped - Unable to analyze test case.
 2947: Skipped - Unable to analyze test case.

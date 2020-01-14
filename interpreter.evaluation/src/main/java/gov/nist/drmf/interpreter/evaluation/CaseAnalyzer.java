@@ -345,7 +345,7 @@ public class CaseAnalyzer {
                     length += rule[0].length;
                 }
                 else sieved.add(con);
-            } catch ( ParseException pe ){
+            } catch ( ParseException | RuntimeException pe ){
                 LOG.warn("Cannot parse constraint of line " + lineNumber + ". Reason: " + pe.getMessage());
             }
         }

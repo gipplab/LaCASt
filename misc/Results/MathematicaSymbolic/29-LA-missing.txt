@@ -1,7 +1,7 @@
 \LameEc, 19
 \LameEs, 17
 \Lameeigvala, 10
-\Lameeigvalb, 9
+\Lameeigvalb, 8
 \LamepolydE, 3
 \LamepolyscE, 3
 \LamepolycE, 3

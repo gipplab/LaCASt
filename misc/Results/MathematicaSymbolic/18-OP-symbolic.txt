@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 78, SUCCESS_SYMB: 78, SUCCESS_TRANS: 234, FAILURE: 156, STARTED_TEST_CASES: 485, SKIPPED: 64, DEFINITIONS: 27, IGNORE: 122, MISSING: 243, ERROR: 8] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 80, SUCCESS_SYMB: 80, SUCCESS_TRANS: 228, FAILURE: 148, STARTED_TEST_CASES: 476, SKIPPED: 64, DEFINITIONS: 27, IGNORE: 131, MISSING: 240, ERROR: 8] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 5667 [https://dlmf.nist.gov/18.1#Ex7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \qPochhammer [\qPochhammer]
 5670 [https://dlmf.nist.gov/18.1#Ex10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \qPochhammer [\qPochhammer]
@@ -132,8 +132,8 @@ Overall: [SUCCESS: 78, SUCCESS_SYMB: 78, SUCCESS_TRANS: 234, FAILURE: 156, START
 5809 [http://dlmf.nist.gov/18.9.E26]: Successful [Simple: 0]
 5810 [http://dlmf.nist.gov/18.9.E27]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \dilHermitepolyHe [\dilHermitepolyHe]
 5811 [http://dlmf.nist.gov/18.9.E28]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \dilHermitepolyHe [\dilHermitepolyHe]
-5812 [http://dlmf.nist.gov/18.10.E1]: Failure [Simple: NaN]
-5812-a [http://dlmf.nist.gov/18.10.E1]: Failure [Simple: NaN]
+5812 [http://dlmf.nist.gov/18.10.E1]: Successful [Simple: 0]
+5812-a [http://dlmf.nist.gov/18.10.E1]: Failure [Simple: Aborted]
 5813 [http://dlmf.nist.gov/18.10.E2]: Failure [Simple: Aborted]
 5816 [http://dlmf.nist.gov/18.10.E5]: Failure [Simple: Aborted]
 5817 [http://dlmf.nist.gov/18.10.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \LaguerrepolyL [\LaguerrepolyL]
@@ -144,7 +144,7 @@ Overall: [SUCCESS: 78, SUCCESS_SYMB: 78, SUCCESS_TRANS: 234, FAILURE: 156, START
 5822 [http://dlmf.nist.gov/18.11.E1]: Failure [Simple: NaN]
 5822-a [http://dlmf.nist.gov/18.11.E1]: Failure [Simple: NaN]
 5823 [http://dlmf.nist.gov/18.11.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \LaguerrepolyL [\LaguerrepolyL]
-5823-a [http://dlmf.nist.gov/18.11.E2]: Failure [Simple: Aborted]
+5823-a [http://dlmf.nist.gov/18.11.E2]: Failure [Simple: NaN]
 5823-b [http://dlmf.nist.gov/18.11.E2]: Failure [Simple: NaN]
 5823-c [http://dlmf.nist.gov/18.11.E2]: Failure [Simple: NaN]
 5824 [http://dlmf.nist.gov/18.11.E3]: Failure [Simple: NaN]
@@ -176,7 +176,7 @@ Overall: [SUCCESS: 78, SUCCESS_SYMB: 78, SUCCESS_TRANS: 234, FAILURE: 156, START
 5844 [http://dlmf.nist.gov/18.12.E15]: Successful [Simple: 0]
 5845 [http://dlmf.nist.gov/18.12.E16]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \dilHermitepolyHe [\dilHermitepolyHe]
 5851 [http://dlmf.nist.gov/18.14.E1]: Failure [Simple: NaN]
-5851-a [http://dlmf.nist.gov/18.14.E1]: Failure [Simple: NaN]
+5851-a [http://dlmf.nist.gov/18.14.E1]: Successful [Simple: 0]
 5852 [http://dlmf.nist.gov/18.14.E2]: Failure [Simple: NaN]
 5853 [http://dlmf.nist.gov/18.14.E3]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \max [\max]
 5854 [http://dlmf.nist.gov/18.14.E4]: Failure [Simple: NaN]
@@ -200,19 +200,10 @@ Overall: [SUCCESS: 78, SUCCESS_SYMB: 78, SUCCESS_TRANS: 234, FAILURE: 156, START
 5875 [https://dlmf.nist.gov/18.14#Ex5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \LaguerrepolyL [\LaguerrepolyL]
 5876 [https://dlmf.nist.gov/18.14#Ex6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \LaguerrepolyL [\LaguerrepolyL]
 5877 [http://dlmf.nist.gov/18.14.E24]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \LaguerrepolyL [\LaguerrepolyL]
-5878 [http://dlmf.nist.gov/18.15.E1]: Failure [Simple: NaN]
 5883 [http://dlmf.nist.gov/18.15.E6]: Failure [Simple: NaN]
-5889 [http://dlmf.nist.gov/18.15.E10]: Failure [Simple: Aborted]
-5891 [http://dlmf.nist.gov/18.15.E12]: Failure [Simple: NaN]
-5893 [http://dlmf.nist.gov/18.15.E14]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \LaguerrepolyL [\LaguerrepolyL]
-5900 [http://dlmf.nist.gov/18.15.E19]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \LaguerrepolyL [\LaguerrepolyL]
 5902 [https://dlmf.nist.gov/18.15#Ex7]: Error - java.lang.NullPointerException [5902: \zeta EQUAL -\left(\tfrac{3}{4}\left(\acos@{\sqrt{x}}-\sqrt{x-x^{2}}\right)\right)^{\frac{2}{3}}; https://dlmf.nist.gov/18.15#Ex7]
 5903 [https://dlmf.nist.gov/18.15#Ex8]: Error - java.lang.NullPointerException [5903: \zeta EQUAL \left(\tfrac{3}{4}\left(\sqrt{x^{2}-x}-\acosh@{\sqrt{x}}\right)\right)^{\frac{2}{3}}; https://dlmf.nist.gov/18.15#Ex8]
-5904 [http://dlmf.nist.gov/18.15.E22]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \LaguerrepolyL [\LaguerrepolyL]
-5909 [http://dlmf.nist.gov/18.15.E27]: Failure [Simple: NaN]
 5910 [http://dlmf.nist.gov/18.15.E28]: Failure [Simple: NaN]
-5918 [http://dlmf.nist.gov/18.16.E8]: Failure [Simple: NaN]
-5924 [http://dlmf.nist.gov/18.16.E14]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zAirya [\zAirya]
 5925 [http://dlmf.nist.gov/18.16.E15]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \zAirya [\zAirya]
 5926 [http://dlmf.nist.gov/18.16.E16]: Failure [Simple: NaN]
 5926-a [http://dlmf.nist.gov/18.16.E16]: Failure [Simple: NaN]
@@ -413,10 +404,10 @@ Overall: [SUCCESS: 78, SUCCESS_SYMB: 78, SUCCESS_TRANS: 234, FAILURE: 156, START
 6166: Skipped - Unable to analyze test case.
 6167: Skipped - Unable to analyze test case.
 6168 [http://dlmf.nist.gov/18.27.E4]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-6169 [http://dlmf.nist.gov/18.27.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \qgenhyperphi [\qgenhyperphi]
+6169 [http://dlmf.nist.gov/18.27.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \bigqJacobipolyP [\bigqJacobipolyP]
 6170: Skipped - Unable to analyze test case.
 6171 [http://dlmf.nist.gov/18.27.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \scbigqJacobipolyP [\scbigqJacobipolyP]
-6173 [http://dlmf.nist.gov/18.27.E7]: Failure [Simple: NaN]
+6173 [http://dlmf.nist.gov/18.27.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \bigqJacobipolyP [\bigqJacobipolyP]
 6176 [http://dlmf.nist.gov/18.27.E10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \scbigqJacobipolyP [\scbigqJacobipolyP]
 6177: Skipped - Unable to analyze test case.
 6180 [http://dlmf.nist.gov/18.27.E13]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \littleqJacobipolyp [\littleqJacobipolyp]

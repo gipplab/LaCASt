@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 77, SUCCESS_SYMB: 77, SUCCESS_TRANS: 287, FAILURE: 195, STARTED_TEST_CASES: 311, SKIPPED: 81, DEFINITIONS: 17, IGNORE: 22, MISSING: 17, ERROR: 22] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 77, SUCCESS_SYMB: 77, SUCCESS_TRANS: 238, FAILURE: 146, STARTED_TEST_CASES: 244, SKIPPED: 93, DEFINITIONS: 17, IGNORE: 74, MISSING: 5, ERROR: 16] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
 4272 [http://dlmf.nist.gov/13.2.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4273 [http://dlmf.nist.gov/13.2.E2]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -10,21 +10,10 @@ Overall: [SUCCESS: 77, SUCCESS_SYMB: 77, SUCCESS_TRANS: 287, FAILURE: 195, START
 4278-a [http://dlmf.nist.gov/13.2.E7]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4279 [http://dlmf.nist.gov/13.2.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4279-a [http://dlmf.nist.gov/13.2.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4280 [http://dlmf.nist.gov/13.2.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4281 [http://dlmf.nist.gov/13.2.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4281-a [http://dlmf.nist.gov/13.2.E10]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4282 [http://dlmf.nist.gov/13.2.E11]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4283 [http://dlmf.nist.gov/13.2.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4284 [http://dlmf.nist.gov/13.2.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4285 [http://dlmf.nist.gov/13.2.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4286 [http://dlmf.nist.gov/13.2.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4287 [http://dlmf.nist.gov/13.2.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4288 [http://dlmf.nist.gov/13.2.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4289 [http://dlmf.nist.gov/13.2.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4290 [http://dlmf.nist.gov/13.2.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4291 [http://dlmf.nist.gov/13.2.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4292 [http://dlmf.nist.gov/13.2.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4293 [http://dlmf.nist.gov/13.2.E22]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4294: Skipped - Unable to analyze test case.
 4295: Skipped - Unable to analyze test case.
 4296: Skipped - Unable to analyze test case.
@@ -76,7 +65,6 @@ Overall: [SUCCESS: 77, SUCCESS_SYMB: 77, SUCCESS_TRANS: 287, FAILURE: 195, START
 4340 [http://dlmf.nist.gov/13.3.E25]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4341 [http://dlmf.nist.gov/13.3.E26]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4342 [http://dlmf.nist.gov/13.3.E27]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4343 [http://dlmf.nist.gov/13.3.E28]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4344 [http://dlmf.nist.gov/13.3.E29]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4345 [http://dlmf.nist.gov/13.4.E1]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4346 [http://dlmf.nist.gov/13.4.E2]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -143,16 +131,10 @@ Overall: [SUCCESS: 77, SUCCESS_SYMB: 77, SUCCESS_TRANS: 287, FAILURE: 195, START
 4405: Skipped - Unable to analyze test case.
 4406: Skipped - Unable to analyze test case.
 4407 [http://dlmf.nist.gov/13.7.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4411 [http://dlmf.nist.gov/13.8.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4412: Skipped - Unable to analyze test case.
 4413 [http://dlmf.nist.gov/13.8.E3]: Error - java.lang.IllegalArgumentException: Error in CAS! [4413: \left(e^{t}-1\right)^{a-1}\exp@{t+z(1-e^{-t})} EQUAL \sum_{s=0}^{\infty}q_{s}(z,a)t^{s+a-1}; http://dlmf.nist.gov/13.8.E3]
 4414: Skipped - Unable to analyze test case.
 4415: Skipped - Unable to analyze test case.
-4416 [http://dlmf.nist.gov/13.8.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4417 [http://dlmf.nist.gov/13.8.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4418 [http://dlmf.nist.gov/13.8.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4419 [http://dlmf.nist.gov/13.8.E9]: Error - java.lang.NullPointerException [4419: \KummerconfhyperM@{a}{b}{x} EQUAL \EulerGamma@{b}e^{\frac{1}{2}x}\left((\tfrac{1}{2}b-a)x\right)^{\frac{1}{2}-\frac{1}{2}b}\*\left(\BesselJ{b-1}@{\sqrt{2x(b-2a)}}+\envBesselJ{b-1}@{\sqrt{2x(b-2a)}}\bigO@{\abs{a}^{-\frac{1}{2}}}\right); http://dlmf.nist.gov/13.8.E9]
-4420 [http://dlmf.nist.gov/13.8.E10]: Error - java.lang.NullPointerException [4420: \KummerconfhyperU@{a}{b}{x} EQUAL \EulerGamma@{\tfrac{1}{2}b-a+\tfrac{1}{2}}e^{\frac{1}{2}x}x^{\frac{1}{2}-\frac{1}{2}b}\*\left(\cos@{a\pi}\BesselJ{b-1}@{\sqrt{2x(b-2a)}}-\sin@{a\pi}\BesselY{b-1}@{\sqrt{2x(b-2a)}}+\envBesselY{b-1}@{\sqrt{2x(b-2a)}}\bigO@{\abs{a}^{-\frac{1}{2}}}\right); http://dlmf.nist.gov/13.8.E10]
 4421: Skipped - Unable to analyze test case.
 4422: Skipped - Unable to analyze test case.
 4423: Skipped - Unable to analyze test case.
@@ -165,14 +147,7 @@ Overall: [SUCCESS: 77, SUCCESS_SYMB: 77, SUCCESS_TRANS: 287, FAILURE: 195, START
 4432 [http://dlmf.nist.gov/13.9.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4433 [http://dlmf.nist.gov/13.9.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4434 [http://dlmf.nist.gov/13.9.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4436 [http://dlmf.nist.gov/13.9.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4437 [http://dlmf.nist.gov/13.9.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4437-a [http://dlmf.nist.gov/13.9.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4438 [http://dlmf.nist.gov/13.9.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4439 [http://dlmf.nist.gov/13.9.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4440 [http://dlmf.nist.gov/13.9.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4442 [http://dlmf.nist.gov/13.9.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4444 [http://dlmf.nist.gov/13.9.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4445 [http://dlmf.nist.gov/13.10.E1]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4446 [http://dlmf.nist.gov/13.10.E2]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4447 [http://dlmf.nist.gov/13.10.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -192,7 +167,6 @@ Overall: [SUCCESS: 77, SUCCESS_SYMB: 77, SUCCESS_TRANS: 287, FAILURE: 195, START
 4461 [http://dlmf.nist.gov/13.10.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4462: Skipped - Unable to analyze test case.
 4463 [http://dlmf.nist.gov/13.10.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4464 [http://dlmf.nist.gov/13.11.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4465 [http://dlmf.nist.gov/13.12.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4466: Skipped - Unable to analyze test case.
 4467: Skipped - Unable to analyze test case.
@@ -220,13 +194,6 @@ Overall: [SUCCESS: 77, SUCCESS_SYMB: 77, SUCCESS_TRANS: 287, FAILURE: 195, START
 4488 [http://dlmf.nist.gov/13.14.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4489 [http://dlmf.nist.gov/13.14.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4490 [http://dlmf.nist.gov/13.14.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4491 [http://dlmf.nist.gov/13.14.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4492 [http://dlmf.nist.gov/13.14.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4492-a [http://dlmf.nist.gov/13.14.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4493 [http://dlmf.nist.gov/13.14.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4494 [http://dlmf.nist.gov/13.14.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4495 [http://dlmf.nist.gov/13.14.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4496 [http://dlmf.nist.gov/13.14.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4497: Skipped - Unable to analyze test case.
 4498: Skipped - Unable to analyze test case.
 4499: Skipped - Unable to analyze test case.
@@ -284,9 +251,6 @@ Overall: [SUCCESS: 77, SUCCESS_SYMB: 77, SUCCESS_TRANS: 287, FAILURE: 195, START
 4547 [http://dlmf.nist.gov/13.16.E8]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4548 [http://dlmf.nist.gov/13.16.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4549: Skipped - Unable to analyze test case.
-4550 [http://dlmf.nist.gov/13.16.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4550-a [http://dlmf.nist.gov/13.16.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4551 [http://dlmf.nist.gov/13.16.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4552 [http://dlmf.nist.gov/13.16.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4559 [http://dlmf.nist.gov/13.18.E1]: Successful [Simple: NaN, ConvEXP: 0, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4560 [http://dlmf.nist.gov/13.18.E2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
@@ -313,42 +277,12 @@ Overall: [SUCCESS: 77, SUCCESS_SYMB: 77, SUCCESS_TRANS: 287, FAILURE: 195, START
 4576: Skipped - Unable to analyze test case.
 4577: Skipped - Unable to analyze test case.
 4578: Skipped - Unable to analyze test case.
-4579 [http://dlmf.nist.gov/13.20.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4580 [http://dlmf.nist.gov/13.20.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4582 [http://dlmf.nist.gov/13.20.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4583 [http://dlmf.nist.gov/13.20.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4587 [http://dlmf.nist.gov/13.20.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4588 [http://dlmf.nist.gov/13.20.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4588-a [http://dlmf.nist.gov/13.20.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4589 [http://dlmf.nist.gov/13.20.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4590 [http://dlmf.nist.gov/13.20.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4591 [http://dlmf.nist.gov/13.20.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4592 [http://dlmf.nist.gov/13.20.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4593 [http://dlmf.nist.gov/13.20.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4594 [http://dlmf.nist.gov/13.20.E16]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \envparaU [\envparaU]
-4595 [http://dlmf.nist.gov/13.20.E17]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \envparaUbar [\envparaUbar]
-4596 [http://dlmf.nist.gov/13.20.E18]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \envparaUbar [\envparaUbar]
-4597 [http://dlmf.nist.gov/13.20.E19]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \envparaU [\envparaU]
-4598 [http://dlmf.nist.gov/13.21.E1]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \envBesselJ [\envBesselJ]
-4599 [http://dlmf.nist.gov/13.21.E2]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \envBesselY [\envBesselY]
-4600 [http://dlmf.nist.gov/13.21.E3]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \envBesselY [\envBesselY]
-4601 [http://dlmf.nist.gov/13.21.E4]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \envBesselY [\envBesselY]
 4602 [http://dlmf.nist.gov/13.21.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4603 [http://dlmf.nist.gov/13.21.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4604 [http://dlmf.nist.gov/13.21.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4608 [http://dlmf.nist.gov/13.21.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4609 [http://dlmf.nist.gov/13.21.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4610 [http://dlmf.nist.gov/13.21.E13]: Error - java.lang.NullPointerException [4610: \WhittakerconfhyperM{\kappa}{\mu}@{x} EQUAL \EulerGamma@{2\mu+1}\*\left(\frac{e^{2}}{\kappa^{2}-\mu^{2}}\right)^{\frac{1}{2}\mu}\*\left(\frac{\kappa-\mu}{\kappa+\mu}\right)^{\frac{1}{2}\kappa}\*\Psi(\kappa,\mu,x)\*\left(\BesselJ{2\mu}@{\sqrt{\zeta\kappa}}+\envBesselJ{2\mu}@{\sqrt{\zeta\kappa}}\bigO@{\kappa^{-1}}\right); http://dlmf.nist.gov/13.21.E13]
-4611 [http://dlmf.nist.gov/13.21.E14]: Error - java.lang.NullPointerException [4611: \WhittakerconfhyperW{\kappa}{\mu}@{x} EQUAL \frac{e^{-\mu\pi\iunit}}{\pi}\EulerGamma@{\kappa+\mu+\tfrac{1}{2}}\*\EulerGamma@{\kappa-\mu+\tfrac{1}{2}}\*c(\kappa,\mu)\Psi(\kappa,\mu,x)\*\left(\sin@{\kappa\pi-\mu\pi}\BesselJ{2\mu}@{\sqrt{\zeta\kappa}}-\cos@{\kappa\pi-\mu\pi}\BesselY{2\mu}@{\sqrt{\zeta\kappa}}+\envBesselY{2\mu}@{\sqrt{\zeta\kappa}}\bigO@{\kappa^{-1}}\right); http://dlmf.nist.gov/13.21.E14]
-4612 [http://dlmf.nist.gov/13.21.E15]: Error - java.lang.NullPointerException [4612: \WhittakerconfhyperW{-\kappa}{\mu}@{xe^{-\pi\iunit}} EQUAL c(\kappa,\mu)\Psi(\kappa,\mu,x)\left(\HankelH{1}{2\mu}@{\sqrt{\zeta\kappa}}+\envBesselY{2\mu}@{\sqrt{\zeta\kappa}}\bigO@{\kappa^{-1}}\right); http://dlmf.nist.gov/13.21.E15]
-4613 [http://dlmf.nist.gov/13.21.E16]: Error - java.lang.NullPointerException [4613: \WhittakerconfhyperW{-\kappa}{\mu}@{xe^{\pi\iunit}} EQUAL e^{-2\mu\pi\iunit}c(\kappa,\mu)\Psi(\kappa,\mu,x)\left(\HankelH{2}{2\mu}@{\sqrt{\zeta\kappa}}+\envBesselY{2\mu}@{\sqrt{\zeta\kappa}}\bigO@{\kappa^{-1}}\right); http://dlmf.nist.gov/13.21.E16]
 4617 [http://dlmf.nist.gov/13.21.E20]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
 4618 [http://dlmf.nist.gov/13.21.E21]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
-4619 [http://dlmf.nist.gov/13.21.E22]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
-4620 [http://dlmf.nist.gov/13.21.E23]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
-4621 [http://dlmf.nist.gov/13.21.E24]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
-4622 [http://dlmf.nist.gov/13.21.E25]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
-4623 [http://dlmf.nist.gov/13.22.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4624 [http://dlmf.nist.gov/13.23.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4625 [http://dlmf.nist.gov/13.23.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4626 [http://dlmf.nist.gov/13.23.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -383,7 +317,6 @@ Overall: [SUCCESS: 77, SUCCESS_SYMB: 77, SUCCESS_TRANS: 287, FAILURE: 195, START
 4658 [https://dlmf.nist.gov/13.28#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4659 [https://dlmf.nist.gov/13.28#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4662 [http://dlmf.nist.gov/13.29.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4663 [http://dlmf.nist.gov/13.29.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4665 [http://dlmf.nist.gov/13.29.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4666 [http://dlmf.nist.gov/13.29.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4667: Skipped - Unable to analyze test case.

@@ -1,6 +1,6 @@
-Overall: [SUCCESS: 48, SUCCESS_SYMB: 48, SUCCESS_TRANS: 158, FAILURE: 110, STARTED_TEST_CASES: 207, SKIPPED: 27, DEFINITIONS: 6, IGNORE: 62, MISSING: 47, ERROR: 2] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 50, SUCCESS_SYMB: 50, SUCCESS_TRANS: 154, FAILURE: 104, STARTED_TEST_CASES: 202, SKIPPED: 27, DEFINITIONS: 6, IGNORE: 67, MISSING: 46, ERROR: 2] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
-2450 [http://dlmf.nist.gov/8.2.E1]: Failure [Simple: NaN]
+2450 [http://dlmf.nist.gov/8.2.E1]: Successful [Simple: 0]
 2451 [http://dlmf.nist.gov/8.2.E2]: Failure [Simple: Aborted]
 2452 [http://dlmf.nist.gov/8.2.E3]: Successful [Simple: 0]
 2453 [https://dlmf.nist.gov/8.2#Ex1]: Successful [Simple: 0]
@@ -98,13 +98,10 @@ Overall: [SUCCESS: 48, SUCCESS_SYMB: 48, SUCCESS_TRANS: 158, FAILURE: 110, START
 2541 [http://dlmf.nist.gov/8.10.E13]: Failure [Simple: NaN]
 2541-a [http://dlmf.nist.gov/8.10.E13]: Failure [Simple: NaN]
 2543 [http://dlmf.nist.gov/8.11.E2]: Failure [Simple: NaN]
-2544 [http://dlmf.nist.gov/8.11.E3]: Failure [Simple: NaN]
 2545 [http://dlmf.nist.gov/8.11.E4]: Successful [Simple: 0]
 2546: Skipped - Unable to analyze test case.
 2547: Skipped - Unable to analyze test case.
 2548: Skipped - Unable to analyze test case.
-2553 [http://dlmf.nist.gov/8.11.E10]: Failure [Simple: NaN]
-2554 [http://dlmf.nist.gov/8.11.E11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \scincgamma [\scincgamma]
 2555: Skipped - Unable to analyze test case.
 2558 [http://dlmf.nist.gov/8.11.E15]: Failure [Simple: NaN]
 2559: Skipped - Unable to analyze test case.
@@ -157,9 +154,7 @@ Overall: [SUCCESS: 48, SUCCESS_SYMB: 48, SUCCESS_TRANS: 158, FAILURE: 110, START
 2631 [http://dlmf.nist.gov/8.17.E20]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
 2632 [http://dlmf.nist.gov/8.17.E21]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
 2636 [http://dlmf.nist.gov/8.17.E24]: Failure [Simple: Aborted]
-2637 [http://dlmf.nist.gov/8.18.E1]: Failure [Simple: Aborted]
 2638 [http://dlmf.nist.gov/8.18.E2]: Failure [Simple: NaN]
-2639 [http://dlmf.nist.gov/8.18.E3]: Failure [Simple: NaN]
 2641 [https://dlmf.nist.gov/8.18#Ex1]: Failure [Simple: NaN]
 2642 [https://dlmf.nist.gov/8.18#Ex2]: Failure [Simple: NaN]
 2647: Skipped - Unable to analyze test case.
@@ -173,7 +168,7 @@ Overall: [SUCCESS: 48, SUCCESS_SYMB: 48, SUCCESS_TRANS: 158, FAILURE: 110, START
 2659 [http://dlmf.nist.gov/8.19.E3]: Failure [Simple: Aborted]
 2660 [http://dlmf.nist.gov/8.19.E4]: Failure [Simple: Aborted]
 2661 [http://dlmf.nist.gov/8.19.E5]: Failure [Simple: NaN]
-2662 [http://dlmf.nist.gov/8.19.E6]: Failure [Simple: NaN]
+2662 [http://dlmf.nist.gov/8.19.E6]: Successful [Simple: 0]
 2663 [http://dlmf.nist.gov/8.19.E7]: Failure [Simple: NaN]
 2664 [http://dlmf.nist.gov/8.19.E8]: Error - java.lang.NullPointerException [2664: \genexpintE{n}@{z} EQUAL \frac{(-z)^{n-1}}{(n-1)!}(\digamma@{n}-\ln@@{z})-\sum_{\begin{subarray}{c}k=0\\ k\neq n-1\end{subarray}}^{\infty}\frac{(-z)^{k}}{k!(1-n+k)}; http://dlmf.nist.gov/8.19.E8]
 2665 [http://dlmf.nist.gov/8.19.E9]: Failure [Simple: NaN]

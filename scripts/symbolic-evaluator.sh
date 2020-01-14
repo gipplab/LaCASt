@@ -7,8 +7,8 @@ SETFILES="config/together-lines.txt"
 export MAPLE="/opt/maple2016/"
 export LD_LIBRARY_PATH="/opt/maple2016/bin.X86_64_LINUX:/opt/Wolfram/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64/"
 
-CAS="Math"
-CASCMD="-mathematica"
+CAS="Maple"
+CASCMD="-maple"
 
 NEWLINE=$'\n'
 RESSTR="Results:$NEWLINE";

@@ -1,4 +1,4 @@
-\LaguerrepolyL, 53
+\LaguerrepolyL, 40
 \dilHermitepolyHe, 21
 \qPochhammer, 16
 \HahnpolyQ, 9
@@ -18,14 +18,15 @@
 \diskpoly, 4
 \qmultiPochhammersym, 4
 \limits, 3
-\zAirya, 3
 \contqultrasphpoly, 3
 \AskeyWilsonpolyp, 3
 \ChebyshevpolyV, 3
 \StieltjesWigertpolyS, 3
 \qLaguerrepolyL, 3
 \AlSalamChiharapolyQ, 2
+\bigqJacobipolyP, 2
 \discqHermitepolyhII, 2
+\zAirya, 2
 \min, 2
 \qHahnpolyQ, 2
 \hbar, 2
@@ -33,7 +34,6 @@
 \littleqJacobipolyp, 2
 \assJacobipolyP, 2
 \contqHermitepolyH, 2
-\qgenhyperphi, 2
 \assLegendrepoly, 2
 \discqHermitepolyhI, 2
 \pvint, 2
@@ -43,7 +43,7 @@
 \dilChebyshevpolyS, 1
 \trianglepoly, 1
 \contqinvHermitepolyh, 1
-\assLegendreQ, 1
+\qgenhyperphi, 1
 \shiftChebyshevpolyU, 1
 \shiftChebyshevpolyT, 1
 \max, 1

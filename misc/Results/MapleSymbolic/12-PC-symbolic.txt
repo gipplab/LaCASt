@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 23, SUCCESS_SYMB: 23, SUCCESS_TRANS: 78, FAILURE: 52, STARTED_TEST_CASES: 107, SKIPPED: 35, DEFINITIONS: 28, IGNORE: 55, MISSING: 27, ERROR: 5] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 23, SUCCESS_SYMB: 23, SUCCESS_TRANS: 77, FAILURE: 51, STARTED_TEST_CASES: 106, SKIPPED: 35, DEFINITIONS: 28, IGNORE: 56, MISSING: 27, ERROR: 5] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
 4068 [http://dlmf.nist.gov/12.2.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4069 [http://dlmf.nist.gov/12.2.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -95,7 +95,6 @@ Overall: [SUCCESS: 23, SUCCESS_SYMB: 23, SUCCESS_TRANS: 78, FAILURE: 52, STARTED
 4182: Skipped - Unable to analyze test case.
 4183: Skipped - Unable to analyze test case.
 4184: Skipped - Unable to analyze test case.
-4198 [http://dlmf.nist.gov/12.11.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4206: Skipped - Unable to analyze test case.
 4207 [http://dlmf.nist.gov/12.12.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4208 [http://dlmf.nist.gov/12.12.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]

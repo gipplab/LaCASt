@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 37, SUCCESS_SYMB: 37, SUCCESS_TRANS: 115, FAILURE: 74, STARTED_TEST_CASES: 135, SKIPPED: 19, DEFINITIONS: 6, IGNORE: 42, MISSING: 18, ERROR: 6] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 38, SUCCESS_SYMB: 38, SUCCESS_TRANS: 114, FAILURE: 71, STARTED_TEST_CASES: 134, SKIPPED: 19, DEFINITIONS: 6, IGNORE: 43, MISSING: 18, ERROR: 7] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
 1994 [http://dlmf.nist.gov/5.2.E1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 1995 [http://dlmf.nist.gov/5.2.E2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
@@ -25,7 +25,6 @@ Overall: [SUCCESS: 37, SUCCESS_SYMB: 37, SUCCESS_TRANS: 115, FAILURE: 74, STARTE
 2023 [http://dlmf.nist.gov/5.4.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2024 [http://dlmf.nist.gov/5.4.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2025 [http://dlmf.nist.gov/5.4.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2026 [http://dlmf.nist.gov/5.4.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2027 [http://dlmf.nist.gov/5.5.E1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 2028 [http://dlmf.nist.gov/5.5.E2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 2029 [http://dlmf.nist.gov/5.5.E3]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
@@ -55,7 +54,7 @@ Overall: [SUCCESS: 37, SUCCESS_SYMB: 37, SUCCESS_TRANS: 115, FAILURE: 74, STARTE
 2050-a [http://dlmf.nist.gov/5.7.E6]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 2051 [http://dlmf.nist.gov/5.7.E7]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 2052 [http://dlmf.nist.gov/5.7.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2054 [http://dlmf.nist.gov/5.8.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2054 [http://dlmf.nist.gov/5.8.E2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 2055 [http://dlmf.nist.gov/5.8.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2058 [http://dlmf.nist.gov/5.9.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2059 [http://dlmf.nist.gov/5.9.E2]: Error - java.lang.IllegalArgumentException: Error in CAS! [2059: \frac{1}{\EulerGamma@{z}} EQUAL \frac{1}{2\pi i}\int_{-\infty}^{(0+)}e^{t}t^{-z}\diff{t}; http://dlmf.nist.gov/5.9.E2]
@@ -109,7 +108,7 @@ Overall: [SUCCESS: 37, SUCCESS_SYMB: 37, SUCCESS_TRANS: 115, FAILURE: 74, STARTE
 2125 [http://dlmf.nist.gov/5.12.E12]: Error - java.lang.IllegalArgumentException: Error in CAS! [2125: \int_{P}^{(1+,0+,1-,0-)}t^{a-1}(1-t)^{b-1}\diff{t} EQUAL -4e^{\pi i(a+b)}\sin@{\pi a}\sin@{\pi b}\EulerBeta@{a}{b}; http://dlmf.nist.gov/5.12.E12]
 2126: Skipped - Unable to analyze test case.
 2127: Skipped - Unable to analyze test case.
-2128 [http://dlmf.nist.gov/5.13.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2128 [http://dlmf.nist.gov/5.13.E3]: Error - java.lang.IllegalArgumentException: Error in CAS! [2128: \frac{1}{2\pi}\int_{-\infty}^{\infty}\EulerGamma@{a+it}\EulerGamma@{b+it}\EulerGamma@{c-it}\EulerGamma@{d-it}\diff{t} EQUAL \frac{\EulerGamma@{a+c}\EulerGamma@{a+d}\EulerGamma@{b+c}\EulerGamma@{b+d}}{\EulerGamma@{a+b+c+d}}; http://dlmf.nist.gov/5.13.E3]
 2129 [http://dlmf.nist.gov/5.13.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2130 [http://dlmf.nist.gov/5.13.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2135: Skipped - Unable to analyze test case.

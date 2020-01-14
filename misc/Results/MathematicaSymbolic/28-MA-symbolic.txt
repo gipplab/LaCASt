@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 123, FAILURE: 116, STARTED_TEST_CASES: 304, SKIPPED: 29, DEFINITIONS: 20, IGNORE: 133, MISSING: 176, ERROR: 5] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 117, FAILURE: 110, STARTED_TEST_CASES: 288, SKIPPED: 29, DEFINITIONS: 20, IGNORE: 148, MISSING: 166, ERROR: 5] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 8423: Skipped - Unable to analyze test case.
 8424: Skipped - Unable to analyze test case.
@@ -58,13 +58,6 @@ Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 123, FAILURE: 116, STARTED
 8497: Skipped - Unable to analyze test case.
 8499: Skipped - Unable to analyze test case.
 8501: Skipped - Unable to analyze test case.
-8518 [http://dlmf.nist.gov/28.4.E21]: Failure [Simple: NaN]
-8519 [http://dlmf.nist.gov/28.4.E22]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \rselection [\rselection]
-8520 [http://dlmf.nist.gov/28.4.E23]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \rselection [\rselection]
-8521 [http://dlmf.nist.gov/28.4.E24]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty expression tag
-8522 [http://dlmf.nist.gov/28.4.E25]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty expression tag
-8523 [http://dlmf.nist.gov/28.4.E26]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty expression tag
-8524 [http://dlmf.nist.gov/28.4.E27]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty expression tag
 8525 [http://dlmf.nist.gov/28.5.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Mathieufe [\Mathieufe]
 8526 [http://dlmf.nist.gov/28.5.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Mathieuge [\Mathieuge]
 8529 [http://dlmf.nist.gov/28.5.E5]: Failure [Simple: NaN]
@@ -74,14 +67,12 @@ Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 123, FAILURE: 116, STARTED
 8535 [https://dlmf.nist.gov/28.5#Ex6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Mathieuge [\Mathieuge]
 8536 [http://dlmf.nist.gov/28.5.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Mathieufe [\Mathieufe]
 8537 [http://dlmf.nist.gov/28.5.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Mathieuge [\Mathieuge]
-8552 [http://dlmf.nist.gov/28.6.E15]: Failure [Simple: NaN]
 8557 [http://dlmf.nist.gov/28.6.E20]: Failure [Simple: NaN]
 8564 [http://dlmf.nist.gov/28.7.E1]: Failure [Simple: Aborted]
 8565 [http://dlmf.nist.gov/28.7.E2]: Failure [Simple: Aborted]
 8566 [http://dlmf.nist.gov/28.7.E3]: Failure [Simple: Aborted]
 8567 [http://dlmf.nist.gov/28.7.E4]: Failure [Simple: Aborted]
 8568: Skipped - Unable to analyze test case.
-8569 [http://dlmf.nist.gov/28.8.E2]: Failure [Simple: NaN]
 8570 [https://dlmf.nist.gov/28.8#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Accents are not supported.
 8571 [https://dlmf.nist.gov/28.8#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Accents are not supported.
 8574: Skipped - Unable to analyze test case.
@@ -126,9 +117,6 @@ Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 123, FAILURE: 116, STARTED
 8617 [http://dlmf.nist.gov/28.14.E1]: Failure [Simple: NaN]
 8618 [http://dlmf.nist.gov/28.14.E2]: Failure [Simple: Aborted]
 8619 [http://dlmf.nist.gov/28.14.E3]: Failure [Simple: Aborted]
-8622 [http://dlmf.nist.gov/28.14.E6]: Failure [Simple: NaN]
-8622-a [http://dlmf.nist.gov/28.14.E6]: Failure [Simple: NaN]
-8627 [http://dlmf.nist.gov/28.14.E10]: Failure [Simple: NaN]
 8631: Skipped - Unable to analyze test case.
 8635 [http://dlmf.nist.gov/28.19.E4]: Failure [Simple: NaN]
 8636 [http://dlmf.nist.gov/28.20.E1]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
@@ -141,10 +129,6 @@ Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 123, FAILURE: 116, STARTED
 8641-a [http://dlmf.nist.gov/28.20.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modMathieuFe [\modMathieuFe]
 8642 [http://dlmf.nist.gov/28.20.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modMathieuGe [\modMathieuGe]
 8642-a [http://dlmf.nist.gov/28.20.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modMathieuGe [\modMathieuGe]
-8644 [http://dlmf.nist.gov/28.20.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
-8645 [http://dlmf.nist.gov/28.20.E10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
-8646 [http://dlmf.nist.gov/28.20.E11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
-8647 [http://dlmf.nist.gov/28.20.E12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
 8648 [http://dlmf.nist.gov/28.20.E13]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
 8649 [http://dlmf.nist.gov/28.20.E14]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
 8650 [http://dlmf.nist.gov/28.20.E15]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]

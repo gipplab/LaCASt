@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 110, FAILURE: 99, STARTED_TEST_CASES: 304, SKIPPED: 29, DEFINITIONS: 20, IGNORE: 133, MISSING: 189, ERROR: 9] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 104, FAILURE: 91, STARTED_TEST_CASES: 288, SKIPPED: 29, DEFINITIONS: 20, IGNORE: 148, MISSING: 179, ERROR: 11] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
 8423: Skipped - Unable to analyze test case.
 8424: Skipped - Unable to analyze test case.
@@ -58,13 +58,6 @@ Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 110, FAILURE: 99, STARTED_
 8497: Skipped - Unable to analyze test case.
 8499: Skipped - Unable to analyze test case.
 8501: Skipped - Unable to analyze test case.
-8518 [http://dlmf.nist.gov/28.4.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-8519 [http://dlmf.nist.gov/28.4.E22]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \rselection [\rselection]
-8520 [http://dlmf.nist.gov/28.4.E23]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \rselection [\rselection]
-8521 [http://dlmf.nist.gov/28.4.E24]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
-8522 [http://dlmf.nist.gov/28.4.E25]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
-8523 [http://dlmf.nist.gov/28.4.E26]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
-8524 [http://dlmf.nist.gov/28.4.E27]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
 8525 [http://dlmf.nist.gov/28.5.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieufe [\Mathieufe]
 8526 [http://dlmf.nist.gov/28.5.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieuge [\Mathieuge]
 8529 [http://dlmf.nist.gov/28.5.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -74,14 +67,12 @@ Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 110, FAILURE: 99, STARTED_
 8535 [https://dlmf.nist.gov/28.5#Ex6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieuge [\Mathieuge]
 8536 [http://dlmf.nist.gov/28.5.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieufe [\Mathieufe]
 8537 [http://dlmf.nist.gov/28.5.E9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieuge [\Mathieuge]
-8552 [http://dlmf.nist.gov/28.6.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 8557 [http://dlmf.nist.gov/28.6.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 8564 [http://dlmf.nist.gov/28.7.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 8565 [http://dlmf.nist.gov/28.7.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 8566 [http://dlmf.nist.gov/28.7.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 8567 [http://dlmf.nist.gov/28.7.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 8568: Skipped - Unable to analyze test case.
-8569 [http://dlmf.nist.gov/28.8.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 8570 [https://dlmf.nist.gov/28.8#Ex1]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
 8571 [https://dlmf.nist.gov/28.8#Ex2]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
 8574: Skipped - Unable to analyze test case.
@@ -126,9 +117,6 @@ Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 110, FAILURE: 99, STARTED_
 8617 [http://dlmf.nist.gov/28.14.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
 8618 [http://dlmf.nist.gov/28.14.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 8619 [http://dlmf.nist.gov/28.14.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-8622 [http://dlmf.nist.gov/28.14.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-8622-a [http://dlmf.nist.gov/28.14.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-8627 [http://dlmf.nist.gov/28.14.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 8631: Skipped - Unable to analyze test case.
 8635 [http://dlmf.nist.gov/28.19.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Mathieume [\Mathieume]
 8636 [http://dlmf.nist.gov/28.20.E1]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
@@ -141,10 +129,6 @@ Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 110, FAILURE: 99, STARTED_
 8641-a [http://dlmf.nist.gov/28.20.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuFe [\modMathieuFe]
 8642 [http://dlmf.nist.gov/28.20.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuGe [\modMathieuGe]
 8642-a [http://dlmf.nist.gov/28.20.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuGe [\modMathieuGe]
-8644 [http://dlmf.nist.gov/28.20.E9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
-8645 [http://dlmf.nist.gov/28.20.E10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
-8646 [http://dlmf.nist.gov/28.20.E11]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
-8647 [http://dlmf.nist.gov/28.20.E12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
 8648 [http://dlmf.nist.gov/28.20.E13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
 8649 [http://dlmf.nist.gov/28.20.E14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modMathieuM [\modMathieuM]
 8650 [http://dlmf.nist.gov/28.20.E15]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \radMathieuMc [\radMathieuMc]
@@ -302,8 +286,8 @@ Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 110, FAILURE: 99, STARTED_
 8813 [http://dlmf.nist.gov/28.31.E1]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
 8817 [https://dlmf.nist.gov/28.31#Ex4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 8818 [http://dlmf.nist.gov/28.31.E3]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-8819 [http://dlmf.nist.gov/28.31.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-8820 [http://dlmf.nist.gov/28.31.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8819 [http://dlmf.nist.gov/28.31.E4]: Error - java.lang.IllegalArgumentException: Error in CAS! [8819: w_{\mathit{e},s}(z) EQUAL \sum_{\ell=0}^{\infty}A_{2\ell+s}\cos@@{(2\ell+s)z}; http://dlmf.nist.gov/28.31.E4]
+8820 [http://dlmf.nist.gov/28.31.E5]: Error - java.lang.IllegalArgumentException: Error in CAS! [8820: w_{\mathit{o},s}(z) EQUAL \sum_{\ell=0}^{\infty}B_{2\ell+s}\sin@@{(2\ell+s)z}; http://dlmf.nist.gov/28.31.E5]
 8832: Skipped - Unable to analyze test case.
 8833 [http://dlmf.nist.gov/28.31.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 8833-a [http://dlmf.nist.gov/28.31.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]

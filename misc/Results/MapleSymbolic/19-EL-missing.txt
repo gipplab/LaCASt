@@ -1,8 +1,8 @@
-\CarlsonsymellintRF, 74
-\CarlsonsymellintRJ, 53
-\CarlsonellintRC, 50
-\CarlsonsymellintRD, 46
-\CarlsonsymellintRG, 42
+\CarlsonsymellintRF, 71
+\CarlsonsymellintRJ, 47
+\CarlsonellintRC, 46
+\CarlsonsymellintRD, 42
+\CarlsonsymellintRG, 39
 \Carlsonmultivarhyper, 21
 \Bulirschincellintel, 8
 \Bulirschcompellintcel, 7

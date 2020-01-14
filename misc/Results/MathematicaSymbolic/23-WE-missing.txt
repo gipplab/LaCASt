@@ -1,7 +1,7 @@
 \Weierstrasselatt, 33
-\Weierstrassplatt, 31
-\Weierstrasszetalatt, 18
-\Weierstrasssigmalatt, 17
+\Weierstrassplatt, 29
+\Weierstrasszetalatt, 17
+\Weierstrasssigmalatt, 16
 \Weierstrassinvarlatt, 15
 \Dedekindeta, 7
 \modularlambdatau, 6

@@ -1,13 +1,12 @@
-\Eulertotientphi, 8
-\Moebiusmu, 7
 \Dirichletchar, 7
+\Moebiusmu, 6
+\Eulertotientphi, 6
 \npartitions, 5
-\ndivisors, 5
-\nprimes, 4
 \Gausssum, 3
 \Dedekindeta, 3
 \Longleftrightarrow, 2
 \MangoldtLambda, 2
+\nprimes, 2
 \nsquares, 2
 mx, 2
 \Ramanujantau, 2
@@ -16,3 +15,4 @@ mx, 2
 \Liouvillelambda, 2
 \Waringg, 1
 \JordanJ, 1
+\ndivisors, 1

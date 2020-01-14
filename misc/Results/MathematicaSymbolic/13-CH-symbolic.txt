@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 61, SUCCESS_SYMB: 61, SUCCESS_TRANS: 287, FAILURE: 224, STARTED_TEST_CASES: 311, SKIPPED: 81, DEFINITIONS: 17, IGNORE: 22, MISSING: 17, ERROR: 9] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 61, SUCCESS_SYMB: 61, SUCCESS_TRANS: 251, FAILURE: 188, STARTED_TEST_CASES: 257, SKIPPED: 81, DEFINITIONS: 17, IGNORE: 74, MISSING: 5, ERROR: 3] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 4272 [http://dlmf.nist.gov/13.2.E1]: Failure [Simple: NaN]
 4273 [http://dlmf.nist.gov/13.2.E2]: Successful [Simple: 0]
@@ -15,16 +15,6 @@ Overall: [SUCCESS: 61, SUCCESS_SYMB: 61, SUCCESS_TRANS: 287, FAILURE: 224, START
 4281-a [http://dlmf.nist.gov/13.2.E10]: Successful [Simple: 0]
 4282 [http://dlmf.nist.gov/13.2.E11]: Successful [Simple: 0]
 4283 [http://dlmf.nist.gov/13.2.E12]: Failure [Simple: NaN]
-4284 [http://dlmf.nist.gov/13.2.E13]: Failure [Simple: NaN]
-4285 [http://dlmf.nist.gov/13.2.E14]: Failure [Simple: NaN]
-4286 [http://dlmf.nist.gov/13.2.E15]: Failure [Simple: NaN]
-4287 [http://dlmf.nist.gov/13.2.E16]: Failure [Simple: NaN]
-4288 [http://dlmf.nist.gov/13.2.E17]: Failure [Simple: NaN]
-4289 [http://dlmf.nist.gov/13.2.E18]: Failure [Simple: NaN]
-4290 [http://dlmf.nist.gov/13.2.E19]: Failure [Simple: NaN]
-4291 [http://dlmf.nist.gov/13.2.E20]: Failure [Simple: NaN]
-4292 [http://dlmf.nist.gov/13.2.E21]: Failure [Simple: NaN]
-4293 [http://dlmf.nist.gov/13.2.E22]: Failure [Simple: NaN]
 4294: Skipped - Unable to analyze test case.
 4295: Skipped - Unable to analyze test case.
 4296: Skipped - Unable to analyze test case.
@@ -143,16 +133,10 @@ Overall: [SUCCESS: 61, SUCCESS_SYMB: 61, SUCCESS_TRANS: 287, FAILURE: 224, START
 4405: Skipped - Unable to analyze test case.
 4406: Skipped - Unable to analyze test case.
 4407 [http://dlmf.nist.gov/13.7.E10]: Failure [Simple: NaN]
-4411 [http://dlmf.nist.gov/13.8.E1]: Failure [Simple: NaN]
 4412: Skipped - Unable to analyze test case.
 4413 [http://dlmf.nist.gov/13.8.E3]: Failure [Simple: NaN]
 4414: Skipped - Unable to analyze test case.
 4415: Skipped - Unable to analyze test case.
-4416 [http://dlmf.nist.gov/13.8.E6]: Failure [Simple: NaN]
-4417 [http://dlmf.nist.gov/13.8.E7]: Failure [Simple: NaN]
-4418 [http://dlmf.nist.gov/13.8.E8]: Failure [Simple: Aborted]
-4419 [http://dlmf.nist.gov/13.8.E9]: Error - java.lang.NullPointerException [4419: \KummerconfhyperM@{a}{b}{x} EQUAL \EulerGamma@{b}e^{\frac{1}{2}x}\left((\tfrac{1}{2}b-a)x\right)^{\frac{1}{2}-\frac{1}{2}b}\*\left(\BesselJ{b-1}@{\sqrt{2x(b-2a)}}+\envBesselJ{b-1}@{\sqrt{2x(b-2a)}}\bigO@{\abs{a}^{-\frac{1}{2}}}\right); http://dlmf.nist.gov/13.8.E9]
-4420 [http://dlmf.nist.gov/13.8.E10]: Error - java.lang.NullPointerException [4420: \KummerconfhyperU@{a}{b}{x} EQUAL \EulerGamma@{\tfrac{1}{2}b-a+\tfrac{1}{2}}e^{\frac{1}{2}x}x^{\frac{1}{2}-\frac{1}{2}b}\*\left(\cos@{a\pi}\BesselJ{b-1}@{\sqrt{2x(b-2a)}}-\sin@{a\pi}\BesselY{b-1}@{\sqrt{2x(b-2a)}}+\envBesselY{b-1}@{\sqrt{2x(b-2a)}}\bigO@{\abs{a}^{-\frac{1}{2}}}\right); http://dlmf.nist.gov/13.8.E10]
 4421: Skipped - Unable to analyze test case.
 4422: Skipped - Unable to analyze test case.
 4423: Skipped - Unable to analyze test case.
@@ -165,14 +149,9 @@ Overall: [SUCCESS: 61, SUCCESS_SYMB: 61, SUCCESS_TRANS: 287, FAILURE: 224, START
 4432 [http://dlmf.nist.gov/13.9.E4]: Failure [Simple: NaN]
 4433 [http://dlmf.nist.gov/13.9.E5]: Failure [Simple: NaN]
 4434 [http://dlmf.nist.gov/13.9.E6]: Failure [Simple: NaN]
-4436 [http://dlmf.nist.gov/13.9.E8]: Failure [Simple: NaN]
-4437 [http://dlmf.nist.gov/13.9.E9]: Failure [Simple: NaN]
-4437-a [http://dlmf.nist.gov/13.9.E9]: Failure [Simple: NaN]
-4438 [http://dlmf.nist.gov/13.9.E10]: Failure [Simple: NaN]
 4439 [http://dlmf.nist.gov/13.9.E11]: Failure [Simple: NaN]
 4440 [http://dlmf.nist.gov/13.9.E12]: Failure [Simple: NaN]
 4442 [http://dlmf.nist.gov/13.9.E14]: Failure [Simple: NaN]
-4444 [http://dlmf.nist.gov/13.9.E16]: Failure [Simple: NaN]
 4445 [http://dlmf.nist.gov/13.10.E1]: Failure [Simple: NaN]
 4446 [http://dlmf.nist.gov/13.10.E2]: Successful [Simple: 0]
 4447 [http://dlmf.nist.gov/13.10.E3]: Failure [Simple: Aborted]
@@ -220,13 +199,6 @@ Overall: [SUCCESS: 61, SUCCESS_SYMB: 61, SUCCESS_TRANS: 287, FAILURE: 224, START
 4488 [http://dlmf.nist.gov/13.14.E11]: Failure [Simple: NaN]
 4489 [http://dlmf.nist.gov/13.14.E12]: Failure [Simple: NaN]
 4490 [http://dlmf.nist.gov/13.14.E13]: Failure [Simple: Aborted]
-4491 [http://dlmf.nist.gov/13.14.E14]: Failure [Simple: NaN]
-4492 [http://dlmf.nist.gov/13.14.E15]: Failure [Simple: NaN]
-4492-a [http://dlmf.nist.gov/13.14.E15]: Failure [Simple: NaN]
-4493 [http://dlmf.nist.gov/13.14.E16]: Failure [Simple: NaN]
-4494 [http://dlmf.nist.gov/13.14.E17]: Failure [Simple: NaN]
-4495 [http://dlmf.nist.gov/13.14.E18]: Failure [Simple: Aborted]
-4496 [http://dlmf.nist.gov/13.14.E19]: Failure [Simple: NaN]
 4497: Skipped - Unable to analyze test case.
 4498: Skipped - Unable to analyze test case.
 4499: Skipped - Unable to analyze test case.
@@ -306,65 +278,40 @@ Overall: [SUCCESS: 61, SUCCESS_SYMB: 61, SUCCESS_TRANS: 287, FAILURE: 224, START
 4570 [http://dlmf.nist.gov/13.18.E12]: Failure [Simple: NaN]
 4571 [http://dlmf.nist.gov/13.18.E13]: Failure [Simple: NaN]
 4572 [http://dlmf.nist.gov/13.18.E14]: Failure [Simple: NaN]
-4573 [http://dlmf.nist.gov/13.18.E15]: Failure [Simple: Aborted]
+4573 [http://dlmf.nist.gov/13.18.E15]: Failure [Simple: NaN]
 4574 [http://dlmf.nist.gov/13.18.E16]: Failure [Simple: Aborted]
-4575 [http://dlmf.nist.gov/13.18.E17]: Failure [Simple: NaN]
+4575 [http://dlmf.nist.gov/13.18.E17]: Failure [Simple: Aborted]
 4575-a [http://dlmf.nist.gov/13.18.E17]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \LaguerrepolyL [\LaguerrepolyL]
 4576: Skipped - Unable to analyze test case.
 4577: Skipped - Unable to analyze test case.
 4578: Skipped - Unable to analyze test case.
-4579 [http://dlmf.nist.gov/13.20.E1]: Failure [Simple: NaN]
-4580 [http://dlmf.nist.gov/13.20.E2]: Failure [Simple: NaN]
-4582 [http://dlmf.nist.gov/13.20.E4]: Failure [Simple: NaN]
-4583 [http://dlmf.nist.gov/13.20.E5]: Failure [Simple: NaN]
 4587 [http://dlmf.nist.gov/13.20.E9]: Failure [Simple: NaN]
 4588 [http://dlmf.nist.gov/13.20.E10]: Failure [Simple: NaN]
 4588-a [http://dlmf.nist.gov/13.20.E10]: Failure [Simple: NaN]
-4589 [http://dlmf.nist.gov/13.20.E11]: Failure [Simple: NaN]
-4590 [http://dlmf.nist.gov/13.20.E12]: Failure [Simple: NaN]
 4591 [http://dlmf.nist.gov/13.20.E13]: Failure [Simple: NaN]
 4592 [http://dlmf.nist.gov/13.20.E14]: Failure [Simple: NaN]
 4593 [http://dlmf.nist.gov/13.20.E15]: Failure [Simple: NaN]
-4594 [http://dlmf.nist.gov/13.20.E16]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \envparaU [\envparaU]
-4595 [http://dlmf.nist.gov/13.20.E17]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \envparaUbar [\envparaUbar]
-4596 [http://dlmf.nist.gov/13.20.E18]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \envparaUbar [\envparaUbar]
-4597 [http://dlmf.nist.gov/13.20.E19]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \envparaU [\envparaU]
-4598 [http://dlmf.nist.gov/13.21.E1]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \envBesselJ [\envBesselJ]
-4599 [http://dlmf.nist.gov/13.21.E2]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \envBesselY [\envBesselY]
-4600 [http://dlmf.nist.gov/13.21.E3]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \envBesselY [\envBesselY]
-4601 [http://dlmf.nist.gov/13.21.E4]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \envBesselY [\envBesselY]
 4602 [http://dlmf.nist.gov/13.21.E5]: Failure [Simple: NaN]
-4603 [http://dlmf.nist.gov/13.21.E6]: Failure [Simple: NaN]
-4604 [http://dlmf.nist.gov/13.21.E7]: Failure [Simple: NaN]
 4608 [http://dlmf.nist.gov/13.21.E11]: Failure [Simple: NaN]
 4609 [http://dlmf.nist.gov/13.21.E12]: Failure [Simple: NaN]
-4610 [http://dlmf.nist.gov/13.21.E13]: Error - java.lang.NullPointerException [4610: \WhittakerconfhyperM{\kappa}{\mu}@{x} EQUAL \EulerGamma@{2\mu+1}\*\left(\frac{e^{2}}{\kappa^{2}-\mu^{2}}\right)^{\frac{1}{2}\mu}\*\left(\frac{\kappa-\mu}{\kappa+\mu}\right)^{\frac{1}{2}\kappa}\*\Psi(\kappa,\mu,x)\*\left(\BesselJ{2\mu}@{\sqrt{\zeta\kappa}}+\envBesselJ{2\mu}@{\sqrt{\zeta\kappa}}\bigO@{\kappa^{-1}}\right); http://dlmf.nist.gov/13.21.E13]
-4611 [http://dlmf.nist.gov/13.21.E14]: Error - java.lang.NullPointerException [4611: \WhittakerconfhyperW{\kappa}{\mu}@{x} EQUAL \frac{e^{-\mu\pi\iunit}}{\pi}\EulerGamma@{\kappa+\mu+\tfrac{1}{2}}\*\EulerGamma@{\kappa-\mu+\tfrac{1}{2}}\*c(\kappa,\mu)\Psi(\kappa,\mu,x)\*\left(\sin@{\kappa\pi-\mu\pi}\BesselJ{2\mu}@{\sqrt{\zeta\kappa}}-\cos@{\kappa\pi-\mu\pi}\BesselY{2\mu}@{\sqrt{\zeta\kappa}}+\envBesselY{2\mu}@{\sqrt{\zeta\kappa}}\bigO@{\kappa^{-1}}\right); http://dlmf.nist.gov/13.21.E14]
-4612 [http://dlmf.nist.gov/13.21.E15]: Error - java.lang.NullPointerException [4612: \WhittakerconfhyperW{-\kappa}{\mu}@{xe^{-\pi\iunit}} EQUAL c(\kappa,\mu)\Psi(\kappa,\mu,x)\left(\HankelH{1}{2\mu}@{\sqrt{\zeta\kappa}}+\envBesselY{2\mu}@{\sqrt{\zeta\kappa}}\bigO@{\kappa^{-1}}\right); http://dlmf.nist.gov/13.21.E15]
-4613 [http://dlmf.nist.gov/13.21.E16]: Error - java.lang.NullPointerException [4613: \WhittakerconfhyperW{-\kappa}{\mu}@{xe^{\pi\iunit}} EQUAL e^{-2\mu\pi\iunit}c(\kappa,\mu)\Psi(\kappa,\mu,x)\left(\HankelH{2}{2\mu}@{\sqrt{\zeta\kappa}}+\envBesselY{2\mu}@{\sqrt{\zeta\kappa}}\bigO@{\kappa^{-1}}\right); http://dlmf.nist.gov/13.21.E16]
 4617 [http://dlmf.nist.gov/13.21.E20]: Error - (LaTeX -> Mathematica) No translation possible for given token: Accents are not supported.
 4618 [http://dlmf.nist.gov/13.21.E21]: Error - (LaTeX -> Mathematica) No translation possible for given token: Accents are not supported.
-4619 [http://dlmf.nist.gov/13.21.E22]: Error - (LaTeX -> Mathematica) No translation possible for given token: Accents are not supported.
-4620 [http://dlmf.nist.gov/13.21.E23]: Error - (LaTeX -> Mathematica) No translation possible for given token: Accents are not supported.
-4621 [http://dlmf.nist.gov/13.21.E24]: Error - (LaTeX -> Mathematica) No translation possible for given token: Accents are not supported.
-4622 [http://dlmf.nist.gov/13.21.E25]: Error - (LaTeX -> Mathematica) No translation possible for given token: Accents are not supported.
-4623 [http://dlmf.nist.gov/13.22.E1]: Failure [Simple: NaN]
-4624 [http://dlmf.nist.gov/13.23.E1]: Failure [Simple: NaN]
+4624 [http://dlmf.nist.gov/13.23.E1]: Failure [Simple: Aborted]
 4625 [http://dlmf.nist.gov/13.23.E2]: Failure [Simple: Aborted]
 4626 [http://dlmf.nist.gov/13.23.E3]: Failure [Simple: Aborted]
-4627 [http://dlmf.nist.gov/13.23.E4]: Failure [Simple: NaN]
+4627 [http://dlmf.nist.gov/13.23.E4]: Failure [Simple: Aborted]
 4628: Skipped - Unable to analyze test case.
 4629 [http://dlmf.nist.gov/13.23.E5]: Failure [Simple: Aborted]
-4630 [http://dlmf.nist.gov/13.23.E6]: Failure [Simple: Aborted]
+4630 [http://dlmf.nist.gov/13.23.E6]: Failure [Simple: NaN]
 4631 [http://dlmf.nist.gov/13.23.E7]: Failure [Simple: NaN]
-4632 [http://dlmf.nist.gov/13.23.E8]: Failure [Simple: NaN]
+4632 [http://dlmf.nist.gov/13.23.E8]: Failure [Simple: Aborted]
 4633 [http://dlmf.nist.gov/13.23.E9]: Failure [Simple: Aborted]
 4634: Skipped - Unable to analyze test case.
-4635 [http://dlmf.nist.gov/13.23.E10]: Failure [Simple: NaN]
+4635 [http://dlmf.nist.gov/13.23.E10]: Failure [Simple: Aborted]
 4636 [http://dlmf.nist.gov/13.23.E11]: Failure [Simple: Aborted]
 4637: Skipped - Unable to analyze test case.
 4638 [http://dlmf.nist.gov/13.23.E12]: Failure [Simple: Aborted]
-4641 [http://dlmf.nist.gov/13.24.E1]: Failure [Simple: Aborted]
+4641 [http://dlmf.nist.gov/13.24.E1]: Failure [Simple: NaN]
 4642 [http://dlmf.nist.gov/13.24.E2]: Failure [Simple: NaN]
 4643 [http://dlmf.nist.gov/13.24.E3]: Failure [Simple: NaN]
 4644 [http://dlmf.nist.gov/13.25.E1]: Failure [Simple: NaN]
@@ -383,10 +330,9 @@ Overall: [SUCCESS: 61, SUCCESS_SYMB: 61, SUCCESS_TRANS: 287, FAILURE: 224, START
 4658 [https://dlmf.nist.gov/13.28#Ex1]: Failure [Simple: NaN]
 4659 [https://dlmf.nist.gov/13.28#Ex2]: Failure [Simple: NaN]
 4662 [http://dlmf.nist.gov/13.29.E3]: Failure [Simple: NaN]
-4663 [http://dlmf.nist.gov/13.29.E4]: Failure [Simple: NaN]
 4665 [http://dlmf.nist.gov/13.29.E6]: Failure [Simple: NaN]
-4666 [http://dlmf.nist.gov/13.29.E7]: Failure [Simple: NaN]
+4666 [http://dlmf.nist.gov/13.29.E7]: Failure [Simple: Aborted]
 4667: Skipped - Unable to analyze test case.
 4669: Skipped - Unable to analyze test case.
 4671: Skipped - Unable to analyze test case.
-4672 [http://dlmf.nist.gov/13.31.E3]: Failure [Simple: Aborted]
+4672 [http://dlmf.nist.gov/13.31.E3]: Failure [Simple: NaN]

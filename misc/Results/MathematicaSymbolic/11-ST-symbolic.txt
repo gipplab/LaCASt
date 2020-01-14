@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 28, SUCCESS_SYMB: 28, SUCCESS_TRANS: 109, FAILURE: 81, STARTED_TEST_CASES: 127, SKIPPED: 29, DEFINITIONS: 0, IGNORE: 23, MISSING: 18, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 31, SUCCESS_SYMB: 31, SUCCESS_TRANS: 107, FAILURE: 76, STARTED_TEST_CASES: 124, SKIPPED: 29, DEFINITIONS: 0, IGNORE: 26, MISSING: 17, ERROR: 0] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 3897 [http://dlmf.nist.gov/11.2.E1]: Successful [Simple: 0]
 3898 [http://dlmf.nist.gov/11.2.E2]: Failure [Simple: NaN]
@@ -53,11 +53,11 @@ Overall: [SUCCESS: 28, SUCCESS_SYMB: 28, SUCCESS_TRANS: 109, FAILURE: 81, STARTE
 3946 [https://dlmf.nist.gov/11.4#Ex2]: Successful [Simple: 0]
 3947 [https://dlmf.nist.gov/11.4#Ex3]: Successful [Simple: 0]
 3948 [https://dlmf.nist.gov/11.4#Ex4]: Successful [Simple: 0]
-3949 [http://dlmf.nist.gov/11.5.E1]: Failure [Simple: NaN]
-3949-a [http://dlmf.nist.gov/11.5.E1]: Failure [Simple: NaN]
+3949 [http://dlmf.nist.gov/11.5.E1]: Successful [Simple: 0]
+3949-a [http://dlmf.nist.gov/11.5.E1]: Successful [Simple: 0]
 3950 [http://dlmf.nist.gov/11.5.E2]: Failure [Simple: Aborted]
 3951 [http://dlmf.nist.gov/11.5.E3]: Failure [Simple: Aborted]
-3952 [http://dlmf.nist.gov/11.5.E4]: Failure [Simple: NaN]
+3952 [http://dlmf.nist.gov/11.5.E4]: Successful [Simple: 0]
 3953 [http://dlmf.nist.gov/11.5.E5]: Successful [Simple: 0]
 3954 [http://dlmf.nist.gov/11.5.E6]: Failure [Simple: Aborted]
 3955 [http://dlmf.nist.gov/11.5.E7]: Failure [Simple: Aborted]
@@ -77,7 +77,7 @@ Overall: [SUCCESS: 28, SUCCESS_SYMB: 28, SUCCESS_TRANS: 109, FAILURE: 81, STARTE
 3974 [http://dlmf.nist.gov/11.7.E4]: Successful [Simple: 0]
 3975 [http://dlmf.nist.gov/11.7.E5]: Failure [Simple: NaN]
 3976 [http://dlmf.nist.gov/11.7.E6]: Failure [Simple: NaN]
-3977 [http://dlmf.nist.gov/11.7.E7]: Failure [Simple: NaN]
+3977 [http://dlmf.nist.gov/11.7.E7]: Failure [Simple: Aborted]
 3978 [https://dlmf.nist.gov/11.7#Ex1]: Successful [Simple: 0]
 3979 [https://dlmf.nist.gov/11.7#Ex2]: Successful [Simple: 0]
 3980 [http://dlmf.nist.gov/11.7.E9]: Failure [Simple: Aborted]
@@ -99,7 +99,7 @@ Overall: [SUCCESS: 28, SUCCESS_SYMB: 28, SUCCESS_TRANS: 109, FAILURE: 81, STARTE
 3997 [http://dlmf.nist.gov/11.9.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Lommels [\Lommels]
 3998: Skipped - Unable to analyze test case.
 3999 [http://dlmf.nist.gov/11.10.E1]: Failure [Simple: Aborted]
-4000 [http://dlmf.nist.gov/11.10.E2]: Failure [Simple: Aborted]
+4000 [http://dlmf.nist.gov/11.10.E2]: Failure [Simple: NaN]
 4001 [http://dlmf.nist.gov/11.10.E3]: Failure [Simple: Aborted]
 4002 [http://dlmf.nist.gov/11.10.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \AngerWeberA [\AngerWeberA]
 4006 [http://dlmf.nist.gov/11.10.E8]: Failure [Simple: NaN]
@@ -140,8 +140,6 @@ Overall: [SUCCESS: 28, SUCCESS_SYMB: 28, SUCCESS_TRANS: 109, FAILURE: 81, STARTE
 4043: Skipped - Unable to analyze test case.
 4044: Skipped - Unable to analyze test case.
 4045: Skipped - Unable to analyze test case.
-4046 [http://dlmf.nist.gov/11.11.E5]: Failure [Simple: NaN]
-4047 [http://dlmf.nist.gov/11.11.E6]: Failure [Simple: NaN]
 4048: Skipped - Unable to analyze test case.
 4049: Skipped - Unable to analyze test case.
 4050: Skipped - Unable to analyze test case.
@@ -153,6 +151,5 @@ Overall: [SUCCESS: 28, SUCCESS_SYMB: 28, SUCCESS_TRANS: 109, FAILURE: 81, STARTE
 4061: Skipped - Unable to analyze test case.
 4062: Skipped - Unable to analyze test case.
 4063: Skipped - Unable to analyze test case.
-4064 [http://dlmf.nist.gov/11.11.E17]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \AngerWeberA [\AngerWeberA]
 4065: Skipped - Unable to analyze test case.
 4066: Skipped - Unable to analyze test case.

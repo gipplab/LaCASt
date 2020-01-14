@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 50, SUCCESS_SYMB: 50, SUCCESS_TRANS: 187, FAILURE: 137, STARTED_TEST_CASES: 200, SKIPPED: 30, DEFINITIONS: 1, IGNORE: 23, MISSING: 5, ERROR: 8] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 50, SUCCESS_SYMB: 50, SUCCESS_TRANS: 183, FAILURE: 133, STARTED_TEST_CASES: 196, SKIPPED: 30, DEFINITIONS: 1, IGNORE: 27, MISSING: 5, ERROR: 8] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 4969 [http://dlmf.nist.gov/15.1.E1]: Successful [Simple: 0]
 4969-a [http://dlmf.nist.gov/15.1.E1]: Successful [Simple: 0]
@@ -207,13 +207,9 @@ Overall: [SUCCESS: 50, SUCCESS_SYMB: 50, SUCCESS_TRANS: 187, FAILURE: 137, START
 5166: Skipped - Unable to analyze test case.
 5167 [http://dlmf.nist.gov/15.12.E1]: Failure [Simple: NaN]
 5167-a [http://dlmf.nist.gov/15.12.E1]: Failure [Simple: NaN]
-5168 [http://dlmf.nist.gov/15.12.E2]: Failure [Simple: NaN]
 5169: Skipped - Unable to analyze test case.
-5171 [http://dlmf.nist.gov/15.12.E5]: Failure [Simple: NaN]
 5172 [http://dlmf.nist.gov/15.12.E6]: Failure [Simple: NaN]
-5173 [http://dlmf.nist.gov/15.12.E7]: Failure [Simple: Aborted]
 5174 [http://dlmf.nist.gov/15.12.E8]: Failure [Simple: NaN]
-5175 [http://dlmf.nist.gov/15.12.E9]: Failure [Simple: NaN]
 5176 [http://dlmf.nist.gov/15.12.E10]: Failure [Simple: NaN]
 5177 [http://dlmf.nist.gov/15.12.E11]: Failure [Simple: NaN]
 5181 [http://dlmf.nist.gov/15.13.E1]: Failure [Simple: NaN]

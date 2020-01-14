@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 17, SUCCESS_SYMB: 17, SUCCESS_TRANS: 73, FAILURE: 56, STARTED_TEST_CASES: 137, SKIPPED: 28, DEFINITIONS: 5, IGNORE: 73, MISSING: 62, ERROR: 2] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 17, SUCCESS_SYMB: 17, SUCCESS_TRANS: 72, FAILURE: 55, STARTED_TEST_CASES: 136, SKIPPED: 28, DEFINITIONS: 5, IGNORE: 74, MISSING: 62, ERROR: 2] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 8070 [http://dlmf.nist.gov/26.3.E1]: Successful [Simple: 0]
 8070-a [http://dlmf.nist.gov/26.3.E1]: Successful [Simple: 0]
@@ -41,7 +41,6 @@ Overall: [SUCCESS: 17, SUCCESS_SYMB: 17, SUCCESS_TRANS: 73, FAILURE: 56, STARTED
 8121 [http://dlmf.nist.gov/26.7.E5]: Successful [Simple: 0]
 8122 [http://dlmf.nist.gov/26.7.E6]: Failure [Simple: NaN]
 8123 [https://dlmf.nist.gov/26.7#Ex1]: Failure [Simple: NaN]
-8124 [http://dlmf.nist.gov/26.7.E7]: Failure [Simple: NaN]
 8125 [http://dlmf.nist.gov/26.7.E8]: Failure [Simple: NaN]
 8126 [http://dlmf.nist.gov/26.8.E1]: Failure [Simple: NaN]
 8127 [http://dlmf.nist.gov/26.8.E2]: Failure [Simple: NaN]

@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 3, SUCCESS_SYMB: 3, SUCCESS_TRANS: 60, FAILURE: 57, STARTED_TEST_CASES: 71, SKIPPED: 15, DEFINITIONS: 1, IGNORE: 255, MISSING: 11, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 3, SUCCESS_SYMB: 3, SUCCESS_TRANS: 57, FAILURE: 54, STARTED_TEST_CASES: 68, SKIPPED: 15, DEFINITIONS: 1, IGNORE: 258, MISSING: 11, ERROR: 0] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 9490 [http://dlmf.nist.gov/32.2.E1]: Failure [Simple: NaN]
 9491 [http://dlmf.nist.gov/32.2.E2]: Failure [Simple: NaN]
@@ -57,13 +57,11 @@ Overall: [SUCCESS: 3, SUCCESS_SYMB: 3, SUCCESS_TRANS: 60, FAILURE: 57, STARTED_T
 9780 [http://dlmf.nist.gov/32.11.E9]: Failure [Simple: NaN]
 9781: Skipped - Unable to analyze test case.
 9782: Skipped - Unable to analyze test case.
-9784 [http://dlmf.nist.gov/32.11.E13]: Failure [Simple: NaN]
 9785 [http://dlmf.nist.gov/32.11.E14]: Failure [Simple: NaN]
 9786 [http://dlmf.nist.gov/32.11.E15]: Failure [Simple: NaN]
 9787: Skipped - Unable to analyze test case.
 9788 [http://dlmf.nist.gov/32.11.E17]: Failure [Simple: NaN]
 9789 [http://dlmf.nist.gov/32.11.E18]: Failure [Simple: NaN]
-9790 [http://dlmf.nist.gov/32.11.E19]: Failure [Simple: NaN]
 9791 [http://dlmf.nist.gov/32.11.E20]: Failure [Simple: NaN]
 9792 [http://dlmf.nist.gov/32.11.E21]: Failure [Simple: NaN]
 9793 [http://dlmf.nist.gov/32.11.E22]: Failure [Simple: NaN]
@@ -74,7 +72,6 @@ Overall: [SUCCESS: 3, SUCCESS_SYMB: 3, SUCCESS_TRANS: 60, FAILURE: 57, STARTED_T
 9799 [http://dlmf.nist.gov/32.11.E28]: Failure [Simple: NaN]
 9802 [http://dlmf.nist.gov/32.11.E31]: Failure [Simple: NaN]
 9803: Skipped - Unable to analyze test case.
-9804 [http://dlmf.nist.gov/32.11.E33]: Failure [Simple: NaN]
 9805 [http://dlmf.nist.gov/32.11.E34]: Failure [Simple: NaN]
 9806 [http://dlmf.nist.gov/32.11.E35]: Failure [Simple: NaN]
 9807 [http://dlmf.nist.gov/32.11.E36]: Failure [Simple: NaN]

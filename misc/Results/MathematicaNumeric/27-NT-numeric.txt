@@ -1,8 +1,6 @@
-Overall: [SUCCESS: 4, FAILURE: 1, LIMIT_SKIPS: 0, TESTED: 6, ERROR: 1] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 2, FAILURE: 1, LIMIT_SKIPS: 0, TESTED: 4, ERROR: 1] for test expression: (#LHS)-(#RHS)
 8317: Skip - symbolical successful subtest
 8317-a: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
 8367: Successful
-8380: Successful
-8382: Successful
 8388: {{Complex[0.41421356237309515, 1.4142135623730951], {Rule[Limit[Times[Power[n, -1], Power[Log[n], -1], Subscript[p, n]], Rule[n, DirectedInfinity[1]]], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[0.41421356237309515, -1.4142135623730951], {Rule[Limit[Times[Power[n, -1], Power[Log[n], -1], Subscript[p, n]], Rule[n, DirectedInfinity[1]]], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-2.414213562373095, -1.4142135623730951], {Rule[Limit[Times[Power[n, -1], Power[Log[n], -1], Subscript[p, n]], Rule[n, DirectedInfinity[1]]], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-2.414213562373095, 1.4142135623730951], {Rule[Limit[Times[Power[n, -1], Power[Log[n], -1], Subscript[p, n]], Rule[n, DirectedInfinity[1]]], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
 8389: Successful

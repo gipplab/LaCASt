@@ -153,6 +153,28 @@ public class MathematicaTranslator implements
     private static final String NL = System.lineSeparator();
     private StringBuilder sb;
 
+    private String varName = "vars";
+    private String eVars = "constVars";
+    private String exVars = "extraVars";
+    private String cons = "assumptions";
+    private String testCasesVar = "testCases";
+
+    private void clearVariables() {
+        String cmd = String.format(
+                "ClearAll[%s, %s, %s, %s, %s]",
+                varName,
+                eVars,
+                exVars,
+                cons,
+                testCasesVar
+        );
+        try {
+            mi.evaluate(cmd);
+        } catch (MathLinkException e) {
+            LOG.error("Cannot clear variables.");
+        }
+    }
+
     /**
      * Extracts variables and stores them.
      * @param expression mathematical expression (already translated)
@@ -161,7 +183,7 @@ public class MathematicaTranslator implements
      */
     @Override
     public String storeVariables(String expression, List<String> testValues) {
-        String varName = "vars";
+        clearVariables();
         String valsName = generateValuesVarName(varName);
 
         sb = new StringBuilder();
@@ -173,7 +195,6 @@ public class MathematicaTranslator implements
 
     @Override
     public String storeConstraintVariables(String variableName, List<String> constraintVariables, List<String> constraintValues) {
-        String eVars = "constVars";
         String eVals = generateValuesVarName(eVars);
         addVarDefinitionNL(sb, eVars, buildMathList(constraintVariables));
         addVarDefinitionNL(sb, eVals, buildMathList(constraintValues));
@@ -182,16 +203,14 @@ public class MathematicaTranslator implements
 
     @Override
     public String storeExtraVariables(String variableName, List<String> extraVariables, List<String> extraValues) {
-        String eVars = "extraVars";
-        String eVals = generateValuesVarName(eVars);
-        addVarDefinitionNL(sb, eVars, buildMathList(extraVariables));
+        String eVals = generateValuesVarName(exVars);
+        addVarDefinitionNL(sb, exVars, buildMathList(extraVariables));
         addVarDefinitionNL(sb, eVals, buildMathList(extraValues));
-        return eVars;
+        return exVars;
     }
 
     @Override
     public String setConstraints(List<String> constraints) {
-        String cons = "assumptions";
         addVarDefinitionNL(sb, cons, buildMathList(constraints));
         return (constraints == null || constraints.isEmpty()) ? null : cons;
     }
@@ -205,8 +224,6 @@ public class MathematicaTranslator implements
         } catch (MathLinkException e) {
             e.printStackTrace();
         }
-
-        String testCasesVar = "testCases";
 
         // create test cases first
         String testCasesCmd = Commands.CREATE_TEST_CASES.build(

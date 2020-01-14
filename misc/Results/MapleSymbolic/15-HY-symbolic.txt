@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 47, SUCCESS_SYMB: 47, SUCCESS_TRANS: 188, FAILURE: 136, STARTED_TEST_CASES: 200, SKIPPED: 30, DEFINITIONS: 1, IGNORE: 23, MISSING: 4, ERROR: 13] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 48, SUCCESS_SYMB: 48, SUCCESS_TRANS: 184, FAILURE: 131, STARTED_TEST_CASES: 196, SKIPPED: 30, DEFINITIONS: 1, IGNORE: 27, MISSING: 4, ERROR: 13] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
 4969 [http://dlmf.nist.gov/15.1.E1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 4969-a [http://dlmf.nist.gov/15.1.E1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
@@ -7,7 +7,7 @@ Overall: [SUCCESS: 47, SUCCESS_SYMB: 47, SUCCESS_TRANS: 188, FAILURE: 136, START
 4970-b [http://dlmf.nist.gov/15.1.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4971: Skipped - Unable to analyze test case.
 4972 [http://dlmf.nist.gov/15.2.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4973 [http://dlmf.nist.gov/15.2.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+4973 [http://dlmf.nist.gov/15.2.E2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 4974: Skipped - Unable to analyze test case.
 4975 [http://dlmf.nist.gov/15.2.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4976 [https://dlmf.nist.gov/15.2#Ex1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
@@ -207,13 +207,9 @@ Overall: [SUCCESS: 47, SUCCESS_SYMB: 47, SUCCESS_TRANS: 188, FAILURE: 136, START
 5166: Skipped - Unable to analyze test case.
 5167 [http://dlmf.nist.gov/15.12.E1]: Error - java.lang.IllegalArgumentException: Error in CAS! [5167: \alpha_{+} EQUAL \atan@{\frac{\phase@@{z}-\phase@{1-z}-\pi}{\ln@@{|1-z^{-1}|}}}; http://dlmf.nist.gov/15.12.E1]
 5167-a [http://dlmf.nist.gov/15.12.E1]: Error - java.lang.IllegalArgumentException: Error in CAS! [5167: \alpha_{-} EQUAL \atan@{\frac{\phase@@{z}-\phase@{1-z}+\pi}{\ln@@{|1-z^{-1}|}}}; http://dlmf.nist.gov/15.12.E1]
-5168 [http://dlmf.nist.gov/15.12.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 5169: Skipped - Unable to analyze test case.
-5171 [http://dlmf.nist.gov/15.12.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 5172 [http://dlmf.nist.gov/15.12.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-5173 [http://dlmf.nist.gov/15.12.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 5174 [http://dlmf.nist.gov/15.12.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-5175 [http://dlmf.nist.gov/15.12.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 5176 [http://dlmf.nist.gov/15.12.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 5177 [http://dlmf.nist.gov/15.12.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 5181 [http://dlmf.nist.gov/15.13.E1]: Error - java.lang.IllegalArgumentException: Error in CAS! [5181: 0,\\ \floor{-a}+\tfrac{1}{2}(1+S),&a LESS_THAN 0,c-a; http://dlmf.nist.gov/15.13.E1]

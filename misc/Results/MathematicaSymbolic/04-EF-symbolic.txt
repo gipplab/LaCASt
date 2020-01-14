@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 257, SUCCESS_SYMB: 257, SUCCESS_TRANS: 531, FAILURE: 273, STARTED_TEST_CASES: 543, SKIPPED: 9, DEFINITIONS: 8, IGNORE: 96, MISSING: 12, ERROR: 1] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 259, SUCCESS_SYMB: 259, SUCCESS_TRANS: 529, FAILURE: 269, STARTED_TEST_CASES: 541, SKIPPED: 9, DEFINITIONS: 8, IGNORE: 98, MISSING: 12, ERROR: 1] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 1472 [http://dlmf.nist.gov/4.2.E8]: Successful [Simple: 0]
 1473 [http://dlmf.nist.gov/4.2.E9]: Successful [Simple: 0]
@@ -103,10 +103,8 @@ Overall: [SUCCESS: 257, SUCCESS_SYMB: 257, SUCCESS_TRANS: 531, FAILURE: 273, STA
 1612 [https://dlmf.nist.gov/4.13#Ex5]: Failure [Simple: NaN]
 1612-a [https://dlmf.nist.gov/4.13#Ex5]: Failure [Simple: NaN]
 1613 [http://dlmf.nist.gov/4.13.E4]: Error - java.lang.IndexOutOfBoundsException: No group 1 [1613: \deriv{\LambertW}{x} EQUAL \frac{e^{-\LambertW}}{1+\LambertW}; http://dlmf.nist.gov/4.13.E4]
-1614 [http://dlmf.nist.gov/4.13.E5]: Failure [Simple: NaN]
+1614 [http://dlmf.nist.gov/4.13.E5]: Successful [Simple: 0]
 1615 [http://dlmf.nist.gov/4.13.E6]: Failure [Simple: NaN]
-1619 [http://dlmf.nist.gov/4.13.E10]: Failure [Simple: NaN]
-1620 [http://dlmf.nist.gov/4.13.E11]: Failure [Simple: NaN]
 1621 [http://dlmf.nist.gov/4.14.E1]: Successful [Simple: 0]
 1622 [http://dlmf.nist.gov/4.14.E2]: Successful [Simple: 0]
 1623 [http://dlmf.nist.gov/4.14.E3]: Successful [Simple: 0]
@@ -140,8 +138,8 @@ Overall: [SUCCESS: 257, SUCCESS_SYMB: 257, SUCCESS_TRANS: 531, FAILURE: 273, STA
 1646 [https://dlmf.nist.gov/4.18#Ex1]: Failure [Simple: NaN]
 1647 [https://dlmf.nist.gov/4.18#Ex2]: Failure [Simple: NaN]
 1654 [http://dlmf.nist.gov/4.19.E7]: Failure [Simple: Aborted]
-1655 [http://dlmf.nist.gov/4.19.E8]: Failure [Simple: NaN]
-1656 [http://dlmf.nist.gov/4.19.E9]: Failure [Simple: NaN]
+1655 [http://dlmf.nist.gov/4.19.E8]: Failure [Simple: Aborted]
+1656 [http://dlmf.nist.gov/4.19.E9]: Failure [Simple: Aborted]
 1657 [http://dlmf.nist.gov/4.20.E1]: Successful [Simple: 0]
 1658 [http://dlmf.nist.gov/4.20.E2]: Successful [Simple: 0]
 1659 [http://dlmf.nist.gov/4.20.E3]: Successful [Simple: 0]
@@ -283,7 +281,7 @@ Overall: [SUCCESS: 257, SUCCESS_SYMB: 257, SUCCESS_TRANS: 531, FAILURE: 273, STA
 1760-d [http://dlmf.nist.gov/4.23.E40]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
 1760-e [http://dlmf.nist.gov/4.23.E40]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
 1760-f [http://dlmf.nist.gov/4.23.E40]: Successful [Simple: 0]
-1761 [http://dlmf.nist.gov/4.23.E41]: Failure [Simple: NaN]
+1761 [http://dlmf.nist.gov/4.23.E41]: Failure [Simple: Aborted]
 1762 [http://dlmf.nist.gov/4.23.E42]: Successful [Simple: 0]
 1762-a [http://dlmf.nist.gov/4.23.E42]: Successful [Simple: 0]
 1762-b [http://dlmf.nist.gov/4.23.E42]: Failure [Simple: NaN]
@@ -316,7 +314,7 @@ Overall: [SUCCESS: 257, SUCCESS_SYMB: 257, SUCCESS_TRANS: 531, FAILURE: 273, STA
 1779-c [http://dlmf.nist.gov/4.24.E17]: Failure [Simple: Aborted]
 1785 [http://dlmf.nist.gov/4.26.E1]: Successful [Simple: 0]
 1786 [http://dlmf.nist.gov/4.26.E2]: Successful [Simple: 0]
-1787 [http://dlmf.nist.gov/4.26.E3]: Failure [Simple: NaN]
+1787 [http://dlmf.nist.gov/4.26.E3]: Successful [Simple: 0]
 1788 [http://dlmf.nist.gov/4.26.E4]: Successful [Simple: 0]
 1789 [http://dlmf.nist.gov/4.26.E5]: Failure [Simple: NaN]
 1790 [http://dlmf.nist.gov/4.26.E6]: Successful [Simple: 0]

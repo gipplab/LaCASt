@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 1, SUCCESS_SYMB: 1, SUCCESS_TRANS: 16, FAILURE: 15, STARTED_TEST_CASES: 160, SKIPPED: 16, DEFINITIONS: 0, IGNORE: 30, MISSING: 142, ERROR: 2] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 1, SUCCESS_SYMB: 1, SUCCESS_TRANS: 15, FAILURE: 14, STARTED_TEST_CASES: 155, SKIPPED: 16, DEFINITIONS: 0, IGNORE: 35, MISSING: 138, ERROR: 2] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 7487 [http://dlmf.nist.gov/23.2.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrassplatt [\Weierstrassplatt]
 7488: Skipped - Unable to analyze test case.
@@ -114,7 +114,6 @@ Overall: [SUCCESS: 1, SUCCESS_SYMB: 1, SUCCESS_TRANS: 16, FAILURE: 15, STARTED_T
 7588 [http://dlmf.nist.gov/23.9.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrasszetalatt [\Weierstrasszetalatt]
 7589 [https://dlmf.nist.gov/23.9#Ex1]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \Weierstrassinvarlatt [\Weierstrassinvarlatt]
 7590 [https://dlmf.nist.gov/23.9#Ex2]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \Weierstrassinvarlatt [\Weierstrassinvarlatt]
-7592 [http://dlmf.nist.gov/23.9.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrassplatt [\Weierstrassplatt]
 7593 [http://dlmf.nist.gov/23.9.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrasssigmalatt [\Weierstrasssigmalatt]
 7595 [http://dlmf.nist.gov/23.10.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrassplatt [\Weierstrassplatt]
 7596 [http://dlmf.nist.gov/23.10.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrasszetalatt [\Weierstrasszetalatt]
@@ -137,10 +136,6 @@ Overall: [SUCCESS: 1, SUCCESS_SYMB: 1, SUCCESS_TRANS: 16, FAILURE: 15, STARTED_T
 7616 [https://dlmf.nist.gov/23.11#Ex2]: Failure [Simple: NaN]
 7617 [http://dlmf.nist.gov/23.11.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrassplatt [\Weierstrassplatt]
 7618 [http://dlmf.nist.gov/23.11.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrasszetalatt [\Weierstrasszetalatt]
-7619 [http://dlmf.nist.gov/23.12.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrassplatt [\Weierstrassplatt]
-7620 [http://dlmf.nist.gov/23.12.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrasszetalatt [\Weierstrasszetalatt]
-7621 [http://dlmf.nist.gov/23.12.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrasssigmalatt [\Weierstrasssigmalatt]
-7622 [http://dlmf.nist.gov/23.12.E4]: Failure [Simple: NaN]
 7623 [http://dlmf.nist.gov/23.14.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrassplatt [\Weierstrassplatt]
 7624 [http://dlmf.nist.gov/23.14.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrassplatt [\Weierstrassplatt]
 7625 [http://dlmf.nist.gov/23.14.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrassplatt [\Weierstrassplatt]
