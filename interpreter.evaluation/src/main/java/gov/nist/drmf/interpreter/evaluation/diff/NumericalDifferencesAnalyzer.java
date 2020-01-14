@@ -56,9 +56,15 @@ public class NumericalDifferencesAnalyzer {
             "^([A-Za-z]+)\\[.*", Pattern.DOTALL
     );
 
+    private static final Pattern numPat = Pattern.compile("(\\d+)-?([a-z])?");
+
+    private static final Pattern urlPattern = Pattern.compile("url\\{(.*?)}");
+
     private IComputerAlgebraSystemEngine<Expr> mathematica;
     private ITranslator forwardTranslator;
     private ITranslator backwardTranslator;
+
+    private HashMap<Integer, String> urlLib;
 
     private String procedureName;
 
@@ -86,9 +92,10 @@ public class NumericalDifferencesAnalyzer {
         }
     }
 
-    public void init(Path mathematicaNumResultsPath, Path mapleNumResultsPath) throws IOException {
+    public void init(Path mathematicaNumResultsPath, Path mapleNumResultsPath, Path testFile) throws IOException {
         resultsMapMathematica = new HashMap<>();
         resultsMapMaple = new HashMap<>();
+        urlLib = new HashMap<>();
 
         Files.walk(mathematicaNumResultsPath)
                 .filter( p -> Files.isRegularFile(p) )
@@ -97,6 +104,16 @@ public class NumericalDifferencesAnalyzer {
         Files.walk(mapleNumResultsPath)
                 .filter( p -> Files.isRegularFile(p) )
                 .forEach( p -> fillMap(resultsMapMaple, p, mapleLinePattern, mapleEntityPattern, false));
+
+        int[] counter = new int[]{0};
+        Files.lines(testFile)
+                .peek( l -> counter[0]++ )
+                .forEach( l -> {
+                    Matcher m = urlPattern.matcher(l);
+                    if ( m.find() ) {
+                        urlLib.put(counter[0], m.group(1));
+                    }
+                });
     }
 
     private static void fillMap(
@@ -135,15 +152,22 @@ public class NumericalDifferencesAnalyzer {
         int errorCounter = 0;
 
         for ( String i : resultsMapMathematica.keySet() ) {
+            Matcher m = numPat.matcher(i);
+            String url = null;
+            if ( m.matches() ) {
+                Integer id = Integer.parseInt(m.group(1));
+                url = urlLib.get(id);
+            }
+
             LinkedList<SingleNumericEntity> mathSet = resultsMapMathematica.get(i);
             LinkedList<SingleNumericEntity> mapleSet = resultsMapMaple.get(i);
             if ( mapleSet == null || mapleSet.isEmpty() ) {
-                LOG.debug("Skip " + i + " (not available in Maple)");
+                LOG.debug("Skip " + i + " (not available in Maple) " + "[" + url + "]");
                 continue;
             }
 
             if ( mathSet.size() != mapleSet.size() ) {
-                LOG.warn("Lists have different lengths for " + i);
+                LOG.warn("Lists have different lengths for " + i + " [" + url + "]");
                 lengthCounter++;
                 continue;
             }
@@ -159,7 +183,7 @@ public class NumericalDifferencesAnalyzer {
                             orderedMapleSet.addLast(mapleEntry);
                         }
                     } catch (ComputerAlgebraSystemEngineException | TranslationException e) {
-                        LOG.error("Cannot match entries: \n" + mathematicaEntry + "\n" + mapleEntry, e);
+                        LOG.error("Cannot match entries"+ "[" + url + "]"+": \n" + mathematicaEntry + "\n" + mapleEntry, e);
                     }
                 }
             }
@@ -180,15 +204,18 @@ public class NumericalDifferencesAnalyzer {
                 Expr res = mathematica.enterCommand(cmd);
 //                Expr res = mathematica.enterCommand("Select[Flatten[" + mathSetDef + " - " + mapleSetDef + "], Abs[#] > 1*10^(-5) &]");
                 if ( res.toString().matches("\\{}") ) {
-                    LOG.info("Same set in line " + i);
+                    LOG.info("Same set in line " + i + " [" + url + "]");
                     sameCounter++;
                 } else {
-                    LOG.warn("Not same in line " + i + "\n" + res.toString() + "\n" + mathSetDef + "\n" + mapleSetDef);
+                    LOG.info(mathSetDef);
+                    LOG.info(mapleSetDef);
+                    LOG.info(testValueList);
+                    LOG.warn("Not same in line " + i + " [" + url + "]\n" + res.toString() + "\n" + mathSetDef + "\n" + mapleSetDef);
                     results.put(i, res.toString());
                 }
             } catch (ComputerAlgebraSystemEngineException e) {
                 errorCounter++;
-                LOG.error("Cannot compare " + i + "\n" + mathSetDef + "\n" + mapleSetDef);
+                LOG.error("Cannot compare " + i + " [" + url + "]" + "\n" + mathSetDef + "\n" + mapleSetDef);
             }
         }
 
@@ -199,7 +226,6 @@ public class NumericalDifferencesAnalyzer {
         if ( errorCounter != 0 ) LOG.error("Errors: " + errorCounter);
 
         LinkedList<String> list = new LinkedList<>();
-        Pattern numPat = Pattern.compile("(\\d+)-?([a-z])?");
 
         for ( String i : results.keySet() ) {
             list.add(i);
@@ -225,7 +251,18 @@ public class NumericalDifferencesAnalyzer {
 
         StringBuilder sb = new StringBuilder();
         for ( String i : list ) {
-            sb.append(i).append(": ").append(results.get(i)).append("\n");
+            sb.append(i);
+
+            Matcher m = numPat.matcher(i);
+            if ( m.matches() ) {
+                Integer id = Integer.parseInt(m.group(1));
+                String url = urlLib.get(id);
+                sb.append(" [").append(url).append("]");
+            }
+
+            sb.append(": ")
+                    .append(results.get(i))
+                    .append("\n");
         }
 
         try {
@@ -239,11 +276,10 @@ public class NumericalDifferencesAnalyzer {
     public static void main(String[] args) throws IOException, MapleException, ComputerAlgebraSystemEngineException {
         NumericalDifferencesAnalyzer nda = new NumericalDifferencesAnalyzer();
         nda.init(
-                Paths.get("/home/andreg-p/Howard/Results/MathNumeric/"),
-//                Paths.get("libs/Results/MathematicaNumericPotentialConflicts/"),
-                Paths.get("/home/andreg-p/Howard/Results/MapleNumeric/")
-//                Paths.get("libs/Results/MapleNumericPotentialConflicts/")
+                Paths.get("misc/Results/MathematicaNumeric/"),
+                Paths.get("misc/Results/MapleNumeric/"),
+                Paths.get("/home/andreg-p/Howard/together.txt")
         );
-        nda.compareAll(Paths.get("libs/Results/NEW-difference-results.txt"));
+        nda.compareAll(Paths.get("misc/Results/NEW-difference-results.txt"));
     }
 }

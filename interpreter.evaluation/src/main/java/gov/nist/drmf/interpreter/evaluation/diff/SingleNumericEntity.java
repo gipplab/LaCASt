@@ -104,7 +104,7 @@ public class SingleNumericEntity {
         }
 
         for ( int i = 1; i < list.size(); i++ ) {
-            SingleNumericEntity e = list.get(0);
+            SingleNumericEntity e = list.get(i);
             sb.append(", ");
             if ( value ) sb.append(e.value);
             else {
