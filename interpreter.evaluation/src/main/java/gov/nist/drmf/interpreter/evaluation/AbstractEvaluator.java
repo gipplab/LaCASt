@@ -39,7 +39,7 @@ public abstract class AbstractEvaluator<T> {
     public static int DEFAULT_OUTPUT_LENGTH = 150;
 
     public static final Pattern filterCases = Pattern.compile(
-            "\\\\(BigO|littleo|[fdc]Diff|asymp|sim|[lc]?dots)(?:[^a-zA-Z]|$)|" +
+            "\\\\([Bb]igO|littleo|[fdc]Diff|asymp|sim|[lc]?dots)(?:[^a-zA-Z]|$)|" +
                     "\\{(cases|array|[bBvp]matrix|Matrix|Lattice)}|" +
                     "([fg](?:\\\\left)?\\()"
     );

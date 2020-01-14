@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 19, FAILURE: 59, LIMIT_SKIPS: 0, TESTED: 105, ERROR: 27] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 19, FAILURE: 62, LIMIT_SKIPS: 0, TESTED: 102, ERROR: 21] for test expression: (#LHS)-(#RHS)
 2724: $Failed
 2724-a: $Failed
 2743: Skipped - Because timed out
@@ -75,7 +75,6 @@ Overall: [SUCCESS: 19, FAILURE: 59, LIMIT_SKIPS: 0, TESTED: 105, ERROR: 27] for 
 2795: Successful
 2797: Skipped - Because timed out
 2798: Skipped - Because timed out
-2802: $Failed
 2803: Successful
 2804: Successful
 2807: Successful
@@ -91,8 +90,6 @@ Overall: [SUCCESS: 19, FAILURE: 59, LIMIT_SKIPS: 0, TESTED: 105, ERROR: 27] for 
 2855: Skipped - Because timed out
 2855-a: Skip - symbolical successful subtest
 2855-b: Skip - symbolical successful subtest
-2858: Error - (LaTeX -> Mathematica) No translation possible for given token: Unknown relation. Cannot translate: \rightarrow [\rightarrow]
-2859: Error - (LaTeX -> Mathematica) No translation possible for given token: Unknown relation. Cannot translate: \rightarrow [\rightarrow]
 2864: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
 2865: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
 2866: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown symbol reached: \Re
@@ -124,7 +121,7 @@ Overall: [SUCCESS: 19, FAILURE: 59, LIMIT_SKIPS: 0, TESTED: 105, ERROR: 27] for 
 2920: Successful
 2922: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
 2945: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Hold[Length[testCases]]"
-2953: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Hold[Length[testCases]]"
-2954: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Hold[Length[testCases]]"
-2957: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Hold[Length[testCases]]"
-2958: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "Hold[Length[testCases]]"
+2953: $Failed
+2954: $Failed
+2957: $Failed
+2958: $Failed

@@ -14,10 +14,8 @@
 \det, 1
 \Fouriertrans, 1
 \variation, 1
-Re, 1
 \Fouriersintrans, 1
 \regCoulombs, 1
 \sphBesselJ, 1
 \Fouriercostrans, 1
 \divergence, 1
-\LaguerrepolyL, 1

@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 14, SUCCESS_SYMB: 14, SUCCESS_TRANS: 112, FAILURE: 98, STARTED_TEST_CASES: 185, SKIPPED: 22, DEFINITIONS: 0, IGNORE: 36, MISSING: 65, ERROR: 8] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 15, SUCCESS_SYMB: 15, SUCCESS_TRANS: 111, FAILURE: 96, STARTED_TEST_CASES: 184, SKIPPED: 22, DEFINITIONS: 0, IGNORE: 37, MISSING: 65, ERROR: 8] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 7677 [http://dlmf.nist.gov/23.21.E1]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \Weierstrasselatt [\Weierstrasselatt]
 7680 [https://dlmf.nist.gov/23.21#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Weierstrassplatt [\Weierstrassplatt]
@@ -19,7 +19,7 @@ Overall: [SUCCESS: 14, SUCCESS_SYMB: 14, SUCCESS_TRANS: 112, FAILURE: 98, STARTE
 7697 [http://dlmf.nist.gov/24.2.E3]: Successful [Simple: 0]
 7698 [http://dlmf.nist.gov/24.2.E4]: Successful [Simple: 0]
 7699 [http://dlmf.nist.gov/24.2.E5]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \choose [\choose]
-7700 [http://dlmf.nist.gov/24.2.E6]: Failure [Simple: NaN]
+7700 [http://dlmf.nist.gov/24.2.E6]: Successful [Simple: 0]
 7701 [https://dlmf.nist.gov/24.2#Ex3]: Failure [Simple: NaN]
 7702 [https://dlmf.nist.gov/24.2#Ex4]: Failure [Simple: NaN]
 7703 [http://dlmf.nist.gov/24.2.E8]: Successful [Simple: 0]
@@ -201,7 +201,6 @@ Overall: [SUCCESS: 14, SUCCESS_SYMB: 14, SUCCESS_TRANS: 112, FAILURE: 98, STARTE
 7879 [http://dlmf.nist.gov/24.16.E13]: Failure [Simple: NaN]
 7881 [http://dlmf.nist.gov/24.17.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \perEulerE [\perEulerE]
 7882 [http://dlmf.nist.gov/24.17.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \perEulerE [\perEulerE]
-7886 [http://dlmf.nist.gov/24.17.E7]: Failure [Simple: NaN]
 7887 [http://dlmf.nist.gov/24.17.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \perBernoulliB [\perBernoulliB]
 7888 [http://dlmf.nist.gov/24.19.E1]: Error - java.lang.NullPointerException [7888: N_{2n} EQUAL \frac{2(2n)!}{(2\pi)^{2n}}\left(\prod_{p-1\divides 2n}p\right)\left(\prod_{p}\frac{p^{2n}}{p^{2n}-1}\right); http://dlmf.nist.gov/24.19.E1]
 7889 [https://dlmf.nist.gov/24.19#Ex1]: Error - java.lang.NullPointerException [7889: D_{2n} EQUAL \prod_{p-1\divides 2n}p; https://dlmf.nist.gov/24.19#Ex1]

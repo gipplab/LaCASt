@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 14, SUCCESS_SYMB: 14, SUCCESS_TRANS: 83, FAILURE: 69, STARTED_TEST_CASES: 112, SKIPPED: 6, DEFINITIONS: 5, IGNORE: 11, MISSING: 29, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 14, SUCCESS_SYMB: 14, SUCCESS_TRANS: 81, FAILURE: 65, STARTED_TEST_CASES: 110, SKIPPED: 6, DEFINITIONS: 5, IGNORE: 13, MISSING: 29, ERROR: 2] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 2179 [http://dlmf.nist.gov/6.2.E1]: Failure [Simple: NaN]
 2180 [http://dlmf.nist.gov/6.2.E2]: Failure [Simple: NaN]
@@ -84,8 +84,8 @@ Overall: [SUCCESS: 14, SUCCESS_SYMB: 14, SUCCESS_TRANS: 83, FAILURE: 69, STARTED
 2240-a [http://dlmf.nist.gov/6.8.E3]: Failure [Simple: NaN]
 2249 [http://dlmf.nist.gov/6.10.E4]: Successful [Simple: 0]
 2250 [http://dlmf.nist.gov/6.10.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \cosintCin [\cosintCin]
-2251 [http://dlmf.nist.gov/6.10.E6]: Failure [Simple: NaN]
-2253 [http://dlmf.nist.gov/6.10.E8]: Failure [Simple: NaN]
+2251 [http://dlmf.nist.gov/6.10.E6]: Error - java.lang.IndexOutOfBoundsException: No group 2 [2251: \expintEi@{x} EQUAL \EulerConstant+\ln@@{\abs{x}}+\sum_{n=0}^{\infty}(-1)^{n}(x-a_{n})\left(\modsphBesseli{1}{n}@{\tfrac{1}{2}x}\right)^{2}; http://dlmf.nist.gov/6.10.E6]
+2253 [http://dlmf.nist.gov/6.10.E8]: Error - java.lang.IndexOutOfBoundsException: No group 2 [2253: \expintEin@{z} EQUAL ze^{-z/2}\left(\modsphBesseli{1}{0}@{\tfrac{1}{2}z}+\sum_{n=1}^{\infty}\dfrac{2n+1}{n(n+1)}\modsphBesseli{1}{n}@{\tfrac{1}{2}z}\right); http://dlmf.nist.gov/6.10.E8]
 2254 [http://dlmf.nist.gov/6.11.E1]: Failure [Simple: NaN]
 2255 [http://dlmf.nist.gov/6.11.E2]: Failure [Simple: NaN]
 2256 [http://dlmf.nist.gov/6.11.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \auxsincosintg [\auxsincosintg]
@@ -112,8 +112,6 @@ Overall: [SUCCESS: 14, SUCCESS_SYMB: 14, SUCCESS_TRANS: 83, FAILURE: 69, STARTED
 2278 [http://dlmf.nist.gov/6.16.E1]: Failure [Simple: NaN]
 2278-a [http://dlmf.nist.gov/6.16.E1]: Failure [Simple: NaN]
 2278-b [http://dlmf.nist.gov/6.16.E1]: Failure [Simple: NaN]
-2281 [http://dlmf.nist.gov/6.16.E4]: Failure [Simple: NaN]
-2282 [http://dlmf.nist.gov/6.16.E5]: Failure [Simple: NaN]
 2283 [https://dlmf.nist.gov/6.18#Ex1]: Failure [Simple: Aborted]
 2284 [https://dlmf.nist.gov/6.18#Ex2]: Failure [Simple: Aborted]
 2285 [https://dlmf.nist.gov/6.18#Ex3]: Failure [Simple: Aborted]

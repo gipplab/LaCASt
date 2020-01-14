@@ -1,11 +1,11 @@
 \genAiryintB, 7
 \genAiryintA, 6
-\genAiryODEA, 5
 \zderivAirya, 5
 \zAirya, 5
+\genAiryODEA, 4
 \zderivAiryb, 4
-\genAiryODEB, 4
 \zAiryb, 4
+\genAiryODEB, 3
 \pvint, 3
 \zAirybeta, 2
 \zderivAirybeta, 2

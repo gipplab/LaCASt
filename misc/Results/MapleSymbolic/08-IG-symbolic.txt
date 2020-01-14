@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 49, SUCCESS_SYMB: 49, SUCCESS_TRANS: 161, FAILURE: 107, STARTED_TEST_CASES: 207, SKIPPED: 27, DEFINITIONS: 6, IGNORE: 62, MISSING: 44, ERROR: 7] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 50, SUCCESS_SYMB: 50, SUCCESS_TRANS: 158, FAILURE: 103, STARTED_TEST_CASES: 202, SKIPPED: 27, DEFINITIONS: 6, IGNORE: 67, MISSING: 42, ERROR: 7] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
 2450 [http://dlmf.nist.gov/8.2.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2451 [http://dlmf.nist.gov/8.2.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -98,13 +98,10 @@ Overall: [SUCCESS: 49, SUCCESS_SYMB: 49, SUCCESS_TRANS: 161, FAILURE: 107, START
 2541 [http://dlmf.nist.gov/8.10.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2541-a [http://dlmf.nist.gov/8.10.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2543 [http://dlmf.nist.gov/8.11.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2544 [http://dlmf.nist.gov/8.11.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2545 [http://dlmf.nist.gov/8.11.E4]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 2546: Skipped - Unable to analyze test case.
 2547: Skipped - Unable to analyze test case.
 2548: Skipped - Unable to analyze test case.
-2553 [http://dlmf.nist.gov/8.11.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2554 [http://dlmf.nist.gov/8.11.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2555: Skipped - Unable to analyze test case.
 2558 [http://dlmf.nist.gov/8.11.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2559: Skipped - Unable to analyze test case.
@@ -157,9 +154,7 @@ Overall: [SUCCESS: 49, SUCCESS_SYMB: 49, SUCCESS_TRANS: 161, FAILURE: 107, START
 2631 [http://dlmf.nist.gov/8.17.E20]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \normincBetaI [\normincBetaI]
 2632 [http://dlmf.nist.gov/8.17.E21]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \normincBetaI [\normincBetaI]
 2636 [http://dlmf.nist.gov/8.17.E24]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \normincBetaI [\normincBetaI]
-2637 [http://dlmf.nist.gov/8.18.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \normincBetaI [\normincBetaI]
 2638 [http://dlmf.nist.gov/8.18.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2639 [http://dlmf.nist.gov/8.18.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \normincBetaI [\normincBetaI]
 2641 [https://dlmf.nist.gov/8.18#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2642 [https://dlmf.nist.gov/8.18#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2647: Skipped - Unable to analyze test case.
@@ -173,7 +168,7 @@ Overall: [SUCCESS: 49, SUCCESS_SYMB: 49, SUCCESS_TRANS: 161, FAILURE: 107, START
 2659 [http://dlmf.nist.gov/8.19.E3]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2660 [http://dlmf.nist.gov/8.19.E4]: Successful [Simple: 0, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2661 [http://dlmf.nist.gov/8.19.E5]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2662 [http://dlmf.nist.gov/8.19.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2662 [http://dlmf.nist.gov/8.19.E6]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 2663 [http://dlmf.nist.gov/8.19.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2664 [http://dlmf.nist.gov/8.19.E8]: Error - java.lang.NullPointerException [2664: \genexpintE{n}@{z} EQUAL \frac{(-z)^{n-1}}{(n-1)!}(\digamma@{n}-\ln@@{z})-\sum_{\begin{subarray}{c}k=0\\ k\neq n-1\end{subarray}}^{\infty}\frac{(-z)^{k}}{k!(1-n+k)}; http://dlmf.nist.gov/8.19.E8]
 2665 [http://dlmf.nist.gov/8.19.E9]: Error - java.lang.IllegalArgumentException: Error in CAS! [2665: \genexpintE{n}@{z} EQUAL \frac{(-1)^{n}z^{n-1}}{(n-1)!}\ln@@{z}+\frac{e^{-z}}{(n-1)!}\sum_{k=1}^{n-1}(-z)^{k-1}\EulerGamma@{n-k}+\frac{e^{-z}(-z)^{n-1}}{(n-1)!}\sum_{k=0}^{\infty}\frac{z^{k}}{k!}\digamma@{k+1}; http://dlmf.nist.gov/8.19.E9]

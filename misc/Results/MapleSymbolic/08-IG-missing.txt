@@ -1,4 +1,4 @@
-\normincBetaI, 18
+\normincBetaI, 16
 \gencosint, 7
 \gensinint, 6
 \genshiftcosint, 4

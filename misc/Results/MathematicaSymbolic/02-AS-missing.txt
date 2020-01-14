@@ -2,10 +2,10 @@
 \intinnerprod, 7
 \terminant, 5
 \Laplacetrans, 5
-\envAiryBi, 3
-\envBesselY, 3
-\envAiryAi, 3
-\envBesselJ, 3
 \Stieltjestrans, 2
+\envAiryBi, 2
+\envBesselY, 2
+\envAiryAi, 2
+\envBesselJ, 2
 \perBernoulliB, 1
 \defeq, 1

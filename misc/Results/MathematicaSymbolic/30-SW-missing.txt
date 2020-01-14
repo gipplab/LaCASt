@@ -1,5 +1,5 @@
 \sphwavePsreal, 12
-\spheigvalLambda, 12
+\spheigvalLambda, 9
 \sphwaveQsreal, 4
 \cal, 4
 \sphwavePs, 4

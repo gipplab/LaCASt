@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 36, SUCCESS_SYMB: 36, SUCCESS_TRANS: 118, FAILURE: 75, STARTED_TEST_CASES: 127, SKIPPED: 29, DEFINITIONS: 0, IGNORE: 23, MISSING: 9, ERROR: 7] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 36, SUCCESS_SYMB: 36, SUCCESS_TRANS: 115, FAILURE: 72, STARTED_TEST_CASES: 123, SKIPPED: 30, DEFINITIONS: 0, IGNORE: 26, MISSING: 8, ERROR: 7] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
 3897 [http://dlmf.nist.gov/11.2.E1]: Successful [Simple: 0, ConvEXP: NaN, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3898 [http://dlmf.nist.gov/11.2.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -83,7 +83,6 @@ Overall: [SUCCESS: 36, SUCCESS_SYMB: 36, SUCCESS_TRANS: 118, FAILURE: 75, STARTE
 3980 [http://dlmf.nist.gov/11.7.E9]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3981 [http://dlmf.nist.gov/11.7.E10]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3982 [http://dlmf.nist.gov/11.7.E11]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-3983 [http://dlmf.nist.gov/11.7.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3984 [http://dlmf.nist.gov/11.7.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3985 [http://dlmf.nist.gov/11.7.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3986 [http://dlmf.nist.gov/11.7.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -140,8 +139,6 @@ Overall: [SUCCESS: 36, SUCCESS_SYMB: 36, SUCCESS_TRANS: 118, FAILURE: 75, STARTE
 4043: Skipped - Unable to analyze test case.
 4044: Skipped - Unable to analyze test case.
 4045: Skipped - Unable to analyze test case.
-4046 [http://dlmf.nist.gov/11.11.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-4047 [http://dlmf.nist.gov/11.11.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 4048: Skipped - Unable to analyze test case.
 4049: Skipped - Unable to analyze test case.
 4050: Skipped - Unable to analyze test case.
@@ -153,6 +150,5 @@ Overall: [SUCCESS: 36, SUCCESS_SYMB: 36, SUCCESS_TRANS: 118, FAILURE: 75, STARTE
 4061: Skipped - Unable to analyze test case.
 4062: Skipped - Unable to analyze test case.
 4063: Skipped - Unable to analyze test case.
-4064 [http://dlmf.nist.gov/11.11.E17]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \AngerWeberA [\AngerWeberA]
 4065: Skipped - Unable to analyze test case.
 4066: Skipped - Unable to analyze test case.

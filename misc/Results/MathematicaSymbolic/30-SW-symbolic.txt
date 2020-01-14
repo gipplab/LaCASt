@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 35, FAILURE: 35, STARTED_TEST_CASES: 83, SKIPPED: 6, DEFINITIONS: 8, IGNORE: 73, MISSING: 43, ERROR: 5] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 34, FAILURE: 34, STARTED_TEST_CASES: 79, SKIPPED: 6, DEFINITIONS: 8, IGNORE: 77, MISSING: 40, ERROR: 5] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 9123 [https://dlmf.nist.gov/30.1#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
 9124 [https://dlmf.nist.gov/30.1#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQsreal [\sphwaveQsreal]
@@ -10,7 +10,6 @@ Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 35, FAILURE: 35, STARTED_T
 9131 [http://dlmf.nist.gov/30.2.E4]: Failure [Simple: NaN]
 9132 [http://dlmf.nist.gov/30.3.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
 9132-a [http://dlmf.nist.gov/30.3.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
-9133 [http://dlmf.nist.gov/30.3.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
 9134 [http://dlmf.nist.gov/30.3.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
 9135 [http://dlmf.nist.gov/30.3.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
 9135-a [http://dlmf.nist.gov/30.3.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
@@ -36,8 +35,6 @@ Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 35, FAILURE: 35, STARTED_T
 9172-a [http://dlmf.nist.gov/30.6.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQs [\sphwaveQs]
 9173 [http://dlmf.nist.gov/30.8.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
 9178 [http://dlmf.nist.gov/30.8.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
-9181 [http://dlmf.nist.gov/30.8.E7]: Failure [Simple: NaN]
-9182 [http://dlmf.nist.gov/30.8.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
 9183 [http://dlmf.nist.gov/30.8.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQsreal [\sphwaveQsreal]
 9184 [http://dlmf.nist.gov/30.8.E10]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
 9186: Skipped - Unable to analyze test case.
@@ -87,5 +84,4 @@ Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 35, FAILURE: 35, STARTED_T
 9258 [http://dlmf.nist.gov/30.15.E8]: Failure [Simple: NaN]
 9262 [http://dlmf.nist.gov/30.15.E11]: Error - java.lang.NullPointerException [9262: \acos@@{\sqrt{\mathrm{B}}}+\acos@@{\sqrt{\alpha}} EQUAL \acos@@{\sqrt{\Lambda_{0}}}; http://dlmf.nist.gov/30.15.E11]
 9271 [http://dlmf.nist.gov/30.16.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
-9272 [http://dlmf.nist.gov/30.16.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
 9283 [http://dlmf.nist.gov/30.16.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]

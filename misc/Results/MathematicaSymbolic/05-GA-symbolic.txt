@@ -1,6 +1,6 @@
-Overall: [SUCCESS: 43, SUCCESS_SYMB: 43, SUCCESS_TRANS: 119, FAILURE: 76, STARTED_TEST_CASES: 135, SKIPPED: 19, DEFINITIONS: 6, IGNORE: 42, MISSING: 14, ERROR: 2] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 44, SUCCESS_SYMB: 44, SUCCESS_TRANS: 118, FAILURE: 74, STARTED_TEST_CASES: 134, SKIPPED: 19, DEFINITIONS: 6, IGNORE: 43, MISSING: 14, ERROR: 2] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
-1994 [http://dlmf.nist.gov/5.2.E1]: Failure [Simple: NaN]
+1994 [http://dlmf.nist.gov/5.2.E1]: Successful [Simple: 0]
 1995 [http://dlmf.nist.gov/5.2.E2]: Successful [Simple: 0]
 1997 [https://dlmf.nist.gov/5.2#Ex1]: Successful [Simple: 0]
 1999 [http://dlmf.nist.gov/5.2.E5]: Successful [Simple: 0]
@@ -25,7 +25,6 @@ Overall: [SUCCESS: 43, SUCCESS_SYMB: 43, SUCCESS_TRANS: 119, FAILURE: 76, STARTE
 2023 [http://dlmf.nist.gov/5.4.E17]: Failure [Simple: NaN]
 2024 [http://dlmf.nist.gov/5.4.E18]: Failure [Simple: NaN]
 2025 [http://dlmf.nist.gov/5.4.E19]: Failure [Simple: NaN]
-2026 [http://dlmf.nist.gov/5.4.E20]: Failure [Simple: NaN]
 2027 [http://dlmf.nist.gov/5.5.E1]: Successful [Simple: 0]
 2028 [http://dlmf.nist.gov/5.5.E2]: Successful [Simple: 0]
 2029 [http://dlmf.nist.gov/5.5.E3]: Successful [Simple: 0]

@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 23, FAILURE: 21, STARTED_TEST_CASES: 113, SKIPPED: 18, DEFINITIONS: 13, IGNORE: 112, MISSING: 87, ERROR: 5] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 23, FAILURE: 22, STARTED_TEST_CASES: 112, SKIPPED: 18, DEFINITIONS: 13, IGNORE: 113, MISSING: 86, ERROR: 4] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
 8870 [https://dlmf.nist.gov/29.1#Ex1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \LameEc [\LameEc]
 8871 [https://dlmf.nist.gov/29.1#Ex2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \LameEc [\LameEc]
@@ -55,9 +55,8 @@ Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 23, FAILURE: 21, STARTED_T
 8992 [http://dlmf.nist.gov/29.6.E53]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \LameEs [\LameEs]
 9001 [http://dlmf.nist.gov/29.6.E60]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \LameEs [\LameEs]
 9002: Skipped - Unable to analyze test case.
-9007 [http://dlmf.nist.gov/29.7.E5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Lameeigvalb [\Lameeigvalb]
 9011 [http://dlmf.nist.gov/29.8.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-9012 [http://dlmf.nist.gov/29.8.E2]: Error - java.lang.IllegalArgumentException: Error in CAS! [9012: \mu w(z_{1})w(z_{2})w(z_{3}) EQUAL \int_{-2\!\compellintKk@@{k}\!}^{2\!\compellintKk@@{k}\!}\FerrersP[]{\nu}@{x}w(z)\diff{z}; http://dlmf.nist.gov/29.8.E2]
+9012 [http://dlmf.nist.gov/29.8.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 9013 [http://dlmf.nist.gov/29.8.E3]: Error - java.lang.NullPointerException [9013: \mu EQUAL \frac{2\sigma\tau}{\Wronskian@{w,w_{2}}}; http://dlmf.nist.gov/29.8.E3]
 9014 [https://dlmf.nist.gov/29.8#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 9015 [https://dlmf.nist.gov/29.8#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]

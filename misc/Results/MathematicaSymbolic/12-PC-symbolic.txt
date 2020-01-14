@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 60, FAILURE: 52, STARTED_TEST_CASES: 107, SKIPPED: 35, DEFINITIONS: 28, IGNORE: 55, MISSING: 46, ERROR: 2] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 8, SUCCESS_SYMB: 8, SUCCESS_TRANS: 59, FAILURE: 50, STARTED_TEST_CASES: 106, SKIPPED: 35, DEFINITIONS: 28, IGNORE: 56, MISSING: 46, ERROR: 2] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 4068 [http://dlmf.nist.gov/12.2.E2]: Failure [Simple: NaN]
 4069 [http://dlmf.nist.gov/12.2.E3]: Failure [Simple: NaN]
@@ -29,12 +29,12 @@ Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 60, FAILURE: 52, STARTED_T
 4089 [http://dlmf.nist.gov/12.2.E23]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraUbar [\paraUbar]
 4090 [http://dlmf.nist.gov/12.4.E1]: Failure [Simple: NaN]
 4091 [http://dlmf.nist.gov/12.4.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraV [\paraV]
-4096 [http://dlmf.nist.gov/12.5.E1]: Failure [Simple: NaN]
+4096 [http://dlmf.nist.gov/12.5.E1]: Successful [Simple: 0]
 4097 [http://dlmf.nist.gov/12.5.E2]: Failure [Simple: Aborted]
 4098 [http://dlmf.nist.gov/12.5.E3]: Failure [Simple: Aborted]
 4099 [http://dlmf.nist.gov/12.5.E4]: Failure [Simple: Aborted]
 4100 [http://dlmf.nist.gov/12.5.E5]: Failure [Simple: NaN]
-4101 [http://dlmf.nist.gov/12.5.E6]: Failure [Simple: NaN]
+4101 [http://dlmf.nist.gov/12.5.E6]: Failure [Simple: Aborted]
 4102 [http://dlmf.nist.gov/12.5.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraV [\paraV]
 4103 [http://dlmf.nist.gov/12.5.E8]: Failure [Simple: Aborted]
 4104 [http://dlmf.nist.gov/12.5.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \paraV [\paraV]
@@ -95,7 +95,6 @@ Overall: [SUCCESS: 7, SUCCESS_SYMB: 7, SUCCESS_TRANS: 60, FAILURE: 52, STARTED_T
 4182: Skipped - Unable to analyze test case.
 4183: Skipped - Unable to analyze test case.
 4184: Skipped - Unable to analyze test case.
-4198 [http://dlmf.nist.gov/12.11.E1]: Failure [Simple: NaN]
 4206: Skipped - Unable to analyze test case.
 4207 [http://dlmf.nist.gov/12.12.E1]: Failure [Simple: Aborted]
 4208 [http://dlmf.nist.gov/12.12.E2]: Failure [Simple: Aborted]

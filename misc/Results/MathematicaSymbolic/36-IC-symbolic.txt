@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 25, FAILURE: 25, STARTED_TEST_CASES: 110, SKIPPED: 2, DEFINITIONS: 6, IGNORE: 76, MISSING: 83, ERROR: 2] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 24, FAILURE: 24, STARTED_TEST_CASES: 106, SKIPPED: 2, DEFINITIONS: 6, IGNORE: 80, MISSING: 81, ERROR: 1] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 10266: Skipped - Unable to analyze test case.
 10267 [http://dlmf.nist.gov/36.2.E1]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \cuspcatastrophe [\cuspcatastrophe]
@@ -66,7 +66,6 @@ Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 25, FAILURE: 25, STARTED_T
 10367 [http://dlmf.nist.gov/36.7.E3]: Failure [Simple: NaN]
 10371 [http://dlmf.nist.gov/36.7.E6]: Failure [Simple: NaN]
 10372 [http://dlmf.nist.gov/36.7.E7]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \max [\max]
-10373 [http://dlmf.nist.gov/36.7.E8]: Failure [Simple: NaN]
 10374 [https://dlmf.nist.gov/36.8#Ex1]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \canonint [\canonint]
 10375 [https://dlmf.nist.gov/36.8#Ex2]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \canonint [\canonint]
 10378 [http://dlmf.nist.gov/36.8.E3]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \hyperumbcanonint [\hyperumbcanonint]
@@ -102,13 +101,10 @@ Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 25, FAILURE: 25, STARTED_T
 10413 [http://dlmf.nist.gov/36.10.E17]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \ellumbcanonint [\ellumbcanonint]
 10414 [http://dlmf.nist.gov/36.10.E18]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \hyperumbcanonint [\hyperumbcanonint]
 10419 [http://dlmf.nist.gov/36.11.E5]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \canonint [\canonint]
-10425 [http://dlmf.nist.gov/36.12.E3]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Illegal expression followed a limited expression: \limits
 10432 [http://dlmf.nist.gov/36.12.E9]: Failure [Simple: NaN]
-10434 [http://dlmf.nist.gov/36.12.E11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Accents are not supported.
 10439 [http://dlmf.nist.gov/36.13.E1]: Failure [Simple: NaN]
 10442 [https://dlmf.nist.gov/36.13#Ex1]: Failure [Simple: NaN]
 10443 [https://dlmf.nist.gov/36.13#Ex2]: Failure [Simple: NaN]
 10444 [http://dlmf.nist.gov/36.13.E5]: Failure [Simple: NaN]
 10444-a [http://dlmf.nist.gov/36.13.E5]: Failure [Simple: NaN]
 10444-b [http://dlmf.nist.gov/36.13.E5]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Cannot translate operation \circ
-10448 [http://dlmf.nist.gov/36.13.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Accents are not supported.

@@ -4,5 +4,5 @@
 \perZeta, 3
 \Riemannxi, 2
 \genEulersumH, 2
-\ChebyshevPsi, 2
 rk, 1
+\ChebyshevPsi, 1

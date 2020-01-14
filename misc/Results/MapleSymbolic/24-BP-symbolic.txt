@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 11, SUCCESS_SYMB: 11, SUCCESS_TRANS: 96, FAILURE: 85, STARTED_TEST_CASES: 185, SKIPPED: 22, DEFINITIONS: 0, IGNORE: 36, MISSING: 81, ERROR: 8] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 11, SUCCESS_SYMB: 11, SUCCESS_TRANS: 95, FAILURE: 84, STARTED_TEST_CASES: 184, SKIPPED: 22, DEFINITIONS: 0, IGNORE: 37, MISSING: 81, ERROR: 8] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
 7677 [http://dlmf.nist.gov/23.21.E1]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Weierstrasselatt [\Weierstrasselatt]
 7680 [https://dlmf.nist.gov/23.21#Ex1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Weierstrassplatt [\Weierstrassplatt]
@@ -201,7 +201,6 @@ Overall: [SUCCESS: 11, SUCCESS_SYMB: 11, SUCCESS_TRANS: 96, FAILURE: 85, STARTED
 7879 [http://dlmf.nist.gov/24.16.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 7881 [http://dlmf.nist.gov/24.17.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \perEulerE [\perEulerE]
 7882 [http://dlmf.nist.gov/24.17.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \perEulerE [\perEulerE]
-7886 [http://dlmf.nist.gov/24.17.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 7887 [http://dlmf.nist.gov/24.17.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \perBernoulliB [\perBernoulliB]
 7888 [http://dlmf.nist.gov/24.19.E1]: Error - java.lang.NullPointerException [7888: N_{2n} EQUAL \frac{2(2n)!}{(2\pi)^{2n}}\left(\prod_{p-1\divides 2n}p\right)\left(\prod_{p}\frac{p^{2n}}{p^{2n}-1}\right); http://dlmf.nist.gov/24.19.E1]
 7889 [https://dlmf.nist.gov/24.19#Ex1]: Error - java.lang.NullPointerException [7889: D_{2n} EQUAL \prod_{p-1\divides 2n}p; https://dlmf.nist.gov/24.19#Ex1]

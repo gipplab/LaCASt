@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 35, SUCCESS_SYMB: 35, SUCCESS_TRANS: 129, FAILURE: 94, STARTED_TEST_CASES: 165, SKIPPED: 6, DEFINITIONS: 4, IGNORE: 7, MISSING: 34, ERROR: 2] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 37, SUCCESS_SYMB: 37, SUCCESS_TRANS: 126, FAILURE: 89, STARTED_TEST_CASES: 160, SKIPPED: 6, DEFINITIONS: 4, IGNORE: 12, MISSING: 33, ERROR: 1] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 7892 [http://dlmf.nist.gov/25.2.E1]: Successful [Simple: 0]
 7893 [http://dlmf.nist.gov/25.2.E2]: Successful [Simple: 0]
@@ -17,9 +17,9 @@ Overall: [SUCCESS: 35, SUCCESS_SYMB: 35, SUCCESS_TRANS: 129, FAILURE: 94, STARTE
 7907 [http://dlmf.nist.gov/25.4.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Riemannxi [\Riemannxi]
 7908 [http://dlmf.nist.gov/25.4.E5]: Failure [Simple: NaN]
 7909 [http://dlmf.nist.gov/25.4.E6]: Failure [Simple: NaN]
-7910 [http://dlmf.nist.gov/25.5.E1]: Failure [Simple: NaN]
+7910 [http://dlmf.nist.gov/25.5.E1]: Successful [Simple: 0]
 7911 [http://dlmf.nist.gov/25.5.E2]: Failure [Simple: Aborted]
-7912 [http://dlmf.nist.gov/25.5.E3]: Failure [Simple: NaN]
+7912 [http://dlmf.nist.gov/25.5.E3]: Successful [Simple: 0]
 7913 [http://dlmf.nist.gov/25.5.E4]: Failure [Simple: Aborted]
 7914 [http://dlmf.nist.gov/25.5.E5]: Failure [Simple: Aborted]
 7915 [http://dlmf.nist.gov/25.5.E6]: Failure [Simple: Aborted]
@@ -71,13 +71,10 @@ Overall: [SUCCESS: 35, SUCCESS_SYMB: 35, SUCCESS_TRANS: 129, FAILURE: 94, STARTE
 7961 [http://dlmf.nist.gov/25.8.E8]: Successful [Simple: 0]
 7962 [http://dlmf.nist.gov/25.8.E9]: Successful [Simple: 0]
 7963 [http://dlmf.nist.gov/25.8.E10]: Successful [Simple: 0]
-7964 [http://dlmf.nist.gov/25.9.E1]: Failure [Simple: NaN]
 7965 [http://dlmf.nist.gov/25.9.E2]: Failure [Simple: NaN]
-7966 [http://dlmf.nist.gov/25.9.E3]: Failure [Simple: NaN]
 7967 [http://dlmf.nist.gov/25.10.E1]: Failure [Simple: NaN]
 7968: Skipped - Unable to analyze test case.
 7969 [http://dlmf.nist.gov/25.10.E3]: Failure [Simple: NaN]
-7970 [http://dlmf.nist.gov/25.10.E4]: Error - java.lang.NullPointerException [7970: R(t) EQUAL (-1)^{m-1}\left(\frac{2\pi}{t}\right)^{1/4}\frac{\cos@{t-(2m+1)\sqrt{2\pi t}-\frac{1}{8}\pi}}{\cos@{\sqrt{2\pi t}}}+\bigO@{t^{-3/4}}; http://dlmf.nist.gov/25.10.E4]
 7971 [http://dlmf.nist.gov/25.11.E1]: Successful [Simple: 0]
 7972 [http://dlmf.nist.gov/25.11.E2]: Successful [Simple: 0]
 7973 [http://dlmf.nist.gov/25.11.E3]: Successful [Simple: 0]
@@ -111,13 +108,12 @@ Overall: [SUCCESS: 35, SUCCESS_SYMB: 35, SUCCESS_TRANS: 129, FAILURE: 94, STARTE
 8001 [http://dlmf.nist.gov/25.11.E31]: Failure [Simple: Aborted]
 8002 [http://dlmf.nist.gov/25.11.E32]: Failure [Simple: Aborted]
 8004 [http://dlmf.nist.gov/25.11.E34]: Failure [Simple: NaN]
-8005 [http://dlmf.nist.gov/25.11.E35]: Failure [Simple: Aborted]
-8005-a [http://dlmf.nist.gov/25.11.E35]: Failure [Simple: Aborted]
+8005 [http://dlmf.nist.gov/25.11.E35]: Failure [Simple: NaN]
+8005-a [http://dlmf.nist.gov/25.11.E35]: Failure [Simple: NaN]
 8006 [http://dlmf.nist.gov/25.11.E36]: Failure [Simple: NaN]
 8007 [http://dlmf.nist.gov/25.11.E37]: Failure [Simple: NaN]
 8008 [http://dlmf.nist.gov/25.11.E38]: Failure [Simple: Aborted]
 8009 [http://dlmf.nist.gov/25.11.E39]: Failure [Simple: NaN]
-8011 [http://dlmf.nist.gov/25.11.E41]: Failure [Simple: NaN]
 8012: Skipped - Unable to analyze test case.
 8013: Skipped - Unable to analyze test case.
 8014: Skipped - Unable to analyze test case.
@@ -157,7 +153,6 @@ Overall: [SUCCESS: 35, SUCCESS_SYMB: 35, SUCCESS_TRANS: 129, FAILURE: 94, STARTE
 8050 [http://dlmf.nist.gov/25.15.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \DirichletL [\DirichletL]
 8050-a [http://dlmf.nist.gov/25.15.E9]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty expression tag
 8052 [http://dlmf.nist.gov/25.16.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \ChebyshevPsi [\ChebyshevPsi]
-8055 [http://dlmf.nist.gov/25.16.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \ChebyshevPsi [\ChebyshevPsi]
 8056 [http://dlmf.nist.gov/25.16.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \EulersumH [\EulersumH]
 8057 [http://dlmf.nist.gov/25.16.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \EulersumH [\EulersumH]
 8058 [http://dlmf.nist.gov/25.16.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \EulersumH [\EulersumH]

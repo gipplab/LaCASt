@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 6, FAILURE: 15, LIMIT_SKIPS: 4, TESTED: 25, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 5, FAILURE: 18, LIMIT_SKIPS: 1, TESTED: 24, ERROR: 0] for test expression: (#LHS)-(#RHS)
 10274: $Failed
 10274-a: $Failed
 10281: Skip - symbolical successful subtest
@@ -19,12 +19,11 @@ Overall: [SUCCESS: 6, FAILURE: 15, LIMIT_SKIPS: 4, TESTED: 25, ERROR: 0] for tes
 10336: Skipped - Because timed out
 10367: Successful
 10371: Skipped - Because timed out
-10373: Successful
 10386: Skipped - Because timed out
 10432: Skipped - Too many test combinations.
-10439: Skipped - Too many test combinations.
-10442: Skipped - Too many test combinations.
-10443: Skipped - Too many test combinations.
+10439: $Failed
+10442: $Failed
+10443: $Failed
 10444: Successful
 10444-a: {{Complex[1.074376652918973, 1.4142135623730951], {Rule[Subscript[ϕ, c], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[1.074376652918973, -1.4142135623730951], {Rule[Subscript[ϕ, c], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-1.7540504718272172, -1.4142135623730951], {Rule[Subscript[ϕ, c], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-1.7540504718272172, 1.4142135623730951], {Rule[Subscript[ϕ, c], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
 10444-b: Skip - symbolical successful subtest

@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 3, SUCCESS_SYMB: 3, SUCCESS_TRANS: 9, FAILURE: 6, STARTED_TEST_CASES: 99, SKIPPED: 7, DEFINITIONS: 2, IGNORE: 31, MISSING: 74, ERROR: 16] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 3, SUCCESS_SYMB: 3, SUCCESS_TRANS: 7, FAILURE: 4, STARTED_TEST_CASES: 84, SKIPPED: 7, DEFINITIONS: 2, IGNORE: 44, MISSING: 65, ERROR: 12] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 8291 [http://dlmf.nist.gov/27.2.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \nprimesdiv [\nprimesdiv]
 8292 [http://dlmf.nist.gov/27.2.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \nprimes [\nprimes]
@@ -62,27 +62,12 @@ Overall: [SUCCESS: 3, SUCCESS_SYMB: 3, SUCCESS_TRANS: 9, FAILURE: 6, STARTED_TES
 8370 [http://dlmf.nist.gov/27.10.E10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Gausssum [\Gausssum]
 8371 [http://dlmf.nist.gov/27.10.E11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Gausssum [\Gausssum]
 8372 [http://dlmf.nist.gov/27.10.E12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Dirichletchar [\Dirichletchar]
-8374 [http://dlmf.nist.gov/27.11.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \ndivisors [\ndivisors]
-8375 [http://dlmf.nist.gov/27.11.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \ndivisors [\ndivisors]
-8376 [http://dlmf.nist.gov/27.11.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sumdivisors [\sumdivisors]
-8377 [http://dlmf.nist.gov/27.11.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sumdivisors [\sumdivisors]
-8378 [http://dlmf.nist.gov/27.11.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Eulertotientphi [\Eulertotientphi]
-8379 [http://dlmf.nist.gov/27.11.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Eulertotientphi [\Eulertotientphi]
-8380 [http://dlmf.nist.gov/27.11.E8]: Failure [Simple: NaN]
-8381 [http://dlmf.nist.gov/27.11.E9]: Error - java.lang.NullPointerException [8381: \sum_{\begin{subarray}{c}p\leq x\\ p\equivmod h\!\!\!\!\!+od{k}\end{subarray}}\frac{1}{p} EQUAL \frac{1}{\Eulertotientphi[]@{k}}\ln@@{\ln@@{x}}+B+\bigO@{\frac{1}{\ln@@{x}}}; http://dlmf.nist.gov/27.11.E9]
-8381-a [http://dlmf.nist.gov/27.11.E9]: Error - java.lang.NullPointerException [8381: \sum_{\begin{subarray}{c}p\leq x\\ p\equivmod h\!\!\!\!\!-od{k}\end{subarray}}\frac{1}{p} EQUAL \frac{1}{\Eulertotientphi[]@{k}}\ln@@{\ln@@{x}}+B+\bigO@{\frac{1}{\ln@@{x}}}; http://dlmf.nist.gov/27.11.E9]
-8382 [http://dlmf.nist.gov/27.11.E10]: Failure [Simple: Aborted]
-8383 [http://dlmf.nist.gov/27.11.E11]: Error - java.lang.NullPointerException [8383: \sum_{\begin{subarray}{c}p\leq x\\ p\equivmod h\!\!\!\!\!+od{k}\end{subarray}}\frac{\ln@@{p}}{p} EQUAL \frac{1}{\Eulertotientphi[]@{k}}\ln@@{x}+\bigO@{1}; http://dlmf.nist.gov/27.11.E11]
-8383-a [http://dlmf.nist.gov/27.11.E11]: Error - java.lang.NullPointerException [8383: \sum_{\begin{subarray}{c}p\leq x\\ p\equivmod h\!\!\!\!\!-od{k}\end{subarray}}\frac{\ln@@{p}}{p} EQUAL \frac{1}{\Eulertotientphi[]@{k}}\ln@@{x}+\bigO@{1}; http://dlmf.nist.gov/27.11.E11]
-8384 [http://dlmf.nist.gov/27.11.E12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
 8385 [http://dlmf.nist.gov/27.11.E13]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
 8386 [http://dlmf.nist.gov/27.11.E14]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
 8387 [http://dlmf.nist.gov/27.11.E15]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
 8388 [http://dlmf.nist.gov/27.12.E1]: Failure [Simple: NaN]
 8389 [http://dlmf.nist.gov/27.12.E2]: Failure [Simple: NaN]
 8391: Skipped - Unable to analyze test case.
-8392 [http://dlmf.nist.gov/27.12.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \nprimes [\nprimes]
-8393 [http://dlmf.nist.gov/27.12.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \nprimes [\nprimes]
 8394 [http://dlmf.nist.gov/27.12.E7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \nprimes [\nprimes]
 8395: Skipped - Unable to analyze test case.
 8397 [http://dlmf.nist.gov/27.13.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Waringg [\Waringg]

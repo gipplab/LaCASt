@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 35, SUCCESS_SYMB: 35, SUCCESS_TRANS: 101, FAILURE: 66, STARTED_TEST_CASES: 151, SKIPPED: 15, DEFINITIONS: 3, IGNORE: 15, MISSING: 42, ERROR: 8] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 36, SUCCESS_SYMB: 36, SUCCESS_TRANS: 101, FAILURE: 63, STARTED_TEST_CASES: 151, SKIPPED: 15, DEFINITIONS: 3, IGNORE: 15, MISSING: 42, ERROR: 10] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 2289 [http://dlmf.nist.gov/7.2.E1]: Successful [Simple: 0]
 2290 [http://dlmf.nist.gov/7.2.E2]: Successful [Simple: 0]
@@ -49,14 +49,14 @@ Overall: [SUCCESS: 35, SUCCESS_SYMB: 35, SUCCESS_TRANS: 101, FAILURE: 66, STARTE
 2330 [http://dlmf.nist.gov/7.6.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Faddeevaw [\Faddeevaw]
 2331 [http://dlmf.nist.gov/7.6.E4]: Successful [Simple: 0]
 2333 [http://dlmf.nist.gov/7.6.E6]: Successful [Simple: 0]
-2335 [http://dlmf.nist.gov/7.6.E8]: Failure [Simple: NaN]
-2336 [http://dlmf.nist.gov/7.6.E9]: Failure [Simple: NaN]
+2335 [http://dlmf.nist.gov/7.6.E8]: Error - java.lang.IndexOutOfBoundsException: No group 2 [2335: \erf@@{z} EQUAL \frac{2z}{\sqrt{\pi}}\sum_{n=0}^{\infty}(-1)^{n}\left(\modsphBesseli{1}{2n}@{z^{2}}-\modsphBesseli{1}{2n+1}@{z^{2}}\right); http://dlmf.nist.gov/7.6.E8]
+2336 [http://dlmf.nist.gov/7.6.E9]: Error - java.lang.IndexOutOfBoundsException: No group 2 [2336: \erf@{az} EQUAL \frac{2z}{\sqrt{\pi}}e^{(\frac{1}{2}-a^{2})z^{2}}\sum_{n=0}^{\infty}\ChebyshevpolyT{2n+1}@{a}\modsphBesseli{1}{n}@{\tfrac{1}{2}z^{2}}; http://dlmf.nist.gov/7.6.E9]
 2337 [http://dlmf.nist.gov/7.6.E10]: Failure [Simple: NaN]
 2338 [http://dlmf.nist.gov/7.6.E11]: Failure [Simple: NaN]
 2339 [http://dlmf.nist.gov/7.7.E1]: Failure [Simple: Aborted]
 2340 [http://dlmf.nist.gov/7.7.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Faddeevaw [\Faddeevaw]
 2340-a [http://dlmf.nist.gov/7.7.E2]: Failure [Simple: Aborted]
-2341 [http://dlmf.nist.gov/7.7.E3]: Failure [Simple: NaN]
+2341 [http://dlmf.nist.gov/7.7.E3]: Successful [Simple: 0]
 2342 [http://dlmf.nist.gov/7.7.E4]: Failure [Simple: Aborted]
 2343 [http://dlmf.nist.gov/7.7.E5]: Error - java.lang.NullPointerException [2343: \int_{0}^{1}\frac{e^{-at^{2}}}{t^{2}+1}\diff{t} EQUAL \frac{\pi}{4}e^{a}\left(1-(\erf@@{\sqrt{a}})^{2}\right); http://dlmf.nist.gov/7.7.E5]
 2344 [http://dlmf.nist.gov/7.7.E6]: Failure [Simple: Aborted]
@@ -120,7 +120,7 @@ Overall: [SUCCESS: 35, SUCCESS_SYMB: 35, SUCCESS_TRANS: 101, FAILURE: 66, STARTE
 2398: Skipped - Unable to analyze test case.
 2400 [https://dlmf.nist.gov/7.13#Ex12]: Failure [Simple: NaN]
 2402 [https://dlmf.nist.gov/7.13#Ex14]: Failure [Simple: NaN]
-2403 [http://dlmf.nist.gov/7.14.E1]: Failure [Simple: Aborted]
+2403 [http://dlmf.nist.gov/7.14.E1]: Failure [Simple: NaN]
 2404 [http://dlmf.nist.gov/7.14.E2]: Failure [Simple: Aborted]
 2405 [http://dlmf.nist.gov/7.14.E3]: Error - java.lang.NullPointerException [2405: \int_{0}^{\infty}e^{-at}\erf@@{\sqrt{bt}}\diff{t} EQUAL \frac{1}{a}\sqrt{\frac{b}{a+b}}; http://dlmf.nist.gov/7.14.E3]
 2406 [http://dlmf.nist.gov/7.14.E4]: Failure [Simple: Aborted]

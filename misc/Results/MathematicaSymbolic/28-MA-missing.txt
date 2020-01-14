@@ -1,5 +1,5 @@
-\modMathieuM, 26
 \radMathieuMc, 22
+\modMathieuM, 22
 \radMathieuMs, 22
 \modMathieuD, 9
 \modMathieuCe, 6
@@ -18,5 +18,4 @@
 \radMathieuDc, 3
 \modMathieuSe, 3
 \modMathieuMe, 2
-\rselection, 2
 \pvint, 1

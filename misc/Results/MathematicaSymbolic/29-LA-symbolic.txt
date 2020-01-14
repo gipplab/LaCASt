@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 23, FAILURE: 23, STARTED_TEST_CASES: 113, SKIPPED: 18, DEFINITIONS: 13, IGNORE: 112, MISSING: 87, ERROR: 3] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 23, FAILURE: 23, STARTED_TEST_CASES: 112, SKIPPED: 18, DEFINITIONS: 13, IGNORE: 113, MISSING: 86, ERROR: 3] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 8870 [https://dlmf.nist.gov/29.1#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \LameEc [\LameEc]
 8871 [https://dlmf.nist.gov/29.1#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \LameEc [\LameEc]
@@ -55,7 +55,6 @@ Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 23, FAILURE: 23, STARTED_T
 8992 [http://dlmf.nist.gov/29.6.E53]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \LameEs [\LameEs]
 9001 [http://dlmf.nist.gov/29.6.E60]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \LameEs [\LameEs]
 9002: Skipped - Unable to analyze test case.
-9007 [http://dlmf.nist.gov/29.7.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \Lameeigvalb [\Lameeigvalb]
 9011 [http://dlmf.nist.gov/29.8.E1]: Failure [Simple: Aborted]
 9012 [http://dlmf.nist.gov/29.8.E2]: Failure [Simple: NaN]
 9013 [http://dlmf.nist.gov/29.8.E3]: Error - java.lang.NullPointerException [9013: \mu EQUAL \frac{2\sigma\tau}{\Wronskian@{w,w_{2}}}; http://dlmf.nist.gov/29.8.E3]

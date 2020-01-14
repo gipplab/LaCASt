@@ -4,8 +4,8 @@ CONFIGFILEBASE="config/numerical_tests-base.properties"
 CONFIGFILE="config/numerical_tests.properties"
 SETFILES="config/together-lines.txt"
 
-MYCAS="Maple"
-MYCASMODE="-maple"
+MYCAS="Math"
+MYCASMODE="-mathematica"
 
 export MAPLE="/opt/maple2016/"
 export LD_LIBRARY_PATH="/opt/maple2016/bin.X86_64_LINUX:/opt/Wolfram/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64/"

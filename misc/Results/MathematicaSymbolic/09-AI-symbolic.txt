@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 59, SUCCESS_SYMB: 59, SUCCESS_TRANS: 174, FAILURE: 115, STARTED_TEST_CASES: 234, SKIPPED: 36, DEFINITIONS: 24, IGNORE: 13, MISSING: 60, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 59, SUCCESS_SYMB: 59, SUCCESS_TRANS: 171, FAILURE: 112, STARTED_TEST_CASES: 229, SKIPPED: 36, DEFINITIONS: 24, IGNORE: 18, MISSING: 58, ERROR: 0] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 2724 [http://dlmf.nist.gov/9.2.E2]: Failure [Simple: NaN]
 2724-a [http://dlmf.nist.gov/9.2.E2]: Failure [Simple: NaN]
@@ -20,7 +20,7 @@ Overall: [SUCCESS: 59, SUCCESS_SYMB: 59, SUCCESS_TRANS: 174, FAILURE: 115, START
 2743 [http://dlmf.nist.gov/9.5.E1]: Failure [Simple: Aborted]
 2744 [http://dlmf.nist.gov/9.5.E2]: Failure [Simple: Aborted]
 2745 [http://dlmf.nist.gov/9.5.E3]: Failure [Simple: Aborted]
-2746 [http://dlmf.nist.gov/9.5.E4]: Failure [Simple: NaN]
+2746 [http://dlmf.nist.gov/9.5.E4]: Failure [Simple: Aborted]
 2747 [http://dlmf.nist.gov/9.5.E5]: Failure [Simple: Aborted]
 2748 [http://dlmf.nist.gov/9.5.E6]: Failure [Simple: NaN]
 2749 [http://dlmf.nist.gov/9.5.E7]: Failure [Simple: Aborted]
@@ -104,7 +104,6 @@ Overall: [SUCCESS: 59, SUCCESS_SYMB: 59, SUCCESS_TRANS: 174, FAILURE: 115, START
 2797 [http://dlmf.nist.gov/9.7.E18]: Failure [Simple: NaN]
 2798 [http://dlmf.nist.gov/9.7.E19]: Failure [Simple: NaN]
 2801 [http://dlmf.nist.gov/9.7.E22]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \scterminant [\scterminant]
-2802 [http://dlmf.nist.gov/9.7.E23]: Failure [Simple: NaN]
 2803 [http://dlmf.nist.gov/9.8.E1]: Failure [Simple: NaN]
 2804 [http://dlmf.nist.gov/9.8.E2]: Failure [Simple: NaN]
 2805 [http://dlmf.nist.gov/9.8.E3]: Successful [Simple: 0]
@@ -163,8 +162,6 @@ Overall: [SUCCESS: 59, SUCCESS_SYMB: 59, SUCCESS_TRANS: 174, FAILURE: 115, START
 2855-b [http://dlmf.nist.gov/9.10.E3]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
 2856: Skipped - Unable to analyze test case.
 2857: Skipped - Unable to analyze test case.
-2858 [http://dlmf.nist.gov/9.10.E6]: Failure [Simple: Aborted]
-2859 [http://dlmf.nist.gov/9.10.E7]: Failure [Simple: Aborted]
 2860 [http://dlmf.nist.gov/9.10.E8]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
 2861 [http://dlmf.nist.gov/9.10.E9]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
 2863 [https://dlmf.nist.gov/9.10#Ex1]: Successful [Simple: 0]
@@ -246,8 +243,6 @@ Overall: [SUCCESS: 59, SUCCESS_SYMB: 59, SUCCESS_TRANS: 174, FAILURE: 115, START
 2937 [https://dlmf.nist.gov/9.13#Ex6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \genAiryODEA [\genAiryODEA]
 2937-a [https://dlmf.nist.gov/9.13#Ex6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \genAiryODEB [\genAiryODEB]
 2940 [http://dlmf.nist.gov/9.13.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \genAiryODEA [\genAiryODEA]
-2941 [http://dlmf.nist.gov/9.13.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \genAiryODEA [\genAiryODEA]
-2943 [http://dlmf.nist.gov/9.13.E11]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \genAiryODEB [\genAiryODEB]
 2945 [http://dlmf.nist.gov/9.13.E13]: Failure [Simple: NaN]
 2946: Skipped - Unable to analyze test case.
 2947: Skipped - Unable to analyze test case.

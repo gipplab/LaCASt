@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 25, SUCCESS_SYMB: 25, SUCCESS_TRANS: 103, FAILURE: 78, STARTED_TEST_CASES: 229, SKIPPED: 17, DEFINITIONS: 41, IGNORE: 400, MISSING: 103, ERROR: 23] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 26, SUCCESS_SYMB: 26, SUCCESS_TRANS: 103, FAILURE: 77, STARTED_TEST_CASES: 229, SKIPPED: 17, DEFINITIONS: 41, IGNORE: 400, MISSING: 103, ERROR: 23] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 1 [http://dlmf.nist.gov/1.2.E1]: Successful [Simple: 0]
 1-a [http://dlmf.nist.gov/1.2.E1]: Successful [Simple: 0]
@@ -81,7 +81,7 @@ Overall: [SUCCESS: 25, SUCCESS_SYMB: 25, SUCCESS_TRANS: 103, FAILURE: 78, STARTE
 208 [http://dlmf.nist.gov/1.6.E60]: Error - java.util.NoSuchElementException [208: \iiint_{V}(f\nabla^{2}g-g\nabla^{2}f)\diff{V} EQUAL \iint_{S}\left(f\pderiv{g}{n}-g\pderiv{f}{n}\right)\diff{A}; http://dlmf.nist.gov/1.6.E60]
 229: Skipped - Unable to analyze test case.
 230: Skipped - Unable to analyze test case.
-236 [http://dlmf.nist.gov/1.8.E16]: Failure [Simple: NaN]
+236 [http://dlmf.nist.gov/1.8.E16]: Successful [Simple: 0]
 238 [https://dlmf.nist.gov/1.9#Ex1]: Failure [Simple: NaN]
 239 [https://dlmf.nist.gov/1.9#Ex2]: Failure [Simple: NaN]
 240 [https://dlmf.nist.gov/1.9#Ex3]: Failure [Simple: NaN]

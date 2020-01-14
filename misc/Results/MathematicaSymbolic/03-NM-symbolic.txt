@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 2, SUCCESS_SYMB: 2, SUCCESS_TRANS: 46, FAILURE: 44, STARTED_TEST_CASES: 70, SKIPPED: 33, DEFINITIONS: 46, IGNORE: 290, MISSING: 19, ERROR: 5] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 2, SUCCESS_SYMB: 2, SUCCESS_TRANS: 39, FAILURE: 37, STARTED_TEST_CASES: 55, SKIPPED: 33, DEFINITIONS: 46, IGNORE: 305, MISSING: 11, ERROR: 5] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 1039 [https://dlmf.nist.gov/3.1#Ex4]: Error - java.lang.NullPointerException [1039: \ln_{\ell}(x) EQUAL \ln@{\ln_{\ell-1}(x)}; https://dlmf.nist.gov/3.1#Ex4]
 1054: Skipped - Unable to analyze test case.
@@ -11,22 +11,8 @@ Overall: [SUCCESS: 2, SUCCESS_SYMB: 2, SUCCESS_TRANS: 46, FAILURE: 44, STARTED_T
 1087 [http://dlmf.nist.gov/3.3.E13]: Failure [Simple: NaN]
 1151 [http://dlmf.nist.gov/3.4.E4]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
 1191 [http://dlmf.nist.gov/3.4.E19]: Failure [Simple: Aborted]
-1192 [http://dlmf.nist.gov/3.4.E20]: Failure [Simple: NaN]
-1193 [http://dlmf.nist.gov/3.4.E21]: Failure [Simple: NaN]
-1194 [http://dlmf.nist.gov/3.4.E22]: Failure [Simple: NaN]
-1195 [http://dlmf.nist.gov/3.4.E23]: Failure [Simple: NaN]
-1196 [http://dlmf.nist.gov/3.4.E24]: Failure [Simple: NaN]
-1197 [http://dlmf.nist.gov/3.4.E25]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
-1198 [http://dlmf.nist.gov/3.4.E26]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
 1199 [http://dlmf.nist.gov/3.4.E27]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
-1200 [http://dlmf.nist.gov/3.4.E28]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
-1201 [http://dlmf.nist.gov/3.4.E29]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
-1202 [http://dlmf.nist.gov/3.4.E30]: Failure [Simple: NaN]
-1203 [http://dlmf.nist.gov/3.4.E31]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
 1204 [http://dlmf.nist.gov/3.4.E32]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
-1205 [http://dlmf.nist.gov/3.4.E33]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
-1206 [http://dlmf.nist.gov/3.4.E34]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
-1210 [http://dlmf.nist.gov/3.5.E4]: Failure [Simple: NaN]
 1220 [http://dlmf.nist.gov/3.5.E14]: Failure [Simple: Aborted]
 1222 [http://dlmf.nist.gov/3.5.E16]: Failure [Simple: NaN]
 1224 [http://dlmf.nist.gov/3.5.E18]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
@@ -57,7 +43,6 @@ Overall: [SUCCESS: 2, SUCCESS_SYMB: 2, SUCCESS_TRANS: 46, FAILURE: 44, STARTED_T
 1287 [http://dlmf.nist.gov/3.6.E14]: Failure [Simple: NaN]
 1288: Skipped - Unable to analyze test case.
 1289: Skipped - Unable to analyze test case.
-1327 [https://dlmf.nist.gov/3.7#Ex23]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
 1334 [http://dlmf.nist.gov/3.8.E3]: Failure [Simple: NaN]
 1337 [https://dlmf.nist.gov/3.8#Ex2]: Failure [Simple: NaN]
 1349 [http://dlmf.nist.gov/3.8.E13]: Failure [Simple: NaN]

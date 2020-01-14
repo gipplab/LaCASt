@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, STARTED_TEST_CASES: 708, SKIPPED: 156, DEFINITIONS: 26, IGNORE: 158, MISSING: 258, ERROR: 70] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 412, FAILURE: 290, STARTED_TEST_CASES: 678, SKIPPED: 159, DEFINITIONS: 26, IGNORE: 182, MISSING: 245, ERROR: 75] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
 2975 [http://dlmf.nist.gov/10.2.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2976 [http://dlmf.nist.gov/10.2.E2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
@@ -23,9 +23,9 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 2994-a [http://dlmf.nist.gov/10.5.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2995 [http://dlmf.nist.gov/10.5.E2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 2995-a [http://dlmf.nist.gov/10.5.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2996 [http://dlmf.nist.gov/10.5.E3]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2996 [http://dlmf.nist.gov/10.5.E3]: Error - java.lang.NullPointerException [2996: \Wronskian\{\BesselJ{\nu}@{z},\HankelH{1}{\nu}@{z}\} EQUAL \BesselJ{\nu+1}@{z}\HankelH{1}{\nu}@{z}-\BesselJ{\nu}@{z}\HankelH{1}{\nu+1}@{z}; http://dlmf.nist.gov/10.5.E3]
 2996-a [http://dlmf.nist.gov/10.5.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2997 [http://dlmf.nist.gov/10.5.E4]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2997 [http://dlmf.nist.gov/10.5.E4]: Error - java.lang.NullPointerException [2997: \Wronskian\{\BesselJ{\nu}@{z},\HankelH{2}{\nu}@{z}\} EQUAL \BesselJ{\nu+1}@{z}\HankelH{2}{\nu}@{z}-\BesselJ{\nu}@{z}\HankelH{2}{\nu+1}@{z}; http://dlmf.nist.gov/10.5.E4]
 2997-a [http://dlmf.nist.gov/10.5.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 2998 [http://dlmf.nist.gov/10.5.E5]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 2998-a [http://dlmf.nist.gov/10.5.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -47,7 +47,6 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 3027: Skipped - Unable to analyze test case.
 3028: Skipped - Unable to analyze test case.
 3030: Skipped - Unable to analyze test case.
-3033 [http://dlmf.nist.gov/10.8.E1]: Error - java.lang.IllegalArgumentException: Error in CAS! [3033: \BesselY{n}@{z} EQUAL -\frac{(\tfrac{1}{2}z)^{-n}}{\pi}\sum_{k=0}^{n-1}\frac{(n-k-1)!}{k!}\left(\tfrac{1}{4}z^{2}\right)^{k}+\frac{2}{\pi}\ln@{\tfrac{1}{2}z}\BesselJ{n}@{z}-\frac{(\tfrac{1}{2}z)^{n}}{\pi}\sum_{k=0}^{\infty}(\digamma@{k+1}+\digamma@{n+k+1})\frac{(-\tfrac{1}{4}z^{2})^{k}}{k!(n+k)!}; http://dlmf.nist.gov/10.8.E1]
 3036 [http://dlmf.nist.gov/10.9.E1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3036-a [http://dlmf.nist.gov/10.9.E1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3037 [http://dlmf.nist.gov/10.9.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -92,7 +91,7 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 3076 [http://dlmf.nist.gov/10.11.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3077 [https://dlmf.nist.gov/10.11#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3078 [https://dlmf.nist.gov/10.11#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3079 [http://dlmf.nist.gov/10.11.E6]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Unknown MathTerm Tag: operator for im [im]
+3079 [http://dlmf.nist.gov/10.11.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3080 [http://dlmf.nist.gov/10.11.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3081 [http://dlmf.nist.gov/10.11.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3086 [http://dlmf.nist.gov/10.12.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -213,8 +212,6 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 3212: Skipped - Unable to analyze test case.
 3213: Skipped - Unable to analyze test case.
 3223 [http://dlmf.nist.gov/10.20.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3224 [http://dlmf.nist.gov/10.20.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3224-a [http://dlmf.nist.gov/10.20.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3225 [http://dlmf.nist.gov/10.20.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3225-a [http://dlmf.nist.gov/10.20.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3226: Skipped - Unable to analyze test case.
@@ -285,10 +282,6 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 3317: Skipped - Unable to analyze test case.
 3318: Skipped - Unable to analyze test case.
 3319: Skipped - Unable to analyze test case.
-3320 [http://dlmf.nist.gov/10.21.E41]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
-3321 [http://dlmf.nist.gov/10.21.E42]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
-3322 [http://dlmf.nist.gov/10.21.E43]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
-3323 [http://dlmf.nist.gov/10.21.E44]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zBesselj [\zBesselj]
 3325 [http://dlmf.nist.gov/10.21.E46]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3327: Skipped - Unable to analyze test case.
 3328: Skipped - Unable to analyze test case.
@@ -318,7 +311,7 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 3365 [http://dlmf.nist.gov/10.22.E19]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3366 [http://dlmf.nist.gov/10.22.E20]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3367 [http://dlmf.nist.gov/10.22.E21]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3368 [http://dlmf.nist.gov/10.22.E22]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3368 [http://dlmf.nist.gov/10.22.E22]: Error - java.lang.IllegalArgumentException: Error in CAS! [3368: \int_{0}^{\frac{1}{2}\pi}\BesselJ{\mu}@{z\sin^{2}@@{\theta}}\BesselJ{\nu}@{z\cos^{2}@@{\theta}}(\sin@@{\theta})^{2\mu+1}(\cos@@{\theta})^{2\nu+1}\diff{\theta} EQUAL \frac{\EulerGamma@{\mu+\tfrac{1}{2}}\EulerGamma@{\nu+\tfrac{1}{2}}\BesselJ{\mu+\nu+\frac{1}{2}}@{z}}{(8\pi z)^{\frac{1}{2}}\EulerGamma@{\mu+\nu+1}}; http://dlmf.nist.gov/10.22.E22]
 3369 [http://dlmf.nist.gov/10.22.E23]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3370 [http://dlmf.nist.gov/10.22.E24]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3371 [http://dlmf.nist.gov/10.22.E25]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -399,7 +392,6 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 3434 [https://dlmf.nist.gov/10.23#Ex3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3435 [http://dlmf.nist.gov/10.23.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
 3436 [http://dlmf.nist.gov/10.23.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \BesselC [\BesselC]
-3437 [http://dlmf.nist.gov/10.23.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3440 [http://dlmf.nist.gov/10.23.E12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \NeumannpolyO [\NeumannpolyO]
 3441 [http://dlmf.nist.gov/10.23.E13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \NeumannpolyO [\NeumannpolyO]
 3443 [http://dlmf.nist.gov/10.23.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -412,13 +404,8 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 3453 [http://dlmf.nist.gov/10.24.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3454 [https://dlmf.nist.gov/10.24#Ex3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3455 [https://dlmf.nist.gov/10.24#Ex4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3456 [http://dlmf.nist.gov/10.24.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3457 [https://dlmf.nist.gov/10.24#Ex5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3458 [https://dlmf.nist.gov/10.24#Ex6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3459 [http://dlmf.nist.gov/10.24.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3460 [http://dlmf.nist.gov/10.24.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3456 [http://dlmf.nist.gov/10.24.E5]: Error - java.lang.NullPointerException [3456: \Wronskian\{\BesselJimag{\nu}@{x},\BesselYimag{\nu}@{x}\} EQUAL 2/(\pi x); http://dlmf.nist.gov/10.24.E5]
 3461 [http://dlmf.nist.gov/10.24.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3461-a [http://dlmf.nist.gov/10.24.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3462 [http://dlmf.nist.gov/10.25.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3463 [http://dlmf.nist.gov/10.25.E2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3465 [http://dlmf.nist.gov/10.27.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -466,14 +453,14 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 3498 [http://dlmf.nist.gov/10.32.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3499 [http://dlmf.nist.gov/10.32.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3499-a [http://dlmf.nist.gov/10.32.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3500 [http://dlmf.nist.gov/10.32.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3500 [http://dlmf.nist.gov/10.32.E6]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3500-a [http://dlmf.nist.gov/10.32.E6]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3501 [http://dlmf.nist.gov/10.32.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3501-a [http://dlmf.nist.gov/10.32.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3502 [http://dlmf.nist.gov/10.32.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3502-a [http://dlmf.nist.gov/10.32.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3503 [http://dlmf.nist.gov/10.32.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3504 [http://dlmf.nist.gov/10.32.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3504 [http://dlmf.nist.gov/10.32.E10]: Successful [Simple: 0, ConvEXP: NaN, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3505 [http://dlmf.nist.gov/10.32.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3506 [http://dlmf.nist.gov/10.32.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3507 [http://dlmf.nist.gov/10.32.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -543,10 +530,6 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 3574: Skipped - Unable to analyze test case.
 3575: Skipped - Unable to analyze test case.
 3578 [https://dlmf.nist.gov/10.41#Ex1]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-3586 [http://dlmf.nist.gov/10.41.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3587 [http://dlmf.nist.gov/10.41.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3588 [http://dlmf.nist.gov/10.41.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3589 [http://dlmf.nist.gov/10.41.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3590 [https://dlmf.nist.gov/10.43#Ex1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
 3591 [https://dlmf.nist.gov/10.43#Ex2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
 3592 [http://dlmf.nist.gov/10.43.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
@@ -561,7 +544,7 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 3598 [http://dlmf.nist.gov/10.43.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3598-a [http://dlmf.nist.gov/10.43.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3599 [http://dlmf.nist.gov/10.43.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3599-a [http://dlmf.nist.gov/10.43.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3599-a [http://dlmf.nist.gov/10.43.E8]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3600 [http://dlmf.nist.gov/10.43.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3600-a [http://dlmf.nist.gov/10.43.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3601 [http://dlmf.nist.gov/10.43.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -575,14 +558,14 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 3609 [http://dlmf.nist.gov/10.43.E18]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3610 [http://dlmf.nist.gov/10.43.E19]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3611 [http://dlmf.nist.gov/10.43.E20]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-3612 [http://dlmf.nist.gov/10.43.E21]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+3612 [http://dlmf.nist.gov/10.43.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3613 [http://dlmf.nist.gov/10.43.E22]: Error - java.lang.IllegalArgumentException: Error in CAS! [3613: a LESS_THAN 1,\\ \left(\frac{1}{2}\pi\right)^{\frac{1}{2}}\EulerGamma@{\mu-\nu}\EulerGamma@{\mu+\nu}(a^{2}-1)^{-\frac{1}{2}\mu+\frac{1}{4}}\assLegendreP[-\mu+\frac{1}{2}]{\nu-\frac{1}{2}}@{a},&\realpart@@{a}; http://dlmf.nist.gov/10.43.E22]
 3613-a [http://dlmf.nist.gov/10.43.E22]: Error - java.lang.IllegalArgumentException: Error in CAS! [3613: 1,\\ \left(\frac{1}{2}\pi\right)^{\frac{1}{2}}\EulerGamma@{\mu-\nu}\EulerGamma@{\mu+\nu}(a^{2}-1)^{-\frac{1}{2}\mu+\frac{1}{4}}\assLegendreP[-\mu+\frac{1}{2}]{\nu-\frac{1}{2}}@{a},&\realpart@@{a} GREATER_EQ_THAN 0,a; http://dlmf.nist.gov/10.43.E22]
 3614 [http://dlmf.nist.gov/10.43.E23]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3615 [http://dlmf.nist.gov/10.43.E24]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3616 [http://dlmf.nist.gov/10.43.E25]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3617 [http://dlmf.nist.gov/10.43.E26]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-3618 [http://dlmf.nist.gov/10.43.E27]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3617 [http://dlmf.nist.gov/10.43.E26]: Error - java.lang.IllegalArgumentException: Error in CAS! [3617: \int_{0}^{\infty}\frac{\modBesselK{\mu}@{at}\BesselJ{\nu}@{bt}}{t^{\lambda}}\diff{t} EQUAL \frac{b^{\nu}\EulerGamma@{\frac{1}{2}\nu-\frac{1}{2}\lambda+\frac{1}{2}\mu+\frac{1}{2}}\EulerGamma@{\frac{1}{2}\nu-\frac{1}{2}\lambda-\frac{1}{2}\mu+\frac{1}{2}}}{2^{\lambda+1}a^{\nu-\lambda+1}}\*\hyperOlverF@{\frac{\nu-\lambda+\mu+1}{2}}{\frac{\nu-\lambda-\mu+1}{2}}{\nu+1}{-\frac{b^{2}}{a^{2}}}; http://dlmf.nist.gov/10.43.E26]
+3618 [http://dlmf.nist.gov/10.43.E27]: Error - java.lang.IllegalArgumentException: Error in CAS! [3618: \int_{0}^{\infty}t^{\mu+\nu+1}\modBesselK{\mu}@{at}\BesselJ{\nu}@{bt}\diff{t} EQUAL \frac{(2a)^{\mu}(2b)^{\nu}\EulerGamma@{\mu+\nu+1}}{(a^{2}+b^{2})^{\mu+\nu+1}}; http://dlmf.nist.gov/10.43.E27]
 3619 [http://dlmf.nist.gov/10.43.E28]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3620 [http://dlmf.nist.gov/10.43.E29]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3623: Skipped - Unable to analyze test case.
@@ -600,12 +583,7 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 3633 [http://dlmf.nist.gov/10.45.E2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3634 [http://dlmf.nist.gov/10.45.E2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 3637 [http://dlmf.nist.gov/10.45.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3638 [https://dlmf.nist.gov/10.45#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3639 [https://dlmf.nist.gov/10.45#Ex3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3640 [http://dlmf.nist.gov/10.45.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-3641 [http://dlmf.nist.gov/10.45.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3642 [http://dlmf.nist.gov/10.45.E8]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-3642-a [http://dlmf.nist.gov/10.45.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3643 [http://dlmf.nist.gov/10.46.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genBesselphi [\genBesselphi]
 3644 [http://dlmf.nist.gov/10.46.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genBesselphi [\genBesselphi]
 3645 [http://dlmf.nist.gov/10.46.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \MittagLefflerE [\MittagLefflerE]
@@ -680,8 +658,6 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 3723 [https://dlmf.nist.gov/10.51#Ex12]: Error - (LaTeX -> Maple) The input LaTeX is invalid: Empty arguments for limited expressions are invalid math.
 3724: Skipped - Unable to analyze test case.
 3725: Skipped - Unable to analyze test case.
-3726 [https://dlmf.nist.gov/10.52#Ex1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \sphBesselJ [\sphBesselJ]
-3727 [https://dlmf.nist.gov/10.52#Ex2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \sphBesselY [\sphBesselY]
 3728: Skipped - Unable to analyze test case.
 3729: Skipped - Unable to analyze test case.
 3730: Skipped - Unable to analyze test case.
@@ -724,7 +700,7 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 3764 [http://dlmf.nist.gov/10.60.E12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \sphBesselJ [\sphBesselJ]
 3765 [http://dlmf.nist.gov/10.60.E13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \sphBesselJ [\sphBesselJ]
 3766 [http://dlmf.nist.gov/10.60.E14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \sphBesselJ [\sphBesselJ]
-3767 [http://dlmf.nist.gov/10.61.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+3767 [http://dlmf.nist.gov/10.61.E1]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3767-a [http://dlmf.nist.gov/10.61.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3767-b [http://dlmf.nist.gov/10.61.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 3767-c [http://dlmf.nist.gov/10.61.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
@@ -827,12 +803,6 @@ Overall: [SUCCESS: 68, SUCCESS_SYMB: 68, SUCCESS_TRANS: 432, FAILURE: 312, START
 3864 [https://dlmf.nist.gov/10.68#Ex16]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
 3865 [https://dlmf.nist.gov/10.68#Ex17]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
 3866 [https://dlmf.nist.gov/10.68#Ex18]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Hankelphasederivphi [\Hankelphasederivphi]
-3867 [http://dlmf.nist.gov/10.68.E16]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
-3868 [http://dlmf.nist.gov/10.68.E17]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \HankelmodM [\HankelmodM]
-3869 [http://dlmf.nist.gov/10.68.E18]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Hankelphasetheta [\Hankelphasetheta]
-3870 [http://dlmf.nist.gov/10.68.E19]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
-3871 [http://dlmf.nist.gov/10.68.E20]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \HankelmodderivN [\HankelmodderivN]
-3872 [http://dlmf.nist.gov/10.68.E21]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Hankelphasederivphi [\Hankelphasederivphi]
 3874: Skipped - Unable to analyze test case.
 3875: Skipped - Unable to analyze test case.
 3876: Skipped - Unable to analyze test case.

@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 48, FAILURE: 19, LIMIT_SKIPS: 0, TESTED: 85, ERROR: 18] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 47, FAILURE: 19, LIMIT_SKIPS: 0, TESTED: 85, ERROR: 19] for test expression: (#LHS)-(#RHS)
 7014: Successful
 7014-a: Skip - symbolical successful subtest
 7015: Successful
@@ -29,7 +29,7 @@ Overall: [SUCCESS: 48, FAILURE: 19, LIMIT_SKIPS: 0, TESTED: 85, ERROR: 18] for t
 7034-b: Skip - symbolical successful subtest
 7034-c: Skip - symbolical successful subtest
 7035: Skipped - Because timed out
-7036: Successful
+7036: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
 7037: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
 7038: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
 7039: Successful
