@@ -5,10 +5,10 @@ import gov.nist.drmf.interpreter.common.SymbolDefinedLibrary;
 import gov.nist.drmf.interpreter.common.SymbolTag;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
-import gov.nist.drmf.interpreter.evaluation.Case;
-import gov.nist.drmf.interpreter.evaluation.CaseAnalyzer;
-import gov.nist.drmf.interpreter.evaluation.CaseMetaData;
-import gov.nist.drmf.interpreter.evaluation.Relations;
+import gov.nist.drmf.interpreter.common.Case;
+import gov.nist.drmf.interpreter.common.CaseAnalyzer;
+import gov.nist.drmf.interpreter.common.CaseMetaData;
+import gov.nist.drmf.interpreter.common.Relations;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -16,8 +16,6 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,7 +1,5 @@
 package gov.nist.drmf.interpreter.common;
 
-import gov.nist.drmf.interpreter.evaluation.CaseMetaData;
-
 /**
  * @author Andre Greiner-Petter
  */

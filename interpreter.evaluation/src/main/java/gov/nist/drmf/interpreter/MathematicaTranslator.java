@@ -9,9 +9,8 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.constraints.IConstraintTranslator;
-import gov.nist.drmf.interpreter.evaluation.ICASEngineNumericalEvaluator;
-import gov.nist.drmf.interpreter.evaluation.ICASEngineSymbolicEvaluator;
-import gov.nist.drmf.interpreter.evaluation.INumericalEvaluationScripts;
+import gov.nist.drmf.interpreter.evaluation.numeric.ICASEngineNumericalEvaluator;
+import gov.nist.drmf.interpreter.evaluation.symbolic.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.mathematica.MathematicaInterface;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
@@ -19,13 +18,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author Andre Greiner-Petter

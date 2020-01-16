@@ -1,16 +1,14 @@
 package gov.nist.drmf.interpreter;
 
-import com.maplesoft.application.Maple;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import com.maplesoft.openmaple.MString;
 import com.maplesoft.openmaple.Numeric;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.evaluation.ICASEngineNumericalEvaluator;
-import gov.nist.drmf.interpreter.evaluation.ICASEngineSymbolicEvaluator;
-import gov.nist.drmf.interpreter.evaluation.NumericalEvaluator;
-import gov.nist.drmf.interpreter.evaluation.Status;
+import gov.nist.drmf.interpreter.evaluation.numeric.ICASEngineNumericalEvaluator;
+import gov.nist.drmf.interpreter.evaluation.symbolic.ICASEngineSymbolicEvaluator;
+import gov.nist.drmf.interpreter.evaluation.numeric.NumericalEvaluator;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;

@@ -3,7 +3,6 @@ package gov.nist.drmf.interpreter.roundtrip.constraints;
 import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.constraints.MLPBlueprintNode;
 import gov.nist.drmf.interpreter.constraints.MLPBlueprintTree;
-import gov.nist.drmf.interpreter.evaluation.NumericalEvaluator;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
