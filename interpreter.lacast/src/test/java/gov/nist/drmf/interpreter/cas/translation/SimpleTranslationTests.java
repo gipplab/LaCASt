@@ -267,4 +267,13 @@ class SimpleTranslationTests {
         System.out.println(res);
         assertEquals("exp(z)=(exp(z))* exp(2*k*z*Pi*I)", res);
     }
+
+    @Test
+    void replaceTranslationTest2() {
+        String in = "\\compellintPik@{k^{2}}{k}=\\compellintEk@{k}/{k^{\\prime}}^{2}";
+        String label = "19.6.2";
+        String res = slt.translate(in, label);
+        System.out.println(res);
+//        assertEquals("exp(z)=(exp(z))* exp(2*k*z*Pi*I)", res);
+    }
 }

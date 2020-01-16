@@ -298,7 +298,7 @@ X1:\iderivX\ideriv[$0]{$1}{$2};diff($1, [$2$($0)]);3;;;;
 \Bulirschincellintel{2}@{x}{k_c}{a}{b};;;;;;
 \Bulirschincellintel{3}@{x}{k_c}{p};;;;;;
 \Carlsonmultivarhyper{-a}@{\Vector{b}}{\Vector{z}};;;;;;
-\CarlsonsymellintRF@@{x}{y}{z};;;;;;
+\CarlsonsymellintRF@@{x}{y}{z};;3;;;;0.5*int(1/(sqrt(t+$0)*sqrt(t+$1)*sqrt(t+$2)), t = 0..infinity)
 \CarlsonsymellintRJ@@{x}{y}{z}{p};;;;;;
 \CarlsonsymellintRG@@{x}{y}{z};;;;;;
 \CarlsonsymellintRD@@{x}{y}{z};;;;;;
