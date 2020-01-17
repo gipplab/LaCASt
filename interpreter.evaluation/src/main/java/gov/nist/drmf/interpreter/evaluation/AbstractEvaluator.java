@@ -385,8 +385,8 @@ public abstract class AbstractEvaluator<T> {
     }
 
     public class ID {
-        Integer id;
-        Integer subID;
+        public Integer id;
+        public Integer subID;
 
         public ID(Integer id) {
             this.id = id;

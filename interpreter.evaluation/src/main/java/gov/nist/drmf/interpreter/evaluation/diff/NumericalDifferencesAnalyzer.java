@@ -40,7 +40,7 @@ public class NumericalDifferencesAnalyzer {
             "^(\\d+(?:-[a-z])?): (\\{\\{.*}})$"
     );
 
-    private static final Pattern mathEntityPattern = Pattern.compile(
+    public static final Pattern mathEntityPattern = Pattern.compile(
             "[ {]\\{(.*?), \\{(.*?)}}[,}]"
     );
 
@@ -48,7 +48,7 @@ public class NumericalDifferencesAnalyzer {
             "^(\\d+(?:-[a-z])?): (\\[\\[.*]])$"
     );
 
-    private static final Pattern mapleEntityPattern = Pattern.compile(
+    public static final Pattern mapleEntityPattern = Pattern.compile(
             "[ \\[]\\[(.*?), \\[(.*?)]][,\\]]"
     );
 

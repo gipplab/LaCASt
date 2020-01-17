@@ -40,7 +40,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
 //    protected static final String LONG_RUNTIME_SKIP = "89,90,91,99,100,102";
     //TODO MATHEMATICA SKIPS
-    protected static final String LONG_RUNTIME_SKIP =
+    public static final String LONG_RUNTIME_SKIP =
         "103,275,402,640,649,1248,1315,1316,1317,1318,1319,1320,1321,1322,1323,1324,1325,1326,1410," +
                 "1445,1460,1461,1462,1463,1464,1465,1466,1467,1468,1469,1470,1471,1542," +
                 "2068,2498,2562,2563,2564,2565,2566,2871," +
@@ -52,7 +52,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
                 "7313,7330,7331,7332,7333,7336,7339,7394,7397,7398,7399,7401,7405," +
                 "9572";
 
-    protected static final String SKIP_MAPLE_RUNS =
+    public static final String SKIP_MAPLE_RUNS =
             "321,642,794,795,850,976,1266,1267,1268,1269,1516,1948,1949," +
                     "2025,2058,2062,2067,2069,2070,2071,2072,2073,2074,2076,2100,2117,2118,2119,2120," +
                     "2268,2345,2351,2352,2362,2366,2406,2485,2487,2488,2491,2493,2494,2495,2496,2517," +
