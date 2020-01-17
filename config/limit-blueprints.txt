@@ -6,5 +6,8 @@ numL1 \leq varN \leq numU1 ==> numL1,numU1
 numL1 \leq varN < numU1 ==> numL1,numU1-1
 numL1 < varN \leq numU1 ==> numL1+1,numU1
 varN \leq numU1 ==> -\infty,numU1
+varN < numU1 ==> -\infty,numU1-1
+varN \geq numL1 ==> numL1,\infty
+varN > numL1 ==> numL1+1,\infty
 varN \in numL1 ==> numL1
 varN ==> -\infty,\infty

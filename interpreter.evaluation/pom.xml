@@ -59,7 +59,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        gov.nist.drmf.interpreter.evaluation.SymbolicEvaluator
+                                        gov.nist.drmf.interpreter.evaluation.symbolic.SymbolicEvaluator
                                     </mainClass>
                                 </manifest>
                             </archive>
@@ -81,7 +81,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        gov.nist.drmf.interpreter.evaluation.NumericalEvaluator
+                                        gov.nist.drmf.interpreter.evaluation.numeric.NumericalEvaluator
                                     </mainClass>
                                 </manifest>
                             </archive>
