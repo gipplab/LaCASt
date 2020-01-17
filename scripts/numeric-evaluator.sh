@@ -22,7 +22,7 @@ while read line; do
   read -ra ADDR <<< $line;
 
   cat $CONFIGFILEBASE >> $CONFIGFILE;
-  echo "output=/home/andreg-p/Howard/Results/${MYCAS}Numeric/${ADDR[0]}-numeric.txt" >> $CONFIGFILE;
+  echo "output=/home/andreg-p/Howard/Results/${MYCAS}NumericSuccSymb/${ADDR[0]}-numeric.txt" >> $CONFIGFILE;
   echo "symbolic_results_data=/home/andreg-p/Howard/Results/Auto${MYCAS}/${ADDR[0]}-symbolic.txt" >> $CONFIGFILE;
 
   echo "Done creating file for ${ADDR[0]}"

@@ -9,6 +9,8 @@ import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.evaluation.numeric.NumericalEvaluator;
+import gov.nist.drmf.interpreter.evaluation.symbolic.SymbolicEvaluator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
@@ -229,8 +231,8 @@ public class EquationTestCases {
 
     /**
      * @deprecated There are newer versions available to perform tests more reliable.
-     * @see gov.nist.drmf.interpreter.evaluation.SymbolicEvaluator
-     * @see gov.nist.drmf.interpreter.evaluation.NumericalEvaluator
+     * @see SymbolicEvaluator
+     * @see NumericalEvaluator
      */
     @Disabled
     @TestFactory

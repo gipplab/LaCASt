@@ -1,7 +1,5 @@
 package gov.nist.drmf.interpreter.common;
 
-import gov.nist.drmf.interpreter.evaluation.CaseMetaData;
-
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
