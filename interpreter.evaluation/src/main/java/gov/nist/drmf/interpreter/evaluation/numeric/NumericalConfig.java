@@ -215,7 +215,7 @@ public class NumericalConfig implements EvaluationConfig {
             this.value = value;
         }
 
-        void setValue( String value ){
+        public void setValue( String value ){
             this.value = value;
         }
     }
