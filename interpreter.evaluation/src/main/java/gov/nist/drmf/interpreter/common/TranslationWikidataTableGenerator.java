@@ -3,7 +3,6 @@ package gov.nist.drmf.interpreter.common;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.evaluation.diff.NumericalDifferencesAnalyzer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,7 +37,7 @@ public class TranslationWikidataTableGenerator {
     private String COLLAPSE_ELEMENT = "<div class=\"toccolours mw-collapsible mw-collapsed\">%s<div class=\"mw-collapsible-content\">%s</div></div>";
 
     private String TABLE_LINE =
-            "| [[Item:%s|%s]] || <math>%s</math> || <code>%s</code> || <code>%s</code> || " +
+            "| [https://dlmf.nist.gov/%s %s] || [[Item:%s|<math>%s</math>]] || <code>%s</code> || <code>%s</code> || " +
                     "%s || %s || " +
                     "%s || %s " +
                     "\n";
@@ -153,16 +152,28 @@ public class TranslationWikidataTableGenerator {
                 });
 
         LOG.info("Start analyzing the data...");
-        try ( BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile.toFile())) ) {
+        int fileID = 1;
+        Path filePath = outputFile.resolve(fileID+".txt");
+
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter(filePath.toFile()));
             writer.write("{| class=\"wikitable sortable\"\n|-\n");
             writer.write("! DLMF !! Formula !! Maple !! Mathematica !! Symbolic<br>Maple !! Symbolic<br>Mathematica !! Numeric<br>Maple !! Numeric<br>Mathematica\n|-\n");
 
-//            int securityCounter = 0;
             for ( LinkedList<Case> lineCase : allCases ) {
-//                if ( securityCounter > 50 ) break;
-//                securityCounter++;
-
                 Case c = lineCase.get(0);
+                int currentSec = Integer.parseInt(c.getEquationLabel().split("\\.")[0]);
+                if ( currentSec > fileID ) {
+                    writer.write("|}");
+                    writer.close();
+                    fileID = currentSec;
+                    filePath = outputFile.resolve(fileID+".txt");
+                    writer = new BufferedWriter(new FileWriter(filePath.toFile()));
+                    writer.write("{| class=\"wikitable sortable\"\n|-\n");
+                    writer.write("! DLMF !! Formula !! Maple !! Mathematica !! Symbolic<br>Maple !! Symbolic<br>Mathematica !! Numeric<br>Maple !! Numeric<br>Mathematica\n|-\n");
+                }
+
                 String id = ""+c.getLine();
                 singleCase(id, c, writer);
 
@@ -178,6 +189,8 @@ public class TranslationWikidataTableGenerator {
             writer.write("|}");
         } catch ( IOException ioe ) {
             LOG.error("Unable to write file.", ioe);
+        } finally {
+            if ( writer != null ) writer.close();
         }
     }
 
@@ -211,7 +224,14 @@ public class TranslationWikidataTableGenerator {
         String numericMaple = symbMaple.equals("Failure") ? getNumericResultString( true, id ) : "-";
         String numericMath = symbMath.equals("Failure") ? getNumericResultString( false, id ) : "-";
 
-        String line = String.format(TABLE_LINE, qid, label, expr, maple, mathematica, symbMaple, symbMath, numericMaple, numericMath);
+        String line = String.format(
+                TABLE_LINE,
+                label, label,
+                qid, expr,
+                maple, mathematica,
+                symbMaple, symbMath,
+                numericMaple, numericMath
+        );
 
         LOG.info(line);
         writer.write(line);
@@ -252,6 +272,6 @@ public class TranslationWikidataTableGenerator {
         );
 
         t.init();
-        t.generateTable(Paths.get("misc/result-table.txt"));
+        t.generateTable(Paths.get("misc/Mediawiki"));
     }
 }

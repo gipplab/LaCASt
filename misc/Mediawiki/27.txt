@@ -1,0 +1,43 @@
+{| class="wikitable sortable"
+|-
+! DLMF !! Formula !! Maple !! Mathematica !! Symbolic<br>Maple !! Symbolic<br>Mathematica !! Numeric<br>Maple !! Numeric<br>Mathematica
+|-
+| [https://dlmf.nist.gov/27.2.E1 27.2.E1] || [[Item:Q7988|<math>n = \prod_{r=1}^{\nprimesdiv@{n}}p^{a_{r}}_{r}</math>]] || <code>n product(p(p[r])^(a[r]), r = 1..ifactor(n))</code> || <code>Error</code> || Error || Error || - || - 
+|-
+| [https://dlmf.nist.gov/27.3.E5 27.3.E5] || [[Item:Q8006|<math>\ndivisors[]@{n} = \prod_{r=1}^{\nprimesdiv@{n}}(1+a_{r})</math>]] || <code>numelems(divisors(n))= product(1 + a[r], r = 1..ifactor(n))</code> || <code>Error</code> || Error || Error || - || - 
+|-
+| [https://dlmf.nist.gov/27.3.E6 27.3.E6] || [[Item:Q8007|<math>\sumdivisors{\alpha}@{n} = \prod_{r=1}^{\nprimesdiv@{n}}\frac{p^{\alpha(1+a_{r})}_{r}-1}{p^{\alpha}_{r}-1}</math>]] || <code>product((p(p[r])^(alpha*(1 + a[r]))- 1)/(p(p[r])^(alpha)- 1), r = 1..ifactor(n))</code> || <code>Error</code> || Error || Error || - || - 
+|-
+| [https://dlmf.nist.gov/27.4.E3 27.4.E3] || [[Item:Q8014|<math>\Riemannzeta@{s} = \sum_{n=1}^{\infty}n^{-s}</math>]] || <code>Zeta(s)= sum((n)^(- s), n = 1..infinity)</code> || <code>Zeta[s]= Sum[(n)^(- s), {n, 1, Infinity}]</code> || Successful || Successful || - || - 
+|-
+| [https://dlmf.nist.gov/27.4.E3 27.4.E3] || [[Item:Q8014|<math>\sum_{n=1}^{\infty}n^{-s} = \prod_{p}(1-p^{-s})^{-1}</math>]] || <code>sum((n)^(- s), n = 1..infinity)= product((1 - (p)^(- s))^(- 1), p = - infinity..infinity)</code> || <code>Sum[(n)^(- s), {n, 1, Infinity}]= Product[(1 - (p)^(- s))^(- 1), {p, - Infinity, Infinity}]</code> || Failure || Failure || Skip || Error 
+|-
+| [https://dlmf.nist.gov/27.4.E9 27.4.E9] || [[Item:Q8020|<math>\sum_{n=1}^{\infty}2^{\nprimesdiv@{n}}n^{-s} = \frac{(\Riemannzeta@{s})^{2}}{\Riemannzeta@{2s}}</math>]] || <code>sum((2)^(ifactor(n))* (n)^(- s), n = 1..infinity)=((Zeta(s))^(2))/(Zeta(2*s))</code> || <code>Error</code> || Error || Error || - || - 
+|-
+| [https://dlmf.nist.gov/27.4.E11 27.4.E11] || [[Item:Q8022|<math>\sum_{n=1}^{\infty}\sumdivisors{\alpha}@{n}n^{-s} = \Riemannzeta@{s}\Riemannzeta@{s-\alpha}</math>]] || <code>sum(\|\|add(divisors(alpha))*(n)^(- s), n = 1..infinity)= Zeta(s)*Zeta(s - alpha)</code> || <code>Error</code> || Error || Error || - || - 
+|-
+| [https://dlmf.nist.gov/27.4.E13 27.4.E13] || [[Item:Q8024|<math>\sum_{n=2}^{\infty}(\ln@@{n})n^{-s} = -\Riemannzeta'@{s}</math>]] || <code>sum((ln(n))* (n)^(- s), n = 2..infinity)= - subs( temp=s, diff( Zeta(temp), temp$(1) ) )</code> || <code>Sum[(Log[n])* (n)^(- s), {n, 2, Infinity}]= - (D[Zeta[temp], {temp, 1}]/.temp-> s)</code> || Successful || Successful || - || - 
+|-
+| [https://dlmf.nist.gov/27.7.E5 27.7.E5] || [[Item:Q8045|<math>\sum_{n=1}^{\infty}n^{\alpha}\frac{x^{n}}{1-x^{n}} = \sum_{n=1}^{\infty}\sumdivisors{\alpha}@{n}x^{n}</math>]] || <code>sum((n)^(alpha)*((x)^(n))/(1 - (x)^(n)), n = 1..infinity)= sum(\|\|add(divisors(alpha))*(x)^(n), n = 1..infinity)</code> || <code>Error</code> || Error || Error || - || - 
+|-
+| [https://dlmf.nist.gov/27.9.E1 27.9.E1] || [[Item:Q8055|<math>\Legendresym{-1}{p} = (-1)^{(p-1)/2}</math>]] || <code>legendre(- 1, p)=(- 1)^((p - 1)/ 2)</code> || <code>Error</code> || Error || Error || - || - 
+|-
+| [https://dlmf.nist.gov/27.9.E2 27.9.E2] || [[Item:Q8056|<math>\Legendresym{2}{p} = (-1)^{(p^{2}-1)/8}</math>]] || <code>legendre(2, p)=(- 1)^(((p)^(2)- 1)/ 8)</code> || <code>Error</code> || Error || Error || - || - 
+|-
+| [https://dlmf.nist.gov/27.9.E3 27.9.E3] || [[Item:Q8057|<math>\Legendresym{p}{q}\Legendresym{q}{p} = (-1)^{(p-1)(q-1)/4}</math>]] || <code>legendre(p, q)*legendre(q, p)=(- 1)^((p - 1)*(q - 1)/ 4)</code> || <code>Error</code> || Error || Error || - || - 
+|-
+| [https://dlmf.nist.gov/27.10.E7 27.10.E7] || [[Item:Q8064|<math>s_{k}(n) = \sum_{m=1}^{k}a_{k}(m)e^{2\cpi\iunit mn/k}</math>]] || <code>s[k]*(n)= sum(a[k]*(m)* exp(2*Pi*I*m*n/ k), m = 1..k)</code> || <code>Subscript[s, k]*(n)= Sum[Subscript[a, k]*(m)* Exp[2*Pi*I*m*n/ k], {m, 1, k}]</code> || Failure || Failure || Skip || Successful 
+|-
+| [https://dlmf.nist.gov/27.12.E1 27.12.E1] || [[Item:Q8085|<math>\lim_{n\to\infty}\frac{p_{n}}{n\ln@@{n}} = 1</math>]] || <code>limit((p[n])/(n*ln(n)), n = infinity)= 1</code> || <code>Limit[Divide[Subscript[p, n],n*Log[n]], n -> Infinity]= 1</code> || Successful || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Fail<div class="mw-collapsible-content"><code>Complex[0.41421356237309515, 1.4142135623730951] <- {Rule[Limit[Times[Power[n, -1], Power[Log[n], -1], Subscript[p, n]], Rule[n, DirectedInfinity[1]]], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}</code><br><code>Complex[0.41421356237309515, -1.4142135623730951] <- {Rule[Limit[Times[Power[n, -1], Power[Log[n], -1], Subscript[p, n]], Rule[n, DirectedInfinity[1]]], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}</code><br><code>Complex[-2.414213562373095, -1.4142135623730951] <- {Rule[Limit[Times[Power[n, -1], Power[Log[n], -1], Subscript[p, n]], Rule[n, DirectedInfinity[1]]], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}</code><br><code>Complex[-2.414213562373095, 1.4142135623730951] <- {Rule[Limit[Times[Power[n, -1], Power[Log[n], -1], Subscript[p, n]], Rule[n, DirectedInfinity[1]]], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}</code><br></div></div> 
+|-
+| [https://dlmf.nist.gov/27.12.E2 27.12.E2] || [[Item:Q8086|<math>p_{n} > n\ln@@{n}</math>]] || <code>p[n]> n*ln(n)</code> || <code>Subscript[p, n]> n*Log[n]</code> || Failure || Failure || Successful || Successful 
+|-
+| [https://dlmf.nist.gov/27.13.E4 27.13.E4] || [[Item:Q8096|<math>\AThetaFunction@{x} = 1+2\sum_{m=1}^{\infty}x^{m^{2}}</math>]] || <code>1+2*(sum((x)^(m^2), m = 1 .. infinity))= 1 + 2*sum((x)^((m)^(2)), m = 1..infinity)</code> || <code>Error</code> || Successful || Error || - || - 
+|-
+| [https://dlmf.nist.gov/27.13.E6 27.13.E6] || [[Item:Q8098|<math>(\AThetaFunction@{x})^{2} = 1+4\sum_{n=1}^{\infty}\left(\delta_{1}(n)-\delta_{3}(n)\right)x^{n}</math>]] || <code>(1+2*(sum((x)^(m^2), m = 1 .. infinity)))^(2)= 1 + 4*sum((delta[1]*(n)- delta[3]*(n))* (x)^(n), n = 1..infinity)</code> || <code>Error</code> || Failure || Error || Skip || - 
+|-
+| [https://dlmf.nist.gov/27.14.E2 27.14.E2] || [[Item:Q8101|<math>\EulerPhi@{x} = \prod_{m=1}^{\infty}(1-x^{m})</math>]] || <code>product(1-(x)^k, k = 1 .. infinity)= product(1 - (x)^(m), m = 1..infinity)</code> || <code>Error</code> || Successful || Error || - || - 
+|-
+| [https://dlmf.nist.gov/27.14.E18 27.14.E18] || [[Item:Q8117|<math>x\prod_{n=1}^{\infty}(1-x^{n})^{24} = \sum_{n=1}^{\infty}\Ramanujantau@{n}x^{n}</math>]] || <code>Error</code> || <code>x*Product[(1 - (x)^(n))^(24), {n, 1, Infinity}]= Sum[RamanujanTau[n]*(x)^(n), {n, 1, Infinity}]</code> || Error || Successful || - || - 
+|-
+|}
