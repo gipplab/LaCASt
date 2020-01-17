@@ -1,0 +1,9 @@
+{| class="wikitable sortable"
+|-
+! DLMF !! Formula !! Maple !! Mathematica !! Symbolic<br>Maple !! Symbolic<br>Mathematica !! Numeric<br>Maple !! Numeric<br>Mathematica
+|-
+| [https://dlmf.nist.gov/17.2.E28 17.2.E28] || [[Item:Q5318|<math>\binom{n}{m} = \frac{n!}{m!(n-m)!}</math>]] || <code>binomial(n,m)=(factorial(n))/(factorial(m)*factorial(n - m))</code> || <code>Binomial[n,m]=Divide[(n)!,(m)!*(n - m)!]</code> || Successful || Successful || - || - 
+|-
+| [https://dlmf.nist.gov/17.2.E36 17.2.E36] || [[Item:Q5326|<math>\sum_{j=0}^{n}\binom{n}{j}(-z)^{j} = (1-z)^{n}</math>]] || <code>sum(binomial(n,j)*(- z)^(j), j = 0..n)=(1 - z)^(n)</code> || <code>Sum[Binomial[n,j]*(- z)^(j), {j, 0, n}]=(1 - z)^(n)</code> || Successful || Successful || - || - 
+|-
+|}
