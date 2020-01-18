@@ -73,6 +73,7 @@ DLMF;Maple;Number of Variables;Slot of Differentiation;DLMF-Maple-Comment;Maple-
 \phase@@{$0};argument($0);1;;arctan($0,$1) is an alternative. With the real part in the first argument and the complex part in the second.;;
 \conj{$0};conjugate($0);1;;;;
 \realpart@@{$0};Re($0);1;;;;
+\Re{$0};Re($0);1;;;;
 \imagpart@@{$0};Im($0);1;;;;
 \sqrt{$0};sqrt($0);1;;You can use the csgn function, which is specialized for imaginary variables.;;
 \sign@@{$0};signum($0);1;;The sign($0) alternative is for polynomials! sign(x) is 1 always, because x has a positive sign.;;csgn($0) || sign($0)

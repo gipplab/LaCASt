@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 47, FAILURE: 19, LIMIT_SKIPS: 0, TESTED: 85, ERROR: 19] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 51, FAILURE: 25, LIMIT_SKIPS: 0, TESTED: 91, ERROR: 15] for test expression: (#LHS)-(#RHS)
 7014: Successful
 7014-a: Skip - symbolical successful subtest
 7015: Successful
@@ -13,36 +13,36 @@ Overall: [SUCCESS: 47, FAILURE: 19, LIMIT_SKIPS: 0, TESTED: 85, ERROR: 19] for t
 7022: Skipped - Because timed out
 7024: Successful
 7024-a: Successful
-7024-b: Skip - symbolical successful subtest
+7024-b: Successful
 7025: Successful
 7025-a: Successful
-7025-b: Skip - symbolical successful subtest
+7025-b: Successful
 7026: Successful
 7026-a: Successful
-7026-b: Skip - symbolical successful subtest
+7026-b: Successful
 7027: Successful
 7027-a: Successful
-7027-b: Skip - symbolical successful subtest
+7027-b: Successful
 7033: Successful
 7034: $Failed
 7034-a: {{Complex[0.0, 2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][2, 0, q], Times[Complex[1, 1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[2.8284271247461903, 2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][2, 0, q], Times[Complex[1, 1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {2.8284271247461903, {Rule[Derivative[0, 2, 0][EllipticThetaPrime][2, 0, q], Times[Complex[1, 1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][2, 0, q], Times[Complex[1, -1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {2.8284271247461903, {Rule[Derivative[0, 2, 0][EllipticThetaPrime][2, 0, q], Times[Complex[1, -1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[2.8284271247461903, -2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][2, 0, q], Times[Complex[1, -1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[-2.8284271247461903, -2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][2, 0, q], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {-2.8284271247461903, {Rule[Derivative[0, 2, 0][EllipticThetaPrime][2, 0, q], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][2, 0, q], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}, {-2.8284271247461903, {Rule[Derivative[0, 2, 0][EllipticThetaPrime][2, 0, q], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[-2.8284271247461903, 2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][2, 0, q], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, 2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][2, 0, q], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}}
-7034-b: Skip - symbolical successful subtest
-7034-c: Skip - symbolical successful subtest
+7034-b: {{Complex[0.0, 2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[1, 1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[2.8284271247461903, 2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[1, 1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {2.8284271247461903, {Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[1, 1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[1, -1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {2.8284271247461903, {Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[1, -1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[2.8284271247461903, -2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[1, -1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[-2.8284271247461903, -2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {-2.8284271247461903, {Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}, {-2.8284271247461903, {Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[-2.8284271247461903, 2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, 2.8284271247461903], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][3, 0, q], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]], Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}}
+7034-c: {{Complex[1.4142135623730951, 1.4142135623730951], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[1.4142135623730951, -1.4142135623730951], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-1.4142135623730951, -1.4142135623730951], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-1.4142135623730951, 1.4142135623730951], {Rule[Derivative[0, 2, 0][EllipticThetaPrime][4, 0, q], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
 7035: Skipped - Because timed out
-7036: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+7036: Skipped - Because timed out
 7037: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
 7038: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
 7039: Successful
 7044: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
-7045: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+7045: Skipped - Because timed out
 7046: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
 7047: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
 7049: Skipped - Because timed out
 7049-a: Skipped - Because timed out
-7050: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+7050: Skipped - Because timed out
 7050-a: Skipped - Because timed out
 7051: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
-7051-a: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+7051-a: Skipped - Because timed out
 7052: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
 7052-a: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
 7054: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
