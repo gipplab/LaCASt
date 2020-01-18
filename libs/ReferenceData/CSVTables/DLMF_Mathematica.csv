@@ -90,6 +90,7 @@ DLMF;Mathematica;Number of Variables;Slot of Differentiation;DLMF-Mathematica-Co
 ;;;;;
 \conj{z};Conjugate[$0];1;;;
 \realpart@@{z};Re[$0];1;;;
+\Re{z};Re[$0];1;;;
 \imagpart@@{z};Im[$0];1;;;
 \sqrt{z};Sqrt[$0];1;;;
 \sqrt[p]{z};Surd[$1, $0];2;;;

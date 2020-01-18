@@ -25,7 +25,7 @@ public abstract class AbstractEvaluator<T> {
 
     public final static String NL = System.lineSeparator();
 
-    public static int DEFAULT_TIMEOUT_MS = 4_000; // 4 seconds
+    public static int DEFAULT_TIMEOUT_MS = 4_000; // 30 seconds
 
     private IConstraintTranslator forwardTranslator;
     private IComputerAlgebraSystemEngine<T> engine;
@@ -398,7 +398,7 @@ public abstract class AbstractEvaluator<T> {
             this.id = Integer.parseInt(ids[0]);
             if ( ids.length > 1 ) {
                 char a = ids[1].charAt(0);
-                this.subID = 'a' - a + 1;
+                this.subID = a - 'a' + 1;
             } else this.subID = 0;
         }
 

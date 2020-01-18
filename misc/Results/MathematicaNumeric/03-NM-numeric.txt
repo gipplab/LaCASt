@@ -1,4 +1,4 @@
-Overall: [SUCCESS: 14, FAILURE: 12, LIMIT_SKIPS: 5, TESTED: 36, ERROR: 5] for test expression: (#LHS)-(#RHS)
+Overall: [SUCCESS: 17, FAILURE: 12, LIMIT_SKIPS: 4, TESTED: 37, ERROR: 4] for test expression: (#LHS)-(#RHS)
 1075: Successful
 1087: Skipped - Too many test combinations.
 1191: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
@@ -14,25 +14,25 @@ Overall: [SUCCESS: 14, FAILURE: 12, LIMIT_SKIPS: 5, TESTED: 36, ERROR: 5] for te
 1238-a: Successful
 1239: Successful
 1240: Successful
-1243: Skipped - Because timed out
+1243: Successful
 1246: Successful
 1249: Successful
 1251: {{Complex[1.4142135623730951, 1.4142135623730951], {Rule[w, Times[Complex[1, 1], Power[2, Rational[1, 2]]]], Rule[x, 1]}}, {Complex[3.5215743053061357, 2.8284271247461903], {Rule[w, Times[Complex[1, 1], Power[2, Rational[1, 2]]]], Rule[x, 2]}}, {Complex[5.341252975787396, 4.242640687119286], {Rule[w, Times[Complex[1, 1], Power[2, Rational[1, 2]]]], Rule[x, 3]}}, {Complex[1.4142135623730951, -1.4142135623730951], {Rule[w, Times[Complex[1, -1], Power[2, Rational[1, 2]]]], Rule[x, 1]}}, {Complex[3.5215743053061357, -2.8284271247461903], {Rule[w, Times[Complex[1, -1], Power[2, Rational[1, 2]]]], Rule[x, 2]}}, {Complex[5.341252975787396, -4.242640687119286], {Rule[w, Times[Complex[1, -1], Power[2, Rational[1, 2]]]], Rule[x, 3]}}, {Complex[-1.4142135623730951, -1.4142135623730951], {Rule[w, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]], Rule[x, 1]}}, {Complex[-2.135279944186245, -2.8284271247461903], {Rule[w, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]], Rule[x, 2]}}, {Complex[-3.1440283984511757, -4.242640687119286], {Rule[w, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]], Rule[x, 3]}}, {Complex[-1.4142135623730951, 1.4142135623730951], {Rule[w, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]], Rule[x, 1]}}, {Complex[-2.135279944186245, 2.8284271247461903], {Rule[w, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]], Rule[x, 2]}}, {Complex[-3.1440283984511757, 4.242640687119286], {Rule[w, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]], Rule[x, 3]}}}
-1260: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+1260: $Failed
 1266: $Failed
-1268: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+1268: Skipped - Because timed out
 1269: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
 1287: Successful
 1334: $Failed
 1337: {{Complex[0.6440232508700339, 1.4142135623730951], {Rule[x, 1], Rule[ϕ, Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[-0.04813130374017138, 2.8284271247461903], {Rule[x, 2], Rule[ϕ, Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[-153.41391694554147, 4.242640687119286], {Rule[x, 3], Rule[ϕ, Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[0.6440232508700339, -1.4142135623730951], {Rule[x, 1], Rule[ϕ, Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-0.04813130374017138, -2.8284271247461903], {Rule[x, 2], Rule[ϕ, Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-153.41391694554147, -4.242640687119286], {Rule[x, 3], Rule[ϕ, Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-2.184403873876156, -1.4142135623730951], {Rule[x, 1], Rule[ϕ, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-5.704985553232552, -2.8284271247461903], {Rule[x, 2], Rule[ϕ, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-161.89919831978006, -4.242640687119286], {Rule[x, 3], Rule[ϕ, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-2.184403873876156, 1.4142135623730951], {Rule[x, 1], Rule[ϕ, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[-5.704985553232552, 2.8284271247461903], {Rule[x, 2], Rule[ϕ, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[-161.89919831978006, 4.242640687119286], {Rule[x, 3], Rule[ϕ, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
 1349: {{Complex[1.4142135623730951, 1.4142135623730951], {Rule[Indeterminate, Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[1.4142135623730951, -1.4142135623730951], {Rule[Indeterminate, Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-1.4142135623730951, -1.4142135623730951], {Rule[Indeterminate, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-1.4142135623730951, 1.4142135623730951], {Rule[Indeterminate, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
 1352: {{4.309980412182177*^7, {}}}
-1371: Skipped - Because timed out
-1372: Skipped - Because timed out
+1371: Successful
+1372: Successful
 1417: $Failed
 1417-a: $Failed
-1417-b: Skip - symbolical successful subtest
+1417-b: numericalAutoTest[StringJoin[k, 0], 0, Null, {{Rule[Normal[StringJoin[k, 0], 0, Null], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}, {Rule[Normal[StringJoin[k, 0], 0, Null], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}, {Rule[Normal[StringJoin[k, 0], 0, Null], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}, {Rule[Normal[StringJoin[k, 0], 0, Null], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}]
 1422: Skipped - Too many test combinations.
 1453: Skipped - Too many test combinations.
-1455: Skipped - Too many test combinations.
+1455: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
 1459: Successful
