@@ -24,6 +24,8 @@ import java.util.regex.Pattern;
 public class TranslationWikidataTableGenerator {
     private static final Logger LOG = LogManager.getLogger(TranslationWikidataTableGenerator.class.getName());
 
+    private static final int LIMIT_ENTRIES = 4;
+
     private static final Pattern QID_PATTERN = Pattern.compile("(Q\\d+),DLMF:(.*?),.*");
 
     private static final Pattern SYMBOLIC_PATTERN = Pattern.compile(
@@ -249,11 +251,19 @@ public class TranslationWikidataTableGenerator {
         if ( result.startsWith("[") || result.startsWith("{") ) {
             if ( result.contains("Error") ) return "Error";
 
+            int counter = 0;
             Matcher m = elPattern.matcher(result);
             StringBuilder list = new StringBuilder();
             while ( m.find() ) {
+                if ( counter >= LIMIT_ENTRIES ) {
+                    // too many entries
+                    list.append("... skip entries to safe data<br>");
+                    break;
+                }
                 list.append("<code>").append(m.group(1)).append(" <- {").append(m.group(2)).append("}</code><br>");
+                counter++;
             }
+
             return String.format(COLLAPSE_ELEMENT, "Fail", list.toString());
         } else {
             if ( result.contains("Failed") ) return "Error";
