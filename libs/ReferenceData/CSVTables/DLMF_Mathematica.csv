@@ -283,7 +283,7 @@ X1:\ipderivX\ipderiv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;;
 \Coulombturnr@{\epsilon}{\ell};;;;;
 ;;;;;
 \BesselC{\nu}@{z};;2;1;;
-\paraU@{a}{z};ParabolicCylinderD[-$0 - 1/2, $1];2;2;;
+\paraU@{a}{z};ParabolicCylinderD[- 1/2 -($0), $1];2;2;;
 \paraUbar@{a}{x};;;;;
 \paraV@{a}{z};;2;2;;
 \paraW@{a}{x};;2;2;;

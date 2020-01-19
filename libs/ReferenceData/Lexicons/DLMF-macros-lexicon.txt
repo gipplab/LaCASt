@@ -4357,7 +4357,7 @@ Symbol: \Re
 	Mathematica-Link: reference.wolfram.com/language/ref/Re.html
 	Mathematica-Package: 
 	Meanings: Real part of a complex number
-	Number of Ats: 0
+	Number of Ats: 0all
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
@@ -10370,7 +10370,7 @@ Symbol: \paraU
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CylinderU
 	Maple-Package: 
-	Mathematica: ParabolicCylinderD[-$0 - 1/2, $1]
+	Mathematica: ParabolicCylinderD[- 1/2 -($0), $1]
 	Mathematica-Alternatives: 
 	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
