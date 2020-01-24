@@ -25,7 +25,7 @@ public abstract class AbstractEvaluator<T> {
 
     public final static String NL = System.lineSeparator();
 
-    public static int DEFAULT_TIMEOUT_MS = 10_000; // 30 seconds
+    public static int DEFAULT_TIMEOUT_MS = 30_000; // 30 seconds
 
     private IConstraintTranslator forwardTranslator;
     private IComputerAlgebraSystemEngine<T> engine;
