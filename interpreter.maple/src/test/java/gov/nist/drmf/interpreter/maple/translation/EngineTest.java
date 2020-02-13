@@ -11,7 +11,6 @@ import com.maplesoft.openmaple.EngineCallBacks;
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
-import gov.nist.drmf.interpreter.maple.setup.Initializer;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

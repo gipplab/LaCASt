@@ -48,6 +48,7 @@
                         <LD_LIBRARY_PATH>${maple.installation.dir}/bin.X86_64_LINUX</LD_LIBRARY_PATH>
                     </environmentVariables>
                     <workingDirectory>${main.basedir}</workingDirectory>
+                    <argLine>-Xss50M</argLine>
                 </configuration>
             </plugin>
             <plugin>
