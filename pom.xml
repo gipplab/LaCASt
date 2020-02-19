@@ -31,9 +31,10 @@
         <maple.installation.dir>/opt/maple2019</maple.installation.dir>
         <mathematica.installation.dir>/opt/Wolfram</mathematica.installation.dir>
 
+        <java.version>1.11</java.version>
         <main.basedir>${project.basedir}</main.basedir>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <junit.launcher.version>1.5.2</junit.launcher.version>
         <junit.version>5.5.2</junit.version>
@@ -148,6 +149,7 @@
                     <configuration>
                         <source>${maven.compiler.source}</source>
                         <target>${maven.compiler.target}</target>
+                        <release>11</release>
                     </configuration>
                 </plugin>
                 <plugin>
