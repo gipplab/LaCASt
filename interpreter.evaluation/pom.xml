@@ -34,10 +34,10 @@
                 <configuration>
                     <environmentVariables>
                         <MAPLE>${maple.installation.dir}</MAPLE>
-                        <LD_LIBRARY_PATH>${maple.installation.dir}/bin.X86_64_LINUX</LD_LIBRARY_PATH>
-                        <LD_LIBRARY_PATH>${mathematica.installation.dir}/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64</LD_LIBRARY_PATH>
+                        <LD_LIBRARY_PATH>${maple.installation.dir}/bin.X86_64_LINUX:${mathematica.installation.dir}/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64</LD_LIBRARY_PATH>
                     </environmentVariables>
                     <workingDirectory>${main.basedir}/</workingDirectory>
+                    <argLine>-Xss50M</argLine>
                 </configuration>
             </plugin>
             <plugin>
