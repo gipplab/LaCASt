@@ -15,8 +15,6 @@ import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -115,7 +113,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      *                  You can enter this path manually to the
      *                  libs/maple_config.properties file.
      */
-    public MapleTranslator(@Nonnull Path maple_dir ){
+    public MapleTranslator(Path maple_dir ){
         this();
         try (FileOutputStream out =
                      new FileOutputStream( GlobalPaths.PATH_MAPLE_CONFIG.toFile() )){
@@ -206,7 +204,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @return equivalent expression in Maple syntax
      * @throws TranslationException if the translation fails.
      */
-    public String translateFromLaTeXToMapleClean(@Nonnull String latex_expression, String label )
+    public String translateFromLaTeXToMapleClean( String latex_expression, String label )
             throws TranslationException{
         return translateFromLaTeXToMaple( latex_expression, label ).getTranslatedExpression();
     }
@@ -218,7 +216,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @return equivalent expression in Maple syntax
      * @throws TranslationException if the translation fails.
      */
-    public String translateFromLaTeXToMapleSetModeClean(@Nonnull String latex_expression, String label )
+    public String translateFromLaTeXToMapleSetModeClean( String latex_expression, String label )
             throws TranslationException{
         dlmfInterface.activateSetMode();
         String translation = translateFromLaTeXToMaple( latex_expression, label ).getTranslatedExpression();
@@ -239,7 +237,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @return equivalent expression in Maple syntax in a {@link Translation} object.
      * @throws TranslationException if the translation fails.
      */
-    public Translation translateFromLaTeXToMaple(@Nonnull String latex_expression, @Nullable String label )
+    public Translation translateFromLaTeXToMaple( String latex_expression, String label )
             throws TranslationException {
         String translation = dlmfInterface.translate( latex_expression, label );
         return new Translation(
@@ -257,7 +255,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @throws TranslationException if the translation fails.
      * @throws MapleException if the conversion into an {@link Algebraic} object fails.
      */
-    public Algebraic translateFromLaTeXToMapleAlgebraicClean(@Nonnull String latex_expression, @Nullable String label )
+    public Algebraic translateFromLaTeXToMapleAlgebraicClean( String latex_expression, String label )
             throws TranslationException, MapleException{
         return translateFromLaTeXToMapleAlgebraic( latex_expression, label ).getAlgebraicTranslatedExpression();
     }
@@ -275,7 +273,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @throws TranslationException if the translation fails.
      * @throws MapleException if the conversion into an {@link Algebraic} object fails.
      */
-    public Translation translateFromLaTeXToMapleAlgebraic(@Nonnull String latex_expression, @Nullable String label )
+    public Translation translateFromLaTeXToMapleAlgebraic( String latex_expression, String label )
             throws TranslationException, MapleException {
         Translation t = translateFromLaTeXToMaple( latex_expression, label );
         Algebraic a = mapleInterface.evaluateExpression( "'" + t.getTranslatedExpression() + "'" );
@@ -291,7 +289,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @throws TranslationException if the translation failed
      * @throws MapleException if the evaluation of the given string failed
      */
-    public String translateFromMapleToLaTeXClean(@Nonnull String maple_expression )
+    public String translateFromMapleToLaTeXClean( String maple_expression )
             throws TranslationException, MapleException {
         return translateFromMapleToLaTeX( maple_expression ).getTranslatedExpression();
     }
@@ -306,7 +304,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @throws TranslationException if the translation failed
      * @throws MapleException if the evaluation of the given string failed
      */
-    public Translation translateFromMapleToLaTeX(@Nonnull String maple_expression )
+    public Translation translateFromMapleToLaTeX( String maple_expression )
             throws TranslationException, MapleException {
         String trans = mapleInterface.translate( maple_expression );
         return new Translation( trans, mapleInterface.getInfos().toString() );
@@ -322,7 +320,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @throws TranslationException if the translation failed
      * @throws MapleException if the evaluation of the given algebraic object failed
      */
-    public String translateFromMapleToLaTeXClean(@Nonnull Algebraic maple_expression )
+    public String translateFromMapleToLaTeXClean( Algebraic maple_expression )
             throws TranslationException, MapleException {
         return translateFromMapleToLaTeX( maple_expression ).getTranslatedExpression();
     }
@@ -338,7 +336,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @throws TranslationException if the translation failed
      * @throws MapleException if the evaluation of the given algebraic object failed
      */
-    public Translation translateFromMapleToLaTeX(@Nonnull Algebraic maple_expression )
+    public Translation translateFromMapleToLaTeX( Algebraic maple_expression )
             throws TranslationException, MapleException {
         String maple_input = maple_expression.toString();
         return translateFromMapleToLaTeX( maple_input );
@@ -357,7 +355,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @throws TranslationException if the forward or backward translation failed
      * @throws MapleException if the program cannot evaluate the given expression
      */
-    public String oneCycleRoundTripTranslationFromMaple(@Nonnull String maple_expression)
+    public String oneCycleRoundTripTranslationFromMaple( String maple_expression)
             throws TranslationException, MapleException {
         String latex = translateFromMapleToLaTeXClean( maple_expression );
         return translateFromLaTeXToMapleClean( latex, null );
@@ -373,7 +371,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @throws TranslationException if the forward or backward translation failed
      * @throws MapleException if the program cannot evaluate the given expression
      */
-    public Algebraic oneCycleRoundTripTranslationFromMaple(@Nonnull Algebraic maple_expression )
+    public Algebraic oneCycleRoundTripTranslationFromMaple( Algebraic maple_expression )
             throws TranslationException, MapleException {
         String latex = translateFromMapleToLaTeXClean( maple_expression );
         return translateFromLaTeXToMapleAlgebraicClean( latex, null );
@@ -393,7 +391,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @throws TranslationException if the forward or backward translation failed
      * @throws MapleException if Maple cannot evaluate an expression
      */
-    public String oneCycleRoundTripTranslationFromLaTeX(@Nonnull String latex_expression, @Nullable String label )
+    public String oneCycleRoundTripTranslationFromLaTeX( String latex_expression, String label )
             throws TranslationException, MapleException {
         String maple = translateFromLaTeXToMapleClean( latex_expression, label );
         return translateFromMapleToLaTeXClean( maple );

@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.tests;
+package gov.nist.drmf.interpreter.common;
 
 import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;

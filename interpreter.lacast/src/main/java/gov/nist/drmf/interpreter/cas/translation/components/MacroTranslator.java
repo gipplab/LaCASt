@@ -21,7 +21,6 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -78,7 +77,6 @@ public class MacroTranslator extends AbstractListTranslator {
         this.translatedInAdvance = null;
     }
 
-    @Nullable
     @Override
     public TranslatedExpression getTranslatedExpressionObject() {
         return localTranslations;

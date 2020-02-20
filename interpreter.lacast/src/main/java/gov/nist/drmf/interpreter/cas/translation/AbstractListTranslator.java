@@ -10,7 +10,6 @@ import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
-import javax.annotation.Nullable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;

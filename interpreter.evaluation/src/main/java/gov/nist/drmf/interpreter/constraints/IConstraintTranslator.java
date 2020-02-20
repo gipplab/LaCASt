@@ -3,7 +3,6 @@ package gov.nist.drmf.interpreter.constraints;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.ITranslator;
 
-import javax.annotation.Nonnull;
 import java.util.Arrays;
 
 /**

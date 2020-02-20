@@ -14,9 +14,6 @@ import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import static gov.nist.drmf.interpreter.examples.MLP.NL;
 
 /**
@@ -58,7 +55,7 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
      *          If it returns false, both expressions still can be mathematically equivalent!
      * @throws MapleException If the test of equivalence produces an Maple error.
      */
-    public boolean isEquivalent( @Nullable String exp1, @Nullable String exp2 )
+    public boolean isEquivalent( String exp1, String exp2 )
             throws ComputerAlgebraSystemEngineException {
         if ( isNullOrEmpty(exp1, exp2) ) return false;
 
@@ -72,7 +69,7 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
         }
     }
 
-    public Algebraic isMultipleEquivalent( @Nullable String exp1, @Nullable String exp2 )
+    public Algebraic isMultipleEquivalent( String exp1, String exp2 )
             throws ComputerAlgebraSystemEngineException {
         if ( isNullOrEmpty(exp1, exp2) ) return null;
 
@@ -98,9 +95,9 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
      * @throws MapleException If the test of equivalence produces an Maple error.
      */
     public boolean isEquivalentWithConversion(
-            @Nullable String exp1,
-            @Nullable String exp2,
-            @Nonnull String conversion )
+            String exp1,
+            String exp2,
+            String conversion )
             throws ComputerAlgebraSystemEngineException, MapleException {
         if ( isNullOrEmpty(exp1, exp2) ) return false;
 
@@ -111,9 +108,9 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
     }
 
     public Algebraic isMultipleEquivalentWithConversion(
-            @Nullable String exp1,
-            @Nullable String exp2,
-            @Nonnull String conversion )
+            String exp1,
+            String exp2,
+            String conversion )
             throws ComputerAlgebraSystemEngineException{
         if ( isNullOrEmpty(exp1, exp2) ) return null;
 
@@ -123,9 +120,9 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
     }
 
     public boolean isEquivalentWithExpension(
-            @Nullable String exp1,
-            @Nullable String exp2,
-            @Nullable String conversion
+            String exp1,
+            String exp2,
+            String conversion
     ) throws ComputerAlgebraSystemEngineException, MapleException {
         if ( isNullOrEmpty(exp1, exp2) ) return false;
 
@@ -137,9 +134,9 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
     }
 
     public Algebraic isMultipleEquivalentWithExpension(
-            @Nullable String exp1,
-            @Nullable String exp2,
-            @Nullable String conversion
+            String exp1,
+            String exp2,
+            String conversion
     ) throws ComputerAlgebraSystemEngineException {
         if ( isNullOrEmpty(exp1, exp2) ) return null;
 
@@ -610,7 +607,7 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
      * @param expr
      * @return
      */
-    public RelationResults holdsRelation( @Nullable String expr ) throws MapleException {
+    public RelationResults holdsRelation( String expr ) throws MapleException {
         try {
             String command = "op(1, ToInert(is(" + expr + ")));";
             mapleListener.timerReset();
