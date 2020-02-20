@@ -2,8 +2,6 @@ package gov.nist.drmf.interpreter;
 
 import com.maplesoft.openmaple.Algebraic;
 
-import javax.annotation.Nullable;
-
 /**
  * A simple java container to collect the information of a translation process.
  * It contains further information about an translation and the translated
@@ -70,7 +68,6 @@ public class Translation {
      * {@link MapleTranslator#translateFromLaTeXToMapleAlgebraic(String,String)} (06. March 2017).
      * @return the algebraic object of the translated expression
      */
-    @Nullable
     public Algebraic getAlgebraicTranslatedExpression() {
         return alg;
     }

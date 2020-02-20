@@ -14,7 +14,6 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -89,8 +88,7 @@ public class SequenceTranslator extends AbstractListTranslator {
      * @param currentOpenBracket previously opened (not yet closed) bracket (can be null)
      * @return bracket or null
      */
-    @Nullable
-    public static Brackets ifIsBracketTransform(MathTerm term, @Nullable Brackets currentOpenBracket) {
+    public static Brackets ifIsBracketTransform(MathTerm term, Brackets currentOpenBracket) {
         if (term == null || term.isEmpty()) {
             return null;
         }
@@ -110,7 +108,6 @@ public class SequenceTranslator extends AbstractListTranslator {
         }
     }
 
-    @Nullable
     @Override
     public TranslatedExpression getTranslatedExpressionObject() {
         return localTranslations;

@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.tests.replacements;
+package gov.nist.drmf.interpreter.common.replacements;
 
 import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.common.replacements.ReplacementConfig;

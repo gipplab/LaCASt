@@ -12,7 +12,6 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +30,6 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
         this.localTranslations = new TranslatedExpression();
     }
 
-    @Nullable
     @Override
     public TranslatedExpression getTranslatedExpressionObject() {
         return localTranslations;

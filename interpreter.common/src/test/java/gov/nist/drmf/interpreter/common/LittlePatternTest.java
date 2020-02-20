@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.tests;
+package gov.nist.drmf.interpreter.common;
 
 import org.junit.jupiter.api.Test;
 
