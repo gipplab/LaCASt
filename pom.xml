@@ -31,7 +31,7 @@
         <maple.installation.dir>/opt/maple2019</maple.installation.dir>
         <mathematica.installation.dir>/opt/Wolfram</mathematica.installation.dir>
 
-        <java.version>1.11</java.version>
+        <java.version>11</java.version>
         <main.basedir>${project.basedir}</main.basedir>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -39,6 +39,7 @@
         <junit.launcher.version>1.5.2</junit.launcher.version>
         <junit.version>5.5.2</junit.version>
         <maven.surefire.version>2.22.2</maven.surefire.version>
+        <jackson.version>2.10.1</jackson.version>
 
         <mlp.path>${main.basedir}/libs/MLP/MLP.jar</mlp.path>
         <mlp.version>1.1</mlp.version>
@@ -54,8 +55,7 @@
     </properties>
 
     <dependencies>
-        <!-- We use JUnit5 -->
-        <dependency>
+        <dependency> <!-- We use JUnit5 -->
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-launcher</artifactId>
             <version>${junit.launcher.version}</version>
@@ -91,22 +91,14 @@
             <scope>test</scope>
         </dependency>
 
-        <!--  Gson: Java to Json conversion -->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.0</version>
-        </dependency>
-
-        <!-- For Better Tests -->
-        <dependency>
+        <dependency> <!-- Better tests -->
             <groupId>org.hamcrest</groupId>
             <artifactId>java-hamcrest</artifactId>
             <version>2.0.0.0</version>
+            <scope>test</scope>
         </dependency>
 
-        <!-- Logging via log4j2 -->
-        <dependency>
+        <dependency> <!-- Logging via log4j2 -->
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>${log4j2.version}</version>
@@ -125,6 +117,53 @@
             <version>3.0.2</version>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--  Gson: Java to Json conversion -->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.8.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-yaml</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mlp</artifactId>
+                <version>${mlp.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>maple</artifactId>
+                <version>${maple.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>maple-call</artifactId>
+                <version>${maple.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mathematica</artifactId>
+                <version>${mathematica.jlink.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <pluginManagement>
@@ -149,7 +188,7 @@
                     <configuration>
                         <source>${maven.compiler.source}</source>
                         <target>${maven.compiler.target}</target>
-                        <release>11</release>
+                        <release>${java.version}</release>
                     </configuration>
                 </plugin>
                 <plugin>

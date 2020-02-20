@@ -28,13 +28,11 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>maple</artifactId>
-            <version>${maple.version}</version>
         </dependency>
 
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>maple-call</artifactId>
-            <version>${maple.version}</version>
         </dependency>
     </dependencies>
 
