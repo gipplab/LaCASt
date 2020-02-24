@@ -1,21 +1,20 @@
 package gov.nist.drmf.interpreter.mathematica;
 
-import com.wolfram.jlink.*;
+import com.wolfram.jlink.Expr;
+import com.wolfram.jlink.ExprFormatException;
+import com.wolfram.jlink.KernelLink;
+import com.wolfram.jlink.MathLinkException;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
-import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.nio.file.Path;
 import java.util.Set;
 
-import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * This requires JLink from Mathematica.

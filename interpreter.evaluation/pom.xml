@@ -21,7 +21,19 @@
     <dependencies>
         <dependency>
             <groupId>gov.nist.drmf.interpreter</groupId>
-            <artifactId>interpreter.api</artifactId>
+            <artifactId>interpreter.lacast</artifactId>
+            <version>2.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>gov.nist.drmf.interpreter</groupId>
+            <artifactId>interpreter.maple</artifactId>
+            <version>2.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>gov.nist.drmf.interpreter</groupId>
+            <artifactId>interpreter.mathematica</artifactId>
             <version>2.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
@@ -30,23 +42,26 @@
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven.surefire.version}</version>
                 <configuration>
                     <environmentVariables>
                         <MAPLE>${maple.installation.dir}</MAPLE>
                         <LD_LIBRARY_PATH>${maple.installation.dir}/bin.X86_64_LINUX:${mathematica.installation.dir}/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64</LD_LIBRARY_PATH>
                     </environmentVariables>
                     <workingDirectory>${main.basedir}/</workingDirectory>
-                    <argLine>-Xss50M</argLine>
+                    <argLine>
+                        -Xss50M
+                        --illegal-access=permit
+                        --add-reads interpreter.evaluation=org.junit.jupiter.api
+                        --add-exports org.junit.platform.commons/org.junit.platform.commons.util=ALL-UNNAMED
+                        --add-exports org.junit.platform.commons/org.junit.platform.commons.logging=ALL-UNNAMED
+                    </argLine>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <id>compile-symbolic-tester</id>
@@ -59,15 +74,20 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        gov.nist.drmf.interpreter.evaluation.symbolic.SymbolicEvaluator
+                                        gov.nist.drmf.interpreter.evaluation.core.symbolic.SymbolicEvaluator
                                     </mainClass>
                                 </manifest>
                             </archive>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
+<!--                            <descriptorRefs>-->
+<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                            </descriptorRefs>-->
+                            <descriptors>
+                                <descriptor>
+                                    ${main.basedir}/config/jar-assembly.xml
+                                </descriptor>
+                            </descriptors>
                             <outputDirectory>${main.basedir}/bin/</outputDirectory>
-                            <appendAssemblyId>false</appendAssemblyId>
+                            <appendAssemblyId>true</appendAssemblyId>
                         </configuration>
                     </execution>
                     <execution>
@@ -81,15 +101,20 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        gov.nist.drmf.interpreter.evaluation.numeric.NumericalEvaluator
+                                        gov.nist.drmf.interpreter.evaluation.core.numeric.NumericalEvaluator
                                     </mainClass>
                                 </manifest>
                             </archive>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
+<!--                            <descriptorRefs>-->
+<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                            </descriptorRefs>-->
+                            <descriptors>
+                                <descriptor>
+                                    ${main.basedir}/config/jar-assembly.xml
+                                </descriptor>
+                            </descriptors>
                             <outputDirectory>${main.basedir}/bin/</outputDirectory>
-                            <appendAssemblyId>false</appendAssemblyId>
+                            <appendAssemblyId>true</appendAssemblyId>
                         </configuration>
                     </execution>
                 </executions>

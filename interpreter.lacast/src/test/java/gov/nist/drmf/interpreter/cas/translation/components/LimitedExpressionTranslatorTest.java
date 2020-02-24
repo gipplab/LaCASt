@@ -5,15 +5,14 @@ import gov.nist.drmf.interpreter.cas.translation.components.cases.Lims;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Products;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Sums;
 import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.junit.Before;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.TestFactory;
 
 import java.io.IOException;
 import java.util.stream.Stream;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+//import org.junit.Before;
 
 /**
  * Note that we use TestFactory rather than parameterized tests over enum sources, since
