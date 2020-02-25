@@ -5,7 +5,6 @@ import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 
-import javax.annotation.Nullable;
 import java.util.*;
 
 /**
@@ -73,7 +72,6 @@ public abstract class FeatureSetUtility {
      * @param value
      * @return
      */
-    @Nullable
     public static FeatureSet getSetByFeatureValue( MathTerm term, String feature, String value ){
         List<FeatureSet> list = term.getAlternativeFeatureSets();
         for ( FeatureSet fset : list ){

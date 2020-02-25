@@ -1,8 +1,8 @@
-Results from: Fri Nov 08 15:47:03 JST 2019
-Total Number of Test Cases: 300
+Results from: Thu Feb 20 00:59:29 JST 2020
+Total Number of Test Cases: 0
 
 Total Number of Lines with non-equation, non-relations: 
-	1, Lines: [229]
+	0, Lines: []
 Total Number of Ignored Single Quotes ': 
 	0, Lines: []
 Total Number of Success:  0

@@ -21,7 +21,6 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -52,7 +51,6 @@ public class MathTermTranslator extends AbstractListTranslator {
         this.CAS = getConfig().getTO_LANGUAGE();
     }
 
-    @Nullable
     @Override
     public TranslatedExpression getTranslatedExpressionObject() {
         return localTranslations;
@@ -89,7 +87,6 @@ public class MathTermTranslator extends AbstractListTranslator {
 
         // get the feature set for a constant, if this expression has one
         // could be null of course
-        @Nullable
         FeatureSet constantSet =
                 FeatureSetUtility.getSetByFeatureValue(
                         term,
@@ -418,7 +415,6 @@ public class MathTermTranslator extends AbstractListTranslator {
      * @param constant in LaTeX
      * @return null or the DLMF macro for the given latex constant
      */
-    @Nullable
     private String translateToDLMF(String constant) {
         Constants c = getConfig().getConstantsTranslator();
         if (!constant.startsWith(CHAR_BACKSLASH)) {

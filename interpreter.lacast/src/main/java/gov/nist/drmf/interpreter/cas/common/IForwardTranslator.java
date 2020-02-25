@@ -4,7 +4,6 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.common.grammar.ITranslatorComponent;
 import mlp.PomTaggedExpression;
 
-import javax.annotation.Nullable;
 
 /**
  * @author Andre Greiner-Petter
@@ -14,7 +13,6 @@ public interface IForwardTranslator extends ITranslatorComponent<PomTaggedExpres
      * Returns the translated expression.
      * @return  the translated expression given
      */
-    @Nullable
     TranslatedExpression getTranslatedExpressionObject();
 
     /**

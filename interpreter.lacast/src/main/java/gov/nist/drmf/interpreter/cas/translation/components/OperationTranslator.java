@@ -11,7 +11,6 @@ import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.regex.Matcher;
 
@@ -27,7 +26,6 @@ public class OperationTranslator extends AbstractListTranslator {
         this.localTranslations = new TranslatedExpression();
     }
 
-    @Nullable
     @Override
     public TranslatedExpression getTranslatedExpressionObject() {
         return localTranslations;

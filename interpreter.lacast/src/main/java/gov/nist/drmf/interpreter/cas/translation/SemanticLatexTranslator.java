@@ -8,6 +8,8 @@ import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.ITranslator;
+import gov.nist.drmf.interpreter.common.replacements.ConditionalReplacementRule;
+import gov.nist.drmf.interpreter.common.replacements.IReplacementCondition;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.ParseException;
 import mlp.PomParser;
@@ -15,7 +17,6 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -83,7 +84,6 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
         this.localTranslations = new TranslatedExpression();
     }
 
-    @Nullable
     @Override
     public TranslatedExpression getTranslatedExpressionObject() {
         return localTranslations;
@@ -133,8 +133,8 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      * @throws TranslationException if an error occurred due translation
      *
      * @see TeXPreProcessor
-     * @see gov.nist.drmf.interpreter.common.replacements.ConditionalReplacementRule
-     * @see gov.nist.drmf.interpreter.common.replacements.IReplacementCondition
+     * @see ConditionalReplacementRule
+     * @see IReplacementCondition
      */
     public String translate( String expression, String label ) throws TranslationException {
         if ( expression == null || expression.isEmpty() ) {
