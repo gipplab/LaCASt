@@ -28,13 +28,11 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>maple</artifactId>
-            <version>${maple.version}</version>
         </dependency>
 
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>maple-call</artifactId>
-            <version>${maple.version}</version>
         </dependency>
     </dependencies>
 
@@ -47,7 +45,9 @@
                         <MAPLE>${maple.installation.dir}</MAPLE>
                         <LD_LIBRARY_PATH>${maple.installation.dir}/bin.X86_64_LINUX</LD_LIBRARY_PATH>
                     </environmentVariables>
-                    <workingDirectory>${main.basedir}</workingDirectory>
+                    <argLine>
+                        -Xss50M
+                    </argLine>
                 </configuration>
             </plugin>
             <plugin>
@@ -59,7 +59,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <phase>package</phase>

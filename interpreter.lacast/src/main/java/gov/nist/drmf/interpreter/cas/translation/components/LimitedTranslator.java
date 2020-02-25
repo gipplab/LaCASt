@@ -17,7 +17,6 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -48,7 +47,6 @@ public class LimitedTranslator extends AbstractListTranslator {
         this.bft = super.getConfig().getBasicFunctionsTranslator();
     }
 
-    @Nullable
     @Override
     public TranslatedExpression getTranslatedExpressionObject() {
         return localTranslations;

@@ -16,7 +16,6 @@ import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.grammar.lexicon.MapleLexicon;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
-import gov.nist.drmf.interpreter.maple.setup.Initializer;
 import gov.nist.drmf.interpreter.maple.translation.components.AbstractAlgebraicTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -54,8 +53,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
      * Inner constant to initialize Maple
      */
     private static final String[] maple_args = new String[]{
-            "java",
-            "--init-commit-mem=4096m"
+            "java"
     };
 
     /**
@@ -110,12 +108,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
      * @throws IOException if it cannot load the procedure from file {@link GlobalPaths#PATH_MAPLE_PROCS}.
      */
     private void inner_init() throws MapleException, IOException {
-        LOG.debug("Start init! Load maple native libraries!");
-        if ( Initializer.loadMapleNatives() )
-            LOG.debug("Loaded Maple Natives!");
-        else {
-            throw new IOException("Cannot load maple libraries");
-        }
+        LOG.debug("Start init!");
 
         // initialize callback listener
         listener = new MapleListener(true);
@@ -301,24 +294,16 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
      * by invoke {@link #getUniqueMapleInterface()}.
      *
      * The initialization process can be split into four parts.
-     *  1)  It tries to load the Maple native libraries into the
-     *      java.library.path with the {@link Initializer} class.
-     *      This is necessary to connect this java program with
-     *      Maple. You can define the path in libs/maple_config.properties.
-     *      This stage produces no exceptions but is necessary to
-     *      finish the initialization process of this program.
-     *      It stops if it is not possible to load the native libraries.
-     *
-     *  2)  It loads the Maple procedure from libs/ReferenceData/MapleProcedures
+     *  1)  It loads the Maple procedure from libs/ReferenceData/MapleProcedures
      *      to convert the inert-form of a Maple expression to a
      *      Maple list of the inert-form. This could produces an {@link IOException}
      *      if it is not possible to load the procedure from the file.
      *
-     *  3)  It starts the Maple engine. This could produces a {@link MapleException}
+     *  2)  It starts the Maple engine. This could produces a {@link MapleException}
      *      if the initialization of Maple's engine fails or the evaluation
      *      of the loaded procedure fails.
      *
-     *  4)  It loads the necessary translation files to translate greek letters,
+     *  3)  It loads the necessary translation files to translate greek letters,
      *      mathematical constants and functions. Since it loads those translations
      *      from files, this part can produces an {@link IOException} again.
      *
@@ -386,6 +371,7 @@ public final class MapleInterface extends AbstractAlgebraicTranslator<Algebraic>
             MapleInterface.init();
             return true;
         } catch ( Exception | Error e ) {
+            LOG.warn("Cannot init maple interface", e);
             MapleInterface.unsetInterfaceAfterError();
             return false;
         }

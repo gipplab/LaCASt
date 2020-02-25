@@ -13,7 +13,6 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CHAR_BACKSLASH;
@@ -51,7 +50,6 @@ public class FunctionTranslator extends AbstractListTranslator {
         this.localTranslations = new TranslatedExpression();
     }
 
-    @Nullable
     @Override
     public TranslatedExpression getTranslatedExpressionObject() {
         return localTranslations;
