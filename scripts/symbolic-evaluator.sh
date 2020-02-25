@@ -28,7 +28,7 @@ while read line; do
 
   echo "Done creating file for ${ADDR[0]}"
   echo "Start processing..."
-  java -Xmx8g -jar ./bin/symbolic-tester-full.jar $CASCMD;
+  java -Xmx8g -jar ./bin/symbolic-tester.jar $CASCMD;
   echo "Done ${ADDR[0]}"
 
   RESSTR="${RESSTR}${ADDR[0]}: $? $NEWLINE"

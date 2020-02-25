@@ -54,13 +54,6 @@
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <argLine>
-                        --illegal-access=permit
-                        --add-exports org.junit.platform.commons/org.junit.platform.commons.util=ALL-UNNAMED
-                        --add-exports org.junit.platform.commons/org.junit.platform.commons.logging=ALL-UNNAMED
-                    </argLine>
-                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>

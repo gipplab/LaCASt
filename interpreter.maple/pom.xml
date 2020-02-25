@@ -45,12 +45,8 @@
                         <MAPLE>${maple.installation.dir}</MAPLE>
                         <LD_LIBRARY_PATH>${maple.installation.dir}/bin.X86_64_LINUX</LD_LIBRARY_PATH>
                     </environmentVariables>
-                    <workingDirectory>${main.basedir}</workingDirectory>
                     <argLine>
                         -Xss50M
-                        --illegal-access=permit
-                        --add-exports org.junit.platform.commons/org.junit.platform.commons.util=ALL-UNNAMED
-                        --add-exports org.junit.platform.commons/org.junit.platform.commons.logging=ALL-UNNAMED
                     </argLine>
                 </configuration>
             </plugin>
@@ -78,16 +74,11 @@
                                     </mainClass>
                                 </manifest>
                             </archive>
-<!--                            <descriptorRefs>-->
-<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
-<!--                            </descriptorRefs>-->
-                            <descriptors>
-                                <descriptor>
-                                    ${main.basedir}/config/jar-assembly.xml
-                                </descriptor>
-                            </descriptors>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
                             <outputDirectory>${main.basedir}/bin/</outputDirectory>
-                            <appendAssemblyId>true</appendAssemblyId>
+                            <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                     </execution>
                 </executions>
