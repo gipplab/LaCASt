@@ -50,43 +50,10 @@
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <argLine>
-                        --illegal-access=permit
-                        --add-reads interpreter.lacast=org.junit.jupiter.api
-                        --add-exports org.junit.platform.commons/org.junit.platform.commons.util=ALL-UNNAMED
-                        --add-exports org.junit.platform.commons/org.junit.platform.commons.logging=ALL-UNNAMED
-                    </argLine>
-                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-shade-plugin</artifactId>-->
-<!--                <version>3.2.2</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <goals>-->
-<!--                            <goal>shade</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <shadedArtifactAttached>true</shadedArtifactAttached>-->
-<!--                            <transformers>-->
-<!--                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
-<!--                                    <mainClass>gov.nist.drmf.interpreter.cas.SemanticToCASInterpreter</mainClass>-->
-<!--                                </transformer>-->
-<!--                            </transformers>-->
-<!--                            <outputDirectory>${main.basedir}/bin/</outputDirectory>-->
-<!--                            <finalName>latex-to-cas-translator</finalName>-->
-<!--                            <excludes>-->
-<!--                                <exclude>module-info.java</exclude>-->
-<!--                            </excludes>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
@@ -105,16 +72,11 @@
                                     </mainClass>
                                 </manifest>
                             </archive>
-<!--                            <descriptorRefs>-->
-<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
-<!--                            </descriptorRefs>-->
-                            <descriptors>
-                                <descriptor>
-                                    ${main.basedir}/config/jar-assembly.xml
-                                </descriptor>
-                            </descriptors>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
                             <outputDirectory>${main.basedir}/bin/</outputDirectory>
-                            <appendAssemblyId>true</appendAssemblyId>
+                            <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                     </execution>
                     <execution>
@@ -132,16 +94,11 @@
                                     </mainClass>
                                 </manifest>
                             </archive>
-<!--                            <descriptorRefs>-->
-<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
-<!--                            </descriptorRefs>-->
-                            <descriptors>
-                                <descriptor>
-                                    ${main.basedir}/config/jar-assembly.xml
-                                </descriptor>
-                            </descriptors>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
                             <outputDirectory>${main.basedir}/bin/</outputDirectory>
-                            <appendAssemblyId>true</appendAssemblyId>
+                            <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                     </execution>
                 </executions>

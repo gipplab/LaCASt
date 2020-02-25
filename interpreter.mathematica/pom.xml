@@ -39,11 +39,6 @@
                     <environmentVariables>
                         <LD_LIBRARY_PATH>${mathematica.installation.dir}/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64/</LD_LIBRARY_PATH>
                     </environmentVariables>
-                    <argLine>
-                        --illegal-access=permit
-                        --add-exports org.junit.platform.commons/org.junit.platform.commons.util=ALL-UNNAMED
-                        --add-exports org.junit.platform.commons/org.junit.platform.commons.logging=ALL-UNNAMED
-                    </argLine>
                 </configuration>
             </plugin>
             <plugin>
