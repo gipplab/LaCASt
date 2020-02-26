@@ -21,12 +21,12 @@ before_install:
   - ./cc-test-reporter before-build
 
 install:
-  - mvn clean verify -B -V
+  - mvn install -DskipTests -B -V
 
-# also overwrite script phase, otherwise travis automatically calls "mvn test -B"
 script:
-  - bash .travis/fix-jacoco.sh
+  - mvn test -B
 
 after_script:
+  - bash .travis/fix-jacoco.sh
   - ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml -d --input-type jacoco
   - ./cc-test-reporter upload-coverage -d
