@@ -8,6 +8,7 @@ jdk:
 env:
   global:
     - CC_TEST_REPORTER_ID=970bebaf9e240aaf9c86a92251b68f30d373d29f4d07f2e92a0d777009c28a68
+    - JACOCO_SOURCE_PATH="interpreter.common interpreter.lacast interpreter.maple interpreter.mathematica interpreter.evaluation"
 
 # install maven 3.6.1
 before_install:
@@ -23,5 +24,6 @@ install:
   - mvn clean verify -B -V
 
 after_script:
-  - ./cc-test-reporter format-coverage -d -t jacoco ./target/jacoco-report/jacoco.xml
+  - .travis/fix-jacoco.sh
+  - ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml -d --input-type jacoco
   - ./cc-test-reporter upload-coverage -d
