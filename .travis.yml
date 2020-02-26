@@ -25,7 +25,7 @@ install:
 
 # also overwrite script phase, otherwise travis automatically calls "mvn test -B"
 script:
-  - .travis/fix-jacoco.sh
+  - bash .travis/fix-jacoco.sh
 
 after_script:
   - ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml -d --input-type jacoco
