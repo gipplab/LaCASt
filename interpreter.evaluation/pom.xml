@@ -47,9 +47,8 @@
                         <MAPLE>${maple.installation.dir}</MAPLE>
                         <LD_LIBRARY_PATH>${maple.installation.dir}/bin.X86_64_LINUX:${mathematica.installation.dir}/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64</LD_LIBRARY_PATH>
                     </environmentVariables>
-                    <argLine>
-                        -Xss50M
-                    </argLine>
+                    <!--suppress UnresolvedMavenProperty -->
+                    <argLine>${argLine} -Xss50M</argLine>
                 </configuration>
             </plugin>
             <plugin>

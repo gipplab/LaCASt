@@ -45,13 +45,9 @@
                         <MAPLE>${maple.installation.dir}</MAPLE>
                         <LD_LIBRARY_PATH>${maple.installation.dir}/bin.X86_64_LINUX</LD_LIBRARY_PATH>
                     </environmentVariables>
-                    <argLine>
-                        -Xss50M
-                    </argLine>
+                    <!--suppress UnresolvedMavenProperty -->
+                    <argLine>${argLine} -Xss50M</argLine>
                 </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
             </plugin>
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
