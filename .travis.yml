@@ -23,7 +23,10 @@ before_install:
 install:
   - mvn clean verify -B -V
 
-after_script:
+# also overwrite script phase, otherwise travis automatically calls "mvn test -B"
+script:
   - .travis/fix-jacoco.sh
+
+after_script:
   - ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml -d --input-type jacoco
   - ./cc-test-reporter upload-coverage -d
