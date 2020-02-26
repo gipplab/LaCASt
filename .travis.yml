@@ -1,0 +1,27 @@
+sudo: required
+dist: trusty
+
+language: java
+jdk:
+  - openjdk11
+
+env:
+  global:
+    - CC_TEST_REPORTER_ID=970bebaf9e240aaf9c86a92251b68f30d373d29f4d07f2e92a0d777009c28a68
+
+# install maven 3.6.1
+before_install:
+  - wget https://archive.apache.org/dist/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.zip
+  - unzip -qq apache-maven-3.6.1-bin.zip
+  - export M2_HOME=$PWD/apache-maven-3.6.1
+  - export PATH=$M2_HOME/bin:$PATH
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+install:
+  - mvn clean review -B -V
+
+after_script:
+  - ./cc-test-reporter format-coverage -d -t jacoco ./target/jacoco-report/jacoco.xml
+  - ./cc-test-reporter upload-coverage -d
