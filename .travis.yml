@@ -20,7 +20,7 @@ before_install:
   - ./cc-test-reporter before-build
 
 install:
-  - mvn clean review -B -V
+  - mvn clean verify -B -V
 
 after_script:
   - ./cc-test-reporter format-coverage -d -t jacoco ./target/jacoco-report/jacoco.xml
