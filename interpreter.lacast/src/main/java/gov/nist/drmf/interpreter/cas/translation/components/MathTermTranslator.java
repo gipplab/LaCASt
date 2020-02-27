@@ -14,6 +14,7 @@ import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
+import gov.nist.drmf.interpreter.mlp.extensions.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
@@ -608,7 +609,7 @@ public class MathTermTranslator extends AbstractListTranslator {
             powerStr += power.toString();
         }
 
-        MathTerm m = new MathTerm(")", MathTermTags.right_parenthesis.tag());
+        MathTerm m = FakeMLPGenerator.generateClosedParenthesesMathTerm();
         PomTaggedExpression last = new PomTaggedExpression(m);
         if (AbstractListTranslator.addMultiply(last, following_exp)) {
             powerStr += getConfig().getMULTIPLY();

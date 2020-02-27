@@ -8,11 +8,14 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.mlp.extensions.FakeMLPGenerator;
+import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -37,10 +40,8 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
 
     @Override
     public TranslatedExpression translate( PomTaggedExpression expression ) throws TranslationException {
-//        LOG.debug("Triggers empty expression translator process.");
         // switch-case over tags
-        String tag = expression.getTag();
-        ExpressionTags expTag = ExpressionTags.getTagByKey(tag);
+        ExpressionTags expTag = getExpressionTag(expression);
 
         // no tag shouldn't happen
         if ( expTag == null ) {
@@ -69,6 +70,10 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
                 SequenceTranslator p = new SequenceTranslator(super.getSuperTranslator());
                 localTranslations.addTranslatedExpression( p.translate( expression ) );
                 break;
+            case choose:
+                // in case of choose, we manipulate the subtree and mimic a binomial expression
+                expression = generateFakeBinomial(expression);
+                expTag = ExpressionTags.binomial;
             case fraction:
             case binomial:
             case square_root:
@@ -86,11 +91,65 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
             case denominator:
             case equation:
             default:
-                throw buildException("Reached unknown or not yet supported expression tag: " + tag,
+                throw buildException("Reached unknown or not yet supported expression tag: " + expression.getTag(),
                         TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
         }
 
         return localTranslations;
+    }
+
+    private ExpressionTags getExpressionTag(PomTaggedExpression pte) {
+        String tag = pte.getTag();
+        ExpressionTags expTag = ExpressionTags.getTagByKey(tag);
+        if ( ExpressionTags.sequence.equals(expTag) ) {
+            if ( containsChoose( pte.getComponents() ) ) {
+                return ExpressionTags.choose;
+            }
+        }
+        return expTag;
+    }
+
+    private boolean containsChoose( List<PomTaggedExpression> expressions ) {
+        for ( PomTaggedExpression pte : expressions ) {
+            MathTerm mt = pte.getRoot();
+            if ( MathTermTags.isChooseCommand(mt) ) return true;
+        }
+        return false;
+    }
+
+    private PomTaggedExpression generateFakeBinomial(PomTaggedExpression expression) {
+        List<PomTaggedExpression> first = new LinkedList<>();
+        List<PomTaggedExpression> second = new LinkedList<>();
+
+        List<PomTaggedExpression> comps = expression.getComponents();
+        boolean before = true;
+        while ( !comps.isEmpty() ) {
+            PomTaggedExpression pte = comps.remove(0);
+            if ( MathTermTags.isChooseCommand(pte.getRoot()) ) {
+                before = false;
+            } else {
+                if ( before ) first.add(pte);
+                else second.add(pte);
+            }
+        }
+
+        PomTaggedExpression firstArg;
+        PomTaggedExpression secondArg;
+
+        if ( first.size() > 1 ) {
+            firstArg = FakeMLPGenerator.generateEmptySequencePTE();
+            firstArg.setComponents(first);
+        } else firstArg = first.get(0);
+
+        if ( second.size() > 1 ) {
+            secondArg = FakeMLPGenerator.generateEmptySequencePTE();
+            secondArg.setComponents(second);
+        } else secondArg = second.get(0);
+
+        PomTaggedExpression fakeBinom = FakeMLPGenerator.generateEmptyBinomialCoefficientPTE();
+        fakeBinom.addComponent(firstArg);
+        fakeBinom.addComponent(secondArg);
+        return fakeBinom;
     }
 
     private void parseBasicFunction( PomTaggedExpression top_exp, ExpressionTags tag )

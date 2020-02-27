@@ -12,6 +12,7 @@ import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
+import gov.nist.drmf.interpreter.mlp.extensions.FakeMLPGenerator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -95,7 +96,7 @@ public class LimitedTranslator extends AbstractListTranslator {
         );
 
         // the potential arguments is a theoretical sequence, so handle it as a sequence!
-        PomTaggedExpression topPTE = new PomTaggedExpression(new MathTerm("",""), ExpressionTags.sequence.tag());
+        PomTaggedExpression topPTE = FakeMLPGenerator.generateEmptySequencePTE();
         for ( PomTaggedExpression pte : potentialArguments ) topPTE.addComponent(pte);
 
         // next, we translate the expressions to search for the variables

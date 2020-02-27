@@ -12,7 +12,11 @@ import java.util.*;
  *
  * @author Andre Greiner-Petter
  */
-public abstract class FeatureSetUtility {
+public final class FeatureSetUtility {
+    private FeatureSetUtility() {
+        throw new UnsupportedOperationException();
+    }
+
     /**
      * Collects all features of all feature sets of a given MathTerm object
      * and returns a map of all features for this term.
