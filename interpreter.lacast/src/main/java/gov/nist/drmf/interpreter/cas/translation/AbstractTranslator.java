@@ -222,7 +222,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
      * @param e the expression
      * @return true if the expression is a tagged super expression
      */
-    private boolean isTaggedExpression(PomTaggedExpression e) {
+    protected static boolean isTaggedExpression(PomTaggedExpression e) {
         return !containsTerm(e) || isSQRT(e);
     }
 
@@ -231,12 +231,12 @@ public abstract class AbstractTranslator implements IForwardTranslator {
      * @param e expression
      * @return true if the expression contains a non-empty math term
      */
-    protected boolean containsTerm(PomTaggedExpression e) {
+    protected static boolean containsTerm(PomTaggedExpression e) {
         MathTerm t = e.getRoot();
         return t != null && !t.isEmpty();
     }
 
-    private boolean isSQRT(PomTaggedExpression e) {
+    protected static boolean isSQRT(PomTaggedExpression e) {
         String etag = e.getTag();
         if ( etag == null ) return false;
         ExpressionTags et = ExpressionTags.getTagByKey(etag);
@@ -245,7 +245,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         } else return false;
     }
 
-    protected boolean isDLMFMacro(MathTerm term) {
+    protected static boolean isDLMFMacro(MathTerm term) {
         MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
         if (tag != null && tag.equals(MathTermTags.dlmf_macro)) {
             return true;
@@ -266,11 +266,11 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         }
     }
 
-    private boolean isSumOrProductOrLimit(MathTerm term) {
+    protected static boolean isSumOrProductOrLimit(MathTerm term) {
         return LimitedExpressions.isLimitedExpression(term);
     }
 
-    private boolean isSubSequence(MathTerm term) {
+    protected static boolean isSubSequence(MathTerm term) {
         String tag = term.getTag();
         if (tag != null && tag.matches(OPEN_PARENTHESIS_PATTERN)) {
             return true;
@@ -284,7 +284,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         }
     }
 
-    private boolean isFunction(MathTerm term) {
+    protected static boolean isFunction(MathTerm term) {
         MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
         if (tag == null) {
             return FeatureSetUtility.isFunction(term);
@@ -292,6 +292,27 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         if (tag.equals(MathTermTags.function)) {
             return true;
         }
+        return false;
+    }
+
+    protected static boolean isAccented( PomTaggedExpression pte ) {
+        List<String> tags = pte.getSecondaryTags();
+        for ( String t : tags ) {
+            if ( t.matches(ExpressionTags.accented.tag()) ) {
+                return true;
+            }
+        }
+
+        MathTerm mt = pte.getRoot();
+        if ( mt != null && !mt.isEmpty() ){
+            List<String> mtags = mt.getSecondaryTags();
+            for ( String t : mtags ) {
+                if ( t.matches(ExpressionTags.accented.tag()) ) {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 
@@ -334,27 +355,6 @@ public abstract class AbstractTranslator implements IForwardTranslator {
      */
     protected AbstractTranslator getSuperTranslator() {
         return this.superTranslator;
-    }
-
-    public boolean isAccented( PomTaggedExpression pte ) {
-        List<String> tags = pte.getSecondaryTags();
-        for ( String t : tags ) {
-            if ( t.matches(ExpressionTags.accented.tag()) ) {
-                return true;
-            }
-        }
-
-        MathTerm mt = pte.getRoot();
-        if ( mt != null && !mt.isEmpty() ){
-            List<String> mtags = mt.getSecondaryTags();
-            for ( String t : mtags ) {
-                if ( t.matches(ExpressionTags.accented.tag()) ) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
     }
 
     public void activateSetMode() {
