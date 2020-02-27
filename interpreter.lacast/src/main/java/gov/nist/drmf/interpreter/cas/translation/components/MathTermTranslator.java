@@ -191,6 +191,23 @@ public class MathTermTranslator extends AbstractListTranslator {
                 localTranslations.addTranslatedExpression(getConfig().getMULTIPLY());
                 getGlobalTranslationList().addTranslatedExpression(getConfig().getMULTIPLY());
                 return localTranslations;
+            case divide:
+                // if divide is followed by balanced expression, we may need to wrap parenthesis around the next expr
+                if ( following_exp != null && !following_exp.isEmpty() ) {
+                    PomTaggedExpression next = following_exp.get(0);
+                    if ( isTaggedExpression(next) ) { // is empty, so we need to wrap parenthesis around it
+                        TranslatedExpression te = parseGeneralExpression(following_exp.remove(0), following_exp);
+                        getGlobalTranslationList().removeLastNExps(te.getLength());
+                        String innerTranslation = te.toString();
+                        if ( !innerTranslation.matches("^\\s*\\(.*\\)\\s*$") ) {
+                            innerTranslation = "(" + innerTranslation + ")";
+                        }
+                        localTranslations.addTranslatedExpression(term.getTermText());
+                        localTranslations.addTranslatedExpression(innerTranslation);
+                        getGlobalTranslationList().addTranslatedExpression(localTranslations);
+                        return localTranslations;
+                    }
+                }
             case letter:
                 // a letter can be one constant, but usually translate it simply
                 if (constantSet != null) {
@@ -202,7 +219,6 @@ public class MathTermTranslator extends AbstractListTranslator {
             case minus:
             case plus:
             case equals:
-            case divide:
             case less_than:
             case greater_than: // all above should translated directly, right?
                 localTranslations.addTranslatedExpression(term.getTermText());

@@ -274,6 +274,14 @@ class SimpleTranslationTests {
         String label = "19.6.2";
         String res = slt.translate(in, label);
         System.out.println(res);
-//        assertEquals("exp(z)=(exp(z))* exp(2*k*z*Pi*I)", res);
+        assertEquals("EllipticPi((k)^(2), k)= EllipticE(k)/(1 - (k)^(2))", res);
+    }
+
+    @Test
+    public void chooseTranslation() {
+        String input = "\\sum_{k=0}^{n}{n+1 \\choose k}";
+        String expect = "sum(binomial(n+1, k), k = 0..n)";
+        String actual = slt.translate(input);
+        assertEquals(expect, actual);
     }
 }

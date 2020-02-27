@@ -187,7 +187,7 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
     }
 
     public static String stripMultiParentheses(String expr) {
-        if ( !expr.matches("\\(.*\\)") ) return expr;
+        if ( expr == null || !expr.matches("\\(.*\\)") ) return expr;
         int open = 1;
         for ( int i = 1; i < expr.length(); i++ ) {
             Character c = expr.charAt(i);
