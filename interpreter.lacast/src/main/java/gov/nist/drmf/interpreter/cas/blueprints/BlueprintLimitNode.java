@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.blueprints;
 import gov.nist.drmf.interpreter.cas.common.DLMFPatterns;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.mlp.extensions.FakeMLPGenerator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -117,10 +118,6 @@ public class BlueprintLimitNode {
         return equalChildren(other);
     }
 
-    private void addPrefexToLatex(String prefix){
-        this.prefix = prefix;
-    }
-
     private void setPTE(PomTaggedExpression pte) {
         this.pte = pte;
     }
@@ -198,7 +195,7 @@ public class BlueprintLimitNode {
                 if ( m.matches() ){
                     int idx = Integer.parseInt(m.group(1));
 
-                    PomTaggedExpression seq = new PomTaggedExpression(new MathTerm("",""), ExpressionTags.sequence.tag());
+                    PomTaggedExpression seq = FakeMLPGenerator.generateEmptySequencePTE();
                     PomTaggedExpression first = ref.pte;
                     seq.addComponent(first);
 
@@ -213,7 +210,7 @@ public class BlueprintLimitNode {
                 if ( m.matches() ){
                     int idx = Integer.parseInt(m.group(1));
 
-                    PomTaggedExpression seq = new PomTaggedExpression(new MathTerm("",""), ExpressionTags.sequence.tag());
+                    PomTaggedExpression seq = FakeMLPGenerator.generateEmptySequencePTE();
                     PomTaggedExpression first = ref.pte;
                     seq.addComponent(first);
 
@@ -263,7 +260,7 @@ public class BlueprintLimitNode {
         if ( refCopy.get(0).tag.matches(
                 MathTermTags.underscore.tag() + "|" + MathTermTags.caret.tag()
         ) ) {
-            PomTaggedExpression pte = new PomTaggedExpression(new MathTerm("", ""), ExpressionTags.sequence.tag());
+            PomTaggedExpression pte = FakeMLPGenerator.generateEmptySequencePTE();
             pte.addComponent(ref.pte);
             pte.addComponent(refCopy.removeFirst().pte);
             ref.setPTE(pte);
@@ -271,6 +268,7 @@ public class BlueprintLimitNode {
     }
 
     private boolean possibleVar(BlueprintLimitNode node){
+        if ( node == null || node.tag == null ) return false;
         return node.tag.equals(MathTermTags.letter.tag())
                 || node.tag.equals("Latin")
                 || node.tag.equals(MathTermTags.special_math_letter.tag())

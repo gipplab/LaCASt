@@ -5,10 +5,14 @@ import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.grammar.LimDirections;
 import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import mlp.ParseException;
+import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,12 +23,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LimitBlueprintTest {
 
     private static BlueprintMaster btmaster;
+    private static SemanticLatexTranslator slt;
+    private static BlueprintLimitTree exampleLimitTree;
 
     @BeforeAll
-    public static void setup() throws IOException {
-        SemanticLatexTranslator slt = new SemanticLatexTranslator(Keys.KEY_MAPLE);
+    public static void setup() throws IOException, ParseException {
+        slt = new SemanticLatexTranslator(Keys.KEY_MAPLE);
         slt.init(GlobalPaths.PATH_REFERENCE_DATA);
         btmaster = slt.getBlueprintMaster();
+        exampleLimitTree = new BlueprintLimitTree("var \\in \\Integers","3", slt);
     }
 
     @Test
@@ -295,5 +302,38 @@ public class LimitBlueprintTest {
         assertEquals("- m - l", limit.getLower().get(0));
         assertFalse(limit.isLimitOverSet());
         assertEquals(LimDirections.NONE, limit.getDirection());
+    }
+
+    @Test
+    public void numberInListFalseMatchTest() {
+        String str = "a, 3, c = 1";
+        Limits limit = btmaster.findMatchingLimit(BlueprintMaster.LIMITED, str);
+        assertNull(limit);
+    }
+
+    @Test
+    public void emptyTests() {
+        assertNull(btmaster.findMatchingLimit(true, ""));
+        assertNull(btmaster.findMatchingLimit(false, ""));
+        assertNull(btmaster.findMatchingLimit(false));
+    }
+
+    @Test
+    public void matcherExceptionTest() {
+        assertThrows(IllegalArgumentException.class, (exampleLimitTree::matches));
+    }
+
+    @Test
+    public void matcherMultiPomTest() throws ParseException {
+        MLPWrapper mlp = MLPWrapper.getWrapperInstance();
+        String testInput = "x \\in \\Integers";
+        PomTaggedExpression pte = mlp.parse(testInput);
+        PomTaggedExpression pte2 = mlp.parse(testInput);
+
+        assertTrue(exampleLimitTree.matches(testInput));
+        assertTrue(exampleLimitTree.matches(pte));
+
+        List<PomTaggedExpression> pteList = pte2.getComponents();
+        assertTrue(exampleLimitTree.matches(pteList.get(0), pteList.get(1), pteList.get(2)));
     }
 }

@@ -1,13 +1,18 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
+import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import mlp.ParseException;
+import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -279,9 +284,41 @@ class SimpleTranslationTests {
 
     @Test
     public void chooseTranslation() {
-        String input = "\\sum_{k=0}^{n}{n+1 \\choose k}";
-        String expect = "sum(binomial(n+1, k), k = 0..n)";
+        String input = "1 + {n+1 \\choose k}^2";
+        String expect = "1 +(binomial(n + 1,k))^(2)";
         String actual = slt.translate(input);
         assertEquals(expect, actual);
+    }
+
+    @Test
+    public void chooseTranslationInSum() {
+        String input = "\\sum_{k=0}^{n}{n+1 \\choose k}";
+        String expect = "sum(binomial(n + 1,k), k = 0..n)";
+        String actual = slt.translate(input);
+        assertEquals(expect, actual);
+    }
+
+    @Test
+    public void unknownFunctionTranslator() throws ParseException {
+        String input = "\\cos(x)";
+        PomTaggedExpression pte = stripOfDLMFInfo(input);
+        TranslatedExpression trans = slt.translate(pte);
+        assertEquals("cos(x)", trans.toString());
+    }
+
+    /**
+     * Rips of the DLMF info from the first element in the parse tree.
+     * Input example is "\cos{x}" or something similar.
+     * @param input start with a DLMF macro, e.g., "\cos"
+     * @return parse tree without dlmf info
+     * @throws ParseException
+     */
+    private PomTaggedExpression stripOfDLMFInfo(String input) throws ParseException {
+        MLPWrapper mlp = MLPWrapper.getWrapperInstance();
+        PomTaggedExpression pte = mlp.parse(input);
+        PomTaggedExpression cosPte = pte.getComponents().get(0);
+        cosPte.getRoot().setAlternativeFeatureSets(new LinkedList<>());
+        cosPte.getRoot().setTag("function");
+        return pte;
     }
 }

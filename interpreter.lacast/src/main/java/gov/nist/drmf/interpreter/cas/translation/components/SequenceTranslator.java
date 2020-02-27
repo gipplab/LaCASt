@@ -9,6 +9,7 @@ import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
+import gov.nist.drmf.interpreter.mlp.extensions.FakeMLPGenerator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -316,7 +317,7 @@ public class SequenceTranslator extends AbstractListTranslator {
         TranslatedExpression global = getGlobalTranslationList();
 
         if (part.matches(STRING_END_TREAT_AS_CLOSED_PARANTHESIS)) {
-            MathTerm tmp = new MathTerm(")", MathTermTags.right_parenthesis.tag());
+            MathTerm tmp = FakeMLPGenerator.generateClosedParenthesesMathTerm();
             exp = new PomTaggedExpression(tmp);
         } else if (p.matcher(part).matches()) {
             exp = new PomTaggedExpression(new MathTerm(MULTIPLY, MathTermTags.multiply.tag()));

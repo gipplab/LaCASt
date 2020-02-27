@@ -15,6 +15,7 @@ import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
+import gov.nist.drmf.interpreter.mlp.extensions.FakeMLPGenerator;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -465,7 +466,7 @@ public class MacroTranslator extends AbstractListTranslator {
         );
 
         // the potential arguments is a theoretical sequence, so handle it as a sequence!
-        PomTaggedExpression topSeqPTE = new PomTaggedExpression(new MathTerm("",""), ExpressionTags.sequence.tag());
+        PomTaggedExpression topSeqPTE = FakeMLPGenerator.generateEmptySequencePTE();
         for ( PomTaggedExpression pte : potentialArgs ) topSeqPTE.addComponent(pte);
 
         SequenceTranslator p = new SequenceTranslator(getSuperTranslator());
