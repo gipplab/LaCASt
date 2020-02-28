@@ -95,6 +95,7 @@ The bin directory contains a couple of executable jars.
 
 <details><summary><code>latex-to-cas-converter.jar</code>: The forward translator (LaTeX -> CAS)</summary>
 
+---
 The executable jar for the translator can be found in the `bin` subdirectory. A standalone version can be found in the `bin/*.zip` file. Unzip the archive where you want and run the jar from the root folder of the respository
 
 ```shell script
@@ -109,10 +110,12 @@ the translation process or set further flags (every flag is optional):
 * `--debug` or `-d`: Returns extra information for debugging, such as computation time and list of elements. (`--clean` overrides this setting).
 * `--extra` or `-x`: Shows further information about translation of functions, e.g., branch cuts, DLMF-links and more. (`--clean` flag overrides this setting)
 
+---
 </details>
 
 <details><summary><code>lexicon-creator.jar</code>: Maintain the translation dictionary</summary>
 
+---
 Is used to maintain the internal translation dictionaries. Once the translation pattern is defined in the CSV files it must be trasformed to the dictionaries. The typical workflow is:
 
 ```shell script
@@ -125,11 +128,13 @@ Current list: [CAS_Maple.csv, CAS_Mathematica.csv]
 -end
 ```
 
+---
 </details>
 
 
 <details><summary><code>maple-translator.jar</code>: The backward translator for Maple (Maple -> Semantic LaTeX)</summary>
 
+---
 This jar requires an installed Maple license on the machine! To start the translator, you have to set the environment variables to properly run Maple. In my case, Maple is installed in `/opt/maple2019` and I'm on a Linux machine. In addition, you have to provide more heap size, otherwise Maple crashes. Here is an example:
 
 ```shell script
@@ -145,10 +150,12 @@ kernelopts( bindir );   <- returns <Maple-BinDir>
 kernelopts( mapledir ); <- returns <Maple-Directory>
 ```
 
+---
 </details>
 
 <details><summary><code>symbolic-tester.jar</code>: Symbolic verification program</summary>
 
+---
 This is only for advanced users! First, setup the properties:
 
 1) `config/symbolic_tests.properties`
@@ -183,10 +190,12 @@ missing_macro_output=/home/andreg-p/Howard/Results/AutoMaple/22-JA-missing.txt
 
 To test the lines `1465-1994` and `1994-2179` and store the results in `04-EF-symbolic.txgt` and `05-GA-symbolic.txt` file.
 
+---
 </details>
 
 <details><summary><code>numeric-tester.jar</code>: Numeric verification program</summary>
 
+---
 This is only for advanced users! First, setup the properties:
 
 1) `config/numerical_tests.properties`
@@ -219,6 +228,7 @@ output=/home/andreg-p/Howard/Results/MathNumeric/11-ST-numeric.txt
 
 This will automatically load the symbolic result files `04-EF-symbolic.txg` and `05-GA-symbolic.txt` and start the evaluation.
 
+---
 </details>
 
 ### Update Translation Patterns
