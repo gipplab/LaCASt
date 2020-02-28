@@ -1,41 +1,84 @@
 # Contributing to LaTeX-Grammar
 
-# General Rules
 1. It is strictly prohibited to share any files from this repository without permission!
 2. Do not push to the master branch of the project. Please checkout a different branch and create a pull request!
 
 ## Structure
 1. [Setup Project](#start)
-2. [Goals for the summer extensions](#summer-extensions)
-3. [Update or add a new CAS to the translation process](#howToUpdate)
-4. [The program structure and important main classes](#program)
-5. [Troubleshooting](#troubleshooting)
+2. [Update or add a new CAS to the translation process](#howToUpdate)
+3. [The program structure and important main classes](#program)
+4. [Troubleshooting](#troubleshooting)
 
 ## Setup Project<a name="start"></a>
-#### 1. Setup SSH for git
+
+If you have any trouble with the following steps please contact [André Greiner-Petter](https://github.com/AndreG-P) [andre.greiner-petter@t-online.de]. If you are familar with Git and Maven, you may just check the steps 6 and 8. However, if something does not work as you expected, make sure you follow all steps before you contact André and before you create any issues!
+
+<details><summary><strong>1. Setup SSH for git</strong></summary>
+  
 * These steps only need to be done once
 * If you don't have a private-public ssh key authentication setup then generate a private key and upload it to GitHub
 * Run <code>ssh-keygen</code>
 * Display the public key by executing <code>cat ~/.ssh/id_rsa.pub</code>
 * Copy all of the output and paste it to your GitHub -> Settings -> SSH keys, namely https://github.com/settings/keys. Do this by hitting <code>New SSH key</code> button.
 
-#### 2. Setup Git
+</details>
+
+<details><summary><strong>2. Setup Git</strong></summary>
+  
 * Make sure to do this before you do your first commit otherwise you will have problems
 * Run <code>git config --global user.name "YOUR NAME"</code> to set the author's name
 * Run <code>git config --global user.email "YOUR_EMAIL@example.com"</code> to set the author's email
 * Run <code>git config --global core.editor "vim"</code> to set the author's editor
+</details>
 
-#### 3. Download the project
-* Run <code>git clone git@github.com:ag-gipp/latex-grammar.git</code>
+<details><summary><strong>3. Install Java 11</strong></summary>
+
+Make sure you have JDK 11 installed. There should be no difference between Oracle's JDK and OpenJDK anymore in Java 11. However, if you are unsure, take OpenJDK. Please look up installation by your own, since the installation is system dependent.
+</details>
+
+<details><summary><strong>4. Download the project sources</strong></summary>
+  
+* Run <code>git clone git@github.com:ag-gipp/LaCASt.git</code>
 * cd into the folder you downloaded `cd latex-grammer`
 * Run `git fetch` to fetch remote branches to your local machine
-* Run `git checkout -b extensions` to create a new branch with name `extensions`. Do not work on the `master` branch!
+* Run `git checkout -b extensions` to create a new branch with name `extensions`. You do not have permissions to push any changes to the master branch, so it's recommended to create a new branch right at the beginning.
+</details>
 
-#### 4. Setup Maven
-The project use maven as a build tool, maven 3 in particular. This means we use maven to organize external packages.
-* Make sure you have maven 3 (`mvn --version`)
+<details><summary><strong>5. Setup Maven</strong></summary>
+  
+The project use maven as a build tool, maven 3 in particular. Please install at least maven 3.6.1, otherwise there might be trouble with Java 11. After that, you can install dependencies and run tests.
 
-#### 5. Setup IntelliJ
+* Make sure you have maven 3.6.1 or higher (`mvn --version`)
+* Run `mvn clean install -DskipTests`
+* Run `mvn test`
+
+If these commands does not finish succesfully, please contact [André Greiner-Petter](https://github.com/AndreG-P) [andre.greiner-petter@t-online.de] and create an issue about it on [https://github.com/ag-gipp/LaCASt/issues].
+</details>
+
+<details><summary><strong>6. Setup Maple and Mathematica (optional)</strong></summary>
+
+This is only necessary if you work on the backward translations or the evaluation engine.
+
+* Change the properties in `pom.xml`
+```xml
+<properties>
+    <maple.installation.dir>/opt/maple2019</maple.installation.dir>
+    <mathematica.installation.dir>/opt/Wolfram</mathematica.installation.dir>
+</properties>
+```
+
+* For Mathematica, update `config/mathematica_config.properties`
+```properties
+mathematica_math=/opt/Wolfram/Executables/math
+```
+
+* Verify everything works. Run again `mvn clean install -DskipTests`
+* If you run the tests again, you should see more test cases now: `mvn test`
+
+</details>
+
+<details><summary><strong>7. Setup IntelliJ</strong></summary>
+  
 We are working with IntelliJ. If you download the project open the project via IntelliJ in the following way:
 * Launch IntelliJ
 * Hit `Import Project`
@@ -44,14 +87,25 @@ We are working with IntelliJ. If you download the project open the project via I
 * Next, see the settings in the image:
 ![Maven Setup](https://github.com/ag-gipp/latex-grammar/blob/restructure/misc/setupmaven.png)
 * Intellij should show you one module `gov.nist.drmf.interpreter:nterpreter:2.1-SNAPSHOT`. Only select this, hit next until you finish.
+</details>
 
-#### 6. Build and Run in IntelliJ with Maven
-* In IntelliJ, open Maven and run `Semantic Translator (root)` -> `install`.
+<details><summary><strong>8. Build and Run in IntelliJ</strong></summary>
+  
+**IMPORTANT:** For all classes or test cases you start in IntelliJ, make sure Intellij uses the root directory `latex-grammar` as the `Working Directory`. You can set this up in `Run/Debug Configurations` via `Run -> Edit Configurations...`.
+
+* You can run maven within IntelliJ. Open Maven and run `Semantic Translator (root)` -> `install`.
 * To test if the forward translation works, go to `interpreter.lacast -> src -> main -> java -> gov.nist.drmf.interpreter.cas` and run `SemanticToCASInterpreter.java`. 
+* To test the backward translation, e.g., from Maple, go to `interpreter.maple -> src -> main -> java -> gov.nist.drmf.interpreter.maple` and run `MapleToSemanticInterpreter.java`
+    * You will (most likely) see an error. You have to tell IntelliJ the right settings.
+    * Open `Run/Debug Configurations` via `Run -> Edit Configurations...`
+    * Make sure you set the right working directory (see important note above)
+    * Set the environment variables (click on the `$` sign in the end of the line
+    * Add `MAPLE=/opt/maple2019` and `LD_LIBRARY_PATH=/opt/maple2019/bin.X86_64_LINUX` (of coursel, the paths might be different on your system, so update it accordingly)
+    * Add the VM option: `-Xss50M`, otherwise the heap space is too small for Maple 2019
+</details>
 
-**IMPORTANT:** For all classes or test cases you start, make sure Intellij uses the root directory `latex-grammar` as the `Working Directory`. You can set this up in `Run/Debug Configurations` via `Run -> Edit Configurations...`.
-
-#### 7. Push changes
+<details><summary><strong>9. Push changes</strong></summary>
+  
 When you make changes you have to commit them to git. First lets check if there are unstaged changes
 ```bash
 git status
@@ -74,24 +128,23 @@ A commit does not push the changes to GitHub. You have to push your commits via
 ```bash
 git push
 ```
+</details>
 
-#### 8. Create a pull request
-We can easy track your changes when you create a pull request for your branch. To do so, go to the
+<details><summary><strong>10. Create a pull request</strong></summary>
+  
+We can easy track your changes and discuss/comment code when you create a pull request for your branch. To do so, go to the
 GitHub repository and click on `Pull requests`. Here you can hit `New pull request`. The base should
 be the `master` branch and you want to compare with your working branch `summer-extensions`. If you
 created your own sub-branches of `summer-extensions` you should request a merge with `summer-extensions`
 instead of the `master` branch. In this case the base will be `summer-extensions` and the compare branch
 is your own specified branch.
+</details>
 
-#### 9. Organizing tasks via issues
+<details><summary><strong>11. Organizing tasks via issues</strong></summary>
+  
 We organize the work via issues in [issues](https://github.com/TU-Berlin/latex-grammar/issues).
 So please use issues if you have questions or problems. And also use them to define your next tasks.
-
-
-## Goals for the summer extensions<a name="summer-extensions"></a>
-We have two main goals.
-1. Support Wronskians and prime symbols (see #74)
-2. Support `lim` and similar macros generic macros (see #73)
+</details>
 
 ## Update or add a new CAS to the translation process<a name="howToUpdate"></a>
 All translations are organized in `libs/ReferenceData/CSVTables` directory. Here you can find CSV files (semicolon separated) that keep
@@ -127,10 +180,16 @@ There are a couple of main classes in the project.
 * `interpreter.maple -> ...interpreter.maple.MapleToSemanticInterpreter`: This class translates Maple expressions back to semantic LaTeX.
 
 ## Troubleshooting<a name="troubleshooting"></a>
-When you want to contribute or just run our program it could happen to get some errors. Here are some tips to avoid that. When ever you found an error which is not explained here and you don't know how to fix it by your own, feel free to contact [André Greiner-Petter](https://github.com/AndreG-P) (or some of the [other contributers](#contributers)).
+When you want to contribute or just run our program it could happen to get some errors. Here are some tips to avoid that. When ever you found an error which is not explained here and you don't know how to fix it by your own, feel free to contact [André Greiner-Petter](https://github.com/AndreG-P).
 
-1. You cannot translate your CSV file to our lexicon files. (typical exception: MalformedInputException)
+1. **Translation of CSV file to lexicon files**: (typical exception: `MalformedInputException`)
 This could happen when our program cannot find out the encoding of your CSV file. It is strongly recommended to set the encoding to UTF-8 (with or without BOM) of your CSV file.
+2. **SIGSEGV**: (typical exception: `Process finished with exit code 139 (interrupted by signal 11: SIGSEGV)`) 
+You forget to provide Maple enough heap space. Start java with the JVM option: `-Xss50M`
+3. **Errors with Maple SO files**: (typical exception: `Process finished with exit code 134 (interrupted by signal 6: SIGABRT)` and `java.lang.UnsatisfiedLinkError: /opt/maple2019/bin.X86_64_LINUX/libjopenmaple.so: libimf.so: cannot open shared object file: No such file or directory`) 
+There is a problem with the environment variables `Maple` and `LD_LIBRARY_PATH`.
+4. **Cannot initiate translator or other programs**: (typical exception: `java.nio.file.NoSuchFileException: libs/ReferenceData/BasicConversions/GreekLettersAndConstants.json`)
+You start the program within the wrong directory. The working directory has to be the root directory of the project (i.e., directory `LaCASt`).
 
 ## Useful Counting Methods
 
