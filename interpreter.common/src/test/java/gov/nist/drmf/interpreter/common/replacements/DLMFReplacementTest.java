@@ -47,7 +47,7 @@ public class DLMFReplacementTest {
     void kSqTest() {
         String input = "{k^{\\prime}}^{2}=\\frac{1}{2}";
         String replaced = CONFIG.replace(input, "22.2.2");
-        assertEquals("1-k^2=\\frac{1}{2}", replaced);
+        assertEquals("{1-k^2}=\\frac{1}{2}", replaced);
     }
 
     @Test

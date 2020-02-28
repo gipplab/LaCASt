@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.blueprints;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import gov.nist.drmf.interpreter.mlp.extensions.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.MathTerm;
 import mlp.ParseException;
@@ -215,7 +216,7 @@ public class BlueprintLimitTree {
 
     private PomTaggedExpression copy(PomTaggedExpression in) {
         if ( in.getTag() != null && in.getTag().matches("sequence") ) {
-            PomTaggedExpression c = new PomTaggedExpression(new MathTerm("",""), "sequence");
+            PomTaggedExpression c = FakeMLPGenerator.generateEmptySequencePTE();
             for ( PomTaggedExpression child : in.getComponents() ) {
                 c.addComponent(child);
             }
@@ -236,7 +237,7 @@ public class BlueprintLimitTree {
         resetMatch();
         if ( pte == null ) throw new IllegalArgumentException("Null does not match any expression!");
         if ( pte.length > 1 ) {
-            PomTaggedExpression top = new PomTaggedExpression(new MathTerm("", ""), "sequence");
+            PomTaggedExpression top = FakeMLPGenerator.generateEmptySequencePTE();
             for ( PomTaggedExpression pt : pte ){
                 top.addComponent(pt);
             }

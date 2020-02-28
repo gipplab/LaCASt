@@ -37,7 +37,7 @@ dlmfReplacementRules:
     groups: 2
     condition: [22]
   - pattern: \{k\^\{\\prime}}\^\{2}
-    replacement: 1-k^2
+    replacement: \{1-k^2\}
     condition: [19, 22, 28, 29]
   - pattern: k\^\{\\prime}
     replacement: \\sqrt{1-k^2}
