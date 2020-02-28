@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
+import mlp.MathTerm;
+
 import java.util.HashMap;
 
 /**
@@ -67,5 +69,13 @@ public enum MathTermTags {
 
     public String tag(){
         return tag;
+    }
+
+    public static boolean isChooseCommand(MathTerm mt) {
+        if ( mt == null || mt.isEmpty() ) return false;
+        if ( MathTermTags.command.equals(getTagByKey(mt.getTag())) ) {
+            return "\\choose".equals(mt.getTermText());
+        }
+        return false;
     }
 }

@@ -16,7 +16,8 @@ public enum ExpressionTags {
     denominator("denominator"),
     equation("equation"),
     balanced_expression("balanced-expression"),
-    accented("accented");
+    accented("accented"),
+    choose("choose");
 
     private final String tag;
 
