@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.semantic;
+package gov.nist.drmf.interpreter.generic.backlog;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import mlp.ParseException;
