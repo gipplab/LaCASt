@@ -1,8 +1,6 @@
 package gov.nist.drmf.interpreter.generic.macro;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -12,10 +10,9 @@ import java.util.regex.Pattern;
 /**
  * Java class representing a Macro from a .sty file
  */
-@JsonIgnoreProperties(
-        ignoreUnknown = true,
-        value = {"genericLaTeXParameters", "genericLaTeXArguments"}
-)
+//@JsonIgnoreProperties(
+//        ignoreUnknown = true
+//)
 public class MacroBean {
     public static final Pattern CLEAN_PATTERN = Pattern.compile(
             "\\\\m(?:left|right)"
@@ -26,10 +23,9 @@ public class MacroBean {
     public static final String OPTIONAL_PAR_PREFIX = "opPar";
 
     /**
-     * Unique identifier
+     * Unique identifier (quasi-final)
      */
-    @JsonProperty("macro")
-    private final String name;
+    private String name;
 
     /**
      * The pure generic LaTeX for parameters
@@ -44,41 +40,44 @@ public class MacroBean {
     /**
      * Textual description text
      */
-    @JsonProperty("description")
     private String description;
 
     /**
      * Unique string of description
      */
-    @JsonProperty("meaning")
     private String meaning;
 
     /**
      * OpenMath name
      */
-    @JsonProperty("openMathID")
     private String openMathID;
 
     /**
      * The standard parameters
      */
-    @JsonProperty("standardparameters")
     private LinkedList<String> standardParameters;
 
     /**
      * The standard arguments
      */
-    @JsonProperty("standardarguments")
     private LinkedList<String> standardArguments;
 
-    @JsonProperty("numberOfParameters")
     private int numberOfParameters;
 
-    @JsonProperty("numberOfOptionalParameters")
     private int numberOfOptionalParameters = 0;
 
-    @JsonProperty("numberOfArguments")
     private int numberOfArguments;
+
+    private LinkedList<String> genericLaTeX;
+
+    private String semanticLaTeX;
+
+    /**
+     * Only for serialization.
+     */
+    private MacroBean() {
+        this(null);
+    }
 
     /**
      * @param name the macro
@@ -87,12 +86,14 @@ public class MacroBean {
         this.name = name;
         this.genericLaTeXParameters = new LinkedList<>();
         this.genericLaTeXArguments = new LinkedList<>();
+        this.genericLaTeX = new LinkedList<>();
     }
 
     /**
      * Sets the generic latex expression with parameters.
      * @param genericLaTeX the pure generic latex code
      */
+    @JsonIgnore
     public void addAdditionalGenericLaTeXParameters(String genericLaTeX) {
         this.genericLaTeXParameters.add(genericLaTeX.replaceAll("#", PAR_PREFIX));
     }
@@ -100,12 +101,14 @@ public class MacroBean {
     /**
      * @param genericLaTeX the pure generic latex code
      */
+    @JsonIgnore
     public void setGenericLaTeXParametersWithOptionalParameter(int numberOfParameters, String genericLaTeX) {
         this.numberOfOptionalParameters = 1;
         this.numberOfParameters = numberOfParameters-1;
         this.genericLaTeXParameters.addFirst(genericLaTeX.replaceAll("#", PAR_PREFIX));
     }
 
+    @JsonIgnore
     public void setGenericLaTeXParametersWithoutOptionalParameter(int numberOfParameters, String genericLaTeX) {
         this.numberOfParameters = numberOfParameters;
         this.numberOfOptionalParameters = 0;
@@ -117,6 +120,7 @@ public class MacroBean {
      * @param numOfArgs number of arguments
      * @param argumentsList list of arguments
      */
+    @JsonIgnore
     public void setGenericLaTeXArguments(int numOfArgs, String argumentsList) {
         this.numberOfArguments = numOfArgs;
         if (numOfArgs == 0) {
@@ -138,46 +142,94 @@ public class MacroBean {
         }
     }
 
+    @JsonSetter("macro")
+    public void setMacroName(String macro){
+        this.name = macro;
+    }
+
+    @JsonSetter("meaning")
     public void setMeaning(String meaning) {
         this.meaning = meaning;
     }
 
+    @JsonSetter("openMathID")
     public void setOpenMathID(String openMathID) {
         this.openMathID = openMathID;
     }
 
+    @JsonSetter("description")
     public void setDescription(String description) {
         this.description = description;
     }
 
+    @JsonIgnore
     public void setStandardParameters(String para) {
         this.standardParameters = generateListOfArguments(para);
     }
 
+    @JsonIgnore
     public void setStandardArguments(String args) {
         this.standardArguments = generateListOfArguments(args);
     }
 
+    @JsonSetter("standardParameters")
+    public void setStandardParameters(LinkedList<String> standardParameters) {
+        this.standardParameters = standardParameters;
+    }
+
+    @JsonSetter("standardArguments")
+    public void setStandardArguments(LinkedList<String> standardArguments) {
+        this.standardArguments = standardArguments;
+    }
+
+    @JsonSetter("numberOfParameters")
+    public void setNumberOfParameters(int numberOfParameters) {
+        this.numberOfParameters = numberOfParameters;
+    }
+
+    @JsonSetter("numberOfOptionalParameters")
+    public void setNumberOfOptionalParameters(int numberOfOptionalParameters) {
+        this.numberOfOptionalParameters = numberOfOptionalParameters;
+    }
+
+    @JsonSetter("numberOfArguments")
+    public void setNumberOfArguments(int numberOfArguments) {
+        this.numberOfArguments = numberOfArguments;
+    }
+
+    @JsonSetter("TeX")
+    public void setGenericLaTeX(LinkedList<String> genericLaTeX) {
+        this.genericLaTeX = genericLaTeX;
+    }
+
+    @JsonSetter("semanticTeX")
+    public void setSemanticLaTeX(String semanticLaTeX) {
+        this.semanticLaTeX = semanticLaTeX;
+    }
+
+    @JsonGetter("macro")
     public String getName() {
         return name;
     }
 
-    @JsonGetter("tex")
+    @JsonGetter("TeX")
     public LinkedList<String> getGenericLatex() {
-        LinkedList<String> genericLaTeX = new LinkedList<>();
-        for ( String para : genericLaTeXParameters ) {
-            if ( genericLaTeXArguments.isEmpty() ) genericLaTeX.add(para);
-            else {
-                for ( String args : genericLaTeXArguments ) {
-                    genericLaTeX.add(para + " " + args);
+        if ( genericLaTeX.isEmpty() ) {
+            for ( String para : genericLaTeXParameters ) {
+                if ( genericLaTeXArguments.isEmpty() ) genericLaTeX.add(para);
+                else {
+                    for ( String args : genericLaTeXArguments ) {
+                        genericLaTeX.add(para + " " + args);
+                    }
                 }
             }
         }
         return genericLaTeX;
     }
 
-    @JsonGetter("semantictex")
+    @JsonGetter("semanticTeX")
     public String getSemanticLaTeX() {
+        if ( this.semanticLaTeX != null ) return this.semanticLaTeX;
         StringBuilder sb = new StringBuilder("\\");
         sb.append(name);
 
@@ -201,37 +253,46 @@ public class MacroBean {
             argCounter++;
         }
 
-        return sb.toString();
+        this.semanticLaTeX = sb.toString();
+        return this.semanticLaTeX;
     }
 
+    @JsonGetter("description")
     public String getDescription() {
         return description;
     }
 
+    @JsonGetter("meaning")
     public String getMeaning() {
         return meaning;
     }
 
+    @JsonGetter("openMathID")
     public String getOpenMathID() {
         return openMathID;
     }
 
+    @JsonGetter("standardParameters")
     public LinkedList<String> getStandardParameters() {
         return standardParameters;
     }
 
+    @JsonGetter("standardArguments")
     public LinkedList<String> getStandardArguments() {
         return standardArguments;
     }
 
+    @JsonGetter("numberOfParameters")
     public int getNumberOfParameters() {
         return numberOfParameters;
     }
 
+    @JsonGetter("numberOfOptionalParameters")
     public int getNumberOfOptionalParameters() {
         return numberOfOptionalParameters;
     }
 
+    @JsonGetter("numberOfArguments")
     public int getNumberOfArguments() {
         return numberOfArguments;
     }
