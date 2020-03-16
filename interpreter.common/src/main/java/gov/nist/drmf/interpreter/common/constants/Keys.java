@@ -3,7 +3,9 @@ package gov.nist.drmf.interpreter.common.constants;
 /**
  * @author Andre Greiner-Petter
  */
-public class Keys {
+public final class Keys {
+    private Keys() {}
+
     // Key value for LaTeX
     public static final String KEY_LATEX = "LaTeX";
 

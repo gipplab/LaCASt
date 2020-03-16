@@ -2,27 +2,29 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
     <parent>
-        <groupId>gov.nist.drmf.interpreter</groupId>
         <artifactId>interpreter</artifactId>
+        <groupId>gov.nist.drmf.interpreter</groupId>
         <version>2.1-SNAPSHOT</version>
     </parent>
+    <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>interpreter.semantify</artifactId>
-    <version>2.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <artifactId>interpreter.report</artifactId>
 
     <properties>
         <main.basedir>${project.parent.basedir}</main.basedir>
     </properties>
 
-    <!-- Depends on all(!!!) other modules to aggregate test coverage -->
     <dependencies>
         <dependency>
             <groupId>gov.nist.drmf.interpreter</groupId>
             <artifactId>interpreter.common</artifactId>
+            <version>2.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>gov.nist.drmf.interpreter</groupId>
+            <artifactId>interpreter.generic</artifactId>
             <version>2.1-SNAPSHOT</version>
         </dependency>
 

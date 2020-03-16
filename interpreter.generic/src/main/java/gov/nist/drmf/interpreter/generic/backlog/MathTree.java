@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.semantic;
+package gov.nist.drmf.interpreter.generic.backlog;
 
 /**
  * Java class that represents tree of embedded math modes and text modes

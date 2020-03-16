@@ -1,0 +1,74 @@
+{
+    "settings": {
+        "number_of_shards": 1,
+        "index": {
+            "similarity": {
+                "default": {
+                    "type": "BM25",
+                    "b": 0.25,
+                    "k1": 2
+                }
+            }
+        },
+        "analysis": {
+            "analyzer": {
+                "dlmf_analyzer": {
+                    "type": "custom",
+                    "tokenizer": "standard",
+                    "char_filter": [
+                        "tex_filter_eq",
+                        "tex_filter_chars",
+                        "tex_filter_macro_splitter"
+                    ],
+                    "filter": [
+                        "lowercase",
+                        "asciifolding",
+                        "standard_en_stemmer",
+                        "english_stopword_filter"
+                    ]
+                }
+            },
+            "char_filter": {
+                "tex_filter_eq": {
+                    "type": "pattern_replace",
+                    "pattern": "\\$(.*?)\\$",
+                    "replacement": "$1"
+                },
+                "tex_filter_chars": {
+                    "type": "pattern_replace",
+                    "pattern": "(?:\\\\|\\{.*\\})",
+                    "replacement": ""
+                },
+                "tex_filter_macro_splitter": {
+                    "type": "pattern_replace",
+                    "pattern": "(?<=\\p{Lower})(?=\\p{Upper})|-",
+                    "replacement": " "
+                }
+            },
+            "filter": {
+                "standard_en_stemmer": {
+                    "type": "stemmer",
+                    "name": "english"
+                },
+                "english_stopword_filter": {
+                    "type": "stop",
+                    "stopwords": "_english_"
+                }
+            }
+        }
+    },
+    "mappings": {
+        "properties": {
+            "macro": {
+                "type": "keyword"
+            },
+            "description": {
+                "type": "text",
+                "analyzer": "dlmf_analyzer"
+            },
+            "tex": {
+                "type": "keyword"
+            }
+        }
+    }
+}
