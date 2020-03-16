@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.generic.macro;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.apache.commons.io.IOUtils;
@@ -21,8 +20,8 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author Andre Greiner-Petter
  */
-public class MacroDefinitionStyleFileParserTest {
-    private static final Logger LOG = LogManager.getLogger(MacroDefinitionStyleFileParserTest.class.getName());
+public class MacroDefinitionTests {
+    private static final Logger LOG = LogManager.getLogger(MacroDefinitionTests.class.getName());
 
     private static Map<String, MacroBean> loadedMacros;
 
@@ -35,7 +34,7 @@ public class MacroDefinitionStyleFileParserTest {
     }
 
     private static String readResource(String fileName) throws IOException {
-        try (InputStream is = MacroDefinitionStyleFileParserTest.class
+        try (InputStream is = MacroDefinitionTests.class
                 .getResourceAsStream(fileName)) {
             return IOUtils.toString(is, StandardCharsets.UTF_8);
         } catch ( IOException ioe ) {
