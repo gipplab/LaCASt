@@ -30,6 +30,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static gov.nist.drmf.interpreter.common.constants.GlobalPaths.PATH_ELASTICSEARCH_INDEX_CONFIG;
 
@@ -100,12 +101,13 @@ public class ElasticSearchConnector {
         }
     }
 
-    public void indexElements(List<MacroBean> macros) throws IOException {
+    public void indexElements(Map<String, MacroBean> macros) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         BulkRequest bulkRequest = new BulkRequest(ES_INDEX);
 
-        int counter = 1;
-        for ( MacroBean macro : macros ) {
+        int counter = 0;
+        for ( String macroName : macros.keySet() ) {
+            MacroBean macro = macros.get(macroName);
             String macroJson = mapper.writeValueAsString(macro);
             IndexRequest indexRequest = new IndexRequest(); // index defined by bulk request
             indexRequest.id(Integer.toString(counter));
@@ -149,7 +151,7 @@ public class ElasticSearchConnector {
         MacroDefinitionStyleFileParser macroParser = new MacroDefinitionStyleFileParser();
         String macroDefinitions = Files.readString(GlobalPaths.PATH_SEMANTIC_MACROS_DEFINITIONS);
         macroParser.load(macroDefinitions);
-        List<MacroBean> macros = macroParser.getListOfExtractedMacros();
+        Map<String, MacroBean> macros = macroParser.getExtractedMacros();
         es.indexElements(macros);
 
         es.stop();

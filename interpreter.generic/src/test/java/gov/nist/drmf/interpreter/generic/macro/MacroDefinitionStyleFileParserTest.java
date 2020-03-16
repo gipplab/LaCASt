@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -11,9 +12,9 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Andre Greiner-Petter
@@ -21,22 +22,43 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class MacroDefinitionStyleFileParserTest {
     private static final Logger LOG = LogManager.getLogger(MacroDefinitionStyleFileParserTest.class.getName());
 
-    @Test
-    public void macroLoaderTest() throws IOException {
+    private static Map<String, MacroBean> loadedMacros;
+
+    @BeforeAll
+    public static void setup() throws IOException {
         String in = readResource("ExampleFuncDef.sty");
         MacroDefinitionStyleFileParser parser = new MacroDefinitionStyleFileParser();
         parser.load(in);
+        loadedMacros = parser.getExtractedMacros();
+    }
 
-        List<MacroBean> macros = parser.getListOfExtractedMacros();
-        assertEquals(3, macros.size());
+    private static String readResource(String fileName) throws IOException {
+        try (InputStream is = MacroDefinitionStyleFileParserTest.class
+                .getResourceAsStream(fileName)) {
+            return IOUtils.toString(is, StandardCharsets.UTF_8);
+        } catch ( IOException ioe ) {
+            LOG.error("Cannot load resource file " + fileName, ioe);
+            throw ioe;
+        }
+    }
 
-        MacroBean jacobiBean = macros.get(1);
+    @Test
+    public void loadedAllMacrosTest() {
+        assertEquals(6, loadedMacros.keySet().size());
+    }
+
+    @Test
+    public void macroJacobiTest() {
+        MacroBean jacobiBean = loadedMacros.get("JacobipolyP");
+        assertNotNull(jacobiBean);
         assertEquals("JacobipolyP", jacobiBean.getName());
         assertEquals(1, jacobiBean.getGenericLatex().size());
-        assertEquals("P^{(par1,par2)}_{par3}(var1)", jacobiBean.getGenericLatex().getFirst());
+        assertEquals("P^{(par1,par2)}_{par3} (var1)", jacobiBean.getGenericLatex().getFirst());
         assertEquals("the Jacobi polynomial", jacobiBean.getDescription());
         assertEquals("Jacobi-polynomial-P", jacobiBean.getMeaning());
         assertEquals("orthpoly2_dlmf:Jacobi_P", jacobiBean.getOpenMathID());
+        assertEquals( 3, jacobiBean.getNumberOfParameters());
+        assertEquals( 1, jacobiBean.getNumberOfArguments());
 
         LinkedList<String> args = jacobiBean.getStandardArguments();
         LinkedList<String> params = jacobiBean.getStandardParameters();
@@ -44,14 +66,51 @@ public class MacroDefinitionStyleFileParserTest {
         assertTrue(params.contains("\\alpha"));
         assertTrue(params.contains("\\beta"));
         assertTrue(params.contains("n"));
+
+        assertEquals("\\JacobipolyP{$0}{$1}{$2}@{$3}", jacobiBean.getSemanticLaTeX());
     }
 
-    private String readResource(String fileName) throws IOException {
-        try (InputStream is = this.getClass().getResourceAsStream(fileName)) {
-            return IOUtils.toString(is, StandardCharsets.UTF_8);
-        } catch ( IOException ioe ) {
-            LOG.error("Cannot load resource file " + fileName, ioe);
-            throw ioe;
-        }
+    @Test
+    public void macroOptionalFerrerTest() {
+        MacroBean ferrerBean = loadedMacros.get("FerrersP");
+        assertNotNull(ferrerBean);
+        assertEquals("FerrersP", ferrerBean.getName());
+
+        List<String> genericLaTeX = ferrerBean.getGenericLatex();
+        assertEquals(2, genericLaTeX.size());
+        assertEquals("\\mathsf{P}^{opPar1}_{par1} (var1)", genericLaTeX.get(0));
+        assertEquals("\\mathsf{P}_{par1} (var1)", genericLaTeX.get(1));
+
+        assertEquals("\\FerrersP[$0]{$1}@{$2}", ferrerBean.getSemanticLaTeX());
+    }
+
+    @Test
+    public void macroPosIntegersTest() {
+        MacroBean posIntBean = loadedMacros.get("posIntegers");
+        assertNotNull(posIntBean);
+        assertEquals(0, posIntBean.getNumberOfOptionalParameters());
+        assertEquals(0, posIntBean.getNumberOfParameters());
+        assertEquals(0, posIntBean.getNumberOfArguments());
+        assertEquals("\\posIntegers", posIntBean.getSemanticLaTeX());
+        assertEquals(1, posIntBean.getGenericLatex().size());
+        assertEquals("{\\mathbb{Z}^{+}}", posIntBean.getGenericLatex().getFirst());
+    }
+
+    @Test
+    public void macroDivisorTest() {
+        MacroBean divBean = loadedMacros.get("ndivisors");
+        assertNotNull(divBean);
+        assertEquals(2, divBean.getGenericLatex().size());
+        assertEquals("d_{opPar1} (var1)", divBean.getGenericLatex().get(0));
+        assertEquals("d (var1)", divBean.getGenericLatex().get(1));
+    }
+
+    @Test
+    public void macroContinuousTest() {
+        MacroBean b = loadedMacros.get("continuous");
+        assertNotNull(b);
+        assertEquals(2, b.getGenericLatex().size());
+        assertEquals("(a,b)", b.getStandardArguments().getFirst());
+        assertEquals("the set of continuous functions $n$-times differentiable on the interval $(a,b)$", b.getDescription());
     }
 }
