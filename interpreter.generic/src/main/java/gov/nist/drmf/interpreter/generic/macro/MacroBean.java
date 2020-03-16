@@ -1,7 +1,6 @@
 package gov.nist.drmf.interpreter.generic.macro;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -24,6 +23,7 @@ public class MacroBean {
 
     public static final String VAR_PREFIX = "var";
     public static final String PAR_PREFIX = "par";
+    public static final String OPTIONAL_PAR_PREFIX = "opPar";
 
     /**
      * Unique identifier
@@ -40,12 +40,6 @@ public class MacroBean {
      * The pure generic LaTeX for arguments
      */
     private LinkedList<String> genericLaTeXArguments;
-
-    /**
-     * The possible list of all generic LaTeX presentations
-     */
-    @JsonProperty("tex")
-    private LinkedList<String> genericLaTeX;
 
     /**
      * Textual description text
@@ -77,6 +71,15 @@ public class MacroBean {
     @JsonProperty("standardarguments")
     private LinkedList<String> standardArguments;
 
+    @JsonProperty("numberOfParameters")
+    private int numberOfParameters;
+
+    @JsonProperty("numberOfOptionalParameters")
+    private int numberOfOptionalParameters = 0;
+
+    @JsonProperty("numberOfArguments")
+    private int numberOfArguments;
+
     /**
      * @param name the macro
      */
@@ -87,12 +90,26 @@ public class MacroBean {
     }
 
     /**
-     * Sets the generic latex expression with parameters. May include if/else clauses.
+     * Sets the generic latex expression with parameters.
      * @param genericLaTeX the pure generic latex code
      */
-    public void setGenericLaTeXParameters(String genericLaTeX) {
-        // TODO handle \if and \else cases
+    public void addAdditionalGenericLaTeXParameters(String genericLaTeX) {
         this.genericLaTeXParameters.add(genericLaTeX.replaceAll("#", PAR_PREFIX));
+    }
+
+    /**
+     * @param genericLaTeX the pure generic latex code
+     */
+    public void setGenericLaTeXParametersWithOptionalParameter(int numberOfParameters, String genericLaTeX) {
+        this.numberOfOptionalParameters = 1;
+        this.numberOfParameters = numberOfParameters-1;
+        this.genericLaTeXParameters.addFirst(genericLaTeX.replaceAll("#", PAR_PREFIX));
+    }
+
+    public void setGenericLaTeXParametersWithoutOptionalParameter(int numberOfParameters, String genericLaTeX) {
+        this.numberOfParameters = numberOfParameters;
+        this.numberOfOptionalParameters = 0;
+        this.genericLaTeXParameters.addFirst(genericLaTeX.replaceAll("#", PAR_PREFIX));
     }
 
     /**
@@ -101,6 +118,7 @@ public class MacroBean {
      * @param argumentsList list of arguments
      */
     public void setGenericLaTeXArguments(int numOfArgs, String argumentsList) {
+        this.numberOfArguments = numOfArgs;
         if (numOfArgs == 0) {
             // just generate an empty list
             return;
@@ -146,16 +164,44 @@ public class MacroBean {
 
     @JsonGetter("tex")
     public LinkedList<String> getGenericLatex() {
-        genericLaTeX = new LinkedList<>();
+        LinkedList<String> genericLaTeX = new LinkedList<>();
         for ( String para : genericLaTeXParameters ) {
             if ( genericLaTeXArguments.isEmpty() ) genericLaTeX.add(para);
             else {
                 for ( String args : genericLaTeXArguments ) {
-                    genericLaTeX.add(para + args);
+                    genericLaTeX.add(para + " " + args);
                 }
             }
         }
         return genericLaTeX;
+    }
+
+    @JsonGetter("semantictex")
+    public String getSemanticLaTeX() {
+        StringBuilder sb = new StringBuilder("\\");
+        sb.append(name);
+
+        int argCounter = 0;
+        for (int i = 0; i < numberOfOptionalParameters; i++ ) {
+            sb.append("[$").append(argCounter).append("]");
+            argCounter++;
+        }
+
+        for ( int i = 0; i < numberOfParameters; i++ ) {
+            sb.append("{$").append(argCounter).append("}");
+            argCounter++;
+        }
+
+        // only if elements are following, we will add an @
+        if ( numberOfArguments != 0 )
+            sb.append("@");
+
+        for ( int i = 0; i < numberOfArguments; i++ ) {
+            sb.append("{$").append(argCounter).append("}");
+            argCounter++;
+        }
+
+        return sb.toString();
     }
 
     public String getDescription() {
@@ -176,6 +222,18 @@ public class MacroBean {
 
     public LinkedList<String> getStandardArguments() {
         return standardArguments;
+    }
+
+    public int getNumberOfParameters() {
+        return numberOfParameters;
+    }
+
+    public int getNumberOfOptionalParameters() {
+        return numberOfOptionalParameters;
+    }
+
+    public int getNumberOfArguments() {
+        return numberOfArguments;
     }
 
     private static String cleanString(String arg) {
