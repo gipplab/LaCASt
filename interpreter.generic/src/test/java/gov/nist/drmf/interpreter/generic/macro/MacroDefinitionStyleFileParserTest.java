@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.generic.macro;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -112,5 +114,36 @@ public class MacroDefinitionStyleFileParserTest {
         assertEquals(2, b.getGenericLatex().size());
         assertEquals("(a,b)", b.getStandardArguments().getFirst());
         assertEquals("the set of continuous functions $n$-times differentiable on the interval $(a,b)$", b.getDescription());
+    }
+
+    @Test
+    public void serializerTest() throws IOException {
+        ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+        MacroBean jacBean = loadedMacros.get("JacobipolyP");
+        String jacBeanStr = mapper.writeValueAsString(jacBean);
+
+        String gold = readResource("JacobipolyPSerialized.json");
+        assertEquals(gold, jacBeanStr);
+    }
+
+    @Test
+    public void deserializerTest() throws IOException {
+        String jacobiSerialized = readResource("JacobipolyPSerialized.json");
+        MacroBean jacGoldBean = loadedMacros.get("JacobipolyP");
+
+        ObjectMapper mapper = new ObjectMapper();
+        MacroBean jacDeserializeBean = mapper.readValue(jacobiSerialized, MacroBean.class);
+
+        assertEquals( jacGoldBean.getName(), jacDeserializeBean.getName() );
+        assertEquals( jacGoldBean.getGenericLatex(), jacDeserializeBean.getGenericLatex() );
+        assertEquals( jacGoldBean.getSemanticLaTeX(), jacDeserializeBean.getSemanticLaTeX() );
+        assertEquals( jacGoldBean.getDescription(), jacDeserializeBean.getDescription() );
+        assertEquals( jacGoldBean.getMeaning(), jacDeserializeBean.getMeaning() );
+        assertEquals( jacGoldBean.getOpenMathID(), jacDeserializeBean.getOpenMathID() );
+        assertEquals( jacGoldBean.getStandardParameters(), jacDeserializeBean.getStandardParameters() );
+        assertEquals( jacGoldBean.getStandardArguments(), jacDeserializeBean.getStandardArguments() );
+        assertEquals( jacGoldBean.getNumberOfArguments(), jacDeserializeBean.getNumberOfArguments() );
+        assertEquals( jacGoldBean.getNumberOfOptionalParameters(), jacDeserializeBean.getNumberOfOptionalParameters() );
+        assertEquals( jacGoldBean.getNumberOfParameters(), jacDeserializeBean.getNumberOfParameters() );
     }
 }
