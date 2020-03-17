@@ -1,6 +1,5 @@
-package gov.nist.drmf.interpreter.generic.es;
+package gov.nist.drmf.interpreter.generic.elasticsearch;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.generic.macro.MacroBean;
@@ -28,8 +27,6 @@ import org.elasticsearch.rest.RestStatus;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import static gov.nist.drmf.interpreter.common.constants.GlobalPaths.PATH_ELASTICSEARCH_INDEX_CONFIG;

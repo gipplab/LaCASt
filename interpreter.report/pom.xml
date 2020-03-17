@@ -58,8 +58,8 @@
             <id>jacoco-full-report</id>
             <activation>
                 <property>
-                    <name>${jacoco.report.flag}</name>
-                    <value>${jacoco.report.full}</value>
+                    <name>jacocoReport</name>
+                    <value>full</value>
                 </property>
             </activation>
             <build>
@@ -88,8 +88,8 @@
             <id>jacoco-remote-report</id>
             <activation>
                 <property>
-                    <name>${jacoco.report.flag}</name>
-                    <value>${jacoco.report.remote}</value>
+                    <name>jacocoReport</name>
+                    <value>remote</value>
                 </property>
             </activation>
             <build>

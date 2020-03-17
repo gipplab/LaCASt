@@ -62,7 +62,7 @@
             <id>generate-evaluator-jars</id>
             <activation>
                 <property>
-                    <name>${generate.jar.flag}</name>
+                    <name>generateJars</name>
                 </property>
             </activation>
             <build>

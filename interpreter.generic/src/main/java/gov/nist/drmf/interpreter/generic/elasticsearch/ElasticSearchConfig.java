@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.generic.es;
+package gov.nist.drmf.interpreter.generic.elasticsearch;
 
 /**
  * @author Andre Greiner-Petter
