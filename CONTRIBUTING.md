@@ -5,9 +5,10 @@
 
 ## Structure
 1. [Setup Project](#start)
-2. [Update or add a new CAS to the translation process](#howToUpdate)
-3. [The program structure and important main classes](#program)
-4. [Troubleshooting](#troubleshooting)
+2. [Test Coverage](#test-coverage)
+3. [Update or add a new CAS to the translation process](#howToUpdate)
+4. [The program structure and important main classes](#program)
+5. [Troubleshooting](#troubleshooting)
 
 ## Setup Project<a name="start"></a>
 
@@ -107,16 +108,16 @@ We are working with IntelliJ. If you download the project open the project via I
 <details><summary><strong>9. Push changes</strong></summary>
   
 When you make changes you have to commit them to git. First lets check if there are unstaged changes
-```bash
+```shell script
 git status
 ```
 Unstaged changes have to be added before we can commit them. You can do this via
-```bash
+```shell script
 git add file_name
 ```
 Instead of adding single files, you can add all files directly with `git add .`.
 Once you added the files you can commit them
-```bash
+```shell script
 git commit -m "your commit message"
 ``` 
 The `git commit` command has an extra flag `-a` which automatically adds all unstaged files.
@@ -125,7 +126,7 @@ Please use reasonable commit messages for your changes. Also, keep your commits 
 everybody to track your changes and give tips and feedback.
 
 A commit does not push the changes to GitHub. You have to push your commits via
-```bash
+```shell script
 git push
 ```
 </details>
@@ -145,6 +146,22 @@ is your own specified branch.
 We organize the work via issues in [issues](https://github.com/TU-Berlin/latex-grammar/issues).
 So please use issues if you have questions or problems. And also use them to define your next tasks.
 </details>
+
+## Test Coverage<a name="test-coverage"></a>
+We use Maven with Jacoco to create test coverage reports. Due to the fact that the program rely on third party tools
+that cannot be shipped with its sources (e.g., the CAS Maple and Mathematica) the test coverage system has two modes.
+
+1. **Full Coverage:** This mode covers all tests and sources regardless of any absence of required tools. You can
+activate this mode by adding `-Djacoco-report=full` to Maven in the command line.
+2. **Remote Coverage:** Covers only sources that run also in absence of third party tools (Maple and Mathematica).
+You can activate this mode by adding `-Djacoco-report=remote` to Maven.
+
+To trigger the test coverage, you have to add either full or remote coverage. Let's say on your machine everything
+is setup correctly, use
+```shell script
+mvn test -Djacoco-report=full
+```
+The results can be found in `target/jacoco-report/`. Open the `index.html` to get a website view of the coverage report.
 
 ## Update or add a new CAS to the translation process<a name="howToUpdate"></a>
 All translations are organized in `libs/ReferenceData/CSVTables` directory. Here you can find CSV files (semicolon separated) that keep

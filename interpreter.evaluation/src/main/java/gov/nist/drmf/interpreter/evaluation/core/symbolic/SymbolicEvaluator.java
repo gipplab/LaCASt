@@ -1,8 +1,8 @@
 package gov.nist.drmf.interpreter.evaluation.core.symbolic;
 
-import gov.nist.drmf.interpreter.evaluation.MapleSimplifier;
-import gov.nist.drmf.interpreter.evaluation.MapleTranslator;
-import gov.nist.drmf.interpreter.evaluation.MathematicaTranslator;
+import gov.nist.drmf.interpreter.evaluation.core.translation.MapleSimplifier;
+import gov.nist.drmf.interpreter.evaluation.core.translation.MapleTranslator;
+import gov.nist.drmf.interpreter.evaluation.core.translation.MathematicaTranslator;
 import gov.nist.drmf.interpreter.evaluation.common.Case;
 import gov.nist.drmf.interpreter.evaluation.common.CaseAnalyzer;
 import gov.nist.drmf.interpreter.evaluation.common.Status;

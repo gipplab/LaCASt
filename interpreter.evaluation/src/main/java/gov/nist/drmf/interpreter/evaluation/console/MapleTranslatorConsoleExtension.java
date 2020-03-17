@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation.console;
 
-import gov.nist.drmf.interpreter.evaluation.MapleTranslator;
+import gov.nist.drmf.interpreter.evaluation.core.translation.MapleTranslator;
 
 /**
  * A console program for the Maple translator.
