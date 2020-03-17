@@ -2,7 +2,7 @@ package gov.nist.drmf.interpreter.evaluation.core.diff;
 
 import com.maplesoft.externalcall.MapleException;
 import com.wolfram.jlink.Expr;
-import gov.nist.drmf.interpreter.evaluation.MathematicaTranslator;
+import gov.nist.drmf.interpreter.evaluation.core.translation.MathematicaTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.Util;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
