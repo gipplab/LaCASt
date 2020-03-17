@@ -77,6 +77,11 @@
         <!-- Addition versions -->
         <jackson.version>2.10.1</jackson.version>
         <elasticsearch.version>7.6.1</elasticsearch.version>
+
+        <generate.jar.flag>generateJars</generate.jar.flag>
+        <jacoco.report.flag>jacocoReport</jacoco.report.flag>
+        <jacoco.report.full>full</jacoco.report.full>
+        <jacoco.report.remote>remote</jacoco.report.remote>
     </properties>
 
     <dependencies>

@@ -5,10 +5,11 @@
 
 ## Structure
 1. [Setup Project](#start)
-2. [Test Coverage](#test-coverage)
-3. [Update or add a new CAS to the translation process](#howToUpdate)
-4. [The program structure and important main classes](#program)
-5. [Troubleshooting](#troubleshooting)
+2. [Generate Jars](#jars)
+3. [Test Coverage](#test-coverage)
+4. [Update or add a new CAS to the translation process](#howToUpdate)
+5. [The program structure and important main classes](#program)
+6. [Troubleshooting](#troubleshooting)
 
 ## Setup Project<a name="start"></a>
 
@@ -147,19 +148,31 @@ We organize the work via issues in [issues](https://github.com/TU-Berlin/latex-g
 So please use issues if you have questions or problems. And also use them to define your next tasks.
 </details>
 
+## Generate Jars<a name="jars"></a>
+The general maven install cycle will not generate the jars in `bin` by default because their sizes
+were slowing down the git workflow. Instead, the jars should only updated when needed 
+(e.g., DRMF server require the new translator or when a new evaluation session is planned) or when
+we reached another milestone.
+
+To trigger the process to generate/update the jars, you have to add `-DgenerateJars` flag to the `install`
+phase of maven
+```shell script
+mvn install -DgenerateJars
+```
+
 ## Test Coverage<a name="test-coverage"></a>
 We use Maven with Jacoco to create test coverage reports. Due to the fact that the program rely on third party tools
 that cannot be shipped with its sources (e.g., the CAS Maple and Mathematica) the test coverage system has two modes.
 
 1. **Full Coverage:** This mode covers all tests and sources regardless of any absence of required tools. You can
-activate this mode by adding `-Djacoco-report=full` to Maven in the command line.
+activate this mode by adding `-DjacocoReport=full` to Maven in the command line.
 2. **Remote Coverage:** Covers only sources that run also in absence of third party tools (Maple and Mathematica).
-You can activate this mode by adding `-Djacoco-report=remote` to Maven.
+You can activate this mode by adding `-DjacocoReport=remote` to Maven.
 
 To trigger the test coverage, you have to add either full or remote coverage. Let's say on your machine everything
 is setup correctly, use
 ```shell script
-mvn test -Djacoco-report=full
+mvn test -DjacocoReport=full
 ```
 The results can be found in `target/jacoco-report/`. Open the `index.html` to get a website view of the coverage report.
 

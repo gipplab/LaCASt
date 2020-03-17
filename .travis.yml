@@ -24,7 +24,7 @@ install:
   - mvn install -DskipTests -B -V
 
 script:
-  - mvn test -B -Djacoco-report=remote
+  - mvn test -B -DjacocoReport=remote
 
 after_script:
   - bash .travis/fix-jacoco.sh
