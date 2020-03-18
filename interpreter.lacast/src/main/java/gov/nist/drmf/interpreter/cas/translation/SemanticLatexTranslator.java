@@ -7,7 +7,7 @@ import gov.nist.drmf.interpreter.common.*;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.ITranslator;
+import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
 import gov.nist.drmf.interpreter.common.replacements.ConditionalReplacementRule;
 import gov.nist.drmf.interpreter.common.replacements.IReplacementCondition;
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;

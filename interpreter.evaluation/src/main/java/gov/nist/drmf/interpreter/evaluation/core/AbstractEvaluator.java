@@ -2,7 +2,7 @@ package gov.nist.drmf.interpreter.evaluation.core;
 
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.grammar.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.interfaces.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.evaluation.common.*;
 import gov.nist.drmf.interpreter.evaluation.constraints.IConstraintTranslator;
 import org.apache.logging.log4j.LogManager;

@@ -80,6 +80,8 @@ public class MLP {
 //            eq = "\\deriv{}{z} \\sin@@{z}";
 //            eq = "\\begin{subarray}{c} x \\end{subarray}";
             eq = "P^{(par1,par2)}_{par3}";
+            eq = "a + b^{1+x}";
+            eq = "\\mathrm{i}";
 
             System.out.println();
             System.out.println("Input: " + eq);
@@ -89,7 +91,7 @@ public class MLP {
             PomTaggedExpression pe = parser.parse(eq);
 //            System.out.println(pe);
             pe = clean(pe);
-            System.out.println(pe.getRoot().getFeatureValue("accent"));
+//            System.out.println(pe.getRoot().getFeatureValue("accent"));
             System.out.println(pe.toString());
 
 

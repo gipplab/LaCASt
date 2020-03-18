@@ -50,7 +50,7 @@ public class BlueprintMaster {
         String[] s = l.split(" ==> ");
         try {
             limitedTrees.add(new BlueprintLimitTree(s[0], s[1], slt));
-        } catch (ParseException e) {
+        } catch (ParseException | IOException e) {
             LOG.error("Illegal string generating Blueprint: " + l, e);
         }
     }
@@ -59,7 +59,7 @@ public class BlueprintMaster {
         String[] s = l.split(" ==> ");
         try {
             limTrees.add(new BlueprintLimTree(s[0], s[1], slt));
-        } catch (ParseException e) {
+        } catch (ParseException | IOException e) {
             LOG.error("Illegal string for generating Blueprint: " + l, e);
         }
     }

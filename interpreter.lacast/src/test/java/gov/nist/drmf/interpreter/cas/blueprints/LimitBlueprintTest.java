@@ -4,7 +4,7 @@ import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.grammar.LimDirections;
-import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
@@ -325,7 +325,7 @@ public class LimitBlueprintTest {
 
     @Test
     public void matcherMultiPomTest() throws ParseException {
-        MLPWrapper mlp = MLPWrapper.getWrapperInstance();
+        MLPWrapper mlp = new MLPWrapper();
         String testInput = "x \\in \\Integers";
         PomTaggedExpression pte = mlp.parse(testInput);
         PomTaggedExpression pte2 = mlp.parse(testInput);

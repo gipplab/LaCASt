@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.common.grammar;
+package gov.nist.drmf.interpreter.common.interfaces;
 
 import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
 import mlp.FeatureSet;

@@ -1,5 +1,6 @@
-package gov.nist.drmf.interpreter.common.tests;
+package gov.nist.drmf.interpreter.common.meta;
 
+import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailabilityCondition;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.lang.annotation.Retention;
