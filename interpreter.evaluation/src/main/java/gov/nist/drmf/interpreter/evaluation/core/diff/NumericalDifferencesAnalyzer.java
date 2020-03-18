@@ -2,15 +2,15 @@ package gov.nist.drmf.interpreter.evaluation.core.diff;
 
 import com.maplesoft.externalcall.MapleException;
 import com.wolfram.jlink.Expr;
-import gov.nist.drmf.interpreter.evaluation.core.translation.MathematicaTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.Util;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.grammar.IComputerAlgebraSystemEngine;
-import gov.nist.drmf.interpreter.common.grammar.ITranslator;
+import gov.nist.drmf.interpreter.common.interfaces.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
+import gov.nist.drmf.interpreter.evaluation.common.ProcedureLoader;
+import gov.nist.drmf.interpreter.evaluation.core.translation.MathematicaTranslator;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -80,7 +80,7 @@ public class NumericalDifferencesAnalyzer {
         MapleInterface mi = MapleInterface.getUniqueMapleInterface();
         backwardTranslator = mi;
 
-        String procedure = Util.getProcedure(GlobalPaths.PATH_MATHEMATICA_DIFFERENCE_PROCEDURES);
+        String procedure = ProcedureLoader.getProcedure(GlobalPaths.PATH_MATHEMATICA_DIFFERENCE_PROCEDURES);
         Matcher matcher = procedureNamePattern.matcher(procedure);
         if ( matcher.matches() ) {
             this.procedureName = matcher.group(1);

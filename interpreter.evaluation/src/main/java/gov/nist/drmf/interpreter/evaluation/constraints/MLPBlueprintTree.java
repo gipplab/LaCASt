@@ -2,11 +2,13 @@ package gov.nist.drmf.interpreter.evaluation.constraints;
 
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.MathTerm;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +34,11 @@ public class MLPBlueprintTree {
     public MLPBlueprintTree(String[] mapleValues) {
         this.mapleValues = mapleValues;
         this.texVariables = new HashMap<>();
-        this.mlp = MLPWrapper.getWrapperInstance();
+        try {
+            this.mlp = new SemanticMLPWrapper();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setBlueprint(String blueprint) throws ParseException {
@@ -47,8 +53,12 @@ public class MLPBlueprintTree {
 
     public static MLPBlueprintNode parseTree(String constraint) throws ParseException {
         String blueprint = preCleaning(constraint);
-        PomTaggedExpression pte = MLPWrapper.getWrapperInstance().parse(blueprint);
-        return createBlueprint(pte);
+        try {
+            PomTaggedExpression pte = new SemanticMLPWrapper().parse(blueprint);
+            return createBlueprint(pte);
+        } catch (IOException ioe) {
+            return null;
+        }
     }
 
     public static MLPBlueprintNode parseTree(PomTaggedExpression constraintParentNode){

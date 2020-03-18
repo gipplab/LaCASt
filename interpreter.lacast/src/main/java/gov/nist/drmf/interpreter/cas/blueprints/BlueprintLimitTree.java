@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.blueprints;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.mlp.extensions.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
 import mlp.MathTerm;
@@ -11,6 +12,7 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -42,9 +44,9 @@ public class BlueprintLimitTree {
             String blueprint,
             String limitPattern,
             SemanticLatexTranslator translator
-    ) throws ParseException {
+    ) throws ParseException, IOException {
         blueprint = preCleaning(blueprint);
-        this.mlp = MLPWrapper.getWrapperInstance();
+        this.mlp = new SemanticMLPWrapper();
         PomTaggedExpression topExpr = mlp.parse(blueprint);
         this.root = createBlueprint(topExpr);
         resetMatch();

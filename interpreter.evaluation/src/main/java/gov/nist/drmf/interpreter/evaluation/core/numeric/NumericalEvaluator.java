@@ -3,21 +3,22 @@ package gov.nist.drmf.interpreter.evaluation.core.numeric;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.wolfram.jlink.Expr;
-import gov.nist.drmf.interpreter.evaluation.core.translation.MapleSimplifier;
-import gov.nist.drmf.interpreter.evaluation.core.translation.MapleTranslator;
-import gov.nist.drmf.interpreter.evaluation.core.translation.MathematicaTranslator;
-import gov.nist.drmf.interpreter.evaluation.common.Case;
-import gov.nist.drmf.interpreter.evaluation.common.CaseAnalyzer;
-import gov.nist.drmf.interpreter.evaluation.common.Status;
-import gov.nist.drmf.interpreter.common.Util;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.grammar.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.interfaces.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.evaluation.common.Case;
+import gov.nist.drmf.interpreter.evaluation.common.CaseAnalyzer;
+import gov.nist.drmf.interpreter.evaluation.common.ProcedureLoader;
+import gov.nist.drmf.interpreter.evaluation.common.Status;
 import gov.nist.drmf.interpreter.evaluation.constraints.Constraints;
 import gov.nist.drmf.interpreter.evaluation.constraints.IConstraintTranslator;
-import gov.nist.drmf.interpreter.evaluation.core.*;
+import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
+import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
 import gov.nist.drmf.interpreter.evaluation.core.symbolic.SymbolicEvaluator;
+import gov.nist.drmf.interpreter.evaluation.core.translation.MapleSimplifier;
+import gov.nist.drmf.interpreter.evaluation.core.translation.MapleTranslator;
+import gov.nist.drmf.interpreter.evaluation.core.translation.MathematicaTranslator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
 import org.apache.logging.log4j.LogManager;
@@ -26,7 +27,10 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -455,7 +459,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         MathematicaTranslator translator = new MathematicaTranslator();
         translator.init();
 
-        String script = Util.getProcedure(GlobalPaths.PATH_MATHEMATICA_NUMERICAL_PROCEDURES);
+        String script = ProcedureLoader.getProcedure(GlobalPaths.PATH_MATHEMATICA_NUMERICAL_PROCEDURES);
 
         NumericalEvaluator evaluator = new NumericalEvaluator<Expr>(
                 translator,

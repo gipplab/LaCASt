@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.common.tests;
 
+import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import org.junit.jupiter.api.extension.ConditionEvaluationResult;
 import org.junit.jupiter.api.extension.ExecutionCondition;
