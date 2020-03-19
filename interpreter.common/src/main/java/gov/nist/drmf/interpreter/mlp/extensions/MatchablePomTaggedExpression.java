@@ -150,82 +150,100 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
     private boolean match(PrintablePomTaggedExpression expression, List<PrintablePomTaggedExpression> followingExpressions) {
         // essentially there are two cases, either it is not a wildcard, that it must match directly the reference
         if (!isWildcard) {
-            MathTerm otherRoot = expression.getRoot();
-            MathTerm thisRoot = getRoot();
-
-            // TODO might be too strict
-            if (!thisRoot.getTermText().equals(otherRoot.getTermText())) {
-                return false;
-            }
-
-            // since both term matches, we have to check their children
-            // if this object doesn't have children, we can straight check the match
-            if (this.components.isEmpty()) return expression.getComponents().isEmpty();
-
-            LinkedList<PrintablePomTaggedExpression> refComponents = new LinkedList<>(expression.getPrintableComponents());
-
-            int idx = 0;
-            while (!refComponents.isEmpty()) {
-                PrintablePomTaggedExpression firstRef = refComponents.removeFirst();
-                MatchablePomTaggedExpression matcherElement = components.get(idx);
-
-                if (!matcherElement.match(firstRef, refComponents)) return false;
-
-                idx++;
-            }
-
-            // now the reference elements are empty... so we either reached the end (=> match) or not (=> no match)
-            return idx == components.size();
+            return matchNonWildCard(expression);
         } else {
-            // or it is a wildcard, which means it can be essentially anything
-            // note that a wildcard cannot have any children, which makes it easier
+            return matchWildCard(expression, followingExpressions);
+        }
+    }
 
-            // if there is no next element, the entire rest matches this wildcard
-            if (nextSibling == null) {
-                while (!followingExpressions.isEmpty())
-                    this.wildcardMatch.add(followingExpressions.remove(0));
-                return true;
-            }
+    private boolean matchNonWildCard(PrintablePomTaggedExpression expression) {
+        MathTerm otherRoot = expression.getRoot();
+        MathTerm thisRoot = getRoot();
 
-            // otherwise, add elements, until the next element matches
-            if (followingExpressions.isEmpty()) return false;
+        // TODO might be too strict
+        if (!thisRoot.getTermText().equals(otherRoot.getTermText())) {
+            return false;
+        }
 
-            this.wildcardMatch.add(expression);
-            PrintablePomTaggedExpression next = followingExpressions.remove(0);
+        // since both term matches, we have to check their children
+        // if this object doesn't have children, we can straight check the match
+        if (this.components.isEmpty()) return expression.getComponents().isEmpty();
 
-            LinkedList<Brackets> bracketStack = new LinkedList<>();
+        LinkedList<PrintablePomTaggedExpression> refComponents = new LinkedList<>(expression.getPrintableComponents());
 
-            while (!bracketStack.isEmpty() || !nextSibling.match(next, followingExpressions)) {
-                if (followingExpressions.isEmpty())
-                    return false;
+        int idx = 0;
+        while (!refComponents.isEmpty()) {
+            PrintablePomTaggedExpression firstRef = refComponents.removeFirst();
+            MatchablePomTaggedExpression matcherElement = components.get(idx);
 
-                if ( isNotAllowedTokenForWildcardMatch(next) )
-                    return false;
+            if (!matcherElement.match(firstRef, refComponents)) return false;
 
-                this.wildcardMatch.add(next);
-                Brackets br = Brackets.getBracket( next.getRoot().getTermText() );
-                if ( br != null ) {
-                    if ( br.opened ) {
-                        bracketStack.addLast(br);
-                    } else if ( !bracketStack.isEmpty() ) {
-                        if ( bracketStack.getLast().isCounterPart(br) )
-                            bracketStack.removeLast();
-                        else throw new NotMatchableException("Not matching parenthesis. Found " + br +
-                                " but last opening was " + bracketStack.getLast());
-                    } else {
-                        throw new NotMatchableException(
-                                "Not matching parenthesis. Found " + br +
-                                        " but non was opened before.");
-                    }
-                }
+            idx++;
+        }
 
-                next = followingExpressions.remove(0);
-            }
+        // now the reference elements are empty... so we either reached the end (=> match) or not (=> no match)
+        return idx == components.size();
+    }
 
-            // nextSibling has matched the next element in followingExpression... so put add back into the queue
-            // and return true
-            followingExpressions.add(0, next);
+    private boolean matchWildCard(
+            PrintablePomTaggedExpression expression,
+            List<PrintablePomTaggedExpression> followingExpressions
+    ) {
+        // or it is a wildcard, which means it can be essentially anything
+        // note that a wildcard cannot have any children, which makes it easier
+
+        // if there is no next element, the entire rest matches this wildcard
+        if (nextSibling == null) {
+            while (!followingExpressions.isEmpty())
+                this.wildcardMatch.add(followingExpressions.remove(0));
             return true;
+        }
+
+        // otherwise, add elements, until the next element matches
+        if (followingExpressions.isEmpty()) return false;
+
+        this.wildcardMatch.add(expression);
+        PrintablePomTaggedExpression next = followingExpressions.remove(0);
+
+        LinkedList<Brackets> bracketStack = new LinkedList<>();
+
+        while (!bracketStack.isEmpty() || !nextSibling.match(next, followingExpressions)) {
+            if (followingExpressions.isEmpty())
+                return false;
+
+            if ( isNotAllowedTokenForWildcardMatch(next) )
+                return false;
+
+            this.wildcardMatch.add(next);
+            updateBracketStack(bracketStack, next);
+
+            next = followingExpressions.remove(0);
+        }
+
+        // nextSibling has matched the next element in followingExpression... so put add back into the queue
+        // and return true
+        followingExpressions.add(0, next);
+        return true;
+    }
+
+    private void updateBracketStack(
+            LinkedList<Brackets> bracketStack,
+            PrintablePomTaggedExpression next
+    ) throws NotMatchableException {
+        Brackets br = Brackets.getBracket( next.getRoot().getTermText() );
+        if ( br != null ) {
+            if ( br.opened ) {
+                bracketStack.addLast(br);
+            } else if ( !bracketStack.isEmpty() ) {
+                if ( bracketStack.getLast().isCounterPart(br) )
+                    bracketStack.removeLast();
+                else throw new NotMatchableException("Not matching parenthesis. Found " + br +
+                        " but last opening was " + bracketStack.getLast());
+            } else {
+                throw new NotMatchableException(
+                        "Not matching parenthesis. Found " + br +
+                                " but non was opened before.");
+            }
         }
     }
 
