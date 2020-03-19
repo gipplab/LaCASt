@@ -1,8 +1,4 @@
-package gov.nist.drmf.interpreter.maple.translation;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+package gov.nist.drmf.interpreter.maple.extension;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
@@ -20,6 +16,9 @@ import java.nio.file.Paths;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 /**
  * Created by AndreG-P on 23.02.2017.
  */
@@ -34,20 +33,12 @@ public class EngineTest {
     private static String procedure_list, procedure_order;
 
     @BeforeAll
-    public static void startEngine() throws IOException {
+    public static void startEngine() {
         MapleInterface mi = MapleInterface.getUniqueMapleInterface();
-
-//        assertTrue( Initializer.loadMapleNatives(), "Cannot load maples native libs.");
-//
-//        String[] args = new String[]{"java"};
-//        try {
-//            t = new Engine( args, new CallBacks(), null, null );
-//        } catch ( MapleException me ){
-//            me.printStackTrace();
-//            fail("Cannot initialize engine: " + me.getMessage());
-//        }
+        if ( mi == null ) fail("Unable to instantiate Maple interface");
 
         t = mi.getEngine();
+        if ( t == null ) fail("Unable to instantiate Maple interface");
 
         // loading procedure from file.
         String proc1 = "", proc2 = "";
@@ -116,53 +107,6 @@ public class EngineTest {
                 fail( "Second argument ist not a list." );
         } catch ( Exception e ){
             fail("Exception thrown.");
-        }
-    }
-
-    private static class CallBacks implements EngineCallBacks {
-        @Override
-        public void textCallBack(Object o, int i, String s) throws MapleException {
-            // nothing to do here, that's ok
-        }
-
-        @Override
-        public void errorCallBack(Object o, int i, String s) throws MapleException {
-            fail("Error message from Maple. " + s);
-        }
-
-        @Override
-        public void statusCallBack(Object o, long l, long l1, double v) throws MapleException {
-            fail("Status update shouldn't happen.");
-        }
-
-        @Override
-        public String readLineCallBack(Object o, boolean b) throws MapleException {
-            fail("Read line shouldn't happen.");
-            return null;
-        }
-
-        @Override
-        public boolean redirectCallBack(Object o, String s, boolean b) throws MapleException {
-            fail("No redirected calls allowed in this test suit.");
-            return false;
-        }
-
-        @Override
-        public String callBackCallBack(Object o, String s) throws MapleException {
-            fail("No callback methods are allowed.");
-            return null;
-        }
-
-        @Override
-        public boolean queryInterrupt(Object o) throws MapleException {
-            fail("No query interruptions is allowed in this test.");
-            return false;
-        }
-
-        @Override
-        public String streamCallBack(Object o, String s, String[] strings) throws MapleException {
-            fail("No streaming is allowed here.");
-            return null;
         }
     }
 }

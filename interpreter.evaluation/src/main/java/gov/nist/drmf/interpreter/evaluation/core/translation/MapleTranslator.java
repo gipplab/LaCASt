@@ -10,7 +10,7 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.interfaces.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.evaluation.constraints.IConstraintTranslator;
-import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
+import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -42,7 +42,7 @@ import java.util.Properties;
  * @see MapleException
  * @see TranslationException
  * @see com.maplesoft.openmaple.Engine
- * @see gov.nist.drmf.interpreter.maple.translation.MapleInterface
+ * @see gov.nist.drmf.interpreter.maple.translation.MapleTranslator
  * @see gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator
  */
 @SuppressWarnings("ALL")
@@ -55,7 +55,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
     /**
      * The interface to interact with the Maple translator
      */
-    private static MapleInterface mapleInterface;
+    private static gov.nist.drmf.interpreter.maple.translation.MapleTranslator mapleTranslator;
 
     /**
      * The maple simplifier
@@ -127,7 +127,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
 
     /**
      * Initialize both back ends. The Maple interface will be initialized
-     * first. Take a look at {@link MapleInterface#init()} and
+     * first. Take a look at {@link gov.nist.drmf.interpreter.maple.translation.MapleTranslator#init()} and
      * {@link SemanticLatexTranslator#init(Path)} for more details
      * about the initialization process.
      *
@@ -142,15 +142,14 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
         // setup logging
         System.setProperty( Keys.KEY_SYSTEM_LOGGING, GlobalPaths.PATH_LOGGING_CONFIG.toString() );
 
-        MapleInterface.init();
-        mapleInterface = MapleInterface.getUniqueMapleInterface();
+        mapleTranslator = gov.nist.drmf.interpreter.maple.translation.MapleTranslator.getDefaultInstance();
         LOG.debug("Initialized Maple Interface.");
 
         dlmfInterface = new SemanticLatexTranslator( Keys.KEY_MAPLE );
         dlmfInterface.init( GlobalPaths.PATH_REFERENCE_DATA );
         LOG.debug("Initialized DLMF LaTeX Interface.");
 
-        simplifier = new MapleSimplifier( mapleInterface );
+        simplifier = new MapleSimplifier(mapleTranslator);
     }
 
     @Override
@@ -176,11 +175,11 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @throws IOException if the default scripts cannot be loaded
      */
     public void restartMapleSession() throws MapleException, IOException {
-        mapleInterface.restart();
+        MapleInterface.getUniqueMapleInterface().restart();
     }
 
     public void addMapleMemoryObserver( Observer observer ){
-        mapleInterface.addMemoryObserver( observer );
+        MapleInterface.getUniqueMapleInterface().addMemoryObserver( observer );
     }
 
     /**
@@ -275,7 +274,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
     public Translation translateFromLaTeXToMapleAlgebraic( String latex_expression, String label )
             throws TranslationException, MapleException {
         Translation t = translateFromLaTeXToMaple( latex_expression, label );
-        Algebraic a = mapleInterface.evaluateExpression( "'" + t.getTranslatedExpression() + "'" );
+        Algebraic a = MapleInterface.getUniqueMapleInterface().evaluate( "'" + t.getTranslatedExpression() + "'" );
         return new Translation( a, t.getTranslatedExpression(), t.getAdditionalInformation() );
     }
 
@@ -305,8 +304,8 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      */
     public Translation translateFromMapleToLaTeX( String maple_expression )
             throws TranslationException, MapleException {
-        String trans = mapleInterface.translate( maple_expression );
-        return new Translation( trans, mapleInterface.getInfos().toString() );
+        String trans = mapleTranslator.translate( maple_expression );
+        return new Translation( trans, mapleTranslator.getInfos().toString() );
     }
 
     /**
@@ -414,12 +413,12 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      */
     public Algebraic enterMapleCommand( String mapleCommand )
             throws MapleException {
-        return mapleInterface.evaluateExpression(mapleCommand);
+        return MapleInterface.getUniqueMapleInterface().evaluate(mapleCommand);
     }
 
     public void forceGC() throws ComputerAlgebraSystemEngineException {
         try {
-            mapleInterface.invokeGC();
+            MapleInterface.getUniqueMapleInterface().invokeGC();
         } catch (MapleException me) {
             throw new ComputerAlgebraSystemEngineException(me);
         }

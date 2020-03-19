@@ -1,7 +1,6 @@
-package gov.nist.drmf.interpreter.evaluation.core.symbolic;
+package gov.nist.drmf.interpreter.common.cas;
 
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.evaluation.common.IAbortEvaluator;
 
 import java.util.Observable;
 import java.util.Observer;

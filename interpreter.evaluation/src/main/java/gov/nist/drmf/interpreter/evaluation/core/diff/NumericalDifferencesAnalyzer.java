@@ -11,7 +11,7 @@ import gov.nist.drmf.interpreter.common.interfaces.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
 import gov.nist.drmf.interpreter.evaluation.common.ProcedureLoader;
 import gov.nist.drmf.interpreter.evaluation.core.translation.MathematicaTranslator;
-import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
+import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -76,8 +76,7 @@ public class NumericalDifferencesAnalyzer {
         dlmfInterface.init( GlobalPaths.PATH_REFERENCE_DATA );
         forwardTranslator = dlmfInterface;
 
-        MapleInterface.init();
-        MapleInterface mi = MapleInterface.getUniqueMapleInterface();
+        MapleTranslator mi = MapleTranslator.getDefaultInstance();
         backwardTranslator = mi;
 
         String procedure = ProcedureLoader.getProcedure(GlobalPaths.PATH_MATHEMATICA_DIFFERENCE_PROCEDURES);

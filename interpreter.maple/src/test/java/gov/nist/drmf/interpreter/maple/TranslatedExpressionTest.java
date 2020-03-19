@@ -4,8 +4,12 @@ import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedExpression;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
+import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -98,7 +102,7 @@ public class TranslatedExpressionTest {
     /**
      * Test: -\left( 2+x \right)
      * Attention: We are using \left( \right) as default parenthesis
-     * @see gov.nist.drmf.interpreter.maple.translation.MapleInterface#DEFAULT_LATEX_BRACKET
+     * @see MapleTranslator#DEFAULT_LATEX_BRACKET
      */
     @Test
     public void singleEmbracedNegativeExpression(){
@@ -234,19 +238,22 @@ public class TranslatedExpressionTest {
         transList.setSign( NEGATIVE );
 
         String result = transList.getAccurateString().replaceAll("\\s+", "");
-        String left = '\\' + Brackets.left_parenthesis.symbol;
-        String right = '\\' + Brackets.left_parenthesis.counterpart;
-        String regex = "-" + left + "\\\\cpi\\+x" + right;
+        String left = Brackets.left_parenthesis.symbol;
+        String right = Brackets.left_parenthesis.counterpart;
+        String regex = "-" + left + "\\cpi+x" + right;
+
+        Pattern p = Pattern.compile(regex, Pattern.LITERAL);
+        Matcher m = p.matcher(result);
 
         assertTrue(
-                result.matches(regex),
-                "Expected -( \\cpi+x )! But get: " + result );
+                m.matches(),
+                "Expected -(\\cpi+x)! But get: " + result );
     }
 
     /**
      * Test: 2-\left( \cpi+x \right)
      * Attention: We are using \left( \right) as default parenthesis
-     * @see gov.nist.drmf.interpreter.maple.translation.MapleInterface#DEFAULT_LATEX_BRACKET
+     * @see MapleTranslator#DEFAULT_LATEX_BRACKET
      */
     @Test
     public void mergesWithoutEmbrace(){

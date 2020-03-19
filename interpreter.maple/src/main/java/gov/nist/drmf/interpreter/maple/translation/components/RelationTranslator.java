@@ -8,7 +8,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
-import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
+import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
 
 /**
  * Created by AndreG-P on 28.04.2017.
@@ -36,7 +36,7 @@ public class RelationTranslator extends ListTranslator {
 
     public boolean innerTranslate( List list ) throws MapleException, IllegalArgumentException {
         SymbolTranslator symbolTranslator =
-                MapleInterface.getUniqueMapleInterface().getSymbolTranslator();
+                MapleTranslator.getDefaultInstance().getSymbolTranslator();
         String translated_symb;
         switch (root) {
             case equation:
