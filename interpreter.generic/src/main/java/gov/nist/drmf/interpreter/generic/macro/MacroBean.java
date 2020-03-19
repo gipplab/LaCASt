@@ -10,9 +10,6 @@ import java.util.regex.Pattern;
 /**
  * Java class representing a Macro from a .sty file
  */
-//@JsonIgnoreProperties(
-//        ignoreUnknown = true
-//)
 public class MacroBean {
     public static final Pattern CLEAN_PATTERN = Pattern.compile(
             "\\\\m(?:left|right)"
@@ -233,28 +230,25 @@ public class MacroBean {
         StringBuilder sb = new StringBuilder("\\");
         sb.append(name);
 
-        int argCounter = 0;
-        for (int i = 0; i < numberOfOptionalParameters; i++ ) {
-            sb.append("[$").append(argCounter).append("]");
-            argCounter++;
-        }
-
-        for ( int i = 0; i < numberOfParameters; i++ ) {
-            sb.append("{$").append(argCounter).append("}");
-            argCounter++;
-        }
+        int argCounter = addIdx( numberOfOptionalParameters, 0, new Character[]{'[', ']'}, sb );
+        argCounter = addIdx( numberOfParameters, argCounter, new Character[]{'{', '}'}, sb );
 
         // only if elements are following, we will add an @
         if ( numberOfArguments != 0 )
             sb.append("@");
 
-        for ( int i = 0; i < numberOfArguments; i++ ) {
-            sb.append("{$").append(argCounter).append("}");
-            argCounter++;
-        }
+        addIdx( numberOfArguments, argCounter, new Character[]{'{', '}'}, sb );
 
         this.semanticLaTeX = sb.toString();
         return this.semanticLaTeX;
+    }
+
+    private int addIdx( int repeat, int counter, Character[] symbs, StringBuilder sb ) {
+        for ( int i = 0; i < repeat; i++ ) {
+            sb.append(symbs[0]).append("$").append(counter).append(symbs[1]);
+            counter++;
+        }
+        return counter;
     }
 
     @JsonGetter("description")

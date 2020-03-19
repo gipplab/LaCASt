@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.generic.backlog;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Java class containing utility methods for parsing LaTeX
@@ -66,9 +67,10 @@ public class MathModeUtils {
      */
     public static String firstDelim(String latex, boolean enter) {
         String min = "";
-        for (String key : (enter ? mathMode.keySet() : new HashSet<>(Arrays.asList(textMode)))) {
+        Set<String> set = enter ? mathMode.keySet() : new HashSet<>(Arrays.asList(textMode));
+        for (String key : set) {
             int i = latex.indexOf(key);
-            if (min.equals("") || i != -1 && (i <= latex.indexOf(min) || !latex.contains(min))) {
+            if (check(min, i, latex)) {
                 min = key;
                 if (i == 0) {
                     return min;
@@ -78,19 +80,24 @@ public class MathModeUtils {
         return min;
     }
 
+    private static boolean check(String min, int i, String latex) {
+        return min.equals("") || i != -1 && (i <= latex.indexOf(min) || !latex.contains(min));
+    }
+
     /**
      * Returns number of indices at the beginning of the LaTeX string that are escaped
      * @param latex
      * @return
      */
     public static int skipEscaped(String latex) {
-        if (latex.startsWith("\\")) {
-            for (String key : mathMode.keySet()) {
-                if (key.matches("[^a-zA-Z]+") && latex.substring(1).startsWith(key)) {
-                    return 2;
-                }
+        if (!latex.startsWith("\\")) return 0;
+
+        for (String key : mathMode.keySet()) {
+            if (key.matches("[^a-zA-Z]+") && latex.substring(1).startsWith(key)) {
+                return 2;
             }
         }
+
         return 0;
     }
 }
