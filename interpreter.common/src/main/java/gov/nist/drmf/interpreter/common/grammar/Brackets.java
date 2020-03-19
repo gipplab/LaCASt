@@ -1,12 +1,15 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
+import mlp.MathTerm;
+import mlp.PomTaggedExpression;
+
 import java.util.HashMap;
 
 /**
  * This enumeration provides all kind of brackets. It can be split
  * into 2 groups, open and closed brackets. Each bracket has a symbol
  * and it's counterpart.
- *
+ * <p>
  * For instance the left parenthesis is an open bracket,
  * the symbol is ( and the counterpart symbol is ).
  *
@@ -19,6 +22,7 @@ public enum Brackets {
     left_parenthesis(
             OPEN_BRACKETS.left_parenthesis.s,
             Brackets.OPENED,
+            MathTermTags.left_parenthesis,
             OPEN_BRACKETS.left_parenthesis.counter
     ),
     /**
@@ -27,6 +31,7 @@ public enum Brackets {
     left_brackets(
             OPEN_BRACKETS.left_brackets.s,
             Brackets.OPENED,
+            MathTermTags.left_bracket,
             OPEN_BRACKETS.left_brackets.counter
     ),
     /**
@@ -35,6 +40,7 @@ public enum Brackets {
     left_braces(
             OPEN_BRACKETS.left_braces.s,
             Brackets.OPENED,
+            MathTermTags.left_brace,
             OPEN_BRACKETS.left_braces.counter
     ),
     /**
@@ -43,6 +49,7 @@ public enum Brackets {
     left_angle_brackets(
             OPEN_BRACKETS.left_angle_brackets.s,
             Brackets.OPENED,
+            MathTermTags.less_than,
             OPEN_BRACKETS.left_angle_brackets.counter
     ),
     /**
@@ -51,6 +58,7 @@ public enum Brackets {
     right_parenthesis(
             CLOSE_BRACKETS.right_parenthesis.s,
             Brackets.CLOSED,
+            MathTermTags.right_parenthesis,
             CLOSE_BRACKETS.right_parenthesis.counter
     ),
     /**
@@ -59,6 +67,7 @@ public enum Brackets {
     right_brackets(
             CLOSE_BRACKETS.right_brackets.s,
             Brackets.CLOSED,
+            MathTermTags.right_bracket,
             CLOSE_BRACKETS.right_brackets.counter
     ),
     /**
@@ -67,6 +76,7 @@ public enum Brackets {
     right_braces(
             CLOSE_BRACKETS.right_braces.s,
             Brackets.CLOSED,
+            MathTermTags.right_brace,
             CLOSE_BRACKETS.right_braces.counter
     ),
     /**
@@ -75,6 +85,7 @@ public enum Brackets {
     right_angle_brackets(
             CLOSE_BRACKETS.right_angle_brackets.s,
             Brackets.CLOSED,
+            MathTermTags.greater_than,
             CLOSE_BRACKETS.right_angle_brackets.counter
     ),
     /**
@@ -83,6 +94,7 @@ public enum Brackets {
     left_latex_parenthesis(
             Brackets.LATEX_LEFT + OPEN_BRACKETS.left_parenthesis.s,
             Brackets.OPENED,
+            MathTermTags.left_delimiter,
             Brackets.LATEX_RIGHT + OPEN_BRACKETS.left_parenthesis.counter
     ),
     /**
@@ -91,22 +103,25 @@ public enum Brackets {
     right_latex_parenthesis(
             Brackets.LATEX_RIGHT + CLOSE_BRACKETS.right_parenthesis.s,
             Brackets.CLOSED,
+            MathTermTags.right_delimiter,
             Brackets.LATEX_LEFT + CLOSE_BRACKETS.right_parenthesis.counter
     ),
     /**
-     * Left Open LaTeX Parenthesis: \left(
+     * Left Open LaTeX Parenthesis: \left[
      */
     left_latex_brackets(
             Brackets.LATEX_LEFT + OPEN_BRACKETS.left_brackets.s,
             Brackets.OPENED,
+            MathTermTags.left_delimiter,
             Brackets.LATEX_RIGHT + OPEN_BRACKETS.left_brackets.counter
     ),
     /**
-     * Right Closed LaTeX Parenthesis: \right)
+     * Right Closed LaTeX Parenthesis: \right]
      */
     right_latex_brackets(
             Brackets.LATEX_RIGHT + CLOSE_BRACKETS.right_brackets.s,
             Brackets.CLOSED,
+            MathTermTags.right_delimiter,
             Brackets.LATEX_LEFT + CLOSE_BRACKETS.right_brackets.counter
     ),
     /**
@@ -115,6 +130,7 @@ public enum Brackets {
     left_latex_abs_val(
             Brackets.LATEX_LEFT + OPEN_BRACKETS.left_vbar.s,
             Brackets.OPENED,
+            MathTermTags.left_delimiter,
             Brackets.LATEX_RIGHT + OPEN_BRACKETS.left_vbar.counter
     ),
     /**
@@ -123,6 +139,7 @@ public enum Brackets {
     right_latex_abs_val(
             Brackets.LATEX_RIGHT + CLOSE_BRACKETS.right_vbar.s,
             Brackets.CLOSED,
+            MathTermTags.right_delimiter,
             Brackets.LATEX_LEFT + CLOSE_BRACKETS.right_vbar.counter
     ),
     /**
@@ -131,6 +148,7 @@ public enum Brackets {
     abs_val_close(
             OPEN_BRACKETS.left_vbar.s,
             Brackets.CLOSED,
+            MathTermTags.vbar,
             OPEN_BRACKETS.left_vbar.counter
     ),
     /**
@@ -139,6 +157,7 @@ public enum Brackets {
     abs_val_open(
             OPEN_BRACKETS.left_vbar.s,
             Brackets.OPENED,
+            MathTermTags.vbar,
             OPEN_BRACKETS.left_vbar.counter
     );
 
@@ -153,7 +172,7 @@ public enum Brackets {
      * are an extra private enumeration.
      * The symbols and counter symbols are stored here.
      */
-    private enum OPEN_BRACKETS{
+    private enum OPEN_BRACKETS {
         left_parenthesis("(", ")"),
         left_brackets("[", "]"),
         left_braces("{", "}"),
@@ -163,7 +182,7 @@ public enum Brackets {
         final String s;
         final String counter;
 
-        OPEN_BRACKETS(String s, String counter){
+        OPEN_BRACKETS(String s, String counter) {
             this.s = s;
             this.counter = counter;
         }
@@ -174,7 +193,7 @@ public enum Brackets {
      * are an extra private enumeration.
      * The symbols and counter symbols are stored here.
      */
-    private enum CLOSE_BRACKETS{
+    private enum CLOSE_BRACKETS {
         right_parenthesis(")", "("),
         right_brackets("]", "["),
         right_braces("}", "{"),
@@ -184,7 +203,7 @@ public enum Brackets {
         final String s;
         final String counter;
 
-        CLOSE_BRACKETS(String s, String counter){
+        CLOSE_BRACKETS(String s, String counter) {
             this.s = s;
             this.counter = counter;
         }
@@ -207,6 +226,7 @@ public enum Brackets {
      */
     public final String symbol;
     public final boolean opened;
+    public final MathTermTags mathTermTag;
     public final String counterpart;
 
     /**
@@ -218,40 +238,67 @@ public enum Brackets {
 
     /**
      * Bracket with symbol and counterpart symbol and if its closed or not.
-     * @param symbol (, [, {, <, ), ], }, >, or |
-     * @param opened true or false (opened or closed)
+     *
+     * @param symbol      (, [, {, <, ), ], }, >, or |
+     * @param opened      true or false (opened or closed)
      * @param counterpart Depending on the symbol.
      *                    ), ], }, >, (, [, {, <, or |
      */
-    Brackets(String symbol, boolean opened, String counterpart){
+    Brackets(String symbol, boolean opened, MathTermTags mathTermTag, String counterpart) {
         this.symbol = symbol;
         this.opened = opened;
+        this.mathTermTag = mathTermTag;
         this.counterpart = counterpart;
-        HOLDER.key_map.put( symbol, this );
+        HOLDER.key_map.put(symbol, this);
     }
 
-    public String getAppropriateString(){
-        if ( symbol.matches("\\\\(left|right).*") )
-            return symbol.substring( symbol.length()-1 );
+    public String getAppropriateString() {
+        if (symbol.matches("\\\\(left|right).*"))
+            return symbol.substring(symbol.length() - 1);
         else return symbol;
     }
 
     /**
      * Returns the counter part of a bracket.
+     *
      * @return Bracket object of the counter part. For instance the counterpart
-     *          of left_parenthesis is right_parenthesis.
+     * of left_parenthesis is right_parenthesis.
      */
-    public Brackets getCounterPart(){
-        return HOLDER.key_map.get( counterpart );
+    public Brackets getCounterPart() {
+        return HOLDER.key_map.get(counterpart);
+    }
+
+    /**
+     * Returns true if the given bracket is a valid counterpart of this object.
+     * @param other another bracket
+     * @return true if the given bracket is the counterpart to this object
+     */
+    public boolean isCounterPart(Brackets other) {
+        if (symbol.contains(LATEX_LEFT)) {
+            return other.symbol.contains(LATEX_RIGHT);
+        } else if (symbol.contains(LATEX_RIGHT)) {
+            return other.symbol.contains(LATEX_LEFT);
+        } else {
+            return this.counterpart.equals(other.symbol);
+        }
     }
 
     /**
      * Returns the bracket corresponding to the given string representation of a bracket
+     *
      * @param bracket string of (, [, {, <, ), ], } or >
      * @return the enum object
      */
-    public static Brackets getBracket(String bracket){
+    public static Brackets getBracket(String bracket) {
         bracket = bracket.replaceAll("\\s", "");
-        return HOLDER.key_map.get( bracket );
+        return HOLDER.key_map.get(bracket);
+    }
+
+    public static Brackets getBracket(MathTerm mt) {
+        return getBracket(mt.getTermText());
+    }
+
+    public static Brackets getBracket(PomTaggedExpression pte) {
+        return getBracket(pte.getRoot());
     }
 }
