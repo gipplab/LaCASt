@@ -1,0 +1,11 @@
+exclude_patterns:
+  - ".github/"
+  - ".travis/"
+  - "bin/"
+  - "config/"
+  - "libs/"
+  - "misc/"
+  - "scripts/"
+  - "scripts/"
+  - "**/resources/"
+  - "**/examples/"
