@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.common.interfaces;
 
+import mlp.ParseException;
+
 public interface IMatcher<T> {
     /**
      * Returns true if the given {@param expression} matches

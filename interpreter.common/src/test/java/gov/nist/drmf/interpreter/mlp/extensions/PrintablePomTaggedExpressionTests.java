@@ -60,7 +60,7 @@ public class PrintablePomTaggedExpressionTests {
         checkList(printComps, "a", "+", "b", "^{1+x}");
 
         List<PrintablePomTaggedExpression> innerComps = printComps.get(3).getPrintableComponents();
-        checkList(innerComps, "1+x");
+        checkList(innerComps, "{1+x}");
 
         List<PrintablePomTaggedExpression> innerInnerComps = innerComps.get(0).getPrintableComponents();
         checkList(innerInnerComps, "1", "+", "x");
@@ -73,7 +73,7 @@ public class PrintablePomTaggedExpressionTests {
         assertEquals(texString, ppte.getTexString());
 
         List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
-        checkList(printComps, "n", "x+1");
+        checkList(printComps, "[n]", "{x+1}");
 
         List<PrintablePomTaggedExpression> innerComps = printComps.get(1).getPrintableComponents();
         checkList(innerComps, "x", "+", "1");
@@ -89,7 +89,7 @@ public class PrintablePomTaggedExpressionTests {
         checkList(printComps, "\\sqrt[n]{x+1}", "+", "y");
 
         List<PrintablePomTaggedExpression> innerComps = printComps.get(0).getPrintableComponents();
-        checkList(innerComps, "n", "x+1");
+        checkList(innerComps, "[n]", "{x+1}");
     }
 
     @Test
@@ -112,7 +112,7 @@ public class PrintablePomTaggedExpressionTests {
         checkList(printComps, "1", "+", "\\sqrt{x+x^2}");
 
         List<PrintablePomTaggedExpression> innerComps = printComps.get(2).getPrintableComponents();
-        checkList(innerComps, "x+x^2");
+        checkList(innerComps, "{x+x^2}");
 
         List<PrintablePomTaggedExpression> innerInnerComps = innerComps.get(0).getPrintableComponents();
         checkList(innerInnerComps, "x", "+", "x", "^2");
@@ -126,7 +126,7 @@ public class PrintablePomTaggedExpressionTests {
         assertEquals(texString, ppte.getTexString());
 
         List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
-        checkList(printComps, "\\JacobiP", "\\alpha", "\\beta", "n", "@", "a+\\cos@{x}");
+        checkList(printComps, "\\JacobiP", "{\\alpha}", "{\\beta}", "{n}", "@", "{a+\\cos@{x}}");
     }
 
     @Test
@@ -139,10 +139,10 @@ public class PrintablePomTaggedExpressionTests {
         checkList(printComps, "\\frac{1}{2}", "+", "\\frac{2}{3}");
 
         List<PrintablePomTaggedExpression> innerComps = printComps.get(0).getPrintableComponents();
-        checkList(innerComps, "1", "2");
+        checkList(innerComps, "{1}", "{2}");
 
         List<PrintablePomTaggedExpression> innerComps2 = printComps.get(2).getPrintableComponents();
-        checkList(innerComps2, "2", "3");
+        checkList(innerComps2, "{2}", "{3}");
     }
 
     @Test
@@ -179,7 +179,7 @@ public class PrintablePomTaggedExpressionTests {
         List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
         checkList(printComps,
                 "\\operatorname",
-                "Ai",
+                "{Ai}",
                 "\\left(", "z", "\\right)",
                 "=",
                 "\\pi",

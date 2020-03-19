@@ -81,7 +81,7 @@ public class MLP {
 //            eq = "\\begin{subarray}{c} x \\end{subarray}";
             eq = "P^{(par1,par2)}_{par3}";
             eq = "a + b^{1+x}";
-            eq = "\\mathrm{i}";
+            eq = "\\left( \\left[ |<(b)+[c]>| \\right] \\right)";
 
             System.out.println();
             System.out.println("Input: " + eq);

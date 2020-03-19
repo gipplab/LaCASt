@@ -13,6 +13,8 @@ import java.util.*;
  * @author Andre Greiner-Petter
  */
 public final class FeatureSetUtility {
+    public static final String LATEX_FEATURE_KEY = "LaTeX";
+
     private FeatureSetUtility() {
         throw new UnsupportedOperationException();
     }

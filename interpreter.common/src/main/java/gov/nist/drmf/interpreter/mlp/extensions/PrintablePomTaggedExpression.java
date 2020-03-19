@@ -1,9 +1,10 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
-import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -20,8 +21,6 @@ import java.util.regex.Pattern;
  * @see PomTaggedExpression
  */
 public class PrintablePomTaggedExpression extends PomTaggedExpression {
-    public static final String LATEX_FEATURE = "LaTeX";
-
     private List<PrintablePomTaggedExpression> printableComponents;
 
     private String caption;
@@ -68,6 +67,14 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
                 idxEnd += thisMatch.length();
             }
 
+            if (
+                    (idxStart > 0 && (expr.charAt(idxStart-1) == '[' || expr.charAt(idxStart-1) == '{' )) &&
+                    (idxEnd < expr.length() && (expr.charAt(idxEnd) == ']' || expr.charAt(idxEnd) == '}'))
+            ){
+                idxStart--;
+                idxEnd++;
+            }
+
             idxEnd = checkIndexForClosingBrackets(idxStart, idxEnd, expr);
 
             innerExpression = expr.substring(idxStart, idxEnd);
@@ -75,7 +82,8 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
 
             PrintablePomTaggedExpression ppte =
                     new PrintablePomTaggedExpression(component, innerExpression);
-            addComponent(ppte);
+            super.addComponent(ppte);
+            printableComponents.add(ppte);
         }
     }
 
@@ -84,7 +92,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
         String token = mt.getTermText();
         if (token.isBlank()) {
             // might contain a latex feature, let's check it
-            String latexFeature = pte.getFeatureValue(LATEX_FEATURE);
+            String latexFeature = pte.getFeatureValue(FeatureSetUtility.LATEX_FEATURE_KEY);
             if (latexFeature != null) token = latexFeature;
         } else if (mt.wasFontActionApplied()) {
             // is there a font-action applied?
@@ -129,27 +137,37 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
 
     @Override
     public void setComponents(List<PomTaggedExpression> components) {
-        for (PomTaggedExpression pte : components) {
-            if (!(pte instanceof PrintablePomTaggedExpression))
-                throw new IllegalArgumentException("Printable tree must contain only printable elements.");
-        }
+        innerSetComponents(components);
         super.setComponents(components);
+        populatingStringChanges();
     }
 
     @Override
     public void setComponents(PomTaggedExpression... components) {
+        innerSetComponents(Arrays.asList(components));
+        super.setComponents(components);
+        populatingStringChanges();
+    }
+
+    private void innerSetComponents(Iterable<PomTaggedExpression> components) {
+        printableComponents.clear();
         for (PomTaggedExpression pte : components) {
             if (!(pte instanceof PrintablePomTaggedExpression))
                 throw new IllegalArgumentException("Printable tree must contain only printable elements.");
+            else {
+                printableComponents.add((PrintablePomTaggedExpression)pte);
+            }
         }
-        super.setComponents(components);
     }
 
     @Override
     public boolean addComponent(PomTaggedExpression pte) {
         if (pte instanceof PrintablePomTaggedExpression) {
             boolean res = super.addComponent(pte);
-            if (res) printableComponents.add((PrintablePomTaggedExpression) pte);
+            if (res) {
+                printableComponents.add((PrintablePomTaggedExpression) pte);
+                populatingStringChanges();
+            }
             return res;
         } else {
             throw new IllegalArgumentException("Printable tree must contain only printable elements.");
@@ -160,7 +178,10 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
     public boolean addComponent(int i, PomTaggedExpression pte) {
         if (pte instanceof PrintablePomTaggedExpression) {
             boolean res = super.addComponent(i, pte);
-            if (res) printableComponents.add(i, (PrintablePomTaggedExpression) pte);
+            if (res) {
+                printableComponents.add(i, (PrintablePomTaggedExpression) pte);
+                populatingStringChanges();
+            }
             return res;
         } else {
             throw new IllegalArgumentException("Printable tree must contain only printable elements.");
@@ -171,9 +192,48 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
     public void set(PomTaggedExpression pte) {
         if (pte instanceof PrintablePomTaggedExpression) {
             super.set(pte);
+            printableComponents.clear();
+            for ( PomTaggedExpression comp : pte.getComponents() ) {
+                printableComponents.add((PrintablePomTaggedExpression)comp);
+            }
+            populatingStringChanges();
         } else {
             throw new IllegalArgumentException("Printable tree must contain only printable elements.");
         }
+    }
+
+    @Override
+    public void setRoot(MathTerm mathTerm) {
+        this.caption = mathTerm.getTermText();
+        if ( caption.isBlank() )
+            this.caption = mathTerm.getFeatureValue(FeatureSetUtility.LATEX_FEATURE_KEY);
+        if ( getParent() != null ) {
+            PrintablePomTaggedExpression parent = (PrintablePomTaggedExpression)getParent();
+            parent.populatingStringChanges();
+        }
+        super.setRoot(mathTerm);
+    }
+
+    /**
+     * Populates string changes from here onwards to the root of the tree.
+     */
+    private void populatingStringChanges() {
+        if ( !printableComponents.isEmpty() ) {
+            this.caption = buildString(printableComponents);
+        }
+
+        if ( this.getParent() != null ) {
+            PrintablePomTaggedExpression parent = (PrintablePomTaggedExpression)this.getParent();
+            parent.populatingStringChanges();
+        }
+    }
+
+    public static String buildString(Iterable<PrintablePomTaggedExpression> elements) {
+        StringBuilder sb = new StringBuilder();
+        for (PrintablePomTaggedExpression ppte : elements) {
+            sb.append(ppte.getTexString());
+        }
+        return sb.toString();
     }
 
     public List<PrintablePomTaggedExpression> getPrintableComponents() {
