@@ -7,5 +7,6 @@ exclude_patterns:
   - "misc/"
   - "scripts/"
   - "scripts/"
+  - "**/test/"
   - "**/resources/"
   - "**/examples/"
