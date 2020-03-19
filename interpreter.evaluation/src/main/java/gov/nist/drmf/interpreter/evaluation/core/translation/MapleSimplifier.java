@@ -7,10 +7,11 @@ import com.maplesoft.openmaple.MString;
 import com.maplesoft.openmaple.Numeric;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.evaluation.core.numeric.ICASEngineNumericalEvaluator;
-import gov.nist.drmf.interpreter.evaluation.core.symbolic.ICASEngineSymbolicEvaluator;
+import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.evaluation.core.numeric.NumericalEvaluator;
+import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
-import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
+import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,14 +30,14 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
      */
     private static final String ZERO_PATTERN = "0\\.?0*";
 
-    private static MapleInterface mapleInterface;
+    private static MapleTranslator mapleTranslator;
     private static MapleListener mapleListener;
 
     private static final double INTERRUPTER_THRESHOLD = 50;
 
-    MapleSimplifier( MapleInterface mapleInterface ){
-        MapleSimplifier.mapleInterface = mapleInterface;
-        MapleSimplifier.mapleListener = mapleInterface.getUniqueMapleListener();
+    MapleSimplifier( MapleTranslator mapleTranslator){
+        MapleSimplifier.mapleTranslator = mapleTranslator;
+        MapleSimplifier.mapleListener = MapleInterface.getUniqueMapleListener();
         //this.mapleListener.activateAutoInterrupt( INTERRUPTER_THRESHOLD );
     }
 
@@ -158,7 +159,7 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
         String command = "simplify(" + maple_expr + ");";
         LOG.debug("Simplification: " + command);
         mapleListener.timerReset();
-        return mapleInterface.evaluateExpression( command );
+        return MapleInterface.getUniqueMapleInterface().evaluate( command );
     }
 
     @Override
@@ -176,7 +177,7 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
             String cmd = "simplify(" + input + ") assuming " + assumption + ";";
             LOG.debug("Simplification: " + cmd);
             mapleListener.timerReset();
-            return mapleInterface.evaluateExpression( cmd );
+            return MapleInterface.getUniqueMapleInterface().evaluate( cmd );
         } catch ( MapleException me ) {
             throw new ComputerAlgebraSystemEngineException(me);
         }
@@ -227,11 +228,11 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
         command += "nVals := [-3/2, -1, -1/2, 0, 1/2, 1, 3/2]:";
         command += "nTestVals := createListInList(nVars,nVals):";
         LOG.debug("NumericalMagic: " + command);
-        mapleInterface.evaluateExpression( command );
+        MapleInterface.getUniqueMapleInterface().evaluate( command );
 
         command = "NumericalTester(nTest,nTestVals,0.0001,15);";
         LOG.debug("Start numerical test: " + command);
-        return mapleInterface.evaluateExpression( command );
+        return MapleInterface.getUniqueMapleInterface().evaluate( command );
     }
 
 
@@ -372,7 +373,7 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
 
         try {
             LOG.debug("Prepare numerical test:" + NL + commandsList.toString());
-            Algebraic numCombis = mapleInterface.evaluateExpression(commandsList.toString());
+            Algebraic numCombis = MapleInterface.getUniqueMapleInterface().evaluate(commandsList.toString());
             try {
                 int i = Integer.parseInt(numCombis.toString());
                 if ( i >= maxCombis ) throw new IllegalArgumentException("Too many combinations: " + i);
@@ -401,8 +402,7 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
         try {
             LOG.debug("Perform numerical test:" + NL + commandsList.toString());
 
-            Algebraic testCases = mapleInterface
-                    .evaluateExpression(
+            Algebraic testCases = MapleInterface.getUniqueMapleInterface().evaluate(
                             commandsList.toString() + NL + testCasesName + ";"
                     );
 
@@ -412,10 +412,10 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
             String numericalTest = "numResults := SpecialNumericalTester(nTest,"+testCasesName+","+precision+");";
             LOG.debug("Start numerical evaluation: " + numericalTest);
 
-            Algebraic results = mapleInterface.evaluateExpression(numericalTest);
+            Algebraic results = MapleInterface.getUniqueMapleInterface().evaluate(numericalTest);
             if ( postProcessingMethodName != null &&
                     !postProcessingMethodName.isEmpty() ) {
-                return mapleInterface.evaluateExpression(
+                return MapleInterface.getUniqueMapleInterface().evaluate(
                         postProcessingMethodName + "(numResults);"
                 );
             } else return results;
@@ -475,13 +475,13 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
                 constraints,
                 maxCombinations );
         LOG.trace("Run: " + command);
-        Algebraic nTestValsA = mapleInterface.evaluateExpression( command + NL + "nTestVals;" );
+        Algebraic nTestValsA = MapleInterface.getUniqueMapleInterface().evaluate( command + NL + "nTestVals;" );
         checkValues(nTestValsA,"nTestVals");
 
         command = "numResults := SpecialNumericalTester(nTest,nTestVals," + precision + ");";
         LOG.debug("Start numerical test.");
         LOG.trace(command);
-        Algebraic numResults = mapleInterface.evaluateExpression( command );
+        Algebraic numResults = MapleInterface.getUniqueMapleInterface().evaluate( command );
         logResults(numResults);
 
         return "numResults";
@@ -501,7 +501,7 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
             if ( checkNumericalNTest() ){
                 // in this case, numResults is Null but nTest is numerical
                 // continue normal work by reset numResults to an empty array
-                mapleInterface.evaluateExpression( valsName+" := [];" );
+                MapleInterface.getUniqueMapleInterface().evaluate( valsName+" := [];" );
                 return;
             }
             throw new IllegalArgumentException("There are no valid test values.");
@@ -509,7 +509,7 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
 
         if ( nTestValsA instanceof List ){
             if (checkNumericalNTest()){
-                mapleInterface.evaluateExpression( valsName+" := [];" );
+                MapleInterface.getUniqueMapleInterface().evaluate( valsName+" := [];" );
                 return;
             }
 
@@ -529,7 +529,7 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
     }
 
     private boolean checkNumericalNTest() throws MapleException {
-        Algebraic numericalCheck = mapleInterface.evaluateExpression("nTest;");
+        Algebraic numericalCheck = MapleInterface.getUniqueMapleInterface().evaluate("nTest;");
         return numericalCheck instanceof Numeric;
     }
 
@@ -572,9 +572,9 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
         command += combis + ":";
         LOG.debug("Calculate number of combinations.");
         LOG.trace(command);
-        mapleInterface.evaluateExpression( command );
+        MapleInterface.getUniqueMapleInterface().evaluate( command );
 
-        Algebraic numOfCombis = mapleInterface.evaluateExpression("inCombis;");
+        Algebraic numOfCombis = MapleInterface.getUniqueMapleInterface().evaluate("inCombis;");
         try {
             int i = Integer.parseInt(numOfCombis.toString());
             if ( i >= maxCombinations ) throw new IllegalArgumentException("Too many combinations: " + i);
@@ -611,7 +611,7 @@ public class MapleSimplifier implements ICASEngineSymbolicEvaluator<Algebraic>, 
         try {
             String command = "op(1, ToInert(is(" + expr + ")));";
             mapleListener.timerReset();
-            Algebraic a = mapleInterface.evaluateExpression( command );
+            Algebraic a = MapleInterface.getUniqueMapleInterface().evaluate( command );
             if ( !(a instanceof MString) ) return RelationResults.ERROR;
 
             MString ms = (MString) a;

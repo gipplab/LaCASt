@@ -4,7 +4,7 @@ import static gov.nist.drmf.interpreter.maple.common.MapleConstants.*;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
+import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -140,10 +140,10 @@ public class TranslatedList extends TranslatedExpression {
 
     /**
      * Embrace this expression with default brackets.
-     * @see MapleInterface#DEFAULT_LATEX_BRACKET
+     * @see MapleTranslator#DEFAULT_LATEX_BRACKET
      */
     public void embrace(){
-        embrace( MapleInterface.DEFAULT_LATEX_BRACKET );
+        embrace( MapleTranslator.DEFAULT_LATEX_BRACKET );
     }
 
     /**

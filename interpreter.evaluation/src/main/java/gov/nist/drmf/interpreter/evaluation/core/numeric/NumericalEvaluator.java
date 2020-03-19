@@ -17,10 +17,9 @@ import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
 import gov.nist.drmf.interpreter.evaluation.core.symbolic.SymbolicEvaluator;
 import gov.nist.drmf.interpreter.evaluation.core.translation.MapleSimplifier;
-import gov.nist.drmf.interpreter.evaluation.core.translation.MapleTranslator;
 import gov.nist.drmf.interpreter.evaluation.core.translation.MathematicaTranslator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
-import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
+import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -407,18 +406,18 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
     public static NumericalEvaluator createStandardMapleEvaluator()
             throws IOException, MapleException, ComputerAlgebraSystemEngineException {
         String[] mapleScripts = new String[3];
-        String numericalProc = MapleInterface.extractProcedure(GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES);
+        String numericalProc = MapleTranslator.extractProcedure(GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES);
         mapleScripts[0] = numericalProc;
 
         // load expectation of results template
         NumericalConfig config =  NumericalConfig.config();
         String expectationTemplate = config.getExpectationTemplate();
         // load numerical sieve
-        String sieve_procedure = MapleInterface.extractProcedure( GlobalPaths.PATH_MAPLE_NUMERICAL_SIEVE_PROCEDURE );
+        String sieve_procedure = MapleTranslator.extractProcedure( GlobalPaths.PATH_MAPLE_NUMERICAL_SIEVE_PROCEDURE );
         String sieve_procedure_relation = "rel" + sieve_procedure;
 
         // replace condition placeholder
-        String numericalSievesMethod = MapleInterface.extractNameOfProcedure(sieve_procedure);
+        String numericalSievesMethod = MapleTranslator.extractNameOfProcedure(sieve_procedure);
         String numericalSievesMethodRelations = "rel" + numericalSievesMethod;
 
         sieve_procedure = sieve_procedure.replaceAll(
@@ -435,7 +434,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         mapleScripts[2] = sieve_procedure_relation;
         LOG.debug("Setup done!");
 
-        MapleTranslator translator = new MapleTranslator();
+        gov.nist.drmf.interpreter.evaluation.core.translation.MapleTranslator translator = new gov.nist.drmf.interpreter.evaluation.core.translation.MapleTranslator();
         translator.init();
 
         MapleSimplifier simplifier = translator.getMapleSimplifier();

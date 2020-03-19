@@ -10,7 +10,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.interfaces.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.evaluation.constraints.IConstraintTranslator;
 import gov.nist.drmf.interpreter.evaluation.core.numeric.ICASEngineNumericalEvaluator;
-import gov.nist.drmf.interpreter.evaluation.core.symbolic.ICASEngineSymbolicEvaluator;
+import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.mathematica.MathematicaInterface;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;

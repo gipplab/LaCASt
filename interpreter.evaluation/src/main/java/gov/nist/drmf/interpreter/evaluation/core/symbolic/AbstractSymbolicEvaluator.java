@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation.core.symbolic;
 
+import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.interfaces.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.evaluation.constraints.IConstraintTranslator;

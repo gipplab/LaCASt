@@ -7,12 +7,11 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.evaluation.core.translation.MapleSimplifier;
-import gov.nist.drmf.interpreter.evaluation.core.translation.MapleTranslator;
 import gov.nist.drmf.interpreter.evaluation.core.translation.RelationResults;
 import gov.nist.drmf.interpreter.evaluation.core.numeric.NumericalEvaluator;
 import gov.nist.drmf.interpreter.evaluation.core.symbolic.SymbolicEvaluator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
-import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
+import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
@@ -45,7 +44,7 @@ public class EquationTestCases {
 
     private static HashMap<String, String> link_librarie;
 
-    private static MapleTranslator mapleT;
+    private static gov.nist.drmf.interpreter.evaluation.core.translation.MapleTranslator mapleT;
     private static MapleSimplifier mapleS;
     private static LinkedList<TestCaseInLaTeX> testCases;
 
@@ -60,7 +59,7 @@ public class EquationTestCases {
     public static void init(){
         Integer[] ca = new Integer[]{1};
         testCases = new LinkedList<>();
-        mapleT = new MapleTranslator();
+        mapleT = new gov.nist.drmf.interpreter.evaluation.core.translation.MapleTranslator();
         link_librarie = new HashMap<>();
         unknown_macro_counter = new HashMap<>();
         TestStatus.reset();
@@ -93,7 +92,7 @@ public class EquationTestCases {
             mapleT.init();
             mapleS = mapleT.getMapleSimplifier();
             mapleT.enterMapleCommand(
-                    MapleInterface.extractProcedure( GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES )
+                    MapleTranslator.extractProcedure( GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES )
             );
 
             br.lines()

@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.evaluation.common;
+package gov.nist.drmf.interpreter.common.cas;
 
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 
