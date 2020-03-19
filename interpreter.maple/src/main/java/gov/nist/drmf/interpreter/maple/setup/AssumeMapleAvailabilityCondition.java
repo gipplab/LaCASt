@@ -1,13 +1,11 @@
 package gov.nist.drmf.interpreter.maple.setup;
 
+import gov.nist.drmf.interpreter.common.tests.AssumeToolAvailabilityCondition;
 import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
-import org.junit.jupiter.api.extension.ConditionEvaluationResult;
-import org.junit.jupiter.api.extension.ExecutionCondition;
-import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.platform.commons.support.AnnotationSupport;
 
+import java.lang.reflect.AnnotatedElement;
 import java.util.Optional;
-
-import static org.junit.platform.commons.support.AnnotationSupport.findAnnotation;
 
 /**
  * This class checks if Maple is available to run tests. Tests will be skipped if
@@ -16,20 +14,19 @@ import static org.junit.platform.commons.support.AnnotationSupport.findAnnotatio
  * @see AssumeMapleAvailability
  * @author Andre Greiner-Petter
  */
-public class AssumeMapleAvailabilityCondition implements ExecutionCondition {
+public class AssumeMapleAvailabilityCondition extends AssumeToolAvailabilityCondition<AssumeMapleAvailability> {
     @Override
-    public ConditionEvaluationResult evaluateExecutionCondition(ExtensionContext extensionContext) {
-        Optional<AssumeMapleAvailability> annotation =
-                findAnnotation(extensionContext.getElement(), AssumeMapleAvailability.class);
+    public Optional<AssumeMapleAvailability> getAnnotations(Optional<? extends AnnotatedElement> element) {
+        return AnnotationSupport.findAnnotation(element, AssumeMapleAvailability.class);
+    }
 
-        if ( annotation.isPresent() ){
-            if (MapleInterface.isMaplePresent()) {
-                return ConditionEvaluationResult.enabled("Maple is available. Continuing tests.");
-            } else {
-                return ConditionEvaluationResult.disabled("Maple is not available, skip related tests.");
-            }
-        } else {
-            return ConditionEvaluationResult.enabled("No availability checks. Continuing tests without conditions.");
-        }
+    @Override
+    public boolean isToolAvailable() {
+        return MapleInterface.isMaplePresent();
+    }
+
+    @Override
+    public String getToolName() {
+        return "Maple";
     }
 }

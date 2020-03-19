@@ -2,30 +2,29 @@ package gov.nist.drmf.interpreter.common.tests;
 
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
-import org.junit.jupiter.api.extension.ConditionEvaluationResult;
-import org.junit.jupiter.api.extension.ExecutionCondition;
-import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.platform.commons.support.AnnotationSupport;
 
+import java.lang.reflect.AnnotatedElement;
 import java.util.Optional;
 
-import static org.junit.platform.commons.support.AnnotationSupport.findAnnotation;
-
 /**
+ * This class checks if MLP is available to run tests.
+ *
  * @author Andre Greiner-Petter
  */
-public class AssumeMLPAvailabilityCondition implements ExecutionCondition {
+public class AssumeMLPAvailabilityCondition extends AssumeToolAvailabilityCondition<AssumeMLPAvailability> {
     @Override
-    public ConditionEvaluationResult evaluateExecutionCondition(ExtensionContext extensionContext) {
-        Optional<AssumeMLPAvailability> annotation =
-                findAnnotation(extensionContext.getElement(), AssumeMLPAvailability.class);
-        if ( annotation.isPresent() ){
-            if (MLPWrapper.isMLPPresent()) {
-                return ConditionEvaluationResult.enabled("MLP is available. Continuing tests.");
-            } else {
-                return ConditionEvaluationResult.disabled("MLP is not available, skip related tests.");
-            }
-        } else {
-            return ConditionEvaluationResult.enabled("No availability checks. Continuing tests without conditions.");
-        }
+    public Optional<AssumeMLPAvailability> getAnnotations(Optional<? extends AnnotatedElement> element) {
+        return AnnotationSupport.findAnnotation(element, AssumeMLPAvailability.class);
+    }
+
+    @Override
+    public boolean isToolAvailable() {
+        return MLPWrapper.isMLPPresent();
+    }
+
+    @Override
+    public String getToolName() {
+        return "MLP";
     }
 }
