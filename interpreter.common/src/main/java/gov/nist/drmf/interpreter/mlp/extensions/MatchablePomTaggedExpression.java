@@ -199,6 +199,9 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
                 if (followingExpressions.isEmpty())
                     return false;
 
+                if ( isNotAllowedTokenForWildcardMatch(next) )
+                    return false;
+
                 this.wildcardMatch.add(next);
                 Brackets br = Brackets.getBracket( next.getRoot().getTermText() );
                 if ( br != null ) {
@@ -224,6 +227,11 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
             followingExpressions.add(0, next);
             return true;
         }
+    }
+
+    private boolean isNotAllowedTokenForWildcardMatch(PomTaggedExpression pte) {
+        String mathTerm = pte.getRoot().getTermText();
+        return mathTerm != null && mathTerm.matches("[,;.]");
     }
 
     public Map<String, String> getStringMatches() {

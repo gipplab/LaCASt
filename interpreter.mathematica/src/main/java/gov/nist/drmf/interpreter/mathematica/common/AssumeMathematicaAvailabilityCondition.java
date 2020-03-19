@@ -1,31 +1,32 @@
 package gov.nist.drmf.interpreter.mathematica.common;
 
+import gov.nist.drmf.interpreter.common.tests.AssumeToolAvailabilityCondition;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
-import org.junit.jupiter.api.extension.ConditionEvaluationResult;
-import org.junit.jupiter.api.extension.ExecutionCondition;
-import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.platform.commons.support.AnnotationSupport;
 
+import java.lang.reflect.AnnotatedElement;
 import java.util.Optional;
 
-import static org.junit.platform.commons.support.AnnotationSupport.findAnnotation;
-
 /**
+ * This class checks if Mathematica is available to run tests. Tests will be skipped if
+ * Mathematica is not available.
+ *
+ * @see AssumeMathematicaAvailability
  * @author Andre Greiner-Petter
  */
-public class AssumeMathematicaAvailabilityCondition implements ExecutionCondition {
+public class AssumeMathematicaAvailabilityCondition extends AssumeToolAvailabilityCondition<AssumeMathematicaAvailability> {
     @Override
-    public ConditionEvaluationResult evaluateExecutionCondition(ExtensionContext extensionContext) {
-        Optional<AssumeMathematicaAvailability> annotation =
-                findAnnotation(extensionContext.getElement(), AssumeMathematicaAvailability.class);
+    public Optional<AssumeMathematicaAvailability> getAnnotations(Optional<? extends AnnotatedElement> element) {
+        return AnnotationSupport.findAnnotation(element, AssumeMathematicaAvailability.class);
+    }
 
-        if ( annotation.isPresent() ){
-            if (MathematicaConfig.isMathematicaPresent()) {
-                return ConditionEvaluationResult.enabled("Mathematica is available. Continuing tests.");
-            } else {
-                return ConditionEvaluationResult.disabled("Mathematica is not available, skip related tests.");
-            }
-        } else {
-            return ConditionEvaluationResult.enabled("No availability checks. Continuing tests without conditions.");
-        }
+    @Override
+    public boolean isToolAvailable() {
+        return MathematicaConfig.isMathematicaPresent();
+    }
+
+    @Override
+    public String getToolName() {
+        return "Mathematica";
     }
 }

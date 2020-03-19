@@ -99,11 +99,8 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
-    @Disabled
     public void qJacobiMismatchBlueprintTest() {
         // it's q-Jacobi but not Jacobi, so the match should fail
-        // TODO implement features for matches (var1 matches "x; c, d; q" or only "x"?)
-        // TODO other features allow no direct matches but matches on featureSets?
         assertFalse(jacobiBlueprint.match("P^{(\\alpha, \\beta)}_{n} \\left( x; c, d; q \\right)"));
     }
 
