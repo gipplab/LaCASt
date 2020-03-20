@@ -1,6 +1,8 @@
-package gov.nist.drmf.interpreter.evaluation.core;
+package giv.nist.drmf.interpreter.core;
 
-import gov.nist.drmf.interpreter.evaluation.core.translation.MapleTranslator;
+import gov.nist.drmf.interpreter.core.Translator;
+import gov.nist.drmf.interpreter.maple.extension.Simplifier;
+import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.function.Executable;
 
@@ -13,8 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  *
  * Created by AndreG-P on 06.03.2017.
  */
+@AssumeMapleAvailability
 public abstract class AbstractRoundTrip {
-    protected MapleTranslator translator;
+    protected Translator translator;
+    private static Simplifier simplifier = new Simplifier();
 
     protected Iterable<DynamicTest> createFromMapleTestList( String[] tests, String[] names ){
         List<DynamicTest> list = new LinkedList<>();
@@ -31,7 +35,7 @@ public abstract class AbstractRoundTrip {
             String message = "Not symbolically equivalent! Expected: " + maple_1 + System.lineSeparator();
             message += "But get: " + maple_2;
             assertTrue(
-                    translator.getMapleSimplifier().isEquivalent( maple_1, maple_2 ),
+                    simplifier.isEquivalent( maple_1, maple_2 ),
                     message
             );
         };

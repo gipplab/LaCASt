@@ -1,8 +1,8 @@
-package gov.nist.drmf.interpreter.evaluation.core.cases;
+package giv.nist.drmf.interpreter.core.cases;
 
 import com.maplesoft.externalcall.MapleException;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.evaluation.core.AbstractRoundTrip;
+import giv.nist.drmf.interpreter.core.AbstractRoundTrip;
 
 import static org.junit.jupiter.api.Assertions.fail;
 

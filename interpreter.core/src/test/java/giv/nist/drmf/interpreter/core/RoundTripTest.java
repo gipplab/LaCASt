@@ -1,13 +1,13 @@
-package gov.nist.drmf.interpreter.evaluation.core;
+package giv.nist.drmf.interpreter.core;
 
 import com.maplesoft.externalcall.MapleException;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
-import gov.nist.drmf.interpreter.evaluation.core.translation.MapleTranslator;
+import gov.nist.drmf.interpreter.core.Translator;
+import giv.nist.drmf.interpreter.core.cases.FunctionsTests;
+import giv.nist.drmf.interpreter.core.cases.LaTeXRoundTripIdentityTests;
+import giv.nist.drmf.interpreter.core.cases.PolynomialTests;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
-import gov.nist.drmf.interpreter.evaluation.core.cases.FunctionsTests;
-import gov.nist.drmf.interpreter.evaluation.core.cases.LaTeXRoundTripIdentityTests;
-import gov.nist.drmf.interpreter.evaluation.core.cases.PolynomialTests;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,12 +20,12 @@ import static org.junit.jupiter.api.Assertions.fail;
 @AssumeMapleAvailability
 @AssumeMLPAvailability
 public class RoundTripTest {
-    private static MapleTranslator global_translator = new MapleTranslator();
+    private static Translator global_translator;
 
     @BeforeAll
     public static void setup(){
         try {
-            global_translator.init();
+            global_translator = new Translator();
         } catch ( Exception e ){
             e.printStackTrace();
         }
@@ -85,11 +85,11 @@ public class RoundTripTest {
         for ( int i = 0; i < threshold; i++ ){
             latex_result = global_translator.translateFromMapleToLaTeXClean( test );
             back_to_maple = global_translator.translateFromLaTeXToMapleClean( latex_result, null );
-            global_translator.forceGC();
+            global_translator.getMapleInterface().invokeGC();
         }
 
         try {
-            boolean b = global_translator.getMapleSimplifier().isEquivalent( test, back_to_maple );
+            boolean b = global_translator.isEquivalent( test, back_to_maple );
             assertTrue(b,
                     "Not symbolically equivalent! Expected: " + test + System.lineSeparator() +
                             "But get: " + back_to_maple);
@@ -118,7 +118,7 @@ public class RoundTripTest {
                     fail( test_case + System.lineSeparator() + new_trans );
             }
 
-            global_translator.forceGC();
+            global_translator.getMapleInterface().forceGC();
         }
         System.out.println( cycles );
     }

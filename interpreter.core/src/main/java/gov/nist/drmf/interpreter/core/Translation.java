@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.evaluation.core.translation;
+package gov.nist.drmf.interpreter.core;
 
 import com.maplesoft.openmaple.Algebraic;
 
@@ -65,7 +65,9 @@ public class Translation {
     /**
      * Returns the algebraic object of the translated expression. Be aware this
      * could be null. This class only contains the Algebraic object if you invoke
-     * {@link MapleTranslator#translateFromLaTeXToMapleAlgebraic(String,String)} (06. March 2017).
+     * {@link gov.nist.drmf.interpreter.core.Translator#translateFromLaTeXToMapleAlgebraic(String,String)}
+     * (06. March 2017).
+     *
      * @return the algebraic object of the translated expression
      */
     public Algebraic getAlgebraicTranslatedExpression() {

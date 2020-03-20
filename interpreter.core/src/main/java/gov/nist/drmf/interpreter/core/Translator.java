@@ -1,42 +1,29 @@
-package gov.nist.drmf.interpreter.evaluation.core.translation;
+package gov.nist.drmf.interpreter.core;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.interfaces.IComputerAlgebraSystemEngine;
-import gov.nist.drmf.interpreter.evaluation.constraints.IConstraintTranslator;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
+import gov.nist.drmf.interpreter.maple.extension.Simplifier;
+import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.util.List;
 import java.util.Observer;
-import java.util.Properties;
 
 /**
  * This class can be used as an interface with the translation
  * programs between semantic LaTeX and Maple. It provides some
  * typical functions to translate expressions.
  *
- * Be aware you have to initialize the program before you run
- * any translations with the {@link #init()} function.
+ * It is recommended to only use one instance of this class. Take
+ * the default instance via {@link #getDefaultInstance()}.
  *
- * To run correctly, it is also necessary to set the path to the
- * native libraries of your installed version of Maple. This path
- * is defined in the libs folder in the maple_config.properties
- * file. You can change the path directly in the file or invoke
- * the {@link #MapleTranslator(Path)} constructor. This will change the
- * setting in the file automatically.
- *
- * Created by AndreG-P on 03.03.2017.
  * @see Translation
  * @see Algebraic
  * @see MapleException
@@ -44,126 +31,91 @@ import java.util.Properties;
  * @see com.maplesoft.openmaple.Engine
  * @see gov.nist.drmf.interpreter.maple.translation.MapleTranslator
  * @see gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator
+ * @author Andre Greiner-Petter
  */
-@SuppressWarnings("ALL")
-public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraSystemEngine<Algebraic> {
+@SuppressWarnings("unused")
+public class Translator {
     /**
-     * The logger.
+     * Logging via Log4J2
      */
-    private static final Logger LOG = LogManager.getLogger( MapleTranslator.class );
+    private static final Logger LOG = LogManager.getLogger(Translator.class.getName());
 
     /**
-     * The interface to interact with the Maple translator
+     * Forward translators
      */
-    private static gov.nist.drmf.interpreter.maple.translation.MapleTranslator mapleTranslator;
+    private final SemanticLatexTranslator dlmfMapleInterface;
+//    private final SemanticLatexTranslator dlmfMathematicaInterface;
 
     /**
-     * The maple simplifier
+     * Backward translators
      */
-    private MapleSimplifier simplifier;
+    private final MapleInterface mapleInterface;
+    private final MapleTranslator mapleTranslator;
+    private final Simplifier mapleSimplifier;
 
     /**
-     * The interface to interact with the DLMF LaTeX translator
+     * Default instance of this class
      */
-    private SemanticLatexTranslator dlmfInterface;
+    private static Translator translator;
 
     /**
-     * A simple version of a Maple -> semantic LaTeX -> Maple round trip
-     * translator. You can specify a translation in the first argument. If
-     * not the program asks you about it.
-     * @param args empty or a maple expression in the first argument
-     */
-    public static void main(String[] args) throws IOException, MapleException {
-        // TODO
-
-        String in = "n\\idot\\Sum{k}{1}{n}@{\\frac{1}{y^{k}}}";
-        MapleTranslator t = new MapleTranslator();
-        t.init();
-        String maple = t.translateFromLaTeXToMapleClean(in, null);
-        System.out.println(maple);
-    }
-
-    /**
-     * Creates an object of the translator class.
-     * It is highly recommended to just instantiate one MapleTranslator
-     * class at all!
+     * Creates an object of the translator class. Note that Maple only
+     * allows one running interface at a time. To avoid overlapping and
+     * slow performance, it is recommended to use the default instance
+     * of this class via {@link #getDefaultInstance()}.
      *
-     * Before you start any translation process, you have to invoke
-     * the {@link #init()} method once!
+     * Maple also requires proper environment variables
+     * MAPLE and LD_LIBRARY_PATH. See more about it in README.md
      */
-    public MapleTranslator(){}
-
-    /**
-     * Creates an object of the translator class with a specified
-     * path to your maple native libraries. You can change this path
-     * manually in libs/maple_config.properties.
-     * This constructor changes the maple_config.properties file and
-     * invoke the default constructor.
-     *
-     * It is highly recommended to just instantiate one MapleTranslator
-     * class at all!
-     *
-     * Before you start any translation process, you have to invoke
-     * the {@link #init()} method once!
-     *
-     * @param maple_dir the path to your maple native libraries. You
-     *                  can enter the maple command "kernelopts(mapledir);"
-     *                  in Maple to figure out the correct path.
-     *                  You can enter this path manually to the
-     *                  libs/maple_config.properties file.
-     */
-    public MapleTranslator(Path maple_dir ){
-        this();
-        try (FileOutputStream out =
-                     new FileOutputStream( GlobalPaths.PATH_MAPLE_CONFIG.toFile() )){
-            Properties props = new Properties();
-            props.setProperty( Keys.KEY_MAPLE_BIN, maple_dir.toAbsolutePath().toString() );
-            props.store(out, GlobalConstants.PROPS_COMMENTS);
-            LOG.debug("Finished to setup the properties file.");
-        } catch ( IOException ioe ){
-            LOG.fatal( "Cannot write the path into the properties file.", ioe );
-        }
-    }
-
-    /**
-     * Initialize both back ends. The Maple interface will be initialized
-     * first. Take a look at {@link gov.nist.drmf.interpreter.maple.translation.MapleTranslator#init()} and
-     * {@link SemanticLatexTranslator#init(Path)} for more details
-     * about the initialization process.
-     *
-     * @throws MapleException appears when the initialization of the
-     *                      {@link com.maplesoft.openmaple.Engine} fails or
-     *                      Maple is not able to evaluate the previously
-     *                      loaded procedure.
-     * @throws IOException  If it is not possible to load translation
-     *                      information from files.
-     */
-    public void init() throws MapleException, IOException {
+    public Translator() throws IOException {
         // setup logging
         System.setProperty( Keys.KEY_SYSTEM_LOGGING, GlobalPaths.PATH_LOGGING_CONFIG.toString() );
 
-        mapleTranslator = gov.nist.drmf.interpreter.maple.translation.MapleTranslator.getDefaultInstance();
-        LOG.debug("Initialized Maple Interface.");
+        LOG.debug("Instantiate forward translation to Maple");
+        dlmfMapleInterface = new SemanticLatexTranslator(Keys.KEY_MAPLE);
+        dlmfMapleInterface.init(GlobalPaths.PATH_REFERENCE_DATA);
 
-        dlmfInterface = new SemanticLatexTranslator( Keys.KEY_MAPLE );
-        dlmfInterface.init( GlobalPaths.PATH_REFERENCE_DATA );
-        LOG.debug("Initialized DLMF LaTeX Interface.");
+//        LOG.debug("Instantiate forward translation to Mathematica");
+//        dlmfMathematicaInterface = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
+//        dlmfMathematicaInterface.init(GlobalPaths.PATH_REFERENCE_DATA);
 
-        simplifier = new MapleSimplifier(mapleTranslator);
+        LOG.debug("Instantiate Maple's interface and backward translator");
+        mapleInterface = MapleInterface.getUniqueMapleInterface();
+        mapleTranslator = MapleTranslator.getDefaultInstance();
+        mapleSimplifier = new Simplifier();
     }
 
-    @Override
-    public Algebraic enterCommand(String command) throws ComputerAlgebraSystemEngineException {
-        try {
-            return enterMapleCommand(command);
-        } catch ( MapleException me ) {
-            throw new ComputerAlgebraSystemEngineException(me);
+    /**
+     * Returns the default translator instance. If there is an error due
+     * instantiation, it returns null and logs an error message.
+     * @return the default translator instance or null if something went wrong
+     */
+    public static Translator getDefaultInstance() {
+        if ( translator == null ) {
+            try {
+                translator = new Translator();
+            } catch (IOException e) {
+                LOG.error("Cannot instantiate default translator", e);
+                return null;
+            }
         }
+        return translator;
     }
 
-    @Override
-    public String translate(String expression, String label) throws TranslationException {
-        return translateFromLaTeXToMapleClean(expression, label);
+    public SemanticLatexTranslator getDLMFToMapleTranslator() {
+        return dlmfMapleInterface;
+    }
+
+    public MapleInterface getMapleInterface() {
+        return mapleInterface;
+    }
+
+    public MapleTranslator getMapleTranslator() {
+        return mapleTranslator;
+    }
+
+    public Simplifier getMapleSimplifier() {
+        return mapleSimplifier;
     }
 
     /**
@@ -171,28 +123,19 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * In consequence, you have to reload all custom scripts and set all
      * variables again. Try to avoid restarting the engine again and again!
      *
-     * @throws MapleException if the restart throughs an error
-     * @throws IOException if the default scripts cannot be loaded
+     * @throws MapleException if the restart throws an error
      */
-    public void restartMapleSession() throws MapleException, IOException {
-        MapleInterface.getUniqueMapleInterface().restart();
-    }
-
-    public void addMapleMemoryObserver( Observer observer ){
-        MapleInterface.getUniqueMapleInterface().addMemoryObserver( observer );
+    public void restartMapleSession() throws MapleException {
+        mapleInterface.restart();
     }
 
     /**
-     * Returns the maple simplifier to simplify expressions.
-     * This method returns null, if you invoke it before
-     * {@link #init()}!
-     *
-     * @return the maple implifier or null, if you havn't invoked {@link #init()}
-     * @see MapleSimplifier
-     * @see #init()
+     * Allows to add an observer to the memory state of the Maple.
+     * @param observer observer
      */
-    public MapleSimplifier getMapleSimplifier(){
-        return simplifier;
+    @Deprecated
+    public void addMapleMemoryObserver( Observer observer ){
+        mapleInterface.addMemoryObserver( observer );
     }
 
     /**
@@ -216,9 +159,9 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      */
     public String translateFromLaTeXToMapleSetModeClean( String latex_expression, String label )
             throws TranslationException{
-        dlmfInterface.activateSetMode();
+        dlmfMapleInterface.activateSetMode();
         String translation = translateFromLaTeXToMaple( latex_expression, label ).getTranslatedExpression();
-        dlmfInterface.deactivateSetMode();
+        dlmfMapleInterface.deactivateSetMode();
         return translation;
     }
 
@@ -227,20 +170,20 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * The {@link Translation} is a java bean to save the translated expression and
      * further information about the translation. This object doesn't contains an
      * {@link Algebraic} object of the translation. Use
-     * {@link #translateFromLaTeXToMapleAlgebraicClean(String)}
-     * or {@link #translateFromLaTeXToMapleAlgebraic(String)} to get this object.
+     * {@link #translateFromLaTeXToMapleAlgebraicClean(String, String)}
+     * or {@link #translateFromLaTeXToMapleAlgebraic(String, String)} to get this object.
      *
      * @param latex_expression expression in semantic LaTeX
      * @param label label of the latex expression (can be null if there is none)
      * @return equivalent expression in Maple syntax in a {@link Translation} object.
      * @throws TranslationException if the translation fails.
      */
-    public Translation translateFromLaTeXToMaple( String latex_expression, String label )
+    public Translation translateFromLaTeXToMaple(String latex_expression, String label )
             throws TranslationException {
-        String translation = dlmfInterface.translate( latex_expression, label );
+        String translation = dlmfMapleInterface.translate( latex_expression, label );
         return new Translation(
                 translation,
-                dlmfInterface.getInfoLogger().toString() );
+                dlmfMapleInterface.getInfoLogger().toString() );
     }
 
     /**
@@ -274,7 +217,7 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
     public Translation translateFromLaTeXToMapleAlgebraic( String latex_expression, String label )
             throws TranslationException, MapleException {
         Translation t = translateFromLaTeXToMaple( latex_expression, label );
-        Algebraic a = MapleInterface.getUniqueMapleInterface().evaluate( "'" + t.getTranslatedExpression() + "'" );
+        Algebraic a = mapleInterface.evaluate( "'" + t.getTranslatedExpression() + "'" );
         return new Translation( a, t.getTranslatedExpression(), t.getAdditionalInformation() );
     }
 
@@ -285,10 +228,9 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @param maple_expression expression in Maple syntax
      * @return the equivalent semantic LaTeX expression.
      * @throws TranslationException if the translation failed
-     * @throws MapleException if the evaluation of the given string failed
      */
     public String translateFromMapleToLaTeXClean( String maple_expression )
-            throws TranslationException, MapleException {
+            throws TranslationException {
         return translateFromMapleToLaTeX( maple_expression ).getTranslatedExpression();
     }
 
@@ -300,10 +242,9 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @return  the equivalent semantic LaTeX expression and further
      *          information about the translation
      * @throws TranslationException if the translation failed
-     * @throws MapleException if the evaluation of the given string failed
      */
     public Translation translateFromMapleToLaTeX( String maple_expression )
-            throws TranslationException, MapleException {
+            throws TranslationException {
         String trans = mapleTranslator.translate( maple_expression );
         return new Translation( trans, mapleTranslator.getInfos().toString() );
     }
@@ -316,10 +257,9 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @param maple_expression algebraic object of a Maple expression
      * @return the equivalent semantic LaTeX expression
      * @throws TranslationException if the translation failed
-     * @throws MapleException if the evaluation of the given algebraic object failed
      */
     public String translateFromMapleToLaTeXClean( Algebraic maple_expression )
-            throws TranslationException, MapleException {
+            throws TranslationException {
         return translateFromMapleToLaTeX( maple_expression ).getTranslatedExpression();
     }
 
@@ -332,10 +272,9 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @return  the equivalent semantic LaTeX expression and further
      *          information about the translation.
      * @throws TranslationException if the translation failed
-     * @throws MapleException if the evaluation of the given algebraic object failed
      */
     public Translation translateFromMapleToLaTeX( Algebraic maple_expression )
-            throws TranslationException, MapleException {
+            throws TranslationException {
         String maple_input = maple_expression.toString();
         return translateFromMapleToLaTeX( maple_input );
     }
@@ -348,13 +287,11 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * and output strings are equivalent.
      *
      * @param maple_expression string of a Maple expression
-     * @param label label of the latex expression (can be null if there is none)
      * @return string of a Maple expression after the translation process to LaTeX and back again
      * @throws TranslationException if the forward or backward translation failed
-     * @throws MapleException if the program cannot evaluate the given expression
      */
     public String oneCycleRoundTripTranslationFromMaple( String maple_expression)
-            throws TranslationException, MapleException {
+            throws TranslationException {
         String latex = translateFromMapleToLaTeXClean( maple_expression );
         return translateFromLaTeXToMapleClean( latex, null );
     }
@@ -364,7 +301,6 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * but takes an {@link Algebraic} object and returns an {@link Algebraic} object.
      *
      * @param maple_expression algebraic object of a Maple expression
-     * @param label label of the latex expression (can be null if there is none)
      * @return algebraic object of a Maple expression after the translation process to LaTeX and back again
      * @throws TranslationException if the forward or backward translation failed
      * @throws MapleException if the program cannot evaluate the given expression
@@ -387,10 +323,9 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      * @return  string of a semantic LaTeX expression after the translation process
      *          to Maple and back again
      * @throws TranslationException if the forward or backward translation failed
-     * @throws MapleException if Maple cannot evaluate an expression
      */
     public String oneCycleRoundTripTranslationFromLaTeX( String latex_expression, String label )
-            throws TranslationException, MapleException {
+            throws TranslationException {
         String maple = translateFromLaTeXToMapleClean( latex_expression, label );
         return translateFromMapleToLaTeXClean( maple );
     }
@@ -413,22 +348,26 @@ public class MapleTranslator implements IConstraintTranslator, IComputerAlgebraS
      */
     public Algebraic enterMapleCommand( String mapleCommand )
             throws MapleException {
-        return MapleInterface.getUniqueMapleInterface().evaluate(mapleCommand);
+        return mapleInterface.evaluate(mapleCommand);
     }
 
-    public void forceGC() throws ComputerAlgebraSystemEngineException {
-        try {
-            MapleInterface.getUniqueMapleInterface().invokeGC();
-        } catch (MapleException me) {
-            throw new ComputerAlgebraSystemEngineException(me);
-        }
-    }
-
-    @Override
-    public String buildList(List<String> list) {
-        String listStr = MapleSimplifier.makeMapleList(list);
-        if ( listStr != null && listStr.length() > 3 )
-            return listStr.substring(1, listStr.length()-1);
-        return listStr;
+    /**
+     * This method takes two maple expressions and returns true when both expression
+     * are symbolically the same. To verify this, we use the "simplify" command from
+     * Maple. Be aware that both expressions still can be mathematically equivalent
+     * even when this method returns false!
+     *
+     * Be also aware that null inputs always returns false, even when both inputs are null.
+     * However, two empty expression such as "" and "" returns true.
+     *
+     * @param exp1 Maple string of the first expression
+     * @param exp2 Maple string of the second expression
+     * @return true if both expressions are symbolically equivalent or false otherwise.
+     *          If it returns false, both expressions still can be mathematically equivalent!
+     * @throws ComputerAlgebraSystemEngineException If the test of equivalence produces an Maple error.
+     */
+    public boolean isEquivalent( String exp1, String exp2 )
+            throws ComputerAlgebraSystemEngineException {
+        return mapleSimplifier.isEquivalent(exp1, exp2);
     }
 }

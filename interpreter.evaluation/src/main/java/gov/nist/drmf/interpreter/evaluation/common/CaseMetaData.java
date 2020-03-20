@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
-import gov.nist.drmf.interpreter.evaluation.constraints.Constraints;
+import gov.nist.drmf.interpreter.cas.constraints.Constraints;
 
 import java.util.LinkedList;
 

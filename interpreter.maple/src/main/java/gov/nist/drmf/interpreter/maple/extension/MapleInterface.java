@@ -3,6 +3,8 @@ package gov.nist.drmf.interpreter.maple.extension;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.Engine;
+import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +17,7 @@ import java.util.Observer;
 /**
  * @author Andre Greiner-Petter
  */
-public class MapleInterface {
+public class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
     private static final Logger LOG = LogManager.getLogger(MapleInterface.class.getName());
 
     /**
@@ -40,8 +42,15 @@ public class MapleInterface {
      */
     private static MapleInterface mapleInterface;
 
-    private List<String> procedureBackup;
+    /**
+     *
+     */
+    private final List<String> procedureBackup;
 
+    /**
+     * The interface to maple
+     * @throws MapleException if init wont work
+     */
     private MapleInterface() throws MapleException {
         procedureBackup = new LinkedList<>();
         init();
@@ -95,6 +104,46 @@ public class MapleInterface {
         return engine.evaluate(input);
     }
 
+    @Override
+    public Algebraic enterCommand(String command) throws ComputerAlgebraSystemEngineException {
+        try {
+            return evaluate(command);
+        } catch (MapleException me) {
+            throw new ComputerAlgebraSystemEngineException(me);
+        }
+    }
+
+    /**
+     * Invokes the GC of Maple
+     * @throws MapleException may throw an exception
+     */
+    public void invokeGC() throws MapleException {
+        LOG.debug("Manually invoke Maple's garbage collector.");
+        engine.evaluate("gc();");
+    }
+
+    @Override
+    public void forceGC() throws ComputerAlgebraSystemEngineException {
+        try {
+            invokeGC();
+        } catch (MapleException e) {
+            throw new ComputerAlgebraSystemEngineException(e);
+        }
+    }
+
+    @Override
+    public String buildList(List<String> list) {
+        String listStr = CommandBuilder.makeMapleList(list);
+        if ( listStr != null && listStr.length() > 3 )
+            return listStr.substring(1, listStr.length()-1);
+        return listStr;
+    }
+
+    /**
+     * Adds an observer to the listener
+     * @param observer observer
+     */
+    @Deprecated
     public void addMemoryObserver(Observer observer) {
         listener.addObserver(observer);
     }
@@ -107,15 +156,6 @@ public class MapleInterface {
     public void loadProcedure( String procedure ) throws MapleException {
         engine.evaluate( procedure );
         procedureBackup.add(procedure);
-    }
-
-    /**
-     * Invokes the GC of Maple
-     * @throws MapleException may throw an exception
-     */
-    public void invokeGC() throws MapleException {
-        LOG.debug("Manually invoke Maple's garbage collector.");
-        engine.evaluate("gc();");
     }
 
     /**
