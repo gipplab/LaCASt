@@ -78,45 +78,11 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
             MathTermTags currMathTag = MathTermTags.getTagByKey(curr.getTag());
             MathTermTags nextMathTag = MathTermTags.getTagByKey(next.getTag());
 
-            if (currMathTag != null) {
-                switch (currMathTag) {
-                    case relation:
-                    case operation:
-                    case ellipsis:
-                        return false;
-                }
-            }
-            if (nextMathTag != null) {
-                switch (nextMathTag) {
-                    case relation:
-                    case operation:
-                    case ellipsis:
-                        return false;
-                    case spaces:
-                    case non_allowed:
-                        exp_list.remove(0); // remove the \! spaces
-                        return addMultiply(currExp, exp_list);
-                    case right_brace:
-                    case right_parenthesis:
-                    case right_bracket:
-                        return false;
-                }
-            }
+            int tmp = checkCurrentAndNextTags(currMathTag, nextMathTag, currExp, exp_list);
+            if ( tmp == 1 ) return true;
+            else if ( tmp == 0 ) return false;
+            // in case of tmp == 2, just continue
 
-            if (
-                    (
-                            currMathTag.equals(MathTermTags.letter) ||
-                                    currMathTag.equals(MathTermTags.alphanumeric) ||
-                                    currMathTag.equals(MathTermTags.constant)
-                    ) && (
-                            nextMathTag.equals(MathTermTags.letter) ||
-                                    nextMathTag.equals(MathTermTags.alphanumeric) ||
-                                    nextMathTag.equals(MathTermTags.constant)
-                    )) {
-                return true;
-            }
-
-            Brackets thisBracket = Brackets.getBracket(curr.getTermText());
             Brackets nextBracket = Brackets.getBracket(next.getTermText());
 //            if ( thisBracket != null && nextBracket != null ) {
 //                if ( thisBracket.equals(Brackets.abs_val) && nextBracket.equals(Brackets.abs_val) )
@@ -135,31 +101,83 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
 //                return !thisBracket.opened && nextBracket.opened;
 //            }
 
-            Matcher m1 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(curr.getTermText());
-            Matcher m2 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(next.getTermText());
-            if (m1.matches() || m2.matches()) {
-                return false;
-            }
-
-            //System.out.println(curr.getTermText() + " <-> " + next.getTermText());
-            if (curr.getTermText().matches(Brackets.CLOSED_PATTERN)) {
-                return
-                        !(next.getTermText().matches(PATTERN_BASIC_OPERATIONS));
-            } else if (next.getTermText().matches(Brackets.OPEN_PATTERN)) {
-                return !curr.getTermText().matches(PATTERN_BASIC_OPERATIONS);
-            }
-
-            return !(
-                    curr.getTermText().matches(PATTERN_BASIC_OPERATIONS)
-                            || next.getTermText().matches(PATTERN_BASIC_OPERATIONS)
-                            || curr.getTermText().matches(Brackets.CLOSED_PATTERN)
-                            || curr.getTermText().matches(Brackets.OPEN_PATTERN)
-                            || next.getTermText().matches(Brackets.CLOSED_PATTERN)
-                            || next.getTermText().matches(Brackets.OPEN_PATTERN)
-            );
+            return checkMultiplyOnTerms(curr, next);
         } catch (Exception e) {
             return true;
         }
+    }
+
+    private static short checkCurrentAndNextTags(
+            MathTermTags currMathTag,
+            MathTermTags nextMathTag,
+            PomTaggedExpression currExp,
+            List<PomTaggedExpression> exp_list
+    ) {
+        if (currMathTag != null) {
+            switch (currMathTag) {
+                case relation:
+                case operation:
+                case ellipsis:
+                    return 0;
+            }
+        }
+        if (nextMathTag != null) {
+            switch (nextMathTag) {
+                case relation:
+                case operation:
+                case ellipsis:
+                case right_brace:
+                case right_parenthesis:
+                case right_bracket:
+                    return 0;
+                case spaces:
+                case non_allowed:
+                    exp_list.remove(0); // remove the \! spaces
+                    if (addMultiply(currExp, exp_list))
+                        return 1;
+                    else return 0;
+            }
+        }
+
+        if (
+                (
+                        currMathTag.equals(MathTermTags.letter) ||
+                                currMathTag.equals(MathTermTags.alphanumeric) ||
+                                currMathTag.equals(MathTermTags.constant)
+                ) && (
+                        nextMathTag.equals(MathTermTags.letter) ||
+                                nextMathTag.equals(MathTermTags.alphanumeric) ||
+                                nextMathTag.equals(MathTermTags.constant)
+                )) {
+            return 1;
+        }
+
+        return 2;
+    }
+
+    private static boolean checkMultiplyOnTerms(MathTerm curr, MathTerm next) {
+        Matcher m1 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(curr.getTermText());
+        Matcher m2 = GlobalConstants.LATEX_MULTIPLY_PATTERN.matcher(next.getTermText());
+        if (m1.matches() || m2.matches()) {
+            return false;
+        }
+
+        //System.out.println(curr.getTermText() + " <-> " + next.getTermText());
+        if (curr.getTermText().matches(Brackets.CLOSED_PATTERN)) {
+            return
+                    !(next.getTermText().matches(PATTERN_BASIC_OPERATIONS));
+        } else if (next.getTermText().matches(Brackets.OPEN_PATTERN)) {
+            return !curr.getTermText().matches(PATTERN_BASIC_OPERATIONS);
+        }
+
+        return !(
+                curr.getTermText().matches(PATTERN_BASIC_OPERATIONS)
+                        || next.getTermText().matches(PATTERN_BASIC_OPERATIONS)
+                        || curr.getTermText().matches(Brackets.CLOSED_PATTERN)
+                        || curr.getTermText().matches(Brackets.OPEN_PATTERN)
+                        || next.getTermText().matches(Brackets.CLOSED_PATTERN)
+                        || next.getTermText().matches(Brackets.OPEN_PATTERN)
+        );
     }
 
     /**
