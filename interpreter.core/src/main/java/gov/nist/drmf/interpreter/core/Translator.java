@@ -130,15 +130,6 @@ public class Translator {
     }
 
     /**
-     * Allows to add an observer to the memory state of the Maple.
-     * @param observer observer
-     */
-    @Deprecated
-    public void addMapleMemoryObserver( Observer observer ){
-        mapleInterface.addMemoryObserver( observer );
-    }
-
-    /**
      * Translates a given semantic LaTeX expression into an equivalent Maple string.
      * @param latex_expression expression in semantic LaTeX
      * @param label label of the latex expression (can be null if there is none)
