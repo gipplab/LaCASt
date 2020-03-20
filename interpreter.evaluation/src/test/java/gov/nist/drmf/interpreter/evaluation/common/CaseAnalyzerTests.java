@@ -1,9 +1,9 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
-import gov.nist.drmf.interpreter.evaluation.core.translation.DLMFTranslator;
+import gov.nist.drmf.interpreter.cas.constraints.Constraints;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
-import gov.nist.drmf.interpreter.evaluation.constraints.Constraints;
+import gov.nist.drmf.interpreter.core.DLMFTranslator;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

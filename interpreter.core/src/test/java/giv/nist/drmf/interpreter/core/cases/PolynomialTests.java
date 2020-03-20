@@ -1,6 +1,6 @@
-package gov.nist.drmf.interpreter.evaluation.core.cases;
+package giv.nist.drmf.interpreter.core.cases;
 
-import gov.nist.drmf.interpreter.evaluation.core.AbstractRoundTrip;
+import giv.nist.drmf.interpreter.core.AbstractRoundTrip;
 import org.junit.jupiter.api.DynamicTest;
 
 import java.util.LinkedList;

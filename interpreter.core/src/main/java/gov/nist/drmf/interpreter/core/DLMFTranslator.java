@@ -1,9 +1,9 @@
-package gov.nist.drmf.interpreter.evaluation.core.translation;
+package gov.nist.drmf.interpreter.core;
 
+import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.evaluation.constraints.IConstraintTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

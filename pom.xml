@@ -31,6 +31,7 @@
         <module>interpreter.lacast</module>
         <module>interpreter.maple</module>
         <module>interpreter.mathematica</module>
+        <module>interpreter.core</module>
         <module>interpreter.evaluation</module>
         <module>interpreter.report</module> <!-- test report of all previous packages -->
     </modules>

@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.evaluation.constraints;
+package gov.nist.drmf.interpreter.cas.constraints;
 
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 

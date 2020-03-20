@@ -7,10 +7,11 @@ import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.interfaces.IComputerAlgebraSystemEngine;
-import gov.nist.drmf.interpreter.evaluation.constraints.IConstraintTranslator;
-import gov.nist.drmf.interpreter.evaluation.core.numeric.ICASEngineNumericalEvaluator;
+import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
+import gov.nist.drmf.interpreter.maple.extension.CommandBuilder;
 import gov.nist.drmf.interpreter.mathematica.MathematicaInterface;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
@@ -287,7 +288,7 @@ public class MathematicaTranslator implements
 
     private static String buildMathList(List<String> list) {
         if ( list == null || list.isEmpty() ) return "{}";
-        String l = MapleSimplifier.makeListWithDelimiter(list);
+        String l = CommandBuilder.makeListWithDelimiter(list);
         return "{"+l+"}";
     }
 
