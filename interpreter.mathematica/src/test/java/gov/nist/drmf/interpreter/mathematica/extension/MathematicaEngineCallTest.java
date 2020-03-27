@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.mathematica;
+package gov.nist.drmf.interpreter.mathematica.extension;
 
 import com.wolfram.jlink.Expr;
 import com.wolfram.jlink.ExprFormatException;
@@ -7,6 +7,7 @@ import com.wolfram.jlink.MathLinkException;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
+import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;

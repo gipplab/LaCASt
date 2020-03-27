@@ -23,9 +23,15 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
     private final MapleInterface maple;
     private final MapleListener listener;
 
+    private int timeout = -1;
+
     public Simplifier() {
         maple = MapleInterface.getUniqueMapleInterface();
         listener = MapleInterface.getUniqueMapleListener();
+    }
+
+    public void setTimeout(int timeout) {
+        this.timeout = timeout;
     }
 
     /**
@@ -176,7 +182,12 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
      * @see Algebraic
      */
     public Algebraic mapleSimplify( String maple_expr ) throws MapleException {
-        String command = "simplify(" + maple_expr + ");";
+        String command = "simplify(" + maple_expr + ")";
+        if ( timeout > 0 ) {
+            command = "try timelimit("+timeout+","+command+"); catch \"time expired\": ";
+            command += MapleInterface.TIMED_OUT_SIGNAL;
+            command += "; end try;";
+        } else command += ";";
         LOG.debug("Simplification: " + command);
         listener.timerReset();
         return maple.evaluate( command );
@@ -191,10 +202,24 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
         }
     }
 
+    private String buildAssumeSimplify(String expr, String assumption) {
+        String cmd = "simplify(" + expr + ")";//+ assuming " + assumption + ";";
+
+        if ( timeout > 0 ) {
+            cmd = "try timelimit("+timeout+", "+ cmd+") ";
+            cmd += "assuming " + assumption + "; ";
+            cmd += "catch \"time expired\": ";
+            cmd += MapleInterface.TIMED_OUT_SIGNAL;
+            cmd += "; end try;";
+        } else cmd += "assuming " + assumption + ";";
+
+        return cmd;
+    }
+
     @Override
     public Algebraic simplify(String expr, String assumption) throws ComputerAlgebraSystemEngineException {
         try {
-            String cmd = "simplify(" + expr + ") assuming " + assumption + ";";
+            String cmd = buildAssumeSimplify(expr, assumption);
             LOG.debug("Simplification: " + cmd);
             listener.timerReset();
             return maple.evaluate( cmd );
@@ -226,6 +251,6 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
 
     @Override
     public boolean wasAborted(Algebraic result) {
-        return false; // there is no such a signal in Maple?
+        return maple.isAbortedExpression(result);
     }
 }

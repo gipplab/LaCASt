@@ -19,11 +19,12 @@ import gov.nist.drmf.interpreter.evaluation.common.Status;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
 import gov.nist.drmf.interpreter.evaluation.core.symbolic.SymbolicEvaluator;
-import gov.nist.drmf.interpreter.evaluation.core.translation.MathematicaTranslator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
 import gov.nist.drmf.interpreter.maple.extension.NumericCalculator;
 import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
+import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
+import gov.nist.drmf.interpreter.mathematica.extension.MathematicaNumericalCalculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -59,18 +60,18 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
                 "7313,7330,7331,7332,7333,7336,7339,7394,7397,7398,7399,7401,7405,7902,7918,7925,5828,5935," +
                 "9572";
 
-    public static final String SKIP_MAPLE_RUNS =
-            "321,642,794,795,850,976,1266,1267,1268,1269,1516,1948,1949," +
-                    "2025,2058,2062,2067,2069,2070,2071,2072,2073,2074,2076,2100,2117,2118,2119,2120," +
-                    "2268,2345,2351,2352,2362,2366,2406,2485,2487,2488,2491,2493,2494,2495,2496,2517," +
-                    "2518,2519,2521,2617,2618,2619," +
-                    "4278,4279,4280,4285,4308,4309,4310,4311,4338,4391," +
-                    "4738,4755,4811,4812,4813," +
-                    "5214,5224,5226,5252,5375," +
-                    "5866,5867,5868,5869,5870,5871,5872," +
-                    "6430,6440," +
-                    "9218,9219," +
-                    "9349";
+//    public static final String SKIP_MAPLE_RUNS =
+//            "321,642,794,795,850,976,1266,1267,1268,1269,1516,1948,1949," +
+//                    "2025,2058,2062,2067,2069,2070,2071,2072,2073,2074,2076,2100,2117,2118,2119,2120," +
+//                    "2268,2345,2351,2352,2362,2366,2406,2485,2487,2488,2491,2493,2494,2495,2496,2517," +
+//                    "2518,2519,2521,2617,2618,2619," +
+//                    "4278,4279,4280,4285,4308,4309,4310,4311,4338,4391," +
+//                    "4738,4755,4811,4812,4813," +
+//                    "5214,5224,5226,5252,5375," +
+//                    "5866,5867,5868,5869,5870,5871,5872," +
+//                    "6430,6440," +
+//                    "9218,9219," +
+//                    "9349";
 
     private Set<Integer> realSkips;
 
@@ -132,18 +133,18 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         this.config = config;
         this.labelLib = new HashMap<>();
         this.lastSkips = new HashSet<>();
-        String[] smr = SKIP_MAPLE_RUNS.split(",");
-        for ( String s : smr ) {
-            int i = Integer.parseInt(s);
-            lastSkips.add(i);
-        }
+//        String[] smr = SKIP_MAPLE_RUNS.split(",");
+//        for ( String s : smr ) {
+//            int i = Integer.parseInt(s);
+//            lastSkips.add(i);
+//        }
 
-        smr = LONG_RUNTIME_SKIP.split(",");
+//        smr = LONG_RUNTIME_SKIP.split(",");
         this.realSkips = new HashSet<>();
-        for ( String s : smr ) {
-            int i = Integer.parseInt(s);
-            realSkips.add(i);
-        }
+//        for ( String s : smr ) {
+//            int i = Integer.parseInt(s);
+//            realSkips.add(i);
+//        }
 
         setUpScripts(procedures);
 
@@ -225,20 +226,20 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
         if ( realSkips.contains(c.getLine()) ) {
             LOG.warn("Skip, it take ages...");
-            Status.SKIPPED.add();
+            Status.IGNORE.add();
             lineResult[c.getLine()].add("Manual skip because it never finishes!");
             return;
         }
 
-        if ( isMaple ) {
-            String s = c.getLHS() + " " + c.getRHS();
-            if ( s.matches(".*\\\\(?:int|sum|prod|lim).*") ) {
-                LOG.info("Skip bullshit int etc...");
-                lineResult[c.getLine()].add("Skip - int/sum/prod/lim");
-                Status.MISSING.add();
-                return;
-            }
-        }
+//        if ( isMaple ) {
+//            String s = c.getLHS() + " " + c.getRHS();
+//            if ( s.matches(".*\\\\(?:int|sum|prod|lim).*") ) {
+//                LOG.info("Skip bullshit int etc...");
+//                lineResult[c.getLine()].add("Skip - int/sum/prod/lim");
+//                Status.MISSING.add();
+//                return;
+//            }
+//        }
 
         if ( isMaple && lastSkips.contains(c.getLine()) ) {
             LOG.info("Final Skip " + c.getLine());
@@ -249,7 +250,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
         if ( c instanceof AbstractEvaluator.DummyCase) {
             lineResult[c.getLine()].add("Skip - symbolical successful subtest");
-            Status.SKIPPED.add();
+            Status.IGNORE.add();
             return;
         }
 
@@ -273,19 +274,9 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             }
 
             LOG.debug("Start numerical calculations.");
-            String label = c.getEquationLabel();
-            T results = performNumericalTest(
-                    expression,
-                    config.getListOfNumericalValues(getThisConstraintTranslator(), label),
-                    c.getConstraints(getThisConstraintTranslator(), label),
-                    c.getConstraintVariables(getThisConstraintTranslator(), label),
-                    c.getConstraintValues(),
-                    config.getListOfSpecialVariables(getThisConstraintTranslator(), label),
-                    config.getListOfSpecialVariableValues(getThisConstraintTranslator(), label),
-                    scriptHandler.getPostProcessingScriptName(c),
-                    config.getPrecision(),
-                    config.getMaximumNumberOfCombs()
-            );
+            NumericalTest test = buildTestObject(expression, c);
+            if ( isMaple ) test.setSkipClassicAbortion();
+            T results = performNumericalTest(test);
 
             LOG.debug("Finished numerical calculations.");
             if ( preAndPostCommands[1] != null ){
@@ -295,9 +286,9 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
             boolean wasAborted = isAbortedResult(results);
             if ( wasAborted ) {
-                LOG.info("Skip test because it took too much time.");
+                LOG.warn("Skip test because it took too much time.");
                 lineResult[c.getLine()].add("Skipped - Because timed out");
-                Status.FAILURE.add();
+                Status.SKIPPED.add();
             } else {
                 ICASEngineNumericalEvaluator.ResultType resType = testResult(results);
                 String evaluation = "";
@@ -344,6 +335,12 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             }
         }
 //        return c.getLine() + ": " + lineResult[c.getLine()];
+    }
+
+    private NumericalTest buildTestObject(String expression, Case c) {
+        NumericalTest test = new NumericalTest(expression, c, config, getThisConstraintTranslator());
+        test.setPostProcessingMethodName(scriptHandler.getPostProcessingScriptName(c));
+        return test;
     }
 
     private String getTestedExpression(Case c){
@@ -442,6 +439,8 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         MapleInterface mapleInterface = MapleInterface.getUniqueMapleInterface();
         NumericCalculator numericCalculator = new NumericCalculator();
 
+        numericCalculator.setTimeLimit(2);
+
         NumericalEvaluator evaluator = new NumericalEvaluator<Algebraic>(
                 dlmfTranslator,
                 mapleInterface,
@@ -459,15 +458,17 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
     public static NumericalEvaluator createStandardMathematicaEvaluator() throws IOException, ComputerAlgebraSystemEngineException {
         NumericalConfig config =  NumericalConfig.config();
-        MathematicaTranslator translator = new MathematicaTranslator();
-        translator.init();
+
+        DLMFTranslator dlmfTranslator = new DLMFTranslator(Keys.KEY_MATHEMATICA);
+        MathematicaInterface mathematicaInterface = MathematicaInterface.getInstance();
+        MathematicaNumericalCalculator numericalCalculator = new MathematicaNumericalCalculator();
 
         String script = ProcedureLoader.getProcedure(GlobalPaths.PATH_MATHEMATICA_NUMERICAL_PROCEDURES);
 
         NumericalEvaluator evaluator = new NumericalEvaluator<Expr>(
-                translator,
-                translator,
-                translator,
+                dlmfTranslator,
+                mathematicaInterface,
+                numericalCalculator,
                 (c -> c.isEquation() ? "" : ""),
                 null,
                 new String[]{script},
