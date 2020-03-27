@@ -1,23 +1,25 @@
 package gov.nist.drmf.interpreter.evaluation.core.symbolic;
 
+import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
+import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.core.DLMFTranslator;
-import gov.nist.drmf.interpreter.evaluation.core.translation.MathematicaTranslator;
-import gov.nist.drmf.interpreter.evaluation.common.Case;
-import gov.nist.drmf.interpreter.evaluation.common.CaseAnalyzer;
-import gov.nist.drmf.interpreter.evaluation.common.Status;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
-import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
-import gov.nist.drmf.interpreter.evaluation.core.*;
+import gov.nist.drmf.interpreter.core.DLMFTranslator;
+import gov.nist.drmf.interpreter.evaluation.common.Case;
+import gov.nist.drmf.interpreter.evaluation.common.CaseAnalyzer;
+import gov.nist.drmf.interpreter.evaluation.common.Status;
+import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
+import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
 import gov.nist.drmf.interpreter.evaluation.core.numeric.NumericalConfig;
 import gov.nist.drmf.interpreter.evaluation.core.numeric.NumericalEvaluator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
 import gov.nist.drmf.interpreter.maple.extension.Simplifier;
+import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
+import gov.nist.drmf.interpreter.mathematica.extension.MathematicaSimplifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -342,6 +344,7 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         DLMFTranslator dlmfTranslator = new DLMFTranslator(Keys.KEY_MAPLE);
         MapleInterface mapleInterface = MapleInterface.getUniqueMapleInterface();
         Simplifier simplifier = new Simplifier();
+        simplifier.setTimeout(2);
 
         SymbolicEvaluator evaluator = new SymbolicEvaluator(
                 dlmfTranslator,
@@ -356,13 +359,14 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
     }
 
     public static SymbolicEvaluator createStandardMathematicaEvaluator() throws Exception {
-        MathematicaTranslator translator = new MathematicaTranslator();
-        translator.init();
+        DLMFTranslator dlmfTranslator = new DLMFTranslator(Keys.KEY_MATHEMATICA);
+        MathematicaInterface mathematicaInterface = MathematicaInterface.getInstance();
+        MathematicaSimplifier mathematicaSimplifier = new MathematicaSimplifier();
 
         SymbolicEvaluator evaluator = new SymbolicEvaluator(
-                translator,
-                translator,
-                translator,
+                dlmfTranslator,
+                mathematicaInterface,
+                mathematicaSimplifier,
                 SymbolicMathematicaEvaluatorTypes.values(),
                 null
         );

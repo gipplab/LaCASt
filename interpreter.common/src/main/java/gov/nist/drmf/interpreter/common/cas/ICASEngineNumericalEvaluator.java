@@ -17,42 +17,45 @@ public interface ICASEngineNumericalEvaluator<T> extends Observer, IAbortEvaluat
      * @param testValues list of values
      * @return name of the variable to access the variables of the expression
      */
-    String storeVariables(String expression, List<String> testValues);
+    void storeVariables(String expression, List<String> testValues);
 
     /**
      * Stores the given constraint variables and their values.
      * It also updates the previously stored variables.
-     * @param variableName the returned value of {@link #storeVariables(String, List)}
      * @param constraintVariables list of variables of the constraints (translated)
      * @param constraintValues the values for the constraint variables (ordered and translated)
      * @return the name of the variable that accesses the constraint variables
      */
-    String storeConstraintVariables(
-            String variableName,
+    void storeConstraintVariables(
             List<String> constraintVariables,
             List<String> constraintValues);
 
     /**
-     * Essentially the same as {@link #storeConstraintVariables(String, List, List)}.
-     * @param variableName the returned value of {@link #storeVariables(String, List)}
+     * Essentially the same as {@link #storeConstraintVariables(List, List)}.
      * @param extraVariables list of special treatment variables (translated)
      * @param extraValues the values for the variables (ordered and translated)
      * @return the name of the variable that accesses the special treatment variables
      */
-    String storeExtraVariables(
-            String variableName,
+    void storeExtraVariables(
             List<String> extraVariables,
             List<String> extraValues);
 
+    /**
+     * Sets constraints and returns the name of variables that is defined as the constraints.
+     * It returns null of no constraints exists.
+     * @param constraints constraints
+     * @return name of variable or null
+     */
     String setConstraints(List<String> constraints);
 
-    String buildTestCases(
-            String constraintsName,
-            String variableNames,
-            String constraintVariableNames,
-            String extraVariableNames,
-            int maxCombis
-    ) throws ComputerAlgebraSystemEngineException, IllegalArgumentException;
+    /**
+     * Builds the test cases and returns the name of variable.
+     * @param maxCombis maximum number of combinations
+     * @return name of test cases variable
+     * @throws ComputerAlgebraSystemEngineException
+     * @throws IllegalArgumentException
+     */
+    String buildTestCases(String nameOfConstraints, int maxCombis) throws ComputerAlgebraSystemEngineException, IllegalArgumentException;
 
     T performNumericalTests(
             String expression,
@@ -77,11 +80,11 @@ public interface ICASEngineNumericalEvaluator<T> extends Observer, IAbortEvaluat
      *                     to get the according variable name of the values.
      * @return name of values
      */
-    public static String getValuesName( String variableName ) {
+    static String getValuesName( String variableName ) {
         return variableName + "Vals";
     }
 
-    public enum ResultType {
+    enum ResultType {
         SUCCESS, FAILURE, ERROR
     }
 }

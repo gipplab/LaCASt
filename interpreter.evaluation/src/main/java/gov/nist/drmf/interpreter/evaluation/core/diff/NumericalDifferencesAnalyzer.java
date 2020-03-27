@@ -10,8 +10,8 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
 import gov.nist.drmf.interpreter.evaluation.common.ProcedureLoader;
-import gov.nist.drmf.interpreter.evaluation.core.translation.MathematicaTranslator;
 import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
+import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -68,9 +68,7 @@ public class NumericalDifferencesAnalyzer {
     private String procedureName;
 
     public NumericalDifferencesAnalyzer() throws IOException, MapleException, ComputerAlgebraSystemEngineException {
-        MathematicaTranslator m = new MathematicaTranslator();
-        m.init();
-        mathematica = m;
+        mathematica = MathematicaInterface.getInstance();
 
         SemanticLatexTranslator dlmfInterface = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
         dlmfInterface.init( GlobalPaths.PATH_REFERENCE_DATA );

@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.maple.extension;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.Engine;
+import com.maplesoft.openmaple.MString;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
@@ -46,6 +47,11 @@ public class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
      *
      */
     private final List<String> procedureBackup;
+
+    /**
+     * The signal maple returns if the computation timed out
+     */
+    public static final String TIMED_OUT_SIGNAL = "TIMED-OUT";
 
     /**
      * The interface to maple
@@ -209,5 +215,17 @@ public class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
             LOG.warn("Cannot init maple interface", e);
             return false;
         }
+    }
+
+    public boolean isAbortedExpression(Algebraic result) {
+        if ( result instanceof MString) {
+            try {
+                return ((MString) result).stringValue().equals(MapleInterface.TIMED_OUT_SIGNAL);
+            } catch (MapleException e) {
+                LOG.error("A maple exception occurred when testing the result " + result);
+                return false;
+            }
+        }
+        return false;
     }
 }

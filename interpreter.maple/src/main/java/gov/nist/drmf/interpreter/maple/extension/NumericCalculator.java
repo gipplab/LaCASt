@@ -2,10 +2,10 @@ package gov.nist.drmf.interpreter.maple.extension;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
+import com.maplesoft.openmaple.MString;
 import com.maplesoft.openmaple.Numeric;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,29 +25,45 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     public static final int MAX_LOG_LENGTH = 300;
 
     private final MapleInterface maple;
-    private final MapleListener listener;
 
     private StringBuffer commandsList;
 
+    private final String testExpression = "nTest";
+    private final String varNames = "nVars";
+    private final String conVarN = "nConstVars";
+    private final String specVarN = "nSpecialVars";
+
+    private boolean conVarSet = false;
+    private boolean specVarSet = false;
+
+    private int timeLimit = -1;
+    private boolean timedOutBySetup = false;
+
     public NumericCalculator() {
         maple = MapleInterface.getUniqueMapleInterface();
-        listener = MapleInterface.getUniqueMapleListener();
         commandsList = new StringBuffer();
     }
 
+    public void setTimeLimit(int timeLimit) {
+        this.timeLimit = timeLimit;
+    }
+
     @Override
-    public String storeVariables(String expression, List<String> testValues) {
+    public void storeVariables(String expression, List<String> testValues) {
         // reset commandsList
         commandsList = new StringBuffer();
+        timedOutBySetup = false;
 
-        commandsList.append("nTest := ").append(expression).append(":").append(NL);
+        if ( timeLimit > 0 ) {
+            tryTimeOutExpression(commandsList, timeLimit, expression);
+        } else {
+            commandsList.append(testExpression).append(" := ")
+                    .append(expression).append(":").append(NL);
+        }
 
-        String varNames = "nVars";
         commandsList
                 .append(varNames)
-                .append(":=myIndets(")
-                .append(expression)
-                .append("):").append(NL);
+                .append(":=myIndets(nTest):").append(NL);
 
         String varValues = ICASEngineNumericalEvaluator.getValuesName(varNames);
         commandsList
@@ -55,16 +71,25 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
                 .append(":=")
                 .append(makeMapleList(testValues))
                 .append(":").append(NL);
+    }
 
-        return varNames;
+    private void tryTimeOutExpression(StringBuffer sb, int timeout, String expression) {
+        sb.append(testExpression)
+                .append(" := try timelimit(")
+                .append(timeout).append(", ").append(expression)
+                .append(")");
+        sb.append(NL).append("  catch \"time expired\":").append(NL);
+        sb.append("    \"TIMED-OUT\";").append(NL);
+        sb.append("  end try:").append(NL);
     }
 
     @Override
-    public String storeConstraintVariables(String variableName, List<String> constraintVariables, List<String> constraintValues) {
-        if ( constraintVariables == null || constraintVariables.isEmpty() )
-            return null;
+    public void storeConstraintVariables(List<String> constraintVariables, List<String> constraintValues) {
+        if ( constraintVariables == null || constraintVariables.isEmpty() ){
+            this.conVarSet = false;
+            return;
+        }
 
-        String conVarN = "nConstVars";
         String conValsN = ICASEngineNumericalEvaluator.getValuesName(conVarN);
 
         commandsList.append(conVarN).append(":=").append(makeMapleList(constraintVariables)).append(":").append(NL);
@@ -72,44 +97,44 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
 
         // update vars list
         commandsList
-                .append(variableName).append(":=")
-                .append(variableName).append(" minus (indets(").append(conVarN).append(",name) minus {constants}):")
+                .append(varNames).append(":=")
+                .append(varNames).append(" minus (indets(").append(conVarN).append(",name) minus {constants}):")
                 .append(NL);
 
-        return conVarN;
+        this.conVarSet = true;
     }
 
     @Override
-    public String storeExtraVariables(String variableName, List<String> extraVariables, List<String> extraValues) {
-        if ( extraVariables == null || extraVariables.isEmpty() )
-            return null;
+    public void storeExtraVariables(List<String> extraVariables, List<String> extraValues) {
+        if ( extraVariables == null || extraVariables.isEmpty() ){
+            this.specVarSet = false;
+            return;
+        }
 
-        String specVarN = "nSpecialVars";
         String specValsN = ICASEngineNumericalEvaluator.getValuesName(specVarN);
 
         commandsList.append(specVarN).append(":=")
-                .append(variableName).append(" intersect ").append(makeMapleSet(extraVariables))
+                .append(varNames).append(" intersect ").append(makeMapleSet(extraVariables))
                 .append(":").append(NL);
         commandsList.append(specValsN).append(":=").append(makeMapleList(extraValues)).append(":").append(NL);
 
         // update vars list
         commandsList
-                .append(variableName).append(":=")
-                .append(variableName).append(" minus (indets(").append(specVarN).append(",name) minus {constants}):")
+                .append(varNames).append(":=")
+                .append(varNames).append(" minus (indets(").append(specVarN).append(",name) minus {constants}):")
                 .append(NL);
 
-        return specVarN;
+        this.specVarSet = true;
     }
 
     @Override
     public String setConstraints(List<String> constraints) {
         String consN = "constraints";
-
         commandsList.append(consN).append(":=");
 
         if ( constraints == null || constraints.isEmpty() )
             commandsList.append("[]:");
-        else commandsList.append(makeMapleList(constraints));
+        else commandsList.append(makeMapleList(constraints)).append(":");
 
         commandsList.append(NL);
 
@@ -119,42 +144,40 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     @Override
     public String buildTestCases(
             String constraintsName,
-            String variableNames,
-            String constraintVariableNames,
-            String extraVariableNames,
             int maxCombis
     ) throws ComputerAlgebraSystemEngineException, IllegalArgumentException {
         String testValuesN = "nTestVals";
 
-        String vals = ICASEngineNumericalEvaluator.getValuesName(variableNames);
+        String vals = ICASEngineNumericalEvaluator.getValuesName(varNames);
         commandsList.append(testValuesN).append(":= [op(createListInList(")
-                .append(variableNames).append(",").append(vals).append("))");
+                .append(varNames).append(",").append(vals).append("))");
 
-        String combis = "inCombis := nops("+vals+")^nops("+variableNames+")";
+        String combis = "inCombis := nops("+vals+")^nops("+varNames+")";
 
-        if ( extraVariableNames != null ) {
-            String extVals = ICASEngineNumericalEvaluator.getValuesName(extraVariableNames);
+        if ( specVarSet ) {
+            String extVals = ICASEngineNumericalEvaluator.getValuesName(specVarN);
             commandsList.append(", op(createListInList(")
-                    .append(extraVariableNames).append(",").append(extVals).append("))");
-            combis += " * nops("+extVals+")^nops("+extraVariableNames+")";
+                    .append(specVarN).append(",").append(extVals).append("))");
+            combis += " * nops("+extVals+")^nops("+specVarN+")";
         }
 
-        if ( constraintVariableNames != null ) {
-            String conVals = ICASEngineNumericalEvaluator.getValuesName(constraintVariableNames);
+        if ( conVarSet ) {
+            String conVals = ICASEngineNumericalEvaluator.getValuesName(conVarN);
             commandsList.append(", specialVariables(")
-                    .append(constraintVariableNames).append(",").append(conVals).append(")");
+                    .append(conVarN).append(",").append(conVals).append(")");
         }
 
         commandsList.append("]:").append(NL);
-        combis += ";";
+        combis += "-1;";
         commandsList.append(combis).append(NL);
 
         try {
             LOG.debug("Prepare numerical test:" + NL + commandsList.toString());
-            Algebraic numCombis = MapleInterface.getUniqueMapleInterface().evaluate(commandsList.toString());
+            Algebraic numCombis = maple.evaluate(commandsList.toString());
             try {
                 int i = Integer.parseInt(numCombis.toString());
                 if ( i >= maxCombis ) throw new IllegalArgumentException("Too many combinations: " + i);
+                else if ( i <= 0 ) throw new IllegalArgumentException("There are no valid test values.");
             } catch ( NumberFormatException e ){
                 throw new IllegalArgumentException("Cannot calculate number of combinations!");
             }
@@ -176,23 +199,27 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
             String postProcessingMethodName,
             int precision
     ) throws ComputerAlgebraSystemEngineException {
+        if ( timedOutBySetup ) return null;
         try {
             LOG.debug("Perform numerical test:" + NL + commandsList.toString());
 
-            Algebraic testCases = MapleInterface.getUniqueMapleInterface().evaluate(
+            Algebraic testCases = maple.evaluate(
                     commandsList.toString() + NL + testCasesName + ";"
             );
 
             LOG.debug("Entered numerical preparations.");
             checkValues(testCases, testCasesName);
 
-            String numericalTest = "numResults := SpecialNumericalTester(nTest,"+testCasesName+","+precision+");";
+            String numericalTest =
+                    "numResults := SpecialNumericalTesterTimeLimit(" +
+                            timeLimit + ", nTest, "+testCasesName+","+precision+
+                            ");";
             LOG.debug("Start numerical evaluation: " + numericalTest);
 
-            Algebraic results = MapleInterface.getUniqueMapleInterface().evaluate(numericalTest);
-            if ( postProcessingMethodName != null &&
-                    !postProcessingMethodName.isEmpty() ) {
-                return MapleInterface.getUniqueMapleInterface().evaluate(
+            Algebraic results = maple.evaluate(numericalTest);
+            if ( wasAborted(results) ) return results;
+            else if ( postProcessingMethodName != null && !postProcessingMethodName.isEmpty() ) {
+                return maple.evaluate(
                         postProcessingMethodName + "(numResults);"
                 );
             } else return results;
@@ -238,12 +265,12 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
 
     @Override
     public void abort() {
-        LOG.warn("Abortion is not supported by Maple.");
+        LOG.warn("Maple supports abortion via timelimit when starting computation.");
     }
 
     @Override
     public boolean wasAborted(Algebraic result) {
-        return false;
+        return maple.isAbortedExpression(result);
     }
 
     @Override
@@ -256,7 +283,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
             if ( checkNumericalNTest() ){
                 // in this case, numResults is Null but nTest is numerical
                 // continue normal work by reset numResults to an empty array
-                MapleInterface.getUniqueMapleInterface().evaluate( valsName+" := [];" );
+                maple.evaluate( valsName+" := [];" );
                 return;
             }
             throw new IllegalArgumentException("There are no valid test values.");
@@ -264,7 +291,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
 
         if ( nTestValsA instanceof com.maplesoft.openmaple.List){
             if (checkNumericalNTest()){
-                MapleInterface.getUniqueMapleInterface().evaluate( valsName+" := [];" );
+                maple.evaluate( valsName+" := [];" );
                 return;
             }
 
@@ -284,7 +311,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     }
 
     private boolean checkNumericalNTest() throws MapleException {
-        Algebraic numericalCheck = MapleInterface.getUniqueMapleInterface().evaluate("nTest;");
+        Algebraic numericalCheck = maple.evaluate("nTest;");
         return numericalCheck instanceof Numeric;
     }
 }

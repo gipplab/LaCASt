@@ -47,60 +47,52 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
     }
 
     public T performNumericalTest(
-            String testExpression,
-            List<String> testValues,
-            List<String> constraints,
-            List<String> constraintVariables,
-            List<String> constraintVariablesValues,
-            List<String> extraVariables,
-            List<String> extraVariablesValues,
-            String postProcessingMethodName,
-            int precision,
-            int maxCombis
+            NumericalTest test
     ) throws ComputerAlgebraSystemEngineException, IllegalArgumentException {
         LOG.info("Prepare numerical test.");
 
         // store variables first
-        String varsN = numericalEvaluator.storeVariables(testExpression, testValues);
+        numericalEvaluator.storeVariables(
+                test.getTestExpression(), test.getTestValues()
+        );
 
         // next, store constraint variables extracted from blueprints
-        String constraintVarsN = numericalEvaluator.storeConstraintVariables(
-                varsN,
-                constraintVariables,
-                constraintVariablesValues
+        numericalEvaluator.storeConstraintVariables(
+                test.getConstraintVariables(),
+                test.getConstraintVariablesValues()
         );
 
         // next, store special variables (such as k should be integer)
-        String extraVariablesN = numericalEvaluator.storeExtraVariables(
-                varsN,
-                extraVariables,
-                extraVariablesValues
+        numericalEvaluator.storeExtraVariables(
+                test.getExtraVariables(),
+                test.getExtraVariablesValues()
         );
 
         // next, store the actual constraints
-        String constraintN = numericalEvaluator.setConstraints(constraints);
+        String constraintN = numericalEvaluator.setConstraints(test.getConstraints());
 
-        Thread abortThread = getAbortionThread(numericalEvaluator, DEFAULT_TIMEOUT_MS*2);
-        abortThread.start();
 
         // finally, generate all test cases that fit the constraints
         String testValuesN = numericalEvaluator.buildTestCases(
                 constraintN,
-                varsN,
-                constraintVarsN,
-                extraVariablesN,
-                maxCombis
+                test.getMaxCombis()
         );
+
+        Thread abortThread = null;
+        if ( !test.skipClassicAbortion() ) {
+            abortThread = getAbortionThread(numericalEvaluator, DEFAULT_TIMEOUT_MS*2);
+            abortThread.start();
+        }
 
         // perform the test
         T res = numericalEvaluator.performNumericalTests(
-                testExpression,
+                test.getTestExpression(),
                 testValuesN,
-                postProcessingMethodName,
-                precision
+                test.getPostProcessingMethodName(),
+                test.getPrecision()
         );
 
-        abortThread.interrupt();
+        if ( abortThread != null ) abortThread.interrupt();
         return res;
     }
 

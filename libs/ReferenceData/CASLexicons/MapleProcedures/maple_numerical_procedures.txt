@@ -1,10 +1,12 @@
 with(combinat,cartprod):
 
 createListInList := proc(var::set, values::list)
+  local v;
   return [seq(`if`(nops(createListOfValues(v,values))>0, createListOfValues(v,values), NULL), v in var)];
 end proc:
 
 createListOfValues := proc(var, values::list)
+  local val;
   return [seq(var = val, val in values)];
 end proc:
 
@@ -89,6 +91,21 @@ buildAssumptions := proc(ass::list)
   end do:
   #printf("LOG: build assumptions to %q;\n", assum);
   return assum;
+end proc:
+
+SpecialNumericalTesterTimeLimit := proc(timeout, expr, values::list, precision::posint)
+  if expr = "TIMED-OUT" then
+    return expr;
+  end if;
+  try
+    if timeout > 0 then
+      return timelimit(timeout, SpecialNumericalTester(expr, values, precision));
+    else
+      return SpecialNumericalTester(expr, values, precision);
+    end if;
+  catch "time expired":
+    "TIMED-OUT";
+  end try:
 end proc:
 
 SpecialNumericalTester := proc(expr, values::list, precision::posint)
