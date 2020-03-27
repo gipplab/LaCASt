@@ -85,11 +85,11 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         this.idSkips = new HashSet<>();
         this.defaultPrevAfterCmds = defaultPrevAfterCmds;
 
-        String[] skipArr = NumericalEvaluator.LONG_RUNTIME_SKIP.split(",");
-        for ( String s : skipArr ) {
-            skips.add(new ID(Integer.parseInt(s)));
-            idSkips.add(Integer.parseInt(s));
-        }
+//        String[] skipArr = NumericalEvaluator.LONG_RUNTIME_SKIP.split(",");
+//        for ( String s : skipArr ) {
+//            skips.add(new ID(Integer.parseInt(s)));
+//            idSkips.add(Integer.parseInt(s));
+//        }
 
         Status.reset();
     }
@@ -189,8 +189,8 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         }
 
         if ( c instanceof AbstractEvaluator.DummyCase ) {
-            lineResults[c.getLine()].add("Skip - ");
-            Status.SKIPPED.add();
+            lineResults[c.getLine()].add("Ignoring - ");
+            Status.IGNORE.add();
             return;
         }
 
