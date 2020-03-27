@@ -184,9 +184,9 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
     public Algebraic mapleSimplify( String maple_expr ) throws MapleException {
         String command = "simplify(" + maple_expr + ")";
         if ( timeout > 0 ) {
-            command = "try timelimit("+timeout+","+command+"); catch \"time expired\": ";
+            command = "try timelimit("+timeout+","+command+"); catch \"time expired\": \"";
             command += MapleInterface.TIMED_OUT_SIGNAL;
-            command += "; end try;";
+            command += "\"; end try;";
         } else command += ";";
         LOG.debug("Simplification: " + command);
         listener.timerReset();
@@ -208,9 +208,9 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
         if ( timeout > 0 ) {
             cmd = "try timelimit("+timeout+", "+ cmd+") ";
             cmd += "assuming " + assumption + "; ";
-            cmd += "catch \"time expired\": ";
+            cmd += "catch \"time expired\": \"";
             cmd += MapleInterface.TIMED_OUT_SIGNAL;
-            cmd += "; end try;";
+            cmd += "\"; end try;";
         } else cmd += "assuming " + assumption + ";";
 
         return cmd;
