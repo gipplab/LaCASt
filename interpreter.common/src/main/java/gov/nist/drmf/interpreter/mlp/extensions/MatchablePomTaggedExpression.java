@@ -80,6 +80,11 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
      */
     public MatchablePomTaggedExpression(PomTaggedExpression refRoot, String wildcardPattern) {
         super(refRoot.getRoot(), refRoot.getTag(), refRoot.getSecondaryTags());
+
+        // if this the root, normalize the reference tree first
+        if ( refRoot.getParent() != null )
+            MLPWrapper.normalize(refRoot);
+
         Map<String, String> refFeatures = refRoot.getNamedFeatures();
         for (String k : refFeatures.keySet())
             super.setNamedFeature(k, refFeatures.get(k));
