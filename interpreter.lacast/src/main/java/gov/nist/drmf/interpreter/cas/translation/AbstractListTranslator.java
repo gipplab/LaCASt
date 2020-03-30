@@ -64,63 +64,72 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
      * @return true if between current and the next sibling should be a multiplication symbol, otherwise false
      */
     public static boolean addMultiply(PomTaggedExpression currExp, List<PomTaggedExpression> exp_list) {
+        if (exp_list == null || exp_list.size() < 1) {
+            return false;
+        }
+
+        MathTerm next = exp_list.get(0).getRoot();
+        if (next.isEmpty()) {
+            List<PomTaggedExpression> tmp = exp_list.get(0).getComponents();
+            return addMultiply(currExp, tmp);
+        }
+
+        MathTerm curr = currExp.getRoot();
+        MathTermTags currMathTag = MathTermTags.getTagByKey(curr.getTag());
+        MathTermTags nextMathTag = MathTermTags.getTagByKey(next.getTag());
+
         try {
-            if (exp_list == null || exp_list.size() < 1) {
-                return false;
-            }
-            MathTerm curr = currExp.getRoot();
-            MathTerm next = exp_list.get(0).getRoot();
-            if (next.isEmpty()) {
-                List<PomTaggedExpression> tmp = exp_list.get(0).getComponents();
-                return addMultiply(currExp, tmp);
-            }
-
-            MathTermTags currMathTag = MathTermTags.getTagByKey(curr.getTag());
-            MathTermTags nextMathTag = MathTermTags.getTagByKey(next.getTag());
-
-            int tmp = checkCurrentAndNextTags(currMathTag, nextMathTag, currExp, exp_list);
-            if ( tmp == 1 ) return true;
-            else if ( tmp == 0 ) return false;
-            // in case of tmp == 2, just continue
-
-            Brackets nextBracket = Brackets.getBracket(next.getTermText());
-//            if ( thisBracket != null && nextBracket != null ) {
-//                if ( thisBracket.equals(Brackets.abs_val) && nextBracket.equals(Brackets.abs_val) )
-//                    return true;
-//                if ( thisBracket.equals(Brackets.abs_val) )
-//                    return nextBracket.opened; // if next is open, add *, otherwise not
-//                if ( nextBracket.equals(Brackets.abs_val) )
-//                    return !thisBracket.opened;
-//            }
-
-            if (nextBracket != null && !nextBracket.opened) {
-                return false;
-            }
-
-//            if ( thisBracket != null && nextBracket != null ) {
-//                return !thisBracket.opened && nextBracket.opened;
-//            }
-
-            return checkMultiplyOnTerms(curr, next);
-        } catch (Exception e) {
+            Boolean tmp = checkCurrentAndNextTags(currMathTag, nextMathTag, currExp, exp_list);
+            return tmp == null ? addMultiplyPreTerms(curr, next) : tmp;
+        } catch ( Exception e ) {
             return true;
         }
     }
 
-    private static short checkCurrentAndNextTags(
+    private static boolean addMultiplyPreTerms(MathTerm curr, MathTerm next) {
+        Brackets nextBracket = Brackets.getBracket(next.getTermText());
+        if (nextBracket != null && !nextBracket.opened) {
+            return false;
+        }
+
+        return checkMultiplyOnTerms(curr, next);
+    }
+
+    private static Boolean checkCurrentAndNextTags(
             MathTermTags currMathTag,
             MathTermTags nextMathTag,
             PomTaggedExpression currExp,
             List<PomTaggedExpression> exp_list
     ) {
+        Boolean result = checkCurrentMathTag(currMathTag);
+        if ( result == null ) result = checkNextMathTag(nextMathTag, currExp, exp_list);
+        if ( result != null ) return result;
+
+        boolean currentLetter = isLetter(currMathTag);
+        boolean nextLetter = isLetter(nextMathTag);
+
+        if (currentLetter && nextLetter) {
+            return true;
+        } else return null;
+    }
+
+    private static boolean isLetter(MathTermTags tag) {
+        return MathTermTags.letter.equals(tag) || MathTermTags.alphanumeric.equals(tag) || MathTermTags.constant.equals(tag);
+    }
+
+    private static Boolean checkCurrentMathTag(MathTermTags currMathTag) {
         if (currMathTag != null) {
             switch (currMathTag) {
                 case relation:
                 case operation:
                 case ellipsis:
-                    return 0;
+                    return false;
             }
         }
+        return null;
+    }
+
+    private static Boolean checkNextMathTag(MathTermTags nextMathTag, PomTaggedExpression currExp, List<PomTaggedExpression> exp_list) {
         if (nextMathTag != null) {
             switch (nextMathTag) {
                 case relation:
@@ -129,30 +138,14 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
                 case right_brace:
                 case right_parenthesis:
                 case right_bracket:
-                    return 0;
+                    return false;
                 case spaces:
                 case non_allowed:
                     exp_list.remove(0); // remove the \! spaces
-                    if (addMultiply(currExp, exp_list))
-                        return 1;
-                    else return 0;
+                    return addMultiply(currExp, exp_list);
             }
         }
-
-        if (
-                (
-                        currMathTag.equals(MathTermTags.letter) ||
-                                currMathTag.equals(MathTermTags.alphanumeric) ||
-                                currMathTag.equals(MathTermTags.constant)
-                ) && (
-                        nextMathTag.equals(MathTermTags.letter) ||
-                                nextMathTag.equals(MathTermTags.alphanumeric) ||
-                                nextMathTag.equals(MathTermTags.constant)
-                )) {
-            return 1;
-        }
-
-        return 2;
+        return null;
     }
 
     private static boolean checkMultiplyOnTerms(MathTerm curr, MathTerm next) {
@@ -170,19 +163,29 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
             return !curr.getTermText().matches(PATTERN_BASIC_OPERATIONS);
         }
 
-        return !(
-                curr.getTermText().matches(PATTERN_BASIC_OPERATIONS)
-                        || next.getTermText().matches(PATTERN_BASIC_OPERATIONS)
-                        || curr.getTermText().matches(Brackets.CLOSED_PATTERN)
-                        || curr.getTermText().matches(Brackets.OPEN_PATTERN)
-                        || next.getTermText().matches(Brackets.CLOSED_PATTERN)
-                        || next.getTermText().matches(Brackets.OPEN_PATTERN)
-        );
+        boolean operation = checkOperation(curr, next);
+        boolean parenthesis = checkBrackets(curr, next);
+
+        return !(operation || parenthesis);
+    }
+
+    private static boolean checkOperation(MathTerm curr, MathTerm next) {
+        return curr.getTermText().matches(PATTERN_BASIC_OPERATIONS)
+                || next.getTermText().matches(PATTERN_BASIC_OPERATIONS);
+    }
+
+    private static boolean checkBrackets(MathTerm curr, MathTerm next) {
+        boolean currPara = curr.getTermText().matches(Brackets.CLOSED_PATTERN)
+                || curr.getTermText().matches(Brackets.OPEN_PATTERN);
+
+        return currPara
+                || next.getTermText().matches(Brackets.CLOSED_PATTERN)
+                || next.getTermText().matches(Brackets.OPEN_PATTERN);
     }
 
     /**
      * Sub-Super scripts will be normalized, so that the subscript is always in front
-     * @param pte
+     * @param pte normalizes the order of sub-super-script expressions.
      * @return
      */
     public static PomTaggedExpression normalizeSubSuperScripts( PomTaggedExpression pte ) {
@@ -204,15 +207,32 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
         return pte;
     }
 
+    /**
+     *
+     * @param expr
+     * @return
+     */
     public static String stripMultiParentheses(String expr) {
-        if ( expr == null || !expr.matches("\\(.*\\)") ) return expr;
+        if ( expr == null || !expr.matches("\\(.*\\)") )
+            return expr;
+
         int open = 1;
         for ( int i = 1; i < expr.length(); i++ ) {
-            Character c = expr.charAt(i);
-            if ( c.equals(')') ) open--;
-            if ( c.equals('(') ) open++;
-            if ( open == 0 && i < expr.length()-1 ) return expr;
+            open = update(expr, i, open);
+            if ( stop(expr, i, open) ) return expr;
         }
+
         return expr.substring(1, expr.length()-1);
+    }
+
+    private static int update(String expr, int idx, int open) {
+        Character c = expr.charAt(idx);
+        if ( c.equals(')') ) open--;
+        if ( c.equals('(') ) open++;
+        return open;
+    }
+
+    private static boolean stop(String expr, int idx, int open) {
+        return open == 0 && idx < expr.length()-1;
     }
 }
