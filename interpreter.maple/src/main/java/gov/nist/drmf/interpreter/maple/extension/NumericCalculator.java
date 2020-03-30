@@ -142,10 +142,8 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     }
 
     @Override
-    public String buildTestCases(
-            String constraintsName,
-            int maxCombis
-    ) throws ComputerAlgebraSystemEngineException, IllegalArgumentException {
+    public String buildTestCases(String constraintsName, int maxCombis)
+            throws ComputerAlgebraSystemEngineException, IllegalArgumentException {
         String testValuesN = "nTestVals";
 
         String vals = ICASEngineNumericalEvaluator.getValuesName(varNames);
@@ -171,20 +169,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
         combis += "-1;";
         commandsList.append(combis).append(NL);
 
-        try {
-            LOG.debug("Prepare numerical test:" + NL + commandsList.toString());
-            Algebraic numCombis = maple.evaluate(commandsList.toString());
-            try {
-                int i = Integer.parseInt(numCombis.toString());
-                if ( i >= maxCombis ) throw new IllegalArgumentException("Too many combinations: " + i);
-                else if ( i <= 0 ) throw new IllegalArgumentException("There are no valid test values.");
-            } catch ( NumberFormatException e ){
-                throw new IllegalArgumentException("Cannot calculate number of combinations!");
-            }
-        } catch (MapleException me) {
-            throw new ComputerAlgebraSystemEngineException(me);
-        }
-
+        maple.evaluateAndCheckRangeOfResult(commandsList.toString(), 0, maxCombis);
         commandsList = new StringBuffer();
         commandsList.append(testValuesN).append(":= buildTestValues(")
                 .append(constraintsName).append(",").append(testValuesN).append("):");
@@ -232,29 +217,29 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     public ResultType getStatusOfResult(Algebraic results) throws ComputerAlgebraSystemEngineException {
         try {
             if ( results instanceof com.maplesoft.openmaple.List ) {
-                com.maplesoft.openmaple.List aList = (com.maplesoft.openmaple.List) results;
-                int l = aList.length();
-
-                // if l == 0, the list is empty so the test was successful
-                if ( l == 0 ){
-                    LOG.info("Test was successful.");
-                    return ResultType.SUCCESS;
-                } else { // otherwise the list contains errors or simple failures
-                    LOG.info("Test was NOT successful.");
-                    String evaluation = aList.toString();
-
-                    if ( evaluation.contains("Error") ){
-                        return ResultType.ERROR;
-                    } else {
-                        return ResultType.FAILURE;
-                    }
-                }
+                return getStatusOfList((com.maplesoft.openmaple.List) results);
             } else {
                 LOG.warn("Sieved list was not a list object... " + results.toString());
                 return ResultType.ERROR;
             }
         } catch (MapleException me) {
             throw new ComputerAlgebraSystemEngineException(me);
+        }
+    }
+
+    private ResultType getStatusOfList(com.maplesoft.openmaple.List aList) throws MapleException {
+        // if l == 0, the list is empty so the test was successful
+        if ( aList.length() == 0 ){
+            LOG.info("Test was successful.");
+            return ResultType.SUCCESS;
+        }
+
+        // otherwise the list contains errors or simple failures
+        LOG.info("Test was NOT successful.");
+        if ( aList.toString().contains("Error") ){
+            return ResultType.ERROR;
+        } else {
+            return ResultType.FAILURE;
         }
     }
 
@@ -290,24 +275,27 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
         }
 
         if ( nTestValsA instanceof com.maplesoft.openmaple.List){
-            if (checkNumericalNTest()){
-                maple.evaluate( valsName+" := [];" );
-                return;
-            }
-
-            com.maplesoft.openmaple.List l = (com.maplesoft.openmaple.List) nTestValsA;
-            int length = l.length();
-            if ( length <= 0 ){
-                // else throw an exception
-                throw new IllegalArgumentException("There are no valid test values.");
-            } else {
-                String values = l.toString();
-                int min = Math.min(values.length(), MAX_LOG_LENGTH);
-                if ( min < values.length() )
-                    values = values.substring(1, min) + "...";
-                LOG.info("Testing " + l.length() + " values: " + values);
-            }
+            checkTestValuesList((com.maplesoft.openmaple.List) nTestValsA, valsName);
         }
+    }
+
+    private void checkTestValuesList(com.maplesoft.openmaple.List list, String valsName) throws MapleException {
+        if (checkNumericalNTest()){
+            maple.evaluate( valsName+" := [];" );
+            return;
+        }
+
+        int length = list.length();
+        if ( length <= 0 ){
+            // else throw an exception
+            throw new IllegalArgumentException("There are no valid test values.");
+        }
+
+        String values = list.toString();
+        int min = Math.min(values.length(), MAX_LOG_LENGTH);
+        if ( min < values.length() )
+            values = values.substring(1, min) + "...";
+        LOG.info("Testing " + list.length() + " values: " + values);
     }
 
     private boolean checkNumericalNTest() throws MapleException {
