@@ -184,30 +184,6 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
     }
 
     /**
-     * Sub-Super scripts will be normalized, so that the subscript is always in front
-     * @param pte normalizes the order of sub-super-script expressions.
-     * @return
-     */
-    public static PomTaggedExpression normalizeSubSuperScripts( PomTaggedExpression pte ) {
-        List<PomTaggedExpression> comps = pte.getComponents();
-
-        PomTaggedExpression first = comps.remove(0);
-        PomTaggedExpression second = comps.remove(0);
-
-        MathTerm firstMT = first.getRoot();
-        MathTermTags ftag = MathTermTags.getTagByKey(firstMT.getTag());
-        if ( ftag.equals(MathTermTags.caret) ) {
-            // caret first, switch the order!
-            pte.addComponent(second);
-            pte.addComponent(first);
-        } else {
-            pte.addComponent(first);
-            pte.addComponent(second);
-        }
-        return pte;
-    }
-
-    /**
      *
      * @param expr
      * @return
