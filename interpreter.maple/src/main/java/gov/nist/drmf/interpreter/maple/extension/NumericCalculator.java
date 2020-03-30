@@ -152,6 +152,20 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
 
         String combis = "inCombis := nops("+vals+")^nops("+varNames+")";
 
+        combis = additionalCalculations(combis);
+        commandsList.append("]:").append(NL);
+        combis += "-1;";
+        commandsList.append(combis).append(NL);
+
+        maple.evaluateAndCheckRangeOfResult(commandsList.toString(), 0, maxCombis);
+        commandsList = new StringBuffer();
+        commandsList.append(testValuesN).append(":= buildTestValues(")
+                .append(constraintsName).append(",").append(testValuesN).append("):");
+
+        return testValuesN;
+    }
+
+    private String additionalCalculations(String combis) {
         if ( specVarSet ) {
             String extVals = ICASEngineNumericalEvaluator.getValuesName(specVarN);
             commandsList.append(", op(createListInList(")
@@ -165,16 +179,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
                     .append(conVarN).append(",").append(conVals).append(")");
         }
 
-        commandsList.append("]:").append(NL);
-        combis += "-1;";
-        commandsList.append(combis).append(NL);
-
-        maple.evaluateAndCheckRangeOfResult(commandsList.toString(), 0, maxCombis);
-        commandsList = new StringBuffer();
-        commandsList.append(testValuesN).append(":= buildTestValues(")
-                .append(constraintsName).append(",").append(testValuesN).append("):");
-
-        return testValuesN;
+        return combis;
     }
 
     @Override
