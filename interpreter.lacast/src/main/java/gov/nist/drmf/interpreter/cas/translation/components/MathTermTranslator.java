@@ -3,20 +3,15 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
-import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
-import gov.nist.drmf.interpreter.mlp.extensions.FakeMLPGenerator;
-import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
-import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -26,7 +21,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.ABSOLUTE_VAL_TERM_TEXT_PATTERN;
-import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CHAR_BACKSLASH;
 
 /**
  * The math term translation parses only math terms.
@@ -42,16 +36,13 @@ import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CHAR_BACKSLASH;
  */
 public class MathTermTranslator extends AbstractListTranslator {
     private static final Logger LOG = LogManager.getLogger(MathTermTranslator.class.getName());
-    private static final String EXPONENTIAL_MLP_KEY = "exponential";
     private final TranslatedExpression localTranslations;
-    private final String CAS;
 
     private final SymbolTranslator sT;
 
     public MathTermTranslator(AbstractTranslator superTranslator) {
         super(superTranslator);
         this.localTranslations = new TranslatedExpression();
-        this.CAS = getConfig().getTO_LANGUAGE();
         this.sT = getConfig().getSymbolTranslator();
     }
 
@@ -79,8 +70,7 @@ public class MathTermTranslator extends AbstractListTranslator {
         // it has to be checked before that this exp has a not empty term
         // get the MathTermTags object
         MathTerm term = exp.getRoot();
-        String termTag = term.getTag();
-        MathTermTags tag = MathTermTags.getTagByKey(termTag);
+        MathTermTags tag = MathTermTags.getTagByMathTerm(term);
 
         // no tag shouldn't happen
         if (tag == null) {
@@ -114,11 +104,9 @@ public class MathTermTranslator extends AbstractListTranslator {
     private void handleInvalidTags(MathTermTags tag, MathTerm term) throws TranslationException {
         switch (tag) {
             case function:
-                throw buildException(
+                throwImplementationError(
                         "MathTermTranslator cannot translate functions. Use the FunctionTranslator instead: "
-                                + term.getTermText(),
-                        TranslationExceptionReason.IMPLEMENTATION_ERROR
-                );
+                                + term.getTermText() );
             case left_delimiter:
             case right_delimiter:
             case left_parenthesis:
@@ -127,15 +115,9 @@ public class MathTermTranslator extends AbstractListTranslator {
             case right_parenthesis:
             case right_bracket:
             case right_brace:
-                throw buildException(
-                        "MathTermTranslator don't expected brackets but found " + term.getTermText(),
-                        TranslationExceptionReason.IMPLEMENTATION_ERROR
-                );
+                throwImplementationError("MathTermTranslator don't expected brackets but found " + term.getTermText());
             case macro:
-                throw buildException(
-                        "There shouldn't be a macro in MathTermTranslator: " + term.getTermText(),
-                        TranslationExceptionReason.IMPLEMENTATION_ERROR
-                );
+                throwImplementationError("There shouldn't be a macro in MathTermTranslator: " + term.getTermText());
             case abbreviation:
                 throw buildExceptionObj(
                         "This program cannot translate abbreviations like " + term.getTermText(),
@@ -143,6 +125,13 @@ public class MathTermTranslator extends AbstractListTranslator {
                         term.getTermText()
                 );
         }
+    }
+
+    private void throwImplementationError(String error) {
+        throw buildException(
+                error,
+                TranslationExceptionReason.IMPLEMENTATION_ERROR
+        );
     }
 
     /**
@@ -177,21 +166,30 @@ public class MathTermTranslator extends AbstractListTranslator {
             PomTaggedExpression exp,
             List<PomTaggedExpression> following_exp
     ) {
-        TranslatedExpression te = null;
+        TranslatedExpression te;
         switch (tag) {
+            case factorial:
+                te = parseFactorial(tag, following_exp);
+                break;
             case fence:
                 te = parseFences(term, following_exp);
                 break;
+            default: // all other cases, try operation, sub-super-scripts and letters
+                te = broadcastOperationScriptLetter(tag, exp, following_exp);
+        }
+        return te;
+    }
+
+    private TranslatedExpression broadcastOperationScriptLetter(
+            MathTermTags tag,
+            PomTaggedExpression exp,
+            List<PomTaggedExpression> following_exp
+    ){
+        TranslatedExpression te = null;
+        switch (tag) {
             case modulo:
             case operation:
-                OperationTranslator opParser = new OperationTranslator(getSuperTranslator());
-                localTranslations.addTranslatedExpression(
-                        opParser.translate(exp, following_exp)
-                );
-                te = localTranslations;
-                break;
-            case factorial:
-                te = parseFactorial(tag, following_exp);
+                te = translateOperation(exp, following_exp);
                 break;
             case caret:
             case underscore:
@@ -210,6 +208,14 @@ public class MathTermTranslator extends AbstractListTranslator {
                 break;
         }
         return te;
+    }
+
+    private TranslatedExpression translateOperation(PomTaggedExpression exp, List<PomTaggedExpression> following_exp) {
+        OperationTranslator opParser = new OperationTranslator(getSuperTranslator());
+        localTranslations.addTranslatedExpression(
+                opParser.translate(exp, following_exp)
+        );
+        return localTranslations;
     }
 
     /**
@@ -264,14 +270,7 @@ public class MathTermTranslator extends AbstractListTranslator {
                 break;
             case ordinary:
             case ellipsis:
-                String symbol;
-                if (tag.equals(MathTermTags.ordinary)) {
-                    symbol = sT.translate(term.getTermText());
-                } else {
-                    symbol = sT.translateFromMLPKey(tag.tag());
-                }
-                localTranslations.addTranslatedExpression(symbol);
-                getGlobalTranslationList().addTranslatedExpression(symbol);
+                translateEllipsis(tag, term);
                 break;
             case spaces:
             case non_allowed:
@@ -286,6 +285,17 @@ public class MathTermTranslator extends AbstractListTranslator {
                         TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT,
                         term.getTermText());
         }
+    }
+
+    private void translateEllipsis(MathTermTags tag, MathTerm term) {
+        String symbol;
+        if (tag.equals(MathTermTags.ordinary)) {
+            symbol = sT.translate(term.getTermText());
+        } else {
+            symbol = sT.translateFromMLPKey(tag.tag());
+        }
+        localTranslations.addTranslatedExpression(symbol);
+        getGlobalTranslationList().addTranslatedExpression(symbol);
     }
 
     private TranslatedExpression parseFences(MathTerm term, List<PomTaggedExpression> following_exp) {
@@ -363,6 +373,7 @@ public class MathTermTranslator extends AbstractListTranslator {
     }
 
     private String translateToCommand() {
+        String CAS = getConfig().getTO_LANGUAGE();
         switch ( CAS ) {
             case Keys.KEY_MATHEMATICA:
                 return "->";
