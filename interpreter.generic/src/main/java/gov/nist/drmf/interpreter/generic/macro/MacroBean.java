@@ -1,24 +1,18 @@
 package gov.nist.drmf.interpreter.generic.macro;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
-import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import static gov.nist.drmf.interpreter.generic.macro.MacroHelper.*;
 
 /**
  * Java class representing a Macro from a .sty file
  */
+@SuppressWarnings("unused")
 public class MacroBean {
-    public static final Pattern CLEAN_PATTERN = Pattern.compile(
-            "\\\\m(?:left|right)"
-    );
-
-    public static final String VAR_PREFIX = "var";
-    public static final String PAR_PREFIX = "par";
-    public static final String OPTIONAL_PAR_PREFIX = "opPar";
-
     /**
      * Unique identifier (quasi-final)
      */
@@ -27,37 +21,14 @@ public class MacroBean {
     /**
      * The pure generic LaTeX for parameters
      */
-    private LinkedList<String> genericLaTeXParameters;
+    private final LinkedList<String> genericLaTeXParameters;
 
     /**
      * The pure generic LaTeX for arguments
      */
-    private LinkedList<String> genericLaTeXArguments;
+    private final LinkedList<String> genericLaTeXArguments;
 
-    /**
-     * Textual description text
-     */
-    private String description;
-
-    /**
-     * Unique string of description
-     */
-    private String meaning;
-
-    /**
-     * OpenMath name
-     */
-    private String openMathID;
-
-    /**
-     * The standard parameters
-     */
-    private LinkedList<String> standardParameters;
-
-    /**
-     * The standard arguments
-     */
-    private LinkedList<String> standardArguments;
+    private MacroMetaBean metaInformation;
 
     private int numberOfParameters;
 
@@ -144,39 +115,19 @@ public class MacroBean {
         this.name = macro;
     }
 
-    @JsonSetter("meaning")
-    public void setMeaning(String meaning) {
-        this.meaning = meaning;
+    @JsonSetter("TeX")
+    public void setGenericLaTeX(LinkedList<String> genericLaTeX) {
+        this.genericLaTeX = genericLaTeX;
     }
 
-    @JsonSetter("openMathID")
-    public void setOpenMathID(String openMathID) {
-        this.openMathID = openMathID;
+    @JsonSetter("semanticTeX")
+    public void setSemanticLaTeX(String semanticLaTeX) {
+        this.semanticLaTeX = semanticLaTeX;
     }
 
-    @JsonSetter("description")
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @JsonIgnore
-    public void setStandardParameters(String para) {
-        this.standardParameters = generateListOfArguments(para);
-    }
-
-    @JsonIgnore
-    public void setStandardArguments(String args) {
-        this.standardArguments = generateListOfArguments(args);
-    }
-
-    @JsonSetter("standardParameters")
-    public void setStandardParameters(LinkedList<String> standardParameters) {
-        this.standardParameters = standardParameters;
-    }
-
-    @JsonSetter("standardArguments")
-    public void setStandardArguments(LinkedList<String> standardArguments) {
-        this.standardArguments = standardArguments;
+    @JsonSetter("meta")
+    public void setMetaInformation(MacroMetaBean metaInformation) {
+        this.metaInformation = metaInformation;
     }
 
     @JsonSetter("numberOfParameters")
@@ -194,16 +145,6 @@ public class MacroBean {
         this.numberOfArguments = numberOfArguments;
     }
 
-    @JsonSetter("TeX")
-    public void setGenericLaTeX(LinkedList<String> genericLaTeX) {
-        this.genericLaTeX = genericLaTeX;
-    }
-
-    @JsonSetter("semanticTeX")
-    public void setSemanticLaTeX(String semanticLaTeX) {
-        this.semanticLaTeX = semanticLaTeX;
-    }
-
     @JsonGetter("macro")
     public String getName() {
         return name;
@@ -211,16 +152,18 @@ public class MacroBean {
 
     @JsonGetter("TeX")
     public LinkedList<String> getGenericLatex() {
-        if ( genericLaTeX.isEmpty() ) {
-            for ( String para : genericLaTeXParameters ) {
-                if ( genericLaTeXArguments.isEmpty() ) genericLaTeX.add(para);
-                else {
-                    for ( String args : genericLaTeXArguments ) {
-                        genericLaTeX.add(para + " " + args);
-                    }
+        if ( !genericLaTeX.isEmpty() ) return genericLaTeX;
+
+        for ( String para : genericLaTeXParameters ) {
+            if ( genericLaTeXArguments.isEmpty() ) {
+                genericLaTeX.add(para);
+            } else {
+                for ( String args : genericLaTeXArguments ) {
+                    genericLaTeX.add(para + " " + args);
                 }
             }
         }
+
         return genericLaTeX;
     }
 
@@ -243,37 +186,9 @@ public class MacroBean {
         return this.semanticLaTeX;
     }
 
-    private int addIdx( int repeat, int counter, Character[] symbs, StringBuilder sb ) {
-        for ( int i = 0; i < repeat; i++ ) {
-            sb.append(symbs[0]).append("$").append(counter).append(symbs[1]);
-            counter++;
-        }
-        return counter;
-    }
-
-    @JsonGetter("description")
-    public String getDescription() {
-        return description;
-    }
-
-    @JsonGetter("meaning")
-    public String getMeaning() {
-        return meaning;
-    }
-
-    @JsonGetter("openMathID")
-    public String getOpenMathID() {
-        return openMathID;
-    }
-
-    @JsonGetter("standardParameters")
-    public LinkedList<String> getStandardParameters() {
-        return standardParameters;
-    }
-
-    @JsonGetter("standardArguments")
-    public LinkedList<String> getStandardArguments() {
-        return standardArguments;
+    @JsonGetter("meta")
+    public MacroMetaBean getMetaInformation() {
+        return metaInformation;
     }
 
     @JsonGetter("numberOfParameters")
@@ -289,38 +204,5 @@ public class MacroBean {
     @JsonGetter("numberOfArguments")
     public int getNumberOfArguments() {
         return numberOfArguments;
-    }
-
-    private static String cleanString(String arg) {
-        StringBuilder sb = new StringBuilder();
-        Matcher cleanMatcher = CLEAN_PATTERN.matcher(arg);
-        while ( cleanMatcher.find() ) {
-            cleanMatcher.appendReplacement(sb, "");
-        }
-        cleanMatcher.appendTail(sb);
-        return sb.toString();
-    }
-
-    private static String generateArgumentList(int numberOfArgs) {
-        if ( numberOfArgs == 1 ) return "(" + VAR_PREFIX+1 + ")";
-
-        StringBuilder sb = new StringBuilder("(" + VAR_PREFIX + 1);
-        for ( int i = 2; i <= numberOfArgs; i++ ) {
-            sb.append(",").append(VAR_PREFIX).append(i);
-        }
-        sb.append(")");
-        return sb.toString();
-    }
-
-    private static LinkedList<String> generateListOfArguments(String args) {
-        if (args.length() < 1) {
-            throw new IllegalArgumentException("Empty arguments list cannot be handled.");
-        }
-
-        if (args.matches("^\\{.*}$"))
-            args = args.substring(1, args.length() - 1);
-
-        String[] elements = args.split("}\\{");
-        return new LinkedList<>(Arrays.asList(elements));
     }
 }

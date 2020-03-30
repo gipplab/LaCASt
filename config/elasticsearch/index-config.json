@@ -62,12 +62,14 @@
             "macro": {
                 "type": "keyword"
             },
-            "description": {
-                "type": "text",
-                "analyzer": "dlmf_analyzer"
-            },
-            "tex": {
-                "type": "keyword"
+            "meta": {
+                "type": "nested",
+                "properties": {
+                    "description": {
+                        "type": "text",
+                        "analyzer": "dlmf_analyzer"
+                    }
+                }
             }
         }
     }

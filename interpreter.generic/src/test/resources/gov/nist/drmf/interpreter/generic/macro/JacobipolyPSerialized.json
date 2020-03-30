@@ -1,10 +1,14 @@
 {
   "macro" : "JacobipolyP",
-  "description" : "the Jacobi polynomial",
-  "meaning" : "Jacobi-polynomial-P",
-  "openMathID" : "orthpoly2_dlmf:Jacobi_P",
-  "standardParameters" : [ "\\alpha", "\\beta", "n" ],
-  "standardArguments" : [ "x" ],
+  "meta" : {
+    "description" : "the Jacobi polynomial",
+    "meaning" : "Jacobi-polynomial-P",
+    "openMathID" : "orthpoly2_dlmf:Jacobi_P",
+    "standardArguments" : {
+      "standardParameters" : [ "\\alpha", "\\beta", "n" ],
+      "standardVariables" : [ "x" ]
+    }
+  },
   "numberOfParameters" : 3,
   "numberOfOptionalParameters" : 0,
   "numberOfArguments" : 1,
