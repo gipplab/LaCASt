@@ -63,7 +63,7 @@ public class Constraints {
         String s = specialValuesInfo();
 
         String tmp = addAdditionalConstraintString();
-        s += tmp == null ? tmp : "";
+        s += tmp == null ? "" : tmp;
 
         if ( s.isEmpty() ) s = "No Constraints.";
 
