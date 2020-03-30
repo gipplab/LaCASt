@@ -76,20 +76,7 @@ public class SubSuperScriptTranslator extends AbstractListTranslator {
         PomTaggedExpression sub_exp = exp.getComponents().get(0);
         // and translate the power
         TranslatedExpression power = parseGeneralExpression(sub_exp, null);
-
-        // now we need to wrap parenthesis around the power
-        String powerStr = GlobalConstants.CARET_CHAR;
-        if (!testBrackets(power.toString())) {
-            powerStr += b.symbol + power.toString() + b.counterpart;
-        } else {
-            powerStr += power.toString();
-        }
-
-        MathTerm m = FakeMLPGenerator.generateClosedParenthesesMathTerm();
-        PomTaggedExpression last = new PomTaggedExpression(m);
-        if (AbstractListTranslator.addMultiply(last, following_exp)) {
-            powerStr += getConfig().getMULTIPLY();
-        }
+        String powerStr = wrapParenthesesAndAddMultiplyToPower(power, following_exp);
 
         // the power becomes one big expression now.
         localTranslations.addTranslatedExpression(powerStr);
@@ -106,6 +93,24 @@ public class SubSuperScriptTranslator extends AbstractListTranslator {
             localTranslations.removeLastExpression();
         }
         return localTranslations;
+    }
+
+    private String wrapParenthesesAndAddMultiplyToPower(TranslatedExpression power, List<PomTaggedExpression> following_exp) {
+        // now we need to wrap parenthesis around the power
+        String powerStr = GlobalConstants.CARET_CHAR;
+        if (!testBrackets(power.toString())) {
+            powerStr += Brackets.left_parenthesis.symbol + power.toString() + Brackets.left_parenthesis.counterpart;
+        } else {
+            powerStr += power.toString();
+        }
+
+        MathTerm m = FakeMLPGenerator.generateClosedParenthesesMathTerm();
+        PomTaggedExpression last = new PomTaggedExpression(m);
+        if (AbstractListTranslator.addMultiply(last, following_exp)) {
+            powerStr += getConfig().getMULTIPLY();
+        }
+
+        return powerStr;
     }
 
     /**

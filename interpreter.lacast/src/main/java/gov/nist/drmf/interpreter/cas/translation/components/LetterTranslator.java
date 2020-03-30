@@ -28,11 +28,19 @@ import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CHAR_BACKSLASH;
 public class LetterTranslator extends AbstractListTranslator {
     private static final Logger LOG = LogManager.getLogger(LetterTranslator.class.getName());
 
+    private static final String GREEK_MSG = "Could be %s.\n But it is also a Greek letter. Be aware, that this program " +
+            "translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro %s to translate %s as a constant.\n";
+
+    private static final String LETTER_MSG = "Could be %s.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n";
+
     private static final String EXPONENTIAL_MLP_KEY = "exponential";
 
     private final TranslatedExpression localTranslations = new TranslatedExpression();
     private final String CAS;
     private final SymbolTranslator sT;
+
+    private PomTaggedExpression exp;
+    private List<PomTaggedExpression> following_exp;
 
     protected LetterTranslator(AbstractTranslator abstractTranslator) {
         super(abstractTranslator);
@@ -42,6 +50,8 @@ public class LetterTranslator extends AbstractListTranslator {
 
     @Override
     public TranslatedExpression translate(PomTaggedExpression exp, List<PomTaggedExpression> following_exp) {
+        this.exp = exp;
+        this.following_exp = following_exp;
         MathTerm term = exp.getRoot();
 
         // If the current element is a constant, it has a constant FeatureSet
@@ -52,15 +62,18 @@ public class LetterTranslator extends AbstractListTranslator {
                         Keys.FEATURE_VALUE_CONSTANT
                 );
 
-        return broadcastTranslation(term, constantSet, exp, following_exp);
+        TranslatedExpression tmp = broadcastTranslation(term, constantSet);
+        this.exp = null;
+        this.following_exp = null;
+        return tmp;
     }
 
-    private TranslatedExpression broadcastTranslation(
-            MathTerm term,
-            FeatureSet constantSet,
-            PomTaggedExpression exp,
-            List<PomTaggedExpression> following_exp
-    ) {
+    @Override
+    public TranslatedExpression getTranslatedExpressionObject() {
+        return localTranslations;
+    }
+
+    private TranslatedExpression broadcastTranslation(MathTerm term, FeatureSet constantSet) {
         MathTermTags tag = MathTermTags.getTagByMathTerm(term);
         TranslatedExpression te;
         switch (tag) {
@@ -68,19 +81,14 @@ public class LetterTranslator extends AbstractListTranslator {
                 // a dlmf-macro at this state will be simple translated as a command
                 // so do nothing here and switch to command:
             case command:
-                // a latex-command could be:
-                //  1) Greek letter -> translate via GreekLetters.translate
-                //  2) constant     -> translate via Constants.translate
-                //  3) A DLMF Macro -> this translation cannot handle DLMF-Macros
-                //  4) a function   -> Should parsed by FunctionTranslator and not here!
-                te = parseCommand(term, constantSet, exp, following_exp);
+                te = parseCommand(term, constantSet);
                 break;
             case special_math_letter:
             case symbol:
                 te = parseSymbol(term);
                 break;
             case letter:
-                translateLetter(exp, term, constantSet);
+                translateLetter(term, constantSet);
                 return localTranslations;
             case constant:
                 // a constant in this state is simply not a command
@@ -88,7 +96,7 @@ public class LetterTranslator extends AbstractListTranslator {
                 // that's why a constant here is the same like a alphanumeric expression
                 // ==> do nothing and switch to alphanumeric
             case alphanumeric:
-                te = parseAlphanumeric(term, constantSet, exp, following_exp);
+                te = parseAlphanumeric(term, constantSet);
                 break;
             default:
                 throw buildException(
@@ -100,12 +108,7 @@ public class LetterTranslator extends AbstractListTranslator {
         return te;
     }
 
-    @Override
-    public TranslatedExpression getTranslatedExpressionObject() {
-        return localTranslations;
-    }
-
-    private void translateLetter(PomTaggedExpression exp, MathTerm term, FeatureSet constantSet) {
+    private void translateLetter(MathTerm term, FeatureSet constantSet) {
         if (constantSet != null) {
             MathConstantTranslator mct = new MathConstantTranslator(getSuperTranslator());
             localTranslations.addTranslatedExpression(mct.translate(exp));
@@ -116,18 +119,13 @@ public class LetterTranslator extends AbstractListTranslator {
         }
     }
 
-    private TranslatedExpression parseCommand(
-            MathTerm term,
-            FeatureSet constantSet,
-            PomTaggedExpression exp,
-            List<PomTaggedExpression> following_exp
-    ) {
-        TranslatedExpression tmp = tryParseGreekOrConstant(
-                term,
-                constantSet,
-                exp,
-                following_exp
-        );
+    private TranslatedExpression parseCommand(MathTerm term, FeatureSet constantSet) {
+        // a latex-command could be:
+        //  1) Greek letter -> translate via GreekLetters.translate
+        //  2) constant     -> translate via Constants.translate
+        //  3) A DLMF Macro -> this translation cannot handle DLMF-Macros
+        //  4) a function   -> Should parsed by FunctionTranslator and not here!
+        TranslatedExpression tmp = tryParseGreekOrConstant(term, constantSet);
         if ( tmp != null ) return tmp;
 
         // translate as symbol
@@ -200,18 +198,8 @@ public class LetterTranslator extends AbstractListTranslator {
         return false;
     }
 
-    private TranslatedExpression parseAlphanumeric(
-            MathTerm term,
-            FeatureSet constantSet,
-            PomTaggedExpression exp,
-            List<PomTaggedExpression> following_exp
-    ) {
-        TranslatedExpression te = tryParseGreekOrConstant(
-                term,
-                constantSet,
-                exp,
-                following_exp
-        );
+    private TranslatedExpression parseAlphanumeric(MathTerm term, FeatureSet constantSet) {
+        TranslatedExpression te = tryParseGreekOrConstant(term, constantSet);
         if ( te != null ) return te;
 
         String alpha = term.getTermText();
@@ -231,12 +219,7 @@ public class LetterTranslator extends AbstractListTranslator {
         return localTranslations;
     }
 
-    private TranslatedExpression tryParseGreekOrConstant(
-            MathTerm term,
-            FeatureSet constantSet,
-            PomTaggedExpression exp,
-            List<PomTaggedExpression> following_exp
-    ) {
+    private TranslatedExpression tryParseGreekOrConstant(MathTerm term, FeatureSet constantSet) {
         // is it a Greek letter?
         if (FeatureSetUtility.isGreekLetter(term)) {
             // is this Greek letter also known constant?
@@ -252,20 +235,14 @@ public class LetterTranslator extends AbstractListTranslator {
         if (constantSet != null) {
             // simply try to translate it as a constant
             return forceParseConstantOrExponential(
-                    term.getTermText(),
-                    exp,
-                    following_exp
+                    term.getTermText()
             );
         }
 
         return null;
     }
 
-    private TranslatedExpression forceParseConstantOrExponential(
-            String termText,
-            PomTaggedExpression exp,
-            List<PomTaggedExpression> following_exp
-    ) {
+    private TranslatedExpression forceParseConstantOrExponential(String termText) {
         try {
             PomTaggedExpression next = following_exp.get(0);
             MathTerm possibleCaret = next.getRoot();
@@ -274,7 +251,7 @@ public class LetterTranslator extends AbstractListTranslator {
             if (termText.matches("\\\\expe") &&
                     MathTermTags.caret.equals(tagPossibleCaret)) {
                 // translate as exp(...) and not exp(1)^{...}
-                return parseExponentialFunction(following_exp);
+                return parseExponentialFunction();
             } else {
                 MathConstantTranslator mct = new MathConstantTranslator(getSuperTranslator());
                 return mct.translate(exp);
@@ -303,21 +280,12 @@ public class LetterTranslator extends AbstractListTranslator {
         if (dlmf == null) {
             getInfoLogger().addGeneralInfo(
                     term.getTermText(),
-                    "Could be " + DLMFFeatureValues.meaning.getFeatureValue(constantSet, CAS) + "."
-                            + System.lineSeparator() +
-                            "But this system don't know how to translate it as a constant. " +
-                            "It was translated as a general letter." + System.lineSeparator()
+                    String.format(LETTER_MSG, DLMFFeatureValues.meaning.getFeatureValue(constantSet, CAS))
             );
         } else {
             getInfoLogger().addGeneralInfo(
                     term.getTermText(),
-                    "Could be " + DLMFFeatureValues.meaning.getFeatureValue(constantSet, CAS) + "."
-                            + System.lineSeparator() +
-                            "But it is also a Greek letter. " +
-                            "Be aware, that this program translated the letter " +
-                            "as a normal Greek letter and not as a constant!" + System.lineSeparator() +
-                            "Use the DLMF-Macro " +
-                            dlmf + " to translate " + term.getTermText() + " as a constant." + System.lineSeparator()
+                    String.format(GREEK_MSG, DLMFFeatureValues.meaning.getFeatureValue(constantSet, CAS), dlmf, term.getTermText())
             );
         }
     }
@@ -337,7 +305,7 @@ public class LetterTranslator extends AbstractListTranslator {
         return c.translate(Keys.KEY_LATEX, Keys.KEY_DLMF, constant);
     }
 
-    private TranslatedExpression parseExponentialFunction(List<PomTaggedExpression> following_exp) {
+    private TranslatedExpression parseExponentialFunction() {
         PomTaggedExpression caretPomExp = following_exp.remove(0);
         PomTaggedExpression caretChild = caretPomExp.getComponents().get(0);
 
