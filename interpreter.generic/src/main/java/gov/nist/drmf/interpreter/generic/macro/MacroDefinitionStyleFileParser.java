@@ -55,40 +55,49 @@ public class MacroDefinitionStyleFileParser {
     }
 
     private MacroBean handleNewMacroHit( Matcher m ) {
-        // done, get next
         String beanName = m.group(1);
         if ( beanName.matches("\\w+\\[]") ) {
-            beanName = beanName.substring(0, beanName.length()-2);
-            if ( macros.containsKey(beanName) ) {
-                MacroBean currentBean = macros.get(beanName);
-                if ( Objects.isNull(m.group(4)) )
-                    throw new IllegalArgumentException("Generic LaTeX is mandatory but was null for " + beanName);
-                String genericLaTeX = cleanIfx(m.group(4));
-                currentBean.addAdditionalGenericLaTeXParameters(genericLaTeX);
-            } else {
-                throw new IllegalArgumentException(
-                        "Found optional argument macro before analyzing the standard macro: " + beanName
-                );
-            }
+            // is an optional macro (eg \FerrersP[]
+            handleOptionalMacro(beanName, m);
             return null;
         } else {
-            MacroBean currentBean = new MacroBean(beanName);
-            int numOfParameter = Objects.nonNull(m.group(2)) ? Integers.parseInt(m.group(2)) : 0;
+            // is an normal new macro
+            return handleActuallyNewMacro(beanName, m);
+        }
+    }
+
+    private void handleOptionalMacro(String beanName, Matcher m) {
+        beanName = beanName.substring(0, beanName.length()-2);
+        if ( macros.containsKey(beanName) ) {
+            MacroBean currentBean = macros.get(beanName);
             if ( Objects.isNull(m.group(4)) )
                 throw new IllegalArgumentException("Generic LaTeX is mandatory but was null for " + beanName);
             String genericLaTeX = cleanIfx(m.group(4));
-
-            if ( Objects.nonNull(m.group(3)) ) {
-                // that means the first #1 argument is actually an optional argument
-                genericLaTeX = genericLaTeX.replaceAll("#1", MacroHelper.OPTIONAL_PAR_PREFIX+"1");
-                genericLaTeX = reduceNumbers(genericLaTeX);
-                currentBean.setGenericLaTeXParametersWithOptionalParameter(numOfParameter, genericLaTeX);
-            } else {
-                currentBean.setGenericLaTeXParametersWithoutOptionalParameter(numOfParameter, genericLaTeX);
-            }
-
-            return currentBean;
+            currentBean.addAdditionalGenericLaTeXParameters(genericLaTeX);
+        } else {
+            throw new IllegalArgumentException(
+                    "Found optional argument macro before analyzing the standard macro: " + beanName
+            );
         }
+    }
+
+    private MacroBean handleActuallyNewMacro(String beanName, Matcher m) {
+        MacroBean currentBean = new MacroBean(beanName);
+        int numOfParameter = Objects.nonNull(m.group(2)) ? Integers.parseInt(m.group(2)) : 0;
+        if ( Objects.isNull(m.group(4)) )
+            throw new IllegalArgumentException("Generic LaTeX is mandatory but was null for " + beanName);
+        String genericLaTeX = cleanIfx(m.group(4));
+
+        if ( Objects.nonNull(m.group(3)) ) {
+            // that means the first #1 argument is actually an optional argument
+            genericLaTeX = genericLaTeX.replaceAll("#1", MacroHelper.OPTIONAL_PAR_PREFIX+"1");
+            genericLaTeX = reduceNumbers(genericLaTeX);
+            currentBean.setGenericLaTeXParametersWithOptionalParameter(numOfParameter, genericLaTeX);
+        } else {
+            currentBean.setGenericLaTeXParametersWithoutOptionalParameter(numOfParameter, genericLaTeX);
+        }
+
+        return currentBean;
     }
 
     private String reduceNumbers(String in) {
@@ -145,7 +154,7 @@ public class MacroDefinitionStyleFileParser {
     private static MacroMetaBean loadMeta(String metaInfoString) {
         Matcher metaMatcher = META_PATTERN.matcher(metaInfoString);
         MacroMetaBean metaBean = new MacroMetaBean();
-        MacroStandardArgumentsBean standardArgBean = new MacroStandardArgumentsBean();
+        MacroStandardArgumentsBean standardArgBean = metaBean.getStandardArguments();
 
         while ( metaMatcher.find() ) {
             String key = metaMatcher.group(1);
@@ -169,7 +178,6 @@ public class MacroDefinitionStyleFileParser {
             }
         }
 
-        metaBean.setStandardArguments(standardArgBean);
         return metaBean;
     }
 }

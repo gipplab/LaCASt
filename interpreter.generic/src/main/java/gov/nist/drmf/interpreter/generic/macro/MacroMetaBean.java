@@ -32,7 +32,9 @@ public class MacroMetaBean {
      */
     private MacroStandardArgumentsBean standardArguments;
 
-    public MacroMetaBean() {}
+    public MacroMetaBean() {
+        standardArguments = new MacroStandardArgumentsBean();
+    }
 
     public String getDescription() {
         return description;

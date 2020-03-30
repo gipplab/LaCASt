@@ -126,12 +126,9 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
 
         // create test cases first
         String testCasesCmd = Commands.CREATE_TEST_CASES.build(
-                varName,
-                generateValuesVarName(varName),
-                eVars,
-                generateValuesVarName(eVars),
-                exVars,
-                generateValuesVarName(exVars)
+                varName, generateValuesVarName(varName),
+                eVars, generateValuesVarName(eVars),
+                exVars, generateValuesVarName(exVars)
         );
 
         if ( constraintsName != null ) {
@@ -147,16 +144,7 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
         String commandString = sb.toString();
         LOG.trace("Numerical Test Commands:"+NL+commandString);
 
-        try {
-            String res = mathematicaInterface.evaluate(commandString);
-            LOG.debug("Generated test cases: " + res);
-            int nT = Integer.parseInt(res);
-            if ( nT > maxCombis ) throw new IllegalArgumentException("Too many test combinations.");
-            // res should be an integer, testing how many test commands there are!
-        } catch (MathLinkException | NumberFormatException e) {
-            throw new ComputerAlgebraSystemEngineException(e);
-        }
-
+        mathematicaInterface.checkIfEvaluationIsInRange(commandString, 0, maxCombis);
         return testCasesVar;
     }
 
