@@ -80,7 +80,7 @@ public class MacroDefinitionStyleFileParser {
 
             if ( Objects.nonNull(m.group(3)) ) {
                 // that means the first #1 argument is actually an optional argument
-                genericLaTeX = genericLaTeX.replaceAll("#1", MacroBean.OPTIONAL_PAR_PREFIX+"1");
+                genericLaTeX = genericLaTeX.replaceAll("#1", MacroHelper.OPTIONAL_PAR_PREFIX+"1");
                 genericLaTeX = reduceNumbers(genericLaTeX);
                 currentBean.setGenericLaTeXParametersWithOptionalParameter(numOfParameter, genericLaTeX);
             } else {
@@ -97,7 +97,7 @@ public class MacroDefinitionStyleFileParser {
         while ( m.find() ) {
             int n = Integers.parseInt(m.group(1));
             String newN = Integer.toString(n-1);
-            m.appendReplacement(sb, MacroBean.PAR_PREFIX + newN);
+            m.appendReplacement(sb, MacroHelper.PAR_PREFIX + newN);
         }
         m.appendTail(sb);
         return sb.toString();
@@ -110,7 +110,7 @@ public class MacroDefinitionStyleFileParser {
         else m.appendReplacement(sb, "");
 
         if ( Objects.nonNull(currentBean) ) {
-            loadMeta(currentBean, sb.toString());
+            loadAdditionalInformation(currentBean, sb.toString());
             macros.put(Objects.requireNonNull(currentBean).getName(), currentBean);
         }
     }
@@ -129,29 +129,9 @@ public class MacroDefinitionStyleFileParser {
         return macros;
     }
 
-    private static void loadMeta(MacroBean bean, String metaInfoString) {
-        Matcher metaMatcher = META_PATTERN.matcher(metaInfoString);
-        while ( metaMatcher.find() ) {
-            String key = metaMatcher.group(1);
-            String value = metaMatcher.group(2);
-            switch (key) {
-                case "meaning":
-                    bean.setMeaning(value);
-                    break;
-                case "om":
-                    bean.setOpenMathID(value);
-                    break;
-                case "description":
-                    bean.setDescription(value.substring(1, value.length()-1));
-                    break;
-                case "params":
-                    bean.setStandardParameters(value.substring(1, value.length()-1));
-                    break;
-                case "args":
-                    bean.setStandardArguments(value.substring(1, value.length()-1));
-                    break;
-            }
-        }
+    private static void loadAdditionalInformation(MacroBean bean, String metaInfoString) {
+        MacroMetaBean metaBean = loadMeta(metaInfoString);
+        bean.setMetaInformation(metaBean);
 
         Matcher argumentMatcher = ARG_LIST_PATTERN.matcher(metaInfoString);
         if ( argumentMatcher.find() ) {
@@ -160,5 +140,36 @@ public class MacroDefinitionStyleFileParser {
                     argumentMatcher.group(2)
             );
         }
+    }
+
+    private static MacroMetaBean loadMeta(String metaInfoString) {
+        Matcher metaMatcher = META_PATTERN.matcher(metaInfoString);
+        MacroMetaBean metaBean = new MacroMetaBean();
+        MacroStandardArgumentsBean standardArgBean = new MacroStandardArgumentsBean();
+
+        while ( metaMatcher.find() ) {
+            String key = metaMatcher.group(1);
+            String value = metaMatcher.group(2);
+            switch (key) {
+                case "meaning":
+                    metaBean.setMeaning(value);
+                    break;
+                case "om":
+                    metaBean.setOpenMathID(value);
+                    break;
+                case "description":
+                    metaBean.setDescription(value.substring(1, value.length()-1));
+                    break;
+                case "params":
+                    standardArgBean.setStandardParameters(value.substring(1, value.length()-1));
+                    break;
+                case "args":
+                    standardArgBean.setStandardVariables(value.substring(1, value.length()-1));
+                    break;
+            }
+        }
+
+        metaBean.setStandardArguments(standardArgBean);
+        return metaBean;
     }
 }

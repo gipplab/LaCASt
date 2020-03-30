@@ -55,14 +55,14 @@ public class MacroDefinitionTests {
         assertEquals("JacobipolyP", jacobiBean.getName());
         assertEquals(1, jacobiBean.getGenericLatex().size());
         assertEquals("P^{(par1,par2)}_{par3} (var1)", jacobiBean.getGenericLatex().getFirst());
-        assertEquals("the Jacobi polynomial", jacobiBean.getDescription());
-        assertEquals("Jacobi-polynomial-P", jacobiBean.getMeaning());
-        assertEquals("orthpoly2_dlmf:Jacobi_P", jacobiBean.getOpenMathID());
+        assertEquals("the Jacobi polynomial", jacobiBean.getMetaInformation().getDescription());
+        assertEquals("Jacobi-polynomial-P", jacobiBean.getMetaInformation().getMeaning());
+        assertEquals("orthpoly2_dlmf:Jacobi_P", jacobiBean.getMetaInformation().getOpenMathID());
         assertEquals( 3, jacobiBean.getNumberOfParameters());
         assertEquals( 1, jacobiBean.getNumberOfArguments());
 
-        LinkedList<String> args = jacobiBean.getStandardArguments();
-        LinkedList<String> params = jacobiBean.getStandardParameters();
+        LinkedList<String> args = jacobiBean.getMetaInformation().getStandardArguments().getStandardVariables();
+        LinkedList<String> params = jacobiBean.getMetaInformation().getStandardArguments().getStandardParameters();
         assertTrue(args.contains("x"));
         assertTrue(params.contains("\\alpha"));
         assertTrue(params.contains("\\beta"));
@@ -111,8 +111,8 @@ public class MacroDefinitionTests {
         MacroBean b = loadedMacros.get("continuous");
         assertNotNull(b);
         assertEquals(2, b.getGenericLatex().size());
-        assertEquals("(a,b)", b.getStandardArguments().getFirst());
-        assertEquals("the set of continuous functions $n$-times differentiable on the interval $(a,b)$", b.getDescription());
+        assertEquals("(a,b)", b.getMetaInformation().getStandardArguments().getStandardVariables().getFirst());
+        assertEquals("the set of continuous functions $n$-times differentiable on the interval $(a,b)$", b.getMetaInformation().getDescription());
     }
 
     @Test
@@ -136,11 +136,11 @@ public class MacroDefinitionTests {
         assertEquals( jacGoldBean.getName(), jacDeserializeBean.getName() );
         assertEquals( jacGoldBean.getGenericLatex(), jacDeserializeBean.getGenericLatex() );
         assertEquals( jacGoldBean.getSemanticLaTeX(), jacDeserializeBean.getSemanticLaTeX() );
-        assertEquals( jacGoldBean.getDescription(), jacDeserializeBean.getDescription() );
-        assertEquals( jacGoldBean.getMeaning(), jacDeserializeBean.getMeaning() );
-        assertEquals( jacGoldBean.getOpenMathID(), jacDeserializeBean.getOpenMathID() );
-        assertEquals( jacGoldBean.getStandardParameters(), jacDeserializeBean.getStandardParameters() );
-        assertEquals( jacGoldBean.getStandardArguments(), jacDeserializeBean.getStandardArguments() );
+        assertEquals( jacGoldBean.getMetaInformation().getDescription(), jacDeserializeBean.getMetaInformation().getDescription() );
+        assertEquals( jacGoldBean.getMetaInformation().getMeaning(), jacDeserializeBean.getMetaInformation().getMeaning() );
+        assertEquals( jacGoldBean.getMetaInformation().getOpenMathID(), jacDeserializeBean.getMetaInformation().getOpenMathID() );
+        assertEquals( jacGoldBean.getMetaInformation().getStandardArguments().getStandardParameters(), jacDeserializeBean.getMetaInformation().getStandardArguments().getStandardParameters() );
+        assertEquals( jacGoldBean.getMetaInformation().getStandardArguments().getStandardVariables(), jacDeserializeBean.getMetaInformation().getStandardArguments().getStandardVariables() );
         assertEquals( jacGoldBean.getNumberOfArguments(), jacDeserializeBean.getNumberOfArguments() );
         assertEquals( jacGoldBean.getNumberOfOptionalParameters(), jacDeserializeBean.getNumberOfOptionalParameters() );
         assertEquals( jacGoldBean.getNumberOfParameters(), jacDeserializeBean.getNumberOfParameters() );
