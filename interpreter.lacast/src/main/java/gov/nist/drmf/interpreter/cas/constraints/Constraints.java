@@ -33,38 +33,37 @@ public class Constraints {
     }
 
     public String specialValuesInfo(){
-        String s = "";
+        return generateConstraintString();
+    }
 
+    public String constraintInfo(){
+        String s = addAdditionalConstraintString();
+        return s==null ? "No Constraints applied." : s;
+    }
+
+    private String generateConstraintString() {
+        String s = "";
         if ( specialConstraintVariables != null ){
             s += "Set single values for variables (because of constraint-rules): ";
             for ( int i = 0; i < specialConstraintVariables.length; i++ ){
                 s += specialConstraintVariables[i] + "=" + specialConstraintValues[i] + "; ";
             }
         }
-
         return s;
     }
 
-    public String constraintInfo(){
-        if ( texConstraints != null ){
+    private String addAdditionalConstraintString() {
+        if ( texConstraints != null )
             return "Applied Additional Constraints: " + Arrays.toString(texConstraints);
-        } else return "No Constraints applied.";
+        else return null;
     }
 
     @Override
     public String toString(){
-        String s = "";
+        String s = specialValuesInfo();
 
-        if ( specialConstraintVariables != null ){
-            s += "Set single values for variables (because of constraint-rules): ";
-            for ( int i = 0; i < specialConstraintVariables.length; i++ ){
-                s += specialConstraintVariables[i] + "=" + specialConstraintValues[i] + "; ";
-            }
-        }
-
-        if ( texConstraints != null ){
-            s += "Applied Additional Constraints: " + Arrays.toString(texConstraints);
-        }
+        String tmp = addAdditionalConstraintString();
+        s += tmp == null ? tmp : "";
 
         if ( s.isEmpty() ) s = "No Constraints.";
 
