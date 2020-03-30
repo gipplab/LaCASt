@@ -8,6 +8,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import gov.nist.drmf.interpreter.mlp.extensions.FakeMLPGenerator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -53,15 +54,7 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
         switch( expTag ) {
             case sub_super_script:
                 // in case of sub-super scripts, we first normalize the order, subscript first!
-                try {
-                    expression = AbstractListTranslator.normalizeSubSuperScripts(expression);
-                } catch (IndexOutOfBoundsException iobe) {
-                    throw buildException(
-                            "SubSuperScript does not have two children.",
-                            TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT,
-                            iobe
-                    );
-                }
+                MLPWrapper.normalizeSubSuperScript(expression);
                 // than we fake it as a sequence, since there is no difference to a sequence anymore
                 expression.setTag( ExpressionTags.sequence.tag() );
             case sequence: // in that case use the SequenceTranslator

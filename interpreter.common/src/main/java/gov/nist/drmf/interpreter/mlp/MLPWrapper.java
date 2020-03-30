@@ -101,29 +101,37 @@ public class MLPWrapper {
     private static PomTaggedExpression internalNormalize(PomTaggedExpression pte, byte settings) {
         if ( settings == 0 ) return pte;
 
-        ExpressionTags tag = ExpressionTags.getTagByKey(pte.getTag());
         MathTermTags mathTag = MathTermTags.getTagByKey(pte.getRoot().getTag());
-        if ( ExpressionTags.sub_super_script.equals(tag) && (settings & NORMALIZE_SUB_SUPERSCRIPTS) != 0 ) {
-            List<PomTaggedExpression> comps = pte.getComponents();
-            PomTaggedExpression first = comps.get(0);
-            MathTermTags mTag = MathTermTags.getTagByKey(first.getRoot().getTag());
-            if ( !MathTermTags.caret.equals(mTag) ) {
-                Collections.reverse(comps);
-                pte.setComponents(comps);
-            }
-        } else if ( (MathTermTags.left_delimiter.equals(mathTag) || MathTermTags.right_delimiter.equals(mathTag)) &&
-                (settings & NORMALIZE_PARENTHESES) != 0 ) {
+        if ( (settings & NORMALIZE_SUB_SUPERSCRIPTS) != 0 ) {
+            normalizeSubSuperScript(pte);
+        } else if ( shouldNormalizeParenthesis(mathTag, settings) ) {
             Brackets orig = Brackets.getBracket(pte);
             Brackets normalized = Brackets.getBracket(orig.getAppropriateString());
             MathTerm newMT = FakeMLPGenerator.generateBracket(normalized);
             pte.setRoot(newMT);
         } else {
-            List<PomTaggedExpression> comps = pte.getComponents();
-            for ( PomTaggedExpression p : comps )
-                internalNormalize(p, settings);
+            pte.getComponents().forEach( p -> internalNormalize(p, settings) );
         }
 
         return pte;
+    }
+
+    public static void normalizeSubSuperScript(PomTaggedExpression pte) {
+        ExpressionTags tag = ExpressionTags.getTagByKey(pte.getTag());
+        if (!ExpressionTags.sub_super_script.equals(tag)) return;
+
+        List<PomTaggedExpression> comps = pte.getComponents();
+        PomTaggedExpression first = comps.get(0);
+        MathTermTags mTag = MathTermTags.getTagByKey(first.getRoot().getTag());
+        if ( !MathTermTags.caret.equals(mTag) ) {
+            Collections.reverse(comps);
+            pte.setComponents(comps);
+        }
+    }
+
+    private static boolean shouldNormalizeParenthesis(MathTermTags mathTag, byte settings) {
+        return (MathTermTags.left_delimiter.equals(mathTag) || MathTermTags.right_delimiter.equals(mathTag)) &&
+                (settings & NORMALIZE_PARENTHESES) != 0;
     }
 
     private static byte settings(byte... flags) {
