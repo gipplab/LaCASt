@@ -8,6 +8,7 @@ import gov.nist.drmf.interpreter.mlp.extensions.PrintablePomTaggedExpression;
 import mlp.*;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import static gov.nist.drmf.interpreter.examples.MLP.GLOBAL_LEXICON_PATH;
@@ -101,8 +102,9 @@ public class MLPWrapper {
     private static PomTaggedExpression internalNormalize(PomTaggedExpression pte, byte settings) {
         if ( settings == 0 ) return pte;
 
+        ExpressionTags tag = ExpressionTags.getTagByKey(pte.getTag());
         MathTermTags mathTag = MathTermTags.getTagByKey(pte.getRoot().getTag());
-        if ( (settings & NORMALIZE_SUB_SUPERSCRIPTS) != 0 ) {
+        if ( ExpressionTags.sub_super_script.equals(tag) && (settings & NORMALIZE_SUB_SUPERSCRIPTS) != 0 ) {
             normalizeSubSuperScript(pte);
         } else if ( shouldNormalizeParenthesis(mathTag, settings) ) {
             Brackets orig = Brackets.getBracket(pte);
@@ -123,9 +125,13 @@ public class MLPWrapper {
         List<PomTaggedExpression> comps = pte.getComponents();
         PomTaggedExpression first = comps.get(0);
         MathTermTags mTag = MathTermTags.getTagByKey(first.getRoot().getTag());
-        if ( !MathTermTags.caret.equals(mTag) ) {
-            Collections.reverse(comps);
-            pte.setComponents(comps);
+        if ( MathTermTags.caret.equals(mTag) ) {
+            // set components of PomTaggedExpression deletes the inner list of components first
+            // Since our comps is the same as the deleted components list, the components are also
+            // deleted from our list. Hence we must create a copy list and setComponents to this copy
+            List<PomTaggedExpression> copy = new LinkedList<>(comps);
+            Collections.reverse(copy);
+            pte.setComponents(copy);
         }
     }
 

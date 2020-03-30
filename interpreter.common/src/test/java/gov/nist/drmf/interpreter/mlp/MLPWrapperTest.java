@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.mlp;
 
+import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.mlp.extensions.PrintablePomTaggedExpression;
 import mlp.ParseException;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * @author Andre Greiner-Petter
  */
+@AssumeMLPAvailability
 public class MLPWrapperTest {
     private static MLPWrapper mlp;
 
@@ -20,8 +22,8 @@ public class MLPWrapperTest {
 
     @Test
     public void normalizeAllTest() throws ParseException {
-        PrintablePomTaggedExpression ppte = mlp.parse("\\left( x_n^{1+x} \\right)");
+        PrintablePomTaggedExpression ppte = mlp.parse("\\left( x^{1+x}_n \\right)");
         MLPWrapper.normalize(ppte);
-        assertEquals("(x^{1+x}_n)", ppte.getTexString());
+        assertEquals("(x_n^{1+x})", ppte.getTexString());
     }
 }
