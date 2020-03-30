@@ -15,6 +15,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Observer;
 
+import static gov.nist.drmf.interpreter.common.constants.GlobalConstants.NL;
+
 /**
  * @author Andre Greiner-Petter
  */
@@ -227,5 +229,31 @@ public class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
             }
         }
         return false;
+    }
+
+    /**
+     * Checks if the given command returns an integer that is in the specified range.
+     * Throws an exception if the check fails!
+     * @param command the command that has to be evaluated
+     * @param lowerLimit the lower limit (included)
+     * @param upperLimit the upper limit (included)
+     * @throws IllegalArgumentException if the given command did not return an integer in the given range
+     * @throws ComputerAlgebraSystemEngineException if the command cannot be evaluated
+     */
+    public void evaluateAndCheckRangeOfResult(String command, int lowerLimit, int upperLimit)
+            throws IllegalArgumentException, ComputerAlgebraSystemEngineException {
+        try {
+            LOG.debug("Prepare numerical test:" + NL + command);
+            Algebraic numCombis = evaluate(command);
+            try {
+                int i = Integer.parseInt(numCombis.toString());
+                if ( i >= upperLimit ) throw new IllegalArgumentException("Too many combinations: " + i);
+                else if ( i <= lowerLimit ) throw new IllegalArgumentException("There are no valid test values.");
+            } catch ( NumberFormatException e ){
+                throw new IllegalArgumentException("Cannot calculate number of combinations!");
+            }
+        } catch (MapleException me) {
+            throw new ComputerAlgebraSystemEngineException(me);
+        }
     }
 }
