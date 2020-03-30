@@ -13,6 +13,11 @@ import mlp.PomTaggedExpression;
 public final class FakeMLPGenerator {
     private FakeMLPGenerator(){}
 
+    public static PomTaggedExpression generateMathTermEmptyPTE(MathTermTags tag, String term) {
+        MathTerm mt = new MathTerm(term, tag.toString());
+        return new PomTaggedExpression(mt);
+    }
+
     public static PomTaggedExpression generateEmptySequencePTE() {
         return new PomTaggedExpression(generateEmptyMathTerm(), ExpressionTags.sequence.tag());
     }
