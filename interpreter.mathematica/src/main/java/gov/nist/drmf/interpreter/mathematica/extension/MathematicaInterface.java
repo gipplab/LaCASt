@@ -158,4 +158,17 @@ public class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> 
         String ls = list.toString();
         return ls.substring(1, ls.length()-1);
     }
+
+    public void checkIfEvaluationIsInRange(String command, int lowerLimit, int upperLimit) throws ComputerAlgebraSystemEngineException {
+        try {
+            String res = mathematicaInterface.evaluate(command);
+            LOG.debug("Generated test cases: " + res);
+            int nT = Integer.parseInt(res);
+            if ( nT >= upperLimit ) throw new IllegalArgumentException("Too many test combinations.");
+            else if ( nT <= lowerLimit ) throw new IllegalArgumentException("Not enough test combinations.");
+            // res should be an integer, testing how many test commands there are!
+        } catch (MathLinkException | NumberFormatException e) {
+            throw new ComputerAlgebraSystemEngineException(e);
+        }
+    }
 }

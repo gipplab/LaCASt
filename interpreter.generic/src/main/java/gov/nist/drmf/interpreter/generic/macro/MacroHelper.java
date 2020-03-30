@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.generic.macro;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,5 +59,25 @@ public final class MacroHelper {
             counter++;
         }
         return counter;
+    }
+
+    public static void fillListWithArguments(List<String> list, String argumentsList) {
+        argumentsList = argumentsList.substring(1, argumentsList.length()-1);
+        String[] elements = argumentsList.split("]\\[");
+        for ( String e : elements ) {
+            e = e.replaceAll("#", VAR_PREFIX);
+            e = cleanString(e);
+            list.add(e);
+        }
+    }
+
+    public static void fillInnerList(String para, List<String> fill, List<String> ref) {
+        if ( ref.isEmpty() ) {
+            fill.add(para);
+        } else {
+            for ( String args : ref ) {
+                fill.add(para + " " + args);
+            }
+        }
     }
 }
