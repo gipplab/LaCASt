@@ -30,3 +30,17 @@ after_script:
   - bash .travis/fix-jacoco.sh
   - ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml -d --input-type jacoco
   - ./cc-test-reporter upload-coverage -d
+
+before_deploy:
+  - rm -rf libs/logs
+  - zip -9
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  file_glob: true
+  file:
+    - bin/*
+    -
+  on:
+    branch: master
