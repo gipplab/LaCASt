@@ -238,7 +238,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
     }
 
     private void replaceCaption(String newCaption) {
-        if ( caption.matches("[\\[{(].*[]})]") ){
+        if ( caption.matches("[\\[{].*[]}]") ){
             String start = caption.substring(0,1);
             String end = caption.substring(caption.length()-1);
             this.caption = start + newCaption + end;
