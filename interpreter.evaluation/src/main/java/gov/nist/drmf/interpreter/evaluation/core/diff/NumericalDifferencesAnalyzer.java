@@ -2,16 +2,16 @@ package gov.nist.drmf.interpreter.evaluation.core.diff;
 
 import com.maplesoft.externalcall.MapleException;
 import com.wolfram.jlink.Expr;
-import gov.nist.drmf.interpreter.evaluation.MathematicaTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.Util;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.grammar.IComputerAlgebraSystemEngine;
-import gov.nist.drmf.interpreter.common.grammar.ITranslator;
-import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
+import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
+import gov.nist.drmf.interpreter.evaluation.common.ProcedureLoader;
+import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
+import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -68,19 +68,16 @@ public class NumericalDifferencesAnalyzer {
     private String procedureName;
 
     public NumericalDifferencesAnalyzer() throws IOException, MapleException, ComputerAlgebraSystemEngineException {
-        MathematicaTranslator m = new MathematicaTranslator();
-        m.init();
-        mathematica = m;
+        mathematica = MathematicaInterface.getInstance();
 
         SemanticLatexTranslator dlmfInterface = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
         dlmfInterface.init( GlobalPaths.PATH_REFERENCE_DATA );
         forwardTranslator = dlmfInterface;
 
-        MapleInterface.init();
-        MapleInterface mi = MapleInterface.getUniqueMapleInterface();
+        MapleTranslator mi = MapleTranslator.getDefaultInstance();
         backwardTranslator = mi;
 
-        String procedure = Util.getProcedure(GlobalPaths.PATH_MATHEMATICA_DIFFERENCE_PROCEDURES);
+        String procedure = ProcedureLoader.getProcedure(GlobalPaths.PATH_MATHEMATICA_DIFFERENCE_PROCEDURES);
         Matcher matcher = procedureNamePattern.matcher(procedure);
         if ( matcher.matches() ) {
             this.procedureName = matcher.group(1);

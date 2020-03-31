@@ -4,8 +4,9 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
@@ -299,7 +300,7 @@ class SimpleTranslationTests {
     }
 
     @Test
-    public void unknownFunctionTranslator() throws ParseException {
+    public void unknownFunctionTranslator() throws ParseException, IOException {
         String input = "\\cos(x)";
         PomTaggedExpression pte = stripOfDLMFInfo(input);
         TranslatedExpression trans = slt.translate(pte);
@@ -313,8 +314,8 @@ class SimpleTranslationTests {
      * @return parse tree without dlmf info
      * @throws ParseException
      */
-    private PomTaggedExpression stripOfDLMFInfo(String input) throws ParseException {
-        MLPWrapper mlp = MLPWrapper.getWrapperInstance();
+    private PomTaggedExpression stripOfDLMFInfo(String input) throws ParseException, IOException {
+        MLPWrapper mlp = new SemanticMLPWrapper();
         PomTaggedExpression pte = mlp.parse(input);
         PomTaggedExpression cosPte = pte.getComponents().get(0);
         cosPte.getRoot().setAlternativeFeatureSets(new LinkedList<>());

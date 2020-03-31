@@ -1,7 +1,8 @@
 package gov.nist.drmf.interpreter.evaluation.constraints;
 
-import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
@@ -21,9 +22,7 @@ public class ConstraintsMatcherTests {
 
     @BeforeAll
     static void init() throws IOException {
-        // kick of instantiation of evaluator
-//        new NumericalEvaluator();
-        wrapper = MLPWrapper.getWrapperInstance();
+        wrapper = new SemanticMLPWrapper();
     }
 
     private static void generalCheck(String blueprint, String constraint, String[] vars, String[] vals) throws ParseException {

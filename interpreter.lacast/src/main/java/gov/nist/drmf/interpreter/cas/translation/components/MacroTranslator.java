@@ -623,29 +623,6 @@ public class MacroTranslator extends AbstractListTranslator {
         }
     }
 
-    private boolean checkForce(List<PomTaggedExpression> following_exps) {
-        if (following_exps.isEmpty()) {
-            return false;
-        }
-        PomTaggedExpression next = following_exps.get(0);
-        if (next.isEmpty()) {
-            return false;
-        }
-        if (next.getRoot().isEmpty()) {
-            return false;
-        }
-
-        MathTermTags tag = MathTermTags.getTagByKey(next.getRoot().getTag());
-        switch (tag) {
-            case caret:
-            case factorial:
-            case underscore:
-                return true;
-            default:
-                return false;
-        }
-    }
-
     private String[] createArgumentArray(
             LinkedList<String> optionalParas,
             LinkedList<String> parameters,

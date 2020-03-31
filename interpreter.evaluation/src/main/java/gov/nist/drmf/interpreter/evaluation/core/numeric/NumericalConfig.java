@@ -1,7 +1,8 @@
 package gov.nist.drmf.interpreter.evaluation.core.numeric;
 
+import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
-import gov.nist.drmf.interpreter.evaluation.constraints.IConstraintTranslator;
+import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
 import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -87,7 +88,7 @@ public class NumericalConfig implements EvaluationConfig {
         return NumericalProperties.KEY_EXPR.value;
     }
 
-    public String getTestExpression( ICASEngineNumericalEvaluator evaluator, String LHS, String RHS ){
+    public String getTestExpression(ICASEngineNumericalEvaluator evaluator, String LHS, String RHS ){
         String in = NumericalProperties.KEY_EXPR.value;
 
         if ( LHS == null || LHS.isEmpty() ){

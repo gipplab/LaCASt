@@ -1,0 +1,56 @@
+\defSpecFun{posIntegers}{{\mathbb{Z}^{+}}}[
+    meaning=positive-integers, role=ID, % om=?_dlmf,
+    description={the set of positive integers},% $\posIntegers$},
+    sortkey={Z 0 2 +},
+]{0}
+\defSpecFun{JacobipolyP}[3]{P^{(#1,#2)}_{#3}}[%
+    meaning=Jacobi-polynomial-P, om=orthpoly2_dlmf:Jacobi_P,
+    params={\alpha}{\beta}{n}, args={x},
+    description={the Jacobi polynomial},% $\JacobipolyP{\alpha}{\beta}{n}$},
+    sortkey={P 1 3 z zz z},
+]{1}
+\defSpecFun{ChebyshevpolyT}[1][]{T_{#1}}[%
+    meaning=Chebyshev-polynomial-first-kind-T, om=orthpoly2_dlmf:Chebyshev_T,
+    params={n}, args={x},
+    description={the Chebyshev polynomial of the first kind},% $\ChebyshevpolyT{n}$},
+    sortkey={T 1 1 z z},
+]{1}
+\defSpecFun{FerrersP}[2][]{\mathsf{P}\ifx.#1.\else^{#1}\fi_{#2}}[%
+    meaning=Ferrers-Legendre-P-first-kind, om=legendrefun1_dlmf:Ferrers_P,
+    params={\mu}{\nu}, args={x},
+    description={the Ferrers function of the first kind},% $\FerrersP[\mu]{\nu}$},
+    sortkey={P 1 3 z z z},
+]{1}
+\defSpecFun{FerrersP[]}[1]{\mathsf{P}_{#1}}[%
+    meaning=shorthand-Ferrers-Legendre-P-first-kind, om=legendrefun1_dlmf:Ferrers_P,
+    params={\nu}, args={x},
+    description={$=\FerrersP[0]{\nu}$, shorthand for the Ferrers function of the first kind},
+    sortkey={P 1 3 z z z},
+]{1}
+\defSpecFun{ndivisors}[1][]{d_{#1}}[%
+    meaning=divisor-function-D, om=numtheory1_dlmf:ndivisors_factors,
+    params={k}, args={n},
+    description={the number of ways of expressing $n$ as product of $k$ factors},
+%     $\ndivisors[k]$},
+    sortkey={d 1 1 z z},
+]{1}
+\defSpecFun{ndivisors[]}{d}[%
+    meaning=divisor-function-D, om=numtheory1_dlmf:ndivisors,
+    args={n},
+    description={the number of divisors of $n$ (divisor function)},
+%     $\ndivisors=\ndivisors[2]$},
+    sortkey={d 1 0 z},
+]{1}
+\defSpecFun{continuous}[1][]{C\ifx.#1.\else^{#1}\fi}[%
+    meaning=set-of-continuous-functions-n-times-differentiable-on-interval, % om=?_dlmf,
+    params={n}, args={(a,b)},
+    description={the set of continuous functions $n$-times differentiable on the interval $(a,b)$},
+%     $\continuous[n]{a,b}$},
+    sortkey={C 1 2 z z},
+]{1}[#1]
+\defSpecFun{continuous[]}{C}[%
+    meaning=set-of-continuous-functions, % om=?_dlmf,
+    args={(a,b)},
+    description={the set of functions continuous on the interval $(a,b)$},% $\continuous{a,b}$},
+    sortkey={C 1 0 z},
+]{1}[#1]

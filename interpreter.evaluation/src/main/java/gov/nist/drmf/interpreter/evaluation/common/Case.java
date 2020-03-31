@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
-import gov.nist.drmf.interpreter.evaluation.constraints.Constraints;
-import gov.nist.drmf.interpreter.evaluation.constraints.IConstraintTranslator;
+import gov.nist.drmf.interpreter.cas.constraints.Constraints;
+import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
 import mlp.MathTerm;
+import mlp.PomTaggedExpression;
 
 import java.util.HashMap;
 
@@ -65,6 +66,16 @@ public enum MathTermTags {
 
     public static MathTermTags getTagByKey(String key){
         return HOLDER.keymap.get(key);
+    }
+
+    public static MathTermTags getTagByMathTerm(MathTerm term) {
+        String termTag = term.getTag();
+        return MathTermTags.getTagByKey(termTag);
+    }
+
+    public static MathTermTags getTagByExpression(PomTaggedExpression exp) {
+        MathTerm term = exp.getRoot();
+        return getTagByMathTerm(term);
     }
 
     public String tag(){
