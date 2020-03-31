@@ -84,16 +84,16 @@ mathematica_math=/opt/Wolfram/Executables/math
 We are working with IntelliJ. If you download the project open the project via IntelliJ in the following way:
 * Launch IntelliJ
 * Hit `Import Project`
-* Select the main directory of our repo (`latex-grammar`)
+* Select the main directory of our repo (`LaCASt`)
 * Select `Import project from external model` and select `maven`
 * Next, see the settings in the image:
-![Maven Setup](https://github.com/ag-gipp/latex-grammar/blob/restructure/misc/setupmaven.png)
+![Maven Setup](https://github.com/ag-gipp/LaCASt/blob/restructure/misc/setupmaven.png)
 * Intellij should show you one module `gov.nist.drmf.interpreter:nterpreter:2.1-SNAPSHOT`. Only select this, hit next until you finish.
 </details>
 
 <details><summary><strong>8. Build and Run in IntelliJ</strong></summary>
   
-**IMPORTANT:** For all classes or test cases you start in IntelliJ, make sure Intellij uses the root directory `latex-grammar` as the `Working Directory`. You can set this up in `Run/Debug Configurations` via `Run -> Edit Configurations...`.
+**IMPORTANT:** For all classes or test cases you start in IntelliJ, make sure Intellij uses the root directory `LaCASt` as the `Working Directory`. You can set this up in `Run/Debug Configurations` via `Run -> Edit Configurations...`.
 
 * You can run maven within IntelliJ. Open Maven and run `Semantic Translator (root)` -> `install`.
 * To test if the forward translation works, go to `interpreter.lacast -> src -> main -> java -> gov.nist.drmf.interpreter.cas` and run `SemanticToCASInterpreter.java`. 
@@ -104,6 +104,10 @@ We are working with IntelliJ. If you download the project open the project via I
     * Set the environment variables (click on the `$` sign in the end of the line
     * Add `MAPLE=/opt/maple2019` and `LD_LIBRARY_PATH=/opt/maple2019/bin.X86_64_LINUX` (of coursel, the paths might be different on your system, so update it accordingly)
     * Add the VM option: `-Xss50M`, otherwise the heap space is too small for Maple 2019
+    
+**Tip:** You can change the default `working directory` in Intellij under 
+`Run -> Edit Configurations... -> Templates (left list)`. Here you choose `Application` and `JUnit` and set the 
+`Working Directory` value to `$ProjectFileDir$`.
 </details>
 
 <details><summary><strong>9. Push changes</strong></summary>
@@ -144,7 +148,7 @@ is your own specified branch.
 
 <details><summary><strong>11. Organizing tasks via issues</strong></summary>
   
-We organize the work via issues in [issues](https://github.com/TU-Berlin/latex-grammar/issues).
+We organize the work via issues in [issues](https://github.com/TU-Berlin/LaCASt/issues).
 So please use issues if you have questions or problems. And also use them to define your next tasks.
 </details>
 
@@ -207,7 +211,7 @@ There are a couple of main classes in the project.
 * `interpreter.common  -> ...interpreter.examples.MLP.java`: This is an example of Abdou's math language processors. It runs a hard-coded example of the analyzing process.
 * `interpreter.lacast   -> ...interpreter.cas.SemanticToCASInterpreter.java`: That's the main class to translate formulae to a computer algebra system.
 * `interpreter.lacast   -> ...interpreter.cas.mlp.CSVtoLexiconConverter.java`: This class translates given CSV files to lexicon files. You only have to add the translation CSV files and not the DLMFMacro.csv itself to create a correct lexicon.
-* `interpreter.maple -> ...interpreter.maple.MapleToSemanticInterpreter`: This class translates Maple expressions back to semantic LaTeX.
+* `interpreter.maple -> ...interpreter.maple.MapleToSemanticInterpreter.java`: This class translates Maple expressions back to semantic LaTeX.
 
 ## Troubleshooting<a name="troubleshooting"></a>
 When you want to contribute or just run our program it could happen to get some errors. Here are some tips to avoid that. When ever you found an error which is not explained here and you don't know how to fix it by your own, feel free to contact [André Greiner-Petter](https://github.com/AndreG-P).
@@ -219,9 +223,10 @@ You forget to provide Maple enough heap space. Start java with the JVM option: `
 3. **Errors with Maple SO files**: (typical exception: `Process finished with exit code 134 (interrupted by signal 6: SIGABRT)` and `java.lang.UnsatisfiedLinkError: /opt/maple2019/bin.X86_64_LINUX/libjopenmaple.so: libimf.so: cannot open shared object file: No such file or directory`) 
 There is a problem with the environment variables `Maple` and `LD_LIBRARY_PATH`.
 4. **Cannot initiate translator or other programs**: (typical exception: `java.nio.file.NoSuchFileException: libs/ReferenceData/BasicConversions/GreekLettersAndConstants.json`)
-You start the program within the wrong directory. The working directory has to be the root directory of the project (i.e., directory `LaCASt`).
+You start the program within the wrong directory. The working directory has to be the root directory of the project (i.e., directory `LaCASt`). To change the default working directory
+in IntelliJ, check the hint in step 8 (*Build and Run in IntelliJ*) under [Setup Project](#start).
 
-## Useful Counting Methods
+## Useful Command-Line Counting Methods
 
 Calculate all results per file:
 ```shell script

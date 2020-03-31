@@ -51,31 +51,26 @@ public class MapleLexiconTests {
         assertEquals( "http://dlmf.nist.gov/4.23#SS2.p1", mf.getDLMFLink() );
     }
 
-    @Disabled
     @Test
-    public void createLexicon(){
-        Path tester = GlobalPaths.PATH_REFERENCE_DATA_CSV.resolve("CAS_Maple_test.csv");
-        try {
-            MapleLexicon ml = MapleLexiconFactory.createLexiconFromCSVFile( tester );
-        } catch ( IOException ioe ){
-            ioe.printStackTrace();
-        }
+    public void createLexicon() throws IOException {
+        Path tester = GlobalPaths.PATH_REFERENCE_DATA_CSV.resolve("CAS_Maple.csv");
+        MapleLexicon l = MapleLexiconFactory.createLexiconFromCSVFile( tester );
+        assertNotNull(l);
+        MapleFunction mf = l.getFunction("JacobiP", 4);
+        assertNotNull(mf);
     }
 
-    @Disabled
     @Test
-    public void littleWorkaroundTest(){
-        try {
-            MapleLexicon.init();
-        } catch ( IOException ioe ){
-            ioe.printStackTrace();
-        }
+    public void littleWorkaroundTest() throws IOException {
+        MapleLexicon.init();
     }
 
-    @Disabled
     @Test
     public void loadLexiconTest(){
-        Path lex_path = GlobalPaths.PATH_REFERENCE_DATA.resolve("MapleLexiconTest.txt");
+        Path lex_path = GlobalPaths.PATH_REFERENCE_DATA_CAS_LEXICONS.resolve("Maple-functions-lexicon.txt");
         MapleLexicon l = MapleLexiconFactory.loadLexicon( lex_path );
+        assertNotNull(l);
+        MapleFunction mf = l.getFunction("JacobiP", 4);
+        assertNotNull(mf);
     }
 }
