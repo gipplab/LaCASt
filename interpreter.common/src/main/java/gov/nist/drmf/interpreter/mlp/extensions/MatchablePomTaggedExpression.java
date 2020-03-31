@@ -227,11 +227,8 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
             LinkedList<Brackets> bracketStack,
             PrintablePomTaggedExpression next,
             List<PrintablePomTaggedExpression> followingExpressions) {
-        while (!bracketStack.isEmpty() || !nextSibling.match(next, followingExpressions)) {
-            if (followingExpressions.isEmpty())
-                return null;
-
-            if ( isNotAllowedTokenForWildcardMatch(next) )
+        while (continueMatching(bracketStack, next, followingExpressions)) {
+            if (followingExpressions.isEmpty() || isNotAllowedTokenForWildcardMatch(next))
                 return null;
 
             this.wildcardMatch.add(next);
@@ -240,6 +237,14 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
             next = followingExpressions.remove(0);
         }
         return next;
+    }
+
+    private boolean continueMatching(
+            LinkedList<Brackets> bracketStack,
+            PrintablePomTaggedExpression next,
+            List<PrintablePomTaggedExpression> followingExpressions
+    ) {
+        return !bracketStack.isEmpty() || !nextSibling.match(next, followingExpressions);
     }
 
     private void updateBracketStack(
@@ -277,7 +282,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         Map<String, List<PrintablePomTaggedExpression>> matches = getMatches();
 
         for (String key : matches.keySet()) {
-            String str = PrintablePomTaggedExpression.buildString(matches.get(key));
+            String str = PrintablePomTaggedExpressionUtils.buildString(matches.get(key));
             out.put(key, str);
         }
 

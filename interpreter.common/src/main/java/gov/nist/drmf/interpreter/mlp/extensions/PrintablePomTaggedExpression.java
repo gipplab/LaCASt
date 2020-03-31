@@ -223,7 +223,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
 
     @Override
     public void setRoot(MathTerm mathTerm) {
-        String newCaption = getInternalNodeCommand(mathTerm);
+        String newCaption = PrintablePomTaggedExpressionUtils.getInternalNodeCommand(mathTerm);
         replaceCaption(newCaption);
         if ( getParent() != null ) {
             PrintablePomTaggedExpression parent = (PrintablePomTaggedExpression)getParent();
@@ -250,7 +250,8 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
      */
     private void populatingStringChanges() {
         if ( !printableComponents.isEmpty() ) {
-            String newCaption = getInternalNodeCommand(this) + buildString(printableComponents);
+            String newCaption = PrintablePomTaggedExpressionUtils.getInternalNodeCommand(this);
+            newCaption += PrintablePomTaggedExpressionUtils.buildString(printableComponents);
             replaceCaption(newCaption);
         }
 
@@ -258,27 +259,6 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
             PrintablePomTaggedExpression parent = (PrintablePomTaggedExpression)this.getParent();
             parent.populatingStringChanges();
         }
-    }
-
-    public static String getInternalNodeCommand(MathTerm mt) {
-        String cmd = mt.getTermText();
-        String val = cmd.isBlank() ? mt.getFeatureValue(FeatureSetUtility.LATEX_FEATURE_KEY) : cmd;
-        return val == null ? "" : val;
-    }
-
-    public static String getInternalNodeCommand(PomTaggedExpression pte) {
-        MathTerm mt = pte.getRoot();
-        String val = getInternalNodeCommand(mt);
-        if ( val.isBlank() ) val = pte.getFeatureValue(FeatureSetUtility.LATEX_FEATURE_KEY);
-        return val == null ? "" : val;
-    }
-
-    public static String buildString(Iterable<PrintablePomTaggedExpression> elements) {
-        StringBuilder sb = new StringBuilder();
-        for (PrintablePomTaggedExpression ppte : elements) {
-            sb.append(ppte.getTexString());
-        }
-        return sb.toString();
     }
 
     public List<PrintablePomTaggedExpression> getPrintableComponents() {
