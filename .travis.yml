@@ -31,16 +31,24 @@ after_script:
   - ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml -d --input-type jacoco
   - ./cc-test-reporter upload-coverage -d
 
-#before_deploy:
-#  - rm -rf libs/logs
-#  - zip -9
-#
-#deploy:
-#  provider: releases
-#  skip_cleanup: true
-#  file_glob: true
-#  file:
-#    - bin/*
-#    -
-#  on:
-#    branch: master
+after_success:
+  - export GIT_TAG=lacast-$(date -u "+%m-%d")-r$TRAVIS_BUILD_NUMBER
+  - git config --global user.email "builds@travis-ci.com"
+  - git config --global user.name "Travis CI"
+  - echo -n $GIT_TAG > version
+  - git commit -m "Set build VERSION number" version
+  - git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
+
+before_deploy:
+  - rm -rf libs/logs
+  - zip -r -9 ${GIT_TAG}.zip bin/* config/* libs/* scripts/* README.md CONTRIBUTING.md
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_token: $GITHUB_DEPLOY_TOKEN
+  file:
+    - ${GIT_TAG}.zip
+  on:
+    tags: true
+    branch: master
