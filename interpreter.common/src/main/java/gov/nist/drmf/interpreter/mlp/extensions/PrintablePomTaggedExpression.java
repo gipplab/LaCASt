@@ -67,10 +67,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
                 idxEnd += thisMatch.length();
             }
 
-            if (
-                    (idxStart > 0 && (expr.charAt(idxStart-1) == '[' || expr.charAt(idxStart-1) == '{' )) &&
-                    (idxEnd < expr.length() && (expr.charAt(idxEnd) == ']' || expr.charAt(idxEnd) == '}'))
-            ){
+            if (isStartingIndexOpenBracket(idxStart, expr) && isEndingIndexCloseBracket(idxEnd, expr)){
                 idxStart--;
                 idxEnd++;
             }
@@ -87,6 +84,14 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
         }
     }
 
+    private boolean isStartingIndexOpenBracket(int idxStart, String expr) {
+        return idxStart > 0 && (expr.charAt(idxStart-1) == '[' || expr.charAt(idxStart-1) == '{' );
+    }
+
+    private boolean isEndingIndexCloseBracket(int idxEnd, String expr) {
+        return idxEnd < expr.length() && (expr.charAt(idxEnd) == ']' || expr.charAt(idxEnd) == '}');
+    }
+
     private String getStartingString(PomTaggedExpression pte) {
         MathTerm mt = pte.getRoot();
         String token = mt.getTermText();
@@ -99,6 +104,10 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
             token = mt.firstFontAction() + "{" + token + "}";
         }
 
+        return checkChoosenToken(token, pte);
+    }
+
+    private String checkChoosenToken(String token, PomTaggedExpression pte) {
         if (token.isBlank()) {
             if (pte.getComponents().isEmpty())
                 throw new IllegalArgumentException("Cannot find starting string of this expression " + pte);
@@ -118,13 +127,23 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
 
     private int checkIndexForClosingBrackets(int start, int end, String expression) {
         if (expression.length() == 0) return 0;
+
         String sub = expression.substring(start, end);
+        int opened = countOpenBrackets(sub);
+
+        return getEndIndex(opened, end, expression);
+    }
+
+    private int countOpenBrackets(String sub) {
         int opened = 0;
         for (int i = 0; i < sub.length(); i++) {
             if (sub.charAt(i) == '{') opened++;
-            if (sub.charAt(i) == '}') opened--;
+            else if (sub.charAt(i) == '}') opened--;
         }
+        return opened;
+    }
 
+    private int getEndIndex(int opened, int end, String expression) {
         while (opened > 0 && end < expression.length()) {
             if (expression.charAt(end) == '}') {
                 end++;
@@ -204,14 +223,26 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
 
     @Override
     public void setRoot(MathTerm mathTerm) {
-        this.caption = mathTerm.getTermText();
-        if ( caption.isBlank() )
-            this.caption = mathTerm.getFeatureValue(FeatureSetUtility.LATEX_FEATURE_KEY);
+        String newCaption = getInternalNodeCommand(mathTerm);
+        replaceCaption(newCaption);
         if ( getParent() != null ) {
             PrintablePomTaggedExpression parent = (PrintablePomTaggedExpression)getParent();
             parent.populatingStringChanges();
         }
+
+        for ( PrintablePomTaggedExpression ppte : printableComponents ){
+            this.caption += ppte.caption;
+        }
+
         super.setRoot(mathTerm);
+    }
+
+    private void replaceCaption(String newCaption) {
+        if ( caption.matches("[\\[{(].*[]})]") ){
+            String start = caption.substring(0,1);
+            String end = caption.substring(caption.length()-1);
+            this.caption = start + newCaption + end;
+        } else this.caption = newCaption;
     }
 
     /**
@@ -219,13 +250,27 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
      */
     private void populatingStringChanges() {
         if ( !printableComponents.isEmpty() ) {
-            this.caption = buildString(printableComponents);
+            String newCaption = getInternalNodeCommand(this) + buildString(printableComponents);
+            replaceCaption(newCaption);
         }
 
         if ( this.getParent() != null ) {
             PrintablePomTaggedExpression parent = (PrintablePomTaggedExpression)this.getParent();
             parent.populatingStringChanges();
         }
+    }
+
+    public static String getInternalNodeCommand(MathTerm mt) {
+        String cmd = mt.getTermText();
+        String val = cmd.isBlank() ? mt.getFeatureValue(FeatureSetUtility.LATEX_FEATURE_KEY) : cmd;
+        return val == null ? "" : val;
+    }
+
+    public static String getInternalNodeCommand(PomTaggedExpression pte) {
+        MathTerm mt = pte.getRoot();
+        String val = getInternalNodeCommand(mt);
+        if ( val.isBlank() ) val = pte.getFeatureValue(FeatureSetUtility.LATEX_FEATURE_KEY);
+        return val == null ? "" : val;
     }
 
     public static String buildString(Iterable<PrintablePomTaggedExpression> elements) {
