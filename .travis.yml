@@ -26,12 +26,10 @@ install:
 script:
   - mvn test -B -DjacocoReport=remote
 
-after_script:
+after_success:
   - bash .travis/fix-jacoco.sh
   - ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml -d --input-type jacoco
   - ./cc-test-reporter upload-coverage -d
-
-after_success:
   - export GIT_TAG=lacast-$(date -u "+%m-%d")-r$TRAVIS_BUILD_NUMBER
   - git config --global user.email "builds@travis-ci.com"
   - git config --global user.name "Travis CI"
@@ -46,7 +44,7 @@ before_deploy:
 deploy:
   provider: releases
   skip_cleanup: true
-  api_token: $GITHUB_DEPLOY_TOKEN
+  api_token: $GITHUB_TOKEN
   file:
     - ${GIT_TAG}.zip
   on:
