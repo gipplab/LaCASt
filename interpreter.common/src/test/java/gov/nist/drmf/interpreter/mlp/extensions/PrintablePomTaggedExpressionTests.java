@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
+import mlp.MathTerm;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,8 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Andre Greiner-Petter
@@ -187,6 +187,76 @@ public class PrintablePomTaggedExpressionTests {
                 "\\sqrt{z/3}",
                 "K", "_{\\pm 1/3}",
                 "\\left(", "\\zeta", "\\right)");
+    }
+
+    @Test
+    public void overrideSetRootTest() throws ParseException {
+        String texString = "\\sqrt[2]{x^2}";
+        PomTaggedExpression pte = mlp.parse(texString);
+
+        MathTerm mt = new MathTerm(" ");
+        mt.setNamedFeature(FeatureSetUtility.LATEX_FEATURE_KEY, "\\fake");
+        pte.setRoot(mt);
+
+        PrintablePomTaggedExpression ppte = (PrintablePomTaggedExpression) pte;
+        assertEquals( "\\fake[2]{x^2}", ppte.getTexString() );
+    }
+
+    @Test
+    public void overrideSetRootSequenceTest() throws ParseException {
+        String texString = "x+\\frac{y}{x^2}";
+        PrintablePomTaggedExpression pte = mlp.parse(texString);
+
+        MathTerm mt = new MathTerm(" ");
+        mt.setNamedFeature(FeatureSetUtility.LATEX_FEATURE_KEY, "\\fake");
+
+        List<PomTaggedExpression> comps = pte.getComponents();
+        List<PomTaggedExpression> innerComps = comps.get(2).getComponents();
+        PomTaggedExpression numerator = innerComps.get(0);
+        numerator.setRoot(mt);
+
+        assertEquals( "x+\\frac{\\fake}{x^2}", pte.getTexString() );
+
+        PomTaggedExpression xpte = innerComps.get(1).getComponents().get(0);
+        MathTerm newMT = new MathTerm("y");
+        xpte.setRoot(newMT);
+
+        assertEquals( "x+\\frac{\\fake}{y^2}", pte.getTexString() );
+    }
+
+    @Test
+    public void illegalManipulationTest() throws ParseException {
+        String texString = "x+\\frac{y}{x^2}";
+        PrintablePomTaggedExpression pte = mlp.parse(texString);
+        PomTaggedExpression realPTE = mlp.simpleParse(texString);
+
+        assertFalse( realPTE instanceof PrintablePomTaggedExpression );
+        assertThrows( IllegalArgumentException.class, () -> pte.set(realPTE) );
+        assertThrows( IllegalArgumentException.class, () -> pte.addComponent(realPTE) );
+        assertThrows( IllegalArgumentException.class, () -> pte.addComponent(0, realPTE) );
+        assertThrows( IllegalArgumentException.class, () -> pte.setComponents(realPTE) );
+    }
+
+    @Test
+    public void validManipulationTest() throws ParseException {
+        String texString = "\\frac{y}{x^2}";
+        PrintablePomTaggedExpression pte = mlp.parse("x+y");
+        PrintablePomTaggedExpression plusPTE = mlp.parse("+");
+        PrintablePomTaggedExpression secondPTE = mlp.parse(texString);
+
+        pte.addComponent(secondPTE);
+        assertEquals("x+y\\frac{y}{x^2}", pte.getTexString());
+
+        pte.addComponent(3, plusPTE);
+        assertEquals("x+y+\\frac{y}{x^2}", pte.getTexString());
+
+        PrintablePomTaggedExpression newPTE = mlp.parse("y+x");
+        pte.set(newPTE);
+        assertEquals("y+x", pte.getTexString());
+
+        PrintablePomTaggedExpression completeNewPTE = mlp.parse("z+x+y");
+        pte.setComponents(completeNewPTE.getComponents());
+        assertEquals("z+x+y", pte.getTexString());
     }
 
     private void checkList( List<PrintablePomTaggedExpression> components, String... matches ) {
