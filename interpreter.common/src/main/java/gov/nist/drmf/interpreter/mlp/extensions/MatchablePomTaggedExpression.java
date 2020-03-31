@@ -93,6 +93,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         this.wildcardMatch = new LinkedList<>();
 
         String text = refRoot.getRoot().getTermText();
+
         if (text.matches(wildcardPattern)) {
             if (!refRoot.getComponents().isEmpty())
                 throw new NotMatchableException("A wildcard node cannot have children.");
@@ -212,18 +213,9 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
 
         LinkedList<Brackets> bracketStack = new LinkedList<>();
 
-        while (!bracketStack.isEmpty() || !nextSibling.match(next, followingExpressions)) {
-            if (followingExpressions.isEmpty())
-                return false;
-
-            if ( isNotAllowedTokenForWildcardMatch(next) )
-                return false;
-
-            this.wildcardMatch.add(next);
-            updateBracketStack(bracketStack, next);
-
-            next = followingExpressions.remove(0);
-        }
+        // fill up wild card until the next hit actual hit
+        next = fillWildCardMatch(bracketStack, next, followingExpressions);
+        if ( next == null ) return false;
 
         // nextSibling has matched the next element in followingExpression... so put add back into the queue
         // and return true
@@ -231,25 +223,48 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         return true;
     }
 
+    private PrintablePomTaggedExpression fillWildCardMatch(
+            LinkedList<Brackets> bracketStack,
+            PrintablePomTaggedExpression next,
+            List<PrintablePomTaggedExpression> followingExpressions) {
+        while (!bracketStack.isEmpty() || !nextSibling.match(next, followingExpressions)) {
+            if (followingExpressions.isEmpty())
+                return null;
+
+            if ( isNotAllowedTokenForWildcardMatch(next) )
+                return null;
+
+            this.wildcardMatch.add(next);
+            updateBracketStack(bracketStack, next);
+
+            next = followingExpressions.remove(0);
+        }
+        return next;
+    }
+
     private void updateBracketStack(
             LinkedList<Brackets> bracketStack,
             PrintablePomTaggedExpression next
     ) throws NotMatchableException {
         Brackets br = Brackets.getBracket( next.getRoot().getTermText() );
-        if ( br != null ) {
-            if ( br.opened ) {
-                bracketStack.addLast(br);
-            } else if ( !bracketStack.isEmpty() ) {
-                if ( bracketStack.getLast().isCounterPart(br) )
-                    bracketStack.removeLast();
-                else throw new NotMatchableException("Not matching parenthesis. Found " + br +
-                        " but last opening was " + bracketStack.getLast());
-            } else {
-                throw new NotMatchableException(
-                        "Not matching parenthesis. Found " + br +
-                                " but non was opened before.");
-            }
+        if ( br == null ) return;
+
+        if ( br.opened ) {
+            bracketStack.addLast(br);
+        } else if ( !bracketStack.isEmpty() ) {
+            checkLastBracketEncounter(bracketStack, br);
+        } else {
+            throw new NotMatchableException(
+                    "Not matching parenthesis. Found " + br +
+                            " but non was opened before.");
         }
+    }
+
+    private void checkLastBracketEncounter(LinkedList<Brackets> bracketStack, Brackets br) {
+        if ( bracketStack.getLast().isCounterPart(br) )
+            bracketStack.removeLast();
+        else throw new NotMatchableException("Not matching parenthesis. Found " + br +
+                " but last opening was " + bracketStack.getLast());
     }
 
     private boolean isNotAllowedTokenForWildcardMatch(PomTaggedExpression pte) {

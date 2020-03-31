@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
+import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import mlp.MLP;
@@ -37,10 +38,28 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void simpleConstructorTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = new MatchablePomTaggedExpression("a+WILD+c", "WILD");
+        assertTrue(blueprint.getMatches().isEmpty());
+    }
+
+    @Test
     public void simplePTEConstructorTest() throws ParseException {
         PomTaggedExpression pte = mlp.simpleParse("a+WILD+c");
         MatchablePomTaggedExpression blueprint = new MatchablePomTaggedExpression(pte, "WILD");
         assertTrue(blueprint.getMatches().isEmpty());
+    }
+
+    @Test
+    public void illegalWildCardTest() throws ParseException {
+        PomTaggedExpression pte = mlp.simpleParse("a^b");
+        assertThrows(NotMatchableException.class, () -> new MatchablePomTaggedExpression(pte, "\\^"));
+    }
+
+    @Test
+    public void illegalConsecutiveWildCardTest() throws ParseException {
+        PomTaggedExpression pte = mlp.simpleParse("a+b b+c");
+        assertThrows(NotMatchableException.class, () -> new MatchablePomTaggedExpression(pte, "b"));
     }
 
     @Test
