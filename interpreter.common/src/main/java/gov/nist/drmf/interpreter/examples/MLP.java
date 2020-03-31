@@ -82,7 +82,7 @@ public class MLP {
             eq = "P^{(par1,par2)}_{par3}";
             eq = "a + b^{1+x}";
             eq = "\\left( \\left[ |<(b)+[c]>| \\right] \\right)";
-            eq = "|a - b|";
+            eq = "a^b^c";
 
             System.out.println();
             System.out.println("Input: " + eq);
