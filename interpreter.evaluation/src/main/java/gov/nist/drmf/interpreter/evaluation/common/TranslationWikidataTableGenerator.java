@@ -41,8 +41,7 @@ public class TranslationWikidataTableGenerator {
     private String TABLE_LINE =
             "| [https://dlmf.nist.gov/%s %s] || [[Item:%s|<math>%s</math>]] || <code>%s</code> || <code>%s</code> || " +
                     "%s || %s || " +
-                    "%s || %s " +
-                    "\n";
+                    "%s || %s\n";
 
     private SymbolDefinedLibrary symbolDefinitionLibrary;
 

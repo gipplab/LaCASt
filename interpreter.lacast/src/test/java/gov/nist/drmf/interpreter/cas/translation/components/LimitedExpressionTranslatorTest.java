@@ -4,7 +4,7 @@ import gov.nist.drmf.interpreter.cas.translation.components.cases.Integrals;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Lims;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Products;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Sums;
-import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;

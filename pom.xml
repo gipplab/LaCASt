@@ -27,11 +27,13 @@
 
     <modules>
         <module>interpreter.common</module>
+        <module>interpreter.generic</module>
         <module>interpreter.lacast</module>
         <module>interpreter.maple</module>
         <module>interpreter.mathematica</module>
+        <module>interpreter.core</module>
         <module>interpreter.evaluation</module>
-        <module>interpreter.semantify</module>
+        <module>interpreter.report</module> <!-- test report of all previous packages -->
     </modules>
 
     <properties>
@@ -75,6 +77,7 @@
 
         <!-- Addition versions -->
         <jackson.version>2.10.1</jackson.version>
+        <elasticsearch.version>7.6.1</elasticsearch.version>
     </properties>
 
     <dependencies>
@@ -143,6 +146,12 @@
                 <groupId>com.thoughtworks.xstream</groupId>
                 <artifactId>xstream</artifactId>
                 <version>1.4.11.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-high-level-client</artifactId>
+                <version>${elasticsearch.version}</version>
             </dependency>
 
             <dependency>

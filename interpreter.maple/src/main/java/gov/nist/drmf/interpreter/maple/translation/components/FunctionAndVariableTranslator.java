@@ -7,7 +7,6 @@ import com.maplesoft.openmaple.MString;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
@@ -19,7 +18,7 @@ import gov.nist.drmf.interpreter.maple.grammar.TranslatedExpression;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
 import gov.nist.drmf.interpreter.maple.grammar.lexicon.MapleFunction;
 import gov.nist.drmf.interpreter.maple.grammar.lexicon.MapleLexicon;
-import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
+import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
 
 import java.util.Arrays;
 
@@ -98,7 +97,7 @@ public class FunctionAndVariableTranslator extends ListTranslator {
 
         // this string could be a greek letter or a constant.
         TranslatedExpression t;
-        MapleInterface mi = MapleInterface.getUniqueMapleInterface();
+        MapleTranslator mi = MapleTranslator.getDefaultInstance();
         GreekLetters greek = mi.getGreekTranslator();
         Constants constants = mi.getConstantsTranslator();
 
@@ -149,7 +148,7 @@ public class FunctionAndVariableTranslator extends ListTranslator {
          */
         if ( function.matches("mod[sp]?") ){
             BasicFunctionsTranslator bft =
-                    MapleInterface.getUniqueMapleInterface().getBasicFunctionsTranslator();
+                    MapleTranslator.getDefaultInstance().getBasicFunctionsTranslator();
             String translation = bft.translate( arguments, MOD_NAME );
             LOG.info("Translated modulo: " + translation);
             translatedList.addTranslatedExpression( translation );
@@ -236,7 +235,7 @@ public class FunctionAndVariableTranslator extends ListTranslator {
 
         // get the pattern for fraction from the function translator
         // and replace the place holders by numerator and denominator.
-        MapleInterface mi = MapleInterface.getUniqueMapleInterface();
+        MapleTranslator mi = MapleTranslator.getDefaultInstance();
         BasicFunctionsTranslator funcTrans = mi.getBasicFunctionsTranslator();
         String pattern = funcTrans.translate( args, Keys.MLP_KEY_FRACTION );
         LOG.debug("Translated fraction: " + ((sign == MapleConstants.NEGATIVE) ? "-":"") + pattern);

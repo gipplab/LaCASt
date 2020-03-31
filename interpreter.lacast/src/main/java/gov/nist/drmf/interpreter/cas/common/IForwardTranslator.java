@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.cas.common;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
-import gov.nist.drmf.interpreter.common.grammar.ITranslatorComponent;
+import gov.nist.drmf.interpreter.common.interfaces.ITranslatorComponent;
 import mlp.PomTaggedExpression;
 
 

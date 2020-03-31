@@ -7,7 +7,7 @@ import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.IBackwardTranslator;
+import gov.nist.drmf.interpreter.common.interfaces.IBackwardTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.MapleTranslationException;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;

@@ -1,0 +1,1 @@
+\binom{n}{k}=\frac{n!}{(n-k)!k!}=\binom{n}{n-k}. \url{http://dlmf.nist.gov/1.2.E1} \symbolUsed[\binom{\NVar{m}}{\NVar{n}}]{C1.S2.SS1.m1adec} \symbolUsed[!]{introduction.Sx4.p1.t1.r15.m5adec} \symbolUsed[k]{C1.S1.XMD4.m1dec} \symbolUsed[n]{C1.S1.XMD7.m1dec}

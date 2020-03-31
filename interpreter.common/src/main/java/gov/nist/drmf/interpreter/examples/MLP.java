@@ -79,7 +79,10 @@ public class MLP {
 //            eq = "\\int_{0}^{1} \\theta \\mathrm{d}\\theta";
 //            eq = "\\deriv{}{z} \\sin@@{z}";
 //            eq = "\\begin{subarray}{c} x \\end{subarray}";
-            eq = "\\overline{z+y}";
+            eq = "P^{(par1,par2)}_{par3}";
+            eq = "a + b^{1+x}";
+            eq = "\\left( \\left[ |<(b)+[c]>| \\right] \\right)";
+            eq = "a^b^c";
 
             System.out.println();
             System.out.println("Input: " + eq);
@@ -88,8 +91,8 @@ public class MLP {
             // parse/tag the equation and print it out
             PomTaggedExpression pe = parser.parse(eq);
 //            System.out.println(pe);
-//            pe = clean(pe);
-            System.out.println(pe.getRoot().getFeatureValue("accent"));
+            pe = clean(pe);
+//            System.out.println(pe.getRoot().getFeatureValue("accent"));
             System.out.println(pe.toString());
 
 
