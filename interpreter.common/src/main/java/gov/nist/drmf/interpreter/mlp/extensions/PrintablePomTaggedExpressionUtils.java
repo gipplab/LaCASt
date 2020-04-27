@@ -25,7 +25,7 @@ public final class PrintablePomTaggedExpressionUtils {
     public static String buildString(Iterable<PrintablePomTaggedExpression> elements) {
         StringBuilder sb = new StringBuilder();
         for (PrintablePomTaggedExpression ppte : elements) {
-            sb.append(ppte.getTexString());
+            sb.append(ppte.getTexString()).append(" ");
         }
         return sb.toString();
     }
