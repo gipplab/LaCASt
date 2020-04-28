@@ -12,6 +12,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -92,9 +94,22 @@ public class MatchablePomTaggedExpressionTests {
         MatchablePomTaggedExpression blueprint =
                 new MatchablePomTaggedExpression(mlp, "P^{(par1, par2)}_{par3} (var1)", "(p|v)ar\\d");
 
-        checkMatch(blueprint, "var1", "P^{(a,b)}_n (x)", "x");
-        checkMatch(blueprint, "var1", "P^{(a,b)}_{n} ( x+\\frac{1}{x} )", "x+\\frac{1}{x}");
-        checkMatch(blueprint, "var1", "P^{(a,b)}_{n} ( x \\cdot (x^2 + y) )", "x\\cdot(x^2+y)");
+        assertTrue(blueprint.match("P^{(a,b)}_{n} ( x \\cdot (x^2 + y) )"));
+        Map<String, String> groups = blueprint.getStringMatches();
+        assertEquals("a", groups.get("par1"));
+        assertEquals("b", groups.get("par2"));
+        assertEquals("n", groups.get("par3"));
+        assertEquals("x \\cdot ( x^2 + y )", groups.get("var1"));
+    }
+
+    @Test
+    public void spacingMatchTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "( var1 )", "(p|v)ar\\d");
+
+        assertTrue(blueprint.match("( x y )"));
+        Map<String, String> groups = blueprint.getStringMatches();
+        assertEquals("x y", groups.get("var1"));
     }
 
     @Test
@@ -127,6 +142,54 @@ public class MatchablePomTaggedExpressionTests {
     public void jacobiFunctionMismatchBlueprintTest() {
         // it's Jacobi function but not Jacobi polynomial, so the match should fail
         assertFalse(jacobiBlueprint.match("\\phi^{(\\alpha, \\beta)}_{n} ( x )"));
+    }
+
+    @Test
+    public void followingTokensTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "var1^{(var2, var3)}_{var4} (var5)", "(p|v)ar\\d");
+
+        String test = "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )";
+        PrintablePomTaggedExpression ppte = mlp.parse(test);
+        assertTrue(blueprint.matchWithinPlace(ppte));
+        Map<String, String> matches = blueprint.getStringMatches();
+        assertEquals("P", matches.get("var1"));
+        assertEquals("\\alpha", matches.get("var2"));
+        assertEquals("\\beta", matches.get("var3"));
+        assertEquals("n", matches.get("var4"));
+        assertEquals("\\cos \\theta", matches.get("var5"));
+    }
+
+    @Test
+    public void withinPlaceTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "var1^{(var2, var3)}_{var4} (var5)", "(p|v)ar\\d");
+
+        String test = "\\frac{1}{2} P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}";
+        PrintablePomTaggedExpression ppte = mlp.parse(test);
+        assertTrue(blueprint.matchWithinPlace(ppte));
+        Map<String, String> matches = blueprint.getStringMatches();
+        assertEquals("P", matches.get("var1"));
+        assertEquals("\\alpha", matches.get("var2"));
+        assertEquals("\\beta", matches.get("var3"));
+        assertEquals("n", matches.get("var4"));
+        assertEquals("\\cos \\theta", matches.get("var5"));
+    }
+
+    @Test
+    public void partialHitTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "var1^{(var2, var3)}_{var4} (var5)", "(p|v)ar\\d");
+
+        String test = "P_n^{(\\alpha,\\beta)}";
+        PrintablePomTaggedExpression ppte = mlp.parse(test);
+        assertFalse(blueprint.match(ppte));
+        Map<String, String> matches = blueprint.getStringMatches();
+        assertEquals("P", matches.get("var1"));
+        assertEquals("\\alpha", matches.get("var2"));
+        assertEquals("\\beta", matches.get("var3"));
+        assertEquals("n", matches.get("var4"));
+        assertNull(matches.get("var5"));
     }
 
     private void checkMatch( MatchablePomTaggedExpression test, String wildCard, String expression, String result )

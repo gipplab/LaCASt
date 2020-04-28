@@ -4,6 +4,7 @@ import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 /**
  * This enumeration provides all kind of brackets. It can be split
@@ -220,6 +221,10 @@ public enum Brackets {
      */
     public static final String OPEN_PATTERN = "[\\(\\[\\{|]";
     public static final String CLOSED_PATTERN = "[\\)\\]\\}|]";
+
+    public static final Pattern PARENTHESES_PATTERN = Pattern.compile(
+            "^\\s*(?:\\\\left)?[{(\\[|](.*)(?:\\\\right)?[|\\])}]\\s*$"
+    );
 
     /**
      * Each bracket is open or closed and has a symbol and its counterpart symbol

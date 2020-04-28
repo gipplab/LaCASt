@@ -77,7 +77,7 @@ public class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> 
                 mathematicaInterface = new MathematicaInterface();
                 return mathematicaInterface;
             } catch (MathLinkException e) {
-                LOG.error("Cannot instantiate Mathematica interface", e);
+                LOG.error("Cannot instantiate Mathematica interface: " + e.getMessage());
                 mathematicaInterface = null;
                 return null;
             }
