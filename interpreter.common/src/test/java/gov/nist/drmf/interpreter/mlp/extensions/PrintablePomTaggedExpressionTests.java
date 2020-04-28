@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -215,13 +217,13 @@ public class PrintablePomTaggedExpressionTests {
         PomTaggedExpression numerator = innerComps.get(0);
         numerator.setRoot(mt);
 
-        assertEquals( "x+\\frac{\\fake}{x^2}", pte.getTexString() );
+        assertThat( "x + \\frac{\\fake}{x^2}", equalToCompressingWhiteSpace(pte.getTexString()) );
 
         PomTaggedExpression xpte = innerComps.get(1).getComponents().get(0);
         MathTerm newMT = new MathTerm("y");
         xpte.setRoot(newMT);
 
-        assertEquals( "x+\\frac{\\fake}{y^2}", pte.getTexString() );
+        assertEquals( "x + \\frac{\\fake}{y^2}", pte.getTexString() );
     }
 
     @Test
@@ -245,18 +247,18 @@ public class PrintablePomTaggedExpressionTests {
         PrintablePomTaggedExpression secondPTE = mlp.parse(texString);
 
         pte.addComponent(secondPTE);
-        assertEquals("x+y\\frac{y}{x^2}", pte.getTexString());
+        assertEquals("x + y \\frac{y}{x^2}", pte.getTexString());
 
         pte.addComponent(3, plusPTE);
-        assertEquals("x+y+\\frac{y}{x^2}", pte.getTexString());
+        assertEquals("x + y + \\frac{y}{x^2}", pte.getTexString());
 
         PrintablePomTaggedExpression newPTE = mlp.parse("y+x");
         pte.set(newPTE);
-        assertEquals("y+x", pte.getTexString());
+        assertEquals("y + x", pte.getTexString());
 
         PrintablePomTaggedExpression completeNewPTE = mlp.parse("z+x+y");
         pte.setComponents(completeNewPTE.getComponents());
-        assertEquals("z+x+y", pte.getTexString());
+        assertEquals("z + x + y", pte.getTexString());
     }
 
     private void checkList( List<PrintablePomTaggedExpression> components, String... matches ) {

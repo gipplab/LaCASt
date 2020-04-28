@@ -2,9 +2,9 @@ package gov.nist.drmf.interpreter.mathematica.config;
 
 import com.wolfram.jlink.KernelLink;
 import com.wolfram.jlink.MathLinkException;
-import com.wolfram.jlink.MathLinkFactory;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -79,16 +79,8 @@ public class MathematicaConfig {
 
     public static boolean isMathematicaPresent() {
         try {
-            Path mathPath = MathematicaConfig.loadMathematicaPath();
-            System.out.println(mathPath);
-
-            KernelLink math = MathLinkFactory.createKernelLink(new String[]{
-                    "-linkmode", "launch",
-                    "-linkname", mathPath.toString(), "-mathlink"
-            });
-
-            math.close();
-            return true;
+            MathematicaInterface m = MathematicaInterface.getInstance();
+            return m != null;
         } catch (Exception | Error e) {
             return false;
         }

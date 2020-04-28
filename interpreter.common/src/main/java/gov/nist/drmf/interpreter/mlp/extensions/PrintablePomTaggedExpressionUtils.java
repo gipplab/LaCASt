@@ -3,6 +3,8 @@ package gov.nist.drmf.interpreter.mlp.extensions;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
+import java.util.Iterator;
+
 /**
  * @author Andre Greiner-Petter
  */
@@ -24,9 +26,17 @@ public final class PrintablePomTaggedExpressionUtils {
 
     public static String buildString(Iterable<PrintablePomTaggedExpression> elements) {
         StringBuilder sb = new StringBuilder();
-        for (PrintablePomTaggedExpression ppte : elements) {
-            sb.append(ppte.getTexString()).append(" ");
+
+        Iterator<PrintablePomTaggedExpression> it = elements.iterator();
+        sb.append(it.next().getTexString());
+
+        while ( it.hasNext() ) {
+            PrintablePomTaggedExpression p = it.next();
+            String s = p.getTexString();
+            if ( !s.matches("^[{^_!].*") ) sb.append(" ");
+            sb.append(s);
         }
-        return sb.toString();
+
+        return sb.toString().trim();
     }
 }

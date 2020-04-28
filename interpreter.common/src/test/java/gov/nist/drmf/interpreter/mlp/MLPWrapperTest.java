@@ -24,6 +24,6 @@ public class MLPWrapperTest {
     public void normalizeAllTest() throws ParseException {
         PrintablePomTaggedExpression ppte = mlp.parse("\\left( x^{1+x}_n \\right)");
         MLPWrapper.normalize(ppte);
-        assertEquals("(x_n^{1+x})", ppte.getTexString());
+        assertEquals("( x_n^{1+x} )", ppte.getTexString());
     }
 }
