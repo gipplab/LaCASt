@@ -1,3 +1,4 @@
+version: "2"
 exclude_patterns:
   - ".github/"
   - ".travis/"
@@ -9,3 +10,7 @@ exclude_patterns:
   - "**/test/"
   - "**/resources/"
   - "**/examples/"
+checks:
+  file-lines:
+    config:
+      threshold: 300
