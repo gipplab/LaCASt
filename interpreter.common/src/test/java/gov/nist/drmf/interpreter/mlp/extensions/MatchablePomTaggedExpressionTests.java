@@ -99,7 +99,7 @@ public class MatchablePomTaggedExpressionTests {
         assertEquals("a", groups.get("par1"));
         assertEquals("b", groups.get("par2"));
         assertEquals("n", groups.get("par3"));
-        assertEquals("x \\cdot ( x ^2 + y )", groups.get("var1"));
+        assertEquals("x \\cdot ( x^2 + y )", groups.get("var1"));
     }
 
     @Test
