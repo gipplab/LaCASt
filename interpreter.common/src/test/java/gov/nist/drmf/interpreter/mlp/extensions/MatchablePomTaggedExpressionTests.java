@@ -99,7 +99,7 @@ public class MatchablePomTaggedExpressionTests {
         assertEquals("a", groups.get("par1"));
         assertEquals("b", groups.get("par2"));
         assertEquals("n", groups.get("par3"));
-        assertEquals("x \\cdot ( x^2 + y )", groups.get("var1"));
+        assertEquals("x \\cdot (x^2 + y)", groups.get("var1"));
     }
 
     @Test
@@ -174,6 +174,67 @@ public class MatchablePomTaggedExpressionTests {
         assertEquals("\\beta", matches.get("var3"));
         assertEquals("n", matches.get("var4"));
         assertEquals("\\cos \\theta", matches.get("var5"));
+    }
+
+    @Test
+    public void noMatchEqualTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "var1 = var2 = 0", "var\\d+");
+
+        String test = "P_{n}^{(\\alpha, \\beta)}(x)";
+        PrintablePomTaggedExpression ppte = mlp.parse(test);
+        assertFalse(blueprint.matchWithinPlace(ppte));
+    }
+
+    @Test
+    public void noMatchEqualTest2() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "var1 = var2 = 0", "var\\d+");
+
+        String test = "(1 - x)^{\\alpha}(1 + x)^{\\beta}";
+        PrintablePomTaggedExpression ppte = mlp.parse(test);
+        assertFalse(blueprint.matchWithinPlace(ppte));
+    }
+
+    @Test
+    public void wikiParseTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "var3 + var2 + var1", "var\\d+");
+
+        String test = "(1 - x)^{\\alpha}(1 + x)^{\\beta}";
+        PrintablePomTaggedExpression ppte = mlp.parse(test);
+        assertFalse(blueprint.matchWithinPlace(ppte));
+    }
+
+    @Test
+    public void inlineBracketTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "1-(var1)^x", "var\\d+");
+
+        String test = "1-(f(x))^x";
+        PrintablePomTaggedExpression ppte = mlp.parse(test);
+        assertTrue(blueprint.matchWithinPlace(ppte));
+
+        Map<String, String> matches = blueprint.getStringMatches();
+        assertEquals("f (x)", matches.get("var1"));
+    }
+
+    @Test
+    public void inlineHypergeometricTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "{}_{var1}F_{var2} (var3,var4;var5;var6)", "var\\d+");
+
+        String test = "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}\\,{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)";
+        PrintablePomTaggedExpression ppte = mlp.parse(test);
+        assertTrue(blueprint.matchWithinPlace(ppte));
+
+        Map<String, String> matches = blueprint.getStringMatches();
+        assertEquals("2", matches.get("var1"));
+        assertEquals("1", matches.get("var2"));
+        assertEquals("- n", matches.get("var3"));
+        assertEquals("1 + \\alpha + \\beta + n", matches.get("var4"));
+        assertEquals("\\alpha + 1", matches.get("var5"));
+        assertEquals("\\tfrac{1}{2} (1 - z)", matches.get("var6"));
     }
 
     @Test

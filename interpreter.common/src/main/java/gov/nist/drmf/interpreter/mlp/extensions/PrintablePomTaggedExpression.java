@@ -3,7 +3,6 @@ package gov.nist.drmf.interpreter.mlp.extensions;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,7 +20,7 @@ import java.util.regex.Pattern;
  * @see PomTaggedExpression
  */
 public class PrintablePomTaggedExpression extends PomTaggedExpression {
-    private List<PrintablePomTaggedExpression> printableComponents;
+    private final List<PrintablePomTaggedExpression> printableComponents;
 
     private String caption;
 
@@ -109,8 +108,12 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
 
     private String checkChoosenToken(String token, PomTaggedExpression pte) {
         if (token.isBlank()) {
-            if (pte.getComponents().isEmpty())
-                throw new IllegalArgumentException("Cannot find starting string of this expression " + pte);
+            if (pte.getComponents().isEmpty()) {
+                // well, a blank token with no components is only possible by "{}". So we shall
+                // return this, I guess.
+                return "{";
+//                throw new IllegalArgumentException("Cannot find starting string of this expression " + pte);
+            }
             return getStartingString(pte.getComponents().get(0));
         } else return token;
     }
