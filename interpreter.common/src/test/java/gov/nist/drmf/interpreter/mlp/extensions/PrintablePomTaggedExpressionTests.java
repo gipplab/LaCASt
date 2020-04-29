@@ -261,6 +261,28 @@ public class PrintablePomTaggedExpressionTests {
         assertEquals("z + x + y", pte.getTexString());
     }
 
+    @Test
+    public void emptySubscriptTest() throws ParseException{
+        String test = "\\pi+{}_2F_1\\left(a,b;c;z\\right)";
+        PrintablePomTaggedExpression p = mlp.parse(test);
+        assertEquals(test, p.getTexString());
+    }
+
+    @Test
+    public void spaceTest() throws ParseException {
+        String test = "\\pi \\; + \\, 2";
+        String test2 = "\\pi + 2";
+        PrintablePomTaggedExpression p1 = mlp.parse(test);
+        PrintablePomTaggedExpression p2 = mlp.parse(test2);
+        assertThat(p2.getTexString(), equalToCompressingWhiteSpace(p1.getTexString()));
+    }
+
+    @Test
+    public void realWorldWikiExampleTest() throws ParseException {
+        String texString = "(1 - x)^{\\alpha}(1 + x)^{\\beta}";
+        mlp.parse(texString);
+    }
+
     private void checkList( List<PrintablePomTaggedExpression> components, String... matches ) {
         assertEquals(matches.length, components.size());
         for ( int i = 0; i < matches.length; i++ ){
