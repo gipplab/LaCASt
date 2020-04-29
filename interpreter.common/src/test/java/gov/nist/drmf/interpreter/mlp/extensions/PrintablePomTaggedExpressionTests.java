@@ -148,6 +148,20 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     @Test
+    public void setComponentsTest() throws ParseException {
+        String texString = "\\frac{x^1}{2}";
+        String replace = "a^2 + b^2";
+
+        PrintablePomTaggedExpression orig = mlp.parse(texString);
+        PrintablePomTaggedExpression ref = mlp.parse(replace);
+
+        PrintablePomTaggedExpression enumerator = orig.getPrintableComponents().get(0);
+        enumerator.setComponents(ref);
+
+        assertEquals("\\frac{a^2 + b^2}{2}", orig.getTexString());
+    }
+
+    @Test
     public void subSuperScriptTest() throws ParseException {
         String texString = "y \\cdot y_b^a";
         PrintablePomTaggedExpression ppte = mlp.parse(texString);
