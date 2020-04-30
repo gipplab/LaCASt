@@ -22,6 +22,10 @@ public final class FakeMLPGenerator {
         return new PomTaggedExpression(generateEmptyMathTerm(), ExpressionTags.sequence.tag());
     }
 
+    public static PrintablePomTaggedExpression generateEmptySequencePPTE() {
+        return new PrintablePomTaggedExpression(generateEmptyMathTerm(), ExpressionTags.sequence.tag());
+    }
+
     public static PomTaggedExpression generateEmptyBinomialCoefficientPTE() {
         return new PomTaggedExpression(generateEmptyMathTerm(), ExpressionTags.binomial.tag());
     }

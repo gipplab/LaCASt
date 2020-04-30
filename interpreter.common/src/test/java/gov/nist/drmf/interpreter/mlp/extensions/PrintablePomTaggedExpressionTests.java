@@ -162,6 +162,19 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     @Test
+    public void constructSetComponentsTest() throws ParseException {
+        String replace = "a^2 + b^2";
+
+        PrintablePomTaggedExpression orig = FakeMLPGenerator.generateEmptySequencePPTE();
+        PrintablePomTaggedExpression ref = mlp.parse(replace);
+
+        List<PomTaggedExpression> content = ref.getComponents();
+        orig.setComponents(content);
+
+        assertEquals("a^2 + b^2", orig.getTexString());
+    }
+
+    @Test
     public void subSuperScriptTest() throws ParseException {
         String texString = "y \\cdot y_b^a";
         PrintablePomTaggedExpression ppte = mlp.parse(texString);

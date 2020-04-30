@@ -113,6 +113,33 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void captureIntegrityTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "( var1 + 1 )^{var1}", "(p|v)ar\\d");
+
+        assertFalse(
+                blueprint.match("( x + 1 )^{y}"),
+                "Should not match because capture group var1 cannot be both x and y"
+        );
+
+        assertTrue(
+                blueprint.match("( x + 1 )^{x}")
+        );
+
+        Map<String, String> groups = blueprint.getStringMatches();
+        assertEquals("x", groups.get("var1"));
+
+        assertFalse(
+                blueprint.match("( x + 1 )^{y}", false),
+                "Should not match because capture group var1 cannot be both x and y"
+        );
+
+        assertTrue(
+                blueprint.match("( x + 1 )^{x}", false)
+        );
+    }
+
+    @Test
     public void straightJacobiPolyBlueprintTest() {
         assertTrue(jacobiBlueprint.match("P^{(\\alpha, \\beta)}_{n} (x)"));
     }
