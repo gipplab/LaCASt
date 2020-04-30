@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
+import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import mlp.MathTerm;
 import mlp.ParseException;
@@ -38,7 +39,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
     /**
      * Essentially a copy of {@link PomTaggedExpression#getComponents()}
      */
-    private final List<MatchablePomTaggedExpression> components;
+    private final PomTaggedExpressionChildrenMatcher children;
 
     /**
      * Next sibling, if any
@@ -49,7 +50,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
      * The library is a shared object among all nodes of one tree.
      * This is necessary to check the integrity within matches.
      */
-    private final Map<String, PrintablePomTaggedExpression> matchLibrary;
+    private final GroupCaptures captures;
 
     /**
      * For better performance, it is recommended to have one MLPWrapper object.
@@ -86,16 +87,17 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
      */
     public MatchablePomTaggedExpression(PomTaggedExpression refRoot, String wildcardPattern)
             throws NotMatchableException {
-        this(refRoot, wildcardPattern, new HashMap<>());
+        this(refRoot, wildcardPattern, new GroupCaptures());
     }
 
     private MatchablePomTaggedExpression(
             PomTaggedExpression refRoot,
             String wildcardPattern,
-            Map<String, PrintablePomTaggedExpression> matchLibrary
+            GroupCaptures captures
     ) throws NotMatchableException {
         super(refRoot.getRoot(), refRoot.getTag(), refRoot.getSecondaryTags());
-        this.matchLibrary = matchLibrary;
+        this.captures = captures;
+        this.children = new PomTaggedExpressionChildrenMatcher(this, captures);
 
         // if this the root, normalize the reference tree first
         if ( refRoot.getParent() != null )
@@ -118,13 +120,11 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         }
 
         List<PomTaggedExpression> comps = refRoot.getComponents();
-        this.components = new LinkedList<>();
 
         MatchablePomTaggedExpression prevNode = null;
         for (PomTaggedExpression pte : comps) {
-            MatchablePomTaggedExpression cpte = new MatchablePomTaggedExpression(pte, wildcardPattern, matchLibrary);
-            super.addComponent(cpte);
-            this.components.add(cpte);
+            MatchablePomTaggedExpression cpte = new MatchablePomTaggedExpression(pte, wildcardPattern, captures);
+            this.children.add(cpte);
 
             if (prevNode != null) {
                 prevNode.setNextSibling(cpte);
@@ -135,15 +135,26 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         }
     }
 
-    private void setNextSibling(MatchablePomTaggedExpression nextSibling) {
-        this.nextSibling = nextSibling;
+    /**
+     * @return true if this node is a wildcard.
+     */
+    public boolean isWildcard() {
+        return isWildcard;
     }
 
     /**
-     * Resets the previous matches, if any
+     * @return the wildcard id (is null if this node is not a wildcard).
      */
-    private void depthResetMatches() {
-        this.matchLibrary.clear();
+    public String getWildcardID() {
+        return wildcardID;
+    }
+
+    /**
+     * Sets the next sibling
+     * @param nextSibling next sibling
+     */
+    private void setNextSibling(MatchablePomTaggedExpression nextSibling) {
+        this.nextSibling = nextSibling;
     }
 
     /**
@@ -177,7 +188,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
 
     @Override
     public boolean match(PrintablePomTaggedExpression expression) {
-        depthResetMatches();
+        captures.clear();
         expression = (PrintablePomTaggedExpression)MLPWrapper.normalize(expression);
         return match(expression, new LinkedList<>(), MatcherConfig.getStrictConfig());
     }
@@ -189,78 +200,33 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
      * @return true if there is a hit somewhere within the given expression
      */
     public boolean matchWithinPlace(PrintablePomTaggedExpression expression) {
-        depthResetMatches();
+        captures.clear();
         expression = (PrintablePomTaggedExpression)MLPWrapper.normalize(expression);
         MatcherConfig config = new MatcherConfig(true, false);
 
         if (ExpressionTags.sequence.equals(ExpressionTags.getTagByKey(this.getTag()))) {
-            return sequenceInPlaceMatch(expression, config);
+            return children.sequenceInPlaceMatch(expression, config);
         }
 
         return match(expression, new LinkedList<>(), config);
     }
 
-    private boolean sequenceInPlaceMatch(PrintablePomTaggedExpression expression, MatcherConfig config) {
-        List<PrintablePomTaggedExpression> children = expression.getPrintableComponents();
-        LinkedList<PrintablePomTaggedExpression> backup = new LinkedList<>();
-        MatchablePomTaggedExpression matchBackUp = null;
-
-        // until we hit non-wildcard element
-        while ( components.get(0).isWildcard ) {
-            matchBackUp = components.remove(0);
-            getComponents().remove(0);
-        }
-
-        // start matching from here
-        boolean findMatch = findNextMatch(expression, children, backup, config);
-        if ( !findMatch ) return false;
-
-        // rollback wildcards, but only take one hit
-        rollbackSkippedWildcards(expression, backup, matchBackUp);
-
-        return true;
-    }
-
-    private boolean findNextMatch(
-            PrintablePomTaggedExpression expression,
-            List<PrintablePomTaggedExpression> children,
-            LinkedList<PrintablePomTaggedExpression> backup,
-            MatcherConfig config
-    ) {
-        boolean currentMatch = match(expression, new LinkedList<>(), config);
-        while ( !currentMatch ) {
-            if ( children.size() <= 1 ) return false;
-            this.depthResetMatches();
-
-            PrintablePomTaggedExpression firstElement = children.remove(0);
-            expression.getComponents().remove(0);
-            backup.add(firstElement);
-
-            currentMatch = match(expression, new LinkedList<>(), config);
-        }
-
-        return true;
-    }
-
-    private void rollbackSkippedWildcards(
-            PrintablePomTaggedExpression expression,
-            LinkedList<PrintablePomTaggedExpression> backup,
-            MatchablePomTaggedExpression matchBackUp
-    ) {
-        if (matchBackUp != null) {
-            PrintablePomTaggedExpression backupElement = backup.removeLast();
-            matchBackUp.setMatch( backupElement );
-            this.components.add(0, matchBackUp);
-            addComponent(0, matchBackUp);
-            expression.addComponent(0, backupElement);
-        }
-
-        while ( !backup.isEmpty() ) {
-            expression.addComponent(0, backup.removeLast());
-        }
-    }
-
-    private boolean match(
+    /**
+     * For public access, use the other public match functions.
+     * This match is the main matcher method. It matches the given
+     * {@param expression} with the following siblings {@param followingExpressions}.
+     * Initially, {@param followingExpressions} is an empty list (the root of an
+     * {@link PomTaggedExpression} has no siblings).
+     *
+     * Note that all nodes ({@param expression} and {@param followingExpressions}) must
+     * share the same parent node. Otherwise it will create unknown artifacts and errors.
+     *
+     * @param expression the expression
+     * @param followingExpressions the siblings of the expression
+     * @param config the matcher config
+     * @return true if it matched or false otherwise
+     */
+    boolean match (
             PrintablePomTaggedExpression expression,
             List<PrintablePomTaggedExpression> followingExpressions,
             MatcherConfig config
@@ -268,15 +234,6 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         try {
             // essentially there are two cases, either it is not a wildcard, that it must match directly the reference
             if (!isWildcard) return matchNonWildCard(expression, config);
-
-            /*
-             * it may happen that the previous check for the end of a wildcard accidentally matched
-             * deeper wildcards within the subtree of the current (this) node. If so, this wildcard
-             * (note that it is non-static) is not empty. This only happens if the previous check was
-             * already successful. Hence, we can simply skip this note instead of clearing the matched
-             * group and try to match it again.
-             */
-//            if ( !this.wildcardMatch.isEmpty() ) return true;
             return matchWildCard(expression, followingExpressions, config);
         } catch ( NotMatchableException nme ) {
             LOG.debug("Expression not matchable because: " + nme.getMessage());
@@ -284,7 +241,10 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         }
     }
 
-    private boolean matchNonWildCard(PrintablePomTaggedExpression expression, MatcherConfig config) {
+    private boolean matchNonWildCard(
+            PrintablePomTaggedExpression expression,
+            MatcherConfig config
+    ){
         MathTerm otherRoot = expression.getRoot();
         MathTerm thisRoot = getRoot();
 
@@ -295,27 +255,11 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
 
         // since both term matches, we have to check their children
         // if this object doesn't have children, we can straight check the match
-        if (this.components.isEmpty()) return expression.getComponents().isEmpty();
+        if (this.children.isEmpty()) return expression.getComponents().isEmpty();
 
-        LinkedList<PrintablePomTaggedExpression> refComponents = new LinkedList<>(expression.getPrintableComponents());
-
-        return matchNonWildCardChildren(refComponents, config);
-    }
-
-    private boolean matchNonWildCardChildren(
-            LinkedList<PrintablePomTaggedExpression> refComponents,
-            MatcherConfig config
-    ) {
-        int idx = 0;
-        while (idx < components.size() && !refComponents.isEmpty()) {
-            PrintablePomTaggedExpression firstRef = refComponents.removeFirst();
-            MatchablePomTaggedExpression matcherElement = components.get(idx);
-
-            if (!matcherElement.match(firstRef, refComponents, config)) return false;
-
-            idx++;
-        }
-        return (config.allowFollowingTokens() && !refComponents.isEmpty()) || idx == components.size();
+        LinkedList<PrintablePomTaggedExpression> refComponents =
+                new LinkedList<>(expression.getPrintableComponents());
+        return children.matchNonWildCardChildren(refComponents, config);
     }
 
     private boolean matchWildCard(
@@ -332,7 +276,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
             matches.add(expression);
             while (!followingExpressions.isEmpty())
                 matches.add(followingExpressions.remove(0));
-            setMatch(matches);
+            captures.setCapturedGroup(wildcardID, matches);
             return true;
         }
 
@@ -345,33 +289,24 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         LinkedList<Brackets> bracketStack = new LinkedList<>();
 
         // fill up wild card until the next hit
-        next = fillWildCardMatch(matches, bracketStack, next, followingExpressions, config);
-        if ( next == null ) return false;
-
-        // nextSibling has matched the next element in followingExpression... so put add back into the queue
-        // and return true
-        followingExpressions.add(0, next);
-        setMatch(matches);
-        return true;
-    }
-
-    private PrintablePomTaggedExpression fillWildCardMatch(
-            List<PomTaggedExpression> matches,
-            LinkedList<Brackets> bracketStack,
-            PrintablePomTaggedExpression next,
-            List<PrintablePomTaggedExpression> followingExpressions,
-            MatcherConfig config
-    ) {
         while (continueMatching(bracketStack, next, followingExpressions, config)) {
-            if (followingExpressions.isEmpty() || isNotAllowedTokenForWildcardMatch(next))
-                return null;
+            if (followingExpressions.isEmpty() || isNotAllowedTokenForWildcardMatch(next)) {
+                return false;
+            }
 
             matches.add(next);
             if ( !config.ignoreBracketLogic() ) updateBracketStack(bracketStack, next);
 
             next = followingExpressions.remove(0);
         }
-        return next;
+
+        if ( next == null ) return false;
+
+        // nextSibling has matched the next element in followingExpression... so put add back into the queue
+        // and return true
+        followingExpressions.add(0, next);
+        captures.setCapturedGroup(wildcardID, matches);
+        return true;
     }
 
     private boolean continueMatching(
@@ -414,48 +349,13 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         return mathTerm != null && mathTerm.matches("[,;.]");
     }
 
-    private void setMatch(List<PomTaggedExpression> match) {
-        PrintablePomTaggedExpression m;
-        if ( match.size() > 1 ) {
-            m = FakeMLPGenerator.generateEmptySequencePPTE();
-            m.setComponents(match);
-        } else if ( match.size() == 1 ) m = (PrintablePomTaggedExpression) match.get(0);
-        else throw new IllegalArgumentException("Cannot set the hit for an empty match.");
-        setMatch(m);
-    }
-
-    private void setMatch(PrintablePomTaggedExpression match) {
-        if ( matchLibrary.containsKey(wildcardID) ) {
-            String prev = matchLibrary.get(wildcardID).getTexString();
-            String matchS = match.getTexString();
-            if ( prev.startsWith("{") && prev.endsWith("}") ) prev = prev.substring(1, prev.length()-1);
-            if ( matchS.startsWith("{") && matchS.endsWith("}") ) matchS = matchS.substring(1, matchS.length()-1);
-
-            if ( !prev.equals(matchS) ) {
-                String msg = String.format("%s matches clashed in '%s' vs '%s'", wildcardID, prev, matchS);
-                throw new NotMatchableException(msg);
-            } else return;
-        }
-        matchLibrary.put(wildcardID, match);
-    }
-
     /**
      * Get the grouped matches if any.
      * @return map of grouped matches
      * @see #getMatches()
      */
     public Map<String, String> getStringMatches() {
-        Map<String, String> out = new HashMap<>();
-        Map<String, PrintablePomTaggedExpression> matches = getMatches();
-
-        for (String key : matches.keySet()) {
-            String str = matches.get(key).getTexString();
-            Matcher m = Brackets.PARENTHESES_PATTERN.matcher(str);
-            if ( m.matches() ) str = m.group(1);
-            out.put(key, str.trim());
-        }
-
-        return out;
+        return captures.getCapturedGroupStrings();
     }
 
     /**
@@ -466,6 +366,6 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
      * @see #getStringMatches()
      */
     public Map<String, PrintablePomTaggedExpression> getMatches() {
-        return matchLibrary;
+        return captures.getCapturedGroups();
     }
 }

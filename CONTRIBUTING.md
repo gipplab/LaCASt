@@ -208,10 +208,10 @@ The program my show you some errors. You must solve all severe errors, if any.
 
 ## The program structure and important main classes<a name="program"></a>
 There are a couple of main classes in the project.
-* `interpreter.common  -> ...interpreter.examples.MLP.java`: This is an example of Abdou's math language processors. It runs a hard-coded example of the analyzing process.
-* `interpreter.lacast   -> ...interpreter.cas.SemanticToCASInterpreter.java`: That's the main class to translate formulae to a computer algebra system.
-* `interpreter.lacast   -> ...interpreter.cas.mlp.CSVtoLexiconConverter.java`: This class translates given CSV files to lexicon files. You only have to add the translation CSV files and not the DLMFMacro.csv itself to create a correct lexicon.
-* `interpreter.maple -> ...interpreter.maple.MapleToSemanticInterpreter.java`: This class translates Maple expressions back to semantic LaTeX.
+* `interpreter.common -> ...interpreter.examples.MLP.java`: This is an example of Abdou's math language processors. It runs a hard-coded example of the analyzing process.
+* `interpreter.lacast -> ...interpreter.cas.SemanticToCASInterpreter.java`: That's the main class to translate formulae to a computer algebra system.
+* `interpreter.lacast -> ...interpreter.cas.mlp.CSVtoLexiconConverter.java`: This class translates given CSV files to lexicon files. You only have to add the translation CSV files and not the DLMFMacro.csv itself to create a correct lexicon.
+* `interpreter.maple  -> ...interpreter.maple.MapleToSemanticInterpreter.java`: This class translates Maple expressions back to semantic LaTeX.
 
 ## Troubleshooting<a name="troubleshooting"></a>
 When you want to contribute or just run our program it could happen to get some errors. Here are some tips to avoid that. When ever you found an error which is not explained here and you don't know how to fix it by your own, feel free to contact [André Greiner-Petter](https://github.com/AndreG-P).
