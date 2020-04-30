@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.mlp.extensions;
+package gov.nist.drmf.interpreter.mlp;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import mlp.Lexicon;

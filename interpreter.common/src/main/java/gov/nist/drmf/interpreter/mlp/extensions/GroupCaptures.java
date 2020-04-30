@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
@@ -63,17 +64,23 @@ public class GroupCaptures {
     public void setCapturedGroup(String id, PrintablePomTaggedExpression match)
             throws NotMatchableException {
         if ( matchLibrary.containsKey(id) ) {
-            String prev = matchLibrary.get(id).getTexString();
-            String matchS = match.getTexString();
-            if ( prev.startsWith("{") && prev.endsWith("}") ) prev = prev.substring(1, prev.length()-1);
-            if ( matchS.startsWith("{") && matchS.endsWith("}") ) matchS = matchS.substring(1, matchS.length()-1);
-
-            if ( !prev.equals(matchS) ) {
-                String msg = String.format("%s matches clashed in '%s' vs '%s'", id, prev, matchS);
-                throw new NotMatchableException(msg);
-            } else return;
+            checkGroupIntegrity(id, match);
+        } else {
+            matchLibrary.put(id, match);
         }
-        matchLibrary.put(id, match);
+    }
+
+    private void checkGroupIntegrity(String id, PrintablePomTaggedExpression match) {
+        String prev = matchLibrary.get(id).getTexString();
+        String matchS = match.getTexString();
+
+        prev = TeXPreProcessor.trimCurlyBrackets(prev);
+        matchS = TeXPreProcessor.trimCurlyBrackets(matchS);
+
+        if ( !prev.equals(matchS) ) {
+            String msg = String.format("%s matches clashed in '%s' vs '%s'", id, prev, matchS);
+            throw new NotMatchableException(msg);
+        }
     }
 
     /**

@@ -1,7 +1,5 @@
 package gov.nist.drmf.interpreter.mlp;
 
-import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
-
 import java.io.IOException;
 
 /**

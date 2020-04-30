@@ -269,23 +269,37 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
     ) {
         // or it is a wildcard, which means it can be essentially anything
         // note that a wildcard cannot have any children, which makes it easier
-        List<PomTaggedExpression> matches = new LinkedList<>();
 
         // if there is no next element in the pattern, the entire rest matches this wildcard
         if (nextSibling == null) {
-            matches.add(expression);
-            while (!followingExpressions.isEmpty())
-                matches.add(followingExpressions.remove(0));
-            captures.setCapturedGroup(wildcardID, matches);
+            captureUntilEnd(expression, followingExpressions);
             return true;
         }
 
         // otherwise, add elements, until the next element matches
         if (followingExpressions.isEmpty()) return false;
+        return matchWildcardUntilEnd(expression, followingExpressions, config);
+    }
 
+    private void captureUntilEnd(
+            PrintablePomTaggedExpression expression,
+            List<PrintablePomTaggedExpression> followingExpressions
+    ) {
+        List<PomTaggedExpression> matches = new LinkedList<>();
+        matches.add(expression);
+        while (!followingExpressions.isEmpty())
+            matches.add(followingExpressions.remove(0));
+        captures.setCapturedGroup(wildcardID, matches);
+    }
+
+    private boolean matchWildcardUntilEnd(
+            PrintablePomTaggedExpression expression,
+            List<PrintablePomTaggedExpression> followingExpressions,
+            MatcherConfig config
+    ) {
+        List<PomTaggedExpression> matches = new LinkedList<>();
         matches.add(expression);
         PrintablePomTaggedExpression next = followingExpressions.remove(0);
-
         LinkedList<Brackets> bracketStack = new LinkedList<>();
 
         // fill up wild card until the next hit
@@ -295,6 +309,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
             }
 
             matches.add(next);
+
             if ( !config.ignoreBracketLogic() ) updateBracketStack(bracketStack, next);
 
             next = followingExpressions.remove(0);

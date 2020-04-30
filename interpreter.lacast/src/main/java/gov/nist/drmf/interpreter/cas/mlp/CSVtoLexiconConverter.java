@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.cas.mlp;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
+import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
 import mlp.FeatureSet;
 import mlp.Lexicon;
 import mlp.LexiconFactory;
