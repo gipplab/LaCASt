@@ -24,6 +24,12 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
 
     private String caption;
 
+    PrintablePomTaggedExpression( MathTerm mathTerm, String... exprTags ) {
+        super(mathTerm, exprTags);
+        this.printableComponents = new LinkedList<>();
+        this.caption = mathTerm.getTermText();
+    }
+
     public PrintablePomTaggedExpression(PomTaggedExpression pte, String expr) {
         super();
         super.setRoot(pte.getRoot());
