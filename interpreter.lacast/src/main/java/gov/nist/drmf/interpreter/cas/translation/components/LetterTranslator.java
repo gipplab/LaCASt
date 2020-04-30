@@ -11,7 +11,7 @@ import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
-import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
+import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;

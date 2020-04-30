@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
+import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
@@ -24,7 +25,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
 
     private String caption;
 
-    PrintablePomTaggedExpression( MathTerm mathTerm, String... exprTags ) {
+    public PrintablePomTaggedExpression( MathTerm mathTerm, String... exprTags ) {
         super(mathTerm, exprTags);
         this.printableComponents = new LinkedList<>();
         this.caption = mathTerm.getTermText();

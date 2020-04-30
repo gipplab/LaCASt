@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
+import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 

@@ -1,9 +1,9 @@
-package gov.nist.drmf.interpreter.mlp.extensions;
+package gov.nist.drmf.interpreter.mlp;
 
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import gov.nist.drmf.interpreter.mlp.extensions.PrintablePomTaggedExpression;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
