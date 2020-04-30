@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.common.interfaces;
 
-import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
+import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
 import mlp.FeatureSet;
 
 import java.util.ArrayList;

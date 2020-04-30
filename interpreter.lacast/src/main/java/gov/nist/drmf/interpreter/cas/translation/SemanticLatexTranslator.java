@@ -10,7 +10,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
 import gov.nist.drmf.interpreter.common.replacements.ConditionalReplacementRule;
 import gov.nist.drmf.interpreter.common.replacements.IReplacementCondition;
-import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
+import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;

@@ -1,9 +1,8 @@
 package gov.nist.drmf.interpreter.maple.grammar.lexicon;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
-import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
+import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
