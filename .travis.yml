@@ -1,5 +1,8 @@
-sudo: required
+sudo: false
 dist: trusty
+cache:
+  directories:
+    - $HOME/.m2
 
 language: java
 jdk:
@@ -22,7 +25,7 @@ before_install:
 
 install:
   - mvn install -DskipTests -B -V -DgenerateJars
-  - java -jar lexicon-creator.jar CAS_Maple.csv CAS_Mathematica.csv
+  - java -jar bin/lexicon-creator.jar CAS_Maple.csv CAS_Mathematica.csv
 
 script:
   - mvn test -B -DjacocoReport=remote
