@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.cas.mlp;
+package gov.nist.drmf.interpreter.mlp.data;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.cas.mlp;
+package gov.nist.drmf.interpreter.mlp.data;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
 
@@ -22,11 +22,11 @@ public enum DLMFTranslationHeaders {
         this.suf = suf;
     }
 
-    String getCSVKey( String cas_prefix ){
+    public String getCSVKey( String cas_prefix ){
         return pre + cas_prefix + suf;
     }
 
-    String getFeatureKey( String cas_prefix ){
+    public String getFeatureKey( String cas_prefix ){
         if (this.equals(cas_comment))
             return  cas_prefix + Keys.KEY_COMMENT_SUFFIX;
         return cas_prefix + suf;

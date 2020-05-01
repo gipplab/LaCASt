@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.cas.mlp;
+package gov.nist.drmf.interpreter.mlp;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 
@@ -9,6 +9,8 @@ import java.util.HashMap;
  */
 public class LineAnalyzer {
     private HashMap<String, Integer> idx_map;
+
+    private final String[] header;
 
     private String separator_symbol;
 
@@ -22,7 +24,12 @@ public class LineAnalyzer {
         idx_map = new HashMap<>();
         for ( int i = 0; i < headers.length; i++ )
             idx_map.put( headers[i], i );
-        this.cas_prefix = cas_prefix; // TODO
+        this.cas_prefix = cas_prefix;
+        this.header = headers;
+    }
+
+    public String[] getHeader() {
+        return header;
     }
 
     public void setLine( String[] elements ){
