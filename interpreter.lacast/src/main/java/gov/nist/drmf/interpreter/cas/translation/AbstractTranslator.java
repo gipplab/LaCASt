@@ -185,27 +185,6 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         return transExpression; //inner_parser.getTranslatedExpressionObject();
     }
 
-    private TranslatedExpression saveParser(
-            AbstractTranslator translator,
-            boolean translateFollowingMode,
-            PomTaggedExpression exp,
-            List<PomTaggedExpression> expList
-    ) {
-        try {
-            if ( translator instanceof AbstractListTranslator ){
-                AbstractListTranslator alt = (AbstractListTranslator) translator;
-                return translateFollowingMode ? alt.translate(exp, expList) : alt.translate(exp);
-            } else {
-                return translator.translate(exp);
-            }
-        } catch (TranslationException te) {
-            if ( tolerant ) {
-                LOG.warn("Error due to translation", te);
-                return new TranslatedExpression();
-            } else throw te;
-        }
-    }
-
     /**
      * A generic function that translates the next {@param expression} and cleans the the global translation list afterwards
      * @param expression translate expression
