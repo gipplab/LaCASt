@@ -73,49 +73,14 @@ public class DLMFConsumer implements LexiconInfoConsumer {
         }
 
         String macro_name = m.group(GlobalConstants.MACRO_PATTERN_INDEX_MACRO);
-
-        // find out if it is a mathematical constant
-        String role = lineAnalyzer.getValue( Keys.FEATURE_ROLE );
-
-        // otherwise it is a usual DLMF macro and we can create our feature set for it
-        // create a new feature set
-        FeatureSet fset;
-        if ( role.matches( Keys.FEATURE_VALUE_SYMBOL ) ) {
-            // TODO we should handle symbols in a different way
-            fset = new FeatureSet(Keys.KEY_DLMF_MACRO);
-        }
-        else if ( role.matches( Keys.FEATURE_VALUE_CONSTANT ) ){
-            fset = new FeatureSet(Keys.KEY_DLMF_MACRO);
-            // add the general representation for this macro
-            fset.addFeature( Keys.KEY_DLMF, macro, MacrosLexicon.SIGNAL_INLINE );
-
-            String dlmf_link = Keys.KEY_DLMF + Keys.KEY_LINK_SUFFIX;
-            fset.addFeature( dlmf_link, lineAnalyzer.getValue(dlmf_link), MacrosLexicon.SIGNAL_INLINE );
-            fset.addFeature( Keys.FEATURE_MEANINGS, lineAnalyzer.getValue(Keys.FEATURE_MEANINGS), MacrosLexicon.SIGNAL_INLINE );
-            fset.addFeature( Keys.FEATURE_ROLE, Keys.FEATURE_VALUE_CONSTANT, MacrosLexicon.SIGNAL_INLINE );
-            List<FeatureSet> fsets = new LinkedList<>();
-            fsets.add(fset);
-            lexicon.setEntry(
-                    macro_name,
-                    fsets
-            );
-            stats.tickDLMF();
-            return;
-        } else if ( role.matches( Keys.FEATURE_VALUE_FUNCTION ) ){
-            fset = new FeatureSet( Keys.FEATURE_VALUE_FUNCTION );
-        } else if ( role.matches( Keys.FEATURE_VALUE_IGNORE ) )
-            return;
-        else fset = new FeatureSet( Keys.KEY_DLMF_MACRO );
+        FeatureSet fset = chooseFeatureSet(m);
+        if ( fset == null ) return;
 
         // add the general representation for this macro
         fset.addFeature( Keys.KEY_DLMF, macro, MacrosLexicon.SIGNAL_INLINE );
 
         // add all other information to the feature set
-        for ( int i = 1; i < elements.length && i < header.length; i++ ){
-            String value = lineAnalyzer.getValue( header[i] );
-            if ( value != null && !value.isEmpty() )
-                fset.addFeature( header[i], value, MacrosLexicon.SIGNAL_INLINE );
-        }
+        fillFeature(elements, fset);
 
         // since each DLMF macro has only one feature set, create a list with one element
         List<FeatureSet> fsets = new LinkedList<>();
@@ -145,14 +110,61 @@ public class DLMFConsumer implements LexiconInfoConsumer {
                 MacrosLexicon.SIGNAL_INLINE
         );
 
+        fillFeature(elements, fset);
+
+        sets.add(fset);
+        lexicon.setEntry( info[1], sets );
+    }
+
+    private void fillFeature(String[] elements, FeatureSet fset) {
         // add all other information to the feature set
         for ( int i = 1; i < elements.length && i < header.length; i++ ){
             String value = lineAnalyzer.getValue( header[i] );
             if ( value != null && !value.isEmpty() )
                 fset.addFeature( header[i], value, MacrosLexicon.SIGNAL_INLINE );
         }
+    }
 
-        sets.add(fset);
-        lexicon.setEntry( info[1], sets );
+    private FeatureSet chooseFeatureSet(Matcher m) {
+        String macro = lineAnalyzer.getValue( Keys.KEY_DLMF );
+        String macro_name = m.group(GlobalConstants.MACRO_PATTERN_INDEX_MACRO);
+        // find out if it is a mathematical constant
+        String role = lineAnalyzer.getValue( Keys.FEATURE_ROLE );
+        // otherwise it is a usual DLMF macro and we can create our feature set for it
+        // create a new feature set
+        FeatureSet fset;
+        switch (role) {
+            case Keys.FEATURE_VALUE_CONSTANT:
+                handleConstantFeature(macro, macro_name);
+            case Keys.FEATURE_VALUE_IGNORE:
+                return null;
+            case Keys.FEATURE_VALUE_FUNCTION:
+                fset = new FeatureSet( Keys.FEATURE_VALUE_FUNCTION );
+                break;
+            case Keys.FEATURE_VALUE_SYMBOL:
+                // TODO we may handle symbols in a different way
+            default:
+                fset = new FeatureSet( Keys.KEY_DLMF_MACRO );
+        }
+
+        return fset;
+    }
+
+    private void handleConstantFeature(String macro, String macro_name) {
+        FeatureSet fset = new FeatureSet(Keys.KEY_DLMF_MACRO);
+        // add the general representation for this macro
+        fset.addFeature( Keys.KEY_DLMF, macro, MacrosLexicon.SIGNAL_INLINE );
+
+        String dlmf_link = Keys.KEY_DLMF + Keys.KEY_LINK_SUFFIX;
+        fset.addFeature( dlmf_link, lineAnalyzer.getValue(dlmf_link), MacrosLexicon.SIGNAL_INLINE );
+        fset.addFeature( Keys.FEATURE_MEANINGS, lineAnalyzer.getValue(Keys.FEATURE_MEANINGS), MacrosLexicon.SIGNAL_INLINE );
+        fset.addFeature( Keys.FEATURE_ROLE, Keys.FEATURE_VALUE_CONSTANT, MacrosLexicon.SIGNAL_INLINE );
+        List<FeatureSet> fsets = new LinkedList<>();
+        fsets.add(fset);
+        lexicon.setEntry(
+                macro_name,
+                fsets
+        );
+        stats.tickDLMF();
     }
 }

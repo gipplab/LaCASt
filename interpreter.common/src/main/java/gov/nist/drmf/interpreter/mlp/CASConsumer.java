@@ -27,46 +27,55 @@ public class CASConsumer implements LexiconInfoConsumer {
 
     @Override
     public void accept(String[] elements) {
-        String cas_func = null;
-        InfoHolder holder = null;
+        lineAnalyzer.setLine(elements);
         try {
-            lineAnalyzer.setLine(elements);
-            String curr_cas = lineAnalyzer.getCasPrefix();
-
-            cas_func = lineAnalyzer.getValue(curr_cas);
-            holder = LexiconConverterUtility.getFuncNameAndFillInteger(
-                    cas_func,
-                    "Skip cache entry: " + cas_func,
-                    lineAnalyzer
-            );
+            InfoHolder holder = getInfoHolder();
 
             if (holder == null) return;
 
-            CASInfo info = new CASInfo();
-            info.setConstraints(
-                    lineAnalyzer.getValue(DLMFTranslationHeaders.cas_constraint.getCSVKey(curr_cas))
-            );
-            info.setBranch_cuts(
-                    lineAnalyzer.getValue(DLMFTranslationHeaders.cas_branch_cuts.getCSVKey(curr_cas))
-            );
-            info.setLink(
-                    lineAnalyzer.getValue(DLMFTranslationHeaders.cas_link.getCSVKey(curr_cas))
-            );
-            info.setExtra_package(
-                    lineAnalyzer.getValue(DLMFTranslationHeaders.cas_package.getCSVKey(curr_cas))
-            );
-
-            if (info.getExtra_package() != null && !info.getExtra_package().isEmpty())
-                LOG.debug("EXTRA PACKAGE: " + info.getExtra_package());
+            CASInfo info = getCasInfo(lineAnalyzer.getCasPrefix());
+            logInfo(info);
 
             if (holder.getCasName() != null)
                 cache.add(holder.getCasName(), holder.getNumVars(), info);
         } catch (NumberFormatException nfe) {
-            LOG.debug("Skip cache entry, because number of variables is missing for: " + cas_func);
+            String cas = lineAnalyzer.getCasPrefix();
+            LOG.debug("Skip cache entry, because number of variables is missing for: " + lineAnalyzer.getValue(cas));
         } catch (NullPointerException npe) {
             LOG.debug("Skip cache entry, caused by missing information: " + Arrays.toString(elements));
         } catch (Exception e) {
             LOG.debug("Error - Skip cache entry for: " + Arrays.toString(elements), e);
         }
+    }
+
+    private CASInfo getCasInfo(String curr_cas) {
+        CASInfo info = new CASInfo();
+        info.setConstraints(
+                lineAnalyzer.getValue(DLMFTranslationHeaders.cas_constraint.getCSVKey(curr_cas))
+        );
+        info.setBranch_cuts(
+                lineAnalyzer.getValue(DLMFTranslationHeaders.cas_branch_cuts.getCSVKey(curr_cas))
+        );
+        info.setLink(
+                lineAnalyzer.getValue(DLMFTranslationHeaders.cas_link.getCSVKey(curr_cas))
+        );
+        info.setExtra_package(
+                lineAnalyzer.getValue(DLMFTranslationHeaders.cas_package.getCSVKey(curr_cas))
+        );
+        return info;
+    }
+
+    private InfoHolder getInfoHolder() {
+        String cas_func = lineAnalyzer.getValue(lineAnalyzer.getCasPrefix());
+        return LexiconConverterUtility.getFuncNameAndFillInteger(
+                cas_func,
+                "Skip cache entry: " + cas_func,
+                lineAnalyzer
+        );
+    }
+
+    private void logInfo(CASInfo info) {
+        if (info.getExtra_package() != null && !info.getExtra_package().isEmpty())
+            LOG.debug("EXTRA PACKAGE: " + info.getExtra_package());
     }
 }
