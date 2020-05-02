@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.maple.translation;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
+import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
@@ -81,7 +82,7 @@ public final class MapleTranslator extends AbstractAlgebraicTranslator<Algebraic
      * {@link #getDefaultInstance()} instead of creating a new object.
      * If you do, you should know what you do and why.
      */
-    public MapleTranslator() throws MapleException {
+    public MapleTranslator(){
         maple = MapleInterface.getUniqueMapleInterface();
     }
 
@@ -121,16 +122,14 @@ public final class MapleTranslator extends AbstractAlgebraicTranslator<Algebraic
         // evaluate procedures
         loadProcedures();
 
-        // set up all translators, define the direction of translation
-        greek = new GreekLetters( Keys.KEY_MAPLE, Keys.KEY_LATEX );
-        constants = new Constants( Keys.KEY_MAPLE, Keys.KEY_DLMF );
-        basicFunc = new BasicFunctionsTranslator( Keys.KEY_LATEX );
-        symbolTranslator = new SymbolTranslator( Keys.KEY_MAPLE, Keys.KEY_LATEX );
-        // init all translators
-        greek.init();
-        constants.init();
-        basicFunc.init();
-        symbolTranslator.init();
+        TranslationProcessConfig config = new TranslationProcessConfig(Keys.KEY_MAPLE, Keys.KEY_LATEX);
+        setConfig(config);
+        getConfig().init();
+
+        greek = getConfig().getGreekLettersTranslator();
+        constants = getConfig().getConstantsTranslator();
+        basicFunc = getConfig().getBasicFunctionsTranslator();
+        symbolTranslator = getConfig().getSymbolTranslator();
 
         // load the macro lexicon file
         MapleLexicon.init();

@@ -66,8 +66,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      * @see BlueprintMaster
      */
     public SemanticLatexTranslator( ForwardTranslationProcessConfig config ) {
-        super(null);
-        super.setConfig(config);
+        super(config);
         this.config = config;
         this.localTranslations = new TranslatedExpression();
     }
@@ -77,8 +76,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      * @param orig the original translator
      */
     private SemanticLatexTranslator( SemanticLatexTranslator orig ) {
-        super(null);
-        super.setConfig(orig.getConfig());
+        super(orig.getConfig());
         this.config = orig.config;
         this.parser = orig.parser;
         this.localTranslations = new TranslatedExpression();
@@ -171,7 +169,8 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
             }
             return super.getGlobalTranslationList().getTranslatedExpression();
         } catch ( ParseException pe ){
-            throw buildException(
+            throw TranslationException.buildException(
+                    this,
                     pe.getMessage(),
                     TranslationExceptionReason.MLP_ERROR,
                     pe
