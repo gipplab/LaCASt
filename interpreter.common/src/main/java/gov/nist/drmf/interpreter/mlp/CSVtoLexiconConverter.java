@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.mlp;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.mlp.data.CASCache;
+import gov.nist.drmf.interpreter.mlp.data.LexiconConverterConfig;
 import gov.nist.drmf.interpreter.mlp.data.Stats;
 import mlp.Lexicon;
 import mlp.LexiconFactory;
@@ -10,13 +11,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.attribute.FileAttribute;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
@@ -40,13 +38,22 @@ public class CSVtoLexiconConverter {
     private List<Path> casLibPath;
     private List<String> casNames;
 
-    public CSVtoLexiconConverter ( Path csvDLMF, Path... csvCAS ) throws Exception {
-        dlmfLibPath = GlobalPaths.PATH_REFERENCE_DATA_CSV.resolve(csvDLMF);
+    private final LexiconConverterConfig config;
+
+    public CSVtoLexiconConverter(Path csvDLMF, Path... csvCAS) throws Exception {
+        this(new LexiconConverterConfig(), csvDLMF, csvCAS);
+    }
+
+    public CSVtoLexiconConverter (LexiconConverterConfig config, Path csvDLMF, Path... csvCAS )
+            throws Exception
+    {
+        this.config = config;
+        dlmfLibPath = config.getCsvPath().resolve(csvDLMF);
 
         casNames = new LinkedList<>();
         casLibPath = Arrays.stream(csvCAS)
                 .sequential()
-                .map(GlobalPaths.PATH_REFERENCE_DATA_CSV::resolve)
+                .map(config.getCsvPath()::resolve)
                 .map(p -> {
                     String fileName = p.getFileName().toString();
                     Matcher m = CAS_FILE_NAME_PATTERN.matcher(fileName);
@@ -65,7 +72,7 @@ public class CSVtoLexiconConverter {
         casCache = new CASCache();
 
         LOG.info("Delete existing macros lexicon if exist.");
-        Path lexiconFilePath = GlobalPaths.DLMF_MACROS_LEXICON;
+        Path lexiconFilePath = config.getDlmfMacroLexiconPath();
         Files.deleteIfExists(lexiconFilePath);
         Files.createFile(lexiconFilePath);
 
@@ -105,7 +112,7 @@ public class CSVtoLexiconConverter {
                 lexicon.getLexiconMap(),
                 MacrosLexicon.SIGNAL_ENTRY,
                 MacrosLexicon.SIGNAL_FEATURESET,
-                GlobalPaths.DLMF_MACROS_LEXICON.toString()
+                config.getDlmfMacroLexiconPath().toString()
         );
 
         Instant end = Instant.now();
@@ -159,54 +166,61 @@ public class CSVtoLexiconConverter {
         return Keys.KEY_DLMF + "_" + CAS + ".csv";
     }
 
-    public static void main(String[] args){
-//        System.setProperty( Keys.KEY_SYSTEM_LOGGING, GlobalPaths.PATH_LOGGING_CONFIG.toString() );
-
-        String welcome =
-                "Welcome, this converter translates given CSV files to lexicon files.";
-        System.out.println(welcome);
-        ArrayList<String> csv_list = new ArrayList<>();
-
-        if ( args == null || args.length == 0 ){
-            System.out.println("You didn't specified CSV files (do not add DLMFMacro.csv).");
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Add a new CSV file and hit enter or enter \'-end\' to stop the adding process.");
-            String input = scanner.nextLine();
-            while ( input != null && !input.matches("\\s*[\'\"]*-end[\'\"]*\\s*") ){
-                if ( input.matches("CAS_.*\\.(?:csv|CSV)") ) {
-                    csv_list.add( input );
-                } else if ( input.matches("-{0,2}[aA][lL]{2}") ) {
-                    csv_list.add("CAS_Maple.csv");
-                    csv_list.add("CAS_Mathematica.csv");
-                } else {
-                    csv_list.add( "CAS_" + input + ".csv" );
-                }
-                System.out.println("Current list: " + csv_list);
-                input = scanner.nextLine();
-            }
-            System.out.println("You added: " + csv_list.toString());
+    public static void analyzeInput(List<String> argumentList, String input) {
+        if ( input.matches("CAS_.*\\.(?:csv|CSV)") ) {
+            argumentList.add( input );
+        } else if ( input.matches("-{0,2}[aA][lL]{2}") ) {
+            argumentList.add("CAS_Maple.csv");
+            argumentList.add("CAS_Mathematica.csv");
+        } else {
+            argumentList.add( "CAS_" + input + ".csv" );
         }
+        System.out.println("Current list: " + argumentList);
+    }
 
+    public static Path[] convertToPaths(List<String> csvList, String[] programArgs) {
         Path[] csv_paths;
-        if ( args != null && args.length > 0 ){
-            csv_paths = new Path[args.length];
-            for ( int i = 0; i < args.length; i++ ){
-                csv_paths[i] = Paths.get( args[i] );
+
+        if ( programArgs != null && programArgs.length > 0 ){
+            csv_paths = new Path[programArgs.length];
+            for ( int i = 0; i < programArgs.length; i++ ){
+                csv_paths[i] = Paths.get( programArgs[i] );
             }
         } else {
-            csv_paths = new Path[csv_list.size()];
-            for ( int i = 0; i < csv_list.size(); i++ ){
-                csv_paths[i] = Paths.get( csv_list.get(i) );
+            csv_paths = new Path[csvList.size()];
+            for ( int i = 0; i < csvList.size(); i++ ){
+                csv_paths[i] = Paths.get( csvList.get(i) );
             }
         }
 
-        try{
-            CSVtoLexiconConverter csvConv = new CSVtoLexiconConverter(
-                    GlobalPaths.PATH_MACRO_CSV_FILE_NAME, csv_paths
+        return csv_paths;
+    }
+
+    public static void main(String[] args) throws Exception {
+        System.out.println("Welcome, this converter translates given CSV files to lexicon files.");
+        ArrayList<String> argumentList = new ArrayList<>();
+
+        if ( args == null || args.length == 0 ){
+            System.out.println(
+                    "You didn't specified CAS CSV files.\n" +
+                    "Please enter the name of CAS you to generate (one CAS per line)\n" +
+                    "or enter '-all' to fill up the list with default values.\n" +
+                    "To exit, enter '-end'."
             );
-            csvConv.generateLexiconFile();
-        } catch (Exception e){
-            e.printStackTrace();
+
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
+            while ( input != null && !input.matches("\\s*['\"]*-end[\'\"]*\\s*") ){
+                analyzeInput(argumentList, input);
+                input = scanner.nextLine();
+            }
+            System.out.println("You added: " + argumentList.toString());
         }
+
+        Path[] csvPaths = convertToPaths(argumentList, args);
+        CSVtoLexiconConverter converter = new CSVtoLexiconConverter(
+                GlobalPaths.PATH_MACRO_CSV_FILE_NAME, csvPaths
+        );
+        converter.generateLexiconFile();
     }
 }

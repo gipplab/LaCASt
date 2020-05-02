@@ -50,19 +50,19 @@ public abstract class LexiconConverterUtility {
         DLMFTranslationHeaders h = DLMFTranslationHeaders.cas_link;
         fset.addFeature(
                 h.getFeatureKey(curr_cas),
-                info.link,
+                info.getLink(),
                 MacrosLexicon.SIGNAL_INLINE
         );
         h = DLMFTranslationHeaders.cas_constraint;
         fset.addFeature(
                 h.getFeatureKey(curr_cas),
-                info.constraints,
+                info.getConstraints(),
                 MacrosLexicon.SIGNAL_INLINE
         );
         h = DLMFTranslationHeaders.cas_branch_cuts;
         fset.addFeature(
                 h.getFeatureKey(curr_cas),
-                info.branch_cuts,
+                info.getBranch_cuts(),
                 MacrosLexicon.SIGNAL_INLINE
         );
     }
