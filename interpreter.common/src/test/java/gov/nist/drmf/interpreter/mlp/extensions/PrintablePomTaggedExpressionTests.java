@@ -2,6 +2,8 @@ package gov.nist.drmf.interpreter.mlp.extensions;
 
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
+import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.MathTerm;
@@ -148,6 +150,33 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     @Test
+    public void setComponentsTest() throws ParseException {
+        String texString = "\\frac{x^1}{2}";
+        String replace = "a^2 + b^2";
+
+        PrintablePomTaggedExpression orig = mlp.parse(texString);
+        PrintablePomTaggedExpression ref = mlp.parse(replace);
+
+        PrintablePomTaggedExpression enumerator = orig.getPrintableComponents().get(0);
+        enumerator.setComponents(ref);
+
+        assertEquals("\\frac{a^2 + b^2}{2}", orig.getTexString());
+    }
+
+    @Test
+    public void constructSetComponentsTest() throws ParseException {
+        String replace = "a^2 + b^2";
+
+        PrintablePomTaggedExpression orig = FakeMLPGenerator.generateEmptySequencePPTE();
+        PrintablePomTaggedExpression ref = mlp.parse(replace);
+
+        List<PomTaggedExpression> content = ref.getComponents();
+        orig.setComponents(content);
+
+        assertEquals("a^2 + b^2", orig.getTexString());
+    }
+
+    @Test
     public void subSuperScriptTest() throws ParseException {
         String texString = "y \\cdot y_b^a";
         PrintablePomTaggedExpression ppte = mlp.parse(texString);
@@ -259,6 +288,28 @@ public class PrintablePomTaggedExpressionTests {
         PrintablePomTaggedExpression completeNewPTE = mlp.parse("z+x+y");
         pte.setComponents(completeNewPTE.getComponents());
         assertEquals("z + x + y", pte.getTexString());
+    }
+
+    @Test
+    public void emptySubscriptTest() throws ParseException{
+        String test = "\\pi+{}_2F_1\\left(a,b;c;z\\right)";
+        PrintablePomTaggedExpression p = mlp.parse(test);
+        assertEquals(test, p.getTexString());
+    }
+
+    @Test
+    public void spaceTest() throws ParseException {
+        String test = "\\pi \\; + \\, 2";
+        String test2 = "\\pi + 2";
+        PrintablePomTaggedExpression p1 = mlp.parse(test);
+        PrintablePomTaggedExpression p2 = mlp.parse(test2);
+        assertThat(p2.getTexString(), equalToCompressingWhiteSpace(p1.getTexString()));
+    }
+
+    @Test
+    public void realWorldWikiExampleTest() throws ParseException {
+        String texString = "(1 - x)^{\\alpha}(1 + x)^{\\beta}";
+        mlp.parse(texString);
     }
 
     private void checkList( List<PrintablePomTaggedExpression> components, String... matches ) {

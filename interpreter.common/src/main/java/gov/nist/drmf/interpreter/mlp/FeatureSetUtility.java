@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.mlp.extensions;
+package gov.nist.drmf.interpreter.mlp;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -43,13 +43,8 @@ public final class FeatureSetUtility {
             for ( String name : features ){
                 SortedSet<String> fValues = fset.getFeature(name);
                 if ( fValues.isEmpty() ) continue;
-                List<String> values = new ArrayList<>(fValues);
-                if ( !map.containsKey(name) ){
-                    List<String> old_list = map.get(name);
-                    old_list.addAll( values );
-                } else {
-                    map.put(name, values);
-                }
+                map.computeIfAbsent( name, k -> new ArrayList<>() )
+                        .addAll(fValues);
             }
         }
         return map;

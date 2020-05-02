@@ -1,0 +1,35 @@
+Mathematica;DLMF;Number of Variables;Mathematica-DLMF-Comment;Mathematica-Constriants;Mathematica-Branch Cuts;Mathematica-Alternatives;DLMF-Alternatives;Mathematica-Link
+Sin[$0];\sin@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Sin.html
+Cos[$0];\cos@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Cos.html
+Tan[$0];\tan@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Tan.html
+Sec[$0];\sec@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Sec.html
+Csc[$0];\csc@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Csc.html
+Cot[$0];\cot@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Cot.html
+;;;;;;;;
+Sinh[$0];\sinh@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Sinh.html
+Cosh[$0];\cosh@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Cosh.html
+Tanh[$0];\tanh@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Tanh.html
+Sech[$0];\sech@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Sech.html
+Csch[$0];\csch@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Csch.html
+Coth[$0];\coth@@{z};1;;;;;;https://reference.wolfram.com/language/ref/Coth.html
+;;;;;;;;
+ArcSin[$0];\asin@@{z};1;;;;;;https://reference.wolfram.com/language/ref/ArcSin.html
+ArcCos[$0];\acos@@{z};1;;;;;;https://reference.wolfram.com/language/ref/ArcCos.html
+ArcTan[$0];\atan@@{z};1;;;;;;https://reference.wolfram.com/language/ref/ArcTan.html
+ArcSec[$0];\asec@@{z};1;;;;;;https://reference.wolfram.com/language/ref/ArcSec.html
+ArcCsc[$0];\acsc@@{z};1;;;;;;https://reference.wolfram.com/language/ref/ArcCsc.html
+ArcCot[$0];\acot@@{z};1;;;;;;https://reference.wolfram.com/language/ref/ArcCot.html
+;;;;;;;;
+ArcSinh[$0];\asinh@@{z};1;;;;;;https://reference.wolfram.com/language/ref/ArcSinh.html
+ArcCosh[$0];\acosh@@{z};1;;;;;;https://reference.wolfram.com/language/ref/ArcCosh.html
+ArcTanh[$0];\atanh@@{z};1;;;;;;https://reference.wolfram.com/language/ref/ArcTanh.html
+ArcSech[$0];\asech@@{z};1;;;;;;https://reference.wolfram.com/language/ref/ArcSech.html
+ArcCsch[$0];\acsch@@{z};1;;;;;;https://reference.wolfram.com/language/ref/ArcCsch.html
+ArcCoth[$0];\acoth@@{z};1;;;;;;https://reference.wolfram.com/language/ref/ArcCoth.html
+;;;;;;;;
+LegendreP[$1, $0, 1, $3];\FerrersP[\mu]{\nu}@{z};4;;;;;;https://reference.wolfram.com/language/ref/LegendreP.html
+LegendreQ[$1, $0, 1, $3];\FerrersQ[\mu]{\nu}@{z};4;;;;;;https://reference.wolfram.com/language/ref/LegendreQ.html
+LegendreP[$1, $0, 3, $3];\assLegendreP[\mu]{\nu}@{z};4;;;;;;https://reference.wolfram.com/language/ref/LegendreP.html
+LegendreQ[$1, $0, 3, $3];\assLegendreQ[\mu]{\nu}@{z};4;;;;;;
+Exp[-$0 Pi I] LegendreQ[$1, $0, 3, $2]/Gamma[$1 + $0 + 1];\assLegendreOlverQ[\mu]{\nu}@{z};;;;;;;
+;\DunsterQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;;;;;;

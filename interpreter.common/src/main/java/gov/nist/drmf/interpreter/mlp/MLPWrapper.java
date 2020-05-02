@@ -1,17 +1,16 @@
 package gov.nist.drmf.interpreter.mlp;
 
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.mlp.extensions.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.mlp.extensions.PrintablePomTaggedExpression;
 import mlp.*;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-
-import static gov.nist.drmf.interpreter.examples.MLP.GLOBAL_LEXICON_PATH;
 
 /**
  * A simple wrapper class to parse LaTeX expression via the PoM-Tagger.
@@ -43,10 +42,19 @@ public class MLPWrapper {
     private static MLPWrapper standardInstance;
 
     /**
-     * Creates a non-semantic wrapper of the PomParser
+     * Creates a non-semantic wrapper of the PomParser. The lexicon files are fetched from the
+     * standard location {@link }
      */
     public MLPWrapper() {
-        this.parser = new PomParser(GLOBAL_LEXICON_PATH);
+        this(GlobalPaths.PATH_REFERENCE_DATA.toString());
+    }
+
+    /**
+     * Creates a non-semantic wrapper of the PomParser with a given path to the lexicon files.
+     * @param referenceDirPath the path to the "ReferenceData" folder
+     */
+    public MLPWrapper(String referenceDirPath) {
+        this.parser = new PomParser(referenceDirPath);
     }
 
     /**
@@ -58,12 +66,14 @@ public class MLPWrapper {
     }
 
     /**
-     * Parses the given latex string to a {@link PomTaggedExpression}.
+     * Parses the given latex string to a {@link PomTaggedExpression}. It performs
+     * string replacement rules prior to the parsing process (e.g., space deletions).
      * @param latex input string
      * @return tree structured parse tree
      * @throws ParseException if the given expression cannot be parsed
      */
     public PomTaggedExpression simpleParse(String latex) throws ParseException {
+        latex = TeXPreProcessor.preProcessingTeX(latex); // clean input first
         return parser.parse(latex);
     }
 
@@ -74,7 +84,8 @@ public class MLPWrapper {
      * @throws ParseException if the given expression cannot be parsed
      */
     public PrintablePomTaggedExpression parse(String latex) throws ParseException {
-        PomTaggedExpression pte = simpleParse(latex);
+        latex = TeXPreProcessor.preProcessingTeX(latex); // clean input first
+        PomTaggedExpression pte = parser.parse(latex);
         return new PrintablePomTaggedExpression(pte, latex);
     }
 
@@ -169,7 +180,7 @@ public class MLPWrapper {
      */
     public static boolean isMLPPresent() {
         try {
-            new PomParser(GLOBAL_LEXICON_PATH);
+            new PomParser(GlobalPaths.PATH_REFERENCE_DATA);
             return true;
         } catch ( Exception e ) {
             return false;

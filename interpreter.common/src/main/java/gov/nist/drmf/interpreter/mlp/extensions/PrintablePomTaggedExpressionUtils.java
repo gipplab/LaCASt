@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
+import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
@@ -29,12 +30,14 @@ public final class PrintablePomTaggedExpressionUtils {
 
         Iterator<PrintablePomTaggedExpression> it = elements.iterator();
         sb.append(it.next().getTexString());
+        String prev = sb.toString();
 
         while ( it.hasNext() ) {
             PrintablePomTaggedExpression p = it.next();
             String s = p.getTexString();
-            if ( !s.matches("^[{^_!].*") ) sb.append(" ");
+            if ( !s.matches("^[{^_!].*|[)}\\]|]") && !prev.matches(".*[({\\[|]$") ) sb.append(" ");
             sb.append(s);
+            prev = s;
         }
 
         return sb.toString().trim();

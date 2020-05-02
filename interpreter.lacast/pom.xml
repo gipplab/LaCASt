@@ -93,28 +93,6 @@
                                     <appendAssemblyId>false</appendAssemblyId>
                                 </configuration>
                             </execution>
-                            <execution>
-                                <id>compile-lexicon-creator</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>single</goal>
-                                </goals>
-                                <configuration>
-                                    <finalName>lexicon-creator</finalName>
-                                    <archive>
-                                        <manifest>
-                                            <mainClass>
-                                                gov.nist.drmf.interpreter.cas.mlp.CSVtoLexiconConverter
-                                            </mainClass>
-                                        </manifest>
-                                    </archive>
-                                    <descriptorRefs>
-                                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                                    </descriptorRefs>
-                                    <outputDirectory>${main.basedir}/bin/</outputDirectory>
-                                    <appendAssemblyId>false</appendAssemblyId>
-                                </configuration>
-                            </execution>
                         </executions>
                     </plugin>
                 </plugins>

@@ -3,19 +3,15 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
-import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
-import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
+import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CHAR_BACKSLASH;
 
 /**
  * @author Andre Greiner-Petter
