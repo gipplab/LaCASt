@@ -86,7 +86,7 @@ public class MacroTranslator extends AbstractListTranslator {
     public TranslatedExpression translate(PomTaggedExpression exp, List<PomTaggedExpression> following) {
         MathTerm mt = exp.getRoot();
         if (mt == null || mt.isEmpty()) {
-            throw buildException("The wrong translator is used, the expression is not a DLMF macro.",
+            throw TranslationException.buildException(this, "The wrong translator is used, the expression is not a DLMF macro.",
                     TranslationExceptionReason.IMPLEMENTATION_ERROR);
         }
 
@@ -225,7 +225,8 @@ public class MacroTranslator extends AbstractListTranslator {
      */
     private DLMFMacroInfoHolder getInfos(FeatureSet fset, String macro) {
         if ( fset == null ) {
-            throw buildExceptionObj("Cannot extract information from feature set: " + macro,
+            throw TranslationException.buildExceptionObj(
+                    this, "Cannot extract information from feature set: " + macro,
                     TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
                     macro);
         }
@@ -235,14 +236,16 @@ public class MacroTranslator extends AbstractListTranslator {
             DLMFMacroInfoHolder info = new DLMFMacroInfoHolder(fset, CAS, macro);
 
             if (info.getTranslationPattern() == null || info.getTranslationPattern().isEmpty()) {
-                throw buildExceptionObj("There are no translation patterns available for: " + macro,
+                throw TranslationException.buildExceptionObj(
+                        this, "There are no translation patterns available for: " + macro,
                         TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
                         macro);
             }
 
             return info;
         } catch (NullPointerException | TranslationException npe) {
-            throw buildExceptionObj("Cannot extract information from feature set: " + macro,
+            throw TranslationException.buildExceptionObj(
+                    this, "Cannot extract information from feature set: " + macro,
                     TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
                     macro);
         }
@@ -309,7 +312,7 @@ public class MacroTranslator extends AbstractListTranslator {
                 switch (tag) {
                     case prime:
                     case caret:
-                        throw buildException("Prime and carets are not allowed before parameters!",
+                        throw TranslationException.buildException(this, "Prime and carets are not allowed before parameters!",
                                 TranslationExceptionReason.INVALID_LATEX_INPUT);
                 }
             }
@@ -351,7 +354,8 @@ public class MacroTranslator extends AbstractListTranslator {
                             if ( info.getSlotOfDifferentiation() < 0 ) {
                                 throw throwDifferentiationException();
                             } else if ( holder.getDifferentiation() != null ) {
-                                throw buildException(
+                                throw TranslationException.buildException(
+                                        this,
                                         "Cannot parse lagrange notation twice for the same macro!",
                                         TranslationExceptionReason.INVALID_LATEX_INPUT
                                 );
@@ -373,7 +377,8 @@ public class MacroTranslator extends AbstractListTranslator {
                     default: // in any other case, we also reached the end...
                         if ( numberOfDerivative > 0 ) {
                             if ( holder.getDifferentiation() != null ) {
-                                throw buildException(
+                                throw TranslationException.buildException(
+                                        this,
                                         "It's not allowed to mix prime and " +
                                         "numeric differentiation notation within one function call.",
                                         TranslationExceptionReason.INVALID_LATEX_INPUT);
@@ -777,7 +782,7 @@ public class MacroTranslator extends AbstractListTranslator {
     }
 
     private TranslationException throwMacroException(String message) {
-        return buildExceptionObj(message, TranslationExceptionReason.DLMF_MACRO_ERROR, macro);
+        return TranslationException.buildExceptionObj(this, message, TranslationExceptionReason.DLMF_MACRO_ERROR, macro);
     }
 
     private class DiffAndPowerHolder {

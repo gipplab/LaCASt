@@ -80,30 +80,42 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     private final AbstractTranslator superTranslator;
 
     /**
-     * Every translator has an abstract super translator object, which should be
-     * unique for each translation process. Thus, this
-     * @param superTranslator the super translator object
+     * The initialization constructor. This must be only invoked once for each translation process.
+     * Due a translation process, one must use {@link #AbstractTranslator(AbstractTranslator)} to set
+     * the unique super translator that handles the translated expressions lists.
+     * @param config configuration
      */
-    protected AbstractTranslator(AbstractTranslator superTranslator) {
+    AbstractTranslator(ForwardTranslationProcessConfig config) {
+        this.superTranslator = null;
+        this.config = config;
+        this.globalExp = new TranslatedExpression();
+        this.infoLogger = new InformationLogger();
+    }
+
+    /**
+     * Every translator has an abstract super translator object, which should be
+     * unique for each translation process. For initialization of a complete new
+     * independent translation process, use {@link #AbstractTranslator(ForwardTranslationProcessConfig)}.
+     *
+     * @param superTranslator the super translator object
+     * @throws NullPointerException if the provided super translator is null. For initialization
+     * one must use {@link #AbstractTranslator(ForwardTranslationProcessConfig)}.
+     */
+    protected AbstractTranslator(AbstractTranslator superTranslator) throws NullPointerException {
         this.superTranslator = superTranslator;
 
-        if ( superTranslator != null ) {
-            // the following objects are shared among all translators
-            this.config = superTranslator.config;
+        // the following objects are shared among all translators
+        this.config = superTranslator.config;
 
-            if ( superTranslator.globalExp == null ) {
-                superTranslator.globalExp = new TranslatedExpression();
-            }
-            this.globalExp = superTranslator.globalExp;
-
-            if ( superTranslator.infoLogger == null ) {
-                superTranslator.infoLogger = new InformationLogger();
-            }
-            this.infoLogger = superTranslator.infoLogger;
-        } else {
-            globalExp = new TranslatedExpression();
-            infoLogger = new InformationLogger();
+        if ( superTranslator.globalExp == null ) {
+            superTranslator.globalExp = new TranslatedExpression();
         }
+        this.globalExp = superTranslator.globalExp;
+
+        if ( superTranslator.infoLogger == null ) {
+            superTranslator.infoLogger = new InformationLogger();
+        }
+        this.infoLogger = superTranslator.infoLogger;
     }
 
     @Override
@@ -125,7 +137,8 @@ public abstract class AbstractTranslator implements IForwardTranslator {
 
         // accents are not supported
         if ( isAccented(exp) ){
-            throw buildException(
+            throw TranslationException.buildException(
+                    this,
                     "Accents are not supported.",
                     TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION);
         }
@@ -315,18 +328,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         return false;
     }
 
-    /**
-     * Sets the config for this abstract translator.
-     * @param config configuration
-     */
-    void setConfig(ForwardTranslationProcessConfig config) {
-        this.config = config;
-    }
-
-    /**
-     * Gets the configuration
-     * @return config
-     */
+    @Override
     public ForwardTranslationProcessConfig getConfig() {
         return this.config;
     }
@@ -380,164 +382,8 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         infoLogger = new InformationLogger();
     }
 
-    protected void appendLocalErrorExpression(String tag) {
-        LOG.debug("Adding fake Maple for error expression " + tag);
-        globalExp.addTranslatedExpression("\"error" + StringEscapeUtils.escapeJava(tag) + "\"");
-    }
-
-    /**
-     * Simple test if the given string is wrapped by parenthesis.
-     * It only returns true if there is an open bracket at start and
-     * at the end AND the first open one is really closed in the end.
-     * Something like (1)/(2) would return false.
-     *
-     * @param str with or without brackets
-     * @return false if there are no brackets
-     */
-    protected static boolean testBrackets(String str) {
-        String tmp = str.trim();
-        if (!tmp.matches(Brackets.OPEN_PATTERN + ".*" + Brackets.CLOSED_PATTERN)) {
-            return false;
-        }
-
-        Brackets open = Brackets.getBracket(tmp.charAt(0) + "");
-        Brackets inner, last;
-        LinkedList<Brackets> open_list = new LinkedList<>();
-        open_list.add(open);
-        String symbol;
-
-        for (int i = 1; i < tmp.length(); i++) {
-            if (open_list.isEmpty()) {
-                return false;
-            }
-
-            symbol = "" + tmp.charAt(i);
-            inner = Brackets.getBracket(symbol);
-
-            if (inner == null) {
-                continue;
-            } else if (inner.opened) {
-                open_list.addLast(inner);
-            } else {
-                last = open_list.getLast();
-                if (last.counterpart.equals(inner.symbol)) {
-                    open_list.removeLast();
-                } else {
-                    return false;
-                }
-            }
-        }
-        return open_list.isEmpty();
-    }
-
     public void setFileID(String fileID) {
         this.fileID = fileID;
-    }
-
-    /**
-     * Moritz: this message makes the idea of error handling very difficult. Since the translators
-     * are highly embedded in each other, the trace of the real error get lost due to this function.
-     *
-     * I recommend you implement error handling in your batch processor and not in the translator.
-     *
-     * @param message
-     * @param reason
-     * @return
-     */
-//    protected boolean handleNull(Object o, String message, Reason reason, String token, Exception exception) {
-//        if (o == null) {
-//            String exceptionString = "";
-//            String location = "";
-//            if (LOG.isWarnEnabled() && exception != null) {
-//                try {
-//                    final StackTraceElement[] stackTrace = exception.getStackTrace();
-//                    final StackTraceElement traceElement = stackTrace[0];
-//                    location = traceElement.getClassName() + ":L" + traceElement.getLineNumber();
-//                    exceptionString = exception.getMessage();
-//                } catch (Exception e) {
-//                    //ignore
-//                }
-//            }
-//            if (reason == Reason.MLP_ERROR) {
-//                mlpError = true;
-//            }
-//            final String errorMessage = String.format(
-//                    "Translation error in id '%s'\n\t" +
-//                            "message:     %s,\n\t" +
-//                            "token:       %s,\n\t" +
-//                            "reason:      %s,\n\t" +
-//                            "location:    %s,\n\t" +
-//                            "translation: %s -> %s,\n\t" +
-//                            "exception:   %s",
-//                    this.fileID,
-//                    message,
-//                    token,
-//                    reason,
-//                    location,
-//                    config.getFROM_LANGUAGE(),
-//                    config.getTO_LANGUAGE(),
-//                    exceptionString
-//            );
-//            LOG.warn(errorMessage);
-//            final Matcher m = DLMF_ID_PATTERN.matcher(fileID);
-//            if (m.matches()) {
-//                final int chapter = Integer.parseInt(m.group(1));
-//                if (!problemTokens.containsKey(token)) {
-//                    problemTokens.put(token, new HashMap<>());
-//                }
-//                final Map<Integer, Set<String>> tokenMap = problemTokens.get(token);
-//                if (!tokenMap.containsKey(chapter)) {
-//                    tokenMap.put(chapter, new HashSet<>());
-//                }
-//                final Set<String> messages = tokenMap.get(chapter);
-//                messages.add(errorMessage);
-//            }
-//            if (tolerant) {
-//                appendLocalErrorExpression(token);
-//                return true;
-//            }
-//            TranslationException te = new TranslationException(
-//                    config.getFROM_LANGUAGE(),
-//                    config.getTO_LANGUAGE(),
-//                    message,
-//                    reason,
-//                    token,
-//                    exception
-//            );
-//            LOG.error("Error due translation process.", te);
-//            throw te;
-//        }
-//        return false;
-//    }
-
-    public TranslationException buildExceptionObj( String message, TranslationExceptionReason reason, Object obj) {
-        TranslationException te = new TranslationException(
-                config.getFROM_LANGUAGE(),
-                config.getTO_LANGUAGE(),
-                message,
-                reason
-        );
-        te.setReasonObj(obj);
-        return te;
-    }
-
-    public TranslationException buildException( String message, TranslationExceptionReason reason ) {
-        return new TranslationException(
-                config.getFROM_LANGUAGE(),
-                config.getTO_LANGUAGE(),
-                message,
-                reason
-        );
-    }
-
-    public TranslationException buildException( String message, TranslationExceptionReason reason, Throwable throwable ) {
-        return new TranslationException(
-                config.getFROM_LANGUAGE(),
-                config.getTO_LANGUAGE(),
-                message,
-                reason,
-                throwable
-        );
     }
 
     public Map<String, Map<Integer, Set<String>>> getProblemTokens() {

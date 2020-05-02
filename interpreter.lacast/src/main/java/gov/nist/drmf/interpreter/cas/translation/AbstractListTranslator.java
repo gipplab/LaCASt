@@ -1,7 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
-import gov.nist.drmf.interpreter.cas.translation.components.MathTermTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
@@ -10,15 +9,12 @@ import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 
 import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.PATTERN_BASIC_OPERATIONS;
 
 /**
- * TODO
- *
  * @author Andre Greiner-Petter
  */
 public abstract class AbstractListTranslator extends AbstractTranslator {
@@ -34,8 +30,11 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
      */
     @Override
     public TranslatedExpression translate(PomTaggedExpression exp) {
-        throw buildException("List translators need the following arguments to translate them correctly.",
-                TranslationExceptionReason.IMPLEMENTATION_ERROR);
+        throw TranslationException.buildException(
+                this,
+                "List translators need the following arguments to translate them correctly.",
+                TranslationExceptionReason.IMPLEMENTATION_ERROR
+        );
     }
 
     /**

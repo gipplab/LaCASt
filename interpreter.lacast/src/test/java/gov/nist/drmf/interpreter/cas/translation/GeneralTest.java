@@ -13,16 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GeneralTest {
 
     @Test
-    public void testParenthesisChecker1(){
-        assertFalse( AbstractTranslator.testBrackets("(1)/(2)") );
-    }
-
-    @Test
-    public void testParenthesisChecker2(){
-        assertTrue( AbstractTranslator.testBrackets("((1)/((2)^(3) + 4*(5)^(6)))") );
-    }
-
-    @Test
     public void startWithTest(){
         String op = "\\left(";
         assertTrue( op.matches( "\\\\(left|right).*" ) );

@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
@@ -41,7 +42,8 @@ public class SubSuperScriptTranslator extends AbstractListTranslator {
             case underscore:
                 return parseUnderscores(exp);
             default:
-                throw buildException(
+                throw TranslationException.buildException(
+                        this,
                         "SubSuperScriptTranslator can only translate carets and underscores: " + term.getTermText(),
                         TranslationExceptionReason.IMPLEMENTATION_ERROR
                 );
@@ -66,7 +68,7 @@ public class SubSuperScriptTranslator extends AbstractListTranslator {
 
         boolean replaced = false;
         String base = getGlobalTranslationList().removeLastExpression();
-        if (!testBrackets(base)) {
+        if (!Brackets.isEnclosedByBrackets(base)) {
             base = b.symbol + base + b.counterpart;
             replaced = true;
         }
@@ -98,7 +100,7 @@ public class SubSuperScriptTranslator extends AbstractListTranslator {
     private String wrapParenthesesAndAddMultiplyToPower(TranslatedExpression power, List<PomTaggedExpression> following_exp) {
         // now we need to wrap parenthesis around the power
         String powerStr = GlobalConstants.CARET_CHAR;
-        if (!testBrackets(power.toString())) {
+        if (!Brackets.isEnclosedByBrackets(power.toString())) {
             powerStr += Brackets.left_parenthesis.symbol + power.toString() + Brackets.left_parenthesis.counterpart;
         } else {
             powerStr += power.toString();

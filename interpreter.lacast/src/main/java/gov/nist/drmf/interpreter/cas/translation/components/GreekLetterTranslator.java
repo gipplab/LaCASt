@@ -36,7 +36,8 @@ public class GreekLetterTranslator extends AbstractTranslator {
         MathTerm term = expression.getRoot();
 
         if ( !FeatureSetUtility.isGreekLetter(term) ) {
-            throw buildExceptionObj(
+            throw TranslationException.buildExceptionObj(
+                    this,
                     "GreekLetterTranslator only translate greek letters but was called for: " + term.getTermText(),
                     TranslationExceptionReason.IMPLEMENTATION_ERROR,
                     term
@@ -72,7 +73,9 @@ public class GreekLetterTranslator extends AbstractTranslator {
 
         // still null? inform the user, we cannot do more here
         if (translated_letter == null) {
-            throw buildExceptionObj("Cannot translate Greek letter " + GreekLetter,
+            throw TranslationException.buildExceptionObj(
+                    this,
+                    "Cannot translate Greek letter " + GreekLetter,
                     TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
                     GreekLetter);
         }

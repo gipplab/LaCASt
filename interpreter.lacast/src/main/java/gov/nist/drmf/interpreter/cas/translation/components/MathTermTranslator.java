@@ -74,7 +74,9 @@ public class MathTermTranslator extends AbstractListTranslator {
 
         // no tag shouldn't happen
         if (tag == null) {
-            throw buildException("Empty math term tag",
+            throw TranslationException.buildException(
+                    this,
+                    "Empty math term tag",
                     TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
         }
 
@@ -119,7 +121,8 @@ public class MathTermTranslator extends AbstractListTranslator {
             case macro:
                 throwImplementationError("There shouldn't be a macro in MathTermTranslator: " + term.getTermText());
             case abbreviation:
-                throw buildExceptionObj(
+                throw TranslationException.buildExceptionObj(
+                        this,
                         "This program cannot translate abbreviations like " + term.getTermText(),
                         TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
                         term.getTermText()
@@ -128,7 +131,8 @@ public class MathTermTranslator extends AbstractListTranslator {
     }
 
     private void throwImplementationError(String error) {
-        throw buildException(
+        throw TranslationException.buildException(
+                this,
                 error,
                 TranslationExceptionReason.IMPLEMENTATION_ERROR
         );
@@ -280,7 +284,9 @@ public class MathTermTranslator extends AbstractListTranslator {
                 handleRelation(term);
                 break;
             default:
-                throw buildExceptionObj("Unknown MathTerm Tag: "
+                throw TranslationException.buildExceptionObj(
+                        this,
+                        "Unknown MathTerm Tag: "
                                 + term.getTag() + " for " + term.getTermText(),
                         TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT,
                         term.getTermText());
@@ -361,7 +367,8 @@ public class MathTermTranslator extends AbstractListTranslator {
                 sT.translate(termText);
 
         if (translation == null) {
-            throw buildExceptionObj(
+            throw TranslationException.buildExceptionObj(
+                    this,
                     "Unknown relation. Cannot translate: " + termText,
                     TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
                     termText
@@ -380,7 +387,8 @@ public class MathTermTranslator extends AbstractListTranslator {
             case Keys.KEY_MAPLE:
                 return "=";
             default:
-                throw buildException(
+                throw TranslationException.buildException(
+                        this,
                         "Translation for '\\to' is not implemented for CAS " + CAS,
                         TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION
                 );

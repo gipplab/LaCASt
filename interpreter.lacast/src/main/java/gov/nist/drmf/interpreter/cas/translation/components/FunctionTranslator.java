@@ -83,7 +83,8 @@ public class FunctionTranslator extends AbstractListTranslator {
     public TranslatedExpression translate(PomTaggedExpression exp) {
         MathTerm term = exp.getRoot();
         if ( term == null || term.isEmpty() ){
-            throw buildException("Function has no MathTerm!",
+            throw TranslationException.buildException(this,
+                    "Function has no MathTerm!",
                     TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
         }
 
@@ -158,7 +159,7 @@ public class FunctionTranslator extends AbstractListTranslator {
 
         // find out if we should wrap parenthesis around or not
         int num;
-        if ( !testBrackets( translation.toString() ) ){
+        if ( !Brackets.isEnclosedByBrackets( translation.toString() ) ){
             num = translation.mergeAllWithParenthesis();
         } else {
             num = translation.mergeAll();
