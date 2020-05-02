@@ -12,7 +12,7 @@ import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
+import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -21,7 +21,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.*;
-import java.util.regex.Matcher;
 
 import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.*;
 

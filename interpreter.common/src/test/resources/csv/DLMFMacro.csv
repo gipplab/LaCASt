@@ -1,0 +1,65 @@
+DLMF;DLMF-Link;Meanings;Number of Parameters;Number of Ats;Number of Variables;Slot of Differentiation;Constraints;Branch Cuts;Role
+\sin@@{z};http://dlmf.nist.gov/4.14#E1;Sine;0;2;1;;;;dlmf-macro
+\cos@@{z};http://dlmf.nist.gov/4.14#E2;Cosine;0;2;1;;;;dlmf-macro
+\tan@@{z};http://dlmf.nist.gov/4.14#E4;Tangent;0;2;1;;z != (k+1/2)*\cpi \forall k \in \Integers;;dlmf-macro
+\sec@@{z};http://dlmf.nist.gov/4.14#E6;Secant;0;2;1;;z != (k+1/2)*\cpi \forall k \in \Integers;;dlmf-macro
+\csc@@{z};http://dlmf.nist.gov/4.14#E5;Cosecant;0;2;1;;z != k*\cpi \forall k \in \Integers;;dlmf-macro
+\cot@@{z};http://dlmf.nist.gov/4.14#E7;Cotangent;0;2;1;;z != k*\cpi \forall k \in \Integers;;dlmf-macro
+;;;;;;;;;
+\sinh@@{z};http://dlmf.nist.gov/4.28#E1;Hyperbolic sine;0;2;1;;;;dlmf-macro
+\cosh@@{z};http://dlmf.nist.gov/4.28#E2;Hyperbolic cosine;0;2;1;;;;dlmf-macro
+\tanh@@{z};http://dlmf.nist.gov/4.28#E4;Hyperbolic tangent;0;2;1;;z != \iunit*(k+1/2)*\cpi \forall k \in \Integers;;dlmf-macro
+\sech@@{z};http://dlmf.nist.gov/4.28#E6;Hyperbolic secant;0;2;1;;z != \iunit*(k+1/2)*\cpi \forall k \in \Integers;;dlmf-macro
+\csch@@{z};http://dlmf.nist.gov/4.28#E5;Hyperbolic cosecant;0;2;1;;z != \iunit*k*\cpi \forall k \in \Integers;;dlmf-macro
+\coth@@{z};http://dlmf.nist.gov/4.28#E7;Hyperbolic cotangent;0;2;1;;z != \iunit*k*\cpi \forall k \in \Integers;;dlmf-macro
+;;;;;;;;;
+\asin@@{z};http://dlmf.nist.gov/4.23#SS2.p1;Inverse sine;0;2;1;;z != +/- \iunit;(-\infty, -1), (1, \infty);dlmf-macro
+\acos@@{z};http://dlmf.nist.gov/4.23#SS2.p1;Inverse cosine;0;2;1;;z != +/- \iunit;(-\infty, -1), (1, \infty);dlmf-macro
+\atan@@{z};http://dlmf.nist.gov/4.23#SS2.p1;Inverse tangent;0;2;1;;z != +/- \iunit;(-\iunit \infty, -\iunit), (\iunit, \iunit \infty);dlmf-macro
+\asec@@{z};http://dlmf.nist.gov/4.23#SS2.p1;Inverse secant;0;2;1;;z not element of {0,-\iunit,+\iunit};(-1, 1);dlmf-macro
+\acsc@@{z};http://dlmf.nist.gov/4.23#SS2.p1;Inverse cosecant;0;2;1;;z not element of {0,-\iunit,+\iunit};(-1, 1);dlmf-macro
+\acot@@{z};http://dlmf.nist.gov/4.23#SS2.p1;Inverse cotangent;0;2;1;;z not element of {0,-\iunit,+\iunit};(-\iunit, \iunit);dlmf-macro
+;;;;;;;;;
+\Asin@@{z};http://dlmf.nist.gov/4.23#E1;Multivalued inverse sine;0;2;1;;z != +/- \iunit;z = +/- 1;dlmf-macro
+\Acos@@{z};http://dlmf.nist.gov/4.23#E2;Multivalued inverse cosine;0;2;1;;z != +/- \iunit;z = +/- 1;dlmf-macro
+\Atan@@{z};http://dlmf.nist.gov/4.23#E3;Multivalued inverse tangent;0;2;1;;z != +/- \iunit;z = +/- \iunit;dlmf-macro
+\Asec@@{z};http://dlmf.nist.gov/4.23#E5;Multivalued inverse secant;0;2;1;;z not element of {0,-\iunit,+\iunit};z = +/- 1;dlmf-macro
+\Acsc@@{z};http://dlmf.nist.gov/4.23#E4;Multivalued inverse cosecant;0;2;1;;z not element of {0,-\iunit,+\iunit};z = +/- 1;dlmf-macro
+\Acot@@{z};http://dlmf.nist.gov/4.23#E6;Multivalued inverse cotangent;0;2;1;;z not element of {0,-\iunit,+\iunit};z = +/- \iunit;dlmf-macro
+;;;;;;;;;
+\asinh@@{z};http://dlmf.nist.gov/4.37#SS2.p1;Inverse hyperbolic sine;0;2;1;;z != +/-1;(-\iunit \infty, -\iunit), (\iunit, \iunit \infty);dlmf-macro
+\acosh@@{z};http://dlmf.nist.gov/4.37#SS2.p1;Inverse hyperbolic cosine;0;2;1;;z != +/-1;(-\infty, 1);dlmf-macro
+\atanh@@{z};http://dlmf.nist.gov/4.37#SS2.p1;Inverse hyperbolic tangent;0;2;1;;z != +/-1;(-\infty, -1), (1, \infty);dlmf-macro
+\asech@@{z};http://dlmf.nist.gov/4.37#SS2.p1;Inverse hyperbolic secant;0;2;1;;z not element of {0,-1,+1};(-\iunit, \iunit);dlmf-macro
+\acsch@@{z};http://dlmf.nist.gov/4.37#SS2.p1;Inverse hyperbolic cosecant;0;2;1;;z not element of {0,-1,+1};(-\infty, 0), (1,\infty);dlmf-macro
+\acoth@@{z};http://dlmf.nist.gov/4.37#SS2.p1;Inverse hyperbolic cotangent;0;2;1;;z not element of {0,-1,+1};(-1, 1);dlmf-macro
+;;;;;;;;;
+\Asinh@@{z};http://dlmf.nist.gov/4.37#E1;Multivalued inverse hyperbolic sine;0;2;1;;z != +/-1;z != +/- \iunit;dlmf-macro
+\Acosh@@{z};http://dlmf.nist.gov/4.37#E2;Multivalued inverse hyperbolic cosine;0;2;1;;z != +/-1;z = +/- 1;dlmf-macro
+\Atanh@@{z};http://dlmf.nist.gov/4.37#E3;Multivalued inverse hyperbolic tangent;0;2;1;;z != +/-1;z = +/- 1;dlmf-macro
+\Asech@@{z};http://dlmf.nist.gov/4.37#E5;Multivalued inverse hyperbolic secant;0;2;1;;z not element of {0,-1,+1};z = +/- 1;dlmf-macro
+\Acsch@@{z};http://dlmf.nist.gov/4.37#E4;Multivalued inverse hyperbolic cosecant;0;2;1;;z not element of {0,-1,+1};z != +/- \iunit;dlmf-macro
+\Acoth@@{z};http://dlmf.nist.gov/4.37#E6;Multivalued inverse hyperbolic cotangent;0;2;1;;z not element of {0,-1,+1};z = +/- 1;dlmf-macro
+;;;;;;;;;
+\FerrersP{\nu}@{x};http://dlmf.nist.gov/14.2#i;Ferrers function of first kind;1;1;1;1;-1 < x < 1, \mu, \nu \in \Reals;;dlmf-macro
+X1:\FerrersPX\FerrersP[\mu]{\nu}@{x};http://dlmf.nist.gov/14.3#E1;Ferrers function of first kind;1;1;1;1;-1 < x < 1, \mu, \nu \in \Reals;;dlmf-macro
+\FerrersQ{\nu}@{x};http://dlmf.nist.gov/14.2#i;Ferrers function of second kind;1;1;1;1;-1 < x < 1, \mu, \nu \in \Reals;;dlmf-macro
+X1:\FerrersQX\FerrersQ[\mu]{\nu}@{x};http://dlmf.nist.gov/14.3#E2;Ferrers function of second kind;1;1;1;1;-1 < x < 1, \mu, \nu \in \Reals;;dlmf-macro
+\assLegendreP{\nu}@{z};http://dlmf.nist.gov/14.2#i;Legendre function of first kind;1;1;1;1;;(-\infty, 1];dlmf-macro
+X1:\LegendrePX\assLegendreP[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E5;Associated Legendre function of first kind;1;1;1;1;;(-\infty, 1];dlmf-macro
+\assLegendreQ{\nu}@{z};http://dlmf.nist.gov/14.2#i;Legendre function of second kind;1;1;1;1;;(-\infty, 1];dlmf-macro
+X1:\LegendreQX\assLegendreQ[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E7;Associated Legendre function of second kind;1;1;1;1;;(-\infty, 1];dlmf-macro
+\assLegendreOlverQ{\nu}@{z};http://dlmf.nist.gov/14.2#i;Olver's associated Legendre function;1;1;1;1;;;dlmf-macro
+X1:\LegendreBlackQX\assLegendreOlverQ[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E10;Olver's associated Legendre function;1;1;1;1;;;dlmf-macro
+\DunsterQ{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical / Mehler function;1;1;1;1;;;dlmf-macro
+X1:\FerrersHatQX\DunsterQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical / Mehler function;1;1;1;1;;;dlmf-macro
+;;;;;;;;;
+\cpi;not defined;Pi;0;0;0;;;;mathematical constant
+\iunit;http://dlmf.nist.gov/1.9.i;Imaginary unit;0;0;0;;;;mathematical constant
+\EulerConstant;http://dlmf.nist.gov/5.2#E3;Euler-Mascheroni constant;0;0;0;;;;mathematical constant
+\StieltjesConstants{n};http://drmf.wmflabs.org/wiki/Definition:StieltjesConstants;Stieltjes Constants;0;0;1;;;;dlmf-macro
+\expe;http://dlmf.nist.gov/4.2.E11;Euler's constant;0;0;0;;;;mathematical constant
+\CatalansConstant;http://dlmf.nist.gov/25.11.E40;Catalan's constant;0;0;0;;;;mathematical constant
+;;;;;;;;;
+\npartitions{n};http://dlmf.nist.gov/26.2#P4.p2;Number of partitions of nonnegative integer n;0;0;1;;;;
+\npartitions[k]@{n};http://dlmf.nist.gov/26.9;Number of partitions of nonnegative integer n into at most k parts;1;1;1;;;;

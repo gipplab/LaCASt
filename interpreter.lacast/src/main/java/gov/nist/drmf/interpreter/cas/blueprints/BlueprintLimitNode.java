@@ -1,10 +1,7 @@
 package gov.nist.drmf.interpreter.cas.blueprints;
 
-import gov.nist.drmf.interpreter.cas.common.DLMFPatterns;
-import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.mlp.extensions.FakeMLPGenerator;
-import mlp.MathTerm;
+import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

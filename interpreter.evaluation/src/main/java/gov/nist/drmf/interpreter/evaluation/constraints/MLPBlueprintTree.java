@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.evaluation.constraints;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
-import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
+import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import mlp.MathTerm;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;

@@ -7,7 +7,7 @@ package gov.nist.drmf.interpreter.examples;/*
 import java.io.IOException;
 import java.util.*;
 
-import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
+import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
