@@ -78,19 +78,7 @@ public abstract class LexiconConverterUtility {
             LOG.debug(error_message);
             return null;
         } else {
-            String str = m.group( GlobalConstants.GEN_CAS_FUNC_SPECIFIER );
-            if ( str != null ){
-                holder.setPattern(expression.substring( str.length() ));
-                String[] elms = str
-                        .substring(1, str.length()-1) // delete leading and last X
-                        .split( GlobalConstants.MACRO_OPT_PARAS_SPLITTER ); // split number:name
-                holder.setCasName(elms[1]);
-                holder.setNumVars(Integer.parseInt(elms[0]));
-
-            } else {
-                holder.setCasName(m.group( GlobalConstants.GEN_CAS_FUNC_PATTERN_NAME ));
-                holder.setPattern(expression);
-            }
+            fillHolder(holder, m, expression);
         }
 
         if ( holder.getNumVars() == null ){
@@ -102,6 +90,22 @@ public abstract class LexiconConverterUtility {
         }
 
         return holder;
+    }
+
+    private static void fillHolder(InfoHolder holder, Matcher m, String expression) {
+        String str = m.group( GlobalConstants.GEN_CAS_FUNC_SPECIFIER );
+        if ( str != null ){
+            holder.setPattern(expression.substring( str.length() ));
+            String[] elms = str
+                    .substring(1, str.length()-1) // delete leading and last X
+                    .split( GlobalConstants.MACRO_OPT_PARAS_SPLITTER ); // split number:name
+            holder.setCasName(elms[1]);
+            holder.setNumVars(Integer.parseInt(elms[0]));
+
+        } else {
+            holder.setCasName(m.group( GlobalConstants.GEN_CAS_FUNC_PATTERN_NAME ));
+            holder.setPattern(expression);
+        }
     }
 
 }

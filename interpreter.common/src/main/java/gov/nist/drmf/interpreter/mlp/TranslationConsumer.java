@@ -42,81 +42,14 @@ public class TranslationConsumer implements LexiconInfoConsumer {
     public void accept(String[] elements) {
         lineAnalyzer.setLine( elements );
 
-        String macro_col = lineAnalyzer.getValue( Keys.KEY_DLMF );
-        Integer num = null;
-        Matcher m = GlobalConstants.DLMF_MACRO_PATTERN.matcher( macro_col );
-        if ( !m.matches() ){
-            LOG.info("Found a not supported DLMF macro for translation: " + macro_col);
-            return;
-        }
-
-        String macro = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS);
-        String opt_para = macro;
-        if ( macro == null ){
-            macro = m.group( GlobalConstants.MACRO_PATTERN_INDEX_MACRO );
-        } else {
-            macro = macro.substring(1, macro.length()-1);
-            String[] infos = macro.split( GlobalConstants.MACRO_OPT_PARAS_SPLITTER );
-            macro = infos[1];
-            num = Integer.parseInt(infos[0]);
-        }
-
-        List<FeatureSet> list = lexicon.getFeatureSets(macro);
-        if ( list == null || list.isEmpty() ){
-            LOG.info("SKIP "
-                    + m.group(GlobalConstants.MACRO_PATTERN_INDEX_MACRO)
-                    + " (Reason: Cannot find FeatureSet)" );
-            return;
-        }
-
-        FeatureSet alternativeF = null;
-        FeatureSet dlmfF = null;
-        for ( FeatureSet f : list ){
-            if ( f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO ) ) {
-                dlmfF = f;
-            } else if (
-                    f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX+num ) ) {
-                alternativeF = f;
-            }
-        }
-
-        FeatureSet fset;
-        String paras = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS_ELEMENTS);
-        if ( opt_para != null ){
-            if ( alternativeF == null ){
-                LOG.warn("Null alternative set! " + macro_col);
-                return;
-            }
-            fset = alternativeF;
-        } else if (paras != null) {
-            LOG.warn("Parameters not in special syntax. " +
-                    "Has to be defined as 'X<digit>:<name>X<Macro>'. " + macro_col);
-            return;
-        } else {
-            if ( dlmfF == null ){
-                LOG.warn("There is no feature set for this term? " + macro_col);
-                return;
-            }
-            fset = dlmfF;
-        }
+        FeatureSet fset = getFeatureSet();
+        if ( fset == null ) return;
 
         // get current CAS name
         String casPrefix = lineAnalyzer.getCasPrefix();
 
         // add infos from DLMF_<CAS>.csv first
-        DLMFTranslationHeaders h;
-        h = DLMFTranslationHeaders.dlmf_comment;
-        fset.addFeature( h.getFeatureKey(casPrefix),
-                lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
-                MacrosLexicon.SIGNAL_INLINE);
-        h = DLMFTranslationHeaders.cas_alternatives;
-        fset.addFeature( h.getFeatureKey(casPrefix),
-                lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
-                MacrosLexicon.SIGNAL_INLINE);
-        h = DLMFTranslationHeaders.cas_package;
-        fset.addFeature( h.getFeatureKey(casPrefix),
-                lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
-                MacrosLexicon.SIGNAL_INLINE);
+        addFeatures(fset, casPrefix);
 
         // get the name and pattern of the translation
         String cas_func_pattern = lineAnalyzer.getValue( casPrefix );
@@ -135,7 +68,101 @@ public class TranslationConsumer implements LexiconInfoConsumer {
         fset.addFeature( casPrefix, cas_func_pattern, MacrosLexicon.SIGNAL_INLINE );
 
         stats.tickCAS(cas);
+        addFurtherInfoToFeature(holder, fset, casPrefix);
+    }
 
+    private FeatureSet getFeatureSet() {
+        String macro_col = lineAnalyzer.getValue( Keys.KEY_DLMF );
+        Integer num = null;
+        Matcher m = GlobalConstants.DLMF_MACRO_PATTERN.matcher( macro_col );
+        if ( !m.matches() ){
+            LOG.info("Found a not supported DLMF macro for translation: " + macro_col);
+            return null;
+        }
+
+        String macro = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS);
+        String opt_para = macro;
+        if ( macro == null ){
+            macro = m.group( GlobalConstants.MACRO_PATTERN_INDEX_MACRO );
+        } else {
+            macro = macro.substring(1, macro.length()-1);
+            String[] infos = macro.split( GlobalConstants.MACRO_OPT_PARAS_SPLITTER );
+            macro = infos[1];
+            num = Integer.parseInt(infos[0]);
+        }
+
+        List<FeatureSet> list = lexicon.getFeatureSets(macro);
+        if ( list == null || list.isEmpty() ){
+            LOG.info("SKIP "
+                    + m.group(GlobalConstants.MACRO_PATTERN_INDEX_MACRO)
+                    + " (Reason: Cannot find FeatureSet)" );
+            return null;
+        }
+
+        return chooseFeatureSet(list, opt_para, num, m);
+    }
+
+    private FeatureSet chooseFeatureSet(
+            List<FeatureSet> list,
+            String opt_para,
+            Integer num,
+            Matcher m
+    ) {
+        FeatureSet alternativeF = null;
+        FeatureSet dlmfF = null;
+        for ( FeatureSet f : list ){
+            if ( f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO ) ) {
+                dlmfF = f;
+            } else if (
+                    f.getFeatureSetName().matches( Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX+num ) ) {
+                alternativeF = f;
+            }
+        }
+
+        String paras = m.group(GlobalConstants.MACRO_PATTERN_INDEX_OPT_PARAS_ELEMENTS);
+        return logAndChooseFeatureSet(dlmfF, alternativeF, opt_para, paras);
+    }
+
+    private FeatureSet logAndChooseFeatureSet(
+            FeatureSet dlmfF,
+            FeatureSet alternativeF,
+            String opt_para,
+            String paras
+    ) {
+        String macro_col = lineAnalyzer.getValue( Keys.KEY_DLMF );
+        if ( opt_para != null ){
+            if ( alternativeF == null ){
+                LOG.warn("Null alternative set! " + macro_col);
+            } return alternativeF;
+        } else if (paras != null) {
+            LOG.warn("Parameters not in special syntax. " +
+                    "Has to be defined as 'X<digit>:<name>X<Macro>'. " + macro_col);
+        } else {
+            if ( dlmfF == null ){
+                LOG.warn("There is no feature set for this term? " + macro_col);
+            } return dlmfF;
+        }
+        return null;
+    }
+
+    private void addFeatures(FeatureSet fset, String casPrefix) {
+        // add infos from DLMF_<CAS>.csv first
+        DLMFTranslationHeaders h;
+        h = DLMFTranslationHeaders.dlmf_comment;
+        fset.addFeature( h.getFeatureKey(casPrefix),
+                lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
+                MacrosLexicon.SIGNAL_INLINE);
+        h = DLMFTranslationHeaders.cas_alternatives;
+        fset.addFeature( h.getFeatureKey(casPrefix),
+                lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
+                MacrosLexicon.SIGNAL_INLINE);
+        h = DLMFTranslationHeaders.cas_package;
+        fset.addFeature( h.getFeatureKey(casPrefix),
+                lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
+                MacrosLexicon.SIGNAL_INLINE);
+    }
+
+    private void addFurtherInfoToFeature(InfoHolder holder, FeatureSet fset, String casPrefix) {
         if ( holder != null && holder.getCasName() != null && holder.getNumVars() != null ){
             CASInfo info = cache.get( holder.getCasName(), holder.getNumVars() );
             LexiconConverterUtility.fillFeatureWithInfos(info, fset, casPrefix);

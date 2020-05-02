@@ -117,21 +117,7 @@ public class CSVtoLexiconConverter {
 
         Instant end = Instant.now();
         Duration elapsed = Duration.between(start, end);
-
-        StringBuilder sb = new StringBuilder("Number of DLMF-Macros: ");
-        sb.append(stats.getCountDLMF()).append("\n");
-        casNames.forEach(n -> {
-            sb.append("Number of supported ").append(n).append(" translations: ")
-                    .append(stats.getCountCAS(n)).append("\n");
-        });
-
-        String info = String.format(
-                "Successfully updated lexicon.\nTime elapsed: %2d,%3d seconds\n%s",
-                elapsed.toSeconds(),
-                elapsed.toMillisPart(),
-                sb.toString()
-        );
-        LOG.info(info);
+        logResults(elapsed);
     }
 
     private void parseCAS(String cas, Path csv){
@@ -164,6 +150,23 @@ public class CSVtoLexiconConverter {
 
     private String getDLMFCasFileName( String CAS ){
         return Keys.KEY_DLMF + "_" + CAS + ".csv";
+    }
+
+    private void logResults(Duration elapsed) {
+        StringBuilder sb = new StringBuilder("Number of DLMF-Macros: ");
+        sb.append(stats.getCountDLMF()).append("\n");
+        casNames.forEach(n -> {
+            sb.append("Number of supported ").append(n).append(" translations: ")
+                    .append(stats.getCountCAS(n)).append("\n");
+        });
+
+        String info = String.format(
+                "Successfully updated lexicon.\nTime elapsed: %2d,%3d seconds\n%s",
+                elapsed.toSeconds(),
+                elapsed.toMillisPart(),
+                sb.toString()
+        );
+        LOG.info(info);
     }
 
     public static void analyzeInput(List<String> argumentList, String input) {
