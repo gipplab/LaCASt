@@ -11,9 +11,12 @@ exclude_patterns:
   - "**/resources/"
   - "**/examples/"
 checks:
-  file-lines:
-    config:
-      threshold: 300
   method-complexity:
     config:
       threshold: 7
+  file-lines:
+    config:
+      threshold: 300
+  method-lines:
+    config:
+      threshold: 25
