@@ -36,6 +36,8 @@ public class MacroInfoHolder {
 
     private final String macro;
 
+    private String variableOfDifferentiation = null;
+
     /**
      * Store information about the macro from an feature set.
      * @param fset future set
@@ -146,6 +148,22 @@ public class MacroInfoHolder {
         // links to the definitions
         defDlmf = DLMFFeatureValues.dlmf_link.getFeatureValue(fset, CAS);
         defCas = DLMFFeatureValues.CAS_Link.getFeatureValue(fset, CAS);
+    }
+
+    public boolean isWronskian() {
+        return macro.equals("\\Wronskian");
+    }
+
+    public String getMacro() {
+        return macro;
+    }
+
+    public String getVariableOfDifferentiation() {
+        return variableOfDifferentiation;
+    }
+
+    public void setVariableOfDifferentiation(String variableOfDifferentiation) {
+        this.variableOfDifferentiation = variableOfDifferentiation;
     }
 
     public int getNumOfParams() {

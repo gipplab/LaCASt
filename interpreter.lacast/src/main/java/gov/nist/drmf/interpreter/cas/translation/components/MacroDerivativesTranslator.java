@@ -6,16 +6,21 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.components.util.DerivativeAndPowerHolder;
 import gov.nist.drmf.interpreter.cas.translation.components.util.MacroInfoHolder;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
+import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
@@ -24,9 +29,12 @@ public class MacroDerivativesTranslator extends MacroTranslator {
 
     private TranslatedExpression translatedInAdvance;
 
-    public MacroDerivativesTranslator(AbstractTranslator superTranslator) {
+    private final String CAS;
+
+    MacroDerivativesTranslator(AbstractTranslator superTranslator) {
         super(superTranslator);
         resetTranslatedInAdvancedComponent();
+        this.CAS = getConfig().getTO_LANGUAGE();
     }
 
     public boolean hasTranslatedInAdvancedComponent() {
@@ -124,7 +132,7 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         PomTaggedExpression next = followingExps.get(0);
         if ( !next.isEmpty() ) {
             // nothing special, just go ahead and parse it as usual
-            return parseArguments(followingExps, info);
+            return parseArguments(followingExps, info, this);
         }
 
         // first, get rid of the empty element
@@ -191,6 +199,45 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         holder.setDifferentiation(diff);
     }
 
+    public String extractVariableOfDiff(PomTaggedExpression exp) {
+        while (!exp.isEmpty()) { // look for a macro term in the expression and infer variable of diff based on that
+            if (exp.getTag() != null && exp.getTag().equals(ExpressionTags.sequence.tag())) {
+                for (PomTaggedExpression expression : exp.getComponents()) {
+                    if (isDLMFMacro(expression.getRoot())) {
+                        exp = expression;
+                    }
+                }
+            }
+            if (isDLMFMacro(exp.getRoot())) { // found macro term
+                FeatureSet fset = exp.getRoot().getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
+                // get variable of differentiation from variable used in dlmf expression of macro
+                String dlmf_expression = DLMFFeatureValues.DLMF.getFeatureValue(fset, CAS);
+                int args = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset, CAS));
+                int slot;
+                try {
+                    slot = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset, CAS));
+                } catch (NumberFormatException e) {
+                    throw throwSlotError();
+                }
+                String arg_extractor_single = "\\{([^{}]*)}";
+                Pattern arg_extractor_pattern = // capture all arguments of dlmf expression
+                        Pattern.compile(
+                                "@" + arg_extractor_single.repeat(Math.max(0, args)) // capture all arguments of dlmf expression
+                        );
+                Matcher m = arg_extractor_pattern.matcher(dlmf_expression);
+                if (m.find()) {
+                    return m.group(slot); // extract argument that matches slot
+                } else {
+                    throw throwMacroException("Unable to extract argument from " + dlmf_expression);
+                }
+            } else {
+                exp = exp.getNextSibling();
+            }
+        }
+
+        return null;
+    }
+
     /**
      * Checks weather the first element is a differentiation in lagrange notation. That means
      * the order is given in parentheses.
@@ -221,6 +268,12 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         } catch ( NullPointerException | IndexOutOfBoundsException e ) {
             return false;
         }
+    }
+
+    private TranslationException throwSlotError() throws TranslationException {
+        return throwMacroException(
+                "No information in lexicon for slot of differentiation of macro."
+        );
     }
 
     private TranslationException throwDifferentiationException() throws TranslationException {

@@ -6,15 +6,14 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.components.util.DerivativeAndPowerHolder;
 import gov.nist.drmf.interpreter.cas.translation.components.util.MacroInfoHolder;
+import gov.nist.drmf.interpreter.cas.translation.components.util.PatternFiller;
 import gov.nist.drmf.interpreter.common.InformationLogger;
-import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -25,8 +24,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.TEMPORARY_VARIABLE_NAME;
 
 /**
  * This translation parses all of the DLMF macros. A DLMF macro
@@ -157,9 +154,9 @@ public class MacroTranslator extends AbstractListTranslator {
         DerivativeAndPowerHolder diffPowerHolder = derivativesTranslator.parseDerivatives(following_exps, info);
 
         LinkedList<String> arguments;
-        if ( isWronskian ) arguments = parseArguments(tempArgList, info);
+        if ( isWronskian ) arguments = parseArguments(tempArgList, info, derivativesTranslator);
         else if ( isDeriv ) arguments = derivativesTranslator.parseDerivativeArguments(following_exps, info);
-        else arguments = parseArguments(following_exps, info);
+        else arguments = parseArguments(following_exps, info, derivativesTranslator);
 
         if ( isWronskian ) {
             skipAts(following_exps);
@@ -171,17 +168,14 @@ public class MacroTranslator extends AbstractListTranslator {
             info_key += extractedOptParameter;
         }
 
-        int slotOfDifferentiation = info.getSlotOfDifferentiation();
-        if ( slotOfDifferentiation < 1 && diffPowerHolder.getDifferentiation() != null ) {
+        PatternFiller patternFiller;
+
+        try {
+            patternFiller = new PatternFiller(info, diffPowerHolder, optionalParas);
+        } catch (IndexOutOfBoundsException ioobe ) {
             String errorMsg = "No slot of differentiation available for " + macro_term.getTermText() + ", " +
                     "but found differentiation notation " + diffPowerHolder.getDifferentiation();
             throw throwMacroException(errorMsg);
-        }
-
-        // if we found optional parameter, the slot of differentiation changes
-        // TODO check lexicon entries if that's actually necessary
-        if (!optionalParas.isEmpty()) {
-            slotOfDifferentiation += optionalParas.size();
         }
 
         String[] args = createArgumentArray(optionalParas, parameters, arguments);
@@ -196,10 +190,13 @@ public class MacroTranslator extends AbstractListTranslator {
         // finally fill the placeholders by values
         fillVars(
                 args,
+                patternFiller
+        );
+
+        // put all information to the info log
+        getInfoLogger().addMacroInfo(
                 info_key,
-                info,
-                diffPowerHolder,
-                slotOfDifferentiation
+                createFurtherInformation(info)
         );
 
         // in case we translated an expression in advance, we need to fill up the translation lists
@@ -296,7 +293,11 @@ public class MacroTranslator extends AbstractListTranslator {
      * @param holder .
      * @return .
      */
-    protected LinkedList<String> parseArguments(List<PomTaggedExpression> following_exps, MacroInfoHolder holder ) {
+    protected LinkedList<String> parseArguments(
+            List<PomTaggedExpression> following_exps,
+            MacroInfoHolder holder,
+            MacroDerivativesTranslator derivativesTranslator
+    ) {
         LinkedList<String> arguments = new LinkedList<>();
 
         boolean passAts = false;
@@ -309,7 +310,8 @@ public class MacroTranslator extends AbstractListTranslator {
 
             // TODO well
             if ( isWronskian ) {
-                extractVariableOfDiff(exp);
+                String derivVar = derivativesTranslator.extractVariableOfDiff(exp);
+                holder.setVariableOfDifferentiation(derivVar);
             }
 
             if (!passAts && containsTerm(exp)) {
@@ -332,44 +334,6 @@ public class MacroTranslator extends AbstractListTranslator {
         }
 
         return arguments;
-    }
-
-    private void extractVariableOfDiff(PomTaggedExpression exp) {
-        while (!exp.isEmpty()) { // look for a macro term in the expression and infer variable of diff based on that
-            if (exp.getTag() != null && exp.getTag().equals(ExpressionTags.sequence.tag())) {
-                for (PomTaggedExpression expression : exp.getComponents()) {
-                    if (isDLMFMacro(expression.getRoot())) {
-                        exp = expression;
-                    }
-                }
-            }
-            if (isDLMFMacro(exp.getRoot())) { // found macro term
-                FeatureSet fset = exp.getRoot().getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
-                // get variable of differentiation from variable used in dlmf expression of macro
-                String dlmf_expression = DLMFFeatureValues.DLMF.getFeatureValue(fset, CAS);
-                int args = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset, CAS));
-                int slot;
-                try {
-                    slot = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset, CAS));
-                } catch (NumberFormatException e) {
-                    throw throwSlotError();
-                }
-                String arg_extractor_single = "\\{([^{}]*)}";
-                Pattern arg_extractor_pattern = // capture all arguments of dlmf expression
-                        Pattern.compile(
-                                "@" + arg_extractor_single.repeat(Math.max(0, args)) // capture all arguments of dlmf expression
-                        );
-                Matcher m = arg_extractor_pattern.matcher(dlmf_expression);
-                if (m.find()) {
-                    varOfDiff = m.group(slot); // extract argument that matches slot
-                    return;
-                } else {
-                    throw throwMacroException("Unable to extract argument from " + dlmf_expression);
-                }
-            } else {
-                exp = exp.getNextSibling();
-            }
-        }
     }
 
     // Works for 2 argument Wronskians, can be expanded to more arguments
@@ -439,76 +403,21 @@ public class MacroTranslator extends AbstractListTranslator {
     /**
      * Fills the translation pattern with arguments and adds everything to the global and local translation list.
      * @param args the arguments in right order and no null elements included
-     * @param info the information about the macro that will be translated
-     * @param diffHolder optional information about differentiation (might contain only null)
-     * @param slotOfDifferentiation is only used if {@link DerivativeAndPowerHolder#getDifferentiation()} in {@param diffHolder}
-     *                              is not null.
+     * @param patternFiller the object that fills the macro pattern with information
      */
     private void fillVars(
             String[] args,
-            String info_key,
-            MacroInfoHolder info,
-            DerivativeAndPowerHolder diffHolder,
-            int slotOfDifferentiation
+            PatternFiller patternFiller
     ) {
-        // when the alternative mode is activated, it tries to translate
-        // the alternative translation
-        String pattern = (getConfig().isAlternativeMode() && !info.getAlternativePattern().isEmpty()) ?
-                info.getAlternativePattern() : info.getTranslationPattern();
+        try {
+            String pattern = patternFiller.fillPatternWithComponents(getConfig(), args);
 
-        // Eventually, we need to substitute an argument.
-        String subbedExpression = null;
-        if (slotOfDifferentiation >= 1 && diffHolder.getDifferentiation() != null) {
-            // substitute out argument in slot of differentiation
-            subbedExpression = args[slotOfDifferentiation - 1];
-            args[slotOfDifferentiation - 1] = TEMPORARY_VARIABLE_NAME;
+            // finally, update translation lists
+            localTranslations.addTranslatedExpression(pattern);
+            getGlobalTranslationList().addTranslatedExpression(pattern);
+        } catch (NullPointerException npe) {
+            throw throwMacroException("Argument of macro seems to be missing for " + macro);
         }
-
-        // if we translating a wronskian here, we need to be a bit more careful.
-        if (isWronskian) { // plugs in variable of differentiation
-            String[] newComponents = new String[args.length + 1];
-            newComponents[0] = varOfDiff;
-            System.arraycopy(args, 0, newComponents, 1, args.length);
-            args = newComponents;
-        }
-
-        // finally, fill up pattern with arguments
-        LOG.debug("Fill pattern: " + pattern);
-        for (int i = 0; i < args.length; i++) {
-            try {
-                pattern = pattern.replace(
-                        GlobalConstants.POSITION_MARKER + i,
-                        stripMultiParentheses(args[i])
-                );
-            } catch (NullPointerException npe) {
-                throw throwMacroException("Argument of macro seems to be missing for " + macro);
-            }
-        }
-        LOG.debug("Translated DLMF macro to: " + pattern);
-
-        // apply derivative and plug in the subbed out expression to replace temp during execution in CAS
-        if (subbedExpression != null) {
-            LOG.debug("Fill differentiation pattern for " + macro);
-            BasicFunctionsTranslator bft = getConfig().getBasicFunctionsTranslator();
-
-            String[] diffArgs = new String[]{
-                    pattern,  // the argument for this pattern is the entire translation
-                    subbedExpression,
-                    diffHolder.getDifferentiation()
-            };
-            pattern = bft.translate(diffArgs, "derivative");
-            LOG.debug("Translated diff: " + pattern);
-        }
-
-        // finally, update translation lists
-        localTranslations.addTranslatedExpression(pattern);
-        getGlobalTranslationList().addTranslatedExpression(pattern);
-
-        // put all information to the info log
-        getInfoLogger().addMacroInfo(
-                info_key,
-                createFurtherInformation(info)
-        );
     }
 
     private String createFurtherInformation(MacroInfoHolder info) {
@@ -549,12 +458,6 @@ public class MacroTranslator extends AbstractListTranslator {
         );
         extraInformation += CAS + ": " + tab + info.getDefCas();
         return extraInformation;
-    }
-
-    private TranslationException throwSlotError() throws TranslationException {
-        return throwMacroException(
-                "No information in lexicon for slot of differentiation of macro."
-        );
     }
 
     protected TranslationException throwMacroException(String message) {
