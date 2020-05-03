@@ -134,8 +134,7 @@ public class MathConstantTranslator extends AbstractTranslator {
                 LOG.debug("Indeed a greek letter, inform user and translate as greek letter.");
                 getInfoLogger().addGeneralInfo(
                         constant,
-                        "Unable to translate " + constant + " [" +
-                                DLMFFeatureValues.meaning.getFeatureValue(set, CAS) +
+                        "Unable to translate " + constant + " [" + DLMFFeatureValues.meaning.getFeatureValue(set, CAS) +
                                 "]. But since it is a Greek letter we translated it to a Greek letter in "
                                 + CAS + "."
                 );
@@ -143,12 +142,10 @@ public class MathConstantTranslator extends AbstractTranslator {
                 localTranslations = glt.translate(exp);
                 return true;
             } else {
-                throw TranslationException.buildExceptionObj(
-                        this,
-                        "Cannot translate mathematical constant " +
-                                constant + " - " + set.getFeature(Keys.FEATURE_MEANINGS),
-                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
-                        constant);
+                throw TranslationException.buildExceptionObj(this,
+                        "Cannot translate mathematical constant " + constant + " - " +
+                                set.getFeature(Keys.FEATURE_MEANINGS),
+                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION, constant);
             }
         } catch (NullPointerException npe) {
             return false;

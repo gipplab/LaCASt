@@ -349,10 +349,9 @@ public enum Brackets {
         boolean initialHit = true;
 
         while( matcher.find() ) {
-            if ( !initialHit && openList.isEmpty() ) return false;
-            initialHit = false;
             String symbol = matcher.group(1);
-            if ( !updateBracketList(openList, symbol) ) return false;
+            if ( !updateBracketList(initialHit, openList, symbol) ) return false;
+            initialHit = false;
         }
 
         return openList.isEmpty() && !initialHit;
@@ -364,7 +363,8 @@ public enum Brackets {
      * @param symbol current symbol
      * @return true if there were no mismatch or invalid bracket situation
      */
-    private static boolean updateBracketList(LinkedList<Brackets> bracketStack, String symbol) {
+    private static boolean updateBracketList(boolean initialHit, LinkedList<Brackets> bracketStack, String symbol) {
+        if ( !initialHit && bracketStack.isEmpty() ) return false;
         Brackets bracket = getBracket(symbol);
 
         if ( bracket == null ) return true;

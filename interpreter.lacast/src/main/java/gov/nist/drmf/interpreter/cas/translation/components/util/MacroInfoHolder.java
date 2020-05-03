@@ -1,5 +1,6 @@
-package gov.nist.drmf.interpreter.cas.common;
+package gov.nist.drmf.interpreter.cas.translation.components.util;
 
+import gov.nist.drmf.interpreter.cas.common.IForwardTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
@@ -12,8 +13,8 @@ import org.apache.logging.log4j.Logger;
 /**
  * @author Andre Greiner-Petter
  */
-public class DLMFMacroInfoHolder {
-    private static final Logger LOG = LogManager.getLogger(DLMFMacroInfoHolder.class.getName());
+public class MacroInfoHolder {
+    private static final Logger LOG = LogManager.getLogger(MacroInfoHolder.class.getName());
 
     private int
             numOfParams = Integer.MIN_VALUE,
@@ -33,9 +34,57 @@ public class DLMFMacroInfoHolder {
     private String branchCuts, casBranchCuts;
     private String casComment;
 
-    public DLMFMacroInfoHolder(FeatureSet fset, String CAS, String macro ) {
-        this.storeInfos(fset, CAS);
+    private final String macro;
 
+    /**
+     * Store information about the macro from an feature set.
+     * @param fset future set
+     * @param macro the macro
+     * @throws TranslationException if the feature set does not provide
+     * the necessary information for a translation
+     */
+    public MacroInfoHolder(
+            IForwardTranslator translator,
+            FeatureSet fset,
+            String CAS,
+            String macro
+    ) throws TranslationException {
+        this.macro = macro;
+        this.checkFeatureSetValidity(translator, fset);
+        this.storeInfosValidityCheck(translator, fset, CAS);
+    }
+
+    private void checkFeatureSetValidity(IForwardTranslator translator, FeatureSet fset)
+            throws TranslationException {
+        if ( fset == null ) {
+            throw TranslationException.buildExceptionObj(
+                    translator, "Cannot extract information from feature set: " + macro,
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                    macro);
+        }
+    }
+
+    private void storeInfosValidityCheck(IForwardTranslator translator, FeatureSet fset, String CAS)
+            throws TranslationException {
+        // try to extract the information
+        try {
+            this.storeInfos(fset, CAS);
+            this.handleMultipleAlternativePatterns(CAS);
+            if (getTranslationPattern() == null || getTranslationPattern().isEmpty()) {
+                throw TranslationException.buildExceptionObj(
+                        translator, "There are no translation patterns available for: " + macro,
+                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                        macro);
+            }
+        } catch (NullPointerException | TranslationException npe) {
+            throw TranslationException.buildExceptionObj(
+                    translator, "Cannot extract information from feature set: " + macro,
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                    macro);
+        }
+    }
+
+    private void handleMultipleAlternativePatterns(String cas) {
         // maybe the alternative pattern got multiple alternatives
         if (!alternativePattern.isEmpty()) {
             try {
@@ -43,7 +92,7 @@ public class DLMFMacroInfoHolder {
             } catch (Exception e) {
                 throw new TranslationException(
                         Keys.KEY_LATEX,
-                        CAS,
+                        cas,
                         "Cannot split alternative macro pattern!",
                         TranslationExceptionReason.DLMF_MACRO_ERROR);
             }
@@ -57,8 +106,8 @@ public class DLMFMacroInfoHolder {
 
     /**
      * Analyzes and extracts all information from a given feature set of a DLMF macro.
-     * @param fset
-     * @throws TranslationException
+     * @param fset .
+     * @throws TranslationException .
      */
     private void storeInfos(FeatureSet fset, String CAS) throws TranslationException {
         //LOG.info("Extract information for " + macro_term.getTermText());
