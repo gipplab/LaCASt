@@ -7,7 +7,6 @@ import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Collections;
 import java.util.List;
 
 import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.TEMPORARY_VARIABLE_NAME;
@@ -64,36 +63,50 @@ public class PatternFiller {
 
         // if we translating a wronskian here, we need to be a bit more careful.
         if (macroInfo.isWronskian()) { // plugs in variable of differentiation
-            String[] newComponents = new String[args.length + 1];
-            newComponents[0] = macroInfo.getVariableOfDifferentiation();
-            System.arraycopy(args, 0, newComponents, 1, args.length);
-            args = newComponents;
+            args = getArgumentsOfWronskian(args);
         }
 
         // finally, fill up pattern with arguments
         LOG.debug("Fill pattern: " + pattern);
+        pattern = fillPattern(args, pattern);
+        LOG.debug("Translated DLMF macro to: " + pattern);
+
+        // apply derivative and plug in the subbed out expression to replace temp during execution in CAS
+        if (subbedExpression != null) {
+            pattern = fixSubstitution(config, pattern, subbedExpression);
+        }
+
+        return pattern;
+    }
+
+    private String[] getArgumentsOfWronskian(String[] args) {
+        String[] newComponents = new String[args.length + 1];
+        newComponents[0] = macroInfo.getVariableOfDifferentiation();
+        System.arraycopy(args, 0, newComponents, 1, args.length);
+        return newComponents;
+    }
+
+    private String fillPattern(String[] args, String pattern) {
         for (int i = 0; i < args.length; i++) {
             pattern = pattern.replace(
                     GlobalConstants.POSITION_MARKER + i,
                     AbstractListTranslator.stripMultiParentheses(args[i])
             );
         }
-        LOG.debug("Translated DLMF macro to: " + pattern);
+        return pattern;
+    }
 
-        // apply derivative and plug in the subbed out expression to replace temp during execution in CAS
-        if (subbedExpression != null) {
-            LOG.debug("Fill differentiation pattern for " + macroInfo.getMacro());
-            BasicFunctionsTranslator bft = config.getBasicFunctionsTranslator();
+    private String fixSubstitution(ForwardTranslationProcessConfig config, String pattern, String subbedExpression) {
+        LOG.debug("Fill differentiation pattern for " + macroInfo.getMacro());
+        BasicFunctionsTranslator bft = config.getBasicFunctionsTranslator();
 
-            String[] diffArgs = new String[]{
-                    pattern,  // the argument for this pattern is the entire translation
-                    subbedExpression,
-                    derivInfo.getDifferentiation()
-            };
-            pattern = bft.translate(diffArgs, "derivative");
-            LOG.debug("Translated diff: " + pattern);
-        }
-
+        String[] diffArgs = new String[]{
+                pattern,  // the argument for this pattern is the entire translation
+                subbedExpression,
+                derivInfo.getDifferentiation()
+        };
+        pattern = bft.translate(diffArgs, "derivative");
+        LOG.debug("Translated diff: " + pattern);
         return pattern;
     }
 }
