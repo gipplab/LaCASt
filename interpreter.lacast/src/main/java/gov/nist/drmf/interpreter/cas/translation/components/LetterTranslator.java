@@ -99,8 +99,7 @@ public class LetterTranslator extends AbstractListTranslator {
                 te = parseAlphanumeric(term, constantSet);
                 break;
             default:
-                throw TranslationException.buildException(
-                        this,
+                throw TranslationException.buildException(this,
                         "Letter translator only translates symbols and alphanumerics: " + term.getTermText(),
                         TranslationExceptionReason.IMPLEMENTATION_ERROR
                 );
