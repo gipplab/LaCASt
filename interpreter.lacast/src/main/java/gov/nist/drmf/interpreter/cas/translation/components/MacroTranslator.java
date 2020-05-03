@@ -6,12 +6,12 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.components.util.DerivativeAndPowerHolder;
 import gov.nist.drmf.interpreter.cas.translation.components.util.MacroInfoHolder;
+import gov.nist.drmf.interpreter.cas.translation.components.util.MacroMetaInformation;
 import gov.nist.drmf.interpreter.cas.translation.components.util.PatternFiller;
 import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.FeatureSet;
@@ -62,7 +62,6 @@ public class MacroTranslator extends AbstractListTranslator {
     private boolean isDeriv = false;
 
     private List<PomTaggedExpression> tempArgList;
-    private String varOfDiff;
 
     public MacroTranslator(AbstractTranslator superTranslator) {
         super(superTranslator);
@@ -421,18 +420,14 @@ public class MacroTranslator extends AbstractListTranslator {
     }
 
     private String createFurtherInformation(MacroInfoHolder info) {
-        String extraInformation = "";
-        if (!info.getMeaning().isEmpty()) {
-            extraInformation += info.getMeaning();
-        } else if (!info.getDescription().isEmpty()) {
-            extraInformation += info.getDescription();
-        }
+        MacroMetaInformation metaInfo = info.getMetaInformation();
+        String extraInformation = metaInfo.getMeaningDescriptionString();
 
-        extraInformation += "; Example: " + info.getDLMFExample() + System.lineSeparator();
+        extraInformation += "; Example: " + metaInfo.getExample() + System.lineSeparator();
         extraInformation += "Will be translated to: " + info.getTranslationPattern() + System.lineSeparator();
 
-        if (!info.getCasComment().isEmpty()) {
-            extraInformation += "Translation Information: " + info.getCasComment() + System.lineSeparator();
+        if (!metaInfo.getCasComment().isEmpty()) {
+            extraInformation += "Translation Information: " + metaInfo.getCasComment() + System.lineSeparator();
         }
 
         if (!info.getConstraints().isEmpty()) {

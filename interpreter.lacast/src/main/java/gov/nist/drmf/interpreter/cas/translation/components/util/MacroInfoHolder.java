@@ -22,21 +22,19 @@ public class MacroInfoHolder {
             numOfVars   = Integer.MIN_VALUE,
             slotOfDifferentiation = Integer.MIN_VALUE;
 
-    private String DLMFExample;
     private String constraints;
-    private String description;
-    private String meaning;
 
     private String defDlmf, defCas;
 
     private String translationPattern, alternativePattern;
 
     private String branchCuts, casBranchCuts;
-    private String casComment;
 
     private final String macro;
 
     private String variableOfDifferentiation = null;
+
+    private MacroMetaInformation metaInformation;
 
     /**
      * Store information about the macro from an feature set.
@@ -108,10 +106,9 @@ public class MacroInfoHolder {
 
     /**
      * Analyzes and extracts all information from a given feature set of a DLMF macro.
-     * @param fset .
-     * @throws TranslationException .
+     * @param fset the feature set
      */
-    private void storeInfos(FeatureSet fset, String CAS) throws TranslationException {
+    private void storeInfos(FeatureSet fset, String CAS) {
         //LOG.info("Extract information for " + macro_term.getTermText());
         // now store all additional information
         // first of all number of parameters, ats and vars
@@ -133,21 +130,19 @@ public class MacroInfoHolder {
         // Branch Cuts: of the DLMF definition
         // DLMF: its the plain, smallest version of the macro. Like \JacobiP{a}{b}{c}@{d}
         //      we can reference our Constraints to a, b, c and d now. That makes it easier to read
-        meaning = DLMFFeatureValues.meaning.getFeatureValue(fset, CAS);
-        description = DLMFFeatureValues.description.getFeatureValue(fset, CAS);
         constraints = DLMFFeatureValues.constraints.getFeatureValue(fset, CAS);
         branchCuts = DLMFFeatureValues.branch_cuts.getFeatureValue(fset, CAS);
-        DLMFExample = DLMFFeatureValues.DLMF.getFeatureValue(fset, CAS);
 
         // Translation information
         translationPattern = DLMFFeatureValues.CAS.getFeatureValue(fset, CAS);
         alternativePattern = DLMFFeatureValues.CAS_Alternatives.getFeatureValue(fset, CAS);
-        casComment = DLMFFeatureValues.CAS_Comment.getFeatureValue(fset, CAS);
         casBranchCuts = DLMFFeatureValues.CAS_BranchCuts.getFeatureValue(fset, CAS);
 
         // links to the definitions
         defDlmf = DLMFFeatureValues.dlmf_link.getFeatureValue(fset, CAS);
         defCas = DLMFFeatureValues.CAS_Link.getFeatureValue(fset, CAS);
+
+        metaInformation = new MacroMetaInformation(fset, CAS);
     }
 
     public boolean isWronskian() {
@@ -182,20 +177,8 @@ public class MacroInfoHolder {
         return slotOfDifferentiation;
     }
 
-    public String getDLMFExample() {
-        return DLMFExample;
-    }
-
     public String getConstraints() {
         return constraints;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getMeaning() {
-        return meaning;
     }
 
     public String getDefDlmf() {
@@ -222,7 +205,7 @@ public class MacroInfoHolder {
         return casBranchCuts;
     }
 
-    public String getCasComment() {
-        return casComment;
+    public MacroMetaInformation getMetaInformation() {
+        return metaInformation;
     }
 }

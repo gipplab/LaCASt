@@ -371,15 +371,25 @@ public enum Brackets {
 
         if (bracket.opened) {
             bracketStack.addLast(bracket);
+            return true;
         } else {
-            Brackets last = bracketStack.getLast();
-            if (last.counterpart.equals(bracket.symbol)) {
-                bracketStack.removeLast();
-            } else {
-                return false;
-            }
+            return checkClosedBracket(bracketStack, bracket);
         }
+    }
 
-        return true;
+    /**
+     * Checks if the current bracket closes the previous open bracket (from bracketStack).
+     * @param bracketStack the stack of opened brackets
+     * @param currentBracket the current bracket to check
+     * @return true if the current brackets closed the previous bracket on stock, otherwise false
+     */
+    private static boolean checkClosedBracket(LinkedList<Brackets> bracketStack, Brackets currentBracket) {
+        Brackets last = bracketStack.getLast();
+        if (last.counterpart.equals(currentBracket.symbol)) {
+            bracketStack.removeLast();
+            return true;
+        } else {
+            return false;
+        }
     }
 }
