@@ -79,53 +79,67 @@ public class MacroDerivativesTranslator extends MacroTranslator {
                 return holder;
             }
 
-            MathTerm first_term = exp.getRoot();
-            if (first_term != null && !first_term.isEmpty()) {
-                MathTermTags tag = MathTermTags.getTagByKey(first_term.getTag());
-                switch (tag) {
-                    case caret:
-                        // check if it's the lagrange notation
-                        if (isLagrangeNotation(exp.getComponents())) {
-                            if ( info.getSlotOfDifferentiation() < 0 ) {
-                                throw throwDifferentiationException();
-                            } else if ( holder.getDifferentiation() != null ) {
-                                throw TranslationException.buildException(
-                                        this,
-                                        "Cannot parse lagrange notation twice for the same macro!",
-                                        TranslationExceptionReason.INVALID_LATEX_INPUT
-                                );
-                            } else {
-                                following_exps.remove(0);
-                                parseLagrangeNotation(exp.getComponents(), holder);
-                            }
-                        } else {
-                            // found a normal power. So move it to the end
-                            holder.setMoveToEnd( following_exps.remove(0) );
-                        }
-                        break;
-                    case prime:
-                        // well, just count them up
-                        following_exps.remove(0);
-                        numberOfDerivative++;
-                        break;
-                    case at: // we reached the end
-                    default: // in any other case, we also reached the end...
-                        if ( numberOfDerivative > 0 ) {
-                            if ( holder.getDifferentiation() != null ) {
-                                throw TranslationException.buildException(
-                                        this,
-                                        "It's not allowed to mix prime and " +
-                                                "numeric differentiation notation within one function call.",
-                                        TranslationExceptionReason.INVALID_LATEX_INPUT);
-                            }
-                            holder.setDifferentiation(Integer.toString(numberOfDerivative));
-                        }
-                        return holder;
-                }
-            } else break;
+            MathTermTags tag = MathTermTags.getTagByKey(exp.getRoot().getTag());
+            if ( tag == null ) break;
+            switch (tag) {
+                case caret:
+                    parseCaret(exp, following_exps, info, holder);
+                    break;
+                case prime:
+                    // well, just count them up
+                    following_exps.remove(0);
+                    numberOfDerivative++;
+                    break;
+                case at: // we reached the end
+                default: // in any other case, we also reached the end...
+                    checkValidity(numberOfDerivative, holder);
+                    return holder;
+            }
         }
 
         return holder;
+    }
+
+    private void checkValidity(
+            int numberOfDerivative,
+            DerivativeAndPowerHolder holder
+    ) {
+        if ( numberOfDerivative > 0 ) {
+            if ( holder.getDifferentiation() != null ) {
+                throw TranslationException.buildException(
+                        this,
+                        "It's not allowed to mix prime and " +
+                                "numeric differentiation notation within one function call.",
+                        TranslationExceptionReason.INVALID_LATEX_INPUT);
+            }
+            holder.setDifferentiation(Integer.toString(numberOfDerivative));
+        }
+    }
+
+    private void parseCaret(
+            PomTaggedExpression exp,
+            List<PomTaggedExpression> followingExps,
+            MacroInfoHolder info,
+            DerivativeAndPowerHolder holder
+    ) {
+        // check if it's the lagrange notation
+        if (isLagrangeNotation(exp.getComponents())) {
+            if ( info.getSlotOfDifferentiation() < 0 ) {
+                throw throwDifferentiationException();
+            } else if ( holder.getDifferentiation() != null ) {
+                throw TranslationException.buildException(
+                        this,
+                        "Cannot parse lagrange notation twice for the same macro!",
+                        TranslationExceptionReason.INVALID_LATEX_INPUT
+                );
+            } else {
+                followingExps.remove(0);
+                parseLagrangeNotation(exp.getComponents(), holder);
+            }
+        } else {
+            // found a normal power. So move it to the end
+            holder.setMoveToEnd( followingExps.remove(0) );
+        }
     }
 
     /**
@@ -296,45 +310,6 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         }
         return set;
     }
-
-//    public String extractVariableOfDiff(PomTaggedExpression exp) {
-//        while (!exp.isEmpty()) { // look for a macro term in the expression and infer variable of diff based on that
-//            if (exp.getTag() != null && exp.getTag().equals(ExpressionTags.sequence.tag())) {
-//                for (PomTaggedExpression expression : exp.getComponents()) {
-//                    if (isDLMFMacro(expression.getRoot())) {
-//                        exp = expression;
-//                    }
-//                }
-//            }
-//            if (isDLMFMacro(exp.getRoot())) { // found macro term
-//                FeatureSet fset = exp.getRoot().getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
-//                // get variable of differentiation from variable used in dlmf expression of macro
-//                String dlmf_expression = DLMFFeatureValues.DLMF.getFeatureValue(fset, CAS);
-//                int args = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset, CAS));
-//                int slot;
-//                try {
-//                    slot = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset, CAS));
-//                } catch (NumberFormatException e) {
-//                    throw throwSlotError();
-//                }
-//                String arg_extractor_single = "\\{([^{}]*)}";
-//                Pattern arg_extractor_pattern = // capture all arguments of dlmf expression
-//                        Pattern.compile(
-//                                "@" + arg_extractor_single.repeat(Math.max(0, args)) // capture all arguments of dlmf expression
-//                        );
-//                Matcher m = arg_extractor_pattern.matcher(dlmf_expression);
-//                if (m.find()) {
-//                    return m.group(slot); // extract argument that matches slot
-//                } else {
-//                    throw throwMacroException("Unable to extract argument from " + dlmf_expression);
-//                }
-//            } else {
-//                exp = exp.getNextSibling();
-//            }
-//        }
-//
-//        return null;
-//    }
 
     /**
      * Checks weather the first element is a differentiation in lagrange notation. That means

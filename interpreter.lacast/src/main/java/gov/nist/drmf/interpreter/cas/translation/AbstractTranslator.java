@@ -14,6 +14,7 @@ import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import gov.nist.drmf.interpreter.mlp.MathTermUtility;
+import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -127,17 +128,17 @@ public abstract class AbstractTranslator implements IForwardTranslator {
      * delegates a translation process to the specialized sub-translators.
      *
      * @param exp the current element
-     * @param exp_list siblings of the current element (might be null)
+     * @param expList siblings of the current element (might be null)
      * @return the translated expression of this element
      */
     protected TranslatedExpression parseGeneralExpression(
             PomTaggedExpression exp,
-            List<PomTaggedExpression> exp_list
+            List<PomTaggedExpression> expList
     ) {
         TranslatedExpression transExpression;
 
         // accents are not supported
-        if ( isAccented(exp) ){
+        if (PomTaggedExpressionUtility.isAccented(exp) ){
             throw TranslationException.buildException(
                     this,
                     "Accents are not supported.",
@@ -159,47 +160,53 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         } else { // if not handle all different cases of terms
             MathTerm term = exp.getRoot();
             // first, is this a DLMF macro?
-            if (isDLMFMacro(term)) { // BEFORE FUNCTION!
-                MacroTranslator mp = new MacroTranslator(this);
-                transExpression = mp.translate(exp, exp_list);
-            } //is it a sum or a product
-            else if (isSumOrProductOrLimit(term)) {
-                LimitedTranslator sm = new LimitedTranslator(this);
-                transExpression = sm.translate(exp, exp_list);
-            } // it could be a sub sequence
-            else if (isSubSequence(term)) {
-                Brackets bracket = Brackets.getBracket(term.getTermText());
-                SequenceTranslator sp = new SequenceTranslator(this, bracket, SET_MODE);
-                transExpression = sp.translate(exp_list);
-            } // this is special, could be a function like cos
-            else if (isFunction(term)) {
-                FunctionTranslator fp = new FunctionTranslator(this);
-                transExpression = fp.translate(exp, exp_list);
-            } // otherwise it is a general math term
-            else {
-                MathTermTranslator mp = new MathTermTranslator(this);
-                transExpression = mp.translate(exp, exp_list);
-            }
+            transExpression = parseGeneralTerm(term, exp, expList);
         }
 
         LOG.trace("Global translation list: " + globalExp.debugString());
         return transExpression; //inner_parser.getTranslatedExpressionObject();
     }
 
+    private TranslatedExpression parseGeneralTerm(MathTerm term, PomTaggedExpression exp, List<PomTaggedExpression> expList) {
+        TranslatedExpression transExpression;
+        if (isDLMFMacro(term)) { // BEFORE FUNCTION!
+            MacroTranslator mp = new MacroTranslator(this);
+            transExpression = mp.translate(exp, expList);
+        } //is it a sum or a product
+        else if (MathTermUtility.isSumOrProductOrLimit(term)) {
+            LimitedTranslator sm = new LimitedTranslator(this);
+            transExpression = sm.translate(exp, expList);
+        } // it could be a sub sequence
+        else if (isSubSequence(term)) {
+            Brackets bracket = Brackets.getBracket(term.getTermText());
+            SequenceTranslator sp = new SequenceTranslator(this, bracket, SET_MODE);
+            transExpression = sp.translate(expList);
+        } // this is special, could be a function like cos
+        else if (MathTermUtility.isFunction(term)) {
+            FunctionTranslator fp = new FunctionTranslator(this);
+            transExpression = fp.translate(exp, expList);
+        } // otherwise it is a general math term
+        else {
+            MathTermTranslator mp = new MathTermTranslator(this);
+            transExpression = mp.translate(exp, expList);
+        }
+        return transExpression;
+    }
+
     /**
      * A generic function that translates the next {@param expression} and cleans the the global translation list afterwards
      * @param expression translate expression
-     * @param following_exps the following expressions
+     * @param followingExps the following expressions
      * @return the translated expression
      */
     public TranslatedExpression translateInnerExp(
             PomTaggedExpression expression,
-            List<PomTaggedExpression> following_exps
+            List<PomTaggedExpression> followingExps
     ) {
         TranslatedExpression inner_exp =
                 parseGeneralExpression(
                         expression,
-                        following_exps
+                        followingExps
                 );
         getGlobalTranslationList().removeLastNExps(inner_exp.getLength());
         return inner_exp;
@@ -258,10 +265,6 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         }
     }
 
-    protected static boolean isSumOrProductOrLimit(MathTerm term) {
-        return LimitedExpressions.isLimitedExpression(term);
-    }
-
     protected static boolean isSubSequence(MathTerm term) {
         String tag = term.getTag();
         if (tag != null && tag.matches(OPEN_PARENTHESIS_PATTERN)) {
@@ -274,38 +277,6 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         } else {
             return false;
         }
-    }
-
-    protected static boolean isFunction(MathTerm term) {
-        MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
-        if (tag == null) {
-            return MathTermUtility.isFunction(term);
-        }
-        if (tag.equals(MathTermTags.function)) {
-            return true;
-        }
-        return false;
-    }
-
-    protected static boolean isAccented( PomTaggedExpression pte ) {
-        List<String> tags = pte.getSecondaryTags();
-        for ( String t : tags ) {
-            if ( t.matches(ExpressionTags.accented.tag()) ) {
-                return true;
-            }
-        }
-
-        MathTerm mt = pte.getRoot();
-        if ( mt != null && !mt.isEmpty() ){
-            List<String> mtags = mt.getSecondaryTags();
-            for ( String t : mtags ) {
-                if ( t.matches(ExpressionTags.accented.tag()) ) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
     }
 
     @Override
