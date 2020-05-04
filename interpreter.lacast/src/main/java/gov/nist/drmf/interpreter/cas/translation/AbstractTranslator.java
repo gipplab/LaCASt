@@ -13,6 +13,7 @@ import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
+import gov.nist.drmf.interpreter.mlp.MathTermUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -278,7 +279,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     protected static boolean isFunction(MathTerm term) {
         MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
         if (tag == null) {
-            return FeatureSetUtility.isFunction(term);
+            return MathTermUtility.isFunction(term);
         }
         if (tag.equals(MathTermTags.function)) {
             return true;

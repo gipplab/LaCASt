@@ -199,6 +199,12 @@ public enum SpecialFunctionsAndDerivatives implements ForwardTestCase {
             "\\Wronskian@{z^{1-b} \\OlverconfhyperM@{a-b+1}{2-b}{z}, \\KummerconfhyperU@{a}{b}{z}}",
             "((z)^(1 - b)* KummerM(a - b + 1, 2 - b, z)/GAMMA(2 - b))*diff(KummerU(a, b, z), z)-diff((z)^(1 - b)* KummerM(a - b + 1, 2 - b, z)/GAMMA(2 - b), z)*(KummerU(a, b, z))",
             "Wronskian[{(z)^(1 - b)*Hypergeometric1F1Regularized[a - b + 1, 2 - b, z], HypergeometricU[a, b, z]}, z]"
+    ),
+    @DLMF("9.2.9")
+    WRONSKIAN_COMPLEX_ARGUMENTS(
+            "\\Wronskian\\left\\{\\AiryAi@{z \\expe^{-2\\cpi \\tfrac{\\iunit}{3}}}, \\AiryAi@{z \\expe^{2\\cpi \\tfrac{\\iunit}{3}}}\\right\\}",
+            "(AiryAi(z*exp(- 2*Pi*(I)/(3))))*diff(AiryAi(z*exp(2*Pi*(I)/(3))), z)-diff(AiryAi(z*exp(- 2*Pi*(I)/(3))), z)*(AiryAi(z*exp(2*Pi*(I)/(3))))",
+            "Wronskian[{AiryAi[z*Exp[-2*Pi*Divide[I,3]]],AiryAi[z*Exp[2*Pi*Divide[I,3]]]},z]"
     );
 
     private String tex, maple, mathematica;

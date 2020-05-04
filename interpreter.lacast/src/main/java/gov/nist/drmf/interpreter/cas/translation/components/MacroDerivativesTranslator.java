@@ -13,12 +13,19 @@ import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
+import gov.nist.drmf.interpreter.mlp.MathTermUtility;
+import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,6 +33,7 @@ import java.util.regex.Pattern;
  * @author Andre Greiner-Petter
  */
 public class MacroDerivativesTranslator extends MacroTranslator {
+    private static final Logger LOG = LogManager.getLogger(MacroDerivativesTranslator.class.getName());
 
     private TranslatedExpression translatedInAdvance;
 
@@ -132,7 +140,7 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         PomTaggedExpression next = followingExps.get(0);
         if ( !next.isEmpty() ) {
             // nothing special, just go ahead and parse it as usual
-            return parseArguments(followingExps, info, this);
+            return parseArguments(followingExps, info);
         }
 
         // first, get rid of the empty element
@@ -199,44 +207,134 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         holder.setDifferentiation(diff);
     }
 
-    public String extractVariableOfDiff(PomTaggedExpression exp) {
-        while (!exp.isEmpty()) { // look for a macro term in the expression and infer variable of diff based on that
-            if (exp.getTag() != null && exp.getTag().equals(ExpressionTags.sequence.tag())) {
-                for (PomTaggedExpression expression : exp.getComponents()) {
-                    if (isDLMFMacro(expression.getRoot())) {
-                        exp = expression;
-                    }
-                }
+    public String extractVariableOfDifferentiation(List<PomTaggedExpression> arguments) {
+        Set<String> variableCandidates = null;
+        for ( PomTaggedExpression exp : arguments ) {
+            Set<String> set = extractVariableOfDiff(exp);
+            if ( variableCandidates == null ) {
+                variableCandidates = set;
+                continue;
             }
-            if (isDLMFMacro(exp.getRoot())) { // found macro term
-                FeatureSet fset = exp.getRoot().getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
-                // get variable of differentiation from variable used in dlmf expression of macro
-                String dlmf_expression = DLMFFeatureValues.DLMF.getFeatureValue(fset, CAS);
-                int args = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset, CAS));
-                int slot;
-                try {
-                    slot = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset, CAS));
-                } catch (NumberFormatException e) {
-                    throw throwSlotError();
-                }
-                String arg_extractor_single = "\\{([^{}]*)}";
-                Pattern arg_extractor_pattern = // capture all arguments of dlmf expression
-                        Pattern.compile(
-                                "@" + arg_extractor_single.repeat(Math.max(0, args)) // capture all arguments of dlmf expression
-                        );
-                Matcher m = arg_extractor_pattern.matcher(dlmf_expression);
-                if (m.find()) {
-                    return m.group(slot); // extract argument that matches slot
-                } else {
-                    throw throwMacroException("Unable to extract argument from " + dlmf_expression);
-                }
-            } else {
-                exp = exp.getNextSibling();
+
+            if ( variableCandidates.isEmpty() ) {
+                throw throwMacroException("Unable to extract variable of differentiation");
             }
+
+            variableCandidates.retainAll(set);
         }
 
-        return null;
+        if ( variableCandidates == null || variableCandidates.size() != 1 )
+            throw throwMacroException("Unable to extract unique variable of differentiation. Found: " + variableCandidates);
+
+        return variableCandidates.stream().findFirst().get();
     }
+
+    private Set<String> extractVariableOfDiff(List<PomTaggedExpression> expressions) {
+        Set<String> variableCandidates = new HashSet<>();
+        for ( int i = 0; i < expressions.size(); i++ ) {
+            PomTaggedExpression p = expressions.get(i);
+            MathTerm mt = p.getRoot();
+
+            if ( isDLMFMacro(mt) ) {
+                FeatureSet fset = mt.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
+                Integer slot;
+                Integer numberOfVariables;
+                try {
+                    slot = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset, CAS));
+                    numberOfVariables = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset, CAS));
+                } catch (NumberFormatException e) {
+                    LOG.warn("No slot of differentiation found for " + mt.getTermText() + ", assuming its 1.");
+                    slot = 1;
+                    numberOfVariables = 1;
+                }
+
+                try {
+                    i = skipAllAts(expressions, i);
+                    int idx = i + slot - 1; // the slot is 1 not 0, so we must add -1
+                    variableCandidates.addAll(extractVariableOfDiff(expressions.get(idx)));
+                    i = i + numberOfVariables;
+                } catch (IndexOutOfBoundsException e) {
+                    throw throwMacroException("Unable to find @ after a DLMF macro. That is invalid syntax");
+                }
+            } else {
+                variableCandidates.addAll(extractVariableOfDiff(p));
+            }
+
+        }
+        return variableCandidates;
+    }
+
+    private int skipAllAts(List<PomTaggedExpression> list, int startIdx) {
+        boolean passedAtYet = false;
+        for ( int i = startIdx; i < list.size(); i++ ) {
+            PomTaggedExpression tmp = list.get(i);
+            boolean isAt = MathTermUtility.equals(tmp.getRoot(), MathTermTags.at);
+            if ( isAt && !passedAtYet ) passedAtYet = true;
+            else if ( !isAt && passedAtYet ) {
+                // so passed ats and thats the first that is not an at... we found it
+                return i;
+            }
+        }
+        throw new IndexOutOfBoundsException();
+    }
+
+    private Set<String> extractVariableOfDiff(PomTaggedExpression exp) {
+        if (PomTaggedExpressionUtility.isSequence(exp)) {
+            return extractVariableOfDiff(exp.getComponents());
+        }
+
+        // ok in this case, its a single expression
+        // now we have the good old identifier problem.
+        MathTermTags tag = MathTermTags.getTagByExpression(exp);
+        Set<String> set = new HashSet<>();
+        switch (tag) {
+            case alphanumeric:
+            case special_math_letter:
+            case symbol:
+            case letter:
+                set.add(exp.getRoot().getTermText());
+        }
+        return set;
+    }
+
+//    public String extractVariableOfDiff(PomTaggedExpression exp) {
+//        while (!exp.isEmpty()) { // look for a macro term in the expression and infer variable of diff based on that
+//            if (exp.getTag() != null && exp.getTag().equals(ExpressionTags.sequence.tag())) {
+//                for (PomTaggedExpression expression : exp.getComponents()) {
+//                    if (isDLMFMacro(expression.getRoot())) {
+//                        exp = expression;
+//                    }
+//                }
+//            }
+//            if (isDLMFMacro(exp.getRoot())) { // found macro term
+//                FeatureSet fset = exp.getRoot().getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
+//                // get variable of differentiation from variable used in dlmf expression of macro
+//                String dlmf_expression = DLMFFeatureValues.DLMF.getFeatureValue(fset, CAS);
+//                int args = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset, CAS));
+//                int slot;
+//                try {
+//                    slot = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset, CAS));
+//                } catch (NumberFormatException e) {
+//                    throw throwSlotError();
+//                }
+//                String arg_extractor_single = "\\{([^{}]*)}";
+//                Pattern arg_extractor_pattern = // capture all arguments of dlmf expression
+//                        Pattern.compile(
+//                                "@" + arg_extractor_single.repeat(Math.max(0, args)) // capture all arguments of dlmf expression
+//                        );
+//                Matcher m = arg_extractor_pattern.matcher(dlmf_expression);
+//                if (m.find()) {
+//                    return m.group(slot); // extract argument that matches slot
+//                } else {
+//                    throw throwMacroException("Unable to extract argument from " + dlmf_expression);
+//                }
+//            } else {
+//                exp = exp.getNextSibling();
+//            }
+//        }
+//
+//        return null;
+//    }
 
     /**
      * Checks weather the first element is a differentiation in lagrange notation. That means

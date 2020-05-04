@@ -4,16 +4,15 @@ import gov.nist.drmf.interpreter.cas.common.DLMFPatterns;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
-import gov.nist.drmf.interpreter.cas.translation.components.util.DerivativeAndPowerHolder;
-import gov.nist.drmf.interpreter.cas.translation.components.util.MacroInfoHolder;
-import gov.nist.drmf.interpreter.cas.translation.components.util.MacroMetaInformation;
-import gov.nist.drmf.interpreter.cas.translation.components.util.PatternFiller;
+import gov.nist.drmf.interpreter.cas.translation.components.util.*;
 import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
+import gov.nist.drmf.interpreter.mlp.MathTermUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -49,25 +48,21 @@ public class MacroTranslator extends AbstractListTranslator {
     private static final Pattern optional_params_pattern =
             Pattern.compile("\\s*\\[(.*)]\\s*\\*?\\s*");
 
-    private static final Pattern leibniz_notation_pattern =
-            Pattern.compile("\\s*\\(([^@]*)\\)\\s*");
+//    private static final Pattern leibniz_notation_pattern =
+//            Pattern.compile("\\s*\\(([^@]*)\\)\\s*");
 
-    private final String CAS;
+    private final String cas;
 
     private final TranslatedExpression localTranslations;
 
     private String macro;
 
-    private boolean isWronskian = false;
     private boolean isDeriv = false;
-
-    private List<PomTaggedExpression> tempArgList;
 
     public MacroTranslator(AbstractTranslator superTranslator) {
         super(superTranslator);
         this.localTranslations = new TranslatedExpression();
-        this.CAS = getConfig().getTO_LANGUAGE();
-        this.tempArgList = new LinkedList<>();
+        this.cas = getConfig().getTO_LANGUAGE();
     }
 
     @Override
@@ -83,12 +78,7 @@ public class MacroTranslator extends AbstractListTranslator {
                     TranslationExceptionReason.IMPLEMENTATION_ERROR);
         }
 
-        isWronskian = mt.getTermText().equals("\\Wronskian");
         isDeriv = mt.getTermText().matches(DLMFPatterns.DERIV_NOTATION);
-
-        if (isWronskian) {
-            splitComma(following);
-        }
         return parse(exp, following);
     }
 
@@ -106,65 +96,62 @@ public class MacroTranslator extends AbstractListTranslator {
      * 4) Arguments
      *
      * @param exp            the DLMF macro
-     * @param following_exps following expressions of the DLMF macro
+     * @param followingExps following expressions of the DLMF macro
      * @return true if the translation was successful, otherwise false
      */
-    private TranslatedExpression parse(PomTaggedExpression exp, List<PomTaggedExpression> following_exps) {
-        MathTerm macro_term = exp.getRoot();
-        this.macro = macro_term.getTermText();
+    private TranslatedExpression parse(PomTaggedExpression exp, List<PomTaggedExpression> followingExps) {
+        MathTerm macroTerm = exp.getRoot();
+        this.macro = macroTerm.getTermText();
 
         // ok first, get the feature set!
-        FeatureSet fset = macro_term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
-        MacroInfoHolder info = new MacroInfoHolder(this, fset, CAS, macro);
+        FeatureSet fset = macroTerm.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
+        MacroInfoHolder info = new MacroInfoHolder(this, fset, cas, macro);
 
         // first, lets check if this function has no arguments (single symbol)
-        if (info.getNumOfAts() + info.getNumOfVars() + info.getNumOfParams() == 0) {
-            // inform about the translation decision
-            super.getInfoLogger().addMacroInfo(
-                    macro_term.getTermText(),
-                    createFurtherInformation(info)
-            );
-
-            // just add the translated representation extracted from feature set
-            localTranslations.addTranslatedExpression(info.getTranslationPattern());
-            super.getGlobalTranslationList()
-                    .addTranslatedExpression(info.getTranslationPattern());
-
-            // done
-            return localTranslations;
+        if (info.hasNoArguments()) {
+            return parseNoArgumentMacro(info);
         }
 
         // now check for optional parameters, if any
-        LinkedList<String> optionalParas = parseOptionalParameters(following_exps);
-        int extractedOptParameter = optionalParas.size();
+        LinkedList<String> optionalParas = parseOptionalParameters(followingExps);
 
         // in case of optional arguments, we have to retrieve other information from the lexicons
-        if (extractedOptParameter > 0) {
-            fset = macro_term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + optionalParas.size());
-            info = new MacroInfoHolder(this, fset, CAS, macro_term.getTermText());
+        if (!optionalParas.isEmpty()) {
+            fset = macroTerm.getNamedFeatureSet(Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + optionalParas.size());
+            info = new MacroInfoHolder(this, fset, cas, macro);
         }
 
+        // until now, everything parsed was optional, start the general parsing process
+        return parse(followingExps, info, optionalParas);
+    }
+
+    /**
+     * The general parsing process, assumes optional parameters were parsed before and the information
+     * holder is final.
+     * @param followingExps the following expression
+     * @param info the information holder
+     * @param optionalParas the optional parameters (empty if there are non)
+     * @return the translated expression
+     */
+    private TranslatedExpression parse(
+            List<PomTaggedExpression> followingExps,
+            MacroInfoHolder info,
+            LinkedList<String> optionalParas
+    ) {
         // in case there are parameters, we parse them first
         // empty if none
-        LinkedList<String> parameters = parseParameters(following_exps, info.getNumOfParams());
+        LinkedList<String> parameters = parseParameters(followingExps, info.getTranslationInformation().getNumOfParams());
 
         // parse derivatives, lagrange notation or primes
         MacroDerivativesTranslator derivativesTranslator = new MacroDerivativesTranslator(this);
-        DerivativeAndPowerHolder diffPowerHolder = derivativesTranslator.parseDerivatives(following_exps, info);
+        DerivativeAndPowerHolder diffPowerHolder = derivativesTranslator.parseDerivatives(followingExps, info);
 
-        LinkedList<String> arguments;
-        if ( isWronskian ) arguments = parseArguments(tempArgList, info, derivativesTranslator);
-        else if ( isDeriv ) arguments = derivativesTranslator.parseDerivativeArguments(following_exps, info);
-        else arguments = parseArguments(following_exps, info, derivativesTranslator);
-
-        if ( isWronskian ) {
-            skipAts(following_exps);
-        }
+        LinkedList<String> arguments = handleAfterParameterComponents(followingExps, info, derivativesTranslator);
 
         // log information
-        String info_key = macro_term.getTermText();
-        if (extractedOptParameter != 0) {
-            info_key += extractedOptParameter;
+        String infoKey = macro;
+        if (!optionalParas.isEmpty()) {
+            infoKey += optionalParas.size();
         }
 
         PatternFiller patternFiller;
@@ -172,7 +159,7 @@ public class MacroTranslator extends AbstractListTranslator {
         try {
             patternFiller = new PatternFiller(info, diffPowerHolder, optionalParas);
         } catch (IndexOutOfBoundsException ioobe ) {
-            String errorMsg = "No slot of differentiation available for " + macro_term.getTermText() + ", " +
+            String errorMsg = "No slot of differentiation available for " + macro + ", " +
                     "but found differentiation notation " + diffPowerHolder.getDifferentiation();
             throw throwMacroException(errorMsg);
         }
@@ -183,7 +170,7 @@ public class MacroTranslator extends AbstractListTranslator {
         // adding this cached expression back to the start of the remaining
         // expressions
         if (diffPowerHolder.getMoveToEnd() != null) {
-            following_exps.add(0, diffPowerHolder.getMoveToEnd());
+            followingExps.add(0, diffPowerHolder.getMoveToEnd());
         }
 
         // finally fill the placeholders by values
@@ -194,7 +181,7 @@ public class MacroTranslator extends AbstractListTranslator {
 
         // put all information to the info log
         getInfoLogger().addMacroInfo(
-                info_key,
+                infoKey,
                 createFurtherInformation(info)
         );
 
@@ -212,38 +199,55 @@ public class MacroTranslator extends AbstractListTranslator {
         return localTranslations;
     }
 
+    private TranslatedExpression parseNoArgumentMacro(MacroInfoHolder macroInfo) {
+        // inform about the translation decision
+        super.getInfoLogger().addMacroInfo(
+                macroInfo.getMacro(),
+                createFurtherInformation(macroInfo)
+        );
+
+        MacroTranslationInformation info = macroInfo.getTranslationInformation();
+        // just add the translated representation extracted from feature set
+        localTranslations.addTranslatedExpression(info.getTranslationPattern());
+        super.getGlobalTranslationList()
+                .addTranslatedExpression(info.getTranslationPattern());
+
+        // done
+        return localTranslations;
+    }
+
     /**
      * This function checks if the very next arguments are
      * 1) optional parameters (indicated by [])
      * <p>
      * This function manipulates the argument in case of optional arguments or carets!
      *
-     * @param following_exps the expressions right after the macro itself
+     * @param followingExps the expressions right after the macro itself
      */
-    private LinkedList<String> parseOptionalParameters(List<PomTaggedExpression> following_exps) {
+    private LinkedList<String> parseOptionalParameters(List<PomTaggedExpression> followingExps) {
         LinkedList<String> optionalArguments = new LinkedList<>();
 
         // if the list is empty, we don't have to do something here
         // an error might be thrown later
-        if (following_exps.isEmpty()) {
+        if (followingExps.isEmpty()) {
             return optionalArguments;
         }
 
         // check for optional arguments
-        while (!following_exps.isEmpty()) {
-            PomTaggedExpression first = following_exps.get(0);
+        while (!followingExps.isEmpty()) {
+            PomTaggedExpression first = followingExps.get(0);
 
             // if the next one is empty expression, it cannot be a prime, or caret, or
             if (first.isEmpty()) {
                 break;
             }
-            MathTerm first_term = first.getRoot();
+            MathTerm firstTerm = first.getRoot();
 
-            if (first_term != null && !first_term.isEmpty()) {
-                MathTermTags tag = MathTermTags.getTagByKey(first_term.getTag());
+            if (firstTerm != null && !firstTerm.isEmpty()) {
+                MathTermTags tag = MathTermTags.getTagByKey(firstTerm.getTag());
 
                 if (tag.equals(MathTermTags.left_bracket)) {
-                    String optional = translateInnerExp(following_exps.remove(0), following_exps).toString();
+                    String optional = translateInnerExp(followingExps.remove(0), followingExps).toString();
                     Matcher m = optional_params_pattern.matcher(optional);
                     if (m.matches()) {
                         optionalArguments.add(m.group(1));
@@ -261,10 +265,10 @@ public class MacroTranslator extends AbstractListTranslator {
         return optionalArguments;
     }
 
-    private LinkedList<String> parseParameters(List<PomTaggedExpression> following_exps, int numberOfParameters) {
+    private LinkedList<String> parseParameters(List<PomTaggedExpression> followingExps, int numberOfParameters) {
         LinkedList<String> parameters = new LinkedList<>();
-        for (int i = 0; i < numberOfParameters; i++) {
-            PomTaggedExpression exp = following_exps.remove(0);
+        for (int i = 0; i < numberOfParameters && !followingExps.isEmpty(); i++) {
+            PomTaggedExpression exp = followingExps.remove(0);
 
             // check if that's valid notation
             MathTerm mt = exp.getRoot();
@@ -279,99 +283,78 @@ public class MacroTranslator extends AbstractListTranslator {
             }
 
             // ok, everything's valid, lets move on
-            String translatedPara = translateInnerExp(exp, following_exps).toString();
+            String translatedPara = translateInnerExp(exp, followingExps).toString();
             parameters.addLast(translatedPara);
         }
 
         return parameters;
     }
 
+    private LinkedList<String> handleAfterParameterComponents(
+            List<PomTaggedExpression> followingExps,
+            MacroInfoHolder info,
+            MacroDerivativesTranslator derivativesTranslator
+    ) {
+        // in case of derivatives, they come prior to the @ symbols and arguments
+        if ( isDeriv ) {
+            return derivativesTranslator.parseDerivativeArguments(followingExps, info);
+        }
+
+        skipAts(followingExps, info);
+
+        if ( info.isWronskian() ) {
+            // in the case of wronskian, there is only one argument following (must be a sequence)
+            PomTaggedExpression wronskianComponent = followingExps.remove(0);
+            followingExps = splitSequenceAtComma(wronskianComponent);
+            String derivVariable = derivativesTranslator.extractVariableOfDifferentiation(followingExps);
+            info.setVariableOfDifferentiation(derivVariable);
+        }
+
+        return parseArguments(followingExps, info);
+    }
+
     /**
      * Parses the argument of of the semantic macro
-     * @param following_exps .
+     * @param followingExps .
      * @param holder .
      * @return .
      */
     protected LinkedList<String> parseArguments(
-            List<PomTaggedExpression> following_exps,
-            MacroInfoHolder holder,
-            MacroDerivativesTranslator derivativesTranslator
+            List<PomTaggedExpression> followingExps,
+            MacroInfoHolder holder
     ) {
         LinkedList<String> arguments = new LinkedList<>();
 
-        boolean passAts = false;
-        boolean printedInfo = false;
-        int atCounter = 0;
-
-        for (int i = 0; !following_exps.isEmpty() && i < holder.getNumOfVars(); i++) {
+        for (int i = 0; !followingExps.isEmpty() && i < holder.getTranslationInformation().getNumOfVars(); i++) {
             // get first expression
-            PomTaggedExpression exp = following_exps.remove(0);
-
-            // TODO well
-            if ( isWronskian ) {
-                String derivVar = derivativesTranslator.extractVariableOfDiff(exp);
-                holder.setVariableOfDifferentiation(derivVar);
-            }
-
-            if (!passAts && containsTerm(exp)) {
-                MathTerm term = exp.getRoot();
-                MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
-                if ( tag.equals(MathTermTags.at) ) {
-                    if ( atCounter > holder.getNumOfAts() && !printedInfo ) {
-                        LOG.warn("Too many @'s in macro. This may throw an exception in future releases.");
-                        printedInfo = true;
-                    }
-                    atCounter++;
-                    i--;
-                    continue;
-                }
-            }
-
-            String translation = translateInnerExp(exp, following_exps).toString();
+            PomTaggedExpression exp = followingExps.remove(0);
+            String translation = translateInnerExp(exp, followingExps).toString();
             arguments.addLast(translation);
-            passAts = true;
         }
 
         return arguments;
     }
 
-    // Works for 2 argument Wronskians, can be expanded to more arguments
-    private void splitComma(List<PomTaggedExpression> following) { // reads \Wronskian@{f1, f2} as if it were \Wronskian@{f1}{f2}
-        PomTaggedExpression sequence = following.remove(1); // first element is "@"
-        PomTaggedExpression firstHalf = new PomTaggedExpression();
-        firstHalf.setTag(ExpressionTags.sequence.tag());
-        PomTaggedExpression secondHalf = new PomTaggedExpression();
-        secondHalf.setTag(ExpressionTags.sequence.tag());
-        boolean passedComma = false;
-        for (PomTaggedExpression exp : sequence.getComponents()) {
-            MathTermTags tag = MathTermTags.getTagByKey(exp.getRoot().getTag());
-            if (tag != null && tag.equals(MathTermTags.comma)) {
-                passedComma = true;
-                continue;
-            }
-            (passedComma ? secondHalf : firstHalf).addComponent(exp);
-        }
-
-        tempArgList = new LinkedList<>();
-        tempArgList.add(firstHalf);
-        tempArgList.add(secondHalf);
-    }
-
-    private void skipAts(List<PomTaggedExpression> following_exps) {
+    /**
+     * Skips the leading @ symbols in {@param followingExps} and prints a warning
+     * if there are too many for the given macro.
+     * @param followingExps following expressions
+     * @param holder information holder
+     */
+    private void skipAts(List<PomTaggedExpression> followingExps, MacroInfoHolder holder) {
         // check for optional arguments
-        while (!following_exps.isEmpty()) {
-            PomTaggedExpression exp = following_exps.get(0);
-
-            // if the next element is neither @, ^ nor ', we can stop already.
-            if (exp.isEmpty()) return;
-
-            MathTerm first_term = exp.getRoot();
-            if (first_term != null && !first_term.isEmpty()) {
-                MathTermTags tag = MathTermTags.getTagByKey(first_term.getTag());
-                if ( tag.equals(MathTermTags.at) ) {
-                    following_exps.remove(0); // delete it from list
-                } else return;
-            }
+        int atCounter = 0;
+        boolean printedInfo = false;
+        while (!followingExps.isEmpty()) {
+            PomTaggedExpression exp = followingExps.get(0);
+            if (MathTermUtility.equals(exp.getRoot(), MathTermTags.at)) {
+                if (atCounter > holder.getTranslationInformation().getNumOfAts() && !printedInfo) {
+                    LOG.warn("Too many @'s in macro. This may throw an exception in future releases.");
+                    printedInfo = true;
+                }
+                atCounter++;
+                followingExps.remove(0);
+            } else return;
         }
     }
 
@@ -421,37 +404,38 @@ public class MacroTranslator extends AbstractListTranslator {
 
     private String createFurtherInformation(MacroInfoHolder info) {
         MacroMetaInformation metaInfo = info.getMetaInformation();
+        MacroTranslationInformation translationInfo = info.getTranslationInformation();
         String extraInformation = metaInfo.getMeaningDescriptionString();
 
         extraInformation += "; Example: " + metaInfo.getExample() + System.lineSeparator();
-        extraInformation += "Will be translated to: " + info.getTranslationPattern() + System.lineSeparator();
+        extraInformation += "Will be translated to: " + translationInfo.getTranslationPattern() + System.lineSeparator();
 
         if (!metaInfo.getCasComment().isEmpty()) {
             extraInformation += "Translation Information: " + metaInfo.getCasComment() + System.lineSeparator();
         }
 
-        if (!info.getConstraints().isEmpty()) {
-            extraInformation += "Constraints: " + info.getConstraints() + System.lineSeparator();
+        if (!translationInfo.getConstraints().isEmpty()) {
+            extraInformation += "Constraints: " + translationInfo.getConstraints() + System.lineSeparator();
         }
 
-        if (!info.getBranchCuts().isEmpty()) {
-            extraInformation += "Branch Cuts: " + info.getBranchCuts() + System.lineSeparator();
+        if (!translationInfo.getBranchCuts().isEmpty()) {
+            extraInformation += "Branch Cuts: " + translationInfo.getBranchCuts() + System.lineSeparator();
         }
 
-        if (!info.getCasBranchCuts().isEmpty()) {
-            extraInformation += CAS + " uses other branch cuts: " + info.getCasBranchCuts()
+        if (!translationInfo.getCasBranchCuts().isEmpty()) {
+            extraInformation += cas + " uses other branch cuts: " + translationInfo.getCasBranchCuts()
                     + System.lineSeparator();
         }
 
-        String TAB = getConfig().getTAB();
-        String tab = TAB.substring(0, TAB.length() - ("DLMF: ").length());
+        String generalTab = getConfig().getTAB();
+        String currTab = generalTab.substring(0, generalTab.length() - ("DLMF: ").length());
         extraInformation += "Relevant links to definitions:" + System.lineSeparator() +
-                "DLMF: " + tab + info.getDefDlmf() + System.lineSeparator();
-        tab = TAB.substring(0,
-                ((CAS + ": ").length() >= TAB.length() ?
-                        0 : (TAB.length() - (CAS + ": ").length()))
+                "DLMF: " + currTab + translationInfo.getDefDlmf() + System.lineSeparator();
+        currTab = generalTab.substring(0,
+                ((cas + ": ").length() >= generalTab.length() ?
+                        0 : (generalTab.length() - (cas + ": ").length()))
         );
-        extraInformation += CAS + ": " + tab + info.getDefCas();
+        extraInformation += cas + ": " + currTab + translationInfo.getDefCas();
         return extraInformation;
     }
 
