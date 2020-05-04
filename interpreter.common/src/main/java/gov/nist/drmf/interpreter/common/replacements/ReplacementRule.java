@@ -56,9 +56,10 @@ public class ReplacementRule {
         for ( int i = 1; i <= this.groups; i++ ) {
             String insert = m.group(i);
             if ( insert.equals("\\") ) {
-                repl = repl.replaceAll("\\$"+i, "\\\\");
+                repl = repl.replace("$"+i, "\\");
             } else {
-                repl = repl.replaceAll("\\$"+i, m.group(i));
+                insert = insert.replace("\\", "\\\\");
+                repl = repl.replace("$"+i, insert);
             }
         }
         return repl;

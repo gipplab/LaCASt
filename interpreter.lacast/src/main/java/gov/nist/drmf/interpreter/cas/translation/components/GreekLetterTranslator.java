@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
+import gov.nist.drmf.interpreter.mlp.MathTermUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -35,8 +36,9 @@ public class GreekLetterTranslator extends AbstractTranslator {
     public TranslatedExpression translate(PomTaggedExpression expression) {
         MathTerm term = expression.getRoot();
 
-        if ( !FeatureSetUtility.isGreekLetter(term) ) {
-            throw buildExceptionObj(
+        if ( !MathTermUtility.isGreekLetter(term) ) {
+            throw TranslationException.buildExceptionObj(
+                    this,
                     "GreekLetterTranslator only translate greek letters but was called for: " + term.getTermText(),
                     TranslationExceptionReason.IMPLEMENTATION_ERROR,
                     term
@@ -72,7 +74,9 @@ public class GreekLetterTranslator extends AbstractTranslator {
 
         // still null? inform the user, we cannot do more here
         if (translated_letter == null) {
-            throw buildExceptionObj("Cannot translate Greek letter " + GreekLetter,
+            throw TranslationException.buildExceptionObj(
+                    this,
+                    "Cannot translate Greek letter " + GreekLetter,
                     TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
                     GreekLetter);
         }

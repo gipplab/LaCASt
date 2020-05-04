@@ -46,7 +46,7 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
 
         // no tag shouldn't happen
         if ( expTag == null ) {
-            throw buildException("Empty expression tag",
+            throw TranslationException.buildException(this, "Empty expression tag",
                     TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
         }
 
@@ -84,8 +84,11 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
             case denominator:
             case equation:
             default:
-                throw buildException("Reached unknown or not yet supported expression tag: " + expression.getTag(),
-                        TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
+                throw TranslationException.buildException(
+                        this,
+                        "Reached unknown or not yet supported expression tag: " + expression.getTag(),
+                        TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT
+                );
         }
 
         return localTranslations;

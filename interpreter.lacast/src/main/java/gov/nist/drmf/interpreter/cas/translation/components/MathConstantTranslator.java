@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
@@ -45,7 +46,8 @@ public class MathConstantTranslator extends AbstractTranslator {
                 );
 
         if ( constantSet == null ) {
-            throw buildExceptionObj(
+            throw TranslationException.buildExceptionObj(
+                    this,
                     "MathConstantTranslator require the existence of the role 'constant'",
                     TranslationExceptionReason.IMPLEMENTATION_ERROR,
                     term
@@ -94,7 +96,8 @@ public class MathConstantTranslator extends AbstractTranslator {
 
         // still null? try to translate it as a Greek letter than if possible
         if ( !tryGreekLetterTranslation(exp, set, constant) ) {
-            throw buildExceptionObj("Unable to translate constant " +
+            throw TranslationException.buildExceptionObj(
+                    this, "Unable to translate constant " +
                             constant + " - " + set.getFeature(Keys.FEATURE_MEANINGS),
                     TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
                     constant);
@@ -131,8 +134,7 @@ public class MathConstantTranslator extends AbstractTranslator {
                 LOG.debug("Indeed a greek letter, inform user and translate as greek letter.");
                 getInfoLogger().addGeneralInfo(
                         constant,
-                        "Unable to translate " + constant + " [" +
-                                DLMFFeatureValues.meaning.getFeatureValue(set, CAS) +
+                        "Unable to translate " + constant + " [" + DLMFFeatureValues.meaning.getFeatureValue(set, CAS) +
                                 "]. But since it is a Greek letter we translated it to a Greek letter in "
                                 + CAS + "."
                 );
@@ -140,10 +142,10 @@ public class MathConstantTranslator extends AbstractTranslator {
                 localTranslations = glt.translate(exp);
                 return true;
             } else {
-                throw buildExceptionObj("Cannot translate mathematical constant " +
-                                constant + " - " + set.getFeature(Keys.FEATURE_MEANINGS),
-                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
-                        constant);
+                throw TranslationException.buildExceptionObj(this,
+                        "Cannot translate mathematical constant " + constant + " - " +
+                                set.getFeature(Keys.FEATURE_MEANINGS),
+                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION, constant);
             }
         } catch (NullPointerException npe) {
             return false;

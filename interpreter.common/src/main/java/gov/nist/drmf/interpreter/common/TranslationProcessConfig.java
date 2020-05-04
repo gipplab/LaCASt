@@ -27,9 +27,13 @@ public class TranslationProcessConfig {
         this.TO_LANGUAGE        = to_language;
 
         greekLettersTranslator  = new GreekLetters(from_language, to_language);
-        constantsTranslator     = new Constants(Keys.KEY_DLMF, to_language);
         basicFunctionsTranslator= new BasicFunctionsTranslator(to_language);
         symbolTranslator        = new SymbolTranslator(from_language, to_language);
+
+        // constant translator is called via DLMF rather than LaTeX
+        if ( from_language.equals(Keys.KEY_LATEX) ) from_language = Keys.KEY_DLMF;
+        if ( to_language.equals(Keys.KEY_LATEX) ) to_language = Keys.KEY_DLMF;
+        constantsTranslator     = new Constants(from_language, to_language);
     }
 
     public void init() throws IOException {

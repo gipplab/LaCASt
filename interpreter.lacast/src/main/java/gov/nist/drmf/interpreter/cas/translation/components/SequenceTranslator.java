@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
@@ -137,7 +138,8 @@ public class SequenceTranslator extends AbstractListTranslator {
     @Override
     public TranslatedExpression translate(PomTaggedExpression expression) {
         if (!ExpressionTags.sequence.tag().matches(expression.getTag())) {
-            throw buildException("You used the wrong translation method. " +
+            throw TranslationException.buildException(this,
+                    "You used the wrong translation method. " +
                             "The given expression is not a sequence! " +
                             expression.getTag(),
                     TranslationExceptionReason.IMPLEMENTATION_ERROR
@@ -202,7 +204,7 @@ public class SequenceTranslator extends AbstractListTranslator {
      */
     public TranslatedExpression translate(List<PomTaggedExpression> following_exp) {
         if (openBracket == null) {
-            throw buildException("Wrong translation method used. " +
+            throw TranslationException.buildException(this, "Wrong translation method used. " +
                             "You have to specify an open bracket to translate it like a sequence.",
                     TranslationExceptionReason.IMPLEMENTATION_ERROR
             );
@@ -275,7 +277,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                     global.addTranslatedExpression(seq);
                     return localTranslations;
                 } else { // otherwise there was an error in the bracket arrangements
-                    throw buildException("Bracket-Error: open bracket "
+                    throw TranslationException.buildException(this, "Bracket-Error: open bracket "
                                     + openBracket.symbol
                                     + " reached " + bracket.symbol,
                             TranslationExceptionReason.WRONG_PARENTHESIS);
@@ -306,7 +308,8 @@ public class SequenceTranslator extends AbstractListTranslator {
         }
 
         // this should not happen. It means the algorithm reached the end but a bracket is left open.
-        throw buildException("Reached the end of sequence but a bracket is left open: " +
+        throw TranslationException.buildException(this,
+                "Reached the end of sequence but a bracket is left open: " +
                         openBracket.symbol,
                 TranslationExceptionReason.WRONG_PARENTHESIS);
     }

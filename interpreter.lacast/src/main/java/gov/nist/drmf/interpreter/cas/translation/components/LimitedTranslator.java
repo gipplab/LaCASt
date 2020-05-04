@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.cas.blueprints.Limits;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
@@ -55,14 +56,14 @@ public class LimitedTranslator extends AbstractListTranslator {
     @Override
     public TranslatedExpression translate(PomTaggedExpression exp, List<PomTaggedExpression> list){
         if (list.isEmpty()) {
-            throw buildException("Limited expression in the end are illegal!",
+            throw TranslationException.buildException(this, "Limited expression in the end are illegal!",
                     TranslationExceptionReason.INVALID_LATEX_INPUT);
         }
 
         MathTerm root = exp.getRoot();
         LimitedExpressions category = LimitedExpressions.getExpression(root);
         if ( category == null ) {
-            throw buildExceptionObj("Unsupported limited expressions." + root.getTermText(),
+            throw TranslationException.buildExceptionObj(this, "Unsupported limited expressions." + root.getTermText(),
                     TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
                     root.getTermText());
         }
@@ -275,7 +276,8 @@ public class LimitedTranslator extends AbstractListTranslator {
             MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
             if ( !tag.equals(MathTermTags.underscore) ) {
                 if ( allowIndefinite ) return null;
-                else throw parentTranslator.buildException(
+                else throw TranslationException.buildException(
+                        parentTranslator,
                         "Illegal expression followed a limited expression: " + term.getTermText(),
                         TranslationExceptionReason.INVALID_LATEX_INPUT);
             }
@@ -296,7 +298,7 @@ public class LimitedTranslator extends AbstractListTranslator {
                 }
             } else {
                 if ( allowIndefinite ) return null;
-                else throw parentTranslator.buildException(
+                else throw TranslationException.buildException( parentTranslator,
                         "A limited expression without limits is not allowed: " + term.getTermText(),
                         TranslationExceptionReason.INVALID_LATEX_INPUT);
             }
@@ -327,7 +329,7 @@ public class LimitedTranslator extends AbstractListTranslator {
 
         // the very next element is always(!) part of the argument
         if ( list.isEmpty() ) {
-            throw abstractTranslator.buildException( "A limited expression ends with no argument left.",
+            throw TranslationException.buildException( abstractTranslator, "A limited expression ends with no argument left.",
                     TranslationExceptionReason.INVALID_LATEX_INPUT);
         }
 
@@ -337,7 +339,8 @@ public class LimitedTranslator extends AbstractListTranslator {
         // first element could be a parenthesis also... than take all elements until this parenthesis is closed
         Brackets bracket = SequenceTranslator.ifIsBracketTransform(first.getRoot(), null);
         if ( bracket != null ) {
-            if ( !bracket.opened ) throw abstractTranslator.buildException(
+            if ( !bracket.opened ) throw TranslationException.buildException(
+                    abstractTranslator,
                     "Empty arguments for limited expressions are invalid math.",
                     TranslationExceptionReason.INVALID_LATEX_INPUT);
             parenthesisCache.addLast(bracket);
@@ -376,7 +379,8 @@ public class LimitedTranslator extends AbstractListTranslator {
                             // in case the bracket closes a previously opened bracket, update cache
                             parenthesisCache.removeLast();
                         } else { // well, that's an illegal situation, parentheses does not match
-                            throw abstractTranslator.buildException(
+                            throw TranslationException.buildException(
+                                    abstractTranslator,
                                     "Open and close parentheses does not match!",
                                     TranslationExceptionReason.WRONG_PARENTHESIS);
                         }

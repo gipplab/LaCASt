@@ -58,7 +58,7 @@ public enum Products implements ForwardTestCase {
     DLMF_SIMPLE( //4.22.2
             "\\prod_{n=1}^\\infty \\left( 1 - \\frac{4z^2}{(2n - 1)^2 \\pi^2} \\right)",
             "product(1 -(4*(z)^(2))/((2*n - 1)^(2)* (pi)^(2)), n = 1..infinity)",
-            "Product[1 -Divide[4*(z)^(2),(2*n - 1)^(2)*(\\[Pi])^(2)], {n, 1, Infinity}]"
+            "Product[1 -Divide[4*(z)^(2),(2*n - 1)^(2)*\\[Pi]^(2)], {n, 1, Infinity}]"
     ),
     @DLMF("27.4.1")
     DLMF_PROD_SUM( //27.4.1

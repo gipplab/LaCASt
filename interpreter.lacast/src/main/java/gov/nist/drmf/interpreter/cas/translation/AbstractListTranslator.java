@@ -1,12 +1,14 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
-import gov.nist.drmf.interpreter.cas.translation.components.MathTermTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.mlp.MathTermUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
@@ -17,8 +19,6 @@ import java.util.regex.Matcher;
 import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.PATTERN_BASIC_OPERATIONS;
 
 /**
- * TODO
- *
  * @author Andre Greiner-Petter
  */
 public abstract class AbstractListTranslator extends AbstractTranslator {
@@ -34,8 +34,11 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
      */
     @Override
     public TranslatedExpression translate(PomTaggedExpression exp) {
-        throw buildException("List translators need the following arguments to translate them correctly.",
-                TranslationExceptionReason.IMPLEMENTATION_ERROR);
+        throw TranslationException.buildException(
+                this,
+                "List translators need the following arguments to translate them correctly.",
+                TranslationExceptionReason.IMPLEMENTATION_ERROR
+        );
     }
 
     /**
@@ -210,5 +213,47 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
 
     private static boolean stop(String expr, int idx, int open) {
         return open == 0 && idx < expr.length()-1;
+    }
+
+    /**
+     * This method splits the sequence at commas.
+     * The returned list is a list of sequences. In other words, this methods
+     * transforms an expression like this
+     *  {a, b, c+d}
+     * into a list of sequences like this
+     *  {a}, {b}, {c+d}
+     *
+     * @param sequenceWithCommas a {@link PomTaggedExpression} sequence (primary tag is sequence)
+     * @return a list of sequences of the elements of the input list
+     * @throws TranslationException if the given argument is not a sequence
+     */
+    public List<PomTaggedExpression> splitSequenceAtComma(PomTaggedExpression sequenceWithCommas)
+            throws TranslationException {
+        ExpressionTags tag = ExpressionTags.getTagByKey(sequenceWithCommas.getTag());
+        if ( !ExpressionTags.sequence.equals(tag) ) {
+            throw TranslationException.buildException(
+                    this,
+                    "Split at comma requires a sequence of arguments.",
+                    TranslationExceptionReason.IMPLEMENTATION_ERROR
+            );
+        }
+
+        LinkedList<PomTaggedExpression> args = new LinkedList<>();
+        PomTaggedExpression seq = FakeMLPGenerator.generateEmptySequencePTE();
+
+        for ( PomTaggedExpression p : sequenceWithCommas.getComponents() ) {
+            if (MathTermUtility.equals(p.getRoot(), MathTermTags.comma) && !seq.getComponents().isEmpty()) {
+                args.addLast(seq);
+                seq = FakeMLPGenerator.generateEmptySequencePTE();
+                continue;
+            }
+            seq.addComponent(p);
+        }
+
+        if ( !seq.getComponents().isEmpty() ) {
+            args.addLast(seq);
+        }
+
+        return args;
     }
 }

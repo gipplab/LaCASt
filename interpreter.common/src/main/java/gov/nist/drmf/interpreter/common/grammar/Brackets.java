@@ -4,6 +4,8 @@ import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -195,18 +197,20 @@ public enum Brackets {
      * The symbols and counter symbols are stored here.
      */
     private enum CLOSE_BRACKETS {
-        right_parenthesis(")", "("),
-        right_brackets("]", "["),
-        right_braces("}", "{"),
-        right_angle_brackets(">", "<"),
-        right_vbar("|", "|");
+        right_parenthesis(OPEN_BRACKETS.left_parenthesis),
+        right_brackets(OPEN_BRACKETS.left_brackets),
+        right_braces(OPEN_BRACKETS.left_braces),
+        right_angle_brackets(OPEN_BRACKETS.left_angle_brackets),
+        right_vbar(OPEN_BRACKETS.left_vbar);
 
+        final OPEN_BRACKETS ob;
         final String s;
         final String counter;
 
-        CLOSE_BRACKETS(String s, String counter) {
-            this.s = s;
-            this.counter = counter;
+        CLOSE_BRACKETS(OPEN_BRACKETS ob) {
+            this.ob = ob;
+            this.s = ob.counter;
+            this.counter = ob.s;
         }
     }
 
@@ -219,12 +223,14 @@ public enum Brackets {
     /**
      * Patterns for open brackets and closed brackets
      */
-    public static final String OPEN_PATTERN = "[\\(\\[\\{|]";
-    public static final String CLOSED_PATTERN = "[\\)\\]\\}|]";
+    public static final String OPEN_PATTERN = "(?:\\\\|\\\\left)?[\\(\\[\\{|]";
+    public static final String CLOSED_PATTERN = "(?:\\\\|\\\\right)?[\\)\\]\\}|]";
 
     public static final Pattern PARENTHESES_PATTERN = Pattern.compile(
             "^\\s*(?:\\\\left)?[{(\\[|](.*)(?:\\\\right)?[|\\])}]\\s*$"
     );
+
+    private static final Pattern ANY_PATTERN = Pattern.compile("(\\\\?(?:left|right)?[({<\\[|\\]>})])");
 
     /**
      * Each bracket is open or closed and has a symbol and its counterpart symbol
@@ -257,8 +263,14 @@ public enum Brackets {
         HOLDER.key_map.put(symbol, this);
     }
 
+    /**
+     * Cuts of leading \left, \right or \ if existing. For example,
+     *  \left( returns (
+     *  \[ returns [
+     * @return the atomic bracket symbol
+     */
     public String getAppropriateString() {
-        if (symbol.matches("\\\\(left|right).*"))
+        if (symbol.matches("\\\\(left|right)?.*"))
             return symbol.substring(symbol.length() - 1);
         else return symbol;
     }
@@ -290,20 +302,94 @@ public enum Brackets {
 
     /**
      * Returns the bracket corresponding to the given string representation of a bracket
-     *
      * @param bracket string of (, [, {, <, ), ], } or >
      * @return the enum object
      */
     public static Brackets getBracket(String bracket) {
         bracket = bracket.replaceAll("\\s", "");
+        if ( bracket.length() == 2 && bracket.charAt(0) == '\\' ) bracket = bracket.substring(1);
         return HOLDER.key_map.get(bracket);
     }
 
+    /**
+     * Returns the bracket corresponding to the given string representation of a bracket
+     * @param mt the math term of a bracket
+     * @return the enum object or null if the given element is no bracket
+     */
     public static Brackets getBracket(MathTerm mt) {
         return getBracket(mt.getTermText());
     }
 
+    /**
+     * Returns the bracket corresponding to the given string representation of a bracket
+     * @param pte the node of a bracket
+     * @return the enum object or null if the given element is no bracket
+     */
     public static Brackets getBracket(PomTaggedExpression pte) {
         return getBracket(pte.getRoot());
+    }
+
+    /**
+     * Simple test if the given string is wrapped by parenthesis.
+     * It only returns true if there is an open bracket at start and
+     * at the end AND the first open one is really closed in the end.
+     * Something like (1)/(2) would return false.
+     *
+     * @param str with or without brackets
+     * @return false if there are no brackets
+     */
+    public static boolean isEnclosedByBrackets(String str) {
+        String tmp = str.trim();
+        if (!tmp.matches(OPEN_PATTERN + ".*" + CLOSED_PATTERN)) {
+            return false;
+        }
+
+        LinkedList<Brackets> openList = new LinkedList<>();
+        Matcher matcher = ANY_PATTERN.matcher(str);
+        boolean initialHit = true;
+
+        while( matcher.find() ) {
+            String symbol = matcher.group(1);
+            if ( !updateBracketList(initialHit, openList, symbol) ) return false;
+            initialHit = false;
+        }
+
+        return openList.isEmpty() && !initialHit;
+    }
+
+    /**
+     * Updates the given bracket list and returns true if everything is still valid
+     * @param bracketStack stack of brackets
+     * @param symbol current symbol
+     * @return true if there were no mismatch or invalid bracket situation
+     */
+    private static boolean updateBracketList(boolean initialHit, LinkedList<Brackets> bracketStack, String symbol) {
+        if ( !initialHit && bracketStack.isEmpty() ) return false;
+        Brackets bracket = getBracket(symbol);
+
+        if ( bracket == null ) return true;
+
+        if (bracket.opened) {
+            bracketStack.addLast(bracket);
+            return true;
+        } else {
+            return checkClosedBracket(bracketStack, bracket);
+        }
+    }
+
+    /**
+     * Checks if the current bracket closes the previous open bracket (from bracketStack).
+     * @param bracketStack the stack of opened brackets
+     * @param currentBracket the current bracket to check
+     * @return true if the current brackets closed the previous bracket on stock, otherwise false
+     */
+    private static boolean checkClosedBracket(LinkedList<Brackets> bracketStack, Brackets currentBracket) {
+        Brackets last = bracketStack.getLast();
+        if (last.counterpart.equals(currentBracket.symbol)) {
+            bracketStack.removeLast();
+            return true;
+        } else {
+            return false;
+        }
     }
 }

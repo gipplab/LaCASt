@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.common.exceptions;
 
+import gov.nist.drmf.interpreter.common.interfaces.ITranslatorComponent;
+
 /**
  * Created by AndreG-P on 03.03.2017.
  */
@@ -52,5 +54,49 @@ public class TranslationException extends RuntimeException {
         out += ": " + getLocalizedMessage();
         out += reason_Obj != null ? " [" + reason_Obj + "]" : "";
         return out;
+    }
+
+    public static TranslationException buildExceptionObj(
+            ITranslatorComponent translator,
+            String message,
+            TranslationExceptionReason reason,
+            Object obj
+    ) {
+        TranslationException te = new TranslationException(
+                translator.getSourceLanguage(),
+                translator.getTargetLanguage(),
+                message,
+                reason
+        );
+        te.setReasonObj(obj);
+        return te;
+    }
+
+    public static TranslationException buildException(
+            ITranslatorComponent translator,
+            String message,
+            TranslationExceptionReason reason
+    ) {
+        return new TranslationException(
+                translator.getSourceLanguage(),
+                translator.getTargetLanguage(),
+                message,
+                reason
+        );
+    }
+
+    public static TranslationException buildException(
+            ITranslatorComponent translator,
+            String message,
+            TranslationExceptionReason reason,
+            Throwable throwable
+    ) {
+        return new TranslationException(
+                translator.getSourceLanguage(),
+                translator.getTargetLanguage(),
+                message,
+                reason,
+                throwable
+        );
     }
 }

@@ -2,10 +2,7 @@ package gov.nist.drmf.interpreter.cas.blueprints;
 
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
-import gov.nist.drmf.interpreter.mlp.MLPWrapper;
-import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
-import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
-import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
+import gov.nist.drmf.interpreter.mlp.*;
 import mlp.MathTerm;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
@@ -84,7 +81,7 @@ public class BlueprintLimitTree {
             return new BlueprintLimitNode(this, kids, blueprint);
         } else { // term is a single node!
             String tag = term.getTag();
-            if (FeatureSetUtility.isGreekLetter(term)) {
+            if (MathTermUtility.isGreekLetter(term)) {
                 tag = BlueprintLimitNode.GREEK_TAG;
             }
 

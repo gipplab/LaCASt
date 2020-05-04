@@ -23,5 +23,4 @@ public interface IForwardTranslator extends ITranslatorComponent<PomTaggedExpres
         if ( getTranslatedExpressionObject() == null ) return "";
         else return getTranslatedExpressionObject().getTranslatedExpression();
     }
-
 }

@@ -5,11 +5,13 @@ import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -252,10 +254,20 @@ class SimpleTranslationTests {
     }
 
     @Test
+    @DLMF("14.2.3")
     void wronksianTest() {
         String in = "\\Wronskian\\left\\{\\FerrersP[-\\mu]{\\nu}@{x},\\FerrersP[-\\mu]{\\nu}@{-x}\\right\\}";
         String expect = "(LegendreP(nu, - mu, x))*diff(LegendreP(nu, - mu, - x), x)-diff(LegendreP(nu, - mu, x), x)*(LegendreP(nu, - mu, - x))";
         String out = slt.translate(in);
+        assertEquals(expect, out);
+    }
+
+    @Test
+    @DLMF("9.2.9")
+    void wronksianComplexArgumentTest() {
+        String in = "\\Wronskian\\left\\{\\AiryAi@{z e^{-2\\pi \\tfrac{i}{3}}}, \\AiryAi@{z e^{2\\pi \\tfrac{i}{3}}}\\right\\}";
+        String expect = "(AiryAi(z*exp(- 2*Pi*(I)/(3))))*diff(AiryAi(z*exp(2*Pi*(I)/(3))), z)-diff(AiryAi(z*exp(- 2*Pi*(I)/(3))), z)*(AiryAi(z*exp(2*Pi*(I)/(3))))";
+        String out = slt.translate(in, "9.2.9");
         assertEquals(expect, out);
     }
 

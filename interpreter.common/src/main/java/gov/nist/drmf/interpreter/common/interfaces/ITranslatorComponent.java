@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.common.interfaces;
 
+import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 
 /**
@@ -26,4 +27,26 @@ public interface ITranslatorComponent<IN, OUT> {
      * @return string (might be empty)
      */
     String getTranslatedExpression();
+
+    /**
+     * @return the configuration of the translator
+     */
+    TranslationProcessConfig getConfig();
+
+    /**
+     * Returns the source language of the forward translator. Until we cracked the holy grail of MathIR,
+     * this always returns DLMF.
+     * @return the source language
+     */
+    default String getSourceLanguage() {
+        return getConfig().getFROM_LANGUAGE();
+    }
+
+    /**
+     * Returns the target language, e.g., Maple or Mathematica.
+     * @return the target language
+     */
+    default String getTargetLanguage() {
+        return getConfig().getTO_LANGUAGE();
+    }
 }
