@@ -112,4 +112,18 @@ public class MacroTranslationInformation {
     public String getCasBranchCuts() {
         return casBranchCuts;
     }
+
+    public void appendNonEssentialInfo(StringBuilder sb, String cas) {
+        if (!getConstraints().isEmpty()) {
+            sb.append("Constraints: ").append(getConstraints()).append(System.lineSeparator());
+        }
+
+        if (!getBranchCuts().isEmpty()) {
+            sb.append("Branch Cuts: ").append(getBranchCuts()).append(System.lineSeparator());
+        }
+
+        if (!getCasBranchCuts().isEmpty()) {
+            sb.append(cas).append(" uses other branch cuts: ").append(getCasBranchCuts()).append(System.lineSeparator());
+        }
+    }
 }

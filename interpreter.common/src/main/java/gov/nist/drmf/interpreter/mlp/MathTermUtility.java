@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.mlp;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.FeatureSet;
 import mlp.MathTerm;
@@ -36,8 +37,11 @@ public abstract class MathTermUtility {
      * @return true if the given term is a function
      */
     public static boolean isFunction( MathTerm term ){
-        FeatureSet set = getSetByFeatureValue(term, Keys.FEATURE_ROLE, MathTermTags.function.tag());
-        return set != null;
+        MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
+        if (tag == null) {
+            FeatureSet set = getSetByFeatureValue(term, Keys.FEATURE_ROLE, MathTermTags.function.tag());
+            return set != null;
+        } else return tag.equals(MathTermTags.function);
     }
 
     /**
@@ -50,5 +54,9 @@ public abstract class MathTermUtility {
         if ( term == null ) return false;
         MathTermTags t = MathTermTags.getTagByKey(term.getTag());
         return tag.equals(t);
+    }
+
+    public static boolean isSumOrProductOrLimit(MathTerm term) {
+        return LimitedExpressions.isLimitedExpression(term);
     }
 }
