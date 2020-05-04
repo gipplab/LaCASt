@@ -162,24 +162,8 @@ public class MacroDerivativesTranslator extends MacroTranslator {
 
         // otherwise! we have a problem similar to sums. When does the argument ends?
         // so lets follow sums approach
-        PomTaggedExpression variablePTE = followingExps.remove(0);
-        TranslatedExpression varTE = translateInnerExp(variablePTE, new LinkedList<>());
-
         LinkedList<String> vars = new LinkedList<>();
-        vars.add(varTE.toString());
-
-        List<PomTaggedExpression> potentialArgs = LimitedTranslator.getPotentialArgumentsUntilEndOfScope(
-                followingExps,
-                vars,
-                this
-        );
-
-        // the potential arguments is a theoretical sequence, so handle it as a sequence!
-        PomTaggedExpression topSeqPTE = FakeMLPGenerator.generateEmptySequencePTE();
-        for ( PomTaggedExpression pte : potentialArgs ) topSeqPTE.addComponent(pte);
-
-        SequenceTranslator p = new SequenceTranslator(getSuperTranslator());
-        TranslatedExpression translatedPotentialArguments = p.translate( topSeqPTE );
+        TranslatedExpression translatedPotentialArguments = getArgumentsBasedOnDiffVar(followingExps, vars);
 
         // clean up first
         getGlobalTranslationList().removeLastNExps(translatedPotentialArguments.getLength());
@@ -196,6 +180,28 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         args.add(transArgs.toString());
         args.add(vars.getFirst());
         return args;
+    }
+
+    private TranslatedExpression getArgumentsBasedOnDiffVar(List<PomTaggedExpression> followingExps, List<String> vars) {
+        // otherwise! we have a problem similar to sums. When does the argument ends?
+        // so lets follow sums approach
+        PomTaggedExpression variablePTE = followingExps.remove(0);
+        TranslatedExpression varTE = translateInnerExp(variablePTE, new LinkedList<>());
+
+        vars.add(varTE.toString());
+
+        List<PomTaggedExpression> potentialArgs = LimitedTranslator.getPotentialArgumentsUntilEndOfScope(
+                followingExps,
+                vars,
+                this
+        );
+
+        // the potential arguments is a theoretical sequence, so handle it as a sequence!
+        PomTaggedExpression topSeqPTE = FakeMLPGenerator.generateEmptySequencePTE();
+        for ( PomTaggedExpression pte : potentialArgs ) topSeqPTE.addComponent(pte);
+
+        SequenceTranslator p = new SequenceTranslator(getSuperTranslator());
+        return p.translate( topSeqPTE );
     }
 
     /**
@@ -222,25 +228,26 @@ public class MacroDerivativesTranslator extends MacroTranslator {
     }
 
     public String extractVariableOfDifferentiation(List<PomTaggedExpression> arguments) {
-        Set<String> variableCandidates = null;
-        for ( PomTaggedExpression exp : arguments ) {
-            Set<String> set = extractVariableOfDiff(exp);
-            if ( variableCandidates == null ) {
-                variableCandidates = set;
-                continue;
-            }
+        PomTaggedExpression exp = arguments.get(0);
+        Set<String> variableCandidates = new HashSet<>(extractVariableOfDiff(exp));
 
-            if ( variableCandidates.isEmpty() ) {
-                throw throwMacroException("Unable to extract variable of differentiation");
-            }
-
-            variableCandidates.retainAll(set);
+        for ( int i = 1; i < arguments.size(); i++ ) {
+            updateSetOfCandidates(arguments.get(i), variableCandidates);
         }
 
-        if ( variableCandidates == null || variableCandidates.size() != 1 )
+        if ( variableCandidates.size() != 1 )
             throw throwMacroException("Unable to extract unique variable of differentiation. Found: " + variableCandidates);
 
         return variableCandidates.stream().findFirst().get();
+    }
+
+    private void updateSetOfCandidates(PomTaggedExpression exp, Set<String> variableCandidates) {
+        if ( variableCandidates.isEmpty() ) {
+            throw throwMacroException("Unable to extract variable of differentiation");
+        }
+
+        Set<String> set = extractVariableOfDiff(exp);
+        variableCandidates.retainAll(set);
     }
 
     private Set<String> extractVariableOfDiff(List<PomTaggedExpression> expressions) {
