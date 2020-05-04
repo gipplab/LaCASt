@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.evaluation.constraints;
 
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import gov.nist.drmf.interpreter.mlp.MathTermUtility;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import mlp.MathTerm;
@@ -83,7 +84,7 @@ public class MLPBlueprintTree {
             return new MLPBlueprintNode(bt, kids);
         } else {
             // its a child / mathterm -> take it
-            if (FeatureSetUtility.isGreekLetter(term)) {
+            if (MathTermUtility.isGreekLetter(term)) {
                 return new MLPBlueprintNode(bt, term.getTermText(), MLPBlueprintNode.GREEK);
             } else {
                 String tag = term.getTag();

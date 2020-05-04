@@ -22,7 +22,7 @@ public class DLMFReplacementTest {
     void iePiTest() {
         String input = "1 + i + e + \\pi";
         String replaced = CONFIG.replace(input, "1.1#E1");
-        assertEquals("1 + \\iunit  + \\expe  + \\cpi", replaced);
+        assertEquals("1 + \\iunit + \\expe + \\cpi", replaced);
 
         replaced = CONFIG.replace(input, null);
         assertEquals(input, replaced);
@@ -32,7 +32,7 @@ public class DLMFReplacementTest {
     void iTest() {
         String input = "i^2";
         String replaced = CONFIG.replace(input, "1.2#E3");
-        assertEquals("\\iunit ^2", replaced);
+        assertEquals("\\iunit^2", replaced);
     }
 
     @Test
@@ -58,5 +58,13 @@ public class DLMFReplacementTest {
 
         replaced = CONFIG.replace(input, "9.13#E1");
         assertEquals(input, replaced);
+    }
+
+    @Test
+    @DLMF("9.2.9")
+    void wronskianReplacementTest() {
+        String input = "\\Wronskian\\left\\{\\AiryAi@{z e^{-2\\pi \\tfrac{i}{3}}}, \\AiryAi@{z e^{2\\pi \\tfrac{i}{3}}}\\right\\}";
+        String replaced = CONFIG.replace(input, "9.2.9");
+        assertEquals("\\Wronskian@{\\AiryAi@{z \\expe^{-2\\cpi \\tfrac{\\iunit}{3}}}, \\AiryAi@{z \\expe^{2\\cpi \\tfrac{\\iunit}{3}}}}", replaced);
     }
 }

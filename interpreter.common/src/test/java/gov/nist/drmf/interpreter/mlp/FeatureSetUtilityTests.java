@@ -82,26 +82,4 @@ public class FeatureSetUtilityTests {
         assertEquals( 1, featureSet.getFeature("Role").size() );
         assertEquals( "function", featureSet.getFeature("Role").first() );
     }
-
-    @Test
-    public void isGreekLetterTest() throws ParseException {
-        PrintablePomTaggedExpression pte = mlp.parse("pi \\pi");
-        List<PomTaggedExpression> components = pte.getComponents();
-        MathTerm first = components.get(0).getRoot();
-        MathTerm second = components.get(1).getRoot();
-        assertTrue( FeatureSetUtility.isGreekLetter(first) );
-        assertTrue( FeatureSetUtility.isGreekLetter(second) );
-    }
-
-    @Test
-    public void isFunctionTest() throws ParseException {
-        String test = "A \\cos";
-        PrintablePomTaggedExpression pte = mlp.parse(test);
-        List<PomTaggedExpression> components = pte.getComponents();
-        MathTerm first = components.get(0).getRoot();
-        MathTerm second = components.get(1).getRoot();
-        assertTrue( FeatureSetUtility.isFunction(first) );
-        assertFalse( FeatureSetUtility.isFunction(second),
-                "The semantic parser shall interpret cos as dlmf-macro not as a function" );
-    }
 }

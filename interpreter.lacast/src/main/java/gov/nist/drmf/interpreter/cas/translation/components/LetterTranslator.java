@@ -12,6 +12,7 @@ import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
+import gov.nist.drmf.interpreter.mlp.MathTermUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -224,7 +225,7 @@ public class LetterTranslator extends AbstractListTranslator {
 
     private TranslatedExpression tryParseGreekOrConstant(MathTerm term, FeatureSet constantSet) {
         // is it a Greek letter?
-        if (FeatureSetUtility.isGreekLetter(term)) {
+        if (MathTermUtility.isGreekLetter(term)) {
             // is this Greek letter also known constant?
             if (constantSet != null) {
                 // inform the user about our choices

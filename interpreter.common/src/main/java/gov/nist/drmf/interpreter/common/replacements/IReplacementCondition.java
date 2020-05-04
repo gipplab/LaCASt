@@ -33,7 +33,7 @@ public interface IReplacementCondition extends Comparable<IReplacementCondition>
      * @param ref check if within range
      * @return true if {@param ref} is between {@param rangeStart} and {@param rangeEnd}
      */
-    public static boolean withinRange(IReplacementCondition rangeStart, IReplacementCondition rangeEnd, IReplacementCondition ref) {
+    static boolean withinRange(IReplacementCondition rangeStart, IReplacementCondition rangeEnd, IReplacementCondition ref) {
         if ( rangeStart.compareTo(rangeEnd) == 0 ) return rangeStart.compareTo(ref) == 0;
         if ( rangeStart.compareTo(rangeEnd) > 0 ) return withinRange(rangeEnd, rangeStart, ref);
         else return rangeStart.compareTo(ref) <= 0 && ref.compareTo(rangeEnd) <= 0;

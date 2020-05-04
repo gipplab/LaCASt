@@ -14,13 +14,13 @@ public class MacroMetaInformation {
 
     public MacroMetaInformation(
             FeatureSet fset,
-            String CAS
+            String cas
     ) {
         // all meta information
-        meaning = DLMFFeatureValues.meaning.getFeatureValue(fset, CAS);
-        description = DLMFFeatureValues.description.getFeatureValue(fset, CAS);
-        example = DLMFFeatureValues.DLMF.getFeatureValue(fset, CAS);
-        casComment = DLMFFeatureValues.CAS_Comment.getFeatureValue(fset, CAS);
+        meaning = DLMFFeatureValues.meaning.getFeatureValue(fset, cas);
+        description = DLMFFeatureValues.description.getFeatureValue(fset, cas);
+        example = DLMFFeatureValues.DLMF.getFeatureValue(fset, cas);
+        casComment = DLMFFeatureValues.CAS_Comment.getFeatureValue(fset, cas);
     }
 
     public String getExample() {

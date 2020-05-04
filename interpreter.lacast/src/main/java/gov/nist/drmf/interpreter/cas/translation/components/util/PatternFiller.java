@@ -50,8 +50,9 @@ public class PatternFiller {
     ) throws NullPointerException {
         // when the alternative mode is activated, it tries to translate
         // the alternative translation
-        String pattern = (config.isAlternativeMode() && !macroInfo.getAlternativePattern().isEmpty()) ?
-                macroInfo.getAlternativePattern() : macroInfo.getTranslationPattern();
+        MacroTranslationInformation translationInformation = macroInfo.getTranslationInformation();
+        String pattern = (config.isAlternativeMode() && !translationInformation.getAlternativePattern().isEmpty()) ?
+                translationInformation.getAlternativePattern() : translationInformation.getTranslationPattern();
 
         // Eventually, we need to substitute an argument.
         String subbedExpression = null;

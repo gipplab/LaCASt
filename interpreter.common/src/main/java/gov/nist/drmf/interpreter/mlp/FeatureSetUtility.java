@@ -82,24 +82,4 @@ public final class FeatureSetUtility {
         }
         return null;
     }
-
-    /**
-     *
-     * @param term
-     * @return
-     */
-    public static boolean isGreekLetter( MathTerm term ){
-        List<FeatureSet> list = term.getAlternativeFeatureSets();
-        for ( FeatureSet fset : list ){
-            SortedSet<String> set = fset.getFeature(Keys.FEATURE_ALPHABET);
-            if ( set == null ) continue;
-            if ( set.contains(Keys.FEATURE_VALUE_GREEK) ) return true;
-        }
-        return false;
-    }
-
-    public static boolean isFunction( MathTerm term ){
-        FeatureSet set = getSetByFeatureValue(term, Keys.FEATURE_ROLE, MathTermTags.function.tag());
-        return set != null;
-    }
 }
