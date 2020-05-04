@@ -12,6 +12,7 @@ import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
+import gov.nist.drmf.interpreter.mlp.MathTermUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -99,7 +100,7 @@ public class LetterTranslator extends AbstractListTranslator {
                 te = parseAlphanumeric(term, constantSet);
                 break;
             default:
-                throw buildException(
+                throw TranslationException.buildException(this,
                         "Letter translator only translates symbols and alphanumerics: " + term.getTermText(),
                         TranslationExceptionReason.IMPLEMENTATION_ERROR
                 );
@@ -134,7 +135,8 @@ public class LetterTranslator extends AbstractListTranslator {
         // no it is a DLMF macro or function
         FeatureSet macro = term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
         if (macro != null) {
-            throw buildException(
+            throw TranslationException.buildException(
+                    this,
                     "MathTermTranslator cannot translate DLMF-Macro: " +
                             term.getTermText(),
                     TranslationExceptionReason.IMPLEMENTATION_ERROR
@@ -148,7 +150,8 @@ public class LetterTranslator extends AbstractListTranslator {
             GreekLetterTranslator glt = new GreekLetterTranslator(getSuperTranslator());
             return glt.translate(exp);
         } catch (TranslationException te) {
-            throw buildExceptionObj(
+            throw TranslationException.buildExceptionObj(
+                    this,
                     "Reached unknown latex-command " + term.getTermText(),
                     TranslationExceptionReason.LATEX_MACRO_ERROR,
                     term.getTermText()
@@ -165,7 +168,8 @@ public class LetterTranslator extends AbstractListTranslator {
             return localTranslations;
 
         // if it didn't work, throw an error
-        throw buildException(
+        throw TranslationException.buildException(
+                this,
                 "Unknown symbol reached: " + term.getTermText(),
                 TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
     }
@@ -221,7 +225,7 @@ public class LetterTranslator extends AbstractListTranslator {
 
     private TranslatedExpression tryParseGreekOrConstant(MathTerm term, FeatureSet constantSet) {
         // is it a Greek letter?
-        if (FeatureSetUtility.isGreekLetter(term)) {
+        if (MathTermUtility.isGreekLetter(term)) {
             // is this Greek letter also known constant?
             if (constantSet != null) {
                 // inform the user about our choices
