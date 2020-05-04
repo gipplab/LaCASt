@@ -41,7 +41,7 @@ public class MathTermUtilityTests {
         List<PomTaggedExpression> components = pte.getComponents();
         MathTerm first = components.get(0).getRoot();
         MathTerm second = components.get(1).getRoot();
-        assertTrue( MathTermUtility.isFunction(first) );
+        assertFalse( MathTermUtility.isFunction(first) );
         assertFalse( MathTermUtility.isFunction(second),
                 "The semantic parser shall interpret cos as dlmf-macro not as a function" );
     }
