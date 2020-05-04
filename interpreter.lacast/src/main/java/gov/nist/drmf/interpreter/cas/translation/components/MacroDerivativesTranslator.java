@@ -257,32 +257,36 @@ public class MacroDerivativesTranslator extends MacroTranslator {
             MathTerm mt = p.getRoot();
 
             if ( isDLMFMacro(mt) ) {
-                FeatureSet fset = mt.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
-                Integer slot;
-                Integer numberOfVariables;
-                try {
-                    slot = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset, CAS));
-                    numberOfVariables = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset, CAS));
-                } catch (NumberFormatException e) {
-                    LOG.warn("No slot of differentiation found for " + mt.getTermText() + ", assuming its 1.");
-                    slot = 1;
-                    numberOfVariables = 1;
-                }
-
-                try {
-                    i = skipAllAts(expressions, i);
-                    int idx = i + slot - 1; // the slot is 1 not 0, so we must add -1
-                    variableCandidates.addAll(extractVariableOfDiff(expressions.get(idx)));
-                    i = i + numberOfVariables;
-                } catch (IndexOutOfBoundsException e) {
-                    throw throwMacroException("Unable to find @ after a DLMF macro. That is invalid syntax");
-                }
+                i = handleMacro(mt, expressions, i, variableCandidates);
             } else {
                 variableCandidates.addAll(extractVariableOfDiff(p));
             }
 
         }
         return variableCandidates;
+    }
+
+    private int handleMacro(MathTerm mt, List<PomTaggedExpression> expressions, int i, Set<String> variableCandidates) {
+        FeatureSet fset = mt.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
+        Integer slot;
+        Integer numberOfVariables;
+        try {
+            slot = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset, CAS));
+            numberOfVariables = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset, CAS));
+        } catch (NumberFormatException e) {
+            LOG.warn("No slot of differentiation found for " + mt.getTermText() + ", assuming its 1.");
+            slot = 1;
+            numberOfVariables = 1;
+        }
+
+        try {
+            i = skipAllAts(expressions, i);
+            int idx = i + slot - 1; // the slot is 1 not 0, so we must add -1
+            variableCandidates.addAll(extractVariableOfDiff(expressions.get(idx)));
+            return i + numberOfVariables;
+        } catch (IndexOutOfBoundsException e) {
+            throw throwMacroException("Unable to find @ after a DLMF macro. That is invalid syntax");
+        }
     }
 
     private int skipAllAts(List<PomTaggedExpression> list, int startIdx) {

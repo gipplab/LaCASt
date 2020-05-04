@@ -33,12 +33,10 @@ public abstract class PomTaggedExpressionUtility {
         }
 
         MathTerm mt = pte.getRoot();
-        if ( mt != null && !mt.isEmpty() ){
-            List<String> mtags = mt.getSecondaryTags();
-            for ( String t : mtags ) {
-                if ( t.matches(ExpressionTags.accented.tag()) ) {
-                    return true;
-                }
+        List<String> mtags = mt.getSecondaryTags();
+        for ( String t : mtags ) {
+            if ( t.matches(ExpressionTags.accented.tag()) ) {
+                return true;
             }
         }
 
