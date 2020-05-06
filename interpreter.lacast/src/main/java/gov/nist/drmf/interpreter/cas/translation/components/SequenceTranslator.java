@@ -274,13 +274,9 @@ public class SequenceTranslator extends AbstractListTranslator {
                     Keys.KEY_ABSOLUTE_VALUE
             );
         } else if (setMode) { // in set mode, both parenthesis may not match!
-            seq = openBracket.getAppropriateString();
-            seq += localTranslations.removeLastExpression();
-            seq += bracket.getAppropriateString();
+            seq = openBracket.getAppropriateString() + localTranslations.removeLastExpression() + bracket.getAppropriateString();
         } else { // otherwise, parenthesis must match each other, so close as it opened
-            seq = openBracket.getAppropriateString();
-            seq += localTranslations.removeLastExpression();
-            seq += openBracket.getCounterPart().getAppropriateString();
+            seq = openBracket.getAppropriateString() + localTranslations.removeLastExpression() + openBracket.getCounterPart().getAppropriateString();
         }
 
         seq = checkMultiplyAddition(exp, followingExp, seq);
