@@ -24,6 +24,10 @@ import java.util.List;
 public class VariableExtractor {
     private static final Logger LOG = LogManager.getLogger(VariableExtractor.class.getName());
 
+    private enum RETURN_VAL {
+        CACHE, CONTINUE, NONE
+    }
+
     private final List<PomTaggedExpression> list;
     private final List<String> currVars;
     private final AbstractTranslator abstractTranslator;
@@ -32,13 +36,12 @@ public class VariableExtractor {
     private VariableExtractor(
             List<PomTaggedExpression> list,
             List<String> currVars,
-            AbstractTranslator abstractTranslator,
-            int innerInts
+            AbstractTranslator abstractTranslator
     ) {
         this.list = list;
         this.currVars = currVars;
         this.abstractTranslator = abstractTranslator;
-        this.innerInts = innerInts;
+        this.innerInts = 0;
     }
 
     private RETURN_VAL handleNonEmptyTag(
@@ -49,12 +52,12 @@ public class VariableExtractor {
         Brackets bracket = Brackets.ifIsBracketTransform(mt, null);
         RETURN_VAL value = RETURN_VAL.NONE;
         // check for brackets
-        if ( bracket != null && handleBracket(bracket, parenthesisCache, abstractTranslator) ) {
+        if ( handleBracket(bracket, parenthesisCache, abstractTranslator) ) {
             value = RETURN_VAL.CACHE;
         } else if ( !parenthesisCache.isEmpty() ) {
             cache.addLast(list.remove(0));
             value = RETURN_VAL.CONTINUE;
-        } else if ( LimitedExpressions.isSum(mt) || LimitedExpressions.isProduct(mt) ) {
+        } else if ( isSumOrProduct(mt) ) {
             value = handleSumAndProd(list, cache, currVars, abstractTranslator);
         } else if ( mt.getTermText().matches("\\\\diffd?") ) {
             value = updateDiffD();
@@ -75,6 +78,10 @@ public class VariableExtractor {
             }
         }
         return value;
+    }
+
+    private boolean isSumOrProduct(MathTerm mt) {
+        return LimitedExpressions.isSum(mt) || LimitedExpressions.isProduct(mt);
     }
 
     private RETURN_VAL updateDiffD() {
@@ -108,26 +115,86 @@ public class VariableExtractor {
                 abstractTranslator.getConfig().getLimitParser(),
                 abstractTranslator
         );
+
         for ( String nextVar : nextL.getVars() ){
             if ( currVars.contains(nextVar) ) {
                 LOG.debug("Limited expression breakpoint reached (reason: sharing variables)");
                 // there is a match in variables... so, we reached a breakpoint
-                if ( !cache.isEmpty() ) {
-                    PomTaggedExpression last = cache.getLast();
-                    MathTerm t = last.getRoot();
-                    if ( t != null && !t.isEmpty() && t.getTermText().matches("\\s*[+-.,;^/*]\\s*") ) {
-                        cache.removeLast();
-                        list.add(0, last);
-                    }
-                }
+                updateListWithCache(cache, list);
                 return RETURN_VAL.CACHE;
             }
         }
         return RETURN_VAL.NONE;
     }
 
-    private enum RETURN_VAL {
-        CACHE, CONTINUE, NONE
+    private static void updateListWithCache(LinkedList<PomTaggedExpression> cache, List<PomTaggedExpression> list) {
+        if ( !cache.isEmpty() ) {
+            PomTaggedExpression last = cache.getLast();
+            MathTerm t = last.getRoot();
+            if ( !t.isEmpty() && t.getTermText().matches("\\s*[+-.,;^/*]\\s*") ) {
+                cache.removeLast();
+                list.add(0, last);
+            }
+        }
+    }
+
+    private boolean checkDifferentiationFraction(
+            PomTaggedExpression currentP,
+            List<PomTaggedExpression> updateList,
+            List<PomTaggedExpression> elementsList
+    ) {
+        LinkedList<PomTaggedExpression> fracList = isDiffFrac(currentP);
+        if ( fracList != null ) {
+            updateList.remove(0);
+            while (!fracList.isEmpty())
+                elementsList.add(0, fracList.removeLast());
+//            updateList.add(elementsList.remove(0));
+            return true;
+        } else return false;
+    }
+
+    private LinkedList<PomTaggedExpression> isDiffFrac(PomTaggedExpression pte) {
+        ExpressionTags pt = ExpressionTags.getTagByKey(pte.getTag());
+        if ( ExpressionTags.fraction.equals(pt) ) {
+            PomTaggedExpression numeratorPTE = pte.getComponents().get(0);
+            ExpressionTags it = ExpressionTags.getTagByKey(numeratorPTE.getTag());
+
+            if ( !ExpressionTags.sequence.equals(it) )
+                return null; // \\diff{x} is always a sequence
+
+            LinkedList<PomTaggedExpression> list = createListWithDiffAtEnd(numeratorPTE);
+
+            list.addFirst(pte);
+            return list;
+        }
+        return null;
+    }
+
+    private static LinkedList<PomTaggedExpression> createListWithDiffAtEnd(PomTaggedExpression numeratorPTE) {
+        LinkedList<PomTaggedExpression> list = new LinkedList<>();
+        LinkedList<PomTaggedExpression> temp = new LinkedList<>();
+
+        List<PomTaggedExpression> seq = numeratorPTE.getComponents();
+        while ( !seq.isEmpty() ) {
+            PomTaggedExpression e = seq.remove(0);
+            MathTerm mt = e.getRoot();
+            if ( !mt.isEmpty() && mt.getTermText().matches("\\\\diffd?") ) {
+                list.addLast(e);
+                list.addLast(seq.remove(0));
+                continue;
+            }
+
+            temp.addLast(e);
+        }
+
+        if ( !temp.isEmpty() ) {
+            numeratorPTE.setComponents(temp);
+        } else {
+            MathTerm oneMT = new MathTerm("1", "digit", "numeric", "numerator");
+            numeratorPTE.addComponent(0, oneMT);
+        }
+
+        return list;
     }
 
     /**
@@ -146,7 +213,6 @@ public class VariableExtractor {
     ) {
         LinkedList<PomTaggedExpression> cache = new LinkedList<>();
         LinkedList<Brackets> parenthesisCache = new LinkedList<>();
-        int innerInts = 0;
 
         checkListValidity(list, abstractTranslator);
 
@@ -154,42 +220,47 @@ public class VariableExtractor {
         PomTaggedExpression first = list.remove(0);
         cache.add(first);
 
+        // now add all until there is a stop expression
+        VariableExtractor variableExtractor = new VariableExtractor(list, currVars, abstractTranslator);
+
         // first element could be a parenthesis also... than take all elements until this parenthesis is closed
         if (!checkFirstBracket(parenthesisCache, first, abstractTranslator)) {
             if ( !first.getRoot().isEmpty() && LimitedExpressions.isIntegral(first.getRoot())){
-                innerInts++;
+                variableExtractor.innerInts++;
             }
 
-            if ( checkDifferentiationFraction(first, cache, list) )
+            if ( variableExtractor.checkDifferentiationFraction(first, cache, list) ) {
                 cache.add(list.remove(0));
+            }
         }
 
-        // now add all until there is a stop expression
-        VariableExtractor variableExtractor = new VariableExtractor(
-                list,
-                currVars,
-                abstractTranslator,
-                innerInts
-        );
+        iterateOverList(variableExtractor, cache, list, parenthesisCache);
 
+        // well, it might be the entire expression until the end, of course
+        return cache;
+    }
+
+    private static void iterateOverList(
+            VariableExtractor variableExtractor,
+            LinkedList<PomTaggedExpression> cache,
+            List<PomTaggedExpression> list,
+            LinkedList<Brackets> parenthesisCache
+    ) {
         while ( !list.isEmpty() ) {
             PomTaggedExpression curr = list.get(0); // do not remove yet!
             MathTerm mt = curr.getRoot();
             // if the tag is null, it might be a fraction. if not, there are multiple options
             if ( mt.getTag() != null ) {
                 RETURN_VAL val = variableExtractor.handleNonEmptyTag(cache, parenthesisCache, mt);
-                if ( RETURN_VAL.CACHE.equals(val) ) return cache;
+                if ( RETURN_VAL.CACHE.equals(val) ) return;
                 else if ( RETURN_VAL.CONTINUE.equals(val) ) continue;
             } else {
-                checkDifferentiationFraction(curr, list, list);
+                variableExtractor.checkDifferentiationFraction(curr, list, list);
             }
 
             // if no stopper is found, just add it to the potential list
             cache.addLast(list.remove(0));
         }
-
-        // well, it might be the entire expression until the end, of course
-        return cache;
     }
 
     private static void checkListValidity(List<PomTaggedExpression> list, AbstractTranslator abstractTranslator) {
@@ -214,22 +285,9 @@ public class VariableExtractor {
         return false;
     }
 
-    private static boolean checkDifferentiationFraction(
-            PomTaggedExpression currentP,
-            List<PomTaggedExpression> updateList,
-            List<PomTaggedExpression> elementsList
-    ) {
-        LinkedList<PomTaggedExpression> fracList = isDiffFrac(currentP);
-        if ( fracList != null ) {
-            updateList.remove(0);
-            while (!fracList.isEmpty())
-                elementsList.add(0, fracList.removeLast());
-//            updateList.add(elementsList.remove(0));
-            return true;
-        } else return false;
-    }
-
     private static boolean handleBracket(Brackets bracket, LinkedList<Brackets> parenthesisCache, AbstractTranslator abstractTranslator) {
+        if ( bracket == null ) return false;
+
         // if new bracket opens, add it to cache
         if ( bracket.opened ) {
             parenthesisCache.addLast(bracket);
@@ -249,47 +307,5 @@ public class VariableExtractor {
             }
         }
         return false;
-    }
-
-    private static LinkedList<PomTaggedExpression> isDiffFrac(PomTaggedExpression pte) {
-        ExpressionTags pt = ExpressionTags.getTagByKey(pte.getTag());
-        if ( pt != null && pt.equals(ExpressionTags.fraction) ) {
-            PomTaggedExpression numeratorPTE = pte.getComponents().get(0);
-            ExpressionTags it = ExpressionTags.getTagByKey(numeratorPTE.getTag());
-
-            if ( it != null && !it.equals(ExpressionTags.sequence) )
-                return null;
-
-            LinkedList<PomTaggedExpression> list = new LinkedList<>();
-            LinkedList<PomTaggedExpression> temp = new LinkedList<>();
-
-            List<PomTaggedExpression> seq = numeratorPTE.getComponents();
-            while ( !seq.isEmpty() ) {
-                PomTaggedExpression e = seq.remove(0);
-
-                MathTerm mt = e.getRoot();
-                if ( mt != null && !mt.isEmpty() ) {
-                    if ( mt.getTermText().matches("\\\\diffd?") ) {
-                        list.addLast(e);
-                        list.addLast(seq.remove(0));
-                        continue;
-                    }
-                }
-
-                temp.addLast(e);
-            }
-
-            if ( !temp.isEmpty() ) {
-                for ( PomTaggedExpression t : temp )
-                    numeratorPTE.addComponent(t);
-            } else {
-                MathTerm oneMT = new MathTerm("1", "digit", "numeric", "numerator");
-                numeratorPTE.addComponent(0, oneMT);
-            }
-
-            list.addFirst(pte);
-            return list;
-        }
-        return null;
     }
 }
