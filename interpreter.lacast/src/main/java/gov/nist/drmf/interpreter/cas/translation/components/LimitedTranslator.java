@@ -46,7 +46,7 @@ public class LimitedTranslator extends AbstractListTranslator {
         super(superTranslator);
         this.localTranslations = new TranslatedExpression();
         this.bft = super.getConfig().getBasicFunctionsTranslator();
-        this.limitAnalyzer = new LimitAnalyzer();
+        this.limitAnalyzer = new LimitAnalyzer(this);
     }
 
     @Override
@@ -211,9 +211,7 @@ public class LimitedTranslator extends AbstractListTranslator {
         Limits limit = limitAnalyzer.extractLimitsWithoutParsing(
                 limitSuperExpr,
                 upperBound,
-                lim,
-                getConfig().getLimitParser(),
-                this
+                lim
         );
 
         // if an upper bound was explicitly given, overwrite the parsed upper bound

@@ -42,4 +42,10 @@ public abstract class PomTaggedExpressionUtility {
 
         return false;
     }
+
+    public static boolean equals(PomTaggedExpression pte, ExpressionTags tag) {
+        if ( pte == null || tag == null ) return false;
+        ExpressionTags t = ExpressionTags.getTagByKey(pte.getTag());
+        return tag.equals(t);
+    }
 }

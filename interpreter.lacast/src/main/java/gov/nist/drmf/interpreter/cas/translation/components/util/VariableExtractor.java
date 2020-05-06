@@ -113,13 +113,11 @@ public class VariableExtractor {
 
         // in this case, the next element are the limits. So lets analyze them in advance
         PomTaggedExpression nextLimits = list.get(1);
-        LimitAnalyzer limitAnalyzer = new LimitAnalyzer();
+        LimitAnalyzer limitAnalyzer = new LimitAnalyzer(abstractTranslator);
         Limits nextL = limitAnalyzer.extractLimitsWithoutParsing(
                 nextLimits,
                 new LinkedList<>(),
-                BlueprintMaster.LIMITED,
-                abstractTranslator.getConfig().getLimitParser(),
-                abstractTranslator
+                BlueprintMaster.LIMITED
         );
 
         for ( String nextVar : nextL.getVars() ){
