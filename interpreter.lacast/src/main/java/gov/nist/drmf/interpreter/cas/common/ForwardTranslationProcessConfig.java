@@ -40,7 +40,6 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
 
     public void init() throws IOException {
         super.init();
-        MacrosLexicon.init();
         MULTIPLY = super.getSymbolTranslator().translateFromMLPKey( Keys.MLP_KEY_MULTIPLICATION );
         this.isInit = true;
     }

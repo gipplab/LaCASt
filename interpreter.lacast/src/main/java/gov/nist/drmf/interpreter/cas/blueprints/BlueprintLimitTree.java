@@ -43,7 +43,7 @@ public class BlueprintLimitTree {
             SemanticLatexTranslator translator
     ) throws ParseException, IOException {
         blueprint = preCleaning(blueprint);
-        this.mlp = new SemanticMLPWrapper();
+        this.mlp = SemanticMLPWrapper.getStandardInstance();
         PomTaggedExpression topExpr = mlp.parse(blueprint);
         this.root = createBlueprint(topExpr);
         resetMatch();
