@@ -66,9 +66,26 @@ public class LimitedTranslator extends AbstractListTranslator {
         if ( category == null ) {
             throw TranslationException.buildExceptionObj(this, "Unsupported limited expressions." + root.getTermText(),
                     TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
-                    root.getTermText());
+                    root.getTermText()
+            );
         }
 
+        Limits limit = getLimit(list, category);
+
+        // find elements that are part of the argument:
+        // next, split into argument parts and the rest
+        TranslatedExpression translatedPotentialArguments = getPotentialTranslatedExpressions(limit, list);
+        TranslatedExpression transArgs = getTranslatedExpression(limit, category, translatedPotentialArguments);
+
+        String finalTranslation = getFinalTranslationString(limit, transArgs, category, root);
+
+        // add translation and the rest of the translation
+        updateTranslationLists(finalTranslation, translatedPotentialArguments, category);
+
+        return localTranslations;
+    }
+
+    private Limits getLimit(List<PomTaggedExpression> list, LimitedExpressions category) {
         PomTaggedExpression limitExpression = list.remove(0);
         Limits limit = null;
 
@@ -90,57 +107,14 @@ public class LimitedTranslator extends AbstractListTranslator {
             list.add(0, limitExpression);
         }
 
-        List<PomTaggedExpression> potentialArguments = VariableExtractor.getPotentialArgumentsUntilEndOfScope(
-                list,
-                limit.getVars(),
-                this
-        );
+        return limit;
+    }
 
-        // the potential arguments is a theoretical sequence, so handle it as a sequence!
-        PomTaggedExpression topPTE = FakeMLPGenerator.generateEmptySequencePTE();
-        for ( PomTaggedExpression pte : potentialArguments ) topPTE.addComponent(pte);
-
-        // next, we translate the expressions to search for the variables
-        SequenceTranslator p = new SequenceTranslator(getSuperTranslator());
-        TranslatedExpression translatedPotentialArguments = p.translate( topPTE );
-
-        // first, clear global expression
-        getGlobalTranslationList().removeLastNExps(translatedPotentialArguments.getLength());
-
-        // find elements that are part of the argument:
-        // next, split into argument parts and the rest
-        TranslatedExpression transArgs = category.equals(LimitedExpressions.INT) ?
-                translatedPotentialArguments :
-                removeUntilLastAppearance(
-                        translatedPotentialArguments,
-                        limit.getVars()
-                );
-
-        int lastIdx = limit.getVars().size()-1;
-
-        // start with inner -> last elements in limit
-        String finalTranslation = translatePattern(
-                limit,
-                lastIdx,
-                stripMultiParentheses(
-                    transArgs.getTranslatedExpression()
-                ),
-                category,
-                root
-        );
-
-        if ( lastIdx > 0 ) {
-            for ( int i = lastIdx-1; i >= 0; i-- ) {
-                finalTranslation = translatePattern(
-                        limit,
-                        i,
-                        stripMultiParentheses(finalTranslation),
-                        category,
-                        root
-                );
-            }
-        }
-
+    private void updateTranslationLists(
+            String finalTranslation,
+            TranslatedExpression translatedPotentialArguments,
+            LimitedExpressions category
+    ) {
         // add translation and the rest of the translation
         localTranslations.addTranslatedExpression(finalTranslation);
         getGlobalTranslationList().addTranslatedExpression(finalTranslation);
@@ -149,50 +123,68 @@ public class LimitedTranslator extends AbstractListTranslator {
             localTranslations.addTranslatedExpression(translatedPotentialArguments);
             getGlobalTranslationList().addTranslatedExpression(translatedPotentialArguments);
         }
-
-        return localTranslations;
     }
 
-    private String translatePattern(Limits limit, int idx, String arg, LimitedExpressions category, MathTerm mathTerm) {
-        String[] arguments = null;
-        String categoryKey = null;
+    private TranslatedExpression getPotentialTranslatedExpressions(Limits limit, List<PomTaggedExpression> list) {
+        List<PomTaggedExpression> potentialArguments =
+                VariableExtractor.getPotentialArgumentsUntilEndOfScope(list, limit.getVars(), this);
 
-        if ( indef ) {
-            arguments = new String[]{
-                    limit.getVars().get(idx),
-                    arg
-            };
-            categoryKey = category.getIndefKey();
-        } else if ( !limit.isLimitOverSet() ) {
-            if ( limit.getDirection() != null ) {
-                arguments = new String[]{
-                        limit.getVars().get(idx),
-                        limit.getLower().get(idx),
-                        arg,
-                };
-                categoryKey = category.getDirectionKey(limit.getDirection());
-            } else {
-                arguments = new String[]{
-                        limit.getVars().get(idx),
-                        limit.getLower().get(idx),
-                        limit.getUpper().get(idx),
-                        arg,
-                };
-                categoryKey = category.getKey();
+        // the potential arguments is a theoretical sequence, so handle it as a sequence!
+        PomTaggedExpression topPTE = FakeMLPGenerator.generateEmptySequencePTE();
+        for ( PomTaggedExpression pte : potentialArguments ) topPTE.addComponent(pte);
+
+        // next, we translate the expressions to search for the variables
+        SequenceTranslator p = new SequenceTranslator(getSuperTranslator());
+        return p.translate( topPTE );
+    }
+
+    private TranslatedExpression getTranslatedExpression(
+            Limits limit,
+            LimitedExpressions category,
+            TranslatedExpression translatedPotentialArguments
+    ) {
+        // first, clear global expression
+        getGlobalTranslationList().removeLastNExps(translatedPotentialArguments.getLength());
+
+        // find elements that are part of the argument:
+        // next, split into argument parts and the rest
+        return category.equals(LimitedExpressions.INT) ?
+                translatedPotentialArguments :
+                removeUntilLastAppearance(
+                        translatedPotentialArguments,
+                        limit.getVars()
+                );
+    }
+
+    private String getFinalTranslationString(
+            Limits limit,
+            TranslatedExpression transArgs,
+            LimitedExpressions category,
+            MathTerm root
+    ) {
+        int lastIdx = limit.getVars().size()-1;
+
+        // start with inner -> last elements in limit
+        Limits.BoundaryStrings boundaries = limit.getArguments(
+                lastIdx, indef, stripMultiParentheses(transArgs.getTranslatedExpression()), category
+        );
+        String finalTranslation = translatePattern(boundaries, category, root);
+
+        if ( lastIdx > 0 ) {
+            for ( int i = lastIdx-1; i >= 0; i-- ) {
+                boundaries = limit.getArguments(i, indef, stripMultiParentheses(finalTranslation), category);
+                finalTranslation = translatePattern(boundaries, category, root);
             }
-        } else {
-            arguments = new String[]{
-                    limit.getVars().get(idx),
-                    limit.getLower().get(idx),
-                    arg,
-            };
-            categoryKey = category.getSetKey();
         }
 
+        return finalTranslation;
+    }
+
+    private String translatePattern(Limits.BoundaryStrings boundaries, LimitedExpressions category, MathTerm mathTerm) {
         if ( category.equals(LimitedExpressions.INT) ) {
             int degree = LimitedExpressions.getMultiIntDegree(mathTerm);
-            return recursiveIntTranslation( categoryKey, arguments, degree );
-        } else return bft.translate(arguments, categoryKey);
+            return recursiveIntTranslation( boundaries.getCategoryKey(), boundaries.getArgs(), degree );
+        } else return bft.translate(boundaries.getArgs(), boundaries.getCategoryKey());
     }
 
     private String recursiveIntTranslation( String translationKey, String[] args, int degree ) {
