@@ -267,9 +267,9 @@ public abstract class AbstractTranslator implements IForwardTranslator {
 
     protected static boolean isSubSequence(MathTerm term) {
         String tag = term.getTag();
-        if (tag != null && tag.matches(OPEN_PARENTHESIS_PATTERN)) {
+        if (tag != null && tag.matches(MathTermTags.OPEN_PARENTHESIS_PATTERN)) {
             return true;
-        } else if (tag != null && tag.matches(CLOSE_PARENTHESIS_PATTERN)) {
+        } else if (tag != null && tag.matches(MathTermTags.CLOSE_PARENTHESIS_PATTERN)) {
             LOG.error("Reached a closed bracket " + term.getTermText() +
                     " but there was not a corresponding" +
                     " open bracket before.");

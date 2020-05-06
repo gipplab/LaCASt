@@ -5,12 +5,11 @@ import gov.nist.drmf.interpreter.cas.blueprints.Limits;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
+import gov.nist.drmf.interpreter.cas.translation.components.util.LimitAnalyzer;
+import gov.nist.drmf.interpreter.cas.translation.components.util.VariableExtractor;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
 import mlp.MathTerm;
@@ -37,8 +36,9 @@ public class LimitedTranslator extends AbstractListTranslator {
 
     // perform translation and put everything into global_exp
     private BasicFunctionsTranslator bft;
+    private LimitAnalyzer limitAnalyzer;
 
-    private TranslatedExpression localTranslations;
+    private final TranslatedExpression localTranslations;
 
     private boolean indef = false;
 
@@ -46,6 +46,7 @@ public class LimitedTranslator extends AbstractListTranslator {
         super(superTranslator);
         this.localTranslations = new TranslatedExpression();
         this.bft = super.getConfig().getBasicFunctionsTranslator();
+        this.limitAnalyzer = new LimitAnalyzer();
     }
 
     @Override
@@ -89,7 +90,7 @@ public class LimitedTranslator extends AbstractListTranslator {
             list.add(0, limitExpression);
         }
 
-        List<PomTaggedExpression> potentialArguments = getPotentialArgumentsUntilEndOfScope(
+        List<PomTaggedExpression> potentialArguments = VariableExtractor.getPotentialArgumentsUntilEndOfScope(
                 list,
                 limit.getVars(),
                 this
@@ -110,7 +111,7 @@ public class LimitedTranslator extends AbstractListTranslator {
         // next, split into argument parts and the rest
         TranslatedExpression transArgs = category.equals(LimitedExpressions.INT) ?
                 translatedPotentialArguments :
-                removeUntilLastAppearence(
+                removeUntilLastAppearance(
                         translatedPotentialArguments,
                         limit.getVars()
                 );
@@ -207,7 +208,7 @@ public class LimitedTranslator extends AbstractListTranslator {
 
     private Limits extractLimits(PomTaggedExpression limitSuperExpr, boolean lim) {
         LinkedList<PomTaggedExpression> upperBound = new LinkedList<>();
-        Limits limit = extractLimitsWithoutParsing(
+        Limits limit = limitAnalyzer.extractLimitsWithoutParsing(
                 limitSuperExpr,
                 upperBound,
                 lim,
@@ -226,7 +227,7 @@ public class LimitedTranslator extends AbstractListTranslator {
 
     private Limits extractIntegralLimits(PomTaggedExpression limitSuperExpr, AbstractTranslator parentTranslator) {
         LinkedList<PomTaggedExpression> upperBound = new LinkedList<>();
-        PomTaggedExpression lower = getLowerUpper(limitSuperExpr, upperBound, parentTranslator, true);
+        PomTaggedExpression lower = limitAnalyzer.getLowerUpper(limitSuperExpr, upperBound, parentTranslator, true);
 
         if ( lower == null ) {
             this.indef = true;
@@ -249,255 +250,7 @@ public class LimitedTranslator extends AbstractListTranslator {
         return new Limits(new LinkedList<>(), l, u);
     }
 
-    private static Limits extractLimitsWithoutParsing(
-            PomTaggedExpression limitSuperExpr,
-            List<PomTaggedExpression> upperBound,
-            boolean lim,
-            BlueprintMaster btm,
-            AbstractTranslator parentTranslator) {
-        PomTaggedExpression limitExpression = getLowerUpper(limitSuperExpr, upperBound, parentTranslator, false);
-
-        // now we have limitExpression and an optional upperBound. Parse it:
-        return btm.findMatchingLimit(lim, limitExpression);
-    }
-
-    private static PomTaggedExpression getLowerUpper(
-            PomTaggedExpression limitSuperExpr,
-            List<PomTaggedExpression> upperBound,
-            AbstractTranslator parentTranslator,
-            boolean allowIndefinite
-    ) {
-        MathTerm term = limitSuperExpr.getRoot();
-
-        PomTaggedExpression limitExpression = null;
-
-        // in case it is a MathTerm, it MUST be a lower bound!
-        if ( term != null && !term.isEmpty() ) {
-            MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
-            if ( !tag.equals(MathTermTags.underscore) ) {
-                if ( allowIndefinite ) return null;
-                else throw TranslationException.buildException(
-                        parentTranslator,
-                        "Illegal expression followed a limited expression: " + term.getTermText(),
-                        TranslationExceptionReason.INVALID_LATEX_INPUT);
-            }
-            // underscore always has only one child!
-            limitExpression = limitSuperExpr.getComponents().get(0);
-        } else {
-            String tagS = limitSuperExpr.getTag();
-            ExpressionTags tag = ExpressionTags.getTagByKey(tagS);
-            if ( tag.equals(ExpressionTags.sub_super_script) ) {
-                List<PomTaggedExpression> els = limitSuperExpr.getComponents();
-                for ( PomTaggedExpression pte : els ) {
-                    MathTermTags t = MathTermTags.getTagByKey(pte.getRoot().getTag());
-                    if ( t.equals(MathTermTags.underscore) ) {
-                        limitExpression = pte.getComponents().get(0);
-                    } else if ( t.equals(MathTermTags.caret) ) {
-                        upperBound.addAll(pte.getComponents());
-                    }
-                }
-            } else {
-                if ( allowIndefinite ) return null;
-                else throw TranslationException.buildException( parentTranslator,
-                        "A limited expression without limits is not allowed: " + term.getTermText(),
-                        TranslationExceptionReason.INVALID_LATEX_INPUT);
-            }
-        }
-
-        return limitExpression;
-    }
-
-    /**
-     * Removes and returns all elements that may potentially be in the scope of a limited expression.
-     * This does not check for appearances of variables, it simply takes all expressions until a
-     * breakpoint is reached. Breakpoints are relations (equal signs etc.) and closed brackets (if
-     * the brackets are was not opened inside in the scope).
-     * @param list following expressions, will be modified by this function
-     * @param currVars list of variables
-     * @param abstractTranslator the translator object that should be invoked, if necessary
-     * @return a sublist of {@param list}, note that {@param list} will be shortened
-     */
-    static List<PomTaggedExpression> getPotentialArgumentsUntilEndOfScope(
-            List<PomTaggedExpression> list,
-            List<String> currVars,
-            AbstractTranslator abstractTranslator
-    ) {
-        LinkedList<PomTaggedExpression> cache = new LinkedList<>();
-        LinkedList<Brackets> parenthesisCache = new LinkedList<>();
-        LinkedList<PomTaggedExpression> fracList;
-        int innerInts = 0;
-
-        // the very next element is always(!) part of the argument
-        if ( list.isEmpty() ) {
-            throw TranslationException.buildException( abstractTranslator, "A limited expression ends with no argument left.",
-                    TranslationExceptionReason.INVALID_LATEX_INPUT);
-        }
-
-        PomTaggedExpression first = list.remove(0);
-        cache.add(first);
-
-        // first element could be a parenthesis also... than take all elements until this parenthesis is closed
-        Brackets bracket = SequenceTranslator.ifIsBracketTransform(first.getRoot(), null);
-        if ( bracket != null ) {
-            if ( !bracket.opened ) throw TranslationException.buildException(
-                    abstractTranslator,
-                    "Empty arguments for limited expressions are invalid math.",
-                    TranslationExceptionReason.INVALID_LATEX_INPUT);
-            parenthesisCache.addLast(bracket);
-        }
-
-        if ( !first.getRoot().isEmpty() && LimitedExpressions.isIntegral(first.getRoot())){
-            innerInts++;
-        }
-
-        fracList = isDiffFrac(first);
-        if ( fracList != null ) {
-            cache.removeFirst();
-            while (!fracList.isEmpty())
-                list.add(0, fracList.removeLast());
-            cache.add(list.remove(0));
-        }
-
-        // now add all until there is a stop expression
-        while ( !list.isEmpty() ) {
-            PomTaggedExpression curr = list.get(0); // do not remove yet!
-            MathTerm mt = curr.getRoot();
-            if ( mt != null && mt.getTag() != null ) {
-                bracket = SequenceTranslator.ifIsBracketTransform(mt, null);
-                // check for brackets
-                if ( bracket != null ) {
-                    // if new bracket opens, add it to cache
-                    if ( bracket.opened ) {
-                        parenthesisCache.addLast(bracket);
-                    }
-                    else {
-                        if ( parenthesisCache.isEmpty() ) {
-                            // in case a bracket is closed that was not opened in this scope, we reached a breakpoint
-                            LOG.debug("Limited expression breakpoint reached (reason: outer closing parenthesis)");
-                            return cache;
-                        } else if ( parenthesisCache.getLast().counterpart.equals(bracket.symbol) ) {
-                            // in case the bracket closes a previously opened bracket, update cache
-                            parenthesisCache.removeLast();
-                        } else { // well, that's an illegal situation, parentheses does not match
-                            throw TranslationException.buildException(
-                                    abstractTranslator,
-                                    "Open and close parentheses does not match!",
-                                    TranslationExceptionReason.WRONG_PARENTHESIS);
-                        }
-                    }
-                } else if ( !parenthesisCache.isEmpty() ) {
-                    cache.addLast(list.remove(0));
-                    continue;
-                } else if ( LimitedExpressions.isSum(mt) || LimitedExpressions.isProduct(mt) ) {
-                    // there is a special case where we also have to stop...
-                    // if a new limited expression is coming that shares the same variable
-
-                    // in this case, the next element are the limits. So lets analyze them in advance
-                    PomTaggedExpression nextLimits = list.get(1);
-                    Limits nextL = extractLimitsWithoutParsing(
-                            nextLimits,
-                            new LinkedList<>(),
-                            BlueprintMaster.LIMITED,
-                            abstractTranslator.getConfig().getLimitParser(),
-                            abstractTranslator
-                    );
-                    for ( String nextVar : nextL.getVars() ){
-                        if ( currVars.contains(nextVar) ) {
-                            LOG.debug("Limited expression breakpoint reached (reason: sharing variables)");
-                            // there is a match in variables... so, we reached a breakpoint
-                            if ( !cache.isEmpty() ) {
-                                PomTaggedExpression last = cache.getLast();
-                                MathTerm t = last.getRoot();
-                                if ( t != null && !t.isEmpty() && t.getTermText().matches("\\s*[+-.,;^/*]\\s*") ) {
-                                    cache.removeLast();
-                                    list.add(0, last);
-                                }
-                            }
-                            return cache;
-                        }
-                    }
-                } else if ( mt.getTermText().matches("\\\\diffd?") ) {
-                    if ( innerInts > 0 ) innerInts--;
-                    else {
-                        list.remove(0); // diff or diffd... so get next for arg
-                        PomTaggedExpression argPTE = list.remove(0);
-                        TranslatedExpression argTe = abstractTranslator.translateInnerExp(argPTE, list);
-                        currVars.add(argTe.toString());
-                        return cache;
-                    }
-                } else if ( LimitedExpressions.isIntegral(mt) ) {
-                    innerInts++;
-                } else {
-                    MathTermTags tag = MathTermTags.getTagByKey(mt.getTag());
-                    // stop only in case of a harsh stop symbol appears on the same level of the sum
-                    // stoppers are relations (left-hand side and right-hand side).
-                    switch (tag) {
-                        case relation:
-                        case equals:
-                        case less_than:
-                        case greater_than:
-                            // found stopper -> return the cache
-                            LOG.debug("Limited expression breakpoint reached (reason: relation)");
-                            return cache;
-                    }
-                }
-            } else if ( (fracList = isDiffFrac(curr)) != null ) {
-                list.remove(0);
-                while (!fracList.isEmpty())
-                    list.add(0, fracList.removeLast());
-            }
-
-            // if no stopper is found, just add it to the potential list
-            cache.addLast(list.remove(0));
-        }
-
-        // well, it might be the entire expression until the end, of course
-        return cache;
-    }
-
-    private static LinkedList<PomTaggedExpression> isDiffFrac(PomTaggedExpression pte) {
-        ExpressionTags pt = ExpressionTags.getTagByKey(pte.getTag());
-        if ( pt != null && pt.equals(ExpressionTags.fraction) ) {
-            PomTaggedExpression numeratorPTE = pte.getComponents().get(0);
-            ExpressionTags it = ExpressionTags.getTagByKey(numeratorPTE.getTag());
-
-            if ( it != null && !it.equals(ExpressionTags.sequence) )
-                return null;
-
-            LinkedList<PomTaggedExpression> list = new LinkedList<>();
-            LinkedList<PomTaggedExpression> temp = new LinkedList<>();
-
-            List<PomTaggedExpression> seq = numeratorPTE.getComponents();
-            while ( !seq.isEmpty() ) {
-                PomTaggedExpression e = seq.remove(0);
-
-                MathTerm mt = e.getRoot();
-                if ( mt != null && !mt.isEmpty() ) {
-                    if ( mt.getTermText().matches("\\\\diffd?") ) {
-                        list.addLast(e);
-                        list.addLast(seq.remove(0));
-                        continue;
-                    }
-                }
-
-                temp.addLast(e);
-            }
-
-            if ( !temp.isEmpty() ) {
-                for ( PomTaggedExpression t : temp )
-                    numeratorPTE.addComponent(t);
-            } else {
-                MathTerm oneMT = new MathTerm("1", "digit", "numeric", "numerator");
-                numeratorPTE.addComponent(0, oneMT);
-            }
-
-            list.addFirst(pte);
-            return list;
-        }
-        return null;
-    }
-
-    private TranslatedExpression removeUntilLastAppearence(TranslatedExpression te, List<String> vars) {
+    private TranslatedExpression removeUntilLastAppearance(TranslatedExpression te, List<String> vars) {
         return te.removeUntilLastAppearanceOfVar(vars, getConfig().getMULTIPLY());
     }
 }
