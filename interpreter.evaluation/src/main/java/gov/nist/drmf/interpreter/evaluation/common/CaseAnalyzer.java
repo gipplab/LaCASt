@@ -107,11 +107,7 @@ public class CaseAnalyzer {
         } else if ( metaDataMatcher.group(SYMB_DEF_GRP_ID) != null ) {
             symbDef.symbolDefSymb = metaDataMatcher.group(SYMB_DEF_GRP_SYMB);
             symbDef.symbolDefID = metaDataMatcher.group(SYMB_DEF_GRP_ID);
-            if ( symbDef.symbolDefSymb.contains("\\NVar") ) {
-                LOG.warn("Found potential definition of macros. Ignore this definition and treat it as normal test case.");
-                symbDef.symbolDefSymb = null;
-                symbDef.symbolDefID = null;
-            }
+            checkResetSymbs(symbDef);
         } else if ( metaDataMatcher.group(SYMB_USED_GRP_ID) != null ) {
             String id = metaDataMatcher.group(SYMB_USED_GRP_ID);
             String symb = metaDataMatcher.group(SYMB_USED_GRP_SYMB);
@@ -120,6 +116,14 @@ public class CaseAnalyzer {
                 SymbolTag used = new SymbolTag(id, symb);
                 symbolsUsed.add(used);
             }
+        }
+    }
+
+    private static void checkResetSymbs(SymbolDefInfo symbDef) {
+        if ( symbDef.symbolDefSymb.contains("\\NVar") ) {
+            LOG.warn("Found potential definition of macros. Ignore this definition and treat it as normal test case.");
+            symbDef.symbolDefSymb = null;
+            symbDef.symbolDefID = null;
         }
     }
 
