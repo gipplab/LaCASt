@@ -53,11 +53,20 @@ public enum MathTermTags {
     modulo("modulo"),
     vbar("vertical-bar");
 
-    private String tag;
+    public static final String OPEN_PARENTHESIS_PATTERN =
+            "(left)[-\\s](parenthesis|bracket|brace|delimiter)|vertical-bar";
 
-    private static class HOLDER{
+    public static final String CLOSE_PARENTHESIS_PATTERN =
+            "(right)[-\\s](parenthesis|bracket|brace|delimiter)|vertical-bar";
+
+    public static final String PARENTHESIS_PATTERN =
+            "(right|left)[-\\s](parenthesis|bracket|brace|delimiter)|vertical-bar";
+
+    private static final class HOLDER{
         static HashMap<String, MathTermTags> keymap = new HashMap<>();
     }
+
+    private String tag;
 
     MathTermTags (String tag){
         this.tag = tag;

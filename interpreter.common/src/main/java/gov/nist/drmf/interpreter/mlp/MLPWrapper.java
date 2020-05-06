@@ -74,6 +74,15 @@ public class MLPWrapper {
      */
     public PomTaggedExpression simpleParse(String latex) throws ParseException {
         latex = TeXPreProcessor.preProcessingTeX(latex); // clean input first
+        return simpleParseRaw(latex);
+    }
+
+    public PomTaggedExpression simpleParse(String latex, String label) throws ParseException {
+        latex = TeXPreProcessor.preProcessingTeX(latex, label); // clean input first
+        return simpleParseRaw(latex);
+    }
+
+    public PomTaggedExpression simpleParseRaw(String latex) throws ParseException {
         return parser.parse(latex);
     }
 
@@ -180,8 +189,7 @@ public class MLPWrapper {
      */
     public static boolean isMLPPresent() {
         try {
-            new PomParser(GlobalPaths.PATH_REFERENCE_DATA);
-            return true;
+            return getStandardInstance() != null;
         } catch ( Exception e ) {
             return false;
         }

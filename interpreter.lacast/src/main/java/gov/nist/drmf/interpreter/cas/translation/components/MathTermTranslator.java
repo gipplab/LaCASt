@@ -20,8 +20,6 @@ import org.apache.logging.log4j.Logger;
 import java.util.LinkedList;
 import java.util.List;
 
-import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.ABSOLUTE_VAL_TERM_TEXT_PATTERN;
-
 /**
  * The math term translation parses only math terms.
  * It is a inner translation and switches through all different
@@ -305,7 +303,7 @@ public class MathTermTranslator extends AbstractListTranslator {
     }
 
     private TranslatedExpression parseFences(MathTerm term, List<PomTaggedExpression> following_exp) {
-        Brackets start = SequenceTranslator.ifIsBracketTransform(term, null);
+        Brackets start = Brackets.ifIsBracketTransform(term, null);
         SequenceTranslator sq = new SequenceTranslator(getSuperTranslator(), start);
         this.localTranslations.addTranslatedExpression(sq.translate(following_exp));
         return localTranslations;
@@ -359,7 +357,7 @@ public class MathTermTranslator extends AbstractListTranslator {
 
     private void handleRelation(MathTerm term) {
         String termText = term.getTermText();
-        if ( termText.matches(ABSOLUTE_VAL_TERM_TEXT_PATTERN) )
+        if ( termText.matches(Brackets.ABSOLUTE_VAL_TERM_TEXT_PATTERN) )
             return;
 
         String translation = termText.equals("\\to") ?
