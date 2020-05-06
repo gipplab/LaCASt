@@ -230,6 +230,8 @@ public enum Brackets {
             "^\\s*(?:\\\\left)?[{(\\[|](.*)(?:\\\\right)?[|\\])}]\\s*$"
     );
 
+    public static final String ABSOLUTE_VAL_TERM_TEXT_PATTERN = "\\\\?\\|";
+
     private static final Pattern ANY_PATTERN = Pattern.compile("(\\\\?(?:left|right)?[({<\\[|\\]>})])");
 
     /**
@@ -391,5 +393,42 @@ public enum Brackets {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Checks if the given term is a bracket and returns the bracket.
+     * It checks also if the next bracket is considered to be closed or opened
+     * in case of vertical bars. It is a closed bracket if {@param currentOpenBracket}
+     * is an opened vertical bar.
+     *
+     * @param term               the term to check if its a bracket
+     * @param currentOpenBracket previously opened (not yet closed) bracket (can be null)
+     * @return bracket or null
+     */
+    public static Brackets ifIsBracketTransform(MathTerm term, Brackets currentOpenBracket) {
+        if (term == null || term.isEmpty()) {
+            return null;
+        }
+
+        Brackets bracket = Brackets.getBracket(term);
+        if (bracket != null || term.getTermText().matches(ABSOLUTE_VAL_TERM_TEXT_PATTERN)) {
+            return getAppropriateBracket(currentOpenBracket, bracket);
+        } else {
+            return null;
+        }
+    }
+
+    private static Brackets getAppropriateBracket(Brackets currentOpenBracket, Brackets bracket) {
+        if (isAbsValueClosedBracket(currentOpenBracket, bracket)) {
+            return Brackets.abs_val_close;
+        } else {
+            return bracket;
+        }
+    }
+
+    private static boolean isAbsValueClosedBracket(Brackets currentOpenBracket, Brackets bracket) {
+        return currentOpenBracket != null && bracket != null &&
+                bracket.equals(Brackets.abs_val_open) &&
+                currentOpenBracket.equals(Brackets.abs_val_open);
     }
 }

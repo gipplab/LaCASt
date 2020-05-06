@@ -49,7 +49,7 @@ public class SequenceTranslator extends AbstractListTranslator {
 
     private boolean setMode = false;
 
-    private TranslatedExpression localTranslations;
+    private final TranslatedExpression localTranslations;
 
     /**
      * Uses only for a general sequence expression.
@@ -78,36 +78,6 @@ public class SequenceTranslator extends AbstractListTranslator {
     public SequenceTranslator(AbstractTranslator superTranslator, Brackets openBracket, boolean setMode) {
         this(superTranslator, openBracket);
         this.setMode = setMode;
-    }
-
-    /**
-     * Checks if the given term is a bracket and returns the bracket.
-     * It checks also if the next bracket is considered to be closed or opened
-     * in case of vertical bars. It is a closed bracket if {@param currentOpenBracket}
-     * is an opened vertical bar.
-     *
-     * @param term               the term to check if its a bracket
-     * @param currentOpenBracket previously opened (not yet closed) bracket (can be null)
-     * @return bracket or null
-     */
-    public static Brackets ifIsBracketTransform(MathTerm term, Brackets currentOpenBracket) {
-        if (term == null || term.isEmpty()) {
-            return null;
-        }
-        if (term.getTag() != null && (
-                term.getTag().matches(PARENTHESIS_PATTERN) || term.getTermText().matches(ABSOLUTE_VAL_TERM_TEXT_PATTERN))
-        ) {
-            Brackets bracket = Brackets.getBracket(term.getTermText());
-            if (currentOpenBracket != null && bracket != null &&
-                    bracket.equals(Brackets.abs_val_open) &&
-                    currentOpenBracket.equals(Brackets.abs_val_open)) {
-                return Brackets.abs_val_close;
-            } else {
-                return bracket;
-            }
-        } else {
-            return null;
-        }
     }
 
     @Override
@@ -226,7 +196,7 @@ public class SequenceTranslator extends AbstractListTranslator {
             //      -> there is a bracket error in the sequence
 
             // open or closed brackets
-            Brackets bracket = ifIsBracketTransform(term, openBracket);
+            Brackets bracket = Brackets.ifIsBracketTransform(term, openBracket);
             if (bracket != null) {
                 // another open bracket -> reached a new sub sequence
                 // bracket cannot be null, because we checked the tag of the term before
@@ -334,7 +304,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                 exp_list != null &&
                 !exp_list.isEmpty()) {
             MathTerm mt = exp_list.get(0).getRoot();
-            if (mt != null && mt.getTermText().matches(ABSOLUTE_VAL_TERM_TEXT_PATTERN)) {
+            if (mt != null && mt.getTermText().matches(Brackets.ABSOLUTE_VAL_TERM_TEXT_PATTERN)) {
                 Matcher m = p.matcher(part);
                 if ( m.matches() ) return m.group(1);
                 else return part;
@@ -371,8 +341,8 @@ public class SequenceTranslator extends AbstractListTranslator {
             }
             MathTerm curr = currExp.getRoot();
             MathTerm next = exp_list.get(0).getRoot();
-            return !(curr.getTag().matches(PARENTHESIS_PATTERN)
-                    || next.getTag().matches(PARENTHESIS_PATTERN)
+            return !(curr.getTag().matches(MathTermTags.PARENTHESIS_PATTERN)
+                    || next.getTag().matches(MathTermTags.PARENTHESIS_PATTERN)
                     || next.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)
             );
         } catch (Exception e) {

@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.components.util.DerivativeAndPowerHolder;
 import gov.nist.drmf.interpreter.cas.translation.components.util.MacroInfoHolder;
+import gov.nist.drmf.interpreter.cas.translation.components.util.VariableExtractor;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
@@ -190,7 +191,7 @@ public class MacroDerivativesTranslator extends MacroTranslator {
 
         vars.add(varTE.toString());
 
-        List<PomTaggedExpression> potentialArgs = LimitedTranslator.getPotentialArgumentsUntilEndOfScope(
+        List<PomTaggedExpression> potentialArgs = VariableExtractor.getPotentialArgumentsUntilEndOfScope(
                 followingExps,
                 vars,
                 this
