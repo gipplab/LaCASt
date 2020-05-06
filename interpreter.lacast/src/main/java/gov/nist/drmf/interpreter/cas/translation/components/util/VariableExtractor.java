@@ -64,20 +64,26 @@ public class VariableExtractor {
         } else if ( LimitedExpressions.isIntegral(mt) ) {
             innerInts++;
         } else {
-            MathTermTags tag = MathTermTags.getTagByKey(mt.getTag());
-            // stop only in case of a harsh stop symbol appears on the same level of the sum
-            // stoppers are relations (left-hand side and right-hand side).
-            switch (tag) {
-                case relation:
-                case equals:
-                case less_than:
-                case greater_than:
-                    // found stopper -> return the cache
-                    LOG.debug("Limited expression breakpoint reached (reason: relation)");
-                    value = RETURN_VAL.CACHE;
-            }
+            value = handleGeneralTags(mt);
         }
         return value;
+    }
+
+    private RETURN_VAL handleGeneralTags(MathTerm mt) {
+        MathTermTags tag = MathTermTags.getTagByKey(mt.getTag());
+        // stop only in case of a harsh stop symbol appears on the same level of the sum
+        // stoppers are relations (left-hand side and right-hand side).
+        switch (tag) {
+            case relation:
+            case equals:
+            case less_than:
+            case greater_than:
+                // found stopper -> return the cache
+                LOG.debug("Limited expression breakpoint reached (reason: relation)");
+                return RETURN_VAL.CACHE;
+            default:
+                return RETURN_VAL.NONE;
+        }
     }
 
     private boolean isSumOrProduct(MathTerm mt) {
@@ -250,13 +256,15 @@ public class VariableExtractor {
             PomTaggedExpression curr = list.get(0); // do not remove yet!
             MathTerm mt = curr.getRoot();
             // if the tag is null, it might be a fraction. if not, there are multiple options
+            RETURN_VAL val = RETURN_VAL.NONE;
             if ( mt.getTag() != null ) {
-                RETURN_VAL val = variableExtractor.handleNonEmptyTag(cache, parenthesisCache, mt);
-                if ( RETURN_VAL.CACHE.equals(val) ) return;
-                else if ( RETURN_VAL.CONTINUE.equals(val) ) continue;
+                val = variableExtractor.handleNonEmptyTag(cache, parenthesisCache, mt);
             } else {
                 variableExtractor.checkDifferentiationFraction(curr, list, list);
             }
+
+            if ( RETURN_VAL.CACHE.equals(val) ) return;
+            else if ( RETURN_VAL.CONTINUE.equals(val) ) continue;
 
             // if no stopper is found, just add it to the potential list
             cache.addLast(list.remove(0));

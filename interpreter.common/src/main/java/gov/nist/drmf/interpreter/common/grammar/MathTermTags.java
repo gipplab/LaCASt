@@ -62,7 +62,7 @@ public enum MathTermTags {
     public static final String PARENTHESIS_PATTERN =
             "(right|left)[-\\s](parenthesis|bracket|brace|delimiter)|vertical-bar";
 
-    private static class HOLDER{
+    private static final class HOLDER{
         static HashMap<String, MathTermTags> keymap = new HashMap<>();
     }
 
