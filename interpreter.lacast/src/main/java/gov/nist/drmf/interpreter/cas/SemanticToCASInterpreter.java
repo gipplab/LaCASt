@@ -149,8 +149,7 @@ public class SemanticToCASInterpreter {
         }*/
 
         if ( debug ){
-            System.out.println( "DEBUGGING Components: " + NEW_LINE +
-                    Arrays.toString(latexParser.getTranslatedExpressionObject().trans_exps.toArray()));
+            System.out.println( "DEBUGGING Components: " + NEW_LINE + latexParser.getTranslatedExpressionObject().debugString());
             System.out.println();
             System.out.println("Initialization takes: " + init_ms + "ms");
             System.out.println("Translation process takes: " + trans_ms + "ms");
