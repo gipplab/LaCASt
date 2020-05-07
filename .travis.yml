@@ -42,14 +42,17 @@ before_deploy:
   - git config --global user.name "Travis CI"
   - rm -rf libs/logs
   - zip -r -9 ${TRAVIS_TAG}.zip bin/* config/* libs/* scripts/* README.md CONTRIBUTING.md
-  - echo "Git tag with tag $GIT_TAG"
+  - echo "Git tag with tag $TRAVIS_TAG"
   - git tag $TRAVIS_TAG
 
+# it seems we are on deployment-v2 already, in this case, for the right settings, check the following page
+# https://docs.travis-ci.com/user/deployment-v2/providers/releases/
 deploy:
   provider: releases
-  skip_cleanup: true
-  api_token: $GITHUB_TOKEN
-  file: ${GIT_TAG}.zip
+  token: $GITHUB_TOKEN
+  cleanup: false
+  file: ${TRAVIS_TAG}.zip
+  tag_name: $TRAVIS_TAG
   on:
     repo: ag-gipp/LaCASt
     branch: master
