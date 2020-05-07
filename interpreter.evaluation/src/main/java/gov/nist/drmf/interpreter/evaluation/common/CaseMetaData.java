@@ -103,14 +103,20 @@ public class CaseMetaData {
                     length = withRule(varVals, sieved, con, length);
                 }
 
-                if ( rule != null && CaseAnalyzer.ACTIVE_BLUEPRINTS ) {
-                    varVals.add(rule);
-                    length += rule[0].length;
-                } else sieved.add(con);
+                length += updateLists(rule, con, varVals, sieved);
             } catch ( ParseException | RuntimeException pe ){
                 LOG.warn("Cannot parse constraint of line " + lineNumber + ". Reason: " + pe.getMessage());
             }
         }
+        return length;
+    }
+
+    private static int updateLists(String[][] rule, String con, LinkedList<String[][]> varVals, LinkedList<String> sieved) {
+        int length = 0;
+        if ( rule != null && CaseAnalyzer.ACTIVE_BLUEPRINTS ) {
+            varVals.add(rule);
+            length = rule[0].length;
+        } else sieved.add(con);
         return length;
     }
 
