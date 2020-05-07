@@ -28,7 +28,7 @@ public class PrintablePomTaggedExpressionTests {
 
     @BeforeAll
     public static void setup() {
-        mlp = new MLPWrapper();
+        mlp = SemanticMLPWrapper.getStandardInstance();
     }
 
     @Test
@@ -125,7 +125,7 @@ public class PrintablePomTaggedExpressionTests {
     @Test
     public void semanticLaTeXTest() throws ParseException, IOException {
         String texString = "\\JacobiP{\\alpha}{\\beta}{n}@{a+\\cos@{x}}";
-        SemanticMLPWrapper smlp = new SemanticMLPWrapper();
+        SemanticMLPWrapper smlp = SemanticMLPWrapper.getStandardInstance();
         PrintablePomTaggedExpression ppte = smlp.parse(texString);
         assertEquals(texString, ppte.getTexString());
 

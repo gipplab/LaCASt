@@ -8,6 +8,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
@@ -105,7 +106,7 @@ public class MathTermTranslatorTests {
         String expectedResult = mapleTranslator.translate(fencesTestExpr);
         mapleTranslator.reset();
 
-        MLPWrapper mlp = MLPWrapper.getStandardInstance();
+        MLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
         PomTaggedExpression sequencePTE = mlp.parse(fencesTestExpr);
         List<PomTaggedExpression> listPTE = sequencePTE.getComponents();
 
