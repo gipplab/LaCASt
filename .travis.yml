@@ -37,7 +37,7 @@ after_success:
 
 before_deploy:
   - export VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
-  - export TRAVIS_TAG=lacast-$VERSION-$(date -u "+%m-%d")-r$TRAVIS_BUILD_NUMBER
+  - export TRAVIS_TAG=$VERSION-r$TRAVIS_BUILD_NUMBER
   - git config --global user.email "builds@travis-ci.com"
   - git config --global user.name "Travis CI"
   - rm -rf libs/logs
@@ -45,11 +45,12 @@ before_deploy:
   - echo "Git tag with tag $TRAVIS_TAG"
   - git tag $TRAVIS_TAG
 
-# it seems we are on deployment-v2 already, in this case, for the right settings, check the following page
+# it seems we are on deployment-v2 already, in this case, check the following page for the right settings
 # https://docs.travis-ci.com/user/deployment-v2/providers/releases/
 deploy:
   provider: releases
   token: $GITHUB_TOKEN
+  skip_cleanup: true
   cleanup: false
   file: ${TRAVIS_TAG}.zip
   tag_name: $TRAVIS_TAG
