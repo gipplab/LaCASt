@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.mlp.extensions;
 import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.MLP;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
@@ -29,7 +30,7 @@ public class MatchablePomTaggedExpressionTests {
 
     @BeforeAll
     public static void setup() throws ParseException {
-        mlp = new MLPWrapper();
+        mlp = SemanticMLPWrapper.getStandardInstance();
         jacobiBlueprint = new MatchablePomTaggedExpression(mlp, "P^{(par1, par2)}_{par3} (var1)", "[pv]ar\\d");
     }
 

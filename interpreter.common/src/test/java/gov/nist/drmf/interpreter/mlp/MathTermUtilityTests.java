@@ -21,7 +21,7 @@ public class MathTermUtilityTests {
 
     @BeforeAll
     public static void setup() throws IOException {
-        mlp = new SemanticMLPWrapper();
+        mlp = SemanticMLPWrapper.getStandardInstance();
     }
 
     @Test

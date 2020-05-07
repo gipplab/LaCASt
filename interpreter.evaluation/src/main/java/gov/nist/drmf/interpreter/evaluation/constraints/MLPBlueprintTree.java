@@ -35,11 +35,7 @@ public class MLPBlueprintTree {
     public MLPBlueprintTree(String[] mapleValues) {
         this.mapleValues = mapleValues;
         this.texVariables = new HashMap<>();
-        try {
-            this.mlp = new SemanticMLPWrapper();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.mlp = SemanticMLPWrapper.getStandardInstance();
     }
 
     public void setBlueprint(String blueprint) throws ParseException {
@@ -54,12 +50,8 @@ public class MLPBlueprintTree {
 
     public static MLPBlueprintNode parseTree(String constraint) throws ParseException {
         String blueprint = preCleaning(constraint);
-        try {
-            PomTaggedExpression pte = new SemanticMLPWrapper().parse(blueprint);
-            return createBlueprint(pte);
-        } catch (IOException ioe) {
-            return null;
-        }
+        PomTaggedExpression pte = SemanticMLPWrapper.getStandardInstance().parse(blueprint);
+        return createBlueprint(pte);
     }
 
     public static MLPBlueprintNode parseTree(PomTaggedExpression constraintParentNode){

@@ -327,7 +327,7 @@ class SimpleTranslationTests {
      * @throws ParseException
      */
     private PomTaggedExpression stripOfDLMFInfo(String input) throws ParseException, IOException {
-        MLPWrapper mlp = new SemanticMLPWrapper();
+        MLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
         PomTaggedExpression pte = mlp.parse(input);
         PomTaggedExpression cosPte = pte.getComponents().get(0);
         cosPte.getRoot().setAlternativeFeatureSets(new LinkedList<>());
