@@ -54,4 +54,3 @@ deploy:
     repo: ag-gipp/LaCASt
     branch: master
     jdk: openjdk11
-    tags: true
