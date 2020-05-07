@@ -22,7 +22,7 @@ public class ConstraintsMatcherTests {
 
     @BeforeAll
     static void init() throws IOException {
-        wrapper = new SemanticMLPWrapper();
+        wrapper = SemanticMLPWrapper.getStandardInstance();
     }
 
     private static void generalCheck(String blueprint, String constraint, String[] vars, String[] vals) throws ParseException {

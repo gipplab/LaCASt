@@ -18,8 +18,6 @@ import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CHAR_BACKSLASH;
  * @author Andre Greiner-Petter
  */
 public class GreekLetterTranslator extends AbstractTranslator {
-    private static final Logger LOG = LogManager.getLogger(GreekLetterTranslator.class.getName());
-
     private TranslatedExpression localTranslations = new TranslatedExpression();
 
     /**

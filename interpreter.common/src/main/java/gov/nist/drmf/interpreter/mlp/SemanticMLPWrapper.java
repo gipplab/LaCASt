@@ -21,6 +21,15 @@ public class SemanticMLPWrapper extends MLPWrapper {
 
     public SemanticMLPWrapper() throws IOException {
         super();
+        init();
+    }
+
+    public SemanticMLPWrapper(String referenceDir) throws IOException {
+        super(referenceDir);
+        init();
+    }
+
+    private void init() throws IOException {
         MacrosLexicon.init();
         addLexicon( MacrosLexicon.getDLMFMacroLexicon() );
     }

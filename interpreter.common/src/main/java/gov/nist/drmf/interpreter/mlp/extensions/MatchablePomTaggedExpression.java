@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
 import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.MathTerm;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
@@ -75,7 +76,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
      */
     public MatchablePomTaggedExpression(String expression, String wildcardPattern)
             throws ParseException, NotMatchableException {
-        this(MLPWrapper.getStandardInstance().simpleParse(expression), wildcardPattern);
+        this(SemanticMLPWrapper.getStandardInstance().simpleParse(expression), wildcardPattern);
     }
 
     /**
@@ -176,7 +177,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
      */
     public boolean match(String expression, boolean exactMatch) {
         try {
-            PrintablePomTaggedExpression ppte = MLPWrapper.getStandardInstance().parse(expression);
+            PrintablePomTaggedExpression ppte = SemanticMLPWrapper.getStandardInstance().parse(expression);
             if ( exactMatch )
                 return match(ppte);
             else return matchWithinPlace(ppte);
