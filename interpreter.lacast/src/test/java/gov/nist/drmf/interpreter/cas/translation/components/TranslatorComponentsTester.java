@@ -36,6 +36,7 @@ public class TranslatorComponentsTester {
         PomTaggedExpression pte = mlp.simpleParse("alpha");
         TranslatedExpression te = gt.translate(pte);
         assertEquals("alpha", te.toString());
+        assertEquals(te, gt.getTranslatedExpressionObject());
     }
 
     @Test
@@ -45,5 +46,12 @@ public class TranslatorComponentsTester {
         pte.getRoot().setTermText("nonGreekLetter");
         TranslationException te = assertThrows(TranslationException.class, () -> gt.translate(pte) );
         assertTrue( te.getMessage().toLowerCase().contains("cannot translate greek letter") );
+    }
+
+    @Test
+    public void nonGreekLetterExceptionTest2() throws ParseException {
+        GreekLetterTranslator gt = new GreekLetterTranslator(slt);
+        PomTaggedExpression pte = mlp.simpleParse("noGreekLetter");
+        assertThrows(TranslationException.class, () -> gt.translate(pte) );
     }
 }

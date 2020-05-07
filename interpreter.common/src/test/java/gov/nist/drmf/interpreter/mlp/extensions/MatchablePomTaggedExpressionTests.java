@@ -131,12 +131,12 @@ public class MatchablePomTaggedExpressionTests {
         assertEquals("x", groups.get("var1"));
 
         assertFalse(
-                blueprint.match("( x + 1 )^{y}", false),
+                blueprint.match("( x + 1 )^{y}"),
                 "Should not match because capture group var1 cannot be both x and y"
         );
 
         assertTrue(
-                blueprint.match("( x + 1 )^{x}", false)
+                blueprint.match("( x + 1 )^{x}")
         );
     }
 
@@ -179,7 +179,8 @@ public class MatchablePomTaggedExpressionTests {
 
         String test = "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
-        assertTrue(blueprint.matchWithinPlace(ppte));
+        MatcherConfig config = new MatcherConfig(true, false);
+        assertTrue(blueprint.match(ppte, config));
         Map<String, String> matches = blueprint.getStringMatches();
         assertEquals("P", matches.get("var1"));
         assertEquals("\\alpha", matches.get("var2"));
@@ -195,7 +196,8 @@ public class MatchablePomTaggedExpressionTests {
 
         String test = "\\frac{1}{2} P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
-        assertTrue(blueprint.matchWithinPlace(ppte));
+        MatcherConfig config = new MatcherConfig(true, false);
+        assertTrue(blueprint.match(ppte, config));
         Map<String, String> matches = blueprint.getStringMatches();
         assertEquals("P", matches.get("var1"));
         assertEquals("\\alpha", matches.get("var2"));
@@ -211,7 +213,8 @@ public class MatchablePomTaggedExpressionTests {
 
         String test = "P_{n}^{(\\alpha, \\beta)}(x)";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
-        assertFalse(blueprint.matchWithinPlace(ppte));
+        MatcherConfig config = new MatcherConfig(true, false);
+        assertFalse(blueprint.match(ppte, config));
     }
 
     @Test
@@ -221,7 +224,8 @@ public class MatchablePomTaggedExpressionTests {
 
         String test = "(1 - x)^{\\alpha}(1 + x)^{\\beta}";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
-        assertFalse(blueprint.matchWithinPlace(ppte));
+        MatcherConfig config = new MatcherConfig(true, false);
+        assertFalse(blueprint.match(ppte, config));
     }
 
     @Test
@@ -231,7 +235,8 @@ public class MatchablePomTaggedExpressionTests {
 
         String test = "(1 - x)^{\\alpha}(1 + x)^{\\beta}";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
-        assertFalse(blueprint.matchWithinPlace(ppte));
+        MatcherConfig config = new MatcherConfig(true, false);
+        assertFalse(blueprint.match(ppte, config));
     }
 
     @Test
@@ -241,10 +246,27 @@ public class MatchablePomTaggedExpressionTests {
 
         String test = "1-(f(x))^x";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
-        assertTrue(blueprint.matchWithinPlace(ppte));
+        MatcherConfig config = new MatcherConfig(true, false);
+        assertTrue(blueprint.match(ppte, config));
 
         Map<String, String> matches = blueprint.getStringMatches();
         assertEquals("f (x)", matches.get("var1"));
+    }
+
+    @Test
+    public void bracketLogicTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "1-(var1)^x", "var\\d+");
+
+        String test = "1-(f(x)^x";
+        PrintablePomTaggedExpression ppte = mlp.parse(test);
+
+        MatcherConfig config = new MatcherConfig(true, false);
+        assertFalse(blueprint.match(ppte, config));
+
+        ppte = mlp.parse(test);
+        config.ignoreBracketLogic(true);
+        assertTrue(blueprint.match(ppte, config));
     }
 
     @Test
@@ -254,7 +276,8 @@ public class MatchablePomTaggedExpressionTests {
 
         String test = "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}\\,{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
-        assertTrue(blueprint.matchWithinPlace(ppte));
+        MatcherConfig config = new MatcherConfig(true, false);
+        assertTrue(blueprint.match(ppte, config));
 
         Map<String, String> matches = blueprint.getStringMatches();
         assertEquals("2", matches.get("var1"));
