@@ -36,14 +36,14 @@ after_success:
   - ./cc-test-reporter upload-coverage -d
 
 before_deploy:
-  - rm -rf libs/logs
-  - zip -r -9 ${GIT_TAG}.zip bin/* config/* libs/* scripts/* README.md CONTRIBUTING.md
   - export VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
-  - export GIT_TAG=lacast-$VERSION-$(date -u "+%m-%d")-r$TRAVIS_BUILD_NUMBER
+  - export TRAVIS_TAG=lacast-$VERSION-$(date -u "+%m-%d")-r$TRAVIS_BUILD_NUMBER
   - git config --global user.email "builds@travis-ci.com"
   - git config --global user.name "Travis CI"
+  - rm -rf libs/logs
+  - zip -r -9 ${TRAVIS_TAG}.zip bin/* config/* libs/* scripts/* README.md CONTRIBUTING.md
   - echo "Git tag with tag $GIT_TAG"
-  - git tag $GIT_TAG
+  - git tag $TRAVIS_TAG
 
 deploy:
   provider: releases
