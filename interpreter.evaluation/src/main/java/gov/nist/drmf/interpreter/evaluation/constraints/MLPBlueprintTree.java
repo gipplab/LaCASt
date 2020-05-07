@@ -35,11 +35,7 @@ public class MLPBlueprintTree {
     public MLPBlueprintTree(String[] mapleValues) {
         this.mapleValues = mapleValues;
         this.texVariables = new HashMap<>();
-        try {
-            this.mlp = new SemanticMLPWrapper();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.mlp = SemanticMLPWrapper.getStandardInstance();
     }
 
     public void setBlueprint(String blueprint) throws ParseException {
