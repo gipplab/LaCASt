@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.grammar.LimDirections;
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
@@ -325,7 +326,7 @@ public class LimitBlueprintTest {
 
     @Test
     public void matcherMultiPomTest() throws ParseException {
-        MLPWrapper mlp = new MLPWrapper();
+        MLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
         String testInput = "x \\in \\Integers";
         PomTaggedExpression pte = mlp.parse(testInput);
         PomTaggedExpression pte2 = mlp.parse(testInput);

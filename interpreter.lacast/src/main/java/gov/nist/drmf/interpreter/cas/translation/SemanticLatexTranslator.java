@@ -105,7 +105,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      */
     public void init( Path reference_dir_path ) throws IOException {
         config.init();
-        parser = new SemanticMLPWrapper();
+        parser = new SemanticMLPWrapper(reference_dir_path.toString());
 
         if ( config.getLimitParser() == null ) {
             BlueprintMaster bm = new BlueprintMaster(

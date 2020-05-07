@@ -27,7 +27,7 @@ import java.util.List;
  *
  * @author Andre Greiner-Petter
  */
-public class MLPWrapper {
+public abstract class MLPWrapper {
     public static final byte NORMALIZE_SUB_SUPERSCRIPTS = 0b0001;
     public static final byte NORMALIZE_PARENTHESES = 0b0010;
 
@@ -35,11 +35,6 @@ public class MLPWrapper {
      * The PoM-Parser object
      */
     private final PomParser parser;
-
-    /**
-     * A standard instance to ensure a better performance
-     */
-    private static MLPWrapper standardInstance;
 
     /**
      * Creates a non-semantic wrapper of the PomParser. The lexicon files are fetched from the
@@ -171,25 +166,13 @@ public class MLPWrapper {
     }
 
     /**
-     * Provide access to the standard instance of the PoM-Tagger. It increases the performances
-     * if you keep the number of MLP instances low.
-     * @return the standard instance of the this class
-     */
-    public static MLPWrapper getStandardInstance() {
-        if ( standardInstance == null ) {
-            standardInstance = new MLPWrapper();
-        }
-        return standardInstance;
-    }
-
-    /**
      * Helper method to quickly check if MLP is available or not.
      * Does not throw an exception if MLP is not available!
      * @return true if MLP (PoM-Tagger) is available, otherwise false.
      */
     public static boolean isMLPPresent() {
         try {
-            return getStandardInstance() != null;
+            return SemanticMLPWrapper.getStandardInstance() != null;
         } catch ( Exception e ) {
             return false;
         }

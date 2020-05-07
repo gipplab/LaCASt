@@ -17,7 +17,7 @@ public class MLPWrapperTest {
 
     @BeforeAll
     public static void setup() {
-        mlp = MLPWrapper.getStandardInstance();
+        mlp = SemanticMLPWrapper.getStandardInstance();
     }
 
     @Test
