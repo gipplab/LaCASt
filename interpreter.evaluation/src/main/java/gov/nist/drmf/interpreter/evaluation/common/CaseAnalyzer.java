@@ -69,7 +69,6 @@ public class CaseAnalyzer {
         Matcher metaDataMatcher = META_INFO_PATTERN.matcher(line);
         StringBuffer mathSB = new StringBuffer();
 
-        String link = null;
         LinkedList<String> constraints = new LinkedList();
         LinkedList<SymbolTag> symbolsUsed = new LinkedList<>();
 
@@ -83,7 +82,7 @@ public class CaseAnalyzer {
         metaDataMatcher.appendTail(mathSB);
 
         String eq = getEquation(mathSB);
-        CaseMetaData metaData = CaseMetaData.extractMetaData(constraints, symbolsUsed, link, lineNumber);
+        CaseMetaData metaData = CaseMetaData.extractMetaData(constraints, symbolsUsed, symbInfo.link, lineNumber);
 
         if ( symbInfo.symbolDefID != null && !symbInfo.symbolDefSymb.contains("\\NVar") ) {
             handleNVar(symbInfo, metaData, eq, symbDefLib);

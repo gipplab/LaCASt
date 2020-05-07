@@ -101,7 +101,9 @@ public class CaseMetaData {
                 // some constraints are buggy... consider \nu\geq 1,x\in\Reals
                 if ( rule == null ) {
                     length = withRule(varVals, sieved, con, length);
-                } else if ( CaseAnalyzer.ACTIVE_BLUEPRINTS ) {
+                }
+
+                if ( rule != null && CaseAnalyzer.ACTIVE_BLUEPRINTS ) {
                     varVals.add(rule);
                     length += rule[0].length;
                 } else sieved.add(con);

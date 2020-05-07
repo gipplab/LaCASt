@@ -54,12 +54,8 @@ public class MLPBlueprintTree {
 
     public static MLPBlueprintNode parseTree(String constraint) throws ParseException {
         String blueprint = preCleaning(constraint);
-        try {
-            PomTaggedExpression pte = new SemanticMLPWrapper().parse(blueprint);
-            return createBlueprint(pte);
-        } catch (IOException ioe) {
-            return null;
-        }
+        PomTaggedExpression pte = SemanticMLPWrapper.getStandardInstance().parse(blueprint);
+        return createBlueprint(pte);
     }
 
     public static MLPBlueprintNode parseTree(PomTaggedExpression constraintParentNode){
