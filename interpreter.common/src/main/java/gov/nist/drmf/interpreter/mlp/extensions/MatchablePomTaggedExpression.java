@@ -4,7 +4,6 @@ import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
-import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.MathTerm;
@@ -13,8 +12,9 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.*;
-import java.util.regex.Matcher;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This object is essentially an extension of the classic PomTaggedExpression.
@@ -68,7 +68,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
     }
 
     /**
-     * It uses the standard instance the parser via {@link MLPWrapper#getStandardInstance()}.
+     * It uses the standard instance the parser via {@link SemanticMLPWrapper#getStandardInstance()}.
      * @param expression the expression to create a matchable tree
      * @param wildcardPattern the regex to find wildcards (e.g., var\d+).
      * @throws ParseException if the {@link MLPWrapper} is unable to parse the expression
@@ -160,27 +160,25 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
 
     /**
      * The default match is an exact match. If you want to allow prior and post non-matching tokens,
-     * either use {@link #match(String, boolean)} or {@link #matchWithinPlace(PrintablePomTaggedExpression)}.
+     * either use {@link #match(String, MatcherConfig)} or {@link #match(PrintablePomTaggedExpression)}.
      * @param expression latex string
      * @return true if the input matches the tree
      */
     public boolean match(String expression) {
-        return match(expression, true);
+        return match(expression, MatcherConfig.getStrictConfig());
     }
 
     /**
      * Generates a parse tree of the given input and returns true if the input matches this
      * pattern tree.
      * @param expression latex string
-     * @param exactMatch if true, the matcher does not allow tokens prior or after the match.
+     * @param config configuration for the matcher
      * @return true if the input matches this tree
      */
-    public boolean match(String expression, boolean exactMatch) {
+    public boolean match(String expression, MatcherConfig config) {
         try {
             PrintablePomTaggedExpression ppte = SemanticMLPWrapper.getStandardInstance().parse(expression);
-            if ( exactMatch )
-                return match(ppte);
-            else return matchWithinPlace(ppte);
+            return match(ppte, config);
         } catch (ParseException e) {
             LOG.warn("Cannot parse the given expression " + expression);
             return false;
@@ -189,9 +187,33 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
 
     @Override
     public boolean match(PrintablePomTaggedExpression expression) {
-        captures.clear();
-        expression = (PrintablePomTaggedExpression)MLPWrapper.normalize(expression);
-        return match(expression, new LinkedList<>(), MatcherConfig.getStrictConfig());
+        try {
+            return match(expression, MatcherConfig.getStrictConfig());
+        } catch (Exception e) {
+            LOG.warn("Unable to match expression because " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Allows to specify a config for the matcher
+     * @param expression the expression to match
+     * @param config the matcher configuration
+     * @return true if it matches
+     */
+    public boolean match(PrintablePomTaggedExpression expression, MatcherConfig config) {
+        try {
+            if ( config.allowFollowingTokens() ) {
+                return matchWithinPlace(expression, config);
+            } else {
+                captures.clear();
+                expression = (PrintablePomTaggedExpression)MLPWrapper.normalize(expression);
+                return match(expression, new LinkedList<>(), config);
+            }
+        } catch (Exception e) {
+            LOG.warn("Unable to match expression because " + e.getMessage());
+            return false;
+        }
     }
 
     /**
@@ -200,11 +222,9 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
      * @param expression the expression to match
      * @return true if there is a hit somewhere within the given expression
      */
-    public boolean matchWithinPlace(PrintablePomTaggedExpression expression) {
+    private boolean matchWithinPlace(PrintablePomTaggedExpression expression, MatcherConfig config) {
         captures.clear();
         expression = (PrintablePomTaggedExpression)MLPWrapper.normalize(expression);
-        MatcherConfig config = new MatcherConfig(true, false);
-
         if (ExpressionTags.sequence.equals(ExpressionTags.getTagByKey(this.getTag()))) {
             return children.sequenceInPlaceMatch(expression, config);
         }
