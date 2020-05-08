@@ -190,7 +190,7 @@ public class LetterTranslator extends AbstractListTranslator {
     private boolean tryFallbackSymbolTranslation(MathTerm term) {
         FeatureSet fset = term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
         if (fset != null) {
-            String trans = DLMFFeatureValues.CAS.getFeatureValue(fset, getConfig().getTO_LANGUAGE());
+            String trans = DLMFFeatureValues.CAS_TRANSLATIONS.getFeatureValue(fset, getConfig().getTO_LANGUAGE());
             if (trans != null) {
                 getInfoLogger().addMacroInfo(
                         term.getTermText(), "was translated to: " + trans);
@@ -284,12 +284,12 @@ public class LetterTranslator extends AbstractListTranslator {
         if (dlmf == null) {
             getInfoLogger().addGeneralInfo(
                     term.getTermText(),
-                    String.format(LETTER_MSG, DLMFFeatureValues.meaning.getFeatureValue(constantSet, CAS))
+                    String.format(LETTER_MSG, DLMFFeatureValues.MEANING.getFeatureValue(constantSet, CAS))
             );
         } else {
             getInfoLogger().addGeneralInfo(
                     term.getTermText(),
-                    String.format(GREEK_MSG, DLMFFeatureValues.meaning.getFeatureValue(constantSet, CAS), dlmf, term.getTermText())
+                    String.format(GREEK_MSG, DLMFFeatureValues.MEANING.getFeatureValue(constantSet, CAS), dlmf, term.getTermText())
             );
         }
     }

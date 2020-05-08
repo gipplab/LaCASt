@@ -2,9 +2,9 @@ package gov.nist.drmf.interpreter.mlp;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.mlp.data.CASInfo;
+import gov.nist.drmf.interpreter.mlp.data.CASFunctionMetaInfo;
 import gov.nist.drmf.interpreter.mlp.data.DLMFTranslationHeaders;
-import gov.nist.drmf.interpreter.mlp.data.InfoHolder;
+import gov.nist.drmf.interpreter.mlp.data.FunctionInfoHolder;
 import gov.nist.drmf.interpreter.mlp.data.LexiconInfoConsumer;
 import mlp.FeatureSet;
 import org.apache.logging.log4j.LogManager;
@@ -45,34 +45,40 @@ public abstract class LexiconConverterUtility {
                 .forEach( consumer );
     }
 
-    public static void fillFeatureWithInfos(CASInfo info, FeatureSet fset, String curr_cas ){
+    public static void fillFeatureWithInfos(CASFunctionMetaInfo info, FeatureSet fset, String curr_cas ){
         if ( info == null ) return;
         DLMFTranslationHeaders h = DLMFTranslationHeaders.cas_link;
-        fset.addFeature(
-                h.getFeatureKey(curr_cas),
-                info.getLink(),
-                MacrosLexicon.SIGNAL_INLINE
-        );
-        h = DLMFTranslationHeaders.cas_constraint;
-        fset.addFeature(
-                h.getFeatureKey(curr_cas),
-                info.getConstraints(),
-                MacrosLexicon.SIGNAL_INLINE
-        );
-        h = DLMFTranslationHeaders.cas_branch_cuts;
-        fset.addFeature(
-                h.getFeatureKey(curr_cas),
-                info.getBranch_cuts(),
-                MacrosLexicon.SIGNAL_INLINE
-        );
+        if ( info.getLink() != null && !info.getLink().isBlank() ) {
+            fset.addFeature(
+                    h.getFeatureKey(curr_cas),
+                    info.getLink(),
+                    MacrosLexicon.SIGNAL_INLINE
+            );
+        }
+        if ( info.getConstraints() != null && !info.getConstraints().isBlank() ) {
+            h = DLMFTranslationHeaders.cas_constraint;
+            fset.addFeature(
+                    h.getFeatureKey(curr_cas),
+                    info.getConstraints(),
+                    MacrosLexicon.SIGNAL_INLINE
+            );
+        }
+        if ( info.getBranchCuts() != null && !info.getBranchCuts().isBlank() ) {
+            h = DLMFTranslationHeaders.cas_branch_cuts;
+            fset.addFeature(
+                    h.getFeatureKey(curr_cas),
+                    info.getBranchCuts(),
+                    MacrosLexicon.SIGNAL_INLINE
+            );
+        }
     }
 
-    public static InfoHolder getFuncNameAndFillInteger(
+    public static FunctionInfoHolder getFuncNameAndFillInteger(
             String expression,
             String error_message,
             LineAnalyzer analyzer
     ) throws NumberFormatException {
-        InfoHolder holder = new InfoHolder();
+        FunctionInfoHolder holder = new FunctionInfoHolder();
         Matcher m = GlobalConstants.GENERAL_CAS_FUNC_PATTERN.matcher( expression );
         if ( !m.matches() ) {
             LOG.debug(error_message);
@@ -81,7 +87,7 @@ public abstract class LexiconConverterUtility {
             fillHolder(holder, m, expression);
         }
 
-        if ( holder.getNumVars() == null ){
+        if ( holder.getNumVars() < 0 ){
             String num_vars_str = analyzer.getValue( Keys.NUM_OF_VARS );
             try { holder.setNumVars(Integer.parseInt(num_vars_str)); }
             catch( NumberFormatException nfe ){
@@ -92,18 +98,17 @@ public abstract class LexiconConverterUtility {
         return holder;
     }
 
-    private static void fillHolder(InfoHolder holder, Matcher m, String expression) {
+    private static void fillHolder(FunctionInfoHolder holder, Matcher m, String expression) {
         String str = m.group( GlobalConstants.GEN_CAS_FUNC_SPECIFIER );
         if ( str != null ){
             holder.setPattern(expression.substring( str.length() ));
             String[] elms = str
                     .substring(1, str.length()-1) // delete leading and last X
                     .split( GlobalConstants.MACRO_OPT_PARAS_SPLITTER ); // split number:name
-            holder.setCasName(elms[1]);
+            holder.setCasFunctionName(elms[1]);
             holder.setNumVars(Integer.parseInt(elms[0]));
-
         } else {
-            holder.setCasName(m.group( GlobalConstants.GEN_CAS_FUNC_PATTERN_NAME ));
+            holder.setCasFunctionName(m.group( GlobalConstants.GEN_CAS_FUNC_PATTERN_NAME ));
             holder.setPattern(expression);
         }
     }
