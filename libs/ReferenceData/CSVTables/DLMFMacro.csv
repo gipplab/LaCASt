@@ -119,7 +119,7 @@ DLMF;DLMF-Link;Meanings;Number of Parameters;Number of Ats;Number of Variables;S
 n!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r14;Factorial;0;0;0;;;;ignore
 n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0;;;;ignore
 \shiftfactorial{a}{\kappa};http://dlmf.nist.gov/35.4#E1;Partitional shifted factorial;0;0;2;;;;
-\floor{x} ;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r16;Floor;0;0;1;;;;
+\floor{x};http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r16;Floor;0;0;1;;;;
 \ceiling{x};http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r17;Ceiling;0;0;1;;;;
 \sign@@{x};http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r18;Signum;0;2;1;;;;dlmf-macro
 \inf;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r24;Infimum;0;0;0;;;;symbol
@@ -343,7 +343,7 @@ X1:\ipderivX\ipderiv[n]{f}{x};http://dlmf.nist.gov/1.4#E4;Derivative;1;0;2;;;;dl
 \FresnelintF@{z};http://dlmf.nist.gov/7.2#E6;Fresnel Integral;0;1;1;;;;
 \Fresnelcosint@{z};http://dlmf.nist.gov/7.2#E7;Fresnel Cosine Integral;0;1;1;;;;
 \Fresnelsinint@{z};http://dlmf.nist.gov/7.2#E8;Fresnel Sine Integral;0;1;1;;;;
-\auxFresnelf@{z} ;http://dlmf.nist.gov/7.2#E10;Fresnel Auxiliaty Functions;0;1;1;;;;
+\auxFresnelf@{z};http://dlmf.nist.gov/7.2#E10;Fresnel Auxiliaty Functions;0;1;1;;;;
 \auxFresnelg@{z};http://dlmf.nist.gov/7.2#E11;Fresnel Auxiliaty Functions;0;1;1;;;;
 ;;;;;;;;;
 \EulerGamma@{z};http://dlmf.nist.gov/5.2#E1;Euler Gamma function;0;1;1;1;;;dlmf-macro
@@ -375,8 +375,7 @@ X1:\ipderivX\ipderiv[n]{f}{x};http://dlmf.nist.gov/1.4#E4;Derivative;1;0;2;;;;dl
 \genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};http://dlmf.nist.gov/16.2#E1;Generalized hypergeometric function;2;3;3;;;;
 \genhyperH{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};http://dlmf.nist.gov/16.4#E16;Bilateral hypergeometric function;2;3;3;;;;
 \hyperOlverF@@@{a}{b}{c}{z};http://dlmf.nist.gov/15.2#E2;Olver's hypergeometric function;0;3;4;;;;
-"\genhyperOlverF{p}{q}@@
-{\Vector{a}}{\Vector{b}}{z}";http://dlmf.nist.gov/16.2#E5;Olver's generalized hypergeometric function;2;2;3;;;;ignore
+\genhyperOlverF{p}{q}@@{\Vector{a}}{\Vector{b}}{z};http://dlmf.nist.gov/16.2#E5;Olver's generalized hypergeometric function;2;2;3;;;;ignore
 \KummerconfhyperM@{a}{b}{z};http://dlmf.nist.gov/13.2#E2;Kummer confluent hypergeometric functions M;0;1;3;3;;;
 \KummerconfhyperU@{a}{b}{z};http://dlmf.nist.gov/13.2#E6;Kummer confluent hypergeometric functions U;0;1;3;3;;;
 \OlverconfhyperM@{a}{b}{z};http://dlmf.nist.gov/13.2#E3;Olver's confluent hypergeometric functions U;0;1;3;3;;;
@@ -588,10 +587,10 @@ X1:\FerrersHatQX\DunsterQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical /
 \qBernoullipolybeta{n}@{x}{q};http://dlmf.nist.gov/17.3#E7;q-Bernoulli polynomial;1;1;2;;;;
 ;;;;;;;;;
 \Bellnumber@{n};http://dlmf.nist.gov/26.7#i;Bell number;0;1;1;;;;
-\BesselPoly{n}@{x}{a};http://dlmf.nist.gov/18.34#E1;Bessel polynomial;1;1;2;;;;
+\BesselPoly{n}@{x}{a};http://dlmf.nist.gov/18.34#E1;Bessel polynomial;1;1;2;1;;;
 \Besselpolyy{n}@{x}{a};http://dlmf.nist.gov/18.34#E1;Bessel polynomial;1;1;2;1;;;
-\BesselPolyIIparam{n}@{x}{a}{b};http://drmf.wmflabs.org/wiki/Definition:BesselPolyIIparam;Bessel polynomial with two parameters;1;1;3;;;;
-\BesselPolyTheta{n}@{x}{a}{b};http://drmf.wmflabs.org/wiki/Definition:BesselPolyTheta;Bessel Theta polynomial with two parameters;1;1;3;;;;
+\BesselPolyIIparam{n}@{x}{a}{b};http://drmf.wmflabs.org/wiki/Definition:BesselPolyIIparam;Bessel polynomial with two parameters;1;1;3;1;;;
+\BesselPolyTheta{n}@{x}{a}{b};http://drmf.wmflabs.org/wiki/Definition:BesselPolyTheta;Bessel Theta polynomial with two parameters;1;1;3;1;;;
 ;;;;;;;;;
 \Charlier{n}@{x}{a};http://dlmf.nist.gov/18.19#T1.t1.r5;Charlier polynomial;1;1;2;;;;
 \CharlierpolyC{n}@{x}{a};http://dlmf.nist.gov/18.19#T1.t1.r5;Charlier polynomial;1;1;2;;;;
@@ -638,10 +637,10 @@ X1:\FerrersHatQX\DunsterQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical /
 ;;;;;;;;;
 \Krawtchouk{n}@{x}{p}{N};http://dlmf.nist.gov/18.19#T1.t1.r3;Krawtchouk polynomial;1;1;3;;;;
 \KrawtchoukpolyK{n}@{x}{p}{N};http://dlmf.nist.gov/18.19#T1.t1.r3;Krawtchouk polynomial;1;1;3;;;;
-\Laguerre{n}@{x};http://dlmf.nist.gov/18.1#I1.ix7.p1;Laguerre polynomial;1;1;1;;;;
-\LaguerrepolyL{n}@{x};http://dlmf.nist.gov/18.1#I1.ix7.p1;Laguerre polynomial;1;1;1;;;;
-X1:\LaguerreX\Laguerre[\alpha]{n}@{x};http://dlmf.nist.gov/18.3#T1.t1.r12;Laguerre polynomial;1;1;1;;;;
-X1:\LaguerreLX\LaguerrepolyL[\alpha]{n}@{x};http://dlmf.nist.gov/18.3#T1.t1.r12;Laguerre polynomial;1;1;1;;;;
+\Laguerre{n}@{x};http://dlmf.nist.gov/18.1#I1.ix7.p1;Laguerre polynomial;1;1;1;1;;;
+\LaguerrepolyL{n}@{x};http://dlmf.nist.gov/18.1#I1.ix7.p1;Laguerre polynomial;1;1;1;1;;;
+X1:\LaguerreX\Laguerre[\alpha]{n}@{x};http://dlmf.nist.gov/18.3#T1.t1.r12;Laguerre polynomial;1;1;1;1;;;
+X1:\LaguerrepolyLX\LaguerrepolyL[\alpha]{n}@{x};http://dlmf.nist.gov/18.3#T1.t1.r12;Laguerre polynomial;1;1;1;1;;;
 \GottliebLaguerre{n}@{x};http://drmf.wmflabs.org/wiki/Definition:GottliebLaguerre;Gottlieb-Laguerre polynomial;1;1;1;;;;
 \LamepolyuE{m}{2n}@{z}{k^2};http://dlmf.nist.gov/29.12#E1;Lame polynomial;2;1;2;;;;
 \LamepolysE{m}{2n+1}@{z}{k^2};http://dlmf.nist.gov/29.12#E2;Lame polynomial;2;1;2;;;;
@@ -728,9 +727,9 @@ X1:\assLegendrePX\assLegendreP[mu]{nu}@{z};http://dlmf.nist.gov/14.21#Ex1;associ
 \littleqLegendre{m}@{x}{q};http://drmf.wmflabs.org/wiki/Definition:littleqLegendre;little q-Legendre polynomial;1;1;2;;;;
 \qMeixner{n}@{x}{b}{c}{q};http://drmf.wmflabs.org/wiki/Definition:qMeixner;q-Meixner polynomial;1;1;4;;;;
 \qMeixnerPollaczek{n}@{x}{a}{q};http://drmf.wmflabs.org/wiki/Definition:qMeixnerPollaczek;q-Meixner-Pollaczek polynomial;1;1;3;;;;
-\qPochhammer{a}{q}{n};http://dlmf.nist.gov/17.2#SS1.p1;q-Pochhammer symbol;0;0;3;;;;
-\qmultiPochhammersym{a_1,\ldots,a_n}{q}{n};http://dlmf.nist.gov/17.2.E5;q-Multi-Pochhammer symbol;0;0;3;;;;
-\qpolygamma{n}{q}@{z};http://drmf.wmflabs.org/wiki/Definition:qPolygamma;q-Polygamma function;2;1;1;;;;
+\qPochhammer{a}{q}{n};http://dlmf.nist.gov/17.2#SS1.p1;q-Pochhammer symbol;0;0;3;3;;;
+\qmultiPochhammersym{a_1,\ldots,a_n}{q}{n};http://dlmf.nist.gov/17.2.E5;q-Multi-Pochhammer symbol;0;0;3;3;;;
+\qpolygamma{n}{q}@{z};http://drmf.wmflabs.org/wiki/Definition:qPolygamma;q-Polygamma function;2;1;1;1;;;
 \qRacah{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};http://dlmf.nist.gov/18.28#E19;q-Racah polynomials;1;1;6;;;;
 \qRacahpolyR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};http://dlmf.nist.gov/18.28#E19;q-Racah polynomials;1;1;6;;;;
 \qStirlingnumbera{m}{s}@{q};http://dlmf.nist.gov/17.3#E9;q-Stirling number;2;1;1;;;;
