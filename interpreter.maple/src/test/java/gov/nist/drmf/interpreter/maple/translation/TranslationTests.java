@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.maple.translation;
 
-import com.maplesoft.externalcall.MapleException;
 import gov.nist.drmf.interpreter.maple.cases.TranslationTestCases;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
 import org.apache.logging.log4j.LogManager;
@@ -9,12 +8,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
 import static gov.nist.drmf.interpreter.common.tests.IgnoresAllWhitespacesMatcher.ignoresAllWhitespaces;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * @author Andre Greiner-Petter
@@ -23,12 +22,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class TranslationTests {
     private static final Logger LOG = LogManager.getLogger(TranslationTests.class.getName());
 
-    private static MapleInterface mi;
+    private static MapleTranslator mi;
 
     @BeforeAll
-    public static void setup() throws IOException, MapleException {
-        MapleInterface.init();
-        mi = MapleInterface.getUniqueMapleInterface();
+    public static void setup() {
+        mi = MapleTranslator.getDefaultInstance();
+        if ( mi == null ) fail("Cannot instantiate maple.");
     }
 
     @TestFactory

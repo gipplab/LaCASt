@@ -1,5 +1,8 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
+import mlp.MathTerm;
+import mlp.PomTaggedExpression;
+
 import java.util.HashMap;
 
 /**
@@ -50,11 +53,20 @@ public enum MathTermTags {
     modulo("modulo"),
     vbar("vertical-bar");
 
-    private String tag;
+    public static final String OPEN_PARENTHESIS_PATTERN =
+            "(left)[-\\s](parenthesis|bracket|brace|delimiter)|vertical-bar";
 
-    private static class HOLDER{
+    public static final String CLOSE_PARENTHESIS_PATTERN =
+            "(right)[-\\s](parenthesis|bracket|brace|delimiter)|vertical-bar";
+
+    public static final String PARENTHESIS_PATTERN =
+            "(right|left)[-\\s](parenthesis|bracket|brace|delimiter)|vertical-bar";
+
+    private static final class HOLDER{
         static HashMap<String, MathTermTags> keymap = new HashMap<>();
     }
+
+    private String tag;
 
     MathTermTags (String tag){
         this.tag = tag;
@@ -65,7 +77,25 @@ public enum MathTermTags {
         return HOLDER.keymap.get(key);
     }
 
+    public static MathTermTags getTagByMathTerm(MathTerm term) {
+        String termTag = term.getTag();
+        return MathTermTags.getTagByKey(termTag);
+    }
+
+    public static MathTermTags getTagByExpression(PomTaggedExpression exp) {
+        MathTerm term = exp.getRoot();
+        return getTagByMathTerm(term);
+    }
+
     public String tag(){
         return tag;
+    }
+
+    public static boolean isChooseCommand(MathTerm mt) {
+        if ( mt == null || mt.isEmpty() ) return false;
+        if ( MathTermTags.command.equals(getTagByKey(mt.getTag())) ) {
+            return "\\choose".equals(mt.getTermText());
+        }
+        return false;
     }
 }

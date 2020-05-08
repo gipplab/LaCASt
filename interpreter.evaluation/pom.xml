@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>gov.nist.drmf.interpreter</groupId>
-            <artifactId>interpreter.api</artifactId>
+            <artifactId>interpreter.core</artifactId>
             <version>2.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
@@ -30,70 +30,82 @@
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven.surefire.version}</version>
                 <configuration>
                     <environmentVariables>
                         <MAPLE>${maple.installation.dir}</MAPLE>
-                        <LD_LIBRARY_PATH>${maple.installation.dir}/bin.X86_64_LINUX</LD_LIBRARY_PATH>
-                        <LD_LIBRARY_PATH>${mathematica.installation.dir}/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64</LD_LIBRARY_PATH>
+                        <LD_LIBRARY_PATH>${maple.installation.dir}/bin.X86_64_LINUX:${mathematica.installation.dir}/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64</LD_LIBRARY_PATH>
                     </environmentVariables>
-                    <workingDirectory>${main.basedir}/</workingDirectory>
+                    <!--suppress UnresolvedMavenProperty -->
+                    <argLine>${argLine} -Xss50M</argLine>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.2.0</version>
-                <executions>
-                    <execution>
-                        <id>compile-symbolic-tester</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <finalName>symbolic-tester</finalName>
-                            <archive>
-                                <manifest>
-                                    <mainClass>
-                                        gov.nist.drmf.interpreter.evaluation.symbolic.SymbolicEvaluator
-                                    </mainClass>
-                                </manifest>
-                            </archive>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                            <outputDirectory>${main.basedir}/bin/</outputDirectory>
-                            <appendAssemblyId>false</appendAssemblyId>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>compile-numeric-tester</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <finalName>numeric-tester</finalName>
-                            <archive>
-                                <manifest>
-                                    <mainClass>
-                                        gov.nist.drmf.interpreter.evaluation.numeric.NumericalEvaluator
-                                    </mainClass>
-                                </manifest>
-                            </archive>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                            <outputDirectory>${main.basedir}/bin/</outputDirectory>
-                            <appendAssemblyId>false</appendAssemblyId>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>generate-evaluator-jars</id>
+            <activation>
+                <property>
+                    <name>generateJars</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>compile-symbolic-tester</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                                <configuration>
+                                    <finalName>symbolic-tester</finalName>
+                                    <archive>
+                                        <manifest>
+                                            <mainClass>
+                                                gov.nist.drmf.interpreter.evaluation.core.symbolic.SymbolicEvaluator
+                                            </mainClass>
+                                        </manifest>
+                                    </archive>
+                                    <descriptorRefs>
+                                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                                    </descriptorRefs>
+                                    <outputDirectory>${main.basedir}/bin/</outputDirectory>
+                                    <appendAssemblyId>false</appendAssemblyId>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>compile-numeric-tester</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                                <configuration>
+                                    <finalName>numeric-tester</finalName>
+                                    <archive>
+                                        <manifest>
+                                            <mainClass>
+                                                gov.nist.drmf.interpreter.evaluation.core.numeric.NumericalEvaluator
+                                            </mainClass>
+                                        </manifest>
+                                    </archive>
+                                    <descriptorRefs>
+                                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                                    </descriptorRefs>
+                                    <outputDirectory>${main.basedir}/bin/</outputDirectory>
+                                    <appendAssemblyId>false</appendAssemblyId>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

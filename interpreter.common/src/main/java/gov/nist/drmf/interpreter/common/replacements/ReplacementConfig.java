@@ -1,7 +1,6 @@
 package gov.nist.drmf.interpreter.common.replacements;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
@@ -9,7 +8,6 @@ import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.List;
 
@@ -67,7 +65,7 @@ public class ReplacementConfig {
      * @param link a link, if there should be conditional replacements
      * @return the changed input string according to the replacement rules
      */
-    public String replace(String input, @Nullable String link) {
+    public String replace(String input, String link) {
         for ( ReplacementRule rule : rules ) {
             input = rule.replace(input);
         }

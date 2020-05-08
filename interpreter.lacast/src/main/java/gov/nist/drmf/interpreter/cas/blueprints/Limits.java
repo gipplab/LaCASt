@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.cas.blueprints;
 
 import gov.nist.drmf.interpreter.common.grammar.LimDirections;
+import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -56,6 +57,49 @@ public class Limits {
     public void overwriteUpperLimit(String newUpper) {
         for ( int i = 0; i < upper.size(); i++ ) {
             upper.set(i, newUpper);
+        }
+    }
+
+    public BoundaryStrings getArguments(int index, boolean indef, String arg, LimitedExpressions category) {
+        BoundaryStrings out = new BoundaryStrings();
+        if ( indef ) {
+            out.args = new String[]{vars.get(index), arg};
+            out.categoryKey = category.getIndefKey();
+            return out;
+        }
+
+        if ( isLimitOverSet || direction != null ) {
+            out.args = new String[] {
+                    vars.get(index),
+                    lower.get(index),
+                    arg
+            };
+            out.categoryKey = isLimitOverSet ?
+                    category.getSetKey() :
+                    category.getDirectionKey(direction);
+            return out;
+        }
+
+        out.args = new String[]{
+                vars.get(index),
+                lower.get(index),
+                upper.get(index),
+                arg,
+        };
+        out.categoryKey = category.getKey();
+        return out;
+    }
+
+    public class BoundaryStrings {
+        private String[] args;
+        private String categoryKey;
+
+        public String[] getArgs() {
+            return args;
+        }
+
+        public String getCategoryKey() {
+            return categoryKey;
         }
     }
 }

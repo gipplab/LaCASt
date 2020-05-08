@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.mathematica;
 
 import com.wolfram.jlink.MathLinkException;
 import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
+import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

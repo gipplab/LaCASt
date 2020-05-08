@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.common.DLMFPatterns;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
@@ -11,7 +12,6 @@ import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.regex.Matcher;
 
@@ -27,7 +27,6 @@ public class OperationTranslator extends AbstractListTranslator {
         this.localTranslations = new TranslatedExpression();
     }
 
-    @Nullable
     @Override
     public TranslatedExpression getTranslatedExpressionObject() {
         return localTranslations;
@@ -106,7 +105,8 @@ public class OperationTranslator extends AbstractListTranslator {
         SymbolTranslator sT = getConfig().getSymbolTranslator();
         String translation = sT.translate( term.getTermText() );
         if ( translation == null ) {
-            throw buildException(
+            throw TranslationException.buildException(
+                    this,
                     "Cannot translate operation " + term.getTermText(),
                     TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
         } else {

@@ -13,7 +13,6 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CHAR_BACKSLASH;
@@ -51,7 +50,6 @@ public class FunctionTranslator extends AbstractListTranslator {
         this.localTranslations = new TranslatedExpression();
     }
 
-    @Nullable
     @Override
     public TranslatedExpression getTranslatedExpressionObject() {
         return localTranslations;
@@ -85,7 +83,8 @@ public class FunctionTranslator extends AbstractListTranslator {
     public TranslatedExpression translate(PomTaggedExpression exp) {
         MathTerm term = exp.getRoot();
         if ( term == null || term.isEmpty() ){
-            throw buildException("Function has no MathTerm!",
+            throw TranslationException.buildException(this,
+                    "Function has no MathTerm!",
                     TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
         }
 
@@ -160,7 +159,7 @@ public class FunctionTranslator extends AbstractListTranslator {
 
         // find out if we should wrap parenthesis around or not
         int num;
-        if ( !testBrackets( translation.toString() ) ){
+        if ( !Brackets.isEnclosedByBrackets( translation.toString() ) ){
             num = translation.mergeAllWithParenthesis();
         } else {
             num = translation.mergeAll();

@@ -1,0 +1,60 @@
+sudo: false
+dist: trusty
+cache:
+  directories:
+    - $HOME/.m2
+
+language: java
+jdk:
+  - openjdk11
+
+env:
+  global:
+    - CC_TEST_REPORTER_ID=970bebaf9e240aaf9c86a92251b68f30d373d29f4d07f2e92a0d777009c28a68
+    - JACOCO_SOURCE_PATH="interpreter.common interpreter.lacast interpreter.maple interpreter.mathematica interpreter.evaluation"
+
+# install maven 3.6.1
+before_install:
+  - wget https://archive.apache.org/dist/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.zip
+  - unzip -qq apache-maven-3.6.1-bin.zip
+  - export M2_HOME=$PWD/apache-maven-3.6.1
+  - export PATH=$M2_HOME/bin:$PATH
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+install:
+  - mvn install -DskipTests -B -V -DgenerateJars
+  - java -jar bin/lexicon-creator.jar CAS_Maple.csv CAS_Mathematica.csv
+
+script:
+  - mvn test -B -DjacocoReport=remote
+
+after_success:
+  - bash .travis/fix-jacoco.sh
+  - ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml -d --input-type jacoco
+  - ./cc-test-reporter upload-coverage -d
+
+before_deploy:
+  - export VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+  - export TRAVIS_TAG=$VERSION-r$TRAVIS_BUILD_NUMBER
+  - git config --global user.email "builds@travis-ci.com"
+  - git config --global user.name "Travis CI"
+  - rm -rf libs/logs
+  - zip -r -9 ${TRAVIS_TAG}.zip bin/* config/* libs/* scripts/* README.md CONTRIBUTING.md
+  - echo "Git tag with tag $TRAVIS_TAG"
+  - git tag $TRAVIS_TAG
+
+# it seems we are on deployment-v2 already, in this case, check the following page for the right settings
+# https://docs.travis-ci.com/user/deployment-v2/providers/releases/
+deploy:
+  provider: releases
+  token: $GITHUB_TOKEN
+  skip_cleanup: true
+  cleanup: false
+  file: ${TRAVIS_TAG}.zip
+  tag_name: $TRAVIS_TAG
+  on:
+    repo: ag-gipp/LaCASt
+    branch: master
+    jdk: openjdk11

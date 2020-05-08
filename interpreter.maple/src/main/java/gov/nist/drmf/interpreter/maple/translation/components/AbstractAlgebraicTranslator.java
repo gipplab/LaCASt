@@ -4,10 +4,11 @@ import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.InformationLogger;
+import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.IBackwardTranslator;
+import gov.nist.drmf.interpreter.common.interfaces.IBackwardTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.MapleTranslationException;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
@@ -34,6 +35,17 @@ public abstract class AbstractAlgebraicTranslator<T extends Algebraic>
     static TranslationFailures failures = new TranslationFailures();
 
     static InformationLogger infos = new InformationLogger();
+
+    private TranslationProcessConfig config;
+
+    public void setConfig(TranslationProcessConfig config) {
+        this.config = config;
+    }
+
+    @Override
+    public TranslationProcessConfig getConfig() {
+        return config;
+    }
 
     /**
      *

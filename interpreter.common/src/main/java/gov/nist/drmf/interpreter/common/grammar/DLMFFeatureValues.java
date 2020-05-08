@@ -1,12 +1,13 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.interfaces.IFeatureExtractor;
 import mlp.FeatureSet;
 
 /**
  * @author Andre Greiner-Petter
  */
-public enum DLMFFeatureValues implements IFeatureExtractor{
+public enum DLMFFeatureValues implements IFeatureExtractor {
     areas(
             (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_AREAS))
     ),

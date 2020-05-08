@@ -4,6 +4,8 @@ import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.grammar.LimDirections;
 import mlp.ParseException;
 
+import java.io.IOException;
+
 /**
  * @author Andre Greiner-Petter
  */
@@ -14,7 +16,7 @@ public class BlueprintLimTree extends BlueprintLimitTree {
 
     public BlueprintLimTree(String blueprint,
                             String limitDir,
-                            SemanticLatexTranslator translator) throws ParseException {
+                            SemanticLatexTranslator translator) throws ParseException, IOException {
         super(blueprint, DEFAULT_LOWER_LIMIT, translator);
         this.direction = LimDirections.getDirection(limitDir);
     }

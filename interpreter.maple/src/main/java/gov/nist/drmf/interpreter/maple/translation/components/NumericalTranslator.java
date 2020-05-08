@@ -12,7 +12,7 @@ import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedExpression;
-import gov.nist.drmf.interpreter.maple.translation.MapleInterface;
+import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
 
 import static gov.nist.drmf.interpreter.maple.common.MapleConstants.*;
 
@@ -110,7 +110,7 @@ public class NumericalTranslator extends ListTranslator {
 
             // get the pattern for fraction from the function translator
             // and replace the place holders by numerator and denominator.
-            MapleInterface mi = MapleInterface.getUniqueMapleInterface();
+            MapleTranslator mi = MapleTranslator.getDefaultInstance();
             BasicFunctionsTranslator funcTrans = mi.getBasicFunctionsTranslator();
             String[] args = new String[]{num, denom};
             String pattern = funcTrans.translate( args, Keys.MLP_KEY_FRACTION );
@@ -193,7 +193,7 @@ public class NumericalTranslator extends ListTranslator {
 
             LOG.debug("Complex-Number: " + translatedList);
 
-            MapleInterface mi = MapleInterface.getUniqueMapleInterface();
+            MapleTranslator mi = MapleTranslator.getDefaultInstance();
             Constants constants = mi.getConstantsTranslator();
             String i_unit = constants.translate(MapleConstants.I_UNIT);
 

@@ -50,8 +50,8 @@ public class BlueprintMaster {
         String[] s = l.split(" ==> ");
         try {
             limitedTrees.add(new BlueprintLimitTree(s[0], s[1], slt));
-        } catch (ParseException e) {
-            e.printStackTrace();
+        } catch (ParseException | IOException e) {
+            LOG.error("Illegal string generating Blueprint: " + l, e);
         }
     }
 
@@ -59,8 +59,8 @@ public class BlueprintMaster {
         String[] s = l.split(" ==> ");
         try {
             limTrees.add(new BlueprintLimTree(s[0], s[1], slt));
-        } catch (ParseException e) {
-            e.printStackTrace();
+        } catch (ParseException | IOException e) {
+            LOG.error("Illegal string for generating Blueprint: " + l, e);
         }
     }
 
@@ -80,7 +80,12 @@ public class BlueprintMaster {
 
     public Limits findMatchingLimit(boolean lim, PomTaggedExpression... pte) {
         for ( BlueprintLimitTree t : (lim == LIM) ? limTrees : limitedTrees ) {
-            if ( t.matches(pte) ) return t.getExtractedLimits();
+            try {
+                if ( t.matches(pte) ) return t.getExtractedLimits();
+            } catch (IllegalArgumentException iae) {
+                LOG.error(iae.getMessage(), iae);
+                return null;
+            }
         }
         return null;
     }

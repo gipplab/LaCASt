@@ -1,0 +1,22 @@
+version: "2"
+exclude_patterns:
+  - ".github/"
+  - ".travis/"
+  - "bin/"
+  - "config/"
+  - "libs/"
+  - "misc/"
+  - "scripts/"
+  - "**/test/"
+  - "**/resources/"
+  - "**/examples/"
+checks:
+  method-complexity:
+    config:
+      threshold: 7
+  file-lines:
+    config:
+      threshold: 300
+  method-lines:
+    config:
+      threshold: 25

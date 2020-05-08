@@ -58,4 +58,9 @@ public class TeXPreProcessor {
         matcher.appendTail(buffer);
         return buffer.toString();
     }
+
+    public static String trimCurlyBrackets(String in) {
+        if ( in.startsWith("{") && in.endsWith("}") ) return in.substring(1, in.length()-1);
+        else return in;
+    }
 }

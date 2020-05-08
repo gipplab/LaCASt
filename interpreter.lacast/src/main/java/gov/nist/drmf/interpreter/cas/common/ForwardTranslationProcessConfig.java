@@ -1,10 +1,9 @@
 package gov.nist.drmf.interpreter.cas.common;
 
 import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
-import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
-import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
+import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
 
 import java.io.IOException;
 
@@ -41,7 +40,6 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
 
     public void init() throws IOException {
         super.init();
-        MacrosLexicon.init();
         MULTIPLY = super.getSymbolTranslator().translateFromMLPKey( Keys.MLP_KEY_MULTIPLICATION );
         this.isInit = true;
     }
