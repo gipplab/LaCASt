@@ -12,7 +12,7 @@ DLMF;Mathematica;Number of Variables;Slot of Differentiation;DLMF-Mathematica-Co
 \sech@@{z};Sech[$0];1;;;
 \csch@@{z};Csch[$0];1;;;
 \coth@@{z};Coth[$0];1;;;
-;;;;;;;;;
+;;;;;
 \Asin@@{z};;1;;;Integrate[Divide[1, (1-t^2)^(1/2)], {t, 0, $0}]
 \Acos@@{z};;1;;;Integrate[Divide[1, (1-t^2)^(1/2)], {t, $0, 1}]
 \Atan@@{z};;1;;;Integrate[Divide[1, 1+t^2], {t, 0, $0}]
@@ -141,18 +141,18 @@ n!!;$0!!;;;;
 \fDiff[x];;;;;
 \bDiff[x];;;;;
 \cDiff[x];;;;;
-\deriv{$0}{$1};D[$0, $1];2;;;;
-\tderiv{$0}{$1};D[$0, $1];2;;;;
-\ideriv{$0}{$1};D[$0, $1];2;;;;
-\pderiv{$0}{$1};D[$0, $1];2;;;;
-\tpderiv{$0}{$1};D[$0, $1];2;;;;
-\ipderiv{$0}{$1};D[$0, $1];2;;;;
-X1:\derivX\deriv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;;
-X1:\tderivX\tderiv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;;
-X1:\iderivX\ideriv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;;
-X1:\pderivX\pderiv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;;
-X1:\tpderivX\tpderiv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;;
-X1:\ipderivX\ipderiv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;;
+\deriv{$0}{$1};D[$0, $1];2;;;
+\tderiv{$0}{$1};D[$0, $1];2;;;
+\ideriv{$0}{$1};D[$0, $1];2;;;
+\pderiv{$0}{$1};D[$0, $1];2;;;
+\tpderiv{$0}{$1};D[$0, $1];2;;;
+\ipderiv{$0}{$1};D[$0, $1];2;;;
+X1:\derivX\deriv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;
+X1:\tderivX\tderiv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;
+X1:\iderivX\ideriv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;
+X1:\pderivX\pderiv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;
+X1:\tpderivX\tpderiv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;
+X1:\ipderivX\ipderiv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;
 \AntiDer@{x}{f(x)};;;;;
 \Int{a}{b}@{x}{f(x)};;;;;
 \int;;;;;
@@ -180,7 +180,7 @@ X1:\ipderivX\ipderiv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;;
 \bigO@{x};;;;;
 \littleo@{x};;;;;
 \sim;;;;;
-\abs{$0};Abs[$0];1;;;;
+\abs{$0};Abs[$0];1;;;
 ;;;;;
 ;;;;;
 ;;;;;
@@ -314,23 +314,23 @@ X1:\ipderivX\ipderiv[$0]{$1}{$2};D[$1, {$2, $0}];3;;;;
 \Bulirschincellintel{2}@{x}{k_c}{a}{b};;;;;
 \Bulirschincellintel{3}@{x}{k_c}{p};;;;;
 \Carlsonmultivarhyper{-a}@{\Vector{b}}{\Vector{z}};;;;;
-\CarlsonsymellintRF@@{x}{y}{z};EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]/Sqrt[$2-$0];;;;
-\CarlsonsymellintRJ@@{x}{y}{z}{p};3*($2-$0)/($2-$3)*(EllipticPi[($2-$3)/($2-$0),ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]-EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)])/Sqrt[$2-$0];;;;
-\CarlsonsymellintRG@@{x}{y}{z};Sqrt[$2-$0]*(EllipticE[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]+(Cot[ArcCos[Sqrt[$0/$2]]])^2*EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]+Cot[ArcCos[Sqrt[$0/$2]]]*Sqrt[1-k^2*Sin[ArcCos[Sqrt[$0/$2]]]^2]);;;;
-\CarlsonsymellintRD@@{x}{y}{z};3*($2-$0)/($2-$1)*(EllipticF[($2-$3)/($2-$0),ArcCos[Sqrt[$0/$2]]]-EllipticE[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)])/($2-$0)^(3/2);;;;
-\CarlsonsymellintRC@@{x}{y};1/Sqrt[$1]*Hypergeometric2F1[1/2,1/2,3/2,1-$0/$1];;;;
+\CarlsonsymellintRF@@{x}{y}{z};;3;;;EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]/Sqrt[$2-$0]
+\CarlsonsymellintRJ@@{x}{y}{z}{p};;3;;;3*($2-$0)/($2-$3)*(EllipticPi[($2-$3)/($2-$0),ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]-EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)])/Sqrt[$2-$0]
+\CarlsonsymellintRG@@{x}{y}{z};;3;;;Sqrt[$2-$0]*(EllipticE[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]+(Cot[ArcCos[Sqrt[$0/$2]]])^2*EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]+Cot[ArcCos[Sqrt[$0/$2]]]*Sqrt[1-k^2*Sin[ArcCos[Sqrt[$0/$2]]]^2])
+\CarlsonsymellintRD@@{x}{y}{z};;3;;;3*($2-$0)/($2-$1)*(EllipticF[($2-$3)/($2-$0),ArcCos[Sqrt[$0/$2]]]-EllipticE[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)])/($2-$0)^(3/2)
+\CarlsonsymellintRC@@{x}{y};;3;;;1/Sqrt[$1]*Hypergeometric2F1[1/2,1/2,3/2,1-$0/$1]
 ;;;;;
 \EulersumH@{s};;;;;
 \genEulersumH@{s}{z};;;;;
 \EulerPhi@{x};QPochhammer[$0,$0];1;1;;
 \EulerGamma@{z};Gamma[$0];1;1;;
 \Eulertotientphi@{n};EulerPhi[$0];1;;;
-X1\EulertotientphiX\Eulertotientphi[k]@{n};Sum[If[CoprimeQ[$1, m], m^($0), 0], {m, 1, $1}];2;;;;
-\Euleriannumber{n}{k};Sum[(-1)^m Binomial[$0+1,m] ($1-m+1)^($0),{m,0,$1+1}];2;;;
+X1:\EulertotientphiX\Eulertotientphi[k]@{n};;2;;;Sum[If[CoprimeQ[$1, m], m^($0), 0], {m, 1, $1}]
+\Euleriannumber{n}{k};;2;;;Sum[(-1)^m Binomial[$0+1,m] ($1-m+1)^($0),{m,0,$1+1}]
 ;;;;;
 \erf@@{z};Erf[$0];1;;;
 \erfc@@{z};Erfc[$0];1;;;
-\erfw@{z};Exp[-$0^2]*Erfc[-I*$0];1;;There is no direct translation but you can use the alternative formula instead if you want.;
+\erfw@{z};Exp[-$0^2]*Erfc[-I*$0];1;;;
 \inverf@@{x};InverseErf[$0];1;;;
 \inverfc@@{x};InverseErfc[$0];1;;;
 \repinterfc{n}@{z};;2;1;;I^($0)*Erfc[$1]
@@ -338,11 +338,11 @@ X1\EulertotientphiX\Eulertotientphi[k]@{n};Sum[If[CoprimeQ[$1, m], m^($0), 0], {
 \Faddeevaw@{z};;;;;
 \FibonacciNumber{n};Fibonacci[$0];1;;;
 ;;;;;
-\FresnelintF@{z};(1+I)/2-FresnelC[$0]-I*FresnelS[$0];1;;;
-\Fresnelcosint@{z};FresnelC[$0];1;;;
-\Fresnelsinint@{z};FresnelS[$0];1;;;
-\auxFresnelf@{z} ;FresnelF[$0];1;;;
-\auxFresnelg@{z};FresnelG[$0];1;;;
+\FresnelintF@{z};;1;1;;(1+I)/2-FresnelC[$0]-I*FresnelS[$0]
+\Fresnelcosint@{z};FresnelC[$0];1;1;;
+\Fresnelsinint@{z};FresnelS[$0];1;1;;
+\auxFresnelf@{z};FresnelF[$0];1;1;;
+\auxFresnelg@{z};FresnelG[$0];1;1;;
 ;;;;;
 \EulerGamma@{z};Gamma[$0];1;;;
 \incgamma@{a}{z};Gamma[$0, 0, $1];3;;Mathematica's generalized incomplete gamma function defines variable intervals. The 2nd and 3rd argument defines the interval. Based on the DLMF definition, the interval is [0,z].;
@@ -363,7 +363,7 @@ X1\EulertotientphiX\Eulertotientphi[k]@{n};Sum[If[CoprimeQ[$1, m], m^($0), 0], {
 ;;;;;
 \HarmonicNumber{n};HarmonicNumber[$0];1;;;
 \digamma@{z+1}+\EulerConstant;;;;;
-\sum_{k=1}^{n}\frac{1}{k^z};;;;;
+;;;;;
 \sphharmonicY{l}{m}@{\theta}{\phi};SphericalHarmonicY[$0, $1, $2, $3];4;;;
 \surfharmonicY{l}{m}@{\theta}{\phi};;;;;
 ;;;;;
@@ -446,15 +446,15 @@ X1:\FerrersQX\FerrersQ[\mu]{\nu}@{x};LegendreQ[$1, $0, $2];3;1;;
 X1:\assLegendrePX\assLegendreP[\mu]{\nu}@{z};LegendreP[$1, $0, 3, $2];3;1;;
 \assLegendreQ{\nu}@{z};LegendreQ[$0, 0, 3, $1];2;1;;
 X1:\assLegendreQX\assLegendreQ[\mu]{\nu}@{z};LegendreQ[$1, $0, 3, $2];3;1;;
-\assLegendreOlverQ{\nu}@{z};Exp[-$0 Pi I] LegendreQ[$0, 2, 3, $1]/Gamma[$0 + 3];3;1;;
-X1:\assLegendreOlverQX\assLegendreOlverQ[\mu]{\nu}@{z};Exp[-$0 Pi I] LegendreQ[$1, $0, 3, $2]/Gamma[$1 + $0 + 1];3;1;;
-\DunsterQ{-\frac{1}{2}+i\tau}@{x};;3;1;;
+\assLegendreOlverQ{\nu}@{z};;2;1;;Exp[-($0) Pi I] LegendreQ[$0, 2, 3, $1]/Gamma[$0 + 3]
+X1:\assLegendreOlverQX\assLegendreOlverQ[\mu]{\nu}@{z};;3;1;;Exp[-($0) Pi I] LegendreQ[$1, $0, 3, $2]/Gamma[$1 + $0 + 1]
+\DunsterQ{-\frac{1}{2}+i\tau}@{x};;2;1;;
 X1:\DunsterQX\DunsterQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;3;1;;
 ;;;;;
 \incellintFk@{\phi}{k};EllipticF[$0, ($1)^2];2;;;
 \incellintEk@{\phi}{k};EllipticE[$0, ($1)^2];2;;;
 \incellintPik@{\phi}{\alpha^2}{k};EllipticPi[$1, $0,($2)^2];3;;;
-\incellintDk@{\phi}{k};;;;;Divide[EllipticF[$0, ($1)^2] - EllipticE[$0, ($1)^2], ($1)^4]
+\incellintDk@{\phi}{k};;2;;;Divide[EllipticF[$0, ($1)^2] - EllipticE[$0, ($1)^2], ($1)^4]
 \compellintKk@{k};EllipticK[($0)^2];1;1;;
 \compellintEk@{k};EllipticE[($0)^2];1;;;
 \compellintPik@{\alpha^2}{k};EllipticPi[$0, ($1)^2];;;;
@@ -508,13 +508,13 @@ X1:\DunsterQX\DunsterQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;3;1;;
 ;;;;;
 \MeijerG{m}{n}{p}{q}@@@{z}{\Vector{a}}{\Vector{b}};;;;;
 ;;;;;
-\MillsM@{x};;;;;
+\MillsM@{x};;1;1;;Exp[Power[$0,2]] Int[Exp[-t^2], {t, $0, Infinity}]
 ;;;;;
 \modularlambdatau@{\tau};ModularLambda[$0];1;1;;
 \KleincompinvarJtau@{\tau};KleinInvariantJ[$0];1;1;;
 \Dedekindeta@{\tau};DedekindEta[$0];1;1;;
 ;;;;;
-\Pade{p}{q}{f};;;;;
+\Pade{p}{q}{f}@{z};PadeApproximant[$2, {$3, 0, {$0, $1}}];;;;
 ;;;;;
 \Ramanujansum{k}@{n};;;;;
 \Ramanujantau@{n};RamanujanTau[$0];1;;;
@@ -524,7 +524,7 @@ X1:\DunsterQX\DunsterQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;3;1;;
 \Riemanntheta@{\Vector{z}}{\Matrix{\Omega}};;;;;
 \Riemannthetachar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}};;;;;
 \scRiemanntheta@{\Vector{z}}{\Matrix{\Omega}};;;;;
-\Riemannxi@{s};;;;;
+\Riemannxi@{s};RiemannXi[$0];1;1;;
 \Riemannzeta@{s};Zeta[$0];1;1;;
 ;;;;;
 \ScorerGi@{z};ScorerGi[$0];1;1;;
@@ -640,7 +640,7 @@ X1:\DunsterQX\DunsterQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;3;1;;
 ;;;;;
 \diskpoly{\alpha}{m}{n}@{z};;;;;
 ;;;;;
-\EulernumberE{n};EulerE[$0];1;;;;
+\EulernumberE{n};EulerE[$0];1;;;
 \EulerpolyE{n}@{x};EulerE[$0, $1];2;1;;
 \genEulerpolyE{\ell}{n}@{x};;;;;
 \perEulerE{n}@{x};;;;;
@@ -674,8 +674,8 @@ X1:\DunsterQX\DunsterQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;3;1;;
 \Krawtchouk{n}@{x}{p}{N};;;;;
 \KrawtchoukpolyK{n}@{x}{p}{N};;;;;
 ;;;;;
-\Laguerre[\alpha]{n}@{x};LaguerreL[$1, $0, $2];3;3;;
-\LaguerrepolyL[\alpha]{n}@{x};LaguerreL[$1, $0, $2];3;3;;
+\LaguerrepolyL{n}@{x};LaguerreL[$0, $1];2;1;;
+X1:LaguerrepolyLX\LaguerrepolyL[\alpha]{n}@{x};LaguerreL[$1, $0, $2];3;1;;
 \GottliebLaguerre{n}@{x};;;;;
 ;;;;;
 \LamepolyuE{m}{2n}@{z}{k^2};;;;;
@@ -768,8 +768,8 @@ X1:\DunsterQX\DunsterQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;3;1;;
 \littleqLegendre{m}@{x}{q};;;;;
 \qMeixner{n}@{x}{b}{c}{q};;;;;
 \qMeixnerPollaczek{n}@{x}{a}{q};;;;;
-\qPochhammer{a}{q}{z};QPochhammer[$0, $1, $2];3;1;;
-\qmultiPochhammersym{a}{q}{z};Product[QPochhammer[Part[{$0},i],$1,$2],{i,1,Length[{$0}]}];3;1;;
+\qPochhammer{a}{q}{z};QPochhammer[$0, $1, $2];3;3;;
+\qmultiPochhammersym{a}{q}{z};;3;3;;Product[QPochhammer[Part[{$0},i],$1,$2],{i,1,Length[{$0}]}]
 \qpolygamma{n}{q}@{z};QPolyGamma[$0,$2,$1];3;1;;
 \qRacah{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};;;;;
 \qRacahpolyR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};;;;;
