@@ -6,10 +6,7 @@ Symbol: \AGM
 	DLMF-Link: dlmf.nist.gov/19.8#SS1.p1
 	Maple: GaussAGM($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GaussAGM
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -36,6 +33,7 @@ Symbol: \AThetaFunction
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Acos
 
@@ -44,14 +42,16 @@ Symbol: \Acos
 	Constraints: z != +/- \iunit
 	DLMF: \Acos@@{z}
 	DLMF-Link: dlmf.nist.gov/4.23#E2
+	Mathematica: ArcCos[$0]
 	Mathematica-Alternatives: Integrate[Divide[1, (1-t^2)^(1/2)], {t, $0, 1}]
-	Mathematica-Comment: 
+	Mathematica-Comment: The translation is only valid on the principle branch.
 	Mathematica-Package: 
 	Meanings: Multivalued inverse cosine
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \Acosh
 
@@ -60,14 +60,16 @@ Symbol: \Acosh
 	Constraints: z != +/-1
 	DLMF: \Acosh@@{z}
 	DLMF-Link: dlmf.nist.gov/4.37#E2
+	Mathematica: ArcCosh[$0]
 	Mathematica-Alternatives: Integrate[Divide[1, (t^2-1)^(1/2)], {t, 1, $0}]
-	Mathematica-Comment: 
+	Mathematica-Comment: The translation is only valid on the principle branch.
 	Mathematica-Package: 
 	Meanings: Multivalued inverse hyperbolic cosine
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \Acot
 
@@ -76,14 +78,16 @@ Symbol: \Acot
 	Constraints: z not element of {0,-\iunit,+\iunit}
 	DLMF: \Acot@@{z}
 	DLMF-Link: dlmf.nist.gov/4.23#E6
-	Mathematica-Alternatives: Integrate[Divide[1, 1+t^2], {t, 0, Divide[1,$0]}]
-	Mathematica-Comment: 
+	Mathematica: ArcCot[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: The translation is only valid on the principle branch.
 	Mathematica-Package: 
 	Meanings: Multivalued inverse cotangent
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \Acoth
 
@@ -92,14 +96,16 @@ Symbol: \Acoth
 	Constraints: z not element of {0,-1,+1}
 	DLMF: \Acoth@@{z}
 	DLMF-Link: dlmf.nist.gov/4.37#E6
+	Mathematica: ArcCoth[$0]
 	Mathematica-Alternatives: Integrate[Divide[1, 1-t^2], {t, 0, Divide[1,$0]}]
-	Mathematica-Comment: 
+	Mathematica-Comment: The translation is only valid on the principle branch.
 	Mathematica-Package: 
 	Meanings: Multivalued inverse hyperbolic cotangent
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \Acsc
 
@@ -108,14 +114,16 @@ Symbol: \Acsc
 	Constraints: z not element of {0,-\iunit,+\iunit}
 	DLMF: \Acsc@@{z}
 	DLMF-Link: dlmf.nist.gov/4.23#E4
+	Mathematica: ArcCsc[$0]
 	Mathematica-Alternatives: Integrate[Divide[1, (1-t^2)^(1/2)], {t, 0, Divide[1,$0]}]
-	Mathematica-Comment: 
+	Mathematica-Comment: The translation is only valid on the principle branch.
 	Mathematica-Package: 
 	Meanings: Multivalued inverse cosecant
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \Acsch
 
@@ -124,14 +132,16 @@ Symbol: \Acsch
 	Constraints: z not element of {0,-1,+1}
 	DLMF: \Acsch@@{z}
 	DLMF-Link: dlmf.nist.gov/4.37#E4
+	Mathematica: ArcCsch[$0]
 	Mathematica-Alternatives: Integrate[Divide[1, (1+t^2)^(1/2)], {t, 0, Divide[1,$0]}]
-	Mathematica-Comment: 
+	Mathematica-Comment: The translation is only valid on the principle branch.
 	Mathematica-Package: 
 	Meanings: Multivalued inverse hyperbolic cosecant
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \AffqKrawtchouk
 
@@ -157,17 +167,11 @@ Symbol: \AiryAi
 	DLMF-Link: dlmf.nist.gov/9.2#i
 	Maple: AiryAi($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: Maple also supports the derivatives with AiryAi(n, z) and AiryBi(n, z)
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Airy
 	Maple-Package: 
 	Mathematica: AiryAi[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Airy function of the first kind
 	Number of Ats: 1
@@ -183,17 +187,11 @@ Symbol: \AiryBi
 	DLMF-Link: dlmf.nist.gov/9.2#i
 	Maple: AiryBi($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: Maple also supports the derivatives with AiryAi(n, z) and AiryBi(n, z)
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Airy
 	Maple-Package: 
 	Mathematica: AiryBi[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Airy function of the second kind
 	Number of Ats: 1
@@ -290,6 +288,7 @@ Symbol: \AlSalamCarlitzI
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \AlSalamCarlitzII
 
@@ -307,6 +306,7 @@ Symbol: \AlSalamCarlitzII
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \AlSalamChihara
 
@@ -324,6 +324,7 @@ Symbol: \AlSalamChihara
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \AlSalamChiharapolyQ
 
@@ -341,6 +342,7 @@ Symbol: \AlSalamChiharapolyQ
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \AlSalamIsmail
 
@@ -358,6 +360,7 @@ Symbol: \AlSalamIsmail
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \AngerJ
 
@@ -366,10 +369,7 @@ Symbol: \AngerJ
 	DLMF-Link: dlmf.nist.gov/11.10#E1
 	Maple: AngerJ($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=AngerJ
 	Maple-Package: 
 	Mathematica: AngerJ[$0, $1]
 	Mathematica-Alternatives: 
@@ -399,6 +399,7 @@ Symbol: \AngerWeberA
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \AntiDer
 
@@ -407,10 +408,7 @@ Symbol: \AntiDer
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:AntiDer
 	Maple: int($1, $0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=int
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -446,14 +444,16 @@ Symbol: \Asec
 	Constraints: z not element of {0,-\iunit,+\iunit}
 	DLMF: \Asec@@{z}
 	DLMF-Link: dlmf.nist.gov/4.23#E5
+	Mathematica: ArcSec[$0]
 	Mathematica-Alternatives: Integrate[Divide[1, (1-t^2)^(1/2)], {t, Divide[1,$0], 1}]
-	Mathematica-Comment: 
+	Mathematica-Comment: The translation is only valid on the principle branch.
 	Mathematica-Package: 
 	Meanings: Multivalued inverse secant
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \Asech
 
@@ -462,14 +462,16 @@ Symbol: \Asech
 	Constraints: z not element of {0,-1,+1}
 	DLMF: \Asech@@{z}
 	DLMF-Link: dlmf.nist.gov/4.37#E5
+	Mathematica: ArcSech[$0]
 	Mathematica-Alternatives: Integrate[Divide[1, (t^2-1)^(1/2)], {t, 1, Divide[1,$0]}]
-	Mathematica-Comment: 
+	Mathematica-Comment: The translation is only valid on the principle branch.
 	Mathematica-Package: 
 	Meanings: Multivalued inverse hyperbolic secant
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \Asin
 
@@ -478,14 +480,16 @@ Symbol: \Asin
 	Constraints: z != +/- \iunit
 	DLMF: \Asin@@{z}
 	DLMF-Link: dlmf.nist.gov/4.23#E1
+	Mathematica: ArcSin[$0]
 	Mathematica-Alternatives: Integrate[Divide[1, (1-t^2)^(1/2)], {t, 0, $0}]
-	Mathematica-Comment: 
+	Mathematica-Comment: The translation is only valid on the principle branch.
 	Mathematica-Package: 
 	Meanings: Multivalued inverse sine
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \Asinh
 
@@ -494,14 +498,16 @@ Symbol: \Asinh
 	Constraints: z != +/-1
 	DLMF: \Asinh@@{z}
 	DLMF-Link: dlmf.nist.gov/4.37#E1
+	Mathematica: ArcSinh[$0]
 	Mathematica-Alternatives: Integrate[Divide[1, (1+t^2)^(1/2)], {t, 0, $0}]
-	Mathematica-Comment: 
+	Mathematica-Comment: The translation is only valid on the principle branch.
 	Mathematica-Package: 
 	Meanings: Multivalued inverse hyperbolic sine
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \AskeyWilson
 
@@ -519,6 +525,7 @@ Symbol: \AskeyWilson
 	Number of Parameters: 1
 	Number of Variables: 6
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \AskeyWilsonpolyp
 
@@ -536,6 +543,7 @@ Symbol: \AskeyWilsonpolyp
 	Number of Parameters: 1
 	Number of Variables: 6
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Atan
 
@@ -544,14 +552,16 @@ Symbol: \Atan
 	Constraints: z != +/- \iunit
 	DLMF: \Atan@@{z}
 	DLMF-Link: dlmf.nist.gov/4.23#E3
+	Mathematica: ArcTan[$0]
 	Mathematica-Alternatives: Integrate[Divide[1, 1+t^2], {t, 0, $0}]
-	Mathematica-Comment: 
+	Mathematica-Comment: The translation is only valid on the principle branch.
 	Mathematica-Package: 
 	Meanings: Multivalued inverse tangent
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \Atanh
 
@@ -560,14 +570,16 @@ Symbol: \Atanh
 	Constraints: z != +/-1
 	DLMF: \Atanh@@{z}
 	DLMF-Link: dlmf.nist.gov/4.37#E3
+	Mathematica: ArcTanh[$0]
 	Mathematica-Alternatives: Integrate[Divide[1, 1-t^2], {t, 0, $0}]
-	Mathematica-Comment: 
+	Mathematica-Comment: The translation is only valid on the principle branch.
 	Mathematica-Package: 
 	Meanings: Multivalued inverse hyperbolic tangent
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \BarnesG
 
@@ -579,16 +591,14 @@ Symbol: \BarnesG
 	Maple-Package: 
 	Mathematica: BarnesG[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/BarnesG.html
 	Mathematica-Package: 
 	Meanings: Double Gamma / Barnes Gamma
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \Bellnumber
 
@@ -597,10 +607,7 @@ Symbol: \Bellnumber
 	DLMF-Link: dlmf.nist.gov/26.7#i
 	Maple: BellB($0, 1)
 	Maple-Alternatives: bell($0)
-	Maple-Branch Cuts: 
 	Maple-Comment: bell(n) is an alternative translation. But it is necessary to import the extra package with(combinat, bell) if you planning to use the shorter version.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=BellB
 	Maple-Package: 
 	Mathematica: BellB[$0]
 	Mathematica-Alternatives: 
@@ -611,6 +618,7 @@ Symbol: \Bellnumber
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \BernoullinumberB
 
@@ -619,10 +627,7 @@ Symbol: \BernoullinumberB
 	DLMF-Link: dlmf.nist.gov/24.2#i
 	Maple: bernoulli($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
-	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=bernoulli
+	Maple-Comment: 2
 	Maple-Package: 
 	Mathematica: BernoulliB[$0]
 	Mathematica-Alternatives: 
@@ -633,6 +638,7 @@ Symbol: \BernoullinumberB
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \BernoullipolyB
 
@@ -641,23 +647,18 @@ Symbol: \BernoullipolyB
 	DLMF-Link: dlmf.nist.gov/24.2#i
 	Maple: bernoulli($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
-	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=bernoulli
+	Maple-Comment: 2
 	Maple-Package: 
 	Mathematica: BernoulliB[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Bernoulli polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \BesselC
 
@@ -685,17 +686,11 @@ Symbol: \BesselJ
 	DLMF-Link: dlmf.nist.gov/10.2#E2
 	Maple: BesselJ($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
 	Maple-Package: 
 	Mathematica: BesselJ[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/BesselJ.html
 	Mathematica-Package: 
 	Meanings: Bessel function first kind
 	Number of Ats: 1
@@ -739,6 +734,7 @@ Symbol: \BesselPoly
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \BesselPolyIIparam
 
@@ -756,6 +752,7 @@ Symbol: \BesselPolyIIparam
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \BesselPolyTheta
 
@@ -773,6 +770,7 @@ Symbol: \BesselPolyTheta
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \BesselY
 
@@ -782,17 +780,11 @@ Symbol: \BesselY
 	DLMF-Link: dlmf.nist.gov/10.2#E3
 	Maple: BesselY($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
 	Maple-Package: 
 	Mathematica: BesselY[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Bessel function second kind
 	Number of Ats: 1
@@ -855,6 +847,7 @@ Symbol: \BickleyKi
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Bulirschcompellintcel
 
@@ -889,6 +882,7 @@ Symbol: \Bulirschincellintel
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \CarlsonellintRC
 
@@ -898,9 +892,6 @@ Symbol: \CarlsonellintRC
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
-	Mathematica-Alternatives: 
-	Mathematica-Comment: 
-	Mathematica-Package: 
 	Meanings: Carlson elliptic integral
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -915,7 +906,7 @@ Symbol: \CarlsonsymellintRD
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: 3*($2-$0)/($2-$1)*(EllipticF[($2-$3)/($2-$0),ArcCos[Sqrt[$0/$2]]]-EllipticE[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)])/($2-$0)^(3/2)
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Symmetric in only two variables
@@ -923,6 +914,7 @@ Symbol: \CarlsonsymellintRD
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \CarlsonsymellintRF
 
@@ -932,7 +924,7 @@ Symbol: \CarlsonsymellintRF
 	Maple-Alternatives: 0.5*int(1/(sqrt(t+$0)*sqrt(t+$1)*sqrt(t+$2)), t = 0..infinity)
 	Maple-Comment: 
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]/Sqrt[$2-$0]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Symmetric elliptic integral of the first kind
@@ -940,6 +932,7 @@ Symbol: \CarlsonsymellintRF
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \CarlsonsymellintRG
 
@@ -949,7 +942,7 @@ Symbol: \CarlsonsymellintRG
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: Sqrt[$2-$0]*(EllipticE[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]+(Cot[ArcCos[Sqrt[$0/$2]]])^2*EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]+Cot[ArcCos[Sqrt[$0/$2]]]*Sqrt[1-k^2*Sin[ArcCos[Sqrt[$0/$2]]]^2])
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Symmetric elliptic integral of the third kind
@@ -957,6 +950,7 @@ Symbol: \CarlsonsymellintRG
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \CarlsonsymellintRJ
 
@@ -966,7 +960,7 @@ Symbol: \CarlsonsymellintRJ
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: 3*($2-$0)/($2-$3)*(EllipticPi[($2-$3)/($2-$0),ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]-EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)])/Sqrt[$2-$0]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Symmetric elliptic integral of the second kind
@@ -974,6 +968,7 @@ Symbol: \CarlsonsymellintRJ
 	Number of Parameters: 0
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \Catalannumber
 
@@ -991,6 +986,7 @@ Symbol: \Catalannumber
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \CatalansConstant
 
@@ -1016,6 +1012,7 @@ Symbol: \Charlier
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \CharlierpolyC
 
@@ -1033,6 +1030,7 @@ Symbol: \CharlierpolyC
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ChebyshevPsi
 
@@ -1050,6 +1048,7 @@ Symbol: \ChebyshevPsi
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ChebyshevpolyT
 
@@ -1058,17 +1057,11 @@ Symbol: \ChebyshevpolyT
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r4
 	Maple: ChebyshevT($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevT
 	Maple-Package: 
 	Mathematica: ChebyshevT[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Chebyshev polynomial first kind
 	Number of Ats: 1
@@ -1084,17 +1077,11 @@ Symbol: \ChebyshevpolyU
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r5
 	Maple: ChebyshevU($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ChebyshevU
 	Maple-Package: 
 	Mathematica: ChebyshevU[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Chebyshev polynomial second kind
 	Number of Ats: 1
@@ -1155,6 +1142,7 @@ Symbol: \CiglerqChebyT
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \CiglerqChebyU
 
@@ -1172,6 +1160,7 @@ Symbol: \CiglerqChebyU
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ClebschGordan
 
@@ -1225,6 +1214,7 @@ Symbol: \Coulombphasesigma
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Coulombphasetheta
 
@@ -1242,6 +1232,7 @@ Symbol: \Coulombphasetheta
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \Coulombturnr
 
@@ -1259,6 +1250,7 @@ Symbol: \Coulombturnr
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \Coulombturnrho
 
@@ -1276,6 +1268,7 @@ Symbol: \Coulombturnrho
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \DawsonsintF
 
@@ -1284,23 +1277,18 @@ Symbol: \DawsonsintF
 	DLMF-Link: dlmf.nist.gov/7.2#E5
 	Maple: dawson($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=dawson
 	Maple-Package: 
 	Mathematica: DawsonF[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/DawsonF.html
 	Mathematica-Package: 
 	Meanings: Dawson integral
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Dedekindeta
 
@@ -1310,6 +1298,7 @@ Symbol: \Dedekindeta
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: DedekindEta[$0]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -1318,6 +1307,7 @@ Symbol: \Dedekindeta
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Diracdelta
 
@@ -1326,23 +1316,18 @@ Symbol: \Diracdelta
 	DLMF-Link: dlmf.nist.gov/1.17#E12
 	Maple: Dirac($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Dirac
 	Maple-Package: 
 	Mathematica: DiracDelta[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Dirac delta function
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \DirichletL
 
@@ -1394,6 +1379,7 @@ Symbol: \DiscriminantDelta
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \DunsterQ
 
@@ -1421,17 +1407,11 @@ Symbol: \EulerBeta
 	DLMF-Link: dlmf.nist.gov/5.12#E1
 	Maple: Beta($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Beta
 	Maple-Package: 
 	Mathematica: Beta[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Beta.html
 	Mathematica-Package: 
 	Meanings: Euler-Beta function
 	Number of Ats: 1
@@ -1454,17 +1434,11 @@ Symbol: \EulerGamma
 	DLMF-Link: dlmf.nist.gov/5.2#E1
 	Maple: GAMMA($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
 	Maple-Package: 
 	Mathematica: Gamma[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Gamma.html
 	Mathematica-Package: 
 	Meanings: Euler Gamma function
 	Number of Ats: 1
@@ -1481,6 +1455,7 @@ Symbol: \EulerPhi
 	Maple-Alternatives: product(1-($0)^k, k = 1 .. infinity)
 	Maple-Comment: Maple has no extra function for this macro but you can use the alternative translation, based on the DLMF definition.
 	Maple-Package: 
+	Mathematica: QPochhammer[$0,$0]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -1489,6 +1464,7 @@ Symbol: \EulerPhi
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Euleriannumber
 
@@ -1498,7 +1474,7 @@ Symbol: \Euleriannumber
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: Sum[(-1)^m Binomial[$0+1,m] ($1-m+1)^($0),{m,0,$1+1}]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Eulerian number
@@ -1506,6 +1482,7 @@ Symbol: \Euleriannumber
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \EulernumberE
 
@@ -1524,6 +1501,7 @@ Symbol: \EulernumberE
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \EulerpolyE
 
@@ -1532,10 +1510,7 @@ Symbol: \EulerpolyE
 	DLMF-Link: dlmf.nist.gov/24.2#ii
 	Maple: euler($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=euler
 	Maple-Package: 
 	Mathematica: EulerE[$0, $1]
 	Mathematica-Alternatives: 
@@ -1546,6 +1521,7 @@ Symbol: \EulerpolyE
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \EulersumH
 
@@ -1563,17 +1539,42 @@ Symbol: \EulersumH
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Eulertotientphi
 
   Feature Set: dlmf-macro
+	DLMF: \Eulertotientphi@{n}
+	DLMF-Link: dlmf.nist.gov/27.2#E6
+	Maple-Alternatives: phi($0)
+	Maple-Comment: This funcion needs an extra package. For Maple 2016 use with(NumberTheory): otherwise use with(numtheory):
+	Maple-Package: NumberTheory,phi
+	Mathematica: EulerPhi[$0]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
+	Mathematica-Package: 
+	Meanings: Euler's totient function
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 1
+	Role: 
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
 	DLMF: \Eulertotientphi[k]@{n}
 	DLMF-Link: dlmf.nist.gov/27.2#E6
+	Maple-Alternatives: 
+	Maple-Comment: 
+	Maple-Package: 
+	Mathematica-Alternatives: Sum[If[CoprimeQ[$1, m], m^($0), 0], {m, 1, $1}]
+	Mathematica-Comment: 
+	Mathematica-Package: 
 	Meanings: Euler's totient function
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Faddeevaw
 
@@ -1591,6 +1592,7 @@ Symbol: \Faddeevaw
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \FerrersHatQ
 
@@ -1615,10 +1617,7 @@ Symbol: \FerrersP
 	DLMF-Link: dlmf.nist.gov/14.2#i
 	Maple: LegendreP($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: This translation is only correct, when you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to invoke forget(evalf) and forget(simplify), otherwise these functions never noticed the changes of _EnvLegendreCut.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	Maple-Package: 
 	Mathematica: LegendreP[$0, $1]
 	Mathematica-Alternatives: 
@@ -1637,17 +1636,11 @@ Symbol: \FerrersP
 	DLMF-Link: dlmf.nist.gov/14.3#E1
 	Maple: LegendreP($1, $0, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: This translation is only correct, when you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to invoke forget(evalf) and forget(simplify), otherwise these functions never noticed the changes of _EnvLegendreCut.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	Maple-Package: 
 	Mathematica: LegendreP[$1, $0, $2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Ferrers function of first kind
 	Number of Ats: 1
@@ -1664,10 +1657,7 @@ Symbol: \FerrersQ
 	DLMF-Link: dlmf.nist.gov/14.2#i
 	Maple: LegendreQ($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: This translation is only correct, when you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to invoke forget(evalf) and forget(simplify), otherwise these functions never noticed the changes of _EnvLegendreCut.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	Maple-Package: 
 	Mathematica: LegendreQ[$0, $1]
 	Mathematica-Alternatives: 
@@ -1686,10 +1676,7 @@ Symbol: \FerrersQ
 	DLMF-Link: dlmf.nist.gov/14.3#E2
 	Maple: LegendreQ($1, $0, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: This translation is only correct, when you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to invoke forget(evalf) and forget(simplify), otherwise these functions never noticed the changes of _EnvLegendreCut.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	Maple-Package: 
 	Mathematica: LegendreQ[$1, $0, $2]
 	Mathematica-Alternatives: 
@@ -1712,16 +1699,14 @@ Symbol: \FibonacciNumber
 	Maple-Package: 
 	Mathematica: Fibonacci[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Fibonacci number
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \FishersHh
 
@@ -1739,6 +1724,7 @@ Symbol: \FishersHh
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \Fresnelcosint
 
@@ -1747,23 +1733,18 @@ Symbol: \Fresnelcosint
 	DLMF-Link: dlmf.nist.gov/7.2#E7
 	Maple: FresnelC($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=FresnelC
 	Maple-Package: 
 	Mathematica: FresnelC[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/FresnelC.html
 	Mathematica-Package: 
 	Meanings: Fresnel Cosine Integral
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \FresnelintF
 
@@ -1773,7 +1754,7 @@ Symbol: \FresnelintF
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: (1+I)/2-FresnelC[$0]-I*FresnelS[$0]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Fresnel Integral
@@ -1781,6 +1762,7 @@ Symbol: \FresnelintF
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Fresnelsinint
 
@@ -1789,23 +1771,18 @@ Symbol: \Fresnelsinint
 	DLMF-Link: dlmf.nist.gov/7.2#E8
 	Maple: FresnelS($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=FresnelS
 	Maple-Package: 
 	Mathematica: FresnelS[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/FresnelS.html
 	Mathematica-Package: 
 	Meanings: Fresnel Sine Integral
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Gausssum
 
@@ -1840,6 +1817,7 @@ Symbol: \GenGegenbauerS
 	Number of Parameters: 3
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \GenHermite
 
@@ -1851,6 +1829,7 @@ Symbol: \GenHermite
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \GoodwinStatonint
 
@@ -1868,6 +1847,7 @@ Symbol: \GoodwinStatonint
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \GottliebLaguerre
 
@@ -1885,6 +1865,7 @@ Symbol: \GottliebLaguerre
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Gudermannian
 
@@ -1896,16 +1877,14 @@ Symbol: \Gudermannian
 	Maple-Package: 
 	Mathematica: Gudermannian[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: Defined also for imaginary values.
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Gudermannian.html
 	Mathematica-Package: 
 	Meanings: Gudermannian function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \Hahn
 
@@ -1923,6 +1902,7 @@ Symbol: \Hahn
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \HahnpolyQ
 
@@ -1940,6 +1920,7 @@ Symbol: \HahnpolyQ
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \HankelH
 
@@ -1952,7 +1933,7 @@ Symbol: \HankelH
 	Maple-Package: 
 	Mathematica: HankelH$0[$1, $2]
 	Mathematica-Alternatives: 
-	Mathematica-Comment: 
+	Mathematica-Comment: The translation is only valid when the first argument is either 1 or 2
 	Mathematica-Package: 
 	Meanings: Bessel function third kind
 	Number of Ats: 1
@@ -2040,23 +2021,18 @@ Symbol: \HarmonicNumber
 	DLMF-Link: dlmf.nist.gov/25.11#E33
 	Maple: harmonic($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: DLMF assumes nonnegative integers.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=harmonic
 	Maple-Package: 
 	Mathematica: HarmonicNumber[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Harmonic number
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \HeavisideH
 
@@ -2065,10 +2041,7 @@ Symbol: \HeavisideH
 	DLMF-Link: dlmf.nist.gov/1.16#E13
 	Maple: Heaviside($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: Heaviside(0) is defined to be 0 in DLMF.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Heaviside
 	Maple-Package: 
 	Mathematica: HeavisideTheta[$0]
 	Mathematica-Alternatives: 
@@ -2079,6 +2052,7 @@ Symbol: \HeavisideH
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Hermite
 
@@ -2087,17 +2061,11 @@ Symbol: \Hermite
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r13
 	Maple: HermiteH($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
 	Maple-Package: 
 	Mathematica: HermiteH[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Hermite polynomial
 	Number of Ats: 1
@@ -2113,17 +2081,11 @@ Symbol: \HermitepolyH
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r13
 	Maple: HermiteH($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
 	Maple-Package: 
 	Mathematica: HermiteH[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Hermite polynomial
 	Number of Ats: 1
@@ -2148,6 +2110,7 @@ Symbol: \HeunHf
 	Number of Parameters: 3
 	Number of Variables: 7
 	Role: 
+	Slot of Differentiation: 7
 
 Symbol: \HeunHl
 
@@ -2166,6 +2129,7 @@ Symbol: \HeunHl
 	Number of Parameters: 0
 	Number of Variables: 7
 	Role: 
+	Slot of Differentiation: 7
 
 Symbol: \HeunpolyHp
 
@@ -2183,6 +2147,7 @@ Symbol: \HeunpolyHp
 	Number of Parameters: 2
 	Number of Variables: 7
 	Role: 
+	Slot of Differentiation: 7
 
 Symbol: \Hurwitzzeta
 
@@ -2191,17 +2156,11 @@ Symbol: \Hurwitzzeta
 	DLMF-Link: dlmf.nist.gov/25.11#E1
 	Maple: Zeta(0, $0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
 	Maple-Package: 
 	Mathematica: HurwitzZeta[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Hurwitz zeta function
 	Number of Ats: 1
@@ -2217,10 +2176,7 @@ Symbol: \Int
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:Int
 	Maple: int($3, $2 = $0 .. $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=int
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -2266,6 +2222,7 @@ Symbol: \JacksonqBesselI
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \JacksonqBesselII
 
@@ -2283,6 +2240,7 @@ Symbol: \JacksonqBesselII
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \JacksonqBesselIII
 
@@ -2300,6 +2258,7 @@ Symbol: \JacksonqBesselIII
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobi
 
@@ -2308,23 +2267,18 @@ Symbol: \Jacobi
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r2
 	Maple: JacobiP($2, $0, $1, $3)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
 	Maple-Package: 
 	Mathematica: JacobiP[$2, $0, $1, $3]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP
 	Mathematica-Package: 
 	Meanings: Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \JacobiEpsilonk
 
@@ -2342,6 +2296,7 @@ Symbol: \JacobiEpsilonk
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \JacobiP
 
@@ -2350,23 +2305,18 @@ Symbol: \JacobiP
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r2
 	Maple: JacobiP($2, $0, $1, $3)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
 	Maple-Package: 
 	Mathematica: JacobiP[$2, $0, $1, $3]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP
 	Mathematica-Package: 
 	Meanings: Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \JacobiZetak
 
@@ -2375,23 +2325,18 @@ Symbol: \JacobiZetak
 	DLMF-Link: dlmf.nist.gov/22.16#E32
 	Maple: JacobiZeta($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiZeta
 	Maple-Package: 
 	Mathematica: JacobiZeta[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Jacobi zeta function
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobiamk
 
@@ -2400,10 +2345,7 @@ Symbol: \Jacobiamk
 	DLMF-Link: dlmf.nist.gov/22.16#E1
 	Maple: JacobiAM($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -2413,6 +2355,7 @@ Symbol: \Jacobiamk
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobiellcdk
 
@@ -2421,23 +2364,18 @@ Symbol: \Jacobiellcdk
 	DLMF-Link: dlmf.nist.gov/22.2#E8
 	Maple: JacobiCD($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCD
 	Maple-Package: 
 	Mathematica: JacobiCD[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiCD.html
 	Mathematica-Package: 
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobiellcnk
 
@@ -2446,23 +2384,18 @@ Symbol: \Jacobiellcnk
 	DLMF-Link: dlmf.nist.gov/22.2#E5
 	Maple: JacobiCN($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCN
 	Maple-Package: 
 	Mathematica: JacobiCN[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiCN.html
 	Mathematica-Package: 
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobiellcsk
 
@@ -2471,23 +2404,18 @@ Symbol: \Jacobiellcsk
 	DLMF-Link: dlmf.nist.gov/22.2#E15
 	Maple: JacobiCS($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	Maple-Package: 
 	Mathematica: JacobiCS[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiCS.html
 	Mathematica-Package: 
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobielldck
 
@@ -2496,23 +2424,18 @@ Symbol: \Jacobielldck
 	DLMF-Link: dlmf.nist.gov/22.2#E14
 	Maple: JacobiDC($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	Maple-Package: 
 	Mathematica: JacobiDC[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiDC.html
 	Mathematica-Package: 
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobielldnk
 
@@ -2521,23 +2444,18 @@ Symbol: \Jacobielldnk
 	DLMF-Link: dlmf.nist.gov/22.2#E6
 	Maple: JacobiDN($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiDN
 	Maple-Package: 
 	Mathematica: JacobiDN[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiDN.html
 	Mathematica-Package: 
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobielldsk
 
@@ -2546,23 +2464,18 @@ Symbol: \Jacobielldsk
 	DLMF-Link: dlmf.nist.gov/22.2#E13
 	Maple: JacobiDS($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	Maple-Package: 
 	Mathematica: JacobiDS[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiDS.html
 	Mathematica-Package: 
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobiellnck
 
@@ -2571,23 +2484,18 @@ Symbol: \Jacobiellnck
 	DLMF-Link: dlmf.nist.gov/22.2#E11
 	Maple: JacobiNC($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	Maple-Package: 
 	Mathematica: JacobiNC[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiNC.html
 	Mathematica-Package: 
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobiellndk
 
@@ -2596,23 +2504,18 @@ Symbol: \Jacobiellndk
 	DLMF-Link: dlmf.nist.gov/22.2#E12
 	Maple: JacobiND($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	Maple-Package: 
 	Mathematica: JacobiND[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiND.html
 	Mathematica-Package: 
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobiellnsk
 
@@ -2621,23 +2524,18 @@ Symbol: \Jacobiellnsk
 	DLMF-Link: dlmf.nist.gov/22.2#E10
 	Maple: JacobiNS($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
 	Maple-Package: 
 	Mathematica: JacobiNS[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiNS.html
 	Mathematica-Package: 
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobiellsck
 
@@ -2646,23 +2544,18 @@ Symbol: \Jacobiellsck
 	DLMF-Link: dlmf.nist.gov/22.2#E9
 	Maple: JacobiSC($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSC
 	Maple-Package: 
 	Mathematica: JacobiSC[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiSC.html
 	Mathematica-Package: 
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobiellsdk
 
@@ -2671,23 +2564,18 @@ Symbol: \Jacobiellsdk
 	DLMF-Link: dlmf.nist.gov/22.2#E7
 	Maple: JacobiSD($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSD
 	Maple-Package: 
 	Mathematica: JacobiSD[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiSD.html
 	Mathematica-Package: 
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobiellsnk
 
@@ -2696,23 +2584,18 @@ Symbol: \Jacobiellsnk
 	DLMF-Link: dlmf.nist.gov/22.2#E4
 	Maple: JacobiSN($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSN
 	Maple-Package: 
 	Mathematica: JacobiSN[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiSN.html
 	Mathematica-Package: 
 	Meanings: Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobiphi
 
@@ -2730,6 +2613,7 @@ Symbol: \Jacobiphi
 	Number of Parameters: 3
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \JacobipolyP
 
@@ -2738,23 +2622,18 @@ Symbol: \JacobipolyP
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r2
 	Maple: JacobiP($2, $0, $1, $3)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
 	Maple-Package: 
 	Mathematica: JacobiP[$2, $0, $1, $3]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP
 	Mathematica-Package: 
 	Meanings: Jacobi polynomial
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobisym
 
@@ -2789,6 +2668,7 @@ Symbol: \Jacobithetacombinedq
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Jacobithetaq
 
@@ -2801,10 +2681,7 @@ Symbol: \Jacobithetaq
 	Maple-Package: 
 	Mathematica: EllipticTheta[$0, $1, $2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Jacobi's theta function
 	Number of Ats: 1
@@ -2824,10 +2701,7 @@ Symbol: \Jacobithetatau
 	Maple-Package: 
 	Mathematica: EllipticTheta[$0, $1, $2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Jacobi's theta-tau function
 	Number of Ats: 1
@@ -2849,6 +2723,7 @@ Symbol: \Jonquierephi
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \JordanJ
 
@@ -2866,6 +2741,7 @@ Symbol: \JordanJ
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Kelvinbei
 
@@ -2874,17 +2750,11 @@ Symbol: \Kelvinbei
 	DLMF-Link: dlmf.nist.gov/10.61#E1
 	Maple: KelvinBei($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBei
 	Maple-Package: 
 	Mathematica: KelvinBei[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Kelvin Function BEI
 	Number of Ats: 2
@@ -2900,17 +2770,11 @@ Symbol: \Kelvinber
 	DLMF-Link: dlmf.nist.gov/10.61#E1
 	Maple: KelvinBer($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBer
 	Maple-Package: 
 	Mathematica: KelvinBer[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Kelvin Function BER
 	Number of Ats: 2
@@ -2926,17 +2790,11 @@ Symbol: \Kelvinkei
 	DLMF-Link: dlmf.nist.gov/10.61#E2
 	Maple: KelvinKei($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKei
 	Maple-Package: 
 	Mathematica: KelvinKei[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Kelvin Function KEI
 	Number of Ats: 2
@@ -2952,17 +2810,11 @@ Symbol: \Kelvinker
 	DLMF-Link: dlmf.nist.gov/10.61#E2
 	Maple: KelvinKer($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKer
 	Maple-Package: 
 	Mathematica: KelvinKer[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Kelvin Function KER
 	Number of Ats: 2
@@ -2979,6 +2831,7 @@ Symbol: \KleincompinvarJtau
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: KleinInvariantJ[$0]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -2987,6 +2840,7 @@ Symbol: \KleincompinvarJtau
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Krawtchouk
 
@@ -3004,6 +2858,7 @@ Symbol: \Krawtchouk
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \KrawtchoukpolyK
 
@@ -3021,6 +2876,7 @@ Symbol: \KrawtchoukpolyK
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Kroneckerdelta
 
@@ -3032,10 +2888,7 @@ Symbol: \Kroneckerdelta
 	Maple-Package: 
 	Mathematica: KroneckerDelta[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Kronecker delta
 	Number of Ats: 0
@@ -3054,10 +2907,7 @@ Symbol: \KummerconfhyperM
 	Maple-Package: 
 	Mathematica: Hypergeometric1F1[$0, $1, $2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Kummer confluent hypergeometric functions M
 	Number of Ats: 1
@@ -3073,10 +2923,7 @@ Symbol: \KummerconfhyperU
 	DLMF-Link: dlmf.nist.gov/13.2#E6
 	Maple: KummerU($0, $1, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=KummerU
 	Maple-Package: 
 	Mathematica: HypergeometricU[$0, $1, $2]
 	Mathematica-Alternatives: 
@@ -3096,50 +2943,28 @@ Symbol: \Laguerre
 	DLMF-Link: dlmf.nist.gov/18.1#I1.ix7.p1
 	Maple: LaguerreL($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
 	Maple-Package: 
 	Meanings: Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
   Feature Set: dlmf-alternative-1
 	DLMF: \Laguerre[\alpha]{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
 	Maple: LaguerreL($1, $0, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
 	Maple-Package: 
 	Meanings: Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
-
-Symbol: \LaguerreL
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
-	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
-	Maple: LaguerreL($1, $0, $2)
-	Maple-Alternatives: 
-	Maple-Branch Cuts: 
-	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-	Maple-Package: 
-	Meanings: Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 1
-	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \LaguerrepolyL
 
@@ -3148,16 +2973,28 @@ Symbol: \LaguerrepolyL
 	DLMF-Link: dlmf.nist.gov/18.1#I1.ix7.p1
 	Maple: LaguerreL($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
 	Maple-Package: 
+	Mathematica: LaguerreL[$0, $1]
+	Mathematica-Alternatives: 
+	Mathematica-Comment: 
+	Mathematica-Package: 
 	Meanings: Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
+	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Meanings: Laguerre polynomial
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \LambertW
 
@@ -3167,23 +3004,18 @@ Symbol: \LambertW
 	DLMF-Link: dlmf.nist.gov/4.13#p2
 	Maple: LambertW($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: The DLMF defines two branches with extra macros. \LambertWp and \LambertWm. Take a look at http://dlmf.nist.gov/4.13 for further information.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LambertW
 	Maple-Package: 
 	Mathematica: ProductLog[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/ProductLog.html
 	Mathematica-Package: 
 	Meanings: Lambert W-Function
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \LambertWm
 
@@ -3193,23 +3025,18 @@ Symbol: \LambertWm
 	DLMF-Link: dlmf.nist.gov/4.13#p2
 	Maple: LambertW(-1, $0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: Maple define different branches for LambertW. Wm in Maple is the branch for k=-1.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LambertW
 	Maple-Package: 
 	Mathematica: ProductLog[-1, $0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/ProductLog.html
 	Mathematica-Package: 
 	Meanings: Another branch of Lambert W-Function
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \LambertWp
 
@@ -3219,23 +3046,18 @@ Symbol: \LambertWp
 	DLMF-Link: dlmf.nist.gov/4.13#p2
 	Maple: LambertW(0, $0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: Maple define different branches for LambertW. Wm in Maple is the branch for k=0.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LambertW
 	Maple-Package: 
 	Mathematica: ProductLog[0, $0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/ProductLog.html
 	Mathematica-Package: 
 	Meanings: Principle branch of Lambert W-Function
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \LameEc
 
@@ -3289,6 +3111,7 @@ Symbol: \Lameeigvala
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Lameeigvalb
 
@@ -3306,6 +3129,7 @@ Symbol: \Lameeigvalb
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \LamepolycE
 
@@ -3323,6 +3147,7 @@ Symbol: \LamepolycE
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \LamepolycdE
 
@@ -3340,6 +3165,7 @@ Symbol: \LamepolycdE
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \LamepolydE
 
@@ -3357,6 +3183,7 @@ Symbol: \LamepolydE
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \LamepolysE
 
@@ -3374,6 +3201,7 @@ Symbol: \LamepolysE
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \LamepolyscE
 
@@ -3391,6 +3219,7 @@ Symbol: \LamepolyscE
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \LamepolyscdE
 
@@ -3408,6 +3237,7 @@ Symbol: \LamepolyscdE
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \LamepolysdE
 
@@ -3425,6 +3255,7 @@ Symbol: \LamepolysdE
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \LamepolyuE
 
@@ -3442,6 +3273,7 @@ Symbol: \LamepolyuE
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Lattice
 
@@ -3466,7 +3298,7 @@ Symbol: \LauricellaFD
 	DLMF: \LauricellaFD@{a}{b_1,...,b_n}{c}{z_1,...,z_n}
 	DLMF-Link: dlmf.nist.gov/19.15#p1
 	Maple-Alternatives: 
-	Maple-Comment: "see also Multivariate hypergeometric function under Elliptic Integrals"
+	Maple-Comment: see also Multivariate hypergeometric function under Elliptic Integrals
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -3476,6 +3308,7 @@ Symbol: \LauricellaFD
 	Number of Parameters: 0
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 4
 
 Symbol: \LegendreBlackQ
 
@@ -3522,10 +3355,7 @@ Symbol: \LegendrepolyP
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r10
 	Maple: LegendreP($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: Note that LegendreP is also the Legendre function.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	Maple-Package: 
 	Mathematica: LegendreP[$0, $1]
 	Mathematica-Alternatives: 
@@ -3536,6 +3366,7 @@ Symbol: \LegendrepolyP
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Legendresym
 
@@ -3561,10 +3392,7 @@ Symbol: \LerchPhi
 	DLMF-Link: dlmf.nist.gov/25.14#E1
 	Maple: LerchPhi($0, $1, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LerchPhi
 	Maple-Package: 
 	Mathematica: LerchPhi[$0, $1, $2]
 	Mathematica-Alternatives: 
@@ -3575,6 +3403,7 @@ Symbol: \LerchPhi
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \LeviCivitasym
 
@@ -3600,16 +3429,14 @@ Symbol: \Lim
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r4
 	Maple: limit($2, $0 = $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: 
 	Maple-Package: 
 	Meanings: Limit
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Liouvillelambda
 
@@ -3627,6 +3454,7 @@ Symbol: \Liouvillelambda
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Ln
 
@@ -3637,23 +3465,18 @@ Symbol: \Ln
 	DLMF-Link: dlmf.nist.gov/4.2#E1
 	Maple: ln($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ln
 	Maple-Package: 
 	Mathematica: Log[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Log.html
 	Mathematica-Package: 
 	Meanings: Multivalued natural logarithm
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \LommelS
 
@@ -3662,10 +3485,7 @@ Symbol: \LommelS
 	DLMF-Link: dlmf.nist.gov/11.9#E5
 	Maple: LommelS2($0, $1, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LommelS2
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -3675,6 +3495,7 @@ Symbol: \LommelS
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Lommels
 
@@ -3683,10 +3504,7 @@ Symbol: \Lommels
 	DLMF-Link: dlmf.nist.gov/11.9#E3
 	Maple: LommelS1($0, $1, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LommelS1
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -3696,6 +3514,7 @@ Symbol: \Lommels
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Longleftrightarrow
 
@@ -3741,6 +3560,7 @@ Symbol: \MangoldtLambda
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \MathieuFc
 
@@ -3758,6 +3578,7 @@ Symbol: \MathieuFc
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \MathieuFs
 
@@ -3775,6 +3596,7 @@ Symbol: \MathieuFs
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \MathieuGc
 
@@ -3792,6 +3614,7 @@ Symbol: \MathieuGc
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \MathieuGs
 
@@ -3809,6 +3632,7 @@ Symbol: \MathieuGs
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Mathieuce
 
@@ -3817,17 +3641,11 @@ Symbol: \Mathieuce
 	DLMF-Link: dlmf.nist.gov/28.2#SS6.p1
 	Maple: MathieuCE($0, $2, $1)
 	Maple-Alternatives: MathieuCE(0, $2, $1)/sqrt(2)
-	Maple-Branch Cuts: 
-	Maple-Comment: "Maple normalizes values if n=0. For n=0 use the alternative translation!"
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuCE
+	Maple-Comment: Maple normalizes values if n=0. For n=0 use the alternative translation!
 	Maple-Package: 
 	Mathematica: MathieuC[$0, $2, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Mathieu eigenvalue function
 	Number of Ats: 2
@@ -3843,10 +3661,7 @@ Symbol: \Mathieueigvala
 	DLMF-Link: dlmf.nist.gov/28.2#SS5.p1
 	Maple: MathieuA($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuA
 	Maple-Package: 
 	Mathematica: MathieuCharacteristicA[$0, $1]
 	Mathematica-Alternatives: 
@@ -3857,6 +3672,7 @@ Symbol: \Mathieueigvala
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Mathieueigvalb
 
@@ -3865,10 +3681,7 @@ Symbol: \Mathieueigvalb
 	DLMF-Link: dlmf.nist.gov/28.2#SS5.p1
 	Maple: MathieuB($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuB
 	Maple-Package: 
 	Mathematica: MathieuCharacteristicB[$0, $1]
 	Mathematica-Alternatives: 
@@ -3879,6 +3692,7 @@ Symbol: \Mathieueigvalb
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Mathieueigvallambda
 
@@ -3896,6 +3710,7 @@ Symbol: \Mathieueigvallambda
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Mathieufe
 
@@ -3957,17 +3772,11 @@ Symbol: \Mathieuse
 	DLMF-Link: dlmf.nist.gov/28.2#SS6.p1
 	Maple: MathieuSE($0, $2, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MathieuSE
 	Maple-Package: 
 	Mathematica: MathieuS[$0, $2, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Mathieu eigenvalue function
 	Number of Ats: 2
@@ -3992,6 +3801,7 @@ Symbol: \Meixner
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \MeixnerPollaczek
 
@@ -4009,6 +3819,7 @@ Symbol: \MeixnerPollaczek
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \MeixnerPollaczekpolyP
 
@@ -4026,6 +3837,7 @@ Symbol: \MeixnerPollaczekpolyP
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \MeixnerpolyM
 
@@ -4043,6 +3855,7 @@ Symbol: \MeixnerpolyM
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \MillsM
 
@@ -4052,7 +3865,7 @@ Symbol: \MillsM
 	Maple-Alternatives: 
 	Maple-Comment: Maybe with(Statistics): MillsRatio(X,t)
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: Exp[Power[$0,2]] Int[Exp[-t^2], {t, $0, Infinity}]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Mills' Ratio
@@ -4060,6 +3873,7 @@ Symbol: \MillsM
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \MittagLefflerE
 
@@ -4077,6 +3891,7 @@ Symbol: \MittagLefflerE
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Moebiusmu
 
@@ -4094,6 +3909,7 @@ Symbol: \Moebiusmu
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \NeumannFactor
 
@@ -4128,6 +3944,7 @@ Symbol: \NeumannpolyO
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \OlverconfhyperM
 
@@ -4139,10 +3956,7 @@ Symbol: \OlverconfhyperM
 	Maple-Package: 
 	Mathematica: Hypergeometric1F1Regularized[$0, $1, $2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Olver's confluent hypergeometric functions U
 	Number of Ats: 1
@@ -4159,6 +3973,7 @@ Symbol: \Pade
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: PadeApproximant[$2, {$3, 0, {$0, $1}}]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -4175,10 +3990,7 @@ Symbol: \Pochhammersym
 	DLMF-Link: dlmf.nist.gov/5.2#iii
 	Maple: pochhammer($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer
 	Maple-Package: 
 	Mathematica: Pochhammer[$0, $1]
 	Mathematica-Alternatives: 
@@ -4206,6 +4018,7 @@ Symbol: \PollaczekpolyP
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Prod
 
@@ -4214,10 +4027,7 @@ Symbol: \Prod
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:Prod
 	Maple: product($3, $0 = $1 .. $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=product
 	Maple-Package: 
 	Mathematica: Product[$3, {$0, $1, $2}]
 	Mathematica-Alternatives: 
@@ -4245,6 +4055,7 @@ Symbol: \Racah
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \RacahpolyR
 
@@ -4262,6 +4073,7 @@ Symbol: \RacahpolyR
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Ramanujansum
 
@@ -4279,6 +4091,7 @@ Symbol: \Ramanujansum
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Ramanujantau
 
@@ -4290,16 +4103,14 @@ Symbol: \Ramanujantau
 	Maple-Package: 
 	Mathematica: RamanujanTau[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Ramanujan's Tau function
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Rationals
 
@@ -4336,6 +4147,7 @@ Symbol: \Rayleighsigma
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Re
 
@@ -4344,17 +4156,11 @@ Symbol: \Re
 	DLMF-Link: dlmf.nist.gov/1.9#E2
 	Maple: Re($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Re
 	Maple-Package: 
 	Mathematica: Re[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Re.html
 	Mathematica-Package: 
 	Meanings: Real part of a complex number
 	Number of Ats: 0all
@@ -4406,6 +4212,7 @@ Symbol: \Riemannxi
 	Maple-Alternatives: ($0)*($0-1)*GAMMA(($0)/2)*Pi^(-($0)/2)*Zeta($0)/2
 	Maple-Comment: You could use the alternative translation!
 	Maple-Package: 
+	Mathematica: RiemannXi[$0]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -4414,6 +4221,7 @@ Symbol: \Riemannxi
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Riemannzeta
 
@@ -4422,17 +4230,11 @@ Symbol: \Riemannzeta
 	DLMF-Link: dlmf.nist.gov/25.2#E1
 	Maple: Zeta($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
 	Maple-Package: 
 	Mathematica: Zeta[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Riemann zeta function
 	Number of Ats: 1
@@ -4468,10 +4270,7 @@ Symbol: \ScorerGi
 	Maple-Package: 
 	Mathematica: ScorerGi[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Scorer function Gi
 	Number of Ats: 1
@@ -4490,10 +4289,7 @@ Symbol: \ScorerHi
 	Maple-Package: 
 	Mathematica: ScorerHi[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Scorer function Hi
 	Number of Ats: 1
@@ -4526,10 +4322,7 @@ Symbol: \StieltjesConstants
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:StieltjesConstants
 	Maple: gamma($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=initialconstants
 	Maple-Package: 
 	Meanings: Stieltjes Constants
 	Number of Ats: 0
@@ -4553,6 +4346,7 @@ Symbol: \StieltjesWigert
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \StieltjesWigertpolyS
 
@@ -4570,6 +4364,7 @@ Symbol: \StieltjesWigertpolyS
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \StirlingnumberS
 
@@ -4578,17 +4373,11 @@ Symbol: \StirlingnumberS
 	DLMF-Link: dlmf.nist.gov/26.8#SS1.p3
 	Maple: Stirling2($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Stirling2
 	Maple-Package: 
 	Mathematica: StirlingS2[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Stirling number of the second kind
 	Number of Ats: 1
@@ -4603,17 +4392,11 @@ Symbol: \Stirlingnumbers
 	DLMF-Link: dlmf.nist.gov/26.8#SS1.p1
 	Maple: Stirling1($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Stirling1
 	Maple-Package: 
 	Mathematica: StirlingS1[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Stirling number of the first kind
 	Number of Ats: 1
@@ -4628,17 +4411,11 @@ Symbol: \StruveH
 	DLMF-Link: dlmf.nist.gov/11.2#E1
 	Maple: StruveH($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=StruveH
 	Maple-Package: 
 	Mathematica: StruveH[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Struve function
 	Number of Ats: 1
@@ -4654,23 +4431,18 @@ Symbol: \StruveK
 	DLMF-Link: dlmf.nist.gov/11.2#E5
 	Maple: StruveH($0, $1) - BesselY($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=StruveH
 	Maple-Package: 
 	Mathematica: StruveH[$0, $1] - BesselY[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Associated Struve funtion
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Sum
 
@@ -4679,10 +4451,7 @@ Symbol: \Sum
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:Sum
 	Maple: sum($3, $0 = $1 .. $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=sum
 	Maple-Package: 
 	Mathematica: Sum[$3, {$0, $1, $2}]
 	Mathematica-Alternatives: 
@@ -4701,23 +4470,18 @@ Symbol: \Ultra
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r3
 	Maple: GegenbauerC($1, $0, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC
 	Maple-Package: 
 	Mathematica: GegenbauerC[$1, $0, $2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Ultraspherical Gegenbauer polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \VoigtH
 
@@ -4786,6 +4550,7 @@ Symbol: \WaringG
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Waringg
 
@@ -4803,6 +4568,7 @@ Symbol: \Waringg
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \WeberE
 
@@ -4811,17 +4577,11 @@ Symbol: \WeberE
 	DLMF-Link: dlmf.nist.gov/11.10#E2
 	Maple: WeberE($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=AngerJ
 	Maple-Package: 
 	Mathematica: WeberE[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Weber function
 	Number of Ats: 1
@@ -4830,6 +4590,28 @@ Symbol: \WeberE
 	Role: 
 	Slot of Differentiation: 1
 
+Symbol: \Weierstrasselatt
+
+  Feature Set: dlmf-macro
+	Branch Cuts: 
+	DLMF: \Weierstrasselatt{j}@{L}
+	DLMF-Link: dlmf.nist.gov/23.3#i
+	Meanings: Weierstrass lattice roots (on Lattice)
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+Symbol: \Weierstrassinvarlatt
+
+  Feature Set: dlmf-macro
+	Branch Cuts: 
+	DLMF: \Weierstrassinvarlatt{j}@{L}
+	DLMF-Link: dlmf.nist.gov/23.3#i
+	Meanings: Weierstrass invariants (on Lattice)
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
 Symbol: \Weierstrasspinvar
 
   Feature Set: dlmf-macro
@@ -4837,10 +4619,7 @@ Symbol: \Weierstrasspinvar
 	DLMF-Link: dlmf.nist.gov/23.3#E8
 	Maple: WeierstrassP($0, $1, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassP
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -4877,10 +4656,7 @@ Symbol: \Weierstrasssigmainvar
 	DLMF-Link: dlmf.nist.gov/23.1E6
 	Maple: WeierstrassSigma($0, $1, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassSigma
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -4916,10 +4692,7 @@ Symbol: \Weierstrasszetainvar
 	DLMF-Link: dlmf.nist.gov/23.1E5
 	Maple: WeierstrassZeta($0, $1, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassZeta
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -4929,6 +4702,7 @@ Symbol: \Weierstrasszetainvar
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Weierstrasszetalatt
 
@@ -4946,6 +4720,7 @@ Symbol: \Weierstrasszetalatt
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \WhittakerconfhyperM
 
@@ -4954,10 +4729,7 @@ Symbol: \WhittakerconfhyperM
 	DLMF-Link: dlmf.nist.gov/13.14#E2
 	Maple: WhittakerM($0, $1, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerM
 	Maple-Package: 
 	Mathematica: WhittakerM[$0, $1, $2]
 	Mathematica-Alternatives: 
@@ -4977,10 +4749,7 @@ Symbol: \WhittakerconfhyperW
 	DLMF-Link: dlmf.nist.gov/13.14#E3
 	Maple: WhittakerW($0, $1, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerW
 	Maple-Package: 
 	Mathematica: WhittakerW[$0, $1, $2]
 	Mathematica-Alternatives: 
@@ -5000,23 +4769,18 @@ Symbol: \WhittakerparaD
 	DLMF-Link: dlmf.nist.gov/12.1
 	Maple: CylinderD($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CylinderD
 	Maple-Package: 
 	Mathematica: ParabolicCylinderD[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Whittaker's notation D for the parabolic cylinder function
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Wignerninejsym
 
@@ -5085,6 +4849,7 @@ Symbol: \Wilson
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \WilsonpolyW
 
@@ -5102,6 +4867,7 @@ Symbol: \WilsonpolyW
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \Wron
 
@@ -5152,16 +4918,14 @@ Symbol: \aGudermannian
 	Maple-Package: 
 	Mathematica: InverseGudermannian[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: Defined also for imaginary values.
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/InverseGudermannian.html
 	Mathematica-Package: 
 	Meanings: Inverse Gudermannian function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \aJacobiellcdk
 
@@ -5170,23 +4934,18 @@ Symbol: \aJacobiellcdk
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiCD($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
 	Mathematica: InverseJacobiCD[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \aJacobiellcnk
 
@@ -5195,23 +4954,18 @@ Symbol: \aJacobiellcnk
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiCN($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
 	Mathematica: InverseJacobiCN[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \aJacobiellcsk
 
@@ -5220,23 +4974,18 @@ Symbol: \aJacobiellcsk
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiCS($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
 	Mathematica: InverseJacobiCS[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \aJacobielldck
 
@@ -5245,23 +4994,18 @@ Symbol: \aJacobielldck
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiDC($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
 	Mathematica: InverseJacobiDC[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \aJacobielldnk
 
@@ -5270,10 +5014,7 @@ Symbol: \aJacobielldnk
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiDN($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
 	Mathematica: InverseJacobiDN[$0, ($1)^2]
 	Mathematica-Alternatives: 
@@ -5284,6 +5025,7 @@ Symbol: \aJacobielldnk
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \aJacobielldsk
 
@@ -5292,23 +5034,18 @@ Symbol: \aJacobielldsk
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiDS($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
 	Mathematica: InverseJacobiDS[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \aJacobiellnck
 
@@ -5317,23 +5054,18 @@ Symbol: \aJacobiellnck
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiNC($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
 	Mathematica: InverseJacobiNC[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \aJacobiellndk
 
@@ -5342,23 +5074,18 @@ Symbol: \aJacobiellndk
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiND($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
 	Mathematica: InverseJacobiND[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \aJacobiellnsk
 
@@ -5367,23 +5094,18 @@ Symbol: \aJacobiellnsk
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiNS($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
 	Mathematica: InverseJacobiNS[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \aJacobiellsck
 
@@ -5392,23 +5114,18 @@ Symbol: \aJacobiellsck
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiSC($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
 	Mathematica: InverseJacobiSC[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \aJacobiellsdk
 
@@ -5417,23 +5134,18 @@ Symbol: \aJacobiellsdk
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiSD($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
 	Mathematica: InverseJacobiSD[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \aJacobiellsnk
 
@@ -5442,23 +5154,18 @@ Symbol: \aJacobiellsnk
 	DLMF-Link: dlmf.nist.gov/22.15#SS1.p1
 	Maple: InverseJacobiSN($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
 	Maple-Package: 
 	Mathematica: InverseJacobiSN[$0, ($1)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Inverse of Jacobian elliptic function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \abs
 
@@ -5467,17 +5174,11 @@ Symbol: \abs
 	DLMF-Link: dlmf.nist.gov/1.9#E7
 	Maple: abs($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=abs
 	Maple-Package: 
 	Mathematica: Abs[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Abs.html
 	Mathematica-Package: 
 	Meanings: Absolute Value
 	Number of Ats: 0
@@ -5494,23 +5195,18 @@ Symbol: \acos
 	DLMF-Link: dlmf.nist.gov/4.23#SS2.p1
 	Maple: arccos($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
 	Maple-Package: 
 	Mathematica: ArcCos[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/ArcCos.html
 	Mathematica-Package: 
 	Meanings: Inverse cosine
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \acosh
 
@@ -5521,23 +5217,18 @@ Symbol: \acosh
 	DLMF-Link: dlmf.nist.gov/4.37#SS2.p1
 	Maple: arccosh($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arccosh
 	Maple-Package: 
 	Mathematica: ArcCosh[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/ArcCosh.html
 	Mathematica-Package: 
 	Meanings: Inverse hyperbolic cosine
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \acot
 
@@ -5548,23 +5239,18 @@ Symbol: \acot
 	DLMF-Link: dlmf.nist.gov/4.23#SS2.p1
 	Maple: arccot($0)
 	Maple-Alternatives: I/2*ln(($0-I)/($0+I) ) || arctan(1/($0))
-	Maple-Branch Cuts: (- I infinity, - I ), ( I, I infinity )
 	Maple-Comment: Maple defines another branch cut than DLMF for the invert cotangent function. You can use an alternative translation to avoid that. With the arctan alternative you have the same branch cuts as DLMF. See also 'According to Arbamowitz and Stegun or arccoth needn't be uncouth' by R.M. Corless, D.J. Jeffrey, S.M. Watt.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
 	Maple-Package: 
 	Mathematica: ArcCot[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/ArcCot.html
 	Mathematica-Package: 
 	Meanings: Inverse cotangent
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \acoth
 
@@ -5575,23 +5261,18 @@ Symbol: \acoth
 	DLMF-Link: dlmf.nist.gov/4.37#SS2.p1
 	Maple: arccoth($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arccoth
 	Maple-Package: 
 	Mathematica: ArcCoth[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/ArcCoth.html
 	Mathematica-Package: 
 	Meanings: Inverse hyperbolic cotangent
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \acsc
 
@@ -5602,23 +5283,18 @@ Symbol: \acsc
 	DLMF-Link: dlmf.nist.gov/4.23#SS2.p1
 	Maple: arccsc($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
 	Maple-Package: 
 	Mathematica: ArcCsc[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/ArcCsc.html
 	Mathematica-Package: 
 	Meanings: Inverse cosecant
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \acsch
 
@@ -5629,23 +5305,18 @@ Symbol: \acsch
 	DLMF-Link: dlmf.nist.gov/4.37#SS2.p1
 	Maple: arccsch($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arccsch
 	Maple-Package: 
 	Mathematica: ArcCsch[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/ArcCsch.html
 	Mathematica-Package: 
 	Meanings: Inverse hyperbolic cosecant
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \asec
 
@@ -5656,23 +5327,18 @@ Symbol: \asec
 	DLMF-Link: dlmf.nist.gov/4.23#SS2.p1
 	Maple: arcsec($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
 	Maple-Package: 
 	Mathematica: ArcSec[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/ArcSec.html
 	Mathematica-Package: 
 	Meanings: Inverse secant
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \asech
 
@@ -5683,23 +5349,18 @@ Symbol: \asech
 	DLMF-Link: dlmf.nist.gov/4.37#SS2.p1
 	Maple: arcsech($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arcsech
 	Maple-Package: 
 	Mathematica: ArcSech[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/ArcSech.html
 	Mathematica-Package: 
 	Meanings: Inverse hyperbolic secant
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \asin
 
@@ -5710,23 +5371,18 @@ Symbol: \asin
 	DLMF-Link: dlmf.nist.gov/4.23#SS2.p1
 	Maple: arcsin($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
 	Maple-Package: 
 	Mathematica: ArcSin[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/ArcSin.html
 	Mathematica-Package: 
 	Meanings: Inverse sine
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \asinh
 
@@ -5737,23 +5393,18 @@ Symbol: \asinh
 	DLMF-Link: dlmf.nist.gov/4.37#SS2.p1
 	Maple: arcsinh($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arcsinh
 	Maple-Package: 
 	Mathematica: ArcSinh[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/ArcSinh.html
 	Mathematica-Package: 
 	Meanings: Inverse hyperbolic sine
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \assJacobipolyP
 
@@ -5771,6 +5422,7 @@ Symbol: \assJacobipolyP
 	Number of Parameters: 3
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \assLegendreOlverQ
 
@@ -5784,8 +5436,7 @@ Symbol: \assLegendreOlverQ
 	Maple-Constraints: 
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	Maple-Package: 
-	Mathematica: Exp[-$0 Pi I] LegendreQ[$0, 2, 3, $1]/Gamma[$0 + 3]
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: Exp[-($0) Pi I] LegendreQ[$0, 2, 3, $1]/Gamma[$0 + 3]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Olver's associated Legendre function
@@ -5802,10 +5453,7 @@ Symbol: \assLegendreP
 	DLMF-Link: dlmf.nist.gov/14.21#Ex1
 	Maple: LegendreP($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	Maple-Package: 
 	Mathematica: LegendreP[$0, 0, 3, $1]
 	Mathematica-Alternatives: 
@@ -5816,29 +5464,25 @@ Symbol: \assLegendreP
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
   Feature Set: dlmf-alternative-1
 	DLMF: \assLegendreP[mu]{nu}@{z}
 	DLMF-Link: dlmf.nist.gov/14.21#Ex1
 	Maple: LegendreP($1, $0, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	Maple-Package: 
 	Mathematica: LegendreP[$1, $0, 3, $2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: associated Legendre polynomial of the first kind
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \assLegendreQ
 
@@ -5848,10 +5492,7 @@ Symbol: \assLegendreQ
 	DLMF-Link: dlmf.nist.gov/14.2#i
 	Maple: LegendreQ($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: If you previously set Maple's internal variable _EnvLegendreCut := 1..infinity. You have to reset it to -1..1 and invoke forget(evalf) and forget(simplify) to notify Maple about the changes.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
 	Maple-Package: 
 	Mathematica: LegendreQ[$0, 0, 3, $1]
 	Mathematica-Alternatives: 
@@ -5880,6 +5521,7 @@ Symbol: \assLegendrepoly
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \atan
 
@@ -5890,23 +5532,18 @@ Symbol: \atan
 	DLMF-Link: dlmf.nist.gov/4.23#SS2.p1
 	Maple: arctan($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
 	Maple-Package: 
 	Mathematica: ArcTan[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/ArcTan.html
 	Mathematica-Package: 
 	Meanings: Inverse tangent
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \atanh
 
@@ -5917,23 +5554,18 @@ Symbol: \atanh
 	DLMF-Link: dlmf.nist.gov/4.37#SS2.p1
 	Maple: arctanh($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=arctanh
 	Maple-Package: 
 	Mathematica: ArcTanh[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/ArcTanh.html
 	Mathematica-Package: 
 	Meanings: Inverse hyperbolic tangent
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \auxFresnelf
 
@@ -5942,23 +5574,18 @@ Symbol: \auxFresnelf
 	DLMF-Link: dlmf.nist.gov/7.2#E10
 	Maple: Fresnelf($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelf
 	Maple-Package: 
 	Mathematica: FresnelF[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/FresnelF.html
 	Mathematica-Package: 
 	Meanings: Fresnel Auxiliaty Functions
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \auxFresnelg
 
@@ -5967,23 +5594,18 @@ Symbol: \auxFresnelg
 	DLMF-Link: dlmf.nist.gov/7.2#E11
 	Maple: Fresnelg($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelg
 	Maple-Package: 
 	Mathematica: FresnelG[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/FresnelG.html
 	Mathematica-Package: 
 	Meanings: Fresnel Auxiliaty Functions
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \auxsincosintf
 
@@ -6001,6 +5623,7 @@ Symbol: \auxsincosintf
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \auxsincosintg
 
@@ -6018,6 +5641,7 @@ Symbol: \auxsincosintg
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \bDiff
 
@@ -6046,6 +5670,7 @@ Symbol: \bigO
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \bigqJacobi
 
@@ -6063,6 +5688,7 @@ Symbol: \bigqJacobi
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \bigqJacobiIVparam
 
@@ -6080,6 +5706,7 @@ Symbol: \bigqJacobiIVparam
 	Number of Parameters: 1
 	Number of Variables: 6
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \bigqJacobipolyP
 
@@ -6097,6 +5724,7 @@ Symbol: \bigqJacobipolyP
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \bigqLaguerre
 
@@ -6114,6 +5742,7 @@ Symbol: \bigqLaguerre
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \bigqLegendre
 
@@ -6131,6 +5760,7 @@ Symbol: \bigqLegendre
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \binom
 
@@ -6139,17 +5769,11 @@ Symbol: \binom
 	DLMF-Link: dlmf.nist.gov/1.2#E1
 	Maple: binomial($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=binomial
 	Maple-Package: 
 	Mathematica: Binomial[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Binomial.html
 	Mathematica-Package: 
 	Meanings: Binomial coefficient
 	Number of Ats: 0
@@ -6175,10 +5799,7 @@ Symbol: \card
 	DLMF-Link: dlmf.nist.gov/26.1#p2.t1.r5
 	Maple: numelems(A)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -6213,10 +5834,7 @@ Symbol: \ccompellintEk
 	DLMF-Link: dlmf.nist.gov/19.2#E9
 	Maple: EllipticCE($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCE
 	Maple-Package: 
 	Mathematica: EllipticE[1-($0)^2]
 	Mathematica-Alternatives: 
@@ -6227,6 +5845,7 @@ Symbol: \ccompellintEk
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ccompellintKk
 
@@ -6235,23 +5854,18 @@ Symbol: \ccompellintKk
 	DLMF-Link: dlmf.nist.gov/19.2#E9
 	Maple: EllipticCK($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCK
 	Maple-Package: 
 	Mathematica: EllipticK[1-($0)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Legendre's complementary complete elliptic integral of the first kind
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ceiling
 
@@ -6260,17 +5874,11 @@ Symbol: \ceiling
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r17
 	Maple: ceil($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ceil
 	Maple-Package: 
 	Mathematica: Ceiling[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Ceiling
 	Number of Ats: 0
@@ -6294,6 +5902,7 @@ Symbol: \compellintDk
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \compellintEk
 
@@ -6302,10 +5911,7 @@ Symbol: \compellintEk
 	DLMF-Link: dlmf.nist.gov/19.2#E8
 	Maple: EllipticE($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
 	Maple-Package: 
 	Mathematica: EllipticE[($0)^2]
 	Mathematica-Alternatives: 
@@ -6316,6 +5922,7 @@ Symbol: \compellintEk
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \compellintKk
 
@@ -6324,17 +5931,11 @@ Symbol: \compellintKk
 	DLMF-Link: dlmf.nist.gov/19.2#E8
 	Maple: EllipticK($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticK
 	Maple-Package: 
 	Mathematica: EllipticK[($0)^2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Legendre's complete elliptic integral of the first kind
 	Number of Ats: 1
@@ -6350,10 +5951,7 @@ Symbol: \compellintPik
 	DLMF-Link: dlmf.nist.gov/19.2#E8
 	Maple: EllipticPi($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
 	Maple-Package: 
 	Mathematica: EllipticPi[$0, ($1)^2]
 	Mathematica-Alternatives: 
@@ -6364,6 +5962,7 @@ Symbol: \compellintPik
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \conj
 
@@ -6372,23 +5971,18 @@ Symbol: \conj
 	DLMF-Link: dlmf.nist.gov/1.9#E11
 	Maple: conjugate($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=conjugate
 	Maple-Package: 
 	Mathematica: Conjugate[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Conjugate.html
 	Mathematica-Package: 
 	Meanings: Conjugate complex number
 	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \contHahnpolyp
 
@@ -6406,6 +6000,7 @@ Symbol: \contHahnpolyp
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \contdualHahnpolyS
 
@@ -6423,6 +6018,7 @@ Symbol: \contdualHahnpolyS
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \continuous
 
@@ -6457,6 +6053,7 @@ Symbol: \contqHermitepolyH
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \contqinvHermitepolyh
 
@@ -6474,6 +6071,7 @@ Symbol: \contqinvHermitepolyh
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \contqultrasphpoly
 
@@ -6491,6 +6089,7 @@ Symbol: \contqultrasphpoly
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \cos
 
@@ -6499,23 +6098,18 @@ Symbol: \cos
 	DLMF-Link: dlmf.nist.gov/4.14#E2
 	Maple: cos($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=cos
 	Maple-Package: 
 	Mathematica: Cos[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Cos.html
 	Mathematica-Package: 
 	Meanings: Cosine
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \cosh
 
@@ -6524,23 +6118,18 @@ Symbol: \cosh
 	DLMF-Link: dlmf.nist.gov/4.28#E2
 	Maple: cosh($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=cosh
 	Maple-Package: 
 	Mathematica: Cosh[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Cosh.html
 	Mathematica-Package: 
 	Meanings: Hyperbolic cosine
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \coshint
 
@@ -6549,23 +6138,18 @@ Symbol: \coshint
 	DLMF-Link: dlmf.nist.gov/6.2#E16
 	Maple: Chi($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Chi
 	Maple-Package: 
 	Mathematica: CoshIntegral[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/CoshIntegral.html
 	Mathematica-Package: 
 	Meanings: Hyperbolic cosine integral
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \cosint
 
@@ -6574,23 +6158,18 @@ Symbol: \cosint
 	DLMF-Link: dlmf.nist.gov/6.2#E13
 	Maple: Ci($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ci
 	Maple-Package: 
 	Mathematica: CosIntegral[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/CosIntegral.html
 	Mathematica-Package: 
 	Meanings: Cosine integral
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \cosintCin
 
@@ -6608,6 +6187,7 @@ Symbol: \cosintCin
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \cot
 
@@ -6617,23 +6197,18 @@ Symbol: \cot
 	DLMF-Link: dlmf.nist.gov/4.14#E7
 	Maple: cot($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=cot
 	Maple-Package: 
 	Mathematica: Cot[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Cot.html
 	Mathematica-Package: 
 	Meanings: Cotangent
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \coth
 
@@ -6643,23 +6218,18 @@ Symbol: \coth
 	DLMF-Link: dlmf.nist.gov/4.28#E7
 	Maple: coth($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=coth
 	Maple-Package: 
 	Mathematica: Coth[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Coth.html
 	Mathematica-Package: 
 	Meanings: Hyperbolic cotangent
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \cpi
 
@@ -6677,23 +6247,18 @@ Symbol: \csc
 	DLMF-Link: dlmf.nist.gov/4.14#E5
 	Maple: csc($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=csc
 	Maple-Package: 
 	Mathematica: Csc[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Csc.html
 	Mathematica-Package: 
 	Meanings: Cosecant
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \csch
 
@@ -6703,23 +6268,18 @@ Symbol: \csch
 	DLMF-Link: dlmf.nist.gov/4.28#E5
 	Maple: csch($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=csch
 	Maple-Package: 
 	Mathematica: Csch[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Csch.html
 	Mathematica-Package: 
 	Meanings: Hyperbolic cosecant
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \ctsHahn
 
@@ -6737,6 +6297,7 @@ Symbol: \ctsHahn
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ctsbigqHermite
 
@@ -6754,6 +6315,7 @@ Symbol: \ctsbigqHermite
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ctsdualHahn
 
@@ -6771,6 +6333,7 @@ Symbol: \ctsdualHahn
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ctsdualqHahn
 
@@ -6788,6 +6351,7 @@ Symbol: \ctsdualqHahn
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ctsqHahn
 
@@ -6805,6 +6369,7 @@ Symbol: \ctsqHahn
 	Number of Parameters: 1
 	Number of Variables: 6
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ctsqHermite
 
@@ -6822,6 +6387,7 @@ Symbol: \ctsqHermite
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ctsqJacobi
 
@@ -6839,6 +6405,7 @@ Symbol: \ctsqJacobi
 	Number of Parameters: 3
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ctsqJacobiRahman
 
@@ -6856,6 +6423,7 @@ Symbol: \ctsqJacobiRahman
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ctsqLaguerre
 
@@ -6873,6 +6441,7 @@ Symbol: \ctsqLaguerre
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ctsqLegendre
 
@@ -6890,6 +6459,7 @@ Symbol: \ctsqLegendre
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ctsqLegendreRahman
 
@@ -6907,6 +6477,7 @@ Symbol: \ctsqLegendreRahman
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ctsqUltra
 
@@ -6924,6 +6495,7 @@ Symbol: \ctsqUltra
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ctsqUltrae
 
@@ -6966,17 +6538,11 @@ Symbol: \deriv
 	DLMF-Link: dlmf.nist.gov/1.4#E4
 	Maple: diff($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=diff
 	Maple-Package: 
 	Mathematica: D[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Derivative
 	Number of Ats: 0
@@ -7023,17 +6589,11 @@ Symbol: \digamma
 	DLMF-Link: dlmf.nist.gov/5.2#E2
 	Maple: Psi($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Psi
 	Maple-Package: 
 	Mathematica: PolyGamma[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/PolyGamma.html
 	Mathematica-Package: 
 	Meanings: Digamma / Psi function
 	Number of Ats: 1
@@ -7058,6 +6618,7 @@ Symbol: \dilChebyshevpolyC
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \dilChebyshevpolyS
 
@@ -7075,6 +6636,7 @@ Symbol: \dilChebyshevpolyS
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \dilHermitepolyHe
 
@@ -7092,6 +6654,7 @@ Symbol: \dilHermitepolyHe
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \dilog
 
@@ -7100,10 +6663,7 @@ Symbol: \dilog
 	DLMF-Link: dlmf.nist.gov/25.12#E1
 	Maple: dilog($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=dilog
 	Maple-Package: 
 	Mathematica: PolyLog[2, $0]
 	Mathematica-Alternatives: 
@@ -7114,6 +6674,7 @@ Symbol: \dilog
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \discqHermitepolyhI
 
@@ -7131,6 +6692,7 @@ Symbol: \discqHermitepolyhI
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \discqHermitepolyhII
 
@@ -7148,6 +6710,7 @@ Symbol: \discqHermitepolyhII
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \discrqHermiteI
 
@@ -7165,6 +6728,7 @@ Symbol: \discrqHermiteI
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \discrqHermiteII
 
@@ -7182,6 +6746,7 @@ Symbol: \discrqHermiteII
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \diskpoly
 
@@ -7199,6 +6764,7 @@ Symbol: \diskpoly
 	Number of Parameters: 3
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \divides
 
@@ -7250,6 +6816,7 @@ Symbol: \dualHahnpolyR
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \dualqHahn
 
@@ -7301,6 +6868,7 @@ Symbol: \envCoulumbM
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \erf
 
@@ -7309,23 +6877,18 @@ Symbol: \erf
 	DLMF-Link: dlmf.nist.gov/7.2#E1
 	Maple: erf($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=erf
 	Maple-Package: 
 	Mathematica: Erf[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Erf.html
 	Mathematica-Package: 
 	Meanings: Error function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \erfc
 
@@ -7334,23 +6897,18 @@ Symbol: \erfc
 	DLMF-Link: dlmf.nist.gov/7.2#E2
 	Maple: erfc($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=erfc
 	Maple-Package: 
 	Mathematica: Erfc[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Erfc.html
 	Mathematica-Package: 
 	Meanings: Complementary error function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \erfw
 
@@ -7362,16 +6920,14 @@ Symbol: \erfw
 	Maple-Package: 
 	Mathematica: Exp[-$0^2]*Erfc[-I*$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
-	Mathematica-Comment: There is no direct translation but you can use the alternative formula instead if you want.
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Exp.html
+	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: Complementary error function
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \exp
 
@@ -7380,23 +6936,18 @@ Symbol: \exp
 	DLMF-Link: dlmf.nist.gov/4.2#E19
 	Maple: exp($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=exp
 	Maple-Package: 
 	Mathematica: Exp[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Exp.html
 	Mathematica-Package: 
 	Meanings: Exponential function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \expe
 
@@ -7415,10 +6966,7 @@ Symbol: \expintE
 	DLMF-Link: dlmf.nist.gov/6.2#E1
 	Maple: Ei($0)
 	Maple-Alternatives: Ei($0)+ln($0)+gamma
-	Maple-Branch Cuts: 
 	Maple-Comment: The alternative form is equivalent.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ei
 	Maple-Package: 
 	Mathematica-Alternatives: -ExpIntegralEi[-($0)]
 	Mathematica-Comment: Mathematica uses another definition for the principle branch of the exponential integral. \expintE@{x} will be translated to -ExpIntegralEi[-x].
@@ -7428,6 +6976,7 @@ Symbol: \expintE
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \expintEi
 
@@ -7444,6 +6993,7 @@ Symbol: \expintEi
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \expintEin
 
@@ -7458,6 +7008,7 @@ Symbol: \expintEin
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \f
 
@@ -7491,17 +7042,11 @@ Symbol: \floor
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r16
 	Maple: floor($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=floor
 	Maple-Package: 
 	Mathematica: Floor[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Floor
 	Number of Ats: 0
@@ -7575,6 +7120,7 @@ Symbol: \genAiryintA
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \genAiryintB
 
@@ -7592,6 +7138,7 @@ Symbol: \genAiryintB
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \genBernoullipolyB
 
@@ -7609,6 +7156,7 @@ Symbol: \genBernoullipolyB
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \genBesselphi
 
@@ -7626,6 +7174,7 @@ Symbol: \genBesselphi
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \genEulerpolyE
 
@@ -7643,6 +7192,7 @@ Symbol: \genEulerpolyE
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \genEulersumH
 
@@ -7660,6 +7210,7 @@ Symbol: \genEulersumH
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \genJacobiellk
 
@@ -7689,6 +7240,7 @@ Symbol: \gencosint
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	Slot of Differentiation: 2
 
 Symbol: \genexpintE
 
@@ -7697,10 +7249,7 @@ Symbol: \genexpintE
 	DLMF-Link: dlmf.nist.gov/8.19#E1
 	Maple: Ei($0, $1)
 	Maple-Alternatives: Ei($0)+ln($0)+gamma
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ei
 	Maple-Package: 
 	Mathematica: ExpIntegralE[$0, $1]
 	Mathematica-Alternatives: 
@@ -7711,6 +7260,7 @@ Symbol: \genexpintE
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \genhyperF
 
@@ -7730,6 +7280,7 @@ Symbol: \genhyperF
 	Number of Parameters: 2
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \genhyperH
 
@@ -7747,6 +7298,7 @@ Symbol: \genhyperH
 	Number of Parameters: 2
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \genhyperOlverF
 
@@ -7766,6 +7318,7 @@ Symbol: \genhyperOlverF
 	Number of Parameters: 2
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \genlog
 
@@ -7776,23 +7329,18 @@ Symbol: \genlog
 	DLMF-Link: dlmf.nist.gov/4.2#EGx1
 	Maple: log[$0]($1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=log
 	Maple-Package: 
 	Mathematica: Log[$0,$1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Log.html
 	Mathematica-Package: 
 	Meanings: Logarithm with different base
 	Number of Ats: 2
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \genshiftcosint
 
@@ -7811,6 +7359,7 @@ Symbol: \genshiftcosint
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	Slot of Differentiation: 2
 
 Symbol: \genshiftsinint
 
@@ -7829,6 +7378,7 @@ Symbol: \genshiftsinint
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	Slot of Differentiation: 2
 
 Symbol: \gensinint
 
@@ -7847,6 +7397,7 @@ Symbol: \gensinint
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	Slot of Differentiation: 2
 
 Symbol: \hyperF
 
@@ -7855,10 +7406,7 @@ Symbol: \hyperF
 	DLMF-Link: dlmf.nist.gov/15.2#E1
 	Maple: hypergeom([$0, $1], [$2], $3)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
 	Maple-Package: 
 	Mathematica: Hypergeometric2F1[$0, $1, $2, $3]
 	Mathematica-Alternatives: 
@@ -7889,6 +7437,7 @@ Symbol: \hyperOlverF
 	Number of Parameters: 0
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 4
 
 Symbol: \idem
 
@@ -7914,17 +7463,11 @@ Symbol: \ideriv
 	DLMF-Link: dlmf.nist.gov/1.4#E4
 	Maple: diff($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=diff
 	Maple-Package: 
 	Mathematica: D[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Derivative
 	Number of Ats: 0
@@ -7956,10 +7499,7 @@ Symbol: \ifrac
 	DLMF-Link: dlmf.nist.gov/4.2.E8
 	Mathematica: Divide[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Divide.html
 	Mathematica-Package: 
 	Meanings: Fraction
 	Number of Ats: 0
@@ -7974,17 +7514,11 @@ Symbol: \imagpart
 	DLMF-Link: dlmf.nist.gov/1.9#E2
 	Maple: Im($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Im
 	Maple-Package: 
 	Mathematica: Im[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Im.html
 	Mathematica-Package: 
 	Meanings: Imaginary part of a complex num
 	Number of Ats: 0
@@ -7999,10 +7533,7 @@ Symbol: \in
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r9
 	Maple: in
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=in
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -8023,10 +7554,7 @@ Symbol: \incBeta
 	Maple-Package: 
 	Mathematica: Beta[$0, $1, $2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: (-\inf, 0)
 	Mathematica-Comment: It has a branch cut for complex parameters (x in DLMF).
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Beta.html
 	Mathematica-Package: 
 	Meanings: Incomplete Beta function
 	Number of Ats: 1
@@ -8041,23 +7569,18 @@ Symbol: \incGamma
 	DLMF-Link: dlmf.nist.gov/8.2#E2
 	Maple: GAMMA($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
 	Maple-Package: 
 	Mathematica: Gamma[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: (-\inf, 0)
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Gamma.html
 	Mathematica-Package: 
 	Meanings: Incomplete Gamma function (upper)
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	Slot of Differentiation: 2
 
 Symbol: \incellintDk
 
@@ -8075,6 +7598,7 @@ Symbol: \incellintDk
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \incellintEk
 
@@ -8083,10 +7607,7 @@ Symbol: \incellintEk
 	DLMF-Link: dlmf.nist.gov/19.2#E5
 	Maple: EllipticE(sin($0), $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
 	Maple-Package: 
 	Mathematica: EllipticE[$0, ($1)^2]
 	Mathematica-Alternatives: 
@@ -8097,6 +7618,7 @@ Symbol: \incellintEk
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \incellintFk
 
@@ -8105,10 +7627,7 @@ Symbol: \incellintFk
 	DLMF-Link: dlmf.nist.gov/19.2#E4
 	Maple: EllipticF(sin($0), $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticF
 	Maple-Package: 
 	Mathematica: EllipticF[$0, ($1)^2]
 	Mathematica-Alternatives: 
@@ -8119,6 +7638,7 @@ Symbol: \incellintFk
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \incellintPik
 
@@ -8127,10 +7647,7 @@ Symbol: \incellintPik
 	DLMF-Link: dlmf.nist.gov/19.2#E7
 	Maple: EllipticPi(sin($0), $1, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: Maple's first argument is already the sine of the amplitude phi! But the DLMF definition assumes the amplitude itself.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
 	Maple-Package: 
 	Mathematica: EllipticPi[$1, $0,($2)^2]
 	Mathematica-Alternatives: 
@@ -8141,6 +7658,7 @@ Symbol: \incellintPik
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \incgamma
 
@@ -8153,16 +7671,14 @@ Symbol: \incgamma
 	Maple-Package: 
 	Mathematica: Gamma[$0, 0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: Mathematica's generalized incomplete gamma function defines variable intervals. The 2nd and 3rd argument defines the interval. Based on the DLMF definition, the interval is [0,z].
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Gamma.html
 	Mathematica-Package: 
 	Meanings: Incomplete Gamma function (lower)
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	Slot of Differentiation: 2
 
 Symbol: \inf
 
@@ -8223,16 +7739,14 @@ Symbol: \inverf
 	Maple-Package: 
 	Mathematica: InverseErf[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/InverseErf.html
 	Mathematica-Package: 
 	Meanings: Inverse error function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \inverfc
 
@@ -8245,16 +7759,14 @@ Symbol: \inverfc
 	Maple-Package: 
 	Mathematica: InverseErfc[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/InverseErfc.html
 	Mathematica-Package: 
 	Meanings: Inverse complementary error function
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \ipderiv
 
@@ -8263,17 +7775,11 @@ Symbol: \ipderiv
 	DLMF-Link: dlmf.nist.gov/1.5#E3
 	Maple: diff($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=diff
 	Maple-Package: 
 	Mathematica: D[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Partial derivative
 	Number of Ats: 0
@@ -8411,6 +7917,7 @@ Symbol: \littleo
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \littleqJacobi
 
@@ -8428,6 +7935,7 @@ Symbol: \littleqJacobi
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \littleqJacobipolyp
 
@@ -8445,6 +7953,7 @@ Symbol: \littleqJacobipolyp
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \littleqLaguerre
 
@@ -8462,6 +7971,7 @@ Symbol: \littleqLaguerre
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \littleqLegendre
 
@@ -8479,6 +7989,7 @@ Symbol: \littleqLegendre
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \ln
 
@@ -8489,23 +8000,18 @@ Symbol: \ln
 	DLMF-Link: dlmf.nist.gov/4.2#E2
 	Maple: ln($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=ln
 	Maple-Package: 
 	Mathematica: Log[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Log.html
 	Mathematica-Package: 
 	Meanings: Natural logarithm
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \log
 
@@ -8516,23 +8022,18 @@ Symbol: \log
 	DLMF-Link: dlmf.nist.gov/4.2#E2
 	Maple: log($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: Without a given base, ln equals log.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=log
 	Maple-Package: 
 	Mathematica: Log[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Log.html
 	Mathematica-Package: 
 	Meanings: Logarithm
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \logint
 
@@ -8542,23 +8043,18 @@ Symbol: \logint
 	DLMF-Link: dlmf.nist.gov/6.2#E8
 	Maple: Li($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Li
 	Maple-Package: 
 	Mathematica: LogIntegral[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: (-\inf, 1)
 	Mathematica-Comment: Mathematica can compute the principle branch for x between 0 and 1 as well, while this is not defined in DLMF.
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/LogIntegral.html
 	Mathematica-Package: 
 	Meanings: Logarithmic integral
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \modBesselI
 
@@ -8567,10 +8063,7 @@ Symbol: \modBesselI
 	DLMF-Link: dlmf.nist.gov/10.25#E2
 	Maple: BesselI($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
 	Maple-Package: 
 	Mathematica: BesselI[$0, $1]
 	Mathematica-Alternatives: 
@@ -8593,10 +8086,7 @@ Symbol: \modBesselIimag
 	Maple-Package: 
 	Mathematica: Re[BesselI[I*$0, $1]]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Modified Bessel of imaginary order first kind
 	Number of Ats: 1
@@ -8612,17 +8102,11 @@ Symbol: \modBesselK
 	DLMF-Link: dlmf.nist.gov/10.25#E3
 	Maple: BesselK($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Bessel
 	Maple-Package: 
 	Mathematica: BesselK[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Modified Bessel function second kind
 	Number of Ats: 1
@@ -8641,10 +8125,7 @@ Symbol: \modBesselKimag
 	Maple-Package: 
 	Mathematica: BesselK[I*$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Modified Bessel of imaginary order second kind
 	Number of Ats: 1
@@ -8669,6 +8150,7 @@ Symbol: \modMathieuCe
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modMathieuD
 
@@ -8686,6 +8168,7 @@ Symbol: \modMathieuD
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \modMathieuFe
 
@@ -8703,6 +8186,7 @@ Symbol: \modMathieuFe
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modMathieuGe
 
@@ -8720,6 +8204,7 @@ Symbol: \modMathieuGe
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modMathieuIe
 
@@ -8737,6 +8222,7 @@ Symbol: \modMathieuIe
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modMathieuIo
 
@@ -8754,6 +8240,7 @@ Symbol: \modMathieuIo
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modMathieuKe
 
@@ -8771,6 +8258,7 @@ Symbol: \modMathieuKe
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modMathieuKo
 
@@ -8788,6 +8276,7 @@ Symbol: \modMathieuKo
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modMathieuM
 
@@ -8823,6 +8312,7 @@ Symbol: \modMathieuMe
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modMathieuSe
 
@@ -8840,6 +8330,7 @@ Symbol: \modMathieuSe
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modStruveL
 
@@ -8848,10 +8339,7 @@ Symbol: \modStruveL
 	DLMF-Link: dlmf.nist.gov/11.2#E2
 	Maple: StruveL($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=StruveL
 	Maple-Package: 
 	Mathematica: StruveL[$0, $1]
 	Mathematica-Alternatives: 
@@ -8871,10 +8359,7 @@ Symbol: \modStruveM
 	DLMF-Link: dlmf.nist.gov/11.2#E6
 	Maple: StruveL($0, $1) - BesselI($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=StruveL
 	Maple-Package: 
 	Mathematica: StruveL[$0, $1] - BesselI[$0, $1]
 	Mathematica-Alternatives: 
@@ -8885,6 +8370,7 @@ Symbol: \modStruveM
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \modcylinder
 
@@ -8950,6 +8436,7 @@ Symbol: \modularlambdatau
 	Maple-Alternatives: 
 	Maple-Comment: 
 	Maple-Package: 
+	Mathematica: ModularLambda[$0]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -8958,6 +8445,7 @@ Symbol: \modularlambdatau
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicAffqKrawtchouk
 
@@ -8992,6 +8480,7 @@ Symbol: \monicAlSalamCarlitzI
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicAlSalamCarlitzII
 
@@ -9009,6 +8498,7 @@ Symbol: \monicAlSalamCarlitzII
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicAlSalamChihara
 
@@ -9026,6 +8516,7 @@ Symbol: \monicAlSalamChihara
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicAskeyWilson
 
@@ -9043,6 +8534,7 @@ Symbol: \monicAskeyWilson
 	Number of Parameters: 1
 	Number of Variables: 6
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicBesselPoly
 
@@ -9060,6 +8552,7 @@ Symbol: \monicBesselPoly
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicCharlier
 
@@ -9077,6 +8570,7 @@ Symbol: \monicCharlier
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicChebyT
 
@@ -9094,6 +8588,7 @@ Symbol: \monicChebyT
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicChebyU
 
@@ -9111,6 +8606,7 @@ Symbol: \monicChebyU
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicHahn
 
@@ -9128,6 +8624,7 @@ Symbol: \monicHahn
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicHermite
 
@@ -9145,6 +8642,7 @@ Symbol: \monicHermite
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicJacobi
 
@@ -9162,6 +8660,7 @@ Symbol: \monicJacobi
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicKrawtchouk
 
@@ -9196,6 +8695,7 @@ Symbol: \monicLaguerre
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicLegendrePoly
 
@@ -9213,6 +8713,7 @@ Symbol: \monicLegendrePoly
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicMeixner
 
@@ -9230,6 +8731,7 @@ Symbol: \monicMeixner
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicMeixnerPollaczek
 
@@ -9247,6 +8749,7 @@ Symbol: \monicMeixnerPollaczek
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicRacah
 
@@ -9264,6 +8767,7 @@ Symbol: \monicRacah
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicStieltjesWigert
 
@@ -9281,6 +8785,7 @@ Symbol: \monicStieltjesWigert
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicUltra
 
@@ -9298,6 +8803,7 @@ Symbol: \monicUltra
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicWilson
 
@@ -9315,6 +8821,7 @@ Symbol: \monicWilson
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicbigqJacobi
 
@@ -9332,6 +8839,7 @@ Symbol: \monicbigqJacobi
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicbigqLaguerre
 
@@ -9349,6 +8857,7 @@ Symbol: \monicbigqLaguerre
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicbigqLegendre
 
@@ -9366,6 +8875,7 @@ Symbol: \monicbigqLegendre
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicctsHahn
 
@@ -9383,6 +8893,7 @@ Symbol: \monicctsHahn
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicctsbigqHermite
 
@@ -9400,6 +8911,7 @@ Symbol: \monicctsbigqHermite
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicctsdualHahn
 
@@ -9417,6 +8929,7 @@ Symbol: \monicctsdualHahn
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicctsdualqHahn
 
@@ -9434,6 +8947,7 @@ Symbol: \monicctsdualqHahn
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicctsqHahn
 
@@ -9451,6 +8965,7 @@ Symbol: \monicctsqHahn
 	Number of Parameters: 1
 	Number of Variables: 6
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicctsqHermite
 
@@ -9468,6 +8983,7 @@ Symbol: \monicctsqHermite
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicctsqJacobi
 
@@ -9485,6 +9001,7 @@ Symbol: \monicctsqJacobi
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicctsqLaguerre
 
@@ -9502,6 +9019,7 @@ Symbol: \monicctsqLaguerre
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicctsqLegendre
 
@@ -9519,6 +9037,7 @@ Symbol: \monicctsqLegendre
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicctsqUltra
 
@@ -9536,6 +9055,7 @@ Symbol: \monicctsqUltra
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicdiscrqHermiteI
 
@@ -9553,6 +9073,7 @@ Symbol: \monicdiscrqHermiteI
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicdiscrqHermiteII
 
@@ -9570,6 +9091,7 @@ Symbol: \monicdiscrqHermiteII
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicdualHahn
 
@@ -9587,6 +9109,7 @@ Symbol: \monicdualHahn
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicdualqHahn
 
@@ -9604,6 +9127,7 @@ Symbol: \monicdualqHahn
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicdualqKrawtchouk
 
@@ -9621,6 +9145,7 @@ Symbol: \monicdualqKrawtchouk
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \moniclittleqJacobi
 
@@ -9638,6 +9163,7 @@ Symbol: \moniclittleqJacobi
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \moniclittleqLaguerre
 
@@ -9655,6 +9181,7 @@ Symbol: \moniclittleqLaguerre
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \moniclittleqLegendre
 
@@ -9672,6 +9199,7 @@ Symbol: \moniclittleqLegendre
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicpseudoJacobi
 
@@ -9689,6 +9217,7 @@ Symbol: \monicpseudoJacobi
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicqBesselPoly
 
@@ -9706,6 +9235,7 @@ Symbol: \monicqBesselPoly
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicqCharlier
 
@@ -9774,6 +9304,7 @@ Symbol: \monicqLaguerre
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicqMeixner
 
@@ -9808,6 +9339,7 @@ Symbol: \monicqMeixnerPollaczek
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicqRacah
 
@@ -9842,6 +9374,7 @@ Symbol: \monicqinvAlSalamChihara
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \monicqtmqKrawtchouk
 
@@ -9914,6 +9447,7 @@ Symbol: \multivarEulerGamma
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \natNumbers
 
@@ -9950,9 +9484,9 @@ Symbol: \ndivisors
   Feature Set: dlmf-macro
 	DLMF: \ndivisors@{n}
 	DLMF-Link: dlmf.nist.gov/27.2#E9
-	Maple-Alternatives: numelems(divisors($0))
+	Maple-Alternatives: numelems(Divisors($0))
 	Maple-Comment: Maple needs an extra package. with(numtheory) and since Maplesoft 2016 with(NumberTheory)
-	Maple-Package: NumberTheory
+	Maple-Package: NumberTheory,Divisors
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -9961,6 +9495,7 @@ Symbol: \ndivisors
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \neq
 
@@ -9992,6 +9527,7 @@ Symbol: \normAskeyWilsonptilde
 	Number of Parameters: 1
 	Number of Variables: 6
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \normCoulombC
 
@@ -10009,6 +9545,7 @@ Symbol: \normCoulombC
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \normJacobiR
 
@@ -10026,6 +9563,7 @@ Symbol: \normJacobiR
 	Number of Parameters: 3
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \normWilsonWtilde
 
@@ -10043,6 +9581,7 @@ Symbol: \normWilsonWtilde
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \normctsHahnptilde
 
@@ -10060,6 +9599,7 @@ Symbol: \normctsHahnptilde
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \normctsdualHahnStilde
 
@@ -10077,6 +9617,7 @@ Symbol: \normctsdualHahnStilde
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \normctsdualqHahnptilde
 
@@ -10094,6 +9635,7 @@ Symbol: \normctsdualqHahnptilde
 	Number of Parameters: 1
 	Number of Variables: 5
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \normctsqHahnptilde
 
@@ -10111,6 +9653,7 @@ Symbol: \normctsqHahnptilde
 	Number of Parameters: 1
 	Number of Variables: 6
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \normctsqJacobiPtilde
 
@@ -10128,6 +9671,7 @@ Symbol: \normctsqJacobiPtilde
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \normincBetaI
 
@@ -10139,10 +9683,7 @@ Symbol: \normincBetaI
 	Maple-Package: 
 	Mathematica: BetaRegularized[$0, $1, $2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/BetaRegularized.html
 	Mathematica-Package: 
 	Meanings: Regularized incomplete Beta function
 	Number of Ats: 1
@@ -10160,16 +9701,14 @@ Symbol: \normincGammaP
 	Maple-Package: 
 	Mathematica: GammaRegularized[$0, 0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/GammaRegularized.html
 	Mathematica-Package: 
 	Meanings: Normalized incomplete Gamma
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	Slot of Differentiation: 2
 
 Symbol: \normincGammaQ
 
@@ -10181,16 +9720,14 @@ Symbol: \normincGammaQ
 	Maple-Package: 
 	Mathematica: GammaRegularized[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/GammaRegularized.html
 	Mathematica-Package: 
 	Meanings: Normalized incomplete Gamma
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	Slot of Differentiation: 2
 
 Symbol: \notin
 
@@ -10211,6 +9748,7 @@ Symbol: \npartitions
   Feature Set: dlmf-macro
 	DLMF: \npartitions[k]@{n}
 	DLMF-Link: dlmf.nist.gov/26.9
+	Maple: nops(partition($0))
 	Maple-Alternatives: 
 	Maple-Comment: Maple needs an extra package. Load it with the following command: with(combinat,partition)
 	Maple-Package: combinat,partition
@@ -10222,16 +9760,17 @@ Symbol: \npartitions
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \npermutations
 
   Feature Set: dlmf-macro
 	DLMF: \npermutations{n}
 	DLMF-Link: dlmf.nist.gov/26.13
-	Maple: permute($0)
+	Maple: nops(permute($0))
 	Maple-Alternatives: 
 	Maple-Comment: Maple needs an extra package. Load it with the following command: with(combinat)
-	Maple-Package: combinat
+	Maple-Package: combinat,permute
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -10240,6 +9779,7 @@ Symbol: \npermutations
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \nplanepartitions
 
@@ -10257,6 +9797,7 @@ Symbol: \nplanepartitions
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \nprimes
 
@@ -10274,6 +9815,7 @@ Symbol: \nprimes
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \nprimesdiv
 
@@ -10282,10 +9824,7 @@ Symbol: \nprimesdiv
 	DLMF-Link: dlmf.nist.gov/27.2#E1
 	Maple: ifactor($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=ifactor
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -10295,6 +9834,7 @@ Symbol: \nprimesdiv
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \nrestcompositions
 
@@ -10340,6 +9880,7 @@ Symbol: \nsquares
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \opminus
 
@@ -10365,17 +9906,11 @@ Symbol: \paraU
 	DLMF-Link: dlmf.nist.gov/12.4#E1
 	Maple: CylinderU($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: For a=0, this can be computed with BesselK. But this produces branch cut issues
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CylinderU
 	Maple-Package: 
 	Mathematica: ParabolicCylinderD[- 1/2 -($0), $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Parabolic cylinder function U
 	Number of Ats: 1
@@ -10400,6 +9935,7 @@ Symbol: \paraUbar
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \paraV
 
@@ -10408,10 +9944,7 @@ Symbol: \paraV
 	DLMF-Link: dlmf.nist.gov/12.4#E2
 	Maple: CylinderV($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CylinderV
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -10448,17 +9981,11 @@ Symbol: \pderiv
 	DLMF-Link: dlmf.nist.gov/1.5#E3
 	Maple: diff($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=diff
 	Maple-Package: 
 	Mathematica: D[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Partial derivative
 	Number of Ats: 0
@@ -10513,6 +10040,7 @@ Symbol: \perBernoulliB
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \perEulerE
 
@@ -10530,6 +10058,7 @@ Symbol: \perEulerE
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \perZeta
 
@@ -10547,6 +10076,7 @@ Symbol: \perZeta
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \pgcd
 
@@ -10574,23 +10104,18 @@ Symbol: \phase
 	DLMF-Link: dlmf.nist.gov/1.9#E7
 	Maple: argument($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: arctan($0,$1) is an alternative. With the real part in the first argument and the complex part in the second.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=argument
 	Maple-Package: 
 	Mathematica: Arg[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Arg.html
 	Mathematica-Package: 
 	Meanings: Argument of a complex number
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \pochhammer
 
@@ -10599,10 +10124,7 @@ Symbol: \pochhammer
 	DLMF-Link: dlmf.nist.gov/5.2#iii
 	Maple: pochhammer($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer
 	Maple-Package: 
 	Mathematica: Pochhammer[$0, $1]
 	Mathematica-Alternatives: 
@@ -10638,23 +10160,18 @@ Symbol: \polygamma
 	DLMF-Link: dlmf.nist.gov/5.15
 	Maple: Psi($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Psi
 	Maple-Package: 
 	Mathematica: PolyGamma[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/PolyGamma.html
 	Mathematica-Package: 
 	Meanings: Polygamma function
 	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \polylog
 
@@ -10663,10 +10180,7 @@ Symbol: \polylog
 	DLMF-Link: dlmf.nist.gov/25.12#E10
 	Maple: polylog($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: The alternative notation phi is an old notation for the same function. Be aware of the different order of the variables.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=polylog
 	Maple-Package: 
 	Mathematica: PolyLog[$0, $1]
 	Mathematica-Alternatives: 
@@ -10677,6 +10191,7 @@ Symbol: \polylog
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \power
 
@@ -10685,10 +10200,7 @@ Symbol: \power
 	DLMF-Link: dlmf.nist.gov/36.12#E9
 	Mathematica: Power[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Power.html
 	Mathematica-Package: 
 	Meanings: Power
 	Number of Ats: 0
@@ -10712,6 +10224,7 @@ Symbol: \pseudoJacobi
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qAppellPhi
 
@@ -10746,6 +10259,7 @@ Symbol: \qBernoullipolybeta
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qBesselPoly
 
@@ -10763,6 +10277,7 @@ Symbol: \qBesselPoly
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qBeta
 
@@ -10797,6 +10312,7 @@ Symbol: \qCharlier
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qCos
 
@@ -10814,6 +10330,7 @@ Symbol: \qCos
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qCosKLS
 
@@ -10831,6 +10348,7 @@ Symbol: \qCosKLS
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qDigamma
 
@@ -10840,6 +10358,7 @@ Symbol: \qDigamma
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Package: 
+	Mathematica: QPolyGamma[$1,$0]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -10848,6 +10367,7 @@ Symbol: \qDigamma
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qEulernumberA
 
@@ -10882,6 +10402,7 @@ Symbol: \qExp
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qExpKLS
 
@@ -10899,6 +10420,7 @@ Symbol: \qExpKLS
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qGamma
 
@@ -10908,6 +10430,7 @@ Symbol: \qGamma
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Package: 
+	Mathematica: QGamma[$1,$0]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -10916,6 +10439,7 @@ Symbol: \qGamma
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qHahn
 
@@ -10967,6 +10491,7 @@ Symbol: \qHyperrWs
 	Number of Parameters: 2
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 4
 
 Symbol: \qKrawtchouk
 
@@ -10995,6 +10520,7 @@ Symbol: \qLaguerre
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qLaguerrepolyL
 
@@ -11006,6 +10532,7 @@ Symbol: \qLaguerrepolyL
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qLegendre
 
@@ -11023,6 +10550,7 @@ Symbol: \qLegendre
 	Number of Parameters: 1
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qMeixner
 
@@ -11040,6 +10568,7 @@ Symbol: \qMeixner
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qMeixnerPollaczek
 
@@ -11057,6 +10586,7 @@ Symbol: \qMeixnerPollaczek
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qPochhammer
 
@@ -11066,6 +10596,7 @@ Symbol: \qPochhammer
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Package: 
+	Mathematica: QPochhammer[$0, $1, $2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -11074,6 +10605,7 @@ Symbol: \qPochhammer
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \qRacah
 
@@ -11091,6 +10623,7 @@ Symbol: \qRacah
 	Number of Parameters: 1
 	Number of Variables: 6
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qRacahpolyR
 
@@ -11108,6 +10641,7 @@ Symbol: \qRacahpolyR
 	Number of Parameters: 1
 	Number of Variables: 6
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qSin
 
@@ -11125,6 +10659,7 @@ Symbol: \qSin
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qSinKLS
 
@@ -11142,6 +10677,7 @@ Symbol: \qSinKLS
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qStirlingnumbera
 
@@ -11159,6 +10695,7 @@ Symbol: \qStirlingnumbera
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qbinom
 
@@ -11168,6 +10705,7 @@ Symbol: \qbinom
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Package: 
+	Mathematica: QBinomial[$0,$1,$2]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -11193,6 +10731,7 @@ Symbol: \qcos
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qcosKLS
 
@@ -11210,6 +10749,7 @@ Symbol: \qcosKLS
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qderiv
 
@@ -11221,6 +10761,7 @@ Symbol: \qderiv
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qdiff
 
@@ -11238,6 +10779,7 @@ Symbol: \qdiff
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 2
 
 Symbol: \qexp
 
@@ -11255,6 +10797,7 @@ Symbol: \qexp
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qexpKLS
 
@@ -11272,6 +10815,7 @@ Symbol: \qexpKLS
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qfactorial
 
@@ -11281,6 +10825,7 @@ Symbol: \qfactorial
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Package: 
+	Mathematica: QFactorial[$0,$1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -11298,6 +10843,7 @@ Symbol: \qgenhyperphi
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Package: 
+	Mathematica: QHypergeometricPFQ[{$2},{$3},$4,$5]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -11306,6 +10852,7 @@ Symbol: \qgenhyperphi
 	Number of Parameters: 2
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 4
 
 Symbol: \qgenhyperpsi
 
@@ -11323,6 +10870,7 @@ Symbol: \qgenhyperpsi
 	Number of Parameters: 2
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 4
 
 Symbol: \qinvAlSalamChihara
 
@@ -11340,6 +10888,7 @@ Symbol: \qinvAlSalamChihara
 	Number of Parameters: 1
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qmultiPochhammersym
 
@@ -11349,7 +10898,7 @@ Symbol: \qmultiPochhammersym
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Package: 
-	Mathematica-Alternatives: 
+	Mathematica-Alternatives: Product[QPochhammer[Part[{$0},i],$1,$2],{i,1,Length[{$0}]}]
 	Mathematica-Comment: 
 	Mathematica-Package: 
 	Meanings: q-Multi-Pochhammer symbol
@@ -11357,6 +10906,7 @@ Symbol: \qmultiPochhammersym
 	Number of Parameters: 0
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \qmultinomial
 
@@ -11383,6 +10933,7 @@ Symbol: \qpolygamma
 	Maple-Alternatives: 
 	Maple-Comment: But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf
 	Maple-Package: 
+	Mathematica: QPolyGamma[$0,$2,$1]
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -11391,6 +10942,7 @@ Symbol: \qpolygamma
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qsin
 
@@ -11408,6 +10960,7 @@ Symbol: \qsin
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qsinKLS
 
@@ -11425,6 +10978,7 @@ Symbol: \qsinKLS
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \qtmqKrawtchouk
 
@@ -11459,6 +11013,7 @@ Symbol: \radMathieuDc
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \radMathieuDs
 
@@ -11476,6 +11031,7 @@ Symbol: \radMathieuDs
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \radMathieuDsc
 
@@ -11493,6 +11049,7 @@ Symbol: \radMathieuDsc
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \radMathieuMc
 
@@ -11556,17 +11113,11 @@ Symbol: \realpart
 	DLMF-Link: dlmf.nist.gov/1.9#E2
 	Maple: Re($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Re
 	Maple-Package: 
 	Mathematica: Re[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Re.html
 	Mathematica-Package: 
 	Meanings: Real part of a complex number
 	Number of Ats: 0
@@ -11581,10 +11132,7 @@ Symbol: \regCoulombF
 	DLMF-Link: dlmf.nist.gov/33.2#E3
 	Maple: CoulombF($0, $1, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CoulombF
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -11639,10 +11187,7 @@ Symbol: \repinterfc
 	DLMF-Link: dlmf.nist.gov/7.18#E2
 	Maple: erfc($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=erfc
 	Maple-Package: 
 	Mathematica-Alternatives: I^($0)*Erfc[$1]
 	Mathematica-Comment: 
@@ -11652,6 +11197,7 @@ Symbol: \repinterfc
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \scbigqJacobipolyP
 
@@ -11669,6 +11215,7 @@ Symbol: \scbigqJacobipolyP
 	Number of Parameters: 3
 	Number of Variables: 4
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \scincgamma
 
@@ -11687,6 +11234,7 @@ Symbol: \scincgamma
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	Slot of Differentiation: 2
 
 Symbol: \scterminant
 
@@ -11704,6 +11252,7 @@ Symbol: \scterminant
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \sec
 
@@ -11713,23 +11262,18 @@ Symbol: \sec
 	DLMF-Link: dlmf.nist.gov/4.14#E6
 	Maple: sec($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sec
 	Maple-Package: 
 	Mathematica: Sec[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Sec.html
 	Mathematica-Package: 
 	Meanings: Secant
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \sech
 
@@ -11739,23 +11283,18 @@ Symbol: \sech
 	DLMF-Link: dlmf.nist.gov/4.28#E6
 	Maple: sech($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sech
 	Maple-Package: 
 	Mathematica: Sech[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Sech.html
 	Mathematica-Package: 
 	Meanings: Hyperbolic secant
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \setminus
 
@@ -11764,10 +11303,7 @@ Symbol: \setminus
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r19
 	Maple: minus
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=minus
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -11811,6 +11347,7 @@ Symbol: \shiftChebyshevpolyT
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \shiftChebyshevpolyU
 
@@ -11828,6 +11365,7 @@ Symbol: \shiftChebyshevpolyU
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \shiftJacobipolyG
 
@@ -11845,6 +11383,7 @@ Symbol: \shiftJacobipolyG
 	Number of Parameters: 1
 	Number of Variables: 3
 	Role: 
+	Slot of Differentiation: 3
 
 Symbol: \shiftLegendrepolyP
 
@@ -11853,10 +11392,7 @@ Symbol: \shiftLegendrepolyP
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r11
 	Maple: LegendreP($0, 2*($1) - 1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: Note that LegendreP is also the Legendre function. This translation bases on DLMF 18.7.10.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -11866,6 +11402,7 @@ Symbol: \shiftLegendrepolyP
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \shiftfactorial
 
@@ -11888,23 +11425,18 @@ Symbol: \shiftsinint
 	DLMF-Link: dlmf.nist.gov/6.2#E10
 	Maple: Ssi($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ssi
 	Maple-Package: 
 	Mathematica: SinIntegral[$0] - Pi/2
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/SinIntegral.html
 	Mathematica-Package: 
 	Meanings: Shifted sine integral
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \sign
 
@@ -11913,17 +11445,11 @@ Symbol: \sign
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r18
 	Maple: signum($0)
 	Maple-Alternatives: csgn($0) || sign($0)
-	Maple-Branch Cuts: 
 	Maple-Comment: The sign($0) alternative is for polynomials! sign(x) is 1 always, because x has a positive sign.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=signum
 	Maple-Package: 
 	Mathematica: Sign[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Signum
 	Number of Ats: 2
@@ -11955,23 +11481,18 @@ Symbol: \sin
 	DLMF-Link: dlmf.nist.gov/4.14#E1
 	Maple: sin($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sin
 	Maple-Package: 
 	Mathematica: Sin[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Sin.html
 	Mathematica-Package: 
 	Meanings: Sine
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \sinh
 
@@ -11980,23 +11501,18 @@ Symbol: \sinh
 	DLMF-Link: dlmf.nist.gov/4.28#E1
 	Maple: sinh($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sinh
 	Maple-Package: 
 	Mathematica: Sinh[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Sinh.html
 	Mathematica-Package: 
 	Meanings: Hyperbolic sine
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \sinhint
 
@@ -12005,23 +11521,18 @@ Symbol: \sinhint
 	DLMF-Link: dlmf.nist.gov/6.2#E15
 	Maple: Shi($0)
 	Maple-Alternatives: int((1-cos(t))/t, t = 0 .. $0)
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Shi
 	Maple-Package: 
 	Mathematica: SinhIntegral[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/SinhIntegral.html
 	Mathematica-Package: 
 	Meanings: Hyperbolic sine integral
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \sinint
 
@@ -12030,23 +11541,18 @@ Symbol: \sinint
 	DLMF-Link: dlmf.nist.gov/6.2#E9
 	Maple: Si($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Si
 	Maple-Package: 
 	Mathematica: SinIntegral[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/SinIntegral.html
 	Mathematica-Package: 
 	Meanings: Sine integral
 	Number of Ats: 1
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \sphBesselJ
 
@@ -12058,10 +11564,7 @@ Symbol: \sphBesselJ
 	Maple-Package: 
 	Mathematica: SphericalBesselJ[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Spherical Bessel function of the first kind
 	Number of Ats: 1
@@ -12080,10 +11583,7 @@ Symbol: \sphBesselY
 	Maple-Package: 
 	Mathematica: SphericalBesselY[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Spherical Bessel function of the second kind
 	Number of Ats: 1
@@ -12135,10 +11635,7 @@ Symbol: \sphharmonicY
 	DLMF-Link: dlmf.nist.gov/14.30#E1
 	Maple: SphericalY($0, $1, $2, $3)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=SphericalY
 	Maple-Package: 
 	Mathematica: SphericalHarmonicY[$0, $1, $2, $3]
 	Mathematica-Alternatives: 
@@ -12166,6 +11663,7 @@ Symbol: \sphwavePs
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \sphwavePsreal
 
@@ -12201,6 +11699,7 @@ Symbol: \sphwaveQs
 	Number of Parameters: 2
 	Number of Variables: 2
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \sphwaveQsreal
 
@@ -12227,23 +11726,18 @@ Symbol: \sqrt
 	DLMF-Link: not defined
 	Maple: sqrt($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: You can use the csgn function, which is specialized for imaginary variables.
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=sqrt
 	Maple-Package: 
 	Mathematica: Sqrt[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Sqrt.html
 	Mathematica-Package: 
 	Meanings: n-th root
 	Number of Ats: 0
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \subset
 
@@ -12269,10 +11763,7 @@ Symbol: \subseteq
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r3
 	Maple: subset
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=subset
 	Maple-Package: 
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
@@ -12290,7 +11781,7 @@ Symbol: \sumdivisors
 	DLMF-Link: dlmf.nist.gov/27.2#E10
 	Maple-Alternatives:  || add(divisors($0))
 	Maple-Comment:  || Maple needs an extra package. with(numtheory) and since Maplesoft 2016 with(NumberTheory)
-	Maple-Package:  || NumberTheory
+	Maple-Package:  || NumberTheory,Divisors
 	Mathematica-Alternatives: 
 	Mathematica-Comment: 
 	Mathematica-Package: 
@@ -12299,6 +11790,7 @@ Symbol: \sumdivisors
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \sup
 
@@ -12342,23 +11834,18 @@ Symbol: \tan
 	DLMF-Link: dlmf.nist.gov/4.14#E4
 	Maple: tan($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=tan
 	Maple-Package: 
 	Mathematica: Tan[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Tan.html
 	Mathematica-Package: 
 	Meanings: Tangent
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \tanh
 
@@ -12368,23 +11855,18 @@ Symbol: \tanh
 	DLMF-Link: dlmf.nist.gov/4.28#E4
 	Maple: tanh($0)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=tanh
 	Maple-Package: 
 	Mathematica: Tanh[$0]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: reference.wolfram.com/language/ref/Tanh.html
 	Mathematica-Package: 
 	Meanings: Hyperbolic tangent
 	Number of Ats: 2
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+	Slot of Differentiation: 1
 
 Symbol: \tderiv
 
@@ -12393,17 +11875,11 @@ Symbol: \tderiv
 	DLMF-Link: dlmf.nist.gov/1.5#E3
 	Maple: diff($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=diff
 	Maple-Package: 
 	Mathematica: D[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Partial derivative
 	Number of Ats: 0
@@ -12444,6 +11920,7 @@ Symbol: \terminant
 	Number of Parameters: 1
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \tpderiv
 
@@ -12452,17 +11929,11 @@ Symbol: \tpderiv
 	DLMF-Link: dlmf.nist.gov/1.5#E3
 	Maple: diff($0, $1)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=diff
 	Maple-Package: 
 	Mathematica: D[$0, $1]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Partial derivative
 	Number of Ats: 0
@@ -12511,23 +11982,18 @@ Symbol: \ultrasphpoly
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r3
 	Maple: GegenbauerC($1, $0, $2)
 	Maple-Alternatives: 
-	Maple-Branch Cuts: 
 	Maple-Comment: 
-	Maple-Constraints: 
-	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC
 	Maple-Package: 
 	Mathematica: GegenbauerC[$1, $0, $2]
 	Mathematica-Alternatives: 
-	Mathematica-Branch Cuts: 
 	Mathematica-Comment: 
-	Mathematica-Constraints: 
-	Mathematica-Link: 
 	Mathematica-Package: 
 	Meanings: Ultraspherical Gegenbauer polynomial
 	Number of Ats: 1
 	Number of Parameters: 2
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \zAirya
 
@@ -12545,6 +12011,7 @@ Symbol: \zAirya
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \zAiryb
 
@@ -12562,6 +12029,7 @@ Symbol: \zAiryb
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \zAirybeta
 
@@ -12579,6 +12047,7 @@ Symbol: \zAirybeta
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \zBesselj
 
@@ -12630,6 +12099,7 @@ Symbol: \zderivAirya
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \zderivAiryb
 
@@ -12647,6 +12117,7 @@ Symbol: \zderivAiryb
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \zderivAirybeta
 
@@ -12664,6 +12135,7 @@ Symbol: \zderivAirybeta
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: 
+	Slot of Differentiation: 1
 
 Symbol: \zderivBesselj
 
