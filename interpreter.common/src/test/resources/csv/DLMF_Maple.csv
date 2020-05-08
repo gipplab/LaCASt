@@ -41,5 +41,5 @@ X1:\assLegendreOlverQX\assLegendreOlverQ[\mu]{\nu}@{z};X3:LegendreQXexp(-($0)*Pi
 \DunsterQ{\tau}@{x};;2;1;;;
 X1:\FerrersHatQX\DunsterQ[\mu]{\tau}@{x};;3;1;;;
 ;;;;;;
-\npartitions{n};;;;Maple needs an extra package. Load it with the following command: with(combinat,partition);combinat,partition;
-\npartitions[k]@{n};;;;;;
+\npartitions{n};;;;Maple needs an extra package. Load it with the following command: with(combinat,partition);combinat,partition;nops(partition($0))
+X1:\npartitionsX[k]@{n};;;;;;

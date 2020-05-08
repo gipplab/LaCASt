@@ -125,6 +125,18 @@
       "LaTeX": "\\lim_{$0 \\to $1^{+}}{$2}",
       "Maple": "limit($2, $0 = $1, right)",
       "Mathematica": "Limit[$2, $0 -> $1, Direction -> \"FromAbove\"]"
+    },
+    "LoadPackage": {
+      "MLP": "load-package",
+      "LaTeX": "",
+      "Maple": "with($0)",
+      "Mathematica": ""
+    },
+    "UnLoadPackage": {
+      "MLP": "unload-package",
+      "LaTeX": "",
+      "Maple": "unwith($0)",
+      "Mathematica": ""
     }
   },
   "Symbol Languages": [
@@ -271,6 +283,18 @@
       "LaTeX": "\\ell",
       "Maple": "ell",
       "Mathematica": "\\[ScriptL]"
+    },
+    "SuppressOutput": {
+      "MLP": "suppress-output",
+      "LaTeX": "",
+      "Maple": ":",
+      "Mathematica": ";"
+    },
+    "EOL": {
+      "MLP": "end-of-line",
+      "LaTeX": "\n",
+      "Maple": ";",
+      "Mathematica": "\n"
     }
   }
 }

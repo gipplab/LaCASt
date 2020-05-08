@@ -2,22 +2,21 @@ package gov.nist.drmf.interpreter.cas.logging;
 
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 /**
  * @author Andre Greiner-Petter
  */
 public class TranslatedExpression {
     private LinkedList<String> trans_exps;
+    private Set<String> requiredPackages;
 
     private int autoMergeLast;
 
     public TranslatedExpression(){
         this.trans_exps = new LinkedList<>();
         this.autoMergeLast = 0;
+        this.requiredPackages = new TreeSet<>();
     }
 
     public void setAutoMergeLast( int num_of_last ){
@@ -166,6 +165,14 @@ public class TranslatedExpression {
         for ( String part : trans_exps )
             output += part;
         return output;
+    }
+
+    public void addRequiredPackages(Collection<String> requiredPackages) {
+        this.requiredPackages.addAll(requiredPackages);
+    }
+
+    public Set<String> getRequiredPackages() {
+        return requiredPackages;
     }
 
     @Override

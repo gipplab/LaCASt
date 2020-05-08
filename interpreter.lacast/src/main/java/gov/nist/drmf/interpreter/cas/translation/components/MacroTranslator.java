@@ -186,6 +186,11 @@ public class MacroTranslator extends AbstractListTranslator {
             // just in case, reset the variable
             derivativesTranslator.resetTranslatedInAdvancedComponent();
         }
+
+        if ( info.getTranslationInformation().requirePackages() ) {
+            localTranslations.addRequiredPackages(info.getTranslationInformation().getRequiredPackages());
+            getGlobalTranslationList().addRequiredPackages(info.getTranslationInformation().getRequiredPackages());
+        }
     }
 
     private PatternFiller getPatternFiller(

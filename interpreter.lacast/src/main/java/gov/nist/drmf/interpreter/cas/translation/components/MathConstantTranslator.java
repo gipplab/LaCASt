@@ -89,7 +89,7 @@ public class MathConstantTranslator extends AbstractTranslator {
             getGlobalTranslationList().addTranslatedExpression(translation);
             getInfoLogger().addGeneralInfo(
                     constant,
-                    DLMFFeatureValues.meaning.getFeatureValue(set, CAS) + " was translated to: " + translation
+                    DLMFFeatureValues.MEANING.getFeatureValue(set, CAS) + " was translated to: " + translation
             );
             return;
         }
@@ -114,7 +114,7 @@ public class MathConstantTranslator extends AbstractTranslator {
             getInfoLogger().addGeneralInfo(
                     translation,
                     "You use a typical letter for a constant [" +
-                            DLMFFeatureValues.meaning.getFeatureValue(set, CAS) + "]." + System.lineSeparator() +
+                            DLMFFeatureValues.MEANING.getFeatureValue(set, CAS) + "]." + System.lineSeparator() +
                             "We keep it like it is! But you should know that " + CAS +
                             " uses " + translation + " for this constant." + System.lineSeparator() +
                             "If you want to translate it as a constant, use the corresponding DLMF macro " +
@@ -134,7 +134,7 @@ public class MathConstantTranslator extends AbstractTranslator {
                 LOG.debug("Indeed a greek letter, inform user and translate as greek letter.");
                 getInfoLogger().addGeneralInfo(
                         constant,
-                        "Unable to translate " + constant + " [" + DLMFFeatureValues.meaning.getFeatureValue(set, CAS) +
+                        "Unable to translate " + constant + " [" + DLMFFeatureValues.MEANING.getFeatureValue(set, CAS) +
                                 "]. But since it is a Greek letter we translated it to a Greek letter in "
                                 + CAS + "."
                 );

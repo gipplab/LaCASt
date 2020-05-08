@@ -8,34 +8,31 @@ import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
 import java.io.IOException;
 
 /**
+ * This is the configuration for the forward translator. It defines to which language (CAS) the translations
+ * should be performed. Besides, it allows to fine control several other settings.
+ *
  * @author Andre Greiner-Petter
  */
 public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
-
     private String TAB = "";
     private String MULTIPLY = "*";
 
     private BlueprintMaster limitParser = null;
 
     private boolean alternativeMode = false;
+    private boolean extensiveOutput = false;
+
+    private boolean inlinePackageMode = true;
 
     private boolean isInit = false;
 
-    private boolean extensiveOutput = false;
-
     public ForwardTranslationProcessConfig(String to_language) {
-        this(to_language, false);
-    }
-
-    public ForwardTranslationProcessConfig(String to_language, boolean alternativeMode) {
         super(Keys.KEY_LATEX, to_language);
 
         int length = to_language.length()+1 > "DLMF: ".length() ?
                 (to_language.length()+2) : "DLMF: ".length();
         for ( int i = 0; i <= length; i++ )
             TAB += " ";
-
-        this.alternativeMode = alternativeMode;
     }
 
     public void init() throws IOException {
@@ -44,20 +41,37 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
         this.isInit = true;
     }
 
-    public void setShortOutput() {
-        extensiveOutput = false;
-    }
-
-    public String getTAB() {
-        return TAB;
-    }
-
-    public String getMULTIPLY() {
-        return MULTIPLY;
-    }
-
     public void setLimitParser(BlueprintMaster limitParser) {
         this.limitParser = limitParser;
+    }
+
+    /**
+     * TODO Experimental setting
+     * @param alternativeMode turn on/off alternative translation mode
+     */
+    public void setAlternativeMode(boolean alternativeMode) {
+        this.alternativeMode = alternativeMode;
+    }
+
+    /**
+     * TODO Experimental settings
+     * @param shortenOutput shortens the logging on info level
+     */
+    public void shortenOutput(boolean shortenOutput) {
+        extensiveOutput = !shortenOutput;
+    }
+
+    /**
+     * Sets the mode to use package to an inline mode.
+     * If the CAS supports inline packages, the translator attempts to return
+     * the translation with the necessary packages within one line translation.
+     *
+     * If this mode is false (default), the necessary package information is only
+     * given by an extra comment.
+     * @param inlinePackageMode on/off the inline mode for loading packages
+     */
+    public void setInlinePackageMode(boolean inlinePackageMode) {
+        this.inlinePackageMode = inlinePackageMode;
     }
 
     public BlueprintMaster getLimitParser() {
@@ -68,7 +82,19 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
         return alternativeMode;
     }
 
-    public boolean shortOutput() {
+    public boolean shortenedOutput() {
         return !extensiveOutput;
+    }
+
+    public boolean isInlinePackageMode() {
+        return inlinePackageMode;
+    }
+
+    public String getTAB() {
+        return TAB;
+    }
+
+    public String getMULTIPLY() {
+        return MULTIPLY;
     }
 }

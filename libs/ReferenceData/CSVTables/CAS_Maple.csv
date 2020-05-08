@@ -55,11 +55,11 @@ polylog($0, $1);\polylog{$0}@{$1};2;;;;\Jonquierephi@{$1}{$0};https://www.maples
 gamma($0);\StieltjesConstants{$0};1;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=initialconstants
 ;;;;;;;
 Matrix([[],[]]);\Matrix{A};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Matrix
-Vector([$0]);\Vector{$0};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Vector
-Trace(X);\trace \Matrix{X};;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Trace
-Transpose(X);\transpose \Matrix{X};;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Transpose
-exp(Trace(X));\exptrace@{\Matrix{X}};;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Trace
-Determinant(A);\det A;;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Determinant
+Vector([$0]);\Vector{$0};1;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Vector
+Trace(X);\trace \Matrix{X};1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Trace
+Transpose(X);\transpose \Matrix{X};1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Transpose
+exp(Trace(X));\exptrace@{\Matrix{X}};1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Trace
+Determinant(A);\det A;1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Determinant
 ;;;;;;;
 argument($0);\phase@@{$0};1;;;;;http://www.maplesoft.com/support/help/maple/view.aspx?path=argument
 conjugate($0);\conj{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=conjugate
@@ -70,7 +70,7 @@ csgn($0);\sign@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.asp
 signum($0);\sign@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=signum
 surd($1, $0);\sqrt[$1]{$0};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=surd
 binomial($0, $1);\binom{$0}{$1};2;;;;\binom{$0}{$1};https://www.maplesoft.com/support/help/maple/view.aspx?path=binomial
-multinomial($0, $1);\multinomial{m}{n_1,...,n_k};;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=combinat/multinomial
+multinomial($0, $1);\multinomial{m}{n_1,...,n_k};1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=combinat/multinomial
 gcd($0, $1);\pgcd{$0, $1};2;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=gcd
 factorial($0);($0)!;1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=factorial
 doublefactorial($0);($0)!!;1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=doublefactorial
@@ -93,7 +93,7 @@ Product(f,k,a);\Prod{$1}{$2}{$2}@{$0};3;;;;;https://www.maplesoft.com/support/he
 Product(f,k,a,b);\Prod{$1}{$2}{$3}@{$0};4;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=product
 ($1)*diff($2, $0)-diff($1, $0)*($2);\Wronskian@{w1(z),w2(z)};;;;;;not defined
 ;\Residue;;;;;;not defined
-numelems(A);\card{A};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=numelems
+numelems(A);\card{A};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=numelems
 ;\cartprod;;;;;;not defined
 ;\divides;;;;;;not defined
 ;\liminf;;;;;;not defined
@@ -264,9 +264,9 @@ Dirac($0);\Diracdelta@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/vi
 ifactor($0);\nprimesdiv@{$0};1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=ifactor
 ;\nprimes@{x};;;;;;not defined
 ;\ndivisors[k]@{n};;;;;;not defined
-numelems(divisors($0));\ndivisors@{n};1;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29
+Divisors($0);\ndivisors@{n};1;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29
 ;\sumdivisors{\alpha}@{n};;;;;;not defined
-add(divisors($0));\sumdivisors{1}@{n};1;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29
+Divisors($0);\sumdivisors{1}@{n};1;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29
 ;\JordanJ{k}@{n};;;;;;not defined
 ;\Moebiusmu@{n};;;;;;not defined
 ;\Liouvillelambda@{n};;;;;;not defined
@@ -305,136 +305,134 @@ FresnelS($0);\Fresnelcosint@{$0};1;;;;;https://www.maplesoft.com/support/help/ma
 Fresnelf($0);\Fresnelsinint@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelf
 Fresnelg($0);\auxFresnelf@{$0} ;1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Fresnelg
 ;\auxFresnelg@{$0};;;;;;
-GAMMA($0);;1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
-;\EulerGamma@{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
-GAMMA($0, $1);\incgamma@{a}{z};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
-lnGAMMA($1);\incGamma@{$0}{$1};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=lnGAMMA
-Psi($0);\ln@@{\EulerGamma@{$0}};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Psi
-Psi($0, $1);X1:\LegendrePX\assLegendreP[$1]{$0}@{$2};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Psi
+GAMMA($0);\EulerGamma@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
+;;;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
+GAMMA($0, $1);\incGamma@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA
+lnGAMMA($1);\ln@@{\EulerGamma@{$0}};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=lnGAMMA
+Psi($0);\digamma@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Psi
+Psi($0, $1);\polygamma{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Psi
 ;\polygamma{$0}@{$1};;;;;;not defined
 ;\BarnesG@{z};;;;;;not defined
 ;\normincGammaP@{a}{z};;;;;;not defined
 ;\normincGammaQ@{a}{z};;;;;;not defined
 ;\scincgamma@{a}{z};;;;;;not defined
 ;\multivarEulerGamma{m}@{a};;;;;;
-GaussAGM($0, $1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GaussAGM
-;\AGM@{$0}{$1};;;;;;not defined
-;\Gausssum@{n}{\Dirichletchar};;;;;;
-;;;;;;;not defined
-;\GoodwinStatonint@{z};;;;;;
-harmonic($0);;1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=harmonic
-SphericalY($0, $1, $2, $3);\HarmonicNumber{$0};4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=SphericalY
-;\sphharmonicY{$0}{$1}@{$2}{$3};;;;;;not defined
-;\surfharmonicY{l}{m}@{\theta}{\phi};;;;;;
-Heaviside($0);;1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Heaviside
-;\HeavisideH@{$0};;;;;;
-HeunG($0, $1, $2, $3, $4, $5, $6);;6;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunG
-HeunC(alpha, beta, gamma, delta, eta, z);\HeunHl@@{$0}{$1}{$2}{$3}{$4}{$5}{$6};6;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunC
+GaussAGM($0, $1);\AGM@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GaussAGM
+;\Gausssum@{n}{\Dirichletchar};;;;;;not defined
+;;;;;;;
+;\GoodwinStatonint@{z};;;;;;not defined
+;;;;;;;
+harmonic($0);\HarmonicNumber{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=harmonic
+SphericalY($0, $1, $2, $3);\sphharmonicY{$0}{$1}@{$2}{$3};4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=SphericalY
+;\surfharmonicY{l}{m}@{\theta}{\phi};;;;;;not defined
+;;;;;;;
+Heaviside($0);\HeavisideH@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Heaviside
+;;;;;;;
+HeunG($0, $1, $2, $3, $4, $5, $6);\HeunHl@@{$0}{$1}{$2}{$3}{$4}{$5}{$6};6;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunG
+HeunC(alpha, beta, gamma, delta, eta, z);;6;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunC
 HeunB(alpha, beta, gamma, delta, z);;5;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunB
 HeunD(alpha, beta, gamma, delta, z);;5;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunD
 HeunT(alpha, beta, gamma, z);;4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HeunT
-;;;;;;;
 ;\HeunHf{m}{a}{b}@@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z};;;;;;
-hypergeom([$0, $1], [$2], $3);;4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
-hypergeom([$2], [$3], $4);\hyperF@@@{$0}{$1}{$2}{$3};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
-hypergeom([$2], [$3], $4);\genhyperOlverF{2}{1}@{a,b}{c}{z};4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
-;\genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};;;;;;not defined
+;;;;;;;
+hypergeom([$0, $1], [$2], $3);\hyperF@@@{$0}{$1}{$2}{$3};4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
+hypergeom([$2], [$3], $4);\genhyperOlverF{2}{1}@{a,b}{c}{z};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
+hypergeom([$2], [$3], $4);\genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
 ;\genhyperH{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};;;;;;not defined
 ;\hyperOlverF@@@{a}{b}{c}{z};;;;;;not defined
-KummerM(a,b,z);"\genhyperOlverF{p}{q}@@
-{\Vector{a}}{\Vector{b}}{z}";3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KummerK
-KummerU(a,b,z);\KummerconfhyperM@{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KummerU
-;\KummerconfhyperU@{$0}{$1}{$2};;;;;;not defined
+;\genhyperOlverF{p}{q}@@{\Vector{a}}{\Vector{b}}{z};;;;;;not defined
+KummerM(a,b,z);\KummerconfhyperM@{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KummerK
+KummerU(a,b,z);\KummerconfhyperU@{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KummerU
 ;\OlverconfhyperM@{a}{b}{z};;;;;;not defined
 ;\genhyperPsimat@{a}{b}{\Matrix{T}};;;;;;not defined
 ;\LauricellaFD@{a}{b_1,...,b_n}{c}{z_1,...,z_n};;;;;;not defined
-;\RiemannsymP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};;;;;;
-;;;;;;;not defined
-;\idem@{\chi_1}{\chi_1,...,\chi_n};;;;;;
-;;;;;;;not defined
-1/JacobiQP;\Jacobiphi{\alpha}{\beta}{\lambda}@{t};;;;;;not defined
-JacobiAM($0, $1);\genJacobiellk{p}{q};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-JacobiSN($0, $1);\Jacobiamk@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSN
-JacobiCN($0, $1);\Jacobiellsnk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCN
-JacobiDN($0, $1);\Jacobiellcnk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiDN
-JacobiSD($0, $1);\Jacobielldnk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSD
-JacobiCD($0, $1);\Jacobiellsdk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCD
-JacobiSC($0, $1);\Jacobiellcdk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSC
-JacobiNS($0, $1);\Jacobiellsck@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-JacobiNC($0, $1);\Jacobiellnsk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-JacobiND($0, $1);\Jacobiellnck@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-JacobiDS($0, $1);\Jacobiellndk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-JacobiDC($0, $1);\Jacobielldsk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-JacobiCS($0, $1);\Jacobielldck@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
-InverseJacobiSN($0, $1);\Jacobiellcsk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiCN($0, $1);\aJacobiellsnk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiDN($0, $1);\aJacobiellcnk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiSD($0, $1);\aJacobielldnk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiCD($0, $1);\aJacobiellsdk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiSC($0, $1);\aJacobiellcdk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiNS($0, $1);\aJacobiellsck@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiNC($0, $1);\aJacobiellnsk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiND($0, $1);\aJacobiellnck@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiDS($0, $1);\aJacobiellndk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiDC($0, $1);\aJacobielldsk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-InverseJacobiCS($0, $1);\aJacobielldck@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
-;\aJacobiellcsk@@{$0}{$1};;;;;;not defined
-JacobiTheta1($1, $2);\JacobiEpsilonk@{x}{k};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
-JacobiTheta2($1, $2);\Jacobithetaq{1}@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
-JacobiTheta3($1, $2);\Jacobithetaq{2}@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
-JacobiTheta4($1, $2);\Jacobithetaq{3}@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
-;\Jacobithetaq{4}@{$0}{$1};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
-;\Jacobithetatau{j}@{z}{\tau};;;;;;not defined
+;\RiemannsymP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};;;;;;not defined
+;;;;;;;
+;\idem@{\chi_1}{\chi_1,...,\chi_n};;;;;;not defined
+;;;;;;;
+;\Jacobiphi{\alpha}{\beta}{\lambda}@{t};;;;;;not defined
+1/JacobiQP;\genJacobiellk{p}{q};;;;;;not defined
+JacobiAM($0, $1);\Jacobiamk@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+JacobiSN($0, $1);\Jacobiellsnk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSN
+JacobiCN($0, $1);\Jacobiellcnk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCN
+JacobiDN($0, $1);\Jacobielldnk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiDN
+JacobiSD($0, $1);\Jacobiellsdk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSD
+JacobiCD($0, $1);\Jacobiellcdk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiCD
+JacobiSC($0, $1);\Jacobiellsck@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiSC
+JacobiNS($0, $1);\Jacobiellnsk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+JacobiNC($0, $1);\Jacobiellnck@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+JacobiND($0, $1);\Jacobiellndk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+JacobiDS($0, $1);\Jacobielldsk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+JacobiDC($0, $1);\Jacobielldck@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+JacobiCS($0, $1);\Jacobiellcsk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+InverseJacobiSN($0, $1);\aJacobiellsnk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+InverseJacobiCN($0, $1);\aJacobiellcnk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+InverseJacobiDN($0, $1);\aJacobielldnk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+InverseJacobiSD($0, $1);\aJacobiellsdk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+InverseJacobiCD($0, $1);\aJacobiellcdk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+InverseJacobiSC($0, $1);\aJacobiellsck@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+InverseJacobiNS($0, $1);\aJacobiellnsk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+InverseJacobiNC($0, $1);\aJacobiellnck@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+InverseJacobiND($0, $1);\aJacobiellndk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+InverseJacobiDS($0, $1);\aJacobielldsk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+InverseJacobiDC($0, $1);\aJacobielldck@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+InverseJacobiCS($0, $1);\aJacobiellcsk@@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=InverseJacobiAM
+;\JacobiEpsilonk@{x}{k};;;;;;not defined
+JacobiTheta1($1, $2);\Jacobithetaq{1}@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
+JacobiTheta2($1, $2);\Jacobithetaq{2}@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
+JacobiTheta3($1, $2);\Jacobithetaq{3}@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
+JacobiTheta4($1, $2);\Jacobithetaq{4}@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
+;\Jacobithetatau{j}@{z}{\tau};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiTheta
 ;\Jacobithetacombinedq{n}{m}@{z}{q};;;;;;not defined
-JacobiZeta($0, $1);\AThetaFunction@{x};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiZeta
-;\JacobiZetak@{$0}{$1};;;;;;not defined
-;\Jacobisym{n}{P};;;;;;
-KelvinBer($0, $1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBer
-KelvinBei($0, $1);\Kelvinber{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBei
-KelvinKer($0, $1);\Kelvinbei{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKer
-KelvinKei($0, $1);\Kelvinker{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKei
-;\Kelvinkei{$0}@@{$1};;;;;;
-;;;;;;;not defined
+;\AThetaFunction@{x};;;;;;not defined
+JacobiZeta($0, $1);\JacobiZetak@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiZeta
+;\Jacobisym{n}{P};;;;;;not defined
+;;;;;;;
+KelvinBer($0, $1);\Kelvinber{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBer
+KelvinBei($0, $1);\Kelvinbei{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinBei
+KelvinKer($0, $1);\Kelvinker{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKer
+KelvinKei($0, $1);\Kelvinkei{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=KelvinKei
+;;;;;;;
 ;\LameEc{m}{\nu}@{z}{k^2};;;;;;not defined
 ;\LameEs{m}{\nu}@{z}{k^2};;;;;;not defined
 ;\Lameeigvala{n}{\nu}@{k^2};;;;;;not defined
 ;\Lameeigvalb{n}{\nu}@{k^2};;;;;;not defined
-;;;;;;;
-;\FerrersP{\nu}@{x};;;;;;
-;\FerrersP[\mu]{\nu}@{x};;;;;;
-;\FerrersQ{\nu}@{x};;;;;;
-LegendreP($0, $1);\FerrersQ[\mu]{\nu}@{x};2;If you want to translate it, as the orthogonal polynomial, use the alternative \LegendrepolyP. If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersP.;;;\FerrersP{$0}@{$1} || \LegendrepolyP{$0}@{$1};https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-LegendreP($1, $0, $2);\assLegendreP{$0}@{$1};3;If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersP.;;;\FerrersP[$1]{$0}@{$2};https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
-LegendreQ($0, $1);X1:\LegendrePX\assLegendreP[$1]{$0}@{$2};2;If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersQ.;;;\FerrersQ{$0}@{$1};https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-LegendreQ($1, $0, $2);\assLegendreQ{$0}@{$1};3;If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersQ.;;;\FerrersQ[$1]{$0}@{$2};https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
-;X1:\LegendreQX\assLegendreQ[$1]{$0}@{$2};;;;;;
+;\Lameeigvalb{n}{\nu}@{k^2};;;;;;not defined
+LegendreP($0, $1);\FerrersP{\nu}@{x};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+LegendreP($1, $0, $2);\FerrersP[\mu]{\nu}@{x};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+LegendreQ($0, $1);\FerrersQ{\nu}@{x};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+LegendreQ($1, $0, $2);\FerrersQ[\mu]{\nu}@{x};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+;\assLegendreP{$0}@{$1};2;;;;\FerrersP{$0}@{$1} || \LegendrepolyP{$0}@{$1};
+;X1:\LegendrePX\assLegendreP[$1]{$0}@{$2};3;;;;\FerrersP[$1]{$0}@{$2};
+;\assLegendreQ{$0}@{$1};2;;;;\FerrersQ{$0}@{$1};
+;X1:\LegendreQX\assLegendreQ[$1]{$0}@{$2};3;;;;\FerrersQ[$1]{$0}@{$2};
 ;\assLegendreOlverQ{\nu}@{z};;;;;;
-;\assLegendreOlverQ[\mu]{\nu}@{z};;;;;;not defined
-;\DunsterQ{\tau}@{x};;;;;;
+;\assLegendreOlverQ[\mu]{\nu}@{z};;;;;;
+;\DunsterQ{\tau}@{x};;;;;;not defined
 ;\DunsterQ[\mu]{\tau}@{x};;;;;;
-EllipticF(sin($0), $1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticF
-EllipticE(sin($0), $1);\incellintFk@{\asin@{$0}}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
-EllipticPi(sin($0), $1, $2);\incellintEk@{\asin@{$0}}{$1};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
-;\incellintPik@{\asin@{$0}}{$1}{$2};;;;;;not defined
-EllipticK($0);\incellintDk@{\phi}{k};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticK
-EllipticE($0);\compellintKk@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
-EllipticPi($0, $1);\compellintEk@{$0};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
-;\compellintPik@{$0}{$1};;;;;;
-EllipticCK($0);;1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCK
-EllipticCE($0);\ccompellintKk@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCE
-;\ccompellintEk@{$0};;;;;;
-LerchPhi($0, $1, $2);;3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LerchPhi
-;\LerchPhi@{$0}{$1}{$2};;;;;;
-LommelS1($0, $1, $2);;3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LommelS1
-LommelS2($0, $1, $2);\Lommels{$0}{$1}@{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LommelS2
-;\LommelS{$0}{$1}@{$2};;;;;;
-MathieuA($0, $1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuA
-MathieuB($0, $1);\Mathieueigvala{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuB
-;\Mathieueigvalb{$0}@@{$1};;;;;;not defined
-MathieuCE($0, $2, $1);\Mathieueigvallambda{m}@@{q};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuCE
-MathieuSE($0, $2, $1);\Mathieuce{$0}@@{$2}{$1};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuSE
-;\Mathieuse{$0}@@{$2}{$1};;;;;;
-;\Mathieume{n}@@{z}{q};;;;;;not defined
+;;;;;;;
+EllipticF(sin($0), $1);\incellintFk@{\asin@{$0}}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticF
+EllipticE(sin($0), $1);\incellintEk@{\asin@{$0}}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
+EllipticPi(sin($0), $1, $2);\incellintPik@{\asin@{$0}}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
+;\incellintDk@{\phi}{k};;;;;;not defined
+EllipticK($0);\compellintKk@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticK
+EllipticE($0);\compellintEk@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticE
+EllipticPi($0, $1);\compellintPik@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticPi
+;;;;;;;
+EllipticCK($0);\ccompellintKk@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCK
+EllipticCE($0);\ccompellintEk@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=EllipticCE
+;;;;;;;
+LerchPhi($0, $1, $2);\LerchPhi@{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LerchPhi
+;;;;;;;
+LommelS1($0, $1, $2);\Lommels{$0}{$1}@{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LommelS1
+LommelS2($0, $1, $2);\LommelS{$0}{$1}@{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=LommelS2
+;;;;;;;
+MathieuA($0, $1);\Mathieueigvala{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuA
+MathieuB($0, $1);\Mathieueigvalb{$0}@@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuB
+;\Mathieueigvallambda{m}@@{q};;;;;;not defined
+MathieuCE($0, $2, $1);\Mathieuce{$0}@@{$2}{$1};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuCE
+MathieuSE($0, $2, $1);\Mathieuse{$0}@@{$2}{$1};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MathieuSE
+;\Mathieume{n}@@{z}{q};;;;;;
 ;\modMathieuCe{\nu}@@{z}{q};;;;;;not defined
 ;\modMathieuSe{\nu}@@{z}{q};;;;;;not defined
 ;\modMathieuMe{\nu}@@{z}{q};;;;;;not defined
@@ -456,28 +454,29 @@ MathieuSE($0, $2, $1);\Mathieuce{$0}@@{$2}{$1};3;;;;;https://www.maplesoft.com/s
 ;\MathieuFc{m}@{z}{h};;;;;;not defined
 ;\MathieuFs{m}@{z}{h};;;;;;not defined
 ;\MathieuGc{m}@{z}{h};;;;;;not defined
-;\MathieuGs{m}@{z}{h};;;;;;
-MeijerG([[a_1, .., a_n],[a_n+1, .., a_p]], [[b_1, .., b_m],[b_m+1, .., b_q]],z);;;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MeijerG
-;\MeijerG{m}{n}{p}{q}@@@{z}{\Vector{a}}{\Vector{b}};;;;;;
-;;;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Statistics/MillsRatio
-;\MillsM@{x};;;;;;
-;;;;;;;not defined
+;\MathieuGs{m}@{z}{h};;;;;;not defined
+;;;;;;;
+MeijerG([[a_1, .., a_n],[a_n+1, .., a_p]], [[b_1, .., b_m],[b_m+1, .., b_q]],z);\MeijerG{m}{n}{p}{q}@@@{z}{\Vector{a}}{\Vector{b}};;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=MeijerG
+;;;;;;;
+;\MillsM@{x};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Statistics/MillsRatio
+;;;;;;;
 ;\modularlambdatau@{\tau};;;;;;not defined
 ;\KleincompinvarJtau@{\tau};;;;;;not defined
-;\Dedekindeta@{\tau};;;;;;
-;;;;;;;not defined
-;\Pade{p}{q}{f};;;;;;
-;;;;;;;not defined
+;\Dedekindeta@{\tau};;;;;;not defined
+;;;;;;;
+;\Pade{p}{q}{f};;;;;;not defined
+;;;;;;;
 ;\Ramanujansum{k}@{n};;;;;;not defined
-;\Ramanujantau@{n};;;;;;
-;;;;;;;not defined
+;\Ramanujantau@{n};;;;;;not defined
+;;;;;;;
+;\Rayleighsigma{n}@{\nu};;;;;;not defined
 ;\Rayleighsigma{n}@{\nu};;;;;;
-RiemannTheta([z_1, .., z_g], Omega);;;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=RiemannTheta
-;\Riemanntheta@{\Vector{z}}{\Matrix{\Omega}};;;;;;not defined
+RiemannTheta([z_1, .., z_g], Omega);\Riemanntheta@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=RiemannTheta
 ;\Riemannthetachar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}};;;;;;not defined
 ;\scRiemanntheta@{\Vector{z}}{\Matrix{\Omega}};;;;;;not defined
-Zeta(s);\Riemannxi@{s};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
-;\Riemannzeta@{$0};;;;;;
+;\Riemannxi@{s};;;;;;not defined
+Zeta(s);\Riemannzeta@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
+;;;;;;;
 ;;;;;;;not defined
 ;\ScorerGi@{z};;;;;;not defined
 ;\ScorerHi@{z};;;;;;
@@ -488,18 +487,18 @@ Zeta(s);\Riemannxi@{s};1;;;;;https://www.maplesoft.com/support/help/maple/view.a
 ;\sphwavePs{m}{n}@{z}{\gamma^2};;;;;;not defined
 ;\sphwaveQs{m}{n}@{z}{\gamma^2};;;;;;not defined
 ;\radsphwaveS{m}{j}{n}@{z}{\gamma};;;;;;
-Stirling1($0, $1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Stirling1
-Stirling2($0, $1);\Stirlingnumbers@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Stirling2
-;\StirlingnumberS@{$0}{$1};;;;;;
+Stirling1($0, $1);\Stirlingnumbers@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Stirling1
+Stirling2($0, $1);\StirlingnumberS@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Stirling2
+;;;;;;;
 StruveH($0, $1);\StruveH{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=StruveH
-StruveL($0, $1);\StruveK{\nu}@{z};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=StruveL
-;\modStruveL{$0}@{$1};;;;;;not defined
-;\modStruveM{\nu}@{z};;;;;;
-legendre($0, $1);;2;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory%2Flegendre%28deprecated%29
-KroneckerDelta[$0, $1];\Legendresym{$0}{$1};2;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/KroneckerDelta
-2-KroneckerDelta[$0, 0];\Kroneckerdelta{$0}{$1};;;;;;not defined
-LeviCivita[$0, $1, $2];\NeumannFactor{n};3;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/LeviCivita
-;\LeviCivitasym{$0}{$1}{$2};;;;;;not defined
+StruveL($0, $1);\modStruveL{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=StruveL
+;;;;;;;not defined
+;;;;;;;
+legendre($0, $1);\Legendresym{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory%2Flegendre%28deprecated%29
+KroneckerDelta[$0, $1];\Kroneckerdelta{$0}{$1};2;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/KroneckerDelta
+2-KroneckerDelta[$0, 0];\NeumannFactor{n};;;;;;not defined
+LeviCivita[$0, $1, $2];\LeviCivitasym{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/LeviCivita
+;;;;;;;not defined
 pochhammer($0, $1);\RiemannsymP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer
 ;\Pochhammersym{$0}{$1};;;;;;not defined
 ;\Wignerthreejsym@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3};;;;;;not defined
@@ -509,41 +508,41 @@ pochhammer($0, $1);\RiemannsymP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1
 ;;;;;;;not defined
 ;\terminant{p}@{z};;;;;(exp($1)/(2*Pi))*GAMMA($0)*GAMMA(1-$0,$1);not defined
 ;\scterminant{p}@{z};;;;;;
-fourier(f, t, -x)/sqrt(2*Pi);;;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/fourier
-laplace(f, t, s);\FourierTrans@@{f}{s};;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/laplace
-mellin(f, t, s);\LaplaceTrans@{f}{s};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/mellin
-hilbert(f, t, s);\MellinTrans@{f}{s};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/hilbert
-;\HilbertTrans@{f}{s};;;;;;not defined
-;\StieltjesTrans@{f}{s};;;;;;
-;;;;;;;not defined
-;\variation[a,b]@{f};;;;;;
-Gradiant(f);;1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Gradient
-Divergence(F);\gradient $0;1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Divergence
-Curl(F);\divergence $0;1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Curl
-;\curl $0;;;;;;
-;;;;;;;not defined
+fourier(f, t, -x)/sqrt(2*Pi);\FourierTrans@@{f}{s};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/fourier
+laplace(f, t, s);\LaplaceTrans@{f}{s};;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/laplace
+mellin(f, t, s);\MellinTrans@{f}{s};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/mellin
+hilbert(f, t, s);\HilbertTrans@{f}{s};;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/hilbert
+;\StieltjesTrans@{f}{s};;;;;;not defined
+;;;;;;;
+;\variation[a,b]@{f};;;;;;not defined
+;;;;;;;
+Gradiant(f);\gradient $0;1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Gradient
+Divergence(F);\divergence $0;1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Divergence
+Curl(F);\curl $0;1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=VectorCalculus/Curl
+;;;;;;;
 ;\VoigtU@{x}{t};;;;;;not defined
 ;\VoigtV@{x}{t};;;;;;not defined
-;\VoigtH@{a}{u};;;;;;
-;;;;;;;not defined
+;\VoigtH@{a}{u};;;;;;not defined
+;;;;;;;
 ;\Waringg@{k};;;;;;not defined
 ;\WaringG@{k};;;;;;not defined
-;\nsquares{k}@{n};;;;;;
-WeierstrassP($0, $1, $2);;3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassP
-;\Weierstrasspinvar@@{$0}{$1}{$2};;;;;;not defined
-WeierstrassZeta($0, $1, $2);\Weierstrassplatt@@{z}{\Lattice{L}};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassZeta
+;\nsquares{k}@{n};;;;;;not defined
+;;;;;;;
+WeierstrassP($0, $1, $2);\Weierstrasspinvar@@{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassP
+;\Weierstrassplatt@@{z}{\Lattice{L}};;;;;;not defined
+WeierstrassZeta($0, $1, $2);\Weierstrasszetainvar@@{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassZeta
+;\Weierstrasszetalatt@@{z}{\Lattice{L}};;;;;;not defined
+WeierstrassSigma($0, $1, $2);\Weierstrasssigmainvar@@{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassSigma
+;;;;;;;not defined
+;;;;;;;
+WhittakerM($0, $1, $2);\WhittakerconfhyperM{$0}{$1}@{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerM
+WhittakerW($0, $1, $2);\WhittakerconfhyperW{$0}{$1}@{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerW
+;;;;;;;
+Zeta($0);\Riemannzeta@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
+Zeta(0, $0, $1);\Hurwitzzeta@{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
+WeierstrassZeta($0, $1, $2);\Weierstrasszetainvar@@{$0}{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassZeta
 ;\Weierstrasszetainvar@@{$0}{$1}{$2};;;;;;not defined
-WeierstrassSigma($0, $1, $2);\Weierstrasszetalatt@@{z}{\Lattice{L}};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassSigma
-;\Weierstrasssigmainvar@@{$0}{$1}{$2};;;;;;not defined
-;\Weierstrasssigmalatt@@{z}{\Lattice{L}};;;;;;
-WhittakerM($0, $1, $2);;3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerM
-WhittakerW($0, $1, $2);\WhittakerconfhyperM{$0}{$1}@{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WhittakerW
-;\WhittakerconfhyperW{$0}{$1}@{$2};;;;;;
-Zeta($0);;1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
-Zeta(0, $0, $1);\Riemannzeta@{$0};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=Zeta
-WeierstrassZeta($0, $1, $2);\Hurwitzzeta@{$1}{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=WeierstrassZeta
-;\Weierstrasszetainvar@@{$0}{$1}{$2};;;;;;not defined
-JacobiZeta($0, $1);\Weierstrasszetalatt@@{z}{\Lattice{L}};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiZeta
+JacobiZeta($0, $1);\JacobiZetak@{$0}{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiZeta
 ;\JacobiZetak@{$0}{$1};;;;;;not defined
 ;\perZeta@{x}{s};;;;;;
 ;;;;;;;not defined
@@ -556,13 +555,13 @@ JacobiZeta($0, $1);\Weierstrasszetalatt@@{z}{\Lattice{L}};2;;;;;https://www.mapl
 ;;;;;;;not defined
 ;\AskeyWilson{n}@{x}{a}{b}{c}{d}{q};;;;;;not defined
 ;\AskeyWilsonpolyp{n}@{x}{a}{b}{c}{d}{q};;;;;;
-bernoulli(n, x);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=bernoulli
-;\BernoullipolyB{$0}@{$1};;;;;;not defined
+bernoulli(n, x);\BernoullipolyB{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=bernoulli
+bernoulli(n);\BernoullinumberB{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=bernoulli
 ;\genBernoullipolyB{\ell}{n}@{x};;;;;;not defined
 ;\perBernoulliB{n}@{x};;;;;;not defined
 ;\qBernoullipolybeta{n}@{x}{q};;;;;;
-BellB($0, 1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=BellB
-;\Bellnumber@{$0};;;;;;
+BellB($0, 1);\Bellnumber@{$0};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=BellB
+bell($0, 1);\Bellnumber@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=BellB
 ;;;;;;;not defined
 ;\BesselPoly{n}@{x}{a};;;;;;not defined
 ;\Besselpolyy{n}@{x}{a};;;;;;not defined
@@ -586,11 +585,11 @@ ChebyshevU($0, $1);\ChebyshevpolyU{$0}@{$1};2;;;;;https://www.maplesoft.com/supp
 ;\monicChebyU{n}@@{x};;;;;;
 ;;;;;;;not defined
 ;\diskpoly{\alpha}{m}{n}@{z};;;;;;
-euler($0, $1);;2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=euler
+euler($0, $1);\EulerpolyE{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=euler
 ;\EulerpolyE{$0}@{$1};;;;;;not defined
 ;\genEulerpolyE{\ell}{n}@{x};;;;;;not defined
 ;\perEulerE{n}@{x};;;;;;
-GegenbauerC($1, $0, $2);;3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC
+;;;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC
 GegenbauerC($1, $0, $2);\Ultra{$1}{$0}@{$2};3;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=GegenbauerC
 ;\ultrasphpoly{$1}{$0}@{$2};;;;;;not defined
 ;\GenGegenbauerS{\alpha}{\beta}{n}@{x};;;;;;
@@ -601,13 +600,13 @@ GegenbauerC($1, $0, $2);\Ultra{$1}{$0}@{$2};3;;;;;https://www.maplesoft.com/supp
 ;\dualHahn{n}@@{\lambda(x)}{\gamma}{\delta}{N};;;;;;not defined
 ;\contdualHahnpolyS{n}@{x}{a}{b}{c};;;;;;not defined
 ;\contHahnpolyp{n}@{x}{a}{b}{\conj{a}}{\conj{b}};;;;;;
-HermiteH($0, $1);\Hermite{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
+HermiteH($0, $1);\HermitepolyH{$0}@{$1};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=HermiteH
 ;\dilHermitepolyHe{n}@{x};;;;;;not defined
 ;\GenHermite[\alpha]{n}@{x};;;;;;
 ;;;;;;;not defined
 ;\HeunpolyHp{n}{m}@@{a}{q}{-n}{\beta}{\gamma}{\delta}{z};;;;;;
-JacobiP($2, $0, $1, $3);;4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
-JacobiP($2, $0, $1, $3);\Jacobi{$1}{$2}{$0}@{$3};4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
+;;;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
+;;;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
 JacobiP($2, $0, $1, $3);\JacobipolyP{$1}{$2}{$0}@{$3};4;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP
 ;\shiftJacobipolyG{n}@{p}{q}{x};;;;;;not defined
 ;\assJacobipolyP{\alpha}{\beta}{n}@{x}{c};;;;;;not defined
@@ -618,7 +617,7 @@ JacobiP($2, $0, $1, $3);\JacobipolyP{$1}{$2}{$0}@{$3};4;;;;;https://www.maplesof
 ;\KrawtchoukpolyK{n}@{x}{p}{N};;;;;;not defined
 ;;;;;;;
 LaguerreL($0, $1);\LaguerrepolyL{$0}@{$1};2;;;;\Laguerre{$0}@{$2};https://www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
-LaguerreL($1, $0, $2);X1:LaguerreLX\LaguerrepolyL[$1]{$0}@{$2};3;;;;\Laguerre[$1]{$0}@{$2};https://www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
+LaguerreL($1, $0, $2);\LaguerrepolyL[$1]{$0}@{$2};3;;;;\Laguerre[$1]{$0}@{$2};https://www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
 ;\GottliebLaguerre{n}@{x};;;;;;not defined
 ;;;;;;;
 ;\LamepolyuE{m}{2n}@{z}{k^2};;;;;;not defined
@@ -675,15 +674,14 @@ LaguerreL($1, $0, $2);X1:LaguerreLX\LaguerrepolyL[$1]{$0}@{$2};3;;;;\Laguerre[$1
 ;\qBernoullipolybeta{n}@{x}{q};;;;;;not defined
 ;\qBesselPoly{n}@{x}{b}{q};;;;;;not defined
 ;\qBeta{q}@{a}{b};;;;;;not defined
-;\qbinom{n}{m}{q};;;;;;not defined
+QBinomial($0, $1, $2);\qbinom{$0}{$1}{$1};3;;;;;https://de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QPochhammer
 ;\qCharlier{n}@{x}{c}{q};;;;;;not defined
 ;\qderiv[n]{q}@{z};;;;;;not defined
 ;\qdiff{q}{x};;;;;;not defined
-;\qGamma{q}@{z};;;;;;not defined
+QGAMMA($0, $1);\qGamma{$0}@{$1};2;;;;;https://de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QPochhammer
 ;\qDigamma{q}@{z};;;;;;not defined
 ;\qEulernumberA{m}{s}@{q};;;;;;not defined
-;\qfactorial{n}{q};;;;;;not defined
-;\qGamma{q}@{z};;;;;;not defined
+QFactorial($0, $1);\qfactorial{$0}{$1};2;;;;;https://de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QPochhammer
 ;\qHahn{n}@@{q^{-x}}{\alpha}{\beta}{N};;;;;;not defined
 ;\qHahnpolyQ{n}@{x}{\alpha}{\beta}{N}{q};;;;;;not defined
 ;\dualqHahn{n}@@{\mu(x)}{\gamma}{\delta}{N}{q};;;;;;not defined
@@ -712,7 +710,7 @@ LaguerreL($1, $0, $2);X1:LaguerreLX\LaguerrepolyL[$1]{$0}@{$2};3;;;;\Laguerre[$1
 ;\littleqLegendre{m}@{x}{q};;;;;;not defined
 ;\qMeixner{n}@{x}{b}{c}{q};;;;;;not defined
 ;\qMeixnerPollaczek{n}@{x}{a}{q};;;;;;not defined
-;\qPochhammer{a}{q}{n};;;;;;not defined
+QPochhammer($0, $1, $2);\qPochhammer{$0}{$1}{$2};3;;;;;https://de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QPochhammer
 ;\qmultiPochhammersym{a_1,\ldots,a_n}{q}{n};;;;;;not defined
 ;\qpolygamma{n}{q}@{z};;;;;;not defined
 ;\qRacah{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};;;;;;not defined

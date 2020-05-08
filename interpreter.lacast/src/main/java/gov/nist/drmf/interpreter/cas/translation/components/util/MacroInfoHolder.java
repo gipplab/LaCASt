@@ -1,11 +1,9 @@
 package gov.nist.drmf.interpreter.cas.translation.components.util;
 
 import gov.nist.drmf.interpreter.cas.common.IForwardTranslator;
-import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
-import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
 import mlp.FeatureSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -59,7 +57,6 @@ public class MacroInfoHolder {
         // try to extract the information
         try {
             this.storeInfos(fset, cas);
-            this.translationInformation.handleMultipleAlternativePatterns(cas, macro);
             if (this.translationInformation.getTranslationPattern() == null ||
                     this.translationInformation.getTranslationPattern().isEmpty()) {
                 throw TranslationException.buildExceptionObj(
@@ -83,7 +80,7 @@ public class MacroInfoHolder {
         this.translationInformation = new MacroTranslationInformation(fset, cas);
 
         try { // true slot is argument slot + numOfParams
-            slotOfDifferentiation = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset, cas))
+            slotOfDifferentiation = Integer.parseInt(DLMFFeatureValues.SLOT_DERIVATIVE.getFeatureValue(fset, cas))
                     + translationInformation.getNumOfParams();
         } catch (NumberFormatException e) {
             //TODO should default be 1 or throw an exception?

@@ -17,10 +17,10 @@ public class MacroMetaInformation {
             String cas
     ) {
         // all meta information
-        meaning = DLMFFeatureValues.meaning.getFeatureValue(fset, cas);
-        description = DLMFFeatureValues.description.getFeatureValue(fset, cas);
-        example = DLMFFeatureValues.DLMF.getFeatureValue(fset, cas);
-        casComment = DLMFFeatureValues.CAS_Comment.getFeatureValue(fset, cas);
+        meaning = DLMFFeatureValues.MEANING.getFeatureValue(fset, cas);
+        description = DLMFFeatureValues.DESCRIPTION.getFeatureValue(fset, cas);
+        example = DLMFFeatureValues.DLMF_EXAMPLE.getFeatureValue(fset, cas);
+        casComment = DLMFFeatureValues.CAS_COMMENT.getFeatureValue(fset, cas);
     }
 
     public String getExample() {

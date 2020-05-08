@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.translation;
 import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
 import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.cas.translation.components.util.PackageWrapper;
 import gov.nist.drmf.interpreter.common.*;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
@@ -150,6 +151,14 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
         return translate(expression, null);
     }
 
+    @Override
+    public String getTranslatedExpression() {
+        if ( config.isInlinePackageMode() ) {
+            PackageWrapper pw = new PackageWrapper(config);
+            return pw.addPackages(super.getGlobalTranslationList(), super.getGlobalTranslationList().getRequiredPackages());
+        } return super.getGlobalTranslationList().getTranslatedExpression();
+    }
+
     private String innerTranslate( String expression, String label ) throws TranslationException {
         try {
             // TODO we should switch to the real parse option later
@@ -159,10 +168,12 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
                 LOG.debug("Input:  " + expression);
                 LOG.debug("Output: " + getGlobalTranslationList().toString());
             }
-            if ( !super.getInfoLogger().isEmpty() && !config.shortOutput() ) {
+
+            if ( !super.getInfoLogger().isEmpty() && !config.shortenedOutput() ) {
                 LOG.info(super.getInfoLogger().toString());
             }
-            return super.getGlobalTranslationList().getTranslatedExpression();
+
+            return getTranslatedExpression();
         } catch ( ParseException pe ){
             throw TranslationException.buildException(
                     this,
@@ -182,9 +193,8 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
         parseGeneralExpression(expression, null);
 
         localTranslations.clear();
-        localTranslations.addTranslatedExpression(
-                global
-        );
+        localTranslations.addTranslatedExpression(global);
+        localTranslations.addRequiredPackages(global.getRequiredPackages());
 
         return localTranslations;
     }
