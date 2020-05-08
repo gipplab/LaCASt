@@ -1,0 +1,4 @@
+Overall: [SUCCESS: 2, SUCCESS_SYMB: 2, SUCCESS_TRANS: 2, FAILURE: 0, STARTED_TEST_CASES: 2, SKIPPED: 0, DEFINITIONS: 0, IGNORE: 0, MISSING: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
+[SIMPLE]
+1 [http://dlmf.nist.gov/1.2.E1]: Successful [Simple: 0]
+1-a [http://dlmf.nist.gov/1.2.E1]: Successful [Simple: 0]

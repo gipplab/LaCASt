@@ -2,14 +2,14 @@ package gov.nist.drmf.interpreter.cas.blueprints;
 
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
-import gov.nist.drmf.interpreter.mlp.MLPWrapper;
-import gov.nist.drmf.interpreter.mlp.extensions.FeatureSetUtility;
+import gov.nist.drmf.interpreter.mlp.*;
 import mlp.MathTerm;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -41,9 +41,9 @@ public class BlueprintLimitTree {
             String blueprint,
             String limitPattern,
             SemanticLatexTranslator translator
-    ) throws ParseException {
+    ) throws ParseException, IOException {
         blueprint = preCleaning(blueprint);
-        this.mlp = MLPWrapper.getWrapperInstance();
+        this.mlp = SemanticMLPWrapper.getStandardInstance();
         PomTaggedExpression topExpr = mlp.parse(blueprint);
         this.root = createBlueprint(topExpr);
         resetMatch();
@@ -81,7 +81,7 @@ public class BlueprintLimitTree {
             return new BlueprintLimitNode(this, kids, blueprint);
         } else { // term is a single node!
             String tag = term.getTag();
-            if (FeatureSetUtility.isGreekLetter(term)) {
+            if (MathTermUtility.isGreekLetter(term)) {
                 tag = BlueprintLimitNode.GREEK_TAG;
             }
 
@@ -215,7 +215,7 @@ public class BlueprintLimitTree {
 
     private PomTaggedExpression copy(PomTaggedExpression in) {
         if ( in.getTag() != null && in.getTag().matches("sequence") ) {
-            PomTaggedExpression c = new PomTaggedExpression(new MathTerm("",""), "sequence");
+            PomTaggedExpression c = FakeMLPGenerator.generateEmptySequencePTE();
             for ( PomTaggedExpression child : in.getComponents() ) {
                 c.addComponent(child);
             }
@@ -236,7 +236,7 @@ public class BlueprintLimitTree {
         resetMatch();
         if ( pte == null ) throw new IllegalArgumentException("Null does not match any expression!");
         if ( pte.length > 1 ) {
-            PomTaggedExpression top = new PomTaggedExpression(new MathTerm("", ""), "sequence");
+            PomTaggedExpression top = FakeMLPGenerator.generateEmptySequencePTE();
             for ( PomTaggedExpression pt : pte ){
                 top.addComponent(pt);
             }

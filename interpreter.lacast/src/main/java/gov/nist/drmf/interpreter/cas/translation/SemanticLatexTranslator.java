@@ -7,15 +7,17 @@ import gov.nist.drmf.interpreter.common.*;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.ITranslator;
-import gov.nist.drmf.interpreter.mlp.extensions.MacrosLexicon;
+import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
+import gov.nist.drmf.interpreter.common.replacements.ConditionalReplacementRule;
+import gov.nist.drmf.interpreter.common.replacements.IReplacementCondition;
+import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
+import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.ParseException;
 import mlp.PomParser;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -40,7 +42,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
     /**
      * The latex parser
      */
-    private PomParser parser;
+    private SemanticMLPWrapper parser;
 
     private ForwardTranslationProcessConfig config;
 
@@ -65,8 +67,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      * @see BlueprintMaster
      */
     public SemanticLatexTranslator( ForwardTranslationProcessConfig config ) {
-        super(null);
-        super.setConfig(config);
+        super(config);
         this.config = config;
         this.localTranslations = new TranslatedExpression();
     }
@@ -76,14 +77,12 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      * @param orig the original translator
      */
     private SemanticLatexTranslator( SemanticLatexTranslator orig ) {
-        super(null);
-        super.setConfig(orig.getConfig());
+        super(orig.getConfig());
         this.config = orig.config;
         this.parser = orig.parser;
         this.localTranslations = new TranslatedExpression();
     }
 
-    @Nullable
     @Override
     public TranslatedExpression getTranslatedExpressionObject() {
         return localTranslations;
@@ -106,12 +105,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      */
     public void init( Path reference_dir_path ) throws IOException {
         config.init();
-
-        // todo is that necessary?
-        MacrosLexicon.init();
-
-        parser = new PomParser(reference_dir_path.toString());
-        parser.addLexicons( MacrosLexicon.getDLMFMacroLexicon() );
+        parser = new SemanticMLPWrapper(reference_dir_path.toString());
 
         if ( config.getLimitParser() == null ) {
             BlueprintMaster bm = new BlueprintMaster(
@@ -133,8 +127,8 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      * @throws TranslationException if an error occurred due translation
      *
      * @see TeXPreProcessor
-     * @see gov.nist.drmf.interpreter.common.replacements.ConditionalReplacementRule
-     * @see gov.nist.drmf.interpreter.common.replacements.IReplacementCondition
+     * @see ConditionalReplacementRule
+     * @see IReplacementCondition
      */
     public String translate( String expression, String label ) throws TranslationException {
         if ( expression == null || expression.isEmpty() ) {
@@ -142,9 +136,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
             return "";
         }
 
-        expression = TeXPreProcessor.preProcessingTeX(expression, label);
-        LOG.trace("Preprocessed input string. Parsing: " + expression);
-        return innerTranslate(expression);
+        return innerTranslate(expression, label);
     }
 
     /**
@@ -158,9 +150,10 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
         return translate(expression, null);
     }
 
-    private String innerTranslate( String expression ) throws TranslationException {
+    private String innerTranslate( String expression, String label ) throws TranslationException {
         try {
-            PomTaggedExpression exp = parser.parse(expression);
+            // TODO we should switch to the real parse option later
+            PomTaggedExpression exp = parser.simpleParse(expression, label);
             translate(exp); // return value can be ignored here
             if ( !expression.matches("(?:num[UL]|var).*") ){
                 LOG.debug("Input:  " + expression);
@@ -171,7 +164,8 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
             }
             return super.getGlobalTranslationList().getTranslatedExpression();
         } catch ( ParseException pe ){
-            throw buildException(
+            throw TranslationException.buildException(
+                    this,
                     pe.getMessage(),
                     TranslationExceptionReason.MLP_ERROR,
                     pe

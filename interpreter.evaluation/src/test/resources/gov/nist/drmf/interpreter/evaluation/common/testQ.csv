@@ -1,0 +1,2 @@
+qID,url,formula,comment
+Q30,DLMF:1.2.E1,\binom{n}{k}=\frac{n!}{(n-k)!k!}=\binom{n}{n-k}.,

@@ -5,10 +5,13 @@ import java.nio.file.Paths;
 
 /**
  * This class provides some useful global constants.
- *
+ * <p>
  * Created by Andre Greiner-Petter on 02.11.2016.
  */
-public class GlobalPaths {
+public final class GlobalPaths {
+    private GlobalPaths() {
+    }
+
     // path variable to libs folder
     private static final Path PATH_LIBS =
             Paths.get("libs");
@@ -18,19 +21,19 @@ public class GlobalPaths {
 
     // path variable to the ReferenceData directory
     public static final Path PATH_REFERENCE_DATA =
-            PATH_LIBS.resolve( "ReferenceData" );
+            PATH_LIBS.resolve("ReferenceData");
 
     public static final Path PATH_MAPLE_CONFIG =
-            PATH_CONFIGS.resolve( "maple_config.properties" );
+            PATH_CONFIGS.resolve("maple_config.properties");
 
     public static final Path PATH_MATHEMATICA_CONFIG =
-            PATH_CONFIGS.resolve( "mathematica_config.properties" );
+            PATH_CONFIGS.resolve("mathematica_config.properties");
 
     public static final Path PATH_NUMERICAL_SETUP =
-            PATH_CONFIGS.resolve( "numerical_tests.properties" );
+            PATH_CONFIGS.resolve("numerical_tests.properties");
 
     public static final Path PATH_SYMBOLIC_SETUP =
-            PATH_CONFIGS.resolve( "symbolic_tests.properties" );
+            PATH_CONFIGS.resolve("symbolic_tests.properties");
 
     public static final Path PATH_DLMF_REPLACEMENT_RULES =
             PATH_CONFIGS.resolve("dlmf-replacements.yml");
@@ -47,20 +50,32 @@ public class GlobalPaths {
     public static final Path PATH_LIMITED_BLUEPRINTS =
             PATH_CONFIGS.resolve("limit-blueprints.txt");
 
+    public static final Path PATH_ELASTICSEARCH_INDEX_CONFIG =
+            PATH_CONFIGS.resolve("elasticsearch").resolve("index-config.json");
+
     // path variable to the lexicon files in the reference data dir
     public static final Path PATH_LEXICONS =
-            PATH_REFERENCE_DATA.resolve( "Lexicons" );
+            PATH_REFERENCE_DATA.resolve("Lexicons");
 
     // path variable to the csv files in the reference data dir
     public static final Path PATH_REFERENCE_DATA_CSV =
-            PATH_REFERENCE_DATA.resolve( "CSVTables" );
+            PATH_REFERENCE_DATA.resolve("CSVTables");
 
     // path variable to the csv files in the reference data dir
     public static final Path PATH_REFERENCE_DATA_BASIC_CONVERSION =
-            PATH_REFERENCE_DATA.resolve( "BasicConversions" );
+            PATH_REFERENCE_DATA.resolve("BasicConversions");
 
+    // path to the CAS lexicon files (include CAS procedures)
     public static final Path PATH_REFERENCE_DATA_CAS_LEXICONS =
-            PATH_REFERENCE_DATA.resolve( "CASLexicons" );
+            PATH_REFERENCE_DATA.resolve("CASLexicons");
+
+    // path to the macros definitions
+    public static final Path PATH_REFERENCE_DATA_MACROS =
+            PATH_REFERENCE_DATA.resolve("Macros");
+
+    // macro definition file
+    public static final Path PATH_SEMANTIC_MACROS_DEFINITIONS =
+            PATH_REFERENCE_DATA_MACROS.resolve("DLMFfcns.sty");
 
     // the name of the lexicon file
     public static final Path DLMF_MACROS_LEXICON =
@@ -81,7 +96,7 @@ public class GlobalPaths {
             PATH_REFERENCE_DATA_BASIC_CONVERSION.resolve("BasicFunctions.json");
 
     public static final Path PATH_MAPLE_PROCS =
-            PATH_REFERENCE_DATA_CAS_LEXICONS.resolve( "MapleProcedures" );
+            PATH_REFERENCE_DATA_CAS_LEXICONS.resolve("MapleProcedures");
 
     public static final Path PATH_MAPLE_LIST_PROCEDURE =
             PATH_MAPLE_PROCS.resolve("maple_list_procedure.txt");
@@ -96,7 +111,7 @@ public class GlobalPaths {
             PATH_MAPLE_PROCS.resolve("maple_numerical_sieve.txt");
 
     public static final Path PATH_MATHEMATICA_PROCS =
-            PATH_REFERENCE_DATA_CAS_LEXICONS.resolve( "MathematicaProcedures" );
+            PATH_REFERENCE_DATA_CAS_LEXICONS.resolve("MathematicaProcedures");
 
     public static final Path PATH_MATHEMATICA_NUMERICAL_PROCEDURES =
             PATH_MATHEMATICA_PROCS.resolve("mathematica_numerical_procedures.txt");

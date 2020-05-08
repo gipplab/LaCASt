@@ -1,5 +1,5 @@
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import mlp.*;
-import gov.nist.drmf.interpreter.examples.MLP;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -69,7 +69,7 @@ public class MacroTests {
     private Lexicon generateNewGlobalLexicon() throws IOException {
         // load global lexicon
         Lexicon global_lex = LexiconFactory.createLexicon(
-                Paths.get(MLP.GLOBAL_LEXICON_PATH,
+                Paths.get(GlobalPaths.PATH_REFERENCE_DATA.toString(),
                         "Lexicons",
                         "global-lexicon.txt"
                 ).toString(),

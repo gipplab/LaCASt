@@ -17,6 +17,8 @@ import java.util.Observer;
 public class SymbolicEquivalenceChecker {
     private static final Logger LOG = LogManager.getLogger(SymbolicEquivalenceChecker.class.getName());
 
+    public static final String MATH_ABORTION_SIGNAL = "$Aborted";
+
     private final KernelLink engine;
 
     public SymbolicEquivalenceChecker( KernelLink engine ){

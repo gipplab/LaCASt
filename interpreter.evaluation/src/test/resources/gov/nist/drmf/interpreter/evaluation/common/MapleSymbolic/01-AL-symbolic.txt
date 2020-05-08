@@ -1,0 +1,4 @@
+Overall: [SUCCESS: 2, SUCCESS_SYMB: 2, SUCCESS_TRANS: 2, FAILURE: 0, STARTED_TEST_CASES: 2, SKIPPED: 0, DEFINITIONS: 0, IGNORE: 0, MISSING: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
+[Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
+1 [http://dlmf.nist.gov/1.2.E1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+1-a [http://dlmf.nist.gov/1.2.E1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]

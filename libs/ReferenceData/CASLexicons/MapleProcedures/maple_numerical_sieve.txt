@@ -1,5 +1,8 @@
-customResultSieve := proc(values::list)
+customResultSieve := proc(values)
   local result, output, i;
+  if not(type(values,list)) then
+    return values;
+  end if;
   output := NULL;
   for i from 1 to nops(values) do
     result := values[i][1];

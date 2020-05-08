@@ -7,17 +7,33 @@
     <groupId>gov.nist.drmf.interpreter</groupId>
     <artifactId>interpreter</artifactId>
     <packaging>pom</packaging>
-    <name>Semantic Translator</name>
+    <name>LaCASt - A LaTeX to CAS Translator</name>
     <version>2.1-SNAPSHOT</version>
+
+    <developers>
+        <developer>
+            <name>Andre Greiner-Petter</name>
+            <email>andre.greiner-petter@t-online.de</email>
+            <organization>University of Wuppertal</organization>
+            <organizationUrl>https://dke.uni-wuppertal.de/de.html</organizationUrl>
+        </developer>
+        <developer>
+            <name>Moritz Schubotz</name>
+            <email>moritz.schubotz@fiz-karlsruhe.de</email>
+            <organization>FIZ Karlsruhe</organization>
+            <organizationUrl>https://www.fiz-karlsruhe.de/</organizationUrl>
+        </developer>
+    </developers>
 
     <modules>
         <module>interpreter.common</module>
+        <module>interpreter.generic</module>
         <module>interpreter.lacast</module>
         <module>interpreter.maple</module>
         <module>interpreter.mathematica</module>
-        <module>interpreter.api</module>
+        <module>interpreter.core</module>
         <module>interpreter.evaluation</module>
-        <module>interpreter.semantify</module>
+        <module>interpreter.report</module> <!-- test report of all previous packages -->
     </modules>
 
     <properties>
@@ -28,84 +44,51 @@
             and Mathematica. If you did not install the CAS on your system,
             just set the variables to your home directory.
         -->
-        <maple.installation.dir>/opt/maple2016</maple.installation.dir>
+        <maple.installation.dir>/opt/maple2019</maple.installation.dir>
         <mathematica.installation.dir>/opt/Wolfram</mathematica.installation.dir>
 
-        <main.basedir>${project.basedir}</main.basedir>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.version>3.8.1</maven.compiler.version>
-        <junit.launcher.version>1.5.2</junit.launcher.version>
-        <junit.version>5.5.2</junit.version>
-        <maven.surefire.version>2.22.2</maven.surefire.version>
-
+        <!-- settings to proper work with pom-tagger, maple, and mathematica -->
         <mlp.path>${main.basedir}/libs/MLP/MLP.jar</mlp.path>
         <mlp.version>1.1</mlp.version>
-
         <maple.path>${main.basedir}/libs/Maple</maple.path>
-        <maple.version>2016.2</maple.version>
-
+        <maple.version>2019.1</maple.version>
         <mathematica.jlink.path>${main.basedir}/libs/Mathematica</mathematica.jlink.path>
         <mathematica.jlink.version>1.0</mathematica.jlink.version>
 
-        <log4j2.version>2.12.1</log4j2.version>
+        <!-- Setup Java and maven versions -->
+        <java.version>11</java.version>
+        <main.basedir>${project.basedir}</main.basedir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.version>3.8.0</maven.compiler.version>
+        <maven.surefire.version>3.0.0-M4</maven.surefire.version>
+        <maven.assembly.version>3.2.0</maven.assembly.version>
+        <maven.install.version>3.0.0-M1</maven.install.version>
+
+        <!-- Setup tests and coverage -->
+        <junit.version>5.6.0</junit.version>
+        <jacoco.version>0.8.5</jacoco.version>
+        <jacoco.report.dir>${main.basedir}/target</jacoco.report.dir>
+
+        <!-- Setup Logging -->
+        <log4j2.version>2.12.1</log4j2.version>
+
+        <!-- Addition versions -->
+        <jackson.version>2.10.1</jackson.version>
+        <elasticsearch.version>7.6.1</elasticsearch.version>
     </properties>
 
     <dependencies>
-        <!-- We use JUnit5 -->
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-launcher</artifactId>
-            <version>${junit.launcher.version}</version>
-            <scope>test</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
-            <!-- We writing custom conditions, thus we need it at
-             runtime not only in test scope. -->
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
+            <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
 
-        <dependency> <!-- Necessary for Parameter Tests -->
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency> <!-- Necessary for IntelliJ -->
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!--  Gson: Java to Json conversion -->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.0</version>
-        </dependency>
-
-        <!-- For Better Tests -->
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>java-hamcrest</artifactId>
-            <version>2.0.0.0</version>
-        </dependency>
-
-        <!-- Logging via log4j2 -->
-        <dependency>
+        <dependency> <!-- Logging via log4j2 -->
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>${log4j2.version}</version>
@@ -116,16 +99,107 @@
             <artifactId>log4j-api</artifactId>
             <version>${log4j2.version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305 -->
-        <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>jsr305</artifactId>
-            <version>3.0.2</version>
-        </dependency>
     </dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <!--  Gson: Java to Json conversion -->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.8.6</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-yaml</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/commons-cli/commons-cli -->
+            <dependency>
+                <groupId>commons-cli</groupId>
+                <artifactId>commons-cli</artifactId>
+                <version>1.4</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.6</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>1.8</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thoughtworks.xstream</groupId>
+                <artifactId>xstream</artifactId>
+                <version>1.4.11.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-high-level-client</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit.version}</version>
+                <!--
+                We extend the API sometimes, so we just need this
+                not only in test-scope
+                 -->
+            </dependency>
+
+            <dependency> <!-- Better tests -->
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest</artifactId>
+                <version>2.2</version>
+                <!-- We writing custom conditions, thus we need it at
+                 runtime not only in test scope. -->
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mlp</artifactId>
+                <version>${mlp.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>maple</artifactId>
+                <version>${maple.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>maple-call</artifactId>
+                <version>${maple.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mathematica</artifactId>
+                <version>${mathematica.jlink.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <build>
+        <!-- Define unified plugin usage in modules -->
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -138,22 +212,13 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${maven.surefire.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven.compiler.version}</version>
-                    <configuration>
-                        <source>${maven.compiler.source}</source>
-                        <target>${maven.compiler.target}</target>
-                    </configuration>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven.assembly.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
-                    <version>3.0.0-M1</version>
+                    <version>${maven.install.version}</version>
                     <executions>
                         <execution>
                             <id>mlp-install</id>
@@ -215,11 +280,41 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <!-- Setup plugins that are automatically run by every module -->
         <plugins>
+            <!-- With Java 11, we force every module to use the newest version of the compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <release>${java.version}</release>
+                </configuration>
+            </plugin>
             <!-- The install plugin should be triggered for all modules, otherwise some dependencies are missing -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
+            </plugin>
+            <!-- Test coverage should be run also on all modules -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*PomParser*</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

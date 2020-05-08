@@ -9,7 +9,7 @@
 # =================================================================================================
 generalReplacements:
   -
-    pattern: \\(?:displaystyle|hbox|[Bb]ig[lrg]?(?![a-zA-Z])|[sb]f(?![a-zA-Z])|[!,; ]|\\ )
+    pattern: \\(?:displaystyle|hbox|[Bb]ig[lrg]?(?![a-zA-Z])|[sb]f(?![a-zA-Z])|[!,; ]|(?:neg)?(?:m|med|thin|thick)space(?:\{.+\})?|q+uad+|\\ )
   -
     pattern: \[\s*\]
   -
@@ -29,5 +29,5 @@ generalReplacements:
     replacement: \*
   -
     pattern: \\Wronskian(?:\\left)*\\\{(.*?)(?:\\right)*\\}
-    replacement: \\Wronskian@{$1}
+    replacement: \\Wronskian@\{$1\}
     groups: 1

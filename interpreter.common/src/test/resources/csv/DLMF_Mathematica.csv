@@ -1,0 +1,55 @@
+DLMF;Mathematica;Number of Variables;Slot of Differentiation;DLMF-Mathematica-Comment;Mathematica-Alternatives
+\sin@@{z};Sin[$0];1;;;
+\cos@@{z};Cos[$0];1;;;
+\tan@@{z};Tan[$0];1;;;
+\sec@@{z};Sec[$0];1;;;
+\csc@@{z};Csc[$0];1;;;
+\cot@@{z};Cot[$0];1;;;
+;;;;;
+\sinh@@{z};Sinh[$0];1;;;
+\cosh@@{z};Cosh[$0];1;;;
+\tanh@@{z};Tanh[$0];1;;;
+\sech@@{z};Sech[$0];1;;;
+\csch@@{z};Csch[$0];1;;;
+\coth@@{z};Coth[$0];1;;;
+;;;;;;;;;
+\Asin@@{z};;1;;;Integrate[Divide[1, (1-t^2)^(1/2)], {t, 0, $0}]
+\Acos@@{z};;1;;;Integrate[Divide[1, (1-t^2)^(1/2)], {t, $0, 1}]
+\Atan@@{z};;1;;;Integrate[Divide[1, 1+t^2], {t, 0, $0}]
+\Asec@@{z};;1;;;Integrate[Divide[1, (1-t^2)^(1/2)], {t, Divide[1,$0], 1}]
+\Acsc@@{z};;1;;;Integrate[Divide[1, (1-t^2)^(1/2)], {t, 0, Divide[1,$0]}]
+\Acot@@{z};;1;;;Integrate[Divide[1, 1+t^2], {t, 0, Divide[1,$0]}]
+;;;;;
+\asin@@{z};ArcSin[$0];1;;;
+\acos@@{z};ArcCos[$0];1;;;
+\atan@@{z};ArcTan[$0];1;;;
+\asec@@{z};ArcSec[$0];1;;;
+\acsc@@{z};ArcCsc[$0];1;;;
+\acot@@{z};ArcCot[$0];1;;;
+;;;;;
+\Asinh@@{z};;1;;;Integrate[Divide[1, (1+t^2)^(1/2)], {t, 0, $0}]
+\Acosh@@{z};;1;;;Integrate[Divide[1, (t^2-1)^(1/2)], {t, 1, $0}]
+\Atanh@@{z};;1;;;Integrate[Divide[1, 1-t^2], {t, 0, $0}]
+\Asech@@{z};;1;;;Integrate[Divide[1, (t^2-1)^(1/2)], {t, 1, Divide[1,$0]}]
+\Acsch@@{z};;1;;;Integrate[Divide[1, (1+t^2)^(1/2)], {t, 0, Divide[1,$0]}]
+\Acoth@@{z};;1;;;Integrate[Divide[1, 1-t^2], {t, 0, Divide[1,$0]}]
+;;;;;
+\asinh@@{z};ArcSinh[$0];1;;;
+\acosh@@{z};ArcCosh[$0];1;;;
+\atanh@@{z};ArcTanh[$0];1;;;
+\asech@@{z};ArcSech[$0];1;;;
+\acsch@@{z};ArcCsch[$0];1;;;
+\acoth@@{z};ArcCoth[$0];1;;;
+;;;;;
+\FerrersP{\nu}@{z};LegendreP[$0, $1];2;1;;
+X1:\FerrersPX\FerrersP[\mu]{\nu}@{x};LegendreP[$1, $0, $2];3;1;;
+\FerrersQ{\nu}@{z};LegendreQ[$0, $1];2;1;;
+X1:\FerrersQX\FerrersQ[\mu]{\nu}@{x};LegendreQ[$1, $0, $2];3;1;;
+\assLegendreP{\nu}@{z};LegendreP[$0, 0, 3, $1];2;1;;
+X1:\assLegendrePX\assLegendreP[\mu]{\nu}@{z};LegendreP[$1, $0, 3, $2];3;1;;
+\assLegendreQ{\nu}@{z};LegendreQ[$0, 0, 3, $1];2;1;;
+X1:\assLegendreQX\assLegendreQ[\mu]{\nu}@{z};LegendreQ[$1, $0, 3, $2];3;1;;
+\assLegendreOlverQ{\nu}@{z};Exp[-$0 Pi I] LegendreQ[$0, 2, 3, $1]/Gamma[$0 + 3];3;1;;
+X1:assLegendreOlverQX\assLegendreOlverQ[\mu]{\nu}@{z};Exp[-$0 Pi I] LegendreQ[$1, $0, 3, $2]/Gamma[$1 + $0 + 1];3;1;;
+\DunsterQ{-\frac{1}{2}+i\tau}@{x};;3;1;;
+X1:DunsterQX\DunsterQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;3;1;;

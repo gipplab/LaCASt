@@ -8,15 +8,6 @@ import java.util.regex.Pattern;
 public class DLMFPatterns {
     public static final String SPACE = " ";
 
-    public static final String OPEN_PARENTHESIS_PATTERN =
-            "(left)[-\\s](parenthesis|bracket|brace|delimiter)|vertical-bar";
-
-    public static final String CLOSE_PARENTHESIS_PATTERN =
-            "(right)[-\\s](parenthesis|bracket|brace|delimiter)|vertical-bar";
-
-    public static final String PARENTHESIS_PATTERN =
-            "(right|left)[-\\s](parenthesis|bracket|brace|delimiter)|vertical-bar";
-
     public static final String SPECIAL_SYMBOL_PATTERN_FOR_SPACES =
             "[\\^\\/\\_\\!|]";
 
@@ -29,8 +20,6 @@ public class DLMFPatterns {
     public static final String DERIV_NOTATION = "\\\\(?:[tip]|tp|ip)?deriv";
 
     public static final Pattern ENDS_ON_STAR_PATTERN = Pattern.compile("(.*)\\*\\s*$");
-
-    public static final String ABSOLUTE_VAL_TERM_TEXT_PATTERN = "\\\\?\\|";
 
     public static final String CHAR_BACKSLASH = "\\";
 

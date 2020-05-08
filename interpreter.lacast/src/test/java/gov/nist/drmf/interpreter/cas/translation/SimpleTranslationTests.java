@@ -1,13 +1,21 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
+import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.tests.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.common.meta.DLMF;
+import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
+import mlp.ParseException;
+import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -246,10 +254,20 @@ class SimpleTranslationTests {
     }
 
     @Test
+    @DLMF("14.2.3")
     void wronksianTest() {
         String in = "\\Wronskian\\left\\{\\FerrersP[-\\mu]{\\nu}@{x},\\FerrersP[-\\mu]{\\nu}@{-x}\\right\\}";
         String expect = "(LegendreP(nu, - mu, x))*diff(LegendreP(nu, - mu, - x), x)-diff(LegendreP(nu, - mu, x), x)*(LegendreP(nu, - mu, - x))";
         String out = slt.translate(in);
+        assertEquals(expect, out);
+    }
+
+    @Test
+    @DLMF("9.2.9")
+    void wronksianComplexArgumentTest() {
+        String in = "\\Wronskian\\left\\{\\AiryAi@{z e^{-2\\pi \\tfrac{i}{3}}}, \\AiryAi@{z e^{2\\pi \\tfrac{i}{3}}}\\right\\}";
+        String expect = "(AiryAi(z*exp(- 2*Pi*(I)/(3))))*diff(AiryAi(z*exp(2*Pi*(I)/(3))), z)-diff(AiryAi(z*exp(- 2*Pi*(I)/(3))), z)*(AiryAi(z*exp(2*Pi*(I)/(3))))";
+        String out = slt.translate(in, "9.2.9");
         assertEquals(expect, out);
     }
 
@@ -274,6 +292,46 @@ class SimpleTranslationTests {
         String label = "19.6.2";
         String res = slt.translate(in, label);
         System.out.println(res);
-//        assertEquals("exp(z)=(exp(z))* exp(2*k*z*Pi*I)", res);
+        assertEquals("EllipticPi((k)^(2), k)= EllipticE(k)/(1 - (k)^(2))", res);
+    }
+
+    @Test
+    public void chooseTranslation() {
+        String input = "1 + {n+1 \\choose k}^2";
+        String expect = "1 +(binomial(n + 1,k))^(2)";
+        String actual = slt.translate(input);
+        assertEquals(expect, actual);
+    }
+
+    @Test
+    public void chooseTranslationInSum() {
+        String input = "\\sum_{k=0}^{n}{n+1 \\choose k}";
+        String expect = "sum(binomial(n + 1,k), k = 0..n)";
+        String actual = slt.translate(input);
+        assertEquals(expect, actual);
+    }
+
+    @Test
+    public void unknownFunctionTranslator() throws ParseException, IOException {
+        String input = "\\cos(x)";
+        PomTaggedExpression pte = stripOfDLMFInfo(input);
+        TranslatedExpression trans = slt.translate(pte);
+        assertEquals("cos(x)", trans.toString());
+    }
+
+    /**
+     * Rips of the DLMF info from the first element in the parse tree.
+     * Input example is "\cos{x}" or something similar.
+     * @param input start with a DLMF macro, e.g., "\cos"
+     * @return parse tree without dlmf info
+     * @throws ParseException
+     */
+    private PomTaggedExpression stripOfDLMFInfo(String input) throws ParseException, IOException {
+        MLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
+        PomTaggedExpression pte = mlp.parse(input);
+        PomTaggedExpression cosPte = pte.getComponents().get(0);
+        cosPte.getRoot().setAlternativeFeatureSets(new LinkedList<>());
+        cosPte.getRoot().setTag("function");
+        return pte;
     }
 }

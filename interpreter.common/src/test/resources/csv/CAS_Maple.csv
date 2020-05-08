@@ -1,0 +1,42 @@
+Maple;DLMF;Number of Variables;Maple-DLMF-Comment;Maple-Constraints;Maple-Branch Cuts;DLMF-Alternatives;Maple-Link
+sin($0);\sin@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=sin
+cos($0);\cos@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=cos
+tan($0);\tan@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=tan
+sec($0);\sec@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=sec
+csc($0);\csc@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=csc
+cot($0);\cot@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=cot
+;;;;;;;
+sinh($0);\sinh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=sinh
+cosh($0);\cosh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=cosh
+tanh($0);\tanh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=tanh
+sech($0);\sech@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=sech
+csch($0);\csch@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=csch
+coth($0);\coth@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=coth
+;;;;;;;
+arcsin($0);\asin@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+arccos($0);\acos@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+arctan($0);\atan@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+arctan($0,$1);\phase@@{$1+($0)*\iunit};2;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+arcsec($0);\asec@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+arccsc($0);\acsc@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+arccot($0);\acot@@{$0};1;;;(- I infinity, - I ), ( I, I infinity );\frac{\cpi}{2}-\atan@@{$0};https://www.maplesoft.com/support/help/maple/view.aspx?path=invtrig
+;;;;;;;
+arcsinh($0);\asinh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arcsinh
+arccosh($0);\acosh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arccosh
+arctanh($0);\atanh@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arctanh
+arcsech($0);\asech@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arcsech
+arccsch($0);\acsch@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arccsch
+arccoth($0);\acoth@@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/view.aspx?path=arccoth
+;;;;;;;
+;\FerrersP{\nu}@{x};;;;;;
+;\FerrersP[\mu]{\nu}@{x};;;;;;
+;\FerrersQ{\nu}@{x};;;;;;
+LegendreP($0, $1);\FerrersQ[\mu]{\nu}@{x};2;If you want to translate it, as the orthogonal polynomial, use the alternative \LegendrepolyP. If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersP.;;;\FerrersP{$0}@{$1} || \LegendrepolyP{$0}@{$1};https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+LegendreP($1, $0, $2);\assLegendreP{$0}@{$1};3;If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersP.;;;\FerrersP[$1]{$0}@{$2};https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP
+LegendreQ($0, $1);X1:\LegendrePX\assLegendreP[$1]{$0}@{$2};2;If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersQ.;;;\FerrersQ{$0}@{$1};https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+LegendreQ($1, $0, $2);\assLegendreQ{$0}@{$1};3;If your variable is real and you previously set _EnvLegendreCut := 1..infinity, the translation is not correct and you must use the alternative translation: \FerrersQ.;;;\FerrersQ[$1]{$0}@{$2};https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreQ
+;X1:\LegendreQX\assLegendreQ[$1]{$0}@{$2};;;;;;
+;\assLegendreOlverQ{\nu}@{z};;;;;;
+;\assLegendreOlverQ[\mu]{\nu}@{z};;;;;;not defined
+;\DunsterQ{\tau}@{x};;;;;;
+;\DunsterQ[\mu]{\tau}@{x};;;;;;
