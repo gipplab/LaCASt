@@ -82,6 +82,13 @@ public class EngineTest {
     }
 
     @Test
+    public void packageTest() throws MapleException {
+        String test = "with(QDifferenceEquations): try timelimit(2,QSimplify((QPochhammer(a, q, - n))-((1)/(QPochhammer(a*(q)^(- n), q, n))))); catch \"time expired\": \"TIMED-OUT\"; end try;";
+        Algebraic result = t.evaluate(test);
+        assertEquals("0", result.toString());
+    }
+
+    @Test
     public void listTest(){
         if ( !(list instanceof List) )
             fail("Assumed a list algebraic object but it isn't." + list);

@@ -8,6 +8,7 @@ import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import static gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker.MATH_ABORTION_SIGNAL;
@@ -27,7 +28,8 @@ public class MathematicaSimplifier implements ICASEngineSymbolicEvaluator<Expr> 
     }
 
     @Override
-    public Expr simplify(String expr) throws ComputerAlgebraSystemEngineException {
+    public Expr simplify(String expr, Set<String> requiredPackages) throws ComputerAlgebraSystemEngineException {
+        logReqPackages(requiredPackages);
         try {
             return miEquiChecker.fullSimplify(expr);
         } catch (MathLinkException e) {
@@ -36,11 +38,18 @@ public class MathematicaSimplifier implements ICASEngineSymbolicEvaluator<Expr> 
     }
 
     @Override
-    public Expr simplify(String expr, String assumption) throws ComputerAlgebraSystemEngineException {
+    public Expr simplify(String expr, String assumption, Set<String> requiredPackages) throws ComputerAlgebraSystemEngineException {
+        logReqPackages(requiredPackages);
         try {
             return miEquiChecker.fullSimplify(expr, assumption);
         } catch (MathLinkException e) {
             throw new ComputerAlgebraSystemEngineException(e);
+        }
+    }
+
+    private void logReqPackages(Set<String> requiredPackages) {
+        if ( requiredPackages != null && !requiredPackages.isEmpty() ) {
+            LOG.warn("Mathematica interface does not support required packages yet. They will be ignored!");
         }
     }
 

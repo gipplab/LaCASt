@@ -28,7 +28,7 @@ public class CaseAnalyzer {
     private static final String EOL = "<EOL>";
 
     private static final Pattern END_OF_MATH_MATCHER = Pattern.compile(
-            "^(.*?)[\\\\,;.\\s]*"+EOL+".*$"
+            "^(.*?)[\\\\,;.\\s]*\\Q"+EOL+"\\E.*$"
     );
 
     private static final int CONSTRAINT_GRP = 1;

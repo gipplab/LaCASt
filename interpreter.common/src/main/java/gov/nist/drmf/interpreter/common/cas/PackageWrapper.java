@@ -1,6 +1,5 @@
-package gov.nist.drmf.interpreter.cas.translation.components.util;
+package gov.nist.drmf.interpreter.common.cas;
 
-import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.interfaces.IPackageWrapper;
@@ -12,23 +11,31 @@ import java.util.Set;
 /**
  * @author Andre Greiner-Petter
  */
-public class PackageWrapper implements IPackageWrapper<TranslatedExpression, String> {
+public class PackageWrapper implements IPackageWrapper<String, String> {
     private final BasicFunctionsTranslator functionsTranslator;
     private final SymbolTranslator symbolTranslator;
 
+    private final String endOfLineSymbol;
+
     public PackageWrapper(TranslationProcessConfig config) {
-        this.functionsTranslator = config.getBasicFunctionsTranslator();
-        this.symbolTranslator = config.getSymbolTranslator();
+        this(config.getBasicFunctionsTranslator(), config.getSymbolTranslator());
+    }
+
+    public PackageWrapper(BasicFunctionsTranslator functionsTranslator, SymbolTranslator symbolTranslator) {
+        this.functionsTranslator = functionsTranslator;
+        this.symbolTranslator = symbolTranslator;
+        this.endOfLineSymbol = symbolTranslator.translateFromMLPKey(Keys.MLP_KEY_END_OF_LINE);
     }
 
     @Override
-    public String addPackages(TranslatedExpression translatedExpression, Set<String> packages) {
-        if ( packages == null || packages.isEmpty() ) return translatedExpression.getTranslatedExpression();
+    public String addPackages(String translatedExpression, Set<String> packages) {
+        if ( packages == null || packages.isEmpty() ) return translatedExpression;
         StringBuilder sb = new StringBuilder();
         addPackages(sb, packages, true);
         sb.append(" "); // slightly improves readability
-        sb.append(translatedExpression.getTranslatedExpression());
-        sb.append(symbolTranslator.translateFromMLPKey(Keys.MLP_KEY_END_OF_LINE));
+        sb.append(translatedExpression);
+        if ( !translatedExpression.endsWith(endOfLineSymbol) )
+            sb.append(endOfLineSymbol);
         sb.append(" ");
         addPackages(sb, packages, false);
         return sb.toString();

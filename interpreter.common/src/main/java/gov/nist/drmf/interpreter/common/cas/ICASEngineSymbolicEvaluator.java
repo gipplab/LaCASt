@@ -4,15 +4,16 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Set;
 
 /**
  * @author Andre Greiner-Petter
  */
 public interface ICASEngineSymbolicEvaluator<T> extends Observer, IAbortEvaluator<T> {
 
-    T simplify( String expr ) throws ComputerAlgebraSystemEngineException;
+    T simplify( String expr, Set<String> requiredPackages ) throws ComputerAlgebraSystemEngineException;
 
-    T simplify( String expr, String assumption ) throws ComputerAlgebraSystemEngineException;
+    T simplify( String expr, String assumption, Set<String> requiredPackages ) throws ComputerAlgebraSystemEngineException;
 
     boolean isAsExpected(T in, String expect);
 

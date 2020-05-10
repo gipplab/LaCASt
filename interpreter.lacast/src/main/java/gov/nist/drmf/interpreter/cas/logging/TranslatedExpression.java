@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.cas.logging;
 
-import gov.nist.drmf.interpreter.cas.translation.components.util.PackageWrapper;
+import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 
 import java.util.*;
@@ -170,7 +170,7 @@ public class TranslatedExpression {
 
     public String getTranslatedExpression(PackageWrapper pw) {
         if ( requiredPackages.isEmpty() ) return getTranslatedExpression();
-        return pw.addPackages(this, requiredPackages);
+        return pw.addPackages(getTranslatedExpression(), requiredPackages);
     }
 
     public void addRequiredPackages(Collection<String> requiredPackages) {

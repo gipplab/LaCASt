@@ -1,9 +1,8 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
-import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.cas.translation.components.util.PackageWrapper;
+import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
