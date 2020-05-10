@@ -115,6 +115,10 @@ public class MacroTranslationInformation {
     }
 
     public void appendNonEssentialInfo(StringBuilder sb, String cas) {
+        if ( requiredPackages != null && !requiredPackages.isEmpty() ) {
+            sb.append("Required Packages: ").append(requiredPackages).append(System.lineSeparator());
+        }
+
         if ( alternativePattern != null && alternativePattern.size() > 0 ) {
             sb.append("Alternative translations: ").append(alternativePattern);
         }

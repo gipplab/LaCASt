@@ -18,11 +18,9 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
     private String MULTIPLY = "*";
 
     private BlueprintMaster limitParser = null;
-
-    private boolean alternativeMode = false;
     private boolean extensiveOutput = false;
 
-    private boolean inlinePackageMode = true;
+    private boolean inlinePackageMode = false;
 
     private boolean isInit = false;
 
@@ -43,14 +41,6 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
 
     public void setLimitParser(BlueprintMaster limitParser) {
         this.limitParser = limitParser;
-    }
-
-    /**
-     * TODO Experimental setting
-     * @param alternativeMode turn on/off alternative translation mode
-     */
-    public void setAlternativeMode(boolean alternativeMode) {
-        this.alternativeMode = alternativeMode;
     }
 
     /**
@@ -76,10 +66,6 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
 
     public BlueprintMaster getLimitParser() {
         return limitParser;
-    }
-
-    public boolean isAlternativeMode() {
-        return alternativeMode;
     }
 
     public boolean shortenedOutput() {

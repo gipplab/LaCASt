@@ -1128,7 +1128,7 @@ Symbol: \Eulertotientphi
 	Mathematica-Alternatives: Sum[If[CoprimeQ[$1, m], m^($0), 0], {m, 1, $1}]
 	Meanings: Euler's totient function
 	Number of Ats: 1
-	Number of Parameters: 1
+	Number of Parameters: 0
 	Number of Variables: 1
 	Slot of Differentiation: 1
 
@@ -1312,7 +1312,7 @@ Symbol: \GenHermite
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:GenHermite
 	Meanings: Generalized Hermite polynomial
 	Number of Ats: 1
-	Number of Parameters: 2
+	Number of Parameters: 1
 	Number of Variables: 1
 	Slot of Differentiation: 1
 
@@ -5224,7 +5224,7 @@ Symbol: \ideriv
 	Mathematica: D[$1, {$2, $0}]
 	Meanings: Derivative
 	Number of Ats: 0
-	Number of Parameters: 1
+	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
 
@@ -5456,7 +5456,7 @@ Symbol: \ipderiv
 	Mathematica: D[$1, {$2, $0}]
 	Meanings: Derivative
 	Number of Ats: 0
-	Number of Parameters: 1
+	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
 
@@ -6529,9 +6529,12 @@ Symbol: \ncompositions
   Feature Set: dlmf-alternative-1
 	DLMF: \ncompositions[m]@{n}
 	DLMF-Link: dlmf.nist.gov/26.11#p1
+	Maple: numbcomp($1, $0)
+	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=combinat%2Fnumbcomp
+	Maple-Package: combinat,numbcomp
 	Meanings: Number of compositions
 	Number of Ats: 1
-	Number of Parameters: 1
+	Number of Parameters: 0
 	Number of Variables: 1
 
 Symbol: \ndivisors
@@ -6553,7 +6556,7 @@ Symbol: \ndivisors
 	DLMF-Link: dlmf.nist.gov/27.2#SS1.p4
 	Meanings: Divisor function
 	Number of Ats: 1
-	Number of Parameters: 1
+	Number of Parameters: 0
 	Number of Variables: 1
 	Slot of Differentiation: 1
 
@@ -6739,7 +6742,7 @@ Symbol: \npartitions
 	DLMF-Link: dlmf.nist.gov/26.9
 	Meanings: Number of partitions of nonnegative integer n into at most k parts
 	Number of Ats: 1
-	Number of Parameters: 1
+	Number of Parameters: 0
 	Number of Variables: 1
 	Slot of Differentiation: 1
 
@@ -6816,7 +6819,7 @@ Symbol: \nrestpartitions
 	DLMF-Link: dlmf.nist.gov/26.11#p1
 	Meanings: Restricted number of partitions
 	Number of Ats: 1
-	Number of Parameters: 1
+	Number of Parameters: 0
 	Number of Variables: 2
 
 Symbol: \nsquares
@@ -7193,7 +7196,7 @@ Symbol: \qGamma
 	DLMF: \qGamma{q}@{z}
 	DLMF-Link: dlmf.nist.gov/5.18#E4
 	Maple: QGAMMA($0, $1)
-	Maple-Link: de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QPochhammer
+	Maple-Link: de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QGAMMA
 	Maple-Package: QDifferenceEquations,QGAMMA
 	Mathematica: QGamma[$1,$0]
 	Meanings: q-Gamma function
@@ -7259,7 +7262,7 @@ Symbol: \qLaguerre
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qLaguerre
 	Meanings: q-Laguerre polynomial
 	Number of Ats: 2
-	Number of Parameters: 2
+	Number of Parameters: 1
 	Number of Variables: 2
 	Slot of Differentiation: 1
 
@@ -7279,7 +7282,7 @@ Symbol: \qLaguerrepolyL
 	DLMF-Link: dlmf.nist.gov/18.27#E15
 	Meanings: q-Laguerre polynomial
 	Number of Ats: 1
-	Number of Parameters: 2
+	Number of Parameters: 1
 	Number of Variables: 2
 	Slot of Differentiation: 1
 
@@ -7392,7 +7395,7 @@ Symbol: \qbinom
 	DLMF: \qbinom{n}{m}{q}
 	DLMF-Link: dlmf.nist.gov/17.2#E27
 	Maple: QBinomial($0, $1, $2)
-	Maple-Link: de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QPochhammer
+	Maple-Link: de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QBinomial
 	Maple-Package: QDifferenceEquations,QBinomial
 	Mathematica: QBinomial[$0,$1,$2]
 	Meanings: q-Binomial coefficient / Gaussian polynomial
@@ -7472,7 +7475,7 @@ Symbol: \qfactorial
 	DLMF: \qfactorial{n}{q}
 	DLMF-Link: dlmf.nist.gov/5.18#E2
 	Maple: QFactorial($0, $1)
-	Maple-Link: de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QPochhammer
+	Maple-Link: de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QFactorial
 	Maple-Package: QDifferenceEquations,QFactorial
 	Mathematica: QFactorial[$0,$1]
 	Meanings: q-Factorial function
@@ -8202,7 +8205,7 @@ Symbol: \tderiv
 	Mathematica: D[$1, {$2, $0}]
 	Meanings: Derivative
 	Number of Ats: 0
-	Number of Parameters: 1
+	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
 
@@ -8239,7 +8242,7 @@ Symbol: \tpderiv
 	Mathematica: D[$1, {$2, $0}]
 	Meanings: Derivative
 	Number of Ats: 0
-	Number of Parameters: 1
+	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
 
