@@ -225,10 +225,17 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
         for ( String req : requiredPackages ){
             if ( req.contains("QDifferenceEquations") ){
                 contains = true;
-//                tmp.add("QDifferenceEquations");
             } else tmp.add(req);
         }
 
+        return updateRequiredPackages(contains, tmp, requiredPackages);
+    }
+
+    private String updateRequiredPackages(
+            boolean contains,
+            Set<String> tmp,
+            Set<String> requiredPackages
+    ) {
         if ( contains ) {
             try {
                 maple.loadQExtension();
