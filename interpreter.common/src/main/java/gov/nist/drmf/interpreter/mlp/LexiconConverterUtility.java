@@ -52,7 +52,7 @@ public abstract class LexiconConverterUtility {
         addFeature(DLMFTranslationHeaders.cas_branch_cuts, fset, info.getBranchCuts(), cas);
     }
 
-    private static void addFeature(DLMFTranslationHeaders h, FeatureSet fset, String cas, String content) {
+    private static void addFeature(DLMFTranslationHeaders h, FeatureSet fset, String content, String cas) {
         if ( content != null && !content.isBlank() ) {
             fset.addFeature(
                     h.getFeatureKey(cas),
