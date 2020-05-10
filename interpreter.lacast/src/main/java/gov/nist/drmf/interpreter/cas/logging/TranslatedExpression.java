@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class TranslatedExpression {
     private LinkedList<String> trans_exps;
-    private Set<String> requiredPackages;
+    private final Set<String> requiredPackages;
 
     private int autoMergeLast;
 
@@ -18,10 +18,6 @@ public class TranslatedExpression {
         this.trans_exps = new LinkedList<>();
         this.autoMergeLast = 0;
         this.requiredPackages = new TreeSet<>();
-    }
-
-    public void setAutoMergeLast( int num_of_last ){
-        autoMergeLast = num_of_last;
     }
 
     public void addAutoMergeLast( int add_num_of_last ){
@@ -52,6 +48,7 @@ public class TranslatedExpression {
             next += expressions.trans_exps.removeFirst();
         this.trans_exps.add( next );
         this.trans_exps.addAll( expressions.trans_exps );
+        this.requiredPackages.addAll(expressions.getRequiredPackages());
     }
 
     public int getLength(){
@@ -61,6 +58,7 @@ public class TranslatedExpression {
     public int clear(){
         int s = trans_exps.size();
         trans_exps = new LinkedList<>();
+        requiredPackages.clear();
         return s;
     }
 
@@ -158,6 +156,8 @@ public class TranslatedExpression {
             // be careful, reverse order here
             this.trans_exps.addFirst(innerCache.removeLast());
         }
+
+        cache.addRequiredPackages(requiredPackages);
         return cache;
     }
 
