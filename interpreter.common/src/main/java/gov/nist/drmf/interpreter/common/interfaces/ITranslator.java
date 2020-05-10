@@ -20,7 +20,7 @@ public interface ITranslator {
      * @param expression tagged expression
      * @return  true if the parsing process finished
      *          without an error.
-     * @throws Exception If the translation process failed.
+     * @throws TranslationException If the translation process failed.
      */
     String translate( String expression ) throws TranslationException;
 }
