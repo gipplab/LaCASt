@@ -56,32 +56,34 @@ public class TranslationConsumer implements LexiconInfoConsumer {
             String originalDLMF = fset.getFeature(Keys.KEY_DLMF).first();
             ForwardTranslationFileHeaders.DLMF.fillFeatureSet(fset, lineAnalyzer, cas);
             fset.setFeature(Keys.KEY_DLMF, originalDLMF, MacrosLexicon.SIGNAL_INLINE);
-
-            // get the name and pattern of the translation
-            boolean isStraightAvailable = true;
-            SortedSet<String> f = fset.getFeature(cas);
-            if ( f == null || f.isEmpty() ) {
-                isStraightAvailable = false;
-                f = fset.getFeature(cas+Keys.KEY_ALTERNATIVE_SUFFX);
-            }
-            String function = f.first();
-
-            FunctionInfoHolder holder = LexiconConverterUtility.getFuncNameAndFillInteger(
-                    function,
-                    "Not able to link further information about " + function,
-                    lineAnalyzer
-            );
-
-            if ( holder != null ) function = holder.getPattern();
-
-            // add translation info
-            if ( isStraightAvailable )
-                fset.setFeature( cas, function, MacrosLexicon.SIGNAL_INLINE );
-            addFurtherInfoToFeature(holder, fset, cas);
-            stats.tickCAS(cas);
+            addTranslation(fset);
         } catch (NullPointerException npe) {
             LOG.warn("Unable to read necessary translation information for " + fset.getFeature(Keys.KEY_DLMF) + " ("+npe.getMessage()+")", npe);
         }
+    }
+
+    private void addTranslation(FeatureSet fset) {
+        // get the name and pattern of the translation
+        boolean isStraightAvailable = true;
+        SortedSet<String> f = fset.getFeature(cas);
+        if ( f == null || f.isEmpty() ) {
+            isStraightAvailable = false;
+            f = fset.getFeature(cas+Keys.KEY_ALTERNATIVE_SUFFX);
+        }
+        String function = f.first();
+
+        FunctionInfoHolder holder = LexiconConverterUtility.getFuncNameAndFillInteger(
+                function,
+                "Not able to link further information about " + function,
+                lineAnalyzer
+        );
+
+        if ( holder != null ) function = holder.getPattern();
+
+        // add translation info
+        if ( isStraightAvailable ) fset.setFeature( cas, function, MacrosLexicon.SIGNAL_INLINE );
+        addFurtherInfoToFeature(holder, fset, cas);
+        stats.tickCAS(cas);
     }
 
     private FeatureSet getFeatureSet() {
@@ -144,18 +146,14 @@ public class TranslationConsumer implements LexiconInfoConsumer {
     ) {
         String macro_col = lineAnalyzer.getValue( Keys.KEY_DLMF );
         if ( opt_para != null ){
-            if ( alternativeF == null ){
-                LOG.warn("No alternative feature set found, but is required!. [CAS: " + cas + ", Macro: " + macro_col + "]");
-            } return alternativeF;
+            return checkFeatureSet(alternativeF, "No alternative feature set found, but is required!", macro_col);
         } else if (paras != null) {
             LOG.warn("Parameters are not in special syntax. " +
                     "Has to be defined as 'X<digit>:<name>X<Macro>'. [CAS: " + cas + ", Macro: " + macro_col + "]");
+            return null;
         } else {
-            if ( dlmfF == null ){
-                LOG.warn("There is no feature set for this term? [CAS: " + cas + ", Macro: " + macro_col + "]");
-            } return dlmfF;
+            return checkFeatureSet(dlmfF, "There is no feature set for this term?", macro_col);
         }
-        return null;
     }
 
     private void addFurtherInfoToFeature(FunctionInfoHolder holder, FeatureSet fset, String casPrefix) {
@@ -163,5 +161,12 @@ public class TranslationConsumer implements LexiconInfoConsumer {
             CASFunctionMetaInfo info = cache.get( holder.getCasFunctionName(), holder.getNumVars() );
             LexiconConverterUtility.fillFeatureWithInfos(info, fset, casPrefix);
         }
+    }
+
+    private FeatureSet checkFeatureSet(FeatureSet fset, String message, String macro) {
+        if ( fset == null ){
+            LOG.warn(message + " [CAS: " + cas + ", Macro: " + macro + "]");
+            return null;
+        } return fset;
     }
 }

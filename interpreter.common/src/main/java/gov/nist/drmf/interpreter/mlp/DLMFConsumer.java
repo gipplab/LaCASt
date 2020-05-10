@@ -77,15 +77,7 @@ public class DLMFConsumer implements LexiconInfoConsumer {
         FeatureSet fset = chooseFeatureSet(m);
         if ( fset == null ) return;
 
-        try {
-            // add all other information to the feature set
-            DLMFMacroFileHeaders.fillFeatureSet(fset, lineAnalyzer);
-
-            // since each DLMF macro has only one feature set, create a list with one element
-            addFeatureSet(new LinkedList<>(), fset, macro_name);
-        } catch (NullPointerException npe) {
-            LOG.error("Unable to load information for macro " + macro + "("+npe.getMessage()+")");
-        }
+        handleGeneralFeature(fset, macro, macro_name);
     }
 
     private void handleOptionalParametersByDLMF( Matcher m ){
@@ -144,6 +136,10 @@ public class DLMFConsumer implements LexiconInfoConsumer {
 
     private void handleConstantFeature(String macro, String macro_name) {
         FeatureSet fset = new FeatureSet(Keys.KEY_DLMF_MACRO);
+        handleGeneralFeature(fset, macro, macro_name);
+    }
+
+    private void handleGeneralFeature(FeatureSet fset, String macro, String macro_name) {
         try {
             // add all other information to the feature set
             DLMFMacroFileHeaders.fillFeatureSet(fset, lineAnalyzer);

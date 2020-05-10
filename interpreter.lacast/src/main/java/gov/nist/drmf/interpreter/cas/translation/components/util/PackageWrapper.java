@@ -1,8 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation.components.util;
 
-import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
-import gov.nist.drmf.interpreter.cas.common.IForwardTranslator;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.interfaces.IPackageWrapper;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
@@ -17,7 +16,7 @@ public class PackageWrapper implements IPackageWrapper<TranslatedExpression, Str
     private final BasicFunctionsTranslator functionsTranslator;
     private final SymbolTranslator symbolTranslator;
 
-    public PackageWrapper(ForwardTranslationProcessConfig config) {
+    public PackageWrapper(TranslationProcessConfig config) {
         this.functionsTranslator = config.getBasicFunctionsTranslator();
         this.symbolTranslator = config.getSymbolTranslator();
     }

@@ -45,7 +45,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      */
     private SemanticMLPWrapper parser;
 
-    private ForwardTranslationProcessConfig config;
+    private final ForwardTranslationProcessConfig config;
 
     private TranslatedExpression localTranslations;
 
@@ -155,7 +155,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
     public String getTranslatedExpression() {
         if ( config.isInlinePackageMode() ) {
             PackageWrapper pw = new PackageWrapper(config);
-            return pw.addPackages(super.getGlobalTranslationList(), super.getGlobalTranslationList().getRequiredPackages());
+            return super.getGlobalTranslationList().getTranslatedExpression(pw);
         } return super.getGlobalTranslationList().getTranslatedExpression();
     }
 

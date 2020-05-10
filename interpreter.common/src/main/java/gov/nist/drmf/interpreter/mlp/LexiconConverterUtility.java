@@ -45,29 +45,18 @@ public abstract class LexiconConverterUtility {
                 .forEach( consumer );
     }
 
-    public static void fillFeatureWithInfos(CASFunctionMetaInfo info, FeatureSet fset, String curr_cas ){
+    public static void fillFeatureWithInfos(CASFunctionMetaInfo info, FeatureSet fset, String cas ){
         if ( info == null ) return;
-        DLMFTranslationHeaders h = DLMFTranslationHeaders.cas_link;
-        if ( info.getLink() != null && !info.getLink().isBlank() ) {
+        addFeature(DLMFTranslationHeaders.cas_link, fset, info.getLink(), cas);
+        addFeature(DLMFTranslationHeaders.cas_constraint, fset, info.getConstraints(), cas);
+        addFeature(DLMFTranslationHeaders.cas_branch_cuts, fset, info.getBranchCuts(), cas);
+    }
+
+    private static void addFeature(DLMFTranslationHeaders h, FeatureSet fset, String cas, String content) {
+        if ( content != null && !content.isBlank() ) {
             fset.addFeature(
-                    h.getFeatureKey(curr_cas),
-                    info.getLink(),
-                    MacrosLexicon.SIGNAL_INLINE
-            );
-        }
-        if ( info.getConstraints() != null && !info.getConstraints().isBlank() ) {
-            h = DLMFTranslationHeaders.cas_constraint;
-            fset.addFeature(
-                    h.getFeatureKey(curr_cas),
-                    info.getConstraints(),
-                    MacrosLexicon.SIGNAL_INLINE
-            );
-        }
-        if ( info.getBranchCuts() != null && !info.getBranchCuts().isBlank() ) {
-            h = DLMFTranslationHeaders.cas_branch_cuts;
-            fset.addFeature(
-                    h.getFeatureKey(curr_cas),
-                    info.getBranchCuts(),
+                    h.getFeatureKey(cas),
+                    content,
                     MacrosLexicon.SIGNAL_INLINE
             );
         }

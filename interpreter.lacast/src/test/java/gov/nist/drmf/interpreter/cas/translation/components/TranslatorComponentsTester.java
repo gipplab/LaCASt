@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,5 +54,17 @@ public class TranslatorComponentsTester {
         GreekLetterTranslator gt = new GreekLetterTranslator(slt);
         PomTaggedExpression pte = mlp.simpleParse("noGreekLetter");
         assertThrows(TranslationException.class, () -> gt.translate(pte) );
+    }
+
+    @Test
+    public void macroPackageTranslatorTest() throws ParseException {
+        MacroTranslator mt = new MacroTranslator(slt);
+        PomTaggedExpression pte = mlp.simpleParse("\\qGamma{q}@{\\qfactorial{n}{q}}");
+        List<PomTaggedExpression> elements = pte.getComponents();
+        TranslatedExpression te = mt.translate(elements.remove(0), elements);
+        assertFalse(te.getRequiredPackages().isEmpty());
+        assertEquals("QGAMMA(q, QFactorial(n, q))", te.getTranslatedExpression());
+
+
     }
 }
