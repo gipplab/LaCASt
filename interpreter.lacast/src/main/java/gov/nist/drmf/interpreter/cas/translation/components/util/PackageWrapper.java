@@ -24,6 +24,7 @@ public class PackageWrapper implements IPackageWrapper<TranslatedExpression, Str
 
     @Override
     public String addPackages(TranslatedExpression translatedExpression, Set<String> packages) {
+        if ( packages == null || packages.isEmpty() ) return translatedExpression.getTranslatedExpression();
         StringBuilder sb = new StringBuilder();
         addPackages(sb, packages, true);
         sb.append(translatedExpression.getTranslatedExpression());

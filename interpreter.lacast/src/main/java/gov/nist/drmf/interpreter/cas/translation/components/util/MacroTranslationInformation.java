@@ -109,6 +109,11 @@ public class MacroTranslationInformation {
         return requiredPackages != null && !requiredPackages.isEmpty();
     }
 
+    public boolean hasNoTranslations() {
+        return (translationPattern == null || translationPattern.isBlank()) &&
+                (alternativePattern == null || alternativePattern.isEmpty());
+    }
+
     public void appendNonEssentialInfo(StringBuilder sb, String cas) {
         if ( alternativePattern != null && alternativePattern.size() > 0 ) {
             sb.append("Alternative translations: ").append(alternativePattern);

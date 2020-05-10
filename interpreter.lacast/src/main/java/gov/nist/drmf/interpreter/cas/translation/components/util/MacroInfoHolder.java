@@ -57,18 +57,15 @@ public class MacroInfoHolder {
         // try to extract the information
         try {
             this.storeInfos(fset, cas);
-            if (this.translationInformation.getTranslationPattern() == null ||
-                    this.translationInformation.getTranslationPattern().isEmpty()) {
+            if (this.translationInformation.hasNoTranslations()) {
                 throw TranslationException.buildExceptionObj(
                         translator, "There are no translation patterns available for: " + macro,
-                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
-                        macro);
+                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION, macro);
             }
         } catch (NullPointerException | TranslationException npe) {
             throw TranslationException.buildExceptionObj(
                     translator, "Cannot extract information from feature set: " + macro,
-                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
-                    macro);
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION, npe);
         }
     }
 
@@ -83,8 +80,7 @@ public class MacroInfoHolder {
             slotOfDifferentiation = Integer.parseInt(DLMFFeatureValues.SLOT_DERIVATIVE.getFeatureValue(fset, cas))
                     + translationInformation.getNumOfParams();
         } catch (NumberFormatException e) {
-            //TODO should default be 1 or throw an exception?
-            slotOfDifferentiation = 1; // if slot isn't in lexicon, value is null
+            LOG.debug("Cannot extract slot of differentiation for " + macro);
         }
 
         metaInformation = new MacroMetaInformation(fset, cas);
