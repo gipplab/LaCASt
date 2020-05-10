@@ -186,7 +186,7 @@ We store the translation patterns in `libs/ReferenceData/CSVTables`. In there, y
 2. The supported translations to a CAS. There are two files for each CAS. One defines the meta information (e.g., hyperlinks), 
 and the other defines the translations (e.g., for Maple its `CAS_Maple.csv` and `DLMF_Maple.csv`).
 
-There are two general things you should now before you start.
+There are two general things you should know before you start.
 1. Every time you change something in the CSV files, you have to run `bin/lexicon-creator.jar` to update the actual lexicon files.
 This will compile the defined information and makes it accessible for the translation process.
 2. Optional parameters, such as in `\LaguerrepolyL[\alpha]{n}@{x}`, needs special treatment. In all CSV files, it requires multiple lines.
