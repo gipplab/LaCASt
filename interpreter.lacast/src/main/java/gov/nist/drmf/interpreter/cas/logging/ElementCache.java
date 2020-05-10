@@ -1,7 +1,5 @@
 package gov.nist.drmf.interpreter.cas.logging;
 
-import java.util.List;
-
 /**
  * @author Andre Greiner-Petter
  */

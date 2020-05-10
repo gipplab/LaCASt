@@ -26,8 +26,10 @@ public class PackageWrapper implements IPackageWrapper<TranslatedExpression, Str
         if ( packages == null || packages.isEmpty() ) return translatedExpression.getTranslatedExpression();
         StringBuilder sb = new StringBuilder();
         addPackages(sb, packages, true);
+        sb.append(" "); // slightly improves readability
         sb.append(translatedExpression.getTranslatedExpression());
         sb.append(symbolTranslator.translateFromMLPKey(Keys.MLP_KEY_END_OF_LINE));
+        sb.append(" ");
         addPackages(sb, packages, false);
         return sb.toString();
     }

@@ -674,14 +674,14 @@ LaguerreL($1, $0, $2);\LaguerrepolyL[$1]{$0}@{$2};3;;;;\Laguerre[$1]{$0}@{$2};ht
 ;\qBernoullipolybeta{n}@{x}{q};;;;;;not defined
 ;\qBesselPoly{n}@{x}{b}{q};;;;;;not defined
 ;\qBeta{q}@{a}{b};;;;;;not defined
-QBinomial($0, $1, $2);\qbinom{$0}{$1}{$1};3;;;;;https://de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QPochhammer
+QBinomial($0, $1, $2);\qbinom{$0}{$1}{$1};3;;;;;https://de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QBinomial
 ;\qCharlier{n}@{x}{c}{q};;;;;;not defined
 ;\qderiv[n]{q}@{z};;;;;;not defined
 ;\qdiff{q}{x};;;;;;not defined
-QGAMMA($0, $1);\qGamma{$0}@{$1};2;;;;;https://de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QPochhammer
+QGAMMA($0, $1);\qGamma{$0}@{$1};2;;;;;https://de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QGAMMA
 ;\qDigamma{q}@{z};;;;;;not defined
 ;\qEulernumberA{m}{s}@{q};;;;;;not defined
-QFactorial($0, $1);\qfactorial{$0}{$1};2;;;;;https://de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QPochhammer
+QFactorial($0, $1);\qfactorial{$0}{$1};2;;;;;https://de.maplesoft.com/support/help/Maple/view.aspx?path=QDifferenceEquations/QFactorial
 ;\qHahn{n}@@{q^{-x}}{\alpha}{\beta}{N};;;;;;not defined
 ;\qHahnpolyQ{n}@{x}{\alpha}{\beta}{N}{q};;;;;;not defined
 ;\dualqHahn{n}@@{\mu(x)}{\gamma}{\delta}{N}{q};;;;;;not defined

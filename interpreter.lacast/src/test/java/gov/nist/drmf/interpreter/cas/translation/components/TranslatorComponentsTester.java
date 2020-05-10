@@ -1,7 +1,9 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
+import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
+import gov.nist.drmf.interpreter.cas.translation.components.util.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -59,12 +62,31 @@ public class TranslatorComponentsTester {
     @Test
     public void macroPackageTranslatorTest() throws ParseException {
         MacroTranslator mt = new MacroTranslator(slt);
-        PomTaggedExpression pte = mlp.simpleParse("\\qGamma{q}@{\\qfactorial{n}{q}}");
+        PomTaggedExpression pte = mlp.simpleParse("\\qGamma{q}@{a}");
         List<PomTaggedExpression> elements = pte.getComponents();
         TranslatedExpression te = mt.translate(elements.remove(0), elements);
         assertFalse(te.getRequiredPackages().isEmpty());
-        assertEquals("QGAMMA(q, QFactorial(n, q))", te.getTranslatedExpression());
+        assertEquals("QGAMMA(q, a)", te.getTranslatedExpression());
 
+        PackageWrapper pw = new PackageWrapper(slt.getConfig());
+        assertEquals("with(QDifferenceEquations,QGAMMA): QGAMMA(q, a); unwith(QDifferenceEquations,QGAMMA):",
+                te.getTranslatedExpression(pw));
+    }
 
+    @Test
+    public void singleSymbolDLMFTest() throws ParseException {
+        MacroTranslator mt = new MacroTranslator(slt);
+        PomTaggedExpression pte = mlp.simpleParse("\\Complexes");
+        TranslatedExpression te = mt.translate(pte, new LinkedList<>());
+        assertEquals("complex", te.getTranslatedExpression());
+    }
+
+    @Test
+    public void noSlotOfDifferentiationTest() throws ParseException {
+        MacroTranslator mt = new MacroTranslator(slt);
+        PomTaggedExpression pte = mlp.simpleParse("\\ncompositions[2]''@{n}");
+        List<PomTaggedExpression> elements = pte.getComponents();
+        TranslationException e = assertThrows( TranslationException.class, () -> mt.translate(elements.remove(0), elements) );
+        assertTrue( e.getMessage().toLowerCase().contains("no slot of differentiation") );
     }
 }

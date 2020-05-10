@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
+import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.cas.translation.components.MacroTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
@@ -17,8 +19,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Andre Greiner-Petter
@@ -317,6 +318,30 @@ class SimpleTranslationTests {
         PomTaggedExpression pte = stripOfDLMFInfo(input);
         TranslatedExpression trans = slt.translate(pte);
         assertEquals("cos(x)", trans.toString());
+    }
+
+    @Test
+    public void macroPackageTranslatorConfigOnOffTest() {
+        ForwardTranslationProcessConfig config = slt.getConfig();
+        String testExpression = "\\qGamma{q}@{\\qfactorial{n}{q}}";
+        String result = slt.translate(testExpression);
+
+        String expectedTranslation = "QGAMMA(q, QFactorial(n, q))";
+        String translationWithPackages = "with(QDifferenceEquations,QFactorial):with(QDifferenceEquations,QGAMMA): "
+                + expectedTranslation
+                + "; unwith(QDifferenceEquations,QFactorial):unwith(QDifferenceEquations,QGAMMA):";
+
+        assertEquals("QGAMMA(q, QFactorial(n, q))", result,
+                "The default setting should not show the required packages inline.");
+        String info = slt.getInfoLogger().toString();
+        System.out.println(info);
+        assertTrue(info.contains("QDifferenceEquations,QFactorial"));
+        assertTrue(info.contains("QDifferenceEquations,QGAMMA"));
+
+        config.setInlinePackageMode(true);
+        result = slt.translate(testExpression);
+
+        assertEquals(translationWithPackages, result);
     }
 
     /**
