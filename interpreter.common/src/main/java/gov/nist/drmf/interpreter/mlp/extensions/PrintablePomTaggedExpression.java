@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
+import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
 import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -20,10 +21,25 @@ import java.util.regex.Pattern;
  * @see gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper
  * @see PomTaggedExpression
  */
-public class PrintablePomTaggedExpression extends PomTaggedExpression {
-    private final List<PrintablePomTaggedExpression> printableComponents;
+public class PrintablePomTaggedExpression extends PomTaggedExpression implements IMatcher<PrintablePomTaggedExpression> {
+    private final LinkedList<PrintablePomTaggedExpression> printableComponents;
 
     private String caption;
+
+    /**
+     * Copy constructor
+     * @param ppte a previously valid printable PoM expression
+     */
+    public PrintablePomTaggedExpression( PrintablePomTaggedExpression ppte ) {
+        super(new MathTerm(ppte.getRoot().getTermText(), ppte.getRoot().getTag()), ppte.getTag(), ppte.getSecondaryTags());
+        this.caption = ppte.caption;
+        this.printableComponents = new LinkedList<>();
+        for ( PrintablePomTaggedExpression child : ppte.getPrintableComponents() ) {
+            PrintablePomTaggedExpression childCopy = new PrintablePomTaggedExpression(child);
+            this.printableComponents.add(childCopy);
+            super.addComponent(childCopy);
+        }
+    }
 
     public PrintablePomTaggedExpression( MathTerm mathTerm, String... exprTags ) {
         super(mathTerm, exprTags);
@@ -31,7 +47,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
         this.caption = mathTerm.getTermText();
     }
 
-    public PrintablePomTaggedExpression(PomTaggedExpression pte, String expr) {
+    public PrintablePomTaggedExpression( PomTaggedExpression pte, String expr ) {
         super();
         super.setRoot(pte.getRoot());
         super.setTag(pte.getTag());
@@ -51,8 +67,8 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
             String thisMatch = getStartingString(component);
             String nextMatch = getEndingString(component);
 
-            Pattern thisPattern = Pattern.compile(thisMatch, Pattern.LITERAL);
-            Pattern nextPattern = Pattern.compile(nextMatch, Pattern.LITERAL);
+            Pattern thisPattern = Pattern.compile(generatePattern(thisMatch));
+            Pattern nextPattern = Pattern.compile(nextMatch);
 
             Matcher thisM = thisPattern.matcher(expr);
             Matcher nextM = nextPattern.matcher(expr);
@@ -83,8 +99,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
             innerExpression = expr.substring(idxStart, idxEnd);
             expr = expr.substring(idxEnd);
 
-            PrintablePomTaggedExpression ppte =
-                    new PrintablePomTaggedExpression(component, innerExpression);
+            PrintablePomTaggedExpression ppte = new PrintablePomTaggedExpression(component, innerExpression);
             super.addComponent(ppte);
             printableComponents.add(ppte);
         }
@@ -96,6 +111,12 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
 
     private boolean isEndingIndexCloseBracket(int idxEnd, String expr) {
         return idxEnd < expr.length() && (expr.charAt(idxEnd) == ']' || expr.charAt(idxEnd) == '}');
+    }
+
+    private static String generatePattern(String input) {
+        if ( input.matches("[A-Za-z]+") ) {
+            return "(?<![A-Za-z])"+input+"(?![A-Za-z])";
+        } else return "\\Q"+input+"\\E";
     }
 
     private String getStartingString(PomTaggedExpression pte) {
@@ -110,28 +131,53 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
             token = mt.firstFontAction() + "{" + token + "}";
         }
 
-        return checkChoosenToken(token, pte);
+        return checkSubExpressionToken(token, pte);
     }
 
-    private String checkChoosenToken(String token, PomTaggedExpression pte) {
+    private String checkSubExpressionToken(String token, PomTaggedExpression pte) {
         if (token.isBlank()) {
             if (pte.getComponents().isEmpty()) {
                 // well, a blank token with no components is only possible by "{}". So we shall
                 // return this, I guess.
                 return "{";
-//                throw new IllegalArgumentException("Cannot find starting string of this expression " + pte);
-            }
-            return getStartingString(pte.getComponents().get(0));
+            } else return getStartingString(pte.getComponents().get(0));
         } else return token;
     }
 
     private String getEndingString(PomTaggedExpression pte) {
         List<PomTaggedExpression> components = pte.getComponents();
         if (components.isEmpty()) {
-            MathTerm mt = pte.getRoot();
-            return mt.getTermText();
+            String p = generatePattern(getStartingString(pte));
+            // this only happens for empty expression. Hence, we want the } symbol here.
+            if ( p.equals("\\Q{\\E") ) return "\\Q}\\E";
+            return p;
         } else {
-            return getEndingString(components.get(components.size() - 1));
+            int fromBehind = 1;
+            PomTaggedExpression lastElement = components.get(components.size() - fromBehind);
+
+            // if the last element has children, go a step deeper
+            if ( !lastElement.getComponents().isEmpty() ) {
+                return getEndingString(lastElement);
+            }
+
+            LinkedList<PomTaggedExpression> latestElements = new LinkedList<>();
+            latestElements.addFirst(lastElement);
+            fromBehind++;
+            // if the last element is a leaf, we can take as many previous leaves as we want
+            while ( lastElement.getComponents().isEmpty() && fromBehind <= components.size() ) {
+                lastElement = components.get(components.size() - fromBehind);
+                latestElements.addFirst(lastElement); // opposite order
+                fromBehind++;
+            }
+
+            StringBuilder entireListOfComponents = new StringBuilder();
+            for ( int i = 0; i < latestElements.size()-1; i++ ) {
+                entireListOfComponents.append(getEndingString(latestElements.get(i)));
+                entireListOfComponents.append("[\\s{}\\[\\]]*");
+            }
+            entireListOfComponents.append(getEndingString(latestElements.getLast()));
+
+            return entireListOfComponents.toString();
         }
     }
 
@@ -162,6 +208,12 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
         }
 
         return end;
+    }
+
+    @Override
+    public boolean match(PrintablePomTaggedExpression expression) {
+        MatchablePomTaggedExpression m = new MatchablePomTaggedExpression(this, "");
+        return m.match(expression);
     }
 
     @Override
@@ -271,7 +323,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression {
         }
     }
 
-    public List<PrintablePomTaggedExpression> getPrintableComponents() {
+    public LinkedList<PrintablePomTaggedExpression> getPrintableComponents() {
         return this.printableComponents;
     }
 
