@@ -4,19 +4,19 @@ import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
-import mlp.MLP;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.util.StringUtils;
 
-import java.util.Map;
+import java.util.*;
 
+import static gov.nist.drmf.interpreter.common.tests.IgnoresAllWhitespacesMatcher.ignoresAllWhitespaces;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * @author Andre Greiner-Petter
@@ -88,6 +88,23 @@ public class MatchablePomTaggedExpressionTests {
         MatchablePomTaggedExpression blueprint = new MatchablePomTaggedExpression(mlp, "par1+par2^x", "par\\d");
         checkMatch( blueprint, "par1", "a+b^x", "a" );
         checkMatch( blueprint, "par2", "a+b^x", "b" );
+    }
+
+    private void checkMatch( MatchablePomTaggedExpression test, String wildCard, String expression, String result )
+            throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parse(expression);
+        checkMatch(test, wildCard, ppte, result);
+    }
+
+    private void checkMatch(
+            MatchablePomTaggedExpression test,
+            String wildCard,
+            PrintablePomTaggedExpression ppte,
+            String result
+    ) {
+        assertTrue( test.match(ppte) );
+        assertTrue( test.getMatches().containsKey(wildCard) );
+        assertEquals( result, test.getStringMatches().get(wildCard) );
     }
 
     @Test
@@ -304,20 +321,322 @@ public class MatchablePomTaggedExpressionTests {
         assertNull(matches.get("var5"));
     }
 
-    private void checkMatch( MatchablePomTaggedExpression test, String wildCard, String expression, String result )
-            throws ParseException {
-        PrintablePomTaggedExpression ppte = mlp.parse(expression);
-        checkMatch(test, wildCard, ppte, result);
+    @Test
+    public void deepInsideGammaTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
+        String test = "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} " +
+                "\\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} " +
+                "\\left(\\frac{z-1}{2}\\right)^m";
+
+        PrintablePomTaggedExpression ppte = mlp.parse(test);
+        MatcherConfig matcherConfig = new MatcherConfig(true, false);
+        assertTrue(blueprint.match(ppte, matcherConfig));
+        Map<String, String> matches = blueprint.getStringMatches();
+        assertEquals("\\alpha + n + 1", matches.get("var1"));
     }
 
-    private void checkMatch(
-            MatchablePomTaggedExpression test,
-            String wildCard,
-            PrintablePomTaggedExpression ppte,
-            String result
-    ) {
-        assertTrue( test.match(ppte) );
-        assertTrue( test.getMatches().containsKey(wildCard) );
-        assertEquals( result, test.getStringMatches().get(wildCard) );
+    @Test
+    public void multiCycleMatchingOnSingleBlueprintTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "var1^{(var2, var3)}_{var4} (var5)", "(p|v)ar\\d");
+
+        for ( int i = 1; i < 11; i++ ) {
+            String test = "P_n^{(\\alpha,\\beta)}(x)";
+            PrintablePomTaggedExpression ppte = mlp.parse(test);
+            testAgain(i, blueprint, ppte);
+        }
+    }
+
+    @Test
+    public void multiCycleMatchingOnSingleTestExpressionTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "var1^{(var2, var3)}_{var4} (var5)", "(p|v)ar\\d");
+
+        String test = "P_n^{(\\alpha,\\beta)}(x)";
+        PrintablePomTaggedExpression ppte = mlp.parse(test);
+
+        for ( int i = 1; i < 11; i++ )
+            testAgain(i, blueprint, ppte);
+    }
+
+    private void testAgain(int cycle, MatchablePomTaggedExpression blueprint, PrintablePomTaggedExpression ppte) throws ParseException {
+        assertTrue(blueprint.match(ppte), "Failed in cycle: " + cycle);
+        Map<String, String> matches = blueprint.getStringMatches();
+        assertEquals("P", matches.get("var1"));
+        assertEquals("\\alpha", matches.get("var2"));
+        assertEquals("\\beta", matches.get("var3"));
+        assertEquals("n", matches.get("var4"));
+        assertEquals("x", matches.get("var5"));
+    }
+
+    @Test
+    public void pomMatcherFindSimpleTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
+
+        String test = "x + \\Gamma(x)";
+        PomMatcher pomMatcher = blueprint.matcher( test );
+        assertFalse(pomMatcher.match());
+        assertTrue(pomMatcher.find());
+
+        Map<String, String> groups = pomMatcher.groups();
+        assertEquals(1, groups.size());
+        assertEquals("x", groups.get("var1"));
+
+        // there is only one hit in the expression, so any following find should
+        // return false
+        for ( int i = 2; i < 4; i++ )
+            assertFalse(pomMatcher.find(), "Suddenly returned true again in find() invoke number " + i);
+    }
+
+    @Test
+    public void pomMatcherFindMultiHitsTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
+
+        String test = "x + \\Gamma(x) - \\Gamma(y)";
+        PomMatcher pomMatcher = blueprint.matcher( test );
+        assertFalse(pomMatcher.match());
+
+        assertTrue(pomMatcher.find());
+        Map<String, String> groups = pomMatcher.groups();
+        assertEquals(1, groups.size());
+        assertEquals("x", groups.get("var1"));
+
+        assertTrue(pomMatcher.find());
+        groups = pomMatcher.groups();
+        assertEquals(1, groups.size());
+        assertEquals("y", groups.get("var1"));
+
+        assertFalse(pomMatcher.find());
+    }
+
+    @Test
+    public void pomMatcherFindPseudoNestedHitsTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
+
+        String test = "\\Gamma(\\Gamma(\\Gamma(x)))";
+        PomMatcher pomMatcher = blueprint.matcher( test );
+        assertTrue(pomMatcher.match());
+        Map<String, String> groups = pomMatcher.groups();
+        assertEquals(1, groups.size());
+        assertThat("\\Gamma(\\Gamma(x))", ignoresAllWhitespaces(groups.get("var1")));
+
+        assertTrue(pomMatcher.find());
+        assertEquals(1, groups.size());
+        assertThat("\\Gamma(\\Gamma(x))", ignoresAllWhitespaces(groups.get("var1")));
+
+        assertTrue(pomMatcher.find());
+        groups = pomMatcher.groups();
+        assertEquals(1, groups.size());
+        assertThat("\\Gamma(x)", ignoresAllWhitespaces(groups.get("var1")));
+
+        assertTrue(pomMatcher.find());
+        groups = pomMatcher.groups();
+        assertEquals(1, groups.size());
+        assertEquals("x", groups.get("var1"));
+
+        assertFalse(pomMatcher.find());
+    }
+
+    @Test
+    public void pomMatcherFindRealNestedHitsTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "\\Gamma{var1}", "(p|v)ar\\d");
+
+        String test = "\\Gamma{\\Gamma{\\Gamma{x}}}";
+        PomMatcher pomMatcher = blueprint.matcher( test );
+        assertTrue(pomMatcher.match());
+        Map<String, String> groups = pomMatcher.groups();
+        assertEquals(1, groups.size());
+        assertThat("\\Gamma{\\Gamma{x}}", ignoresAllWhitespaces(groups.get("var1")));
+
+        assertTrue(pomMatcher.find());
+        assertEquals(1, groups.size());
+        assertThat("\\Gamma{\\Gamma{x}}", ignoresAllWhitespaces(groups.get("var1")));
+
+        assertTrue(pomMatcher.find());
+        groups = pomMatcher.groups();
+        assertEquals(1, groups.size());
+        assertThat("\\Gamma{x}", ignoresAllWhitespaces(groups.get("var1")));
+
+        assertTrue(pomMatcher.find());
+        groups = pomMatcher.groups();
+        assertEquals(1, groups.size());
+        assertEquals("x", groups.get("var1"));
+
+        assertFalse(pomMatcher.find());
+    }
+
+    @Test
+    public void pomMatcherFindDoubleArgTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "\\sin(var1)", "(p|v)ar\\d");
+
+        String test = "\\sin (x-z) + \\sin (x + y^2)}";
+        PomMatcher pomMatcher = blueprint.matcher( test );
+
+        assertTrue(pomMatcher.find());
+        Map<String, String> groups = pomMatcher.groups();
+        assertEquals("x - z", groups.get("var1"));
+
+        assertTrue(pomMatcher.find());
+        groups = pomMatcher.groups();
+        assertEquals("x + y^2", groups.get("var1"));
+
+        assertFalse(pomMatcher.find());
+    }
+
+    @Test
+    public void pomMatcherFindFractionTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "\\sin(var1)", "(p|v)ar\\d");
+
+        String test = "\\frac{\\sin (x) + z}{a + \\sin (y) + b}";
+        PomMatcher pomMatcher = blueprint.matcher( test );
+
+        assertTrue(pomMatcher.find());
+        Map<String, String> groups = pomMatcher.groups();
+        assertEquals("x", groups.get("var1"));
+
+        assertTrue(pomMatcher.find());
+        groups = pomMatcher.groups();
+        assertEquals("y", groups.get("var1"));
+
+        assertFalse(pomMatcher.find());
+    }
+
+    @Test
+    public void pomMatcherFindMultiFractionTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "\\sin(var1)", "(p|v)ar\\d");
+
+        String test = "\\frac{\\sin (x)}{\\sin (y)} - \\frac{\\sin (z)}{\\sin (q^2)}";
+        PomMatcher pomMatcher = blueprint.matcher( test );
+        Set<String> registeredHits = new HashSet<>();
+        while ( pomMatcher.find() ) {
+            // store all hits
+            Map<String, String> groups = pomMatcher.groups();
+            registeredHits.addAll( groups.values() );
+        }
+
+        // check if we found all:
+        assertTrue( registeredHits.contains("x"), registeredHits.toString() );
+        assertTrue( registeredHits.contains("y"), registeredHits.toString() );
+        assertTrue( registeredHits.contains("z"), registeredHits.toString() );
+        assertTrue( registeredHits.contains("q^2"), registeredHits.toString() );
+        assertEquals( 4, registeredHits.size(), registeredHits.toString() );
+    }
+
+    @Test
+    public void pomMatcherFindHardJacobiRealWorldExampleTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
+
+        String test = "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} " +
+                "\\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} " +
+                "\\left(\\frac{z-1}{2}\\right)^m";
+
+        // lets not care about the order of the hits, so lets store them first and check later.
+        Set<String> registeredHits = new HashSet<>();
+
+        PomMatcher pomMatcher = blueprint.matcher(test);
+        while ( pomMatcher.find() ) {
+            // store all hits
+            Map<String, String> groups = pomMatcher.groups();
+            registeredHits.addAll( groups.values() );
+        }
+
+        // check if we found all:
+        assertTrue( registeredHits.contains("\\alpha + n + 1"), registeredHits.toString() );
+        assertTrue( registeredHits.contains("\\alpha + \\beta + n + 1"), registeredHits.toString() );
+        assertTrue( registeredHits.contains("\\alpha + \\beta + n + m + 1"), registeredHits.toString() );
+        assertTrue( registeredHits.contains("\\alpha + m + 1"), registeredHits.toString() );
+        assertEquals( 4, registeredHits.size(), registeredHits.toString() );
+    }
+
+    @Test
+    public void pomMatcherFindStartingWildcardTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "var1(var2)", "(p|v)ar\\d");
+
+        String test = "f(x) + g(y)";
+        PomMatcher pomMatcher = blueprint.matcher(test);
+
+        assertTrue(pomMatcher.find());
+        Map<String, String> groups = pomMatcher.groups();
+        assertEquals("f", groups.get("var1"));
+        assertEquals("x", groups.get("var2"));
+        assertEquals(2, groups.values().size());
+
+        assertTrue(pomMatcher.find());
+        groups = pomMatcher.groups();
+        assertEquals("g", groups.get("var1"));
+        assertEquals("y", groups.get("var2"));
+        assertEquals(2, groups.values().size());
+
+        assertFalse(pomMatcher.find());
+    }
+
+    @Test
+    public void pomMatcherFindStartingWildcardBacklogTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "var1(var2)", "(p|v)ar\\d");
+
+        String test = "F_1(x)";
+        PomMatcher pomMatcher = blueprint.matcher(test);
+
+        assertTrue(pomMatcher.find());
+        Map<String, String> groups = pomMatcher.groups();
+        assertEquals("F_1", groups.get("var1"));
+        assertEquals("x", groups.get("var2"));
+        assertEquals(2, groups.values().size());
+
+        assertFalse(pomMatcher.find());
+    }
+
+    @Test
+    public void pomMatcherFindVeryHardRealWorldTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "var1(var2)", "(p|v)ar\\d");
+
+        String test = "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} " +
+                "\\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} " +
+                "\\left(\\frac{z-1}{2}\\right)^m";
+
+        // lets not care about the order of the hits, so lets store them first and check later.
+        Map<String, List<String>> allGroups = new HashMap<>();
+
+        PomMatcher pomMatcher = blueprint.matcher(test);
+        while ( pomMatcher.find() ) {
+            // store all hits
+            Map<String, String> groups = pomMatcher.groups();
+            String key = groups.get("var1");
+            allGroups.computeIfAbsent( key, k -> new LinkedList<>() ).add(groups.get("var2"));
+        }
+
+        checkComplexHitStructure(allGroups, "P_n^{(\\alpha,\\beta)}", "z");
+        checkComplexHitStructure(allGroups, "\\Gamma",
+                "\\alpha + n + 1",
+                "\\alpha + \\beta + n + 1",
+                "\\alpha + \\beta + n + m + 1",
+                "\\alpha + m + 1"
+        );
+
+        // only these two keys exists, nothing else
+        assertEquals(2, allGroups.keySet().size());
+    }
+
+    private void checkComplexHitStructure( Map<String, List<String>> groups, String key, String... values ) {
+        // first, check the key exists
+        assertTrue( groups.containsKey(key), groups.toString() );
+        // second, check all required values exist
+        for ( String v : values ) {
+            assertTrue( groups.get(key).contains(v), groups.get(key).toString() );
+        }
+        // third, check if no more values than the required values exists
+        assertEquals( values.length, groups.get(key).size(), groups.get(key).toString() );
     }
 }

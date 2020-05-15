@@ -154,7 +154,11 @@ public class PomTaggedExpressionChildrenMatcher {
             PrintablePomTaggedExpression firstElement = children.remove(0);
             expression.getComponents().remove(0);
             backup.add(firstElement);
-
+            if ( firstElement.getComponents().size() > 0 ) {
+                // its itself a sequence
+                currentMatch = sequenceInPlaceMatch(firstElement, config);
+                if ( currentMatch ) return true;
+            } // if it has no components, we simply match as usual
             currentMatch = parent.match(expression, new LinkedList<>(), config);
         }
 
