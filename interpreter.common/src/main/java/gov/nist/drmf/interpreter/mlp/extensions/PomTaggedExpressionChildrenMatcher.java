@@ -17,11 +17,6 @@ public class PomTaggedExpressionChildrenMatcher {
     private final MatchablePomTaggedExpression parent;
 
     /**
-     * The group captures
-     */
-    private final GroupCaptures captures;
-
-    /**
      * The children of the parent node
      */
     private final LinkedList<MatchablePomTaggedExpression> children;
@@ -30,11 +25,9 @@ public class PomTaggedExpressionChildrenMatcher {
      * @param parent the parent node
      */
     PomTaggedExpressionChildrenMatcher(
-            MatchablePomTaggedExpression parent,
-            GroupCaptures groupCaptures
+            MatchablePomTaggedExpression parent
     ) {
         this.parent = parent;
-        this.captures = groupCaptures;
         this.children = new LinkedList<>();
     }
 
@@ -108,78 +101,5 @@ public class PomTaggedExpressionChildrenMatcher {
         }
 
         return (config.allowFollowingTokens() && !refComponents.isEmpty()) || idx == size();
-    }
-
-    /**
-     * Considers the children of this class as members of a sequence and matches them
-     * against the the given sequence {@param expression}. This allows an in place matching,
-     * meaning that it allows leading and following tokens that do not match the children.
-     * It returns true if any subsequence of {@param expression} matches the this object.
-     * @param expression the sequence to match
-     * @param config matching config
-     * @return true if any subsequence of {@param expression} matches, otherwise false. It only
-     * captures the first identified match!
-     */
-    public boolean sequenceInPlaceMatch(PrintablePomTaggedExpression expression, MatcherConfig config) {
-        List<PrintablePomTaggedExpression> children = expression.getPrintableComponents();
-        LinkedList<PrintablePomTaggedExpression> backup = new LinkedList<>();
-        MatchablePomTaggedExpression matchBackUp = null;
-
-        // until we hit non-wildcard element
-        while ( isFirstChildWildcard() ) {
-            matchBackUp = removeFirst();
-        }
-
-        // start matching from here
-        boolean findMatch = findNextMatch(expression, children, backup, config);
-        if ( !findMatch ) return false;
-
-        // rollback wildcards, but only take one hit
-        rollbackSkippedWildcards(expression, backup, matchBackUp);
-
-        return true;
-    }
-
-    private boolean findNextMatch(
-            PrintablePomTaggedExpression expression,
-            List<PrintablePomTaggedExpression> children,
-            LinkedList<PrintablePomTaggedExpression> backup,
-            MatcherConfig config
-    ) {
-        boolean currentMatch = parent.match(expression, new LinkedList<>(), config);
-        while ( !currentMatch ) {
-            if ( children.size() <= 1 ) return false;
-            captures.clear();
-
-            PrintablePomTaggedExpression firstElement = children.remove(0);
-            expression.getComponents().remove(0);
-            backup.add(firstElement);
-            if ( firstElement.getComponents().size() > 0 ) {
-                // its itself a sequence
-                currentMatch = sequenceInPlaceMatch(firstElement, config);
-                if ( currentMatch ) return true;
-            } // if it has no components, we simply match as usual
-            currentMatch = parent.match(expression, new LinkedList<>(), config);
-        }
-
-        return true;
-    }
-
-    private void rollbackSkippedWildcards(
-            PrintablePomTaggedExpression expression,
-            LinkedList<PrintablePomTaggedExpression> backup,
-            MatchablePomTaggedExpression matchBackUp
-    ) {
-        if (matchBackUp != null) {
-            PrintablePomTaggedExpression backupElement = backup.removeLast();
-            captures.setCapturedGroup( matchBackUp.getWildcardID(), backupElement );
-            this.children.addFirst(matchBackUp);
-            parent.addComponent(0, matchBackUp);
-            expression.addComponent(0, backupElement);
-        }
-
-        while ( !backup.isEmpty() ) {
-            expression.addComponent(0, backup.removeLast());
-        }
     }
 }
