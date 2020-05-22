@@ -22,8 +22,6 @@ import java.util.regex.Pattern;
  * @see PomTaggedExpression
  */
 public class PrintablePomTaggedExpression extends PomTaggedExpression implements IMatcher<PrintablePomTaggedExpression> {
-    private final LinkedList<PrintablePomTaggedExpression> printableComponents;
-
     private String caption;
 
     /**
@@ -33,17 +31,15 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
     public PrintablePomTaggedExpression( PrintablePomTaggedExpression ppte ) {
         super(new MathTerm(ppte.getRoot().getTermText(), ppte.getRoot().getTag()), ppte.getTag(), ppte.getSecondaryTags());
         this.caption = ppte.caption;
-        this.printableComponents = new LinkedList<>();
+        ppte.getNamedFeatures().entrySet().forEach( e -> super.addNamedFeature(e.getKey(), e.getValue()) );
         for ( PrintablePomTaggedExpression child : ppte.getPrintableComponents() ) {
             PrintablePomTaggedExpression childCopy = new PrintablePomTaggedExpression(child);
-            this.printableComponents.add(childCopy);
             super.addComponent(childCopy);
         }
     }
 
     public PrintablePomTaggedExpression( MathTerm mathTerm, String... exprTags ) {
         super(mathTerm, exprTags);
-        this.printableComponents = new LinkedList<>();
         this.caption = mathTerm.getTermText();
     }
 
@@ -58,7 +54,6 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
         // the fun part, every node has it's own caption
         expr = expr.trim();
         this.caption = expr;
-        this.printableComponents = new LinkedList<>();
 
         // now we have to add the components and their respective substrings...
         for (PomTaggedExpression component : pte.getComponents()) {
@@ -101,7 +96,6 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
 
             PrintablePomTaggedExpression ppte = new PrintablePomTaggedExpression(component, innerExpression);
             super.addComponent(ppte);
-            printableComponents.add(ppte);
         }
     }
 
@@ -210,77 +204,99 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
         return end;
     }
 
+    public void clearComponents(){
+        super.getComponents().clear();
+        this.caption = "";
+    }
+
+    /*
+     * ==================================================================
+     * Take care that it is literally impossible to add non printable objects
+     * to this node. Hence we need to overwrite all modifying methods.
+     */
+
+    /**
+     * @return true if this node has no children, otherwise false.
+     */
+    public boolean hasNoChildren() {
+        return super.getComponents().isEmpty();
+    }
+
     @Override
     public boolean match(PrintablePomTaggedExpression expression) {
         MatchablePomTaggedExpression m = new MatchablePomTaggedExpression(this, "");
         return m.match(expression);
     }
 
+    /**
+     * Provides an adapter for the {@link #setComponents(List)} method, which only
+     * allows components of type {@link PomTaggedExpression} rather than
+     * {@code List<? extends PomTaggedExpression>}.
+     * @param components a list of components.
+     */
+    @SuppressWarnings("unchecked")
+    public void setPrintableComponents(List<? extends PomTaggedExpression> components) {
+        this.setComponents( (List<PomTaggedExpression>) components );
+    }
+
+    /**
+     * @deprecated use {@link #setPrintableComponents(List)} instead.
+     */
     @Override
+    @Deprecated
     public void setComponents(List<PomTaggedExpression> components) {
-        innerSetComponents(components);
+        checkComponentValidity(components);
         super.setComponents(components);
         populatingStringChanges();
     }
 
+    /**
+     * @deprecated use {@link #setPrintableComponents(List)} instead.
+     */
     @Override
+    @Deprecated
     public void setComponents(PomTaggedExpression... components) {
-        innerSetComponents(Arrays.asList(components));
+        checkComponentValidity(Arrays.asList(components));
         super.setComponents(components);
         populatingStringChanges();
     }
 
-    private void innerSetComponents(Iterable<PomTaggedExpression> components) {
-        printableComponents.clear();
+    private void checkComponentValidity(Iterable<PomTaggedExpression> components) throws IllegalArgumentException {
         for (PomTaggedExpression pte : components) {
-            if (!(pte instanceof PrintablePomTaggedExpression))
-                throw new IllegalArgumentException("Printable tree must contain only printable elements.");
-            else {
-                printableComponents.add((PrintablePomTaggedExpression)pte);
-            }
+            checkComponentValidity(pte);
         }
+    }
+
+    private void checkComponentValidity(PomTaggedExpression component) throws IllegalArgumentException {
+        if (!(component instanceof PrintablePomTaggedExpression))
+            throw new IllegalArgumentException("Printable tree must contain only printable elements.");
     }
 
     @Override
     public boolean addComponent(PomTaggedExpression pte) {
-        if (pte instanceof PrintablePomTaggedExpression) {
-            boolean res = super.addComponent(pte);
-            if (res) {
-                printableComponents.add((PrintablePomTaggedExpression) pte);
-                populatingStringChanges();
-            }
-            return res;
-        } else {
-            throw new IllegalArgumentException("Printable tree must contain only printable elements.");
+        checkComponentValidity(pte);
+        boolean res = super.addComponent(pte);
+        if (res) {
+            populatingStringChanges();
         }
+        return res;
     }
 
     @Override
     public boolean addComponent(int i, PomTaggedExpression pte) {
-        if (pte instanceof PrintablePomTaggedExpression) {
-            boolean res = super.addComponent(i, pte);
-            if (res) {
-                printableComponents.add(i, (PrintablePomTaggedExpression) pte);
-                populatingStringChanges();
-            }
-            return res;
-        } else {
-            throw new IllegalArgumentException("Printable tree must contain only printable elements.");
+        checkComponentValidity(pte);
+        boolean res = super.addComponent(i, pte);
+        if (res) {
+            populatingStringChanges();
         }
+        return res;
     }
 
     @Override
     public void set(PomTaggedExpression pte) {
-        if (pte instanceof PrintablePomTaggedExpression) {
-            super.set(pte);
-            printableComponents.clear();
-            for ( PomTaggedExpression comp : pte.getComponents() ) {
-                printableComponents.add((PrintablePomTaggedExpression)comp);
-            }
-            populatingStringChanges();
-        } else {
-            throw new IllegalArgumentException("Printable tree must contain only printable elements.");
-        }
+        checkComponentValidity(pte);
+        super.set(pte);
+        populatingStringChanges();
     }
 
     @Override
@@ -288,11 +304,11 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
         String newCaption = PrintablePomTaggedExpressionUtils.getInternalNodeCommand(mathTerm);
         replaceCaption(newCaption);
         if ( getParent() != null ) {
-            PrintablePomTaggedExpression parent = (PrintablePomTaggedExpression)getParent();
+            PrintablePomTaggedExpression parent = (PrintablePomTaggedExpression) getParent();
             parent.populatingStringChanges();
         }
 
-        for ( PrintablePomTaggedExpression ppte : printableComponents ){
+        for ( PrintablePomTaggedExpression ppte : getPrintableComponents() ){
             this.caption += ppte.caption;
         }
 
@@ -311,9 +327,9 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
      * Populates string changes from here onwards to the root of the tree.
      */
     private void populatingStringChanges() {
-        if ( !printableComponents.isEmpty() ) {
+        if ( !hasNoChildren() ) {
             String newCaption = PrintablePomTaggedExpressionUtils.getInternalNodeCommand(this);
-            newCaption += PrintablePomTaggedExpressionUtils.buildString(printableComponents);
+            newCaption += PrintablePomTaggedExpressionUtils.buildString(getPrintableComponents());
             replaceCaption(newCaption);
         }
 
@@ -323,10 +339,34 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
         }
     }
 
-    public LinkedList<PrintablePomTaggedExpression> getPrintableComponents() {
-        return this.printableComponents;
+    /**
+     * This is rather tricky. Unfortunately, the internal {@link PomTaggedExpression#getComponents()}
+     * do not allow elements of subclasses such as this printable class. Unless the super class declares
+     * the internal components via {@code List<? extends PomTaggedExpression>}, we cannot simply cast
+     * the instance like:
+     * <pre>{@code
+     *     List<PrintablePomTaggedExpression> casted = (List<PrintablePomTaggedExpression>) super.getComponents();
+     * }</pre>
+     *
+     * On the other hand, carrying a copy of the components makes it very hard to keep them synced.
+     * Hence, we use a hacky workaround here and cast to a generic {@code List<?>} first.
+     *
+     * Note that this list is NOT a copy of the original components get from {@link PomTaggedExpression#getComponents()}.
+     * It is the same reference.
+     * @return returns the list of components, cast to a list of {@link PrintablePomTaggedExpression}.
+     */
+    @SuppressWarnings("unchecked")
+    public List<PrintablePomTaggedExpression> getPrintableComponents() {
+        return (List<PrintablePomTaggedExpression>)(List<?>) super.getComponents();
     }
 
+    /**
+     * Should be not misunderstood with {@link #getTextTokens()}! This provides access to the actual
+     * LaTeX string that generated this parse tree. The whole idea of implementing a printable version
+     * of {@link PomTaggedExpression} was just this method.
+     * @return the TeX string from this node. If this node is not a leaf, it contains the compound strings
+     * from it's children.
+     */
     public String getTexString() {
         return caption;
     }
