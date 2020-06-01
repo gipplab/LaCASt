@@ -73,7 +73,7 @@
         <jacoco.report.dir>${main.basedir}/target</jacoco.report.dir>
 
         <!-- Setup Logging -->
-        <log4j2.version>2.13.2</log4j2.version>
+        <log4j2.version>2.13.3</log4j2.version>
 
         <!-- Addition versions -->
         <jackson.version>2.10.1</jackson.version>
