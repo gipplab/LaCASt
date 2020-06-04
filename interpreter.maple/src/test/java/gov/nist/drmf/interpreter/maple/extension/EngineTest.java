@@ -3,7 +3,6 @@ package gov.nist.drmf.interpreter.maple.extension;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.Engine;
-import com.maplesoft.openmaple.EngineCallBacks;
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;

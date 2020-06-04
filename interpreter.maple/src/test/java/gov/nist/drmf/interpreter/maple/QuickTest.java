@@ -31,8 +31,6 @@ public class QuickTest {
     @Disabled
     @Test
     public void streamTest(){
-        //Path p = Paths.get("interpreter.maple", "src", "test", "resources", "Test.txt");
-
         Path p = GlobalPaths.PATH_REFERENCE_DATA.resolve("Test.txt");
         try (BufferedReader reader = Files.newBufferedReader( p )){
             reader.lines()

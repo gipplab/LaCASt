@@ -68,7 +68,7 @@ public class Translator {
      */
     public Translator() throws IOException {
         // setup logging
-        System.setProperty( Keys.KEY_SYSTEM_LOGGING, GlobalPaths.PATH_LOGGING_CONFIG.toString() );
+//        System.setProperty( Keys.KEY_SYSTEM_LOGGING, GlobalPaths.PATH_LOGGING_CONFIG.toString() );
 
         LOG.debug("Instantiate forward translation to Maple");
         dlmfMapleInterface = new SemanticLatexTranslator(Keys.KEY_MAPLE);
