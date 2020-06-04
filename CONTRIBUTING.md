@@ -259,7 +259,8 @@ in IntelliJ, check the hint in step 8 (*Build and Run in IntelliJ*) under [Setup
 5. **Mathematica License Expired**: Under unknown circumstances, it may appear that your free (and unlimited) license of
 the wolfram engine for developers suddenly *expired*. This seems to be a bug in the licensing file. Under your home directory
 you find the `~/.WolframEngine/Licensing/mathpass` file. This error occurs when this file contains multiple entities (multiple
-lines). Backup the file first, then delete all lines with only one remaining (the line shall start with the name of your machine). 
+lines). See Wolfram's [mathpass support page](https://support.wolfram.com/112) for more information. 
+Backup the file first, then delete all lines with only one remaining (the line shall start with the name of your machine). 
 This should solve the error. If the error remains, there might be another issue with your license. Try if you can start the
 engine on the console (without LaCASt). If this works but LaCASt doesn't, contact [André Greiner-Petter](https://github.com/AndreG-P)
 or open an ticket. If the console approach doesn't work either, contact Wolfram to check your license.

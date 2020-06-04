@@ -1,0 +1,48 @@
+# =================================================================================================
+# This config contains the replacement rules for the DLMF equations
+#
+# Each rule contains the following information
+#   pattern: java regex replacement rule
+#   replacement (optional): the replacement string ($1 addresses group 1 of the pattern), no
+#                           replacement will delete the match (replace my empty string).
+#   groups (optional): when the replacement handles groups, specify the number of groups here
+#   condition (optional): a list of DLMF equation numbers. The replacements will be applied only
+#                         to the equation that matches these labels. If you specify 2, the rule
+#                         will be applied to all equations in the 2nd section. You can also specify
+#                         ranges by adding '-', e.g., 5.6#E3-5.6#E4.
+# =================================================================================================
+dlmfReplacementRules:
+  - pattern: (?<!\\[A-Za-z]{0,30})i(.|$)
+    replacement: \\iunit $1
+    groups: 1
+    condition: [1-12, 14, 17-25, 30, 31, 32, 36]
+  - pattern: \\pi([^a-zA-Z]|$)
+    replacement: \\cpi$1
+    groups: 1
+    condition: [1, 2, 4-25, 28-36]
+  - pattern: (?<!\\[A-Za-z]{0,30})e(.|$)
+    replacement: \\expe $1
+    groups: 1
+    condition: [1-15, 18, 20-25, 27, 28, 30, 32, 33]
+  - pattern: \\gamma([^a-zA-Z]|$)
+    replacement: \\EulerConstant$1
+    groups: 1
+    condition: [9, 13]
+  - pattern: (^|[^a-zA-Z])K'([^a-zA-Z]|$)
+    replacement: $1\\ccompellintKk@@{k}$2
+    groups: 2
+    condition: [22]
+  - pattern: (^|[^a-zA-Z])K([^'a-zA-Z]|$)
+    replacement: $1\\compellintKk@@{k}$2
+    groups: 2
+    condition: [22]
+  - pattern: \{k\^\{\\prime}}\^\{2}
+    replacement: \{1-k^2\}
+    condition: [19, 22, 28, 29]
+  - pattern: k\^\{\\prime}
+    replacement: \\sqrt{1-k^2}
+    condition: [19, 22, 28, 29]
+  - pattern: \\zeta([^a-zA-Z]|$)
+    replacement: \{\\frac\{2}\{3} z^\{\\frac\{3}\{2}}}$1
+    groups: 1
+    condition: [9.5-9.12]
