@@ -91,7 +91,12 @@ Currently in submission, no bibtex available yet.
 </details>
 
 # How to use our program<a name="howTo"></a>
-The bin directory contains a couple of executable jars.
+The bin directory contains a couple of executable jars. Any of these programs require the `lacast.config.yaml`.
+This config file must specify the paths to the `libs` and `config` folder, see [lacast.config.yaml](lacast.config.yaml).
+LaCASt tries to load the config automatically following these approaches:
+1. There a system environment that specifies the file location: `export LACAST_CONFIG="path/to/lacast.config.yaml"`.
+2. The config file is in the current directory
+3. Loads the default config from the resources in the jar.
 
 <details><summary><code>latex-to-cas-converter.jar</code>: The forward translator (LaTeX -> CAS)</summary>
 
