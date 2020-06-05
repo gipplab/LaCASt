@@ -8,7 +8,7 @@ import mlp.Lexicon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 
 /**
@@ -42,33 +42,48 @@ public class TranslationConsumer implements LexiconInfoConsumer {
     public void accept(String[] elements) {
         lineAnalyzer.setLine( elements );
 
+        // get feature set of the DLMF macro, it should already exist
         FeatureSet fset = getFeatureSet();
+        // if not, we cant do anything here
         if ( fset == null ) return;
 
-        // get current CAS name
-        String casPrefix = lineAnalyzer.getCasPrefix();
-
-        // add infos from DLMF_<CAS>.csv first
-        addFeatures(fset, casPrefix);
-
-        // get the name and pattern of the translation
-        String cas_func_pattern = lineAnalyzer.getValue( casPrefix );
-        if ( cas_func_pattern == null || cas_func_pattern.isEmpty() )
+        if ( lineAnalyzer.getValue(cas).isBlank() && lineAnalyzer.getValue(cas+Keys.KEY_ALTERNATIVE_SUFFX).isBlank() ) {
+            LOG.info("No translation available for " + cas + ": function -> " + fset.getFeature(Keys.KEY_DLMF).first());
             return;
+        }
 
-        InfoHolder holder = LexiconConverterUtility.getFuncNameAndFillInteger(
-                cas_func_pattern,
-                "Not able to link further information about " + cas_func_pattern,
+        try {
+            String originalDLMF = fset.getFeature(Keys.KEY_DLMF).first();
+            ForwardTranslationFileHeaders.DLMF.fillFeatureSet(fset, lineAnalyzer, cas);
+            fset.setFeature(Keys.KEY_DLMF, originalDLMF, MacrosLexicon.SIGNAL_INLINE);
+            addTranslation(fset);
+        } catch (NullPointerException npe) {
+            LOG.warn("Unable to read necessary translation information for " + fset.getFeature(Keys.KEY_DLMF) + " ("+npe.getMessage()+")", npe);
+        }
+    }
+
+    private void addTranslation(FeatureSet fset) {
+        // get the name and pattern of the translation
+        boolean isStraightAvailable = true;
+        SortedSet<String> f = fset.getFeature(cas);
+        if ( f == null || f.isEmpty() ) {
+            isStraightAvailable = false;
+            f = fset.getFeature(cas+Keys.KEY_ALTERNATIVE_SUFFX);
+        }
+        String function = f.first();
+
+        FunctionInfoHolder holder = LexiconConverterUtility.getFuncNameAndFillInteger(
+                function,
+                "Not able to link further information about " + function,
                 lineAnalyzer
         );
 
-        if ( holder != null ) cas_func_pattern = holder.getPattern();
+        if ( holder != null ) function = holder.getPattern();
 
         // add translation info
-        fset.addFeature( casPrefix, cas_func_pattern, MacrosLexicon.SIGNAL_INLINE );
-
+        if ( isStraightAvailable ) fset.setFeature( cas, function, MacrosLexicon.SIGNAL_INLINE );
+        addFurtherInfoToFeature(holder, fset, cas);
         stats.tickCAS(cas);
-        addFurtherInfoToFeature(holder, fset, casPrefix);
     }
 
     private FeatureSet getFeatureSet() {
@@ -131,41 +146,27 @@ public class TranslationConsumer implements LexiconInfoConsumer {
     ) {
         String macro_col = lineAnalyzer.getValue( Keys.KEY_DLMF );
         if ( opt_para != null ){
-            if ( alternativeF == null ){
-                LOG.warn("Null alternative set! " + macro_col);
-            } return alternativeF;
+            return checkFeatureSet(alternativeF, "No alternative feature set found, but is required!", macro_col);
         } else if (paras != null) {
-            LOG.warn("Parameters not in special syntax. " +
-                    "Has to be defined as 'X<digit>:<name>X<Macro>'. " + macro_col);
+            LOG.warn("Parameters are not in special syntax. " +
+                    "Has to be defined as 'X<digit>:<name>X<Macro>'. [CAS: " + cas + ", Macro: " + macro_col + "]");
+            return null;
         } else {
-            if ( dlmfF == null ){
-                LOG.warn("There is no feature set for this term? " + macro_col);
-            } return dlmfF;
+            return checkFeatureSet(dlmfF, "There is no feature set for this term?", macro_col);
         }
-        return null;
     }
 
-    private void addFeatures(FeatureSet fset, String casPrefix) {
-        // add infos from DLMF_<CAS>.csv first
-        DLMFTranslationHeaders h;
-        h = DLMFTranslationHeaders.dlmf_comment;
-        fset.addFeature( h.getFeatureKey(casPrefix),
-                lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
-                MacrosLexicon.SIGNAL_INLINE);
-        h = DLMFTranslationHeaders.cas_alternatives;
-        fset.addFeature( h.getFeatureKey(casPrefix),
-                lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
-                MacrosLexicon.SIGNAL_INLINE);
-        h = DLMFTranslationHeaders.cas_package;
-        fset.addFeature( h.getFeatureKey(casPrefix),
-                lineAnalyzer.getValue( h.getCSVKey(casPrefix) ),
-                MacrosLexicon.SIGNAL_INLINE);
-    }
-
-    private void addFurtherInfoToFeature(InfoHolder holder, FeatureSet fset, String casPrefix) {
-        if ( holder != null && holder.getCasName() != null && holder.getNumVars() != null ){
-            CASInfo info = cache.get( holder.getCasName(), holder.getNumVars() );
+    private void addFurtherInfoToFeature(FunctionInfoHolder holder, FeatureSet fset, String casPrefix) {
+        if ( holder != null && holder.getCasFunctionName() != null ){
+            CASFunctionMetaInfo info = cache.get( holder.getCasFunctionName(), holder.getNumVars() );
             LexiconConverterUtility.fillFeatureWithInfos(info, fset, casPrefix);
         }
+    }
+
+    private FeatureSet checkFeatureSet(FeatureSet fset, String message, String macro) {
+        if ( fset == null ){
+            LOG.warn(message + " [CAS: " + cas + ", Macro: " + macro + "]");
+            return null;
+        } return fset;
     }
 }

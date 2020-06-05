@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.interfaces.IPackageWrapper;
 import gov.nist.drmf.interpreter.evaluation.common.*;
 import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
 import org.apache.logging.log4j.LogManager;
@@ -35,7 +36,12 @@ public abstract class AbstractEvaluator<T> {
 
     private SymbolDefinedLibrary symbolDefinitionLibrary;
 
+    private IPackageWrapper packageWrapper;
+    private Set<String> reqPackageMemory;
+
     public static int DEFAULT_OUTPUT_LENGTH = 150;
+
+    private boolean rememberPackages = false;
 
     public static final Pattern filterCases = Pattern.compile(
             "\\\\([Bb]igO|littleo|[fdc]Diff|asymp|sim|[lc]?dots)(?:[^a-zA-Z]|$)|" +
@@ -48,17 +54,34 @@ public abstract class AbstractEvaluator<T> {
             IComputerAlgebraSystemEngine<T> engine
     ) {
         this.forwardTranslator = forwardTranslator;
+        this.packageWrapper = forwardTranslator.getPackageWrapper();
+        this.reqPackageMemory = new TreeSet<>();
         this.engine = engine;
         this.missingMacrosLib = new HashMap<>();
         this.symbolDefinitionLibrary = new SymbolDefinedLibrary();
     }
 
+    public void startRememberPackages() {
+        reqPackageMemory.clear();
+        this.rememberPackages = true;
+    }
+
     public String forwardTranslate( String in, String label ) throws TranslationException {
-        return forwardTranslator.translate(in, label);
+        String translation = forwardTranslator.translate(in, label);
+        if ( rememberPackages ) reqPackageMemory.addAll( forwardTranslator.getRequiredPackages() );
+        return translation;
+    }
+
+    public void stopRememberPackages() {
+        this.rememberPackages = false;
     }
 
     public T enterEngineCommand(String cmd) throws ComputerAlgebraSystemEngineException {
         return engine.enterCommand(cmd);
+    }
+
+    public Set<String> getRequiredPackages() {
+        return reqPackageMemory;
     }
 
     public String getCASListRepresentation( List<String> list ) {

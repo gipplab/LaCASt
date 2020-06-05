@@ -7,7 +7,7 @@
 1. [Setup Project](#start)
 2. [Generate Jars](#jars)
 3. [Test Coverage](#test-coverage)
-4. [Update or add a new CAS to the translation process](#howToUpdate)
+4. [Update translation patterns](#howToUpdate)
 5. [The program structure and important main classes](#program)
 6. [Troubleshooting](#troubleshooting)
 
@@ -180,14 +180,45 @@ mvn test -DjacocoReport=full
 ```
 The results can be found in `target/jacoco-report/`. Open the `index.html` to get a website view of the coverage report.
 
-## Update or add a new CAS to the translation process<a name="howToUpdate"></a>
-All translations are organized in `libs/ReferenceData/CSVTables` directory. Here you can find CSV files (semicolon separated) that keep
-track of the supported translations. You can use any editor you prefer to update the CSV files. Here are the most important files
-1. `DLMFMacro.csv` this file provides all information about the DLMF macros. There are no translations defined here.
-2. `DLMF_<CAS>.csv` these files define the _forward_ translations from DLMF macros to a CAS. For example, `DLMF_Maple.csv` defines
-the translations from DLMF to the CAS Maple. Always follow this naming convention if you add new CAS.
-3. `CAS_<name>` these files define the _backward_ translations from a CAS (`<name>`) back to the DLMF macros. For example, `CAS_Mathematica.csv`
-defines the backward translations from Mathematica back to the DLMF.
+## Update translation patterns<a name="howToUpdate"></a>
+We store the translation patterns in `libs/ReferenceData/CSVTables`. In there, you will find two groups of files.
+1. The supported macros (in `DLMFMacro.csv`).
+2. The supported translations to a CAS. There are two files for each CAS. One defines the meta information (e.g., hyperlinks), 
+and the other defines the translations (e.g., for Maple its `CAS_Maple.csv` and `DLMF_Maple.csv`).
+
+There are two general things you should know before you start.
+1. Every time you change something in the CSV files, you have to run `bin/lexicon-creator.jar` to update the actual lexicon files.
+This will compile the defined information and makes it accessible for the translation process.
+2. Optional parameters, such as in `\LaguerrepolyL[\alpha]{n}@{x}`, needs special treatment. In all CSV files, it requires multiple lines.
+The first line contains the information for the macro without optional parameters; the second with one optional parameter, the third with two
+optional parameters, and so on. The `DLMF` entry for optional parameters should be `X<NumOfOptParas>:<macro-name>X<macro>`. For example: 
+
+| DLMF |
+| :--- |
+| `\macro{n}@{x}` |
+| `X1:\macroX\macro[a]{n}@{x}` |
+| `X2:\macroX\macro[a][b]{n}@{x}` |
+| `X3:\macroX\macro[a][b][c]{n}@{x}` |
+
+***Important:*** The number of parameters does not include the number of optional parameters.
+
+<details><summary><strong>How to support new macros</strong></summary>
+  
+To support new macros, you have to extend the `DLMFMacro.csv` with all information. The columns `branch-cuts` and `constraints` are optional.
+For `role` you should enter either `dlmf-macro`, `mathematical constant`, `symbol`, or `ignore`. Obviously, `ignore` means it will be ignored due to compilation.
+</details>
+
+<details><summary><strong>How to support translations</strong></summary>
+  
+Consider you want to add a new translation pattern to Maple, you have to add it to `DLMF_Maple.csv`.
+The columns for alternative translations and required packages allow multiple entries.
+In this case you have to split the entries with ` || ` (including the spaces). For example, see the line 22 for
+`\acot@@{$0}`. It contains two alternative translation patterns: `arctan(1/($0)) || I/2*ln(($0-I)/($0+I) )`.
+
+If you want to add required packages, it makes sense to only require the actual function.
+For example, `\Eulertotientphi@{n}` requires in Maple the package `NumberTheory` to allow the translation to `phi(n)`.
+However, for performance reasons, it makes sense to only require the actual function, here `NumberTheory,phi`.
+</details>
 
 #### Add new translations to the lexicon<a name="lexiconAddOn"></a>
 After you add a new entry or change an existing entry follow these instructions to add the changes to our program:
@@ -228,7 +259,8 @@ in IntelliJ, check the hint in step 8 (*Build and Run in IntelliJ*) under [Setup
 5. **Mathematica License Expired**: Under unknown circumstances, it may appear that your free (and unlimited) license of
 the wolfram engine for developers suddenly *expired*. This seems to be a bug in the licensing file. Under your home directory
 you find the `~/.WolframEngine/Licensing/mathpass` file. This error occurs when this file contains multiple entities (multiple
-lines). Backup the file first, then delete all lines with only one remaining (the line shall start with the name of your machine). 
+lines). See Wolfram's [mathpass support page](https://support.wolfram.com/112) for more information. 
+Backup the file first, then delete all lines with only one remaining (the line shall start with the name of your machine). 
 This should solve the error. If the error remains, there might be another issue with your license. Try if you can start the
 engine on the console (without LaCASt). If this works but LaCASt doesn't, contact [André Greiner-Petter](https://github.com/AndreG-P)
 or open an ticket. If the console approach doesn't work either, contact Wolfram to check your license.

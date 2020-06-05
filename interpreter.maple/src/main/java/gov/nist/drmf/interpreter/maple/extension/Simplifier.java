@@ -3,10 +3,18 @@ package gov.nist.drmf.interpreter.maple.extension;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
+import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
+import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.io.IOException;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author Andre Greiner-Petter
@@ -22,12 +30,23 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
 
     private final MapleInterface maple;
     private final MapleListener listener;
+    private final PackageWrapper packageWrapper;
 
     private int timeout = -1;
 
     public Simplifier() {
         maple = MapleInterface.getUniqueMapleInterface();
         listener = MapleInterface.getUniqueMapleListener();
+
+        SymbolTranslator symbolTranslator = new SymbolTranslator(Keys.KEY_LATEX, Keys.KEY_MAPLE);
+        BasicFunctionsTranslator basicFunctionsTranslator = new BasicFunctionsTranslator(Keys.KEY_MAPLE);
+        try {
+            symbolTranslator.init();
+            basicFunctionsTranslator.init();
+        } catch (IOException e) {
+            LOG.fatal("Unable to initiate the symbol and function translator.", e);
+        }
+        packageWrapper = new PackageWrapper(basicFunctionsTranslator, symbolTranslator);
     }
 
     public void setTimeout(int timeout) {
@@ -181,29 +200,71 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
      * @throws MapleException if the given expression cannot be evaluated.
      * @see Algebraic
      */
-    public Algebraic mapleSimplify( String maple_expr ) throws MapleException {
-        String command = "simplify(" + maple_expr + ")";
+    public Algebraic mapleSimplify( String maple_expr, Set<String> requiredPackages ) throws MapleException {
+        String simplify = chooseSimplify(requiredPackages);
+        String command = simplify+"(" + maple_expr + ")";
         if ( timeout > 0 ) {
             command = "try timelimit("+timeout+","+command+"); catch \"time expired\": \"";
             command += MapleInterface.TIMED_OUT_SIGNAL;
             command += "\"; end try;";
         } else command += ";";
+
+        command = packageWrapper.addPackages(command, requiredPackages);
+
         LOG.debug("Simplification: " + command);
         listener.timerReset();
         return maple.evaluate( command );
     }
 
+    private String chooseSimplify(Set<String> requiredPackages) {
+        if ( requiredPackages == null || requiredPackages.isEmpty() )
+            return "simplify";
+
+        boolean contains = false;
+        Set<String> tmp = new TreeSet<>();
+        for ( String req : requiredPackages ){
+            if ( req.contains("QDifferenceEquations") ){
+                contains = true;
+            } else tmp.add(req);
+        }
+
+        return updateRequiredPackages(contains, tmp, requiredPackages);
+    }
+
+    private String updateRequiredPackages(
+            boolean contains,
+            Set<String> tmp,
+            Set<String> requiredPackages
+    ) {
+        if ( contains ) {
+            try {
+                maple.loadQExtension();
+                requiredPackages.clear();
+                requiredPackages.addAll(tmp);
+                return "QSimplify";
+            } catch (ComputerAlgebraSystemEngineException e) {
+                LOG.fatal("Cannot load QExtensions");
+            }
+        }
+        return "simplify";
+    }
+
+    private Algebraic simplify(String expr) throws ComputerAlgebraSystemEngineException {
+        return simplify(expr, new TreeSet<>());
+    }
+
     @Override
-    public Algebraic simplify(String expr) throws ComputerAlgebraSystemEngineException {
+    public Algebraic simplify(String expr, Set<String> requiredPackages) throws ComputerAlgebraSystemEngineException {
         try {
-            return mapleSimplify(expr);
+            return mapleSimplify(expr, requiredPackages);
         } catch ( MapleException me ) {
             throw new ComputerAlgebraSystemEngineException(me);
         }
     }
 
-    private String buildAssumeSimplify(String expr, String assumption) {
-        String cmd = "simplify(" + expr + ")";//+ assuming " + assumption + ";";
+    private String buildAssumeSimplify(String expr, String assumption, Set<String> requiredPackages) {
+        String simplify = chooseSimplify(requiredPackages);
+        String cmd = simplify+"(" + expr + ")";//+ assuming " + assumption + ";";
 
         if ( timeout > 0 ) {
             cmd = "try timelimit("+timeout+", "+ cmd+") ";
@@ -213,13 +274,15 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
             cmd += "\"; end try;";
         } else cmd += "assuming " + assumption + ";";
 
+        cmd = packageWrapper.addPackages(cmd, requiredPackages);
+
         return cmd;
     }
 
     @Override
-    public Algebraic simplify(String expr, String assumption) throws ComputerAlgebraSystemEngineException {
+    public Algebraic simplify(String expr, String assumption, Set<String> requiredPackages) throws ComputerAlgebraSystemEngineException {
         try {
-            String cmd = buildAssumeSimplify(expr, assumption);
+            String cmd = buildAssumeSimplify(expr, assumption, requiredPackages);
             LOG.debug("Simplification: " + cmd);
             listener.timerReset();
             return maple.evaluate( cmd );

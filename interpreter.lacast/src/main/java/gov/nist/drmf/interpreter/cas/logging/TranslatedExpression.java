@@ -1,27 +1,23 @@
 package gov.nist.drmf.interpreter.cas.logging;
 
+import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 /**
  * @author Andre Greiner-Petter
  */
 public class TranslatedExpression {
     private LinkedList<String> trans_exps;
+    private final Set<String> requiredPackages;
 
     private int autoMergeLast;
 
     public TranslatedExpression(){
         this.trans_exps = new LinkedList<>();
         this.autoMergeLast = 0;
-    }
-
-    public void setAutoMergeLast( int num_of_last ){
-        autoMergeLast = num_of_last;
+        this.requiredPackages = new TreeSet<>();
     }
 
     public void addAutoMergeLast( int add_num_of_last ){
@@ -52,6 +48,7 @@ public class TranslatedExpression {
             next += expressions.trans_exps.removeFirst();
         this.trans_exps.add( next );
         this.trans_exps.addAll( expressions.trans_exps );
+        this.requiredPackages.addAll(expressions.getRequiredPackages());
     }
 
     public int getLength(){
@@ -61,6 +58,7 @@ public class TranslatedExpression {
     public int clear(){
         int s = trans_exps.size();
         trans_exps = new LinkedList<>();
+        requiredPackages.clear();
         return s;
     }
 
@@ -158,6 +156,8 @@ public class TranslatedExpression {
             // be careful, reverse order here
             this.trans_exps.addFirst(innerCache.removeLast());
         }
+
+        cache.addRequiredPackages(requiredPackages);
         return cache;
     }
 
@@ -166,6 +166,19 @@ public class TranslatedExpression {
         for ( String part : trans_exps )
             output += part;
         return output;
+    }
+
+    public String getTranslatedExpression(PackageWrapper pw) {
+        if ( requiredPackages.isEmpty() ) return getTranslatedExpression();
+        return pw.addPackages(getTranslatedExpression(), requiredPackages);
+    }
+
+    public void addRequiredPackages(Collection<String> requiredPackages) {
+        this.requiredPackages.addAll(requiredPackages);
+    }
+
+    public Set<String> getRequiredPackages() {
+        return requiredPackages;
     }
 
     @Override

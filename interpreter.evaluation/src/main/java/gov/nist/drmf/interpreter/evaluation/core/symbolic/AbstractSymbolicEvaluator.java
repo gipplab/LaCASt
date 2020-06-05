@@ -42,7 +42,7 @@ public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> 
     public T simplify( String command ) throws ComputerAlgebraSystemEngineException {
         Thread abortThread = getAbortionThread(symbolicEvaluator);
         abortThread.start();
-        T result = symbolicEvaluator.simplify(command);
+        T result = symbolicEvaluator.simplify(command, getRequiredPackages());
         // waits for an answer, once the answer is received, we finished the process
         abortThread.interrupt();
 
@@ -56,9 +56,9 @@ public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> 
 
         T result = null;
         if ( assumption == null || assumption.isEmpty() )
-            result = symbolicEvaluator.simplify(command);
+            result = symbolicEvaluator.simplify(command, getRequiredPackages());
         else
-            result = symbolicEvaluator.simplify(command, assumption);
+            result = symbolicEvaluator.simplify(command, assumption, getRequiredPackages());
 
         // waits for an answer, once the answer is received, we finished the process
         abortThread.interrupt();

@@ -5,6 +5,7 @@ import mlp.Lexicon;
 import mlp.LexiconFactory;
 
 import java.io.IOException;
+import java.nio.file.Path;
 
 /**
  * Created by AndreG-P on 09.03.2017.
@@ -24,10 +25,14 @@ public class MacrosLexicon {
     private static boolean executed = false;
 
     public static synchronized void init() throws IOException {
+        init(GlobalPaths.DLMF_MACROS_LEXICON);
+    }
+
+    public static synchronized void init(Path lexiconPath) throws IOException {
         if ( executed ) return;
 
         dlmf_macros_lexicon = LexiconFactory.createLexicon(
-                GlobalPaths.DLMF_MACROS_LEXICON,
+                lexiconPath,
                 SIGNAL_ENTRY,
                 SIGNAL_FEATURESET,
                 SIGNAL_LINE,

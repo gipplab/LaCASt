@@ -46,13 +46,13 @@ X1:\FerrersPX\FerrersP[\mu]{\nu}@{x};http://dlmf.nist.gov/14.3#E1;Ferrers functi
 \FerrersQ{\nu}@{x};http://dlmf.nist.gov/14.2#i;Ferrers function of second kind;1;1;1;1;-1 < x < 1, \mu, \nu \in \Reals;;dlmf-macro
 X1:\FerrersQX\FerrersQ[\mu]{\nu}@{x};http://dlmf.nist.gov/14.3#E2;Ferrers function of second kind;1;1;1;1;-1 < x < 1, \mu, \nu \in \Reals;;dlmf-macro
 \assLegendreP{\nu}@{z};http://dlmf.nist.gov/14.2#i;Legendre function of first kind;1;1;1;1;;(-\infty, 1];dlmf-macro
-X1:\LegendrePX\assLegendreP[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E5;Associated Legendre function of first kind;1;1;1;1;;(-\infty, 1];dlmf-macro
+X1:\assLegendrePX\assLegendreP[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E5;Associated Legendre function of first kind;1;1;1;1;;(-\infty, 1];dlmf-macro
 \assLegendreQ{\nu}@{z};http://dlmf.nist.gov/14.2#i;Legendre function of second kind;1;1;1;1;;(-\infty, 1];dlmf-macro
-X1:\LegendreQX\assLegendreQ[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E7;Associated Legendre function of second kind;1;1;1;1;;(-\infty, 1];dlmf-macro
+X1:\assLegendreQX\assLegendreQ[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E7;Associated Legendre function of second kind;1;1;1;1;;(-\infty, 1];dlmf-macro
 \assLegendreOlverQ{\nu}@{z};http://dlmf.nist.gov/14.2#i;Olver's associated Legendre function;1;1;1;1;;;dlmf-macro
-X1:\LegendreBlackQX\assLegendreOlverQ[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E10;Olver's associated Legendre function;1;1;1;1;;;dlmf-macro
+X1:\assLegendreOlverQX\assLegendreOlverQ[\mu]{\nu}@{z};http://dlmf.nist.gov/14.3#E10;Olver's associated Legendre function;1;1;1;1;;;dlmf-macro
 \DunsterQ{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical / Mehler function;1;1;1;1;;;dlmf-macro
-X1:\FerrersHatQX\DunsterQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical / Mehler function;1;1;1;1;;;dlmf-macro
+X1:\DunsterQX\DunsterQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical / Mehler function;1;1;1;1;;;dlmf-macro
 ;;;;;;;;;
 \cpi;not defined;Pi;0;0;0;;;;mathematical constant
 \iunit;http://dlmf.nist.gov/1.9.i;Imaginary unit;0;0;0;;;;mathematical constant
@@ -62,4 +62,4 @@ X1:\FerrersHatQX\DunsterQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical /
 \CatalansConstant;http://dlmf.nist.gov/25.11.E40;Catalan's constant;0;0;0;;;;mathematical constant
 ;;;;;;;;;
 \npartitions{n};http://dlmf.nist.gov/26.2#P4.p2;Number of partitions of nonnegative integer n;0;0;1;;;;
-\npartitions[k]@{n};http://dlmf.nist.gov/26.9;Number of partitions of nonnegative integer n into at most k parts;1;1;1;;;;
+X1:\npartitionsX\npartitions[k]@{n};http://dlmf.nist.gov/26.9;Number of partitions of nonnegative integer n into at most k parts;1;1;1;;;;

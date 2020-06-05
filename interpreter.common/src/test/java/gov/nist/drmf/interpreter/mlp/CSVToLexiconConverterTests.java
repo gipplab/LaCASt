@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.mlp;
 
+import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.mlp.data.LexiconConverterConfig;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -49,6 +50,15 @@ public class CSVToLexiconConverterTests {
         };
 
         converter = new CSVtoLexiconConverter(config, dlmf, cas);
+    }
+
+    @Test
+    public void configTest() {
+        LexiconConverterConfig defaultConfig = new LexiconConverterConfig();
+        Path csvPath = defaultConfig.getCsvPath();
+        Path macroPath = defaultConfig.getDlmfMacroLexiconPath();
+        assertEquals( csvPath, GlobalPaths.PATH_REFERENCE_DATA_CSV );
+        assertEquals( macroPath, GlobalPaths.DLMF_MACROS_LEXICON );
     }
 
     @Test

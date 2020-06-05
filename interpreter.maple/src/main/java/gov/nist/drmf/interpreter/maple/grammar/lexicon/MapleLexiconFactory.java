@@ -209,10 +209,10 @@ public class MapleLexiconFactory {
     }
 
     private MapleFunction enrichFunctionInfosFromLexicon( MapleFunction mf, FeatureSet fset ){
-        mf.setDlmfBranchCuts(DLMFFeatureValues.branch_cuts.getFeatureValue(fset, null));
-        mf.setDlmfConstraints(DLMFFeatureValues.constraints.getFeatureValue(fset, null));
-        mf.setDlmfLink(DLMFFeatureValues.dlmf_link.getFeatureValue(fset, null));
-        mf.setDlmfMeaning(DLMFFeatureValues.meaning.getFeatureValue(fset, null));
+        mf.setDlmfBranchCuts(DLMFFeatureValues.BRANCH_CUTS.getFeatureValue(fset, null));
+        mf.setDlmfConstraints(DLMFFeatureValues.CONSTRAINTS.getFeatureValue(fset, null));
+        mf.setDlmfLink(DLMFFeatureValues.DLMF_LINK.getFeatureValue(fset, null));
+        mf.setDlmfMeaning(DLMFFeatureValues.MEANING.getFeatureValue(fset, null));
         return mf;
     }
 

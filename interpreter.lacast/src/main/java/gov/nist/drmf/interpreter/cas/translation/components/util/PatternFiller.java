@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+import java.util.SortedSet;
 
 import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.TEMPORARY_VARIABLE_NAME;
 
@@ -51,8 +52,7 @@ public class PatternFiller {
         // when the alternative mode is activated, it tries to translate
         // the alternative translation
         MacroTranslationInformation translationInformation = macroInfo.getTranslationInformation();
-        String pattern = (config.isAlternativeMode() && !translationInformation.getAlternativePattern().isEmpty()) ?
-                translationInformation.getAlternativePattern() : translationInformation.getTranslationPattern();
+        String pattern = getTranslationPattern(translationInformation);
 
         // Eventually, we need to substitute an argument.
         String subbedExpression = null;
@@ -77,6 +77,20 @@ public class PatternFiller {
             pattern = fixSubstitution(config, pattern, subbedExpression);
         }
 
+        return pattern;
+    }
+
+    private String getTranslationPattern(MacroTranslationInformation translationInformation) {
+        String pattern = translationInformation.getTranslationPattern();
+        translationInformation.getTranslationPattern();
+        if ( pattern == null || pattern.isEmpty() ) {
+            LOG.warn("No direct translation available, switch to alternative mode.");
+            SortedSet<String> alts = translationInformation.getAlternativePattern();
+            if ( alts.size() > 1 )
+                LOG.warn("Found multiple alternative translations. We choose first. " +
+                        "Check translation information for other options");
+            pattern = alts.first();
+        }
         return pattern;
     }
 

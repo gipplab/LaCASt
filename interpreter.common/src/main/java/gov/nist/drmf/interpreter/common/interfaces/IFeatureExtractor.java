@@ -11,8 +11,31 @@ import java.util.SortedSet;
  * @author Andre Greiner-Petter
  */
 public interface IFeatureExtractor {
-    String getFeatureValue(FeatureSet feature_set, String cas);
+    /**
+     * Returns the sorted values of a feature set for a given cas
+     * @param featureSet the feature set
+     * @param cas the cas
+     * @retur the feature values
+     */
+    SortedSet<String> getFeatureSet(FeatureSet featureSet, String cas);
 
+    /**
+     * Returns the string of a feature set for a given cas.
+     * @param featureSet the feature set
+     * @param cas the computer algebra system
+     * @return the string representation
+     */
+    default String getFeatureValue(FeatureSet featureSet, String cas) {
+        return getStringFromSet(getFeatureSet(featureSet, cas));
+    }
+
+    /**
+     * Converts the given sorted set back to a single string in the same way as it was
+     * given in the PoM-tagger lexicon, i.e., multiple values are concatenated via
+     * {@link MacrosLexicon#SIGNAL_INLINE}.
+     * @param set the set of entries
+     * @return string representation of the set of entries.
+     */
     static String getStringFromSet( SortedSet<String> set ){
         if ( set == null ) return "";
         String output = "";

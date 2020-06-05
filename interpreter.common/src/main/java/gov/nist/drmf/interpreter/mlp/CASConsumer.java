@@ -7,6 +7,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.Arrays;
 
 /**
+ * This loads info from CAS_Maple.csv or CAS_Mathematica.csv.
+ * It only loads the rudimentary information from these files, such as links, constraints, etc.
  * @author Andre Greiner-Petter
  */
 public class CASConsumer implements LexiconInfoConsumer {
@@ -29,15 +31,13 @@ public class CASConsumer implements LexiconInfoConsumer {
     public void accept(String[] elements) {
         lineAnalyzer.setLine(elements);
         try {
-            InfoHolder holder = getInfoHolder();
-
+            FunctionInfoHolder holder = getInfoHolder();
             if (holder == null) return;
 
-            CASInfo info = getCasInfo(lineAnalyzer.getCasPrefix());
-            logInfo(info);
+            CASFunctionMetaInfo info = getCasInfo(lineAnalyzer.getCasPrefix());
 
-            if (holder.getCasName() != null)
-                cache.add(holder.getCasName(), holder.getNumVars(), info);
+            if (holder.getCasFunctionName() != null)
+                cache.add(holder.getCasFunctionName(), holder.getNumVars(), info);
         } catch (NumberFormatException nfe) {
             String cas = lineAnalyzer.getCasPrefix();
             LOG.debug("Skip cache entry, because number of variables is missing for: " + lineAnalyzer.getValue(cas));
@@ -48,34 +48,29 @@ public class CASConsumer implements LexiconInfoConsumer {
         }
     }
 
-    private CASInfo getCasInfo(String curr_cas) {
-        CASInfo info = new CASInfo();
-        info.setConstraints(
-                lineAnalyzer.getValue(DLMFTranslationHeaders.cas_constraint.getCSVKey(curr_cas))
-        );
-        info.setBranch_cuts(
-                lineAnalyzer.getValue(DLMFTranslationHeaders.cas_branch_cuts.getCSVKey(curr_cas))
-        );
-        info.setLink(
-                lineAnalyzer.getValue(DLMFTranslationHeaders.cas_link.getCSVKey(curr_cas))
-        );
-        info.setExtra_package(
-                lineAnalyzer.getValue(DLMFTranslationHeaders.cas_package.getCSVKey(curr_cas))
-        );
+    private CASFunctionMetaInfo getCasInfo(String currCas) {
+        CASFunctionMetaInfo info = new CASFunctionMetaInfo();
+        String value = lineAnalyzer.getValue(DLMFTranslationHeaders.cas_constraint.getCSVKey(currCas));
+        if ( !value.isEmpty() ) info.setConstraints(value);
+
+        value = lineAnalyzer.getValue(DLMFTranslationHeaders.cas_branch_cuts.getCSVKey(currCas));
+        if ( !value.isEmpty() ) info.setBranchCuts(value);
+
+        value = lineAnalyzer.getValue(DLMFTranslationHeaders.cas_link.getCSVKey(currCas));
+        if ( !value.isEmpty() ) {
+            if ( value.startsWith("https://") ) value = value.substring("https://".length());
+            info.setLink(value);
+        }
+
         return info;
     }
 
-    private InfoHolder getInfoHolder() {
+    private FunctionInfoHolder getInfoHolder() {
         String cas_func = lineAnalyzer.getValue(lineAnalyzer.getCasPrefix());
         return LexiconConverterUtility.getFuncNameAndFillInteger(
                 cas_func,
                 "Skip cache entry: " + cas_func,
                 lineAnalyzer
         );
-    }
-
-    private void logInfo(CASInfo info) {
-        if (info.getExtra_package() != null && !info.getExtra_package().isEmpty())
-            LOG.debug("EXTRA PACKAGE: " + info.getExtra_package());
     }
 }

@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.common.symbols;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 
 import java.io.IOException;
+import java.nio.file.Path;
 
 /**
  * @author Andre Greiner-Petter

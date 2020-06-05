@@ -4,6 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * A semantic version of the {@link MLPWrapper}. This class
@@ -26,11 +28,17 @@ public class SemanticMLPWrapper extends MLPWrapper {
 
     public SemanticMLPWrapper(String referenceDir) throws IOException {
         super(referenceDir);
-        init();
+        Path p = Paths.get(referenceDir).resolve("Lexicons").resolve("DLMF-macros-lexicon.txt");
+        init(p);
     }
 
     private void init() throws IOException {
         MacrosLexicon.init();
+        addLexicon( MacrosLexicon.getDLMFMacroLexicon() );
+    }
+
+    private void init(Path path) throws IOException {
+        MacrosLexicon.init(path);
         addLexicon( MacrosLexicon.getDLMFMacroLexicon() );
     }
 

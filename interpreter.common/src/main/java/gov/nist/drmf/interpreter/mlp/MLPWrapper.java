@@ -94,7 +94,9 @@ public abstract class MLPWrapper {
     }
 
     /**
-     * Fully normalizes the given expression.
+     * Fully normalizes the given expression. The normalization is performed on the
+     * expression itself. Hence, the input will changed and returned. There will be
+     * no new parse tree generated.
      * @param pte parsed tree that has to be normalized
      * @return fully normalized tree (all features activated)
      */
