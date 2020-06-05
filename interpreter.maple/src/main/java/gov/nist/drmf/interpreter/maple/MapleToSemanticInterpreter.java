@@ -17,7 +17,7 @@ public class MapleToSemanticInterpreter {
     public static final Logger LOG = LogManager.getLogger(MapleToSemanticInterpreter.class);
 
     public static void main(String[] args) {
-        System.setProperty(Keys.KEY_SYSTEM_LOGGING, GlobalPaths.PATH_LOGGING_CONFIG.toString());
+//        System.setProperty(Keys.KEY_SYSTEM_LOGGING, GlobalPaths.PATH_LOGGING_CONFIG.toString());
 
         MapleTranslator mi = MapleTranslator.getDefaultInstance();
         if (mi == null) {

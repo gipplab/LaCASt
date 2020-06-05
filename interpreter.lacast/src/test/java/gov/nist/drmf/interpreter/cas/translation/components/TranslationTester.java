@@ -54,7 +54,8 @@ public class TranslationTester {
     public Executable createTest(ForwardTestCase tc, boolean maple) {
         return () -> {
             LOG.debug("Testing " + tc.getTitle());
-            LOG.info("Test: " + tc.getTeX());
+            LOG.info("Test:   " + tc.getTeX());
+            LOG.info("Expect: " + (maple ? tc.getMaple() : tc.getMathematica()));
             String in = tc.getTeX();
             String expected = maple ? tc.getMaple() : tc.getMathematica();
 

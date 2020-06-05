@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.translation;
 import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
 import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.*;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
@@ -10,10 +11,8 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
 import gov.nist.drmf.interpreter.common.replacements.ConditionalReplacementRule;
 import gov.nist.drmf.interpreter.common.replacements.IReplacementCondition;
-import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.ParseException;
-import mlp.PomParser;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,7 +43,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      */
     private SemanticMLPWrapper parser;
 
-    private ForwardTranslationProcessConfig config;
+    private final ForwardTranslationProcessConfig config;
 
     private TranslatedExpression localTranslations;
 
@@ -150,6 +149,14 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
         return translate(expression, null);
     }
 
+    @Override
+    public String getTranslatedExpression() {
+        if ( config.isInlinePackageMode() ) {
+            PackageWrapper pw = new PackageWrapper(config);
+            return super.getGlobalTranslationList().getTranslatedExpression(pw);
+        } return super.getGlobalTranslationList().getTranslatedExpression();
+    }
+
     private String innerTranslate( String expression, String label ) throws TranslationException {
         try {
             // TODO we should switch to the real parse option later
@@ -159,10 +166,12 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
                 LOG.debug("Input:  " + expression);
                 LOG.debug("Output: " + getGlobalTranslationList().toString());
             }
-            if ( !super.getInfoLogger().isEmpty() && !config.shortOutput() ) {
+
+            if ( !super.getInfoLogger().isEmpty() && !config.shortenedOutput() ) {
                 LOG.info(super.getInfoLogger().toString());
             }
-            return super.getGlobalTranslationList().getTranslatedExpression();
+
+            return getTranslatedExpression();
         } catch ( ParseException pe ){
             throw TranslationException.buildException(
                     this,
@@ -170,6 +179,9 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
                     TranslationExceptionReason.MLP_ERROR,
                     pe
             );
+        } catch ( TranslationException te ) {
+            LOG.error("Unable to translate " + expression);
+            throw te;
         }
     }
 
@@ -182,9 +194,8 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
         parseGeneralExpression(expression, null);
 
         localTranslations.clear();
-        localTranslations.addTranslatedExpression(
-                global
-        );
+        localTranslations.addTranslatedExpression(global);
+        localTranslations.addRequiredPackages(global.getRequiredPackages());
 
         return localTranslations;
     }

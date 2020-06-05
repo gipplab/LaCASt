@@ -1,8 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
-import gov.nist.drmf.interpreter.cas.common.IForwardTranslator;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
-import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.components.util.DerivativeAndPowerHolder;
 import gov.nist.drmf.interpreter.cas.translation.components.util.MacroInfoHolder;
@@ -14,7 +12,6 @@ import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
-import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import gov.nist.drmf.interpreter.mlp.MathTermUtility;
 import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import mlp.FeatureSet;
@@ -27,8 +24,6 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
@@ -272,8 +267,8 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         Integer slot;
         Integer numberOfVariables;
         try {
-            slot = Integer.parseInt(DLMFFeatureValues.slot.getFeatureValue(fset, CAS));
-            numberOfVariables = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset, CAS));
+            slot = Integer.parseInt(DLMFFeatureValues.SLOT_DERIVATIVE.getFeatureValue(fset, CAS));
+            numberOfVariables = Integer.parseInt(DLMFFeatureValues.NUMBER_OF_VARIABLES.getFeatureValue(fset, CAS));
         } catch (NumberFormatException e) {
             LOG.warn("No slot of differentiation found for " + mt.getTermText() + ", assuming its 1.");
             slot = 1;

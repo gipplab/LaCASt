@@ -1,7 +1,5 @@
 package gov.nist.drmf.interpreter.mlp;
 
-import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 

@@ -3,7 +3,6 @@ package gov.nist.drmf.interpreter.maple.extension;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.Engine;
-import com.maplesoft.openmaple.EngineCallBacks;
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
@@ -79,6 +78,13 @@ public class EngineTest {
     public void exampleAlgebraicTest(){
         String sol = example_query.toString();
         assertEquals( "1/2*x^2", sol, "Wrong integral string." );
+    }
+
+    @Test
+    public void packageTest() throws MapleException {
+        String test = "with(QDifferenceEquations): try timelimit(2,QSimplify((QPochhammer(a, q, - n))-((1)/(QPochhammer(a*(q)^(- n), q, n))))); catch \"time expired\": \"TIMED-OUT\"; end try;";
+        Algebraic result = t.evaluate(test);
+        assertEquals("0", result.toString());
     }
 
     @Test

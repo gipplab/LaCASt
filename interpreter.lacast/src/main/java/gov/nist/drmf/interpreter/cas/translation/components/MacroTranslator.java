@@ -101,13 +101,23 @@ public class MacroTranslator extends AbstractListTranslator {
         MathTerm macroTerm = exp.getRoot();
         this.macro = macroTerm.getTermText();
 
-        // ok first, get the feature set!
-        FeatureSet fset = macroTerm.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
-        MacroInfoHolder info = new MacroInfoHolder(this, fset, cas, macro);
+        FeatureSet fset = null;
+        MacroInfoHolder info = null;
+        TranslationException translationException = null;
+        try {
+            // ok first, get the feature set!
+            fset = macroTerm.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
+            info = new MacroInfoHolder(this, fset, cas, macro);
 
-        // first, lets check if this function has no arguments (single symbol)
-        if (info.hasNoArguments()) {
-            return parseNoArgumentMacro(info);
+            // first, lets check if this function has no arguments (single symbol)
+            if (info.hasNoArguments()) {
+                return parseNoArgumentMacro(info);
+            }
+        } catch (TranslationException te) {
+            // if there are no translation information available, we may want to check optional parameters first
+            // the reason is simple, there might be no translations for the macro without optional parameters
+            // but maybe there are translations with optional parameters
+            translationException = te;
         }
 
         // now check for optional parameters, if any
@@ -117,6 +127,9 @@ public class MacroTranslator extends AbstractListTranslator {
         if (!optionalParas.isEmpty()) {
             fset = macroTerm.getNamedFeatureSet(Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + optionalParas.size());
             info = new MacroInfoHolder(this, fset, cas, macro);
+        } else if ( translationException != null ) {
+            // if there are no optional parameters AND previously we caught an exception, its time to throw it now
+            throw translationException;
         }
 
         // until now, everything parsed was optional, start the general parsing process
@@ -185,6 +198,11 @@ public class MacroTranslator extends AbstractListTranslator {
 
             // just in case, reset the variable
             derivativesTranslator.resetTranslatedInAdvancedComponent();
+        }
+
+        if ( info.getTranslationInformation().requirePackages() ) {
+            localTranslations.addRequiredPackages(info.getTranslationInformation().getRequiredPackages());
+            getGlobalTranslationList().addRequiredPackages(info.getTranslationInformation().getRequiredPackages());
         }
     }
 
@@ -420,14 +438,14 @@ public class MacroTranslator extends AbstractListTranslator {
 
         String generalTab = getConfig().getTAB();
         String currTab = generalTab.substring(0, generalTab.length() - ("DLMF: ").length());
-        extraInformation += "Relevant links to definitions:" + System.lineSeparator() +
-                "DLMF: " + currTab + translationInfo.getDefDlmf() + System.lineSeparator();
+        sb.append("Relevant links to definitions:").append(System.lineSeparator());
+        sb.append("DLMF: ").append(currTab).append(translationInfo.getDefDlmf()).append(System.lineSeparator());
         currTab = generalTab.substring(0,
                 ((cas + ": ").length() >= generalTab.length() ?
                         0 : (generalTab.length() - (cas + ": ").length()))
         );
-        extraInformation += cas + ": " + currTab + translationInfo.getDefCas();
-        return extraInformation;
+        sb.append(cas).append(": ").append(currTab).append(translationInfo.getDefCas());
+        return sb.toString();
     }
 
     protected TranslationException throwMacroException(String message) {

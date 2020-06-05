@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.common.constants;
 
+import gov.nist.drmf.interpreter.common.config.ConfigDiscovery;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -9,17 +11,18 @@ import java.nio.file.Paths;
  * Created by Andre Greiner-Petter on 02.11.2016.
  */
 public final class GlobalPaths {
-    private GlobalPaths() {
-    }
+    private GlobalPaths() {}
 
-    // path variable to libs folder
-    private static final Path PATH_LIBS =
-            Paths.get("libs");
+    /**
+     * The base path to the libs folder. Is given in the properties file.
+     */
+    private static final Path PATH_LIBS = ConfigDiscovery.getConfig().getLibsPath();
 
-    private static final Path PATH_CONFIGS =
-            Paths.get("config");
+    /**
+     * The base path to the config folder. Is given in the properties file.
+     */
+    private static final Path PATH_CONFIGS = ConfigDiscovery.getConfig().getConfigPath();
 
-    // path variable to the ReferenceData directory
     public static final Path PATH_REFERENCE_DATA =
             PATH_LIBS.resolve("ReferenceData");
 
@@ -36,10 +39,10 @@ public final class GlobalPaths {
             PATH_CONFIGS.resolve("symbolic_tests.properties");
 
     public static final Path PATH_DLMF_REPLACEMENT_RULES =
-            PATH_CONFIGS.resolve("dlmf-replacements.yml");
+            PATH_CONFIGS.resolve("dlmf-replacements.yaml");
 
     public static final Path PATH_REPLACEMENT_RULES =
-            PATH_CONFIGS.resolve("replacements.yml");
+            PATH_CONFIGS.resolve("replacements.yaml");
 
     public static final Path PATH_BLUEPRINTS =
             PATH_CONFIGS.resolve("blueprints.txt");
@@ -118,13 +121,6 @@ public final class GlobalPaths {
 
     public static final Path PATH_MATHEMATICA_DIFFERENCE_PROCEDURES =
             PATH_MATHEMATICA_PROCS.resolve("difference_calc.txt");
-
-    // path variable to the resources of the interpreter
-    private static final Path PATH_CORE_RESOURCES =
-            Paths.get("interpreter.common", "src", "main", "resources");
-
-    public static final Path PATH_LOGGING_CONFIG =
-            PATH_CORE_RESOURCES.resolve("log4j2.xml");
 
     public static final Path PATH_MACRO_CSV_FILE_NAME =
             Paths.get("DLMFMacro.csv");

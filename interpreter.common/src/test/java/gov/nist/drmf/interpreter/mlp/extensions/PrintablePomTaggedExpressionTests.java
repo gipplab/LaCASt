@@ -55,6 +55,61 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     @Test
+    public void nestedFracTest() throws ParseException {
+        String texString = "a + \\frac{a+b}{b+c}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PomTaggedExpression> components = ppte.getComponents();
+        assertEquals(3, components.size());
+
+        List<PrintablePomTaggedExpression> fracCompy =
+                ppte.getPrintableComponents().get(2).getPrintableComponents();
+
+        assertEquals(2, fracCompy.size());
+        checkList(fracCompy, "{a+b}", "{b+c}");
+    }
+
+    @Test
+    public void copyConstructorTest() throws ParseException {
+        String texString = "a + b";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        PrintablePomTaggedExpression copy = new PrintablePomTaggedExpression(ppte);
+        assertEquals(ppte.getTexString(), copy.getTexString());
+
+        List<PrintablePomTaggedExpression> origChildren = ppte.getPrintableComponents();
+        assertEquals(3, ppte.getPrintableComponents().size());
+        assertEquals(3, copy.getPrintableComponents().size());
+        origChildren.remove(0);
+        assertEquals(2, ppte.getPrintableComponents().size());
+        assertEquals(3, copy.getPrintableComponents().size());
+    }
+
+    @Test
+    public void constructorNestedTest() throws ParseException {
+        String texString = "\\frac{\\sin (x)}{\\sin (y)} - \\frac{\\sin (z)}{\\sin (q^2)}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> firstFracStr =
+                ppte.getPrintableComponents().get(0).getPrintableComponents();
+        assertEquals("{\\sin (x)}", firstFracStr.get(0).getTexString());
+        assertEquals("{\\sin (y)}", firstFracStr.get(1).getTexString());
+
+        List<PrintablePomTaggedExpression> secondFracStr =
+                ppte.getPrintableComponents().get(2).getPrintableComponents();
+        assertEquals("{\\sin (z)}", secondFracStr.get(0).getTexString());
+        assertEquals("{\\sin (q^2)}", secondFracStr.get(1).getTexString());
+
+        List<PrintablePomTaggedExpression> lastElement = secondFracStr.get(1).getPrintableComponents();
+        assertEquals("\\sin", lastElement.get(0).getTexString());
+        assertEquals("(", lastElement.get(1).getTexString());
+        assertEquals("q", lastElement.get(2).getTexString());
+        assertEquals("^2", lastElement.get(3).getTexString());
+        assertEquals(")", lastElement.get(4).getTexString());
+    }
+
+    @Test
     public void nestedDepthTest() throws ParseException {
         String texString = "a + b^{1+x}";
         PrintablePomTaggedExpression ppte = mlp.parse(texString);
@@ -190,6 +245,16 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     @Test
+    public void fractionTest() throws ParseException {
+        String texString = "\\frac{a}{b}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps, "{a}", "{b}");
+    }
+
+    @Test
     @DLMF("4.4.8")
     public void elementaryDLMFTest() throws ParseException {
         String texString = "e^{\\pm\\pi\\mathrm{i}/3}=\\frac{1}{2}\\pm\\mathrm{i}\\frac{\\sqrt{3}}{2}";
@@ -295,6 +360,12 @@ public class PrintablePomTaggedExpressionTests {
         String test = "\\pi+{}_2F_1\\left(a,b;c;z\\right)";
         PrintablePomTaggedExpression p = mlp.parse(test);
         assertEquals(test, p.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = p.getPrintableComponents();
+        checkList(printComps,
+                "\\pi", "+", "{}", "_2", "F", "_1",
+                "\\left(", "a", ",", "b", ";", "c", ";", "z", "\\right)"
+        );
     }
 
     @Test

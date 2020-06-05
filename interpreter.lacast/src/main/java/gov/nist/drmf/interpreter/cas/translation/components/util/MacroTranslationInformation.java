@@ -8,6 +8,9 @@ import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
 import mlp.FeatureSet;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Set;
+import java.util.SortedSet;
+
 import static org.apache.logging.log4j.LogManager.getLogger;
 
 /**
@@ -22,16 +25,19 @@ public class MacroTranslationInformation {
 
     private String defDlmf, defCas;
 
-    private String translationPattern, alternativePattern;
+    private String translationPattern;
+    private SortedSet<String> alternativePattern;
 
     private String branchCuts, casBranchCuts;
+
+    private Set<String> requiredPackages;
 
     public MacroTranslationInformation(FeatureSet fset, String cas) {
         // now store all additional information
         // first of all number of parameters, ats and vars
-        numOfParams = Integer.parseInt(DLMFFeatureValues.params.getFeatureValue(fset, cas));
-        numOfAts = Integer.parseInt(DLMFFeatureValues.ats.getFeatureValue(fset, cas));
-        numOfVars = Integer.parseInt(DLMFFeatureValues.variables.getFeatureValue(fset, cas));
+        numOfParams = Integer.parseInt(DLMFFeatureValues.NUMBER_OF_PARAMETERS.getFeatureValue(fset, cas));
+        numOfAts = Integer.parseInt(DLMFFeatureValues.NUMBER_OF_ATS.getFeatureValue(fset, cas));
+        numOfVars = Integer.parseInt(DLMFFeatureValues.NUMBER_OF_VARIABLES.getFeatureValue(fset, cas));
 
         // now store additional information about the translation
         // Meaning: name of the function (defined by DLMF)
@@ -40,37 +46,19 @@ public class MacroTranslationInformation {
         // Branch Cuts: of the DLMF definition
         // DLMF: its the plain, smallest version of the macro. Like \JacobiP{a}{b}{c}@{d}
         //      we can reference our Constraints to a, b, c and d now. That makes it easier to read
-        constraints = DLMFFeatureValues.constraints.getFeatureValue(fset, cas);
-        branchCuts = DLMFFeatureValues.branch_cuts.getFeatureValue(fset, cas);
+        constraints = DLMFFeatureValues.CONSTRAINTS.getFeatureValue(fset, cas);
+        branchCuts = DLMFFeatureValues.BRANCH_CUTS.getFeatureValue(fset, cas);
 
         // Translation information
-        translationPattern = DLMFFeatureValues.CAS.getFeatureValue(fset, cas);
-        alternativePattern = DLMFFeatureValues.CAS_Alternatives.getFeatureValue(fset, cas);
-        casBranchCuts = DLMFFeatureValues.CAS_BranchCuts.getFeatureValue(fset, cas);
+        translationPattern = DLMFFeatureValues.CAS_TRANSLATIONS.getFeatureValue(fset, cas);
+        alternativePattern = DLMFFeatureValues.CAS_TRANSLATION_ALTERNATIVES.getFeatureSet(fset, cas);
+        casBranchCuts = DLMFFeatureValues.CAS_BRANCH_CUTS.getFeatureValue(fset, cas);
 
         // links to the definitions
-        defDlmf = DLMFFeatureValues.dlmf_link.getFeatureValue(fset, cas);
-        defCas = DLMFFeatureValues.CAS_Link.getFeatureValue(fset, cas);
-    }
+        defDlmf = DLMFFeatureValues.DLMF_LINK.getFeatureValue(fset, cas);
+        defCas = DLMFFeatureValues.CAS_HYPERLINK.getFeatureValue(fset, cas);
 
-    void handleMultipleAlternativePatterns(String cas, String macro) {
-        // maybe the alternative pattern got multiple alternatives
-        if (!alternativePattern.isEmpty()) {
-            try {
-                alternativePattern = alternativePattern.split(MacrosLexicon.SIGNAL_INLINE)[0];
-            } catch (Exception e) {
-                throw new TranslationException(
-                        Keys.KEY_LATEX,
-                        cas,
-                        "Cannot split alternative macro pattern!",
-                        TranslationExceptionReason.DLMF_MACRO_ERROR);
-            }
-
-            if (translationPattern.isEmpty()) {
-                LOG.warn("No direct translation available! Switch to alternative mode for " + macro);
-                translationPattern = alternativePattern;
-            }
-        }
+        requiredPackages = DLMFFeatureValues.REQUIRED_PACKAGES.getFeatureSet(fset, cas);
     }
 
     public int getNumOfParams() {
@@ -101,7 +89,7 @@ public class MacroTranslationInformation {
         return translationPattern;
     }
 
-    public String getAlternativePattern() {
+    public SortedSet<String> getAlternativePattern() {
         return alternativePattern;
     }
 
@@ -113,7 +101,28 @@ public class MacroTranslationInformation {
         return casBranchCuts;
     }
 
+    public Set<String> getRequiredPackages() {
+        return requiredPackages;
+    }
+
+    public boolean requirePackages() {
+        return requiredPackages != null && !requiredPackages.isEmpty();
+    }
+
+    public boolean hasNoTranslations() {
+        return (translationPattern == null || translationPattern.isBlank()) &&
+                (alternativePattern == null || alternativePattern.isEmpty());
+    }
+
     public void appendNonEssentialInfo(StringBuilder sb, String cas) {
+        if ( requiredPackages != null && !requiredPackages.isEmpty() ) {
+            sb.append("Required Packages: ").append(requiredPackages).append(System.lineSeparator());
+        }
+
+        if ( alternativePattern != null && alternativePattern.size() > 0 ) {
+            sb.append("Alternative translations: ").append(alternativePattern);
+        }
+
         if (!getConstraints().isEmpty()) {
             sb.append("Constraints: ").append(getConstraints()).append(System.lineSeparator());
         }

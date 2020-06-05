@@ -55,6 +55,8 @@ public class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
      */
     public static final String TIMED_OUT_SIGNAL = "TIMED-OUT";
 
+    private boolean loadedQExtension = false;
+
     /**
      * The interface to maple
      * @throws MapleException if init wont work
@@ -118,6 +120,14 @@ public class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
             return evaluate(command);
         } catch (MapleException me) {
             throw new ComputerAlgebraSystemEngineException(me);
+        }
+    }
+
+    public void loadQExtension() throws ComputerAlgebraSystemEngineException {
+        if ( !loadedQExtension ) {
+            LOG.warn("Load QDifferenceEquations extension!");
+            enterCommand("with(QDifferenceEquations):");
+            loadedQExtension = true;
         }
     }
 

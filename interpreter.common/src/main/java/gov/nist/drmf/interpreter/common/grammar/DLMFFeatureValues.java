@@ -4,86 +4,101 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.interfaces.IFeatureExtractor;
 import mlp.FeatureSet;
 
+import java.util.SortedSet;
+
 /**
+ * This enum provides easy and fast access to all feature set values given in the
+ * lexicon. There are two main functions you are supposed to use if you want to extract
+ * specific values from a feature set: {@link #getFeatureValue(FeatureSet, String)} and
+ * {@link #getFeatureSet(FeatureSet, String)}.
+ *
+ * Suppose you have a feature set and want to get the Maple translation pattern. You get this
+ * information by calling:
+ * <pre>
+ *     // featureSet is your feature set
+ *     String mapleTranslationPattern = DLMFFeatureValues.CAS.getFeatureValue(featureSet, "Maple");
+ * </pre>
+ *
+ * To get a specific feature set use {@link mlp.MathTerm#getNamedFeatureSet(String)}.
+ *
  * @author Andre Greiner-Petter
+ * @see gov.nist.drmf.interpreter.mlp.FeatureSetUtility
+ * @see mlp.FeatureSet
+ * @see mlp.MathTerm
  */
 public enum DLMFFeatureValues implements IFeatureExtractor {
-    areas(
-            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_AREAS))
+    AREAS(
+            (t, c) -> t.getFeature(Keys.FEATURE_AREAS)
     ),
-    description(
-            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_DESCRIPTION))
+    DESCRIPTION(
+            (t, c) -> t.getFeature(Keys.FEATURE_DESCRIPTION)
     ),
-    meaning(
-            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_MEANINGS))
+    MEANING(
+            (t, c) -> t.getFeature(Keys.FEATURE_MEANINGS)
     ),
-    dlmf_link(
-            (t,c) -> DLMFFeatureValues.DLMF_LINK_PREFIX +
-                    IFeatureExtractor.getStringFromSet(
-                            t.getFeature(Keys.KEY_DLMF + DLMFFeatureValues.LINK_SUFFIX))
+    DLMF_LINK("http://",
+            (t, c) -> t.getFeature(Keys.KEY_DLMF + Keys.KEY_LINK_SUFFIX)
     ),
-    params(
-            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.NUM_OF_PARAMS))
+    NUMBER_OF_PARAMETERS(
+            (t, c) -> t.getFeature(Keys.NUM_OF_PARAMS)
     ),
-    ats(
-            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.NUM_OF_ATS))
+    NUMBER_OF_ATS(
+            (t, c) -> t.getFeature(Keys.NUM_OF_ATS)
     ),
-    variables(
-            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.NUM_OF_VARS))
+    NUMBER_OF_VARIABLES(
+            (t, c) -> t.getFeature(Keys.NUM_OF_VARS)
     ),
-    slot(
-            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.SLOT_OF_DIFF))
+    SLOT_DERIVATIVE(
+            (t, c) -> t.getFeature(Keys.SLOT_OF_DIFF)
     ),
-    CAS(
-            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(c))
+    CAS_TRANSLATIONS(FeatureSet::getFeature),
+    CAS_HYPERLINK("https://",
+            (t, c) -> t.getFeature(c + Keys.KEY_LINK_SUFFIX)
     ),
-    CAS_Alternatives(
-            (t,c) -> IFeatureExtractor.getStringFromSet(
-                    t.getFeature( c + DLMFFeatureValues.ALTERNATIVE_SUFFIX ))
+    CAS_TRANSLATION_ALTERNATIVES(
+            (t, c) -> t.getFeature(c + Keys.KEY_ALTERNATIVE_SUFFX)
     ),
-    CAS_Link(
-            (t,c) -> DLMFFeatureValues.CAS_LINK_PREFIX +
-                    IFeatureExtractor.getStringFromSet(
-                    t.getFeature( c + DLMFFeatureValues.LINK_SUFFIX ))
+    CAS_COMMENT(
+            (t, c) -> t.getFeature(c + Keys.KEY_COMMENT_SUFFIX)
     ),
-    CAS_Comment(
-            (t,c) -> IFeatureExtractor.getStringFromSet(
-                    t.getFeature( c + DLMFFeatureValues.COMMENT_SUFFIX ))
+    CAS_BRANCH_CUTS(
+            (t, c) -> t.getFeature(c + "-" + Keys.FEATURE_BRANCH_CUTS)
     ),
-    CAS_BranchCuts(
-            (t,c) -> IFeatureExtractor.getStringFromSet(
-                    t.getFeature( c + DLMFFeatureValues.BRANCH_CUTS_SUFFIX ))
+    REQUIRED_PACKAGES(
+            (t, c) -> t.getFeature(c + Keys.KEY_EXTRA_PACKAGE_SUFFIX)
     ),
-    DLMF(
-            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.KEY_DLMF))
+    DLMF_EXAMPLE(
+            (t, c) -> t.getFeature(Keys.KEY_DLMF)
     ),
-    constraints(
-            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_CONSTRAINTS))
+    CONSTRAINTS(
+            (t, c) -> t.getFeature(Keys.FEATURE_CONSTRAINTS)
     ),
-    branch_cuts(
-            (t,c) -> IFeatureExtractor.getStringFromSet(t.getFeature(Keys.FEATURE_BRANCH_CUTS))
+    BRANCH_CUTS(
+            (t, c) -> t.getFeature(Keys.FEATURE_BRANCH_CUTS)
     );
 
-    public static final String LINK_SUFFIX = "-Link";
+    /**
+     * The prefix and feature extractor
+     */
+    private final String prefix;
+    private final IFeatureExtractor extractor;
 
-    public static final String COMMENT_SUFFIX = "-Comment";
+    DLMFFeatureValues(IFeatureExtractor extractor) {
+        this("", extractor);
+    }
 
-    public static final String ALTERNATIVE_SUFFIX = "-Alternatives";
-
-    public static final String BRANCH_CUTS_SUFFIX = "-Branch Cuts";
-
-    private static final String DLMF_LINK_PREFIX = "http://";
-
-    private static final String CAS_LINK_PREFIX = "https://";
-
-    private IFeatureExtractor extractor;
-
-    DLMFFeatureValues( IFeatureExtractor extractor ){
+    DLMFFeatureValues(String prefix, IFeatureExtractor extractor) {
+        this.prefix = prefix;
         this.extractor = extractor;
     }
 
     @Override
-    public String getFeatureValue( FeatureSet t, String cas ){
-        return extractor.getFeatureValue(t, cas);
+    public SortedSet<String> getFeatureSet(FeatureSet t, String cas) {
+        return extractor.getFeatureSet(t, cas);
+    }
+
+    @Override
+    public String getFeatureValue(FeatureSet featureSet, String cas) {
+        return prefix + extractor.getFeatureValue(featureSet, cas);
     }
 }
