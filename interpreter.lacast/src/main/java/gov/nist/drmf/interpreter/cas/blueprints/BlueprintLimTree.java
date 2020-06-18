@@ -9,21 +9,20 @@ import java.io.IOException;
 /**
  * @author Andre Greiner-Petter
  */
-public class BlueprintLimTree extends BlueprintLimitTree {
+public class BlueprintLimTree extends BlueprintRuleMatcher {
     private static final String DEFAULT_LOWER_LIMIT = "numL1";
 
     private LimDirections direction;
 
-    public BlueprintLimTree(String blueprint,
-                            String limitDir,
-                            SemanticLatexTranslator translator) throws ParseException, IOException {
-        super(blueprint, DEFAULT_LOWER_LIMIT, translator);
+    public BlueprintLimTree(SemanticLatexTranslator translator, String blueprint,
+                            String limitDir) throws ParseException {
+        super(translator, blueprint, DEFAULT_LOWER_LIMIT);
         this.direction = LimDirections.getDirection(limitDir);
     }
 
     @Override
-    protected Limits getExtractedLimits() {
-        Limits lim = super.getExtractedLimits();
+    protected MathematicalEssentialOperatorMetadata getExtractedMEOM() {
+        MathematicalEssentialOperatorMetadata lim = super.getExtractedMEOM();
         lim.setDirection(direction);
         return lim;
     }

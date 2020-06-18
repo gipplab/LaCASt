@@ -26,19 +26,8 @@ public class SemanticMLPWrapper extends MLPWrapper {
         init();
     }
 
-    public SemanticMLPWrapper(String referenceDir) throws IOException {
-        super(referenceDir);
-        Path p = Paths.get(referenceDir).resolve("Lexicons").resolve("DLMF-macros-lexicon.txt");
-        init(p);
-    }
-
     private void init() throws IOException {
         MacrosLexicon.init();
-        addLexicon( MacrosLexicon.getDLMFMacroLexicon() );
-    }
-
-    private void init(Path path) throws IOException {
-        MacrosLexicon.init(path);
         addLexicon( MacrosLexicon.getDLMFMacroLexicon() );
     }
 
@@ -47,7 +36,7 @@ public class SemanticMLPWrapper extends MLPWrapper {
      * if you keep the number of MLP instances low.
      * @return the standard instance of the this class
      */
-    public static SemanticMLPWrapper getStandardInstance() {
+    public static synchronized SemanticMLPWrapper getStandardInstance() {
         if ( standardInstance == null ) {
             try {
                 standardInstance = new SemanticMLPWrapper();

@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
-import gov.nist.drmf.interpreter.cas.blueprints.Limits;
+import gov.nist.drmf.interpreter.cas.blueprints.MathematicalEssentialOperatorMetadata;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
@@ -70,7 +70,7 @@ public class LimitedTranslator extends AbstractListTranslator {
             );
         }
 
-        Limits limit = getLimit(list, category);
+        MathematicalEssentialOperatorMetadata limit = getLimit(list, category);
 
         // find elements that are part of the argument:
         // next, split into argument parts and the rest
@@ -85,9 +85,9 @@ public class LimitedTranslator extends AbstractListTranslator {
         return localTranslations;
     }
 
-    private Limits getLimit(List<PomTaggedExpression> list, LimitedExpressions category) {
+    private MathematicalEssentialOperatorMetadata getLimit(List<PomTaggedExpression> list, LimitedExpressions category) {
         PomTaggedExpression limitExpression = list.remove(0);
-        Limits limit = null;
+        MathematicalEssentialOperatorMetadata limit = null;
 
         switch( category ) {
             case INT:
@@ -125,12 +125,12 @@ public class LimitedTranslator extends AbstractListTranslator {
         }
     }
 
-    private TranslatedExpression getPotentialTranslatedExpressions(Limits limit, List<PomTaggedExpression> list) {
+    private TranslatedExpression getPotentialTranslatedExpressions(MathematicalEssentialOperatorMetadata limit, List<PomTaggedExpression> list) {
         List<PomTaggedExpression> potentialArguments =
                 VariableExtractor.getPotentialArgumentsUntilEndOfScope(list, limit.getVars(), this);
 
         // the potential arguments is a theoretical sequence, so handle it as a sequence!
-        PomTaggedExpression topPTE = FakeMLPGenerator.generateEmptySequencePTE();
+        PomTaggedExpression topPTE = FakeMLPGenerator.generateEmptySequencePPTE();
         for ( PomTaggedExpression pte : potentialArguments ) topPTE.addComponent(pte);
 
         // next, we translate the expressions to search for the variables
@@ -139,7 +139,7 @@ public class LimitedTranslator extends AbstractListTranslator {
     }
 
     private TranslatedExpression getTranslatedExpression(
-            Limits limit,
+            MathematicalEssentialOperatorMetadata limit,
             LimitedExpressions category,
             TranslatedExpression translatedPotentialArguments
     ) {
@@ -157,7 +157,7 @@ public class LimitedTranslator extends AbstractListTranslator {
     }
 
     private String getFinalTranslationString(
-            Limits limit,
+            MathematicalEssentialOperatorMetadata limit,
             TranslatedExpression transArgs,
             LimitedExpressions category,
             MathTerm root
@@ -165,7 +165,7 @@ public class LimitedTranslator extends AbstractListTranslator {
         int lastIdx = limit.getVars().size()-1;
 
         // start with inner -> last elements in limit
-        Limits.BoundaryStrings boundaries = limit.getArguments(
+        MathematicalEssentialOperatorMetadata.BoundaryStrings boundaries = limit.getArguments(
                 lastIdx, indef, stripMultiParentheses(transArgs.getTranslatedExpression()), category
         );
         String finalTranslation = translatePattern(boundaries, category, root);
@@ -180,7 +180,7 @@ public class LimitedTranslator extends AbstractListTranslator {
         return finalTranslation;
     }
 
-    private String translatePattern(Limits.BoundaryStrings boundaries, LimitedExpressions category, MathTerm mathTerm) {
+    private String translatePattern(MathematicalEssentialOperatorMetadata.BoundaryStrings boundaries, LimitedExpressions category, MathTerm mathTerm) {
         if ( category.equals(LimitedExpressions.INT) ) {
             int degree = LimitedExpressions.getMultiIntDegree(mathTerm);
             return recursiveIntTranslation( boundaries.getCategoryKey(), boundaries.getArgs(), degree );
@@ -198,9 +198,9 @@ public class LimitedTranslator extends AbstractListTranslator {
         return bft.translate(args, translationKey);
     }
 
-    private Limits extractLimits(PomTaggedExpression limitSuperExpr, boolean lim) {
+    private MathematicalEssentialOperatorMetadata extractLimits(PomTaggedExpression limitSuperExpr, boolean lim) {
         LinkedList<PomTaggedExpression> upperBound = new LinkedList<>();
-        Limits limit = limitAnalyzer.extractLimitsWithoutParsing(
+        MathematicalEssentialOperatorMetadata limit = limitAnalyzer.extractLimitsWithoutParsing(
                 limitSuperExpr,
                 upperBound,
                 lim
@@ -215,13 +215,13 @@ public class LimitedTranslator extends AbstractListTranslator {
         return limit;
     }
 
-    private Limits extractIntegralLimits(PomTaggedExpression limitSuperExpr, AbstractTranslator parentTranslator) {
+    private MathematicalEssentialOperatorMetadata extractIntegralLimits(PomTaggedExpression limitSuperExpr, AbstractTranslator parentTranslator) {
         LinkedList<PomTaggedExpression> upperBound = new LinkedList<>();
         PomTaggedExpression lower = limitAnalyzer.getLowerUpper(limitSuperExpr, upperBound, parentTranslator, true);
 
         if ( lower == null ) {
             this.indef = true;
-            return new Limits(
+            return new MathematicalEssentialOperatorMetadata(
                     new LinkedList<>(),
                     new LinkedList<>(),
                     new LinkedList<>()
@@ -237,7 +237,7 @@ public class LimitedTranslator extends AbstractListTranslator {
         u.add(upperTrans.toString());
         l.add(lowerTrans.toString());
 
-        return new Limits(new LinkedList<>(), l, u);
+        return new MathematicalEssentialOperatorMetadata(new LinkedList<>(), l, u);
     }
 
     private TranslatedExpression removeUntilLastAppearance(TranslatedExpression te, List<String> vars) {

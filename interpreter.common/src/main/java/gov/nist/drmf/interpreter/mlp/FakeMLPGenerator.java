@@ -30,6 +30,17 @@ public final class FakeMLPGenerator {
         return new PomTaggedExpression(generateEmptyMathTerm(), ExpressionTags.binomial.tag());
     }
 
+    public static PomTaggedExpression wrapNonSequenceInSequence(PomTaggedExpression pte) {
+        if ( PomTaggedExpressionUtility.isSequence(pte) ) return pte;
+
+        PomTaggedExpression sequence;
+        if ( pte instanceof PrintablePomTaggedExpression ) {
+            sequence = generateEmptySequencePPTE();
+        } else sequence = generateEmptySequencePTE();
+        sequence.addComponent(pte);
+        return sequence;
+    }
+
     public static MathTerm generateEmptyMathTerm() {
         return new MathTerm("");
     }

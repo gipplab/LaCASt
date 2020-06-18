@@ -12,24 +12,8 @@ public enum TranslationExceptionReason {
     WRONG_PARENTHESIS("Parenthesis mismatch in expression"),
     MLP_ERROR("CRITICAL! POM-Tagger Error Reached"),
     IMPLEMENTATION_ERROR("The current implementation is wrong"),
-
+    INSTANTIATION_ERROR("Unable to load a translation component"),
     MAPLE_TRANSLATION_ERROR("An error in Maple occurred"),
-
-//    NULL_ARGUMENT("Empty argument in DLMF/DRMF Macro"),
-//    UNKNOWN_MACRO("Unknown DLMF/DRMF Macro"),
-//    UNKNOWN_EXPRESSION_TAG("Unknown Expression Tag"),
-//    UNKNOWN_MATHTERM_TAG("Unknown MathTerm Tag"),
-//    UNKNOWN_SYMBOL("Unknown Symbol"),
-//    UNKNOWN_OPERATION("Unknown Operation"),
-//    UNKNOWN_MATH_CONSTANT("Unknown Mathematical Constant"),
-//    UNKNOWN_GREEK_LETTER("Unknown Greek Letter"),
-//
-//    UNKNOWN_PARSE_TREE_STRUCTURE("The MLP parse tree has an unknown structure"),
-//
-//    ILLEGAL_EXTRA_INFO("Invalid additional information attached"),
-//    ABBREVIATION("Abbreviations in Expression"),
-//    PARSING_ERROR("Cannot parse the given input"),
-
     NULL("Unknown Error");
 
     private String name;

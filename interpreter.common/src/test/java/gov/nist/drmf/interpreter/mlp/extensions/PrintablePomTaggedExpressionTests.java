@@ -286,6 +286,108 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     @Test
+    public void balancedFractionSumTest() throws ParseException {
+        String texString = "\\left(\\frac{\\cos{a}+1}{\\sin{b}+2}\\right)";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps,
+                "\\left(",
+                "\\frac{\\cos{a}+1}{\\sin{b}+2}",
+                "\\right)");
+    }
+
+    @Test
+    @DLMF("22.12.2")
+    public void longPrintableDLMFTest() throws ParseException {
+        String texString = "\\sum_{n=-\\infty}^{\\infty} \\frac{\\pi}{\\sin@{\\pi (t - (n+\\frac{1}{2}) \\tau)}} = " +
+                "\\sum_{n=-\\infty}^{\\infty} \\left( " +
+                    "\\sum_{m=-\\infty}^{\\infty} \\frac{(-1)^m}{t - m - (n+\\frac{1}{2}) \\tau} " +
+                "\\right)";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps,
+                "\\sum", "_{n=-\\infty}^{\\infty}",
+                "\\frac{\\pi}{\\sin@{\\pi (t - (n+\\frac{1}{2}) \\tau)}}",
+                "=",
+                "\\sum", "_{n=-\\infty}^{\\infty}",
+                "\\left(",
+                    "\\sum", "_{m=-\\infty}^{\\infty}",
+                    "\\frac{(-1)^m}{t - m - (n+\\frac{1}{2}) \\tau}",
+                "\\right)"
+        );
+
+        printComps = printComps.get(2).getPrintableComponents();
+        checkList(printComps,
+                "{\\pi}",
+                "{\\sin@{\\pi (t - (n+\\frac{1}{2}) \\tau)}}"
+        );
+
+        printComps = printComps.get(1).getPrintableComponents();
+        checkList(printComps,
+                "\\sin", "@", "{\\pi (t - (n+\\frac{1}{2}) \\tau)}"
+        );
+
+        printComps = printComps.get(2).getPrintableComponents();
+        checkList(printComps,
+                "\\pi", "(", "t", "-", "(", "n", "+", "\\frac{1}{2}", ")", "\\tau", ")"
+        );
+    }
+
+    @Test
+    public void sameEndingFractionTest() throws ParseException {
+        String texString = "\\frac{b-a_b}{b-a_b}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps, "{b-a_b}", "{b-a_b}");
+    }
+
+    @Test
+    @DLMF("16.11.2")
+    public void fractionSumTest() throws ParseException {
+        String texString = "\\sum_{m=1}^p " +
+                "\\sum_{k=0}^\\infty " +
+                "\\frac{\\opminus^k}{k!} " +
+                "\\EulerGamma@{a_m + k} " +
+                "\\left(" +
+                    "\\frac{" +
+                        "\\prod_{\\ell=1}^p " +
+                        "\\EulerGamma@{a_\\ell - a_m - k}" +
+                    "} " +
+                    "{" +
+                        "\\prod_{\\ell=1}^q " +
+                        "\\EulerGamma@{b_\\ell - a_m - k}" +
+                    "}" +
+                "\\right) " +
+                "z^{-a_m - k}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps,
+                "\\sum", "_{m=1}^p",
+                "\\sum", "_{k=0}^\\infty",
+                "\\frac{\\opminus^k}{k!}",
+                "\\EulerGamma", "@", "{a_m + k}",
+                "\\left(",
+                    "\\frac{\\prod_{\\ell=1}^p \\EulerGamma@{a_\\ell - a_m - k}} {\\prod_{\\ell=1}^q \\EulerGamma@{b_\\ell - a_m - k}}",
+                "\\right)",
+                "z", "^{-a_m - k}"
+        );
+
+        printComps = printComps.get(9).getPrintableComponents();
+        checkList(printComps,
+                "{\\prod_{\\ell=1}^p \\EulerGamma@{a_\\ell - a_m - k}}",
+                "{\\prod_{\\ell=1}^q \\EulerGamma@{b_\\ell - a_m - k}}"
+        );
+    }
+
+    @Test
     public void overrideSetRootTest() throws ParseException {
         String texString = "\\sqrt[2]{x^2}";
         PomTaggedExpression pte = mlp.parse(texString);

@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,6 +10,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
 
@@ -25,11 +28,9 @@ public class IndependentTranslatorTests {
     private static SemanticLatexTranslator sltMathematica;
 
     @BeforeAll
-    public static void setup() throws IOException {
+    public static void setup() throws InitTranslatorException {
         sltMaple = new SemanticLatexTranslator(Keys.KEY_MAPLE);
         sltMathematica = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
-        sltMaple.init(GlobalPaths.PATH_REFERENCE_DATA);
-        sltMathematica.init(GlobalPaths.PATH_REFERENCE_DATA);
     }
 
     @Test
@@ -51,22 +52,24 @@ public class IndependentTranslatorTests {
         String expOutMaple = "JacobiP(n, alpha, beta, cos(a*Theta*sqrt((1)/(I))))";
         String expOutMath = "JacobiP[n, \\[Alpha], \\[Beta], Cos[a*\\[CapitalTheta]*Sqrt[Divide[1,I]]]]";
 
-        ForkJoinPool pool = new ForkJoinPool(2);
-        String[] outMaple = new String[]{""};
-        String[] outMath = new String[]{""};
+        ForkJoinPool pool = new ForkJoinPool(4);
+        List<String> outMaple = new LinkedList<>();
+        List<String> outMath = new LinkedList<>();
 
-        pool.submit(() -> {
-            outMaple[0] = sltMaple.translate(in);
-        });
-        pool.submit(() -> {
-            outMath[0] = sltMathematica.translate(in);
-        });
+        for ( int i = 0; i < 10; i++ ) {
+            pool.submit(() -> {
+                outMaple.add(sltMaple.translate(in));
+            });
+            pool.submit(() -> {
+                outMath.add(sltMathematica.translate(in));
+            });
+        }
 
         pool.shutdown();
         try {
             pool.awaitTermination(10, TimeUnit.SECONDS);
-            assertEquals(expOutMaple, outMaple[0]);
-            assertEquals(expOutMath, outMath[0]);
+            outMaple.forEach( s -> assertEquals(expOutMaple, s) );
+            outMath.forEach( s -> assertEquals(expOutMath, s) );
         } catch (InterruptedException e) {
             LOG.warn("Parallel execution did not fail but took too long.");
         }

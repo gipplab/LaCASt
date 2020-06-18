@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.cas;
 
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -194,17 +195,15 @@ public class SemanticToCASInterpreter {
         if ( verbose ) {
             System.out.println( "Set up translation..." );
         }
-        SemanticLatexTranslator latexParser = new SemanticLatexTranslator( cas );
         if ( verbose ) {
             System.out.println( "Initialize translation..." );
         }
         try {
-            latexParser.init( GlobalPaths.PATH_REFERENCE_DATA );
-        } catch ( IOException e ) {
+            return new SemanticLatexTranslator( cas );
+        } catch ( InitTranslatorException e ) {
             System.err.println( "Cannot initiate translator." );
             e.printStackTrace();
             throw new RuntimeException( e );
         }
-        return latexParser;
     }
 }

@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.*;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
@@ -21,18 +22,32 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 /**
- * This translation translate semantic LaTeX formula using
- * the math processor language by Abdou Youssef.
- * It based on BNF grammar programmed with JavaCC.
+ * <p>
+ * This class is the high-level entry point to perform translations from semantic LaTeX to CAS.
+ * The translator is not thread-safe. To run translations in parallel, you must initiate multiple
+ * independent instances.
+ * </p>
  *
- * It is the top level translation objects. That means
- * you can use {@link #translate(String)} to translate an
- * expression in general. To do so, you have to
- * invoke {@link #init(Path)} before you use this
- * translate method. On the other hand this translation can
- * handle also general PomTaggedExpression to translate.
- * @see PomTaggedExpression
+ * <p>
+ * It provides multiple entry points to perform translations. Mainly
+ * {@link #translate(String)} and {@link #translate(PomTaggedExpression)} to perform
+ * translations directly on the given input. The former will call the internal
+ * LaTeX parser {@link mlp.PomParser} to generate a {@link PomTaggedExpression}. The
+ * second method simply translates the provided parsed expression. If you are not sure
+ * what to use, it is always recommended to use the former {@link #translate(String)}
+ * method.
+ * </p>
  *
+ * <p>
+ * In addition, and in accordance to the DLMF, the class also provides the method
+ * {@link #translate(String, String)} that performs pre-processing on the TeX string
+ * according to the provided DLMF label. For example, every {@code i} in section 4
+ * of the DLMF is the imaginary unit and hence, should be replaced by {@code \iunit}.
+ * By providing the equation label, e.g., "4.4.4" referring to https://dlmf.nist.gov/4.4.4,
+ * will pre-process the input {@code e^0 = 1} to {@code \expe^0 = 1}.
+ * </p>
+ *
+ * @see mlp.PomParser
  * @author Andre Greiner-Petter
  */
 public class SemanticLatexTranslator extends AbstractTranslator implements ITranslator {
@@ -52,39 +67,36 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      * @param to_language the language key
      * @see gov.nist.drmf.interpreter.common.constants.Keys
      */
-    public SemanticLatexTranslator( String to_language ){
-        this(new ForwardTranslationProcessConfig(to_language));
+    public SemanticLatexTranslator( String to_language ) throws InitTranslatorException {
+        this( new ForwardTranslationProcessConfig(to_language) );
     }
 
     /**
      * Creates a forward translator based on a the given config.
      * If the config does not contain a {@link BlueprintMaster} object
-     * yet, it will be initialized in the {@link #init(Path)} function
+     * yet, it will be initialized in the {@link } function
      * and added to the config object.
      *
      * @param config config (with or without BlueprintMaster object)
      * @see BlueprintMaster
      */
-    public SemanticLatexTranslator( ForwardTranslationProcessConfig config ) {
-        super(config);
+    public SemanticLatexTranslator( ForwardTranslationProcessConfig config ) throws InitTranslatorException {
+        super( config );
         this.config = config;
         this.localTranslations = new TranslatedExpression();
+        this.init();
     }
 
     /**
      * Copy constructor
      * @param orig the original translator
      */
-    private SemanticLatexTranslator( SemanticLatexTranslator orig ) {
-        super(orig.getConfig());
+    private SemanticLatexTranslator( SemanticLatexTranslator orig ) throws InitTranslatorException {
+        super( orig.getConfig() );
         this.config = orig.config;
         this.parser = orig.parser;
         this.localTranslations = new TranslatedExpression();
-    }
-
-    @Override
-    public TranslatedExpression getTranslatedExpressionObject() {
-        return localTranslations;
+        this.init();
     }
 
     /**
@@ -96,23 +108,12 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      * Note, that if the config did not contain a {@link BlueprintMaster}
      * object, it will be initialized and added to the config automatically.
      *
-     * @param reference_dir_path the path to the ReferenceData directory.
-     *                           You can find the path in
-     *                           {@link GlobalPaths#PATH_REFERENCE_DATA}.
-     * @throws IOException if it is not possible to read the information
+     * @throws InitTranslatorException if it is not possible to read the information
      *                      from the files.
      */
-    public void init( Path reference_dir_path ) throws IOException {
+    private void init() throws InitTranslatorException {
         config.init();
-        parser = new SemanticMLPWrapper(reference_dir_path.toString());
-
-        if ( config.getLimitParser() == null ) {
-            BlueprintMaster bm = new BlueprintMaster(
-                    new SemanticLatexTranslator(this) // copy
-            );
-            bm.init();
-            config.setLimitParser(bm);
-        }
+        parser = SemanticMLPWrapper.getStandardInstance();
     }
 
     /**
@@ -129,7 +130,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      * @see ConditionalReplacementRule
      * @see IReplacementCondition
      */
-    public String translate( String expression, String label ) throws TranslationException {
+    public synchronized String translate( String expression, String label ) throws TranslationException {
         if ( expression == null || expression.isEmpty() ) {
             LOG.warn("Tried to translate an empty expression");
             return "";
@@ -145,7 +146,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      * @throws TranslationException if an error occurred due translation
      */
     @Override
-    public String translate( String expression ) throws TranslationException {
+    public synchronized String translate( String expression ) throws TranslationException {
         return translate(expression, null);
     }
 
@@ -160,7 +161,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
     private String innerTranslate( String expression, String label ) throws TranslationException {
         try {
             // TODO we should switch to the real parse option later
-            PomTaggedExpression exp = parser.simpleParse(expression, label);
+            PomTaggedExpression exp = parser.parse(expression, label);
             translate(exp); // return value can be ignored here
             if ( !expression.matches("(?:num[UL]|var).*") ){
                 LOG.debug("Input:  " + expression);
@@ -186,7 +187,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
     }
 
     @Override
-    public TranslatedExpression translate( PomTaggedExpression expression ) throws TranslationException {
+    public synchronized TranslatedExpression translate( PomTaggedExpression expression ) throws TranslationException {
         reset();
         localTranslations = new TranslatedExpression();
         TranslatedExpression global = super.getGlobalTranslationList();
@@ -205,7 +206,17 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
         return super.getInfoLogger();
     }
 
+    @Override
+    public TranslatedExpression getTranslatedExpressionObject() {
+        return localTranslations;
+    }
+
     public BlueprintMaster getBlueprintMaster() {
-        return config.getLimitParser();
+        try {
+            return config.getLimitParser();
+        } catch (InitTranslatorException e) {
+            LOG.fatal("Unable to load blueprint parser.");
+            return null;
+        }
     }
 }

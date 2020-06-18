@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.ParseException;
@@ -27,9 +28,8 @@ public class TranslatorComponentsTester {
     private static SemanticMLPWrapper mlp;
 
     @BeforeAll
-    static void setup() throws IOException {
+    static void setup() throws InitTranslatorException {
         slt = new SemanticLatexTranslator(Keys.KEY_MAPLE);
-        slt.init(GlobalPaths.PATH_REFERENCE_DATA);
         mlp = SemanticMLPWrapper.getStandardInstance();
     }
 

@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.interfaces.IPackageWrapper;
 import org.apache.logging.log4j.LogManager;
@@ -23,9 +24,8 @@ public class DLMFTranslator implements IConstraintTranslator {
     private final TranslationProcessConfig config;
     private final PackageWrapper packageWrapper;
 
-    public DLMFTranslator( String cas ) throws IOException {
+    public DLMFTranslator( String cas ) throws InitTranslatorException {
         dlmfInterface = new SemanticLatexTranslator( cas );
-        dlmfInterface.init( GlobalPaths.PATH_REFERENCE_DATA );
         config = dlmfInterface.getConfig();
         packageWrapper = new PackageWrapper(config);
         LOG.debug("Initialized DLMF LaTeX Interface.");

@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.translation.components.cases.InvalidTests;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import org.junit.jupiter.api.BeforeAll;
@@ -21,7 +22,7 @@ public class InvalidTranslationTest {
     private static TranslationTester tester;
 
     @BeforeAll
-    static void setUp() throws IOException {
+    static void setUp() throws InitTranslatorException {
         tester = new TranslationTester();
     }
 

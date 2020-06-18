@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
 import gov.nist.drmf.interpreter.maple.extension.Simplifier;
@@ -66,13 +67,12 @@ public class Translator {
      * Maple also requires proper environment variables
      * MAPLE and LD_LIBRARY_PATH. See more about it in README.md
      */
-    public Translator() throws IOException {
+    public Translator() throws InitTranslatorException {
         // setup logging
 //        System.setProperty( Keys.KEY_SYSTEM_LOGGING, GlobalPaths.PATH_LOGGING_CONFIG.toString() );
 
         LOG.debug("Instantiate forward translation to Maple");
         dlmfMapleInterface = new SemanticLatexTranslator(Keys.KEY_MAPLE);
-        dlmfMapleInterface.init(GlobalPaths.PATH_REFERENCE_DATA);
 
 //        LOG.debug("Instantiate forward translation to Mathematica");
 //        dlmfMathematicaInterface = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
@@ -93,7 +93,7 @@ public class Translator {
         if ( translator == null ) {
             try {
                 translator = new Translator();
-            } catch (IOException e) {
+            } catch (InitTranslatorException e) {
                 LOG.error("Cannot instantiate default translator", e);
                 return null;
             }

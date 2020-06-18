@@ -100,6 +100,7 @@ public class PomTaggedExpressionChildrenMatcher {
             idx++;
         }
 
-        return (config.allowFollowingTokens() && !refComponents.isEmpty()) || idx == size();
+        if ( !config.allowFollowingTokens() && idx == size() ) return refComponents.isEmpty();
+        else return idx == size();
     }
 }

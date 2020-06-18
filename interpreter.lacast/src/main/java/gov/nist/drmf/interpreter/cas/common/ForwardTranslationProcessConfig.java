@@ -1,9 +1,13 @@
 package gov.nist.drmf.interpreter.cas.common;
 
 import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
+import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
@@ -14,6 +18,8 @@ import java.io.IOException;
  * @author Andre Greiner-Petter
  */
 public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
+    private static final Logger LOG = LogManager.getLogger(ForwardTranslationProcessConfig.class.getName());
+
     private String TAB = "";
     private String MULTIPLY = "*";
 
@@ -21,8 +27,6 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
     private boolean extensiveOutput = false;
 
     private boolean inlinePackageMode = false;
-
-    private boolean isInit = false;
 
     public ForwardTranslationProcessConfig(String to_language) {
         super(Keys.KEY_LATEX, to_language);
@@ -33,14 +37,9 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
             TAB += " ";
     }
 
-    public void init() throws IOException {
+    public void init() throws InitTranslatorException {
         super.init();
         MULTIPLY = super.getSymbolTranslator().translateFromMLPKey( Keys.MLP_KEY_MULTIPLICATION );
-        this.isInit = true;
-    }
-
-    public void setLimitParser(BlueprintMaster limitParser) {
-        this.limitParser = limitParser;
     }
 
     /**
@@ -64,7 +63,24 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
         this.inlinePackageMode = inlinePackageMode;
     }
 
-    public BlueprintMaster getLimitParser() {
+    /**
+     * Careful, lazy initialization.
+     * @return the blueprint master
+     */
+    public BlueprintMaster getLimitParser() throws InitTranslatorException {
+        if ( limitParser == null ) {
+            LOG.debug("Lazy init blueprint masters.");
+            SemanticLatexTranslator blueprintTranslator = new SemanticLatexTranslator(this);
+            limitParser = new BlueprintMaster(blueprintTranslator);
+            try {
+                limitParser.init();
+            } catch (IOException e) {
+                throw new InitTranslatorException(
+                        "Unable to load blueprint translator.",
+                        e
+                );
+            }
+        }
         return limitParser;
     }
 

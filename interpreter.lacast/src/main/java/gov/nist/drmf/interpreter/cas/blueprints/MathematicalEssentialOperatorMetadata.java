@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Andre Greiner-Petter
  */
-public class Limits {
+public class MathematicalEssentialOperatorMetadata {
     public static String DEFAULT_UPPER_LIMIT = "\\infty";
 
     private List<String> vars, upper, lower;
@@ -20,7 +20,7 @@ public class Limits {
 
     private boolean isLimitOverSet = false;
 
-    public Limits(List<String> vars, List<String> lower, List<String> upper) {
+    public MathematicalEssentialOperatorMetadata(List<String> vars, List<String> lower, List<String> upper) {
         this.vars = vars;
         this.upper = upper;
         this.lower = lower;

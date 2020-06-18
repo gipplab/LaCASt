@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.components.MacroTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
@@ -30,9 +31,8 @@ class SimpleTranslationTests {
     private static SemanticLatexTranslator slt;
 
     @BeforeAll
-    static void setup() throws IOException {
+    static void setup() throws InitTranslatorException {
         slt = new SemanticLatexTranslator(Keys.KEY_MAPLE);
-        slt.init(GlobalPaths.PATH_REFERENCE_DATA);
     }
 
     @Test

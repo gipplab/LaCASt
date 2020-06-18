@@ -91,6 +91,71 @@ public class MatchablePomTaggedExpressionTests {
         checkMatch( blueprint, "par2", "a+b^x", "b" );
     }
 
+    @Test
+    public void simpleBlueprintTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "varN = numL1", "varN|numL1");
+        assertFalse(blueprint.match("a, b, c = 1"));
+        assertTrue(blueprint.match("a, b, c = 1",
+                MatcherConfig.getExactMatchConfig()
+                        .setIllegalCharacterForWildcard("varN", "[;.=\\d]"))
+        );
+    }
+
+    @Test
+    public void illegalCharacterTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = new MatchablePomTaggedExpression(mlp, "var = 1", "var");
+
+        MatcherConfig config = MatcherConfig.getExactMatchConfig();
+        assertTrue(blueprint.match("a = 1", config));
+        assertFalse(blueprint.match("a, b = 1", config), "By default, a comma should be not allowed in a wildcard");
+
+        config.allowCommaForWildcard("var");
+        assertTrue(blueprint.match("a, b = 1", config), "Specifically allow comma in wildcards seems to be not working");
+
+        config = MatcherConfig.getExactMatchConfig().allowCommaForAllWildcards();
+        assertTrue(blueprint.match("a, b = 1", config), "Specifically allow comma in wildcards seems to be not working");
+
+        config = MatcherConfig.getExactMatchConfig();
+        assertTrue(blueprint.match("3 a = 1", config));
+
+        config.setIllegalCharacterForWildcard("var", "[,;.=\\d]");
+        assertFalse(blueprint.match("3 a = 1", config), "Setting for not allowed numbers in wildcards is not working.");
+
+        config.setIllegalCharacterForWildcard("var", "[a-z]");
+        assertTrue(blueprint.match("3 = 1", config), "Allow numbers in wildcard is not working");
+
+        config.setIllegalCharacterForWildcard("var", "[a-z]");
+        assertFalse(blueprint.match("a = 1", config), "Not allow latin letters in wildcard is not working");
+    }
+
+    @Test
+    public void wrongEndingBlueprintTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "varN = numL1-1", "varN|numL1");
+        assertFalse(blueprint.match("a = 2-1 + 1", MatcherConfig.getExactMatchConfig()));
+        assertTrue(blueprint.match("a = 2-1 + 1", MatcherConfig.getExactMatchConfig().allowFollowingTokens(true)));
+    }
+
+    @Test
+    public void longerEndingBlueprintTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "varN = numL1-1", "varN|numL1");
+        assertTrue(blueprint.match("a = x-1 + y-1", MatcherConfig.getExactMatchConfig()));
+        Map<String, String> matches = blueprint.getStringMatches();
+        assertEquals( "x - 1 + y", matches.get("numL1") );
+    }
+
+    @Test
+    public void potentialBluePrintTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "numL1 \\leq var1 < var2 \\leq numU1", "(num[UL]|var)\\d+");
+        checkMatch( blueprint, "numL1", "1 \\leq a < b \\leq 2", "1" );
+        checkMatch( blueprint, "numU1", "1 \\leq a < b \\leq 2", "2" );
+        checkMatch( blueprint, "var1",  "1 \\leq a < b \\leq 2", "a" );
+        checkMatch( blueprint, "var2",  "1 \\leq a < b \\leq 2", "b" );
+    }
+
     private void checkMatch( MatchablePomTaggedExpression test, String wildCard, String expression, String result )
             throws ParseException {
         PrintablePomTaggedExpression ppte = mlp.parse(expression);
@@ -353,12 +418,9 @@ public class MatchablePomTaggedExpressionTests {
         String test = "P_n^{(\\alpha,\\beta)}";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
         assertFalse(blueprint.match(ppte));
-        Map<String, String> matches = blueprint.getStringMatches();
-        assertEquals("P", matches.get("var1"));
-        assertEquals("\\alpha", matches.get("var2"));
-        assertEquals("\\beta", matches.get("var3"));
-        assertEquals("n", matches.get("var4"));
-        assertNull(matches.get("var5"));
+        assertTrue(blueprint.getCaptures().isEmpty());
+        assertFalse(blueprint.match(ppte, MatcherConfig.getExactMatchConfig().allowFollowingTokens(true)));
+        assertTrue(blueprint.getCaptures().isEmpty());
     }
 
     @Test

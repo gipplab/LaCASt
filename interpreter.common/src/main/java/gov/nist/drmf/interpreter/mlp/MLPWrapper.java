@@ -56,7 +56,7 @@ public abstract class MLPWrapper {
      * Adds a lexicon to the parser.
      * @param lexicon lexicon
      */
-    public void addLexicon( Lexicon lexicon ) {
+    protected void addLexicon( Lexicon lexicon ) {
         parser.addLexicons(lexicon);
     }
 
@@ -67,17 +67,17 @@ public abstract class MLPWrapper {
      * @return tree structured parse tree
      * @throws ParseException if the given expression cannot be parsed
      */
-    public PomTaggedExpression simpleParse(String latex) throws ParseException {
+    public synchronized PomTaggedExpression simpleParse(String latex) throws ParseException {
         latex = TeXPreProcessor.preProcessingTeX(latex); // clean input first
         return simpleParseRaw(latex);
     }
 
-    public PomTaggedExpression simpleParse(String latex, String label) throws ParseException {
+    public synchronized PomTaggedExpression simpleParse(String latex, String label) throws ParseException {
         latex = TeXPreProcessor.preProcessingTeX(latex, label); // clean input first
         return simpleParseRaw(latex);
     }
 
-    public PomTaggedExpression simpleParseRaw(String latex) throws ParseException {
+    public synchronized PomTaggedExpression simpleParseRaw(String latex) throws ParseException {
         return parser.parse(latex);
     }
 
@@ -87,8 +87,17 @@ public abstract class MLPWrapper {
      * @return printable version of a {@link PomTaggedExpression}
      * @throws ParseException if the given expression cannot be parsed
      */
-    public PrintablePomTaggedExpression parse(String latex) throws ParseException {
+    public synchronized PrintablePomTaggedExpression parse(String latex) throws ParseException {
         latex = TeXPreProcessor.preProcessingTeX(latex); // clean input first
+        return parseRaw(latex);
+    }
+
+    public synchronized PrintablePomTaggedExpression parse(String latex, String label) throws ParseException {
+        latex = TeXPreProcessor.preProcessingTeX(latex, label); // clean input first
+        return parseRaw(latex);
+    }
+
+    public synchronized PrintablePomTaggedExpression parseRaw(String latex) throws ParseException {
         PomTaggedExpression pte = parser.parse(latex);
         return new PrintablePomTaggedExpression(pte, latex);
     }
