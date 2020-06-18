@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
@@ -30,9 +31,8 @@ public class MathTermTranslatorTests {
     private MathTermTranslator mathTermTranslator;
 
     @BeforeAll
-    public static void setup() throws IOException {
+    public static void setup() throws InitTranslatorException {
         mapleTranslator = new SemanticLatexTranslator(Keys.KEY_MAPLE);
-        mapleTranslator.init(GlobalPaths.PATH_REFERENCE_DATA);
     }
 
     @BeforeEach

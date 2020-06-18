@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.cas.translation.components.util;
 
 import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
-import gov.nist.drmf.interpreter.cas.blueprints.Limits;
+import gov.nist.drmf.interpreter.cas.blueprints.MathematicalEssentialOperatorMetadata;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
@@ -114,7 +114,7 @@ public class VariableExtractor {
         // in this case, the next element are the limits. So lets analyze them in advance
         PomTaggedExpression nextLimits = list.get(1);
         LimitAnalyzer limitAnalyzer = new LimitAnalyzer(abstractTranslator);
-        Limits nextL = limitAnalyzer.extractLimitsWithoutParsing(
+        MathematicalEssentialOperatorMetadata nextL = limitAnalyzer.extractLimitsWithoutParsing(
                 nextLimits,
                 new LinkedList<>(),
                 BlueprintMaster.LIMITED

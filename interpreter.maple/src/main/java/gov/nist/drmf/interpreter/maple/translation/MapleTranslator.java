@@ -5,6 +5,7 @@ import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
@@ -95,7 +96,7 @@ public final class MapleTranslator extends AbstractAlgebraicTranslator<Algebraic
             try {
                 defaultInstance = new MapleTranslator();
                 defaultInstance.init();
-            } catch (MapleException | IOException e) {
+            } catch (MapleException | InitTranslatorException | IOException e) {
                 LOG.error("Unable to load default instance of Maple translator", e);
                 defaultInstance = null;
                 return null;
@@ -116,7 +117,7 @@ public final class MapleTranslator extends AbstractAlgebraicTranslator<Algebraic
      * @throws MapleException if the Engine cannot be initialized or the evaluation of the procedure fails.
      * @throws IOException if it cannot load the procedure from file {@link GlobalPaths#PATH_MAPLE_PROCS}.
      */
-    public void init() throws MapleException, IOException {
+    public void init() throws MapleException, IOException, InitTranslatorException {
         LOG.debug("Start init!");
 
         // evaluate procedures

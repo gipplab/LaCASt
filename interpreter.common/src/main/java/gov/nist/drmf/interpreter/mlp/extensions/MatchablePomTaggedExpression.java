@@ -11,6 +11,7 @@ import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.intellij.lang.annotations.Language;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -126,7 +127,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
      * @throws ParseException if the {@link MLPWrapper} is unable to parse the expression
      * @throws NotMatchableException if the given expression cannot be matched
      */
-    public MatchablePomTaggedExpression(MLPWrapper mlp, String expression, String wildcardPattern)
+    public MatchablePomTaggedExpression(MLPWrapper mlp, String expression, @Language("RegExp") String wildcardPattern)
             throws ParseException, NotMatchableException {
         this(mlp, mlp.simpleParse(expression), wildcardPattern, new GroupCaptures());
     }
@@ -296,13 +297,20 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         try {
             captures.clear();
             expression = (PrintablePomTaggedExpression)MLPWrapper.normalize(expression);
+            boolean matched = false;
             if ( config.allowLeadingTokens() ) {
                 PomMatcher pomMatcher = new PomMatcher(this, expression);
                 boolean result = pomMatcher.find();
-                return result && (pomMatcher.lastMatchReachedEnd() || config.allowFollowingTokens());
+                matched = result && (pomMatcher.lastMatchReachedEnd() || config.allowFollowingTokens());
             } else {
-                return match(expression, new LinkedList<>(), config);
+                matched = match(expression, new LinkedList<>(), config);
             }
+            // in case we did not match, we should not provide any partial captured groups
+            // the reason is, some may ask for the captured groups even though it didn't hit
+            // but we cannot guarantee partial hit groups hence its better to reset all in such
+            // cases to not provoke any errors in the future for other developers
+            if ( !matched ) captures.clear();
+            return matched;
         } catch (Exception e) {
             LOG.warn(
                     String.format("Unable to match \"%s\". Exception: %s",
@@ -310,6 +318,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
                             e.toString()
                     )
             );
+            captures.clear();
             return false;
         }
     }
@@ -401,6 +410,8 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
             List<PrintablePomTaggedExpression> followingExpressions,
             MatcherConfig config
     ) {
+        if ( isNotAllowedTokenForWildcardMatch(expression, config) ) return false;
+
         List<PomTaggedExpression> matches = new LinkedList<>();
         matches.add(expression);
         PrintablePomTaggedExpression next = followingExpressions.remove(0);
@@ -408,7 +419,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
 
         // fill up wild card until the next hit
         while (continueMatching(bracketStack, next, followingExpressions, config)) {
-            if (followingExpressions.isEmpty() || isNotAllowedTokenForWildcardMatch(next)) {
+            if (followingExpressions.isEmpty() || isNotAllowedTokenForWildcardMatch(next, config)) {
                 return false;
             }
 
@@ -428,6 +439,16 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         return true;
     }
 
+    /**
+     * In case the config does not allow following tokens after the hit, we have to check here
+     * not only if the very next sibling matches, but also (if so) if the post-next-sibling tokens
+     * force to check for the next
+     * @param bracketStack
+     * @param next
+     * @param followingExpressions
+     * @param config
+     * @return
+     */
     private boolean continueMatching(
             LinkedList<Brackets> bracketStack,
             PrintablePomTaggedExpression next,
@@ -436,7 +457,31 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
     ) {
         // by building rule, the very next sibling cannot be a wildcard as well, so just check if it hits
         if ( !config.ignoreBracketLogic() && !bracketStack.isEmpty() ) return true;
-        else return !nextSibling.match(next, followingExpressions, config);
+
+        boolean nextSiblingMatched = nextSibling.match(next, followingExpressions, config);
+        if ( !config.allowFollowingTokens() && nextSiblingMatched ) {
+            // TODO we may need to continue... but how do we find out?
+
+            // ok in case the next sibling is the end of the pattern, than the following
+            // expressions must be empty to stop continue matching
+            if ( nextSibling.nextSibling == null ) return !followingExpressions.isEmpty();
+
+            // otherwise, and now it gets complicated... we must continue matching ALL siblings
+            // to see if it works in the end
+            LinkedList<PrintablePomTaggedExpression> copyFollowingExpressions = new LinkedList<>(followingExpressions);
+            next = copyFollowingExpressions.removeFirst();
+            MatchablePomTaggedExpression nextSiblingReference = nextSibling.nextSibling;
+            while ( nextSiblingReference.match(next, copyFollowingExpressions, config) ) {
+                if ( copyFollowingExpressions.isEmpty() ) return false;
+                next = copyFollowingExpressions.removeFirst();
+                nextSiblingReference = nextSiblingReference.nextSibling;
+                if ( nextSiblingReference == null ) return true;
+            }
+            return true;
+        }
+        // the opposite, because we asking if we shall continue matching wildcards. If the next sibling
+        // matched, we reached the end. Hence the method return false to stop continue matching a wild card
+        return !nextSiblingMatched;
     }
 
     private void updateBracketStack(
@@ -463,9 +508,10 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
                 " but last opening was " + bracketStack.getLast());
     }
 
-    private boolean isNotAllowedTokenForWildcardMatch(PomTaggedExpression pte) {
+    private boolean isNotAllowedTokenForWildcardMatch(PomTaggedExpression pte, MatcherConfig config) {
         String mathTerm = pte.getRoot().getTermText();
-        return mathTerm != null && mathTerm.matches("[,;.]");
+        String pattern = config.getIllegalTokensForWildcard(this.wildcardID);
+        return mathTerm != null && mathTerm.matches(pattern);
     }
 
     /**

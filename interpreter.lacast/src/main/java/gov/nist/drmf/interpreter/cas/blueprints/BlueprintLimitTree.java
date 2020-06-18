@@ -134,7 +134,7 @@ public class BlueprintLimitTree {
         }
     }
 
-    protected Limits getExtractedLimits(){
+    protected MathematicalEssentialOperatorMetadata getExtractedLimits(){
         LinkedList<String> variables = new LinkedList<>();
         LinkedList<String> lowers = new LinkedList<>();
         LinkedList<String> uppers = new LinkedList<>();
@@ -156,7 +156,7 @@ public class BlueprintLimitTree {
                 Matcher uMatcher = LIMIT_PATTERN.matcher(t); // upper limit
                 uppers.addLast(replaceAllPatterns(uMatcher));
             } else {
-                uppers.addLast(translate(Limits.DEFAULT_UPPER_LIMIT));
+                uppers.addLast(translate(MathematicalEssentialOperatorMetadata.DEFAULT_UPPER_LIMIT));
             }
 
             BlueprintLimitNode v = vars.get(i);
@@ -164,7 +164,7 @@ public class BlueprintLimitTree {
             variables.addLast(v.getPrefix()+t);
         }
 
-        Limits l = new Limits(variables, lowers, uppers);
+        MathematicalEssentialOperatorMetadata l = new MathematicalEssentialOperatorMetadata(variables, lowers, uppers);
         l.setLimitOverSet(isOverSet);
         return l;
     }

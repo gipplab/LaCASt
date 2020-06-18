@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -22,7 +23,7 @@ public class TranslationWikidataTableGeneratorTest {
     private static TranslationWikidataTableGenerator t;
 
     @BeforeAll
-    public static void setup() throws URISyntaxException, IOException {
+    public static void setup() throws URISyntaxException, IOException, InitTranslatorException {
         URL dataURL = TranslationWikidataTableGeneratorTest.class.getResource("test.txt");
         URL csvURL = TranslationWikidataTableGeneratorTest.class.getResource("testQ.csv");
         URL mapSymbURL = TranslationWikidataTableGeneratorTest.class.getResource("MapleSymbolic");

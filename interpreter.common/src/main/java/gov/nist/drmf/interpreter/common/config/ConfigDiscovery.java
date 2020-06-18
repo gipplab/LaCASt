@@ -13,6 +13,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
+ * The class tries to load the paths for the config and the reference directories from
+ * an external configuration file. The implemented logic try to discover the config file
+ * from
+ *  1) the environment variable {@code LACAST_CONFIG}, or
+ *  2) lookup current working directory for the {@code lacast.config.yaml} file, or
+ *  3) loads the default config from the resources.
+ * The logic always follow this order. Hence, the environment variable always overwrites
+ * the other configurations.
+ *
  * @author Andre Greiner-Petter
  */
 public final class ConfigDiscovery {
@@ -28,11 +37,20 @@ public final class ConfigDiscovery {
         if ( config != null ) return config;
 
         config = loadConfigFromEnvironmentVariable();
-        if ( isValidConfig(config) ) return config;
+        if ( isValidConfig(config) ) {
+            LOG.info("Loaded config from environment variable");
+            return config;
+        }
         config = loadConfigFromLocalDir();
-        if ( isValidConfig(config) ) return config;
+        if ( isValidConfig(config) ) {
+            LOG.info("Loaded config from the working directory");
+            return config;
+        }
         config = loadConfigFromResources();
-        if ( isValidConfig(config) ) return config;
+        if ( isValidConfig(config) ) {
+            LOG.info("Loaded default config from internal resources");
+            return config;
+        }
 
         LOG.fatal("Unable to load configuration file. " +
                 "Neither from environment variables nor from the local or resource path.");
@@ -56,7 +74,8 @@ public final class ConfigDiscovery {
             String evPath = System.getenv("LACAST_CONFIG");
             return loadConfigFromYamlPath(evPath);
         } catch ( SecurityException se ) {
-            LOG.debug("Unable to read system environment variable.");
+            LOG.warn("Unable to read system environment variables " +
+                    "because the security manager does not allow it: " + se.getMessage());
             return null;
         }
     }
@@ -73,8 +92,8 @@ public final class ConfigDiscovery {
             URL url = ClassLoader.getSystemResources("lacast.config.yaml").nextElement();
             return MAPPER.readValue(url, Config.class);
         } catch (IOException ioe) {
-            LOG.error("Unable to load config from resources. " +
-                    "This should always work as a fallback.", ioe);
+            LOG.warn("Unable to load config from the resources. " +
+                    "This should always work as a fallback. Contact the developer!", ioe);
             return null;
         }
     }

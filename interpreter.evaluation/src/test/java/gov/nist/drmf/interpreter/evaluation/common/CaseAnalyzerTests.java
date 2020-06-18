@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.evaluation.common;
 
 import gov.nist.drmf.interpreter.cas.constraints.Constraints;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.core.DLMFTranslator;
 import org.apache.commons.io.IOUtils;
@@ -23,7 +24,7 @@ public class CaseAnalyzerTests {
     private static DLMFTranslator dlmfTrans;
 
     @BeforeAll
-    public static void setup() throws IOException {
+    public static void setup() throws InitTranslatorException {
         dlmfTrans = new DLMFTranslator(Keys.KEY_MAPLE);
     }
 

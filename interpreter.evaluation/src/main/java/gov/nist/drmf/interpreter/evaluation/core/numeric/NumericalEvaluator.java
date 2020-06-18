@@ -10,6 +10,7 @@ import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.core.DLMFTranslator;
 import gov.nist.drmf.interpreter.evaluation.common.Case;
@@ -405,7 +406,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
     private int factor = 1;
 
     public static NumericalEvaluator createStandardMapleEvaluator()
-            throws IOException, MapleException, ComputerAlgebraSystemEngineException {
+            throws IOException, MapleException, ComputerAlgebraSystemEngineException, InitTranslatorException {
         String[] mapleScripts = new String[3];
         String numericalProc = MapleTranslator.extractProcedure(GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES);
         mapleScripts[0] = numericalProc;
@@ -456,7 +457,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         return evaluator;
     }
 
-    public static NumericalEvaluator createStandardMathematicaEvaluator() throws IOException, ComputerAlgebraSystemEngineException {
+    public static NumericalEvaluator createStandardMathematicaEvaluator() throws IOException, ComputerAlgebraSystemEngineException, InitTranslatorException {
         NumericalConfig config =  NumericalConfig.config();
 
         DLMFTranslator dlmfTranslator = new DLMFTranslator(Keys.KEY_MATHEMATICA);

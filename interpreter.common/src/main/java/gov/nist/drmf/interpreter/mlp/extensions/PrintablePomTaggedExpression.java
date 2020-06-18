@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.mlp.extensions;
 
 import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
 import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
+import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
@@ -110,7 +111,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
     private static String generatePattern(String input) {
         if ( input.matches("[A-Za-z]+") ) {
             return "(?<![A-Za-z])"+input+"(?![A-Za-z])";
-        } else return "\\Q"+input+"\\E";
+        } else return Pattern.quote(input);
     }
 
     private String getStartingString(PomTaggedExpression pte) {
@@ -143,33 +144,34 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
         if (components.isEmpty()) {
             String p = generatePattern(getStartingString(pte));
             // this only happens for empty expression. Hence, we want the } symbol here.
-            if ( p.equals("\\Q{\\E") ) return "\\Q}\\E";
+            if ( p.equals("\\Q{\\E") ) return Pattern.quote("}");
             return p;
         } else {
-            int fromBehind = 1;
-            PomTaggedExpression lastElement = components.get(components.size() - fromBehind);
-
-            // if the last element has children, go a step deeper
-            if ( !lastElement.getComponents().isEmpty() ) {
-                return getEndingString(lastElement);
-            }
-
-            LinkedList<PomTaggedExpression> latestElements = new LinkedList<>();
-            latestElements.addFirst(lastElement);
-            fromBehind++;
-            // if the last element is a leaf, we can take as many previous leaves as we want
-            while ( lastElement.getComponents().isEmpty() && fromBehind <= components.size() ) {
-                lastElement = components.get(components.size() - fromBehind);
-                latestElements.addFirst(lastElement); // opposite order
-                fromBehind++;
-            }
-
             StringBuilder entireListOfComponents = new StringBuilder();
-            for ( int i = 0; i < latestElements.size()-1; i++ ) {
-                entireListOfComponents.append(getEndingString(latestElements.get(i)));
-                entireListOfComponents.append("[\\s{}\\[\\]]*");
+            String potentialRoot = PrintablePomTaggedExpressionUtils.getInternalNodeCommand(pte);
+            entireListOfComponents.append(Pattern.quote(potentialRoot));
+            if ( !potentialRoot.isBlank() ) entireListOfComponents.append("[\\s{}\\[\\]]*");
+
+            for ( int i = 0; i < components.size(); i++ ) {
+                PomTaggedExpression last = components.get(i);
+                if ( PomTaggedExpressionUtility.isSequence(last) ) {
+                    for ( PomTaggedExpression child : last.getComponents() ) {
+                        entireListOfComponents.append("[\\s{}\\[\\]]*")
+                                .append(getEndingString(child));
+                    }
+                } else if ( !last.getComponents().isEmpty() ) {
+                    String root = PrintablePomTaggedExpressionUtils.getInternalNodeCommand(last);
+                    entireListOfComponents.append(Pattern.quote(root));
+                    for ( PomTaggedExpression child : last.getComponents() ) {
+                        entireListOfComponents.append("[\\s{}\\[\\]]*")
+                                .append(getEndingString(child));
+                    }
+                } else {
+                    entireListOfComponents.append(getEndingString(components.get(i)));
+                }
+                if ( i < components.size()-1 )
+                    entireListOfComponents.append("[\\s{}\\[\\]]*");
             }
-            entireListOfComponents.append(getEndingString(latestElements.getLast()));
 
             return entireListOfComponents.toString();
         }
@@ -240,6 +242,16 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
     }
 
     /**
+     * Provides an adapter for the {@link #setComponents(PomTaggedExpression...)} )} method, which only
+     * allows components of type {@link PomTaggedExpression} rather. It throws an error if any
+     * element is not of type {@link PrintablePomTaggedExpression}.
+     * @param components a list of components.
+     */
+    public void setPrintableComponents(PomTaggedExpression... components) {
+        this.setPrintableComponents(Arrays.asList(components));
+    }
+
+    /**
      * @deprecated use {@link #setPrintableComponents(List)} instead.
      */
     @Override
@@ -290,6 +302,12 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
             populatingStringChanges();
         }
         return res;
+    }
+
+    @Override
+    public void addComponent(int i, MathTerm term) {
+        PrintablePomTaggedExpression pte = new PrintablePomTaggedExpression(term);
+        this.addComponent(i, pte);
     }
 
     @Override

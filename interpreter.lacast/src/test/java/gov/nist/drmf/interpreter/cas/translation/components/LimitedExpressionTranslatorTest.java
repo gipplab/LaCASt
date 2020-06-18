@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.translation.components.cases.Integrals;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Lims;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Products;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.Sums;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
@@ -26,7 +27,7 @@ public class LimitedExpressionTranslatorTest {
     private static TranslationTester tester;
 
     @BeforeAll
-    public static void mapleSetUp() throws IOException {
+    public static void mapleSetUp() throws InitTranslatorException {
         tester = new TranslationTester();
     }
 

@@ -44,14 +44,14 @@ public final class GlobalPaths {
     public static final Path PATH_REPLACEMENT_RULES =
             PATH_CONFIGS.resolve("replacements.yaml");
 
-    public static final Path PATH_BLUEPRINTS =
-            PATH_CONFIGS.resolve("blueprints.txt");
+    public static final Path PATH_CONSTRAINT_BLUEPRINTS =
+            PATH_CONFIGS.resolve("constraint-blueprints.txt");
 
-    public static final Path PATH_LIMES_BLUEPRINTS =
-            PATH_CONFIGS.resolve("lim-blueprints.txt");
+    public static final Path PATH_MEOM_LIMIT_BLUEPRINTS =
+            PATH_CONFIGS.resolve("meom-limit-blueprints.txt");
 
-    public static final Path PATH_LIMITED_BLUEPRINTS =
-            PATH_CONFIGS.resolve("limit-blueprints.txt");
+    public static final Path PATH_MEOM_BLUEPRINTS =
+            PATH_CONFIGS.resolve("meom-blueprints.txt");
 
     public static final Path PATH_ELASTICSEARCH_INDEX_CONFIG =
             PATH_CONFIGS.resolve("elasticsearch").resolve("index-config.json");

@@ -111,6 +111,11 @@ public enum Sums implements ForwardTestCase {
             "sum(n, n = 0..10) + sum(m, m = 0..k+1)",
             "Sum[n, {n, 0, 10}] + Sum[m, {m, 0, k+1}]"
     ),
+    SIMPLE_FRACTION_SUM(
+            "\\frac{\\sum_{\\ell=0}^{10} n}{\\sum_{\\ell=0}^{k+1} m}",
+            "(sum(n, ell = 0..10))/(sum(m, ell = 0..k+1))",
+            "Divide[Sum[n, {\\[ScriptL], 0, 10}], Sum[m, {\\[ScriptL], 0, k+1}]]"
+    ),
     SUB_ONLY_RANGE(
             "\\sum_{-100 \\leq i < 100}i^2+2i+1",
             "sum((i)^(2)+2*i, i=-100..100-1)+1",

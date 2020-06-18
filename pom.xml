@@ -195,6 +195,12 @@
                 <artifactId>mathematica</artifactId>
                 <version>${mathematica.jlink.version}</version>
             </dependency>
+
+            <dependency> <!-- Used to annotate regex as a regex string (enable highlighting) -->
+                <groupId>org.jetbrains</groupId>
+                <artifactId>annotations</artifactId>
+                <version>19.0.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

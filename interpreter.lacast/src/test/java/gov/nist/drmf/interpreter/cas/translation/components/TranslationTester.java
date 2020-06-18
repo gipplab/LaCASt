@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.cas.translation.components.cases.ForwardTestCase;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.DynamicTest;
@@ -25,12 +26,9 @@ public class TranslationTester {
     private SemanticLatexTranslator sltMaple;
     private SemanticLatexTranslator sltMathematica;
 
-    public TranslationTester() throws IOException {
+    public TranslationTester() throws InitTranslatorException {
         sltMaple = new SemanticLatexTranslator(Keys.KEY_MAPLE);
-        sltMaple.init(GlobalPaths.PATH_REFERENCE_DATA);
-
         sltMathematica = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
-        sltMathematica.init(GlobalPaths.PATH_REFERENCE_DATA);
     }
 
     public SemanticLatexTranslator getMapleTranslator() {

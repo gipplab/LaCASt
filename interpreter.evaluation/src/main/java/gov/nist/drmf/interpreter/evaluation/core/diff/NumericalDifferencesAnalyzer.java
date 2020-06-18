@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
@@ -67,12 +68,9 @@ public class NumericalDifferencesAnalyzer {
 
     private String procedureName;
 
-    public NumericalDifferencesAnalyzer() throws IOException, MapleException, ComputerAlgebraSystemEngineException {
+    public NumericalDifferencesAnalyzer() throws ComputerAlgebraSystemEngineException, InitTranslatorException {
         mathematica = MathematicaInterface.getInstance();
-
-        SemanticLatexTranslator dlmfInterface = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
-        dlmfInterface.init( GlobalPaths.PATH_REFERENCE_DATA );
-        forwardTranslator = dlmfInterface;
+        forwardTranslator = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
 
         MapleTranslator mi = MapleTranslator.getDefaultInstance();
         backwardTranslator = mi;
@@ -269,7 +267,7 @@ public class NumericalDifferencesAnalyzer {
         }
     }
 
-    public static void main(String[] args) throws IOException, MapleException, ComputerAlgebraSystemEngineException {
+    public static void main(String[] args) throws IOException, ComputerAlgebraSystemEngineException, InitTranslatorException {
         NumericalDifferencesAnalyzer nda = new NumericalDifferencesAnalyzer();
         nda.init(
                 Paths.get("misc/Results/MathematicaNumeric/"),

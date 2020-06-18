@@ -1,8 +1,9 @@
 package gov.nist.drmf.interpreter.cas.translation.components.util;
 
 import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
-import gov.nist.drmf.interpreter.cas.blueprints.Limits;
+import gov.nist.drmf.interpreter.cas.blueprints.MathematicalEssentialOperatorMetadata;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
@@ -24,10 +25,18 @@ public class LimitAnalyzer {
 
     public LimitAnalyzer(AbstractTranslator parentTranslator) {
         this.parentTranslator = parentTranslator;
-        this.btm = parentTranslator.getConfig().getLimitParser();
+        try {
+            this.btm = parentTranslator.getConfig().getLimitParser();
+        } catch (InitTranslatorException e) {
+            throw TranslationException.buildException(
+                    parentTranslator,
+                    "Unable to load blueprint matcher",
+                    TranslationExceptionReason.INSTANTIATION_ERROR
+            );
+        }
     }
 
-    public Limits extractLimitsWithoutParsing(
+    public MathematicalEssentialOperatorMetadata extractLimitsWithoutParsing(
             PomTaggedExpression limitSuperExpr,
             List<PomTaggedExpression> upperBound,
             boolean lim

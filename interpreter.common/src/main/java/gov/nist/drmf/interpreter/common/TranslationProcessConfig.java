@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.common;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
@@ -12,13 +13,13 @@ import java.io.IOException;
  * @author Andre Greiner-Petter
  */
 public class TranslationProcessConfig {
-    private String FROM_LANGUAGE;
-    private String TO_LANGUAGE;
+    private final String FROM_LANGUAGE;
+    private final String TO_LANGUAGE;
 
-    private GreekLetters greekLettersTranslator;
-    private Constants constantsTranslator;
-    private BasicFunctionsTranslator basicFunctionsTranslator;
-    private SymbolTranslator symbolTranslator;
+    private final GreekLetters greekLettersTranslator;
+    private final Constants constantsTranslator;
+    private final BasicFunctionsTranslator basicFunctionsTranslator;
+    private final SymbolTranslator symbolTranslator;
 
     private boolean isInit = false;
 
@@ -36,14 +37,18 @@ public class TranslationProcessConfig {
         constantsTranslator     = new Constants(from_language, to_language);
     }
 
-    public void init() throws IOException {
+    public void init() throws InitTranslatorException {
         if ( isInit ) return;
 
-        greekLettersTranslator.init();
-        constantsTranslator.init();
-        basicFunctionsTranslator.init();
-        symbolTranslator.init();
-        isInit = true;
+        try {
+            greekLettersTranslator.init();
+            constantsTranslator.init();
+            basicFunctionsTranslator.init();
+            symbolTranslator.init();
+            isInit = true;
+        } catch ( IOException ioe ) {
+            throw new InitTranslatorException("Unable to initiate basic translation patterns", ioe);
+        }
     }
 
     public GreekLetters getGreekLettersTranslator() {

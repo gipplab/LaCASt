@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -18,9 +19,8 @@ public class MathematicaSpecificTranslationTests {
     private static SemanticLatexTranslator slt;
 
     @BeforeAll
-    static void setup() throws IOException {
+    static void setup() throws InitTranslatorException {
         slt = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
-        slt.init(GlobalPaths.PATH_REFERENCE_DATA);
     }
 
     /**

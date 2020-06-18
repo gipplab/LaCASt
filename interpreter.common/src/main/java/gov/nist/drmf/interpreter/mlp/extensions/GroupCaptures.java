@@ -33,6 +33,14 @@ public class GroupCaptures {
     }
 
     /**
+     * Returns whether the matched lib is empty or not.
+     * @return true if no groups were captured
+     */
+    public boolean isEmpty() {
+        return this.matchLibrary.isEmpty();
+    }
+
+    /**
      * Sets the captured for the given id
      * @param id group id
      * @param match the list of captures (might contain only one hit)

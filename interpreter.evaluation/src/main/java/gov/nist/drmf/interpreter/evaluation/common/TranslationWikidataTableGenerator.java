@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.evaluation.common;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.evaluation.core.diff.NumericalDifferencesAnalyzer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -60,7 +61,7 @@ public class TranslationWikidataTableGenerator {
             Path symbolicResultsMath,
             Path numericResultsMath,
             Path qidMappingPath
-    ) {
+    ) throws InitTranslatorException {
         this.dataset = datasetPath;
         this.symbolicMaple = symbolicResultsMaple;
         this.numericMaple = numericResultsMaple;
@@ -82,10 +83,10 @@ public class TranslationWikidataTableGenerator {
 
     public void init() throws IOException {
         LOG.info("Init Maple translator");
-        this.mapleTranslator.init(GlobalPaths.PATH_REFERENCE_DATA);
+//        this.mapleTranslator.init(GlobalPaths.PATH_REFERENCE_DATA);
 
         LOG.info("Init Mathematica translator");
-        this.mathematicaTranslator.init(GlobalPaths.PATH_REFERENCE_DATA);
+//        this.mathematicaTranslator.init(GlobalPaths.PATH_REFERENCE_DATA);
 
         LOG.info("Init QID - DLMF library");
         loadQIDLib();
@@ -270,7 +271,7 @@ public class TranslationWikidataTableGenerator {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InitTranslatorException {
         TranslationWikidataTableGenerator t = new TranslationWikidataTableGenerator(
                 Paths.get("/home/andreg-p/Howard/together.txt"),
                 Paths.get("misc/Results/MapleSymbolic"),
