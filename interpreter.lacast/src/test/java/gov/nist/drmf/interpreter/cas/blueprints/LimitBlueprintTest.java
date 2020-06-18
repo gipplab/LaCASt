@@ -25,13 +25,11 @@ public class LimitBlueprintTest {
 
     private static BlueprintMaster btmaster;
     private static SemanticLatexTranslator slt;
-    private static BlueprintLimitTree exampleLimitTree;
 
     @BeforeAll
     public static void setup() throws IOException, ParseException, InitTranslatorException {
         slt = new SemanticLatexTranslator(Keys.KEY_MAPLE);
         btmaster = slt.getBlueprintMaster();
-        exampleLimitTree = new BlueprintLimitTree("var \\in \\Integers","3", slt);
     }
 
     @Test
@@ -329,24 +327,5 @@ public class LimitBlueprintTest {
         assertNull(btmaster.findMatchingLimit(true, ""));
         assertNull(btmaster.findMatchingLimit(false, ""));
         assertNull(btmaster.findMatchingLimit(false));
-    }
-
-    @Test
-    public void matcherExceptionTest() {
-        assertThrows(IllegalArgumentException.class, (exampleLimitTree::matches));
-    }
-
-    @Test
-    public void matcherMultiPomTest() throws ParseException {
-        MLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
-        String testInput = "x \\in \\Integers";
-        PomTaggedExpression pte = mlp.parse(testInput);
-        PomTaggedExpression pte2 = mlp.parse(testInput);
-
-        assertTrue(exampleLimitTree.matches(testInput));
-        assertTrue(exampleLimitTree.matches(pte));
-
-        List<PomTaggedExpression> pteList = pte2.getComponents();
-        assertTrue(exampleLimitTree.matches(pteList.get(0), pteList.get(1), pteList.get(2)));
     }
 }
