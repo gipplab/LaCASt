@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
-import gov.nist.drmf.interpreter.cas.blueprints.BlueprintLimitTree;
+import gov.nist.drmf.interpreter.cas.blueprints.BlueprintRuleMatcher;
 import gov.nist.drmf.interpreter.cas.common.DLMFPatterns;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import org.junit.jupiter.api.Test;
@@ -56,7 +56,7 @@ public class GeneralTest {
     @Test
     public void texPreprocessing() {
         String l = "n \\hiderel{=} 1";
-        String out = BlueprintLimitTree.preCleaning(l);
+        String out = BlueprintRuleMatcher.preCleaning(l);
         assertEquals("n = 1", out);
         assertFalse("=".matches("\\\\in"));
     }
