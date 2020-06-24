@@ -74,4 +74,5 @@ deploy:
       jdk: openjdk11
   # next we deploy to DKE server via our deploy script
   - provider: script
+    skip_cleanup: true
     script: .travis/dke-deploy.sh
