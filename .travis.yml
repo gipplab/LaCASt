@@ -42,7 +42,7 @@ script:
 # paths to classes than Jacoco generates on a multi-module maven project, we have
 # to fix the paths manually via our .travis/fix-jacoco.sh script.
 after_success:
-  - bash .travis/fix-jacoco.sh
+  - source .travis/fix-jacoco.sh
   - ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml -d --input-type jacoco
   - ./cc-test-reporter upload-coverage -d
 
@@ -50,14 +50,7 @@ after_success:
 # We have currently two deployments installed, one goes back to GitHub
 # to generate a release, the other gets deployed to the DKE servers.
 before_deploy:
-  - export VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
-  - export TRAVIS_TAG=LaCASt-$VERSION-r$TRAVIS_BUILD_NUMBER
-  - git config --global user.email "builds@travis-ci.com"
-  - git config --global user.name "Travis CI"
-  - rm -rf libs/logs
-  - zip -r -9 ${TRAVIS_TAG}.zip bin/* config/* libs/* scripts/* README.md CONTRIBUTING.md
-  - echo "Git tag with tag $TRAVIS_TAG"
-  - git tag $TRAVIS_TAG
+  - source .travis/prepare-deploy.sh
 
 # it seems we are on deployment-v2 already, in this case, check the following page for the right settings
 # https://docs.travis-ci.com/user/deployment-v2/providers/releases/
