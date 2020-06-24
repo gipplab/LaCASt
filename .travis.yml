@@ -1,37 +1,54 @@
 sudo: false
 dist: trusty
-
 language: java
 jdk:
   - openjdk11
 
+# setup environment variables for the test coverage via Jacoco and CodeClimate
 env:
   global:
     - CC_TEST_REPORTER_ID=970bebaf9e240aaf9c86a92251b68f30d373d29f4d07f2e92a0d777009c28a68
     - JACOCO_SOURCE_PATH="interpreter.common interpreter.lacast interpreter.maple interpreter.mathematica interpreter.evaluation"
 
-# install maven 3.6.1
+# setup required programs
 before_install:
+  # decrypt the deployment key to deploy to DKE
+  - openssl aes-256-cbc
+      -K $encrypted_afafaf6e4ed4_key
+      -iv $encrypted_afafaf6e4ed4_iv
+      -in .travis/dke-travis-git.enc
+      -out ~/.ssh/dke-travis-git -d
+  # install maven 3.6.1
   - wget https://archive.apache.org/dist/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.zip
   - unzip -qq apache-maven-3.6.1-bin.zip
   - export M2_HOME=$PWD/apache-maven-3.6.1
   - export PATH=$M2_HOME/bin:$PATH
+  # install CodeClimate's test coverage reporter
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 
+# first install via maven and generate JARs but do not run any tests
 install:
   - mvn install -DskipTests -B -V -DgenerateJars
   - java -jar bin/lexicon-creator.jar CAS_Maple.csv CAS_Mathematica.csv
 
+# Once we successfully installed the repo, we run the tests
 script:
   - mvn test -B -DjacocoReport=remote
 
+# Only if it installed successfully and we run tests without errors, we send
+# the test coverage results to CodeClimate. Since CodeClimate presumes different
+# paths to classes than Jacoco generates on a multi-module maven project, we have
+# to fix the paths manually via our .travis/fix-jacoco.sh script.
 after_success:
   - bash .travis/fix-jacoco.sh
   - ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml -d --input-type jacoco
   - ./cc-test-reporter upload-coverage -d
 
+# So we finished everything, hence its time to deploy the repo.
+# We have currently two deployments installed, one goes back to GitHub
+# to generate a release, the other gets deployed to the DKE servers.
 before_deploy:
   - export VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
   - export TRAVIS_TAG=LaCASt-$VERSION-r$TRAVIS_BUILD_NUMBER
@@ -45,13 +62,17 @@ before_deploy:
 # it seems we are on deployment-v2 already, in this case, check the following page for the right settings
 # https://docs.travis-ci.com/user/deployment-v2/providers/releases/
 deploy:
-  provider: releases
-  token: $GITHUB_TOKEN
-  skip_cleanup: true
-  cleanup: false
-  file: ${TRAVIS_TAG}.zip
-  tag_name: $TRAVIS_TAG
-  on:
-    repo: ag-gipp/LaCASt
-    branch: master
-    jdk: openjdk11
+  # first we deploy our release on GitHub
+  - provider: releases
+    token: $GITHUB_TOKEN
+    skip_cleanup: true
+    cleanup: false
+    file: ${TRAVIS_TAG}.zip
+    tag_name: $TRAVIS_TAG
+    on:
+      repo: ag-gipp/LaCASt
+      branch: master
+      jdk: openjdk11
+  # next we deploy to DKE server via our deploy script
+  - provider: script
+    script: .travis/dke-deploy.sh
