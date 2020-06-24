@@ -49,7 +49,7 @@ script:
 # to fix the paths manually via our .travis/fix-jacoco.sh script.
 after_success:
   - source .travis/fix-jacoco.sh
-  - ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml -d --input-type jacoco
+  - ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml -d --input-type jacoco > jacoco.log
   - ./cc-test-reporter upload-coverage -d
 
 # So we finished everything, hence its time to deploy the repo.
