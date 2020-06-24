@@ -10,6 +10,12 @@ env:
     - CC_TEST_REPORTER_ID=970bebaf9e240aaf9c86a92251b68f30d373d29f4d07f2e92a0d777009c28a68
     - JACOCO_SOURCE_PATH="interpreter.common interpreter.lacast interpreter.maple interpreter.mathematica interpreter.evaluation"
 
+# SSH known hosts for deployment reasons
+addons:
+  ssh_known_hosts:
+    - dke01.dke.uni-wuppertal.de:2222
+    - dke01.dke.uni-wuppertal.de
+
 # setup required programs
 before_install:
   # decrypt the deployment key to deploy to DKE
