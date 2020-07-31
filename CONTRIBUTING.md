@@ -187,8 +187,7 @@ We store the translation patterns in `libs/ReferenceData/CSVTables`. In there, y
 and the other defines the translations (e.g., for Maple its `CAS_Maple.csv` and `DLMF_Maple.csv`).
 
 There are two general things you should know before you start.
-1. Every time you change something in the CSV files, you have to run `bin/lexicon-creator.jar` to update the actual lexicon files.
-This will compile the defined information and makes it accessible for the translation process.
+1. Every time you change something in the CSV files, you have to run `bin/lexicon-creator.jar` to update the actual lexicon files. See below how to [add new translations to the internal lexicons](#lexiconAddOn).
 2. Optional parameters, such as in `\LaguerrepolyL[\alpha]{n}@{x}`, needs special treatment. In all CSV files, it requires multiple lines.
 The first line contains the information for the macro without optional parameters; the second with one optional parameter, the third with two
 optional parameters, and so on. The `DLMF` entry for optional parameters should be `X<NumOfOptParas>:<macro-name>X<macro>`. For example: 
@@ -208,7 +207,7 @@ To support new macros, you have to extend the `DLMFMacro.csv` with all informati
 For `role` you should enter either `dlmf-macro`, `mathematical constant`, `symbol`, or `ignore`. Obviously, `ignore` means it will be ignored due to compilation.
 </details>
 
-<details><summary><strong>How to support translations</strong></summary>
+<details><summary><strong>How to support new translations</strong></summary>
   
 Consider you want to add a new translation pattern to Maple, you have to add it to `DLMF_Maple.csv`.
 The columns for alternative translations and required packages allow multiple entries.
@@ -264,6 +263,8 @@ Backup the file first, then delete all lines with only one remaining (the line s
 This should solve the error. If the error remains, there might be another issue with your license. Try if you can start the
 engine on the console (without LaCASt). If this works but LaCASt doesn't, contact [André Greiner-Petter](https://github.com/AndreG-P)
 or open an ticket. If the console approach doesn't work either, contact Wolfram to check your license.
+6. **Unable to Activate Mathematica License**: If you had a free license for Wolfram's Engine for Developers and change your machine you need to activate the license again. This sometimes doesn't work for some reasons. A workaround is to do it manually. First, try to get your activation keys from [here](https://www.wolframcloud.com/users/user-current/activationkeys). Next, try to activate them with `wolfram -activate 1234-5678-ABCDEF`
+or navigate to the `Executables` folder of your Wolfram install directory and manually start the wolfram executable from there. If this doesn't work either, try to follow this [stackexchange discussion](https://mathematica.stackexchange.com/questions/198822/the-wolfram-kernel-must-be-activated-for-wolframscript-to-use-it) to see if it helps. Finally, if it still won't let you activate your free license, you must contact the Wolfram Technical Support. In my case, I had already two activation keys and that seems to be the max number (see stackexchange discussion above). Hence, I was unable to activate the license on another machine and needed to contact the support either via `support@wolfram.com` or the [support website](https://www.wolfram.com/support/contact/). Once they reset the activation keys for me, it worked again.
 
 ## Useful Command-Line Counting Methods
 
