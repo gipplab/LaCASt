@@ -234,10 +234,8 @@ X1:\nrestpartitionsX\nrestpartitions[k]@{\mathrm{condition}}{n};http://dlmf.nist
 \MittagLefflerE{a}{b}@{z};http://dlmf.nist.gov/10.46#E3;Mittag-Leffler function;2;1;1;1;;;
 \sphBesselJ{n}@{z};http://dlmf.nist.gov/10.47#E3;Spherical Bessel function of the first kind;1;1;1;1;;;
 \sphBesselY{n}@{z};http://dlmf.nist.gov/10.47#E4;Spherical Bessel function of the second kind;1;1;1;1;;;
-\sphHankelh{1}{n}@{z};http://dlmf.nist.gov/10.47#E5;Spherical Bessel function of the third kind;1;1;1;1;;;
-\sphHankelh{2}{n}@{z};http://dlmf.nist.gov/10.47#E6;Spherical Bessel function of the third kind;1;1;1;1;;;
-\modsphBesseli{1}{n}@{z};http://dlmf.nist.gov/10.47#E7;Modified spherical Bessel function of the first kind;1;1;1;1;;;
-\modsphBesseli{2}{n}@{z};http://dlmf.nist.gov/10.47#E8;Modified spherical Bessel function of the first kind;1;1;1;1;;;
+\sphHankelh{1}{n}@{z};http://dlmf.nist.gov/10.47#E5;Spherical Bessel function of the third kind;2;1;1;1;;;
+\modsphBesseli{1}{n}@{z};http://dlmf.nist.gov/10.47#E7;Modified spherical Bessel function of the first kind;2;1;1;1;;;
 \modsphBesselK{n}@{z};http://dlmf.nist.gov/10.47#E9;Modified spherical Bessel function of the second kind;1;1;1;1;;;
 \BesselAmat{\nu}@{\Matrix{T}};http://dlmf.nist.gov/35.5#i;Bessel function with matrix argument;1;1;1;;;;ignore
 \BesselBmat{\nu}@{\Matrix{T}};http://dlmf.nist.gov/35.5#E3;Bessel function with matrix argument;1;1;1;;;;ignore
