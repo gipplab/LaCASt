@@ -42,7 +42,7 @@ public class MathTermTranslatorTests {
 
     @Test
     public void expectWrongTranslatorFuncTest() {
-        PomTaggedExpression funcPTE = FakeMLPGenerator.generateMathTermEmptyPTE(
+        PomTaggedExpression funcPTE = FakeMLPGenerator.generateMathTermEmptyPPTE(
                 MathTermTags.function, "cos"
         );
         assertThrows(TranslationException.class, () -> mathTermTranslator.translate(funcPTE));
@@ -50,7 +50,7 @@ public class MathTermTranslatorTests {
 
     @Test
     public void expectWrongTranslatorDelimiterTest() {
-        PomTaggedExpression delimiterPTE = FakeMLPGenerator.generateMathTermEmptyPTE(
+        PomTaggedExpression delimiterPTE = FakeMLPGenerator.generateMathTermEmptyPPTE(
                 MathTermTags.left_delimiter, "\\left("
         );
         assertThrows(TranslationException.class, () -> mathTermTranslator.translate(delimiterPTE));
@@ -58,7 +58,7 @@ public class MathTermTranslatorTests {
 
     @Test
     public void expectWrongTranslatorAbbreviationTest() {
-        PomTaggedExpression pte = FakeMLPGenerator.generateMathTermEmptyPTE(
+        PomTaggedExpression pte = FakeMLPGenerator.generateMathTermEmptyPPTE(
                 MathTermTags.abbreviation, "etc."
         );
         assertThrows(TranslationException.class, () -> mathTermTranslator.translate(pte));
@@ -66,7 +66,7 @@ public class MathTermTranslatorTests {
 
     @Test
     public void expectWrongTranslatorMacroTest() {
-        PomTaggedExpression pte = FakeMLPGenerator.generateMathTermEmptyPTE(
+        PomTaggedExpression pte = FakeMLPGenerator.generateMathTermEmptyPPTE(
                 MathTermTags.macro, "\\customMacro"
         );
         assertThrows(TranslationException.class, () -> mathTermTranslator.translate(pte));
@@ -74,13 +74,13 @@ public class MathTermTranslatorTests {
 
     @Test
     public void expectWrongTranslatorEmptyTagTest() {
-        PomTaggedExpression emptyPTE = FakeMLPGenerator.generateEmptySequencePTE();
+        PomTaggedExpression emptyPTE = FakeMLPGenerator.generateEmptySequencePPTE();
         assertThrows(TranslationException.class, () -> mathTermTranslator.translate(emptyPTE));
     }
 
     @Test
     public void translateRelationTest() {
-        PomTaggedExpression pte = FakeMLPGenerator.generateMathTermEmptyPTE(
+        PomTaggedExpression pte = FakeMLPGenerator.generateMathTermEmptyPPTE(
                 MathTermTags.relation, "\\to"
         );
         TranslatedExpression teDirect = mathTermTranslator.translate(pte);

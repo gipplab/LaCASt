@@ -133,16 +133,16 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
         PomTaggedExpression secondArg;
 
         if ( first.size() > 1 ) {
-            firstArg = FakeMLPGenerator.generateEmptySequencePTE();
+            firstArg = FakeMLPGenerator.generateEmptySequencePPTE();
             firstArg.setComponents(first);
         } else firstArg = first.get(0);
 
         if ( second.size() > 1 ) {
-            secondArg = FakeMLPGenerator.generateEmptySequencePTE();
+            secondArg = FakeMLPGenerator.generateEmptySequencePPTE();
             secondArg.setComponents(second);
         } else secondArg = second.get(0);
 
-        PomTaggedExpression fakeBinom = FakeMLPGenerator.generateEmptyBinomialCoefficientPTE();
+        PomTaggedExpression fakeBinom = FakeMLPGenerator.generateEmptyBinomialCoefficientPPTE();
         fakeBinom.addComponent(firstArg);
         fakeBinom.addComponent(secondArg);
         return fakeBinom;

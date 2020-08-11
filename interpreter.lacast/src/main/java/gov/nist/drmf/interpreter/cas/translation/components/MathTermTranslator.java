@@ -247,12 +247,21 @@ public class MathTermTranslator extends AbstractListTranslator {
             case equals:
             case less_than:
             case greater_than: // all above should translated directly
-                localTranslations.addTranslatedExpression(term.getTermText());
-                getGlobalTranslationList().addTranslatedExpression(term.getTermText());
+                String translation = translateSymbol(term);
+                localTranslations.addTranslatedExpression(translation);
+                getGlobalTranslationList().addTranslatedExpression(translation);
+
                 te = localTranslations;
                 break;
         }
         return te;
+    }
+
+    private String translateSymbol(MathTerm term) {
+        String translation = sT.translate(term.getTermText());
+        if ( translation != null && !translation.isBlank() )
+            return translation;
+        return term.getTermText();
     }
 
     /**
@@ -308,8 +317,6 @@ public class MathTermTranslator extends AbstractListTranslator {
         this.localTranslations.addTranslatedExpression(sq.translate(following_exp));
         return localTranslations;
     }
-
-
 
     private TranslatedExpression handleDivide(MathTerm term, List<PomTaggedExpression> following_exp) {
         if ( following_exp == null || following_exp.isEmpty() )

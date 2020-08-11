@@ -56,6 +56,35 @@ public class CaseAnalyzer {
         }
     }
 
+    public static SimpleCase extractRawLines(String line, int lineNumber) {
+        // matching group
+        Matcher metaDataMatcher = META_INFO_PATTERN.matcher(line);
+        StringBuffer mathSB = new StringBuffer();
+
+        String url = null;
+
+        // extract all information
+        while( metaDataMatcher.find() ) {
+            if ( metaDataMatcher.group(URL_GRP) != null ) {
+                url = metaDataMatcher.group(URL_GRP);
+            }
+            metaDataMatcher.appendReplacement(mathSB, EOL);
+        }
+        metaDataMatcher.appendTail(mathSB);
+
+        Label label = null;
+        if ( url != null ) {
+            try {
+                label = new Label(url);
+            } catch (Exception e) {
+                LOG.warn("Unable to parse label url: " + url);
+            }
+        }
+
+        String eq = getEquation(mathSB);
+        return new SimpleCase(lineNumber, eq, label);
+    }
+
     /**
      * Creates a case element from a line that contains a test case.
      * Tries to find constraints, labels and split the test case into left- and right-hand site.

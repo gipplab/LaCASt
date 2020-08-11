@@ -80,4 +80,11 @@ public final class FeatureSetUtility {
         }
         return null;
     }
+
+    public static boolean isConsideredAsRelation(MathTerm term) {
+        List<FeatureSet> fsets = getAllFeatureSetsWithFeature(term, "Category");
+        if ( fsets.isEmpty() ) return false;
+        return fsets.stream()
+                .anyMatch(fset -> fset.getFeature("Category").contains("relation") );
+    }
 }

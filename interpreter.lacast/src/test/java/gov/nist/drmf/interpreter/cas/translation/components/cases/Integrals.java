@@ -70,7 +70,7 @@ public enum Integrals implements ForwardTestCase {
     DLMF_EQUAL(
             "\\int_0^{\\infty} \\frac{\\sin@{t}}{t+z} \\diff{t} = \\int_0^{\\infty} \\frac{\\expe^{-zt} \\diff{t}}{t^2+z}",
             "int((sin(t))/(t+z), t = 0..infinity) = int((exp(-z*t))/((t)^(2)+z), t = 0..infinity)",
-            "Integrate[Divide[Sin[t], t+z], {t, 0, Infinity}] = Integrate[Divide[Exp[-z*t], (t)^(2)+z], {t, 0, Infinity}]"
+            "Integrate[Divide[Sin[t], t+z], {t, 0, Infinity}] == Integrate[Divide[Exp[-z*t], (t)^(2)+z], {t, 0, Infinity}]"
     )
     ;
 

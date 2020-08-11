@@ -174,7 +174,7 @@ class SimpleTranslationTests {
     @Test
     void absoluteValueTest() {
         String in = "\\left| \\frac{z_1}{z_2} \\right| = \\frac{|z_1|}{|z_2|}";
-        String eout = "abs((z[1])/(z[2]))=(abs(z[1]))/(abs(z[2]))";
+        String eout = "abs((z[1])/(z[2])) = (abs(z[1]))/(abs(z[2]))";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
@@ -188,7 +188,7 @@ class SimpleTranslationTests {
     @Test
     void emptyDerivTest() {
         String in = "\\deriv{}{z} z^a = az^{a-1}";
-        String eout = "diff((z)^(a), z)= a*(z)^(a - 1)";
+        String eout = "diff((z)^(a), z) = a*(z)^(a - 1)";
         String out = slt.translate(in);
         assertEquals(eout, out);
         //\tfrac{1}{4} |z|
@@ -284,7 +284,7 @@ class SimpleTranslationTests {
         String label = "4.2.E33";
         String res = slt.translate(in, label);
         System.out.println(res);
-        assertEquals("exp(z)=(exp(z))* exp(2*k*z*Pi*I)", res);
+        assertEquals("exp(z) = (exp(z))* exp(2*k*z*Pi*I)", res);
     }
 
     @Test
@@ -293,7 +293,7 @@ class SimpleTranslationTests {
         String label = "19.6.2";
         String res = slt.translate(in, label);
         System.out.println(res);
-        assertEquals("EllipticPi((k)^(2), k)= EllipticE(k)/(1 - (k)^(2))", res);
+        assertEquals("EllipticPi((k)^(2), k) = EllipticE(k)/(1 - (k)^(2))", res);
     }
 
     @Test

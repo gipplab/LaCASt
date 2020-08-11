@@ -15,7 +15,7 @@ public enum Lims implements ForwardTestCase {
     SUM_LEFT_SIDED(
             "\\lim_{z \\to 1-} \\sum_{n = 0}^{\\infty} a_n x^n = s",
             "limit(sum(a[n]*(x)^(n), n = 0 .. infinity), z = 1, left) = s",
-            "Limit[Sum[Subscript[a, n]*(x)^(n), {n, 0, Infinity}], z -> 1, Direction -> \"FromBelow\"] = s"
+            "Limit[Sum[Subscript[a, n]*(x)^(n), {n, 0, Infinity}], z -> 1, Direction -> \"FromBelow\"] == s"
     ),
     @DLMF("4.31.1")
     FRAC(
@@ -45,19 +45,19 @@ public enum Lims implements ForwardTestCase {
     SIN_INT(
             "\\lim_{x \\to \\infty} \\sinint@{x} = \\frac{1}{2} \\cpi",
             "limit(Si(x), x = infinity) = (1)/(2)*Pi",
-            "Limit[SinIntegral[x], x -> Infinity] = Divide[1,2]*Pi"
+            "Limit[SinIntegral[x], x -> Infinity] == Divide[1,2]*Pi"
     ),
     @DLMF("6.2.14")
     COS_INT(
             "\\lim_{x \\to \\infty} \\cosint@{x} = 0",
             "limit(Ci(x), x = infinity) = 0",
-            "Limit[CosIntegral[x], x -> Infinity] = 0"
+            "Limit[CosIntegral[x], x -> Infinity] == 0"
     ),
     @DLMF("22.12.4")
     LONG_MULTI(
             "\\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\frac{\\cpi}{\\tan@{\\cpi (t - (n+\\frac{1}{2}) \\tau)}} = \\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\left( \\lim_{M \\to \\infty} \\sum_{m=-M}^M \\frac{1}{t - m - (n+\\frac{1}{2}) \\tau} \\right)",
             "limit(sum((-1)^(n)*(Pi)/(tan(Pi*(t - (n+(1)/(2))*tau))), n = - N..N), N = infinity) = limit(sum((-1)^(n)*(limit(sum((1)/(t - m -(n +(1)/(2))*tau), m = - M..M), M = infinity)), n = - N..N), N = infinity)",
-            "Limit[Sum[(-1)^(n)*Divide[Pi,Tan[Pi*(t - (n+Divide[1,2])*\\[Tau])]], {n, -N, N}], N -> Infinity] = Limit[Sum[(-1)^(n)*(Limit[Sum[Divide[1,t - m -(n +Divide[1,2])*\\[Tau]], {m, -M, M}], M -> Infinity]), {n, -N, N}], N -> Infinity]"
+            "Limit[Sum[(-1)^(n)*Divide[Pi,Tan[Pi*(t - (n+Divide[1,2])*\\[Tau])]], {n, -N, N}], N -> Infinity] == Limit[Sum[(-1)^(n)*(Limit[Sum[Divide[1,t - m -(n +Divide[1,2])*\\[Tau]], {m, -M, M}], M -> Infinity]), {n, -N, N}], N -> Infinity]"
     ),
     @DLMF("22.12.4")
     LONG_MULTI_PART_1(
@@ -75,7 +75,7 @@ public enum Lims implements ForwardTestCase {
     LONG_PARA(
             "\\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\frac{\\pi}{\\tan@{\\pi (t-n\\tau)}} = \\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\left( \\lim_{M \\to \\infty} \\sum_{m=-M}^M \\frac{1}{t - m - n \\tau} \\right)",
             "limit(sum((-1)^(n)*(pi)/(tan(pi*(t-n*tau))), n = -N .. N), N = infinity) = limit(sum((-1)^(n)*(limit(sum((1)/(t - m - n*tau), m = - M..M), M = infinity)), n = - N..N), N = infinity)",
-            "Limit[Sum[(-1)^(n)*Divide[\\[Pi], Tan[\\[Pi]*(t-n*\\[Tau])]], {n, -N, N}], N -> Infinity] = Limit[Sum[(-1)^(n)*(Limit[Sum[Divide[1,t - m - n*\\[Tau]], {m, -M, M}], M -> Infinity]), {n, -N, N}], N -> Infinity]"
+            "Limit[Sum[(-1)^(n)*Divide[\\[Pi], Tan[\\[Pi]*(t-n*\\[Tau])]], {n, -N, N}], N -> Infinity] == Limit[Sum[(-1)^(n)*(Limit[Sum[Divide[1,t - m - n*\\[Tau]], {m, -M, M}], M -> Infinity]), {n, -N, N}], N -> Infinity]"
     ),
     @DLMF("22.12.13")
     LONG_PARA_PART_1(
