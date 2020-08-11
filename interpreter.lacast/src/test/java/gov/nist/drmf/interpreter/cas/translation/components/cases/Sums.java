@@ -64,7 +64,7 @@ public enum Sums implements ForwardTestCase {
     SIMPLE_STOPPER(
             "\\sum_{n=0}^{10} n = 2 n",
             "sum(n, n = 0..10) = 2*n",
-            "Sum[n, {n, 0, 10}] = 2*n"
+            "Sum[n, {n, 0, 10}] == 2*n"
     ),
     SIMPLE_PARENTHESES(
             "\\sum_{n=0}^{10} k - (n+2)",
@@ -177,7 +177,7 @@ public enum Sums implements ForwardTestCase {
     DLMF_MULTI_SUM_LONG( //22.12.2 all
             "\\sum_{n=-\\infty}^{\\infty} \\frac{\\pi}{\\sin@{\\pi (t - (n+\\frac{1}{2}) \\tau)}} = \\sum_{n=-\\infty}^{\\infty} \\left( \\sum_{m=-\\infty}^{\\infty} \\frac{(-1)^m}{t - m - (n+\\frac{1}{2}) \\tau} \\right)",
             "sum((pi)/(sin(pi*(t -(n +(1)/(2))*tau))), n = - infinity..infinity) = sum(sum(((- 1)^(m))/(t - m -(n +(1)/(2))*tau), m = - infinity..infinity), n = - infinity..infinity)",
-            "Sum[Divide[\\[Pi],Sin[\\[Pi]*(t -(n +Divide[1,2])*\\[Tau])]], {n, -Infinity, Infinity}] = Sum[Sum[Divide[(- 1)^(m),t - m -(n +Divide[1,2])*\\[Tau]], {m, -Infinity, Infinity}], {n, -Infinity, Infinity}]"
+            "Sum[Divide[\\[Pi],Sin[\\[Pi]*(t -(n +Divide[1,2])*\\[Tau])]], {n, -Infinity, Infinity}] == Sum[Sum[Divide[(- 1)^(m),t - m -(n +Divide[1,2])*\\[Tau]], {m, -Infinity, Infinity}], {n, -Infinity, Infinity}]"
     ),
     @DLMF("22.12.2")
     DLMF_MULTI_SUM_LONG_PART1( //22.12.2 part 1
@@ -195,7 +195,7 @@ public enum Sums implements ForwardTestCase {
     DLMF_MULTI_SUM_SPECIAL_FUNC( //10.23.4 all
             "\\sum_{k \\hiderel{=} 0}^{2n} \\opminus^k \\BesselJ{k}@{z} \\BesselJ{2n-k}@{z} + 2 \\sum_{k \\hiderel{=} 1}^\\infty \\BesselJ{k}@{z} \\BesselJ{2n+k}@{z} = 0",
             "sum((-1)^(k)*BesselJ(k, z)*BesselJ(2*n - k, z), k = 0..2*n) + 2*sum(BesselJ(k, z)*BesselJ(2*n + k, z), k = 1..infinity) = 0",
-            "Sum[(-1)^(k)*BesselJ[k, z]*BesselJ[2*n - k, z], {k, 0, 2*n}] + 2*Sum[BesselJ[k, z]*BesselJ[2*n + k, z], {k, 1, Infinity}] = 0"
+            "Sum[(-1)^(k)*BesselJ[k, z]*BesselJ[2*n - k, z], {k, 0, 2*n}] + 2*Sum[BesselJ[k, z]*BesselJ[2*n + k, z], {k, 1, Infinity}] == 0"
     ),
     @DLMF("10.23.4")
     DLMF_MULTI_SUM_SPECIAL_FUNC_PART1( //10.23.4 part 1
@@ -315,7 +315,7 @@ public enum Sums implements ForwardTestCase {
     DLMF_MULTI_VAR_EQUALITY( //26.8.9
             "\\sum_{n, k \\hiderel{=} 0}^{\\infty} \\Stirlingnumbers@{n}{k} \\frac{x^n}{n!}y^k = (1+x)^y",
             "sum(sum(Stirling1(n, k)*((x)^(n))/(factorial(n))*(y)^(k), k=0..infinity), n=0..infinity) = (1+x)^(y)",
-            "Sum[Sum[StirlingS1[n, k]*Divide[(x)^(n),(n)!]*(y)^(k), {k, 0, Infinity}], {n, 0, Infinity}] = (1+x)^(y)"
+            "Sum[Sum[StirlingS1[n, k]*Divide[(x)^(n),(n)!]*(y)^(k), {k, 0, Infinity}], {n, 0, Infinity}] == (1+x)^(y)"
     ),
     @DLMF("25.9.1")
     DLMF_RANGE_VAR_LONG( //25.9.1 all

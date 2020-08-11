@@ -192,7 +192,7 @@
       "MLP": "equals",
       "LaTeX": "=",
       "Maple": "=",
-      "Mathematica": "="
+      "Mathematica": "=="
     },
     "Definition": {
       "MLP": "definition",
@@ -253,6 +253,18 @@
       "LaTeX": "\\opminus",
       "Maple": "(-1)",
       "Mathematica": "(-1)"
+    },
+    "PlusMinus": {
+      "MLP": "pm",
+      "LaTeX": "\\pm",
+      "Maple": " &+- ",
+      "Mathematica": "\\[PlusMinus]"
+    },
+    "MinusPlus": {
+      "MLP": "mp",
+      "LaTeX": "\\mp",
+      "Maple": " &-+ ",
+      "Mathematica": "\\[MinusPlus]"
     },
     "Complex Numbers": {
       "MLP": "complex",

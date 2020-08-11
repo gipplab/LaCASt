@@ -180,19 +180,19 @@ public enum SpecialFunctionsAndDerivatives implements ForwardTestCase {
     WRONSKIAN_AI(
             "\\Wronskian@{\\AiryAi@{z}, \\AiryBi@{z}} = \\frac{1}{\\cpi}",
             "(AiryAi(z))*diff(AiryBi(z), z)-diff(AiryAi(z), z)*(AiryBi(z)) = (1)/(Pi)",
-            "Wronskian[{AiryAi[z], AiryBi[z]}, z] = Divide[1, Pi]"
+            "Wronskian[{AiryAi[z], AiryBi[z]}, z] == Divide[1, Pi]"
     ),
     @DLMF("9.2.8")
     WRONSKIAN_AI_COMPLEX(
             "\\Wronskian@{\\AiryAi@{z}, \\AiryAi@{z \\expe^{-2 \\cpi \\iunit/3}}} = \\frac{\\expe^{\\cpi \\iunit /6}}{2\\cpi}",
             "(AiryAi(z))*diff(AiryAi(z*exp(-2*Pi*I/3)), z)-diff(AiryAi(z), z)*(AiryAi(z*exp(-2*Pi*I/3))) = (exp(Pi*I/6))/(2*Pi)",
-            "Wronskian[{AiryAi[z], AiryAi[z*Exp[-2*Pi*I/3]]}, z] = Divide[Exp[Pi*I/6], 2*Pi]"
+            "Wronskian[{AiryAi[z], AiryAi[z*Exp[-2*Pi*I/3]]}, z] == Divide[Exp[Pi*I/6], 2*Pi]"
     ),
     @DLMF("13.2.33")
     WRONSKIAN_OLVER(
             "\\Wronskian@{\\OlverconfhyperM@{a}{b}{z}, z^{1-b} \\OlverconfhyperM@{a-b+1}{2-b}{z}} = \\sin@{\\cpi b} z^{-b} \\expe^z / \\cpi",
             "(KummerM(a, b, z)/GAMMA(b))*diff((z)^(1 - b)* KummerM(a - b + 1, 2 - b, z)/GAMMA(2 - b), z)-diff(KummerM(a, b, z)/GAMMA(b), z)*((z)^(1 - b)* KummerM(a - b + 1, 2 - b, z)/GAMMA(2 - b)) = sin(Pi*b)*(z)^(-b)*exp(z)/Pi",
-            "Wronskian[{Hypergeometric1F1Regularized[a, b, z], (z)^(1 - b)*Hypergeometric1F1Regularized[a - b + 1, 2 - b, z]}, z] = Sin[Pi*b]*(z)^(-b)*Exp[z]/Pi"
+            "Wronskian[{Hypergeometric1F1Regularized[a, b, z], (z)^(1 - b)*Hypergeometric1F1Regularized[a - b + 1, 2 - b, z]}, z] == Sin[Pi*b]*(z)^(-b)*Exp[z]/Pi"
     ),
     @DLMF("13.2.34")
     WRONSKIAN_OLVER_2(

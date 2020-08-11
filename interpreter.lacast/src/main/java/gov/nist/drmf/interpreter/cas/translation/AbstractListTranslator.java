@@ -239,12 +239,12 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
         }
 
         LinkedList<PomTaggedExpression> args = new LinkedList<>();
-        PomTaggedExpression seq = FakeMLPGenerator.generateEmptySequencePTE();
+        PomTaggedExpression seq = FakeMLPGenerator.generateEmptySequencePPTE();
 
         for ( PomTaggedExpression p : sequenceWithCommas.getComponents() ) {
             if (MathTermUtility.equals(p.getRoot(), MathTermTags.comma) && !seq.getComponents().isEmpty()) {
                 args.addLast(seq);
-                seq = FakeMLPGenerator.generateEmptySequencePTE();
+                seq = FakeMLPGenerator.generateEmptySequencePPTE();
                 continue;
             }
             seq.addComponent(p);

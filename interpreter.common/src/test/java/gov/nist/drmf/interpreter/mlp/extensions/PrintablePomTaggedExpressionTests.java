@@ -423,6 +423,14 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     @Test
+    public void emptyDerivTest() throws ParseException {
+        String texString = "\\pderiv{}{x}=\\cos@@{\\phi}\\pderiv{}{r}-\\frac{\\sin@@{\\phi}}{r}\\pderiv{}{\\phi}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+
+        assertThat( texString, equalToCompressingWhiteSpace(ppte.getTexString()) );
+    }
+
+    @Test
     public void illegalManipulationTest() throws ParseException {
         String texString = "x+\\frac{y}{x^2}";
         PrintablePomTaggedExpression pte = mlp.parse(texString);

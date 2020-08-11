@@ -11,6 +11,7 @@ import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -309,11 +310,16 @@ public class SequenceTranslator extends AbstractListTranslator {
             String tmp = global.getLastExpression();
             global.replaceLastExpression(tmp + MULTIPLY);
         } else if (addSpace(exp, exp_list)) {
-            part += SPACE;
+            if ( !part.matches(".*\\s+$") )
+                part += SPACE;
+
             // the global list already got each element before,
             // so simply replace the last if necessary
             String tmp = global.getLastExpression();
-            global.replaceLastExpression(tmp + SPACE);
+            if ( !tmp.matches(".*\\s+$") )
+                tmp += SPACE;
+
+            global.replaceLastExpression(tmp);
         }
         return part;
     }
@@ -349,6 +355,10 @@ public class SequenceTranslator extends AbstractListTranslator {
             }
             MathTerm curr = currExp.getRoot();
             MathTerm next = exp_list.get(0).getRoot();
+
+            if (FeatureSetUtility.isConsideredAsRelation(curr) || FeatureSetUtility.isConsideredAsRelation(next))
+                return true;
+
             return !(curr.getTag().matches(MathTermTags.PARENTHESIS_PATTERN)
                     || next.getTag().matches(MathTermTags.PARENTHESIS_PATTERN)
                     || next.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)

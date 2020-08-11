@@ -193,7 +193,7 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         );
 
         // the potential arguments is a theoretical sequence, so handle it as a sequence!
-        PomTaggedExpression topSeqPTE = FakeMLPGenerator.generateEmptySequencePTE();
+        PomTaggedExpression topSeqPTE = FakeMLPGenerator.generateEmptySequencePPTE();
         for ( PomTaggedExpression pte : potentialArgs ) topSeqPTE.addComponent(pte);
 
         SequenceTranslator p = new SequenceTranslator(getSuperTranslator());
