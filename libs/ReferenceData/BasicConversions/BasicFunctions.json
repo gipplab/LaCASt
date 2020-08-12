@@ -186,7 +186,7 @@
       "MLP": "ellipsis",
       "LaTeX": "\\dots",
       "Maple": "..",
-      "Mathematica": " ... "
+      "Mathematica": "\\[Ellipsis]"
     },
     "Equality": {
       "MLP": "equals",
@@ -257,7 +257,7 @@
     "PlusMinus": {
       "MLP": "pm",
       "LaTeX": "\\pm",
-      "Maple": " &+- ",
+      "Maple": "&+-",
       "Mathematica": "\\[PlusMinus]"
     },
     "MinusPlus": {

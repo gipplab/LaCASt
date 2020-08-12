@@ -29,10 +29,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class SimpleTranslationTests {
 
     private static SemanticLatexTranslator slt;
+    private static SemanticLatexTranslator sltMathematica;
 
     @BeforeAll
     static void setup() throws InitTranslatorException {
         slt = new SemanticLatexTranslator(Keys.KEY_MAPLE);
+        sltMathematica = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
     }
 
     @Test
@@ -192,6 +194,17 @@ class SimpleTranslationTests {
         String out = slt.translate(in);
         assertEquals(eout, out);
         //\tfrac{1}{4} |z|
+    }
+
+    @Test
+    void plusMinusTest() {
+        String in = "\\pm 1";
+        String eout = "&+- 1";
+        String eout2 = "\\[PlusMinus]1";
+        String out = slt.translate(in);
+        String out2 = sltMathematica.translate(in);
+        assertEquals(eout, out);
+        assertEquals(eout2, out2);
     }
 
     @Test

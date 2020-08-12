@@ -5867,12 +5867,12 @@ Symbol: \modsphBesselK
 Symbol: \modsphBesseli
 
   Feature Set: dlmf-macro
-	DLMF: \modsphBesseli{2}{n}@{z}
-	DLMF-Link: dlmf.nist.gov/10.47#E8
-	Mathematica: Sqrt[1/2 Pi /$2] BesselI[(-1)^($0-1)*$1 + 1/2, $1]
+	DLMF: \modsphBesseli{1}{n}@{z}
+	DLMF-Link: dlmf.nist.gov/10.47#E7
+	Mathematica: Sqrt[Divide[Pi, $2]/2] BesselI[(-1)^($0-1)*($1 + 1/2), $1]
 	Meanings: Modified spherical Bessel function of the first kind
 	Number of Ats: 1
-	Number of Parameters: 1
+	Number of Parameters: 2
 	Number of Variables: 1
 	Slot of Differentiation: 1
 
@@ -8000,12 +8000,12 @@ Symbol: \sphBesselY
 Symbol: \sphHankelh
 
   Feature Set: dlmf-macro
-	DLMF: \sphHankelh{2}{n}@{z}
-	DLMF-Link: dlmf.nist.gov/10.47#E6
-	Mathematica: SphericalHankelH1[$0, $1]
+	DLMF: \sphHankelh{1}{n}@{z}
+	DLMF-Link: dlmf.nist.gov/10.47#E5
+	Mathematica: SphericalHankelH$0[$1, $2]
 	Meanings: Spherical Bessel function of the third kind
 	Number of Ats: 1
-	Number of Parameters: 1
+	Number of Parameters: 2
 	Number of Variables: 1
 	Slot of Differentiation: 1
 
