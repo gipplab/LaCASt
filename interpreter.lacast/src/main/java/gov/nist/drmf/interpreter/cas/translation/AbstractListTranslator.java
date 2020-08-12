@@ -59,6 +59,15 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
             List<PomTaggedExpression> following_exp
     );
 
+    public static boolean addMultiplySpecTreatment(
+            PomTaggedExpression currExp,
+            PomTaggedExpression specTreatExp,
+            List<PomTaggedExpression> exp_list
+    ) {
+        if ( isOpSymbol(currExp) ) return false;
+        else return addMultiply(specTreatExp, exp_list);
+    }
+
     /**
      * Checks weather a multiplication symbol should be added after the current {@param currExp} and
      * the following element (which is the first element of {@param exp_list}).
@@ -118,6 +127,14 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
 
     private static boolean isLetter(MathTermTags tag) {
         return MathTermTags.letter.equals(tag) || MathTermTags.alphanumeric.equals(tag) || MathTermTags.constant.equals(tag);
+    }
+
+    public static boolean isOpSymbol(PomTaggedExpression pte) {
+        MathTerm curr = pte.getRoot();
+        MathTermTags currMathTag = MathTermTags.getTagByKey(curr.getTag());
+        Boolean b = checkCurrentMathTag(currMathTag);
+        if ( b == null || b ) return false;
+        else return true;
     }
 
     private static Boolean checkCurrentMathTag(MathTermTags currMathTag) {

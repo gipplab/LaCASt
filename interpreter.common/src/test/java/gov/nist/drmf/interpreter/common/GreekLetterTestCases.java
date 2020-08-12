@@ -30,7 +30,7 @@ public enum GreekLetterTestCases {
     Delta(  "\\Delta",      "Delta",    "\\[CapitalDelta]"),
     epsilon("\\epsilon",    "epsilon",  "\\[Epsilon]"),
     Epsilon("E",            "Epsilon",  "\\[CapitalEpsilon]"),
-    zeta(   "\\zeta",       "zeta",     "\\[zeta]"),
+    zeta(   "\\zeta",       "zeta",     "\\[Zeta]"),
     Zeta(   "Z",            "ZETA",     "\\[CapitalZeta]"),
     eta(    "\\eta",        "eta",      "\\[Eta]"),
     Eta(    "H",            "Eta",      "\\[CapitalEta]"),

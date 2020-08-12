@@ -295,7 +295,7 @@ public class SequenceTranslator extends AbstractListTranslator {
     private String checkMultiplyAddition(PomTaggedExpression exp, List<PomTaggedExpression> exp_list, String part) {
         TranslatedExpression global = getGlobalTranslationList();
 
-        exp = treatFirstExpression(part, exp);
+        PomTaggedExpression specTreatExp = treatFirstExpression(part, exp);
 
         if (checkParenthesisFirst(exp_list)) {
             Matcher m = MULTIPLY_PATTERN.matcher(part);
@@ -303,13 +303,13 @@ public class SequenceTranslator extends AbstractListTranslator {
             else return part;
         }
 
-        if (addMultiply(exp, exp_list) /*&& !part.matches(".*\\*\\s*")*/) {
+        if (addMultiplySpecTreatment(exp, specTreatExp, exp_list) /*&& !part.matches(".*\\*\\s*")*/) {
             part += MULTIPLY;
             // the global list already got each element before,
             // so simply replace the last if necessary
             String tmp = global.getLastExpression();
             global.replaceLastExpression(tmp + MULTIPLY);
-        } else if (addSpace(exp, exp_list)) {
+        } else if (addSpace(specTreatExp, exp_list)) {
             if ( !part.matches(".*\\s+$") )
                 part += SPACE;
 
@@ -353,6 +353,10 @@ public class SequenceTranslator extends AbstractListTranslator {
             if (exp_list == null || exp_list.size() < 1) {
                 return false;
             }
+
+            if ( isOpSymbol(currExp) || isOpSymbol(exp_list.get(0)) )
+                return true;
+
             MathTerm curr = currExp.getRoot();
             MathTerm next = exp_list.get(0).getRoot();
 

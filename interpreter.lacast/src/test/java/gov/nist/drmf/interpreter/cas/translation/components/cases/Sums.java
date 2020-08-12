@@ -267,7 +267,7 @@ public enum Sums implements ForwardTestCase {
     DLMF_NORM_DOTS( //17.2.49
             "\\sum_{n \\hiderel{=} 1}^\\infty \\frac{q^{n^2}}{(1 - q) (1 - q^2) \\cdots (1 - q^n)}",
             "sum(((q)^((n)^(2)))/((1 - q)*(1 - (q)^(2))..(1 - (q)^(n))), n = 1..infinity)",
-            "Sum[Divide[(q)^((n)^(2)),(1 - q)*(1 - (q)^(2)) ... (1 - (q)^(n))], {n, 1, Infinity}]"
+            "Sum[Divide[(q)^((n)^(2)),(1 - q)*(1 - (q)^(2)) \\[Ellipsis] (1 - (q)^(n))], {n, 1, Infinity}]"
     ),
     @DLMF("8.15.1")
     DLMF_NORM_SPECIAL_FUNC( //8.15.1
