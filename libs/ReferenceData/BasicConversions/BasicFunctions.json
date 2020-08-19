@@ -3,74 +3,86 @@
     "MLP",
     "LaTeX",
     "Maple",
-    "Mathematica"
+    "Mathematica",
+    "SymPy"
   ],
   "Functions": {
     "Fraction": {
       "MLP": "fraction",
       "LaTeX": "\\frac{$0}{$1}",
       "Maple": "($0)/($1)",
-      "Mathematica": "Divide[$0,$1]"
+      "Mathematica": "Divide[$0,$1]",
+      "SymPy": "($0)/($1)"
     },
     "Binomial": {
       "MLP": "binomial coefficient",
       "LaTeX": "\\binom{$0}{$1}",
       "Maple": "binomial($0,$1)",
-      "Mathematica": "Binomial[$0,$1]"
+      "Mathematica": "Binomial[$0,$1]",
+      "SymPy": "binomial($0,$1)"
     },
     "Square Root": {
       "MLP": "square root",
       "LaTeX": "\\sqrt{$0}",
       "Maple": "sqrt($0)",
-      "Mathematica": "Sqrt[$0]"
+      "Mathematica": "Sqrt[$0]",
+      "SymPy": "sqrt($0)"
     },
     "Surd Root": {
       "MLP": "radical with a specified index",
       "LaTeX": "\\sqrt[$0]{$1}",
       "Maple": "surd($1,$0)",
-      "Mathematica": "Surd[$1,$0]"
+      "Mathematica": "Surd[$1,$0]",
+      "SymPy": "root($1,$0)"
     },
     "Factorial": {
       "MLP": "exclamation point",
       "LaTeX": "$0!",
       "Maple": "factorial($0)",
-      "Mathematica": "($0)!"
+      "Mathematica": "($0)!",
+      "SymPy": "factorial($0)"
     },
     "Double Factorial": {
       "MLP": "double exclamation point",
       "LaTeX": "$0!!",
       "Maple": "doublefactorial($0)",
-      "Mathematica": "($0)!!"
+      "Mathematica": "($0)!!",
+      "SymPy": "factorial2($0)"
     },
     "Modulo": {
       "MLP": "modulo",
       "LaTeX": "$0 \\mod $1",
       "Maple": "`modp`($0,$1)",
-      "Mathematica": "Mod[$0,$1]"
+      "Mathematica": "Mod[$0,$1]",
+      "SymPy": "Mod($0,$1)"
     },
     "Subscript": {
       "MLP": "underscore",
       "LaTeX": "$0_{$1}",
       "Maple": "$0[$1]",
-      "Mathematica": "Subscript[$0, $1]"
+      "Mathematica": "Subscript[$0, $1]",
+      "SymPy": "Symbol('{$0}_{$1}')"
     },
     "Exponential": {
       "MLP": "exponential",
       "LaTeX": "\\expe",
       "Maple": "exp($0)",
-      "Mathematica": "Exp[$0]"
+      "Mathematica": "Exp[$0]",
+      "SymPy": "exp($0)"
     },
     "Absolute Value": {
       "MLP": "absolute value",
       "LaTeX": "| $0 |",
       "Maple": "abs($0)",
-      "Mathematica": "Abs[$0]"
+      "Mathematica": "Abs[$0]",
+      "SymPy": "abs($0)"
     },
     "Sum": {
       "MLP": "sum",
       "LaTeX": "\\sum_{$0 = $1}^{$2}{$3}",
       "Maple": "sum($3, $0 = $1..$2)",
-      "Mathematica": "Sum[$3, {$0, $1, $2}]"
+      "Mathematica": "Sum[$3, {$0, $1, $2}]",
+      "SymPy": "Sum($3, ($0, $1, $2))"
     },
     "SumSet": {
       "MLP": "sumSet",
@@ -82,7 +94,8 @@
       "MLP": "prod",
       "LaTeX": "\\prod_{$0 = $1}^{$2}{$3}",
       "Maple": "product($3, $0 = $1..$2)",
-      "Mathematica": "Product[$3, {$0, $1, $2}]"
+      "Mathematica": "Product[$3, {$0, $1, $2}]",
+      "SymPy": "Product($3, ($0, $1, $2))"
     },
     "ProductSet": {
       "MLP": "prodSet",
@@ -94,93 +107,115 @@
       "MLP": "int",
       "LaTeX": "\\int_{$1}^{$2}{$3} \\diff{$0}",
       "Maple": "int($3, $0 = $1..$2)",
-      "Mathematica": "Integrate[$3, {$0, $1, $2}]"
+      "Mathematica": "Integrate[$3, {$0, $1, $2}]",
+      "SymPy": "integrate($3, ($0, $1, $2))"
     },
     "IntegralIndef": {
       "MLP": "intIndef",
       "LaTeX": "\\int{$1} \\diff{$0}",
       "Maple": "int($1, $0)",
-      "Mathematica": "Integrate[$1, $0]"
+      "Mathematica": "Integrate[$1, $0]",
+      "SymPy": "integrate($1, $0)"
     },
     "Derivative": {
       "MLP": "derivative",
       "LaTeX": "\\deriv[$2]{$0}{$1}",
       "Maple": "subs( temp=$1, diff( $0, temp$($2) ) )",
-      "Mathematica": "(D[$0, {temp, $2}]/.temp-> $1)"
+      "Mathematica": "(D[$0, {temp, $2}]/.temp-> $1)",
+      "SymPy": "diff($0, Symbol('temp'), $2).subs(Symbol('temp'), $1)"
     },
     "Limit": {
       "MLP": "lim",
       "LaTeX": "\\lim_{$0 \\to $1}{$2}",
       "Maple": "limit($2, $0 = $1)",
-      "Mathematica": "Limit[$2, $0 -> $1]"
+      "Mathematica": "Limit[$2, $0 -> $1]",
+      "SymPy": "limit($2, $0, $1)"
     },
     "LimitLeft": {
       "MLP": "limleft",
       "LaTeX": "\\lim_{$0 \\to $1^{-}}{$2}",
       "Maple": "limit($2, $0 = $1, left)",
-      "Mathematica": "Limit[$2, $0 -> $1, Direction -> \"FromBelow\"]"
+      "Mathematica": "Limit[$2, $0 -> $1, Direction -> \"FromBelow\"]",
+      "SymPy": "limit($2, $0, $1, dir='-')"
     },
     "LimitRight": {
       "MLP": "limright",
       "LaTeX": "\\lim_{$0 \\to $1^{+}}{$2}",
       "Maple": "limit($2, $0 = $1, right)",
-      "Mathematica": "Limit[$2, $0 -> $1, Direction -> \"FromAbove\"]"
+      "Mathematica": "Limit[$2, $0 -> $1, Direction -> \"FromAbove\"]",
+      "SymPy": "limit($2, $0, $1, dir='+')"
     },
     "LoadPackage": {
       "MLP": "load-package",
       "LaTeX": "",
       "Maple": "with($0)",
-      "Mathematica": ""
+      "Mathematica": "",
+      "SymPy": ""
     },
     "UnLoadPackage": {
       "MLP": "unload-package",
       "LaTeX": "",
       "Maple": "unwith($0)",
-      "Mathematica": ""
+      "Mathematica": "",
+      "SymPy": ""
     }
   },
   "Symbol Languages": [
     "MLP",
     "LaTeX",
     "Maple",
-    "Mathematica"
+    "Mathematica",
+    "SymPy"
   ],
   "Symbols": {
     "GeneralMultiplication": {
       "MLP": "General Multiplication",
       "LaTeX": "\\idot",
       "Maple": "*",
-      "Mathematica": "*"
+      "Mathematica": "*",
+      "SymPy": "*"
     },
     "Multiply": {
       "MLP": "operation",
       "LaTeX": "\\cdot",
       "Maple": "*",
-      "Mathematica": "*"
+      "Mathematica": "*",
+      "SymPy": "*"
     },
     "Invisible Multiply": {
       "MLP": "operation",
       "LaTeX": "\\idot",
       "Maple": "*",
-      "Mathematica": "*"
+      "Mathematica": "*",
+      "SymPy": "*"
     },
     "Addition": {
       "MLP": "Addition",
       "LaTeX": "+",
       "Maple": "+",
-      "Mathematica": "+"
+      "Mathematica": "+",
+      "SymPy": "+"
     },
     "Subtraction": {
       "MLP": "minus",
       "LaTeX": "-",
       "Maple": "-",
-      "Mathematica": "-"
+      "Mathematica": "-",
+      "SymPy": "-"
+    },
+    "Power": {
+      "MLP": "caret",
+      "LaTeX": "^",
+      "Maple": "^",
+      "Mathematica": "^",
+      "SymPy": "**"
     },
     "Lower dots": {
       "MLP": "ellipsis",
       "LaTeX": "\\ldots",
       "Maple": "..",
-      "Mathematica": " ... "
+      "Mathematica": " ... ",
+      "SymPy": "*"
     },
     "Dots": {
       "MLP": "ellipsis",
@@ -192,13 +227,15 @@
       "MLP": "equals",
       "LaTeX": "=",
       "Maple": "=",
-      "Mathematica": "=="
+      "Mathematica": "==",
+      "SymPy": "=="
     },
     "Definition": {
       "MLP": "definition",
       "LaTeX": ":=",
       "Maple": ":=",
-      "Mathematica": ":="
+      "Mathematica": ":=",
+      "SymPy": "="
     },
     "Not Equality": {
       "MLP": "relation_neq",
@@ -210,31 +247,36 @@
       "MLP": "relation_neq",
       "LaTeX": "\\ne",
       "Maple": "<>",
-      "Mathematica": "\\[NotEqual]"
+      "Mathematica": "\\[NotEqual]",
+      "SymPy": "<>"
     },
     "Less Than or Equality": {
       "MLP": "relation_leq",
       "LaTeX": "\\leq",
       "Maple": "<=",
-      "Mathematica": "<="
+      "Mathematica": "<=",
+      "SymPy": "<="
     },
     "Less Than or Equality 2": {
       "MLP": "relation_leq2",
       "LaTeX": "\\le",
       "Maple": "<=",
-      "Mathematica": "<="
+      "Mathematica": "<=",
+      "SymPy": "<="
     },
     "Greater Than or Equality": {
       "MLP": "relation_geq",
       "LaTeX": "\\geq",
       "Maple": ">=",
-      "Mathematica": ">="
+      "Mathematica": ">=",
+      "SymPy": ">="
     },
     "Greater Than or Equality2": {
       "MLP": "relation_geq2",
       "LaTeX": "\\ge",
       "Maple": ">=",
-      "Mathematica": ">="
+      "Mathematica": ">=",
+      "SymPy": ">="
     },
     "Element of": {
       "MLP": "in",
@@ -246,13 +288,15 @@
       "MLP": "ordinary",
       "LaTeX": "\\infty",
       "Maple": "infinity",
-      "Mathematica": "Infinity"
+      "Mathematica": "Infinity",
+      "SymPy": "oo"
     },
     "opminus": {
       "MLP": "opminus",
       "LaTeX": "\\opminus",
       "Maple": "(-1)",
-      "Mathematica": "(-1)"
+      "Mathematica": "(-1)",
+      "SymPy": "(-1)"
     },
     "PlusMinus": {
       "MLP": "pm",
@@ -294,7 +338,8 @@
       "MLP": "special math letter",
       "LaTeX": "\\ell",
       "Maple": "ell",
-      "Mathematica": "\\[ScriptL]"
+      "Mathematica": "\\[ScriptL]",
+      "SymPy": "Symbol(r'\\ell')"
     },
     "SuppressOutput": {
       "MLP": "suppress-output",
@@ -306,7 +351,8 @@
       "MLP": "end-of-line",
       "LaTeX": "\n",
       "Maple": ";",
-      "Mathematica": "\n"
+      "Mathematica": "\n",
+      "SymPy": "\n"
     }
   }
 }
