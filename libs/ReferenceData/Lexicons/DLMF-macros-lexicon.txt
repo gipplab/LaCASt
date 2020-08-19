@@ -2420,6 +2420,8 @@ Symbol: \Ln
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: ln($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#log
 
 Symbol: \LommelS
 
@@ -3580,6 +3582,8 @@ Symbol: \acos
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: acos($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#acos
 
 Symbol: \acosh
 
@@ -3598,6 +3602,8 @@ Symbol: \acosh
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: acosh($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#acosh
 
 Symbol: \acot
 
@@ -3618,6 +3624,9 @@ Symbol: \acot
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: acot($0)
+	SymPy-Branch Cuts: (- I infinity, - I ), ( I, I infinity )
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#acot
 
 Symbol: \acoth
 
@@ -3636,6 +3645,8 @@ Symbol: \acoth
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: acoth($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#acoth
 
 Symbol: \acsc
 
@@ -3654,6 +3665,8 @@ Symbol: \acsc
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: acsc($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#acsc
 
 Symbol: \acsch
 
@@ -3672,6 +3685,8 @@ Symbol: \acsch
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: acsch($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#acsch
 
 Symbol: \asec
 
@@ -3690,6 +3705,8 @@ Symbol: \asec
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: asec($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#asec
 
 Symbol: \asech
 
@@ -3708,6 +3725,8 @@ Symbol: \asech
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: asech($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#asech
 
 Symbol: \asin
 
@@ -3726,6 +3745,8 @@ Symbol: \asin
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: asin($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#asin
 
 Symbol: \asinh
 
@@ -3744,6 +3765,8 @@ Symbol: \asinh
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: asinh($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#asinh
 
 Symbol: \assJacobipolyP
 
@@ -3872,6 +3895,8 @@ Symbol: \atan
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: atan($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#atan
 
 Symbol: \atanh
 
@@ -3890,6 +3915,8 @@ Symbol: \atanh
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: atanh($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#atanh
 
 Symbol: \auxFresnelf
 
@@ -4264,6 +4291,8 @@ Symbol: \cos
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: cos($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#cos
 
 Symbol: \cosh
 
@@ -4280,6 +4309,8 @@ Symbol: \cosh
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: cosh($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#cosh
 
 Symbol: \coshint
 
@@ -4341,6 +4372,8 @@ Symbol: \cot
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: cot($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#cot
 
 Symbol: \coth
 
@@ -4358,6 +4391,8 @@ Symbol: \coth
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: coth($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#coth
 
 Symbol: \cpi
 
@@ -4386,6 +4421,8 @@ Symbol: \csc
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: csc($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#csc
 
 Symbol: \csch
 
@@ -4403,6 +4440,8 @@ Symbol: \csch
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: csch($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#csch
 
 Symbol: \ctsHahn
 
@@ -4837,6 +4876,8 @@ Symbol: \exp
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: exp($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#exp
 
 Symbol: \expe
 
@@ -5124,6 +5165,8 @@ Symbol: \genlog
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: log($1, $0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#log
 
 Symbol: \genshiftcosint
 
@@ -5598,6 +5641,8 @@ Symbol: \ln
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: ln($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#log
 
 Symbol: \log
 
@@ -5616,6 +5661,8 @@ Symbol: \log
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: log($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#log
 
 Symbol: \logint
 
@@ -7768,6 +7815,8 @@ Symbol: \sec
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: sec($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#sec
 
 Symbol: \sech
 
@@ -7784,6 +7833,8 @@ Symbol: \sech
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: sech($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#sech
 
 Symbol: \setminus
 
@@ -7923,6 +7974,8 @@ Symbol: \sin
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: sin($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#sin
 
 Symbol: \sinh
 
@@ -7939,6 +7992,8 @@ Symbol: \sinh
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: sinh($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#sinh
 
 Symbol: \sinhint
 
@@ -8165,6 +8220,8 @@ Symbol: \tan
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: tan($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#tan
 
 Symbol: \tanh
 
@@ -8182,6 +8239,8 @@ Symbol: \tanh
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: tanh($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#tanh
 
 Symbol: \tderiv
 

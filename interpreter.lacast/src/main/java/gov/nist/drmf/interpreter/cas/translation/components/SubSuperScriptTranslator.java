@@ -10,6 +10,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
+import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -24,10 +25,12 @@ import java.util.List;
 public class SubSuperScriptTranslator extends AbstractListTranslator {
     private static final Logger LOG = LogManager.getLogger(SubSuperScriptTranslator.class.getName());
     private final TranslatedExpression localTranslations;
+    private final SymbolTranslator st;
 
     public SubSuperScriptTranslator(AbstractTranslator abstractTranslator) {
         super(abstractTranslator);
         this.localTranslations = new TranslatedExpression();
+        this.st = this.getConfig().getSymbolTranslator();
     }
 
     @Override
@@ -99,7 +102,7 @@ public class SubSuperScriptTranslator extends AbstractListTranslator {
 
     private String wrapParenthesesAndAddMultiplyToPower(TranslatedExpression power, List<PomTaggedExpression> following_exp) {
         // now we need to wrap parenthesis around the power
-        String powerStr = GlobalConstants.CARET_CHAR;
+        String powerStr = st.translateFromMLPKey(MathTermTags.caret.tag());
         if (!Brackets.isEnclosedByBrackets(power.toString())) {
             powerStr += Brackets.left_parenthesis.symbol + power.toString() + Brackets.left_parenthesis.counterpart;
         } else {

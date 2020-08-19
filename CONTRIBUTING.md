@@ -8,8 +8,9 @@
 2. [Generate Jars](#jars)
 3. [Test Coverage](#test-coverage)
 4. [Update translation patterns](#howToUpdate)
-5. [The program structure and important main classes](#program)
-6. [Troubleshooting](#troubleshooting)
+5. [Support a new CAS](#newCAS)
+6. [The program structure and important main classes](#program)
+7. [Troubleshooting](#troubleshooting)
 
 ## Setup Project<a name="start"></a>
 
@@ -181,7 +182,9 @@ mvn test -DjacocoReport=full
 The results can be found in `target/jacoco-report/`. Open the `index.html` to get a website view of the coverage report.
 
 ## Update translation patterns<a name="howToUpdate"></a>
-We store the translation patterns in `libs/ReferenceData/CSVTables`. In there, you will find two groups of files.
+Basic translation patterns can be found in `libs/ReferenceData/BasicConversions`. Here, basic functions, symbols, and 
+constants are defined in JSON files.
+We store the general translation patterns in `libs/ReferenceData/CSVTables`. In there, you will find two groups of files.
 1. The supported macros (in `DLMFMacro.csv`).
 2. The supported translations to a CAS. There are two files for each CAS. One defines the meta information (e.g., hyperlinks), 
 and the other defines the translations (e.g., for Maple its `CAS_Maple.csv` and `DLMF_Maple.csv`).
@@ -208,8 +211,8 @@ To support new macros, you have to extend the `DLMFMacro.csv` with all informati
 For `role` you should enter either `dlmf-macro`, `mathematical constant`, `symbol`, or `ignore`. Obviously, `ignore` means it will be ignored due to compilation.
 </details>
 
-<details><summary><strong>How to support translations</strong></summary>
-  
+<details><summary><strong>How to support translation for a new macro</strong></summary>
+
 Consider you want to add a new translation pattern to Maple, you have to add it to `DLMF_Maple.csv`.
 The columns for alternative translations and required packages allow multiple entries.
 In this case you have to split the entries with ` || ` (including the spaces). For example, see the line 22 for
@@ -220,28 +223,83 @@ For example, `\Eulertotientphi@{n}` requires in Maple the package `NumberTheory`
 However, for performance reasons, it makes sense to only require the actual function, here `NumberTheory,phi`.
 </details>
 
-#### Add new translations to the lexicon<a name="lexiconAddOn"></a>
-After you add a new entry or change an existing entry follow these instructions to add the changes to our program:
-1. Export the sheet you changed to a CSV file (separated by semicolons ;) and put them into `libs/ReferenceData/CSVTables/`. The name for the DLMF/DRMF macros file is fixed. It has to be `DLMFMacro.csv`. The names for the other CSV files are up to you. You have to add these files manually in step 3.
+## Support a new CAS<a name="newCAS"></a>
+Supporting an entire new CAS can cause a lot of trouble. Hence, it is recommended you are familiar with the project
+to some degree before you start to support another CAS. In the following, I will describe the general steps that were
+necessary to basically support SymPy. Basically, because you can always dig deeper and deeper which requires more
+advanced updates all over the place. For example, in the following we will not go into the trouble to support SymPy
+for the evaluation engine as well. The evaluation engine requires a direct interaction between LaCASt and the CAS.
+In contrast, a simple forward translation does not require the CAS to run.
 
-2. Make sure each CSV file is encoded in UTF-8 (with ot without BOM) because there are some entries possible with illegal letters like an `ö` in `Möbius`.
+***Important:*** Find a unique notation for the name of your CAS that does not use special characters. Make sure
+you will use this exact notation (case-sensitive) all over the place! If you change the notation in a single location,
+LaCASt will not be able to set up and use everything properly. For SymPy, I decided to use `SymPy` rather than `Sympy`.
+Hence, I use the capital `P` everywhere. If you want to allow the user to use another notation for the frontend, you
+have to extend the code to allow aliases (currently there is no alias logic implemented).
 
-3. Run the `lexicon-creator.jar` with `java -jar lexicon-creator.jar`. 
-It will ask you to add your CAS specific CSV files. Add them (one CSV file per 
-line, hit enter). When you are done, enter -end and hit enter. Make sure you 
-have to add the already supported CAS as well. Otherwise these translations are 
-lost in the lexicon file. You can also add all CSV files directly behind the jar. 
-For our default program (Maple and Mathematica) it looks like 
-`java -jar lexicon-creator.jar CAS_Maple.csv CAS_Mathematica.csv`. 
-The program my show you some errors. You must solve all severe errors, if any.
+<details><summary><strong>1. Basic Conversions</strong></summary>
 
-4. Done, the translator supports your changes now.
+The very first thing to do is to update the basic conversion definitions in `libs/ReferenceData/BasicConversions`.
+In both JSON files are numerous of standard translations that are absolutely required to run a translation process.
+If the new CAS does not support some translations (e.g., there is no `\pm` symbol in SymPy), just ignore this case.
+Do **not** define an empty translation in this case! The translator would not through an error and simply
+translate and empty string. In such a scenario, it would be very difficult to find errors in LaCASt.
+
+Once you updated as much as possible, you are free to go. LaCASt already supports your new CAS now. However, of course,
+it only supports the basic translations you defined in the JSON files. Test it by run `SemanticToCASInterpreter` with
+your new CAS and translate `\frac{x^2}{y\cpi\idot\iunit}`.
+</details>
+
+<details><summary><strong>2. Add macro translations</strong></summary>
+
+The very first step to support macro translations for the new CAS is to add your CAS to `config/support.yaml`. Next, you
+have to add your CSV files for your new CAS in `libs/ReferenceData/CSVTables`. In case of SymPy:
+1. `CAS_SymPy.csv` which defines the functions of SymPy with all necessary information. Note that it has a DLMF column
+which can be used to perform backward translations in the future (`SymPy -> LaTeX`).
+2. `DLMF_SymPy.csv` which defines the forward translations for all functions defined in `CAS_SymPy.csv`.
+
+For a detailed explanation how to fill out both CSV files, take a look at 
+[Section 4, update translation patterns](#howToUpdate).
+
+</details>
+
+<details><summary><strong>3. Support new translations</strong></summary>
+
+If you followed the previous steps correctly, you are ready to bring your new defined CSV tranlsations to the internally
+used lexicon files. That's rather simple to do, just start the `CSVtoLexiconConverter` (see below in [Section 5](#program) 
+if you don't know where to find it). It asks you enter the CAS you want to support. Just enter `-all` and you should see
+
+```
+Current list: [CAS_Maple.csv, CAS_Mathematica.csv, CAS_SymPy.csv]
+```
+
+If you entered your CAS in the `config/support.yaml`, you shall see your CAS in the list also. Enter `-end` to
+kick off the integration process. Once it's done, you should see a summary. I just added translations for the
+elementary functions to SymPy, hence my summary looks like this:
+
+```
+Time elapsed:  0,441 seconds
+Number of DLMF-Macros: 675
+Number of supported Maple translations: 260
+Number of supported Mathematica translations: 269
+Number of supported SymPy translations: 29
+```
+</details>
+
+<details><summary><strong>4. Test your translations</strong></summary>
+
+You should be able to run translations for your new CAS already by now. As long as your test expression does not include
+functions you did not define yet, it should work smoothly. Of course, you should implement test cases to be sure.
+
+Unfortunately, by now, you need to manually implement the new test cases. There is no simple text file that defines
+the test cases which you can simply edit. This is still an open issue I'm actively working on.
+</details>
 
 ## The program structure and important main classes<a name="program"></a>
 There are a couple of main classes in the project.
 * `interpreter.common -> ...interpreter.examples.MLP.java`: This is an example of Abdou's math language processors. It runs a hard-coded example of the analyzing process.
 * `interpreter.lacast -> ...interpreter.cas.SemanticToCASInterpreter.java`: That's the main class to translate formulae to a computer algebra system.
-* `interpreter.lacast -> ...interpreter.cas.mlp.CSVtoLexiconConverter.java`: This class translates given CSV files to lexicon files. You only have to add the translation CSV files and not the DLMFMacro.csv itself to create a correct lexicon.
+* `interpreter.common -> ...interpreter.mlp.CSVtoLexiconConverter.java`: This class translates given CSV files to lexicon files. You only have to add the translation CSV files and not the DLMFMacro.csv itself to create a correct lexicon.
 * `interpreter.maple  -> ...interpreter.maple.MapleToSemanticInterpreter.java`: This class translates Maple expressions back to semantic LaTeX.
 
 ## Troubleshooting<a name="troubleshooting"></a>
