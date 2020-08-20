@@ -1,0 +1,275 @@
+[
+    {
+        "name": "AIRY",
+        "DLMF": "",
+        "LaTeX": "\\AiryAi@{x}",
+        "Maple": "AiryAi(x)",
+        "Mathematica": "AiryAi[x]"
+    },
+    {
+        "name": "AIRY_NO_ATS",
+        "DLMF": "",
+        "LaTeX": "\\AiryAi{x}",
+        "Maple": "AiryAi(x)",
+        "Mathematica": "AiryAi[x]"
+    },
+    {
+        "name": "AIRY_PRIME",
+        "DLMF": "",
+        "LaTeX": "\\AiryAi'@{x}",
+        "Maple": "subs( temp=x, diff( AiryAi(temp), temp$(1) ) )",
+        "Mathematica": "(D[AiryAi[temp], {temp, 1}]/.temp-> x)"
+    },
+    {
+        "name": "AIRY_PRIME_SQUARE",
+        "DLMF": "",
+        "LaTeX": "\\AiryAi'@{x}^2",
+        "Maple": "(subs( temp=x, diff( AiryAi(temp), temp$(1) )))^(2)",
+        "Mathematica": "((D[AiryAi[temp], {temp, 1}]/.temp-> x))^(2)"
+    },
+    {
+        "name": "AIRY_LAGRANGE",
+        "DLMF": "",
+        "LaTeX": "\\AiryAi^{(5)}@{x}",
+        "Maple": "subs( temp=x, diff( AiryAi(temp), temp$(5) ) )",
+        "Mathematica": "(D[AiryAi[temp], {temp, 5}]/.temp-> x)"
+    },
+    {
+        "name": "AIRY_POWER",
+        "DLMF": "",
+        "LaTeX": "\\AiryAi^{5}@{x}",
+        "Maple": "(AiryAi(x))^(5)",
+        "Mathematica": "(AiryAi[x])^(5)"
+    },
+    {
+        "name": "COS_PRIME",
+        "DLMF": "",
+        "LaTeX": "\\cos'@{x}",
+        "Maple": "subs( temp=x, diff( cos(temp), temp$(1) ) )",
+        "Mathematica": "(D[Cos[temp], {temp, 1}]/.temp-> x)"
+    },
+    {
+        "name": "COS_LAGRANGE",
+        "DLMF": "",
+        "LaTeX": "\\cos^{(\\ell)}@{x}",
+        "Maple": "subs( temp=x, diff( cos(temp), temp$(ell) ) )",
+        "Mathematica": "(D[Cos[temp], {temp, \\[ScriptL]}]/.temp-> x)"
+    },
+    {
+        "name": "HURWITZ_ZETA",
+        "DLMF": "",
+        "LaTeX": "\\Hurwitzzeta@{s}{a}",
+        "Maple": "Zeta(0, s, a)",
+        "Mathematica": "HurwitzZeta[s, a]"
+    },
+    {
+        "name": "HURWITZ_ZETA_PRIME",
+        "DLMF": "",
+        "LaTeX": "\\Hurwitzzeta'@{0}{a}",
+        "Maple": "subs( temp=0, diff( Zeta(0, temp, a), temp$(1) ) )",
+        "Mathematica": "(D[HurwitzZeta[temp, a], {temp, 1}]/.temp-> 0)"
+    },
+    {
+        "name": "HURWITZ_ZETA_PRIME_NO_ATS",
+        "DLMF": "",
+        "LaTeX": "\\Hurwitzzeta'{0}{a}",
+        "Maple": "subs( temp=0, diff( Zeta(0, temp, a), temp$(1) ) )",
+        "Mathematica": "(D[HurwitzZeta[temp, a], {temp, 1}]/.temp-> 0)"
+    },
+    {
+        "name": "EMBEDDED_SPECIAL_FUNCTIONS",
+        "DLMF": "",
+        "LaTeX": "\\ln@@{\\EulerGamma@{a}}",
+        "Maple": "ln(GAMMA(a))",
+        "Mathematica": "Log[Gamma[a]]"
+    },
+    {
+        "name": "LOGARITHM",
+        "DLMF": "",
+        "LaTeX": "\\ln@@{2\\pi}",
+        "Maple": "ln(2*pi)",
+        "Mathematica": "Log[2*\\[Pi]]"
+    },
+    {
+        "name": "HURWITZ_ZETA_LAGRANGE",
+        "DLMF": "",
+        "LaTeX": "\\Hurwitzzeta^{(2+3n)}@{s}{a}",
+        "Maple": "subs( temp=s, diff( Zeta(0, temp, a), temp$(2 + 3*n) ) )",
+        "Mathematica": "(D[HurwitzZeta[temp, a], {temp, 2+3*n}]/.temp-> s)"
+    },
+    {
+        "name": "HURWITZ_ZETA_LAGRANGE_PRIME_10",
+        "DLMF": "",
+        "LaTeX": "\\Hurwitzzeta''''''''''@{s}{a}",
+        "Maple": "subs( temp=s, diff( Zeta(0, temp, a), temp$(10) ) )",
+        "Mathematica": "(D[HurwitzZeta[temp, a], {temp, 10}]/.temp-> s)"
+    },
+    {
+        "name": "MODIFIED_BESSEL_K",
+        "DLMF": "",
+        "LaTeX": "\\modBesselKimag{\\nu}@{x}",
+        "Maple": "BesselK(I*(nu), x)",
+        "Mathematica": "BesselK[I*\\[Nu], x]"
+    },
+    {
+        "name": "MODIFIED_BESSEL_K_PRIME",
+        "DLMF": "",
+        "LaTeX": "\\modBesselKimag{\\nu}'@{x}",
+        "Maple": "subs( temp=x, diff( BesselK(I*(nu), temp), temp$(1) ) )",
+        "Mathematica": "(D[BesselK[I*\\[Nu], temp], {temp, 1}]/.temp-> x)"
+    },
+    {
+        "name": "MODIFIED_BESSEL_K_LAGRANGE",
+        "DLMF": "",
+        "LaTeX": "\\modBesselKimag{\\nu}^{(5^3)}@{x}",
+        "Maple": "subs( temp=x, diff( BesselK(I*(nu), temp), temp$((5)^(3)) ) )",
+        "Mathematica": "(D[BesselK[I*\\[Nu], temp], {temp, (5)^(3)}]/.temp-> x)"
+    },
+    {
+        "name": "HYPER_F",
+        "DLMF": "",
+        "LaTeX": "\\hyperF@@@{a}{b}{c}{z}",
+        "Maple": "hypergeom([a, b], [c], z)",
+        "Mathematica": "Hypergeometric2F1[a, b, c, z]"
+    },
+    {
+        "name": "HYPER_F_PRIME",
+        "DLMF": "",
+        "LaTeX": "\\hyperF'@@@{a}{b}{c}{z}",
+        "Maple": "subs( temp=z, diff( hypergeom([a, b], [c], temp), temp$(1) ) )",
+        "Mathematica": "(D[Hypergeometric2F1[a, b, c, temp], {temp, 1}]/.temp-> z)"
+    },
+    {
+        "name": "HYPER_F_LAGRANGE",
+        "DLMF": "",
+        "LaTeX": "\\hyperF^{(2n)}@@@{a}{b}{c}{z}",
+        "Maple": "subs( temp=z, diff( hypergeom([a, b], [c], temp), temp$(2*n) ) )",
+        "Mathematica": "(D[Hypergeometric2F1[a, b, c, temp], {temp, 2*n}]/.temp-> z)"
+    },
+    {
+        "name": "HYPER_F_PRIME_COS_ARGUMENT",
+        "DLMF": "",
+        "LaTeX": "\\hyperF'@@@{a}{b}{c}{\\cos@@{2z}}",
+        "Maple": "subs( temp=cos(2*z), diff( hypergeom([a, b], [c], temp), temp$(1) ) )",
+        "Mathematica": "(D[Hypergeometric2F1[a, b, c, temp], {temp, 1}]/.temp-> Cos[2*z])"
+    },
+    {
+        "name": "HYPER_F_PRIME_COMPLEX_ARGUMENT",
+        "DLMF": "",
+        "LaTeX": "\\hyperF'@@@{a}{b}{\\ln@@{c}+2}{\\cos@@{2z}}",
+        "Maple": "subs( temp=cos(2*z), diff( hypergeom([a, b], [ln(c)+ 2], temp), temp$(1) ) )",
+        "Mathematica": "(D[Hypergeometric2F1[a, b, Log[c]+2, temp], {temp, 1}]/.temp-> Cos[2*z])"
+    },
+    {
+        "name": "FERRERS_P",
+        "DLMF": "",
+        "LaTeX": "\\FerrersP[\\mu]{\\nu}@{x}",
+        "Maple": "LegendreP(nu, mu, x)",
+        "Mathematica": "LegendreP[\\[Nu], \\[Mu], x]"
+    },
+    {
+        "name": "FERRERS_P_PRIME",
+        "DLMF": "",
+        "LaTeX": "\\FerrersP[\\mu]{\\nu}'@{x}",
+        "Maple": "subs( temp=x, diff( LegendreP(nu, mu, temp), temp$(1) ) )",
+        "Mathematica": "(D[LegendreP[\\[Nu], \\[Mu], temp], {temp, 1}]/.temp-> x)"
+    },
+    {
+        "name": "FERRERS_P_LAGRANGE",
+        "DLMF": "",
+        "LaTeX": "\\FerrersP[\\mu]{\\nu}^{(6)}@{x}",
+        "Maple": "subs( temp=x, diff( LegendreP(nu, mu, temp), temp$(6) ) )",
+        "Mathematica": "(D[LegendreP[\\[Nu], \\[Mu], temp], {temp, 6}]/.temp-> x)"
+    },
+    {
+        "name": "POCHHAMMER",
+        "DLMF": "",
+        "LaTeX": "\\pochhammer{a}{n}",
+        "Maple": "pochhammer(a, n)",
+        "Mathematica": "Pochhammer[a, n]"
+    },
+    {
+        "name": "AIRY_AI_BI_PRIME",
+        "DLMF": "",
+        "LaTeX": "\\AiryAi'@{\\AiryBi@{x}}",
+        "Maple": "subs( temp=AiryBi(x), diff( AiryAi(temp), temp$(1) ) )",
+        "Mathematica": "(D[AiryAi[temp], {temp, 1}]/.temp-> AiryBi[x])"
+    },
+    {
+        "name": "AIRY_AI_BI_INNER_PRIME",
+        "DLMF": "",
+        "LaTeX": "\\AiryAi@{\\AiryBi''@{x}}",
+        "Maple": "AiryAi(subs( temp=x, diff( AiryBi(temp), temp$(2) ) ))",
+        "Mathematica": "AiryAi[D[AiryBi[temp], {temp, 2}]/.temp-> x]"
+    },
+    {
+        "name": "AIRY_AI_BI_INNER_OUTER_PRIME",
+        "DLMF": "",
+        "LaTeX": "\\AiryAi'''@{\\AiryBi''@{x}}",
+        "Maple": "subs( temp=subs( temp=x, diff( AiryBi(temp), temp$(2) ) ), diff( AiryAi(temp), temp$(3) ) )",
+        "Mathematica": "(D[AiryAi[temp], {temp, 3}]/.temp-> (D[AiryBi[temp], {temp, 2}]/.temp-> x))"
+    },
+    {
+        "name": "AIRY_AI_BI_INNER_PRIME_OUTER_LAGRANGE",
+        "DLMF": "",
+        "LaTeX": "\\AiryAi^{(n)}@{\\AiryBi'''@{x}}",
+        "Maple": "subs( temp=subs( temp=x, diff( AiryBi(temp), temp$(3) ) ), diff( AiryAi(temp), temp$(n) ) )",
+        "Mathematica": "(D[AiryAi[temp], {temp, n}]/.temp-> (D[AiryBi[temp], {temp, 3}]/.temp-> x))"
+    },
+    {
+        "name": "AIRY_AI_BI_INNER_LAGRANGE_OUTER_PRIME",
+        "DLMF": "",
+        "LaTeX": "\\AiryAi'''@{\\AiryBi^{(n)}@{x}}",
+        "Maple": "subs( temp=subs( temp=x, diff( AiryBi(temp), temp$(n) ) ), diff( AiryAi(temp), temp$(3) ) )",
+        "Mathematica": "(D[AiryAi[temp], {temp, 3}]/.temp-> (D[AiryBi[temp], {temp, n}]/.temp-> x))"
+    },
+    {
+        "name": "AIRY_AI_BI_INNER_LAGRANGE_OUTER_PRIME_NESTED_ARG",
+        "DLMF": "",
+        "LaTeX": "\\AiryAi'''@{\\AiryBi^{(n)}@{\\EulerGamma@{z}}}",
+        "Maple": "subs( temp=subs( temp=GAMMA(z), diff( AiryBi(temp), temp$(n) ) ), diff( AiryAi(temp), temp$(3) ) )",
+        "Mathematica": "(D[AiryAi[temp], {temp, 3}]/.temp-> (D[AiryBi[temp], {temp, n}]/.temp-> Gamma[z]))"
+    },
+    {
+        "name": "AIRY_AI_NESTED_DIFFS",
+        "DLMF": "",
+        "LaTeX": "\\AiryAi'''@{\\AiryBi^{(n)}@{\\EulerGamma'@{z}}}",
+        "Maple": "subs( temp=subs( temp=subs( temp=z, diff( GAMMA(temp), temp$(1) ) ), diff( AiryBi(temp), temp$(n) ) ), diff( AiryAi(temp), temp$(3) ) )",
+        "Mathematica": "(D[AiryAi[temp], {temp, 3}]/.temp-> (D[AiryBi[temp], {temp, n}]/.temp-> (D[Gamma[temp], {temp, 1}]/.temp-> z)))"
+    },
+    {
+        "name": "WRONSKIAN_AI",
+        "DLMF": "9.2.7",
+        "LaTeX": "\\Wronskian@{\\AiryAi@{z}, \\AiryBi@{z}} = \\frac{1}{\\cpi}",
+        "Maple": "(AiryAi(z))*diff(AiryBi(z), z)-diff(AiryAi(z), z)*(AiryBi(z)) = (1)/(Pi)",
+        "Mathematica": "Wronskian[{AiryAi[z], AiryBi[z]}, z] == Divide[1, Pi]"
+    },
+    {
+        "name": "WRONSKIAN_AI_COMPLEX",
+        "DLMF": "9.2.8",
+        "LaTeX": "\\Wronskian@{\\AiryAi@{z}, \\AiryAi@{z \\expe^{-2 \\cpi \\iunit/3}}} = \\frac{\\expe^{\\cpi \\iunit /6}}{2\\cpi}",
+        "Maple": "(AiryAi(z))*diff(AiryAi(z*exp(-2*Pi*I/3)), z)-diff(AiryAi(z), z)*(AiryAi(z*exp(-2*Pi*I/3))) = (exp(Pi*I/6))/(2*Pi)",
+        "Mathematica": "Wronskian[{AiryAi[z], AiryAi[z*Exp[-2*Pi*I/3]]}, z] == Divide[Exp[Pi*I/6], 2*Pi]"
+    },
+    {
+        "name": "WRONSKIAN_OLVER",
+        "DLMF": "13.2.33",
+        "LaTeX": "\\Wronskian@{\\OlverconfhyperM@{a}{b}{z}, z^{1-b} \\OlverconfhyperM@{a-b+1}{2-b}{z}} = \\sin@{\\cpi b} z^{-b} \\expe^z / \\cpi",
+        "Maple": "(KummerM(a, b, z)/GAMMA(b))*diff((z)^(1 - b)* KummerM(a - b + 1, 2 - b, z)/GAMMA(2 - b), z)-diff(KummerM(a, b, z)/GAMMA(b), z)*((z)^(1 - b)* KummerM(a - b + 1, 2 - b, z)/GAMMA(2 - b)) = sin(Pi*b)*(z)^(-b)*exp(z)/Pi",
+        "Mathematica": "Wronskian[{Hypergeometric1F1Regularized[a, b, z], (z)^(1 - b)*Hypergeometric1F1Regularized[a - b + 1, 2 - b, z]}, z] == Sin[Pi*b]*(z)^(-b)*Exp[z]/Pi"
+    },
+    {
+        "name": "WRONSKIAN_OLVER_2",
+        "DLMF": "13.2.34",
+        "LaTeX": "\\Wronskian@{z^{1-b} \\OlverconfhyperM@{a-b+1}{2-b}{z}, \\KummerconfhyperU@{a}{b}{z}}",
+        "Maple": "((z)^(1 - b)* KummerM(a - b + 1, 2 - b, z)/GAMMA(2 - b))*diff(KummerU(a, b, z), z)-diff((z)^(1 - b)* KummerM(a - b + 1, 2 - b, z)/GAMMA(2 - b), z)*(KummerU(a, b, z))",
+        "Mathematica": "Wronskian[{(z)^(1 - b)*Hypergeometric1F1Regularized[a - b + 1, 2 - b, z], HypergeometricU[a, b, z]}, z]"
+    },
+    {
+        "name": "WRONSKIAN_COMPLEX_ARGUMENTS",
+        "DLMF": "9.2.9",
+        "LaTeX": "\\Wronskian\\left\\{\\AiryAi@{z \\expe^{-2\\cpi \\tfrac{\\iunit}{3}}}, \\AiryAi@{z \\expe^{2\\cpi \\tfrac{\\iunit}{3}}}\\right\\}",
+        "Maple": "(AiryAi(z*exp(- 2*Pi*(I)/(3))))*diff(AiryAi(z*exp(2*Pi*(I)/(3))), z)-diff(AiryAi(z*exp(- 2*Pi*(I)/(3))), z)*(AiryAi(z*exp(2*Pi*(I)/(3))))",
+        "Mathematica": "Wronskian[{AiryAi[z*Exp[-2*Pi*Divide[I,3]]],AiryAi[z*Exp[2*Pi*Divide[I,3]]]},z]"
+    }
+]

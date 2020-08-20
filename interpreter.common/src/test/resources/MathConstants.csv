@@ -1,0 +1,7 @@
+Name,LaTeX,Maple,Mathematica,SymPy
+Pi,"\cpi","Pi","Pi","pi"
+Exponential,"\expe","exp(1)","E","E"
+ImaginaryUnit,"\iunit","I","I","I"
+EulerConstant,"\EulerConstant","gamma","EulerGamma","EulerGamma"
+CatalansConstant,"\CatalansConstant","Catalan","Catalan","Catalan"
+Infinity,"\infty","infinity","Infinity","oo"

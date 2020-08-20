@@ -291,8 +291,45 @@ Number of supported SymPy translations: 29
 You should be able to run translations for your new CAS already by now. As long as your test expression does not include
 functions you did not define yet, it should work smoothly. Of course, you should implement test cases to be sure.
 
-Unfortunately, by now, you need to manually implement the new test cases. There is no simple text file that defines
-the test cases which you can simply edit. This is still an open issue I'm actively working on.
+The test cases are all defined in a separated files which makes it very easy to extend them for a new CAS. However,
+be aware that all of these test cases cannot cover every possible problem. Especially when you need to implement
+new code (maybe because of your CAS handles certain actions entirely different to the other supported CAS), you have
+to test your new code extensively! This cannot be covered by the outsourced test files. But, if you come that far and
+implemented your own code, you won't have trouble to implement your own test cases.
+
+The *golden dataset* of test cases is defined in two locations:
+1. `interpreter.common/src/test/resources/` contains two CSV files that are used to test your constants and greek
+letters
+2. `interpreter.lacast/src/test/resources/translations` contains five JSON files that define the tested translations.
+Every test case contains the following information:
+
+```json
+{
+    "name": "name of test case (should be unique)",
+    "DLMF": "the DLMF label if that exists (e.g., 14.3.2)",
+    "LaTeX": "the semantic LaTeX expression to test",
+    "CAS_ID": "translation to the CAS_ID"
+}
+```
+
+Every test case can contain multiple CAS. For example:
+
+```json
+{
+    "name": "SEMANTIC",
+    "DLMF": "",
+    "LaTeX": "\\Sum{k}{1}{n}@{\\frac{1}{y^{k}}}",
+    "Maple": "sum((1)/((y)^(k)), k = 1..n)",
+    "Mathematica": "Sum[Divide[1, (y)^(k)], {k, 1, n}]"
+}
+```
+
+As you can see, in this case, there is no translation defined for SymPy, even though we support SymPy translations.
+This does not harm the test suites, since this case will simply be ignored when the SymPy translator is tested.
+Once you add a SymPy translation, it will be covered automatically.
+
+***Important:*** A CAS in these files will only be tested if it is defined in the early mentioned `config/support.yaml`.
+If you enter test cases for a CAS that is not defined in this config file, the tests will not be triggered!
 </details>
 
 ## The program structure and important main classes<a name="program"></a>

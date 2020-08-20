@@ -28,7 +28,7 @@
       "LaTeX": "\\beta",
       "Maple": "beta",
       "Mathematica": "\\[Beta]",
-      "SymPy": "Symbol('bet')"
+      "SymPy": "Symbol('beta')"
     },
     "Beta": {
       "LaTeX": "B",
@@ -355,7 +355,7 @@
       "DLMF": "\\cpi",
       "Maple": "Pi",
       "Mathematica": "Pi",
-      "SymPy": "Pi"
+      "SymPy": "pi"
     },
     "Exponential Constant": {
       "LaTeX": "e",

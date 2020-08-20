@@ -164,6 +164,16 @@
                  -->
             </dependency>
 
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+                <version>${junit.version}</version>
+                <!--
+                We extend the API sometimes, so we just need this
+                not only in test-scope
+                 -->
+            </dependency>
+
             <dependency> <!-- Better tests -->
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest</artifactId>

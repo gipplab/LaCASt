@@ -61,4 +61,9 @@ public enum InvalidTests implements ExceptionalTestCase {
     public Class getException() {
         return TranslationException.class;
     }
+
+    @Override
+    public String toString() {
+        return this.name();
+    }
 }
