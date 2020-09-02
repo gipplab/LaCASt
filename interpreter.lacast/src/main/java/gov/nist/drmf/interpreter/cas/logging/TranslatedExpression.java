@@ -4,6 +4,8 @@ import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
@@ -12,12 +14,19 @@ public class TranslatedExpression {
     private LinkedList<String> trans_exps;
     private final Set<String> requiredPackages;
 
+    private int negativeReplacements;
+
     private int autoMergeLast;
 
     public TranslatedExpression(){
         this.trans_exps = new LinkedList<>();
         this.autoMergeLast = 0;
         this.requiredPackages = new TreeSet<>();
+        this.negativeReplacements = 0;
+    }
+
+    public void setNegativeReplacements(int length) {
+        this.negativeReplacements = length;
     }
 
     public void addAutoMergeLast( int add_num_of_last ){
@@ -38,6 +47,11 @@ public class TranslatedExpression {
     }
 
     public void addTranslatedExpression( TranslatedExpression expressions ){
+        if ( expressions.negativeReplacements > 0 ) {
+            List<String> tmp = trans_exps.subList(0, trans_exps.size() - expressions.negativeReplacements);
+            this.trans_exps = new LinkedList<>(tmp);
+        }
+
         this.autoMergeLast += expressions.autoMergeLast;
         String next = autoMergeLast();
         if ( next.isEmpty() ){
@@ -159,6 +173,34 @@ public class TranslatedExpression {
 
         cache.addRequiredPackages(requiredPackages);
         return cache;
+    }
+
+    public TranslatedExpression removeUntilFirstAppearanceOfVar(List<String> var, String multiply) {
+        TranslatedExpression te = new TranslatedExpression();
+        int latestHitIdx = trans_exps.size();
+        for ( int i = trans_exps.size()-1; i >= 0; i-- ) {
+            String element = trans_exps.get(i);
+
+            if ( element.matches("^.*[=.,;\n]\\s*$") ) break;
+            if ( TranslatedExpressionHelper.hit(element, var) ) latestHitIdx = i;
+        }
+
+        if ( latestHitIdx == trans_exps.size() ) return te;
+
+        String lastElement = trans_exps.getLast();
+        Pattern multiplyPattern = Pattern.compile("^(.*)\\Q"+ multiply +"\\E\\s*$");
+        Matcher m = multiplyPattern.matcher(lastElement);
+        if ( m.matches() ) {
+            lastElement = m.group(1);
+            trans_exps.removeLast();
+            trans_exps.addLast(lastElement);
+        }
+
+        List<String> elementsPointer = trans_exps.subList(latestHitIdx, trans_exps.size());
+        te.trans_exps.addAll(elementsPointer);
+        te.negativeReplacements = te.trans_exps.size();
+
+        return te;
     }
 
     public String getTranslatedExpression(){

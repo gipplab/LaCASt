@@ -46,9 +46,6 @@ public class MacroTranslator extends AbstractListTranslator {
     private static final Pattern OPTIONAL_PARAMS_PATTERN =
             Pattern.compile("\\s*\\[(.*)]\\s*\\*?\\s*");
 
-//    private static final Pattern leibniz_notation_pattern =
-//            Pattern.compile("\\s*\\(([^@]*)\\)\\s*");
-
     private final String cas;
 
     private final TranslatedExpression localTranslations;
@@ -199,6 +196,8 @@ public class MacroTranslator extends AbstractListTranslator {
             // just in case, reset the variable
             derivativesTranslator.resetTranslatedInAdvancedComponent();
         }
+
+        derivativesTranslator.updateNegativeReplacement(localTranslations);
 
         if ( info.getTranslationInformation().requirePackages() ) {
             localTranslations.addRequiredPackages(info.getTranslationInformation().getRequiredPackages());

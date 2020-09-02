@@ -65,7 +65,7 @@ public class MacroInfoHolder {
         } catch (NullPointerException | TranslationException npe) {
             throw TranslationException.buildExceptionObj(
                     translator, "Cannot extract information from feature set: " + macro,
-                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION, npe);
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION, macro);
         }
     }
 

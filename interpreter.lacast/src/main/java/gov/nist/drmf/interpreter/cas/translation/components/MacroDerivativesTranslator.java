@@ -32,6 +32,7 @@ public class MacroDerivativesTranslator extends MacroTranslator {
     private static final Logger LOG = LogManager.getLogger(MacroDerivativesTranslator.class.getName());
 
     private TranslatedExpression translatedInAdvance;
+    private int leadingReplacementMemory = 0;
 
     private final String CAS;
 
@@ -41,6 +42,21 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         this.CAS = getConfig().getTO_LANGUAGE();
     }
 
+    /**
+     * The translation in advanced object covers the edge case, when we search for the arguments of a derivative.
+     * Since the end of the argument may not be clear (e.g. in <code>\deriv{}{x} x^2 + 2</code> it is not clear if
+     * <code>+2</code> is also the argument of deriv or not), we use a special approach that searches for the variable
+     * (here <code>x</code>) in the following expressions. To search more easily, every following expression gets
+     * translated and then checked for the variable. Hence, <code>x^2 + 2</code> is already translated, even though
+     * <code>+2</code> was not part of the argument.
+     *
+     * This translation in advanced object covers this <code>+2</code> and tells the {@link MacroTranslator} that
+     * there are already translated expressions that were logically removed from the {@link PomTaggedExpression} parse
+     * tree. If we forget that, it means the translator would translate <code>+2</code> here, but never add it to the
+     * final translation object.
+     *
+     * @return true if there are expressions that were translated in advance
+     */
     public boolean hasTranslatedInAdvancedComponent() {
         return translatedInAdvance != null;
     }
@@ -51,6 +67,12 @@ public class MacroDerivativesTranslator extends MacroTranslator {
 
     void resetTranslatedInAdvancedComponent() {
         this.translatedInAdvance = null;
+    }
+
+    public TranslatedExpression updateNegativeReplacement(TranslatedExpression te) {
+        te.setNegativeReplacements( this.leadingReplacementMemory );
+        this.leadingReplacementMemory = 0;
+        return te;
     }
 
     /**
@@ -139,10 +161,18 @@ public class MacroDerivativesTranslator extends MacroTranslator {
     }
 
     /**
+     * This method handles the special case of \deriv macros, since the first argument of a \deriv macro is often
+     * empty. For example, you write more often
+     * <code>d/dx x^2</code> rather then <code>dx^2/dx</code>
      *
-     * @param followingExps .
-     * @param info .
-     * @return .
+     * Hence, this method follows the sum/product approach to find the first argument. There is one special case though,
+     * sometimes you may want to write it in reverse order, such as <code>x^2 d/dx</code>, which is the opposite of the
+     * sum/product approach. In such a case, the argument was already translated (which makes it even easier for us,
+     * because of the special approach we used).
+     *
+     * @param followingExps the arguments of the deriv macro (must be at least of length two)
+     * @param info information about the macro, such as translation patterns
+     * @return the parsed arguments in the right order
      */
     public LinkedList<String> parseDerivativeArguments(List<PomTaggedExpression> followingExps, MacroInfoHolder info ){
         // there are two options here, one easy and one complex
@@ -156,22 +186,32 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         // first, get rid of the empty element
         followingExps.remove(0);
 
-        // otherwise! we have a problem similar to sums. When does the argument ends?
+        // Since it's empty, we have a problem similar to sums. When does the argument ends?
         // so lets follow sums approach
         LinkedList<String> vars = new LinkedList<>();
         TranslatedExpression translatedPotentialArguments = getArgumentsBasedOnDiffVar(followingExps, vars);
+        TranslatedExpression transArgs;
 
-        // clean up first
-        getGlobalTranslationList().removeLastNExps(translatedPotentialArguments.getLength());
+        if ( translatedPotentialArguments == null ) {
+            // ok the argument is not following but was leading the deriv
+            TranslatedExpression globalTranslations = getGlobalTranslationList();
+            transArgs = globalTranslations.removeUntilFirstAppearanceOfVar(vars, getConfig().getMULTIPLY());
+            globalTranslations.removeLastNExps(transArgs.getLength());
+            leadingReplacementMemory = transArgs.getLength();
+        } else {
+            // clean up first
+            getGlobalTranslationList().removeLastNExps(translatedPotentialArguments.getLength());
 
-        // now, search for the next argument
-        TranslatedExpression transArgs =
-                translatedPotentialArguments.removeUntilLastAppearanceOfVar(
-                        vars,
-                        getConfig().getMULTIPLY()
-                );
+            // now, search for the next argument
+            transArgs =
+                    translatedPotentialArguments.removeUntilLastAppearanceOfVar(
+                            vars,
+                            getConfig().getMULTIPLY()
+                    );
 
-        translatedInAdvance = translatedPotentialArguments;
+            translatedInAdvance = translatedPotentialArguments;
+        }
+
         LinkedList<String> args = new LinkedList<>();
         args.add(transArgs.toString());
         args.add(vars.getFirst());
@@ -186,18 +226,25 @@ public class MacroDerivativesTranslator extends MacroTranslator {
 
         vars.add(varTE.toString());
 
-        List<PomTaggedExpression> potentialArgs = VariableExtractor.getPotentialArgumentsUntilEndOfScope(
-                followingExps,
-                vars,
-                this
-        );
+        List<PomTaggedExpression> potentialArgs = new LinkedList<>();
+        try {
+            potentialArgs = VariableExtractor.getPotentialArgumentsUntilEndOfScope(
+                    followingExps,
+                    vars,
+                    this
+            );
+        } catch ( TranslationException te ) {
+            if ( !TranslationExceptionReason.INVALID_LATEX_INPUT.equals(te.getReason()) ) throw te;
+        }
 
-        // the potential arguments is a theoretical sequence, so handle it as a sequence!
-        PomTaggedExpression topSeqPTE = FakeMLPGenerator.generateEmptySequencePPTE();
-        for ( PomTaggedExpression pte : potentialArgs ) topSeqPTE.addComponent(pte);
+        if ( !potentialArgs.isEmpty() ) {
+            // the potential arguments is a theoretical sequence, so handle it as a sequence!
+            PomTaggedExpression topSeqPTE = FakeMLPGenerator.generateEmptySequencePPTE();
+            for ( PomTaggedExpression pte : potentialArgs ) topSeqPTE.addComponent(pte);
 
-        SequenceTranslator p = new SequenceTranslator(getSuperTranslator());
-        return p.translate( topSeqPTE );
+            SequenceTranslator p = new SequenceTranslator(getSuperTranslator());
+            return p.translate( topSeqPTE );
+        } else return null;
     }
 
     /**

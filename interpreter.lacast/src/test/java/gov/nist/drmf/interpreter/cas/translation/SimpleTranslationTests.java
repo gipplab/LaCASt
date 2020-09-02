@@ -188,12 +188,51 @@ class SimpleTranslationTests {
     }
 
     @Test
-    void emptyDerivTest() {
+    void emptySimpleDerivTest() {
         String in = "\\deriv{}{z} z^a = az^{a-1}";
         String eout = "diff((z)^(a), z) = a*(z)^(a - 1)";
         String out = slt.translate(in);
         assertEquals(eout, out);
-        //\tfrac{1}{4} |z|
+    }
+
+    @Test
+    void reverseSimpleDerivTest() {
+        String in = "z^a \\deriv{}{z} = az^{a-1}";
+        String eout = "diff((z)^(a), z) = a*(z)^(a - 1)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void reverseBreakpointDerivTest() {
+        String in = "az^{a-1} = z^a \\deriv{}{z}";
+        String eout = "a*(z)^(a - 1) = diff((z)^(a), z)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void reverseLongDerivTest() {
+        String in = "1 + z^a \\cdot a \\deriv{}{z} = az^{a-1}";
+        String eout = "1 + diff((z)^(a) * a, z) = a*(z)^(a - 1)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void reverseParenthesisDerivTest() {
+        String in = "(z^a \\cdot a \\deriv{}{z})^2 + z";
+        String eout = "(diff((z)^(a) * a, z))^(2)+ z";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void emptyComplexDerivTest() {
+        String in = "\\deriv{}{z^a} 1 + z^a";
+        String eout = "subs( temp=(z)^(a), diff(1 + temp, temp$1 ) )";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
     }
 
     @Test
