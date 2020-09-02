@@ -56,6 +56,20 @@
         "Mathematica": "(D[Cos[temp], {temp, \\[ScriptL]}]/.temp-> x)"
     },
     {
+        "name": "GAMMA_PRIME",
+        "DLMF": "",
+        "LaTeX": "\\EulerGamma'@{z^2}",
+        "Maple": "subs( temp=(z)^(2), diff( GAMMA(temp), temp$(1) ) )",
+        "Mathematica": "(D[Gamma[temp], {temp, 1}]/.temp-> (z)^(2))"
+    },
+    {
+        "name": "GAMMA_DERIV",
+        "DLMF": "",
+        "LaTeX": "\\deriv{}{z^2} \\EulerGamma@{z^2}",
+        "Maple": "subs( temp=(z)^(2), diff( GAMMA(temp), temp$(1) ) )",
+        "Mathematica": "(D[Gamma[temp], {temp, 1}]/.temp-> (z)^(2))"
+    },
+    {
         "name": "HURWITZ_ZETA",
         "DLMF": "",
         "LaTeX": "\\Hurwitzzeta@{s}{a}",
