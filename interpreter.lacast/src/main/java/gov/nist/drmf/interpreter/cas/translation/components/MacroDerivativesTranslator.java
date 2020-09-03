@@ -174,13 +174,17 @@ public class MacroDerivativesTranslator extends MacroTranslator {
      * @param info information about the macro, such as translation patterns
      * @return the parsed arguments in the right order
      */
-    public LinkedList<String> parseDerivativeArguments(List<PomTaggedExpression> followingExps, MacroInfoHolder info ){
+    public LinkedList<String> parseDerivativeArguments(
+            List<PomTaggedExpression> followingExps,
+            MacroInfoHolder info,
+            DerivativeAndPowerHolder diffPowerHolder
+    ){
         // there are two options here, one easy and one complex
         // first the easy, the next element is not empty:
         PomTaggedExpression next = followingExps.get(0);
         if ( !next.isEmpty() ) {
             // nothing special, just go ahead and parse it as usual
-            return parseArguments(followingExps, info);
+            return parseArguments(followingExps, info, diffPowerHolder);
         }
 
         // first, get rid of the empty element
@@ -189,7 +193,7 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         // Since it's empty, we have a problem similar to sums. When does the argument ends?
         // so lets follow sums approach
         LinkedList<String> vars = new LinkedList<>();
-        TranslatedExpression translatedPotentialArguments = getArgumentsBasedOnDiffVar(followingExps, vars);
+        TranslatedExpression translatedPotentialArguments = getArgumentsBasedOnDiffVar(followingExps, vars, diffPowerHolder);
         TranslatedExpression transArgs;
 
         if ( translatedPotentialArguments == null ) {
@@ -218,10 +222,16 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         return args;
     }
 
-    private TranslatedExpression getArgumentsBasedOnDiffVar(List<PomTaggedExpression> followingExps, List<String> vars) {
+    private TranslatedExpression getArgumentsBasedOnDiffVar(
+            List<PomTaggedExpression> followingExps,
+            List<String> vars,
+            DerivativeAndPowerHolder diffPowerHolder) {
         // otherwise! we have a problem similar to sums. When does the argument ends?
         // so lets follow sums approach
         PomTaggedExpression variablePTE = followingExps.remove(0);
+
+        diffPowerHolder.setComplexDerivativeVar(!PomTaggedExpressionUtility.isSingleVariable(variablePTE));
+
         TranslatedExpression varTE = translateInnerExp(variablePTE, new LinkedList<>());
 
         vars.add(varTE.toString());

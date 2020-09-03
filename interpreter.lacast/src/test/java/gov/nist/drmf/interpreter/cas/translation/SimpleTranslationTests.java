@@ -228,9 +228,25 @@ class SimpleTranslationTests {
     }
 
     @Test
-    void emptyComplexDerivTest() {
+    void complexDerivTest() {
         String in = "\\deriv{}{z^a} 1 + z^a";
-        String eout = "subs( temp=(z)^(a), diff(1 + temp, temp$1 ) )";
+        String eout = "subs( temp=(z)^(a), diff( 1 + temp, temp$(1) ) )";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void complexDerivOrder2Test() {
+        String in = "\\deriv[2]{}{z^a} 1 + z^a";
+        String eout = "subs( temp=(z)^(a), diff( 1 + temp, temp$(2) ) )";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void airyAiDerivTest() {
+        String in = "\\AiryAi'@{z}";
+        String eout = "diff( AiryAi(z), z$(1) )";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }

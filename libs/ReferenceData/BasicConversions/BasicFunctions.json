@@ -124,6 +124,13 @@
       "Mathematica": "(D[$0, {temp, $2}]/.temp-> $1)",
       "SymPy": "diff($0, Symbol('temp'), $2).subs(Symbol('temp'), $1)"
     },
+    "SimpleDerivative": {
+      "MLP": "derivative-simple",
+      "LaTeX": "\\deriv[$2]{$0}{$1}",
+      "Maple": "diff( $0, $1$($2) )",
+      "Mathematica": "D[$0, {$1, $2}]",
+      "SymPy": "diff($0, $1, $2)"
+    },
     "Limit": {
       "MLP": "lim",
       "LaTeX": "\\lim_{$0 \\to $1}{$2}",
@@ -353,6 +360,13 @@
       "Maple": ";",
       "Mathematica": "\n",
       "SymPy": "\n"
+    },
+    "Temp": {
+      "MLP": "temp-variable",
+      "LaTeX": "temp",
+      "Maple": "temp",
+      "Mathematica": "temp",
+      "SymPy": "Symbol('temp')"
     }
   }
 }

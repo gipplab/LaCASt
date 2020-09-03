@@ -11,6 +11,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.mlp.MathTermUtility;
+import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -129,6 +130,8 @@ public class MacroTranslator extends AbstractListTranslator {
             throw translationException;
         }
 
+        if ( isDeriv ) info.overwriteSlotOfDifferentiation(2);
+
         // until now, everything parsed was optional, start the general parsing process
         return parse(followingExps, info, optionalParas);
     }
@@ -154,7 +157,7 @@ public class MacroTranslator extends AbstractListTranslator {
         MacroDerivativesTranslator derivativesTranslator = new MacroDerivativesTranslator(this);
         DerivativeAndPowerHolder diffPowerHolder = derivativesTranslator.parseDerivatives(followingExps, info);
 
-        LinkedList<String> arguments = handleArguments(followingExps, info, derivativesTranslator);
+        LinkedList<String> arguments = handleArguments(followingExps, info, derivativesTranslator, diffPowerHolder);
 
         // log information
         String infoKey = macro;
@@ -211,7 +214,8 @@ public class MacroTranslator extends AbstractListTranslator {
             List<String> optionalParas
     ) {
         try {
-            return new PatternFiller(info, diffPowerHolder, optionalParas);
+            String tempVar = super.getConfig().getSymbolTranslator().translateFromMLPKey(DLMFPatterns.TEMP_VAR_MLP_KEY);
+            return new PatternFiller(info, diffPowerHolder, optionalParas, tempVar);
         } catch (IndexOutOfBoundsException ioobe ) {
             String errorMsg = "No slot of differentiation available for " + macro + ", " +
                     "but found differentiation notation " + diffPowerHolder.getDifferentiation();
@@ -309,11 +313,12 @@ public class MacroTranslator extends AbstractListTranslator {
     private LinkedList<String> handleArguments(
             List<PomTaggedExpression> followingExps,
             MacroInfoHolder info,
-            MacroDerivativesTranslator derivativesTranslator
+            MacroDerivativesTranslator derivativesTranslator,
+            DerivativeAndPowerHolder diffPowerHolder
     ) {
         // in case of derivatives, they come prior to the @ symbols and arguments
         if ( isDeriv ) {
-            return derivativesTranslator.parseDerivativeArguments(followingExps, info);
+            return derivativesTranslator.parseDerivativeArguments(followingExps, info, diffPowerHolder);
         }
 
         skipAts(followingExps, info);
@@ -326,7 +331,7 @@ public class MacroTranslator extends AbstractListTranslator {
             info.setVariableOfDifferentiation(derivVariable);
         }
 
-        return parseArguments(followingExps, info);
+        return parseArguments(followingExps, info, diffPowerHolder);
     }
 
     /**
@@ -335,17 +340,25 @@ public class MacroTranslator extends AbstractListTranslator {
      * @param followingExps first element should be also the first argument (no ats, optional parameter or
      *                      something like this).
      * @param holder the information of the current macro
+     * @param diffPowerHolder the information holder for derivatives
      * @return the list of parsed arguments
      */
     protected LinkedList<String> parseArguments(
             List<PomTaggedExpression> followingExps,
-            MacroInfoHolder holder
+            MacroInfoHolder holder,
+            DerivativeAndPowerHolder diffPowerHolder
     ) {
         LinkedList<String> arguments = new LinkedList<>();
 
+        int slotOfDiff = holder.getSlotOfDifferentiation();
         for (int i = 0; !followingExps.isEmpty() && i < holder.getTranslationInformation().getNumOfVars(); i++) {
             // get first expression
             PomTaggedExpression exp = followingExps.remove(0);
+
+            if ( i == slotOfDiff-1 ) {
+                diffPowerHolder.setComplexDerivativeVar(!PomTaggedExpressionUtility.isSingleVariable(exp));
+            }
+
             String translation = translateInnerExp(exp, followingExps).toString();
             arguments.addLast(translation);
         }
