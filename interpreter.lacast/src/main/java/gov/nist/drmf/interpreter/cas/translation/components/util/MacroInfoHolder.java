@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation.components.util;
 
+import gov.nist.drmf.interpreter.cas.common.DLMFPatterns;
 import gov.nist.drmf.interpreter.cas.common.IForwardTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
@@ -90,6 +91,10 @@ public class MacroInfoHolder {
         return macro.equals("\\Wronskian");
     }
 
+    public boolean isDeriv() {
+        return macro.matches(DLMFPatterns.DERIV_NOTATION);
+    }
+
     public String getMacro() {
         return macro;
     }
@@ -110,6 +115,10 @@ public class MacroInfoHolder {
 
     public int getSlotOfDifferentiation() {
         return slotOfDifferentiation;
+    }
+
+    public void overwriteSlotOfDifferentiation(int slot) {
+        this.slotOfDifferentiation = slot;
     }
 
     public MacroTranslationInformation getTranslationInformation() {

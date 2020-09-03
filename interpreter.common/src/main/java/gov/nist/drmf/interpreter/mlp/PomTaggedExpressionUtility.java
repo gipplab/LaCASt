@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.mlp;
 
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
@@ -47,5 +48,22 @@ public abstract class PomTaggedExpressionUtility {
         if ( pte == null || tag == null ) return false;
         ExpressionTags t = ExpressionTags.getTagByKey(pte.getTag());
         return tag.equals(t);
+    }
+
+    public static boolean isSingleVariable(PomTaggedExpression pte) {
+        if ( pte == null || !pte.getComponents().isEmpty() ) return false;
+
+        MathTermTags tag = MathTermTags.getTagByExpression(pte);
+        if ( tag == null ) return false;
+        switch ( tag ){
+            case symbol:
+            case constant:
+            case letter:
+            case special_math_letter:
+            case alphanumeric:
+                return true;
+            default:
+                return MathTermUtility.isGreekLetter(pte.getRoot());
+        }
     }
 }
