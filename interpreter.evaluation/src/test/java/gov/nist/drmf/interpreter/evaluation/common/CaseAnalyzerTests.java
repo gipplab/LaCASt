@@ -10,9 +10,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -226,18 +228,18 @@ public class CaseAnalyzerTests {
                     CaseAnalyzer.analyzeLine(l, lineCounter[0], lib);
                 });
 
-        SymbolTag def = lib.getSymbolDefinition("C1.S2.XMD3.m1adec");
+        SymbolTag def = lib.getSymbolDefinition("C1.S2.XMD3.m1badec");
         assertNotNull(def);
         assertEquals("B_{j}", def.getSymbol());
         assertEquals("\\frac{f^{(n-j)}(\\alpha_{1})}{(n-j)!}", def.getDefinition());
 
-        def = lib.getSymbolDefinition("C1.S2.XMD2.m1adec");
+        def = lib.getSymbolDefinition("C1.S2.XMD2.m1badec");
         assertNotNull(def);
         assertEquals("A_{j}", def.getSymbol());
         assertEquals("\\frac{f(\\alpha_{j})}{\\prod\\limits_{k\\not=j}(\\alpha_{j}-\\alpha_{k})}", def.getDefinition());
 
         LinkedList<SymbolTag> used = new LinkedList<>();
-        used.add(new SymbolTag("C1.S2.XMD2.m1", "A_{j}"));
+        used.add(new SymbolTag("C1.S2.XMD2.m1bdec", "A_{j}"));
         CaseMetaData meta = new CaseMetaData(1, null, null, used);
         Case c = new Case("1 + A_{j}", "2", Relations.EQUAL, meta);
         c = c.replaceSymbolsUsed(lib);
@@ -245,13 +247,53 @@ public class CaseAnalyzerTests {
         assertEquals("2", c.getRHS());
 
         used.removeFirst();
-        used.add(new SymbolTag("DREAM.C1.S2.XMD2.m1", "B_{j}"));
+        used.add(new SymbolTag("DREAM.C1.S2.XMD3.m1bbdec", "B_{j}"));
         c = new Case("1 + B_{j}", "2", Relations.EQUAL, meta);
         c = c.replaceSymbolsUsed(lib);
         assertEquals("1 + B_{j}", c.getLHS());
     }
 
+    @Test
+    void zetaSubstitutionTest() throws IOException {
+        String testStrings = getResourceContent("zetaSubstitutionTests.txt");
+        SymbolDefinedLibrary lib = new SymbolDefinedLibrary();
+        int[] lineCounter = new int[]{0};
+        List<LinkedList<Case>> testCases = Arrays.stream(testStrings.split("\n"))
+                .peek( l -> lineCounter[0]++ )
+                .map(l -> CaseAnalyzer.analyzeLine(l, lineCounter[0], lib))
+                .collect(Collectors.toList());
+
+        // expecting two lines analyzed
+        assertEquals(2, testCases.size());
+
+        // the first line is a definition, hence it does ont contain any test cases
+        assertNull(testCases.get(0));
+
+        // the second line is a multi-equation expression, so we presume multiple expressions
+        LinkedList<Case> airyTests = testCases.get(1);
+        // the actual length depends on our approach, to handle multi-equations,
+        // hence we should not test for the exact number of test cases here, just bigger than 1 is ok
+        assertTrue(airyTests.size() > 1);
+
+        // nonetheless, the first test case should always be the first equation, hence we can at least check this
+        Case airyFirstTest = airyTests.getFirst();
+        assertTrue(airyFirstTest.isEquation());
+        assertEquals(Relations.EQUAL, airyFirstTest.getRelation());
+        assertEquals("\\AiryAi@{z}", airyFirstTest.getLHS());
+        // note that \pm should be replaced by plus in the first test case
+        assertEquals("\\pi^{-1}\\sqrt{z/3}\\modBesselK{+ 1/3}@{\\zeta}", airyFirstTest.getRHS());
+
+        // check if usedSymbol works correctly
+        assertEquals(1, lib.library.keySet().size()); // we should have one key in the library (for \zeta)
+        Case actualAiryAiTest = airyFirstTest.replaceSymbolsUsed(lib);
+        assertTrue(actualAiryAiTest.isEquation());
+        assertEquals(Relations.EQUAL, actualAiryAiTest.getRelation());
+        assertEquals("\\AiryAi@{z}", actualAiryAiTest.getLHS());
+        // note that only \zeta has changed if everything worked properly
+        assertEquals("\\pi^{-1}\\sqrt{z/3}\\modBesselK{+ 1/3}@{\\tfrac{2}{3}z^{3/2}}", actualAiryAiTest.getRHS());
+    }
+
     private String getResourceContent(String resourceFilename) throws IOException {
-        return IOUtils.toString(this.getClass().getResourceAsStream(resourceFilename), "UTF-8");
+        return IOUtils.toString(this.getClass().getResourceAsStream(resourceFilename), StandardCharsets.UTF_8);
     }
 }
