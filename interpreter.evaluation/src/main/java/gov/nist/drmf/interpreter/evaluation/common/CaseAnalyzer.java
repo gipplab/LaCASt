@@ -25,18 +25,18 @@ public class CaseAnalyzer {
             "\\\\source|\\\\authorproof|\\\\keyphrase|\\\\cite|\\\\comments"
     );
 
+    private static final int CONSTRAINT_GRP = 1;
+    private static final int URL_GRP = 2;
+    private static final int SYMB_DEF_GRP_SYMB = 3;
+    private static final int SYMB_DEF_GRP_ID = 4;
+    private static final int SYMB_USED_GRP_SYMB = 5;
+    private static final int SYMB_USED_GRP_ID = 6;
+
     private static final String EOL = "<EOL>";
 
     private static final Pattern END_OF_MATH_MATCHER = Pattern.compile(
             "^(.*?)[\\\\,;.\\s]*\\Q"+EOL+"\\E.*$"
     );
-
-    private static final int CONSTRAINT_GRP = 1;
-    private static final int URL_GRP = 2;
-    private static final int SYMB_DEF_GRP_SYMB = 3;
-    private static final int SYMB_DEF_GRP_ID = 4;
-    private static final int SYMB_USED_GRP_ID = 5;
-    private static final int SYMB_USED_GRP_SYMB = 6;
 
     public static boolean ACTIVE_BLUEPRINTS = true;
 
