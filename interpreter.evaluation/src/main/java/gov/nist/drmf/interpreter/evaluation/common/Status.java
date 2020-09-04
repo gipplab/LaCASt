@@ -3,18 +3,28 @@ package gov.nist.drmf.interpreter.evaluation.common;
 import java.util.Arrays;
 
 /**
+ * The basic idea of the status is as follows
+ *  1) total test cases = started test cases + skipped test cases + non-semantic definitions
+ *      1.1) total are all test cases
+ *      1.2) started test cases are all actually started (start to translated) cases
+ *      1.3) skipped are user defined skips or unable to analyze test cases (e.g. no equation), etc.
+ *      1.4) skipped defs are definitions of non-semantic expressions
+ *  2) successful trans = successful test case + failure
+ *
  * @author Andre Greiner-Petter
  */
 public enum Status {
-    SUCCESS(0),
-    SUCCESS_SYMB(0),
-    SUCCESS_TRANS(0),
-    FAILURE(0),
-    STARTED_TEST_CASES(0),
+    TOTAL(0), // = skipped + definitions + started
     SKIPPED(0),
     DEFINITIONS(0),
-    IGNORE(0),
+    STARTED_TEST_CASES(0), // = error trans + missing + succes trans
+    ERROR_TRANS(0),
     MISSING(0),
+    SUCCESS_TRANS(0), // = success symb/num + failure + aborted + error
+    SUCCESS_SYMB(0),
+    SUCCESS_NUM(0),
+    FAILURE(0),
+    ABORTED(0),
     ERROR(0);
 
     private int counter;
@@ -29,6 +39,12 @@ public enum Status {
     }
 
     public void add(){
+        switch (this) {
+            case SKIPPED:
+            case DEFINITIONS:
+            case STARTED_TEST_CASES:
+                TOTAL.counter++;
+        }
         this.counter++;
     }
 
@@ -46,7 +62,10 @@ public enum Status {
     }
 
     public static String buildNumericalString() {
-        String out = "[SUCCESS: " + SUCCESS.counter + ", ";
+        String out = "[TOTAL: " + TOTAL.counter + ", " +
+                "SUCCESS: " +
+                (SUCCESS_SYMB.counter > 0 ? SUCCESS_SYMB.counter : SUCCESS_NUM.counter)
+                + ", ";
         out += "FAILURE: " + FAILURE.counter + ", ";
         out += "LIMIT_SKIPS: " + MISSING.counter + ", ";
         out += "TESTED: " + SUCCESS_TRANS.counter + ", ";

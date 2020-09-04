@@ -28,6 +28,11 @@ public class MathematicaSimplifier implements ICASEngineSymbolicEvaluator<Expr> 
     }
 
     @Override
+    public void setTimeout(int timeoutInSeconds) {
+        LOG.warn("Timeout for Mathematica is not implemented yet...");
+    }
+
+    @Override
     public Expr simplify(String expr, Set<String> requiredPackages) throws ComputerAlgebraSystemEngineException {
         logReqPackages(requiredPackages);
         try {

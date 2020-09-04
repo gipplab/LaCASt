@@ -47,7 +47,7 @@ public class TranslatedExpression {
     }
 
     public void addTranslatedExpression( TranslatedExpression expressions ){
-        if ( expressions.negativeReplacements > 0 ) {
+        if ( expressions.negativeReplacements > 0 && trans_exps.size() >= expressions.negativeReplacements ) {
             List<String> tmp = trans_exps.subList(0, trans_exps.size() - expressions.negativeReplacements);
             this.trans_exps = new LinkedList<>(tmp);
         }
