@@ -25,6 +25,8 @@ public class CaseAnalyzer {
             "\\\\source|\\\\authorproof|\\\\keyphrase|\\\\cite|\\\\comments"
     );
 
+    public static final Pattern URL_PATTERN = Pattern.compile("\\\\url\\{(.*?)}");
+
     private static final int CONSTRAINT_GRP = 1;
     private static final int URL_GRP = 2;
     private static final int SYMB_DEF_GRP_SYMB = 3;
@@ -187,7 +189,7 @@ public class CaseAnalyzer {
                     metaData
             );
         } else {
-            LOG.warn("LHS does not match defined symbol:" + c.getLHS() + " vs " + symbInfo.symbolDefSymb);
+            LOG.warn("LHS does not match defined symbol. LHS: " + c.getLHS() + " vs DEF: " + symbInfo.symbolDefSymb);
         }
     }
 

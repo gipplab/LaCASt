@@ -31,3 +31,7 @@ generalReplacements:
     pattern: \\Wronskian(?:\\left)*\\\{(.*?)(?:\\right)*\\}
     replacement: \\Wronskian@\{$1\}
     groups: 1
+  -
+    pattern: \\defeq([^a-zA-Z]|$)
+    replacement: ' = $1'
+    groups: 1

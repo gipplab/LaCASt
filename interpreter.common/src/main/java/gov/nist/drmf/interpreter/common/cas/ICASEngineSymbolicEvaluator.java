@@ -15,6 +15,8 @@ public interface ICASEngineSymbolicEvaluator<T> extends Observer, IAbortEvaluato
 
     T simplify( String expr, String assumption, Set<String> requiredPackages ) throws ComputerAlgebraSystemEngineException;
 
+    void setTimeout(int timeoutInSeconds);
+
     boolean isAsExpected(T in, String expect);
 
     @Override

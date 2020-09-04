@@ -227,7 +227,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
         if ( realSkips.contains(c.getLine()) ) {
             LOG.warn("Skip, it take ages...");
-            Status.IGNORE.add();
+            Status.SKIPPED.add();
             lineResult[c.getLine()].add("Manual skip because it never finishes!");
             return;
         }
@@ -251,7 +251,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
         if ( c instanceof AbstractEvaluator.DummyCase) {
             lineResult[c.getLine()].add("Skip - symbolical successful subtest");
-            Status.IGNORE.add();
+            Status.SKIPPED.add();
             return;
         }
 
@@ -296,7 +296,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
                 switch (resType) {
                     case SUCCESS:
                         lineResult[c.getLine()].add("Successful");
-                        Status.SUCCESS.add();
+                        Status.SUCCESS_NUM.add();
                         break;
                     case FAILURE:
                         LOG.info("Test was NOT successful.");

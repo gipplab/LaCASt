@@ -49,6 +49,7 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
         packageWrapper = new PackageWrapper(basicFunctionsTranslator, symbolTranslator);
     }
 
+    @Override
     public void setTimeout(int timeout) {
         this.timeout = timeout;
     }
