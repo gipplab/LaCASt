@@ -177,11 +177,14 @@ public class TranslatedExpression {
 
     public TranslatedExpression removeUntilFirstAppearanceOfVar(List<String> var, String multiply) {
         TranslatedExpression te = new TranslatedExpression();
+
+        if ( trans_exps.isEmpty() ) return te;
+
         int latestHitIdx = trans_exps.size();
         for ( int i = trans_exps.size()-1; i >= 0; i-- ) {
             String element = trans_exps.get(i);
 
-            if ( element.matches("^.*[=.,;\n]\\s*$") ) break;
+            if ( element.matches("^.*[=<>.,;\n\t]\\s*$") ) break;
             if ( TranslatedExpressionHelper.hit(element, var) ) latestHitIdx = i;
         }
 

@@ -200,6 +200,13 @@ public class MacroDerivativesTranslator extends MacroTranslator {
             // ok the argument is not following but was leading the deriv
             TranslatedExpression globalTranslations = getGlobalTranslationList();
             transArgs = globalTranslations.removeUntilFirstAppearanceOfVar(vars, getConfig().getMULTIPLY());
+            if ( transArgs.getLength() == 0 )
+                throw TranslationException.buildException(
+                    this,
+                    "Unable to identify argument of differentiation (empty argument pre and post \\deriv macro).",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT
+                );
+
             globalTranslations.removeLastNExps(transArgs.getLength());
             leadingReplacementMemory = transArgs.getLength();
         } else {

@@ -181,7 +181,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
                     pe
             );
         } catch ( TranslationException te ) {
-            LOG.error("Unable to translate " + expression);
+            LOG.error("Unable to translate " + expression + ";\nReason: " + te.toString());
             throw te;
         }
     }
