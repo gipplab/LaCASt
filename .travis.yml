@@ -50,7 +50,7 @@ script:
 after_success:
   - source .travis/fix-jacoco.sh
   - ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml -d --input-type jacoco > jacoco.log
-  - ./cc-test-reporter upload-coverage -d
+  - ./cc-test-reporter upload-coverage -d > jacocoUpload.log
 
 # So we finished everything, hence its time to deploy the repo.
 # We have currently two deployments installed, one goes back to GitHub
