@@ -49,6 +49,7 @@ public enum MathTermTags {
     fence("fence"),
     special_math_letter("special math letter"),
     prime("single quote"),
+    primes("primes"),
     operator("operator"),
     modulo("modulo"),
     vbar("vertical-bar");

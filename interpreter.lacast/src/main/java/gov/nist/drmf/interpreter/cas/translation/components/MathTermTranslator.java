@@ -107,6 +107,13 @@ public class MathTermTranslator extends AbstractListTranslator {
                 throwImplementationError(
                         "MathTermTranslator cannot translate functions. Use the FunctionTranslator instead: "
                                 + term.getTermText() );
+            case prime:
+            case primes:
+                throw TranslationException.buildException(
+                        this, "Primes can only be translated behind semantic macros " +
+                                "(differentation primes) but not in other places.",
+                        TranslationExceptionReason.INVALID_LATEX_INPUT
+                );
             case left_delimiter:
             case right_delimiter:
             case left_parenthesis:

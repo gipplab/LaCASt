@@ -8,6 +8,8 @@ import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -66,5 +68,23 @@ public class ThrowTranslationExceptionTests {
         Object reason = te.getReasonObj();
         assertTrue(reason instanceof String);
         assertEquals("\\Lattice", reason.toString());
+    }
+
+    @Test
+    void confusingPrimeError() {
+        String test = "f^{\\prime}(x)";
+        TranslationException te = assertThrows(
+                TranslationException.class,
+                () -> slt.translate(test)
+        );
+
+        te.printStackTrace();
+
+        assertEquals(
+                TranslationExceptionReason.INVALID_LATEX_INPUT,
+                te.getReason()
+        );
+
+        assertNull(te.getReasonObj());
     }
 }

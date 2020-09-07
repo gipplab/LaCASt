@@ -104,6 +104,7 @@ public class MacroDerivativesTranslator extends MacroTranslator {
                     parseCaret(exp, following_exps, info, holder);
                     break;
                 case prime:
+                case primes:
                     // well, just count them up
                     following_exps.remove(0);
                     numberOfDerivative++;

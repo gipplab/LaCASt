@@ -296,6 +296,7 @@ public class MacroTranslator extends AbstractListTranslator {
             if ( tag != null ) {
                 switch (tag) {
                     case prime:
+                    case primes:
                     case caret:
                         throw TranslationException.buildException(this, "Prime and carets are not allowed before parameters!",
                                 TranslationExceptionReason.INVALID_LATEX_INPUT);
