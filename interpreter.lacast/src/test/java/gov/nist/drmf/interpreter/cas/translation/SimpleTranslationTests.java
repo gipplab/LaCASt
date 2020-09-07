@@ -158,6 +158,15 @@ class SimpleTranslationTests {
     }
 
     @Test
+    void invalidEmptyDerivTest() {
+        String in = "\\deriv{}{z} = \\cos@{x}";
+        assertThrows(
+                TranslationException.class,
+                () -> slt.translate(in)
+        );
+    }
+
+    @Test
     void modTest() {
         String in = "(k-1) \\mod m";
         String eout = "`modp`(k - 1,m)";
