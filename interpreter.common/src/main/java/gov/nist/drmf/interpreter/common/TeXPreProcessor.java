@@ -60,7 +60,8 @@ public class TeXPreProcessor {
     }
 
     public static String trimCurlyBrackets(String in) {
-        if ( in.startsWith("{") && in.endsWith("}") ) return in.substring(1, in.length()-1);
+        in = in.trim();
+        if ( in.startsWith("{") && in.endsWith("}") ) return in.substring(1, in.length()-1).trim();
         else return in;
     }
 }

@@ -217,6 +217,13 @@
         "Mathematica": "Sum[(x)^(3)*(3*x + 2*y)^(25*(x)^(2))*(x + 2)*(x)^(2)*(x + 3)+2*x*(x + 2)^(2), {x, 0, Infinity}]"
     },
     {
+        "name": "SUM_IN_BALANCED_PARENTHESIS",
+        "DLMF": "1.8.16",
+        "LaTeX": "{\\sqrt{\\frac{\\pi}{\\omega}}\\*\\left(1+2\\sum_{n=1}^{\\infty}e^{-n^{2}\\pi^{2}/\\omega}\\cos@{2n\\pi x}\\right)}",
+        "Maple": "sqrt((Pi)/(omega)) * (1 + 2*sum(exp(- (n)^(2)* (Pi)^(2)/ omega)*cos(2*n*Pi*x), n = 1..infinity))",
+        "Mathematica": "Sqrt[Divide[Pi,\\[Omega]]]*(1+2*Sum[Exp[- (n)^(2) * (Pi)^(2) / \\[Omega]]*Cos[2*n*Pi*x], {n, 1, Infinity}])"
+    },
+    {
         "name": "DLMF_NORM_EASY",
         "DLMF": "6.6.5",
         "LaTeX": "\\sum_{n=0}^\\infty \\frac{\\opminus^n z^{2n+1}}{(2n+1)!(2n+1)}",
@@ -234,15 +241,15 @@
         "name": "DLMF_MULTI_SUM_LONG",
         "DLMF": "22.12.2",
         "LaTeX": "\\sum_{n=-\\infty}^{\\infty} \\frac{\\pi}{\\sin@{\\pi (t - (n+\\frac{1}{2}) \\tau)}} = \\sum_{n=-\\infty}^{\\infty} \\left( \\sum_{m=-\\infty}^{\\infty} \\frac{(-1)^m}{t - m - (n+\\frac{1}{2}) \\tau} \\right)",
-        "Maple": "sum((pi)/(sin(pi*(t -(n +(1)/(2))*tau))), n = - infinity..infinity) = sum(sum(((- 1)^(m))/(t - m -(n +(1)/(2))*tau), m = - infinity..infinity), n = - infinity..infinity)",
-        "Mathematica": "Sum[Divide[\\[Pi],Sin[\\[Pi]*(t -(n +Divide[1,2])*\\[Tau])]], {n, -Infinity, Infinity}] == Sum[Sum[Divide[(- 1)^(m),t - m -(n +Divide[1,2])*\\[Tau]], {m, -Infinity, Infinity}], {n, -Infinity, Infinity}]"
+        "Maple": "sum((Pi)/(sin(Pi*(t -(n +(1)/(2))*tau))), n = - infinity..infinity) = sum(sum(((- 1)^(m))/(t - m -(n +(1)/(2))*tau), m = - infinity..infinity), n = - infinity..infinity)",
+        "Mathematica": "Sum[Divide[Pi,Sin[Pi*(t -(n +Divide[1,2])*\\[Tau])]], {n, -Infinity, Infinity}] == Sum[Sum[Divide[(- 1)^(m),t - m -(n +Divide[1,2])*\\[Tau]], {m, -Infinity, Infinity}], {n, -Infinity, Infinity}]"
     },
     {
         "name": "DLMF_MULTI_SUM_LONG_PART1",
         "DLMF": "22.12.2",
         "LaTeX": "\\sum_{n=-\\infty}^{\\infty}\\frac{\\pi}{\\sin@{\\pi (t - (n+\\frac{1}{2}) \\tau)}}",
-        "Maple": "sum((pi)/(sin(pi*(t -(n +(1)/(2))*tau))), n = - infinity..infinity)",
-        "Mathematica": "Sum[Divide[\\[Pi],Sin[\\[Pi]*(t -(n +Divide[1,2])*\\[Tau])]], {n, -Infinity, Infinity}]"
+        "Maple": "sum((Pi)/(sin(Pi*(t -(n +(1)/(2))*tau))), n = - infinity..infinity)",
+        "Mathematica": "Sum[Divide[Pi,Sin[Pi*(t -(n +Divide[1,2])*\\[Tau])]], {n, -Infinity, Infinity}]"
     },
     {
         "name": "DLMF_MULTI_SUM_LONG_PART2",
@@ -297,8 +304,8 @@
         "name": "DLMF_NORM_EASY_2",
         "DLMF": "22.12.5",
         "LaTeX": "\\sum_{n=-\\infty}^{\\infty}\\frac{\\pi}{\\sin@{\\pi (t+\\frac{1}{2}-(n+\\frac{1}{2}) \\tau)}}",
-        "Maple": "sum((pi)/(sin(pi*(t +(1)/(2)-(n +(1)/(2))*tau))), n = - infinity..infinity)",
-        "Mathematica": "Sum[Divide[\\[Pi],Sin[\\[Pi]*(t +Divide[1,2]-(n +Divide[1,2])*\\[Tau])]], {n, -Infinity, Infinity}]"
+        "Maple": "sum((Pi)/(sin(Pi*(t +(1)/(2)-(n +(1)/(2))*tau))), n = - infinity..infinity)",
+        "Mathematica": "Sum[Divide[Pi,Sin[Pi*(t +Divide[1,2]-(n +Divide[1,2])*\\[Tau])]], {n, -Infinity, Infinity}]"
     },
     {
         "name": "DLMF_INNER_SUMS",
@@ -374,15 +381,15 @@
         "name": "DLMF_NORM_LONG_SIMPLE",
         "DLMF": "7.6.4",
         "LaTeX": "\\sum_{n=0}^\\infty \\frac{\\opminus^n (\\frac{1}{2} \\pi)^{2n}}{(2n)! (4n+1)} z^{4n+1}",
-        "Maple": "sum(((-1)^(n)*((1)/(2)*pi)^(2*n))/(factorial(2*n)*(4*n + 1))*(z)^(4*n + 1), n = 0..infinity)",
-        "Mathematica": "Sum[Divide[(-1)^(n)*(Divide[1,2]*\\[Pi])^(2*n),(2*n)!*(4*n + 1)]*(z)^(4*n + 1), {n, 0, Infinity}]"
+        "Maple": "sum(((-1)^(n)*((1)/(2)*Pi)^(2*n))/(factorial(2*n)*(4*n + 1))*(z)^(4*n + 1), n = 0..infinity)",
+        "Mathematica": "Sum[Divide[(-1)^(n)*(Divide[1,2]*Pi)^(2*n),(2*n)!*(4*n + 1)]*(z)^(4*n + 1), {n, 0, Infinity}]"
     },
     {
         "name": "DLMF_NORM_MULTIPLE_SUM_LONG",
         "DLMF": "24.4.24",
         "LaTeX": "\\sum_{k=1}^n \\sum_{j=0}^{k-1} \\opminus^j\\left( \\sum_{r=1}^{m-1} \\frac{e^{2\\cpi i (k-j) r/m}}{(1 - e^{2\\cpi ir/m})^n} \\right) (j+m*x)^{n-1}",
-        "Maple": "sum(sum((-1)^(j)*(sum(((e)^(2*Pi*i*(k - j)*r/ m))/((1 - (e)^(2*Pi*i*r/ m))^(n)), r = 1..m - 1))*(j + m * x)^(n - 1), j = 0..k - 1), k = 1..n)",
-        "Mathematica": "Sum[Sum[(-1)^(j)*(Sum[Divide[(e)^(2*Pi*i*(k - j)*r/ m),(1 - (e)^(2*Pi*i*r/ m))^(n)], {r, 1, m - 1}])*(j + m*x)^(n - 1), {j, 0, k - 1}], {k, 1, n}]"
+        "Maple": "sum(sum((-1)^(j)*(sum((exp(2*Pi*I*(k - j)* r/ m))/((1 - exp(2*Pi*I*r/ m))^(n)), r = 1..m - 1))*(j + m * x)^(n - 1), j = 0..k - 1), k = 1..n)",
+        "Mathematica": "Sum[Sum[(-1)^(j)*(Sum[Divide[Exp[2*Pi*I*(k - j)* r/ m],(1 - Exp[2*Pi*I*r/ m])^(n)], {r, 1, m - 1}])*(j + m*x)^(n - 1), {j, 0, k - 1}], {k, 1, n}]"
     },
     {
         "name": "DLMF_NORM_SUM_PROD_HARD",

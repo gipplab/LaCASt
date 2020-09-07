@@ -80,15 +80,15 @@
         "name": "LONG_PARA",
         "DLMF": "22.12.13",
         "LaTeX": "\\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\frac{\\pi}{\\tan@{\\pi (t-n\\tau)}} = \\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\left( \\lim_{M \\to \\infty} \\sum_{m=-M}^M \\frac{1}{t - m - n \\tau} \\right)",
-        "Maple": "limit(sum((-1)^(n)*(pi)/(tan(pi*(t-n*tau))), n = -N .. N), N = infinity) = limit(sum((-1)^(n)*(limit(sum((1)/(t - m - n*tau), m = - M..M), M = infinity)), n = - N..N), N = infinity)",
-        "Mathematica": "Limit[Sum[(-1)^(n)*Divide[\\[Pi], Tan[\\[Pi]*(t-n*\\[Tau])]], {n, -N, N}], N -> Infinity] == Limit[Sum[(-1)^(n)*(Limit[Sum[Divide[1,t - m - n*\\[Tau]], {m, -M, M}], M -> Infinity]), {n, -N, N}], N -> Infinity]"
+        "Maple": "limit(sum((-1)^(n)*(Pi)/(tan(Pi*(t-n*tau))), n = -N .. N), N = infinity) = limit(sum((-1)^(n)*(limit(sum((1)/(t - m - n*tau), m = - M..M), M = infinity)), n = - N..N), N = infinity)",
+        "Mathematica": "Limit[Sum[(-1)^(n)*Divide[Pi, Tan[Pi*(t-n*\\[Tau])]], {n, -N, N}], N -> Infinity] == Limit[Sum[(-1)^(n)*(Limit[Sum[Divide[1,t - m - n*\\[Tau]], {m, -M, M}], M -> Infinity]), {n, -N, N}], N -> Infinity]"
     },
     {
         "name": "LONG_PARA_PART_1",
         "DLMF": "22.12.13",
         "LaTeX": "\\lim_{N \\to \\infty} \\sum_{n=-N}^N \\opminus^n \\frac{\\pi}{\\tan@{\\pi (t-n\\tau)}}",
-        "Maple": "limit(sum((-1)^(n)*(pi)/(tan(pi*(t-n*tau))), n = -N .. N), N = infinity)",
-        "Mathematica": "Limit[Sum[(-1)^(n)*Divide[\\[Pi], Tan[\\[Pi]*(t-n*\\[Tau])]], {n, -N, N}], N -> Infinity]"
+        "Maple": "limit(sum((-1)^(n)*(Pi)/(tan(Pi*(t-n*tau))), n = -N .. N), N = infinity)",
+        "Mathematica": "Limit[Sum[(-1)^(n)*Divide[Pi, Tan[Pi*(t-n*\\[Tau])]], {n, -N, N}], N -> Infinity]"
     },
     {
         "name": "LONG_PARA_PART_2",

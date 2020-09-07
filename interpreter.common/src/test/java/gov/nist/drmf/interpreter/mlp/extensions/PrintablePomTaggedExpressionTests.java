@@ -388,6 +388,23 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     @Test
+    @DLMF("1.8.16")
+    public void curlyBracketProblemTest() throws ParseException {
+        String texString = "{\\sqrt{x}\\left(2\\sum_{n=1}^{\\infty}n\\right)}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString.substring(1, texString.length()-1), ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps,
+                "\\sqrt{x}",
+                "\\left(",
+                    "2",
+                    "\\sum", "_{n=1}^{\\infty}", "n",
+                "\\right)"
+        );
+    }
+
+    @Test
     public void overrideSetRootTest() throws ParseException {
         String texString = "\\sqrt[2]{x^2}";
         PomTaggedExpression pte = mlp.parse(texString);
