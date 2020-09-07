@@ -70,7 +70,15 @@ public class LimitedTranslator extends AbstractListTranslator {
             );
         }
 
-        MathematicalEssentialOperatorMetadata limit = getLimit(list, category);
+        MathematicalEssentialOperatorMetadata limit = null;
+        try {
+            limit = getLimit(list, category);
+        } catch (Error | Exception e) {
+            throw TranslationException.buildException(
+                    this, "Unable to identify interval of " + category,
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION
+            );
+        }
 
         // find elements that are part of the argument:
         // next, split into argument parts and the rest
