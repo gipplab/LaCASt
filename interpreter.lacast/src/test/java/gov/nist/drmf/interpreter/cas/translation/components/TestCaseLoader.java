@@ -52,7 +52,12 @@ public class TestCaseLoader {
                                     LOG.info( "Expect: " + test.getCASTranslation(cas));
 
                                     SemanticLatexTranslator slt = translatorMap.get(cas);
-                                    String translation = slt.translate(test.getLatex());
+
+                                    String translation = null;
+                                    if ( test.getLabel() == null || test.getLabel().isBlank() )
+                                        translation = slt.translate(test.getLatex());
+                                    else translation = slt.translate(test.getLatex(), test.getLabel());
+
                                     LOG.debug("Expected: " + test.getCASTranslation(cas));
                                     LOG.debug("Result:   " + translation);
                                     LOG.info( "Translated to: " + translation);

@@ -66,8 +66,8 @@
         "name": "DLMF_SIMPLE",
         "DLMF": "4.22.2",
         "LaTeX": "\\prod_{n=1}^\\infty \\left( 1 - \\frac{4z^2}{(2n - 1)^2 \\pi^2} \\right)",
-        "Maple": "product(1 -(4*(z)^(2))/((2*n - 1)^(2)* (pi)^(2)), n = 1..infinity)",
-        "Mathematica": "Product[1 -Divide[4*(z)^(2),(2*n - 1)^(2)*\\[Pi]^(2)], {n, 1, Infinity}]"
+        "Maple": "product(1 -(4*(z)^(2))/((2*n - 1)^(2)* (Pi)^(2)), n = 1..infinity)",
+        "Mathematica": "Product[1 -Divide[4*(z)^(2),(2*n - 1)^(2)*(Pi)^(2)], {n, 1, Infinity}]"
     },
     {
         "name": "DLMF_PROD_SUM",
@@ -94,8 +94,8 @@
         "name": "DLMF_LONG_FRAC",
         "DLMF": "23.8.7",
         "LaTeX": "\\prod_{n=1}^\\infty \\frac{\\sin@{\\pi (2n \\omega_3 + z) / (2 \\omega_1)} \\sin@{\\pi (2n \\omega_3 - z) / (2 \\omega_1)}} {\\sin^2@{\\pi n \\omega_3 / \\omega_1}}",
-        "Maple": "product((sin(pi*(2*n*omega[3] + z)/(2*omega[1]))*sin(pi*(2*n*omega[3] - z)/(2*omega[1])))/((sin(pi*n*omega[3]/ omega[1]))^(2)), n = 1..infinity)",
-        "Mathematica": "Product[Divide[Sin[\\[Pi]*(2*n*Subscript[\\[Omega], 3] + z)/(2*Subscript[\\[Omega], 1])]*Sin[\\[Pi]*(2*n*Subscript[\\[Omega], 3] - z)/(2*Subscript[\\[Omega], 1])],(Sin[\\[Pi]*n*Subscript[\\[Omega], 3]/ Subscript[\\[Omega], 1]])^(2)], {n, 1, Infinity}]"
+        "Maple": "product((sin(Pi*(2*n*omega[3] + z)/(2*omega[1]))*sin(Pi*(2*n*omega[3] - z)/(2*omega[1])))/((sin(Pi*n*omega[3]/ omega[1]))^(2)), n = 1..infinity)",
+        "Mathematica": "Product[Divide[Sin[Pi*(2*n*Subscript[\\[Omega], 3] + z)/(2*Subscript[\\[Omega], 1])]*Sin[Pi*(2*n*Subscript[\\[Omega], 3] - z)/(2*Subscript[\\[Omega], 1])],(Sin[Pi*n*Subscript[\\[Omega], 3]/ Subscript[\\[Omega], 1]])^(2)], {n, 1, Infinity}]"
     },
     {
         "name": "DLMF_MULTI_PROD_INNER",

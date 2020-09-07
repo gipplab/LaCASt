@@ -350,6 +350,15 @@ class SimpleTranslationTests {
     }
 
     @Test
+    @DLMF("1.8.16")
+    void sumInCurlyBracketsTest() {
+        String in = "{\\sqrt{x}\\*\\left(2\\sum_{n=1}^{\\infty}n\\right)}";
+        String expect = "sqrt(x)*(2*sum(n, n = 1..infinity))";
+        String out = slt.translate(in);
+        assertEquals(expect, out);
+    }
+
+    @Test
     void overlineTest() {
         assertThrows(TranslationException.class, () -> slt.translate("\\overline{z}"));
         assertThrows(TranslationException.class, () -> slt.translate("\\overline{z+1}"));

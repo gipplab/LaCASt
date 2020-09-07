@@ -210,16 +210,14 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
             Status.SUCCESS_TRANS.add();
         } catch (TranslationException te) {
             LOG.warn("Error for line " + c.getLine() + ", because: " + te, te);
-            if (
-                    te.getReason().equals(TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION) ||
+            if ( (te.getReason().equals(TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION) ||
                             te.getReason().equals(TranslationExceptionReason.LATEX_MACRO_ERROR) ||
                             te.getReason().equals(TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT)
+                ) && te.getReasonObj() != null
             ) {
                 Status.MISSING.add();
                 lineResults[c.getLine()].add("Missing Macro Error - " + te.toString());
-                if (te.getReasonObj() != null) {
-                    addMissingMacro(te.getReasonObj().toString());
-                }
+                addMissingMacro(te.getReasonObj().toString());
             } else {
                 Status.ERROR_TRANS.add();
                 lineResults[c.getLine()].add("Translation Error - " + te.toString());
@@ -268,6 +266,7 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
                 + (config.getExpectationValue() == null ? "numerical" : config.getExpectationValue()));
 
         for (int i = 0; i < type.length; i++) {
+            aborted[i] = false;
             if (!type[i].isActivated()) {
                 successStr[i] = type[i].compactToString();
                 continue;
@@ -297,7 +296,6 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
                         successStr[i] = type[i].getShortName() + ": NaN";
                     }
                 }
-                aborted[i] = false;
                 errors[i] = false;
             } catch (ComputerAlgebraSystemEngineException casee) {
                 LOG.error(c.getLine() + ": " + type[i].getShortName() + " - Error in CAS: " + casee.toString(), casee);
@@ -307,7 +305,7 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
             } catch (IllegalArgumentException iae) {
                 LOG.error(c.getLine() + ": " + type[i].getShortName() + " - Result was null");
                 success[i] = false;
-                successStr[i] = type[i].getShortName() + ": NULL Result";
+                successStr[i] = type[i].getShortName() + ": NULL";
                 errors[i] = true;
             }
         }

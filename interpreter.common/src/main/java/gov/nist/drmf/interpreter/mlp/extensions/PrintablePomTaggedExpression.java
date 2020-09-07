@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
 import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
@@ -53,7 +54,9 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
             super.addNamedFeature(k, pte.getFeatureValue(k));
 
         // the fun part, every node has it's own caption
-        expr = expr.trim();
+        if ( pte.getParent() == null )
+            expr = TeXPreProcessor.trimCurlyBrackets(expr);
+        else expr = expr.trim();
         this.caption = expr;
 
         // now we have to add the components and their respective substrings...
