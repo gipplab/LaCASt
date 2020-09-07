@@ -65,6 +65,10 @@ public abstract class AbstractEvaluator<T> {
         AbstractEvaluator.timeoutMS = 1_000 * timeoutSeconds;
     }
 
+    public int getTimeoutSeconds() {
+        return AbstractEvaluator.timeoutMS;
+    }
+
     public void startRememberPackages() {
         reqPackageMemory.clear();
         this.rememberPackages = true;

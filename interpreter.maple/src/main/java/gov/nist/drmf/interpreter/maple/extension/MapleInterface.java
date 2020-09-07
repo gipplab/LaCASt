@@ -123,14 +123,6 @@ public class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
         }
     }
 
-    public void loadQExtension() throws ComputerAlgebraSystemEngineException {
-        if ( !loadedQExtension ) {
-            LOG.warn("Load QDifferenceEquations extension!");
-            enterCommand("with(QDifferenceEquations):");
-            loadedQExtension = true;
-        }
-    }
-
     /**
      * Invokes the GC of Maple
      * @throws MapleException may throw an exception
