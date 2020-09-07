@@ -87,4 +87,19 @@ public class ThrowTranslationExceptionTests {
 
         assertNull(te.getReasonObj());
     }
+
+    @Test
+    void intOverSetIsNotSupportedTest() {
+        String in = "\\iint_{D}\\|\\mathbf{T}_{u}\\times\\mathbf{T}_{v}\\|\\diff{u}\\diff{v}";
+        TranslationException te = assertThrows(
+                TranslationException.class,
+                () -> slt.translate(in)
+        );
+
+        assertEquals(
+                TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                te.getReason()
+        );
+        assertNull(te.getReasonObj());
+    }
 }
