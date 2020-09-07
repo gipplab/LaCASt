@@ -203,51 +203,44 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
      */
     public Algebraic mapleSimplify( String maple_expr, Set<String> requiredPackages ) throws MapleException {
         String simplify = chooseSimplify(requiredPackages);
-        String command = simplify+"(" + maple_expr + ")";
+
+        if ( !requiredPackages.isEmpty() ) {
+            String loadCommands = packageWrapper.loadPackages(requiredPackages);
+            maple.evaluate(loadCommands);
+            LOG.debug("Loaded packages: " + requiredPackages);
+        }
+
+        String command = simplify + "(" + maple_expr + ")";
         if ( timeout > 0 ) {
             command = "try timelimit("+timeout+","+command+"); catch \"time expired\": \"";
             command += MapleInterface.TIMED_OUT_SIGNAL;
             command += "\"; end try;";
         } else command += ";";
 
-        command = packageWrapper.addPackages(command, requiredPackages);
-
         LOG.debug("Simplification: " + command);
         listener.timerReset();
-        return maple.evaluate( command );
+        Algebraic result = maple.evaluate(command);
+
+        if ( !requiredPackages.isEmpty() ) {
+            String unloadCommands = packageWrapper.unloadPackages(requiredPackages);
+            maple.evaluate(unloadCommands);
+            LOG.debug("Unloaded packages: " + requiredPackages);
+        }
+
+        return result;
     }
 
     private String chooseSimplify(Set<String> requiredPackages) {
         if ( requiredPackages == null || requiredPackages.isEmpty() )
             return "simplify";
 
-        boolean contains = false;
-        Set<String> tmp = new TreeSet<>();
-        for ( String req : requiredPackages ){
-            if ( req.contains("QDifferenceEquations") ){
-                contains = true;
-            } else tmp.add(req);
-        }
+        boolean contained = requiredPackages.removeIf(p -> p.contains("QDifferenceEquations"));;
 
-        return updateRequiredPackages(contains, tmp, requiredPackages);
-    }
-
-    private String updateRequiredPackages(
-            boolean contains,
-            Set<String> tmp,
-            Set<String> requiredPackages
-    ) {
-        if ( contains ) {
-            try {
-                maple.loadQExtension();
-                requiredPackages.clear();
-                requiredPackages.addAll(tmp);
-                return "QSimplify";
-            } catch (ComputerAlgebraSystemEngineException e) {
-                LOG.fatal("Cannot load QExtensions");
-            }
+        if ( contained ) {
+            requiredPackages.add("QDifferenceEquations");
+            return "QSimplify";
         }
-        return "simplify";
+        else return "simplify";
     }
 
     private Algebraic simplify(String expr) throws ComputerAlgebraSystemEngineException {

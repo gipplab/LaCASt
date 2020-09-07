@@ -80,7 +80,7 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
 
         Thread abortThread = null;
         if ( !test.skipClassicAbortion() ) {
-            abortThread = getAbortionThread(numericalEvaluator, DEFAULT_TIMEOUT_MS*2);
+            abortThread = getAbortionThread(numericalEvaluator, getTimeoutSeconds()*2);
             abortThread.start();
         }
 

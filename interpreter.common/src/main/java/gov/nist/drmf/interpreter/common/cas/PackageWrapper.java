@@ -48,4 +48,16 @@ public class PackageWrapper implements IPackageWrapper<String, String> {
             sb.append(symbolTranslator.translateFromMLPKey(Keys.MLP_KEY_SUPPRESS_OUTPUT));
         }
     }
+
+    public String loadPackages(Set<String> packages) {
+        StringBuilder sb = new StringBuilder();
+        addPackages(sb, packages, true);
+        return sb.toString();
+    }
+
+    public String unloadPackages(Set<String> packages) {
+        StringBuilder sb = new StringBuilder();
+        addPackages(sb, packages, false);
+        return sb.toString();
+    }
 }
