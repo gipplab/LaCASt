@@ -316,7 +316,7 @@ X1:\ndivisorsX\ndivisors[k]@{n};;;
 \CarlsonsymellintRJ@@{x}{y}{z}{p};;;3*($2-$0)/($2-$3)*(EllipticPi[($2-$3)/($2-$0),ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]-EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)])/Sqrt[$2-$0]
 \CarlsonsymellintRG@@{x}{y}{z};;;Sqrt[$2-$0]*(EllipticE[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]+(Cot[ArcCos[Sqrt[$0/$2]]])^2*EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]+Cot[ArcCos[Sqrt[$0/$2]]]*Sqrt[1-k^2*Sin[ArcCos[Sqrt[$0/$2]]]^2])
 \CarlsonsymellintRD@@{x}{y}{z};;;3*(EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]-EllipticE[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)])/(($2-$1)*($2-$0)^(1/2))
-\CarlsonsymellintRC@@{x}{y};;;1/Sqrt[$1]*Hypergeometric2F1[1/2,1/2,3/2,1-($0)/($1)]
+\CarlsonellintRC@@{x}{y};;;1/Sqrt[$1]*Hypergeometric2F1[1/2,1/2,3/2,1-($0)/($1)]
 ;;;
 \EulersumH@{s};;;
 \genEulersumH@{s}{z};;;

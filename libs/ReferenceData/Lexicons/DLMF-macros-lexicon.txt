@@ -660,6 +660,7 @@ Symbol: \CarlsonellintRC
   Feature Set: dlmf-macro
 	DLMF: \CarlsonellintRC@@{x}{y}
 	DLMF-Link: dlmf.nist.gov/19.2#E17
+	Mathematica-Alternatives: 1/Sqrt[$1]*Hypergeometric2F1[1/2,1/2,3/2,1-($0)/($1)]
 	Meanings: Carlson elliptic integral
 	Number of Ats: 2
 	Number of Parameters: 0
