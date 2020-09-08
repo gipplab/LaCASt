@@ -9,7 +9,9 @@ import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.common.interfaces.IFeatureExtractor;
 import gov.nist.drmf.interpreter.mlp.MathTermUtility;
 import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import mlp.FeatureSet;
@@ -124,6 +126,7 @@ public class MacroTranslator extends AbstractListTranslator {
         // in case of optional arguments, we have to retrieve other information from the lexicons
         if (!optionalParas.isEmpty()) {
             fset = macroTerm.getNamedFeatureSet(Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + optionalParas.size());
+            IFeatureExtractor.setFeatureValue(fset, Keys.NUM_OF_OPT_PARAMS, Integer.toString(optionalParas.size()));
             info = new MacroInfoHolder(this, fset, cas, macro);
         } else if ( translationException != null ) {
             // if there are no optional parameters AND previously we caught an exception, its time to throw it now
@@ -174,6 +177,9 @@ public class MacroTranslator extends AbstractListTranslator {
         if (diffPowerHolder.getMoveToEnd() != null) {
             followingExps.add(0, diffPowerHolder.getMoveToEnd());
         }
+
+        if ( info.getNumberOfArguments() != args.length )
+            throw throwMacroException("Unable to retrieve correct number of arguments for the macro " + macro);
 
         // finally fill the placeholders by values
         fillVars(args, patternFiller);
@@ -360,7 +366,15 @@ public class MacroTranslator extends AbstractListTranslator {
                 diffPowerHolder.setComplexDerivativeVar(!PomTaggedExpressionUtility.isSingleVariable(exp));
             }
 
-            String translation = translateInnerExp(exp, followingExps).toString();
+            // every argument must be self-contained, i.e., in \macro{arg1}{arg2} arg1 cannot access information from
+            // arg2 because {arg1} is self-contained. If not, there is something wrong and an error should be thrown.
+            Brackets b = Brackets.getBracket(exp);
+            if ( b != null && b.opened ) {
+                throw throwMacroException("The arguments of semantic macros must be wrapped in curly brackets! " +
+                        "It seems you wrote "+ macro + "(...) instead of " + macro + "{...}");
+            }
+
+            String translation = translateInnerExp(exp, new LinkedList<>()).toString();
             arguments.addLast(translation);
         }
 

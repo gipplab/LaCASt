@@ -97,7 +97,7 @@ DLMF;DLMF-Link;Meanings;Number of Parameters;Number of Ats;Number of Variables;S
 ;;;;;;;;;
 \conj{z};http://dlmf.nist.gov/1.9#E11;Conjugate complex number;0;0;1;1;;;dlmf-macro
 \realpart@@{z};http://dlmf.nist.gov/1.9#E2;Real part of a complex number;0;0;1;;;;dlmf-macro
-\Re{z};http://dlmf.nist.gov/1.9#E2;Real part of a complex number;0;0all;1;;;;dlmf-macro
+\Re{z};http://dlmf.nist.gov/1.9#E2;Real part of a complex number;0;0;1;;;;dlmf-macro
 \imagpart@@{z};http://dlmf.nist.gov/1.9#E2;Imaginary part of a complex num;0;0;1;;;;dlmf-macro
 \sqrt{z};not defined;Square root;0;0;1;1;;;dlmf-macro
 \sqrt[p]{z};not defined;n-th root;1;0;1;1;;;dlmf-macro

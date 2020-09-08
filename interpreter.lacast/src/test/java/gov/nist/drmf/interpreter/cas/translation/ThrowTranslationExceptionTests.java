@@ -102,4 +102,33 @@ public class ThrowTranslationExceptionTests {
         );
         assertNull(te.getReasonObj());
     }
+
+    @Test
+    void noArgumentForSemanticMacroTest() {
+        String in = "\\deriv{\\LambertW}{x} = \\frac{e^{-\\LambertW}}{1+\\LambertW}";
+        TranslationException te = assertThrows(
+                TranslationException.class,
+                () -> slt.translate(in)
+        );
+
+        assertEquals(
+                TranslationExceptionReason.DLMF_MACRO_ERROR,
+                te.getReason()
+        );
+        assertEquals("\\LambertW", te.getReasonObj());
+    }
+
+    @Test
+    void functionTest() {
+        String in = "\\cos(x)";
+        TranslationException te = assertThrows(
+                TranslationException.class,
+                () -> slt.translate(in)
+        );
+
+        assertEquals(
+                TranslationExceptionReason.DLMF_MACRO_ERROR,
+                te.getReason()
+        );
+    }
 }

@@ -33,6 +33,8 @@ import java.util.*;
  */
 @SuppressWarnings({"WeakerAccess", "unchecked"})
 public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
+    private static final String MANUAL_SKIP_IDS = "7731";
+
     private static final Logger LOG = LogManager.getLogger(SymbolicEvaluator.class.getName());
 
     private SymbolicConfig config;
@@ -87,11 +89,11 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         this.idSkips = new HashSet<>();
         this.defaultPrevAfterCmds = defaultPrevAfterCmds;
 
-//        String[] skipArr = NumericalEvaluator.LONG_RUNTIME_SKIP.split(",");
-//        for ( String s : skipArr ) {
-//            skips.add(new ID(Integer.parseInt(s)));
-//            idSkips.add(Integer.parseInt(s));
-//        }
+        String[] skipArr = SymbolicEvaluator.MANUAL_SKIP_IDS.split(",");
+        for ( String s : skipArr ) {
+            skips.add(new ID(Integer.parseInt(s)));
+            idSkips.add(Integer.parseInt(s));
+        }
 
         Status.reset();
     }

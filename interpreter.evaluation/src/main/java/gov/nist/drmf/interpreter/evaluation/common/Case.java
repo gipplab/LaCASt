@@ -124,8 +124,9 @@ public class Case {
             SymbolTag def = library.getSymbolDefinition(use.getId());
             if ( def != null ) {
                 LOG.info("Found symbol definition! Replacing " + use.getSymbol() + " by " + def.getDefinition());
-                this.LHS = this.LHS.replaceAll(Pattern.quote(use.getSymbol()), def.getDefinition().replaceAll("\\\\", "\\\\\\\\"));
-                this.RHS = this.RHS.replaceAll(Pattern.quote(use.getSymbol()), def.getDefinition().replaceAll("\\\\", "\\\\\\\\"));
+                String repl = def.getDefinition().replace("\\","\\\\").replace("$", "\\$");
+                this.LHS = this.LHS.replaceAll(Pattern.quote(use.getSymbol()), repl);
+                this.RHS = this.RHS.replaceAll(Pattern.quote(use.getSymbol()), repl);
             }
         }
         return this;

@@ -107,10 +107,14 @@ public class MacroInfoHolder {
         this.variableOfDifferentiation = variableOfDifferentiation;
     }
 
+    public int getNumberOfArguments() {
+        return translationInformation.getNumOfOptionalParas() +
+                translationInformation.getNumOfParams() +
+                translationInformation.getNumOfVars();
+    }
+
     public boolean hasNoArguments() {
-        return translationInformation.getNumOfParams() +
-                translationInformation.getNumOfAts() +
-                translationInformation.getNumOfVars() == 0;
+        return getNumberOfArguments() + translationInformation.getNumOfAts() == 0;
     }
 
     public int getSlotOfDifferentiation() {
