@@ -21,7 +21,7 @@ public class CaseAnalyzer {
             "\\\\constraint\\{(.*?)} |" +
             "\\\\url\\{(.*?)}|" +
             "\\\\symbolDefined\\[(.*?)]\\{([a-zA-Z0-9.]*?)}|" +
-            "\\\\symbolUsed\\[(.*?)]\\{([a-zA-Z0-9.]*?)}|" +
+            "\\\\symbolUsed\\[(.*?)]\\{(C[0-9]+[A-Za-z0-9.]*?)}|" +
             "\\\\source|\\\\authorproof|\\\\keyphrase|\\\\cite|\\\\comments"
     );
 

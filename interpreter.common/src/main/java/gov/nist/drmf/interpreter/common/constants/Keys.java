@@ -42,10 +42,11 @@ public final class Keys {
     public static final String KEY_ABSOLUTE_VALUE = "absolute value";
 
     public static final String
-            NUM_OF_VARS     = "Number of Variables",
-            NUM_OF_ATS      = "Number of Ats",
-            NUM_OF_PARAMS   = "Number of Parameters",
-            SLOT_OF_DIFF    = "Slot of Differentiation";
+            NUM_OF_VARS         = "Number of Variables",
+            NUM_OF_ATS          = "Number of Ats",
+            NUM_OF_PARAMS       = "Number of Parameters",
+            NUM_OF_OPT_PARAMS   = "Number of optional Parameters",
+            SLOT_OF_DIFF        = "Slot of Differentiation";
 
     public static final String
             FEATURE_SET_AT      = "at",

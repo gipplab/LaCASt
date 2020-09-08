@@ -80,7 +80,7 @@ DLMF;Maple;DLMF-Maple-Comment;Maple-Package;Maple-Alternatives
 X1:\sqrtX\sqrt[$1]{$0};surd($1, $0);;;
 \binom{$0}{$1};binomial($0, $1);;;
 \multinomial{m}{n_1,...,n_k};multinomial($0, $1);Maple needs an extra package. Load it with the following command: with(combinat,multinomial):;combinat,multinomial;
-\pgcd{$0, $1};gcd($0, $1);;;
+\pgcd{$0};gcd($0);;;
 ;;;;
 ;;;;
 ;;;;

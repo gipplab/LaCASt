@@ -670,7 +670,7 @@ Symbol: \CarlsonsymellintRD
   Feature Set: dlmf-macro
 	DLMF: \CarlsonsymellintRD@@{x}{y}{z}
 	DLMF-Link: dlmf.nist.gov/19.16#E5
-	Mathematica-Alternatives: 3*($2-$0)/($2-$1)*(EllipticF[($2-$3)/($2-$0),ArcCos[Sqrt[$0/$2]]]-EllipticE[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)])/($2-$0)^(3/2)
+	Mathematica-Alternatives: 3*(EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]-EllipticE[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)])/(($2-$1)*($2-$0)^(1/2))
 	Meanings: Symmetric in only two variables
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -2869,7 +2869,7 @@ Symbol: \Re
 	Mathematica: Re[$0]
 	Mathematica-Link: reference.wolfram.com/language/ref/Re.html
 	Meanings: Real part of a complex number
-	Number of Ats: 0all
+	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
@@ -7015,9 +7015,9 @@ Symbol: \pgcd
   Feature Set: dlmf-macro
 	DLMF: \pgcd{m,n}
 	DLMF-Link: dlmf.nist.gov/27.1#p2.t1.r3
-	Maple: gcd($0, $1)
+	Maple: gcd($0)
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=gcd
-	Mathematica: GCD[$0, $1]
+	Mathematica: GCD[$0]
 	Mathematica-Link: reference.wolfram.com/language/ref/GCD.html
 	Meanings: Greatest common divisor
 	Number of Ats: 0

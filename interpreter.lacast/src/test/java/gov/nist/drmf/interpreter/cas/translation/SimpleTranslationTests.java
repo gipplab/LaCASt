@@ -62,14 +62,6 @@ class SimpleTranslationTests {
     }
 
     @Test
-    void functionTest() {
-        String in = "\\cos(x)";
-        String eout = "cos(x)";
-        String out = slt.translate(in);
-        assertEquals(eout, out);
-    }
-
-    @Test
     void macroTest() {
         String in = "\\JacobiP{\\alpha}{\\beta}{n}@{\\cos@{a\\Theta}}";
         String eout = "JacobiP(n, alpha, beta, cos(a*Theta))";
