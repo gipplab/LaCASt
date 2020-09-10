@@ -41,4 +41,11 @@ public class MathematicaSpecificTranslationTests {
         assertEquals(expect, out);
     }
 
+    @Test
+    void paraVAlternativeTest() {
+        String in = "\\paraV@{a}{x}";
+        String expect = "Divide[GAMMA[1/2 + a], Pi]*(Sin[Pi*(a)] * ParabolicCylinderD[-(a) - 1/2, x] + ParabolicCylinderD[-(a) - 1/2, -(x)])";
+        String out = slt.translate(in);
+        assertEquals(expect, out);
+    }
 }
