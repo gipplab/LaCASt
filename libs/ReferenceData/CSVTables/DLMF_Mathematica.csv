@@ -283,7 +283,7 @@ X1:\ipderivX\ipderiv[$0]{$1}{$2};D[$1, {$2, $0}];;
 \paraU@{a}{z};ParabolicCylinderD[- 1/2 -($0), $1];;
 \paraUbar@{a}{x};;;
 \paraV@{a}{z};;Caution: The alternative translation has singularities caused by the use of the Euler gamma function.;Divide[GAMMA[1/2 + $0], Pi]*(Sin[Pi*($0)] * ParabolicCylinderD[-($0) - 1/2, $1] + ParabolicCylinderD[-($0) - 1/2, -($1)])
-\paraW@{a}{x};;;
+\paraW@{a}{x};;;Sqrt[(Sqrt[1+Exp[2*Pi*($0)]]-Exp[Pi*($0)])/2] * Exp[Divide[Pi*($0),4]] * ( Exp[I*(Pi/8 + Arg[GAMMA[1/2 + I*($0)]]/2)] * ParabolicCylinderD[- 1/2 - I*($0), $1 * Exp[-Divide[Pi*I,4]]] + Exp[-I*(Pi/8 + Arg[GAMMA[1/2 + I*($0)]]/2)] * ParabolicCylinderD[- 1/2 + I*($0), $1 * Exp[Divide[Pi*I,4]]] )
 \WhittakerparaD{\nu}@{z};ParabolicCylinderD[$0, $1];;
 ;;;
 \DawsonsintF@{z};DawsonF[$0];;
