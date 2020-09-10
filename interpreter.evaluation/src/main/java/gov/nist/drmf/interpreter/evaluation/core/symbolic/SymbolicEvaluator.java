@@ -14,7 +14,6 @@ import gov.nist.drmf.interpreter.evaluation.common.Status;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
 import gov.nist.drmf.interpreter.evaluation.core.numeric.NumericalConfig;
-import gov.nist.drmf.interpreter.evaluation.core.numeric.NumericalEvaluator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
 import gov.nist.drmf.interpreter.maple.extension.Simplifier;
@@ -48,6 +47,10 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
     private String overallAss;
 
     private String[] defaultPrevAfterCmds;
+
+    private boolean mathematica = false;
+
+    private final double expectedResult;
 
     /**
      * Creates an object for numerical evaluations.
@@ -96,6 +99,8 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         }
 
         Status.reset();
+        mathematica = (engine instanceof MathematicaInterface);
+        expectedResult = Double.parseDouble(config.getExpectationValue());
     }
 
 //    @Override
@@ -140,24 +145,23 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         return lineResults;
     }
 
-    private void setPreviousAssumption() throws ComputerAlgebraSystemEngineException {
+    private void setGlobalAssumption() throws ComputerAlgebraSystemEngineException {
+        if ( mathematica ) {
+            LOG.warn("Somehow, Mathematica seems to dislike assumptions for symbolic simplifications. Hence we ignore " +
+                    "the defined assumptions until we found a solution to this!");
+            return;
+        }
         if ( overallAss != null && !overallAss.isEmpty() ){
-//            String cmd = "assume(" + overallAss + ");";
-            String cmd = "And[" + overallAss + "]";
-            LOG.debug("Enter assumption for entire test suite: " + cmd);
-
-//            enterEngineCommand(cmd);
-//            translator.enterMapleCommand(cmd);
-
-            // todo we may need that?
-//            addPreloadScript(cmd);
+            String[] ass = overallAss.split(" \\|\\| ");
+            String[] transAss = this.getThisConstraintTranslator().translateEachConstraint(ass);
+            super.setGlobalAssumptions(transAss);
         }
     }
 
     @Override
     public void performAllTests(LinkedList<Case> cases) {
         try {
-            setPreviousAssumption();
+            setGlobalAssumption();
             super.performAllTests(cases);
         } catch ( ComputerAlgebraSystemEngineException casee ) {
             LOG.error("Cannot perform assumptions.", casee);
@@ -279,6 +283,7 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
             try {
                 T res = simplify(testStr, arrConstraints);
                 if (res == null) {
+                    LOG.warn("CAS return NULL for: " + testStr);
                     throw new IllegalArgumentException("Error in CAS!");
                 }
 
@@ -286,13 +291,19 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
                     success[i] = false;
                     aborted[i] = true;
                     successStr[i] = type[i].getShortName() + ": Aborted";
+                    LOG.info(c.getLine() + " [" + type[i].getShortName() + "] Computation aborted.");
                 } else {
                     // String strRes = res.toString();
-                    LOG.info(c.getLine() + ": " + type[i].getShortName() + " - Simplified expression: " + res);
+                    LOG.info(c.getLine() + " [" + type[i].getShortName() + "] Simplified expression: " + res);
 
-                    if (validOutCome(res, config.getExpectationValue())) {
+                    if (validOutCome(res, expectedResult)) {
                         success[i] = true;
                         successStr[i] = type[i].getShortName() + ": " + res;
+                    } else if ( isConditionallyValid(res, expectedResult) ) {
+                        String condition = getCondition(res);
+                        success[i] = true;
+                        successStr[i] = type[i].getShortName() + ": " + expectedResult + " under condition: " + condition;
+                        LOG.warn(c.getLine() + " [" + type[i].getShortName() + "]: Correct result but under extra conditions: " + condition);
                     } else {
                         success[i] = false;
                         successStr[i] = type[i].getShortName() + ": NaN";
@@ -328,8 +339,13 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
             if (!errors[i]) allError = false;
             if (!aborted[i]) allAborted = false;
             if (success[i]) {
-                lineResults[c.getLine()].add("Successful " + Arrays.toString(successStr));
-                Status.SUCCESS_SYMB.add();
+                if ( successStr[i].contains("condition") ) {
+                    lineResults[c.getLine()].add("Successful under condition " + Arrays.toString(successStr));
+                    Status.SUCCESS_UNDER_EXTRA_CONDITION.add();
+                } else {
+                    lineResults[c.getLine()].add("Successful " + Arrays.toString(successStr));
+                    Status.SUCCESS_SYMB.add();
+                }
                 return;
             }
         }

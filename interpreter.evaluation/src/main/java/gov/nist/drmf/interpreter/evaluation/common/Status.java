@@ -23,6 +23,7 @@ public enum Status {
     SUCCESS_TRANS(0), // = success symb/num + failure + aborted + error
     SUCCESS_SYMB(0),
     SUCCESS_NUM(0),
+    SUCCESS_UNDER_EXTRA_CONDITION(0),
     FAILURE(0),
     ABORTED(0),
     ERROR(0);

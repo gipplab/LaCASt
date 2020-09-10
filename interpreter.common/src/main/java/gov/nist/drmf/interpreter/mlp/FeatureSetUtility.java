@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.mlp;
 
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 
@@ -62,6 +63,14 @@ public final class FeatureSetUtility {
                 finalList.add(fset);
         }
         return finalList;
+    }
+
+    public static String getPossibleMeaning(MathTerm term) {
+        List<FeatureSet> fsets = getAllFeatureSetsWithFeature(term, Keys.FEATURE_MEANINGS);
+        if ( !fsets.isEmpty() ) {
+            FeatureSet fset = fsets.get(0);
+            return fset.getFeature(Keys.FEATURE_MEANINGS).first();
+        } else return null;
     }
 
     /**

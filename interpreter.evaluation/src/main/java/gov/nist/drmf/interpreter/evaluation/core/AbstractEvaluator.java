@@ -27,7 +27,7 @@ public abstract class AbstractEvaluator<T> {
 
     public final static String NL = System.lineSeparator();
 
-    private static int timeoutMS = 30_000;
+    private static double timeoutMS = 30_000;
 
     private IConstraintTranslator forwardTranslator;
     private IComputerAlgebraSystemEngine<T> engine;
@@ -46,7 +46,7 @@ public abstract class AbstractEvaluator<T> {
     public static final Pattern filterCases = Pattern.compile(
             "\\\\([Bb]igO|littleo|[fdc]Diff|asymp|sim|[lc]?dots)(?:[^a-zA-Z]|$)|" +
                     "\\{(cases|array|[bBvp]matrix|Matrix|Lattice)}|" +
-                    "([fg](?:\\\\left)?\\()"
+                    "([fg](?:\\\\left)?\\(.*?(?:\\)|\\\\right\\)))"
     );
 
     public AbstractEvaluator(
@@ -61,12 +61,16 @@ public abstract class AbstractEvaluator<T> {
         this.symbolDefinitionLibrary = new SymbolDefinedLibrary();
     }
 
-    public void setTimeoutSeconds(int timeoutSeconds) {
+    public void setTimeoutSeconds(double timeoutSeconds) {
         AbstractEvaluator.timeoutMS = 1_000 * timeoutSeconds;
     }
 
-    public int getTimeoutSeconds() {
+    public double getTimeoutSeconds() {
         return AbstractEvaluator.timeoutMS;
+    }
+
+    public void setGlobalAssumptions(String... assumptions) throws ComputerAlgebraSystemEngineException {
+        engine.setGlobalAssumptions(assumptions);
     }
 
     public void startRememberPackages() {
@@ -293,12 +297,12 @@ public abstract class AbstractEvaluator<T> {
         return getAbortionThread(evaluator, timeoutMS);
     }
 
-    protected static Thread getAbortionThread(IAbortEvaluator evaluator, int timeout) {
+    protected static Thread getAbortionThread(IAbortEvaluator evaluator, double timeout) {
         return new Thread(() -> {
             boolean interrupted = false;
             LOG.debug("Start waiting for abortion.");
             try {
-                Thread.sleep(timeout);
+                Thread.sleep((int)timeout);
             } catch ( InterruptedException ie ) {
                 LOG.debug("Interrupted, no abortion necessary.");
                 interrupted = true;

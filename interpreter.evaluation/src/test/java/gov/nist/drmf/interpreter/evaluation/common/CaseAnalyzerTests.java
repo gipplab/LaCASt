@@ -236,14 +236,14 @@ public class CaseAnalyzerTests {
         def = lib.getSymbolDefinition("C1.S2.XMD2.m1badec");
         assertNotNull(def);
         assertEquals("A_{j}", def.getSymbol());
-        assertEquals("\\frac{f(\\alpha_{j})}{\\prod\\limits_{k\\not=j}(\\alpha_{j}-\\alpha_{k})}", def.getDefinition());
+        assertEquals("\\frac{(\\alpha_{j})}{\\prod\\limits_{k\\not=j}(\\alpha_{j}-\\alpha_{k})}", def.getDefinition());
 
         LinkedList<SymbolTag> used = new LinkedList<>();
         used.add(new SymbolTag("C1.S2.XMD2.m1bdec", "A_{j}"));
         CaseMetaData meta = new CaseMetaData(1, null, null, used);
         Case c = new Case("1 + A_{j}", "2", Relations.EQUAL, meta);
         c = c.replaceSymbolsUsed(lib);
-        assertEquals("1 + \\frac{f(\\alpha_{j})}{\\prod\\limits_{k\\not=j}(\\alpha_{j}-\\alpha_{k})}", c.getLHS());
+        assertEquals("1 + \\frac{(\\alpha_{j})}{\\prod\\limits_{k\\not=j}(\\alpha_{j}-\\alpha_{k})}", c.getLHS());
         assertEquals("2", c.getRHS());
 
         used.removeFirst();
@@ -291,6 +291,25 @@ public class CaseAnalyzerTests {
         assertEquals("\\AiryAi@{z}", actualAiryAiTest.getLHS());
         // note that only \zeta has changed if everything worked properly
         assertEquals("\\pi^{-1}\\sqrt{z/3}\\modBesselK{+ 1/3}@{\\tfrac{2}{3}z^{3/2}}", actualAiryAiTest.getRHS());
+    }
+
+    @Test
+    void wrongSubstitutionTest() throws IOException {
+        String testStrings = getResourceContent("wrongSubstitutionTests.txt");
+
+        SymbolDefinedLibrary lib = new SymbolDefinedLibrary();
+        int[] lineCounter = new int[]{0};
+        List<LinkedList<Case>> testCases = Arrays.stream(testStrings.split("\n"))
+                .peek( l -> lineCounter[0]++ )
+                .map(l -> CaseAnalyzer.analyzeLine(l, lineCounter[0], lib))
+                .collect(Collectors.toList());
+
+        // the second line is a multi-equation expression, so we presume multiple expressions
+        Case eulerTest = testCases.get(1).getFirst();
+        assertEquals("-\\EulerConstant", eulerTest.getRHS());
+
+        Case actualAiryAiTest = eulerTest.replaceSymbolsUsed(lib);
+        assertEquals("-\\EulerConstant", actualAiryAiTest.getRHS());
     }
 
     private String getResourceContent(String resourceFilename) throws IOException {

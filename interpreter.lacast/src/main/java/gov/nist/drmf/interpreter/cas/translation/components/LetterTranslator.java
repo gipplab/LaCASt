@@ -91,11 +91,19 @@ public class LetterTranslator extends AbstractListTranslator {
             case letter:
                 translateLetter(term, constantSet);
                 return localTranslations;
+            case operator:
+                getInfoLogger().addGeneralInfo(
+                        exp.getRoot().getTermText(),
+                        "Unable to translate operator (" +
+                                FeatureSetUtility.getPossibleMeaning(term) +
+                                "). Interpret it as a sequence of multiplications instead."
+                );
             case constant:
                 // a constant in this state is simply not a command
                 // so there is no \ in front of the text.
                 // that's why a constant here is the same like a alphanumeric expression
                 // ==> do nothing and switch to alphanumeric
+            case abbreviation:
             case alphanumeric:
                 te = parseAlphanumeric(term, constantSet);
                 break;

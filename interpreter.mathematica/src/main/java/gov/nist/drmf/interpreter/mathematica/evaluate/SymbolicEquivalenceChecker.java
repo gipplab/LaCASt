@@ -47,18 +47,22 @@ public class SymbolicEquivalenceChecker {
                 Commands.FULL_SIMPLIFY.build(test) :
                 Commands.FULL_SIMPLIFY_ASSUMPTION.build(test, assumption);
 
+        LOG.debug("Start simplification: " + expr);
         engine.evaluate(expr);
         engine.waitForAnswer();
 
         return engine.getExpr();
     }
 
-    public boolean testZero(Expr expr) throws MathLinkException {
-//        Expr expr = engine.getExpr();
+    public boolean testZero(Expr expr) {
+        return isNumber(expr, 0);
+    }
+
+    public boolean isNumber(Expr expr, double number) {
         if ( expr.numberQ() ) {
             try {
                 double d = expr.asDouble();
-                return d == 0;
+                return d == number;
             } catch (ExprFormatException e) {
                 LOG.info("Not equal! " + expr.toString());
             }

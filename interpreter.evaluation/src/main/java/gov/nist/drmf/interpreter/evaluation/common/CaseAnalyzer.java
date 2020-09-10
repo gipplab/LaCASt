@@ -115,7 +115,9 @@ public class CaseAnalyzer {
         String eq = getEquation(mathSB);
         CaseMetaData metaData = CaseMetaData.extractMetaData(constraints, symbolsUsed, symbInfo.link, lineNumber);
 
-        if ( symbInfo.symbolDefID != null && !symbInfo.symbolDefSymb.contains("\\NVar") ) {
+        if ( symbInfo.symbolDefID != null && Case.isSemantic(symbInfo.symbolDefSymb) ) {
+            LOG.debug("Ignore symbol definition of semantic macro");
+        } else if ( symbInfo.symbolDefID != null && !symbInfo.symbolDefSymb.contains("\\NVar") ) {
             handleNVar(symbInfo, metaData, eq, symbDefLib);
             return null;
         }
