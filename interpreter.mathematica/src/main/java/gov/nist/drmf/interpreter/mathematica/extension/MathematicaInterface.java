@@ -13,9 +13,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
@@ -138,6 +141,26 @@ public class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> 
         evaluate(cmd);
     }
 
+    private static Pattern inPattern = Pattern.compile("^(.*?) \\[Element] (.*)$");
+
+    @Override
+    public void setGlobalAssumptions(String... assumptions) throws ComputerAlgebraSystemEngineException {
+        for ( int i = 0; i < assumptions.length; i++ ) {
+            if ( assumptions[i].contains("Integers") )
+                assumptions[i] = assumptions[i].replace("Integers", "PositiveIntegers");
+            Matcher m = inPattern.matcher(assumptions[i]);
+            if ( m.matches() ) assumptions[i] = "Element[" + m.group(1) + ", " + m.group(2) + "]";
+        }
+        String cmd = String.join(" && ", assumptions);
+        try {
+            String result = evaluate("$Assumptions = " + cmd);
+            LOG.info("Setup global assumptions: " + result);
+        } catch (MathLinkException e) {
+            LOG.error("Unable to set global assumptions in Mathematica. Assumptions: " + Arrays.toString(assumptions));
+            throw new ComputerAlgebraSystemEngineException(e);
+        }
+    }
+
     public SymbolicEquivalenceChecker getEvaluationChecker() {
         return evalChecker;
     }
@@ -150,7 +173,7 @@ public class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> 
 
     @Override
     public void forceGC() {
-        LOG.warn("Ignore force GC for Mathematica");
+        LOG.trace("Ignore force GC for Mathematica");
     }
 
     @Override

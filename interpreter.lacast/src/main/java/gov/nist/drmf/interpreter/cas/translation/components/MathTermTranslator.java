@@ -126,12 +126,19 @@ public class MathTermTranslator extends AbstractListTranslator {
             case macro:
                 throwImplementationError("There shouldn't be a macro in MathTermTranslator: " + term.getTermText());
             case abbreviation:
-                throw TranslationException.buildExceptionObj(
-                        this,
-                        "This program cannot translate abbreviations like " + term.getTermText(),
-                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
-                        term.getTermText()
-                );
+                if ( term.getTermText().matches(".*\\.\\s*$") )
+                    throw TranslationException.buildExceptionObj(
+                            this,
+                            "This program cannot translate abbreviations like " + term.getTermText(),
+                            TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                            term.getTermText()
+                    );
+                else
+                    getInfoLogger().addGeneralInfo(
+                            term.getTermText(),
+                            "Found a potential abbreviation. This program cannot translate abbreviations. Hence it was " +
+                                    "interpreted as a sequence of variable multiplications, e.g. 'etc' -> 'e*t*c'."
+                    );
         }
     }
 
@@ -205,9 +212,11 @@ public class MathTermTranslator extends AbstractListTranslator {
                 SubSuperScriptTranslator sssT = new SubSuperScriptTranslator(getSuperTranslator());
                 te = sssT.translate(exp, following_exp);
                 break;
+            case operator:
             case dlmf_macro:
             case command:
             case alphanumeric:
+            case abbreviation:
             case special_math_letter:
             case symbol:
             case constant:

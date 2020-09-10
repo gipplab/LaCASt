@@ -83,7 +83,7 @@ public class MLP {
             eq = "a + b^{1+x}";
             eq = "\\left( \\left[ |<(b)+[c]>| \\right] \\right)";
             eq = "({var1}+1)_{var2}";
-            eq = "\\omega";
+            eq = "\\sf L";
 
             System.out.println();
             System.out.println("Input: " + eq);

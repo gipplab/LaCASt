@@ -32,7 +32,7 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
     private final MapleListener listener;
     private final PackageWrapper packageWrapper;
 
-    private int timeout = -1;
+    private double timeout = -1;
 
     public Simplifier() {
         maple = MapleInterface.getUniqueMapleInterface();
@@ -50,7 +50,7 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
     }
 
     @Override
-    public void setTimeout(int timeout) {
+    public void setTimeout(double timeout) {
         this.timeout = timeout;
     }
 
@@ -286,19 +286,24 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
     }
 
     @Override
-    public boolean isAsExpected(Algebraic in, String expect) {
+    public boolean isAsExpected(Algebraic in, double expect) {
         String str = in.toString();
-        if ( expect == null ){
-            try {
-                Double.parseDouble(str);
-                return true;
-            } catch ( NumberFormatException nfe ) {}
-            return false;
-        } else if ( str.matches(expect) ) {
-            return true;
-        } else {
+        try {
+            double res = Double.parseDouble(str);
+            return res == expect;
+        } catch ( NumberFormatException nfe ) {
             return false;
         }
+    }
+
+    @Override
+    public boolean isConditionallyExpected(Algebraic in, double expect) {
+        return false;
+    }
+
+    @Override
+    public String getCondition(Algebraic in) {
+        return "";
     }
 
     @Override

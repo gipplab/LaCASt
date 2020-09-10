@@ -1,5 +1,37 @@
 [
     {
+        "name": "SIN_EQUALITY",
+        "DLMF": "4.21.2",
+        "LaTeX": "\\sin@{u + v}=\\sin@@{u}\\cos@@{v} + \\cos@@{u}\\sin@@{v}",
+        "Maple": "sin(u + v) = sin(u)*cos(v) + cos(u)*sin(v)",
+        "Mathematica": "Sin[u + v] == Sin[u]*Cos[v] + Cos[u]*Sin[v]",
+        "SymPy": "sin(u + v) == sin(u)*cos(v) + cos(u)*sin(v)"
+    },
+    {
+        "name": "TAN_EQUALITY",
+        "DLMF": "4.21.4",
+        "LaTeX": "\\tan@{u + v}=\\frac{\\tan@@{u} + \\tan@@{v}}{1 - \\tan@@{u}\\tan@@{v}}",
+        "Maple": "tan(u + v) = (tan(u) + tan(v))/(1 - tan(u)*tan(v))",
+        "Mathematica": "Tan[u + v] == Divide[Tan[u] + Tan[v], 1 - Tan[u]*Tan[v]]",
+        "SymPy": "tan(u + v) == (tan(u) + tan(v))/(1 - tan(u)*tan(v))"
+    },
+    {
+        "name": "COS_ADDITION",
+        "DLMF": "4.21.8",
+        "LaTeX": "\\cos@@{u}+\\cos@@{v}=2\\cos@{\\frac{u+v}{2}}\\cos@{\\frac{u-v}{2}}",
+        "Maple": "cos(u) + cos(v) = 2*cos((u + v)/(2))*cos((u - v)/(2))",
+        "Mathematica": "Cos[u] + Cos[v] == 2*Cos[Divide[u + v, 2]]*Cos[Divide[u - v, 2]]",
+        "SymPy": "cos(u) + cos(v) == 2*cos((u + v)/(2))*cos((u - v)/(2))"
+    },
+    {
+        "name": "SIN_COS_SQUARE",
+        "DLMF": "4.21.12",
+        "LaTeX": "\\sin^{2}@@{z}+\\cos^{2}@@{z}=1",
+        "Maple": "(sin(z))^(2) + (cos(z))^(2) = 1",
+        "Mathematica": "(Sin[z])^(2) + (Cos[z])^(2) == 1",
+        "SymPy": "(sin(z))**(2) + (cos(z))**(2) == 1"
+    },
+    {
         "name": "AIRY",
         "DLMF": "",
         "LaTeX": "\\AiryAi@{x}",
@@ -292,5 +324,11 @@
         "LaTeX": "\\Wronskian\\left\\{\\AiryAi@{z \\expe^{-2\\cpi \\tfrac{\\iunit}{3}}}, \\AiryAi@{z \\expe^{2\\cpi \\tfrac{\\iunit}{3}}}\\right\\}",
         "Maple": "(AiryAi(z*exp(- 2*Pi*(I)/(3))))*diff(AiryAi(z*exp(2*Pi*(I)/(3))), z)-diff(AiryAi(z*exp(- 2*Pi*(I)/(3))), z)*(AiryAi(z*exp(2*Pi*(I)/(3))))",
         "Mathematica": "Wronskian[{AiryAi[z*Exp[-2*Pi*Divide[I,3]]],AiryAi[z*Exp[2*Pi*Divide[I,3]]]},z]"
+    },
+    {
+        "name": "STRESS_TEST_QHYPERGEO_QPOCHHAMMER",
+        "DLMF": "17.9.16",
+        "LaTeX": "\\qgenhyperphi{8}{7}@@{a,qa^{\\frac{1}{2}},-qa^{\\frac{1}{2}},b,c,d,e,f}{a^{\\frac{1}{2}},-a^{\\frac{1}{2}},aq/b,aq/c,aq/d,aq/e,aq/f}{q}{\\frac{a^{2}q^{2}}{bcdef}}=\\frac{\\qmultiPochhammersym{aq,aq/(de),aq/(df),aq/(ef)}{q}{\\infty}}{\\qmultiPochhammersym{aq/d,aq/e,aq/f,aq/(def)}{q}{\\infty}}\\qgenhyperphi{4}{3}@@{aq/(bc),d,e,f}{aq/b,aq/c,def/a}{q}{q}+\\frac{\\qmultiPochhammersym{aq,aq/(bc),d,e,f,a^{2}q^{2}/(bdef),a^{2}q^{2}/(cdef)}{q}{\\infty}}{\\qmultiPochhammersym{aq/b,aq/c,aq/d,aq/e,aq/f,a^{2}q^{2}/(bcdef),def/(aq)}{q}{\\infty}}\\*\\qgenhyperphi{4}{3}@@{aq/(de),aq/(df),aq/(ef),a^{2}q^{2}/(bcdef)}{a^{2}q^{2}/(bdef),a^{2}q^{2}/(cdef),aq^{2}/(def)}{q}{q}",
+        "Mathematica": "QHypergeometricPFQ[{a,q*(a)^(Divide[1,2]),-q*(a)^(Divide[1,2]),b,c,d,e,f},{(a)^(Divide[1,2]),-(a)^(Divide[1,2]),a*q/b,a*q/c,a*q/d,a*q/e,a*q/f},q,Divide[(a)^(2)*(q)^(2),b*c*d*e*f]]==Divide[Product[QPochhammer[Part[{a*q,a*q/(d*e),a*q/(d*f),a*q/(e*f)},i],q,Infinity],{i,1,Length[{a*q,a*q/(d*e),a*q/(d*f),a*q/(e*f)}]}],Product[QPochhammer[Part[{a*q/d,a*q/e,a*q/f,a*q/(d*e*f)},i],q,Infinity],{i,1,Length[{a*q/d,a*q/e,a*q/f,a*q/(d*e*f)}]}]]*QHypergeometricPFQ[{a*q/(b*c),d,e,f},{a*q/b,a*q/c,d*e*f/a},q,q]+Divide[Product[QPochhammer[Part[{a*q,a*q/(b*c),d,e,f,(a)^(2)*(q)^(2)/(b*d*e*f),(a)^(2)*(q)^(2)/(c*d*e*f)},i],q,Infinity],{i,1,Length[{a*q,a*q/(b*c),d,e,f,(a)^(2)*(q)^(2)/(b*d*e*f),(a)^(2)*(q)^(2)/(c*d*e*f)}]}],Product[QPochhammer[Part[{a*q/b,a*q/c,a*q/d,a*q/e,a*q/f,(a)^(2)*(q)^(2)/(b*c*d*e*f),d*e*f/(a*q)},i],q,Infinity],{i,1,Length[{a*q/b,a*q/c,a*q/d,a*q/e,a*q/f,(a)^(2)*(q)^(2)/(b*c*d*e*f),d*e*f/(a*q)}]}]]*QHypergeometricPFQ[{a*q/(d*e),a*q/(d*f),a*q/(e*f),(a)^(2)*(q)^(2)/(b*c*d*e*f)},{(a)^(2)*(q)^(2)/(b*d*e*f),(a)^(2)*(q)^(2)/(c*d*e*f),a*(q)^(2)/(d*e*f)},q,q]"
     }
 ]

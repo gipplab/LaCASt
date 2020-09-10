@@ -4,6 +4,7 @@ import com.wolfram.jlink.Expr;
 import com.wolfram.jlink.ExprFormatException;
 import com.wolfram.jlink.KernelLink;
 import com.wolfram.jlink.MathLinkException;
+import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
@@ -91,6 +92,17 @@ public class MathematicaEngineCallTest {
         String fullForm = mi.convertToFullForm(JACOBIP);
         assertEquals(JACOBIP_FULL_FORM, fullForm, "Expected a different full form of JacobiP");
         System.out.println(fullForm);
+    }
+
+    @Test
+    public void conditionalTest() throws ComputerAlgebraSystemEngineException {
+        Expr expr = mi.enterCommand("ConditionalExpression[0, Re[z] > 0]");
+
+        assertEquals("ConditionalExpression", expr.head().toString());
+
+        Expr[] args = expr.args();
+        assertEquals("0", args[0].toString());
+        assertEquals("Greater[Re[z], 0]", args[1].toString());
     }
 
     @Test

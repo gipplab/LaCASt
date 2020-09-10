@@ -41,9 +41,10 @@ public class MathematicaConfig {
 //            System.setProperty("JD_LIBRARY_PATH", nativePath.toString());
 //            System.out.println("Set java.library.path: " + nativePath.toString());
 
-            Map<String,String> sysVars = getModifiableEnvironment();
-            sysVars.put("LD_LIBRARY_PATH", nativePath.toString());
-            System.out.println(nativePath.toString());
+            LOG.warn("Loading system variables on the fly is no longer supported. Define 'LD_LIBRARY_PATH' manually!");
+//            Map<String,String> sysVars = getModifiableEnvironment();
+//            sysVars.put("LD_LIBRARY_PATH", nativePath.toString());
+//            System.out.println(nativePath.toString());
 
             return mathPath;
         } catch (IOException e) {

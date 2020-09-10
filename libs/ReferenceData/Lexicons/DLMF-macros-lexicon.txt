@@ -847,6 +847,7 @@ Symbol: \ClebschGordan
   Feature Set: dlmf-macro
 	DLMF: \ClebschGordan{j_1}{m_1}{j_2}{m_2}{j_3}{-m_3}
 	DLMF-Link: dlmf.nist.gov/34.1#p4
+	Mathematica: ClebschGordan[{$0, $1}, {$2, $3}, {$4, $5}]
 	Meanings: Clebsch-Gordan coefficient
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -2116,6 +2117,7 @@ Symbol: \LaguerrepolyL
   Feature Set: dlmf-alternative-1
 	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Mathematica: LaguerreL[$1, $0, $2]
 	Meanings: Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -3304,6 +3306,7 @@ Symbol: \Wignersixjsym
   Feature Set: dlmf-macro
 	DLMF: \Wignersixjsym@@{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l_{3}}
 	DLMF-Link: dlmf.nist.gov/34.4#E1
+	Mathematica: SixJSymbol[{$0, $1, $2}, {$3, $4, $5}]
 	Meanings: 6j symbol
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -3314,6 +3317,7 @@ Symbol: \Wignerthreejsym
   Feature Set: dlmf-macro
 	DLMF: \Wignerthreejsym@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3}
 	DLMF-Link: dlmf.nist.gov/34.2#E4
+	Mathematica: ThreeJSymbol[{$0, $3}, {$1, $4}, {$3, $5}]
 	Meanings: 3j symbol
 	Number of Ats: 2
 	Number of Parameters: 0

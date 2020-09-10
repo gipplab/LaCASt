@@ -93,7 +93,8 @@ public class SymbolicConfig implements EvaluationConfig {
     }
 
     public String getExpectationValue(){
-        return SymbolicConfig.SymbolicProperties.KEY_EXPECT.value;
+        String val = SymbolicConfig.SymbolicProperties.KEY_EXPECT.value;
+        return val == null ? "0" : val;
     }
 
     @Override
@@ -125,8 +126,8 @@ public class SymbolicConfig implements EvaluationConfig {
         return SymbolicProperties.KEY_ASSUMPTION.value;
     }
 
-    public int getTimeout() {
-        return Integer.parseInt(SymbolicProperties.KEY_TIMEOUT.value);
+    public double getTimeout() {
+        return Double.parseDouble(SymbolicProperties.KEY_TIMEOUT.value);
     }
 
     private enum SymbolicProperties{

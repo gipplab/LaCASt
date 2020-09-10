@@ -78,6 +78,22 @@ class SimpleTranslationTests {
     }
 
     @Test
+    void wrongRankTest() {
+        String in = "rk(z)";
+        String out = slt.translate(in);
+        assertEquals("r*k*(z)", out);
+        System.out.println(slt.getInfoLogger());
+        assertTrue(slt.getInfoLogger().toString().contains("rk"));
+    }
+
+    @Test
+    void ignoreCalMacro() {
+        String in = "\\cal L";
+        String out = slt.translate(in);
+        assertEquals("L", out);
+    }
+
+    @Test
     void sinPower() {
         String in = "\\sin{x}^3";
         String eout = "(sin(x))^(3)";

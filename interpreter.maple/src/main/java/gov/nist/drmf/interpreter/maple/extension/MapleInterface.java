@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observer;
@@ -119,6 +120,18 @@ public class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
         try {
             return evaluate(command);
         } catch (MapleException me) {
+            throw new ComputerAlgebraSystemEngineException(me);
+        }
+    }
+
+    @Override
+    public void setGlobalAssumptions(String... assumptions) throws ComputerAlgebraSystemEngineException {
+        String cmd = String.join(", ", assumptions);
+        try {
+            evaluate("assume(" + cmd + ");");
+            LOG.info("Set global assumptions in Maple: " + Arrays.toString(assumptions));
+        } catch (MapleException me) {
+            LOG.error("Unable to set global assumptions for Maple: " + Arrays.toString(assumptions));
             throw new ComputerAlgebraSystemEngineException(me);
         }
     }
