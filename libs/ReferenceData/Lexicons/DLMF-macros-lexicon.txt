@@ -6941,6 +6941,7 @@ Symbol: \paraW
   Feature Set: dlmf-macro
 	DLMF: \paraW@{a}{x}
 	DLMF-Link: dlmf.nist.gov/12.14.i
+	Mathematica-Alternatives: Sqrt[(Sqrt[1+Exp[2*Pi*($0)]]-Exp[Pi*($0)])/2] * Exp[Divide[Pi*($0),4]] * ( Exp[I*(Pi/8 + Arg[GAMMA[1/2 + I*($0)]]/2)] * ParabolicCylinderD[- 1/2 - I*($0), $1 * Exp[-Divide[Pi*I,4]]] + Exp[-I*(Pi/8 + Arg[GAMMA[1/2 + I*($0)]]/2)] * ParabolicCylinderD[- 1/2 + I*($0), $1 * Exp[Divide[Pi*I,4]]] )
 	Meanings: Parabolic cylinder function W
 	Number of Ats: 1
 	Number of Parameters: 0
