@@ -6928,6 +6928,8 @@ Symbol: \paraV
 	DLMF-Link: dlmf.nist.gov/12.4#E2
 	Maple: CylinderV($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CylinderV
+	Mathematica-Alternatives: Divide[GAMMA[1/2 + $0], Pi]*(Sin[Pi*($0)] * ParabolicCylinderD[-($0) - 1/2, $1] + ParabolicCylinderD[-($0) - 1/2, -($1)])
+	Mathematica-Link: reference.wolfram.com/language/ref/Divide.html
 	Meanings: Parabolic cylinder function V
 	Number of Ats: 1
 	Number of Parameters: 0
