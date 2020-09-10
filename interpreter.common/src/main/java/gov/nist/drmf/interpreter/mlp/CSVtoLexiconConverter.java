@@ -219,6 +219,9 @@ public class CSVtoLexiconConverter {
                 input = scanner.nextLine();
             }
             System.out.println("You added: " + argumentList.toString());
+        } else if ( args.length == 1 && args[0].matches("--?[aA][lL]{2}") ) {
+            analyzeInput(argumentList, "-all");
+            args = null;
         }
 
         Path[] csvPaths = convertToPaths(argumentList, args);
