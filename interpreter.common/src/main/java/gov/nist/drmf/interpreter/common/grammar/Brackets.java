@@ -431,4 +431,11 @@ public enum Brackets {
                 bracket.equals(Brackets.abs_val_open) &&
                 currentOpenBracket.equals(Brackets.abs_val_open);
     }
+
+    public static boolean isOpenedSetBracket(Brackets bracket) {
+        return Brackets.left_latex_parenthesis.equals(bracket) ||
+                Brackets.left_latex_brackets.equals(bracket) ||
+                Brackets.left_parenthesis.equals(bracket) ||
+                Brackets.left_brackets.equals(bracket);
+    }
 }
