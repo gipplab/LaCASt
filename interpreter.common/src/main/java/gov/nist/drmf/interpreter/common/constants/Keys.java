@@ -73,7 +73,10 @@ public final class Keys {
             MLP_KEY_LOAD_PACKAGE    = "load-package",
             MLP_KEY_UNLOAD_PACKAGE  = "unload-package",
             MLP_KEY_SUPPRESS_OUTPUT = "suppress-output",
-            MLP_KEY_END_OF_LINE     = "end-of-line";
+            MLP_KEY_END_OF_LINE     = "end-of-line",
+            MLP_KEY_SET_PREFIX      = "set-",
+            MLP_KEY_SET_LEFT_PREFIX = "left-",
+            MLP_KEY_SET_RIGHT_PREFIX= "right-";
 
     public static final String
             MLP_KEY_EQ  = "equals",

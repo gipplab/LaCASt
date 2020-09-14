@@ -424,7 +424,15 @@ class SimpleTranslationTests {
     public void autoSetModeTest() {
         String input = "x \\in (1,2]";
         String output = slt.translate(input);
-        assertEquals("x in (1,2]", output);
+        assertEquals("1 < x <= 2", output);
+    }
+
+    @Test
+    @DLMF("4.23.21")
+    public void realWorldSetTest() {
+        String input = "x \\in (- \\infty, -1]";
+        String output = slt.translate(input);
+        assertEquals("- infinity < x <= - 1", output);
     }
 
     @Test

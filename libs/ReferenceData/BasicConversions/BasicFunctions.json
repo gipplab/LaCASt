@@ -153,28 +153,28 @@
       "SymPy": "limit($2, $0, $1, dir='+')"
     },
     "SetClosed": {
-      "MLP": "set-closed",
+      "MLP": "set-left-closed-right-closed",
       "LaTeX": "$0 \\in [$1, $2]",
       "Maple": "$1 <= $0 <= $2",
       "Mathematica": "$1 <= $0 <= $2",
       "SymPy": "$1 <= $0 <= $2"
     },
     "SetOpen": {
-      "MLP": "set-open",
+      "MLP": "set-left-open-right-open",
       "LaTeX": "$0 \\in ($1, $2)",
       "Maple": "$1 < $0 < $2",
       "Mathematica": "$1 < $0 < $2",
       "SymPy": "$1 < $0 < $2"
     },
     "SetLeftOpen": {
-      "MLP": "set-left-open",
+      "MLP": "set-left-open-right-closed",
       "LaTeX": "$0 \\in ($1, $2]",
       "Maple": "$1 < $0 <= $2",
       "Mathematica": "$1 < $0 <= $2",
       "SymPy": "$1 < $0 <= $2"
     },
     "SetRightClosed": {
-      "MLP": "set-right-open",
+      "MLP": "set-left-closed-right-open",
       "LaTeX": "$0 \\in [$1, $2)",
       "Maple": "$1 <= $0 < $2",
       "Mathematica": "$1 <= $0 < $2",

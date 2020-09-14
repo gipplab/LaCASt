@@ -37,11 +37,13 @@ public class MathTermTranslator extends AbstractListTranslator {
     private final TranslatedExpression localTranslations;
 
     private final SymbolTranslator sT;
+    private final BasicFunctionsTranslator bfT;
 
     public MathTermTranslator(AbstractTranslator superTranslator) {
         super(superTranslator);
         this.localTranslations = new TranslatedExpression();
         this.sT = getConfig().getSymbolTranslator();
+        this.bfT = getConfig().getBasicFunctionsTranslator();
     }
 
     @Override
@@ -190,6 +192,9 @@ public class MathTermTranslator extends AbstractListTranslator {
             case fence:
                 te = parseFences(term, following_exp);
                 break;
+            case relation:
+                te = parseRelation(term, following_exp);
+                break;
             default: // all other cases, try operation, sub-super-scripts and letters
                 te = broadcastOperationScriptLetter(tag, exp, following_exp);
         }
@@ -310,9 +315,6 @@ public class MathTermTranslator extends AbstractListTranslator {
             case non_allowed:
                 LOG.debug("Skip controlled space, such as \\!");
                 break;
-            case relation:
-                handleRelation(term);
-                break;
             default:
                 throw TranslationException.buildExceptionObj(
                         this,
@@ -385,16 +387,15 @@ public class MathTermTranslator extends AbstractListTranslator {
         return localTranslations;
     }
 
-    private void handleRelation(MathTerm term) {
+    private TranslatedExpression parseRelation(MathTerm term, List<PomTaggedExpression> followingExps) {
         String termText = term.getTermText();
 
         if ( termText.equals("\\in") ) {
-            LOG.debug("Identify '\\in', activate set mode.");
-            super.activateSetMode();
+            return handleSets(term, followingExps);
         }
 
         if ( termText.matches(Brackets.ABSOLUTE_VAL_TERM_TEXT_PATTERN) )
-            return;
+            return null;
 
         String translation = termText.equals("\\to") ?
                 translateToCommand() :
@@ -411,6 +412,79 @@ public class MathTermTranslator extends AbstractListTranslator {
 
         localTranslations.addTranslatedExpression(translation);
         getGlobalTranslationList().addTranslatedExpression(translation);
+        return localTranslations;
+    }
+
+    private TranslatedExpression handleSets(MathTerm term, List<PomTaggedExpression> followingExps) {
+        // first, what ever comes next, we expecting set-logic (i.e. mismatched parenthesis are allowed)
+        super.activateSetMode();
+
+        if ( followingExps == null || followingExps.isEmpty() ) {
+            throw TranslationException.buildException(
+                    this, "Expected set information after '\\in' but found no following expressions.",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT
+            );
+        }
+
+        String relationTranslation = sT.translate(term.getTermText());
+
+        PomTaggedExpression next = followingExps.get(0);
+        Brackets bracket = Brackets.getBracket(next);
+
+        if (bracket == null || !Brackets.isOpenedSetBracket(bracket)) {
+            // nothing special, just translate term and return it. Following expressions are handled by someone else
+            localTranslations.addTranslatedExpression(relationTranslation);
+            getGlobalTranslationList().addTranslatedExpression(relationTranslation);
+            return localTranslations;
+        } else if ( !bracket.opened ) {
+            throw TranslationException.buildExceptionObj(
+                    this, "Mismatch parenthesis. Closing parenthesis after '\\in' is not allowed.",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT, next.getRoot().getTermText()
+            );
+        } else if ( getGlobalTranslationList().getLength() < 1 ) {
+            throw TranslationException.buildExceptionObj(
+                    this, "No element specified in front of '\\in'.",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT, term.getTermText()
+            );
+        }
+
+        String firstArgument = getGlobalTranslationList().removeLastExpression();
+
+        // time to translate the sequence
+        followingExps.remove(0);
+        SequenceTranslator sequenceTranslator = new SequenceTranslator(this, bracket);
+        TranslatedExpression translatedExpression = sequenceTranslator.translate(followingExps);
+
+        // remove last translated expressions from global list
+        getGlobalTranslationList().removeLastNExps(translatedExpression.getLength());
+
+        String[] arguments = translatedExpression.getTranslatedExpression().split(",");
+        if ( arguments.length != 2 )
+            throw TranslationException.buildExceptionObj(
+                    this, "Expecting to arguments, separated by a comma, for an interval but got " + arguments.length,
+                    TranslationExceptionReason.INVALID_LATEX_INPUT, arguments
+            );
+
+        // ok we know its an open bracket and it is either ( or [
+        boolean leftOpen = bracket.symbol.endsWith("(");
+        boolean rightOpen = bracket.symbol.endsWith(")");
+
+        String mlpKey = Keys.MLP_KEY_SET_PREFIX;
+        mlpKey += Keys.MLP_KEY_SET_LEFT_PREFIX  + (leftOpen  ? "open" : "closed") + "-";
+        mlpKey += Keys.MLP_KEY_SET_RIGHT_PREFIX + (rightOpen ? "open" : "closed");
+
+        String intervalTranslation = bfT.translate(
+                new String[]{
+                        firstArgument.trim(),
+                        arguments[0].substring(1).trim(), // delete the open parenthesis
+                        arguments[1].substring(0, arguments[1].length()-1).trim() // delete the closed parenthesis
+                },
+                mlpKey
+        );
+
+        localTranslations.addTranslatedExpression(intervalTranslation);
+        getGlobalTranslationList().addTranslatedExpression(intervalTranslation);
+        return localTranslations;
     }
 
     private String translateToCommand() {
