@@ -5,6 +5,7 @@ import com.wolfram.jlink.MathLinkException;
 import gov.nist.drmf.interpreter.common.cas.GenericCommandBuilder;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
 import org.apache.logging.log4j.LogManager;
@@ -28,6 +29,8 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
     private int timeout = -1;
 
     private String globalAssumptions = "{}";
+
+    private double threshold = 0.001;
 
     /**
      * Mathematica Numerical Tests Workflow:
@@ -53,6 +56,10 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
     public MathematicaNumericalCalculator() {
         this.mathematicaInterface = MathematicaInterface.getInstance();
         this.miEquiChecker = mathematicaInterface.getEvaluationChecker();
+    }
+
+    public void setThreshold(double threshold) {
+        this.threshold = threshold;
     }
 
     private void clearVariables() {
@@ -118,7 +125,7 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
     @Override
     public String setConstraints(List<String> constraints) {
         String command = "Join[" +
-                    buildMathList(constraints) + ", " +
+                    Commands.FILTER_GLOBAL_ASSUMPTIONS.build(buildMathList(constraints), varName) + ", " +
                     Commands.FILTER_GLOBAL_ASSUMPTIONS.build(globalAssumptions, varName) +
                 "]";
 
@@ -178,9 +185,9 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
         try {
             String testCasesStr = mathematicaInterface.evaluate(testCasesName);
             LOG.trace("Test cases: " + testCasesStr);
-            LOG.debug("Sneak of test cases: " + testCasesStr.substring( 0, Math.min(100, testCasesStr.length()) ) + "...");
+            LOG.debug("Sneak of test cases: " + LogManipulator.shortenOutput(testCasesStr, 10));
 
-            String cmd = Commands.NUMERICAL_TEST.build(expression, testCasesName);
+            String cmd = Commands.NUMERICAL_TEST.build(expression, testCasesName, Double.toString(threshold));
             LOG.info("Compute numerical test for " + expression);
 
             Thread abortionThread = null;
@@ -200,8 +207,8 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
     @Override
     public ResultType getStatusOfResult(Expr results) throws ComputerAlgebraSystemEngineException {
         String resStr = results.toString();
-        LOG.info("Numerical test finished. Result: " + resStr.substring(0, Math.min(200, resStr.length())) + " ...");
-        return resStr.matches("\\{}") ? ResultType.SUCCESS : ResultType.FAILURE;
+        LOG.info("Numerical test finished. Result: " + LogManipulator.shortenOutput(resStr, 5));
+        return resStr.matches("\\{}|\\{0(?:.0)?[^\\d.]+}") ? ResultType.SUCCESS : ResultType.FAILURE;
     }
 
     @Override

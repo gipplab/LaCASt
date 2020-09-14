@@ -101,7 +101,8 @@ public class Case {
             String[] cons = metaData.getConstraints().getTexConstraints();
             cons = ae.translateEachConstraint(cons, label);
             return new LinkedList<>(Arrays.asList(cons));
-        } catch ( NullPointerException npe ){
+        } catch ( Error | Exception e ){
+            LOG.error("Unable to generate Constraints. Reason: " + e.getMessage());
             return new LinkedList<>();
         }
     }
@@ -139,9 +140,15 @@ public class Case {
 
     private boolean addZReplacement() {
         String tmp = LHS + RHS;
-        return tmp.contains("z") && (tmp.contains("x") || tmp.contains("y"));
+        Matcher z = Z_PATTERN.matcher(tmp);
+        Matcher x = X_PATTERN.matcher(tmp);
+        Matcher y = Y_PATTERN.matcher(tmp);
+
+        return z.find() && (x.find() || y.find());
     }
 
+    private static final Pattern Y_PATTERN = Pattern.compile("(?<!\\\\[A-Za-z]{0,30})x(.|$)");
+    private static final Pattern X_PATTERN = Pattern.compile("(?<!\\\\[A-Za-z]{0,30})y(.|$)");
     private static final Pattern Z_PATTERN = Pattern.compile("(?<!\\\\[A-Za-z]{0,30})z(.|$)");
 
     public Case replaceSymbolsUsed(SymbolDefinedLibrary library) {
