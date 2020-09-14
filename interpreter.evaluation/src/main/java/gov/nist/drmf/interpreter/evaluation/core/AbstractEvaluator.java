@@ -128,12 +128,6 @@ public abstract class AbstractEvaluator<T> {
         return output;
     }
 
-    public String shortenOutput(String msg) {
-        if ( msg.length() > DEFAULT_OUTPUT_LENGTH ) {
-            return msg.substring(0, DEFAULT_OUTPUT_LENGTH) + "...";
-        } else return msg;
-    }
-
     public void forceGC() throws ComputerAlgebraSystemEngineException {
         this.engine.forceGC();
     }

@@ -14,7 +14,7 @@ filterTestCases[ass_, tests_, max_] := Select[tests, ReplaceAll[And @@ ass, #]&,
 
 filterGlobalAssumptions[ass_, vars_] := Select[ass, MemberQ[vars, Part[Reduce`FreeVariables[#],1]]&]
 
-numericalAutoTest[expr_, tests_] :=
+numericalAutoTest[expr_, tests_, threshold_] :=
     Module[{results, output},
         results := N[ReplaceAll[expr, tests]];
         output := {};
@@ -22,7 +22,7 @@ numericalAutoTest[expr_, tests_] :=
             Module[{},
                 If[
                     Check[
-                        Abs[Part[results, i]] > 0.001
+                        Abs[Part[results, i]] > threshold
                     , True],
                     AppendTo[output, {Part[results, i], Part[tests, i]}]
                 ]

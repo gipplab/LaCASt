@@ -101,6 +101,18 @@ public class ConstraintsMatcherTests {
     }
 
     @Test
+    public void nonMatchTest() throws ParseException {
+        String blueprint = "var \\neq 0,1";
+        String constraint = "x\\neq 0";
+
+        MLPBlueprintTree bt = new MLPBlueprintTree(new String[]{"3/2"});
+        bt.setBlueprint(blueprint);
+
+        MLPBlueprintNode constraintTree = MLPBlueprintTree.parseTree(constraint);
+        assertFalse(bt.matches(constraintTree));
+    }
+
+    @Test
     public void noMatchTest() throws ParseException {
         String blueprint = "\\realpart{var} > 1";
         String constraint = "n = 1,2";

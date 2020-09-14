@@ -12,6 +12,7 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
 import gov.nist.drmf.interpreter.core.DLMFTranslator;
 import gov.nist.drmf.interpreter.evaluation.common.Case;
 import gov.nist.drmf.interpreter.evaluation.common.CaseAnalyzer;
@@ -257,17 +258,22 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         }
 
         String expression = null;
+        Constraints con = null;
         try {
             Status.STARTED_TEST_CASES.add();
 
-            Constraints con = c.getConstraintObject();
+            con = c.getConstraintObject();
             if (con != null) {
                 if (!con.specialValuesInfo().isEmpty()) {
                     LOG.info(con.specialValuesInfo());
                 }
                 LOG.info(con.constraintInfo());
             }
+        } catch ( Error | Exception te ) {
+            LOG.error("Error in translation of a constraint: " + te.toString());
+        }
 
+        try {
             expression = getTestedExpression(c);
 
             Status.SUCCESS_TRANS.add();
@@ -313,13 +319,13 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
                         break;
                     case FAILURE:
                         LOG.info("Test was NOT successful.");
-                        evaluation = shortenOutput(results.toString());
+                        evaluation = LogManipulator.shortenOutput(results.toString(), 2);
                         lineResult[c.getLine()].add(evaluation);
                         Status.FAILURE.add();
                         break;
                     case ERROR:
                         LOG.info("Test was NOT successful.");
-                        evaluation = shortenOutput(results.toString());
+                        evaluation = LogManipulator.shortenOutput(results.toString(), 2);
                         lineResult[c.getLine()].add(evaluation);
                         Status.ERROR.add();
                         break;
@@ -470,6 +476,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         DLMFTranslator dlmfTranslator = new DLMFTranslator(Keys.KEY_MATHEMATICA);
         MathematicaInterface mathematicaInterface = MathematicaInterface.getInstance();
         MathematicaNumericalCalculator numericalCalculator = new MathematicaNumericalCalculator();
+        numericalCalculator.setThreshold(config.getThreshold());
 
         String script = ProcedureLoader.getProcedure(GlobalPaths.PATH_MATHEMATICA_NUMERICAL_PROCEDURES);
 

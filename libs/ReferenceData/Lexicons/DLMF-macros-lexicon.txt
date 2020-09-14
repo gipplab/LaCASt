@@ -1883,6 +1883,8 @@ Symbol: \Jacobisym
   Feature Set: dlmf-macro
 	DLMF: \Jacobisym{n}{P}
 	DLMF-Link: dlmf.nist.gov/27.9#p3
+	Maple: JacobiSymbol($0, $1)
+	Maple-Package: NumberTheory,JacobiSymbol
 	Meanings: Jacobi symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -2044,8 +2046,9 @@ Symbol: \Kroneckerdelta
   Feature Set: dlmf-macro
 	DLMF: \Kroneckerdelta{j}{k}
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r4
-	Maple-Alternatives: KroneckerDelta[$0, $1]
+	Maple: KroneckerDelta[$0, $1]
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/KroneckerDelta
+	Maple-Package: Physics,KroneckerDelta
 	Mathematica: KroneckerDelta[$0, $1]
 	Meanings: Kronecker delta
 	Number of Ats: 0
@@ -2353,8 +2356,8 @@ Symbol: \Legendresym
   Feature Set: dlmf-macro
 	DLMF: \Legendresym{n}{p}
 	DLMF-Link: dlmf.nist.gov/27.9
-	Maple-Alternatives: legendre($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory%2Flegendre%28deprecated%29
+	Maple: LegendreSymbol($0, $1)
+	Maple-Package: NumberTheory,LegendreSymbol
 	Meanings: Legendre symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -2381,6 +2384,7 @@ Symbol: \LeviCivitasym
 	DLMF-Link: dlmf.nist.gov/1.6#E14
 	Maple-Alternatives: LeviCivita[$0, $1, $2]
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/LeviCivita
+	Maple-Package: Physics,LeviCivita
 	Mathematica-Alternatives: Part[LeviCivitaTensor[3,List], $0, $1, $2]
 	Meanings: Levi-Civita symbol
 	Number of Ats: 0
@@ -2717,8 +2721,9 @@ Symbol: \NeumannFactor
   Feature Set: dlmf-macro
 	DLMF: \NeumannFactor{n}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:NeumannFactor
-	Maple-Alternatives: 2-KroneckerDelta[$0, 0]
+	Maple: 2-KroneckerDelta[$0, 0]
 	Maple-Link: not defined
+	Maple-Package: Physics,KroneckerDelta
 	Meanings: Neumann factor
 	Number of Ats: 0
 	Number of Parameters: 0
