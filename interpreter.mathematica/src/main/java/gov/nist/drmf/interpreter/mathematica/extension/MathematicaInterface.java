@@ -4,6 +4,7 @@ import com.wolfram.jlink.Expr;
 import com.wolfram.jlink.KernelLink;
 import com.wolfram.jlink.MathLinkException;
 import com.wolfram.jlink.MathLinkFactory;
+import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
@@ -193,5 +194,21 @@ public class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> 
         } catch (MathLinkException | NumberFormatException e) {
             throw new ComputerAlgebraSystemEngineException(e);
         }
+    }
+
+    public static Thread getAbortionThread(IAbortEvaluator<Expr> simplifier, int timeout) {
+        return new Thread(() -> {
+            boolean interrupted = false;
+            try {
+                Thread.sleep(timeout);
+            } catch ( InterruptedException ie ) {
+                LOG.debug("Interrupted, no abortion necessary.");
+                interrupted = true;
+            }
+
+            if ( !interrupted ) {
+                simplifier.abort();
+            }
+        });
     }
 }

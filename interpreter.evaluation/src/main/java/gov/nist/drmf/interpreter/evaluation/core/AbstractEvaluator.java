@@ -129,11 +129,9 @@ public abstract class AbstractEvaluator<T> {
     }
 
     public String shortenOutput(String msg) {
-        return msg;
-        // TODO maybe flag what we should do
-//        if ( msg.length() > DEFAULT_OUTPUT_LENGTH ) {
-//            return msg.substring(0, DEFAULT_OUTPUT_LENGTH) + "...";
-//        } else return msg;
+        if ( msg.length() > DEFAULT_OUTPUT_LENGTH ) {
+            return msg.substring(0, DEFAULT_OUTPUT_LENGTH) + "...";
+        } else return msg;
     }
 
     public void forceGC() throws ComputerAlgebraSystemEngineException {
@@ -208,6 +206,13 @@ public abstract class AbstractEvaluator<T> {
                         if ( m.find() )
                             labelLib.put(currLine[0], m.group(1));
                     }) // line counter
+                    .peek(l -> {
+                        try {
+                            CaseAnalyzer.analyzeLine(l, currLine[0], symbolDefinitionLibrary);
+                        } catch (Error | Exception e) {
+                            // just sneak into each line, to load all symbol definitions...
+                        }
+                    })
                     .filter(l -> start <= currLine[0] && currLine[0] < limit) // filter by limits
                     .filter(l -> {
                         boolean skip = skipLineIDs.containsKey(currLine[0]);
@@ -309,12 +314,7 @@ public abstract class AbstractEvaluator<T> {
             }
 
             if ( !interrupted ) {
-                try {
-                    LOG.warn("Abort current evaluation!");
-                    evaluator.abort();
-                } catch ( ComputerAlgebraSystemEngineException casee ) {
-                    LOG.error("Cannot abort computation.");
-                }
+                evaluator.abort();
             }
         });
     }
@@ -394,7 +394,7 @@ public abstract class AbstractEvaluator<T> {
             LinkedList<String> lineResult = new LinkedList<>();
             for ( String s : tmp ) {
                 if (    !s.contains("Ignore") &&
-                        !s.contains("Skipped - (user defined)") &&
+                        !s.contains("Skipped - user defined") &&
                         !s.contains("Skipped - Line is a definition")
                 ) lineResult.add(s);
             }

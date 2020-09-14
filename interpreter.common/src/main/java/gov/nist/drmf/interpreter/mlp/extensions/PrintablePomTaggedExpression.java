@@ -381,6 +381,12 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
         return (List<PrintablePomTaggedExpression>)(List<?>) super.getComponents();
     }
 
+    void makeBalancedTexString() {
+        if ( caption.matches("^\\s*\\{.*}\\s*$") ) return;
+        caption = "{" + caption + "}";
+        populatingStringChanges();
+    }
+
     /**
      * Should be not misunderstood with {@link #getTextTokens()}! This provides access to the actual
      * LaTeX string that generated this parse tree. The whole idea of implementing a printable version

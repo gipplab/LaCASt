@@ -15,8 +15,6 @@ public interface ICASEngineSymbolicEvaluator<T> extends Observer, IAbortEvaluato
 
     T simplify( String expr, String assumption, Set<String> requiredPackages ) throws ComputerAlgebraSystemEngineException;
 
-    void setTimeout(double timeoutInSeconds);
-
     boolean isAsExpected(T in, double expect);
 
     boolean isConditionallyExpected(T in, double expect);
@@ -25,10 +23,6 @@ public interface ICASEngineSymbolicEvaluator<T> extends Observer, IAbortEvaluato
 
     @Override
     default void update(Observable o, Object arg) {
-        try {
-            abort();
-        } catch ( ComputerAlgebraSystemEngineException casee ) {
-            casee.printStackTrace();
-        }
+        abort();
     }
 }

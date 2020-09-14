@@ -213,6 +213,13 @@ public class MathTermTranslator extends AbstractListTranslator {
                 te = sssT.translate(exp, following_exp);
                 break;
             case operator:
+                if ( exp.getRoot().getTermText().startsWith("\\") ) {
+                    throw TranslationException.buildExceptionObj(
+                            this, "No translation available for the operator " + exp.getRoot().getTermText(),
+                            TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                            exp.getRoot().getTermText()
+                    );
+                }
             case dlmf_macro:
             case command:
             case alphanumeric:
@@ -380,6 +387,12 @@ public class MathTermTranslator extends AbstractListTranslator {
 
     private void handleRelation(MathTerm term) {
         String termText = term.getTermText();
+
+        if ( termText.equals("\\in") ) {
+            LOG.debug("Identify '\\in', activate set mode.");
+            super.activateSetMode();
+        }
+
         if ( termText.matches(Brackets.ABSOLUTE_VAL_TERM_TEXT_PATTERN) )
             return;
 

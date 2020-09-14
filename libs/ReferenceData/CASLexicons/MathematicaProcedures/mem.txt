@@ -1,0 +1,19 @@
+# Contains old functions that were updated or deleted
+
+numericalAutoTest[expr_, tests_] :=
+    Module[{results, output},
+        results := N[ReplaceAll[expr, tests]];
+        output := {};
+        Do[
+            Module[{},
+                If[
+                    Check[Or[
+                        And[BooleanQ[Part[results, i], Not[Part[results, i]]]]
+                        Not[NumericQ[Part[results, i]]],
+                        Abs[Part[results, i]] > 0.001
+                    ], True],
+                    AppendTo[output, {Part[results, i], Part[tests, i]}]
+                ]
+            ], {i, Length[tests]}];
+        Return[output]
+    ]

@@ -2,6 +2,8 @@ package gov.nist.drmf.interpreter.common.cas;
 
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Observer;
@@ -10,6 +12,8 @@ import java.util.Observer;
  * @author Andre Greiner-Petter
  */
 public interface ICASEngineNumericalEvaluator<T> extends Observer, IAbortEvaluator<T> {
+    static final Logger LOG = LogManager.getLogger(ICASEngineNumericalEvaluator.class.getName());
+
     /**
      * Stores the variables of the given expression and returns the
      * name of the variable that stores the information.
@@ -65,6 +69,10 @@ public interface ICASEngineNumericalEvaluator<T> extends Observer, IAbortEvaluat
     ) throws ComputerAlgebraSystemEngineException;
 
     ResultType getStatusOfResult(T results) throws ComputerAlgebraSystemEngineException;
+
+    default void setGlobalAssumptions(List<String> assumptions){
+        LOG.warn("Ignoring global assumptions. Overwrite setGlobalAssumptions if you wanna use them!");
+    };
 
     /**
      * In Maple its evalf( input );

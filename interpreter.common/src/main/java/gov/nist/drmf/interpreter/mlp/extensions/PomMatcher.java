@@ -180,13 +180,13 @@ public class PomMatcher {
         while ( find() ) {
             String replaced = PomMatcherUtility.fillPatterns(expression, groups());
             PrintablePomTaggedExpression p = matcher.getMLPWrapperInstance().parse(replaced);
-            if ( PomTaggedExpressionUtility.isSequence(p) ) {
-                replacePreviousHit(p.getPrintableComponents());
-            } else {
+//            if ( PomTaggedExpressionUtility.isSequence(p) ) {
+//                replacePreviousHit(p.getPrintableComponents());
+//            } else {
                 LinkedList<PrintablePomTaggedExpression> tmp = new LinkedList<>();
                 tmp.add(p);
                 replacePreviousHit(tmp);
-            }
+//            }
         }
         return copy;
     }
@@ -211,18 +211,25 @@ public class PomMatcher {
             throw new IllegalStateException("No previous hit recorded!");
         } else if ( wasReplaced ) return copy;
 
+        boolean wasBalanced = latestDepthExpression.currentReferenceNode.getTexString().matches("^\\s*\\{.+}\\s*$");
+        if ( wasBalanced && replacement.size() == 1 ) {
+            PrintablePomTaggedExpression ppte = replacement.get(0);
+            ppte.makeBalancedTexString();
+        }
+
         PomTaggedExpression parent = latestDepthExpression.currentReferenceNode.getParent();
         if ( parent == null ) {
             // essentially means, that the currentMatchReference is the root, which means we replace the entire
             // expression by a new one
             wasReplaced = true;
-            if ( replacement.isEmpty() ) return FakeMLPGenerator.generateEmptySequencePPTE();
-            else if ( replacement.size() == 1 ) return replacement.get(0);
+            if ( replacement.isEmpty() ) copy = FakeMLPGenerator.generateEmptySequencePPTE();
+            else if ( replacement.size() == 1 ) copy = replacement.get(0);
             else {
                 PrintablePomTaggedExpression r = FakeMLPGenerator.generateEmptySequencePPTE();
                 replacement.forEach( r::addComponent );
-                return r;
+                copy = r;
             }
+            return copy;
         }
 
         // clear the existing children

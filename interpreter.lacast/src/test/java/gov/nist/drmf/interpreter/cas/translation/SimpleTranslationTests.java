@@ -87,6 +87,12 @@ class SimpleTranslationTests {
     }
 
     @Test
+    void unableToTranslateNablaTest() {
+        String in = "\\nabla(z)";
+        assertThrows(TranslationException.class, () -> slt.translate(in));
+    }
+
+    @Test
     void ignoreCalMacro() {
         String in = "\\cal L";
         String out = slt.translate(in);
@@ -412,6 +418,13 @@ class SimpleTranslationTests {
         PomTaggedExpression pte = stripOfDLMFInfo(input);
         TranslatedExpression trans = slt.translate(pte);
         assertEquals("cos(x)", trans.toString());
+    }
+
+    @Test
+    public void autoSetModeTest() {
+        String input = "x \\in (1,2]";
+        String output = slt.translate(input);
+        assertEquals("x in (1,2]", output);
     }
 
     @Test

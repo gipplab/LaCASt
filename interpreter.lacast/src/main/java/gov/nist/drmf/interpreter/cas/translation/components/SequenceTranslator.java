@@ -48,8 +48,6 @@ public class SequenceTranslator extends AbstractListTranslator {
     // the open bracket if needed
     private Brackets openBracket;
 
-    private boolean setMode = false;
-
     private final TranslatedExpression localTranslations;
 
     private final String MULTIPLY;
@@ -79,11 +77,6 @@ public class SequenceTranslator extends AbstractListTranslator {
     public SequenceTranslator(AbstractTranslator superTranslator, Brackets openBracket) {
         this(superTranslator);
         this.openBracket = openBracket;
-    }
-
-    public SequenceTranslator(AbstractTranslator superTranslator, Brackets openBracket, boolean setMode) {
-        this(superTranslator, openBracket);
-        this.setMode = setMode;
     }
 
     @Override
@@ -214,7 +207,7 @@ public class SequenceTranslator extends AbstractListTranslator {
     }
 
     private boolean bracketMatchOrSetMode(Brackets bracket) {
-        return openBracket.counterpart.equals(bracket.symbol) || setMode;
+        return openBracket.counterpart.equals(bracket.symbol) || super.isSetMode();
     }
 
     /**
@@ -239,7 +232,7 @@ public class SequenceTranslator extends AbstractListTranslator {
         // bracket cannot be null, because we checked the tag of the term before
         if (bracket.opened) {
             // create a new SequenceTranslator (2nd kind)
-            SequenceTranslator sp = new SequenceTranslator(super.getSuperTranslator(), bracket, setMode);
+            SequenceTranslator sp = new SequenceTranslator(super.getSuperTranslator(), bracket);
             // translate the following expressions
             localTranslations.addTranslatedExpression(sp.translate(followingExp));
             return null;
@@ -274,7 +267,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                     },
                     Keys.KEY_ABSOLUTE_VALUE
             );
-        } else if (setMode) { // in set mode, both parenthesis may not match!
+        } else if (super.isSetMode()) { // in set mode, both parenthesis may not match!
             seq = openBracket.getAppropriateString() + localTranslations.removeLastExpression() + bracket.getAppropriateString();
         } else { // otherwise, parenthesis must match each other, so close as it opened
             seq = openBracket.getAppropriateString() + localTranslations.removeLastExpression() + openBracket.getCounterPart().getAppropriateString();

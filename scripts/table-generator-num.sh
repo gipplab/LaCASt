@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-BASEPATH="misc/Results"
+BASEPATH="/home/andreg-p/data/Howard/Results"
 MATHBASE="$BASEPATH/MathematicaSymbolic"
 MATHP="$BASEPATH/MathematicaNumeric"
 
@@ -22,9 +22,15 @@ for FILE in $FILES; do
 
   # SUCCESS: 26, SUCCESS_SYMB: 26, SUCCESS_TRANS: 103, FAILURE: 77, STARTED_TEST_CASES: 229, SKIPPED: 17, DEFINITIONS: 41, IGNORE: 400, MISSING: 103, ERROR: 23
   # Overall: [SUCCESS: 18, FAILURE: 48, LIMIT_SKIPS: 2, TESTED: 77, ERROR: 9]
+  ####### NEW ######
+  # Overall: [TOTAL: 406, SKIPPED: 373, DEFINITIONS: 0, STARTED_TEST_CASES: 33, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 33, SUCCESS_SYMB: 0, SUCCESS_NUM: 11, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 18, ABORTED: 4, ERROR: 0] for test expression: (#LHS)-(#RHS)
+  
   IFS=','
-  read -r -a arrTrans <<< $(gawk 'match($0, /.*SYMB: ([0-9]+),.*TRANS: ([0-9]+).*/, arry) {print arry[1]","arry[2]}' $refF)
-  read -r -a arrMath <<< $(gawk 'match($0, /.*SUCCESS: ([0-9]+),.*FAILURE: ([0-9]+),.*TESTED: ([0-9]+).*/, arry) {print arry[1]","arry[2]","arry[3]}' $FILE)
+  #read -r -a arrTrans <<< $(gawk 'match($0, /.*SYMB: ([0-9]+),.*TRANS: ([0-9]+).*/, arry) {print arry[1]","arry[2]}' $refF)
+  #read -r -a arrMath <<< $(gawk 'match($0, /.*SUCCESS: ([0-9]+),.*FAILURE: ([0-9]+),.*TESTED: ([0-9]+).*/, arry) {print arry[1]","arry[2]","arry[3]}' $FILE)
+  
+  read -r -a arrTrans <<< $(gawk 'match($0, /.*SUCCESS_TRANS: ([0-9]+),.*SUCCESS_SYMB: ([0-9]+).*/, arry) {print arry[2]","arry[1]}' $refF)
+  read -r -a arrMath <<< $(gawk 'match($0, /.*STARTED_TEST_CASES: ([0-9]+),.*SUCCESS_NUM: ([0-9]+),.*FAILURE: ([0-9]+).*/, arry) {print arry[2]","arry[3]","arry[1]}' $FILE)
 
   symFAIL="${arrMath[2]}"
   avgSYMSUCC=$(bc <<< "scale=2; 100*${arrTrans[0]}/${arrTrans[1]}")

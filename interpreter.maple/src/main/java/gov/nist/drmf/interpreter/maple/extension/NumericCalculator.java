@@ -36,7 +36,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     private boolean conVarSet = false;
     private boolean specVarSet = false;
 
-    private int timeLimit = -1;
+    private double timeLimit = -1;
     private boolean timedOutBySetup = false;
 
     public NumericCalculator() {
@@ -44,7 +44,8 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
         commandsList = new StringBuffer();
     }
 
-    public void setTimeLimit(int timeLimit) {
+    @Override
+    public void setTimeout(double timeLimit) {
         this.timeLimit = timeLimit;
     }
 
@@ -73,7 +74,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
                 .append(":").append(NL);
     }
 
-    private void tryTimeOutExpression(StringBuffer sb, int timeout, String expression) {
+    private void tryTimeOutExpression(StringBuffer sb, double timeout, String expression) {
         sb.append(testExpression)
                 .append(" := try timelimit(")
                 .append(timeout).append(", ").append(expression)

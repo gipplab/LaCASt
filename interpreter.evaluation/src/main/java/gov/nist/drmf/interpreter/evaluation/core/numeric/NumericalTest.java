@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.evaluation.core.numeric;
 import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
 import gov.nist.drmf.interpreter.evaluation.common.Case;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**

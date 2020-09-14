@@ -26,4 +26,11 @@ public class MLPWrapperTest {
         MLPWrapper.normalize(ppte);
         assertEquals("(x_n^{1+x})", ppte.getTexString());
     }
+
+    @Test
+    public void paraTest() throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parseRaw("w=\\ifrac{(1-x^{2})}{\\Delta({q,p})}");
+        MLPWrapper.normalize(ppte);
+        assertEquals("w=\\ifrac{(1-x^{2})}{\\Delta({q,p})}", ppte.getTexString());
+    }
 }

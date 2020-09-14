@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-BASEPATH="misc/Results"
+BASEPATH="/home/andreg-p/data/Howard/Results"
 SYMBOLIC="$BASEPATH/MathematicaSymbolic"
 BASEOLDT="$BASEPATH/OldTrans"
 
@@ -24,9 +24,12 @@ for FILE in $FILES; do
   oldT="$BASEOLDT/$num-$id-symbolic.txt"
 
   # SUCCESS: 26, SUCCESS_SYMB: 26, SUCCESS_TRANS: 103, FAILURE: 77, STARTED_TEST_CASES: 229, SKIPPED: 17, DEFINITIONS: 41, IGNORE: 400, MISSING: 103, ERROR: 23
+  # TOTAL: 688, SKIPPED: 414, DEFINITIONS: 40, STARTED_TEST_CASES: 234, ERROR_TRANS: 51, MISSING: 70, SUCCESS_TRANS: 113, SUCCESS_SYMB: 30, SUCCESS_NUM: 0, SUCCESS_UNDER_EXTRA_CONDITION: 1, FAILURE: 72, ABORTED: 10, ERROR: 0
   IFS=','
-  read -r -a arrMath <<< $(gawk 'match($0, /.*SYMB: ([0-9]+),.*TRANS: ([0-9]+),.*FAILURE: ([0-9]+),.*CASES: ([0-9]+),.*MISSING: ([0-9]+).*/, arry) {print arry[1]","arry[2]","arry[3]","arry[4]","arry[5]}' $FILE)
-  read -r -a arrMaple <<< $(gawk 'match($0, /.*SYMB: ([0-9]+),.*TRANS: ([0-9]+),.*FAILURE: ([0-9]+),.*CASES: ([0-9]+),.*MISSING: ([0-9]+).*/, arry) {print arry[1]","arry[2]","arry[3]","arry[4]","arry[5]}' $mapleF)
+  #read -r -a arrMath <<< $(gawk 'match($0, /.*SYMB: ([0-9]+),.*TRANS: ([0-9]+),.*FAILURE: ([0-9]+),.*CASES: ([0-9]+),.*MISSING: ([0-9]+).*/, arry) {print arry[1]","arry[2]","arry[3]","arry[4]","arry[5]}' $FILE)
+  read -r -a arrMath <<< $(gawk 'match($0, /.*STARTED_TEST_CASES: ([0-9]+),.*MISSING: ([0-9]+),.*SUCCESS_TRANS: ([0-9]+),.*SUCCESS_SYMB: ([0-9]+),.*SUCCESS_UNDER_EXTRA_CONDITION: ([0-9]+).*,.*FAILURE: ([0-9]+).*/, arry) {print (arry[4]+arry[5])","arry[3]","arry[6]","arry[1]","arry[2]}' $FILE)
+  #read -r -a arrMaple <<< $(gawk 'match($0, /.*SYMB: ([0-9]+),.*TRANS: ([0-9]+),.*FAILURE: ([0-9]+),.*CASES: ([0-9]+),.*MISSING: ([0-9]+).*/, arry) {print arry[1]","arry[2]","arry[3]","arry[4]","arry[5]}' $mapleF)
+  read -r -a arrMaple <<< $(gawk 'match($0, /.*STARTED_TEST_CASES: ([0-9]+),.*MISSING: ([0-9]+),.*SUCCESS_TRANS: ([0-9]+),.*SUCCESS_SYMB: ([0-9]+),.*SUCCESS_UNDER_EXTRA_CONDITION: ([0-9]+).*,.*FAILURE: ([0-9]+).*/, arry) {print (arry[4]+arry[5])","arry[3]","arry[6]","arry[1]","arry[2]}' $mapleF)
   read -r -a oldTrans <<< $(gawk 'match($0, /.*TRANS: ([0-9]+).*/, arry) {print arry[1]}' $oldT)
 
   avgOT=$(bc <<< "scale=2; 100*${oldTrans}/${arrMath[3]}")
