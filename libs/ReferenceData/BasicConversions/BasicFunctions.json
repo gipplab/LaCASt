@@ -152,6 +152,34 @@
       "Mathematica": "Limit[$2, $0 -> $1, Direction -> \"FromAbove\"]",
       "SymPy": "limit($2, $0, $1, dir='+')"
     },
+    "SetClosed": {
+      "MLP": "set-closed",
+      "LaTeX": "$0 \\in [$1, $2]",
+      "Maple": "$1 <= $0 <= $2",
+      "Mathematica": "$1 <= $0 <= $2",
+      "SymPy": "$1 <= $0 <= $2"
+    },
+    "SetOpen": {
+      "MLP": "set-open",
+      "LaTeX": "$0 \\in ($1, $2)",
+      "Maple": "$1 < $0 < $2",
+      "Mathematica": "$1 < $0 < $2",
+      "SymPy": "$1 < $0 < $2"
+    },
+    "SetLeftOpen": {
+      "MLP": "set-left-open",
+      "LaTeX": "$0 \\in ($1, $2]",
+      "Maple": "$1 < $0 <= $2",
+      "Mathematica": "$1 < $0 <= $2",
+      "SymPy": "$1 < $0 <= $2"
+    },
+    "SetRightClosed": {
+      "MLP": "set-right-open",
+      "LaTeX": "$0 \\in [$1, $2)",
+      "Maple": "$1 <= $0 < $2",
+      "Mathematica": "$1 <= $0 < $2",
+      "SymPy": "$1 <= $0 < $2"
+    },
     "LoadPackage": {
       "MLP": "load-package",
       "LaTeX": "",
