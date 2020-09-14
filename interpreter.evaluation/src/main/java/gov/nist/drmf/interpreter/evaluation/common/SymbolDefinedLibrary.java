@@ -22,6 +22,11 @@ public class SymbolDefinedLibrary {
         library.put(normID, sd);
     }
 
+    public void remove(String id) {
+        String normID = SymbolDefinedLibrary.clipID(id);
+        library.remove(normID);
+    }
+
     public SymbolTag getSymbolDefinition( String id ) {
         String normID = SymbolDefinedLibrary.clipID(id);
         return library.get(normID);

@@ -90,7 +90,7 @@ public class MathematicaSimplifier implements ICASEngineSymbolicEvaluator<Expr> 
             Expr res = null;
             Thread abortionThread = null;
             if ( timeout > 0 ) {
-                abortionThread = getAbortionThread(this, timeout);
+                abortionThread = MathematicaInterface.getAbortionThread(this, timeout);
                 abortionThread.start();
             }
             if ( assumption == null )
@@ -102,22 +102,6 @@ public class MathematicaSimplifier implements ICASEngineSymbolicEvaluator<Expr> 
         } catch (MathLinkException e) {
             throw new ComputerAlgebraSystemEngineException(e);
         }
-    }
-
-    private static Thread getAbortionThread(MathematicaSimplifier simplifier, int timeout) {
-        return new Thread(() -> {
-            boolean interrupted = false;
-            try {
-                Thread.sleep(timeout);
-            } catch ( InterruptedException ie ) {
-                LOG.debug("Interrupted, no abortion necessary.");
-                interrupted = true;
-            }
-
-            if ( !interrupted ) {
-                simplifier.abort();
-            }
-        });
     }
 
     @Override

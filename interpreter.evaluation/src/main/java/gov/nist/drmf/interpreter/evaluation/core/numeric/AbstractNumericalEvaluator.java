@@ -35,6 +35,10 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
         this.numericalEvaluator = numericalEvaluator;
     }
 
+    public void setGlobalAssumptions(List<String> globalAssumptions) {
+        numericalEvaluator.setGlobalAssumptions(globalAssumptions);
+    }
+
     public void setUpScripts(String... scripts) throws ComputerAlgebraSystemEngineException {
         this.scripts = scripts;
         reloadScripts();
@@ -78,32 +82,32 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
                 test.getMaxCombis()
         );
 
-        Thread abortThread = null;
-        if ( !test.skipClassicAbortion() ) {
-            abortThread = getAbortionThread(numericalEvaluator, getTimeoutSeconds()*2);
-            abortThread.start();
-        }
+//        Thread abortThread = null;
+//        if ( !test.skipClassicAbortion() ) {
+//            abortThread = getAbortionThread(numericalEvaluator, getTimeoutSeconds()*2);
+//            abortThread.start();
+//        }
 
         // perform the test
-        T res = numericalEvaluator.performNumericalTests(
+        return numericalEvaluator.performNumericalTests(
                 test.getTestExpression(),
                 testValuesN,
                 test.getPostProcessingMethodName(),
                 test.getPrecision()
         );
 
-        if ( abortThread != null ) abortThread.interrupt();
-        return res;
+//        if ( abortThread != null ) abortThread.interrupt();
+//        return res;
     }
 
     public boolean isAbortedResult(T result) {
         return numericalEvaluator.wasAborted(result);
     }
 
-    @Override
-    public String getOverviewString() {
-        return Status.buildNumericalString();
-    }
+//    @Override
+//    public String getOverviewString() {
+//        return Status.buildNumericalString();
+//    }
 
     public ICASEngineNumericalEvaluator.ResultType testResult(T results) throws ComputerAlgebraSystemEngineException {
         return numericalEvaluator.getStatusOfResult(results);

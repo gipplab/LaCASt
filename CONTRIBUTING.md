@@ -368,7 +368,7 @@ find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*SUCCESS_SYMB: (
 find . -type f | sort | xargs -n 1 gawk 'match($0, /.*SUCCESS: ([0-9]+),.*FAILURE: ([0-9]+),.*TESTED: ([0-9]+),.*/, arr) {success=arr[1]; fail=arr[2]; tested=arr[3]; avg=arr[1]/arr[3]}; END {print FILENAME"\t"tested"\t"success"\t"avg"\t"fail}'
 find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*SUCCESS_SYMB: ([0-9]+),.*TRANS: ([0-9]+),.*CASES: ([0-9]+),.*MISSING: ([0-9]+),.*/, arr) {success=arr[1]; cases=arr[3]; trans=arr[2]; transavg=arr[2]*100/arr[3]; succavg=arr[1]/arr[2]; miss=arr[4];}; END {printf("%3d & (%.1f%)\n", trans, transavg)}'
 
-find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*STARTED_TEST_CASES: ([0-9]+),.*MISSING: ([0-9]+),.*SUCCESS_TRANS: ([0-9]+),.*SUCCESS_SYMB: ([0-9]+),.*/, arr) {success=arr[4]; cases=arr[1]; trans=arr[3]; miss=arr[2]; transavg=trans/cases; succavg=success/trans;}; END {print FILENAME"\t"cases"\t"trans"\t"transavg"\t"miss"\t"success"\t"succavg}'
+find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*STARTED_TEST_CASES: ([0-9]+),.*MISSING: ([0-9]+),.*SUCCESS_TRANS: ([0-9]+),.*SUCCESS_SYMB: ([0-9]+),.*SUCCESS_UNDER_EXTRA_CONDITION: ([0-9]+),.*/, arr) {success=arr[4]+arr[5]; cases=arr[1]; trans=arr[3]; miss=arr[2]; transavg=trans/cases; succavg=success/trans;}; END {print FILENAME"\t"cases"\t"trans"\t"transavg"\t"miss"\t"success"\t"succavg}'
 
 ```
 

@@ -117,7 +117,11 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         if ( superTranslator.infoLogger == null ) {
             superTranslator.infoLogger = new InformationLogger();
         }
+
         this.infoLogger = superTranslator.infoLogger;
+        this.SET_MODE = superTranslator.SET_MODE;
+        this.tolerant = superTranslator.tolerant;
+        this.mlpError = superTranslator.mlpError;
     }
 
     @Override
@@ -179,7 +183,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         } // it could be a sub sequence
         else if (isSubSequence(term)) {
             Brackets bracket = Brackets.getBracket(term.getTermText());
-            SequenceTranslator sp = new SequenceTranslator(this, bracket, SET_MODE);
+            SequenceTranslator sp = new SequenceTranslator(this, bracket);
             transExpression = sp.translate(expList);
         } // this is special, could be a function like cos
         else if (MathTermUtility.isFunction(term)) {
@@ -310,13 +314,19 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     }
 
     public void activateSetMode() {
-        LOG.info("Set-Mode for sequences activated!");
+        LOG.debug("Set-Mode for sequences activated!");
         SET_MODE = true;
+        if ( this.superTranslator != null ) this.superTranslator.activateSetMode();
     }
 
     public void deactivateSetMode() {
-        LOG.info("Set-Mode for sequences deactivated!");
+        LOG.debug("Set-Mode for sequences deactivated!");
         SET_MODE = false;
+        if ( this.superTranslator != null ) this.superTranslator.deactivateSetMode();
+    }
+
+    protected boolean isSetMode() {
+        return SET_MODE;
     }
 
     public boolean isMlpError() {
@@ -331,6 +341,8 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         globalExp = new TranslatedExpression();
         mlpError = false;
         infoLogger = new InformationLogger();
+        SET_MODE = false;
+        if ( this.superTranslator != null ) this.superTranslator.reset();
     }
 
     public void setFileID(String fileID) {

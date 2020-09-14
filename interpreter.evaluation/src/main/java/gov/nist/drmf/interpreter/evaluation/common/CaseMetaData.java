@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
 import gov.nist.drmf.interpreter.cas.constraints.Constraints;
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.evaluation.constraints.MLPConstraintAnalyzer;
 import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;
@@ -16,6 +17,7 @@ public class CaseMetaData {
 
     private Label label;
     private Constraints constraints;
+    private boolean isDefinition = false;
 
     private LinkedList<SymbolTag> symbolsUsed;
 
@@ -28,6 +30,14 @@ public class CaseMetaData {
         this.constraints = constraints;
         this.linenumber = linenumber;
         this.symbolsUsed = symbolsUsed;
+    }
+
+    public boolean isDefinition() {
+        return isDefinition;
+    }
+
+    public void tagAsDefinition() {
+        this.isDefinition = true;
     }
 
     public Label getLabel() {
@@ -130,9 +140,13 @@ public class CaseMetaData {
         LinkedList<String> innerSieved = new LinkedList<>();
         String[] multiCon = con.split(",");
         for ( String c : multiCon ) {
-            String[][] innerRule = analyzer.checkForBlueprintRules(c);
-            if ( innerRule != null ) innerRulesList.addLast(innerRule);
-            else innerSieved.add(c);
+            try {
+                String[][] innerRule = analyzer.checkForBlueprintRules(c);
+                if ( innerRule != null ) innerRulesList.addLast(innerRule);
+                else innerSieved.add(c);
+            } catch (Error | Exception e) {
+                // in case it didn't work, we simple don't do something
+            }
         }
         if ( !innerRulesList.isEmpty() ){
             for ( String[][] tmp : innerRulesList ) {

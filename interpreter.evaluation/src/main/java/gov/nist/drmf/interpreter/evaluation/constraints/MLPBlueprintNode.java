@@ -99,7 +99,7 @@ public class MLPBlueprintNode {
         }
 
         // now check tags
-        if (!tag.equals(other.tag)) {
+        if (tag == null || !tag.equals(other.tag)) {
             LOG.trace(String.format("Differences in tags were detected: %s vs %s.", tag, other.tag));
             return false;
         }
@@ -109,6 +109,7 @@ public class MLPBlueprintNode {
     }
 
     private boolean possibleVar(MLPBlueprintNode node) {
+        if ( node == null || node.tag == null ) return false;
         return node.tag.equals("letter")
                 || node.tag.equals("Latin")
                 || node.tag.equals(GREEK)

@@ -5,6 +5,7 @@ import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Andre Greiner-Petter

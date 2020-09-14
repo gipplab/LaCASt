@@ -32,10 +32,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -88,8 +85,6 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
     public static final int MAX_LOG_LENGTH = 300;
 
-    private static Path output;
-
     private NumericalConfig config;
 
     private HashMap<Integer, String> labelLib;
@@ -106,6 +101,8 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
     private int currentNumOfTestCases = 0;
 
     private HashSet<Integer> lastSkips;
+
+    private List<String> globalConstraints;
 
     /**
      * Creates an object for numerical evaluations.
@@ -148,15 +145,20 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 //        }
 
         setUpScripts(procedures);
+        numericalEvaluator.setTimeout(config.getTimeout());
 
         Status.reset();
+        init();
     }
 
-    public void init() throws IOException, MapleException {
+    public void init() {
         LOG.info("Setup numerical tests...");
-        output = config.getOutputPath();
-        if (!Files.exists(output)) {
-            Files.createFile(output);
+        String overallAss = config.getEntireTestSuiteAssumptions();
+        if ( overallAss != null && !overallAss.isEmpty() ){
+            String[] ass = overallAss.split(" \\|\\| ");
+            String[] transAss = this.getThisConstraintTranslator().translateEachConstraint(ass);
+            this.globalConstraints = Arrays.asList(transAss);
+            super.setGlobalAssumptions(globalConstraints);
         }
     }
 
@@ -216,21 +218,20 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
     @Override
     public void performSingleTest( Case c ){
-        LOG.info("Start test for line: " + c.getLine());
-        LOG.info("Test case: " + c);
-        LOG.info("Test case " + (currentTestCase++) + " of " + currentNumOfTestCases);
-
-
         if ( lineResult[c.getLine()] == null ){
             lineResult[c.getLine()] = new LinkedList();
         }
 
-        if ( realSkips.contains(c.getLine()) ) {
-            LOG.warn("Skip, it take ages...");
-            Status.SKIPPED.add();
-            lineResult[c.getLine()].add("Manual skip because it never finishes!");
-            return;
-        }
+        LOG.info("Start test for line: " + c.getLine());
+        LOG.info("Test case: " + c);
+        LOG.info("Test case " + (currentTestCase++) + " of " + currentNumOfTestCases);
+
+//        if ( realSkips.contains(c.getLine()) ) {
+//            LOG.warn("Skip, it take ages...");
+//            Status.SKIPPED.add();
+//            lineResult[c.getLine()].add("Manual skip because it never finishes!");
+//            return;
+//        }
 
 //        if ( isMaple ) {
 //            String s = c.getLHS() + " " + c.getRHS();
@@ -242,12 +243,12 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 //            }
 //        }
 
-        if ( isMaple && lastSkips.contains(c.getLine()) ) {
-            LOG.info("Final Skip " + c.getLine());
-            lineResult[c.getLine()].add("Skip - too long running...");
-            Status.MISSING.add();
-            return;
-        }
+//        if ( isMaple && lastSkips.contains(c.getLine()) ) {
+//            LOG.info("Final Skip " + c.getLine());
+//            lineResult[c.getLine()].add("Skip - too long running...");
+//            Status.MISSING.add();
+//            return;
+//        }
 
         if ( c instanceof AbstractEvaluator.DummyCase) {
             lineResult[c.getLine()].add("Skip - symbolical successful subtest");
@@ -255,18 +256,30 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             return;
         }
 
+        String expression = null;
         try {
-            Constraints con =  c.getConstraintObject();
-            if ( con != null ){
-                if ( !con.specialValuesInfo().isEmpty() )
+            Status.STARTED_TEST_CASES.add();
+
+            Constraints con = c.getConstraintObject();
+            if (con != null) {
+                if (!con.specialValuesInfo().isEmpty()) {
                     LOG.info(con.specialValuesInfo());
+                }
                 LOG.info(con.constraintInfo());
             }
 
-            String expression = getTestedExpression(c);
+            expression = getTestedExpression(c);
+
             Status.SUCCESS_TRANS.add();
             LOG.info("Numerical test expression: " + expression);
+        } catch ( TranslationException te ) {
+            LOG.error("Error in translation. " + te.toString());
+            lineResult[c.getLine()].add("Error - " + te.toString());
+            Status.ERROR_TRANS.add();
+            return;
+        }
 
+        try {
             String[] preAndPostCommands = getPrevCommand( c.getLHS() + ", " + c.getRHS() );
 
             if ( preAndPostCommands[0] != null ){
@@ -289,7 +302,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             if ( wasAborted ) {
                 LOG.warn("Skip test because it took too much time.");
                 lineResult[c.getLine()].add("Skipped - Because timed out");
-                Status.SKIPPED.add();
+                Status.ABORTED.add();
             } else {
                 ICASEngineNumericalEvaluator.ResultType resType = testResult(results);
                 String evaluation = "";
@@ -315,16 +328,12 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
 
             LOG.info("Finished test for line: " + c.getLine());
-        } catch ( TranslationException te ) {
-            LOG.error("Error in translation. " + te.toString());
-            lineResult[c.getLine()].add("Error - " + te.toString());
-            Status.ERROR.add();
         } catch ( IllegalArgumentException iae ){
             LOG.warn("Skip test, because " + iae.getMessage());
             lineResult[c.getLine()].add("Skipped - " + iae.getMessage());
             // Note, we rename the overview lines, so we use missing here, just to avoid trouble with SKIP infos
-            Status.MISSING.add();
-        } catch ( Exception e ){
+            Status.ABORTED.add();
+        } catch ( Error | Exception e ){
             LOG.warn("Error for line " + c.getLine() + ", because: " + e.toString(), e);
             lineResult[c.getLine()].add("Error - " + e.toString());
             Status.ERROR.add();
@@ -439,8 +448,6 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         DLMFTranslator dlmfTranslator = new DLMFTranslator(Keys.KEY_MAPLE);
         MapleInterface mapleInterface = MapleInterface.getUniqueMapleInterface();
         NumericCalculator numericCalculator = new NumericCalculator();
-
-        numericCalculator.setTimeLimit(2);
 
         NumericalEvaluator evaluator = new NumericalEvaluator<Algebraic>(
                 dlmfTranslator,

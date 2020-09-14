@@ -18,7 +18,7 @@ DLMF;Mathematica;DLMF-Mathematica-Comment;Mathematica-Alternatives
 \Atan@@{z};ArcTan[$0];The translation is only valid on the principle branch.;Integrate[Divide[1, 1+t^2], {t, 0, $0}]
 \Asec@@{z};ArcSec[$0];The translation is only valid on the principle branch.;Integrate[Divide[1, (1-t^2)^(1/2)], {t, Divide[1,$0], 1}]
 \Acsc@@{z};ArcCsc[$0];The translation is only valid on the principle branch.;Integrate[Divide[1, (1-t^2)^(1/2)], {t, 0, Divide[1,$0]}]
-\Acot@@{z};ArcCot[$0];The translation is only valid on the principle branch.;
+\Acot@@{z};ArcCot[$0];The translation is only valid on the principle branch.;Integrate[Divide[1, 1+t^2], {t, 0, Divide[1,$0]}]
 ;;;
 \asin@@{z};ArcSin[$0];;
 \acos@@{z};ArcCos[$0];;
@@ -46,7 +46,6 @@ DLMF;Mathematica;DLMF-Mathematica-Comment;Mathematica-Alternatives
 \log@@{z};Log[$0];;
 \genlog{a}@@{z};Log[$0,$1];;
 ;;;
-\Ln@@{z};;;
 \exp@@{z};Exp[$0];;
 ;;;
 \LambertW@{x};ProductLog[$0];;
@@ -213,8 +212,8 @@ X1:\ipderivX\ipderiv[$0]{$1}{$2};D[$1, {$2, $0}];;
 \BesselJ{v}@{x};BesselJ[$0, $1];;
 \BesselY{v}@{x};BesselY[$0, $1];;
 \HankelH{1}{v}@{x};HankelH$0[$1, $2];The translation is only valid when the first argument is either 1 or 2;
-\HankelmodM{\nu}@{x};;;
-\HankelmodderivN{\nu}@{x};;;
+\HankelmodM{\nu}@{x};;;Sqrt[KelvinBer[$0, $1]^2 + KelvinBei[$0, $1]^2]
+\HankelmodderivN{\nu}@{x};;;Sqrt[KelvinKer[$0, $1]^2 + KelvinKei[$0, $1]^2]
 \Hankelphasetheta{\nu}@{x};;;
 \Hankelphasederivphi{\nu}@{x};;;
 \zBesselj{\nu}{m};;;
@@ -390,7 +389,7 @@ X1:\EulertotientphiX\Eulertotientphi[k]@{n};;;Sum[If[CoprimeQ[$1, m], m^($0), 0]
 ;;;
 \Jacobiphi{\alpha}{\beta}{\lambda}@{t};;;
 \genJacobiellk{p}{q};;;
-\Jacobiamk@{z}{k};;;
+\Jacobiamk@{z}{k};JacobiAmplitude[$0, Power[$1, 2]];;
 ;;;
 \Jacobiellsnk@@{z}{k};JacobiSN[$0, ($1)^2];;
 \Jacobiellcnk@@{z}{k};JacobiCN[$0, ($1)^2];;
@@ -418,7 +417,7 @@ X1:\EulertotientphiX\Eulertotientphi[k]@{n};;;Sum[If[CoprimeQ[$1, m], m^($0), 0]
 \aJacobiellcsk@@{z}{k};InverseJacobiCS[$0, ($1)^2];;
 \JacobiEpsilonk@{x}{k};;;
 \Jacobithetaq{j}@{z}{q};EllipticTheta[$0, $1, $2];;
-\Jacobithetatau{j}@{z}{\tau};EllipticTheta[$0, $1, $2];;
+\Jacobithetatau{j}@{z}{\tau};EllipticTheta[$0, $1, Exp[I*Pi*($2)]];;
 \Jacobithetacombinedq{n}{m}@{z}{q};;;
 \AThetaFunction@{x};;;
 \JacobiZetak@{x}{k};JacobiZeta[$0, $1];;
@@ -428,8 +427,6 @@ X1:\EulertotientphiX\Eulertotientphi[k]@{n};;;Sum[If[CoprimeQ[$1, m], m^($0), 0]
 \Kelvinbei{\nu}@@{x};KelvinBei[$0, $1];;
 \Kelvinker{\nu}@@{x};KelvinKer[$0, $1];;
 \Kelvinkei{\nu}@@{x};KelvinKei[$0, $1];;
-\frac{1}{2}\HankelH{1}{\nu}@{x\left(-\frac{1}{2}\sqrt{2}+\frac{1}{2}\iunit\sqrt{2}\right)} + \frac{1}{2}\HankelH{2}{\nu}@{x\left(-\frac{1}{2}\sqrt{2}-\frac{1}{2}\iunit\sqrt{2}\right)};;;
-\frac{1}{2}\iunit\left(\HankelH{2}{\nu}@{x\left(-\frac{1}{2}\sqrt{2}-\frac{1}{2}\iunit\sqrt{2}\right)} - \HankelH{1}{\nu}@{x\left(-\frac{1}{2}\sqrt{2}+\frac{1}{2}\iunit\sqrt{2}\right)}\right);;;
 ;;;
 \LameEc{m}{\nu}@{z}{k^2};;;
 \LameEs{m}{\nu}@{z}{k^2};;;

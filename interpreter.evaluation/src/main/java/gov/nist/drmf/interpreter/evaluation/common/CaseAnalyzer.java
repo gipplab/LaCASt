@@ -177,6 +177,7 @@ public class CaseAnalyzer {
         // TODO you know what, fuck \zeta(z)
         if ( symbInfo.symbolDefSymb.equals("\\zeta(z)") ) symbInfo.symbolDefSymb = "\\zeta";
 
+        metaData.tagAsDefinition();
         EquationSplitter splitter = new EquationSplitter(metaData);
         LinkedList<Case> caseList = splitter.split(eq);
         if ( caseList == null || caseList.isEmpty() ) return;

@@ -2,12 +2,16 @@ package gov.nist.drmf.interpreter.evaluation.common;
 
 import gov.nist.drmf.interpreter.cas.constraints.Constraints;
 import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.mlp.extensions.MatchablePomTaggedExpression;
+import gov.nist.drmf.interpreter.mlp.extensions.PomMatcher;
+import gov.nist.drmf.interpreter.mlp.extensions.PrintablePomTaggedExpression;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.ParseException;
@@ -37,6 +41,10 @@ public class Case {
         this.RHS = RHS;
         this.relation = relation;
         this.metaData = metaData;
+    }
+
+    public boolean isDefinition() {
+        return metaData.isDefinition();
     }
 
     public String getLHS() {
@@ -94,7 +102,7 @@ public class Case {
             cons = ae.translateEachConstraint(cons, label);
             return new LinkedList<>(Arrays.asList(cons));
         } catch ( NullPointerException npe ){
-            return null;
+            return new LinkedList<>();
         }
     }
 
@@ -129,23 +137,110 @@ public class Case {
         return s;
     }
 
+    private boolean addZReplacement() {
+        String tmp = LHS + RHS;
+        return tmp.contains("z") && (tmp.contains("x") || tmp.contains("y"));
+    }
+
+    private static final Pattern Z_PATTERN = Pattern.compile("(?<!\\\\[A-Za-z]{0,30})z(.|$)");
+
     public Case replaceSymbolsUsed(SymbolDefinedLibrary library) {
+        if ( this instanceof AbstractEvaluator.DummyCase ) return this;
+        if ( LHS == null || RHS == null || relation == null ) return this;
+
         LinkedList<SymbolTag> used = metaData.getSymbolsUsed();
+
         for ( SymbolTag use : used ) {
-            SymbolTag def = library.getSymbolDefinition(use.getId());
-            if ( def != null ) {
-                String repl = def.getDefinition().replace("\\","\\\\").replace("$", "\\$");
-                Matcher m = AbstractEvaluator.filterCases.matcher(repl);
-                if ( m.find() ) {
-                    LOG.info("Found symbol definition but it includes illegal characters and will not be replaced (" + m.group(0) + ").");
-                } else {
-                    LOG.info("Found symbol definition! Replacing " + use.getSymbol() + " by " + def.getDefinition());
-                    this.LHS = this.LHS.replaceAll(Pattern.quote(use.getSymbol()), repl);
-                    this.RHS = this.RHS.replaceAll(Pattern.quote(use.getSymbol()), repl);
-                }
+            try {
+                recursiveReplaceSymbolUsed(library, use);
+            } catch (Exception | Error e) {
+                LOG.warn("Unable to perform definition replacements.", e);
             }
+//
+//            SymbolTag def = library.getSymbolDefinition(use.getId());
+//            if ( def != null ) {
+
+
+//                String repl = def.getDefinition().replace("\\","\\\\").replace("$", "\\$");
+//                Matcher m = AbstractEvaluator.filterCases.matcher(repl);
+//                if ( m.find() ) {
+//                    LOG.info("Found symbol definition but it includes illegal characters and will not be replaced (" + m.group(0) + ").");
+//                } else {
+//                    LOG.info("Found symbol definition! Replacing " + use.getSymbol() + " by " + def.getDefinition());
+//                    this.LHS = this.LHS.replaceAll(Pattern.quote(use.getSymbol()), repl);
+//                    this.RHS = this.RHS.replaceAll(Pattern.quote(use.getSymbol()), repl);
+//                }
+//            }
         }
+
+        this.LHS = TeXPreProcessor.preProcessingTeX(this.LHS, this.getEquationLabel());
+        this.RHS = TeXPreProcessor.preProcessingTeX(this.RHS, this.getEquationLabel());
+
+        if ( addZReplacement() ) {
+            StringBuilder sbL = new StringBuilder(), sbR = new StringBuilder();
+            Matcher mL = Z_PATTERN.matcher(LHS);
+            Matcher mR = Z_PATTERN.matcher(RHS);
+
+            while ( mL.find() ) {
+                mL.appendReplacement(sbL, "(x+y\\\\iunit)" + mL.group(1));
+            }
+            while ( mR.find() ) {
+                mR.appendReplacement(sbR, "(x+y\\\\iunit)" + mR.group(1));
+            }
+
+            LHS = mL.appendTail(sbL).toString();
+            RHS = mR.appendTail(sbR).toString();
+        }
+
         return this;
+    }
+
+    private void recursiveReplaceSymbolUsed(SymbolDefinedLibrary library, SymbolTag use) throws ParseException {
+        if ( use == null ) return;
+
+        SymbolTag def = library.getSymbolDefinition(use.getId());
+        if ( def == null ) return;
+
+        // at first, we replace the tag itself.
+        replaceSingleTag(def);
+
+        // however, second step, we do the same for the children
+        CaseMetaData meta = def.getMetaData();
+        if ( meta == null ) return;
+
+        LinkedList<SymbolTag> innerTags = meta.getSymbolsUsed();
+        if ( innerTags == null ) return;
+        for ( SymbolTag tag : innerTags ) {
+            recursiveReplaceSymbolUsed(library, tag);
+        }
+    }
+
+    private static final Pattern NVAR_PATTERN = Pattern.compile("\\\\NVar\\{(.*?)}");
+
+    private void replaceSingleTag(SymbolTag def) throws ParseException {
+        SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
+        PrintablePomTaggedExpression ppteLHS = mlp.parse(this.LHS, this.getEquationLabel());
+        PrintablePomTaggedExpression ppteRHS = mlp.parse(this.RHS, this.getEquationLabel());
+
+        String symbol = def.getSymbol();
+        Matcher m = NVAR_PATTERN.matcher(symbol);
+        StringBuilder sb = new StringBuilder();
+
+        while ( m.find() ) {
+            int n = m.group(1).hashCode();
+            m.appendReplacement(sb, "var"+n);
+        }
+
+        m.appendTail(sb);
+
+        MatchablePomTaggedExpression matchPOM = new MatchablePomTaggedExpression(mlp, sb.toString(), "var\\d+");
+        PomMatcher matcherL = matchPOM.matcher(ppteLHS);
+        PrintablePomTaggedExpression left = matcherL.replaceAll("("+def.getDefinition()+")");
+        this.LHS = left.getTexString();
+
+        PomMatcher matcherR = matchPOM.matcher(ppteRHS);
+        PrintablePomTaggedExpression right = matcherR.replaceAll("("+def.getDefinition()+")");
+        this.RHS = right.getTexString();
     }
 
     public static boolean isSemantic(String symbol) {

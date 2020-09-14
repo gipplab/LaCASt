@@ -66,6 +66,7 @@ Symbol: \Acot
 	DLMF: \Acot@@{z}
 	DLMF-Link: dlmf.nist.gov/4.23#E6
 	Mathematica: ArcCot[$0]
+	Mathematica-Alternatives: Integrate[Divide[1, 1+t^2], {t, 0, Divide[1,$0]}]
 	Mathematica-Link: reference.wolfram.com/language/ref/ArcCot.html
 	Meanings: Multivalued inverse cotangent
 	Number of Ats: 2
@@ -1396,6 +1397,7 @@ Symbol: \HankelmodM
   Feature Set: dlmf-macro
 	DLMF: \HankelmodM{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.18#E1
+	Mathematica-Alternatives: Sqrt[KelvinBer[$0, $1]^2 + KelvinBei[$0, $1]^2]
 	Meanings: Modulus Bessel function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1407,6 +1409,7 @@ Symbol: \HankelmodderivN
   Feature Set: dlmf-macro
 	DLMF: \HankelmodderivN{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.18#E2
+	Mathematica-Alternatives: Sqrt[KelvinKer[$0, $1]^2 + KelvinKei[$0, $1]^2]
 	Meanings: Modulus derivative Bessel function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1660,6 +1663,7 @@ Symbol: \Jacobiamk
 	DLMF-Link: dlmf.nist.gov/22.16#E1
 	Maple: JacobiAM($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiAmplitude[$0, Power[$1, 2]]
 	Meanings: Jacobi's amplitude function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1915,7 +1919,7 @@ Symbol: \Jacobithetatau
 	DLMF: \Jacobithetatau{j}@{z}{\tau}
 	DLMF-Link: dlmf.nist.gov/20.2#i
 	Maple-Alternatives: JacobiTheta$0($1,exp(I*Pi*$2))
-	Mathematica: EllipticTheta[$0, $1, $2]
+	Mathematica: EllipticTheta[$0, $1, Exp[I*Pi*($2)]]
 	Meanings: Jacobi's theta-tau function
 	Number of Ats: 1
 	Number of Parameters: 1

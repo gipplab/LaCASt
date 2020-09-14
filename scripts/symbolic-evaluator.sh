@@ -22,8 +22,8 @@ while read line; do
   read -ra ADDR <<< $line;
 
   cat $CONFIGFILEBASE >> $CONFIGFILE;
-  echo "output=/home/andreg-p/data/Howard/Results/Auto${CAS}/${ADDR[0]}-symbolic.txt" >> $CONFIGFILE;
-  echo "missing_macro_output=/home/andreg-p/data/Howard/Results/Auto${CAS}/${ADDR[0]}-missing.txt" >> $CONFIGFILE;
+  echo "output=/home/andreg-p/data/Howard/Results/${CAS}Symbolic/${ADDR[0]}-symbolic.txt" >> $CONFIGFILE;
+  echo "missing_macro_output=/home/andreg-p/data/Howard/Results/${CAS}Symbolic/${ADDR[0]}-missing.txt" >> $CONFIGFILE;
   echo "subset_tests=${ADDR[1]}" >> $CONFIGFILE;
 
   echo "Done creating file for ${ADDR[0]}"

@@ -163,10 +163,10 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
             // TODO we should switch to the real parse option later
             PomTaggedExpression exp = parser.parse(expression, label);
             translate(exp); // return value can be ignored here
-            if ( !expression.matches("(?:num[UL]|var).*") ){
-                LOG.debug("Input:  " + expression);
-                LOG.debug("Output: " + getGlobalTranslationList().toString());
-            }
+//            if ( !expression.matches("(?:num[UL]|var).*") ){
+//                LOG.debug("Input:  " + expression);
+//                LOG.debug("Output: " + getGlobalTranslationList().toString());
+//            }
 
             if ( !super.getInfoLogger().isEmpty() && !config.shortenedOutput() ) {
                 LOG.info(super.getInfoLogger().toString());

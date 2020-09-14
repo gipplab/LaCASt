@@ -54,7 +54,7 @@ public class CaseAnalyzerTests {
         assertEquals("1", c.getRHS());
         assertEquals(Relations.GREATER_THAN, c.getRelation());
 
-        assertNull(c.getConstraints(dlmfTrans, null));
+        assertTrue(c.getConstraints(dlmfTrans, null).isEmpty());
         assertEquals("http://dlmf.nist.gov/1.2.E1", c.getMetaData().getLabel().getTex());
     }
 
@@ -146,7 +146,7 @@ public class CaseAnalyzerTests {
         assertEquals("1", c.getRHS());
         assertEquals(Relations.GREATER_THAN, c.getRelation());
 
-        assertNull(c.getConstraints(dlmfTrans, null));
+        assertTrue(c.getConstraints(dlmfTrans, null).isEmpty());
         assertEquals("http://dlmf.nist.gov/1.2.E1", c.getMetaData().getLabel().getTex());
 
         c = cc.get(1);
@@ -165,7 +165,7 @@ public class CaseAnalyzerTests {
         assertEquals("\\cpi + \\genlog{1}@{1}", c.getRHS());
         assertEquals(Relations.GREATER_EQ_THAN, c.getRelation());
 
-        assertNull(c.getConstraints(dlmfTrans, null));
+        assertTrue(c.getConstraints(dlmfTrans, null).isEmpty());
         assertEquals("http://dlmf.nist.gov/1.2.E1", c.getMetaData().getLabel().getTex());
 
         c = cc.get(1);
@@ -212,8 +212,30 @@ public class CaseAnalyzerTests {
         assertEquals("0", c.getRHS());
         assertEquals(Relations.EQUAL, c.getRelation());
 
-        assertNull(c.getConstraints(dlmfTrans, null));
+        assertTrue(c.getConstraints(dlmfTrans, null).isEmpty());
         assertEquals("http://dlmf.nist.gov/1.2.E1", c.getMetaData().getLabel().getTex());
+    }
+
+    @Test
+    public void jacobiThetaQTest() {
+        String line = "\\Jacobiellsnk@{z}{k}=" +
+                "\\frac{\\Jacobithetaq{3}@{0}{q}}{\\Jacobithetaq{2}@{0}{q}}\\frac{\\Jacobithetaq{1}@{\\zeta}{q}}{\\Jacobithetaq{4}@{\\zeta}{q}}=" +
+                "\\frac{1}{\\Jacobiellnsk@{z}{k}}, " +
+                "\\url{http://dlmf.nist.gov/22.2.E4} " +
+                "\\symbolDefined[\\Jacobiellnsk@{\\NVar{z}}{\\NVar{k}}]{C22.S2.E4.m3bdec} " +
+                "\\symbolDefined[\\Jacobiellsnk@{\\NVar{z}}{\\NVar{k}}]{C22.S2.E4.m2bdec} " +
+                "\\symbolUsed[\\Jacobithetaq{\\NVar{j}}@{\\NVar{z}}{\\NVar{q}}]{C20.S2.i.m2badec} " +
+                "\\symbolUsed[q]{C22.S2.E1.m2bbdec} \\symbolUsed[z]{C22.S1.XMD3.m1badec} " +
+                "\\symbolUsed[k]{C22.S1.XMD4.m1bcdec} \\symbolUsed[\\zeta]{C22.S2.XMD2.m1badec}";
+
+        LinkedList<Case> cc = CaseAnalyzer.analyzeLine(line, 1, new SymbolDefinedLibrary());
+        assertNotNull(cc);
+        assertEquals(2, cc.size());
+
+        Case c = cc.get(0);
+        assertEquals("\\Jacobiellsnk@{z}{k}", c.getLHS());
+        assertEquals("\\frac{\\Jacobithetaq{3}@{0}{q}}{\\Jacobithetaq{2}@{0}{q}}\\frac{\\Jacobithetaq{1}@{\\zeta}{q}}{\\Jacobithetaq{4}@{\\zeta}{q}}", c.getRHS());
+        assertEquals(Relations.EQUAL, c.getRelation());
     }
 
     @Test
@@ -243,7 +265,7 @@ public class CaseAnalyzerTests {
         CaseMetaData meta = new CaseMetaData(1, null, null, used);
         Case c = new Case("1 + A_{j}", "2", Relations.EQUAL, meta);
         c = c.replaceSymbolsUsed(lib);
-        assertEquals("1 + \\frac{(\\alpha_{j})}{\\prod\\limits_{k\\not=j}(\\alpha_{j}-\\alpha_{k})}", c.getLHS());
+        assertEquals("1 + (\\frac{(\\alpha_{j})}{\\prod\\limits_{k\\not=j}(\\alpha_{j}-\\alpha_{k})})", c.getLHS());
         assertEquals("2", c.getRHS());
 
         used.removeFirst();
@@ -290,7 +312,7 @@ public class CaseAnalyzerTests {
         assertEquals(Relations.EQUAL, actualAiryAiTest.getRelation());
         assertEquals("\\AiryAi@{z}", actualAiryAiTest.getLHS());
         // note that only \zeta has changed if everything worked properly
-        assertEquals("\\pi^{-1}\\sqrt{z/3}\\modBesselK{+ 1/3}@{\\tfrac{2}{3}z^{3/2}}", actualAiryAiTest.getRHS());
+        assertEquals("\\cpi^{-1}\\sqrt{z/3}\\modBesselK{+ 1/3}@{{\\frac{2}{3} z^{\\frac{3}{2}}}}", actualAiryAiTest.getRHS());
     }
 
     @Test
@@ -310,6 +332,73 @@ public class CaseAnalyzerTests {
 
         Case actualAiryAiTest = eulerTest.replaceSymbolsUsed(lib);
         assertEquals("-\\EulerConstant", actualAiryAiTest.getRHS());
+    }
+
+    @Test
+    void recursiveSubstitutionTest() throws IOException {
+        String testStrings = getResourceContent("recursiveDefinitionTests.txt");
+
+        SymbolDefinedLibrary lib = new SymbolDefinedLibrary();
+        List<LinkedList<Case>> testCases = loadTestCases(testStrings, lib);
+
+        assertEquals(5, testCases.size());
+        assertEquals(3, lib.library.keySet().size());
+
+        Case trickyParaWCase = testCases.get(0).get(0);
+
+        // that's real hard stuff... let's check if everything is loaded properly
+        assertEquals("\\paraW@{a}{x}", trickyParaWCase.getLHS());
+        assertEquals("\\sqrt{k/2}\\,e^{\\frac{1}{4}\\pi a}\\left(e^{i\\rho}\\paraU@{ia}{xe^{-\\pi i/4}}+e^{-i\\rho}\\paraU@{-ia}{xe^{\\pi i/4}}\\right)", trickyParaWCase.getRHS());
+        assertEquals(Relations.EQUAL, trickyParaWCase.getRelation());
+        assertEquals("12.14.E4", trickyParaWCase.getEquationLabel());
+
+        // let the magic happen...
+        trickyParaWCase = trickyParaWCase.replaceSymbolsUsed(lib);
+        assertEquals("\\paraW@{a}{x}", trickyParaWCase.getLHS());
+        assertEquals(
+                "\\sqrt{(\\sqrt{1+\\expe ^{2\\cpi a}}-\\expe ^{\\cpi a}) / 2} " +
+                "\\expe^{\\frac{1}{4}\\cpi a}" +
+                " (" +
+                    "\\expe^{\\iunit (\\tfrac{1}{8} \\cpi + \\tfrac{1}{2} (\\phase@@{\\EulerGamma@{\\tfrac{1}{2}+\\iunit a}}))} " +
+                    "\\paraU@{\\iunit a}{" +
+                        "x\\expe ^{-\\cpi \\iunit /4}" +
+                    "} + " +
+                    "\\expe^{- \\iunit (\\tfrac{1}{8} \\cpi + \\tfrac{1}{2} (\\phase@@{\\EulerGamma@{\\tfrac{1}{2}+\\iunit a}}))} " +
+                    "\\paraU@{-\\iunit a}{" +
+                        "x\\expe ^{\\cpi \\iunit /4}" +
+                    "}" +
+                ")", trickyParaWCase.getRHS());
+    }
+
+    @Test
+    void jacobiSubstitutionTest() throws IOException {
+        String testStrings = getResourceContent("jacobiQTests.txt");
+
+        SymbolDefinedLibrary lib = new SymbolDefinedLibrary();
+        List<LinkedList<Case>> testCases = loadTestCases(testStrings, lib);
+
+        Case jacobiCase = testCases.get(1).get(0);
+        assertEquals("\\Jacobiellsnk@{z}{k}", jacobiCase.getLHS());
+        assertEquals("\\frac{\\Jacobithetaq{3}@{0}{q}}{\\Jacobithetaq{2}@{0}{q}}\\frac{\\Jacobithetaq{1}@{\\zeta}{q}}{\\Jacobithetaq{4}@{\\zeta}{q}}", jacobiCase.getRHS());
+
+        jacobiCase = jacobiCase.replaceSymbolsUsed(lib);
+        assertEquals("\\Jacobiellsnk@{z}{k}", jacobiCase.getLHS());
+        assertEquals(
+                "\\frac" +
+                    "{\\Jacobithetaq{3}@{0}{(\\exp@{-\\cpi\\ccompellintKk@{k}/\\compellintKk@{k}})}}" +
+                    "{\\Jacobithetaq{2}@{0}{(\\exp@{-\\cpi\\ccompellintKk@{k}/\\compellintKk@{k}})}} " +
+                "\\frac" +
+                    "{\\Jacobithetaq{1}@{\\zeta}{(\\exp@{-\\cpi\\ccompellintKk@{k}/\\compellintKk@{k}})}}" +
+                    "{\\Jacobithetaq{4}@{\\zeta}{(\\exp@{-\\cpi\\ccompellintKk@{k}/\\compellintKk@{k}})}}",
+                jacobiCase.getRHS());
+    }
+
+    private List<LinkedList<Case>> loadTestCases(String testStrings, SymbolDefinedLibrary lib) {
+        int[] lineCounter = new int[]{0};
+        return Arrays.stream(testStrings.split("\n"))
+                .peek( l -> lineCounter[0]++ )
+                .map(l -> CaseAnalyzer.analyzeLine(l, lineCounter[0], lib))
+                .collect(Collectors.toList());
     }
 
     private String getResourceContent(String resourceFilename) throws IOException {

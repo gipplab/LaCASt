@@ -10,7 +10,9 @@ mapConstraints[vars_, vals_] := Module[
     Return[{Flatten[tmp]}]
 ]
 
-filterTestCases[ass_, tests_] := Select[tests, ReplaceAll[And @@ ass, #]&]
+filterTestCases[ass_, tests_, max_] := Select[tests, ReplaceAll[And @@ ass, #]&, max]
+
+filterGlobalAssumptions[ass_, vars_] := Select[ass, MemberQ[vars, Part[Reduce`FreeVariables[#],1]]&]
 
 numericalAutoTest[expr_, tests_] :=
     Module[{results, output},
@@ -19,12 +21,11 @@ numericalAutoTest[expr_, tests_] :=
         Do[
             Module[{},
                 If[
-                    Or[
-                        And[BooleanQ[Part[results, i], Not[Part[results, i]]]]
-                        Not[NumericQ[Part[results, i]]],
+                    Check[
                         Abs[Part[results, i]] > 0.001
-                    ],
-                    AppendTo[output, {Part[results, i], Part[tests, i]}]]
+                    , True],
+                    AppendTo[output, {Part[results, i], Part[tests, i]}]
+                ]
             ], {i, Length[tests]}];
         Return[output]
     ]
