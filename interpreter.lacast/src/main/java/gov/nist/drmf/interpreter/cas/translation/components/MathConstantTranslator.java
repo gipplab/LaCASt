@@ -122,6 +122,7 @@ public class MathConstantTranslator extends AbstractTranslator {
             );
             // and now, use this translation
             translation = constant;
+            getInfoLogger().getFreeVariables().addFreeVariable(translation);
         }
         return translation;
     }
@@ -140,6 +141,7 @@ public class MathConstantTranslator extends AbstractTranslator {
                 );
                 GreekLetterTranslator glt = new GreekLetterTranslator(getSuperTranslator());
                 localTranslations = glt.translate(exp);
+                getInfoLogger().getFreeVariables().addFreeVariable(localTranslations.getTranslatedExpression());
                 return true;
             } else {
                 throw TranslationException.buildExceptionObj(this,

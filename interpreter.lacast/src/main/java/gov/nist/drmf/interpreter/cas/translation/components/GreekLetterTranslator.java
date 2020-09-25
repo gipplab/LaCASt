@@ -82,5 +82,6 @@ public class GreekLetterTranslator extends AbstractTranslator {
         // otherwise add all
         localTranslations.addTranslatedExpression(translated_letter);
         getGlobalTranslationList().addTranslatedExpression(translated_letter);
+        getInfoLogger().getFreeVariables().addFreeVariable(translated_letter);
     }
 }

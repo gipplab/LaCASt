@@ -124,7 +124,8 @@ public class LetterTranslator extends AbstractListTranslator {
             // no global adjustment necessary, already performed by constant translator
         } else {
             localTranslations.addTranslatedExpression(term.getTermText());
-            getGlobalTranslationList().addTranslatedExpression(term.getTermText());
+            getGlobalTranslationList().addTranslatedExpression(localTranslations);
+            getInfoLogger().getFreeVariables().addFreeVariable(term.getTermText());
         }
     }
 
@@ -215,19 +216,22 @@ public class LetterTranslator extends AbstractListTranslator {
         if ( te != null ) return te;
 
         String alpha = term.getTermText();
-        String output;
+        String var, output;
         // add multiplication symbol between all letters
         for (int i = 0; i < alpha.length() - 1; i++) {
-            output = alpha.charAt(i) + getConfig().getMULTIPLY();
+            var = ""+alpha.charAt(i);
+            output = var + getConfig().getMULTIPLY();
             // add it to local and global
             localTranslations.addTranslatedExpression(output);
             getGlobalTranslationList().addTranslatedExpression(output);
+            getInfoLogger().getFreeVariables().addFreeVariable(var);
         }
 
         // add the last one, but without space
         output = "" + alpha.charAt(alpha.length() - 1);
         localTranslations.addTranslatedExpression(output);
         getGlobalTranslationList().addTranslatedExpression(output);
+        getInfoLogger().getFreeVariables().addFreeVariable(output);
         return localTranslations;
     }
 
@@ -240,7 +244,9 @@ public class LetterTranslator extends AbstractListTranslator {
                 constantVsLetter(constantSet, term);
             } // if not, simply translate it as a Greek letter
             GreekLetterTranslator glt = new GreekLetterTranslator(getSuperTranslator());
-            return glt.translate(exp);
+            TranslatedExpression te = glt.translate(exp);
+            getInfoLogger().getFreeVariables().addFreeVariable(te.getTranslatedExpression());
+            return te;
         }
 
         // or is it a constant but not a Greek letter?
