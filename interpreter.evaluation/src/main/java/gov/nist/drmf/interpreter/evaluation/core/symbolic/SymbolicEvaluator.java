@@ -258,7 +258,7 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
                 arrConstraints = getCASListRepresentation(consList);
             }
         } catch (Exception e) {
-            LOG.warn("Error when parsing constraints => Ignoring Constraint: " + c.getRawConstraint(), e);
+            LOG.warn("Error when parsing constraints => Ignoring Constraint: " + c.getRawConstraint());
         }
 
         // default values are false

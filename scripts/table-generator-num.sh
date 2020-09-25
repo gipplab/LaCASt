@@ -11,6 +11,13 @@ SUMSYMSUCC=0
 SUMFAIL=0
 SUMNUMSUCC=0
 SUMNUMFAIL=0
+ABORTED=0
+ERRS=0
+
+PARTFAIL=0
+TOTALFAIL=0
+
+FILECOUNTER=0
 
 for FILE in $FILES; do
   [[ $FILE =~ .*([0-9][0-9])\-([A-Z]+)-.* ]]
@@ -30,24 +37,46 @@ for FILE in $FILES; do
   #read -r -a arrMath <<< $(gawk 'match($0, /.*SUCCESS: ([0-9]+),.*FAILURE: ([0-9]+),.*TESTED: ([0-9]+).*/, arry) {print arry[1]","arry[2]","arry[3]}' $FILE)
   
   read -r -a arrTrans <<< $(gawk 'match($0, /.*SUCCESS_TRANS: ([0-9]+),.*SUCCESS_SYMB: ([0-9]+).*/, arry) {print arry[2]","arry[1]}' $refF)
-  read -r -a arrMath <<< $(gawk 'match($0, /.*STARTED_TEST_CASES: ([0-9]+),.*SUCCESS_NUM: ([0-9]+),.*FAILURE: ([0-9]+).*/, arry) {print arry[2]","arry[3]","arry[1]}' $FILE)
+  read -r -a arrMath <<< $(gawk 'match($0, /.*STARTED_TEST_CASES: ([0-9]+),.*SUCCESS_NUM: ([0-9]+),.*FAILURE: ([0-9]+).*,.*ABORTED: ([0-9]+),.*ERROR: ([0-9]+).*/, arry) {print arry[2]","arry[3]","arry[1]","arry[4]","arry[5]}' $FILE)
+
+  read -r -a partFailed <<< $(gawk 'match($0, /.*Failed \[([0-9]+)\/([0-9]+)\]/, arr) {res[arr[1]<arr[2]]++}; END {print res[0]","res[1]}' $FILE)
 
   symFAIL="${arrMath[2]}"
   avgSYMSUCC=$(bc <<< "scale=2; 100*${arrTrans[0]}/${arrTrans[1]}")
   avgNUMSUCC=$(bc <<< "scale=2; 100*${arrMath[0]}/${symFAIL}")
-  avgFAILOFALL=$(bc <<< "scale=2; 100*${arrMath[1]}/${arrTrans[1]}")
+
+#  avgPARTFAIL=$(bc <<< "scale=2; 100*${partFailed[0]}/(${arrMath[0]}+${arrMath[1]})")
+#  avgTOTALFAIL=$(bc <<< "scale=2; 100*${partFailed[1]}/(${arrMath[0]}+${arrMath[1]})")
 
   SUMTRANS=$((SUMTRANS + arrTrans[1]))
   SUMSYMSUCC=$((SUMSYMSUCC + arrTrans[0]))
   SUMFAIL=$((SUMFAIL + symFAIL))
   SUMNUMSUCC=$((SUMNUMSUCC + arrMath[0]))
   SUMNUMFAIL=$((SUMNUMFAIL + arrMath[1]))
+  ABORTED=$((ABORTED + arrMath[3]))
+  ERRS=$((ERRS + arrMath[4]))
 
-  printf "\\TT\\TB \\\verb|%s| & %2d & %3d & %3d & (%4.1f\\%%) & %3d & %3d & (%4.1f\\%%) & %3d & (%4.1f\\%%) \\\\\\ \\hline\n" "${id}" "${num#0}" "${arrTrans[1]}" "${arrTrans[0]}" "${avgSYMSUCC}" "${symFAIL}" "${arrMath[0]}" "${avgNUMSUCC}" "${arrMath[1]}" "${avgFAILOFALL}"
+  PARTFAIL=$((PARTFAIL + partFailed[0]))
+  TOTALFAIL=$((TOTALFAIL + partFailed[1]))
+
+  printf "\\TT\\TB \\\verb|%s| & %2d & %3d & %3d & (%4.1f\\%%) & %3d & %3d & (%4.1f\\%%) & %3d & [%3d / %3d] & %3d & %3d \\\\\\ \\hline\n" "${id}" "${num#0}" "${arrTrans[1]}" "${arrTrans[0]}" "${avgSYMSUCC}" "${symFAIL}" "${arrMath[0]}" "${avgNUMSUCC}" "${arrMath[1]}" "${partFailed[0]}" "${partFailed[1]}" "${arrMath[3]}" "${arrMath[4]}"
+
+  FILECOUNTER=$((FILECOUNTER+1))
+
+  if (( $FILECOUNTER == 20 )); then
+    printf "\\TT\\TB \\\verb|MT| & 21 &   0 & \\\multicolumn{2}{c|}{-} & - & \\\multicolumn{2}{c|}{-} & \\\multicolumn{2}{c|}{-} & - & - \\\\\\ \\hline\n"
+    FILECOUNTER=$((FILECOUNTER+1))
+  elif (( $FILECOUNTER == 34 )); then
+    printf "\\TT\\TB \\\verb|FM| & 35 &   0 & \\\multicolumn{2}{c|}{-} & - & \\\multicolumn{2}{c|}{-} & \\\multicolumn{2}{c|}{-} & - & - \\\\\\ \\hline\n"
+    FILECOUNTER=$((FILECOUNTER+1))
+  fi
 done
 
 avgSS=$(bc <<< "scale=2; 100*${SUMSYMSUCC}/${SUMTRANS}")
 avgNUMS=$(bc <<< "scale=2; 100*${SUMNUMSUCC}/${SUMFAIL}")
 avgREST=$(bc <<< "scale=2; 100*${SUMNUMFAIL}/${SUMTRANS}")
+#avgPFAIL=$(bc <<< "scale=2; 100*${SUMNUMFAIL}/${PARTFAIL}")
+#avgTFAIL=$(bc <<< "scale=2; 100*${SUMNUMFAIL}/${TOTALFAIL}")
 
-printf "\\multicolumn{2}{|c|}{$\Sigma$} & %'4d & %'4d & (%4.1f\\%%) & %'4d & %'4d & (%4.1f\\%%) & %'4d & (%4.1f\\%%)\n" "${SUMTRANS}" "${SUMSYMSUCC}" "${avgSS}" "${SUMFAIL}" "${SUMNUMSUCC}" "${avgNUMS}" "${SUMNUMFAIL}" "${avgREST}"
+printf "\\hline\n"
+printf "\\multicolumn{2}{|c|}{$\Sigma$} & %'4d & %'4d & (%4.1f\\%%) & %'4d & %'4d & (%4.1f\\%%) & %'4d & [%'4d / %'4d] & %'4d & %'4d \\\\\\ \\hline\n" "${SUMTRANS}" "${SUMSYMSUCC}" "${avgSS}" "${SUMFAIL}" "${SUMNUMSUCC}" "${avgNUMS}" "${SUMNUMFAIL}" "${PARTFAIL}" "${TOTALFAIL}" "${ABORTED}" "${ERRS}"

@@ -17,6 +17,7 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -458,16 +459,18 @@ public class MathTermTranslator extends AbstractListTranslator {
         // remove last translated expressions from global list
         getGlobalTranslationList().removeLastNExps(translatedExpression.getLength());
 
-        String[] arguments = translatedExpression.getTranslatedExpression().split(",");
+        String closingSymbol = translatedExpression.removeLastExpression();
+
+        String[] arguments = translatedExpression.splitOn(",");
         if ( arguments.length != 2 )
             throw TranslationException.buildExceptionObj(
                     this, "Expecting to arguments, separated by a comma, for an interval but got " + arguments.length,
-                    TranslationExceptionReason.INVALID_LATEX_INPUT, arguments
+                    TranslationExceptionReason.INVALID_LATEX_INPUT, Arrays.toString(arguments)
             );
 
         // ok we know its an open bracket and it is either ( or [
         boolean leftOpen = bracket.symbol.endsWith("(");
-        boolean rightOpen = bracket.symbol.endsWith(")");
+        boolean rightOpen = closingSymbol.matches("\\s*\\)\\s*");
 
         String mlpKey = Keys.MLP_KEY_SET_PREFIX;
         mlpKey += Keys.MLP_KEY_SET_LEFT_PREFIX  + (leftOpen  ? "open" : "closed") + "-";
@@ -476,8 +479,8 @@ public class MathTermTranslator extends AbstractListTranslator {
         String intervalTranslation = bfT.translate(
                 new String[]{
                         firstArgument.trim(),
-                        arguments[0].substring(1).trim(), // delete the open parenthesis
-                        arguments[1].substring(0, arguments[1].length()-1).trim() // delete the closed parenthesis
+                        arguments[0].trim(), // delete the open parenthesis
+                        arguments[1].trim() // delete the closed parenthesis
                 },
                 mlpKey
         );

@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -118,7 +119,20 @@ public class ThrowTranslationExceptionTests {
         assertEquals("\\LambertW", te.getReasonObj());
     }
 
+    /**
+     * It's kind of debatable. LaCASt would be more robust when we only allow arguments in curly brackets.
+     * For example, <code>\cos(x)</code> should throw an error, because the argument is not strictly provided
+     * in curly brackets (strict hierarchy in the parse tree).
+     *
+     * However, sometimes the DLMF itself ignores this and uses macros to write just the barely minimum, e.g.,
+     * <code>\LambertW</code> or <code>\HankelmodM{\nu}^{3}(x)</code> (latest from DLMF 10.18.13).
+     *
+     * Now, we throw a warning that people should wrap their arguments in curly brackets.
+     * If you want to change that in the future, update the opposite test in
+     * {@link SimpleTranslationTests#macroParenthesisTranslator()}.
+     */
     @Test
+    @Disabled
     void functionTest() {
         String in = "\\cos(x)";
         TranslationException te = assertThrows(

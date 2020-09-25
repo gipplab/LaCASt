@@ -48,6 +48,11 @@ public class CaseMetaData {
         return constraints;
     }
 
+    public void addConstraints(Constraints c) {
+        if ( constraints == null ) this.constraints = c;
+        else constraints.addConstraints(c);
+    }
+
     public int getLinenumber() {
         return linenumber;
     }

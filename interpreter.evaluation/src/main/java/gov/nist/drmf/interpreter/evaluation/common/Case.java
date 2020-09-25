@@ -100,7 +100,11 @@ public class Case {
         try {
             String[] cons = metaData.getConstraints().getTexConstraints();
             cons = ae.translateEachConstraint(cons, label);
+            LOG.debug("Active constraints: " + Arrays.toString(cons));
             return new LinkedList<>(Arrays.asList(cons));
+        } catch ( NullPointerException npe ) {
+            LOG.debug("No additional constraints identified.");
+            return new LinkedList<>();
         } catch ( Error | Exception e ){
             LOG.error("Unable to generate Constraints. Reason: " + e.getMessage());
             return new LinkedList<>();
@@ -189,10 +193,12 @@ public class Case {
             Matcher mR = Z_PATTERN.matcher(RHS);
 
             while ( mL.find() ) {
-                mL.appendReplacement(sbL, "(x+y\\\\iunit)" + mL.group(1));
+                String gr = mL.group(1).equals("\\") ? "\\\\" : mL.group(1);
+                mL.appendReplacement(sbL, "(x+y\\\\iunit)" + gr);
             }
             while ( mR.find() ) {
-                mR.appendReplacement(sbR, "(x+y\\\\iunit)" + mR.group(1));
+                String gr = mR.group(1).equals("\\") ? "\\\\" : mR.group(1);
+                mR.appendReplacement(sbR, "(x+y\\\\iunit)" + gr);
             }
 
             LHS = mL.appendTail(sbL).toString();
@@ -225,6 +231,10 @@ public class Case {
     private static final Pattern NVAR_PATTERN = Pattern.compile("\\\\NVar\\{(.*?)}");
 
     private void replaceSingleTag(SymbolTag def) throws ParseException {
+        if ( def.getMetaData() != null ) {
+            this.metaData.addConstraints(def.getMetaData().getConstraints());
+        }
+
         SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
         PrintablePomTaggedExpression ppteLHS = mlp.parse(this.LHS, this.getEquationLabel());
         PrintablePomTaggedExpression ppteRHS = mlp.parse(this.RHS, this.getEquationLabel());

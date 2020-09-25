@@ -156,6 +156,9 @@ public class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
 
     @Override
     public String buildList(List<String> list) {
+        if ( list == null ) {
+            return null;
+        }
         String listStr = CommandBuilder.makeMapleList(list);
         if ( listStr != null && listStr.length() > 3 )
             return listStr.substring(1, listStr.length()-1);
