@@ -20,6 +20,12 @@ public class InformationLogger {
         freeVariables = new FreeVariables();
     }
 
+    public InformationLogger(InformationLogger logger) {
+        gen_info_map = new HashMap<>(logger.gen_info_map);
+        macro_info_map = new HashMap<>(logger.macro_info_map);
+        freeVariables = new FreeVariables(logger.freeVariables);
+    }
+
     public FreeVariables getFreeVariables() {
         return freeVariables;
     }

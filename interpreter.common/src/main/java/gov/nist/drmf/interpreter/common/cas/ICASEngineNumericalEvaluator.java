@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Observer;
 
@@ -17,30 +18,11 @@ public interface ICASEngineNumericalEvaluator<T> extends Observer, IAbortEvaluat
     /**
      * Stores the variables of the given expression and returns the
      * name of the variable that stores the information.
-     * @param expression mathematical expression (already translated)
+     * @param variables mathematical expression (already translated)
      * @param testValues list of values
      * @return name of the variable to access the variables of the expression
      */
-    int storeVariables(String expression, List<String> testValues);
-
-    default void storeVariablesSave(String expression, String fallbackExpression, List<String> testValues) throws IllegalArgumentException {
-        int num = storeVariables(expression, testValues);
-
-        boolean isValid = num >= 0;
-        if ( num <= 0 ) {
-            LOG.debug("Switch extracting variables to the fallback expression.");
-            num = storeVariables(fallbackExpression, testValues);
-        }
-
-        // if both times, num < 0, we are unable to extract variables => throw an exception
-        // if first time was valid (>= 0) but no vars extracted, we try to extract from the fallback expression
-        // only if both results are under 0 (invalid) we throw an exception, otherwise it may simply contain 0 vars...
-        // e.g. 1=1 no vars but valid :)
-        if ( !isValid && num < 0 ) {
-            LOG.trace("Still unable to extract variables => throwing exception.");
-            throw new IllegalArgumentException("Unable to extract variables.");
-        }
-    }
+    void storeVariables(Collection<String> variables, Collection<String> testValues);
 
     /**
      * Stores the given constraint variables and their values.

@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.evaluation.common.Case;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Andre Greiner-Petter
@@ -27,7 +28,7 @@ public class NumericalTest {
 
     private boolean skipClassicAbortion = false;
 
-    private String lhs, rhs;
+    private Set<String> variables;
 
     public NumericalTest(
             String testExpression,
@@ -49,20 +50,12 @@ public class NumericalTest {
         maxCombis = config.getMaximumNumberOfCombs();
     }
 
-    public String getExtractVariableSide() {
-        return lhs != null ? lhs : testExpression;
+    public Set<String> getVariables() {
+        return variables;
     }
 
-    public void setLeftHandSide(String extractVariableSide) {
-        this.lhs = extractVariableSide;
-    }
-
-    public String getFallbackExtractedVariablesSide() {
-        return rhs != null ? rhs : testExpression;
-    }
-
-    public void setRightHandSide(String rhs) {
-        this.rhs = rhs;
+    public void setVariables(Set<String> variables) {
+        this.variables = variables;
     }
 
     public void setPostProcessingMethodName(String postProcessingMethodName){

@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation.core;
 
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
@@ -79,8 +80,8 @@ public abstract class AbstractEvaluator<T> {
         this.rememberPackages = true;
     }
 
-    public String forwardTranslate( String in, String label ) throws TranslationException {
-        String translation = forwardTranslator.translate(in, label);
+    public TranslationInformation forwardTranslate(String in, String label ) throws TranslationException {
+        TranslationInformation translation = forwardTranslator.translateToObject(in, label);
         if ( rememberPackages ) reqPackageMemory.addAll( forwardTranslator.getRequiredPackages() );
         return translation;
     }

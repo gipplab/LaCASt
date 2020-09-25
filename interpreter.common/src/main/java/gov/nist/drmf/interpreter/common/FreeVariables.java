@@ -23,6 +23,12 @@ public class FreeVariables {
         suppressionStartPosition = -1;
     }
 
+    public FreeVariables(FreeVariables fvars) {
+        freeVariables = new LinkedList<>(fvars.freeVariables);
+        temporarilySuppressedVars = new HashSet<>(fvars.temporarilySuppressedVars);
+        suppressionStartPosition = fvars.suppressionStartPosition;
+    }
+
     public void suppressingVars(String... vars) {
         suppressionStartPosition = freeVariables.size();
         if ( vars == null ) return;
