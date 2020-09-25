@@ -415,9 +415,17 @@ class SimpleTranslationTests {
     @Test
     public void unknownFunctionTranslator() throws ParseException, IOException {
         String input = "\\cos(x)";
+        // manually delete the information that \cos is a semantic macro
         PomTaggedExpression pte = stripOfDLMFInfo(input);
         TranslatedExpression trans = slt.translate(pte);
         assertEquals("cos(x)", trans.toString());
+    }
+
+    @Test
+    public void macroParenthesisTranslator() {
+        String input = "\\cos(x)";
+        String trans = slt.translate(input);
+        assertEquals("cos(x)", trans);
     }
 
     @Test
@@ -433,6 +441,13 @@ class SimpleTranslationTests {
         String input = "x \\in (- \\infty, -1]";
         String output = slt.translate(input);
         assertEquals("- infinity < x <= - 1", output);
+    }
+
+    @Test
+    public void multiplyTest() {
+        String input = "|(x+y\\iunit)|";
+        String output = slt.translate(input);
+        assertEquals("abs(x + y*I)", output);
     }
 
     @Test

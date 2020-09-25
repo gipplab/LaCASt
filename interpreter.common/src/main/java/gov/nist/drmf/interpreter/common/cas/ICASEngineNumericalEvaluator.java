@@ -21,7 +21,26 @@ public interface ICASEngineNumericalEvaluator<T> extends Observer, IAbortEvaluat
      * @param testValues list of values
      * @return name of the variable to access the variables of the expression
      */
-    void storeVariables(String expression, List<String> testValues);
+    int storeVariables(String expression, List<String> testValues);
+
+    default void storeVariablesSave(String expression, String fallbackExpression, List<String> testValues) throws IllegalArgumentException {
+        int num = storeVariables(expression, testValues);
+
+        boolean isValid = num >= 0;
+        if ( num <= 0 ) {
+            LOG.debug("Switch extracting variables to the fallback expression.");
+            num = storeVariables(fallbackExpression, testValues);
+        }
+
+        // if both times, num < 0, we are unable to extract variables => throw an exception
+        // if first time was valid (>= 0) but no vars extracted, we try to extract from the fallback expression
+        // only if both results are under 0 (invalid) we throw an exception, otherwise it may simply contain 0 vars...
+        // e.g. 1=1 no vars but valid :)
+        if ( !isValid && num < 0 ) {
+            LOG.trace("Still unable to extract variables => throwing exception.");
+            throw new IllegalArgumentException("Unable to extract variables.");
+        }
+    }
 
     /**
      * Stores the given constraint variables and their values.
@@ -69,6 +88,14 @@ public interface ICASEngineNumericalEvaluator<T> extends Observer, IAbortEvaluat
     ) throws ComputerAlgebraSystemEngineException;
 
     ResultType getStatusOfResult(T results) throws ComputerAlgebraSystemEngineException;
+
+    default int getPerformedTestCases() {
+        return 0;
+    }
+
+    default int getNumberOfFailedTestCases() {
+        return 0;
+    }
 
     default void setGlobalAssumptions(List<String> assumptions){
         LOG.warn("Ignoring global assumptions. Overwrite setGlobalAssumptions if you wanna use them!");

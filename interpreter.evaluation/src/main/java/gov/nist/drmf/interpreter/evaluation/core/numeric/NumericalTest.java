@@ -27,6 +27,8 @@ public class NumericalTest {
 
     private boolean skipClassicAbortion = false;
 
+    private String lhs, rhs;
+
     public NumericalTest(
             String testExpression,
             Case c,
@@ -45,6 +47,22 @@ public class NumericalTest {
 
         precision = config.getPrecision();
         maxCombis = config.getMaximumNumberOfCombs();
+    }
+
+    public String getExtractVariableSide() {
+        return lhs != null ? lhs : testExpression;
+    }
+
+    public void setLeftHandSide(String extractVariableSide) {
+        this.lhs = extractVariableSide;
+    }
+
+    public String getFallbackExtractedVariablesSide() {
+        return rhs != null ? rhs : testExpression;
+    }
+
+    public void setRightHandSide(String rhs) {
+        this.rhs = rhs;
     }
 
     public void setPostProcessingMethodName(String postProcessingMethodName){

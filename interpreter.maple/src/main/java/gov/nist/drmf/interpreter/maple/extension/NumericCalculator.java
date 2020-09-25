@@ -50,7 +50,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     }
 
     @Override
-    public void storeVariables(String expression, List<String> testValues) {
+    public int storeVariables(String expression, List<String> testValues) {
         // reset commandsList
         commandsList = new StringBuffer();
         timedOutBySetup = false;
@@ -72,6 +72,16 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
                 .append(":=")
                 .append(makeMapleList(testValues))
                 .append(":").append(NL);
+
+        try {
+            commandsList.append("nops("+varNames+");");
+            Algebraic a = maple.evaluate(commandsList.toString());
+            return Integer.parseInt(a.toString());
+        } catch (MapleException | NumberFormatException e) {
+            return 0;
+        } finally {
+            commandsList = new StringBuffer();
+        }
     }
 
     private void tryTimeOutExpression(StringBuffer sb, double timeout, String expression) {

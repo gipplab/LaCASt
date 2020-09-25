@@ -22,7 +22,7 @@ public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> 
     private static final Logger LOG = LogManager.getLogger(AbstractSymbolicEvaluator.class.getName());
 
     public static final Pattern SYMBOLIC_LINE_PATTERN = Pattern.compile(
-            "^(\\d+-?[a-z]?)(?: \\[.*])?: ([A-Za-z]*) .*$"
+            "^(\\d+-?[a-z]?)(?: \\[.*])?: ([A-Za-z\\s]*).*$"
     );
 
     private ICASEngineSymbolicEvaluator<T> symbolicEvaluator;

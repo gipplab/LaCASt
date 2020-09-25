@@ -246,11 +246,18 @@ public class SequenceTranslator extends AbstractListTranslator {
         }
     }
 
+    private TranslatedExpression handleClosingSet(Brackets closingBracket) {
+        localTranslations.addTranslatedExpression(closingBracket.getAppropriateString());
+        return localTranslations;
+    }
+
     private TranslatedExpression handleClosingBracket(
             PomTaggedExpression exp,
             List<PomTaggedExpression> followingExp,
             Brackets bracket
     ) {
+        if ( super.isSetMode() ) return handleClosingSet(bracket);
+
         // this sequence ends her
         // first of all, merge all elements together
         int num = localTranslations.mergeAll();
@@ -260,15 +267,17 @@ public class SequenceTranslator extends AbstractListTranslator {
         String seq;
         if (openBracket.equals(Brackets.left_latex_abs_val) ||
                 openBracket.equals(Brackets.abs_val_open)) {
+            String argTranslation = localTranslations.removeLastExpression();
+            Matcher m = MULTIPLY_PATTERN.matcher(argTranslation);
+            if ( m.matches() ) argTranslation = m.group(1);
+
             BasicFunctionsTranslator bft = getConfig().getBasicFunctionsTranslator();
             seq = bft.translate(
                     new String[] {
-                            stripMultiParentheses(localTranslations.removeLastExpression())
+                            stripMultiParentheses(argTranslation)
                     },
                     Keys.KEY_ABSOLUTE_VALUE
             );
-        } else if (super.isSetMode()) { // in set mode, both parenthesis may not match!
-            seq = openBracket.getAppropriateString() + localTranslations.removeLastExpression() + bracket.getAppropriateString();
         } else { // otherwise, parenthesis must match each other, so close as it opened
             seq = openBracket.getAppropriateString() + localTranslations.removeLastExpression() + openBracket.getCounterPart().getAppropriateString();
         }
@@ -330,8 +339,11 @@ public class SequenceTranslator extends AbstractListTranslator {
     }
 
     private boolean checkParenthesisFirst(List<PomTaggedExpression> expList) {
-        return openBracket != null && (openBracket.equals(Brackets.abs_val_close) || openBracket.equals(Brackets.abs_val_open)) &&
-                expList != null && !expList.isEmpty() && expList.get(0).getRoot().getTermText().matches(Brackets.ABSOLUTE_VAL_TERM_TEXT_PATTERN);
+        return openBracket != null &&
+                (openBracket.equals(Brackets.abs_val_close) || openBracket.equals(Brackets.abs_val_open)) &&
+                expList != null &&
+                !expList.isEmpty() &&
+                expList.get(0).getRoot().getTermText().matches(Brackets.ABSOLUTE_VAL_TERM_TEXT_PATTERN);
     }
 
     /**

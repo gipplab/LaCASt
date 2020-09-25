@@ -2,7 +2,7 @@ createListOfTestCases[vars_, vals_] := Tuples[Table[tmp1 -> tmp2, {tmp1, vars}, 
 
 mapConstraints[vars_, vals_] := Module[
     {tmp},
-    tmp := {};
+    tmp = {};
     Do[
         Module[{},
             AppendTo[tmp, {Part[vars, i] -> Part[vals, i]}];
@@ -14,16 +14,33 @@ filterTestCases[ass_, tests_, max_] := Select[tests, ReplaceAll[And @@ ass, #]&,
 
 filterGlobalAssumptions[ass_, vars_] := Select[ass, MemberQ[vars, Part[Reduce`FreeVariables[#],1]]&]
 
+calculateResults[expr_, tests_] :=
+    Module[{results},
+        results = {};
+        Do[
+            Module[{testRes},
+                testRes = Catch[
+                    N[ReplaceAll[expr, Part[tests, i]]]
+                ];
+                AppendTo[results, testRes];
+            ],
+            {i, Length[tests]}
+        ];
+        Return[results]
+    ]
+
 numericalAutoTest[expr_, tests_, threshold_] :=
     Module[{results, output},
-        results := N[ReplaceAll[expr, tests]];
-        output := {};
+        results = calculateResults[expr, tests];
+        output = {};
         Do[
             Module[{},
                 If[
-                    Check[
-                        Abs[Part[results, i]] > threshold
-                    , True],
+                    Or[
+                        And[BooleanQ[Part[results, i]], Not[Part[results, i]]],
+                        And[NumericQ[Part[results, i]], Abs[Part[results, i]] > threshold],
+                        And[Not[BooleanQ[Part[results, i]]], Not[NumericQ[Part[results, i]]]]
+                    ],
                     AppendTo[output, {Part[results, i], Part[tests, i]}]
                 ]
             ], {i, Length[tests]}];
@@ -32,10 +49,10 @@ numericalAutoTest[expr_, tests_, threshold_] :=
 
 createTestCases[vars_, vals_, constVars_, constVals_, extraVars_, extraVals_] := Module[
     {varsF, constT, extraT, testCases},
-    varsF := Complement[vars, constVars, extraVars];
-    extraT := createListOfTestCases[Complement[Intersection[extraVars, vars], constVars], extraVals];
-    constT := mapConstraints[constVars, constVals];
-    varsT := createListOfTestCases[varsF, vals];
+    varsF = Complement[vars, constVars, extraVars];
+    extraT = createListOfTestCases[Complement[Intersection[extraVars, vars], constVars], extraVals];
+    constT = mapConstraints[constVars, constVals];
+    varsT = createListOfTestCases[varsF, vals];
     Which[
         And[Length[Flatten[extraT]] == 0, Length[Flatten[constT]] == 0],
             Return[varsT],

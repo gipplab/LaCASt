@@ -168,7 +168,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         subset = config.getSubSetInterval();
         HashMap<Integer, String> skippedLinesInfo = new HashMap<>();
 
-        Set<ID> skips = getSpecificResults(config.getSymbolicResultsPath(), "Failure");
+        Set<ID> skips = getSpecificResults(config.getSymbolicResultsPath(), ".*(Failure|Aborted).*");
 //        Set<ID> skips = getSpecificResults(config.getSymbolicResultsPath(), "Successful");
 
         if ( skips != null && config.getSymbolicResultsPath() != null ) {
@@ -257,7 +257,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             return;
         }
 
-        String expression = null;
+//        String expression = null;
         Constraints con = null;
         try {
             Status.STARTED_TEST_CASES.add();
@@ -273,11 +273,24 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             LOG.error("Error in translation of a constraint: " + te.toString());
         }
 
+        String[] preAndPostCommands = null;
         try {
-            expression = getTestedExpression(c);
+            preAndPostCommands = getPrevCommand( c.getLHS() + ", " + c.getRHS() );
+            if ( preAndPostCommands[0] != null ){
+                LOG.debug("Enter pre-testing commands: " + preAndPostCommands[0]);
+                enterEngineCommand(preAndPostCommands[0]);
+            }
+        } catch (Error | Exception e) {
+            // nothing.
+            LOG.warn("Unable to enter pre-testing commands: " + c);
+        }
 
+        NumericalTest test = null;
+        try {
+            LOG.debug("Start numerical calculations.");
+            test = buildTestObject(c);
             Status.SUCCESS_TRANS.add();
-            LOG.info("Numerical test expression: " + expression);
+            LOG.info("Numerical test expression: " + test.getTestExpression());
         } catch ( TranslationException te ) {
             LOG.error("Error in translation. " + te.toString());
             lineResult[c.getLine()].add("Error - " + te.toString());
@@ -285,16 +298,9 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             return;
         }
 
+        if ( test == null ) return;
+
         try {
-            String[] preAndPostCommands = getPrevCommand( c.getLHS() + ", " + c.getRHS() );
-
-            if ( preAndPostCommands[0] != null ){
-                LOG.debug("Enter pre-testing commands: " + preAndPostCommands[0]);
-                enterEngineCommand(preAndPostCommands[0]);
-            }
-
-            LOG.debug("Start numerical calculations.");
-            NumericalTest test = buildTestObject(expression, c);
             if ( isMaple ) test.setSkipClassicAbortion();
             T results = performNumericalTest(test);
 
@@ -312,21 +318,23 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             } else {
                 ICASEngineNumericalEvaluator.ResultType resType = testResult(results);
                 String evaluation = "";
+                int tested = getNumericalEvaluator().getPerformedTestCases();
+                int failed = getNumericalEvaluator().getNumberOfFailedTestCases();
                 switch (resType) {
                     case SUCCESS:
-                        lineResult[c.getLine()].add("Successful");
+                        lineResult[c.getLine()].add("Successful [Tested: " + tested + "]");
                         Status.SUCCESS_NUM.add();
                         break;
                     case FAILURE:
                         LOG.info("Test was NOT successful.");
                         evaluation = LogManipulator.shortenOutput(results.toString(), 2);
-                        lineResult[c.getLine()].add(evaluation);
+                        lineResult[c.getLine()].add("Failed ["+failed+"/"+tested+"]: " + evaluation);
                         Status.FAILURE.add();
                         break;
                     case ERROR:
                         LOG.info("Test was NOT successful.");
                         evaluation = LogManipulator.shortenOutput(results.toString(), 2);
-                        lineResult[c.getLine()].add(evaluation);
+                        lineResult[c.getLine()].add("Error [" + evaluation + "]");
                         Status.ERROR.add();
                         break;
                 }
@@ -336,9 +344,9 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             LOG.info("Finished test for line: " + c.getLine());
         } catch ( IllegalArgumentException iae ){
             LOG.warn("Skip test, because " + iae.getMessage());
-            lineResult[c.getLine()].add("Skipped - " + iae.getMessage());
+            lineResult[c.getLine()].add("Error - " + iae.getMessage());
             // Note, we rename the overview lines, so we use missing here, just to avoid trouble with SKIP infos
-            Status.ABORTED.add();
+            Status.ERROR.add();
         } catch ( Error | Exception e ){
             LOG.warn("Error for line " + c.getLine() + ", because: " + e.toString(), e);
             lineResult[c.getLine()].add("Error - " + e.toString());
@@ -353,35 +361,37 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 //        return c.getLine() + ": " + lineResult[c.getLine()];
     }
 
-    private NumericalTest buildTestObject(String expression, Case c) {
-        NumericalTest test = new NumericalTest(expression, c, config, getThisConstraintTranslator());
+    private NumericalTest buildTestObject(Case c) {
+        LOG.debug("Translating LHS: " + c.getLHS());
+        String lhs = forwardTranslate( c.getLHS(), c.getEquationLabel() );
+        LOG.info("Translated LHS to: " + lhs);
+
+        LOG.debug("Translating RHS: " + c.getRHS());
+        String rhs = forwardTranslate( c.getRHS(), c.getEquationLabel() );
+        LOG.info("Translated RHS to: " + rhs);
+
+        NumericalTest test = new NumericalTest(getTestedExpression(lhs, rhs, c), c, config, getThisConstraintTranslator());
         test.setPostProcessingMethodName(scriptHandler.getPostProcessingScriptName(c));
+        test.setLeftHandSide(lhs);
+        test.setRightHandSide(rhs);
         return test;
     }
 
-    private String getTestedExpression(Case c){
-        LOG.debug("Translating LHS: " + c.getLHS());
-        String mapleLHS = forwardTranslate( c.getLHS(), c.getEquationLabel() );
-        LOG.info("Translated LHS to: " + mapleLHS);
-
-        LOG.debug("Translating RHS: " + c.getRHS());
-        String mapleRHS = forwardTranslate( c.getRHS(), c.getEquationLabel() );
-        LOG.info("Translated RHS to: " + mapleRHS);
-
+    private String getTestedExpression(String lhs, String rhs, Case c){
         if ( !c.isEquation() ){
-            return mapleLHS + c.getRelation().getSymbol() + mapleRHS;
+            return lhs + c.getRelation().getSymbol() + rhs;
         }
 
-        Matcher nullLHSMatcher = nullPattern.matcher( mapleLHS );
-        Matcher nullRHSMatcher = nullPattern.matcher( mapleRHS );
+        Matcher nullLHSMatcher = nullPattern.matcher( lhs );
+        Matcher nullRHSMatcher = nullPattern.matcher( rhs );
         if ( nullLHSMatcher.matches() ) {
-            mapleLHS = "";
+            lhs = "";
         }
         if ( nullRHSMatcher.matches() ) {
-            mapleRHS = "";
+            rhs = "";
         }
 
-        return config.getTestExpression( this.getNumericalEvaluator(), mapleLHS, mapleRHS );
+        return config.getTestExpression( this.getNumericalEvaluator(), lhs, rhs );
     }
 
     @Override

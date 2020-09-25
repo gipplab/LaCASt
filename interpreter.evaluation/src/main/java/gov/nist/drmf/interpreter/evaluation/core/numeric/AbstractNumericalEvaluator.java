@@ -9,6 +9,7 @@ import gov.nist.drmf.interpreter.evaluation.common.Status;
 import gov.nist.drmf.interpreter.evaluation.core.symbolic.AbstractSymbolicEvaluator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.intellij.lang.annotations.Language;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -56,8 +57,10 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
         LOG.info("Prepare numerical test.");
 
         // store variables first
-        numericalEvaluator.storeVariables(
-                test.getTestExpression(), test.getTestValues()
+        numericalEvaluator.storeVariablesSave(
+                test.getTestExpression(),
+                test.getExtractVariableSide(), // fallback
+                test.getTestValues()
         );
 
         // next, store constraint variables extracted from blueprints
@@ -113,11 +116,11 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
         return numericalEvaluator.getStatusOfResult(results);
     }
 
-    public ICASEngineNumericalEvaluator getNumericalEvaluator() {
+    public ICASEngineNumericalEvaluator<?> getNumericalEvaluator() {
         return numericalEvaluator;
     }
 
-    public Set<ID> getSpecificResults(Path dataset, String resultString) {
+    public Set<ID> getSpecificResults(Path dataset, @Language("RegExp") String resultString) {
         Set<ID> set = new HashSet<>();
         if ( dataset == null || !Files.exists(dataset) ) return set;
         try {
@@ -125,7 +128,7 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
                 .map( l -> {
                     Matcher m = AbstractSymbolicEvaluator.SYMBOLIC_LINE_PATTERN.matcher(l);
                     if ( m.matches() ) {
-                        if ( m.group(2).equals(resultString) ) return m.group(1);
+                        if ( m.group(2).matches(resultString) ) return m.group(1);
                     }
                     return null;
                 })

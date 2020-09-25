@@ -44,9 +44,10 @@ public abstract class AbstractEvaluator<T> {
     private boolean rememberPackages = false;
 
     public static final Pattern filterCases = Pattern.compile(
-            "\\\\([Bb]igO|littleo|[fdc]Diff|asymp|sim|[lc]?dots)(?:[^a-zA-Z]|$)|" +
+            "\\\\([Bb]igO|littleo|[fdc]Diff|asymp|sim)(?:[^a-zA-Z]|$)|" +
+                    "(?<!\\d|\\d\\s{0,5}\\\\[.,; ])\\s*\\\\([lc]?dots)(?:[^a-zA-Z]|$)|" +
                     "\\{(cases|array|[bBvp]matrix|Matrix|Lattice)}|" +
-                    "([fg](?:\\\\left)?\\(.*?(?:\\)|\\\\right\\)))"
+                    "([fgFG](?:\\\\left)?\\(.*?(?:\\)|\\\\right\\)))"
     );
 
     public AbstractEvaluator(
@@ -218,7 +219,7 @@ public abstract class AbstractEvaluator<T> {
                         } else return true;
                     }) // skip entries if wanted
                     .flatMap(l -> {
-                        if ( l.contains("comments{Warning") && !l.contains("symbolDefined") ) {
+                        if ( l.contains("comments{Warning") && !l.contains("symbolDefined") && !l.matches(".*(?<!\\\\[A-Za-z]{0,30})[ie](.|$).*") ) {
                             skippedLinesInfo.put(currLine[0], "Skipped - no semantic math");
                             Status.SKIPPED.add();
                             return null;
@@ -264,12 +265,19 @@ public abstract class AbstractEvaluator<T> {
                                     counter++;
                                 }
                             } else {
+                                boolean shouldBreak = false;
                                 if ( !reason.isEmpty() ) reason += ", ";
 
                                 if ( m.group(1) != null ) reason += m.group(1);
                                 else if ( m.group(2) != null ) reason += m.group(2);
-                                else reason += "Generic function " + m.group(3);
+                                else if ( m.group(3) != null ) {
+                                    reason += m.group(3);
+                                    // everything after cases is probably corrupted...
+                                    shouldBreak = true;
+                                }
+                                else reason += "Generic function " + m.group(4);
                                 LOG.warn("Ignore " + currLine[0] + " because " + reason + "; Test case: " + test);
+                                if ( shouldBreak ) break;
                             }
                         }
 

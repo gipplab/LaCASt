@@ -218,6 +218,27 @@ public class TranslatedExpression {
         return pw.addPackages(getTranslatedExpression(), requiredPackages);
     }
 
+    public String[] splitOn(String splitter) {
+        LinkedList<List<String>> parts = new LinkedList<>();
+        parts.add(new LinkedList<>());
+
+        for ( String p : trans_exps ) {
+            if ( p != null && !p.isBlank() && p.matches("\\s*"+splitter+"\\s*") ) {
+                parts.addLast(new LinkedList<>());
+                continue;
+            }
+
+            parts.getLast().add(p);
+        }
+
+        String[] res = new String[parts.size()];
+        for ( int i = 0; i < parts.size(); i++ ) {
+            res[i] = String.join("", parts.get(i));
+        }
+
+        return res;
+    }
+
     public void addRequiredPackages(Collection<String> requiredPackages) {
         this.requiredPackages.addAll(requiredPackages);
     }

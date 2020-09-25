@@ -7,6 +7,7 @@ import com.wolfram.jlink.MathLinkFactory;
 import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
@@ -183,13 +184,14 @@ public class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> 
         return ls.substring(1, ls.length()-1);
     }
 
-    public void checkIfEvaluationIsInRange(String command, int lowerLimit, int upperLimit) throws ComputerAlgebraSystemEngineException {
+    public int checkIfEvaluationIsInRange(String command, int lowerLimit, int upperLimit) throws ComputerAlgebraSystemEngineException {
         try {
-            String res = mathematicaInterface.evaluate(command);
-            LOG.debug("Generated test cases: " + res);
-            int nT = Integer.parseInt(res);
+            Expr res = mathematicaInterface.evaluateToExpression(command);
+            int nT = res.length();
+            LOG.info("Sample of generated test cases [Total: "+nT+"]: " + LogManipulator.shortenOutput(res.toString(), 5));
             if ( nT >= upperLimit ) throw new IllegalArgumentException("Too many test combinations.");
             else if ( nT <= lowerLimit ) throw new IllegalArgumentException("Not enough test combinations.");
+            return nT;
             // res should be an integer, testing how many test commands there are!
         } catch (MathLinkException | NumberFormatException e) {
             throw new ComputerAlgebraSystemEngineException(e);

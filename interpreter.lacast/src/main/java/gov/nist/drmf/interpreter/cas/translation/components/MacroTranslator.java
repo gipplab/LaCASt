@@ -370,12 +370,20 @@ public class MacroTranslator extends AbstractListTranslator {
             // arg2 because {arg1} is self-contained. If not, there is something wrong and an error should be thrown.
             Brackets b = Brackets.getBracket(exp);
             if ( b != null && b.opened ) {
-                throw throwMacroException("The arguments of semantic macros must be wrapped in curly brackets! " +
-                        "It seems you wrote "+ macro + "(...) instead of " + macro + "{...}");
-            }
+                LOG.warn("The arguments of " + macro + " was not given in curly brackets but parenthesis. This is will be rejected in future releases.");
 
-            String translation = translateInnerExp(exp, new LinkedList<>()).toString();
-            arguments.addLast(translation);
+                SequenceTranslator sp = new SequenceTranslator(this, b);
+                TranslatedExpression te = sp.translate(followingExps);
+                getGlobalTranslationList().removeLastNExps(te.getLength());
+                arguments.addLast(te.toString());
+
+                // we are more forgiving now, but maybe we want to change that later again.
+//                throw throwMacroException("The arguments of semantic macros must be wrapped in curly brackets! " +
+//                        "It seems you wrote "+ macro + "(...) instead of " + macro + "{...}");
+            } else {
+                String translation = translateInnerExp(exp, new LinkedList<>()).toString();
+                arguments.addLast(translation);
+            }
         }
 
         return arguments;
