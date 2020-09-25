@@ -207,8 +207,8 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         try {
             Status.STARTED_TEST_CASES.add();
             startRememberPackages();
-            lhs = forwardTranslate(c.getLHS(), c.getEquationLabel());
-            rhs = forwardTranslate(c.getRHS(), c.getEquationLabel());
+            lhs = forwardTranslate(c.getLHS(), c.getEquationLabel()).getTranslatedExpression();
+            rhs = forwardTranslate(c.getRHS(), c.getEquationLabel()).getTranslatedExpression();
             stopRememberPackages();
 
             LOG.info("Translate LHS to: " + lhs);

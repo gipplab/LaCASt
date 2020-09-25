@@ -9,6 +9,7 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Observable;
 
@@ -50,21 +51,16 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     }
 
     @Override
-    public int storeVariables(String expression, List<String> testValues) {
+    public void storeVariables(Collection<String> variables, Collection<String> testValues) {
         // reset commandsList
         commandsList = new StringBuffer();
         timedOutBySetup = false;
 
-        if ( timeLimit > 0 ) {
-            tryTimeOutExpression(commandsList, timeLimit, expression);
-        } else {
-            commandsList.append(testExpression).append(" := ")
-                    .append(expression).append(":").append(NL);
-        }
-
         commandsList
                 .append(varNames)
-                .append(":=myIndets(nTest):").append(NL);
+                .append(":=")
+                .append(makeMapleList(variables))
+                .append(NL);
 
         String varValues = ICASEngineNumericalEvaluator.getValuesName(varNames);
         commandsList
@@ -72,16 +68,6 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
                 .append(":=")
                 .append(makeMapleList(testValues))
                 .append(":").append(NL);
-
-        try {
-            commandsList.append("nops("+varNames+");");
-            Algebraic a = maple.evaluate(commandsList.toString());
-            return Integer.parseInt(a.toString());
-        } catch (MapleException | NumberFormatException e) {
-            return 0;
-        } finally {
-            commandsList = new StringBuffer();
-        }
     }
 
     private void tryTimeOutExpression(StringBuffer sb, double timeout, String expression) {
@@ -201,6 +187,14 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
             int precision
     ) throws ComputerAlgebraSystemEngineException {
         if ( timedOutBySetup ) return null;
+
+        if ( timeLimit > 0 ) {
+            tryTimeOutExpression(commandsList, timeLimit, expression);
+        } else {
+            commandsList.append(testExpression).append(" := ")
+                    .append(expression).append(":").append(NL);
+        }
+
         try {
             LOG.debug("Perform numerical test:" + NL + commandsList.toString());
 

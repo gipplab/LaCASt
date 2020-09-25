@@ -57,9 +57,8 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
         LOG.info("Prepare numerical test.");
 
         // store variables first
-        numericalEvaluator.storeVariablesSave(
-                test.getTestExpression(),
-                test.getExtractVariableSide(), // fallback
+        numericalEvaluator.storeVariables(
+                test.getVariables(),
                 test.getTestValues()
         );
 

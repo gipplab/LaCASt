@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.maple.translation;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
@@ -177,7 +178,7 @@ public final class MapleTranslator extends AbstractAlgebraicTranslator<Algebraic
      * @throws MapleException if the conversion to the inner form of Maple fails.
      */
     @Override
-    public String translate( String maple_input ) throws TranslationException {
+    public TranslationInformation translateToObject( String maple_input ) throws TranslationException {
         // Creates the command by wrapping all necessary information around the input
         // to convert the given input into the internal maple datastructure
         String cmd = maple_to_inert_procedure_name + "('" + maple_input + "')";
@@ -198,7 +199,11 @@ public final class MapleTranslator extends AbstractAlgebraicTranslator<Algebraic
             // can be accessed by the internalErrorLog
 
             translatedList = translateGeneralExpression(a);
-            return translatedList.getAccurateString();
+            String translation = translatedList.getAccurateString();
+
+            TranslationInformation ti = new TranslationInformation(maple_input, translation);
+            ti.setInformation(getInfos());
+            return ti;
         } catch (Exception e) {
             throw new TranslationException(
                     Keys.KEY_MAPLE,

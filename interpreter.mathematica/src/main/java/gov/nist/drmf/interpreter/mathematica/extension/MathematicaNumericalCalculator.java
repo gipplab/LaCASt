@@ -13,6 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.beans.Expression;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
@@ -102,7 +103,7 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
         return var + "Vals";
     }
 
-    private static String buildMathList(List<String> list) {
+    private static String buildMathList(Collection<String> list) {
         if ( list == null || list.isEmpty() ) return "{}";
         String l = GenericCommandBuilder.makeListWithDelimiter(list);
         return "{"+l+"}";
@@ -114,38 +115,16 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
     }
 
     @Override
-    public int storeVariables(String expression, List<String> testValues) {
+    public void storeVariables(Collection<String> variables, Collection<String> testValues) {
         clearVariables();
         String valsName = generateValuesVarName(varName);
 
         sb = new StringBuilder();
-        String extract = Commands.EXTRACT_VARIABLES.build(expression);
-        addVarDefinitionNL(sb, varName, extract);
+        addVarDefinitionNL(sb, varName, buildMathList(variables));
         addVarDefinitionNL(sb, valsName, buildMathList(testValues));
 
-        try {
-            sb.append(Commands.LENGTH_OF_LIST.build(varName));
-
-            LOG.debug("Extracting variables from: " + expression);
-            Expr num = runWithTimeout(sb.toString(), timeout);
-            if ( wasAborted(num) ) {
-                LOG.info("Extracting variables timed out.");
-                wasAborted = num;
-                return -1;
-            }
-            String extractedVars = mathematicaInterface.evaluate(varName);
-            Matcher m = ILLEGAL_VAR_PATTERNS.matcher(extractedVars);
-            if ( m.find() ) {
-                LOG.info("Extracting variables contains broken elements: " + extractedVars);
-                return -1;
-            }
-            LOG.info("Extracted variables: " + extractedVars);
-            return num.asInt();
-        } catch (MathLinkException | NumberFormatException | ExprFormatException | ComputerAlgebraSystemEngineException e) {
-            return -1;
-        } finally {
-            sb = new StringBuilder();
-        }
+        LOG.debug("Set variables: " + buildMathList(variables));
+        LOG.debug("Set values:    " + buildMathList(testValues));
     }
 
     @Override

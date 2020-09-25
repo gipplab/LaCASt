@@ -45,7 +45,7 @@ public class SampleTranslator extends AbstractEvaluator {
         for ( SimpleCase c : filteredTestCases ) {
             try {
                 LOG.info("Start translating line " + c.getLine() + ": " + c.getExpression());
-                String trans = forwardTranslate(c.getExpression(), c.getEquationLabel());
+                String trans = forwardTranslate(c.getExpression(), c.getEquationLabel()).getTranslatedExpression();
                 LOG.info("Successfully translated line " + c.getLine() + ": " + c.getExpression() + "\nTo: " + trans);
                 translations.add(new LineTranslation(
                         c.getLine(),

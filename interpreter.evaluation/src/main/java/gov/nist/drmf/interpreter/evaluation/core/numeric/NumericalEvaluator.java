@@ -5,6 +5,7 @@ import com.maplesoft.openmaple.Algebraic;
 import com.wolfram.jlink.Expr;
 import gov.nist.drmf.interpreter.cas.constraints.Constraints;
 import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
@@ -363,17 +364,25 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
     private NumericalTest buildTestObject(Case c) {
         LOG.debug("Translating LHS: " + c.getLHS());
-        String lhs = forwardTranslate( c.getLHS(), c.getEquationLabel() );
-        LOG.info("Translated LHS to: " + lhs);
+        TranslationInformation lhs = forwardTranslate( c.getLHS(), c.getEquationLabel() );
+        LOG.info("Translated LHS to: " + lhs.getTranslatedExpression());
 
         LOG.debug("Translating RHS: " + c.getRHS());
-        String rhs = forwardTranslate( c.getRHS(), c.getEquationLabel() );
-        LOG.info("Translated RHS to: " + rhs);
+        TranslationInformation rhs = forwardTranslate( c.getRHS(), c.getEquationLabel() );
+        LOG.info("Translated RHS to: " + rhs.getTranslatedExpression());
 
-        NumericalTest test = new NumericalTest(getTestedExpression(lhs, rhs, c), c, config, getThisConstraintTranslator());
+        Set<String> variables = new HashSet<>();
+        variables.addAll(lhs.getFreeVariables().getFreeVariables());
+        variables.addAll(rhs.getFreeVariables().getFreeVariables());
+
+        NumericalTest test = new NumericalTest(
+                getTestedExpression(lhs.getTranslatedExpression(), rhs.getTranslatedExpression(), c),
+                c,
+                config,
+                getThisConstraintTranslator()
+        );
         test.setPostProcessingMethodName(scriptHandler.getPostProcessingScriptName(c));
-        test.setLeftHandSide(lhs);
-        test.setRightHandSide(rhs);
+        test.setVariables(variables);
         return test;
     }
 
