@@ -80,6 +80,8 @@ public class LimitedTranslator extends AbstractListTranslator {
             );
         }
 
+        getInfoLogger().getFreeVariables().suppressingVars(limit.getVars());
+
         // find elements that are part of the argument:
         // next, split into argument parts and the rest
         TranslatedExpression translatedPotentialArguments = getPotentialTranslatedExpressions(limit, list);
@@ -89,6 +91,8 @@ public class LimitedTranslator extends AbstractListTranslator {
 
         // add translation and the rest of the translation
         updateTranslationLists(finalTranslation, translatedPotentialArguments, category);
+
+        getInfoLogger().getFreeVariables().releaseVars(limit.getVars());
 
         return localTranslations;
     }

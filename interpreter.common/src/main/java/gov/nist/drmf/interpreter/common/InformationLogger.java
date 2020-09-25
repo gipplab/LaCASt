@@ -1,8 +1,6 @@
 package gov.nist.drmf.interpreter.common;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * @author Andre Greiner-Petter
@@ -14,9 +12,16 @@ public class InformationLogger {
 
     private HashMap<String, String> macro_info_map;
 
+    private FreeVariables freeVariables;
+
     public InformationLogger(){
         gen_info_map = new HashMap<>();
         macro_info_map = new HashMap<>();
+        freeVariables = new FreeVariables();
+    }
+
+    public FreeVariables getFreeVariables() {
+        return freeVariables;
     }
 
     public void addGeneralInfo( String key, String info ){
@@ -31,6 +36,18 @@ public class InformationLogger {
 
     public boolean isEmpty() {
         return gen_info_map.isEmpty() && macro_info_map.isEmpty();
+    }
+
+    public boolean containsMacroInformation(String macro) {
+        return macro_info_map.containsKey(macro);
+    }
+
+    public boolean containsInformation(String element) {
+        return macro_info_map.containsKey(element) || gen_info_map.containsKey(element);
+    }
+
+    public String getInformation(String element) {
+        return macro_info_map.computeIfAbsent(element, key -> gen_info_map.get(element));
     }
 
     @Override

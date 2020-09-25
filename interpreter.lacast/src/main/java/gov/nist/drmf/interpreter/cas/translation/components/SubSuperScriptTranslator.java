@@ -127,6 +127,7 @@ public class SubSuperScriptTranslator extends AbstractListTranslator {
     private TranslatedExpression parseUnderscores(PomTaggedExpression exp) {
         // first of all, remove the previous expression. It becomes a whole new block.
         String var = getGlobalTranslationList().removeLastExpression();
+        boolean wasVariable = getInfoLogger().getFreeVariables().removeLastVariable(var);
 
         // get the subscript expression and translate it.
         PomTaggedExpression subscript_exp = exp.getComponents().get(0);
@@ -152,6 +153,7 @@ public class SubSuperScriptTranslator extends AbstractListTranslator {
 
         // add our final representation for subscripts to the global lexicon
         getGlobalTranslationList().addTranslatedExpression(translation);
+        if ( wasVariable ) getInfoLogger().getFreeVariables().addFreeVariable(translation);
         return localTranslations;
     }
 }
