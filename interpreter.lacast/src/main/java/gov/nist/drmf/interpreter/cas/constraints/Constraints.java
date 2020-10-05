@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.cas.constraints;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,20 +12,27 @@ import java.util.regex.Pattern;
  */
 public class Constraints {
 
+    private final List<String> allConstraints;
     private final List<String> texConstraints;
     private final List<String> specialConstraintVariables;
     private final List<String> specialConstraintValues;
 
     public Constraints() {
+        allConstraints = new ArrayList<>();
         texConstraints = new ArrayList<>();
         specialConstraintVariables = new ArrayList<>();
         specialConstraintValues = new ArrayList<>();
     }
 
-    public Constraints(String[] texConstraints, String[] specialConstraintVariables, String[] specialConstraintValues){
-        this.texConstraints = Arrays.asList(texConstraints);
-        this.specialConstraintValues = Arrays.asList(specialConstraintValues);
-        this.specialConstraintVariables = Arrays.asList(specialConstraintVariables);
+    public Constraints(LinkedList<String> originalConstraintList, String[] texConstraints, String[] specialConstraintVariables, String[] specialConstraintValues){
+        this.allConstraints = originalConstraintList;
+        this.texConstraints = new LinkedList<>(Arrays.asList(texConstraints));
+        this.specialConstraintValues = new LinkedList<>(Arrays.asList(specialConstraintValues));
+        this.specialConstraintVariables = new LinkedList<>(Arrays.asList(specialConstraintVariables));
+    }
+
+    public List<String> getOriginalConstraints() {
+        return allConstraints;
     }
 
     public String[] getTexConstraints() {
@@ -41,6 +49,7 @@ public class Constraints {
 
     public void addConstraints(Constraints c) {
         if ( c == null ) return;
+        this.allConstraints.addAll(c.allConstraints);
         this.texConstraints.addAll(c.texConstraints);
         this.specialConstraintVariables.addAll(c.specialConstraintVariables);
         this.specialConstraintValues.addAll(c.specialConstraintValues);

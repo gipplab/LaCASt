@@ -10,4 +10,4 @@
 \zderivAirybeta, 2
 \zAirybeta, 2
 \scterminant, 1
-\min, 1
+\modcylinder, 1

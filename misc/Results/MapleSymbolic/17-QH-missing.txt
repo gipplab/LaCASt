@@ -1,9 +1,8 @@
-\qgenhyperphi, 65
-\qPochhammer, 53
-\qbinom, 12
-\qmultiPochhammersym, 12
+\qgenhyperphi, 66
+\qmultiPochhammersym, 14
 \qgenhyperpsi, 9
 \qAppellPhi, 7
+\qdiff, 3
 \qexp, 3
 \qExp, 3
 \qBernoullipolybeta, 1

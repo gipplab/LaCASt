@@ -4914,7 +4914,7 @@ Symbol: \expintE
 	Maple: Ei($0)
 	Maple-Alternatives: Ei($0)+ln($0)+gamma
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ei
-	Mathematica-Alternatives: -ExpIntegralEi[-($0)]
+	Mathematica-Alternatives: ExpIntegralE[1, $0]
 	Meanings: Exponential integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4929,7 +4929,7 @@ Symbol: \expintEi
 	Constraints: z != 0
 	DLMF: \expintEi@{x}
 	DLMF-Link: dlmf.nist.gov/6.2#E1
-	Mathematica-Alternatives: -ExpIntegralEi[-($0)]
+	Mathematica-Alternatives: ExpIntegralEi[$0]
 	Meanings: Exponential integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4942,7 +4942,7 @@ Symbol: \expintEin
   Feature Set: dlmf-macro
 	DLMF: \expintEin@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E3
-	Mathematica-Alternatives: -ExpIntegralEi[-($0)] + Ln[$0] + EulerGamma
+	Mathematica-Alternatives: ExpIntegralE[1, $0] + Ln[$0] + EulerGamma
 	Meanings: Complementary exponential integral
 	Number of Ats: 1
 	Number of Parameters: 0

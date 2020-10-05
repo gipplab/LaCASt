@@ -44,6 +44,13 @@ public class FreeVariableExtractionTests {
     }
 
     @Test
+    void multiTranslationTest() {
+        slt.translate("a + b");
+        slt.translate("c^q + f");
+        test(slt.getInfoLogger(), "c", "q", "f");
+    }
+
+    @Test
     void functionVarTest() {
         slt.translate("\\cos{x}");
         test(slt.getInfoLogger(), "x");
@@ -59,6 +66,27 @@ public class FreeVariableExtractionTests {
     void constantTest() {
         slt.translate("\\iunit");
         test(slt.getInfoLogger());
+    }
+
+    @Test
+    void constantAfterPreprocessingTest() {
+        slt.translate("i", "1.1.1");
+        test(slt.getInfoLogger());
+    }
+
+    @Test
+    @DLMF("4.2.12")
+    void constantEquationTest() {
+        slt.translate("\\ln@{e} = 1", "4.2.12");
+        test(slt.getInfoLogger());
+    }
+
+    @Test
+    @DLMF("4.2.12")
+    void constantEquationMissingLabelTest() {
+        // no label, does not trigger replacement of e to \expe -> hence e is a variable
+        slt.translate("\\ln@{e} = 1");
+        test(slt.getInfoLogger(), "e");
     }
 
     @Test
@@ -181,6 +209,13 @@ public class FreeVariableExtractionTests {
     void subscriptSumTest() {
         slt.translate("a_{n}=\\sum_{k=0}^{n}{n\\choose k}\\frac{b_{n-k}}{k+1}", "24.5.E9");
         test(slt.getInfoLogger(), "Subscript[a, n]", "n", "Subscript[b, n - k]");
+    }
+
+    @Test
+    @DLMF("34.3.E19")
+    void potentialNullTest() {
+        slt.translate("\\sum_{l}(2l+1)\\Wignerthreejsym{l_{1}}{l_{2}}{l}{0}{0}{0}^{2}\\assLegendreP{l}@{\\cos@@{\\theta}}", "34.3.E19");
+        test(slt.getInfoLogger(), "\\[Theta]");
     }
 
     private static void test(InformationLogger info, String... vars) {

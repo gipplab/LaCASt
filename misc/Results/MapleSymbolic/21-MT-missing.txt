@@ -1,6 +1,5 @@
 \Riemannthetachar, 16
 \Riemanntheta, 11
 \diff, 1
-\transpose, 1
 \oint, 1
 \scRiemanntheta, 1

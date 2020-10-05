@@ -13,7 +13,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
@@ -510,8 +512,45 @@ public class PrintablePomTaggedExpressionTests {
         mlp.parse(texString);
     }
 
+    @Test
+    @DLMF("11.5.E2")
+    public void nestedFracEulerTest() throws ParseException {
+        String texString = "\\frac{2(\\tfrac{1}{2}z)^{\\nu}}{\\sqrt{\\cpi}\\EulerGamma@{\\nu+\\tfrac{1}{2}}}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString, "11.5.E2");
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps,
+                "{2(\\tfrac{1}{2}z)^{\\nu}}",
+                "{\\sqrt{\\cpi}\\EulerGamma@{\\nu+\\tfrac{1}{2}}}"
+        );
+
+        List<PrintablePomTaggedExpression> upComps = printComps.get(0).getPrintableComponents();
+        List<PrintablePomTaggedExpression> downComps = printComps.get(1).getPrintableComponents();
+
+        checkList(upComps, "2", "(", "\\tfrac{1}{2}", "z", ")", "^{\\nu}");
+        checkList(downComps, "\\sqrt{\\cpi}", "\\EulerGamma", "@", "{\\nu+\\tfrac{1}{2}}");
+    }
+
+    @Test
+    @DLMF("5.2.E5")
+    public void simArgumentTest() throws ParseException {
+        String texString = "\\EulerGamma@{a+n}/\\EulerGamma@{a}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString, "5.2.E5");
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps,
+                "\\EulerGamma", "@", "{a+n}",
+                "/",
+                "\\EulerGamma", "@", "{a}"
+        );
+    }
+
     private void checkList( List<PrintablePomTaggedExpression> components, String... matches ) {
-        assertEquals(matches.length, components.size());
+
+        assertEquals(matches.length, components.size(), "Length doesnt match: [" +
+                components.stream().map(PrintablePomTaggedExpression::getTexString).collect(Collectors.joining(", ")) + "] VS " + Arrays.toString(matches));
         for ( int i = 0; i < matches.length; i++ ){
             assertEquals(matches[i], components.get(i).getTexString());
         }

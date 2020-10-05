@@ -18,7 +18,7 @@ import java.util.Map;
 public class PomMatcher {
     private static final Logger LOG = LogManager.getLogger(PomMatcher.class.getName());
 
-    private final MatcherConfig defaultFindMatcherConfig = MatcherConfig.getInPlaceMatchConfig();
+    private MatcherConfig config = MatcherConfig.getInPlaceMatchConfig();
 
     private final MatchablePomTaggedExpression matcher;
     private final PomTaggedExpressionChildrenMatcher children;
@@ -61,6 +61,14 @@ public class PomMatcher {
         if ( children.isFirstChildWildcard() ) {
             leadingBackUpWildcard = children.removeFirst();
         }
+    }
+
+    public MatcherConfig getConfig() {
+        return config;
+    }
+
+    public void setConfig(MatcherConfig config) {
+        this.config = config;
     }
 
     /**
@@ -125,17 +133,17 @@ public class PomMatcher {
                     // than we take the first element, as the matcher...
                     MatchablePomTaggedExpression m = (MatchablePomTaggedExpression)matcher.getComponents().get(0);
                     // if the first worked, we can move forward
-                    boolean innerTmpMatch = m.match(first, elements, defaultFindMatcherConfig);
+                    boolean innerTmpMatch = m.match(first, elements, config);
                     while ( innerTmpMatch && !elements.isEmpty() && m.getNextSibling() != null ) {
                         first = elements.remove(0);
                         m = (MatchablePomTaggedExpression)m.getNextSibling();
-                        innerTmpMatch = m.match(first, elements, defaultFindMatcherConfig);
+                        innerTmpMatch = m.match(first, elements, config);
                     }
                     // match is only valid, if the regex does not assume more tokens
                     matched = (innerTmpMatch && m.getNextSibling() == null);
                     if ( matched && elements.isEmpty() ) lastMatchWentUntilEnd = true;
                 } else {
-                    matched = matcher.match(first, elements, defaultFindMatcherConfig);
+                    matched = matcher.match(first, elements, config);
                 }
 
 

@@ -87,6 +87,7 @@ public class FreeVariables {
     }
 
     public boolean removeLastVariable(String var) {
+        if ( freeVariables.isEmpty() ) return false;
         if ( freeVariables.getLast().equals(var) ) {
             freeVariables.removeLast();
             return true;

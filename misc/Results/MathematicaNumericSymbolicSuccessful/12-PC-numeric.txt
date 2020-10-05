@@ -1,0 +1,24 @@
+Overall: [TOTAL: 174, SKIPPED: 156, DEFINITIONS: 0, STARTED_TEST_CASES: 18, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 18, SUCCESS_SYMB: 0, SUCCESS_NUM: 17, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 1, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
+4054 [http://dlmf.nist.gov/12.2.E5]: Successful [Tested: 70]
+4055 [http://dlmf.nist.gov/12.2.E6]: Successful [Tested: 8]
+4056 [http://dlmf.nist.gov/12.2.E7]: Successful [Tested: 5]
+4079 [http://dlmf.nist.gov/12.5.E1]: Successful [Tested: 35]
+4080 [http://dlmf.nist.gov/12.5.E2]: Successful [Tested: 25]
+4081 [http://dlmf.nist.gov/12.5.E3]: Failed [5/40]: {{Indeterminate, {Rule[a, -0.5], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Indeterminate, {Rule[a, -0.5], Rule[z, Power[E, Times[Complex[0, Rational[-1, 3]], Pi]]]}}, ...
+4088 [http://dlmf.nist.gov/12.7.E1]: Successful [Tested: 7]
+4088-a [http://dlmf.nist.gov/12.7.E1]: Successful [Tested: 7]
+4089 [http://dlmf.nist.gov/12.7.E2]: Successful [Tested: 7]
+4089-a [http://dlmf.nist.gov/12.7.E2]: Skip - symbolical successful subtest
+4089-b [http://dlmf.nist.gov/12.7.E2]: Skip - symbolical successful subtest
+4092 [http://dlmf.nist.gov/12.7.E5]: Successful [Tested: 7]
+4092-a [http://dlmf.nist.gov/12.7.E5]: Successful [Tested: 7]
+4093 [http://dlmf.nist.gov/12.7.E6]: Successful [Tested: 7]
+4093-a [http://dlmf.nist.gov/12.7.E6]: Skip - symbolical successful subtest
+4102 [http://dlmf.nist.gov/12.8.E1]: Successful [Tested: 42]
+4103 [http://dlmf.nist.gov/12.8.E2]: Successful [Tested: 42]
+4104 [http://dlmf.nist.gov/12.8.E3]: Successful [Tested: 42]
+4105 [http://dlmf.nist.gov/12.8.E4]: Successful [Tested: 42]
+4219 [http://dlmf.nist.gov/12.14.E15]: Skip - symbolical successful subtest
+4219-a [http://dlmf.nist.gov/12.14.E15]: Successful [Tested: 18]
+4220 [http://dlmf.nist.gov/12.14.E16]: Skip - symbolical successful subtest
+4220-a [http://dlmf.nist.gov/12.14.E16]: Successful [Tested: 18]

@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker.MATH_ABORTION_SIGNAL;
 
@@ -37,6 +38,7 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
     private int timeout = -1;
 
     private String globalAssumptions = "{}";
+    private String globalConstraints = "{}";
 
     private double threshold = 0.001;
 
@@ -55,6 +57,7 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
      */
     private static final String NL = System.lineSeparator();
     private StringBuilder sb;
+    private String expr = "expr";
     private String varName = "vars";
     private String eVars = "constVars";
     private String exVars = "extraVars";
@@ -76,7 +79,8 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
 
     private void clearVariables() {
         String cmd = String.format(
-                "ClearAll[%s, %s, %s, %s, %s]",
+                "ClearAll[%s, %s, %s, %s, %s, %s]",
+                expr,
                 varName,
                 eVars,
                 exVars,
@@ -111,7 +115,14 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
 
     @Override
     public void setGlobalAssumptions(List<String> assumptions) {
-        this.globalAssumptions = buildMathList(assumptions);
+        List<String> ass = new LinkedList<>();
+        List<String> con = new LinkedList<>();
+        for ( String a : assumptions ){
+            if ( a.contains("\\[Element]") ) ass.add(a);
+            else con.add(a);
+        }
+        this.globalAssumptions = buildMathList(ass);
+        this.globalConstraints = buildMathList(con);
     }
 
     @Override
@@ -144,8 +155,9 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
     @Override
     public String setConstraints(List<String> constraints) {
         String command = "Join[" +
-                    Commands.FILTER_GLOBAL_ASSUMPTIONS.build(buildMathList(constraints), varName) + ", " +
-                    Commands.FILTER_GLOBAL_ASSUMPTIONS.build(globalAssumptions, varName) +
+                    Commands.FILTER_ASSUMPTIONS.build(buildMathList(constraints), varName) + ", " +
+                    Commands.FILTER_ASSUMPTIONS.build(globalAssumptions, varName) + ", " +
+                    Commands.FILTER_GLOBAL_ASSUMPTIONS.build(globalConstraints, varName, buildMathList(constraints)) +
                 "]";
 
         addVarDefinitionNL(sb, cons, command);
@@ -164,9 +176,11 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
             LOG.info("Setup variables for numerical test case.");
             LOG.trace(sb.toString());
             mathematicaInterface.evaluate(sb.toString());
+            String appliedConst = mathematicaInterface.evaluate(cons);
+            LOG.debug("Applying constraints: " + appliedConst);
             sb = new StringBuilder();
         } catch (MathLinkException e) {
-            e.printStackTrace();
+            LOG.warn("Unable to setup variables for numerical test cases", e);
         }
 
         // create test cases first
@@ -193,7 +207,14 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
         String commandString = sb.toString();
         LOG.trace("Numerical Test Commands:"+NL+commandString);
 
-        testCases = mathematicaInterface.checkIfEvaluationIsInRange(commandString, -1, maxCombis+1);
+        LOG.debug("Compute number of test cases and check if it is in range.");
+        Expr res = runWithTimeout(commandString, timeout);
+        if ( wasAborted(res) ) {
+            LOG.debug("Unable to generate test cases in time. Timed out.");
+            wasAborted = res;
+            return null;
+        }
+        testCases = mathematicaInterface.checkIfEvaluationIsInRange(res, -1, maxCombis+1);
         return testCasesVar;
     }
 
@@ -204,16 +225,18 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
 
     @Override
     public Expr performNumericalTests(String expression, String testCasesName, String postProcessingMethodName, int precision) throws ComputerAlgebraSystemEngineException {
-        if ( wasAborted != null && testCasesName != null ) return wasAborted;
+        if ( wasAborted != null && testCasesName == null ) return wasAborted;
 
 //            String testCasesStr = mathematicaInterface.evaluate(testCasesName);
 //            LOG.trace("Test cases: " + testCasesStr);
 //            LOG.debug("Sneak of test cases: " + LogManipulator.shortenOutput(testCasesStr, 10));
 
-        String cmd = Commands.NUMERICAL_TEST.build(expression, testCasesName, Double.toString(threshold));
-        LOG.info("Compute numerical test for " + expression);
+        sb = new StringBuilder();
+        addVarDefinitionNL(sb, expr, expression);
+        sb.append(Commands.NUMERICAL_TEST.build(expr, testCasesName, Double.toString(threshold)));
+        LOG.info("Compute numerical test for: " + expression);
 
-        return runWithTimeout(cmd, timeout);
+        return runWithTimeout(sb.toString(), timeout);
     }
 
     private Expr runWithTimeout(String cmd, int timeout) throws ComputerAlgebraSystemEngineException {
@@ -242,7 +265,8 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
             // nothing to do
         }
 
-        LOG.info("Numerical test finished. Result: " + LogManipulator.shortenOutput(resStr, 5));
+        LOG.info("Numerical test finished. Result: " + resStr);
+//        LOG.info("Numerical test finished. Result: " + LogManipulator.shortenOutput(resStr, 5));
         if ( !resStr.matches("^\\{.*") ) return ResultType.ERROR;
         if ( resStr.matches("\\{}|\\{0(?:.0)?[^\\d.]+}") ) return ResultType.SUCCESS;
         return ResultType.FAILURE;

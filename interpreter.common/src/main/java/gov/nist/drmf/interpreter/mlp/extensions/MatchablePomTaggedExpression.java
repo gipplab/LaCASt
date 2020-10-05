@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.MathTerm;
 import mlp.ParseException;
@@ -115,7 +116,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
      */
     public MatchablePomTaggedExpression(MLPWrapper mlp, String expression)
             throws ParseException, NotMatchableException {
-        this(mlp, mlp.simpleParse(expression), "", new GroupCaptures());
+        this(mlp, mlp.parse(expression), "", new GroupCaptures());
     }
 
     /**
@@ -129,7 +130,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
      */
     public MatchablePomTaggedExpression(MLPWrapper mlp, String expression, @Language("RegExp") String wildcardPattern)
             throws ParseException, NotMatchableException {
-        this(mlp, mlp.simpleParse(expression), wildcardPattern, new GroupCaptures());
+        this(mlp, mlp.parse(expression), wildcardPattern, new GroupCaptures());
     }
 
     /**
@@ -385,8 +386,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
 
         // if there is no next element in the pattern, the entire rest matches this wildcard
         if (nextSibling == null) {
-            captureUntilEnd(expression, followingExpressions);
-            return true;
+            return captureUntilEnd(expression, followingExpressions, config);
         }
 
         // otherwise, add elements, until the next element matches
@@ -394,15 +394,25 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         return matchWildcardUntilEnd(expression, followingExpressions, config);
     }
 
-    private void captureUntilEnd(
+    private boolean captureUntilEnd(
             PrintablePomTaggedExpression expression,
-            List<PrintablePomTaggedExpression> followingExpressions
+            List<PrintablePomTaggedExpression> followingExpressions,
+            MatcherConfig config
     ) {
+        if ( isNotAllowedTokenForWildcardMatch(expression, config) ) return false;
+
         List<PomTaggedExpression> matches = new LinkedList<>();
         matches.add(expression);
-        while (!followingExpressions.isEmpty())
-            matches.add(followingExpressions.remove(0));
+        if (!PomTaggedExpressionUtility.isSequence(expression)) {
+            while (!followingExpressions.isEmpty()){
+                expression = followingExpressions.remove(0);
+                if ( isNotAllowedTokenForWildcardMatch(expression, config) ) return false;
+                matches.add(expression);
+            }
+        }
+
         captures.setCapturedGroup(wildcardID, matches);
+        return true;
     }
 
     private boolean matchWildcardUntilEnd(

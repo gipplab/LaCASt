@@ -1,14 +1,11 @@
 \Dirichletchar, 7
 \Moebiusmu, 6
-\Eulertotientphi, 6
-\npartitions, 5
 \Gausssum, 3
 \Dedekindeta, 3
-\Longleftrightarrow, 2
 \MangoldtLambda, 2
 \nprimes, 2
 \nsquares, 2
-mx, 2
+\Eulertotientphi, 2
 \Ramanujantau, 2
 \DiscriminantDelta, 2
 \Ramanujansum, 2

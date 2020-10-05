@@ -1,0 +1,3 @@
+\perBernoulliB, 2
+\perZeta, 2
+\DirichletL, 1

@@ -326,6 +326,8 @@ public class CaseAnalyzerTests {
                 .map(l -> CaseAnalyzer.analyzeLine(l, lineCounter[0], lib))
                 .collect(Collectors.toList());
 
+        assertEquals(3, testCases.size());
+
         // the second line is a multi-equation expression, so we presume multiple expressions
         Case eulerTest = testCases.get(1).getFirst();
         assertEquals("-\\EulerConstant", eulerTest.getRHS());
@@ -391,6 +393,43 @@ public class CaseAnalyzerTests {
                     "{\\Jacobithetaq{1}@{\\zeta}{(\\exp@{-\\cpi\\ccompellintKk@{k}/\\compellintKk@{k}})}}" +
                     "{\\Jacobithetaq{4}@{\\zeta}{(\\exp@{-\\cpi\\ccompellintKk@{k}/\\compellintKk@{k}})}}",
                 jacobiCase.getRHS());
+    }
+
+    @Test
+    void gammaSubstitutionConstraintTest() throws IOException {
+        String testStrings = getResourceContent("gammaSubstitutionConstraintTests.txt");
+
+        SymbolDefinedLibrary lib = new SymbolDefinedLibrary();
+        List<LinkedList<Case>> testCases = loadTestCases(testStrings, lib);
+
+        Case struveTest = testCases.get(1).get(0);
+        List<String> constraintsPrior = struveTest.getConstraints(dlmfTrans, "11.5.E2");
+        assertEquals(1, constraintsPrior.size());
+        assertEquals("Re(z) > 0", constraintsPrior.get(0));
+
+        struveTest = struveTest.replaceSymbolsUsed(lib);
+        List<String> constraintsAfter = struveTest.getConstraints(dlmfTrans, "11.5.E2");
+        assertEquals(2, constraintsAfter.size());
+        assertEquals("Re(z) > 0", constraintsAfter.get(0));
+        assertEquals("Re(nu +(1)/(2)) > 0", constraintsAfter.get(1));
+    }
+
+    @Test
+    void gammaSubstitutionMultiConstraintTest() throws IOException {
+        String testStrings = getResourceContent("gammaSubstitutionConstraintTests.txt");
+
+        SymbolDefinedLibrary lib = new SymbolDefinedLibrary();
+        List<LinkedList<Case>> testCases = loadTestCases(testStrings, lib);
+
+        Case gammaCases = testCases.get(2).get(0);
+        gammaCases = gammaCases.replaceSymbolsUsed(lib);
+        List<String> constraintsAfter = gammaCases.getConstraints(dlmfTrans, "5.2.E5");
+        assertEquals(2, constraintsAfter.size());
+        assertTrue(constraintsAfter.contains("Re(a + n) > 0"));
+        assertTrue(constraintsAfter.contains("Re(a) > 0"));
+
+        assertEquals("a", gammaCases.getConstraintVariables(dlmfTrans, "5.2.E5").get(0));
+        assertEquals("1", gammaCases.getConstraintValues().get(0));
     }
 
     private List<LinkedList<Case>> loadTestCases(String testStrings, SymbolDefinedLibrary lib) {

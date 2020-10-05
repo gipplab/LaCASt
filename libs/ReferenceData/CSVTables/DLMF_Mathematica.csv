@@ -69,9 +69,9 @@ DLMF;Mathematica;DLMF-Mathematica-Comment;Mathematica-Alternatives
 \Gudermannian@@{x};Gudermannian[$0];Defined also for imaginary values.;
 \aGudermannian@@{x};InverseGudermannian[$0];Defined also for imaginary values.;
 ;;;
-\expintEi@{x};;Mathematica uses another definition for the principle branch of the exponential integral. \expintEi@{x} will be translated to -ExpIntegralEi[-x].;-ExpIntegralEi[-($0)]
-\expintE@{x};;Mathematica uses another definition for the principle branch of the exponential integral. \expintE@{x} will be translated to -ExpIntegralEi[-x].;-ExpIntegralEi[-($0)]
-\expintEin@{z};;The translation based on the definition in DLMF.;-ExpIntegralEi[-($0)] + Ln[$0] + EulerGamma
+\expintEi@{x};;;ExpIntegralEi[$0]
+\expintE@{x};;;ExpIntegralE[1, $0]
+\expintEin@{z};;The translation based on the definition in DLMF.;ExpIntegralE[1, $0] + Ln[$0] + EulerGamma
 \genexpintE{p}@{z};ExpIntegralE[$0, $1];;
 \logint@{x};LogIntegral[$0];Mathematica can compute the principle branch for x between 0 and 1 as well, while this is not defined in DLMF.;
 \dilog@{z};PolyLog[2, $0];;

@@ -632,6 +632,27 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void pomMatcherFindMultiEulerArgTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "\\EulerGamma@{var0}", "var\\d");
+
+        String test = "\\EulerGamma@{a+n}/\\EulerGamma@{a}";
+        PomMatcher pomMatcher = blueprint.matcher( test );
+//        pomMatcher.getConfig().allowFollowingTokens(false);
+        Set<String> registeredHits = new HashSet<>();
+        while ( pomMatcher.find() ) {
+            // store all hits
+            Map<String, String> groups = pomMatcher.groups();
+            registeredHits.addAll( groups.values() );
+        }
+
+        // check if we found all:
+        assertTrue( registeredHits.contains("a+n"), registeredHits.toString() );
+        assertTrue( registeredHits.contains("a"), registeredHits.toString() );
+        assertEquals( 2, registeredHits.size(), registeredHits.toString() );
+    }
+
+    @Test
     public void pomMatcherFindHardJacobiRealWorldExampleTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
                 new MatchablePomTaggedExpression(mlp, "\\Gamma(var1)", "(p|v)ar\\d");

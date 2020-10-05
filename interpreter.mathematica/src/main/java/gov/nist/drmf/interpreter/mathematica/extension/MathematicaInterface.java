@@ -187,13 +187,21 @@ public class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> 
     public int checkIfEvaluationIsInRange(String command, int lowerLimit, int upperLimit) throws ComputerAlgebraSystemEngineException {
         try {
             Expr res = mathematicaInterface.evaluateToExpression(command);
+            return checkIfEvaluationIsInRange(res, lowerLimit, upperLimit);
+        } catch (MathLinkException | NumberFormatException e) {
+            throw new ComputerAlgebraSystemEngineException(e);
+        }
+    }
+
+    public int checkIfEvaluationIsInRange(Expr res, int lowerLimit, int upperLimit) throws ComputerAlgebraSystemEngineException {
+        try {
             int nT = res.length();
             LOG.info("Sample of generated test cases [Total: "+nT+"]: " + LogManipulator.shortenOutput(res.toString(), 5));
             if ( nT >= upperLimit ) throw new IllegalArgumentException("Too many test combinations.");
             else if ( nT <= lowerLimit ) throw new IllegalArgumentException("Not enough test combinations.");
             return nT;
             // res should be an integer, testing how many test commands there are!
-        } catch (MathLinkException | NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new ComputerAlgebraSystemEngineException(e);
         }
     }
@@ -209,6 +217,7 @@ public class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> 
             }
 
             if ( !interrupted ) {
+                LOG.debug("Register an abortion request. Forward it to mathematica engine.");
                 simplifier.abort();
             }
         });

@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.mlp.extensions;
 
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
+import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import mlp.MathTerm;
@@ -57,6 +58,8 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
         if ( pte.getParent() == null )
             expr = TeXPreProcessor.trimCurlyBrackets(expr);
         else expr = expr.trim();
+//        if ( !pte.getComponents().isEmpty() && pte.getParent() != null )
+//            expr = "{" + expr + "}";
         this.caption = expr;
 
         // now we have to add the components and their respective substrings...
@@ -88,12 +91,13 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
                 idxEnd += thisMatch.length();
             }
 
+            // check before the wrapping { ... } if the brackets are correct now, or if we missed something
+            idxEnd = checkIndexForClosingBrackets(idxStart, idxEnd, expr);
+
             if (isStartingIndexOpenBracket(idxStart, expr) && isEndingIndexCloseBracket(idxEnd, expr)){
                 idxStart--;
                 idxEnd++;
             }
-
-            idxEnd = checkIndexForClosingBrackets(idxStart, idxEnd, expr);
 
             innerExpression = expr.substring(idxStart, idxEnd);
             expr = expr.substring(idxEnd);

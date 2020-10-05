@@ -1,6 +1,6 @@
 \VoigtU, 9
-\Faddeevaw, 9
 \MillsM, 8
+\Faddeevaw, 8
 \VoigtV, 7
 \FresnelintF, 5
 \GoodwinStatonint, 2

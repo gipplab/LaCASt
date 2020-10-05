@@ -48,17 +48,19 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
 //    protected static final String LONG_RUNTIME_SKIP = "89,90,91,99,100,102";
     //TODO MATHEMATICA SKIPS
-    public static final String LONG_RUNTIME_SKIP =
-        "103,275,402,640,649,1248,1315,1316,1317,1318,1319,1320,1321,1322,1323,1324,1325,1326,1410," +
-                "1445,1460,1461,1462,1463,1464,1465,1466,1467,1468,1469,1470,1471,1542," +
-                "2068,2498,2562,2563,2564,2565,2566,2871," +
-                "3035,3033,3035,3224,3358,3437,3494,3816,3817,3983," +
-                "4212,4213,4214,4280,4343,4439,4440,4464,4485,4486,4550,4551,4591,4592,4593,4608,4609,4818,4831,4832,4911,4964," +
-                "5061,5062,5063,5064," +
-                "5814,5815,5933,5992,5993,5994,5995,6017,6957," +
-                "6325,6349,6370,6536,6907," +
-                "7313,7330,7331,7332,7333,7336,7339,7394,7397,7398,7399,7401,7405,7902,7918,7925,5828,5935," +
-                "9572";
+//    public static final String LONG_RUNTIME_SKIP =
+//        "103,275,402,640,649,1248,1315,1316,1317,1318,1319,1320,1321,1322,1323,1324,1325,1326,1410," +
+//                "1445,1460,1461,1462,1463,1464,1465,1466,1467,1468,1469,1470,1471,1542," +
+//                "2068,2498,2562,2563,2564,2565,2566,2871," +
+//                "3035,3033,3035,3224,3358,3437,3494,3816,3817,3983," +
+//                "4212,4213,4214,4280,4343,4439,4440,4464,4485,4486,4550,4551,4591,4592,4593,4608,4609,4818,4831,4832,4911,4964," +
+//                "5061,5062,5063,5064," +
+//                "5814,5815,5933,5992,5993,5994,5995,6017,6957," +
+//                "6325,6349,6370,6536,6907," +
+//                "7313,7330,7331,7332,7333,7336,7339,7394,7397,7398,7399,7401,7405,7902,7918,7925,5828,5935," +
+//                "9572";
+
+    private static final String SKIP = "5719,5752,9031";
 
 //    public static final String SKIP_MAPLE_RUNS =
 //            "321,642,794,795,850,976,1266,1267,1268,1269,1516,1948,1949," +
@@ -106,6 +108,8 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
     private List<String> globalConstraints;
 
+    private boolean reserveMODE = false;
+
     /**
      * Creates an object for numerical evaluations.
      * Workflow:
@@ -141,10 +145,10 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
 //        smr = LONG_RUNTIME_SKIP.split(",");
         this.realSkips = new HashSet<>();
-//        for ( String s : smr ) {
-//            int i = Integer.parseInt(s);
-//            realSkips.add(i);
-//        }
+        for ( String s : SKIP.split(",") ) {
+            int i = Integer.parseInt(s);
+            realSkips.add(i);
+        }
 
         setUpScripts(procedures);
         numericalEvaluator.setTimeout(config.getTimeout());
@@ -169,8 +173,10 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         subset = config.getSubSetInterval();
         HashMap<Integer, String> skippedLinesInfo = new HashMap<>();
 
-        Set<ID> skips = getSpecificResults(config.getSymbolicResultsPath(), ".*(Failure|Aborted).*");
-//        Set<ID> skips = getSpecificResults(config.getSymbolicResultsPath(), "Successful");
+        Set<ID> skips = null;
+        if ( reserveMODE )
+            skips = getSpecificResults(config.getSymbolicResultsPath(), ".*Successful.*");
+        else skips = getSpecificResults(config.getSymbolicResultsPath(), ".*(Failure|Aborted).*");
 
         if ( skips != null && config.getSymbolicResultsPath() != null ) {
             LOG.info("Symbolic results are specified. Ignore specified subset and test for values in the result data.");
@@ -228,12 +234,12 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         LOG.info("Test case: " + c);
         LOG.info("Test case " + (currentTestCase++) + " of " + currentNumOfTestCases);
 
-//        if ( realSkips.contains(c.getLine()) ) {
-//            LOG.warn("Skip, it take ages...");
-//            Status.SKIPPED.add();
-//            lineResult[c.getLine()].add("Manual skip because it never finishes!");
-//            return;
-//        }
+        if ( realSkips.contains(c.getLine()) ) {
+            LOG.warn("Skip this test case manually for reasons...");
+            Status.SKIPPED.add();
+            lineResult[c.getLine()].add("Manual Skip!");
+            return;
+        }
 
 //        if ( isMaple ) {
 //            String s = c.getLHS() + " " + c.getRHS();
@@ -297,6 +303,10 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             lineResult[c.getLine()].add("Error - " + te.toString());
             Status.ERROR_TRANS.add();
             return;
+        } catch ( NullPointerException npe ) {
+            LOG.error("Unable to analyze test case properly: " + c);
+            lineResult[c.getLine()].add("Error - Invalid Test case: " + c);
+            Status.ERROR_TRANS.add();
         }
 
         if ( test == null ) return;
@@ -521,21 +531,30 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
     }
 
     public static void main(String[] args) throws Exception{
+
         NumericalEvaluator evaluator = null;
         if ( args == null || args.length < 1 ){
             System.out.println("Start Mathematica Evaluator");
             evaluator = createStandardMathematicaEvaluator();
-        } else if ( args[0].matches("--?mathematica") ) {
-            System.out.println("Start Mathematica Evaluator");
-            evaluator = createStandardMathematicaEvaluator();
-        } else if ( args[0].matches("--?maple") ) {
-            System.out.println("Start Maple Evaluator");
-            evaluator = createStandardMapleEvaluator();
-        } else {
-            System.out.println("Choose maple or mathematica (e.g., argument -math)");
-            return;
         }
 
+        boolean successful = false;
+        if ( args != null ) {
+            for ( String arg : args ) {
+                if ( arg.matches("--?mathematica") ) {
+                    System.out.println("Start Mathematica Evaluator");
+                    evaluator = createStandardMathematicaEvaluator();
+                } else if ( arg.matches("--?maple") ) {
+                    System.out.println("Start Maple Evaluator");
+                    evaluator = createStandardMapleEvaluator();
+                } else if ( arg.matches("--?(reverse|success|successful)") ) {
+                    System.out.println("Successful mode");
+                    successful = true;
+                }
+            }
+        }
+
+        evaluator.reserveMODE = successful;
         evaluator.startTestAndWriteResults(evaluator);
     }
 

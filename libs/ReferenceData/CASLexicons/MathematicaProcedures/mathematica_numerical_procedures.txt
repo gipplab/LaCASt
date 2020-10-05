@@ -12,7 +12,9 @@ mapConstraints[vars_, vals_] := Module[
 
 filterTestCases[ass_, tests_, max_] := Select[tests, ReplaceAll[And @@ ass, #]&, max]
 
-filterGlobalAssumptions[ass_, vars_] := Select[ass, MemberQ[vars, Part[Reduce`FreeVariables[#],1]]&]
+filterAssumptions[ass_, vars_] := Select[ass, MemberQ[vars, Part[Reduce`FreeVariables[#],1]]&]
+
+filterGlobalAssumptions[ass_, vars_, constr_] := Select[ass, And[MemberQ[vars, Part[Reduce`FreeVariables[#],1]], Not[MemberQ[Reduce`FreeVariables[constr], Part[Reduce`FreeVariables[#],1]]]]&]
 
 calculateResults[expr_, tests_] :=
     Module[{results},

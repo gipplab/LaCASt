@@ -115,11 +115,12 @@ public class CaseAnalyzer {
         String eq = getEquation(mathSB);
         CaseMetaData metaData = CaseMetaData.extractMetaData(constraints, symbolsUsed, symbInfo.link, lineNumber);
 
-        if ( symbInfo.symbolDefID != null && Case.isSemantic(symbInfo.symbolDefSymb) ) {
-            LOG.debug("Ignore symbol definition of semantic macro");
-        } else if ( symbInfo.symbolDefID != null && !symbInfo.symbolDefSymb.contains("\\NVar") ) {
+//        if ( symbInfo.symbolDefID != null && Case.isSemantic(symbInfo.symbolDefSymb) ) {
+//            LOG.debug("Ignore symbol definition of semantic macro");
+//        } else
+        if ( symbInfo.symbolDefID != null ) { // && !symbInfo.symbolDefSymb.contains("\\NVar") ) {
             handleNVar(symbInfo, metaData, eq, symbDefLib);
-            return null;
+            if ( !Case.isSemantic(symbInfo.symbolDefSymb) ) return null;
         }
 
         EquationSplitter splitter = new EquationSplitter(metaData);
@@ -139,15 +140,15 @@ public class CaseAnalyzer {
         } else if ( metaDataMatcher.group(SYMB_DEF_GRP_ID) != null ) {
             symbDef.symbolDefSymb = metaDataMatcher.group(SYMB_DEF_GRP_SYMB);
             symbDef.symbolDefID = metaDataMatcher.group(SYMB_DEF_GRP_ID);
-            checkResetSymbs(symbDef);
+//            checkResetSymbs(symbDef);
         } else if ( metaDataMatcher.group(SYMB_USED_GRP_ID) != null ) {
             String id = metaDataMatcher.group(SYMB_USED_GRP_ID);
             String symb = metaDataMatcher.group(SYMB_USED_GRP_SYMB);
 
-            if ( !symb.contains("\\NVar") ){
+//            if ( !symb.contains("\\NVar") ){
                 SymbolTag used = new SymbolTag(id, symb);
                 symbolsUsed.add(used);
-            }
+//            }
         }
     }
 
@@ -183,7 +184,7 @@ public class CaseAnalyzer {
         if ( caseList == null || caseList.isEmpty() ) return;
 
         Case c = caseList.get(0);
-        if ( c.getLHS().equals( symbInfo.symbolDefSymb ) ) {
+        if ( c.getLHS().equals( symbInfo.symbolDefSymb ) || symbInfo.symbolDefSymb.contains("\\NVar") ) {
             LOG.info("Store line definition: " + symbInfo.symbolDefSymb + " is defined as " + c.getRHS());
             symbDefLib.add(
                     symbInfo.symbolDefID,

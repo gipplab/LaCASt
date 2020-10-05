@@ -1,0 +1,8 @@
+\CarlsonellintRC, 16
+\CarlsonsymellintRG, 9
+\CarlsonsymellintRJ, 9
+\Carlsonmultivarhyper, 9
+\CarlsonsymellintRD, 4
+\partial, 3
+\min, 3
+\max, 1

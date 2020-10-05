@@ -1,0 +1,8 @@
+\CarlsonsymellintRD, 10
+\CarlsonsymellintRG, 6
+\CarlsonellintRC, 4
+\lightspeed, 4
+\CarlsonsymellintRJ, 3
+\diff, 1
+\transpose, 1
+\Carlsonmultivarhyper, 1
