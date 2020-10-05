@@ -1,267 +1,316 @@
-Overall: [SUCCESS: 50, SUCCESS_SYMB: 50, SUCCESS_TRANS: 171, FAILURE: 121, STARTED_TEST_CASES: 228, SKIPPED: 37, DEFINITIONS: 24, IGNORE: 18, MISSING: 57, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 314, SKIPPED: 54, DEFINITIONS: 25, STARTED_TEST_CASES: 235, ERROR_TRANS: 9, MISSING: 46, SUCCESS_TRANS: 180, SUCCESS_SYMB: 54, SUCCESS_NUM: 0, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 125, ABORTED: 0, ERROR: 1] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
-2724 [http://dlmf.nist.gov/9.2.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2724-a [http://dlmf.nist.gov/9.2.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2725 [http://dlmf.nist.gov/9.2.E3]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2726 [http://dlmf.nist.gov/9.2.E4]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: NaN, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2727 [http://dlmf.nist.gov/9.2.E5]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2728 [http://dlmf.nist.gov/9.2.E6]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: NaN, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2729 [http://dlmf.nist.gov/9.2.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2730 [http://dlmf.nist.gov/9.2.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2730-a [http://dlmf.nist.gov/9.2.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2731 [http://dlmf.nist.gov/9.2.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2732 [http://dlmf.nist.gov/9.2.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2733 [http://dlmf.nist.gov/9.2.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2733-a [http://dlmf.nist.gov/9.2.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2734 [http://dlmf.nist.gov/9.2.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2735 [http://dlmf.nist.gov/9.2.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2736 [http://dlmf.nist.gov/9.2.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2737 [http://dlmf.nist.gov/9.2.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2743 [http://dlmf.nist.gov/9.5.E1]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2744 [http://dlmf.nist.gov/9.5.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2745 [http://dlmf.nist.gov/9.5.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2746 [http://dlmf.nist.gov/9.5.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2747 [http://dlmf.nist.gov/9.5.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2748 [http://dlmf.nist.gov/9.5.E6]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2749 [http://dlmf.nist.gov/9.5.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2750 [http://dlmf.nist.gov/9.5.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2752 [http://dlmf.nist.gov/9.6.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2752-a [http://dlmf.nist.gov/9.6.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2752-b [http://dlmf.nist.gov/9.6.E2]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2752-c [http://dlmf.nist.gov/9.6.E2]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2752-d [http://dlmf.nist.gov/9.6.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2752-e [http://dlmf.nist.gov/9.6.E2]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2752-f [http://dlmf.nist.gov/9.6.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2752-g [http://dlmf.nist.gov/9.6.E2]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2753 [http://dlmf.nist.gov/9.6.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2753-a [http://dlmf.nist.gov/9.6.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2753-b [http://dlmf.nist.gov/9.6.E3]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2753-c [http://dlmf.nist.gov/9.6.E3]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2753-d [http://dlmf.nist.gov/9.6.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2753-e [http://dlmf.nist.gov/9.6.E3]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2753-f [http://dlmf.nist.gov/9.6.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2753-g [http://dlmf.nist.gov/9.6.E3]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2754 [http://dlmf.nist.gov/9.6.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2754-a [http://dlmf.nist.gov/9.6.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2754-b [http://dlmf.nist.gov/9.6.E4]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2755 [http://dlmf.nist.gov/9.6.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2755-a [http://dlmf.nist.gov/9.6.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2755-b [http://dlmf.nist.gov/9.6.E5]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2756 [http://dlmf.nist.gov/9.6.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2756-a [http://dlmf.nist.gov/9.6.E6]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2756-b [http://dlmf.nist.gov/9.6.E6]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2757 [http://dlmf.nist.gov/9.6.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2757-a [http://dlmf.nist.gov/9.6.E7]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2757-b [http://dlmf.nist.gov/9.6.E7]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2758 [http://dlmf.nist.gov/9.6.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2758-a [http://dlmf.nist.gov/9.6.E8]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2758-b [http://dlmf.nist.gov/9.6.E8]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2759 [http://dlmf.nist.gov/9.6.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2759-a [http://dlmf.nist.gov/9.6.E9]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2759-b [http://dlmf.nist.gov/9.6.E9]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2761 [http://dlmf.nist.gov/9.6.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2761-a [http://dlmf.nist.gov/9.6.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2762 [http://dlmf.nist.gov/9.6.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2762-a [http://dlmf.nist.gov/9.6.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2763 [http://dlmf.nist.gov/9.6.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2763-a [http://dlmf.nist.gov/9.6.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2764 [http://dlmf.nist.gov/9.6.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2764-a [http://dlmf.nist.gov/9.6.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2765 [http://dlmf.nist.gov/9.6.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2765-a [http://dlmf.nist.gov/9.6.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2766 [http://dlmf.nist.gov/9.6.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2766-a [http://dlmf.nist.gov/9.6.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2767 [http://dlmf.nist.gov/9.6.E17]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2767-a [http://dlmf.nist.gov/9.6.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2768 [http://dlmf.nist.gov/9.6.E18]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2768-a [http://dlmf.nist.gov/9.6.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2769 [http://dlmf.nist.gov/9.6.E19]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2769-a [http://dlmf.nist.gov/9.6.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2770 [http://dlmf.nist.gov/9.6.E20]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2770-a [http://dlmf.nist.gov/9.6.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2772 [http://dlmf.nist.gov/9.6.E22]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2772-a [http://dlmf.nist.gov/9.6.E22]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2773 [http://dlmf.nist.gov/9.6.E23]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2774 [http://dlmf.nist.gov/9.6.E24]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2775 [http://dlmf.nist.gov/9.6.E25]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2776 [http://dlmf.nist.gov/9.6.E26]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2781: Skipped - Unable to analyze test case.
-2782: Skipped - Unable to analyze test case.
-2783: Skipped - Unable to analyze test case.
-2784: Skipped - Unable to analyze test case.
-2785: Skipped - Unable to analyze test case.
-2786: Skipped - Unable to analyze test case.
-2787: Skipped - Unable to analyze test case.
-2788: Skipped - Unable to analyze test case.
-2789: Skipped - Unable to analyze test case.
-2790: Skipped - Unable to analyze test case.
-2791: Skipped - Unable to analyze test case.
-2792 [https://dlmf.nist.gov/9.7#Ex3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2793 [https://dlmf.nist.gov/9.7#Ex4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2794 [https://dlmf.nist.gov/9.7#Ex5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2795 [https://dlmf.nist.gov/9.7#Ex6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2796 [http://dlmf.nist.gov/9.7.E17]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \min [\min]
-2797 [http://dlmf.nist.gov/9.7.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2798 [http://dlmf.nist.gov/9.7.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2801 [http://dlmf.nist.gov/9.7.E22]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2803 [http://dlmf.nist.gov/9.8.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2804 [http://dlmf.nist.gov/9.8.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2805 [http://dlmf.nist.gov/9.8.E3]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2806 [http://dlmf.nist.gov/9.8.E4]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2807 [http://dlmf.nist.gov/9.8.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2808 [http://dlmf.nist.gov/9.8.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2809 [http://dlmf.nist.gov/9.8.E7]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2810 [http://dlmf.nist.gov/9.8.E8]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2811 [http://dlmf.nist.gov/9.8.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2812 [http://dlmf.nist.gov/9.8.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2813 [http://dlmf.nist.gov/9.8.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2814 [http://dlmf.nist.gov/9.8.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2815 [http://dlmf.nist.gov/9.8.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2816 [https://dlmf.nist.gov/9.8#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2817 [https://dlmf.nist.gov/9.8#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2818 [https://dlmf.nist.gov/9.8#Ex3]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2819 [http://dlmf.nist.gov/9.8.E15]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2819-a [http://dlmf.nist.gov/9.8.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2820 [http://dlmf.nist.gov/9.8.E16]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2820-a [http://dlmf.nist.gov/9.8.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2821 [http://dlmf.nist.gov/9.8.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2821-a [http://dlmf.nist.gov/9.8.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2822 [https://dlmf.nist.gov/9.8#Ex4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2823 [https://dlmf.nist.gov/9.8#Ex5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2824 [http://dlmf.nist.gov/9.8.E19]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2825: Skipped - Unable to analyze test case.
-2826: Skipped - Unable to analyze test case.
-2827: Skipped - Unable to analyze test case.
-2828: Skipped - Unable to analyze test case.
-2829 [http://dlmf.nist.gov/9.9.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAirya [\zAirya]
-2829-a [http://dlmf.nist.gov/9.9.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAirya [\zderivAirya]
-2830 [http://dlmf.nist.gov/9.9.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAiryb [\zAiryb]
-2830-a [http://dlmf.nist.gov/9.9.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAiryb [\zderivAiryb]
-2831 [https://dlmf.nist.gov/9.9#Ex1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAirya [\zAirya]
-2832 [https://dlmf.nist.gov/9.9#Ex2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAiryb [\zAiryb]
-2833 [https://dlmf.nist.gov/9.9#Ex3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAirya [\zderivAirya]
-2834 [https://dlmf.nist.gov/9.9#Ex4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAiryb [\zderivAiryb]
-2835 [https://dlmf.nist.gov/9.9#Ex5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAirya [\zAirya]
-2836 [https://dlmf.nist.gov/9.9#Ex6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAirya [\zderivAirya]
-2837 [http://dlmf.nist.gov/9.9.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAirya [\zAirya]
-2838 [http://dlmf.nist.gov/9.9.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAirya [\zAirya]
-2839 [http://dlmf.nist.gov/9.9.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAirya [\zderivAirya]
-2840 [http://dlmf.nist.gov/9.9.E9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAirya [\zderivAirya]
-2841 [http://dlmf.nist.gov/9.9.E10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAiryb [\zAiryb]
-2842 [http://dlmf.nist.gov/9.9.E11]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAiryb [\zAiryb]
-2843 [http://dlmf.nist.gov/9.9.E12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAiryb [\zderivAiryb]
-2844 [http://dlmf.nist.gov/9.9.E13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAiryb [\zderivAiryb]
-2845 [http://dlmf.nist.gov/9.9.E14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAirybeta [\zAirybeta]
-2846 [http://dlmf.nist.gov/9.9.E15]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAirybeta [\zAirybeta]
-2847 [http://dlmf.nist.gov/9.9.E16]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAirybeta [\zderivAirybeta]
-2848 [http://dlmf.nist.gov/9.9.E17]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAirybeta [\zderivAirybeta]
-2853 [http://dlmf.nist.gov/9.10.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2854 [http://dlmf.nist.gov/9.10.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2855 [http://dlmf.nist.gov/9.10.E3]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2855-a [http://dlmf.nist.gov/9.10.E3]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-2855-b [http://dlmf.nist.gov/9.10.E3]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-2856: Skipped - Unable to analyze test case.
-2857: Skipped - Unable to analyze test case.
-2860 [http://dlmf.nist.gov/9.10.E8]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-2861 [http://dlmf.nist.gov/9.10.E9]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-2863 [https://dlmf.nist.gov/9.10#Ex1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2864 [https://dlmf.nist.gov/9.10#Ex2]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2865 [http://dlmf.nist.gov/9.10.E12]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2866 [http://dlmf.nist.gov/9.10.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2867 [http://dlmf.nist.gov/9.10.E14]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2868 [http://dlmf.nist.gov/9.10.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2869 [http://dlmf.nist.gov/9.10.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2871 [http://dlmf.nist.gov/9.10.E18]: Skip - 
-2872 [https://dlmf.nist.gov/9.10#Ex3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2873 [http://dlmf.nist.gov/9.10.E19]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \pvint [\pvint]
-2874 [https://dlmf.nist.gov/9.10#Ex4]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \pvint [\pvint]
-2875 [http://dlmf.nist.gov/9.10.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2876 [http://dlmf.nist.gov/9.10.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2878 [http://dlmf.nist.gov/9.11.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2879 [http://dlmf.nist.gov/9.11.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2880 [http://dlmf.nist.gov/9.11.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2881 [http://dlmf.nist.gov/9.11.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2882 [http://dlmf.nist.gov/9.11.E5]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-2883 [http://dlmf.nist.gov/9.11.E6]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-2884 [http://dlmf.nist.gov/9.11.E7]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-2885 [http://dlmf.nist.gov/9.11.E8]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-2886 [http://dlmf.nist.gov/9.11.E9]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-2887 [http://dlmf.nist.gov/9.11.E10]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-2888 [http://dlmf.nist.gov/9.11.E11]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-2889 [http://dlmf.nist.gov/9.11.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2890 [http://dlmf.nist.gov/9.11.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2891 [http://dlmf.nist.gov/9.11.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2892 [http://dlmf.nist.gov/9.11.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2893 [http://dlmf.nist.gov/9.11.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2894 [http://dlmf.nist.gov/9.11.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2895 [http://dlmf.nist.gov/9.11.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2896 [http://dlmf.nist.gov/9.11.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2896-a [http://dlmf.nist.gov/9.11.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2897 [http://dlmf.nist.gov/9.12.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2899: Skipped - Unable to analyze test case.
-2900: Skipped - Unable to analyze test case.
-2901: Skipped - Unable to analyze test case.
-2902 [http://dlmf.nist.gov/9.12.E4]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2903 [http://dlmf.nist.gov/9.12.E5]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2904 [http://dlmf.nist.gov/9.12.E6]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2904-a [http://dlmf.nist.gov/9.12.E6]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2905 [http://dlmf.nist.gov/9.12.E7]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2905-a [http://dlmf.nist.gov/9.12.E7]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2905-b [http://dlmf.nist.gov/9.12.E7]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: NaN, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2906: Skipped - Unable to analyze test case.
-2907: Skipped - Unable to analyze test case.
-2908: Skipped - Unable to analyze test case.
-2909 [http://dlmf.nist.gov/9.12.E11]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-2910 [http://dlmf.nist.gov/9.12.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2911 [http://dlmf.nist.gov/9.12.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2911-a [http://dlmf.nist.gov/9.12.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2912 [http://dlmf.nist.gov/9.12.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2912-a [http://dlmf.nist.gov/9.12.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2913 [http://dlmf.nist.gov/9.12.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2914 [http://dlmf.nist.gov/9.12.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2915 [http://dlmf.nist.gov/9.12.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2916 [http://dlmf.nist.gov/9.12.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2917 [http://dlmf.nist.gov/9.12.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2918 [http://dlmf.nist.gov/9.12.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2919 [http://dlmf.nist.gov/9.12.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2920 [http://dlmf.nist.gov/9.12.E22]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2921 [http://dlmf.nist.gov/9.12.E23]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \pvint [\pvint]
-2922 [http://dlmf.nist.gov/9.12.E24]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2923: Skipped - Unable to analyze test case.
-2924: Skipped - Unable to analyze test case.
-2925: Skipped - Unable to analyze test case.
-2926: Skipped - Unable to analyze test case.
-2927: Skipped - Unable to analyze test case.
-2928: Skipped - Unable to analyze test case.
-2929: Skipped - Unable to analyze test case.
-2932: Skipped - Unable to analyze test case.
-2933: Skipped - Unable to analyze test case.
-2934 [https://dlmf.nist.gov/9.13#Ex3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEA [\genAiryODEA]
-2935 [https://dlmf.nist.gov/9.13#Ex4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEB [\genAiryODEB]
-2936 [https://dlmf.nist.gov/9.13#Ex5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEA [\genAiryODEA]
-2936-a [https://dlmf.nist.gov/9.13#Ex5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEB [\genAiryODEB]
-2937 [https://dlmf.nist.gov/9.13#Ex6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEA [\genAiryODEA]
-2937-a [https://dlmf.nist.gov/9.13#Ex6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEB [\genAiryODEB]
-2940 [http://dlmf.nist.gov/9.13.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEA [\genAiryODEA]
-2945 [http://dlmf.nist.gov/9.13.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2946: Skipped - Unable to analyze test case.
-2947: Skipped - Unable to analyze test case.
-2953 [http://dlmf.nist.gov/9.13.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2954 [http://dlmf.nist.gov/9.13.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2955: Skipped - Unable to analyze test case.
-2956: Skipped - Unable to analyze test case.
-2957 [http://dlmf.nist.gov/9.13.E23]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2958 [http://dlmf.nist.gov/9.13.E24]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-2960 [http://dlmf.nist.gov/9.13.E26]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintB [\genAiryintB]
-2961 [http://dlmf.nist.gov/9.13.E27]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintB [\genAiryintB]
-2962 [http://dlmf.nist.gov/9.13.E28]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintA [\genAiryintA]
-2963 [https://dlmf.nist.gov/9.13#Ex11]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintA [\genAiryintA]
-2964 [https://dlmf.nist.gov/9.13#Ex12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintA [\genAiryintA]
-2965 [https://dlmf.nist.gov/9.13#Ex13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintB [\genAiryintB]
-2966 [https://dlmf.nist.gov/9.13#Ex14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintB [\genAiryintB]
-2969 [https://dlmf.nist.gov/9.13#Ex15]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintA [\genAiryintA]
-2970 [https://dlmf.nist.gov/9.13#Ex16]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintA [\genAiryintA]
-2971 [http://dlmf.nist.gov/9.13.E34]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintA [\genAiryintA]
-2972 [http://dlmf.nist.gov/9.13.E35]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintB [\genAiryintB]
-2973 [http://dlmf.nist.gov/9.13.E36]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintB [\genAiryintB]
-2974 [http://dlmf.nist.gov/9.13.E37]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintB [\genAiryintB]
+2718 [http://dlmf.nist.gov/9.2.E1]: Definition - Line is a non-semantic definition.
+2719 [http://dlmf.nist.gov/9.2.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2719-a [http://dlmf.nist.gov/9.2.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2720 [http://dlmf.nist.gov/9.2.E3]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2720-a [http://dlmf.nist.gov/9.2.E3]: Successful [Simple: 0., ConvEXP: 0., ConvHYP: 0., EXP: 0., EXP+EXP: 0., EXP+HYP: 0.]
+2721 [http://dlmf.nist.gov/9.2.E4]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: NaN, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2721-a [http://dlmf.nist.gov/9.2.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2722 [http://dlmf.nist.gov/9.2.E5]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2722-a [http://dlmf.nist.gov/9.2.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2723 [http://dlmf.nist.gov/9.2.E6]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: NaN, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2723-a [http://dlmf.nist.gov/9.2.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2724 [http://dlmf.nist.gov/9.2.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2725 [http://dlmf.nist.gov/9.2.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2725-a [http://dlmf.nist.gov/9.2.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2726 [http://dlmf.nist.gov/9.2.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2727 [http://dlmf.nist.gov/9.2.E10]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2728 [http://dlmf.nist.gov/9.2.E11]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2728-a [http://dlmf.nist.gov/9.2.E11]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2729 [http://dlmf.nist.gov/9.2.E12]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2730 [http://dlmf.nist.gov/9.2.E13]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2731 [http://dlmf.nist.gov/9.2.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2732 [http://dlmf.nist.gov/9.2.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2733 [http://dlmf.nist.gov/9.2.E16]: Definition - Line is a non-semantic definition.
+2734 [http://dlmf.nist.gov/9.4.E1]: Skipped - Invalid test case: cdots
+2735 [http://dlmf.nist.gov/9.4.E2]: Skipped - Invalid test case: cdots
+2736 [http://dlmf.nist.gov/9.4.E3]: Skipped - Invalid test case: cdots
+2737 [http://dlmf.nist.gov/9.4.E4]: Skipped - Invalid test case: cdots
+2738 [http://dlmf.nist.gov/9.5.E1]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2739 [http://dlmf.nist.gov/9.5.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2740 [http://dlmf.nist.gov/9.5.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2741 [http://dlmf.nist.gov/9.5.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2742 [http://dlmf.nist.gov/9.5.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2743 [http://dlmf.nist.gov/9.5.E6]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2744 [http://dlmf.nist.gov/9.5.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2745 [http://dlmf.nist.gov/9.5.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2746 [http://dlmf.nist.gov/9.6.E1]: Definition - Line is a non-semantic definition.
+2747 [http://dlmf.nist.gov/9.6.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2747-a [http://dlmf.nist.gov/9.6.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2747-b [http://dlmf.nist.gov/9.6.E2]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2747-c [http://dlmf.nist.gov/9.6.E2]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2747-d [http://dlmf.nist.gov/9.6.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2747-e [http://dlmf.nist.gov/9.6.E2]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2747-f [http://dlmf.nist.gov/9.6.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2747-g [http://dlmf.nist.gov/9.6.E2]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2748 [http://dlmf.nist.gov/9.6.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2748-a [http://dlmf.nist.gov/9.6.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2748-b [http://dlmf.nist.gov/9.6.E3]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2748-c [http://dlmf.nist.gov/9.6.E3]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2748-d [http://dlmf.nist.gov/9.6.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2748-e [http://dlmf.nist.gov/9.6.E3]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2748-f [http://dlmf.nist.gov/9.6.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2748-g [http://dlmf.nist.gov/9.6.E3]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2749 [http://dlmf.nist.gov/9.6.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2749-a [http://dlmf.nist.gov/9.6.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2749-b [http://dlmf.nist.gov/9.6.E4]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2750 [http://dlmf.nist.gov/9.6.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2750-a [http://dlmf.nist.gov/9.6.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2750-b [http://dlmf.nist.gov/9.6.E5]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2751 [http://dlmf.nist.gov/9.6.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2751-a [http://dlmf.nist.gov/9.6.E6]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2751-b [http://dlmf.nist.gov/9.6.E6]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2752 [http://dlmf.nist.gov/9.6.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2752-a [http://dlmf.nist.gov/9.6.E7]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2752-b [http://dlmf.nist.gov/9.6.E7]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2753 [http://dlmf.nist.gov/9.6.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2753-a [http://dlmf.nist.gov/9.6.E8]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2753-b [http://dlmf.nist.gov/9.6.E8]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2754 [http://dlmf.nist.gov/9.6.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2754-a [http://dlmf.nist.gov/9.6.E9]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2754-b [http://dlmf.nist.gov/9.6.E9]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2755 [http://dlmf.nist.gov/9.6.E10]: Definition - Line is a non-semantic definition.
+2756 [http://dlmf.nist.gov/9.6.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2756-a [http://dlmf.nist.gov/9.6.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2757 [http://dlmf.nist.gov/9.6.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2757-a [http://dlmf.nist.gov/9.6.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2758 [http://dlmf.nist.gov/9.6.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2758-a [http://dlmf.nist.gov/9.6.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2759 [http://dlmf.nist.gov/9.6.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2759-a [http://dlmf.nist.gov/9.6.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2760 [http://dlmf.nist.gov/9.6.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2760-a [http://dlmf.nist.gov/9.6.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2761 [http://dlmf.nist.gov/9.6.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2761-a [http://dlmf.nist.gov/9.6.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2762 [http://dlmf.nist.gov/9.6.E17]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2762-a [http://dlmf.nist.gov/9.6.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2763 [http://dlmf.nist.gov/9.6.E18]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2763-a [http://dlmf.nist.gov/9.6.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2764 [http://dlmf.nist.gov/9.6.E19]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2764-a [http://dlmf.nist.gov/9.6.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2765 [http://dlmf.nist.gov/9.6.E20]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2765-a [http://dlmf.nist.gov/9.6.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2766 [http://dlmf.nist.gov/9.6.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2766-a [http://dlmf.nist.gov/9.6.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2767 [http://dlmf.nist.gov/9.6.E22]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2767-a [http://dlmf.nist.gov/9.6.E22]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2768 [http://dlmf.nist.gov/9.6.E23]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2769 [http://dlmf.nist.gov/9.6.E24]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2770 [http://dlmf.nist.gov/9.6.E25]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2771 [http://dlmf.nist.gov/9.6.E26]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2772 [http://dlmf.nist.gov/9.7.E1]: Definition - Line is a non-semantic definition.
+2773 [https://dlmf.nist.gov/9.7#Ex1]: Skipped - no semantic math
+2774 [https://dlmf.nist.gov/9.7#Ex2]: Skipped - no semantic math
+2775 [http://dlmf.nist.gov/9.7.E3]: Definition - Line is a non-semantic definition.
+2776 [http://dlmf.nist.gov/9.7.E4]: Skipped - Unable to analyze test case: Null
+2777 [http://dlmf.nist.gov/9.7.E5]: Skipped - Unable to analyze test case: Null
+2778 [http://dlmf.nist.gov/9.7.E6]: Skipped - Unable to analyze test case: Null
+2779 [http://dlmf.nist.gov/9.7.E7]: Skipped - Unable to analyze test case: Null
+2780 [http://dlmf.nist.gov/9.7.E8]: Skipped - Unable to analyze test case: Null
+2781 [http://dlmf.nist.gov/9.7.E9]: Skipped - Unable to analyze test case: Null
+2782 [http://dlmf.nist.gov/9.7.E10]: Skipped - Unable to analyze test case: Null
+2783 [http://dlmf.nist.gov/9.7.E11]: Skipped - Unable to analyze test case: Null
+2784 [http://dlmf.nist.gov/9.7.E12]: Skipped - Unable to analyze test case: Null
+2785 [http://dlmf.nist.gov/9.7.E13]: Skipped - Unable to analyze test case: Null
+2786 [http://dlmf.nist.gov/9.7.E14]: Skipped - Unable to analyze test case: Null
+2787 [https://dlmf.nist.gov/9.7#Ex3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2788 [https://dlmf.nist.gov/9.7#Ex4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2789 [https://dlmf.nist.gov/9.7#Ex5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2790 [https://dlmf.nist.gov/9.7#Ex6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2791 [http://dlmf.nist.gov/9.7.E17]: Skipped - Invalid test case: cases
+2792 [http://dlmf.nist.gov/9.7.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2793 [http://dlmf.nist.gov/9.7.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2794 [http://dlmf.nist.gov/9.7.E20]: Definition - Line is a non-semantic definition.
+2795 [http://dlmf.nist.gov/9.7.E21]: Definition - Line is a non-semantic definition.
+2796 [http://dlmf.nist.gov/9.7.E22]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2797 [http://dlmf.nist.gov/9.7.E23]: Skipped - Invalid test case: bigO
+2798 [http://dlmf.nist.gov/9.8.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2799 [http://dlmf.nist.gov/9.8.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2800 [http://dlmf.nist.gov/9.8.E3]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2801 [http://dlmf.nist.gov/9.8.E4]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2802 [http://dlmf.nist.gov/9.8.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2803 [http://dlmf.nist.gov/9.8.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2804 [http://dlmf.nist.gov/9.8.E7]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2805 [http://dlmf.nist.gov/9.8.E8]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2806 [http://dlmf.nist.gov/9.8.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2807 [http://dlmf.nist.gov/9.8.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2808 [http://dlmf.nist.gov/9.8.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2809 [http://dlmf.nist.gov/9.8.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2810 [http://dlmf.nist.gov/9.8.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2811 [https://dlmf.nist.gov/9.8#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2812 [https://dlmf.nist.gov/9.8#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2813 [https://dlmf.nist.gov/9.8#Ex3]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2814 [http://dlmf.nist.gov/9.8.E15]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2814-a [http://dlmf.nist.gov/9.8.E15]: Translation Error - (LaTeX -> Maple) Error while translating DLMF/DRMF Macro: The arguments of semantic macros must be wrapped in curly brackets! It seems you wrote \AirymodM(...) instead of \AirymodM{...} [\AirymodM]
+2815 [http://dlmf.nist.gov/9.8.E16]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2815-a [http://dlmf.nist.gov/9.8.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2816 [http://dlmf.nist.gov/9.8.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2816-a [http://dlmf.nist.gov/9.8.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2817 [https://dlmf.nist.gov/9.8#Ex4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2818 [https://dlmf.nist.gov/9.8#Ex5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: Aborted, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2819 [http://dlmf.nist.gov/9.8.E19]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2820 [http://dlmf.nist.gov/9.8.E20]: Skipped - Unable to analyze test case: Null
+2821 [http://dlmf.nist.gov/9.8.E21]: Skipped - Unable to analyze test case: Null
+2822 [http://dlmf.nist.gov/9.8.E22]: Skipped - Unable to analyze test case: Null
+2823 [http://dlmf.nist.gov/9.8.E23]: Skipped - Unable to analyze test case: Null
+2824 [http://dlmf.nist.gov/9.9.E1]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAirya [\zAirya]
+2824-a [http://dlmf.nist.gov/9.9.E1]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAirya [\zderivAirya]
+2825 [http://dlmf.nist.gov/9.9.E2]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAiryb [\zAiryb]
+2825-a [http://dlmf.nist.gov/9.9.E2]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAiryb [\zderivAiryb]
+2826 [https://dlmf.nist.gov/9.9#Ex1]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAirya [\zAirya]
+2827 [https://dlmf.nist.gov/9.9#Ex2]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAiryb [\zAiryb]
+2828 [https://dlmf.nist.gov/9.9#Ex3]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAirya [\zderivAirya]
+2829 [https://dlmf.nist.gov/9.9#Ex4]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAiryb [\zderivAiryb]
+2830 [https://dlmf.nist.gov/9.9#Ex5]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAirya [\zAirya]
+2831 [https://dlmf.nist.gov/9.9#Ex6]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAirya [\zderivAirya]
+2832 [http://dlmf.nist.gov/9.9.E6]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAirya [\zAirya]
+2833 [http://dlmf.nist.gov/9.9.E7]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAirya [\zAirya]
+2834 [http://dlmf.nist.gov/9.9.E8]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAirya [\zderivAirya]
+2835 [http://dlmf.nist.gov/9.9.E9]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAirya [\zderivAirya]
+2836 [http://dlmf.nist.gov/9.9.E10]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAiryb [\zAiryb]
+2837 [http://dlmf.nist.gov/9.9.E11]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAiryb [\zAiryb]
+2838 [http://dlmf.nist.gov/9.9.E12]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAiryb [\zderivAiryb]
+2839 [http://dlmf.nist.gov/9.9.E13]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAiryb [\zderivAiryb]
+2840 [http://dlmf.nist.gov/9.9.E14]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAirybeta [\zAirybeta]
+2841 [http://dlmf.nist.gov/9.9.E15]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zAirybeta [\zAirybeta]
+2842 [http://dlmf.nist.gov/9.9.E16]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAirybeta [\zderivAirybeta]
+2843 [http://dlmf.nist.gov/9.9.E17]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \zderivAirybeta [\zderivAirybeta]
+2844 [http://dlmf.nist.gov/9.9.E18]: Definition - Line is a non-semantic definition.
+2845 [http://dlmf.nist.gov/9.9.E19]: Definition - Line is a non-semantic definition.
+2846 [http://dlmf.nist.gov/9.9.E20]: Definition - Line is a non-semantic definition.
+2847 [http://dlmf.nist.gov/9.9.E21]: Definition - Line is a non-semantic definition.
+2848 [http://dlmf.nist.gov/9.10.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2849 [http://dlmf.nist.gov/9.10.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2850 [http://dlmf.nist.gov/9.10.E3]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2850-a [http://dlmf.nist.gov/9.10.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2850-b [http://dlmf.nist.gov/9.10.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2851 [http://dlmf.nist.gov/9.10.E4]: Skipped - Unable to analyze test case: Null
+2852 [http://dlmf.nist.gov/9.10.E5]: Skipped - Unable to analyze test case: Null
+2853 [http://dlmf.nist.gov/9.10.E6]: Skipped - Invalid test case: bigO
+2854 [http://dlmf.nist.gov/9.10.E7]: Skipped - Invalid test case: bigO
+2855 [http://dlmf.nist.gov/9.10.E8]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+2856 [http://dlmf.nist.gov/9.10.E9]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+2857 [http://dlmf.nist.gov/9.10.E10]: Definition - Line is a non-semantic definition.
+2858 [https://dlmf.nist.gov/9.10#Ex1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2859 [https://dlmf.nist.gov/9.10#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2860 [http://dlmf.nist.gov/9.10.E12]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2861 [http://dlmf.nist.gov/9.10.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NULL, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2862 [http://dlmf.nist.gov/9.10.E14]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: 0, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2863 [http://dlmf.nist.gov/9.10.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2864 [http://dlmf.nist.gov/9.10.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2865 [http://dlmf.nist.gov/9.10.E17]: Definition - Line is a non-semantic definition.
+2866 [http://dlmf.nist.gov/9.10.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2867 [https://dlmf.nist.gov/9.10#Ex3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2868 [http://dlmf.nist.gov/9.10.E19]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \pvint [\pvint]
+2869 [https://dlmf.nist.gov/9.10#Ex4]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \pvint [\pvint]
+2870 [http://dlmf.nist.gov/9.10.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2871 [http://dlmf.nist.gov/9.10.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2872 [http://dlmf.nist.gov/9.10.E22]: Definition - Line is a non-semantic definition.
+2873 [http://dlmf.nist.gov/9.11.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2874 [http://dlmf.nist.gov/9.11.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2875 [http://dlmf.nist.gov/9.11.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2876 [http://dlmf.nist.gov/9.11.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2877 [http://dlmf.nist.gov/9.11.E5]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+2878 [http://dlmf.nist.gov/9.11.E6]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+2879 [http://dlmf.nist.gov/9.11.E7]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+2880 [http://dlmf.nist.gov/9.11.E8]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+2881 [http://dlmf.nist.gov/9.11.E9]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+2882 [http://dlmf.nist.gov/9.11.E10]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+2883 [http://dlmf.nist.gov/9.11.E11]: Skipped - Invalid test case: Generic function f\left(\frac{w_{2}}{w_{1}}\right)
+2884 [http://dlmf.nist.gov/9.11.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2885 [http://dlmf.nist.gov/9.11.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2886 [http://dlmf.nist.gov/9.11.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2887 [http://dlmf.nist.gov/9.11.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NULL, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2888 [http://dlmf.nist.gov/9.11.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: Aborted, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2889 [http://dlmf.nist.gov/9.11.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: Aborted, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2890 [http://dlmf.nist.gov/9.11.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2891 [http://dlmf.nist.gov/9.11.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: Aborted, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2891-a [http://dlmf.nist.gov/9.11.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2892 [http://dlmf.nist.gov/9.12.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2893 [http://dlmf.nist.gov/9.12.E2]: Definition - Line is a non-semantic definition.
+2894 [https://dlmf.nist.gov/9.12#Ex1]: Skipped - Unable to analyze test case: Null
+2895 [https://dlmf.nist.gov/9.12#Ex2]: Skipped - Unable to analyze test case: Null
+2896 [https://dlmf.nist.gov/9.12#Ex3]: Skipped - Unable to analyze test case: Null
+2897 [http://dlmf.nist.gov/9.12.E4]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2898 [http://dlmf.nist.gov/9.12.E5]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2899 [http://dlmf.nist.gov/9.12.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2899-a [http://dlmf.nist.gov/9.12.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2899-b [http://dlmf.nist.gov/9.12.E6]: All Errors: [Simple: NULL, ConvEXP: NULL, ConvHYP: NULL, EXP: NULL, EXP+EXP: NULL, EXP+HYP: NULL]
+2900 [http://dlmf.nist.gov/9.12.E7]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2900-a [http://dlmf.nist.gov/9.12.E7]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2900-b [http://dlmf.nist.gov/9.12.E7]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: NaN, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2900-c [http://dlmf.nist.gov/9.12.E7]: Successful [Simple: 0., ConvEXP: 0., ConvHYP: 0., EXP: 0., EXP+EXP: 0., EXP+HYP: 0.]
+2901 [http://dlmf.nist.gov/9.12.E8]: Skipped - Unable to analyze test case: Null
+2902 [http://dlmf.nist.gov/9.12.E9]: Skipped - Unable to analyze test case: Null
+2903 [http://dlmf.nist.gov/9.12.E10]: Skipped - Unable to analyze test case: Null
+2904 [http://dlmf.nist.gov/9.12.E11]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2905 [http://dlmf.nist.gov/9.12.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2906 [http://dlmf.nist.gov/9.12.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2906-a [http://dlmf.nist.gov/9.12.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2907 [http://dlmf.nist.gov/9.12.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2907-a [http://dlmf.nist.gov/9.12.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2908 [http://dlmf.nist.gov/9.12.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2909 [http://dlmf.nist.gov/9.12.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2910 [http://dlmf.nist.gov/9.12.E17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2911 [http://dlmf.nist.gov/9.12.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2912 [http://dlmf.nist.gov/9.12.E19]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2913 [http://dlmf.nist.gov/9.12.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2914 [http://dlmf.nist.gov/9.12.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2915 [http://dlmf.nist.gov/9.12.E22]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2916 [http://dlmf.nist.gov/9.12.E23]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \pvint [\pvint]
+2917 [http://dlmf.nist.gov/9.12.E24]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2918 [http://dlmf.nist.gov/9.12.E25]: Skipped - Unable to analyze test case: Null
+2919 [http://dlmf.nist.gov/9.12.E26]: Skipped - Unable to analyze test case: Null
+2920 [http://dlmf.nist.gov/9.12.E27]: Skipped - Unable to analyze test case: Null
+2921 [http://dlmf.nist.gov/9.12.E28]: Skipped - Unable to analyze test case: Null
+2922 [http://dlmf.nist.gov/9.12.E29]: Skipped - Unable to analyze test case: Null
+2923 [http://dlmf.nist.gov/9.12.E30]: Skipped - Unable to analyze test case: Null
+2924 [http://dlmf.nist.gov/9.12.E31]: Skipped - Unable to analyze test case: Null
+2925 [http://dlmf.nist.gov/9.13.E1]: Definition - Line is a non-semantic definition.
+2926 [http://dlmf.nist.gov/9.13.E2]: Definition - Line is a non-semantic definition.
+2927 [https://dlmf.nist.gov/9.13#Ex1]: Definition - Line is a non-semantic definition.
+2928 [https://dlmf.nist.gov/9.13#Ex2]: Definition - Line is a non-semantic definition.
+2929 [https://dlmf.nist.gov/9.13#Ex3]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEA [\genAiryODEA]
+2930 [https://dlmf.nist.gov/9.13#Ex4]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEB [\genAiryODEB]
+2931 [https://dlmf.nist.gov/9.13#Ex5]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEA [\genAiryODEA]
+2931-a [https://dlmf.nist.gov/9.13#Ex5]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEB [\genAiryODEB]
+2932 [https://dlmf.nist.gov/9.13#Ex6]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEA [\genAiryODEA]
+2932-a [https://dlmf.nist.gov/9.13#Ex6]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEB [\genAiryODEB]
+2933 [http://dlmf.nist.gov/9.13.E6]: Skipped - Invalid test case: cases
+2934 [http://dlmf.nist.gov/9.13.E7]: Skipped - Invalid test case: cases
+2935 [http://dlmf.nist.gov/9.13.E8]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryODEA [\genAiryODEA]
+2936 [http://dlmf.nist.gov/9.13.E9]: Skipped - Invalid test case: bigO
+2937 [http://dlmf.nist.gov/9.13.E10]: Skipped - Invalid test case: cases
+2938 [http://dlmf.nist.gov/9.13.E11]: Skipped - Invalid test case: bigO
+2939 [http://dlmf.nist.gov/9.13.E12]: Skipped - Invalid test case: cases
+2940 [http://dlmf.nist.gov/9.13.E13]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \modcylinder [\modcylinder]
+2941 [https://dlmf.nist.gov/9.13#Ex7]: Skipped - no semantic math
+2942 [https://dlmf.nist.gov/9.13#Ex8]: Skipped - no semantic math
+2943 [http://dlmf.nist.gov/9.13.E15]: Skipped - Invalid test case: cases
+2944 [http://dlmf.nist.gov/9.13.E16]: Skipped - Invalid test case: cases
+2945 [http://dlmf.nist.gov/9.13.E17]: Definition - Line is a non-semantic definition.
+2946 [http://dlmf.nist.gov/9.13.E18]: Skipped - no semantic math
+2947 [http://dlmf.nist.gov/9.13.E19]: Definition - Line is a non-semantic definition.
+2948 [http://dlmf.nist.gov/9.13.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2949 [http://dlmf.nist.gov/9.13.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2950 [https://dlmf.nist.gov/9.13#Ex9]: Skipped - no semantic math
+2951 [https://dlmf.nist.gov/9.13#Ex10]: Skipped - no semantic math
+2952 [http://dlmf.nist.gov/9.13.E23]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2953 [http://dlmf.nist.gov/9.13.E24]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+2954 [http://dlmf.nist.gov/9.13.E25]: Definition - Line is a non-semantic definition.
+2955 [http://dlmf.nist.gov/9.13.E26]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintB [\genAiryintB]
+2956 [http://dlmf.nist.gov/9.13.E27]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintB [\genAiryintB]
+2957 [http://dlmf.nist.gov/9.13.E28]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintA [\genAiryintA]
+2958 [https://dlmf.nist.gov/9.13#Ex11]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintA [\genAiryintA]
+2959 [https://dlmf.nist.gov/9.13#Ex12]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintA [\genAiryintA]
+2960 [https://dlmf.nist.gov/9.13#Ex13]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintB [\genAiryintB]
+2961 [https://dlmf.nist.gov/9.13#Ex14]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintB [\genAiryintB]
+2962 [http://dlmf.nist.gov/9.13.E31]: Definition - Line is a non-semantic definition.
+2963 [http://dlmf.nist.gov/9.13.E32]: Definition - Line is a non-semantic definition.
+2964 [https://dlmf.nist.gov/9.13#Ex15]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintA [\genAiryintA]
+2965 [https://dlmf.nist.gov/9.13#Ex16]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintA [\genAiryintA]
+2966 [http://dlmf.nist.gov/9.13.E34]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintA [\genAiryintA]
+2967 [http://dlmf.nist.gov/9.13.E35]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintB [\genAiryintB]
+2968 [http://dlmf.nist.gov/9.13.E36]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintB [\genAiryintB]
+2969 [http://dlmf.nist.gov/9.13.E37]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \genAiryintB [\genAiryintB]

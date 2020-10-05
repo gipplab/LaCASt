@@ -1,7 +1,3 @@
-\assLegendreOlverQ, 33
-\assLegendreQ, 7
-\DunsterQ, 3
-\paraUbar, 2
+\DunsterQ, 4
 \surfharmonicY, 1
-\hbar, 1
 \Jacobiphi, 1

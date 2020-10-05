@@ -10,4 +10,5 @@
 \LamepolysE, 3
 \LamepolyscdE, 3
 \LamepolysdE, 3
+\Weierstrasspinvar, 1
 \Weierstrassplatt, 1

@@ -19,9 +19,7 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -230,34 +228,57 @@ public class Case {
 
     private static final Pattern NVAR_PATTERN = Pattern.compile("\\\\NVar\\{(.*?)}");
 
+    /**
+     * Problem: Line 3933 use: \symbolUsed[\EulerGamma@{\NVar{z}}]{C5.S2.E1.m2badec}
+     * But contains: \EulerGamma@{\nu+\tfrac{1}{2}}}
+     * Now, C5.S2.E1.m2badec is defined in \symbolDefined[\EulerGamma@{\NVar{z}}]{C5.S2.E1.m2bdec}
+     * with constraint: \constraint{\realpart@@{z}>0}
+     *
+     * Now it comes, when adding the constraint \realpart@@{z}>0, z must be replaced by \nu+\tfrac{1}{2}
+     * Jesus...
+     *
+     * @param def
+     * @throws ParseException
+     */
     private void replaceSingleTag(SymbolTag def) throws ParseException {
-        if ( def.getMetaData() != null ) {
-            this.metaData.addConstraints(def.getMetaData().getConstraints());
-        }
-
         SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
         PrintablePomTaggedExpression ppteLHS = mlp.parse(this.LHS, this.getEquationLabel());
         PrintablePomTaggedExpression ppteRHS = mlp.parse(this.RHS, this.getEquationLabel());
 
         String symbol = def.getSymbol();
+        boolean isSemantic = isSemantic(symbol);
         Matcher m = NVAR_PATTERN.matcher(symbol);
         StringBuilder sb = new StringBuilder();
 
+        int counter = 0;
         while ( m.find() ) {
-            int n = m.group(1).hashCode();
-            m.appendReplacement(sb, "var"+n);
+            m.appendReplacement(sb, "VAR"+counter);
+            counter++;
         }
 
         m.appendTail(sb);
 
-        MatchablePomTaggedExpression matchPOM = new MatchablePomTaggedExpression(mlp, sb.toString(), "var\\d+");
+        MatchablePomTaggedExpression matchPOM = new MatchablePomTaggedExpression(mlp, sb.toString(), "VAR\\d+");
         PomMatcher matcherL = matchPOM.matcher(ppteLHS);
-        PrintablePomTaggedExpression left = matcherL.replaceAll("("+def.getDefinition()+")");
-        this.LHS = left.getTexString();
+        if ( counter == 0 && !isSemantic ) {
+            PrintablePomTaggedExpression left = matcherL.replaceAll("("+def.getDefinition()+")");
+            this.LHS = left.getTexString();
+        }
 
         PomMatcher matcherR = matchPOM.matcher(ppteRHS);
-        PrintablePomTaggedExpression right = matcherR.replaceAll("("+def.getDefinition()+")");
-        this.RHS = right.getTexString();
+        if ( counter == 0 && !isSemantic ) {
+            PrintablePomTaggedExpression right = matcherR.replaceAll("("+def.getDefinition()+")");
+            this.RHS = right.getTexString();
+        }
+
+        if ( counter > 0 ) {
+            LOG.warn("Auto definition replacement of semantic macros is suppressed. Macro " + symbol + " will not be replaced.");
+            // now the fun part
+            replaceConstraints(def, matcherL, matcherR);
+        } else if ( def.getMetaData() != null ) {
+            // if there was no NVar, simply add all constraints
+            this.metaData.addConstraints(def.getMetaData().getConstraints());
+        }
     }
 
     public static boolean isSemantic(String symbol) {
@@ -275,5 +296,55 @@ public class Case {
         } catch (ParseException e) {
             return false;
         }
+    }
+
+    private void replaceConstraints(SymbolTag def, PomMatcher... matchers) {
+        CaseMetaData defMetaData = def.getMetaData();
+        if ( defMetaData == null ) return;
+
+        Constraints consts = defMetaData.getConstraints();
+        if ( consts == null ) return;
+
+        Map<Integer, String> varSlots = defMetaData.getVariableSlots();
+        if ( varSlots.isEmpty() ) return;
+
+        Map<String, List<String>> varMapping = new HashMap<>();
+        for ( PomMatcher m : matchers ) {
+            m.reset();
+            while ( m.find() ) {
+                Map<String, String> groups = m.groups();
+                for (Map.Entry<Integer, String> entry : varSlots.entrySet() ) {
+                    String hit = groups.get("VAR"+entry.getKey());
+                    if ( hit != null && !hit.isBlank() ) {
+                        varMapping.computeIfAbsent(entry.getValue(), key -> new LinkedList<>()).add(hit);
+                    }
+                }
+            }
+        }
+
+        LinkedList<String> newConstraints = new LinkedList<>();
+        List<String> originalConstraints = consts.getOriginalConstraints();
+
+        for ( String constraint : originalConstraints ) {
+            // lets do simple string replacement, otherwise it might be an overkill... not?
+            for ( Map.Entry<String, List<String>> varMap : varMapping.entrySet() ) {
+                List<String> replacements = varMap.getValue();
+                for ( String repl : replacements ) {
+                    repl = repl.replace("\\", "\\\\");
+                    String newConst = constraint.replaceAll("(?<!\\\\[A-Za-z]{0,30})"+Pattern.quote(varMap.getKey())+"(.|$)", repl + "$1");
+                    newConstraints.add(newConst);
+                }
+            }
+        }
+
+        // now its getting funny and a bit overkill. but anyway...
+        CaseMetaData newMetaData = CaseMetaData.extractMetaData(
+                newConstraints,
+                defMetaData.getSymbolsUsed(),
+                null,
+                -1
+        );
+
+        this.metaData.addConstraints(newMetaData.getConstraints());
     }
 }

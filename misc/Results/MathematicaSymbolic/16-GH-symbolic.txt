@@ -1,142 +1,110 @@
-Overall: [SUCCESS: 2, SUCCESS_SYMB: 2, SUCCESS_TRANS: 25, FAILURE: 23, STARTED_TEST_CASES: 55, SKIPPED: 85, DEFINITIONS: 4, IGNORE: 44, MISSING: 28, ERROR: 2] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 108, SKIPPED: 47, DEFINITIONS: 8, STARTED_TEST_CASES: 53, ERROR_TRANS: 27, MISSING: 1, SUCCESS_TRANS: 25, SUCCESS_SYMB: 2, SUCCESS_NUM: 0, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 21, ABORTED: 2, ERROR: 0] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
-5190: Skipped - Unable to analyze test case.
-5192 [http://dlmf.nist.gov/16.2.E3]: Failure [Simple: NaN]
-5193: Skipped - Unable to analyze test case.
-5194 [http://dlmf.nist.gov/16.2.E4]: Failure [Simple: Aborted]
-5195: Skipped - Unable to analyze test case.
-5197: Skipped - Unable to analyze test case.
-5198: Skipped - Unable to analyze test case.
-5200: Skipped - Unable to analyze test case.
-5202: Skipped - Unable to analyze test case.
-5204: Skipped - Unable to analyze test case.
-5206: Skipped - Unable to analyze test case.
-5207 [http://dlmf.nist.gov/16.3.E5]: Failure [Simple: NaN]
-5208 [http://dlmf.nist.gov/16.3.E6]: Failure [Simple: NaN]
-5209: Skipped - Unable to analyze test case.
-5210 [http://dlmf.nist.gov/16.3.E7]: Failure [Simple: NaN]
-5211: Skipped - Unable to analyze test case.
-5214 [http://dlmf.nist.gov/16.4.E3]: Failure [Simple: NaN]
-5215: Skipped - Unable to analyze test case.
-5216 [http://dlmf.nist.gov/16.4.E4]: Successful [Simple: 0]
-5217: Skipped - Unable to analyze test case.
-5219: Skipped - Unable to analyze test case.
-5220 [http://dlmf.nist.gov/16.4.E6]: Failure [Simple: NaN]
-5221: Skipped - Unable to analyze test case.
-5222 [http://dlmf.nist.gov/16.4.E7]: Successful [Simple: 0]
-5223: Skipped - Unable to analyze test case.
-5224 [http://dlmf.nist.gov/16.4.E8]: Failure [Simple: NaN]
-5225: Skipped - Unable to analyze test case.
-5226 [http://dlmf.nist.gov/16.4.E9]: Failure [Simple: NaN]
-5227: Skipped - Unable to analyze test case.
-5228 [http://dlmf.nist.gov/16.4.E10]: Failure [Simple: Aborted]
-5229: Skipped - Unable to analyze test case.
-5230 [http://dlmf.nist.gov/16.4.E11]: Failure [Simple: NaN]
-5231: Skipped - Unable to analyze test case.
-5232 [http://dlmf.nist.gov/16.4.E12]: Failure [Simple: NaN]
-5233: Skipped - Unable to analyze test case.
-5234 [http://dlmf.nist.gov/16.4.E13]: Failure [Simple: NaN]
-5235: Skipped - Unable to analyze test case.
-5236 [http://dlmf.nist.gov/16.4.E14]: Failure [Simple: NaN]
-5237: Skipped - Unable to analyze test case.
-5238 [http://dlmf.nist.gov/16.4.E15]: Failure [Simple: Aborted]
-5239: Skipped - Unable to analyze test case.
-5241: Skipped - Unable to analyze test case.
-5242 [http://dlmf.nist.gov/16.4.E17]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \genhyperH [\genhyperH]
-5243: Skipped - Unable to analyze test case.
-5245: Skipped - Unable to analyze test case.
-5247: Skipped - Unable to analyze test case.
-5249: Skipped - Unable to analyze test case.
-5251: Skipped - Unable to analyze test case.
-5252 [http://dlmf.nist.gov/16.6.E1]: Failure [Simple: NaN]
-5253: Skipped - Unable to analyze test case.
-5254 [http://dlmf.nist.gov/16.6.E2]: Failure [Simple: NaN]
-5255: Skipped - Unable to analyze test case.
-5257 [https://dlmf.nist.gov/16.8#Ex1]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: A limited expression ends with no argument left.
-5258 [https://dlmf.nist.gov/16.8#Ex2]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: A limited expression ends with no argument left.
-5263: Skipped - Unable to analyze test case.
-5265: Skipped - Unable to analyze test case.
-5267: Skipped - Unable to analyze test case.
-5269: Skipped - Unable to analyze test case.
-5271: Skipped - Unable to analyze test case.
-5273: Skipped - Unable to analyze test case.
-5275: Skipped - Unable to analyze test case.
-5277: Skipped - Unable to analyze test case.
-5286: Skipped - Unable to analyze test case.
-5287: Skipped - Unable to analyze test case.
-5288: Skipped - Unable to analyze test case.
-5289: Skipped - Unable to analyze test case.
-5290: Skipped - Unable to analyze test case.
-5291: Skipped - Unable to analyze test case.
-5292: Skipped - Unable to analyze test case.
-5294: Skipped - Unable to analyze test case.
-5296: Skipped - Unable to analyze test case.
-5297 [http://dlmf.nist.gov/16.12.E1]: Failure [Simple: NaN]
-5298: Skipped - Unable to analyze test case.
-5299 [http://dlmf.nist.gov/16.12.E2]: Failure [Simple: NaN]
-5300: Skipped - Unable to analyze test case.
-5301 [http://dlmf.nist.gov/16.12.E3]: Failure [Simple: NaN]
-5302: Skipped - Unable to analyze test case.
-5303 [http://dlmf.nist.gov/16.13.E1]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5304: Skipped - Unable to analyze test case.
-5305 [http://dlmf.nist.gov/16.13.E2]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5306: Skipped - Unable to analyze test case.
-5307 [http://dlmf.nist.gov/16.13.E3]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5308: Skipped - Unable to analyze test case.
-5309 [http://dlmf.nist.gov/16.13.E4]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5310: Skipped - Unable to analyze test case.
-5311 [https://dlmf.nist.gov/16.14#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
-5312 [https://dlmf.nist.gov/16.14#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
-5313 [https://dlmf.nist.gov/16.14#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
-5314 [https://dlmf.nist.gov/16.14#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
-5315 [https://dlmf.nist.gov/16.14#Ex5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
-5316 [https://dlmf.nist.gov/16.14#Ex6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
-5317 [https://dlmf.nist.gov/16.14#Ex7]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
-5318 [https://dlmf.nist.gov/16.14#Ex8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
-5319 [http://dlmf.nist.gov/16.14.E5]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5320 [http://dlmf.nist.gov/16.14.E6]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5321 [http://dlmf.nist.gov/16.15.E1]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5322: Skipped - Unable to analyze test case.
-5323 [http://dlmf.nist.gov/16.15.E2]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5324: Skipped - Unable to analyze test case.
-5325 [http://dlmf.nist.gov/16.15.E3]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5326: Skipped - Unable to analyze test case.
-5327 [http://dlmf.nist.gov/16.15.E4]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5328: Skipped - Unable to analyze test case.
-5329 [http://dlmf.nist.gov/16.16.E1]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5330: Skipped - Unable to analyze test case.
-5331 [http://dlmf.nist.gov/16.16.E2]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5332: Skipped - Unable to analyze test case.
-5333 [http://dlmf.nist.gov/16.16.E3]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5334: Skipped - Unable to analyze test case.
-5335: Skipped - Unable to analyze test case.
-5336 [http://dlmf.nist.gov/16.16.E4]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5337: Skipped - Unable to analyze test case.
-5338: Skipped - Unable to analyze test case.
-5339 [http://dlmf.nist.gov/16.16.E5]: Failure [Simple: NaN]
-5340: Skipped - Unable to analyze test case.
-5341 [http://dlmf.nist.gov/16.16.E6]: Failure [Simple: NaN]
-5342: Skipped - Unable to analyze test case.
-5343 [http://dlmf.nist.gov/16.16.E7]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5344: Skipped - Unable to analyze test case.
-5345 [http://dlmf.nist.gov/16.16.E8]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5345-a [http://dlmf.nist.gov/16.16.E8]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5346: Skipped - Unable to analyze test case.
-5347 [http://dlmf.nist.gov/16.16.E9]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5348: Skipped - Unable to analyze test case.
-5349 [http://dlmf.nist.gov/16.16.E10]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-5350: Skipped - Unable to analyze test case.
-5352: Skipped - Unable to analyze test case.
-5354: Skipped - Unable to analyze test case.
-5355: Skipped - Unable to analyze test case.
-5358: Skipped - Unable to analyze test case.
-5359: Skipped - Unable to analyze test case.
-5361: Skipped - Unable to analyze test case.
-5363: Skipped - Unable to analyze test case.
-5365: Skipped - Unable to analyze test case.
-5367: Skipped - Unable to analyze test case.
-5369: Skipped - Unable to analyze test case.
-5371: Skipped - Unable to analyze test case.
-5373: Skipped - Unable to analyze test case.
-5374: Skipped - Unable to analyze test case.
-5375 [http://dlmf.nist.gov/16.23.E1]: Failure [Simple: NaN]
+5147 [http://dlmf.nist.gov/16.2.E1]: Skipped - Invalid test case: dots
+5148 [http://dlmf.nist.gov/16.2.E2]: Skipped - no semantic math
+5149 [http://dlmf.nist.gov/16.2.E3]: Failure [Simple: NaN]
+5150 [http://dlmf.nist.gov/16.2.E4]: Failure [Simple: NaN]
+5151 [http://dlmf.nist.gov/16.2.E5]: Skipped - Invalid test case: dots, dots
+5152 [http://dlmf.nist.gov/16.3.E1]: Skipped - Invalid test case: dots
+5153 [http://dlmf.nist.gov/16.3.E2]: Skipped - Invalid test case: dots
+5154 [http://dlmf.nist.gov/16.3.E3]: Skipped - Invalid test case: dots
+5155 [http://dlmf.nist.gov/16.3.E4]: Skipped - Invalid test case: dots
+5156 [http://dlmf.nist.gov/16.3.E5]: Failure [Simple: NaN]
+5157 [http://dlmf.nist.gov/16.3.E6]: Failure [Simple: NaN]
+5158 [http://dlmf.nist.gov/16.3.E7]: Failure [Simple: NaN]
+5159 [http://dlmf.nist.gov/16.4.E1]: Skipped - no semantic math
+5160 [http://dlmf.nist.gov/16.4.E2]: Skipped - no semantic math
+5161 [http://dlmf.nist.gov/16.4.E3]: Failure [Simple: NaN]
+5162 [http://dlmf.nist.gov/16.4.E4]: Successful [Simple: 0]
+5163 [http://dlmf.nist.gov/16.4.E5]: Skipped - Invalid test case: cases, cases, cases
+5164 [http://dlmf.nist.gov/16.4.E6]: Failure [Simple: NaN]
+5165 [http://dlmf.nist.gov/16.4.E7]: Successful [Simple: 0]
+5166 [http://dlmf.nist.gov/16.4.E8]: Failure [Simple: NaN]
+5167 [http://dlmf.nist.gov/16.4.E9]: Failure [Simple: NaN]
+5168 [http://dlmf.nist.gov/16.4.E10]: All Aborted: [Simple: Aborted]
+5169 [http://dlmf.nist.gov/16.4.E11]: Failure [Simple: NaN]
+5170 [http://dlmf.nist.gov/16.4.E12]: Failure [Simple: NaN]
+5171 [http://dlmf.nist.gov/16.4.E13]: Failure [Simple: NaN]
+5172 [http://dlmf.nist.gov/16.4.E14]: Failure [Simple: NaN]
+5173 [http://dlmf.nist.gov/16.4.E15]: All Aborted: [Simple: Aborted]
+5174 [http://dlmf.nist.gov/16.4.E16]: Skipped - Invalid test case: dots
+5175 [http://dlmf.nist.gov/16.4.E17]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \genhyperH [\genhyperH]
+5176 [http://dlmf.nist.gov/16.5.E1]: Skipped - Invalid test case: dots
+5177 [http://dlmf.nist.gov/16.5.E2]: Skipped - Invalid test case: dots
+5178 [http://dlmf.nist.gov/16.5.E3]: Skipped - Invalid test case: dots
+5179 [http://dlmf.nist.gov/16.5.E4]: Skipped - Invalid test case: dots
+5180 [http://dlmf.nist.gov/16.6.E1]: Failure [Simple: NaN]
+5181 [http://dlmf.nist.gov/16.6.E2]: Failure [Simple: NaN]
+5182 [http://dlmf.nist.gov/16.8.E1]: Skipped - Invalid test case: dots
+5183 [https://dlmf.nist.gov/16.8#Ex1]: Definition - Line is a non-semantic definition.
+5184 [https://dlmf.nist.gov/16.8#Ex2]: Definition - Line is a non-semantic definition.
+5185 [http://dlmf.nist.gov/16.8.E3]: Skipped - no semantic math
+5186 [http://dlmf.nist.gov/16.8.E4]: Skipped - no semantic math
+5187 [http://dlmf.nist.gov/16.8.E5]: Skipped - no semantic math
+5188 [https://dlmf.nist.gov/16.8#Ex3]: Skipped - Invalid test case: dots
+5189 [https://dlmf.nist.gov/16.8#Ex4]: Skipped - Unable to analyze test case: Null
+5190 [http://dlmf.nist.gov/16.8.E7]: Skipped - Invalid test case: dots
+5191 [http://dlmf.nist.gov/16.8.E8]: Skipped - Invalid test case: dots
+5192 [http://dlmf.nist.gov/16.8.E9]: Skipped - Invalid test case: dots
+5193 [http://dlmf.nist.gov/16.8.E10]: Skipped - Invalid test case: dots
+5194 [http://dlmf.nist.gov/16.8.E11]: Skipped - Invalid test case: dots
+5195 [http://dlmf.nist.gov/16.10.E1]: Skipped - Invalid test case: dots
+5196 [http://dlmf.nist.gov/16.10.E2]: Skipped - Invalid test case: dots
+5197 [http://dlmf.nist.gov/16.11.E1]: Definition - Line is a non-semantic definition.
+5198 [http://dlmf.nist.gov/16.11.E2]: Definition - Line is a non-semantic definition.
+5199 [https://dlmf.nist.gov/16.11#Ex1]: Definition - Line is a non-semantic definition.
+5200 [https://dlmf.nist.gov/16.11#Ex2]: Definition - Line is a non-semantic definition.
+5201 [https://dlmf.nist.gov/16.11#Ex3]: Skipped - no semantic math
+5202 [https://dlmf.nist.gov/16.11#Ex4]: Skipped - no semantic math
+5203 [http://dlmf.nist.gov/16.11.E5]: Definition - Line is a non-semantic definition.
+5204 [http://dlmf.nist.gov/16.11.E6]: Skipped - Invalid test case: dots
+5205 [http://dlmf.nist.gov/16.11.E7]: Skipped - Unable to analyze test case: Null
+5206 [http://dlmf.nist.gov/16.11.E8]: Skipped - Unable to analyze test case: Null
+5207 [http://dlmf.nist.gov/16.11.E9]: Skipped - Unable to analyze test case: Null
+5208 [http://dlmf.nist.gov/16.11.E10]: Skipped - Invalid test case: dots
+5209 [http://dlmf.nist.gov/16.11.E11]: Skipped - Invalid test case: dots
+5210 [http://dlmf.nist.gov/16.12.E1]: Failure [Simple: NaN]
+5211 [http://dlmf.nist.gov/16.12.E2]: Failure [Simple: NaN]
+5212 [http://dlmf.nist.gov/16.12.E3]: Failure [Simple: NaN]
+5213 [http://dlmf.nist.gov/16.13.E1]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5214 [http://dlmf.nist.gov/16.13.E2]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5215 [http://dlmf.nist.gov/16.13.E3]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5216 [http://dlmf.nist.gov/16.13.E4]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5217 [https://dlmf.nist.gov/16.14#Ex1]: Translation Error - (LaTeX -> Mathematica) Error while translating DLMF/DRMF Macro: Unable to retrieve correct number of arguments for the macro \AppellF [\AppellF]
+5218 [https://dlmf.nist.gov/16.14#Ex2]: Translation Error - (LaTeX -> Mathematica) Error while translating DLMF/DRMF Macro: Unable to retrieve correct number of arguments for the macro \AppellF [\AppellF]
+5219 [https://dlmf.nist.gov/16.14#Ex3]: Translation Error - (LaTeX -> Mathematica) Error while translating DLMF/DRMF Macro: Unable to retrieve correct number of arguments for the macro \AppellF [\AppellF]
+5220 [https://dlmf.nist.gov/16.14#Ex4]: Translation Error - (LaTeX -> Mathematica) Error while translating DLMF/DRMF Macro: Unable to retrieve correct number of arguments for the macro \AppellF [\AppellF]
+5221 [https://dlmf.nist.gov/16.14#Ex5]: Translation Error - (LaTeX -> Mathematica) Error while translating DLMF/DRMF Macro: Unable to retrieve correct number of arguments for the macro \AppellF [\AppellF]
+5222 [https://dlmf.nist.gov/16.14#Ex6]: Translation Error - (LaTeX -> Mathematica) Error while translating DLMF/DRMF Macro: Unable to retrieve correct number of arguments for the macro \AppellF [\AppellF]
+5223 [https://dlmf.nist.gov/16.14#Ex7]: Translation Error - (LaTeX -> Mathematica) Error while translating DLMF/DRMF Macro: Unable to retrieve correct number of arguments for the macro \AppellF [\AppellF]
+5224 [https://dlmf.nist.gov/16.14#Ex8]: Translation Error - (LaTeX -> Mathematica) Error while translating DLMF/DRMF Macro: Unable to retrieve correct number of arguments for the macro \AppellF [\AppellF]
+5225 [http://dlmf.nist.gov/16.14.E5]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5226 [http://dlmf.nist.gov/16.14.E6]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5227 [http://dlmf.nist.gov/16.15.E1]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5228 [http://dlmf.nist.gov/16.15.E2]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5229 [http://dlmf.nist.gov/16.15.E3]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5230 [http://dlmf.nist.gov/16.15.E4]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5231 [http://dlmf.nist.gov/16.16.E1]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5232 [http://dlmf.nist.gov/16.16.E2]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5233 [http://dlmf.nist.gov/16.16.E3]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5234 [http://dlmf.nist.gov/16.16.E4]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5235 [http://dlmf.nist.gov/16.16.E5]: Failure [Simple: NaN]
+5236 [http://dlmf.nist.gov/16.16.E6]: Failure [Simple: NaN]
+5237 [http://dlmf.nist.gov/16.16.E7]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5238 [http://dlmf.nist.gov/16.16.E8]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5238-a [http://dlmf.nist.gov/16.16.E8]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5239 [http://dlmf.nist.gov/16.16.E9]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5240 [http://dlmf.nist.gov/16.16.E10]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+5241 [http://dlmf.nist.gov/16.17.E1]: Skipped - Invalid test case: dots, dots
+5242 [http://dlmf.nist.gov/16.17.E2]: Skipped - Invalid test case: dots
+5243 [http://dlmf.nist.gov/16.17.E3]: Definition - Line is a non-semantic definition.
+5244 [http://dlmf.nist.gov/16.18.E1]: Skipped - Invalid test case: dots, dots
+5245 [http://dlmf.nist.gov/16.19.E1]: Skipped - Invalid test case: dots
+5246 [http://dlmf.nist.gov/16.19.E2]: Skipped - Invalid test case: dots
+5247 [http://dlmf.nist.gov/16.19.E3]: Skipped - Invalid test case: dots
+5248 [http://dlmf.nist.gov/16.19.E4]: Skipped - Invalid test case: dots
+5249 [http://dlmf.nist.gov/16.19.E5]: Skipped - Invalid test case: dots
+5250 [http://dlmf.nist.gov/16.19.E6]: Skipped - Invalid test case: dots
+5251 [http://dlmf.nist.gov/16.21.E1]: Skipped - no semantic math
+5252 [http://dlmf.nist.gov/16.21.E2]: Skipped - Unable to analyze test case: Null
+5253 [http://dlmf.nist.gov/16.23.E1]: Failure [Simple: NaN]

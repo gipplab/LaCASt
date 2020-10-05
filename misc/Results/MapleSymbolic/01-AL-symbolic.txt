@@ -1,243 +1,691 @@
-Overall: [SUCCESS: 25, SUCCESS_SYMB: 25, SUCCESS_TRANS: 102, FAILURE: 70, STARTED_TEST_CASES: 228, SKIPPED: 18, DEFINITIONS: 41, IGNORE: 400, MISSING: 103, ERROR: 30] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 687, SKIPPED: 408, DEFINITIONS: 52, STARTED_TEST_CASES: 227, ERROR_TRANS: 46, MISSING: 79, SUCCESS_TRANS: 102, SUCCESS_SYMB: 36, SUCCESS_NUM: 0, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 57, ABORTED: 3, ERROR: 6] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
 1 [http://dlmf.nist.gov/1.2.E1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 1-a [http://dlmf.nist.gov/1.2.E1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+2 [http://dlmf.nist.gov/1.2.E2]: Skipped - Invalid test case: dots
+3 [http://dlmf.nist.gov/1.2.E3]: Skipped - Invalid test case: dots
+4 [http://dlmf.nist.gov/1.2.E4]: Skipped - Invalid test case: dots
+5 [http://dlmf.nist.gov/1.2.E5]: Skipped - Invalid test case: dots
 6 [http://dlmf.nist.gov/1.2.E6]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 7 [http://dlmf.nist.gov/1.2.E7]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-8 [http://dlmf.nist.gov/1.2.E8]: Successful [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-32 [http://dlmf.nist.gov/1.3.E5]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \det [\det]
-46: Skipped - Unable to analyze test case.
-50 [http://dlmf.nist.gov/1.4.E4]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+8 [http://dlmf.nist.gov/1.2.E8]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+9 [http://dlmf.nist.gov/1.2.E9]: Skipped - Invalid test case: dots
+10 [http://dlmf.nist.gov/1.2.E10]: Skipped - no semantic math
+11 [http://dlmf.nist.gov/1.2.E11]: Skipped - no semantic math
+12 [http://dlmf.nist.gov/1.2.E12]: Skipped - no semantic math
+13 [http://dlmf.nist.gov/1.2.E13]: Definition - Line is a non-semantic definition.
+14 [http://dlmf.nist.gov/1.2.E14]: Skipped - no semantic math
+15 [http://dlmf.nist.gov/1.2.E15]: Definition - Line is a non-semantic definition.
+16 [http://dlmf.nist.gov/1.2.E16]: Skipped - no semantic math
+17 [http://dlmf.nist.gov/1.2.E17]: Definition - Line is a non-semantic definition.
+18 [http://dlmf.nist.gov/1.2.E18]: Definition - Line is a non-semantic definition.
+19 [http://dlmf.nist.gov/1.2.E19]: Definition - Line is a non-semantic definition.
+20 [http://dlmf.nist.gov/1.2.E20]: Skipped - no semantic math
+21 [http://dlmf.nist.gov/1.2.E21]: Definition - Line is a non-semantic definition.
+22 [http://dlmf.nist.gov/1.2.E22]: Skipped - no semantic math
+23 [http://dlmf.nist.gov/1.2.E23]: Skipped - no semantic math
+24 [http://dlmf.nist.gov/1.2.E24]: Skipped - no semantic math
+25 [https://dlmf.nist.gov/1.2#Ex1]: Skipped - no semantic math
+26 [https://dlmf.nist.gov/1.2#Ex2]: Skipped - no semantic math
+27 [http://dlmf.nist.gov/1.2.E26]: Skipped - no semantic math
+28 [http://dlmf.nist.gov/1.3.E1]: Skipped - no semantic math
+29 [http://dlmf.nist.gov/1.3.E2]: Skipped - no semantic math
+30 [http://dlmf.nist.gov/1.3.E3]: Definition - Line is a non-semantic definition.
+31 [http://dlmf.nist.gov/1.3.E4]: Skipped - no semantic math
+32 [http://dlmf.nist.gov/1.3.E5]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: No translation available for the operator \det [\det]
+33 [http://dlmf.nist.gov/1.3.E6]: Skipped - no semantic math
+34 [http://dlmf.nist.gov/1.3.E7]: Skipped - no semantic math
+35 [http://dlmf.nist.gov/1.3.E8]: Skipped - no semantic math
+36 [http://dlmf.nist.gov/1.3.E9]: Skipped - no semantic math
+37 [http://dlmf.nist.gov/1.3.E10]: Skipped - no semantic math
+38 [http://dlmf.nist.gov/1.3.E11]: Skipped - no semantic math
+39 [http://dlmf.nist.gov/1.3.E12]: Skipped - no semantic math
+40 [http://dlmf.nist.gov/1.3.E13]: Skipped - no semantic math
+41 [http://dlmf.nist.gov/1.3.E14]: Skipped - no semantic math
+42 [http://dlmf.nist.gov/1.3.E15]: Skipped - no semantic math
+43 [http://dlmf.nist.gov/1.3.E16]: Definition - Line is a non-semantic definition.
+44 [http://dlmf.nist.gov/1.3.E17]: Skipped - no semantic math
+45 [http://dlmf.nist.gov/1.3.E18]: Definition - Line is a non-semantic definition.
+46 [http://dlmf.nist.gov/1.3.E19]: Skipped - Unable to analyze test case: Null
+47 [http://dlmf.nist.gov/1.4.E1]: Skipped - Invalid test case: Generic function f(c+)
+48 [http://dlmf.nist.gov/1.4.E2]: Skipped - no semantic math
+49 [http://dlmf.nist.gov/1.4.E3]: Skipped - Invalid test case: Generic function f(c-)
+50 [http://dlmf.nist.gov/1.4.E4]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+51 [http://dlmf.nist.gov/1.4.E5]: Skipped - no semantic math
+52 [http://dlmf.nist.gov/1.4.E6]: Skipped - no semantic math
+53 [http://dlmf.nist.gov/1.4.E7]: Skipped - no semantic math
 54 [http://dlmf.nist.gov/1.4.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 54-a [http://dlmf.nist.gov/1.4.E8]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 55 [http://dlmf.nist.gov/1.4.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 55-a [http://dlmf.nist.gov/1.4.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+56 [http://dlmf.nist.gov/1.4.E10]: Skipped - no semantic math
+57 [http://dlmf.nist.gov/1.4.E11]: Skipped - no semantic math
+58 [http://dlmf.nist.gov/1.4.E12]: Skipped - Invalid test case: dots
+59 [http://dlmf.nist.gov/1.4.E13]: Skipped - Invalid test case: Generic function f(g(x)
+60 [http://dlmf.nist.gov/1.4.E14]: Skipped - no semantic math
+61 [http://dlmf.nist.gov/1.4.E15]: Skipped - no semantic math
 62 [http://dlmf.nist.gov/1.4.E16]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-80 [http://dlmf.nist.gov/1.4.E34]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \variation [\variation]
+63 [http://dlmf.nist.gov/1.4.E17]: Skipped - Invalid test case: cases
+64 [http://dlmf.nist.gov/1.4.E18]: Skipped - Invalid test case: Generic function f(x)
+65 [http://dlmf.nist.gov/1.4.E19]: Skipped - Invalid test case: Generic function f(x)
+66 [http://dlmf.nist.gov/1.4.E20]: Skipped - Invalid test case: Generic function f(x)
+67 [http://dlmf.nist.gov/1.4.E21]: Skipped - Invalid test case: Generic function f(x)
+68 [http://dlmf.nist.gov/1.4.E22]: Skipped - Invalid test case: Generic function f(x)
+69 [http://dlmf.nist.gov/1.4.E23]: Skipped - Invalid test case: Generic function f(x)
+70 [http://dlmf.nist.gov/1.4.E24]: Skipped - Invalid test case: Generic function f(x), Generic function f(x)
+71 [http://dlmf.nist.gov/1.4.E25]: Skipped - Invalid test case: Generic function f(x), Generic function f(x)
+72 [http://dlmf.nist.gov/1.4.E26]: Skipped - Invalid test case: Generic function f(x)
+73 [http://dlmf.nist.gov/1.4.E27]: Skipped - Invalid test case: Generic function f(t)
+74 [http://dlmf.nist.gov/1.4.E28]: Skipped - Invalid test case: Generic function f(\phi(x)
+75 [http://dlmf.nist.gov/1.4.E29]: Skipped - Invalid test case: Generic function f(x)
+76 [http://dlmf.nist.gov/1.4.E30]: Skipped - Invalid test case: Generic function f(x)
+77 [http://dlmf.nist.gov/1.4.E31]: Skipped - Invalid test case: cdots
+78 [http://dlmf.nist.gov/1.4.E32]: Skipped - Invalid test case: Generic function f(x)
+79 [http://dlmf.nist.gov/1.4.E33]: Skipped - Invalid test case: Generic function f(x_{j})
+80 [http://dlmf.nist.gov/1.4.E34]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \variation [\variation]
+81 [http://dlmf.nist.gov/1.4.E35]: Skipped - no semantic math
+82 [http://dlmf.nist.gov/1.4.E36]: Skipped - no semantic math
 83 [http://dlmf.nist.gov/1.4.E37]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+84 [http://dlmf.nist.gov/1.4.E38]: Skipped - no semantic math
+85 [http://dlmf.nist.gov/1.5.E1]: Skipped - no semantic math
+86 [http://dlmf.nist.gov/1.5.E2]: Skipped - no semantic math
+87 [http://dlmf.nist.gov/1.5.E3]: Definition - Line is a non-semantic definition.
 88 [http://dlmf.nist.gov/1.5.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 88-a [http://dlmf.nist.gov/1.5.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-89 [https://dlmf.nist.gov/1.5#Ex1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
-90 [https://dlmf.nist.gov/1.5#Ex2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
-91 [http://dlmf.nist.gov/1.5.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
+89 [https://dlmf.nist.gov/1.5#Ex1]: Translation Error - java.lang.NullPointerException [89: \frac{\pdiff[2]{f}}{\pdiff{x}\pdiff{y}} EQUAL \pderiv{}{x}\left(\pderiv{f}{y}\right); https://dlmf.nist.gov/1.5#Ex1]
+90 [https://dlmf.nist.gov/1.5#Ex2]: Translation Error - java.lang.NullPointerException [90: \frac{\pdiff[2]{f}}{\pdiff{y}\pdiff{x}} EQUAL \pderiv{}{y}\left(\pderiv{f}{x}\right); https://dlmf.nist.gov/1.5#Ex2]
+91 [http://dlmf.nist.gov/1.5.E6]: Translation Error - java.lang.NullPointerException [91: \frac{\pdiff[2]{f}}{\pdiff{x}\pdiff{y}} EQUAL \frac{\pdiff[2]{f}}{\pdiff{y}\pdiff{x}}; http://dlmf.nist.gov/1.5.E6]
+92 [http://dlmf.nist.gov/1.5.E7]: Skipped - Invalid test case: Generic function f(x(t)
+93 [http://dlmf.nist.gov/1.5.E8]: Skipped - Invalid test case: Generic function f(x(u,v)
+94 [http://dlmf.nist.gov/1.5.E9]: Skipped - Invalid test case: Generic function f(x(u,v)
 95 [https://dlmf.nist.gov/1.5#Ex3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 96 [https://dlmf.nist.gov/1.5#Ex4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-97 [http://dlmf.nist.gov/1.5.E11]: Error - (LaTeX -> Maple) The input LaTeX is invalid: A limited expression ends with no argument left.
-98 [http://dlmf.nist.gov/1.5.E12]: Error - (LaTeX -> Maple) The input LaTeX is invalid: A limited expression ends with no argument left.
-99 [http://dlmf.nist.gov/1.5.E13]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
+97 [http://dlmf.nist.gov/1.5.E11]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Unable to identify argument of differentiation (empty argument pre and post \deriv macro).
+98 [http://dlmf.nist.gov/1.5.E12]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Unable to identify argument of differentiation (empty argument pre and post \deriv macro).
+99 [http://dlmf.nist.gov/1.5.E13]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: No translation available for the operator \nabla [\nabla]
 99-a [http://dlmf.nist.gov/1.5.E13]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 100 [https://dlmf.nist.gov/1.5#Ex5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 101 [https://dlmf.nist.gov/1.5#Ex6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+102 [https://dlmf.nist.gov/1.5#Ex7]: Skipped - no semantic math
+103 [http://dlmf.nist.gov/1.5.E15]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: No translation available for the operator \nabla [\nabla]
+103-a [http://dlmf.nist.gov/1.5.E15]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 104 [https://dlmf.nist.gov/1.5#Ex8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 105 [https://dlmf.nist.gov/1.5#Ex9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 106 [https://dlmf.nist.gov/1.5#Ex10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-107 [http://dlmf.nist.gov/1.5.E17]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
+107 [http://dlmf.nist.gov/1.5.E17]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: No translation available for the operator \nabla [\nabla]
 107-a [http://dlmf.nist.gov/1.5.E17]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+108 [http://dlmf.nist.gov/1.5.E18]: Skipped - Invalid test case: Generic function f(a+\lambda,b+\mu)
 109 [http://dlmf.nist.gov/1.5.E19]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-109-a [http://dlmf.nist.gov/1.5.E19]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
-110 [http://dlmf.nist.gov/1.5.E20]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
-111 [http://dlmf.nist.gov/1.5.E21]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \pdiff [\pdiff]
+109-a [http://dlmf.nist.gov/1.5.E19]: Translation Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+110 [http://dlmf.nist.gov/1.5.E20]: Translation Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+111 [http://dlmf.nist.gov/1.5.E21]: Translation Error - java.lang.NullPointerException [111: \pderiv[2]{f}{x}\pderiv[2]{f}{y}-\left(\frac{\pdiff[2]{f}}{\pdiff{x}\pdiff{y}}\right)^{2} GREATER_THAN 0\mbox{ at $(a,b)$}; http://dlmf.nist.gov/1.5.E21]
+112 [http://dlmf.nist.gov/1.5.E22]: Skipped - Invalid test case: Generic function f(x,y)
 113 [http://dlmf.nist.gov/1.5.E23]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-123: Skipped - Unable to analyze test case.
-133 [http://dlmf.nist.gov/1.5.E39]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
-135 [http://dlmf.nist.gov/1.5.E41]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
-142 [http://dlmf.nist.gov/1.6.E4]: Error - (LaTeX -> Maple) Parenthesis mismatch in expression: Reached the end of sequence but a bracket is left open: \left|
-153 [http://dlmf.nist.gov/1.6.E9]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-161 [https://dlmf.nist.gov/1.6#Ex15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-161-a [https://dlmf.nist.gov/1.6#Ex15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-162 [https://dlmf.nist.gov/1.6#Ex16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-162-a [https://dlmf.nist.gov/1.6#Ex16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-163 [https://dlmf.nist.gov/1.6#Ex17]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+114 [http://dlmf.nist.gov/1.5.E24]: Skipped - Invalid test case: Generic function f(x,y)
+115 [http://dlmf.nist.gov/1.5.E25]: Skipped - no semantic math
+116 [http://dlmf.nist.gov/1.5.E26]: Skipped - no semantic math
+117 [http://dlmf.nist.gov/1.5.E27]: Skipped - Invalid test case: Generic function f(x,y)
+118 [http://dlmf.nist.gov/1.5.E28]: Skipped - no semantic math
+119 [http://dlmf.nist.gov/1.5.E29]: Skipped - Invalid test case: Generic function f(x,y)
+120 [https://dlmf.nist.gov/1.5#Ex11]: Skipped - no semantic math
+121 [https://dlmf.nist.gov/1.5#Ex12]: Skipped - no semantic math
+122 [http://dlmf.nist.gov/1.5.E31]: Skipped - Invalid test case: Generic function f(x,y)
+123 [http://dlmf.nist.gov/1.5.E32]: Skipped - Unable to analyze test case: Null
+124 [https://dlmf.nist.gov/1.5#Ex13]: Skipped - no semantic math
+125 [https://dlmf.nist.gov/1.5#Ex14]: Skipped - no semantic math
+126 [http://dlmf.nist.gov/1.5.E34]: Skipped - Invalid test case: Generic function f(x,y)
+127 [http://dlmf.nist.gov/1.5.E35]: Skipped - Invalid test case: Generic function f(x,y)
+128 [http://dlmf.nist.gov/1.5.E36]: Skipped - Invalid test case: Generic function f(x,y)
+129 [https://dlmf.nist.gov/1.5#Ex15]: Skipped - no semantic math
+130 [https://dlmf.nist.gov/1.5#Ex16]: Skipped - no semantic math
+131 [https://dlmf.nist.gov/1.5#Ex17]: Skipped - no semantic math
+132 [http://dlmf.nist.gov/1.5.E38]: Skipped - Invalid test case: vmatrix
+133 [http://dlmf.nist.gov/1.5.E39]: Translation Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+134 [http://dlmf.nist.gov/1.5.E40]: Skipped - Invalid test case: vmatrix
+135 [http://dlmf.nist.gov/1.5.E41]: Translation Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty expression tag
+136 [http://dlmf.nist.gov/1.5.E42]: Skipped - Invalid test case: Generic function f(x,y)
+137 [http://dlmf.nist.gov/1.5.E43]: Skipped - Invalid test case: Generic function f(x,y,z)
+138 [https://dlmf.nist.gov/1.6#Ex1]: Skipped - no semantic math
+139 [https://dlmf.nist.gov/1.6#Ex2]: Skipped - no semantic math
+140 [http://dlmf.nist.gov/1.6.E2]: Skipped - no semantic math
+141 [http://dlmf.nist.gov/1.6.E3]: Skipped - no semantic math
+142 [http://dlmf.nist.gov/1.6.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+143 [https://dlmf.nist.gov/1.6#Ex3]: Definition - Line is a non-semantic definition.
+144 [https://dlmf.nist.gov/1.6#Ex4]: Definition - Line is a non-semantic definition.
+145 [https://dlmf.nist.gov/1.6#Ex5]: Definition - Line is a non-semantic definition.
+146 [http://dlmf.nist.gov/1.6.E6]: Skipped - no semantic math
+147 [https://dlmf.nist.gov/1.6#Ex6]: Skipped - no semantic math
+148 [https://dlmf.nist.gov/1.6#Ex7]: Skipped - no semantic math
+149 [https://dlmf.nist.gov/1.6#Ex8]: Skipped - no semantic math
+150 [https://dlmf.nist.gov/1.6#Ex9]: Skipped - no semantic math
+151 [https://dlmf.nist.gov/1.6#Ex10]: Skipped - no semantic math
+152 [https://dlmf.nist.gov/1.6#Ex11]: Skipped - no semantic math
+153 [http://dlmf.nist.gov/1.6.E9]: Skipped - Invalid test case: vmatrix
+154 [http://dlmf.nist.gov/1.6.E10]: Skipped - no semantic math
+155 [http://dlmf.nist.gov/1.6.E11]: Skipped - no semantic math
+156 [http://dlmf.nist.gov/1.6.E12]: Skipped - no semantic math
+157 [https://dlmf.nist.gov/1.6#Ex12]: Definition - Line is a non-semantic definition.
+158 [https://dlmf.nist.gov/1.6#Ex13]: Definition - Line is a non-semantic definition.
+159 [https://dlmf.nist.gov/1.6#Ex14]: Definition - Line is a non-semantic definition.
+160 [http://dlmf.nist.gov/1.6.E14]: Skipped - Invalid test case: cases
+161 [https://dlmf.nist.gov/1.6#Ex15]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+161-a [https://dlmf.nist.gov/1.6#Ex15]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+162 [https://dlmf.nist.gov/1.6#Ex16]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+162-a [https://dlmf.nist.gov/1.6#Ex16]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+163 [https://dlmf.nist.gov/1.6#Ex17]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 164 [http://dlmf.nist.gov/1.6.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-165 [http://dlmf.nist.gov/1.6.E17]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Cannot translate operation \times
-166 [http://dlmf.nist.gov/1.6.E18]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Cannot translate operation \times
-167 [http://dlmf.nist.gov/1.6.E19]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
-175 [http://dlmf.nist.gov/1.6.E27]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
-175-a [http://dlmf.nist.gov/1.6.E27]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \divergence [\divergence]
-177 [http://dlmf.nist.gov/1.6.E29]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
-177-a [http://dlmf.nist.gov/1.6.E29]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \curl [\curl]
-182 [http://dlmf.nist.gov/1.6.E34]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
-182-a [http://dlmf.nist.gov/1.6.E34]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \curl [\curl]
-184: Skipped - Unable to analyze test case.
-186 [http://dlmf.nist.gov/1.6.E38]: Error - java.util.NoSuchElementException [186: \int_{\mathbf{c}}\mathbf{F}\cdot\diff{\mathbf{s}} EQUAL \int^{b}_{a}\mathbf{F}(\mathbf{c}(t))\cdot\mathbf{c}^{\prime}(t)\diff{t}; http://dlmf.nist.gov/1.6.E38]
-186-a [http://dlmf.nist.gov/1.6.E38]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-186-b [http://dlmf.nist.gov/1.6.E38]: Error - java.util.NoSuchElementException [186: \int^{b}_{a}\left(F_{1}\deriv{x}{t}+F_{2}\deriv{y}{t}+F_{3}\deriv{z}{t}\right)\diff{t} EQUAL \int_{\mathbf{c}}F_{1}\diff{x}+F_{2}\diff{y}+F_{3}\diff{z}; http://dlmf.nist.gov/1.6.E38]
-187 [http://dlmf.nist.gov/1.6.E39]: Error - java.util.NoSuchElementException [187: \int_{\mathbf{c}}\mathbf{F}\cdot\diff{\mathbf{s}} EQUAL \int_{\mathbf{c}_{1}}\mathbf{F}\cdot\diff{\mathbf{s}}; http://dlmf.nist.gov/1.6.E39]
-188 [http://dlmf.nist.gov/1.6.E40]: Error - java.util.NoSuchElementException [188: \int_{\mathbf{c}}\mathbf{F}\cdot\diff{\mathbf{s}} EQUAL -\int_{\mathbf{c}_{1}}\mathbf{F}\cdot\diff{\mathbf{s}}; http://dlmf.nist.gov/1.6.E40]
-189 [http://dlmf.nist.gov/1.6.E41]: Error - java.util.NoSuchElementException [189: \int_{\mathbf{c}}f\diff{s} EQUAL \int_{\mathbf{c}_{1}}f\diff{s}; http://dlmf.nist.gov/1.6.E41]
-192 [http://dlmf.nist.gov/1.6.E44]: Error - java.util.NoSuchElementException [192: \iint_{S}\left(\pderiv{F_{2}}{x}-\pderiv{F_{1}}{y}\right)\diff{A} EQUAL \int_{C}\mathbf{F}\cdot\diff{\mathbf{s}}; http://dlmf.nist.gov/1.6.E44]
-192-a [http://dlmf.nist.gov/1.6.E44]: Error - java.util.NoSuchElementException [192: \int_{C}\mathbf{F}\cdot\diff{\mathbf{s}} EQUAL \int_{C}F_{1}\diff{x}+F_{2}\diff{y}; http://dlmf.nist.gov/1.6.E44]
+165 [http://dlmf.nist.gov/1.6.E17]: Translation Error - (LaTeX -> Maple) An unknown or missing element occurred: Cannot translate operation \times
+166 [http://dlmf.nist.gov/1.6.E18]: Translation Error - (LaTeX -> Maple) An unknown or missing element occurred: Cannot translate operation \times
+167 [http://dlmf.nist.gov/1.6.E19]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: No translation available for the operator \nabla [\nabla]
+168 [http://dlmf.nist.gov/1.6.E20]: Definition - Line is a non-semantic definition.
+169 [http://dlmf.nist.gov/1.6.E21]: Definition - Line is a non-semantic definition.
+170 [http://dlmf.nist.gov/1.6.E22]: Definition - Line is a non-semantic definition.
+171 [http://dlmf.nist.gov/1.6.E23]: Skipped - no semantic math
+172 [http://dlmf.nist.gov/1.6.E24]: Skipped - no semantic math
+173 [http://dlmf.nist.gov/1.6.E25]: Skipped - no semantic math
+174 [http://dlmf.nist.gov/1.6.E26]: Skipped - no semantic math
+175 [http://dlmf.nist.gov/1.6.E27]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: No translation available for the operator \nabla [\nabla]
+175-a [http://dlmf.nist.gov/1.6.E27]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \divergence [\divergence]
+176 [http://dlmf.nist.gov/1.6.E28]: Skipped - no semantic math
+177 [http://dlmf.nist.gov/1.6.E29]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: No translation available for the operator \nabla [\nabla]
+177-a [http://dlmf.nist.gov/1.6.E29]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: No translation available for the operator \curl [\curl]
+178 [http://dlmf.nist.gov/1.6.E30]: Skipped - no semantic math
+179 [http://dlmf.nist.gov/1.6.E31]: Skipped - no semantic math
+180 [http://dlmf.nist.gov/1.6.E32]: Skipped - no semantic math
+181 [http://dlmf.nist.gov/1.6.E33]: Skipped - no semantic math
+182 [http://dlmf.nist.gov/1.6.E34]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: No translation available for the operator \nabla [\nabla]
+182-a [http://dlmf.nist.gov/1.6.E34]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: No translation available for the operator \curl [\curl]
+183 [http://dlmf.nist.gov/1.6.E35]: Skipped - no semantic math
+184 [http://dlmf.nist.gov/1.6.E36]: Skipped - Unable to analyze test case: Null
+185 [http://dlmf.nist.gov/1.6.E37]: Skipped - Invalid test case: Generic function f(x(t)
+186 [http://dlmf.nist.gov/1.6.E38]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+186-a [http://dlmf.nist.gov/1.6.E38]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+186-b [http://dlmf.nist.gov/1.6.E38]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+187 [http://dlmf.nist.gov/1.6.E39]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+188 [http://dlmf.nist.gov/1.6.E40]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+189 [http://dlmf.nist.gov/1.6.E41]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+190 [http://dlmf.nist.gov/1.6.E42]: Skipped - Invalid test case: Generic function f(\mathbf{c}(b)
+191 [http://dlmf.nist.gov/1.6.E43]: Skipped - no semantic math
+192 [http://dlmf.nist.gov/1.6.E44]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+192-a [http://dlmf.nist.gov/1.6.E44]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+193 [http://dlmf.nist.gov/1.6.E45]: Definition - Line is a non-semantic definition.
 194 [http://dlmf.nist.gov/1.6.E46]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 195 [http://dlmf.nist.gov/1.6.E47]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-197 [http://dlmf.nist.gov/1.6.E49]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Cannot translate operation \times
-198 [http://dlmf.nist.gov/1.6.E50]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Cannot translate operation \times
-199 [http://dlmf.nist.gov/1.6.E51]: Error - java.util.NoSuchElementException [199: A(S) EQUAL \iint_{D}\sqrt{1+\left(\pderiv{f}{x}\right)^{2}+\left(\pderiv{f}{y}\right)^{2}}\diff{A}; http://dlmf.nist.gov/1.6.E51]
-201 [http://dlmf.nist.gov/1.6.E53]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-203 [http://dlmf.nist.gov/1.6.E55]: Error - java.util.NoSuchElementException [203: \iint_{S}\mathbf{F}\cdot\diff{\mathbf{S}} EQUAL \iint_{D}\mathbf{F}\cdot(\mathbf{T}_{u}\times\mathbf{T}_{v})\diff{u}\diff{v}; http://dlmf.nist.gov/1.6.E55]
-204 [http://dlmf.nist.gov/1.6.E56]: Error - java.util.NoSuchElementException [204: \iint_{\boldsymbol{{\Phi}}_{1}(D_{1})}\mathbf{F}\cdot\diff{\mathbf{S}} EQUAL \iint_{\boldsymbol{{\Phi}}_{2}(D_{2})}\mathbf{F}\cdot\diff{\mathbf{S}}; http://dlmf.nist.gov/1.6.E56]
-205 [http://dlmf.nist.gov/1.6.E57]: Error - java.util.NoSuchElementException [205: \iint_{S}(\nabla\times\mathbf{F})\cdot\diff{\mathbf{S}} EQUAL \int_{\pdiff{S}}\mathbf{F}\cdot\diff{\mathbf{s}}; http://dlmf.nist.gov/1.6.E57]
-206 [http://dlmf.nist.gov/1.6.E58]: Error - java.util.NoSuchElementException [206: \iiint_{V}(\nabla\cdot\mathbf{F})\diff{V} EQUAL \iint_{S}\mathbf{F}\cdot\diff{\mathbf{S}}; http://dlmf.nist.gov/1.6.E58]
-207 [http://dlmf.nist.gov/1.6.E59]: Error - java.util.NoSuchElementException [207: \iiint_{V}(f\nabla^{2}g+\nabla f\cdot\nabla g)\diff{V} EQUAL \iint_{S}f\pderiv{g}{n}\diff{A}; http://dlmf.nist.gov/1.6.E59]
-208 [http://dlmf.nist.gov/1.6.E60]: Error - java.util.NoSuchElementException [208: \iiint_{V}(f\nabla^{2}g-g\nabla^{2}f)\diff{V} EQUAL \iint_{S}\left(f\pderiv{g}{n}-g\pderiv{f}{n}\right)\diff{A}; http://dlmf.nist.gov/1.6.E60]
-229: Skipped - Unable to analyze test case.
-230: Skipped - Unable to analyze test case.
-236 [http://dlmf.nist.gov/1.8.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+196 [http://dlmf.nist.gov/1.6.E48]: Definition - Line is a non-semantic definition.
+197 [http://dlmf.nist.gov/1.6.E49]: Translation Error - (LaTeX -> Maple) An unknown or missing element occurred: Cannot translate operation \times
+198 [http://dlmf.nist.gov/1.6.E50]: Translation Error - (LaTeX -> Maple) An unknown or missing element occurred: Cannot translate operation \times
+199 [http://dlmf.nist.gov/1.6.E51]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+200 [http://dlmf.nist.gov/1.6.E52]: Skipped - Invalid test case: Generic function f(x)
+201 [http://dlmf.nist.gov/1.6.E53]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+202 [http://dlmf.nist.gov/1.6.E54]: Skipped - Invalid test case: Generic function f(x,y,z)
+203 [http://dlmf.nist.gov/1.6.E55]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+204 [http://dlmf.nist.gov/1.6.E56]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+205 [http://dlmf.nist.gov/1.6.E57]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+206 [http://dlmf.nist.gov/1.6.E58]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+207 [http://dlmf.nist.gov/1.6.E59]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+208 [http://dlmf.nist.gov/1.6.E60]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+209 [http://dlmf.nist.gov/1.7.E1]: Skipped - no semantic math
+210 [http://dlmf.nist.gov/1.7.E2]: Skipped - no semantic math
+211 [http://dlmf.nist.gov/1.7.E3]: Skipped - no semantic math
+212 [http://dlmf.nist.gov/1.7.E4]: Skipped - Invalid test case: Generic function f(x)
+213 [http://dlmf.nist.gov/1.7.E5]: Skipped - Invalid test case: Generic function f(x)
+214 [http://dlmf.nist.gov/1.7.E6]: Skipped - Invalid test case: Generic function f(x)
+215 [http://dlmf.nist.gov/1.7.E7]: Skipped - no semantic math
+216 [http://dlmf.nist.gov/1.7.E8]: Skipped - no semantic math
+217 [http://dlmf.nist.gov/1.7.E9]: Skipped - no semantic math
+218 [http://dlmf.nist.gov/1.7.E10]: Skipped - Invalid test case: Generic function f(x)
+219 [http://dlmf.nist.gov/1.7.E11]: Skipped - Invalid test case: Generic function f(x)
+220 [http://dlmf.nist.gov/1.8.E1]: Skipped - Invalid test case: Generic function f(x)
+221 [https://dlmf.nist.gov/1.8#Ex1]: Skipped - Invalid test case: Generic function f(x)
+222 [https://dlmf.nist.gov/1.8#Ex2]: Skipped - Invalid test case: Generic function f(x)
+223 [http://dlmf.nist.gov/1.8.E3]: Skipped - no semantic math
+224 [http://dlmf.nist.gov/1.8.E4]: Skipped - Invalid test case: Generic function f(x)
+225 [http://dlmf.nist.gov/1.8.E5]: Skipped - Invalid test case: Generic function f(x)
+226 [http://dlmf.nist.gov/1.8.E6]: Skipped - Invalid test case: Generic function f(x)
+227 [http://dlmf.nist.gov/1.8.E7]: Skipped - Invalid test case: littleo
+228 [http://dlmf.nist.gov/1.8.E8]: Definition - Line is a non-semantic definition.
+229 [http://dlmf.nist.gov/1.8.E9]: Skipped - Unable to analyze test case: Null
+230 [http://dlmf.nist.gov/1.8.E10]: Skipped - Unable to analyze test case: Null
+231 [http://dlmf.nist.gov/1.8.E11]: Skipped - no semantic math
+232 [http://dlmf.nist.gov/1.8.E12]: Skipped - Invalid test case: Generic function f(t)
+233 [http://dlmf.nist.gov/1.8.E13]: Skipped - Invalid test case: Generic function f(x)
+234 [http://dlmf.nist.gov/1.8.E14]: Skipped - Invalid test case: Generic function f(x+n)
+235 [http://dlmf.nist.gov/1.8.E15]: Skipped - Invalid test case: Generic function f(0)
+236 [http://dlmf.nist.gov/1.8.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NULL, EXP+EXP: NULL, EXP+HYP: NULL]
+237 [http://dlmf.nist.gov/1.9.E1]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 238 [https://dlmf.nist.gov/1.9#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 239 [https://dlmf.nist.gov/1.9#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 240 [https://dlmf.nist.gov/1.9#Ex3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 241 [https://dlmf.nist.gov/1.9#Ex4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-244 [http://dlmf.nist.gov/1.9.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-246 [https://dlmf.nist.gov/1.9#Ex6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+242 [http://dlmf.nist.gov/1.9.E4]: Skipped - no semantic math
+243 [http://dlmf.nist.gov/1.9.E5]: Skipped - no semantic math
+244 [http://dlmf.nist.gov/1.9.E6]: All Errors: [Simple: NULL, ConvEXP: NULL, ConvHYP: NULL, EXP: NULL, EXP+EXP: NULL, EXP+HYP: NULL]
+245 [https://dlmf.nist.gov/1.9#Ex5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+246 [https://dlmf.nist.gov/1.9#Ex6]: All Errors: [Simple: NULL, ConvEXP: NULL, ConvHYP: NULL, EXP: NULL, EXP+EXP: NULL, EXP+HYP: NULL]
 247 [https://dlmf.nist.gov/1.9#Ex7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 248 [https://dlmf.nist.gov/1.9#Ex8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-250 [http://dlmf.nist.gov/1.9.E10]: Successful [Simple: NaN, ConvEXP: 0, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+249 [http://dlmf.nist.gov/1.9.E9]: Skipped - no semantic math
+250 [http://dlmf.nist.gov/1.9.E10]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 251 [http://dlmf.nist.gov/1.9.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 252 [http://dlmf.nist.gov/1.9.E12]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 253 [http://dlmf.nist.gov/1.9.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 254 [http://dlmf.nist.gov/1.9.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 254-a [http://dlmf.nist.gov/1.9.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+255 [http://dlmf.nist.gov/1.9.E15]: Skipped - no semantic math
 256 [http://dlmf.nist.gov/1.9.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 256-a [http://dlmf.nist.gov/1.9.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+257 [http://dlmf.nist.gov/1.9.E17]: Skipped - no semantic math
 258 [http://dlmf.nist.gov/1.9.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 259 [http://dlmf.nist.gov/1.9.E19]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 260 [http://dlmf.nist.gov/1.9.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-262 [http://dlmf.nist.gov/1.9.E22]: Successful [Simple: NaN, ConvEXP: 0, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+261 [http://dlmf.nist.gov/1.9.E21]: Skipped - Invalid test case: cdots
+262 [http://dlmf.nist.gov/1.9.E22]: All Errors: [Simple: NULL, ConvEXP: NULL, ConvHYP: NULL, EXP: NULL, EXP+EXP: NULL, EXP+HYP: NULL]
 263 [http://dlmf.nist.gov/1.9.E23]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 263-a [http://dlmf.nist.gov/1.9.E23]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-264 [http://dlmf.nist.gov/1.9.E24]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+264 [http://dlmf.nist.gov/1.9.E24]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
 265 [https://dlmf.nist.gov/1.9#Ex9]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 266 [https://dlmf.nist.gov/1.9#Ex10]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 267 [http://dlmf.nist.gov/1.9.E26]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 267-a [http://dlmf.nist.gov/1.9.E26]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 268 [http://dlmf.nist.gov/1.9.E27]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+269 [http://dlmf.nist.gov/1.9.E28]: Skipped - Invalid test case: Generic function f(z)
+270 [http://dlmf.nist.gov/1.9.E29]: Skipped - Invalid test case: Generic function f(z)
+271 [http://dlmf.nist.gov/1.9.E30]: Skipped - Invalid test case: Generic function f(z_{0})
+272 [http://dlmf.nist.gov/1.9.E31]: Skipped - Invalid test case: Generic function f(z)
+273 [http://dlmf.nist.gov/1.9.E32]: Definition - Line is a non-semantic definition.
 274 [http://dlmf.nist.gov/1.9.E33]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+275 [http://dlmf.nist.gov/1.9.E34]: All Aborted: [Simple: Aborted, ConvEXP: Aborted, ConvHYP: Aborted, EXP: Aborted, EXP+EXP: Aborted, EXP+HYP: Aborted]
+276 [http://dlmf.nist.gov/1.9.E35]: Skipped - no semantic math
+277 [http://dlmf.nist.gov/1.9.E36]: Skipped - no semantic math
+278 [http://dlmf.nist.gov/1.9.E37]: Skipped - no semantic math
+279 [http://dlmf.nist.gov/1.9.E38]: Skipped - no semantic math
+280 [http://dlmf.nist.gov/1.9.E39]: Skipped - no semantic math
+281 [http://dlmf.nist.gov/1.9.E40]: Skipped - no semantic math
+282 [https://dlmf.nist.gov/1.9#Ex11]: Skipped - no semantic math
+283 [https://dlmf.nist.gov/1.9#Ex12]: Skipped - no semantic math
+284 [http://dlmf.nist.gov/1.9.E42]: Skipped - no semantic math
+285 [http://dlmf.nist.gov/1.9.E43]: Skipped - no semantic math
+286 [http://dlmf.nist.gov/1.9.E44]: Skipped - no semantic math
+287 [http://dlmf.nist.gov/1.9.E45]: Skipped - no semantic math
+288 [http://dlmf.nist.gov/1.9.E46]: Skipped - no semantic math
+289 [http://dlmf.nist.gov/1.9.E47]: Skipped - no semantic math
+290 [http://dlmf.nist.gov/1.9.E48]: Skipped - no semantic math
+291 [http://dlmf.nist.gov/1.9.E49]: Definition - Line is a non-semantic definition.
+292 [http://dlmf.nist.gov/1.9.E50]: Skipped - no semantic math
+293 [http://dlmf.nist.gov/1.9.E51]: Skipped - no semantic math
+294 [http://dlmf.nist.gov/1.9.E52]: Skipped - no semantic math
+295 [http://dlmf.nist.gov/1.9.E53]: Skipped - no semantic math
+296 [http://dlmf.nist.gov/1.9.E54]: Skipped - no semantic math
+297 [https://dlmf.nist.gov/1.9#Ex13]: Skipped - no semantic math
+298 [https://dlmf.nist.gov/1.9#Ex14]: Skipped - no semantic math
+299 [https://dlmf.nist.gov/1.9#Ex15]: Skipped - no semantic math
+300 [http://dlmf.nist.gov/1.9.E56]: Skipped - no semantic math
+301 [http://dlmf.nist.gov/1.9.E57]: Skipped - Invalid test case: Generic function f(z)
+302 [https://dlmf.nist.gov/1.9#Ex16]: Skipped - no semantic math
+303 [https://dlmf.nist.gov/1.9#Ex17]: Skipped - no semantic math
+304 [https://dlmf.nist.gov/1.9#Ex18]: Skipped - no semantic math
+305 [http://dlmf.nist.gov/1.9.E59]: Skipped - no semantic math
+306 [http://dlmf.nist.gov/1.9.E60]: Skipped - no semantic math
+307 [https://dlmf.nist.gov/1.9#Ex19]: Skipped - no semantic math
+308 [https://dlmf.nist.gov/1.9#Ex20]: Skipped - no semantic math
+309 [https://dlmf.nist.gov/1.9#Ex21]: Skipped - no semantic math
+310 [http://dlmf.nist.gov/1.9.E62]: Skipped - no semantic math
 311 [http://dlmf.nist.gov/1.9.E63]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-318 [http://dlmf.nist.gov/1.9.E68]: Error - java.util.NoSuchElementException [318: \int_{C}\sum^{\infty}_{n=0}f_{n}(z)\diff{z} EQUAL \sum^{\infty}_{n=0}\int_{C}f_{n}(z)\diff{z}; http://dlmf.nist.gov/1.9.E68]
-319 [http://dlmf.nist.gov/1.9.E69]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \diff [\diff]
-320 [http://dlmf.nist.gov/1.9.E70]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \diff [\diff]
+312 [http://dlmf.nist.gov/1.9.E64]: Skipped - no semantic math
+313 [https://dlmf.nist.gov/1.9#Ex22]: Skipped - no semantic math
+314 [https://dlmf.nist.gov/1.9#Ex23]: Skipped - no semantic math
+315 [http://dlmf.nist.gov/1.9.E66]: Skipped - no semantic math
+316 [https://dlmf.nist.gov/1.9#Ex24]: Skipped - no semantic math
+317 [https://dlmf.nist.gov/1.9#Ex25]: Skipped - no semantic math
+318 [http://dlmf.nist.gov/1.9.E68]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+319 [http://dlmf.nist.gov/1.9.E69]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \diff [\diff]
+320 [http://dlmf.nist.gov/1.9.E70]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \diff [\diff]
 321 [http://dlmf.nist.gov/1.9.E71]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+322 [http://dlmf.nist.gov/1.10.E1]: Skipped - no semantic math
+323 [http://dlmf.nist.gov/1.10.E2]: Skipped - no semantic math
+324 [http://dlmf.nist.gov/1.10.E3]: Skipped - Invalid test case: cdots
+325 [http://dlmf.nist.gov/1.10.E4]: Skipped - no semantic math
+326 [http://dlmf.nist.gov/1.10.E5]: Skipped - Invalid test case: Generic function f(\conj{z})
+327 [http://dlmf.nist.gov/1.10.E6]: Skipped - no semantic math
+328 [http://dlmf.nist.gov/1.10.E7]: Skipped - Invalid test case: Generic function f(z)
+329 [http://dlmf.nist.gov/1.10.E8]: Skipped - Invalid test case: Generic function f(z)
+330 [http://dlmf.nist.gov/1.10.E9]: Skipped - Invalid test case: Generic function f(z), Generic function f(z)
+331 [http://dlmf.nist.gov/1.10.E10]: Skipped - Invalid test case: Generic function f(z)
+332 [http://dlmf.nist.gov/1.10.E11]: Skipped - no semantic math
+333 [http://dlmf.nist.gov/1.10.E12]: Skipped - no semantic math
+334 [http://dlmf.nist.gov/1.10.E13]: Definition - Line is a non-semantic definition.
+335 [http://dlmf.nist.gov/1.10.E14]: Skipped - no semantic math
+336 [http://dlmf.nist.gov/1.10.E15]: Skipped - no semantic math
+337 [http://dlmf.nist.gov/1.10.E16]: Skipped - no semantic math
+338 [http://dlmf.nist.gov/1.10.E17]: Skipped - no semantic math
+339 [http://dlmf.nist.gov/1.10.E18]: Skipped - Invalid test case: Generic function F(z)
+340 [http://dlmf.nist.gov/1.10.E19]: Skipped - Invalid test case: Generic function f(z,t)
 341 [http://dlmf.nist.gov/1.10.E20]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-384: Skipped - Unable to analyze test case.
-394: Skipped - Unable to analyze test case.
-395: Skipped - Unable to analyze test case.
+342 [http://dlmf.nist.gov/1.10.E21]: Skipped - no semantic math
+343 [http://dlmf.nist.gov/1.10.E22]: Skipped - no semantic math
+344 [http://dlmf.nist.gov/1.10.E23]: Definition - Line is a non-semantic definition.
+345 [http://dlmf.nist.gov/1.10.E24]: Skipped - no semantic math
+346 [http://dlmf.nist.gov/1.10.E25]: Skipped - no semantic math
+347 [http://dlmf.nist.gov/1.11.E1]: Skipped - no semantic math
+348 [http://dlmf.nist.gov/1.11.E2]: Skipped - no semantic math
+349 [http://dlmf.nist.gov/1.11.E3]: Skipped - no semantic math
+350 [http://dlmf.nist.gov/1.11.E4]: Skipped - no semantic math
+351 [http://dlmf.nist.gov/1.11.E5]: Skipped - no semantic math
+352 [http://dlmf.nist.gov/1.11.E6]: Skipped - no semantic math
+353 [http://dlmf.nist.gov/1.11.E7]: Skipped - no semantic math
+354 [https://dlmf.nist.gov/1.11#Ex1]: Skipped - no semantic math
+355 [https://dlmf.nist.gov/1.11#Ex2]: Skipped - no semantic math
+356 [http://dlmf.nist.gov/1.11.E9]: Definition - Line is a non-semantic definition.
+357 [https://dlmf.nist.gov/1.11#E10X]: Skipped - no semantic math
+358 [https://dlmf.nist.gov/1.11#E10Xa]: Skipped - no semantic math
+359 [https://dlmf.nist.gov/1.11#E10Xb]: Skipped - no semantic math
+360 [https://dlmf.nist.gov/1.11#E10Xc]: Skipped - no semantic math
+361 [https://dlmf.nist.gov/1.11#Ex3]: Skipped - no semantic math
+362 [https://dlmf.nist.gov/1.11#Ex4]: Skipped - no semantic math
+363 [http://dlmf.nist.gov/1.11.E12]: Definition - Line is a non-semantic definition.
+364 [https://dlmf.nist.gov/1.11#Ex5]: Definition - Line is a non-semantic definition.
+365 [https://dlmf.nist.gov/1.11#Ex6]: Definition - Line is a non-semantic definition.
+366 [https://dlmf.nist.gov/1.11#Ex7]: Skipped - no semantic math
+367 [https://dlmf.nist.gov/1.11#Ex8]: Skipped - no semantic math
+368 [https://dlmf.nist.gov/1.11#Ex9]: Skipped - no semantic math
+369 [https://dlmf.nist.gov/1.11#Ex10]: Skipped - no semantic math
+370 [https://dlmf.nist.gov/1.11#Ex11]: Skipped - no semantic math
+371 [https://dlmf.nist.gov/1.11#Ex12]: Skipped - no semantic math
+372 [https://dlmf.nist.gov/1.11#Ex13]: Skipped - no semantic math
+373 [https://dlmf.nist.gov/1.11#Ex14]: Skipped - no semantic math
+374 [https://dlmf.nist.gov/1.11#Ex15]: Skipped - no semantic math
+375 [http://dlmf.nist.gov/1.11.E17]: Definition - Line is a non-semantic definition.
+376 [http://dlmf.nist.gov/1.11.E18]: Skipped - no semantic math
+377 [https://dlmf.nist.gov/1.11#Ex16]: Definition - Line is a non-semantic definition.
+378 [https://dlmf.nist.gov/1.11#Ex17]: Definition - Line is a non-semantic definition.
+379 [https://dlmf.nist.gov/1.11#Ex18]: Definition - Line is a non-semantic definition.
+380 [https://dlmf.nist.gov/1.11#Ex19]: Definition - Line is a non-semantic definition.
+381 [http://dlmf.nist.gov/1.11.E20]: Skipped - no semantic math
+382 [http://dlmf.nist.gov/1.11.E21]: Skipped - no semantic math
+383 [http://dlmf.nist.gov/1.11.E22]: Skipped - no semantic math
+384 [http://dlmf.nist.gov/1.11.E23]: Skipped - Unable to analyze test case: Null
+385 [http://dlmf.nist.gov/1.11.E24]: Skipped - no semantic math
+386 [https://dlmf.nist.gov/1.11#Ex20]: Skipped - no semantic math
+387 [https://dlmf.nist.gov/1.11#Ex21]: Skipped - no semantic math
+388 [https://dlmf.nist.gov/1.11#Ex22]: Skipped - no semantic math
+389 [http://dlmf.nist.gov/1.11.E26]: Skipped - no semantic math
+390 [http://dlmf.nist.gov/1.12.E1]: Skipped - no semantic math
+391 [http://dlmf.nist.gov/1.12.E2]: Skipped - no semantic math
+392 [http://dlmf.nist.gov/1.12.E3]: Definition - Line is a non-semantic definition.
+393 [http://dlmf.nist.gov/1.12.E4]: Skipped - no semantic math
+394 [https://dlmf.nist.gov/1.12#Ex1]: Skipped - no semantic math
+395 [https://dlmf.nist.gov/1.12#Ex2]: Skipped - no semantic math
+396 [https://dlmf.nist.gov/1.12#Ex3]: Skipped - no semantic math
+397 [https://dlmf.nist.gov/1.12#Ex4]: Skipped - no semantic math
+398 [https://dlmf.nist.gov/1.12#Ex5]: Skipped - no semantic math
+399 [https://dlmf.nist.gov/1.12#Ex6]: Skipped - no semantic math
+400 [http://dlmf.nist.gov/1.12.E7]: Skipped - no semantic math
+401 [http://dlmf.nist.gov/1.12.E8]: Skipped - no semantic math
+402 [http://dlmf.nist.gov/1.12.E9]: Skipped - no semantic math
+403 [http://dlmf.nist.gov/1.12.E10]: Skipped - no semantic math
+404 [http://dlmf.nist.gov/1.12.E11]: Skipped - no semantic math
+405 [http://dlmf.nist.gov/1.12.E12]: Skipped - no semantic math
+406 [http://dlmf.nist.gov/1.12.E13]: Skipped - no semantic math
+407 [https://dlmf.nist.gov/1.12#Ex7]: Skipped - no semantic math
+408 [https://dlmf.nist.gov/1.12#Ex8]: Skipped - no semantic math
+409 [https://dlmf.nist.gov/1.12#Ex9]: Skipped - no semantic math
+410 [http://dlmf.nist.gov/1.12.E15]: Skipped - no semantic math
+411 [http://dlmf.nist.gov/1.12.E16]: Skipped - no semantic math
+412 [http://dlmf.nist.gov/1.12.E17]: Skipped - no semantic math
+413 [http://dlmf.nist.gov/1.12.E18]: Skipped - no semantic math
+414 [http://dlmf.nist.gov/1.12.E19]: Skipped - no semantic math
+415 [http://dlmf.nist.gov/1.12.E20]: Skipped - no semantic math
+416 [https://dlmf.nist.gov/1.12#Ex10]: Skipped - no semantic math
+417 [https://dlmf.nist.gov/1.12#Ex11]: Skipped - no semantic math
+418 [https://dlmf.nist.gov/1.12#Ex12]: Skipped - no semantic math
+419 [https://dlmf.nist.gov/1.12#Ex13]: Skipped - no semantic math
+420 [https://dlmf.nist.gov/1.12#Ex14]: Skipped - no semantic math
+421 [http://dlmf.nist.gov/1.12.E23]: Skipped - no semantic math
+422 [http://dlmf.nist.gov/1.12.E24]: Skipped - no semantic math
+423 [http://dlmf.nist.gov/1.12.E25]: Skipped - no semantic math
 424 [http://dlmf.nist.gov/1.12.E26]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 424-a [http://dlmf.nist.gov/1.12.E26]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 425 [http://dlmf.nist.gov/1.12.E27]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 425-a [http://dlmf.nist.gov/1.12.E27]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-439 [http://dlmf.nist.gov/1.13.E10]: Error - java.lang.NullPointerException [439: w_{0}(z) EQUAL w_{2}(z)\int\frac{w_{1}(z)r(z)}{\Wronskian@{w_{1}(z),w_{2}(z)}}\diff{z}-w_{1}(z)\int\frac{w_{2}(z)r(z)}{\Wronskian@{w_{1}(z),w_{2}(z)}}\diff{z}; http://dlmf.nist.gov/1.13.E10]
-440 [http://dlmf.nist.gov/1.13.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-445 [http://dlmf.nist.gov/1.13.E14]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-450 [http://dlmf.nist.gov/1.13.E19]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
-451 [http://dlmf.nist.gov/1.13.E20]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Schwarzian [\Schwarzian]
-451-a [http://dlmf.nist.gov/1.13.E20]: Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
-452 [http://dlmf.nist.gov/1.13.E21]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Schwarzian [\Schwarzian]
-453 [http://dlmf.nist.gov/1.13.E22]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Schwarzian [\Schwarzian]
-454 [http://dlmf.nist.gov/1.13.E23]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
+426 [http://dlmf.nist.gov/1.12.E28]: Skipped - no semantic math
+427 [http://dlmf.nist.gov/1.13.E1]: Skipped - Invalid test case: Generic function f(z)
+428 [http://dlmf.nist.gov/1.13.E2]: Skipped - no semantic math
+429 [https://dlmf.nist.gov/1.13#Ex1]: Skipped - no semantic math
+430 [https://dlmf.nist.gov/1.13#Ex2]: Skipped - no semantic math
+431 [https://dlmf.nist.gov/1.13#Ex3]: Skipped - no semantic math
+432 [https://dlmf.nist.gov/1.13#Ex4]: Skipped - no semantic math
+433 [http://dlmf.nist.gov/1.13.E4]: Skipped - Invalid test case: bmatrix
+434 [http://dlmf.nist.gov/1.13.E5]: Skipped - Invalid test case: Generic function f(z)
+435 [http://dlmf.nist.gov/1.13.E6]: Skipped - no semantic math
+436 [http://dlmf.nist.gov/1.13.E7]: Skipped - Invalid test case: Generic function f(u,z)
+437 [http://dlmf.nist.gov/1.13.E8]: Skipped - Invalid test case: Generic function f(z)
+438 [http://dlmf.nist.gov/1.13.E9]: Skipped - no semantic math
+439 [http://dlmf.nist.gov/1.13.E10]: Translation Error - (LaTeX -> Maple) Error while translating DLMF/DRMF Macro: Unable to extract unique variable of differentiation. Found: [w, z]
+440 [http://dlmf.nist.gov/1.13.E11]: Skipped - Invalid test case: Generic function F(\xi)
+441 [https://dlmf.nist.gov/1.13#Ex5]: Skipped - no semantic math
+442 [https://dlmf.nist.gov/1.13#Ex6]: Skipped - no semantic math
+443 [https://dlmf.nist.gov/1.13#Ex7]: Skipped - no semantic math
+444 [http://dlmf.nist.gov/1.13.E13]: Skipped - Invalid test case: Generic function f(z)
+445 [http://dlmf.nist.gov/1.13.E14]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+446 [http://dlmf.nist.gov/1.13.E15]: Definition - Line is a non-semantic definition.
+447 [http://dlmf.nist.gov/1.13.E16]: Definition - Line is a non-semantic definition.
+448 [http://dlmf.nist.gov/1.13.E17]: Skipped - Invalid test case: Generic function g(z)
+449 [http://dlmf.nist.gov/1.13.E18]: Skipped - no semantic math
+450 [http://dlmf.nist.gov/1.13.E19]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+451 [http://dlmf.nist.gov/1.13.E20]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Schwarzian [\Schwarzian]
+451-a [http://dlmf.nist.gov/1.13.E20]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Accents are not supported.
+452 [http://dlmf.nist.gov/1.13.E21]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Schwarzian [\Schwarzian]
+453 [http://dlmf.nist.gov/1.13.E22]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Schwarzian [\Schwarzian]
+454 [http://dlmf.nist.gov/1.13.E23]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
 455 [https://dlmf.nist.gov/1.13#Ex8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 456 [https://dlmf.nist.gov/1.13#Ex9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-457 [http://dlmf.nist.gov/1.13.E25]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-458 [http://dlmf.nist.gov/1.14.E1]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertrans [\Fouriertrans]
-463 [http://dlmf.nist.gov/1.14.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-466 [http://dlmf.nist.gov/1.14.E9]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriercostrans [\Fouriercostrans]
-467 [http://dlmf.nist.gov/1.14.E10]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriersintrans [\Fouriersintrans]
-474 [http://dlmf.nist.gov/1.14.E17]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Laplacetrans [\Laplacetrans]
-476: Skipped - Unable to analyze test case.
-478 [http://dlmf.nist.gov/1.14.E21]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Laplacetrans [\Laplacetrans]
-479 [http://dlmf.nist.gov/1.14.E22]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Laplacetrans [\Laplacetrans]
-480 [http://dlmf.nist.gov/1.14.E23]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Laplacetrans [\Laplacetrans]
-481 [http://dlmf.nist.gov/1.14.E24]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Laplacetrans [\Laplacetrans]
-488 [http://dlmf.nist.gov/1.14.E31]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Laplacetrans [\Laplacetrans]
-489 [http://dlmf.nist.gov/1.14.E32]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Mellintrans [\Mellintrans]
-490 [http://dlmf.nist.gov/1.14.E33]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Mellintrans [\Mellintrans]
-490-a [http://dlmf.nist.gov/1.14.E33]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Mellintrans [\Mellintrans]
-497 [http://dlmf.nist.gov/1.14.E40]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Mellintrans [\Mellintrans]
-498 [http://dlmf.nist.gov/1.14.E41]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Hilberttrans [\Hilberttrans]
-503 [http://dlmf.nist.gov/1.14.E46]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Hilberttrans [\Hilberttrans]
-504 [http://dlmf.nist.gov/1.14.E47]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Stieltjestrans [\Stieltjestrans]
-507 [http://dlmf.nist.gov/1.14.E50]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Stieltjestrans [\Stieltjestrans]
-520 [http://dlmf.nist.gov/1.15.E13]: Error - java.lang.IllegalArgumentException: Error in CAS! [520: \frac{1}{2\pi}\int^{2\pi}_{0}P(r,\theta)\diff{\theta} EQUAL 1; http://dlmf.nist.gov/1.15.E13]
+457 [http://dlmf.nist.gov/1.13.E25]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+458 [http://dlmf.nist.gov/1.14.E1]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertrans [\Fouriertrans]
+459 [http://dlmf.nist.gov/1.14.E2]: Skipped - Invalid test case: Generic function F(x)
+460 [http://dlmf.nist.gov/1.14.E3]: Skipped - Invalid test case: Generic function f(u+)
+461 [http://dlmf.nist.gov/1.14.E4]: Skipped - Invalid test case: Generic function f(t)
+462 [http://dlmf.nist.gov/1.14.E5]: Definition - Line is a non-semantic definition.
+463 [http://dlmf.nist.gov/1.14.E6]: Skipped - Invalid test case: Generic function F(x)
+464 [http://dlmf.nist.gov/1.14.E7]: Skipped - Invalid test case: Generic function F(x)
+465 [http://dlmf.nist.gov/1.14.E8]: Skipped - Invalid test case: Generic function F(x)
+466 [http://dlmf.nist.gov/1.14.E9]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriercostrans [\Fouriercostrans]
+467 [http://dlmf.nist.gov/1.14.E10]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriersintrans [\Fouriersintrans]
+468 [http://dlmf.nist.gov/1.14.E11]: Skipped - Invalid test case: Generic function f(u+)
+469 [http://dlmf.nist.gov/1.14.E12]: Skipped - Invalid test case: Generic function f(u+)
+470 [http://dlmf.nist.gov/1.14.E13]: Skipped - Invalid test case: Generic function f(t)
+471 [http://dlmf.nist.gov/1.14.E14]: Skipped - Invalid test case: Generic function f(t)
+472 [http://dlmf.nist.gov/1.14.E15]: Skipped - Invalid test case: Generic function f(t)
+473 [http://dlmf.nist.gov/1.14.E16]: Skipped - Invalid test case: Generic function f(t)
+474 [http://dlmf.nist.gov/1.14.E17]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Laplacetrans [\Laplacetrans]
+475 [http://dlmf.nist.gov/1.14.E18]: Skipped - no semantic math
+476 [http://dlmf.nist.gov/1.14.E19]: Skipped - Unable to analyze test case: Null
+477 [http://dlmf.nist.gov/1.14.E20]: Skipped - Invalid test case: Generic function f(t)
+478 [http://dlmf.nist.gov/1.14.E21]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Laplacetrans [\Laplacetrans]
+479 [http://dlmf.nist.gov/1.14.E22]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Laplacetrans [\Laplacetrans]
+480 [http://dlmf.nist.gov/1.14.E23]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Laplacetrans [\Laplacetrans]
+481 [http://dlmf.nist.gov/1.14.E24]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Laplacetrans [\Laplacetrans]
+482 [http://dlmf.nist.gov/1.14.E25]: Skipped - Invalid test case: Generic function f(t)
+483 [http://dlmf.nist.gov/1.14.E26]: Skipped - Invalid test case: Generic function f(t)
+484 [http://dlmf.nist.gov/1.14.E27]: Skipped - Invalid test case: Generic function f(0+)
+485 [http://dlmf.nist.gov/1.14.E28]: Skipped - Invalid test case: Generic function f(0+)
+486 [http://dlmf.nist.gov/1.14.E29]: Skipped - Invalid test case: Generic function f(0+)
+487 [http://dlmf.nist.gov/1.14.E30]: Definition - Line is a non-semantic definition.
+488 [http://dlmf.nist.gov/1.14.E31]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Laplacetrans [\Laplacetrans]
+489 [http://dlmf.nist.gov/1.14.E32]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Mellintrans [\Mellintrans]
+490 [http://dlmf.nist.gov/1.14.E33]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Mellintrans [\Mellintrans]
+490-a [http://dlmf.nist.gov/1.14.E33]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Mellintrans [\Mellintrans]
+491 [http://dlmf.nist.gov/1.14.E34]: Skipped - Invalid test case: Generic function f(u+)
+492 [http://dlmf.nist.gov/1.14.E35]: Skipped - Invalid test case: Generic function f(x)
+493 [http://dlmf.nist.gov/1.14.E36]: Skipped - Invalid test case: Generic function f(x)
+494 [http://dlmf.nist.gov/1.14.E37]: Skipped - Invalid test case: Generic function f(x)
+495 [http://dlmf.nist.gov/1.14.E38]: Skipped - Invalid test case: Generic function f(x)
+496 [http://dlmf.nist.gov/1.14.E39]: Definition - Line is a non-semantic definition.
+497 [http://dlmf.nist.gov/1.14.E40]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Mellintrans [\Mellintrans]
+498 [http://dlmf.nist.gov/1.14.E41]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Hilberttrans [\Hilberttrans]
+499 [http://dlmf.nist.gov/1.14.E42]: Skipped - Invalid test case: Generic function f(t)
+500 [http://dlmf.nist.gov/1.14.E43]: Skipped - Invalid test case: Generic function f(x+t)
+501 [http://dlmf.nist.gov/1.14.E44]: Skipped - Invalid test case: Generic function f(x)
+502 [http://dlmf.nist.gov/1.14.E45]: Skipped - Invalid test case: Generic function f(t)
+503 [http://dlmf.nist.gov/1.14.E46]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Hilberttrans [\Hilberttrans]
+504 [http://dlmf.nist.gov/1.14.E47]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Stieltjestrans [\Stieltjestrans]
+505 [http://dlmf.nist.gov/1.14.E48]: Skipped - Invalid test case: Generic function f(t)
+506 [http://dlmf.nist.gov/1.14.E49]: Skipped - Invalid test case: Generic function f(\sigma+)
+507 [http://dlmf.nist.gov/1.14.E50]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Stieltjestrans [\Stieltjestrans]
+508 [http://dlmf.nist.gov/1.15.E1]: Skipped - no semantic math
+509 [http://dlmf.nist.gov/1.15.E2]: Skipped - no semantic math
+510 [http://dlmf.nist.gov/1.15.E3]: Skipped - no semantic math
+511 [http://dlmf.nist.gov/1.15.E4]: Skipped - no semantic math
+512 [http://dlmf.nist.gov/1.15.E5]: Skipped - no semantic math
+513 [http://dlmf.nist.gov/1.15.E6]: Skipped - no semantic math
+514 [http://dlmf.nist.gov/1.15.E7]: Skipped - no semantic math
+515 [http://dlmf.nist.gov/1.15.E8]: Skipped - no semantic math
+516 [http://dlmf.nist.gov/1.15.E9]: Skipped - no semantic math
+517 [http://dlmf.nist.gov/1.15.E10]: Skipped - no semantic math
+518 [http://dlmf.nist.gov/1.15.E11]: Skipped - no semantic math
+519 [http://dlmf.nist.gov/1.15.E12]: Definition - Line is a non-semantic definition.
+520 [http://dlmf.nist.gov/1.15.E13]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+521 [http://dlmf.nist.gov/1.15.E14]: Skipped - no semantic math
+522 [http://dlmf.nist.gov/1.15.E15]: Definition - Line is a non-semantic definition.
 523 [http://dlmf.nist.gov/1.15.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-535: Skipped - Unable to analyze test case.
-541 [http://dlmf.nist.gov/1.15.E34]: Error - java.lang.IllegalArgumentException: Error in CAS! [541: \frac{1}{2\pi}\int^{\infty}_{-\infty}P(x,y)\diff{x} EQUAL 1; http://dlmf.nist.gov/1.15.E34]
-542: Skipped - Unable to analyze test case.
-543 [http://dlmf.nist.gov/1.15.E36]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-546 [http://dlmf.nist.gov/1.15.E39]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+524 [http://dlmf.nist.gov/1.15.E17]: Skipped - no semantic math
+525 [http://dlmf.nist.gov/1.15.E18]: Definition - Line is a non-semantic definition.
+526 [http://dlmf.nist.gov/1.15.E19]: Definition - Line is a non-semantic definition.
+527 [http://dlmf.nist.gov/1.15.E20]: Skipped - Invalid test case: Generic function f(t)
+528 [http://dlmf.nist.gov/1.15.E21]: Definition - Line is a non-semantic definition.
+529 [http://dlmf.nist.gov/1.15.E22]: Skipped - no semantic math
+530 [http://dlmf.nist.gov/1.15.E23]: Skipped - Invalid test case: Generic function f(t)
+531 [http://dlmf.nist.gov/1.15.E24]: Skipped - no semantic math
+532 [http://dlmf.nist.gov/1.15.E25]: Skipped - no semantic math
+533 [http://dlmf.nist.gov/1.15.E26]: Skipped - no semantic math
+534 [http://dlmf.nist.gov/1.15.E27]: Skipped - no semantic math
+535 [http://dlmf.nist.gov/1.15.E28]: Skipped - Unable to analyze test case: Null
+536 [http://dlmf.nist.gov/1.15.E29]: Skipped - Invalid test case: Generic function f(t)
+537 [http://dlmf.nist.gov/1.15.E30]: Skipped - Invalid test case: Generic function f(t)
+538 [http://dlmf.nist.gov/1.15.E31]: Skipped - Invalid test case: Generic function f(t)
+539 [http://dlmf.nist.gov/1.15.E32]: Skipped - Invalid test case: Generic function f(t)
+540 [http://dlmf.nist.gov/1.15.E33]: Definition - Line is a non-semantic definition.
+541 [http://dlmf.nist.gov/1.15.E34]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+542 [http://dlmf.nist.gov/1.15.E35]: Skipped - Unable to analyze test case: Null
+543 [http://dlmf.nist.gov/1.15.E36]: Skipped - Invalid test case: Generic function F(t)
+544 [http://dlmf.nist.gov/1.15.E37]: Skipped - Invalid test case: Generic function f(t)
+545 [http://dlmf.nist.gov/1.15.E38]: Skipped - Invalid test case: Generic function f(x)
+546 [http://dlmf.nist.gov/1.15.E39]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+547 [http://dlmf.nist.gov/1.15.E40]: Skipped - Invalid test case: Generic function f(t)
+548 [http://dlmf.nist.gov/1.15.E41]: Definition - Line is a non-semantic definition.
 549 [http://dlmf.nist.gov/1.15.E42]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-550: Skipped - Unable to analyze test case.
-551 [http://dlmf.nist.gov/1.15.E44]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-562: Skipped - Unable to analyze test case.
-569 [http://dlmf.nist.gov/1.16.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-570 [http://dlmf.nist.gov/1.16.E5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-570-a [http://dlmf.nist.gov/1.16.E5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-571 [http://dlmf.nist.gov/1.16.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-572 [http://dlmf.nist.gov/1.16.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-573 [http://dlmf.nist.gov/1.16.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-574 [http://dlmf.nist.gov/1.16.E9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-575 [http://dlmf.nist.gov/1.16.E10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-576 [http://dlmf.nist.gov/1.16.E11]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-577 [http://dlmf.nist.gov/1.16.E12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-580 [http://dlmf.nist.gov/1.16.E15]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \deltaDistribution [\deltaDistribution]
-581 [http://dlmf.nist.gov/1.16.E16]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \deltaDistribution [\deltaDistribution]
-584 [http://dlmf.nist.gov/1.16.E19]: Error - java.lang.IllegalArgumentException: Error in CAS! [584: x^{\alpha}_{+} EQUAL x^{\alpha}\HeavisideH@{x}; http://dlmf.nist.gov/1.16.E19]
-587 [http://dlmf.nist.gov/1.16.E22]: Error - java.lang.NullPointerException [587: \ln_{+}x EQUAL \HeavisideH@{x}\ln@@{x}; http://dlmf.nist.gov/1.16.E22]
-590 [http://dlmf.nist.gov/1.16.E25]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-595 [https://dlmf.nist.gov/1.16#Ex1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-595-a [https://dlmf.nist.gov/1.16#Ex1]: Error - java.util.NoSuchElementException [595: F EQUAL \frac{1}{(2\pi)^{n/2}}\int_{\Reals^{n}}\phi(\mathbf{t})e^{i\mathbf{x}\cdot\mathbf{t}}\diff{\mathbf{t}}; https://dlmf.nist.gov/1.16#Ex1]
+550 [http://dlmf.nist.gov/1.15.E43]: Skipped - Unable to analyze test case: Null
+551 [http://dlmf.nist.gov/1.15.E44]: Skipped - Invalid test case: Generic function F(t)
+552 [http://dlmf.nist.gov/1.15.E45]: Skipped - Invalid test case: Generic function f(t)
+553 [http://dlmf.nist.gov/1.15.E46]: Skipped - Invalid test case: Generic function f(\theta)
+554 [http://dlmf.nist.gov/1.15.E47]: Definition - Line is a non-semantic definition.
+555 [http://dlmf.nist.gov/1.15.E48]: Skipped - no semantic math
+556 [http://dlmf.nist.gov/1.15.E49]: Skipped - no semantic math
+557 [http://dlmf.nist.gov/1.15.E50]: Skipped - Invalid test case: Generic function f(x)
+558 [http://dlmf.nist.gov/1.15.E51]: Definition - Line is a non-semantic definition.
+559 [http://dlmf.nist.gov/1.15.E52]: Skipped - no semantic math
+560 [http://dlmf.nist.gov/1.15.E53]: Skipped - no semantic math
+561 [https://dlmf.nist.gov/1.15#Ex1]: Skipped - no semantic math
+562 [https://dlmf.nist.gov/1.15#Ex2]: Skipped - no semantic math
+563 [http://dlmf.nist.gov/1.15.E55]: Skipped - no semantic math
+564 [http://dlmf.nist.gov/1.15.E56]: Skipped - no semantic math
+565 [http://dlmf.nist.gov/1.15.E57]: Skipped - no semantic math
+566 [http://dlmf.nist.gov/1.16.E1]: Skipped - no semantic math
+567 [http://dlmf.nist.gov/1.16.E2]: Skipped - no semantic math
+568 [http://dlmf.nist.gov/1.16.E3]: Skipped - Invalid test case: Generic function f(x)
+569 [http://dlmf.nist.gov/1.16.E4]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+570 [http://dlmf.nist.gov/1.16.E5]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+570-a [http://dlmf.nist.gov/1.16.E5]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+571 [http://dlmf.nist.gov/1.16.E6]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+572 [http://dlmf.nist.gov/1.16.E7]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+573 [http://dlmf.nist.gov/1.16.E8]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+574 [http://dlmf.nist.gov/1.16.E9]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+575 [http://dlmf.nist.gov/1.16.E10]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+576 [http://dlmf.nist.gov/1.16.E11]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+577 [http://dlmf.nist.gov/1.16.E12]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+578 [http://dlmf.nist.gov/1.16.E13]: Skipped - Invalid test case: cases
+579 [http://dlmf.nist.gov/1.16.E14]: Skipped - Invalid test case: cases
+580 [http://dlmf.nist.gov/1.16.E15]: Translation Error - (LaTeX -> Maple) Error while translating DLMF/DRMF Macro: Unable to retrieve correct number of arguments for the macro \HeavisideH [\HeavisideH]
+581 [http://dlmf.nist.gov/1.16.E16]: Translation Error - java.lang.NullPointerException [581: D\HeavisideH@{x-x_{0}} EQUAL \deltaDistribution[x_{0}]; http://dlmf.nist.gov/1.16.E16]
+582 [http://dlmf.nist.gov/1.16.E17]: Skipped - no semantic math
+583 [http://dlmf.nist.gov/1.16.E18]: Skipped - Invalid test case: dots
+584 [http://dlmf.nist.gov/1.16.E19]: All Errors: [Simple: NULL, ConvEXP: NULL, ConvHYP: NULL, EXP: NULL, EXP+EXP: NULL, EXP+HYP: NULL]
+585 [http://dlmf.nist.gov/1.16.E20]: Skipped - no semantic math
+586 [http://dlmf.nist.gov/1.16.E21]: Skipped - no semantic math
+587 [http://dlmf.nist.gov/1.16.E22]: Translation Error - java.lang.NullPointerException [587: \ln_{+}x EQUAL \HeavisideH@{x}\ln@@{x}; http://dlmf.nist.gov/1.16.E22]
+588 [http://dlmf.nist.gov/1.16.E23]: Skipped - no semantic math
+589 [http://dlmf.nist.gov/1.16.E24]: Skipped - no semantic math
+590 [http://dlmf.nist.gov/1.16.E25]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+591 [http://dlmf.nist.gov/1.16.E26]: Skipped - Invalid test case: Generic function f(x)
+592 [http://dlmf.nist.gov/1.16.E27]: Skipped - Invalid test case: Generic function f(x)
+593 [http://dlmf.nist.gov/1.16.E28]: Skipped - no semantic math
+594 [http://dlmf.nist.gov/1.16.E29]: Definition - Line is a non-semantic definition.
+595 [https://dlmf.nist.gov/1.16#Ex1]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+596 [http://dlmf.nist.gov/1.16.E30]: Definition - Line is a non-semantic definition.
 597 [https://dlmf.nist.gov/1.16#Ex2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-599 [http://dlmf.nist.gov/1.16.E32]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-602 [https://dlmf.nist.gov/1.16#Ex4]: Error - java.util.NoSuchElementException [602: \frac{1}{(2\pi)^{n/2}}\int_{\Reals^{n}}(P(D)\phi)(\mathbf{t})e^{i\mathbf{x}\cdot\mathbf{t}}\diff{\mathbf{t}} EQUAL P(-\mathbf{x})F(\mathbf{x}); https://dlmf.nist.gov/1.16#Ex4]
-604 [https://dlmf.nist.gov/1.16#Ex5]: Error - java.util.NoSuchElementException [604: \frac{1}{(2\pi)^{n/2}}\int_{\Reals^{n}}P(\mathbf{t})\phi(\mathbf{t})e^{\iunit\mathbf{x}\cdot\mathbf{t}}\diff{\mathbf{t}} EQUAL P(D)F(\mathbf{x}); https://dlmf.nist.gov/1.16#Ex5]
-605 [http://dlmf.nist.gov/1.16.E35]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-606 [https://dlmf.nist.gov/1.16#Ex6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-607 [http://dlmf.nist.gov/1.16.E36]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-607-a [http://dlmf.nist.gov/1.16.E36]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-609 [http://dlmf.nist.gov/1.16.E37]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-611 [http://dlmf.nist.gov/1.16.E38]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-611-a [http://dlmf.nist.gov/1.16.E38]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-611-b [http://dlmf.nist.gov/1.16.E38]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-611-c [http://dlmf.nist.gov/1.16.E38]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-612 [http://dlmf.nist.gov/1.16.E39]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
+598 [http://dlmf.nist.gov/1.16.E31]: Skipped - no semantic math
+599 [http://dlmf.nist.gov/1.16.E32]: Translation Error - (LaTeX -> Maple) The input LaTeX is invalid: Unable to identify argument of differentiation (empty argument pre and post \deriv macro).
+600 [https://dlmf.nist.gov/1.16#Ex3]: Skipped - no semantic math
+601 [http://dlmf.nist.gov/1.16.E33]: Skipped - no semantic math
+602 [https://dlmf.nist.gov/1.16#Ex4]: Skipped - Invalid test case: Generic function F(\mathbf{x})
+603 [http://dlmf.nist.gov/1.16.E34]: Skipped - no semantic math
+604 [https://dlmf.nist.gov/1.16#Ex5]: Skipped - Invalid test case: Generic function F(\mathbf{x})
+605 [http://dlmf.nist.gov/1.16.E35]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+606 [https://dlmf.nist.gov/1.16#Ex6]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+607 [http://dlmf.nist.gov/1.16.E36]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+607-a [http://dlmf.nist.gov/1.16.E36]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+608 [https://dlmf.nist.gov/1.16#Ex7]: Skipped - no semantic math
+609 [http://dlmf.nist.gov/1.16.E37]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+610 [https://dlmf.nist.gov/1.16#Ex8]: Skipped - no semantic math
+611 [http://dlmf.nist.gov/1.16.E38]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+611-a [http://dlmf.nist.gov/1.16.E38]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+611-b [http://dlmf.nist.gov/1.16.E38]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+611-c [http://dlmf.nist.gov/1.16.E38]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+612 [http://dlmf.nist.gov/1.16.E39]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
 613 [http://dlmf.nist.gov/1.16.E40]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-614 [http://dlmf.nist.gov/1.16.E41]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-614-a [http://dlmf.nist.gov/1.16.E41]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-614-b [http://dlmf.nist.gov/1.16.E41]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-614-c [http://dlmf.nist.gov/1.16.E41]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-614-d [http://dlmf.nist.gov/1.16.E41]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-615 [http://dlmf.nist.gov/1.16.E42]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
+614 [http://dlmf.nist.gov/1.16.E41]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+614-a [http://dlmf.nist.gov/1.16.E41]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+614-b [http://dlmf.nist.gov/1.16.E41]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+614-c [http://dlmf.nist.gov/1.16.E41]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+614-d [http://dlmf.nist.gov/1.16.E41]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+615 [http://dlmf.nist.gov/1.16.E42]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
 616 [http://dlmf.nist.gov/1.16.E43]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 617 [http://dlmf.nist.gov/1.16.E44]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-618 [http://dlmf.nist.gov/1.16.E45]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Empty math term tag
-618-a [http://dlmf.nist.gov/1.16.E45]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \deltaDistribution [\deltaDistribution]
-619 [http://dlmf.nist.gov/1.16.E46]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
-619-a [http://dlmf.nist.gov/1.16.E46]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
-619-b [http://dlmf.nist.gov/1.16.E46]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
-620 [http://dlmf.nist.gov/1.16.E47]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
-621 [http://dlmf.nist.gov/1.16.E48]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
-622 [http://dlmf.nist.gov/1.16.E49]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-623 [http://dlmf.nist.gov/1.16.E50]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
-623-a [http://dlmf.nist.gov/1.16.E50]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
-623-b [http://dlmf.nist.gov/1.16.E50]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
-624 [http://dlmf.nist.gov/1.16.E51]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
-625 [http://dlmf.nist.gov/1.17.E1]: Error - java.lang.IllegalArgumentException: Error in CAS! [625: \Diracdelta@{x} EQUAL 0; http://dlmf.nist.gov/1.17.E1]
+618 [http://dlmf.nist.gov/1.16.E45]: Translation Error - (LaTeX -> Maple) Error while translating DLMF/DRMF Macro: Unable to retrieve correct number of arguments for the macro \sign [\sign]
+618-a [http://dlmf.nist.gov/1.16.E45]: Translation Error - (LaTeX -> Maple) Error while translating DLMF/DRMF Macro: Unable to retrieve correct number of arguments for the macro \HeavisideH [\HeavisideH]
+619 [http://dlmf.nist.gov/1.16.E46]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
+619-a [http://dlmf.nist.gov/1.16.E46]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
+619-b [http://dlmf.nist.gov/1.16.E46]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
+620 [http://dlmf.nist.gov/1.16.E47]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
+621 [http://dlmf.nist.gov/1.16.E48]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
+622 [http://dlmf.nist.gov/1.16.E49]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+623 [http://dlmf.nist.gov/1.16.E50]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
+623-a [http://dlmf.nist.gov/1.16.E50]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
+623-b [http://dlmf.nist.gov/1.16.E50]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Fouriertransdist [\Fouriertransdist]
+624 [http://dlmf.nist.gov/1.16.E51]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \intinnerprod [\intinnerprod]
+625 [http://dlmf.nist.gov/1.17.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 626 [http://dlmf.nist.gov/1.17.E2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-627 [http://dlmf.nist.gov/1.17.E3]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Diracdeltaseq [\Diracdeltaseq]
-628 [http://dlmf.nist.gov/1.17.E4]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Diracdeltaseq [\Diracdeltaseq]
-629 [http://dlmf.nist.gov/1.17.E5]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Diracdeltaseq [\Diracdeltaseq]
+627 [http://dlmf.nist.gov/1.17.E3]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Diracdeltaseq [\Diracdeltaseq]
+628 [http://dlmf.nist.gov/1.17.E4]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Diracdeltaseq [\Diracdeltaseq]
+629 [http://dlmf.nist.gov/1.17.E5]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Diracdeltaseq [\Diracdeltaseq]
 630 [http://dlmf.nist.gov/1.17.E6]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-631 [http://dlmf.nist.gov/1.17.E7]: Error - java.lang.IllegalArgumentException: Error in CAS! [631: \lim_{n\to\infty}\sqrt{\frac{n}{\pi}}\int_{-\infty}^{\infty}e^{-n(x-a)^{2}}\phi(x)\diff{x} EQUAL \tfrac{1}{2}\phi(a-)+\tfrac{1}{2}\phi(a+); http://dlmf.nist.gov/1.17.E7]
+631 [http://dlmf.nist.gov/1.17.E7]: All Errors: [Simple: NULL, ConvEXP: NULL, ConvHYP: NULL, EXP: NULL, EXP+EXP: NULL, EXP+HYP: NULL]
 632 [http://dlmf.nist.gov/1.17.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-633 [http://dlmf.nist.gov/1.17.E9]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+633 [http://dlmf.nist.gov/1.17.E9]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 634 [http://dlmf.nist.gov/1.17.E10]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-635 [http://dlmf.nist.gov/1.17.E11]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Diracdeltaseq [\Diracdeltaseq]
-636 [http://dlmf.nist.gov/1.17.E12]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+635 [http://dlmf.nist.gov/1.17.E11]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Diracdeltaseq [\Diracdeltaseq]
+636 [http://dlmf.nist.gov/1.17.E12]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
 637 [http://dlmf.nist.gov/1.17.E13]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-638 [http://dlmf.nist.gov/1.17.E14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \sphBesselJ [\sphBesselJ]
-639 [http://dlmf.nist.gov/1.17.E15]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \regCoulombs [\regCoulombs]
-641 [http://dlmf.nist.gov/1.17.E17]: Error - java.lang.IllegalArgumentException: Error in CAS! [641: \frac{1}{2\pi}\sum_{k=-\infty}^{\infty}e^{-ika}\left(\int_{-\pi}^{\pi}\phi(x)e^{ikx}\diff{x}\right) EQUAL \phi(a); http://dlmf.nist.gov/1.17.E17]
-642 [http://dlmf.nist.gov/1.17.E18]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-643 [http://dlmf.nist.gov/1.17.E19]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Diracdeltaseq [\Diracdeltaseq]
-644 [http://dlmf.nist.gov/1.17.E20]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Diracdeltaseq [\Diracdeltaseq]
-645 [http://dlmf.nist.gov/1.17.E21]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+638 [http://dlmf.nist.gov/1.17.E14]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \sphBesselJ [\sphBesselJ]
+639 [http://dlmf.nist.gov/1.17.E15]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \regCoulombs [\regCoulombs]
+640 [http://dlmf.nist.gov/1.17.E16]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: Aborted, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+641 [http://dlmf.nist.gov/1.17.E17]: All Errors: [Simple: NULL, ConvEXP: NULL, ConvHYP: NULL, EXP: NULL, EXP+EXP: NULL, EXP+HYP: NULL]
+642 [http://dlmf.nist.gov/1.17.E18]: All Aborted: [Simple: Aborted, ConvEXP: Aborted, ConvHYP: Aborted, EXP: Aborted, EXP+EXP: Aborted, EXP+HYP: Aborted]
+643 [http://dlmf.nist.gov/1.17.E19]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Diracdeltaseq [\Diracdeltaseq]
+644 [http://dlmf.nist.gov/1.17.E20]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Diracdeltaseq [\Diracdeltaseq]
+645 [http://dlmf.nist.gov/1.17.E21]: Failure [Simple: Aborted, ConvEXP: Aborted, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 646 [http://dlmf.nist.gov/1.17.E22]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
 647 [http://dlmf.nist.gov/1.17.E23]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-648 [http://dlmf.nist.gov/1.17.E24]: Error - java.lang.IllegalArgumentException: Error in CAS! [648: \Diracdelta@{x-a} EQUAL \frac{e^{-(x^{2}+a^{2})/2}}{\sqrt{\pi}}\sum_{k=0}^{\infty}\frac{\HermitepolyH{k}@{x}\HermitepolyH{k}@{a}}{2^{k}k!}; http://dlmf.nist.gov/1.17.E24]
+648 [http://dlmf.nist.gov/1.17.E24]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NULL, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+649 [http://dlmf.nist.gov/1.17.E25]: All Aborted: [Simple: Aborted, ConvEXP: Aborted, ConvHYP: Aborted, EXP: Aborted, EXP+EXP: Aborted, EXP+HYP: Aborted]
+
+

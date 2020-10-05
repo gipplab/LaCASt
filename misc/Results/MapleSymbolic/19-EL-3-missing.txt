@@ -1,0 +1,12 @@
+\CarlsonsymellintRJ, 35
+\CarlsonsymellintRD, 34
+\CarlsonsymellintRG, 28
+\Carlsonmultivarhyper, 14
+\CarlsonellintRC, 13
+\agenJacobiellk, 3
+\Bulirschincellintel, 3
+\Weierstrasselatt, 2
+\Bulirschcompellintcel, 1
+\Weierstrasssigmalatt, 1
+\Weierstrasszetalatt, 1
+\Weierstrassplatt, 1

@@ -7,7 +7,9 @@ import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * @author Andre Greiner-Petter
@@ -21,6 +23,8 @@ public class CaseMetaData {
 
     private LinkedList<SymbolTag> symbolsUsed;
 
+    private Map<Integer, String> defConVarSlot;
+
     private int linenumber;
 
     private static MLPConstraintAnalyzer analyzer = MLPConstraintAnalyzer.getAnalyzerInstance();
@@ -30,6 +34,15 @@ public class CaseMetaData {
         this.constraints = constraints;
         this.linenumber = linenumber;
         this.symbolsUsed = symbolsUsed;
+        this.defConVarSlot = new HashMap<>();
+    }
+
+    public void addVariableSlot(int slot, String var) {
+        this.defConVarSlot.put(slot, var);
+    }
+
+    public Map<Integer, String> getVariableSlots() {
+        return defConVarSlot;
     }
 
     public boolean isDefinition() {
@@ -71,6 +84,7 @@ public class CaseMetaData {
             String labelStr,
             int lineNumber
     ) {
+        LinkedList<String> copyConstraints = new LinkedList<>(constraints);
         // first, create label
         Label label = null;
         if ( labelStr != null ){
@@ -98,7 +112,7 @@ public class CaseMetaData {
         }
 
         String[] conArr = sieved.stream().toArray(String[]::new);
-        Constraints finalConstr = new Constraints(conArr, specialVars, specialVals);
+        Constraints finalConstr = new Constraints(copyConstraints, conArr, specialVars, specialVals);
         return new CaseMetaData(lineNumber, label, finalConstr, symbolsUsed);
     }
 

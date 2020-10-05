@@ -62,7 +62,8 @@ public class BlueprintRuleMatcher implements IBlueprintMatcher {
         this.matcherConfig = MatcherConfig.getExactMatchConfig()
                 .allowLeadingTokens(false)
                 .allowFollowingTokens(false)
-                .setIllegalCharacterForWildcard("var", DEFAULT_ILLEGAL_CHAR_FOR_VARS);
+                .setIllegalCharacterForWildcard("var", DEFAULT_ILLEGAL_CHAR_FOR_VARS)
+                .setIllegalCharacterForWildcard("varN", DEFAULT_ILLEGAL_CHAR_FOR_VARS);
     }
 
     private Pattern setupPattern() {
@@ -70,9 +71,13 @@ public class BlueprintRuleMatcher implements IBlueprintMatcher {
         upBPattern = translate(UPPER_BOUND_TOKEN);
         varPattern = translate(VAR_TOKEN);
 
-        lowBPattern = lowBPattern.replaceAll("\\*", "\\\\*");
-        upBPattern = upBPattern.replaceAll("\\*", "\\\\*");
-        varPattern = varPattern.replaceAll("\\*", "\\\\*");
+//        lowBPattern = lowBPattern.replaceAll("\\*", "\\\\*");
+//        upBPattern = upBPattern.replaceAll("\\*", "\\\\*");
+//        varPattern = varPattern.replaceAll("\\*", "\\\\*");
+
+        lowBPattern = Pattern.quote(lowBPattern);
+        upBPattern = Pattern.quote(upBPattern);
+        varPattern = Pattern.quote(varPattern);
 
         return Pattern.compile(
                 "("+lowBPattern+"|"+varPattern+"|"+upBPattern+").?(\\d+)"
@@ -100,11 +105,11 @@ public class BlueprintRuleMatcher implements IBlueprintMatcher {
             PrintablePomTaggedExpression ppte = FakeMLPGenerator.generateEmptySequencePPTE();
             ppte.setPrintableComponents(expressions);
             match = matchablePom.match(ppte, matcherConfig);
-            this.isOverSet = ppte.getTexString().matches(".*\\\\in[^A-Za-z]+.*");
+            this.isOverSet = ppte.getTexString().matches(".*\\\\(in|divides)[^A-Za-z]+.*");
         } else {
             PrintablePomTaggedExpression ppte = (PrintablePomTaggedExpression) FakeMLPGenerator.wrapNonSequenceInSequence(expressions[0]);
             match = matchablePom.match(ppte, matcherConfig);
-            this.isOverSet = ppte.getTexString().matches(".*\\\\in[^A-Za-z]+.*");
+            this.isOverSet = ppte.getTexString().matches(".*\\\\(in|divides)[^A-Za-z]+.*");
         }
         if ( match ) {
             analyzeMatchedGroups();

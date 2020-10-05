@@ -1,0 +1,14 @@
+\sphBesselJ, 30
+\modsphBesseli, 25
+\HankelmodM, 20
+\modsphBesselK, 12
+\modcylinder, 11
+\sphBesselY, 10
+\sphHankelh, 10
+\BickleyKi, 7
+\HankelmodderivN, 6
+\nabla, 4
+\Hankelphasetheta, 4
+\Hankelphasederivphi, 2
+\genBesselphi, 2
+\MittagLefflerE, 1

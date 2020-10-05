@@ -1,4 +1,4 @@
+\max, 4
 \nabla, 2
 \min, 1
-\cal, 1
 \rm, 1

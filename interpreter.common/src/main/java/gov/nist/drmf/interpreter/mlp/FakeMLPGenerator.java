@@ -66,7 +66,7 @@ public final class FakeMLPGenerator {
     }
 
     public static MathTerm generateEmptyMathTerm() {
-        return new MathTerm("");
+        return new MathTerm(" ");
     }
 
     public static MathTerm generateClosedParenthesesMathTerm() {

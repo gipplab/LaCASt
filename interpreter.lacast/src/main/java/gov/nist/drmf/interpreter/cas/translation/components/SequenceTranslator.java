@@ -329,7 +329,8 @@ public class SequenceTranslator extends AbstractListTranslator {
     private PomTaggedExpression treatFirstExpression(
             String part, PomTaggedExpression exp
     ) {
-        if (part.matches(STRING_END_TREAT_AS_CLOSED_PARANTHESIS)) {
+        if ( part == null ) {}
+        else if (part.matches(STRING_END_TREAT_AS_CLOSED_PARANTHESIS)) {
             MathTerm tmp = FakeMLPGenerator.generateClosedParenthesesMathTerm();
             exp = new PomTaggedExpression(tmp);
         } else if (MULTIPLY_PATTERN.matcher(part).matches()) {

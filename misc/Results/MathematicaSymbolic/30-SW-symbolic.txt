@@ -1,87 +1,171 @@
-Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 34, FAILURE: 34, STARTED_TEST_CASES: 79, SKIPPED: 6, DEFINITIONS: 8, IGNORE: 77, MISSING: 40, ERROR: 5] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 169, SKIPPED: 66, DEFINITIONS: 32, STARTED_TEST_CASES: 71, ERROR_TRANS: 6, MISSING: 39, SUCCESS_TRANS: 26, SUCCESS_SYMB: 0, SUCCESS_NUM: 0, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 26, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
-9123 [https://dlmf.nist.gov/30.1#Ex1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
-9124 [https://dlmf.nist.gov/30.1#Ex2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQsreal [\sphwaveQsreal]
-9125 [https://dlmf.nist.gov/30.1#Ex3]: Failure [Simple: NaN]
-9126: Skipped - Unable to analyze test case.
-9127 [http://dlmf.nist.gov/30.2.E1]: Failure [Simple: NaN]
-9128 [http://dlmf.nist.gov/30.2.E2]: Failure [Simple: NaN]
-9129 [https://dlmf.nist.gov/30.2#Ex1]: Failure [Simple: NaN]
-9131 [http://dlmf.nist.gov/30.2.E4]: Failure [Simple: NaN]
-9132 [http://dlmf.nist.gov/30.3.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
-9132-a [http://dlmf.nist.gov/30.3.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
-9134 [http://dlmf.nist.gov/30.3.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
-9135 [http://dlmf.nist.gov/30.3.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
-9135-a [http://dlmf.nist.gov/30.3.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
-9143 [http://dlmf.nist.gov/30.3.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
-9153 [http://dlmf.nist.gov/30.4.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
-9154 [http://dlmf.nist.gov/30.4.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
-9155 [http://dlmf.nist.gov/30.4.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
-9156 [http://dlmf.nist.gov/30.4.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
-9157 [http://dlmf.nist.gov/30.4.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
-9158 [http://dlmf.nist.gov/30.4.E6]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
-9162: Skipped - Unable to analyze test case.
-9163 [http://dlmf.nist.gov/30.5.E2]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQsreal [\sphwaveQsreal]
-9164 [http://dlmf.nist.gov/30.5.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQsreal [\sphwaveQsreal]
-9165 [http://dlmf.nist.gov/30.5.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
-9166: Skipped - Unable to analyze test case.
-9167: Skipped - Unable to analyze test case.
-9168 [https://dlmf.nist.gov/30.6#Ex3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePs [\sphwavePs]
-9169 [https://dlmf.nist.gov/30.6#Ex4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQs [\sphwaveQs]
-9170 [http://dlmf.nist.gov/30.6.E3]: Error - (LaTeX -> Mathematica) Error while translating DLMF/DRMF Macro: No information in lexicon for slot of differentiation of macro. [\Wronskian]
-9171 [http://dlmf.nist.gov/30.6.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePs [\sphwavePs]
-9171-a [http://dlmf.nist.gov/30.6.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePs [\sphwavePs]
-9172 [http://dlmf.nist.gov/30.6.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQs [\sphwaveQs]
-9172-a [http://dlmf.nist.gov/30.6.E5]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQs [\sphwaveQs]
-9173 [http://dlmf.nist.gov/30.8.E1]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
-9178 [http://dlmf.nist.gov/30.8.E4]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
-9183 [http://dlmf.nist.gov/30.8.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQsreal [\sphwaveQsreal]
-9184 [http://dlmf.nist.gov/30.8.E10]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
-9186: Skipped - Unable to analyze test case.
-9193: Skipped - Unable to analyze test case.
-9201 [https://dlmf.nist.gov/30.11#Ex1]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \cal [\cal]
-9202 [https://dlmf.nist.gov/30.11#Ex2]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \cal [\cal]
-9203 [https://dlmf.nist.gov/30.11#Ex3]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \cal [\cal]
-9204 [https://dlmf.nist.gov/30.11#Ex4]: Error - (LaTeX -> Mathematica) Unknown LaTeX Command: Reached unknown latex-command \cal [\cal]
-9205 [http://dlmf.nist.gov/30.11.E3]: Error - java.lang.NullPointerException [9205: \radsphwaveS{m}{j}{n}@{z}{\gamma} EQUAL \frac{(1-z^{-2})^{\frac{1}{2}m}}{A_{n}^{-m}(\gamma^{2})}\sum_{2k\geq m-n}a^{-m}_{n,k}(\gamma^{2})\psi_{n+2k}^{(j)}(\gamma z); http://dlmf.nist.gov/30.11.E3]
-9207 [https://dlmf.nist.gov/30.11#Ex5]: Failure [Simple: NaN]
-9208 [https://dlmf.nist.gov/30.11#Ex6]: Failure [Simple: NaN]
-9210 [http://dlmf.nist.gov/30.11.E7]: Failure [Simple: NaN]
-9211 [http://dlmf.nist.gov/30.11.E8]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePs [\sphwavePs]
-9212 [http://dlmf.nist.gov/30.11.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQs [\sphwaveQs]
-9213 [http://dlmf.nist.gov/30.11.E10]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
-9214 [http://dlmf.nist.gov/30.11.E11]: Error - (LaTeX -> Mathematica) The current implementation is wrong: Wrong translation method used. You have to specify an open bracket to translate it like a sequence.
-9215 [http://dlmf.nist.gov/30.11.E12]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
-9216 [http://dlmf.nist.gov/30.12.E1]: Failure [Simple: NaN]
-9217 [http://dlmf.nist.gov/30.12.E2]: Failure [Simple: NaN]
-9218 [https://dlmf.nist.gov/30.13#Ex1]: Failure [Simple: NaN]
-9219 [https://dlmf.nist.gov/30.13#Ex2]: Failure [Simple: NaN]
-9224 [http://dlmf.nist.gov/30.13.E3]: Failure [Simple: NaN]
-9224-a [http://dlmf.nist.gov/30.13.E3]: Failure [Simple: NaN]
-9225 [http://dlmf.nist.gov/30.13.E4]: Failure [Simple: NaN]
-9225-a [http://dlmf.nist.gov/30.13.E4]: Failure [Simple: NaN]
-9226 [http://dlmf.nist.gov/30.13.E5]: Failure [Simple: NaN]
-9226-a [http://dlmf.nist.gov/30.13.E5]: Failure [Simple: NaN]
-9227 [http://dlmf.nist.gov/30.13.E6]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
-9227-a [http://dlmf.nist.gov/30.13.E6]: Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Empty arguments for limited expressions are invalid math.
-9230 [http://dlmf.nist.gov/30.13.E9]: Failure [Simple: NaN]
-9231 [http://dlmf.nist.gov/30.13.E10]: Failure [Simple: NaN]
-9232 [http://dlmf.nist.gov/30.13.E11]: Failure [Simple: NaN]
-9233 [http://dlmf.nist.gov/30.13.E12]: Failure [Simple: NaN]
-9234 [http://dlmf.nist.gov/30.13.E13]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
-9235 [http://dlmf.nist.gov/30.13.E14]: Failure [Simple: NaN]
-9236 [http://dlmf.nist.gov/30.13.E15]: Failure [Simple: NaN]
-9238 [https://dlmf.nist.gov/30.14#Ex1]: Failure [Simple: NaN]
-9239 [https://dlmf.nist.gov/30.14#Ex2]: Failure [Simple: NaN]
-9247 [http://dlmf.nist.gov/30.14.E6]: Error - (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \nabla [\nabla]
-9248 [http://dlmf.nist.gov/30.14.E7]: Failure [Simple: NaN]
-9249 [http://dlmf.nist.gov/30.14.E8]: Failure [Simple: NaN]
-9250 [http://dlmf.nist.gov/30.14.E9]: Failure [Simple: NaN]
-9253 [http://dlmf.nist.gov/30.15.E3]: Failure [Simple: NaN]
-9254 [http://dlmf.nist.gov/30.15.E4]: Failure [Simple: NaN]
-9255 [http://dlmf.nist.gov/30.15.E5]: Failure [Simple: NaN]
-9257 [http://dlmf.nist.gov/30.15.E7]: Failure [Simple: NaN]
-9258 [http://dlmf.nist.gov/30.15.E8]: Failure [Simple: NaN]
-9262 [http://dlmf.nist.gov/30.15.E11]: Error - java.lang.NullPointerException [9262: \acos@@{\sqrt{\mathrm{B}}}+\acos@@{\sqrt{\alpha}} EQUAL \acos@@{\sqrt{\Lambda_{0}}}; http://dlmf.nist.gov/30.15.E11]
-9271 [http://dlmf.nist.gov/30.16.E3]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
-9283 [http://dlmf.nist.gov/30.16.E9]: Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
+8775 [https://dlmf.nist.gov/30.1#Ex1]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
+8776 [https://dlmf.nist.gov/30.1#Ex2]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQsreal [\sphwaveQsreal]
+8777 [https://dlmf.nist.gov/30.1#Ex3]: Failure [Simple: NaN]
+8778 [https://dlmf.nist.gov/30.1#Ex4]: Skipped - Unable to analyze test case: Null
+8779 [http://dlmf.nist.gov/30.2.E1]: Failure [Simple: NaN]
+8780 [http://dlmf.nist.gov/30.2.E2]: Failure [Simple: NaN]
+8781 [https://dlmf.nist.gov/30.2#Ex1]: Failure [Simple: NaN]
+8782 [https://dlmf.nist.gov/30.2#Ex2]: Skipped - no semantic math
+8783 [http://dlmf.nist.gov/30.2.E4]: Failure [Simple: NaN]
+8784 [http://dlmf.nist.gov/30.3.E1]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
+8784-a [http://dlmf.nist.gov/30.3.E1]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
+8785 [http://dlmf.nist.gov/30.3.E2]: Skipped - Invalid test case: bigO
+8786 [http://dlmf.nist.gov/30.3.E3]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
+8787 [http://dlmf.nist.gov/30.3.E4]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
+8787-a [http://dlmf.nist.gov/30.3.E4]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
+8788 [http://dlmf.nist.gov/30.3.E5]: Skipped - no semantic math
+8789 [https://dlmf.nist.gov/30.3#Ex1]: Definition - Line is a non-semantic definition.
+8790 [https://dlmf.nist.gov/30.3#Ex2]: Definition - Line is a non-semantic definition.
+8791 [https://dlmf.nist.gov/30.3#Ex3]: Definition - Line is a non-semantic definition.
+8792 [https://dlmf.nist.gov/30.3#Ex4]: Skipped - no semantic math
+8793 [https://dlmf.nist.gov/30.3#Ex5]: Skipped - no semantic math
+8794 [https://dlmf.nist.gov/30.3#Ex6]: Skipped - no semantic math
+8795 [http://dlmf.nist.gov/30.3.E8]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
+8796 [https://dlmf.nist.gov/30.3#Ex7]: Skipped - no semantic math
+8797 [https://dlmf.nist.gov/30.3#Ex8]: Skipped - no semantic math
+8798 [https://dlmf.nist.gov/30.3#Ex9]: Skipped - no semantic math
+8799 [http://dlmf.nist.gov/30.3.E10]: Skipped - no semantic math
+8800 [http://dlmf.nist.gov/30.3.E11]: Skipped - no semantic math
+8801 [https://dlmf.nist.gov/30.3#Ex10]: Definition - Line is a non-semantic definition.
+8802 [https://dlmf.nist.gov/30.3#Ex11]: Definition - Line is a non-semantic definition.
+8803 [https://dlmf.nist.gov/30.3#Ex12]: Definition - Line is a non-semantic definition.
+8804 [https://dlmf.nist.gov/30.3#Ex13]: Definition - Line is a non-semantic definition.
+8805 [http://dlmf.nist.gov/30.4.E1]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
+8806 [http://dlmf.nist.gov/30.4.E2]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
+8807 [http://dlmf.nist.gov/30.4.E3]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
+8808 [http://dlmf.nist.gov/30.4.E4]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
+8809 [http://dlmf.nist.gov/30.4.E5]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
+8810 [http://dlmf.nist.gov/30.4.E6]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
+8811 [http://dlmf.nist.gov/30.4.E7]: Skipped - Invalid test case: Generic function f(x)
+8812 [http://dlmf.nist.gov/30.4.E8]: Definition - Line is a non-semantic definition.
+8813 [http://dlmf.nist.gov/30.4.E9]: Skipped - Invalid test case: Generic function f(x)
+8814 [http://dlmf.nist.gov/30.5.E1]: Skipped - Unable to analyze test case: Null
+8815 [http://dlmf.nist.gov/30.5.E2]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQsreal [\sphwaveQsreal]
+8816 [http://dlmf.nist.gov/30.5.E3]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQsreal [\sphwaveQsreal]
+8817 [http://dlmf.nist.gov/30.5.E4]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
+8818 [https://dlmf.nist.gov/30.6#Ex1]: Skipped - Unable to analyze test case: Null
+8819 [https://dlmf.nist.gov/30.6#Ex2]: Skipped - Unable to analyze test case: Null
+8820 [https://dlmf.nist.gov/30.6#Ex3]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePs [\sphwavePs]
+8821 [https://dlmf.nist.gov/30.6#Ex4]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQs [\sphwaveQs]
+8822 [http://dlmf.nist.gov/30.6.E3]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePs [\sphwavePs]
+8823 [http://dlmf.nist.gov/30.6.E4]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePs [\sphwavePs]
+8823-a [http://dlmf.nist.gov/30.6.E4]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePs [\sphwavePs]
+8824 [http://dlmf.nist.gov/30.6.E5]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQs [\sphwaveQs]
+8824-a [http://dlmf.nist.gov/30.6.E5]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQs [\sphwaveQs]
+8825 [http://dlmf.nist.gov/30.8.E1]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
+8826 [http://dlmf.nist.gov/30.8.E2]: Definition - Line is a non-semantic definition.
+8827 [https://dlmf.nist.gov/30.8#Ex1]: Definition - Line is a non-semantic definition.
+8828 [https://dlmf.nist.gov/30.8#Ex2]: Definition - Line is a non-semantic definition.
+8829 [https://dlmf.nist.gov/30.8#Ex3]: Definition - Line is a non-semantic definition.
+8830 [http://dlmf.nist.gov/30.8.E4]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
+8831 [http://dlmf.nist.gov/30.8.E5]: Skipped - no semantic math
+8832 [http://dlmf.nist.gov/30.8.E6]: Skipped - no semantic math
+8833 [http://dlmf.nist.gov/30.8.E7]: Skipped - Invalid test case: bigO
+8834 [http://dlmf.nist.gov/30.8.E8]: Skipped - Invalid test case: bigO
+8835 [http://dlmf.nist.gov/30.8.E9]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQsreal [\sphwaveQsreal]
+8836 [http://dlmf.nist.gov/30.8.E10]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentation primes) but not in other places.
+8837 [http://dlmf.nist.gov/30.8.E11]: Definition - Line is a non-semantic definition.
+8838 [http://dlmf.nist.gov/30.9.E1]: Skipped - Unable to analyze test case: Null
+8839 [https://dlmf.nist.gov/30.9#Ex1]: Definition - Line is a non-semantic definition.
+8840 [https://dlmf.nist.gov/30.9#Ex2]: Definition - Line is a non-semantic definition.
+8841 [https://dlmf.nist.gov/30.9#Ex3]: Definition - Line is a non-semantic definition.
+8842 [https://dlmf.nist.gov/30.9#Ex4]: Definition - Line is a non-semantic definition.
+8843 [https://dlmf.nist.gov/30.9#Ex5]: Skipped - no semantic math
+8844 [https://dlmf.nist.gov/30.9#Ex6]: Skipped - no semantic math
+8845 [http://dlmf.nist.gov/30.9.E4]: Skipped - Unable to analyze test case: Null
+8846 [https://dlmf.nist.gov/30.9#Ex7]: Skipped - no semantic math
+8847 [https://dlmf.nist.gov/30.9#Ex8]: Skipped - no semantic math
+8848 [https://dlmf.nist.gov/30.9#Ex9]: Skipped - no semantic math
+8849 [https://dlmf.nist.gov/30.9#Ex10]: Skipped - no semantic math
+8850 [https://dlmf.nist.gov/30.9#Ex11]: Skipped - no semantic math
+8851 [https://dlmf.nist.gov/30.9#Ex12]: Skipped - no semantic math
+8852 [http://dlmf.nist.gov/30.11.E1]: Definition - Line is a non-semantic definition.
+8853 [https://dlmf.nist.gov/30.11#Ex1]: Definition - Line is a non-semantic definition.
+8854 [https://dlmf.nist.gov/30.11#Ex2]: Definition - Line is a non-semantic definition.
+8855 [https://dlmf.nist.gov/30.11#Ex3]: Definition - Line is a non-semantic definition.
+8856 [https://dlmf.nist.gov/30.11#Ex4]: Definition - Line is a non-semantic definition.
+8857 [http://dlmf.nist.gov/30.11.E3]: Translation Error - java.lang.NullPointerException [8857: \radsphwaveS{m}{j}{n}@{z}{\gamma} EQUAL \frac{(1-z^{-2})^{\frac{1}{2}m}}{A_{n}^{-m}(\gamma^{2})} \sum_{2k\geq m-n} a_{n,k}^{-m} (\gamma^{2}) \psi_{n+2k}^{(j)} (\gamma z); http://dlmf.nist.gov/30.11.E3]
+8858 [http://dlmf.nist.gov/30.11.E4]: Definition - Line is a non-semantic definition.
+8859 [https://dlmf.nist.gov/30.11#Ex5]: Failure [Simple: NaN]
+8860 [https://dlmf.nist.gov/30.11#Ex6]: Failure [Simple: NaN]
+8861 [http://dlmf.nist.gov/30.11.E6]: Skipped - Invalid test case: cases, cases, bigO
+8862 [http://dlmf.nist.gov/30.11.E7]: Failure [Simple: NaN]
+8863 [http://dlmf.nist.gov/30.11.E8]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePs [\sphwavePs]
+8864 [http://dlmf.nist.gov/30.11.E9]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwaveQs [\sphwaveQs]
+8865 [http://dlmf.nist.gov/30.11.E10]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
+8866 [http://dlmf.nist.gov/30.11.E11]: Translation Error - (LaTeX -> Mathematica) The current implementation is wrong: Wrong translation method used. You have to specify an open bracket to translate it like a sequence.
+8867 [http://dlmf.nist.gov/30.11.E12]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
+8868 [http://dlmf.nist.gov/30.12.E1]: Failure [Simple: NaN]
+8869 [http://dlmf.nist.gov/30.12.E2]: Failure [Simple: NaN]
+8870 [https://dlmf.nist.gov/30.13#Ex1]: Definition - Line is a non-semantic definition.
+8871 [https://dlmf.nist.gov/30.13#Ex2]: Definition - Line is a non-semantic definition.
+8872 [https://dlmf.nist.gov/30.13#Ex3]: Definition - Line is a non-semantic definition.
+8873 [https://dlmf.nist.gov/30.13#Ex4]: Skipped - no semantic math
+8874 [https://dlmf.nist.gov/30.13#Ex5]: Skipped - no semantic math
+8875 [https://dlmf.nist.gov/30.13#Ex6]: Skipped - no semantic math
+8876 [http://dlmf.nist.gov/30.13.E3]: Failure [Simple: NaN]
+8876-a [http://dlmf.nist.gov/30.13.E3]: Failure [Simple: NaN]
+8877 [http://dlmf.nist.gov/30.13.E4]: Failure [Simple: NaN]
+8877-a [http://dlmf.nist.gov/30.13.E4]: Failure [Simple: NaN]
+8878 [http://dlmf.nist.gov/30.13.E5]: Failure [Simple: NaN]
+8878-a [http://dlmf.nist.gov/30.13.E5]: Failure [Simple: NaN]
+8879 [http://dlmf.nist.gov/30.13.E6]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: No translation available for the operator \nabla [\nabla]
+8879-a [http://dlmf.nist.gov/30.13.E6]: Translation Error - (LaTeX -> Mathematica) The input LaTeX is invalid: Unable to identify argument of differentiation (empty argument pre and post \deriv macro).
+8880 [http://dlmf.nist.gov/30.13.E7]: Definition - Line is a non-semantic definition.
+8881 [http://dlmf.nist.gov/30.13.E8]: Skipped - no semantic math
+8882 [http://dlmf.nist.gov/30.13.E9]: Failure [Simple: NaN]
+8883 [http://dlmf.nist.gov/30.13.E10]: Failure [Simple: NaN]
+8884 [http://dlmf.nist.gov/30.13.E11]: Failure [Simple: NaN]
+8885 [http://dlmf.nist.gov/30.13.E12]: Failure [Simple: NaN]
+8886 [http://dlmf.nist.gov/30.13.E13]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
+8887 [http://dlmf.nist.gov/30.13.E14]: Failure [Simple: NaN]
+8888 [http://dlmf.nist.gov/30.13.E15]: Failure [Simple: NaN]
+8889 [http://dlmf.nist.gov/30.13.E16]: Skipped - no semantic math
+8890 [https://dlmf.nist.gov/30.14#Ex1]: Definition - Line is a non-semantic definition.
+8891 [https://dlmf.nist.gov/30.14#Ex2]: Definition - Line is a non-semantic definition.
+8892 [https://dlmf.nist.gov/30.14#Ex3]: Definition - Line is a non-semantic definition.
+8893 [https://dlmf.nist.gov/30.14#Ex4]: Skipped - no semantic math
+8894 [https://dlmf.nist.gov/30.14#Ex5]: Skipped - no semantic math
+8895 [https://dlmf.nist.gov/30.14#Ex6]: Skipped - no semantic math
+8896 [http://dlmf.nist.gov/30.14.E3]: Skipped - no semantic math
+8897 [http://dlmf.nist.gov/30.14.E4]: Skipped - no semantic math
+8898 [http://dlmf.nist.gov/30.14.E5]: Skipped - no semantic math
+8899 [http://dlmf.nist.gov/30.14.E6]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: No translation available for the operator \nabla [\nabla]
+8900 [http://dlmf.nist.gov/30.14.E7]: Failure [Simple: NaN]
+8901 [http://dlmf.nist.gov/30.14.E8]: Failure [Simple: NaN]
+8902 [http://dlmf.nist.gov/30.14.E9]: Failure [Simple: NaN]
+8903 [http://dlmf.nist.gov/30.15.E1]: Definition - Line is a non-semantic definition.
+8904 [http://dlmf.nist.gov/30.15.E2]: Definition - Line is a non-semantic definition.
+8905 [http://dlmf.nist.gov/30.15.E3]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
+8906 [http://dlmf.nist.gov/30.15.E4]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
+8907 [http://dlmf.nist.gov/30.15.E5]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]
+8908 [http://dlmf.nist.gov/30.15.E6]: Skipped - no semantic math
+8909 [http://dlmf.nist.gov/30.15.E7]: Translation Error - java.lang.NullPointerException [8909: \int_{-\tau}^{\tau}_{k} (t) (\sqrt{\frac{2n+1}{2\tau}}\sqrt{\Lambda_{n}}\sphwavePsreal{0}{n}@{\frac{t}{\tau}}{\gamma^{2}}) \diff{t} EQUAL \Lambda_{n}\Kroneckerdelta{k}{n}; http://dlmf.nist.gov/30.15.E7]
+8910 [http://dlmf.nist.gov/30.15.E8]: Translation Error - java.lang.NullPointerException [8910: \int_{-\infty}^{\infty}_{k} (t) (\sqrt{\frac{2n+1}{2\tau}}\sqrt{\Lambda_{n}}\sphwavePsreal{0}{n}@{\frac{t}{\tau}}{\gamma^{2}}) \diff{t} EQUAL \Kroneckerdelta{k}{n}; http://dlmf.nist.gov/30.15.E8]
+8911 [http://dlmf.nist.gov/30.15.E9]: Skipped - Invalid test case: Generic function f(t)
+8912 [https://dlmf.nist.gov/30.15#Ex1]: Skipped - Invalid test case: Generic function f(t)
+8913 [https://dlmf.nist.gov/30.15#Ex2]: Skipped - Invalid test case: Generic function f(t)
+8914 [http://dlmf.nist.gov/30.15.E11]: Failure [Simple: NaN]
+8915 [http://dlmf.nist.gov/30.15.E12]: Skipped - no semantic math
+8916 [https://dlmf.nist.gov/30.15#Ex3]: Skipped - no semantic math
+8917 [https://dlmf.nist.gov/30.15#Ex4]: Skipped - no semantic math
+8918 [https://dlmf.nist.gov/30.15#Ex5]: Skipped - no semantic math
+8919 [https://dlmf.nist.gov/30.16#Ex1]: Skipped - no semantic math
+8920 [https://dlmf.nist.gov/30.16#Ex2]: Skipped - no semantic math
+8921 [https://dlmf.nist.gov/30.16#Ex3]: Skipped - no semantic math
+8922 [http://dlmf.nist.gov/30.16.E2]: Skipped - no semantic math
+8923 [http://dlmf.nist.gov/30.16.E3]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \spheigvalLambda [\spheigvalLambda]
+8924 [http://dlmf.nist.gov/30.16.E4]: Skipped - Invalid test case: bigO
+8925 [https://dlmf.nist.gov/30.16#Ex4]: Skipped - no semantic math
+8926 [https://dlmf.nist.gov/30.16#Ex5]: Skipped - no semantic math
+8927 [https://dlmf.nist.gov/30.16#Ex6]: Skipped - no semantic math
+8928 [https://dlmf.nist.gov/30.16#Ex7]: Skipped - no semantic math
+8929 [https://dlmf.nist.gov/30.16#Ex8]: Skipped - no semantic math
+8930 [https://dlmf.nist.gov/30.16#Ex9]: Skipped - no semantic math
+8931 [https://dlmf.nist.gov/30.16#Ex10]: Skipped - no semantic math
+8932 [https://dlmf.nist.gov/30.16#Ex11]: Skipped - no semantic math
+8933 [http://dlmf.nist.gov/30.16.E7]: Skipped - no semantic math
+8934 [http://dlmf.nist.gov/30.16.E8]: Skipped - no semantic math
+8935 [http://dlmf.nist.gov/30.16.E9]: Missing Macro Error - (LaTeX -> Mathematica) No translation possible for given token: Cannot extract information from feature set: \sphwavePsreal [\sphwavePsreal]

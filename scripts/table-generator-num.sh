@@ -1,8 +1,22 @@
 #!/usr/bin/env bash
 
+REVERSEMODE=0
 BASEPATH="/home/andreg-p/data/Howard/Results"
+while getopts rp: flag
+do
+  case "${flag}" in
+    r) REVERSEMODE=1;;
+    p) BASEPATH=${OPTARG};;
+    a*) echo "Unknown flag, use -r for reversed mode."
+  esac
+done
+
 MATHBASE="$BASEPATH/MathematicaSymbolic"
 MATHP="$BASEPATH/MathematicaNumeric"
+
+if (( $REVERSEMODE == 1 )); then
+  MATHP="${MATHP}SymbolicSuccessful"
+fi
 
 FILES=$(find $MATHP -type f | sort)
 
@@ -13,6 +27,10 @@ SUMNUMSUCC=0
 SUMNUMFAIL=0
 ABORTED=0
 ERRS=0
+
+TOTALTESTS=0
+TOTALFAILTESTS=0
+TOTALSUCCESSTESTS=0
 
 PARTFAIL=0
 TOTALFAIL=0
@@ -36,20 +54,22 @@ for FILE in $FILES; do
   #read -r -a arrTrans <<< $(gawk 'match($0, /.*SYMB: ([0-9]+),.*TRANS: ([0-9]+).*/, arry) {print arry[1]","arry[2]}' $refF)
   #read -r -a arrMath <<< $(gawk 'match($0, /.*SUCCESS: ([0-9]+),.*FAILURE: ([0-9]+),.*TESTED: ([0-9]+).*/, arry) {print arry[1]","arry[2]","arry[3]}' $FILE)
   
-  read -r -a arrTrans <<< $(gawk 'match($0, /.*SUCCESS_TRANS: ([0-9]+),.*SUCCESS_SYMB: ([0-9]+).*/, arry) {print arry[2]","arry[1]}' $refF)
+  read -r -a arrTrans <<< $(gawk 'match($0, /.*SUCCESS_TRANS: ([0-9]+),.*SUCCESS_SYMB: ([0-9]+).*,.*SUCCESS_UNDER_EXTRA_CONDITION: ([0-9]+).*/, arry) {print arry[2]","arry[1]","arry[3]}' $refF)
   read -r -a arrMath <<< $(gawk 'match($0, /.*STARTED_TEST_CASES: ([0-9]+),.*SUCCESS_NUM: ([0-9]+),.*FAILURE: ([0-9]+).*,.*ABORTED: ([0-9]+),.*ERROR: ([0-9]+).*/, arry) {print arry[2]","arry[3]","arry[1]","arry[4]","arry[5]}' $FILE)
 
-  read -r -a partFailed <<< $(gawk 'match($0, /.*Failed \[([0-9]+)\/([0-9]+)\]/, arr) {res[arr[1]<arr[2]]++}; END {print res[0]","res[1]}' $FILE)
+  read -r -a partFailed <<< $(gawk 'match($0, /.*Failed \[([0-9]+)\/([0-9]+)\]/, arr) {res[arr[1]<arr[2]]++; res[2]+=arr[1]; res[3]+=arr[2]}; END {print res[1]","res[0]","res[2]","res[3]}' $FILE)
+  read -r -a succTests <<< $(gawk 'match($0, /.*Successful \[Tested: ([0-9]+)\]/, arr) {res[0]+=arr[1]}; END {print res[0];}' $FILE)
 
+  allSymbSucc=$((arrTrans[0]+arrTrans[2]))
   symFAIL="${arrMath[2]}"
-  avgSYMSUCC=$(bc <<< "scale=2; 100*${arrTrans[0]}/${arrTrans[1]}")
+  avgSYMSUCC=$(bc <<< "scale=2; 100*${allSymbSucc}/${arrTrans[1]}")
   avgNUMSUCC=$(bc <<< "scale=2; 100*${arrMath[0]}/${symFAIL}")
 
 #  avgPARTFAIL=$(bc <<< "scale=2; 100*${partFailed[0]}/(${arrMath[0]}+${arrMath[1]})")
 #  avgTOTALFAIL=$(bc <<< "scale=2; 100*${partFailed[1]}/(${arrMath[0]}+${arrMath[1]})")
 
   SUMTRANS=$((SUMTRANS + arrTrans[1]))
-  SUMSYMSUCC=$((SUMSYMSUCC + arrTrans[0]))
+  SUMSYMSUCC=$((SUMSYMSUCC + allSymbSucc))
   SUMFAIL=$((SUMFAIL + symFAIL))
   SUMNUMSUCC=$((SUMNUMSUCC + arrMath[0]))
   SUMNUMFAIL=$((SUMNUMFAIL + arrMath[1]))
@@ -58,8 +78,11 @@ for FILE in $FILES; do
 
   PARTFAIL=$((PARTFAIL + partFailed[0]))
   TOTALFAIL=$((TOTALFAIL + partFailed[1]))
+  TOTALFAILTESTS=$((TOTALFAILTESTS + partFailed[2]))
+  TOTALTESTS=$((TOTALTESTS + succTests[0] + partFailed[3]))
+  TOTALSUCCESSTESTS=$((TOTALSUCCESSTESTS + succTests[0] + (partFailed[3] - partFailed[2])))
 
-  printf "\\TT\\TB \\\verb|%s| & %2d & %3d & %3d & (%4.1f\\%%) & %3d & %3d & (%4.1f\\%%) & %3d & [%3d / %3d] & %3d & %3d \\\\\\ \\hline\n" "${id}" "${num#0}" "${arrTrans[1]}" "${arrTrans[0]}" "${avgSYMSUCC}" "${symFAIL}" "${arrMath[0]}" "${avgNUMSUCC}" "${arrMath[1]}" "${partFailed[0]}" "${partFailed[1]}" "${arrMath[3]}" "${arrMath[4]}"
+  printf "\\TT\\TB \\\verb|%s| & %2d & %3d & %3d & (%4.1f\\%%) & %3d & %3d & (%4.1f\\%%) & %3d & [%3d / %3d] & %3d & %3d \\\\\\ \\hline\n" "${id}" "${num#0}" "${arrTrans[1]}" "${allSymbSucc}" "${avgSYMSUCC}" "${symFAIL}" "${arrMath[0]}" "${avgNUMSUCC}" "${arrMath[1]}" "${partFailed[0]}" "${partFailed[1]}" "${arrMath[3]}" "${arrMath[4]}"
 
   FILECOUNTER=$((FILECOUNTER+1))
 
@@ -80,3 +103,5 @@ avgREST=$(bc <<< "scale=2; 100*${SUMNUMFAIL}/${SUMTRANS}")
 
 printf "\\hline\n"
 printf "\\multicolumn{2}{|c|}{$\Sigma$} & %'4d & %'4d & (%4.1f\\%%) & %'4d & %'4d & (%4.1f\\%%) & %'4d & [%'4d / %'4d] & %'4d & %'4d \\\\\\ \\hline\n" "${SUMTRANS}" "${SUMSYMSUCC}" "${avgSS}" "${SUMFAIL}" "${SUMNUMSUCC}" "${avgNUMS}" "${SUMNUMFAIL}" "${PARTFAIL}" "${TOTALFAIL}" "${ABORTED}" "${ERRS}"
+
+printf "Total test cases: %'d [Total Fail: %'d | Total Success: %'d]\n" "${TOTALTESTS}" "${TOTALFAILTESTS}" "${TOTALSUCCESSTESTS}"
