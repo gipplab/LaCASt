@@ -83,4 +83,26 @@ public class TeXPreProcessorTest {
         String in = "{\\sqrt{1-k^2}}^{-1}\\ln{\\Jacobielldck{x}{k}+\\sqrt{1-k^2}\\Jacobiellsck{x}{k}}";
         assertFalse(TeXPreProcessor.wrappedInCurlyBrackets(in));
     }
+
+    @Test
+    public void reduceAtsTest() {
+        String in = "\\Jacobiellsnk@{\\NVar{z}}{\\NVar{k}}";
+        assertEquals(in, TeXPreProcessor.resetNumberOfAtsToOne(in));
+
+        String twoAts = "\\Jacobiellsnk@@{\\NVar{z}}{\\NVar{k}}";
+        String threeAts = "\\Jacobiellsnk@@@{\\NVar{z}}{\\NVar{k}}";
+        assertEquals(in, TeXPreProcessor.resetNumberOfAtsToOne(twoAts));
+        assertEquals(in, TeXPreProcessor.resetNumberOfAtsToOne(threeAts));
+    }
+
+    @Test
+    public void reduceMultiAtsTest() {
+        String in = "\\Jacobiellsnk@{\\macro@{z}}";
+        assertEquals(in, TeXPreProcessor.resetNumberOfAtsToOne(in));
+
+        String twoAts = "\\Jacobiellsnk@@@{\\macro@@{z}}";
+        String threeAts = "\\Jacobiellsnk@{\\macro@@@{z}}";
+        assertEquals(in, TeXPreProcessor.resetNumberOfAtsToOne(twoAts));
+        assertEquals(in, TeXPreProcessor.resetNumberOfAtsToOne(threeAts));
+    }
 }
