@@ -76,4 +76,9 @@ public class TeXPreProcessor {
         }
         return openCounter == 0;
     }
+
+    public static String resetNumberOfAtsToOne(String in) {
+        // if there are multiple @s, replace it my one @
+        return in.replaceAll("@{2,}", "@");
+    }
 }

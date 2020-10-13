@@ -226,7 +226,7 @@ public class Case {
         }
     }
 
-    private static final Pattern NVAR_PATTERN = Pattern.compile("\\\\NVar\\{(.*?)}|@+");
+    private static final Pattern NVAR_PATTERN = Pattern.compile("\\\\NVar\\{(.*?)}");
 
     /**
      * Problem: Line 3933 use: \symbolUsed[\EulerGamma@{\NVar{z}}]{C5.S2.E1.m2badec}
@@ -242,8 +242,8 @@ public class Case {
      */
     private void replaceSingleTag(SymbolTag def) throws ParseException {
         SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
-        PrintablePomTaggedExpression ppteLHS = mlp.parse(this.LHS.replace("@", ""), this.getEquationLabel());
-        PrintablePomTaggedExpression ppteRHS = mlp.parse(this.RHS.replace("@", ""), this.getEquationLabel());
+        PrintablePomTaggedExpression ppteLHS = mlp.parse(TeXPreProcessor.resetNumberOfAtsToOne(this.LHS), this.getEquationLabel());
+        PrintablePomTaggedExpression ppteRHS = mlp.parse(TeXPreProcessor.resetNumberOfAtsToOne(this.RHS), this.getEquationLabel());
 
         String symbol = def.getSymbol();
         boolean isSemantic = isSemantic(symbol);
@@ -255,19 +255,19 @@ public class Case {
             if ( m.group(1) != null ) {
                 m.appendReplacement(sb, "VAR"+counter);
                 counter++;
-            } else m.appendReplacement(sb, "");
+            }
         }
 
         m.appendTail(sb);
 
-        MatchablePomTaggedExpression matchPOML = new MatchablePomTaggedExpression(mlp, sb.toString(), "VAR\\d+");
+        MatchablePomTaggedExpression matchPOML = new MatchablePomTaggedExpression(mlp, TeXPreProcessor.resetNumberOfAtsToOne(sb.toString()), "VAR\\d+");
         PomMatcher matcherL = matchPOML.matcher(ppteLHS);
         if ( counter == 0 && !isSemantic ) {
             PrintablePomTaggedExpression left = matcherL.replaceAll("("+def.getDefinition()+")");
             this.LHS = left.getTexString();
         }
 
-        MatchablePomTaggedExpression matchPOMR = new MatchablePomTaggedExpression(mlp, sb.toString(), "VAR\\d+");
+        MatchablePomTaggedExpression matchPOMR = new MatchablePomTaggedExpression(mlp, TeXPreProcessor.resetNumberOfAtsToOne(sb.toString()), "VAR\\d+");
         PomMatcher matcherR = matchPOMR.matcher(ppteRHS);
         if ( counter == 0 && !isSemantic ) {
             PrintablePomTaggedExpression right = matcherR.replaceAll("("+def.getDefinition()+")");
