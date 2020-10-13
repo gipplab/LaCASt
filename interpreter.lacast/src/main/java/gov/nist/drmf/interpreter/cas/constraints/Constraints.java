@@ -36,15 +36,15 @@ public class Constraints {
     }
 
     public String[] getTexConstraints() {
-        return texConstraints.toArray(new String[0]);
+        return texConstraints.stream().distinct().toArray(String[]::new);
     }
 
     public String[] getSpecialConstraintVariables() {
-        return specialConstraintVariables.toArray(new String[0]);
+        return specialConstraintVariables.stream().distinct().toArray(String[]::new);
     }
 
     public String[] getSpecialConstraintValues() {
-        return specialConstraintValues.toArray(new String[0]);
+        return specialConstraintValues.stream().distinct().toArray(String[]::new);
     }
 
     public void addConstraints(Constraints c) {

@@ -13,8 +13,8 @@ public final class LogManipulator {
 
         for ( int i = 2; i < msg.length() && caseCounter < maxCases; i++ ) {
             char c = msg.charAt(i);
-            if ( '{' == c ) bracketCounter++;
-            else if ( '}' == c ) bracketCounter--;
+            if ( '{' == c || '[' == c ) bracketCounter++;
+            else if ( '}' == c || ']' == c ) bracketCounter--;
             else continue;
 
             if ( bracketCounter == 0 ) {

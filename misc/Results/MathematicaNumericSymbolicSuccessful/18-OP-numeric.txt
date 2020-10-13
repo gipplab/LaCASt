@@ -1,4 +1,4 @@
-Overall: [TOTAL: 579, SKIPPED: 478, DEFINITIONS: 0, STARTED_TEST_CASES: 101, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 101, SUCCESS_SYMB: 0, SUCCESS_NUM: 95, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 6, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 579, SKIPPED: 478, DEFINITIONS: 0, STARTED_TEST_CASES: 101, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 101, SUCCESS_SYMB: 0, SUCCESS_NUM: 95, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 6, NO_TEST_VALUES: 0, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
 5445 [https://dlmf.nist.gov/18.1#Ex7]: Successful [Tested: 70]
 5450 [http://dlmf.nist.gov/18.1.E1]: Skip - symbolical successful subtest
 5450-a [http://dlmf.nist.gov/18.1.E1]: Successful [Tested: 3]
@@ -88,7 +88,7 @@ Overall: [TOTAL: 579, SKIPPED: 478, DEFINITIONS: 0, STARTED_TEST_CASES: 101, ERR
 5618 [http://dlmf.nist.gov/18.12.E12]: Successful [Tested: 18]
 5621 [http://dlmf.nist.gov/18.12.E15]: Successful [Tested: 18]
 5628 [http://dlmf.nist.gov/18.14.E1]: Skip - symbolical successful subtest
-5628-a [http://dlmf.nist.gov/18.14.E1]: Successful [Tested: 6]
+5628-a [http://dlmf.nist.gov/18.14.E1]: Successful [Tested: 9]
 5631 [http://dlmf.nist.gov/18.14.E4]: Skip - symbolical successful subtest
 5631-a [http://dlmf.nist.gov/18.14.E4]: Successful [Tested: 9]
 5635 [http://dlmf.nist.gov/18.14.E8]: Skip - symbolical successful subtest

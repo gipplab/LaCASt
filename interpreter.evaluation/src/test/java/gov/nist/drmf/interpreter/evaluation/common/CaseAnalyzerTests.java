@@ -84,13 +84,16 @@ public class CaseAnalyzerTests {
         // fictive constraint, that will never match any blueprint
         // ensure the constraints does not exist:
         boolean previousState = CaseAnalyzer.ACTIVE_BLUEPRINTS;
-        CaseAnalyzer.ACTIVE_BLUEPRINTS = false;
-        String line = "\\Ln@@{z} = z+1 \\constraint{z\\neq 2, 3, 5, 7, 9, ...} \\url{http://dlmf.nist.gov/111.1.1}";
+        CaseAnalyzer.ACTIVE_BLUEPRINTS = true;
+        String line = "\\Ln@@{z} = z+1 \\constraint{z = 1, 2, 3, \\dots} \\constraint{z\\neq 2, 3, 5, 7, 9, ...} \\url{http://dlmf.nist.gov/111.1.1}";
         LinkedList<Case> cc = CaseAnalyzer.analyzeLine(line, 1, new SymbolDefinedLibrary());
         Case c = cc.get(0);
 
-        assertEquals("[z\\neq 2, 3, 5, 7, 9, ...]", c.getRawConstraint());
-        assertTrue( c.specialValueInfo().contains("z\\neq 2, 3, 5, 7, 9, ...") );
+        assertEquals(0, c.getConstraintObject().getTexConstraints().length);
+        assertEquals(1, c.getConstraintObject().getSpecialConstraintVariables().length);
+        assertEquals("z", c.getConstraintObject().getSpecialConstraintVariables()[0]);
+        assertEquals(1, c.getConstraintObject().getSpecialConstraintValues().length);
+        assertEquals("3", c.getConstraintObject().getSpecialConstraintValues()[0]);
 
         List<String> constraints = c.getConstraints(dlmfTrans, null);
         assertEquals(1, constraints.size());
@@ -310,9 +313,9 @@ public class CaseAnalyzerTests {
         Case actualAiryAiTest = airyFirstTest.replaceSymbolsUsed(lib);
         assertTrue(actualAiryAiTest.isEquation());
         assertEquals(Relations.EQUAL, actualAiryAiTest.getRelation());
-        assertEquals("\\AiryAi@{z}", actualAiryAiTest.getLHS());
+        assertEquals("\\AiryAi{z}", actualAiryAiTest.getLHS());
         // note that only \zeta has changed if everything worked properly
-        assertEquals("\\cpi^{-1}\\sqrt{z/3}\\modBesselK{+ 1/3}@{{\\frac{2}{3} z^{\\frac{3}{2}}}}", actualAiryAiTest.getRHS());
+        assertEquals("\\cpi^{-1}\\sqrt{z/3}\\modBesselK{+ 1/3}{{\\frac{2}{3} z^{\\frac{3}{2}}}}", actualAiryAiTest.getRHS());
     }
 
     @Test
@@ -356,17 +359,17 @@ public class CaseAnalyzerTests {
 
         // let the magic happen...
         trickyParaWCase = trickyParaWCase.replaceSymbolsUsed(lib);
-        assertEquals("\\paraW@{a}{x}", trickyParaWCase.getLHS());
+        assertEquals("\\paraW{a}{x}", trickyParaWCase.getLHS());
         assertEquals(
                 "\\sqrt{(\\sqrt{1+\\expe ^{2\\cpi a}}-\\expe ^{\\cpi a}) / 2} " +
                 "\\expe^{\\frac{1}{4}\\cpi a}" +
                 " (" +
                     "\\expe^{\\iunit (\\tfrac{1}{8} \\cpi + \\tfrac{1}{2} (\\phase@@{\\EulerGamma@{\\tfrac{1}{2}+\\iunit a}}))} " +
-                    "\\paraU@{\\iunit a}{" +
+                    "\\paraU{\\iunit a}{" +
                         "x\\expe ^{-\\cpi \\iunit /4}" +
                     "} + " +
                     "\\expe^{- \\iunit (\\tfrac{1}{8} \\cpi + \\tfrac{1}{2} (\\phase@@{\\EulerGamma@{\\tfrac{1}{2}+\\iunit a}}))} " +
-                    "\\paraU@{-\\iunit a}{" +
+                    "\\paraU{-\\iunit a}{" +
                         "x\\expe ^{\\cpi \\iunit /4}" +
                     "}" +
                 ")", trickyParaWCase.getRHS());
@@ -381,17 +384,17 @@ public class CaseAnalyzerTests {
 
         Case jacobiCase = testCases.get(1).get(0);
         assertEquals("\\Jacobiellsnk@{z}{k}", jacobiCase.getLHS());
-        assertEquals("\\frac{\\Jacobithetaq{3}@{0}{q}}{\\Jacobithetaq{2}@{0}{q}}\\frac{\\Jacobithetaq{1}@{\\zeta}{q}}{\\Jacobithetaq{4}@{\\zeta}{q}}", jacobiCase.getRHS());
+        assertEquals("\\frac{\\Jacobithetaq{3}{0}{q}}{\\Jacobithetaq{2}{0}{q}}\\frac{\\Jacobithetaq{1}{\\zeta}{q}}{\\Jacobithetaq{4}{\\zeta}{q}}", jacobiCase.getRHS());
 
         jacobiCase = jacobiCase.replaceSymbolsUsed(lib);
-        assertEquals("\\Jacobiellsnk@{z}{k}", jacobiCase.getLHS());
+        assertEquals("\\Jacobiellsnk{z}{k}", jacobiCase.getLHS());
         assertEquals(
                 "\\frac" +
-                    "{\\Jacobithetaq{3}@{0}{(\\exp@{-\\cpi\\ccompellintKk@{k}/\\compellintKk@{k}})}}" +
-                    "{\\Jacobithetaq{2}@{0}{(\\exp@{-\\cpi\\ccompellintKk@{k}/\\compellintKk@{k}})}} " +
+                    "{\\Jacobithetaq{3}{0}{(\\exp{-\\cpi\\ccompellintKk{k}/\\compellintKk{k}})}}" +
+                    "{\\Jacobithetaq{2}{0}{(\\exp{-\\cpi\\ccompellintKk{k}/\\compellintKk{k}})}} " +
                 "\\frac" +
-                    "{\\Jacobithetaq{1}@{\\zeta}{(\\exp@{-\\cpi\\ccompellintKk@{k}/\\compellintKk@{k}})}}" +
-                    "{\\Jacobithetaq{4}@{\\zeta}{(\\exp@{-\\cpi\\ccompellintKk@{k}/\\compellintKk@{k}})}}",
+                    "{\\Jacobithetaq{1}{\\zeta}{(\\exp{-\\cpi\\ccompellintKk{k}/\\compellintKk{k}})}}" +
+                    "{\\Jacobithetaq{4}{\\zeta}{(\\exp{-\\cpi\\ccompellintKk{k}/\\compellintKk{k}})}}",
                 jacobiCase.getRHS());
     }
 

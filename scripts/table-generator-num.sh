@@ -36,6 +36,7 @@ PARTFAIL=0
 TOTALFAIL=0
 
 FILECOUNTER=0
+NOTESTVALS=0
 
 for FILE in $FILES; do
   [[ $FILE =~ .*([0-9][0-9])\-([A-Z]+)-.* ]]
@@ -55,7 +56,9 @@ for FILE in $FILES; do
   #read -r -a arrMath <<< $(gawk 'match($0, /.*SUCCESS: ([0-9]+),.*FAILURE: ([0-9]+),.*TESTED: ([0-9]+).*/, arry) {print arry[1]","arry[2]","arry[3]}' $FILE)
   
   read -r -a arrTrans <<< $(gawk 'match($0, /.*SUCCESS_TRANS: ([0-9]+),.*SUCCESS_SYMB: ([0-9]+).*,.*SUCCESS_UNDER_EXTRA_CONDITION: ([0-9]+).*/, arry) {print arry[2]","arry[1]","arry[3]}' $refF)
-  read -r -a arrMath <<< $(gawk 'match($0, /.*STARTED_TEST_CASES: ([0-9]+),.*SUCCESS_NUM: ([0-9]+),.*FAILURE: ([0-9]+).*,.*ABORTED: ([0-9]+),.*ERROR: ([0-9]+).*/, arry) {print arry[2]","arry[3]","arry[1]","arry[4]","arry[5]}' $FILE)
+  read -r -a arrMath <<< $(gawk 'match($0, /.*STARTED_TEST_CASES: ([0-9]+),.*SUCCESS_NUM: ([0-9]+),.*FAILURE: ([0-9]+),.*ABORTED: ([0-9]+),.*ERROR: ([0-9]+).*/, arry) {print arry[2]","arry[3]","arry[1]","arry[4]","arry[5]}' $FILE)
+  
+  read -r -a skipped <<< $(gawk 'match($0, /.*NO_TEST_VALUES: ([0-9]+).*/, arry) {print arry[1]}' $FILE)
 
   read -r -a partFailed <<< $(gawk 'match($0, /.*Failed \[([0-9]+)\/([0-9]+)\]/, arr) {res[arr[1]<arr[2]]++; res[2]+=arr[1]; res[3]+=arr[2]}; END {print res[1]","res[0]","res[2]","res[3]}' $FILE)
   read -r -a succTests <<< $(gawk 'match($0, /.*Successful \[Tested: ([0-9]+)\]/, arr) {res[0]+=arr[1]}; END {print res[0];}' $FILE)
@@ -75,6 +78,8 @@ for FILE in $FILES; do
   SUMNUMFAIL=$((SUMNUMFAIL + arrMath[1]))
   ABORTED=$((ABORTED + arrMath[3]))
   ERRS=$((ERRS + arrMath[4]))
+
+  NOTESTVALS=$((NOTESTVALS + skipped[0]))
 
   PARTFAIL=$((PARTFAIL + partFailed[0]))
   TOTALFAIL=$((TOTALFAIL + partFailed[1]))
@@ -105,3 +110,4 @@ printf "\\hline\n"
 printf "\\multicolumn{2}{|c|}{$\Sigma$} & %'4d & %'4d & (%4.1f\\%%) & %'4d & %'4d & (%4.1f\\%%) & %'4d & [%'4d / %'4d] & %'4d & %'4d \\\\\\ \\hline\n" "${SUMTRANS}" "${SUMSYMSUCC}" "${avgSS}" "${SUMFAIL}" "${SUMNUMSUCC}" "${avgNUMS}" "${SUMNUMFAIL}" "${PARTFAIL}" "${TOTALFAIL}" "${ABORTED}" "${ERRS}"
 
 printf "Total test cases: %'d [Total Fail: %'d | Total Success: %'d]\n" "${TOTALTESTS}" "${TOTALFAILTESTS}" "${TOTALSUCCESSTESTS}"
+printf "Total number of skipped because no test values found: %'d\n" "${NOTESTVALS}"

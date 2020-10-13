@@ -507,6 +507,13 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     @Test
+    public void wrappedCurlyBracketsTest() throws ParseException {
+        String test = "{\\sqrt{1-k^2}}^{-1}\\ln{\\Jacobielldck{x}{k}+\\sqrt{1-k^2}\\Jacobiellsck{x}{k}}";
+        PrintablePomTaggedExpression p = mlp.parse(test);
+        assertThat(p.getTexString(), equalToCompressingWhiteSpace("{\\sqrt{1-k^2}}^{-1}\\ln{\\Jacobielldck{x}{k}+\\sqrt{1-k^2}\\Jacobiellsck{x}{k}}"));
+    }
+
+    @Test
     public void realWorldWikiExampleTest() throws ParseException {
         String texString = "(1 - x)^{\\alpha}(1 + x)^{\\beta}";
         mlp.parse(texString);

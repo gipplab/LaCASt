@@ -1,4 +1,4 @@
-Overall: [TOTAL: 67, SKIPPED: 30, DEFINITIONS: 0, STARTED_TEST_CASES: 37, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 37, SUCCESS_SYMB: 0, SUCCESS_NUM: 15, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 8, ABORTED: 14, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 67, SKIPPED: 30, DEFINITIONS: 0, STARTED_TEST_CASES: 37, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 37, SUCCESS_SYMB: 0, SUCCESS_NUM: 14, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 10, NO_TEST_VALUES: 0, ABORTED: 13, ERROR: 0] for test expression: (#LHS)-(#RHS)
 9669 [http://dlmf.nist.gov/34.1.E1]: Successful [Tested: 300]
 9676 [http://dlmf.nist.gov/34.3.E1]: Failed [9/9]: {{-0.16910197872576277, {Rule[j, 1], Rule[m, 1]}}, {0.5773502691896258, {Rule[j, 1], Rule[m, 2]}}, ...
 9677 [http://dlmf.nist.gov/34.3.E2]: Failed [6/9]: {{0.816496580927726, {Rule[j, 1], Rule[m, 2]}}, {-1.224744871391589, {Rule[j, 1], Rule[m, 3]}}, ...
@@ -30,9 +30,9 @@ Overall: [TOTAL: 67, SKIPPED: 30, DEFINITIONS: 0, STARTED_TEST_CASES: 37, ERROR_
 9708-a [http://dlmf.nist.gov/34.5.E8]: Successful [Tested: 300]
 9709 [http://dlmf.nist.gov/34.5.E9]: Successful [Tested: 300]
 9710 [http://dlmf.nist.gov/34.5.E10]: Successful [Tested: 300]
-9711 [http://dlmf.nist.gov/34.5.E11]: Successful [Tested: 1]
+9711 [http://dlmf.nist.gov/34.5.E11]: Failed [1/1]: {{Plus[Times[-2.718281828459045, SixJSymbol[{Plus[-1.0, Subscript[j, 1]], Subscript[j, 2], Subscript[j, 3]}, {Subscript[l, 1], Subscript[l, 2], Subscript[l, 3]}], Subscript[j, 1], Plus[1.0, Subscript[j, 1]]], Times[-2.718281828459045, SixJSymbol[{Plus[1.0, Subscript[j, 1]], Subscript[j, 2], Subscript[j, 3]}, {Subscript[l, 1], Subscript[l, 2], Subscript[l, 3]}], Subscript[j, 1], Plus[1.0, Subscript[j, 1]]], Times[SixJSymbol[{Subscript[j, 1], Subscript[j, 2], Subscript[j, 3]}, {Subscript[l, 1], Subscript[l, 2], Subscript[l, 3]}], Plus[1.0, Times[2.0, Subscript[j, 1]]], Plus[Times[Plus[Times[-1.0, Subscript[J, 1]], Subscript[J, 2], Subscript[J, 3]], Plus[Times[-1.0, Subscript[J, 1]], Subscript[L, 2], Subscript[L, 3]]], Times[-2.0, Plus[Times[-1.0, Subscript[J, 1], Subscript[L, 1]], Times[Subscript[J, 2], Subscript[L, 2]], Times[Subscript[J, 3], Subscript[L, 3]]]]]]], "NoValue"}}
 9720 [http://dlmf.nist.gov/34.5.E19]: Skipped - Because timed out
 9721 [http://dlmf.nist.gov/34.5.E20]: Skipped - Because timed out
-9722 [http://dlmf.nist.gov/34.5.E21]: Skipped - Because timed out
+9722 [http://dlmf.nist.gov/34.5.E21]: Failed [38/63]: {{Indeterminate, {Rule[j, 1], Rule[Subscript[j, 1], -1.5], Rule[Subscript[j, 2], -1.5]}}, {Indeterminate, {Rule[j, 2], Rule[Subscript[j, 1], -1.5], Rule[Subscript[j, 2], -1.5]}}, ...
 9723 [http://dlmf.nist.gov/34.5.E22]: Skipped - Because timed out
 9733 [http://dlmf.nist.gov/34.8.E2]: Failed [300/300]: {{Complex[0.23054301905722518, -0.39694955022903244], {Rule[θ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[j, 1], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[j, 2], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[j, 3], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Complex[-0.452469682834994, -0.2139368483368131], {Rule[θ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[j, 1], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[j, 2], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[j, 3], Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...

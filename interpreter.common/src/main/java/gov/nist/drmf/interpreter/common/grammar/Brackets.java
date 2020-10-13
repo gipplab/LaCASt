@@ -419,7 +419,9 @@ public enum Brackets {
     }
 
     private static Brackets getAppropriateBracket(Brackets currentOpenBracket, Brackets bracket) {
-        if (isAbsValueClosedBracket(currentOpenBracket, bracket)) {
+        if (currentOpenBracket == null && (Brackets.abs_val_open.equals(bracket) || Brackets.abs_val_close.equals(bracket))) {
+            return Brackets.abs_val_open;
+        } else if (isAbsValueClosedBracket(currentOpenBracket, bracket)) {
             return Brackets.abs_val_close;
         } else {
             return bracket;

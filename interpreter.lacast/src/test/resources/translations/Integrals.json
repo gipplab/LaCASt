@@ -3,79 +3,85 @@
         "name": "SIMPLE",
         "LaTeX": "\\int_{0}^{1} x \\diff{x}",
         "Maple": "int(x, x = 0..1)",
-        "Mathematica": "Integrate[x, {x, 0, 1}]"
+        "Mathematica": "Integrate[x, {x, 0, 1}, GenerateConditions->None]"
     },
     {
         "name": "SIMPLE_DIFFD",
         "LaTeX": "\\int_{0}^{1} x \\diffd x",
         "Maple": "int(x, x = 0..1)",
-        "Mathematica": "Integrate[x, {x, 0, 1}]"
+        "Mathematica": "Integrate[x, {x, 0, 1}, GenerateConditions->None]"
     },
     {
         "name": "SIMPLE_INDEF",
         "LaTeX": "\\int \\sin@{x} \\diff{x}",
         "Maple": "int(sin(x), x)",
-        "Mathematica": "Integrate[Sin[x], x]"
+        "Mathematica": "Integrate[Sin[x], x, GenerateConditions->None]"
     },
     {
         "name": "SIMPLE_REVERSE",
         "LaTeX": "\\int^{1}_0 x \\diff{x}",
         "Maple": "int(x, x = 0..1)",
-        "Mathematica": "Integrate[x, {x, 0, 1}]"
+        "Mathematica": "Integrate[x, {x, 0, 1}, GenerateConditions->None]"
     },
     {
         "name": "SIMPLE_AFTER",
         "LaTeX": "\\int_{0}^1 x \\diff{x} + x^2",
         "Maple": "int(x, x = 0..1) + (x)^(2)",
-        "Mathematica": "Integrate[x, {x, 0, 1}] + (x)^(2)"
+        "Mathematica": "Integrate[x, {x, 0, 1}, GenerateConditions->None] + (x)^(2)"
     },
     {
         "name": "SIMPLE_MULTI_INNER",
         "LaTeX": "\\int_{0}^{1} \\int_{0}^{1} yx \\diff{y} \\diff{x}",
         "Maple": "int(int(y*x, y = 0..1), x = 0..1)",
-        "Mathematica": "Integrate[Integrate[y*x, {y, 0, 1}], {x, 0, 1}]"
+        "Mathematica": "Integrate[Integrate[y*x, {y, 0, 1}, GenerateConditions->None], {x, 0, 1}, GenerateConditions->None]"
     },
     {
         "name": "SIMPLE_MULTI_CHAIN",
         "LaTeX": "\\int_{0}^{1} x \\diff{x} \\int_{0}^{1} y \\diff{y}",
         "Maple": "int(x, x = 0..1)*int(y, y = 0..1)",
-        "Mathematica": "Integrate[x, {x, 0, 1}]*Integrate[y, {y, 0, 1}]"
+        "Mathematica": "Integrate[x, {x, 0, 1}, GenerateConditions->None]*Integrate[y, {y, 0, 1}, GenerateConditions->None]"
     },
     {
         "name": "SIMPLE_FRAC_DIFF",
         "LaTeX": "\\int_{0}^{1} \\frac{\\diff{x}}{x}",
         "Maple": "int((1)/(x), x = 0..1)",
-        "Mathematica": "Integrate[Divide[1, x], {x, 0, 1}]"
+        "Mathematica": "Integrate[Divide[1, x], {x, 0, 1}, GenerateConditions->None]"
     },
     {
         "name": "SIMPLE_MULTI_INNER_FRAC_DIFF",
         "LaTeX": "\\int_{0}^{1} \\int_{0}^{1} \\frac{\\diff{x} \\diff{y}}{xy}",
         "Maple": "int(int((1)/(x*y), x = 0..1), y = 0..1)",
-        "Mathematica": "Integrate[Integrate[Divide[1, x*y], {x, 0, 1}], {y, 0, 1}]"
+        "Mathematica": "Integrate[Integrate[Divide[1, x*y], {x, 0, 1}, GenerateConditions->None], {y, 0, 1}, GenerateConditions->None]"
     },
     {
         "name": "SIMPLE_IINT",
         "LaTeX": "\\iint_0^1 x \\diff{x}",
         "Maple": "int(int(x, x = 0..1), x = 0..1)",
-        "Mathematica": "Integrate[Integrate[x, {x, 0, 1}], {x, 0, 1}]"
+        "Mathematica": "Integrate[Integrate[x, {x, 0, 1}, GenerateConditions->None], {x, 0, 1}, GenerateConditions->None]"
     },
     {
         "name": "SIMPLE_IIINT",
         "LaTeX": "\\iiint_0^1 x \\diff{x}",
         "Maple": "int(int(int(x, x = 0..1), x = 0..1), x = 0..1)",
-        "Mathematica": "Integrate[Integrate[Integrate[x, {x, 0, 1}], {x, 0, 1}], {x, 0, 1}]"
+        "Mathematica": "Integrate[Integrate[Integrate[x, {x, 0, 1}, GenerateConditions->None], {x, 0, 1}, GenerateConditions->None], {x, 0, 1}, GenerateConditions->None]"
     },
     {
         "name": "SIMPLE_IIIINT",
         "LaTeX": "\\iiiint_0^1 x \\diff{x}",
         "Maple": "int(int(int(int(x, x = 0..1), x = 0..1), x = 0..1), x = 0..1)",
-        "Mathematica": "Integrate[Integrate[Integrate[Integrate[x, {x, 0, 1}], {x, 0, 1}], {x, 0, 1}], {x, 0, 1}]"
+        "Mathematica": "Integrate[Integrate[Integrate[Integrate[x, {x, 0, 1}, GenerateConditions->None], {x, 0, 1}, GenerateConditions->None], {x, 0, 1}, GenerateConditions->None], {x, 0, 1}, GenerateConditions->None]"
     },
     {
         "name": "DLMF_EQUAL",
         "DLMF": "6.7.13",
         "LaTeX": "\\int_0^{\\infty} \\frac{\\sin@{t}}{t+z} \\diff{t} = \\int_0^{\\infty} \\frac{\\expe^{-zt} \\diff{t}}{t^2+z}",
         "Maple": "int((sin(t))/(t+z), t = 0..infinity) = int((exp(-z*t))/((t)^(2)+z), t = 0..infinity)",
-        "Mathematica": "Integrate[Divide[Sin[t], t+z], {t, 0, Infinity}] == Integrate[Divide[Exp[-z*t], (t)^(2)+z], {t, 0, Infinity}]"
+        "Mathematica": "Integrate[Divide[Sin[t], t+z], {t, 0, Infinity}, GenerateConditions->None] == Integrate[Divide[Exp[-z*t], (t)^(2)+z], {t, 0, Infinity}, GenerateConditions->None]"
+    },
+    {
+        "name": "DLMF_ABSOLUTE_VALUE_BRACKETS",
+        "DLMF": "5.13.2",
+        "LaTeX": "\\frac{1}{2\\cpi}\\int_{-\\infty}^{\\infty}|\\EulerGamma@{a+\\iunit t}|^{2}\\expe ^{(2b-\\cpi)t}\\diff{t}",
+        "Mathematica": "Divide[1,2*Pi]*Integrate[(Abs[Gamma[a+I * t]])^(2) * Exp[(2*b - Pi)*t], {t, -Infinity, Infinity}, GenerateConditions->None]"
     }
 ]

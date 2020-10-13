@@ -36,6 +36,12 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
     private final boolean isWildcard;
 
     /**
+     * If a single node a is wrapped in brackets {a}, it represents a single sequence object.
+     * This kind of wildcard only matches a single node even if it is at the end of a sequence.
+     */
+    private boolean isSingleSequenceWildcard;
+
+    /**
      * The wildcard ID
      */
     private final String wildcardID;
@@ -172,9 +178,11 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
                 throw new NotMatchableException("A wildcard node cannot have children.");
             this.isWildcard = true;
             this.wildcardID = text;
+            this.isSingleSequenceWildcard = PrintablePomTaggedExpressionUtils.isSingleElementInBrackets(refRoot);
         } else {
             this.isWildcard = false;
             this.wildcardID = null;
+            this.isSingleSequenceWildcard = false;
         }
 
         List<PomTaggedExpression> comps = refRoot.getComponents();
@@ -186,7 +194,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
 
             if (prevNode != null) {
                 prevNode.setNextSibling(cpte);
-                if (prevNode.isWildcard && cpte.isWildcard)
+                if (prevNode.isWildcard && cpte.isWildcard && !prevNode.isSingleSequenceWildcard)
                     throw new NotMatchableException("Two consecutive wildcards may have no unique matches.");
             }
             prevNode = cpte;
@@ -296,22 +304,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
      */
     public boolean match(PrintablePomTaggedExpression expression, MatcherConfig config) {
         try {
-            captures.clear();
-            expression = (PrintablePomTaggedExpression)MLPWrapper.normalize(expression);
-            boolean matched = false;
-            if ( config.allowLeadingTokens() ) {
-                PomMatcher pomMatcher = new PomMatcher(this, expression);
-                boolean result = pomMatcher.find();
-                matched = result && (pomMatcher.lastMatchReachedEnd() || config.allowFollowingTokens());
-            } else {
-                matched = match(expression, new LinkedList<>(), config);
-            }
-            // in case we did not match, we should not provide any partial captured groups
-            // the reason is, some may ask for the captured groups even though it didn't hit
-            // but we cannot guarantee partial hit groups hence its better to reset all in such
-            // cases to not provoke any errors in the future for other developers
-            if ( !matched ) captures.clear();
-            return matched;
+            return matchUnsafe(expression, config);
         } catch (Exception e) {
             LOG.warn(
                     String.format("Unable to match \"%s\". Exception: %s",
@@ -322,6 +315,32 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
             captures.clear();
             return false;
         }
+    }
+
+    /**
+     * Throws exception if something went wrong. The other methods are safe and simply
+     * return false if anything went wrong.
+     * @param expression
+     * @param config
+     * @return
+     */
+    public boolean matchUnsafe(PrintablePomTaggedExpression expression, MatcherConfig config) {
+        captures.clear();
+        expression = (PrintablePomTaggedExpression)MLPWrapper.normalize(expression);
+        boolean matched = false;
+        if ( config.allowLeadingTokens() ) {
+            PomMatcher pomMatcher = new PomMatcher(this, expression);
+            boolean result = pomMatcher.find();
+            matched = result && (pomMatcher.lastMatchReachedEnd() || config.allowFollowingTokens());
+        } else {
+            matched = match(expression, new LinkedList<>(), config);
+        }
+        // in case we did not match, we should not provide any partial captured groups
+        // the reason is, some may ask for the captured groups even though it didn't hit
+        // but we cannot guarantee partial hit groups hence its better to reset all in such
+        // cases to not provoke any errors in the future for other developers
+        if ( !matched ) captures.clear();
+        return matched;
     }
 
     /**
@@ -403,7 +422,8 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
 
         List<PomTaggedExpression> matches = new LinkedList<>();
         matches.add(expression);
-        if (!PomTaggedExpressionUtility.isSequence(expression)) {
+
+        if ( !isSingleSequenceWildcard ) {
             while (!followingExpressions.isEmpty()){
                 expression = followingExpressions.remove(0);
                 if ( isNotAllowedTokenForWildcardMatch(expression, config) ) return false;
@@ -428,7 +448,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         LinkedList<Brackets> bracketStack = new LinkedList<>();
 
         // fill up wild card until the next hit
-        while (continueMatching(bracketStack, next, followingExpressions, config)) {
+        while (!isSingleSequenceWildcard && continueMatching(bracketStack, next, followingExpressions, config)) {
             if (followingExpressions.isEmpty() || isNotAllowedTokenForWildcardMatch(next, config)) {
                 return false;
             }

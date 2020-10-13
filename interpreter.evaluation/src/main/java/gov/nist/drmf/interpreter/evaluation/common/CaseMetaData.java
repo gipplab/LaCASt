@@ -7,9 +7,13 @@ import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @author Andre Greiner-Petter
@@ -78,6 +82,8 @@ public class CaseMetaData {
         return symbolsUsed;
     }
 
+    private static final Pattern COMMA_PATTERN = Pattern.compile("(.*\\\\[lc]?dots)\\s*,\\s*([^a-zA-Z]+)");
+
     public static CaseMetaData extractMetaData(
             LinkedList<String> constraints,
             LinkedList<SymbolTag> symbolsUsed,
@@ -85,6 +91,18 @@ public class CaseMetaData {
             int lineNumber
     ) {
         LinkedList<String> copyConstraints = new LinkedList<>(constraints);
+
+        constraints = constraints.stream()
+                .flatMap(c -> {
+                    Matcher m = COMMA_PATTERN.matcher(c);
+                    Collection<String> col = new LinkedList<>();
+                    if (m.matches()) {
+                        col.add(m.group(1));
+                        col.add(m.group(2));
+                    } else col.add(c);
+                    return col.stream();
+                }).collect(Collectors.toCollection(LinkedList::new));
+
         // first, create label
         Label label = null;
         if ( labelStr != null ){
@@ -111,7 +129,13 @@ public class CaseMetaData {
             }
         }
 
-        String[] conArr = sieved.stream().toArray(String[]::new);
+        String[] conArr = sieved.stream()
+                .flatMap( c -> {
+                    EquationSplitter eq = new EquationSplitter();
+                    Collection<String> col = eq.constraintSplitter(c);
+                    return col.stream();
+                })
+                .toArray(String[]::new);
         Constraints finalConstr = new Constraints(copyConstraints, conArr, specialVars, specialVals);
         return new CaseMetaData(lineNumber, label, finalConstr, symbolsUsed);
     }

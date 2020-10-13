@@ -64,4 +64,16 @@ public class TeXPreProcessor {
         if ( in.startsWith("{") && in.endsWith("}") ) return in.substring(1, in.length()-1).trim();
         else return in;
     }
+
+    public static boolean wrappedInCurlyBrackets(String in) {
+        if ( !in.startsWith("{") && !in.endsWith("}") ) return false;
+        int openCounter = 1;
+        for ( int i = 1; i < in.length(); i++ ) {
+            if ( openCounter <= 0 ) return false;
+            Character c = in.charAt(i);
+            if ( c.equals('{') ) openCounter++;
+            else if ( c.equals('}') ) openCounter--;
+        }
+        return openCounter == 0;
+    }
 }

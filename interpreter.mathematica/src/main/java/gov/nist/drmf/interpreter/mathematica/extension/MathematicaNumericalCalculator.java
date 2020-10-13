@@ -143,6 +143,10 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
         String eVals = generateValuesVarName(eVars);
         addVarDefinitionNL(sb, eVars, buildMathList(constraintVariables));
         addVarDefinitionNL(sb, eVals, buildMathList(constraintValues));
+        if ( constraintVariables != null ) {
+            LOG.debug("Set extra variables: " + constraintVariables);
+            LOG.debug("Set extra values:    " + constraintValues);
+        }
     }
 
     @Override
@@ -154,10 +158,12 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
 
     @Override
     public String setConstraints(List<String> constraints) {
+        String variables = Commands.COMPLEMENT.build(varName, eVars);
         String command = "Join[" +
-                    Commands.FILTER_ASSUMPTIONS.build(buildMathList(constraints), varName) + ", " +
-                    Commands.FILTER_ASSUMPTIONS.build(globalAssumptions, varName) + ", " +
-                    Commands.FILTER_GLOBAL_ASSUMPTIONS.build(globalConstraints, varName, buildMathList(constraints)) +
+                    Commands.FILTER_ASSUMPTIONS.build(buildMathList(constraints), variables) + ", " +
+                    Commands.FILTER_ASSUMPTIONS.build(globalAssumptions, variables) + ", " +
+                    Commands.FILTER_ASSUMPTIONS.build(globalConstraints, variables) +
+//                    Commands.FILTER_GLOBAL_ASSUMPTIONS.build(globalConstraints, varName, buildMathList(constraints)) +
                 "]";
 
         addVarDefinitionNL(sb, cons, command);
@@ -265,8 +271,8 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
             // nothing to do
         }
 
-        LOG.info("Numerical test finished. Result: " + resStr);
-//        LOG.info("Numerical test finished. Result: " + LogManipulator.shortenOutput(resStr, 5));
+//        LOG.info("Numerical test finished. Result: " + resStr);
+        LOG.info("Numerical test finished. Result: " + LogManipulator.shortenOutput(resStr, 5));
         if ( !resStr.matches("^\\{.*") ) return ResultType.ERROR;
         if ( resStr.matches("\\{}|\\{0(?:.0)?[^\\d.]+}") ) return ResultType.SUCCESS;
         return ResultType.FAILURE;

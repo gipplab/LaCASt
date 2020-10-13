@@ -258,15 +258,16 @@ public class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
      * @throws IllegalArgumentException if the given command did not return an integer in the given range
      * @throws ComputerAlgebraSystemEngineException if the command cannot be evaluated
      */
-    public void evaluateAndCheckRangeOfResult(String command, int lowerLimit, int upperLimit)
+    public int evaluateAndCheckRangeOfResult(String command, int lowerLimit, int upperLimit)
             throws IllegalArgumentException, ComputerAlgebraSystemEngineException {
         try {
-            LOG.debug("Prepare numerical test:" + NL + command);
+//            LOG.debug("Prepare numerical test:" + NL + command);
             Algebraic numCombis = evaluate(command);
             try {
                 int i = Integer.parseInt(numCombis.toString());
                 if ( i >= upperLimit ) throw new IllegalArgumentException("Too many combinations: " + i);
                 else if ( i <= lowerLimit ) throw new IllegalArgumentException("There are no valid test values.");
+                return i;
             } catch ( NumberFormatException e ){
                 throw new IllegalArgumentException("Cannot calculate number of combinations!");
             }

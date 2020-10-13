@@ -1,4 +1,4 @@
-Overall: [TOTAL: 147, SKIPPED: 111, DEFINITIONS: 0, STARTED_TEST_CASES: 36, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 36, SUCCESS_SYMB: 0, SUCCESS_NUM: 35, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 1, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 147, SKIPPED: 111, DEFINITIONS: 0, STARTED_TEST_CASES: 36, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 36, SUCCESS_SYMB: 0, SUCCESS_NUM: 35, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 1, NO_TEST_VALUES: 0, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
 3880 [http://dlmf.nist.gov/11.2.E1]: Successful [Tested: 70]
 3884 [http://dlmf.nist.gov/11.2.E5]: Successful [Tested: 70]
 3885 [http://dlmf.nist.gov/11.2.E6]: Successful [Tested: 70]
@@ -7,7 +7,7 @@ Overall: [TOTAL: 147, SKIPPED: 111, DEFINITIONS: 0, STARTED_TEST_CASES: 36, ERRO
 3918 [http://dlmf.nist.gov/11.4.E22]: Successful [Tested: 7]
 3918-a [http://dlmf.nist.gov/11.4.E22]: Skip - symbolical successful subtest
 3919 [http://dlmf.nist.gov/11.4.E23]: Successful [Tested: 56]
-3920 [http://dlmf.nist.gov/11.4.E24]: Successful [Tested: 70]
+3920 [http://dlmf.nist.gov/11.4.E24]: Successful [Tested: 56]
 3921 [http://dlmf.nist.gov/11.4.E25]: Successful [Tested: 56]
 3922 [http://dlmf.nist.gov/11.4.E26]: Successful [Tested: 56]
 3923 [http://dlmf.nist.gov/11.4.E27]: Successful [Tested: 70]

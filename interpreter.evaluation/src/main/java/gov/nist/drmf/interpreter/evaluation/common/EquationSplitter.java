@@ -1,8 +1,12 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,6 +14,7 @@ import java.util.regex.Pattern;
  * @author Andre Greiner-Petter
  */
 public class EquationSplitter {
+    private static final Logger LOG = LogManager.getLogger(EquationSplitter.class.getName());
 
     private final static Pattern RELATION_MATCHER = Pattern.compile(
             "\\s*(?:([<>=][<>=]?)|(\\\\[ngl]eq?)([^a-zA-Z])|([()\\[\\]{}|]))\\s*"
@@ -20,13 +25,68 @@ public class EquationSplitter {
     private LinkedList<Relations> rels = new LinkedList<>();
     private StringBuffer bf = new StringBuffer();
 
-    private final CaseMetaData metaData;
+    public EquationSplitter() {}
 
-    public EquationSplitter(CaseMetaData metaData) {
-        this.metaData = metaData;
+    private void reset() {
+        bracketStack.clear();
+        parts.clear();
+        rels.clear();
+        bf = new StringBuffer();
     }
 
-    public LinkedList<Case> split(String latex) {
+    public LinkedList<Case> split(String latex, CaseMetaData metaData) {
+        buildPartsAndRels(latex);
+        return listCases(parts, rels, metaData);
+    }
+
+    public Collection<String> constraintSplitter(String latex) {
+        buildPartsAndRels(latex);
+        List<String> constraints = new LinkedList<>();
+
+        while ( !rels.isEmpty() ) {
+            String left = parts.removeFirst();
+            String right = parts.getFirst();
+            Relations rel = rels.removeFirst();
+
+            String[] leftElements = left.split(",");
+            String[] rightElements = right.split(",");
+            boolean numberChain = true;
+            if ( rightElements.length > 1 ) {
+                if ( rightElements.length == 2 && !rels.isEmpty() ) numberChain = false;
+                else {
+                    for ( String r : rightElements ) {
+                        numberChain &= r.matches("\\s*(-?\\s*[0-9.]+|\\\\[lc]?dots)\\s*");
+                    }
+                }
+            } else numberChain = false;
+
+            if ( numberChain ) {
+                LOG.error("Unable to analyze constraint (list of number after blueprints): " + latex);
+                return constraints;
+            }
+
+            for ( String el : leftElements ) {
+                String e = el + " " + rel.getTexSymbol() + " " + rightElements[0];
+                splitPMConstraints(e, constraints);
+            }
+
+            if ( rightElements.length > 1 ) {
+                parts.removeFirst();
+                parts.addFirst( right.substring(right.indexOf(",")+1) );
+            }
+        }
+
+        return constraints;
+    }
+
+    private static void splitPMConstraints(String latex, Collection<String> constraints) {
+        LeftRightSide lrs = new LeftRightSide(latex);
+        if ( lrs.wasSplitted() ) lrs.addCases(constraints);
+        else constraints.add(latex);
+    }
+
+    private void buildPartsAndRels(String latex) {
+        reset();
         Matcher relM = RELATION_MATCHER.matcher(latex);
         String cacheReplacement = null;
 
@@ -40,8 +100,6 @@ public class EquationSplitter {
             lastPart = cacheReplacement + lastPart;
         }
         parts.add( lastPart.trim() );
-
-        return listCases(parts, rels, metaData);
     }
 
     private String handleNextMatch(Matcher relM, String cacheReplacement) {

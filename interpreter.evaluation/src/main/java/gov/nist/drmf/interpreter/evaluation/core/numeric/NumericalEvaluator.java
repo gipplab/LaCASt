@@ -3,11 +3,13 @@ package gov.nist.drmf.interpreter.evaluation.core.numeric;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.wolfram.jlink.Expr;
+import com.wolfram.jlink.MathLinkException;
 import gov.nist.drmf.interpreter.cas.constraints.Constraints;
 import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
 import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
@@ -46,34 +48,25 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
     private static final Logger LOG = LogManager.getLogger(NumericalEvaluator.class.getName());
 
-//    protected static final String LONG_RUNTIME_SKIP = "89,90,91,99,100,102";
-    //TODO MATHEMATICA SKIPS
-//    public static final String LONG_RUNTIME_SKIP =
-//        "103,275,402,640,649,1248,1315,1316,1317,1318,1319,1320,1321,1322,1323,1324,1325,1326,1410," +
-//                "1445,1460,1461,1462,1463,1464,1465,1466,1467,1468,1469,1470,1471,1542," +
-//                "2068,2498,2562,2563,2564,2565,2566,2871," +
-//                "3035,3033,3035,3224,3358,3437,3494,3816,3817,3983," +
-//                "4212,4213,4214,4280,4343,4439,4440,4464,4485,4486,4550,4551,4591,4592,4593,4608,4609,4818,4831,4832,4911,4964," +
-//                "5061,5062,5063,5064," +
-//                "5814,5815,5933,5992,5993,5994,5995,6017,6957," +
-//                "6325,6349,6370,6536,6907," +
-//                "7313,7330,7331,7332,7333,7336,7339,7394,7397,7398,7399,7401,7405,7902,7918,7925,5828,5935," +
-//                "9572";
+    // mathematica
+//    private static final String SKIP = "5719,5752,9031";
 
-    private static final String SKIP = "5719,5752,9031";
-
-//    public static final String SKIP_MAPLE_RUNS =
-//            "321,642,794,795,850,976,1266,1267,1268,1269,1516,1948,1949," +
-//                    "2025,2058,2062,2067,2069,2070,2071,2072,2073,2074,2076,2100,2117,2118,2119,2120," +
-//                    "2268,2345,2351,2352,2362,2366,2406,2485,2487,2488,2491,2493,2494,2495,2496,2517," +
-//                    "2518,2519,2521,2617,2618,2619," +
-//                    "4278,4279,4280,4285,4308,4309,4310,4311,4338,4391," +
-//                    "4738,4755,4811,4812,4813," +
-//                    "5214,5224,5226,5252,5375," +
-//                    "5866,5867,5868,5869,5870,5871,5872," +
-//                    "6430,6440," +
-//                    "9218,9219," +
-//                    "9349";
+    // maple skips
+    private static final String SKIP =
+            // sections 1 - 9
+            "1652,1653,2126,2363,2474,2679,2717,2917," +
+            // section 10
+            "3061,3062,3351,3352,3353,3370,3371,3372,3435,3491,3501,3516,3586,3587,3588,3616,3618," +
+            // section 11, 12
+            "4005,4093," +
+            // section 13
+            "4440,4482,4483,4484,4485,4486,4487,4488,4489,4521,4522,4524,4603,4609,4610,4613," +
+            // S 14
+            "4736,4850,4857,4858,4864,4866,4867,4868,4869,4870,4871,4872,4873,4874,4898,4918," +
+            // S 15
+            "4971,4973,4984,5008,5092,5097-5116," +
+            "5719,5752,9031"
+            ;
 
     private Set<Integer> realSkips;
 
@@ -146,8 +139,16 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 //        smr = LONG_RUNTIME_SKIP.split(",");
         this.realSkips = new HashSet<>();
         for ( String s : SKIP.split(",") ) {
-            int i = Integer.parseInt(s);
-            realSkips.add(i);
+            if ( s.contains("-") ) {
+                String[] tmp = s.split("-");
+                int start = Integer.parseInt(tmp[0]);
+                int end = Integer.parseInt(tmp[1]);
+                for ( int i = start; i <= end; i++ )
+                    realSkips.add(i);
+            } else {
+                int i = Integer.parseInt(s);
+                realSkips.add(i);
+            }
         }
 
         setUpScripts(procedures);
@@ -233,6 +234,10 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         LOG.info("Start test for line: " + c.getLine());
         LOG.info("Test case: " + c);
         LOG.info("Test case " + (currentTestCase++) + " of " + currentNumOfTestCases);
+
+        LOG.info("Replacing defined symbols.");
+        c.replaceSymbolsUsed(super.getSymbolDefinitionLibrary());
+        LOG.info("Final Test case: " + c);
 
         if ( realSkips.contains(c.getLine()) ) {
             LOG.warn("Skip this test case manually for reasons...");
@@ -331,29 +336,33 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
                 String evaluation = "";
                 int tested = getNumericalEvaluator().getPerformedTestCases();
                 int failed = getNumericalEvaluator().getNumberOfFailedTestCases();
-                switch (resType) {
-                    case SUCCESS:
-                        lineResult[c.getLine()].add("Successful [Tested: " + tested + "]");
-                        Status.SUCCESS_NUM.add();
-                        break;
-                    case FAILURE:
-                        LOG.info("Test was NOT successful.");
-                        evaluation = LogManipulator.shortenOutput(results.toString(), 2);
-                        lineResult[c.getLine()].add("Failed ["+failed+"/"+tested+"]: " + evaluation);
-                        Status.FAILURE.add();
-                        break;
-                    case ERROR:
-                        LOG.info("Test was NOT successful.");
-                        evaluation = LogManipulator.shortenOutput(results.toString(), 2);
-                        lineResult[c.getLine()].add("Error [" + evaluation + "]");
-                        Status.ERROR.add();
-                        break;
+                if ( tested == 0 && failed > 0 ) {
+                    lineResult[c.getLine()].add("Skip - No test values generated");
+                    Status.NO_TEST_VALUES.add();
+                } else {
+                    switch (resType) {
+                        case SUCCESS:
+                            lineResult[c.getLine()].add("Successful [Tested: " + tested + "]");
+                            Status.SUCCESS_NUM.add();
+                            break;
+                        case FAILURE:
+                            LOG.info("Test was NOT successful.");
+                            evaluation = LogManipulator.shortenOutput(results.toString(), 2);
+                            lineResult[c.getLine()].add("Failed ["+failed+"/"+tested+"]: " + evaluation);
+                            Status.FAILURE.add();
+                            break;
+                        case ERROR:
+                            LOG.info("Test was NOT successful.");
+                            evaluation = LogManipulator.shortenOutput(results.toString(), 2);
+                            lineResult[c.getLine()].add("Error [" + evaluation + "]");
+                            Status.ERROR.add();
+                            break;
+                    }
                 }
             }
 
-
             LOG.info("Finished test for line: " + c.getLine());
-        } catch ( IllegalArgumentException iae ){
+        } catch ( IllegalArgumentException iae ) {
             LOG.warn("Skip test, because " + iae.getMessage());
             lineResult[c.getLine()].add("Error - " + iae.getMessage());
             // Note, we rename the overview lines, so we use missing here, just to avoid trouble with SKIP infos
@@ -373,6 +382,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
     }
 
     private NumericalTest buildTestObject(Case c) {
+        super.startRememberPackages();
         LOG.debug("Translating LHS: " + c.getLHS());
         TranslationInformation lhs = forwardTranslate( c.getLHS(), c.getEquationLabel() );
         LOG.info("Translated LHS to: " + lhs.getTranslatedExpression());
@@ -380,6 +390,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         LOG.debug("Translating RHS: " + c.getRHS());
         TranslationInformation rhs = forwardTranslate( c.getRHS(), c.getEquationLabel() );
         LOG.info("Translated RHS to: " + rhs.getTranslatedExpression());
+        super.stopRememberPackages();
 
         Set<String> variables = new HashSet<>();
         variables.addAll(lhs.getFreeVariables().getFreeVariables());

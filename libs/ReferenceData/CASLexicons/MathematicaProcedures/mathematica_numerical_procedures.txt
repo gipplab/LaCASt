@@ -12,21 +12,25 @@ mapConstraints[vars_, vals_] := Module[
 
 filterTestCases[ass_, tests_, max_] := Select[tests, ReplaceAll[And @@ ass, #]&, max]
 
-filterAssumptions[ass_, vars_] := Select[ass, MemberQ[vars, Part[Reduce`FreeVariables[#],1]]&]
+filterAssumptions[ass_, vars_] := Select[ass, SubsetQ[vars, Reduce`FreeVariables[#]]&]
 
 filterGlobalAssumptions[ass_, vars_, constr_] := Select[ass, And[MemberQ[vars, Part[Reduce`FreeVariables[#],1]], Not[MemberQ[Reduce`FreeVariables[constr], Part[Reduce`FreeVariables[#],1]]]]&]
 
 calculateResults[expr_, tests_] :=
     Module[{results},
         results = {};
-        Do[
-            Module[{testRes},
-                testRes = Catch[
-                    N[ReplaceAll[expr, Part[tests, i]]]
-                ];
-                AppendTo[results, testRes];
-            ],
-            {i, Length[tests]}
+        If[
+            Length[tests] == 0,
+            AppendTo[results, N[expr]],
+            Do[
+                Module[{testRes},
+                    testRes = Catch[
+                        N[ReplaceAll[expr, Part[tests, i]]]
+                    ];
+                    AppendTo[results, testRes];
+                ],
+                {i, Length[tests]}
+            ];
         ];
         Return[results]
     ]
@@ -43,9 +47,13 @@ numericalAutoTest[expr_, tests_, threshold_] :=
                         And[NumericQ[Part[results, i]], Abs[Part[results, i]] > threshold],
                         And[Not[BooleanQ[Part[results, i]]], Not[NumericQ[Part[results, i]]]]
                     ],
-                    AppendTo[output, {Part[results, i], Part[tests, i]}]
+                    If[
+                        i <= Length[tests],
+                        AppendTo[output, {Part[results, i], Part[tests, i]}],
+                        AppendTo[output, {Part[results, i], "NoValue"}]
+                    ]
                 ]
-            ], {i, Length[tests]}];
+            ], {i, Length[results]}];
         Return[output]
     ]
 

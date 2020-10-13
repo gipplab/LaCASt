@@ -1,4 +1,4 @@
-Overall: [TOTAL: 144, SKIPPED: 131, DEFINITIONS: 0, STARTED_TEST_CASES: 13, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 13, SUCCESS_SYMB: 0, SUCCESS_NUM: 0, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 8, ABORTED: 5, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 144, SKIPPED: 131, DEFINITIONS: 0, STARTED_TEST_CASES: 13, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 13, SUCCESS_SYMB: 0, SUCCESS_NUM: 0, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 8, NO_TEST_VALUES: 0, ABORTED: 5, ERROR: 0] for test expression: (#LHS)-(#RHS)
 8936 [http://dlmf.nist.gov/31.2.E1]: Skipped - Because timed out
 8945 [http://dlmf.nist.gov/31.2.E5]: Failed [70/70]: {{Complex[0.24214956105065266, -0.07997744567545023], {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[θ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Complex[1.1534018595635964, 1.651829143585053], {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[θ, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
 8946 [http://dlmf.nist.gov/31.2.E6]: Skipped - Because timed out
