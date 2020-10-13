@@ -50,7 +50,7 @@ public class VariableExtractor {
             LinkedList<Brackets> parenthesisCache,
             MathTerm mt
     ) {
-        Brackets bracket = Brackets.ifIsBracketTransform(mt, null);
+        Brackets bracket = Brackets.ifIsBracketTransform(mt, parenthesisCache.isEmpty() ? null : parenthesisCache.getLast());
         RETURN_VAL value = RETURN_VAL.NONE;
         // check for brackets
         if ( handleBracket(bracket, parenthesisCache, abstractTranslator) ) {

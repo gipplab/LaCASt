@@ -1,8 +1,8 @@
-Overall: [TOTAL: 201, SKIPPED: 182, DEFINITIONS: 0, STARTED_TEST_CASES: 19, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 19, SUCCESS_SYMB: 0, SUCCESS_NUM: 17, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 2, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 201, SKIPPED: 182, DEFINITIONS: 0, STARTED_TEST_CASES: 19, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 19, SUCCESS_SYMB: 0, SUCCESS_NUM: 17, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 2, NO_TEST_VALUES: 0, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
 7734 [http://dlmf.nist.gov/26.3.E1]: Successful [Tested: 6]
 7734-a [http://dlmf.nist.gov/26.3.E1]: Successful [Tested: 6]
-7736 [http://dlmf.nist.gov/26.3.E3]: Successful [Tested: 9]
-7737 [http://dlmf.nist.gov/26.3.E4]: Successful [Tested: 6]
+7736 [http://dlmf.nist.gov/26.3.E3]: Successful [Tested: 0]
+7737 [http://dlmf.nist.gov/26.3.E4]: Successful [Tested: 3]
 7738 [http://dlmf.nist.gov/26.3.E5]: Successful [Tested: 6]
 7739 [http://dlmf.nist.gov/26.3.E6]: Successful [Tested: 6]
 7739-a [http://dlmf.nist.gov/26.3.E6]: Successful [Tested: 6]

@@ -860,6 +860,120 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    @DLMF("4.23.3")
+    public void singleArgTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "\\Atan{VAR0}", "VAR\\d");
+
+        String test = "\\Atan{u}+\\Acot{v}";
+        PomMatcher matcher = blueprint.matcher(test);
+
+        assertTrue(matcher.find());
+
+        Map<String, String> groups = matcher.groups();
+        assertNotNull(groups);
+        assertEquals("u", groups.get("VAR0"));
+
+        assertFalse(matcher.find());
+    }
+
+    @Test
+    @DLMF("4.23.3")
+    public void singleArgFollowingTokenTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "\\Atan{VAR0} + 2", "VAR\\d");
+
+        String test = "\\Atan{u} + 2\\Acot{v}";
+        PomMatcher matcher = blueprint.matcher(test);
+
+        assertTrue(matcher.find());
+
+        Map<String, String> groups = matcher.groups();
+        assertNotNull(groups);
+        assertEquals("u", groups.get("VAR0"));
+
+        assertFalse(matcher.find());
+    }
+
+    @Test
+    @DLMF("4.23.3")
+    public void singleArgSequenceTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "\\Atan{VAR0}", "VAR\\d");
+
+        String test = "\\Atan{u+v} + 2\\Acot{v}";
+        PomMatcher matcher = blueprint.matcher(test);
+
+        assertTrue(matcher.find());
+
+        Map<String, String> groups = matcher.groups();
+        assertNotNull(groups);
+        assertEquals("u+v", groups.get("VAR0"));
+
+        assertFalse(matcher.find());
+    }
+
+    @Test
+    @DLMF("4.23.3")
+    public void singleArgMultiTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "\\Atan{VAR0}", "VAR\\d");
+
+        String test = "\\Atan{u} + \\Atan{u+v} + \\Atan{v}";
+        PomMatcher matcher = blueprint.matcher(test);
+
+        for ( int i = 0; i < 3; i ++ ) {
+            assertTrue(matcher.find());
+            Map<String, String> groups = matcher.groups();
+            assertNotNull(groups);
+
+            if ( i == 0 ) assertEquals("u", groups.get("VAR0"));
+            if ( i == 1 ) assertEquals("u+v", groups.get("VAR0"));
+            if ( i == 2 ) assertEquals("v", groups.get("VAR0"));
+        }
+
+        assertFalse(matcher.find());
+    }
+
+    @Test
+    public void illegalPatternTest() {
+        assertThrows(NotMatchableException.class, () -> new MatchablePomTaggedExpression(mlp, "a + VAR0 {VAR1}", "VAR\\d"));
+        assertThrows(NotMatchableException.class, () -> new MatchablePomTaggedExpression(mlp, "a + {VAR0} VAR1 {VAR2}", "VAR\\d"));
+    }
+
+    @Test
+    public void mixedSingleSequenceTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "a + {VAR0} VAR1", "VAR\\d");
+
+        String test = "a + x \\cos z";
+        PomMatcher matcher = blueprint.matcher(test);
+
+        assertTrue(matcher.find());
+        Map<String, String> groups = matcher.groups();
+        assertEquals("x", groups.get("VAR0"));
+        assertEquals("\\cos z", groups.get("VAR1"));
+        assertFalse(matcher.find());
+    }
+
+    @Test
+    public void multiWildcardTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                new MatchablePomTaggedExpression(mlp, "a + {VAR0} {VAR1} {VAR2}", "VAR\\d");
+
+        String test = "a + x \\cos z";
+        PomMatcher matcher = blueprint.matcher(test);
+
+        assertTrue(matcher.find());
+        Map<String, String> groups = matcher.groups();
+        assertNotNull(groups);
+        assertEquals("x", groups.get("VAR0"));
+        assertEquals("\\cos", groups.get("VAR1"));
+        assertEquals("z", groups.get("VAR2"));
+        assertFalse(matcher.find());
+    }
+
+    @Test
     public void pomMatcherReplaceAllRealWorldTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
                 new MatchablePomTaggedExpression(mlp, "P^{(var1, var2)}_{var3} (var4)", "(p|v)ar\\d");

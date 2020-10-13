@@ -1,4 +1,4 @@
-Overall: [TOTAL: 219, SKIPPED: 151, DEFINITIONS: 0, STARTED_TEST_CASES: 68, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 68, SUCCESS_SYMB: 0, SUCCESS_NUM: 44, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 17, ABORTED: 6, ERROR: 1] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 219, SKIPPED: 151, DEFINITIONS: 0, STARTED_TEST_CASES: 68, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 68, SUCCESS_SYMB: 0, SUCCESS_NUM: 44, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 18, NO_TEST_VALUES: 0, ABORTED: 5, ERROR: 1] for test expression: (#LHS)-(#RHS)
 7735 [http://dlmf.nist.gov/26.3.E2]: Successful [Tested: 3]
 7743 [http://dlmf.nist.gov/26.3.E10]: Successful [Tested: 6]
 7746 [http://dlmf.nist.gov/26.4.E1]: Failed [100/100]: {{Complex[-0.4855310647423219, -0.7913166384345096], {Rule[Subscript[n, 1], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[n, 2], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Complex[0.5823425344168771, -0.5778520047366285], {Rule[Subscript[n, 1], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[n, 2], Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
@@ -18,8 +18,8 @@ Overall: [TOTAL: 219, SKIPPED: 151, DEFINITIONS: 0, STARTED_TEST_CASES: 68, ERRO
 7789 [http://dlmf.nist.gov/26.8.E4]: Successful [Tested: 3]
 7791 [http://dlmf.nist.gov/26.8.E6]: Successful [Tested: 9]
 7792 [http://dlmf.nist.gov/26.8.E7]: Failed [9/9]: {{Plus[1.5, Times[-1.0, Subscript[1.5, 1]]], {Rule[n, 1], Rule[x, 1.5]}}, {Plus[0.75, Times[-1.0, Subscript[0.5, 2]]], {Rule[n, 2], Rule[x, 1.5]}}, ...
-7793 [http://dlmf.nist.gov/26.8.E8]: Skipped - Because timed out
-7794 [http://dlmf.nist.gov/26.8.E9]: Failed [12/12]: {{Plus[-2.8284271247461903, NSum[Sum[Times[Power[-1.5, k], Power[-0.5, n], Power[Factorial[n], -1], StirlingS1[n, k]], {k, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]], {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {Rule[x, -0.5], Rule[y, -1.5]}}, {Plus[-0.3535533905932738, NSum[Sum[Times[Power[-0.5, n], Power[1.5, k], Power[Factorial[n], -1], StirlingS1[n, k]], {k, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]], {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {Rule[x, -0.5], Rule[y, 1.5]}}, ...
+7793 [http://dlmf.nist.gov/26.8.E8]: Failed [2/3]: {{Plus[-0.08220097694658271, NSum[Times[Power[0.5, n], Power[Factorial[n], -1], StirlingS1[n, 2]], {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {Rule[k, 2], Rule[x, 0.5]}}, {Plus[-0.011109876001414293, NSum[Times[Power[0.5, n], Power[Factorial[n], -1], StirlingS1[n, 3]], {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {Rule[k, 3], Rule[x, 0.5]}}}
+7794 [http://dlmf.nist.gov/26.8.E9]: Failed [6/6]: {{Plus[-0.5443310539518174, NSum[Sum[Times[Power[-1.5, k], Power[0.5, n], Power[Factorial[n], -1], StirlingS1[n, k]], {k, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]], {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {Rule[x, 0.5], Rule[y, -1.5]}}, {Plus[-1.8371173070873836, NSum[Sum[Times[Power[0.5, n], Power[1.5, k], Power[Factorial[n], -1], StirlingS1[n, k]], {k, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]], {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {Rule[x, 0.5], Rule[y, 1.5]}}, ...
 7795 [http://dlmf.nist.gov/26.8.E10]: Failed [9/9]: {{Plus[-1.5, Subscript[1.5, 1]], {Rule[n, 1], Rule[x, 1.5]}}, {Plus[-2.25, Subscript[0.5, 2], Subscript[1.5, 1]], {Rule[n, 2], Rule[x, 1.5]}}, ...
 7797 [http://dlmf.nist.gov/26.8.E12]: Successful [Tested: 9]
 7799 [https://dlmf.nist.gov/26.8#Ex1]: Successful [Tested: 3]
@@ -54,7 +54,7 @@ Overall: [TOTAL: 219, SKIPPED: 151, DEFINITIONS: 0, STARTED_TEST_CASES: 68, ERRO
 7845 [http://dlmf.nist.gov/26.10.E2]: Skip - symbolical successful subtest
 7845-a [http://dlmf.nist.gov/26.10.E2]: Failed [1/10]: {{DirectedInfinity[], {Rule[q, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}}
 7846 [http://dlmf.nist.gov/26.10.E3]: Skip - symbolical successful subtest
-7846-a [http://dlmf.nist.gov/26.10.E3]: Successful [Tested: 60]
+7846-a [http://dlmf.nist.gov/26.10.E3]: Successful [Tested: 30]
 7900 [http://dlmf.nist.gov/26.12.E23]: Skip - symbolical successful subtest
 7900-a [http://dlmf.nist.gov/26.12.E23]: Skipped - Because timed out
 7904 [https://dlmf.nist.gov/26.12#Ex7]: Successful [Tested: 1]

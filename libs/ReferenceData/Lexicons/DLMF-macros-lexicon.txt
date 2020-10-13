@@ -2796,7 +2796,7 @@ Symbol: \Prod
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:Prod
 	Maple: product($3, $0 = $1 .. $2)
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=product
-	Mathematica: Product[$3, {$0, $1, $2}]
+	Mathematica: Product[$3, {$0, $1, $2}, GenerateConditions->None]
 	Meanings: Product
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -3081,7 +3081,7 @@ Symbol: \Sum
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:Sum
 	Maple: sum($3, $0 = $1 .. $2)
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=sum
-	Mathematica: Sum[$3, {$0, $1, $2}]
+	Mathematica: Sum[$3, {$0, $1, $2}, GenerateConditions->None]
 	Meanings: Sum
 	Number of Ats: 1
 	Number of Parameters: 3

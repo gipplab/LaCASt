@@ -1,4 +1,4 @@
-Overall: [TOTAL: 87, SKIPPED: 83, DEFINITIONS: 0, STARTED_TEST_CASES: 4, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 4, SUCCESS_SYMB: 0, SUCCESS_NUM: 4, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 0, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 87, SKIPPED: 83, DEFINITIONS: 0, STARTED_TEST_CASES: 4, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 4, SUCCESS_SYMB: 0, SUCCESS_NUM: 4, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 0, NO_TEST_VALUES: 0, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
 7219 [https://dlmf.nist.gov/23.6#Ex5]: Successful [Tested: 3]
 7219-a [https://dlmf.nist.gov/23.6#Ex5]: Skip - symbolical successful subtest
 7300 [https://dlmf.nist.gov/23.17#Ex1]: Successful [Tested: 1]

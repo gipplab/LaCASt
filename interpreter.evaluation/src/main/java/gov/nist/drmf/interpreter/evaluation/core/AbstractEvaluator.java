@@ -75,6 +75,10 @@ public abstract class AbstractEvaluator<T> {
         engine.setGlobalAssumptions(assumptions);
     }
 
+    public SymbolDefinedLibrary getSymbolDefinitionLibrary() {
+        return symbolDefinitionLibrary;
+    }
+
     public void startRememberPackages() {
         reqPackageMemory.clear();
         this.rememberPackages = true;
@@ -142,7 +146,7 @@ public abstract class AbstractEvaluator<T> {
 
         for ( Case test : testCases ) {
 //            if ( m.contains(test.getLine()) ) {
-                test.replaceSymbolsUsed(symbolDefinitionLibrary);
+//                test.replaceSymbolsUsed(symbolDefinitionLibrary);
                 performSingleTest(test);
 //            }
         }

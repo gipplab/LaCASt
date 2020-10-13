@@ -1,12 +1,12 @@
-Overall: [TOTAL: 284, SKIPPED: 219, DEFINITIONS: 0, STARTED_TEST_CASES: 65, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 65, SUCCESS_SYMB: 0, SUCCESS_NUM: 55, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 10, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
-2445 [http://dlmf.nist.gov/8.2.E1]: Successful [Tested: 35]
+Overall: [TOTAL: 284, SKIPPED: 219, DEFINITIONS: 0, STARTED_TEST_CASES: 65, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 65, SUCCESS_SYMB: 0, SUCCESS_NUM: 56, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 9, NO_TEST_VALUES: 0, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
+2445 [http://dlmf.nist.gov/8.2.E1]: Successful [Tested: 21]
 2446 [http://dlmf.nist.gov/8.2.E2]: Successful [Tested: 42]
 2447 [http://dlmf.nist.gov/8.2.E3]: Successful [Tested: 7]
-2448 [https://dlmf.nist.gov/8.2#Ex1]: Successful [Tested: 35]
-2449 [https://dlmf.nist.gov/8.2#Ex2]: Successful [Tested: 35]
-2450 [http://dlmf.nist.gov/8.2.E5]: Successful [Tested: 42]
+2448 [https://dlmf.nist.gov/8.2#Ex1]: Successful [Tested: 21]
+2449 [https://dlmf.nist.gov/8.2#Ex2]: Successful [Tested: 21]
+2450 [http://dlmf.nist.gov/8.2.E5]: Successful [Tested: 21]
 2451 [http://dlmf.nist.gov/8.2.E6]: Skip - symbolical successful subtest
-2451-a [http://dlmf.nist.gov/8.2.E6]: Successful [Tested: 35]
+2451-a [http://dlmf.nist.gov/8.2.E6]: Successful [Tested: 21]
 2457 [http://dlmf.nist.gov/8.2.E12]: Successful [Tested: 300]
 2460 [http://dlmf.nist.gov/8.4.E1]: Skip - symbolical successful subtest
 2460-a [http://dlmf.nist.gov/8.4.E1]: Successful [Tested: 7]
@@ -22,35 +22,35 @@ Overall: [TOTAL: 284, SKIPPED: 219, DEFINITIONS: 0, STARTED_TEST_CASES: 65, ERRO
 2476-a [http://dlmf.nist.gov/8.5.E2]: Failed [7/42]: {{Indeterminate, {Rule[a, -2], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Indeterminate, {Rule[a, -2], Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
 2477 [http://dlmf.nist.gov/8.5.E3]: Successful [Tested: 42]
 2477-a [http://dlmf.nist.gov/8.5.E3]: Successful [Tested: 42]
-2478 [http://dlmf.nist.gov/8.5.E4]: Failed [7/42]: {{DirectedInfinity[], {Rule[a, -2], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {DirectedInfinity[], {Rule[a, -2], Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
+2478 [http://dlmf.nist.gov/8.5.E4]: Successful [Tested: 21]
 2479 [http://dlmf.nist.gov/8.5.E5]: Successful [Tested: 42]
-2482 [http://dlmf.nist.gov/8.6.E3]: Successful [Tested: 35]
-2483 [http://dlmf.nist.gov/8.6.E4]: Successful [Tested: 56]
+2482 [http://dlmf.nist.gov/8.6.E3]: Successful [Tested: 21]
+2483 [http://dlmf.nist.gov/8.6.E4]: Successful [Tested: 28]
 2484 [http://dlmf.nist.gov/8.6.E5]: Successful [Tested: 30]
 2486 [http://dlmf.nist.gov/8.6.E7]: Successful [Tested: 30]
 2492 [http://dlmf.nist.gov/8.7.E1]: Skip - symbolical successful subtest
-2492-a [http://dlmf.nist.gov/8.7.E1]: Successful [Tested: 0]
-2493 [http://dlmf.nist.gov/8.7.E2]: Failed [36/216]: {{Indeterminate, {Rule[a, -2], Rule[x, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[y, -0.5]}}, {Indeterminate, {Rule[a, -2], Rule[x, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[y, 0.5]}}, ...
+2492-a [http://dlmf.nist.gov/8.7.E1]: Successful [Tested: 21]
+2493 [http://dlmf.nist.gov/8.7.E2]: Successful [Tested: 18]
 2493-a [http://dlmf.nist.gov/8.7.E2]: Skip - symbolical successful subtest
-2494 [http://dlmf.nist.gov/8.7.E3]: Successful [Tested: 0]
+2494 [http://dlmf.nist.gov/8.7.E3]: Successful [Tested: 7]
 2494-a [http://dlmf.nist.gov/8.7.E3]: Successful [Tested: 7]
-2498 [http://dlmf.nist.gov/8.8.E1]: Failed [7/42]: {{Indeterminate, {Rule[a, -2], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Indeterminate, {Rule[a, -2], Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
+2498 [http://dlmf.nist.gov/8.8.E1]: Successful [Tested: 21]
 2499 [http://dlmf.nist.gov/8.8.E2]: Successful [Tested: 42]
-2502 [http://dlmf.nist.gov/8.8.E5]: Successful [Tested: 56]
-2503 [http://dlmf.nist.gov/8.8.E6]: Successful [Tested: 56]
-2504 [http://dlmf.nist.gov/8.8.E7]: Successful [Tested: 0]
-2505 [http://dlmf.nist.gov/8.8.E8]: Successful [Tested: 0]
-2506 [http://dlmf.nist.gov/8.8.E9]: Successful [Tested: 0]
-2507 [http://dlmf.nist.gov/8.8.E10]: Successful [Tested: 0]
-2508 [http://dlmf.nist.gov/8.8.E11]: Successful [Tested: 0]
-2509 [http://dlmf.nist.gov/8.8.E12]: Successful [Tested: 0]
-2510 [http://dlmf.nist.gov/8.8.E13]: Successful [Tested: 42]
-2510-a [http://dlmf.nist.gov/8.8.E13]: Successful [Tested: 42]
+2502 [http://dlmf.nist.gov/8.8.E5]: Successful [Tested: 28]
+2503 [http://dlmf.nist.gov/8.8.E6]: Successful [Tested: 21]
+2504 [http://dlmf.nist.gov/8.8.E7]: Successful [Tested: 63]
+2505 [http://dlmf.nist.gov/8.8.E8]: Successful [Tested: 14]
+2506 [http://dlmf.nist.gov/8.8.E9]: Failed [7/105]: {{Indeterminate, {Rule[a, -2], Rule[n, 3], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Indeterminate, {Rule[a, -2], Rule[n, 3], Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
+2507 [http://dlmf.nist.gov/8.8.E10]: Successful [Tested: 14]
+2508 [http://dlmf.nist.gov/8.8.E11]: Failed [21/126]: {{Indeterminate, {Rule[a, -2], Rule[n, 1], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Indeterminate, {Rule[a, -2], Rule[n, 2], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, ...
+2509 [http://dlmf.nist.gov/8.8.E12]: Successful [Tested: 63]
+2510 [http://dlmf.nist.gov/8.8.E13]: Successful [Tested: 21]
+2510-a [http://dlmf.nist.gov/8.8.E13]: Successful [Tested: 21]
 2540 [http://dlmf.nist.gov/8.11.E4]: Successful [Tested: 7]
-2602 [http://dlmf.nist.gov/8.14.E4]: Successful [Tested: 36]
+2602 [http://dlmf.nist.gov/8.14.E4]: Successful [Tested: 12]
 2606 [http://dlmf.nist.gov/8.17.E1]: Successful [Tested: 108]
 2607 [http://dlmf.nist.gov/8.17.E2]: Failed [45/108]: {{Indeterminate, {Rule[a, -1.5], Rule[b, -1.5], Rule[x, 1.5]}}, {Indeterminate, {Rule[a, -1.5], Rule[b, -1.5], Rule[x, 0.5]}}, ...
-2608 [http://dlmf.nist.gov/8.17.E3]: Successful [Tested: 15]
+2608 [http://dlmf.nist.gov/8.17.E3]: Successful [Tested: 9]
 2612 [http://dlmf.nist.gov/8.17.E7]: Failed [18/108]: {{Indeterminate, {Rule[a, -2], Rule[b, -1.5], Rule[x, 1.5]}}, {Indeterminate, {Rule[a, -2], Rule[b, -1.5], Rule[x, 0.5]}}, ...
 2613 [http://dlmf.nist.gov/8.17.E8]: Failed [15/108]: {{Indeterminate, {Rule[a, -2], Rule[b, -1.5], Rule[x, 1.5]}}, {Indeterminate, {Rule[a, -2], Rule[b, -1.5], Rule[x, 0.5]}}, ...
 2619 [http://dlmf.nist.gov/8.17.E13]: Failed [33/108]: {{Indeterminate, {Rule[a, -1.5], Rule[b, -1.5], Rule[x, 1.5]}}, {Indeterminate, {Rule[a, -1.5], Rule[b, -1.5], Rule[x, 0.5]}}, ...
@@ -59,7 +59,7 @@ Overall: [TOTAL: 284, SKIPPED: 219, DEFINITIONS: 0, STARTED_TEST_CASES: 65, ERRO
 2653 [http://dlmf.nist.gov/8.19.E2]: Successful [Tested: 70]
 2654 [http://dlmf.nist.gov/8.19.E3]: Successful [Tested: 50]
 2655 [http://dlmf.nist.gov/8.19.E4]: Successful [Tested: 25]
-2656 [http://dlmf.nist.gov/8.19.E5]: Successful [Tested: 10]
+2656 [http://dlmf.nist.gov/8.19.E5]: Successful [Tested: 7]
 2657 [http://dlmf.nist.gov/8.19.E6]: Successful [Tested: 2]
 2661 [http://dlmf.nist.gov/8.19.E10]: Successful [Tested: 56]
 2662 [http://dlmf.nist.gov/8.19.E11]: Successful [Tested: 56]

@@ -451,6 +451,21 @@ class SimpleTranslationTests {
     }
 
     @Test
+    public void intAbsValueTest() {
+        String input = "\\int_{0}^1 |x+1|^2 \\diff{x}";
+        String output = slt.translate(input);
+        assertEquals("int((abs(x + 1))^(2), x = 0..1)", output);
+    }
+
+    @Test
+    @DLMF("22.14.8")
+    public void modulusKTest() {
+        String input = "{\\sqrt{1-k^2}}^{-1}\\ln{\\Jacobielldck{x}{k}+\\sqrt{1-k^2}\\Jacobiellsck{x}{k}}";
+        String output = sltMathematica.translate(input, "12.14.8");
+        assertEquals("(Sqrt[1 - (k)^(2)])^(- 1)* Log[JacobiDC[x, (k)^2]+Sqrt[1 - (k)^(2)]*JacobiSC[x, (k)^2]]", output);
+    }
+
+    @Test
     public void macroPackageTranslatorConfigOnOffTest() {
         ForwardTranslationProcessConfig config = slt.getConfig();
         String testExpression = "\\qGamma{q}@{\\qfactorial{n}{q}}";

@@ -55,7 +55,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
             super.addNamedFeature(k, pte.getFeatureValue(k));
 
         // the fun part, every node has it's own caption
-        if ( pte.getParent() == null )
+        if ( pte.getParent() == null && TeXPreProcessor.wrappedInCurlyBrackets(expr) )
             expr = TeXPreProcessor.trimCurlyBrackets(expr);
         else expr = expr.trim();
 //        if ( !pte.getComponents().isEmpty() && pte.getParent() != null )

@@ -226,7 +226,7 @@ public class Case {
         }
     }
 
-    private static final Pattern NVAR_PATTERN = Pattern.compile("\\\\NVar\\{(.*?)}");
+    private static final Pattern NVAR_PATTERN = Pattern.compile("\\\\NVar\\{(.*?)}|@+");
 
     /**
      * Problem: Line 3933 use: \symbolUsed[\EulerGamma@{\NVar{z}}]{C5.S2.E1.m2badec}
@@ -242,8 +242,8 @@ public class Case {
      */
     private void replaceSingleTag(SymbolTag def) throws ParseException {
         SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
-        PrintablePomTaggedExpression ppteLHS = mlp.parse(this.LHS, this.getEquationLabel());
-        PrintablePomTaggedExpression ppteRHS = mlp.parse(this.RHS, this.getEquationLabel());
+        PrintablePomTaggedExpression ppteLHS = mlp.parse(this.LHS.replace("@", ""), this.getEquationLabel());
+        PrintablePomTaggedExpression ppteRHS = mlp.parse(this.RHS.replace("@", ""), this.getEquationLabel());
 
         String symbol = def.getSymbol();
         boolean isSemantic = isSemantic(symbol);
@@ -252,27 +252,30 @@ public class Case {
 
         int counter = 0;
         while ( m.find() ) {
-            m.appendReplacement(sb, "VAR"+counter);
-            counter++;
+            if ( m.group(1) != null ) {
+                m.appendReplacement(sb, "VAR"+counter);
+                counter++;
+            } else m.appendReplacement(sb, "");
         }
 
         m.appendTail(sb);
 
-        MatchablePomTaggedExpression matchPOM = new MatchablePomTaggedExpression(mlp, sb.toString(), "VAR\\d+");
-        PomMatcher matcherL = matchPOM.matcher(ppteLHS);
+        MatchablePomTaggedExpression matchPOML = new MatchablePomTaggedExpression(mlp, sb.toString(), "VAR\\d+");
+        PomMatcher matcherL = matchPOML.matcher(ppteLHS);
         if ( counter == 0 && !isSemantic ) {
             PrintablePomTaggedExpression left = matcherL.replaceAll("("+def.getDefinition()+")");
             this.LHS = left.getTexString();
         }
 
-        PomMatcher matcherR = matchPOM.matcher(ppteRHS);
+        MatchablePomTaggedExpression matchPOMR = new MatchablePomTaggedExpression(mlp, sb.toString(), "VAR\\d+");
+        PomMatcher matcherR = matchPOMR.matcher(ppteRHS);
         if ( counter == 0 && !isSemantic ) {
             PrintablePomTaggedExpression right = matcherR.replaceAll("("+def.getDefinition()+")");
             this.RHS = right.getTexString();
         }
 
         if ( counter > 0 ) {
-            LOG.warn("Auto definition replacement of semantic macros is suppressed. Macro " + symbol + " will not be replaced.");
+            LOG.trace("Auto definition replacement of semantic macros is suppressed. Macro " + symbol + " will not be replaced.");
             // now the fun part
             replaceConstraints(def, matcherL, matcherR);
         } else if ( def.getMetaData() != null ) {
@@ -328,11 +331,22 @@ public class Case {
         for ( String constraint : originalConstraints ) {
             // lets do simple string replacement, otherwise it might be an overkill... not?
             for ( Map.Entry<String, List<String>> varMap : varMapping.entrySet() ) {
+                Pattern p = Pattern.compile("(?<!\\\\[A-Za-z]{0,30})"+Pattern.quote(varMap.getKey())+"(.|$)");
+                Matcher m = p.matcher(constraint);
+                if ( !m.find() ) continue;
+
                 List<String> replacements = varMap.getValue();
                 for ( String repl : replacements ) {
+                    m = p.matcher(constraint);
+                    StringBuilder sb = new StringBuilder();
                     repl = repl.replace("\\", "\\\\");
-                    String newConst = constraint.replaceAll("(?<!\\\\[A-Za-z]{0,30})"+Pattern.quote(varMap.getKey())+"(.|$)", repl + "$1");
-                    newConstraints.add(newConst);
+
+                    while ( m.find() ) {
+                        m.appendReplacement(sb, repl + m.group(1));
+                    }
+
+                    m.appendTail(sb);
+                    newConstraints.add(sb.toString());
                 }
             }
         }

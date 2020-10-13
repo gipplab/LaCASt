@@ -1,13 +1,13 @@
-Overall: [TOTAL: 171, SKIPPED: 99, DEFINITIONS: 0, STARTED_TEST_CASES: 72, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 72, SUCCESS_SYMB: 0, SUCCESS_NUM: 22, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 19, ABORTED: 28, ERROR: 3] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 171, SKIPPED: 99, DEFINITIONS: 0, STARTED_TEST_CASES: 72, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 72, SUCCESS_SYMB: 0, SUCCESS_NUM: 22, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 22, NO_TEST_VALUES: 3, ABORTED: 22, ERROR: 3] for test expression: (#LHS)-(#RHS)
 7562 [http://dlmf.nist.gov/25.2.E7]: Successful [Tested: 2]
 7563 [http://dlmf.nist.gov/25.2.E8]: Skipped - Because timed out
 7566 [http://dlmf.nist.gov/25.2.E11]: Failed [2/2]: {{Plus[2.612375348685488, Times[-1.0, NProduct[Power[Plus[1, Times[-1, Power[p, -1.5]]], -1], {p, DirectedInfinity[-1], DirectedInfinity[1]}, Rule[GenerateConditions, None]]]], {Rule[s, 1.5]}}, {Plus[1.6449340668482262, Times[-1.0, NProduct[Power[Plus[1, Times[-1, Power[p, -2]]], -1], {p, DirectedInfinity[-1], DirectedInfinity[1]}, Rule[GenerateConditions, None]]]], {Rule[s, 2]}}}
-7567 [http://dlmf.nist.gov/25.2.E12]: Skipped - Because timed out
+7567 [http://dlmf.nist.gov/25.2.E12]: Failed [5/5]: {{Plus[Complex[-0.02548520188983307, 3.121037092000815*^-18], Times[0.02420092827533985, NProduct[Times[Power[E, Times[-1.5, Power[ρ, -1]]], Plus[1, Times[1.5, Power[ρ, -1]]]], {ρ, DirectedInfinity[-1], DirectedInfinity[1]}, Rule[GenerateConditions, None]]]], {Rule[s, -1.5]}}, {Plus[2.612375348685488, Times[-2.4801151038890965, NProduct[Times[Power[E, Times[1.5, Power[ρ, -1]]], Plus[1, Times[-1.5, Power[ρ, -1]]]], {ρ, DirectedInfinity[-1], DirectedInfinity[1]}, Rule[GenerateConditions, None]]]], {Rule[s, 1.5]}}, ...
 7570 [http://dlmf.nist.gov/25.4.E3]: Failed [1/6]: {{Indeterminate, {Rule[s, -2]}}}
 7572 [http://dlmf.nist.gov/25.4.E5]: Skipped - Because timed out
 7575 [http://dlmf.nist.gov/25.5.E2]: Successful [Tested: 2]
-7577 [http://dlmf.nist.gov/25.5.E4]: Skipped - Because timed out
-7578 [http://dlmf.nist.gov/25.5.E5]: Skipped - Because timed out
+7577 [http://dlmf.nist.gov/25.5.E4]: Successful [Tested: 3]
+7578 [http://dlmf.nist.gov/25.5.E5]: Failed [1/1]: {{Complex[-2500601.4984594644, 2.5458720000534374*^-17], {Rule[s, -0.5]}}}
 7579 [http://dlmf.nist.gov/25.5.E6]: Failed [3/3]: {{DirectedInfinity[], {Rule[s, 1.5]}}, {Indeterminate, {Rule[s, 0.5]}}, ...
 7580 [http://dlmf.nist.gov/25.5.E7]: Skipped - Because timed out
 7582 [http://dlmf.nist.gov/25.5.E9]: Skipped - Because timed out
@@ -30,42 +30,42 @@ Overall: [TOTAL: 171, SKIPPED: 99, DEFINITIONS: 0, STARTED_TEST_CASES: 72, ERROR
 7612 [http://dlmf.nist.gov/25.6.E15]: Successful [Tested: 3]
 7613 [http://dlmf.nist.gov/25.6.E16]: Successful [Tested: 2]
 7614 [http://dlmf.nist.gov/25.6.E17]: Successful [Tested: 3]
-7617 [http://dlmf.nist.gov/25.6.E20]: Skipped - Because timed out
+7617 [http://dlmf.nist.gov/25.6.E20]: Successful [Tested: 2]
 7619 [http://dlmf.nist.gov/25.8.E2]: Skipped - Because timed out
 7621 [http://dlmf.nist.gov/25.8.E4]: Failed [1/3]: {{Plus[-0.6931471805599453, NSum[Times[Power[-1, k], Power[k, -1], Plus[-1, Zeta[k]]], {k, 1, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {Rule[n, 1]}}}
-7623 [http://dlmf.nist.gov/25.8.E6]: Failed [2/2]: {{Plus[4.8091767343044744*^-17, NSum[Times[Power[-0.5, Times[2, k]], Zeta[Times[2, k]]], {k, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {Rule[z, -0.5]}}, {Plus[4.8091767343044744*^-17, NSum[Times[Power[0.5, Times[2, k]], Zeta[Times[2, k]]], {k, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {Rule[z, 0.5]}}}
+7623 [http://dlmf.nist.gov/25.8.E6]: Failed [1/1]: {{Plus[4.8091767343044744*^-17, NSum[Times[Power[0.5, Times[2, k]], Zeta[Times[2, k]]], {k, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {Rule[z, 0.5]}}}
 7633 [http://dlmf.nist.gov/25.10.E3]: Failed [300/300]: {{Complex[-0.6950521348622749, 1.5842761296673835], {Rule[m, 1], Rule[R, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[t, -1.5], Rule[Z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ϑ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Complex[-2.4647931552284597, 1.8824759153846262], {Rule[m, 2], Rule[R, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[t, -1.5], Rule[Z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ϑ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, ...
 7639 [http://dlmf.nist.gov/25.11.E5]: Skipped - Because timed out
-7643 [http://dlmf.nist.gov/25.11.E9]: Successful [Tested: 2]
-7644 [http://dlmf.nist.gov/25.11.E10]: Skipped - Because timed out
-7646 [http://dlmf.nist.gov/25.11.E12]: Failed [1/6]: {{Indeterminate, {Rule[a, -2], Rule[n, 3]}}}
-7648 [http://dlmf.nist.gov/25.11.E14]: Successful [Tested: 6]
-7649 [http://dlmf.nist.gov/25.11.E15]: Failed [3/36]: {{Indeterminate, {Rule[a, -2], Rule[k, 3], Rule[s, 1.5]}}, {Indeterminate, {Rule[a, -2], Rule[k, 3], Rule[s, 0.5]}}, ...
+7643 [http://dlmf.nist.gov/25.11.E9]: Skip - No test values generated
+7644 [http://dlmf.nist.gov/25.11.E10]: Failed [2/2]: {{Plus[2.612375348685488, Times[-1.0, NSum[Times[Power[0, n], Power[Factorial[n], -1], Pochhammer[1.5, n], Zeta[Plus[1.5, n]]], {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]]], {Rule[a, 1], Rule[s, 1.5]}}, {Plus[1.6449340668482262, Times[-1.0, NSum[Times[Power[0, n], Power[Factorial[n], -1], Pochhammer[2, n], Zeta[Plus[2, n]]], {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]]], {Rule[a, 1], Rule[s, 2]}}}
+7646 [http://dlmf.nist.gov/25.11.E12]: Successful [Tested: 1]
+7648 [http://dlmf.nist.gov/25.11.E14]: Successful [Tested: 1]
+7649 [http://dlmf.nist.gov/25.11.E15]: Failed [2/2]: {{1.3535533905932735, {Rule[a, 1], Rule[k, 3], Rule[Times[a, k], 1], Rule[s, 1.5]}}, {1.2499999999999998, {Rule[a, 1], Rule[k, 3], Rule[Times[a, k], 1], Rule[s, 2]}}}
 7650 [http://dlmf.nist.gov/25.11.E16]: Skipped - Because timed out
-7652 [http://dlmf.nist.gov/25.11.E18]: Successful [Tested: 3]
+7652 [http://dlmf.nist.gov/25.11.E18]: Successful [Tested: 1]
 7655 [http://dlmf.nist.gov/25.11.E21]: Skipped - Because timed out
 7656 [http://dlmf.nist.gov/25.11.E22]: Successful [Tested: 1]
-7657 [http://dlmf.nist.gov/25.11.E23]: Failed [1/1]: {{Plus[0.010637344739107386, Times[-1.2131199967624389*^-7, D[-3.1320337800208065, {0.3333333333333333, 5.0}]]], {Rule[n, 3]}}}
-7658 [http://dlmf.nist.gov/25.11.E24]: Successful [Tested: 6]
-7660 [http://dlmf.nist.gov/25.11.E26]: Skipped - Because timed out
+7657 [http://dlmf.nist.gov/25.11.E23]: Failed [1/1]: {{Plus[0.010637344739107386, Times[-1.2131199967624389*^-7, D[-3.1320337800208065, {0.3333333333333333, 5.0}]]], {Rule[a, 1], Rule[n, 3]}}}
+7658 [http://dlmf.nist.gov/25.11.E24]: Failed [1/1]: {{Indeterminate, {Rule[a, 1], Rule[k, 3], Rule[s, 1]}}}
+7660 [http://dlmf.nist.gov/25.11.E26]: Skip - No test values generated
 7661 [http://dlmf.nist.gov/25.11.E27]: Skipped - Because timed out
 7662 [http://dlmf.nist.gov/25.11.E28]: Skipped - Because timed out
 7663 [http://dlmf.nist.gov/25.11.E29]: Skipped - Because timed out
 7664 [http://dlmf.nist.gov/25.11.E30]: Error [$Failed]
 7666 [http://dlmf.nist.gov/25.11.E32]: Skipped - Because timed out
-7668 [http://dlmf.nist.gov/25.11.E34]: Successful [Tested: 18]
+7668 [http://dlmf.nist.gov/25.11.E34]: Successful [Tested: 3]
 7670 [http://dlmf.nist.gov/25.11.E36]: Skip - symbolical successful subtest
-7670-a [http://dlmf.nist.gov/25.11.E36]: Failed [60/60]: {{Complex[-1.264704103160249, -0.7301772544047939], {Rule[k, 1], Rule[s, 1.5], Rule[χ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Complex[-2.727214191729021, -1.574557847732518], {Rule[k, 2], Rule[s, 1.5], Rule[χ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, ...
-7671 [http://dlmf.nist.gov/25.11.E37]: Successful [Tested: 0]
+7670-a [http://dlmf.nist.gov/25.11.E36]: Failed [60/60]: {{Complex[-1.264704103160249, -0.7301772544047939], {Rule[a, 1], Rule[k, 1], Rule[s, 1.5], Rule[χ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Complex[-2.727214191729021, -1.574557847732518], {Rule[a, 1], Rule[k, 2], Rule[s, 1.5], Rule[χ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, ...
+7671 [http://dlmf.nist.gov/25.11.E37]: Failed [1/3]: {{NSum[Times[Power[-1, k], Power[k, -1], Zeta[k]], {k, 1, DirectedInfinity[1]}, Rule[GenerateConditions, None]], {Rule[a, 1], Rule[n, 1]}}}
 7672 [http://dlmf.nist.gov/25.11.E38]: Skipped - Because timed out
-7673 [http://dlmf.nist.gov/25.11.E39]: Failed [10/10]: {{Complex[0.39952152314224243, -3.9999999999999996], {Rule[G, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Complex[11.327724753417751, -6.92820323027551], {Rule[G, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
+7673 [http://dlmf.nist.gov/25.11.E39]: Failed [10/10]: {{Complex[0.39952152314224243, -3.9999999999999996], {Rule[a, 1], Rule[G, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Complex[11.327724753417751, -6.92820323027551], {Rule[a, 1], Rule[G, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
 7682 [http://dlmf.nist.gov/25.12.E3]: Successful [Tested: 1]
-7683 [http://dlmf.nist.gov/25.12.E4]: Successful [Tested: 0]
-7684 [http://dlmf.nist.gov/25.12.E5]: Successful [Tested: 2]
+7683 [http://dlmf.nist.gov/25.12.E4]: Successful [Tested: 1]
+7684 [http://dlmf.nist.gov/25.12.E5]: Successful [Tested: 1]
 7687 [http://dlmf.nist.gov/25.12.E8]: Failed [5/10]: {{Complex[-1.5707963267948957, 2.720699046351327], {Rule[θ, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, {Complex[-2.720699046351327, -1.5707963267948966], {Rule[θ, Power[E, Times[Complex[0, Rational[-5, 6]], Pi]]]}}, ...
 7688 [http://dlmf.nist.gov/25.12.E9]: Skipped - Because timed out
 7691 [http://dlmf.nist.gov/25.12.E12]: Skipped - Because timed out
-7692 [http://dlmf.nist.gov/25.12.E13]: Failed [15/18]: {{Complex[24.276363838259122, 24.27636383825907], {Rule[a, -1.5], Rule[s, 1.5]}}, {Complex[-2.230710143300823, 2.230710143300819], {Rule[a, -1.5], Rule[s, 0.5]}}, ...
+7692 [http://dlmf.nist.gov/25.12.E13]: Skip - No test values generated
 7701 [http://dlmf.nist.gov/25.14.E2]: Successful [Tested: 2]
 7704 [http://dlmf.nist.gov/25.14.E5]: Failed [162/162]: {{Plus[Complex[0.29818646299224294, -0.45270555517796296], Times[-1.1283791670955126, NIntegrate[Complex[0.15484016278663867, -0.07789552790412994], {1.5, 0, DirectedInfinity[1]}]]], {Rule[a, 1.5], Rule[s, 1.5], Rule[x, 1.5], Rule[y, -1.5], Rule[z, Rational[1, 2]]}}, {Plus[Complex[0.29818646299224244, 0.45270555517796246], Times[-1.1283791670955126, NIntegrate[Complex[0.15484016278663867, 0.07789552790412994], {1.5, 0, DirectedInfinity[1]}]]], {Rule[a, 1.5], Rule[s, 1.5], Rule[x, 1.5], Rule[y, 1.5], Rule[z, Rational[1, 2]]}}, ...
 7705 [http://dlmf.nist.gov/25.14.E6]: Skipped - Because timed out

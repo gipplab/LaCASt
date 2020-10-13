@@ -25,6 +25,7 @@ public enum Status {
     SUCCESS_NUM(0),
     SUCCESS_UNDER_EXTRA_CONDITION(0),
     FAILURE(0),
+    NO_TEST_VALUES(0),
     ABORTED(0),
     ERROR(0);
 

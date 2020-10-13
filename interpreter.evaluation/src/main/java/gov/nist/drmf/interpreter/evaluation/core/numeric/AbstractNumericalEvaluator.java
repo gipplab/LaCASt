@@ -7,6 +7,7 @@ import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.evaluation.common.Status;
 import gov.nist.drmf.interpreter.evaluation.core.symbolic.AbstractSymbolicEvaluator;
+import gov.nist.drmf.interpreter.maple.extension.NumericCalculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.intellij.lang.annotations.Language;
@@ -89,6 +90,10 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
 //            abortThread = getAbortionThread(numericalEvaluator, getTimeoutSeconds()*2);
 //            abortThread.start();
 //        }
+
+        if ( numericalEvaluator instanceof NumericCalculator ) {
+            ((NumericCalculator)numericalEvaluator).addRequiredPackages(super.getRequiredPackages());
+        }
 
         // perform the test
         return numericalEvaluator.performNumericalTests(

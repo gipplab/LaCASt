@@ -1,4 +1,4 @@
-Overall: [TOTAL: 91, SKIPPED: 73, DEFINITIONS: 0, STARTED_TEST_CASES: 18, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 18, SUCCESS_SYMB: 0, SUCCESS_NUM: 18, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 0, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 91, SKIPPED: 73, DEFINITIONS: 0, STARTED_TEST_CASES: 18, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 18, SUCCESS_SYMB: 0, SUCCESS_NUM: 18, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 0, NO_TEST_VALUES: 0, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
 2184 [http://dlmf.nist.gov/6.2.E9]: Successful [Tested: 7]
 2185 [http://dlmf.nist.gov/6.2.E10]: Successful [Tested: 7]
 2185-a [http://dlmf.nist.gov/6.2.E10]: Successful [Tested: 7]
@@ -15,8 +15,8 @@ Overall: [TOTAL: 91, SKIPPED: 73, DEFINITIONS: 0, STARTED_TEST_CASES: 18, ERROR_
 2232 [http://dlmf.nist.gov/6.7.E14]: Skip - symbolical successful subtest
 2232-a [http://dlmf.nist.gov/6.7.E14]: Successful [Tested: 7]
 2246 [http://dlmf.nist.gov/6.10.E4]: Successful [Tested: 7]
-2264 [http://dlmf.nist.gov/6.14.E1]: Successful [Tested: 8]
-2265 [http://dlmf.nist.gov/6.14.E2]: Successful [Tested: 5]
+2264 [http://dlmf.nist.gov/6.14.E1]: Successful [Tested: 4]
+2265 [http://dlmf.nist.gov/6.14.E2]: Successful [Tested: 3]
 2267 [http://dlmf.nist.gov/6.14.E4]: Successful [Tested: 1]
 2269 [http://dlmf.nist.gov/6.14.E6]: Successful [Tested: 1]
 2269-a [http://dlmf.nist.gov/6.14.E6]: Successful [Tested: 1]

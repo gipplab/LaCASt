@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
+import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
@@ -42,5 +44,12 @@ public final class PrintablePomTaggedExpressionUtils {
         }
 
         return sb.toString().trim();
+    }
+
+    public static boolean isSingleElementInBrackets(PomTaggedExpression pom) {
+        String expr = pom.getRoot().getTermText();
+        if ( pom instanceof PrintablePomTaggedExpression )
+            expr = ((PrintablePomTaggedExpression) pom).getTexString();
+        return pom.getComponents().isEmpty() && TeXPreProcessor.wrappedInCurlyBrackets(expr);
     }
 }

@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.cas.constraints.Constraints;
 import gov.nist.drmf.interpreter.evaluation.constraints.MLPConstraintAnalyzer;
@@ -7,6 +8,8 @@ import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -113,6 +116,7 @@ public class CaseAnalyzer {
         metaDataMatcher.appendTail(mathSB);
 
         String eq = getEquation(mathSB);
+        if (TeXPreProcessor.wrappedInCurlyBrackets(eq)) eq = TeXPreProcessor.trimCurlyBrackets(eq);
         CaseMetaData metaData = CaseMetaData.extractMetaData(constraints, symbolsUsed, symbInfo.link, lineNumber);
 
 //        if ( symbInfo.symbolDefID != null && Case.isSemantic(symbInfo.symbolDefSymb) ) {
@@ -123,9 +127,11 @@ public class CaseAnalyzer {
             if ( !Case.isSemantic(symbInfo.symbolDefSymb) ) return null;
         }
 
-        EquationSplitter splitter = new EquationSplitter(metaData);
-        return splitter.split(eq);
+        EquationSplitter splitter = new EquationSplitter();
+        return splitter.split(eq, metaData);
     }
+
+    private static String tmpConst = null;
 
     private static void fillString(
             Matcher metaDataMatcher,
@@ -134,7 +140,22 @@ public class CaseAnalyzer {
             LinkedList<SymbolTag> symbolsUsed
     ) {
         if ( metaDataMatcher.group(CONSTRAINT_GRP) != null ) {
-            constraints.add(metaDataMatcher.group(CONSTRAINT_GRP));
+            String m = metaDataMatcher.group(CONSTRAINT_GRP);
+            if ( m.matches("[A-Za-z0-9]*") && tmpConst == null ) {
+                tmpConst = m;
+                return;
+            } else if ( m.matches("[A-Za-z0-9]*") && tmpConst != null ) {
+                tmpConst += ", " + m;
+                return;
+            } else if ( tmpConst != null ) {
+                m = tmpConst + ", " + m;
+                tmpConst = null;
+            }
+            if ( m.matches("^\\s*([<>]=?|=|\\\\[lgn]eq).*") ) {
+                String last = constraints.removeLast();
+                m = last + m;
+            }
+            constraints.add(m);
         } else if ( metaDataMatcher.group(URL_GRP) != null ) {
             symbDef.link = metaDataMatcher.group(URL_GRP);
         } else if ( metaDataMatcher.group(SYMB_DEF_GRP_ID) != null ) {
@@ -151,6 +172,11 @@ public class CaseAnalyzer {
 //            }
         }
     }
+
+//    private static Collection<String> splitConstraint(String constraint) {
+//        if ( constraint.matches("[A-Za-z0-1]*") ) return Collections.EMPTY_LIST;
+//        return EquationSplitter.constraintSplitter(constraint);
+//    }
 
     private static void checkResetSymbs(SymbolDefInfo symbDef) {
         if ( symbDef.symbolDefSymb.contains("\\NVar") ) {
@@ -179,8 +205,8 @@ public class CaseAnalyzer {
         if ( symbInfo.symbolDefSymb.equals("\\zeta(z)") ) symbInfo.symbolDefSymb = "\\zeta";
 
         metaData.tagAsDefinition();
-        EquationSplitter splitter = new EquationSplitter(metaData);
-        LinkedList<Case> caseList = splitter.split(eq);
+        EquationSplitter splitter = new EquationSplitter();
+        LinkedList<Case> caseList = splitter.split(eq, metaData);
         if ( caseList == null || caseList.isEmpty() ) return;
 
         Case c = caseList.get(0);

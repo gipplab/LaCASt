@@ -1,4 +1,4 @@
-Overall: [TOTAL: 242, SKIPPED: 173, DEFINITIONS: 0, STARTED_TEST_CASES: 69, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 69, SUCCESS_SYMB: 0, SUCCESS_NUM: 69, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 0, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 242, SKIPPED: 173, DEFINITIONS: 0, STARTED_TEST_CASES: 69, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 69, SUCCESS_SYMB: 0, SUCCESS_NUM: 69, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 0, NO_TEST_VALUES: 0, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
 2720 [http://dlmf.nist.gov/9.2.E3]: Successful [Tested: 1]
 2720-a [http://dlmf.nist.gov/9.2.E3]: Skip - symbolical successful subtest
 2721 [http://dlmf.nist.gov/9.2.E4]: Successful [Tested: 1]
@@ -99,8 +99,8 @@ Overall: [TOTAL: 242, SKIPPED: 173, DEFINITIONS: 0, STARTED_TEST_CASES: 69, ERRO
 2906-a [http://dlmf.nist.gov/9.12.E13]: Successful [Tested: 7]
 2907 [http://dlmf.nist.gov/9.12.E14]: Successful [Tested: 7]
 2907-a [http://dlmf.nist.gov/9.12.E14]: Successful [Tested: 7]
-2908 [http://dlmf.nist.gov/9.12.E15]: Successful [Tested: 10]
-2909 [http://dlmf.nist.gov/9.12.E16]: Successful [Tested: 10]
-2910 [http://dlmf.nist.gov/9.12.E17]: Successful [Tested: 10]
-2911 [http://dlmf.nist.gov/9.12.E18]: Successful [Tested: 10]
+2908 [http://dlmf.nist.gov/9.12.E15]: Successful [Tested: 7]
+2909 [http://dlmf.nist.gov/9.12.E16]: Successful [Tested: 7]
+2910 [http://dlmf.nist.gov/9.12.E17]: Successful [Tested: 7]
+2911 [http://dlmf.nist.gov/9.12.E18]: Successful [Tested: 7]
 2913 [http://dlmf.nist.gov/9.12.E20]: Successful [Tested: 7]

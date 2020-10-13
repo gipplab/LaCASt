@@ -28,7 +28,7 @@ public class MLPConstraintAnalyzer {
 
     private Path btPath;
 
-    private LinkedList<MLPBlueprintTree> blueprints;
+    private LinkedList<ConstraintBlueprint> blueprints;
 
     private static MLPConstraintAnalyzer analyzer;
 
@@ -42,9 +42,8 @@ public class MLPConstraintAnalyzer {
         lines.map(l -> l.split(" ==> "))
                 .forEach(a -> {
                     String[] values = a[1].split(",");
-                    MLPBlueprintTree bt = new MLPBlueprintTree(values);
                     try {
-                        bt.setBlueprint(a[0]);
+                        ConstraintBlueprint bt = new ConstraintBlueprint(a[0], values);
                         blueprints.add(bt);
                     } catch (ParseException pe) {
                         LOG.error("Cannot parse Constraint-Blueprint!", pe);
@@ -53,29 +52,31 @@ public class MLPConstraintAnalyzer {
     }
 
     public String[][] checkForBlueprintRules(String constraint) throws ParseException {
-        MLPBlueprintNode con = MLPBlueprintTree.parseTree(constraint);
-        return internalCheck(con);
+//        MLPBlueprintNode con = MLPBlueprintTree.parseTree(constraint);
+        return internalCheck(constraint);
     }
 
-    public String[][] checkForBlueprintRules(PomTaggedExpression constraintParentNode) {
-        MLPBlueprintNode con = MLPBlueprintTree.parseTree(constraintParentNode);
-        return internalCheck(con);
-    }
+//    public String[][] checkForBlueprintRules(PomTaggedExpression constraintParentNode) {
+//        MLPBlueprintNode con = MLPBlueprintTree.parseTree(constraintParentNode);
+//        return internalCheck(con);
+//    }
 
-    private String[][] internalCheck(MLPBlueprintNode con){
-        MLPBlueprintTree bt = blueprints.stream()
-                .filter(b -> b.matches(con))
-                .findAny()
-                .orElse(null);
-        if (bt != null) {
-            return bt.getConstraintVariablesAndValues();
-        } else {
+    private String[][] internalCheck(String con){
+//        return null;
+        try {
+            for ( ConstraintBlueprint bt : blueprints ) {
+                if ( bt.match(con) ) {
+                    return bt.getConstraintVariables();
+                }
+            }
+            return null;
+        } catch (Exception | Error re) {
             return null;
         }
     }
 
-    public static MLPConstraintAnalyzer getAnalyzerInstance(){
-        if ( analyzer == null ){
+    public static MLPConstraintAnalyzer getAnalyzerInstance() {
+        if (analyzer == null) {
             analyzer = new MLPConstraintAnalyzer();
             try {
                 analyzer.init();
@@ -88,24 +89,13 @@ public class MLPConstraintAnalyzer {
     }
 
     public static void main(String[] args) throws Exception {
-        String s = "var1^2 var2^2 < 1";
-        MLPBlueprintTree t = new MLPBlueprintTree(new String[]{"1/4,1/2"});
-        t.setBlueprint(s);
+        String s = "var1-\\frac{1}{2} var2 - \\frac{1}{2} =0,1,2,\\dots";
+        String test = "\\kappa-\\frac{1}{2}n-\\frac{1}{2}=0,1,2,\\dots";
+        ConstraintBlueprint cb = new ConstraintBlueprint(s, "1", "2");
+        System.out.println(cb.match(test));
+        System.out.println(Arrays.toString(cb.getConstraintVariables()[0]));
+        System.out.println(Arrays.toString(cb.getConstraintVariables()[1]));
 
-        MLPBlueprintNode n = MLPBlueprintTree.parseTree("a^2 q^2 < 1");
-
-        System.out.println(t.matches(n));
-        String[][] st = t.getConstraintVariablesAndValues();
-
-        System.out.println(Arrays.toString(st[1]));
-        System.out.println(Arrays.toString(st[0]));
-
-
-//        MLPConstraintAnalyzer a = new MLPConstraintAnalyzer();
-//        a.init();
-//
-//        String[][] varvals = a.checkForBlueprintRules("2 q \\ne -1,-2,-3, \\dotsc");
-//        System.out.println(Arrays.toString(varvals[0]) + " - " + Arrays.toString(varvals[1]));
     }
 
 }

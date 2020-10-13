@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.common;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Andre Greiner-Petter
@@ -61,5 +61,26 @@ public class TeXPreProcessorTest {
         String iOut = TeXPreProcessor.preProcessingTeX( i );
         assertEquals( expect, output);
         assertEquals( iExp, iOut);
+    }
+
+    @Test
+    public void bracketTest() {
+        String in = "{{test}}";
+        assertTrue(TeXPreProcessor.wrappedInCurlyBrackets(in), in);
+
+        in = "{{test} + {k}}";
+        assertTrue(TeXPreProcessor.wrappedInCurlyBrackets(in), in);
+
+        in = "{a + {test}}";
+        assertTrue(TeXPreProcessor.wrappedInCurlyBrackets(in), in);
+
+        in = "{ a + { test }} + {x}";
+        assertFalse(TeXPreProcessor.wrappedInCurlyBrackets(in), in);
+    }
+
+    @Test
+    public void bracketLnTest() {
+        String in = "{\\sqrt{1-k^2}}^{-1}\\ln{\\Jacobielldck{x}{k}+\\sqrt{1-k^2}\\Jacobiellsck{x}{k}}";
+        assertFalse(TeXPreProcessor.wrappedInCurlyBrackets(in));
     }
 }

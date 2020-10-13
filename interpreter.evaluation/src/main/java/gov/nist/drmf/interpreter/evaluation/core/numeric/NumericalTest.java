@@ -43,8 +43,8 @@ public class NumericalTest {
         constraints = c.getConstraints(translator, label);
         constraintVariables = c.getConstraintVariables(translator, label);
         constraintVariablesValues = c.getConstraintValues();
-        extraVariables = config.getListOfSpecialVariables(translator, label);
-        extraVariablesValues = config.getListOfSpecialVariableValues(translator, label);
+        extraVariables = config.getListOfSpecialVariables(translator);
+        extraVariablesValues = config.getListOfSpecialVariableValues(translator);
 
         precision = config.getPrecision();
         maxCombis = config.getMaximumNumberOfCombs();

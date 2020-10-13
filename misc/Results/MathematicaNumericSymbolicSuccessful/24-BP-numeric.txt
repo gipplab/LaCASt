@@ -1,10 +1,10 @@
-Overall: [TOTAL: 171, SKIPPED: 148, DEFINITIONS: 0, STARTED_TEST_CASES: 23, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 23, SUCCESS_SYMB: 0, SUCCESS_NUM: 23, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 0, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
-7358 [http://dlmf.nist.gov/24.2.E1]: Successful [Tested: 10]
-7361 [http://dlmf.nist.gov/24.2.E3]: Successful [Tested: 30]
+Overall: [TOTAL: 171, SKIPPED: 148, DEFINITIONS: 0, STARTED_TEST_CASES: 23, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 23, SUCCESS_SYMB: 0, SUCCESS_NUM: 23, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 0, NO_TEST_VALUES: 0, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
+7358 [http://dlmf.nist.gov/24.2.E1]: Successful [Tested: 6]
+7361 [http://dlmf.nist.gov/24.2.E3]: Successful [Tested: 18]
 7362 [http://dlmf.nist.gov/24.2.E4]: Successful [Tested: 3]
 7363 [http://dlmf.nist.gov/24.2.E5]: Successful [Tested: 9]
-7364 [http://dlmf.nist.gov/24.2.E6]: Successful [Tested: 8]
-7367 [http://dlmf.nist.gov/24.2.E8]: Successful [Tested: 30]
+7364 [http://dlmf.nist.gov/24.2.E6]: Successful [Tested: 4]
+7367 [http://dlmf.nist.gov/24.2.E8]: Successful [Tested: 18]
 7368 [http://dlmf.nist.gov/24.2.E9]: Successful [Tested: 3]
 7368-a [http://dlmf.nist.gov/24.2.E9]: Skip - symbolical successful subtest
 7374 [http://dlmf.nist.gov/24.4.E1]: Successful [Tested: 9]
@@ -14,11 +14,11 @@ Overall: [TOTAL: 171, SKIPPED: 148, DEFINITIONS: 0, STARTED_TEST_CASES: 23, ERRO
 7399-a [http://dlmf.nist.gov/24.4.E26]: Skip - symbolical successful subtest
 7400 [http://dlmf.nist.gov/24.4.E27]: Successful [Tested: 3]
 7401 [http://dlmf.nist.gov/24.4.E28]: Successful [Tested: 3]
-7404 [http://dlmf.nist.gov/24.4.E31]: Successful [Tested: 3]
+7404 [http://dlmf.nist.gov/24.4.E31]: Successful [Tested: 1]
 7404-a [http://dlmf.nist.gov/24.4.E31]: Skip - symbolical successful subtest
-7407 [http://dlmf.nist.gov/24.4.E34]: Successful [Tested: 9]
-7408 [http://dlmf.nist.gov/24.4.E35]: Successful [Tested: 9]
-7415 [http://dlmf.nist.gov/24.5.E3]: Successful [Tested: 3]
+7407 [http://dlmf.nist.gov/24.4.E34]: Successful [Tested: 3]
+7408 [http://dlmf.nist.gov/24.4.E35]: Successful [Tested: 3]
+7415 [http://dlmf.nist.gov/24.5.E3]: Successful [Tested: 1]
 7433 [http://dlmf.nist.gov/24.6.E9]: Successful [Tested: 3]
 7437 [http://dlmf.nist.gov/24.7.E1]: Skip - symbolical successful subtest
 7437-a [http://dlmf.nist.gov/24.7.E1]: Successful [Tested: 3]

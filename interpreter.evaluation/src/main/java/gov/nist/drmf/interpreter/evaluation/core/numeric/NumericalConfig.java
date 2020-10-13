@@ -153,16 +153,16 @@ public class NumericalConfig implements EvaluationConfig {
         return numericalValues;
     }
 
-    public List<String> getListOfSpecialVariables(IConstraintTranslator translator, String label) {
+    public List<String> getListOfSpecialVariables(IConstraintTranslator translator) {
         if ( specVars == null ) {
-            specVars = translateElements(translator, getSpecialVariables(), label);
+            specVars = translateElements(translator, getSpecialVariables(), null);
         }
         return specVars;
     }
 
-    public List<String> getListOfSpecialVariableValues( IConstraintTranslator translator, String label ) {
+    public List<String> getListOfSpecialVariableValues( IConstraintTranslator translator ) {
         if ( specVarsVals == null ) {
-            specVarsVals = translateElements(translator, getSpecialVariablesValues(), label);
+            specVarsVals = translateElements(translator, getSpecialVariablesValues(), null);
         }
         return specVarsVals;
     }
