@@ -158,10 +158,11 @@ public class Case {
         if ( LHS == null || RHS == null || relation == null ) return this;
 
         LinkedList<SymbolTag> used = metaData.getSymbolsUsed();
+        Set<String> memory = new HashSet<>();
 
         for ( SymbolTag use : used ) {
             try {
-                recursiveReplaceSymbolUsed(library, use);
+                recursiveReplaceSymbolUsed(library, use, memory);
             } catch (Exception | Error e) {
                 LOG.warn("Unable to perform definition replacements.", e);
             }
@@ -206,14 +207,20 @@ public class Case {
         return this;
     }
 
-    private void recursiveReplaceSymbolUsed(SymbolDefinedLibrary library, SymbolTag use) throws ParseException {
+    private void recursiveReplaceSymbolUsed(SymbolDefinedLibrary library, SymbolTag use, Set<String> memory) throws ParseException {
         if ( use == null ) return;
 
         SymbolTag def = library.getSymbolDefinition(use.getId());
         if ( def == null ) return;
 
+        // to avoid infinity loops
+        if ( memory.contains(def.getSymbol()) ) return;
+
         // at first, we replace the tag itself.
         replaceSingleTag(def);
+
+        // remember the definitions we already performed
+        memory.add(def.getSymbol());
 
         // however, second step, we do the same for the children
         CaseMetaData meta = def.getMetaData();
@@ -222,7 +229,7 @@ public class Case {
         LinkedList<SymbolTag> innerTags = meta.getSymbolsUsed();
         if ( innerTags == null ) return;
         for ( SymbolTag tag : innerTags ) {
-            recursiveReplaceSymbolUsed(library, tag);
+            recursiveReplaceSymbolUsed(library, tag, memory);
         }
     }
 

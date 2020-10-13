@@ -2,17 +2,19 @@
 
 REVERSEMODE=0
 BASEPATH="/home/andreg-p/data/Howard/Results"
-while getopts rp: flag
+CAS="Mathematica"
+while getopts rp:c: flag
 do
   case "${flag}" in
     r) REVERSEMODE=1;;
     p) BASEPATH=${OPTARG};;
+    c) CAS=${OPTARG};;
     a*) echo "Unknown flag, use -r for reversed mode."
   esac
 done
 
-MATHBASE="$BASEPATH/MathematicaSymbolic"
-MATHP="$BASEPATH/MathematicaNumeric"
+MATHBASE="$BASEPATH/${CAS}Symbolic"
+MATHP="$BASEPATH/${CAS}Numeric"
 
 if (( $REVERSEMODE == 1 )); then
   MATHP="${MATHP}SymbolicSuccessful"
