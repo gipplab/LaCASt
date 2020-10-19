@@ -92,8 +92,12 @@ public class PomTaggedExpressionChildrenMatcher {
     ) {
         int idx = 0;
         while (idx < size() && !refComponents.isEmpty()) {
-            PrintablePomTaggedExpression firstRef = refComponents.removeFirst();
             MatchablePomTaggedExpression matcherElement = this.children.get(idx);
+            if ( config.ignoreNumberOfAts() && "@".equals(matcherElement.getRoot().getTermText()) ) {
+                idx++;
+                continue;
+            }
+            PrintablePomTaggedExpression firstRef = refComponents.removeFirst();
 
             if (!matcherElement.match(firstRef, refComponents, config)) return false;
 
