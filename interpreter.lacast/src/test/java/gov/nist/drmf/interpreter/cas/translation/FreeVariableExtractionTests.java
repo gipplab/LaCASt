@@ -198,6 +198,13 @@ public class FreeVariableExtractionTests {
     }
 
     @Test
+    @DLMF("18.18.E15")
+    void scriptLTest() {
+        slt.translate("\\JacobipolyP{\\alpha}{\\beta}{\\ell}@{x}", "18.18.E15");
+        test(slt.getInfoLogger(), "\\[Alpha]", "\\[Beta]", "\\[ScriptL]", "x");
+    }
+
+    @Test
     @DLMF("24.5.E4")
     void sumEulerNumberTest() {
         slt.translate("\\sum_{k=0}^{n}{2n\\choose 2k}\\EulernumberE{2k}=0", "24.5.E4");
@@ -209,6 +216,13 @@ public class FreeVariableExtractionTests {
     void subscriptSumTest() {
         slt.translate("a_{n}=\\sum_{k=0}^{n}{n\\choose k}\\frac{b_{n-k}}{k+1}", "24.5.E9");
         test(slt.getInfoLogger(), "Subscript[a, n]", "n", "Subscript[b, n - k]");
+    }
+
+    @Test
+    @DLMF("33.5.E6")
+    void complexScriptLTest() {
+        slt.translate("\\frac{2^{\\ell}\\ell!}{(2\\ell+1)!}=\\frac{1}{(2\\ell+1)!!}", "33.5.E6");
+        test(slt.getInfoLogger(), "\\[ScriptL]");
     }
 
     @Test

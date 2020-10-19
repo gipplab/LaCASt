@@ -1,4 +1,4 @@
-Overall: [TOTAL: 203, SKIPPED: 59, DEFINITIONS: 5, STARTED_TEST_CASES: 139, ERROR_TRANS: 2, MISSING: 3, SUCCESS_TRANS: 134, SUCCESS_SYMB: 57, SUCCESS_NUM: 0, SUCCESS_UNDER_EXTRA_CONDITION: 8, FAILURE: 55, ABORTED: 14, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 203, SKIPPED: 54, DEFINITIONS: 5, STARTED_TEST_CASES: 144, ERROR_TRANS: 2, MISSING: 3, SUCCESS_TRANS: 139, SUCCESS_SYMB: 57, SUCCESS_NUM: 0, SUCCESS_UNDER_EXTRA_CONDITION: 8, FAILURE: 57, ABORTED: 17, ERROR: 0] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 1991 [http://dlmf.nist.gov/5.2.E1]: Successful [Simple: 0]
 1992 [http://dlmf.nist.gov/5.2.E2]: Successful [Simple: 0]
@@ -138,13 +138,13 @@ Overall: [TOTAL: 203, SKIPPED: 59, DEFINITIONS: 5, STARTED_TEST_CASES: 139, ERRO
 2115 [http://dlmf.nist.gov/5.12.E5]: All Aborted: [Simple: Aborted]
 2116 [http://dlmf.nist.gov/5.12.E6]: All Aborted: [Simple: Aborted]
 2117 [http://dlmf.nist.gov/5.12.E7]: Failure [Simple: NaN]
-2118 [http://dlmf.nist.gov/5.12.E8]: Skipped - Unable to analyze test case: Null
-2119 [http://dlmf.nist.gov/5.12.E9]: Skipped - Unable to analyze test case: Null
-2120 [http://dlmf.nist.gov/5.12.E10]: Skipped - Unable to analyze test case: Null
+2118 [http://dlmf.nist.gov/5.12.E8]: Failure [Simple: NaN]
+2119 [http://dlmf.nist.gov/5.12.E9]: All Aborted: [Simple: Aborted]
+2120 [http://dlmf.nist.gov/5.12.E10]: Failure [Simple: NaN]
 2121 [http://dlmf.nist.gov/5.12.E11]: Failure [Simple: NaN]
 2122 [http://dlmf.nist.gov/5.12.E12]: Failure [Simple: NaN]
-2123 [http://dlmf.nist.gov/5.13.E1]: Skipped - Unable to analyze test case: Null
-2124 [http://dlmf.nist.gov/5.13.E2]: Skipped - Unable to analyze test case: Null
+2123 [http://dlmf.nist.gov/5.13.E1]: All Aborted: [Simple: Aborted]
+2124 [http://dlmf.nist.gov/5.13.E2]: All Aborted: [Simple: Aborted]
 2125 [http://dlmf.nist.gov/5.13.E3]: All Aborted: [Simple: Aborted]
 2126 [http://dlmf.nist.gov/5.13.E4]: All Aborted: [Simple: Aborted]
 2127 [http://dlmf.nist.gov/5.13.E5]: All Aborted: [Simple: Aborted]

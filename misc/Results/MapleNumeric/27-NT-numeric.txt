@@ -1,12 +1,19 @@
-Overall: [SUCCESS: 1, FAILURE: 0, LIMIT_SKIPS: 10, TESTED: 4, ERROR: 0] for test expression: (#LHS)-(#RHS)
-8317: Skip - int/sum/prod/lim
-8317-a: Skip - int/sum/prod/lim
-8327: Skip - int/sum/prod/lim
-8358: Skipped - Cannot calculate number of combinations!
-8359: Skipped - Cannot calculate number of combinations!
-8360: Skipped - Cannot calculate number of combinations!
-8367: Skip - int/sum/prod/lim
-8380: Skip - int/sum/prod/lim
-8382: Skip - int/sum/prod/lim
-8389: Successful
-8401: Skip - int/sum/prod/lim
+Overall: [TOTAL: 109, SKIPPED: 92, DEFINITIONS: 0, STARTED_TEST_CASES: 17, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 17, SUCCESS_SYMB: 0, SUCCESS_NUM: 2, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 6, NO_TEST_VALUES: 1, ABORTED: 0, ERROR: 8] for test expression: (#LHS)-(#RHS)
+7967 [http://dlmf.nist.gov/27.3.E6]: Error [[[Error, [alpha = 3/2, a[r] = 1/2*3^(1/2)+1/2*I, p[r] = 1/2*3^(1/2)+1/2*I, n = 1]], [Error, [alpha = 3/2, a[r] = 1/2*3^(1/2)+1/2*I, p[r] = 1/2*3^(1/2)+1/2*I, n = 2]], ...]
+7969 [http://dlmf.nist.gov/27.3.E8]: Failed [2/9]: [[-1., [m = 2, n = 2]], [-2., [m = 3, n = 3]]]
+7974 [http://dlmf.nist.gov/27.4.E3]: Skip - symbolical successful subtest
+7974-a [http://dlmf.nist.gov/27.4.E3]: Error [[[Error, [s = 3/2]], [Error, [s = 2]]]]
+7977 [http://dlmf.nist.gov/27.4.E6]: Error - There are no valid test values.
+7982 [http://dlmf.nist.gov/27.4.E11]: Failed [18/18]: [[Float(infinity), [alpha = 3/2, s = -3/2]], [5.224750698, [alpha = 3/2, s = 3/2]], ...
+8004 [http://dlmf.nist.gov/27.7.E4]: Successful [Tested: 1]
+8005 [http://dlmf.nist.gov/27.7.E5]: Failed [3/3]: [[2.671514971, [alpha = 3/2, x = 1/2]], [1.507450946, [alpha = 1/2, x = 1/2]], ...
+8015 [http://dlmf.nist.gov/27.9.E1]: Error [[[Error, [p = 1/2*3^(1/2)+1/2*I]], [Error, [p = -1/2+1/2*I*3^(1/2)]], ...]
+8016 [http://dlmf.nist.gov/27.9.E2]: Error [[[Error, [p = 1/2*3^(1/2)+1/2*I]], [Error, [p = -1/2+1/2*I*3^(1/2)]], ...]
+8017 [http://dlmf.nist.gov/27.9.E3]: Error [[[Error, [p = 1/2*3^(1/2)+1/2*I, q = 1/2*3^(1/2)+1/2*I]], [Error, [p = 1/2*3^(1/2)+1/2*I, q = -1/2+1/2*I*3^(1/2)]], ...]
+8024 [http://dlmf.nist.gov/27.10.E7]: Failed [297/300]: [[2971422279.-5146654356.*I, [a[k] = 1/2*3^(1/2)+1/2*I, s[k] = 1/2*3^(1/2)+1/2*I, k = 1, n = 1]], [-1114283352.+1929995386.*I, [a[k] = 1/2*3^(1/2)+1/2*I, s[k] = 1/2*3^(1/2)+1/2*I, k = 1, n = 2]], ...
+8045 [http://dlmf.nist.gov/27.12.E1]: Skip - No test values generated
+8046 [http://dlmf.nist.gov/27.12.E2]: Failed [6/10]: [[3.295836867 < -1.500000000, [p[n] = -3/2, n = 3]], [3.295836867 < 1.500000000, [p[n] = 3/2, n = 3]], ...
+8058 [http://dlmf.nist.gov/27.13.E6]: Failed [300/300]: [[3.532372013, [delta = 1/2*3^(1/2)+1/2*I, x = 1/2, delta[1] = 1/2*3^(1/2)+1/2*I, delta[3] = 1/2*3^(1/2)+1/2*I]], [-7.395831219+2.928203232*I, [delta = 1/2*3^(1/2)+1/2*I, x = 1/2, delta[1] = 1/2*3^(1/2)+1/2*I, delta[3] = -1/2+1/2*I*3^(1/2)]], ...
+8061 [http://dlmf.nist.gov/27.14.E2]: Successful [Tested: 1]
+8062 [http://dlmf.nist.gov/27.14.E3]: Error [[[Error, [x = 1/2]]]]
+8074 [http://dlmf.nist.gov/27.14.E15]: Error [[[Error, [x = 1/2]]]]

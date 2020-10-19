@@ -52,31 +52,33 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 //    private static final String SKIP = "5719,5752,9031";
 
     // maple skips
-    private static final String SKIP =
+    private static final String SKIP = ""
             // sections 1 - 9
-            "1652,1653,2126,2363,2474,2679,2717,2917," +
-            // section 10
-            "3061,3062,3351,3352,3353,3370,3371,3372,3435,3491,3501,3516,3586,3587,3588,3616,3618," +
-            // section 11, 12
-            "4005,4093," +
-            // section 13
-            "4440,4482,4483,4484,4485,4486,4487,4488,4489,4521,4522,4524,4603,4609,4610,4613," +
-            // S 14
-            "4736,4850,4857,4858,4864,4866,4867,4868,4869,4870,4871,4872,4873,4874,4898,4918," +
-            // S 15
-            "4971,4973,4984,5008,5092,5097-5116," +
-            // S 16
-            "5166,5211," +
-            // S 18
-            "5482,5607,5609-5612,5706,5782,5835," +
-            // S 19
-            "6277,6278,6610," +
-            // S 25
-            "7668,7672," +
-            // S 28-32
-            "8505,8936,8946,8963,9035,9387,"+
-            "5719,5752,9031"
+//            "1652,1653,2126,2363,2474,2679,2717,2917," +
+//            // section 10
+//            "3061,3062,3351,3352,3353,3370,3371,3372,3435,3491,3501,3516,3586,3587,3588,3616,3618," +
+//            // section 11, 12
+//            "4005,4093," +
+//            // section 13
+//            "4440,4482,4483,4484,4485,4486,4487,4488,4489,4521,4522,4524,4603,4609,4610,4613," +
+//            // S 14
+//            "4736,4850,4857,4858,4864,4866,4867,4868,4869,4870,4871,4872,4873,4874,4898,4918," +
+//            // S 15
+//            "4971,4973,4984,5008,5092,5097-5116," +
+//            // S 16
+//            "5166,5211," +
+//            // S 18
+//            "5482,5607,5609-5612,5706,5782,5835," +
+//            // S 19
+//            "6277,6278,6610," +
+//            // S 25
+//            "7668,7672," +
+//            // S 28-32
+//            "8505,8936,8946,8963,9035,9387,"+
+//            "5719,5752,9031"
             ;
+
+    private static final String TESTS = "1257, 1450, 3375, 3376, 3393, 5483, 5767, 5769, 5770, 5771, 5772, 5773, 5774, 5778, 5780, 5784, 5984, 6802, 6803, 9456, 9496, 9566, 9569, 9582, 9647";
 
     private Set<Integer> realSkips;
 
@@ -99,6 +101,8 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
     private LinkedList<String>[] lineResult;
 
     private int[] subset;
+
+    private HashSet<Integer> testSet;
 
     private int gcCaller = 0;
 
@@ -148,7 +152,9 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
 //        smr = LONG_RUNTIME_SKIP.split(",");
         this.realSkips = new HashSet<>();
+        this.testSet = new HashSet<>();
         for ( String s : SKIP.split(",") ) {
+            if ( s.isBlank() ) continue;
             if ( s.contains("-") ) {
                 String[] tmp = s.split("-");
                 int start = Integer.parseInt(tmp[0]);
@@ -159,6 +165,11 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
                 int i = Integer.parseInt(s);
                 realSkips.add(i);
             }
+        }
+
+        for ( String s : TESTS.split(",") ) {
+            int i = Integer.parseInt(s.trim());
+            testSet.add(i);
         }
 
         setUpScripts(procedures);
@@ -237,6 +248,11 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
     @Override
     public void performSingleTest( Case c ){
+//        if ( !testSet.contains(c.getLine()) ) {
+//            // just ignore that shit
+//            return;
+//        }
+
         if ( lineResult[c.getLine()] == null ){
             lineResult[c.getLine()] = new LinkedList();
         }

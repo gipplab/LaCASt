@@ -2,8 +2,8 @@
 |-
 ! DLMF !! Formula !! Maple !! Mathematica !! Symbolic<br>Maple !! Symbolic<br>Mathematica !! Numeric<br>Maple !! Numeric<br>Mathematica
 |-
-| [https://dlmf.nist.gov/1.2.E1 1.2.E1] || [[Item:Q30|<math>\binom{n}{k} = \frac{n!}{(n-k)!k!}</math>]] || <code>binomial(n,k) = (factorial(n))/(factorial(n - k)*factorial(k))</code> || <code>Binomial[n,k] == Divide[(n)!,(n - k)!*(k)!]</code> || Successful || Successful || - || -
+| [https://dlmf.nist.gov/1.2.E1 1.2.E1] || [[Item:Q30|<math>\binom{n}{k} = \frac{n!}{(n-k)!k!}</math>]] || <code>binomial(n,k) = (factorial(n))/(factorial(n - k)*factorial(k))</code> || <code>Binomial[n,k] == Divide[(n)!,(n - k)!*(k)!]</code> || Successful || Successful || - || Successful
 |-
-| [https://dlmf.nist.gov/1.2.E1 1.2.E1] || [[Item:Q30|<math>\frac{n!}{(n-k)!k!} = \binom{n}{n-k}</math>]] || <code>(factorial(n))/(factorial(n - k)*factorial(k)) = binomial(n,n - k)</code> || <code>Divide[(n)!,(n - k)!*(k)!] == Binomial[n,n - k]</code> || Successful || Successful || - || -
+| [https://dlmf.nist.gov/1.2.E1 1.2.E1] || [[Item:Q30|<math>\frac{n!}{(n-k)!k!} = \binom{n}{n-k}</math>]] || <code>(factorial(n))/(factorial(n - k)*factorial(k)) = binomial(n,n - k)</code> || <code>Divide[(n)!,(n - k)!*(k)!] == Binomial[n,n - k]</code> || Successful || Successful || - || Successful
 |-
 |}
