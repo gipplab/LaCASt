@@ -52,6 +52,10 @@ public class NumericalDifferencesAnalyzer {
             "[ \\[]\\[(.*?), \\[(.*?)]][,\\]]"
     );
 
+    public static final Pattern failedNumericPattern = Pattern.compile(
+            "Failed \\[(\\d+)/(\\d+)]: "
+    );
+
     private static final Pattern procedureNamePattern = Pattern.compile(
             "^([A-Za-z]+)\\[.*", Pattern.DOTALL
     );

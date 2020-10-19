@@ -128,7 +128,9 @@ public class CaseAnalyzer {
         }
 
         EquationSplitter splitter = new EquationSplitter();
-        return splitter.split(eq, metaData);
+        LinkedList<Case> cases = splitter.split(eq, metaData);
+        for ( Case c : cases ) c.setOriginalLaTeXInput(eq);
+        return cases;
     }
 
     private static String tmpConst = null;

@@ -192,6 +192,13 @@ public class LetterTranslator extends AbstractListTranslator {
                     "was translated to: " + t);
             localTranslations.addTranslatedExpression(t);
             getGlobalTranslationList().addTranslatedExpression(t);
+
+            // the only special math letter which is a free variable is \ell...
+            if ( MathTermTags.special_math_letter.equals(MathTermTags.getTagByMathTerm(term)) &&
+                    "\\ell".equals(term.getTermText())) {
+                getInfoLogger().getFreeVariables().addFreeVariable(t);
+            }
+
             return true;
         } else return false;
     }

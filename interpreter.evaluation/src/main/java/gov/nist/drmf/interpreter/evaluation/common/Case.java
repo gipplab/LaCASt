@@ -29,6 +29,8 @@ import java.util.regex.Pattern;
 public class Case {
     private static final Logger LOG = LogManager.getLogger(Case.class.getName());
 
+    private String originalLaTeXInput = null;
+
     private String LHS, RHS;
     private Relations relation;
 
@@ -39,6 +41,14 @@ public class Case {
         this.RHS = RHS;
         this.relation = relation;
         this.metaData = metaData;
+    }
+
+    public void setOriginalLaTeXInput(String formula) {
+        this.originalLaTeXInput = formula;
+    }
+
+    public String getOriginalFormula() {
+        return this.originalLaTeXInput;
     }
 
     public boolean isDefinition() {

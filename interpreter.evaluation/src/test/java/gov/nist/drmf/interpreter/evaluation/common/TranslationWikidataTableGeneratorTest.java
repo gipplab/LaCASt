@@ -24,12 +24,13 @@ public class TranslationWikidataTableGeneratorTest {
 
     @BeforeAll
     public static void setup() throws URISyntaxException, IOException, InitTranslatorException {
-        URL dataURL = TranslationWikidataTableGeneratorTest.class.getResource("test.txt");
+        URL dataURL = TranslationWikidataTableGeneratorTest.class.getResource("together.txt");
         URL csvURL = TranslationWikidataTableGeneratorTest.class.getResource("testQ.csv");
         URL mapSymbURL = TranslationWikidataTableGeneratorTest.class.getResource("MapleSymbolic");
         URL mapNumURL = TranslationWikidataTableGeneratorTest.class.getResource("MapleNumeric");
         URL matSymbURL = TranslationWikidataTableGeneratorTest.class.getResource("MathematicaSymbolic");
         URL matNumURL = TranslationWikidataTableGeneratorTest.class.getResource("MathematicaNumeric");
+        URL matNumSymbSucURL = TranslationWikidataTableGeneratorTest.class.getResource("MathematicaNumericSymbolicSuccessful");
 
         t = new TranslationWikidataTableGenerator(
                 Paths.get(dataURL.toURI()),
@@ -37,9 +38,11 @@ public class TranslationWikidataTableGeneratorTest {
                 Paths.get(mapNumURL.toURI()),
                 Paths.get(matSymbURL.toURI()),
                 Paths.get(matNumURL.toURI()),
+                Paths.get(matNumSymbSucURL.toURI()),
                 Paths.get(csvURL.toURI())
         );
 
+        t.setRange(0, 3);
         t.init();
     }
 

@@ -1,4 +1,5 @@
-Overall: [SUCCESS: 2, SUCCESS_SYMB: 2, SUCCESS_TRANS: 2, FAILURE: 0, STARTED_TEST_CASES: 2, SKIPPED: 0, DEFINITIONS: 0, IGNORE: 0, MISSING: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 687, SKIPPED: 408, DEFINITIONS: 52, STARTED_TEST_CASES: 227, ERROR_TRANS: 46, MISSING: 78, SUCCESS_TRANS: 103, SUCCESS_SYMB: 33, SUCCESS_NUM: 0, SUCCESS_UNDER_EXTRA_CONDITION: 1, FAILURE: 59, ABORTED: 10, ERROR: 0] for test expression: (#LHS)-(#RHS)
 [SIMPLE]
 1 [http://dlmf.nist.gov/1.2.E1]: Successful [Simple: 0]
-1-a [http://dlmf.nist.gov/1.2.E1]: Successful [Simple: 0]
+1-a [http://dlmf.nist.gov/1.2.E1]: Failure [Simple: 0]
+2 [http://dlmf.nist.gov/1.2.E2]: Skipped - Invalid test case: dots
