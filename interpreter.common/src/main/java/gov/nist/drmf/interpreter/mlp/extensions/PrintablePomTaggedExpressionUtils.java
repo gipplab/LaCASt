@@ -7,6 +7,7 @@ import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -51,5 +52,14 @@ public final class PrintablePomTaggedExpressionUtils {
         if ( pom instanceof PrintablePomTaggedExpression )
             expr = ((PrintablePomTaggedExpression) pom).getTexString();
         return pom.getComponents().isEmpty() && TeXPreProcessor.wrappedInCurlyBrackets(expr);
+    }
+
+    public static List<PrintablePomTaggedExpression> deepCopyPPTEList(List<PrintablePomTaggedExpression> list) {
+        var copy = new LinkedList<PrintablePomTaggedExpression>();
+        list.forEach( pte -> {
+            PrintablePomTaggedExpression c = new PrintablePomTaggedExpression(pte);
+            copy.add(c);
+        });
+        return copy;
     }
 }

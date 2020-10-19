@@ -6,6 +6,8 @@ import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.intellij.lang.annotations.Language;
+import org.intellij.lang.annotations.RegExp;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -137,15 +139,24 @@ public class PomMatcher {
                     while ( innerTmpMatch && !elements.isEmpty() && m.getNextSibling() != null ) {
                         first = elements.remove(0);
                         m = (MatchablePomTaggedExpression)m.getNextSibling();
+                        if ( config.ignoreNumberOfAts() ) {
+                            if ( "@".equals(m.getRoot().getTermText()) )
+                                continue;
+                            else {
+                                while ( "@".equals(first.getRoot().getTermText()) ) {
+                                    if ( elements.isEmpty() ) break;
+                                    first = elements.remove(0);
+                                }
+                            }
+                        }
                         innerTmpMatch = m.match(first, elements, config);
                     }
                     // match is only valid, if the regex does not assume more tokens
                     matched = (innerTmpMatch && m.getNextSibling() == null);
                     if ( matched && elements.isEmpty() ) lastMatchWentUntilEnd = true;
-                } else {
+                } else if ( !"@".equals(first.getRoot().getTermText()) ){
                     matched = matcher.match(first, elements, config);
                 }
-
 
                 if ( !matched ) {
                     backlog.addLast(first);
@@ -183,23 +194,37 @@ public class PomMatcher {
         return false;
     }
 
-    public PrintablePomTaggedExpression replaceAll( String expression ) throws ParseException {
+    /**
+     * This method replaces the wildcards in the given expression by the identified groups in each hit.
+     * Afterward, every match is replaced by the updated expression.
+     *
+     * For example, consider your pattern is <code>x var1^2</code> with <code>var1</code> as the wildcard.
+     * Now you match <code>x y^2 + x z^2</code> and replace every match by <code>(var1/2)</code>.
+     * This would return the root of the tree <code>x (y/2)^2 + x (z/2)^2</code>.
+     * @param expression the expression containing wildcards. The wildcards are replaced after a new match was found
+     * @return the updated root
+     * @throws ParseException if the updated expression (replaced wildcards) cannot be parsed
+     */
+    public PrintablePomTaggedExpression replacePattern(String expression) throws ParseException {
         reset();
         while ( find() ) {
             String replaced = PomMatcherUtility.fillPatterns(expression, groups());
             PrintablePomTaggedExpression p = matcher.getMLPWrapperInstance().parse(replaced);
-//            if ( PomTaggedExpressionUtility.isSequence(p) ) {
-//                replacePreviousHit(p.getPrintableComponents());
-//            } else {
-                LinkedList<PrintablePomTaggedExpression> tmp = new LinkedList<>();
-                tmp.add(p);
-                replacePreviousHit(tmp);
-//            }
+            LinkedList<PrintablePomTaggedExpression> tmp = new LinkedList<>();
+            tmp.add(p);
+            replacePreviousHit(tmp);
         }
         return copy;
     }
 
-    public PrintablePomTaggedExpression replaceAll( List<PrintablePomTaggedExpression> replacement ) {
+    /**
+     * Replaces every match by the provided replacement. This method is different to {@link #replacePattern(String)} because
+     * it does not replace wild cards by the matches.
+     * @param replacement the replacement
+     * @return root of updated tree
+     * @see #replacePreviousHit(List)
+     */
+    public PrintablePomTaggedExpression replace( List<PrintablePomTaggedExpression> replacement ) {
         reset();
         while ( find() ) {
             replacePreviousHit(replacement);
@@ -208,10 +233,13 @@ public class PomMatcher {
     }
 
     /**
-     *
-     * @param replacement
-     * @return
-     * @throws IllegalStateException
+     * Replaces only the previous hit (identified by {@link #find()} by the given list of {@link PrintablePomTaggedExpression}.
+     * The list can be a single element but not null. Calling the method multiple times without calling {@link #match()}
+     * or {@link #find()} has no effect and simply returns the replaced expression again and again.
+     * @param replacement the replacements
+     * @return the root of the new tree with replaced expressions
+     * @throws IllegalStateException if there were no match encountered
+     * @throws NullPointerException if the provided list is null
      */
     public PrintablePomTaggedExpression replacePreviousHit( List<PrintablePomTaggedExpression> replacement )
             throws IllegalStateException{

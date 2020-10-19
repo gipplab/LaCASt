@@ -24,21 +24,11 @@ public class MatcherConfig {
     private boolean allowLeadingTokens = false;
     private boolean allowFollowingTokens = false;
     private boolean ignoreBracketLogic = false;
-    private boolean ignoreNumberOfAts = true;
+    private boolean ignoreNumberOfAts = false;
 
     private final Map<String, String> illegalTokenForWildcards = new HashMap<>();
 
-    private MatcherConfig() {}
-
-    public MatcherConfig(boolean ignoreBracketLogic) {
-        this(false, false, ignoreBracketLogic);
-    }
-
-    public MatcherConfig(boolean allowLeadingTokens, boolean allowFollowingTokens, boolean ignoreBracketLogic) {
-        this.allowLeadingTokens = allowLeadingTokens;
-        this.allowFollowingTokens = allowFollowingTokens;
-        this.ignoreBracketLogic = ignoreBracketLogic;
-        this.ignoreNumberOfAts = true;
+    private MatcherConfig() {
         this.illegalTokenForWildcards.put(ALL_KEY, DEFAULT_ILLEGAL_TOKEN_FOR_WILDCARD);
     }
 
@@ -69,12 +59,13 @@ public class MatcherConfig {
         return this;
     }
 
-    public boolean isIgnoreNumberOfAts() {
+    public boolean ignoreNumberOfAts() {
         return ignoreNumberOfAts;
     }
 
-    public void setIgnoreNumberOfAts(boolean ignoreNumberOfAts) {
+    public MatcherConfig ignoreNumberOfAts(boolean ignoreNumberOfAts) {
         this.ignoreNumberOfAts = ignoreNumberOfAts;
+        return this;
     }
 
     public @Language("RegExp") String getDefaultIllegalTokenForWildcards() {
@@ -126,11 +117,35 @@ public class MatcherConfig {
         return this;
     }
 
+    public static MatcherConfig getDefaultMatchConfig() {
+        return new MatcherConfig()
+                .allowLeadingTokens(false)
+                .allowFollowingTokens(false)
+                .ignoreBracketLogic(false)
+                .ignoreNumberOfAts(true);
+    }
+
+    public static MatcherConfig getAllowAllMatchConfig() {
+        return new MatcherConfig()
+                .allowLeadingTokens(true)
+                .allowFollowingTokens(true)
+                .ignoreBracketLogic(true)
+                .ignoreNumberOfAts(true);
+    }
+
     public static MatcherConfig getInPlaceMatchConfig() {
-        return new MatcherConfig(true, true, false);
+        return new MatcherConfig()
+                .allowLeadingTokens(true)
+                .allowFollowingTokens(true)
+                .ignoreBracketLogic(false)
+                .ignoreNumberOfAts(true);
     }
 
     public static MatcherConfig getExactMatchConfig() {
-        return new MatcherConfig(false, false, false);
+        return new MatcherConfig()
+                .allowLeadingTokens(false)
+                .allowFollowingTokens(false)
+                .ignoreBracketLogic(false)
+                .ignoreNumberOfAts(false);
     }
 }

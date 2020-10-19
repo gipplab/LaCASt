@@ -5,9 +5,6 @@ import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
-import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
-import gov.nist.drmf.interpreter.mlp.MLPWrapper;
-import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.mlp.extensions.MatchablePomTaggedExpression;
 import gov.nist.drmf.interpreter.mlp.extensions.PomMatcher;
@@ -280,14 +277,14 @@ public class Case {
         MatchablePomTaggedExpression matchPOML = new MatchablePomTaggedExpression(mlp, TeXPreProcessor.resetNumberOfAtsToOne(sb.toString()), "VAR\\d+");
         PomMatcher matcherL = matchPOML.matcher(ppteLHS);
         if ( counter == 0 && !isSemantic ) {
-            PrintablePomTaggedExpression left = matcherL.replaceAll("("+def.getDefinition()+")");
+            PrintablePomTaggedExpression left = matcherL.replacePattern("("+def.getDefinition()+")");
             this.LHS = left.getTexString();
         }
 
         MatchablePomTaggedExpression matchPOMR = new MatchablePomTaggedExpression(mlp, TeXPreProcessor.resetNumberOfAtsToOne(sb.toString()), "VAR\\d+");
         PomMatcher matcherR = matchPOMR.matcher(ppteRHS);
         if ( counter == 0 && !isSemantic ) {
-            PrintablePomTaggedExpression right = matcherR.replaceAll("("+def.getDefinition()+")");
+            PrintablePomTaggedExpression right = matcherR.replacePattern("("+def.getDefinition()+")");
             this.RHS = right.getTexString();
         }
 

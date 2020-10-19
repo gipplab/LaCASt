@@ -365,7 +365,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
     ) {
         try {
             // essentially there are two cases, either it is not a wildcard, that it must match directly the reference
-            if (!isWildcard) return matchNonWildCard(expression, config);
+            if (!isWildcard) return matchNonWildCard(expression, followingExpressions, config);
             return matchWildCard(expression, followingExpressions, config);
         } catch ( NotMatchableException nme ) {
             LOG.debug("Expression not matchable because: " + nme.getMessage() +
@@ -376,10 +376,27 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
 
     private boolean matchNonWildCard(
             PrintablePomTaggedExpression expression,
+            List<PrintablePomTaggedExpression> followingExpressions,
             MatcherConfig config
     ){
         MathTerm otherRoot = expression.getRoot();
         MathTerm thisRoot = getRoot();
+
+        if ( config.ignoreNumberOfAts() ) {
+            if ( "@".equals(thisRoot.getTermText()) ) {
+                // reached the end, and we ignore @s, so it should not fail due to last @
+                if ( nextSibling == null ) return true;
+                else return this.nextSibling.match( expression, config );
+            } else if ( "@".equals(otherRoot.getTermText()) ) {
+                while ( "@".equals(otherRoot.getTermText()) ) {
+                    if ( followingExpressions.isEmpty() ) {
+                        return true;
+                    }
+                    expression = followingExpressions.remove(0);
+                    otherRoot = expression.getRoot();
+                }
+            }
+        }
 
         // TODO might be too strict
         if (!thisRoot.getTermText().equals(otherRoot.getTermText())) {

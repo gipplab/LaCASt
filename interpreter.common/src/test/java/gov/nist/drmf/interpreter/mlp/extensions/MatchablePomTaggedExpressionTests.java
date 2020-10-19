@@ -11,7 +11,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.util.StringUtils;
 
 import java.util.*;
 
@@ -264,7 +263,7 @@ public class MatchablePomTaggedExpressionTests {
 
         String test = "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
-        MatcherConfig config = new MatcherConfig(false, true, false);
+        MatcherConfig config = MatcherConfig.getDefaultMatchConfig().allowFollowingTokens(true);
         assertTrue(blueprint.match(ppte, config));
 
         Map<String, String> matches = blueprint.getStringMatches();
@@ -301,7 +300,7 @@ public class MatchablePomTaggedExpressionTests {
         String test = "P_{n}^{(\\alpha, \\beta)}(x)";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
         assertFalse(blueprint.match(ppte));
-        assertFalse(blueprint.match(ppte, new MatcherConfig(true, true, true)));
+        assertFalse(blueprint.match(ppte, MatcherConfig.getAllowAllMatchConfig()));
     }
 
     @Test
@@ -312,7 +311,7 @@ public class MatchablePomTaggedExpressionTests {
         String test = "(1 - x)^{\\alpha}(1 + x)^{\\beta}";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
         assertFalse(blueprint.match(ppte));
-        assertFalse(blueprint.match(ppte, new MatcherConfig(true, true, true)));
+        assertFalse(blueprint.match(ppte, MatcherConfig.getAllowAllMatchConfig()));
     }
 
     @Test
@@ -323,7 +322,7 @@ public class MatchablePomTaggedExpressionTests {
         String test = "(1 - x)^{\\alpha}(1 + x)^{\\beta}";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
         assertFalse(blueprint.match(ppte));
-        assertFalse(blueprint.match(ppte, new MatcherConfig(true, true, true)));
+        assertFalse(blueprint.match(ppte, MatcherConfig.getAllowAllMatchConfig()));
     }
 
     @Test
@@ -334,7 +333,7 @@ public class MatchablePomTaggedExpressionTests {
         String test = "1-(f(x))^x";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
         assertTrue(blueprint.match(ppte));
-        assertTrue(blueprint.match(ppte, new MatcherConfig(false)));
+        assertTrue(blueprint.match(ppte, MatcherConfig.getDefaultMatchConfig()));
 
         Map<String, String> matches = blueprint.getStringMatches();
         assertEquals("f (x)", matches.get("var1"));
@@ -348,10 +347,10 @@ public class MatchablePomTaggedExpressionTests {
         String test = "1-(f(x)^x";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
 
-        assertFalse(blueprint.match(ppte, new MatcherConfig(false)));
+        assertFalse(blueprint.match(ppte, MatcherConfig.getDefaultMatchConfig()));
 
         ppte = mlp.parse(test);
-        assertTrue(blueprint.match(ppte, new MatcherConfig(true)));
+        assertTrue(blueprint.match(ppte, MatcherConfig.getDefaultMatchConfig().ignoreBracketLogic(true)));
     }
 
     @Test
@@ -365,29 +364,29 @@ public class MatchablePomTaggedExpressionTests {
                 "Exact match should return true"
         );
         assertTrue(
-                blueprint.match("0 + 1 + x + 2", new MatcherConfig(true, false, false)),
+                blueprint.match("0 + 1 + x + 2", MatcherConfig.getDefaultMatchConfig().allowLeadingTokens(true)),
                 "Allow leading tokens but no following tokens does not work"
         );
         assertTrue(
-                blueprint.match("1 + x + 2 + 3", new MatcherConfig(false, true, false)),
+                blueprint.match("1 + x + 2 + 3", MatcherConfig.getDefaultMatchConfig().allowFollowingTokens(true)),
                 "Not allow leading tokens but following tokens does not work"
         );
         assertTrue(
-                blueprint.match("0 + 1 + x + 2 + 3", new MatcherConfig(true, true, false)),
+                blueprint.match("0 + 1 + x + 2 + 3", MatcherConfig.getInPlaceMatchConfig()),
                 "Allow both, leading and following tokens, does not work"
         );
 
         // negative config tests
         assertFalse(
-                blueprint.match("1 + x + 2 + 3", new MatcherConfig(true, false, false)),
+                blueprint.match("1 + x + 2 + 3", MatcherConfig.getDefaultMatchConfig().allowLeadingTokens(true)),
                 "Negative test for leading tokens allowed but no ending tokens failed"
         );
         assertFalse(
-                blueprint.match("0 + 1 + x + 2", new MatcherConfig(false, true, false)),
+                blueprint.match("0 + 1 + x + 2", MatcherConfig.getDefaultMatchConfig().allowFollowingTokens(true)),
                 "Negative test for leading tokens not allowed but ending tokens are, failed"
         );
         assertFalse(
-                blueprint.match("0 + 1 + x + 2 + 3", new MatcherConfig(false, false, false)),
+                blueprint.match("0 + 1 + x + 2 + 3", MatcherConfig.getDefaultMatchConfig()),
                 "Negative test for no in-place test failed."
         );
     }
@@ -632,6 +631,37 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void ignoreAtsTest() throws ParseException {
+        MatchablePomTaggedExpression blueprintZero = new MatchablePomTaggedExpression(mlp, "\\Gamma{x^2}");
+        MatchablePomTaggedExpression blueprintOne = new MatchablePomTaggedExpression(mlp, "\\Gamma@{x^2}");
+        MatchablePomTaggedExpression blueprintTwo = new MatchablePomTaggedExpression(mlp, "\\Gamma@@{x^2}");
+
+        MatcherConfig exactC = MatcherConfig.getExactMatchConfig();
+        assertTrue( blueprintZero.match("\\Gamma{x^2}", exactC) );
+        assertFalse( blueprintZero.match("\\Gamma@{x^2}", exactC) );
+        assertFalse( blueprintZero.match("\\Gamma@@{x^2}", exactC) );
+
+        assertFalse( blueprintOne.match("\\Gamma{x^2}", exactC) );
+        assertTrue( blueprintOne.match("\\Gamma@{x^2}", exactC) );
+        assertFalse( blueprintOne.match("\\Gamma@@{x^2}", exactC) );
+
+        assertFalse( blueprintTwo.match("\\Gamma{x^2}", exactC) );
+        assertFalse( blueprintTwo.match("\\Gamma@{x^2}", exactC) );
+        assertTrue( blueprintTwo.match("\\Gamma@@{x^2}", exactC) );
+
+        MatcherConfig allowC = MatcherConfig.getExactMatchConfig().ignoreNumberOfAts(true);
+        assertTrue( blueprintZero.match("\\Gamma{x^2}", allowC) );
+        assertTrue( blueprintZero.match("\\Gamma@{x^2}", allowC) );
+        assertTrue( blueprintZero.match("\\Gamma@@{x^2}", allowC) );
+        assertTrue( blueprintOne.match("\\Gamma{x^2}", allowC) );
+        assertTrue( blueprintOne.match("\\Gamma@{x^2}", allowC) );
+        assertTrue( blueprintOne.match("\\Gamma@@{x^2}", allowC) );
+        assertTrue( blueprintTwo.match("\\Gamma{x^2}", allowC) );
+        assertTrue( blueprintTwo.match("\\Gamma@{x^2}", allowC) );
+        assertTrue( blueprintTwo.match("\\Gamma@@{x^2}", allowC) );
+    }
+
+    @Test
     public void pomMatcherFindMultiEulerArgTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
                 new MatchablePomTaggedExpression(mlp, "\\EulerGamma@{var0}", "var\\d");
@@ -827,7 +857,7 @@ public class MatchablePomTaggedExpressionTests {
         LinkedList<PrintablePomTaggedExpression> tmp = new LinkedList<>();
         tmp.add(ppte);
 
-        PrintablePomTaggedExpression result = pomMatcher.replaceAll(tmp);
+        PrintablePomTaggedExpression result = pomMatcher.replace(tmp);
         assertEquals("x + Q + y + Q + z", result.getTexString());
     }
 
@@ -843,7 +873,7 @@ public class MatchablePomTaggedExpressionTests {
         LinkedList<PrintablePomTaggedExpression> tmp = new LinkedList<>();
         tmp.add(ppte);
 
-        PrintablePomTaggedExpression result = pomMatcher.replaceAll(tmp);
+        PrintablePomTaggedExpression result = pomMatcher.replace(tmp);
         assertEquals("x + Q + y + Q + z", result.getTexString());
     }
 
@@ -855,7 +885,7 @@ public class MatchablePomTaggedExpressionTests {
         String test = "f(1 + x + 2) + g(1 + y + 2)";
         PomMatcher pomMatcher = blueprint.matcher(test);
 
-        PrintablePomTaggedExpression result = pomMatcher.replaceAll( "var1^2" );
+        PrintablePomTaggedExpression result = pomMatcher.replacePattern( "var1^2" );
         assertEquals("f (x^2) + g (y^2)", result.getTexString());
     }
 
@@ -981,7 +1011,7 @@ public class MatchablePomTaggedExpressionTests {
         String test = "P_n^{(\\alpha,\\beta)}(\\cos \\theta)";
         PomMatcher matcher = blueprint.matcher(test);
 
-        PrintablePomTaggedExpression result = matcher.replaceAll( "\\JacobipolyP{var1}{var2}{var3}@{var4}" );
+        PrintablePomTaggedExpression result = matcher.replacePattern( "\\JacobipolyP{var1}{var2}{var3}@{var4}" );
         assertEquals("\\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos \\theta}", result.getTexString());
     }
 
@@ -989,7 +1019,7 @@ public class MatchablePomTaggedExpressionTests {
     public void pomMatcherReplaceAllPochhammerTest() throws ParseException {
         MatchablePomTaggedExpression pochhammerBlueprint = new MatchablePomTaggedExpression(mlp, "(var1)_{var2}", "var\\d");
         PomMatcher matcher = pochhammerBlueprint.matcher("\\frac{(\\alpha+1)_n}{n!}");
-        PrintablePomTaggedExpression result = matcher.replaceAll( "\\Pochhammer{var1}{var2}" );
+        PrintablePomTaggedExpression result = matcher.replacePattern( "\\Pochhammer{var1}{var2}" );
         assertEquals("\\frac{\\Pochhammer{\\alpha + 1}{n}}{n!}", result.getTexString());
     }
 
@@ -1007,18 +1037,27 @@ public class MatchablePomTaggedExpressionTests {
         // replace all jacobis
         PomMatcher jacobiMatcher = jacobiBlueprint.matcher(test);
         String semanticJacobi = "\\JacobipolyP{var1}{var2}{var3}@{var4}";
-        PrintablePomTaggedExpression replacedJacobi = jacobiMatcher.replaceAll(semanticJacobi);
+        PrintablePomTaggedExpression replacedJacobi = jacobiMatcher.replacePattern(semanticJacobi);
 
         // replace all pochhammers
         PomMatcher pochhammerMatcher = pochhammerBlueprint.matcher(replacedJacobi);
         String semanticPochhammer = "\\Pochhammersym{var1}{var2}";
-        PrintablePomTaggedExpression replacedJacobiPoch = pochhammerMatcher.replaceAll(semanticPochhammer);
+        PrintablePomTaggedExpression replacedJacobiPoch = pochhammerMatcher.replacePattern(semanticPochhammer);
 
         // replace all hypergeometric functions
         PomMatcher hypergeometricMatcher = hypergeometricBlueprint.matcher(replacedJacobiPoch);
         String semanticHypergeometric = "\\genhyperF{var1}{var2}@{var3, var4}{var5}{var6}";
-        PrintablePomTaggedExpression replacedAll = hypergeometricMatcher.replaceAll(semanticHypergeometric);
+        PrintablePomTaggedExpression replacedAll = hypergeometricMatcher.replacePattern(semanticHypergeometric);
 
         assertEquals(semantic, replacedAll.getTexString());
+    }
+
+    @Test
+    @DLMF("22.2.E4")
+    public void jacobiThetaCaseAnalyzerTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = new MatchablePomTaggedExpression(mlp, "q", "var\\d");
+        PomMatcher matcher = blueprint.matcher("\\Jacobithetaq{3}@@{0}{q}");
+        PrintablePomTaggedExpression ppte = matcher.replacePattern("\\exp@{-\\pi\\ccompellintKk@{k}/\\compellintKk@{k}}");
+        assertEquals("\\Jacobithetaq{3}@@{0}{\\exp@{-\\pi\\ccompellintKk@{k}/\\compellintKk@{k}}}", ppte.getTexString());
     }
 }

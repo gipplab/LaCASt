@@ -372,7 +372,7 @@ public class CaseAnalyzerTests {
 
         Case jacobiCase = testCases.get(1).get(0);
         assertEquals("\\Jacobiellsnk@{z}{k}", jacobiCase.getLHS());
-        assertEquals("\\frac{\\Jacobithetaq{3}@{0}{q}}{\\Jacobithetaq{2}@{0}{q}}\\frac{\\Jacobithetaq{1}@{\\zeta}{q}}{\\Jacobithetaq{4}@{\\zeta}{q}}", jacobiCase.getRHS());
+        assertEquals("\\frac{\\Jacobithetaq{3}@@{0}{q}}{\\Jacobithetaq{2}@{0}{q}}\\frac{\\Jacobithetaq{1}@{\\zeta}{q}}{\\Jacobithetaq{4}@{\\zeta}{q}}", jacobiCase.getRHS());
 
         jacobiCase = jacobiCase.replaceSymbolsUsed(lib);
         assertEquals("\\Jacobiellsnk@{z}{k}", jacobiCase.getLHS());
