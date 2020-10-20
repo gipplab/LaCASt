@@ -7,6 +7,7 @@ import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.mlp.extensions.MatchablePomTaggedExpression;
 import gov.nist.drmf.interpreter.mlp.extensions.MatcherConfig;
+import gov.nist.drmf.interpreter.mlp.extensions.PomMatcherBuilder;
 import gov.nist.drmf.interpreter.mlp.extensions.PrintablePomTaggedExpression;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
@@ -54,7 +55,7 @@ public class BlueprintRuleMatcher implements IBlueprintMatcher {
     public BlueprintRuleMatcher(SemanticLatexTranslator translator, String pattern, String replacement) throws ParseException {
         PrintablePomTaggedExpression ppte = SemanticMLPWrapper.getStandardInstance().parse(pattern);
         ppte = (PrintablePomTaggedExpression) FakeMLPGenerator.wrapNonSequenceInSequence(ppte);
-        matchablePom = new MatchablePomTaggedExpression(ppte, WILDCARD_PATTERN);
+        matchablePom = PomMatcherBuilder.compile(ppte, WILDCARD_PATTERN);
         this.translator = translator;
         this.limitPattern = replacement.split(VAR_SPLITTER);
         this.LIMIT_PATTERN = setupPattern();

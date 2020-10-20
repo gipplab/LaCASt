@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.evaluation.constraints;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.mlp.extensions.MatchablePomTaggedExpression;
 import gov.nist.drmf.interpreter.mlp.extensions.MatcherConfig;
+import gov.nist.drmf.interpreter.mlp.extensions.PomMatcherBuilder;
 import gov.nist.drmf.interpreter.mlp.extensions.PrintablePomTaggedExpression;
 import mlp.ParseException;
 
@@ -33,7 +34,7 @@ public class ConstraintBlueprint {
         config.setIllegalCharacterForWildcard("var1", "(\\\\[lgn]eq|[,;<>=]|[-\\d.]+)");
         config.setIllegalCharacterForWildcard("var2", "(\\\\[lgn]eq|[,;<>=]|[-\\d.]+)");
 
-        mpte = new MatchablePomTaggedExpression(SMLP, latex, KEY_PREFIX+"\\d*");
+        mpte = PomMatcherBuilder.compile(SMLP, latex, KEY_PREFIX+"\\d*");
         values = vals;
     }
 
