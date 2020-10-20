@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.interfaces.IDLMFTranslator;
 import gov.nist.drmf.interpreter.common.interfaces.IPackageWrapper;
 import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
+import gov.nist.drmf.interpreter.common.text.TextUtility;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -31,15 +32,7 @@ public interface IConstraintTranslator extends IDLMFTranslator {
 
     default String[] translateEachConstraint(String[] constraints, String label) {
         return Arrays.stream(constraints)
-                .map( c -> {
-                    StringBuilder sb = new StringBuilder();
-                    Matcher m = NUM_PATTERN.matcher(c);
-                    while ( m.find() ) {
-                        m.appendReplacement(sb, m.group(1));
-                    }
-                    m.appendTail(sb);
-                    return sb.toString();
-                })
+                .map( c -> TextUtility.appendPattern(c, NUM_PATTERN, 1))
                 .filter( c -> !c.matches(".*\\\\[cl]?dots.*") )
                 .map( Constraints::stripDollar )
                 .map( c -> translate(c, label) )
