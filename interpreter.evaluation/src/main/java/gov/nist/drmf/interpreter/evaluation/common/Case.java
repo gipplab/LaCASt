@@ -8,6 +8,7 @@ import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.mlp.extensions.MatchablePomTaggedExpression;
 import gov.nist.drmf.interpreter.mlp.extensions.PomMatcher;
+import gov.nist.drmf.interpreter.mlp.extensions.PomMatcherBuilder;
 import gov.nist.drmf.interpreter.mlp.extensions.PrintablePomTaggedExpression;
 import mlp.FeatureSet;
 import mlp.MathTerm;
@@ -274,13 +275,15 @@ public class Case {
 
         m.appendTail(sb);
 
-        MatchablePomTaggedExpression matchPOML = new MatchablePomTaggedExpression(mlp, TeXPreProcessor.resetNumberOfAtsToOne(sb.toString()), "VAR\\d+");
+        MatchablePomTaggedExpression matchPOML = PomMatcherBuilder.compile(mlp, TeXPreProcessor.resetNumberOfAtsToOne(sb.toString()), "VAR\\d+");
         PomMatcher matcherL = matchPOML.matcher(ppteLHS);
-        updateLR(counter, isSemantic, matcherL, def, true);
+        if ( counter == 0 && !isSemantic )
+            updateLR(matcherL, def, true);
 
-        MatchablePomTaggedExpression matchPOMR = new MatchablePomTaggedExpression(mlp, TeXPreProcessor.resetNumberOfAtsToOne(sb.toString()), "VAR\\d+");
+        MatchablePomTaggedExpression matchPOMR = PomMatcherBuilder.compile(mlp, TeXPreProcessor.resetNumberOfAtsToOne(sb.toString()), "VAR\\d+");
         PomMatcher matcherR = matchPOMR.matcher(ppteRHS);
-        updateLR(counter, isSemantic, matcherL, def, false);
+        if ( counter == 0 && !isSemantic )
+            updateLR(matcherR, def, false);
 
         if ( counter > 0 ) {
             LOG.trace("Auto definition replacement of semantic macros is suppressed. Macro " + symbol + " will not be replaced.");
@@ -292,12 +295,10 @@ public class Case {
         }
     }
 
-    private void updateLR(int counter, boolean isSemantic, PomMatcher matcher, SymbolTag def, boolean left) throws ParseException {
-        if ( counter == 0 && !isSemantic ) {
-            PrintablePomTaggedExpression p = matcher.replacePattern("("+def.getDefinition()+")");
-            if ( left ) this.LHS = p.getTexString();
-            else this.RHS = p.getTexString();
-        }
+    private void updateLR(PomMatcher matcher, SymbolTag def, boolean left) throws ParseException {
+        PrintablePomTaggedExpression p = matcher.replacePattern("("+def.getDefinition()+")");
+        if ( left ) this.LHS = p.getTexString();
+        else this.RHS = p.getTexString();
     }
 
     public static boolean isSemantic(String symbol) {

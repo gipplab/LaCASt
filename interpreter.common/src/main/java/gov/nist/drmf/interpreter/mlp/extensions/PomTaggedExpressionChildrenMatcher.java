@@ -16,7 +16,7 @@ public class PomTaggedExpressionChildrenMatcher {
     /**
      * The reference parent.
      */
-    private final MatchablePomTaggedExpression parent;
+    private final AbstractMatchablePomTaggedExpression parent;
 
     /**
      * The children of the parent node
@@ -27,7 +27,7 @@ public class PomTaggedExpressionChildrenMatcher {
      * @param parent the parent node
      */
     PomTaggedExpressionChildrenMatcher(
-            MatchablePomTaggedExpression parent
+            AbstractMatchablePomTaggedExpression parent
     ) {
         this.parent = parent;
         this.children = new LinkedList<>();

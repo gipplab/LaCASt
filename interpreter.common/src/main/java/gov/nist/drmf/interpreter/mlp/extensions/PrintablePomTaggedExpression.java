@@ -233,7 +233,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
 
     @Override
     public boolean match(PrintablePomTaggedExpression expression) {
-        MatchablePomTaggedExpression m = new MatchablePomTaggedExpression(this, "");
+        MatchablePomTaggedExpression m = PomMatcherBuilder.compile(this, "");
         return m.match(expression);
     }
 

@@ -23,7 +23,7 @@ public class PomMatcher {
 
     private final MatcherConfig config;
 
-    private final MatchablePomTaggedExpression matcher;
+    private final AbstractMatchablePomTaggedExpression matcher;
     private final MatchablePomTaggedExpression matcherFirstElement;
     private final PomTaggedExpressionChildrenMatcher children;
     private final PrintablePomTaggedExpression orig;
@@ -44,7 +44,7 @@ public class PomMatcher {
     private boolean wasReplaced = false;
 
     PomMatcher(
-            MatchablePomTaggedExpression mpte,
+            AbstractMatchablePomTaggedExpression mpte,
             PrintablePomTaggedExpression pte
     ) {
         this(mpte, pte, MatcherConfig.getInPlaceMatchConfig());
@@ -57,7 +57,7 @@ public class PomMatcher {
      * @param pte the parse tree to match
      */
     PomMatcher(
-            MatchablePomTaggedExpression mpte,
+            AbstractMatchablePomTaggedExpression mpte,
             PrintablePomTaggedExpression pte,
             MatcherConfig config
     ) {
