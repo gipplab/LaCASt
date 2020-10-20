@@ -60,7 +60,30 @@ public class TeXPreProcessor {
     }
 
     public static String trimCurlyBrackets(String in) {
-        if ( in.startsWith("{") && in.endsWith("}") ) return in.substring(1, in.length()-1);
+        in = in.trim();
+        if ( in.startsWith("{") && in.endsWith("}") ) return in.substring(1, in.length()-1).trim();
         else return in;
+    }
+
+    public static boolean wrappedInCurlyBrackets(String in) {
+        if ( !in.startsWith("{") && !in.endsWith("}") ) return false;
+        int openCounter = 1;
+        for ( int i = 1; i < in.length(); i++ ) {
+            if ( openCounter <= 0 ) return false;
+            openCounter = updateCounter(in, i, openCounter);
+        }
+        return openCounter == 0;
+    }
+
+    private static int updateCounter(String in, int i, int openCounter) {
+        Character c = in.charAt(i);
+        if ( c.equals('{') ) openCounter++;
+        else if ( c.equals('}') ) openCounter--;
+        return openCounter;
+    }
+
+    public static String resetNumberOfAtsToOne(String in) {
+        // if there are multiple @s, replace it my one @
+        return in.replaceAll("@{2,}", "@");
     }
 }

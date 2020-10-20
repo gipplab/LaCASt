@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.mlp;
 
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 
@@ -64,6 +65,14 @@ public final class FeatureSetUtility {
         return finalList;
     }
 
+    public static String getPossibleMeaning(MathTerm term) {
+        List<FeatureSet> fsets = getAllFeatureSetsWithFeature(term, Keys.FEATURE_MEANINGS);
+        if ( !fsets.isEmpty() ) {
+            FeatureSet fset = fsets.get(0);
+            return fset.getFeature(Keys.FEATURE_MEANINGS).first();
+        } else return null;
+    }
+
     /**
      *
      * @param term
@@ -79,5 +88,12 @@ public final class FeatureSetUtility {
             if ( set.contains(value) ) return fset;
         }
         return null;
+    }
+
+    public static boolean isConsideredAsRelation(MathTerm term) {
+        List<FeatureSet> fsets = getAllFeatureSetsWithFeature(term, "Category");
+        if ( fsets.isEmpty() ) return false;
+        return fsets.stream()
+                .anyMatch(fset -> fset.getFeature("Category").contains("relation") );
     }
 }

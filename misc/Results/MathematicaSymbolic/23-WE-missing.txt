@@ -1,9 +1,7 @@
-\Weierstrasselatt, 33
-\Weierstrassplatt, 29
-\Weierstrasszetalatt, 17
-\Weierstrasssigmalatt, 16
-\Weierstrassinvarlatt, 15
-\Dedekindeta, 7
-\modularlambdatau, 6
-\KleincompinvarJtau, 6
+\Weierstrassplatt, 32
+\Weierstrasselatt, 28
+\Weierstrassinvarlatt, 16
+\Weierstrasssigmalatt, 15
+\Weierstrasszetalatt, 13
 \Weierstrasspinvar, 5
+\textstyle, 3

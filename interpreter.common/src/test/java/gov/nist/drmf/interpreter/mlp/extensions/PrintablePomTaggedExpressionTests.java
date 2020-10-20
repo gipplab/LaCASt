@@ -13,7 +13,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
@@ -388,6 +390,23 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     @Test
+    @DLMF("1.8.16")
+    public void curlyBracketProblemTest() throws ParseException {
+        String texString = "{\\sqrt{x}\\left(2\\sum_{n=1}^{\\infty}n\\right)}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString.substring(1, texString.length()-1), ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps,
+                "\\sqrt{x}",
+                "\\left(",
+                    "2",
+                    "\\sum", "_{n=1}^{\\infty}", "n",
+                "\\right)"
+        );
+    }
+
+    @Test
     public void overrideSetRootTest() throws ParseException {
         String texString = "\\sqrt[2]{x^2}";
         PomTaggedExpression pte = mlp.parse(texString);
@@ -420,6 +439,14 @@ public class PrintablePomTaggedExpressionTests {
         xpte.setRoot(newMT);
 
         assertEquals( "x + \\frac{\\fake}{y^2}", pte.getTexString() );
+    }
+
+    @Test
+    public void emptyDerivTest() throws ParseException {
+        String texString = "\\pderiv{}{x}=\\cos@@{\\phi}\\pderiv{}{r}-\\frac{\\sin@@{\\phi}}{r}\\pderiv{}{\\phi}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+
+        assertThat( texString, equalToCompressingWhiteSpace(ppte.getTexString()) );
     }
 
     @Test
@@ -480,13 +507,57 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     @Test
+    public void wrappedCurlyBracketsTest() throws ParseException {
+        String test = "{\\sqrt{1-k^2}}^{-1}\\ln{\\Jacobielldck{x}{k}+\\sqrt{1-k^2}\\Jacobiellsck{x}{k}}";
+        PrintablePomTaggedExpression p = mlp.parse(test);
+        assertThat(p.getTexString(), equalToCompressingWhiteSpace("{\\sqrt{1-k^2}}^{-1}\\ln{\\Jacobielldck{x}{k}+\\sqrt{1-k^2}\\Jacobiellsck{x}{k}}"));
+    }
+
+    @Test
     public void realWorldWikiExampleTest() throws ParseException {
         String texString = "(1 - x)^{\\alpha}(1 + x)^{\\beta}";
         mlp.parse(texString);
     }
 
+    @Test
+    @DLMF("11.5.E2")
+    public void nestedFracEulerTest() throws ParseException {
+        String texString = "\\frac{2(\\tfrac{1}{2}z)^{\\nu}}{\\sqrt{\\cpi}\\EulerGamma@{\\nu+\\tfrac{1}{2}}}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString, "11.5.E2");
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps,
+                "{2(\\tfrac{1}{2}z)^{\\nu}}",
+                "{\\sqrt{\\cpi}\\EulerGamma@{\\nu+\\tfrac{1}{2}}}"
+        );
+
+        List<PrintablePomTaggedExpression> upComps = printComps.get(0).getPrintableComponents();
+        List<PrintablePomTaggedExpression> downComps = printComps.get(1).getPrintableComponents();
+
+        checkList(upComps, "2", "(", "\\tfrac{1}{2}", "z", ")", "^{\\nu}");
+        checkList(downComps, "\\sqrt{\\cpi}", "\\EulerGamma", "@", "{\\nu+\\tfrac{1}{2}}");
+    }
+
+    @Test
+    @DLMF("5.2.E5")
+    public void simArgumentTest() throws ParseException {
+        String texString = "\\EulerGamma@{a+n}/\\EulerGamma@{a}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString, "5.2.E5");
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps,
+                "\\EulerGamma", "@", "{a+n}",
+                "/",
+                "\\EulerGamma", "@", "{a}"
+        );
+    }
+
     private void checkList( List<PrintablePomTaggedExpression> components, String... matches ) {
-        assertEquals(matches.length, components.size());
+
+        assertEquals(matches.length, components.size(), "Length doesnt match: [" +
+                components.stream().map(PrintablePomTaggedExpression::getTexString).collect(Collectors.joining(", ")) + "] VS " + Arrays.toString(matches));
         for ( int i = 0; i < matches.length; i++ ){
             assertEquals(matches[i], components.get(i).getTexString());
         }

@@ -93,7 +93,8 @@ public class SymbolicConfig implements EvaluationConfig {
     }
 
     public String getExpectationValue(){
-        return SymbolicConfig.SymbolicProperties.KEY_EXPECT.value;
+        String val = SymbolicConfig.SymbolicProperties.KEY_EXPECT.value;
+        return val == null ? "0" : val;
     }
 
     @Override
@@ -125,6 +126,10 @@ public class SymbolicConfig implements EvaluationConfig {
         return SymbolicProperties.KEY_ASSUMPTION.value;
     }
 
+    public double getTimeout() {
+        return Double.parseDouble(SymbolicProperties.KEY_TIMEOUT.value);
+    }
+
     private enum SymbolicProperties{
         KEY_DATASET("dlmf_dataset", null),
 //        KEY_LABELSET("dlmf_labelset", null),
@@ -139,7 +144,8 @@ public class SymbolicConfig implements EvaluationConfig {
         KEY_ENABLE_EXPAND("enable_pre_expansion", null),
         KEY_ENABLE_EXPAND_EXP("enable_pre_expansion_with_exp", null),
         KEY_ENABLE_EXPAND_HYP("enable_pre_expansion_with_hypergeom", null),
-        KEY_ASSUMPTION("entire_test_set_assumptions", null);
+        KEY_ASSUMPTION("entire_test_set_assumptions", null),
+        KEY_TIMEOUT("timeout", null);
 
         private String key, value;
 

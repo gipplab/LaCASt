@@ -80,7 +80,7 @@ DLMF;Maple;DLMF-Maple-Comment;Maple-Package;Maple-Alternatives
 X1:\sqrtX\sqrt[$1]{$0};surd($1, $0);;;
 \binom{$0}{$1};binomial($0, $1);;;
 \multinomial{m}{n_1,...,n_k};multinomial($0, $1);Maple needs an extra package. Load it with the following command: with(combinat,multinomial):;combinat,multinomial;
-\pgcd{$0, $1};gcd($0, $1);;;
+\pgcd{$0};gcd($0);;;
 ;;;;
 ;;;;
 ;;;;
@@ -411,7 +411,7 @@ X1:\EulertotientphiX\Eulertotientphi[k]@{n};;;;
 \Jacobithetacombinedq{n}{m}@{z}{q};;;;
 \AThetaFunction@{x};;;;1+2*(sum(($0)^(m^2), m = 1 .. infinity))
 \JacobiZetak@{$0}{$1};JacobiZeta($0, $1);;;
-\Jacobisym{n}{P};;;;
+\Jacobisym{n}{P};JacobiSymbol($0, $1);;NumberTheory,JacobiSymbol;
 ;;;;
 \Kelvinber{$0}@@{$1};KelvinBer($0, $1);;;
 \Kelvinbei{$0}@@{$1};KelvinBei($0, $1);;;
@@ -520,10 +520,10 @@ X1:\FerrersHatQX\DunsterQ[\mu]{\tau}@{x};;;;
 \modStruveL{$0}@{$1};StruveL($0, $1);;;
 \modStruveM{\nu}@{z};StruveL($0, $1) - BesselI($0, $1);;;
 ;;;;
-\Legendresym{$0}{$1};;This funcion needs an extra package. For Maple 2016 or older use with(numtheory), otherwise use with(NumberTheory);;legendre($0, $1)
-\Kroneckerdelta{$0}{$1};;This funcion needs an extra package. with(Physics);;KroneckerDelta[$0, $1]
-\NeumannFactor{n};;This funcion needs an extra package. with(Physics);;2-KroneckerDelta[$0, 0]
-\LeviCivitasym{$0}{$1}{$2};;This funcion needs an extra package: with(Physics). The number of variables is not defined in Maple. LeviCivita[j,k,l,...];;LeviCivita[$0, $1, $2]
+\Legendresym{$0}{$1};LegendreSymbol($0, $1);;NumberTheory,LegendreSymbol;
+\Kroneckerdelta{$0}{$1};KroneckerDelta[$0, $1];;Physics,KroneckerDelta;
+\NeumannFactor{n};2-KroneckerDelta[$0, 0];;Physics,KroneckerDelta;
+\LeviCivitasym{$0}{$1}{$2};;;Physics,LeviCivita;LeviCivita[$0, $1, $2]
 \RiemannsymP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};;;;
 \pochhammer{$0}{$1};pochhammer($0, $1);;;
 \Pochhammersym{$0}{$1};pochhammer($0, $1);;;
@@ -543,9 +543,9 @@ X1:\FerrersHatQX\DunsterQ[\mu]{\tau}@{x};;;;
 ;;;;
 \variation[a,b]@{f};;;;
 ;;;;
-\gradient $0;;with(VectorCalculus):;;Gradiant(f)
-\divergence $0;;with(VectorCalculus):;;Divergence(F)
-\curl $0;;with(VectorCalculus):;;Curl(F)
+\gradient $0;;;VectorCalculus;Gradiant(f)
+\divergence $0;;;VectorCalculus;Divergence(F)
+\curl $0;;;VectorCalculus;Curl(F)
 ;;;;
 \VoigtU@{x}{t};;;;
 \VoigtV@{x}{t};;;;

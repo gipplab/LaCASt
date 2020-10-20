@@ -37,7 +37,7 @@ before_install:
 # first install via maven and generate JARs but do not run any tests
 install:
   - mvn install -DskipTests -B -V -DgenerateJars
-  - java -jar bin/lexicon-creator.jar CAS_Maple.csv CAS_Mathematica.csv
+  - java -jar bin/lexicon-creator.jar -all
 
 # Once we successfully installed the repo, we run the tests
 script:
@@ -49,8 +49,8 @@ script:
 # to fix the paths manually via our .travis/fix-jacoco.sh script.
 after_success:
   - source .travis/fix-jacoco.sh
-  - ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml -d --input-type jacoco > jacoco.log
-  - ./cc-test-reporter upload-coverage -d
+  - ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml --input-type jacoco > jacoco.log
+  - ./cc-test-reporter upload-coverage -d > jacocoUpload.log
 
 # So we finished everything, hence its time to deploy the repo.
 # We have currently two deployments installed, one goes back to GitHub

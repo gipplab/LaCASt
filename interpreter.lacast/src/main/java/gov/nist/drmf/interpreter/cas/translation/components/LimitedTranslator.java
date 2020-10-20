@@ -63,14 +63,10 @@ public class LimitedTranslator extends AbstractListTranslator {
 
         MathTerm root = exp.getRoot();
         LimitedExpressions category = LimitedExpressions.getExpression(root);
-        if ( category == null ) {
-            throw TranslationException.buildExceptionObj(this, "Unsupported limited expressions." + root.getTermText(),
-                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
-                    root.getTermText()
-            );
-        }
+        checkCategoryValidity(category, root);
 
-        MathematicalEssentialOperatorMetadata limit = getLimit(list, category);
+        MathematicalEssentialOperatorMetadata limit = saveGetLimit(list, category);;
+        getInfoLogger().getFreeVariables().suppressingVars(limit.getVars());
 
         // find elements that are part of the argument:
         // next, split into argument parts and the rest
@@ -82,7 +78,29 @@ public class LimitedTranslator extends AbstractListTranslator {
         // add translation and the rest of the translation
         updateTranslationLists(finalTranslation, translatedPotentialArguments, category);
 
+        getInfoLogger().getFreeVariables().releaseVars(limit.getVars());
+
         return localTranslations;
+    }
+
+    private void checkCategoryValidity(LimitedExpressions category, MathTerm root) {
+        if ( category == null ) {
+            throw TranslationException.buildExceptionObj(this, "Unsupported limited expressions." + root.getTermText(),
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                    root.getTermText()
+            );
+        }
+    }
+
+    private MathematicalEssentialOperatorMetadata saveGetLimit(List<PomTaggedExpression> list, LimitedExpressions category) {
+        try {
+            return getLimit(list, category);
+        } catch (Error | Exception e) {
+            throw TranslationException.buildException(
+                    this, "Unable to identify interval of " + category,
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION
+            );
+        }
     }
 
     private MathematicalEssentialOperatorMetadata getLimit(List<PomTaggedExpression> list, LimitedExpressions category) {

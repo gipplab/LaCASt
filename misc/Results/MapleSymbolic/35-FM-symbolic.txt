@@ -1,84 +1,68 @@
-Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 0, FAILURE: 0, STARTED_TEST_CASES: 48, SKIPPED: 34, DEFINITIONS: 0, IGNORE: 13, MISSING: 39, ERROR: 9] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 66, SKIPPED: 18, DEFINITIONS: 2, STARTED_TEST_CASES: 46, ERROR_TRANS: 10, MISSING: 36, SUCCESS_TRANS: 0, SUCCESS_SYMB: 0, SUCCESS_NUM: 0, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 0, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
-10177 [http://dlmf.nist.gov/35.2.E3]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \limits [\limits]
-10178 [http://dlmf.nist.gov/35.3.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \multivarEulerGamma [\multivarEulerGamma]
-10180 [http://dlmf.nist.gov/35.3.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \multivarEulerBeta [\multivarEulerBeta]
-10181 [http://dlmf.nist.gov/35.3.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \multivarEulerGamma [\multivarEulerGamma]
-10184 [http://dlmf.nist.gov/35.3.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \multivarEulerBeta [\multivarEulerBeta]
-10185 [http://dlmf.nist.gov/35.3.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \multivarEulerBeta [\multivarEulerBeta]
-10186 [http://dlmf.nist.gov/35.4.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \shiftfactorial [\shiftfactorial]
-10186-a [http://dlmf.nist.gov/35.4.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \multivarEulerGamma [\multivarEulerGamma]
-10187 [http://dlmf.nist.gov/35.4.E2]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \zonalpolyZ [\zonalpolyZ]
-10188 [http://dlmf.nist.gov/35.4.E3]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \zonalpolyZ [\zonalpolyZ]
-10190 [http://dlmf.nist.gov/35.4.E5]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \zonalpolyZ [\zonalpolyZ]
-10191 [http://dlmf.nist.gov/35.4.E6]: Error - java.lang.NullPointerException [10191: \sum_{|\kappa|=k}\zonalpolyZ{\kappa}@{\mathbf{T}} EQUAL (\trace{\mathbf{T}})^{k}; http://dlmf.nist.gov/35.4.E6]
-10192 [http://dlmf.nist.gov/35.4.E7]: Error - java.util.NoSuchElementException [10192: \int_{\mathbf{O}(m)}\zonalpolyZ{\kappa}@{\mathbf{S}\mathbf{H}\mathbf{T}\mathbf{H}^{-1}}\diff{\mathbf{H}} EQUAL \frac{\zonalpolyZ{\kappa}@{\mathbf{S}}\zonalpolyZ{\kappa}@{\mathbf{T}}}{\zonalpolyZ{\kappa}@{\mathbf{I}}}; http://dlmf.nist.gov/35.4.E7]
-10193 [http://dlmf.nist.gov/35.4.E8]: Error - java.util.NoSuchElementException [10193: \int_{\boldsymbol{\Omega}}\exptrace@{-\mathbf{T}\mathbf{X}}\,|\mathbf{X}|^{a-\frac{1}{2}(m+1)}\zonalpolyZ{\kappa}@{\mathbf{X}}\diff{\mathbf{X}} EQUAL \multivarEulerGamma{m}@{a+\kappa}\,|\mathbf{T}|^{-a}\zonalpolyZ{\kappa}@{\mathbf{T}^{-1}}; http://dlmf.nist.gov/35.4.E8]
-10194 [http://dlmf.nist.gov/35.4.E9]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \limits [\limits]
-10195 [http://dlmf.nist.gov/35.5.E1]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \BesselAmat [\BesselAmat]
-10196 [http://dlmf.nist.gov/35.5.E2]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \BesselAmat [\BesselAmat]
-10197 [http://dlmf.nist.gov/35.5.E3]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \BesselBmat [\BesselBmat]
-10198 [http://dlmf.nist.gov/35.5.E4]: Error - java.util.NoSuchElementException [10198: \int_{\boldsymbol{\Omega}}\exptrace@{-\mathbf{T}\mathbf{X}}|\mathbf{X}|^{\nu}\BesselAmat{\nu}@{\mathbf{S}\mathbf{X}}\diff{\mathbf{X}} EQUAL \exptrace@{-\mathbf{S}\mathbf{T}^{-1}}|\mathbf{T}|^{-\nu-\frac{1}{2}(m+1)}; http://dlmf.nist.gov/35.5.E4]
-10199 [http://dlmf.nist.gov/35.5.E5]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \limits [\limits]
-10200 [http://dlmf.nist.gov/35.5.E6]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \BesselBmat [\BesselBmat]
-10201 [http://dlmf.nist.gov/35.5.E7]: Error - java.util.NoSuchElementException [10201: \int_{\boldsymbol{\Omega}}\BesselAmat{\nu_{1}}@{\mathbf{T}\mathbf{X}}\BesselBmat{-\nu_{2}}@{\mathbf{S}\mathbf{X}}|\mathbf{X}|^{\nu_{1}}\diff{\mathbf{X}} EQUAL \frac{1}{\BesselAmat{\nu_{1}+\nu_{2}}@{\boldsymbol{{0}}}}|\mathbf{S}|^{\nu_{2}}|\mathbf{T}+\mathbf{S}|^{-(\nu_{1}+\nu_{2}+\frac{1}{2}(m+1))}; http://dlmf.nist.gov/35.5.E7]
-10202 [http://dlmf.nist.gov/35.5.E8]: Error - java.util.NoSuchElementException [10202: \int_{\mathbf{O}(m)}\exptrace@{\mathbf{S}\mathbf{H}}\diff{\mathbf{H}} EQUAL \frac{\BesselAmat{-1/2}@{-\frac{1}{4}\mathbf{S}\mathbf{S}^{\mathrm{T}}}}{\BesselAmat{-1/2}@{\boldsymbol{{0}}}}; http://dlmf.nist.gov/35.5.E8]
-10203 [http://dlmf.nist.gov/35.6.E1]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10204: Skipped - Unable to analyze test case.
-10205 [http://dlmf.nist.gov/35.6.E2]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperPsimat [\genhyperPsimat]
-10206 [http://dlmf.nist.gov/35.6.E3]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \LaguerrefunLmat [\LaguerrefunLmat]
-10207: Skipped - Unable to analyze test case.
-10208 [http://dlmf.nist.gov/35.6.E4]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10209: Skipped - Unable to analyze test case.
-10210 [http://dlmf.nist.gov/35.6.E5]: Error - java.util.NoSuchElementException [10210: \int_{\boldsymbol{\Omega}}\exptrace@{-\mathbf{T}\mathbf{X}}|\mathbf{X}|^{b-\frac{1}{2}(m+1)}\genhyperFmat{1}{1}@@{a}{b}{\mathbf{S}\mathbf{X}}\diff{\mathbf{X}} EQUAL \multivarEulerGamma{m}@{b}|\mathbf{I}-\mathbf{S}\mathbf{T}^{-1}|^{-a}|\mathbf{T}|^{-b}; http://dlmf.nist.gov/35.6.E5]
-10211: Skipped - Unable to analyze test case.
-10212 [http://dlmf.nist.gov/35.6.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \multivarEulerBeta [\multivarEulerBeta]
-10213: Skipped - Unable to analyze test case.
-10214 [http://dlmf.nist.gov/35.6.E7]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10215: Skipped - Unable to analyze test case.
-10216 [http://dlmf.nist.gov/35.6.E8]: Error - java.util.NoSuchElementException [10216: \int_{\boldsymbol{\Omega}}|\mathbf{T}|^{c-\frac{1}{2}(m+1)}\genhyperPsimat@{a}{b}{\mathbf{T}}\diff{\mathbf{T}} EQUAL \frac{\multivarEulerGamma{m}@{c}\multivarEulerGamma{m}@{a-c}\multivarEulerGamma{m}@{c-b+\frac{1}{2}(m+1)}}{\multivarEulerGamma{m}@{a}\multivarEulerGamma{m}@{a-b+\frac{1}{2}(m+1)}}; http://dlmf.nist.gov/35.6.E8]
-10217 [http://dlmf.nist.gov/35.6.E9]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10218: Skipped - Unable to analyze test case.
-10219 [http://dlmf.nist.gov/35.6.E10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \multivarEulerGamma [\multivarEulerGamma]
-10220: Skipped - Unable to analyze test case.
-10221: Skipped - Unable to analyze test case.
-10222 [http://dlmf.nist.gov/35.7.E2]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \JacobifunPmat [\JacobifunPmat]
-10223: Skipped - Unable to analyze test case.
-10224 [http://dlmf.nist.gov/35.7.E3]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10225: Skipped - Unable to analyze test case.
-10226 [http://dlmf.nist.gov/35.7.E4]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10227: Skipped - Unable to analyze test case.
-10228 [http://dlmf.nist.gov/35.7.E5]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10229: Skipped - Unable to analyze test case.
-10230 [http://dlmf.nist.gov/35.7.E6]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10230-a [http://dlmf.nist.gov/35.7.E6]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10230-b [http://dlmf.nist.gov/35.7.E6]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10231: Skipped - Unable to analyze test case.
-10232: Skipped - Unable to analyze test case.
-10233: Skipped - Unable to analyze test case.
-10234: Skipped - Unable to analyze test case.
-10235: Skipped - Unable to analyze test case.
-10236 [http://dlmf.nist.gov/35.7.E9]: Error - java.lang.NullPointerException [10236: t_{j}(1-t_{j})\pderiv[2]{F}{t_{j}}-\frac{1}{2}\sum_{\begin{subarray}{c}k=1\\ k\neq j\end{subarray}}^{m}\frac{t_{k}(1-t_{k})}{t_{j}-t_{k}}\pderiv{F}{t_{k}}+\left({c-\tfrac{1}{2}(m-1)-\left(a+b-\tfrac{1}{2}(m-3)\right)t_{j}}+\frac{1}{2}\sum_{\begin{subarray}{c}k=1\\ k\neq j\end{subarray}}^{m}\frac{t_{j}(1-t_{j})}{t_{j}-t_{k}}\right)\pderiv{F}{t_{j}} EQUAL abF; http://dlmf.nist.gov/35.7.E9]
-10237: Skipped - Unable to analyze test case.
-10238: Skipped - Unable to analyze test case.
-10239: Skipped - Unable to analyze test case.
-10240: Skipped - Unable to analyze test case.
-10242: Skipped - Unable to analyze test case.
-10243 [http://dlmf.nist.gov/35.8.E2]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10244: Skipped - Unable to analyze test case.
-10245 [http://dlmf.nist.gov/35.8.E3]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10245-a [http://dlmf.nist.gov/35.8.E3]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10246: Skipped - Unable to analyze test case.
-10247 [http://dlmf.nist.gov/35.8.E4]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \BesselAmat [\BesselAmat]
-10248: Skipped - Unable to analyze test case.
-10249 [http://dlmf.nist.gov/35.8.E5]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10250: Skipped - Unable to analyze test case.
-10251 [http://dlmf.nist.gov/35.8.E6]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10252: Skipped - Unable to analyze test case.
-10253 [http://dlmf.nist.gov/35.8.E7]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
-10254: Skipped - Unable to analyze test case.
-10256: Skipped - Unable to analyze test case.
-10258: Skipped - Unable to analyze test case.
-10260: Skipped - Unable to analyze test case.
-10262: Skipped - Unable to analyze test case.
-10264: Skipped - Unable to analyze test case.
+9734 [http://dlmf.nist.gov/35.2.E1]: Definition - Line is a non-semantic definition.
+9735 [http://dlmf.nist.gov/35.2.E2]: Skipped - Invalid test case: Generic function f(\mathbf{X})
+9736 [http://dlmf.nist.gov/35.2.E3]: Definition - Line is a non-semantic definition.
+9737 [http://dlmf.nist.gov/35.3.E1]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \multivarEulerGamma [\multivarEulerGamma]
+9738 [http://dlmf.nist.gov/35.3.E2]: Skipped - Invalid test case: dots
+9739 [http://dlmf.nist.gov/35.3.E3]: Translation Error - java.lang.StringIndexOutOfBoundsException: begin 19, end 1, length 28 [9739: {}\multivarEulerBeta{m}@{a}{b} EQUAL \int\limits_{\boldsymbol{{0}}\matrixlt\mathbf{X}\matrixlt\mathbf{I}}\matrixdet{\mathbf{X}}^{a-\frac{1}{2}(m+1)}\matrixdet{\mathbf{I}-\mathbf{X}}^{b-\frac{1}{2}(m+1)}\matrixdiffd{\mathbf{X}}; http://dlmf.nist.gov/35.3.E3]
+9740 [http://dlmf.nist.gov/35.3.E4]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \multivarEulerGamma [\multivarEulerGamma]
+9741 [http://dlmf.nist.gov/35.3.E5]: Skipped - Invalid test case: dots
+9742 [http://dlmf.nist.gov/35.3.E6]: Skipped - Invalid test case: dots
+9743 [http://dlmf.nist.gov/35.3.E7]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \multivarEulerBeta [\multivarEulerBeta]
+9744 [http://dlmf.nist.gov/35.3.E8]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \multivarEulerBeta [\multivarEulerBeta]
+9745 [http://dlmf.nist.gov/35.4.E1]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \shiftfactorial [\shiftfactorial]
+9745-a [http://dlmf.nist.gov/35.4.E1]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \multivarEulerGamma [\multivarEulerGamma]
+9746 [http://dlmf.nist.gov/35.4.E2]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \zonalpolyZ [\zonalpolyZ]
+9747 [http://dlmf.nist.gov/35.4.E3]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \zonalpolyZ [\zonalpolyZ]
+9748 [http://dlmf.nist.gov/35.4.E4]: Skipped - Invalid test case: cases
+9749 [http://dlmf.nist.gov/35.4.E5]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \zonalpolyZ [\zonalpolyZ]
+9750 [http://dlmf.nist.gov/35.4.E6]: Translation Error - java.lang.NullPointerException [9750: \sum_{|\kappa|=k}\zonalpolyZ{\kappa}@{\mathbf{T}} EQUAL (\trace{\mathbf{T}})^{k}; http://dlmf.nist.gov/35.4.E6]
+9751 [http://dlmf.nist.gov/35.4.E7]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+9752 [http://dlmf.nist.gov/35.4.E8]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+9753 [http://dlmf.nist.gov/35.4.E9]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \limits [\limits]
+9754 [http://dlmf.nist.gov/35.5.E1]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \BesselAmat [\BesselAmat]
+9755 [http://dlmf.nist.gov/35.5.E2]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \BesselAmat [\BesselAmat]
+9756 [http://dlmf.nist.gov/35.5.E3]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \BesselBmat [\BesselBmat]
+9757 [http://dlmf.nist.gov/35.5.E4]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+9758 [http://dlmf.nist.gov/35.5.E5]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \limits [\limits]
+9759 [http://dlmf.nist.gov/35.5.E6]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \BesselBmat [\BesselBmat]
+9760 [http://dlmf.nist.gov/35.5.E7]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+9761 [http://dlmf.nist.gov/35.5.E8]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+9762 [http://dlmf.nist.gov/35.6.E1]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
+9763 [http://dlmf.nist.gov/35.6.E2]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperPsimat [\genhyperPsimat]
+9764 [http://dlmf.nist.gov/35.6.E3]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \LaguerrefunLmat [\LaguerrefunLmat]
+9765 [http://dlmf.nist.gov/35.6.E4]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
+9766 [http://dlmf.nist.gov/35.6.E5]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+9767 [http://dlmf.nist.gov/35.6.E6]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \multivarEulerBeta [\multivarEulerBeta]
+9768 [http://dlmf.nist.gov/35.6.E7]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
+9769 [http://dlmf.nist.gov/35.6.E8]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of INT
+9770 [http://dlmf.nist.gov/35.6.E9]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
+9771 [http://dlmf.nist.gov/35.6.E10]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \multivarEulerGamma [\multivarEulerGamma]
+9772 [http://dlmf.nist.gov/35.7.E1]: Skipped - Unable to analyze test case: Null
+9773 [http://dlmf.nist.gov/35.7.E2]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \JacobifunPmat [\JacobifunPmat]
+9774 [http://dlmf.nist.gov/35.7.E3]: Skipped - Invalid test case: bmatrix
+9775 [http://dlmf.nist.gov/35.7.E4]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
+9776 [http://dlmf.nist.gov/35.7.E5]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
+9777 [http://dlmf.nist.gov/35.7.E6]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
+9777-a [http://dlmf.nist.gov/35.7.E6]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \matrixdet [\matrixdet]
+9777-b [http://dlmf.nist.gov/35.7.E6]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \matrixdet [\matrixdet]
+9778 [http://dlmf.nist.gov/35.7.E7]: Skipped - Unable to analyze test case: Null
+9779 [http://dlmf.nist.gov/35.7.E8]: Skipped - Unable to analyze test case: Null
+9780 [http://dlmf.nist.gov/35.7.E9]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of SUM
+9781 [http://dlmf.nist.gov/35.7.E10]: Skipped - Unable to analyze test case: Null
+9782 [http://dlmf.nist.gov/35.7.E11]: Skipped - Unable to analyze test case: Null
+9783 [http://dlmf.nist.gov/35.8.E1]: Skipped - Invalid test case: dots
+9784 [http://dlmf.nist.gov/35.8.E2]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
+9785 [http://dlmf.nist.gov/35.8.E3]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
+9785-a [http://dlmf.nist.gov/35.8.E3]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
+9786 [http://dlmf.nist.gov/35.8.E4]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \BesselAmat [\BesselAmat]
+9787 [http://dlmf.nist.gov/35.8.E5]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
+9788 [http://dlmf.nist.gov/35.8.E6]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
+9789 [http://dlmf.nist.gov/35.8.E7]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \genhyperFmat [\genhyperFmat]
+9790 [http://dlmf.nist.gov/35.8.E8]: Skipped - Invalid test case: dots
+9791 [http://dlmf.nist.gov/35.8.E9]: Skipped - Invalid test case: dots
+9792 [http://dlmf.nist.gov/35.8.E10]: Skipped - Invalid test case: dots
+9793 [http://dlmf.nist.gov/35.8.E11]: Skipped - Invalid test case: dots
+9794 [http://dlmf.nist.gov/35.8.E12]: Skipped - Invalid test case: dots
+9795 [http://dlmf.nist.gov/35.8.E13]: Skipped - Invalid test case: dots

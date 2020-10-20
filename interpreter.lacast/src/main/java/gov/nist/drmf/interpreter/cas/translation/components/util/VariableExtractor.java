@@ -10,6 +10,7 @@ import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -49,7 +50,7 @@ public class VariableExtractor {
             LinkedList<Brackets> parenthesisCache,
             MathTerm mt
     ) {
-        Brackets bracket = Brackets.ifIsBracketTransform(mt, null);
+        Brackets bracket = Brackets.ifIsBracketTransform(mt, parenthesisCache.isEmpty() ? null : parenthesisCache.getLast());
         RETURN_VAL value = RETURN_VAL.NONE;
         // check for brackets
         if ( handleBracket(bracket, parenthesisCache, abstractTranslator) ) {
@@ -69,8 +70,9 @@ public class VariableExtractor {
         return value;
     }
 
-    private RETURN_VAL handleGeneralTags(MathTerm mt) {
+    private static RETURN_VAL handleGeneralTags(MathTerm mt) {
         MathTermTags tag = MathTermTags.getTagByKey(mt.getTag());
+        if ( tag == null ) return RETURN_VAL.NONE;
         // stop only in case of a harsh stop symbol appears on the same level of the sum
         // stoppers are relations (left-hand side and right-hand side).
         switch (tag) {
@@ -84,6 +86,13 @@ public class VariableExtractor {
             default:
                 return RETURN_VAL.NONE;
         }
+    }
+
+    private static boolean isBreakPoint(PomTaggedExpression pte) {
+        if ( pte == null || pte.isEmpty() ) return true;
+        if ( RETURN_VAL.CACHE.equals(handleGeneralTags(pte.getRoot())) ) return true;
+        Brackets bracket = Brackets.getBracket(pte);
+        return bracket != null && !bracket.opened;
     }
 
     private boolean isSumOrProduct(MathTerm mt) {
@@ -220,7 +229,11 @@ public class VariableExtractor {
 
         checkListValidity(list, abstractTranslator);
 
-        // the very next element is always(!) part of the argument
+        // the very next element is always part of the argument if it is not a breakpoint
+        if ( VariableExtractor.isBreakPoint(list.get(0)) ) {
+            return cache;
+        }
+
         PomTaggedExpression first = list.remove(0);
         cache.add(first);
 

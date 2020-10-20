@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation.components.util;
 
+import gov.nist.drmf.interpreter.cas.common.DLMFPatterns;
 import gov.nist.drmf.interpreter.cas.common.IForwardTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
@@ -65,7 +66,7 @@ public class MacroInfoHolder {
         } catch (NullPointerException | TranslationException npe) {
             throw TranslationException.buildExceptionObj(
                     translator, "Cannot extract information from feature set: " + macro,
-                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION, npe);
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION, macro);
         }
     }
 
@@ -90,6 +91,10 @@ public class MacroInfoHolder {
         return macro.equals("\\Wronskian");
     }
 
+    public boolean isDeriv() {
+        return macro.matches(DLMFPatterns.DERIV_NOTATION);
+    }
+
     public String getMacro() {
         return macro;
     }
@@ -102,14 +107,22 @@ public class MacroInfoHolder {
         this.variableOfDifferentiation = variableOfDifferentiation;
     }
 
+    public int getNumberOfArguments() {
+        return translationInformation.getNumOfOptionalParas() +
+                translationInformation.getNumOfParams() +
+                translationInformation.getNumOfVars();
+    }
+
     public boolean hasNoArguments() {
-        return translationInformation.getNumOfParams() +
-                translationInformation.getNumOfAts() +
-                translationInformation.getNumOfVars() == 0;
+        return getNumberOfArguments() + translationInformation.getNumOfAts() == 0;
     }
 
     public int getSlotOfDifferentiation() {
         return slotOfDifferentiation;
+    }
+
+    public void overwriteSlotOfDifferentiation(int slot) {
+        this.slotOfDifferentiation = slot;
     }
 
     public MacroTranslationInformation getTranslationInformation() {

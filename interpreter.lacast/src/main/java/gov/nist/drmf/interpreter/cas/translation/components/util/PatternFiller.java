@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation.components.util;
 
+import gov.nist.drmf.interpreter.cas.common.DLMFPatterns;
 import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
@@ -10,8 +11,6 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 import java.util.SortedSet;
 
-import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.TEMPORARY_VARIABLE_NAME;
-
 /**
  * This class fills a translation pattern by the provided information.
  * @author Andre Greiner-Petter
@@ -19,18 +18,24 @@ import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.TEMPORARY_VARIAB
 public class PatternFiller {
     private static final Logger LOG = LogManager.getLogger(PatternFiller.class.getName());
 
+    private static final boolean DISMISS_SUBSTITUTION_MODE = true;
+
     private final MacroInfoHolder macroInfo;
     private final DerivativeAndPowerHolder derivInfo;
+
+    private final String tempVariableString;
 
     private int slotOfDifferentiation;
 
     public PatternFiller(
             MacroInfoHolder macroInfo,
             DerivativeAndPowerHolder derivInfo,
-            List<String> optionalParameters
+            List<String> optionalParameters,
+            String tempVariableString
     ) throws IndexOutOfBoundsException {
         this.macroInfo = macroInfo;
         this.derivInfo = derivInfo;
+        this.tempVariableString = tempVariableString;
 
         slotOfDifferentiation = macroInfo.getSlotOfDifferentiation();
 
@@ -54,12 +59,20 @@ public class PatternFiller {
         MacroTranslationInformation translationInformation = macroInfo.getTranslationInformation();
         String pattern = getTranslationPattern(translationInformation);
 
-        // Eventually, we need to substitute an argument.
+        // Maybe, we need to substitute an argument.
         String subbedExpression = null;
-        if (slotOfDifferentiation >= 1 && derivInfo.getDifferentiation() != null) {
+        if ( triggerSubstitution(!DISMISS_SUBSTITUTION_MODE) ) {
             // substitute out argument in slot of differentiation
             subbedExpression = args[slotOfDifferentiation - 1];
-            args[slotOfDifferentiation - 1] = TEMPORARY_VARIABLE_NAME;
+            args[slotOfDifferentiation - 1] = this.tempVariableString;
+        } else if ( derivInfo.isComplexDerivativeVar() && macroInfo.isDeriv() ) {
+            args = updateArgumentsForSubstitution(args);
+            subbedExpression = args[2];
+            pattern = args[1].replaceAll(
+                    "\\Q"+args[2]+"\\E",
+                    this.tempVariableString
+            );
+            args[2] = this.tempVariableString;
         }
 
         // if we translating a wronskian here, we need to be a bit more careful.
@@ -73,16 +86,38 @@ public class PatternFiller {
         LOG.debug("Translated DLMF macro to: " + pattern);
 
         // apply derivative and plug in the subbed out expression to replace temp during execution in CAS
-        if (subbedExpression != null) {
-            pattern = fixSubstitution(config, pattern, subbedExpression);
-        }
+        return postPatternProcessing(pattern, subbedExpression, config, args);
+    }
 
-        return pattern;
+    private String postPatternProcessing(
+            String pattern,
+            String subbedExpression,
+            ForwardTranslationProcessConfig config,
+            String[] args
+    ) {
+        if (subbedExpression != null) {
+            return fixSubstitution(config, pattern, subbedExpression);
+        } else if ( triggerSubstitution(DISMISS_SUBSTITUTION_MODE) ) {
+            return simpleDerivative(config, pattern, args[slotOfDifferentiation - 1]);
+        } else return pattern;
+    }
+
+    private boolean triggerSubstitution(boolean dismissComplexArguments) {
+        return slotOfDifferentiation >= 1 &&
+                derivInfo.getDifferentiation() != null &&
+                (dismissComplexArguments != derivInfo.isComplexDerivativeVar());
+    }
+
+    private String[] updateArgumentsForSubstitution(String[] args) {
+        if ( args.length == 2 ) {
+            args = new String[]{"1", args[0], args[1]};
+        }
+        derivInfo.setDifferentiation(args[0]);
+        return args;
     }
 
     private String getTranslationPattern(MacroTranslationInformation translationInformation) {
         String pattern = translationInformation.getTranslationPattern();
-        translationInformation.getTranslationPattern();
         if ( pattern == null || pattern.isEmpty() ) {
             LOG.warn("No direct translation available, switch to alternative mode.");
             SortedSet<String> alts = translationInformation.getAlternativePattern();
@@ -111,6 +146,25 @@ public class PatternFiller {
         return pattern;
     }
 
+    private String simpleDerivative(
+            ForwardTranslationProcessConfig config,
+            String translatedExpression,
+            String variable
+    ) {
+        LOG.debug("Fill differentiation pattern for " + macroInfo.getMacro());
+        BasicFunctionsTranslator bft = config.getBasicFunctionsTranslator();
+
+        String[] diffArgs = new String[]{
+                translatedExpression,
+                variable,
+                derivInfo.getDifferentiation()
+        };
+
+        String translation = bft.translate(diffArgs, DLMFPatterns.DERIVATIVE_SIMPLE_MLP_KEY);
+        LOG.debug("Translated diff: " + translation);
+        return translation;
+    }
+
     private String fixSubstitution(ForwardTranslationProcessConfig config, String pattern, String subbedExpression) {
         LOG.debug("Fill differentiation pattern for " + macroInfo.getMacro());
         BasicFunctionsTranslator bft = config.getBasicFunctionsTranslator();
@@ -120,7 +174,7 @@ public class PatternFiller {
                 subbedExpression,
                 derivInfo.getDifferentiation()
         };
-        pattern = bft.translate(diffArgs, "derivative");
+        pattern = bft.translate(diffArgs, DLMFPatterns.DERIVATIVE_SUB_MLP_KEY);
         LOG.debug("Translated diff: " + pattern);
         return pattern;
     }

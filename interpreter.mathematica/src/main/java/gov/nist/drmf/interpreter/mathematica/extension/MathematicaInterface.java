@@ -4,8 +4,10 @@ import com.wolfram.jlink.Expr;
 import com.wolfram.jlink.KernelLink;
 import com.wolfram.jlink.MathLinkException;
 import com.wolfram.jlink.MathLinkFactory;
+import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
@@ -13,9 +15,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
@@ -138,6 +143,26 @@ public class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> 
         evaluate(cmd);
     }
 
+    private static Pattern inPattern = Pattern.compile("^(.*?) \\[Element] (.*)$");
+
+    @Override
+    public void setGlobalAssumptions(String... assumptions) throws ComputerAlgebraSystemEngineException {
+        for ( int i = 0; i < assumptions.length; i++ ) {
+            if ( assumptions[i].contains("Integers") )
+                assumptions[i] = assumptions[i].replace("Integers", "PositiveIntegers");
+            Matcher m = inPattern.matcher(assumptions[i]);
+            if ( m.matches() ) assumptions[i] = "Element[" + m.group(1) + ", " + m.group(2) + "]";
+        }
+        String cmd = String.join(" && ", assumptions);
+        try {
+            String result = evaluate("$Assumptions = " + cmd);
+            LOG.info("Setup global assumptions: " + result);
+        } catch (MathLinkException e) {
+            LOG.error("Unable to set global assumptions in Mathematica. Assumptions: " + Arrays.toString(assumptions));
+            throw new ComputerAlgebraSystemEngineException(e);
+        }
+    }
+
     public SymbolicEquivalenceChecker getEvaluationChecker() {
         return evalChecker;
     }
@@ -150,7 +175,7 @@ public class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> 
 
     @Override
     public void forceGC() {
-        LOG.warn("Ignore force GC for Mathematica");
+        LOG.trace("Ignore force GC for Mathematica");
     }
 
     @Override
@@ -159,16 +184,42 @@ public class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> 
         return ls.substring(1, ls.length()-1);
     }
 
-    public void checkIfEvaluationIsInRange(String command, int lowerLimit, int upperLimit) throws ComputerAlgebraSystemEngineException {
+    public int checkIfEvaluationIsInRange(String command, int lowerLimit, int upperLimit) throws ComputerAlgebraSystemEngineException {
         try {
-            String res = mathematicaInterface.evaluate(command);
-            LOG.debug("Generated test cases: " + res);
-            int nT = Integer.parseInt(res);
-            if ( nT >= upperLimit ) throw new IllegalArgumentException("Too many test combinations.");
-            else if ( nT <= lowerLimit ) throw new IllegalArgumentException("Not enough test combinations.");
-            // res should be an integer, testing how many test commands there are!
+            Expr res = mathematicaInterface.evaluateToExpression(command);
+            return checkIfEvaluationIsInRange(res, lowerLimit, upperLimit);
         } catch (MathLinkException | NumberFormatException e) {
             throw new ComputerAlgebraSystemEngineException(e);
         }
+    }
+
+    public int checkIfEvaluationIsInRange(Expr res, int lowerLimit, int upperLimit) throws ComputerAlgebraSystemEngineException {
+        try {
+            int nT = res.length();
+            LOG.info("Sample of generated test cases [Total: "+nT+"]: " + LogManipulator.shortenOutput(res.toString(), 5));
+            if ( nT >= upperLimit ) throw new IllegalArgumentException("Too many test combinations.");
+            else if ( nT <= lowerLimit ) throw new IllegalArgumentException("Not enough test combinations.");
+            return nT;
+            // res should be an integer, testing how many test commands there are!
+        } catch (NumberFormatException e) {
+            throw new ComputerAlgebraSystemEngineException(e);
+        }
+    }
+
+    public static Thread getAbortionThread(IAbortEvaluator<Expr> simplifier, int timeout) {
+        return new Thread(() -> {
+            boolean interrupted = false;
+            try {
+                Thread.sleep(timeout);
+            } catch ( InterruptedException ie ) {
+                LOG.debug("Interrupted, no abortion necessary.");
+                interrupted = true;
+            }
+
+            if ( !interrupted ) {
+                LOG.debug("Register an abortion request. Forward it to mathematica engine.");
+                simplifier.abort();
+            }
+        });
     }
 }

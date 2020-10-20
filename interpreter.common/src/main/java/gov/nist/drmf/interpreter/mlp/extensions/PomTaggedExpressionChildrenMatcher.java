@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
+import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -14,7 +16,7 @@ public class PomTaggedExpressionChildrenMatcher {
     /**
      * The reference parent.
      */
-    private final MatchablePomTaggedExpression parent;
+    private final AbstractMatchablePomTaggedExpression parent;
 
     /**
      * The children of the parent node
@@ -25,7 +27,7 @@ public class PomTaggedExpressionChildrenMatcher {
      * @param parent the parent node
      */
     PomTaggedExpressionChildrenMatcher(
-            MatchablePomTaggedExpression parent
+            AbstractMatchablePomTaggedExpression parent
     ) {
         this.parent = parent;
         this.children = new LinkedList<>();
@@ -92,14 +94,26 @@ public class PomTaggedExpressionChildrenMatcher {
     ) {
         int idx = 0;
         while (idx < size() && !refComponents.isEmpty()) {
-            PrintablePomTaggedExpression firstRef = refComponents.removeFirst();
             MatchablePomTaggedExpression matcherElement = this.children.get(idx);
+            if ( config.ignoreNumberOfAts() && PomTaggedExpressionUtility.isAt(matcherElement) ) {
+                idx++;
+                continue;
+            }
 
+            PrintablePomTaggedExpression firstRef = refComponents.removeFirst();
             if (!matcherElement.match(firstRef, refComponents, config)) return false;
 
             idx++;
         }
 
+        return validIndex(refComponents, config, idx);
+    }
+
+    private boolean validIndex(
+            LinkedList<PrintablePomTaggedExpression> refComponents,
+            MatcherConfig config,
+            int idx
+    ) {
         if ( !config.allowFollowingTokens() && idx == size() ) return refComponents.isEmpty();
         else return idx == size();
     }

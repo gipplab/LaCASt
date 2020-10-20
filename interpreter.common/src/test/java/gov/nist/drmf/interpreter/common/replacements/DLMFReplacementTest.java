@@ -44,6 +44,13 @@ public class DLMFReplacementTest {
     }
 
     @Test
+    void equalsByDefTest() {
+        String input = "k\\defeq\\frac{1}{2}";
+        String replaced = CONFIG.replace(input, null);
+        assertEquals("k = \\frac{1}{2}", replaced);
+    }
+
+    @Test
     void kSqTest() {
         String input = "{k^{\\prime}}^{2}=\\frac{1}{2}";
         String replaced = CONFIG.replace(input, "22.2.2");

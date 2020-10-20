@@ -1,0 +1,34 @@
+SymPy;DLMF;Number of Variables;SymPy-DLMF-Comment;SymPy-Constraints;SymPy-Branch Cuts;DLMF-Alternatives;SymPy-Link
+sin($0);\sin@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#sin
+cos($0);\cos@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#cos
+tan($0);\tan@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#tan
+sec($0);\sec@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#sec
+csc($0);\csc@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#csc
+cot($0);\cot@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#cot
+;;;;;;;
+sinh($0);\sinh@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#sinh
+cosh($0);\cosh@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#cosh
+tanh($0);\tanh@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#tanh
+sech($0);\sech@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#sech
+csch($0);\csch@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#csch
+coth($0);\coth@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#coth
+;;;;;;;
+asin($0);\asin@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#asin
+acos($0);\acos@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#acos
+atan($0);\atan@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#atan
+asec($0);\asec@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#asec
+acsc($0);\acsc@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#acsc
+acot($0);\acot@@{$0};1;;;(- I infinity, - I ), ( I, I infinity );\frac{\cpi}{2}-\atan@@{$0};https://docs.sympy.org/latest/modules/functions/elementary.html#acot
+;;;;;;;
+asinh($0);\asinh@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#asinh
+acosh($0);\acosh@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#acosh
+atanh($0);\atanh@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#atanh
+asech($0);\asech@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#asech
+acsch($0);\acsch@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#acsch
+acoth($0);\acoth@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#acoth
+;;;;;;;
+ln($0);\ln@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#log
+log($0);\log@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#log
+log($1,$0);\genlog{$0}@@{$1};2;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#log
+;;;;;;;
+exp($0);\exp@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#exp

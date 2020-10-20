@@ -1,6 +1,9 @@
 package gov.nist.drmf.interpreter.cas.constraints;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,27 +12,47 @@ import java.util.regex.Pattern;
  */
 public class Constraints {
 
-    private String[] texConstraints;
+    private final List<String> allConstraints;
+    private final List<String> texConstraints;
+    private final List<String> specialConstraintVariables;
+    private final List<String> specialConstraintValues;
 
-    private String[] specialConstraintVariables;
-    private String[] specialConstraintValues;
+    public Constraints() {
+        allConstraints = new ArrayList<>();
+        texConstraints = new ArrayList<>();
+        specialConstraintVariables = new ArrayList<>();
+        specialConstraintValues = new ArrayList<>();
+    }
 
-    public Constraints(String[] texConstraints, String[] specialConstraintVariables, String[] specialConstraintValues){
-        this.texConstraints = texConstraints;
-        this.specialConstraintValues = specialConstraintValues;
-        this.specialConstraintVariables = specialConstraintVariables;
+    public Constraints(LinkedList<String> originalConstraintList, String[] texConstraints, String[] specialConstraintVariables, String[] specialConstraintValues){
+        this.allConstraints = originalConstraintList;
+        this.texConstraints = new LinkedList<>(Arrays.asList(texConstraints));
+        this.specialConstraintValues = new LinkedList<>(Arrays.asList(specialConstraintValues));
+        this.specialConstraintVariables = new LinkedList<>(Arrays.asList(specialConstraintVariables));
+    }
+
+    public List<String> getOriginalConstraints() {
+        return allConstraints;
     }
 
     public String[] getTexConstraints() {
-        return texConstraints;
+        return texConstraints.stream().distinct().toArray(String[]::new);
     }
 
     public String[] getSpecialConstraintVariables() {
-        return specialConstraintVariables;
+        return specialConstraintVariables.stream().distinct().toArray(String[]::new);
     }
 
     public String[] getSpecialConstraintValues() {
-        return specialConstraintValues;
+        return specialConstraintValues.stream().distinct().toArray(String[]::new);
+    }
+
+    public void addConstraints(Constraints c) {
+        if ( c == null ) return;
+        this.allConstraints.addAll(c.allConstraints);
+        this.texConstraints.addAll(c.texConstraints);
+        this.specialConstraintVariables.addAll(c.specialConstraintVariables);
+        this.specialConstraintValues.addAll(c.specialConstraintValues);
     }
 
     public String specialValuesInfo(){
@@ -45,8 +68,8 @@ public class Constraints {
         String s = "";
         if ( specialConstraintVariables != null ){
             s += "Set single values for variables (because of constraint-rules): ";
-            for ( int i = 0; i < specialConstraintVariables.length; i++ ){
-                s += specialConstraintVariables[i] + "=" + specialConstraintValues[i] + "; ";
+            for ( int i = 0; i < specialConstraintVariables.size(); i++ ){
+                s += specialConstraintVariables.get(i) + "=" + specialConstraintValues.get(i) + "; ";
             }
         }
         return s;
@@ -54,7 +77,7 @@ public class Constraints {
 
     private String addAdditionalConstraintString() {
         if ( texConstraints != null )
-            return "Applied Additional Constraints: " + Arrays.toString(texConstraints);
+            return "Applied Additional Constraints: " + texConstraints;
         else return null;
     }
 

@@ -1,0 +1,2 @@
+\nrestpartitions, 16
+\npartitions, 8

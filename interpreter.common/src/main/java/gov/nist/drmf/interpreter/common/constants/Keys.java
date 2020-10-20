@@ -29,6 +29,9 @@ public final class Keys {
 
     public static final String KEY_MATHEMATICA_MATH_DIR = "mathematica_math";
 
+    // Key value for SymPy
+    public static final String KEY_SYMPY = "SymPy";
+
     // Key value for DLMF
     public static final String KEY_DLMF = "DLMF";
 
@@ -39,10 +42,11 @@ public final class Keys {
     public static final String KEY_ABSOLUTE_VALUE = "absolute value";
 
     public static final String
-            NUM_OF_VARS     = "Number of Variables",
-            NUM_OF_ATS      = "Number of Ats",
-            NUM_OF_PARAMS   = "Number of Parameters",
-            SLOT_OF_DIFF    = "Slot of Differentiation";
+            NUM_OF_VARS         = "Number of Variables",
+            NUM_OF_ATS          = "Number of Ats",
+            NUM_OF_PARAMS       = "Number of Parameters",
+            NUM_OF_OPT_PARAMS   = "Number of optional Parameters",
+            SLOT_OF_DIFF        = "Slot of Differentiation";
 
     public static final String
             FEATURE_SET_AT      = "at",
@@ -69,7 +73,10 @@ public final class Keys {
             MLP_KEY_LOAD_PACKAGE    = "load-package",
             MLP_KEY_UNLOAD_PACKAGE  = "unload-package",
             MLP_KEY_SUPPRESS_OUTPUT = "suppress-output",
-            MLP_KEY_END_OF_LINE     = "end-of-line";
+            MLP_KEY_END_OF_LINE     = "end-of-line",
+            MLP_KEY_SET_PREFIX      = "set-",
+            MLP_KEY_SET_LEFT_PREFIX = "left-",
+            MLP_KEY_SET_RIGHT_PREFIX= "right-";
 
     public static final String
             MLP_KEY_EQ  = "equals",

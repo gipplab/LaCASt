@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  * @author Andre Greiner-Petter
  */
 public class DLMFConditionalReplacementImpl extends ConditionalReplacementRule implements IReplacementCondition {
-    private static final String EXP_IDX = "[#.]Ex?(\\d+)";
+    private static final String EXP_IDX = "[#.]Ex?(\\d+)(?:X[a-z]?|_\\d+)?";
 
     private static final Pattern DLMF_EXP_PATTERN = Pattern.compile(EXP_IDX);
 

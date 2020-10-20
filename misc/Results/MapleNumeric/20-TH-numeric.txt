@@ -1,93 +1,81 @@
-Overall: [SUCCESS: 1, FAILURE: 0, LIMIT_SKIPS: 31, TESTED: 45, ERROR: 44] for test expression: (#LHS)-(#RHS)
-7014: Error - java.lang.NullPointerException
-7014-a: Skip - symbolical successful subtest
-7015: Error - java.lang.NullPointerException
-7015-a: Skip - symbolical successful subtest
-7016: Error - java.lang.NullPointerException
-7016-a: Skip - symbolical successful subtest
-7017: Error - java.lang.NullPointerException
-7017-a: Skip - symbolical successful subtest
-7019: Error - java.lang.NullPointerException
-7020: Error - java.lang.NullPointerException
-7021: Error - java.lang.NullPointerException
-7022: Error - java.lang.NullPointerException
-7024: Skip - symbolical successful subtest
-7024-a: Error - java.lang.NullPointerException
-7024-b: Skip - symbolical successful subtest
-7025: Skip - symbolical successful subtest
-7025-a: Error - java.lang.NullPointerException
-7025-b: Skip - symbolical successful subtest
-7026: Skip - symbolical successful subtest
-7026-a: Error - java.lang.NullPointerException
-7026-b: Skip - symbolical successful subtest
-7027: Skip - symbolical successful subtest
-7027-a: Error - java.lang.NullPointerException
-7027-b: Skip - symbolical successful subtest
-7028: Successful
-7028-a: Error - java.lang.NullPointerException
-7028-b: Skip - symbolical successful subtest
-7028-c: Skip - symbolical successful subtest
-7033: Error - java.lang.NullPointerException
-7034: Error - java.lang.NullPointerException
-7034-a: Error - java.lang.NullPointerException
-7034-b: Skip - symbolical successful subtest
-7034-c: Skip - symbolical successful subtest
-7035: Skip - int/sum/prod/lim
-7036: Skip - int/sum/prod/lim
-7037: Skip - int/sum/prod/lim
-7038: Skip - int/sum/prod/lim
-7039: Error - java.lang.NullPointerException
-7044: Skip - int/sum/prod/lim
-7045: Skip - int/sum/prod/lim
-7046: Skip - int/sum/prod/lim
-7047: Skip - int/sum/prod/lim
-7049: Skip - int/sum/prod/lim
-7049-a: Skip - int/sum/prod/lim
-7050: Skip - int/sum/prod/lim
-7050-a: Skip - int/sum/prod/lim
-7051: Skip - int/sum/prod/lim
-7051-a: Skip - int/sum/prod/lim
-7052: Skip - int/sum/prod/lim
-7052-a: Skip - int/sum/prod/lim
-7054: Skip - int/sum/prod/lim
-7055: Skip - int/sum/prod/lim
-7056: Skip - int/sum/prod/lim
-7058: Skip - int/sum/prod/lim
-7059: Skip - int/sum/prod/lim
-7060: Skip - int/sum/prod/lim
-7061: Skip - int/sum/prod/lim
-7068: Error - java.lang.NullPointerException
-7069: Error - java.lang.NullPointerException
-7070: Error - java.lang.NullPointerException
-7071: Error - java.lang.NullPointerException
-7073: Error - java.lang.NullPointerException
-7074: Error - java.lang.NullPointerException
-7075: Error - java.lang.NullPointerException
-7076: Error - java.lang.NullPointerException
-7077: Error - java.lang.NullPointerException
-7078: Error - java.lang.NullPointerException
-7078-a: Error - java.lang.NullPointerException
-7079: Error - java.lang.NullPointerException
-7079-a: Error - java.lang.NullPointerException
-7080: Error - java.lang.NullPointerException
-7081: Error - java.lang.NullPointerException
-7083: Error - java.lang.NullPointerException
-7086: Error - java.lang.NullPointerException
-7092: Error - java.lang.NullPointerException
-7093: Error - java.lang.NullPointerException
-7094: Error - java.lang.NullPointerException
-7095: Error - java.lang.NullPointerException
-7096: Error - java.lang.NullPointerException
-7101: Error - java.lang.NullPointerException
-7101-a: Error - java.lang.NullPointerException
-7102: Skip - int/sum/prod/lim
-7104: Error - java.lang.NullPointerException
-7105: Error - java.lang.NullPointerException
-7109: Skip - int/sum/prod/lim
-7110: Skip - int/sum/prod/lim
-7111: Skip - int/sum/prod/lim
-7112: Skip - int/sum/prod/lim
-7112-a: Skip - int/sum/prod/lim
-7113: Skip - int/sum/prod/lim
-7113-a: Skip - int/sum/prod/lim
-7118: Error - java.lang.NullPointerException
+Overall: [TOTAL: 127, SKIPPED: 59, DEFINITIONS: 0, STARTED_TEST_CASES: 68, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 68, SUCCESS_SYMB: 0, SUCCESS_NUM: 0, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 32, NO_TEST_VALUES: 0, ABORTED: 20, ERROR: 16] for test expression: (#LHS)-(#RHS)
+6704 [http://dlmf.nist.gov/20.2.E1]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...]
+6704-a [http://dlmf.nist.gov/20.2.E1]: Skip - symbolical successful subtest
+6705 [http://dlmf.nist.gov/20.2.E2]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...]
+6705-a [http://dlmf.nist.gov/20.2.E2]: Skip - symbolical successful subtest
+6706 [http://dlmf.nist.gov/20.2.E3]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...]
+6706-a [http://dlmf.nist.gov/20.2.E3]: Skip - symbolical successful subtest
+6707 [http://dlmf.nist.gov/20.2.E4]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...]
+6707-a [http://dlmf.nist.gov/20.2.E4]: Skip - symbolical successful subtest
+6709 [http://dlmf.nist.gov/20.2.E6]: Failed [300/300]: [[-18.62843952+6.320473139*I, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, m = 1, n = 1]], [-4187.991134+3174.249087*I, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, m = 1, n = 2]], ...
+6710 [http://dlmf.nist.gov/20.2.E7]: Failed [300/300]: [[3.950576529-14.16574159*I, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, m = 1, n = 1]], [194.3416227+3923.809342*I, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, m = 1, n = 2]], ...
+6711 [http://dlmf.nist.gov/20.2.E8]: Failed [300/300]: [[-8.181021151+18.44680448*I, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, m = 1, n = 1]], [516.5479372-5365.925849*I, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, m = 1, n = 2]], ...
+6712 [http://dlmf.nist.gov/20.2.E9]: Failed [300/300]: [[-4.510694228-11.16801166*I, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, m = 1, n = 1]], [-2085.869632-2449.864344*I, [q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, m = 1, n = 2]], ...
+6714 [http://dlmf.nist.gov/20.2.E11]: Skip - symbolical successful subtest
+6714-a [http://dlmf.nist.gov/20.2.E11]: Failed [300/300]: [[-2.656130280+.8441101403*I, [M = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [2.726401771+.6812031274*I, [M = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6714-b [http://dlmf.nist.gov/20.2.E11]: Skip - symbolical successful subtest
+6715 [http://dlmf.nist.gov/20.2.E12]: Skip - symbolical successful subtest
+6715-a [http://dlmf.nist.gov/20.2.E12]: Failed [300/300]: [[-.5985410657+1.995750316*I, [M = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [-.54909285e-2-5.605651596*I, [M = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6715-b [http://dlmf.nist.gov/20.2.E12]: Skip - symbolical successful subtest
+6716 [http://dlmf.nist.gov/20.2.E13]: Skip - symbolical successful subtest
+6716-a [http://dlmf.nist.gov/20.2.E13]: Failed [300/300]: [[-1.209558888+2.590545189*I, [M = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [-.8537358258+1.281173247*I, [M = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6716-b [http://dlmf.nist.gov/20.2.E13]: Skip - symbolical successful subtest
+6717 [http://dlmf.nist.gov/20.2.E14]: Skip - symbolical successful subtest
+6717-a [http://dlmf.nist.gov/20.2.E14]: Failed [300/300]: [[.6082553523+1.594370406*I, [M = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [-3.995156823-3.872683361*I, [M = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6717-b [http://dlmf.nist.gov/20.2.E14]: Skip - symbolical successful subtest
+6735 [http://dlmf.nist.gov/20.5.E6]: Failed [56/70]: [[Error, [tau = 1/2-1/2*I*3^(1/2), z = 1/2*3^(1/2)+1/2*I]], [Error, [tau = 1/2-1/2*I*3^(1/2), z = -1/2+1/2*I*3^(1/2)]], ...
+6736 [http://dlmf.nist.gov/20.5.E7]: Failed [56/70]: [[Error, [tau = 1/2-1/2*I*3^(1/2), z = 1/2*3^(1/2)+1/2*I]], [Error, [tau = 1/2-1/2*I*3^(1/2), z = -1/2+1/2*I*3^(1/2)]], ...
+6737 [http://dlmf.nist.gov/20.5.E8]: Failed [56/70]: [[Error, [tau = 1/2-1/2*I*3^(1/2), z = 1/2*3^(1/2)+1/2*I]], [Error, [tau = 1/2-1/2*I*3^(1/2), z = -1/2+1/2*I*3^(1/2)]], ...
+6738 [http://dlmf.nist.gov/20.5.E9]: Error [[[Error, [p = 1/2*3^(1/2)+1/2*I, q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [p = 1/2*3^(1/2)+1/2*I, q = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...]
+6738-a [http://dlmf.nist.gov/20.5.E9]: Skipped - Because timed out
+6739 [http://dlmf.nist.gov/20.5.E10]: Skipped - Because timed out
+6739-a [http://dlmf.nist.gov/20.5.E10]: Skipped - Because timed out
+6740 [http://dlmf.nist.gov/20.5.E11]: Skipped - Because timed out
+6740-a [http://dlmf.nist.gov/20.5.E11]: Skipped - Because timed out
+6741 [http://dlmf.nist.gov/20.5.E12]: Skipped - Because timed out
+6741-a [http://dlmf.nist.gov/20.5.E12]: Skipped - Because timed out
+6742 [http://dlmf.nist.gov/20.5.E13]: Skipped - Because timed out
+6742-a [http://dlmf.nist.gov/20.5.E13]: Skipped - Because timed out
+6744 [http://dlmf.nist.gov/20.5.E15]: Skipped - Because timed out
+6745 [http://dlmf.nist.gov/20.5.E16]: Skipped - Because timed out
+6746 [http://dlmf.nist.gov/20.5.E17]: Skipped - Because timed out
+6749 [http://dlmf.nist.gov/20.6.E3]: Skipped - Because timed out
+6750 [http://dlmf.nist.gov/20.6.E4]: Skipped - Because timed out
+6751 [http://dlmf.nist.gov/20.6.E5]: Skipped - Because timed out
+6758 [http://dlmf.nist.gov/20.7.E1]: Failed [56/70]: [[Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6759 [http://dlmf.nist.gov/20.7.E2]: Failed [56/70]: [[Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6760 [http://dlmf.nist.gov/20.7.E3]: Failed [56/70]: [[Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6761 [http://dlmf.nist.gov/20.7.E4]: Failed [56/70]: [[Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6763 [http://dlmf.nist.gov/20.7.E6]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...]
+6764 [http://dlmf.nist.gov/20.7.E7]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...]
+6765 [http://dlmf.nist.gov/20.7.E8]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...]
+6766 [http://dlmf.nist.gov/20.7.E9]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...]
+6767 [http://dlmf.nist.gov/20.7.E10]: Failed [56/70]: [[Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6768 [http://dlmf.nist.gov/20.7.E11]: Failed [63/70]: [[Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6768-a [http://dlmf.nist.gov/20.7.E11]: Failed [56/70]: [[Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6769 [http://dlmf.nist.gov/20.7.E12]: Failed [56/70]: [[Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6769-a [http://dlmf.nist.gov/20.7.E12]: Failed [63/70]: [[Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6770 [http://dlmf.nist.gov/20.7.E13]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...]
+6771 [http://dlmf.nist.gov/20.7.E14]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...]
+6773 [http://dlmf.nist.gov/20.7.E16]: Failed [300/300]: [[1.631641333-1.744983248*I, [A = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [-1.353330373+4.008308689*I, [A = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6776 [http://dlmf.nist.gov/20.7.E19]: Failed [300/300]: [[.88393938e-1-.6601554491*I, [A = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [-.5678871113-.5102031247*I, [A = 1/2*3^(1/2)+1/2*I, tau = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6782 [http://dlmf.nist.gov/20.7.E25]: Failed [56/70]: [[Error, [tau = 1/2-1/2*I*3^(1/2), z = 1/2*3^(1/2)+1/2*I]], [Error, [tau = 1/2-1/2*I*3^(1/2), z = -1/2+1/2*I*3^(1/2)]], ...
+6783 [http://dlmf.nist.gov/20.7.E26]: Failed [70/70]: [[.7294764132+1.608567858*I, [tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [1.107791050+1.561378050*I, [tau = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6784 [http://dlmf.nist.gov/20.7.E27]: Failed [70/70]: [[-.369621756e-1-.9012887423*I, [tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [4.590414642+4.526034042*I, [tau = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6785 [http://dlmf.nist.gov/20.7.E28]: Failed [70/70]: [[1.500564535+2.208881092*I, [tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [-1.492914692-.5532090072*I, [tau = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6786 [http://dlmf.nist.gov/20.7.E29]: Failed [70/70]: [[-.8770870366-.8516489897*I, [tau = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [7.362801863+2.459098613*I, [tau = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6791 [http://dlmf.nist.gov/20.7.E34]: Failed [56/70]: [[Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6791-a [http://dlmf.nist.gov/20.7.E34]: Failed [63/70]: [[Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [q = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...
+6792 [http://dlmf.nist.gov/20.8.E1]: Skipped - Because timed out
+6794 [https://dlmf.nist.gov/20.9#Ex1]: Failed [8/10]: [[Error, [tau = 1/2-1/2*I*3^(1/2)]], [Error, [tau = -1/2*3^(1/2)-1/2*I]], ...
+6795 [https://dlmf.nist.gov/20.9#Ex2]: Failed [10/10]: [[-.6481210221+.3604335389*I, [tau = 1/2*3^(1/2)+1/2*I]], [-1.647990213-1.212940701*I, [tau = -1/2+1/2*I*3^(1/2)]], ...
+6796 [http://dlmf.nist.gov/20.9.E3]: Skipped - Because timed out
+6797 [http://dlmf.nist.gov/20.9.E4]: Skipped - Because timed out
+6799 [http://dlmf.nist.gov/20.10.E1]: Error [[[Error, [s = 3/2]], [Error, [s = 1/2]], ...]
+6800 [http://dlmf.nist.gov/20.10.E2]: Skipped - Because timed out
+6801 [http://dlmf.nist.gov/20.10.E3]: Skipped - Because timed out
+6802 [http://dlmf.nist.gov/20.10.E4]: Error [[[Error, [beta = 3/2]], [Error, [beta = 1/2]], ...]
+6802-a [http://dlmf.nist.gov/20.10.E4]: Error [[[Error, [beta = 3/2, s = -3/2]], [Error, [beta = 3/2, s = 3/2]], ...]
+6803 [http://dlmf.nist.gov/20.10.E5]: Error [[[Error, [beta = 3/2]], [Error, [beta = 1/2]], ...]
+6803-a [http://dlmf.nist.gov/20.10.E5]: Error [[[Error, [beta = 3/2, s = -3/2]], [Error, [beta = 3/2, s = 3/2]], ...]
+6808 [http://dlmf.nist.gov/20.11.E5]: Failed [8/10]: [[Error, [tau = 1/2-1/2*I*3^(1/2)]], [Error, [tau = -1/2*3^(1/2)-1/2*I]], ...

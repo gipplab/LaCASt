@@ -1,0 +1,6 @@
+Overall: [TOTAL: 50, SKIPPED: 45, DEFINITIONS: 0, STARTED_TEST_CASES: 5, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 5, SUCCESS_SYMB: 0, SUCCESS_NUM: 5, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 0, NO_TEST_VALUES: 0, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
+1412 [http://dlmf.nist.gov/3.11.E6]: Successful [Tested: 3]
+1413 [http://dlmf.nist.gov/3.11.E7]: Successful [Tested: 3]
+1458 [http://dlmf.nist.gov/3.12.E1]: Successful [Tested: 1]
+1459 [http://dlmf.nist.gov/3.12.E2]: Successful [Tested: 1]
+1461 [http://dlmf.nist.gov/3.12.E4]: Successful [Tested: 1]

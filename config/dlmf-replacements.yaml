@@ -46,3 +46,7 @@ dlmfReplacementRules:
     replacement: \{\\frac\{2}\{3} z^\{\\frac\{3}\{2}}}$1
     groups: 1
     condition: [9.5-9.12]
+  - pattern: (\d+)(?:\\[.,; ])?\\[lc]?dots([^a-zA-Z]|$)
+    replacement: $1 $2
+    groups: 2
+    condition: [1-36]

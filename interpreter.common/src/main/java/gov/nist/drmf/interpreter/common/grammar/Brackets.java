@@ -419,7 +419,9 @@ public enum Brackets {
     }
 
     private static Brackets getAppropriateBracket(Brackets currentOpenBracket, Brackets bracket) {
-        if (isAbsValueClosedBracket(currentOpenBracket, bracket)) {
+        if (currentOpenBracket == null && (Brackets.abs_val_open.equals(bracket) || Brackets.abs_val_close.equals(bracket))) {
+            return Brackets.abs_val_open;
+        } else if (isAbsValueClosedBracket(currentOpenBracket, bracket)) {
             return Brackets.abs_val_close;
         } else {
             return bracket;
@@ -430,5 +432,12 @@ public enum Brackets {
         return currentOpenBracket != null && bracket != null &&
                 bracket.equals(Brackets.abs_val_open) &&
                 currentOpenBracket.equals(Brackets.abs_val_open);
+    }
+
+    public static boolean isOpenedSetBracket(Brackets bracket) {
+        return Brackets.left_latex_parenthesis.equals(bracket) ||
+                Brackets.left_latex_brackets.equals(bracket) ||
+                Brackets.left_parenthesis.equals(bracket) ||
+                Brackets.left_brackets.equals(bracket);
     }
 }

@@ -1,5 +1,2 @@
-\qGamma, 7
-\qPochhammer, 2
 \qBeta, 2
-\qfactorial, 1
 \diff, 1

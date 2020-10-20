@@ -134,9 +134,12 @@ public abstract class MLPWrapper {
             normalizeSubSuperScript(pte);
         } else if ( shouldNormalizeParenthesis(mathTag, settings) ) {
             Brackets orig = Brackets.getBracket(pte);
-            Brackets normalized = Brackets.getBracket(orig.getAppropriateString());
-            MathTerm newMT = FakeMLPGenerator.generateBracket(normalized);
-            pte.setRoot(newMT);
+            if ( orig != null ) {
+                // this can happen when \left. \right|, in this case, we should not normalize it
+                Brackets normalized = Brackets.getBracket(orig.getAppropriateString());
+                MathTerm newMT = FakeMLPGenerator.generateBracket(normalized);
+                pte.setRoot(newMT);
+            }
         } else {
             pte.getComponents().forEach( p -> internalNormalize(p, settings) );
         }

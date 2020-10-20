@@ -5,4 +5,3 @@
 \genshiftsinint, 2
 \textstyle, 1
 \terminant, 1
-\LaguerrepolyL, 1

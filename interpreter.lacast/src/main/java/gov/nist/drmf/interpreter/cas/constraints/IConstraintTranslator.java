@@ -1,23 +1,21 @@
 package gov.nist.drmf.interpreter.cas.constraints;
 
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.interfaces.IDLMFTranslator;
 import gov.nist.drmf.interpreter.common.interfaces.IPackageWrapper;
 import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
+import gov.nist.drmf.interpreter.common.text.TextUtility;
 
 import java.util.Arrays;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
  */
-public interface IConstraintTranslator extends ITranslator {
-    /**
-     * @param expression the expression to translate
-     * @param label label of the latex expression (can be null if there is none)
-     * @return translated expression
-     * @throws TranslationException if an error occurred
-     */
-    String translate( String expression, String label ) throws TranslationException;
+public interface IConstraintTranslator extends IDLMFTranslator {
+    static final Pattern NUM_PATTERN = Pattern.compile("(\\d+)\\s*\\\\[cl]?dots");
 
     Set<String> getRequiredPackages();
 
@@ -34,6 +32,7 @@ public interface IConstraintTranslator extends ITranslator {
 
     default String[] translateEachConstraint(String[] constraints, String label) {
         return Arrays.stream(constraints)
+                .map( c -> TextUtility.appendPattern(c, NUM_PATTERN, 1))
                 .filter( c -> !c.matches(".*\\\\[cl]?dots.*") )
                 .map( Constraints::stripDollar )
                 .map( c -> translate(c, label) )

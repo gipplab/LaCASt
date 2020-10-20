@@ -19,7 +19,7 @@ import static org.apache.logging.log4j.LogManager.getLogger;
 public class MacroTranslationInformation {
     private static final Logger LOG = getLogger(MacroTranslationInformation.class.getName());
 
-    private int numOfParams, numOfAts, numOfVars;
+    private int numOfOptionalParas, numOfParams, numOfAts, numOfVars;
 
     private String constraints;
 
@@ -35,6 +35,8 @@ public class MacroTranslationInformation {
     public MacroTranslationInformation(FeatureSet fset, String cas) {
         // now store all additional information
         // first of all number of parameters, ats and vars
+        String optParaString = DLMFFeatureValues.NUMBER_OF_OPTIONAL_PARAMETERS.getFeatureValue(fset, cas);
+        numOfOptionalParas = optParaString.isBlank() ? 0 : Integer.parseInt(optParaString);
         numOfParams = Integer.parseInt(DLMFFeatureValues.NUMBER_OF_PARAMETERS.getFeatureValue(fset, cas));
         numOfAts = Integer.parseInt(DLMFFeatureValues.NUMBER_OF_ATS.getFeatureValue(fset, cas));
         numOfVars = Integer.parseInt(DLMFFeatureValues.NUMBER_OF_VARIABLES.getFeatureValue(fset, cas));
@@ -59,6 +61,14 @@ public class MacroTranslationInformation {
         defCas = DLMFFeatureValues.CAS_HYPERLINK.getFeatureValue(fset, cas);
 
         requiredPackages = DLMFFeatureValues.REQUIRED_PACKAGES.getFeatureSet(fset, cas);
+    }
+
+    public void setNumOfOptionalParas( int numOptionalParas ) {
+        this.numOfOptionalParas = numOptionalParas;
+    }
+
+    public int getNumOfOptionalParas() {
+        return numOfOptionalParas;
     }
 
     public int getNumOfParams() {

@@ -1,6 +1,6 @@
-\Weierstrasselatt, 7
-\defeq, 2
-\HeunpolyHp, 2
+\HeunpolyHp, 4
 \BesselC, 1
+\RiemannsymP, 1
 \HeunHf, 1
 \Weierstrassplatt, 1
+\Weierstrasselatt, 1

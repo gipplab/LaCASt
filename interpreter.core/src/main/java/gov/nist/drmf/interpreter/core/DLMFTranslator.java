@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.core;
 
 import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
@@ -32,8 +33,13 @@ public class DLMFTranslator implements IConstraintTranslator {
     }
 
     @Override
-    public String translate(String expression, String label) throws TranslationException {
-        return dlmfInterface.translate(expression, label);
+    public TranslationInformation translateToObject(String expression) throws TranslationException {
+        return dlmfInterface.translateToObject(expression);
+    }
+
+    @Override
+    public TranslationInformation translateToObject(String expression, String label) throws TranslationException {
+        return dlmfInterface.translateToObject(expression, label);
     }
 
     @Override

@@ -78,25 +78,24 @@ public class LetterTranslator extends AbstractListTranslator {
         MathTermTags tag = MathTermTags.getTagByMathTerm(term);
         TranslatedExpression te;
         switch (tag) {
-            case dlmf_macro:
+            case dlmf_macro: case command:
                 // a dlmf-macro at this state will be simple translated as a command
                 // so do nothing here and switch to command:
-            case command:
                 te = parseCommand(term, constantSet);
                 break;
-            case special_math_letter:
-            case symbol:
+            case special_math_letter: case symbol:
                 te = parseSymbol(term);
                 break;
             case letter:
                 translateLetter(term, constantSet);
                 return localTranslations;
-            case constant:
+            case operator:
+                logOperator(term);
+            case constant: case abbreviation: case alphanumeric:
                 // a constant in this state is simply not a command
                 // so there is no \ in front of the text.
                 // that's why a constant here is the same like a alphanumeric expression
                 // ==> do nothing and switch to alphanumeric
-            case alphanumeric:
                 te = parseAlphanumeric(term, constantSet);
                 break;
             default:
@@ -109,6 +108,15 @@ public class LetterTranslator extends AbstractListTranslator {
         return te;
     }
 
+    private void logOperator(MathTerm term) {
+        getInfoLogger().addGeneralInfo(
+                exp.getRoot().getTermText(),
+                "Unable to translate operator (" +
+                        FeatureSetUtility.getPossibleMeaning(term) +
+                        "). Interpret it as a sequence of multiplications instead."
+        );
+    }
+
     private void translateLetter(MathTerm term, FeatureSet constantSet) {
         if (constantSet != null) {
             MathConstantTranslator mct = new MathConstantTranslator(getSuperTranslator());
@@ -116,7 +124,8 @@ public class LetterTranslator extends AbstractListTranslator {
             // no global adjustment necessary, already performed by constant translator
         } else {
             localTranslations.addTranslatedExpression(term.getTermText());
-            getGlobalTranslationList().addTranslatedExpression(term.getTermText());
+            getGlobalTranslationList().addTranslatedExpression(localTranslations);
+            getInfoLogger().getFreeVariables().addFreeVariable(term.getTermText());
         }
     }
 
@@ -183,6 +192,13 @@ public class LetterTranslator extends AbstractListTranslator {
                     "was translated to: " + t);
             localTranslations.addTranslatedExpression(t);
             getGlobalTranslationList().addTranslatedExpression(t);
+
+            // the only special math letter which is a free variable is \ell...
+            if ( MathTermTags.special_math_letter.equals(MathTermTags.getTagByMathTerm(term)) &&
+                    "\\ell".equals(term.getTermText())) {
+                getInfoLogger().getFreeVariables().addFreeVariable(t);
+            }
+
             return true;
         } else return false;
     }
@@ -207,19 +223,22 @@ public class LetterTranslator extends AbstractListTranslator {
         if ( te != null ) return te;
 
         String alpha = term.getTermText();
-        String output;
+        String var, output;
         // add multiplication symbol between all letters
         for (int i = 0; i < alpha.length() - 1; i++) {
-            output = alpha.charAt(i) + getConfig().getMULTIPLY();
+            var = ""+alpha.charAt(i);
+            output = var + getConfig().getMULTIPLY();
             // add it to local and global
             localTranslations.addTranslatedExpression(output);
             getGlobalTranslationList().addTranslatedExpression(output);
+            getInfoLogger().getFreeVariables().addFreeVariable(var);
         }
 
         // add the last one, but without space
         output = "" + alpha.charAt(alpha.length() - 1);
         localTranslations.addTranslatedExpression(output);
         getGlobalTranslationList().addTranslatedExpression(output);
+        getInfoLogger().getFreeVariables().addFreeVariable(output);
         return localTranslations;
     }
 
@@ -232,7 +251,9 @@ public class LetterTranslator extends AbstractListTranslator {
                 constantVsLetter(constantSet, term);
             } // if not, simply translate it as a Greek letter
             GreekLetterTranslator glt = new GreekLetterTranslator(getSuperTranslator());
-            return glt.translate(exp);
+            TranslatedExpression te = glt.translate(exp);
+            getInfoLogger().getFreeVariables().addFreeVariable(te.getTranslatedExpression());
+            return te;
         }
 
         // or is it a constant but not a Greek letter?

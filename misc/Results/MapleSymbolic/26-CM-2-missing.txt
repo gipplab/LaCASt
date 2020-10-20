@@ -1,0 +1,7 @@
+\Euleriannumber, 13
+\mathop, 2
+\nrestcompositions, 2
+\nrestpartitions, 1
+\atop, 1
+\ncompositions, 1
+\nplanepartitions, 1

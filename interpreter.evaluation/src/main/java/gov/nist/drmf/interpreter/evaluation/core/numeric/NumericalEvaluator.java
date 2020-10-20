@@ -3,15 +3,19 @@ package gov.nist.drmf.interpreter.evaluation.core.numeric;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.wolfram.jlink.Expr;
+import com.wolfram.jlink.MathLinkException;
 import gov.nist.drmf.interpreter.cas.constraints.Constraints;
 import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
 import gov.nist.drmf.interpreter.core.DLMFTranslator;
 import gov.nist.drmf.interpreter.evaluation.common.Case;
 import gov.nist.drmf.interpreter.evaluation.common.CaseAnalyzer;
@@ -32,10 +36,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,32 +48,37 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
     private static final Logger LOG = LogManager.getLogger(NumericalEvaluator.class.getName());
 
-//    protected static final String LONG_RUNTIME_SKIP = "89,90,91,99,100,102";
-    //TODO MATHEMATICA SKIPS
-    public static final String LONG_RUNTIME_SKIP =
-        "103,275,402,640,649,1248,1315,1316,1317,1318,1319,1320,1321,1322,1323,1324,1325,1326,1410," +
-                "1445,1460,1461,1462,1463,1464,1465,1466,1467,1468,1469,1470,1471,1542," +
-                "2068,2498,2562,2563,2564,2565,2566,2871," +
-                "3035,3033,3035,3224,3358,3437,3494,3816,3817,3983," +
-                "4212,4213,4214,4280,4343,4439,4440,4464,4485,4486,4550,4551,4591,4592,4593,4608,4609,4818,4831,4832,4911,4964," +
-                "5061,5062,5063,5064," +
-                "5814,5815,5933,5992,5993,5994,5995,6017,6957," +
-                "6325,6349,6370,6536,6907," +
-                "7313,7330,7331,7332,7333,7336,7339,7394,7397,7398,7399,7401,7405,7902,7918,7925,5828,5935," +
-                "9572";
+    // mathematica
+//    private static final String SKIP = "5719,5752,9031";
 
-//    public static final String SKIP_MAPLE_RUNS =
-//            "321,642,794,795,850,976,1266,1267,1268,1269,1516,1948,1949," +
-//                    "2025,2058,2062,2067,2069,2070,2071,2072,2073,2074,2076,2100,2117,2118,2119,2120," +
-//                    "2268,2345,2351,2352,2362,2366,2406,2485,2487,2488,2491,2493,2494,2495,2496,2517," +
-//                    "2518,2519,2521,2617,2618,2619," +
-//                    "4278,4279,4280,4285,4308,4309,4310,4311,4338,4391," +
-//                    "4738,4755,4811,4812,4813," +
-//                    "5214,5224,5226,5252,5375," +
-//                    "5866,5867,5868,5869,5870,5871,5872," +
-//                    "6430,6440," +
-//                    "9218,9219," +
-//                    "9349";
+    // maple skips
+    private static final String SKIP = ""
+            // sections 1 - 9
+//            "1652,1653,2126,2363,2474,2679,2717,2917," +
+//            // section 10
+//            "3061,3062,3351,3352,3353,3370,3371,3372,3435,3491,3501,3516,3586,3587,3588,3616,3618," +
+//            // section 11, 12
+//            "4005,4093," +
+//            // section 13
+//            "4440,4482,4483,4484,4485,4486,4487,4488,4489,4521,4522,4524,4603,4609,4610,4613," +
+//            // S 14
+//            "4736,4850,4857,4858,4864,4866,4867,4868,4869,4870,4871,4872,4873,4874,4898,4918," +
+//            // S 15
+//            "4971,4973,4984,5008,5092,5097-5116," +
+//            // S 16
+//            "5166,5211," +
+//            // S 18
+//            "5482,5607,5609-5612,5706,5782,5835," +
+//            // S 19
+//            "6277,6278,6610," +
+//            // S 25
+//            "7668,7672," +
+//            // S 28-32
+//            "8505,8936,8946,8963,9035,9387,"+
+//            "5719,5752,9031"
+            ;
+
+    private static final String TESTS = "1257, 1450, 3375, 3376, 3393, 5483, 5767, 5769, 5770, 5771, 5772, 5773, 5774, 5778, 5780, 5784, 5984, 6802, 6803, 9456, 9496, 9566, 9569, 9582, 9647";
 
     private Set<Integer> realSkips;
 
@@ -88,8 +94,6 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
     public static final int MAX_LOG_LENGTH = 300;
 
-    private static Path output;
-
     private NumericalConfig config;
 
     private HashMap<Integer, String> labelLib;
@@ -97,6 +101,8 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
     private LinkedList<String>[] lineResult;
 
     private int[] subset;
+
+    private HashSet<Integer> testSet;
 
     private int gcCaller = 0;
 
@@ -106,6 +112,10 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
     private int currentNumOfTestCases = 0;
 
     private HashSet<Integer> lastSkips;
+
+    private List<String> globalConstraints;
+
+    private boolean reserveMODE = false;
 
     /**
      * Creates an object for numerical evaluations.
@@ -142,21 +152,41 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
 //        smr = LONG_RUNTIME_SKIP.split(",");
         this.realSkips = new HashSet<>();
-//        for ( String s : smr ) {
-//            int i = Integer.parseInt(s);
-//            realSkips.add(i);
-//        }
+        this.testSet = new HashSet<>();
+        for ( String s : SKIP.split(",") ) {
+            if ( s.isBlank() ) continue;
+            if ( s.contains("-") ) {
+                String[] tmp = s.split("-");
+                int start = Integer.parseInt(tmp[0]);
+                int end = Integer.parseInt(tmp[1]);
+                for ( int i = start; i <= end; i++ )
+                    realSkips.add(i);
+            } else {
+                int i = Integer.parseInt(s);
+                realSkips.add(i);
+            }
+        }
+
+        for ( String s : TESTS.split(",") ) {
+            int i = Integer.parseInt(s.trim());
+            testSet.add(i);
+        }
 
         setUpScripts(procedures);
+        numericalEvaluator.setTimeout(config.getTimeout());
 
         Status.reset();
+        init();
     }
 
-    public void init() throws IOException, MapleException {
+    public void init() {
         LOG.info("Setup numerical tests...");
-        output = config.getOutputPath();
-        if (!Files.exists(output)) {
-            Files.createFile(output);
+        String overallAss = config.getEntireTestSuiteAssumptions();
+        if ( overallAss != null && !overallAss.isEmpty() ){
+            String[] ass = overallAss.split(" \\|\\| ");
+            String[] transAss = this.getThisConstraintTranslator().translateEachConstraint(ass);
+            this.globalConstraints = Arrays.asList(transAss);
+            super.setGlobalAssumptions(globalConstraints);
         }
     }
 
@@ -165,8 +195,10 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         subset = config.getSubSetInterval();
         HashMap<Integer, String> skippedLinesInfo = new HashMap<>();
 
-        Set<ID> skips = getSpecificResults(config.getSymbolicResultsPath(), "Failure");
-//        Set<ID> skips = getSpecificResults(config.getSymbolicResultsPath(), "Successful");
+        Set<ID> skips = null;
+        if ( reserveMODE )
+            skips = getSpecificResults(config.getSymbolicResultsPath(), ".*Successful.*");
+        else skips = getSpecificResults(config.getSymbolicResultsPath(), ".*(Failure|Aborted).*");
 
         if ( skips != null && config.getSymbolicResultsPath() != null ) {
             LOG.info("Symbolic results are specified. Ignore specified subset and test for values in the result data.");
@@ -216,19 +248,27 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
     @Override
     public void performSingleTest( Case c ){
-        LOG.info("Start test for line: " + c.getLine());
-        LOG.info("Test case: " + c);
-        LOG.info("Test case " + (currentTestCase++) + " of " + currentNumOfTestCases);
-
+//        if ( !testSet.contains(c.getLine()) ) {
+//            // just ignore that shit
+//            return;
+//        }
 
         if ( lineResult[c.getLine()] == null ){
             lineResult[c.getLine()] = new LinkedList();
         }
 
+        LOG.info("Start test for line: " + c.getLine());
+        LOG.info("Test case: " + c);
+        LOG.info("Test case " + (currentTestCase++) + " of " + currentNumOfTestCases);
+
+        LOG.info("Replacing defined symbols.");
+        c.replaceSymbolsUsed(super.getSymbolDefinitionLibrary());
+        LOG.info("Final Test case: " + c);
+
         if ( realSkips.contains(c.getLine()) ) {
-            LOG.warn("Skip, it take ages...");
-            Status.IGNORE.add();
-            lineResult[c.getLine()].add("Manual skip because it never finishes!");
+            LOG.warn("Skip this test case manually for reasons...");
+            Status.SKIPPED.add();
+            lineResult[c.getLine()].add("Manual Skip!");
             return;
         }
 
@@ -242,40 +282,67 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 //            }
 //        }
 
-        if ( isMaple && lastSkips.contains(c.getLine()) ) {
-            LOG.info("Final Skip " + c.getLine());
-            lineResult[c.getLine()].add("Skip - too long running...");
-            Status.MISSING.add();
-            return;
-        }
+//        if ( isMaple && lastSkips.contains(c.getLine()) ) {
+//            LOG.info("Final Skip " + c.getLine());
+//            lineResult[c.getLine()].add("Skip - too long running...");
+//            Status.MISSING.add();
+//            return;
+//        }
 
         if ( c instanceof AbstractEvaluator.DummyCase) {
             lineResult[c.getLine()].add("Skip - symbolical successful subtest");
-            Status.IGNORE.add();
+            Status.SKIPPED.add();
             return;
         }
 
+//        String expression = null;
+        Constraints con = null;
         try {
-            Constraints con =  c.getConstraintObject();
-            if ( con != null ){
-                if ( !con.specialValuesInfo().isEmpty() )
+            Status.STARTED_TEST_CASES.add();
+
+            con = c.getConstraintObject();
+            if (con != null) {
+                if (!con.specialValuesInfo().isEmpty()) {
                     LOG.info(con.specialValuesInfo());
+                }
                 LOG.info(con.constraintInfo());
             }
+        } catch ( Error | Exception te ) {
+            LOG.error("Error in translation of a constraint: " + te.toString());
+        }
 
-            String expression = getTestedExpression(c);
-            Status.SUCCESS_TRANS.add();
-            LOG.info("Numerical test expression: " + expression);
-
-            String[] preAndPostCommands = getPrevCommand( c.getLHS() + ", " + c.getRHS() );
-
+        String[] preAndPostCommands = null;
+        try {
+            preAndPostCommands = getPrevCommand( c.getLHS() + ", " + c.getRHS() );
             if ( preAndPostCommands[0] != null ){
                 LOG.debug("Enter pre-testing commands: " + preAndPostCommands[0]);
                 enterEngineCommand(preAndPostCommands[0]);
             }
+        } catch (Error | Exception e) {
+            // nothing.
+            LOG.warn("Unable to enter pre-testing commands: " + c);
+        }
 
+        NumericalTest test = null;
+        try {
             LOG.debug("Start numerical calculations.");
-            NumericalTest test = buildTestObject(expression, c);
+            test = buildTestObject(c);
+            Status.SUCCESS_TRANS.add();
+            LOG.info("Numerical test expression: " + test.getTestExpression());
+        } catch ( TranslationException te ) {
+            LOG.error("Error in translation. " + te.toString());
+            lineResult[c.getLine()].add("Error - " + te.toString());
+            Status.ERROR_TRANS.add();
+            return;
+        } catch ( NullPointerException npe ) {
+            LOG.error("Unable to analyze test case properly: " + c);
+            lineResult[c.getLine()].add("Error - Invalid Test case: " + c);
+            Status.ERROR_TRANS.add();
+        }
+
+        if ( test == null ) return;
+
+        try {
             if ( isMaple ) test.setSkipClassicAbortion();
             T results = performNumericalTest(test);
 
@@ -289,42 +356,44 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             if ( wasAborted ) {
                 LOG.warn("Skip test because it took too much time.");
                 lineResult[c.getLine()].add("Skipped - Because timed out");
-                Status.SKIPPED.add();
+                Status.ABORTED.add();
             } else {
                 ICASEngineNumericalEvaluator.ResultType resType = testResult(results);
                 String evaluation = "";
-                switch (resType) {
-                    case SUCCESS:
-                        lineResult[c.getLine()].add("Successful");
-                        Status.SUCCESS.add();
-                        break;
-                    case FAILURE:
-                        LOG.info("Test was NOT successful.");
-                        evaluation = shortenOutput(results.toString());
-                        lineResult[c.getLine()].add(evaluation);
-                        Status.FAILURE.add();
-                        break;
-                    case ERROR:
-                        LOG.info("Test was NOT successful.");
-                        evaluation = shortenOutput(results.toString());
-                        lineResult[c.getLine()].add(evaluation);
-                        Status.ERROR.add();
-                        break;
+                int tested = getNumericalEvaluator().getPerformedTestCases();
+                int failed = getNumericalEvaluator().getNumberOfFailedTestCases();
+                if ( tested == 0 && failed > 0 ) {
+                    lineResult[c.getLine()].add("Skip - No test values generated");
+                    Status.NO_TEST_VALUES.add();
+                } else {
+                    switch (resType) {
+                        case SUCCESS:
+                            lineResult[c.getLine()].add("Successful [Tested: " + tested + "]");
+                            Status.SUCCESS_NUM.add();
+                            break;
+                        case FAILURE:
+                            LOG.info("Test was NOT successful.");
+                            evaluation = LogManipulator.shortenOutput(results.toString(), 2);
+                            lineResult[c.getLine()].add("Failed ["+failed+"/"+tested+"]: " + evaluation);
+                            Status.FAILURE.add();
+                            break;
+                        case ERROR:
+                            LOG.info("Test was NOT successful.");
+                            evaluation = LogManipulator.shortenOutput(results.toString(), 2);
+                            lineResult[c.getLine()].add("Error [" + evaluation + "]");
+                            Status.ERROR.add();
+                            break;
+                    }
                 }
             }
 
-
             LOG.info("Finished test for line: " + c.getLine());
-        } catch ( TranslationException te ) {
-            LOG.error("Error in translation. " + te.toString());
-            lineResult[c.getLine()].add("Error - " + te.toString());
-            Status.ERROR.add();
-        } catch ( IllegalArgumentException iae ){
+        } catch ( IllegalArgumentException iae ) {
             LOG.warn("Skip test, because " + iae.getMessage());
-            lineResult[c.getLine()].add("Skipped - " + iae.getMessage());
+            lineResult[c.getLine()].add("Error - " + iae.getMessage());
             // Note, we rename the overview lines, so we use missing here, just to avoid trouble with SKIP infos
-            Status.MISSING.add();
-        } catch ( Exception e ){
+            Status.ERROR.add();
+        } catch ( Error | Exception e ){
             LOG.warn("Error for line " + c.getLine() + ", because: " + e.toString(), e);
             lineResult[c.getLine()].add("Error - " + e.toString());
             Status.ERROR.add();
@@ -338,35 +407,47 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 //        return c.getLine() + ": " + lineResult[c.getLine()];
     }
 
-    private NumericalTest buildTestObject(String expression, Case c) {
-        NumericalTest test = new NumericalTest(expression, c, config, getThisConstraintTranslator());
+    private NumericalTest buildTestObject(Case c) {
+        super.startRememberPackages();
+        LOG.debug("Translating LHS: " + c.getLHS());
+        TranslationInformation lhs = forwardTranslate( c.getLHS(), c.getEquationLabel() );
+        LOG.info("Translated LHS to: " + lhs.getTranslatedExpression());
+
+        LOG.debug("Translating RHS: " + c.getRHS());
+        TranslationInformation rhs = forwardTranslate( c.getRHS(), c.getEquationLabel() );
+        LOG.info("Translated RHS to: " + rhs.getTranslatedExpression());
+        super.stopRememberPackages();
+
+        Set<String> variables = new HashSet<>();
+        variables.addAll(lhs.getFreeVariables().getFreeVariables());
+        variables.addAll(rhs.getFreeVariables().getFreeVariables());
+
+        NumericalTest test = new NumericalTest(
+                getTestedExpression(lhs.getTranslatedExpression(), rhs.getTranslatedExpression(), c),
+                c,
+                config,
+                getThisConstraintTranslator()
+        );
         test.setPostProcessingMethodName(scriptHandler.getPostProcessingScriptName(c));
+        test.setVariables(variables);
         return test;
     }
 
-    private String getTestedExpression(Case c){
-        LOG.debug("Translating LHS: " + c.getLHS());
-        String mapleLHS = forwardTranslate( c.getLHS(), c.getEquationLabel() );
-        LOG.info("Translated LHS to: " + mapleLHS);
-
-        LOG.debug("Translating RHS: " + c.getRHS());
-        String mapleRHS = forwardTranslate( c.getRHS(), c.getEquationLabel() );
-        LOG.info("Translated RHS to: " + mapleRHS);
-
+    private String getTestedExpression(String lhs, String rhs, Case c){
         if ( !c.isEquation() ){
-            return mapleLHS + c.getRelation().getSymbol() + mapleRHS;
+            return lhs + c.getRelation().getSymbol() + rhs;
         }
 
-        Matcher nullLHSMatcher = nullPattern.matcher( mapleLHS );
-        Matcher nullRHSMatcher = nullPattern.matcher( mapleRHS );
+        Matcher nullLHSMatcher = nullPattern.matcher( lhs );
+        Matcher nullRHSMatcher = nullPattern.matcher( rhs );
         if ( nullLHSMatcher.matches() ) {
-            mapleLHS = "";
+            lhs = "";
         }
         if ( nullRHSMatcher.matches() ) {
-            mapleRHS = "";
+            rhs = "";
         }
 
-        return config.getTestExpression( this.getNumericalEvaluator(), mapleLHS, mapleRHS );
+        return config.getTestExpression( this.getNumericalEvaluator(), lhs, rhs );
     }
 
     @Override
@@ -440,8 +521,6 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         MapleInterface mapleInterface = MapleInterface.getUniqueMapleInterface();
         NumericCalculator numericCalculator = new NumericCalculator();
 
-        numericCalculator.setTimeLimit(2);
-
         NumericalEvaluator evaluator = new NumericalEvaluator<Algebraic>(
                 dlmfTranslator,
                 mapleInterface,
@@ -463,6 +542,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
         DLMFTranslator dlmfTranslator = new DLMFTranslator(Keys.KEY_MATHEMATICA);
         MathematicaInterface mathematicaInterface = MathematicaInterface.getInstance();
         MathematicaNumericalCalculator numericalCalculator = new MathematicaNumericalCalculator();
+        numericalCalculator.setThreshold(config.getThreshold());
 
         String script = ProcedureLoader.getProcedure(GlobalPaths.PATH_MATHEMATICA_NUMERICAL_PROCEDURES);
 
@@ -488,21 +568,30 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
     }
 
     public static void main(String[] args) throws Exception{
+
         NumericalEvaluator evaluator = null;
         if ( args == null || args.length < 1 ){
             System.out.println("Start Mathematica Evaluator");
             evaluator = createStandardMathematicaEvaluator();
-        } else if ( args[0].matches("--?mathematica") ) {
-            System.out.println("Start Mathematica Evaluator");
-            evaluator = createStandardMathematicaEvaluator();
-        } else if ( args[0].matches("--?maple") ) {
-            System.out.println("Start Maple Evaluator");
-            evaluator = createStandardMapleEvaluator();
-        } else {
-            System.out.println("Choose maple or mathematica (e.g., argument -math)");
-            return;
         }
 
+        boolean successful = false;
+        if ( args != null ) {
+            for ( String arg : args ) {
+                if ( arg.matches("--?mathematica") ) {
+                    System.out.println("Start Mathematica Evaluator");
+                    evaluator = createStandardMathematicaEvaluator();
+                } else if ( arg.matches("--?maple") ) {
+                    System.out.println("Start Maple Evaluator");
+                    evaluator = createStandardMapleEvaluator();
+                } else if ( arg.matches("--?(reverse|success|successful)") ) {
+                    System.out.println("Successful mode");
+                    successful = true;
+                }
+            }
+        }
+
+        evaluator.reserveMODE = successful;
         evaluator.startTestAndWriteResults(evaluator);
     }
 

@@ -1,0 +1,4 @@
+\EulersumH, 7
+\DirichletL, 7
+\genEulersumH, 2
+\ChebyshevPsi, 1

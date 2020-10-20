@@ -4,6 +4,9 @@ import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
+import gov.nist.drmf.interpreter.core.DLMFTranslator;
+import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
+import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
 import gov.nist.drmf.interpreter.evaluation.core.diff.NumericalDifferencesAnalyzer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,19 +26,25 @@ import java.util.regex.Pattern;
 /**
  * @author Andre Greiner-Petter
  */
-public class TranslationWikidataTableGenerator {
+public class TranslationWikidataTableGenerator extends AbstractEvaluator<String> {
     private static final Logger LOG = LogManager.getLogger(TranslationWikidataTableGenerator.class.getName());
 
     private static final int LIMIT_ENTRIES = 4;
 
+    private static final int CHAR_LIMIT = 1_000;
+
     private static final Pattern QID_PATTERN = Pattern.compile("(Q\\d+),DLMF:(.*?),.*");
 
+    private static final Pattern FALL_BACK_PATTERN = Pattern.compile(
+            "^(\\d+(?:-[a-z])?)(?: \\[.*?])?: (.*)"
+    );
+
     private static final Pattern SYMBOLIC_PATTERN = Pattern.compile(
-            "^(\\d+(?:-[a-z])?)(?: \\[.*?])?: (Successful|Error|Skipped|Failure).*$"
+            "^(\\d+(?:-[a-z])?)(?: \\[.*?])?: (?:All )?(Successful|Error|Skipped.*|Failure|Aborted|Missing Macro Error|Definition|Translation Error).*$"
     );
 
     private static final Pattern NUMERIC_PATTERN = Pattern.compile(
-            "^(\\d+(?:-[a-z])?): (Skip|Successful|Error|\\$Failed|[\\[{]{2}.*[]}]{3}).*$"
+            "^(\\d+(?:-[a-z])?)(?: \\[.*?])?: (Skip.*|Successful.*|Error.*|Failed.*|Aborted|Manual Skip)$"
     );
 
     private String COLLAPSE_ELEMENT = "<div class=\"toccolours mw-collapsible mw-collapsed\">%s<div class=\"mw-collapsible-content\">%s</div></div>";
@@ -46,7 +56,7 @@ public class TranslationWikidataTableGenerator {
 
     private SymbolDefinedLibrary symbolDefinitionLibrary;
 
-    private Path dataset, symbolicMaple, numericMaple, symbolicMath, numericMath, qidmapping;
+    private Path dataset, symbolicMaple, numericMaple, symbolicMath, numericMath, numericMathSymbSuc, qidmapping;
 
     private HashMap<String, String> qidLib;
 
@@ -54,19 +64,25 @@ public class TranslationWikidataTableGenerator {
 
     private SemanticLatexTranslator mapleTranslator, mathematicaTranslator;
 
+    private int[] range = new int[]{0,1};
+
     public TranslationWikidataTableGenerator(
             Path datasetPath,
             Path symbolicResultsMaple,
             Path numericResultsMaple,
             Path symbolicResultsMath,
             Path numericResultsMath,
+            Path numericSymbSuccResultsMath,
             Path qidMappingPath
     ) throws InitTranslatorException {
+        super(new DLMFTranslator(Keys.KEY_MATHEMATICA), null);
+
         this.dataset = datasetPath;
         this.symbolicMaple = symbolicResultsMaple;
         this.numericMaple = numericResultsMaple;
         this.symbolicMath = symbolicResultsMath;
         this.numericMath = numericResultsMath;
+        this.numericMathSymbSuc = numericSymbSuccResultsMath;
         this.qidmapping = qidMappingPath;
 
         this.symbolDefinitionLibrary = new SymbolDefinedLibrary();
@@ -112,9 +128,22 @@ public class TranslationWikidataTableGenerator {
         Files.walk(numericMath)
                 .filter( f -> Files.isRegularFile(f) )
                 .forEach( p -> loadResults(p, NUMERIC_PATTERN, mathNum));
+
+        LOG.info("Load numeric test results of Mathematica Symbolically Verified");
+        Files.walk(numericMathSymbSuc)
+                .filter( f -> Files.isRegularFile(f) )
+                .forEach( p -> loadResults(p, NUMERIC_PATTERN, mathNum, true));
+    }
+
+    public void setRange(int start, int end) {
+        range = new int[]{start, end};
     }
 
     private void loadResults(Path path, Pattern pattern, HashMap<String, String> lib) {
+        loadResults(path, pattern, lib, false);
+    }
+
+    private void loadResults(Path path, Pattern pattern, HashMap<String, String> lib, boolean skip) {
         try {
             Files.lines(path)
                     .skip(1)
@@ -123,12 +152,58 @@ public class TranslationWikidataTableGenerator {
                         if ( m.matches() ) {
                             String lineStr = m.group(1);
                             String res = m.group(2);
-                            lib.put(lineStr, res);
+                            if (!skip || !res.contains("Skip")) {
+                                lib.put(lineStr, res);
+                            }
+                        } else {
+                            m = FALL_BACK_PATTERN.matcher(l);
+                            if ( m.matches() ) {
+                                String lineStr = m.group(1);
+                                String res = m.group(2);
+                                if ( res.length() > CHAR_LIMIT/2 ) {
+                                    res = res.substring(0, CHAR_LIMIT/2);
+                                }
+                                if (!skip || !res.contains("Skip")) {
+                                    lib.put(lineStr, res);
+                                }
+                            }
                         }
                     });
         } catch ( IOException ioe ) {
             LOG.error("Cannot load results from " + path, ioe);
         }
+    }
+
+    @Override
+    public LinkedList<Case> loadTestCases() {
+        HashMap<Integer, String> labelLib = new HashMap<>();
+        HashMap<Integer, String> skippedLinesInfo = new HashMap<>();
+        return super.loadTestCases(
+                range,
+                new HashSet<ID>(),
+                dataset,
+                labelLib,
+                skippedLinesInfo,
+                false
+        );
+    }
+
+    @Override
+    public void performSingleTest(Case testCase) { }
+
+    @Override
+    public EvaluationConfig getConfig() {
+        return null;
+    }
+
+    @Override
+    public HashMap<Integer, String> getLabelLibrary() {
+        return null;
+    }
+
+    @Override
+    public LinkedList<String>[] getLineResults() {
+        return new LinkedList[0];
     }
 
     private void loadQIDLib() throws IOException {
@@ -141,17 +216,51 @@ public class TranslationWikidataTableGenerator {
                 });
     }
 
-    public void generateTable( Path outputFile ) throws IOException {
-        int[] line = new int[]{0};
-        LinkedList<LinkedList<Case>> allCases = new LinkedList<>();
-        LOG.info("Load dataset.");
+    public void printFind( String element ) throws IOException {
+        Pattern elPattern = Pattern.compile(element);
+        Pattern url = Pattern.compile("url\\{(.*?)}");
+        int[] lineNumber = new int[]{0};
+
+        int[] hits = new int[]{0};
+        LinkedList<String> list = new LinkedList<>();
+
         Files.lines(dataset)
-                .sequential()
-                .peek(l -> line[0]++)
-                .forEach(l -> {
-                    LinkedList<Case> cases = CaseAnalyzer.analyzeLine(l, line[0], symbolDefinitionLibrary);
-                    if ( cases != null && !cases.isEmpty() ) allCases.add(cases);
+                .peek(l -> lineNumber[0]++)
+                .filter( l -> {
+                    String[] part = l.split("url");
+                    Matcher m = elPattern.matcher(part[0]);
+                    return m.find();
+                })
+                .forEach( l -> {
+                    String id = Integer.toString(lineNumber[0]);
+                    String mathRes = mathNum.get(id);
+//                    String maplRes = mapleNum.get(id);
+                    Matcher urlM = url.matcher(l);
+                    String urlStr = urlM.find() ? urlM.group(1) : "";
+
+                    if ( mathRes != null && !mathRes.contains("Skip") && !mathRes.contains("Error") && !mathRes.contains("Successful") ) {
+                        System.out.println(lineNumber[0] + " " + urlStr + ": " + mathRes.substring(0, Math.min(100, mathRes.length())));
+                        hits[0]++;
+                        list.add(id);
+                    }
                 });
+        System.out.println("Found: " + hits[0]);
+        System.out.println(list);
+    }
+
+    public void generateTable( Path outputFile ) throws IOException {
+//        int[] line = new int[]{0};
+//        LinkedList<LinkedList<Case>> allCases = new LinkedList<>();
+        LOG.info("Load dataset.");
+
+        LinkedList<Case> allCases = loadTestCases();
+//        Files.lines(dataset)
+//                .sequential()
+//                .peek(l -> line[0]++)
+//                .forEach(l -> {
+//                    LinkedList<Case> cases = CaseAnalyzer.analyzeLine(l, line[0], symbolDefinitionLibrary);
+//                    if ( cases != null && !cases.isEmpty() ) allCases.add(cases);
+//                });
 
         LOG.info("Start analyzing the data...");
         int fileID = 1;
@@ -163,8 +272,13 @@ public class TranslationWikidataTableGenerator {
             writer.write("{| class=\"wikitable sortable\"\n|-\n");
             writer.write("! DLMF !! Formula !! Maple !! Mathematica !! Symbolic<br>Maple !! Symbolic<br>Mathematica !! Numeric<br>Maple !! Numeric<br>Mathematica\n|-\n");
 
-            for ( LinkedList<Case> lineCase : allCases ) {
-                Case c = lineCase.get(0);
+            HashMap<Integer, Integer> caseNumberLib = new HashMap<>();
+
+//            for ( LinkedList<Case> lineCase : allCases ) {
+//                Case c = lineCase.get(0);
+            for ( Case c : allCases ) {
+                int number = caseNumberLib.computeIfAbsent( c.getLine(), lineNumber -> 1 );
+
                 int currentSec = Integer.parseInt(c.getEquationLabel().split("\\.")[0]);
                 if ( currentSec > fileID ) {
                     writer.write("|}");
@@ -177,15 +291,14 @@ public class TranslationWikidataTableGenerator {
                 }
 
                 String id = ""+c.getLine();
-                singleCase(id, c, writer);
-
                 char a = 'a';
-                for ( int i = 1; i < lineCase.size(); i++ ) {
-                    c = lineCase.get(i);
+                for ( int i = 1; i < number; i++ ) {
                     id = c.getLine() + "-" + a;
-                    singleCase(id, c, writer);
                     a++;
                 }
+
+                caseNumberLib.put(c.getLine(), number+1);
+                singleCase(id, c, writer);
             }
 
             writer.write("|}");
@@ -198,7 +311,10 @@ public class TranslationWikidataTableGenerator {
 
     private void singleCase( String id, Case c, BufferedWriter writer ) throws IOException {
         LOG.info("Writing " + id);
-        String expr = c.getLHS() + " " + c.getRelation().getSymbol() + " " + c.getRHS();
+
+        String originalExpression = c.getLHS() + " " + c.getRelation().getTexSymbol() + " " + c.getRHS();
+        c = c.replaceSymbolsUsed(symbolDefinitionLibrary);
+        String expr = c.getLHS() + " " + c.getRelation().getTexSymbol() + " " + c.getRHS();
         String label = c.getEquationLabel();
         String maple = "", mathematica = "";
         String qid = qidLib.get(c.getEquationLabel());
@@ -223,13 +339,13 @@ public class TranslationWikidataTableGenerator {
 
         if ( symbMaple == null ) symbMaple = "Error";
         if ( symbMath == null ) symbMath = "Error";
-        String numericMaple = symbMaple.equals("Failure") ? getNumericResultString( true, id ) : "-";
-        String numericMath = symbMath.equals("Failure") ? getNumericResultString( false, id ) : "-";
+        String numericMaple = getNumericResultString( true, id );
+        String numericMath = getNumericResultString( false, id );
 
         String line = String.format(
                 TABLE_LINE,
                 label, label,
-                qid, expr,
+                qid, originalExpression,
                 maple, mathematica,
                 symbMaple, symbMath,
                 numericMaple, numericMath
@@ -248,8 +364,17 @@ public class TranslationWikidataTableGenerator {
         String result = mapleMode ? mapleNum.get(id) : mathNum.get(id);
         if ( result == null ) return "-";
 
-        if ( result.startsWith("[") || result.startsWith("{") ) {
+        Matcher startM = NumericalDifferencesAnalyzer.failedNumericPattern.matcher(result);
+
+        if ( startM.find() ) {
             if ( result.contains("Error") ) return "Error";
+
+            StringBuilder sb = new StringBuilder();
+            int pFailed = Integer.parseInt(startM.group(1));
+            int tFailed = Integer.parseInt(startM.group(2));
+
+            startM.appendTail(sb);
+            result = sb.toString();
 
             int counter = 0;
             Matcher m = elPattern.matcher(result);
@@ -264,24 +389,29 @@ public class TranslationWikidataTableGenerator {
                 counter++;
             }
 
-            return String.format(COLLAPSE_ELEMENT, "Fail", list.toString());
+            String failedStr = "Failed [" + pFailed + " / " + tFailed + "]";
+            list.setLength( Math.min(CHAR_LIMIT, list.length()) );
+            return String.format(COLLAPSE_ELEMENT, failedStr, list.toString());
         } else {
-            if ( result.contains("Failed") ) return "Error";
+            if ( result.contains("Error") ) return "Error";
             else return result;
         }
     }
 
     public static void main(String[] args) throws IOException, InitTranslatorException {
         TranslationWikidataTableGenerator t = new TranslationWikidataTableGenerator(
-                Paths.get("/home/andreg-p/Howard/together.txt"),
+                Paths.get("/home/andreg-p/data/Howard/together.txt"),
                 Paths.get("misc/Results/MapleSymbolic"),
                 Paths.get("misc/Results/MapleNumeric"),
                 Paths.get("misc/Results/MathematicaSymbolic"),
                 Paths.get("misc/Results/MathematicaNumeric"),
-                Paths.get("/home/andreg-p/Howard/formulaQ.csv")
+                Paths.get("misc/Results/MathematicaNumericSymbolicSuccessful"),
+                Paths.get("/home/andreg-p/data/Howard/formulaQ.csv")
         );
 
+        t.setRange(0, 9978);
         t.init();
+//        t.printFind("\\\\ell[^a-zA-Z]");
         t.generateTable(Paths.get("misc/Mediawiki"));
     }
 }

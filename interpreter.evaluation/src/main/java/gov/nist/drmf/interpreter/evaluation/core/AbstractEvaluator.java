@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation.core;
 
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
@@ -27,7 +28,7 @@ public abstract class AbstractEvaluator<T> {
 
     public final static String NL = System.lineSeparator();
 
-    public static int DEFAULT_TIMEOUT_MS = 30_000; // 30 seconds
+    private static double timeoutMS = 30_000;
 
     private IConstraintTranslator forwardTranslator;
     private IComputerAlgebraSystemEngine<T> engine;
@@ -44,9 +45,10 @@ public abstract class AbstractEvaluator<T> {
     private boolean rememberPackages = false;
 
     public static final Pattern filterCases = Pattern.compile(
-            "\\\\([Bb]igO|littleo|[fdc]Diff|asymp|sim|[lc]?dots)(?:[^a-zA-Z]|$)|" +
+            "\\\\([Bb]igO|littleo|[fdc]Diff|asymp|sim)(?:[^a-zA-Z]|$)|" +
+                    "(?<!\\d|\\d\\s{0,5}\\\\[.,; ])\\s*\\\\([lc]?dots)(?:[^a-zA-Z]|$)|" +
                     "\\{(cases|array|[bBvp]matrix|Matrix|Lattice)}|" +
-                    "([fg](?:\\\\left)?\\()"
+                    "([fgFG](?:\\\\left)?\\(.*?(?:\\)|\\\\right\\)))"
     );
 
     public AbstractEvaluator(
@@ -61,13 +63,29 @@ public abstract class AbstractEvaluator<T> {
         this.symbolDefinitionLibrary = new SymbolDefinedLibrary();
     }
 
+    public void setTimeoutSeconds(double timeoutSeconds) {
+        AbstractEvaluator.timeoutMS = 1_000 * timeoutSeconds;
+    }
+
+    public double getTimeoutSeconds() {
+        return AbstractEvaluator.timeoutMS;
+    }
+
+    public void setGlobalAssumptions(String... assumptions) throws ComputerAlgebraSystemEngineException {
+        engine.setGlobalAssumptions(assumptions);
+    }
+
+    public SymbolDefinedLibrary getSymbolDefinitionLibrary() {
+        return symbolDefinitionLibrary;
+    }
+
     public void startRememberPackages() {
         reqPackageMemory.clear();
         this.rememberPackages = true;
     }
 
-    public String forwardTranslate( String in, String label ) throws TranslationException {
-        String translation = forwardTranslator.translate(in, label);
+    public TranslationInformation forwardTranslate(String in, String label ) throws TranslationException {
+        TranslationInformation translation = forwardTranslator.translateToObject(in, label);
         if ( rememberPackages ) reqPackageMemory.addAll( forwardTranslator.getRequiredPackages() );
         return translation;
     }
@@ -116,14 +134,6 @@ public abstract class AbstractEvaluator<T> {
         return output;
     }
 
-    public String shortenOutput(String msg) {
-        return msg;
-        // TODO maybe flag what we should do
-//        if ( msg.length() > DEFAULT_OUTPUT_LENGTH ) {
-//            return msg.substring(0, DEFAULT_OUTPUT_LENGTH) + "...";
-//        } else return msg;
-    }
-
     public void forceGC() throws ComputerAlgebraSystemEngineException {
         this.engine.forceGC();
     }
@@ -136,7 +146,7 @@ public abstract class AbstractEvaluator<T> {
 
         for ( Case test : testCases ) {
 //            if ( m.contains(test.getLine()) ) {
-                test.replaceSymbolsUsed(symbolDefinitionLibrary);
+//                test.replaceSymbolsUsed(symbolDefinitionLibrary);
                 performSingleTest(test);
 //            }
         }
@@ -190,21 +200,33 @@ public abstract class AbstractEvaluator<T> {
             int limit = subset[1];
 
             lines.sequential()
-                    .peek(l -> currLine[0]++) // line counter
+                    .peek(l -> {
+                        currLine[0]++;
+                        Matcher m = CaseAnalyzer.URL_PATTERN.matcher(l);
+                        if ( m.find() )
+                            labelLib.put(currLine[0], m.group(1));
+                    }) // line counter
+                    .peek(l -> {
+                        try {
+                            CaseAnalyzer.analyzeLine(l, currLine[0], symbolDefinitionLibrary);
+                        } catch (Error | Exception e) {
+                            // just sneak into each line, to load all symbol definitions...
+                        }
+                    })
                     .filter(l -> start <= currLine[0] && currLine[0] < limit) // filter by limits
                     .filter(l -> {
                         boolean skip = skipLineIDs.containsKey(currLine[0]);
                         if ( reverseSkipLines ) skip = !skip;
                         if ( skip ){
-                            skippedLinesInfo.put(currLine[0], "Skipped - (user defined)");
+                            skippedLinesInfo.put(currLine[0], "Skipped - user defined");
                             Status.SKIPPED.add();
                             return false;
                         } else return true;
                     }) // skip entries if wanted
                     .flatMap(l -> {
-                        if ( l.contains("comments{Warning") && !l.contains("symbolDefined") ) {
-                            skippedLinesInfo.put(currLine[0], "Ignore - No semantic math.");
-                            Status.IGNORE.add();
+                        if ( l.contains("comments{Warning") && !l.contains("symbolDefined") && !l.matches(".*(?<!\\\\[A-Za-z]{0,30})[ie](.|$).*") ) {
+                            skippedLinesInfo.put(currLine[0], "Skipped - no semantic math");
+                            Status.SKIPPED.add();
                             return null;
                         }
 
@@ -212,12 +234,12 @@ public abstract class AbstractEvaluator<T> {
                         if ( cc == null || cc.isEmpty() ) {
                             if ( l.contains("symbolDefined") ) {
                                 LOG.info(currLine[0] + ": Ignored, because it's a definition.");
-                                skippedLinesInfo.put(currLine[0], "Skipped - Line is a definition.");
+                                skippedLinesInfo.put(currLine[0], "Definition - Line is a non-semantic definition.");
                                 Status.DEFINITIONS.add();
                                 return null;
                             } else {
                                 LOG.warn(currLine[0] + ": unable to extract test case.");
-                                skippedLinesInfo.put(currLine[0], "Skipped - Unable to analyze test case.");
+                                skippedLinesInfo.put(currLine[0], "Skipped - Unable to analyze test case: Null");
                                 Status.SKIPPED.add();
                                 return null;
                             }
@@ -248,12 +270,19 @@ public abstract class AbstractEvaluator<T> {
                                     counter++;
                                 }
                             } else {
-                                LOG.warn("Ignore " + currLine[0] + ": " + test);
+                                boolean shouldBreak = false;
                                 if ( !reason.isEmpty() ) reason += ", ";
 
                                 if ( m.group(1) != null ) reason += m.group(1);
                                 else if ( m.group(2) != null ) reason += m.group(2);
-                                else reason += "Generic function " + m.group(3);
+                                else if ( m.group(3) != null ) {
+                                    reason += m.group(3);
+                                    // everything after cases is probably corrupted...
+                                    shouldBreak = true;
+                                }
+                                else reason += "Generic function " + m.group(4);
+                                LOG.warn("Ignore " + currLine[0] + " because " + reason + "; Test case: " + test);
+                                if ( shouldBreak ) break;
                             }
                         }
 
@@ -262,8 +291,8 @@ public abstract class AbstractEvaluator<T> {
                             labelLib.put(c.getLine(), c.getDlmf());
                             return testCC.stream();
                         } else {
-                            skippedLinesInfo.put(currLine[0], "Ignore - Invalid test case: " + reason);
-                            Status.IGNORE.add();
+                            skippedLinesInfo.put(currLine[0], "Skipped - Invalid test case: " + reason);
+                            Status.SKIPPED.add();
                             return null;
                         }
                     })
@@ -277,27 +306,22 @@ public abstract class AbstractEvaluator<T> {
     }
 
     protected static Thread getAbortionThread(IAbortEvaluator evaluator) {
-        return getAbortionThread(evaluator, DEFAULT_TIMEOUT_MS);
+        return getAbortionThread(evaluator, timeoutMS);
     }
 
-    protected static Thread getAbortionThread(IAbortEvaluator evaluator, int timeout) {
+    protected static Thread getAbortionThread(IAbortEvaluator evaluator, double timeout) {
         return new Thread(() -> {
             boolean interrupted = false;
             LOG.debug("Start waiting for abortion.");
             try {
-                Thread.sleep(timeout);
+                Thread.sleep((int)timeout);
             } catch ( InterruptedException ie ) {
                 LOG.debug("Interrupted, no abortion necessary.");
                 interrupted = true;
             }
 
             if ( !interrupted ) {
-                try {
-                    LOG.warn("Abort current evaluation!");
-                    evaluator.abort();
-                } catch ( ComputerAlgebraSystemEngineException casee ) {
-                    LOG.error("Cannot abort computation.");
-                }
+                evaluator.abort();
             }
         });
     }
@@ -377,7 +401,7 @@ public abstract class AbstractEvaluator<T> {
             LinkedList<String> lineResult = new LinkedList<>();
             for ( String s : tmp ) {
                 if (    !s.contains("Ignore") &&
-                        !s.contains("Skipped - (user defined)") &&
+                        !s.contains("Skipped - user defined") &&
                         !s.contains("Skipped - Line is a definition")
                 ) lineResult.add(s);
             }

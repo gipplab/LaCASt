@@ -1,54 +1,64 @@
-Overall: [SUCCESS: 0, SUCCESS_SYMB: 0, SUCCESS_TRANS: 0, FAILURE: 0, STARTED_TEST_CASES: 32, SKIPPED: 20, DEFINITIONS: 4, IGNORE: 24, MISSING: 32, ERROR: 0] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 62, SKIPPED: 25, DEFINITIONS: 5, STARTED_TEST_CASES: 32, ERROR_TRANS: 2, MISSING: 30, SUCCESS_TRANS: 0, SUCCESS_SYMB: 0, SUCCESS_NUM: 0, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 0, ABORTED: 0, ERROR: 0] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
-7129 [http://dlmf.nist.gov/21.2.E1]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
-7130 [http://dlmf.nist.gov/21.2.E2]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \scRiemanntheta [\scRiemanntheta]
-7133 [http://dlmf.nist.gov/21.2.E5]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7134: Skipped - Unable to analyze test case.
-7135 [http://dlmf.nist.gov/21.2.E6]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7136: Skipped - Unable to analyze test case.
-7137 [http://dlmf.nist.gov/21.2.E7]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7138: Skipped - Unable to analyze test case.
-7139 [http://dlmf.nist.gov/21.2.E8]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
-7140 [http://dlmf.nist.gov/21.2.E9]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7141: Skipped - Unable to analyze test case.
-7142 [http://dlmf.nist.gov/21.2.E10]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7143: Skipped - Unable to analyze test case.
-7144 [http://dlmf.nist.gov/21.2.E11]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7145: Skipped - Unable to analyze test case.
-7146 [http://dlmf.nist.gov/21.2.E12]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7147: Skipped - Unable to analyze test case.
-7148 [http://dlmf.nist.gov/21.3.E1]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
-7149 [http://dlmf.nist.gov/21.3.E2]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
-7150 [http://dlmf.nist.gov/21.3.E3]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
-7151 [http://dlmf.nist.gov/21.3.E4]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7152: Skipped - Unable to analyze test case.
-7153 [http://dlmf.nist.gov/21.3.E5]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7154: Skipped - Unable to analyze test case.
-7155 [http://dlmf.nist.gov/21.3.E6]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7156: Skipped - Unable to analyze test case.
-7161 [http://dlmf.nist.gov/21.5.E2]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \transpose [\transpose]
-7163 [http://dlmf.nist.gov/21.5.E4]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
-7167: Skipped - Unable to analyze test case.
-7168 [https://dlmf.nist.gov/21.5#Ex2]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
-7169 [http://dlmf.nist.gov/21.5.E9]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7170: Skipped - Unable to analyze test case.
-7173 [http://dlmf.nist.gov/21.6.E3]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
-7174 [http://dlmf.nist.gov/21.6.E4]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7175: Skipped - Unable to analyze test case.
-7177 [http://dlmf.nist.gov/21.6.E6]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
-7178 [http://dlmf.nist.gov/21.6.E7]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7179: Skipped - Unable to analyze test case.
-7180 [http://dlmf.nist.gov/21.6.E8]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7181: Skipped - Unable to analyze test case.
-7186 [https://dlmf.nist.gov/21.7#Ex3]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Cannot translate operation \circ
-7187 [http://dlmf.nist.gov/21.7.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \diff [\diff]
-7188 [http://dlmf.nist.gov/21.7.E5]: Error - (LaTeX -> Maple) An unknown or missing element occurred: Unknown MathTerm Tag: operator for \oint [\oint]
-7190: Skipped - Unable to analyze test case.
-7191: Skipped - Unable to analyze test case.
-7192 [http://dlmf.nist.gov/21.7.E8]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7193: Skipped - Unable to analyze test case.
-7195: Skipped - Unable to analyze test case.
-7196 [http://dlmf.nist.gov/21.7.E10]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
-7203 [http://dlmf.nist.gov/21.7.E17]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
-7204: Skipped - Unable to analyze test case.
-7208 [http://dlmf.nist.gov/21.9.E4]: Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
+6819 [http://dlmf.nist.gov/21.2.E1]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
+6820 [http://dlmf.nist.gov/21.2.E2]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \scRiemanntheta [\scRiemanntheta]
+6821 [http://dlmf.nist.gov/21.2.E3]: Skipped - Invalid test case: bmatrix
+6822 [http://dlmf.nist.gov/21.2.E4]: Skipped - Invalid test case: bmatrix
+6823 [http://dlmf.nist.gov/21.2.E5]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6824 [http://dlmf.nist.gov/21.2.E6]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6825 [http://dlmf.nist.gov/21.2.E7]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6826 [http://dlmf.nist.gov/21.2.E8]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
+6827 [http://dlmf.nist.gov/21.2.E9]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6828 [http://dlmf.nist.gov/21.2.E10]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6829 [http://dlmf.nist.gov/21.2.E11]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6830 [http://dlmf.nist.gov/21.2.E12]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6831 [http://dlmf.nist.gov/21.3.E1]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
+6832 [http://dlmf.nist.gov/21.3.E2]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
+6833 [http://dlmf.nist.gov/21.3.E3]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
+6834 [http://dlmf.nist.gov/21.3.E4]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6835 [http://dlmf.nist.gov/21.3.E5]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6836 [http://dlmf.nist.gov/21.3.E6]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6837 [http://dlmf.nist.gov/21.4.E1]: Skipped - no semantic math
+6838 [http://dlmf.nist.gov/21.4.E2]: Skipped - no semantic math
+6839 [http://dlmf.nist.gov/21.4.E3]: Skipped - no semantic math
+6840 [http://dlmf.nist.gov/21.5.E1]: Definition - Line is a non-semantic definition.
+6841 [http://dlmf.nist.gov/21.5.E2]: Translation Error - java.lang.NullPointerException [6841: (\begin{bmatr\iunit x}\mathbf{A}&\mathbf{B}\mathbf{C}&\mathbf{D}\end{bmatr\iunit x})    (\begin{bmatr\iunit x}\mathbf{A}&\mathbf{B}\mathbf{C}&\mathbf{D}\end{bmatr\iunit x}) EQUAL \mathbf{J}_{2g}; http://dlmf.nist.gov/21.5.E2]
+6842 [http://dlmf.nist.gov/21.5.E3]: Skipped - no semantic math
+6843 [http://dlmf.nist.gov/21.5.E4]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
+6844 [http://dlmf.nist.gov/21.5.E5]: Skipped - Invalid test case: bmatrix
+6845 [http://dlmf.nist.gov/21.5.E6]: Skipped - Invalid test case: bmatrix
+6846 [http://dlmf.nist.gov/21.5.E7]: Skipped - Invalid test case: bmatrix
+6847 [https://dlmf.nist.gov/21.5#Ex1]: Skipped - no semantic math
+6848 [https://dlmf.nist.gov/21.5#Ex2]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
+6849 [http://dlmf.nist.gov/21.5.E9]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6850 [http://dlmf.nist.gov/21.6.E1]: Definition - Line is a non-semantic definition.
+6851 [http://dlmf.nist.gov/21.6.E2]: Definition - Line is a non-semantic definition.
+6852 [http://dlmf.nist.gov/21.6.E3]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
+6853 [http://dlmf.nist.gov/21.6.E4]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6854 [http://dlmf.nist.gov/21.6.E5]: Skipped - no semantic math
+6855 [http://dlmf.nist.gov/21.6.E6]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
+6856 [http://dlmf.nist.gov/21.6.E7]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6857 [http://dlmf.nist.gov/21.6.E8]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6858 [http://dlmf.nist.gov/21.7.E1]: Skipped - no semantic math
+6859 [http://dlmf.nist.gov/21.7.E2]: Definition - Line is a non-semantic definition.
+6860 [https://dlmf.nist.gov/21.7#Ex1]: Skipped - no semantic math
+6861 [https://dlmf.nist.gov/21.7#Ex2]: Skipped - no semantic math
+6862 [https://dlmf.nist.gov/21.7#Ex3]: Translation Error - (LaTeX -> Maple) An unknown or missing element occurred: Cannot translate operation \circ
+6863 [http://dlmf.nist.gov/21.7.E4]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \diff [\diff]
+6864 [http://dlmf.nist.gov/21.7.E5]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: No translation available for the operator \oint [\oint]
+6865 [http://dlmf.nist.gov/21.7.E6]: Skipped - no semantic math
+6866 [http://dlmf.nist.gov/21.7.E7]: Skipped - Unable to analyze test case: Null
+6867 [http://dlmf.nist.gov/21.7.E8]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6868 [http://dlmf.nist.gov/21.7.E9]: Definition - Line is a non-semantic definition.
+6869 [http://dlmf.nist.gov/21.7.E10]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]
+6870 [http://dlmf.nist.gov/21.7.E11]: Skipped - no semantic math
+6871 [http://dlmf.nist.gov/21.7.E12]: Skipped - no semantic math
+6872 [http://dlmf.nist.gov/21.7.E13]: Skipped - no semantic math
+6873 [http://dlmf.nist.gov/21.7.E14]: Skipped - no semantic math
+6874 [http://dlmf.nist.gov/21.7.E15]: Skipped - no semantic math
+6875 [http://dlmf.nist.gov/21.7.E16]: Skipped - no semantic math
+6876 [http://dlmf.nist.gov/21.7.E17]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemannthetachar [\Riemannthetachar]
+6877 [http://dlmf.nist.gov/21.9.E1]: Skipped - no semantic math
+6878 [http://dlmf.nist.gov/21.9.E2]: Skipped - no semantic math
+6879 [http://dlmf.nist.gov/21.9.E3]: Skipped - no semantic math
+6880 [http://dlmf.nist.gov/21.9.E4]: Missing Macro Error - (LaTeX -> Maple) Unknown LaTeX Command: Reached unknown latex-command \Riemanntheta [\Riemanntheta]

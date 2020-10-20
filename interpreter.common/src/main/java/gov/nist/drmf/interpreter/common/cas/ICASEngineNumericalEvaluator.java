@@ -2,7 +2,10 @@ package gov.nist.drmf.interpreter.common.cas;
 
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Observer;
 
@@ -10,14 +13,16 @@ import java.util.Observer;
  * @author Andre Greiner-Petter
  */
 public interface ICASEngineNumericalEvaluator<T> extends Observer, IAbortEvaluator<T> {
+    static final Logger LOG = LogManager.getLogger(ICASEngineNumericalEvaluator.class.getName());
+
     /**
      * Stores the variables of the given expression and returns the
      * name of the variable that stores the information.
-     * @param expression mathematical expression (already translated)
+     * @param variables mathematical expression (already translated)
      * @param testValues list of values
      * @return name of the variable to access the variables of the expression
      */
-    void storeVariables(String expression, List<String> testValues);
+    void storeVariables(Collection<String> variables, Collection<String> testValues);
 
     /**
      * Stores the given constraint variables and their values.
@@ -65,6 +70,18 @@ public interface ICASEngineNumericalEvaluator<T> extends Observer, IAbortEvaluat
     ) throws ComputerAlgebraSystemEngineException;
 
     ResultType getStatusOfResult(T results) throws ComputerAlgebraSystemEngineException;
+
+    default int getPerformedTestCases() {
+        return 0;
+    }
+
+    default int getNumberOfFailedTestCases() {
+        return 0;
+    }
+
+    default void setGlobalAssumptions(List<String> assumptions){
+        LOG.warn("Ignoring global assumptions. Overwrite setGlobalAssumptions if you wanna use them!");
+    };
 
     /**
      * In Maple its evalf( input );

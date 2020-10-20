@@ -11,6 +11,7 @@ import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -47,8 +48,6 @@ public class SequenceTranslator extends AbstractListTranslator {
     // the open bracket if needed
     private Brackets openBracket;
 
-    private boolean setMode = false;
-
     private final TranslatedExpression localTranslations;
 
     private final String MULTIPLY;
@@ -78,11 +77,6 @@ public class SequenceTranslator extends AbstractListTranslator {
     public SequenceTranslator(AbstractTranslator superTranslator, Brackets openBracket) {
         this(superTranslator);
         this.openBracket = openBracket;
-    }
-
-    public SequenceTranslator(AbstractTranslator superTranslator, Brackets openBracket, boolean setMode) {
-        this(superTranslator, openBracket);
-        this.setMode = setMode;
     }
 
     @Override
@@ -213,7 +207,7 @@ public class SequenceTranslator extends AbstractListTranslator {
     }
 
     private boolean bracketMatchOrSetMode(Brackets bracket) {
-        return openBracket.counterpart.equals(bracket.symbol) || setMode;
+        return openBracket.counterpart.equals(bracket.symbol) || super.isSetMode();
     }
 
     /**
@@ -238,7 +232,7 @@ public class SequenceTranslator extends AbstractListTranslator {
         // bracket cannot be null, because we checked the tag of the term before
         if (bracket.opened) {
             // create a new SequenceTranslator (2nd kind)
-            SequenceTranslator sp = new SequenceTranslator(super.getSuperTranslator(), bracket, setMode);
+            SequenceTranslator sp = new SequenceTranslator(super.getSuperTranslator(), bracket);
             // translate the following expressions
             localTranslations.addTranslatedExpression(sp.translate(followingExp));
             return null;
@@ -252,11 +246,18 @@ public class SequenceTranslator extends AbstractListTranslator {
         }
     }
 
+    private TranslatedExpression handleClosingSet(Brackets closingBracket) {
+        localTranslations.addTranslatedExpression(closingBracket.getAppropriateString());
+        return localTranslations;
+    }
+
     private TranslatedExpression handleClosingBracket(
             PomTaggedExpression exp,
             List<PomTaggedExpression> followingExp,
             Brackets bracket
     ) {
+        if ( super.isSetMode() ) return handleClosingSet(bracket);
+
         // this sequence ends her
         // first of all, merge all elements together
         int num = localTranslations.mergeAll();
@@ -266,15 +267,17 @@ public class SequenceTranslator extends AbstractListTranslator {
         String seq;
         if (openBracket.equals(Brackets.left_latex_abs_val) ||
                 openBracket.equals(Brackets.abs_val_open)) {
+            String argTranslation = localTranslations.removeLastExpression();
+            Matcher m = MULTIPLY_PATTERN.matcher(argTranslation);
+            if ( m.matches() ) argTranslation = m.group(1);
+
             BasicFunctionsTranslator bft = getConfig().getBasicFunctionsTranslator();
             seq = bft.translate(
                     new String[] {
-                            stripMultiParentheses(localTranslations.removeLastExpression())
+                            stripMultiParentheses(argTranslation)
                     },
                     Keys.KEY_ABSOLUTE_VALUE
             );
-        } else if (setMode) { // in set mode, both parenthesis may not match!
-            seq = openBracket.getAppropriateString() + localTranslations.removeLastExpression() + bracket.getAppropriateString();
         } else { // otherwise, parenthesis must match each other, so close as it opened
             seq = openBracket.getAppropriateString() + localTranslations.removeLastExpression() + openBracket.getCounterPart().getAppropriateString();
         }
@@ -294,7 +297,7 @@ public class SequenceTranslator extends AbstractListTranslator {
     private String checkMultiplyAddition(PomTaggedExpression exp, List<PomTaggedExpression> exp_list, String part) {
         TranslatedExpression global = getGlobalTranslationList();
 
-        exp = treatFirstExpression(part, exp);
+        PomTaggedExpression specTreatExp = treatFirstExpression(part, exp);
 
         if (checkParenthesisFirst(exp_list)) {
             Matcher m = MULTIPLY_PATTERN.matcher(part);
@@ -302,26 +305,34 @@ public class SequenceTranslator extends AbstractListTranslator {
             else return part;
         }
 
-        if (addMultiply(exp, exp_list) /*&& !part.matches(".*\\*\\s*")*/) {
+        if (addMultiplySpecTreatment(exp, specTreatExp, exp_list) /*&& !part.matches(".*\\*\\s*")*/) {
             part += MULTIPLY;
             // the global list already got each element before,
             // so simply replace the last if necessary
             String tmp = global.getLastExpression();
             global.replaceLastExpression(tmp + MULTIPLY);
-        } else if (addSpace(exp, exp_list)) {
-            part += SPACE;
+        } else if (addSpace(specTreatExp, exp_list)) {
+            part = addSimpleSpace(part);
+
             // the global list already got each element before,
             // so simply replace the last if necessary
-            String tmp = global.getLastExpression();
-            global.replaceLastExpression(tmp + SPACE);
+            String tmp = addSimpleSpace(global.getLastExpression());
+            global.replaceLastExpression(tmp);
         }
+        return part;
+    }
+
+    private String addSimpleSpace(String part) {
+        if ( !part.matches(".*\\s+$") )
+            part += SPACE;
         return part;
     }
 
     private PomTaggedExpression treatFirstExpression(
             String part, PomTaggedExpression exp
     ) {
-        if (part.matches(STRING_END_TREAT_AS_CLOSED_PARANTHESIS)) {
+        if ( part == null ) {}
+        else if (part.matches(STRING_END_TREAT_AS_CLOSED_PARANTHESIS)) {
             MathTerm tmp = FakeMLPGenerator.generateClosedParenthesesMathTerm();
             exp = new PomTaggedExpression(tmp);
         } else if (MULTIPLY_PATTERN.matcher(part).matches()) {
@@ -331,8 +342,11 @@ public class SequenceTranslator extends AbstractListTranslator {
     }
 
     private boolean checkParenthesisFirst(List<PomTaggedExpression> expList) {
-        return openBracket != null && (openBracket.equals(Brackets.abs_val_close) || openBracket.equals(Brackets.abs_val_open)) &&
-                expList != null && !expList.isEmpty() && expList.get(0).getRoot().getTermText().matches(Brackets.ABSOLUTE_VAL_TERM_TEXT_PATTERN);
+        return openBracket != null &&
+                (openBracket.equals(Brackets.abs_val_close) || openBracket.equals(Brackets.abs_val_open)) &&
+                expList != null &&
+                !expList.isEmpty() &&
+                expList.get(0).getRoot().getTermText().matches(Brackets.ABSOLUTE_VAL_TERM_TEXT_PATTERN);
     }
 
     /**
@@ -342,19 +356,37 @@ public class SequenceTranslator extends AbstractListTranslator {
      * @param exp_list the following expressions
      * @return true if the current expressions needs an white space symbol behind its translation
      */
-    private boolean addSpace(PomTaggedExpression currExp, List<PomTaggedExpression> exp_list) {
+    private boolean addSpace(PomTaggedExpression currExp, List<PomTaggedExpression> expList) {
         try {
-            if (exp_list == null || exp_list.size() < 1) {
-                return false;
-            }
+            Boolean tmp = addSpaceSizeOperatorCheck(currExp, expList);
+            if ( tmp != null ) return tmp;
+
             MathTerm curr = currExp.getRoot();
-            MathTerm next = exp_list.get(0).getRoot();
-            return !(curr.getTag().matches(MathTermTags.PARENTHESIS_PATTERN)
-                    || next.getTag().matches(MathTermTags.PARENTHESIS_PATTERN)
-                    || next.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)
-            );
+            MathTerm next = expList.get(0).getRoot();
+            return addSpaceParenthesisCheck(curr, next);
         } catch (Exception e) {
             return false;
         }
+    }
+
+    private Boolean addSpaceSizeOperatorCheck(PomTaggedExpression currExp, List<PomTaggedExpression> expList) {
+        if (expList == null || expList.size() < 1) {
+            return false;
+        }
+
+        if ( isOpSymbol(currExp) || isOpSymbol(expList.get(0)) )
+            return true;
+
+        return null;
+    }
+
+    private boolean addSpaceParenthesisCheck(MathTerm curr, MathTerm next) {
+        if (FeatureSetUtility.isConsideredAsRelation(curr) || FeatureSetUtility.isConsideredAsRelation(next))
+            return true;
+
+        return !(curr.getTag().matches(MathTermTags.PARENTHESIS_PATTERN)
+                || next.getTag().matches(MathTermTags.PARENTHESIS_PATTERN)
+                || next.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)
+        );
     }
 }

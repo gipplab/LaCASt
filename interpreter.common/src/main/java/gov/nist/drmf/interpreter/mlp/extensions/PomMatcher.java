@@ -1,11 +1,14 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
 import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.mlp.MathTermUtility;
 import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.intellij.lang.annotations.Language;
+import org.intellij.lang.annotations.RegExp;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -18,12 +21,15 @@ import java.util.Map;
 public class PomMatcher {
     private static final Logger LOG = LogManager.getLogger(PomMatcher.class.getName());
 
-    private final MatcherConfig defaultFindMatcherConfig = MatcherConfig.getInPlaceMatchConfig();
+    private final MatcherConfig config;
 
-    private final MatchablePomTaggedExpression matcher;
+    private final AbstractMatchablePomTaggedExpression matcher;
+    private final MatchablePomTaggedExpression matcherFirstElement;
     private final PomTaggedExpressionChildrenMatcher children;
     private final PrintablePomTaggedExpression orig;
     private final GroupCaptures refGroups;
+
+    private final boolean isSequenceMatcher;
 
     private PrintablePomTaggedExpression copy;
 
@@ -37,6 +43,13 @@ public class PomMatcher {
 
     private boolean wasReplaced = false;
 
+    PomMatcher(
+            AbstractMatchablePomTaggedExpression mpte,
+            PrintablePomTaggedExpression pte
+    ) {
+        this(mpte, pte, MatcherConfig.getInPlaceMatchConfig());
+    }
+
     /**
      * To get an instance of this class, you should use {@link MatchablePomTaggedExpression#matcher(String)}
      * or {@link MatchablePomTaggedExpression#matcher(PrintablePomTaggedExpression)}.
@@ -44,23 +57,26 @@ public class PomMatcher {
      * @param pte the parse tree to match
      */
     PomMatcher(
-            MatchablePomTaggedExpression mpte,
-            PrintablePomTaggedExpression pte
+            AbstractMatchablePomTaggedExpression mpte,
+            PrintablePomTaggedExpression pte,
+            MatcherConfig config
     ) {
+        this.config = config;
         this.matcher = mpte;
+        this.isSequenceMatcher = PomTaggedExpressionUtility.isSequence(matcher);
         this.children = mpte.getChildrenMatcher();
         this.orig = pte;
         this.refGroups = mpte.getCaptures();
         this.leadingBackUpWildcard = null;
         this.remaining = new LinkedList<>();
         this.latestDepthExpression = null;
-        this.init();
-    }
 
-    private void init() {
+        // in case it starts with a wildcard, its more efficient to handle that later. remove it and continue
         if ( children.isFirstChildWildcard() ) {
             leadingBackUpWildcard = children.removeFirst();
         }
+
+        this.matcherFirstElement = isSequenceMatcher ? (MatchablePomTaggedExpression)matcher.getComponents().get(0) : null;
     }
 
     /**
@@ -93,81 +109,17 @@ public class PomMatcher {
      * false.
      */
     public boolean find() {
-        if ( !inProcess ) {
-            reset();
-            inProcess = true;
-        } else {
-            refGroups.clear();
-        }
-
+        saveInProgressReset();
         wasReplaced = false;
         lastMatchWentUntilEnd = false;
-        boolean matched = false;
         while ( !remaining.isEmpty() ) {
             // get the remaining list of children to work on
             latestDepthExpression = remaining.removeFirst();
             List<PrintablePomTaggedExpression> elements = latestDepthExpression.remainingExpressions;
             LinkedList<PrintablePomTaggedExpression> backlog = new LinkedList<>();
 
-            while ( !elements.isEmpty() && !matched ) {
-                PrintablePomTaggedExpression first = elements.remove(0);
-                latestDepthExpression.currentReferenceNode = first;
-
-                // first, we add the children of this element to the list to tests
-                // but only if there are children lists to test
-                if ( first.getPrintableComponents().size() > 0 ) {
-                    remaining.addLast( new DepthExpressionsCache(
-                            latestDepthExpression.currentDepth+1, first.getPrintableComponents())
-                    );
-                }
-
-                if (PomTaggedExpressionUtility.isSequence(matcher)) {
-                    // than we take the first element, as the matcher...
-                    MatchablePomTaggedExpression m = (MatchablePomTaggedExpression)matcher.getComponents().get(0);
-                    // if the first worked, we can move forward
-                    boolean innerTmpMatch = m.match(first, elements, defaultFindMatcherConfig);
-                    while ( innerTmpMatch && !elements.isEmpty() && m.getNextSibling() != null ) {
-                        first = elements.remove(0);
-                        m = (MatchablePomTaggedExpression)m.getNextSibling();
-                        innerTmpMatch = m.match(first, elements, defaultFindMatcherConfig);
-                    }
-                    // match is only valid, if the regex does not assume more tokens
-                    matched = (innerTmpMatch && m.getNextSibling() == null);
-                    if ( matched && elements.isEmpty() ) lastMatchWentUntilEnd = true;
-                } else {
-                    matched = matcher.match(first, elements, defaultFindMatcherConfig);
-                }
-
-
-                if ( !matched ) {
-                    backlog.addLast(first);
-                    latestDepthExpression.passedExpressions.addLast(first);
-                    // we may accidentally found partial hits before, we must reset these
-                    refGroups.clear();
-                }
-
-                if ( matched && leadingBackUpWildcard != null ) {
-                    // check backlog, otherwise its false
-                    if ( backlog.isEmpty() ) matched = false;
-                    else {
-                        addLogicalGroupFromBacklog(backlog);
-                    }
-                }
-            }
-
-            if ( matched ) {
-                // if we found a match, we have to roll back the elements, if there
-                // are elements remaining
-                if ( !elements.isEmpty() ) {
-                    remaining.addFirst(latestDepthExpression);
-                }
-
-                // we must add hits also... could be nested hits actually, right? ;)
-                getCapturedGroupsAsList().stream()
-                        .filter( l -> l.size() > 1 )
-                        .map( l -> new DepthExpressionsCache(latestDepthExpression.currentDepth+1, l) )
-                        .forEach( remaining::addLast );
-
+            if ( findNextMatch(elements, backlog) ) {
+                storeLatestMatch(elements);
                 return true;
             }
         }
@@ -175,23 +127,149 @@ public class PomMatcher {
         return false;
     }
 
-    public PrintablePomTaggedExpression replaceAll( String expression ) throws ParseException {
+    private void saveInProgressReset() {
+        if ( !inProcess ) {
+            reset();
+            inProcess = true;
+        } else {
+            refGroups.clear();
+        }
+    }
+
+    private boolean findNextMatch(
+            List<PrintablePomTaggedExpression> elements,
+            LinkedList<PrintablePomTaggedExpression> backlog
+    ) {
+        boolean matched = false;
+        while ( !elements.isEmpty() && !matched ) {
+            PrintablePomTaggedExpression first = elements.remove(0);
+            latestDepthExpression.currentReferenceNode = first;
+
+            // first, we add the children of this element to the list to tests
+            // but only if there are children lists to test
+            if ( first.getPrintableComponents().size() > 0 ) {
+                remaining.addLast( new DepthExpressionsCache(
+                        latestDepthExpression.currentDepth+1, first.getPrintableComponents())
+                );
+            }
+
+            matched = findNextMatchFromIndex(first, elements);
+            updateBacklog(matched, first, backlog);
+        }
+
+        return matched;
+    }
+
+    private boolean findNextMatchFromIndex(
+            PrintablePomTaggedExpression first,
+            List<PrintablePomTaggedExpression> elements
+    ) {
+        boolean matched = false;
+        if (isSequenceMatcher) {
+            matched = findNextMatchFromIndexSequencer(first, elements);
+        } else if ( !PomTaggedExpressionUtility.isAt(first) ){
+            matched = matcher.match(first, elements, config);
+        }
+        return matched;
+    }
+
+    private boolean findNextMatchFromIndexSequencer(
+            PrintablePomTaggedExpression first,
+            List<PrintablePomTaggedExpression> elements
+    ) {
+        // than we take the first element, as the matcher...
+        MatchablePomTaggedExpression m = matcherFirstElement;
+        // if the first worked, we can move forward
+        boolean innerTmpMatch = m.match(first, elements, config);
+        while ( innerTmpMatch && !elements.isEmpty() && m.getNextSibling() != null ) {
+            first = elements.remove(0);
+            m = (MatchablePomTaggedExpression)m.getNextSibling();
+            if ( config.ignoreNumberOfAts() && PomTaggedExpressionUtility.isAt(m) ) {
+                continue;
+            }
+            innerTmpMatch = m.match(first, elements, config);
+        }
+
+        return matchConsideringMoreTokens(innerTmpMatch, m, elements);
+    }
+
+    private boolean matchConsideringMoreTokens(
+            boolean innerTmpMatch,
+            MatchablePomTaggedExpression m,
+            List<PrintablePomTaggedExpression> elements
+    ) {
+        // match is only valid, if the regex does not assume more tokens
+        boolean matched = (innerTmpMatch && m.getNextSibling() == null);
+        if ( matched && elements.isEmpty() ) lastMatchWentUntilEnd = true;
+        return matched;
+    }
+
+    private void updateBacklog(
+            boolean matched,
+            PrintablePomTaggedExpression first,
+            LinkedList<PrintablePomTaggedExpression> backlog
+    ) {
+        if ( !matched ) {
+            backlog.addLast(first);
+            latestDepthExpression.passedExpressions.addLast(first);
+            // we may accidentally found partial hits before, we must reset these
+            refGroups.clear();
+        }
+
+        if ( matched && leadingBackUpWildcard != null ) {
+            // check backlog, otherwise its false
+            if ( backlog.isEmpty() ) matched = false;
+            else {
+                addLogicalGroupFromBacklog(backlog);
+            }
+        }
+    }
+
+    private void storeLatestMatch(List<PrintablePomTaggedExpression> elements) {
+        // if we found a match, we have to roll back the elements, if there
+        // are elements remaining
+        if ( !elements.isEmpty() ) {
+            remaining.addFirst(latestDepthExpression);
+        }
+
+        // we must add hits also... could be nested hits actually, right? ;)
+        getCapturedGroupsAsList().stream()
+                .filter( l -> l.size() > 1 )
+                .map( l -> new DepthExpressionsCache(latestDepthExpression.currentDepth+1, l) )
+                .forEach( remaining::addLast );
+    }
+
+    /**
+     * This method replaces the wildcards in the given expression by the identified groups in each hit.
+     * Afterward, every match is replaced by the updated expression.
+     *
+     * For example, consider your pattern is <code>x var1^2</code> with <code>var1</code> as the wildcard.
+     * Now you match <code>x y^2 + x z^2</code> and replace every match by <code>(var1/2)</code>.
+     * This would return the root of the tree <code>x (y/2)^2 + x (z/2)^2</code>.
+     * @param expression the expression containing wildcards. The wildcards are replaced after a new match was found
+     * @return the updated root
+     * @throws ParseException if the updated expression (replaced wildcards) cannot be parsed
+     */
+    public PrintablePomTaggedExpression replacePattern(String expression) throws ParseException {
         reset();
         while ( find() ) {
             String replaced = PomMatcherUtility.fillPatterns(expression, groups());
             PrintablePomTaggedExpression p = matcher.getMLPWrapperInstance().parse(replaced);
-            if ( PomTaggedExpressionUtility.isSequence(p) ) {
-                replacePreviousHit(p.getPrintableComponents());
-            } else {
-                LinkedList<PrintablePomTaggedExpression> tmp = new LinkedList<>();
-                tmp.add(p);
-                replacePreviousHit(tmp);
-            }
+            LinkedList<PrintablePomTaggedExpression> tmp = new LinkedList<>();
+            tmp.add(p);
+            replacePreviousHit(tmp);
         }
         return copy;
     }
 
-    public PrintablePomTaggedExpression replaceAll( List<PrintablePomTaggedExpression> replacement ) {
+    /**
+     * Replaces every match by the provided replacement. This method is different to {@link #replacePattern(String)} because
+     * it does not replace wild cards by the matches.
+     * @param replacement the replacement
+     * @return root of updated tree
+     * @see #replacePreviousHit(List)
+     */
+    public PrintablePomTaggedExpression replace( List<PrintablePomTaggedExpression> replacement ) {
         reset();
         while ( find() ) {
             replacePreviousHit(replacement);
@@ -200,10 +278,13 @@ public class PomMatcher {
     }
 
     /**
-     *
-     * @param replacement
-     * @return
-     * @throws IllegalStateException
+     * Replaces only the previous hit (identified by {@link #find()} by the given list of {@link PrintablePomTaggedExpression}.
+     * The list can be a single element but not null. Calling the method multiple times without calling {@link #match()}
+     * or {@link #find()} has no effect and simply returns the replaced expression again and again.
+     * @param replacement the replacements
+     * @return the root of the new tree with replaced expressions
+     * @throws IllegalStateException if there were no match encountered
+     * @throws NullPointerException if the provided list is null
      */
     public PrintablePomTaggedExpression replacePreviousHit( List<PrintablePomTaggedExpression> replacement )
             throws IllegalStateException{
@@ -211,18 +292,13 @@ public class PomMatcher {
             throw new IllegalStateException("No previous hit recorded!");
         } else if ( wasReplaced ) return copy;
 
+        balanceReplacement(replacement);
+
         PomTaggedExpression parent = latestDepthExpression.currentReferenceNode.getParent();
         if ( parent == null ) {
             // essentially means, that the currentMatchReference is the root, which means we replace the entire
             // expression by a new one
-            wasReplaced = true;
-            if ( replacement.isEmpty() ) return FakeMLPGenerator.generateEmptySequencePPTE();
-            else if ( replacement.size() == 1 ) return replacement.get(0);
-            else {
-                PrintablePomTaggedExpression r = FakeMLPGenerator.generateEmptySequencePPTE();
-                replacement.forEach( r::addComponent );
-                return r;
-            }
+            return replaceEntireExpression(replacement);
         }
 
         // clear the existing children
@@ -240,6 +316,26 @@ public class PomMatcher {
         wasReplaced = true;
 
         // does this work or did we use copies of copies?
+        return copy;
+    }
+
+    private void balanceReplacement(List<PrintablePomTaggedExpression> replacement) {
+        boolean wasBalanced = latestDepthExpression.currentReferenceNode.getTexString().matches("^\\s*\\{.+}\\s*$");
+        if ( wasBalanced && replacement.size() == 1 ) {
+            PrintablePomTaggedExpression ppte = replacement.get(0);
+            ppte.makeBalancedTexString();
+        }
+    }
+
+    private PrintablePomTaggedExpression replaceEntireExpression(List<PrintablePomTaggedExpression> replacement) {
+        wasReplaced = true;
+        if ( replacement.isEmpty() ) copy = FakeMLPGenerator.generateEmptySequencePPTE();
+        else if ( replacement.size() == 1 ) copy = replacement.get(0);
+        else {
+            PrintablePomTaggedExpression r = FakeMLPGenerator.generateEmptySequencePPTE();
+            replacement.forEach( r::addComponent );
+            copy = r;
+        }
         return copy;
     }
 

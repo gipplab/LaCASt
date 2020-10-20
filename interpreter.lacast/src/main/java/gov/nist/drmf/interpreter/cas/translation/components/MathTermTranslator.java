@@ -17,6 +17,7 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,6 +26,8 @@ import java.util.List;
  * It is a inner translation and switches through all different
  * kinds of math terms. All registered math terms can be
  * found in {@link MathTermTags}.
+ *
+ * TODO once we update to next LTS Java 17 we should update these ugly lengthy switch cases
  *
  * @author Andre Greiner-Petter
  * @see AbstractTranslator
@@ -37,11 +40,13 @@ public class MathTermTranslator extends AbstractListTranslator {
     private final TranslatedExpression localTranslations;
 
     private final SymbolTranslator sT;
+    private final BasicFunctionsTranslator bfT;
 
     public MathTermTranslator(AbstractTranslator superTranslator) {
         super(superTranslator);
         this.localTranslations = new TranslatedExpression();
         this.sT = getConfig().getSymbolTranslator();
+        this.bfT = getConfig().getBasicFunctionsTranslator();
     }
 
     @Override
@@ -107,6 +112,13 @@ public class MathTermTranslator extends AbstractListTranslator {
                 throwImplementationError(
                         "MathTermTranslator cannot translate functions. Use the FunctionTranslator instead: "
                                 + term.getTermText() );
+            case prime:
+            case primes:
+                throw TranslationException.buildException(
+                        this, "Primes can only be translated behind semantic macros " +
+                                "(differentation primes) but not in other places.",
+                        TranslationExceptionReason.INVALID_LATEX_INPUT
+                );
             case left_delimiter:
             case right_delimiter:
             case left_parenthesis:
@@ -119,12 +131,19 @@ public class MathTermTranslator extends AbstractListTranslator {
             case macro:
                 throwImplementationError("There shouldn't be a macro in MathTermTranslator: " + term.getTermText());
             case abbreviation:
-                throw TranslationException.buildExceptionObj(
-                        this,
-                        "This program cannot translate abbreviations like " + term.getTermText(),
-                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
-                        term.getTermText()
-                );
+                if ( term.getTermText().matches(".*\\.\\s*$") )
+                    throw TranslationException.buildExceptionObj(
+                            this,
+                            "This program cannot translate abbreviations like " + term.getTermText(),
+                            TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                            term.getTermText()
+                    );
+                else
+                    getInfoLogger().addGeneralInfo(
+                            term.getTermText(),
+                            "Found a potential abbreviation. This program cannot translate abbreviations. Hence it was " +
+                                    "interpreted as a sequence of variable multiplications, e.g. 'etc' -> 'e*t*c'."
+                    );
         }
     }
 
@@ -176,6 +195,9 @@ public class MathTermTranslator extends AbstractListTranslator {
             case fence:
                 te = parseFences(term, following_exp);
                 break;
+            case relation:
+                te = parseRelation(term, following_exp);
+                break;
             default: // all other cases, try operation, sub-super-scripts and letters
                 te = broadcastOperationScriptLetter(tag, exp, following_exp);
         }
@@ -189,22 +211,24 @@ public class MathTermTranslator extends AbstractListTranslator {
     ){
         TranslatedExpression te = null;
         switch (tag) {
-            case modulo:
-            case operation:
+            case modulo: case operation:
                 te = translateOperation(exp, following_exp);
                 break;
-            case caret:
-            case underscore:
+            case caret: case underscore:
                 SubSuperScriptTranslator sssT = new SubSuperScriptTranslator(getSuperTranslator());
                 te = sssT.translate(exp, following_exp);
                 break;
-            case dlmf_macro:
-            case command:
-            case alphanumeric:
-            case special_math_letter:
-            case symbol:
-            case constant:
-            case letter:
+            case operator:
+                if ( exp.getRoot().getTermText().startsWith("\\") ) {
+                    throw TranslationException.buildExceptionObj(
+                            this, "No translation available for the operator " + exp.getRoot().getTermText(),
+                            TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                            exp.getRoot().getTermText()
+                    );
+                }
+            case dlmf_macro: case command:
+            case alphanumeric: case abbreviation:
+            case special_math_letter: case symbol: case constant: case letter:
                 LetterTranslator letterT = new LetterTranslator(getSuperTranslator());
                 te = letterT.translate(exp, following_exp);
                 break;
@@ -247,12 +271,21 @@ public class MathTermTranslator extends AbstractListTranslator {
             case equals:
             case less_than:
             case greater_than: // all above should translated directly
-                localTranslations.addTranslatedExpression(term.getTermText());
-                getGlobalTranslationList().addTranslatedExpression(term.getTermText());
+                String translation = translateSymbol(term);
+                localTranslations.addTranslatedExpression(translation);
+                getGlobalTranslationList().addTranslatedExpression(translation);
+
                 te = localTranslations;
                 break;
         }
         return te;
+    }
+
+    private String translateSymbol(MathTerm term) {
+        String translation = sT.translate(term.getTermText());
+        if ( translation != null && !translation.isBlank() )
+            return translation;
+        return term.getTermText();
     }
 
     /**
@@ -277,9 +310,6 @@ public class MathTermTranslator extends AbstractListTranslator {
             case spaces:
             case non_allowed:
                 LOG.debug("Skip controlled space, such as \\!");
-                break;
-            case relation:
-                handleRelation(term);
                 break;
             default:
                 throw TranslationException.buildExceptionObj(
@@ -308,8 +338,6 @@ public class MathTermTranslator extends AbstractListTranslator {
         this.localTranslations.addTranslatedExpression(sq.translate(following_exp));
         return localTranslations;
     }
-
-
 
     private TranslatedExpression handleDivide(MathTerm term, List<PomTaggedExpression> following_exp) {
         if ( following_exp == null || following_exp.isEmpty() )
@@ -355,10 +383,15 @@ public class MathTermTranslator extends AbstractListTranslator {
         return localTranslations;
     }
 
-    private void handleRelation(MathTerm term) {
+    private TranslatedExpression parseRelation(MathTerm term, List<PomTaggedExpression> followingExps) {
         String termText = term.getTermText();
+
+        if ( termText.equals("\\in") ) {
+            return handleSets(term, followingExps);
+        }
+
         if ( termText.matches(Brackets.ABSOLUTE_VAL_TERM_TEXT_PATTERN) )
-            return;
+            return null;
 
         String translation = termText.equals("\\to") ?
                 translateToCommand() :
@@ -375,6 +408,96 @@ public class MathTermTranslator extends AbstractListTranslator {
 
         localTranslations.addTranslatedExpression(translation);
         getGlobalTranslationList().addTranslatedExpression(translation);
+        return localTranslations;
+    }
+
+    private TranslatedExpression handleSets(MathTerm term, List<PomTaggedExpression> followingExps) {
+        // first, what ever comes next, we expecting set-logic (i.e. mismatched parenthesis are allowed)
+        super.activateSetMode();
+        checkFollowingElementValidity(followingExps);
+
+        PomTaggedExpression next = followingExps.get(0);
+        Brackets bracket = Brackets.getBracket(next);
+
+        // in case of non-open bracket, nothing special, just translate term and return it.
+        // Following expressions are handled by someone else
+        if ( returnBracketSet(bracket, term, next.getRoot()) ) return localTranslations;
+
+        String firstArgument = getGlobalTranslationList().removeLastExpression();
+
+        // time to translate the sequence
+        followingExps.remove(0);
+        SequenceTranslator sequenceTranslator = new SequenceTranslator(this, bracket);
+        TranslatedExpression translatedExpression = sequenceTranslator.translate(followingExps);
+
+        // remove last translated expressions from global list
+        getGlobalTranslationList().removeLastNExps(translatedExpression.getLength());
+
+        String intervalTranslation = buildIntervalTranslation(translatedExpression, bracket, firstArgument);
+        localTranslations.addTranslatedExpression(intervalTranslation);
+        getGlobalTranslationList().addTranslatedExpression(intervalTranslation);
+        return localTranslations;
+    }
+
+    private String buildIntervalTranslation(TranslatedExpression translatedExpression, Brackets bracket, String firstArgument) {
+        String closingSymbol = translatedExpression.removeLastExpression();
+        String[] arguments = translatedExpression.splitOn(",");
+        checkArgumentValidity(arguments);
+
+        // ok we know its an open bracket and it is either ( or [
+        boolean leftOpen = bracket.symbol.endsWith("(");
+        boolean rightOpen = closingSymbol.matches("\\s*\\)\\s*");
+
+        String mlpKey = Keys.MLP_KEY_SET_PREFIX;
+        mlpKey += Keys.MLP_KEY_SET_LEFT_PREFIX  + (leftOpen  ? "open" : "closed") + "-";
+        mlpKey += Keys.MLP_KEY_SET_RIGHT_PREFIX + (rightOpen ? "open" : "closed");
+
+        return bfT.translate(
+                new String[]{
+                        firstArgument.trim(),
+                        arguments[0].trim(), // delete the open parenthesis
+                        arguments[1].trim() // delete the closed parenthesis
+                },
+                mlpKey
+        );
+    }
+
+    private boolean returnBracketSet(Brackets bracket, MathTerm term, MathTerm nextTerm) {
+        String relationTranslation = sT.translate(term.getTermText());
+        if (bracket == null || !Brackets.isOpenedSetBracket(bracket)) {
+            // nothing special, just translate term and return it. Following expressions are handled by someone else
+            localTranslations.addTranslatedExpression(relationTranslation);
+            getGlobalTranslationList().addTranslatedExpression(relationTranslation);
+            return true;
+        } else if ( !bracket.opened ) {
+            throw TranslationException.buildExceptionObj(
+                    this, "Mismatch parenthesis. Closing parenthesis after '\\in' is not allowed.",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT, nextTerm.getTermText()
+            );
+        } else if ( getGlobalTranslationList().getLength() < 1 ) {
+            throw TranslationException.buildExceptionObj(
+                    this, "No element specified in front of '\\in'.",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT, term.getTermText()
+            );
+        }
+        return false;
+    }
+
+    private void checkFollowingElementValidity(List<PomTaggedExpression> followingExps) {
+        if ( followingExps == null || followingExps.isEmpty() ) {
+            throw TranslationException.buildException(
+                    this, "Expected set information after '\\in' but found no following expressions.",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT
+            );
+        }
+    }
+
+    private void checkArgumentValidity(String[] arguments) {
+        if ( arguments.length != 2 )
+            throw TranslationException.buildExceptionObj(
+                    this, "Expecting to arguments, separated by a comma, for an interval but got " + arguments.length,
+                    TranslationExceptionReason.INVALID_LATEX_INPUT, Arrays.toString(arguments)
+            );
     }
 
     private String translateToCommand() {
