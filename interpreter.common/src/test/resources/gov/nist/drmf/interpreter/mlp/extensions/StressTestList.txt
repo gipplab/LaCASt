@@ -1,0 +1,44 @@
+\frac{d^k}{dz^k} P_n^{(\alpha,\beta)} (z) = \frac{\Gamma (\alpha+\beta+n+1+k)}{2^k \Gamma (\alpha+\beta+n+1)} P_{n-k}^{(\alpha+k, \beta+k)} (z)
+\int_{-1}^1 (1-x)^{\alpha} (1+x)^{\beta} P_m^{(\alpha,\beta)} (x)P_n^{(\alpha,\beta)} (x)
+z
+x
+P_n^{(\alpha,\beta)}(z) = \frac{(-1)^n}{2^n n!} (1-z)^{-\alpha} (1+z)^{-\beta} \frac{d^n}{dz^n} \left\{ (1-z)^\alpha (1+z)^\beta \left (1 - z^2 \right )^n \right\}
+{z \choose n} = \begin{cases} \frac{\Gamma(z+1)}{\Gamma(n+1)\Gamma(z-n+1)} & n \geq 0 \\ 0 & n < 0 \end{cases}
+P_n^{(\alpha,\beta)} (z) = \frac{\Gamma (\alpha+n+1)}{n!\,\Gamma (\alpha+\beta+n+1)} \sum_{m=0}^n {n\choose m} \frac{\Gamma (\alpha + \beta + n + m + 1)}{\Gamma (\alpha + m + 1)} \left(\frac{z-1}{2}\right)^m
+P_{n}^{(\alpha, \beta)}(x)
+P_n^{(\alpha, \beta)} (1) = {n+\alpha\choose n}
+\alpha = \beta = 0
+\begin{align}(z-1) \frac{d}{dz} P_n^{(\alpha,\beta)}(z) &= \frac{1}{2} (z-1)(1+\alpha+\beta+n)P_{n-1}^{(\alpha+1,\beta+1)} \\&= n P_n^{(\alpha,\beta)} - (\alpha+n) P_{n-1}^{(\alpha,\beta+1)} \\&=(1+\alpha+\beta+n) \left( P_n^{(\alpha,\beta+1)} - P_{n}^{(\alpha,\beta)} \right) \\&=(\alpha+n) P_n^{(\alpha-1,\beta+1)} - \alpha P_n^{(\alpha,\beta)} \\&=\frac{2(n+1) P_{n+1}^{(\alpha,\beta-1)} - \left(z(1+\alpha+\beta+n)+\alpha+1+n-\beta \right) P_n^{(\alpha,\beta)}}{1+z} \\&=\frac{(2\beta+n+nz) P_n^{(\alpha,\beta)} - 2(\beta+n) P_n^{(\alpha,\beta-1)}}{1+z} \\&=\frac{1-z}{1+z} \left( \beta P_n^{(\alpha,\beta)} - (\beta+n) P_{n}^{(\alpha+1,\beta-1)} \right) \, .\end{align}
+[-1, 1]
+R = R(z, t) = \left(1 - 2zt + t^2\right)^{\frac{1}{2}}
+n, n + \alpha, n + \beta
+O
+\Gamma(z)
+d^j_{m'm}(\phi) =\left[ \frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}\right]^{\frac{1}{2}} \left(\sin\tfrac{\phi}{2}\right)^{m-m'} \left(\cos\tfrac{\phi}{2}\right)^{m+m'} P_{j-m}^{(m-m',m+m')}(\cos\phi)
+P_{n}(z) = \frac{1 }{2^n  n! } \frac{d^n }{ d z^n }  ( z^2 - 1 )^n  \;
+P_n^{(\alpha, \beta)} (-z) = (-1)^n P_n^{(\beta, \alpha)} (z)
+\sum_{n=0}^\infty P_n^{(\alpha,\beta)}(z) t^n = 2^{\alpha + \beta} R^{-1} (1 - t + R)^{-\alpha} (1 + t + R)^{-\beta}
+n= 2, 3, ...
+(1 - x)^{\alpha}(1 + x)^{\beta}
+k
+P_n^{(\alpha,\beta)}(z)=\frac{(\alpha+1)_n}{n!}\
+R(z, 0) = 1
+\pm1
+n
+P_n^{(\alpha,\beta)}(x)=(n+\alpha)! (n+\beta)! \sum_{s=0}^n \frac{1}{s! (n+\alpha-s)!(\beta+s)!(n-s)!} \left(\frac{x-1}{2}\right)^{n-s} \left(\frac{x+1}{2}\right)^{s}
+P_n^{(\alpha,\beta)}(\cos \theta) = n^{-\frac{1}{2}}k(\theta)\cos (N\theta + \gamma) + O \left (n^{-\frac{3}{2}} \right )
+s
+n=m
+\begin{align}&2n (n + \alpha + \beta) (2n + \alpha + \beta - 2) P_n^{(\alpha,\beta)}(z) \\&\qquad= (2n+\alpha + \beta-1) \Big\{ (2n+\alpha + \beta)(2n+\alpha+\beta-2) z +  \alpha^2 - \beta^2 \Big\} P_{n-1}^{(\alpha,\beta)}(z) - 2 (n+\alpha - 1) (n + \beta-1) (2n+\alpha + \beta) P_{n-2}^{(\alpha, \beta)}(z),\end{align}
+(\alpha+1)_n
+P_n^{(\alpha,\beta)}(x)= \sum_{s=0}^n {n+\alpha\choose n-s}{n+\beta \choose s} \left(\frac{x-1}{2}\right)^{s} \left(\frac{x+1}{2}\right)^{n-s}
+n + \alpha + \beta
+P_{n}^{(\alpha, \beta)}
+\begin{align}k(\theta) &= \pi^{-\frac{1}{2}} \sin^{-\alpha-\frac{1}{2}} \tfrac{\theta}{2} \cos^{-\beta-\frac{1}{2}} \tfrac{\theta}{2},\\N &= n + \tfrac{1}{2} (\alpha+\beta+1),\\\gamma &= - \tfrac{\pi}{2} \left (\alpha + \tfrac{1}{2} \right ),\end{align}
+0 \leq \varphi \leq 4\pi)
+P_n^{(\alpha, \beta)} (-1) = (-1)^n { n+\beta\choose n}
+\begin{align}\lim_{n \to \infty} n^{-\alpha}P_n^{(\alpha,\beta)}\left(\cos \left ( \tfrac{z}{n} \right ) \right) &= \left(\tfrac{z}{2}\right)^{-\alpha} J_\alpha(z)\\ \lim_{n \to \infty} n^{-\beta}P_n^{(\alpha,\beta)}\left(\cos \left (\pi - \tfrac{z}{n} \right) \right) &= \left(\tfrac{z}{2}\right)^{-\beta} J_\beta(z)\end{align}
+\left (1-x^2 \right )y'' + ( \beta-\alpha - (\alpha + \beta + 2)x )y' + n(n+\alpha+\beta+1) y = 0
+\epsilon > 0
+[\epsilon,\pi-\epsilon]
+\alpha,\beta
