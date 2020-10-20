@@ -7,7 +7,7 @@
 1. [Setup Project](#start)
 2. [Generate Jars](#jars)
 3. [Test Coverage](#test-coverage)
-4. [Update translation patterns](#howToUpdate)
+4. [Update translations](#howToUpdate)
 5. [Support a new CAS](#newCAS)
 6. [The program structure and important main classes](#program)
 7. [Troubleshooting](#troubleshooting)
