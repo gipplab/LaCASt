@@ -1,0 +1,31 @@
+Overall: [TOTAL: 181, SKIPPED: 157, DEFINITIONS: 0, STARTED_TEST_CASES: 24, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 24, SUCCESS_SYMB: 0, SUCCESS_NUM: 0, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 0, NO_TEST_VALUES: 0, ABORTED: 1, ERROR: 23] for test expression: (#LHS)-(#RHS)
+5257 [http://dlmf.nist.gov/17.2.E3]: Error [[[Error, [a = -3/2, nu = 1/2*3^(1/2)+1/2*I, q = 1/2*3^(1/2)+1/2*I]], [Error, [a = -3/2, nu = 1/2*3^(1/2)+1/2*I, q = -1/2+1/2*I*3^(1/2)]], ...]
+5258 [http://dlmf.nist.gov/17.2.E4]: Error [[[Error, [a = -3/2, q = 1/2*3^(1/2)+1/2*I]], [Error, [a = -3/2, q = -1/2+1/2*I*3^(1/2)]], ...]
+5278 [http://dlmf.nist.gov/17.2.E24]: Error [[[Error, [a = -3/2, q = 1/2*3^(1/2)+1/2*I, n = 1]], [Error, [a = -3/2, q = 1/2*3^(1/2)+1/2*I, n = 2]], ...]
+5278-a [http://dlmf.nist.gov/17.2.E24]: Error [[[Error, [a = -3/2, q = 1/2*3^(1/2)+1/2*I, n = 1]], [Error, [a = -3/2, q = 1/2*3^(1/2)+1/2*I, n = 2]], ...]
+5279 [http://dlmf.nist.gov/17.2.E25]: Error [[[Error, [a = -3/2, b = -3/2, q = 1/2*3^(1/2)+1/2*I, n = 1]], [Error, [a = -3/2, b = -3/2, q = 1/2*3^(1/2)+1/2*I, n = 2]], ...]
+5279-a [http://dlmf.nist.gov/17.2.E25]: Error [[[Error, [a = -3/2, b = -3/2, q = 1/2*3^(1/2)+1/2*I, n = 1]], [Error, [a = -3/2, b = -3/2, q = 1/2*3^(1/2)+1/2*I, n = 2]], ...]
+5282 [http://dlmf.nist.gov/17.2.E28]: Error [[[Error, [m = 1, n = 1]], [Error, [m = 1, n = 2]], ...]
+5282-a [http://dlmf.nist.gov/17.2.E28]: Skip - symbolical successful subtest
+5284 [http://dlmf.nist.gov/17.2.E30]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, m = 1, n = 1]], [Error, [q = 1/2*3^(1/2)+1/2*I, m = 1, n = 2]], ...]
+5287 [http://dlmf.nist.gov/17.2.E33]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, m = 1]], [Error, [q = 1/2*3^(1/2)+1/2*I, m = 2]], ...]
+5288 [http://dlmf.nist.gov/17.2.E34]: Skip - symbolical successful subtest
+5288-a [http://dlmf.nist.gov/17.2.E34]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I]], [Error, [q = -1/2+1/2*I*3^(1/2)]], ...]
+5289 [http://dlmf.nist.gov/17.2.E35]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, n = 1]], [Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, n = 2]], ...]
+5291 [http://dlmf.nist.gov/17.2.E37]: Error [[[Error, [a = -3/2, q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [a = -3/2, q = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...]
+5292 [http://dlmf.nist.gov/17.2.E38]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, m = 1]], [Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, m = 2]], ...]
+5293 [http://dlmf.nist.gov/17.2.E39]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, n = 1]], [Error, [q = 1/2*3^(1/2)+1/2*I, n = 2]], ...]
+5294 [http://dlmf.nist.gov/17.2.E40]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, n = 1]], [Error, [q = 1/2*3^(1/2)+1/2*I, n = 2]], ...]
+5305 [http://dlmf.nist.gov/17.3.E1]: Skip - symbolical successful subtest
+5305-a [http://dlmf.nist.gov/17.3.E1]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, x = 3/2]], [Error, [q = 1/2*3^(1/2)+1/2*I, x = 1/2]], ...]
+5306 [http://dlmf.nist.gov/17.3.E2]: Skip - symbolical successful subtest
+5306-a [http://dlmf.nist.gov/17.3.E2]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, x = 3/2]], [Error, [q = 1/2*3^(1/2)+1/2*I, x = 1/2]], ...]
+5327 [http://dlmf.nist.gov/17.5.E1]: Skip - symbolical successful subtest
+5327-a [http://dlmf.nist.gov/17.5.E1]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2]], [Error, [q = -1/2+1/2*I*3^(1/2), z = 1/2]], ...]
+5330 [http://dlmf.nist.gov/17.5.E4]: Skip - symbolical successful subtest
+5330-a [http://dlmf.nist.gov/17.5.E4]: Error [[[Error, [q = 1/2*3^(1/2)+1/2*I, z = 1/2]], [Error, [q = -1/2+1/2*I*3^(1/2), z = 1/2]], ...]
+5380 [http://dlmf.nist.gov/17.7.E20]: Error [[[Error, [a = -3/2, c = -3/2, p = 1/2*3^(1/2)+1/2*I, q = 1/2*3^(1/2)+1/2*I, n = 1]], [Error, [a = -3/2, c = -3/2, p = 1/2*3^(1/2)+1/2*I, q = 1/2*3^(1/2)+1/2*I, n = 2]], ...]
+5409 [http://dlmf.nist.gov/17.9.E19]: Error [[[Error, [a = -3/2, b = -3/2, c = -3/2, q = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I]], [Error, [a = -3/2, b = -3/2, c = -3/2, q = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)]], ...]
+5424 [http://dlmf.nist.gov/17.12.E3]: Error [[[Error, [a = -3/2, alpha = 3/2, beta = 3/2, q = 1/2*3^(1/2)+1/2*I, alpha[j] = 1/2*3^(1/2)+1/2*I, beta[n] = 1/2*3^(1/2)+1/2*I, n = 1]], [Error, [a = -3/2, alpha = 3/2, beta = 3/2, q = 1/2*3^(1/2)+1/2*I, alpha[j] = 1/2*3^(1/2)+1/2*I, beta[n] = 1/2*3^(1/2)+1/2*I, n = 2]], ...]
+5425 [http://dlmf.nist.gov/17.12.E4]: Skipped - Because timed out
+5429 [https://dlmf.nist.gov/17.12#Ex6]: Error [[[Error, [beta = 3/2, q = 1/2*3^(1/2)+1/2*I, beta[n] = 1/2*3^(1/2)+1/2*I, n = 1]], [Error, [beta = 3/2, q = 1/2*3^(1/2)+1/2*I, beta[n] = 1/2*3^(1/2)+1/2*I, n = 2]], ...]
