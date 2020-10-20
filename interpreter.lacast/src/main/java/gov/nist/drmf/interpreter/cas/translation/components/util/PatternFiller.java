@@ -18,6 +18,8 @@ import java.util.SortedSet;
 public class PatternFiller {
     private static final Logger LOG = LogManager.getLogger(PatternFiller.class.getName());
 
+    private static final boolean DISMISS_SUBSTITUTION_MODE = true;
+
     private final MacroInfoHolder macroInfo;
     private final DerivativeAndPowerHolder derivInfo;
 
@@ -59,19 +61,12 @@ public class PatternFiller {
 
         // Maybe, we need to substitute an argument.
         String subbedExpression = null;
-        if (
-                slotOfDifferentiation >= 1 &&
-                        derivInfo.getDifferentiation() != null &&
-                        derivInfo.isComplexDerivativeVar()
-        ) {
+        if ( triggerSubstitution(!DISMISS_SUBSTITUTION_MODE) ) {
             // substitute out argument in slot of differentiation
             subbedExpression = args[slotOfDifferentiation - 1];
             args[slotOfDifferentiation - 1] = this.tempVariableString;
         } else if ( derivInfo.isComplexDerivativeVar() && macroInfo.isDeriv() ) {
-            if ( args.length == 2 ) {
-                args = new String[]{"1", args[0], args[1]};
-            }
-            derivInfo.setDifferentiation(args[0]);
+            args = updateArgumentsForSubstitution(args);
             subbedExpression = args[2];
             pattern = args[1].replaceAll(
                     "\\Q"+args[2]+"\\E",
@@ -91,16 +86,34 @@ public class PatternFiller {
         LOG.debug("Translated DLMF macro to: " + pattern);
 
         // apply derivative and plug in the subbed out expression to replace temp during execution in CAS
-        if (subbedExpression != null) {
-            pattern = fixSubstitution(config, pattern, subbedExpression);
-        } else if (
-                slotOfDifferentiation >= 1 &&
-                        derivInfo.getDifferentiation() != null &&
-                        !derivInfo.isComplexDerivativeVar() ) {
-            pattern = simpleDerivative(config, pattern, args[slotOfDifferentiation - 1]);
-        }
+        return postPatternProcessing(pattern, subbedExpression, config, args);
+    }
 
-        return pattern;
+    private String postPatternProcessing(
+            String pattern,
+            String subbedExpression,
+            ForwardTranslationProcessConfig config,
+            String[] args
+    ) {
+        if (subbedExpression != null) {
+            return fixSubstitution(config, pattern, subbedExpression);
+        } else if ( triggerSubstitution(DISMISS_SUBSTITUTION_MODE) ) {
+            return simpleDerivative(config, pattern, args[slotOfDifferentiation - 1]);
+        } else return pattern;
+    }
+
+    private boolean triggerSubstitution(boolean dismissComplexArguments) {
+        return slotOfDifferentiation >= 1 &&
+                derivInfo.getDifferentiation() != null &&
+                (dismissComplexArguments != derivInfo.isComplexDerivativeVar());
+    }
+
+    private String[] updateArgumentsForSubstitution(String[] args) {
+        if ( args.length == 2 ) {
+            args = new String[]{"1", args[0], args[1]};
+        }
+        derivInfo.setDifferentiation(args[0]);
+        return args;
     }
 
     private String getTranslationPattern(MacroTranslationInformation translationInformation) {

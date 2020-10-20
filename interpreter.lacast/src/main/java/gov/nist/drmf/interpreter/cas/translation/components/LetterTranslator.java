@@ -84,27 +84,20 @@ public class LetterTranslator extends AbstractListTranslator {
             case command:
                 te = parseCommand(term, constantSet);
                 break;
-            case special_math_letter:
-            case symbol:
+            case special_math_letter: case symbol:
                 te = parseSymbol(term);
                 break;
             case letter:
                 translateLetter(term, constantSet);
                 return localTranslations;
             case operator:
-                getInfoLogger().addGeneralInfo(
-                        exp.getRoot().getTermText(),
-                        "Unable to translate operator (" +
-                                FeatureSetUtility.getPossibleMeaning(term) +
-                                "). Interpret it as a sequence of multiplications instead."
-                );
+                logOperator(term);
             case constant:
                 // a constant in this state is simply not a command
                 // so there is no \ in front of the text.
                 // that's why a constant here is the same like a alphanumeric expression
                 // ==> do nothing and switch to alphanumeric
-            case abbreviation:
-            case alphanumeric:
+            case abbreviation: case alphanumeric:
                 te = parseAlphanumeric(term, constantSet);
                 break;
             default:
@@ -115,6 +108,15 @@ public class LetterTranslator extends AbstractListTranslator {
         }
 
         return te;
+    }
+
+    private void logOperator(MathTerm term) {
+        getInfoLogger().addGeneralInfo(
+                exp.getRoot().getTermText(),
+                "Unable to translate operator (" +
+                        FeatureSetUtility.getPossibleMeaning(term) +
+                        "). Interpret it as a sequence of multiplications instead."
+        );
     }
 
     private void translateLetter(MathTerm term, FeatureSet constantSet) {

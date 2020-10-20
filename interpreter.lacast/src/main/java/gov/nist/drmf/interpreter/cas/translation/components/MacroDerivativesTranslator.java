@@ -198,29 +198,12 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         TranslatedExpression transArgs;
 
         if ( translatedPotentialArguments == null ) {
-            // ok the argument is not following but was leading the deriv
-            TranslatedExpression globalTranslations = getGlobalTranslationList();
-            transArgs = globalTranslations.removeUntilFirstAppearanceOfVar(vars, getConfig().getMULTIPLY());
-            if ( transArgs.getLength() == 0 )
-                throw TranslationException.buildException(
-                    this,
-                    "Unable to identify argument of differentiation (empty argument pre and post \\deriv macro).",
-                    TranslationExceptionReason.INVALID_LATEX_INPUT
-                );
-
-            globalTranslations.removeLastNExps(transArgs.getLength());
-            leadingReplacementMemory = transArgs.getLength();
+            transArgs = parseLeadingDerivativeArgument(vars);
         } else {
             // clean up first
             getGlobalTranslationList().removeLastNExps(translatedPotentialArguments.getLength());
-
             // now, search for the next argument
-            transArgs =
-                    translatedPotentialArguments.removeUntilLastAppearanceOfVar(
-                            vars,
-                            getConfig().getMULTIPLY()
-                    );
-
+            transArgs = translatedPotentialArguments.removeUntilLastAppearanceOfVar( vars, getConfig().getMULTIPLY() );
             translatedInAdvance = translatedPotentialArguments;
         }
 
@@ -228,6 +211,27 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         args.add(transArgs.toString());
         args.add(vars.getFirst());
         return args;
+    }
+
+    /**
+     * Loads the argument from the previously translated expression list.
+     * @param vars the variables of differentiation
+     * @return the translated expression
+     */
+    private TranslatedExpression parseLeadingDerivativeArgument(LinkedList<String> vars) {
+        // ok the argument is not following but was leading the deriv
+        TranslatedExpression globalTranslations = getGlobalTranslationList();
+        TranslatedExpression transArgs = globalTranslations.removeUntilFirstAppearanceOfVar(vars, getConfig().getMULTIPLY());
+        if ( transArgs.getLength() == 0 )
+            throw TranslationException.buildException(
+                    this,
+                    "Unable to identify argument of differentiation (empty argument pre and post \\deriv macro).",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT
+            );
+
+        globalTranslations.removeLastNExps(transArgs.getLength());
+        leadingReplacementMemory = transArgs.getLength();
+        return transArgs;
     }
 
     private TranslatedExpression getArgumentsBasedOnDiffVar(
