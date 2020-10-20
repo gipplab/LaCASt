@@ -276,17 +276,11 @@ public class Case {
 
         MatchablePomTaggedExpression matchPOML = new MatchablePomTaggedExpression(mlp, TeXPreProcessor.resetNumberOfAtsToOne(sb.toString()), "VAR\\d+");
         PomMatcher matcherL = matchPOML.matcher(ppteLHS);
-        if ( counter == 0 && !isSemantic ) {
-            PrintablePomTaggedExpression left = matcherL.replacePattern("("+def.getDefinition()+")");
-            this.LHS = left.getTexString();
-        }
+        updateLR(counter, isSemantic, matcherL, def, true);
 
         MatchablePomTaggedExpression matchPOMR = new MatchablePomTaggedExpression(mlp, TeXPreProcessor.resetNumberOfAtsToOne(sb.toString()), "VAR\\d+");
         PomMatcher matcherR = matchPOMR.matcher(ppteRHS);
-        if ( counter == 0 && !isSemantic ) {
-            PrintablePomTaggedExpression right = matcherR.replacePattern("("+def.getDefinition()+")");
-            this.RHS = right.getTexString();
-        }
+        updateLR(counter, isSemantic, matcherL, def, false);
 
         if ( counter > 0 ) {
             LOG.trace("Auto definition replacement of semantic macros is suppressed. Macro " + symbol + " will not be replaced.");
@@ -295,6 +289,14 @@ public class Case {
         } else if ( def.getMetaData() != null ) {
             // if there was no NVar, simply add all constraints
             this.metaData.addConstraints(def.getMetaData().getConstraints());
+        }
+    }
+
+    private void updateLR(int counter, boolean isSemantic, PomMatcher matcher, SymbolTag def, boolean left) throws ParseException {
+        if ( counter == 0 && !isSemantic ) {
+            PrintablePomTaggedExpression p = matcher.replacePattern("("+def.getDefinition()+")");
+            if ( left ) this.LHS = p.getTexString();
+            else this.RHS = p.getTexString();
         }
     }
 
