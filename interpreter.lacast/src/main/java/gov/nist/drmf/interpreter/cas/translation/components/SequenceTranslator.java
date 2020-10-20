@@ -312,17 +312,19 @@ public class SequenceTranslator extends AbstractListTranslator {
             String tmp = global.getLastExpression();
             global.replaceLastExpression(tmp + MULTIPLY);
         } else if (addSpace(specTreatExp, exp_list)) {
-            if ( !part.matches(".*\\s+$") )
-                part += SPACE;
+            part = addSimpleSpace(part);
 
             // the global list already got each element before,
             // so simply replace the last if necessary
-            String tmp = global.getLastExpression();
-            if ( !tmp.matches(".*\\s+$") )
-                tmp += SPACE;
-
+            String tmp = addSimpleSpace(global.getLastExpression());
             global.replaceLastExpression(tmp);
         }
+        return part;
+    }
+
+    private String addSimpleSpace(String part) {
+        if ( !part.matches(".*\\s+$") )
+            part += SPACE;
         return part;
     }
 
@@ -354,27 +356,37 @@ public class SequenceTranslator extends AbstractListTranslator {
      * @param exp_list the following expressions
      * @return true if the current expressions needs an white space symbol behind its translation
      */
-    private boolean addSpace(PomTaggedExpression currExp, List<PomTaggedExpression> exp_list) {
+    private boolean addSpace(PomTaggedExpression currExp, List<PomTaggedExpression> expList) {
         try {
-            if (exp_list == null || exp_list.size() < 1) {
-                return false;
-            }
-
-            if ( isOpSymbol(currExp) || isOpSymbol(exp_list.get(0)) )
-                return true;
+            Boolean tmp = addSpaceSizeOperatorCheck(currExp, expList);
+            if ( tmp != null ) return tmp;
 
             MathTerm curr = currExp.getRoot();
-            MathTerm next = exp_list.get(0).getRoot();
-
-            if (FeatureSetUtility.isConsideredAsRelation(curr) || FeatureSetUtility.isConsideredAsRelation(next))
-                return true;
-
-            return !(curr.getTag().matches(MathTermTags.PARENTHESIS_PATTERN)
-                    || next.getTag().matches(MathTermTags.PARENTHESIS_PATTERN)
-                    || next.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)
-            );
+            MathTerm next = expList.get(0).getRoot();
+            return addSpaceParenthesisCheck(curr, next);
         } catch (Exception e) {
             return false;
         }
+    }
+
+    private Boolean addSpaceSizeOperatorCheck(PomTaggedExpression currExp, List<PomTaggedExpression> expList) {
+        if (expList == null || expList.size() < 1) {
+            return false;
+        }
+
+        if ( isOpSymbol(currExp) || isOpSymbol(expList.get(0)) )
+            return true;
+
+        return null;
+    }
+
+    private boolean addSpaceParenthesisCheck(MathTerm curr, MathTerm next) {
+        if (FeatureSetUtility.isConsideredAsRelation(curr) || FeatureSetUtility.isConsideredAsRelation(next))
+            return true;
+
+        return !(curr.getTag().matches(MathTermTags.PARENTHESIS_PATTERN)
+                || next.getTag().matches(MathTermTags.PARENTHESIS_PATTERN)
+                || next.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)
+        );
     }
 }
