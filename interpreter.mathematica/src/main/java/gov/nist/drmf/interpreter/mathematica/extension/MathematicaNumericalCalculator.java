@@ -178,32 +178,11 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
     ) throws ComputerAlgebraSystemEngineException, IllegalArgumentException {
         if ( wasAborted != null ) return null;
 
-        try {
-            LOG.info("Setup variables for numerical test case.");
-            LOG.trace(sb.toString());
-            mathematicaInterface.evaluate(sb.toString());
-            String appliedConst = mathematicaInterface.evaluate(cons);
-            LOG.debug("Applying constraints: " + appliedConst);
-            sb = new StringBuilder();
-        } catch (MathLinkException e) {
-            LOG.warn("Unable to setup variables for numerical test cases", e);
-        }
+        enterSetup();
+        sb = new StringBuilder();
 
         // create test cases first
-        String testCasesCmd = Commands.CREATE_TEST_CASES.build(
-                varName, generateValuesVarName(varName),
-                eVars, generateValuesVarName(eVars),
-                exVars, generateValuesVarName(exVars)
-        );
-
-        if ( constraintsName != null ) {
-            // filter cases based on constraints
-            testCasesCmd = Commands.FILTER_TEST_CASES.build(
-                    constraintsName,
-                    testCasesCmd,
-                    Integer.toString(maxCombis)
-            );
-        }
+        String testCasesCmd = buildTestCasesString(constraintsName, maxCombis);
         addVarDefinitionNL(sb, testCasesVar, testCasesCmd);
 
         // check if number of test cases is below definition
@@ -222,6 +201,38 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
         }
         testCases = mathematicaInterface.checkIfEvaluationIsInRange(res, -1, maxCombis+1);
         return testCasesVar;
+    }
+
+    private void enterSetup() {
+        try {
+            LOG.info("Setup variables for numerical test case.");
+            LOG.trace(sb.toString());
+            mathematicaInterface.evaluate(sb.toString());
+            String appliedConst = mathematicaInterface.evaluate(cons);
+            LOG.debug("Applying constraints: " + appliedConst);
+        } catch (MathLinkException e) {
+            LOG.warn("Unable to setup variables for numerical test cases", e);
+        }
+    }
+
+    private String buildTestCasesString(String constraintsName, int maxCombis) {
+        // create test cases first
+        String testCasesCmd = Commands.CREATE_TEST_CASES.build(
+                varName, generateValuesVarName(varName),
+                eVars, generateValuesVarName(eVars),
+                exVars, generateValuesVarName(exVars)
+        );
+
+        if ( constraintsName != null ) {
+            // filter cases based on constraints
+            testCasesCmd = Commands.FILTER_TEST_CASES.build(
+                    constraintsName,
+                    testCasesCmd,
+                    Integer.toString(maxCombis)
+            );
+        }
+
+        return testCasesCmd;
     }
 
     @Override

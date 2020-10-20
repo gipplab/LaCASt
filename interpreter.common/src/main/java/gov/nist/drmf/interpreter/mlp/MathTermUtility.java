@@ -88,6 +88,11 @@ public abstract class MathTermUtility {
         return tag.equals(t);
     }
 
+    public static boolean isAt(MathTerm term) {
+        if ( term == null || term.getTermText().isBlank() ) return false;
+        return "@".equals(term.getTermText());
+    }
+
     public static boolean isSumOrProductOrLimit(MathTerm term) {
         return LimitedExpressions.isLimitedExpression(term);
     }

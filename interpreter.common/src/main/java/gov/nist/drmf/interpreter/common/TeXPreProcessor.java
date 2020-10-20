@@ -70,11 +70,16 @@ public class TeXPreProcessor {
         int openCounter = 1;
         for ( int i = 1; i < in.length(); i++ ) {
             if ( openCounter <= 0 ) return false;
-            Character c = in.charAt(i);
-            if ( c.equals('{') ) openCounter++;
-            else if ( c.equals('}') ) openCounter--;
+            openCounter = updateCounter(in, i, openCounter);
         }
         return openCounter == 0;
+    }
+
+    private static int updateCounter(String in, int i, int openCounter) {
+        Character c = in.charAt(i);
+        if ( c.equals('{') ) openCounter++;
+        else if ( c.equals('}') ) openCounter--;
+        return openCounter;
     }
 
     public static String resetNumberOfAtsToOne(String in) {
