@@ -26,6 +26,9 @@ public final class GlobalPaths {
     public static final Path PATH_REFERENCE_DATA =
             PATH_LIBS.resolve("ReferenceData");
 
+    public static final Path PATH_SUPPORTED_CAS_CONFIG =
+            PATH_CONFIGS.resolve("support.yaml");
+
     public static final Path PATH_MAPLE_CONFIG =
             PATH_CONFIGS.resolve("maple_config.properties");
 

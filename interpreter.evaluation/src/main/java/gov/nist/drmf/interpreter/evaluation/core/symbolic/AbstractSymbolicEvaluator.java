@@ -22,7 +22,7 @@ public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> 
     private static final Logger LOG = LogManager.getLogger(AbstractSymbolicEvaluator.class.getName());
 
     public static final Pattern SYMBOLIC_LINE_PATTERN = Pattern.compile(
-            "^(\\d+-?[a-z]?)(?: \\[.*])?: ([A-Za-z]*) .*$"
+            "^(\\d+-?[a-z]?)(?: \\[.*])?: ([A-Za-z\\s]*).*$"
     );
 
     private ICASEngineSymbolicEvaluator<T> symbolicEvaluator;
@@ -50,9 +50,9 @@ public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> 
     }
 
     public T simplify( String command, String assumption ) throws ComputerAlgebraSystemEngineException {
-        Thread abortThread = getAbortionThread(symbolicEvaluator);
-        abortThread.start();
-        LOG.info("Started abortion thread.");
+//        Thread abortThread = getAbortionThread(symbolicEvaluator);
+//        abortThread.start();
+//        LOG.info("Started abortion thread.");
 
         T result = null;
         if ( assumption == null || assumption.isEmpty() )
@@ -61,7 +61,7 @@ public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> 
             result = symbolicEvaluator.simplify(command, assumption, getRequiredPackages());
 
         // waits for an answer, once the answer is received, we finished the process
-        abortThread.interrupt();
+//        abortThread.interrupt();
 
         return result;
     }
@@ -74,8 +74,16 @@ public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> 
         return this.symbolicTestCases;
     }
 
-    public boolean validOutCome(T in, String expect) {
+    public boolean validOutCome(T in, double expect) {
         return symbolicEvaluator.isAsExpected(in, expect);
+    }
+
+    public boolean isConditionallyValid(T in, double expected) {
+        return symbolicEvaluator.isConditionallyExpected(in, expected);
+    }
+
+    public String getCondition(T in) {
+        return symbolicEvaluator.getCondition(in);
     }
 
     @Override

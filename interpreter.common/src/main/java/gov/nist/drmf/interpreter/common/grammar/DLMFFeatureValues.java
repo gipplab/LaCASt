@@ -39,6 +39,9 @@ public enum DLMFFeatureValues implements IFeatureExtractor {
     DLMF_LINK("http://",
             (t, c) -> t.getFeature(Keys.KEY_DLMF + Keys.KEY_LINK_SUFFIX)
     ),
+    NUMBER_OF_OPTIONAL_PARAMETERS(
+            (t, c) -> t.getFeature(Keys.NUM_OF_OPT_PARAMS)
+    ),
     NUMBER_OF_PARAMETERS(
             (t, c) -> t.getFeature(Keys.NUM_OF_PARAMS)
     ),

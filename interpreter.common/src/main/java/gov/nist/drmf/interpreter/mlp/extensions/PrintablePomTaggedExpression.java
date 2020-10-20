@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
+import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import mlp.MathTerm;
@@ -53,7 +55,11 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
             super.addNamedFeature(k, pte.getFeatureValue(k));
 
         // the fun part, every node has it's own caption
-        expr = expr.trim();
+        if ( pte.getParent() == null && TeXPreProcessor.wrappedInCurlyBrackets(expr) )
+            expr = TeXPreProcessor.trimCurlyBrackets(expr);
+        else expr = expr.trim();
+//        if ( !pte.getComponents().isEmpty() && pte.getParent() != null )
+//            expr = "{" + expr + "}";
         this.caption = expr;
 
         // now we have to add the components and their respective substrings...
@@ -85,12 +91,13 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
                 idxEnd += thisMatch.length();
             }
 
+            // check before the wrapping { ... } if the brackets are correct now, or if we missed something
+            idxEnd = checkIndexForClosingBrackets(idxStart, idxEnd, expr);
+
             if (isStartingIndexOpenBracket(idxStart, expr) && isEndingIndexCloseBracket(idxEnd, expr)){
                 idxStart--;
                 idxEnd++;
             }
-
-            idxEnd = checkIndexForClosingBrackets(idxStart, idxEnd, expr);
 
             innerExpression = expr.substring(idxStart, idxEnd);
             expr = expr.substring(idxEnd);
@@ -226,7 +233,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
 
     @Override
     public boolean match(PrintablePomTaggedExpression expression) {
-        MatchablePomTaggedExpression m = new MatchablePomTaggedExpression(this, "");
+        MatchablePomTaggedExpression m = PomMatcherBuilder.compile(this, "");
         return m.match(expression);
     }
 
@@ -376,6 +383,12 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
     @SuppressWarnings("unchecked")
     public List<PrintablePomTaggedExpression> getPrintableComponents() {
         return (List<PrintablePomTaggedExpression>)(List<?>) super.getComponents();
+    }
+
+    void makeBalancedTexString() {
+        if ( caption.matches("^\\s*\\{.*}\\s*$") ) return;
+        caption = "{" + caption + "}";
+        populatingStringChanges();
     }
 
     /**

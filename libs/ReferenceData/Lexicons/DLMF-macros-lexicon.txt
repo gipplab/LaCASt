@@ -66,6 +66,7 @@ Symbol: \Acot
 	DLMF: \Acot@@{z}
 	DLMF-Link: dlmf.nist.gov/4.23#E6
 	Mathematica: ArcCot[$0]
+	Mathematica-Alternatives: Integrate[Divide[1, 1+t^2], {t, 0, Divide[1,$0]}]
 	Mathematica-Link: reference.wolfram.com/language/ref/ArcCot.html
 	Meanings: Multivalued inverse cotangent
 	Number of Ats: 2
@@ -660,6 +661,7 @@ Symbol: \CarlsonellintRC
   Feature Set: dlmf-macro
 	DLMF: \CarlsonellintRC@@{x}{y}
 	DLMF-Link: dlmf.nist.gov/19.2#E17
+	Mathematica-Alternatives: 1/Sqrt[$1]*Hypergeometric2F1[1/2,1/2,3/2,1-($0)/($1)]
 	Meanings: Carlson elliptic integral
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -670,7 +672,7 @@ Symbol: \CarlsonsymellintRD
   Feature Set: dlmf-macro
 	DLMF: \CarlsonsymellintRD@@{x}{y}{z}
 	DLMF-Link: dlmf.nist.gov/19.16#E5
-	Mathematica-Alternatives: 3*($2-$0)/($2-$1)*(EllipticF[($2-$3)/($2-$0),ArcCos[Sqrt[$0/$2]]]-EllipticE[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)])/($2-$0)^(3/2)
+	Mathematica-Alternatives: 3*(EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]-EllipticE[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)])/(($2-$1)*($2-$0)^(1/2))
 	Meanings: Symmetric in only two variables
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -846,6 +848,7 @@ Symbol: \ClebschGordan
   Feature Set: dlmf-macro
 	DLMF: \ClebschGordan{j_1}{m_1}{j_2}{m_2}{j_3}{-m_3}
 	DLMF-Link: dlmf.nist.gov/34.1#p4
+	Mathematica: ClebschGordan[{$0, $1}, {$2, $3}, {$4, $5}]
 	Meanings: Clebsch-Gordan coefficient
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -1394,6 +1397,7 @@ Symbol: \HankelmodM
   Feature Set: dlmf-macro
 	DLMF: \HankelmodM{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.18#E1
+	Mathematica-Alternatives: Sqrt[KelvinBer[$0, $1]^2 + KelvinBei[$0, $1]^2]
 	Meanings: Modulus Bessel function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1405,6 +1409,7 @@ Symbol: \HankelmodderivN
   Feature Set: dlmf-macro
 	DLMF: \HankelmodderivN{\nu}@{x}
 	DLMF-Link: dlmf.nist.gov/10.18#E2
+	Mathematica-Alternatives: Sqrt[KelvinKer[$0, $1]^2 + KelvinKei[$0, $1]^2]
 	Meanings: Modulus derivative Bessel function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -1658,6 +1663,7 @@ Symbol: \Jacobiamk
 	DLMF-Link: dlmf.nist.gov/22.16#E1
 	Maple: JacobiAM($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=JacobiAM
+	Mathematica: JacobiAmplitude[$0, Power[$1, 2]]
 	Meanings: Jacobi's amplitude function
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -1877,6 +1883,8 @@ Symbol: \Jacobisym
   Feature Set: dlmf-macro
 	DLMF: \Jacobisym{n}{P}
 	DLMF-Link: dlmf.nist.gov/27.9#p3
+	Maple: JacobiSymbol($0, $1)
+	Maple-Package: NumberTheory,JacobiSymbol
 	Meanings: Jacobi symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -1913,7 +1921,7 @@ Symbol: \Jacobithetatau
 	DLMF: \Jacobithetatau{j}@{z}{\tau}
 	DLMF-Link: dlmf.nist.gov/20.2#i
 	Maple-Alternatives: JacobiTheta$0($1,exp(I*Pi*$2))
-	Mathematica: EllipticTheta[$0, $1, $2]
+	Mathematica: EllipticTheta[$0, $1, Exp[I*Pi*($2)]]
 	Meanings: Jacobi's theta-tau function
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2038,8 +2046,9 @@ Symbol: \Kroneckerdelta
   Feature Set: dlmf-macro
 	DLMF: \Kroneckerdelta{j}{k}
 	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p1.t1.r4
-	Maple-Alternatives: KroneckerDelta[$0, $1]
+	Maple: KroneckerDelta[$0, $1]
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/KroneckerDelta
+	Maple-Package: Physics,KroneckerDelta
 	Mathematica: KroneckerDelta[$0, $1]
 	Meanings: Kronecker delta
 	Number of Ats: 0
@@ -2115,6 +2124,7 @@ Symbol: \LaguerrepolyL
   Feature Set: dlmf-alternative-1
 	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Mathematica: LaguerreL[$1, $0, $2]
 	Meanings: Laguerre polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -2346,8 +2356,8 @@ Symbol: \Legendresym
   Feature Set: dlmf-macro
 	DLMF: \Legendresym{n}{p}
 	DLMF-Link: dlmf.nist.gov/27.9
-	Maple-Alternatives: legendre($0, $1)
-	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory%2Flegendre%28deprecated%29
+	Maple: LegendreSymbol($0, $1)
+	Maple-Package: NumberTheory,LegendreSymbol
 	Meanings: Legendre symbol
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -2374,6 +2384,7 @@ Symbol: \LeviCivitasym
 	DLMF-Link: dlmf.nist.gov/1.6#E14
 	Maple-Alternatives: LeviCivita[$0, $1, $2]
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=Physics/LeviCivita
+	Maple-Package: Physics,LeviCivita
 	Mathematica-Alternatives: Part[LeviCivitaTensor[3,List], $0, $1, $2]
 	Meanings: Levi-Civita symbol
 	Number of Ats: 0
@@ -2420,6 +2431,8 @@ Symbol: \Ln
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: ln($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#log
 
 Symbol: \LommelS
 
@@ -2708,8 +2721,9 @@ Symbol: \NeumannFactor
   Feature Set: dlmf-macro
 	DLMF: \NeumannFactor{n}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:NeumannFactor
-	Maple-Alternatives: 2-KroneckerDelta[$0, 0]
+	Maple: 2-KroneckerDelta[$0, 0]
 	Maple-Link: not defined
+	Maple-Package: Physics,KroneckerDelta
 	Meanings: Neumann factor
 	Number of Ats: 0
 	Number of Parameters: 0
@@ -2782,7 +2796,7 @@ Symbol: \Prod
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:Prod
 	Maple: product($3, $0 = $1 .. $2)
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=product
-	Mathematica: Product[$3, {$0, $1, $2}]
+	Mathematica: Product[$3, {$0, $1, $2}, GenerateConditions->None]
 	Meanings: Product
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -2867,7 +2881,7 @@ Symbol: \Re
 	Mathematica: Re[$0]
 	Mathematica-Link: reference.wolfram.com/language/ref/Re.html
 	Meanings: Real part of a complex number
-	Number of Ats: 0all
+	Number of Ats: 0
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
@@ -3067,7 +3081,7 @@ Symbol: \Sum
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:Sum
 	Maple: sum($3, $0 = $1 .. $2)
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=sum
-	Mathematica: Sum[$3, {$0, $1, $2}]
+	Mathematica: Sum[$3, {$0, $1, $2}, GenerateConditions->None]
 	Meanings: Sum
 	Number of Ats: 1
 	Number of Parameters: 3
@@ -3301,6 +3315,7 @@ Symbol: \Wignersixjsym
   Feature Set: dlmf-macro
 	DLMF: \Wignersixjsym@@{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l_{3}}
 	DLMF-Link: dlmf.nist.gov/34.4#E1
+	Mathematica: SixJSymbol[{$0, $1, $2}, {$3, $4, $5}]
 	Meanings: 6j symbol
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -3311,6 +3326,7 @@ Symbol: \Wignerthreejsym
   Feature Set: dlmf-macro
 	DLMF: \Wignerthreejsym@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3}
 	DLMF-Link: dlmf.nist.gov/34.2#E4
+	Mathematica: ThreeJSymbol[{$0, $3}, {$1, $4}, {$3, $5}]
 	Meanings: 3j symbol
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -3580,6 +3596,8 @@ Symbol: \acos
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: acos($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#acos
 
 Symbol: \acosh
 
@@ -3598,6 +3616,8 @@ Symbol: \acosh
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: acosh($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#acosh
 
 Symbol: \acot
 
@@ -3618,6 +3638,9 @@ Symbol: \acot
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: acot($0)
+	SymPy-Branch Cuts: (- I infinity, - I ), ( I, I infinity )
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#acot
 
 Symbol: \acoth
 
@@ -3636,6 +3659,8 @@ Symbol: \acoth
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: acoth($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#acoth
 
 Symbol: \acsc
 
@@ -3654,6 +3679,8 @@ Symbol: \acsc
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: acsc($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#acsc
 
 Symbol: \acsch
 
@@ -3672,6 +3699,8 @@ Symbol: \acsch
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: acsch($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#acsch
 
 Symbol: \asec
 
@@ -3690,6 +3719,8 @@ Symbol: \asec
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: asec($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#asec
 
 Symbol: \asech
 
@@ -3708,6 +3739,8 @@ Symbol: \asech
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: asech($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#asech
 
 Symbol: \asin
 
@@ -3726,6 +3759,8 @@ Symbol: \asin
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: asin($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#asin
 
 Symbol: \asinh
 
@@ -3744,6 +3779,8 @@ Symbol: \asinh
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: asinh($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#asinh
 
 Symbol: \assJacobipolyP
 
@@ -3872,6 +3909,8 @@ Symbol: \atan
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: atan($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#atan
 
 Symbol: \atanh
 
@@ -3890,6 +3929,8 @@ Symbol: \atanh
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: atanh($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#atanh
 
 Symbol: \auxFresnelf
 
@@ -4264,6 +4305,8 @@ Symbol: \cos
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: cos($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#cos
 
 Symbol: \cosh
 
@@ -4280,6 +4323,8 @@ Symbol: \cosh
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: cosh($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#cosh
 
 Symbol: \coshint
 
@@ -4341,6 +4386,8 @@ Symbol: \cot
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: cot($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#cot
 
 Symbol: \coth
 
@@ -4358,6 +4405,8 @@ Symbol: \coth
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: coth($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#coth
 
 Symbol: \cpi
 
@@ -4386,6 +4435,8 @@ Symbol: \csc
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: csc($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#csc
 
 Symbol: \csch
 
@@ -4403,6 +4454,8 @@ Symbol: \csch
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: csch($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#csch
 
 Symbol: \ctsHahn
 
@@ -4837,6 +4890,8 @@ Symbol: \exp
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: exp($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#exp
 
 Symbol: \expe
 
@@ -4859,7 +4914,7 @@ Symbol: \expintE
 	Maple: Ei($0)
 	Maple-Alternatives: Ei($0)+ln($0)+gamma
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=Ei
-	Mathematica-Alternatives: -ExpIntegralEi[-($0)]
+	Mathematica-Alternatives: ExpIntegralE[1, $0]
 	Meanings: Exponential integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4874,7 +4929,7 @@ Symbol: \expintEi
 	Constraints: z != 0
 	DLMF: \expintEi@{x}
 	DLMF-Link: dlmf.nist.gov/6.2#E1
-	Mathematica-Alternatives: -ExpIntegralEi[-($0)]
+	Mathematica-Alternatives: ExpIntegralEi[$0]
 	Meanings: Exponential integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4887,7 +4942,7 @@ Symbol: \expintEin
   Feature Set: dlmf-macro
 	DLMF: \expintEin@{z}
 	DLMF-Link: dlmf.nist.gov/6.2#E3
-	Mathematica-Alternatives: -ExpIntegralEi[-($0)] + Ln[$0] + EulerGamma
+	Mathematica-Alternatives: ExpIntegralE[1, $0] + Ln[$0] + EulerGamma
 	Meanings: Complementary exponential integral
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -5124,6 +5179,8 @@ Symbol: \genlog
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: log($1, $0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#log
 
 Symbol: \genshiftcosint
 
@@ -5598,6 +5655,8 @@ Symbol: \ln
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: ln($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#log
 
 Symbol: \log
 
@@ -5616,6 +5675,8 @@ Symbol: \log
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: log($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#log
 
 Symbol: \logint
 
@@ -5867,12 +5928,12 @@ Symbol: \modsphBesselK
 Symbol: \modsphBesseli
 
   Feature Set: dlmf-macro
-	DLMF: \modsphBesseli{2}{n}@{z}
-	DLMF-Link: dlmf.nist.gov/10.47#E8
-	Mathematica: Sqrt[1/2 Pi /$2] BesselI[(-1)^($0-1)*$1 + 1/2, $1]
+	DLMF: \modsphBesseli{1}{n}@{z}
+	DLMF-Link: dlmf.nist.gov/10.47#E7
+	Mathematica: Sqrt[Divide[Pi, $2]/2] BesselI[(-1)^($0-1)*($1 + 1/2), $1]
 	Meanings: Modified spherical Bessel function of the first kind
 	Number of Ats: 1
-	Number of Parameters: 1
+	Number of Parameters: 2
 	Number of Variables: 1
 	Slot of Differentiation: 1
 
@@ -6876,6 +6937,8 @@ Symbol: \paraV
 	DLMF-Link: dlmf.nist.gov/12.4#E2
 	Maple: CylinderV($0, $1)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=CylinderV
+	Mathematica-Alternatives: Divide[GAMMA[1/2 + $0], Pi]*(Sin[Pi*($0)] * ParabolicCylinderD[-($0) - 1/2, $1] + ParabolicCylinderD[-($0) - 1/2, -($1)])
+	Mathematica-Link: reference.wolfram.com/language/ref/Divide.html
 	Meanings: Parabolic cylinder function V
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -6887,6 +6950,7 @@ Symbol: \paraW
   Feature Set: dlmf-macro
 	DLMF: \paraW@{a}{x}
 	DLMF-Link: dlmf.nist.gov/12.14.i
+	Mathematica-Alternatives: Sqrt[(Sqrt[1+Exp[2*Pi*($0)]]-Exp[Pi*($0)])/2] * Exp[Divide[Pi*($0),4]] * ( Exp[I*(Pi/8 + Arg[GAMMA[1/2 + I*($0)]]/2)] * ParabolicCylinderD[- 1/2 - I*($0), $1 * Exp[-Divide[Pi*I,4]]] + Exp[-I*(Pi/8 + Arg[GAMMA[1/2 + I*($0)]]/2)] * ParabolicCylinderD[- 1/2 + I*($0), $1 * Exp[Divide[Pi*I,4]]] )
 	Meanings: Parabolic cylinder function W
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -6968,9 +7032,9 @@ Symbol: \pgcd
   Feature Set: dlmf-macro
 	DLMF: \pgcd{m,n}
 	DLMF-Link: dlmf.nist.gov/27.1#p2.t1.r3
-	Maple: gcd($0, $1)
+	Maple: gcd($0)
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=gcd
-	Mathematica: GCD[$0, $1]
+	Mathematica: GCD[$0]
 	Mathematica-Link: reference.wolfram.com/language/ref/GCD.html
 	Meanings: Greatest common divisor
 	Number of Ats: 0
@@ -7768,6 +7832,8 @@ Symbol: \sec
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: sec($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#sec
 
 Symbol: \sech
 
@@ -7784,6 +7850,8 @@ Symbol: \sech
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: sech($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#sech
 
 Symbol: \setminus
 
@@ -7923,6 +7991,8 @@ Symbol: \sin
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: sin($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#sin
 
 Symbol: \sinh
 
@@ -7939,6 +8009,8 @@ Symbol: \sinh
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: sinh($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#sinh
 
 Symbol: \sinhint
 
@@ -8000,12 +8072,12 @@ Symbol: \sphBesselY
 Symbol: \sphHankelh
 
   Feature Set: dlmf-macro
-	DLMF: \sphHankelh{2}{n}@{z}
-	DLMF-Link: dlmf.nist.gov/10.47#E6
-	Mathematica: SphericalHankelH1[$0, $1]
+	DLMF: \sphHankelh{1}{n}@{z}
+	DLMF-Link: dlmf.nist.gov/10.47#E5
+	Mathematica: SphericalHankelH$0[$1, $2]
 	Meanings: Spherical Bessel function of the third kind
 	Number of Ats: 1
-	Number of Parameters: 1
+	Number of Parameters: 2
 	Number of Variables: 1
 	Slot of Differentiation: 1
 
@@ -8165,6 +8237,8 @@ Symbol: \tan
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: tan($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#tan
 
 Symbol: \tanh
 
@@ -8182,6 +8256,8 @@ Symbol: \tanh
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+	SymPy: tanh($0)
+	SymPy-Link: docs.sympy.org/latest/modules/functions/elementary.html#tanh
 
 Symbol: \tderiv
 

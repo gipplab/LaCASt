@@ -19,3 +19,4 @@ target/
 
 # Working with logging files now. We should ignore these.
 logs/
+hs*.log

@@ -14,6 +14,7 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Andre Greiner-Petter
@@ -88,9 +89,9 @@ public class CSVToLexiconConverterTests {
     public void analyzeInputAllTest() {
         LinkedList<String> args = new LinkedList<>();
         CSVtoLexiconConverter.analyzeInput(args, "--all");
-        assertEquals( 2, args.size() );
-        assertEquals( "CAS_Maple.csv", args.getFirst() );
-        assertEquals( "CAS_Mathematica.csv", args.getLast() );
+        assertTrue( args.size() >= 2 );
+        assertTrue( args.contains("CAS_Maple.csv") );
+        assertTrue( args.contains("CAS_Mathematica.csv") );
     }
 
     @Test

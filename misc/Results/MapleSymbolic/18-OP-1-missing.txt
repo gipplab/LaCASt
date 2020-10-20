@@ -1,0 +1,11 @@
+\LaguerrepolyL, 33
+\dilHermitepolyHe, 21
+\ChebyshevpolyW, 5
+\ChebyshevpolyV, 3
+\zAirya, 2
+\pvint, 2
+\shiftChebyshevpolyU, 1
+\shiftChebyshevpolyT, 1
+\max, 1
+\dilChebyshevpolyS, 1
+\dilChebyshevpolyC, 1

@@ -1,0 +1,13 @@
+\intinnerprod, 27
+\Fouriertransdist, 10
+\Laplacetrans, 6
+\Diracdeltaseq, 6
+\Mellintrans, 4
+\Schwarzian, 3
+\Hilberttrans, 2
+\Stieltjestrans, 2
+\Fouriertrans, 1
+\Fouriersintrans, 1
+\regCoulombs, 1
+\sphBesselJ, 1
+\Fouriercostrans, 1

@@ -1,0 +1,5 @@
+\EulernumberE, 5
+\genBernoullipolyB, 5
+\det, 2
+\perEulerE, 2
+\genEulerpolyE, 2

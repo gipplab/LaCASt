@@ -7,8 +7,10 @@ import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.evaluation.common.Status;
 import gov.nist.drmf.interpreter.evaluation.core.symbolic.AbstractSymbolicEvaluator;
+import gov.nist.drmf.interpreter.maple.extension.NumericCalculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.intellij.lang.annotations.Language;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -35,6 +37,10 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
         this.numericalEvaluator = numericalEvaluator;
     }
 
+    public void setGlobalAssumptions(List<String> globalAssumptions) {
+        numericalEvaluator.setGlobalAssumptions(globalAssumptions);
+    }
+
     public void setUpScripts(String... scripts) throws ComputerAlgebraSystemEngineException {
         this.scripts = scripts;
         reloadScripts();
@@ -53,7 +59,8 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
 
         // store variables first
         numericalEvaluator.storeVariables(
-                test.getTestExpression(), test.getTestValues()
+                test.getVariables(),
+                test.getTestValues()
         );
 
         // next, store constraint variables extracted from blueprints
@@ -78,42 +85,46 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
                 test.getMaxCombis()
         );
 
-        Thread abortThread = null;
-        if ( !test.skipClassicAbortion() ) {
-            abortThread = getAbortionThread(numericalEvaluator, DEFAULT_TIMEOUT_MS*2);
-            abortThread.start();
+//        Thread abortThread = null;
+//        if ( !test.skipClassicAbortion() ) {
+//            abortThread = getAbortionThread(numericalEvaluator, getTimeoutSeconds()*2);
+//            abortThread.start();
+//        }
+
+        if ( numericalEvaluator instanceof NumericCalculator ) {
+            ((NumericCalculator)numericalEvaluator).addRequiredPackages(super.getRequiredPackages());
         }
 
         // perform the test
-        T res = numericalEvaluator.performNumericalTests(
+        return numericalEvaluator.performNumericalTests(
                 test.getTestExpression(),
                 testValuesN,
                 test.getPostProcessingMethodName(),
                 test.getPrecision()
         );
 
-        if ( abortThread != null ) abortThread.interrupt();
-        return res;
+//        if ( abortThread != null ) abortThread.interrupt();
+//        return res;
     }
 
     public boolean isAbortedResult(T result) {
         return numericalEvaluator.wasAborted(result);
     }
 
-    @Override
-    public String getOverviewString() {
-        return Status.buildNumericalString();
-    }
+//    @Override
+//    public String getOverviewString() {
+//        return Status.buildNumericalString();
+//    }
 
     public ICASEngineNumericalEvaluator.ResultType testResult(T results) throws ComputerAlgebraSystemEngineException {
         return numericalEvaluator.getStatusOfResult(results);
     }
 
-    public ICASEngineNumericalEvaluator getNumericalEvaluator() {
+    public ICASEngineNumericalEvaluator<?> getNumericalEvaluator() {
         return numericalEvaluator;
     }
 
-    public Set<ID> getSpecificResults(Path dataset, String resultString) {
+    public Set<ID> getSpecificResults(Path dataset, @Language("RegExp") String resultString) {
         Set<ID> set = new HashSet<>();
         if ( dataset == null || !Files.exists(dataset) ) return set;
         try {
@@ -121,7 +132,7 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
                 .map( l -> {
                     Matcher m = AbstractSymbolicEvaluator.SYMBOLIC_LINE_PATTERN.matcher(l);
                     if ( m.matches() ) {
-                        if ( m.group(2).equals(resultString) ) return m.group(1);
+                        if ( m.group(2).matches(resultString) ) return m.group(1);
                     }
                     return null;
                 })

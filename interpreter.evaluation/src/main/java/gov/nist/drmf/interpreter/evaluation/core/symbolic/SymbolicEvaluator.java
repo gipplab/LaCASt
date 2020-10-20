@@ -14,7 +14,6 @@ import gov.nist.drmf.interpreter.evaluation.common.Status;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
 import gov.nist.drmf.interpreter.evaluation.core.numeric.NumericalConfig;
-import gov.nist.drmf.interpreter.evaluation.core.numeric.NumericalEvaluator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
 import gov.nist.drmf.interpreter.maple.extension.Simplifier;
@@ -33,6 +32,8 @@ import java.util.*;
  */
 @SuppressWarnings({"WeakerAccess", "unchecked"})
 public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
+    private static final String MANUAL_SKIP_IDS = "7731";
+
     private static final Logger LOG = LogManager.getLogger(SymbolicEvaluator.class.getName());
 
     private SymbolicConfig config;
@@ -46,6 +47,10 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
     private String overallAss;
 
     private String[] defaultPrevAfterCmds;
+
+    private boolean mathematica = false;
+
+    private final double expectedResult;
 
     /**
      * Creates an object for numerical evaluations.
@@ -66,6 +71,8 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         CaseAnalyzer.ACTIVE_BLUEPRINTS = false; // take raw constraints
 
         this.config = new SymbolicConfig();
+        symbolicEvaluator.setTimeout(config.getTimeout());
+        super.setTimeoutSeconds(config.getTimeout());
 
         NumericalConfig.NumericalProperties.KEY_OUTPUT.setValue(config.getOutputPath().toString());
         NumericalConfig.NumericalProperties.KEY_DATASET.setValue(config.getDataset().toString());
@@ -85,13 +92,15 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         this.idSkips = new HashSet<>();
         this.defaultPrevAfterCmds = defaultPrevAfterCmds;
 
-//        String[] skipArr = NumericalEvaluator.LONG_RUNTIME_SKIP.split(",");
-//        for ( String s : skipArr ) {
-//            skips.add(new ID(Integer.parseInt(s)));
-//            idSkips.add(Integer.parseInt(s));
-//        }
+        String[] skipArr = SymbolicEvaluator.MANUAL_SKIP_IDS.split(",");
+        for ( String s : skipArr ) {
+            skips.add(new ID(Integer.parseInt(s)));
+            idSkips.add(Integer.parseInt(s));
+        }
 
         Status.reset();
+        mathematica = (engine instanceof MathematicaInterface);
+        expectedResult = Double.parseDouble(config.getExpectationValue());
     }
 
 //    @Override
@@ -136,24 +145,23 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         return lineResults;
     }
 
-    private void setPreviousAssumption() throws ComputerAlgebraSystemEngineException {
+    private void setGlobalAssumption() throws ComputerAlgebraSystemEngineException {
+        if ( mathematica ) {
+            LOG.warn("Somehow, Mathematica seems to dislike assumptions for symbolic simplifications. Hence we ignore " +
+                    "the defined assumptions until we found a solution to this!");
+            return;
+        }
         if ( overallAss != null && !overallAss.isEmpty() ){
-//            String cmd = "assume(" + overallAss + ");";
-            String cmd = "And[" + overallAss + "]";
-            LOG.debug("Enter assumption for entire test suite: " + cmd);
-
-//            enterEngineCommand(cmd);
-//            translator.enterMapleCommand(cmd);
-
-            // todo we may need that?
-//            addPreloadScript(cmd);
+            String[] ass = overallAss.split(" \\|\\| ");
+            String[] transAss = this.getThisConstraintTranslator().translateEachConstraint(ass);
+            super.setGlobalAssumptions(transAss);
         }
     }
 
     @Override
     public void performAllTests(LinkedList<Case> cases) {
         try {
-            setPreviousAssumption();
+            setGlobalAssumption();
             super.performAllTests(cases);
         } catch ( ComputerAlgebraSystemEngineException casee ) {
             LOG.error("Cannot perform assumptions.", casee);
@@ -180,28 +188,188 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
     }
 
     @Override
-    public void performSingleTest( Case c ){
+    public void performSingleTest( Case c ) {
         LOG.info("Start test for line: " + c.getLine());
         LOG.info("Test case: " + c);
 
-        if ( lineResults[c.getLine()] == null ){
+        if (lineResults[c.getLine()] == null) {
             lineResults[c.getLine()] = new LinkedList();
         }
 
-        if ( c instanceof AbstractEvaluator.DummyCase ) {
-            lineResults[c.getLine()].add("Ignoring - ");
-            Status.IGNORE.add();
+        if (c instanceof AbstractEvaluator.DummyCase) {
+            lineResults[c.getLine()].add("Skipped - Invalid subtest");
+            Status.SKIPPED.add();
             return;
         }
 
-//        if ( skips.contains(Integer.toString(c.getLine())) ) {
-//            LOG.info("Skip because long running evaluation.");
-//            lineResults[c.getLine()].add("Skipped - Long running test");
-//            Status.SKIPPED.add();
-//            return;
-//        }
+        // first translations
+        String lhs = null, rhs = null;
+        try {
+            Status.STARTED_TEST_CASES.add();
+            startRememberPackages();
+            lhs = forwardTranslate(c.getLHS(), c.getEquationLabel()).getTranslatedExpression();
+            rhs = forwardTranslate(c.getRHS(), c.getEquationLabel()).getTranslatedExpression();
+            stopRememberPackages();
+
+            LOG.info("Translate LHS to: " + lhs);
+            LOG.info("Translate RHS to: " + rhs);
+            Status.SUCCESS_TRANS.add();
+        } catch (TranslationException te) {
+            LOG.warn("Error for line " + c.getLine() + ", because: " + te, te);
+            if ( (te.getReason().equals(TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION) ||
+                            te.getReason().equals(TranslationExceptionReason.LATEX_MACRO_ERROR) ||
+                            te.getReason().equals(TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT)
+                ) && te.getReasonObj() != null
+            ) {
+                Status.MISSING.add();
+                lineResults[c.getLine()].add("Missing Macro Error - " + te.toString());
+                addMissingMacro(te.getReasonObj().toString());
+            } else {
+                Status.ERROR_TRANS.add();
+                lineResults[c.getLine()].add("Translation Error - " + te.toString());
+            }
+            return;
+        } catch (Exception | Error e) {
+            lineResults[c.getLine()].add("Translation Error - " + e.toString() + " [" + c.toString() + "]");
+            Status.ERROR_TRANS.add();
+            return;
+        }
+
+        if (lhs == null || rhs == null) return;
+
+        String expression = config.getTestExpression(lhs, rhs);
+
+        String[] preAndPostCommands = checkPrevCommand(c.getLHS() + ", " + c.getRHS());
+
+        if (preAndPostCommands != null) {
+            try {
+                enterEngineCommand(preAndPostCommands[0]);
+                LOG.debug("Enter pre-testing commands: " + preAndPostCommands[0]);
+            } catch (ComputerAlgebraSystemEngineException e) {
+                LOG.warn("Unable to enter pre/post commands. Ignoring it and continue.", e);
+            }
+        }
+
+        String arrConstraints = null;
+        try {
+            List<String> consList = c.getConstraints(this.getThisConstraintTranslator(), c.getEquationLabel());
+            LOG.debug("Extract constraints: " + consList);
+            if (consList != null) {
+                arrConstraints = getCASListRepresentation(consList);
+            }
+        } catch (Exception e) {
+            LOG.warn("Error when parsing constraints => Ignoring Constraint: " + c.getRawConstraint());
+        }
+
+        // default values are false
+        ISymbolicTestCases[] type = getSymbolicTestCases();
+        String[] successStr = new String[type.length];
+        boolean[] success = new boolean[type.length];
+        boolean[] errors = new boolean[type.length];
+        boolean[] aborted = new boolean[type.length];
+
+        LOG.info(c.getLine() + ": Start simplifications. Expected outcome is "
+                + (config.getExpectationValue() == null ? "numerical" : config.getExpectationValue()));
+
+        for (int i = 0; i < type.length; i++) {
+            aborted[i] = false;
+            if (!type[i].isActivated()) {
+                successStr[i] = type[i].compactToString();
+                continue;
+            }
+
+            String testStr = type[i].buildCommand(expression);
+
+            try {
+                T res = simplify(testStr, arrConstraints);
+                if (res == null) {
+                    LOG.warn("CAS return NULL for: " + testStr);
+                    throw new IllegalArgumentException("Error in CAS!");
+                }
+
+                if (isAbortedResult(res)) {
+                    success[i] = false;
+                    aborted[i] = true;
+                    successStr[i] = type[i].getShortName() + ": Aborted";
+                    LOG.info(c.getLine() + " [" + type[i].getShortName() + "] Computation aborted.");
+                } else {
+                    // String strRes = res.toString();
+                    LOG.info(c.getLine() + " [" + type[i].getShortName() + "] Simplified expression: " + res);
+
+                    if (validOutCome(res, expectedResult)) {
+                        success[i] = true;
+                        successStr[i] = type[i].getShortName() + ": " + res;
+                    } else if ( isConditionallyValid(res, expectedResult) ) {
+                        String condition = getCondition(res);
+                        success[i] = true;
+                        successStr[i] = type[i].getShortName() + ": " + expectedResult + " under condition: " + condition;
+                        LOG.warn(c.getLine() + " [" + type[i].getShortName() + "]: Correct result but under extra conditions: " + condition);
+                    } else {
+                        success[i] = false;
+                        successStr[i] = type[i].getShortName() + ": NaN";
+                    }
+                }
+                errors[i] = false;
+            } catch (ComputerAlgebraSystemEngineException casee) {
+                LOG.error(c.getLine() + ": " + type[i].getShortName() + " - Error in CAS: " + casee.toString(), casee);
+                success[i] = false;
+                successStr[i] = type[i].getShortName() + ": CAS Error (" + casee.getMessage() + ")";
+                errors[i] = true;
+            } catch (IllegalArgumentException iae) {
+                LOG.error(c.getLine() + ": " + type[i].getShortName() + " - Result was null");
+                success[i] = false;
+                successStr[i] = type[i].getShortName() + ": NULL";
+                errors[i] = true;
+            }
+        }
+
+        if (preAndPostCommands != null) {
+            try {
+                enterEngineCommand(preAndPostCommands[1]);
+                LOG.debug("Enter post-testing commands: " + preAndPostCommands[1]);
+            } catch (ComputerAlgebraSystemEngineException e) {
+                LOG.warn("Unable to enter post-testinc commands: " + preAndPostCommands[1], e);
+            }
+        }
+
+        // if one of the above is true -> we are done
+        boolean allError = true;
+        boolean allAborted = true;
+        for (int i = 0; i < success.length; i++) {
+            if (!errors[i]) allError = false;
+            if (!aborted[i]) allAborted = false;
+            if (success[i]) {
+                if ( successStr[i].contains("condition") ) {
+                    lineResults[c.getLine()].add("Successful under condition " + Arrays.toString(successStr));
+                    Status.SUCCESS_UNDER_EXTRA_CONDITION.add();
+                } else {
+                    lineResults[c.getLine()].add("Successful " + Arrays.toString(successStr));
+                    Status.SUCCESS_SYMB.add();
+                }
+                return;
+            }
+        }
+
+        if (allError) {
+            lineResults[c.getLine()].add("All Errors: " + Arrays.toString(successStr));
+            Status.ERROR.add();
+        } else if (allAborted) {
+            lineResults[c.getLine()].add("All Aborted: " + Arrays.toString(successStr));
+            Status.ABORTED.add();
+        } else {
+            lineResults[c.getLine()].add("Failure " + Arrays.toString(successStr));
+            Status.FAILURE.add();
+        }
 
         try {
+            if (getGcCaller() % 1 == 0) {
+                forceGC();
+                resetGcCaller();
+            } else stepGcCaller();
+        } catch (ComputerAlgebraSystemEngineException me) {
+            LOG.fatal("Cannot call CAS garbage collector!", me);
+        }
+
 //            String mapleAss = null;
 //            if ( c.getAssumption() != null ){
 //                mapleAss = translator.translateFromLaTeXToMapleClean( c.getAssumption() );
@@ -210,122 +378,6 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
 
 //            enterEngineCommand("reset;");
 //            setPreviousAssumption();
-
-            Status.STARTED_TEST_CASES.add();
-            startRememberPackages();
-            String mapleLHS = forwardTranslate( c.getLHS(), c.getEquationLabel() );
-            String mapleRHS = forwardTranslate( c.getRHS(), c.getEquationLabel() );
-            stopRememberPackages();
-
-            LOG.info("Translate LHS to: " + mapleLHS);
-            LOG.info("Translate RHS to: " + mapleRHS);
-            Status.SUCCESS_TRANS.add();
-
-            String expression = config.getTestExpression( mapleLHS, mapleRHS );
-
-            String[] preAndPostCommands = checkPrevCommand( c.getLHS() + ", " + c.getRHS() );
-
-            if ( preAndPostCommands != null ){
-                enterEngineCommand(preAndPostCommands[0]);
-                LOG.debug("Enter pre-testing commands: " + preAndPostCommands[0]);
-            }
-
-            String arrConstraints = null;
-            try {
-                List<String> consList = c.getConstraints(this.getThisConstraintTranslator(), c.getEquationLabel());
-                LOG.debug("Extract constraints: " + consList);
-                if ( consList != null ) {
-                    arrConstraints = getCASListRepresentation(consList);
-                }
-            } catch ( Exception e ) {
-                LOG.warn("Error when parsing constraint => Ignoring Constraint.", e);
-            }
-
-            // default values are false
-            ISymbolicTestCases[] type = getSymbolicTestCases();
-            String[] successStr = new String[type.length];
-            boolean[] success = new boolean[type.length];
-
-            LOG.info(c.getLine() + ": Start simplifications. Expected outcome is "
-                    + (config.getExpectationValue() == null ? "numerical" : config.getExpectationValue()) );
-
-            for ( int i = 0; i < type.length; i++ ){
-                if ( !type[i].isActivated() ){
-                    successStr[i] = type[i].compactToString();
-                    continue;
-                }
-
-                String testStr = type[i].buildCommand(expression);
-
-                T res = simplify( testStr, arrConstraints );
-                if ( res == null ) {
-                    throw new IllegalArgumentException("Error in CAS!");
-                }
-
-                if ( isAbortedResult(res) ) {
-                    success[i] = false;
-                    successStr[i] = type[i].getShortName() + ": Aborted";
-                } else {
-    //                String strRes = res.toString();
-                    LOG.info(c.getLine() + ": " + type[i].getShortName() + " - Simplified expression: " + res);
-
-                    if ( validOutCome(res, config.getExpectationValue()) ) {
-                        success[i] = true;
-                        successStr[i] = type[i].getShortName() + ": " + res;
-                    } else {
-                        success[i] = false;
-                        successStr[i] = type[i].getShortName() + ": NaN";
-                    }
-                }
-
-            }
-
-            if ( preAndPostCommands != null ){
-                enterEngineCommand(preAndPostCommands[1]);
-                LOG.debug("Enter post-testing commands: " + preAndPostCommands[1]);
-            }
-
-            // if one of the above is true -> we are done
-            for ( int i = 0; i < success.length; i++ ){
-                if ( success[i] ){
-                    lineResults[c.getLine()].add("Successful " + Arrays.toString(successStr));
-                    Status.SUCCESS.add();
-                    Status.SUCCESS_SYMB.add();
-                    return;
-//                    return lineResults[c.getLine()].getLast();
-                }
-            }
-            lineResults[c.getLine()].add("Failure " + Arrays.toString(successStr));
-            Status.FAILURE.add();
-        } catch ( Exception e ){
-            LOG.warn("Error for line " + c.getLine() + ", because: " + e.toString(), e);
-            if ( e instanceof TranslationException){
-                lineResults[c.getLine()].add("Error - " + e.toString());
-                TranslationException te = (TranslationException)e;
-                if (
-                        te.getReason().equals( TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION ) ||
-                        te.getReason().equals( TranslationExceptionReason.LATEX_MACRO_ERROR ) ||
-                        te.getReason().equals( TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT )
-                ) {
-                    Status.MISSING.add();
-                    if ( te.getReasonObj() != null )
-                        addMissingMacro(te.getReasonObj().toString());
-                } else Status.ERROR.add();
-            } else {
-                lineResults[c.getLine()].add("Error - " + e.toString() + " [" + c.toString() + "]");
-                Status.ERROR.add();
-            }
-        } finally {
-            try {
-                if ( getGcCaller() % 1 == 0 ) {
-                    forceGC();
-                    resetGcCaller();
-                } else stepGcCaller();
-            } catch ( ComputerAlgebraSystemEngineException me ){
-                LOG.fatal("Cannot call CAS garbage collector!", me);
-            }
-        }
-//        return c.getLine() + ": " + lineResults[c.getLine()];
     }
 
     private int gcCaller = 0;
@@ -346,7 +398,6 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         DLMFTranslator dlmfTranslator = new DLMFTranslator(Keys.KEY_MAPLE);
         MapleInterface mapleInterface = MapleInterface.getUniqueMapleInterface();
         Simplifier simplifier = new Simplifier();
-        simplifier.setTimeout(2);
 
         SymbolicEvaluator evaluator = new SymbolicEvaluator(
                 dlmfTranslator,

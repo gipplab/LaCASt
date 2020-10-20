@@ -26,6 +26,16 @@ public class DLMFReplacementConditionTests {
     }
 
     @Test
+    void subLabelTest(){
+        DLMFConditionalReplacementImpl d1 = new DLMFConditionalReplacementImpl("10.3.E3");
+        DLMFConditionalReplacementImpl d2 = new DLMFConditionalReplacementImpl("10.3.E3_5");
+
+        assertTrue( d1.match(d2) );
+        assertTrue( d2.match(d1) );
+        assertEquals( 0, d1.compareTo(d2) );
+    }
+
+    @Test
     void matchFailTest() {
         DLMFConditionalReplacementImpl d1 = new DLMFConditionalReplacementImpl("11.3");
         DLMFConditionalReplacementImpl d2 = new DLMFConditionalReplacementImpl("10.3#E3");

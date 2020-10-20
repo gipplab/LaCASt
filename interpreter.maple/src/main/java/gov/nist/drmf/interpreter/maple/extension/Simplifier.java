@@ -32,7 +32,7 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
     private final MapleListener listener;
     private final PackageWrapper packageWrapper;
 
-    private int timeout = -1;
+    private double timeout = -1;
 
     public Simplifier() {
         maple = MapleInterface.getUniqueMapleInterface();
@@ -49,7 +49,8 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
         packageWrapper = new PackageWrapper(basicFunctionsTranslator, symbolTranslator);
     }
 
-    public void setTimeout(int timeout) {
+    @Override
+    public void setTimeout(double timeout) {
         this.timeout = timeout;
     }
 
@@ -202,51 +203,44 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
      */
     public Algebraic mapleSimplify( String maple_expr, Set<String> requiredPackages ) throws MapleException {
         String simplify = chooseSimplify(requiredPackages);
-        String command = simplify+"(" + maple_expr + ")";
+
+        if ( !requiredPackages.isEmpty() ) {
+            String loadCommands = packageWrapper.loadPackages(requiredPackages);
+            maple.evaluate(loadCommands);
+            LOG.debug("Loaded packages: " + requiredPackages);
+        }
+
+        String command = simplify + "(" + maple_expr + ")";
         if ( timeout > 0 ) {
             command = "try timelimit("+timeout+","+command+"); catch \"time expired\": \"";
             command += MapleInterface.TIMED_OUT_SIGNAL;
             command += "\"; end try;";
         } else command += ";";
 
-        command = packageWrapper.addPackages(command, requiredPackages);
-
         LOG.debug("Simplification: " + command);
         listener.timerReset();
-        return maple.evaluate( command );
+        Algebraic result = maple.evaluate(command);
+
+        if ( !requiredPackages.isEmpty() ) {
+            String unloadCommands = packageWrapper.unloadPackages(requiredPackages);
+            maple.evaluate(unloadCommands);
+            LOG.debug("Unloaded packages: " + requiredPackages);
+        }
+
+        return result;
     }
 
     private String chooseSimplify(Set<String> requiredPackages) {
         if ( requiredPackages == null || requiredPackages.isEmpty() )
             return "simplify";
 
-        boolean contains = false;
-        Set<String> tmp = new TreeSet<>();
-        for ( String req : requiredPackages ){
-            if ( req.contains("QDifferenceEquations") ){
-                contains = true;
-            } else tmp.add(req);
-        }
+        boolean contained = requiredPackages.removeIf(p -> p.contains("QDifferenceEquations"));;
 
-        return updateRequiredPackages(contains, tmp, requiredPackages);
-    }
-
-    private String updateRequiredPackages(
-            boolean contains,
-            Set<String> tmp,
-            Set<String> requiredPackages
-    ) {
-        if ( contains ) {
-            try {
-                maple.loadQExtension();
-                requiredPackages.clear();
-                requiredPackages.addAll(tmp);
-                return "QSimplify";
-            } catch (ComputerAlgebraSystemEngineException e) {
-                LOG.fatal("Cannot load QExtensions");
-            }
+        if ( contained ) {
+            requiredPackages.add("QDifferenceEquations");
+            return "QSimplify";
         }
-        return "simplify";
+        else return "simplify";
     }
 
     private Algebraic simplify(String expr) throws ComputerAlgebraSystemEngineException {
@@ -292,19 +286,24 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
     }
 
     @Override
-    public boolean isAsExpected(Algebraic in, String expect) {
+    public boolean isAsExpected(Algebraic in, double expect) {
         String str = in.toString();
-        if ( expect == null ){
-            try {
-                Double.parseDouble(str);
-                return true;
-            } catch ( NumberFormatException nfe ) {}
-            return false;
-        } else if ( str.matches(expect) ) {
-            return true;
-        } else {
+        try {
+            double res = Double.parseDouble(str);
+            return res == expect;
+        } catch ( NumberFormatException nfe ) {
             return false;
         }
+    }
+
+    @Override
+    public boolean isConditionallyExpected(Algebraic in, double expect) {
+        return false;
+    }
+
+    @Override
+    public String getCondition(Algebraic in) {
+        return "";
     }
 
     @Override

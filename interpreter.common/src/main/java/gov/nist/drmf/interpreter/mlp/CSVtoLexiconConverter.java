@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.mlp;
 
+import gov.nist.drmf.interpreter.common.constants.CASSupporter;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.mlp.data.CASCache;
@@ -173,8 +174,8 @@ public class CSVtoLexiconConverter {
         if ( input.matches("CAS_.*\\.(?:csv|CSV)") ) {
             argumentList.add( input );
         } else if ( input.matches("-{0,2}[aA][lL]{2}") ) {
-            argumentList.add("CAS_Maple.csv");
-            argumentList.add("CAS_Mathematica.csv");
+            CASSupporter cass = CASSupporter.getSupportedCAS();
+            argumentList.addAll(cass.getAllCAS().stream().map(cas -> "CAS_"+cas+".csv").collect(Collectors.toList()));
         } else {
             argumentList.add( "CAS_" + input + ".csv" );
         }
@@ -218,6 +219,9 @@ public class CSVtoLexiconConverter {
                 input = scanner.nextLine();
             }
             System.out.println("You added: " + argumentList.toString());
+        } else if ( args.length == 1 && args[0].matches("--?[aA][lL]{2}") ) {
+            analyzeInput(argumentList, "-all");
+            args = null;
         }
 
         Path[] csvPaths = convertToPaths(argumentList, args);

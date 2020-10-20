@@ -3,7 +3,9 @@ package gov.nist.drmf.interpreter.evaluation.core.numeric;
 import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
 import gov.nist.drmf.interpreter.evaluation.common.Case;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Andre Greiner-Petter
@@ -26,6 +28,8 @@ public class NumericalTest {
 
     private boolean skipClassicAbortion = false;
 
+    private Set<String> variables;
+
     public NumericalTest(
             String testExpression,
             Case c,
@@ -39,11 +43,19 @@ public class NumericalTest {
         constraints = c.getConstraints(translator, label);
         constraintVariables = c.getConstraintVariables(translator, label);
         constraintVariablesValues = c.getConstraintValues();
-        extraVariables = config.getListOfSpecialVariables(translator, label);
-        extraVariablesValues = config.getListOfSpecialVariableValues(translator, label);
+        extraVariables = config.getListOfSpecialVariables(translator);
+        extraVariablesValues = config.getListOfSpecialVariableValues(translator);
 
         precision = config.getPrecision();
         maxCombis = config.getMaximumNumberOfCombs();
+    }
+
+    public Set<String> getVariables() {
+        return variables;
+    }
+
+    public void setVariables(Set<String> variables) {
+        this.variables = variables;
     }
 
     public void setPostProcessingMethodName(String postProcessingMethodName){

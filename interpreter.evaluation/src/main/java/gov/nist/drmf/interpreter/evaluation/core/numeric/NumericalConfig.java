@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
 import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
+import gov.nist.drmf.interpreter.evaluation.core.symbolic.SymbolicConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -152,16 +153,16 @@ public class NumericalConfig implements EvaluationConfig {
         return numericalValues;
     }
 
-    public List<String> getListOfSpecialVariables(IConstraintTranslator translator, String label) {
+    public List<String> getListOfSpecialVariables(IConstraintTranslator translator) {
         if ( specVars == null ) {
-            specVars = translateElements(translator, getSpecialVariables(), label);
+            specVars = translateElements(translator, getSpecialVariables(), null);
         }
         return specVars;
     }
 
-    public List<String> getListOfSpecialVariableValues( IConstraintTranslator translator, String label ) {
+    public List<String> getListOfSpecialVariableValues( IConstraintTranslator translator ) {
         if ( specVarsVals == null ) {
-            specVarsVals = translateElements(translator, getSpecialVariablesValues(), label);
+            specVarsVals = translateElements(translator, getSpecialVariablesValues(), null);
         }
         return specVarsVals;
     }
@@ -176,6 +177,15 @@ public class NumericalConfig implements EvaluationConfig {
         String[] transEls = translator.translateEachConstraint(elements, label);
         results.addAll(Arrays.asList(transEls));
         return results;
+    }
+
+    public double getTimeout() {
+        String val = NumericalProperties.KEY_TIMEOUT.value;
+        return Double.parseDouble(val == null ? "0" : val);
+    }
+
+    public String getEntireTestSuiteAssumptions(){
+        return NumericalProperties.KEY_ASSUMPTION.value;
     }
 
     @Override
@@ -207,7 +217,9 @@ public class NumericalConfig implements EvaluationConfig {
         KEY_SKIP_IF_MORE_COMBS("skip_if_more_combintations", null),
         KEY_SPECIAL_VARS("special_variables", null),
         KEY_SPECIAL_VARS_VALUES("special_variables_values", null),
-        KEY_PREV_RESULTS("symbolic_results_data", null);
+        KEY_PREV_RESULTS("symbolic_results_data", null),
+        KEY_ASSUMPTION("entire_test_set_assumptions", null),
+        KEY_TIMEOUT("timeout", null);
 
         private String key, value;
 

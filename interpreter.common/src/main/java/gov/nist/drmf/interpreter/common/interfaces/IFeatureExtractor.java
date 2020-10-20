@@ -3,9 +3,7 @@ package gov.nist.drmf.interpreter.common.interfaces;
 import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
 import mlp.FeatureSet;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedSet;
+import java.util.*;
 
 /**
  * @author Andre Greiner-Petter
@@ -27,6 +25,10 @@ public interface IFeatureExtractor {
      */
     default String getFeatureValue(FeatureSet featureSet, String cas) {
         return getStringFromSet(getFeatureSet(featureSet, cas));
+    }
+
+    static void setFeatureValue(FeatureSet featureSet, String name, String... values) {
+        featureSet.setFeature(name, Arrays.asList(values.clone()));
     }
 
     /**

@@ -1,10 +1,14 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
+import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Andre Greiner-Petter
@@ -41,5 +45,21 @@ public final class PrintablePomTaggedExpressionUtils {
         }
 
         return sb.toString().trim();
+    }
+
+    public static boolean isSingleElementInBrackets(PomTaggedExpression pom) {
+        String expr = pom.getRoot().getTermText();
+        if ( pom instanceof PrintablePomTaggedExpression )
+            expr = ((PrintablePomTaggedExpression) pom).getTexString();
+        return pom.getComponents().isEmpty() && TeXPreProcessor.wrappedInCurlyBrackets(expr);
+    }
+
+    public static List<PrintablePomTaggedExpression> deepCopyPPTEList(List<PrintablePomTaggedExpression> list) {
+        var copy = new LinkedList<PrintablePomTaggedExpression>();
+        list.forEach( pte -> {
+            PrintablePomTaggedExpression c = new PrintablePomTaggedExpression(pte);
+            copy.add(c);
+        });
+        return copy;
     }
 }

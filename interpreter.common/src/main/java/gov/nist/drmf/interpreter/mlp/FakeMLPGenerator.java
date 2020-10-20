@@ -13,21 +13,45 @@ import mlp.PomTaggedExpression;
 public final class FakeMLPGenerator {
     private FakeMLPGenerator(){}
 
+    /**
+     * Use {@link #generateMathTermEmptyPPTE(MathTermTags, String)} instead
+     * @return an empty sequence pom tagged expression
+     */
+    @Deprecated
     public static PomTaggedExpression generateMathTermEmptyPTE(MathTermTags tag, String term) {
         MathTerm mt = new MathTerm(term, tag.toString());
         return new PomTaggedExpression(mt);
     }
 
+    /**
+     * Use {@link #generateEmptySequencePPTE()} instead
+     * @return an empty sequence pom tagged expression
+     */
+    @Deprecated
     public static PomTaggedExpression generateEmptySequencePTE() {
         return new PomTaggedExpression(generateEmptyMathTerm(), ExpressionTags.sequence.tag());
+    }
+
+    public static PrintablePomTaggedExpression generateMathTermEmptyPPTE(MathTermTags tag, String term) {
+        MathTerm mt = new MathTerm(term, tag.toString());
+        return new PrintablePomTaggedExpression(mt, ExpressionTags.sequence.tag());
     }
 
     public static PrintablePomTaggedExpression generateEmptySequencePPTE() {
         return new PrintablePomTaggedExpression(generateEmptyMathTerm(), ExpressionTags.sequence.tag());
     }
 
+    /**
+     * Use {@link #generateEmptyBinomialCoefficientPPTE()} instead
+     * @return an empty sequence pom tagged expression
+     */
+    @Deprecated
     public static PomTaggedExpression generateEmptyBinomialCoefficientPTE() {
         return new PomTaggedExpression(generateEmptyMathTerm(), ExpressionTags.binomial.tag());
+    }
+
+    public static PrintablePomTaggedExpression generateEmptyBinomialCoefficientPPTE() {
+        return new PrintablePomTaggedExpression(generateEmptyMathTerm(), ExpressionTags.binomial.tag());
     }
 
     public static PomTaggedExpression wrapNonSequenceInSequence(PomTaggedExpression pte) {
@@ -42,7 +66,7 @@ public final class FakeMLPGenerator {
     }
 
     public static MathTerm generateEmptyMathTerm() {
-        return new MathTerm("");
+        return new MathTerm(" ");
     }
 
     public static MathTerm generateClosedParenthesesMathTerm() {

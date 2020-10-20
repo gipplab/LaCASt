@@ -63,17 +63,27 @@ specialVariables := proc(vars::list, values::list)
 end proc:
 
 buildTestValues := proc(ass::list, values::list)
-  local combi, combo, assumption, output;
+  local combi, combo, output, tmpBool, idx;
   output := NULL;
-  assumption := buildAssumptions(ass);
   combi := cartprod(values);
   while not combi[finished] do
+    if nops([output]) > 299 then
+      break
+    end if:
     combo := combi[nextvalue]();
     #printf("LOG: Test combo %q;\n", combo);
-    if nops(assumption) = 0 then
+    if nops(ass) = 0 then
       output := output, combo;
-    elif is(eval(assumption, combo)) then
-      output := output, combo;
+    else
+      tmpBool := true;
+      for idx from 1 to nops(ass) do
+        if not(is(eval(ass[idx], combo))) then
+          tmpBool := tmpBool and false;
+        end if:
+      end do:
+      if tmpBool then
+        output := output, combo;
+      end if:
     end if:
   end do:
   #printf("LOG: Built set of valid test values %q;\n", output);
@@ -123,7 +133,7 @@ SpecialNumericalTester := proc(expr, values::list, precision::posint)
       output := output,[result, values[i]];
     catch:
       #printf("Error for test case %q; Message: %q\n", combo, lastexception);
-      return lastexception;
+      output := output,[StringTools:-FormatMessage( lastexception[2..-1] ), values[i]];
     end try:
   end do:
   return [output];

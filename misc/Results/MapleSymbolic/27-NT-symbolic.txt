@@ -1,93 +1,137 @@
-Overall: [SUCCESS: 5, SUCCESS_SYMB: 5, SUCCESS_TRANS: 19, FAILURE: 4, STARTED_TEST_CASES: 84, SKIPPED: 7, DEFINITIONS: 2, IGNORE: 44, MISSING: 51, ERROR: 24] for test expression: (#LHS)-(#RHS)
+Overall: [TOTAL: 135, SKIPPED: 54, DEFINITIONS: 2, STARTED_TEST_CASES: 79, ERROR_TRANS: 15, MISSING: 38, SUCCESS_TRANS: 26, SUCCESS_SYMB: 3, SUCCESS_NUM: 0, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 17, ABORTED: 0, ERROR: 6] for test expression: (#LHS)-(#RHS)
 [Simple Simplify: ON, EXPonential Conversion (ConvEXP): ON, HYPergeometric Conversion (ConvHYP): ON, Expansion (EXP): ON, Expansion via EXP (EXP+EXP): ON, Expansion via HYP (EXP+HYP): ON]
-8291 [http://dlmf.nist.gov/27.2.E1]: Error - java.lang.IllegalArgumentException: Error in CAS! [8291: n EQUAL \prod_{r=1}^{\nprimesdiv@{n}}p^{a_{r}}_{r}; http://dlmf.nist.gov/27.2.E1]
-8292 [http://dlmf.nist.gov/27.2.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \nprimes [\nprimes]
-8293: Skipped - Unable to analyze test case.
-8294: Skipped - Unable to analyze test case.
-8296 [http://dlmf.nist.gov/27.2.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Eulertotientphi [\Eulertotientphi]
-8297 [http://dlmf.nist.gov/27.2.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Eulertotientphi [\Eulertotientphi]
-8298: Skipped - Unable to analyze test case.
-8299 [http://dlmf.nist.gov/27.2.E9]: Error - java.lang.NullPointerException [8299: \ndivisors[]@{n} EQUAL \sum_{d\divides n}1; http://dlmf.nist.gov/27.2.E9]
-8300 [http://dlmf.nist.gov/27.2.E10]: Error - java.lang.NullPointerException [8300: \sumdivisors{\alpha}@{n} EQUAL \sum_{d\divides n}d^{\alpha}; http://dlmf.nist.gov/27.2.E10]
-8302 [http://dlmf.nist.gov/27.2.E12]: Error - java.lang.IllegalArgumentException: Error in CAS! [8302: 1,\\ (-1)^{\nprimesdiv@{n}},&a_{1} EQUAL a_{2}; http://dlmf.nist.gov/27.2.E12]
-8304 [http://dlmf.nist.gov/27.2.E14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \MangoldtLambda [\MangoldtLambda]
-8307 [http://dlmf.nist.gov/27.3.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Eulertotientphi [\Eulertotientphi]
-8308 [http://dlmf.nist.gov/27.3.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \JordanJ [\JordanJ]
-8309 [http://dlmf.nist.gov/27.3.E5]: Error - java.lang.IllegalArgumentException: Error in CAS! [8309: \ndivisors[]@{n} EQUAL \prod_{r=1}^{\nprimesdiv@{n}}(1+a_{r}); http://dlmf.nist.gov/27.3.E5]
-8310 [http://dlmf.nist.gov/27.3.E6]: Error - java.lang.IllegalArgumentException: Error in CAS! [8310: \sumdivisors{\alpha}@{n} EQUAL \prod_{r=1}^{\nprimesdiv@{n}}\frac{p^{\alpha(1+a_{r})}_{r}-1}{p^{\alpha}_{r}-1}; http://dlmf.nist.gov/27.3.E6]
-8311 [http://dlmf.nist.gov/27.3.E7]: Error - java.lang.NullPointerException [8311: \sumdivisors{\alpha}@{m}\sumdivisors{\alpha}@{n} EQUAL \sum_{d\divides\pgcd{m,n}}d^{\alpha}\sumdivisors{\alpha}\left(\frac{mn}{d^{2}}\right); http://dlmf.nist.gov/27.3.E7]
-8312 [http://dlmf.nist.gov/27.3.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Eulertotientphi [\Eulertotientphi]
-8317 [http://dlmf.nist.gov/27.4.E3]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-8317-a [http://dlmf.nist.gov/27.4.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-8319 [http://dlmf.nist.gov/27.4.E5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
-8320 [http://dlmf.nist.gov/27.4.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Eulertotientphi [\Eulertotientphi]
-8321 [http://dlmf.nist.gov/27.4.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Liouvillelambda [\Liouvillelambda]
-8322 [http://dlmf.nist.gov/27.4.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
-8323 [http://dlmf.nist.gov/27.4.E9]: Error - java.lang.IllegalArgumentException: Error in CAS! [8323: \sum_{n=1}^{\infty}2^{\nprimesdiv@{n}}n^{-s} EQUAL \frac{(\Riemannzeta@{s})^{2}}{\Riemannzeta@{2s}}; http://dlmf.nist.gov/27.4.E9]
-8324 [http://dlmf.nist.gov/27.4.E10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \ndivisors [\ndivisors]
-8325 [http://dlmf.nist.gov/27.4.E11]: Error - java.lang.IllegalArgumentException: Error in CAS! [8325: \sum_{n=1}^{\infty}\sumdivisors{\alpha}@{n}n^{-s} EQUAL \Riemannzeta@{s}\Riemannzeta@{s-\alpha}; http://dlmf.nist.gov/27.4.E11]
-8326 [http://dlmf.nist.gov/27.4.E12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \MangoldtLambda [\MangoldtLambda]
-8327 [http://dlmf.nist.gov/27.4.E13]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-8329 [http://dlmf.nist.gov/27.5.E2]: Error - java.lang.NullPointerException [8329: \sum_{d\divides n}\Moebiusmu@{d} EQUAL \floor{\frac{1}{n}}; http://dlmf.nist.gov/27.5.E2]
-8331 [http://dlmf.nist.gov/27.5.E4]: Error - java.lang.NullPointerException [8331: n EQUAL \sum_{d\divides n}\Eulertotientphi[]@{d}\Longleftrightarrow\Eulertotientphi[]@{n}; http://dlmf.nist.gov/27.5.E4]
-8331-a [http://dlmf.nist.gov/27.5.E4]: Error - java.lang.NullPointerException [8331: \sum_{d\divides n}\Eulertotientphi[]@{d}\Longleftrightarrow\Eulertotientphi[]@{n} EQUAL \sum_{d\divides n}d\Moebiusmu@{\frac{n}{d}}; http://dlmf.nist.gov/27.5.E4]
-8332 [http://dlmf.nist.gov/27.5.E5]: Error - java.lang.NullPointerException [8332: \ln@@{n} EQUAL \sum_{d\divides n}\MangoldtLambda@{d}\Longleftrightarrow\MangoldtLambda@{n}; http://dlmf.nist.gov/27.5.E5]
-8332-a [http://dlmf.nist.gov/27.5.E5]: Error - java.lang.NullPointerException [8332: \sum_{d\divides n}\MangoldtLambda@{d}\Longleftrightarrow\MangoldtLambda@{n} EQUAL \sum_{d\divides n}(\ln@@{d})\Moebiusmu@{\frac{n}{d}}; http://dlmf.nist.gov/27.5.E5]
-8333 [http://dlmf.nist.gov/27.5.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Unknown relation. Cannot translate: \Longleftrightarrow [\Longleftrightarrow]
-8333-a [http://dlmf.nist.gov/27.5.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Unknown relation. Cannot translate: \Longleftrightarrow [\Longleftrightarrow]
-8334 [http://dlmf.nist.gov/27.5.E7]: Error - (LaTeX -> Maple) No translation possible for given token: This program cannot translate abbreviations like mx [mx]
-8334-a [http://dlmf.nist.gov/27.5.E7]: Error - (LaTeX -> Maple) No translation possible for given token: This program cannot translate abbreviations like mx [mx]
-8338 [http://dlmf.nist.gov/27.6.E3]: Error - java.lang.NullPointerException [8338: \sum_{d\divides n}|\Moebiusmu@{d}| EQUAL 2^{\nprimesdiv@{n}}; http://dlmf.nist.gov/27.6.E3]
-8339 [http://dlmf.nist.gov/27.6.E4]: Error - java.lang.NullPointerException [8339: \sum_{d^{2}\divides n}\Moebiusmu@{d} EQUAL |\Moebiusmu@{n}|; http://dlmf.nist.gov/27.6.E4]
-8340 [http://dlmf.nist.gov/27.6.E5]: Error - java.lang.NullPointerException [8340: \sum_{d\divides n}\frac{|\Moebiusmu@{d}|}{\Eulertotientphi[]@{d}} EQUAL \frac{n}{\Eulertotientphi[]@{n}}; http://dlmf.nist.gov/27.6.E5]
-8342 [http://dlmf.nist.gov/27.6.E7]: Error - java.lang.NullPointerException [8342: \sum_{d\divides n}\Moebiusmu@{d}\left(\frac{n}{d}\right)^{k} EQUAL \JordanJ{k}@{n}; http://dlmf.nist.gov/27.6.E7]
-8343 [http://dlmf.nist.gov/27.6.E8]: Error - java.lang.NullPointerException [8343: \sum_{d\divides n}\JordanJ{k}@{d} EQUAL n^{k}; http://dlmf.nist.gov/27.6.E8]
-8346 [http://dlmf.nist.gov/27.7.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
-8347 [http://dlmf.nist.gov/27.7.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Eulertotientphi [\Eulertotientphi]
-8348 [http://dlmf.nist.gov/27.7.E5]: Error - java.lang.IllegalArgumentException: Error in CAS! [8348: \sum_{n=1}^{\infty}n^{\alpha}\frac{x^{n}}{1-x^{n}} EQUAL \sum_{n=1}^{\infty}\sumdivisors{\alpha}@{n}x^{n}; http://dlmf.nist.gov/27.7.E5]
-8349 [http://dlmf.nist.gov/27.7.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Liouvillelambda [\Liouvillelambda]
-8350 [http://dlmf.nist.gov/27.8.E1]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dirichletchar [\Dirichletchar]
-8351 [http://dlmf.nist.gov/27.8.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dirichletchar [\Dirichletchar]
-8352 [http://dlmf.nist.gov/27.8.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dirichletchar [\Dirichletchar]
-8353 [http://dlmf.nist.gov/27.8.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dirichletchar [\Dirichletchar]
-8356 [http://dlmf.nist.gov/27.8.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dirichletchar [\Dirichletchar]
-8357 [http://dlmf.nist.gov/27.8.E8]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dirichletchar [\Dirichletchar]
-8358 [http://dlmf.nist.gov/27.9.E1]: Error - java.lang.IllegalArgumentException: Error in CAS! [8358: \Legendresym{-1}{p} EQUAL (-1)^{(p-1)/2}; http://dlmf.nist.gov/27.9.E1]
-8359 [http://dlmf.nist.gov/27.9.E2]: Error - java.lang.IllegalArgumentException: Error in CAS! [8359: \Legendresym{2}{p} EQUAL (-1)^{(p^{2}-1)/8}; http://dlmf.nist.gov/27.9.E2]
-8360 [http://dlmf.nist.gov/27.9.E3]: Error - java.lang.IllegalArgumentException: Error in CAS! [8360: \Legendresym{p}{q}\Legendresym{q}{p} EQUAL (-1)^{(p-1)(q-1)/4}; http://dlmf.nist.gov/27.9.E3]
-8364 [http://dlmf.nist.gov/27.10.E4]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Ramanujansum [\Ramanujansum]
-8365 [http://dlmf.nist.gov/27.10.E5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Ramanujansum [\Ramanujansum]
-8367 [http://dlmf.nist.gov/27.10.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-8369 [http://dlmf.nist.gov/27.10.E9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Gausssum [\Gausssum]
-8370 [http://dlmf.nist.gov/27.10.E10]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Gausssum [\Gausssum]
-8371 [http://dlmf.nist.gov/27.10.E11]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Gausssum [\Gausssum]
-8372 [http://dlmf.nist.gov/27.10.E12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dirichletchar [\Dirichletchar]
-8385 [http://dlmf.nist.gov/27.11.E13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
-8386 [http://dlmf.nist.gov/27.11.E14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
-8387 [http://dlmf.nist.gov/27.11.E15]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
-8388 [http://dlmf.nist.gov/27.12.E1]: Successful [Simple: -1, ConvEXP: -1, ConvHYP: -1, EXP: -1, EXP+EXP: -1, EXP+HYP: -1]
-8389 [http://dlmf.nist.gov/27.12.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-8391: Skipped - Unable to analyze test case.
-8394 [http://dlmf.nist.gov/27.12.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \nprimes [\nprimes]
-8395: Skipped - Unable to analyze test case.
-8397 [http://dlmf.nist.gov/27.13.E2]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Waringg [\Waringg]
-8399 [http://dlmf.nist.gov/27.13.E4]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-8400 [http://dlmf.nist.gov/27.13.E5]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \nsquares [\nsquares]
-8401 [http://dlmf.nist.gov/27.13.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
-8402 [http://dlmf.nist.gov/27.13.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \nsquares [\nsquares]
-8404 [http://dlmf.nist.gov/27.14.E2]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
-8405 [http://dlmf.nist.gov/27.14.E3]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \npartitions [\npartitions]
-8408 [http://dlmf.nist.gov/27.14.E6]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \npartitions [\npartitions]
-8409 [http://dlmf.nist.gov/27.14.E7]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \npartitions [\npartitions]
-8410: Skipped - Unable to analyze test case.
-8411 [http://dlmf.nist.gov/27.14.E9]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \npartitions [\npartitions]
-8412 [http://dlmf.nist.gov/27.14.E10]: Error - java.lang.NullPointerException [8412: A_{k}(n) EQUAL \sum_{\begin{subarray}{c}h=1\\ \pgcd{h,k}=1\end{subarray}}^{k}\exp@{\cpi\iunit s(h,k)-2\cpi\iunit n\frac{h}{k}}; http://dlmf.nist.gov/27.14.E10]
-8414 [http://dlmf.nist.gov/27.14.E12]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dedekindeta [\Dedekindeta]
-8415 [http://dlmf.nist.gov/27.14.E13]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dedekindeta [\Dedekindeta]
-8416 [http://dlmf.nist.gov/27.14.E14]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dedekindeta [\Dedekindeta]
-8417 [http://dlmf.nist.gov/27.14.E15]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \npartitions [\npartitions]
-8418 [http://dlmf.nist.gov/27.14.E16]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \DiscriminantDelta [\DiscriminantDelta]
-8419 [http://dlmf.nist.gov/27.14.E17]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \DiscriminantDelta [\DiscriminantDelta]
-8420 [http://dlmf.nist.gov/27.14.E18]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Ramanujantau [\Ramanujantau]
-8421 [http://dlmf.nist.gov/27.14.E19]: Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Ramanujantau [\Ramanujantau]
-8422: Skipped - Unable to analyze test case.
+7948 [http://dlmf.nist.gov/27.2.E1]: All Errors: [Simple: NULL, ConvEXP: NULL, ConvHYP: NULL, EXP: NULL, EXP+EXP: NULL, EXP+HYP: NULL]
+7949 [http://dlmf.nist.gov/27.2.E2]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \nprimes [\nprimes]
+7950 [http://dlmf.nist.gov/27.2.E3]: Skipped - Unable to analyze test case: Null
+7951 [http://dlmf.nist.gov/27.2.E4]: Skipped - Unable to analyze test case: Null
+7952 [http://dlmf.nist.gov/27.2.E5]: Skipped - Invalid test case: cases
+7953 [http://dlmf.nist.gov/27.2.E6]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Eulertotientphi [\Eulertotientphi]
+7954 [http://dlmf.nist.gov/27.2.E7]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Eulertotientphi [\Eulertotientphi]
+7955 [http://dlmf.nist.gov/27.2.E8]: Skipped - Unable to analyze test case: Null
+7956 [http://dlmf.nist.gov/27.2.E9]: Translation Error - java.lang.NullPointerException [7956: \ndivisors@{n} EQUAL \sum_{d\divides n}1; http://dlmf.nist.gov/27.2.E9]
+7957 [http://dlmf.nist.gov/27.2.E10]: Translation Error - java.lang.NullPointerException [7957: \sumdivisors{\alpha}@{n} EQUAL \sum_{d\divides n}d^{\alpha}; http://dlmf.nist.gov/27.2.E10]
+7958 [http://dlmf.nist.gov/27.2.E11]: Skipped - Invalid test case: dots
+7959 [http://dlmf.nist.gov/27.2.E12]: Skipped - Invalid test case: cases
+7960 [http://dlmf.nist.gov/27.2.E13]: Skipped - Invalid test case: cases
+7961 [http://dlmf.nist.gov/27.2.E14]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \MangoldtLambda [\MangoldtLambda]
+7962 [http://dlmf.nist.gov/27.3.E1]: Skipped - no semantic math
+7963 [http://dlmf.nist.gov/27.3.E2]: Skipped - Invalid test case: Generic function f(n)
+7964 [http://dlmf.nist.gov/27.3.E3]: Translation Error - java.lang.NullPointerException [7964: \Eulertotientphi@{n} EQUAL n\prod_{p\divides n}(1-p^{-1}); http://dlmf.nist.gov/27.3.E3]
+7965 [http://dlmf.nist.gov/27.3.E4]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \JordanJ [\JordanJ]
+7966 [http://dlmf.nist.gov/27.3.E5]: All Errors: [Simple: NULL, ConvEXP: NULL, ConvHYP: NULL, EXP: NULL, EXP+EXP: NULL, EXP+HYP: NULL]
+7967 [http://dlmf.nist.gov/27.3.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+7968 [http://dlmf.nist.gov/27.3.E7]: Translation Error - java.lang.NullPointerException [7968: \sumdivisors{\alpha}@{m}\sumdivisors{\alpha}@{n} EQUAL \sum_{d\divides\pgcd{m,n}}d^{\alpha}\sumdivisors{\alpha}\left(\frac{mn}{d^{2}}\right); http://dlmf.nist.gov/27.3.E7]
+7969 [http://dlmf.nist.gov/27.3.E8]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+7970 [http://dlmf.nist.gov/27.3.E9]: Skipped - no semantic math
+7971 [http://dlmf.nist.gov/27.3.E10]: Skipped - Invalid test case: Generic function f(n)
+7972 [http://dlmf.nist.gov/27.4.E1]: Skipped - no semantic math
+7973 [http://dlmf.nist.gov/27.4.E2]: Skipped - no semantic math
+7974 [http://dlmf.nist.gov/27.4.E3]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+7974-a [http://dlmf.nist.gov/27.4.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+7975 [http://dlmf.nist.gov/27.4.E4]: Skipped - no semantic math
+7976 [http://dlmf.nist.gov/27.4.E5]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
+7977 [http://dlmf.nist.gov/27.4.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+7978 [http://dlmf.nist.gov/27.4.E7]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Liouvillelambda [\Liouvillelambda]
+7979 [http://dlmf.nist.gov/27.4.E8]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
+7980 [http://dlmf.nist.gov/27.4.E9]: All Errors: [Simple: NULL, ConvEXP: NULL, ConvHYP: NULL, EXP: NULL, EXP+EXP: NULL, EXP+HYP: NULL]
+7981 [http://dlmf.nist.gov/27.4.E10]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \ndivisors [\ndivisors]
+7982 [http://dlmf.nist.gov/27.4.E11]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+7983 [http://dlmf.nist.gov/27.4.E12]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \MangoldtLambda [\MangoldtLambda]
+7984 [http://dlmf.nist.gov/27.4.E13]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+7985 [http://dlmf.nist.gov/27.5.E1]: Skipped - Invalid test case: Generic function f(d)
+7986 [http://dlmf.nist.gov/27.5.E2]: Translation Error - java.lang.NullPointerException [7986: \sum_{d\divides n}\Moebiusmu@{d} EQUAL \floor{\frac{1}{n}}; http://dlmf.nist.gov/27.5.E2]
+7987 [http://dlmf.nist.gov/27.5.E3]: Skipped - Invalid test case: Generic function g(n), Generic function f(d)
+7988 [http://dlmf.nist.gov/27.5.E4]: Translation Error - java.lang.NullPointerException [7988: n EQUAL \sum_{d\divides n}\Eulertotientphi@{d}\Longleftrightarrow\Eulertotientphi@{n}; http://dlmf.nist.gov/27.5.E4]
+7988-a [http://dlmf.nist.gov/27.5.E4]: Translation Error - java.lang.NullPointerException [7988: \sum_{d\divides n}\Eulertotientphi@{d}\Longleftrightarrow\Eulertotientphi@{n} EQUAL \sum_{d\divides n}d\Moebiusmu@{\frac{n}{d}}; http://dlmf.nist.gov/27.5.E4]
+7989 [http://dlmf.nist.gov/27.5.E5]: Translation Error - java.lang.NullPointerException [7989: \ln@@{n} EQUAL \sum_{d\divides n}\MangoldtLambda@{d}\Longleftrightarrow\MangoldtLambda@{n}; http://dlmf.nist.gov/27.5.E5]
+7989-a [http://dlmf.nist.gov/27.5.E5]: Translation Error - java.lang.NullPointerException [7989: \sum_{d\divides n}\MangoldtLambda@{d}\Longleftrightarrow\MangoldtLambda@{n} EQUAL \sum_{d\divides n}(\ln@@{d})\Moebiusmu@{\frac{n}{d}}; http://dlmf.nist.gov/27.5.E5]
+7990 [http://dlmf.nist.gov/27.5.E6]: Skipped - Invalid test case: Generic function G(x), Generic function F\left(\frac{x}{n}\right)
+7991 [http://dlmf.nist.gov/27.5.E7]: Skipped - Invalid test case: Generic function G(x), Generic function F(mx)
+7992 [http://dlmf.nist.gov/27.5.E8]: Skipped - Invalid test case: Generic function g(n), Generic function f(d)
+7993 [http://dlmf.nist.gov/27.6.E1]: Skipped - Invalid test case: cases
+7994 [http://dlmf.nist.gov/27.6.E2]: Skipped - Invalid test case: Generic function f(d)
+7995 [http://dlmf.nist.gov/27.6.E3]: Translation Error - java.lang.NullPointerException [7995: \sum_{d\divides n}|\Moebiusmu@{d}| EQUAL 2^{\nprimesdiv@{n}}; http://dlmf.nist.gov/27.6.E3]
+7996 [http://dlmf.nist.gov/27.6.E4]: Translation Error - java.lang.NullPointerException [7996: \sum_{d^{2}\divides n}\Moebiusmu@{d} EQUAL |\Moebiusmu@{n}|; http://dlmf.nist.gov/27.6.E4]
+7997 [http://dlmf.nist.gov/27.6.E5]: Translation Error - java.lang.NullPointerException [7997: \sum_{d\divides n}\frac{|\Moebiusmu@{d}|}{\Eulertotientphi@{d}} EQUAL \frac{n}{\Eulertotientphi@{n}}; http://dlmf.nist.gov/27.6.E5]
+7998 [http://dlmf.nist.gov/27.6.E6]: Skipped - Invalid test case: dots
+7999 [http://dlmf.nist.gov/27.6.E7]: Translation Error - java.lang.NullPointerException [7999: \sum_{d\divides n}\Moebiusmu@{d}\left(\frac{n}{d}\right)^{k} EQUAL \JordanJ{k}@{n}; http://dlmf.nist.gov/27.6.E7]
+8000 [http://dlmf.nist.gov/27.6.E8]: Translation Error - java.lang.NullPointerException [8000: \sum_{d\divides n}\JordanJ{k}@{d} EQUAL n^{k}; http://dlmf.nist.gov/27.6.E8]
+8001 [http://dlmf.nist.gov/27.7.E1]: Skipped - no semantic math
+8002 [http://dlmf.nist.gov/27.7.E2]: Skipped - Invalid test case: Generic function f(n)
+8003 [http://dlmf.nist.gov/27.7.E3]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
+8004 [http://dlmf.nist.gov/27.7.E4]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8005 [http://dlmf.nist.gov/27.7.E5]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8006 [http://dlmf.nist.gov/27.7.E6]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Liouvillelambda [\Liouvillelambda]
+8007 [http://dlmf.nist.gov/27.8.E1]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dirichletchar [\Dirichletchar]
+8008 [http://dlmf.nist.gov/27.8.E2]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dirichletchar [\Dirichletchar]
+8009 [http://dlmf.nist.gov/27.8.E3]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dirichletchar [\Dirichletchar]
+8010 [http://dlmf.nist.gov/27.8.E4]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dirichletchar [\Dirichletchar]
+8011 [http://dlmf.nist.gov/27.8.E5]: Skipped - Invalid test case: cases
+8012 [http://dlmf.nist.gov/27.8.E6]: Skipped - Invalid test case: cases
+8013 [http://dlmf.nist.gov/27.8.E7]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dirichletchar [\Dirichletchar]
+8014 [http://dlmf.nist.gov/27.8.E8]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dirichletchar [\Dirichletchar]
+8015 [http://dlmf.nist.gov/27.9.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8016 [http://dlmf.nist.gov/27.9.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8017 [http://dlmf.nist.gov/27.9.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8018 [http://dlmf.nist.gov/27.10.E1]: Skipped - no semantic math
+8019 [http://dlmf.nist.gov/27.10.E2]: Skipped - Invalid test case: Generic function f(n)
+8020 [http://dlmf.nist.gov/27.10.E3]: Skipped - Invalid test case: Generic function g(m)
+8021 [http://dlmf.nist.gov/27.10.E4]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Ramanujansum [\Ramanujansum]
+8022 [http://dlmf.nist.gov/27.10.E5]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Ramanujansum [\Ramanujansum]
+8023 [http://dlmf.nist.gov/27.10.E6]: Skipped - Invalid test case: Generic function f(d)
+8024 [http://dlmf.nist.gov/27.10.E7]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8025 [http://dlmf.nist.gov/27.10.E8]: Skipped - Invalid test case: Generic function g(d)
+8026 [http://dlmf.nist.gov/27.10.E9]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Gausssum [\Gausssum]
+8027 [http://dlmf.nist.gov/27.10.E10]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Gausssum [\Gausssum]
+8028 [http://dlmf.nist.gov/27.10.E11]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Gausssum [\Gausssum]
+8029 [http://dlmf.nist.gov/27.10.E12]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dirichletchar [\Dirichletchar]
+8030 [http://dlmf.nist.gov/27.11.E1]: Skipped - Invalid test case: Generic function f(n)
+8031 [http://dlmf.nist.gov/27.11.E2]: Skipped - Invalid test case: bigO
+8032 [http://dlmf.nist.gov/27.11.E3]: Skipped - Invalid test case: bigO
+8033 [http://dlmf.nist.gov/27.11.E4]: Skipped - Invalid test case: bigO
+8034 [http://dlmf.nist.gov/27.11.E5]: Skipped - Invalid test case: bigO
+8035 [http://dlmf.nist.gov/27.11.E6]: Skipped - Invalid test case: bigO
+8036 [http://dlmf.nist.gov/27.11.E7]: Skipped - Invalid test case: bigO
+8037 [http://dlmf.nist.gov/27.11.E8]: Skipped - Invalid test case: bigO
+8038 [http://dlmf.nist.gov/27.11.E9]: Skipped - Invalid test case: bigO, bigO
+8039 [http://dlmf.nist.gov/27.11.E10]: Skipped - Invalid test case: bigO
+8040 [http://dlmf.nist.gov/27.11.E11]: Skipped - Invalid test case: bigO, bigO
+8041 [http://dlmf.nist.gov/27.11.E12]: Skipped - Invalid test case: bigO
+8042 [http://dlmf.nist.gov/27.11.E13]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
+8043 [http://dlmf.nist.gov/27.11.E14]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
+8044 [http://dlmf.nist.gov/27.11.E15]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Moebiusmu [\Moebiusmu]
+8045 [http://dlmf.nist.gov/27.12.E1]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8046 [http://dlmf.nist.gov/27.12.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8047 [http://dlmf.nist.gov/27.12.E3]: Skipped - Invalid test case: cdots
+8048 [http://dlmf.nist.gov/27.12.E4]: Skipped - Unable to analyze test case: Null
+8049 [http://dlmf.nist.gov/27.12.E5]: Skipped - Invalid test case: bigO
+8050 [http://dlmf.nist.gov/27.12.E6]: Skipped - Invalid test case: bigO
+8051 [http://dlmf.nist.gov/27.12.E7]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \nprimes [\nprimes]
+8052 [http://dlmf.nist.gov/27.12.E8]: Skipped - Unable to analyze test case: Null
+8053 [http://dlmf.nist.gov/27.13.E1]: Skipped - no semantic math
+8054 [http://dlmf.nist.gov/27.13.E2]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Waringg [\Waringg]
+8055 [http://dlmf.nist.gov/27.13.E3]: Skipped - no semantic math
+8056 [http://dlmf.nist.gov/27.13.E4]: Successful [Simple: 0, ConvEXP: 0, ConvHYP: 0, EXP: 0, EXP+EXP: 0, EXP+HYP: 0]
+8057 [http://dlmf.nist.gov/27.13.E5]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \nsquares [\nsquares]
+8058 [http://dlmf.nist.gov/27.13.E6]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8059 [http://dlmf.nist.gov/27.13.E7]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \nsquares [\nsquares]
+8060 [http://dlmf.nist.gov/27.14.E1]: Skipped - no semantic math
+8061 [http://dlmf.nist.gov/27.14.E2]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8062 [http://dlmf.nist.gov/27.14.E3]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8063 [http://dlmf.nist.gov/27.14.E4]: Skipped - Invalid test case: dots, dots
+8064 [http://dlmf.nist.gov/27.14.E5]: Definition - Line is a non-semantic definition.
+8065 [http://dlmf.nist.gov/27.14.E6]: All Errors: [Simple: NULL, ConvEXP: NULL, ConvHYP: NULL, EXP: NULL, EXP+EXP: NULL, EXP+HYP: NULL]
+8066 [http://dlmf.nist.gov/27.14.E7]: All Errors: [Simple: NULL, ConvEXP: NULL, ConvHYP: NULL, EXP: NULL, EXP+EXP: NULL, EXP+HYP: NULL]
+8067 [http://dlmf.nist.gov/27.14.E8]: Skipped - Unable to analyze test case: Null
+8068 [http://dlmf.nist.gov/27.14.E9]: All Errors: [Simple: NULL, ConvEXP: NULL, ConvHYP: NULL, EXP: NULL, EXP+EXP: NULL, EXP+HYP: NULL]
+8069 [http://dlmf.nist.gov/27.14.E10]: Translation Error - (LaTeX -> Maple) No translation possible for given token: Unable to identify interval of SUM
+8070 [http://dlmf.nist.gov/27.14.E11]: Definition - Line is a non-semantic definition.
+8071 [http://dlmf.nist.gov/27.14.E12]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dedekindeta [\Dedekindeta]
+8072 [http://dlmf.nist.gov/27.14.E13]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dedekindeta [\Dedekindeta]
+8073 [http://dlmf.nist.gov/27.14.E14]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Dedekindeta [\Dedekindeta]
+8074 [http://dlmf.nist.gov/27.14.E15]: Failure [Simple: NaN, ConvEXP: NaN, ConvHYP: NaN, EXP: NaN, EXP+EXP: NaN, EXP+HYP: NaN]
+8075 [http://dlmf.nist.gov/27.14.E16]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \DiscriminantDelta [\DiscriminantDelta]
+8076 [http://dlmf.nist.gov/27.14.E17]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \DiscriminantDelta [\DiscriminantDelta]
+8077 [http://dlmf.nist.gov/27.14.E18]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Ramanujantau [\Ramanujantau]
+8078 [http://dlmf.nist.gov/27.14.E19]: Missing Macro Error - (LaTeX -> Maple) No translation possible for given token: Cannot extract information from feature set: \Ramanujantau [\Ramanujantau]
+8079 [http://dlmf.nist.gov/27.14.E20]: Skipped - Unable to analyze test case: Null

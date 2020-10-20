@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.common.interfaces;
 
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 
 import java.util.Arrays;
@@ -13,14 +14,22 @@ import java.util.Arrays;
  */
 public interface ITranslator {
     /**
-     * This method parses a given expression.
-     * It returns true if the parsing process
-     * finished without an error.
-     *
-     * @param expression tagged expression
-     * @return  true if the parsing process finished
-     *          without an error.
+     * Translates the given expression.
+     * @param expression expression
+     * @return the string representation of the translation
      * @throws TranslationException If the translation process failed.
      */
-    String translate( String expression ) throws TranslationException;
+    default String translate( String expression ) throws TranslationException {
+        TranslationInformation ti = translateToObject(expression);
+        return ti.getTranslatedExpression();
+    }
+
+    /**
+     * Equivalent to {@link #translate(String)} but it returns a {@link TranslationInformation} object
+     * rather than just the string translation.
+     * @param expression expression
+     * @return all information about the translation process
+     * @throws TranslationException if an error due translation occurs.
+     */
+    TranslationInformation translateToObject( String expression ) throws TranslationException;
 }

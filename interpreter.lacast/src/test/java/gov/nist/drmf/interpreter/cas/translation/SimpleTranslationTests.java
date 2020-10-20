@@ -29,10 +29,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class SimpleTranslationTests {
 
     private static SemanticLatexTranslator slt;
+    private static SemanticLatexTranslator sltMathematica;
 
     @BeforeAll
     static void setup() throws InitTranslatorException {
         slt = new SemanticLatexTranslator(Keys.KEY_MAPLE);
+        sltMathematica = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
     }
 
     @Test
@@ -60,14 +62,6 @@ class SimpleTranslationTests {
     }
 
     @Test
-    void functionTest() {
-        String in = "\\cos(x)";
-        String eout = "cos(x)";
-        String out = slt.translate(in);
-        assertEquals(eout, out);
-    }
-
-    @Test
     void macroTest() {
         String in = "\\JacobiP{\\alpha}{\\beta}{n}@{\\cos@{a\\Theta}}";
         String eout = "JacobiP(n, alpha, beta, cos(a*Theta))";
@@ -81,6 +75,28 @@ class SimpleTranslationTests {
         String eout = "sqrt((1)/(I))";
         String out = slt.translate(in);
         assertEquals(eout, out);
+    }
+
+    @Test
+    void wrongRankTest() {
+        String in = "rk(z)";
+        String out = slt.translate(in);
+        assertEquals("r*k*(z)", out);
+        System.out.println(slt.getInfoLogger());
+        assertTrue(slt.getInfoLogger().toString().contains("rk"));
+    }
+
+    @Test
+    void unableToTranslateNablaTest() {
+        String in = "\\nabla(z)";
+        assertThrows(TranslationException.class, () -> slt.translate(in));
+    }
+
+    @Test
+    void ignoreCalMacro() {
+        String in = "\\cal L";
+        String out = slt.translate(in);
+        assertEquals("L", out);
     }
 
     @Test
@@ -156,6 +172,15 @@ class SimpleTranslationTests {
     }
 
     @Test
+    void invalidEmptyDerivTest() {
+        String in = "\\deriv{}{z} = \\cos@{x}";
+        assertThrows(
+                TranslationException.class,
+                () -> slt.translate(in)
+        );
+    }
+
+    @Test
     void modTest() {
         String in = "(k-1) \\mod m";
         String eout = "`modp`(k - 1,m)";
@@ -174,7 +199,7 @@ class SimpleTranslationTests {
     @Test
     void absoluteValueTest() {
         String in = "\\left| \\frac{z_1}{z_2} \\right| = \\frac{|z_1|}{|z_2|}";
-        String eout = "abs((z[1])/(z[2]))=(abs(z[1]))/(abs(z[2]))";
+        String eout = "abs((z[1])/(z[2])) = (abs(z[1]))/(abs(z[2]))";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
@@ -186,12 +211,78 @@ class SimpleTranslationTests {
     }
 
     @Test
-    void emptyDerivTest() {
+    void emptySimpleDerivTest() {
         String in = "\\deriv{}{z} z^a = az^{a-1}";
-        String eout = "diff((z)^(a), z)= a*(z)^(a - 1)";
+        String eout = "diff((z)^(a), z) = a*(z)^(a - 1)";
         String out = slt.translate(in);
         assertEquals(eout, out);
-        //\tfrac{1}{4} |z|
+    }
+
+    @Test
+    void reverseSimpleDerivTest() {
+        String in = "z^a \\deriv{}{z} = az^{a-1}";
+        String eout = "diff((z)^(a), z) = a*(z)^(a - 1)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void reverseBreakpointDerivTest() {
+        String in = "az^{a-1} = z^a \\deriv{}{z}";
+        String eout = "a*(z)^(a - 1) = diff((z)^(a), z)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void reverseLongDerivTest() {
+        String in = "1 + z^a \\cdot a \\deriv{}{z} = az^{a-1}";
+        String eout = "1 + diff((z)^(a) * a, z) = a*(z)^(a - 1)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void reverseParenthesisDerivTest() {
+        String in = "(z^a \\cdot a \\deriv{}{z})^2 + z";
+        String eout = "(diff((z)^(a) * a, z))^(2)+ z";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void complexDerivTest() {
+        String in = "\\deriv{}{z^a} 1 + z^a";
+        String eout = "subs( temp=(z)^(a), diff( 1 + temp, temp$(1) ) )";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void complexDerivOrder2Test() {
+        String in = "\\deriv[2]{}{z^a} 1 + z^a";
+        String eout = "subs( temp=(z)^(a), diff( 1 + temp, temp$(2) ) )";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void airyAiDerivTest() {
+        String in = "\\AiryAi'@{z}";
+        String eout = "diff( AiryAi(z), z$(1) )";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void plusMinusTest() {
+        String in = "\\pm 1";
+        String eout = "&+- 1";
+        String eout2 = "\\[PlusMinus]1";
+        String out = slt.translate(in);
+        String out2 = sltMathematica.translate(in);
+        assertEquals(eout, out);
+        assertEquals(eout2, out2);
     }
 
     @Test
@@ -273,6 +364,15 @@ class SimpleTranslationTests {
     }
 
     @Test
+    @DLMF("1.8.16")
+    void sumInCurlyBracketsTest() {
+        String in = "{\\sqrt{x}\\*\\left(2\\sum_{n=1}^{\\infty}n\\right)}";
+        String expect = "sqrt(x)*(2*sum(n, n = 1..infinity))";
+        String out = slt.translate(in);
+        assertEquals(expect, out);
+    }
+
+    @Test
     void overlineTest() {
         assertThrows(TranslationException.class, () -> slt.translate("\\overline{z}"));
         assertThrows(TranslationException.class, () -> slt.translate("\\overline{z+1}"));
@@ -284,7 +384,7 @@ class SimpleTranslationTests {
         String label = "4.2.E33";
         String res = slt.translate(in, label);
         System.out.println(res);
-        assertEquals("exp(z)=(exp(z))* exp(2*k*z*Pi*I)", res);
+        assertEquals("exp(z) = (exp(z))* exp(2*k*z*Pi*I)", res);
     }
 
     @Test
@@ -293,7 +393,7 @@ class SimpleTranslationTests {
         String label = "19.6.2";
         String res = slt.translate(in, label);
         System.out.println(res);
-        assertEquals("EllipticPi((k)^(2), k)= EllipticE(k)/(1 - (k)^(2))", res);
+        assertEquals("EllipticPi((k)^(2), k) = EllipticE(k)/(1 - (k)^(2))", res);
     }
 
     @Test
@@ -315,9 +415,54 @@ class SimpleTranslationTests {
     @Test
     public void unknownFunctionTranslator() throws ParseException, IOException {
         String input = "\\cos(x)";
+        // manually delete the information that \cos is a semantic macro
         PomTaggedExpression pte = stripOfDLMFInfo(input);
         TranslatedExpression trans = slt.translate(pte);
         assertEquals("cos(x)", trans.toString());
+    }
+
+    @Test
+    public void macroParenthesisTranslator() {
+        String input = "\\cos(x)";
+        String trans = slt.translate(input);
+        assertEquals("cos(x)", trans);
+    }
+
+    @Test
+    public void autoSetModeTest() {
+        String input = "x \\in (1,2]";
+        String output = slt.translate(input);
+        assertEquals("1 < x <= 2", output);
+    }
+
+    @Test
+    @DLMF("4.23.21")
+    public void realWorldSetTest() {
+        String input = "x \\in (- \\infty, -1]";
+        String output = slt.translate(input);
+        assertEquals("- infinity < x <= - 1", output);
+    }
+
+    @Test
+    public void multiplyTest() {
+        String input = "|(x+y\\iunit)|";
+        String output = slt.translate(input);
+        assertEquals("abs(x + y*I)", output);
+    }
+
+    @Test
+    public void intAbsValueTest() {
+        String input = "\\int_{0}^1 |x+1|^2 \\diff{x}";
+        String output = slt.translate(input);
+        assertEquals("int((abs(x + 1))^(2), x = 0..1)", output);
+    }
+
+    @Test
+    @DLMF("22.14.8")
+    public void modulusKTest() {
+        String input = "{\\sqrt{1-k^2}}^{-1}\\ln{\\Jacobielldck{x}{k}+\\sqrt{1-k^2}\\Jacobiellsck{x}{k}}";
+        String output = sltMathematica.translate(input, "12.14.8");
+        assertEquals("(Sqrt[1 - (k)^(2)])^(- 1)* Log[JacobiDC[x, (k)^2]+Sqrt[1 - (k)^(2)]*JacobiSC[x, (k)^2]]", output);
     }
 
     @Test

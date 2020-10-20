@@ -30,13 +30,14 @@ public class TranslatedExpressionHelper {
         return innerCache;
     }
 
+    public static boolean hit(String element, List<String> vars) {
+        StringBuilder varPattern = TranslatedExpressionHelper.getVarPattern(vars);
+        return element.matches("^(?:.*[^\\p{Alpha}]|\\s*)" + varPattern + "(?:[^\\p{Alpha}].*|\\s*)$");
+    }
+
     public void handleElement(String element, List<String> var) {
-        StringBuilder varPattern = TranslatedExpressionHelper.getVarPattern(var);
-        if ( element.matches("^(?:.*[^\\p{Alpha}]|\\s*)" + varPattern + "(?:[^\\p{Alpha}].*|\\s*)$") ) {
-            handleElementHit(element);
-        } else {
-            handleNonHitElement(element);
-        }
+        if ( TranslatedExpressionHelper.hit(element, var) ) handleElementHit(element);
+        else handleNonHitElement(element);
     }
 
     public void handleElementHit(
@@ -100,9 +101,10 @@ public class TranslatedExpressionHelper {
     public static StringBuilder getVarPattern(List<String> var) {
         StringBuilder varPattern = new StringBuilder("(");
         for ( int i = 0; i < var.size()-1; i++ ) {
-            varPattern.append(var.get(i)).append("|");
+            varPattern.append("\\Q").append(var.get(i)).append("\\E");
+            varPattern.append("|");
         }
-        varPattern.append(var.get(var.size() - 1)).append(")");
+        varPattern.append("\\Q").append(var.get(var.size()-1)).append("\\E)");
         return varPattern;
     }
 }

@@ -1,2 +1,1 @@
-\JacobiEpsilonk, 20
-\Jacobiamk, 12
+\JacobiEpsilonk, 21

@@ -2,12 +2,9 @@ package gov.nist.drmf.interpreter.mlp.extensions;
 
 import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
-import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
-import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.mlp.MathTermUtility;
 import mlp.MathTerm;
-import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,7 +13,6 @@ import org.intellij.lang.annotations.Language;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 /**
  * This object is essentially an extension of the classic PomTaggedExpression.
@@ -24,9 +20,10 @@ import java.util.regex.Pattern;
  * wildcards. Another {@link PomTaggedExpression} may matches this object or may not match it,
  * depending on the wildcards.
  *
+ * @see PomMatcherBuilder
  * @author Andre Greiner-Petter
  */
-public class MatchablePomTaggedExpression extends PomTaggedExpression implements IMatcher<PrintablePomTaggedExpression> {
+public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpression {
     private static final Logger LOG = LogManager.getLogger(MatchablePomTaggedExpression.class.getName());
 
     /**
@@ -35,14 +32,15 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
     private final boolean isWildcard;
 
     /**
+     * If a single node a is wrapped in brackets {a}, it represents a single sequence object.
+     * This kind of wildcard only matches a single node even if it is at the end of a sequence.
+     */
+    private boolean isSingleSequenceWildcard;
+
+    /**
      * The wildcard ID
      */
     private final String wildcardID;
-
-    /**
-     * Essentially a copy of {@link PomTaggedExpression#getComponents()}
-     */
-    private final PomTaggedExpressionChildrenMatcher children;
 
     /**
      * Next sibling, if any
@@ -50,97 +48,15 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
     private MatchablePomTaggedExpression nextSibling;
 
     /**
-     * The library is a shared object among all nodes of one tree.
-     * This is necessary to check the integrity within matches.
-     */
-    private final GroupCaptures captures;
-
-    /**
-     * The instance that will be used to compile expressions;
-     */
-    private final MLPWrapper mlp;
-
-    /**
-     * This expression does not contain wildcards! If you want to use wildcards, use one of the
-     * other constructors.
-     * @param expression the expression to match without wildcards.
-     */
-    public MatchablePomTaggedExpression(String expression) throws ParseException {
-        this(expression, "");
-    }
-
-    /**
-     * This expression does not contain wildcards! If you want to use wildcards, use one of the
-     * other constructors.
-     * @param refRoot the expression to match without wildcards.
-     */
-    public MatchablePomTaggedExpression(PomTaggedExpression refRoot) {
-        this(refRoot, "");
-    }
-
-    /**
-     * It uses the standard instance the parser via {@link SemanticMLPWrapper#getStandardInstance()}.
-     * @param expression the expression to create a matchable tree
-     * @param wildcardPattern the regex to find wildcards (e.g., var\d+).
-     * @throws ParseException if the {@link MLPWrapper} is unable to parse the expression
-     * @throws NotMatchableException if the given expression cannot be matched
-     */
-    public MatchablePomTaggedExpression(String expression, String wildcardPattern)
-            throws ParseException, NotMatchableException {
-        this(SemanticMLPWrapper.getStandardInstance(), expression, wildcardPattern);
-    }
-
-    /**
-     * Copy constructor to extend a {@link PomTaggedExpression} and its components to
-     * a {@link MatchablePomTaggedExpression}.
-     * @param refRoot         the reference {@link PomTaggedExpression}
-     * @param wildcardPattern a regex that defines the set of wildcards
-     * @throws NotMatchableException if the given expression cannot be matched
-     */
-    public MatchablePomTaggedExpression(PomTaggedExpression refRoot, String wildcardPattern)
-            throws NotMatchableException {
-        this(SemanticMLPWrapper.getStandardInstance(), refRoot, wildcardPattern, new GroupCaptures());
-    }
-
-    /**
-     * For better performance, it is recommended to have one MLPWrapper instance.
-     * Hence, use one of the constructors to provide the instance you are using here.
-     *
-     * This constructor does not allow any wildcards.
-     *
-     * @param mlp the mlp wrapper to parse the expression
-     * @param expression the expression to create a matchable tree
-     * @throws ParseException if the {@link MLPWrapper} is unable to parse the expression
-     * @throws NotMatchableException if the given expression cannot be matched
-     */
-    public MatchablePomTaggedExpression(MLPWrapper mlp, String expression)
-            throws ParseException, NotMatchableException {
-        this(mlp, mlp.simpleParse(expression), "", new GroupCaptures());
-    }
-
-    /**
      * For better performance, it is recommended to have one MLPWrapper object.
      * So if not necessary,
      * @param mlp the mlp wrapper to parse the expression
-     * @param expression the expression to create a matchable tree
+     * @param refRoot the expression to create a matchable tree
      * @param wildcardPattern the regex to find wildcards (e.g., var\d+).
-     * @throws ParseException if the {@link MLPWrapper} is unable to parse the expression
      * @throws NotMatchableException if the given expression cannot be matched
+     * @see PomMatcherBuilder
      */
-    public MatchablePomTaggedExpression(MLPWrapper mlp, String expression, @Language("RegExp") String wildcardPattern)
-            throws ParseException, NotMatchableException {
-        this(mlp, mlp.simpleParse(expression), wildcardPattern, new GroupCaptures());
-    }
-
-    /**
-     * Copy constructor to extend a {@link PomTaggedExpression} and its components to
-     * a {@link MatchablePomTaggedExpression}.
-     * @param mlp             the MLP engine to use for matching expressions
-     * @param refRoot         the reference {@link PomTaggedExpression}
-     * @param wildcardPattern a regex that defines the set of wildcards
-     * @throws NotMatchableException if the given expression cannot be matched
-     */
-    public MatchablePomTaggedExpression(MLPWrapper mlp, PomTaggedExpression refRoot, String wildcardPattern)
+    public MatchablePomTaggedExpression(MLPWrapper mlp, PomTaggedExpression refRoot, @Language("RegExp") String wildcardPattern)
             throws NotMatchableException {
         this(mlp, refRoot, wildcardPattern, new GroupCaptures());
     }
@@ -151,10 +67,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
             String wildcardPattern,
             GroupCaptures captures
     ) throws NotMatchableException {
-        super(refRoot.getRoot(), refRoot.getTag(), refRoot.getSecondaryTags());
-        this.mlp = mlpWrapper;
-        this.captures = captures;
-        this.children = new PomTaggedExpressionChildrenMatcher(this);
+        super(refRoot, mlpWrapper, captures);
 
         // if this the root, normalize the reference tree first
         if ( refRoot.getParent() != null )
@@ -171,37 +84,30 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
                 throw new NotMatchableException("A wildcard node cannot have children.");
             this.isWildcard = true;
             this.wildcardID = text;
+            this.isSingleSequenceWildcard = PrintablePomTaggedExpressionUtils.isSingleElementInBrackets(refRoot);
         } else {
             this.isWildcard = false;
             this.wildcardID = null;
+            this.isSingleSequenceWildcard = false;
         }
 
         List<PomTaggedExpression> comps = refRoot.getComponents();
 
         MatchablePomTaggedExpression prevNode = null;
         for (PomTaggedExpression pte : comps) {
-            MatchablePomTaggedExpression cpte = new MatchablePomTaggedExpression(mlp, pte, wildcardPattern, captures);
-            this.children.add(cpte);
-
-            if (prevNode != null) {
-                prevNode.setNextSibling(cpte);
-                if (prevNode.isWildcard && cpte.isWildcard)
-                    throw new NotMatchableException("Two consecutive wildcards may have no unique matches.");
-            }
+            MatchablePomTaggedExpression cpte = new MatchablePomTaggedExpression(mlpWrapper, pte, wildcardPattern, captures);
+            this.getChildrenMatcher().add(cpte);
+            checkValidity(prevNode, cpte);
             prevNode = cpte;
         }
     }
 
-    MLPWrapper getMLPWrapperInstance() {
-        return mlp;
-    }
-
-    PomTaggedExpressionChildrenMatcher getChildrenMatcher() {
-        return children;
-    }
-
-    GroupCaptures getCaptures(){
-        return captures;
+    private void checkValidity(MatchablePomTaggedExpression prevNode, MatchablePomTaggedExpression cpte) {
+        if (prevNode != null) {
+            prevNode.setNextSibling(cpte);
+            if (prevNode.isWildcard && cpte.isWildcard && !prevNode.isSingleSequenceWildcard)
+                throw new NotMatchableException("Two consecutive wildcards may have no unique matches.");
+        }
     }
 
     /**
@@ -226,118 +132,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         this.nextSibling = nextSibling;
     }
 
-    /**
-     * Generates a {@link PomMatcher} object from the given expression.
-     * It uses the {@link MLPWrapper} given at initialization to generate
-     * a parse tree.
-     * @param expression the expression to match
-     * @return a matcher object
-     * @throws ParseException if the given expression cannot be parsed.
-     */
-    public PomMatcher matcher(String expression) throws ParseException {
-        return matcher(mlp.parse(expression));
-    }
-
-    /**
-     * Generates a {@link PomMatcher} object from the given expression.
-     * This object can be used to safely search subtree matches and entire matches.
-     * @param pte the expression to match
-     * @return a matcher object
-     */
-    public PomMatcher matcher(PrintablePomTaggedExpression pte) {
-        // normalize the expression first, otherwise are never able to match something
-        MLPWrapper.normalize(pte);
-        return new PomMatcher(this, pte);
-    }
-
-    /**
-     * The default match is an exact match. If you want to allow prior and post non-matching tokens,
-     * either use {@link #match(String, MatcherConfig)} or {@link #match(PrintablePomTaggedExpression)}.
-     * @param expression latex string
-     * @return true if the input matches the tree
-     */
-    public boolean match(String expression) {
-        return match(expression, MatcherConfig.getExactMatchConfig());
-    }
-
-    /**
-     * Generates a parse tree of the given input and returns true if the input matches this
-     * pattern tree.
-     * @param expression latex string
-     * @param config configuration for the matcher
-     * @return true if the input matches this tree
-     */
-    public boolean match(String expression, MatcherConfig config) {
-        try {
-            PrintablePomTaggedExpression ppte = mlp.parse(expression);
-            return match(ppte, config);
-        } catch (ParseException e) {
-            LOG.warn("Cannot parse the given expression " + expression);
-            return false;
-        }
-    }
-
     @Override
-    public boolean match(PrintablePomTaggedExpression expression) {
-        try {
-            return match(expression, MatcherConfig.getExactMatchConfig());
-        } catch (Exception e) {
-            LOG.warn("Unable to match expression because " + e.getMessage());
-            return false;
-        }
-    }
-
-    /**
-     * Allows to specify a config for the matcher
-     * @param expression the expression to match
-     * @param config the matcher configuration
-     * @return true if it matches
-     */
-    public boolean match(PrintablePomTaggedExpression expression, MatcherConfig config) {
-        try {
-            captures.clear();
-            expression = (PrintablePomTaggedExpression)MLPWrapper.normalize(expression);
-            boolean matched = false;
-            if ( config.allowLeadingTokens() ) {
-                PomMatcher pomMatcher = new PomMatcher(this, expression);
-                boolean result = pomMatcher.find();
-                matched = result && (pomMatcher.lastMatchReachedEnd() || config.allowFollowingTokens());
-            } else {
-                matched = match(expression, new LinkedList<>(), config);
-            }
-            // in case we did not match, we should not provide any partial captured groups
-            // the reason is, some may ask for the captured groups even though it didn't hit
-            // but we cannot guarantee partial hit groups hence its better to reset all in such
-            // cases to not provoke any errors in the future for other developers
-            if ( !matched ) captures.clear();
-            return matched;
-        } catch (Exception e) {
-            LOG.warn(
-                    String.format("Unable to match \"%s\". Exception: %s",
-                            expression.getTexString(),
-                            e.toString()
-                    )
-            );
-            captures.clear();
-            return false;
-        }
-    }
-
-    /**
-     * For public access, use the other public match functions.
-     * This match is the main matcher method. It matches the given
-     * {@param expression} with the following siblings {@param followingExpressions}.
-     * Initially, {@param followingExpressions} is an empty list (the root of an
-     * {@link PomTaggedExpression} has no siblings).
-     *
-     * Note that all nodes ({@param expression} and {@param followingExpressions}) must
-     * share the same parent node. Otherwise it will create unknown artifacts and errors.
-     *
-     * @param expression the expression
-     * @param followingExpressions the siblings of the expression
-     * @param config the matcher config
-     * @return true if it matched or false otherwise
-     */
     boolean match (
             PrintablePomTaggedExpression expression,
             List<PrintablePomTaggedExpression> followingExpressions,
@@ -345,7 +140,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
     ) {
         try {
             // essentially there are two cases, either it is not a wildcard, that it must match directly the reference
-            if (!isWildcard) return matchNonWildCard(expression, config);
+            if (!isWildcard) return matchNonWildCard(expression, followingExpressions, config);
             return matchWildCard(expression, followingExpressions, config);
         } catch ( NotMatchableException nme ) {
             LOG.debug("Expression not matchable because: " + nme.getMessage() +
@@ -356,10 +151,19 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
 
     private boolean matchNonWildCard(
             PrintablePomTaggedExpression expression,
+            List<PrintablePomTaggedExpression> followingExpressions,
             MatcherConfig config
     ){
         MathTerm otherRoot = expression.getRoot();
         MathTerm thisRoot = getRoot();
+
+        while (config.ignoreNumberOfAts() && MathTermUtility.isAt(otherRoot)) {
+            if ( followingExpressions.isEmpty() ) {
+                return true;
+            }
+            expression = followingExpressions.remove(0);
+            otherRoot = expression.getRoot();
+        }
 
         // TODO might be too strict
         if (!thisRoot.getTermText().equals(otherRoot.getTermText())) {
@@ -368,11 +172,11 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
 
         // since both term matches, we have to check their children
         // if this object doesn't have children, we can straight check the match
-        if (this.children.isEmpty()) return expression.getComponents().isEmpty();
+        if (this.getChildrenMatcher().isEmpty()) return expression.getComponents().isEmpty();
 
         LinkedList<PrintablePomTaggedExpression> refComponents =
                 new LinkedList<>(expression.getPrintableComponents());
-        return children.matchNonWildCardChildren(refComponents, config);
+        return getChildrenMatcher().matchNonWildCardChildren(refComponents, config);
     }
 
     private boolean matchWildCard(
@@ -385,8 +189,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
 
         // if there is no next element in the pattern, the entire rest matches this wildcard
         if (nextSibling == null) {
-            captureUntilEnd(expression, followingExpressions);
-            return true;
+            return captureUntilEnd(expression, followingExpressions, config);
         }
 
         // otherwise, add elements, until the next element matches
@@ -394,15 +197,26 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         return matchWildcardUntilEnd(expression, followingExpressions, config);
     }
 
-    private void captureUntilEnd(
+    private boolean captureUntilEnd(
             PrintablePomTaggedExpression expression,
-            List<PrintablePomTaggedExpression> followingExpressions
+            List<PrintablePomTaggedExpression> followingExpressions,
+            MatcherConfig config
     ) {
+        if ( isNotAllowedTokenForWildcardMatch(expression, config) ) return false;
+
         List<PomTaggedExpression> matches = new LinkedList<>();
         matches.add(expression);
-        while (!followingExpressions.isEmpty())
-            matches.add(followingExpressions.remove(0));
-        captures.setCapturedGroup(wildcardID, matches);
+
+        if ( !isSingleSequenceWildcard ) {
+            while (!followingExpressions.isEmpty()){
+                expression = followingExpressions.remove(0);
+                if ( isNotAllowedTokenForWildcardMatch(expression, config) ) return false;
+                matches.add(expression);
+            }
+        }
+
+        getCaptures().setCapturedGroup(wildcardID, matches);
+        return true;
     }
 
     private boolean matchWildcardUntilEnd(
@@ -418,7 +232,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         LinkedList<Brackets> bracketStack = new LinkedList<>();
 
         // fill up wild card until the next hit
-        while (continueMatching(bracketStack, next, followingExpressions, config)) {
+        while (!isSingleSequenceWildcard && continueMatching(bracketStack, next, followingExpressions, config)) {
             if (followingExpressions.isEmpty() || isNotAllowedTokenForWildcardMatch(next, config)) {
                 return false;
             }
@@ -435,7 +249,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         // nextSibling has matched the next element in followingExpression... so put add back into the queue
         // and return true
         followingExpressions.add(0, next);
-        captures.setCapturedGroup(wildcardID, matches);
+        getCaptures().setCapturedGroup(wildcardID, matches);
         return true;
     }
 
@@ -443,11 +257,11 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
      * In case the config does not allow following tokens after the hit, we have to check here
      * not only if the very next sibling matches, but also (if so) if the post-next-sibling tokens
      * force to check for the next
-     * @param bracketStack
-     * @param next
-     * @param followingExpressions
-     * @param config
-     * @return
+     * @param bracketStack stack of opened brackets
+     * @param next next element
+     * @param followingExpressions list of siblings of {@param next}
+     * @param config configuration
+     * @return true if matching should be continued
      */
     private boolean continueMatching(
             LinkedList<Brackets> bracketStack,
@@ -512,25 +326,5 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         String mathTerm = pte.getRoot().getTermText();
         String pattern = config.getIllegalTokensForWildcard(this.wildcardID);
         return mathTerm != null && mathTerm.matches(pattern);
-    }
-
-    /**
-     * Get the grouped matches if any.
-     * @return map of grouped matches
-     * @see #getMatches()
-     */
-    public Map<String, String> getStringMatches() {
-        return captures.getCapturedGroupStrings();
-    }
-
-    /**
-     * Get the grouped matches as the {@link PomTaggedExpression} that matched the wildcards.
-     * Since every wildcard may match sequences of nodes, the returned mapping maps the key
-     * of the pattern group to the list of hits.
-     * @return map of grouped matches
-     * @see #getStringMatches()
-     */
-    public Map<String, PrintablePomTaggedExpression> getMatches() {
-        return captures.getCapturedGroups();
     }
 }

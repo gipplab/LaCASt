@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,6 +23,15 @@ public class LeftRightSide {
             splitted = true;
         }
         this.orig = side;
+    }
+
+    public boolean wasSplitted() {
+        return splitted;
+    }
+
+    public void addCases(Collection<String> collection) {
+        collection.add(one);
+        collection.add(two);
     }
 
     public List<Case> getCases(LeftRightSide opposite, Relations rel, CaseMetaData metaData) {

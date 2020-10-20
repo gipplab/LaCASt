@@ -18,7 +18,7 @@ DLMF;Mathematica;DLMF-Mathematica-Comment;Mathematica-Alternatives
 \Atan@@{z};ArcTan[$0];The translation is only valid on the principle branch.;Integrate[Divide[1, 1+t^2], {t, 0, $0}]
 \Asec@@{z};ArcSec[$0];The translation is only valid on the principle branch.;Integrate[Divide[1, (1-t^2)^(1/2)], {t, Divide[1,$0], 1}]
 \Acsc@@{z};ArcCsc[$0];The translation is only valid on the principle branch.;Integrate[Divide[1, (1-t^2)^(1/2)], {t, 0, Divide[1,$0]}]
-\Acot@@{z};ArcCot[$0];The translation is only valid on the principle branch.;
+\Acot@@{z};ArcCot[$0];The translation is only valid on the principle branch.;Integrate[Divide[1, 1+t^2], {t, 0, Divide[1,$0]}]
 ;;;
 \asin@@{z};ArcSin[$0];;
 \acos@@{z};ArcCos[$0];;
@@ -46,7 +46,6 @@ DLMF;Mathematica;DLMF-Mathematica-Comment;Mathematica-Alternatives
 \log@@{z};Log[$0];;
 \genlog{a}@@{z};Log[$0,$1];;
 ;;;
-\Ln@@{z};;;
 \exp@@{z};Exp[$0];;
 ;;;
 \LambertW@{x};ProductLog[$0];;
@@ -70,9 +69,9 @@ DLMF;Mathematica;DLMF-Mathematica-Comment;Mathematica-Alternatives
 \Gudermannian@@{x};Gudermannian[$0];Defined also for imaginary values.;
 \aGudermannian@@{x};InverseGudermannian[$0];Defined also for imaginary values.;
 ;;;
-\expintEi@{x};;Mathematica uses another definition for the principle branch of the exponential integral. \expintEi@{x} will be translated to -ExpIntegralEi[-x].;-ExpIntegralEi[-($0)]
-\expintE@{x};;Mathematica uses another definition for the principle branch of the exponential integral. \expintE@{x} will be translated to -ExpIntegralEi[-x].;-ExpIntegralEi[-($0)]
-\expintEin@{z};;The translation based on the definition in DLMF.;-ExpIntegralEi[-($0)] + Ln[$0] + EulerGamma
+\expintEi@{x};;;ExpIntegralEi[$0]
+\expintE@{x};;;ExpIntegralE[1, $0]
+\expintEin@{z};;The translation based on the definition in DLMF.;ExpIntegralE[1, $0] + Ln[$0] + EulerGamma
 \genexpintE{p}@{z};ExpIntegralE[$0, $1];;
 \logint@{x};LogIntegral[$0];Mathematica can compute the principle branch for x between 0 and 1 as well, while this is not defined in DLMF.;
 \dilog@{z};PolyLog[2, $0];;
@@ -103,7 +102,7 @@ DLMF;Mathematica;DLMF-Mathematica-Comment;Mathematica-Alternatives
 ;Round[$0];;
 ;Min[x1, x2, ...];;
 ;Max[x1, x2, ...];;
-\pgcd{m,n};GCD[$0, $1];;
+\pgcd{.};GCD[$0];;
 ;LCM[m,n,...];;
 \f{f}@{x};;;
 \in;;;
@@ -123,8 +122,8 @@ n!!;$0!!;;
 \sign@@{x};;;
 \inf;;;
 \sup;;;
-\Sum{n}{k1}{k2}@{f(n)};Sum[$3, {$0, $1, $2}];;
-\Prod{n}{k1}{k2}@{f(n)};Product[$3, {$0, $1, $2}];;
+\Sum{n}{k1}{k2}@{f(n)};Sum[$3, {$0, $1, $2}, GenerateConditions->None];;
+\Prod{n}{k1}{k2}@{f(n)};Product[$3, {$0, $1, $2}, GenerateConditions->None];;
 \Wronskian@{w1(z),w2(z)};Wronskian[{$1, $2}, $0];;
 \Wron{z}@{w1(z),w2(z)};Wronskian[{$1, $2}, $0];;
 \Residue;;;
@@ -213,8 +212,8 @@ X1:\ipderivX\ipderiv[$0]{$1}{$2};D[$1, {$2, $0}];;
 \BesselJ{v}@{x};BesselJ[$0, $1];;
 \BesselY{v}@{x};BesselY[$0, $1];;
 \HankelH{1}{v}@{x};HankelH$0[$1, $2];The translation is only valid when the first argument is either 1 or 2;
-\HankelmodM{\nu}@{x};;;
-\HankelmodderivN{\nu}@{x};;;
+\HankelmodM{\nu}@{x};;;Sqrt[KelvinBer[$0, $1]^2 + KelvinBei[$0, $1]^2]
+\HankelmodderivN{\nu}@{x};;;Sqrt[KelvinKer[$0, $1]^2 + KelvinKei[$0, $1]^2]
 \Hankelphasetheta{\nu}@{x};;;
 \Hankelphasederivphi{\nu}@{x};;;
 \zBesselj{\nu}{m};;;
@@ -232,10 +231,8 @@ X1:\ipderivX\ipderiv[$0]{$1}{$2};D[$1, {$2, $0}];;
 \MittagLefflerE{a}{b}@{z};;;
 \sphBesselJ{n}@{z};SphericalBesselJ[$0, $1];;
 \sphBesselY{n}@{z};SphericalBesselY[$0, $1];;
-\sphHankelh{1}{n}@{z};SphericalHankelH1[$0, $1];;
-\sphHankelh{2}{n}@{z};SphericalHankelH2[$0, $1];;
-\modsphBesseli{1}{n}@{z};Sqrt[1/2 Pi /$2] BesselI[(-1)^($0-1)*$1 + 1/2, $1];;
-\modsphBesseli{2}{n}@{z};Sqrt[1/2 Pi /$2] BesselI[-$1 - 1/2, $1];;
+\sphHankelh{1}{n}@{z};SphericalHankelH$0[$1, $2];;
+\modsphBesseli{1}{n}@{z};Sqrt[Divide[Pi, $2]/2] BesselI[(-1)^($0-1)*($1 + 1/2), $1];;
 \modsphBesselK{n}@{z};Sqrt[1/2 Pi /$1] BesselK[$0 + 1/2, $1];;
 \BesselAmat{\nu}@{\Matrix{T}};;;
 \BesselBmat{\nu}@{\Matrix{T}};;;
@@ -284,8 +281,8 @@ X1:\ipderivX\ipderiv[$0]{$1}{$2};D[$1, {$2, $0}];;
 \BesselC{\nu}@{z};;;
 \paraU@{a}{z};ParabolicCylinderD[- 1/2 -($0), $1];;
 \paraUbar@{a}{x};;;
-\paraV@{a}{z};;;
-\paraW@{a}{x};;;
+\paraV@{a}{z};;Caution: The alternative translation has singularities caused by the use of the Euler gamma function.;Divide[GAMMA[1/2 + $0], Pi]*(Sin[Pi*($0)] * ParabolicCylinderD[-($0) - 1/2, $1] + ParabolicCylinderD[-($0) - 1/2, -($1)])
+\paraW@{a}{x};;;Sqrt[(Sqrt[1+Exp[2*Pi*($0)]]-Exp[Pi*($0)])/2] * Exp[Divide[Pi*($0),4]] * ( Exp[I*(Pi/8 + Arg[GAMMA[1/2 + I*($0)]]/2)] * ParabolicCylinderD[- 1/2 - I*($0), $1 * Exp[-Divide[Pi*I,4]]] + Exp[-I*(Pi/8 + Arg[GAMMA[1/2 + I*($0)]]/2)] * ParabolicCylinderD[- 1/2 + I*($0), $1 * Exp[Divide[Pi*I,4]]] )
 \WhittakerparaD{\nu}@{z};ParabolicCylinderD[$0, $1];;
 ;;;
 \DawsonsintF@{z};DawsonF[$0];;
@@ -317,8 +314,8 @@ X1:\ndivisorsX\ndivisors[k]@{n};;;
 \CarlsonsymellintRF@@{x}{y}{z};;;EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]/Sqrt[$2-$0]
 \CarlsonsymellintRJ@@{x}{y}{z}{p};;;3*($2-$0)/($2-$3)*(EllipticPi[($2-$3)/($2-$0),ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]-EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)])/Sqrt[$2-$0]
 \CarlsonsymellintRG@@{x}{y}{z};;;Sqrt[$2-$0]*(EllipticE[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]+(Cot[ArcCos[Sqrt[$0/$2]]])^2*EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]+Cot[ArcCos[Sqrt[$0/$2]]]*Sqrt[1-k^2*Sin[ArcCos[Sqrt[$0/$2]]]^2])
-\CarlsonsymellintRD@@{x}{y}{z};;;3*($2-$0)/($2-$1)*(EllipticF[($2-$3)/($2-$0),ArcCos[Sqrt[$0/$2]]]-EllipticE[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)])/($2-$0)^(3/2)
-\CarlsonsymellintRC@@{x}{y};;;1/Sqrt[$1]*Hypergeometric2F1[1/2,1/2,3/2,1-($0)/($1)]
+\CarlsonsymellintRD@@{x}{y}{z};;;3*(EllipticF[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)]-EllipticE[ArcCos[Sqrt[$0/$2]],($2-$1)/($2-$0)])/(($2-$1)*($2-$0)^(1/2))
+\CarlsonellintRC@@{x}{y};;;1/Sqrt[$1]*Hypergeometric2F1[1/2,1/2,3/2,1-($0)/($1)]
 ;;;
 \EulersumH@{s};;;
 \genEulersumH@{s}{z};;;
@@ -392,7 +389,7 @@ X1:\EulertotientphiX\Eulertotientphi[k]@{n};;;Sum[If[CoprimeQ[$1, m], m^($0), 0]
 ;;;
 \Jacobiphi{\alpha}{\beta}{\lambda}@{t};;;
 \genJacobiellk{p}{q};;;
-\Jacobiamk@{z}{k};;;
+\Jacobiamk@{z}{k};JacobiAmplitude[$0, Power[$1, 2]];;
 ;;;
 \Jacobiellsnk@@{z}{k};JacobiSN[$0, ($1)^2];;
 \Jacobiellcnk@@{z}{k};JacobiCN[$0, ($1)^2];;
@@ -420,7 +417,7 @@ X1:\EulertotientphiX\Eulertotientphi[k]@{n};;;Sum[If[CoprimeQ[$1, m], m^($0), 0]
 \aJacobiellcsk@@{z}{k};InverseJacobiCS[$0, ($1)^2];;
 \JacobiEpsilonk@{x}{k};;;
 \Jacobithetaq{j}@{z}{q};EllipticTheta[$0, $1, $2];;
-\Jacobithetatau{j}@{z}{\tau};EllipticTheta[$0, $1, $2];;
+\Jacobithetatau{j}@{z}{\tau};EllipticTheta[$0, $1, Exp[I*Pi*($2)]];;
 \Jacobithetacombinedq{n}{m}@{z}{q};;;
 \AThetaFunction@{x};;;
 \JacobiZetak@{x}{k};JacobiZeta[$0, $1];;
@@ -430,8 +427,6 @@ X1:\EulertotientphiX\Eulertotientphi[k]@{n};;;Sum[If[CoprimeQ[$1, m], m^($0), 0]
 \Kelvinbei{\nu}@@{x};KelvinBei[$0, $1];;
 \Kelvinker{\nu}@@{x};KelvinKer[$0, $1];;
 \Kelvinkei{\nu}@@{x};KelvinKei[$0, $1];;
-\frac{1}{2}\HankelH{1}{\nu}@{x\left(-\frac{1}{2}\sqrt{2}+\frac{1}{2}\iunit\sqrt{2}\right)} + \frac{1}{2}\HankelH{2}{\nu}@{x\left(-\frac{1}{2}\sqrt{2}-\frac{1}{2}\iunit\sqrt{2}\right)};;;
-\frac{1}{2}\iunit\left(\HankelH{2}{\nu}@{x\left(-\frac{1}{2}\sqrt{2}-\frac{1}{2}\iunit\sqrt{2}\right)} - \HankelH{1}{\nu}@{x\left(-\frac{1}{2}\sqrt{2}+\frac{1}{2}\iunit\sqrt{2}\right)}\right);;;
 ;;;
 \LameEc{m}{\nu}@{z}{k^2};;;
 \LameEs{m}{\nu}@{z}{k^2};;;
@@ -551,10 +546,10 @@ X1:\DunsterQX\DunsterQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;;
 \LeviCivitasym{j}{k}{l};;;Part[LeviCivitaTensor[3,List], $0, $1, $2]
 \pochhammer{a}{n};Pochhammer[$0, $1];;
 \Pochhammersym{a}{n};Pochhammer[$0, $1];;
-\Wignerthreejsym@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3};;;
-\Wignersixjsym@@{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l_{3}};;;
+\Wignerthreejsym@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3};ThreeJSymbol[{$0, $3}, {$1, $4}, {$3, $5}];;
+\Wignersixjsym@@{j_{1}}{j_{2}}{j_{3}}{l_{1}}{l_{2}}{l_{3}};SixJSymbol[{$0, $1, $2}, {$3, $4, $5}];;
 \Wignerninejsym@@{j_{11}}{j_{12}}{j_{13}}{j_{21}}{j_{22}}{j_{23}}{j_{31}}{j_{32}}{j_{33}};;;
-\ClebschGordan{j_1}{m_1}{j_2}{m_2}{j_3}{-m_3};;;
+\ClebschGordan{j_1}{m_1}{j_2}{m_2}{j_3}{-m_3};ClebschGordan[{$0, $1}, {$2, $3}, {$4, $5}];;
 ;;;
 \terminant{p}@{z};;;
 \scterminant{p}@{z};;;
@@ -676,7 +671,7 @@ X1:\GenHermiteX\GenHermite[\alpha]{n}@{x};;;
 \KrawtchoukpolyK{n}@{x}{p}{N};;;
 ;;;
 \LaguerrepolyL{n}@{x};LaguerreL[$0, $1];;
-X1:LaguerrepolyLX\LaguerrepolyL[\alpha]{n}@{x};LaguerreL[$1, $0, $2];;
+X1:\LaguerrepolyLX\LaguerrepolyL[\alpha]{n}@{x};LaguerreL[$1, $0, $2];;
 \GottliebLaguerre{n}@{x};;;
 ;;;
 \LamepolyuE{m}{2n}@{z}{k^2};;;

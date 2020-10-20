@@ -1,0 +1,107 @@
+[
+    {
+        "name": "SIMPLE",
+        "DLMF": "",
+        "LaTeX": "\\prod_{-\\infty < x < \\infty}x^3",
+        "Maple": "product((x)^(3), x=- infinity..infinity)",
+        "Mathematica": "Product[(x)^(3), {x, - Infinity, Infinity}, GenerateConditions->None]"
+    },
+    {
+        "name": "TRICKY_INNER_PROD_AND_SUMS",
+        "DLMF": "",
+        "LaTeX": "\\prod_{n \\leq i \\leq m}\\sin{i} + \\sum_{n \\leq j \\leq m}i^2+j\\prod_{k=0}^{\\infty}k+j+i",
+        "Maple": "product(sin(i)+sum((i)^(2)+j*product(k, k = 0..infinity)+j, j=n..m)+i, i=n..m)",
+        "Mathematica": "Product[Sin[i]+Sum[(i)^(2)+j*Product[k, {k, 0, Infinity}, GenerateConditions->None]+j, {j, n, m}, GenerateConditions->None]+i, {i, n, m}, GenerateConditions->None]"
+    },
+    {
+        "name": "SIMPLE2",
+        "DLMF": "",
+        "LaTeX": "\\prod_{i=0}^{\\infty}k^3",
+        "Maple": "product((k)^(3), i = 0..infinity)",
+        "Mathematica": "Product[(k)^(3), {i, 0, Infinity}, GenerateConditions->None]"
+    },
+    {
+        "name": "SIMPLE_SET",
+        "DLMF": "",
+        "LaTeX": "\\prod_{x \\in P}x^2+x^3-3",
+        "Maple": "product((x)^(2)+(x)^(3), x in P)-3",
+        "Mathematica": "Product[(x)^(2)+(x)^(3), {x, P}, GenerateConditions->None]-3"
+    },
+    {
+        "name": "MULTI_PROD",
+        "DLMF": "",
+        "LaTeX": "\\prod_{i=0}^{k}i^2+\\prod_{j=0}^{k}i^3-3j+\\prod_{l=0}^{k}j+2+\\sin{l}",
+        "Maple": "product((i)^(2)+product((i)^(3)-3*j+product(j+2+sin(l), l = 0..k), j = 0..k), i = 0..k)",
+        "Mathematica": "Product[(i)^(2)+Product[(i)^(3)-3*j+Product[j+2+Sin[l], {l, 0, k}, GenerateConditions->None], {j, 0, k}, GenerateConditions->None], {i, 0, k}, GenerateConditions->None]"
+    },
+    {
+        "name": "SHARE_PROD",
+        "DLMF": "",
+        "LaTeX": "\\prod_{i=0}^{10}i^2+\\prod_{i=2}^{12}i k",
+        "Maple": "product((i)^(2), i = 0..10)+product(i*k, i = 2..12)",
+        "Mathematica": "Product[(i)^(2) , {i, 0, 10}, GenerateConditions->None]+Product[i*k , {i, 2, 12}, GenerateConditions->None]"
+    },
+    {
+        "name": "DLMF_MULTI",
+        "DLMF": "26.12.4",
+        "LaTeX": "\\prod_{h=1}^r \\prod_{j=1}^s \\frac{h+j+t-1}{h+j-1}",
+        "Maple": "product(product((h + j + t - 1)/(h + j - 1), j = 1..s), h = 1..r)",
+        "Mathematica": "Product[Product[Divide[h + j + t - 1,h + j - 1], {j, 1, s}, GenerateConditions->None], {h, 1, r}, GenerateConditions->None]"
+    },
+    {
+        "name": "DLMF_MULTI_SPECIAL_FUNC",
+        "DLMF": "5.14.4",
+        "LaTeX": "\\prod_{k=1}^m \\frac{a+(n-k)c}{a+b+(2n-k-1)c} \\prod_{k=1}^n \\frac{\\EulerGamma@{a+(n-k)c} \\EulerGamma@{b+(n-k)c} \\EulerGamma@{1+kc}} {\\EulerGamma@{a+b+(2n-k-1)c}}",
+        "Maple": "product((a +(n - k)*c)/(a + b +(2*n - k - 1)*c), k = 1..m) * product((GAMMA(a +(n - k)* c)*GAMMA(b +(n - k)* c)*GAMMA(1 + k*c))/(GAMMA(a + b +(2*n - k - 1)* c)), k = 1..n)",
+        "Mathematica": "Product[Divide[a +(n - k)*c,a + b +(2*n - k - 1)*c], {k, 1, m}, GenerateConditions->None]*Product[Divide[Gamma[a +(n - k)* c]*Gamma[b +(n - k)* c]*Gamma[1 + k*c],Gamma[a + b +(2*n - k - 1)* c]], {k, 1, n}, GenerateConditions->None]"
+    },
+    {
+        "name": "DLMF_SIMPLE_LONG",
+        "DLMF": "20.5.1",
+        "LaTeX": "\\prod_{n=1}^{\\infty} {\\left( 1 - q^{2n} \\right)} {\\left( 1 - 2 q^{2n} \\cos@{2z} + q^{4n} \\right)}",
+        "Maple": "product((1 - (q)^(2*n))*(1 - 2*(q)^(2*n)* cos(2*z) + (q)^(4*n)), n = 1..infinity)",
+        "Mathematica": "Product[(1 - (q)^(2*n))*(1 - 2*(q)^(2*n)* Cos[2*z] + (q)^(4*n)), {n, 1, Infinity}, GenerateConditions->None]"
+    },
+    {
+        "name": "DLMF_SIMPLE",
+        "DLMF": "4.22.2",
+        "LaTeX": "\\prod_{n=1}^\\infty \\left( 1 - \\frac{4z^2}{(2n - 1)^2 \\pi^2} \\right)",
+        "Maple": "product(1 -(4*(z)^(2))/((2*n - 1)^(2)* (Pi)^(2)), n = 1..infinity)",
+        "Mathematica": "Product[1 -Divide[4*(z)^(2),(2*n - 1)^(2)*(Pi)^(2)], {n, 1, Infinity}, GenerateConditions->None]"
+    },
+    {
+        "name": "DLMF_PROD_SUM",
+        "DLMF": "27.4.1",
+        "LaTeX": "\\prod_{p} \\left( 1 + \\sum_{r=1}^\\infty f(p^r) \\right)",
+        "Maple": "product(1 + sum(f*((p)^(r)), r = 1..infinity), p = -infinity..infinity)",
+        "Mathematica": "Product[1 + Sum[f*((p)^(r)), {r, 1, Infinity}, GenerateConditions->None], {p, -Infinity, Infinity}, GenerateConditions->None]"
+    },
+    {
+        "name": "DLMF_MULTI_PROD",
+        "DLMF": "5.14.5",
+        "LaTeX": "\\prod_{k=1}^m (a + (n-k)c) \\frac{\\prod_{k=1}^n \\EulerGamma@{a+(n-k)c} \\EulerGamma@{1+kc}} {(\\EulerGamma@{1+c})^n}",
+        "Maple": "product((a +(n - k)*c)*(product(GAMMA(a +(n - k)* c)*GAMMA(1 + k*c), k = 1..n))/((GAMMA(1 + c))^(n)), k = 1..m)",
+        "Mathematica": "Product[(a +(n - k)*c)*Divide[Product[Gamma[a +(n - k)* c]*Gamma[1 + k*c], {k, 1, n}, GenerateConditions->None],(Gamma[1 + c])^(n)], {k, 1, m}, GenerateConditions->None]"
+    },
+    {
+        "name": "DLMF_SIMPLE_3",
+        "DLMF": "17.2.49",
+        "LaTeX": "\\prod_{n=0}^\\infty \\frac{1}{(1 - q^{5n+1}) (1 - q^{5n+4})}",
+        "Maple": "product((1)/((1 - (q)^(5*n + 1))*(1 - (q)^(5*n + 4))), n = 0..infinity)",
+        "Mathematica": "Product[Divide[1,(1 - (q)^(5*n + 1))*(1 - (q)^(5*n + 4))], {n, 0, Infinity}, GenerateConditions->None]"
+    },
+    {
+        "name": "DLMF_LONG_FRAC",
+        "DLMF": "23.8.7",
+        "LaTeX": "\\prod_{n=1}^\\infty \\frac{\\sin@{\\pi (2n \\omega_3 + z) / (2 \\omega_1)} \\sin@{\\pi (2n \\omega_3 - z) / (2 \\omega_1)}} {\\sin^2@{\\pi n \\omega_3 / \\omega_1}}",
+        "Maple": "product((sin(Pi*(2*n*omega[3] + z)/(2*omega[1]))*sin(Pi*(2*n*omega[3] - z)/(2*omega[1])))/((sin(Pi*n*omega[3]/ omega[1]))^(2)), n = 1..infinity)",
+        "Mathematica": "Product[Divide[Sin[Pi*(2*n*Subscript[\\[Omega], 3] + z)/(2*Subscript[\\[Omega], 1])]*Sin[Pi*(2*n*Subscript[\\[Omega], 3] - z)/(2*Subscript[\\[Omega], 1])],(Sin[Pi*n*Subscript[\\[Omega], 3]/ Subscript[\\[Omega], 1]])^(2)], {n, 1, Infinity}, GenerateConditions->None]"
+    },
+    {
+        "name": "DLMF_MULTI_PROD_INNER",
+        "DLMF": "3.4.3",
+        "LaTeX": "\\prod_{k = n_0}^{n_1}(t-k)+f^{(n+2)}(\\xi_1)\\prod_{k = n_0}^{n_1}(t-k)",
+        "Maple": "product(t - k, k = n[0]..n[1]) + (f)^(n+2)*(xi[1])*product(t-k,k = n[0]..n[1])",
+        "Mathematica": "Product[t - k, {k, Subscript[n, 0], Subscript[n, 1]}, GenerateConditions->None] + (f)^(n+2)*(Subscript[\\[Xi],1])*Product[t - k, {k, Subscript[n, 0], Subscript[n, 1]}, GenerateConditions->None]"
+    }
+]

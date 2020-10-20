@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.generic.macro;
 
+import gov.nist.drmf.interpreter.common.text.TextUtility;
 import org.apache.logging.log4j.core.util.Integers;
 
 import java.util.HashMap;
@@ -125,13 +126,7 @@ public class MacroDefinitionStyleFileParser {
     }
 
     private String cleanIfx( String in ) {
-        StringBuilder sb = new StringBuilder();
-        Matcher m = IFX_PATTERN.matcher(in);
-        while( m.find() ) {
-            m.appendReplacement(sb, m.group(1));
-        }
-        m.appendTail(sb);
-        return sb.toString();
+        return TextUtility.appendPattern(in, IFX_PATTERN, 1);
     }
 
     public Map<String, MacroBean> getExtractedMacros() {

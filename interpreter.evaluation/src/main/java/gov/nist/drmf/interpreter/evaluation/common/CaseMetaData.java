@@ -1,12 +1,19 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
 import gov.nist.drmf.interpreter.cas.constraints.Constraints;
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.evaluation.constraints.MLPConstraintAnalyzer;
 import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @author Andre Greiner-Petter
@@ -16,8 +23,11 @@ public class CaseMetaData {
 
     private Label label;
     private Constraints constraints;
+    private boolean isDefinition = false;
 
     private LinkedList<SymbolTag> symbolsUsed;
+
+    private Map<Integer, String> defConVarSlot;
 
     private int linenumber;
 
@@ -28,6 +38,23 @@ public class CaseMetaData {
         this.constraints = constraints;
         this.linenumber = linenumber;
         this.symbolsUsed = symbolsUsed;
+        this.defConVarSlot = new HashMap<>();
+    }
+
+    public void addVariableSlot(int slot, String var) {
+        this.defConVarSlot.put(slot, var);
+    }
+
+    public Map<Integer, String> getVariableSlots() {
+        return defConVarSlot;
+    }
+
+    public boolean isDefinition() {
+        return isDefinition;
+    }
+
+    public void tagAsDefinition() {
+        this.isDefinition = true;
     }
 
     public Label getLabel() {
@@ -36,6 +63,11 @@ public class CaseMetaData {
 
     public Constraints getConstraints() {
         return constraints;
+    }
+
+    public void addConstraints(Constraints c) {
+        if ( constraints == null ) this.constraints = c;
+        else constraints.addConstraints(c);
     }
 
     public int getLinenumber() {
@@ -50,12 +82,27 @@ public class CaseMetaData {
         return symbolsUsed;
     }
 
+    private static final Pattern COMMA_PATTERN = Pattern.compile("(.*\\\\[lc]?dots)\\s*,\\s*([^a-zA-Z]+)");
+
     public static CaseMetaData extractMetaData(
             LinkedList<String> constraints,
             LinkedList<SymbolTag> symbolsUsed,
             String labelStr,
             int lineNumber
     ) {
+        LinkedList<String> copyConstraints = new LinkedList<>(constraints);
+
+        constraints = constraints.stream()
+                .flatMap(c -> {
+                    Matcher m = COMMA_PATTERN.matcher(c);
+                    Collection<String> col = new LinkedList<>();
+                    if (m.matches()) {
+                        col.add(m.group(1));
+                        col.add(m.group(2));
+                    } else col.add(c);
+                    return col.stream();
+                }).collect(Collectors.toCollection(LinkedList::new));
+
         // first, create label
         Label label = null;
         if ( labelStr != null ){
@@ -82,8 +129,14 @@ public class CaseMetaData {
             }
         }
 
-        String[] conArr = sieved.stream().toArray(String[]::new);
-        Constraints finalConstr = new Constraints(conArr, specialVars, specialVals);
+        String[] conArr = sieved.stream()
+                .flatMap( c -> {
+                    EquationSplitter eq = new EquationSplitter();
+                    Collection<String> col = eq.constraintSplitter(c);
+                    return col.stream();
+                })
+                .toArray(String[]::new);
+        Constraints finalConstr = new Constraints(copyConstraints, conArr, specialVars, specialVals);
         return new CaseMetaData(lineNumber, label, finalConstr, symbolsUsed);
     }
 
@@ -130,9 +183,13 @@ public class CaseMetaData {
         LinkedList<String> innerSieved = new LinkedList<>();
         String[] multiCon = con.split(",");
         for ( String c : multiCon ) {
-            String[][] innerRule = analyzer.checkForBlueprintRules(c);
-            if ( innerRule != null ) innerRulesList.addLast(innerRule);
-            else innerSieved.add(c);
+            try {
+                String[][] innerRule = analyzer.checkForBlueprintRules(c);
+                if ( innerRule != null ) innerRulesList.addLast(innerRule);
+                else innerSieved.add(c);
+            } catch (Error | Exception e) {
+                // in case it didn't work, we simple don't do something
+            }
         }
         if ( !innerRulesList.isEmpty() ){
             for ( String[][] tmp : innerRulesList ) {

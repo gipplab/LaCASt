@@ -1,8 +1,4 @@
-\paraV, 19
-\paraW, 13
-\paraUbar, 4
-\dilHermitepolyHe, 3
+\dilHermitepolyHe, 4
 \FishersHh, 2
-paraW, 1
-paraV, 1
+\paraUbar, 2
 \nabla, 1

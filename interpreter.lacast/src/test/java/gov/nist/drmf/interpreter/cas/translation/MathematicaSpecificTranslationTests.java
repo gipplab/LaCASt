@@ -41,4 +41,19 @@ public class MathematicaSpecificTranslationTests {
         assertEquals(expect, out);
     }
 
+    @Test
+    void paraVAlternativeTest() {
+        String in = "\\paraV@{a}{x}";
+        String expect = "Divide[GAMMA[1/2 + a], Pi]*(Sin[Pi*(a)] * ParabolicCylinderD[-(a) - 1/2, x] + ParabolicCylinderD[-(a) - 1/2, -(x)])";
+        String out = slt.translate(in);
+        assertEquals(expect, out);
+    }
+
+    @Test
+    void jacobiThetaQTest() {
+        String in = "\\frac{\\Jacobithetaq{3}@{0}{q}}{\\Jacobithetaq{2}@{0}{q}}\\frac{\\Jacobithetaq{1}@{\\zeta}{q}}{\\Jacobithetaq{4}@{\\zeta}{q}}=\\frac{1}{\\Jacobiellnsk@{z}{k}}";
+        String expect = "Divide[EllipticTheta[3, 0, q],EllipticTheta[2, 0, q]]*Divide[EllipticTheta[1, \\[Zeta], q],EllipticTheta[4, \\[Zeta], q]] == Divide[1,JacobiNS[z, (k)^2]]";
+        String out = slt.translate(in, "22.2.6");
+        assertEquals(expect, out);
+    }
 }

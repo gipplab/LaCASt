@@ -1,0 +1,6 @@
+\nabla, 7
+\diff, 2
+\curl, 2
+\det, 1
+\divergence, 1
+\variation, 1

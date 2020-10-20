@@ -10,6 +10,8 @@ import java.util.List;
 public interface IComputerAlgebraSystemEngine<T> {
     T enterCommand(String command) throws ComputerAlgebraSystemEngineException;
 
+    void setGlobalAssumptions(String... assumptions) throws ComputerAlgebraSystemEngineException;
+
     void forceGC() throws ComputerAlgebraSystemEngineException;
 
     String buildList(List<String> list);

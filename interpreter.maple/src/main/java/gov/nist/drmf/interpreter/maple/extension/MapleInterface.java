@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observer;
@@ -123,11 +124,15 @@ public class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
         }
     }
 
-    public void loadQExtension() throws ComputerAlgebraSystemEngineException {
-        if ( !loadedQExtension ) {
-            LOG.warn("Load QDifferenceEquations extension!");
-            enterCommand("with(QDifferenceEquations):");
-            loadedQExtension = true;
+    @Override
+    public void setGlobalAssumptions(String... assumptions) throws ComputerAlgebraSystemEngineException {
+        String cmd = String.join(", ", assumptions);
+        try {
+            evaluate("assume(" + cmd + ");");
+            LOG.info("Set global assumptions in Maple: " + Arrays.toString(assumptions));
+        } catch (MapleException me) {
+            LOG.error("Unable to set global assumptions for Maple: " + Arrays.toString(assumptions));
+            throw new ComputerAlgebraSystemEngineException(me);
         }
     }
 
@@ -151,6 +156,9 @@ public class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
 
     @Override
     public String buildList(List<String> list) {
+        if ( list == null ) {
+            return null;
+        }
         String listStr = CommandBuilder.makeMapleList(list);
         if ( listStr != null && listStr.length() > 3 )
             return listStr.substring(1, listStr.length()-1);
@@ -250,15 +258,16 @@ public class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
      * @throws IllegalArgumentException if the given command did not return an integer in the given range
      * @throws ComputerAlgebraSystemEngineException if the command cannot be evaluated
      */
-    public void evaluateAndCheckRangeOfResult(String command, int lowerLimit, int upperLimit)
+    public int evaluateAndCheckRangeOfResult(String command, int lowerLimit, int upperLimit)
             throws IllegalArgumentException, ComputerAlgebraSystemEngineException {
         try {
-            LOG.debug("Prepare numerical test:" + NL + command);
+//            LOG.debug("Prepare numerical test:" + NL + command);
             Algebraic numCombis = evaluate(command);
             try {
                 int i = Integer.parseInt(numCombis.toString());
                 if ( i >= upperLimit ) throw new IllegalArgumentException("Too many combinations: " + i);
                 else if ( i <= lowerLimit ) throw new IllegalArgumentException("There are no valid test values.");
+                return i;
             } catch ( NumberFormatException e ){
                 throw new IllegalArgumentException("Cannot calculate number of combinations!");
             }

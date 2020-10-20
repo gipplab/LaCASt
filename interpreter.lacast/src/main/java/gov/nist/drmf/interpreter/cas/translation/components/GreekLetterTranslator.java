@@ -34,7 +34,7 @@ public class GreekLetterTranslator extends AbstractTranslator {
     public TranslatedExpression translate(PomTaggedExpression expression) {
         MathTerm term = expression.getRoot();
 
-        if ( !MathTermUtility.isGreekLetter(term) ) {
+        if ( !MathTermUtility.isGreekLetter(term) && !MathTermUtility.hasGreekLetterMeaning(term) ) {
             throw TranslationException.buildExceptionObj(
                     this,
                     "GreekLetterTranslator only translate greek letters but was called for: " + term.getTermText(),
@@ -82,5 +82,6 @@ public class GreekLetterTranslator extends AbstractTranslator {
         // otherwise add all
         localTranslations.addTranslatedExpression(translated_letter);
         getGlobalTranslationList().addTranslatedExpression(translated_letter);
+        getInfoLogger().getFreeVariables().addFreeVariable(translated_letter);
     }
 }

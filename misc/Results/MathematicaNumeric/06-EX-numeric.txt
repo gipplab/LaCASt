@@ -1,69 +1,61 @@
-Overall: [SUCCESS: 22, FAILURE: 29, LIMIT_SKIPS: 0, TESTED: 65, ERROR: 14] for test expression: (#LHS)-(#RHS)
-2179: Successful
-2180: {{Complex[0.0, 3.141592653589793], {Rule[z, Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -3.141592653589793], {Rule[z, Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -3.141592653589793], {Rule[z, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, 3.141592653589793], {Rule[z, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2181: Successful
-2182: Successful
-2184: {{-1.6757338819604166, {Rule[x, 1]}}, {-4.905333845293828, {Rule[x, 2]}}, {-9.920784189531217, {Rule[x, 3]}}}
-2184-a: Successful
-2185: Successful
-2185-a: Successful
-2189: Successful
-2202: Successful
-2203: {{Complex[0.0, 18.84955592153876], {Rule[m, 3], Rule[z, Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, 18.84955592153876], {Rule[m, 3], Rule[z, Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, 18.84955592153876], {Rule[m, 3], Rule[z, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, 18.84955592153876], {Rule[m, 3], Rule[z, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2204: Successful
-2204-a: Successful
-2205: {{Complex[0.0, -6.283185307179586], {Rule[z, Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -6.283185307179586], {Rule[z, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2205-a: {{Complex[0.0, 6.283185307179586], {Rule[z, Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, 6.283185307179586], {Rule[z, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}}
-2206: {{Complex[0.0, -6.283185307179586], {Rule[z, Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -6.283185307179586], {Rule[z, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2206-a: {{Complex[0.0, 6.283185307179586], {Rule[z, Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, 6.283185307179586], {Rule[z, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}}
-2209: {{Complex[-1.6757338819604166, 3.141592653589793], {Rule[x, 1]}}, {Complex[-4.905333845293828, 3.141592653589793], {Rule[x, 2]}}, {Complex[-9.920784189531217, 3.141592653589793], {Rule[x, 3]}}}
-2209-a: {{Complex[-1.6757338819604166, -3.141592653589793], {Rule[x, 1]}}, {Complex[-4.905333845293828, -3.141592653589793], {Rule[x, 2]}}, {Complex[-9.920784189531217, -3.141592653589793], {Rule[x, 3]}}}
-2210: {{-1.6757338819604166, {Rule[x, 1]}}, {-4.905333845293828, {Rule[x, 2]}}, {-9.920784189531217, {Rule[x, 3]}}}
-2211: {{-0.8378669409802083, {Rule[x, 1]}}, {-2.4526669226469147, {Rule[x, 2]}}, {-4.960392094765611, {Rule[x, 3]}}}
-2211-a: Skip - symbolical successful subtest
-2212: {{-0.8378669409802083, {Rule[x, 1]}}, {-2.452666922646914, {Rule[x, 2]}}, {-4.960392094765608, {Rule[x, 3]}}}
-2212-a: Successful
-2213: {{Complex[-3.141592653589793, 0.0], {Rule[z, Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[-3.141592653589793, 0.0], {Rule[z, Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}}
-2214: {{Complex[0.0, -3.141592653589793], {Rule[z, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, 3.141592653589793], {Rule[z, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2216: {{Complex[0.10555368991298714, 0.0], {Rule[x, Rational[1, 2]]}}}
-2217: {{Complex[0.0, 3.141592653589793], {Rule[z, Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -3.141592653589793], {Rule[z, Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -3.141592653589793], {Rule[z, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, 3.141592653589793], {Rule[z, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2218: {{Complex[0.0, 3.141592653589793], {Rule[z, Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -3.141592653589793], {Rule[z, Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -3.141592653589793], {Rule[z, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, 3.141592653589793], {Rule[z, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2219: Successful
-2222: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
-2222-a: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
-2223: {{Complex[-0.42316473444652486, 0.4289071640857123], {Rule[x, Rational[1, 2]], Rule[α, Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[-0.42316473444652486, -0.4289071640857123], {Rule[x, Rational[1, 2]], Rule[α, Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-2.36486876599473, 1.1603687293382365], {Rule[x, Rational[1, 2]], Rule[α, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-2.36486876599473, -1.1603687293382365], {Rule[x, Rational[1, 2]], Rule[α, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2224: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
-2225: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
-2226: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
-2227: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
-2228: Successful
-2229: Successful
-2230: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
-2234: Skip - symbolical successful subtest
-2234-a: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
-2235: Skip - symbolical successful subtest
-2235-a: Successful
-2238: Successful
-2238-a: Successful
-2239: Successful
-2239-a: Successful
-2240: Successful
-2240-a: Successful
-2254: {{Complex[0.0, 3.141592653589793], {Rule[z, Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -3.141592653589793], {Rule[z, Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -3.141592653589793], {Rule[z, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, 3.141592653589793], {Rule[z, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2255: {{Complex[0.0, 3.141592653589793], {Rule[z, Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -3.141592653589793], {Rule[z, Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, -3.141592653589793], {Rule[z, Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.0, 3.141592653589793], {Rule[z, Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2267: Successful
-2268: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
-2269: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
-2271: {{Complex[-2.199611725770543, -1.4142135623730951], {Rule[Integrate[Plus[Times[Rational[-1, 2], Pi], Times[Sin[t], SinIntegral[t]]], {t, 0, DirectedInfinity[1]}], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[-2.199611725770543, 1.4142135623730951], {Rule[Integrate[Plus[Times[Rational[-1, 2], Pi], Times[Sin[t], SinIntegral[t]]], {t, 0, DirectedInfinity[1]}], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.6288153989756469, 1.4142135623730951], {Rule[Integrate[Plus[Times[Rational[-1, 2], Pi], Times[Sin[t], SinIntegral[t]]], {t, 0, DirectedInfinity[1]}], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[0.6288153989756469, -1.4142135623730951], {Rule[Integrate[Plus[Times[Rational[-1, 2], Pi], Times[Sin[t], SinIntegral[t]]], {t, 0, DirectedInfinity[1]}], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2271-a: {{Complex[2.199611725770543, 1.4142135623730951], {Rule[Integrate[Plus[Times[Rational[-1, 2], Pi], Times[Sin[t], SinIntegral[t]]], {t, 0, DirectedInfinity[1]}], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[2.199611725770543, -1.4142135623730951], {Rule[Integrate[Plus[Times[Rational[-1, 2], Pi], Times[Sin[t], SinIntegral[t]]], {t, 0, DirectedInfinity[1]}], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-0.6288153989756469, -1.4142135623730951], {Rule[Integrate[Plus[Times[Rational[-1, 2], Pi], Times[Sin[t], SinIntegral[t]]], {t, 0, DirectedInfinity[1]}], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-0.6288153989756469, 1.4142135623730951], {Rule[Integrate[Plus[Times[Rational[-1, 2], Pi], Times[Sin[t], SinIntegral[t]]], {t, 0, DirectedInfinity[1]}], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2273: {{Complex[0.7210663818131499, 1.4142135623730951], {Rule[Integrate[Plus[Times[Rational[-1, 2], Pi], Times[CosIntegral[t], SinIntegral[t]]], {t, 0, DirectedInfinity[1]}], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[0.7210663818131499, -1.4142135623730951], {Rule[Integrate[Plus[Times[Rational[-1, 2], Pi], Times[CosIntegral[t], SinIntegral[t]]], {t, 0, DirectedInfinity[1]}], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-2.1073607429330403, -1.4142135623730951], {Rule[Integrate[Plus[Times[Rational[-1, 2], Pi], Times[CosIntegral[t], SinIntegral[t]]], {t, 0, DirectedInfinity[1]}], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-2.1073607429330403, 1.4142135623730951], {Rule[Integrate[Plus[Times[Rational[-1, 2], Pi], Times[CosIntegral[t], SinIntegral[t]]], {t, 0, DirectedInfinity[1]}], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2274: {{Complex[1.356247804543889, 1.4142135623730951], {Rule[Sum[CosIntegral[Times[n, Pi]], {n, 1, DirectedInfinity[1]}], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[1.356247804543889, -1.4142135623730951], {Rule[Sum[CosIntegral[Times[n, Pi]], {n, 1, DirectedInfinity[1]}], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-1.4721793202023012, -1.4142135623730951], {Rule[Sum[CosIntegral[Times[n, Pi]], {n, 1, DirectedInfinity[1]}], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-1.4721793202023012, 1.4142135623730951], {Rule[Sum[CosIntegral[Times[n, Pi]], {n, 1, DirectedInfinity[1]}], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2275: {{Complex[1.1868723893034128, 1.4142135623730951], {Rule[Sum[Times[Power[n, -1], Plus[Times[Rational[-1, 2], Pi], SinIntegral[Times[n, Pi]]]], {n, 1, DirectedInfinity[1]}], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[1.1868723893034128, -1.4142135623730951], {Rule[Sum[Times[Power[n, -1], Plus[Times[Rational[-1, 2], Pi], SinIntegral[Times[n, Pi]]]], {n, 1, DirectedInfinity[1]}], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-1.6415547354427775, -1.4142135623730951], {Rule[Sum[Times[Power[n, -1], Plus[Times[Rational[-1, 2], Pi], SinIntegral[Times[n, Pi]]]], {n, 1, DirectedInfinity[1]}], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-1.6415547354427775, 1.4142135623730951], {Rule[Sum[Times[Power[n, -1], Plus[Times[Rational[-1, 2], Pi], SinIntegral[Times[n, Pi]]]], {n, 1, DirectedInfinity[1]}], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2276: {{Complex[1.395968575383807, 1.4142135623730951], {Rule[Sum[Times[Power[-1, n], CosIntegral[Times[2, n, Pi]]], {n, 1, DirectedInfinity[1]}], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}}, {Complex[1.395968575383807, -1.4142135623730951], {Rule[Sum[Times[Power[-1, n], CosIntegral[Times[2, n, Pi]]], {n, 1, DirectedInfinity[1]}], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-1.4324585493623831, -1.4142135623730951], {Rule[Sum[Times[Power[-1, n], CosIntegral[Times[2, n, Pi]]], {n, 1, DirectedInfinity[1]}], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}}, {Complex[-1.4324585493623831, 1.4142135623730951], {Rule[Sum[Times[Power[-1, n], CosIntegral[Times[2, n, Pi]]], {n, 1, DirectedInfinity[1]}], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}}
-2277: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
-2278: numericalAutoTest[Less[x, Pi], 0, Null, {{Rule[Normal[Less[x, Pi], 0, Null], Times[Complex[1, 1], Power[2, Rational[1, 2]]]]}, {Rule[Normal[Less[x, Pi], 0, Null], Times[Complex[1, -1], Power[2, Rational[1, 2]]]]}, {Rule[Normal[Less[x, Pi], 0, Null], Times[Complex[-1, -1], Power[2, Rational[1, 2]]]]}, {Rule[Normal[Less[x, Pi], 0, Null], Times[Complex[-1, 1], Power[2, Rational[1, 2]]]]}}]
-2278-a: $Failed
-2278-b: $Failed
-2283: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
-2284: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
-2285: Error - gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException: java.lang.NumberFormatException: For input string: "$Aborted"
+Overall: [TOTAL: 120, SKIPPED: 61, DEFINITIONS: 0, STARTED_TEST_CASES: 59, ERROR_TRANS: 0, MISSING: 0, SUCCESS_TRANS: 59, SUCCESS_SYMB: 0, SUCCESS_NUM: 23, SUCCESS_UNDER_EXTRA_CONDITION: 0, FAILURE: 32, NO_TEST_VALUES: 0, ABORTED: 4, ERROR: 0] for test expression: (#LHS)-(#RHS)
+2176 [http://dlmf.nist.gov/6.2.E1]: Successful [Tested: 7]
+2177 [http://dlmf.nist.gov/6.2.E2]: Successful [Tested: 7]
+2178 [http://dlmf.nist.gov/6.2.E3]: Failed [7/7]: {{Plus[Complex[0.0, -0.5235987755982988], Ln[Complex[0.8660254037844387, 0.49999999999999994]]], {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Plus[Complex[0.0, -2.0943951023931953], Ln[Complex[-0.4999999999999998, 0.8660254037844387]]], {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
+2179 [http://dlmf.nist.gov/6.2.E4]: Failed [7/7]: {{Plus[Complex[0.0, 0.5235987755982988], Times[-1.0, Ln[Complex[0.8660254037844387, 0.49999999999999994]]]], {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Plus[Complex[0.0, 2.0943951023931953], Times[-1.0, Ln[Complex[-0.4999999999999998, 0.8660254037844387]]]], {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
+2181 [http://dlmf.nist.gov/6.2.E6]: Successful [Tested: 3]
+2181-a [http://dlmf.nist.gov/6.2.E6]: Successful [Tested: 3]
+2182 [http://dlmf.nist.gov/6.2.E7]: Failed [3/3]: {{Plus[Complex[-1.5598964379112301, -3.141592653589793], Times[-1.0, Ln[-1.5]]], {Rule[x, 1.5]}}, {Plus[Complex[-0.46128414924312044, -3.141592653589793], Times[-1.0, Ln[-0.5]]], {Rule[x, 0.5]}}, ...
+2182-a [http://dlmf.nist.gov/6.2.E7]: Failed [3/3]: {{Plus[-1.5598964379112301, Times[-1.0, Ln[1.5]]], {Rule[x, 1.5]}}, {Plus[-0.46128414924312044, Times[-1.0, Ln[0.5]]], {Rule[x, 0.5]}}, ...
+2199 [http://dlmf.nist.gov/6.4.E1]: Failed [7/7]: {{Plus[Complex[0.0, 0.5235987755982988], Times[-1.0, Ln[Complex[0.8660254037844387, 0.49999999999999994]]]], {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Plus[Complex[0.0, 2.0943951023931953], Times[-1.0, Ln[Complex[-0.4999999999999998, 0.8660254037844387]]]], {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
+2200 [http://dlmf.nist.gov/6.4.E2]: Failed [7/7]: {{Complex[0.0, 18.84955592153876], {Rule[m, 3], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Complex[0.0, 18.84955592153876], {Rule[m, 3], Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
+2201 [http://dlmf.nist.gov/6.4.E3]: Failed [7/7]: {{Plus[Complex[0.0, 3.6651914291880923], Times[-1.0, Ln[Complex[-0.8660254037844387, -0.49999999999999994]]]], {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Plus[Complex[0.0, 5.235987755982989], Times[-1.0, Ln[Complex[0.4999999999999998, -0.8660254037844387]]]], {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
+2201-a [http://dlmf.nist.gov/6.4.E3]: Failed [7/7]: {{Plus[Complex[0.0, -2.6179938779914944], Times[-1.0, Ln[Complex[-0.8660254037844387, -0.49999999999999994]]]], {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Plus[Complex[0.0, -1.0471975511965976], Times[-1.0, Ln[Complex[0.4999999999999998, -0.8660254037844387]]]], {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
+2202 [http://dlmf.nist.gov/6.4.E4]: Failed [2/7]: {{Complex[0.0, -6.283185307179586], {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Complex[0.0, -6.283185307179586], {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}}
+2202-a [http://dlmf.nist.gov/6.4.E4]: Failed [5/7]: {{Complex[0.0, 6.283185307179585], {Rule[z, Power[E, Times[Complex[0, Rational[-1, 3]], Pi]]]}}, {Complex[0.0, 6.283185307179586], {Rule[z, Power[E, Times[Complex[0, Rational[-5, 6]], Pi]]]}}, ...
+2203 [http://dlmf.nist.gov/6.4.E5]: Failed [2/7]: {{Complex[0.0, -6.283185307179586], {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Complex[0.0, -6.283185307179586], {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}}
+2203-a [http://dlmf.nist.gov/6.4.E5]: Failed [5/7]: {{Complex[0.0, 6.283185307179586], {Rule[z, Power[E, Times[Complex[0, Rational[-1, 3]], Pi]]]}}, {Complex[0.0, 6.283185307179586], {Rule[z, Power[E, Times[Complex[0, Rational[-5, 6]], Pi]]]}}, ...
+2206 [http://dlmf.nist.gov/6.5.E1]: Successful [Tested: 3]
+2206-a [http://dlmf.nist.gov/6.5.E1]: Failed [3/3]: {{Complex[0.0, -6.283185307179586], {Rule[x, 1.5]}}, {Complex[0.0, -6.283185307179586], {Rule[x, 0.5]}}, ...
+2207 [http://dlmf.nist.gov/6.5.E2]: Failed [3/3]: {{Complex[0.0, -3.141592653589793], {Rule[x, 1.5]}}, {Complex[0.0, -3.141592653589793], {Rule[x, 0.5]}}, ...
+2208 [http://dlmf.nist.gov/6.5.E3]: Successful [Tested: 3]
+2208-a [http://dlmf.nist.gov/6.5.E3]: Skip - symbolical successful subtest
+2209 [http://dlmf.nist.gov/6.5.E4]: Successful [Tested: 3]
+2209-a [http://dlmf.nist.gov/6.5.E4]: Successful [Tested: 3]
+2210 [http://dlmf.nist.gov/6.5.E5]: Failed [2/7]: {{Complex[-3.141592653589793, 0.0], {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, {Complex[-3.141592653589793, 0.0], {Rule[z, Power[E, Times[Complex[0, Rational[-5, 6]], Pi]]]}}}
+2211 [http://dlmf.nist.gov/6.5.E6]: Failed [2/7]: {{Complex[0.0, 3.141592653589793], {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, {Complex[0.0, -3.141592653589793], {Rule[z, Power[E, Times[Complex[0, Rational[-5, 6]], Pi]]]}}}
+2213 [http://dlmf.nist.gov/6.6.E1]: Successful [Tested: 3]
+2214 [http://dlmf.nist.gov/6.6.E2]: Successful [Tested: 7]
+2215 [http://dlmf.nist.gov/6.6.E3]: Successful [Tested: 7]
+2216 [http://dlmf.nist.gov/6.6.E4]: Failed [7/7]: {{Plus[Complex[0.0, -0.5235987755982988], Ln[Complex[0.8660254037844387, 0.49999999999999994]]], {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Plus[Complex[0.0, -2.0943951023931953], Ln[Complex[-0.4999999999999998, 0.8660254037844387]]], {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
+2219 [http://dlmf.nist.gov/6.7.E1]: Successful [Tested: 9]
+2219-a [http://dlmf.nist.gov/6.7.E1]: Successful [Tested: 9]
+2220 [http://dlmf.nist.gov/6.7.E2]: Successful [Tested: 3]
+2221 [http://dlmf.nist.gov/6.7.E3]: Skipped - Because timed out
+2222 [http://dlmf.nist.gov/6.7.E4]: Successful [Tested: 9]
+2223 [http://dlmf.nist.gov/6.7.E5]: Skipped - Because timed out
+2224 [http://dlmf.nist.gov/6.7.E6]: Skipped - Because timed out
+2225 [http://dlmf.nist.gov/6.7.E7]: Failed [1/1]: {{Plus[Complex[0.7167380515760515, 5.551115123125783*^-17], Times[-1.0, Plus[-0.06866011182139653, Im[Ln[Complex[1.5, 1.5]]]]]], {Rule[a, Rational[3, 2]], Rule[b, Rational[3, 2]]}}}
+2226 [http://dlmf.nist.gov/6.7.E8]: Failed [1/1]: {{Plus[Complex[-0.8490131893081223, 0.0], Times[-1.0, Ln[1.5]], Times[-1.0, Plus[-0.04115544978502889, Re[Ln[Complex[1.5, 1.5]]]]]], {Rule[a, Rational[3, 2]], Rule[b, Rational[3, 2]]}}}
+2227 [http://dlmf.nist.gov/6.7.E9]: Skipped - Because timed out
+2235 [http://dlmf.nist.gov/6.8.E1]: Successful [Tested: 3]
+2235-a [http://dlmf.nist.gov/6.8.E1]: Successful [Tested: 3]
+2236 [http://dlmf.nist.gov/6.8.E2]: Successful [Tested: 3]
+2236-a [http://dlmf.nist.gov/6.8.E2]: Successful [Tested: 3]
+2237 [http://dlmf.nist.gov/6.8.E3]: Successful [Tested: 3]
+2237-a [http://dlmf.nist.gov/6.8.E3]: Successful [Tested: 3]
+2248 [http://dlmf.nist.gov/6.10.E6]: Failed [3/3]: {{Plus[2.318604676120101, Times[-1.0, NSum[Times[2.0943951023931953, Power[-1, n], Power[BesselI[Plus[Rational[1, 2], n], n], 2], Plus[1.5, Times[-1, Plus[1, Times[2, n]], Plus[1, Power[-1, Plus[1, n]], EulerGamma, PolyGamma[0, Plus[1, n]]]]]], {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]]], {Rule[x, 1.5]}}, {Plus[0.570151420521586, Times[-1.0, NSum[Times[6.283185307179586, Power[-1, n], Power[BesselI[Plus[Rational[1, 2], n], n], 2], Plus[0.5, Times[-1, Plus[1, Times[2, n]], Plus[1, Power[-1, Plus[1, n]], EulerGamma, PolyGamma[0, Plus[1, n]]]]]], {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]]], {Rule[x, 0.5]}}, ...
+2250 [http://dlmf.nist.gov/6.10.E8]: Failed [7/7]: {{Plus[Complex[0.7449988338501623, -0.19274910655694033], Ln[Complex[0.8660254037844387, 0.49999999999999994]], Times[Complex[-0.6244291912543926, -0.17523758490546462], NSum[Times[Power[Power[E, Times[Complex[0, Rational[-1, 6]], Pi]], Rational[1, 2]], Power[n, -1], Power[Plus[1, n], -1], Plus[1, Times[2, n]], Power[Pi, Rational[1, 2]], BesselI[Plus[Rational[1, 2], n], n]], {n, 1, DirectedInfinity[1]}, Rule[GenerateConditions, None]]]], {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Plus[Complex[-0.31531322950964413, -1.02230061506208], Ln[Complex[-0.4999999999999998, 0.8660254037844387]], Times[Complex[0.11615580955286336, -1.278760766761026], NSum[Times[Power[Power[E, Times[Complex[0, Rational[-2, 3]], Pi]], Rational[1, 2]], Power[n, -1], Power[Plus[1, n], -1], Plus[1, Times[2, n]], Power[Pi, Rational[1, 2]], BesselI[Plus[Rational[1, 2], n], n]], {n, 1, DirectedInfinity[1]}, Rule[GenerateConditions, None]]]], {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}}, ...
+2251 [http://dlmf.nist.gov/6.11.E1]: Successful [Tested: 7]
+2252 [http://dlmf.nist.gov/6.11.E2]: Successful [Tested: 7]
+2266 [http://dlmf.nist.gov/6.14.E3]: Failed [3/3]: {{-902994.0050351195, {Rule[a, 1.5]}}, {-902991.9106400171, {Rule[a, 0.5]}}, ...
+2268 [http://dlmf.nist.gov/6.14.E5]: Failed [1/1]: {{902989.9925173485, {}}}
+2268-a [http://dlmf.nist.gov/6.14.E5]: Failed [1/1]: {{-902989.9925173485, {}}}
+2270 [http://dlmf.nist.gov/6.14.E7]: Failed [1/1]: {{-902996.3337464853, {}}}
+2271 [http://dlmf.nist.gov/6.15.E1]: Failed [1/1]: {{Plus[-0.05796575782920621, NSum[CosIntegral[Times[n, Pi]], {n, 1, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {}}}
+2272 [http://dlmf.nist.gov/6.15.E2]: Failed [1/1]: {{Plus[-0.22734117306968246, NSum[Times[Power[n, -1], Plus[Times[Rational[-1, 2], Pi], SinIntegral[Times[n, Pi]]]], {n, 1, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {}}}
+2273 [http://dlmf.nist.gov/6.15.E3]: Failed [1/1]: {{Plus[-0.018244986989288337, NSum[Times[Power[-1, n], CosIntegral[Times[2, n, Pi]]], {n, 1, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {}}}
+2274 [http://dlmf.nist.gov/6.15.E4]: Failed [1/1]: {{Plus[-0.12478648186560967, NSum[Times[Power[-1, n], Power[n, -1], Plus[Times[Rational[-1, 2], Pi], SinIntegral[Times[2, n, Pi]]]], {n, 1, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {}}}
+2280 [https://dlmf.nist.gov/6.18#Ex1]: Failed [210/210]: {{Complex[0.7485296693535908, 0.622631070403298], {Rule[n, 1], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[A, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Complex[0.8043767348683764, 0.5871300238783713], {Rule[n, 2], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[A, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, ...
+2281 [https://dlmf.nist.gov/6.18#Ex2]: Failed [210/210]: {{Complex[0.7390515861602941, 0.5822189558055343], {Rule[n, 1], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[B, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Complex[0.8115624970800986, 0.549800778092373], {Rule[n, 2], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[B, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, ...
+2282 [https://dlmf.nist.gov/6.18#Ex3]: Failed [210/210]: {{Complex[0.6165937693596737, 0.8168923194411848], {Rule[n, 1], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[C, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, {Complex[0.7435675869838186, 0.7346733636356504], {Rule[n, 2], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[C, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}}, ...

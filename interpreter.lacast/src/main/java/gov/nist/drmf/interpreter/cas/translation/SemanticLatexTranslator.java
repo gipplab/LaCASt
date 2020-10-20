@@ -3,13 +3,14 @@ package gov.nist.drmf.interpreter.cas.translation;
 import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
 import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.common.InformationLogger;
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
-import gov.nist.drmf.interpreter.common.*;
-import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
+import gov.nist.drmf.interpreter.common.interfaces.IDLMFTranslator;
 import gov.nist.drmf.interpreter.common.replacements.ConditionalReplacementRule;
 import gov.nist.drmf.interpreter.common.replacements.IReplacementCondition;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
@@ -17,9 +18,6 @@ import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.IOException;
-import java.nio.file.Path;
 
 /**
  * <p>
@@ -50,7 +48,7 @@ import java.nio.file.Path;
  * @see mlp.PomParser
  * @author Andre Greiner-Petter
  */
-public class SemanticLatexTranslator extends AbstractTranslator implements ITranslator {
+public class SemanticLatexTranslator extends AbstractTranslator implements IDLMFTranslator {
     private static final Logger LOG = LogManager.getLogger(SemanticLatexTranslator.class.getName());
 
     /**
@@ -130,6 +128,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
      * @see ConditionalReplacementRule
      * @see IReplacementCondition
      */
+    @Override
     public synchronized String translate( String expression, String label ) throws TranslationException {
         if ( expression == null || expression.isEmpty() ) {
             LOG.warn("Tried to translate an empty expression");
@@ -137,6 +136,20 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
         }
 
         return innerTranslate(expression, label);
+    }
+
+    @Override
+    public synchronized TranslationInformation translateToObject( String expression, String label ) throws TranslationException {
+        if ( expression == null || expression.isEmpty() ) {
+            LOG.warn("Tried to translate an empty expression");
+            return null;
+        }
+
+        String translation = innerTranslate(expression, label);
+        TranslationInformation ti = new TranslationInformation(expression, translation);
+        ti.setInformation(getInfoLogger());
+        ti.setRequiredPackages(getTranslatedExpressionObject().getRequiredPackages());
+        return ti;
     }
 
     /**
@@ -148,6 +161,21 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
     @Override
     public synchronized String translate( String expression ) throws TranslationException {
         return translate(expression, null);
+    }
+
+    /**
+     * Translates a given string to the another language.
+     * @param expression the expression that should get translated.
+     * @return the translated expression.
+     * @throws TranslationException if an error occurred due translation
+     */
+    @Override
+    public synchronized TranslationInformation translateToObject( String expression ) throws TranslationException {
+        String translatedExpression = translate(expression, null);
+        TranslationInformation ti = new TranslationInformation(expression, translatedExpression);
+        ti.setInformation(getInfoLogger());
+        ti.setRequiredPackages(getTranslatedExpressionObject().getRequiredPackages());
+        return ti;
     }
 
     @Override
@@ -163,10 +191,10 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
             // TODO we should switch to the real parse option later
             PomTaggedExpression exp = parser.parse(expression, label);
             translate(exp); // return value can be ignored here
-            if ( !expression.matches("(?:num[UL]|var).*") ){
-                LOG.debug("Input:  " + expression);
-                LOG.debug("Output: " + getGlobalTranslationList().toString());
-            }
+//            if ( !expression.matches("(?:num[UL]|var).*") ){
+//                LOG.debug("Input:  " + expression);
+//                LOG.debug("Output: " + getGlobalTranslationList().toString());
+//            }
 
             if ( !super.getInfoLogger().isEmpty() && !config.shortenedOutput() ) {
                 LOG.info(super.getInfoLogger().toString());
@@ -181,7 +209,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements ITran
                     pe
             );
         } catch ( TranslationException te ) {
-            LOG.error("Unable to translate " + expression);
+            LOG.error("Unable to translate " + expression + ";\nReason: " + te.toString());
             throw te;
         }
     }

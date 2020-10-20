@@ -6,7 +6,9 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
  * @author Andre Greiner-Petter
  */
 public interface IAbortEvaluator<T> {
-    void abort() throws ComputerAlgebraSystemEngineException;
+    void setTimeout(double timeoutInSeconds);
+
+    void abort();
 
     boolean wasAborted(T result);
 }

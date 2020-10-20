@@ -1,5 +1,9 @@
 var1 \to numL1+ ==> right
 var1 \to numL1^+ ==> right
+var1 \searrow numL1 ==> right
+var1 \downarrow numL1 ==> right
 var1 \to numL1- ==> left
 var1 \to numL1^- ==> left
+var1 \nearrow numL1 ==> left
+var1 \uparrow numL1 ==> left
 var1 \to numL1 ==> none

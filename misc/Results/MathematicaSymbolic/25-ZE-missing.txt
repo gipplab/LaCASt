@@ -1,8 +1,7 @@
-\DirichletL, 8
+\DirichletL, 9
 \EulersumH, 7
 \perBernoulliB, 6
-\perZeta, 3
-\Riemannxi, 2
+\StieltjesConstants, 3
 \genEulersumH, 2
-rk, 1
+\perZeta, 2
 \ChebyshevPsi, 1
