@@ -1,10 +1,12 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
+import gov.nist.drmf.interpreter.mlp.MathTermUtility;
 import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.MathTerm;
@@ -191,13 +193,16 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         for (PomTaggedExpression pte : comps) {
             MatchablePomTaggedExpression cpte = new MatchablePomTaggedExpression(mlp, pte, wildcardPattern, captures);
             this.children.add(cpte);
-
-            if (prevNode != null) {
-                prevNode.setNextSibling(cpte);
-                if (prevNode.isWildcard && cpte.isWildcard && !prevNode.isSingleSequenceWildcard)
-                    throw new NotMatchableException("Two consecutive wildcards may have no unique matches.");
-            }
+            checkValidity(prevNode, cpte);
             prevNode = cpte;
+        }
+    }
+
+    private void checkValidity(MatchablePomTaggedExpression prevNode, MatchablePomTaggedExpression cpte) {
+        if (prevNode != null) {
+            prevNode.setNextSibling(cpte);
+            if (prevNode.isWildcard && cpte.isWildcard && !prevNode.isSingleSequenceWildcard)
+                throw new NotMatchableException("Two consecutive wildcards may have no unique matches.");
         }
     }
 
@@ -249,6 +254,18 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
 
     /**
      * Generates a {@link PomMatcher} object from the given expression.
+     * It uses the {@link MLPWrapper} given at initialization to generate
+     * a parse tree.
+     * @param expression the expression to match
+     * @return a matcher object
+     * @throws ParseException if the given expression cannot be parsed.
+     */
+    public PomMatcher matcher(String expression, MatcherConfig config) throws ParseException {
+        return matcher(mlp.parse(expression), config);
+    }
+
+    /**
+     * Generates a {@link PomMatcher} object from the given expression.
      * This object can be used to safely search subtree matches and entire matches.
      * @param pte the expression to match
      * @return a matcher object
@@ -257,6 +274,18 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         // normalize the expression first, otherwise are never able to match something
         MLPWrapper.normalize(pte);
         return new PomMatcher(this, pte);
+    }
+
+    /**
+     * Generates a {@link PomMatcher} object from the given expression.
+     * This object can be used to safely search subtree matches and entire matches.
+     * @param pte the expression to match
+     * @return a matcher object
+     */
+    public PomMatcher matcher(PrintablePomTaggedExpression pte, MatcherConfig config) {
+        // normalize the expression first, otherwise are never able to match something
+        MLPWrapper.normalize(pte);
+        return new PomMatcher(this, pte, config);
     }
 
     /**
@@ -329,7 +358,7 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         expression = (PrintablePomTaggedExpression)MLPWrapper.normalize(expression);
         boolean matched = false;
         if ( config.allowLeadingTokens() ) {
-            PomMatcher pomMatcher = new PomMatcher(this, expression);
+            PomMatcher pomMatcher = new PomMatcher(this, expression, config);
             boolean result = pomMatcher.find();
             matched = result && (pomMatcher.lastMatchReachedEnd() || config.allowFollowingTokens());
         } else {
@@ -382,20 +411,12 @@ public class MatchablePomTaggedExpression extends PomTaggedExpression implements
         MathTerm otherRoot = expression.getRoot();
         MathTerm thisRoot = getRoot();
 
-        if ( config.ignoreNumberOfAts() ) {
-            if ( "@".equals(thisRoot.getTermText()) ) {
-                // reached the end, and we ignore @s, so it should not fail due to last @
-                if ( nextSibling == null ) return true;
-                else return this.nextSibling.match( expression, config );
-            } else if ( "@".equals(otherRoot.getTermText()) ) {
-                while ( "@".equals(otherRoot.getTermText()) ) {
-                    if ( followingExpressions.isEmpty() ) {
-                        return true;
-                    }
-                    expression = followingExpressions.remove(0);
-                    otherRoot = expression.getRoot();
-                }
+        while (config.ignoreNumberOfAts() && MathTermUtility.isAt(otherRoot)) {
+            if ( followingExpressions.isEmpty() ) {
+                return true;
             }
+            expression = followingExpressions.remove(0);
+            otherRoot = expression.getRoot();
         }
 
         // TODO might be too strict

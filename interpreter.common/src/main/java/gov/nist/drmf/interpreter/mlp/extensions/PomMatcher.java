@@ -21,12 +21,15 @@ import java.util.Map;
 public class PomMatcher {
     private static final Logger LOG = LogManager.getLogger(PomMatcher.class.getName());
 
-    private MatcherConfig config = MatcherConfig.getInPlaceMatchConfig();
+    private final MatcherConfig config;
 
     private final MatchablePomTaggedExpression matcher;
+    private final MatchablePomTaggedExpression matcherFirstElement;
     private final PomTaggedExpressionChildrenMatcher children;
     private final PrintablePomTaggedExpression orig;
     private final GroupCaptures refGroups;
+
+    private final boolean isSequenceMatcher;
 
     private PrintablePomTaggedExpression copy;
 
@@ -40,6 +43,13 @@ public class PomMatcher {
 
     private boolean wasReplaced = false;
 
+    PomMatcher(
+            MatchablePomTaggedExpression mpte,
+            PrintablePomTaggedExpression pte
+    ) {
+        this(mpte, pte, MatcherConfig.getInPlaceMatchConfig());
+    }
+
     /**
      * To get an instance of this class, you should use {@link MatchablePomTaggedExpression#matcher(String)}
      * or {@link MatchablePomTaggedExpression#matcher(PrintablePomTaggedExpression)}.
@@ -48,30 +58,25 @@ public class PomMatcher {
      */
     PomMatcher(
             MatchablePomTaggedExpression mpte,
-            PrintablePomTaggedExpression pte
+            PrintablePomTaggedExpression pte,
+            MatcherConfig config
     ) {
+        this.config = config;
         this.matcher = mpte;
+        this.isSequenceMatcher = PomTaggedExpressionUtility.isSequence(matcher);
         this.children = mpte.getChildrenMatcher();
         this.orig = pte;
         this.refGroups = mpte.getCaptures();
         this.leadingBackUpWildcard = null;
         this.remaining = new LinkedList<>();
         this.latestDepthExpression = null;
-        this.init();
-    }
 
-    private void init() {
+        // in case it starts with a wildcard, its more efficient to handle that later. remove it and continue
         if ( children.isFirstChildWildcard() ) {
             leadingBackUpWildcard = children.removeFirst();
         }
-    }
 
-    public MatcherConfig getConfig() {
-        return config;
-    }
-
-    public void setConfig(MatcherConfig config) {
-        this.config = config;
+        this.matcherFirstElement = isSequenceMatcher ? (MatchablePomTaggedExpression)matcher.getComponents().get(0) : null;
     }
 
     /**
@@ -160,32 +165,35 @@ public class PomMatcher {
             List<PrintablePomTaggedExpression> elements
     ) {
         boolean matched = false;
-        if (PomTaggedExpressionUtility.isSequence(matcher)) {
-            // than we take the first element, as the matcher...
-            MatchablePomTaggedExpression m = (MatchablePomTaggedExpression)matcher.getComponents().get(0);
-            // if the first worked, we can move forward
-            boolean innerTmpMatch = m.match(first, elements, config);
-            while ( innerTmpMatch && !elements.isEmpty() && m.getNextSibling() != null ) {
-                first = elements.remove(0);
-                m = (MatchablePomTaggedExpression)m.getNextSibling();
-                if ( config.ignoreNumberOfAts() ) {
-                    if (PomTaggedExpressionUtility.isAt(m))
-                        continue;
-                    else {
-                        while ( PomTaggedExpressionUtility.isAt(first) ) {
-                            if ( elements.isEmpty() ) break;
-                            first = elements.remove(0);
-                        }
-                    }
-                }
-                innerTmpMatch = m.match(first, elements, config);
-            }
-            // match is only valid, if the regex does not assume more tokens
-            matched = (innerTmpMatch && m.getNextSibling() == null);
-            if ( matched && elements.isEmpty() ) lastMatchWentUntilEnd = true;
+        if (isSequenceMatcher) {
+            matched = findNextMatchFromIndexSequencer(first, elements);
         } else if ( !PomTaggedExpressionUtility.isAt(first) ){
             matched = matcher.match(first, elements, config);
         }
+        return matched;
+    }
+
+    private boolean findNextMatchFromIndexSequencer(
+            PrintablePomTaggedExpression first,
+            List<PrintablePomTaggedExpression> elements
+    ) {
+        // than we take the first element, as the matcher...
+        MatchablePomTaggedExpression m = matcherFirstElement;
+        // if the first worked, we can move forward
+        boolean innerTmpMatch = m.match(first, elements, config);
+        while ( innerTmpMatch && !elements.isEmpty() && m.getNextSibling() != null ) {
+            first = elements.remove(0);
+            m = (MatchablePomTaggedExpression)m.getNextSibling();
+            if ( config.ignoreNumberOfAts() ) {
+                if (PomTaggedExpressionUtility.isAt(m))
+                    continue;
+            }
+            innerTmpMatch = m.match(first, elements, config);
+        }
+
+        // match is only valid, if the regex does not assume more tokens
+        boolean matched = (innerTmpMatch && m.getNextSibling() == null);
+        if ( matched && elements.isEmpty() ) lastMatchWentUntilEnd = true;
         return matched;
     }
 
