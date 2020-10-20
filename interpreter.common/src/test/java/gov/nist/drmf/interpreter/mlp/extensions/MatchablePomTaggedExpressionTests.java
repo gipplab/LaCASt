@@ -7,11 +7,16 @@ import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
+import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.*;
 
 import static gov.nist.drmf.interpreter.common.tests.IgnoresAllWhitespacesMatcher.ignoresAllWhitespaces;
@@ -1059,5 +1064,40 @@ public class MatchablePomTaggedExpressionTests {
         PomMatcher matcher = blueprint.matcher("\\Jacobithetaq{3}@@{0}{q}");
         PrintablePomTaggedExpression ppte = matcher.replacePattern("\\exp@{-\\pi\\ccompellintKk@{k}/\\compellintKk@{k}}");
         assertEquals("\\Jacobithetaq{3}@@{0}{\\exp@{-\\pi\\ccompellintKk@{k}/\\compellintKk@{k}}}", ppte.getTexString());
+    }
+
+    @Test
+    public void stressTest() throws ParseException, IOException {
+        String testStrings = getResourceContent("StressTestList.txt");
+        String lookout = "P_{var1}^{(var2, var3)}(var4)";
+        MatchablePomTaggedExpression matchPTE = new MatchablePomTaggedExpression(mlp, lookout, "var\\d");
+
+        String[] tests = testStrings.split("\n");
+        LOG.info("Start stress test for matcher");
+        Instant start = Instant.now();
+        int foundCounter = 0;
+        for ( int i = 0; i < tests.length; i++ ) {
+            try {
+                PomMatcher matcher = matchPTE.matcher(tests[i]);
+                if (matcher.find()) {
+                    foundCounter++;
+                    LOG.debug("Found match in: " + tests[i]);
+                }
+            } catch (Exception e) {
+                LOG.warn("Encountered a matching error for: " + tests[i]);
+            }
+        }
+        Instant stop = Instant.now();
+        Duration elapsed = Duration.between(start, stop);
+        assertEquals(17, foundCounter, "Expected to find 17 matches in all 44 cases.");
+        LOG.debug("Stress test identified " + foundCounter + " matches in " + tests.length + " cases.");
+        LOG.info("Finished stress test after " + elapsed.toMillis() + "ms");
+        if ( elapsed.toMillis() > 500 ) {
+            LOG.warn("Stress test took over half a second. There seem to be a problem with the performance. It's worth checking.");
+        }
+    }
+
+    private String getResourceContent(String resourceFilename) throws IOException {
+        return IOUtils.toString(this.getClass().getResourceAsStream(resourceFilename), StandardCharsets.UTF_8);
     }
 }

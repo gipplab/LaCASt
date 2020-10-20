@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
-import gov.nist.drmf.interpreter.cas.constraints.Constraints;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
