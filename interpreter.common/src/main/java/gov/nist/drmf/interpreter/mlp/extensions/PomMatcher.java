@@ -184,13 +184,20 @@ public class PomMatcher {
         while ( innerTmpMatch && !elements.isEmpty() && m.getNextSibling() != null ) {
             first = elements.remove(0);
             m = (MatchablePomTaggedExpression)m.getNextSibling();
-            if ( config.ignoreNumberOfAts() ) {
-                if (PomTaggedExpressionUtility.isAt(m))
-                    continue;
+            if ( config.ignoreNumberOfAts() && PomTaggedExpressionUtility.isAt(m) ) {
+                continue;
             }
             innerTmpMatch = m.match(first, elements, config);
         }
 
+        return matchConsideringMoreTokens(innerTmpMatch, m, elements);
+    }
+
+    private boolean matchConsideringMoreTokens(
+            boolean innerTmpMatch,
+            MatchablePomTaggedExpression m,
+            List<PrintablePomTaggedExpression> elements
+    ) {
         // match is only valid, if the regex does not assume more tokens
         boolean matched = (innerTmpMatch && m.getNextSibling() == null);
         if ( matched && elements.isEmpty() ) lastMatchWentUntilEnd = true;
@@ -285,25 +292,13 @@ public class PomMatcher {
             throw new IllegalStateException("No previous hit recorded!");
         } else if ( wasReplaced ) return copy;
 
-        boolean wasBalanced = latestDepthExpression.currentReferenceNode.getTexString().matches("^\\s*\\{.+}\\s*$");
-        if ( wasBalanced && replacement.size() == 1 ) {
-            PrintablePomTaggedExpression ppte = replacement.get(0);
-            ppte.makeBalancedTexString();
-        }
+        balanceReplacement(replacement);
 
         PomTaggedExpression parent = latestDepthExpression.currentReferenceNode.getParent();
         if ( parent == null ) {
             // essentially means, that the currentMatchReference is the root, which means we replace the entire
             // expression by a new one
-            wasReplaced = true;
-            if ( replacement.isEmpty() ) copy = FakeMLPGenerator.generateEmptySequencePPTE();
-            else if ( replacement.size() == 1 ) copy = replacement.get(0);
-            else {
-                PrintablePomTaggedExpression r = FakeMLPGenerator.generateEmptySequencePPTE();
-                replacement.forEach( r::addComponent );
-                copy = r;
-            }
-            return copy;
+            return replaceEntireExpression(replacement);
         }
 
         // clear the existing children
@@ -321,6 +316,26 @@ public class PomMatcher {
         wasReplaced = true;
 
         // does this work or did we use copies of copies?
+        return copy;
+    }
+
+    private void balanceReplacement(List<PrintablePomTaggedExpression> replacement) {
+        boolean wasBalanced = latestDepthExpression.currentReferenceNode.getTexString().matches("^\\s*\\{.+}\\s*$");
+        if ( wasBalanced && replacement.size() == 1 ) {
+            PrintablePomTaggedExpression ppte = replacement.get(0);
+            ppte.makeBalancedTexString();
+        }
+    }
+
+    private PrintablePomTaggedExpression replaceEntireExpression(List<PrintablePomTaggedExpression> replacement) {
+        wasReplaced = true;
+        if ( replacement.isEmpty() ) copy = FakeMLPGenerator.generateEmptySequencePPTE();
+        else if ( replacement.size() == 1 ) copy = replacement.get(0);
+        else {
+            PrintablePomTaggedExpression r = FakeMLPGenerator.generateEmptySequencePPTE();
+            replacement.forEach( r::addComponent );
+            copy = r;
+        }
         return copy;
     }
 

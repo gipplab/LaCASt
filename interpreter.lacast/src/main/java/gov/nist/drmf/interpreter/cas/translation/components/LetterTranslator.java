@@ -78,10 +78,9 @@ public class LetterTranslator extends AbstractListTranslator {
         MathTermTags tag = MathTermTags.getTagByMathTerm(term);
         TranslatedExpression te;
         switch (tag) {
-            case dlmf_macro:
+            case dlmf_macro: case command:
                 // a dlmf-macro at this state will be simple translated as a command
                 // so do nothing here and switch to command:
-            case command:
                 te = parseCommand(term, constantSet);
                 break;
             case special_math_letter: case symbol:
@@ -92,12 +91,11 @@ public class LetterTranslator extends AbstractListTranslator {
                 return localTranslations;
             case operator:
                 logOperator(term);
-            case constant:
+            case constant: case abbreviation: case alphanumeric:
                 // a constant in this state is simply not a command
                 // so there is no \ in front of the text.
                 // that's why a constant here is the same like a alphanumeric expression
                 // ==> do nothing and switch to alphanumeric
-            case abbreviation: case alphanumeric:
                 te = parseAlphanumeric(term, constantSet);
                 break;
             default:
