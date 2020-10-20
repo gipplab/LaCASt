@@ -169,7 +169,7 @@ public class MacroTranslator extends AbstractListTranslator {
         }
 
         PatternFiller patternFiller = getPatternFiller(info, diffPowerHolder, optionalParas);
-        String[] args = createArgumentArray(optionalParas, parameters, arguments);
+        String[] args = MacroTranslatorUtility.createArgumentArray(optionalParas, parameters, arguments);
 
         // in case we cached a power, it moves to the end. Let's fake this by
         // adding this cached expression back to the start of the remaining
@@ -193,7 +193,7 @@ public class MacroTranslator extends AbstractListTranslator {
         // put all information to the info log
         getInfoLogger().addMacroInfo(
                 infoKey,
-                createFurtherInformation(info)
+                MacroTranslatorUtility.createFurtherInformation(info, getConfig().getTAB(), cas)
         );
 
         // in case we translated an expression in advance, we need to fill up the translation lists
@@ -233,7 +233,7 @@ public class MacroTranslator extends AbstractListTranslator {
         // inform about the translation decision
         super.getInfoLogger().addMacroInfo(
                 macroInfo.getMacro(),
-                createFurtherInformation(macroInfo)
+                MacroTranslatorUtility.createFurtherInformation(macroInfo, getConfig().getTAB(), cas)
         );
 
         MacroTranslationInformation info = macroInfo.getTranslationInformation();
@@ -328,7 +328,7 @@ public class MacroTranslator extends AbstractListTranslator {
             return derivativesTranslator.parseDerivativeArguments(followingExps, info, diffPowerHolder);
         }
 
-        skipAts(followingExps, info);
+        MacroTranslatorUtility.skipAts(followingExps, info);
 
         if ( info.isWronskian() ) {
             // in the case of wronskian, there is only one argument following (must be a sequence)
@@ -366,74 +366,32 @@ public class MacroTranslator extends AbstractListTranslator {
                 diffPowerHolder.setComplexDerivativeVar(!PomTaggedExpressionUtility.isSingleVariable(exp));
             }
 
-            // every argument must be self-contained, i.e., in \macro{arg1}{arg2} arg1 cannot access information from
-            // arg2 because {arg1} is self-contained. If not, there is something wrong and an error should be thrown.
-            Brackets b = Brackets.getBracket(exp);
-            if ( b != null && b.opened ) {
-                LOG.warn("The arguments of " + macro + " was not given in curly brackets but parenthesis. This is will be rejected in future releases.");
-
-                SequenceTranslator sp = new SequenceTranslator(this, b);
-                TranslatedExpression te = sp.translate(followingExps);
-                getGlobalTranslationList().removeLastNExps(te.getLength());
-                arguments.addLast(te.toString());
-
-                // we are more forgiving now, but maybe we want to change that later again.
-//                throw throwMacroException("The arguments of semantic macros must be wrapped in curly brackets! " +
-//                        "It seems you wrote "+ macro + "(...) instead of " + macro + "{...}");
-            } else {
-                String translation = translateInnerExp(exp, new LinkedList<>()).toString();
-                arguments.addLast(translation);
-            }
+            addArguments(arguments, exp, followingExps);
         }
 
         return arguments;
     }
 
-    /**
-     * Skips the leading @ symbols in {@param followingExps} and prints a warning
-     * if there are too many for the given macro.
-     * @param followingExps following expressions
-     * @param holder information holder
-     */
-    private void skipAts(List<PomTaggedExpression> followingExps, MacroInfoHolder holder) {
-        // check for optional arguments
-        int atCounter = 0;
-        boolean printedInfo = false;
-        while (!followingExps.isEmpty()) {
-            PomTaggedExpression exp = followingExps.get(0);
-            if (MathTermUtility.equals(exp.getRoot(), MathTermTags.at)) {
-                if (atCounter > holder.getTranslationInformation().getNumOfAts() && !printedInfo) {
-                    LOG.warn("Too many @'s in macro. This may throw an exception in future releases.");
-                    printedInfo = true;
-                }
-                atCounter++;
-                followingExps.remove(0);
-            } else return;
+    private void addArguments(LinkedList<String> arguments, PomTaggedExpression exp, List<PomTaggedExpression> followingExps) {
+        // every argument must be self-contained, i.e., in \macro{arg1}{arg2} arg1 cannot access information from
+        // arg2 because {arg1} is self-contained. If not, there is something wrong and an error should be thrown.
+        Brackets b = Brackets.getBracket(exp);
+        if ( b != null && b.opened ) {
+            LOG.warn("The arguments of " + macro + " was not given in curly brackets but parenthesis. " +
+                    "This is will be rejected in future releases.");
+
+            SequenceTranslator sp = new SequenceTranslator(this, b);
+            TranslatedExpression te = sp.translate(followingExps);
+            getGlobalTranslationList().removeLastNExps(te.getLength());
+            arguments.addLast(te.toString());
+
+            // we are more forgiving now, but maybe we want to change that later again.
+//                throw throwMacroException("The arguments of semantic macros must be wrapped in curly brackets! " +
+//                        "It seems you wrote "+ macro + "(...) instead of " + macro + "{...}");
+        } else {
+            String translation = translateInnerExp(exp, new LinkedList<>()).toString();
+            arguments.addLast(translation);
         }
-    }
-
-    private String[] createArgumentArray(
-            LinkedList<String> optionalParas,
-            LinkedList<String> parameters,
-            LinkedList<String> arguments) {
-        // create argument list
-        String[] args = new String[
-                optionalParas.size() + parameters.size() + arguments.size()
-                ];
-
-        for ( int i = 0; i < optionalParas.size(); i++ ) {
-            args[i] = optionalParas.get(i);
-        }
-
-        for ( int i = optionalParas.size(), j = 0; i < optionalParas.size()+parameters.size(); i++, j++ ) {
-            args[i] = parameters.get(j);
-        }
-
-        for ( int i = optionalParas.size()+parameters.size(), j = 0; i < args.length; i++, j++ ) {
-            args[i] = arguments.get(j);
-        }
-
-        return args;
     }
 
     /**
@@ -454,33 +412,6 @@ public class MacroTranslator extends AbstractListTranslator {
         } catch (NullPointerException npe) {
             throw throwMacroException("Argument of macro seems to be missing for " + macro);
         }
-    }
-
-    private String createFurtherInformation(MacroInfoHolder info) {
-        MacroMetaInformation metaInfo = info.getMetaInformation();
-        MacroTranslationInformation translationInfo = info.getTranslationInformation();
-        String extraInformation = metaInfo.getMeaningDescriptionString();
-
-        extraInformation += "; Example: " + metaInfo.getExample() + System.lineSeparator();
-        extraInformation += "Will be translated to: " + translationInfo.getTranslationPattern() + System.lineSeparator();
-
-        if (!metaInfo.getCasComment().isEmpty()) {
-            extraInformation += "Translation Information: " + metaInfo.getCasComment() + System.lineSeparator();
-        }
-
-        StringBuilder sb = new StringBuilder(extraInformation);
-        translationInfo.appendNonEssentialInfo(sb, cas);
-
-        String generalTab = getConfig().getTAB();
-        String currTab = generalTab.substring(0, generalTab.length() - ("DLMF: ").length());
-        sb.append("Relevant links to definitions:").append(System.lineSeparator());
-        sb.append("DLMF: ").append(currTab).append(translationInfo.getDefDlmf()).append(System.lineSeparator());
-        currTab = generalTab.substring(0,
-                ((cas + ": ").length() >= generalTab.length() ?
-                        0 : (generalTab.length() - (cas + ": ").length()))
-        );
-        sb.append(cas).append(": ").append(currTab).append(translationInfo.getDefCas());
-        return sb.toString();
     }
 
     protected TranslationException throwMacroException(String message) {

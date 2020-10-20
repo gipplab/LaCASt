@@ -66,4 +66,9 @@ public abstract class PomTaggedExpressionUtility {
                 return MathTermUtility.isGreekLetter(pte.getRoot());
         }
     }
+
+    public static boolean isAt(PomTaggedExpression exp) {
+        if ( exp == null ) return false;
+        return MathTermUtility.isAt(exp.getRoot());
+    }
 }

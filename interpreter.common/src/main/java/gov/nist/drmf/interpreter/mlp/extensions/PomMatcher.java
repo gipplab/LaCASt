@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
 import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.mlp.MathTermUtility;
 import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
@@ -103,95 +104,124 @@ public class PomMatcher {
      * false.
      */
     public boolean find() {
-        if ( !inProcess ) {
-            reset();
-            inProcess = true;
-        } else {
-            refGroups.clear();
-        }
-
+        saveInProgressReset();
         wasReplaced = false;
         lastMatchWentUntilEnd = false;
-        boolean matched = false;
         while ( !remaining.isEmpty() ) {
             // get the remaining list of children to work on
             latestDepthExpression = remaining.removeFirst();
             List<PrintablePomTaggedExpression> elements = latestDepthExpression.remainingExpressions;
             LinkedList<PrintablePomTaggedExpression> backlog = new LinkedList<>();
 
-            while ( !elements.isEmpty() && !matched ) {
-                PrintablePomTaggedExpression first = elements.remove(0);
-                latestDepthExpression.currentReferenceNode = first;
-
-                // first, we add the children of this element to the list to tests
-                // but only if there are children lists to test
-                if ( first.getPrintableComponents().size() > 0 ) {
-                    remaining.addLast( new DepthExpressionsCache(
-                            latestDepthExpression.currentDepth+1, first.getPrintableComponents())
-                    );
-                }
-
-                if (PomTaggedExpressionUtility.isSequence(matcher)) {
-                    // than we take the first element, as the matcher...
-                    MatchablePomTaggedExpression m = (MatchablePomTaggedExpression)matcher.getComponents().get(0);
-                    // if the first worked, we can move forward
-                    boolean innerTmpMatch = m.match(first, elements, config);
-                    while ( innerTmpMatch && !elements.isEmpty() && m.getNextSibling() != null ) {
-                        first = elements.remove(0);
-                        m = (MatchablePomTaggedExpression)m.getNextSibling();
-                        if ( config.ignoreNumberOfAts() ) {
-                            if ( "@".equals(m.getRoot().getTermText()) )
-                                continue;
-                            else {
-                                while ( "@".equals(first.getRoot().getTermText()) ) {
-                                    if ( elements.isEmpty() ) break;
-                                    first = elements.remove(0);
-                                }
-                            }
-                        }
-                        innerTmpMatch = m.match(first, elements, config);
-                    }
-                    // match is only valid, if the regex does not assume more tokens
-                    matched = (innerTmpMatch && m.getNextSibling() == null);
-                    if ( matched && elements.isEmpty() ) lastMatchWentUntilEnd = true;
-                } else if ( !"@".equals(first.getRoot().getTermText()) ){
-                    matched = matcher.match(first, elements, config);
-                }
-
-                if ( !matched ) {
-                    backlog.addLast(first);
-                    latestDepthExpression.passedExpressions.addLast(first);
-                    // we may accidentally found partial hits before, we must reset these
-                    refGroups.clear();
-                }
-
-                if ( matched && leadingBackUpWildcard != null ) {
-                    // check backlog, otherwise its false
-                    if ( backlog.isEmpty() ) matched = false;
-                    else {
-                        addLogicalGroupFromBacklog(backlog);
-                    }
-                }
-            }
-
-            if ( matched ) {
-                // if we found a match, we have to roll back the elements, if there
-                // are elements remaining
-                if ( !elements.isEmpty() ) {
-                    remaining.addFirst(latestDepthExpression);
-                }
-
-                // we must add hits also... could be nested hits actually, right? ;)
-                getCapturedGroupsAsList().stream()
-                        .filter( l -> l.size() > 1 )
-                        .map( l -> new DepthExpressionsCache(latestDepthExpression.currentDepth+1, l) )
-                        .forEach( remaining::addLast );
-
+            if ( findNextMatch(elements, backlog) ) {
+                storeLatestMatch(elements);
                 return true;
             }
         }
 
         return false;
+    }
+
+    private void saveInProgressReset() {
+        if ( !inProcess ) {
+            reset();
+            inProcess = true;
+        } else {
+            refGroups.clear();
+        }
+    }
+
+    private boolean findNextMatch(
+            List<PrintablePomTaggedExpression> elements,
+            LinkedList<PrintablePomTaggedExpression> backlog
+    ) {
+        boolean matched = false;
+        while ( !elements.isEmpty() && !matched ) {
+            PrintablePomTaggedExpression first = elements.remove(0);
+            latestDepthExpression.currentReferenceNode = first;
+
+            // first, we add the children of this element to the list to tests
+            // but only if there are children lists to test
+            if ( first.getPrintableComponents().size() > 0 ) {
+                remaining.addLast( new DepthExpressionsCache(
+                        latestDepthExpression.currentDepth+1, first.getPrintableComponents())
+                );
+            }
+
+            matched = findNextMatchFromIndex(first, elements);
+            updateBacklog(matched, first, backlog);
+        }
+
+        return matched;
+    }
+
+    private boolean findNextMatchFromIndex(
+            PrintablePomTaggedExpression first,
+            List<PrintablePomTaggedExpression> elements
+    ) {
+        boolean matched = false;
+        if (PomTaggedExpressionUtility.isSequence(matcher)) {
+            // than we take the first element, as the matcher...
+            MatchablePomTaggedExpression m = (MatchablePomTaggedExpression)matcher.getComponents().get(0);
+            // if the first worked, we can move forward
+            boolean innerTmpMatch = m.match(first, elements, config);
+            while ( innerTmpMatch && !elements.isEmpty() && m.getNextSibling() != null ) {
+                first = elements.remove(0);
+                m = (MatchablePomTaggedExpression)m.getNextSibling();
+                if ( config.ignoreNumberOfAts() ) {
+                    if (PomTaggedExpressionUtility.isAt(m))
+                        continue;
+                    else {
+                        while ( PomTaggedExpressionUtility.isAt(first) ) {
+                            if ( elements.isEmpty() ) break;
+                            first = elements.remove(0);
+                        }
+                    }
+                }
+                innerTmpMatch = m.match(first, elements, config);
+            }
+            // match is only valid, if the regex does not assume more tokens
+            matched = (innerTmpMatch && m.getNextSibling() == null);
+            if ( matched && elements.isEmpty() ) lastMatchWentUntilEnd = true;
+        } else if ( !PomTaggedExpressionUtility.isAt(first) ){
+            matched = matcher.match(first, elements, config);
+        }
+        return matched;
+    }
+
+    private void updateBacklog(
+            boolean matched,
+            PrintablePomTaggedExpression first,
+            LinkedList<PrintablePomTaggedExpression> backlog
+    ) {
+        if ( !matched ) {
+            backlog.addLast(first);
+            latestDepthExpression.passedExpressions.addLast(first);
+            // we may accidentally found partial hits before, we must reset these
+            refGroups.clear();
+        }
+
+        if ( matched && leadingBackUpWildcard != null ) {
+            // check backlog, otherwise its false
+            if ( backlog.isEmpty() ) matched = false;
+            else {
+                addLogicalGroupFromBacklog(backlog);
+            }
+        }
+    }
+
+    private void storeLatestMatch(List<PrintablePomTaggedExpression> elements) {
+        // if we found a match, we have to roll back the elements, if there
+        // are elements remaining
+        if ( !elements.isEmpty() ) {
+            remaining.addFirst(latestDepthExpression);
+        }
+
+        // we must add hits also... could be nested hits actually, right? ;)
+        getCapturedGroupsAsList().stream()
+                .filter( l -> l.size() > 1 )
+                .map( l -> new DepthExpressionsCache(latestDepthExpression.currentDepth+1, l) )
+                .forEach( remaining::addLast );
     }
 
     /**
