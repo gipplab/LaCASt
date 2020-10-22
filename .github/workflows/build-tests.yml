@@ -11,6 +11,6 @@ jobs:
       with:
         java-version: 1.11
     - name: Maven Install
-      run: mvn install -P ci -DskipTests -B
+      run: mvn install -DskipTests -B
     - name: Maven Test
-      run: mvn test -P ci
+      run: mvn -pl \!mathosphere/mathosphere-core test

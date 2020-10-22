@@ -33,15 +33,21 @@ before_install:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
+  # load submodules
+  - git submodule update --init --remote --recursive
+  - git pull --recursive-submodules
+  - cd mathosphere
+  - git pull
+  - cd ..
 
 # first install via maven and generate JARs but do not run any tests
 install:
-  - mvn install -P ci -DskipTests -B -V -DgenerateJars
+  - mvn install -DskipTests -B -V -DgenerateJars
   - java -jar bin/lexicon-creator.jar -all
 
 # Once we successfully installed the repo, we run the tests
 script:
-  - mvn test -P ci -B -DjacocoReport=remote
+  - mvn -pl \!mathosphere/mathosphere-core test -B -DjacocoReport=remote
 
 # Only if it installed successfully and we run tests without errors, we send
 # the test coverage results to CodeClimate. Since CodeClimate presumes different

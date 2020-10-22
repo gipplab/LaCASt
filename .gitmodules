@@ -1,0 +1,4 @@
+[submodule "mathosphere"]
+	path = mathosphere
+	url = git@github.com:ag-gipp/mathosphere.git
+	branch = patch-extractor
