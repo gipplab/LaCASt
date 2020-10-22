@@ -26,8 +26,8 @@
     </developers>
 
     <modules>
+        <module>mathosphere</module>
         <module>interpreter.common</module>
-        <module>mathosphere/mathosphere-core</module>
         <module>interpreter.generic</module>
         <module>interpreter.lacast</module>
         <module>interpreter.maple</module>
