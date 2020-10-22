@@ -36,12 +36,12 @@ before_install:
 
 # first install via maven and generate JARs but do not run any tests
 install:
-  - mvn install -DskipTests -B -V -DgenerateJars
+  - mvn install -P ci -DskipTests -B -V -DgenerateJars
   - java -jar bin/lexicon-creator.jar -all
 
 # Once we successfully installed the repo, we run the tests
 script:
-  - mvn test -B -DjacocoReport=remote
+  - mvn test -P ci -B -DjacocoReport=remote
 
 # Only if it installed successfully and we run tests without errors, we send
 # the test coverage results to CodeClimate. Since CodeClimate presumes different

@@ -80,6 +80,26 @@
         <elasticsearch.version>7.6.1</elasticsearch.version>
     </properties>
 
+    <profiles>
+        <!--
+        During development, we rely on the SNAPSHOT version of mathosphere. Hence, we skip this module
+        in our continues integration tests on travis/github. Otherwise every build fails for next months.
+        -->
+        <profile>
+            <id>ci</id>
+            <modules>
+                <module>interpreter.common</module>
+                <!--                <module>interpreter.generic</module>-->
+                <module>interpreter.lacast</module>
+                <module>interpreter.maple</module>
+                <module>interpreter.mathematica</module>
+                <module>interpreter.core</module>
+                <module>interpreter.evaluation</module>
+                <module>interpreter.report</module>
+            </modules>
+        </profile>
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
