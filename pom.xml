@@ -26,7 +26,6 @@
     </developers>
 
     <modules>
-        <module>mathosphere</module>
         <module>interpreter.common</module>
         <module>interpreter.generic</module>
         <module>interpreter.lacast</module>
@@ -36,6 +35,15 @@
         <module>interpreter.evaluation</module>
         <module>interpreter.report</module> <!-- test report of all previous packages -->
     </modules>
+
+    <profiles>
+        <profile>
+            <id>build</id>
+            <modules>
+                <module>mathosphere</module>
+            </modules>
+        </profile>
+    </profiles>
 
     <properties>
         <!--

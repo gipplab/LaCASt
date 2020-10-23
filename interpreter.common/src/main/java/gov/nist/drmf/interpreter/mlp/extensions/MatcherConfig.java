@@ -117,6 +117,11 @@ public class MatcherConfig {
         return this;
     }
 
+    /**
+     * The default config does not allow in-place matches (leading and following tokens of match is allowed) and
+     * the bracket logic is enforced (must match) but the number of @s is ignored.
+     * @return the default matcher.
+     */
     public static MatcherConfig getDefaultMatchConfig() {
         return new MatcherConfig()
                 .allowLeadingTokens(false)

@@ -6,15 +6,13 @@ import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Andre Greiner-Petter
  */
-public final class PrintablePomTaggedExpressionUtils {
-    private PrintablePomTaggedExpressionUtils(){}
+public final class PrintablePomTaggedExpressionUtility {
+    private PrintablePomTaggedExpressionUtility(){}
 
     public static String getInternalNodeCommand(MathTerm mt) {
         String cmd = mt.getTermText();
@@ -61,5 +59,23 @@ public final class PrintablePomTaggedExpressionUtils {
             copy.add(c);
         });
         return copy;
+    }
+
+    public static boolean isIdentifier(PrintablePomTaggedExpression pte) {
+        return PomTaggedExpressionUtility.isSingleVariable(pte);
+    }
+
+    public static Collection<PrintablePomTaggedExpression> getIdentifierNodes(PrintablePomTaggedExpression pte) {
+        Collection<PrintablePomTaggedExpression> identifiers = new LinkedList<>();
+
+        if ( isIdentifier(pte) ) identifiers.add(pte);
+
+        for ( PrintablePomTaggedExpression child : pte.getPrintableComponents() ) {
+            Collection<PrintablePomTaggedExpression> childIds = getIdentifierNodes(child);
+            for ( PrintablePomTaggedExpression next : childIds )
+                if ( !identifiers.contains(next) ) identifiers.add(next);
+        }
+
+        return identifiers;
     }
 }

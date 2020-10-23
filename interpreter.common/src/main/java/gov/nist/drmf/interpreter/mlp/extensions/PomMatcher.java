@@ -42,6 +42,8 @@ public class PomMatcher {
     private DepthExpressionsCache latestDepthExpression;
 
     private boolean wasReplaced = false;
+    private boolean latestHitMatchedWithoutPassingElements = false;
+    private boolean firstRound = true;
 
     PomMatcher(
             AbstractMatchablePomTaggedExpression mpte,
@@ -90,7 +92,10 @@ public class PomMatcher {
     public boolean match() {
         reset();
         boolean res = matcher.match(copy, MatcherConfig.getExactMatchConfig());
-        if ( res ) lastMatchWentUntilEnd = true;
+        if ( res ) {
+            lastMatchWentUntilEnd = true;
+            latestHitMatchedWithoutPassingElements = true;
+        }
         return res;
     }
 
@@ -112,6 +117,7 @@ public class PomMatcher {
         saveInProgressReset();
         wasReplaced = false;
         lastMatchWentUntilEnd = false;
+        latestHitMatchedWithoutPassingElements = false;
         while ( !remaining.isEmpty() ) {
             // get the remaining list of children to work on
             latestDepthExpression = remaining.removeFirst();
@@ -120,6 +126,7 @@ public class PomMatcher {
 
             if ( findNextMatch(elements, backlog) ) {
                 storeLatestMatch(elements);
+                latestHitMatchedWithoutPassingElements = backlog.isEmpty();
                 return true;
             }
         }
@@ -127,11 +134,19 @@ public class PomMatcher {
         return false;
     }
 
+    public boolean latestHitMatchedExact() {
+        return firstRound
+                && latestHitMatchedWithoutPassingElements
+                && lastMatchWentUntilEnd
+                && latestDepthExpression.currentDepth <= 1;
+    }
+
     private void saveInProgressReset() {
         if ( !inProcess ) {
             reset();
             inProcess = true;
         } else {
+            firstRound = false;
             refGroups.clear();
         }
     }
@@ -217,9 +232,7 @@ public class PomMatcher {
         }
 
         if ( matched && leadingBackUpWildcard != null ) {
-            // check backlog, otherwise its false
-            if ( backlog.isEmpty() ) matched = false;
-            else {
+            if ( !backlog.isEmpty() ) {
                 addLogicalGroupFromBacklog(backlog);
             }
         }
@@ -388,6 +401,8 @@ public class PomMatcher {
      * Resets the matcher (the next {@link #find()} starts at the beginning again.
      */
     public void reset() {
+        inProcess = false;
+        firstRound = true;
         lastMatchWentUntilEnd = false;
         refGroups.clear();
         copy = new PrintablePomTaggedExpression(orig);
@@ -409,6 +424,10 @@ public class PomMatcher {
      */
     public Map<String, String> groups() {
         return matcher.getStringMatches();
+    }
+
+    public GroupCaptures copyGroups() {
+        return new GroupCaptures(matcher.getCaptures());
     }
 
     private static class DepthExpressionsCache {

@@ -496,6 +496,48 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void pomMatcherWasExactTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
+
+        String test = "x + \\Gamma(x)";
+        PomMatcher pomMatcher = blueprint.matcher( test, MatcherConfig.getInPlaceMatchConfig() );
+        assertTrue(pomMatcher.find());
+        assertFalse(pomMatcher.latestHitMatchedExact());
+
+        test = "\\Gamma(x + y)";
+        pomMatcher = blueprint.matcher( test, MatcherConfig.getInPlaceMatchConfig() );
+        assertTrue(pomMatcher.find());
+        assertTrue(pomMatcher.latestHitMatchedExact());
+
+        test = "\\Gamma(x) + y";
+        pomMatcher = blueprint.matcher( test, MatcherConfig.getInPlaceMatchConfig() );
+        assertTrue(pomMatcher.find());
+        assertFalse(pomMatcher.latestHitMatchedExact());
+    }
+
+    @Test
+    public void pomMatcherWasExactNestedTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
+
+        String test = "\\Gamma(\\Gamma(x))";
+        PomMatcher pomMatcher = blueprint.matcher( test, MatcherConfig.getInPlaceMatchConfig() );
+        assertTrue(pomMatcher.find());
+        assertEquals("\\Gamma (x)", pomMatcher.groups().get("var1"));
+        assertTrue(pomMatcher.latestHitMatchedExact());
+
+        assertTrue(pomMatcher.find());
+        assertEquals("x", pomMatcher.groups().get("var1"));
+        assertFalse(pomMatcher.latestHitMatchedExact());
+
+        pomMatcher.reset();
+        assertTrue(pomMatcher.find());
+        assertEquals("\\Gamma (x)", pomMatcher.groups().get("var1"));
+        assertTrue(pomMatcher.latestHitMatchedExact());
+    }
+
+    @Test
     public void pomMatcherFindMultiHitsTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
                 PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
