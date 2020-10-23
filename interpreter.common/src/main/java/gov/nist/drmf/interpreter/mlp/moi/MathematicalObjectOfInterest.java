@@ -48,7 +48,10 @@ public class MathematicalObjectOfInterest {
                 .map( PrintablePomTaggedExpression::getRoot )
                 .map( MathTerm::getTermText )
                 .collect(Collectors.toSet());
-        this.wildcardIdentifierMapping = replaceIdentifiersByWildcards(identifierNodes);
+
+        if ( this.identifiers.size() > 1 ) {
+            this.wildcardIdentifierMapping = replaceIdentifiersByWildcards(identifierNodes);
+        } else this.wildcardIdentifierMapping = new HashMap<>();
 
         this.pattern = moiCopy.getTexString();
         this.matchableMOI = PomMatcherBuilder.compile(moiCopy, WILDCARD_PATTERN);
