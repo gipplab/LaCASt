@@ -25,6 +25,10 @@ public class GroupCaptures {
         this.matchLibrary = new HashMap<>();
     }
 
+    public GroupCaptures(GroupCaptures copy) {
+        this.matchLibrary = new HashMap<>(copy.matchLibrary);
+    }
+
     /**
      * Clears the captured groups.
      */

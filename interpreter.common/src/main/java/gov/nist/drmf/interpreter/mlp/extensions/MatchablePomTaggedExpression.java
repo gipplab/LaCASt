@@ -84,7 +84,7 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
                 throw new NotMatchableException("A wildcard node cannot have children.");
             this.isWildcard = true;
             this.wildcardID = text;
-            this.isSingleSequenceWildcard = PrintablePomTaggedExpressionUtils.isSingleElementInBrackets(refRoot);
+            this.isSingleSequenceWildcard = PrintablePomTaggedExpressionUtility.isSingleElementInBrackets(refRoot);
         } else {
             this.isWildcard = false;
             this.wildcardID = null;

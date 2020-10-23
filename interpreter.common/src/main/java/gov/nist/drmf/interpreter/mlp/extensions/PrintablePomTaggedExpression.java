@@ -2,14 +2,12 @@ package gov.nist.drmf.interpreter.mlp.extensions;
 
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
-import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
 import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -155,7 +153,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
             return p;
         } else {
             StringBuilder entireListOfComponents = new StringBuilder();
-            String potentialRoot = PrintablePomTaggedExpressionUtils.getInternalNodeCommand(pte);
+            String potentialRoot = PrintablePomTaggedExpressionUtility.getInternalNodeCommand(pte);
             entireListOfComponents.append(Pattern.quote(potentialRoot));
             if ( !potentialRoot.isBlank() ) entireListOfComponents.append("[\\s{}\\[\\]]*");
 
@@ -167,7 +165,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
                                 .append(getEndingString(child));
                     }
                 } else if ( !last.getComponents().isEmpty() ) {
-                    String root = PrintablePomTaggedExpressionUtils.getInternalNodeCommand(last);
+                    String root = PrintablePomTaggedExpressionUtility.getInternalNodeCommand(last);
                     entireListOfComponents.append(Pattern.quote(root));
                     for ( PomTaggedExpression child : last.getComponents() ) {
                         entireListOfComponents.append("[\\s{}\\[\\]]*")
@@ -326,7 +324,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
 
     @Override
     public void setRoot(MathTerm mathTerm) {
-        String newCaption = PrintablePomTaggedExpressionUtils.getInternalNodeCommand(mathTerm);
+        String newCaption = PrintablePomTaggedExpressionUtility.getInternalNodeCommand(mathTerm);
         replaceCaption(newCaption);
         if ( getParent() != null ) {
             PrintablePomTaggedExpression parent = (PrintablePomTaggedExpression) getParent();
@@ -353,8 +351,8 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
      */
     private void populatingStringChanges() {
         if ( !hasNoChildren() ) {
-            String newCaption = PrintablePomTaggedExpressionUtils.getInternalNodeCommand(this);
-            newCaption += PrintablePomTaggedExpressionUtils.buildString(getPrintableComponents());
+            String newCaption = PrintablePomTaggedExpressionUtility.getInternalNodeCommand(this);
+            newCaption += PrintablePomTaggedExpressionUtility.buildString(getPrintableComponents());
             replaceCaption(newCaption);
         }
 
