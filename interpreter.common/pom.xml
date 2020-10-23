@@ -62,7 +62,14 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <scope>test</scope>
+<!--            <scope>test</scope>-->
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.prefuse/prefuse -->
+        <dependency>
+            <groupId>org.prefuse</groupId>
+            <artifactId>prefuse</artifactId>
+            <version>beta-20071021</version>
         </dependency>
     </dependencies>
 
