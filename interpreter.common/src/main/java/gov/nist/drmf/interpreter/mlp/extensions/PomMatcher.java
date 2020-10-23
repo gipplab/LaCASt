@@ -75,7 +75,7 @@ public class PomMatcher {
 
         // in case it starts with a wildcard, its more efficient to handle that later. remove it and continue
         if ( children.isFirstChildWildcard() ) {
-            leadingBackUpWildcard = children.removeFirst();
+            leadingBackUpWildcard = children.hideFirstWildcard();
         }
 
         this.matcherFirstElement = isSequenceMatcher ? (MatchablePomTaggedExpression)matcher.getComponents().get(0) : null;

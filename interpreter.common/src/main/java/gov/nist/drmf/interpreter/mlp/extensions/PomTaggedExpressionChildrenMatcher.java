@@ -23,6 +23,8 @@ public class PomTaggedExpressionChildrenMatcher {
      */
     private final LinkedList<MatchablePomTaggedExpression> children;
 
+    private MatchablePomTaggedExpression hiddenFirstElement;
+
     /**
      * @param parent the parent node
      */
@@ -31,6 +33,7 @@ public class PomTaggedExpressionChildrenMatcher {
     ) {
         this.parent = parent;
         this.children = new LinkedList<>();
+        this.hiddenFirstElement = null;
     }
 
     /**
@@ -48,8 +51,8 @@ public class PomTaggedExpressionChildrenMatcher {
      * It also returns false if there are no children added yet.
      */
     public boolean isFirstChildWildcard() {
-        if ( this.children.isEmpty() ) return false;
-        return this.children.get(0).isWildcard();
+        return hiddenFirstElement != null ||
+                ( !this.children.isEmpty() && this.children.get(0).isWildcard() );
     }
 
     /**
@@ -57,13 +60,16 @@ public class PomTaggedExpressionChildrenMatcher {
      * @return the first element of the children
      * @throws NoSuchElementException if there are no children
      */
-    public MatchablePomTaggedExpression removeFirst() throws NoSuchElementException {
+    public MatchablePomTaggedExpression hideFirstWildcard() throws NoSuchElementException {
+        if ( hiddenFirstElement != null ) return hiddenFirstElement;
+        // remove first element from parent node
         try {
             parent.getComponents().remove(0);
         } catch (IndexOutOfBoundsException ioobe) {
             throw new NoSuchElementException(ioobe.getMessage());
         }
-        return this.children.removeFirst();
+        hiddenFirstElement = this.children.removeFirst();
+        return hiddenFirstElement;
     }
 
     /**
