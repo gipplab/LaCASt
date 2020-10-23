@@ -476,6 +476,26 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void multiPomMatcherTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "var0(var1)", "(p|v)ar\\d");
+
+        PomMatcher pomMatcher = blueprint.matcher( "f(x)", MatcherConfig.getInPlaceMatchConfig() );
+        assertTrue(pomMatcher.find());
+
+        Map<String, String> groups = pomMatcher.groups();
+        assertEquals("f", groups.get("var0"));
+        assertEquals("x", groups.get("var1"));
+
+        pomMatcher = blueprint.matcher( "g(x)", MatcherConfig.getInPlaceMatchConfig() );
+        assertTrue(pomMatcher.find());
+
+        groups = pomMatcher.groups();
+        assertEquals("g", groups.get("var0"));
+        assertEquals("x", groups.get("var1"));
+    }
+
+    @Test
     public void pomMatcherFindSimpleTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
                 PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "(p|v)ar\\d");

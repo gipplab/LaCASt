@@ -37,11 +37,14 @@ public class MOIDependencyGraphTests {
 
         assertTrue(f.isSource());
         assertTrue(f.getIngoingDependencies().isEmpty());
+        assertEquals(1, f.getOutgoingDependencies().size());
+
         assertTrue(g.isSource());
         assertTrue(g.getIngoingDependencies().isEmpty());
+        assertEquals(1, g.getOutgoingDependencies().size());
 
         assertTrue(fg.isSink());
         assertTrue(fg.getOutgoingDependencies().isEmpty());
+        assertEquals(2, fg.getIngoingDependencies().size());
     }
-
 }
