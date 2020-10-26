@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.mlp.extensions.PrintablePomTaggedExpression;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.function.Predicate;
 
 /**
  * Represents a node in an {@link MOIDependencyGraph}. A node is a single MOI which may have
@@ -45,6 +46,13 @@ public class MOINode implements INode<MOIDependency> {
     @Override
     public Collection<MOIDependency> getOutgoingDependencies() {
         return outgoing;
+    }
+
+    public boolean dependsOnlyOnIdentifier() {
+        return getIngoingDependencies().stream()
+                .map( MOIDependency::getSource )
+                .map( MOINode::getNode )
+                .anyMatch(m -> !m.isIdentifier() );
     }
 
     public void setupDependency(MOINode node) {

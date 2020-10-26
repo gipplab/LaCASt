@@ -141,4 +141,8 @@ public class MathematicalObjectOfInterest {
     public HashMap<String, String> getPotentialPrimaryIdentifierWildcardMapping() {
         return potentialPrimaryIdentifierWildcardMapping;
     }
+
+    public boolean isIdentifier() {
+        return this.identifiers.size() == 1 && this.identifiers.contains(this.originalLaTeX.trim());
+    }
 }

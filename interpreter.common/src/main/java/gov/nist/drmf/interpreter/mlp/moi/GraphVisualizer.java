@@ -37,7 +37,7 @@ public class GraphVisualizer {
         MOIDependencyGraph moiGraph = MOIDependencyGraph.generateGraph(library);
         System.out.println("Loaded library.");
 
-        String searchFor = "z";
+        String searchFor = "";
 
         System.setProperty("org.graphstream.ui", "swing");
         Graph graph = new SingleGraph("Tutorial 1");
@@ -47,7 +47,10 @@ public class GraphVisualizer {
 
         int i = 0;
         for ( MOINode moiNode : moiGraph.getVertices() ) {
-            if ( (!searchFor.isBlank() && !moiNode.getNode().getOriginalLaTeX().contains(searchFor)) || nodeMemory.contains(moiNode.hashCode()) ) continue;
+            if ( (!searchFor.isBlank() && !moiNode.getNode().getOriginalLaTeX().contains(searchFor))
+                    || nodeMemory.contains(moiNode.hashCode())
+                    || moiNode.isIsolated()
+            ) continue;
             Node n = graph.addNode(moiNode.hashCode()+"");
             nodeMemory.add(moiNode.hashCode());
             setNodeAttribute(n, moiNode.getNode().getOriginalLaTeX());
