@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MOIDependencyGraphTests {
 
     @Test
-    public void buildSimpleMOIDependencyGraph() throws ParseException {
+    public void buildSimpleMOIDependencyGraphTest() throws ParseException {
         HashMap<String, String> library = new HashMap<>();
         library.put("1", "f(x)");
         library.put("2", "g(x)");
@@ -46,5 +46,30 @@ public class MOIDependencyGraphTests {
         assertTrue(fg.isSink());
         assertTrue(fg.getOutgoingDependencies().isEmpty());
         assertEquals(2, fg.getIngoingDependencies().size());
+    }
+
+    @Test
+    public void singleIdentifierMOIGraphTest() throws ParseException {
+        HashMap<String, String> library = new HashMap<>();
+        library.put("1", "z");
+        library.put("2", "g(z)");
+
+        MOIDependencyGraph graph = MOIDependencyGraph.generateGraph(library);
+        Collection<MOINode> verts = graph.getVertices();
+        assertNotNull(verts);
+        assertEquals(2, verts.size());
+
+        Map<String, MOINode> vertMap = graph.getVerticesMap();
+        MOINode f = vertMap.get("1");
+        MOINode g = vertMap.get("2");
+
+        assertNotNull(f);
+        assertNotNull(g);
+
+        assertEquals(1, f.getOutgoingDependencies().size());
+        assertEquals(1, g.getIngoingDependencies().size());
+
+        assertEquals(0, f.getIngoingDependencies().size());
+        assertEquals(0, g.getOutgoingDependencies().size());
     }
 }

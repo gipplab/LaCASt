@@ -97,6 +97,12 @@ public class MathematicalObjectOfInterest {
         while ( matcher.find() ) {
             // we found a match. let's see if at least one primary identifier is shared
             Map<String, String> groups = matcher.groups();
+
+            if ( groups.isEmpty() ) {
+                // if there are no wildcards, it must have been a perfect match, e.g., z is in \Gamma(z).
+                return new DependencyPattern(this.pattern, matcher);
+            }
+
             for ( String wildcard : groups.keySet() ) {
                 // if at least one identifier is also a potential primary identifier, we found a match and return true
                 if ( groups.get(wildcard).equals( this.potentialPrimaryIdentifierWildcardMapping.get(wildcard) ) )
