@@ -66,11 +66,26 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.prefuse/prefuse -->
+<!--        <dependency>-->
+<!--            <groupId>org.prefuse</groupId>-->
+<!--            <artifactId>prefuse</artifactId>-->
+<!--            <version>beta-20071021</version>-->
+<!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.graphstream/gs-core -->
         <dependency>
-            <groupId>org.prefuse</groupId>
-            <artifactId>prefuse</artifactId>
-            <version>beta-20071021</version>
+            <groupId>org.graphstream</groupId>
+            <artifactId>gs-core</artifactId>
+            <version>2.0</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.graphstream/gs-ui-swing -->
+        <dependency>
+            <groupId>org.graphstream</groupId>
+            <artifactId>gs-ui-swing</artifactId>
+            <version>2.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
