@@ -24,6 +24,12 @@
             <artifactId>mlp</artifactId>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>com.formulasearchengine.mathosphere</groupId>-->
+<!--            <artifactId>mathosphere-core</artifactId>-->
+<!--            <version>3.0.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -62,30 +68,21 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-<!--            <scope>test</scope>-->
+            <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.prefuse/prefuse -->
-<!--        <dependency>-->
-<!--            <groupId>org.prefuse</groupId>-->
-<!--            <artifactId>prefuse</artifactId>-->
-<!--            <version>beta-20071021</version>-->
-<!--        </dependency>-->
-
-        <!-- https://mvnrepository.com/artifact/org.graphstream/gs-core -->
+        <!-- graph visualization (should be deleted or moved to another place if no longer needed -->
         <dependency>
             <groupId>org.graphstream</groupId>
             <artifactId>gs-core</artifactId>
             <version>2.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.graphstream/gs-ui-swing -->
         <dependency>
             <groupId>org.graphstream</groupId>
             <artifactId>gs-ui-swing</artifactId>
             <version>2.0</version>
         </dependency>
-
     </dependencies>
 
     <build>

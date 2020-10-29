@@ -21,15 +21,15 @@ public class MOIDependencyGraphTests {
         library.put("2", "g(x)");
         library.put("3", "f(z) + g(z)");
 
-        MOIDependencyGraph graph = MOIDependencyGraph.generateGraph(library);
-        Collection<MOINode> verts = graph.getVertices();
+        MOIDependencyGraph graph = MOIDependencyGraphBuilder.generateGraph(library);
+        Collection<MOINode<?>> verts = graph.getVertices();
         assertNotNull(verts);
         assertEquals(3, verts.size());
 
-        Map<String, MOINode> vertMap = graph.getVerticesMap();
-        MOINode f = vertMap.get("1");
-        MOINode g = vertMap.get("2");
-        MOINode fg = vertMap.get("3");
+        Map<String, MOINode<?>> vertMap = graph.getVerticesMap();
+        MOINode<?> f = vertMap.get("1");
+        MOINode<?> g = vertMap.get("2");
+        MOINode<?> fg = vertMap.get("3");
 
         assertNotNull(f);
         assertNotNull(g);
@@ -54,14 +54,14 @@ public class MOIDependencyGraphTests {
         library.put("1", "z");
         library.put("2", "g(z)");
 
-        MOIDependencyGraph graph = MOIDependencyGraph.generateGraph(library);
-        Collection<MOINode> verts = graph.getVertices();
+        MOIDependencyGraph graph = MOIDependencyGraphBuilder.generateGraph(library);
+        Collection<MOINode<?>> verts = graph.getVertices();
         assertNotNull(verts);
         assertEquals(2, verts.size());
 
-        Map<String, MOINode> vertMap = graph.getVerticesMap();
-        MOINode f = vertMap.get("1");
-        MOINode g = vertMap.get("2");
+        Map<String, MOINode<?>> vertMap = graph.getVerticesMap();
+        MOINode<?> f = vertMap.get("1");
+        MOINode<?> g = vertMap.get("2");
 
         assertNotNull(f);
         assertNotNull(g);

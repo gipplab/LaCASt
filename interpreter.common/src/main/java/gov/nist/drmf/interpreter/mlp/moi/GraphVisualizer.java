@@ -34,7 +34,7 @@ public class GraphVisualizer {
             library.put(""+counter[0], l);
             counter[0]++;
         });
-        MOIDependencyGraph moiGraph = MOIDependencyGraph.generateGraph(library);
+        MOIDependencyGraph moiGraph = MOIDependencyGraphBuilder.generateGraph(library);
         System.out.println("Loaded library.");
 
         String searchFor = "";
@@ -63,7 +63,7 @@ public class GraphVisualizer {
 //            Thread.sleep(500);
         }
 
-        for ( MOINode moiNode : moiGraph.getVertices() ) {
+        for ( MOINode<?> moiNode : moiGraph.getVertices() ) {
             for ( MOIDependency moiEdge : moiNode.getOutgoingDependencies() ) {
                 if ( !nodeMemory.contains(moiNode.hashCode()) || !nodeMemory.contains(moiEdge.getSink().hashCode()) ) continue;
                 Edge e = graph.addEdge(
@@ -90,7 +90,7 @@ public class GraphVisualizer {
         graph.setAttribute("ui.quality", true);
         graph.setAttribute("ui.antialias", true);
 
-        graph.setAttribute("layout.stabilization-limit", 1);
+        graph.setAttribute("layout.stabilization-limit", 0.999999);
 //        graph.setAttribute("layout.quality", 3);
         graph.setAttribute("layout.force", 0.9);
 
