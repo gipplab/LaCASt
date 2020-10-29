@@ -326,8 +326,8 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
     public void setRoot(MathTerm mathTerm) {
         String newCaption = PrintablePomTaggedExpressionUtility.getInternalNodeCommand(mathTerm);
         replaceCaption(newCaption);
-        if ( getParent() != null ) {
-            PrintablePomTaggedExpression parent = (PrintablePomTaggedExpression) getParent();
+        if ( this.getParent() != null ) {
+            PrintablePomTaggedExpression parent = (PrintablePomTaggedExpression) this.getParent();
             parent.populatingStringChanges();
         }
 

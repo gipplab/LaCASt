@@ -58,7 +58,7 @@ public class MathematicalObjectOfInterest {
 
         this.potentialPrimaryIdentifierWildcardMapping = new HashMap<>();
         for (Map.Entry<String, String> wildcardIdentifier : this.wildcardIdentifierMapping.entrySet() ) {
-            if ( !this.originalLaTeX.matches(".*[(\\[|]\\s*"+wildcardIdentifier.getValue()+"\\s*(?:right)?[|\\])].*")  ) {
+            if ( !this.originalLaTeX.matches(".*[(\\[|]\\s*\\Q"+wildcardIdentifier.getValue()+"\\E\\s*(?:right)?[|\\])].*")  ) {
                 // identifier does not appear isolated in parentheses, so its a candidate for primary identifier
                 this.potentialPrimaryIdentifierWildcardMapping.put(wildcardIdentifier.getKey(), wildcardIdentifier.getValue());
             }
