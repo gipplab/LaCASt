@@ -127,7 +127,7 @@
                                     <outputDirectory>${jacoco.report.dir}/jacoco-report</outputDirectory>
                                     <excludes>
                                         <!-- excludes tests that require third-party tools (Maple/Mathematica) -->
-                                        <execlude>gov/nist/drmf/interpreter/mlp/examples/**/*</execlude>
+                                        <execlude>gov/nist/drmf/interpreter/pom/examples/**/*</execlude>
                                         <execlude>gov/nist/drmf/interpreter/evaluation/core/**/*</execlude>
                                         <execlude>gov/nist/drmf/interpreter/maple/**/*</execlude>
                                         <execlude>gov/nist/drmf/interpreter/mathematica/**/*</execlude>
