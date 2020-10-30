@@ -2,8 +2,10 @@ package gov.nist.drmf.interpreter.mlp.extensions;
 
 import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.mlp.MLPWrapper;
 import gov.nist.drmf.interpreter.mlp.MathTermUtility;
+import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -35,7 +37,7 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
      * If a single node a is wrapped in brackets {a}, it represents a single sequence object.
      * This kind of wildcard only matches a single node even if it is at the end of a sequence.
      */
-    private boolean isSingleSequenceWildcard;
+    private final boolean isSingleSequenceWildcard;
 
     /**
      * The wildcard ID
@@ -46,6 +48,17 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
      * Next sibling, if any
      */
     private MatchablePomTaggedExpression nextSibling;
+
+    /**
+     * Just for serialization
+     */
+    MatchablePomTaggedExpression() {
+        this(
+                SemanticMLPWrapper.getStandardInstance(),
+                FakeMLPGenerator.generateEmptyPPTE(),
+                ""
+        );
+    }
 
     /**
      * For better performance, it is recommended to have one MLPWrapper object.
@@ -64,7 +77,7 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
     private MatchablePomTaggedExpression(
             MLPWrapper mlpWrapper,
             PomTaggedExpression refRoot,
-            String wildcardPattern,
+            @Language("RegExp") String wildcardPattern,
             GroupCaptures captures
     ) throws NotMatchableException {
         super(refRoot, mlpWrapper, captures);

@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.mlp.extensions;
 
 import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
+import mlp.MathTerm;
+import mlp.PomTaggedExpression;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +26,11 @@ public class PomTaggedExpressionChildrenMatcher {
     private final LinkedList<MatchablePomTaggedExpression> children;
 
     private MatchablePomTaggedExpression hiddenFirstElement;
+
+    // fix issues
+    private PomTaggedExpressionChildrenMatcher() {
+        this(null);
+    }
 
     /**
      * @param parent the parent node

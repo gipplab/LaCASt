@@ -29,6 +29,12 @@ import java.util.regex.Pattern;
 public class PrintablePomTaggedExpression extends PomTaggedExpression implements IMatcher<PrintablePomTaggedExpression> {
     private String caption;
 
+    // hopefully fixing serialization issues
+    private PrintablePomTaggedExpression() {
+        super();
+        this.caption = "";
+    }
+
     /**
      * Copy constructor
      * @param ppte a previously valid printable PoM expression
