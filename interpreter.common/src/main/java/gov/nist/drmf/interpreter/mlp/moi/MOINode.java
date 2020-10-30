@@ -29,6 +29,13 @@ public class MOINode<T> implements INode<MOIDependency> {
     // an annotation
     private final T annotation;
 
+    /**
+     * Keep Kryo happy for serialization
+     */
+    private MOINode() {
+        this("-1", null);
+    }
+
     public MOINode(String id, MathematicalObjectOfInterest moi) {
         this(id, moi, null);
     }

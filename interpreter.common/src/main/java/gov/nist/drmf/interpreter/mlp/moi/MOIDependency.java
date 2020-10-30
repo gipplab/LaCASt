@@ -15,6 +15,13 @@ public class MOIDependency {
     private final MOINode sink;
     private final DependencyPattern attribute;
 
+    /**
+     * Keep Kryo happy for serialization
+     */
+    private MOIDependency() {
+        this(null, null, null);
+    }
+
     public MOIDependency(MOINode source, MOINode sink, DependencyPattern attribute) {
         this.source = source;
         this.sink = sink;

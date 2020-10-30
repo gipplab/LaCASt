@@ -33,6 +33,15 @@ public class MathematicalObjectOfInterest {
     private HashMap<String, String> wildcardIdentifierMapping;
     private HashMap<String, String> potentialPrimaryIdentifierWildcardMapping;
 
+    /**
+     * Keep Kryo happy for serialization
+     */
+    private MathematicalObjectOfInterest() {
+        this.identifiers = null;
+        this.moi = null;
+        this.matchableMOI = null;
+    }
+
     public MathematicalObjectOfInterest(String latex) throws ParseException {
         this(mlp.parse(latex));
     }

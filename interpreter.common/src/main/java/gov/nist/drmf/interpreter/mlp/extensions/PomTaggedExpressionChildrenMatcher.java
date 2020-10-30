@@ -27,9 +27,11 @@ public class PomTaggedExpressionChildrenMatcher {
 
     private MatchablePomTaggedExpression hiddenFirstElement;
 
-    // fix issues
+    /**
+     * Keep Kryo happy for serialization
+     */
     private PomTaggedExpressionChildrenMatcher() {
-        this(null);
+        this(new MatchablePomTaggedExpression());
     }
 
     /**
