@@ -5,7 +5,7 @@ import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
-import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
+import gov.nist.drmf.interpreter.pom.MacrosLexicon;
 import mlp.FeatureSet;
 import mlp.Lexicon;
 import org.apache.logging.log4j.LogManager;

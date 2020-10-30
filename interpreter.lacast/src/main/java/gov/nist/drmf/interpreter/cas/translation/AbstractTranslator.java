@@ -10,21 +10,16 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
-import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
-import gov.nist.drmf.interpreter.mlp.MathTermUtility;
-import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.MathTermUtility;
+import gov.nist.drmf.interpreter.pom.PomTaggedExpressionUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
-import org.apache.commons.text.StringEscapeUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.*;
-
-import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.*;
 
 /**
  * The abstract translator delegates the translation process to the specialized sub-translator

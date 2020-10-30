@@ -11,7 +11,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
-import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.FakeMLPGenerator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;

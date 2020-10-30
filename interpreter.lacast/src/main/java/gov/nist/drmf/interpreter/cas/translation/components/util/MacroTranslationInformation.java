@@ -1,10 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation.components.util;
 
-import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
-import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
 import mlp.FeatureSet;
 import org.apache.logging.log4j.Logger;
 

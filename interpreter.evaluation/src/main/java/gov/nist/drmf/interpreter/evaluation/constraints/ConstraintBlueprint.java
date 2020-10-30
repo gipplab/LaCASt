@@ -1,13 +1,12 @@
 package gov.nist.drmf.interpreter.evaluation.constraints;
 
-import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
-import gov.nist.drmf.interpreter.mlp.extensions.MatchablePomTaggedExpression;
-import gov.nist.drmf.interpreter.mlp.extensions.MatcherConfig;
-import gov.nist.drmf.interpreter.mlp.extensions.PomMatcherBuilder;
-import gov.nist.drmf.interpreter.mlp.extensions.PrintablePomTaggedExpression;
+import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.extensions.MatchablePomTaggedExpression;
+import gov.nist.drmf.interpreter.pom.extensions.MatcherConfig;
+import gov.nist.drmf.interpreter.pom.extensions.PomMatcherBuilder;
+import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.ParseException;
 
-import java.util.LinkedList;
 import java.util.Map;
 
 /**
