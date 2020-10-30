@@ -13,14 +13,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * Generates a printable version of {@link PomTaggedExpression}, which means that every node in this
+ * parse tree has a string representation that matches the original LaTeX string that was used to
+ * generate this parse tree.
+ *
  * To create an instance of this class, it is advisable to use the wrapper classes
  * {@link gov.nist.drmf.interpreter.mlp.MLPWrapper} or
  * {@link gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper}.
  *
  * @author Andre Greiner-Petter
+ * @see PomTaggedExpression
  * @see gov.nist.drmf.interpreter.mlp.MLPWrapper
  * @see gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper
- * @see PomTaggedExpression
  */
 public class PrintablePomTaggedExpression extends PomTaggedExpression implements IMatcher<PrintablePomTaggedExpression> {
     private String caption;
@@ -32,18 +36,34 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
     public PrintablePomTaggedExpression( PrintablePomTaggedExpression ppte ) {
         super(new MathTerm(ppte.getRoot().getTermText(), ppte.getRoot().getTag()), ppte.getTag(), ppte.getSecondaryTags());
         this.caption = ppte.caption;
-        ppte.getNamedFeatures().entrySet().forEach( e -> super.addNamedFeature(e.getKey(), e.getValue()) );
+        ppte.getNamedFeatures().forEach(super::addNamedFeature);
         for ( PrintablePomTaggedExpression child : ppte.getPrintableComponents() ) {
             PrintablePomTaggedExpression childCopy = new PrintablePomTaggedExpression(child);
             super.addComponent(childCopy);
         }
     }
 
+    /**
+     * Constructs a single node instance of a printable {@link PomTaggedExpression} with the given
+     * {@link MathTerm} and tags. The tags can be empty.
+     * @param mathTerm the math term for this node
+     * @param exprTags the expression tags attached to this node
+     */
     public PrintablePomTaggedExpression( MathTerm mathTerm, String... exprTags ) {
         super(mathTerm, exprTags);
         this.caption = mathTerm.getTermText();
     }
 
+    /**
+     * Constructs a printable {@link PomTaggedExpression} that was generated with the given string.
+     *
+     * If you wish get an instance of this class, you can simply use
+     * {@link gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper#parse(String)} or
+     * {@link gov.nist.drmf.interpreter.mlp.MLPWrapper#parse(String)} or one of the similar methods.
+     *
+     * @param pte the {@link PomTaggedExpression} that was generated from {@param expr}
+     * @param expr the expression that was used to generate the parse tree {@param pte}
+     */
     public PrintablePomTaggedExpression( PomTaggedExpression pte, String expr ) {
         super();
         super.setRoot(pte.getRoot());
@@ -56,8 +76,6 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
         if ( pte.getParent() == null && TeXPreProcessor.wrappedInCurlyBrackets(expr) )
             expr = TeXPreProcessor.trimCurlyBrackets(expr);
         else expr = expr.trim();
-//        if ( !pte.getComponents().isEmpty() && pte.getParent() != null )
-//            expr = "{" + expr + "}";
         this.caption = expr;
 
         // now we have to add the components and their respective substrings...
@@ -211,9 +229,12 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
         return end;
     }
 
+    /**
+     * Clears all components, its a single node now.
+     */
     public void clearComponents(){
         super.getComponents().clear();
-        this.caption = "";
+        this.caption = this.getRoot().getTermText();
     }
 
     /*
@@ -252,29 +273,64 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
      * element is not of type {@link PrintablePomTaggedExpression}.
      * @param components a list of components.
      */
-    public void setPrintableComponents(PomTaggedExpression... components) {
+    public void setPrintableComponents(PomTaggedExpression... components) throws IllegalArgumentException {
         this.setPrintableComponents(Arrays.asList(components));
     }
 
     /**
+     * This method throws an exception if the given components are not {@link PrintablePomTaggedExpression}.
      * @deprecated use {@link #setPrintableComponents(List)} instead.
      */
     @Override
     @Deprecated
-    public void setComponents(List<PomTaggedExpression> components) {
+    public void setComponents(List<PomTaggedExpression> components) throws IllegalArgumentException {
         checkComponentValidity(components);
         super.setComponents(components);
         populatingStringChanges();
     }
 
     /**
+     * This method throws an exception if the given components are not {@link PrintablePomTaggedExpression}.
      * @deprecated use {@link #setPrintableComponents(List)} instead.
      */
     @Override
     @Deprecated
-    public void setComponents(PomTaggedExpression... components) {
+    public void setComponents(PomTaggedExpression... components) throws IllegalArgumentException {
         checkComponentValidity(Arrays.asList(components));
         super.setComponents(components);
+        populatingStringChanges();
+    }
+
+    @Override
+    public boolean addComponent(PomTaggedExpression pte) throws IllegalArgumentException {
+        checkComponentValidity(pte);
+        boolean res = super.addComponent(pte);
+        if (res) {
+            populatingStringChanges();
+        }
+        return res;
+    }
+
+    @Override
+    public boolean addComponent(int i, PomTaggedExpression pte) throws IllegalArgumentException {
+        checkComponentValidity(pte);
+        boolean res = super.addComponent(i, pte);
+        if (res) {
+            populatingStringChanges();
+        }
+        return res;
+    }
+
+    @Override
+    public void addComponent(int i, MathTerm term) throws IllegalArgumentException {
+        PrintablePomTaggedExpression pte = new PrintablePomTaggedExpression(term);
+        this.addComponent(i, pte);
+    }
+
+    @Override
+    public void set(PomTaggedExpression pte) throws IllegalArgumentException {
+        checkComponentValidity(pte);
+        super.set(pte);
         populatingStringChanges();
     }
 
@@ -287,39 +343,6 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
     private void checkComponentValidity(PomTaggedExpression component) throws IllegalArgumentException {
         if (!(component instanceof PrintablePomTaggedExpression))
             throw new IllegalArgumentException("Printable tree must contain only printable elements.");
-    }
-
-    @Override
-    public boolean addComponent(PomTaggedExpression pte) {
-        checkComponentValidity(pte);
-        boolean res = super.addComponent(pte);
-        if (res) {
-            populatingStringChanges();
-        }
-        return res;
-    }
-
-    @Override
-    public boolean addComponent(int i, PomTaggedExpression pte) {
-        checkComponentValidity(pte);
-        boolean res = super.addComponent(i, pte);
-        if (res) {
-            populatingStringChanges();
-        }
-        return res;
-    }
-
-    @Override
-    public void addComponent(int i, MathTerm term) {
-        PrintablePomTaggedExpression pte = new PrintablePomTaggedExpression(term);
-        this.addComponent(i, pte);
-    }
-
-    @Override
-    public void set(PomTaggedExpression pte) {
-        checkComponentValidity(pte);
-        super.set(pte);
-        populatingStringChanges();
     }
 
     @Override
@@ -383,8 +406,11 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
         return (List<PrintablePomTaggedExpression>)(List<?>) super.getComponents();
     }
 
+    /**
+     * Wraps the current caption in curly brackets, if it is not wrapped in curly brackets already
+     */
     void makeBalancedTexString() {
-        if ( caption.matches("^\\s*\\{.*}\\s*$") ) return;
+        if ( TeXPreProcessor.wrappedInCurlyBrackets(caption) ) return;
         caption = "{" + caption + "}";
         populatingStringChanges();
     }
