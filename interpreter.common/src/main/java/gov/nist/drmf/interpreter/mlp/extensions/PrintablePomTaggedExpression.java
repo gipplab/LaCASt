@@ -29,7 +29,9 @@ import java.util.regex.Pattern;
 public class PrintablePomTaggedExpression extends PomTaggedExpression implements IMatcher<PrintablePomTaggedExpression> {
     private String caption;
 
-    // hopefully fixing serialization issues
+    /**
+     * Keep Kryo happy for serialization
+     */
     private PrintablePomTaggedExpression() {
         super();
         this.caption = "";

@@ -50,7 +50,7 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
     private MatchablePomTaggedExpression nextSibling;
 
     /**
-     * Just for serialization
+     * Keep Kryo happy for serialization
      */
     MatchablePomTaggedExpression() {
         this(

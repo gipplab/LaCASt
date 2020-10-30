@@ -45,6 +45,9 @@ public class PomMatcher {
     private boolean latestHitMatchedWithoutPassingElements = false;
     private boolean firstRound = true;
 
+    /**
+     * Keep Kryo happy for serialization
+     */
     private PomMatcher() {
         this(new MatchablePomTaggedExpression(), null, null);
     }
