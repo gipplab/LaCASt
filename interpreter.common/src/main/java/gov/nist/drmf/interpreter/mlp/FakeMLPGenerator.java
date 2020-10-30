@@ -32,6 +32,10 @@ public final class FakeMLPGenerator {
         return new PomTaggedExpression(generateEmptyMathTerm(), ExpressionTags.sequence.tag());
     }
 
+    public static PrintablePomTaggedExpression generateEmptyPPTE() {
+        return new PrintablePomTaggedExpression(generateEmptyMathTerm());
+    }
+
     public static PrintablePomTaggedExpression generateMathTermEmptyPPTE(MathTermTags tag, String term) {
         MathTerm mt = new MathTerm(term, tag.toString());
         return new PrintablePomTaggedExpression(mt, ExpressionTags.sequence.tag());

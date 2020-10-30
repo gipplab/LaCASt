@@ -45,6 +45,10 @@ public class PomMatcher {
     private boolean latestHitMatchedWithoutPassingElements = false;
     private boolean firstRound = true;
 
+    private PomMatcher() {
+        this(new MatchablePomTaggedExpression(), null, null);
+    }
+
     PomMatcher(
             AbstractMatchablePomTaggedExpression mpte,
             PrintablePomTaggedExpression pte
