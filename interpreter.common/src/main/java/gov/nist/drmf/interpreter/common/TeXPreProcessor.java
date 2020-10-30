@@ -66,7 +66,7 @@ public class TeXPreProcessor {
     }
 
     public static boolean wrappedInCurlyBrackets(String in) {
-        if ( !in.startsWith("{") && !in.endsWith("}") ) return false;
+        if ( !in.trim().startsWith("{") && !in.trim().endsWith("}") ) return false;
         int openCounter = 1;
         for ( int i = 1; i < in.length(); i++ ) {
             if ( openCounter <= 0 ) return false;
