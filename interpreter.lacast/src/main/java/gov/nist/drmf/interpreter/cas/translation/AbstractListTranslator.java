@@ -7,8 +7,8 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
-import gov.nist.drmf.interpreter.mlp.MathTermUtility;
+import gov.nist.drmf.interpreter.pom.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.MathTermUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 

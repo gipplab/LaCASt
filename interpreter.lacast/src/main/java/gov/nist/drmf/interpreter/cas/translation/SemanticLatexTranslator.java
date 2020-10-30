@@ -13,7 +13,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.interfaces.IDLMFTranslator;
 import gov.nist.drmf.interpreter.common.replacements.ConditionalReplacementRule;
 import gov.nist.drmf.interpreter.common.replacements.IReplacementCondition;
-import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;

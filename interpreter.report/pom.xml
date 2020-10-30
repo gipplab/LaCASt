@@ -24,6 +24,12 @@
 
         <dependency>
             <groupId>gov.nist.drmf.interpreter</groupId>
+            <artifactId>interpreter.pom</artifactId>
+            <version>2.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>gov.nist.drmf.interpreter</groupId>
             <artifactId>interpreter.generic</artifactId>
             <version>2.1-SNAPSHOT</version>
             <exclusions>
@@ -121,7 +127,7 @@
                                     <outputDirectory>${jacoco.report.dir}/jacoco-report</outputDirectory>
                                     <excludes>
                                         <!-- excludes tests that require third-party tools (Maple/Mathematica) -->
-                                        <execlude>gov/nist/drmf/interpreter/examples/**/*</execlude>
+                                        <execlude>gov/nist/drmf/interpreter/mlp/examples/**/*</execlude>
                                         <execlude>gov/nist/drmf/interpreter/evaluation/core/**/*</execlude>
                                         <execlude>gov/nist/drmf/interpreter/maple/**/*</execlude>
                                         <execlude>gov/nist/drmf/interpreter/mathematica/**/*</execlude>
