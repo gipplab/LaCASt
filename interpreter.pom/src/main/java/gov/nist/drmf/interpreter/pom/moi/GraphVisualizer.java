@@ -24,12 +24,12 @@ public class GraphVisualizer {
         HashMap<String, String> library = new HashMap<>();
         int[] counter = new int[]{0};
 
-        Files.lines(Paths.get("interpreter.common/src/test/resources/gov/nist/drmf/interpreter/mlp/extensions/StressTestList.txt"))
+        Files.lines(Paths.get("interpreter.pom/src/test/resources/gov/nist/drmf/interpreter/pom/extensions/StressTestList.txt"))
                 .forEach(l -> {
             library.put(""+counter[0], l);
             counter[0]++;
         });
-        MOIDependencyGraph moiGraph = MOIDependencyGraphBuilder.generateGraph(library);
+        MOIDependencyGraph<?> moiGraph = MOIDependencyGraphBuilder.generateGraph(library);
         System.out.println("Loaded library.");
 
         String searchFor = "";
@@ -41,7 +41,7 @@ public class GraphVisualizer {
 
 
         int i = 0;
-        for ( MOINode moiNode : moiGraph.getVertices() ) {
+        for ( MOINode<?> moiNode : moiGraph.getVertices() ) {
             if ( (!searchFor.isBlank() && !moiNode.getNode().getOriginalLaTeX().contains(searchFor))
                     || nodeMemory.contains(moiNode.hashCode())
                     || moiNode.isIsolated()
