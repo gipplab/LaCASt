@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 /**
  * @author Andre Greiner-Petter
  */
-public class MOIDependencyGraph implements IMOIGraph {
+public class MOIDependencyGraph<T> implements IMOIGraph<T> {
     private static final Logger LOG = LogManager.getLogger(MOIDependencyGraph.class.getName());
 
     private static final SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
 
     // all vertices of this graph
-    private final HashMap<String, MOINode<?>> vertices;
+    private final HashMap<String, MOINode<T>> vertices;
     private final HashMap<Connection, MOIDependency> edges;
 
     public MOIDependencyGraph() {
@@ -31,12 +31,17 @@ public class MOIDependencyGraph implements IMOIGraph {
     }
 
     @Override
-    public MOINode<Void> addNode(String id, String moi) throws ParseException, NotMatchableException {
-        return addNode(id, moi, null);
+    public MOINode<T> addNode(String id, String moi) throws ParseException, NotMatchableException {
+        try {
+            return addNode(id, moi, null);
+        } catch ( NotMatchableException e ) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
-    public <T> MOINode<T> addNode(String id, String moi, T annotation) throws ParseException, NotMatchableException {
+    public MOINode<T> addNode(String id, String moi, T annotation) throws ParseException, NotMatchableException {
         return addNode(id, mlp.parse(moi), annotation);
     }
 
@@ -45,10 +50,9 @@ public class MOIDependencyGraph implements IMOIGraph {
      * @param id the unique node ID
      * @param moi the mathematical object of interest
      * @param annotation the annotation object (or null)
-     * @param <T> the annotation class or {@link Void} in case of null-annotation
      * @return the added Node
      */
-    public <T> MOINode<T> addNode(String id, PrintablePomTaggedExpression moi, T annotation) throws NotMatchableException {
+    public MOINode<T> addNode(String id, PrintablePomTaggedExpression moi, T annotation) throws NotMatchableException {
         MOINode<T> node = new MOINode<>(id, new MathematicalObjectOfInterest(moi), annotation);
         LOG.debug("Add node for moi: " + moi.getTexString());
         updateDependencies(node);
@@ -75,8 +79,8 @@ public class MOIDependencyGraph implements IMOIGraph {
     }
 
     @Override
-    public MOINode<?> removeNode(String id) {
-        MOINode<?> node = vertices.remove(id);
+    public MOINode<T> removeNode(String id) {
+        MOINode<T> node = vertices.remove(id);
         if ( node == null ) return null;
 
         Collection<MOIDependency> outgoingEdges = node.getOutgoingDependencies();
@@ -108,23 +112,23 @@ public class MOIDependencyGraph implements IMOIGraph {
     }
 
     @Override
-    public MOINode<?> getNode(String id) {
+    public MOINode<T> getNode(String id) {
         return vertices.get(id);
     }
 
-    public Map<String, MOINode<?>> getVerticesMap() {
+    public Map<String, MOINode<T>> getVerticesMap() {
         return vertices;
     }
 
-    public Collection<MOINode<?>> getVertices() {
+    public Collection<MOINode<T>> getVertices() {
         return vertices.values();
     }
 
-    public Collection<MOINode<?>> getSinks() {
+    public Collection<MOINode<T>> getSinks() {
         return vertices.values().stream().filter(INode::isSink).collect(Collectors.toSet());
     }
 
-    public Collection<MOINode<?>> getSources() {
+    public Collection<MOINode<T>> getSources() {
         return vertices.values().stream().filter(INode::isSource).collect(Collectors.toSet());
     }
 
