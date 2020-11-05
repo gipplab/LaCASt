@@ -53,8 +53,9 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
      * @return the added Node
      */
     public MOINode<T> addNode(String id, PrintablePomTaggedExpression moi, T annotation) throws NotMatchableException {
+        LOG.info("Add new MOI node to graph: " + moi.getTexString());
         MOINode<T> node = new MOINode<>(id, new MathematicalObjectOfInterest(moi), annotation);
-        LOG.debug("Add node for moi: " + moi.getTexString());
+        LOG.info("Setup dependencies for new node");
         updateDependencies(node);
         vertices.put(node.getId(), node);
         return node;

@@ -46,7 +46,7 @@ public final class PomMatcherBuilder {
      * @throws ParseException if the {@link MLPWrapper} is unable to parse the expression
      * @throws NotMatchableException if the given expression cannot be matched
      */
-    public static MatchablePomTaggedExpression compile(String expression, String wildcardPattern) throws ParseException, NotMatchableException {
+    public static MatchablePomTaggedExpression compile(String expression, @Language("RegExp") String wildcardPattern) throws ParseException, NotMatchableException {
         return compile(SemanticMLPWrapper.getStandardInstance(), expression, wildcardPattern);
     }
 
@@ -58,7 +58,7 @@ public final class PomMatcherBuilder {
      * @return new matchable PTE
      * @throws NotMatchableException if the given expression cannot be matched
      */
-    public static MatchablePomTaggedExpression compile(PomTaggedExpression refRoot, String wildcardPattern) throws NotMatchableException {
+    public static MatchablePomTaggedExpression compile(PomTaggedExpression refRoot, @Language("RegExp") String wildcardPattern) throws NotMatchableException {
         return compile(SemanticMLPWrapper.getStandardInstance(), refRoot, wildcardPattern);
     }
 
@@ -89,8 +89,11 @@ public final class PomMatcherBuilder {
      * @throws ParseException if the {@link MLPWrapper} is unable to parse the expression
      * @throws NotMatchableException if the given expression cannot be matched
      */
-    public static MatchablePomTaggedExpression compile(MLPWrapper mlp, String expression, @Language("RegExp") String wildcardPattern)
-            throws ParseException, NotMatchableException {
+    public static MatchablePomTaggedExpression compile(
+            MLPWrapper mlp,
+            String expression,
+            @Language("RegExp") String wildcardPattern
+    ) throws ParseException, NotMatchableException {
         return compile(mlp, mlp.parse(expression), wildcardPattern);
     }
 
@@ -103,8 +106,36 @@ public final class PomMatcherBuilder {
      * @return matchable PTE
      * @throws NotMatchableException if the given expression cannot be matched
      */
-    public static MatchablePomTaggedExpression compile(MLPWrapper mlp, PomTaggedExpression refRoot, String wildcardPattern)
-            throws NotMatchableException {
-        return new MatchablePomTaggedExpression(mlp, refRoot, wildcardPattern);
+    public static MatchablePomTaggedExpression compile(
+            MLPWrapper mlp,
+            PomTaggedExpression refRoot,
+            @Language("RegExp") String wildcardPattern
+    ) throws NotMatchableException {
+        return compile(new MatchablePomTaggedExpressionConfig(mlp, wildcardPattern), refRoot);
+    }
+
+    /**
+     * Compiles a matchable expression by providing the entire config object
+     * @param config the configuration
+     * @param expression the expression that is the pattern
+     * @return a matchable version of the expression
+     * @throws ParseException if the expression cannot be generated
+     * @throws NotMatchableException if the expression is non-matchable
+     */
+    public static MatchablePomTaggedExpression compile(MatchablePomTaggedExpressionConfig config, String expression)
+            throws ParseException, NotMatchableException {
+        return compile(config, config.getMlpWrapper().parse(expression));
+    }
+
+    /**
+     * Compiles a matchable expression by providing the entire config object
+     * @param config the configuration
+     * @param refRoot the expression that is the pattern
+     * @return a matchable version of the expression
+     * @throws NotMatchableException if the expression is non-matchable
+     */
+    public static MatchablePomTaggedExpression compile(MatchablePomTaggedExpressionConfig config, PomTaggedExpression refRoot)
+            throws NotMatchableException{
+        return new MatchablePomTaggedExpression(config, refRoot);
     }
 }

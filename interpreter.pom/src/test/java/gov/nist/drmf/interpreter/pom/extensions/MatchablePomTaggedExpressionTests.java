@@ -67,7 +67,14 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void illegalConsecutiveWildCardTest() throws ParseException {
         PomTaggedExpression pte = mlp.simpleParse("a+b b+c");
-        assertThrows(NotMatchableException.class, () -> PomMatcherBuilder.compile(pte, "b"));
+        MatchablePomTaggedExpressionConfig config = new MatchablePomTaggedExpressionConfig(mlp)
+                .setFallbackConsecutiveWildcards(false)
+                .setWildcardPattern("b");
+        assertThrows(NotMatchableException.class, () -> PomMatcherBuilder.compile(config, pte));
+
+        config.setFallbackConsecutiveWildcards(true);
+        MatchablePomTaggedExpression mpte = PomMatcherBuilder.compile(config, pte);
+        assertNotNull(mpte);
     }
 
     @Test
@@ -1034,8 +1041,88 @@ public class MatchablePomTaggedExpressionTests {
 
     @Test
     public void illegalPatternTest() {
-        assertThrows(NotMatchableException.class, () -> PomMatcherBuilder.compile(mlp, "a + VAR0 {VAR1}", "VAR\\d"));
-        assertThrows(NotMatchableException.class, () -> PomMatcherBuilder.compile(mlp, "a + {VAR0} VAR1 {VAR2}", "VAR\\d"));
+        MatchablePomTaggedExpressionConfig config = new MatchablePomTaggedExpressionConfig(mlp)
+                // this setting deactivates the non-matchable fallback mechanism
+                .setFallbackConsecutiveWildcards(false)
+                .setWildcardPattern("VAR\\d");
+        assertThrows(NotMatchableException.class, () -> PomMatcherBuilder.compile(config, "a + VAR0 VAR1"));
+        assertThrows(NotMatchableException.class, () -> PomMatcherBuilder.compile(config, "a + VAR0 VAR1 VAR2"));
+        assertThrows(NotMatchableException.class, () -> PomMatcherBuilder.compile(config, "VAR0 + {VAR0} VAR1 VAR2"));
+    }
+
+    @Test
+    public void fallbackPatternFullConsecutiveTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile(mlp, "a + VAR0 VAR1", "VAR\\d");
+
+        // no errors thrown by default, instead the parsed exception must have been changed
+        PomTaggedExpression pte = blueprint.getReferenceNode();
+        assertTrue( pte instanceof PrintablePomTaggedExpression );
+        assertEquals( "a +{VAR0} VAR1", ((PrintablePomTaggedExpression) pte).getTexString() );
+
+        assertFalse( blueprint.match("a + a") );
+        assertTrue(  blueprint.match("a + a b") );
+        assertTrue(  blueprint.match("a + a b c") );
+
+        Map<String, String> matches = blueprint.getStringMatches();
+        assertEquals("a", matches.get("VAR0"));
+        assertEquals("b c", matches.get("VAR1"));
+    }
+
+    @Test
+    public void greedyTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile(mlp, "VAR0 {VAR1} VAR2", "VAR\\d");
+
+        // no errors thrown by default, instead the parsed exception must have been changed
+        PomTaggedExpression pte = blueprint.getReferenceNode();
+        assertTrue( pte instanceof PrintablePomTaggedExpression );
+        assertEquals( "VAR0 {VAR1} VAR2", ((PrintablePomTaggedExpression) pte).getTexString() );
+
+        assertFalse( blueprint.match("a b") );
+        assertTrue( blueprint.match("a b c") );
+        assertTrue( blueprint.match("a b c d") );
+        assertTrue( blueprint.match("a b c d e") );
+    }
+
+    @Test
+    public void fallbackPatternFirstHalfConsecutiveTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile(mlp, "a + VAR0 {VAR1}", "VAR\\d");
+
+        // no errors thrown by default, instead the parsed exception must have been changed
+        PomTaggedExpression pte = blueprint.getReferenceNode();
+        assertTrue( pte instanceof PrintablePomTaggedExpression );
+        assertEquals( "a + VAR0 {VAR1}", ((PrintablePomTaggedExpression) pte).getTexString() );
+
+        assertFalse( blueprint.match("a + a") );
+        assertTrue(  blueprint.match("a + a b") );
+        assertTrue(  blueprint.match("a + a b c") );
+
+        Map<String, String> matches = blueprint.getStringMatches();
+        assertEquals("a b", matches.get("VAR0"));
+        assertEquals("c", matches.get("VAR1"));
+    }
+
+    @Test
+    public void fallbackPatternMixedConsecutiveTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile(mlp, "a + {VAR0} VAR1 {VAR2}", "VAR\\d");
+
+        // no errors thrown by default, instead the parsed exception must have been changed
+        PomTaggedExpression pte = blueprint.getReferenceNode();
+        assertTrue( pte instanceof PrintablePomTaggedExpression );
+        assertEquals( "a + {VAR0} VAR1 {VAR2}", ((PrintablePomTaggedExpression) pte).getTexString() );
+
+        assertTrue( blueprint.match("a + a b c") );
+        Map<String, String> matches = blueprint.getStringMatches();
+        assertEquals("a", matches.get("VAR0"));
+        assertEquals("b", matches.get("VAR1"));
+        assertEquals("c", matches.get("VAR2"));
+
+        assertFalse( blueprint.match("a + b c") );
+        assertTrue( blueprint.match("a + a b c d") );
+
+        matches = blueprint.getStringMatches();
+        assertEquals("a", matches.get("VAR0"));
+        assertEquals("b c", matches.get("VAR1"));
+        assertEquals("d", matches.get("VAR2"));
     }
 
     @Test

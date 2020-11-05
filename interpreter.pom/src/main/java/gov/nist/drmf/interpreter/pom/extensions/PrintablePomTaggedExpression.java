@@ -433,4 +433,15 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
     public String getTexString() {
         return caption;
     }
+
+    /**
+     * Returns the root string representation of this element. For example, if this element is <code>z</code>
+     * but part of <code>z+x</code>, this method returns <code>z+x</code> and not <code>z</code>.
+     * @return the string representation of the root of the parse tree that this node belongs to.
+     *         It is identical to {@link #getTexString()} if this element is the root element.
+     */
+    public String getRootTexString() {
+        if ( this.getParent() != null ) return ((PrintablePomTaggedExpression) this.getParent()).getRootTexString();
+        else return getTexString();
+    }
 }
