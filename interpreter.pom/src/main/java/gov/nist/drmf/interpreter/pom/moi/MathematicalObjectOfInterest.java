@@ -1,22 +1,24 @@
 package gov.nist.drmf.interpreter.pom.moi;
 
+import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.extensions.*;
 import mlp.MathTerm;
 import mlp.ParseException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.intellij.lang.annotations.Language;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * @author Andre Greiner-Petter
  */
 public class MathematicalObjectOfInterest {
+    private static final Logger LOG = LogManager.getLogger(MathematicalObjectOfInterest.class.getName());
+
     @Language("Regexp")
     public static final String WILDCARD_PATTERN = "var\\d+";
 
@@ -24,7 +26,7 @@ public class MathematicalObjectOfInterest {
 
     private final Set<String> identifiers;
     private final PrintablePomTaggedExpression moi;
-    private final MatchablePomTaggedExpression matchableMOI;
+    private MatchablePomTaggedExpression matchableMOI;
 
     private String originalLaTeX;
     private String pattern;
@@ -62,7 +64,12 @@ public class MathematicalObjectOfInterest {
         } else this.wildcardIdentifierMapping = new HashMap<>();
 
         this.pattern = moiCopy.getTexString();
-        this.matchableMOI = PomMatcherBuilder.compile(moiCopy, WILDCARD_PATTERN);
+        try {
+            this.matchableMOI = PomMatcherBuilder.compile(moiCopy, WILDCARD_PATTERN);
+        } catch ( NotMatchableException nme ) {
+            LOG.warn("Node cannot be generated, because the wildcard expression is not matchable: " + nme.toString());
+            this.matchableMOI = null;
+        }
 
         this.potentialPrimaryIdentifierWildcardMapping = new HashMap<>();
         for (Map.Entry<String, String> wildcardIdentifier : this.wildcardIdentifierMapping.entrySet() ) {
@@ -95,7 +102,8 @@ public class MathematicalObjectOfInterest {
      * @return the dependency pattern that matched or null of no match was found
      */
     public DependencyPattern match(MathematicalObjectOfInterest expression) {
-        if ( expression == null ) return null;
+        if ( Objects.isNull(expression) || Objects.isNull(matchableMOI) || Objects.isNull(expression.matchableMOI) )
+            return null;
 
         PomMatcher matcher = this.matchableMOI.matcher(
                 expression.moi,

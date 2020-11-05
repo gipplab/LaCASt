@@ -109,7 +109,7 @@ public class MOINode<T> implements INode<MOIDependency<T>> {
     public Set<MOIDependency<T>> setupDependency(MOINode<T> node) {
         Set<MOIDependency<T>> dependencies = new HashSet<>();
         DependencyPattern dependency = moi.match(node.moi);
-        if ( dependency != null ) {
+        if ( Objects.nonNull(dependency) ) {
             MOIDependency<T> moiDep = new MOIDependency<>(this, node, dependency);
             outgoing.add(moiDep);
             node.ingoing.add(moiDep);
@@ -118,7 +118,7 @@ public class MOINode<T> implements INode<MOIDependency<T>> {
 
         // reverse
         dependency = node.moi.match(moi);
-        if ( dependency != null ) {
+        if ( Objects.nonNull(dependency) ) {
             MOIDependency<T> moiDep = new MOIDependency<>(node, this, dependency);
             ingoing.add(moiDep);
             node.outgoing.add(moiDep);
