@@ -1,6 +1,9 @@
 package gov.nist.drmf.interpreter.pom;
 
+import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
+import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
@@ -8,7 +11,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -43,6 +46,37 @@ public class MathTermUtilityTests {
         MathTerm second = components.get(1).getRoot();
         assertFalse( MathTermUtility.isFunction(first) );
         assertFalse( MathTermUtility.isFunction(second),
-                "The semantic parser shall interpret cos as dlmf-macro not as a function" );
+                "The semantic parser shall interpret cos as dlmf-macro not as a function"
+        );
+
+        second.setTag("fake");
+        TreeSet<String> set = new TreeSet<>();
+        set.add(MathTermTags.function.tag());
+        Map<String, SortedSet<String>> map = new HashMap<>();
+        map.put(Keys.FEATURE_ROLE, set);
+        second.getAlternativeFeatureSets().add(new FeatureSet(map));
+        assertTrue( MathTermUtility.isFunction(second),
+                "If we delete the main tag, we fallback to the featureset role, which should be a function"
+        );
+    }
+
+    @Test
+    public void greekLetterMeaningTest() throws ParseException {
+        String test = "\\alpha";
+        PrintablePomTaggedExpression pte = mlp.parse(test);
+        assertTrue( MathTermUtility.hasGreekLetterMeaning(pte.getRoot()) );
+
+        pte = mlp.parse("x");
+        assertFalse( MathTermUtility.hasGreekLetterMeaning(pte.getRoot()) );
+    }
+
+    @Test
+    public void equalsCheckTest() throws ParseException {
+        String test = "\\alpha";
+        PrintablePomTaggedExpression pte = mlp.parse(test);
+        assertTrue( MathTermUtility.equals(pte.getRoot(), MathTermTags.command) );
+
+        pte = mlp.parse("a");
+        assertTrue( MathTermUtility.equals(pte.getRoot(), MathTermTags.letter) );
     }
 }
