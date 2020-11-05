@@ -247,4 +247,10 @@ public class MacroBean {
     public int getNumberOfArguments() {
         return numberOfArguments;
     }
+
+    @JsonIgnore
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

@@ -2,10 +2,6 @@ package gov.nist.drmf.interpreter.maple.setup;
 
 import gov.nist.drmf.interpreter.common.tests.AssumeToolAvailabilityCondition;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
-import org.junit.platform.commons.support.AnnotationSupport;
-
-import java.lang.reflect.AnnotatedElement;
-import java.util.Optional;
 
 /**
  * This class checks if Maple is available to run tests. Tests will be skipped if
@@ -16,8 +12,8 @@ import java.util.Optional;
  */
 public class AssumeMapleAvailabilityCondition extends AssumeToolAvailabilityCondition<AssumeMapleAvailability> {
     @Override
-    public Optional<AssumeMapleAvailability> getAnnotations(Optional<? extends AnnotatedElement> element) {
-        return AnnotationSupport.findAnnotation(element, AssumeMapleAvailability.class);
+    public Class<AssumeMapleAvailability> getInterface() {
+        return AssumeMapleAvailability.class;
     }
 
     @Override

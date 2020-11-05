@@ -12,9 +12,10 @@ import java.util.Optional;
 /**
  * A general class to check if a tool is available. It implements the {@link ExecutionCondition} to
  * run tests only when the required tool is available. Simply annotate the test class or method
- * with the annotation {@link T}. For an example of usage, take a look at
- * {@link gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability} and the extension of this class
- * {@link gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability} to skip tests, if MLP is not available.
+ * with the annotation {@link T}.
+ *
+ * As an example, take a look at AssumeMLPAvailability in gov.nist.drmf.interpreter.common.meta in the
+ * interpreter.pom module.
  *
  * @author Andre Greiner-Petter
  */
@@ -40,7 +41,14 @@ public abstract class AssumeToolAvailabilityCondition<T extends Annotation> impl
      * @param element an element that might be annotated
      * @return the annotated element
      */
-    public abstract Optional<T> getAnnotations(Optional<? extends AnnotatedElement> element);
+    public Optional<T> getAnnotations(Optional<? extends AnnotatedElement> element) {
+        return AnnotationSupport.findAnnotation(element, getInterface());
+    }
+
+    /**
+     * @return the class element of the generic type
+     */
+    public abstract Class<T> getInterface();
 
     /**
      * The actual test method to test the tools availability.

@@ -7,12 +7,15 @@ import gov.nist.drmf.interpreter.generic.macro.MacroDefinitionStyleFileParser;
 import org.apache.http.HttpHost;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.lucene.search.join.ScoreMode;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkItemResponse;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
@@ -22,12 +25,20 @@ import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.index.query.MatchQueryBuilder;
+import org.elasticsearch.index.query.NestedQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.rest.RestStatus;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static gov.nist.drmf.interpreter.common.constants.GlobalPaths.PATH_ELASTICSEARCH_INDEX_CONFIG;
 
@@ -41,12 +52,23 @@ public class ElasticSearchConnector {
 
     private static final String ES_INDEX = "dlmf-macros";
 
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
     private RestHighLevelClient client;
+
+    private static ElasticSearchConnector defaultInstance = null;
 
     public ElasticSearchConnector(ElasticSearchConfig config) {
         HttpHost httpHost = new HttpHost(config.getHost(), config.getPort(), "http");
         RestClientBuilder builder = RestClient.builder(httpHost);
         client = new RestHighLevelClient(builder);
+    }
+
+    public static ElasticSearchConnector getDefaultInstance() {
+        if ( defaultInstance == null ) {
+            defaultInstance = new ElasticSearchConnector(new ElasticSearchConfig());
+        }
+        return defaultInstance;
     }
 
     public void stop() {
@@ -55,6 +77,33 @@ public class ElasticSearchConnector {
         } catch (IOException e) {
             LOG.error("Cannot close elasticsearch connection", e);
         }
+    }
+
+    public LinkedList<MacroResult> searchMacroDescription(String description) throws IOException {
+        SearchRequest searchRequest = buildSearchRequest(description);
+        SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+        LinkedList<MacroResult> results = new LinkedList<>();
+        for ( SearchHit hit : searchResponse.getHits() ) {
+            MacroBean res = OBJECT_MAPPER.readValue(hit.getSourceAsString(), MacroBean.class);
+            results.addLast(new MacroResult(hit.getScore(), res));
+        }
+        return results;
+    }
+
+    private SearchRequest buildSearchRequest(String description) {
+        MatchQueryBuilder matchQB = QueryBuilders.matchQuery("meta.description", description);
+
+        // score mode avg is default, but it should not make any difference because every doc only
+        // has one meta.description object
+        NestedQueryBuilder nestedQB = QueryBuilders.nestedQuery("meta", matchQB, ScoreMode.Avg);
+
+        SearchSourceBuilder sb = new SearchSourceBuilder();
+        sb.query(nestedQB);
+
+        SearchRequest searchRequest = new SearchRequest();
+        searchRequest.indices(ES_INDEX);
+        searchRequest.source(sb);
+        return searchRequest;
     }
 
     /**
@@ -141,15 +190,30 @@ public class ElasticSearchConnector {
         return counter;
     }
 
-    public static void main(String[] args) throws IOException {
-        ElasticSearchConnector es = new ElasticSearchConnector(new ElasticSearchConfig());
-        es.resetOrCreateIndex();
+    public static boolean isEsAvailable() {
+        try {
+            ElasticSearchConnector connector = getDefaultInstance();
+            return connector.client.ping(RequestOptions.DEFAULT);
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
+    public void reIndexDLMFDatabase() throws IOException {
+        resetOrCreateIndex();
         MacroDefinitionStyleFileParser macroParser = new MacroDefinitionStyleFileParser();
         String macroDefinitions = Files.readString(GlobalPaths.PATH_SEMANTIC_MACROS_DEFINITIONS);
         macroParser.load(macroDefinitions);
         Map<String, MacroBean> macros = macroParser.getExtractedMacros();
-        es.indexElements(macros);
+        indexElements(macros);
+    }
+
+    public static void main(String[] args) throws IOException {
+        ElasticSearchConnector es = ElasticSearchConnector.getDefaultInstance();
+        es.reIndexDLMFDatabase();
+
+//        List<MacroResult> result = es.searchMacroDescription("Jacobi polynomial");
+//        System.out.println(result.stream().map( MacroResult::toString ).collect(Collectors.joining("\n")));
 
         es.stop();
     }
