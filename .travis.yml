@@ -4,6 +4,9 @@ language: java
 jdk:
   - openjdk11
 
+services:
+  - elasticsearch
+
 # setup environment variables for the test coverage via Jacoco and CodeClimate
 env:
   global:

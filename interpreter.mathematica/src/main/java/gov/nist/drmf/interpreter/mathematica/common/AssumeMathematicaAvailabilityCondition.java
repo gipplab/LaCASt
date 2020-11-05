@@ -2,10 +2,6 @@ package gov.nist.drmf.interpreter.mathematica.common;
 
 import gov.nist.drmf.interpreter.common.tests.AssumeToolAvailabilityCondition;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
-import org.junit.platform.commons.support.AnnotationSupport;
-
-import java.lang.reflect.AnnotatedElement;
-import java.util.Optional;
 
 /**
  * This class checks if Mathematica is available to run tests. Tests will be skipped if
@@ -16,8 +12,8 @@ import java.util.Optional;
  */
 public class AssumeMathematicaAvailabilityCondition extends AssumeToolAvailabilityCondition<AssumeMathematicaAvailability> {
     @Override
-    public Optional<AssumeMathematicaAvailability> getAnnotations(Optional<? extends AnnotatedElement> element) {
-        return AnnotationSupport.findAnnotation(element, AssumeMathematicaAvailability.class);
+    public Class<AssumeMathematicaAvailability> getInterface() {
+        return AssumeMathematicaAvailability.class;
     }
 
     @Override
