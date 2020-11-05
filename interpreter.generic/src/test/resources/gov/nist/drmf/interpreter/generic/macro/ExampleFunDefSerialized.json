@@ -1,0 +1,138 @@
+{
+  "posIntegers" : {
+    "macro" : "posIntegers",
+    "meta" : {
+      "description" : "the set of positive integers",
+      "meaning" : "positive-integers",
+      "openMathID" : "?_dlmf",
+      "standardArguments" : {
+        "standardParameters" : [ ],
+        "standardVariables" : [ ]
+      }
+    },
+    "numberOfParameters" : 0,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 0,
+    "TeX" : [ "{\\mathbb{Z}^{+}}" ],
+    "semanticTeX" : [ "\\posIntegers" ]
+  },
+  "LeviCivitasym" : {
+    "macro" : "LeviCivitasym",
+    "meta" : {
+      "description" : "the Levi-Civita symbol",
+      "meaning" : "Levi-Civita",
+      "openMathID" : "combinat2_dlmf:Levi-Civita",
+      "standardArguments" : {
+        "standardParameters" : [ "i", "j", "k" ],
+        "standardVariables" : [ ]
+      }
+    },
+    "numberOfParameters" : 3,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 0,
+    "TeX" : [ "\\epsilon_{par1 par2 par3}" ],
+    "semanticTeX" : [ "\\LeviCivitasym{par1}{par2}{par3}" ]
+  },
+  "ndivisors" : {
+    "macro" : "ndivisors",
+    "meta" : {
+      "description" : "the number of ways of expressing $n$ as product of $k$ factors",
+      "meaning" : "divisor-function-D",
+      "openMathID" : "numtheory1_dlmf:ndivisors_factors",
+      "standardArguments" : {
+        "standardParameters" : [ "k" ],
+        "standardVariables" : [ "n" ]
+      }
+    },
+    "numberOfParameters" : 0,
+    "numberOfOptionalParameters" : 1,
+    "numberOfArguments" : 1,
+    "TeX" : [ "d_{opPar1} (var1)", "d (var1)" ],
+    "semanticTeX" : [ "\\ndivisors[opPar1]@{var1}", "\\ndivisors@{var1}" ]
+  },
+  "continuous" : {
+    "macro" : "continuous",
+    "meta" : {
+      "description" : "the set of continuous functions $n$-times differentiable on the interval $(a,b)$",
+      "meaning" : "set-of-continuous-functions-n-times-differentiable-on-interval",
+      "openMathID" : "?_dlmf",
+      "standardArguments" : {
+        "standardParameters" : [ "n" ],
+        "standardVariables" : [ "(a,b)" ]
+      }
+    },
+    "numberOfParameters" : 0,
+    "numberOfOptionalParameters" : 1,
+    "numberOfArguments" : 1,
+    "TeX" : [ "C^{opPar1} var1", "C var1" ],
+    "semanticTeX" : [ "\\continuous[opPar1]@{var1}", "\\continuous@{var1}" ]
+  },
+  "JacobipolyP" : {
+    "macro" : "JacobipolyP",
+    "meta" : {
+      "description" : "the Jacobi polynomial",
+      "meaning" : "Jacobi-polynomial-P",
+      "openMathID" : "orthpoly2_dlmf:Jacobi_P",
+      "standardArguments" : {
+        "standardParameters" : [ "\\alpha", "\\beta", "n" ],
+        "standardVariables" : [ "x" ]
+      }
+    },
+    "numberOfParameters" : 3,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 1,
+    "TeX" : [ "P^{(par1,par2)}_{par3} (var1)" ],
+    "semanticTeX" : [ "\\JacobipolyP{par1}{par2}{par3}@{var1}" ]
+  },
+  "ChebyshevpolyT" : {
+    "macro" : "ChebyshevpolyT",
+    "meta" : {
+      "description" : "the Chebyshev polynomial of the first kind",
+      "meaning" : "Chebyshev-polynomial-first-kind-T",
+      "openMathID" : "orthpoly2_dlmf:Chebyshev_T",
+      "standardArguments" : {
+        "standardParameters" : [ "n" ],
+        "standardVariables" : [ "x" ]
+      }
+    },
+    "numberOfParameters" : 1,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 1,
+    "TeX" : [ "T_{par1} (var1)" ],
+    "semanticTeX" : [ "\\ChebyshevpolyT{par1}@{var1}" ]
+  },
+  "Dirichletchar" : {
+    "macro" : "Dirichletchar",
+    "meta" : {
+      "description" : "the Dirichlet character",
+      "meaning" : "Dirichlet-character",
+      "openMathID" : "numtheory2_dlmf:Dirichlet_character",
+      "standardArguments" : {
+        "standardParameters" : [ "r" ],
+        "standardVariables" : [ "n", "k" ]
+      }
+    },
+    "numberOfParameters" : 0,
+    "numberOfOptionalParameters" : 1,
+    "numberOfArguments" : 2,
+    "TeX" : [ "\\chi_{opPar1} (var1,var2)", "\\chi_{opPar1} (var1)", "\\chi (var1,var2)", "\\chi (var1)" ],
+    "semanticTeX" : [ "\\Dirichletchar[opPar1]@{var1}{var2}", "\\Dirichletchar[opPar1]@@{var1}{k}", "\\Dirichletchar@{var1}{var2}", "\\Dirichletchar@@{var1}{k}" ]
+  },
+  "FerrersP" : {
+    "macro" : "FerrersP",
+    "meta" : {
+      "description" : "the Ferrers function of the first kind",
+      "meaning" : "Ferrers-Legendre-P-first-kind",
+      "openMathID" : "legendrefun1_dlmf:Ferrers_P",
+      "standardArguments" : {
+        "standardParameters" : [ "\\mu", "\\nu" ],
+        "standardVariables" : [ "x" ]
+      }
+    },
+    "numberOfParameters" : 1,
+    "numberOfOptionalParameters" : 1,
+    "numberOfArguments" : 1,
+    "TeX" : [ "\\mathsf{P}^{opPar1}_{par1} (var1)", "\\mathsf{P}_{par1} (var1)" ],
+    "semanticTeX" : [ "\\FerrersP[opPar1]{par1}@{var1}", "\\FerrersP{par1}@{var1}" ]
+  }
+}

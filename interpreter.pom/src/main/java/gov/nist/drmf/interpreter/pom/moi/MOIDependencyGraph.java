@@ -23,7 +23,7 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
 
     // all vertices of this graph
     private final HashMap<String, MOINode<T>> vertices;
-    private final HashMap<Connection, MOIDependency> edges;
+    private final HashMap<Connection, MOIDependency<T>> edges;
 
     public MOIDependencyGraph() {
         this.vertices = new HashMap<>();
@@ -64,10 +64,10 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
      * Updates all dependencies for the given node (in- and outgoing edges are updated/generated)
      * @param node the node
      */
-    private void updateDependencies(MOINode<?> node) throws NotMatchableException {
-        for (MOINode<?> ref : vertices.values() ) {
-            Set<MOIDependency> dependencies = node.setupDependency(ref);
-            for ( MOIDependency dependency : dependencies ) {
+    private void updateDependencies(MOINode<T> node) throws NotMatchableException {
+        for (MOINode<T> ref : vertices.values() ) {
+            Set<MOIDependency<T>> dependencies = node.setupDependency(ref);
+            for ( MOIDependency<T> dependency : dependencies ) {
                 this.edges.put(
                         new Connection(
                                 dependency.getSource().getId(),
@@ -83,21 +83,21 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
         MOINode<T> node = vertices.remove(id);
         if ( node == null ) return null;
 
-        Collection<MOIDependency> outgoingEdges = node.getOutgoingDependencies();
-        for ( MOIDependency out : outgoingEdges ) {
-            MOINode<?> outNode = out.getSink();
-            Collection<MOIDependency> outNodeInEdges = outNode.getIngoingDependencies();
-            MOIDependency reverseDep = this.edges.remove(new Connection(outNode.getId(), node.getId()));
+        Collection<MOIDependency<T>> outgoingEdges = node.getOutgoingDependencies();
+        for ( MOIDependency<T> out : outgoingEdges ) {
+            MOINode<T> outNode = out.getSink();
+            Collection<MOIDependency<T>> outNodeInEdges = outNode.getIngoingDependencies();
+            MOIDependency<T> reverseDep = this.edges.remove(new Connection(outNode.getId(), node.getId()));
             if ( reverseDep != null ) outNodeInEdges.remove(reverseDep);
             this.edges.remove(new Connection(node.getId(), outNode.getId()));
         }
         outgoingEdges.clear();
 
-        Collection<MOIDependency> ingoingEdges = node.getIngoingDependencies();
-        for ( MOIDependency in : ingoingEdges ) {
-            MOINode<?> inNode = in.getSource();
-            Collection<MOIDependency> inNodeOutEdges = inNode.getOutgoingDependencies();
-            MOIDependency reverseDep = this.edges.remove(new Connection(node.getId(), inNode.getId()));
+        Collection<MOIDependency<T>> ingoingEdges = node.getIngoingDependencies();
+        for ( MOIDependency<T> in : ingoingEdges ) {
+            MOINode<T> inNode = in.getSource();
+            Collection<MOIDependency<T>> inNodeOutEdges = inNode.getOutgoingDependencies();
+            MOIDependency<T> reverseDep = this.edges.remove(new Connection(node.getId(), inNode.getId()));
             if ( reverseDep != null ) inNodeOutEdges.remove(reverseDep);
             this.edges.remove(new Connection(inNode.getId(), node.getId()));
         }

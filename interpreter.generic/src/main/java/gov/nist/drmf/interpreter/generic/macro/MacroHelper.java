@@ -18,6 +18,8 @@ public final class MacroHelper {
     public static final String PAR_PREFIX = "par";
     public static final String OPTIONAL_PAR_PREFIX = "opPar";
 
+    public static final Pattern NUM_PATTERN = Pattern.compile("#(\\d+)");
+
     private MacroHelper(){};
 
     public static String cleanString(String arg) {
@@ -53,22 +55,38 @@ public final class MacroHelper {
         return new LinkedList<>(Arrays.asList(elements));
     }
 
-    public static int addIdx( int repeat, int counter, Character[] symbs, StringBuilder sb ) {
-        for ( int i = 0; i < repeat; i++ ) {
-            sb.append(symbs[0]).append("$").append(counter).append(symbs[1]);
-            counter++;
+    public static void addIdx( String prefix, int repeat, Character[] symbs, StringBuilder sb ) {
+        for ( int i = 1; i <= repeat; i++ ) {
+            sb.append(symbs[0]).append(prefix).append(i).append(symbs[1]);
         }
-        return counter;
     }
 
-    public static void fillListWithArguments(List<String> list, String argumentsList) {
+    public static void fillListWithArguments(int numOfArgs, List<String> list, List<Boolean[]> defaultArgs, String argumentsList) {
         argumentsList = argumentsList.substring(1, argumentsList.length()-1);
         String[] elements = argumentsList.split("]\\[");
         for ( String e : elements ) {
+            Boolean[] defaultArg = generateBooleanDefArg(numOfArgs, e);
+            defaultArgs.add(defaultArg);
+
             e = e.replaceAll("#", VAR_PREFIX);
             e = cleanString(e);
             list.add(e);
         }
+    }
+
+    public static Boolean[] generateBooleanDefArg(int numOfArgs, String str) {
+        Boolean[] defaultArg = new Boolean[numOfArgs];
+        Matcher m = NUM_PATTERN.matcher(str);
+        while ( m.find() ) {
+            defaultArg[Integer.parseInt(m.group(1))-1] = true;
+        }
+        return defaultArg;
+    }
+
+    public static Boolean[] allTrueArr(int numOfArgs) {
+        Boolean[] defaultArg = new Boolean[numOfArgs];
+        Arrays.fill(defaultArg, true);
+        return defaultArg;
     }
 
     public static void fillInnerList(String para, List<String> fill, List<String> ref) {
@@ -79,5 +97,9 @@ public final class MacroHelper {
                 fill.add(para + " " + args);
             }
         }
+    }
+
+    public static String fixInvisibleComma(String in) {
+        return in.replaceAll("\\\\InvisibleComma", " ");
     }
 }

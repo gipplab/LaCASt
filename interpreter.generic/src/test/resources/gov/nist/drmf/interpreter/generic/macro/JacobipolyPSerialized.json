@@ -13,5 +13,5 @@
   "numberOfOptionalParameters" : 0,
   "numberOfArguments" : 1,
   "TeX" : [ "P^{(par1,par2)}_{par3} (var1)" ],
-  "semanticTeX" : "\\JacobipolyP{$0}{$1}{$2}@{$3}"
+  "semanticTeX" : [ "\\JacobipolyP{par1}{par2}{par3}@{var1}" ]
 }

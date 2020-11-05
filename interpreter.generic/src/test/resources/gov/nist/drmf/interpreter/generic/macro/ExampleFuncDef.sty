@@ -54,3 +54,16 @@
     description={the set of functions continuous on the interval $(a,b)$},% $\continuous{a,b}$},
     sortkey={C 1 0 z},
 ]{1}[#1]
+\defSpecFun{LeviCivitasym}[3]{\epsilon_{#1\InvisibleComma#2\InvisibleComma#3}}[
+    meaning=Levi-Civita, om=combinat2_dlmf:Levi-Civita,
+    params={i}{j}{k},
+    description={the Levi-Civita symbol},% $\LeviCivitasym{i}{j}{k}$},
+    sortkey={epsilon 0 1 zzz},
+]{0}
+%% Not sure this is a function, but a KIND of function????
+\defSpecFun{Dirichletchar}[1][]{\if.#1.\chi\else\chi_{#1}\fi}[
+    meaning=Dirichlet-character, om=numtheory2_dlmf:Dirichlet_character,
+    params={r}, args={n}{k},
+    description={the Dirichlet character},% $\Dirichletchar{r}$},
+    sortkey={chi 2 1 z z z},
+]{2}[\mleft(#1,#2\mright)][\mleft(#1\mright)]
