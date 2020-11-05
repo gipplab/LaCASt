@@ -3,7 +3,6 @@ package gov.nist.drmf.interpreter.pom.moi;
 import java.util.Collection;
 
 public interface INode<T> {
-
     Collection<T> getIngoingDependencies();
 
     Collection<T> getOutgoingDependencies();

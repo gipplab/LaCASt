@@ -9,10 +9,10 @@ package gov.nist.drmf.interpreter.pom.moi;
  * @see DependencyPattern
  * @author Andre Greiner-Petter
  */
-public class MOIDependency {
+public class MOIDependency<T> {
 
-    private final MOINode source;
-    private final MOINode sink;
+    private final MOINode<T> source;
+    private final MOINode<T> sink;
     private final DependencyPattern attribute;
 
     /**
@@ -22,17 +22,17 @@ public class MOIDependency {
         this(null, null, null);
     }
 
-    public MOIDependency(MOINode source, MOINode sink, DependencyPattern attribute) {
+    public MOIDependency(MOINode<T> source, MOINode<T> sink, DependencyPattern attribute) {
         this.source = source;
         this.sink = sink;
         this.attribute = attribute;
     }
 
-    public MOINode getSource() {
+    public MOINode<T> getSource() {
         return source;
     }
 
-    public MOINode getSink() {
+    public MOINode<T> getSink() {
         return sink;
     }
 

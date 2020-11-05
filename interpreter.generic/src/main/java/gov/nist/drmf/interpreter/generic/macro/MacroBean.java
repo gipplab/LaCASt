@@ -26,6 +26,9 @@ public class MacroBean {
      */
     private final LinkedList<String> genericLaTeXArguments;
 
+    @JsonIgnore
+    private final LinkedList<Boolean[]> genericLateXDefaultArguments;
+
     private MacroMetaBean metaInformation;
 
     private int numberOfParameters;
@@ -36,7 +39,9 @@ public class MacroBean {
 
     private LinkedList<String> genericLaTeX;
 
-    private String semanticLaTeX;
+    private LinkedList<String> semanticLaTeX;
+
+    private boolean ifxAdded = false;
 
     /**
      * Only for serialization.
@@ -52,6 +57,7 @@ public class MacroBean {
         this.name = name;
         this.genericLaTeXParameters = new LinkedList<>();
         this.genericLaTeXArguments = new LinkedList<>();
+        this.genericLateXDefaultArguments = new LinkedList<>();
         this.genericLaTeX = new LinkedList<>();
     }
 
@@ -71,14 +77,24 @@ public class MacroBean {
     public void setGenericLaTeXParametersWithOptionalParameter(int numberOfParameters, String genericLaTeX) {
         this.numberOfOptionalParameters = 1;
         this.numberOfParameters = numberOfParameters-1;
-        this.genericLaTeXParameters.addFirst(genericLaTeX.replaceAll("#", MacroHelper.PAR_PREFIX));
+        this.genericLaTeXParameters.addFirst(
+                MacroHelper.fixInvisibleComma(genericLaTeX.replaceAll("#", MacroHelper.OPTIONAL_PAR_PREFIX))
+        );
     }
 
     @JsonIgnore
     public void setGenericLaTeXParametersWithoutOptionalParameter(int numberOfParameters, String genericLaTeX) {
         this.numberOfParameters = numberOfParameters;
-        this.numberOfOptionalParameters = 0;
-        this.genericLaTeXParameters.addFirst(genericLaTeX.replaceAll("#", MacroHelper.PAR_PREFIX));
+        this.genericLaTeXParameters.addLast(
+                MacroHelper.fixInvisibleComma(genericLaTeX.replaceAll("#", MacroHelper.PAR_PREFIX))
+        );
+    }
+
+    @JsonIgnore
+    public void flipLastToOptionalParameter() {
+        String latest = this.genericLaTeXParameters.removeLast();
+        latest = latest.replaceAll( MacroHelper.PAR_PREFIX, MacroHelper.OPTIONAL_PAR_PREFIX );
+        setGenericLaTeXParametersWithOptionalParameter(numberOfParameters, latest);
     }
 
     /**
@@ -95,11 +111,27 @@ public class MacroBean {
         }
 
         if ( argumentsList != null && argumentsList.length() > 3 ) {
-            MacroHelper.fillListWithArguments(this.genericLaTeXArguments, argumentsList);
+            MacroHelper.fillListWithArguments(
+                    numberOfArguments,
+                    this.genericLaTeXArguments,
+                    this.genericLateXDefaultArguments,
+                    argumentsList
+            );
         } else {
             // one @ always means \mleft( ... \mright) depending on number of args
             this.genericLaTeXArguments.add(MacroHelper.generateArgumentList(numOfArgs));
+            this.genericLateXDefaultArguments.add(MacroHelper.allTrueArr(numOfArgs));
         }
+    }
+
+    @JsonIgnore
+    public boolean isIfxAdded() {
+        return ifxAdded;
+    }
+
+    @JsonIgnore
+    public void setIfxAdded(boolean ifxAdded) {
+        this.ifxAdded = ifxAdded;
     }
 
     @JsonSetter("macro")
@@ -113,7 +145,7 @@ public class MacroBean {
     }
 
     @JsonSetter("semanticTeX")
-    public void setSemanticLaTeX(String semanticLaTeX) {
+    public void setSemanticLaTeX(LinkedList<String> semanticLaTeX) {
         this.semanticLaTeX = semanticLaTeX;
     }
 
@@ -154,21 +186,45 @@ public class MacroBean {
     }
 
     @JsonGetter("semanticTeX")
-    public String getSemanticLaTeX() {
+    public LinkedList<String> getSemanticLaTeX() {
         if ( this.semanticLaTeX != null ) return this.semanticLaTeX;
-        StringBuilder sb = new StringBuilder("\\");
-        sb.append(name);
+        this.semanticLaTeX = new LinkedList<>();
 
-        int argCounter = MacroHelper.addIdx( numberOfOptionalParameters, 0, new Character[]{'[', ']'}, sb );
-        argCounter = MacroHelper.addIdx( numberOfParameters, argCounter, new Character[]{'{', '}'}, sb );
 
-        // only if elements are following, we will add an @
-        if ( numberOfArguments != 0 )
-            sb.append("@");
+        for ( int i = numberOfOptionalParameters; i >= 0; i-- ) {
+            StringBuilder sb = new StringBuilder("\\");
+            sb.append(name);
+            MacroHelper.addIdx( MacroHelper.OPTIONAL_PAR_PREFIX, i, new Character[]{'[', ']'}, sb );
+            MacroHelper.addIdx( MacroHelper.PAR_PREFIX, numberOfParameters, new Character[]{'{', '}'}, sb );
 
-        MacroHelper.addIdx( numberOfArguments, argCounter, new Character[]{'{', '}'}, sb );
+            if ( genericLaTeXArguments.size() == 0 ) {
+                this.semanticLaTeX.add(sb.toString());
+            }
 
-        this.semanticLaTeX = sb.toString();
+            for ( int j = 0; j < genericLateXDefaultArguments.size(); j++ ) {
+                StringBuilder innerSB = new StringBuilder(sb.toString());
+                // only if elements are following, we will add an @
+                if ( numberOfArguments != 0 ){
+                    innerSB.append("@".repeat(j+1));
+                }
+
+                Boolean[] defArgs = genericLateXDefaultArguments.get(j);
+                for ( int k = 1; k <= numberOfArguments; k++ ) {
+                    Boolean useDef = defArgs[k-1];
+                    innerSB.append("{");
+                    if ( useDef != null && useDef ) {
+                        innerSB.append(MacroHelper.VAR_PREFIX).append(k);
+                    } else {
+                        String def = metaInformation.getStandardArguments().getStandardVariables().get(k-1);
+                        innerSB.append(def);
+                    }
+                    innerSB.append("}");
+                }
+
+                this.semanticLaTeX.add(innerSB.toString());
+            }
+        }
+
         return this.semanticLaTeX;
     }
 

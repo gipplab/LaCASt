@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.generic;
+package gov.nist.drmf.interpreter.generic.interfaces;
 
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.ParseException;

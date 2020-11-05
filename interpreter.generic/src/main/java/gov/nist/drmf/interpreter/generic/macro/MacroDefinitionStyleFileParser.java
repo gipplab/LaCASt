@@ -3,9 +3,7 @@ package gov.nist.drmf.interpreter.generic.macro;
 import gov.nist.drmf.interpreter.common.text.TextUtility;
 import org.apache.logging.log4j.core.util.Integers;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,12 +14,12 @@ public class MacroDefinitionStyleFileParser {
     private static final Pattern FUNC_SPEC_PATTERN = Pattern.compile(
             "^\\\\defSpecFun\\{(.*?)}" + // func name (non-optional)
                     "(?:\\[(\\d+)])?(\\[])?" + // number of parameters (optional -> means 0)
-                    "\\{(.*?)}\\[.*$" // definition
+                    "\\{(.*?)}\\[%?\\s*$" // definition
             , Pattern.MULTILINE
     );
 
     private static final Pattern IFX_PATTERN = Pattern.compile(
-            "\\\\ifx.*?\\\\else(.*?)\\\\fi"
+            "\\\\ifx?\\.#1\\.(.*?)\\\\else(.*?)\\\\fi"
     );
 
     private static final Pattern META_PATTERN = Pattern.compile(
@@ -67,14 +65,28 @@ public class MacroDefinitionStyleFileParser {
         }
     }
 
+    /**
+     * Alright, this means, the previous added (if not isIfxAdded()) was actually wrong
+     * @param beanName
+     * @param m
+     */
     private void handleOptionalMacro(String beanName, Matcher m) {
         beanName = beanName.substring(0, beanName.length()-2);
         if ( macros.containsKey(beanName) ) {
             MacroBean currentBean = macros.get(beanName);
+
+            if ( currentBean.isIfxAdded() ) {
+                // in this case, the macro already defined an optional argument via \ifx.\else.\fi and we should end here...
+                return;
+            }
+
             if ( Objects.isNull(m.group(4)) )
                 throw new IllegalArgumentException("Generic LaTeX is mandatory but was null for " + beanName);
-            String genericLaTeX = cleanIfx(m.group(4));
-            currentBean.addAdditionalGenericLaTeXParameters(genericLaTeX);
+
+            currentBean.flipLastToOptionalParameter();
+            String genericLaTeX = cleanIfx(m.group(4)).get(0);
+            int numOfParameter = Objects.nonNull(m.group(2)) ? Integers.parseInt(m.group(2)) : 0;
+            currentBean.setGenericLaTeXParametersWithoutOptionalParameter(numOfParameter, genericLaTeX);
         } else {
             throw new IllegalArgumentException(
                     "Found optional argument macro before analyzing the standard macro: " + beanName
@@ -87,15 +99,20 @@ public class MacroDefinitionStyleFileParser {
         int numOfParameter = Objects.nonNull(m.group(2)) ? Integers.parseInt(m.group(2)) : 0;
         if ( Objects.isNull(m.group(4)) )
             throw new IllegalArgumentException("Generic LaTeX is mandatory but was null for " + beanName);
-        String genericLaTeX = cleanIfx(m.group(4));
+        List<String> genericLaTeX = cleanIfx(m.group(4));
 
-        if ( Objects.nonNull(m.group(3)) ) {
+        if ( genericLaTeX.size() == 2 ) {
+            String genericLaTeXOpt;
             // that means the first #1 argument is actually an optional argument
-            genericLaTeX = genericLaTeX.replaceAll("#1", MacroHelper.OPTIONAL_PAR_PREFIX+"1");
-            genericLaTeX = reduceNumbers(genericLaTeX);
-            currentBean.setGenericLaTeXParametersWithOptionalParameter(numOfParameter, genericLaTeX);
+            currentBean.setGenericLaTeXParametersWithoutOptionalParameter(numOfParameter, reduceNumbers(genericLaTeX.get(0)));
+            genericLaTeXOpt = genericLaTeX.get(1);
+            currentBean.setIfxAdded(true);
+
+            genericLaTeXOpt = genericLaTeXOpt.replaceAll("#1", MacroHelper.OPTIONAL_PAR_PREFIX+"1");
+            genericLaTeXOpt = reduceNumbers(genericLaTeXOpt);
+            currentBean.setGenericLaTeXParametersWithOptionalParameter(numOfParameter, genericLaTeXOpt);
         } else {
-            currentBean.setGenericLaTeXParametersWithoutOptionalParameter(numOfParameter, genericLaTeX);
+            currentBean.setGenericLaTeXParametersWithoutOptionalParameter(numOfParameter, genericLaTeX.get(0));
         }
 
         return currentBean;
@@ -125,8 +142,25 @@ public class MacroDefinitionStyleFileParser {
         }
     }
 
-    private String cleanIfx( String in ) {
-        return TextUtility.appendPattern(in, IFX_PATTERN, 1);
+    private List<String> cleanIfx(String in) {
+        List<String> ifxList = new LinkedList<>();
+
+        StringBuilder prefix = new StringBuilder();
+        StringBuilder postfix = new StringBuilder();
+        Matcher m = IFX_PATTERN.matcher(in);
+        if ( m.find() ) {
+            m.appendReplacement(prefix, "");
+            m.appendTail(postfix);
+            String withoutOpt = m.group(1);
+            String withOpt = m.group(2);
+
+            ifxList.add( prefix.toString() + withoutOpt + postfix.toString() );
+            ifxList.add( prefix.toString() + withOpt + postfix.toString() );
+        } else {
+            ifxList.add(in);
+        }
+
+        return ifxList;
     }
 
     public Map<String, MacroBean> getExtractedMacros() {

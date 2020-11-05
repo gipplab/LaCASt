@@ -1,0 +1,42 @@
+GET http://localhost:9200/_cat/indices?v
+Accept: text/plain
+###
+# Simple search test
+GET localhost:9200/dlmf-macros/_search
+Content-Type: application/json
+
+{
+    "query": {
+        "nested": {
+            "path": "meta",
+            "query": {
+                "match": {
+                    "meta.description": "Levi Civita"
+                }
+            }
+        }
+    }
+}
+###
+# Simple search test
+GET localhost:9200/dlmf-macros/_search
+Content-Type: application/json
+
+{
+    "query": {
+        "bool": {
+            "must": [
+                {
+                    "match_all": {}
+                }
+            ],
+            "filter": {
+                "range": {
+                    "numberOfOptionalParameters": {
+                        "gte": "1"
+                    }
+                }
+            }
+        }
+    }
+}
