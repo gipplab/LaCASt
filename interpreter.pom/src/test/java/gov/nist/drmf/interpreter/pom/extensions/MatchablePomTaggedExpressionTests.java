@@ -1158,6 +1158,20 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void directMatchTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("x");
+        assertTrue(blueprint.match("x"));
+        assertFalse(blueprint.match("y"));
+    }
+
+    @Test
+    public void directMatchPTETest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile(mlp.parse("x"));
+        assertTrue(blueprint.match("x"));
+        assertFalse(blueprint.match("y"));
+    }
+
+    @Test
     public void pomMatcherReplaceAllRealWorldTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
                 PomMatcherBuilder.compile(mlp, "P^{(var1, var2)}_{var3} (var4)", "(p|v)ar\\d");
