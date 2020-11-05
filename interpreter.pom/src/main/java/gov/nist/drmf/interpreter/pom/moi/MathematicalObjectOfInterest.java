@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class MathematicalObjectOfInterest {
     private static final Logger LOG = LogManager.getLogger(MathematicalObjectOfInterest.class.getName());
 
-    @Language("Regexp")
+    @Language("RegExp")
     public static final String WILDCARD_PATTERN = "var\\d+";
 
     private static final SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
@@ -64,6 +64,7 @@ public class MathematicalObjectOfInterest {
         } else this.wildcardIdentifierMapping = new HashMap<>();
 
         this.pattern = moiCopy.getTexString();
+        LOG.debug("Generated MOI pattern: " + pattern);
         try {
             this.matchableMOI = PomMatcherBuilder.compile(moiCopy, WILDCARD_PATTERN);
         } catch ( NotMatchableException nme ) {

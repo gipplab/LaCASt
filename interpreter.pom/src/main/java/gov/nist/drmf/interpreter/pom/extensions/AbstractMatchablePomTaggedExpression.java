@@ -35,6 +35,11 @@ public abstract class AbstractMatchablePomTaggedExpression
      */
     private final PomTaggedExpressionChildrenMatcher children;
 
+    /**
+     * The reference node from the actual {@link PomTaggedExpression} parse tree
+     */
+    private final PomTaggedExpression referenceNode;
+
     protected AbstractMatchablePomTaggedExpression(
             PomTaggedExpression refRoot,
             MLPWrapper mlp,
@@ -44,6 +49,11 @@ public abstract class AbstractMatchablePomTaggedExpression
         this.mlp = mlp;
         this.captures = captures;
         this.children = new PomTaggedExpressionChildrenMatcher(this);
+        this.referenceNode = refRoot;
+    }
+
+    protected PomTaggedExpression getReferenceNode() {
+        return referenceNode;
     }
 
     protected MLPWrapper getMLPWrapperInstance() {
@@ -167,14 +177,14 @@ public abstract class AbstractMatchablePomTaggedExpression
     /**
      * Throws exception if something went wrong. The other methods are safe and simply
      * return false if anything went wrong.
-     * @param expression
-     * @param config
-     * @return
+     * @param expression the expression to match
+     * @param config the matching configuration
+     * @return true if matches, otherwise false. may throw errors
      */
     public boolean matchUnsafe(PrintablePomTaggedExpression expression, MatcherConfig config) {
         captures.clear();
         expression = (PrintablePomTaggedExpression) MLPWrapper.normalize(expression);
-        boolean matched = false;
+        boolean matched;
         if ( config.allowLeadingTokens() ) {
             PomMatcher pomMatcher = new PomMatcher(this, expression, config);
             boolean result = pomMatcher.find();

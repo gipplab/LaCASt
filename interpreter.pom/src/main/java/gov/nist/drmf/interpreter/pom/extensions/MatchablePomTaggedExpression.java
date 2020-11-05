@@ -37,7 +37,7 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
      * If a single node a is wrapped in brackets {a}, it represents a single sequence object.
      * This kind of wildcard only matches a single node even if it is at the end of a sequence.
      */
-    private final boolean isSingleSequenceWildcard;
+    private boolean isSingleSequenceWildcard;
 
     /**
      * The wildcard ID
@@ -50,37 +50,38 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
     private MatchablePomTaggedExpression nextSibling;
 
     /**
+     * Previous sibling, if any
+     */
+    private MatchablePomTaggedExpression previousSibling;
+
+    /**
+     * The number of following siblings (next siblings until null)
+     */
+    private int numberOfFollowingSiblings = 0;
+
+    /**
      * Keep Kryo happy for serialization
      */
     MatchablePomTaggedExpression() {
         this(
-                SemanticMLPWrapper.getStandardInstance(),
-                FakeMLPGenerator.generateEmptyPPTE(),
-                ""
+                new MatchablePomTaggedExpressionConfig(),
+                FakeMLPGenerator.generateEmptyPPTE()
         );
     }
 
     /**
      * For better performance, it is recommended to have one MLPWrapper object.
      * So if not necessary,
-     * @param mlp the mlp wrapper to parse the expression
+     * @param config the config to build a matchable pom tagged expression
      * @param refRoot the expression to create a matchable tree
-     * @param wildcardPattern the regex to find wildcards (e.g., var\d+).
      * @throws NotMatchableException if the given expression cannot be matched
      * @see PomMatcherBuilder
      */
-    public MatchablePomTaggedExpression(MLPWrapper mlp, PomTaggedExpression refRoot, @Language("RegExp") String wildcardPattern)
-            throws NotMatchableException {
-        this(mlp, refRoot, wildcardPattern, new GroupCaptures());
-    }
-
-    private MatchablePomTaggedExpression(
-            MLPWrapper mlpWrapper,
-            PomTaggedExpression refRoot,
-            @Language("RegExp") String wildcardPattern,
-            GroupCaptures captures
+    public MatchablePomTaggedExpression(
+            MatchablePomTaggedExpressionConfig config,
+            PomTaggedExpression refRoot
     ) throws NotMatchableException {
-        super(refRoot, mlpWrapper, captures);
+        super(refRoot, config.getMlpWrapper(), config.getCaptures());
 
         // if this the root, normalize the reference tree first
         if ( refRoot.getParent() != null )
@@ -92,6 +93,7 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
 
         String text = refRoot.getRoot().getTermText();
 
+        String wildcardPattern = config.getWildcardPattern();
         if (!wildcardPattern.isBlank() && text.matches(wildcardPattern)) {
             if (!refRoot.getComponents().isEmpty())
                 throw new NotMatchableException("A wildcard node cannot have children.");
@@ -108,18 +110,38 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
 
         MatchablePomTaggedExpression prevNode = null;
         for (PomTaggedExpression pte : comps) {
-            MatchablePomTaggedExpression cpte = new MatchablePomTaggedExpression(mlpWrapper, pte, wildcardPattern, captures);
+            MatchablePomTaggedExpression cpte = new MatchablePomTaggedExpression(config, pte);
             this.getChildrenMatcher().add(cpte);
-            checkValidity(prevNode, cpte);
+            setupSibling(config, prevNode, cpte);
             prevNode = cpte;
         }
     }
 
-    private void checkValidity(MatchablePomTaggedExpression prevNode, MatchablePomTaggedExpression cpte) {
-        if (prevNode != null) {
-            prevNode.setNextSibling(cpte);
-            if (prevNode.isWildcard && cpte.isWildcard && !prevNode.isSingleSequenceWildcard)
+    private void setupSibling(
+            MatchablePomTaggedExpressionConfig config,
+            MatchablePomTaggedExpression prevNode,
+            MatchablePomTaggedExpression cpte
+    ) {
+        if ( prevNode == null ) return;
+
+        // updateSibling
+        prevNode.setNextSibling(cpte);
+        cpte.setPreviousSibling(prevNode);
+        cpte.increaseSiblingCounter();
+
+        // in case there are two consecutive wild cards, we may throw an error or call the fallback (if configured)
+        if (prevNode.isWildcard && cpte.isWildcard && !prevNode.isSingleSequenceWildcard && !cpte.isSingleSequenceWildcard) {
+            if ( !config.fallbackConsecutiveWildcards() ) {
                 throw new NotMatchableException("Two consecutive wildcards may have no unique matches.");
+            } else {
+                LOG.debug("[Non-Matchable-Fallback] Flip previous wildcard to a single sequence wildcard.");
+                MathTerm mathTerm = prevNode.getRoot();
+                String wildCard = mathTerm.getTermText();
+                mathTerm.setTermText("{" + wildCard + "}");
+                PomTaggedExpression referencePTE = prevNode.getReferenceNode();
+                referencePTE.setRoot(mathTerm);
+                prevNode.isSingleSequenceWildcard = true;
+            }
         }
     }
 
@@ -145,6 +167,25 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         this.nextSibling = nextSibling;
     }
 
+    /**
+     * Sets the previous sibling
+     * @param previousSibling previous sibling
+     */
+    private void setPreviousSibling(MatchablePomTaggedExpression previousSibling) {
+        this.previousSibling = previousSibling;
+    }
+
+    /**
+     * Increases the number of following siblings by one
+     */
+    private void increaseSiblingCounter() {
+        MatchablePomTaggedExpression ref = this.previousSibling;
+        while ( ref != null ) {
+            ref.numberOfFollowingSiblings++;
+            ref = ref.previousSibling;
+        }
+    }
+
     @Override
     boolean match (
             PrintablePomTaggedExpression expression,
@@ -157,7 +198,7 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             return matchWildCard(expression, followingExpressions, config);
         } catch ( NotMatchableException nme ) {
             LOG.debug("Expression not matchable because: " + nme.getMessage() +
-                    "; Expression: " + expression.getTexString());
+                    "; Element: " + expression.getTexString() + " in [" + expression.getRootTexString() + "].");
             return false;
         }
     }
@@ -284,6 +325,12 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
     ) {
         // by building rule, the very next sibling cannot be a wildcard as well, so just check if it hits
         if ( !config.ignoreBracketLogic() && !bracketStack.isEmpty() ) return true;
+
+        // if the next match is a singleSequenceWildcard, we only continue matching (greedy) if the
+        // the following expression has more than one element left (the next element, so followingExpressions must be empty)
+        if ( nextSibling.isSingleSequenceWildcard ) {
+            return this.numberOfFollowingSiblings < followingExpressions.size()+1;
+        }
 
         boolean nextSiblingMatched = nextSibling.match(next, followingExpressions, config);
         if ( !config.allowFollowingTokens() && nextSiblingMatched ) {
