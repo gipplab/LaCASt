@@ -32,11 +32,7 @@ public class MOINode<T> implements INode<MOIDependency<T>> {
      * Keep Kryo happy for serialization
      */
     private MOINode() {
-        this("-1", null);
-    }
-
-    public MOINode(String id, MathematicalObjectOfInterest moi) {
-        this(id, moi, null);
+        this("-1", null, null);
     }
 
     public MOINode(String id, MathematicalObjectOfInterest moi, T annotation) {
@@ -87,10 +83,11 @@ public class MOINode<T> implements INode<MOIDependency<T>> {
     }
 
     public boolean dependsOnlyOnIdentifier() {
+        if ( ingoing.isEmpty() ) return false;
         return getIngoingDependencies().stream()
                 .map( MOIDependency::getSource )
                 .map( MOINode::getNode )
-                .anyMatch(m -> !m.isIdentifier() );
+                .allMatch(MathematicalObjectOfInterest::isIdentifier);
     }
 
     public boolean hasAnnotation() {

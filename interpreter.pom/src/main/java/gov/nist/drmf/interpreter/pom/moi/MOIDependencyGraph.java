@@ -32,12 +32,7 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
 
     @Override
     public MOINode<T> addNode(String id, String moi) throws ParseException, NotMatchableException {
-        try {
-            return addNode(id, moi, null);
-        } catch ( NotMatchableException e ) {
-            e.printStackTrace();
-            return null;
-        }
+        return addNode(id, moi, null);
     }
 
     @Override
@@ -88,8 +83,7 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
         for ( MOIDependency<T> out : outgoingEdges ) {
             MOINode<T> outNode = out.getSink();
             Collection<MOIDependency<T>> outNodeInEdges = outNode.getIngoingDependencies();
-            MOIDependency<T> reverseDep = this.edges.remove(new Connection(outNode.getId(), node.getId()));
-            if ( reverseDep != null ) outNodeInEdges.remove(reverseDep);
+            outNodeInEdges.remove(out);
             this.edges.remove(new Connection(node.getId(), outNode.getId()));
         }
         outgoingEdges.clear();
@@ -98,8 +92,7 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
         for ( MOIDependency<T> in : ingoingEdges ) {
             MOINode<T> inNode = in.getSource();
             Collection<MOIDependency<T>> inNodeOutEdges = inNode.getOutgoingDependencies();
-            MOIDependency<T> reverseDep = this.edges.remove(new Connection(node.getId(), inNode.getId()));
-            if ( reverseDep != null ) inNodeOutEdges.remove(reverseDep);
+            inNodeOutEdges.remove(in);
             this.edges.remove(new Connection(inNode.getId(), node.getId()));
         }
         ingoingEdges.clear();
@@ -131,14 +124,5 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
 
     public Collection<MOINode<T>> getSources() {
         return vertices.values().stream().filter(INode::isSource).collect(Collectors.toSet());
-    }
-
-    private static class Connection {
-        final String in, out;
-
-        private Connection(String in, String out) {
-            this.in = in;
-            this.out = out;
-        }
     }
 }

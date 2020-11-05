@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class LimDirectionsTest {
     @Test
     void leftTest() {
-        assertEquals(LimDirections.LEFT, LimDirections.getDirection("Left"));
+        assertEquals(LimDirections.LEFT, LimDirections.getDirection("left"));
         assertEquals("left", LimDirections.LEFT.getKey());
     }
 
     @Test
     void rightTest() {
-        assertEquals(LimDirections.RIGHT, LimDirections.getDirection("Right"));
+        assertEquals(LimDirections.RIGHT, LimDirections.getDirection("right"));
         assertEquals("right", LimDirections.RIGHT.getKey());
     }
 
