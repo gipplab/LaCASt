@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.common.grammar;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.interfaces.ICASFeatureExtractor;
 import gov.nist.drmf.interpreter.common.interfaces.IFeatureExtractor;
 import mlp.FeatureSet;
 
@@ -26,7 +27,7 @@ import java.util.SortedSet;
  * @see mlp.FeatureSet
  * @see mlp.MathTerm
  */
-public enum DLMFFeatureValues implements IFeatureExtractor {
+public enum DLMFFeatureValues implements ICASFeatureExtractor {
     AREAS(
             (t, c) -> t.getFeature(Keys.FEATURE_AREAS)
     ),
@@ -84,13 +85,13 @@ public enum DLMFFeatureValues implements IFeatureExtractor {
      * The prefix and feature extractor
      */
     private final String prefix;
-    private final IFeatureExtractor extractor;
+    private final ICASFeatureExtractor extractor;
 
-    DLMFFeatureValues(IFeatureExtractor extractor) {
+    DLMFFeatureValues(ICASFeatureExtractor extractor) {
         this("", extractor);
     }
 
-    DLMFFeatureValues(String prefix, IFeatureExtractor extractor) {
+    DLMFFeatureValues(String prefix, ICASFeatureExtractor extractor) {
         this.prefix = prefix;
         this.extractor = extractor;
     }

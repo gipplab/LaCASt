@@ -59,6 +59,9 @@ public final class Keys {
             FEATURE_BRANCH_CUTS = "Branch Cuts";
 
     public static final String
+            FEATURE_ACCENT  = "Accent";
+
+    public static final String
             FEATURE_VALUE_GREEK     = "Greek",
             FEATURE_VALUE_SYMBOL    = "symbol",
             FEATURE_VALUE_FUNCTION  = "function",

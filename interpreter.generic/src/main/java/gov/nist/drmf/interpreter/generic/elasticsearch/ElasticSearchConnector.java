@@ -16,6 +16,7 @@ import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.support.WriteRequest;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
@@ -122,6 +123,22 @@ public class ElasticSearchConnector {
         createIndex();
     }
 
+    /**
+     * True if the index was generated, otherwise false
+     * @return true if a new index was generated, otherwise false
+     * @throws IOException
+     */
+    public boolean createIfNotExist() throws IOException {
+        GetIndexRequest getRequest = new GetIndexRequest(ES_INDEX);
+        boolean exists = client.indices().exists(getRequest, RequestOptions.DEFAULT);
+
+        if ( !exists ) {
+            LOG.info(ES_INDEX + " does not exist in elasticsearch database. Generate it now!");
+            createIndex();
+            return true;
+        } return false;
+    }
+
     private void deleteIndex() throws IOException, ElasticsearchException {
         try {
             DeleteIndexRequest delRequest = new DeleteIndexRequest(ES_INDEX);
@@ -150,6 +167,7 @@ public class ElasticSearchConnector {
     public void indexElements(Map<String, MacroBean> macros) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         BulkRequest bulkRequest = new BulkRequest(ES_INDEX);
+        bulkRequest.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL);
 
         int counter = 0;
         for ( String macroName : macros.keySet() ) {
@@ -199,8 +217,13 @@ public class ElasticSearchConnector {
         }
     }
 
+    public void indexDLMFDatabase() throws IOException {
+        if ( createIfNotExist() ) {
+            reIndexDLMFDatabase();
+        }
+    }
+
     public void reIndexDLMFDatabase() throws IOException {
-        resetOrCreateIndex();
         MacroDefinitionStyleFileParser macroParser = new MacroDefinitionStyleFileParser();
         String macroDefinitions = Files.readString(GlobalPaths.PATH_SEMANTIC_MACROS_DEFINITIONS);
         macroParser.load(macroDefinitions);
@@ -210,6 +233,7 @@ public class ElasticSearchConnector {
 
     public static void main(String[] args) throws IOException {
         ElasticSearchConnector es = ElasticSearchConnector.getDefaultInstance();
+        es.createIfNotExist();
         es.reIndexDLMFDatabase();
 
 //        List<MacroResult> result = es.searchMacroDescription("Jacobi polynomial");

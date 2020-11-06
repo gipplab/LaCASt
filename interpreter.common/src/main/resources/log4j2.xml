@@ -32,15 +32,18 @@
             </Filters>
         </Console>
 
+        <Console name="InfoConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] %logger{1}:%line - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </Console>
+
         <Console name="DebugConsole" target="SYSTEM_OUT">
             <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] %logger{1}:%line - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
             <Filters>
                 <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
-        </Console>
-
-        <Console name="TraceConsole" target="SYSTEM_OUT">
-            <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] %logger{1}:%line - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
         </Console>
 
         <Console name="ErrorConsole" target="SYSTEM_ERR">
@@ -51,13 +54,16 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Root level="all">
-<!--            <AppenderRef ref="HowardConsole"/>-->
+        <Logger name="org.apache.http" level="INFO" additivity="false">
+            <AppenderRef ref="InfoConsole"/>
+        </Logger>
+        <Root level="DEBUG">
             <AppenderRef ref="DebugConsole"/>
-<!--            <AppenderRef ref="TraceConsole"/>-->
-<!--            <AppenderRef ref="ErrorConsole"/>-->
-<!--            <AppenderRef ref="LogFile"/>-->
-<!--            <AppenderRef ref="ErrorFile"/>-->
+            <!--            <AppenderRef ref="HowardConsole"/>-->
+            <!--            <AppenderRef ref="TraceConsole"/>-->
+            <!--            <AppenderRef ref="ErrorConsole"/>-->
+            <!--            <AppenderRef ref="LogFile"/>-->
+            <!--            <AppenderRef ref="ErrorFile"/>-->
         </Root>
     </Loggers>
 </Configuration>

@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.pom;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.grammar.FeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
@@ -11,12 +12,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.SortedSet;
 
+import static gov.nist.drmf.interpreter.common.text.TextUtility.splitAndNormalizeCommands;
 import static gov.nist.drmf.interpreter.pom.FeatureSetUtility.getSetByFeatureValue;
 
 /**
  * @author Andre Greiner-Petter
  */
-public abstract class MathTermUtility {
+public final class MathTermUtility {
 
     private static GreekLetters greekLettersMappings;
 
@@ -95,5 +97,18 @@ public abstract class MathTermUtility {
 
     public static boolean isSumOrProductOrLimit(MathTerm term) {
         return LimitedExpressions.isLimitedExpression(term);
+    }
+
+    public static String getAppropriateFontTex(MathTerm term) {
+        String token = term.getTermText();
+        if ( term.wasFontActionApplied() ) {
+            token = term.firstFontAction() + "{" + token + "}";
+        }
+
+        List<String> accents = FeatureValues.ACCENT.getFeatureValues(term);
+        for ( int i = accents.size()-1; i >= 0; i-- ) {
+            token = "\\" + accents.get(i) + "{" + token + "}";
+        }
+        return token;
     }
 }

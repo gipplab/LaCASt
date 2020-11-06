@@ -14,7 +14,7 @@ public class MOIAnnotation {
     private MathTag formula;
     private List<Relation> attachedRelations;
 
-    private MOIAnnotation() {
+    public MOIAnnotation() {
         this.id = "-1";
         this.formula = null;
         this.attachedRelations = new LinkedList<>();

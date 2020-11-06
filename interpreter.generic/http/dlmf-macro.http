@@ -1,6 +1,8 @@
 GET http://localhost:9200/_cat/indices?v
 Accept: text/plain
 ###
+DELETE localhost:9200/dlmf-macros
+###
 # Simple search test
 GET localhost:9200/dlmf-macros/_search
 Content-Type: application/json
@@ -11,7 +13,7 @@ Content-Type: application/json
             "path": "meta",
             "query": {
                 "match": {
-                    "meta.description": "Levi Civita"
+                    "meta.description": "Real part"
                 }
             }
         }
