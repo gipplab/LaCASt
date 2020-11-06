@@ -86,10 +86,6 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
     ) throws NotMatchableException {
         super(refRoot, config.getMlpWrapper(), config.getCaptures());
 
-        // if this the root, normalize the reference tree first
-        if ( refRoot.getParent() != null )
-            MLPWrapper.normalize(refRoot);
-
         Map<String, String> refFeatures = refRoot.getNamedFeatures();
         for (String k : refFeatures.keySet())
             super.setNamedFeature(k, refFeatures.get(k));
@@ -161,6 +157,16 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
      */
     public String getWildcardID() {
         return wildcardID;
+    }
+
+    /**
+     * Returns true if this node has font rules attached. A wildcard might have font rules attached,
+     * in which case it might be treated differently.
+     * @return true if there are font rules attached to this node, such as <code>\mathsf</code>, <code>\overline</code>
+     * etc.
+     */
+    public boolean containsFontRules() {
+        return !this.fontManipulations.isEmpty();
     }
 
     /**
@@ -401,6 +407,9 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
 
     private boolean matchesAccents(PomTaggedExpression pte, MatcherConfig config) {
         List<String> otherFontManipulations = PomTaggedExpressionUtility.getFontManipulations(pte);
+
+        if ( this.fontManipulations.size() > otherFontManipulations.size() ) return false;
+
         for ( int i = 0; i < this.fontManipulations.size() && i < otherFontManipulations.size(); i++ ) {
             String matchManipulation = this.fontManipulations.get(i);
             String otherManipulation = otherFontManipulations.get(i);

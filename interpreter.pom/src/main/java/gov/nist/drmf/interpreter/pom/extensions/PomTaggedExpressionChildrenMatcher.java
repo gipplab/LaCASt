@@ -57,8 +57,11 @@ public class PomTaggedExpressionChildrenMatcher {
      * It also returns false if there are no children added yet.
      */
     public boolean isFirstChildWildcard() {
-        return hiddenFirstElement != null ||
-                ( !this.children.isEmpty() && this.children.get(0).isWildcard() );
+        return hiddenFirstElement != null || (
+                !this.children.isEmpty() &&
+                        this.children.get(0).isWildcard() &&
+                        !this.children.get(0).containsFontRules()
+        );
     }
 
     /**

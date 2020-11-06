@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
 import gov.nist.drmf.interpreter.common.text.IndexRange;
 import gov.nist.drmf.interpreter.common.text.TextUtility;
 import gov.nist.drmf.interpreter.pom.FeatureSetUtility;
+import gov.nist.drmf.interpreter.pom.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.PomTaggedExpressionUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -47,7 +48,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
      * @param ppte a previously valid printable PoM expression
      */
     public PrintablePomTaggedExpression( PrintablePomTaggedExpression ppte ) {
-        super(new MathTerm(ppte.getRoot().getTermText(), ppte.getRoot().getTag()), ppte.getTag(), ppte.getSecondaryTags());
+        super(MathTermUtility.secureClone(ppte.getRoot()), ppte.getTag(), ppte.getSecondaryTags());
         this.caption = ppte.caption;
         ppte.getNamedFeatures().forEach(super::addNamedFeature);
         for ( PrintablePomTaggedExpression child : ppte.getPrintableComponents() ) {

@@ -84,7 +84,7 @@ public class MLP {
             eq = "\\left( \\left[ |<(b)+[c]>| \\right] \\right)";
             eq = "({var1}+1)_{var2}";
             eq = "\\Jacobiellsnk@{\\NVar{z}}{\\NVar{k}}";
-            eq = "\\overline{\\overline{\\dot{x+y}}}";
+            eq = "\\tilde{x}";
 
             System.out.println();
             System.out.println("Input: " + eq);
