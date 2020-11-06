@@ -1222,6 +1222,51 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void firstElementFontMatchTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("\\tilde{var1}", "var1");
+        assertFalse(blueprint.match("x + y"));
+        assertFalse(blueprint.match("\\cos{x}"));
+        assertFalse(blueprint.match("x"));
+
+        assertFalse(blueprint.match("x + y", MatcherConfig.getInPlaceMatchConfig()));
+        assertFalse(blueprint.match("\\cos{x}", MatcherConfig.getInPlaceMatchConfig()));
+        assertFalse(blueprint.match("x", MatcherConfig.getInPlaceMatchConfig()));
+
+        assertTrue(blueprint.match("\\tilde{x}"));
+        assertTrue(blueprint.match("\\tilde{x+y}"));
+        assertTrue(blueprint.match("\\tilde{\\cos{x}}"));
+    }
+
+    @Test
+    public void firstElementFontMatcherTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("\\tilde{var1}", "var1");
+        PomMatcher matcher = blueprint.matcher("x + y");
+        assertFalse(matcher.find());
+
+        matcher = blueprint.matcher("\\cos{x}");
+        assertFalse(matcher.find());
+
+        matcher = blueprint.matcher("x");
+        assertFalse(matcher.find());
+
+        matcher = blueprint.matcher("\\tilde{y}");
+        assertTrue(matcher.find());
+    }
+
+    @Test
+    public void beginningFontWildcardTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("\\tilde{var1} + y", "var1");
+        PomMatcher matcher = blueprint.matcher("x + y");
+        assertFalse(matcher.find());
+
+        matcher = blueprint.matcher("\\cos{x} + y");
+        assertFalse(matcher.find());
+
+        matcher = blueprint.matcher("\\tilde{var1} + y");
+        assertTrue(matcher.find());
+    }
+
+    @Test
     public void pomMatcherReplaceAllRealWorldTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
                 PomMatcherBuilder.compile(mlp, "P^{(var1, var2)}_{var3} (var4)", "(p|v)ar\\d");

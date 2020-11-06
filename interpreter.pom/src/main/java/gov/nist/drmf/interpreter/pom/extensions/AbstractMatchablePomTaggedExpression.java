@@ -46,10 +46,18 @@ public abstract class AbstractMatchablePomTaggedExpression
             GroupCaptures captures
     ) {
         super(refRoot.getRoot(), refRoot.getTag(), refRoot.getSecondaryTags());
+        normalizeRoot(refRoot);
+
         this.mlp = mlp;
         this.captures = captures;
         this.children = new PomTaggedExpressionChildrenMatcher(this);
         this.referenceNode = refRoot;
+    }
+
+    private void normalizeRoot(PomTaggedExpression reference) {
+        // if this the root, normalize the reference tree first
+        if ( reference.getParent() == null )
+            MLPWrapper.normalize(reference);
     }
 
     protected PomTaggedExpression getReferenceNode() {

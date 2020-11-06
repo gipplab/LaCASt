@@ -2,8 +2,10 @@ package gov.nist.drmf.interpreter.pom;
 
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.common.grammar.FeatureValues;
 import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.*;
@@ -128,6 +130,8 @@ public abstract class MLPWrapper {
     private static PomTaggedExpression internalNormalize(PomTaggedExpression pte, byte settings) {
         if ( settings == 0 ) return pte;
 
+        normalizeAccents(pte);
+
         ExpressionTags tag = ExpressionTags.getTagByKey(pte.getTag());
         MathTermTags mathTag = MathTermTags.getTagByKey(pte.getRoot().getTag());
         if ( ExpressionTags.sub_super_script.equals(tag) && (settings & NORMALIZE_SUB_SUPERSCRIPTS) != 0 ) {
@@ -145,6 +149,19 @@ public abstract class MLPWrapper {
         }
 
         return pte;
+    }
+
+    public static void normalizeAccents(PomTaggedExpression pte) {
+        MathTermTags termTag = MathTermTags.getTagByExpression(pte);
+        if ( MathTermTags.alphanumeric.equals(termTag) ) {
+            List<String> accents = FeatureValues.ACCENT.getFeatureValues(pte);
+            if ( accents.size() == 1 ) {
+                pte.removeNamedFeature(Keys.FEATURE_ACCENT);
+                pte.setNamedFeature(FeatureSetUtility.LATEX_FEATURE_KEY, "\\"+accents.get(0));
+                pte.setSecondaryTags(ExpressionTags.accented.tag());
+                pte.getRoot().setNamedFeature(Keys.FEATURE_ACCENT, accents.get(0));
+            }
+        }
     }
 
     public static void normalizeSubSuperScript(PomTaggedExpression pte) {

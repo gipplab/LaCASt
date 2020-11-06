@@ -62,9 +62,7 @@ public class SemanticEnhancerTests {
         assertEquals("x + \\LeviCivitasym{i}{j}{k}", semanticallyEnhancedLaTeX.getTexString());
     }
 
-    // there is another bug with overline, try replacing \overline{par1} matches \operatorname{ln}(x) + \epsilon_{i j k}
     @Test
-    @Disabled
     void multiDependencyTest() throws ParseException, IOException {
         String genericLaTeXExample = "\\operatorname{ln}(x) + \\epsilon_{i j k}";
         MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample, "complex equation");

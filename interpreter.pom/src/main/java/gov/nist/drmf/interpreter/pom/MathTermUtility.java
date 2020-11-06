@@ -7,10 +7,11 @@ import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import mlp.FeatureSet;
 import mlp.MathTerm;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.SortedSet;
+import java.util.*;
 
 import static gov.nist.drmf.interpreter.common.text.TextUtility.splitAndNormalizeCommands;
 import static gov.nist.drmf.interpreter.pom.FeatureSetUtility.getSetByFeatureValue;
@@ -19,6 +20,7 @@ import static gov.nist.drmf.interpreter.pom.FeatureSetUtility.getSetByFeatureVal
  * @author Andre Greiner-Petter
  */
 public final class MathTermUtility {
+    private static final Logger LOG = LogManager.getLogger(MathTermUtility.class.getName());
 
     private static GreekLetters greekLettersMappings;
 
@@ -110,5 +112,25 @@ public final class MathTermUtility {
             token = "\\" + accents.get(i) + "{" + token + "}";
         }
         return token;
+    }
+
+    public static MathTerm secureClone(MathTerm term) {
+        MathTerm mt = new MathTerm(term.getTermText(), term.getTag());
+        mt.setFontAction(term.firstFontAction());
+        mt.addSecondaryTags(term.getSecondaryTags());
+
+        Map<String, String> features = term.getNamedFeatures();
+        for ( Map.Entry<String, String> featureEntry : features.entrySet() )
+            mt.addNamedFeature(featureEntry.getKey(), featureEntry.getValue());
+
+        List<FeatureSet> featureSets = term.getAlternativeFeatureSets();
+        List<FeatureSet> copiedFeatures = new LinkedList<>();
+        for ( FeatureSet fset : featureSets ) {
+            FeatureSet copyFSet = FeatureSetUtility.secureClone(fset);
+            copiedFeatures.add(copyFSet);
+        }
+
+        mt.setAlternativeFeatureSets(copiedFeatures);
+        return mt;
     }
 }
