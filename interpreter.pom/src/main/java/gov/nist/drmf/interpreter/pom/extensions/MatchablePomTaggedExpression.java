@@ -2,10 +2,7 @@ package gov.nist.drmf.interpreter.pom.extensions;
 
 import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
 import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.pom.FakeMLPGenerator;
-import gov.nist.drmf.interpreter.pom.MLPWrapper;
-import gov.nist.drmf.interpreter.pom.MathTermUtility;
-import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.*;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -15,6 +12,7 @@ import org.intellij.lang.annotations.Language;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * This object is essentially an extension of the classic PomTaggedExpression.
@@ -55,6 +53,11 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
     private MatchablePomTaggedExpression previousSibling;
 
     /**
+     * The number of font manipulations that are attached to this matchable node
+     */
+    private final List<String> fontManipulations;
+
+    /**
      * The number of following siblings (next siblings until null)
      */
     private int numberOfFollowingSiblings = 0;
@@ -91,6 +94,7 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         for (String k : refFeatures.keySet())
             super.setNamedFeature(k, refFeatures.get(k));
 
+        this.fontManipulations = PomTaggedExpressionUtility.getFontManipulations(refRoot);
         String text = refRoot.getRoot().getTermText();
 
         String wildcardPattern = config.getWildcardPattern();
@@ -209,8 +213,6 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             MatcherConfig config
     ){
         MathTerm otherRoot = expression.getRoot();
-        MathTerm thisRoot = getRoot();
-
         while (config.ignoreNumberOfAts() && MathTermUtility.isAt(otherRoot)) {
             if ( followingExpressions.isEmpty() ) {
                 return true;
@@ -219,8 +221,10 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             otherRoot = expression.getRoot();
         }
 
-        // TODO might be too strict
-        if (!thisRoot.getTermText().equals(otherRoot.getTermText())) {
+        String otherString = PomTaggedExpressionUtility.getAppropriateFontTex(expression);
+        String thisString = PomTaggedExpressionUtility.getAppropriateFontTex(this);
+        // TODO we might want to loose this test based on config (maybe ignore feature set, font manipulation, etc).
+        if (!thisString.equals(otherString)) {
             return false;
         }
 
@@ -241,14 +245,18 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         // or it is a wildcard, which means it can be essentially anything
         // note that a wildcard cannot have any children, which makes it easier
 
+        // however, a wildcard might contain font manipulations, in which case they must match!
+        if ( !matchesAccents(expression, config) ) return false;
+
         // if there is no next element in the pattern, the entire rest matches this wildcard
         if (nextSibling == null) {
             return captureUntilEnd(expression, followingExpressions, config);
         }
 
         // otherwise, add elements, until the next element matches
-        if (followingExpressions.isEmpty()) return false;
-        return matchWildcardUntilEnd(expression, followingExpressions, config);
+        // if there are no following elements however, the match failed
+        return !followingExpressions.isEmpty() && matchWildcardUntilEnd(expression, followingExpressions, config);
+
     }
 
     private boolean captureUntilEnd(
@@ -259,9 +267,10 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         if ( isNotAllowedTokenForWildcardMatch(expression, config) ) return false;
 
         List<PomTaggedExpression> matches = new LinkedList<>();
+        PomTaggedExpressionUtility.removeFontManipulations(expression, fontManipulations);
         matches.add(expression);
 
-        if ( !isSingleSequenceWildcard ) {
+        if ( !isSingleSequenceWildcard && fontManipulations.isEmpty() ) {
             while (!followingExpressions.isEmpty()){
                 expression = followingExpressions.remove(0);
                 if ( isNotAllowedTokenForWildcardMatch(expression, config) ) return false;
@@ -281,6 +290,7 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         if ( isNotAllowedTokenForWildcardMatch(expression, config) ) return false;
 
         List<PomTaggedExpression> matches = new LinkedList<>();
+        PomTaggedExpressionUtility.removeFontManipulations(expression, fontManipulations);
         matches.add(expression);
         PrintablePomTaggedExpression next = followingExpressions.remove(0);
         LinkedList<Brackets> bracketStack = new LinkedList<>();
@@ -323,6 +333,9 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             List<PrintablePomTaggedExpression> followingExpressions,
             MatcherConfig config
     ) {
+        // if this node contains font manipulations, we must immediately stop here
+        if ( !fontManipulations.isEmpty() ) return false;
+
         // by building rule, the very next sibling cannot be a wildcard as well, so just check if it hits
         if ( !config.ignoreBracketLogic() && !bracketStack.isEmpty() ) return true;
 
@@ -334,8 +347,6 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
 
         boolean nextSiblingMatched = nextSibling.match(next, followingExpressions, config);
         if ( !config.allowFollowingTokens() && nextSiblingMatched ) {
-            // TODO we may need to continue... but how do we find out?
-
             // ok in case the next sibling is the end of the pattern, than the following
             // expressions must be empty to stop continue matching
             if ( nextSibling.nextSibling == null ) return !followingExpressions.isEmpty();
@@ -386,5 +397,15 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         String mathTerm = pte.getRoot().getTermText();
         String pattern = config.getIllegalTokensForWildcard(this.wildcardID);
         return mathTerm != null && mathTerm.matches(pattern);
+    }
+
+    private boolean matchesAccents(PomTaggedExpression pte, MatcherConfig config) {
+        List<String> otherFontManipulations = PomTaggedExpressionUtility.getFontManipulations(pte);
+        for ( int i = 0; i < this.fontManipulations.size() && i < otherFontManipulations.size(); i++ ) {
+            String matchManipulation = this.fontManipulations.get(i);
+            String otherManipulation = otherFontManipulations.get(i);
+            if ( !matchManipulation.equals(otherManipulation) ) return false;
+        }
+        return true;
     }
 }

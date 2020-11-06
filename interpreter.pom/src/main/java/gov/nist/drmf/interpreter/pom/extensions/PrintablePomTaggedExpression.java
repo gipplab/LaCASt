@@ -2,6 +2,8 @@ package gov.nist.drmf.interpreter.pom.extensions;
 
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
+import gov.nist.drmf.interpreter.common.text.IndexRange;
+import gov.nist.drmf.interpreter.common.text.TextUtility;
 import gov.nist.drmf.interpreter.pom.FeatureSetUtility;
 import gov.nist.drmf.interpreter.pom.PomTaggedExpressionUtility;
 import mlp.MathTerm;
@@ -27,6 +29,9 @@ import java.util.regex.Pattern;
  * @see gov.nist.drmf.interpreter.pom.SemanticMLPWrapper
  */
 public class PrintablePomTaggedExpression extends PomTaggedExpression implements IMatcher<PrintablePomTaggedExpression> {
+    private static final PrintablePomTaggedExpressionRangeCalculator rangeCalculator =
+            new PrintablePomTaggedExpressionRangeCalculator();
+
     private String caption;
 
     /**
@@ -90,151 +95,14 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
         for (PomTaggedExpression component : pte.getComponents()) {
             String innerExpression;
 
-            String thisMatch = getStartingString(component);
-            String nextMatch = getEndingString(component);
+            IndexRange range = rangeCalculator.getRange(component, expr);
 
-            Pattern thisPattern = Pattern.compile(generatePattern(thisMatch));
-            Pattern nextPattern = Pattern.compile(nextMatch);
-
-            Matcher thisM = thisPattern.matcher(expr);
-            Matcher nextM = nextPattern.matcher(expr);
-
-            int idxStart = 0;
-            int idxEnd = expr.length();
-
-            if (thisM.find()) {
-                idxStart = thisM.start();
-            }
-
-            if (nextM.find()) {
-                idxEnd = nextM.end();
-            }
-
-            if (idxStart == idxEnd) {
-                // essentially means, getEnding and getStart provide the same string
-                idxEnd += thisMatch.length();
-            }
-
-            // check before the wrapping { ... } if the brackets are correct now, or if we missed something
-            idxEnd = checkIndexForClosingBrackets(idxStart, idxEnd, expr);
-
-            if (isStartingIndexOpenBracket(idxStart, expr) && isEndingIndexCloseBracket(idxEnd, expr)){
-                idxStart--;
-                idxEnd++;
-            }
-
-            innerExpression = expr.substring(idxStart, idxEnd);
-            expr = expr.substring(idxEnd);
+            innerExpression = expr.substring(range.getStart(), range.getEnd());
+            expr = expr.substring(range.getEnd());
 
             PrintablePomTaggedExpression ppte = new PrintablePomTaggedExpression(component, innerExpression);
             super.addComponent(ppte);
         }
-    }
-
-    private boolean isStartingIndexOpenBracket(int idxStart, String expr) {
-        return idxStart > 0 && (expr.charAt(idxStart-1) == '[' || expr.charAt(idxStart-1) == '{' );
-    }
-
-    private boolean isEndingIndexCloseBracket(int idxEnd, String expr) {
-        return idxEnd < expr.length() && (expr.charAt(idxEnd) == ']' || expr.charAt(idxEnd) == '}');
-    }
-
-    private static String generatePattern(String input) {
-        if ( input.matches("[A-Za-z]+") ) {
-            return "(?<![A-Za-z])"+input+"(?![A-Za-z])";
-        } else return Pattern.quote(input);
-    }
-
-    private String getStartingString(PomTaggedExpression pte) {
-        MathTerm mt = pte.getRoot();
-        String token = mt.getTermText();
-        if (token.isBlank()) {
-            // might contain a latex feature, let's check it
-            String latexFeature = pte.getFeatureValue(FeatureSetUtility.LATEX_FEATURE_KEY);
-            if (latexFeature != null) token = latexFeature;
-        } else if (mt.wasFontActionApplied()) {
-            // is there a font-action applied?
-            token = mt.firstFontAction() + "{" + token + "}";
-        }
-
-        return checkSubExpressionToken(token, pte);
-    }
-
-    private String checkSubExpressionToken(String token, PomTaggedExpression pte) {
-        if (token.isBlank()) {
-            if (pte.getComponents().isEmpty()) {
-                // well, a blank token with no components is only possible by "{}". So we shall
-                // return this, I guess.
-                return "{";
-            } else return getStartingString(pte.getComponents().get(0));
-        } else return token;
-    }
-
-    private String getEndingString(PomTaggedExpression pte) {
-        List<PomTaggedExpression> components = pte.getComponents();
-        if (components.isEmpty()) {
-            String p = generatePattern(getStartingString(pte));
-            // this only happens for empty expression. Hence, we want the } symbol here.
-            if ( p.equals("\\Q{\\E") ) return Pattern.quote("}");
-            return p;
-        } else {
-            StringBuilder entireListOfComponents = new StringBuilder();
-            String potentialRoot = PrintablePomTaggedExpressionUtility.getInternalNodeCommand(pte);
-            entireListOfComponents.append(Pattern.quote(potentialRoot));
-            if ( !potentialRoot.isBlank() ) entireListOfComponents.append("[\\s{}\\[\\]]*");
-
-            for ( int i = 0; i < components.size(); i++ ) {
-                PomTaggedExpression last = components.get(i);
-                if ( PomTaggedExpressionUtility.isSequence(last) ) {
-                    for ( PomTaggedExpression child : last.getComponents() ) {
-                        entireListOfComponents.append("[\\s{}\\[\\]]*")
-                                .append(getEndingString(child));
-                    }
-                } else if ( !last.getComponents().isEmpty() ) {
-                    String root = PrintablePomTaggedExpressionUtility.getInternalNodeCommand(last);
-                    entireListOfComponents.append(Pattern.quote(root));
-                    for ( PomTaggedExpression child : last.getComponents() ) {
-                        entireListOfComponents.append("[\\s{}\\[\\]]*")
-                                .append(getEndingString(child));
-                    }
-                } else {
-                    entireListOfComponents.append(getEndingString(components.get(i)));
-                }
-                if ( i < components.size()-1 )
-                    entireListOfComponents.append("[\\s{}\\[\\]]*");
-            }
-
-            return entireListOfComponents.toString();
-        }
-    }
-
-    private int checkIndexForClosingBrackets(int start, int end, String expression) {
-        if (expression.length() == 0) return 0;
-
-        String sub = expression.substring(start, end);
-        int opened = countOpenBrackets(sub);
-
-        return getEndIndex(opened, end, expression);
-    }
-
-    private int countOpenBrackets(String sub) {
-        int opened = 0;
-        for (int i = 0; i < sub.length(); i++) {
-            if (sub.charAt(i) == '{') opened++;
-            else if (sub.charAt(i) == '}') opened--;
-        }
-        return opened;
-    }
-
-    private int getEndIndex(int opened, int end, String expression) {
-        while (opened > 0 && end < expression.length()) {
-            if (expression.charAt(end) == '}') {
-                end++;
-                opened--;
-            } else end++;
-        }
-
-        return end;
     }
 
     /**
@@ -353,6 +221,12 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
             throw new IllegalArgumentException("Printable tree must contain only printable elements.");
     }
 
+    public void refreshTexComponents() {
+        IndexRange range = rangeCalculator.getRange( this, caption );
+        this.replaceCaption( caption.substring(range.getStart(), range.getEnd()) );
+        this.populatingStringChanges();
+    }
+
     @Override
     public void setRoot(MathTerm mathTerm) {
         String newCaption = PrintablePomTaggedExpressionUtility.getInternalNodeCommand(mathTerm);
@@ -370,7 +244,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
     }
 
     private void replaceCaption(String newCaption) {
-        if ( caption.matches("[\\[{].*[]}]") ){
+        if ( TeXPreProcessor.wrappedInCurlyBrackets(caption) && !TeXPreProcessor.wrappedInCurlyBrackets(newCaption) ){
             String start = caption.substring(0,1);
             String end = caption.substring(caption.length()-1);
             this.caption = start + newCaption + end;
@@ -383,7 +257,12 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
     private void populatingStringChanges() {
         if ( !hasNoChildren() ) {
             String newCaption = PrintablePomTaggedExpressionUtility.getInternalNodeCommand(this);
-            newCaption += PrintablePomTaggedExpressionUtility.buildString(getPrintableComponents());
+            String elementsCaption = PrintablePomTaggedExpressionUtility.buildString(getPrintableComponents());
+
+            if ( !newCaption.isBlank() && !(elementsCaption.trim().startsWith("{") && elementsCaption.trim().endsWith("}")) ) {
+                newCaption += "{" + elementsCaption + "}";
+            } else newCaption += elementsCaption;
+
             replaceCaption(newCaption);
         }
 

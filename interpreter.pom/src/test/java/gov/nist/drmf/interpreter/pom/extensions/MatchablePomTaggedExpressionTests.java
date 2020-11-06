@@ -1172,6 +1172,56 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void fontManipulationTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("x + \\overline{var1}", "var1");
+        assertTrue(blueprint.match("x + \\overline{y}"));
+        Map<String, String> groups = blueprint.getStringMatches();
+        assertEquals("y", groups.get("var1"));
+    }
+
+    @Test
+    public void innerFontManipulationTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("x + \\overline{var1}", "var1");
+        assertTrue(blueprint.match("x + \\overline{y + \\dot{x}}"));
+        Map<String, String> groups = blueprint.getStringMatches();
+        assertEquals("y + \\dot{x}", groups.get("var1"));
+    }
+
+    @Test
+    public void multiFontManipulationMatchTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("x + \\overline{\\tilde{var1}}", "var1");
+        assertTrue(blueprint.match("x + \\overline{\\tilde{y}}"));
+        Map<String, String> groups = blueprint.getStringMatches();
+        assertEquals("y", groups.get("var1"));
+    }
+
+    @Test
+    public void partialFontManipulationMatchTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("x + \\overline{var1}", "var1");
+        assertTrue(blueprint.match("x + \\overline{\\tilde{y}}"));
+        Map<String, String> groups = blueprint.getStringMatches();
+        assertEquals("\\tilde{y}", groups.get("var1"));
+    }
+
+    @Test
+    public void partialExpressionFontManipulationMatchTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("x + \\overline{var1}", "var1");
+        assertTrue(blueprint.match("x + \\overline{\\tilde{y} + x}"));
+        Map<String, String> groups = blueprint.getStringMatches();
+        assertEquals("\\tilde{y} + x", groups.get("var1"));
+
+        assertTrue(blueprint.match("x + \\overline{\\tilde{y+x}}"));
+        groups = blueprint.getStringMatches();
+        assertEquals("\\tilde{y + x}", groups.get("var1"));
+    }
+
+    @Test
+    public void wrongOrderFontManipulationMatchTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("x + \\overline{\\tilde{var1}}", "var1");
+        assertFalse(blueprint.match("x + \\tilde{\\overline{y}}"));
+    }
+
+    @Test
     public void pomMatcherReplaceAllRealWorldTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
                 PomMatcherBuilder.compile(mlp, "P^{(var1, var2)}_{var3} (var4)", "(p|v)ar\\d");

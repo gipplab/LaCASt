@@ -2,10 +2,7 @@ package gov.nist.drmf.interpreter.pom.extensions;
 
 import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
-import gov.nist.drmf.interpreter.pom.FakeMLPGenerator;
-import gov.nist.drmf.interpreter.pom.FeatureSetUtility;
-import gov.nist.drmf.interpreter.pom.MLPWrapper;
-import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.*;
 import mlp.MathTerm;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
@@ -14,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -254,6 +252,94 @@ public class PrintablePomTaggedExpressionTests {
 
         List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
         checkList(printComps, "{a}", "{b}");
+    }
+
+    @Test
+    public void fontManipulationTest() throws ParseException {
+        String texString = "\\overline{x}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+    }
+
+    @Test
+    public void acuteTest() throws ParseException {
+        String texString = "x + \\acute{x}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps, "x", "+", "\\acute{x}");
+    }
+
+    @Test
+    public void accentTest() throws ParseException {
+        String texString = "x + \\'{x}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps, "x", "+", "\\'", "{x}");
+    }
+
+    @Test
+    public void fontManipulationExpressionTest() throws ParseException {
+        String texString = "\\overline{x} + x";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps, "\\overline{x}", "+", "x");
+    }
+
+    @Test
+    public void updateAccentsTest() throws ParseException {
+        String texString = "\\overline{x} + x";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps, "\\overline{x}", "+", "x");
+
+        List<String> removeOverlineList = new LinkedList<>();
+        removeOverlineList.add("\\overline");
+        removeOverlineList.add("overline");
+        PomTaggedExpressionUtility.removeFontManipulations(printComps.get(0), removeOverlineList);
+        checkList(printComps, "{x}", "+", "x");
+        assertEquals("{x} + x", ppte.getTexString());
+        assertEquals("{x} + x", printComps.get(0).getRootTexString());
+        assertEquals("{x} + x", printComps.get(1).getRootTexString());
+        assertEquals("{x} + x", printComps.get(2).getRootTexString());
+    }
+
+    @Test
+    public void partiallyRemoveAccentsTest() throws ParseException {
+        String texString = "\\overline{\\tilde{\\dot{x}}} + x";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps, "\\overline{\\tilde{\\dot{x}}}", "+", "x");
+
+        List<String> removeOverlineList = new LinkedList<>();
+        removeOverlineList.add("\\overline");
+        removeOverlineList.add("overline");
+        removeOverlineList.add("tilde");
+        PomTaggedExpressionUtility.removeFontManipulations(printComps.get(0), removeOverlineList);
+        checkList(printComps, "{\\dot{x}}", "+", "x");
+        assertEquals("{\\dot{x}} + x", ppte.getTexString());
+        assertEquals("{\\dot{x}} + x", printComps.get(0).getRootTexString());
+        assertEquals("{\\dot{x}} + x", printComps.get(1).getRootTexString());
+        assertEquals("{\\dot{x}} + x", printComps.get(2).getRootTexString());
+    }
+
+    @Test
+    public void multiFontManipulationExpressionTest() throws ParseException {
+        String texString = "x + \\overline{\\tilde{\\dot{x}}}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps, "x", "+", "\\overline{\\tilde{\\dot{x}}}");
     }
 
     @Test
@@ -517,6 +603,22 @@ public class PrintablePomTaggedExpressionTests {
     public void realWorldWikiExampleTest() throws ParseException {
         String texString = "(1 - x)^{\\alpha}(1 + x)^{\\beta}";
         mlp.parse(texString);
+    }
+
+    @Test
+    public void fracSqrtTest() throws ParseException {
+        String texString = "\\frac{\\nu}{\\sqrt{\\cpi}}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps,
+                "{\\nu}",
+                "{\\sqrt{\\cpi}}"
+        );
+
+        List<PrintablePomTaggedExpression> downComps = printComps.get(1).getPrintableComponents();
+        checkList(downComps, "{\\cpi}");
     }
 
     @Test

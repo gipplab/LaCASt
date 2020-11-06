@@ -1,18 +1,22 @@
 package gov.nist.drmf.interpreter.pom.extensions;
 
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.text.IndexRange;
 import gov.nist.drmf.interpreter.pom.FeatureSetUtility;
 import gov.nist.drmf.interpreter.pom.PomTaggedExpressionUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
  */
 public final class PrintablePomTaggedExpressionUtility {
-    private PrintablePomTaggedExpressionUtility(){}
+    private PrintablePomTaggedExpressionUtility() {
+    }
 
     public static String getInternalNodeCommand(MathTerm mt) {
         String cmd = mt.getTermText();
@@ -23,7 +27,7 @@ public final class PrintablePomTaggedExpressionUtility {
     public static String getInternalNodeCommand(PomTaggedExpression pte) {
         MathTerm mt = pte.getRoot();
         String val = getInternalNodeCommand(mt);
-        if ( val.isBlank() ) val = pte.getFeatureValue(FeatureSetUtility.LATEX_FEATURE_KEY);
+        if (val.isBlank()) val = pte.getFeatureValue(FeatureSetUtility.LATEX_FEATURE_KEY);
         return val == null ? "" : val;
     }
 
@@ -34,10 +38,10 @@ public final class PrintablePomTaggedExpressionUtility {
         sb.append(it.next().getTexString());
         String prev = sb.toString();
 
-        while ( it.hasNext() ) {
+        while (it.hasNext()) {
             PrintablePomTaggedExpression p = it.next();
             String s = p.getTexString();
-            if ( !s.matches("^[{^_!].*|[)}\\]|@]") && !prev.matches(".*[({\\[|@]$") ) sb.append(" ");
+            if (!s.matches("^[{^_!].*|[)}\\]|@]") && !prev.matches(".*[({\\[|@]$")) sb.append(" ");
             sb.append(s);
             prev = s;
         }
@@ -47,14 +51,14 @@ public final class PrintablePomTaggedExpressionUtility {
 
     public static boolean isSingleElementInBrackets(PomTaggedExpression pom) {
         String expr = pom.getRoot().getTermText();
-        if ( pom instanceof PrintablePomTaggedExpression )
+        if (pom instanceof PrintablePomTaggedExpression)
             expr = ((PrintablePomTaggedExpression) pom).getTexString();
         return pom.getComponents().isEmpty() && TeXPreProcessor.wrappedInCurlyBrackets(expr);
     }
 
     public static List<PrintablePomTaggedExpression> deepCopyPPTEList(List<PrintablePomTaggedExpression> list) {
         var copy = new LinkedList<PrintablePomTaggedExpression>();
-        list.forEach( pte -> {
+        list.forEach(pte -> {
             PrintablePomTaggedExpression c = new PrintablePomTaggedExpression(pte);
             copy.add(c);
         });
@@ -68,12 +72,12 @@ public final class PrintablePomTaggedExpressionUtility {
     public static Collection<PrintablePomTaggedExpression> getIdentifierNodes(PrintablePomTaggedExpression pte) {
         Collection<PrintablePomTaggedExpression> identifiers = new LinkedList<>();
 
-        if ( isIdentifier(pte) ) identifiers.add(pte);
+        if (isIdentifier(pte)) identifiers.add(pte);
 
-        for ( PrintablePomTaggedExpression child : pte.getPrintableComponents() ) {
+        for (PrintablePomTaggedExpression child : pte.getPrintableComponents()) {
             Collection<PrintablePomTaggedExpression> childIds = getIdentifierNodes(child);
-            for ( PrintablePomTaggedExpression next : childIds )
-                if ( !identifiers.contains(next) ) identifiers.add(next);
+            for (PrintablePomTaggedExpression next : childIds)
+                if (!identifiers.contains(next)) identifiers.add(next);
         }
 
         return identifiers;

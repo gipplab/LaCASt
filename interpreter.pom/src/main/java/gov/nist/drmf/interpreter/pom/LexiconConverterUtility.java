@@ -17,7 +17,7 @@ import java.util.regex.Matcher;
 /**
  * @author Andre Greiner-Petter
  */
-public abstract class LexiconConverterUtility {
+public final class LexiconConverterUtility {
     private static final Logger LOG = LogManager.getLogger(LexiconConverterUtility.class.getName());
 
     public static final String DELIMITER = ";";

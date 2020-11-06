@@ -2,31 +2,37 @@ package gov.nist.drmf.interpreter.common.interfaces;
 
 import gov.nist.drmf.interpreter.pom.MacrosLexicon;
 import mlp.FeatureSet;
+import mlp.MathTerm;
 
 import java.util.*;
 
 /**
  * @author Andre Greiner-Petter
  */
+@FunctionalInterface
 public interface IFeatureExtractor {
     /**
      * Returns the sorted values of a feature set for a given cas
      * @param featureSet the feature set
-     * @param cas the cas
-     * @retur the feature values
+     * @return the feature values
      */
-    SortedSet<String> getFeatureSet(FeatureSet featureSet, String cas);
+    SortedSet<String> getFeatureSet(FeatureSet featureSet);
 
     /**
      * Returns the string of a feature set for a given cas.
      * @param featureSet the feature set
-     * @param cas the computer algebra system
      * @return the string representation
      */
-    default String getFeatureValue(FeatureSet featureSet, String cas) {
-        return getStringFromSet(getFeatureSet(featureSet, cas));
+    default String getFeatureValue(FeatureSet featureSet) {
+        return IFeatureExtractor.getStringFromSet(getFeatureSet(featureSet));
     }
 
+    /**
+     * Sets the value for the name and values in the given feature set
+     * @param featureSet the feature set
+     * @param name the name of the new feature
+     * @param values the values
+     */
     static void setFeatureValue(FeatureSet featureSet, String name, String... values) {
         featureSet.setFeature(name, Arrays.asList(values.clone()));
     }

@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.generic.macro;
 
+import org.intellij.lang.annotations.Language;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,6 +21,9 @@ public final class MacroHelper {
     public static final String OPTIONAL_PAR_PREFIX = "opPar";
 
     public static final Pattern NUM_PATTERN = Pattern.compile("#(\\d+)");
+
+    @Language("RegExp")
+    public static final String WILDCARD_PATTERNS = "(?:opP|p|v)ar\\d+";
 
     private MacroHelper(){};
 
