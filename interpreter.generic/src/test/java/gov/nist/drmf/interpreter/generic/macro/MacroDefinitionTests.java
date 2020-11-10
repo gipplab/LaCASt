@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.generic.macro;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import gov.nist.drmf.interpreter.pom.extensions.MatcherConfig;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -59,7 +60,7 @@ public class MacroDefinitionTests {
 
     @Test
     public void loadedAllMacrosTest() {
-        assertEquals(11, loadedMacros.keySet().size());
+        assertEquals(13, loadedMacros.keySet().size());
     }
 
     @Test
@@ -216,6 +217,22 @@ public class MacroDefinitionTests {
         assertEquals(2, b.getGenericLatex().size());
         assertEquals("(a,b)", b.getMetaInformation().getStandardArguments().getStandardVariables().getFirst());
         assertEquals("the set of continuous functions $n$-times differentiable on the interval $(a,b)$", b.getMetaInformation().getDescription());
+    }
+
+    @Test
+    public void macroGenHyperFTest() {
+        MacroBean b = loadedMacros.get("genhyperF");
+        assertNotNull(b);
+        assertNotNull(loadedMacros.get("genhyperF{1}{1}"));
+
+        assertEquals(3, b.getGenericLatex().size());
+        MatcherConfig strictConfig = MatcherConfig.getExactMatchConfig();
+        assertTrue( strictConfig.getIllegalTokensForWildcard("var1").contains(",") );
+        assertTrue( strictConfig.getIllegalTokensForWildcard("var2").contains(",") );
+
+        MacroHelper.updateMatchingConfig(b, strictConfig);
+        assertFalse( strictConfig.getIllegalTokensForWildcard("var1").contains(",") );
+        assertFalse( strictConfig.getIllegalTokensForWildcard("var2").contains(",") );
     }
 
     @Test

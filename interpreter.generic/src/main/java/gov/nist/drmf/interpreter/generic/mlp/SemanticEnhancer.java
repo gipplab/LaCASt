@@ -27,13 +27,11 @@ public class SemanticEnhancer {
     private int considerNumberOfTopRelations = 3;
     private int considerNumberOfTopMacros = 5;
 
-    private LinkedList<String> genericLaTeXPatterns;
-    private LinkedList<String> semanticLaTeXPatterns;
+    private LinkedList<MacroBean> macroPatterns;
 
     public SemanticEnhancer() {
         this.elasticSearchConnector = ElasticSearchConnector.getDefaultInstance();
-        this.genericLaTeXPatterns = new LinkedList<>();
-        this.semanticLaTeXPatterns = new LinkedList<>();
+        this.macroPatterns = new LinkedList<>();
     }
 
     public PrintablePomTaggedExpression semanticallyEnhance(MOINode<MOIAnnotation> node) throws IOException, ParseException {
@@ -46,28 +44,37 @@ public class SemanticEnhancer {
 
         List<MOINode<MOIAnnotation>> dependentNodes = node.getDependencyNodes();
         retrieveReplacementListsEnhance(node, dependentNodes);
-        LOG.info("Retrieved "+ semanticLaTeXPatterns.size() +" replacement rules. Start applying each rule.");
+        LOG.info("Retrieved "+ macroPatterns.size() +" replacement rules. Start applying each rule.");
 
         MathematicalObjectOfInterest moi = node.getNode();
         PrintablePomTaggedExpression pte = moi.getMoi();
         Set<String> replacementPerformed = new HashSet<>();
         LOG.debug("Start replacements on MOI: " + pte.getTexString());
 
-        while( !semanticLaTeXPatterns.isEmpty() ) {
-            String genericLaTeXPattern = genericLaTeXPatterns.removeFirst();
-            String semanticLaTeXPattern = semanticLaTeXPatterns.removeFirst();
+        while( !macroPatterns.isEmpty() ) {
+            MacroBean macro = macroPatterns.removeFirst();
+            MatcherConfig config = MatcherConfig.getInPlaceMatchConfig();
+            MacroHelper.updateMatchingConfig(macro, config);
 
-            // if rule was already applied, we skip it
-            if ( replacementPerformed.contains(genericLaTeXPattern) ) continue;
-            else replacementPerformed.add(genericLaTeXPattern);
+            LinkedList<String> genericLaTeXPatterns = macro.getGenericLatex();
+            LinkedList<String> semanticLaTeXPatterns = macro.getSemanticLaTeX();
 
-            LOG.debug("Apply replacement from '"+genericLaTeXPattern+"' to '"+semanticLaTeXPattern+"'.");
+            while ( !genericLaTeXPatterns.isEmpty() && !semanticLaTeXPatterns.isEmpty() ) {
+                String genericLaTeXPattern = genericLaTeXPatterns.removeFirst();
+                String semanticLaTeXPattern = semanticLaTeXPatterns.removeFirst();
 
-            MatchablePomTaggedExpression genericPattern =
-                    PomMatcherBuilder.compile(genericLaTeXPattern, MacroHelper.WILDCARD_PATTERNS);
-            PomMatcher matcher = genericPattern.matcher(pte);
-            pte = matcher.replacePattern(semanticLaTeXPattern);
-            LOG.debug("Replacement applied, updated MOI: " + pte.getTexString());
+                // if rule was already applied, we skip it
+                if ( replacementPerformed.contains(genericLaTeXPattern) ) continue;
+                else replacementPerformed.add(genericLaTeXPattern);
+
+                LOG.debug("Apply replacement from '"+genericLaTeXPattern+"' to '"+semanticLaTeXPattern+"'.");
+
+                MatchablePomTaggedExpression genericPattern =
+                        PomMatcherBuilder.compile(genericLaTeXPattern, MacroHelper.WILDCARD_PATTERNS);
+                PomMatcher matcher = genericPattern.matcher(pte, config);
+                pte = matcher.replacePattern(semanticLaTeXPattern);
+                LOG.debug("Replacement applied, updated MOI: " + pte.getTexString());
+            }
         }
 
         LOG.info("Semantically enhanced MOI.\n" +
@@ -93,15 +100,9 @@ public class SemanticEnhancer {
 
             for ( int j = 0; j < macros.size() && j < considerNumberOfTopMacros; j++ ) {
                 MacroBean macro = macros.get(j).getMacro();
-                LinkedList<String> genericList = macro.getGenericLatex();
-                LinkedList<String> semanticList = macro.getSemanticLaTeX();
-
-                if ( genericList.size() != semanticList.size() ) {
-                    LOG.warn("Retrieved an equal size of generic-semantic mapping for " + macros.get(j) + ". Skip these replacement rules");
-                } else {
-                    LOG.debug("Add "+semanticList.size()+" semantic replacement rules for macro " + macro.getName());
-                    this.genericLaTeXPatterns.addAll(genericList);
-                    this.semanticLaTeXPatterns.addAll(semanticList);
+                if ( !macroPatterns.contains(macro) ) {
+                    LOG.debug("Add semantic macro " + macro.getName());
+                    macroPatterns.add(macro);
                 }
             }
         }

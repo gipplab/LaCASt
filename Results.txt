@@ -1,0 +1,233 @@
+ Generic LaTeX: \Gamma(z)
+Semantic LaTeX: \EulerGamma@{z}
+   Mathematica: Gamma[z]
+         Maple: GAMMA(z)
+
+ Generic LaTeX: (\alpha+1)_n
+Semantic LaTeX: \Pochhammersym{\alpha + 1}{n}
+   Mathematica: Pochhammer[\[Alpha]+ 1, n]
+         Maple: pochhammer(alpha + 1, n)
+
+ Generic LaTeX: \begin{align}\lim_{n \to \infty} n^{-\alpha}P_n^{(\alpha,\beta)}\left(\cos \left ( \tfrac{z}{n} \right ) \right) &= \left(\tfrac{z}{2}\right)^{-\alpha} J_\alpha(z)\lim_{n \to \infty} n^{-\beta}P_n^{(\alpha,\beta)}\left(\cos \left (\pi - \tfrac{z}{n} \right) \right) &= \left(\tfrac{z}{2}\right)^{-\beta} J_\beta(z)\end{align}
+Semantic LaTeX: null
+
+ Generic LaTeX: P_n^{(\alpha, \beta)} (-1) = (-1)^n { n+\beta\choose n}
+Semantic LaTeX: \JacobipolyP{\alpha}{\beta}{n}@{- 1} = (- 1)^n n+\beta\choose n
+   Mathematica: Binomial[JacobiP[n, \[Alpha], \[Beta], - 1] == (- 1)^(n)* n + \[Beta],n]
+         Maple: binomial(JacobiP(n, alpha, beta, - 1) = (- 1)^(n)* n + beta,n)
+
+ Generic LaTeX: P_1^{(\alpha,\beta)}(z)= (\alpha+1) + (\alpha+\beta+2)\frac{z-1}{2}
+Semantic LaTeX: \JacobipolyP{\alpha}{\beta}{1}@{z} = (\alpha + 1) + (\alpha + \beta + 2) \frac{z-1}{2}
+   Mathematica: JacobiP[1, \[Alpha], \[Beta], z] == (\[Alpha]+ 1)+(\[Alpha]+ \[Beta]+ 2)*Divide[z - 1,2]
+         Maple: JacobiP(1, alpha, beta, z) = (alpha + 1)+(alpha + beta + 2)*(z - 1)/(2)
+
+ Generic LaTeX: R(z, 0) = 1
+Semantic LaTeX: R(z, 0) = 1
+   Mathematica: R*(z , 0) == 1
+         SymPy: R*(z , 0) == 1
+         Maple: R*(z , 0) = 1
+
+ Generic LaTeX: O
+Semantic LaTeX: O
+   Mathematica: O
+         SymPy: O
+         Maple: O
+
+ Generic LaTeX: n= 2, 3,
+Semantic LaTeX: n= 2, 3,
+   Mathematica: n == 2 , 3 ,
+         SymPy: n == 2 , 3 ,
+         Maple: n = 2 , 3 ,
+
+ Generic LaTeX: P_{n}^{(\alpha, \beta)}
+Semantic LaTeX: \RiemannsymP_{n}^{(\alpha, \beta)}
+
+ Generic LaTeX: \epsilon > 0
+Semantic LaTeX: \epsilon > 0
+   Mathematica: \[Epsilon] > 0
+         SymPy: Symbol('epsilon') > 0
+         Maple: epsilon > 0
+
+ Generic LaTeX: z
+Semantic LaTeX: z
+   Mathematica: z
+         SymPy: z
+         Maple: z
+
+ Generic LaTeX: \begin{align}&2n (n + \alpha + \beta) (2n + \alpha + \beta - 2) P_n^{(\alpha,\beta)}(z) \\&= (2n+\alpha + \beta-1) \{ (2n+\alpha + \beta)(2n+\alpha+\beta-2) z +  \alpha^2 - \beta^2 \} P_{n-1}^{(\alpha,\beta)}(z) - 2 (n+\alpha - 1) (n + \beta-1) (2n+\alpha + \beta) P_{n-2}^{(\alpha, \beta)}(z),\end{align}
+Semantic LaTeX: null
+
+ Generic LaTeX: n, n + \alpha, n + \beta
+Semantic LaTeX: n, n + \alpha, n + \beta
+   Mathematica: n , n + \[Alpha], n + \[Beta]
+         SymPy: n , n + Symbol('alpha'), n + Symbol('beta')
+         Maple: n , n + alpha , n + beta
+
+ Generic LaTeX: P_{n}(z) = \frac{1 }{2^n  n! } \frac{d^n }{ d z^n }  ( z^2 - 1 )^n
+Semantic LaTeX: \LegendrepolyP{n}@{z} = \frac{1 }{2^n  n! } \frac{d^n }{ d z^n } (z^2 - 1)^n
+   Mathematica: LegendreP[n, z] == Divide[1,(2)^(n)* (n)!]*Divide[(d)^(n),d*(z)^(n)]*((z)^(2)- 1)^(n)
+         Maple: LegendreP(n, z) = (1)/((2)^(n)* factorial(n))*((d)^(n))/(d*(z)^(n))*((z)^(2)- 1)^(n)
+
+ Generic LaTeX: \alpha,\beta
+Semantic LaTeX: \alpha,\beta
+   Mathematica: \[Alpha], \[Beta]
+         SymPy: Symbol('alpha'), Symbol('beta')
+         Maple: alpha , beta
+
+ Generic LaTeX: [-1, 1]
+Semantic LaTeX: [-1, 1]
+   Mathematica: [- 1 , 1]
+         SymPy: [- 1 , 1]
+         Maple: [- 1 , 1]
+
+ Generic LaTeX: P_n^{(\alpha,\beta)}(x)=(n+\alpha)! (n+\beta)! \sum_{s=0}^n \frac{1}{s! (n+\alpha-s)!(\beta+s)!(n-s)!} \left(\frac{x-1}{2}\right)^{n-s} \left(\frac{x+1}{2}\right)^{s}
+Semantic LaTeX: \JacobipolyP{\alpha}{\beta}{n}@{x} = (n + \alpha)! (n + \beta)! \sum_{s=0}^n \frac{1}{s! (n+\alpha-s)!(\beta+s)!(n-s)!} (\frac{x-1}{2})^{n-s} (\frac{x+1}{2})^{s}
+   Mathematica: JacobiP[n, \[Alpha], \[Beta], x] == (n + \[Alpha])!*(n + \[Beta])!*Sum[Divide[1,(s)!*(n + \[Alpha]- s)!*(\[Beta]+ s)!*(n - s)!]*(Divide[x - 1,2])^(n - s)*(Divide[x + 1,2])^(s), {s, 0, n}, GenerateConditions->None]
+         Maple: JacobiP(n, alpha, beta, x) = factorial(n + alpha)*factorial(n + beta)*sum((1)/(factorial(s)*factorial(n + alpha - s)*factorial(beta + s)*factorial(n - s))*((x - 1)/(2))^(n - s)*((x + 1)/(2))^(s), s = 0..n)
+
+ Generic LaTeX: \sum_{n=0}^\infty P_n^{(\alpha,\beta)}(z) t^n = 2^{\alpha + \beta} R^{-1} (1 - t + R)^{-\alpha} (1 + t + R)^{-\beta}
+Semantic LaTeX: \sum_{n=0}^\infty \JacobipolyP{\alpha}{\beta}{n}@{z} t^n = 2^{\alpha + \beta} R^{-1} (1 - t + R)^{-\alpha} (1 + t + R)^{-\beta}
+   Mathematica: Sum[JacobiP[n, \[Alpha], \[Beta], z]*(t)^(n), {n, 0, Infinity}, GenerateConditions->None] == (2)^(\[Alpha]+ \[Beta])* (R)^(- 1)*(1 - t + R)^(- \[Alpha])*(1 + t + R)^(- \[Beta])
+         Maple: sum(JacobiP(n, alpha, beta, z)*(t)^(n), n = 0..infinity) = (2)^(alpha + beta)* (R)^(- 1)*(1 - t + R)^(- alpha)*(1 + t + R)^(- beta)
+
+ Generic LaTeX: P_n^{(\alpha,\beta)}(z) = \frac{(-1)^n}{2^n n!} (1-z)^{-\alpha} (1+z)^{-\beta} \frac{d^n}{dz^n} \left\{ (1-z)^\alpha (1+z)^\beta \left (1 - z^2 \right )^n \right\}
+Semantic LaTeX: \JacobipolyP{\alpha}{\beta}{n}@{z} = \frac{(-1)^n}{2^n n!} (1 - z)^{-\alpha} (1 + z)^{-\beta} \frac{d^n}{dz^n} \left\{ (1-z)^\alpha (1+z)^\beta \left (1 - z^2 \right )^n \right\}             (   )
+
+ Generic LaTeX: R = R(z, t) = \left(1 - 2zt + t^2\right)^{\frac{1}{2}}~
+Semantic LaTeX: R = R (z , t) = (1 - 2 zt + t^2)^{\frac{1}{2}}
+   Mathematica: R == R*(z , t) == (1 - 2*z*t + (t)^(2))^(Divide[1,2])
+         SymPy: R == R*(z , t) == (1 - 2*z*t + (t)**(2))**((1)/(2))
+         Maple: R = R*(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))
+
+ Generic LaTeX: x
+Semantic LaTeX: x
+   Mathematica: x
+         SymPy: x
+         Maple: x
+
+ Generic LaTeX: \alpha = \beta = 0
+Semantic LaTeX: \alpha = \beta = 0
+   Mathematica: \[Alpha] == \[Beta] == 0
+         SymPy: Symbol('alpha') == Symbol('beta') == 0
+         Maple: alpha = beta = 0
+
+ Generic LaTeX: 0 \leq \varphi \leq 4\pi)
+Semantic LaTeX: 0 \leq \varphi \leq 4\pi)
+
+ Generic LaTeX: P_{n}^{(\alpha, \beta)}(x)
+Semantic LaTeX: \JacobipolyP{\alpha}{\beta}{n}@{x}
+   Mathematica: JacobiP[n, \[Alpha], \[Beta], x]
+         Maple: JacobiP(n, alpha, beta, x)
+
+ Generic LaTeX: \begin{align}(z-1) \frac{d}{dz} P_n^{(\alpha,\beta)}(z) &= \frac{1}{2} (z-1)(1+\alpha+\beta+n)P_{n-1}^{(\alpha+1,\beta+1)} \\&= n P_n^{(\alpha,\beta)} - (\alpha+n) P_{n-1}^{(\alpha,\beta+1)} \\&=(1+\alpha+\beta+n) \left( P_n^{(\alpha,\beta+1)} - P_{n}^{(\alpha,\beta)} \right) \\&=(\alpha+n) P_n^{(\alpha-1,\beta+1)} - \alpha P_n^{(\alpha,\beta)} \\&=\frac{2(n+1) P_{n+1}^{(\alpha,\beta-1)} - \left(z(1+\alpha+\beta+n)+\alpha+1+n-\beta \right) P_n^{(\alpha,\beta)}}{1+z} \\&=\frac{(2\beta+n+nz) P_n^{(\alpha,\beta)} - 2(\beta+n) P_n^{(\alpha,\beta-1)}}{1+z} \\&=\frac{1-z}{1+z} \left( \beta P_n^{(\alpha,\beta)} - (\beta+n) P_{n}^{(\alpha+1,\beta-1)} \right)  .\end{align}
+Semantic LaTeX: null
+
+ Generic LaTeX: (1 - x)^{\alpha}(1 + x)^{\beta}
+Semantic LaTeX: (1 - x)^{\alpha}(1 + x)^{\beta}
+   Mathematica: (1 - x)^\[Alpha]*(1 + x)^\[Beta]
+         SymPy: (1 - x)**(Symbol('alpha'))*(1 + x)**(Symbol('beta'))
+         Maple: (1 - x)^(alpha)*(1 + x)^(beta)
+
+ Generic LaTeX: n
+Semantic LaTeX: n
+   Mathematica: n
+         SymPy: n
+         Maple: n
+
+ Generic LaTeX: \frac{d^k}{dz^k} P_n^{(\alpha,\beta)} (z) = \frac{\Gamma (\alpha+\beta+n+1+k)}{2^k \Gamma (\alpha+\beta+n+1)} P_{n-k}^{(\alpha+k, \beta+k)} (z)
+Semantic LaTeX: \frac{d^k}{dz^k} \JacobipolyP{\alpha}{\beta}{n}@{z} = \frac{\EulerGamma@{\alpha + \beta + n + 1 + k}}{2^k \EulerGamma@{\alpha + \beta + n + 1}} \JacobipolyP{\alpha + k}{\beta + k}{n-k}@{z}
+   Mathematica: Divide[(d)^(k),d*(z)^(k)]*JacobiP[n, \[Alpha], \[Beta], z] == Divide[Gamma[\[Alpha]+ \[Beta]+ n + 1 + k],(2)^(k)* Gamma[\[Alpha]+ \[Beta]+ n + 1]]*JacobiP[n - k, \[Alpha]+ k, \[Beta]+ k, z]
+         Maple: ((d)^(k))/(d*(z)^(k))*JacobiP(n, alpha, beta, z) = (GAMMA(alpha + beta + n + 1 + k))/((2)^(k)* GAMMA(alpha + beta + n + 1))*JacobiP(n - k, alpha + k, beta + k, z)
+
+ Generic LaTeX: s
+Semantic LaTeX: s
+   Mathematica: s
+         SymPy: s
+         Maple: s
+
+ Generic LaTeX: \left (1-x^2 \right )y'' + ( \beta-\alpha - (\alpha + \beta + 2)x )y' + n(n+\alpha+\beta+1) y = 0
+Semantic LaTeX: (1 - x^2) y ' ' + (\beta - \alpha - (\alpha + \beta + 2) x) y ' + n (n + \alpha + \beta + 1) y = 0
+
+ Generic LaTeX: P_n^{(\alpha, \beta)} (-z) = (-1)^n P_n^{(\beta, \alpha)} (z)
+Semantic LaTeX: \JacobipolyP{\alpha}{\beta}{n}@{- z} = (- 1)^n \JacobipolyP{\beta}{\alpha}{n}@{z}
+   Mathematica: JacobiP[n, \[Alpha], \[Beta], - z] == (- 1)^(n)* JacobiP[n, \[Beta], \[Alpha], z]
+         Maple: JacobiP(n, alpha, beta, - z) = (- 1)^(n)* JacobiP(n, beta, alpha, z)
+
+ Generic LaTeX: n + \alpha + \beta
+Semantic LaTeX: n + \alpha + \beta
+   Mathematica: n + \[Alpha]+ \[Beta]
+         SymPy: n + Symbol('alpha')+ Symbol('beta')
+         Maple: n + alpha + beta
+
+ Generic LaTeX: \begin{align}k(\theta) &= \pi^{-\frac{1}{2}} \sin^{-\alpha-\frac{1}{2}} \tfrac{\theta}{2} \cos^{-\beta-\frac{1}{2}} \tfrac{\theta}{2},\\N &= n + \tfrac{1}{2} (\alpha+\beta+1),\\\gamma &= - \tfrac{\pi}{2} \left (\alpha + \tfrac{1}{2} \right ),\end{align}
+Semantic LaTeX: null
+
+ Generic LaTeX: d^j_{m'm}(\phi) =\left[ \frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}\right]^{\frac{1}{2}} \left(\sin\tfrac{\phi}{2}\right)^{m-m'} \left(\cos\tfrac{\phi}{2}\right)^{m+m'} P_{j-m}^{(m-m',m+m')}(\cos \phi)
+Semantic LaTeX: d_{m'm}^j (\phi) = [\frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}]^{\frac{1}{2}} (\sin \tfrac{\phi}{2})^{m-m'} (\cos \tfrac{\phi}{2})^{m+m'} \JacobipolyP{m - m '}{m + m '}{j-m}@{\cos \phi}
+
+ Generic LaTeX: \int_{-1}^1 (1-x)^{\alpha} (1+x)^{\beta} P_m^{(\alpha,\beta)} (x)P_n^{(\alpha,\beta)} (x)dx =\frac{2^{\alpha+\beta+1}}{2n+\alpha+\beta+1} \frac{\Gamma(n+\alpha+1)\Gamma(n+\beta+1)}{\Gamma(n+\alpha+\beta+1)n!} \delta_{nm},  \alpha,\beta > -1
+Semantic LaTeX: \int_{-1}^1 (1 - x)^{\alpha} (1 + x)^{\beta} \JacobipolyP{\alpha}{\beta}{m}@{x} \JacobipolyP{\alpha}{\beta}{n}@{x} dx = \frac{2^{\alpha+\beta+1}}{2n+\alpha+\beta+1} \frac{\EulerGamma@{n + \alpha + 1} \EulerGamma@{n + \beta + 1}}{\EulerGamma@{n + \alpha + \beta + 1} n!} \delta_{nm} , \alpha , \beta > - 1
+
+ Generic LaTeX: P_n^{(\alpha, \beta)} (1) = {n+\alpha\choose n}
+Semantic LaTeX: \JacobipolyP{\alpha}{\beta}{n}@{1} ={n+\alpha\choose n}
+   Mathematica: JacobiP[n, \[Alpha], \[Beta], 1] == Binomial[n + \[Alpha],n]
+         Maple: JacobiP(n, alpha, beta, 1) = binomial(n + alpha,n)
+
+ Generic LaTeX: d^{j}_{m',m}(\varphi)
+Semantic LaTeX: d_{m',m}^{j} (\varphi)
+
+ Generic LaTeX: k
+Semantic LaTeX: k
+   Mathematica: k
+         SymPy: k
+         Maple: k
+
+ Generic LaTeX: {z \choose n} = \begin{cases} \frac{\Gamma(z+1)}{\Gamma(n+1)\Gamma(z-n+1)} & n \geq 00 & n < 0 \end{cases}
+Semantic LaTeX: null
+
+ Generic LaTeX: [\epsilon,\pi-\epsilon]
+Semantic LaTeX: [\epsilon,\pi-\epsilon]
+   Mathematica: [\[Epsilon], \[Pi]- \[Epsilon]]
+         SymPy: [Symbol('epsilon'), Symbol('pi')- Symbol('epsilon')]
+         Maple: [epsilon , pi - epsilon]
+
+ Generic LaTeX: P_2^{(\alpha,\beta)}(z)= \frac{(\alpha+1)(\alpha+2)}{2}+ (\alpha+2)(\alpha+\beta+3)\frac{z-1}{2}+ \frac{(\alpha+\beta+3)(\alpha+\beta+4)}{2}\left(\frac{z-1}{2}\right)^2,
+Semantic LaTeX: \JacobipolyP{\alpha}{\beta}{2}@{z} = \frac{(\alpha+1)(\alpha+2)}{2} + (\alpha + 2) (\alpha + \beta + 3) \frac{z-1}{2} + \frac{(\alpha+\beta+3)(\alpha+\beta+4)}{2} (\frac{z-1}{2})^2 ,
+   Mathematica: JacobiP[2, \[Alpha], \[Beta], z] == Divide[(\[Alpha]+ 1)*(\[Alpha]+ 2),2]+(\[Alpha]+ 2)*(\[Alpha]+ \[Beta]+ 3)*Divide[z - 1,2]+Divide[(\[Alpha]+ \[Beta]+ 3)*(\[Alpha]+ \[Beta]+ 4),2]*(Divide[z - 1,2])^(2),
+         Maple: JacobiP(2, alpha, beta, z) = ((alpha + 1)*(alpha + 2))/(2)+(alpha + 2)*(alpha + beta + 3)*(z - 1)/(2)+((alpha + beta + 3)*(alpha + beta + 4))/(2)*((z - 1)/(2))^(2),
+
+ Generic LaTeX: P_n^{(\alpha,\beta)}(z)=\frac{(\alpha+1)_n}{n!}{}_2F_1\left(-n,1+\alpha+\beta+n;\alpha+1;\tfrac{1}{2}(1-z)\right)
+Semantic LaTeX: \JacobipolyP{\alpha}{\beta}{n}@{z} = \frac{\Pochhammersym{\alpha + 1}{n}}{n!} \genhyperF{2}{1}@{- n , 1 + \alpha + \beta + n}{\alpha + 1}{\tfrac{1}{2} (1 - z)}
+   Mathematica: JacobiP[n, \[Alpha], \[Beta], z] == Divide[Pochhammer[\[Alpha]+ 1, n],(n)!]*HypergeometricPFQ[{- n , 1 + \[Alpha]+ \[Beta]+ n}, {\[Alpha]+ 1}, Divide[1,2]*(1 - z)]
+         Maple: JacobiP(n, alpha, beta, z) = (pochhammer(alpha + 1, n))/(factorial(n))*hypergeom([- n , 1 + alpha + beta + n], [alpha + 1], (1)/(2)*(1 - z))
+
+ Generic LaTeX: P_n^{(\alpha,\beta)}(x)= \sum_{s=0}^n {n+\alpha\choose n-s}{n+\beta \choose s} \left(\frac{x-1}{2}\right)^{s} \left(\frac{x+1}{2}\right)^{n-s}
+Semantic LaTeX: \JacobipolyP{\alpha}{\beta}{n}@{x} = \sum_{s=0}^n{n+\alpha\choose n-s}{n+\beta \choose s} (\frac{x-1}{2})^{s} (\frac{x+1}{2})^{n-s}
+   Mathematica: JacobiP[n, \[Alpha], \[Beta], x] == Sum[Binomial[n + \[Alpha],n - s]*Binomial[n + \[Beta],s]*(Divide[x - 1,2])^(s)*(Divide[x + 1,2])^(n - s), {s, 0, n}, GenerateConditions->None]
+         Maple: JacobiP(n, alpha, beta, x) = sum(binomial(n + alpha,n - s)*binomial(n + beta,s)*((x - 1)/(2))^(s)*((x + 1)/(2))^(n - s), s = 0..n)
+
+ Generic LaTeX: P_n^{(\alpha,\beta)}(\cos \theta) = n^{-\frac{1}{2}}k(\theta)\cos (N\theta + \gamma) + O \left (n^{-\frac{3}{2}} \right )
+Semantic LaTeX: \JacobipolyP{\alpha}{\beta}{n}@{\cos \theta} = n^{-\frac{1}{2}} k (\theta) \cos (N \theta + \gamma) + O (n^{-\frac{3}{2}})
+   Mathematica: JacobiP[n, \[Alpha], \[Beta], Cos[\[Theta]]] == (n)^(-Divide[1,2])* k*(\[Theta])* Cos[N*\[Theta]+ \[Gamma]]+ O*((n)^(-Divide[3,2]))
+         Maple: JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k*(theta)* cos(N*theta + gamma)+ O*((n)^(-(3)/(2)))
+
+ Generic LaTeX: P_0^{(\alpha,\beta)}(z)= 1
+Semantic LaTeX: \JacobipolyP{\alpha}{\beta}{0}@{z} = 1
+   Mathematica: JacobiP[0, \[Alpha], \[Beta], z] == 1
+         Maple: JacobiP(0, alpha, beta, z) = 1
+
+ Generic LaTeX: P_n^{(\alpha,\beta)} (z) = \frac{\Gamma (\alpha+n+1)}{n!\Gamma (\alpha+\beta+n+1)} \sum_{m=0}^n {n\choose m} \frac{\Gamma (\alpha + \beta + n + m + 1)}{\Gamma (\alpha + m + 1)} \left(\frac{z-1}{2}\right)^m
+Semantic LaTeX: \JacobipolyP{\alpha}{\beta}{n}@{z} = \frac{\EulerGamma@{\alpha + n + 1}}{n! \EulerGamma@{\alpha + \beta + n + 1}} \sum_{m=0}^n{n\choose m} \frac{\EulerGamma@{\alpha + \beta + n + m + 1}}{\EulerGamma@{\alpha + m + 1}} (\frac{z-1}{2})^m
+   Mathematica: JacobiP[n, \[Alpha], \[Beta], z] == Divide[Gamma[\[Alpha]+ n + 1],(n)!*Gamma[\[Alpha]+ \[Beta]+ n + 1]]*Sum[Binomial[n,m]*Divide[Gamma[\[Alpha]+ \[Beta]+ n + m + 1],Gamma[\[Alpha]+ m + 1]]*(Divide[z - 1,2])^(m), {m, 0, n}, GenerateConditions->None]
+         Maple: JacobiP(n, alpha, beta, z) = (GAMMA(alpha + n + 1))/(factorial(n)*GAMMA(alpha + beta + n + 1))*sum(binomial(n,m)*(GAMMA(alpha + beta + n + m + 1))/(GAMMA(alpha + m + 1))*((z - 1)/(2))^(m), m = 0..n)
+
+ Generic LaTeX: n=m
+Semantic LaTeX: n=m
+   Mathematica: n == m
+         SymPy: n == m
+         Maple: n = m
+
+ Generic LaTeX: \pm1
+Semantic LaTeX: \pm1
+   Mathematica: \[PlusMinus]1
+         Maple: &+- 1

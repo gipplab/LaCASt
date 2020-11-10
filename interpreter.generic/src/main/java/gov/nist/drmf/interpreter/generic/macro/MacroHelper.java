@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.generic.macro;
 
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.pom.extensions.MatcherConfig;
 import org.intellij.lang.annotations.Language;
 
 import java.util.Arrays;
@@ -115,5 +116,19 @@ public final class MacroHelper {
 
     public static String fixInvisibleComma(String in) {
         return in.replaceAll("\\\\InvisibleComma", " ");
+    }
+
+    public static MatcherConfig updateMatchingConfig(MacroBean bean, MatcherConfig config) {
+        MacroStandardArgumentsBean standardArgs = bean.getMetaInformation().getStandardArguments();
+        setWildcardConfig( standardArgs.getStandardOptionalParameters(), OPTIONAL_PAR_PREFIX, config );
+        setWildcardConfig( standardArgs.getStandardParameters(), PAR_PREFIX, config );
+        setWildcardConfig( standardArgs.getStandardVariables(), VAR_PREFIX, config );
+        return config;
+    }
+
+    private static void setWildcardConfig(LinkedList<String> vars, String prefix, MatcherConfig config) {
+        for ( int i = 1; i <= vars.size(); i++ ) {
+            if ( vars.get(i-1).contains(",") ) config.allowCommaForWildcard( prefix+i );
+        }
     }
 }

@@ -86,3 +86,15 @@
     %     $\Riemannthetachar{\alpha}{\beta}$},
     sortkey={theta 2 0 zz zz},
     ]{2}[\mleft(#1 \middle| #2\mright)]
+\defSpecFun{genhyperF}[2]{{{}_{#1}F_{#2}}}[%
+    meaning=Gauss-hypergeometric-pFq, om=hypergeo1:hypergeometric_pFq,
+    params={p}{q}, args={a_1,\dots,a_p}{b_1,\dots,b_q}{z},
+    description={the generalized hypergeometric function},% $\genhyperF{p}{q}$},
+    sortkey={F 3 1 zz z z z},
+    ]{3}[\mleft(#1;#2;#3\mright)][\mleft({#1 \atop #2};#3\mright)][\mleft(#3\mright)]
+\defSpecFun{genhyperF{1}{1}}{{{}_{1}F_{1}}}[%
+    meaning=Kummer-confluent-hypergeometric-M-as-1F1, om=hypergeo1:hypergeometric1F1, % Is this correct?
+    args={a}{b}{z},
+    description={Kummer confluent hypergeometric function, $\genhyperF{1}{1} = \KummerconfhyperM$},
+    sortkey={F 3 1 zz z z z},
+    ]{3}[\mleft(#1;#2;#3\mright)][\mleft({#1 \atop #2};#3\mright)][\mleft(#3\mright)]
