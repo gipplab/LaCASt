@@ -207,7 +207,7 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             if (!isWildcard) return matchNonWildCard(expression, followingExpressions, config);
             return matchWildCard(expression, followingExpressions, config);
         } catch ( NotMatchableException nme ) {
-            LOG.debug("Expression not matchable because: " + nme.getMessage() +
+            LOG.trace("Expression not matchable because: " + nme.getMessage() +
                     "; Element: " + expression.getTexString() + " in [" + expression.getRootTexString() + "].");
             return false;
         }

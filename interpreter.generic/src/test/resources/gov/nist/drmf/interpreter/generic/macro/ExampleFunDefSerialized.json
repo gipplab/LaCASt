@@ -13,7 +13,7 @@
     "numberOfParameters" : 0,
     "numberOfOptionalParameters" : 0,
     "numberOfArguments" : 0,
-    "TeX" : [ "{\\mathbb{Z}^{+}}" ],
+    "TeX" : [ "\\mathbb{Z}^{+}" ],
     "semanticTeX" : [ "\\posIntegers" ]
   },
   "LeviCivitasym" : {
@@ -32,6 +32,23 @@
     "numberOfArguments" : 0,
     "TeX" : [ "\\epsilon_{par1 par2 par3}" ],
     "semanticTeX" : [ "\\LeviCivitasym{par1}{par2}{par3}" ]
+  },
+  "Pochhammersym" : {
+    "macro" : "Pochhammersym",
+    "meta" : {
+      "description" : "the Pochhammer symbol (or shifted factorial)",
+      "meaning" : "Pochhammer",
+      "openMathID" : "hypergeo0:pochhammer",
+      "standardArguments" : {
+        "standardParameters" : [ "a", "n" ],
+        "standardVariables" : [ ]
+      }
+    },
+    "numberOfParameters" : 2,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 0,
+    "TeX" : [ "(par1)_{par2}" ],
+    "semanticTeX" : [ "\\Pochhammersym{par1}{par2}" ]
   },
   "ndivisors" : {
     "macro" : "ndivisors",
@@ -67,6 +84,23 @@
     "TeX" : [ "C^{opPar1} var1", "C var1" ],
     "semanticTeX" : [ "\\continuous[opPar1]@{var1}", "\\continuous@{var1}" ]
   },
+  "multinomial" : {
+    "macro" : "multinomial",
+    "meta" : {
+      "description" : "the multinomial coefficient",
+      "meaning" : "multinomial",
+      "openMathID" : "combinat1:multinomial",
+      "standardArguments" : {
+        "standardParameters" : [ "n", "n_1,n_2,\\ldots,n_k" ],
+        "standardVariables" : [ ]
+      }
+    },
+    "numberOfParameters" : 2,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 0,
+    "TeX" : [ "\\left({par1 \\atop par2}\\right)" ],
+    "semanticTeX" : [ "\\multinomial{par1}{par2}" ]
+  },
   "JacobipolyP" : {
     "macro" : "JacobipolyP",
     "meta" : {
@@ -100,6 +134,23 @@
     "numberOfArguments" : 1,
     "TeX" : [ "T_{par1} (var1)" ],
     "semanticTeX" : [ "\\ChebyshevpolyT{par1}@{var1}" ]
+  },
+  "Riemannthetachar" : {
+    "macro" : "Riemannthetachar",
+    "meta" : {
+      "description" : "the Riemann theta function with characteristics",
+      "meaning" : "Riemann-theta-characterstics",
+      "openMathID" : "thetafun3_dlmf:theta_char",
+      "standardArguments" : {
+        "standardParameters" : [ "\\alpha", "\\beta" ],
+        "standardVariables" : [ "z", "\\Omega" ]
+      }
+    },
+    "numberOfParameters" : 2,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 2,
+    "TeX" : [ "\\theta\\left[{par1 \\atop par2}\\right] (var1 | var2)" ],
+    "semanticTeX" : [ "\\Riemannthetachar{par1}{par2}@{var1}{var2}" ]
   },
   "Dirichletchar" : {
     "macro" : "Dirichletchar",

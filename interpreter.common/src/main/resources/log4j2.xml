@@ -57,7 +57,7 @@
         <Logger name="org.apache.http" level="INFO" additivity="false">
             <AppenderRef ref="InfoConsole"/>
         </Logger>
-        <Root level="DEBUG">
+        <Root level="all">
             <AppenderRef ref="DebugConsole"/>
             <!--            <AppenderRef ref="HowardConsole"/>-->
             <!--            <AppenderRef ref="TraceConsole"/>-->

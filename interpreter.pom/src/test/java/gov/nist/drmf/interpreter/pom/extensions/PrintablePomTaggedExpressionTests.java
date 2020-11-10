@@ -621,6 +621,21 @@ public class PrintablePomTaggedExpressionTests {
         checkList(downComps, "{\\cpi}");
     }
 
+//    @Test
+//    public void environmentTest() throws ParseException {
+//        String texString = "\\begin{align}\n" +
+//                "(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\\n" +
+//                "&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\\n" +
+//                "&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\\n" +
+//                "&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\\n" +
+//                "&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\\n" +
+//                "&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\\n" +
+//                "&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right) \\, .\n" +
+//                "\\end{align}";
+//        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+//        assertEquals(texString, ppte.getTexString());
+//    }
+
     @Test
     @DLMF("11.5.E2")
     public void nestedFracEulerTest() throws ParseException {

@@ -67,7 +67,8 @@ public class MacroBean {
      */
     @JsonIgnore
     public void addAdditionalGenericLaTeXParameters(String genericLaTeX) {
-        this.genericLaTeXParameters.add(genericLaTeX.replaceAll("#", MacroHelper.PAR_PREFIX));
+        genericLaTeX = MacroHelper.cleanArgument(genericLaTeX, MacroHelper.PAR_PREFIX);
+        this.genericLaTeXParameters.add(genericLaTeX);
     }
 
     /**
@@ -77,17 +78,14 @@ public class MacroBean {
     public void setGenericLaTeXParametersWithOptionalParameter(int numberOfParameters, String genericLaTeX) {
         this.numberOfOptionalParameters = 1;
         this.numberOfParameters = numberOfParameters-1;
-        this.genericLaTeXParameters.addFirst(
-                MacroHelper.fixInvisibleComma(genericLaTeX.replaceAll("#", MacroHelper.OPTIONAL_PAR_PREFIX))
-        );
+        this.genericLaTeXParameters.addFirst(MacroHelper.cleanArgument(genericLaTeX, MacroHelper.OPTIONAL_PAR_PREFIX));
     }
 
     @JsonIgnore
     public void setGenericLaTeXParametersWithoutOptionalParameter(int numberOfParameters, String genericLaTeX) {
         this.numberOfParameters = numberOfParameters;
-        this.genericLaTeXParameters.addLast(
-                MacroHelper.fixInvisibleComma(genericLaTeX.replaceAll("#", MacroHelper.PAR_PREFIX))
-        );
+        genericLaTeX = MacroHelper.cleanArgument(genericLaTeX, MacroHelper.PAR_PREFIX);
+        this.genericLaTeXParameters.addLast(genericLaTeX);
     }
 
     @JsonIgnore

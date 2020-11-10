@@ -24,6 +24,10 @@ public class TeXPreProcessor {
                     "(\\\\\\*)"
     );
 
+    private static final Pattern GEN_FRAC_PATTERN = Pattern.compile(
+            "\\\\genfrac(\\{.}|.)(\\{.}|.)(?:\\\\z@\\{}|\\{0pt}\\{})\\{(.*?)}\\{(.*?)}"
+    );
+
     private static ReplacementConfig replacementConfig = ReplacementConfig.getInstance();
 
     private TeXPreProcessor() {}
@@ -65,6 +69,11 @@ public class TeXPreProcessor {
         else return in;
     }
 
+    public static String trimIfWrappedInCurlyBrackets(String in) {
+        if ( wrappedInCurlyBrackets(in) ) return trimCurlyBrackets(in);
+        else return in;
+    }
+
     public static boolean wrappedInCurlyBrackets(String in) {
         if ( !in.trim().startsWith("{") && !in.trim().endsWith("}") ) return false;
         int openCounter = 1;
@@ -85,5 +94,18 @@ public class TeXPreProcessor {
     public static String resetNumberOfAtsToOne(String in) {
         // if there are multiple @s, replace it my one @
         return in.replaceAll("@{2,}", "@");
+    }
+
+    public static String normalizeGenFrac(String in) {
+        Matcher m = GEN_FRAC_PATTERN.matcher(in);
+        StringBuilder sb = new StringBuilder();
+        while ( m.find() ) {
+            String newFrac = "\\\\left" + trimCurlyBrackets(m.group(1));
+            newFrac += "{" + m.group(3) + " \\\\atop " + m.group(4) + "}";
+            newFrac += "\\\\right" + trimCurlyBrackets(m.group(2));
+            m.appendReplacement(sb, newFrac);
+        }
+        m.appendTail(sb);
+        return sb.toString();
     }
 }

@@ -64,12 +64,12 @@ public class MOINode<T> implements INode<MOIDependency<T>> {
      * @return sorted list (by layer) of dependent nodes
      */
     public List<MOINode<T>> getDependencyNodes() {
-        List<MOINode<T>> directDependencies = this.ingoing.stream()
-                .map( MOIDependency::getSource ).collect(Collectors.toList());
+        List<MOINode<T>> dependants = new LinkedList<>();
+        for ( MOIDependency<T> dependency : this.ingoing ) {
+            dependants.add( dependency.getSource() );
+        }
 
-        List<MOINode<T>> nodes = new LinkedList<>(directDependencies);
-        directDependencies.forEach( node -> nodes.addAll(node.getDependencyNodes()) );
-        return nodes;
+        return dependants;
     }
 
     @Override
