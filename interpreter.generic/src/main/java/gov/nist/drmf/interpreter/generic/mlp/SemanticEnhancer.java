@@ -14,10 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Andre Greiner-Petter
@@ -28,7 +25,7 @@ public class SemanticEnhancer {
     private ElasticSearchConnector elasticSearchConnector;
 
     private int considerNumberOfTopRelations = 3;
-    private int considerNumberOfTopMacros = 2;
+    private int considerNumberOfTopMacros = 5;
 
     private LinkedList<String> genericLaTeXPatterns;
     private LinkedList<String> semanticLaTeXPatterns;
@@ -40,10 +37,16 @@ public class SemanticEnhancer {
     }
 
     public PrintablePomTaggedExpression semanticallyEnhance(MOINode<MOIAnnotation> node) throws IOException, ParseException {
-        LOG.info("Start semantically enhancing moi " + node.getId() + ": " + node.getNode().getOriginalLaTeX());
+        String originalTex = node.getNode().getOriginalLaTeX();
+        LOG.info("Start semantically enhancing moi " + node.getId() + ": " + originalTex);
+        if ( originalTex.contains("begin") ) {
+            LOG.warn("Currently, we are unable to properly parse latex envinroments. Hence, we skip them here.");
+            return null;
+        }
+
         List<MOINode<MOIAnnotation>> dependentNodes = node.getDependencyNodes();
         retrieveReplacementListsEnhance(node, dependentNodes);
-        LOG.info("Retrieved all replacement rules. Start applying each rule.");
+        LOG.info("Retrieved "+ semanticLaTeXPatterns.size() +" replacement rules. Start applying each rule.");
 
         MathematicalObjectOfInterest moi = node.getNode();
         PrintablePomTaggedExpression pte = moi.getMoi();
@@ -81,11 +84,12 @@ public class SemanticEnhancer {
     ) throws IOException {
         List<Relation> definiensList = node.getAnnotation().getAttachedRelations();
         LOG.debug("Retrieve " + definiensList.size() + " definiens for node "+ node.getId() +": " + node.getNode().getOriginalLaTeX());
+        Collections.sort(definiensList);
         for ( int i = 0; i < definiensList.size() && i < considerNumberOfTopRelations; i++ ) {
             Relation definitionRelation = definiensList.get(i);
             String definition = definitionRelation.getDefinition();
             LinkedList<MacroResult> macros = elasticSearchConnector.searchMacroDescription(definition);
-            LOG.debug("Retrieved semantic macros: " + macros);
+            LOG.debug("For definition " + definition + ": retrieved " + macros.size() + " semantic macros " + macros);
 
             for ( int j = 0; j < macros.size() && j < considerNumberOfTopMacros; j++ ) {
                 MacroBean macro = macros.get(j).getMacro();
@@ -95,7 +99,7 @@ public class SemanticEnhancer {
                 if ( genericList.size() != semanticList.size() ) {
                     LOG.warn("Retrieved an equal size of generic-semantic mapping for " + macros.get(j) + ". Skip these replacement rules");
                 } else {
-                    LOG.debug("Add "+semanticList.size()+" semantic replacement rules: " + semanticList);
+                    LOG.debug("Add "+semanticList.size()+" semantic replacement rules for macro " + macro.getName());
                     this.genericLaTeXPatterns.addAll(genericList);
                     this.semanticLaTeXPatterns.addAll(semanticList);
                 }

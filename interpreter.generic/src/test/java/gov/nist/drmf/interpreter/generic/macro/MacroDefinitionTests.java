@@ -59,7 +59,7 @@ public class MacroDefinitionTests {
 
     @Test
     public void loadedAllMacrosTest() {
-        assertEquals(8, loadedMacros.keySet().size());
+        assertEquals(11, loadedMacros.keySet().size());
     }
 
     @Test
@@ -101,6 +101,54 @@ public class MacroDefinitionTests {
         assertEquals(2, semanticLaTeX.size(), semanticLaTeX.toString());
         assertEquals("\\FerrersP[opPar1]{par1}@{var1}", semanticLaTeX.get(0));
         assertEquals("\\FerrersP{par1}@{var1}", semanticLaTeX.get(1));
+    }
+
+    @Test
+    public void multinomialTest() {
+        MacroBean multiNBean = loadedMacros.get("multinomial");
+        assertNotNull(multiNBean);
+        assertEquals("multinomial", multiNBean.getName());
+        assertEquals("the multinomial coefficient", multiNBean.getMetaInformation().getDescription());
+
+        List<String> genericLaTeX = multiNBean.getGenericLatex();
+        assertEquals(1, genericLaTeX.size());
+        assertEquals("\\left({par1 \\atop par2}\\right)", genericLaTeX.get(0));
+
+        List<String> semanticLaTeX = multiNBean.getSemanticLaTeX();
+        assertEquals(1, semanticLaTeX.size(), semanticLaTeX.toString());
+        assertEquals("\\multinomial{par1}{par2}", semanticLaTeX.get(0));
+    }
+
+    @Test
+    public void pochhammerTest() {
+        MacroBean bean = loadedMacros.get("Pochhammersym");
+        assertNotNull(bean);
+        assertEquals("Pochhammersym", bean.getName());
+        assertEquals("the Pochhammer symbol (or shifted factorial)", bean.getMetaInformation().getDescription());
+
+        List<String> genericLaTeX = bean.getGenericLatex();
+        assertEquals(1, genericLaTeX.size());
+        assertEquals("(par1)_{par2}", genericLaTeX.get(0));
+
+        List<String> semanticLaTeX = bean.getSemanticLaTeX();
+        assertEquals(1, semanticLaTeX.size(), semanticLaTeX.toString());
+        assertEquals("\\Pochhammersym{par1}{par2}", semanticLaTeX.get(0));
+    }
+
+    @Test
+    public void riemannthetacharTest() {
+        MacroBean bean = loadedMacros.get("Riemannthetachar");
+        assertNotNull(bean);
+        assertEquals("Riemannthetachar", bean.getName());
+        assertEquals("the Riemann theta function with characteristics", bean.getMetaInformation().getDescription());
+
+        List<String> genericLaTeX = bean.getGenericLatex();
+        assertEquals(1, genericLaTeX.size());
+        assertEquals("\\theta\\left[{par1 \\atop par2}\\right] (var1 | var2)", genericLaTeX.get(0));
+
+        List<String> semanticLaTeX = bean.getSemanticLaTeX();
+        assertEquals(1, semanticLaTeX.size(), semanticLaTeX.toString());
+        assertEquals("\\Riemannthetachar{par1}{par2}@{var1}{var2}", semanticLaTeX.get(0));
     }
 
     @Test
@@ -149,7 +197,7 @@ public class MacroDefinitionTests {
         assertEquals(1, posIntBean.getSemanticLaTeX().size());
         assertEquals("\\posIntegers", posIntBean.getSemanticLaTeX().get(0));
         assertEquals(1, posIntBean.getGenericLatex().size());
-        assertEquals("{\\mathbb{Z}^{+}}", posIntBean.getGenericLatex().getFirst());
+        assertEquals("\\mathbb{Z}^{+}", posIntBean.getGenericLatex().getFirst());
     }
 
     @Test

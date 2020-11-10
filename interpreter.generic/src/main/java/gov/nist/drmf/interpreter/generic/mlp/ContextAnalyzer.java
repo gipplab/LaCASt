@@ -48,6 +48,11 @@ public class ContextAnalyzer {
 
     private MLPDependencyGraph extractDefiniensFromWikitext() {
         BaseConfig config = new BaseConfig();
+        config.setUseTeXIdentifiers(true);
+        config.setUseMOI(true);
+        config.setDefinitionMerging(true);
+        config.setTexvcinfoUrl("http://localhost:10044/texvcinfo");
+
         RawWikiDocument document = new RawWikiDocument(context);
 
         MLPDependencyGraph graph = new MLPDependencyGraph();

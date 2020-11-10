@@ -67,3 +67,22 @@
     description={the Dirichlet character},% $\Dirichletchar{r}$},
     sortkey={chi 2 1 z z z},
 ]{2}[\mleft(#1,#2\mright)][\mleft(#1\mright)]
+\defSpecFun{multinomial}[2]{\genfrac(){0pt}{}{#1}{#2}}[
+    meaning=multinomial, om=combinat1:multinomial,
+    params={n}{n_1,n_2,\ldots,n_k},
+    description={the multinomial coefficient},% $\multinomial{n}{n_1,n_2,\ldots,n_k}$},
+    sortkey={*p(( 2 0 n n},
+    ]{0}
+\defSpecFun{Pochhammersym}[2]{{\mleft(#1\mright)_{#2}}}[ %Extra {} to inhibit breaks
+    meaning=Pochhammer, om=hypergeo0:pochhammer,      % ?
+    params={a}{n},
+    description={the Pochhammer symbol (or shifted factorial)},% $\Pochhammersym{a}{n}$},
+    sortkey={*p( 1 1 z z},
+    ]{0}
+\defSpecFun{Riemannthetachar}[2]{\theta\genfrac{[}{]}{0pt}{}{#1}{#2}}[%
+    meaning=Riemann-theta-characterstics, om=thetafun3_dlmf:theta_char,
+    params={\alpha}{\beta}, args={z}{\Omega},
+    description={the Riemann theta function with characteristics},
+    %     $\Riemannthetachar{\alpha}{\beta}$},
+    sortkey={theta 2 0 zz zz},
+    ]{2}[\mleft(#1 \middle| #2\mright)]

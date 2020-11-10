@@ -1,9 +1,7 @@
 package gov.nist.drmf.interpreter.generic.pojo;
 
 import gov.nist.drmf.interpreter.generic.mlp.struct.MLPDependencyGraph;
-import gov.nist.drmf.interpreter.generic.mlp.struct.MOIAnnotation;
-import gov.nist.drmf.interpreter.pom.moi.MOINode;
-import gov.nist.drmf.interpreter.pom.moi.MathematicalObjectOfInterest;
+import gov.nist.drmf.interpreter.generic.mlp.struct.MOIPresentations;
 
 import java.util.LinkedList;
 import java.util.List;

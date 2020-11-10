@@ -179,8 +179,13 @@ public class LimitedTranslator extends AbstractListTranslator {
             TranslatedExpression transArgs,
             LimitedExpressions category,
             MathTerm root
-    ) {
+    ) throws TranslationException {
         int lastIdx = limit.getVars().size()-1;
+        if ( lastIdx < 0 ) throw TranslationException.buildException(
+                this,
+                "Unable to retrieve free variables for limit expression.",
+                TranslationExceptionReason.INVALID_LATEX_INPUT
+        );
 
         // start with inner -> last elements in limit
         MathematicalEssentialOperatorMetadata.BoundaryStrings boundaries = limit.getArguments(

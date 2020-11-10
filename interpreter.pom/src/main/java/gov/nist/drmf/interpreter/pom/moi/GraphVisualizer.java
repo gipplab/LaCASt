@@ -42,10 +42,11 @@ public class GraphVisualizer {
 
         int i = 0;
         for ( MOINode<?> moiNode : moiGraph.getVertices() ) {
-            if ( (!searchFor.isBlank() && !moiNode.getNode().getOriginalLaTeX().contains(searchFor))
-                    || nodeMemory.contains(moiNode.hashCode())
-                    || moiNode.isIsolated()
-            ) continue;
+//            if ( (!searchFor.isBlank() && !moiNode.getNode().getOriginalLaTeX().contains(searchFor))
+//                    || nodeMemory.contains(moiNode.hashCode())
+//                    || moiNode.isIsolated()
+//            ) continue;
+            if ( moiNode.isSink() ) continue;
             Node n = graph.addNode(moiNode.hashCode()+"");
             nodeMemory.add(moiNode.hashCode());
             setNodeAttribute(n, moiNode.getNode().getOriginalLaTeX());

@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.generic.macro;
 
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import org.intellij.lang.annotations.Language;
 
 import java.util.Arrays;
@@ -13,7 +14,7 @@ import java.util.regex.Pattern;
  */
 public final class MacroHelper {
     public static final Pattern CLEAN_PATTERN = Pattern.compile(
-            "\\\\m(?:left|right)"
+            "\\\\m(?:left|right|iddle)"
     );
 
     public static final String VAR_PREFIX = "var";
@@ -25,7 +26,15 @@ public final class MacroHelper {
     @Language("RegExp")
     public static final String WILDCARD_PATTERNS = "(?:opP|p|v)ar\\d+";
 
-    private MacroHelper(){};
+    private MacroHelper(){}
+
+    public static String cleanArgument(String arg, String pattern) {
+        arg = cleanString(arg);
+        arg = fixInvisibleComma(arg);
+        arg = TeXPreProcessor.trimIfWrappedInCurlyBrackets(arg);
+        arg = TeXPreProcessor.normalizeGenFrac(arg);
+        return arg.replaceAll("#", pattern);
+    }
 
     public static String cleanString(String arg) {
         StringBuilder sb = new StringBuilder();

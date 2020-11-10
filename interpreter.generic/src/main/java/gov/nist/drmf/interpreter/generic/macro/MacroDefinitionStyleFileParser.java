@@ -14,7 +14,7 @@ public class MacroDefinitionStyleFileParser {
     private static final Pattern FUNC_SPEC_PATTERN = Pattern.compile(
             "^\\\\defSpecFun\\{(.*?)}" + // func name (non-optional)
                     "(?:\\[(\\d+)])?(\\[])?" + // number of parameters (optional -> means 0)
-                    "\\{(.*?)}\\[%?\\s*$" // definition
+                    "\\{(.*?)}\\[\\s*(?:%.*)?$" // definition
             , Pattern.MULTILINE
     );
 
