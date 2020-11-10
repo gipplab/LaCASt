@@ -16,6 +16,11 @@ public class MacroStandardArgumentsBean {
     /**
      * The standard parameters
      */
+    private LinkedList<String> standardOptionalParameters;
+
+    /**
+     * The standard parameters
+     */
     private LinkedList<String> standardParameters;
 
     /**
@@ -24,18 +29,26 @@ public class MacroStandardArgumentsBean {
     private LinkedList<String> standardVariables;
 
     public MacroStandardArgumentsBean() {
+        standardOptionalParameters = new LinkedList<>();
         standardParameters = new LinkedList<>();
         standardVariables = new LinkedList<>();
     }
 
     @JsonIgnore
-    public void setStandardParameters(String para) {
-        this.standardParameters = generateListOfArguments(para);
+    public void setStandardParameters(int numOfOptionalParameter, String para) {
+        LinkedList<String> argList = generateListOfArguments(para);
+        this.standardOptionalParameters = new LinkedList<>(argList.subList(0, numOfOptionalParameter));
+        this.standardParameters = new LinkedList<>(argList.subList(numOfOptionalParameter, argList.size()));
     }
 
     @JsonIgnore
     public void setStandardVariables(String args) {
         this.standardVariables = generateListOfArguments(args);
+    }
+
+    @JsonSetter("standardOptionalParameters")
+    public void setStandardOptionalParameters(LinkedList<String> standardOptionalParameters) {
+        this.standardOptionalParameters = standardOptionalParameters;
     }
 
     @JsonSetter("standardParameters")
@@ -46,6 +59,11 @@ public class MacroStandardArgumentsBean {
     @JsonSetter("standardVariables")
     public void setStandardVariables(LinkedList<String> standardVariables) {
         this.standardVariables = standardVariables;
+    }
+
+    @JsonGetter("standardOptionalParameters")
+    public LinkedList<String> getStandardOptionalParameters() {
+        return standardOptionalParameters;
     }
 
     @JsonGetter("standardParameters")

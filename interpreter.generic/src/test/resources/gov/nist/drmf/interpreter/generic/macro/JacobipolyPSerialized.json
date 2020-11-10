@@ -5,6 +5,7 @@
     "meaning" : "Jacobi-polynomial-P",
     "openMathID" : "orthpoly2_dlmf:Jacobi_P",
     "standardArguments" : {
+      "standardOptionalParameters" : [ ],
       "standardParameters" : [ "\\alpha", "\\beta", "n" ],
       "standardVariables" : [ "x" ]
     }
