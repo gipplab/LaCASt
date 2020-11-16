@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.maple.grammar;
 import static gov.nist.drmf.interpreter.maple.common.MapleConstants.*;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -6,10 +6,11 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
-import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.common.MeomArgumentLimitChecker;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.pom.common.grammar.LimitedExpressions;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -21,8 +22,8 @@ import java.util.List;
 /**
  * @author Andre Greiner-Petter
  */
-public class VariableExtractor {
-    private static final Logger LOG = LogManager.getLogger(VariableExtractor.class.getName());
+public class MeomArgumentExtractor {
+    private static final Logger LOG = LogManager.getLogger(MeomArgumentExtractor.class.getName());
 
     private enum RETURN_VAL {
         CACHE, CONTINUE, NONE
@@ -33,7 +34,7 @@ public class VariableExtractor {
     private final AbstractTranslator abstractTranslator;
     private int innerInts;
 
-    private VariableExtractor(
+    private MeomArgumentExtractor(
             List<PomTaggedExpression> list,
             List<String> currVars,
             AbstractTranslator abstractTranslator
@@ -64,34 +65,9 @@ public class VariableExtractor {
         } else if ( LimitedExpressions.isIntegral(mt) ) {
             innerInts++;
         } else {
-            value = handleGeneralTags(mt);
+            value = MeomArgumentLimitChecker.isGeneralBreakPoint(mt) ? RETURN_VAL.CACHE : RETURN_VAL.NONE;
         }
         return value;
-    }
-
-    private static RETURN_VAL handleGeneralTags(MathTerm mt) {
-        MathTermTags tag = MathTermTags.getTagByKey(mt.getTag());
-        if ( tag == null ) return RETURN_VAL.NONE;
-        // stop only in case of a harsh stop symbol appears on the same level of the sum
-        // stoppers are relations (left-hand side and right-hand side).
-        switch (tag) {
-            case relation:
-            case equals:
-            case less_than:
-            case greater_than:
-                // found stopper -> return the cache
-                LOG.debug("Limited expression breakpoint reached (reason: relation)");
-                return RETURN_VAL.CACHE;
-            default:
-                return RETURN_VAL.NONE;
-        }
-    }
-
-    private static boolean isBreakPoint(PomTaggedExpression pte) {
-        if ( pte == null || pte.isEmpty() ) return true;
-        if ( RETURN_VAL.CACHE.equals(handleGeneralTags(pte.getRoot())) ) return true;
-        Brackets bracket = Brackets.getBracket(pte);
-        return bracket != null && !bracket.opened;
     }
 
     private boolean isSumOrProduct(MathTerm mt) {
@@ -229,7 +205,7 @@ public class VariableExtractor {
         checkListValidity(list, abstractTranslator);
 
         // the very next element is always part of the argument if it is not a breakpoint
-        if ( VariableExtractor.isBreakPoint(list.get(0)) ) {
+        if ( MeomArgumentLimitChecker.isBreakPoint(list.get(0)) ) {
             return cache;
         }
 
@@ -237,7 +213,7 @@ public class VariableExtractor {
         cache.add(first);
 
         // now add all until there is a stop expression
-        VariableExtractor variableExtractor = new VariableExtractor(list, currVars, abstractTranslator);
+        MeomArgumentExtractor variableExtractor = new MeomArgumentExtractor(list, currVars, abstractTranslator);
 
         // first element could be a parenthesis also... than take all elements until this parenthesis is closed
         if (!checkFirstBracket(parenthesisCache, first, abstractTranslator)) {
@@ -257,7 +233,7 @@ public class VariableExtractor {
     }
 
     private static void iterateOverList(
-            VariableExtractor variableExtractor,
+            MeomArgumentExtractor variableExtractor,
             LinkedList<PomTaggedExpression> cache,
             List<PomTaggedExpression> list,
             LinkedList<Brackets> parenthesisCache

@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation.constraints;
 
-import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.pom.MLPWrapper;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import mlp.ParseException;

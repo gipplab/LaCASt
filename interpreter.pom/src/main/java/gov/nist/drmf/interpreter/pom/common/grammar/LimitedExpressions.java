@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.common.grammar;
+package gov.nist.drmf.interpreter.pom.common.grammar;
 
 import mlp.MathTerm;
 

@@ -1,6 +1,9 @@
 package gov.nist.drmf.interpreter.pom.extensions;
 
-import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.pom.*;
 import mlp.MathTerm;

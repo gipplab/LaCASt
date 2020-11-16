@@ -1,6 +1,7 @@
-package gov.nist.drmf.interpreter.common.tests;
+package gov.nist.drmf.interpreter.pom.common.tests;
 
-import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.common.tests.AssumeToolAvailabilityCondition;
 import gov.nist.drmf.interpreter.pom.MLPWrapper;
 
 /**

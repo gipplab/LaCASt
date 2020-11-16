@@ -1,9 +1,8 @@
 package gov.nist.drmf.interpreter.cas.blueprints;
 
-import gov.nist.drmf.interpreter.common.grammar.LimDirections;
-import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
+import gov.nist.drmf.interpreter.pom.common.grammar.LimDirections;
+import gov.nist.drmf.interpreter.pom.common.grammar.LimitedExpressions;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**

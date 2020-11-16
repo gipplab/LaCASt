@@ -1,10 +1,8 @@
 package gov.nist.drmf.interpreter.cas.blueprints;
 
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.grammar.LimDirections;
+import gov.nist.drmf.interpreter.pom.common.grammar.LimDirections;
 import mlp.ParseException;
-
-import java.io.IOException;
 
 /**
  * @author Andre Greiner-Petter

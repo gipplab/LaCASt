@@ -2,8 +2,8 @@ package gov.nist.drmf.interpreter.pom.extensions;
 
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.pom.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import mlp.PomTaggedExpression;
 
 import java.util.HashMap;

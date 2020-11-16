@@ -1,4 +1,6 @@
-package gov.nist.drmf.interpreter.common.grammar;
+package gov.nist.drmf.interpreter.pom.common.grammar;
+
+import mlp.PomTaggedExpression;
 
 import java.util.HashMap;
 
@@ -28,6 +30,10 @@ public enum ExpressionTags {
 
     public static ExpressionTags getTagByKey(String key) {
         return HOLDER.keymap.get(key);
+    }
+
+    public static ExpressionTags getTag(PomTaggedExpression pte) {
+        return getTagByKey(pte.getTag());
     }
 
     public String tag() {

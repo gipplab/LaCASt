@@ -85,6 +85,7 @@ public class MLP {
             eq = "({var1}+1)_{var2}";
             eq = "\\Jacobiellsnk@{\\NVar{z}}{\\NVar{k}}";
             eq = "\\tilde{x}";
+            eq = "d \\alpha^k";
 
             System.out.println();
             System.out.println("Input: " + eq);

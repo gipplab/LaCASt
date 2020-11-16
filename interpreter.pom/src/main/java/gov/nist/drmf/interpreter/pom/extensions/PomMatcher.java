@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.pom.extensions;
 
-import gov.nist.drmf.interpreter.pom.FakeMLPGenerator;
-import gov.nist.drmf.interpreter.pom.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;

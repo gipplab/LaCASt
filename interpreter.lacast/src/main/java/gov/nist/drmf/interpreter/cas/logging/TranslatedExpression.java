@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.cas.logging;
 
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 
 import java.util.*;
 import java.util.regex.Matcher;

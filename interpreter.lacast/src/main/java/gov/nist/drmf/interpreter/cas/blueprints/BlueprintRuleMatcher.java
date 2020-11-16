@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.cas.blueprints;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.interfaces.IBlueprintMatcher;
-import gov.nist.drmf.interpreter.pom.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.extensions.MatchablePomTaggedExpression;
 import gov.nist.drmf.interpreter.pom.extensions.MatcherConfig;

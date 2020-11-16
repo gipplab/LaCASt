@@ -1,16 +1,15 @@
-package gov.nist.drmf.interpreter.pom;
+package gov.nist.drmf.interpreter.pom.common;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
-import gov.nist.drmf.interpreter.common.grammar.FeatureValues;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.common.text.TextUtility;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.pom.common.grammar.FeatureValues;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.function.Function;
 
 import static gov.nist.drmf.interpreter.common.text.TextUtility.splitAndNormalizeCommands;
 
@@ -202,5 +201,28 @@ public final class PomTaggedExpressionUtility {
     public static boolean isAt(PomTaggedExpression exp) {
         if (exp == null) return false;
         return MathTermUtility.isAt(exp.getRoot());
+    }
+
+    public static <T extends PomTaggedExpression> List<T> findElements(
+            T pte,
+            Function<T, Boolean> checker
+    ) {
+        List<T> results = new LinkedList<>();
+        findElements(pte, checker, results);
+        return results;
+    }
+
+    private static <T extends PomTaggedExpression> void findElements(
+            PomTaggedExpression pte,
+            Function<T, Boolean> checker,
+            List<T> results
+    ) {
+        if ( checker.apply((T)pte) ) {
+            results.add((T)pte);
+        }
+
+        for ( PomTaggedExpression child : pte.getComponents() ) {
+            findElements(child, checker, results);
+        }
     }
 }

@@ -4,16 +4,16 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.components.util.DerivativeAndPowerHolder;
 import gov.nist.drmf.interpreter.cas.translation.components.util.MacroInfoHolder;
-import gov.nist.drmf.interpreter.cas.translation.components.util.VariableExtractor;
+import gov.nist.drmf.interpreter.cas.translation.components.util.MeomArgumentExtractor;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
-import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.pom.FakeMLPGenerator;
-import gov.nist.drmf.interpreter.pom.MathTermUtility;
-import gov.nist.drmf.interpreter.pom.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.grammar.DLMFFeatureValues;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -250,7 +250,7 @@ public class MacroDerivativesTranslator extends MacroTranslator {
 
         List<PomTaggedExpression> potentialArgs = new LinkedList<>();
         try {
-            potentialArgs = VariableExtractor.getPotentialArgumentsUntilEndOfScope(
+            potentialArgs = MeomArgumentExtractor.getPotentialArgumentsUntilEndOfScope(
                     followingExps,
                     vars,
                     this

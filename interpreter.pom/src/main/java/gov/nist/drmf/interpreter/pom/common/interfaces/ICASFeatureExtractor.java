@@ -1,12 +1,8 @@
-package gov.nist.drmf.interpreter.common.interfaces;
+package gov.nist.drmf.interpreter.pom.common.interfaces;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.pom.MacrosLexicon;
 import mlp.FeatureSet;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.SortedSet;
 
 /**

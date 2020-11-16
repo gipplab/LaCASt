@@ -5,7 +5,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
-import gov.nist.drmf.interpreter.pom.MathTermUtility;
+import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 

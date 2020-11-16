@@ -5,11 +5,12 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionNormalizer;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.MLPWrapper;
-import gov.nist.drmf.interpreter.pom.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -54,7 +55,7 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
         switch( expTag ) {
             case sub_super_script:
                 // in case of sub-super scripts, we first normalize the order, subscript first!
-                MLPWrapper.normalizeSubSuperScript(expression);
+                PomTaggedExpressionNormalizer.normalizeSubSuperScript(expression);
                 // than we fake it as a sequence, since there is no difference to a sequence anymore
                 expression.setTag( ExpressionTags.sequence.tag() );
             case sequence: // in that case use the SequenceTranslator

@@ -3,17 +3,12 @@ package gov.nist.drmf.interpreter.pom.extensions;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
 import gov.nist.drmf.interpreter.common.text.IndexRange;
-import gov.nist.drmf.interpreter.common.text.TextUtility;
-import gov.nist.drmf.interpreter.pom.FeatureSetUtility;
-import gov.nist.drmf.interpreter.pom.MathTermUtility;
-import gov.nist.drmf.interpreter.pom.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Generates a printable version of {@link PomTaggedExpression}, which means that every node in this
@@ -297,9 +292,14 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
     /**
      * Wraps the current caption in curly brackets, if it is not wrapped in curly brackets already
      */
-    void makeBalancedTexString() {
+    public void makeBalancedTexString() {
         if ( TeXPreProcessor.wrappedInCurlyBrackets(caption) ) return;
         caption = "{" + caption + "}";
+        populatingStringChanges();
+    }
+
+    public void makeBalancedOptionalArgumentString() {
+        caption = "[" + caption + "]";
         populatingStringChanges();
     }
 

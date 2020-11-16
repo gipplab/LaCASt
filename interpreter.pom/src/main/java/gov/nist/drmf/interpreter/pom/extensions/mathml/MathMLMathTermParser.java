@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.pom.extensions.mathml;
 
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 

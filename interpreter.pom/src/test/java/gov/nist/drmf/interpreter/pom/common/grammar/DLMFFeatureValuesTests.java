@@ -1,8 +1,7 @@
-package gov.nist.drmf.interpreter.common.grammar;
+package gov.nist.drmf.interpreter.pom.common.grammar;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
-import gov.nist.drmf.interpreter.pom.FeatureSetUtility;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.FeatureSet;

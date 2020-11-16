@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.pom.extensions;
 
 import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
 import gov.nist.drmf.interpreter.pom.MLPWrapper;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionNormalizer;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -57,7 +58,7 @@ public abstract class AbstractMatchablePomTaggedExpression
     private void normalizeRoot(PomTaggedExpression reference) {
         // if this the root, normalize the reference tree first
         if ( reference.getParent() == null )
-            MLPWrapper.normalize(reference);
+            PomTaggedExpressionNormalizer.normalize(reference);
     }
 
     protected PomTaggedExpression getReferenceNode() {
@@ -108,7 +109,7 @@ public abstract class AbstractMatchablePomTaggedExpression
      */
     public PomMatcher matcher(PrintablePomTaggedExpression pte) {
         // normalize the expression first, otherwise are never able to match something
-        MLPWrapper.normalize(pte);
+        PomTaggedExpressionNormalizer.normalize(pte);
         return new PomMatcher(this, pte);
     }
 
@@ -120,7 +121,7 @@ public abstract class AbstractMatchablePomTaggedExpression
      */
     public PomMatcher matcher(PrintablePomTaggedExpression pte, MatcherConfig config) {
         // normalize the expression first, otherwise are never able to match something
-        MLPWrapper.normalize(pte);
+        PomTaggedExpressionNormalizer.normalize(pte);
         return new PomMatcher(this, pte, config);
     }
 
@@ -191,7 +192,7 @@ public abstract class AbstractMatchablePomTaggedExpression
      */
     public boolean matchUnsafe(PrintablePomTaggedExpression expression, MatcherConfig config) {
         captures.clear();
-        expression = (PrintablePomTaggedExpression) MLPWrapper.normalize(expression);
+        expression = (PrintablePomTaggedExpression) PomTaggedExpressionNormalizer.normalize(expression);
         boolean matched;
         if ( config.allowLeadingTokens() ) {
             PomMatcher pomMatcher = new PomMatcher(this, expression, config);
