@@ -1,7 +1,9 @@
 package gov.nist.drmf.interpreter.pom;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.Test;

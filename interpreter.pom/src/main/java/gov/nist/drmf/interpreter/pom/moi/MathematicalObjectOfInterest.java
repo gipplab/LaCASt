@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.pom.moi;
 
 import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.extensions.*;
 import mlp.MathTerm;

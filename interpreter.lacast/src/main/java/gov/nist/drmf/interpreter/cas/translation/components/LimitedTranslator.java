@@ -6,12 +6,12 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.components.util.LimitAnalyzer;
-import gov.nist.drmf.interpreter.cas.translation.components.util.VariableExtractor;
+import gov.nist.drmf.interpreter.cas.translation.components.util.MeomArgumentExtractor;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
+import gov.nist.drmf.interpreter.pom.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
-import gov.nist.drmf.interpreter.pom.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -145,7 +145,7 @@ public class LimitedTranslator extends AbstractListTranslator {
 
     private TranslatedExpression getPotentialTranslatedExpressions(MathematicalEssentialOperatorMetadata limit, List<PomTaggedExpression> list) {
         List<PomTaggedExpression> potentialArguments =
-                VariableExtractor.getPotentialArgumentsUntilEndOfScope(list, limit.getVars(), this);
+                MeomArgumentExtractor.getPotentialArgumentsUntilEndOfScope(list, limit.getVars(), this);
 
         // the potential arguments is a theoretical sequence, so handle it as a sequence!
         PomTaggedExpression topPTE = FakeMLPGenerator.generateEmptySequencePPTE();

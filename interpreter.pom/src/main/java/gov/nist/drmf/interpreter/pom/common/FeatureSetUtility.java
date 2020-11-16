@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.pom;
+package gov.nist.drmf.interpreter.pom.common;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import mlp.FeatureSet;

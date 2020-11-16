@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.pom.moi;
 
-import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import mlp.ParseException;
 import org.junit.jupiter.api.Test;
 

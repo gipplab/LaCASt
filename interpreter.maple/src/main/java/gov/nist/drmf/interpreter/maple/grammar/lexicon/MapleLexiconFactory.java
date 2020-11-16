@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.maple.grammar.lexicon;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
+import gov.nist.drmf.interpreter.pom.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.pom.MacrosLexicon;
 import mlp.FeatureSet;

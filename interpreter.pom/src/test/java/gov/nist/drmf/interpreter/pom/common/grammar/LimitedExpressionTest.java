@@ -1,7 +1,5 @@
-package gov.nist.drmf.interpreter.common.grammar;
+package gov.nist.drmf.interpreter.pom.common.grammar;
 
-import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import org.junit.jupiter.api.Test;
 

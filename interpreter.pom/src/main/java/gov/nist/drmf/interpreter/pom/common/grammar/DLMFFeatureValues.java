@@ -1,8 +1,8 @@
-package gov.nist.drmf.interpreter.common.grammar;
+package gov.nist.drmf.interpreter.pom.common.grammar;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.common.interfaces.ICASFeatureExtractor;
-import gov.nist.drmf.interpreter.common.interfaces.IFeatureExtractor;
+import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
+import gov.nist.drmf.interpreter.pom.common.interfaces.ICASFeatureExtractor;
 import mlp.FeatureSet;
 
 import java.util.SortedSet;
@@ -23,7 +23,7 @@ import java.util.SortedSet;
  * To get a specific feature set use {@link mlp.MathTerm#getNamedFeatureSet(String)}.
  *
  * @author Andre Greiner-Petter
- * @see gov.nist.drmf.interpreter.pom.FeatureSetUtility
+ * @see FeatureSetUtility
  * @see mlp.FeatureSet
  * @see mlp.MathTerm
  */

@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.pom.extensions;
 
-import gov.nist.drmf.interpreter.pom.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 
 import java.util.LinkedList;
 import java.util.NoSuchElementException;

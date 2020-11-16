@@ -1,8 +1,8 @@
-package gov.nist.drmf.interpreter.common.grammar;
+package gov.nist.drmf.interpreter.pom.common.grammar;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.text.TextUtility;
-import gov.nist.drmf.interpreter.pom.FeatureSetUtility;
+import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 

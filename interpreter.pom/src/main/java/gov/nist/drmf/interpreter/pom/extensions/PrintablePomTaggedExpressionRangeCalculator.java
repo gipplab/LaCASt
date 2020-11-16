@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.pom.extensions;
 
 import gov.nist.drmf.interpreter.common.text.IndexRange;
-import gov.nist.drmf.interpreter.pom.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import mlp.PomTaggedExpression;
 
 import java.util.List;

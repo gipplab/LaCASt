@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation.components.util;
 
-import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
+import gov.nist.drmf.interpreter.pom.common.grammar.DLMFFeatureValues;
 import mlp.FeatureSet;
 import org.apache.logging.log4j.Logger;
 

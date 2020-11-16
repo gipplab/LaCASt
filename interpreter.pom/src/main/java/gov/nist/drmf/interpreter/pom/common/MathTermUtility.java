@@ -1,9 +1,9 @@
-package gov.nist.drmf.interpreter.pom;
+package gov.nist.drmf.interpreter.pom.common;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.common.grammar.FeatureValues;
-import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.common.grammar.FeatureValues;
+import gov.nist.drmf.interpreter.pom.common.grammar.LimitedExpressions;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import mlp.FeatureSet;
 import mlp.MathTerm;
@@ -13,8 +13,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.util.*;
 
-import static gov.nist.drmf.interpreter.common.text.TextUtility.splitAndNormalizeCommands;
-import static gov.nist.drmf.interpreter.pom.FeatureSetUtility.getSetByFeatureValue;
+import static gov.nist.drmf.interpreter.pom.common.FeatureSetUtility.getSetByFeatureValue;
 
 /**
  * @author Andre Greiner-Petter

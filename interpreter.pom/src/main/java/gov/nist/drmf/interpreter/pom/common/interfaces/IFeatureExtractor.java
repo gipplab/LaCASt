@@ -1,8 +1,7 @@
-package gov.nist.drmf.interpreter.common.interfaces;
+package gov.nist.drmf.interpreter.pom.common.interfaces;
 
 import gov.nist.drmf.interpreter.pom.MacrosLexicon;
 import mlp.FeatureSet;
-import mlp.MathTerm;
 
 import java.util.*;
 
