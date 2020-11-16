@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.generic.mlp;
 
 import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
+import gov.nist.drmf.interpreter.generic.common.GenericReplacementTool;
 import gov.nist.drmf.interpreter.generic.elasticsearch.ElasticSearchConnector;
 import gov.nist.drmf.interpreter.generic.elasticsearch.MacroResult;
 import gov.nist.drmf.interpreter.generic.macro.MacroBean;
@@ -82,7 +83,8 @@ public class SemanticEnhancer {
                 "To:   "+pte.getTexString()
         );
 
-        return pte;
+        GenericReplacementTool genericReplacementTool = new GenericReplacementTool(pte);
+        return genericReplacementTool.getSemanticallyEnhancedExpression();
     }
 
     private void retrieveReplacementListsEnhance(
