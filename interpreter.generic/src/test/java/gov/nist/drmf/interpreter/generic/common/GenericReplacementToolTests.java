@@ -23,4 +23,11 @@ public class GenericReplacementToolTests {
         assertEquals("\\int_0^1 x \\diff{x}", ppte.getTexString());
     }
 
+    @Test
+    void complexIntTest() throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parse("\\int_{-1}^1 (1 - x)^{\\alpha} (1 + x)^{\\beta} \\JacobipolyP{\\alpha}{\\beta}{m}@{x} \\JacobipolyP{\\alpha}{\\beta}{n}@{x} dx");
+        GenericReplacementTool replacementTool = new GenericReplacementTool(ppte);
+        ppte = replacementTool.getSemanticallyEnhancedExpression();
+        assertEquals("\\int_{-1}^1 (1 - x)^{\\alpha} (1 + x)^{\\beta} \\JacobipolyP{\\alpha}{\\beta}{m}@{x} \\JacobipolyP{\\alpha}{\\beta}{n}@{x} \\diff{x}", ppte.getTexString());
+    }
 }

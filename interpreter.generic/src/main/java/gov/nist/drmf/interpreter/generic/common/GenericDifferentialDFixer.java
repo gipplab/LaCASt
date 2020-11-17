@@ -1,10 +1,12 @@
 package gov.nist.drmf.interpreter.generic.common;
 
+import com.esotericsoftware.minlog.Log;
 import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.MeomArgumentLimitChecker;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
@@ -100,10 +102,24 @@ public class GenericDifferentialDFixer {
     }
 
     private EndPosition findAlphanumericDifferentialD(List<PomTaggedExpression> components, int start) {
+        LinkedList<Brackets> bracketStack = new LinkedList<>();
         for ( int i = start; i < components.size(); i++ ) {
             PomTaggedExpression node = components.get(i);
-            if ( MeomArgumentLimitChecker.isBreakPoint(node) ) return new EndPosition(State.BREAKPOINT, i);
-            else if ( MeomArgumentLimitChecker.isPotentialLimitBreakpoint(node) ) return new EndPosition(State.DIFF, i);
+            Brackets bracket = Brackets.getBracket(node);
+            if ( bracket != null ) {
+                if ( bracket.opened ) bracketStack.add(bracket);
+                else if ( bracketStack.isEmpty() )
+                    Log.warn("Encountered closing bracket but no bracket was opened before: " + node.getRoot().getTermText());
+                else {
+                    if ( !bracketStack.getLast().isCounterPart(bracket) )
+                        Log.warn("Non-Matching closing bracket encountered. Last opened " + bracketStack.getLast() + " but encountered " + bracket);
+                    bracketStack.removeLast();
+                }
+            }
+            if ( bracketStack.isEmpty() ) {
+                if ( MeomArgumentLimitChecker.isGeneralBreakPoint(node.getRoot()) ) return new EndPosition(State.BREAKPOINT, i);
+                else if ( MeomArgumentLimitChecker.isPotentialLimitBreakpoint(node) ) return new EndPosition(State.DIFF, i);
+            }
         }
         return new EndPosition(State.EMPTY, components.size()-1);
     }
