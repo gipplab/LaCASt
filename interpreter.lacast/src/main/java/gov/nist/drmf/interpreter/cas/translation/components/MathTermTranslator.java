@@ -116,7 +116,7 @@ public class MathTermTranslator extends AbstractListTranslator {
             case primes:
                 throw TranslationException.buildException(
                         this, "Primes can only be translated behind semantic macros " +
-                                "(differentation primes) but not in other places.",
+                                "(differentiation primes) but not in other places.",
                         TranslationExceptionReason.INVALID_LATEX_INPUT
                 );
             case left_delimiter:
