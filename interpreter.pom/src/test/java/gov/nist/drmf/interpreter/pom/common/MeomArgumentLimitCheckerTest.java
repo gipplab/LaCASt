@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.common;
+package gov.nist.drmf.interpreter.pom.common;
 
 import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.pom.common.MeomArgumentLimitChecker;
