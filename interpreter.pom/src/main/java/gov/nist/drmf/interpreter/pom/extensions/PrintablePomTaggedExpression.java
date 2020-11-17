@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
 import gov.nist.drmf.interpreter.common.text.IndexRange;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
@@ -82,10 +83,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
             super.addNamedFeature(k, pte.getFeatureValue(k));
 
         // the fun part, every node has it's own caption
-        if ( pte.getParent() == null && TeXPreProcessor.wrappedInCurlyBrackets(expr) )
-            expr = TeXPreProcessor.trimCurlyBrackets(expr);
-        else expr = expr.trim();
-        this.caption = expr;
+        this.caption = PomTaggedExpressionUtility.getNormalizedCaption(pte, expr);
 
         // now we have to add the components and their respective substrings...
         for (PomTaggedExpression component : pte.getComponents()) {

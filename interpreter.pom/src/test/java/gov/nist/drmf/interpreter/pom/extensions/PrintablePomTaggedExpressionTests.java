@@ -346,6 +346,16 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     @Test
+    public void chooseBalancedExpressionTest() throws ParseException {
+        String texString = "(-1)^n { n+\\beta\\choose n}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps, "(", "-", "1", ")", "^n", "{n+\\beta\\choose n}");
+    }
+
+    @Test
     @DLMF("4.4.8")
     public void elementaryDLMFTest() throws ParseException {
         String texString = "e^{\\pm\\pi\\mathrm{i}/3}=\\frac{1}{2}\\pm\\mathrm{i}\\frac{\\sqrt{3}}{2}";

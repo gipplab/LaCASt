@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.pom.common;
 
+import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.FeatureValues;
@@ -19,6 +20,14 @@ import static gov.nist.drmf.interpreter.common.text.TextUtility.splitAndNormaliz
 public final class PomTaggedExpressionUtility {
 
     private PomTaggedExpressionUtility() {
+    }
+
+    public static String getNormalizedCaption(PomTaggedExpression pte, String expr) {
+        if ( pte.getParent() == null && TeXPreProcessor.wrappedInCurlyBrackets(expr) )
+            expr = TeXPreProcessor.trimCurlyBrackets(expr);
+        else if ( pte.getParent() != null && PomTaggedExpressionUtility.isSequence(pte) && !TeXPreProcessor.wrappedInCurlyBrackets(expr) )
+            expr = "{" + expr.trim() + "}";
+        return expr.trim();
     }
 
     public static boolean isSequence(PomTaggedExpression pte) {
