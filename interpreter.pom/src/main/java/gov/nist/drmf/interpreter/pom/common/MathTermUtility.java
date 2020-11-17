@@ -91,6 +91,21 @@ public final class MathTermUtility {
         return tag.equals(t);
     }
 
+    /**
+     * Returns true if the given term is a relation symbol
+     * @param term a math term
+     * @return true if the term is a relation symbol
+     */
+    public static boolean isRelationSymbol( MathTerm term ) {
+        if ( term == null ) return false;
+        MathTermTags tag = MathTermTags.getTagByMathTerm(term);
+        switch (tag) {
+            case equals: case relation: case greater_than: case less_than:
+                return true;
+            default: return false;
+        }
+    }
+
     public static boolean isAt(MathTerm term) {
         if ( term == null || term.getTermText().isBlank() ) return false;
         return "@".equals(term.getTermText());

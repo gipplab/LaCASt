@@ -56,6 +56,12 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     private TranslatedExpression globalExp;
 
     /**
+     * In case of equation arrays or multi-case expressions, we most likely end up
+     * with additional global expressions.
+     */
+    private List<TranslatedExpression> partialTranslations;
+
+    /**
      * Flags of each translator
      */
     private boolean SET_MODE    = false;
@@ -87,6 +93,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         this.config = config;
         this.globalExp = new TranslatedExpression();
         this.infoLogger = new InformationLogger();
+        this.partialTranslations = new LinkedList<>();
     }
 
     /**
@@ -112,8 +119,13 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         if ( superTranslator.infoLogger == null ) {
             superTranslator.infoLogger = new InformationLogger();
         }
-
         this.infoLogger = superTranslator.infoLogger;
+
+        if ( superTranslator.partialTranslations == null ) {
+            superTranslator.partialTranslations = new LinkedList<>();
+        }
+        this.partialTranslations = superTranslator.partialTranslations;
+
         this.SET_MODE = superTranslator.SET_MODE;
         this.tolerant = superTranslator.tolerant;
         this.mlpError = superTranslator.mlpError;
@@ -297,7 +309,16 @@ public abstract class AbstractTranslator implements IForwardTranslator {
      */
     protected TranslatedExpression getGlobalTranslationList() {
         if ( superTranslator == null ) return globalExp;
-        else return this.superTranslator.globalExp;
+        else return this.superTranslator.getGlobalTranslationList();
+    }
+
+    /**
+     * The additional translations list
+     * @return the list of additional translations
+     */
+    protected List<TranslatedExpression> getListOfPartialTranslations() {
+        if ( superTranslator == null ) return this.partialTranslations;
+        else return this.superTranslator.getListOfPartialTranslations();
     }
 
     /**
@@ -334,6 +355,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
 
     public void reset() {
         globalExp = new TranslatedExpression();
+        partialTranslations = new LinkedList<>();
         mlpError = false;
         infoLogger = new InformationLogger();
         SET_MODE = false;

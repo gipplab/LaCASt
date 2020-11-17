@@ -64,6 +64,13 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
                 SequenceTranslator p = new SequenceTranslator(super.getSuperTranslator());
                 localTranslations.addTranslatedExpression( p.translate( expression ) );
                 break;
+            case multi_case:
+            case multi_case_single_case:
+            case equation_array:
+            case equation:
+                MultiExpressionTranslator t = new MultiExpressionTranslator(super.getSuperTranslator());
+                localTranslations.addTranslatedExpression( t.translate( expression ) );
+                break;
             case choose:
                 // in case of choose, we manipulate the subtree and mimic a binomial expression
                 expression = generateFakeBinomial(expression);
@@ -83,7 +90,6 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
                 break;
             case numerator:
             case denominator:
-            case equation:
             default:
                 throw TranslationException.buildException(
                         this,

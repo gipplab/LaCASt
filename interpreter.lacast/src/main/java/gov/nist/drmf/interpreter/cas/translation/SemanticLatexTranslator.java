@@ -60,6 +60,8 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
 
     private TranslatedExpression localTranslations;
 
+    private String latestTranslationExpression;
+
     /**
      * Creates a forward translator to the specified language.
      * @param to_language the language key
@@ -94,6 +96,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
         this.config = orig.config;
         this.parser = orig.parser;
         this.localTranslations = new TranslatedExpression();
+        this.latestTranslationExpression = orig.latestTranslationExpression;
         this.init();
     }
 
@@ -112,6 +115,17 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
     private void init() throws InitTranslatorException {
         config.init();
         parser = SemanticMLPWrapper.getStandardInstance();
+    }
+
+    /**
+     * Translates a given string to the another language.
+     * @param expression the expression that should get translated.
+     * @return the translated expression.
+     * @throws TranslationException if an error occurred due translation
+     */
+    @Override
+    public synchronized String translate( String expression ) throws TranslationException {
+        return translate(expression, null);
     }
 
     /**
@@ -138,31 +152,6 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
         return innerTranslate(expression, label);
     }
 
-    @Override
-    public synchronized TranslationInformation translateToObject( String expression, String label ) throws TranslationException {
-        if ( expression == null || expression.isEmpty() ) {
-            LOG.warn("Tried to translate an empty expression");
-            return null;
-        }
-
-        String translation = innerTranslate(expression, label);
-        TranslationInformation ti = new TranslationInformation(expression, translation);
-        ti.setInformation(getInfoLogger());
-        ti.setRequiredPackages(getTranslatedExpressionObject().getRequiredPackages());
-        return ti;
-    }
-
-    /**
-     * Translates a given string to the another language.
-     * @param expression the expression that should get translated.
-     * @return the translated expression.
-     * @throws TranslationException if an error occurred due translation
-     */
-    @Override
-    public synchronized String translate( String expression ) throws TranslationException {
-        return translate(expression, null);
-    }
-
     /**
      * Translates a given string to the another language.
      * @param expression the expression that should get translated.
@@ -171,35 +160,46 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
      */
     @Override
     public synchronized TranslationInformation translateToObject( String expression ) throws TranslationException {
-        String translatedExpression = translate(expression, null);
-        TranslationInformation ti = new TranslationInformation(expression, translatedExpression);
-        ti.setInformation(getInfoLogger());
-        ti.setRequiredPackages(getTranslatedExpressionObject().getRequiredPackages());
-        return ti;
+        return translateToObject(expression, null);
     }
 
     @Override
-    public String getTranslatedExpression() {
-        if ( config.isInlinePackageMode() ) {
-            PackageWrapper pw = new PackageWrapper(config);
-            return super.getGlobalTranslationList().getTranslatedExpression(pw);
-        } return super.getGlobalTranslationList().getTranslatedExpression();
+    public synchronized TranslationInformation translateToObject( String expression, String label ) throws TranslationException {
+        if ( expression == null || expression.isEmpty() ) {
+            LOG.warn("Tried to translate an empty expression");
+            return null;
+        }
+
+        innerTranslate(expression, label);
+        return getTranslationInformationObject();
+    }
+
+    public TranslationInformation getTranslationInformationObject() {
+        TranslationInformation ti = new TranslationInformation(
+                this.latestTranslationExpression,
+                getGlobalTranslationList().getTranslatedExpression()
+        );
+        ti.setInformation(getInfoLogger());
+        ti.setRequiredPackages(getTranslatedExpressionObject().getRequiredPackages());
+        ti.addTranslatedConstraints(getTranslatedExpressionObject().getConstraints());
+        for ( TranslatedExpression te : getListOfPartialTranslations() ) {
+            TranslationInformation t = new TranslationInformation(this.latestTranslationExpression, te.getTranslatedExpression());
+            t.setInformation(getInfoLogger());
+            t.setRequiredPackages(te.getRequiredPackages());
+            t.addTranslatedConstraints(te.getConstraints());
+            ti.addTranslations(t);
+        }
+        return ti;
     }
 
     private String innerTranslate( String expression, String label ) throws TranslationException {
         try {
-            // TODO we should switch to the real parse option later
+            this.latestTranslationExpression = expression;
             PomTaggedExpression exp = parser.parse(expression, label);
-            translate(exp); // return value can be ignored here
-//            if ( !expression.matches("(?:num[UL]|var).*") ){
-//                LOG.debug("Input:  " + expression);
-//                LOG.debug("Output: " + getGlobalTranslationList().toString());
-//            }
-
+            translate(exp);
             if ( !super.getInfoLogger().isEmpty() && !config.shortenedOutput() ) {
                 LOG.info(super.getInfoLogger().toString());
             }
-
             return getTranslatedExpression();
         } catch ( ParseException pe ){
             throw TranslationException.buildException(
@@ -212,6 +212,14 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
             LOG.error("Unable to translate " + expression + ";\nReason: " + te.toString());
             throw te;
         }
+    }
+
+    @Override
+    public String getTranslatedExpression() {
+        if ( config.isInlinePackageMode() ) {
+            PackageWrapper pw = new PackageWrapper(config);
+            return super.getGlobalTranslationList().getTranslatedExpression(pw);
+        } return super.getGlobalTranslationList().getTranslatedExpression();
     }
 
     @Override
