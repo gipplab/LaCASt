@@ -14,6 +14,10 @@ public class TranslatedExpression {
     private LinkedList<String> trans_exps;
     private final Set<String> requiredPackages;
 
+    private int latestRelationSymbol;
+
+    private List<String> constraints;
+
     private int negativeReplacements;
 
     private int autoMergeLast;
@@ -23,6 +27,39 @@ public class TranslatedExpression {
         this.autoMergeLast = 0;
         this.requiredPackages = new TreeSet<>();
         this.negativeReplacements = 0;
+        this.constraints = new LinkedList<>();
+        this.latestRelationSymbol = 0;
+    }
+
+    public void tagLastElementAsRelation(){
+        this.latestRelationSymbol = Math.max(0, trans_exps.size()-1);
+    }
+
+    public TranslatedExpression getElementsBeforeRelation() {
+        TranslatedExpression te = new TranslatedExpression();
+        te.autoMergeLast = this.autoMergeLast;
+        te.requiredPackages.addAll(this.requiredPackages);
+        te.negativeReplacements = this.negativeReplacements;
+        te.constraints.addAll(this.constraints);
+        if ( this.latestRelationSymbol < trans_exps.size() )
+            te.trans_exps.addAll(this.trans_exps.subList(this.latestRelationSymbol+1, trans_exps.size()));
+        return te;
+    }
+
+    public void addConstraint(String constraint) {
+        this.constraints.add(constraint);
+    }
+
+    public void tagLastNExpressionsToConstraint(int n) {
+        LinkedList<String> constraintElements = new LinkedList<>();
+        for ( int i = 0; i < n && !trans_exps.isEmpty(); i++ ) {
+            constraintElements.addFirst( trans_exps.removeLast() );
+        }
+        addConstraint( String.join("", constraintElements) );
+    }
+
+    public List<String> getConstraints() {
+        return this.constraints;
     }
 
     public void setNegativeReplacements(int length) {
@@ -63,6 +100,8 @@ public class TranslatedExpression {
         this.trans_exps.add( next );
         this.trans_exps.addAll( expressions.trans_exps );
         this.requiredPackages.addAll(expressions.getRequiredPackages());
+        if ( this.latestRelationSymbol < expressions.latestRelationSymbol )
+            this.latestRelationSymbol = expressions.latestRelationSymbol;
     }
 
     public int getLength(){
@@ -207,10 +246,7 @@ public class TranslatedExpression {
     }
 
     public String getTranslatedExpression(){
-        String output = "";
-        for ( String part : trans_exps )
-            output += part;
-        return output;
+        return String.join("", trans_exps);
     }
 
     public String getTranslatedExpression(PackageWrapper pw) {

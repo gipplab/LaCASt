@@ -17,6 +17,9 @@ public enum ExpressionTags {
     numerator("numerator"),
     denominator("denominator"),
     equation("equation"),
+    equation_array("equation array"),
+    multi_case("multicase"),
+    multi_case_single_case("case"),
     balanced_expression("balanced-expression"),
     accented("accented"),
     choose("choose");

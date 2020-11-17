@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
@@ -91,12 +92,23 @@ public class MathTermTranslator extends AbstractListTranslator {
             te = translateDependentElement(tag, term, exp, following_exp);
         if ( te == null )
             te = translateDirectly(tag, term, following_exp);
-        if ( te != null ) return te;
+        if ( te != null ) {
+            tagLastElement(term, te);
+            return te;
+        }
 
         // translate others must be last, it translates directly to
         // localTranslations object
         translateOthers(tag, term);
+        tagLastElement(term, localTranslations);
         return localTranslations;
+    }
+
+    private void tagLastElement(MathTerm term, TranslatedExpression te) {
+        if (MathTermUtility.isRelationSymbol(term)) {
+            te.tagLastElementAsRelation();
+            getGlobalTranslationList().tagLastElementAsRelation();
+        }
     }
 
     /**
