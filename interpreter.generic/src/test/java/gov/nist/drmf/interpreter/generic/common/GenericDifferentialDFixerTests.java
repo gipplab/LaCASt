@@ -45,4 +45,14 @@ public class GenericDifferentialDFixerTests {
         assertEquals(ppte, newPPTE);
         assertEquals("\\int \\frac{\\diff{x}}{x}", newPPTE.getTexString());
     }
+
+    @Test
+    void argumentIntTests() throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parse("\\int_{-1}^1 (1 - x) dx");
+        GenericDifferentialDFixer fixer = new GenericDifferentialDFixer(ppte);
+        PrintablePomTaggedExpression newPPTE = fixer.fixDifferentialD();
+
+        assertEquals(ppte, newPPTE);
+        assertEquals("\\int_{-1}^1 (1 - x) \\diff{x}", newPPTE.getTexString());
+    }
 }
