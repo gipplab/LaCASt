@@ -28,14 +28,31 @@ public class TranslatedExpression {
         this.requiredPackages = new TreeSet<>();
         this.negativeReplacements = 0;
         this.constraints = new LinkedList<>();
-        this.latestRelationSymbol = 0;
+        this.latestRelationSymbol = -1;
+    }
+
+    public TranslatedExpression(TranslatedExpression copy) {
+        this.trans_exps = new LinkedList<>(copy.trans_exps);
+        this.autoMergeLast = copy.autoMergeLast;
+        this.requiredPackages = new TreeSet<>(copy.requiredPackages);
+        this.negativeReplacements = copy.negativeReplacements;
+        this.constraints = new LinkedList<>(copy.constraints);
+        this.latestRelationSymbol = copy.latestRelationSymbol;
+    }
+
+    public boolean endedOnRelationSymbol() {
+        return this.latestRelationSymbol == trans_exps.size()-1;
+    }
+
+    public boolean containsRelationSymbol() {
+        return this.latestRelationSymbol >= 0;
     }
 
     public void tagLastElementAsRelation(){
         this.latestRelationSymbol = Math.max(0, trans_exps.size()-1);
     }
 
-    public TranslatedExpression getElementsBeforeRelation() {
+    public TranslatedExpression getElementsAfterRelation() {
         TranslatedExpression te = new TranslatedExpression();
         te.autoMergeLast = this.autoMergeLast;
         te.requiredPackages.addAll(this.requiredPackages);
@@ -89,19 +106,23 @@ public class TranslatedExpression {
             this.trans_exps = new LinkedList<>(tmp);
         }
 
+        if ( this.latestRelationSymbol < expressions.latestRelationSymbol )
+            this.latestRelationSymbol = expressions.latestRelationSymbol;
+        this.requiredPackages.addAll(expressions.getRequiredPackages());
+
         this.autoMergeLast += expressions.autoMergeLast;
         String next = autoMergeLast();
         if ( next.isEmpty() ){
             this.trans_exps.addAll( expressions.trans_exps );
             return;
         }
-        if ( !expressions.trans_exps.isEmpty() )
+
+        if ( !expressions.trans_exps.isEmpty() ) {
             next += expressions.trans_exps.removeFirst();
+        }
+
         this.trans_exps.add( next );
         this.trans_exps.addAll( expressions.trans_exps );
-        this.requiredPackages.addAll(expressions.getRequiredPackages());
-        if ( this.latestRelationSymbol < expressions.latestRelationSymbol )
-            this.latestRelationSymbol = expressions.latestRelationSymbol;
     }
 
     public int getLength(){

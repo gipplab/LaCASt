@@ -191,7 +191,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         else if (isSubSequence(term)) {
             Brackets bracket = Brackets.getBracket(term.getTermText());
             SequenceTranslator sp = new SequenceTranslator(this, bracket);
-            transExpression = sp.translate(expList);
+            transExpression = sp.translate(null, expList);
         } // this is special, could be a function like cos
         else if (MathTermUtility.isFunction(term)) {
             FunctionTranslator fp = new FunctionTranslator(this);
@@ -310,6 +310,15 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     protected TranslatedExpression getGlobalTranslationList() {
         if ( superTranslator == null ) return globalExp;
         else return this.superTranslator.getGlobalTranslationList();
+    }
+
+    /**
+     * Adds a partial translated expression to the list.
+     * @param translatedExpression will be copied so its save to use references
+     */
+    protected void addPartialTranslation(TranslatedExpression translatedExpression) {
+        if ( superTranslator == null ) this.partialTranslations.add(new TranslatedExpression(translatedExpression));
+        else superTranslator.addPartialTranslation(translatedExpression);
     }
 
     /**

@@ -275,9 +275,13 @@ public class MathTermTranslator extends AbstractListTranslator {
                 // must be followed by letter -> digit -> ... -> translate directly
                 te = handleDivide(term, following_exp);
                 if ( te != null ) break;
+            case point: case comma: case semicolon:
+                if ( following_exp.isEmpty() ) {
+                    LOG.debug("Expression sequence ends on punctuation. Ignoring this symbol.");
+                    return new TranslatedExpression(); // empty expression
+                }
             case digit:
             case numeric:
-            case comma:
             case minus:
             case plus:
             case equals:
@@ -347,7 +351,7 @@ public class MathTermTranslator extends AbstractListTranslator {
     private TranslatedExpression parseFences(MathTerm term, List<PomTaggedExpression> following_exp) {
         Brackets start = Brackets.ifIsBracketTransform(term, null);
         SequenceTranslator sq = new SequenceTranslator(getSuperTranslator(), start);
-        this.localTranslations.addTranslatedExpression(sq.translate(following_exp));
+        this.localTranslations.addTranslatedExpression(sq.translate(null, following_exp));
         return localTranslations;
     }
 
@@ -440,7 +444,7 @@ public class MathTermTranslator extends AbstractListTranslator {
         // time to translate the sequence
         followingExps.remove(0);
         SequenceTranslator sequenceTranslator = new SequenceTranslator(this, bracket);
-        TranslatedExpression translatedExpression = sequenceTranslator.translate(followingExps);
+        TranslatedExpression translatedExpression = sequenceTranslator.translate(null, followingExps);
 
         // remove last translated expressions from global list
         getGlobalTranslationList().removeLastNExps(translatedExpression.getLength());

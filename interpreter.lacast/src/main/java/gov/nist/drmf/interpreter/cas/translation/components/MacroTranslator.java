@@ -381,7 +381,7 @@ public class MacroTranslator extends AbstractListTranslator {
                     "This is will be rejected in future releases.");
 
             SequenceTranslator sp = new SequenceTranslator(this, b);
-            TranslatedExpression te = sp.translate(followingExps);
+            TranslatedExpression te = sp.translate(null, followingExps);
             getGlobalTranslationList().removeLastNExps(te.getLength());
             arguments.addLast(te.toString());
 

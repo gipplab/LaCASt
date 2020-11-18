@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import mlp.PomTaggedExpression;
@@ -52,6 +53,12 @@ public class MultiExpressionTranslator extends AbstractTranslator {
         return localTranslations;
     }
 
+    /**
+     * It sounds counter intuitive, but {@link ExpressionTags#equation} still have all
+     * including relation symbols. Hence, for translating an equation, we simply concatenate
+     * the translations of each component. We do not need to an equation symbol between the elements.
+     * @param equation simple list of expressions. Might be even contain empty elements
+     */
     private void parseEquation(PomTaggedExpression equation) {
         List<PomTaggedExpression> equationElements = equation.getComponents();
 
@@ -60,38 +67,33 @@ public class MultiExpressionTranslator extends AbstractTranslator {
             return;
         }
 
-        int startIndex = 0;
-        PomTaggedExpression first = equationElements.get(0);
-        if ( first.isEmpty() ) {
-            if ( getGlobalTranslationList().getLength() == 0 ) {
-                throw TranslationException.buildException(this,
-                        "Left-hand side of equation is empty.",
-                        TranslationExceptionReason.INVALID_LATEX_INPUT);
-            }
-            TranslatedExpression te = getGlobalTranslationList().getElementsBeforeRelation();
-            if ( te.getLastExpression().trim().equals( getConfig().getLineDelimiter() ) ) te.removeLastExpression();
-            localTranslations.addTranslatedExpression(te);
-            getGlobalTranslationList().addTranslatedExpression(te);
-            startIndex = 1;
-        }
-
-        for ( int i = startIndex; i < equationElements.size(); i++ ) {
+        for (PomTaggedExpression equationElement : equationElements) {
             fixSpacingBetweenEquations();
-            PomTaggedExpression pte = equationElements.get(i);
-            TranslatedExpression te = parseGeneralExpression(pte, null);
+            TranslatedExpression te = parseGeneralExpression(equationElement, null);
             localTranslations.addTranslatedExpression(te);
         }
     }
 
     private void fixSpacingBetweenEquations() {
         if ( !localTranslations.getTranslatedExpression().isBlank() ) {
-            if ( !getGlobalTranslationList().getLastExpression().trim().equals(getConfig().getLineDelimiter()) )
+            if ( getGlobalTranslationList().getLength() > 0 &&
+                    !getGlobalTranslationList().getLastExpression().trim().equals(getConfig().getLineDelimiter()) )
                 getGlobalTranslationList().replaceLastExpression(getGlobalTranslationList().getLastExpression() + " ");
             localTranslations.replaceLastExpression(localTranslations.getLastExpression() + " ");
         }
     }
 
-    private void parseEquationArray(PomTaggedExpression equationArray) {
+    /**
+     * Equation arrays working the same as {@link ExpressionTags#equation} in {@link #parseEquation(PomTaggedExpression)}.
+     * We simply do not know if they represent multiple equations or just a long chain of a single equation.
+     * Hence, we follow the same approach as for equations. We simply concatenate the element translations with one
+     * exception. If the previous expression contained an equation and the next one contains an equation symbol as well,
+     * we split them with an CAS-specific EOL symbol and both are added to {@link AbstractTranslator#addPartialTranslation(TranslatedExpression)} ()}.
+     * @param equationArray array of equations
+     * @throws TranslationException if the translation of the inner elements failed or one line ends with an relation symbol
+     * and the next line started with a relation symbol.
+     */
+    private void parseEquationArray(PomTaggedExpression equationArray) throws TranslationException {
         LOG.debug("Translation equation array");
         List<PomTaggedExpression> arrayComponents = equationArray.getComponents();
 
@@ -102,29 +104,59 @@ public class MultiExpressionTranslator extends AbstractTranslator {
 
         // the first element of the array is the top equation. All following elements are simply
         // additional translations
+        boolean endedOnRelationSymbol = false;
+        boolean previousElementContainedRelationSymbol = false;
+        boolean previouslyAddedLineDelimiter = false;
         for (PomTaggedExpression arrayComponent : arrayComponents) {
+            boolean nextBeginsWithRelation = PomTaggedExpressionUtility.beginsWithRelation(arrayComponent);
+            // the next element starts on relation symbol, so we need to take previous elements to build a valid equation
+            if ( nextBeginsWithRelation ) {
+                if ( endedOnRelationSymbol ) throw TranslationException.buildException(
+                        this, "Previous equation array element ended on relation symbol and next line begins on " +
+                                "relation symbol. Invalid mathematical logic.",
+                        TranslationExceptionReason.INVALID_LATEX_INPUT
+                );
+            }
+
             TranslatedExpression elementTranslation = parseGeneralExpression(arrayComponent, null);
+            getGlobalTranslationList().removeLastNExps(elementTranslation.getLength());
+
+            // ok we split the expressions here
+            if ( split(previousElementContainedRelationSymbol, elementTranslation, nextBeginsWithRelation, endedOnRelationSymbol) ) {
+                if ( !previouslyAddedLineDelimiter ) addPartialTranslation(localTranslations);
+                addLineDelimiter(elementTranslation); // adds a line delimiter to translation lists
+                localTranslations.addTranslatedExpression(elementTranslation);
+                addPartialTranslation(elementTranslation);
+                previouslyAddedLineDelimiter = true;
+            } else {
+                fixSpacingBetweenEquations();
+                localTranslations.addTranslatedExpression( elementTranslation );
+            }
+
             // remove translation of additional expression from the global list
             LOG.debug("Translated single element in equation array to: " + elementTranslation.getTranslatedExpression());
-            updateTranslationListsInArray(arrayComponent, elementTranslation);
-
-            // and add this to the additional translation
-            getListOfPartialTranslations().add(elementTranslation);
+            endedOnRelationSymbol = elementTranslation.endedOnRelationSymbol();
+            previousElementContainedRelationSymbol = elementTranslation.containsRelationSymbol();
         }
 
         LOG.debug("Finished all translation of equation array");
+        getGlobalTranslationList().addTranslatedExpression(localTranslations);
     }
 
-    private void updateTranslationListsInArray(PomTaggedExpression arrayComponent, TranslatedExpression elementTranslation) {
-        localTranslations.addTranslatedExpression(elementTranslation);
+    private boolean split(boolean previousElementContainedRelationSymbol,
+                          TranslatedExpression elementTranslation,
+                          boolean nextBeginsWithRelation,
+                          boolean endedOnRelationSymbol ) {
+        return previousElementContainedRelationSymbol &&
+                elementTranslation.containsRelationSymbol() &&
+                !nextBeginsWithRelation && !endedOnRelationSymbol;
+    }
 
-        if ( arrayComponent.getNextSibling() != null ) {
-            // add a line delimiter in front of new elements
-            String delimiter = getConfig().getLineDelimiter();
-            if ( !delimiter.equals("\n") ) delimiter += " ";
-            getGlobalTranslationList().addTranslatedExpression(delimiter);
-            localTranslations.addTranslatedExpression(delimiter);
-        }
+    private void addLineDelimiter( TranslatedExpression elementTranslation ) {
+        String delimiter = getConfig().getLineDelimiter();
+        if ( !delimiter.equals("\n") ) delimiter += " ";
+
+        localTranslations.addTranslatedExpression(delimiter);
     }
 
     private TranslationException buildWrongExpressionTagError() {

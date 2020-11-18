@@ -80,12 +80,9 @@ public class PrintablePomTaggedExpressionTests {
         PrintablePomTaggedExpression copy = new PrintablePomTaggedExpression(ppte);
         assertEquals(ppte.getTexString(), copy.getTexString());
 
-        List<PrintablePomTaggedExpression> origChildren = ppte.getPrintableComponents();
         assertEquals(3, ppte.getPrintableComponents().size());
         assertEquals(3, copy.getPrintableComponents().size());
-        origChildren.remove(0);
-        assertEquals(2, ppte.getPrintableComponents().size());
-        assertEquals(3, copy.getPrintableComponents().size());
+        assertNotEquals( ppte.getPrintableComponents(), copy.getPrintableComponents() );
     }
 
     @Test

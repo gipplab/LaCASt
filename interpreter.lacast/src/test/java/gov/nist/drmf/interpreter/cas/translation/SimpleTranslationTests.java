@@ -145,6 +145,14 @@ class SimpleTranslationTests {
     }
 
     @Test
+    void diffTest() {
+        String in = "\\int_{0}^{1} \\frac{\\diff{x}}{x}";
+        String eout = "int((1)/(x), x = 0..1)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
     void paraMultiplyTest() {
         String in = "(x+y)(x-y)";
         String eout = "(x + y)*(x - y)";

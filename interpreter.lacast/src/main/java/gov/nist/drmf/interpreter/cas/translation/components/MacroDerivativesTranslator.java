@@ -272,15 +272,16 @@ public class MacroDerivativesTranslator extends MacroTranslator {
     /**
      * In \<macro>^{(<order>)}@{...}, extracts the <order> as the order of differentiation for the macro
      *
-     * @param following_exps .
+     * @param followingExps .
      * @param holder .
      */
     private void parseLagrangeNotation(
-            List<PomTaggedExpression> following_exps,
+            List<PomTaggedExpression> followingExps,
             DerivativeAndPowerHolder holder
     ) {
         // translate the order
-        TranslatedExpression lagrangeExpr = parseGeneralExpression(following_exps.remove(0), following_exps);
+        followingExps = new LinkedList<>(followingExps);
+        TranslatedExpression lagrangeExpr = parseGeneralExpression(followingExps.remove(0), followingExps);
 
         // clean up global translation list
         TranslatedExpression global = getGlobalTranslationList();
