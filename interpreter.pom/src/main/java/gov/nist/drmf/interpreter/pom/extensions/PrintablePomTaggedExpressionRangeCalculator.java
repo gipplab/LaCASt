@@ -1,8 +1,10 @@
 package gov.nist.drmf.interpreter.pom.extensions;
 
 import gov.nist.drmf.interpreter.common.text.IndexRange;
+import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import mlp.PomTaggedExpression;
+import org.intellij.lang.annotations.Language;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -12,6 +14,8 @@ import java.util.regex.Pattern;
  * @author Andre Greiner-Petter
  */
 public class PrintablePomTaggedExpressionRangeCalculator {
+    @Language("RegExp")
+    private static final String SPACE_PATTERN = "[\\s{}\\[\\]&]*";
 
     public PrintablePomTaggedExpressionRangeCalculator() {}
 
@@ -82,6 +86,9 @@ public class PrintablePomTaggedExpressionRangeCalculator {
     }
 
     private String getEndingString(PomTaggedExpression pte) {
+        String envEndString = getEndEnvironmentPattern(pte);
+        if ( envEndString != null ) return envEndString;
+
         List<PomTaggedExpression> components = pte.getComponents();
         if (components.isEmpty()) {
             String p = generatePattern(getStartingString(pte));
@@ -92,31 +99,39 @@ public class PrintablePomTaggedExpressionRangeCalculator {
             StringBuilder entireListOfComponents = new StringBuilder();
             String potentialRoot = PrintablePomTaggedExpressionUtility.getInternalNodeCommand(pte);
             entireListOfComponents.append(Pattern.quote(potentialRoot));
-            if ( !potentialRoot.isBlank() ) entireListOfComponents.append("[\\s{}\\[\\]]*");
+            if ( !potentialRoot.isBlank() ) entireListOfComponents.append(SPACE_PATTERN);
 
             for ( int i = 0; i < components.size(); i++ ) {
                 PomTaggedExpression last = components.get(i);
                 if ( PomTaggedExpressionUtility.isSequence(last) ) {
                     for ( PomTaggedExpression child : last.getComponents() ) {
-                        entireListOfComponents.append("[\\s{}\\[\\]]*")
+                        entireListOfComponents.append(SPACE_PATTERN)
                                 .append(getEndingString(child));
                     }
                 } else if ( !last.getComponents().isEmpty() ) {
                     String root = PrintablePomTaggedExpressionUtility.getInternalNodeCommand(last);
                     entireListOfComponents.append(Pattern.quote(root));
                     for ( PomTaggedExpression child : last.getComponents() ) {
-                        entireListOfComponents.append("[\\s{}\\[\\]]*")
+                        entireListOfComponents.append(SPACE_PATTERN)
                                 .append(getEndingString(child));
                     }
                 } else {
                     entireListOfComponents.append(getEndingString(components.get(i)));
                 }
                 if ( i < components.size()-1 )
-                    entireListOfComponents.append("[\\s{}\\[\\]]*");
+                    entireListOfComponents.append(SPACE_PATTERN);
             }
 
             return entireListOfComponents.toString();
         }
+    }
+
+    private String getEndEnvironmentPattern(PomTaggedExpression pte) {
+        if ( PomTaggedExpressionUtility.isTeXEnvironment(pte) ) {
+            String feature = pte.getFeatureValue(FeatureSetUtility.LATEX_FEATURE_KEY);
+            String endString = feature.split("\\.{3}")[1];
+            return Pattern.quote(endString);
+        } else return null;
     }
 
     private int checkIndexForClosingBrackets(int start, int end, String expression) {
@@ -131,10 +146,15 @@ public class PrintablePomTaggedExpressionRangeCalculator {
     private int countOpenBrackets(String sub) {
         int opened = 0;
         for (int i = 0; i < sub.length(); i++) {
-            if (sub.charAt(i) == '{') opened++;
-            else if (sub.charAt(i) == '}') opened--;
+            if (isBracket(sub, i, '{')) opened++;
+            else if (isBracket(sub, i, '}')) opened--;
         }
         return opened;
+    }
+
+    private boolean isBracket(String sub, int i, char bracketSymb) {
+        if ( i > 0 && sub.charAt(i-1) == '\\' ) return false;
+        return sub.charAt(i) == bracketSymb;
     }
 
     private int getEndIndex(int opened, int end, String expression) {

@@ -60,10 +60,6 @@ public class SemanticEnhancer {
     public PrintablePomTaggedExpression semanticallyEnhance(MOINode<MOIAnnotation> node) throws IOException, ParseException {
         String originalTex = node.getNode().getOriginalLaTeX();
         LOG.info("Start semantically enhancing moi " + node.getId() + ": " + originalTex);
-        if ( originalTex.contains("begin") ) {
-            LOG.warn("Currently, we are unable to properly parse latex envinroments. Hence, we skip them here.");
-            return null;
-        }
 
         List<MOINode<MOIAnnotation>> dependentNodes = node.getDependencyNodes();
         counter = 0;

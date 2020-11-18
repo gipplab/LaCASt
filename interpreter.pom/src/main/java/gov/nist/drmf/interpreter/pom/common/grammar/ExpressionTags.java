@@ -39,6 +39,11 @@ public enum ExpressionTags {
         return getTagByKey(pte.getTag());
     }
 
+    public boolean equalsPTE(PomTaggedExpression pte) {
+        if ( pte == null || pte.getTag() == null || pte.getTag().isBlank() ) return false;
+        return this.equals(getTagByKey(pte.getTag()));
+    }
+
     public String tag() {
         return tag;
     }

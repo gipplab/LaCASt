@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.pom.extensions;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
@@ -37,6 +38,13 @@ public final class PrintablePomTaggedExpressionUtility {
 
         while (it.hasNext()) {
             PrintablePomTaggedExpression p = it.next();
+
+            if ( p.getParent() != null ) {
+                if ( ExpressionTags.equation_array.equalsPTE(p.getParent()) ) {
+                    sb.append(" \\\\"); // line break between equation array elements.
+                }
+            }
+
             String s = p.getTexString();
             if (!s.matches("^[{^_!].*|[)}\\]|@]") && !prev.matches(".*[({\\[|@]$")) sb.append(" ");
             sb.append(s);

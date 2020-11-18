@@ -264,7 +264,10 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
             String newCaption = PrintablePomTaggedExpressionUtility.getInternalNodeCommand(this);
             String elementsCaption = PrintablePomTaggedExpressionUtility.buildString(getPrintableComponents());
 
-            if ( !newCaption.isBlank() && !(elementsCaption.trim().startsWith("{") && elementsCaption.trim().endsWith("}")) ) {
+            if ( PomTaggedExpressionUtility.isTeXEnvironmentString(newCaption) ) {
+                String[] env = newCaption.split("\\.{3}");
+                newCaption = env[0] + elementsCaption + env[1];
+            } else if ( !newCaption.isBlank() && !(elementsCaption.trim().startsWith("{") && elementsCaption.trim().endsWith("}")) ) {
                 newCaption += "{" + elementsCaption + "}";
             } else newCaption += elementsCaption;
 

@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.pom.extensions;
 import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.pom.*;
@@ -631,20 +632,95 @@ public class PrintablePomTaggedExpressionTests {
         checkList(downComps, "{\\cpi}");
     }
 
-//    @Test
-//    public void environmentTest() throws ParseException {
-//        String texString = "\\begin{align}\n" +
-//                "(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\\n" +
-//                "&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\\n" +
-//                "&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\\n" +
-//                "&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\\n" +
-//                "&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\\n" +
-//                "&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\\n" +
-//                "&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right) \\, .\n" +
-//                "\\end{align}";
-//        PrintablePomTaggedExpression ppte = mlp.parse(texString);
-//        assertEquals(texString, ppte.getTexString());
-//    }
+    @Test
+    public void environmentTest() throws ParseException {
+        String texString = "x + \\begin{align} x &= y \\\\ n &= m \\end{align}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps,
+                "x", "+", "\\begin{align} x &= y \\\\ n &= m \\end{align}"
+        );
+
+        printComps = printComps.get(2).getPrintableComponents();
+        checkList(printComps,
+                "x = y", "n = m"
+        );
+
+        // I know it looks weird, but that's how PoM tagger parses equation arrays. An equation is a list of LHS and RHS
+        // while the equation symbol is in the RHS.
+        // hence the PTE for "x = y" contains two nodes, "x" and "= y".
+        printComps = printComps.get(0).getPrintableComponents();
+        checkList(printComps,
+                "x", "= y"
+        );
+
+        printComps.get(0).setRoot(new MathTerm("1", MathTermTags.numeric.tag()));
+    }
+
+    @Test
+    public void manipulatingEnvironmentTest() throws ParseException {
+        String texString = "x + \\begin{align} x &= y \\\\ n &= m \\end{align}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        printComps = printComps.get(2).getPrintableComponents();
+        printComps = printComps.get(0).getPrintableComponents();
+
+        printComps.get(0).setRoot(new MathTerm("1", MathTermTags.numeric.tag()));
+
+        assertEquals( "x + \\begin{align}1 = y \\\\ n = m\\end{align}", ppte.getTexString() );
+    }
+
+    @Test
+    public void environmentExtremeTest() throws ParseException {
+        String texString = "x + \\begin{align}&2n (n + \\alpha) (2n \\alpha) P_n^{(\\alpha,\\beta)}(z) \\\\ " +
+                "&= (2n+\\alpha + \\beta-1) \\{ z + \\alpha^2 - \\beta^2 \\} z,\\end{align} + y";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps,
+                "x", "+",
+                "\\begin{align}&2n (n + \\alpha) (2n \\alpha) P_n^{(\\alpha,\\beta)}(z) \\\\ " +
+                        "&= (2n+\\alpha + \\beta-1) \\{ z + \\alpha^2 - \\beta^2 \\} z,\\end{align}",
+                "+", "y"
+        );
+
+        printComps = printComps.get(2).getPrintableComponents();
+        checkList(printComps,
+                "2n (n + \\alpha) (2n \\alpha) P_n^{(\\alpha,\\beta)}(z)",
+                "= (2n+\\alpha + \\beta-1) \\{ z + \\alpha^2 - \\beta^2 \\} z,"
+        );
+
+        List<PrintablePomTaggedExpression> firstEquation = printComps.get(0).getPrintableComponents();
+        checkList(firstEquation,
+                "", "2n (n + \\alpha) (2n \\alpha) P_n^{(\\alpha,\\beta)}(z)"
+        );
+
+        List<PrintablePomTaggedExpression> secondEquation = printComps.get(1).getPrintableComponents();
+        checkList(secondEquation,
+                "", "= (2n+\\alpha + \\beta-1) \\{ z + \\alpha^2 - \\beta^2 \\} z,"
+        );
+
+        firstEquation = firstEquation.get(1).getPrintableComponents();
+        checkList(firstEquation,
+                "2", "n",
+                "(", "n", "+", "\\alpha", ")",
+                "(", "2", "n", "\\alpha", ")",
+                "P", "_n^{(\\alpha,\\beta)}", "(", "z", ")"
+        );
+
+        secondEquation = secondEquation.get(1).getPrintableComponents();
+        checkList(secondEquation,
+                "=",
+                "(", "2", "n", "+", "\\alpha", "+", "\\beta", "-", "1", ")",
+                "\\{", "z", "+", "\\alpha", "^2", "-", "\\beta", "^2", "\\}",
+                "z", ","
+        );
+    }
 
     @Test
     @DLMF("11.5.E2")

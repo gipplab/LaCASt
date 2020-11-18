@@ -435,6 +435,35 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void partialHitInEquationArrayTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "P_{par1}^{(par2, par3)} (var1)", "(p|v)ar\\d");
+
+        String test = "x + \\begin{align}&2n (n + \\alpha) (2n \\alpha) P_n^{(\\alpha,\\beta)}(z) \\\\ " +
+                "&= (2n+\\alpha + \\beta-1) \\{ z + P_{m+2}^{(\\beta,\\alpha)}(x) - \\beta^2 \\} z,\\end{align} + y";
+
+        PomMatcher matcher = blueprint.matcher(test);
+        assertTrue( matcher.find() );
+        Map<String, String> groups = matcher.groups();
+        assertEquals(4, groups.size());
+        assertEquals("n", groups.get("par1"));
+        assertEquals("\\alpha", groups.get("par2"));
+        assertEquals("\\beta", groups.get("par3"));
+        assertEquals("z", groups.get("var1"));
+
+        assertTrue( matcher.find() );
+        groups = matcher.groups();
+        assertEquals(4, groups.size());
+        assertEquals("m+2", groups.get("par1"));
+        assertEquals("\\beta", groups.get("par2"));
+        assertEquals("\\alpha", groups.get("par3"));
+        assertEquals("x", groups.get("var1"));
+
+        assertFalse( matcher.find() );
+        assertTrue( matcher.groups().isEmpty() );
+    }
+
+    @Test
     public void deepInsideGammaTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
                 PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
