@@ -55,6 +55,8 @@ public class SequenceTranslator extends AbstractListTranslator {
     private final String MULTIPLY;
     private final Pattern MULTIPLY_PATTERN;
 
+    private boolean hasPassedPunctuation = false;
+
     /**
      * Uses only for a general sequence expression.
      * If the tag is sequence we don't need to check any parenthesis.
@@ -79,6 +81,7 @@ public class SequenceTranslator extends AbstractListTranslator {
         MULTIPLY = getConfig().getMULTIPLY();
         MULTIPLY_PATTERN = Pattern.compile("(.*)"+Pattern.quote(MULTIPLY)+"\\s*");
         this.openBracket = openBracket;
+        this.hasPassedPunctuation = false;
     }
 
     @Override
@@ -193,6 +196,7 @@ public class SequenceTranslator extends AbstractListTranslator {
         while (!followingExp.isEmpty()) {
             // take the next expression
             PomTaggedExpression exp = followingExp.remove(0);
+            hasPassedPunctuation |= PomTaggedExpressionUtility.isListSetSeparationIndicator(exp);
 
             // otherwise investigate the term
             MathTerm term = exp.getRoot();
@@ -317,7 +321,14 @@ public class SequenceTranslator extends AbstractListTranslator {
                     Keys.KEY_ABSOLUTE_VALUE
             );
         } else { // otherwise, parenthesis must match each other, so close as it opened
-            seq = openBracket.getAppropriateString() + localTranslations.removeLastExpression() + openBracket.getCounterPart().getAppropriateString();
+            bracket = openBracket;
+            if ( normalizeBracket() ) {
+                bracket = Brackets.left_parenthesis;
+                exp = new PomTaggedExpression(new MathTerm(")", MathTermTags.left_brace.tag()));
+            }
+            seq = bracket.getAppropriateString() +
+                    localTranslations.removeLastExpression() +
+                    bracket.getCounterPart().getAppropriateString();
         }
 
         seq = checkMultiplyAddition(exp, followingExp, seq);
@@ -330,6 +341,13 @@ public class SequenceTranslator extends AbstractListTranslator {
         global.removeLastNExps(num);
         global.addTranslatedExpression(seq);
         return localTranslations;
+    }
+
+    private boolean normalizeBracket() {
+        if ( !openBracket.isNormalParenthesis() && !hasPassedPunctuation && !super.isSetMode() ) {
+            LOG.warn("Normalizing brackets to normal parenthesis: ( )");
+            return true;
+        } else return false;
     }
 
     private String checkMultiplyAddition(PomTaggedExpression exp, List<PomTaggedExpression> exp_list, String part) {

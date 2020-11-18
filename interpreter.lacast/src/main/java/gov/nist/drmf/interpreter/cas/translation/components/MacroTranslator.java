@@ -47,7 +47,7 @@ public class MacroTranslator extends AbstractListTranslator {
     private static final Logger LOG = LogManager.getLogger(MacroTranslator.class.getName());
 
     private static final Pattern OPTIONAL_PARAMS_PATTERN =
-            Pattern.compile("\\s*\\[(.*)]\\s*\\*?\\s*");
+            Pattern.compile("\\s*[(\\[](.*)[])]\\s*\\*?\\s*");
 
     private final String cas;
 
