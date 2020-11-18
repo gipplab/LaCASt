@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Andre Greiner-Petter
@@ -30,9 +31,30 @@ public class SemanticEnhancer {
 
     private LinkedList<MacroBean> macroPatterns;
 
+    private List<String> definiens;
+    private List<String> macros;
+
+    private double score;
+    private int counter = 1;
+
     public SemanticEnhancer() {
         this.elasticSearchConnector = ElasticSearchConnector.getDefaultInstance();
         this.macroPatterns = new LinkedList<>();
+        this.definiens = new LinkedList<>();
+        this.macros = new LinkedList<>();
+        this.score = 0;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public List<String> getUsedDefiniens() {
+        return definiens;
+    }
+
+    public List<String> getUsedMacros() {
+        return macros;
     }
 
     public PrintablePomTaggedExpression semanticallyEnhance(MOINode<MOIAnnotation> node) throws IOException, ParseException {
@@ -44,7 +66,9 @@ public class SemanticEnhancer {
         }
 
         List<MOINode<MOIAnnotation>> dependentNodes = node.getDependencyNodes();
+        counter = 0;
         retrieveReplacementListsEnhance(node, dependentNodes);
+        this.score = this.score / counter;
         LOG.info("Retrieved "+ macroPatterns.size() +" replacement rules. Start applying each rule.");
 
         MathematicalObjectOfInterest moi = node.getNode();
@@ -94,17 +118,26 @@ public class SemanticEnhancer {
         List<Relation> definiensList = node.getAnnotation().getAttachedRelations();
         LOG.debug("Retrieve " + definiensList.size() + " definiens for node "+ node.getId() +": " + node.getNode().getOriginalLaTeX());
         Collections.sort(definiensList);
+
         for ( int i = 0; i < definiensList.size() && i < considerNumberOfTopRelations; i++ ) {
             Relation definitionRelation = definiensList.get(i);
+            double definiensScore = definitionRelation.getScore();
             String definition = definitionRelation.getDefinition();
+            this.definiens.add(definition);
             LinkedList<MacroResult> macros = elasticSearchConnector.searchMacroDescription(definition);
             LOG.debug("For definition " + definition + ": retrieved " + macros.size() + " semantic macros " + macros);
 
+            double maxMacroScore = macros.isEmpty() ? 0 : macros.get(0).getScore();
             for ( int j = 0; j < macros.size() && j < considerNumberOfTopMacros; j++ ) {
                 MacroBean macro = macros.get(j).getMacro();
                 if ( !macroPatterns.contains(macro) ) {
                     LOG.debug("Add semantic macro " + macro.getName());
                     macroPatterns.add(macro);
+                    this.macros.add(macro.getName());
+
+                    double macroScore = macros.get(j).getScore();
+                    this.counter++;
+                    this.score += (definiensScore+(macroScore/maxMacroScore))/2;
                 }
             }
         }
