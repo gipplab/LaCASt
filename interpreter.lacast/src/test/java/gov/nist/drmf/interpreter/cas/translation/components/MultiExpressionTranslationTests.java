@@ -55,13 +55,11 @@ public class MultiExpressionTranslationTests {
         MultiExpressionTranslator gt = new MultiExpressionTranslator(slt);
         PomTaggedExpression pte = mlp.parse("\\begin{align} x &= y \\\\ &= z \\end{align}");
         TranslatedExpression te = gt.translate(pte);
-        assertEquals("x = y; y = z", te.toString());
+        assertEquals("x = y = z", te.toString());
         assertEquals(te, gt.getTranslatedExpressionObject());
 
         List<TranslatedExpression> additionalTranslations = gt.getListOfPartialTranslations();
-        assertEquals(2, additionalTranslations.size(), additionalTranslations.toString());
-        assertEquals("x = y", additionalTranslations.get(0).getTranslatedExpression());
-        assertEquals("y = z", additionalTranslations.get(1).getTranslatedExpression());
+        assertEquals(0, additionalTranslations.size(), additionalTranslations.toString());
     }
 
     @Test
@@ -80,10 +78,16 @@ public class MultiExpressionTranslationTests {
 
     @Test
     public void totalTranslationCallTest() {
-        assertEquals("x = y; y = z", slt.translate( "\\begin{align} x &= y \\\\ &= z \\end{align}" ));
+        assertEquals("x = y = z", slt.translate( "\\begin{align} x &= y \\\\ &= z \\end{align}" ));
         TranslationInformation ti = slt.getTranslationInformationObject();
-        assertEquals(2, ti.getPartialTranslations().size());
-        assertEquals("x = y", ti.getPartialTranslations().get(0).getTranslatedExpression());
-        assertEquals("y = z", ti.getPartialTranslations().get(1).getTranslatedExpression());
+        assertEquals(0, ti.getPartialTranslations().size());
+    }
+
+    @Test
+    public void complexRealTest() {
+        String translation = slt.translate( "\\begin{align}&2n (n + \\alpha + \\beta) \\\\&= \\JacobipolyP{\\alpha}{\\beta}{n-1}@{z} - 2 (n+\\alpha - 1),\\end{align}" );
+        assertEquals("2*n*(n + alpha + beta) = JacobiP(n - 1, alpha, beta, z)- 2*(n + alpha - 1)", translation);
+        TranslationInformation ti = slt.getTranslationInformationObject();
+        assertEquals(0, ti.getPartialTranslations().size());
     }
 }

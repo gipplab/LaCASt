@@ -99,6 +99,7 @@ public final class MathTermUtility {
     public static boolean isRelationSymbol( MathTerm term ) {
         if ( term == null ) return false;
         MathTermTags tag = MathTermTags.getTagByMathTerm(term);
+        if ( tag == null ) return false;
         switch (tag) {
             case equals: case relation: case greater_than: case less_than:
                 return true;

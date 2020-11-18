@@ -15,6 +15,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -124,6 +125,7 @@ public class MathTermTranslatorTests {
         PomTaggedExpression last = listPTE.get(listPTE.size()-1);
         last.getRoot().setTag(MathTermTags.fence.tag());
 
+        listPTE = new LinkedList<>(listPTE);
         TranslatedExpression te = mathTermTranslator.translate(listPTE.remove(0), listPTE);
 
         assertEquals(expectedResult, te.toString());

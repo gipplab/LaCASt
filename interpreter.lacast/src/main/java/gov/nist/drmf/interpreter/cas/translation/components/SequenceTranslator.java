@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
@@ -17,6 +18,7 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -46,7 +48,7 @@ public class SequenceTranslator extends AbstractListTranslator {
     private static final Logger LOG = LogManager.getLogger(SequenceTranslator.class.getName());
 
     // the open bracket if needed
-    private Brackets openBracket;
+    private final Brackets openBracket;
 
     private final TranslatedExpression localTranslations;
 
@@ -58,10 +60,7 @@ public class SequenceTranslator extends AbstractListTranslator {
      * If the tag is sequence we don't need to check any parenthesis.
      */
     public SequenceTranslator(AbstractTranslator superTranslator) {
-        super(superTranslator);
-        localTranslations = new TranslatedExpression();
-        MULTIPLY = getConfig().getMULTIPLY();
-        MULTIPLY_PATTERN = Pattern.compile("(.*)"+Pattern.quote(MULTIPLY)+"\\s*");;
+        this(superTranslator, null);
     }
 
     /**
@@ -75,7 +74,10 @@ public class SequenceTranslator extends AbstractListTranslator {
      *                    sequence
      */
     public SequenceTranslator(AbstractTranslator superTranslator, Brackets openBracket) {
-        this(superTranslator);
+        super(superTranslator);
+        localTranslations = new TranslatedExpression();
+        MULTIPLY = getConfig().getMULTIPLY();
+        MULTIPLY_PATTERN = Pattern.compile("(.*)"+Pattern.quote(MULTIPLY)+"\\s*");
         this.openBracket = openBracket;
     }
 
@@ -84,15 +86,47 @@ public class SequenceTranslator extends AbstractListTranslator {
         return localTranslations;
     }
 
+    /**
+     * This method works slightly different than other translators.
+     * A sequence might be a real {@link ExpressionTags#sequence} or just a sequence of elements wrapped in
+     * brackets. In the second scenario, you have been initiated this class with
+     * {@link SequenceTranslator#SequenceTranslator(AbstractTranslator, Brackets)} rather than with
+     * {@link SequenceTranslator#SequenceTranslator(AbstractTranslator)}. In this case, the first element
+     * {@param exp} is the bracket itself and should be ignored. Hence you provide null and the following list
+     * <code>translate(null, followingExpressions);</code>.
+     *
+     * In the case of a real sequence node tagged with {@link ExpressionTags#sequence} the given parameter
+     * {@param exp} is the sequence and should not have following tokens (it may have following tokens but they are
+     * out of scope for this sequence and should be null). Hence you call
+     * <code>translate(exp, null);</code>.
+     *
+     * If you do not follow this rule, the method tries to find the right translation for you.
+     * If the given {@param exp} is a sequence node, it will ignore the following tokens.
+     * If not and there was a bracket open, {@param exp} will be ignored and the following tokens are translated.
+     * If neither is the case, a {@link TranslationException} is thrown with an
+     * {@link TranslationExceptionReason#IMPLEMENTATION_ERROR}.
+     *
+     * In the totally strange case that both {@param exp} and {@param following} are null, the previously
+     * translated expression is returned, which might be empty, of course.
+     *
+     * @param exp a sequence node, tagged with {@link ExpressionTags#sequence}. In this case the second
+     *            argument {@param following} must be null because every following expressions are out of scope for this
+     *            sequence.
+     * @param following the following expressions. This is either null (if you provided {@param exp} or you
+     *                  instantiated this class with an open bracket. In this case the {@param exp} must be null!
+     * @return the translated expression
+     */
     @Override
     public TranslatedExpression translate(PomTaggedExpression exp, List<PomTaggedExpression> following) {
-        if (exp == null) {
-            return translate(following);
-        } else if (following == null) {
-            return translate(exp);
-        } else {
-            return localTranslations;
-        }
+        if ( exp != null ) {
+            if (PomTaggedExpressionUtility.isSequence(exp)) return translate(exp);
+            else if ( openBracket != null ) return translate(following);
+            else throw TranslationException.buildExceptionObj(
+                    this, "The sequence translator requires a sequence element but was provided with " + exp,
+                    TranslationExceptionReason.IMPLEMENTATION_ERROR, exp
+            );
+        } else if ( following != null ) return translate(following);
+        else return localTranslations;
     }
 
     /**
@@ -116,7 +150,7 @@ public class SequenceTranslator extends AbstractListTranslator {
         }
 
         // get all sub elements
-        List<PomTaggedExpression> expList = expression.getComponents();
+        List<PomTaggedExpression> expList = new LinkedList<>(expression.getComponents());
 
         // run through each element
         while (!expList.isEmpty()) {
@@ -143,13 +177,17 @@ public class SequenceTranslator extends AbstractListTranslator {
      *                      with an open bracket
      * @return true when the translation finished without an error.
      */
-    public TranslatedExpression translate(List<PomTaggedExpression> followingExp) {
+    private TranslatedExpression translate(List<PomTaggedExpression> followingExp) {
         if (openBracket == null) {
             throw TranslationException.buildException(this, "Wrong translation method used. " +
                             "You have to specify an open bracket to translate it like a sequence.",
                     TranslationExceptionReason.IMPLEMENTATION_ERROR
             );
         }
+
+        // no new list instantiation of followingExp is required. This is now a private function
+        // and hence the given list is already not the original list of components.
+        // hence, we can safely manipulate the list as we wish
 
         // iterate through all elements
         while (!followingExp.isEmpty()) {
@@ -353,7 +391,7 @@ public class SequenceTranslator extends AbstractListTranslator {
      * Returns true if there has to be a space symbol following the current expression.
      *
      * @param currExp  the current expression
-     * @param exp_list the following expressions
+     * @param expList the following expressions
      * @return true if the current expressions needs an white space symbol behind its translation
      */
     private boolean addSpace(PomTaggedExpression currExp, List<PomTaggedExpression> expList) {

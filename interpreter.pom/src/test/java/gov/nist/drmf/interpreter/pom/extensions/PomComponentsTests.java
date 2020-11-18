@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * We carefully build {@link PrintablePomTaggedExpression} so that each component
@@ -41,8 +42,24 @@ public class PomComponentsTests {
                 (List<PrintablePomTaggedExpression>)(List<?>) components;
 
         // check if the reference is the same
-        components.remove(0);
-        assertEquals(components.size(), printableComponents.size());
+        assertEquals(components, printableComponents);
+
+        // check that no changes are allowed because getting the components should be unmodifiable
+        assertThrows(UnsupportedOperationException.class, () -> components.remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> printableComponents.remove(0));
     }
 
+    @Test
+    public void unmodifiableComponentTest() throws ParseException {
+        PrintablePomTaggedExpression t = mlp.parse("a + \\frac{1}{2}");
+        List<PomTaggedExpression> components = t.getComponents();
+        List<PrintablePomTaggedExpression> printComponents = t.getPrintableComponents();
+
+        // both reference to the exact same components list
+        assertEquals(components, printComponents);
+
+        // check that no changes are allowed because getting the components should be unmodifiable
+        assertThrows(UnsupportedOperationException.class, () -> components.remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> printComponents.remove(0));
+    }
 }

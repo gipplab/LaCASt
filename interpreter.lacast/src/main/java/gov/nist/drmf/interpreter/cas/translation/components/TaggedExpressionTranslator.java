@@ -124,7 +124,7 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
         List<PomTaggedExpression> first = new LinkedList<>();
         List<PomTaggedExpression> second = new LinkedList<>();
 
-        List<PomTaggedExpression> comps = expression.getComponents();
+        List<PomTaggedExpression> comps = new LinkedList<>(expression.getComponents());
         boolean before = true;
         while ( !comps.isEmpty() ) {
             PomTaggedExpression pte = comps.remove(0);
@@ -155,10 +155,10 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
         return fakeBinom;
     }
 
-    private void parseBasicFunction( PomTaggedExpression top_exp, ExpressionTags tag )
+    private void parseBasicFunction( PomTaggedExpression topExp, ExpressionTags tag )
             throws TranslationException {
         // extract all components from top expressions
-        String[] comps = extractMultipleSubExpressions( top_exp );
+        String[] comps = extractMultipleSubExpressions( topExp );
 
         // first of all, translate components into translation
         localTranslations.addTranslatedExpression(
@@ -181,12 +181,12 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
     /**
      * A wrapper method for {@link #extractMultipleSubExpressions(List)}.
      *
-     * @param top_expression parent expression of underlying sub-expressions.
+     * @param topExpression parent expression of underlying sub-expressions.
      * @return true if the parsing process finished successful
      * @see #extractMultipleSubExpressions(List)
      */
-    private String[] extractMultipleSubExpressions( PomTaggedExpression top_expression ){
-        return extractMultipleSubExpressions(top_expression.getComponents());
+    private String[] extractMultipleSubExpressions( PomTaggedExpression topExpression ){
+        return extractMultipleSubExpressions(topExpression.getComponents());
     }
 
     /**
@@ -195,16 +195,17 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
      * of several children. As an example a fraction expression has two children,
      * the numerator and the denominator.
      *
-     * @param sub_expressions parent expression of underlying sub-expressions.
+     * @param subExpressions parent expression of underlying sub-expressions.
      * @return true if the parsing process finished successful
      */
-    private String[] extractMultipleSubExpressions( List<PomTaggedExpression> sub_expressions ) {
-        ArrayList<TranslatedExpression> components = new ArrayList<>(sub_expressions.size());
+    private String[] extractMultipleSubExpressions( List<PomTaggedExpression> subExpressions ) {
+        subExpressions = new LinkedList<>(subExpressions);
+        ArrayList<TranslatedExpression> components = new ArrayList<>(subExpressions.size());
         TranslatedExpression global = super.getGlobalTranslationList();
 
-        while ( !sub_expressions.isEmpty() ){
-            PomTaggedExpression exp = sub_expressions.remove(0);
-            TranslatedExpression inner_exp = parseGeneralExpression(exp, sub_expressions);
+        while ( !subExpressions.isEmpty() ){
+            PomTaggedExpression exp = subExpressions.remove(0);
+            TranslatedExpression inner_exp = parseGeneralExpression(exp, subExpressions);
             int num = inner_exp.mergeAll();
             components.add(inner_exp);
             global.removeLastNExps( num ); // remove all previous sub-elements

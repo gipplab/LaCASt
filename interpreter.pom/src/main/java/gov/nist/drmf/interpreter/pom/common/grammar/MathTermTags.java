@@ -33,6 +33,8 @@ public enum MathTermTags {
     at("at"),
     alphanumeric("alphanumeric"),
     comma("comma"),
+    point("point"),
+    semicolon("semicolon"),
     less_than("less-than"),
     greater_than("greater-than"),
     macro("macro"),

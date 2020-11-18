@@ -30,6 +30,16 @@ public final class PomTaggedExpressionUtility {
         return expr.trim();
     }
 
+    public static boolean beginsWithRelation(PomTaggedExpression pte) {
+        if ( pte == null ) return false;
+        if ( pte.isEmpty() ) return beginsWithRelation(pte.getNextSibling());
+        if ( MathTermUtility.isRelationSymbol(pte.getRoot()) ) return true;
+        if ( pte.getComponents().size() <= 1 ) return false;
+
+        List<PomTaggedExpression> children = pte.getComponents();
+        return beginsWithRelation(children.get(0));
+    }
+
     public static boolean isSequence(PomTaggedExpression pte) {
         if (pte == null || pte.isEmpty()) return false;
         ExpressionTags tag = ExpressionTags.getTagByKey(pte.getTag());

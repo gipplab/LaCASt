@@ -9,6 +9,7 @@ import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -171,6 +172,16 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
         populatingStringChanges();
     }
 
+    /**
+     * Returns an unmodifiable list of components. Hence it is no longer possible
+     * to manipulate the components without using this class.
+     * @return an unmodifiable list of components.
+     */
+    @Override
+    public List<PomTaggedExpression> getComponents() {
+        return Collections.unmodifiableList(super.getComponents());
+    }
+
     @Override
     public boolean addComponent(PomTaggedExpression pte) throws IllegalArgumentException {
         checkComponentValidity(pte);
@@ -284,7 +295,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
      */
     @SuppressWarnings("unchecked")
     public List<PrintablePomTaggedExpression> getPrintableComponents() {
-        return (List<PrintablePomTaggedExpression>)(List<?>) super.getComponents();
+        return (List<PrintablePomTaggedExpression>)(List<?>) this.getComponents();
     }
 
     /**

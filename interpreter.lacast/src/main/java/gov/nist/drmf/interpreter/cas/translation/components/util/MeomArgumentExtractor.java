@@ -11,6 +11,7 @@ import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -162,7 +163,7 @@ public class MeomArgumentExtractor {
         LinkedList<PomTaggedExpression> list = new LinkedList<>();
         LinkedList<PomTaggedExpression> temp = new LinkedList<>();
 
-        List<PomTaggedExpression> seq = numeratorPTE.getComponents();
+        List<PomTaggedExpression> seq = new LinkedList<>(numeratorPTE.getComponents());
         while ( !seq.isEmpty() ) {
             PomTaggedExpression e = seq.remove(0);
             MathTerm mt = e.getRoot();
@@ -179,7 +180,7 @@ public class MeomArgumentExtractor {
             numeratorPTE.setComponents(temp);
         } else {
             MathTerm oneMT = new MathTerm("1", "digit", "numeric", "numerator");
-            numeratorPTE.addComponent(0, oneMT);
+            numeratorPTE.setComponents(new PrintablePomTaggedExpression(oneMT));
         }
 
         return list;
