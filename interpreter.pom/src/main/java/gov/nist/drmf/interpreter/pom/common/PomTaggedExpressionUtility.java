@@ -40,6 +40,15 @@ public final class PomTaggedExpressionUtility {
         return beginsWithRelation(children.get(0));
     }
 
+    public static boolean isListSetSeparationIndicator(PomTaggedExpression pte) {
+        MathTermTags tag = MathTermTags.getTagByExpression(pte);
+        if ( tag == null ) return false;
+        switch (tag) {
+            case comma: case semicolon: return true;
+            default: return false;
+        }
+    }
+
     public static boolean isSequence(PomTaggedExpression pte) {
         if (pte == null || pte.isEmpty()) return false;
         ExpressionTags tag = ExpressionTags.getTagByKey(pte.getTag());

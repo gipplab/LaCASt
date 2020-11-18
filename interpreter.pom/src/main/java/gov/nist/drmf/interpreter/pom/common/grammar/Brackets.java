@@ -110,6 +110,24 @@ public enum Brackets {
             Brackets.LATEX_LEFT + CLOSE_BRACKETS.right_parenthesis.counter
     ),
     /**
+     * Left Open LaTeX Parenthesis: \left{
+     */
+    left_latex_braces(
+            Brackets.LATEX_LEFT + "\\" + OPEN_BRACKETS.left_braces.s,
+            Brackets.OPENED,
+            MathTermTags.left_delimiter,
+            Brackets.LATEX_RIGHT + "\\" + OPEN_BRACKETS.left_braces.counter
+    ),
+    /**
+     * Right Closed LaTeX Parenthesis: \right}
+     */
+    right_latex_braces(
+            Brackets.LATEX_RIGHT + "\\" + CLOSE_BRACKETS.right_braces.s,
+            Brackets.CLOSED,
+            MathTermTags.right_delimiter,
+            Brackets.LATEX_LEFT + "\\" + CLOSE_BRACKETS.right_braces.counter
+    ),
+    /**
      * Left Open LaTeX Parenthesis: \left[
      */
     left_latex_brackets(
@@ -223,8 +241,8 @@ public enum Brackets {
     /**
      * Patterns for open brackets and closed brackets
      */
-    public static final String OPEN_PATTERN = "(?:\\\\|\\\\left)?[\\(\\[\\{|]";
-    public static final String CLOSED_PATTERN = "(?:\\\\|\\\\right)?[\\)\\]\\}|]";
+    public static final String OPEN_PATTERN = "(?:\\\\|\\\\left)?[(\\[{|]";
+    public static final String CLOSED_PATTERN = "(?:\\\\|\\\\right)?[)\\]}|]";
 
     public static final Pattern PARENTHESES_PATTERN = Pattern.compile(
             "^\\s*(?:\\\\left)?[{(\\[|](.*)(?:\\\\right)?[|\\])}]\\s*$"
@@ -275,6 +293,16 @@ public enum Brackets {
         if (symbol.matches("\\\\(left|right)?.*"))
             return symbol.substring(symbol.length() - 1);
         else return symbol;
+    }
+
+    /**
+     * Returns true if this bracket is a normal parenthesis like (, or \left(
+     * which has a universal meaning as a parenthesis in every CAS. In contrast,
+     * brackets [ ] are usually presenting lists, as a counterexample.
+     * @return true if this bracket is a normal parenthesis
+     */
+    public boolean isNormalParenthesis() {
+        return this.symbol.endsWith("(") || this.symbol.endsWith(")");
     }
 
     /**

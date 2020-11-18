@@ -325,7 +325,7 @@ class SimpleTranslationTests {
     @Test
     void generalBracketTest() {
         String in = "\\left[ x \\right] + \\left( y \\right) + \\left| z \\right|";
-        String eout = "[x]+(y)+abs(z)";
+        String eout = "(x)+(y)+abs(z)";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
@@ -346,6 +346,14 @@ class SimpleTranslationTests {
     void multiplyIunitTest() {
         String in = "\\sqrt{2}+\\sqrt{2} \\iunit";
         String out = "sqrt(2)+sqrt(2)*I";
+
+        assertEquals(out, slt.translate(in));
+    }
+
+    @Test
+    void bracketNormalizationTest() {
+        String in = "\\left\\{[x+y] \\{y+z\\}\\right\\}";
+        String out = "((x + y)*(y + z))";
 
         assertEquals(out, slt.translate(in));
     }
