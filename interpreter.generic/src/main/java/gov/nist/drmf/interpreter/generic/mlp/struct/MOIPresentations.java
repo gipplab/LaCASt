@@ -21,9 +21,14 @@ import java.util.Map;
 public class MOIPresentations {
     private static final Logger LOG = LogManager.getLogger(MOIPresentations.class.getName());
 
+    private List<String> definiens;
+    private List<String> macros;
+
     private final String genericLatex;
     private String semanticLatex;
     private final Map<String, String> casRepresentations;
+
+    private double score = 0;
 
     public MOIPresentations(MOINode<MOIAnnotation> node) {
         this.genericLatex = node.getNode().getOriginalLaTeX();
@@ -32,6 +37,9 @@ public class MOIPresentations {
         casRepresentations = new HashMap<>();
         try {
             PrintablePomTaggedExpression semanticPTE = enhancer.semanticallyEnhance(node);
+            this.score = enhancer.getScore();
+            this.definiens = enhancer.getUsedDefiniens();
+            this.macros = enhancer.getUsedMacros();
             if ( semanticPTE == null ) {
                 LOG.warn("Unable to semantically enhance latex.");
                 return;
@@ -76,8 +84,10 @@ public class MOIPresentations {
 
     @Override
     public String toString() {
-        String out = " Generic LaTeX: " + genericLatex + "\n" +
-                     "Semantic LaTeX: " + semanticLatex + "\n";
+        String out =
+                "Score: " + score + "; Used Definiens: " + definiens + "; Used Macros: " + macros + "\n" +
+                " Generic LaTeX: " + genericLatex + "\n" +
+                "Semantic LaTeX: " + semanticLatex + "\n";
         for ( Map.Entry<String, String> trans : this.casRepresentations.entrySet() ) {
             out += String.format("%14s: %s\n", trans.getKey(), trans.getValue());
         }
