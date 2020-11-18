@@ -25,9 +25,18 @@ public final class PomTaggedExpressionUtility {
     public static String getNormalizedCaption(PomTaggedExpression pte, String expr) {
         if ( pte.getParent() == null && TeXPreProcessor.wrappedInCurlyBrackets(expr) )
             expr = TeXPreProcessor.trimCurlyBrackets(expr);
-        else if ( pte.getParent() != null && PomTaggedExpressionUtility.isSequence(pte) && !TeXPreProcessor.wrappedInCurlyBrackets(expr) )
+        else if ( ExpressionTags.equation.equalsPTE(pte) || (pte.getParent() != null && ExpressionTags.equation.equalsPTE(pte.getParent()) ) )
+            expr = expr.replace("&", "");
+        else if ( addCurlyBrackets(pte, expr) )
             expr = "{" + expr.trim() + "}";
         return expr.trim();
+    }
+
+    public static boolean addCurlyBrackets(PomTaggedExpression pte, String expr) {
+        return pte.getParent() != null &&
+                PomTaggedExpressionUtility.isSequence(pte) &&
+                !TeXPreProcessor.wrappedInCurlyBrackets(expr) &&
+                ExpressionTags.sequence.equalsPTE(pte.getParent());
     }
 
     public static boolean beginsWithRelation(PomTaggedExpression pte) {
@@ -50,9 +59,7 @@ public final class PomTaggedExpressionUtility {
     }
 
     public static boolean isSequence(PomTaggedExpression pte) {
-        if (pte == null || pte.isEmpty()) return false;
-        ExpressionTags tag = ExpressionTags.getTagByKey(pte.getTag());
-        return ExpressionTags.sequence.equals(tag);
+        return ExpressionTags.sequence.equalsPTE(pte);
     }
 
     /**
@@ -163,6 +170,9 @@ public final class PomTaggedExpressionUtility {
     }
 
     public static String getAppropriateFontTex(PomTaggedExpression pte) {
+        if ( startsWithEmptyEquation(pte) )
+            return "&";
+
         String appropriateTex = MathTermUtility.getAppropriateFontTex(pte.getRoot());
 
         List<String> rootAccents = FeatureValues.ACCENT.getFeatureValues(pte.getRoot());
@@ -173,12 +183,37 @@ public final class PomTaggedExpressionUtility {
 
         String latexFeature = pte.getFeatureValue(FeatureSetUtility.LATEX_FEATURE_KEY);
         if ( !shouldSkip(rootAccents, exprAccents, pte.getRoot(), latexFeature) ) {
-            if ( !appropriateTex.isBlank() ) {
+            if (isTeXEnvironment(pte)) {
+                appropriateTex = latexFeature.split("\\.{3}")[0];
+            } else if ( !appropriateTex.isBlank() ) {
                 appropriateTex = latexFeature + "{" + appropriateTex + "}";
             } else appropriateTex = latexFeature;
         }
 
         return appropriateTex;
+    }
+
+    public static boolean startsWithEmptyEquation(PomTaggedExpression pte) {
+        boolean isEquationWithEmptyFirstElement =
+                ExpressionTags.equation.equalsPTE(pte) &&
+                !pte.getComponents().isEmpty() &&
+                pte.getComponents().get(0).isEmpty();
+
+        boolean isEmptyFirstElementOfEquation =
+                pte.isEmpty() &&
+                        pte.getParent() != null &&
+                        ExpressionTags.equation.equalsPTE(pte.getParent());
+
+        return isEquationWithEmptyFirstElement || isEmptyFirstElementOfEquation;
+    }
+
+    public static boolean isTeXEnvironment(PomTaggedExpression pte) {
+        String latexFeature = pte.getFeatureValue(FeatureSetUtility.LATEX_FEATURE_KEY);
+        return isTeXEnvironmentString(latexFeature);
+    }
+
+    public static boolean isTeXEnvironmentString(String latexFeature) {
+        return latexFeature != null && latexFeature.matches("^\\s*\\\\begin.*\\\\end.*");
     }
 
     private static boolean shouldSkip(List<String> rootAccents, List<String> exprAccents, MathTerm term, String latexFeature) {
@@ -190,9 +225,7 @@ public final class PomTaggedExpressionUtility {
         String fontAction = term.firstFontAction();
         if ( fontAction != null && fontAction.equals(latexFeature) ) return true;
 
-
         latexFeature = latexFeature.substring(1);
-
         if ( !exprAccents.isEmpty() ) {
             return exprAccents.get(0).equals(latexFeature);
         }
