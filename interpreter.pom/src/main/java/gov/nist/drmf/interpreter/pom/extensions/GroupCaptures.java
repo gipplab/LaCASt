@@ -106,8 +106,7 @@ public class GroupCaptures {
 
         for (String key : matches.keySet()) {
             String str = matches.get(key).getTexString();
-            Matcher m = Brackets.PARENTHESES_PATTERN.matcher(str);
-            if ( m.matches() ) str = m.group(1);
+            str = Brackets.removeEnclosingBrackets(str);
             out.put(key, str.trim());
         }
 

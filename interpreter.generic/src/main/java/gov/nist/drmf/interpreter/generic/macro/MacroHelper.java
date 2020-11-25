@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.generic.macro;
 
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.pom.extensions.MatcherConfig;
+import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import org.intellij.lang.annotations.Language;
 
 import java.util.Arrays;
@@ -116,6 +117,12 @@ public final class MacroHelper {
 
     public static String fixInvisibleComma(String in) {
         return in.replaceAll("\\\\InvisibleComma", " ");
+    }
+
+    public static MatcherConfig getMatchingConfig(MacroBean bean, MOINode<?> node) {
+        MatcherConfig config = MatcherConfig.getInPlaceMatchConfig();
+        if ( node.isSource() && !node.isSink() ) config = MatcherConfig.getExactMatchConfig();
+        return updateMatchingConfig(bean, config);
     }
 
     public static MatcherConfig updateMatchingConfig(MacroBean bean, MatcherConfig config) {

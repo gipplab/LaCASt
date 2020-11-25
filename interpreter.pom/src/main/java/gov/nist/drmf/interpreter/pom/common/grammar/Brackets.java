@@ -245,7 +245,7 @@ public enum Brackets {
     public static final String CLOSED_PATTERN = "(?:\\\\|\\\\right)?[)\\]}|]";
 
     public static final Pattern PARENTHESES_PATTERN = Pattern.compile(
-            "^\\s*(?:\\\\left)?[{(\\[|](.*)(?:\\\\right)?[|\\])}]\\s*$"
+            "^\\s*" + OPEN_PATTERN + "\\s*(.*)\\s*" + CLOSED_PATTERN + "\\s*$"
     );
 
     public static final String ABSOLUTE_VAL_TERM_TEXT_PATTERN = "\\\\?\\|";
@@ -385,6 +385,20 @@ public enum Brackets {
         }
 
         return openList.isEmpty() && !initialHit;
+    }
+
+    /**
+     * Removes the enclosing brackets from the given string if it is actually enclosed by brackets.
+     * If it is not enclosed, it returns the string itself without any changes. The method uses
+     * {@link #isEnclosedByBrackets(String)} to check if the given string is enclosed by brackets.
+     * @param str the string
+     * @return the string without enclosing brackets
+     */
+    public static String removeEnclosingBrackets(String str) {
+        if ( str == null || str.isBlank() || !isEnclosedByBrackets(str) ) return str;
+        Matcher m = PARENTHESES_PATTERN.matcher(str);
+        if ( m.matches() ) return m.group(1);
+        else return str;
     }
 
     /**

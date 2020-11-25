@@ -5,10 +5,13 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.pom.MLPWrapper;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
@@ -354,7 +357,13 @@ class SimpleTranslationTests {
     void bracketNormalizationTest() {
         String in = "\\left\\{[x+y] \\{y+z\\}\\right\\}";
         String out = "((x + y)*(y + z))";
+        assertEquals(out, slt.translate(in));
+    }
 
+    @Test
+    void bracketNormalizationCurlyTest() {
+        String in = "\\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}";
+        String out = "((1 - z)^(alpha)*(1 + z)^(beta)*(1 - (z)^(2))^(n))";
         assertEquals(out, slt.translate(in));
     }
 
@@ -426,7 +435,7 @@ class SimpleTranslationTests {
     }
 
     @Test
-    public void unknownFunctionTranslator() throws ParseException, IOException {
+    public void unknownFunctionTranslator() throws ParseException {
         String input = "\\cos(x)";
         // manually delete the information that \cos is a semantic macro
         PomTaggedExpression pte = stripOfDLMFInfo(input);
@@ -439,6 +448,30 @@ class SimpleTranslationTests {
         String input = "\\cos(x)";
         String trans = slt.translate(input);
         assertEquals("cos(x)", trans);
+    }
+
+    @Test
+    public void forceFunctionTranslation() throws ParseException {
+        String input = "f(x)";
+        assertEquals( "f*(x)", slt.translate(input) );
+
+        SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
+        PrintablePomTaggedExpression pte = mlp.parse(input);
+        PomTaggedExpressionUtility.tagAsFunction(pte.getComponents().get(0));
+        assertEquals( "f(x)", slt.translate(pte).getTranslatedExpression() );
+        assertEquals( "f[x]", sltMathematica.translate(pte).getTranslatedExpression() );
+    }
+
+    @Test
+    public void forceFunctionCaretTranslation() throws ParseException {
+        String input = "f^2(x)";
+        assertEquals( "(f)^(2)*(x)", slt.translate(input) );
+
+        SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
+        PrintablePomTaggedExpression pte = mlp.parse(input);
+        PomTaggedExpressionUtility.tagAsFunction(pte.getComponents().get(0));
+        assertEquals( "f(x)^(2)", slt.translate(pte).getTranslatedExpression() );
+        assertEquals( "f[x]^(2)", sltMathematica.translate(pte).getTranslatedExpression() );
     }
 
     @Test
@@ -507,9 +540,9 @@ class SimpleTranslationTests {
      * Input example is "\cos{x}" or something similar.
      * @param input start with a DLMF macro, e.g., "\cos"
      * @return parse tree without dlmf info
-     * @throws ParseException
+     * @throws ParseException if the expression cannot be parsed
      */
-    private PomTaggedExpression stripOfDLMFInfo(String input) throws ParseException, IOException {
+    private PomTaggedExpression stripOfDLMFInfo(String input) throws ParseException {
         MLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
         PomTaggedExpression pte = mlp.parse(input);
         PomTaggedExpression cosPte = pte.getComponents().get(0);

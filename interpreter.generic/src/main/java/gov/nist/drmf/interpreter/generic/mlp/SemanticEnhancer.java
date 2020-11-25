@@ -74,8 +74,7 @@ public class SemanticEnhancer {
 
         while( !macroPatterns.isEmpty() ) {
             MacroBean macro = macroPatterns.removeFirst();
-            MatcherConfig config = MatcherConfig.getInPlaceMatchConfig();
-            MacroHelper.updateMatchingConfig(macro, config);
+            MatcherConfig config = MacroHelper.getMatchingConfig(macro, node);
 
             LinkedList<String> genericLaTeXPatterns = macro.getGenericLatex();
             LinkedList<String> semanticLaTeXPatterns = macro.getSemanticLaTeX();

@@ -90,6 +90,14 @@ public enum MathTermTags {
         return getTagByMathTerm(term);
     }
 
+    public static boolean is(MathTerm term, MathTermTags tag) {
+        return tag.equals(MathTermTags.getTagByMathTerm(term));
+    }
+
+    public static boolean is(PomTaggedExpression pte, MathTermTags tag) {
+        return tag.equals(MathTermTags.getTagByExpression(pte));
+    }
+
     public String tag(){
         return tag;
     }

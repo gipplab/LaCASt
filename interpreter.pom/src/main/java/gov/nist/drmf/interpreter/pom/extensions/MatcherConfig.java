@@ -32,6 +32,14 @@ public class MatcherConfig {
         this.illegalTokenForWildcards.put(ALL_KEY, DEFAULT_ILLEGAL_TOKEN_FOR_WILDCARD);
     }
 
+    public MatcherConfig(MatcherConfig referenceConfig) {
+        this.allowLeadingTokens = referenceConfig.allowLeadingTokens;
+        this.allowFollowingTokens = referenceConfig.allowFollowingTokens;
+        this.ignoreBracketLogic = referenceConfig.ignoreBracketLogic;
+        this.ignoreNumberOfAts = referenceConfig.ignoreNumberOfAts;
+        this.illegalTokenForWildcards.putAll(referenceConfig.illegalTokenForWildcards);
+    }
+
     public boolean allowLeadingTokens() {
         return allowLeadingTokens;
     }

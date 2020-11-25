@@ -286,4 +286,9 @@ public final class PomTaggedExpressionUtility {
             findElements(child, checker, results);
         }
     }
+
+    public static PomTaggedExpression tagAsFunction(PomTaggedExpression pte) {
+        pte.getRoot().setTag( MathTermTags.function.tag() );
+        return pte;
+    }
 }

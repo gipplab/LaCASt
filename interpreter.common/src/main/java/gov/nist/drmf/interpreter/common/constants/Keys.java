@@ -72,6 +72,7 @@ public final class Keys {
             MLP_KEY_MULTIPLICATION  = "General Multiplication",
             MLP_KEY_ADDITION        = "Addition",
             MLP_KEY_FRACTION        = "fraction",
+            MLP_KEY_FUNCTION_ARGS   = "function arguments",
             MLP_KEY_UNDERSCORE      = "underscore",
             MLP_KEY_LOAD_PACKAGE    = "load-package",
             MLP_KEY_UNLOAD_PACKAGE  = "unload-package",
