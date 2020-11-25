@@ -4,9 +4,15 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.InformationLogger;
+import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
+import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -43,11 +49,14 @@ import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CHAR_BACKSLASH;
 public class FunctionTranslator extends AbstractListTranslator {
     private static final Logger LOG = LogManager.getLogger(FunctionTranslator.class.getName());
 
-    private TranslatedExpression localTranslations;
+    private final TranslatedExpression localTranslations;
+
+    private final BasicFunctionsTranslator basicFT;
 
     public FunctionTranslator(AbstractTranslator superTranslator) {
         super(superTranslator);
         this.localTranslations = new TranslatedExpression();
+        this.basicFT = getConfig().getBasicFunctionsTranslator();
     }
 
     @Override
@@ -59,7 +68,6 @@ public class FunctionTranslator extends AbstractListTranslator {
     public TranslatedExpression translate( PomTaggedExpression exp, List<PomTaggedExpression> following )
             throws TranslationException{
         LOG.debug("Trigger general function translator");
-        boolean return_value;
         translate(exp);
         parse(following);
 
@@ -104,7 +112,7 @@ public class FunctionTranslator extends AbstractListTranslator {
         infoLogger.addGeneralInfo(
                 term.getTermText(),
                 "Function without DLMF-Definition. " +
-                        "We cannot translate it and keep it like it is (but delete prefix \\ if necessary)."
+                        "We keep it like it is (but delete prefix \\ if necessary)."
         );
 
         return localTranslations;
@@ -126,59 +134,37 @@ public class FunctionTranslator extends AbstractListTranslator {
         // to read for people but hard to understand for CAS.
         // usually we translate it the way around: \cos(a)^b.
         // That's why we need to check this here!
-        boolean caret = false;
-        TranslatedExpression powerExp = null;
-        if ( containsTerm(first) ){
-            MathTermTags tag = MathTermTags.getTagByKey(first.getRoot().getTag());
-            //noinspection ConstantConditions
-            if (tag.equals( MathTermTags.caret )){
-                // damn it, it's really a caret -.-'
-                caret = true;
-
-                // since the MathTermTranslator handles this, use this class
-                MathTermTranslator mp = new MathTermTranslator(getSuperTranslator());
-                powerExp = mp.translate( first );
-
-                // remove the power from global_exp first
-                TranslatedExpression global = super.getGlobalTranslationList();
-                global.removeLastNExps( powerExp.getLength() );
-
-                // and now, merge the power to one object and put parenthesis around it
-                // if necessary
-                if ( powerExp.getLength() > 1 )
-                    powerExp.mergeAllWithParenthesis();
-                else powerExp.mergeAll();
-
-                // finally, take the real starting point!
-                first = following_exp.remove(0);
-            }
+        PomTaggedExpression powerExp = null;
+        if ( MathTermTags.is(first, MathTermTags.caret) ){
+            powerExp = first;
+            first = following_exp.remove(0);
         }
 
         // translate the argument in the general way
         TranslatedExpression translation = parseGeneralExpression(first, following_exp);
 
         // find out if we should wrap parenthesis around or not
-        int num;
-        if ( !Brackets.isEnclosedByBrackets( translation.toString() ) ){
-            num = translation.mergeAllWithParenthesis();
-        } else {
-            num = translation.mergeAll();
-        }
+        int num = translation.getLength();
+        String arg = Brackets.removeEnclosingBrackets( translation.toString() );
+        String translatedExpression = basicFT.translate(new String[]{arg}, Keys.MLP_KEY_FUNCTION_ARGS);
 
         // take over the parsed expression
-        localTranslations.addTranslatedExpression( translation );
+        localTranslations.addTranslatedExpression( translatedExpression );
+        localTranslations.mergeAll();
 
         // update global
         TranslatedExpression global = super.getGlobalTranslationList();
         // remove all variables and put them together as one object
         global.removeLastNExps( num );
-        global.addTranslatedExpression( translation );
+        global.addTranslatedExpression( translatedExpression );
 
         // shit, if there was a caret before the arguments, we need to add
         // these now
-        if ( caret ){
-            localTranslations.replaceLastExpression( translation + powerExp.toString() );
-            global.replaceLastExpression( translation + powerExp.toString() );
+        if ( powerExp != null ){
+            // since the MathTermTranslator handles this, use this class
+            MathTermTranslator mp = new MathTermTranslator(getSuperTranslator());
+            mp.translate( powerExp );
+            localTranslations.replaceLastExpression( global.getLastExpression() );
         }
 
         return localTranslations;

@@ -95,7 +95,10 @@ public class PomMatcher {
      */
     public boolean match() {
         reset();
-        boolean res = matcher.match(copy, MatcherConfig.getExactMatchConfig());
+        MatcherConfig internalConfig = new MatcherConfig(config);
+        internalConfig.allowLeadingTokens(false);
+        internalConfig.allowFollowingTokens(false);
+        boolean res = matcher.match(copy, internalConfig);
         if ( res ) {
             lastMatchWentUntilEnd = true;
             latestHitMatchedWithoutPassingElements = true;
@@ -122,6 +125,13 @@ public class PomMatcher {
         wasReplaced = false;
         lastMatchWentUntilEnd = false;
         latestHitMatchedWithoutPassingElements = false;
+
+        // if the config does not allow leading tokens that does not match, its a simple match method
+        // and "find" does not make sense
+        if ( !config.allowLeadingTokens() ) {
+            return matcher.match(copy, config);
+        }
+
         while ( !remaining.isEmpty() ) {
             // get the remaining list of children to work on
             latestDepthExpression = remaining.removeFirst();

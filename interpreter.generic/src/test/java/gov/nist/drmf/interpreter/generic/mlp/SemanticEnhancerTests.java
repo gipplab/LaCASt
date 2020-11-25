@@ -45,6 +45,29 @@ public class SemanticEnhancerTests {
     }
 
     @Test
+    void leviCivitaInPlaceSourceNotSinkTest() throws ParseException, IOException {
+        String genericLaTeXExample = "x + \\epsilon_{i j k}";
+        String exampleAnnotationText = "Levi Civita Symbol";
+        MOINode<MOIAnnotation> node = buildNode("2", genericLaTeXExample, exampleAnnotationText);
+        MOINode<MOIAnnotation> nodeBig = buildNode("3", "x + \\epsilon_{i j k} + y", "compound expression");
+        node.setupDependency(nodeBig);
+
+        // since node is a source (only outgoing edges), we should only allow exact matches which does not work here
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer();
+        PrintablePomTaggedExpression semanticallyEnhancedLaTeX = semanticEnhancer.semanticallyEnhance(node);
+        assertNotNull(semanticallyEnhancedLaTeX);
+        assertEquals("x + \\epsilon_{i j k}", semanticallyEnhancedLaTeX.getTexString());
+
+        // once we add another node which makes the levi civita symbol to a compound formula, we allow in-place matches
+        MOINode<MOIAnnotation> nodeX = buildNode("1", "x", "variable");
+        node.setupDependency(nodeX);
+
+        semanticallyEnhancedLaTeX = semanticEnhancer.semanticallyEnhance(node);
+        assertNotNull(semanticallyEnhancedLaTeX);
+        assertEquals("x + \\LeviCivitasym{i}{j}{k}", semanticallyEnhancedLaTeX.getTexString());
+    }
+
+    @Test
     void leviCivitaDependencyTest() throws ParseException, IOException {
         String genericLaTeXExample = "x + \\epsilon_{i j k}";
         MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample, "real variable");
