@@ -14,8 +14,23 @@
     "numberOfParameters" : 0,
     "numberOfOptionalParameters" : 1,
     "numberOfArguments" : 1,
-    "TeX" : [ "d_{opPar1} (var1)", "d (var1)" ],
-    "semanticTeX" : [ "\\ndivisors[opPar1]@{var1}", "\\ndivisors@{var1}" ]
+    "TeX" : [ {
+      "genericTeX" : "d_{opPar1} (var1)",
+      "semanticTeX" : "\\ndivisors[opPar1]@{var1}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "d_{opPar1}",
+      "semanticTeX" : "\\ndivisors[opPar1]",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "d (var1)",
+      "semanticTeX" : "\\ndivisors@{var1}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "d",
+      "semanticTeX" : "\\ndivisors",
+      "score" : 0.0
+    } ]
   },
   "genhyperF" : {
     "macro" : "genhyperF",
@@ -32,8 +47,23 @@
     "numberOfParameters" : 2,
     "numberOfOptionalParameters" : 0,
     "numberOfArguments" : 3,
-    "TeX" : [ "{}_{par1}F_{par2} (var1;var2;var3)", "{}_{par1}F_{par2} ({var1 \\atop var2};var3)", "{}_{par1}F_{par2} (var3)" ],
-    "semanticTeX" : [ "\\genhyperF{par1}{par2}@{var1}{var2}{var3}", "\\genhyperF{par1}{par2}@@{var1}{var2}{var3}", "\\genhyperF{par1}{par2}@@@{a_1,\\dots,a_p}{b_1,\\dots,b_q}{var3}" ]
+    "TeX" : [ {
+      "genericTeX" : "{}_{par1}F_{par2} (var1;var2;var3)",
+      "semanticTeX" : "\\genhyperF{par1}{par2}@{var1}{var2}{var3}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "{}_{par1}F_{par2} ({var1 \\atop var2};var3)",
+      "semanticTeX" : "\\genhyperF{par1}{par2}@@{var1}{var2}{var3}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "{}_{par1}F_{par2} (var3)",
+      "semanticTeX" : "\\genhyperF{par1}{par2}@@@{a_1,\\dots,a_p}{b_1,\\dots,b_q}{var3}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "{}_{par1}F_{par2}",
+      "semanticTeX" : "\\genhyperF{par1}{par2}",
+      "score" : 0.0
+    } ]
   },
   "multinomial" : {
     "macro" : "multinomial",
@@ -50,8 +80,11 @@
     "numberOfParameters" : 2,
     "numberOfOptionalParameters" : 0,
     "numberOfArguments" : 0,
-    "TeX" : [ "\\left({par1 \\atop par2}\\right)" ],
-    "semanticTeX" : [ "\\multinomial{par1}{par2}" ]
+    "TeX" : [ {
+      "genericTeX" : "\\left({par1 \\atop par2}\\right)",
+      "semanticTeX" : "\\multinomial{par1}{par2}",
+      "score" : 0.0
+    } ]
   },
   "JacobipolyP" : {
     "macro" : "JacobipolyP",
@@ -68,8 +101,15 @@
     "numberOfParameters" : 3,
     "numberOfOptionalParameters" : 0,
     "numberOfArguments" : 1,
-    "TeX" : [ "P^{(par1,par2)}_{par3} (var1)" ],
-    "semanticTeX" : [ "\\JacobipolyP{par1}{par2}{par3}@{var1}" ]
+    "TeX" : [ {
+      "genericTeX" : "P^{(par1,par2)}_{par3} (var1)",
+      "semanticTeX" : "\\JacobipolyP{par1}{par2}{par3}@{var1}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "P^{(par1,par2)}_{par3}",
+      "semanticTeX" : "\\JacobipolyP{par1}{par2}{par3}",
+      "score" : 0.0
+    } ]
   },
   "ChebyshevpolyT" : {
     "macro" : "ChebyshevpolyT",
@@ -86,8 +126,15 @@
     "numberOfParameters" : 1,
     "numberOfOptionalParameters" : 0,
     "numberOfArguments" : 1,
-    "TeX" : [ "T_{par1} (var1)" ],
-    "semanticTeX" : [ "\\ChebyshevpolyT{par1}@{var1}" ]
+    "TeX" : [ {
+      "genericTeX" : "T_{par1} (var1)",
+      "semanticTeX" : "\\ChebyshevpolyT{par1}@{var1}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "T_{par1}",
+      "semanticTeX" : "\\ChebyshevpolyT{par1}",
+      "score" : 0.0
+    } ]
   },
   "Dirichletchar" : {
     "macro" : "Dirichletchar",
@@ -104,8 +151,31 @@
     "numberOfParameters" : 0,
     "numberOfOptionalParameters" : 1,
     "numberOfArguments" : 2,
-    "TeX" : [ "\\chi_{opPar1} (var1,var2)", "\\chi_{opPar1} (var1)", "\\chi (var1,var2)", "\\chi (var1)" ],
-    "semanticTeX" : [ "\\Dirichletchar[opPar1]@{var1}{var2}", "\\Dirichletchar[opPar1]@@{var1}{k}", "\\Dirichletchar@{var1}{var2}", "\\Dirichletchar@@{var1}{k}" ]
+    "TeX" : [ {
+      "genericTeX" : "\\chi_{opPar1} (var1,var2)",
+      "semanticTeX" : "\\Dirichletchar[opPar1]@{var1}{var2}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "\\chi_{opPar1} (var1)",
+      "semanticTeX" : "\\Dirichletchar[opPar1]@@{var1}{k}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "\\chi_{opPar1}",
+      "semanticTeX" : "\\Dirichletchar[opPar1]",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "\\chi (var1,var2)",
+      "semanticTeX" : "\\Dirichletchar@{var1}{var2}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "\\chi (var1)",
+      "semanticTeX" : "\\Dirichletchar@@{var1}{k}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "\\chi",
+      "semanticTeX" : "\\Dirichletchar",
+      "score" : 0.0
+    } ]
   },
   "FerrersP" : {
     "macro" : "FerrersP",
@@ -122,8 +192,23 @@
     "numberOfParameters" : 1,
     "numberOfOptionalParameters" : 1,
     "numberOfArguments" : 1,
-    "TeX" : [ "\\mathsf{P}^{opPar1}_{par1} (var1)", "\\mathsf{P}_{par1} (var1)" ],
-    "semanticTeX" : [ "\\FerrersP[opPar1]{par1}@{var1}", "\\FerrersP{par1}@{var1}" ]
+    "TeX" : [ {
+      "genericTeX" : "\\mathsf{P}^{opPar1}_{par1} (var1)",
+      "semanticTeX" : "\\FerrersP[opPar1]{par1}@{var1}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "\\mathsf{P}^{opPar1}_{par1}",
+      "semanticTeX" : "\\FerrersP[opPar1]{par1}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "\\mathsf{P}_{par1} (var1)",
+      "semanticTeX" : "\\FerrersP{par1}@{var1}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "\\mathsf{P}_{par1}",
+      "semanticTeX" : "\\FerrersP{par1}",
+      "score" : 0.0
+    } ]
   },
   "genhyperF{1}{1}" : {
     "macro" : "genhyperF{1}{1}",
@@ -140,8 +225,23 @@
     "numberOfParameters" : 0,
     "numberOfOptionalParameters" : 0,
     "numberOfArguments" : 3,
-    "TeX" : [ "{}_{1}F_{1} (var1;var2;var3)", "{}_{1}F_{1} ({var1 \\atop var2};var3)", "{}_{1}F_{1} (var3)" ],
-    "semanticTeX" : [ "\\genhyperF{1}{1}@{var1}{var2}{var3}", "\\genhyperF{1}{1}@@{var1}{var2}{var3}", "\\genhyperF{1}{1}@@@{a}{b}{var3}" ]
+    "TeX" : [ {
+      "genericTeX" : "{}_{1}F_{1} (var1;var2;var3)",
+      "semanticTeX" : "\\genhyperF{1}{1}@{var1}{var2}{var3}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "{}_{1}F_{1} ({var1 \\atop var2};var3)",
+      "semanticTeX" : "\\genhyperF{1}{1}@@{var1}{var2}{var3}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "{}_{1}F_{1} (var3)",
+      "semanticTeX" : "\\genhyperF{1}{1}@@@{a}{b}{var3}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "{}_{1}F_{1}",
+      "semanticTeX" : "\\genhyperF{1}{1}",
+      "score" : 0.0
+    } ]
   },
   "posIntegers" : {
     "macro" : "posIntegers",
@@ -158,8 +258,11 @@
     "numberOfParameters" : 0,
     "numberOfOptionalParameters" : 0,
     "numberOfArguments" : 0,
-    "TeX" : [ "\\mathbb{Z}^{+}" ],
-    "semanticTeX" : [ "\\posIntegers" ]
+    "TeX" : [ {
+      "genericTeX" : "\\mathbb{Z}^{+}",
+      "semanticTeX" : "\\posIntegers",
+      "score" : 0.0
+    } ]
   },
   "LeviCivitasym" : {
     "macro" : "LeviCivitasym",
@@ -176,8 +279,11 @@
     "numberOfParameters" : 3,
     "numberOfOptionalParameters" : 0,
     "numberOfArguments" : 0,
-    "TeX" : [ "\\epsilon_{par1 par2 par3}" ],
-    "semanticTeX" : [ "\\LeviCivitasym{par1}{par2}{par3}" ]
+    "TeX" : [ {
+      "genericTeX" : "\\epsilon_{par1 par2 par3}",
+      "semanticTeX" : "\\LeviCivitasym{par1}{par2}{par3}",
+      "score" : 0.0
+    } ]
   },
   "Pochhammersym" : {
     "macro" : "Pochhammersym",
@@ -194,8 +300,11 @@
     "numberOfParameters" : 2,
     "numberOfOptionalParameters" : 0,
     "numberOfArguments" : 0,
-    "TeX" : [ "(par1)_{par2}" ],
-    "semanticTeX" : [ "\\Pochhammersym{par1}{par2}" ]
+    "TeX" : [ {
+      "genericTeX" : "(par1)_{par2}",
+      "semanticTeX" : "\\Pochhammersym{par1}{par2}",
+      "score" : 0.0
+    } ]
   },
   "continuous" : {
     "macro" : "continuous",
@@ -212,8 +321,23 @@
     "numberOfParameters" : 0,
     "numberOfOptionalParameters" : 1,
     "numberOfArguments" : 1,
-    "TeX" : [ "C^{opPar1} var1", "C var1" ],
-    "semanticTeX" : [ "\\continuous[opPar1]@{var1}", "\\continuous@{var1}" ]
+    "TeX" : [ {
+      "genericTeX" : "C^{opPar1} var1",
+      "semanticTeX" : "\\continuous[opPar1]@{var1}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "C^{opPar1}",
+      "semanticTeX" : "\\continuous[opPar1]",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "C var1",
+      "semanticTeX" : "\\continuous@{var1}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "C",
+      "semanticTeX" : "\\continuous",
+      "score" : 0.0
+    } ]
   },
   "Riemannthetachar" : {
     "macro" : "Riemannthetachar",
@@ -230,7 +354,14 @@
     "numberOfParameters" : 2,
     "numberOfOptionalParameters" : 0,
     "numberOfArguments" : 2,
-    "TeX" : [ "\\theta\\left[{par1 \\atop par2}\\right] (var1 | var2)" ],
-    "semanticTeX" : [ "\\Riemannthetachar{par1}{par2}@{var1}{var2}" ]
+    "TeX" : [ {
+      "genericTeX" : "\\theta\\left[{par1 \\atop par2}\\right] (var1 | var2)",
+      "semanticTeX" : "\\Riemannthetachar{par1}{par2}@{var1}{var2}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "\\theta\\left[{par1 \\atop par2}\\right]",
+      "semanticTeX" : "\\Riemannthetachar{par1}{par2}",
+      "score" : 0.0
+    } ]
   }
 }

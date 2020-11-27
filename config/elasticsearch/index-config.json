@@ -70,6 +70,20 @@
                         "analyzer": "dlmf_analyzer"
                     }
                 }
+            },
+            "TeX": {
+                "type": "nested",
+                "properties": {
+                    "genericTeX": {
+                        "type": "text"
+                    },
+                    "semanticTeX": {
+                        "type": "text"
+                    },
+                    "score": {
+                        "type": "double"
+                    }
+                }
             }
         }
     }
