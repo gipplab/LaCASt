@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +16,12 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public class MacroBean {
+    @JsonIgnore
+    private static final Logger LOG = LogManager.getLogger(MacroBean.class.getName());
+
+    @JsonIgnore
+    private final MacroDistributionAnalyzer macroDistributions;
+
     /**
      * Unique identifier (quasi-final)
      */
@@ -68,6 +77,7 @@ public class MacroBean {
         this.genericLaTeXArguments = new LinkedList<>();
         this.genericLateXDefaultArguments = new LinkedList<>();
         this.tex = new LinkedList<>();
+        this.macroDistributions = MacroDistributionAnalyzer.getStandardInstance();
     }
 
     /**
@@ -190,6 +200,8 @@ public class MacroBean {
         LinkedList<MacroGenericSemanticEntry> texList = new LinkedList<>();
         LinkedList<String> genericLatexList = new LinkedList<>();
 
+        MacroCounter counter = macroDistributions.getMacroCounter("\\" + name);
+
         for (String para : genericLaTeXParameters) {
             MacroHelper.fillInnerList(para, genericLatexList, genericLaTeXArguments);
         }
@@ -204,45 +216,46 @@ public class MacroBean {
 
             MacroGenericSemanticEntry entry;
             for (int j = 0; j < genericLateXDefaultArguments.size(); j++) {
-                entry = buildTexEntry(sb, j+1, texList, genericLatexList, genericLateXDefaultArguments.get(j));
+                StringBuilder sbCopy = new StringBuilder(sb);
+                int atSymbols = j+1;
+                double score = counter != null ? counter.getScore( i > 0, atSymbols ) : 0;
+
+                if (numberOfArguments != 0) {
+                    sbCopy.append("@".repeat(atSymbols));
+                }
+
+                MacroHelper.generateDefaultArgList(
+                        sbCopy,
+                        genericLateXDefaultArguments.get(j),
+                        metaInformation.getStandardArguments().getStandardVariables()
+                );
+
+                entry = new MacroGenericSemanticEntry(
+                        genericLatexList.remove(0),
+                        sbCopy.toString(),
+                        score
+                );
                 texList.addLast(entry);
             }
+
+            if ( numberOfArguments > 0 ) sb.append("@");
+
+            MacroHelper.generateDefaultArgList(
+                    sb,
+                    MacroHelper.fillArr(numberOfArguments, false),
+                    metaInformation.getStandardArguments().getStandardVariables()
+            );
 
             entry = new MacroGenericSemanticEntry(
                     noArgExpression,
                     sb.toString(),
-                    0
+                    counter != null ? counter.getScore( false, 0 ) : 0
             );
+
             texList.add(entry);
         }
 
         return texList;
-    }
-
-    @JsonIgnore
-    private MacroGenericSemanticEntry buildTexEntry(
-            StringBuilder prefix,
-            int numOfAts,
-            List<MacroGenericSemanticEntry> texList,
-            List<String> genericLatex,
-            Boolean[] defaultArgs) {
-        StringBuilder innerSB = new StringBuilder(prefix);
-        // only if elements are following, we will add an @
-        if (numberOfArguments != 0) {
-            innerSB.append("@".repeat(numOfAts));
-        }
-
-        MacroHelper.generateDefaultArgList(
-                innerSB,
-                defaultArgs,
-                metaInformation.getStandardArguments().getStandardVariables()
-        );
-
-        return new MacroGenericSemanticEntry(
-                genericLatex.remove(0),
-                innerSB.toString(),
-                0
-        );
     }
 
     @JsonGetter("meta")

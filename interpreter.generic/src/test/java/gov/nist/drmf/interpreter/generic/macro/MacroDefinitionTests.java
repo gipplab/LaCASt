@@ -83,7 +83,7 @@ public class MacroDefinitionTests {
         List<MacroGenericSemanticEntry> tex = jacobiBean.getTex();
         assertEquals(2, tex.size(), tex.toString());
         assertEquals("P^{(par1,par2)}_{par3}", tex.get(1).getGenericTex());
-        assertEquals("\\JacobipolyP{par1}{par2}{par3}", tex.get(1).getSemanticTex());
+        assertEquals("\\JacobipolyP{par1}{par2}{par3}@{x}", tex.get(1).getSemanticTex());
 
         assertEquals("P^{(par1,par2)}_{par3} (var1)", tex.get(0).getGenericTex());
         assertEquals("\\JacobipolyP{par1}{par2}{par3}@{var1}", tex.get(0).getSemanticTex());
@@ -102,13 +102,13 @@ public class MacroDefinitionTests {
         assertEquals("\\FerrersP[opPar1]{par1}@{var1}", tex.get(0).getSemanticTex());
 
         assertEquals("\\mathsf{P}^{opPar1}_{par1}", tex.get(1).getGenericTex());
-        assertEquals("\\FerrersP[opPar1]{par1}", tex.get(1).getSemanticTex());
+        assertEquals("\\FerrersP[opPar1]{par1}@{x}", tex.get(1).getSemanticTex());
 
         assertEquals("\\mathsf{P}_{par1} (var1)", tex.get(2).getGenericTex());
         assertEquals("\\FerrersP{par1}@{var1}", tex.get(2).getSemanticTex());
 
         assertEquals("\\mathsf{P}_{par1}", tex.get(3).getGenericTex());
-        assertEquals("\\FerrersP{par1}", tex.get(3).getSemanticTex());
+        assertEquals("\\FerrersP{par1}@{x}", tex.get(3).getSemanticTex());
     }
 
     @Test
@@ -150,7 +150,7 @@ public class MacroDefinitionTests {
         assertEquals("\\Riemannthetachar{par1}{par2}@{var1}{var2}", tex.get(0).getSemanticTex());
 
         assertEquals("\\theta\\left[{par1 \\atop par2}\\right]", tex.get(1).getGenericTex());
-        assertEquals("\\Riemannthetachar{par1}{par2}", tex.get(1).getSemanticTex());
+        assertEquals("\\Riemannthetachar{par1}{par2}@{z}{\\Omega}", tex.get(1).getSemanticTex());
     }
 
     @Test
@@ -183,10 +183,10 @@ public class MacroDefinitionTests {
 
         assertEquals("\\Dirichletchar[opPar1]@{var1}{var2}", tex.get(0).getSemanticTex());
         assertEquals("\\Dirichletchar[opPar1]@@{var1}{k}", tex.get(1).getSemanticTex());
-        assertEquals("\\Dirichletchar[opPar1]", tex.get(2).getSemanticTex());
+        assertEquals("\\Dirichletchar[opPar1]@{n}{k}", tex.get(2).getSemanticTex());
         assertEquals("\\Dirichletchar@{var1}{var2}", tex.get(3).getSemanticTex());
         assertEquals("\\Dirichletchar@@{var1}{k}", tex.get(4).getSemanticTex());
-        assertEquals("\\Dirichletchar", tex.get(5).getSemanticTex());
+        assertEquals("\\Dirichletchar@{n}{k}", tex.get(5).getSemanticTex());
     }
 
     @Test

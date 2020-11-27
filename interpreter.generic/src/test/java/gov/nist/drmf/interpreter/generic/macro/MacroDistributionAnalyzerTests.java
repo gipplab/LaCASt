@@ -59,6 +59,19 @@ public class MacroDistributionAnalyzerTests {
     }
 
     @Test
+    void complicatedDerivCounter() throws ParseException {
+        MacroDistributionAnalyzer analyzer = new MacroDistributionAnalyzer();
+        analyzer.analyze( mlp.parse("\\deriv[n]{w}{z}+f_{n-1}(z)\\deriv[n-1]{w}{z}+f_{n-2}(z)\\deriv[n-2]{w}{z}+\\dots+f_{1}(z)\\deriv{w}{z}+f_{0}(z)w\\deriv[]{}{z}=0") );
+        MacroCounter counter = analyzer.getMacroCounter("\\deriv");
+        assertEquals("\\deriv", counter.getMacro());
+        assertEquals(5, counter.getMacroCounter());
+        assertEquals(3, counter.getOptionalArgumentCounter());
+        assertEquals(5, counter.getNumberOfAtsCounter(0));
+        assertEquals(0, counter.getNumberOfAtsCounter(1));
+        assertEquals(1, counter.getAtCounter().size());
+    }
+
+    @Test
     void serializerCheck() throws IOException {
         String jacobiSerialized = MacroDefinitionTests.readResource("JacobipolyPDistributions.json");
         ObjectMapper mapper = new ObjectMapper();
