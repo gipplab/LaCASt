@@ -322,7 +322,7 @@ public class MacroDerivativesTranslator extends MacroTranslator {
             PomTaggedExpression p = expressions.get(i);
             MathTerm mt = p.getRoot();
 
-            if ( isDLMFMacro(mt) ) {
+            if ( MathTermUtility.isDLMFMacro(mt) ) {
                 i = handleMacro(mt, expressions, i, variableCandidates);
             } else {
                 variableCandidates.addAll(extractVariableOfDiff(p));

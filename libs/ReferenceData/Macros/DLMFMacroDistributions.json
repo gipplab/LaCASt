@@ -1,0 +1,3803 @@
+{
+  "\\Catalannumber" : {
+    "macro" : "\\Catalannumber",
+    "macroCounter" : 15,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 15
+    }
+  },
+  "\\DunsterQ" : {
+    "macro" : "\\DunsterQ",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 8
+    }
+  },
+  "\\inverfc" : {
+    "macro" : "\\inverfc",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "2" : 2
+    }
+  },
+  "\\Acoth" : {
+    "macro" : "\\Acoth",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1,
+      "2" : 2
+    }
+  },
+  "\\qLaguerrepolyL" : {
+    "macro" : "\\qLaguerrepolyL",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 5
+    }
+  },
+  "\\modcylinder" : {
+    "macro" : "\\modcylinder",
+    "macroCounter" : 39,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 3,
+      "1" : 36
+    }
+  },
+  "\\aGudermannian" : {
+    "macro" : "\\aGudermannian",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\HeunHf" : {
+    "macro" : "\\HeunHf",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 1,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\WeberE" : {
+    "macro" : "\\WeberE",
+    "macroCounter" : 32,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 30
+    }
+  },
+  "\\genBesselphi" : {
+    "macro" : "\\genBesselphi",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
+  "\\LambertWp" : {
+    "macro" : "\\LambertWp",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\fDiff" : {
+    "macro" : "\\fDiff",
+    "macroCounter" : 28,
+    "optionalArgumentCounter" : 12,
+    "atCounter" : {
+      "0" : 28
+    }
+  },
+  "\\HeunHl" : {
+    "macro" : "\\HeunHl",
+    "macroCounter" : 19,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 19
+    }
+  },
+  "\\FerrersQ" : {
+    "macro" : "\\FerrersQ",
+    "macroCounter" : 78,
+    "optionalArgumentCounter" : 56,
+    "atCounter" : {
+      "1" : 78
+    }
+  },
+  "\\LambertWm" : {
+    "macro" : "\\LambertWm",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
+  "\\FerrersP" : {
+    "macro" : "\\FerrersP",
+    "macroCounter" : 168,
+    "optionalArgumentCounter" : 131,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 167
+    }
+  },
+  "\\regCoulombF" : {
+    "macro" : "\\regCoulombF",
+    "macroCounter" : 46,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 18,
+      "1" : 28
+    }
+  },
+  "\\deltaDistribution" : {
+    "macro" : "\\deltaDistribution",
+    "macroCounter" : 20,
+    "optionalArgumentCounter" : 6,
+    "atCounter" : {
+      "0" : 17
+    }
+  },
+  "\\idem" : {
+    "macro" : "\\idem",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\Mathieume" : {
+    "macro" : "\\Mathieume",
+    "macroCounter" : 64,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 10,
+      "1" : 52,
+      "2" : 2
+    }
+  },
+  "\\Weierstrasspinvar" : {
+    "macro" : "\\Weierstrasspinvar",
+    "macroCounter" : 14,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 5,
+      "1" : 2,
+      "2" : 7
+    }
+  },
+  "\\Weierstrasszetalatt" : {
+    "macro" : "\\Weierstrasszetalatt",
+    "macroCounter" : 36,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 10,
+      "1" : 2,
+      "2" : 24
+    }
+  },
+  "\\expintEi" : {
+    "macro" : "\\expintEi",
+    "macroCounter" : 15,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 15
+    }
+  },
+  "\\aJacobiellcnk" : {
+    "macro" : "\\aJacobiellcnk",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\Eulertotientphi" : {
+    "macro" : "\\Eulertotientphi",
+    "macroCounter" : 23,
+    "optionalArgumentCounter" : 3,
+    "atCounter" : {
+      "1" : 23
+    }
+  },
+  "\\aJacobiellnck" : {
+    "macro" : "\\aJacobiellnck",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\aJacobiellndk" : {
+    "macro" : "\\aJacobiellndk",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\aJacobiellsnk" : {
+    "macro" : "\\aJacobiellsnk",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\qgenhyperphi" : {
+    "macro" : "\\qgenhyperphi",
+    "macroCounter" : 149,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7,
+      "2" : 142
+    }
+  },
+  "\\BickleyKi" : {
+    "macro" : "\\BickleyKi",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 11
+    }
+  },
+  "\\DirichletL" : {
+    "macro" : "\\DirichletL",
+    "macroCounter" : 12,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 12
+    }
+  },
+  "\\csc" : {
+    "macro" : "\\csc",
+    "macroCounter" : 51,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 25,
+      "2" : 26
+    }
+  },
+  "\\regCoulombf" : {
+    "macro" : "\\regCoulombf",
+    "macroCounter" : 21,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 19
+    }
+  },
+  "\\CarlsonellintRC" : {
+    "macro" : "\\CarlsonellintRC",
+    "macroCounter" : 91,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 91
+    }
+  },
+  "\\modBesselKimag" : {
+    "macro" : "\\modBesselKimag",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\expintEin" : {
+    "macro" : "\\expintEin",
+    "macroCounter" : 12,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 12
+    }
+  },
+  "\\modMathieuSe" : {
+    "macro" : "\\modMathieuSe",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\littleqJacobipolyp" : {
+    "macro" : "\\littleqJacobipolyp",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\Airyphasederivphi" : {
+    "macro" : "\\Airyphasederivphi",
+    "macroCounter" : 12,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 10
+    }
+  },
+  "\\qRacahpolyR" : {
+    "macro" : "\\qRacahpolyR",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\normincBetaI" : {
+    "macro" : "\\normincBetaI",
+    "macroCounter" : 40,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 40
+    }
+  },
+  "\\OlverconfhyperM" : {
+    "macro" : "\\OlverconfhyperM",
+    "macroCounter" : 42,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 42
+    }
+  },
+  "\\qSin" : {
+    "macro" : "\\qSin",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\Faddeevaw" : {
+    "macro" : "\\Faddeevaw",
+    "macroCounter" : 13,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 12
+    }
+  },
+  "\\Stirlingnumbers" : {
+    "macro" : "\\Stirlingnumbers",
+    "macroCounter" : 34,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 34
+    }
+  },
+  "\\card" : {
+    "macro" : "\\card",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 3
+    }
+  },
+  "\\qHahnpolyQ" : {
+    "macro" : "\\qHahnpolyQ",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\Jacobithetaq" : {
+    "macro" : "\\Jacobithetaq",
+    "macroCounter" : 253,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 37,
+      "1" : 216
+    }
+  },
+  "\\Weierstrassplatt" : {
+    "macro" : "\\Weierstrassplatt",
+    "macroCounter" : 93,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 12,
+      "1" : 4,
+      "2" : 77
+    }
+  },
+  "\\sphharmonicY" : {
+    "macro" : "\\sphharmonicY",
+    "macroCounter" : 22,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 20
+    }
+  },
+  "\\gensinint" : {
+    "macro" : "\\gensinint",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7
+    }
+  },
+  "\\shiftfactorial" : {
+    "macro" : "\\shiftfactorial",
+    "macroCounter" : 14,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 14
+    }
+  },
+  "\\qsin" : {
+    "macro" : "\\qsin",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\Acosh" : {
+    "macro" : "\\Acosh",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3,
+      "2" : 5
+    }
+  },
+  "\\Weierstrasssigmalatt" : {
+    "macro" : "\\Weierstrasssigmalatt",
+    "macroCounter" : 44,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 2,
+      "2" : 40
+    }
+  },
+  "\\exp" : {
+    "macro" : "\\exp",
+    "macroCounter" : 231,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 5,
+      "1" : 215,
+      "2" : 10
+    }
+  },
+  "\\qBeta" : {
+    "macro" : "\\qBeta",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
+  "\\ipderiv" : {
+    "macro" : "\\ipderiv",
+    "macroCounter" : 24,
+    "optionalArgumentCounter" : 5,
+    "atCounter" : {
+      "0" : 24
+    }
+  },
+  "\\Bulirschincellintel" : {
+    "macro" : "\\Bulirschincellintel",
+    "macroCounter" : 14,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 14
+    }
+  },
+  "\\sphHankelh" : {
+    "macro" : "\\sphHankelh",
+    "macroCounter" : 16,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 16
+    }
+  },
+  "\\scincgamma" : {
+    "macro" : "\\scincgamma",
+    "macroCounter" : 21,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 3,
+      "1" : 18
+    }
+  },
+  "\\BarnesG" : {
+    "macro" : "\\BarnesG",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7
+    }
+  },
+  "\\LamepolysdE" : {
+    "macro" : "\\LamepolysdE",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\Hurwitzzeta" : {
+    "macro" : "\\Hurwitzzeta",
+    "macroCounter" : 59,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 12,
+      "1" : 47
+    }
+  },
+  "\\Rayleighsigma" : {
+    "macro" : "\\Rayleighsigma",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\deriv" : {
+    "macro" : "\\deriv",
+    "macroCounter" : 477,
+    "optionalArgumentCounter" : 206,
+    "atCounter" : {
+      "0" : 477
+    }
+  },
+  "\\sphwaveQsreal" : {
+    "macro" : "\\sphwaveQsreal",
+    "macroCounter" : 9,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 9
+    }
+  },
+  "\\gencosint" : {
+    "macro" : "\\gencosint",
+    "macroCounter" : 6,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 6
+    }
+  },
+  "\\bigO" : {
+    "macro" : "\\bigO",
+    "macroCounter" : 310,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 17,
+      "1" : 292
+    }
+  },
+  "\\BesselC" : {
+    "macro" : "\\BesselC",
+    "macroCounter" : 70,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 6,
+      "1" : 64
+    }
+  },
+  "\\LamepolycdE" : {
+    "macro" : "\\LamepolycdE",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\qcos" : {
+    "macro" : "\\qcos",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\LamepolyscE" : {
+    "macro" : "\\LamepolyscE",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\Airyphasetheta" : {
+    "macro" : "\\Airyphasetheta",
+    "macroCounter" : 18,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 8,
+      "1" : 10
+    }
+  },
+  "\\Waringg" : {
+    "macro" : "\\Waringg",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\StruveH" : {
+    "macro" : "\\StruveH",
+    "macroCounter" : 60,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 58
+    }
+  },
+  "\\assLegendrepoly" : {
+    "macro" : "\\assLegendrepoly",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
+  "\\StruveK" : {
+    "macro" : "\\StruveK",
+    "macroCounter" : 10,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 10
+    }
+  },
+  "\\LaguerrepolyL" : {
+    "macro" : "\\LaguerrepolyL",
+    "macroCounter" : 103,
+    "optionalArgumentCounter" : 88,
+    "atCounter" : {
+      "1" : 103
+    }
+  },
+  "\\shiftChebyshevpolyT" : {
+    "macro" : "\\shiftChebyshevpolyT",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\shiftChebyshevpolyU" : {
+    "macro" : "\\shiftChebyshevpolyU",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\ceiling" : {
+    "macro" : "\\ceiling",
+    "macroCounter" : 9,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 9
+    }
+  },
+  "\\hyperOlverF" : {
+    "macro" : "\\hyperOlverF",
+    "macroCounter" : 96,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 57,
+      "2" : 39
+    }
+  },
+  "\\Jacobiellnsk" : {
+    "macro" : "\\Jacobiellnsk",
+    "macroCounter" : 28,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 21,
+      "2" : 7
+    }
+  },
+  "\\ndivisors" : {
+    "macro" : "\\ndivisors",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 1,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\contqHermitepolyH" : {
+    "macro" : "\\contqHermitepolyH",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\assJacobipolyP" : {
+    "macro" : "\\assJacobipolyP",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\GoodwinStatonint" : {
+    "macro" : "\\GoodwinStatonint",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
+  "\\conj" : {
+    "macro" : "\\conj",
+    "macroCounter" : 102,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 102
+    }
+  },
+  "\\modsphBesselK" : {
+    "macro" : "\\modsphBesselK",
+    "macroCounter" : 18,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 18
+    }
+  },
+  "\\normCoulombC" : {
+    "macro" : "\\normCoulombC",
+    "macroCounter" : 31,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 31
+    }
+  },
+  "\\atan" : {
+    "macro" : "\\atan",
+    "macroCounter" : 63,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 30,
+      "2" : 33
+    }
+  },
+  "\\Diracdelta" : {
+    "macro" : "\\Diracdelta",
+    "macroCounter" : 23,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 6,
+      "1" : 17
+    }
+  },
+  "\\radMathieuDc" : {
+    "macro" : "\\radMathieuDc",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\CharlierpolyC" : {
+    "macro" : "\\CharlierpolyC",
+    "macroCounter" : 12,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 12
+    }
+  },
+  "\\genhyperF" : {
+    "macro" : "\\genhyperF",
+    "macroCounter" : 167,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 33,
+      "2" : 134
+    }
+  },
+  "\\contqinvHermitepolyh" : {
+    "macro" : "\\contqinvHermitepolyh",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\logint" : {
+    "macro" : "\\logint",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7
+    }
+  },
+  "\\Wignerthreejsym" : {
+    "macro" : "\\Wignerthreejsym",
+    "macroCounter" : 62,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 62
+    }
+  },
+  "\\Kelvinber" : {
+    "macro" : "\\Kelvinber",
+    "macroCounter" : 55,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 16,
+      "1" : 6,
+      "2" : 33
+    }
+  },
+  "\\genhyperH" : {
+    "macro" : "\\genhyperH",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "2" : 3
+    }
+  },
+  "\\modsphBesseli" : {
+    "macro" : "\\modsphBesseli",
+    "macroCounter" : 48,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 48
+    }
+  },
+  "\\multivarEulerBeta" : {
+    "macro" : "\\multivarEulerBeta",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 8
+    }
+  },
+  "\\contqultrasphpoly" : {
+    "macro" : "\\contqultrasphpoly",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\Kelvinbei" : {
+    "macro" : "\\Kelvinbei",
+    "macroCounter" : 55,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 16,
+      "1" : 6,
+      "2" : 33
+    }
+  },
+  "\\ClebschGordan" : {
+    "macro" : "\\ClebschGordan",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1
+    }
+  },
+  "\\KummerconfhyperM" : {
+    "macro" : "\\KummerconfhyperM",
+    "macroCounter" : 104,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 104
+    }
+  },
+  "\\Ramanujansum" : {
+    "macro" : "\\Ramanujansum",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
+  "\\shiftLegendrepolyP" : {
+    "macro" : "\\shiftLegendrepolyP",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\aJacobielldnk" : {
+    "macro" : "\\aJacobielldnk",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\auxsincosintg" : {
+    "macro" : "\\auxsincosintg",
+    "macroCounter" : 16,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 14
+    }
+  },
+  "\\Mathieuse" : {
+    "macro" : "\\Mathieuse",
+    "macroCounter" : 84,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 28,
+      "1" : 56
+    }
+  },
+  "\\auxsincosintf" : {
+    "macro" : "\\auxsincosintf",
+    "macroCounter" : 16,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 14
+    }
+  },
+  "\\BernoullipolyB" : {
+    "macro" : "\\BernoullipolyB",
+    "macroCounter" : 71,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 71
+    }
+  },
+  "\\KrawtchoukpolyK" : {
+    "macro" : "\\KrawtchoukpolyK",
+    "macroCounter" : 12,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 12
+    }
+  },
+  "\\contdualHahnpolyS" : {
+    "macro" : "\\contdualHahnpolyS",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7
+    }
+  },
+  "\\BesselJ" : {
+    "macro" : "\\BesselJ",
+    "macroCounter" : 492,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 27,
+      "1" : 465
+    }
+  },
+  "\\ccompellintKk" : {
+    "macro" : "\\ccompellintKk",
+    "macroCounter" : 29,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 13,
+      "2" : 15
+    }
+  },
+  "\\multivarEulerGamma" : {
+    "macro" : "\\multivarEulerGamma",
+    "macroCounter" : 51,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 51
+    }
+  },
+  "\\qCos" : {
+    "macro" : "\\qCos",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\BesselY" : {
+    "macro" : "\\BesselY",
+    "macroCounter" : 141,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 23,
+      "1" : 118
+    }
+  },
+  "\\Moebiusmu" : {
+    "macro" : "\\Moebiusmu",
+    "macroCounter" : 22,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 22
+    }
+  },
+  "\\Liouvillelambda" : {
+    "macro" : "\\Liouvillelambda",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\Atanh" : {
+    "macro" : "\\Atanh",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3,
+      "2" : 5
+    }
+  },
+  "\\qmultinomial" : {
+    "macro" : "\\qmultinomial",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 3
+    }
+  },
+  "\\HeavisideH" : {
+    "macro" : "\\HeavisideH",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 4,
+      "1" : 6
+    }
+  },
+  "\\Jacobithetatau" : {
+    "macro" : "\\Jacobithetatau",
+    "macroCounter" : 134,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 3,
+      "1" : 131
+    }
+  },
+  "\\nsquares" : {
+    "macro" : "\\nsquares",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
+  "\\genlog" : {
+    "macro" : "\\genlog",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "2" : 11
+    }
+  },
+  "\\genshiftcosint" : {
+    "macro" : "\\genshiftcosint",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7
+    }
+  },
+  "\\Bellnumber" : {
+    "macro" : "\\Bellnumber",
+    "macroCounter" : 10,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 10
+    }
+  },
+  "\\asinh" : {
+    "macro" : "\\asinh",
+    "macroCounter" : 21,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 10,
+      "2" : 11
+    }
+  },
+  "\\dilHermitepolyHe" : {
+    "macro" : "\\dilHermitepolyHe",
+    "macroCounter" : 32,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 32
+    }
+  },
+  "\\incGamma" : {
+    "macro" : "\\incGamma",
+    "macroCounter" : 66,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 66
+    }
+  },
+  "\\Mathieueigvala" : {
+    "macro" : "\\Mathieueigvala",
+    "macroCounter" : 33,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 26,
+      "2" : 7
+    }
+  },
+  "\\Mathieueigvalb" : {
+    "macro" : "\\Mathieueigvalb",
+    "macroCounter" : 28,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 23,
+      "2" : 5
+    }
+  },
+  "\\polylog" : {
+    "macro" : "\\polylog",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 8
+    }
+  },
+  "\\ChebyshevpolyT" : {
+    "macro" : "\\ChebyshevpolyT",
+    "macroCounter" : 60,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 60
+    }
+  },
+  "\\Jacobielldck" : {
+    "macro" : "\\Jacobielldck",
+    "macroCounter" : 28,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 21,
+      "2" : 7
+    }
+  },
+  "\\ChebyshevpolyV" : {
+    "macro" : "\\ChebyshevpolyV",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\ChebyshevpolyU" : {
+    "macro" : "\\ChebyshevpolyU",
+    "macroCounter" : 31,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 31
+    }
+  },
+  "\\modBesselIimag" : {
+    "macro" : "\\modBesselIimag",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\ChebyshevpolyW" : {
+    "macro" : "\\ChebyshevpolyW",
+    "macroCounter" : 6,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5,
+      "2" : 1
+    }
+  },
+  "\\Acot" : {
+    "macro" : "\\Acot",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1,
+      "2" : 2
+    }
+  },
+  "\\Acos" : {
+    "macro" : "\\Acos",
+    "macroCounter" : 10,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5,
+      "2" : 5
+    }
+  },
+  "\\qEulernumberA" : {
+    "macro" : "\\qEulernumberA",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\radMathieuDs" : {
+    "macro" : "\\radMathieuDs",
+    "macroCounter" : 6,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 6
+    }
+  },
+  "\\zderivBesselj" : {
+    "macro" : "\\zderivBesselj",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 8
+    }
+  },
+  "\\ccompellintEk" : {
+    "macro" : "\\ccompellintEk",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4,
+      "2" : 1
+    }
+  },
+  "\\HahnpolyQ" : {
+    "macro" : "\\HahnpolyQ",
+    "macroCounter" : 14,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 14
+    }
+  },
+  "\\zderivBessely" : {
+    "macro" : "\\zderivBessely",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 4
+    }
+  },
+  "\\HankelH" : {
+    "macro" : "\\HankelH",
+    "macroCounter" : 153,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 11,
+      "1" : 142
+    }
+  },
+  "\\Wignerninejsym" : {
+    "macro" : "\\Wignerninejsym",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 11
+    }
+  },
+  "\\AppellF" : {
+    "macro" : "\\AppellF",
+    "macroCounter" : 66,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 66
+    }
+  },
+  "\\Acsc" : {
+    "macro" : "\\Acsc",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "2" : 1
+    }
+  },
+  "\\Dedekindeta" : {
+    "macro" : "\\Dedekindeta",
+    "macroCounter" : 16,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 16
+    }
+  },
+  "\\WhittakerparaD" : {
+    "macro" : "\\WhittakerparaD",
+    "macroCounter" : 18,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 18
+    }
+  },
+  "\\zderivAirybeta" : {
+    "macro" : "\\zderivAirybeta",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2
+    }
+  },
+  "\\coshint" : {
+    "macro" : "\\coshint",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\Mathieufe" : {
+    "macro" : "\\Mathieufe",
+    "macroCounter" : 9,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 4,
+      "1" : 5
+    }
+  },
+  "\\Hankelphasederivphi" : {
+    "macro" : "\\Hankelphasederivphi",
+    "macroCounter" : 18,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 17
+    }
+  },
+  "\\EulerBeta" : {
+    "macro" : "\\EulerBeta",
+    "macroCounter" : 32,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 32
+    }
+  },
+  "\\sign" : {
+    "macro" : "\\sign",
+    "macroCounter" : 25,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 5,
+      "1" : 15,
+      "2" : 2
+    }
+  },
+  "\\qgenhyperpsi" : {
+    "macro" : "\\qgenhyperpsi",
+    "macroCounter" : 17,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2,
+      "2" : 15
+    }
+  },
+  "\\ultrasphpoly" : {
+    "macro" : "\\ultrasphpoly",
+    "macroCounter" : 78,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 78
+    }
+  },
+  "\\acsc" : {
+    "macro" : "\\acsc",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2,
+      "2" : 6
+    }
+  },
+  "\\qBernoullipolybeta" : {
+    "macro" : "\\qBernoullipolybeta",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\ncompositions" : {
+    "macro" : "\\ncompositions",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 3,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\Weierstrassinvarlatt" : {
+    "macro" : "\\Weierstrassinvarlatt",
+    "macroCounter" : 47,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "2" : 47
+    }
+  },
+  "\\sphwavePsreal" : {
+    "macro" : "\\sphwavePsreal",
+    "macroCounter" : 22,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 21
+    }
+  },
+  "\\incellintFk" : {
+    "macro" : "\\incellintFk",
+    "macroCounter" : 71,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 71
+    }
+  },
+  "\\Acsch" : {
+    "macro" : "\\Acsch",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "2" : 1
+    }
+  },
+  "\\MathieuFc" : {
+    "macro" : "\\MathieuFc",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
+  "\\Mathieuge" : {
+    "macro" : "\\Mathieuge",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 6
+    }
+  },
+  "\\Jacobiellcdk" : {
+    "macro" : "\\Jacobiellcdk",
+    "macroCounter" : 31,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 24,
+      "2" : 7
+    }
+  },
+  "\\paraUbar" : {
+    "macro" : "\\paraUbar",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 7
+    }
+  },
+  "\\LamepolyscdE" : {
+    "macro" : "\\LamepolyscdE",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\digamma" : {
+    "macro" : "\\digamma",
+    "macroCounter" : 186,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 14,
+      "1" : 172
+    }
+  },
+  "\\LamepolysE" : {
+    "macro" : "\\LamepolysE",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\aJacobielldsk" : {
+    "macro" : "\\aJacobielldsk",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\MathieuFs" : {
+    "macro" : "\\MathieuFs",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\scbigqJacobipolyP" : {
+    "macro" : "\\scbigqJacobipolyP",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
+  "\\qmultiPochhammersym" : {
+    "macro" : "\\qmultiPochhammersym",
+    "macroCounter" : 220,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 220
+    }
+  },
+  "\\Jacobiellsdk" : {
+    "macro" : "\\Jacobiellsdk",
+    "macroCounter" : 35,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 22,
+      "2" : 13
+    }
+  },
+  "\\genAiryODEB" : {
+    "macro" : "\\genAiryODEB",
+    "macroCounter" : 9,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 8
+    }
+  },
+  "\\Pade" : {
+    "macro" : "\\Pade",
+    "macroCounter" : 9,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 9
+    }
+  },
+  "\\genAiryODEA" : {
+    "macro" : "\\genAiryODEA",
+    "macroCounter" : 9,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 8
+    }
+  },
+  "\\incellintEk" : {
+    "macro" : "\\incellintEk",
+    "macroCounter" : 51,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 51
+    }
+  },
+  "\\cosint" : {
+    "macro" : "\\cosint",
+    "macroCounter" : 22,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 21
+    }
+  },
+  "\\Gudermannian" : {
+    "macro" : "\\Gudermannian",
+    "macroCounter" : 6,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5,
+      "2" : 1
+    }
+  },
+  "\\MathieuGc" : {
+    "macro" : "\\MathieuGc",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
+  "\\cosintCin" : {
+    "macro" : "\\cosintCin",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\hyperF" : {
+    "macro" : "\\hyperF",
+    "macroCounter" : 229,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 109,
+      "2" : 120
+    }
+  },
+  "\\repinterfc" : {
+    "macro" : "\\repinterfc",
+    "macroCounter" : 21,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 21
+    }
+  },
+  "\\sinh" : {
+    "macro" : "\\sinh",
+    "macroCounter" : 231,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 56,
+      "2" : 175
+    }
+  },
+  "\\Hankelphasetheta" : {
+    "macro" : "\\Hankelphasetheta",
+    "macroCounter" : 55,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 38,
+      "1" : 17
+    }
+  },
+  "\\MathieuGs" : {
+    "macro" : "\\MathieuGs",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\nplanepartitions" : {
+    "macro" : "\\nplanepartitions",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\asech" : {
+    "macro" : "\\asech",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2,
+      "2" : 5
+    }
+  },
+  "\\radsphwaveS" : {
+    "macro" : "\\radsphwaveS",
+    "macroCounter" : 19,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 19
+    }
+  },
+  "\\incellintDk" : {
+    "macro" : "\\incellintDk",
+    "macroCounter" : 6,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 6
+    }
+  },
+  "\\compellintEk" : {
+    "macro" : "\\compellintEk",
+    "macroCounter" : 59,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 58,
+      "2" : 1
+    }
+  },
+  "\\Fresnelsinint" : {
+    "macro" : "\\Fresnelsinint",
+    "macroCounter" : 21,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 21
+    }
+  },
+  "\\erfc" : {
+    "macro" : "\\erfc",
+    "macroCounter" : 46,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 28,
+      "2" : 17
+    }
+  },
+  "\\phase" : {
+    "macro" : "\\phase",
+    "macroCounter" : 62,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 9,
+      "2" : 53
+    }
+  },
+  "\\aJacobiellcsk" : {
+    "macro" : "\\aJacobiellcsk",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\perZeta" : {
+    "macro" : "\\perZeta",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\LamepolyuE" : {
+    "macro" : "\\LamepolyuE",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\qfactorial" : {
+    "macro" : "\\qfactorial",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2
+    }
+  },
+  "\\sech" : {
+    "macro" : "\\sech",
+    "macroCounter" : 35,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 11,
+      "2" : 24
+    }
+  },
+  "\\Legendresym" : {
+    "macro" : "\\Legendresym",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 4
+    }
+  },
+  "\\qPochhammer" : {
+    "macro" : "\\qPochhammer",
+    "macroCounter" : 418,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 418
+    }
+  },
+  "\\compellintDk" : {
+    "macro" : "\\compellintDk",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\qStirlingnumbera" : {
+    "macro" : "\\qStirlingnumbera",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\tan" : {
+    "macro" : "\\tan",
+    "macroCounter" : 93,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 26,
+      "2" : 67
+    }
+  },
+  "\\Jacobiellsck" : {
+    "macro" : "\\Jacobiellsck",
+    "macroCounter" : 35,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 22,
+      "2" : 13
+    }
+  },
+  "\\Coulombturnr" : {
+    "macro" : "\\Coulombturnr",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\sumdivisors" : {
+    "macro" : "\\sumdivisors",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 10
+    }
+  },
+  "\\tanh" : {
+    "macro" : "\\tanh",
+    "macroCounter" : 60,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 12,
+      "2" : 48
+    }
+  },
+  "\\radMathieuDsc" : {
+    "macro" : "\\radMathieuDsc",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 8
+    }
+  },
+  "\\DawsonsintF" : {
+    "macro" : "\\DawsonsintF",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 11
+    }
+  },
+  "\\ChebyshevPsi" : {
+    "macro" : "\\ChebyshevPsi",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\Ramanujantau" : {
+    "macro" : "\\Ramanujantau",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\ideriv" : {
+    "macro" : "\\ideriv",
+    "macroCounter" : 22,
+    "optionalArgumentCounter" : 7,
+    "atCounter" : {
+      "0" : 22
+    }
+  },
+  "\\asin" : {
+    "macro" : "\\asin",
+    "macroCounter" : 38,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 19,
+      "2" : 19
+    }
+  },
+  "\\csch" : {
+    "macro" : "\\csch",
+    "macroCounter" : 15,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4,
+      "2" : 11
+    }
+  },
+  "\\polygamma" : {
+    "macro" : "\\polygamma",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
+  "\\Mathieueigvallambda" : {
+    "macro" : "\\Mathieueigvallambda",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 8
+    }
+  },
+  "\\diskpoly" : {
+    "macro" : "\\diskpoly",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7
+    }
+  },
+  "\\Schwarzian" : {
+    "macro" : "\\Schwarzian",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 7
+    }
+  },
+  "\\MangoldtLambda" : {
+    "macro" : "\\MangoldtLambda",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\ScorerGi" : {
+    "macro" : "\\ScorerGi",
+    "macroCounter" : 20,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 5,
+      "1" : 15
+    }
+  },
+  "\\aJacobiellnsk" : {
+    "macro" : "\\aJacobiellnsk",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\JacobiZetak" : {
+    "macro" : "\\JacobiZetak",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\BesselJimag" : {
+    "macro" : "\\BesselJimag",
+    "macroCounter" : 6,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 6
+    }
+  },
+  "\\sphBesselJ" : {
+    "macro" : "\\sphBesselJ",
+    "macroCounter" : 52,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 3,
+      "1" : 49
+    }
+  },
+  "\\bDiff" : {
+    "macro" : "\\bDiff",
+    "macroCounter" : 9,
+    "optionalArgumentCounter" : 9,
+    "atCounter" : {
+      "0" : 9
+    }
+  },
+  "\\radMathieuMs" : {
+    "macro" : "\\radMathieuMs",
+    "macroCounter" : 42,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 9,
+      "1" : 25,
+      "2" : 8
+    }
+  },
+  "\\modularlambdatau" : {
+    "macro" : "\\modularlambdatau",
+    "macroCounter" : 19,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 19
+    }
+  },
+  "\\Weierstrasselatt" : {
+    "macro" : "\\Weierstrasselatt",
+    "macroCounter" : 173,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "2" : 173
+    }
+  },
+  "\\FresnelintF" : {
+    "macro" : "\\FresnelintF",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\radMathieuMc" : {
+    "macro" : "\\radMathieuMc",
+    "macroCounter" : 39,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 3,
+      "1" : 26,
+      "2" : 10
+    }
+  },
+  "\\ScorerHi" : {
+    "macro" : "\\ScorerHi",
+    "macroCounter" : 28,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 5,
+      "1" : 23
+    }
+  },
+  "\\irregCoulombh" : {
+    "macro" : "\\irregCoulombh",
+    "macroCounter" : 19,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 17
+    }
+  },
+  "\\normincGammaQ" : {
+    "macro" : "\\normincGammaQ",
+    "macroCounter" : 16,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 16
+    }
+  },
+  "\\MeixnerPollaczekpolyP" : {
+    "macro" : "\\MeixnerPollaczekpolyP",
+    "macroCounter" : 16,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 16
+    }
+  },
+  "\\Jacobiphi" : {
+    "macro" : "\\Jacobiphi",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\zBesselj" : {
+    "macro" : "\\zBesselj",
+    "macroCounter" : 28,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 28
+    }
+  },
+  "\\acosh" : {
+    "macro" : "\\acosh",
+    "macroCounter" : 23,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 11,
+      "2" : 12
+    }
+  },
+  "\\irregCoulombc" : {
+    "macro" : "\\irregCoulombc",
+    "macroCounter" : 6,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 5
+    }
+  },
+  "\\sphwaveQs" : {
+    "macro" : "\\sphwaveQs",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\sinhint" : {
+    "macro" : "\\sinhint",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
+  "\\WhittakerconfhyperW" : {
+    "macro" : "\\WhittakerconfhyperW",
+    "macroCounter" : 127,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 127
+    }
+  },
+  "\\dualHahnpolyR" : {
+    "macro" : "\\dualHahnpolyR",
+    "macroCounter" : 9,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 9
+    }
+  },
+  "\\JacobipolyP" : {
+    "macro" : "\\JacobipolyP",
+    "macroCounter" : 136,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 136
+    }
+  },
+  "\\EulerpolyE" : {
+    "macro" : "\\EulerpolyE",
+    "macroCounter" : 60,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 60
+    }
+  },
+  "\\spheigvalLambda" : {
+    "macro" : "\\spheigvalLambda",
+    "macroCounter" : 15,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 15
+    }
+  },
+  "\\EulerPhi" : {
+    "macro" : "\\EulerPhi",
+    "macroCounter" : 6,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 6
+    }
+  },
+  "\\zBessely" : {
+    "macro" : "\\zBessely",
+    "macroCounter" : 21,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 21
+    }
+  },
+  "\\Euleriannumber" : {
+    "macro" : "\\Euleriannumber",
+    "macroCounter" : 16,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 16
+    }
+  },
+  "\\normincGammaP" : {
+    "macro" : "\\normincGammaP",
+    "macroCounter" : 14,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 14
+    }
+  },
+  "\\sec" : {
+    "macro" : "\\sec",
+    "macroCounter" : 26,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 8,
+      "2" : 18
+    }
+  },
+  "\\irregCoulombH" : {
+    "macro" : "\\irregCoulombH",
+    "macroCounter" : 16,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 3,
+      "1" : 13
+    }
+  },
+  "\\AirymodM" : {
+    "macro" : "\\AirymodM",
+    "macroCounter" : 29,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 8,
+      "1" : 21
+    }
+  },
+  "\\irregCoulombG" : {
+    "macro" : "\\irregCoulombG",
+    "macroCounter" : 33,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 11,
+      "1" : 22
+    }
+  },
+  "\\HankelmodM" : {
+    "macro" : "\\HankelmodM",
+    "macroCounter" : 63,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 41,
+      "1" : 22
+    }
+  },
+  "\\zAiryb" : {
+    "macro" : "\\zAiryb",
+    "macroCounter" : 6,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 6
+    }
+  },
+  "\\zAirya" : {
+    "macro" : "\\zAirya",
+    "macroCounter" : 14,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 14
+    }
+  },
+  "\\zAirybeta" : {
+    "macro" : "\\zAirybeta",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2
+    }
+  },
+  "\\acoth" : {
+    "macro" : "\\acoth",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2,
+      "2" : 5
+    }
+  },
+  "\\pderiv" : {
+    "macro" : "\\pderiv",
+    "macroCounter" : 379,
+    "optionalArgumentCounter" : 122,
+    "atCounter" : {
+      "0" : 378
+    }
+  },
+  "\\incellintPik" : {
+    "macro" : "\\incellintPik",
+    "macroCounter" : 48,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 48
+    }
+  },
+  "\\VoigtH" : {
+    "macro" : "\\VoigtH",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\qAppellPhi" : {
+    "macro" : "\\qAppellPhi",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 7
+    }
+  },
+  "\\Riemannzeta" : {
+    "macro" : "\\Riemannzeta",
+    "macroCounter" : 168,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 21,
+      "1" : 147
+    }
+  },
+  "\\BesselYimag" : {
+    "macro" : "\\BesselYimag",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7
+    }
+  },
+  "\\Asin" : {
+    "macro" : "\\Asin",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 6,
+      "2" : 5
+    }
+  },
+  "\\WhittakerconfhyperM" : {
+    "macro" : "\\WhittakerconfhyperM",
+    "macroCounter" : 122,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 122
+    }
+  },
+  "\\VoigtV" : {
+    "macro" : "\\VoigtV",
+    "macroCounter" : 10,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 10
+    }
+  },
+  "\\VoigtU" : {
+    "macro" : "\\VoigtU",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 11
+    }
+  },
+  "\\qdiff" : {
+    "macro" : "\\qdiff",
+    "macroCounter" : 10,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 10
+    }
+  },
+  "\\CarlsonsymellintRF" : {
+    "macro" : "\\CarlsonsymellintRF",
+    "macroCounter" : 140,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 140
+    }
+  },
+  "\\CarlsonsymellintRD" : {
+    "macro" : "\\CarlsonsymellintRD",
+    "macroCounter" : 79,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 78,
+      "2" : 1
+    }
+  },
+  "\\compellintPik" : {
+    "macro" : "\\compellintPik",
+    "macroCounter" : 27,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 27
+    }
+  },
+  "\\genBernoullipolyB" : {
+    "macro" : "\\genBernoullipolyB",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 4,
+      "1" : 4
+    }
+  },
+  "\\multinomial" : {
+    "macro" : "\\multinomial",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 5
+    }
+  },
+  "\\Jacobielldnk" : {
+    "macro" : "\\Jacobielldnk",
+    "macroCounter" : 154,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 93,
+      "2" : 61
+    }
+  },
+  "\\StieltjesWigertpolyS" : {
+    "macro" : "\\StieltjesWigertpolyS",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\CarlsonsymellintRJ" : {
+    "macro" : "\\CarlsonsymellintRJ",
+    "macroCounter" : 65,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 65
+    }
+  },
+  "\\Besselpolyy" : {
+    "macro" : "\\Besselpolyy",
+    "macroCounter" : 12,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 10
+    }
+  },
+  "\\Kelvinker" : {
+    "macro" : "\\Kelvinker",
+    "macroCounter" : 37,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 11,
+      "1" : 3,
+      "2" : 23
+    }
+  },
+  "\\genAiryintB" : {
+    "macro" : "\\genAiryintB",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 11
+    }
+  },
+  "\\EulernumberE" : {
+    "macro" : "\\EulernumberE",
+    "macroCounter" : 46,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 46
+    }
+  },
+  "\\CarlsonsymellintRG" : {
+    "macro" : "\\CarlsonsymellintRG",
+    "macroCounter" : 58,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 58
+    }
+  },
+  "\\genAiryintA" : {
+    "macro" : "\\genAiryintA",
+    "macroCounter" : 14,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 14
+    }
+  },
+  "\\EulerGamma" : {
+    "macro" : "\\EulerGamma",
+    "macroCounter" : 1731,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 4,
+      "1" : 1727
+    }
+  },
+  "\\Kelvinkei" : {
+    "macro" : "\\Kelvinkei",
+    "macroCounter" : 37,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 11,
+      "1" : 3,
+      "2" : 23
+    }
+  },
+  "\\nprimes" : {
+    "macro" : "\\nprimes",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7
+    }
+  },
+  "\\genEulersumH" : {
+    "macro" : "\\genEulersumH",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\Dirichletchar" : {
+    "macro" : "\\Dirichletchar",
+    "macroCounter" : 24,
+    "optionalArgumentCounter" : 5,
+    "atCounter" : {
+      "0" : 6,
+      "2" : 16
+    }
+  },
+  "\\sphwavePs" : {
+    "macro" : "\\sphwavePs",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\assLegendreP" : {
+    "macro" : "\\assLegendreP",
+    "macroCounter" : 139,
+    "optionalArgumentCounter" : 93,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 138
+    }
+  },
+  "\\genexpintE" : {
+    "macro" : "\\genexpintE",
+    "macroCounter" : 52,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 52
+    }
+  },
+  "\\assLegendreQ" : {
+    "macro" : "\\assLegendreQ",
+    "macroCounter" : 39,
+    "optionalArgumentCounter" : 18,
+    "atCounter" : {
+      "1" : 39
+    }
+  },
+  "\\modMathieuCe" : {
+    "macro" : "\\modMathieuCe",
+    "macroCounter" : 6,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 6
+    }
+  },
+  "\\qGamma" : {
+    "macro" : "\\qGamma",
+    "macroCounter" : 26,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 26
+    }
+  },
+  "\\modStruveL" : {
+    "macro" : "\\modStruveL",
+    "macroCounter" : 40,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 38
+    }
+  },
+  "\\Coulombphasetheta" : {
+    "macro" : "\\Coulombphasetheta",
+    "macroCounter" : 16,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 9,
+      "1" : 7
+    }
+  },
+  "\\nrestcompositions" : {
+    "macro" : "\\nrestcompositions",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
+  "\\LerchPhi" : {
+    "macro" : "\\LerchPhi",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7
+    }
+  },
+  "\\Jacobiellnck" : {
+    "macro" : "\\Jacobiellnck",
+    "macroCounter" : 25,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 18,
+      "2" : 7
+    }
+  },
+  "\\cDiff" : {
+    "macro" : "\\cDiff",
+    "macroCounter" : 14,
+    "optionalArgumentCounter" : 14,
+    "atCounter" : {
+      "0" : 14
+    }
+  },
+  "\\abs" : {
+    "macro" : "\\abs",
+    "macroCounter" : 82,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 82
+    }
+  },
+  "\\modStruveM" : {
+    "macro" : "\\modStruveM",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 8
+    }
+  },
+  "\\nprimesdiv" : {
+    "macro" : "\\nprimesdiv",
+    "macroCounter" : 10,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 10
+    }
+  },
+  "\\contHahnpolyp" : {
+    "macro" : "\\contHahnpolyp",
+    "macroCounter" : 12,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 12
+    }
+  },
+  "\\Wignersixjsym" : {
+    "macro" : "\\Wignersixjsym",
+    "macroCounter" : 46,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 45
+    }
+  },
+  "\\paraU" : {
+    "macro" : "\\paraU",
+    "macroCounter" : 130,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 13,
+      "1" : 117
+    }
+  },
+  "\\paraW" : {
+    "macro" : "\\paraW",
+    "macroCounter" : 33,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 11,
+      "1" : 22
+    }
+  },
+  "\\MillsM" : {
+    "macro" : "\\MillsM",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\pdiff" : {
+    "macro" : "\\pdiff",
+    "macroCounter" : 70,
+    "optionalArgumentCounter" : 27,
+    "atCounter" : {
+      "0" : 70
+    }
+  },
+  "\\paraV" : {
+    "macro" : "\\paraV",
+    "macroCounter" : 49,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 10,
+      "1" : 39
+    }
+  },
+  "\\modMathieuFe" : {
+    "macro" : "\\modMathieuFe",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\sin" : {
+    "macro" : "\\sin",
+    "macroCounter" : 959,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 410,
+      "2" : 545
+    }
+  },
+  "\\perBernoulliB" : {
+    "macro" : "\\perBernoulliB",
+    "macroCounter" : 19,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 19
+    }
+  },
+  "\\trianglepoly" : {
+    "macro" : "\\trianglepoly",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\acos" : {
+    "macro" : "\\acos",
+    "macroCounter" : 31,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 9,
+      "2" : 22
+    }
+  },
+  "\\npermutations" : {
+    "macro" : "\\npermutations",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 4
+    }
+  },
+  "\\acot" : {
+    "macro" : "\\acot",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2,
+      "2" : 6
+    }
+  },
+  "\\ln" : {
+    "macro" : "\\ln",
+    "macroCounter" : 581,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 5,
+      "1" : 250,
+      "2" : 326
+    }
+  },
+  "\\dilChebyshevpolyS" : {
+    "macro" : "\\dilChebyshevpolyS",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\discqHermitepolyhII" : {
+    "macro" : "\\discqHermitepolyhII",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\auxFresnelg" : {
+    "macro" : "\\auxFresnelg",
+    "macroCounter" : 24,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 22
+    }
+  },
+  "\\assLegendreOlverQ" : {
+    "macro" : "\\assLegendreOlverQ",
+    "macroCounter" : 55,
+    "optionalArgumentCounter" : 44,
+    "atCounter" : {
+      "1" : 55
+    }
+  },
+  "\\auxFresnelf" : {
+    "macro" : "\\auxFresnelf",
+    "macroCounter" : 24,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 22
+    }
+  },
+  "\\modBesselK" : {
+    "macro" : "\\modBesselK",
+    "macroCounter" : 168,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 6,
+      "1" : 162
+    }
+  },
+  "\\intinnerprod" : {
+    "macro" : "\\intinnerprod",
+    "macroCounter" : 60,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 60
+    }
+  },
+  "\\Bulirschcompellintcel" : {
+    "macro" : "\\Bulirschcompellintcel",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 8
+    }
+  },
+  "\\modBesselI" : {
+    "macro" : "\\modBesselI",
+    "macroCounter" : 211,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 5,
+      "1" : 206
+    }
+  },
+  "\\dilChebyshevpolyC" : {
+    "macro" : "\\dilChebyshevpolyC",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\compellintKk" : {
+    "macro" : "\\compellintKk",
+    "macroCounter" : 179,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 3,
+      "1" : 105,
+      "2" : 71
+    }
+  },
+  "\\Mathieuce" : {
+    "macro" : "\\Mathieuce",
+    "macroCounter" : 96,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 6,
+      "1" : 90
+    }
+  },
+  "\\imagpart" : {
+    "macro" : "\\imagpart",
+    "macroCounter" : 35,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 6,
+      "2" : 29
+    }
+  },
+  "\\StieltjesConstants" : {
+    "macro" : "\\StieltjesConstants",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 3
+    }
+  },
+  "\\BernoullinumberB" : {
+    "macro" : "\\BernoullinumberB",
+    "macroCounter" : 140,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 140
+    }
+  },
+  "\\Ln" : {
+    "macro" : "\\Ln",
+    "macroCounter" : 33,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5,
+      "2" : 28
+    }
+  },
+  "\\coth" : {
+    "macro" : "\\coth",
+    "macroCounter" : 34,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7,
+      "2" : 27
+    }
+  },
+  "\\aJacobiellsdk" : {
+    "macro" : "\\aJacobiellsdk",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\WilsonpolyW" : {
+    "macro" : "\\WilsonpolyW",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 8
+    }
+  },
+  "\\inverf" : {
+    "macro" : "\\inverf",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "2" : 2
+    }
+  },
+  "\\qExp" : {
+    "macro" : "\\qExp",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\JacobiEpsilonk" : {
+    "macro" : "\\JacobiEpsilonk",
+    "macroCounter" : 25,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 25
+    }
+  },
+  "\\Gausssum" : {
+    "macro" : "\\Gausssum",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\expintE" : {
+    "macro" : "\\expintE",
+    "macroCounter" : 49,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 49
+    }
+  },
+  "\\Jacobielldsk" : {
+    "macro" : "\\Jacobielldsk",
+    "macroCounter" : 30,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 23,
+      "2" : 7
+    }
+  },
+  "\\KummerconfhyperU" : {
+    "macro" : "\\KummerconfhyperU",
+    "macroCounter" : 143,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 143
+    }
+  },
+  "\\LameEs" : {
+    "macro" : "\\LameEs",
+    "macroCounter" : 33,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 33
+    }
+  },
+  "\\AGM" : {
+    "macro" : "\\AGM",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 11
+    }
+  },
+  "\\cosh" : {
+    "macro" : "\\cosh",
+    "macroCounter" : 284,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 75,
+      "2" : 209
+    }
+  },
+  "\\genshiftsinint" : {
+    "macro" : "\\genshiftsinint",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7
+    }
+  },
+  "\\Coulombphasesigma" : {
+    "macro" : "\\Coulombphasesigma",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7
+    }
+  },
+  "\\KleincompinvarJtau" : {
+    "macro" : "\\KleincompinvarJtau",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 8
+    }
+  },
+  "\\qexp" : {
+    "macro" : "\\qexp",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\LameEc" : {
+    "macro" : "\\LameEc",
+    "macroCounter" : 34,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 34
+    }
+  },
+  "\\Atan" : {
+    "macro" : "\\Atan",
+    "macroCounter" : 12,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7,
+      "2" : 5
+    }
+  },
+  "\\modMathieuGe" : {
+    "macro" : "\\modMathieuGe",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\AiryBi" : {
+    "macro" : "\\AiryBi",
+    "macroCounter" : 126,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 42,
+      "1" : 84
+    }
+  },
+  "\\AskeyWilsonpolyp" : {
+    "macro" : "\\AskeyWilsonpolyp",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
+  "\\LegendrepolyP" : {
+    "macro" : "\\LegendrepolyP",
+    "macroCounter" : 52,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 52
+    }
+  },
+  "\\Jacobithetacombinedq" : {
+    "macro" : "\\Jacobithetacombinedq",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 11
+    }
+  },
+  "\\modMathieuD" : {
+    "macro" : "\\modMathieuD",
+    "macroCounter" : 12,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 12
+    }
+  },
+  "\\Jacobiellcnk" : {
+    "macro" : "\\Jacobiellcnk",
+    "macroCounter" : 133,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 81,
+      "2" : 52
+    }
+  },
+  "\\surfharmonicY" : {
+    "macro" : "\\surfharmonicY",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\incgamma" : {
+    "macro" : "\\incgamma",
+    "macroCounter" : 42,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 42
+    }
+  },
+  "\\genEulerpolyE" : {
+    "macro" : "\\genEulerpolyE",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 2
+    }
+  },
+  "\\Coulombturnrho" : {
+    "macro" : "\\Coulombturnrho",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\LambertW" : {
+    "macro" : "\\LambertW",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 2
+    }
+  },
+  "\\erf" : {
+    "macro" : "\\erf",
+    "macroCounter" : 23,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 8,
+      "2" : 15
+    }
+  },
+  "\\acsch" : {
+    "macro" : "\\acsch",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2,
+      "2" : 5
+    }
+  },
+  "\\HeunpolyHp" : {
+    "macro" : "\\HeunpolyHp",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1,
+      "2" : 3
+    }
+  },
+  "\\Jacobiellsnk" : {
+    "macro" : "\\Jacobiellsnk",
+    "macroCounter" : 160,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 103,
+      "2" : 57
+    }
+  },
+  "\\Jacobiellndk" : {
+    "macro" : "\\Jacobiellndk",
+    "macroCounter" : 25,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 18,
+      "2" : 7
+    }
+  },
+  "\\shiftJacobipolyG" : {
+    "macro" : "\\shiftJacobipolyG",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\npartitions" : {
+    "macro" : "\\npartitions",
+    "macroCounter" : 27,
+    "optionalArgumentCounter" : 13,
+    "atCounter" : {
+      "1" : 27
+    }
+  },
+  "\\diff" : {
+    "macro" : "\\diff",
+    "macroCounter" : 1624,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1624
+    }
+  },
+  "\\terminant" : {
+    "macro" : "\\terminant",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 8
+    }
+  },
+  "\\atanh" : {
+    "macro" : "\\atanh",
+    "macroCounter" : 22,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 9,
+      "2" : 13
+    }
+  },
+  "\\modMathieuIo" : {
+    "macro" : "\\modMathieuIo",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\JordanJ" : {
+    "macro" : "\\JordanJ",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\dilog" : {
+    "macro" : "\\dilog",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 11
+    }
+  },
+  "\\AngerJ" : {
+    "macro" : "\\AngerJ",
+    "macroCounter" : 27,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 25
+    }
+  },
+  "\\modMathieuIe" : {
+    "macro" : "\\modMathieuIe",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\modMathieuM" : {
+    "macro" : "\\modMathieuM",
+    "macroCounter" : 68,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 14,
+      "1" : 48,
+      "2" : 6
+    }
+  },
+  "\\AlSalamChiharapolyQ" : {
+    "macro" : "\\AlSalamChiharapolyQ",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\cos" : {
+    "macro" : "\\cos",
+    "macroCounter" : 961,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 408,
+      "2" : 551
+    }
+  },
+  "\\shiftsinint" : {
+    "macro" : "\\shiftsinint",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 11
+    }
+  },
+  "\\AirymodderivN" : {
+    "macro" : "\\AirymodderivN",
+    "macroCounter" : 19,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 3,
+      "1" : 16
+    }
+  },
+  "\\sinint" : {
+    "macro" : "\\sinint",
+    "macroCounter" : 15,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 15
+    }
+  },
+  "\\cot" : {
+    "macro" : "\\cot",
+    "macroCounter" : 70,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 26,
+      "2" : 44
+    }
+  },
+  "\\perEulerE" : {
+    "macro" : "\\perEulerE",
+    "macroCounter" : 6,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 6
+    }
+  },
+  "\\Lommels" : {
+    "macro" : "\\Lommels",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 11
+    }
+  },
+  "\\littleo" : {
+    "macro" : "\\littleo",
+    "macroCounter" : 52,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 52
+    }
+  },
+  "\\asec" : {
+    "macro" : "\\asec",
+    "macroCounter" : 9,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2,
+      "2" : 7
+    }
+  },
+  "\\HermitepolyH" : {
+    "macro" : "\\HermitepolyH",
+    "macroCounter" : 84,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 82
+    }
+  },
+  "\\HankelmodderivN" : {
+    "macro" : "\\HankelmodderivN",
+    "macroCounter" : 20,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 19
+    }
+  },
+  "\\Kroneckerdelta" : {
+    "macro" : "\\Kroneckerdelta",
+    "macroCounter" : 60,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 60
+    }
+  },
+  "\\qbinom" : {
+    "macro" : "\\qbinom",
+    "macroCounter" : 27,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 27
+    }
+  },
+  "\\LamepolycE" : {
+    "macro" : "\\LamepolycE",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\aJacobielldck" : {
+    "macro" : "\\aJacobielldck",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\discqHermitepolyhI" : {
+    "macro" : "\\discqHermitepolyhI",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\Jacobiamk" : {
+    "macro" : "\\Jacobiamk",
+    "macroCounter" : 18,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 18
+    }
+  },
+  "\\DiscriminantDelta" : {
+    "macro" : "\\DiscriminantDelta",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\StirlingnumberS" : {
+    "macro" : "\\StirlingnumberS",
+    "macroCounter" : 41,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 41
+    }
+  },
+  "\\FishersHh" : {
+    "macro" : "\\FishersHh",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
+  "\\nrestpartitions" : {
+    "macro" : "\\nrestpartitions",
+    "macroCounter" : 29,
+    "optionalArgumentCounter" : 6,
+    "atCounter" : {
+      "1" : 29
+    }
+  },
+  "\\LommelS" : {
+    "macro" : "\\LommelS",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\pgcd" : {
+    "macro" : "\\pgcd",
+    "macroCounter" : 15,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 15
+    }
+  },
+  "\\incBeta" : {
+    "macro" : "\\incBeta",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\Asinh" : {
+    "macro" : "\\Asinh",
+    "macroCounter" : 8,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3,
+      "2" : 5
+    }
+  },
+  "\\realpart" : {
+    "macro" : "\\realpart",
+    "macroCounter" : 59,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 15,
+      "2" : 44
+    }
+  },
+  "\\modMathieuKo" : {
+    "macro" : "\\modMathieuKo",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\Wronskian" : {
+    "macro" : "\\Wronskian",
+    "macroCounter" : 73,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 73
+    }
+  },
+  "\\NeumannpolyO" : {
+    "macro" : "\\NeumannpolyO",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\LamepolydE" : {
+    "macro" : "\\LamepolydE",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
+  "\\modMathieuKe" : {
+    "macro" : "\\modMathieuKe",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
+  "\\zderivAirya" : {
+    "macro" : "\\zderivAirya",
+    "macroCounter" : 10,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 10
+    }
+  },
+  "\\zderivAiryb" : {
+    "macro" : "\\zderivAiryb",
+    "macroCounter" : 6,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 6
+    }
+  },
+  "\\envCoulumbM" : {
+    "macro" : "\\envCoulumbM",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\regCoulombs" : {
+    "macro" : "\\regCoulombs",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 10
+    }
+  },
+  "\\PollaczekpolyP" : {
+    "macro" : "\\PollaczekpolyP",
+    "macroCounter" : 11,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 11
+    }
+  },
+  "\\Lameeigvalb" : {
+    "macro" : "\\Lameeigvalb",
+    "macroCounter" : 17,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 17
+    }
+  },
+  "\\Lameeigvala" : {
+    "macro" : "\\Lameeigvala",
+    "macroCounter" : 19,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 19
+    }
+  },
+  "\\Jacobiellcsk" : {
+    "macro" : "\\Jacobiellcsk",
+    "macroCounter" : 34,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 21,
+      "2" : 13
+    }
+  },
+  "\\AiryAi" : {
+    "macro" : "\\AiryAi",
+    "macroCounter" : 211,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 55,
+      "1" : 156
+    }
+  },
+  "\\sphBesselY" : {
+    "macro" : "\\sphBesselY",
+    "macroCounter" : 30,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 1,
+      "1" : 29
+    }
+  },
+  "\\Fresnelcosint" : {
+    "macro" : "\\Fresnelcosint",
+    "macroCounter" : 21,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 21
+    }
+  },
+  "\\AngerWeberA" : {
+    "macro" : "\\AngerWeberA",
+    "macroCounter" : 12,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 12
+    }
+  },
+  "\\Asech" : {
+    "macro" : "\\Asech",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "2" : 1
+    }
+  },
+  "\\AThetaFunction" : {
+    "macro" : "\\AThetaFunction",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\Riemannxi" : {
+    "macro" : "\\Riemannxi",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\scterminant" : {
+    "macro" : "\\scterminant",
+    "macroCounter" : 6,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 6
+    }
+  },
+  "\\LeviCivitasym" : {
+    "macro" : "\\LeviCivitasym",
+    "macroCounter" : 10,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 10
+    }
+  },
+  "\\Asec" : {
+    "macro" : "\\Asec",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "2" : 1
+    }
+  },
+  "\\aJacobiellsck" : {
+    "macro" : "\\aJacobiellsck",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\RacahpolyR" : {
+    "macro" : "\\RacahpolyR",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7
+    }
+  },
+  "\\MittagLefflerE" : {
+    "macro" : "\\MittagLefflerE",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\bigqJacobipolyP" : {
+    "macro" : "\\bigqJacobipolyP",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  },
+  "\\aJacobiellcdk" : {
+    "macro" : "\\aJacobiellcdk",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
+  "\\MeixnerpolyM" : {
+    "macro" : "\\MeixnerpolyM",
+    "macroCounter" : 13,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 13
+    }
+  },
+  "\\genhyperOlverF" : {
+    "macro" : "\\genhyperOlverF",
+    "macroCounter" : 9,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7,
+      "2" : 2
+    }
+  },
+  "\\EulersumH" : {
+    "macro" : "\\EulersumH",
+    "macroCounter" : 7,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 7
+    }
+  },
+  "\\floor" : {
+    "macro" : "\\floor",
+    "macroCounter" : 60,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 60
+    }
+  },
+  "\\Pochhammersym" : {
+    "macro" : "\\Pochhammersym",
+    "macroCounter" : 569,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 569
+    }
+  },
+  "\\modMathieuMe" : {
+    "macro" : "\\modMathieuMe",
+    "macroCounter" : 3,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 3
+    }
+  }
+}

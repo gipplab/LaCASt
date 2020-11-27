@@ -4,15 +4,11 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.InformationLogger;
-import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
-import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
-import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -28,23 +24,23 @@ import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CHAR_BACKSLASH;
  * These "simple" functions are functions without a DLMF macro. We don't
  * really know how to translate these functions. So we will translate them
  * by simply remove the backslash.
- *
+ * <p>
  * If the global-lexicon doesn't contains the cosine function it is just a
  * simple function than. When our lexicon is complete, this translation becomes
  * a bit redundant.
- *
+ * <p>
  * Like the MacroTranslator, the function translation should translate the start expression
  * as well (the function itself) and after that the argument.
- *
+ * <p>
  * For instance: cos{2}
- *  1) translate the expression cos first
- *  2) after that the list of arguments, here 2
+ * 1) translate the expression cos first
+ * 2) after that the list of arguments, here 2
  *
+ * @author Andre Greiner-Petter
  * @see Brackets
  * @see AbstractTranslator
  * @see AbstractListTranslator
  * @see TranslatedExpression
- * @author Andre Greiner-Petter
  */
 public class FunctionTranslator extends AbstractListTranslator {
     private static final Logger LOG = LogManager.getLogger(FunctionTranslator.class.getName());
@@ -65,8 +61,8 @@ public class FunctionTranslator extends AbstractListTranslator {
     }
 
     @Override
-    public TranslatedExpression translate( PomTaggedExpression exp, List<PomTaggedExpression> following )
-            throws TranslationException{
+    public TranslatedExpression translate(PomTaggedExpression exp, List<PomTaggedExpression> following)
+            throws TranslationException {
         LOG.debug("Trigger general function translator");
         translate(exp);
         parse(following);
@@ -75,7 +71,7 @@ public class FunctionTranslator extends AbstractListTranslator {
         int num = localTranslations.mergeAll();
 
         TranslatedExpression global = super.getGlobalTranslationList();
-        global.mergeLastNExpressions( num );
+        global.mergeLastNExpressions(num);
         return localTranslations;
     }
 
@@ -90,7 +86,7 @@ public class FunctionTranslator extends AbstractListTranslator {
     @Override
     public TranslatedExpression translate(PomTaggedExpression exp) {
         MathTerm term = exp.getRoot();
-        if ( term == null || term.isEmpty() ){
+        if (term == null || term.isEmpty()) {
             throw TranslationException.buildException(this,
                     "Function has no MathTerm!",
                     TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
@@ -98,7 +94,7 @@ public class FunctionTranslator extends AbstractListTranslator {
 
         // remove the starting backslash
         String output;
-        if ( term.getTermText().startsWith( CHAR_BACKSLASH ) )
+        if (term.getTermText().startsWith(CHAR_BACKSLASH))
             output = term.getTermText().substring(1);
         else output = term.getTermText();
 
@@ -122,6 +118,7 @@ public class FunctionTranslator extends AbstractListTranslator {
      * The second part of the translation function parses the argument part of
      * an unknown function. For instance if \cos(2+2), this translate method gets
      * 2+2 as argument list.
+     *
      * @param following_exp the descendants of a previous function {@link #translate(PomTaggedExpression)}
      * @return true if everything was fine
      */
@@ -135,7 +132,7 @@ public class FunctionTranslator extends AbstractListTranslator {
         // usually we translate it the way around: \cos(a)^b.
         // That's why we need to check this here!
         PomTaggedExpression powerExp = null;
-        if ( MathTermTags.is(first, MathTermTags.caret) ){
+        if (MathTermTags.is(first, MathTermTags.caret)) {
             powerExp = first;
             first = following_exp.remove(0);
         }
@@ -145,26 +142,26 @@ public class FunctionTranslator extends AbstractListTranslator {
 
         // find out if we should wrap parenthesis around or not
         int num = translation.getLength();
-        String arg = Brackets.removeEnclosingBrackets( translation.toString() );
+        String arg = Brackets.removeEnclosingBrackets(translation.toString());
         String translatedExpression = basicFT.translate(new String[]{arg}, Keys.MLP_KEY_FUNCTION_ARGS);
 
         // take over the parsed expression
-        localTranslations.addTranslatedExpression( translatedExpression );
+        localTranslations.addTranslatedExpression(translatedExpression);
         localTranslations.mergeAll();
 
         // update global
         TranslatedExpression global = super.getGlobalTranslationList();
         // remove all variables and put them together as one object
-        global.removeLastNExps( num );
-        global.addTranslatedExpression( translatedExpression );
+        global.removeLastNExps(num);
+        global.addTranslatedExpression(translatedExpression);
 
         // shit, if there was a caret before the arguments, we need to add
         // these now
-        if ( powerExp != null ){
+        if (powerExp != null) {
             // since the MathTermTranslator handles this, use this class
             MathTermTranslator mp = new MathTermTranslator(getSuperTranslator());
-            mp.translate( powerExp );
-            localTranslations.replaceLastExpression( global.getLastExpression() );
+            mp.translate(powerExp);
+            localTranslations.replaceLastExpression(global.getLastExpression());
         }
 
         return localTranslations;

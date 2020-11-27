@@ -36,7 +36,7 @@ public class MacroDefinitionTests {
         loadedMacros = parser.getExtractedMacros();
     }
 
-    private static String readResource(String fileName) throws IOException {
+    public static String readResource(String fileName) throws IOException {
         try (InputStream is = MacroDefinitionTests.class
                 .getResourceAsStream(fileName)) {
             return IOUtils.toString(is, StandardCharsets.UTF_8);
