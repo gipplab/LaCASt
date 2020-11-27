@@ -233,7 +233,7 @@ public class ElasticSearchConnector {
 
     public static void main(String[] args) throws IOException {
         ElasticSearchConnector es = ElasticSearchConnector.getDefaultInstance();
-        es.createIfNotExist();
+        es.resetOrCreateIndex();
         es.reIndexDLMFDatabase();
 
 //        List<MacroResult> result = es.searchMacroDescription("Jacobi polynomial");

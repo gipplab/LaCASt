@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.generic.common.GenericReplacementTool;
 import gov.nist.drmf.interpreter.generic.elasticsearch.ElasticSearchConnector;
 import gov.nist.drmf.interpreter.generic.elasticsearch.MacroResult;
 import gov.nist.drmf.interpreter.generic.macro.MacroBean;
+import gov.nist.drmf.interpreter.generic.macro.MacroGenericSemanticEntry;
 import gov.nist.drmf.interpreter.generic.macro.MacroHelper;
 import gov.nist.drmf.interpreter.generic.mlp.struct.MOIAnnotation;
 import gov.nist.drmf.interpreter.pom.extensions.*;
@@ -76,12 +77,14 @@ public class SemanticEnhancer {
             MacroBean macro = macroPatterns.removeFirst();
             MatcherConfig config = MacroHelper.getMatchingConfig(macro, node);
 
-            LinkedList<String> genericLaTeXPatterns = macro.getGenericLatex();
-            LinkedList<String> semanticLaTeXPatterns = macro.getSemanticLaTeX();
+//            LinkedList<String> genericLaTeXPatterns = macro.getGenericLatex();
+//            LinkedList<String> semanticLaTeXPatterns = macro.getSemanticLaTeX();
+            LinkedList<MacroGenericSemanticEntry> patterns = new LinkedList<>(macro.getTex());
 
-            while ( !genericLaTeXPatterns.isEmpty() && !semanticLaTeXPatterns.isEmpty() ) {
-                String genericLaTeXPattern = genericLaTeXPatterns.removeFirst();
-                String semanticLaTeXPattern = semanticLaTeXPatterns.removeFirst();
+            while ( !patterns.isEmpty() ) {
+                MacroGenericSemanticEntry entry = patterns.removeFirst();
+                String genericLaTeXPattern = entry.getGenericTex();
+                String semanticLaTeXPattern = entry.getSemanticTex();
 
                 // if rule was already applied, we skip it
                 if ( replacementPerformed.contains(genericLaTeXPattern) ) continue;

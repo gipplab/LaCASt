@@ -8,13 +8,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -68,8 +65,8 @@ public class MacroDefinitionTests {
         MacroBean jacobiBean = loadedMacros.get("JacobipolyP");
         assertNotNull(jacobiBean);
         assertEquals("JacobipolyP", jacobiBean.getName());
-        assertEquals(1, jacobiBean.getGenericLatex().size());
-        assertEquals("P^{(par1,par2)}_{par3} (var1)", jacobiBean.getGenericLatex().getFirst());
+        assertEquals(2, jacobiBean.getTex().size());
+
         assertEquals("the Jacobi polynomial", jacobiBean.getMetaInformation().getDescription());
         assertEquals("Jacobi-polynomial-P", jacobiBean.getMetaInformation().getMeaning());
         assertEquals("orthpoly2_dlmf:Jacobi_P", jacobiBean.getMetaInformation().getOpenMathID());
@@ -83,8 +80,13 @@ public class MacroDefinitionTests {
         assertTrue(params.contains("\\beta"));
         assertTrue(params.contains("n"));
 
-        assertEquals(1, jacobiBean.getSemanticLaTeX().size(), jacobiBean.getSemanticLaTeX().toString());
-        assertEquals("\\JacobipolyP{par1}{par2}{par3}@{var1}", jacobiBean.getSemanticLaTeX().get(0));
+        List<MacroGenericSemanticEntry> tex = jacobiBean.getTex();
+        assertEquals(2, tex.size(), tex.toString());
+        assertEquals("P^{(par1,par2)}_{par3}", tex.get(1).getGenericTex());
+        assertEquals("\\JacobipolyP{par1}{par2}{par3}", tex.get(1).getSemanticTex());
+
+        assertEquals("P^{(par1,par2)}_{par3} (var1)", tex.get(0).getGenericTex());
+        assertEquals("\\JacobipolyP{par1}{par2}{par3}@{var1}", tex.get(0).getSemanticTex());
     }
 
     @Test
@@ -93,15 +95,20 @@ public class MacroDefinitionTests {
         assertNotNull(ferrerBean);
         assertEquals("FerrersP", ferrerBean.getName());
 
-        List<String> genericLaTeX = ferrerBean.getGenericLatex();
-        assertEquals(2, genericLaTeX.size());
-        assertEquals("\\mathsf{P}^{opPar1}_{par1} (var1)", genericLaTeX.get(0));
-        assertEquals("\\mathsf{P}_{par1} (var1)", genericLaTeX.get(1));
+        List<MacroGenericSemanticEntry> tex = ferrerBean.getTex();
+        assertEquals(4, tex.size(), tex.toString());
 
-        List<String> semanticLaTeX = ferrerBean.getSemanticLaTeX();
-        assertEquals(2, semanticLaTeX.size(), semanticLaTeX.toString());
-        assertEquals("\\FerrersP[opPar1]{par1}@{var1}", semanticLaTeX.get(0));
-        assertEquals("\\FerrersP{par1}@{var1}", semanticLaTeX.get(1));
+        assertEquals("\\mathsf{P}^{opPar1}_{par1} (var1)", tex.get(0).getGenericTex());
+        assertEquals("\\FerrersP[opPar1]{par1}@{var1}", tex.get(0).getSemanticTex());
+
+        assertEquals("\\mathsf{P}^{opPar1}_{par1}", tex.get(1).getGenericTex());
+        assertEquals("\\FerrersP[opPar1]{par1}", tex.get(1).getSemanticTex());
+
+        assertEquals("\\mathsf{P}_{par1} (var1)", tex.get(2).getGenericTex());
+        assertEquals("\\FerrersP{par1}@{var1}", tex.get(2).getSemanticTex());
+
+        assertEquals("\\mathsf{P}_{par1}", tex.get(3).getGenericTex());
+        assertEquals("\\FerrersP{par1}", tex.get(3).getSemanticTex());
     }
 
     @Test
@@ -111,13 +118,10 @@ public class MacroDefinitionTests {
         assertEquals("multinomial", multiNBean.getName());
         assertEquals("the multinomial coefficient", multiNBean.getMetaInformation().getDescription());
 
-        List<String> genericLaTeX = multiNBean.getGenericLatex();
-        assertEquals(1, genericLaTeX.size());
-        assertEquals("\\left({par1 \\atop par2}\\right)", genericLaTeX.get(0));
-
-        List<String> semanticLaTeX = multiNBean.getSemanticLaTeX();
-        assertEquals(1, semanticLaTeX.size(), semanticLaTeX.toString());
-        assertEquals("\\multinomial{par1}{par2}", semanticLaTeX.get(0));
+        List<MacroGenericSemanticEntry> tex = multiNBean.getTex();
+        assertEquals(1, tex.size(), tex.toString());
+        assertEquals("\\left({par1 \\atop par2}\\right)", tex.get(0).getGenericTex());
+        assertEquals("\\multinomial{par1}{par2}", tex.get(0).getSemanticTex());
     }
 
     @Test
@@ -127,13 +131,10 @@ public class MacroDefinitionTests {
         assertEquals("Pochhammersym", bean.getName());
         assertEquals("the Pochhammer symbol (or shifted factorial)", bean.getMetaInformation().getDescription());
 
-        List<String> genericLaTeX = bean.getGenericLatex();
-        assertEquals(1, genericLaTeX.size());
-        assertEquals("(par1)_{par2}", genericLaTeX.get(0));
-
-        List<String> semanticLaTeX = bean.getSemanticLaTeX();
-        assertEquals(1, semanticLaTeX.size(), semanticLaTeX.toString());
-        assertEquals("\\Pochhammersym{par1}{par2}", semanticLaTeX.get(0));
+        List<MacroGenericSemanticEntry> tex = bean.getTex();
+        assertEquals(1, tex.size(), tex.toString());
+        assertEquals("(par1)_{par2}", tex.get(0).getGenericTex());
+        assertEquals("\\Pochhammersym{par1}{par2}", tex.get(0).getSemanticTex());
     }
 
     @Test
@@ -143,13 +144,13 @@ public class MacroDefinitionTests {
         assertEquals("Riemannthetachar", bean.getName());
         assertEquals("the Riemann theta function with characteristics", bean.getMetaInformation().getDescription());
 
-        List<String> genericLaTeX = bean.getGenericLatex();
-        assertEquals(1, genericLaTeX.size());
-        assertEquals("\\theta\\left[{par1 \\atop par2}\\right] (var1 | var2)", genericLaTeX.get(0));
+        List<MacroGenericSemanticEntry> tex = bean.getTex();
+        assertEquals(2, tex.size(), tex.toString());
+        assertEquals("\\theta\\left[{par1 \\atop par2}\\right] (var1 | var2)", tex.get(0).getGenericTex());
+        assertEquals("\\Riemannthetachar{par1}{par2}@{var1}{var2}", tex.get(0).getSemanticTex());
 
-        List<String> semanticLaTeX = bean.getSemanticLaTeX();
-        assertEquals(1, semanticLaTeX.size(), semanticLaTeX.toString());
-        assertEquals("\\Riemannthetachar{par1}{par2}@{var1}{var2}", semanticLaTeX.get(0));
+        assertEquals("\\theta\\left[{par1 \\atop par2}\\right]", tex.get(1).getGenericTex());
+        assertEquals("\\Riemannthetachar{par1}{par2}", tex.get(1).getSemanticTex());
     }
 
     @Test
@@ -158,13 +159,10 @@ public class MacroDefinitionTests {
         assertNotNull(bean);
         assertEquals("LeviCivitasym", bean.getName());
 
-        List<String> genericLaTeX = bean.getGenericLatex();
-        assertEquals(1, genericLaTeX.size());
-        assertEquals("\\epsilon_{par1 par2 par3}", genericLaTeX.get(0));
-
-        List<String> semanticLaTeX = bean.getSemanticLaTeX();
-        assertEquals(1, semanticLaTeX.size());
-        assertEquals("\\LeviCivitasym{par1}{par2}{par3}", semanticLaTeX.get(0));
+        List<MacroGenericSemanticEntry> tex = bean.getTex();
+        assertEquals(1, tex.size(), tex.toString());
+        assertEquals("\\epsilon_{par1 par2 par3}", tex.get(0).getGenericTex());
+        assertEquals("\\LeviCivitasym{par1}{par2}{par3}", tex.get(0).getSemanticTex());
     }
 
     @Test
@@ -173,19 +171,22 @@ public class MacroDefinitionTests {
         assertNotNull(bean);
         assertEquals("Dirichletchar", bean.getName());
 
-        List<String> genericLaTeX = bean.getGenericLatex();
-        assertEquals(4, genericLaTeX.size(), genericLaTeX.toString());
-        assertEquals("\\chi_{opPar1} (var1,var2)", genericLaTeX.get(0), genericLaTeX.toString());
-        assertEquals("\\chi_{opPar1} (var1)", genericLaTeX.get(1), genericLaTeX.toString());
-        assertEquals("\\chi (var1,var2)", genericLaTeX.get(2), genericLaTeX.toString());
-        assertEquals("\\chi (var1)", genericLaTeX.get(3), genericLaTeX.toString());
+        List<MacroGenericSemanticEntry> tex = bean.getTex();
+        assertEquals(6, tex.size(), tex.toString());
 
-        List<String> semanticLaTeX = bean.getSemanticLaTeX();
-        assertEquals(4, semanticLaTeX.size(), semanticLaTeX.toString());
-        assertEquals("\\Dirichletchar[opPar1]@{var1}{var2}", semanticLaTeX.get(0));
-        assertEquals("\\Dirichletchar[opPar1]@@{var1}{k}", semanticLaTeX.get(1));
-        assertEquals("\\Dirichletchar@{var1}{var2}", semanticLaTeX.get(2));
-        assertEquals("\\Dirichletchar@@{var1}{k}", semanticLaTeX.get(3));
+        assertEquals("\\chi_{opPar1} (var1,var2)", tex.get(0).getGenericTex(), tex.toString());
+        assertEquals("\\chi_{opPar1} (var1)", tex.get(1).getGenericTex(), tex.toString());
+        assertEquals("\\chi_{opPar1}", tex.get(2).getGenericTex(), tex.toString());
+        assertEquals("\\chi (var1,var2)", tex.get(3).getGenericTex(), tex.toString());
+        assertEquals("\\chi (var1)", tex.get(4).getGenericTex(), tex.toString());
+        assertEquals("\\chi", tex.get(5).getGenericTex(), tex.toString());
+
+        assertEquals("\\Dirichletchar[opPar1]@{var1}{var2}", tex.get(0).getSemanticTex());
+        assertEquals("\\Dirichletchar[opPar1]@@{var1}{k}", tex.get(1).getSemanticTex());
+        assertEquals("\\Dirichletchar[opPar1]", tex.get(2).getSemanticTex());
+        assertEquals("\\Dirichletchar@{var1}{var2}", tex.get(3).getSemanticTex());
+        assertEquals("\\Dirichletchar@@{var1}{k}", tex.get(4).getSemanticTex());
+        assertEquals("\\Dirichletchar", tex.get(5).getSemanticTex());
     }
 
     @Test
@@ -195,26 +196,28 @@ public class MacroDefinitionTests {
         assertEquals(0, posIntBean.getNumberOfOptionalParameters());
         assertEquals(0, posIntBean.getNumberOfParameters());
         assertEquals(0, posIntBean.getNumberOfArguments());
-        assertEquals(1, posIntBean.getSemanticLaTeX().size());
-        assertEquals("\\posIntegers", posIntBean.getSemanticLaTeX().get(0));
-        assertEquals(1, posIntBean.getGenericLatex().size());
-        assertEquals("\\mathbb{Z}^{+}", posIntBean.getGenericLatex().getFirst());
+
+        assertEquals(1, posIntBean.getTex().size());
+        assertEquals("\\posIntegers", posIntBean.getTex().get(0).getSemanticTex());
+        assertEquals("\\mathbb{Z}^{+}", posIntBean.getTex().get(0).getGenericTex());
     }
 
     @Test
     public void macroDivisorTest() {
         MacroBean divBean = loadedMacros.get("ndivisors");
         assertNotNull(divBean);
-        assertEquals(2, divBean.getGenericLatex().size());
-        assertEquals("d_{opPar1} (var1)", divBean.getGenericLatex().get(0), divBean.getGenericLatex().toString());
-        assertEquals("d (var1)", divBean.getGenericLatex().get(1), divBean.getGenericLatex().toString());
+        assertEquals(4, divBean.getTex().size());
+        assertEquals("d_{opPar1} (var1)", divBean.getTex().get(0).getGenericTex(), divBean.getTex().toString());
+        assertEquals("d_{opPar1}", divBean.getTex().get(1).getGenericTex(), divBean.getTex().toString());
+        assertEquals("d (var1)", divBean.getTex().get(2).getGenericTex(), divBean.getTex().toString());
+        assertEquals("d", divBean.getTex().get(3).getGenericTex(), divBean.getTex().toString());
     }
 
     @Test
     public void macroContinuousTest() {
         MacroBean b = loadedMacros.get("continuous");
         assertNotNull(b);
-        assertEquals(2, b.getGenericLatex().size());
+        assertEquals(4, b.getTex().size(), b.getTex().toString());
         assertEquals("(a,b)", b.getMetaInformation().getStandardArguments().getStandardVariables().getFirst());
         assertEquals("the set of continuous functions $n$-times differentiable on the interval $(a,b)$", b.getMetaInformation().getDescription());
     }
@@ -225,7 +228,9 @@ public class MacroDefinitionTests {
         assertNotNull(b);
         assertNotNull(loadedMacros.get("genhyperF{1}{1}"));
 
-        assertEquals(3, b.getGenericLatex().size());
+        List<MacroGenericSemanticEntry> tex = b.getTex();
+        assertEquals(4, tex.size(), tex.toString());
+
         MatcherConfig strictConfig = MatcherConfig.getExactMatchConfig();
         assertTrue( strictConfig.getIllegalTokensForWildcard("var1").contains(",") );
         assertTrue( strictConfig.getIllegalTokensForWildcard("var2").contains(",") );
@@ -254,8 +259,7 @@ public class MacroDefinitionTests {
         MacroBean jacDeserializeBean = mapper.readValue(jacobiSerialized, MacroBean.class);
 
         assertEquals( jacGoldBean.getName(), jacDeserializeBean.getName() );
-        assertEquals( jacGoldBean.getGenericLatex(), jacDeserializeBean.getGenericLatex() );
-        assertEquals( jacGoldBean.getSemanticLaTeX(), jacDeserializeBean.getSemanticLaTeX() );
+        assertEquals( jacGoldBean.getTex(), jacDeserializeBean.getTex() );
         assertEquals( jacGoldBean.getMetaInformation().getDescription(), jacDeserializeBean.getMetaInformation().getDescription() );
         assertEquals( jacGoldBean.getMetaInformation().getMeaning(), jacDeserializeBean.getMetaInformation().getMeaning() );
         assertEquals( jacGoldBean.getMetaInformation().getOpenMathID(), jacDeserializeBean.getMetaInformation().getOpenMathID() );

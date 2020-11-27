@@ -2,9 +2,11 @@ package gov.nist.drmf.interpreter.generic.macro;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Java class representing a Macro from a .sty file
@@ -14,33 +16,40 @@ public class MacroBean {
     /**
      * Unique identifier (quasi-final)
      */
+    @JsonProperty("macro")
     private String name;
 
     /**
      * The pure generic LaTeX for parameters
      */
+    @JsonIgnore
     private final LinkedList<String> genericLaTeXParameters;
 
     /**
      * The pure generic LaTeX for arguments
      */
+    @JsonIgnore
     private final LinkedList<String> genericLaTeXArguments;
 
     @JsonIgnore
     private final LinkedList<Boolean[]> genericLateXDefaultArguments;
 
+    @JsonProperty("meta")
     private MacroMetaBean metaInformation;
 
+    @JsonProperty("numberOfParameters")
     private int numberOfParameters;
 
+    @JsonProperty("numberOfOptionalParameters")
     private int numberOfOptionalParameters = 0;
 
+    @JsonProperty("numberOfArguments")
     private int numberOfArguments;
 
-    private LinkedList<String> genericLaTeX;
+    @JsonProperty("TeX")
+    private LinkedList<MacroGenericSemanticEntry> tex;
 
-    private LinkedList<String> semanticLaTeX;
-
+    @JsonIgnore
     private boolean ifxAdded = false;
 
     /**
@@ -58,11 +67,12 @@ public class MacroBean {
         this.genericLaTeXParameters = new LinkedList<>();
         this.genericLaTeXArguments = new LinkedList<>();
         this.genericLateXDefaultArguments = new LinkedList<>();
-        this.genericLaTeX = new LinkedList<>();
+        this.tex = new LinkedList<>();
     }
 
     /**
      * Sets the generic latex expression with parameters.
+     *
      * @param genericLaTeX the pure generic latex code
      */
     @JsonIgnore
@@ -77,7 +87,7 @@ public class MacroBean {
     @JsonIgnore
     public void setGenericLaTeXParametersWithOptionalParameter(int numberOfParameters, String genericLaTeX) {
         this.numberOfOptionalParameters = 1;
-        this.numberOfParameters = numberOfParameters-1;
+        this.numberOfParameters = numberOfParameters - 1;
         this.genericLaTeXParameters.addFirst(MacroHelper.cleanArgument(genericLaTeX, MacroHelper.OPTIONAL_PAR_PREFIX));
     }
 
@@ -91,13 +101,14 @@ public class MacroBean {
     @JsonIgnore
     public void flipLastToOptionalParameter() {
         String latest = this.genericLaTeXParameters.removeLast();
-        latest = latest.replaceAll( MacroHelper.PAR_PREFIX, MacroHelper.OPTIONAL_PAR_PREFIX );
+        latest = latest.replaceAll(MacroHelper.PAR_PREFIX, MacroHelper.OPTIONAL_PAR_PREFIX);
         setGenericLaTeXParametersWithOptionalParameter(numberOfParameters, latest);
     }
 
     /**
      * Sets the generic latex list of arguments
-     * @param numOfArgs number of arguments
+     *
+     * @param numOfArgs     number of arguments
      * @param argumentsList list of arguments
      */
     @JsonIgnore
@@ -108,7 +119,7 @@ public class MacroBean {
             return;
         }
 
-        if ( argumentsList != null && argumentsList.length() > 3 ) {
+        if (argumentsList != null && argumentsList.length() > 3) {
             MacroHelper.fillListWithArguments(
                     numberOfArguments,
                     this.genericLaTeXArguments,
@@ -133,18 +144,8 @@ public class MacroBean {
     }
 
     @JsonSetter("macro")
-    public void setMacroName(String macro){
+    public void setMacroName(String macro) {
         this.name = macro;
-    }
-
-    @JsonSetter("TeX")
-    public void setGenericLaTeX(LinkedList<String> genericLaTeX) {
-        this.genericLaTeX = genericLaTeX;
-    }
-
-    @JsonSetter("semanticTeX")
-    public void setSemanticLaTeX(LinkedList<String> semanticLaTeX) {
-        this.semanticLaTeX = semanticLaTeX;
     }
 
     @JsonSetter("meta")
@@ -172,58 +173,76 @@ public class MacroBean {
         return name;
     }
 
-    @JsonGetter("TeX")
-    public LinkedList<String> getGenericLatex() {
-        if ( !genericLaTeX.isEmpty() ) return genericLaTeX;
-
-        for ( String para : genericLaTeXParameters ) {
-            MacroHelper.fillInnerList(para, genericLaTeX, genericLaTeXArguments);
-        }
-
-        return genericLaTeX;
+    @JsonSetter("TeX")
+    public void setTex(List<MacroGenericSemanticEntry> tex) {
+        this.tex = new LinkedList<>(tex);
     }
 
-    @JsonGetter("semanticTeX")
-    public LinkedList<String> getSemanticLaTeX() {
-        if ( this.semanticLaTeX != null ) return this.semanticLaTeX;
-        this.semanticLaTeX = new LinkedList<>();
+    @JsonGetter("TeX")
+    public LinkedList<MacroGenericSemanticEntry> getTex() {
+        if (!this.tex.isEmpty()) return this.tex;
+        this.tex = buildTex();
+        return this.tex;
+    }
 
+    @JsonIgnore
+    private LinkedList<MacroGenericSemanticEntry> buildTex() {
+        LinkedList<MacroGenericSemanticEntry> texList = new LinkedList<>();
+        LinkedList<String> genericLatexList = new LinkedList<>();
 
-        for ( int i = numberOfOptionalParameters; i >= 0; i-- ) {
-            StringBuilder sb = new StringBuilder("\\");
-            sb.append(name);
-            MacroHelper.addIdx( MacroHelper.OPTIONAL_PAR_PREFIX, i, new Character[]{'[', ']'}, sb );
-            MacroHelper.addIdx( MacroHelper.PAR_PREFIX, numberOfParameters, new Character[]{'{', '}'}, sb );
-
-            if ( genericLaTeXArguments.size() == 0 ) {
-                this.semanticLaTeX.add(sb.toString());
-            }
-
-            for ( int j = 0; j < genericLateXDefaultArguments.size(); j++ ) {
-                StringBuilder innerSB = new StringBuilder(sb.toString());
-                // only if elements are following, we will add an @
-                if ( numberOfArguments != 0 ){
-                    innerSB.append("@".repeat(j+1));
-                }
-
-                Boolean[] defArgs = genericLateXDefaultArguments.get(j);
-                for ( int k = 1; k <= numberOfArguments; k++ ) {
-                    Boolean useDef = defArgs[k-1];
-                    innerSB.append("{");
-                    if ( useDef != null && useDef ) {
-                        innerSB.append(MacroHelper.VAR_PREFIX).append(k);
-                    } else {
-                        String def = metaInformation.getStandardArguments().getStandardVariables().get(k-1);
-                        innerSB.append(def);
-                    }
-                    innerSB.append("}");
-                }
-
-                this.semanticLaTeX.add(innerSB.toString());
-            }
+        for (String para : genericLaTeXParameters) {
+            MacroHelper.fillInnerList(para, genericLatexList, genericLaTeXArguments);
         }
 
-        return this.semanticLaTeX;
+        for (int i = numberOfOptionalParameters; i >= 0; i--) {
+            StringBuilder sb = new StringBuilder("\\");
+            sb.append(name);
+            MacroHelper.addIdx(MacroHelper.OPTIONAL_PAR_PREFIX, i, new Character[]{'[', ']'}, sb);
+            MacroHelper.addIdx(MacroHelper.PAR_PREFIX, numberOfParameters, new Character[]{'{', '}'}, sb);
+
+            String noArgExpression = genericLatexList.remove(0);
+
+            MacroGenericSemanticEntry entry;
+            for (int j = 0; j < genericLateXDefaultArguments.size(); j++) {
+                entry = buildTexEntry(sb, j+1, texList, genericLatexList, genericLateXDefaultArguments.get(j));
+                texList.addLast(entry);
+            }
+
+            entry = new MacroGenericSemanticEntry(
+                    noArgExpression,
+                    sb.toString(),
+                    0
+            );
+            texList.add(entry);
+        }
+
+        return texList;
+    }
+
+    @JsonIgnore
+    private MacroGenericSemanticEntry buildTexEntry(
+            StringBuilder prefix,
+            int numOfAts,
+            List<MacroGenericSemanticEntry> texList,
+            List<String> genericLatex,
+            Boolean[] defaultArgs) {
+        StringBuilder innerSB = new StringBuilder(prefix);
+        // only if elements are following, we will add an @
+        if (numberOfArguments != 0) {
+            innerSB.append("@".repeat(numOfAts));
+        }
+
+        MacroHelper.generateDefaultArgList(
+                innerSB,
+                defaultArgs,
+                metaInformation.getStandardArguments().getStandardVariables()
+        );
+
+        return new MacroGenericSemanticEntry(
+                genericLatex.remove(0),
+                innerSB.toString(),
+                0
+        );
     }
 
     @JsonGetter("meta")

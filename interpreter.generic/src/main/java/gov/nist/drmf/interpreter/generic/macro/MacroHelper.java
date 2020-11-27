@@ -100,18 +100,40 @@ public final class MacroHelper {
     }
 
     public static Boolean[] allTrueArr(int numOfArgs) {
+        return fillArr(numOfArgs, true);
+    }
+
+    public static Boolean[] fillArr(int numOfArgs, boolean value) {
         Boolean[] defaultArg = new Boolean[numOfArgs];
-        Arrays.fill(defaultArg, true);
+        Arrays.fill(defaultArg, value);
         return defaultArg;
     }
 
     public static void fillInnerList(String para, List<String> fill, List<String> ref) {
-        if ( ref.isEmpty() ) {
-            fill.add(para);
-        } else {
-            for ( String args : ref ) {
-                fill.add(para + " " + args);
+        fill.add(para);
+        for ( String args : ref ) {
+            fill.add(para + " " + args);
+        }
+    }
+
+    public static double calculateScore(int var, Boolean[] defaults) {
+        int num = 0;
+        for ( Boolean b : defaults )
+            if ( b != null && b ) num++;
+        return (num)/(double)var;
+    }
+
+    public static void generateDefaultArgList(StringBuilder innerSB, Boolean[] defArgs, List<String> defaultArgs) {
+        for ( int k = 1; k <= defArgs.length; k++ ) {
+            Boolean useDef = defArgs[k-1];
+            innerSB.append("{");
+            if ( useDef != null && useDef ) {
+                innerSB.append(MacroHelper.VAR_PREFIX).append(k);
+            } else {
+                String def = defaultArgs.get(k-1);
+                innerSB.append(def);
             }
+            innerSB.append("}");
         }
     }
 
