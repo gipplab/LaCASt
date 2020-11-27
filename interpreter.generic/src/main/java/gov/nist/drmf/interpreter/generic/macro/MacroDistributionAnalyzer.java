@@ -7,7 +7,6 @@ import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
-import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
@@ -21,12 +20,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Andre Greiner-Petter
@@ -38,10 +34,14 @@ public class MacroDistributionAnalyzer {
 
     private static MacroDistributionAnalyzer instance;
 
-    public static MacroDistributionAnalyzer getStandardInstance() throws IOException {
+    public static MacroDistributionAnalyzer getStandardInstance() {
         if ( instance == null ) {
             instance = new MacroDistributionAnalyzer();
-            instance.load( GlobalPaths.PATH_SEMANTIC_MACROS_DISTRIBUTIONS );
+            try {
+                instance.load( GlobalPaths.PATH_SEMANTIC_MACROS_DISTRIBUTIONS );
+            } catch (IOException e) {
+                LOG.error("Unable to load standard distribution of dlmf macros. All values set to 0.", e);
+            }
         }
         return instance;
     }
@@ -62,7 +62,6 @@ public class MacroDistributionAnalyzer {
 
     public void analyze(Path path) throws IOException {
         final SemanticMLPWrapper mlpWrapper = SemanticMLPWrapper.getStandardInstance();
-        final ForkJoinPool pool = new ForkJoinPool(8);
 
         LOG.info("Start analyzing lines in database.");
         int[] lines = new int[]{0};
@@ -84,15 +83,8 @@ public class MacroDistributionAnalyzer {
                     }
                 })
                 .filter( Objects::nonNull )
-                .forEach( pte -> pool.submit( () -> analyze(pte) ) );
+                .forEach( this::analyze );
 
-        LOG.info("Finished reading the file. Waiting until all objects are analyzed.");
-        try {
-            pool.shutdown();
-            pool.awaitTermination( 2, TimeUnit.MINUTES );
-        } catch (InterruptedException e) {
-            LOG.error("Unable to finish termination of analyzer pool.");
-        }
         LOG.info("Finished analyzing all macros. Encountered " + this.dist.size() + " macros.");
     }
 
@@ -162,6 +154,7 @@ public class MacroDistributionAnalyzer {
 
     private PomTaggedExpression untilClosingBracket(MacroCounter counter, PomTaggedExpression sibling) {
         int open = 1;
+        boolean containedOptionalElement = false;
         while ( open > 0 ) {
             sibling = sibling.getNextSibling();
             if ( sibling == null ) {
@@ -171,8 +164,15 @@ public class MacroDistributionAnalyzer {
             Brackets bracket = Brackets.getBracket(sibling);
             if ( Brackets.left_brackets.equals(bracket) ) open++;
             else if ( Brackets.right_brackets.equals(bracket) ) open--;
+            else containedOptionalElement = true;
         }
-        counter.incrementOptionalArgumentCounter();
+
+        // slightly modified version. Quite often we see empty optional arguments. For example \FerresP[]{n}@{x}
+        // this is equivalent to removing the optional brackets at all: \FerrersP{n}@{x}. Hence we count them only
+        // if the optional argument was not empty.
+        if ( containedOptionalElement )
+            counter.incrementOptionalArgumentCounter();
+
         return sibling.getNextSibling();
     }
 

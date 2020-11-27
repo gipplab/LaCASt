@@ -17,18 +17,18 @@
     "TeX" : [ {
       "genericTeX" : "d_{opPar1} (var1)",
       "semanticTeX" : "\\ndivisors[opPar1]@{var1}",
-      "score" : 0.0
+      "score" : 0.2
     }, {
       "genericTeX" : "d_{opPar1}",
-      "semanticTeX" : "\\ndivisors[opPar1]",
+      "semanticTeX" : "\\ndivisors[opPar1]@{n}",
       "score" : 0.0
     }, {
       "genericTeX" : "d (var1)",
       "semanticTeX" : "\\ndivisors@{var1}",
-      "score" : 0.0
+      "score" : 0.8
     }, {
       "genericTeX" : "d",
-      "semanticTeX" : "\\ndivisors",
+      "semanticTeX" : "\\ndivisors@{n}",
       "score" : 0.0
     } ]
   },
@@ -50,18 +50,18 @@
     "TeX" : [ {
       "genericTeX" : "{}_{par1}F_{par2} (var1;var2;var3)",
       "semanticTeX" : "\\genhyperF{par1}{par2}@{var1}{var2}{var3}",
-      "score" : 0.0
+      "score" : 0.19760479041916168
     }, {
       "genericTeX" : "{}_{par1}F_{par2} ({var1 \\atop var2};var3)",
       "semanticTeX" : "\\genhyperF{par1}{par2}@@{var1}{var2}{var3}",
-      "score" : 0.0
+      "score" : 0.8023952095808383
     }, {
       "genericTeX" : "{}_{par1}F_{par2} (var3)",
       "semanticTeX" : "\\genhyperF{par1}{par2}@@@{a_1,\\dots,a_p}{b_1,\\dots,b_q}{var3}",
       "score" : 0.0
     }, {
       "genericTeX" : "{}_{par1}F_{par2}",
-      "semanticTeX" : "\\genhyperF{par1}{par2}",
+      "semanticTeX" : "\\genhyperF{par1}{par2}@{a_1,\\dots,a_p}{b_1,\\dots,b_q}{z}",
       "score" : 0.0
     } ]
   },
@@ -83,7 +83,7 @@
     "TeX" : [ {
       "genericTeX" : "\\left({par1 \\atop par2}\\right)",
       "semanticTeX" : "\\multinomial{par1}{par2}",
-      "score" : 0.0
+      "score" : 1.0
     } ]
   },
   "JacobipolyP" : {
@@ -104,10 +104,10 @@
     "TeX" : [ {
       "genericTeX" : "P^{(par1,par2)}_{par3} (var1)",
       "semanticTeX" : "\\JacobipolyP{par1}{par2}{par3}@{var1}",
-      "score" : 0.0
+      "score" : 1.0
     }, {
       "genericTeX" : "P^{(par1,par2)}_{par3}",
-      "semanticTeX" : "\\JacobipolyP{par1}{par2}{par3}",
+      "semanticTeX" : "\\JacobipolyP{par1}{par2}{par3}@{x}",
       "score" : 0.0
     } ]
   },
@@ -129,10 +129,10 @@
     "TeX" : [ {
       "genericTeX" : "T_{par1} (var1)",
       "semanticTeX" : "\\ChebyshevpolyT{par1}@{var1}",
-      "score" : 0.0
+      "score" : 1.0
     }, {
       "genericTeX" : "T_{par1}",
-      "semanticTeX" : "\\ChebyshevpolyT{par1}",
+      "semanticTeX" : "\\ChebyshevpolyT{par1}@{x}",
       "score" : 0.0
     } ]
   },
@@ -158,11 +158,11 @@
     }, {
       "genericTeX" : "\\chi_{opPar1} (var1)",
       "semanticTeX" : "\\Dirichletchar[opPar1]@@{var1}{k}",
-      "score" : 0.0
+      "score" : 0.1388888888888889
     }, {
       "genericTeX" : "\\chi_{opPar1}",
-      "semanticTeX" : "\\Dirichletchar[opPar1]",
-      "score" : 0.0
+      "semanticTeX" : "\\Dirichletchar[opPar1]@{n}{k}",
+      "score" : 0.19791666666666666
     }, {
       "genericTeX" : "\\chi (var1,var2)",
       "semanticTeX" : "\\Dirichletchar@{var1}{var2}",
@@ -170,11 +170,11 @@
     }, {
       "genericTeX" : "\\chi (var1)",
       "semanticTeX" : "\\Dirichletchar@@{var1}{k}",
-      "score" : 0.0
+      "score" : 0.5277777777777778
     }, {
       "genericTeX" : "\\chi",
-      "semanticTeX" : "\\Dirichletchar",
-      "score" : 0.0
+      "semanticTeX" : "\\Dirichletchar@{n}{k}",
+      "score" : 0.19791666666666666
     } ]
   },
   "FerrersP" : {
@@ -195,19 +195,19 @@
     "TeX" : [ {
       "genericTeX" : "\\mathsf{P}^{opPar1}_{par1} (var1)",
       "semanticTeX" : "\\FerrersP[opPar1]{par1}@{var1}",
-      "score" : 0.0
+      "score" : 0.7751204648526078
     }, {
       "genericTeX" : "\\mathsf{P}^{opPar1}_{par1}",
-      "semanticTeX" : "\\FerrersP[opPar1]{par1}",
-      "score" : 0.0
+      "semanticTeX" : "\\FerrersP[opPar1]{par1}@{x}",
+      "score" : 0.0013109410430839
     }, {
       "genericTeX" : "\\mathsf{P}_{par1} (var1)",
       "semanticTeX" : "\\FerrersP{par1}@{var1}",
-      "score" : 0.0
+      "score" : 0.21892715419501135
     }, {
       "genericTeX" : "\\mathsf{P}_{par1}",
-      "semanticTeX" : "\\FerrersP{par1}",
-      "score" : 0.0
+      "semanticTeX" : "\\FerrersP{par1}@{x}",
+      "score" : 0.0013109410430839
     } ]
   },
   "genhyperF{1}{1}" : {
@@ -239,7 +239,7 @@
       "score" : 0.0
     }, {
       "genericTeX" : "{}_{1}F_{1}",
-      "semanticTeX" : "\\genhyperF{1}{1}",
+      "semanticTeX" : "\\genhyperF{1}{1}@{a}{b}{z}",
       "score" : 0.0
     } ]
   },
@@ -282,7 +282,7 @@
     "TeX" : [ {
       "genericTeX" : "\\epsilon_{par1 par2 par3}",
       "semanticTeX" : "\\LeviCivitasym{par1}{par2}{par3}",
-      "score" : 0.0
+      "score" : 1.0
     } ]
   },
   "Pochhammersym" : {
@@ -303,7 +303,7 @@
     "TeX" : [ {
       "genericTeX" : "(par1)_{par2}",
       "semanticTeX" : "\\Pochhammersym{par1}{par2}",
-      "score" : 0.0
+      "score" : 1.0
     } ]
   },
   "continuous" : {
@@ -327,7 +327,7 @@
       "score" : 0.0
     }, {
       "genericTeX" : "C^{opPar1}",
-      "semanticTeX" : "\\continuous[opPar1]",
+      "semanticTeX" : "\\continuous[opPar1]@{(a,b)}",
       "score" : 0.0
     }, {
       "genericTeX" : "C var1",
@@ -335,7 +335,7 @@
       "score" : 0.0
     }, {
       "genericTeX" : "C",
-      "semanticTeX" : "\\continuous",
+      "semanticTeX" : "\\continuous@{(a,b)}",
       "score" : 0.0
     } ]
   },
@@ -360,7 +360,7 @@
       "score" : 0.0
     }, {
       "genericTeX" : "\\theta\\left[{par1 \\atop par2}\\right]",
-      "semanticTeX" : "\\Riemannthetachar{par1}{par2}",
+      "semanticTeX" : "\\Riemannthetachar{par1}{par2}@{z}{\\Omega}",
       "score" : 0.0
     } ]
   }

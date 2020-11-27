@@ -19,7 +19,7 @@
     "score" : 1.0
   }, {
     "genericTeX" : "P^{(par1,par2)}_{par3}",
-    "semanticTeX" : "\\JacobipolyP{par1}{par2}{par3}",
+    "semanticTeX" : "\\JacobipolyP{par1}{par2}{par3}@{x}",
     "score" : 0.0
   } ]
 }

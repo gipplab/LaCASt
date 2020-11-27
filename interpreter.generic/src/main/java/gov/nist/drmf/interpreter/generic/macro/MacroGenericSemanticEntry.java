@@ -5,10 +5,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author Andre Greiner-Petter
  */
 public class MacroGenericSemanticEntry {
+    @JsonIgnore
+    private static final Pattern AT_PATTERN = Pattern.compile("[^@]*(@*)[^@]*");
+
     @JsonProperty("genericTeX")
     private String genericTex;
 
@@ -18,6 +24,12 @@ public class MacroGenericSemanticEntry {
     @JsonProperty("score")
     private double score;
 
+    @JsonIgnore
+    private int numberOfAts;
+
+    @JsonIgnore
+    private boolean hasOptionalArgument;
+
     public MacroGenericSemanticEntry() {
         this("", "", 0.0);
     }
@@ -26,6 +38,19 @@ public class MacroGenericSemanticEntry {
         this.genericTex = genericTex;
         this.semanticTex = semanticTex;
         this.score = score;
+        countAts();
+        setOptionalArgumentSwitch();
+    }
+
+    @JsonIgnore
+    private void countAts() {
+        Matcher m = AT_PATTERN.matcher(semanticTex);
+        this.numberOfAts = m.matches() ? m.group(1).length() : 0;
+    }
+
+    @JsonIgnore
+    private void setOptionalArgumentSwitch() {
+        this.hasOptionalArgument = this.semanticTex.contains("[");
     }
 
     @JsonGetter("genericTeX")
@@ -46,6 +71,8 @@ public class MacroGenericSemanticEntry {
     @JsonSetter("semanticTeX")
     public void setSemanticTex(String semanticTex) {
         this.semanticTex = semanticTex;
+        this.countAts();
+        this.setOptionalArgumentSwitch();
     }
 
     @JsonGetter("score")
@@ -70,5 +97,15 @@ public class MacroGenericSemanticEntry {
     @Override
     public String toString() {
         return "(" + genericTex + ", " + semanticTex + ", " + score + ")";
+    }
+
+    @JsonIgnore
+    public int getNumberOfAts() {
+        return this.numberOfAts;
+    }
+
+    @JsonIgnore
+    public boolean hasOptionalArgument() {
+        return this.hasOptionalArgument;
     }
 }

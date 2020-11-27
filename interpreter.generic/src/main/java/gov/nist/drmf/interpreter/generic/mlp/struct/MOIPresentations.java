@@ -52,7 +52,7 @@ public class MOIPresentations {
             LOG.debug("Translate to all supported CAS.");
             for ( String cas : translators.getSupportedCAS() ) {
                 try {
-                    String translation = translators.translate(cas, semanticPTE.getTexString());
+                    String translation = translators.translate(cas, semanticPTE);
                     this.casRepresentations.put(cas, translation);
                     LOG.debug("Translation to " + cas + ": " + translation);
                 } catch ( TranslationException te ) {

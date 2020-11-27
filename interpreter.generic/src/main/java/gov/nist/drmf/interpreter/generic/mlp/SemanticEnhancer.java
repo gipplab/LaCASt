@@ -4,10 +4,10 @@ import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
 import gov.nist.drmf.interpreter.generic.common.GenericReplacementTool;
 import gov.nist.drmf.interpreter.generic.elasticsearch.ElasticSearchConnector;
 import gov.nist.drmf.interpreter.generic.elasticsearch.MacroResult;
-import gov.nist.drmf.interpreter.generic.macro.MacroBean;
-import gov.nist.drmf.interpreter.generic.macro.MacroGenericSemanticEntry;
-import gov.nist.drmf.interpreter.generic.macro.MacroHelper;
+import gov.nist.drmf.interpreter.generic.macro.*;
 import gov.nist.drmf.interpreter.generic.mlp.struct.MOIAnnotation;
+import gov.nist.drmf.interpreter.generic.mlp.struct.MlpLacastScorer;
+import gov.nist.drmf.interpreter.generic.pojo.SemanticReplacementRule;
 import gov.nist.drmf.interpreter.pom.extensions.*;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import gov.nist.drmf.interpreter.pom.moi.MathematicalObjectOfInterest;
@@ -25,25 +25,29 @@ import java.util.stream.Collectors;
 public class SemanticEnhancer {
     private static final Logger LOG = LogManager.getLogger(SemanticEnhancer.class.getName());
 
-    private ElasticSearchConnector elasticSearchConnector;
+    private final MacroDistributionAnalyzer macroDist;
 
-    private int considerNumberOfTopRelations = 3;
-    private int considerNumberOfTopMacros = 5;
+    private final ElasticSearchConnector elasticSearchConnector;
 
-    private LinkedList<MacroBean> macroPatterns;
+    private static final int considerNumberOfTopRelations = 3;
+    private static final int considerNumberOfTopMacros = 5;
 
-    private List<String> definiens;
-    private List<String> macros;
+    private final Set<String> macroPatternMemory;
+    private final LinkedList<SemanticReplacementRule> macroPatterns;
+
+    private final List<String> definiens;
+    private final List<String> macros;
 
     private double score;
-    private int counter = 1;
 
     public SemanticEnhancer() {
         this.elasticSearchConnector = ElasticSearchConnector.getDefaultInstance();
+        this.macroPatternMemory = new HashSet<>();
         this.macroPatterns = new LinkedList<>();
         this.definiens = new LinkedList<>();
         this.macros = new LinkedList<>();
         this.score = 0;
+        this.macroDist = MacroDistributionAnalyzer.getStandardInstance();
     }
 
     public double getScore() {
@@ -63,9 +67,7 @@ public class SemanticEnhancer {
         LOG.info("Start semantically enhancing moi " + node.getId() + ": " + originalTex);
 
         List<MOINode<MOIAnnotation>> dependentNodes = node.getDependencyNodes();
-        counter = 0;
         retrieveReplacementListsEnhance(node, dependentNodes);
-        this.score = this.score / counter;
         LOG.info("Retrieved "+ macroPatterns.size() +" replacement rules. Start applying each rule.");
 
         MathematicalObjectOfInterest moi = node.getNode();
@@ -73,40 +75,57 @@ public class SemanticEnhancer {
         Set<String> replacementPerformed = new HashSet<>();
         LOG.debug("Start replacements on MOI: " + pte.getTexString());
 
+        GenericReplacementTool genericReplacementTool = new GenericReplacementTool(pte);
+        pte = genericReplacementTool.getSemanticallyEnhancedExpression();
+        LOG.debug("Replaced general patterns: " + pte.getTexString());
+
+        macroPatterns.sort((a, b) -> {
+            double diff = a.getScore() - b.getScore();
+            if ( diff == 0 ) {
+                MacroCounter c1 = macroDist.getMacroCounter( "\\" + a.getMacro().getName() );
+                MacroCounter c2 = macroDist.getMacroCounter( "\\" + b.getMacro().getName() );
+
+                return c2.getMacroCounter() - c1.getMacroCounter();
+            }
+
+            return Double.compare(b.getScore(), a.getScore());
+        });
+
+        int counter = 0;
         while( !macroPatterns.isEmpty() ) {
-            MacroBean macro = macroPatterns.removeFirst();
+            SemanticReplacementRule semanticReplacementRule = macroPatterns.removeFirst();
+            MacroBean macro = semanticReplacementRule.getMacro();
             MatcherConfig config = MacroHelper.getMatchingConfig(macro, node);
 
-//            LinkedList<String> genericLaTeXPatterns = macro.getGenericLatex();
-//            LinkedList<String> semanticLaTeXPatterns = macro.getSemanticLaTeX();
-            LinkedList<MacroGenericSemanticEntry> patterns = new LinkedList<>(macro.getTex());
+            MacroGenericSemanticEntry entry = semanticReplacementRule.getPattern();
+            String genericLaTeXPattern = entry.getGenericTex();
+            String semanticLaTeXPattern = entry.getSemanticTex();
 
-            while ( !patterns.isEmpty() ) {
-                MacroGenericSemanticEntry entry = patterns.removeFirst();
-                String genericLaTeXPattern = entry.getGenericTex();
-                String semanticLaTeXPattern = entry.getSemanticTex();
+            // if rule was already applied, we skip it
+            if ( replacementPerformed.contains(genericLaTeXPattern) ) continue;
+            else replacementPerformed.add(genericLaTeXPattern);
 
-                // if rule was already applied, we skip it
-                if ( replacementPerformed.contains(genericLaTeXPattern) ) continue;
-                else replacementPerformed.add(genericLaTeXPattern);
+            LOG.debug("Apply replacement from '"+genericLaTeXPattern+"' to '"+semanticLaTeXPattern+"'.");
 
-                LOG.debug("Apply replacement from '"+genericLaTeXPattern+"' to '"+semanticLaTeXPattern+"'.");
-
-                MatchablePomTaggedExpression genericPattern =
-                        PomMatcherBuilder.compile(genericLaTeXPattern, MacroHelper.WILDCARD_PATTERNS);
-                PomMatcher matcher = genericPattern.matcher(pte, config);
-                pte = matcher.replacePattern(semanticLaTeXPattern);
-                LOG.debug("Replacement applied, updated MOI: " + pte.getTexString());
+            MatchablePomTaggedExpression genericPattern =
+                    PomMatcherBuilder.compile(genericLaTeXPattern, MacroHelper.WILDCARD_PATTERNS);
+            PomMatcher matcher = genericPattern.matcher(pte, config);
+            pte = matcher.replacePattern(semanticLaTeXPattern);
+            LOG.debug("Replacement applied, updated MOI: " + pte.getTexString());
+            if ( matcher.performedReplacements() ) {
+                counter++;
+                this.score += semanticReplacementRule.getScore();
             }
         }
+
+        this.score = counter > 0 ? score/(double)counter : 0;
 
         LOG.info("Semantically enhanced MOI.\n" +
                 "From: "+node.getNode().getOriginalLaTeX()+"\n" +
                 "To:   "+pte.getTexString()
         );
 
-        GenericReplacementTool genericReplacementTool = new GenericReplacementTool(pte);
-        return genericReplacementTool.getSemanticallyEnhancedExpression();
+        return pte;
     }
 
     private void retrieveReplacementListsEnhance(
@@ -121,21 +140,33 @@ public class SemanticEnhancer {
             Relation definitionRelation = definiensList.get(i);
             double definiensScore = definitionRelation.getScore();
             String definition = definitionRelation.getDefinition();
+            if ( this.definiens.contains(definition) ) continue;
+
             this.definiens.add(definition);
             LinkedList<MacroResult> macros = elasticSearchConnector.searchMacroDescription(definition);
             LOG.debug("For definition " + definition + ": retrieved " + macros.size() + " semantic macros " + macros);
 
             double maxMacroScore = macros.isEmpty() ? 0 : macros.get(0).getScore();
-            for ( int j = 0; j < macros.size() && j < considerNumberOfTopMacros; j++ ) {
-                MacroBean macro = macros.get(j).getMacro();
-                if ( !macroPatterns.contains(macro) ) {
-                    LOG.debug("Add semantic macro " + macro.getName());
-                    macroPatterns.add(macro);
-                    this.macros.add(macro.getName());
+            MlpLacastScorer scorer = new MlpLacastScorer(maxMacroScore);
 
-                    double macroScore = macros.get(j).getScore();
-                    this.counter++;
-                    this.score += (definiensScore+(macroScore/maxMacroScore))/2;
+            for ( int j = 0; j < macros.size() && j < considerNumberOfTopMacros; j++ ) {
+                MacroResult macroResult = macros.get(j);
+                MacroBean macro = macroResult.getMacro();
+                if ( this.macros.contains(macro.getName()) )
+                    continue;
+
+                this.macros.add( macro.getName() );
+                if ( !macroPatternMemory.contains(macro.getName()) ) {
+                    LOG.debug("Add semantic macro " + macro.getName());
+                    macroPatternMemory.add(macro.getName());
+
+                    MacroCounter counter = macroDist.getMacroCounter("\\" + macro.getName());
+                    for ( MacroGenericSemanticEntry entry : macro.getTex() ) {
+                        double score = counter != null ?
+                                scorer.getScore( definiensScore, macroResult.getScore(), entry.getScore() ) :
+                                0;
+                        macroPatterns.add( new SemanticReplacementRule(macro, entry, score) );
+                    }
                 }
             }
         }

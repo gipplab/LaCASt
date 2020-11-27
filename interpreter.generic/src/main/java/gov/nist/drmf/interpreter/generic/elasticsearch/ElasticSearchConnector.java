@@ -235,10 +235,6 @@ public class ElasticSearchConnector {
         ElasticSearchConnector es = ElasticSearchConnector.getDefaultInstance();
         es.resetOrCreateIndex();
         es.reIndexDLMFDatabase();
-
-//        List<MacroResult> result = es.searchMacroDescription("Jacobi polynomial");
-//        System.out.println(result.stream().map( MacroResult::toString ).collect(Collectors.joining("\n")));
-
         es.stop();
     }
 }

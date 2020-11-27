@@ -38,7 +38,13 @@ public class PomMatcher {
     private final LinkedList<DepthExpressionsCache> remaining;
     private DepthExpressionsCache latestDepthExpression;
 
+    // this is necessary to avoid double replacements
     private boolean wasReplaced = false;
+
+    // this is just to check if any of the "replacement" methods actually found something or not
+    // so the user can ask if there was a replacement applied or not
+    private boolean hasReplacedAnything = false;
+
     private boolean latestHitMatchedWithoutPassingElements = false;
     private boolean firstRound = true;
 
@@ -279,12 +285,14 @@ public class PomMatcher {
      */
     public PrintablePomTaggedExpression replacePattern(String expression) throws ParseException {
         reset();
+        this.hasReplacedAnything = false;
         while ( find() ) {
             String replaced = PomMatcherUtility.fillPatterns(expression, groups());
             PrintablePomTaggedExpression p = matcher.getMLPWrapperInstance().parse(replaced);
             LinkedList<PrintablePomTaggedExpression> tmp = new LinkedList<>();
             tmp.add(p);
             replacePreviousHit(tmp);
+            this.hasReplacedAnything = true;
         }
         return copy;
     }
@@ -298,10 +306,22 @@ public class PomMatcher {
      */
     public PrintablePomTaggedExpression replace( List<PrintablePomTaggedExpression> replacement ) {
         reset();
+        this.hasReplacedAnything = false;
         while ( find() ) {
             replacePreviousHit(replacement);
+            this.hasReplacedAnything = true;
         }
         return copy;
+    }
+
+    /**
+     * After calling {@link #replacePattern(String)} or {@link #replace(List)}, this method can be
+     * used to ask if anything was replaced or not.
+     * @return true if {@link #replacePattern(String)} or {@link #replace(List)} found any hit and performed
+     * replacements, false otherwise.
+     */
+    public boolean performedReplacements() {
+        return this.hasReplacedAnything;
     }
 
     /**
