@@ -180,7 +180,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
 
     private TranslatedExpression parseGeneralTerm(MathTerm term, PomTaggedExpression exp, List<PomTaggedExpression> expList) {
         TranslatedExpression transExpression;
-        if (isDLMFMacro(term)) { // BEFORE FUNCTION!
+        if (MathTermUtility.isDLMFMacro(term)) { // BEFORE FUNCTION!
             MacroTranslator mp = new MacroTranslator(this);
             transExpression = mp.translate(exp, expList);
         } //is it a sum or a product
@@ -253,27 +253,6 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         if ( et != null && (et.equals(ExpressionTags.square_root) || et.equals(ExpressionTags.general_root) ) ) {
             return true;
         } else return false;
-    }
-
-    protected static boolean isDLMFMacro(MathTerm term) {
-        MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
-        if (tag != null && tag.equals(MathTermTags.dlmf_macro)) {
-            return true;
-        }
-        FeatureSet dlmf = term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
-        if (dlmf != null) {
-            SortedSet<String> role = dlmf.getFeature(Keys.FEATURE_ROLE);
-            if (role != null &&
-                    (role.first().matches(Keys.FEATURE_VALUE_CONSTANT) ||
-                            role.first().matches(Keys.FEATURE_VALUE_SYMBOL)
-                    )) {
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            return false;
-        }
     }
 
     protected static boolean isSubSequence(MathTerm term) {

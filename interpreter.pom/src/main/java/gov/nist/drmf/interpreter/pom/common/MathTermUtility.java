@@ -37,6 +37,25 @@ public final class MathTermUtility {
     }
 
     /**
+     * Checks if the given math term is a dlmf macro (in the sense it was tagged as such by the semantic mlp).
+     * @param term math term
+     * @return true if the term is a dlmf-macro
+     */
+    public static boolean isDLMFMacro(MathTerm term) {
+        MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
+        if (tag != null && tag.equals(MathTermTags.dlmf_macro)) return true;
+
+        // maybe, it is not primarily tagged as a macro. So as a fallback, we should check the feature sets
+        FeatureSet dlmf = term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
+        if ( dlmf == null ) return false;
+
+        SortedSet<String> role = dlmf.getFeature(Keys.FEATURE_ROLE);
+        return role == null ||
+                (!role.first().matches(Keys.FEATURE_VALUE_CONSTANT) &&
+                        !role.first().matches(Keys.FEATURE_VALUE_SYMBOL));
+    }
+
+    /**
      * @param term math term
      * @return true if the given term is a greek letter
      */
