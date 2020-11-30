@@ -50,6 +50,14 @@ public class SemanticEnhancer {
         this.macroDist = MacroDistributionAnalyzer.getStandardInstance();
     }
 
+    private void reset() {
+        macroPatternMemory.clear();
+        macroPatterns.clear();
+        definiens.clear();
+        macros.clear();
+        score = 0;
+    }
+
     public double getScore() {
         return score;
     }
@@ -63,6 +71,7 @@ public class SemanticEnhancer {
     }
 
     public PrintablePomTaggedExpression semanticallyEnhance(MOINode<MOIAnnotation> node) throws IOException, ParseException {
+        reset();
         String originalTex = node.getNode().getOriginalLaTeX();
         LOG.info("Start semantically enhancing moi " + node.getId() + ": " + originalTex);
 

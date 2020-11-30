@@ -54,7 +54,7 @@ public class MacroDistributionAnalyzerTests {
         assertEquals(0.25, counter.getScore(true, 2));
 
         assertEquals(0, counter.getScore(false, 0));
-        assertEquals(0, counter.getScore(false, 1));
+        assertEquals(0.25, counter.getScore(false, 1));
         assertEquals(0.25, counter.getScore(false, 2));
     }
 
