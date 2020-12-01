@@ -28,7 +28,9 @@ public class TeXPreProcessor {
             "\\\\genfrac(\\{.}|.)(\\{.}|.)(?:\\\\z@\\{}|\\{0pt}\\{})\\{(.*?)}\\{(.*?)}"
     );
 
-    private static ReplacementConfig replacementConfig = ReplacementConfig.getInstance();
+    private static final Pattern BEGIN_ENV_PATTERN = Pattern.compile("\\\\begin\\{(.*?)}");
+
+    private final static ReplacementConfig replacementConfig = ReplacementConfig.getInstance();
 
     private TeXPreProcessor() {}
 
@@ -94,6 +96,25 @@ public class TeXPreProcessor {
     public static String resetNumberOfAtsToOne(String in) {
         // if there are multiple @s, replace it my one @
         return in.replaceAll("@{2,}", "@");
+    }
+
+    public static String removeTeXEnvironment(String in) {
+        if ( in == null || !in.trim().startsWith("\\begin") ) {
+            return in;
+        }
+
+        Matcher envTitle = BEGIN_ENV_PATTERN.matcher(in);
+        if ( !envTitle.find() ) return in;
+
+        String envTitleString = Pattern.quote(envTitle.group(1));
+        Pattern envContentPattern = Pattern.compile(
+                "\\\\begin\\{" + envTitleString + "}" +
+                        "(.*?)" +
+                "\\\\end\\{" + envTitleString + "}"
+        );
+        Matcher envContentMatcher = envContentPattern.matcher(in);
+        if ( !envContentMatcher.find() ) return in;
+        return envContentMatcher.group(1);
     }
 
     public static String normalizeGenFrac(String in) {

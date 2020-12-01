@@ -85,6 +85,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
 
         // the fun part, every node has it's own caption
         this.caption = PomTaggedExpressionUtility.getNormalizedCaption(pte, expr);
+        if ( PomTaggedExpressionUtility.isTeXEnvironment(pte) ) expr = TeXPreProcessor.removeTeXEnvironment(expr);
 
         // now we have to add the components and their respective substrings...
         for (PomTaggedExpression component : pte.getComponents()) {

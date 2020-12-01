@@ -25,8 +25,8 @@ public final class PomTaggedExpressionUtility {
     public static String getNormalizedCaption(PomTaggedExpression pte, String expr) {
         if ( pte.getParent() == null && TeXPreProcessor.wrappedInCurlyBrackets(expr) )
             expr = TeXPreProcessor.trimCurlyBrackets(expr);
-        else if ( ExpressionTags.equation.equalsPTE(pte) || (pte.getParent() != null && ExpressionTags.equation.equalsPTE(pte.getParent()) ) )
-            expr = expr.replace("&", "");
+        else if ( pte.isEmpty() && expr.trim().matches("&") )
+            expr = "";
         else if ( addCurlyBrackets(pte, expr) )
             expr = "{" + expr.trim() + "}";
         return expr.trim();
@@ -56,6 +56,10 @@ public final class PomTaggedExpressionUtility {
             case comma: case semicolon: return true;
             default: return false;
         }
+    }
+
+    public static boolean isEmptyEquationElement(PomTaggedExpression pte) {
+        return pte != null && ExpressionTags.equation.equalsPTE(pte.getParent()) && pte.isEmpty();
     }
 
     public static boolean isSequence(PomTaggedExpression pte) {
