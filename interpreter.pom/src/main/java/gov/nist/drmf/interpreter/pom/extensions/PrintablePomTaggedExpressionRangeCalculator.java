@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.pom.extensions;
 import gov.nist.drmf.interpreter.common.text.IndexRange;
 import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import mlp.PomTaggedExpression;
 import org.intellij.lang.annotations.Language;
 
@@ -20,10 +21,10 @@ public class PrintablePomTaggedExpressionRangeCalculator {
     public PrintablePomTaggedExpressionRangeCalculator() {}
 
     public IndexRange getRange(PomTaggedExpression component, String expr) {
-        String thisMatch = getStartingString(component);
-        String nextMatch = getEndingString(component);
+        String thisMatch = getStartingStringPattern(component);
+        String nextMatch = getEndingStringPattern(component);
 
-        Pattern thisPattern = Pattern.compile(generatePattern(thisMatch));
+        Pattern thisPattern = Pattern.compile(thisMatch);
         Pattern nextPattern = Pattern.compile(nextMatch);
 
         Matcher thisM = thisPattern.matcher(expr);
@@ -67,12 +68,25 @@ public class PrintablePomTaggedExpressionRangeCalculator {
     private String generatePattern(String input) {
         if ( input.matches("[A-Za-z]+") ) {
             return "(?<![A-Za-z])"+input+"(?![A-Za-z])";
-        } else return Pattern.quote(input);
+        } else if ( !input.isBlank() ) return Pattern.quote(input);
+        else return "";
+    }
+
+    private String getStartingStringPattern(PomTaggedExpression pte) {
+        if ( PomTaggedExpressionUtility.isEmptyEquationElement(pte) ) return "";
+        String startingPattern = generatePattern(getStartingString(pte));
+        if ( mayStartWithEquation(pte) ) startingPattern = "&?" + startingPattern;
+        return startingPattern;
     }
 
     private String getStartingString(PomTaggedExpression pte) {
         String token = PomTaggedExpressionUtility.getAppropriateFontTex(pte);
-        return checkSubExpressionToken(token, pte);
+        token = checkSubExpressionToken(token, pte);
+        return token;
+    }
+
+    private boolean mayStartWithEquation(PomTaggedExpression pte) {
+        return pte != null && ExpressionTags.equation.equalsPTE(pte.getParent()) && pte.getPreviousSibling() != null;
     }
 
     private String checkSubExpressionToken(String token, PomTaggedExpression pte) {
@@ -85,7 +99,8 @@ public class PrintablePomTaggedExpressionRangeCalculator {
         } else return token;
     }
 
-    private String getEndingString(PomTaggedExpression pte) {
+    private String getEndingStringPattern(PomTaggedExpression pte) {
+        if ( PomTaggedExpressionUtility.isEmptyEquationElement(pte) ) return "[^&]*";
         String envEndString = getEndEnvironmentPattern(pte);
         if ( envEndString != null ) return envEndString;
 
@@ -98,25 +113,27 @@ public class PrintablePomTaggedExpressionRangeCalculator {
         } else {
             StringBuilder entireListOfComponents = new StringBuilder();
             String potentialRoot = PrintablePomTaggedExpressionUtility.getInternalNodeCommand(pte);
-            entireListOfComponents.append(Pattern.quote(potentialRoot));
-            if ( !potentialRoot.isBlank() ) entireListOfComponents.append(SPACE_PATTERN);
+            if ( !potentialRoot.isBlank() ) {
+                entireListOfComponents.append(Pattern.quote(potentialRoot));
+                entireListOfComponents.append(SPACE_PATTERN);
+            }
 
             for ( int i = 0; i < components.size(); i++ ) {
                 PomTaggedExpression last = components.get(i);
                 if ( PomTaggedExpressionUtility.isSequence(last) ) {
                     for ( PomTaggedExpression child : last.getComponents() ) {
                         entireListOfComponents.append(SPACE_PATTERN)
-                                .append(getEndingString(child));
+                                .append(getEndingStringPattern(child));
                     }
                 } else if ( !last.getComponents().isEmpty() ) {
                     String root = PrintablePomTaggedExpressionUtility.getInternalNodeCommand(last);
                     entireListOfComponents.append(Pattern.quote(root));
                     for ( PomTaggedExpression child : last.getComponents() ) {
                         entireListOfComponents.append(SPACE_PATTERN)
-                                .append(getEndingString(child));
+                                .append(getEndingStringPattern(child));
                     }
                 } else {
-                    entireListOfComponents.append(getEndingString(components.get(i)));
+                    entireListOfComponents.append(getEndingStringPattern(components.get(i)));
                 }
                 if ( i < components.size()-1 )
                     entireListOfComponents.append(SPACE_PATTERN);

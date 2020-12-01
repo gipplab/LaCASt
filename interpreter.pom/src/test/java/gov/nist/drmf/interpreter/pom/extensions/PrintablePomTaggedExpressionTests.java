@@ -645,18 +645,13 @@ public class PrintablePomTaggedExpressionTests {
 
         printComps = printComps.get(2).getPrintableComponents();
         checkList(printComps,
-                "x = y", "n = m"
+                "x &= y", "n &= m"
         );
 
-        // I know it looks weird, but that's how PoM tagger parses equation arrays. An equation is a list of LHS and RHS
-        // while the equation symbol is in the RHS.
-        // hence the PTE for "x = y" contains two nodes, "x" and "= y".
         printComps = printComps.get(0).getPrintableComponents();
         checkList(printComps,
-                "x", "= y"
+                "x", "&= y"
         );
-
-        printComps.get(0).setRoot(new MathTerm("1", MathTermTags.numeric.tag()));
     }
 
     @Test
@@ -670,8 +665,10 @@ public class PrintablePomTaggedExpressionTests {
         printComps = printComps.get(0).getPrintableComponents();
 
         printComps.get(0).setRoot(new MathTerm("1", MathTermTags.numeric.tag()));
+        assertEquals( "x + \\begin{align}1 &= y \\\\ n &= m\\end{align}", ppte.getTexString() );
 
-        assertEquals( "x + \\begin{align}1 = y \\\\ n = m\\end{align}", ppte.getTexString() );
+        printComps.get(1).getPrintableComponents().get(1).setRoot(new MathTerm("x", MathTermTags.letter.tag()));
+        assertEquals( "x + \\begin{align}1 &= x \\\\ n &= m\\end{align}", ppte.getTexString() );
     }
 
     @Test
@@ -691,18 +688,18 @@ public class PrintablePomTaggedExpressionTests {
 
         printComps = printComps.get(2).getPrintableComponents();
         checkList(printComps,
-                "2n (n + \\alpha) (2n \\alpha) P_n^{(\\alpha,\\beta)}(z)",
-                "= (2n+\\alpha + \\beta-1) \\{ z + \\alpha^2 - \\beta^2 \\} z,"
+                "&2n (n + \\alpha) (2n \\alpha) P_n^{(\\alpha,\\beta)}(z)",
+                "&= (2n+\\alpha + \\beta-1) \\{ z + \\alpha^2 - \\beta^2 \\} z,"
         );
 
         List<PrintablePomTaggedExpression> firstEquation = printComps.get(0).getPrintableComponents();
         checkList(firstEquation,
-                "", "2n (n + \\alpha) (2n \\alpha) P_n^{(\\alpha,\\beta)}(z)"
+                "", "&2n (n + \\alpha) (2n \\alpha) P_n^{(\\alpha,\\beta)}(z)"
         );
 
         List<PrintablePomTaggedExpression> secondEquation = printComps.get(1).getPrintableComponents();
         checkList(secondEquation,
-                "", "= (2n+\\alpha + \\beta-1) \\{ z + \\alpha^2 - \\beta^2 \\} z,"
+                "", "&= (2n+\\alpha + \\beta-1) \\{ z + \\alpha^2 - \\beta^2 \\} z,"
         );
 
         firstEquation = firstEquation.get(1).getPrintableComponents();

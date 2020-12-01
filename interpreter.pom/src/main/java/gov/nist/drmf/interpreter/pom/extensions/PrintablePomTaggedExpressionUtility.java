@@ -39,19 +39,32 @@ public final class PrintablePomTaggedExpressionUtility {
         while (it.hasNext()) {
             PrintablePomTaggedExpression p = it.next();
 
+            boolean endedOnEquationSeparator = false;
             if ( p.getParent() != null ) {
                 if ( ExpressionTags.equation_array.equalsPTE(p.getParent()) ) {
                     sb.append(" \\\\"); // line break between equation array elements.
+                } else if ( addEquationSplitter(p) ) {
+                    sb.append(" &");
+                    endedOnEquationSeparator = true;
                 }
             }
 
             String s = p.getTexString();
-            if (!s.matches("^[{^_!].*|[)}\\]|@]") && !prev.matches(".*[({\\[|@]$")) sb.append(" ");
+            if (!endedOnEquationSeparator &&
+                    !s.matches("^[{^_!].*|[)}\\]|@]") &&
+                    !prev.matches(".*[({\\[|@]$")
+            ) sb.append(" ");
             sb.append(s);
             prev = s;
         }
 
         return sb.toString().trim();
+    }
+
+    private static boolean addEquationSplitter(PrintablePomTaggedExpression p) {
+        return ExpressionTags.equation.equalsPTE(p.getParent())
+                && p.getPreviousSibling() != null
+                && !p.getTexString().startsWith("&");
     }
 
     public static boolean isSingleElementInBrackets(PomTaggedExpression pom) {

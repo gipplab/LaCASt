@@ -227,6 +227,8 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             otherRoot = expression.getRoot();
         }
 
+
+
         String otherString = PomTaggedExpressionUtility.getAppropriateFontTex(expression);
         String thisString = PomTaggedExpressionUtility.getAppropriateFontTex(this);
         // TODO we might want to loose this test based on config (maybe ignore feature set, font manipulation, etc).
