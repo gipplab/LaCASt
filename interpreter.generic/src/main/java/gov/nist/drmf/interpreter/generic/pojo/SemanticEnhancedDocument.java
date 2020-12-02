@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.generic.pojo;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.nist.drmf.interpreter.generic.mlp.struct.MLPDependencyGraph;
 import gov.nist.drmf.interpreter.generic.mlp.struct.MOIAnnotation;
 import gov.nist.drmf.interpreter.generic.mlp.struct.MOIPresentations;
@@ -15,22 +17,27 @@ import java.util.stream.Stream;
  * @author Andre Greiner-Petter
  */
 public class SemanticEnhancedDocument {
+    @JsonProperty("title")
+    private final String title;
 
+    @JsonProperty("formulae")
     private final List<MOIPresentations> formulae;
 
     public SemanticEnhancedDocument() {
+        this.title = "Unknown";
         this.formulae = new LinkedList<>();
     }
 
-    public SemanticEnhancedDocument(MLPDependencyGraph graph) {
+    public SemanticEnhancedDocument(String title, MLPDependencyGraph graph) {
+        this.title = title;
         this.formulae = graph.getVertices().stream()
                 .sorted(Comparator.comparing(MOINode::getAnnotation))
                 .map(MOIPresentations::new)
                 .collect(Collectors.toList());
     }
 
-    public Stream<MOIPresentations> stream() {
-        return formulae.stream();
+    public String getTitle() {
+        return title;
     }
 
     public List<MOIPresentations> getFormulae() {

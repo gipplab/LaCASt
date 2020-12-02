@@ -4,7 +4,12 @@ import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.ParseException;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -93,5 +98,31 @@ public class GenericFractionDerivFixerTests {
 
         assertEquals(derivPTE, fixedPTE);
         assertEquals("\\deriv [n]{ }{z} \\left\\{(1 - z)^\\alpha \\left (1 - z \\right )^n \\right\\}", fixedPTE.getTexString());
+    }
+
+    @Test
+    @Disabled
+    void derivArgTest() throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parse("\\frac{d^n }{ d z^n }  ( z^2 - 1 )^n");
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(ppte);
+        PrintablePomTaggedExpression newPPTE = fixer.fixGenericDeriv();
+
+        assertEquals(ppte, newPPTE);
+        assertEquals("\\deriv [n]{ }{z} (z^2 - 1)^n", newPPTE.getTexString());
+
+        checkList( ppte.getPrintableComponents(),
+                "\\deriv", "[", "n", "]", "{ }", "{z}", "(", "z", "^2", "-", "1", ")", "^n"
+        );
+
+        // TODO deriv[]{}{} is a sequence object but should be in the same sequence... otherwise the translator cannot work properly
+        // TODO merge definiens seems not working... i have no clue whats going on...
+    }
+
+    private void checkList(List<PrintablePomTaggedExpression> components, String... matches ) {
+        assertEquals(matches.length, components.size(), "Length doesnt match: [" +
+                components.stream().map(PrintablePomTaggedExpression::getTexString).collect(Collectors.joining(", ")) + "] VS " + Arrays.toString(matches));
+        for ( int i = 0; i < matches.length; i++ ){
+            assertEquals(matches[i], components.get(i).getTexString());
+        }
     }
 }

@@ -18,6 +18,10 @@ public class ContextAnalyzer {
     private final String context;
     private final ContextContentType contentType;
 
+    private String title;
+
+    private MLPDependencyGraph dependencyGraph;
+
     public ContextAnalyzer(String context) {
         this(context, ContextContentType.guessContentType(context));
     }
@@ -31,19 +35,17 @@ public class ContextAnalyzer {
         this.contentType = contentType;
     }
 
-    public MLPDependencyGraph extractDefiniens() {
-        MLPDependencyGraph results = null;
+    public void analyze() throws IllegalCallerException {
         switch (contentType) {
             case WIKITEXT:
-                results = extractDefiniensFromWikitext();
+                this.dependencyGraph = extractDefiniensFromWikitext();
                 break;
             case LATEX:
-                results = extractDefiniensFromLaTeX();
+                this.dependencyGraph = extractDefiniensFromLaTeX();
                 break;
             default:
                 throw new IllegalCallerException("Unable extract relations for the given content type.");
         }
-        return results;
     }
 
     private MLPDependencyGraph extractDefiniensFromWikitext() {
@@ -69,5 +71,13 @@ public class ContextAnalyzer {
 
     private MLPDependencyGraph extractDefiniensFromLaTeX() {
         throw new IllegalCallerException("LaTeX format is not yet supported");
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public MLPDependencyGraph getDependencyGraph() {
+        return dependencyGraph;
     }
 }

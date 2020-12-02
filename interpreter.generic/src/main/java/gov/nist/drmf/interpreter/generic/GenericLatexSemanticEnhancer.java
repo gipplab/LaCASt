@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.generic;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import gov.nist.drmf.interpreter.generic.elasticsearch.ElasticSearchConnector;
 import gov.nist.drmf.interpreter.generic.interfaces.IGenericLatexSemanticEnhancerAPI;
 import gov.nist.drmf.interpreter.generic.mlp.ContextAnalyzer;
@@ -26,8 +28,9 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
 
     public SemanticEnhancedDocument getSemanticEnhancedDocument(String context) {
         ContextAnalyzer contextAnalyzer = new ContextAnalyzer(context, ContextContentType.WIKITEXT);
-        MLPDependencyGraph annotatedGraph = contextAnalyzer.extractDefiniens();
-        return new SemanticEnhancedDocument(annotatedGraph);
+        contextAnalyzer.analyze();
+        MLPDependencyGraph annotatedGraph = contextAnalyzer.getDependencyGraph();
+        return new SemanticEnhancedDocument(contextAnalyzer.getTitle(), annotatedGraph);
     }
 
     @Override
@@ -40,6 +43,11 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
         String jacobiContext = Files.readString(p);
         GenericLatexSemanticEnhancer enhancer = new GenericLatexSemanticEnhancer();
         SemanticEnhancedDocument doc = enhancer.getSemanticEnhancedDocument(jacobiContext);
+
+        ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+        String serializedDoc = mapper.writeValueAsString(doc);
+        Files.writeString( Paths.get("Results.json"), serializedDoc );
+
         List<MOIPresentations> moi = doc.getFormulae();
         for ( MOIPresentations m : moi ) {
             System.out.println(m);
