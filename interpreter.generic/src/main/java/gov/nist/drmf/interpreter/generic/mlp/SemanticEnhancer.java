@@ -7,6 +7,7 @@ import gov.nist.drmf.interpreter.generic.elasticsearch.MacroResult;
 import gov.nist.drmf.interpreter.generic.macro.*;
 import gov.nist.drmf.interpreter.generic.mlp.struct.MOIAnnotation;
 import gov.nist.drmf.interpreter.generic.mlp.struct.MlpLacastScorer;
+import gov.nist.drmf.interpreter.generic.pojo.FormulaDefiniens;
 import gov.nist.drmf.interpreter.generic.pojo.SemanticReplacementRule;
 import gov.nist.drmf.interpreter.pom.extensions.*;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
@@ -35,7 +36,8 @@ public class SemanticEnhancer {
     private final Set<String> macroPatternMemory;
     private final LinkedList<SemanticReplacementRule> macroPatterns;
 
-    private final List<String> definiens;
+    private final Set<String> definiensMemory;
+    private final List<FormulaDefiniens> definiens;
     private final List<String> macros;
 
     private double score;
@@ -44,6 +46,7 @@ public class SemanticEnhancer {
         this.elasticSearchConnector = ElasticSearchConnector.getDefaultInstance();
         this.macroPatternMemory = new HashSet<>();
         this.macroPatterns = new LinkedList<>();
+        this.definiensMemory = new HashSet<>();
         this.definiens = new LinkedList<>();
         this.macros = new LinkedList<>();
         this.score = 0;
@@ -53,6 +56,7 @@ public class SemanticEnhancer {
     private void reset() {
         macroPatternMemory.clear();
         macroPatterns.clear();
+        definiensMemory.clear();
         definiens.clear();
         macros.clear();
         score = 0;
@@ -62,7 +66,7 @@ public class SemanticEnhancer {
         return score;
     }
 
-    public List<String> getUsedDefiniens() {
+    public List<FormulaDefiniens> getUsedDefiniens() {
         return definiens;
     }
 
@@ -74,6 +78,12 @@ public class SemanticEnhancer {
         reset();
         String originalTex = node.getNode().getOriginalLaTeX();
         LOG.info("Start semantically enhancing moi " + node.getId() + ": " + originalTex);
+
+        definiens.addAll(
+                node.getAnnotation().getAttachedRelations().stream()
+                    .map( r -> new FormulaDefiniens(r.getScore(), r.getDefinition()) )
+                    .collect(Collectors.toList())
+        );
 
         List<MOINode<MOIAnnotation>> dependentNodes = node.getDependencyNodes();
         retrieveReplacementListsEnhance(node, dependentNodes);
@@ -149,9 +159,9 @@ public class SemanticEnhancer {
             Relation definitionRelation = definiensList.get(i);
             double definiensScore = definitionRelation.getScore();
             String definition = definitionRelation.getDefinition();
-            if ( this.definiens.contains(definition) ) continue;
+            if ( this.definiensMemory.contains(definition) ) continue;
 
-            this.definiens.add(definition);
+//            this.definiens.add(new FormulaDefiniens(definiensScore, definition));
             LinkedList<MacroResult> macros = elasticSearchConnector.searchMacroDescription(definition);
             LOG.debug("For definition " + definition + ": retrieved " + macros.size() + " semantic macros " + macros);
 

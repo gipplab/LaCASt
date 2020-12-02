@@ -27,7 +27,9 @@ public class ContextAnalyzerTest {
     void simpleWikitextTest() throws IOException {
         String text = getResourceContent("simpleWikitest.xml");
         ContextAnalyzer contextAnalyzer = new ContextAnalyzer(text, ContextContentType.WIKITEXT);
-        MLPDependencyGraph semanticGraph = contextAnalyzer.extractDefiniens();
+        contextAnalyzer.analyze();
+
+        MLPDependencyGraph semanticGraph = contextAnalyzer.getDependencyGraph();
 
         Collection<MOINode<MOIAnnotation>> nodes = semanticGraph.getVertices();
         assertEquals(1, nodes.size());
