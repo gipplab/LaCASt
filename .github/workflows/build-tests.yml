@@ -1,4 +1,4 @@
-name: translator-build-tests
+name: Github Action
 
 on: [push]
 
@@ -7,7 +7,7 @@ env:
   JACOCO_SOURCE_PATH: 'interpreter.common interpreter.lacast interpreter.maple interpreter.mathematica interpreter.evaluation'
 
 jobs:
-  setup:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Git Checkout Repo
@@ -23,24 +23,12 @@ jobs:
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
-  build:
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
       - name: Maven Install
         run: |
           mvn -Pbuild install -DskipTests -B -V -DgenerateJars
           java -jar bin/lexicon-creator.jar -all
-  test:
-    runs-on: ubuntu-latest
-    needs: [setup, build]
-    steps:
       - name: Maven Test
         run: mvn test -B -DjacocoReport=remote
-  report:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
       - name: Fix Jacoco Reports
         run: source .travis/fix-jacoco.sh
       - name: Report Report to Codeclimate
