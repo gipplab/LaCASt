@@ -31,6 +31,13 @@ public class BracketsTests {
     }
 
     @Test
+    public void testBracketChecker(){
+        assertTrue( Brackets.isEnclosedByBrackets("\\left\\{ (x/2) + 1 \\right\\}") );
+        assertTrue( Brackets.isEnclosedByBrackets("\\{ (x/2) + 1 \\}") );
+        assertTrue( Brackets.isEnclosedByBrackets("{ (x/2) + 1 }") );
+    }
+
+    @Test
     public void testGetBracketClosed() {
         assertEquals(Brackets.right_parenthesis, Brackets.getBracket(")"));
     }

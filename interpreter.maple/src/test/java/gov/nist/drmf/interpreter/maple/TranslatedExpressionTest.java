@@ -322,7 +322,7 @@ public class TranslatedExpressionTest {
 
         TranslatedList exponent = new TranslatedList();
         exponent.addTranslatedExpression( exponent1 );
-        exponent.embrace( Brackets.left_braces );
+        exponent.embrace( Brackets.left_braces_tex_sequence );
 
         transList.addTranslatedExpression( base );
         transList.addTranslatedExpression( "^" );

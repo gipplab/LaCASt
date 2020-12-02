@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.pom.extensions;
 
 import gov.nist.drmf.interpreter.pom.MLPWrapper;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
@@ -22,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  *
  * @author Andre Greiner-Petter
  */
+@AssumeMLPAvailability
 public class PomComponentsTests {
 
     private static MLPWrapper mlp;

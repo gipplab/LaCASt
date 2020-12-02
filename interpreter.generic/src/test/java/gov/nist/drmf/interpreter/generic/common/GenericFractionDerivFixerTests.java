@@ -84,4 +84,14 @@ public class GenericFractionDerivFixerTests {
         assertEquals(derivPTE, fixedPTE);
         assertEquals("\\frac{d}{d\\alpha^n}", fixedPTE.getTexString());
     }
+
+    @Test
+    void balancedCurlyBracketsTest() throws ParseException {
+        PrintablePomTaggedExpression derivPTE = mlp.parse("\\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha \\left (1 - z \\right )^n \\right\\}");
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(derivPTE);
+        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv();
+
+        assertEquals(derivPTE, fixedPTE);
+        assertEquals("\\deriv [n]{ }{z} \\left\\{(1 - z)^\\alpha \\left (1 - z \\right )^n \\right\\}", fixedPTE.getTexString());
+    }
 }

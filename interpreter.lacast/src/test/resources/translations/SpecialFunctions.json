@@ -137,6 +137,20 @@
         "Mathematica": "Log[Gamma[a]]"
     },
     {
+        "name": "JACOBI_POLYNOMIAL",
+        "DLMF": "",
+        "LaTeX": "\\JacobipolyP{\\alpha}{\\beta}{n}@{z}",
+        "Maple": "JacobiP(n,alpha,beta,z)",
+        "Mathematica": "JacobiP[n,\\[Alpha],\\[Beta],z]"
+    },
+    {
+        "name": "JACOBI_POLYNOMIAL_RODRIGUEZ_FORMULA",
+        "DLMF": "",
+        "LaTeX": "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\deriv [n]{}{z} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
+        "Maple": "JacobiP(n,alpha,beta,z)=((-1)^(n))/((2)^(n)*factorial(n))*(1-z)^(-alpha)*(1+z)^(-beta)*diff((1-z)^(alpha)*(1+z)^(beta)*(1-(z)^(2))^(n),[z$(n)])",
+        "Mathematica": "JacobiP[n,\\[Alpha],\\[Beta],z]==Divide[(-1)^(n),(2)^(n)*(n)!]*(1-z)^(-\\[Alpha])*(1+z)^(-\\[Beta])*D[(1-z)^\\[Alpha]*(1+z)^\\[Beta]*(1-(z)^(2))^(n),{z,n}]"
+    },
+    {
         "name": "LOGARITHM",
         "DLMF": "",
         "LaTeX": "\\ln@@{2\\pi}",

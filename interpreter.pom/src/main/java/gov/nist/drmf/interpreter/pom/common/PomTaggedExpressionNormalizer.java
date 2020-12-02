@@ -57,7 +57,7 @@ public final class PomTaggedExpressionNormalizer {
             Brackets orig = Brackets.getBracket(pte);
             if ( orig != null ) {
                 // this can happen when \left. \right|, in this case, we should not normalize it
-                Brackets normalized = Brackets.getBracket(orig.getAppropriateString());
+                Brackets normalized = orig.getUnbalancedCounterpart();
                 MathTerm newMT = FakeMLPGenerator.generateBracket(normalized);
                 pte.setRoot(newMT);
             }

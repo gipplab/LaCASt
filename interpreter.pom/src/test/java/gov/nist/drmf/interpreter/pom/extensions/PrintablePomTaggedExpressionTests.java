@@ -87,6 +87,36 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     @Test
+    public void copyConstructorBracketTest() throws ParseException {
+        String texString = "\\frac{d^n}{dz^n} \\left\\{ z \\left (1 - z \\right )^n \\right\\}";
+
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        PrintablePomTaggedExpression copyPpte = new PrintablePomTaggedExpression(ppte);
+
+        // not the same instance test
+        assertNotEquals(ppte, copyPpte);
+
+        assertEquals(texString, ppte.getTexString());
+        assertEquals(texString, copyPpte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps,
+                "\\frac{d^n}{dz^n}",
+                "\\left\\{",
+                "z", "\\left (", "1", "-", "z", "\\right )", "^n",
+                "\\right\\}"
+        );
+
+        List<PrintablePomTaggedExpression> copyPrintComps = copyPpte.getPrintableComponents();
+        checkList(copyPrintComps,
+                "\\frac{d^n}{dz^n}",
+                "\\left\\{",
+                "z", "\\left (", "1", "-", "z", "\\right )", "^n",
+                "\\right\\}"
+        );
+    }
+
+    @Test
     public void constructorNestedTest() throws ParseException {
         String texString = "\\frac{\\sin (x)}{\\sin (y)} - \\frac{\\sin (z)}{\\sin (q^2)}";
         PrintablePomTaggedExpression ppte = mlp.parse(texString);
@@ -720,6 +750,24 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     @Test
+    public void bracketsTest() throws ParseException {
+        String texString = "\\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha \\left (1 - z \\right )^n \\right\\}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps,
+                "\\frac{d^n}{dz^n}",
+                "\\left\\{",
+                        "(", "1", "-", "z", ")", "^\\alpha", "\\left (", "1", "-", "z", "\\right )", "^n",
+                "\\right\\}"
+        );
+
+        printComps.get(3).setRoot(new MathTerm("y", MathTermTags.letter.tag()));
+        assertEquals("\\frac{d^n}{dz^n} \\left\\{(y - z)^\\alpha \\left (1 - z \\right )^n \\right\\}", ppte.getTexString());
+    }
+
+    @Test
     @DLMF("11.5.E2")
     public void nestedFracEulerTest() throws ParseException {
         String texString = "\\frac{2(\\tfrac{1}{2}z)^{\\nu}}{\\sqrt{\\cpi}\\EulerGamma@{\\nu+\\tfrac{1}{2}}}";
@@ -755,7 +803,6 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     private void checkList( List<PrintablePomTaggedExpression> components, String... matches ) {
-
         assertEquals(matches.length, components.size(), "Length doesnt match: [" +
                 components.stream().map(PrintablePomTaggedExpression::getTexString).collect(Collectors.joining(", ")) + "] VS " + Arrays.toString(matches));
         for ( int i = 0; i < matches.length; i++ ){

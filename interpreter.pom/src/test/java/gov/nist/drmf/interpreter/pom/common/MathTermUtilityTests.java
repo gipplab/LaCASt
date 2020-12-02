@@ -1,8 +1,10 @@
-package gov.nist.drmf.interpreter.pom;
+package gov.nist.drmf.interpreter.pom.common;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.FeatureSet;
 import mlp.MathTerm;
@@ -20,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * @author Andre Greiner-Petter
  */
+@AssumeMLPAvailability
 public class MathTermUtilityTests {
     private static SemanticMLPWrapper mlp;
 
