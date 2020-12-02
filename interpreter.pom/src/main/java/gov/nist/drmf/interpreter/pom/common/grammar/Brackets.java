@@ -47,6 +47,15 @@ public enum Brackets {
             OPEN_BRACKETS.left_braces.counter
     ),
     /**
+     * Left Open Braces: {
+     */
+    left_braces_tex_sequence(
+            OPEN_BRACKETS.left_braces_tex_sequence.s,
+            Brackets.OPENED,
+            MathTermTags.left_brace,
+            OPEN_BRACKETS.left_braces_tex_sequence.counter
+    ),
+    /**
      * Left Open Angle Brackets: <
      */
     left_angle_brackets(
@@ -74,13 +83,22 @@ public enum Brackets {
             CLOSE_BRACKETS.right_brackets.counter
     ),
     /**
-     * Right Closed Braces: }
+     * Right Closed Braces: \}
      */
     right_braces(
             CLOSE_BRACKETS.right_braces.s,
             Brackets.CLOSED,
             MathTermTags.right_brace,
             CLOSE_BRACKETS.right_braces.counter
+    ),
+    /**
+     * Right Closed Braces: }
+     */
+    right_braces_tex_sequence(
+            CLOSE_BRACKETS.right_braces_tex_sequence.s,
+            Brackets.CLOSED,
+            MathTermTags.right_brace,
+            CLOSE_BRACKETS.right_braces_tex_sequence.counter
     ),
     /**
      * Right Closed Angle Brackets: >
@@ -113,19 +131,19 @@ public enum Brackets {
      * Left Open LaTeX Parenthesis: \left{
      */
     left_latex_braces(
-            Brackets.LATEX_LEFT + "\\" + OPEN_BRACKETS.left_braces.s,
+            Brackets.LATEX_LEFT + OPEN_BRACKETS.left_braces.s,
             Brackets.OPENED,
             MathTermTags.left_delimiter,
-            Brackets.LATEX_RIGHT + "\\" + OPEN_BRACKETS.left_braces.counter
+            Brackets.LATEX_RIGHT + OPEN_BRACKETS.left_braces.counter
     ),
     /**
      * Right Closed LaTeX Parenthesis: \right}
      */
     right_latex_braces(
-            Brackets.LATEX_RIGHT + "\\" + CLOSE_BRACKETS.right_braces.s,
+            Brackets.LATEX_RIGHT + CLOSE_BRACKETS.right_braces.s,
             Brackets.CLOSED,
             MathTermTags.right_delimiter,
-            Brackets.LATEX_LEFT + "\\" + CLOSE_BRACKETS.right_braces.counter
+            Brackets.LATEX_LEFT + CLOSE_BRACKETS.right_braces.counter
     ),
     /**
      * Left Open LaTeX Parenthesis: \left[
@@ -164,6 +182,24 @@ public enum Brackets {
             Brackets.LATEX_LEFT + CLOSE_BRACKETS.right_vbar.counter
     ),
     /**
+     * Left Opened LaTeX Pipe: \left\|
+     */
+    left_latex_fence(
+            Brackets.LATEX_LEFT + OPEN_BRACKETS.left_fence.s,
+            Brackets.OPENED,
+            MathTermTags.left_delimiter,
+            Brackets.LATEX_RIGHT + OPEN_BRACKETS.left_fence.counter
+    ),
+    /**
+     * Right Closed LaTeX Pipe: \right\|
+     */
+    right_latex_fence(
+            Brackets.LATEX_RIGHT + CLOSE_BRACKETS.right_fence.s,
+            Brackets.CLOSED,
+            MathTermTags.right_delimiter,
+            Brackets.LATEX_LEFT + CLOSE_BRACKETS.right_fence.counter
+    ),
+    /**
      * Right Closed LaTeX Pipe: |
      */
     abs_val_close(
@@ -180,7 +216,26 @@ public enum Brackets {
             Brackets.OPENED,
             MathTermTags.vbar,
             OPEN_BRACKETS.left_vbar.counter
-    );
+    ),
+    /**
+     * Right Closed LaTeX Pipe: \|
+     */
+    fence_close(
+            OPEN_BRACKETS.left_fence.s,
+            Brackets.CLOSED,
+            MathTermTags.vbar,
+            OPEN_BRACKETS.left_fence.counter
+    ),
+    /**
+     * Left Opened LaTeX Pipe: \|
+     */
+    fence_open(
+            OPEN_BRACKETS.left_fence.s,
+            Brackets.OPENED,
+            MathTermTags.vbar,
+            OPEN_BRACKETS.left_fence.counter
+    )
+    ;
 
     /**
      * Prefix for left and right parenthesis in latex
@@ -196,9 +251,11 @@ public enum Brackets {
     private enum OPEN_BRACKETS {
         left_parenthesis("(", ")"),
         left_brackets("[", "]"),
-        left_braces("{", "}"),
+        left_braces_tex_sequence("{", "}"),
+        left_braces("\\{", "\\}"),
         left_angle_brackets("<", ">"),
-        left_vbar("|", "|");
+        left_vbar("|", "|"),
+        left_fence("\\|", "\\|");
 
         final String s;
         final String counter;
@@ -217,9 +274,11 @@ public enum Brackets {
     private enum CLOSE_BRACKETS {
         right_parenthesis(OPEN_BRACKETS.left_parenthesis),
         right_brackets(OPEN_BRACKETS.left_brackets),
+        right_braces_tex_sequence(OPEN_BRACKETS.left_braces_tex_sequence),
         right_braces(OPEN_BRACKETS.left_braces),
         right_angle_brackets(OPEN_BRACKETS.left_angle_brackets),
-        right_vbar(OPEN_BRACKETS.left_vbar);
+        right_vbar(OPEN_BRACKETS.left_vbar),
+        right_fence(OPEN_BRACKETS.left_fence);
 
         final OPEN_BRACKETS ob;
         final String s;
@@ -241,8 +300,8 @@ public enum Brackets {
     /**
      * Patterns for open brackets and closed brackets
      */
-    public static final String OPEN_PATTERN = "(?:\\\\|\\\\left)?[(\\[{|]";
-    public static final String CLOSED_PATTERN = "(?:\\\\|\\\\right)?[)\\]}|]";
+    public static final String OPEN_PATTERN = "(?:\\\\|\\\\left)?(?:[(\\[]|\\\\?\\{|\\\\?\\|)";
+    public static final String CLOSED_PATTERN = "(?:\\\\|\\\\right)?(?:[)\\]]|\\\\?}|\\\\?\\|)";
 
     public static final Pattern PARENTHESES_PATTERN = Pattern.compile(
             "^\\s*" + OPEN_PATTERN + "\\s*(.*)\\s*" + CLOSED_PATTERN + "\\s*$"
@@ -250,7 +309,13 @@ public enum Brackets {
 
     public static final String ABSOLUTE_VAL_TERM_TEXT_PATTERN = "\\\\?\\|";
 
-    private static final Pattern ANY_PATTERN = Pattern.compile("(\\\\?(?:left|right)?[({<\\[|\\]>})])");
+    private static final Pattern ANY_PATTERN = Pattern.compile(
+            "(\\\\?(?:left|right)?(?:[(<\\[\\]>)]|\\\\?[{}]|\\\\?\\|))"
+    );
+
+    private static final Pattern NORMALIZE_PATTERN = Pattern.compile(
+            "^\\\\(left|right)?(.*)$"
+    );
 
     /**
      * Each bracket is open or closed and has a symbol and its counterpart symbol
@@ -290,8 +355,8 @@ public enum Brackets {
      * @return the atomic bracket symbol
      */
     public String getAppropriateString() {
-        if (symbol.matches("\\\\(left|right)?.*"))
-            return symbol.substring(symbol.length() - 1);
+        Matcher m = NORMALIZE_PATTERN.matcher( symbol );
+        if ( m.matches() ) return m.group(2);
         else return symbol;
     }
 
@@ -303,6 +368,17 @@ public enum Brackets {
      */
     public boolean isNormalParenthesis() {
         return this.symbol.endsWith("(") || this.symbol.endsWith(")");
+    }
+
+    /**
+     * Returns the unbalanced version of this bracket. For example, if this bracket is \left( it returns (.
+     * If the bracket itself is unbalanced already, the bracket itself will be returned. So ( returns (.
+     * @return the unbalanced (no \left or \right prefix) version of the bracket
+     */
+    public Brackets getUnbalancedCounterpart() {
+        Matcher m = NORMALIZE_PATTERN.matcher( symbol );
+        if ( m.matches() ) return getBracket(m.group(2));
+        else return this;
     }
 
     /**
@@ -337,8 +413,27 @@ public enum Brackets {
      */
     public static Brackets getBracket(String bracket) {
         bracket = bracket.replaceAll("\\s", "");
-        if ( bracket.length() == 2 && bracket.charAt(0) == '\\' ) bracket = bracket.substring(1);
+        bracket = normalizeString(bracket);
         return HOLDER.key_map.get(bracket);
+    }
+
+    /**
+     * Deletes leading backslash but only for (, [, < but not for { and |.
+     *
+     * For { the leading backslash is necessary, otherwise it would become an extra sequence in the latex string.
+     * For | there is difference between | and \|. Once is the absolute value the other is rendered as two ||, like
+     * for the norm \|x\|.
+     *
+     * @param bracket the normalized string of the bracket
+     * @return normalized string
+     */
+    private static String normalizeString(String bracket) {
+        if ( bracket != null
+                && bracket.length() == 2
+                && (bracket.charAt(0) == '\\'
+                && !(bracket.charAt(1)+"").matches("[{}|]") ) )
+            return bracket.substring(1);
+        else return bracket;
     }
 
     /**

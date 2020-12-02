@@ -365,6 +365,15 @@ class SimpleTranslationTests {
         String in = "\\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}";
         String out = "((1 - z)^(alpha)*(1 + z)^(beta)*(1 - (z)^(2))^(n))";
         assertEquals(out, slt.translate(in));
+
+        //\JacobipolyP{\alpha}{\beta}{n}@{z} = \deriv [n]{}{z} \{ z (1 - z^2)^n \}
+    }
+
+    @Test
+    void bracketNormalizationDerivTest() {
+        String in = "\\deriv [n]{}{z} \\{ z (1 - z^2)^n \\}";
+        String out = "diff(z*(1 - (z)^(2))^(n), [z$(n)])";
+        assertEquals(out, slt.translate(in));
     }
 
     @Test

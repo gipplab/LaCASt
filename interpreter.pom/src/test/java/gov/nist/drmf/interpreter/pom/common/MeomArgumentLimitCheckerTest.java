@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.pom.common;
 import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.pom.common.MeomArgumentLimitChecker;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * @author Andre Greiner-Petter
  */
+@AssumeMLPAvailability
 public class MeomArgumentLimitCheckerTest {
     @Test
     void isPotentialLimitBreakpointTest() {
@@ -45,7 +47,7 @@ public class MeomArgumentLimitCheckerTest {
 
         assertTrue(MeomArgumentLimitChecker.isBreakPoint(new PomTaggedExpression(new MathTerm(")", MathTermTags.right_parenthesis.tag()))));
         assertTrue(MeomArgumentLimitChecker.isBreakPoint(new PomTaggedExpression(new MathTerm("]", MathTermTags.right_bracket.tag()))));
-        assertTrue(MeomArgumentLimitChecker.isBreakPoint(new PomTaggedExpression(new MathTerm("}", MathTermTags.right_brace.tag()))));
+        assertTrue(MeomArgumentLimitChecker.isBreakPoint(new PomTaggedExpression(new MathTerm("\\}", MathTermTags.right_brace.tag()))));
 
         assertTrue(MeomArgumentLimitChecker.isBreakPoint(new PomTaggedExpression(new MathTerm("\\right)", MathTermTags.right_parenthesis.tag()))));
         assertTrue(MeomArgumentLimitChecker.isBreakPoint(new PomTaggedExpression(new MathTerm("\\right]", MathTermTags.right_bracket.tag()))));

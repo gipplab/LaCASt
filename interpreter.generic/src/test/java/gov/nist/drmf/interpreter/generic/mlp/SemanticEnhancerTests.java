@@ -106,6 +106,22 @@ public class SemanticEnhancerTests {
         assertEquals("\\ln@{x} + \\LeviCivitasym{i}{j}{k}", semanticallyEnhancedLaTeX.getTexString());
     }
 
+    @Test
+    void derivTestTest() throws ParseException, IOException {
+        String genericLaTeXExample = "P_n^{(\\alpha,\\beta)}(z) = \\frac{d^n}{dz^n} \\left\\{ z \\left (1 - z^2 \\right )^n \\right\\}";
+        MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample, "complex equation");
+        MOINode<MOIAnnotation> jacobiNode = buildNode("2", "P_n^{(\\alpha,\\beta)}(z)", "Jacobi polynomial");
+
+        // setup dependency between both nodes
+        node.setupDependency(jacobiNode);
+        assertEquals( 1, node.getIngoingDependencies().size() );
+
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer();
+        PrintablePomTaggedExpression semanticallyEnhancedLaTeX = semanticEnhancer.semanticallyEnhance(node);
+        assertNotNull(semanticallyEnhancedLaTeX);
+        assertEquals("\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\deriv [n]{ }{z} \\{z (1 - z^2)^n \\}", semanticallyEnhancedLaTeX.getTexString());
+    }
+
     private MOINode<MOIAnnotation> buildNode(String id, String genericTex, String annotationText) throws ParseException {
         MOIAnnotation complexExpression = new MOIAnnotation();
         complexExpression.appendRelation(new Relation(genericTex, annotationText));

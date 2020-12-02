@@ -1,6 +1,8 @@
-package gov.nist.drmf.interpreter.pom;
+package gov.nist.drmf.interpreter.pom.common;
 
+import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.FeatureSet;
 import mlp.MathTerm;
@@ -17,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author Andre Greiner-Petter
  */
+@AssumeMLPAvailability
 public class FeatureSetUtilityTests {
 
     private static SemanticMLPWrapper mlp;

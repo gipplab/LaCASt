@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.pom;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.pom.data.LexiconConverterConfig;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * @author Andre Greiner-Petter
  */
+@AssumeMLPAvailability
 public class CSVToLexiconConverterTests {
 
     private static final String lexiconFileName = "DLMF-lexicon.txt";

@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * @author Andre Greiner-Petter
  */
+@AssumeMLPAvailability
 public class PomTaggedExpressionUtilityTests {
     @Test
     public void appropriateStringMathTermTest() {

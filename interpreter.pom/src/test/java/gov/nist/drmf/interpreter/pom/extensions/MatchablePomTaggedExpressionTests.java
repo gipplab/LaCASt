@@ -187,7 +187,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void complexPatternMatchTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "P^{(par1, par2)}_{par3} (var1)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "P^{(par1, par2)}_{par3} (var1)", "([pv])ar\\d");
 
         assertTrue(blueprint.match("P^{(a,b)}_{n} ( x \\cdot (x^2 + y) )"));
         Map<String, String> groups = blueprint.getStringMatches();
@@ -202,7 +202,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void spacingMatchTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "( var1 )", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "( var1 )", "([pv])ar\\d");
 
         assertTrue(blueprint.match("( x y )"));
         Map<String, String> groups = blueprint.getStringMatches();
@@ -212,7 +212,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void captureIntegrityTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "( var1 + 1 )^{var1}", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "( var1 + 1 )^{var1}", "([pv])ar\\d");
 
         assertFalse(
                 blueprint.match("( x + 1 )^{y}"),
@@ -271,7 +271,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void followingTokensTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "var1^{(var2, var3)}_{var4} (var5)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "var1^{(var2, var3)}_{var4} (var5)", "([pv])ar\\d");
 
         String test = "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
@@ -289,7 +289,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void withinPlaceTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "var1^{(var2, var3)}_{var4} (var5)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "var1^{(var2, var3)}_{var4} (var5)", "([pv])ar\\d");
 
         String test = "\\frac{1}{2} P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
@@ -302,6 +302,20 @@ public class MatchablePomTaggedExpressionTests {
         assertEquals("\\beta", matches.get("var3"));
         assertEquals("n", matches.get("var4"));
         assertEquals("\\cos \\theta", matches.get("var5"));
+    }
+
+    @Test
+    public void derivReplacementTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "P^{(var2, var3)}_{var4} (var5)", "([pv])ar\\d");
+
+        String test = "P_n^{(\\alpha,\\beta)}(z) = \\frac{d^n}{dz^n} \\left\\{ z \\left (1 - z^2 \\right )^n \\right\\}";
+        PomMatcher matcher = blueprint.matcher(test);
+        PrintablePomTaggedExpression ppte = matcher.replacePattern("\\JacobipolyP{var2}{var3}{var4}@{var5}");
+        assertEquals(
+                "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{d^n}{dz^n} \\{z (1 - z^2)^n \\}",
+                ppte.getTexString()
+        );
     }
 
     @Test
@@ -424,7 +438,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void partialHitTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "var1^{(var2, var3)}_{var4} (var5)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "var1^{(var2, var3)}_{var4} (var5)", "([pv])ar\\d");
 
         String test = "P_n^{(\\alpha,\\beta)}";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
@@ -437,7 +451,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void partialHitInEquationArrayTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "P_{par1}^{(par2, par3)} (var1)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "P_{par1}^{(par2, par3)} (var1)", "([pv])ar\\d");
 
         String test = "x + \\begin{align}&2n (n + \\alpha) (2n \\alpha) P_n^{(\\alpha,\\beta)}(z) \\\\ " +
                 "&= (2n+\\alpha + \\beta-1) \\{ z + P_{m+2}^{(\\beta,\\alpha)}(x) - \\beta^2 \\} z,\\end{align} + y";
@@ -466,7 +480,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void deepInsideGammaTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "([pv])ar\\d");
         String test = "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} " +
                 "\\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} " +
                 "\\left(\\frac{z-1}{2}\\right)^m";
@@ -480,7 +494,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void multiCycleMatchingOnSingleBlueprintTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "var1^{(var2, var3)}_{var4} (var5)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "var1^{(var2, var3)}_{var4} (var5)", "([pv])ar\\d");
 
         for ( int i = 1; i < 11; i++ ) {
             String test = "P_n^{(\\alpha,\\beta)}(x)";
@@ -492,7 +506,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void multiCycleMatchingOnSingleTestExpressionTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "var1^{(var2, var3)}_{var4} (var5)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "var1^{(var2, var3)}_{var4} (var5)", "([pv])ar\\d");
 
         String test = "P_n^{(\\alpha,\\beta)}(x)";
         PrintablePomTaggedExpression ppte = mlp.parse(test);
@@ -514,7 +528,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void multiPomMatcherTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "var0(var1)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "var0(var1)", "([pv])ar\\d");
 
         PomMatcher pomMatcher = blueprint.matcher( "f(x)", MatcherConfig.getInPlaceMatchConfig() );
         assertTrue(pomMatcher.find());
@@ -534,7 +548,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherFindSimpleTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "([pv])ar\\d");
 
         String test = "x + \\Gamma(x)";
         PomMatcher pomMatcher = blueprint.matcher( test );
@@ -554,7 +568,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherWasExactTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "([pv])ar\\d");
 
         String test = "x + \\Gamma(x)";
         PomMatcher pomMatcher = blueprint.matcher( test, MatcherConfig.getInPlaceMatchConfig() );
@@ -575,7 +589,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherWasExactNestedTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "([pv])ar\\d");
 
         String test = "\\Gamma(\\Gamma(x))";
         PomMatcher pomMatcher = blueprint.matcher( test, MatcherConfig.getInPlaceMatchConfig() );
@@ -596,7 +610,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherFindMultiHitsTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "([pv])ar\\d");
 
         String test = "x + \\Gamma(x) - \\Gamma(y)";
         PomMatcher pomMatcher = blueprint.matcher( test );
@@ -618,7 +632,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherFindPseudoNestedHitsTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "([pv])ar\\d");
 
         String test = "\\Gamma(\\Gamma(\\Gamma(x)))";
         PomMatcher pomMatcher = blueprint.matcher( test );
@@ -647,7 +661,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherFindRealNestedHitsTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "\\Gamma{var1}", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "\\Gamma{var1}", "([pv])ar\\d");
 
         String test = "\\Gamma{\\Gamma{\\Gamma{x}}}";
         PomMatcher pomMatcher = blueprint.matcher( test );
@@ -676,7 +690,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherFindDoubleArgTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "\\sin(var1)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "\\sin(var1)", "([pv])ar\\d");
 
         String test = "\\sin (x-z) + \\sin (x + y^2)}";
         PomMatcher pomMatcher = blueprint.matcher( test );
@@ -695,7 +709,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherFindFractionTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "\\sin(var1)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "\\sin(var1)", "([pv])ar\\d");
 
         String test = "\\frac{\\sin (x) + z}{a + \\sin (y) + b}";
         PomMatcher pomMatcher = blueprint.matcher( test );
@@ -714,7 +728,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherFindMultiFractionTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "\\sin(var1)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "\\sin(var1)", "([pv])ar\\d");
 
         String test = "\\frac{\\sin (x)}{\\sin (y)} - \\frac{\\sin (z)}{\\sin (q^2)}";
         PomMatcher pomMatcher = blueprint.matcher( test );
@@ -788,7 +802,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherFindHardJacobiRealWorldExampleTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "\\Gamma(var1)", "([pv])ar\\d");
 
         String test = "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} " +
                 "\\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} " +
@@ -815,7 +829,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherFindStartingWildcardTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "var1(var2)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "var1(var2)", "([pv])ar\\d");
 
         String test = "f(x) + g(y)";
         PomMatcher pomMatcher = blueprint.matcher(test);
@@ -838,7 +852,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherFindStartingWildcardBacklogTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "var1(var2)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "var1(var2)", "([pv])ar\\d");
 
         String test = "F_1(x)";
         PomMatcher pomMatcher = blueprint.matcher(test);
@@ -855,7 +869,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherFindIncalidMatchTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "var1 + var2 = - ( - var2 - var1 )", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "var1 + var2 = - ( - var2 - var1 )", "([pv])ar\\d");
 
         String test = "x + y";
         PomMatcher pomMatcher = blueprint.matcher(test);
@@ -866,7 +880,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherFindLargeNegativeTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "P_{var5}^{({var2},{var1})}({var4})=\\frac{({var2}+1)_{var5}}{{var5}!} {}_2F_1 \\left(-{var5},1+{var2}+{var1}+{var5};{var2}+1; \\tfrac{1}{2}(1-{var4})\\right)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "P_{var5}^{({var2},{var1})}({var4})=\\frac{({var2}+1)_{var5}}{{var5}!} {}_2F_1 \\left(-{var5},1+{var2}+{var1}+{var5};{var2}+1; \\tfrac{1}{2}(1-{var4})\\right)", "([pv])ar\\d");
 
         String test = "P_{n}^{(\\alpha, \\beta)}(x)";
         PomMatcher pomMatcher = blueprint.matcher(test);
@@ -876,7 +890,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherFindVeryHardRealWorldTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "var1(var2)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "var1(var2)", "([pv])ar\\d");
 
         String test = "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} " +
                 "\\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} " +
@@ -1298,7 +1312,7 @@ public class MatchablePomTaggedExpressionTests {
     @Test
     public void pomMatcherReplaceAllRealWorldTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "P^{(var1, var2)}_{var3} (var4)", "(p|v)ar\\d");
+                PomMatcherBuilder.compile(mlp, "P^{(var1, var2)}_{var3} (var4)", "([pv])ar\\d");
 
         String test = "P_n^{(\\alpha,\\beta)}(\\cos \\theta)";
         PomMatcher matcher = blueprint.matcher(test);
