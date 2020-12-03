@@ -136,7 +136,9 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
      */
     @SuppressWarnings("unchecked")
     public void setPrintableComponents(List<? extends PomTaggedExpression> components) {
-        this.setComponents( (List<PomTaggedExpression>) components );
+        checkComponentValidity( (List<PomTaggedExpression>) components );
+        super.setComponents( (List<PomTaggedExpression>) components );
+        populatingStringChanges();
     }
 
     /**
@@ -168,9 +170,7 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
     @Override
     @Deprecated
     public void setComponents(PomTaggedExpression... components) throws IllegalArgumentException {
-        checkComponentValidity(Arrays.asList(components));
-        super.setComponents(components);
-        populatingStringChanges();
+        this.setComponents( Arrays.asList(components) );
     }
 
     /**

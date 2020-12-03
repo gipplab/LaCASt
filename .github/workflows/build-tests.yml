@@ -8,7 +8,7 @@ env:
 
 jobs:
   test:
-    runs-on: [self-hosted, linux, x64, dke]
+    runs-on: ubuntu-latest
     steps:
       - name: Git Checkout Repo
         uses: actions/checkout@v1
