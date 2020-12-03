@@ -20,10 +20,19 @@ public class ContextAnalyzer {
 
     private String title;
 
+    private RawWikiDocument rawWikiDocument;
+
     private MLPDependencyGraph dependencyGraph;
 
     public ContextAnalyzer(String context) {
         this(context, ContextContentType.guessContentType(context));
+    }
+
+    public ContextAnalyzer(RawWikiDocument rawWikiDocument) {
+        this.context = rawWikiDocument.getContent();
+        this.title = rawWikiDocument.getTitle();
+        this.contentType = ContextContentType.WIKITEXT;
+        this.rawWikiDocument = rawWikiDocument;
     }
 
     public ContextAnalyzer(String context, ContextContentType contentType) {
@@ -38,7 +47,9 @@ public class ContextAnalyzer {
     public void analyze() throws IllegalCallerException {
         switch (contentType) {
             case WIKITEXT:
-                this.dependencyGraph = extractDefiniensFromWikitext();
+                this.dependencyGraph = rawWikiDocument != null ?
+                        extractDefiniensFromWikitext(rawWikiDocument) :
+                        extractDefiniensFromWikitext();
                 break;
             case LATEX:
                 this.dependencyGraph = extractDefiniensFromLaTeX();
@@ -49,14 +60,18 @@ public class ContextAnalyzer {
     }
 
     private MLPDependencyGraph extractDefiniensFromWikitext() {
+        RawWikiDocument document = new RawWikiDocument(context);
+        this.title = document.getTitle();
+        return extractDefiniensFromWikitext(document);
+    }
+
+    private MLPDependencyGraph extractDefiniensFromWikitext(RawWikiDocument doc) {
+        if ( doc == null ) throw new NullPointerException("RawWikiDocument was null");
         BaseConfig config = new BaseConfig();
         config.setUseTeXIdentifiers(true);
         config.setUseMOI(true);
         config.setDefinitionMerging(true);
         config.setTexvcinfoUrl("http://localhost:10044/texvcinfo");
-
-        RawWikiDocument document = new RawWikiDocument(context);
-        this.title = document.getTitle();
 
         MLPDependencyGraph graph = new MLPDependencyGraph();
         DocumentMetaLib metaLib = new DocumentMetaLib(graph);
@@ -64,7 +79,7 @@ public class ContextAnalyzer {
         WikiTextAnnotatorMapper annotator = new WikiTextAnnotatorMapper(config);
         annotator.open(null);
 
-        ParsedWikiDocument parsedWikiDocument = annotator.parse(document, metaLib);
+        ParsedWikiDocument parsedWikiDocument = annotator.parse(doc, metaLib);
         CreateCandidatesMapper mlp = new CreateCandidatesMapper(config);
         mlp.moiMapping(parsedWikiDocument);
         return graph;
