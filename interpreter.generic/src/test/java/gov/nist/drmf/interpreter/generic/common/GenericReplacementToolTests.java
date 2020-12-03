@@ -40,6 +40,6 @@ public class GenericReplacementToolTests {
         PrintablePomTaggedExpression ppte = mlp.parse("P_{n}(z) = \\frac{1 }{2^n  n! } \\frac{d^n }{ d z^n }  ( z^2 - 1 )^n");
         GenericReplacementTool replacementTool = new GenericReplacementTool(ppte);
         ppte = replacementTool.getSemanticallyEnhancedExpression();
-        assertEquals("P_{n}(z) = \\frac{1 }{2^n  n! } \\deriv [n]{ }{z} ( z^2 - 1 )^n", ppte.getTexString());
+        assertEquals("P_{n} (z) = \\frac{1 }{2^n  n! } \\deriv [n]{ }{z} (z^2 - 1)^n", ppte.getTexString());
     }
 }
