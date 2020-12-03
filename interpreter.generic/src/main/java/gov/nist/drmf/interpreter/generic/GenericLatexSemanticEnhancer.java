@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.generic;
 
+import com.fasterxml.jackson.core.util.DefaultIndenter;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import gov.nist.drmf.interpreter.generic.elasticsearch.ElasticSearchConnector;
@@ -45,7 +47,10 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
         SemanticEnhancedDocument doc = enhancer.getSemanticEnhancedDocument(jacobiContext);
 
         ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
-        String serializedDoc = mapper.writeValueAsString(doc);
+        DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
+        prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
+
+        String serializedDoc = mapper.writer(prettyPrinter).writeValueAsString(doc);
         Files.writeString( Paths.get("Results.json"), serializedDoc );
 
         List<MOIPresentations> moi = doc.getFormulae();

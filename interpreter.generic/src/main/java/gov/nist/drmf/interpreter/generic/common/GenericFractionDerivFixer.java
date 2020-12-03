@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
@@ -60,30 +61,59 @@ public class GenericFractionDerivFixer {
     private void replaceGenericDeriv(PrintablePomTaggedExpression derivPte) {
         DerivArguments args = matchMemory.get(derivPte);
 
-        List<PrintablePomTaggedExpression> newComponents = new LinkedList<>();
+        // create a list of new components which will replace the old derivPTE
+        LinkedList<PrintablePomTaggedExpression> newComponents = new LinkedList<>();
 
+        // at first, we add the elements prior to deriv to the new components list
+        PrintablePomTaggedExpression previous = (PrintablePomTaggedExpression) derivPte.getPreviousSibling();
+        while ( previous != null ) {
+            newComponents.addFirst(previous);
+            previous = (PrintablePomTaggedExpression) previous.getPreviousSibling();
+        }
+
+        // now the deriv elements and arguments
         MathTerm derivTerm = new MathTerm("\\deriv", MathTermTags.dlmf_macro.tag());
         derivTerm.setNamedFeature(FeatureSetUtility.LATEX_FEATURE_KEY, "\\deriv");
         SemanticMLPWrapper.getStandardInstance().loadFeatures(derivTerm);
         PrintablePomTaggedExpression derivExpression = new PrintablePomTaggedExpression(derivTerm);
-        newComponents.add(derivExpression);
+        newComponents.addLast(derivExpression);
 
+        // add degree (optional argument)
         if ( args.degree == null ) {
             args.degree = new PrintablePomTaggedExpression(new MathTerm("1", MathTermTags.numeric.tag()));
         }
-        args.degree.makeBalancedOptionalArgumentString();
-        newComponents.add(args.degree);
+        newComponents.addLast(Brackets.left_brackets.getPPTE());
+        newComponents.addLast(args.degree);
+        newComponents.addLast(Brackets.right_brackets.getPPTE());
 
+        // add empty argument to trigger (following expressions are arguments in LaCASt)
         PrintablePomTaggedExpression empty = FakeMLPGenerator.generateEmptyPPTE();
         empty.makeBalancedTexString();
-        newComponents.add(empty);
+        newComponents.addLast(empty);
 
+        // add the variable of differentiation as the last argument of deriv
         args.variable.makeBalancedTexString();
-        newComponents.add(args.variable);
+        newComponents.addLast(args.variable);
 
-        derivPte.setTag( ExpressionTags.sequence.tag() );
-        derivPte.removeNamedFeature(FeatureSetUtility.LATEX_FEATURE_KEY);
-        derivPte.setPrintableComponents(newComponents);
+        // finally, add all following nodes inline
+        PrintablePomTaggedExpression following = (PrintablePomTaggedExpression) derivPte.getNextSibling();
+        while ( following != null ) {
+            newComponents.addLast( following );
+            following = (PrintablePomTaggedExpression) following.getNextSibling();
+        }
+
+        // finally we have the list elements complete. Now we need to update the parent node
+        PrintablePomTaggedExpression parent = (PrintablePomTaggedExpression) derivPte.getParent();
+        if ( !ExpressionTags.sequence.equalsPTE(parent) ) {
+            // if there was no parent at all, we use derivPte itself and make it a sequence.
+            // if the parent is not a sequence, we do the same, change derivPte to a sequence and append the elements
+            derivPte.setTag( ExpressionTags.sequence.tag() );
+            derivPte.removeNamedFeature(FeatureSetUtility.LATEX_FEATURE_KEY);
+            derivPte.setPrintableComponents(newComponents);
+        } else {
+            // otherwise the parent is a sequence so we change the elements of that sequence directly
+            parent.setPrintableComponents(newComponents);
+        }
     }
 
     public boolean isGenericDerivative(PrintablePomTaggedExpression pte) {

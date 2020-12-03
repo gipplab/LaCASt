@@ -56,6 +56,7 @@ public class ContextAnalyzer {
         config.setTexvcinfoUrl("http://localhost:10044/texvcinfo");
 
         RawWikiDocument document = new RawWikiDocument(context);
+        this.title = document.getTitle();
 
         MLPDependencyGraph graph = new MLPDependencyGraph();
         DocumentMetaLib metaLib = new DocumentMetaLib(graph);

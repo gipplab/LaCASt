@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.generic.common;
 
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.ParseException;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Andre Greiner-Petter
@@ -28,16 +30,25 @@ public class GenericFractionDerivFixerTests {
 
         assertEquals(derivPTE, fixedPTE);
         assertEquals("\\deriv [1]{ }{z}", fixedPTE.getTexString());
+        checkList( fixedPTE.getPrintableComponents(),
+                "\\deriv", "[", "1", "]", "{ }", "{z}"
+        );
     }
 
     @Test
     void mathRmDerivTest() throws ParseException {
         PrintablePomTaggedExpression derivPTE = mlp.parse("\\frac{\\mathrm{d}}{\\mathrm{d}z}");
+        assertTrue(ExpressionTags.fraction.equalsPTE(derivPTE));
+
         GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(derivPTE);
         PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv();
-
         assertEquals(derivPTE, fixedPTE);
         assertEquals("\\deriv [1]{ }{z}", fixedPTE.getTexString());
+        checkList( fixedPTE.getPrintableComponents(),
+                "\\deriv", "[", "1", "]", "{ }", "{z}"
+        );
+
+        assertTrue(ExpressionTags.sequence.equalsPTE(fixedPTE));
     }
 
     @Test
@@ -92,30 +103,26 @@ public class GenericFractionDerivFixerTests {
 
     @Test
     void balancedCurlyBracketsTest() throws ParseException {
-        PrintablePomTaggedExpression derivPTE = mlp.parse("\\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha \\left (1 - z \\right )^n \\right\\}");
+        PrintablePomTaggedExpression derivPTE = mlp.parse("x + \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha \\left (1 - z \\right )^n \\right\\}");
         GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(derivPTE);
         PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv();
 
         assertEquals(derivPTE, fixedPTE);
-        assertEquals("\\deriv [n]{ }{z} \\left\\{(1 - z)^\\alpha \\left (1 - z \\right )^n \\right\\}", fixedPTE.getTexString());
+        assertEquals("x + \\deriv [n]{ }{z} \\left\\{(1 - z)^\\alpha \\left (1 - z \\right )^n \\right\\}", fixedPTE.getTexString());
     }
 
     @Test
-    @Disabled
     void derivArgTest() throws ParseException {
-        PrintablePomTaggedExpression ppte = mlp.parse("\\frac{d^n }{ d z^n }  ( z^2 - 1 )^n");
+        PrintablePomTaggedExpression ppte = mlp.parse("x + \\frac{d^n }{ d z^n }  ( z^2 - 1 )^n");
         GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(ppte);
         PrintablePomTaggedExpression newPPTE = fixer.fixGenericDeriv();
 
         assertEquals(ppte, newPPTE);
-        assertEquals("\\deriv [n]{ }{z} (z^2 - 1)^n", newPPTE.getTexString());
+        assertEquals("x + \\deriv [n]{ }{z} (z^2 - 1)^n", newPPTE.getTexString());
 
         checkList( ppte.getPrintableComponents(),
-                "\\deriv", "[", "n", "]", "{ }", "{z}", "(", "z", "^2", "-", "1", ")", "^n"
+                "x", "+", "\\deriv", "[", "n", "]", "{ }", "{z}", "(", "z", "^2", "-", "1", ")", "^n"
         );
-
-        // TODO deriv[]{}{} is a sequence object but should be in the same sequence... otherwise the translator cannot work properly
-        // TODO merge definiens seems not working... i have no clue whats going on...
     }
 
     private void checkList(List<PrintablePomTaggedExpression> components, String... matches ) {

@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Andre Greiner-Petter
@@ -108,8 +109,10 @@ public class MOIPresentations {
     }
 
     private List<String> getDependants(MOINode<MOIAnnotation> node, boolean ingoing) {
-        return node.getIngoingDependencies().stream()
-                .map( d -> ingoing ? d.getSource() : d.getSink() )
+        Stream<MOIDependency<MOIAnnotation>> stream = ingoing ?
+                node.getIngoingDependencies().stream() :
+                node.getOutgoingDependencies().stream();
+        return stream.map( d -> ingoing ? d.getSource() : d.getSink() )
                 .map( MOINode::getNode )
                 .map( MathematicalObjectOfInterest::getOriginalLaTeX )
                 .collect(Collectors.toList());

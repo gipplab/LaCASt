@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.pom.common.grammar;
 
+import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
+import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
@@ -404,6 +406,16 @@ public enum Brackets {
         } else {
             return this.counterpart.equals(other.symbol);
         }
+    }
+
+    public MathTerm getMathTerm() {
+        MathTerm term = new MathTerm(symbol, mathTermTag.tag());
+        term.setNamedFeature(FeatureSetUtility.LATEX_FEATURE_KEY, symbol);
+        return term;
+    }
+
+    public PrintablePomTaggedExpression getPPTE() {
+        return new PrintablePomTaggedExpression( getMathTerm() );
     }
 
     /**
