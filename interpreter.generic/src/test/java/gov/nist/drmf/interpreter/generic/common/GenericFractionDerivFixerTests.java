@@ -125,6 +125,20 @@ public class GenericFractionDerivFixerTests {
         );
     }
 
+    @Test
+    void derivNonEmptyArgTest() throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parse("x + \\frac{d^n z^2}{ d z^n } ");
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(ppte);
+        PrintablePomTaggedExpression newPPTE = fixer.fixGenericDeriv();
+
+        assertEquals(ppte, newPPTE);
+        assertEquals("x + \\deriv [n]{z^2}{z}", newPPTE.getTexString());
+
+        checkList( ppte.getPrintableComponents(),
+                "x", "+", "\\deriv", "[", "n", "]", "{z^2}", "{z}"
+        );
+    }
+
     private void checkList(List<PrintablePomTaggedExpression> components, String... matches ) {
         assertEquals(matches.length, components.size(), "Length doesnt match: [" +
                 components.stream().map(PrintablePomTaggedExpression::getTexString).collect(Collectors.joining(", ")) + "] VS " + Arrays.toString(matches));
