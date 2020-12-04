@@ -25,10 +25,26 @@ public class GenericFractionDerivFixer {
     private static class DerivArguments {
         private PrintablePomTaggedExpression degree;
         private PrintablePomTaggedExpression variable;
+        private List<PrintablePomTaggedExpression> arguments;
 
-        DerivArguments(PrintablePomTaggedExpression degree, PrintablePomTaggedExpression variable) {
+        DerivArguments(
+                PrintablePomTaggedExpression degree,
+                PrintablePomTaggedExpression variable,
+                List<PrintablePomTaggedExpression> arguments
+        ) {
             this.degree = degree;
             this.variable = variable;
+            this.arguments = arguments;
+        }
+    }
+
+    private static class NumeratorInformation {
+        private PrintablePomTaggedExpression degree;
+        private List<PrintablePomTaggedExpression> arguments;
+
+        NumeratorInformation( PrintablePomTaggedExpression degree, List<PrintablePomTaggedExpression> arguments ) {
+            this.degree = degree;
+            this.arguments = arguments == null ? new LinkedList<>() : arguments;
         }
     }
 
@@ -86,10 +102,20 @@ public class GenericFractionDerivFixer {
         newComponents.addLast(args.degree);
         newComponents.addLast(Brackets.right_brackets.getPPTE());
 
-        // add empty argument to trigger (following expressions are arguments in LaCASt)
-        PrintablePomTaggedExpression empty = FakeMLPGenerator.generateEmptyPPTE();
-        empty.makeBalancedTexString();
-        newComponents.addLast(empty);
+        // if there is an argument we add it here as a sequence.
+        if ( args.arguments == null || args.arguments.isEmpty() ) {
+            PrintablePomTaggedExpression empty = FakeMLPGenerator.generateEmptyPPTE();
+            empty.makeBalancedTexString();
+            newComponents.addLast(empty);
+        } else if (args.arguments.size() == 1) {
+            args.arguments.get(0).makeBalancedTexString();
+            newComponents.addLast( args.arguments.get(0) );
+        } else {
+            PrintablePomTaggedExpression sequence = FakeMLPGenerator.generateEmptySequencePPTE();
+            sequence.setPrintableComponents( args.arguments );
+            sequence.makeBalancedTexString();
+            newComponents.addLast( sequence );
+        }
 
         // add the variable of differentiation as the last argument of deriv
         args.variable.makeBalancedTexString();
@@ -125,23 +151,41 @@ public class GenericFractionDerivFixer {
         PrintablePomTaggedExpression numerator = pte.getPrintableComponents().get(0);
         PrintablePomTaggedExpression denominator = pte.getPrintableComponents().get(1);
 
-        PrintablePomTaggedExpression power = matchesNumerator(numerator);
-        PrintablePomTaggedExpression variable = matchesDenominator(power, denominator);
+        NumeratorInformation numeratorInformation = matchesNumerator(numerator);
+        if ( numeratorInformation == null ) return false;
+
+        PrintablePomTaggedExpression variable = matchesDenominator(numeratorInformation, denominator);
 
         if ( variable != null ) {
-            matchMemory.put(pte, new DerivArguments(power, variable));
+            matchMemory.put(pte, new DerivArguments(numeratorInformation.degree, variable, numeratorInformation.arguments));
         }
+
         return variable != null;
     }
 
-    public static PrintablePomTaggedExpression matchesNumerator( PrintablePomTaggedExpression pte ) {
-        if ( !PomTaggedExpressionUtility.isSequence(pte) ) return null;
+    public static NumeratorInformation matchesNumerator( PrintablePomTaggedExpression pte ) {
+        List<PrintablePomTaggedExpression> components = new LinkedList<>();
 
-        List<PrintablePomTaggedExpression> components = pte.getPrintableComponents();
+        if ( PomTaggedExpressionUtility.isSequence(pte) ) components.addAll( pte.getPrintableComponents() );
+        else components.add( pte );
+
         if ( !checkValidity(components, "d") ) return null;
 
+        if ( components.size() == 1 ) {
+            // still valid but its just simply d in the numerator
+            return new NumeratorInformation(null, null);
+        }
+
+        // we know the components are not empty (checkValidity) and bigger than 1. so lets try to get the power
         PrintablePomTaggedExpression power = getPower( components.get(1) );
-        return power;
+
+        // alright, now the arguments.
+        List<PrintablePomTaggedExpression> arguments = new LinkedList<>();
+        // if there was no power, the argument starts on the 1, otherwise on 2
+        for ( int i = power == null ? 1 : 2; i < components.size(); i++ ) {
+            arguments.add( components.get(i) );
+        }
+        return new NumeratorInformation(power, arguments);
     }
 
     private static PrintablePomTaggedExpression getPower(PrintablePomTaggedExpression secondElement) {
@@ -150,13 +194,13 @@ public class GenericFractionDerivFixer {
         } else return null;
     }
 
-    public static PrintablePomTaggedExpression matchesDenominator( PrintablePomTaggedExpression power, PrintablePomTaggedExpression denominator ) {
+    public static PrintablePomTaggedExpression matchesDenominator( NumeratorInformation numeratorInformation, PrintablePomTaggedExpression denominator ) {
         if ( !PomTaggedExpressionUtility.isSequence(denominator) ) {
             if ( MathTermTags.alphanumeric.equals( MathTermTags.getTagByExpression(denominator) ) ) {
                 MathTerm mt = denominator.getRoot();
                 mt.setTermText( mt.getTermText().substring(1) );
                 denominator.setRoot(mt);
-                return power == null ? denominator : null;
+                return numeratorInformation.degree == null ? denominator : null;
             } else return null;
         }
 
@@ -167,7 +211,7 @@ public class GenericFractionDerivFixer {
         // first is either d or alphanumeric with d in beginning
         if ( !first.getRoot().getTermText().startsWith("d") ) return null;
 
-        return getArgument(power, components);
+        return getArgument(numeratorInformation.degree, components);
     }
 
     private static PrintablePomTaggedExpression getArgument(PrintablePomTaggedExpression power, List<PrintablePomTaggedExpression> components) {
@@ -216,6 +260,6 @@ public class GenericFractionDerivFixer {
         // first element must be d (or font manipulated d)
         if ( !components.get(0).getRoot().getTermText().matches(termMatch) ) return false;
 
-        return components.size() == 2;
+        return components.size() >= 1;
     }
 }

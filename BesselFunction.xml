@@ -1,0 +1,677 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
+    <page>
+        <title>Bessel function</title>
+        <ns>0</ns>
+        <id>4700</id>
+        <revision>
+            <id>984637503</id>
+            <parentid>983742826</parentid>
+            <timestamp>2020-10-21T06:24:10Z</timestamp>
+            <contributor>
+                <username>WikiCleanerBot</username>
+                <id>18872885</id>
+            </contributor>
+            <minor />
+            <comment>v2.03b - [[User:WikiCleanerBot#T20|Bot T20 CW#61]] - [[WP:WCW]] project (Reference before punctuation - Title linked in text)</comment>
+            <model>wikitext</model>
+            <format>text/x-wiki</format>
+            <text bytes="55601" xml:space="preserve">{{Use American English|date = January 2019}}
+{{Short description|Families of solutions to related differential equations}}
+[[File:Vibrating drum Bessel function.gif|thumb|right|Bessel functions are the radial part of the modes of vibration of a circular drum.]]
+'''Bessel functions''', first defined by the mathematician [[Daniel Bernoulli]] and then generalized by [[Friedrich Bessel]], are canonical solutions {{math|''y''(''x'')}} of Bessel's [[differential equation]]
+
+: &lt;math&gt;x^2 \frac{d^2 y}{dx^2} + x \frac{dy}{dx} + \left(x^2 - \alpha^2 \right)y = 0&lt;/math&gt;
+
+for an arbitrary [[complex number]] {{mvar|α}}, the ''order'' of the Bessel function. Although {{mvar|α}} and {{math|−''α''}} produce the same differential equation, it is conventional to define different Bessel functions for these two values in such a way that the Bessel functions are mostly smooth functions of {{mvar|α}}.
+
+The most important cases are when {{mvar|α}} is an [[integer]] or [[half-integer]]. Bessel functions for integer {{mvar|α}} are also known as '''cylinder functions''' or the '''[[cylindrical harmonics]]''' because they appear in the solution to [[Laplace's equation]] in [[cylindrical coordinates]]. '''[[Spherical Bessel functions]]''' with half-integer {{mvar|α}} are obtained when the [[Helmholtz equation]] is solved in [[spherical coordinates]].
+
+==Applications of Bessel functions==
+Bessel's equation arises when finding separable solutions to [[Laplace's equation]] and the [[Helmholtz equation]] in cylindrical or [[spherical coordinates]]. Bessel functions are therefore especially important for many problems of [[wave propagation]] and static potentials. In solving problems in cylindrical coordinate systems, one obtains Bessel functions of integer order ({{math|''α'' {{=}} ''n''}}); in spherical problems, one obtains half-integer orders ({{math|''α'' {{=}} ''n'' + {{sfrac|1|2}}}}). For example:
+
+* [[Electromagnetic radiation|Electromagnetic waves]] in a cylindrical [[waveguide]]
+* Pressure amplitudes of [[Inviscid flow|inviscid]] rotational flows
+* [[Conduction (heat)|Heat conduction]] in a cylindrical object
+* Modes of vibration of a thin circular (or annular) [[acoustic membrane]] (such as a [[drum]] or other [[membranophone]])
+* Diffusion problems on a lattice
+* Solutions to the radial [[Schrödinger equation]] (in spherical and cylindrical coordinates) for a free particle
+* Solving for patterns of acoustical radiation
+* Frequency-dependent friction in circular pipelines
+* Dynamics of floating bodies
+* [[Angular resolution]]
+* Diffraction from helical objects, including [[DNA]]
+* [[Probability density function]] of product of two normally distributed random variables
+
+Bessel functions also appear in other problems, such as signal processing (e.g., see [[FM synthesis]], [[Kaiser window]], or [[Bessel filter]]).
+
+==Definitions==
+Because this is a second-order linear differential equation, there must be two [[linearly independent]] solutions. Depending upon the circumstances, however, various formulations of these solutions are convenient. Different variations are summarized in the table below and described in the following sections.
+
+:{| class=&quot;wikitable&quot;
+! Type !! First kind !! Second kind
+|-
+| Bessel functions
+| [[#Bessel functions of the first kind|{{mvar|J&lt;sub&gt;α&lt;/sub&gt;}}]]
+| [[#Bessel functions of the second kind|{{mvar|Y&lt;sub&gt;α&lt;/sub&gt;}}]]
+|-
+| [[#Modified Bessel functions|Modified Bessel functions]]
+| {{mvar|I&lt;sub&gt;α&lt;/sub&gt;}}
+| {{mvar|K&lt;sub&gt;α&lt;/sub&gt;}}
+|-
+| [[#Hankel functions|Hankel functions]]
+| {{math|''H''{{su|b=''α''|p=(1)}} {{=}} ''J&lt;sub&gt;α&lt;/sub&gt;'' + ''iY&lt;sub&gt;α&lt;/sub&gt;''}}
+| {{math|''H''{{su|b=''α''|p=(2)}} {{=}} ''J&lt;sub&gt;α&lt;/sub&gt;'' − ''iY&lt;sub&gt;α&lt;/sub&gt;''}}
+|-
+| [[#Spherical Bessel functions|Spherical Bessel functions]]
+| {{mvar|j&lt;sub&gt;n&lt;/sub&gt;}}
+| {{mvar|y&lt;sub&gt;n&lt;/sub&gt;}}
+|-
+| [[#Spherical Hankel functions|Spherical Hankel functions]]
+| {{math|''h''{{su|b=''n''|p=(1)}} {{=}} ''j&lt;sub&gt;n&lt;/sub&gt;'' + ''iy&lt;sub&gt;n&lt;/sub&gt;''}}
+| {{math|''h''{{su|b=''n''|p=(2)}} {{=}} ''j&lt;sub&gt;n&lt;/sub&gt;'' − ''iy&lt;sub&gt;n&lt;/sub&gt;''}}
+|}
+
+Bessel functions of the second kind and the spherical Bessel functions of the second kind are sometimes denoted by {{mvar|N&lt;sub&gt;n&lt;/sub&gt;}} and {{mvar|n&lt;sub&gt;n&lt;/sub&gt;}} respectively, rather than {{mvar|Y&lt;sub&gt;n&lt;/sub&gt;}} and {{mvar|y&lt;sub&gt;n&lt;/sub&gt;}}.&lt;ref&gt;{{MathWorld|title=Spherical Bessel Function of the Second Kind|id=SphericalBesselFunctionoftheSecondKind}}&lt;/ref&gt;&lt;ref&gt;{{MathWorld|title=Bessel Function of the Second Kind|id=BesselFunctionoftheSecondKind}}&lt;/ref&gt;
+
+==={{anchor|Bessel functions of the first kind}}Bessel functions of the first kind: {{math|''J&lt;sub&gt;α&lt;/sub&gt;''}}===
+
+Bessel functions of the first kind, denoted as {{math|''J&lt;sub&gt;α&lt;/sub&gt;''(''x'')}}, are solutions of Bessel's differential equation that are finite at the origin ({{math|''x'' {{=}} 0}}) for integer or positive&amp;nbsp;{{mvar|α}} and diverge as {{mvar|x}} approaches zero for negative non-integer&amp;nbsp;{{mvar|α}}. It is possible to define the function by its [[Taylor series|series expansion]] around {{math|''x'' {{=}} 0}}, which can be found by applying the [[Frobenius method]] to Bessel's equation:&lt;ref name=p360&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_360.htm p. 360, 9.1.10].&lt;/ref&gt;
+
+:&lt;math&gt; J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \Gamma(m+\alpha+1)} {\left(\frac{x}{2}\right)}^{2m+\alpha},&lt;/math&gt;
+
+where {{math|Γ(''z'')}} is the [[gamma function]], a shifted generalization of the [[factorial]] function to non-integer values. The Bessel function of the first kind is an [[entire function]] if {{mvar|α}} is an integer, otherwise it is a [[multivalued function]] with singularity at zero. The graphs of Bessel functions look roughly like oscillating sine or cosine functions that decay proportionally to &lt;math&gt;x^{-\frac{1}{2}}&lt;/math&gt; (see also their asymptotic forms below), although their roots are not generally periodic, except asymptotically for large {{mvar|x}}. (The series indicates that {{math|−''J''&lt;sub&gt;1&lt;/sub&gt;(''x'')}} is the derivative of {{math|''J''&lt;sub&gt;0&lt;/sub&gt;(''x'')}}, much like {{math|−sin ''x''}} is the derivative of {{math|cos ''x''}}; more generally, the derivative of {{math|''J&lt;sub&gt;n&lt;/sub&gt;''(''x'')}} can be expressed in terms of {{math|''J''&lt;sub&gt;''n'' ± 1&lt;/sub&gt;(''x'')}} by the identities [[#Properties|below]].)
+
+[[Image:Bessel Functions (1st Kind, n=0,1,2).svg|thumb|300px|right|Plot of Bessel function of the first kind, {{math|''J&lt;sub&gt;α&lt;/sub&gt;''(''x'')}}, for integer orders {{math|''α'' {{=}} 0, 1, 2}}]]
+
+For non-integer {{mvar|α}}, the functions {{math|''J&lt;sub&gt;α&lt;/sub&gt;''(''x'')}} and {{math|''J''&lt;sub&gt;−''α''&lt;/sub&gt;(''x'')}} are linearly independent, and are therefore the two solutions of the differential equation. On the other hand, for integer order {{mvar|n}}, the following relationship is valid (the gamma function has simple poles at each of the non-positive integers):&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_358.htm p. 358, 9.1.5].&lt;/ref&gt;
+
+:&lt;math&gt;J_{-n}(x) = (-1)^n J_n(x).&lt;/math&gt;
+
+This means that the two solutions are no longer linearly independent. In this case, the second linearly independent solution is then found to be the Bessel function of the second kind, as discussed below.
+
+====Bessel's integrals====
+Another definition of the Bessel function, for integer values of {{mvar|n}}, is possible using an integral representation:&lt;ref name=Temme&gt;{{cite book| last=Temme|first=Nico M.|title=Special Functions: An introduction to the classical functions of mathematical physics |year=1996 |publisher=Wiley | location=New York|isbn=0471113131|pages=228–231|edition=2nd print}}&lt;/ref&gt;
+
+:&lt;math&gt;J_n(x) = \frac{1}{\pi} \int_0^\pi \cos (n \tau - x \sin \tau) \,d\tau.&lt;/math&gt;
+
+Another integral representation is:&lt;ref name=Temme /&gt;
+
+:&lt;math&gt;J_n(x) = \frac{1}{2\pi} \int_{-\pi}^\pi e^{i(x \sin \tau -n \tau)} \,d\tau.&lt;/math&gt;
+
+This was the approach that Bessel used, and from this definition he derived several properties of the function. The definition may be extended to non-integer orders by one of Schläfli's integrals, for {{math|Re(''x'') &gt; 0}}:&lt;ref name=Temme /&gt;&lt;ref&gt;Watson, [https://books.google.com/books?id=Mlk3FrNoEVoC&amp;pg=PA176 p. 176]&lt;/ref&gt;&lt;ref&gt;{{cite web |url=http://www.math.ohio-state.edu/~gerlach/math/BVtypset/node122.html |title=Archived copy |accessdate=2010-10-18 |url-status=dead |archiveurl =https://web.archive.org/web/20100923194031/http://www.math.ohio-state.edu/~gerlach/math/BVtypset/node122.html |archivedate=2010-09-23 }}&lt;/ref&gt;&lt;ref&gt;{{cite web| url=http://www.nbi.dk/~polesen/borel/node15.html |title=Integral representations of the Bessel function |author=|date=|website=www.nbi.dk|accessdate=25 March 2018}}&lt;/ref&gt;&lt;ref&gt;Arfken &amp; Weber, exercise 11.1.17.&lt;/ref&gt;
+
+:&lt;math&gt;J_\alpha(x) = \frac{1}{\pi} \int_0^\pi \cos(\alpha\tau - x \sin\tau)\,d\tau - \frac{\sin \alpha\pi}{\pi} \int_0^\infty e^{-x \sinh t - \alpha t} \, dt. &lt;/math&gt;
+
+====Relation to hypergeometric series====
+The Bessel functions can be expressed in terms of the [[generalized hypergeometric series]] as&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_362.htm p. 362, 9.1.69].&lt;/ref&gt;
+
+:&lt;math&gt;J_\alpha(x) = \frac{\left(\frac{x}{2}\right)^\alpha}{\Gamma(\alpha+1)} \;_0F_1 \left(\alpha+1; -\frac{x^2}{4}\right).&lt;/math&gt;
+
+This expression is related to the development of Bessel functions in terms of the [[Bessel–Clifford function]].
+
+====Relation to Laguerre polynomials====
+In terms of the [[Laguerre polynomials]] {{mvar|L&lt;sub&gt;k&lt;/sub&gt;}} and arbitrarily chosen parameter {{mvar|t}}, the Bessel function can be expressed as&lt;ref&gt;{{cite book|authorlink=Gábor Szegő |last=Szegő |first=Gábor |title=Orthogonal Polynomials |edition=4th |location=Providence, RI |publisher=AMS |date=1975}}&lt;/ref&gt;
+
+:&lt;math&gt;\frac{J_\alpha(x)}{\left( \frac{x}{2}\right)^\alpha} = \frac{e^{-t}}{\Gamma(\alpha+1)} \sum_{k=0}^\infty \frac{L_k^{(\alpha)}\left( \frac{x^2}{4 t}\right)}{\binom{k+\alpha}{k}} \frac{t^k}{k!}.&lt;/math&gt;
+
+==={{anchor|Weber functions|Neumann functions|Bessel functions of the second kind}}Bessel functions of the second kind: {{math|''Y&lt;sub&gt;α&lt;/sub&gt;''}}===
+
+The Bessel functions of the second kind, denoted by {{math|''Y&lt;sub&gt;α&lt;/sub&gt;''(''x'')}}, occasionally denoted instead by {{math|''N&lt;sub&gt;α&lt;/sub&gt;''(''x'')}}, are solutions of the Bessel differential equation that have a singularity at the origin ({{math|''x'' {{=}} 0}}) and are [[multivalued function|multivalued]]. These are sometimes called '''Weber functions''', as they were introduced by {{harvs|txt|authorlink=Heinrich Martin Weber|first=H. M.|last=Weber|year=1873}}, and also '''Neumann functions''' after [[Carl Neumann]].&lt;ref name=&quot;mhtlab.uwaterloo.ca&quot;&gt;http://www.mhtlab.uwaterloo.ca/courses/me755/web_chap4.pdf&lt;/ref&gt;
+
+[[Image:Bessel Functions (2nd Kind, n=0,1,2).svg|thumb|300px|right|Plot of Bessel function of the second kind, {{math|''Y&lt;sub&gt;α&lt;/sub&gt;''(''x'')}}, for integer orders {{math|''α'' {{=}} 0, 1, 2}}]]
+
+For non-integer {{mvar|α}}, {{math|''Y&lt;sub&gt;α&lt;/sub&gt;''(''x'')}} is related to {{math|''J&lt;sub&gt;α&lt;/sub&gt;''(''x'')}} by
+
+:&lt;math&gt;Y_\alpha(x) = \frac{J_\alpha(x) \cos (\alpha\pi) - J_{-\alpha}(x)}{\sin (\alpha\pi)}.&lt;/math&gt;
+
+In the case of integer order {{mvar|n}}, the function is defined by taking the limit as a non-integer {{mvar|α}} tends to {{mvar|n}}:
+
+:&lt;math&gt;Y_n(x) = \lim_{\alpha \to n} Y_\alpha(x).&lt;/math&gt;
+
+If {{mvar|n}} is a nonnegative integer, we have the series&lt;ref&gt;[http://dlmf.nist.gov/10.8#E1 NIST Digital Library of Mathematical Functions], (10.8.1). Accessed on line Oct. 25, 2016.&lt;/ref&gt;
+
+:&lt;math&gt;Y_n(z) =-\frac{\left(\frac{z}{2}\right)^{-n}}{\pi}\sum_{k=0}^{n-1} \frac{(n-k-1)!}{k!}\left(\frac{z^2}{4}\right)^k +\frac{2}{\pi} J_n(z) \ln \frac{z}{2} -\frac{\left(\frac{z}{2}\right)^n}{\pi}\sum_{k=0}^\infty (\psi(k+1)+\psi(n+k+1)) \frac{\left(-\frac{z^2}{4}\right)^k}{k!(n+k)!}&lt;/math&gt;
+
+where &lt;math&gt;\psi(z)&lt;/math&gt; is the [[digamma function]], the [[logarithmic derivative]] of the [[gamma function]].&lt;ref name=MathWorld&gt;{{MathWorld |title=Bessel Function of the Second Kind |id=BesselFunctionoftheSecondKind}}&lt;/ref&gt;
+
+There is also a corresponding integral formula (for {{math|Re(''x'') &gt; 0}}):&lt;ref name=&quot;p. 178&quot;&gt;Watson, [https://books.google.com/books?id=Mlk3FrNoEVoC&amp;pg=PA178 p. 178].&lt;/ref&gt;
+
+:&lt;math&gt;Y_n(x) = \frac{1}{\pi} \int_0^\pi \sin(x \sin\theta - n\theta) \, d\theta -\frac{1}{\pi} \int_0^\infty \left(e^{nt} + (-1)^n e^{-nt} \right) e^{-x \sinh t} \, dt.&lt;/math&gt;
+
+{{math|''Y&lt;sub&gt;α&lt;/sub&gt;''(''x'')}} is necessary as the second linearly independent solution of the Bessel's equation when {{mvar|α}} is an integer. But {{math|''Y&lt;sub&gt;α&lt;/sub&gt;''(''x'')}} has more meaning than that. It can be considered as a &quot;natural&quot; partner of {{math|''J&lt;sub&gt;α&lt;/sub&gt;''(''x'')}}. See also the subsection on Hankel functions below.
+
+When {{mvar|α}} is an integer, moreover, as was similarly the case for the functions of the first kind, the following relationship is valid:
+
+:&lt;math&gt;Y_{-n}(x) = (-1)^n Y_n(x).&lt;/math&gt;
+
+Both {{math|''J&lt;sub&gt;α&lt;/sub&gt;''(''x'')}} and {{math|''Y&lt;sub&gt;α&lt;/sub&gt;''(''x'')}} are [[holomorphic function]]s of {{mvar|x}} on the [[complex plane]] cut along the negative real axis. When {{mvar|α}} is an integer, the Bessel functions {{mvar|J}} are [[entire function]]s of {{mvar|x}}. If {{mvar|x}} is held fixed at a non-zero value, then the Bessel functions are entire functions of {{mvar|α}}.
+
+The Bessel functions of the second kind when {{mvar|α}} is an integer is an example of the second kind of solution in [[Fuchs's theorem]].
+
+==={{anchor|Hankel functions}}Hankel functions: {{math|''H''{{su|b=''α''|p=(1)}}}}, {{math|''H''{{su|b=''α''|p=(2)}}}}===
+
+Another important formulation of the two linearly independent solutions to Bessel's equation are the '''Hankel functions of the first and second kind''', {{math|''H''{{su|b=''α''|p=(1)}}(''x'')}} and {{math|''H''{{su|b=''α''|p=(2)}}(''x'')}}, defined as&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_358.htm p. 358, 9.1.3, 9.1.4].&lt;/ref&gt;
+
+:&lt;math&gt;\begin{align}
+H_\alpha^{(1)}(x) &amp;= J_\alpha(x) + iY_\alpha(x), \\
+H_\alpha^{(2)}(x) &amp;= J_\alpha(x) - iY_\alpha(x),
+\end{align}&lt;/math&gt;
+
+where {{mvar|i}} is the [[imaginary unit]]. These linear combinations are also known as '''Bessel functions of the third kind'''; they are two linearly independent solutions of Bessel's differential equation. They are named after [[Hermann Hankel]].
+
+These forms of linear combination satisfy numerous simple-looking properties, like asymptotic formulae or integral representations. Here, &quot;simple&quot; means an appearance of the factor of the form {{math|''e''&lt;sup&gt;''i''&amp;thinsp;''f''(x)&lt;/sup&gt;}}. The Bessel function of the second kind then can be thought to naturally appear as the imaginary part of the Hankel functions.
+
+The Hankel functions are used to express outward- and inward-propagating cylindrical-wave solutions of the cylindrical wave equation, respectively (or vice versa, depending on the [[sign convention]] for the [[frequency]]).
+
+Using the previous relationships, they can be expressed as
+
+:&lt;math&gt;\begin{align}
+H_\alpha^{(1)}(x) &amp;= \frac{J_{-\alpha}(x) - e^{-\alpha \pi i} J_\alpha(x)}{i \sin \alpha\pi}, \\
+H_\alpha^{(2)}(x) &amp;= \frac{J_{-\alpha}(x) - e^{\alpha \pi i} J_\alpha(x)}{- i \sin \alpha\pi}.
+\end{align}&lt;/math&gt;
+
+If {{mvar|α}} is an integer, the limit has to be calculated. The following relationships are valid, whether {{mvar|α}} is an integer or not:&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_358.htm p. 358, 9.1.6].&lt;/ref&gt;
+
+:&lt;math&gt;\begin{align}
+H_{-\alpha}^{(1)}(x) &amp;= e^{\alpha \pi i} H_\alpha^{(1)} (x), \\
+H_{-\alpha}^{(2)}(x) &amp;= e^{-\alpha \pi i} H_\alpha^{(2)} (x).
+\end{align}&lt;/math&gt;
+
+In particular, if {{math|''α'' {{=}} ''m'' + {{sfrac|1|2}}}} with {{mvar|m}} a nonnegative integer, the above relations imply directly that
+
+:&lt;math&gt;\begin{align}
+J_{-(m+\frac{1}{2})}(x) &amp;= (-1)^{m+1} Y_{m+\frac{1}{2}}(x), \\
+Y_{-(m+\frac{1}{2})}(x) &amp;= (-1)^m J_{m+\frac{1}{2}}(x).
+\end{align}&lt;/math&gt;
+
+These are useful in developing the spherical Bessel functions (see below).
+
+The Hankel functions admit the following integral representations for {{math|Re(''x'') &gt; 0}}:&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_360.htm p. 360, 9.1.25].&lt;/ref&gt;
+
+:&lt;math&gt;\begin{align}
+H_\alpha^{(1)}(x) &amp;= \frac{1}{\pi i}\int_{-\infty}^{+\infty + i\pi} e^{x\sinh t - \alpha t} \, dt, \\
+H_\alpha^{(2)}(x) &amp;= -\frac{1}{\pi i}\int_{-\infty}^{+\infty - i\pi} e^{x\sinh t - \alpha t} \, dt,
+\end{align}&lt;/math&gt;
+
+where the integration limits indicate integration along a [[Methods of contour integration|contour]] that can be chosen as follows: from {{math|−∞}} to 0 along the negative real axis, from 0 to {{math|±''i''π}} along the imaginary axis, and from {{math|±''i''π}} to {{math|+∞ ± ''i''π}} along a contour parallel to the real axis.&lt;ref name=&quot;p. 178&quot;/&gt;
+
+==={{anchor|Modified Bessel functions|Modified Bessel functions : Iα, Kα}}Modified Bessel functions: {{math|''I&lt;sub&gt;α&lt;/sub&gt;''}}, {{math|''K&lt;sub&gt;α&lt;/sub&gt;''}}===
+
+The Bessel functions are valid even for [[complex number|complex]] arguments {{mvar|x}}, and an important special case is that of a purely imaginary argument. In this case, the solutions to the Bessel equation are called the '''modified Bessel functions''' (or occasionally the '''hyperbolic Bessel functions''') '''of the first and second kind''' and are defined as&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_375.htm p. 375, 9.6.2, 9.6.10, 9.6.11].&lt;/ref&gt;
+
+:&lt;math&gt;\begin{align}
+I_\alpha(x) &amp;= i^{-\alpha} J_\alpha(ix) = \sum_{m=0}^\infty \frac{1}{m!\, \Gamma(m+\alpha+1)}\left(\frac{x}{2}\right)^{2m+\alpha}, \\
+K_\alpha(x) &amp;= \frac{\pi}{2} \frac{I_{-\alpha}(x) - I_\alpha(x)}{\sin \alpha \pi},
+\end{align}&lt;/math&gt;
+
+when {{mvar|α}} is not an integer; when {{mvar|α}} is an integer, then the limit is used. These are chosen to be real-valued for real and positive arguments {{mvar|x}}. The series expansion for {{math|''I&lt;sub&gt;α&lt;/sub&gt;''(''x'')}} is thus similar to that for {{math|''J&lt;sub&gt;α&lt;/sub&gt;''(''x'')}}, but without the alternating {{math|(−1)&lt;sup&gt;''m''&lt;/sup&gt;}} factor.
+
+&lt;math&gt;K_{\alpha}&lt;/math&gt; can be expressed in terms of Hankel functions:
+
+:&lt;math&gt;K_{\alpha} = \begin{cases} \frac{\pi}{2} i^{\alpha+1} H_\alpha^{(1)}(ix) &amp; -\pi &lt; \arg x \leq \frac{\pi}{2} \\ \frac{\pi}{2} (-i)^{\alpha+1} H_\alpha^{(2)}(-ix) &amp; -\frac{\pi}{2} &lt; \arg x \leq \pi \end{cases}&lt;/math&gt;
+
+We can express the first and second Bessel functions in terms of the modified Bessel functions (these are valid if {{math|−π &lt; arg ''z'' ≤ {{sfrac|π|2}}}}):&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_375.htm p. 375, 9.6.3, 9.6.5].&lt;/ref&gt;
+
+:&lt;math&gt;\begin{align}
+J_\alpha(iz) &amp;= e^{\frac{\alpha i\pi}{2}} I_\alpha(z), \\
+Y_\alpha(iz) &amp;= e^{\frac{(\alpha+1)i\pi}{2}}I_\alpha(z) - \frac{2}{\pi}e^{-\frac{\alpha i\pi}{2}}K_\alpha(z).
+\end{align}&lt;/math&gt;
+
+{{math|''I&lt;sub&gt;α&lt;/sub&gt;''(''x'')}} and {{math|''K&lt;sub&gt;α&lt;/sub&gt;''(''x'')}} are the two linearly independent solutions to the '''modified Bessel's equation''':&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_374.htm p. 374, 9.6.1].&lt;/ref&gt;
+
+:&lt;math&gt;x^2 \frac{d^2 y}{dx^2} + x \frac{dy}{dx} - \left(x^2 + \alpha^2 \right)y = 0.&lt;/math&gt;
+
+Unlike the ordinary Bessel functions, which are oscillating as functions of a real argument, {{mvar|I&lt;sub&gt;α&lt;/sub&gt;}} and {{mvar|K&lt;sub&gt;α&lt;/sub&gt;}} are [[exponential growth|exponentially growing]] and [[exponential decay|decaying]] functions respectively. Like the ordinary Bessel function {{mvar|J&lt;sub&gt;α&lt;/sub&gt;}}, the function {{mvar|I&lt;sub&gt;α&lt;/sub&gt;}} goes to zero at {{math|''x'' {{=}} 0}} for {{math|''α'' &gt; 0}} and is finite at {{math|''x'' {{=}} 0}} for {{math|''α'' {{=}} 0}}. Analogously, {{mvar|K&lt;sub&gt;α&lt;/sub&gt;}} diverges at {{math|''x'' {{=}} 0}} with the singularity being of logarithmic type for {{mvar|K&lt;sub&gt;0&lt;/sub&gt;}}, and {{math|½Γ({{pipe}}''α''{{pipe}})(2/''x'')&lt;sup&gt;{{pipe}}''α''{{pipe}}&lt;/sup&gt;}} otherwise.&lt;ref&gt;{{cite book|title=Quantum Electrodynamics |last1=Greiner |first1=Walter |last2=Reinhardt |first2=Joachim |date=2009 |publisher=Springer |page=72 |isbn=978-3-540-87561-1}}&lt;/ref&gt;
+
+:{|
+|-
+| [[Image:BesselI Functions (1st Kind, n=0,1,2,3).svg|none|thumb|300px|Modified Bessel functions of the first kind, {{math|''I&lt;sub&gt;α&lt;/sub&gt;''(''x'')}}, for {{math|''α'' {{=}} 0, 1, 2, 3}}]]
+| [[Image:BesselK Functions (n=0,1,2,3).svg|none|thumb|300px|Modified Bessel functions of the second kind, {{math|''K&lt;sub&gt;α&lt;/sub&gt;''(''x'')}}, for {{math|''α'' {{=}} 0, 1, 2, 3}}]]
+|}
+
+&lt;!-- [[File:ModifiedBessel.png|Plot of some modified Bessel functions]]&lt;br /&gt;Plot of six modified Bessel functions. In solid line {{math|''K''&lt;sub&gt;0&lt;/sub&gt;}}, {{math|''K''&lt;sub&gt;1&lt;/sub&gt;}}, and {{math|''K''&lt;sub&gt;2&lt;/sub&gt;}}. In dashed line: {{math|''I''&lt;sub&gt;0&lt;/sub&gt;}}, {{math|''I''&lt;sub&gt;1&lt;/sub&gt;}}, and {{math|''I''&lt;sub&gt;2&lt;/sub&gt;}}. --&gt;
+
+Two integral formulas for the modified Bessel functions are (for {{math|Re(''x'') &gt; 0}}):&lt;ref&gt;Watson, [https://books.google.com/books?id=Mlk3FrNoEVoC&amp;pg=PA181 p. 181].&lt;/ref&gt;
+
+:&lt;math&gt;\begin{align}
+I_\alpha(x) &amp;= \frac{1}{\pi}\int_0^\pi e^{x\cos \theta} \cos \alpha\theta \,d\theta - \frac{\sin \alpha\pi}{\pi}\int_0^\infty e^{-x\cosh t - \alpha t} \,dt, \\
+K_\alpha(x) &amp;= \int_0^\infty e^{-x\cosh t} \cosh \alpha t \,dt.
+\end{align}&lt;/math&gt;
+
+Bessel functions can be described as Fourier transforms of powers of quadratic functions.  For example:
+
+:&lt;math&gt;2\,K_0(\omega) = \int_{-\infty}^\infty \frac{e^{i\omega t}}{\sqrt{t^2+1}} \,dt.&lt;/math&gt;
+
+It can be proven by showing equality to the above integral definition for {{math|''K''&lt;sub&gt;0&lt;/sub&gt;}}. This is done by integrating a closed curve in the first quadrant of the complex plane.
+
+Modified Bessel functions {{math|''K''&lt;sub&gt;1/3&lt;/sub&gt;}} and {{math|''K''&lt;sub&gt;2/3&lt;/sub&gt;}} can be represented in terms of rapidly convergent integrals&lt;ref&gt;{{cite journal|first=M. Kh. |last=Khokonov |title=Cascade Processes of Energy Loss by Emission of Hard Photons |journal=Journal of Experimental and Theoretical Physics |volume=99 |issue=4 |pages=690–707 |date=2004 |doi=10.1134/1.1826160|bibcode=2004JETP...99..690K |s2cid=122599440 }}. Derived from formulas sourced to [[Gradshteyn and Ryzhik|I. S. Gradshteyn and I. M. Ryzhik]], ''[[Table of Integrals, Series, and Products]]'' (Fizmatgiz, Moscow, 1963; Academic Press, New York, 1980).&lt;/ref&gt;
+
+:&lt;math&gt; \begin{align}
+K_{\frac{1}{3}}(\xi) &amp;= \sqrt{3} \int_0^\infty \exp \left(- \xi \left(1+\frac{4x^2}{3}\right) \sqrt{1+\frac{x^2}{3}} \right) \,dx, \\
+K_{\frac{2}{3}}(\xi) &amp;= \frac{1}{\sqrt{3}} \int_0^\infty \frac{3+2x^2}{\sqrt{1+\frac{x^2}{3}}} \exp \left(- \xi \left(1+\frac{4x^2}{3}\right) \sqrt{1+\frac{x^2}{3}}\right) \,dx.
+\end{align}&lt;/math&gt;
+
+The '''modified Bessel function of the second kind''' has also been called by the following names (now rare):
+
+* '''Basset function''' after [[Alfred Barnard Basset]]
+* '''Modified Bessel function of the third kind'''
+* '''Modified Hankel function'''&lt;ref&gt;Referred to as such in: {{cite journal|last=Teichroew |first=D. |title=The Mixture of Normal Distributions with Different Variances |journal=The Annals of Mathematical Statistics |volume=28 |issue=2 |date=1957 |pages=510–512 |doi=10.1214/aoms/1177706981|url=http://dml.cz/bitstream/handle/10338.dmlcz/103973/AplMat_27-1982-4_7.pdf }}&lt;/ref&gt;
+* '''Macdonald function''' after [[Hector Munro Macdonald]]
+
+==={{anchor|Spherical Bessel functions}}Spherical Bessel functions: {{math|''j&lt;sub&gt;n&lt;/sub&gt;''}}, {{math|''y&lt;sub&gt;n&lt;/sub&gt;''}}===
+
+[[Image:Spherical Bessel j Functions (n=0,1,2).svg|thumb|300px|right|Spherical Bessel functions of the first kind, {{math|''j&lt;sub&gt;n&lt;/sub&gt;''(''x'')}}, for {{math|''n'' {{=}} 0, 1, 2}}]]
+[[Image:Spherical Bessel y Functions (n=0,1,2).svg|thumb|300px|right|Spherical Bessel functions of the second kind, {{math|''y&lt;sub&gt;n&lt;/sub&gt;''(''x'')}}, for {{math|''n'' {{=}} 0, 1, 2}}]]
+
+When solving the [[Helmholtz equation]] in spherical coordinates by separation of variables, the radial equation has the form
+
+:&lt;math&gt;x^2 \frac{d^2 y}{dx^2} + 2x \frac{dy}{dx} + \left(x^2 - n(n + 1)\right) y = 0.&lt;/math&gt;
+
+The two linearly independent solutions to this equation are called the '''spherical Bessel functions''' {{mvar|j&lt;sub&gt;n&lt;/sub&gt;}} and {{mvar|y&lt;sub&gt;n&lt;/sub&gt;}}, and are related to the ordinary Bessel functions {{mvar|J&lt;sub&gt;n&lt;/sub&gt;}} and {{mvar|Y&lt;sub&gt;n&lt;/sub&gt;}} by&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_437.htm p. 437, 10.1.1].&lt;/ref&gt;
+
+:&lt;math&gt;\begin{align}
+j_n(x) &amp;= \sqrt{\frac{\pi}{2x}} J_{n+\frac{1}{2}}(x), \\
+y_n(x) &amp;= \sqrt{\frac{\pi}{2x}} Y_{n+\frac{1}{2}}(x) = (-1)^{n+1} \sqrt{\frac{\pi}{2x}} J_{-n-\frac{1}{2}}(x).
+\end{align}&lt;/math&gt;
+
+{{mvar|y&lt;sub&gt;n&lt;/sub&gt;}} is also denoted {{mvar|n&lt;sub&gt;n&lt;/sub&gt;}} or {{mvar|[[Eta (letter)|η]]&lt;sub&gt;n&lt;/sub&gt;}}; some authors call these functions the '''spherical Neumann functions'''.
+
+The spherical Bessel functions can also be written as ('''Rayleigh's formulas''')&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_439.htm p. 439, 10.1.25, 10.1.26].&lt;/ref&gt;
+
+:&lt;math&gt;\begin{align}
+j_n(x) &amp;= (-x)^n \left(\frac{1}{x}\frac{d}{dx}\right)^n \frac{\sin x}{x}, \\
+y_n(x) &amp;= -(-x)^n \left(\frac{1}{x}\frac{d}{dx}\right)^n \frac{\cos x}{x}.
+\end{align}&lt;/math&gt;
+
+The first spherical Bessel function {{math|''j''&lt;sub&gt;0&lt;/sub&gt;(''x'')}} is also known as the (unnormalized) [[sinc function]]. The first few spherical Bessel functions are:&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_438.htm p. 438, 10.1.11].&lt;/ref&gt;
+
+:&lt;math&gt;\begin{align}
+j_0(x) &amp;= \frac{\sin x}{x}. \\
+j_1(x) &amp;= \frac{\sin x}{x^2} - \frac{\cos x}{x}, \\
+j_2(x) &amp;= \left(\frac{3}{x^2} - 1\right) \frac{\sin x}{x} - \frac{3\cos x}{x^2}, \\
+j_3(x) &amp;= \left(\frac{15}{x^3} - \frac{6}{x}\right) \frac{\sin x}{x} - \left(\frac{15}{x^2} - 1\right) \frac{\cos x}{x}
+\end{align}&lt;/math&gt;
+
+and&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_438.htm p. 438, 10.1.12].&lt;/ref&gt;
+
+:&lt;math&gt;\begin{align}
+y_0(x) &amp;= -j_{-1}(x) = -\frac{\cos x}{x}, \\
+y_1(x) &amp;= j_{-2}(x)  = -\frac{\cos x}{x^2} - \frac{\sin x}{x}, \\
+y_2(x) &amp;= -j_{-3}(x) = \left(-\frac{3}{x^2} + 1\right) \frac{\cos x}{x} - \frac{3\sin x}{x^2}, \\
+y_3(x) &amp;= j_{-4}(x)  = \left(-\frac{15}{x^3} + \frac{6}{x}\right) \frac{\cos x}{x} - \left(\frac{15}{x^2} - 1\right) \frac{\sin x}{x}.
+\end{align}&lt;/math&gt;
+
+====Generating function====
+The spherical Bessel functions have the generating functions&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_439.htm p. 439, 10.1.39].&lt;/ref&gt;
+
+:&lt;math&gt;\begin{align}
+\frac{1}{z} \cos \left(\sqrt{z^2 - 2zt}\right) &amp;= \sum_{n=0}^\infty \frac{t^n}{n!} j_{n-1}(z), \\
+\frac{1}{z} \sin \left(\sqrt{z^2 - 2zt}\right) &amp;= \sum_{n=0}^\infty \frac{t^n}{n!} y_{n-1}(z).
+\end{align}&lt;/math&gt;
+
+====Differential relations====
+In the following, {{mvar|f&lt;sub&gt;n&lt;/sub&gt;}} is any of {{mvar|j&lt;sub&gt;n&lt;/sub&gt;}}, {{mvar|y&lt;sub&gt;n&lt;/sub&gt;}}, {{math|''h''{{su|b=''n''|p=(1)}}}}, {{math|''h''{{su|b=''n''|p=(2)}}}} for {{math|''n'' {{=}} 0, ±1, ±2, ...}}&lt;ref&gt;Abramowitz and Stegun, [http://people.math.sfu.ca/~cbm/aands/page_439.htm p. 439, 10.1.23, 10.1.24].&lt;/ref&gt;
+
+:&lt;math&gt;\begin{align}
+\left(\frac{1}{z}\frac{d}{dz}\right)^m \left (z^{n+1} f_n(z)\right ) &amp;= z^{n-m+1} f_{n-m}(z), \\
+\left(\frac{1}{z}\frac{d}{dz}\right)^m \left (z^{-n} f_n(z)\right ) &amp;= (-1)^m z^{-n-m} f_{n+m}(z).
+\end{align}&lt;/math&gt;
+
+==={{anchor|Spherical Hankel functions}}Spherical Hankel functions: {{math|''h''{{su|b=''n''|p=(1)}}}}, {{math|''h''{{su|b=''n''|p=(2)}}}}===
+
+There are also spherical analogues of the Hankel functions:
+
+:&lt;math&gt;\begin{align}
+h_n^{(1)}(x) &amp;= j_n(x) + i y_n(x), \\
+h_n^{(2)}(x) &amp;= j_n(x) - i y_n(x).
+\end{align}&lt;/math&gt;
+
+In fact, there are simple closed-form expressions for the Bessel functions of [[half-integer]] order in terms of the standard [[trigonometric function]]s, and therefore for the spherical Bessel functions. In particular, for non-negative integers {{mvar|n}}:
+
+:&lt;math&gt;h_n^{(1)}(x) = (-i)^{n+1} \frac{e^{ix}}{x} \sum_{m=0}^n \frac{i^m}{m!\,(2x)^m} \frac{(n+m)!}{(n-m)!},&lt;/math&gt;
+
+and {{math|''h''{{su|b=''n''|p=(2)}}}} is the complex-conjugate of this (for real {{mvar|x}}). It follows, for example, that {{math|''j''&lt;sub&gt;0&lt;/sub&gt;(''x'') {{=}} {{sfrac|sin ''x''|''x''}}}} and {{math|''y''&lt;sub&gt;0&lt;/sub&gt;(''x'') {{=}} −{{sfrac|cos ''x''|''x''}}}}, and so on.
+
+The spherical Hankel functions appear in problems involving [[spherical wave]] propagation, for example in [[Electromagnetic wave equation#Multipole expansion|the multipole expansion of the electromagnetic field]].
+
+==={{anchor|Riccati–Bessel functions}}Riccati–Bessel functions: {{math|''S&lt;sub&gt;n&lt;/sub&gt;''}}, {{math|''C&lt;sub&gt;n&lt;/sub&gt;''}}, {{math|''ξ&lt;sub&gt;n&lt;/sub&gt;''}}, {{math|''ζ&lt;sub&gt;n&lt;/sub&gt;''}}===
+
+[[Jacopo Riccati|Riccati]]–Bessel functions only slightly differ from spherical Bessel functions:
+
+:&lt;math&gt;\begin{align}
+S_n(x)     &amp;= x j_n(x) = \sqrt{\frac{\pi x}{2}} J_{n+\frac{1}{2}}(x) \\
+C_n(x)     &amp;= -x y_n(x) = -\sqrt{\frac{\pi x}{2}} Y_{n+\frac{1}{2}}(x) \\
+\xi_n(x)   &amp;= x h_n^{(1)}(x) = \sqrt{\frac{\pi x}{2}} H_{n+\frac{1}{2}}^{(1)}(x) = S_n(x) - iC_n(x) \\
+\zeta_n(x) &amp;= x h_n^{(2)}(x) = \sqrt{\frac{\pi x}{2}} H_{n+\frac{1}{2}}^{(2)}(x) = S_n(x) + iC_n(x)
+\end{align}&lt;/math&gt;
+
+They satisfy the differential equation
+
+:&lt;math&gt;x^2 \frac{d^2 y}{dx^2} + \left (x^2 - n(n + 1)\right) y = 0.&lt;/math&gt;
+
+For example, this kind of differential equation appears in [[quantum mechanics]] while solving the radial component of the [[Schrödinger's equation]] with hypothetical cylindrical infinite potential barrier.&lt;ref&gt;Griffiths. Introduction to Quantum Mechanics, 2nd edition, p.&amp;nbsp;154.&lt;/ref&gt; This differential equation, and the Riccati–Bessel solutions, also arises in the problem of scattering of electromagnetic waves by a sphere, known as [[Mie scattering]] after the first published solution by Mie (1908). See e.g., Du (2004)&lt;ref&gt;{{cite journal| first=Hong | last=Du |title=Mie-scattering calculation |journal=Applied Optics |volume=43 |issue=9 |pages=1951–1956 |date=2004 |doi=10.1364/ao.43.001951| pmid=15065726 | bibcode=2004ApOpt..43.1951D }}&lt;/ref&gt; for recent developments and references.
+
+Following [[Peter Debye|Debye]] (1909), the notation {{mvar|ψ&lt;sub&gt;n&lt;/sub&gt;}}, {{mvar|χ&lt;sub&gt;n&lt;/sub&gt;}} is sometimes used instead of {{mvar|S&lt;sub&gt;n&lt;/sub&gt;}}, {{mvar|C&lt;sub&gt;n&lt;/sub&gt;}}.
+
+==Asymptotic forms==
+The Bessel functions have the following [[Asymptotic analysis|asymptotic]] forms. For small arguments {{math|0 &lt; ''z'' ≪ {{sqrt|''α'' + 1}}}}, one obtains, when {{mvar|α}} is not a negative integer:&lt;ref name=p360/&gt;
+
+:&lt;math&gt;J_\alpha(z) \sim \frac{1}{\Gamma(\alpha+1)} \left( \frac{z}{2} \right)^\alpha.&lt;/math&gt;
+
+When {{mvar|α}} is a negative integer, we have
+
+:&lt;math&gt;J_\alpha(z) \sim \frac{(-1)^{\alpha}}{(-\alpha)!} \left( \frac{2}{z} \right)^\alpha.&lt;/math&gt;
+
+For the Bessel function of the second kind we have three cases:
+
+:&lt;math&gt;Y_\alpha(z) \sim \begin{cases}
+\dfrac{2}{\pi} \left( \ln \left(\dfrac{z}{2} \right) + \gamma \right) &amp; \text{if } \alpha = 0 \\
+-\dfrac{\Gamma(\alpha)}{\pi} \left( \dfrac{2}{z} \right)^\alpha + \dfrac{1}{\Gamma(\alpha+1)} \left(\dfrac{z}{2} \right)^\alpha \cot(\alpha \pi) &amp; \text{if } \alpha \text{ is not a non-positive integer (one term dominates unless } \alpha \text{ is imaginary)}, \\
+ -\dfrac{(-1)^\alpha\Gamma(-\alpha)}{\pi} \left( \dfrac{z}{2} \right)^\alpha &amp; \text{if } \alpha\text{ is a negative integer,}
+\end{cases}&lt;/math&gt;
+
+where {{mvar|γ}} is the [[Euler–Mascheroni constant]] (0.5772...).
+
+For large real arguments {{math|''z'' ≫ {{abs|''α''&lt;sup&gt;2&lt;/sup&gt; − {{sfrac|1|4}}}}}}, one cannot write a true asymptotic form for Bessel functions of the first and second kind (unless {{mvar|α}} is [[half-integer]]) because they have [[zero of a function|zeros]] all the way out to infinity, which would have to be matched exactly by any asymptotic expansion. However, for a given value of {{math|arg ''z''}} one can write an equation containing a term of order {{math|{{abs|''z''}}&lt;sup&gt;−1&lt;/sup&gt;}}:&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_364.htm p. 364, 9.2.1].&lt;/ref&gt;
+
+:&lt;math&gt;\begin{align}
+J_\alpha(z) &amp;= \sqrt{\frac{2}{\pi z}}\left(\cos \left(z-\frac{\alpha\pi}{2} - \frac{\pi}{4}\right) + e^{\left|\operatorname{Im}(z)\right|}\mathrm{O}\left(|z|^{-1}\right)\right) &amp;&amp; \text{for } \left|\arg z\right| &lt; \pi, \\
+Y_\alpha(z) &amp;= \sqrt{\frac{2}{\pi z}}\left(\sin \left(z-\frac{\alpha\pi}{2} - \frac{\pi}{4}\right) + e^{\left|\operatorname{Im}(z)\right|}\mathrm{O}\left(|z|^{-1}\right)\right) &amp;&amp; \text{for } \left|\arg z\right| &lt; \pi.
+\end{align}&lt;/math&gt;
+
+(For {{math|''α'' {{=}} {{sfrac|1|2}}}} the last terms in these formulas drop out completely; see the spherical Bessel functions above.) Even though these equations are true, better approximations may be available for complex {{mvar|z}}. For example, {{math|''J''&lt;sub&gt;0&lt;/sub&gt;(''z'')}} when {{mvar|z}} is near the negative real line is approximated better by
+
+:&lt;math&gt;J_0(z) \approx \sqrt{\frac{-2}{\pi z}}\cos \left(z+\frac{\pi}{4}\right)&lt;/math&gt;
+
+than by
+
+:&lt;math&gt;J_0(z) \approx \sqrt{\frac{2}{\pi z}}\cos \left(z-\frac{\pi}{4}\right).&lt;/math&gt;
+
+The asymptotic forms for the Hankel functions are:
+
+:&lt;math&gt;\begin{align}
+H_\alpha^{(1)}(z) &amp;\sim \sqrt{\frac{2}{\pi z}}e^{i\left(z-\frac{\alpha\pi}{2}-\frac{\pi}{4}\right)} &amp;&amp; \text{for } -\pi &lt; \arg z &lt; 2\pi, \\
+H_\alpha^{(2)}(z) &amp;\sim \sqrt{\frac{2}{\pi z}}e^{-i\left(z-\frac{\alpha\pi}{2}-\frac{\pi}{4}\right)} &amp;&amp; \text{for } -2\pi &lt; \arg z &lt; \pi.
+\end{align}&lt;/math&gt;
+
+These can be extended to other values of {{math|arg ''z''}} using equations relating {{math|''H''{{su|b=''α''|p=(1)}}(''ze''&lt;sup&gt;''im''π&lt;/sup&gt;)}} and {{math|''H''{{su|b=''α''|p=(2)}}(''ze''&lt;sup&gt;''im''π&lt;/sup&gt;)}} to {{math|''H''{{su|b=''α''|p=(1)}}(''z'')}} and {{math|''H''{{su|b=''α''|p=(2)}}(''z'')}}.&lt;ref&gt;[[NIST]] [[Digital Library of Mathematical Functions]], Section [http://dlmf.nist.gov/10.11#E1 10.11].&lt;/ref&gt;
+
+It is interesting that although the Bessel function of the first kind is the average of the two Hankel functions, {{math|''J&lt;sub&gt;α&lt;/sub&gt;''(''z'')}} is not asymptotic to the average of these two asymptotic forms when {{mvar|z}} is negative (because one or the other will not be correct there, depending on the {{math|arg ''z''}} used). But the asymptotic forms for the Hankel functions permit us to write asymptotic forms for the Bessel functions of first and second kinds for ''complex'' (non-real) {{mvar|z}} so long as {{math|{{abs|''z''}}}} goes to infinity at a constant phase angle {{math|arg ''z''}} (using the square root having positive real part):
+
+:&lt;math&gt;\begin{align}
+J_\alpha(z) &amp;\sim \frac{1}{\sqrt{2\pi z}} e^{i\left(z-\frac{\alpha\pi}{2}-\frac{\pi}{4}\right)} &amp;&amp; \text{for } -\pi &lt; \arg z &lt; 0, \\
+J_\alpha(z) &amp;\sim \frac{1}{\sqrt{2\pi z}} e^{-i\left(z-\frac{\alpha\pi}{2}-\frac{\pi}{4}\right)} &amp;&amp; \text{for } 0 &lt; \arg z &lt; \pi, \\
+Y_\alpha(z) &amp;\sim -i\frac{1}{\sqrt{2\pi z}} e^{i\left(z-\frac{\alpha\pi}{2}-\frac{\pi}{4}\right)} &amp;&amp; \text{for } -\pi &lt; \arg z &lt; 0, \\
+Y_\alpha(z) &amp;\sim -i\frac{1}{\sqrt{2\pi z}} e^{-i\left(z-\frac{\alpha\pi}{2}-\frac{\pi}{4}\right)} &amp;&amp; \text{for } 0 &lt; \arg z &lt; \pi.
+\end{align}&lt;/math&gt;
+
+For the modified Bessel functions, [[Hermann Hankel|Hankel]] developed [[asymptotic expansion|asymptotic (large argument) expansion]]s as well:&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_377.htm p. 377, 9.7.1].&lt;/ref&gt;&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_378.htm p. 378, 9.7.2].&lt;/ref&gt;
+
+:&lt;math&gt;\begin{align}
+I_\alpha(z) &amp;\sim \frac{e^z}{\sqrt{2\pi z}} \left(1 - \frac{4 \alpha^2 - 1}{8z} + \frac{\left(4 \alpha^2 - 1\right) \left(4 \alpha^2 - 9\right)}{2! (8z)^2} - \frac{\left(4 \alpha^2 - 1\right) \left(4 \alpha^2 - 9\right) \left(4 \alpha^2 - 25\right)}{3! (8z)^3} + \cdots \right) &amp;&amp;\text{for }\left|\arg z\right|&lt;\frac{\pi}{2}, \\
+K_\alpha(z) &amp;\sim \sqrt{\frac{\pi}{2z}} e^{-z} \left(1 + \frac{4 \alpha^2 - 1}{8z} + \frac{\left(4 \alpha^2 - 1\right) \left(4 \alpha^2 - 9\right)}{2! (8z)^2} + \frac{\left(4 \alpha^2 - 1\right) \left(4 \alpha^2 - 9\right) \left(4 \alpha^2 - 25\right)}{3! (8z)^3} + \cdots \right) &amp;&amp;\text{for }\left|\arg z\right|&lt;\frac{3\pi}{2}.
+\end{align}&lt;/math&gt;
+
+When {{math|''α'' {{=}} {{sfrac|1|2}}}}, all the terms except the first vanish, and we have
+
+:&lt;math&gt;\begin{align}
+I_{\frac{1}{2}}(z) &amp;= \sqrt{\frac{2}{\pi z}}\sinh(z) \sim \frac{e^z}{\sqrt{2\pi z}} &amp;&amp; \text{for }\left|\arg z\right|&lt;\tfrac{\pi}{2}, \\
+K_{\frac{1}{2}}(z) &amp;= \sqrt{\frac{\pi}{2z}} e^{-z}.
+\end{align}&lt;/math&gt;
+
+For small arguments {{math|0 &lt; {{abs|''z''}} ≪ {{sqrt|''α'' + 1}}}}, we have
+
+:&lt;math&gt;\begin{align}
+I_\alpha(z) &amp;\sim \frac{1}{\Gamma(\alpha+1)} \left( \frac{z}{2} \right)^\alpha, \\
+K_\alpha(z) &amp;\sim \begin{cases} -\ln \left (\dfrac{z}{2} \right ) - \gamma &amp; \text{if } \alpha=0 \\ \frac{\Gamma(\alpha)}{2} \left( \dfrac{2}{z} \right)^\alpha &amp; \text{if } \alpha &gt; 0 \end{cases}
+\end{align}&lt;/math&gt;
+
+==Full domain approximations with elementary functions==
+
+A very good approximation (error below &lt;math&gt;0.3%&lt;/math&gt; of the maximum value 1){{Citation needed|date=September 2020}} of the Bessel function &lt;math&gt;J_0&lt;/math&gt; for an arbitrary value of the argument {{mvar|x}} may be obtained with the elementary functions by joining the trigonometric approximation working for smaller values of {{mvar|x}} with the expression containing attenuated cosine function valid for large arguments with a usage of the smooth transition function &lt;math&gt;\frac 1 {1 + (x/7)^{20}}&lt;/math&gt; i.e.
+
+:&lt;math&gt;J_0(x) \approx \left [\frac 1 6 + \frac 1 3\cos \frac x 2 + \frac 1 3 \cos \frac{\sqrt{3} x} 2 + \frac 1 6 \cos x \right ] \frac{1}{1 + (x/7)^{20}} + \sqrt{\frac {2}{\pi |x|}}\cos\left[x - \frac \pi 4 \sgn(x)\right]\left[1 - \frac{1}{1 + (x/7)^{20}}\right].&lt;/math&gt;
+
+==Properties==&lt;!-- This section is linked from [[Bessel function]] --&gt;
+For integer order {{math|''α'' {{=}} ''n''}}, {{mvar|J&lt;sub&gt;n&lt;/sub&gt;}} is often defined via a [[Laurent series]] for a generating function:
+
+:&lt;math&gt;e^{\left(\frac{x}{2}\right)\left(t-\frac{1}{t}\right)} = \sum_{n=-\infty}^\infty J_n(x) t^n&lt;/math&gt;
+
+an approach used by [[P. A. Hansen]] in 1843. (This can be generalized to non-integer order by [[Methods of contour integration|contour integration]] or other methods.) Another important relation for integer orders is the ''[[Jacobi–Anger expansion]]'':
+
+:&lt;math&gt;e^{iz \cos \phi} = \sum_{n=-\infty}^\infty i^n J_n(z) e^{in\phi}&lt;/math&gt;
+
+and
+
+:&lt;math&gt;e^{\pm iz \sin \phi} = J_0(z)+2\sum_{n=1}^\infty J_{2n}(z) \cos(2n\phi) \pm 2i \sum_{n=0}^\infty J_{2n+1}(z)\sin((2n+1)\phi)&lt;/math&gt;
+
+which is used to expand a [[plane wave]] as a [[plane wave expansion|sum of cylindrical waves]], or to find the [[Fourier series]] of a tone-modulated [[Frequency modulation|FM]] signal.
+
+More generally, a series
+
+:&lt;math&gt;f(z)=a_0^\nu J_\nu (z)+ 2 \cdot \sum_{k=1}^\infty a_k^\nu J_{\nu+k}(z)&lt;/math&gt;
+
+is called Neumann expansion of {{mvar|f}}. The coefficients for {{math|''ν'' {{=}} 0}} have the explicit form
+
+:&lt;math&gt;a_k^0=\frac{1}{2 \pi i} \int_{|z|=c} f(z) O_k(z) \,dz&lt;/math&gt;
+
+where {{mvar|O&lt;sub&gt;k&lt;/sub&gt;}} is [[Neumann polynomial|Neumann's polynomial]].&lt;ref&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_363.htm p. 363, 9.1.82] ff.&lt;/ref&gt;
+
+Selected functions admit the special representation
+
+:&lt;math&gt;f(z)=\sum_{k=0}^\infty a_k^\nu J_{\nu+2k}(z)&lt;/math&gt;
+
+with
+
+:&lt;math&gt;a_k^\nu=2(\nu+2k) \int_0^\infty f(z) \frac{J_{\nu+2k}(z)}z \,dz&lt;/math&gt;
+
+due to the orthogonality relation
+
+:&lt;math&gt;\int_0^\infty J_\alpha(z) J_\beta(z) \frac {dz} z= \frac 2 \pi \frac{\sin\left(\frac \pi 2 (\alpha-\beta) \right)}{\alpha^2 -\beta^2}&lt;/math&gt;
+
+More generally, if {{mvar|f}} has a branch-point near the origin of such a nature that
+
+:&lt;math&gt;f(z)= \sum_{k=0} a_k J_{\nu+k}(z)&lt;/math&gt;
+
+then
+
+:&lt;math&gt;\mathcal{L}\left\{\sum_{k=0} a_k J_{\nu+k}\right\}(s)=\frac{1}{\sqrt{1+s^2}}\sum_{k=0}\frac{a_k}{\left(s+\sqrt{1+s^2} \right) ^{\nu+k}}&lt;/math&gt;
+
+or
+
+:&lt;math&gt;\sum_{k=0} a_k \xi^{\nu+k}= \frac{1+\xi^2}{2\xi} \mathcal{L}\{f \} \left( \frac{1-\xi^2}{2\xi} \right)&lt;/math&gt;
+
+where &lt;math&gt;\mathcal{L}\{f \}&lt;/math&gt; is the [[Laplace transform]] of {{mvar|f}}.&lt;ref&gt;{{cite book|url=https://books.google.com/books?id=Mlk3FrNoEVoC&amp;q=bessel+neumann+series&amp;pg=PA536|title=A Treatise on the Theory of Bessel Functions|first=G. N.|last=Watson|date=25 August 1995|publisher=Cambridge University Press|accessdate=25 March 2018| via=Google Books|isbn=9780521483919}}&lt;/ref&gt;
+
+Another way to define the Bessel functions is the Poisson representation formula and the Mehler-Sonine formula:
+
+:&lt;math&gt;\begin{align}
+J_\nu(z) &amp;= \frac{\left(\frac{z}{2}\right)^\nu}{\Gamma\left(\nu +\frac{1}{2}\right)\sqrt{\pi}} \int_{-1}^1 e^{izs}\left(1-s^2\right)^{\nu-\frac{1}{2}} \,ds \\[5px]
+&amp;=\frac 2{{\left(\frac{z}{2}\right)}^\nu\cdot \sqrt{\pi} \cdot \Gamma\left(\frac{1}{2}-\nu\right)} \int_1^\infty \frac{\sin zu}{\left(u^2-1 \right )^{\nu+\frac 1 2}} \,du
+\end{align}&lt;/math&gt;
+
+where {{math|ν &gt; −{{sfrac|1|2}}}} and {{math|''z'' ∈ '''C'''}}.&lt;ref name=&quot;Zwillinger_2014&quot;&gt;{{cite book |author-first1=Izrail Solomonovich |author-last1=Gradshteyn |author-link1=Izrail Solomonovich Gradshteyn |author-first2=Iosif Moiseevich |author-last2=Ryzhik |author-link2=Iosif Moiseevich Ryzhik |author-first3=Yuri Veniaminovich |author-last3=Geronimus |author-link3=Yuri Veniaminovich Geronimus |author-first4=Michail Yulyevich |author-last4=Tseytlin |author-link4=Michail Yulyevich Tseytlin |author-first5=Alan |author-last5=Jeffrey |editor-first1=Daniel |editor-last1=Zwillinger |editor-first2=Victor Hugo |editor-last2=Moll |translator=Scripta Technica, Inc. |title=Table of Integrals, Series, and Products |publisher=[[Academic Press, Inc.]] |date=2015 |orig-year=October 2014 |edition=8 |language=English |isbn=978-0-12-384933-5 |lccn=2014010276 &lt;!-- |url=https://books.google.com/books?id=NjnLAwAAQBAJ |access-date=2016-02-21 --&gt;|title-link=Gradshteyn and Ryzhik |chapter=8.411.10.}}&lt;/ref&gt;
+This formula is useful especially when working with [[Fourier transforms]].
+
+Because Bessel's equation becomes [[Hermitian]] (self-adjoint) if it is divided by {{mvar|x}}, the solutions must satisfy an orthogonality relationship for appropriate boundary conditions. In particular, it follows that:
+
+:&lt;math&gt;\int_0^1 x J_\alpha\left(x u_{\alpha,m}\right) J_\alpha\left(x u_{\alpha,n}\right) \,dx = \frac{\delta_{m,n}}{2} \left[J_{\alpha+1} \left(u_{\alpha,m}\right)\right]^2 = \frac{\delta_{m,n}}{2} \left[J_{\alpha}'\left(u_{\alpha,m}\right)\right]^2&lt;/math&gt;
+
+where {{math|''α'' &gt; −1}}, {{math|''δ''&lt;sub&gt;''m'',''n''&lt;/sub&gt;}} is the [[Kronecker delta]], and {{math|''u''&lt;sub&gt;''α'',''m''&lt;/sub&gt;}} is the {{mvar|m}}th [[root of a function|zero]] of {{math|''J&lt;sub&gt;α&lt;/sub&gt;''(''x'')}}. This orthogonality relation can then be used to extract the coefficients in the [[Fourier–Bessel series]], where a function is expanded in the basis of the functions {{math|''J&lt;sub&gt;α&lt;/sub&gt;''(''x'' ''u''&lt;sub&gt;''α'',''m''&lt;/sub&gt;)}} for fixed {{mvar|α}} and varying {{mvar|m}}.
+
+An analogous relationship for the spherical Bessel functions follows immediately:
+
+:&lt;math&gt;\int_0^1 x^2 j_\alpha\left(x u_{\alpha,m}\right) j_\alpha\left(x u_{\alpha,n}\right) \,dx = \frac{\delta_{m,n}}{2} \left[j_{\alpha+1}\left(u_{\alpha,m}\right)\right]^2&lt;/math&gt;
+
+If one defines a [[boxcar function]] of {{mvar|x}} that depends on a small parameter {{mvar|ε}} as:
+
+:&lt;math&gt;f_\varepsilon(x)=\varepsilon \operatorname{rect}\left(\frac{x-1}\varepsilon\right)&lt;/math&gt;
+
+(where {{math|rect}} is the [[rectangle function]]) then the [[Hankel transform]] of it (of any given order {{math|''α'' &gt; −{{sfrac|1|2}}}}), {{math|''g&lt;sub&gt;ε&lt;/sub&gt;''(''k'')}}, approaches {{math|''J&lt;sub&gt;α&lt;/sub&gt;''(''k'')}} as {{mvar|ε}} approaches zero, for any given {{mvar|k}}. Conversely, the Hankel transform (of the same order) of {{math|''g&lt;sub&gt;ε&lt;/sub&gt;''(''k'')}} is {{math|''f&lt;sub&gt;ε&lt;/sub&gt;''(''x'')}}:
+
+:&lt;math&gt;\int_0^\infty k J_\alpha(kx) g_\varepsilon(k) \,dk = f_\varepsilon(x)&lt;/math&gt;
+
+which is zero everywhere except near 1. As {{mvar|ε}} approaches zero, the right-hand side approaches {{math|''δ''(''x'' − 1)}}, where {{mvar|δ}} is the [[Dirac delta function]]. This admits the limit (in the [[Distribution (mathematics)|distributional]] sense):
+
+:&lt;math&gt;\int_0^\infty k J_\alpha(kx) J_\alpha(k) \,dk = \delta(x-1)&lt;/math&gt;
+
+A change of variables then yields the ''closure equation'':&lt;ref&gt;Arfken &amp; Weber, section 11.2&lt;/ref&gt;
+
+:&lt;math&gt;\int_0^\infty x J_\alpha(ux) J_\alpha(vx) \,dx = \frac{1}{u} \delta(u - v)&lt;/math&gt;
+
+for {{math|''α'' &gt; −{{sfrac|1|2}}}}. The Hankel transform can express a fairly arbitrary function {{Clarify|reason=This can probably be precisely qualified e.g. square integrable etc.|date=June 2018}}as an integral of Bessel functions of different scales. For the spherical Bessel functions the orthogonality relation is:
+
+:&lt;math&gt;\int_0^\infty x^2 j_\alpha(ux) j_\alpha(vx) \,dx = \frac{\pi}{2u^2} \delta(u - v)&lt;/math&gt;
+
+for {{math|''α'' &gt; −1}}.
+
+Another important property of Bessel's equations, which follows from [[Abel's identity]], involves the [[Wronskian]] of the solutions:
+
+:&lt;math&gt;A_\alpha(x) \frac{dB_\alpha}{dx} - \frac{dA_\alpha}{dx} B_\alpha(x) = \frac{C_\alpha}{x}&lt;/math&gt;
+
+where {{mvar|A&lt;sub&gt;α&lt;/sub&gt;}} and {{mvar|B&lt;sub&gt;α&lt;/sub&gt;}} are any two solutions of Bessel's equation, and {{mvar|C&lt;sub&gt;α&lt;/sub&gt;}} is a constant independent of {{mvar|x}} (which depends on α and on the particular Bessel functions considered). In particular,
+
+:&lt;math&gt;J_\alpha(x) \frac{dY_\alpha}{dx} - \frac{dJ_\alpha}{dx} Y_\alpha(x) = \frac{2}{\pi x}&lt;/math&gt;
+
+and
+
+:&lt;math&gt;I_\alpha(x) \frac{dK_\alpha}{dx} - \frac{dI_\alpha}{dx} K_\alpha(x) = -\frac{1}{x},&lt;/math&gt;
+
+for {{math|''α'' &gt; −1}}.
+
+For {{math|''α'' &gt; −1}}, the even entire function of genus 1, {{math|''x''&lt;sup&gt;−''α''&lt;/sup&gt;''J&lt;sub&gt;α&lt;/sub&gt;''(''x'')}}, has only real zeros. Let
+
+:&lt;math&gt;0&lt;j_{\alpha,1}&lt;j_{\alpha,2}&lt;\cdots&lt;j_{\alpha,n}&lt;\cdots&lt;/math&gt;
+
+be all its positive zeros, then
+
+:&lt;math&gt;J_{\alpha}(z)=\frac{\left(\frac{z}{2}\right)^\alpha}{\Gamma(\alpha+1)}\prod_{n=1}^{\infty}\left(1-\frac{z^2}{j_{\alpha,n}^2}\right)&lt;/math&gt;
+
+(There are a large number of other known integrals and identities that are not reproduced here, but which can be found in the references.)
+
+==={{anchor|Recurrence relations}}Recurrence relations===
+
+The functions {{mvar|J&lt;sub&gt;α&lt;/sub&gt;}}, {{mvar|Y&lt;sub&gt;α&lt;/sub&gt;}}, {{math|''H''{{su|b=''α''|p=(1)}}}}, and {{math|''H''{{su|b=''α''|p=(2)}}}} all satisfy the [[recurrence relation]]s&lt;ref&gt;Abramowitz and Stegun, [http://people.math.sfu.ca/~cbm/aands/page_361.htm p. 361, 9.1.27].&lt;/ref&gt;
+
+:&lt;math&gt;\frac{2\alpha}{x} Z_\alpha(x) = Z_{\alpha-1}(x) + Z_{\alpha+1}(x)&lt;/math&gt;
+
+and
+
+:&lt;math&gt; 2\frac{dZ_\alpha (x)}{dx} = Z_{\alpha-1}(x) - Z_{\alpha+1}(x),&lt;/math&gt;
+
+
+where {{mvar|Z}} denotes {{mvar|J}}, {{mvar|Y}}, {{math|''H''&lt;sup&gt;(1)&lt;/sup&gt;}}, or {{math|''H''&lt;sup&gt;(2)&lt;/sup&gt;}}. These two identities are often combined, e.g. added or subtracted, to yield various other relations. In this way, for example, one can compute Bessel functions of higher orders (or higher derivatives) given the values at lower orders (or lower derivatives). In particular, it follows that&lt;ref&gt;Abramowitz and Stegun, [http://people.math.sfu.ca/~cbm/aands/page_361.htm p. 361, 9.1.30].&lt;/ref&gt;
+
+:&lt;math&gt;\begin{align}
+\left( \frac{1}{x} \frac{d}{dx} \right)^m \left[ x^\alpha Z_\alpha (x) \right] &amp;= x^{\alpha - m} Z_{\alpha - m} (x), \\
+\left( \frac{1}{x} \frac{d}{dx} \right)^m \left[ \frac{Z_\alpha (x)}{x^\alpha} \right] &amp;= (-1)^m \frac{Z_{\alpha + m} (x)}{x^{\alpha + m}}.
+\end{align}&lt;/math&gt;
+
+''Modified'' Bessel functions follow similar relations:
+
+:&lt;math&gt;e^{\left(\frac{x}{2}\right)\left(t+\frac{1}{t}\right)} = \sum_{n=-\infty}^\infty I_n(x) t^n&lt;/math&gt;
+
+and
+
+:&lt;math&gt;e^{z \cos \theta} = I_0(z) + 2\sum_{n=1}^\infty I_n(z) \cos n\theta.&lt;/math&gt;
+
+and
+
+:&lt;math&gt; \frac{1}{2\pi} \int_0^{2\pi}   e^{z \cos (m\theta) + y \cos \theta} = I_0(z)I_0(y) + 2\sum_{n=1}^\infty I_n(z)I_{mn}(y).&lt;/math&gt;
+
+
+The recurrence relation reads
+
+:&lt;math&gt;\begin{align}
+C_{\alpha-1}(x) - C_{\alpha+1}(x) &amp;= \frac{2\alpha}{x} C_\alpha(x), \\
+C_{\alpha-1}(x) + C_{\alpha+1}(x) &amp;= 2\frac{dC_\alpha}{dx},
+\end{align}&lt;/math&gt;
+
+where {{mvar|C&lt;sub&gt;α&lt;/sub&gt;}} denotes {{mvar|I&lt;sub&gt;α&lt;/sub&gt;}} or {{math|''e''&lt;sup&gt;''αi''π&lt;/sup&gt;''K&lt;sub&gt;α&lt;/sub&gt;''}}. These recurrence relations are useful for discrete diffusion problems.
+
+==Multiplication theorem==
+The Bessel functions obey a [[multiplication theorem]]
+
+:&lt;math&gt;\lambda^{-\nu} J_\nu(\lambda z) = \sum_{n=0}^\infty \frac{1}{n!} \left(\frac{\left(1 - \lambda^2\right)z}{2}\right)^n J_{\nu+n}(z),&lt;/math&gt;
+
+where {{mvar|λ}} and {{mvar|ν}} may be taken as arbitrary complex numbers.&lt;ref name = Abramowitz_9_1_74&gt;Abramowitz and Stegun, [http://www.math.sfu.ca/~cbm/aands/page_363.htm p. 363, 9.1.74].&lt;/ref&gt;&lt;ref&gt;{{cite journal|first=C. |last=Truesdell |url=http://www.pnas.org/cgi/reprint/36/12/752.pdf |title=On the Addition and Multiplication Theorems for the Special Functions |journal=Proceedings of the National Academy of Sciences, Mathematics |volume=1950 |issue=12 |pages=752–757 |date=1950|doi=10.1073/pnas.36.12.752 |pmid=16578355 |pmc=1063284 |bibcode=1950PNAS...36..752T }}&lt;/ref&gt; For {{math|{{abs|''λ''&lt;sup&gt;2&lt;/sup&gt; − 1}} &lt; 1}},&lt;ref name = Abramowitz_9_1_74 /&gt; the above expression also holds if {{mvar|J}} is replaced by {{mvar|Y}}. The analogous identities for modified Bessel functions and {{math|{{abs|''λ''&lt;sup&gt;2&lt;/sup&gt; − 1}} &lt; 1}} are
+
+:&lt;math&gt;\lambda^{-\nu} I_\nu(\lambda z) = \sum_{n=0}^\infty \frac{1}{n!} \left(\frac{\left(\lambda^2 - 1\right)z}{2}\right)^n I_{\nu+n}(z)&lt;/math&gt;
+
+and
+
+:&lt;math&gt;\lambda^{-\nu} K_\nu(\lambda z) = \sum_{n=0}^\infty \frac{(-1)^n}{n!} \left(\frac{\left(\lambda^2 - 1\right)z}{2}\right)^n K_{\nu+n}(z).&lt;/math&gt;
+
+==Zeros of the Bessel function==
+
+===Bourget's hypothesis===
+Bessel himself originally proved that for nonnegative integers {{mvar|n}}, the equation {{math|''J''&lt;sub&gt;''n''&lt;/sub&gt;(''x'') {{=}} 0}} has an infinite number of solutions in {{mvar|x}}.&lt;ref&gt;Bessel, F. (1824) &quot;Untersuchung des Theils der planetarischen Störungen&quot;, ''Berlin Abhandlungen'', article 14.&lt;/ref&gt; When the functions {{math|''J''&lt;sub&gt;''n''&lt;/sub&gt;(''x'')}} are plotted on the same graph, though, none of the zeros seem to coincide for different values of {{mvar|n}} except for the zero at {{math|''x'' {{=}} 0}}. This phenomenon is known as '''Bourget's hypothesis''' after the 19th-century French mathematician who studied Bessel functions. Specifically it states that for any integers {{math|''n'' ≥ 0}} and {{math|''m'' ≥ 1}}, the functions {{math|''J&lt;sub&gt;n&lt;/sub&gt;''(''x'')}} and {{math|''J''&lt;sub&gt;''n'' + ''m''&lt;/sub&gt;(''x'')}} have no common zeros other than the one at {{math|''x'' {{=}} 0}}. The hypothesis was proved by [[Carl Ludwig Siegel]] in 1929.&lt;ref&gt;Watson, pp. 484–485.&lt;/ref&gt;
+
+===Numerical approaches===
+For numerical studies about the zeros of the Bessel function, see {{harvtxt|Gil|Segura|Temme|2007}}, {{harvtxt|Kravanja| Ragos |Vrahatis |Zafiropoulos |1998}} and {{harvtxt|Moler|2004}}.
+
+==See also==
+{{Div col|colwidth=20em}}
+* [[Anger function]]
+* [[Bessel–Clifford function]]
+* [[Bessel–Maitland function]]
+* [[Bessel polynomials]]
+* [[Fourier–Bessel series]]
+* [[Schlömilch's Series]]
+* [[Hahn–Exton q-Bessel function|Hahn–Exton {{mvar|q}}-Bessel function]]
+* [[Hankel transform]]
+* [[Jackson q-Bessel function|Jackson {{mvar|q}}-Bessel function]]
+* [[Kelvin functions]]
+* [[Kontorovich-Lebedev transform]]
+* [[Lerche–Newberger sum rule]]
+* [[Lommel function]]
+* [[Lommel polynomial]]
+* [[Neumann polynomial]]
+* [[Sonine formula]]
+* [[Struve function]]
+* [[Vibrations of a circular drum]]
+* [[Anger function|Weber function]]
+{{div col end}}
+
+==Notes==
+{{Reflist|30em}}
+
+==References==
+{{refbegin|30em}}
+* {{Abramowitz_Stegun_ref2|9|355|10|435}}
+* [[George B. Arfken|Arfken, George B.]] and Hans J. Weber, ''Mathematical Methods for Physicists'', 6th edition (Harcourt: San Diego, 2005). {{ISBN|0-12-059876-0}}.
+* Bowman, Frank ''Introduction to Bessel Functions'' (Dover: New York, 1958). {{ISBN|0-486-60462-4}}.
+* {{cite journal | last1 = Mie | first1 = G. | authorlink=Gustav Mie | year = 1908 | title = Beiträge zur Optik trüber Medien, speziell kolloidaler Metallösungen | url = | journal = Ann. Phys. Leipzig | volume = 25 | issue = 3| page = 377 | doi = 10.1002/andp.19083300302 | bibcode = 1908AnP...330..377M }}
+* {{dlmf|first=F. W. J. |last=Olver|authorlink=Frank W. J. Olver|first2=L. C. |last2=Maximon|id=10}}.
+* {{Citation | last1=Press | first1=W. H. | authorlink=William H. Press | last2=Teukolsky | first2=S. A. | last3=Vetterling | first3=W. T. | last4=Flannery | first4=B. P. | year=2007 | title=Numerical Recipes: The Art of Scientific Computing | edition=3rd | publisher=Cambridge University Press | location=New York | isbn=978-0-521-88068-8 | chapter=Section 6.5. Bessel Functions of Integer Order | chapter-url=http://apps.nrbook.com/empanel/index.html#pg=274}}.
+* B Spain, M. G. Smith, ''[https://books.google.com/books?id=kYgZAQAAIAAJ&amp;dq=%22Functions+of+mathematical+physics%22+bessel+spain&amp;focus=searchwithinvolume&amp;q=Bessel Functions of mathematical physics]'', Van Nostrand Reinhold Company, London, 1970. Chapter 9 deals with Bessel functions.
+* N. M. Temme, ''Special Functions. An Introduction to the Classical Functions of Mathematical Physics'', John Wiley and Sons, Inc., New York, 1996. {{ISBN|0-471-11313-1}}. Chapter 9 deals with Bessel functions.
+* [[G. N. Watson|Watson, G. N.]], ''A Treatise on the Theory of Bessel Functions, Second Edition'', (1995) Cambridge University Press. {{ISBN|0-521-48391-3}}.
+* {{citation|title=Ueber eine Darstellung willkürlicher Functionen durch Bessel'sche Functionen
+|journal=Mathematische Annalen
+|volume= 6|issue= 2|pages= 146–161
+|year=1873|doi=10.1007/BF01443190|first=H. |last=Weber |s2cid=122409461
+| authorlink=Heinrich Friedrich Weber}}.
+* Gil, A., Segura, J., Temme, N. M. (2007). Numerical methods for special functions. Society for Industrial and Applied Mathematics.
+{{refend}}
+
+==External links==
+{{refbegin|30em}}
+* {{springer|first=P. I. |last=Lizorkin|id=b/b015840|title= Bessel functions}}.
+* {{springer|first=L. N. |last=Karmazina|first2=A.P. |last2=Prudnikov|id=c/c027610|title= Cylinder function}}.
+* {{springer|first=N. Kh.|last= Rozov|id=B/b015830|title=Bessel equation}}.
+* Wolfram function pages on Bessel [http://functions.wolfram.com/Bessel-TypeFunctions/BesselJ/ J] and [http://functions.wolfram.com/Bessel-TypeFunctions/BesselY/ Y] functions, and modified Bessel [http://functions.wolfram.com/Bessel-TypeFunctions/BesselI/ I] and [http://functions.wolfram.com/Bessel-TypeFunctions/BesselK/ K] functions. Pages include formulas, function evaluators, and plotting calculators.
+* [http://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html Wolfram Mathworld – Bessel functions of the first kind].
+* Bessel functions [http://www.librow.com/articles/article-11/appendix-a-34 J&lt;sub&gt;ν&lt;/sub&gt;], [http://www.librow.com/articles/article-11/appendix-a-35 Y&lt;sub&gt;ν&lt;/sub&gt;], [http://www.librow.com/articles/article-11/appendix-a-36 I&lt;sub&gt;ν&lt;/sub&gt;] and [http://www.librow.com/articles/article-11/appendix-a-37 K&lt;sub&gt;ν&lt;/sub&gt;] in Librow [http://www.librow.com/articles/article-11 Function handbook].
+*F. W. J. Olver, L. C. Maximon, [http://dlmf.nist.gov/10 Bessel Functions] (chapter 10 of the Digital Library of Mathematical Functions).
+*C. B. Moler, [https://web.archive.org/web/20170808214249/http://tocs.ulb.tu-darmstadt.de/124154883.pdf]. Numerical Computing with MATLAB. The MathWorks, Inc. Society for Industrial and Applied Mathematics.
+{{refend}}
+{{Authority control}}
+
+{{DEFAULTSORT:Bessel Function}}
+[[Category:Special hypergeometric functions]]
+[[Category:Fourier analysis]]</text>
+            <sha1>315ugc8rl8rekgp5qacss6dsxqjhsl2</sha1>
+        </revision>
+    </page>
+</mediawiki>
