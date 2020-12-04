@@ -380,6 +380,33 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void infiniteLoopTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "var0", "var\\d+");
+        PrintablePomTaggedExpression ppte = mlp.parse("f(p)");
+
+        PomMatcher matcher = blueprint.matcher(ppte);
+        assertTrue(matcher.find(), matcher.groups().toString()); // it first matches the sequence itself
+        assertTrue(matcher.find(), matcher.groups().toString()); // than it matches the elements of the sequence, namely all
+
+        // now there is no more to match... all elements have been processed and non of them had more children
+        assertFalse(matcher.find(), matcher.groups().toString());
+    }
+
+    @Test
+    public void equalSignIsGenerallyNotAllowedTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "var0 var1", "var\\d+");
+        PrintablePomTaggedExpression ppte = mlp.parse("f(p) = x");
+
+        PomMatcher matcher = blueprint.matcher(ppte);
+        assertTrue(matcher.find(), matcher.groups().toString()); // f and (p)
+        assertTrue(matcher.find(), matcher.groups().toString()); // ( and p)
+        assertTrue(matcher.find(), matcher.groups().toString()); // p and )
+        assertFalse(matcher.find(), matcher.groups().toString()); // no longer possible
+    }
+
+    @Test
     public void configTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
                 PomMatcherBuilder.compile(mlp, "1 + var1 + 2", "var\\d+");
@@ -563,6 +590,39 @@ public class MatchablePomTaggedExpressionTests {
         // return false
         for ( int i = 2; i < 4; i++ )
             assertFalse(pomMatcher.find(), "Suddenly returned true again in find() invoke number " + i);
+    }
+
+    @Test
+    public void pomMatcherClashWildcardMatchTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "var1 + var1", "([pv])ar\\d");
+
+        PomMatcher pomMatcher = blueprint.matcher( "x + x" );
+        assertTrue(pomMatcher.match());
+        assertTrue(pomMatcher.find());
+        assertFalse(pomMatcher.find());
+
+        pomMatcher = blueprint.matcher( "x + y" );
+        assertFalse(pomMatcher.match());
+        assertFalse(pomMatcher.find());
+        assertFalse(pomMatcher.find());
+    }
+
+    @Test
+    public void leadingWildcardMatchTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "var0 + var1", "([pv])ar\\d");
+
+        assertTrue( blueprint.match("x^2 + x") );
+        assertTrue( blueprint.match("x + y") );
+        assertTrue( blueprint.match("x - z + y") );
+        assertFalse( blueprint.match("x - z") );
+
+        PomMatcher pomMatcher = blueprint.matcher( "x + y + z" );
+        assertTrue(pomMatcher.match()); // x + y and z
+        assertTrue(pomMatcher.find(), pomMatcher.groups().entrySet().toString()); // x and y
+        assertTrue(pomMatcher.find(), pomMatcher.groups().entrySet().toString()); // y and z
+        assertFalse(pomMatcher.find(), pomMatcher.groups().entrySet().toString()); // nothing
     }
 
     @Test
@@ -1319,6 +1379,17 @@ public class MatchablePomTaggedExpressionTests {
 
         PrintablePomTaggedExpression result = matcher.replacePattern( "\\JacobipolyP{var1}{var2}{var3}@{var4}" );
         assertEquals("\\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos \\theta}", result.getTexString());
+    }
+
+    @Test
+    public void replaceAllTest() throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parse("\\gamma");
+
+        MatchablePomTaggedExpression genericPattern = PomMatcherBuilder.compile("\\gamma", "[pv]ar\\d");
+        PomMatcher matcher = genericPattern.matcher(ppte, MatcherConfig.getExactMatchConfig());
+        ppte = matcher.replacePattern("\\EulerConstant");
+
+        assertEquals("\\EulerConstant", ppte.getTexString());
     }
 
     @Test

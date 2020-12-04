@@ -78,6 +78,12 @@ public abstract class AbstractMatchablePomTaggedExpression
     }
 
     /**
+     * Returns true if this node is an isolated wildcard, which means it does not have any siblings or no parent.
+     * @return true if this is an isolated wildcard
+     */
+    public abstract boolean isIsolatedWildcard();
+
+    /**
      * Generates a {@link PomMatcher} object from the given expression.
      * It uses the {@link MLPWrapper} given at initialization to generate
      * a parse tree.

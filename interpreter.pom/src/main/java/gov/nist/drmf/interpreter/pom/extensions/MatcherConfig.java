@@ -12,10 +12,10 @@ import java.util.regex.Pattern;
  */
 public class MatcherConfig {
     @Language("RegExp")
-    public static final String DEFAULT_ILLEGAL_TOKEN_FOR_WILDCARD = "[,;.]";
+    public static final String DEFAULT_ILLEGAL_TOKEN_FOR_WILDCARD = "[,;.=<>?]|\\\\[gl]eq?";
 
     @Language("RegExp")
-    public static final String ALLOW_COMMA_IN_WILDCARD = "[;.]";
+    public static final String ALLOW_COMMA_IN_WILDCARD = "[;.=<>]|\\\\[gl]eq?";
 
     private static final String ALL_KEY = "GENERIC_ALL_KEY";
 

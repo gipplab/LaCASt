@@ -60,7 +60,8 @@ public class PomTaggedExpressionChildrenMatcher {
         return hiddenFirstElement != null || (
                 !this.children.isEmpty() &&
                         this.children.get(0).isWildcard() &&
-                        !this.children.get(0).containsFontRules()
+                        !this.children.get(0).containsFontRules() &&
+                        !this.children.get(0).isSingleSequenceWildcard()
         );
     }
 
@@ -79,6 +80,19 @@ public class PomTaggedExpressionChildrenMatcher {
         }
         hiddenFirstElement = this.children.removeFirst();
         return hiddenFirstElement;
+    }
+
+    public void undoHiddenFirstWildcard() {
+        if ( hiddenFirstElement == null ) return;
+
+        try {
+            parent.getComponents().add(0, hiddenFirstElement);
+        } catch (IndexOutOfBoundsException ioobe) {
+            throw new NoSuchElementException(ioobe.getMessage());
+        }
+
+        this.children.addFirst(hiddenFirstElement);
+        hiddenFirstElement = null;
     }
 
     /**

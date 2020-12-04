@@ -111,6 +111,8 @@ public class MathematicalObjectOfInterest {
                 MatcherConfig.getInPlaceMatchConfig().ignoreNumberOfAts(false)
         );
 
+        // now we search for the first match that share a potential primary identifier otherwise we do not consider
+        // it as a match.
         while ( matcher.find() ) {
             // we found a match. let's see if at least one primary identifier is shared
             Map<String, String> groups = matcher.groups();
@@ -127,7 +129,7 @@ public class MathematicalObjectOfInterest {
             }
         }
 
-        // we did not found appropriate match
+        // we did not find an appropriate match
         return null;
     }
 

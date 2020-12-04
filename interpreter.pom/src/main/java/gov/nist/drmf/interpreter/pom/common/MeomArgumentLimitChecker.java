@@ -59,11 +59,7 @@ public class MeomArgumentLimitChecker {
      * @return true if the given expression is a look-alike differential expression
      */
     public static boolean isPotentialLimitBreakpoint(PomTaggedExpression pte) {
-        MathTermTags tag = MathTermTags.getTagByExpression(pte);
-        if ( MathTermTags.alphanumeric.equals(tag) ) {
-            String termText = pte.getRoot().getTermText();
-            return termText.matches("^d[a-zA-Z]+");
-        }
-        return false;
+        String termText = pte.getRoot().getTermText();
+        return termText.matches("^d[a-zA-Z]+");
     }
 }
