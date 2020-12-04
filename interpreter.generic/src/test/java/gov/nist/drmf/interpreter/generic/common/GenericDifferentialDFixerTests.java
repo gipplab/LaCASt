@@ -59,4 +59,14 @@ public class GenericDifferentialDFixerTests {
         assertEquals(ppte, newPPTE);
         assertEquals("\\int_{-1}^1 (1 - x) \\diff{x}", newPPTE.getTexString());
     }
+
+    @Test
+    void inlineIntDsTest() throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parse("\\int_{-1}^1 e^{izs} (1 - s^2)^{\\nu-\\frac{1}{2}} ds");
+        GenericDifferentialDFixer fixer = new GenericDifferentialDFixer(ppte);
+        PrintablePomTaggedExpression newPPTE = fixer.fixDifferentialD();
+
+        assertEquals(ppte, newPPTE);
+        assertEquals("\\int_{-1}^1 e^{izs} (1 - s^2)^{\\nu-\\frac{1}{2}} \\diff{s}", newPPTE.getTexString());
+    }
 }

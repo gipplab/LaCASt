@@ -7,10 +7,7 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Andre Greiner-Petter
@@ -83,12 +80,15 @@ public class PomMatcher {
         this.remaining = new LinkedList<>();
         this.latestDepthExpression = null;
 
+        updateLeadingWildcard();
+        this.matcherFirstElement = isSequenceMatcher ? (MatchablePomTaggedExpression)matcher.getComponents().get(0) : null;
+    }
+
+    private void updateLeadingWildcard() {
         // in case it starts with a wildcard, its more efficient to handle that later. remove it and continue
         if ( children.isFirstChildWildcard() ) {
             leadingBackUpWildcard = children.hideFirstWildcard();
         }
-
-        this.matcherFirstElement = isSequenceMatcher ? (MatchablePomTaggedExpression)matcher.getComponents().get(0) : null;
     }
 
     /**
@@ -104,11 +104,13 @@ public class PomMatcher {
         MatcherConfig internalConfig = new MatcherConfig(config);
         internalConfig.allowLeadingTokens(false);
         internalConfig.allowFollowingTokens(false);
+        children.undoHiddenFirstWildcard();
         boolean res = matcher.match(copy, internalConfig);
         if ( res ) {
             lastMatchWentUntilEnd = true;
             latestHitMatchedWithoutPassingElements = true;
         }
+        updateLeadingWildcard();
         return res;
     }
 
@@ -134,7 +136,9 @@ public class PomMatcher {
 
         // if the config does not allow leading tokens that does not match, its a simple match method
         // and "find" does not make sense
-        if ( !config.allowLeadingTokens() ) {
+        if ( !config.allowLeadingTokens() && !remaining.isEmpty() ) {
+            latestDepthExpression = remaining.removeFirst();
+            latestDepthExpression.currentReferenceNode = latestDepthExpression.remainingExpressions.removeFirst();
             return matcher.match(copy, config);
         }
 
@@ -189,6 +193,13 @@ public class PomMatcher {
             }
 
             matched = findNextMatchFromIndex(first, elements);
+
+            if ( matched && leadingBackUpWildcard != null ) {
+                if ( !backlog.isEmpty() ) {
+                    matched = addLogicalGroupFromBacklog(backlog);
+                } else matched = false;
+            }
+
             updateBacklog(matched, first, backlog);
         }
 
@@ -250,18 +261,12 @@ public class PomMatcher {
             // we may accidentally found partial hits before, we must reset these
             refGroups.clear();
         }
-
-        if ( matched && leadingBackUpWildcard != null ) {
-            if ( !backlog.isEmpty() ) {
-                addLogicalGroupFromBacklog(backlog);
-            }
-        }
     }
 
     private void storeLatestMatch(List<PrintablePomTaggedExpression> elements) {
         // if we found a match, we have to roll back the elements, if there
         // are elements remaining
-        if ( !elements.isEmpty() ) {
+        if ( !elements.isEmpty() && latestDepthExpression != null ) {
             remaining.addFirst(latestDepthExpression);
         }
 
@@ -367,7 +372,8 @@ public class PomMatcher {
     }
 
     private void balanceReplacement(List<PrintablePomTaggedExpression> replacement) {
-        boolean wasBalanced = latestDepthExpression.currentReferenceNode.getTexString().matches("^\\s*\\{.+}\\s*$");
+        boolean wasBalanced =
+                latestDepthExpression.currentReferenceNode.getTexString().matches("^\\s*\\{.+}\\s*$");
         if ( wasBalanced && replacement.size() == 1 ) {
             PrintablePomTaggedExpression ppte = replacement.get(0);
             ppte.makeBalancedTexString();
@@ -388,6 +394,9 @@ public class PomMatcher {
 
     private LinkedList<LinkedList<PrintablePomTaggedExpression>> getCapturedGroupsAsList() {
         LinkedList<LinkedList<PrintablePomTaggedExpression>>  result = new LinkedList<>();
+
+        if ( matcher.isIsolatedWildcard() ) return result;
+
         Map<String, PrintablePomTaggedExpression> groups = matcher.getMatches();
         List<String> keys = new LinkedList<>(groups.keySet());
 
@@ -407,18 +416,20 @@ public class PomMatcher {
         return result;
     }
 
-    private void addLogicalGroupFromBacklog(LinkedList<PrintablePomTaggedExpression> backlog) {
+    private boolean addLogicalGroupFromBacklog(LinkedList<PrintablePomTaggedExpression> backlog) {
         PrintablePomTaggedExpression l = backlog.getLast();
         String s = l.getTexString();
+        boolean capturedSuccessful;
         if ( s.startsWith("^") || s.startsWith("_") ) {
             LinkedList<PomTaggedExpression> tmp = new LinkedList<>();
             tmp.add(backlog.removeFirst());
             tmp.add(l);
-            refGroups.setCapturedGroup( leadingBackUpWildcard.getWildcardID(), tmp);
+            capturedSuccessful = refGroups.setCapturedGroup( leadingBackUpWildcard.getWildcardID(), tmp);
         } else {
-            refGroups.setCapturedGroup( leadingBackUpWildcard.getWildcardID(), backlog.removeLast() );
+            capturedSuccessful = refGroups.setCapturedGroup( leadingBackUpWildcard.getWildcardID(), backlog.removeLast() );
         }
         backlog.clear();
+        return capturedSuccessful;
     }
 
     /**

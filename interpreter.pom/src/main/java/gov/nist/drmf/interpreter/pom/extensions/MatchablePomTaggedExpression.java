@@ -153,6 +153,13 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
     }
 
     /**
+     * @return true if this is a single sequence wildcard
+     */
+    public boolean isSingleSequenceWildcard() {
+        return isWildcard && isSingleSequenceWildcard;
+    }
+
+    /**
      * @return the wildcard id (is null if this node is not a wildcard).
      */
     public String getWildcardID() {
@@ -167,6 +174,11 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
      */
     public boolean containsFontRules() {
         return !this.fontManipulations.isEmpty();
+    }
+
+    @Override
+    public boolean isIsolatedWildcard() {
+        return isWildcard && (getParent() == null || (previousSibling == null && nextSibling == null));
     }
 
     /**
@@ -281,13 +293,15 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         if ( !isSingleSequenceWildcard && fontManipulations.isEmpty() ) {
             while (!followingExpressions.isEmpty()){
                 expression = followingExpressions.remove(0);
-                if ( isNotAllowedTokenForWildcardMatch(expression, config) ) return false;
+                if ( isNotAllowedTokenForWildcardMatch(expression, config) ) {
+                    if ( !config.allowFollowingTokens() ) return false;
+                    else break;
+                }
                 matches.add(expression);
             }
         }
 
-        getCaptures().setCapturedGroup(wildcardID, matches);
-        return true;
+        return getCaptures().setCapturedGroup(wildcardID, matches);
     }
 
     private boolean matchWildcardUntilEnd(
@@ -321,8 +335,7 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         // nextSibling has matched the next element in followingExpression... so put add back into the queue
         // and return true
         followingExpressions.add(0, next);
-        getCaptures().setCapturedGroup(wildcardID, matches);
-        return true;
+        return getCaptures().setCapturedGroup(wildcardID, matches);
     }
 
     /**

@@ -115,6 +115,7 @@ public class GenericDifferentialDFixer {
                         Log.warn("Non-Matching closing bracket encountered. Last opened " + bracketStack.getLast() + " but encountered " + bracket);
                     bracketStack.removeLast();
                 }
+                continue;
             }
             if ( bracketStack.isEmpty() ) {
                 if ( MeomArgumentLimitChecker.isGeneralBreakPoint(node.getRoot()) ) return new EndPosition(State.BREAKPOINT, i);

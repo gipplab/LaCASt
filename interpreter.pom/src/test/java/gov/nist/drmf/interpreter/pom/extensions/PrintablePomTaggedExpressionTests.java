@@ -802,7 +802,7 @@ public class PrintablePomTaggedExpressionTests {
         );
     }
 
-    private void checkList( List<PrintablePomTaggedExpression> components, String... matches ) {
+    public static void checkList( List<PrintablePomTaggedExpression> components, String... matches ) {
         assertEquals(matches.length, components.size(), "Length doesnt match: [" +
                 components.stream().map(PrintablePomTaggedExpression::getTexString).collect(Collectors.joining(", ")) + "] VS " + Arrays.toString(matches));
         for ( int i = 0; i < matches.length; i++ ){

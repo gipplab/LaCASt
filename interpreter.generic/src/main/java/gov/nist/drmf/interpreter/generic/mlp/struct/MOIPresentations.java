@@ -93,8 +93,8 @@ public class MOIPresentations {
                     String translation = translators.translate(cas, semanticPTE);
                     this.casRepresentations.put(cas, translation);
                     LOG.debug("Translation to " + cas + ": " + translation);
-                } catch ( TranslationException te ) {
-                    LOG.warn("Unable to translate expression to CAS " + cas);
+                } catch ( Exception e ) {
+                    LOG.warn("Unable to translate expression to CAS " + cas + ": " + e.toString());
                 }
             }
         } catch (IOException e) {

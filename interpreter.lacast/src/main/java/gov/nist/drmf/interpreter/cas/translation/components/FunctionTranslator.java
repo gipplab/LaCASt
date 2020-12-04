@@ -64,6 +64,22 @@ public class FunctionTranslator extends AbstractListTranslator {
     public TranslatedExpression translate(PomTaggedExpression exp, List<PomTaggedExpression> following)
             throws TranslationException {
         LOG.debug("Trigger general function translator");
+        if ( considerItAsAlphanumeric(exp, following) ) {
+            LOG.debug("Detected function that looks like alphanumeric (no arguments and no leading backslash) continue as alphanumeric.");
+            // inform the user that we take it as alphanumeric
+            InformationLogger infoLogger = super.getInfoLogger();
+            infoLogger.addGeneralInfo(
+                    exp.getRoot().getTermText(),
+                    "Was tagged as a function but it does not look like it and there are no arguments. " +
+                            "Hence, we interpret it as a string, rather than an actual function. " +
+                            "Use '\\operatorname' to forcefully translate it as a function."
+            );
+            exp.getRoot().setTag( MathTermTags.alphanumeric.tag() );
+            MathTermTranslator mtt = new MathTermTranslator(this);
+            localTranslations.addTranslatedExpression(mtt.translate(exp, following));
+            return localTranslations;
+        }
+
         translate(exp);
         parse(following);
 
@@ -73,6 +89,14 @@ public class FunctionTranslator extends AbstractListTranslator {
         TranslatedExpression global = super.getGlobalTranslationList();
         global.mergeLastNExpressions(num);
         return localTranslations;
+    }
+
+    private boolean considerItAsAlphanumeric(PomTaggedExpression exp, List<PomTaggedExpression> following) {
+        if ( !exp.getRoot().getTermText().startsWith("\\") ) {
+            // a function without leading backslash. Maybe we should take it as alphanumeric?
+            // ok, lets take it as alphanumeric if, and only if there are no arguments (following is empty)
+            return following.isEmpty();
+        } else return false;
     }
 
     /**

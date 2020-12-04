@@ -5,6 +5,8 @@ import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import mlp.PomTaggedExpression;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +17,8 @@ import java.util.regex.Matcher;
  * @author Andre Greiner-Petter
  */
 public class GroupCaptures {
+    private static final Logger LOG = LogManager.getLogger(GroupCaptures.class.getName());
+
     /**
      * The library is a shared object among all nodes of one tree.
      * This is necessary to check the integrity within matches.
@@ -48,41 +52,40 @@ public class GroupCaptures {
      * Sets the captured for the given id
      * @param id group id
      * @param match the list of captures (might contain only one hit)
-     * @throws NotMatchableException
-     * Will be thrown if this captured was captured before and the new match clashes with the previous hit.
+     * @return true if the match is valid. False if this captured was captured before and the new match clashes with
+     * the previous hit.
      * For example if the group 'var1' captured 'x' before but is trying to capture 'y' it will throw the
      * exception. If it captures multiple times the same object, nothing happens.
      */
-    public void setCapturedGroup(String id, List<PomTaggedExpression> match)
-            throws NotMatchableException {
+    public boolean setCapturedGroup(String id, List<PomTaggedExpression> match) {
         PrintablePomTaggedExpression m;
         if ( match.size() > 1 ) {
             m = FakeMLPGenerator.generateEmptySequencePPTE();
             m.setComponents(match);
         } else if ( match.size() == 1 ) m = (PrintablePomTaggedExpression) match.get(0);
         else throw new IllegalArgumentException("Cannot set the hit for an empty match.");
-        setCapturedGroup(id, m);
+        return setCapturedGroup(id, m);
     }
 
     /**
      * Sets the captured for the given id
      * @param id group id
      * @param match the capture
-     * @throws NotMatchableException
-     * Will be thrown if this captured was captured before and the new match clashes with the previous hit.
+     * @return true if the match is valid. False if this captured was captured before and the new match clashes with
+     * the previous hit.
      * For example if the group 'var1' captured 'x' before but is trying to capture 'y' it will throw the
      * exception. If it captures multiple times the same object, nothing happens.
      */
-    public void setCapturedGroup(String id, PrintablePomTaggedExpression match)
-            throws NotMatchableException {
+    public boolean setCapturedGroup(String id, PrintablePomTaggedExpression match) {
         if ( matchLibrary.containsKey(id) ) {
-            checkGroupIntegrity(id, match);
+            return checkGroupIntegrity(id, match);
         } else {
             matchLibrary.put(id, match);
+            return true;
         }
     }
 
-    private void checkGroupIntegrity(String id, PrintablePomTaggedExpression match) {
+    private boolean checkGroupIntegrity(String id, PrintablePomTaggedExpression match) {
         String prev = matchLibrary.get(id).getTexString();
         String matchS = match.getTexString();
 
@@ -90,9 +93,10 @@ public class GroupCaptures {
         matchS = TeXPreProcessor.trimCurlyBrackets(matchS);
 
         if ( !prev.equals(matchS) ) {
-            String msg = String.format("%s matches clashed in '%s' vs '%s'", id, prev, matchS);
-            throw new NotMatchableException(msg);
-        }
+            String msg = String.format("Match violates group integrity: %s matches clashed in '%s' vs '%s'", id, prev, matchS);
+            LOG.debug(msg);
+            return false;
+        } else return true;
     }
 
     /**

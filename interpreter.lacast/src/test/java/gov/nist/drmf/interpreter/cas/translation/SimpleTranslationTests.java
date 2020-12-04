@@ -354,6 +354,17 @@ class SimpleTranslationTests {
     }
 
     @Test
+    void dsNotAFunctionTranslationTest() {
+        String in = "x + ds";
+        String out = "x + d*s";
+        // ds is usually tagged as a function (Jacobi elliptic function) but has no arguments here. so the translator
+        // should be smart enough to detect that problem and handle ds here as alphanumeric
+        assertEquals(out, slt.translate(in));
+        String info = slt.getInfoLogger().getInformation("ds");
+        assertTrue( info.contains("not look like") && info.contains("function") );
+    }
+
+    @Test
     void bracketNormalizationTest() {
         String in = "\\left\\{[x+y] \\{y+z\\}\\right\\}";
         String out = "((x + y)*(y + z))";
