@@ -67,7 +67,8 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
 
     public static void main(String[] args) throws IOException {
 //        Path p = Paths.get("/mnt/share/data/wikipedia/dlmf-template-pages-26-11-2020.xml");
-        Path p = Paths.get("BesselFunction.xml");
+//        Path p = Paths.get("BesselFunction.xml");
+        Path p = Paths.get("Jacobi_polynomials.xml");
         GenericLatexSemanticEnhancer enhancer = new GenericLatexSemanticEnhancer();
         List<SemanticEnhancedDocument> docs = enhancer.getSemanticEnhancedDocuments(p);
 
@@ -77,7 +78,8 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
 
         String serializedDoc = mapper.writer(prettyPrinter).writeValueAsString(docs);
 //        Files.writeString( Paths.get("/mnt/share/data/wikipedia/Results/dlmf-template-results-26-11-2020-generated-03-12-2020.json"), serializedDoc );
-        Files.writeString( Paths.get("Result-Bessel.json"), serializedDoc );
+//        Files.writeString( Paths.get("Result-Bessel.json"), serializedDoc );
+        Files.writeString( Paths.get("Results.json"), serializedDoc );
 
         for ( SemanticEnhancedDocument doc : docs ) {
             System.out.println("Document: " + doc.getTitle());
