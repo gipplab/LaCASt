@@ -2,7 +2,7 @@ package gov.nist.drmf.interpreter.generic.mlp;
 
 import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
 import gov.nist.drmf.interpreter.generic.common.GenericReplacementTool;
-import gov.nist.drmf.interpreter.generic.elasticsearch.ElasticSearchConnector;
+import gov.nist.drmf.interpreter.generic.elasticsearch.DLMFElasticSearchClient;
 import gov.nist.drmf.interpreter.generic.elasticsearch.MacroResult;
 import gov.nist.drmf.interpreter.generic.macro.*;
 import gov.nist.drmf.interpreter.generic.mlp.struct.MOIAnnotation;
@@ -28,7 +28,7 @@ public class SemanticEnhancer {
 
     private final MacroDistributionAnalyzer macroDist;
 
-    private final ElasticSearchConnector elasticSearchConnector;
+    private DLMFElasticSearchClient elasticSearchConnector;
 
     private static final int considerNumberOfTopRelations = 3;
     private static final int considerNumberOfTopMacros = 5;
@@ -43,7 +43,6 @@ public class SemanticEnhancer {
     private double score;
 
     public SemanticEnhancer() {
-        this.elasticSearchConnector = ElasticSearchConnector.getDefaultInstance();
         this.macroPatternMemory = new HashSet<>();
         this.macroPatterns = new LinkedList<>();
         this.definiensMemory = new HashSet<>();
@@ -54,12 +53,18 @@ public class SemanticEnhancer {
     }
 
     private void reset() {
+        elasticSearchConnector = new DLMFElasticSearchClient();
         macroPatternMemory.clear();
         macroPatterns.clear();
         definiensMemory.clear();
         definiens.clear();
         macros.clear();
         score = 0;
+    }
+
+    private void cleanup() {
+        elasticSearchConnector.stop();
+        elasticSearchConnector = null;
     }
 
     public double getScore() {
@@ -76,6 +81,12 @@ public class SemanticEnhancer {
 
     public PrintablePomTaggedExpression semanticallyEnhance(MOINode<MOIAnnotation> node) throws IOException, ParseException {
         reset();
+        PrintablePomTaggedExpression result = coreSemanticallyEnhance(node);
+        cleanup();
+        return result;
+    }
+
+    private PrintablePomTaggedExpression coreSemanticallyEnhance(MOINode<MOIAnnotation> node) throws IOException, ParseException {
         String originalTex = node.getNode().getOriginalLaTeX();
         LOG.info("Start semantically enhancing moi " + node.getId() + ": " + originalTex);
 

@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
-import gov.nist.drmf.interpreter.common.constants.CASSupporter;
+import gov.nist.drmf.interpreter.common.config.CASSupporter;
 import gov.nist.drmf.interpreter.common.tests.TranslationTestCase;
 import gov.nist.drmf.interpreter.common.tests.TranslationTestCaseProvider;
 import org.apache.logging.log4j.LogManager;

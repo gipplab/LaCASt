@@ -1,7 +1,5 @@
 package gov.nist.drmf.interpreter.generic.elasticsearch;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -15,12 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @AssumeElasticsearchAvailability
 public class ElasticSearchConnectorTests {
-    private static ElasticSearchConnector es;
+    private static DLMFElasticSearchClient es;
 
     @BeforeAll
     static void setup() throws IOException {
-        es = ElasticSearchConnector.getDefaultInstance();
-        es.indexDLMFDatabase();
+        es = new DLMFElasticSearchClient();
+        es.indexDLMFDatabaseIfNotExist();
     }
 
     @Test

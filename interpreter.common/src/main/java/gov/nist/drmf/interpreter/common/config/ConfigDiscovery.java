@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.common.config;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.apache.logging.log4j.LogManager;
@@ -27,7 +28,8 @@ import java.nio.file.Paths;
 public final class ConfigDiscovery {
     private static final Logger LOG = LogManager.getLogger(ConfigDiscovery.class.getName());
 
-    private static final ObjectMapper MAPPER = new ObjectMapper(new YAMLFactory());
+    private static final ObjectMapper MAPPER = new ObjectMapper(new YAMLFactory())
+                    .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
 
     private static Config config = null;
 
@@ -108,7 +110,7 @@ public final class ConfigDiscovery {
         try {
             return MAPPER.readValue(path.toFile(), Config.class);
         } catch (Exception e) {
-            LOG.trace("Unable to load config from " + path + ": " + e.getMessage());
+            LOG.debug("Unable to load config from " + path + ": " + e.getMessage());
             return null;
         }
     }

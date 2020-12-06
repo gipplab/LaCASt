@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.formulasearchengine.mathosphere.mlp.pojos.Position;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.generic.mlp.SemanticEnhancer;
@@ -28,7 +29,8 @@ import java.util.stream.Stream;
  * @author Andre Greiner-Petter
  */
 @JsonPropertyOrder({
-        "formula", "semanticFormula", "confidence", "translations", "includes", "isPartOf", "definiens"
+        "formula", "semanticFormula", "confidence", "translations",
+        "positions", "includes", "isPartOf", "definiens"
 })
 public class MOIPresentations {
     private static final Logger LOG = LogManager.getLogger(MOIPresentations.class.getName());
@@ -52,6 +54,9 @@ public class MOIPresentations {
     @JsonProperty("confidence")
     private double score = 0;
 
+    @JsonProperty("positions")
+    private List<Position> positions;
+
     @JsonProperty("includes")
     private List<String> ingoingNodes;
 
@@ -67,6 +72,8 @@ public class MOIPresentations {
         this.genericLatex = node.getNode().getOriginalLaTeX();
         this.ingoingNodes = getDependants(node, true);
         this.outgoingNodes = getDependants(node, false);
+        this.positions = node.getAnnotation().getFormula().getPositions();
+        this.positions.sort( Position.getComparator() );
         LOG.debug("Setup MOI representations on graph node: " + genericLatex);
         SemanticEnhancer enhancer = new SemanticEnhancer();
         casRepresentations = new HashMap<>();
@@ -77,7 +84,6 @@ public class MOIPresentations {
             this.macros = enhancer.getUsedMacros();
 
             definiens.sort(Comparator.comparingDouble(FormulaDefiniens::getScore).reversed());
-
             if ( semanticPTE == null ) {
                 LOG.warn("Unable to semantically enhance latex.");
                 return;
@@ -151,6 +157,11 @@ public class MOIPresentations {
     @JsonIgnore
     public List<String> getMacros() {
         return macros;
+    }
+
+    @JsonGetter("positions")
+    public List<Position> getPositions() {
+        return positions;
     }
 
     @JsonGetter("includes")

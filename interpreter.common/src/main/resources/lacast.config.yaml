@@ -3,8 +3,8 @@
 # or you put this file into the local directory or your home directory in ".lacast" folder.
 lacast.libs.path: "./libs"
 lacast.config.path: "./config"
-lacast.cas.paths:
+
+lacast.cas:
   - cas: "Maple"
-    paths:
-      - "/opt/maple2019"
-      - "/opt/maple2019/bin.X86_64_LINUX"
+  - cas: "Mathematica"
+  - cas: "SymPy"

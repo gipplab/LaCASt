@@ -2,7 +2,7 @@ package gov.nist.drmf.interpreter.generic.mlp.struct;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.constants.CASSupporter;
+import gov.nist.drmf.interpreter.common.config.CASSupporter;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 
