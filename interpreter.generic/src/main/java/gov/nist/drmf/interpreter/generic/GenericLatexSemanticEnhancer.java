@@ -5,10 +5,8 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.formulasearchengine.mathosphere.mlp.contracts.WikiTextPageExtractorMapper;
-import gov.nist.drmf.interpreter.generic.elasticsearch.ElasticSearchConnector;
 import gov.nist.drmf.interpreter.generic.interfaces.IGenericLatexSemanticEnhancerAPI;
 import gov.nist.drmf.interpreter.generic.mlp.ContextAnalyzer;
-import gov.nist.drmf.interpreter.generic.mlp.struct.ContextContentType;
 import gov.nist.drmf.interpreter.generic.mlp.struct.MLPDependencyGraph;
 import gov.nist.drmf.interpreter.generic.mlp.struct.MOIPresentations;
 import gov.nist.drmf.interpreter.generic.pojo.SemanticEnhancedDocument;
@@ -16,7 +14,6 @@ import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.ParseException;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,7 +22,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author Andre Greiner-Petter
@@ -88,7 +84,9 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
                 System.out.println(m);
             }
         }
+        
+        // TODO run experiment on entire dataset
 
-        ElasticSearchConnector.getDefaultInstance().stop();
+        // TODO NEXT: WRITE THE DAMN PAPER DUDE
     }
 }

@@ -2,21 +2,16 @@ package gov.nist.drmf.interpreter.generic.mlp;
 
 import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
 import gov.nist.drmf.interpreter.generic.elasticsearch.AssumeElasticsearchAvailability;
-import gov.nist.drmf.interpreter.generic.elasticsearch.ElasticSearchConnector;
+import gov.nist.drmf.interpreter.generic.elasticsearch.DLMFElasticSearchClient;
 import gov.nist.drmf.interpreter.generic.mlp.struct.MOIAnnotation;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
-import gov.nist.drmf.interpreter.pom.moi.MOIDependencyGraph;
-import gov.nist.drmf.interpreter.pom.moi.MOIDependencyGraphBuilder;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import gov.nist.drmf.interpreter.pom.moi.MathematicalObjectOfInterest;
 import mlp.ParseException;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -28,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class SemanticEnhancerTests {
     @BeforeAll
     static void setup() throws IOException {
-        ElasticSearchConnector.getDefaultInstance().indexDLMFDatabase();
+        new DLMFElasticSearchClient().indexDLMFDatabaseIfNotExist();
     }
 
     @Test

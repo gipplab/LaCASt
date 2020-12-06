@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.generic.elasticsearch;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.generic.macro.MacroBean;
@@ -37,9 +38,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static gov.nist.drmf.interpreter.common.constants.GlobalPaths.PATH_ELASTICSEARCH_INDEX_CONFIG;
 
@@ -48,30 +47,31 @@ import static gov.nist.drmf.interpreter.common.constants.GlobalPaths.PATH_ELASTI
  * synchronously!
  * @author Andre Greiner-Petter
  */
-public class ElasticSearchConnector {
-    private static final Logger LOG = LogManager.getLogger(ElasticSearchConnector.class.getName());
+public class DLMFElasticSearchClient {
+    private static final Logger LOG = LogManager.getLogger(DLMFElasticSearchClient.class.getName());
 
-    private static final String ES_INDEX = "dlmf-macros";
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
+            .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
 
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private final RestHighLevelClient client;
 
-    private RestHighLevelClient client;
+    private final String index;
 
-    private static ElasticSearchConnector defaultInstance = null;
+    public DLMFElasticSearchClient() {
+        this(new ElasticSearchConfig());
+    }
 
-    public ElasticSearchConnector(ElasticSearchConfig config) {
+    public DLMFElasticSearchClient(ElasticSearchConfig config) {
         HttpHost httpHost = new HttpHost(config.getHost(), config.getPort(), "http");
         RestClientBuilder builder = RestClient.builder(httpHost);
         client = new RestHighLevelClient(builder);
+        index = config.getIndex();
     }
 
-    public static ElasticSearchConnector getDefaultInstance() {
-        if ( defaultInstance == null ) {
-            defaultInstance = new ElasticSearchConnector(new ElasticSearchConfig());
-        }
-        return defaultInstance;
-    }
-
+    /**
+     * Stops the client.
+     * After calling, you must create another client connection if needed.
+     */
     public void stop() {
         try {
             this.client.close();
@@ -102,7 +102,7 @@ public class ElasticSearchConnector {
         sb.query(nestedQB);
 
         SearchRequest searchRequest = new SearchRequest();
-        searchRequest.indices(ES_INDEX);
+        searchRequest.indices(index);
         searchRequest.source(sb);
         return searchRequest;
     }
@@ -111,7 +111,7 @@ public class ElasticSearchConnector {
      * Resets (or creates if not exist) the index
      */
     public void resetOrCreateIndex() throws IOException {
-        GetIndexRequest getRequest = new GetIndexRequest(ES_INDEX);
+        GetIndexRequest getRequest = new GetIndexRequest(index);
         boolean exists = client.indices().exists(getRequest, RequestOptions.DEFAULT);
 
         if ( exists ) { // delete first
@@ -124,27 +124,44 @@ public class ElasticSearchConnector {
     }
 
     /**
-     * True if the index was generated, otherwise false
      * @return true if a new index was generated, otherwise false
-     * @throws IOException
+     * @throws IOException if elasticsearch is unable to read database
      */
-    public boolean createIfNotExist() throws IOException {
-        GetIndexRequest getRequest = new GetIndexRequest(ES_INDEX);
+    private boolean createIfNotExist() throws IOException {
+        GetIndexRequest getRequest = new GetIndexRequest(index);
         boolean exists = client.indices().exists(getRequest, RequestOptions.DEFAULT);
 
         if ( !exists ) {
-            LOG.info(ES_INDEX + " does not exist in elasticsearch database. Generate it now!");
+            LOG.info(index + " does not exist in elasticsearch database. Generate it now!");
             createIndex();
             return true;
         } return false;
     }
 
+    /**
+     * It only triggers the actual indexing process if the database does not exist already.
+     * @throws IOException if something went wrong
+     */
+    public void indexDLMFDatabaseIfNotExist() throws IOException {
+        if ( createIfNotExist() ) {
+            reIndexDLMFDatabase();
+        }
+    }
+
+    private void reIndexDLMFDatabase() throws IOException {
+        MacroDefinitionStyleFileParser macroParser = new MacroDefinitionStyleFileParser();
+        String macroDefinitions = Files.readString(GlobalPaths.PATH_SEMANTIC_MACROS_DEFINITIONS);
+        macroParser.load(macroDefinitions);
+        Map<String, MacroBean> macros = macroParser.getExtractedMacros();
+        indexElements(macros);
+    }
+
     private void deleteIndex() throws IOException, ElasticsearchException {
         try {
-            DeleteIndexRequest delRequest = new DeleteIndexRequest(ES_INDEX);
+            DeleteIndexRequest delRequest = new DeleteIndexRequest(index);
             AcknowledgedResponse response = client.indices().delete(delRequest, RequestOptions.DEFAULT);
             if ( !response.isAcknowledged() ) {
-                throw new IOException("Elasticsearch did not acknowledged the deletion request for index " + ES_INDEX);
+                throw new IOException("Elasticsearch did not acknowledged the deletion request for index " + index);
             }
         } catch (ElasticsearchException ee) {
             if ( ee.status() == RestStatus.NOT_FOUND ) {
@@ -155,7 +172,7 @@ public class ElasticSearchConnector {
 
     private void createIndex() throws IOException {
         String indexConfig = Files.readString(PATH_ELASTICSEARCH_INDEX_CONFIG, StandardCharsets.UTF_8);
-        CreateIndexRequest createRequest = new CreateIndexRequest(ES_INDEX);
+        CreateIndexRequest createRequest = new CreateIndexRequest(index);
         createRequest.source(indexConfig, XContentType.JSON);
         CreateIndexResponse response = client.indices().create(createRequest, RequestOptions.DEFAULT);
         if ( !response.isAcknowledged() ) {
@@ -164,9 +181,9 @@ public class ElasticSearchConnector {
         }
     }
 
-    public void indexElements(Map<String, MacroBean> macros) throws IOException {
+    private void indexElements(Map<String, MacroBean> macros) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        BulkRequest bulkRequest = new BulkRequest(ES_INDEX);
+        BulkRequest bulkRequest = new BulkRequest(index);
         bulkRequest.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL);
 
         int counter = 0;
@@ -210,29 +227,17 @@ public class ElasticSearchConnector {
 
     public static boolean isEsAvailable() {
         try {
-            ElasticSearchConnector connector = getDefaultInstance();
-            return connector.client.ping(RequestOptions.DEFAULT);
+            DLMFElasticSearchClient connector = new DLMFElasticSearchClient(new ElasticSearchConfig());
+            boolean pingResult = connector.client.ping(RequestOptions.DEFAULT);
+            connector.stop();
+            return pingResult;
         } catch (Exception e) {
             return false;
         }
     }
 
-    public void indexDLMFDatabase() throws IOException {
-        if ( createIfNotExist() ) {
-            reIndexDLMFDatabase();
-        }
-    }
-
-    public void reIndexDLMFDatabase() throws IOException {
-        MacroDefinitionStyleFileParser macroParser = new MacroDefinitionStyleFileParser();
-        String macroDefinitions = Files.readString(GlobalPaths.PATH_SEMANTIC_MACROS_DEFINITIONS);
-        macroParser.load(macroDefinitions);
-        Map<String, MacroBean> macros = macroParser.getExtractedMacros();
-        indexElements(macros);
-    }
-
     public static void main(String[] args) throws IOException {
-        ElasticSearchConnector es = ElasticSearchConnector.getDefaultInstance();
+        DLMFElasticSearchClient es = new DLMFElasticSearchClient();
         es.resetOrCreateIndex();
         es.reIndexDLMFDatabase();
         es.stop();

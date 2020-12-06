@@ -4,6 +4,8 @@ import com.formulasearchengine.mathosphere.mlp.cli.BaseConfig;
 import com.formulasearchengine.mathosphere.mlp.contracts.CreateCandidatesMapper;
 import com.formulasearchengine.mathosphere.mlp.contracts.WikiTextAnnotatorMapper;
 import com.formulasearchengine.mathosphere.mlp.pojos.*;
+import gov.nist.drmf.interpreter.common.config.ConfigDiscovery;
+import gov.nist.drmf.interpreter.common.config.GenericLacastConfig;
 import gov.nist.drmf.interpreter.generic.mlp.struct.ContextContentType;
 import gov.nist.drmf.interpreter.generic.mlp.struct.MLPDependencyGraph;
 import org.apache.logging.log4j.LogManager;
@@ -14,6 +16,8 @@ import org.apache.logging.log4j.Logger;
  */
 public class ContextAnalyzer {
     private static final Logger LOG = LogManager.getLogger(ContextAnalyzer.class.getName());
+
+    private final GenericLacastConfig config;
 
     private final String context;
     private final ContextContentType contentType;
@@ -29,6 +33,7 @@ public class ContextAnalyzer {
     }
 
     public ContextAnalyzer(RawWikiDocument rawWikiDocument) {
+        this.config = ConfigDiscovery.getConfig().getGenericLacastConfig();
         this.context = rawWikiDocument.getContent();
         this.title = rawWikiDocument.getTitle();
         this.contentType = ContextContentType.WIKITEXT;
@@ -40,6 +45,7 @@ public class ContextAnalyzer {
             throw new IllegalArgumentException("An indeterminate content type is not supported.");
         }
 
+        this.config = ConfigDiscovery.getConfig().getGenericLacastConfig();
         this.context = context;
         this.contentType = contentType;
     }
@@ -67,12 +73,8 @@ public class ContextAnalyzer {
 
     private MLPDependencyGraph extractDefiniensFromWikitext(RawWikiDocument doc) {
         if ( doc == null ) throw new NullPointerException("RawWikiDocument was null");
-        BaseConfig config = new BaseConfig();
-        config.setUseTeXIdentifiers(true);
-        config.setUseMOI(true);
-        config.setDefinitionMerging(true);
-        config.setTexvcinfoUrl("http://localhost:10044/texvcinfo");
 
+        BaseConfig config = buildConfig();
         MLPDependencyGraph graph = new MLPDependencyGraph();
         DocumentMetaLib metaLib = new DocumentMetaLib(graph);
 
@@ -87,6 +89,15 @@ public class ContextAnalyzer {
 
     private MLPDependencyGraph extractDefiniensFromLaTeX() {
         throw new IllegalCallerException("LaTeX format is not yet supported");
+    }
+
+    private BaseConfig buildConfig() {
+        BaseConfig config = new BaseConfig();
+        config.setUseTeXIdentifiers(true);
+        config.setUseMOI(true);
+        config.setDefinitionMerging(true);
+        config.setTexvcinfoUrl(this.config.getMathoidUrl());
+        return config;
     }
 
     public String getTitle() {

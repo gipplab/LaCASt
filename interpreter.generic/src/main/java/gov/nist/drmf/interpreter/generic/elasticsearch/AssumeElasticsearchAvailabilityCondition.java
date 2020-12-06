@@ -13,7 +13,7 @@ public class AssumeElasticsearchAvailabilityCondition extends AssumeToolAvailabi
 
     @Override
     public boolean isToolAvailable() {
-        return ElasticSearchConnector.isEsAvailable();
+        return DLMFElasticSearchClient.isEsAvailable();
     }
 
     @Override

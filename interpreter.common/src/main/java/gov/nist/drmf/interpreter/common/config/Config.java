@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.common.config;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.nio.file.Files;
@@ -18,8 +19,11 @@ public final class Config {
     @JsonProperty("lacast.config.path")
     private String configPath;
 
-    @JsonProperty("lacast.cas.paths")
-    private List<CASConfig> casConfigList = new LinkedList<>();
+    @JsonProperty("lacast.cas")
+    private final List<CASConfig> casConfigList = new LinkedList<>();
+
+    @JsonProperty("lacast.generic")
+    private GenericLacastConfig genericLacastConfig = new GenericLacastConfig();
 
     private Config() {}
 
@@ -33,6 +37,10 @@ public final class Config {
 
     public List<CASConfig> getCasConfigList() {
         return casConfigList;
+    }
+
+    public GenericLacastConfig getGenericLacastConfig() {
+        return genericLacastConfig;
     }
 
     /**

@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.pom;
 
-import gov.nist.drmf.interpreter.common.constants.CASSupporter;
+import gov.nist.drmf.interpreter.common.config.CASSupporter;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.pom.data.CASCache;

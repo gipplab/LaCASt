@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.generic.mlp;
 
 import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
+import gov.nist.drmf.interpreter.generic.elasticsearch.AssumeElasticsearchAvailability;
 import gov.nist.drmf.interpreter.generic.mlp.ContextAnalyzer;
 import gov.nist.drmf.interpreter.generic.mlp.struct.ContextContentType;
 import gov.nist.drmf.interpreter.generic.mlp.struct.MLPDependencyGraph;
@@ -21,8 +22,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * @author Andre Greiner-Petter
  */
+@AssumeElasticsearchAvailability
 public class ContextAnalyzerTest {
-
     @Test
     void simpleWikitextTest() throws IOException {
         String text = getResourceContent("simpleWikitest.xml");
@@ -45,7 +46,7 @@ public class ContextAnalyzerTest {
         assertEquals(2, relations.size());
 
         Collections.sort(relations);
-        assertEquals("Jacobi polynomial", relations.get(0).getDefinition());
+        assertEquals("The Jacobi polynomial", relations.get(0).getDefinition());
         assertEquals("Carl Gustav Jacob Jacobi", relations.get(1).getDefinition());
     }
 
