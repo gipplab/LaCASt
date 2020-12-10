@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.cas.constraints;
+package gov.nist.drmf.interpreter.common.cas;
 
 import java.util.ArrayList;
 import java.util.Arrays;

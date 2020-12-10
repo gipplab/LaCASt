@@ -7,7 +7,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.interfaces.IPackageWrapper;
 import gov.nist.drmf.interpreter.evaluation.common.*;
-import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

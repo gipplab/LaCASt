@@ -1,14 +1,13 @@
-package gov.nist.drmf.interpreter.cas.constraints;
+package gov.nist.drmf.interpreter.common.interfaces;
 
+import gov.nist.drmf.interpreter.common.cas.Constraints;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.interfaces.IDLMFTranslator;
 import gov.nist.drmf.interpreter.common.interfaces.IPackageWrapper;
-import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
 import gov.nist.drmf.interpreter.common.text.TextUtility;
 
 import java.util.Arrays;
 import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**

@@ -1,7 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
-import gov.nist.drmf.interpreter.cas.constraints.Constraints;
-import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.cas.Constraints;
 import gov.nist.drmf.interpreter.evaluation.constraints.MLPConstraintAnalyzer;
 import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;

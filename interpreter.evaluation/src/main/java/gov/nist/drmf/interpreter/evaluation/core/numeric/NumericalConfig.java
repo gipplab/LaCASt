@@ -2,9 +2,8 @@ package gov.nist.drmf.interpreter.evaluation.core.numeric;
 
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
-import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
-import gov.nist.drmf.interpreter.evaluation.core.symbolic.SymbolicConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
