@@ -5,10 +5,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.formulasearchengine.mathosphere.mlp.pojos.Position;
+import com.wolfram.jlink.Expr;
+import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
-import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.generic.mlp.SemanticEnhancer;
 import gov.nist.drmf.interpreter.generic.pojo.FormulaDefiniens;
+import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
+import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
+import gov.nist.drmf.interpreter.mathematica.extension.MathematicaSimplifier;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import gov.nist.drmf.interpreter.pom.moi.MOIDependency;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
@@ -49,7 +53,7 @@ public class MOIPresentations {
     private String semanticLatex;
 
     @JsonProperty("translations")
-    private final Map<String, String> casRepresentations;
+    private final Map<String, CASResult> casRepresentations;
 
     @JsonProperty("confidence")
     private double score = 0;
@@ -97,7 +101,9 @@ public class MOIPresentations {
             for ( String cas : translators.getSupportedCAS() ) {
                 try {
                     String translation = translators.translate(cas, semanticPTE);
-                    this.casRepresentations.put(cas, translation);
+                    CASResult result =  new CASResult(translation);
+                    if ( cas.equals("Mathematica") ) this.tryMathematicaComputation(result);
+                    this.casRepresentations.put(cas, result);
                     LOG.debug("Translation to " + cas + ": " + translation);
                 } catch ( Exception e ) {
                     LOG.warn("Unable to translate expression to CAS " + cas + ": " + e.toString());
@@ -111,6 +117,18 @@ public class MOIPresentations {
             LOG.debug("Error when parsing LaTeX", e);
         } catch (InitTranslatorException e) {
             LOG.error("Unable to setup CAS translators.", e);
+        }
+    }
+
+    private void tryMathematicaComputation(CASResult casResult) {
+        if ( !MathematicaConfig.isMathematicaPresent() ) return;
+
+        MathematicaSimplifier simplifier = new MathematicaSimplifier();
+        try {
+            Expr symbolicResultExpr = simplifier.simplify(casResult.getCasRepresentation(), null);
+            casResult.addSymbolicResult("fullsimplify", symbolicResultExpr.toString());
+        } catch (ComputerAlgebraSystemEngineException e) {
+            LOG.debug("Unable to simplify mathematical expression.");
         }
     }
 
@@ -135,12 +153,12 @@ public class MOIPresentations {
     }
 
     @JsonIgnore
-    public String getCasRepresentation(String cas) {
+    public CASResult getCasResults(String cas) {
         return casRepresentations.get(cas);
     }
 
     @JsonGetter("translations")
-    public Map<String, String> getCasRepresentations() {
+    public Map<String, CASResult> getCasRepresentations() {
         return casRepresentations;
     }
 
@@ -181,8 +199,8 @@ public class MOIPresentations {
                 "Score: " + score + "; Used Definiens: " + definiens + "; Used Macros: " + macros + "\n" +
                 " Generic LaTeX: " + genericLatex + "\n" +
                 "Semantic LaTeX: " + semanticLatex + "\n";
-        for ( Map.Entry<String, String> trans : this.casRepresentations.entrySet() ) {
-            out += String.format("%14s: %s\n", trans.getKey(), trans.getValue());
+        for ( Map.Entry<String, CASResult> trans : this.casRepresentations.entrySet() ) {
+            out += String.format("%14s: %s\n", trans.getKey(), trans.getValue().getCasRepresentation());
         }
         return out;
     }

@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
-import gov.nist.drmf.interpreter.cas.constraints.Constraints;
-import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.cas.Constraints;
+import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;

@@ -34,8 +34,8 @@ public class GenericLatexSemanticEnhancerTest {
 
         assertNotNull(jacobi);
         assertEquals("\\JacobipolyP{\\alpha}{\\beta}{n}@{x}", jacobi.getSemanticLatex());
-        assertEquals("JacobiP(n, alpha, beta, x)", jacobi.getCasRepresentation("Maple"));
-        assertEquals("JacobiP[n, \\[Alpha], \\[Beta], x]", jacobi.getCasRepresentation("Mathematica"));
+        assertEquals("JacobiP(n, alpha, beta, x)", jacobi.getCasResults("Maple").getCasRepresentation());
+        assertEquals("JacobiP[n, \\[Alpha], \\[Beta], x]", jacobi.getCasResults("Mathematica").getCasRepresentation());
 
         List<FormulaDefiniens> definitions = jacobi.getDefiniens();
         long hits = definitions.stream()
@@ -63,15 +63,15 @@ public class GenericLatexSemanticEnhancerTest {
         assertNotNull(gammaMOI);
         assertEquals("\\Gamma(z)", gammaMOI.getGenericLatex());
         assertEquals("\\EulerGamma@{z}", gammaMOI.getSemanticLatex());
-        assertEquals("GAMMA(z)", gammaMOI.getCasRepresentation("Maple"));
-        assertEquals("Gamma[z]", gammaMOI.getCasRepresentation("Mathematica"));
+        assertEquals("GAMMA(z)", gammaMOI.getCasResults("Maple").getCasRepresentation());
+        assertEquals("Gamma[z]", gammaMOI.getCasResults("Mathematica").getCasRepresentation());
 
         MOIPresentations gammaCompositionMOI = enhancer.enhanceGenericLaTeX(context, notIncludedMath);
         assertNotNull(gammaCompositionMOI);
         assertEquals("\\Gamma( (\\alpha+1)_n )", gammaCompositionMOI.getGenericLatex());
         assertEquals("\\EulerGamma@{\\Pochhammersym{\\alpha + 1}{n}}", gammaCompositionMOI.getSemanticLatex());
-        assertEquals("GAMMA(pochhammer(alpha + 1, n))", gammaCompositionMOI.getCasRepresentation("Maple"));
-        assertEquals("Gamma[Pochhammer[\\[Alpha]+ 1, n]]", gammaCompositionMOI.getCasRepresentation("Mathematica"));
+        assertEquals("GAMMA(pochhammer(alpha + 1, n))", gammaCompositionMOI.getCasResults("Maple").getCasRepresentation());
+        assertEquals("Gamma[Pochhammer[\\[Alpha]+ 1, n]]", gammaCompositionMOI.getCasResults("Mathematica").getCasRepresentation());
     }
 
     private String getResourceContent(String resourceFilename) throws IOException {

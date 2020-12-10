@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation.core;
 
-import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
