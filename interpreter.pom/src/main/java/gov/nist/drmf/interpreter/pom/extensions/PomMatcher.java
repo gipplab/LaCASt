@@ -9,6 +9,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
+import static java.util.function.Predicate.not;
+
 /**
  * @author Andre Greiner-Petter
  */
@@ -192,7 +194,8 @@ public class PomMatcher {
                 );
             }
 
-            matched = findNextMatchFromIndex(first, elements);
+            LinkedList<PrintablePomTaggedExpression> copyElements = new LinkedList<>(elements);
+            matched = findNextMatchFromIndex(first, copyElements);
 
             if ( matched && leadingBackUpWildcard != null ) {
                 if ( !backlog.isEmpty() ) {
@@ -201,6 +204,10 @@ public class PomMatcher {
             }
 
             updateBacklog(matched, first, backlog);
+            if ( matched ) {
+                // it indeed matched, so we should update the list of remaining elements
+                latestDepthExpression.afterHitRemainingExpressions = copyElements;
+            }
         }
 
         return matched;
@@ -269,12 +276,6 @@ public class PomMatcher {
         if ( !elements.isEmpty() && latestDepthExpression != null ) {
             remaining.addFirst(latestDepthExpression);
         }
-
-        // we must add hits also... could be nested hits actually, right? ;)
-        getCapturedGroupsAsList().stream()
-                .filter( l -> l.size() > 1 )
-                .map( l -> new DepthExpressionsCache(latestDepthExpression.currentDepth+1, l) )
-                .forEach( remaining::addLast );
     }
 
     /**
@@ -362,8 +363,18 @@ public class PomMatcher {
         // create new components list for the parent
         LinkedList<PrintablePomTaggedExpression> newComponents =
                 new LinkedList<>(latestDepthExpression.passedExpressions);
-        newComponents.addAll( latestDepthExpression.remainingExpressions );
+        newComponents.addAll( latestDepthExpression.afterHitRemainingExpressions );
         pparent.setPrintableComponents( newComponents );
+
+        // in case of a replacement, the actual remaining expressions should not be tested again.
+        // for example, f(1+x+2) + g where 1+x+2 was the hit.
+        // normally 1+x+2 hits but we want to test also +x+2, x+2, +2, and 2 because we may find a hit again by incrementing
+        // the test pointer.
+        // BUT!!! If we replace that hit, here 1+x+2 by (lets say) y, we do not want to test +x+2, x+2, +2, or 2 anymore
+        // all was replaced by y -> f(y) + g. So we want to continue checking for further hits only for ) + g, +g, and g.
+        // This means we need to replace the remaining tests by the actual remaining expressions after the hit.
+        latestDepthExpression.remainingExpressions.clear();
+        latestDepthExpression.remainingExpressions.addAll( latestDepthExpression.afterHitRemainingExpressions );
 
         wasReplaced = true;
 
@@ -392,36 +403,12 @@ public class PomMatcher {
         return copy;
     }
 
-    private LinkedList<LinkedList<PrintablePomTaggedExpression>> getCapturedGroupsAsList() {
-        LinkedList<LinkedList<PrintablePomTaggedExpression>>  result = new LinkedList<>();
-
-        if ( matcher.isIsolatedWildcard() ) return result;
-
-        Map<String, PrintablePomTaggedExpression> groups = matcher.getMatches();
-        List<String> keys = new LinkedList<>(groups.keySet());
-
-        // well, its better to keep them in order, otherwise its really strange what next find may return
-        Collections.sort(keys);
-        for ( String k : keys ) {
-            PrintablePomTaggedExpression capturedGroup = groups.get(k);
-            LinkedList<PrintablePomTaggedExpression> tmp;
-            if ( PomTaggedExpressionUtility.isSequence(capturedGroup) ) {
-                tmp = new LinkedList<>(capturedGroup.getPrintableComponents());
-            } else {
-                tmp = new LinkedList<>();
-                tmp.addFirst(capturedGroup);
-            }
-            result.addLast(tmp);
-        }
-        return result;
-    }
-
     private boolean addLogicalGroupFromBacklog(LinkedList<PrintablePomTaggedExpression> backlog) {
         PrintablePomTaggedExpression l = backlog.getLast();
         String s = l.getTexString();
         boolean capturedSuccessful;
         if ( s.startsWith("^") || s.startsWith("_") ) {
-            LinkedList<PomTaggedExpression> tmp = new LinkedList<>();
+            LinkedList<PrintablePomTaggedExpression> tmp = new LinkedList<>();
             tmp.add(backlog.removeFirst());
             tmp.add(l);
             capturedSuccessful = refGroups.setCapturedGroup( leadingBackUpWildcard.getWildcardID(), tmp);
@@ -480,6 +467,7 @@ public class PomMatcher {
         private PrintablePomTaggedExpression currentReferenceNode = null;
         private final LinkedList<PrintablePomTaggedExpression> passedExpressions;
         private final LinkedList<PrintablePomTaggedExpression> remainingExpressions;
+        private LinkedList<PrintablePomTaggedExpression> afterHitRemainingExpressions;
 
         DepthExpressionsCache(int depth) {
             this(depth, new LinkedList<>());
@@ -489,6 +477,7 @@ public class PomMatcher {
             this.currentDepth = depth;
             this.remainingExpressions = new LinkedList<>(expressions);
             this.passedExpressions = new LinkedList<>();
+            this.afterHitRemainingExpressions = new LinkedList<>();
         }
     }
 }

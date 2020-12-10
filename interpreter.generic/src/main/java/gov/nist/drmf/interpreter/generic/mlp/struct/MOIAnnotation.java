@@ -5,6 +5,7 @@ import com.formulasearchengine.mathosphere.mlp.pojos.Position;
 import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,6 +32,10 @@ public class MOIAnnotation implements Comparable<MOIAnnotation> {
 
     public void appendRelation(Relation relation) {
         this.attachedRelations.add(relation);
+    }
+
+    public void setRelations(Collection<Relation> relations) {
+        this.attachedRelations = new LinkedList<>(relations);
     }
 
     public MathTag getFormula() {

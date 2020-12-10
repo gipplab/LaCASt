@@ -100,4 +100,33 @@ public final class PrintablePomTaggedExpressionUtility {
 
         return identifiers;
     }
+
+    /**
+     * Builds the string representation for a list of printable PTE. In several cases, the list might by surrounded by
+     * the parent node command. You get this node command via {@link #getInternalNodeCommand(PomTaggedExpression)}.
+     *
+     * So the caption of a {@link PrintablePomTaggedExpression} is essentially using
+     * {@link #getInternalNodeCommand(PomTaggedExpression)} for {@param parentNodeCommand} and
+     * {@link PrintablePomTaggedExpression#getPrintableComponents()} for {@param ppte}.
+     *
+     * @param parentNodeCommand the surrounding or leading node command from the parent node. It can be empty but not null.
+     *                          If you want to build the caption of a printable PTE, use the
+     *                          {@link #getInternalNodeCommand(PomTaggedExpression)} for this PTE.
+     * @param ppte the list of nodes that generates the caption.
+     *             If you want to build the caption of a printable PTE, use the children of that PTE for this argument
+     *             via {@link PrintablePomTaggedExpression#getPrintableComponents()}.
+     * @return the caption of the list of nodes and the parent command.
+     */
+    public static String getCaptionOfPPTEs(String parentNodeCommand, List<PrintablePomTaggedExpression> ppte) {
+        String newCaption = parentNodeCommand;
+        String elementsCaption = PrintablePomTaggedExpressionUtility.buildString(ppte);
+
+        if ( PomTaggedExpressionUtility.isTeXEnvironmentString(newCaption) ) {
+            String[] env = newCaption.split("\\.{3}");
+            newCaption = env[0] + elementsCaption + env[1];
+        } else if ( !newCaption.isBlank() && !(elementsCaption.trim().startsWith("{") && elementsCaption.trim().endsWith("}")) ) {
+            newCaption += "{" + elementsCaption + "}";
+        } else newCaption += elementsCaption;
+        return newCaption;
+    }
 }

@@ -37,6 +37,7 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
 
     @Override
     public MOINode<T> addNode(String id, String moi, T annotation) throws ParseException, NotMatchableException {
+        if ( containsNode(id) ) return getNode(id);
         return addNode(id, mlp.parse(moi), annotation);
     }
 
@@ -48,6 +49,13 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
      * @return the added Node
      */
     public MOINode<T> addNode(String id, PrintablePomTaggedExpression moi, T annotation) throws NotMatchableException {
+        // the node already exists, so no need to add a new one, the user do not need to know that
+        // because there is no difference between two identical nodes in the graph or just one of them
+        if ( containsNode(id) ) {
+            LOG.debug("Avoiding node duplications and return the existing node in the graph.");
+            return getNode(id);
+        }
+
         LOG.info("Add new MOI node to graph: " + moi.getTexString());
         MOINode<T> node = new MOINode<>(id, new MathematicalObjectOfInterest(moi), annotation);
         LOG.info("Setup dependencies for new node");

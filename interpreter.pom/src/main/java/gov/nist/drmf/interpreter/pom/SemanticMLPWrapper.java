@@ -1,9 +1,12 @@
 package gov.nist.drmf.interpreter.pom;
 
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 
 /**
  * A semantic version of the {@link MLPWrapper}. This class
@@ -25,8 +28,11 @@ public class SemanticMLPWrapper extends MLPWrapper {
     }
 
     private void init() throws IOException {
+        LOG.debug("Loading PoM-tagger lexicon");
+        Instant start = Instant.now();
         MacrosLexicon.init();
         addLexicon( MacrosLexicon.getDLMFMacroLexicon() );
+        LOG.printf(Level.DEBUG, "Loaded PoM-tagger [%dms]", Duration.between(start, Instant.now()).toMillis());
     }
 
     /**

@@ -252,7 +252,7 @@ public abstract class AbstractMatchablePomTaggedExpression
      * @return map of grouped matches
      * @see #getStringMatches()
      */
-    public Map<String, PrintablePomTaggedExpression> getMatches() {
+    public Map<String, List<PrintablePomTaggedExpression>> getMatches() {
         return captures.getCapturedGroups();
     }
 }

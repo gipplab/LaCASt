@@ -219,7 +219,7 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             if (!isWildcard) return matchNonWildCard(expression, followingExpressions, config);
             return matchWildCard(expression, followingExpressions, config);
         } catch ( NotMatchableException nme ) {
-            LOG.trace("Expression not matchable because: " + nme.getMessage() +
+            LOG.debug("Expression not matchable because: " + nme.getMessage() +
                     "; Element: " + expression.getTexString() + " in [" + expression.getRootTexString() + "].");
             return false;
         }
@@ -266,33 +266,35 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         // note that a wildcard cannot have any children, which makes it easier
 
         // however, a wildcard might contain font manipulations, in which case they must match!
-        if ( !matchesAccents(expression, config) ) return false;
+        // or: if there is no next element in the pattern, the entire rest matches this wildcard
+        if ( !matchesAccents(expression, config) || isNotAllowedTokenForWildcardMatch(expression, config) ) return false;
 
-        // if there is no next element in the pattern, the entire rest matches this wildcard
-        if (nextSibling == null) {
-            return captureUntilEnd(expression, followingExpressions, config);
-        }
+        List<PrintablePomTaggedExpression> matches = new LinkedList<>();
+        LinkedList<Brackets> bracketStack = new LinkedList<>();
+        if ( invalidBracketStack(bracketStack, expression) ) return false;
+        PomTaggedExpressionUtility.removeFontManipulations(expression, fontManipulations);
+        matches.add(expression);
 
-        // otherwise, add elements, until the next element matches
-        // if there are no following elements however, the match failed
-        return !followingExpressions.isEmpty() && matchWildcardUntilEnd(expression, followingExpressions, config);
-
+        return nextSibling == null ? // if its null, almost everything hits just until end
+                captureUntilEnd(followingExpressions, bracketStack, matches, config) :
+                matchWildcardUntilEnd(followingExpressions, bracketStack, matches, config);
     }
 
     private boolean captureUntilEnd(
-            PrintablePomTaggedExpression expression,
             List<PrintablePomTaggedExpression> followingExpressions,
+            LinkedList<Brackets> bracketStack,
+            List<PrintablePomTaggedExpression> matches,
             MatcherConfig config
     ) {
-        if ( isNotAllowedTokenForWildcardMatch(expression, config) ) return false;
-
-        List<PomTaggedExpression> matches = new LinkedList<>();
-        PomTaggedExpressionUtility.removeFontManipulations(expression, fontManipulations);
-        matches.add(expression);
+        PrintablePomTaggedExpression expression;
 
         if ( !isSingleSequenceWildcard && fontManipulations.isEmpty() ) {
             while (!followingExpressions.isEmpty()){
                 expression = followingExpressions.remove(0);
+                if ( invalidBracketStack(bracketStack, expression) ) {
+                    if ( !config.allowFollowingTokens() ) return false;
+                    else break;
+                }
                 if ( isNotAllowedTokenForWildcardMatch(expression, config) ) {
                     if ( !config.allowFollowingTokens() ) return false;
                     else break;
@@ -301,41 +303,51 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             }
         }
 
+        if ( !bracketStack.isEmpty() ) return false;
         return getCaptures().setCapturedGroup(wildcardID, matches);
     }
 
     private boolean matchWildcardUntilEnd(
-            PrintablePomTaggedExpression expression,
             List<PrintablePomTaggedExpression> followingExpressions,
+            LinkedList<Brackets> bracketStack,
+            List<PrintablePomTaggedExpression> matches,
             MatcherConfig config
     ) {
-        if ( isNotAllowedTokenForWildcardMatch(expression, config) ) return false;
-
-        List<PomTaggedExpression> matches = new LinkedList<>();
-        PomTaggedExpressionUtility.removeFontManipulations(expression, fontManipulations);
-        matches.add(expression);
+        if ( followingExpressions.isEmpty() ) return false;
         PrintablePomTaggedExpression next = followingExpressions.remove(0);
-        LinkedList<Brackets> bracketStack = new LinkedList<>();
 
         // fill up wild card until the next hit
         while (!isSingleSequenceWildcard && continueMatching(bracketStack, next, followingExpressions, config)) {
-            if (followingExpressions.isEmpty() || isNotAllowedTokenForWildcardMatch(next, config)) {
+            if ( earlyFailWhileContinueMatching(next, followingExpressions, bracketStack, config) ) {
                 return false;
             }
 
             matches.add(next);
-
-            if ( !config.ignoreBracketLogic() ) updateBracketStack(bracketStack, next);
-
             next = followingExpressions.remove(0);
         }
 
-        if ( next == null ) return false;
+        if ( next == null || !bracketStack.isEmpty() ) return false;
 
-        // nextSibling has matched the next element in followingExpression... so put add back into the queue
-        // and return true
+        // nextSibling has matched the next element in followingExpression... so put it back into the queue
+        // and return true when the matches do not conflict
         followingExpressions.add(0, next);
         return getCaptures().setCapturedGroup(wildcardID, matches);
+    }
+
+    private boolean earlyFailWhileContinueMatching(
+            PrintablePomTaggedExpression next,
+            List<PrintablePomTaggedExpression> followingExpressions,
+            LinkedList<Brackets> bracketStack,
+            MatcherConfig config
+    ) {
+        if ( followingExpressions.isEmpty() || isNotAllowedTokenForWildcardMatch(next, config) )
+            return true;
+
+        if ( !config.ignoreBracketLogic() ) {
+            return invalidBracketStack(bracketStack, next);
+        }
+
+        return false;
     }
 
     /**
@@ -385,33 +397,43 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             }
             return true;
         }
+
         // the opposite, because we asking if we shall continue matching wildcards. If the next sibling
         // matched, we reached the end. Hence the method return false to stop continue matching a wild card
         return !nextSiblingMatched;
     }
 
-    private void updateBracketStack(
-            LinkedList<Brackets> bracketStack,
-            PrintablePomTaggedExpression next
-    ) throws NotMatchableException {
+    /**
+     * Checks if the bracket stack is invalid with the given next element or not. It returns true if the
+     * bracket stack is no longer valid! This happens when next element is a closing bracket that does not fit
+     * the previously opened bracket (or if there was no bracket opened before).
+     *
+     * Note that this method automatically updates the bracket stack.
+     *
+     * @param bracketStack the current bracket stack. This will be modified by this method.
+     * @param next the next element to check
+     * @return true if the bracket stack is invalid with the next element. If it is still valid, it returns false!
+     */
+    private boolean invalidBracketStack(LinkedList<Brackets> bracketStack, PrintablePomTaggedExpression next) {
         Brackets br = Brackets.getBracket( next.getRoot().getTermText() );
-        if ( br == null ) return;
+        if ( br == null ) return false;
 
         if ( br.opened ) {
             bracketStack.addLast(br);
+            return false;
         } else if ( !bracketStack.isEmpty() ) {
-            checkLastBracketEncounter(bracketStack, br);
+            return !checkLastBracketEncounter(bracketStack, br);
         } else {
-            throw new NotMatchableException(
-                    "Not matching parenthesis. Found " + br + " but non was opened before.");
+            return true;
         }
     }
 
-    private void checkLastBracketEncounter(LinkedList<Brackets> bracketStack, Brackets br) {
-        if ( bracketStack.getLast().isCounterPart(br) )
+    private boolean checkLastBracketEncounter(LinkedList<Brackets> bracketStack, Brackets br) {
+        if ( bracketStack.getLast().isCounterPart(br) ) {
             bracketStack.removeLast();
-        else throw new NotMatchableException("Not matching parenthesis. Found " + br +
-                " but last opening was " + bracketStack.getLast());
+            return true;
+        }
+        else return false;
     }
 
     private boolean isNotAllowedTokenForWildcardMatch(PomTaggedExpression pte, MatcherConfig config) {
@@ -420,12 +442,19 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         return mathTerm != null && mathTerm.matches(pattern);
     }
 
+    /**
+     * Check if accents matches. The given config is currently ignored but some day we may want to
+     * allow ignoring accents or other font manipulations. Hence the given config is already necessary.
+     * @param pte the reference expression
+     * @param config the config (currently not used but might become important in later releases)
+     * @return true if the accents matched otherwise false
+     */
     private boolean matchesAccents(PomTaggedExpression pte, MatcherConfig config) {
         List<String> otherFontManipulations = PomTaggedExpressionUtility.getFontManipulations(pte);
 
         if ( this.fontManipulations.size() > otherFontManipulations.size() ) return false;
 
-        for ( int i = 0; i < this.fontManipulations.size() && i < otherFontManipulations.size(); i++ ) {
+        for ( int i = 0; i < this.fontManipulations.size(); i++ ) {
             String matchManipulation = this.fontManipulations.get(i);
             String otherManipulation = otherFontManipulations.get(i);
             if ( !matchManipulation.equals(otherManipulation) ) return false;
