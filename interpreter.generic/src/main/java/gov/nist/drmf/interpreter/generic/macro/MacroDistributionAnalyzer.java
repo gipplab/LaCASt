@@ -51,7 +51,7 @@ public class MacroDistributionAnalyzer {
     }
 
     public void load(Path p) throws IOException {
-        LOG.debug("Load standard reference for DLMF macro distributions.");
+        LOG.info("Load standard reference for DLMF macro distributions.");
         String serializedData = Files.readString(p);
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<HashMap<String, MacroCounter>> typeRef =
@@ -104,7 +104,7 @@ public class MacroDistributionAnalyzer {
 
     private void analyzeDlmfMacro(PrintablePomTaggedExpression macro) {
         MathTerm macroTerm = macro.getRoot();
-        LOG.info("Encountered a DLMF macro " + macroTerm.getTermText());
+        LOG.trace("Encountered a DLMF macro " + macroTerm.getTermText());
         MacroCounter counter = getMacroCounter(macroTerm.getTermText());
         // always first, increment the macro counter, no matter what happens next
         counter.incrementMacroCounter();

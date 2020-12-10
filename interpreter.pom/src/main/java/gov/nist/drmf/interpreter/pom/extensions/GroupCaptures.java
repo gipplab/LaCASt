@@ -1,17 +1,15 @@
 package gov.nist.drmf.interpreter.pom.extensions;
 
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
-import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
 
 /**
  * @author Andre Greiner-Petter
@@ -23,7 +21,7 @@ public class GroupCaptures {
      * The library is a shared object among all nodes of one tree.
      * This is necessary to check the integrity within matches.
      */
-    private final Map<String, PrintablePomTaggedExpression> matchLibrary;
+    private final Map<String, List<PrintablePomTaggedExpression>> matchLibrary;
 
     public GroupCaptures() {
         this.matchLibrary = new HashMap<>();
@@ -57,14 +55,14 @@ public class GroupCaptures {
      * For example if the group 'var1' captured 'x' before but is trying to capture 'y' it will throw the
      * exception. If it captures multiple times the same object, nothing happens.
      */
-    public boolean setCapturedGroup(String id, List<PomTaggedExpression> match) {
-        PrintablePomTaggedExpression m;
-        if ( match.size() > 1 ) {
-            m = FakeMLPGenerator.generateEmptySequencePPTE();
-            m.setComponents(match);
-        } else if ( match.size() == 1 ) m = (PrintablePomTaggedExpression) match.get(0);
-        else throw new IllegalArgumentException("Cannot set the hit for an empty match.");
-        return setCapturedGroup(id, m);
+    public boolean setCapturedGroup(String id, List<PrintablePomTaggedExpression> match) {
+        if ( match == null || match.size() < 1 ) throw new IllegalArgumentException("Cannot set the hit for an empty match.");
+        if ( matchLibrary.containsKey(id) ) {
+            return checkGroupIntegrity(id, match);
+        } else {
+            matchLibrary.put(id, match);
+            return true;
+        }
     }
 
     /**
@@ -77,23 +75,37 @@ public class GroupCaptures {
      * exception. If it captures multiple times the same object, nothing happens.
      */
     public boolean setCapturedGroup(String id, PrintablePomTaggedExpression match) {
-        if ( matchLibrary.containsKey(id) ) {
-            return checkGroupIntegrity(id, match);
-        } else {
-            matchLibrary.put(id, match);
-            return true;
-        }
+        List<PrintablePomTaggedExpression> matches = new LinkedList<>();
+        matches.add(match);
+        return setCapturedGroup(id, matches);
     }
 
-    private boolean checkGroupIntegrity(String id, PrintablePomTaggedExpression match) {
-        String prev = matchLibrary.get(id).getTexString();
+    private boolean checkGroupIntegrity(String id, List<PrintablePomTaggedExpression> matches) {
+        List<PrintablePomTaggedExpression> previousMatches = matchLibrary.get(id);
+
+        if ( previousMatches == null || previousMatches.isEmpty() ) return true;
+        if ( previousMatches.size() != matches.size() ) {
+            String msg = String.format("Match violates group integrity: %s matches clashed in size. " +
+                    "Previous length '%d' vs now '%d'", id, previousMatches.size(), matches.size());
+            LOG.debug(msg);
+            return false;
+        }
+
+        for ( int i = 0; i < previousMatches.size(); i++ ) {
+            if ( !checkIntegrity( id, previousMatches.get(i), matches.get(i) ) ) return false;
+        }
+        return true;
+    }
+
+    private boolean checkIntegrity(String id, PrintablePomTaggedExpression prev, PrintablePomTaggedExpression match) {
+        String prevS = prev.getTexString();
         String matchS = match.getTexString();
 
-        prev = TeXPreProcessor.trimCurlyBrackets(prev);
+        prevS = TeXPreProcessor.trimCurlyBrackets(prevS);
         matchS = TeXPreProcessor.trimCurlyBrackets(matchS);
 
-        if ( !prev.equals(matchS) ) {
-            String msg = String.format("Match violates group integrity: %s matches clashed in '%s' vs '%s'", id, prev, matchS);
+        if ( !prevS.equals(matchS) ) {
+            String msg = String.format("Match violates group integrity: %s matches clashed in '%s' vs '%s'", id, prevS, matchS);
             LOG.debug(msg);
             return false;
         } else return true;
@@ -106,12 +118,13 @@ public class GroupCaptures {
      */
     public Map<String, String> getCapturedGroupStrings() {
         Map<String, String> out = new HashMap<>();
-        Map<String, PrintablePomTaggedExpression> matches = getCapturedGroups();
+        Map<String, List<PrintablePomTaggedExpression>> matches = getCapturedGroups();
 
         for (String key : matches.keySet()) {
-            String str = matches.get(key).getTexString();
-            str = Brackets.removeEnclosingBrackets(str);
-            out.put(key, str.trim());
+            List<PrintablePomTaggedExpression> matchList = matches.get(key);
+            String caption = PrintablePomTaggedExpressionUtility.getCaptionOfPPTEs("", matchList);
+            caption = TeXPreProcessor.trimIfWrappedInCurlyBrackets(caption);
+            out.put(key, caption.trim());
         }
 
         return out;
@@ -124,7 +137,7 @@ public class GroupCaptures {
      * @return map of grouped matches
      * @see #getCapturedGroupStrings()
      */
-    public Map<String, PrintablePomTaggedExpression> getCapturedGroups() {
+    public Map<String, List<PrintablePomTaggedExpression>> getCapturedGroups() {
         return matchLibrary;
     }
 }

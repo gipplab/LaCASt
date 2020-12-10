@@ -29,10 +29,14 @@ public class MLPDependencyGraph extends MOIDependencyGraph<MOIAnnotation> implem
     @Override
     public void addFormula(MathTag mathTag) {
         try {
-            super.addNode(mathTag.placeholder(), mathTag.getContent(), new MOIAnnotation(mathTag));
+            addFormulaNode(mathTag);
         } catch (ParseException e) {
             LOG.error("Unable to add formula to graph", e);
         }
+    }
+
+    public MOINode<MOIAnnotation> addFormulaNode(MathTag mathTag) throws ParseException {
+        return super.addNode(mathTag.placeholder(), mathTag.getContent(), new MOIAnnotation(mathTag));
     }
 
     @Override
@@ -55,6 +59,17 @@ public class MLPDependencyGraph extends MOIDependencyGraph<MOIAnnotation> implem
         }
 
         node.getAnnotation().appendRelation(relation);
+    }
+
+    @Override
+    public void setMOIRelation(MathTag mathTag, Collection<Relation> relations) {
+        MOINode<MOIAnnotation> node = super.getNode(mathTag.placeholder());
+        if ( node == null ) {
+            LOG.warn("Given mathtag does not exist, nothing to append.");
+            return;
+        }
+
+        node.getAnnotation().setRelations(relations);
     }
 
     @Override

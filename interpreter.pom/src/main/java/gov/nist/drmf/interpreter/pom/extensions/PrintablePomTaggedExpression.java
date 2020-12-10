@@ -41,8 +41,12 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
     }
 
     /**
-     * Copy constructor
-     * @param ppte a previously valid printable PoM expression
+     * Copy constructor. Be careful, it only copies the subtree starting from this node.
+     * This means, neither the parent nor the siblings are copied as well. Only the expression itself and all children.
+     *
+     * If you want to copy the entire parse tree, you must copy the root of the tree!
+     *
+     * @param ppte a previously valid printable PoM expression.
      */
     public PrintablePomTaggedExpression( PrintablePomTaggedExpression ppte ) {
         super(MathTermUtility.secureClone(ppte.getRoot()), ppte.getTag(), ppte.getSecondaryTags());
@@ -259,19 +263,15 @@ public class PrintablePomTaggedExpression extends PomTaggedExpression implements
 
     /**
      * Populates string changes from here onwards to the root of the tree.
+     * It uses {@link PrintablePomTaggedExpressionUtility#getCaptionOfPPTEs(String, List)} method to build
+     * the new caption of this node.
      */
     private void populatingStringChanges() {
         if ( !hasNoChildren() ) {
-            String newCaption = PrintablePomTaggedExpressionUtility.getInternalNodeCommand(this);
-            String elementsCaption = PrintablePomTaggedExpressionUtility.buildString(getPrintableComponents());
-
-            if ( PomTaggedExpressionUtility.isTeXEnvironmentString(newCaption) ) {
-                String[] env = newCaption.split("\\.{3}");
-                newCaption = env[0] + elementsCaption + env[1];
-            } else if ( !newCaption.isBlank() && !(elementsCaption.trim().startsWith("{") && elementsCaption.trim().endsWith("}")) ) {
-                newCaption += "{" + elementsCaption + "}";
-            } else newCaption += elementsCaption;
-
+            String newCaption = PrintablePomTaggedExpressionUtility.getCaptionOfPPTEs(
+                    PrintablePomTaggedExpressionUtility.getInternalNodeCommand(this),
+                    getPrintableComponents()
+            );
             replaceCaption(newCaption);
         }
 

@@ -387,9 +387,21 @@ public class MatchablePomTaggedExpressionTests {
 
         PomMatcher matcher = blueprint.matcher(ppte);
         assertTrue(matcher.find(), matcher.groups().toString()); // it first matches the sequence itself
-        assertTrue(matcher.find(), matcher.groups().toString()); // than it matches the elements of the sequence, namely all
+        Map<String, String> group = matcher.groups();
+        assertEquals("f(p)", group.get("var0"));
 
-        // now there is no more to match... all elements have been processed and non of them had more children
+        assertTrue(matcher.find(), matcher.groups().toString()); // than it matches the elements of the sequence, namely all
+        group = matcher.groups();
+        assertEquals("f (p)", group.get("var0")); // before it matched as a sequence, now it matched as 4 elements f, (, p, and )
+
+        assertTrue(matcher.find(), matcher.groups().toString()); // than it matches the elements of the sequence, namely all
+        group = matcher.groups();
+        assertEquals("(p)", group.get("var0"));
+
+        assertTrue(matcher.find(), matcher.groups().toString()); // now there is only p valid and left... and thats it than
+        group = matcher.groups();
+        assertEquals("p", group.get("var0"));
+
         assertFalse(matcher.find(), matcher.groups().toString());
     }
 
@@ -401,9 +413,18 @@ public class MatchablePomTaggedExpressionTests {
 
         PomMatcher matcher = blueprint.matcher(ppte);
         assertTrue(matcher.find(), matcher.groups().toString()); // f and (p)
-        assertTrue(matcher.find(), matcher.groups().toString()); // ( and p)
-        assertTrue(matcher.find(), matcher.groups().toString()); // p and )
-        assertFalse(matcher.find(), matcher.groups().toString()); // no longer possible
+        Map<String, String> group = matcher.groups();
+        assertEquals( "f", group.get("var0") );
+        assertEquals( "(p)", group.get("var1") );
+
+        // indeed, there should be no more matches following... because
+        // var0: ( is not allowed when bracket logic is activated, because var0 become a single sequence expression {var0}
+        //         but a single sequence expression cannot enclose something in brackets, hands its invalid
+        // var0: p could be, but following by var1: ) is not allowed because of bracket logic
+        // var0: ) again not valid
+        // var0: = is not valid character
+        // var0: x works but there is nothing left for var1, hence it fails also
+        assertFalse(matcher.find());
     }
 
     @Test
@@ -618,10 +639,24 @@ public class MatchablePomTaggedExpressionTests {
         assertTrue( blueprint.match("x - z + y") );
         assertFalse( blueprint.match("x - z") );
 
+        // MATCH
         PomMatcher pomMatcher = blueprint.matcher( "x + y + z" );
-        assertTrue(pomMatcher.match()); // x + y and z
-        assertTrue(pomMatcher.find(), pomMatcher.groups().entrySet().toString()); // x and y
+        assertTrue(pomMatcher.match()); // x and y + z
+        Map<String, String> group = pomMatcher.groups();
+        assertEquals("x", group.get("var0"));
+        assertEquals("y + z", group.get("var1"));
+
+        // FIND
+        assertTrue(pomMatcher.find(), pomMatcher.groups().entrySet().toString()); // x and y + z
+        group = pomMatcher.groups();
+        assertEquals("x", group.get("var0"));
+        assertEquals("y + z", group.get("var1"));
+
         assertTrue(pomMatcher.find(), pomMatcher.groups().entrySet().toString()); // y and z
+        group = pomMatcher.groups();
+        assertEquals("y", group.get("var0"));
+        assertEquals("z", group.get("var1"));
+
         assertFalse(pomMatcher.find(), pomMatcher.groups().entrySet().toString()); // nothing
     }
 
@@ -715,7 +750,7 @@ public class MatchablePomTaggedExpressionTests {
         assertEquals(1, groups.size());
         assertEquals("x", groups.get("var1"));
 
-        assertFalse(pomMatcher.find());
+        assertFalse(pomMatcher.find(), pomMatcher.groups().toString());
     }
 
     @Test
@@ -725,11 +760,13 @@ public class MatchablePomTaggedExpressionTests {
 
         String test = "\\Gamma{\\Gamma{\\Gamma{x}}}";
         PomMatcher pomMatcher = blueprint.matcher( test );
+        // =============== MATCH ====================
         assertTrue(pomMatcher.match());
         Map<String, String> groups = pomMatcher.groups();
         assertEquals(1, groups.size());
         assertThat("\\Gamma{\\Gamma{x}}", ignoresAllWhitespaces(groups.get("var1")));
 
+        // ============== FIND ================
         assertTrue(pomMatcher.find());
         assertEquals(1, groups.size());
         assertThat("\\Gamma{\\Gamma{x}}", ignoresAllWhitespaces(groups.get("var1")));
@@ -1024,22 +1061,6 @@ public class MatchablePomTaggedExpressionTests {
 
     @Test
     public void pomMatcherReplaceAllTest() throws ParseException {
-        MatchablePomTaggedExpression blueprint =
-                PomMatcherBuilder.compile(mlp, "q");
-
-        String test = "x + q + y + q + z";
-        PomMatcher pomMatcher = blueprint.matcher(test);
-
-        PrintablePomTaggedExpression ppte = mlp.parse("Q");
-        LinkedList<PrintablePomTaggedExpression> tmp = new LinkedList<>();
-        tmp.add(ppte);
-
-        PrintablePomTaggedExpression result = pomMatcher.replace(tmp);
-        assertEquals("x + Q + y + Q + z", result.getTexString());
-    }
-
-    @Test
-    public void pomMatcherReplaceAllNestedTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
                 PomMatcherBuilder.compile(mlp, "q");
 
@@ -1398,6 +1419,14 @@ public class MatchablePomTaggedExpressionTests {
         PomMatcher matcher = pochhammerBlueprint.matcher("\\frac{(\\alpha+1)_n}{n!}");
         PrintablePomTaggedExpression result = matcher.replacePattern( "\\Pochhammer{var1}{var2}" );
         assertEquals("\\frac{\\Pochhammer{\\alpha + 1}{n}}{n!}", result.getTexString());
+    }
+
+    @Test
+    public void parenthesisTest() throws ParseException {
+        MatchablePomTaggedExpression pochhammerBlueprint = PomMatcherBuilder.compile(mlp, "(var1)_{var2}", "var\\d");
+        PomMatcher matcher = pochhammerBlueprint.matcher("\\Gamma( (\\alpha+1)_n )");
+        PrintablePomTaggedExpression result = matcher.replacePattern( "\\Pochhammersym{var1}{var2}" );
+        assertEquals("\\Gamma (\\Pochhammersym{\\alpha + 1}{n})", result.getTexString());
     }
 
     @Test
