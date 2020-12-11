@@ -3,11 +3,11 @@ package gov.nist.drmf.interpreter.generic.mlp.pojo;
 /**
  * @author Andre Greiner-Petter
  */
-public class MlpLacastScorer {
+public class MLPLacastScorer {
 
     private double maxEsScore = 0;
 
-    public MlpLacastScorer(double maxEsScore) {
+    public MLPLacastScorer(double maxEsScore) {
         this.maxEsScore = maxEsScore;
     }
 
