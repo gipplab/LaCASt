@@ -9,7 +9,7 @@ env:
 jobs:
   build_and_test:
     name: Build and Test
-    runs-on: dke
+    runs-on: ubuntu-latest
     steps:
       - name: Git Checkout Repo
         uses: actions/checkout@v2
@@ -19,12 +19,6 @@ jobs:
         uses: actions/setup-java@v1.4.3
         with:
           java-version: 1.11
-      - name: Install maven
-        run: |
-          wget https://archive.apache.org/dist/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.zip
-          unzip -qq apache-maven-3.6.1-bin.zip
-          export M2_HOME=$PWD/apache-maven-3.6.1
-          export PATH=$M2_HOME/bin:$PATH
       - name: Cache Maven packages
         uses: actions/cache@v2
         with:
@@ -66,7 +60,7 @@ jobs:
   deploy_github:
     name: Deploy Release on GitHub
     if: github.ref == 'refs/heads/master'
-    runs-on: dke
+    runs-on: ubuntu-latest
     needs: build_and_test
     steps:
       - name: Download release artifact
@@ -88,7 +82,7 @@ jobs:
   deploy_dke:
     name: Deploy to DKE
     if: github.ref == 'refs/heads/master'
-    runs-on: dke
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
