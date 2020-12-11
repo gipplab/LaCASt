@@ -63,19 +63,19 @@ before_deploy:
 
 # it seems we are on deployment-v2 already, in this case, check the following page for the right settings
 # https://docs.travis-ci.com/user/deployment-v2/providers/releases/
-deploy:
-  # first we deploy our release on GitHub
-  - provider: releases
-    token: $GITHUB_TOKEN
-    skip_cleanup: true
-    cleanup: false
-    file: ${TRAVIS_TAG}.zip
-    tag_name: $TRAVIS_TAG
-    on:
-      repo: ag-gipp/LaCASt
-      branch: master
-      jdk: openjdk11
-  # next we deploy to DKE server via our deploy script
-  - provider: script
-    skip_cleanup: true
-    script: .travis/dke-deploy.sh
+#deploy:
+#  # first we deploy our release on GitHub
+#  - provider: releases
+#    token: $GITHUB_TOKEN
+#    skip_cleanup: true
+#    cleanup: false
+#    file: ${TRAVIS_TAG}.zip
+#    tag_name: $TRAVIS_TAG
+#    on:
+#      repo: ag-gipp/LaCASt
+#      branch: master
+#      jdk: openjdk11
+#  # next we deploy to DKE server via our deploy script
+#  - provider: script
+#    skip_cleanup: true
+#    script: .travis/dke-deploy.sh

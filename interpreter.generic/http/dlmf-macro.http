@@ -1,6 +1,9 @@
 GET http://172.17.0.1:9200/_cat/indices?v
 Accept: text/plain
 ###
+GET http://localhost:33306/_cat/indices?v
+Accept: text/plain
+###
 GET http://localhost:9200/_cat/indices?v
 Accept: text/plain
 ###
