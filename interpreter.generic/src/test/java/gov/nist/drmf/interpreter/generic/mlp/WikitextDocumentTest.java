@@ -2,8 +2,8 @@ package gov.nist.drmf.interpreter.generic.mlp;
 
 import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
 import gov.nist.drmf.interpreter.generic.elasticsearch.AssumeElasticsearchAvailability;
-import gov.nist.drmf.interpreter.generic.mlp.struct.MLPDependencyGraph;
-import gov.nist.drmf.interpreter.generic.mlp.struct.MOIAnnotation;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPDependencyGraph;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIAnnotation;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;

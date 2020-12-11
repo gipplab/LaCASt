@@ -1,9 +1,9 @@
 package gov.nist.drmf.interpreter.generic;
 
 import gov.nist.drmf.interpreter.generic.elasticsearch.AssumeElasticsearchAvailability;
-import gov.nist.drmf.interpreter.generic.mlp.struct.MOIPresentations;
-import gov.nist.drmf.interpreter.generic.pojo.FormulaDefiniens;
-import gov.nist.drmf.interpreter.generic.pojo.SemanticEnhancedDocument;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
+import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 import mlp.ParseException;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
@@ -37,7 +37,7 @@ public class GenericLatexSemanticEnhancerTest {
         assertEquals("JacobiP(n, alpha, beta, x)", jacobi.getCasResults("Maple").getCasRepresentation());
         assertEquals("JacobiP[n, \\[Alpha], \\[Beta], x]", jacobi.getCasResults("Mathematica").getCasRepresentation());
 
-        List<FormulaDefiniens> definitions = jacobi.getDefiniens();
+        List<FormulaDefinition> definitions = jacobi.getDefiniens();
         long hits = definitions.stream()
                 .filter( d ->
                         d.getDefinition().equals("Jacobi polynomial") ||

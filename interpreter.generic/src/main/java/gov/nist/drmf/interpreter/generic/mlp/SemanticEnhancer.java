@@ -5,10 +5,10 @@ import gov.nist.drmf.interpreter.generic.common.GenericReplacementTool;
 import gov.nist.drmf.interpreter.generic.elasticsearch.DLMFElasticSearchClient;
 import gov.nist.drmf.interpreter.generic.elasticsearch.MacroResult;
 import gov.nist.drmf.interpreter.generic.macro.*;
-import gov.nist.drmf.interpreter.generic.mlp.struct.MOIAnnotation;
-import gov.nist.drmf.interpreter.generic.mlp.struct.MlpLacastScorer;
-import gov.nist.drmf.interpreter.generic.pojo.FormulaDefiniens;
-import gov.nist.drmf.interpreter.generic.pojo.SemanticReplacementRule;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIAnnotation;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MlpLacastScorer;
+import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticReplacementRule;
 import gov.nist.drmf.interpreter.pom.extensions.*;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import gov.nist.drmf.interpreter.pom.moi.MathematicalObjectOfInterest;
@@ -37,7 +37,7 @@ public class SemanticEnhancer {
     private final LinkedList<SemanticReplacementRule> macroPatterns;
 
     private final Set<String> definiensMemory;
-    private final List<FormulaDefiniens> definiens;
+    private final List<FormulaDefinition> definiens;
     private final List<String> macros;
 
     private double score;
@@ -71,7 +71,7 @@ public class SemanticEnhancer {
         return score;
     }
 
-    public List<FormulaDefiniens> getUsedDefiniens() {
+    public List<FormulaDefinition> getUsedDefiniens() {
         return definiens;
     }
 
@@ -92,7 +92,7 @@ public class SemanticEnhancer {
 
         definiens.addAll(
                 node.getAnnotation().getAttachedRelations().stream()
-                    .map( r -> new FormulaDefiniens(r.getScore(), r.getDefinition()) )
+                    .map( r -> new FormulaDefinition(r.getScore(), r.getDefinition()) )
                     .collect(Collectors.toList())
         );
 

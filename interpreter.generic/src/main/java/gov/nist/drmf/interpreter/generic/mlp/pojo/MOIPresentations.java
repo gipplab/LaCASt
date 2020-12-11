@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.generic.mlp.struct;
+package gov.nist.drmf.interpreter.generic.mlp.pojo;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -8,10 +8,9 @@ import com.formulasearchengine.mathosphere.mlp.pojos.Position;
 import com.wolfram.jlink.Expr;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
+import gov.nist.drmf.interpreter.common.pojo.*;
 import gov.nist.drmf.interpreter.generic.mlp.SemanticEnhancer;
-import gov.nist.drmf.interpreter.generic.pojo.FormulaDefiniens;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
-import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaSimplifier;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import gov.nist.drmf.interpreter.pom.moi.MOIDependency;
@@ -40,7 +39,7 @@ public class MOIPresentations {
     private static final Logger LOG = LogManager.getLogger(MOIPresentations.class.getName());
 
     @JsonProperty("definiens")
-    private List<FormulaDefiniens> definiens;
+    private List<FormulaDefinition> definiens;
 
     // for debug reasons
     @JsonIgnore
@@ -87,7 +86,7 @@ public class MOIPresentations {
             this.definiens = enhancer.getUsedDefiniens();
             this.macros = enhancer.getUsedMacros();
 
-            definiens.sort(Comparator.comparingDouble(FormulaDefiniens::getScore).reversed());
+            definiens.sort(Comparator.comparingDouble(FormulaDefinition::getScore).reversed());
             if ( semanticPTE == null ) {
                 LOG.warn("Unable to semantically enhance latex.");
                 return;
@@ -123,10 +122,25 @@ public class MOIPresentations {
     private void tryMathematicaComputation(CASResult casResult) {
         if ( !MathematicaConfig.isMathematicaPresent() ) return;
 
+        // let's add a fake numeric computation just to show how it may look like
+        NumericResult nr = new NumericResult(false, 0, 0, 0);
+        NumericCalculation nc = new NumericCalculation();
+        nc.setResult("no-computation-dummy");
+        HashMap<String, String> testValues = new HashMap<>();
+        testValues.put("\\alpha", "1");
+        testValues.put("\\beta", "2");
+        nc.setTestValues(testValues);
+        nr.addTestCalculations( nc );
+        casResult.setNumericResults(nr);
+
         MathematicaSimplifier simplifier = new MathematicaSimplifier();
+        simplifier.setTimeout(1);
         try {
             Expr symbolicResultExpr = simplifier.simplify(casResult.getCasRepresentation(), null);
-            casResult.addSymbolicResult("fullsimplify", symbolicResultExpr.toString());
+            SymbolicCalculation sc = new SymbolicCalculation();
+            sc.setResult( symbolicResultExpr.toString() );
+            sc.setTestProperty("fullsimplify");
+            casResult.addSymbolicResult( sc );
         } catch (ComputerAlgebraSystemEngineException e) {
             LOG.debug("Unable to simplify mathematical expression.");
         }
@@ -168,7 +182,7 @@ public class MOIPresentations {
     }
 
     @JsonGetter("definiens")
-    public List<FormulaDefiniens> getDefiniens() {
+    public List<FormulaDefinition> getDefiniens() {
         return definiens;
     }
 

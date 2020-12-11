@@ -1,12 +1,13 @@
 package gov.nist.drmf.interpreter.common;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.*;
 
 /**
  * @author Andre Greiner-Petter
  */
 public class TranslationInformation {
-
     private String expression, translatedExpression;
 
     private List<String> translatedConstraints;

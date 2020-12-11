@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.generic.interfaces;
 
-import gov.nist.drmf.interpreter.generic.mlp.struct.MOIPresentations;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
 import mlp.ParseException;
 
 /**

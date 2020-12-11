@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.generic.mlp;
 import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
 import gov.nist.drmf.interpreter.generic.elasticsearch.AssumeElasticsearchAvailability;
 import gov.nist.drmf.interpreter.generic.elasticsearch.DLMFElasticSearchClient;
-import gov.nist.drmf.interpreter.generic.mlp.struct.MOIAnnotation;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIAnnotation;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import gov.nist.drmf.interpreter.pom.moi.MathematicalObjectOfInterest;

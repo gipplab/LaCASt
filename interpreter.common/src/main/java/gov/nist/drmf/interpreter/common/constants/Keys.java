@@ -27,10 +27,12 @@ public final class Keys {
     // Key value for Mathematica
     public static final String KEY_MATHEMATICA = "Mathematica";
 
-    public static final String KEY_MATHEMATICA_MATH_DIR = "mathematica_math";
-
     // Key value for SymPy
     public static final String KEY_SYMPY = "SymPy";
+
+    public static final String SYSTEM_ENV_LD_LIBRARY_PATH = "LD_LIBRARY_PATH";
+
+    public static final String SYSTEM_ENV_MAPLE = "MAPLE";
 
     // Key value for DLMF
     public static final String KEY_DLMF = "DLMF";

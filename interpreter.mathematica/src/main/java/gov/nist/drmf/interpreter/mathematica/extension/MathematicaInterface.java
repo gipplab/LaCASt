@@ -14,6 +14,7 @@ import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -25,7 +26,7 @@ import java.util.regex.Pattern;
 /**
  * @author Andre Greiner-Petter
  */
-public class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> {
+public final class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> {
     private static final Logger LOG = LogManager.getLogger(MathematicaInterface.class.getName());
 
     /**
@@ -79,7 +80,9 @@ public class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> 
         if ( mathematicaInterface != null ) return mathematicaInterface;
         else {
             try {
-                mathematicaInterface = new MathematicaInterface();
+                if ( MathematicaConfig.isMathematicaMathPathAvailable() && MathematicaConfig.isSystemEnvironmentVariableProperlySet() ) {
+                    mathematicaInterface = new MathematicaInterface();
+                }
                 return mathematicaInterface;
             } catch (MathLinkException e) {
                 LOG.error("Cannot instantiate Mathematica interface: " + e.getMessage());

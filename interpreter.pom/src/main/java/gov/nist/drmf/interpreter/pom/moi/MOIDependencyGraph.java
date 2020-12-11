@@ -37,7 +37,11 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
 
     @Override
     public MOINode<T> addNode(String id, String moi, T annotation) throws ParseException, NotMatchableException {
-        if ( containsNode(id) ) return getNode(id);
+        if ( containsNode(id) ) {
+            MOINode<T> node = getNode(id);
+            node.setAnnotation(annotation);
+            return node;
+        }
         return addNode(id, mlp.parse(moi), annotation);
     }
 
