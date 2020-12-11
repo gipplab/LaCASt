@@ -6,7 +6,7 @@ import gov.nist.drmf.interpreter.generic.elasticsearch.DLMFElasticSearchClient;
 import gov.nist.drmf.interpreter.generic.elasticsearch.MacroResult;
 import gov.nist.drmf.interpreter.generic.macro.*;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIAnnotation;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.MlpLacastScorer;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPLacastScorer;
 import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticReplacementRule;
 import gov.nist.drmf.interpreter.pom.extensions.*;
@@ -177,7 +177,7 @@ public class SemanticEnhancer {
             LOG.debug("For definition " + definition + ": retrieved " + macros.size() + " semantic macros " + macros);
 
             double maxMacroScore = macros.isEmpty() ? 0 : macros.get(0).getScore();
-            MlpLacastScorer scorer = new MlpLacastScorer(maxMacroScore);
+            MLPLacastScorer scorer = new MLPLacastScorer(maxMacroScore);
 
             for ( int j = 0; j < macros.size() && j < considerNumberOfTopMacros; j++ ) {
                 MacroResult macroResult = macros.get(j);
