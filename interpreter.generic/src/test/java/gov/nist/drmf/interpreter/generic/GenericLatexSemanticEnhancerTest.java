@@ -52,8 +52,8 @@ public class GenericLatexSemanticEnhancerTest {
 
     @Test
     void annotateSingleFormulaTest() throws ParseException {
-        String context = "The Gamma function <math>\\Gamma(z)</math> and " +
-                "the pochhammer symbol <math>(a)_n</math> are often used together.";
+        String context =
+                "The Gamma function <math>\\Gamma(z)</math> and the pochhammer symbol <math>(a)_n</math> are often used together.";
 
         String includedMath = "\\Gamma(z)";
         String notIncludedMath = "\\Gamma( (\\alpha+1)_n )";
