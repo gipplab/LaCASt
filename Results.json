@@ -7,8 +7,35 @@
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{x}",
         "confidence" : 0.8135152636383296,
         "translations" : {
-          "Mathematica" : "JacobiP[n, \\[Alpha], \\[Beta], x]",
-          "Maple" : "JacobiP(n, alpha, beta, x)"
+          "Mathematica" : {
+            "translation" : "JacobiP[n, \\[Alpha], \\[Beta], x]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "JacobiP[n, α, β, x]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "JacobiP(n, alpha, beta, x)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -21,10 +48,7 @@
           "x",
           "n",
           "P_{n}^{(\\alpha, \\beta)}",
-          "\\alpha,\\beta",
-          "x",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "n"
+          "\\alpha,\\beta"
         ],
         "isPartOf" : [
           "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
@@ -203,9 +227,40 @@
         "semanticFormula" : "(1 - x)^{\\alpha}(1 + x)^{\\beta}",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]",
-          "SymPy" : "(1 - x)**(Symbol('alpha'))*(1 + x)**(Symbol('beta'))",
-          "Maple" : "(1 - x)^(alpha)*(1 + x)^(beta)"
+          "Mathematica" : {
+            "translation" : "(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "Times[Power[Plus[1, Times[-1, x]], α], Power[Plus[1, x], β]]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "(1 - x)**(Symbol('alpha'))*(1 + x)**(Symbol('beta'))",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "(1 - x)^(alpha)*(1 + x)^(beta)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -215,7 +270,6 @@
           }
         ],
         "includes" : [
-          "x",
           "x"
         ],
         "isPartOf" : [
@@ -254,9 +308,40 @@
         "semanticFormula" : "[-1, 1]",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "[- 1 , 1]",
-          "SymPy" : "[- 1 , 1]",
-          "Maple" : "[- 1 , 1]"
+          "Mathematica" : {
+            "translation" : "[- 1 , 1]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "Part[FullSimplify, -1, 1]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "[- 1 , 1]",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "[- 1 , 1]",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -275,12 +360,8 @@
             "word" : 3
           }
         ],
-        "includes" : [
-          "[-1, 1]"
-        ],
-        "isPartOf" : [
-          "[-1, 1]"
-        ],
+        "includes" : [ ],
+        "isPartOf" : [ ],
         "definiens" : [
           {
             "definition" : "interval",
@@ -305,8 +386,35 @@
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\Pochhammersym{\\alpha + 1}{n}}{n!}{}_2 F_1 (- n , 1 + \\alpha + \\beta + n ; \\alpha + 1 ; \\tfrac{1}{2} (1 - z))",
         "confidence" : 0.64236305957862,
         "translations" : {
-          "Mathematica" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Subscript[Divide[Pochhammer[\\[Alpha]+ 1, n],(n)!], 2]*Subscript[F, 1]*(- n , 1 + \\[Alpha]+ \\[Beta]+ n ; \\[Alpha]+ 1 ;Divide[1,2]*(1 - z))",
-          "Maple" : "JacobiP(n, alpha, beta, z) = (pochhammer(alpha + 1, n))/(factorial(n))[2]*F[1]*(- n , 1 + alpha + beta + n ; alpha + 1 ;(1)/(2)*(1 - z))"
+          "Mathematica" : {
+            "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Subscript[Divide[Pochhammer[\\[Alpha]+ 1, n],(n)!], 2]*Subscript[F, 1]*(- n , 1 + \\[Alpha]+ \\[Beta]+ n ; \\[Alpha]+ 1 ;Divide[1,2]*(1 - z))",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "$Failed",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "JacobiP(n, alpha, beta, z) = (pochhammer(alpha + 1, n))/(factorial(n))[2]*F[1]*(- n , 1 + alpha + beta + n ; alpha + 1 ;(1)/(2)*(1 - z))",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -322,8 +430,6 @@
           "n + \\alpha + \\beta",
           "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "n",
           "z"
         ],
         "isPartOf" : [ ],
@@ -343,8 +449,35 @@
         "semanticFormula" : "\\Pochhammersym{\\alpha + 1}{n}",
         "confidence" : 0.722,
         "translations" : {
-          "Mathematica" : "Pochhammer[\\[Alpha]+ 1, n]",
-          "Maple" : "pochhammer(alpha + 1, n)"
+          "Mathematica" : {
+            "translation" : "Pochhammer[\\[Alpha]+ 1, n]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "Pochhammer[Plus[1, α], n]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "pochhammer(alpha + 1, n)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -354,7 +487,6 @@
           }
         ],
         "includes" : [
-          "n",
           "n"
         ],
         "isPartOf" : [
@@ -374,10 +506,37 @@
       {
         "formula" : "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\EulerGamma@{\\alpha + n + 1}}{n! \\EulerGamma@{\\alpha + \\beta + n + 1}} \\sum_{m=0}^n{n\\choose m} \\frac{\\EulerGamma@{\\alpha + \\beta + n + m + 1}}{\\EulerGamma@{\\alpha + m + 1}} (\\frac{z-1}{2})^m",
-        "confidence" : 0.6927714811763457,
+        "confidence" : 0.6776974091773368,
         "translations" : {
-          "Mathematica" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[Gamma[\\[Alpha]+ n + 1],(n)!*Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*Sum[Binomial[n,m]*Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + m + 1],Gamma[\\[Alpha]+ m + 1]]*(Divide[z - 1,2])^(m), {m, 0, n}, GenerateConditions->None]",
-          "Maple" : "JacobiP(n, alpha, beta, z) = (GAMMA(alpha + n + 1))/(factorial(n)*GAMMA(alpha + beta + n + 1))*sum(binomial(n,m)*(GAMMA(alpha + beta + n + m + 1))/(GAMMA(alpha + m + 1))*((z - 1)/(2))^(m), m = 0..n)"
+          "Mathematica" : {
+            "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[Gamma[\\[Alpha]+ n + 1],(n)!*Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*Sum[Binomial[n,m]*Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + m + 1],Gamma[\\[Alpha]+ m + 1]]*(Divide[z - 1,2])^(m), {m, 0, n}, GenerateConditions->None]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "True",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "JacobiP(n, alpha, beta, z) = (GAMMA(alpha + n + 1))/(factorial(n)*GAMMA(alpha + beta + n + 1))*sum(binomial(n,m)*(GAMMA(alpha + beta + n + m + 1))/(GAMMA(alpha + m + 1))*((z - 1)/(2))^(m), m = 0..n)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -393,8 +552,6 @@
           "n + \\alpha + \\beta",
           "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "n",
           "z"
         ],
         "isPartOf" : [ ],
@@ -418,8 +575,35 @@
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{(-1)^n}{2^n n!} (1 - z)^{-\\alpha} (1 + z)^{-\\beta} \\deriv [n]{ }{z} \\{(1 - z)^\\alpha (1 + z)^\\beta (1 - z^2)^n \\}",
         "confidence" : 0.8135152636383296,
         "translations" : {
-          "Mathematica" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[(- 1)^(n),(2)^(n)* (n)!]*(1 - z)^(- \\[Alpha])*(1 + z)^(- \\[Beta])* D[(1 - z)^\\[Alpha]*(1 + z)^\\[Beta]*(1 - (z)^(2))^(n), {z, n}]",
-          "Maple" : "JacobiP(n, alpha, beta, z) = ((- 1)^(n))/((2)^(n)* factorial(n))*(1 - z)^(- alpha)*(1 + z)^(- beta)* diff((1 - z)^(alpha)*(1 + z)^(beta)*(1 - (z)^(2))^(n), [z$(n)])"
+          "Mathematica" : {
+            "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[(- 1)^(n),(2)^(n)* (n)!]*(1 - z)^(- \\[Alpha])*(1 + z)^(- \\[Beta])* D[(1 - z)^\\[Alpha]*(1 + z)^\\[Beta]*(1 - (z)^(2))^(n), {z, n}]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "$Aborted",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "JacobiP(n, alpha, beta, z) = ((- 1)^(n))/((2)^(n)* factorial(n))*(1 - z)^(- alpha)*(1 + z)^(- beta)* diff((1 - z)^(alpha)*(1 + z)^(beta)*(1 - (z)^(2))^(n), [z$(n)])",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -429,13 +613,11 @@
           }
         ],
         "includes" : [
-          "P_{n}^{(\\alpha, \\beta)}(x)",
           "(1 - x)^{\\alpha}(1 + x)^{\\beta}",
+          "P_{n}^{(\\alpha, \\beta)}(x)",
           "n",
           "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "n",
           "z"
         ],
         "isPartOf" : [ ],
@@ -455,9 +637,40 @@
         "semanticFormula" : "\\alpha = \\beta = 0",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "\\[Alpha] == \\[Beta] == 0",
-          "SymPy" : "Symbol('alpha') == Symbol('beta') == 0",
-          "Maple" : "alpha = beta = 0"
+          "Mathematica" : {
+            "translation" : "\\[Alpha] == \\[Beta] == 0",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "Equal[α, β, 0]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "Symbol('alpha') == Symbol('beta') == 0",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "alpha = beta = 0",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -480,8 +693,35 @@
         "semanticFormula" : "\\LegendrepolyP{n}@{z} = \\frac{1 }{2^n  n! } \\deriv [n]{ }{z} (z^2 - 1)^n",
         "confidence" : 0.7125985104912714,
         "translations" : {
-          "Mathematica" : "LegendreP[n, z] == Divide[1,(2)^(n)* (n)!]*D[((z)^(2)- 1)^(n), {z, n}]",
-          "Maple" : "LegendreP(n, z) = (1)/((2)^(n)* factorial(n))*diff(((z)^(2)- 1)^(n), [z$(n)])"
+          "Mathematica" : {
+            "translation" : "LegendreP[n, z] == Divide[1,(2)^(n)* (n)!]*D[((z)^(2)- 1)^(n), {z, n}]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "Equal[LegendreP[n, z], Times[Power[2, Times[-1, n]], DifferenceRoot[Function[{, }, {Equal[Plus[Times[Plus[, Times[-2, n]], []], Times[-2, Plus[-1, Times[-1, ], n], z, [Plus[1, ]]], Times[Plus[2, ], Plus[-1, z], Plus[1, z], [Plus[2, ]]]], 0], Equal[[0], Power[Plus[-1, Power[z, 2]], n]], Equal[[1], Times[2, n, z, Power[Plus[-1, Power[z, 2]], Plus[-1, n]]]]}]][n]]]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "LegendreP(n, z) = (1)/((2)^(n)* factorial(n))*diff(((z)^(2)- 1)^(n), [z$(n)])",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -491,7 +731,6 @@
           }
         ],
         "includes" : [
-          "n",
           "n",
           "z"
         ],
@@ -508,9 +747,40 @@
         "semanticFormula" : "x",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "x",
-          "SymPy" : "x",
-          "Maple" : "x"
+          "Mathematica" : {
+            "translation" : "x",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "x",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "x",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "x",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -524,17 +794,14 @@
             "word" : 1
           }
         ],
-        "includes" : [
-          "x"
-        ],
+        "includes" : [ ],
         "isPartOf" : [
-          "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
-          "x",
-          "\\left (1-x^2 \\right )y'' + ( \\beta-\\alpha - (\\alpha + \\beta + 2)x )y' + n(n+\\alpha+\\beta+1) y = 0",
+          "(1 - x)^{\\alpha}(1 + x)^{\\beta}",
           "P_{n}^{(\\alpha, \\beta)}(x)",
-          "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
           "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
-          "(1 - x)^{\\alpha}(1 + x)^{\\beta}"
+          "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
+          "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
+          "\\left (1-x^2 \\right )y'' + ( \\beta-\\alpha - (\\alpha + \\beta + 2)x )y' + n(n+\\alpha+\\beta+1) y = 0"
         ],
         "definiens" : [
           {
@@ -592,8 +859,35 @@
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{x} = \\sum_{s=0}^n{n+\\alpha\\choose n-s}{n+\\beta \\choose s} (\\frac{x-1}{2})^{s} (\\frac{x+1}{2})^{n-s}",
         "confidence" : 0.6859086196238077,
         "translations" : {
-          "Mathematica" : "JacobiP[n, \\[Alpha], \\[Beta], x] == Sum[Binomial[n + \\[Alpha],n - s]*Binomial[n + \\[Beta],s]*(Divide[x - 1,2])^(s)*(Divide[x + 1,2])^(n - s), {s, 0, n}, GenerateConditions->None]",
-          "Maple" : "JacobiP(n, alpha, beta, x) = sum(binomial(n + alpha,n - s)*binomial(n + beta,s)*((x - 1)/(2))^(s)*((x + 1)/(2))^(n - s), s = 0..n)"
+          "Mathematica" : {
+            "translation" : "JacobiP[n, \\[Alpha], \\[Beta], x] == Sum[Binomial[n + \\[Alpha],n - s]*Binomial[n + \\[Beta],s]*(Divide[x - 1,2])^(s)*(Divide[x + 1,2])^(n - s), {s, 0, n}, GenerateConditions->None]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "$Aborted",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "JacobiP(n, alpha, beta, x) = sum(binomial(n + alpha,n - s)*binomial(n + beta,s)*((x - 1)/(2))^(s)*((x + 1)/(2))^(n - s), s = 0..n)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -603,15 +897,12 @@
           }
         ],
         "includes" : [
-          "x",
           "P_{n}^{(\\alpha, \\beta)}(x)",
+          "x",
           "n",
           "s",
           "P_{n}^{(\\alpha, \\beta)}",
-          "\\alpha,\\beta",
-          "x",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "n"
+          "\\alpha,\\beta"
         ],
         "isPartOf" : [ ],
         "definiens" : [
@@ -626,9 +917,40 @@
         "semanticFormula" : "n",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "n",
-          "SymPy" : "n",
-          "Maple" : "n"
+          "Mathematica" : {
+            "translation" : "n",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "n",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "n",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "n",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -642,34 +964,31 @@
             "word" : 14
           }
         ],
-        "includes" : [
-          "n"
-        ],
+        "includes" : [ ],
         "isPartOf" : [
-          "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
-          "P_n^{(\\alpha, \\beta)} (-1) = (-1)^n { n+\\beta\\choose n}",
-          "{z \\choose n} = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}",
-          "\\left (1-x^2 \\right )y'' + ( \\beta-\\alpha - (\\alpha + \\beta + 2)x )y' + n(n+\\alpha+\\beta+1) y = 0",
-          "P_{n}^{(\\alpha, \\beta)}(x)",
-          "n + \\alpha + \\beta",
-          "n, n + \\alpha, n + \\beta",
-          "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
-          "P_n^{(\\alpha, \\beta)} (1) = {n+\\alpha\\choose n}",
-          "(\\alpha+1)_n",
-          "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
-          "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
-          "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
-          "n",
-          "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&= (2n+\\alpha + \\beta-1) \\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
-          "P_{n}(z) = \\frac{1 }{2^n  n! } \\frac{d^n }{ d z^n }  ( z^2 - 1 )^n",
-          "n= 2, 3,",
           "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
-          "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
-          "n=m",
           "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+          "P_{n}(z) = \\frac{1 }{2^n  n! } \\frac{d^n }{ d z^n }  ( z^2 - 1 )^n",
+          "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
+          "P_{n}^{(\\alpha, \\beta)}(x)",
+          "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
+          "(\\alpha+1)_n",
+          "{z \\choose n} = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}",
+          "n, n + \\alpha, n + \\beta",
+          "n + \\alpha + \\beta",
+          "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
+          "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
+          "n=m",
+          "P_n^{(\\alpha, \\beta)} (1) = {n+\\alpha\\choose n}",
+          "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
+          "P_n^{(\\alpha, \\beta)} (-1) = (-1)^n { n+\\beta\\choose n}",
+          "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
+          "P_{n}^{(\\alpha, \\beta)}",
+          "\\left (1-x^2 \\right )y'' + ( \\beta-\\alpha - (\\alpha + \\beta + 2)x )y' + n(n+\\alpha+\\beta+1) y = 0",
+          "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&= (2n+\\alpha + \\beta-1) \\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
+          "n= 2, 3,",
           "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right)  .\\end{align}",
+          "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
           "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )",
           "\\begin{align}k(\\theta) &= \\pi^{-\\frac{1}{2}} \\sin^{-\\alpha-\\frac{1}{2}} \\tfrac{\\theta}{2} \\cos^{-\\beta-\\frac{1}{2}} \\tfrac{\\theta}{2},\\\\N &= n + \\tfrac{1}{2} (\\alpha+\\beta+1),\\\\\\gamma &= - \\tfrac{\\pi}{2} \\left (\\alpha + \\tfrac{1}{2} \\right ),\\end{align}",
           "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left ( \\tfrac{z}{n} \\right ) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\alpha} J_\\alpha(z)\\\\ \\lim_{n \\to \\infty} n^{-\\beta}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left (\\pi - \\tfrac{z}{n} \\right) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\beta} J_\\beta(z)\\end{align}"
@@ -838,9 +1157,40 @@
         "semanticFormula" : "{z \\choose n} = \\begin{cases}\\frac{\\EulerGamma@{z + 1}}{\\EulerGamma@{n + 1} \\EulerGamma@{z - n + 1}} n \\geq 0 0 & n < 0\\end{cases}",
         "confidence" : 0.5645790665700885,
         "translations" : {
-          "Mathematica" : "Binomial[z,n] == ",
-          "SymPy" : "binomial(z,n) == ",
-          "Maple" : "binomial(z,n) = "
+          "Mathematica" : {
+            "translation" : "Binomial[z,n] == ",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "$Failed",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "binomial(z,n) == ",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "binomial(z,n) = ",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -852,7 +1202,6 @@
         "includes" : [
           "n",
           "\\Gamma(z)",
-          "n",
           "z"
         ],
         "isPartOf" : [ ],
@@ -872,8 +1221,35 @@
         "semanticFormula" : "\\EulerGamma@{z}",
         "confidence" : 0.5720276987143617,
         "translations" : {
-          "Mathematica" : "Gamma[z]",
-          "Maple" : "GAMMA(z)"
+          "Mathematica" : {
+            "translation" : "Gamma[z]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "Gamma[z]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "GAMMA(z)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -886,8 +1262,8 @@
           "z"
         ],
         "isPartOf" : [
-          "{z \\choose n} = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}",
           "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+          "{z \\choose n} = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}",
           "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
           "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)"
         ],
@@ -931,9 +1307,40 @@
         "semanticFormula" : "n, n + \\alpha, n + \\beta",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "n , n + \\[Alpha], n + \\[Beta]",
-          "SymPy" : "n , n + Symbol('alpha'), n + Symbol('beta')",
-          "Maple" : "n , n + alpha , n + beta"
+          "Mathematica" : {
+            "translation" : "n , n + \\[Alpha], n + \\[Beta]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "FullSimplify[n, Plus[n, α], Plus[n, β]]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "n , n + Symbol('alpha'), n + Symbol('beta')",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "n , n + alpha , n + beta",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -944,7 +1351,7 @@
         ],
         "includes" : [
           "n",
-          "n"
+          "\\alpha,\\beta"
         ],
         "isPartOf" : [ ],
         "definiens" : [
@@ -967,9 +1374,40 @@
         "semanticFormula" : "n + \\alpha + \\beta",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "n + \\[Alpha]+ \\[Beta]",
-          "SymPy" : "n + Symbol('alpha')+ Symbol('beta')",
-          "Maple" : "n + alpha + beta"
+          "Mathematica" : {
+            "translation" : "n + \\[Alpha]+ \\[Beta]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "Plus[n, α, β]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "n + Symbol('alpha')+ Symbol('beta')",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "n + alpha + beta",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -979,14 +1417,14 @@
           }
         ],
         "includes" : [
-          "n",
           "n"
         ],
         "isPartOf" : [
-          "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
           "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+          "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
           "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
           "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
+          "\\left (1-x^2 \\right )y'' + ( \\beta-\\alpha - (\\alpha + \\beta + 2)x )y' + n(n+\\alpha+\\beta+1) y = 0",
           "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&= (2n+\\alpha + \\beta-1) \\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
           "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right)  .\\end{align}"
         ],
@@ -997,47 +1435,51 @@
           },
           {
             "definition" : "quantity",
-            "score" : 0.6629879847031728
+            "score" : 0.6601229053380933
           },
           {
             "definition" : "Jacobi polynomial",
-            "score" : 0.6303559422086424
+            "score" : 0.6476241008701227
           },
           {
             "definition" : "orthogonality condition",
-            "score" : 0.4555357896715027
+            "score" : 0.45267071030642325
           },
           {
             "definition" : "equivalent expression",
-            "score" : 0.367356446999208
+            "score" : 0.36449136763412854
+          },
+          {
+            "definition" : "solution of the second order linear homogeneous differential equation",
+            "score" : 0.34315870430225354
           },
           {
             "definition" : "recurrence relation for the Jacobi polynomial",
-            "score" : 0.34589919335754316
+            "score" : 0.3430341139924638
           },
           {
             "definition" : "Pochhammer 's symbol",
-            "score" : 0.32707390957983185
+            "score" : 0.3242088302147525
           },
           {
             "definition" : "derivative of the explicit expression",
-            "score" : 0.3198499638698394
+            "score" : 0.31698488450476003
           },
           {
             "definition" : "identity",
-            "score" : 0.3191792258621273
+            "score" : 0.316314146497048
           },
           {
             "definition" : "Gauss ' contiguous relation",
-            "score" : 0.2793452855311201
+            "score" : 0.27648020616604074
           },
           {
             "definition" : "case",
-            "score" : 0.2535754360413691
+            "score" : 0.2507103566762897
           },
           {
             "definition" : "series for the hypergeometric function",
-            "score" : 0.2535754360413691
+            "score" : 0.2507103566762897
           }
         ]
       },
@@ -1046,8 +1488,35 @@
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{x} = (n + \\alpha)! (n + \\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} (\\frac{x-1}{2})^{n-s} (\\frac{x+1}{2})^{s}",
         "confidence" : 0.6859086196238077,
         "translations" : {
-          "Mathematica" : "JacobiP[n, \\[Alpha], \\[Beta], x] == (n + \\[Alpha])!*(n + \\[Beta])!*Sum[Divide[1,(s)!*(n + \\[Alpha]- s)!*(\\[Beta]+ s)!*(n - s)!]*(Divide[x - 1,2])^(n - s)*(Divide[x + 1,2])^(s), {s, 0, n}, GenerateConditions->None]",
-          "Maple" : "JacobiP(n, alpha, beta, x) = factorial(n + alpha)*factorial(n + beta)*sum((1)/(factorial(s)*factorial(n + alpha - s)*factorial(beta + s)*factorial(n - s))*((x - 1)/(2))^(n - s)*((x + 1)/(2))^(s), s = 0..n)"
+          "Mathematica" : {
+            "translation" : "JacobiP[n, \\[Alpha], \\[Beta], x] == (n + \\[Alpha])!*(n + \\[Beta])!*Sum[Divide[1,(s)!*(n + \\[Alpha]- s)!*(\\[Beta]+ s)!*(n - s)!]*(Divide[x - 1,2])^(n - s)*(Divide[x + 1,2])^(s), {s, 0, n}, GenerateConditions->None]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "$Aborted",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "JacobiP(n, alpha, beta, x) = factorial(n + alpha)*factorial(n + beta)*sum((1)/(factorial(s)*factorial(n + alpha - s)*factorial(beta + s)*factorial(n - s))*((x - 1)/(2))^(n - s)*((x + 1)/(2))^(s), s = 0..n)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1057,15 +1526,12 @@
           }
         ],
         "includes" : [
-          "x",
           "P_{n}^{(\\alpha, \\beta)}(x)",
           "n",
+          "x",
           "s",
           "P_{n}^{(\\alpha, \\beta)}",
-          "\\alpha,\\beta",
-          "x",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "n"
+          "\\alpha,\\beta"
         ],
         "isPartOf" : [ ],
         "definiens" : [
@@ -1088,9 +1554,40 @@
         "semanticFormula" : "s",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "s",
-          "SymPy" : "s",
-          "Maple" : "s"
+          "Mathematica" : {
+            "translation" : "s",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "s",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "s",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "s",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1132,8 +1629,35 @@
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{0}@{z} = 1",
         "confidence" : 0.8135152636383296,
         "translations" : {
-          "Mathematica" : "JacobiP[0, \\[Alpha], \\[Beta], z] == 1",
-          "Maple" : "JacobiP(0, alpha, beta, z) = 1"
+          "Mathematica" : {
+            "translation" : "JacobiP[0, \\[Alpha], \\[Beta], z] == 1",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "True",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "JacobiP(0, alpha, beta, z) = 1",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1146,7 +1670,6 @@
           "P_{n}^{(\\alpha, \\beta)}(x)",
           "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta",
-          "P_{n}^{(\\alpha, \\beta)}",
           "z"
         ],
         "isPartOf" : [ ],
@@ -1157,8 +1680,35 @@
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{1}@{z} = (\\alpha + 1) + (\\alpha + \\beta + 2) \\frac{z-1}{2}",
         "confidence" : 0.8135152636383296,
         "translations" : {
-          "Mathematica" : "JacobiP[1, \\[Alpha], \\[Beta], z] == (\\[Alpha]+ 1)+(\\[Alpha]+ \\[Beta]+ 2)*Divide[z - 1,2]",
-          "Maple" : "JacobiP(1, alpha, beta, z) = (alpha + 1)+(alpha + beta + 2)*(z - 1)/(2)"
+          "Mathematica" : {
+            "translation" : "JacobiP[1, \\[Alpha], \\[Beta], z] == (\\[Alpha]+ 1)+(\\[Alpha]+ \\[Beta]+ 2)*Divide[z - 1,2]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "True",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "JacobiP(1, alpha, beta, z) = (alpha + 1)+(alpha + beta + 2)*(z - 1)/(2)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1171,7 +1721,6 @@
           "P_{n}^{(\\alpha, \\beta)}(x)",
           "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta",
-          "P_{n}^{(\\alpha, \\beta)}",
           "z"
         ],
         "isPartOf" : [ ],
@@ -1182,8 +1731,35 @@
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{2}@{z} = \\frac{(\\alpha+1)(\\alpha+2)}{2} + (\\alpha + 2) (\\alpha + \\beta + 3) \\frac{z-1}{2} + \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2} (\\frac{z-1}{2})^2 ,",
         "confidence" : 0.8135152636383296,
         "translations" : {
-          "Mathematica" : "JacobiP[2, \\[Alpha], \\[Beta], z] == Divide[(\\[Alpha]+ 1)*(\\[Alpha]+ 2),2]+(\\[Alpha]+ 2)*(\\[Alpha]+ \\[Beta]+ 3)*Divide[z - 1,2]+Divide[(\\[Alpha]+ \\[Beta]+ 3)*(\\[Alpha]+ \\[Beta]+ 4),2]*(Divide[z - 1,2])^(2)",
-          "Maple" : "JacobiP(2, alpha, beta, z) = ((alpha + 1)*(alpha + 2))/(2)+(alpha + 2)*(alpha + beta + 3)*(z - 1)/(2)+((alpha + beta + 3)*(alpha + beta + 4))/(2)*((z - 1)/(2))^(2)"
+          "Mathematica" : {
+            "translation" : "JacobiP[2, \\[Alpha], \\[Beta], z] == Divide[(\\[Alpha]+ 1)*(\\[Alpha]+ 2),2]+(\\[Alpha]+ 2)*(\\[Alpha]+ \\[Beta]+ 3)*Divide[z - 1,2]+Divide[(\\[Alpha]+ \\[Beta]+ 3)*(\\[Alpha]+ \\[Beta]+ 4),2]*(Divide[z - 1,2])^(2)",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "True",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "JacobiP(2, alpha, beta, z) = ((alpha + 1)*(alpha + 2))/(2)+(alpha + 2)*(alpha + beta + 3)*(z - 1)/(2)+((alpha + beta + 3)*(alpha + beta + 4))/(2)*((z - 1)/(2))^(2)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1196,7 +1772,6 @@
           "P_{n}^{(\\alpha, \\beta)}(x)",
           "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta",
-          "P_{n}^{(\\alpha, \\beta)}",
           "z"
         ],
         "isPartOf" : [ ],
@@ -1205,10 +1780,37 @@
       {
         "formula" : "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
         "semanticFormula" : "\\int_{-1}^1 (1 - x)^{\\alpha} (1 + x)^{\\beta} \\JacobipolyP{\\alpha}{\\beta}{m}@{x} \\JacobipolyP{\\alpha}{\\beta}{n}@{x} \\diff{x} = \\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\EulerGamma@{n + \\alpha + 1} \\EulerGamma@{n + \\beta + 1}}{\\EulerGamma@{n + \\alpha + \\beta + 1} n!} \\delta_{nm} , \\alpha , \\beta > - 1",
-        "confidence" : 0.6289681591690847,
+        "confidence" : 0.6138940871700758,
         "translations" : {
-          "Mathematica" : "Integrate[(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]*JacobiP[m, \\[Alpha], \\[Beta], x]*JacobiP[n, \\[Alpha], \\[Beta], x], {x, - 1, 1}, GenerateConditions->None] == Divide[(2)^(\\[Alpha]+ \\[Beta]+ 1),2*n + \\[Alpha]+ \\[Beta]+ 1]*Divide[Gamma[n + \\[Alpha]+ 1]*Gamma[n + \\[Beta]+ 1],Gamma[n + \\[Alpha]+ \\[Beta]+ 1]*(n)!]*Subscript[\\[Delta], n*m], \\[Alpha], \\[Beta] > - 1",
-          "Maple" : "int((1 - x)^(alpha)*(1 + x)^(beta)*JacobiP(m, alpha, beta, x)*JacobiP(n, alpha, beta, x), x = - 1..1) = ((2)^(alpha + beta + 1))/(2*n + alpha + beta + 1)*(GAMMA(n + alpha + 1)*GAMMA(n + beta + 1))/(GAMMA(n + alpha + beta + 1)*factorial(n))*delta[n*m], alpha , beta > - 1"
+          "Mathematica" : {
+            "translation" : "Integrate[(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]*JacobiP[m, \\[Alpha], \\[Beta], x]*JacobiP[n, \\[Alpha], \\[Beta], x], {x, - 1, 1}, GenerateConditions->None] == Divide[(2)^(\\[Alpha]+ \\[Beta]+ 1),2*n + \\[Alpha]+ \\[Beta]+ 1]*Divide[Gamma[n + \\[Alpha]+ 1]*Gamma[n + \\[Beta]+ 1],Gamma[n + \\[Alpha]+ \\[Beta]+ 1]*(n)!]*Subscript[\\[Delta], n*m], \\[Alpha], \\[Beta] > - 1",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "$Aborted",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "int((1 - x)^(alpha)*(1 + x)^(beta)*JacobiP(m, alpha, beta, x)*JacobiP(n, alpha, beta, x), x = - 1..1) = ((2)^(alpha + beta + 1))/(2*n + alpha + beta + 1)*(GAMMA(n + alpha + 1)*GAMMA(n + beta + 1))/(GAMMA(n + alpha + beta + 1)*factorial(n))*delta[n*m], alpha , beta > - 1",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1218,17 +1820,14 @@
           }
         ],
         "includes" : [
-          "\\Gamma(z)",
-          "x",
-          "P_{n}^{(\\alpha, \\beta)}(x)",
-          "n + \\alpha + \\beta",
           "(1 - x)^{\\alpha}(1 + x)^{\\beta}",
+          "P_{n}^{(\\alpha, \\beta)}(x)",
           "n",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "\\alpha,\\beta",
+          "n + \\alpha + \\beta",
           "x",
+          "\\Gamma(z)",
           "P_{n}^{(\\alpha, \\beta)}",
-          "n"
+          "\\alpha,\\beta"
         ],
         "isPartOf" : [ ],
         "definiens" : [
@@ -1247,9 +1846,40 @@
         "semanticFormula" : "n=m",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "n == m",
-          "SymPy" : "n == m",
-          "Maple" : "n = m"
+          "Mathematica" : {
+            "translation" : "n == m",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "Equal[m, n]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "n == m",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "n = m",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1259,7 +1889,6 @@
           }
         ],
         "includes" : [
-          "n",
           "n"
         ],
         "isPartOf" : [
@@ -1290,8 +1919,35 @@
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{1} ={n+\\alpha\\choose n}",
         "confidence" : 0.8135152636383296,
         "translations" : {
-          "Mathematica" : "JacobiP[n, \\[Alpha], \\[Beta], 1] == Binomial[n + \\[Alpha],n]",
-          "Maple" : "JacobiP(n, alpha, beta, 1) = binomial(n + alpha,n)"
+          "Mathematica" : {
+            "translation" : "JacobiP[n, \\[Alpha], \\[Beta], 1] == Binomial[n + \\[Alpha],n]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "True",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "JacobiP(n, alpha, beta, 1) = binomial(n + alpha,n)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1304,9 +1960,7 @@
           "P_{n}^{(\\alpha, \\beta)}(x)",
           "n",
           "P_{n}^{(\\alpha, \\beta)}",
-          "\\alpha,\\beta",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "n"
+          "\\alpha,\\beta"
         ],
         "isPartOf" : [ ],
         "definiens" : [
@@ -1329,8 +1983,35 @@
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{- z} = (- 1)^n \\JacobipolyP{\\beta}{\\alpha}{n}@{z}",
         "confidence" : 0.6859086196238077,
         "translations" : {
-          "Mathematica" : "JacobiP[n, \\[Alpha], \\[Beta], - z] == (- 1)^(n)*JacobiP[n, \\[Beta], \\[Alpha], z]",
-          "Maple" : "JacobiP(n, alpha, beta, - z) = (- 1)^(n)*JacobiP(n, beta, alpha, z)"
+          "Mathematica" : {
+            "translation" : "JacobiP[n, \\[Alpha], \\[Beta], - z] == (- 1)^(n)*JacobiP[n, \\[Beta], \\[Alpha], z]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "Equal[JacobiP[n, α, β, Times[-1, z]], Times[Power[-1, n], JacobiP[n, β, α, z]]]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "JacobiP(n, alpha, beta, - z) = (- 1)^(n)*JacobiP(n, beta, alpha, z)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1344,8 +2025,6 @@
           "n",
           "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "n",
           "z"
         ],
         "isPartOf" : [ ],
@@ -1369,8 +2048,35 @@
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{- 1} = (- 1)^n{n+\\beta\\choose n}",
         "confidence" : 0.6859086196238077,
         "translations" : {
-          "Mathematica" : "JacobiP[n, \\[Alpha], \\[Beta], - 1] == (- 1)^(n)*Binomial[n + \\[Beta],n]",
-          "Maple" : "JacobiP(n, alpha, beta, - 1) = (- 1)^(n)*binomial(n + beta,n)"
+          "Mathematica" : {
+            "translation" : "JacobiP[n, \\[Alpha], \\[Beta], - 1] == (- 1)^(n)*Binomial[n + \\[Beta],n]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "Equal[Times[Power[-1, n], Binomial[Plus[n, β], n]], JacobiP[n, α, β, -1]]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "JacobiP(n, alpha, beta, - 1) = (- 1)^(n)*binomial(n + beta,n)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1383,9 +2089,7 @@
           "P_{n}^{(\\alpha, \\beta)}(x)",
           "n",
           "P_{n}^{(\\alpha, \\beta)}",
-          "\\alpha,\\beta",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "n"
+          "\\alpha,\\beta"
         ],
         "isPartOf" : [ ],
         "definiens" : [
@@ -1408,9 +2112,40 @@
         "semanticFormula" : "k",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "k",
-          "SymPy" : "k",
-          "Maple" : "k"
+          "Mathematica" : {
+            "translation" : "k",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "k",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "k",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "k",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1447,10 +2182,37 @@
       {
         "formula" : "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
         "semanticFormula" : "\\deriv [k]{ }{z} \\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\EulerGamma@{\\alpha + \\beta + n + 1 + k}}{2^k \\EulerGamma@{\\alpha + \\beta + n + 1}} \\JacobipolyP{\\alpha + k}{\\beta + k}{n-k}@{z}",
-        "confidence" : 0.6927714811763457,
+        "confidence" : 0.6776974091773368,
         "translations" : {
-          "Mathematica" : "D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, k}] == Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + 1 + k],(2)^(k)*Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*JacobiP[n - k, \\[Alpha]+ k, \\[Beta]+ k, z]",
-          "Maple" : "diff(JacobiP(n, alpha, beta, z), [z$(k)]) = (GAMMA(alpha + beta + n + 1 + k))/((2)^(k)*GAMMA(alpha + beta + n + 1))*JacobiP(n - k, alpha + k, beta + k, z)"
+          "Mathematica" : {
+            "translation" : "D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, k}] == Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + 1 + k],(2)^(k)*Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*JacobiP[n - k, \\[Alpha]+ k, \\[Beta]+ k, z]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "True",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "diff(JacobiP(n, alpha, beta, z), [z$(k)]) = (GAMMA(alpha + beta + n + 1 + k))/((2)^(k)*GAMMA(alpha + beta + n + 1))*JacobiP(n - k, alpha + k, beta + k, z)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1461,14 +2223,12 @@
         ],
         "includes" : [
           "P_{n}^{(\\alpha, \\beta)}(x)",
-          "n + \\alpha + \\beta",
           "k",
           "n",
+          "n + \\alpha + \\beta",
           "\\Gamma(z)",
           "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "n",
           "z"
         ],
         "isPartOf" : [ ],
@@ -1484,8 +2244,35 @@
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{x}",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "JacobiP[n, \\[Alpha], \\[Beta], x]",
-          "Maple" : "JacobiP(n, alpha, beta, x)"
+          "Mathematica" : {
+            "translation" : "JacobiP[n, \\[Alpha], \\[Beta], x]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "JacobiP[n, α, β, x]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "JacobiP(n, alpha, beta, x)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1501,29 +2288,26 @@
         ],
         "includes" : [
           "n",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "\\alpha,\\beta",
-          "n"
+          "\\alpha,\\beta"
         ],
         "isPartOf" : [
-          "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
-          "P_n^{(\\alpha, \\beta)} (-1) = (-1)^n { n+\\beta\\choose n}",
-          "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,",
+          "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
           "P_{n}^{(\\alpha, \\beta)}(x)",
           "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
           "P_0^{(\\alpha,\\beta)}(z)= 1",
-          "P_n^{(\\alpha, \\beta)} (1) = {n+\\alpha\\choose n}",
-          "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
-          "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
-          "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
           "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
-          "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&= (2n+\\alpha + \\beta-1) \\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
+          "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
+          "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
+          "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
+          "P_n^{(\\alpha, \\beta)} (-1) = (-1)^n { n+\\beta\\choose n}",
+          "P_n^{(\\alpha, \\beta)} (1) = {n+\\alpha\\choose n}",
+          "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
+          "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,",
           "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
-          "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
-          "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+          "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
+          "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&= (2n+\\alpha + \\beta-1) \\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
           "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right)  .\\end{align}",
+          "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
           "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )",
           "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left ( \\tfrac{z}{n} \\right ) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\alpha} J_\\alpha(z)\\\\ \\lim_{n \\to \\infty} n^{-\\beta}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left (\\pi - \\tfrac{z}{n} \\right) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\beta} J_\\beta(z)\\end{align}",
           "d^j_{m'm}(\\phi) =\\left[ \\frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}\\right]^{\\frac{1}{2}} \\left(\\sin\\tfrac{\\phi}{2}\\right)^{m-m'} \\left(\\cos\\tfrac{\\phi}{2}\\right)^{m+m'} P_{j-m}^{(m-m',m+m')}(\\cos \\phi)"
@@ -1698,8 +2482,7 @@
         "includes" : [
           "x",
           "n",
-          "x",
-          "n"
+          "n + \\alpha + \\beta"
         ],
         "isPartOf" : [ ],
         "definiens" : [
@@ -1718,9 +2501,40 @@
         "semanticFormula" : "\\alpha,\\beta",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "\\[Alpha], \\[Beta]",
-          "SymPy" : "Symbol('alpha'), Symbol('beta')",
-          "Maple" : "alpha , beta"
+          "Mathematica" : {
+            "translation" : "\\[Alpha], \\[Beta]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "α",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "Symbol('alpha'), Symbol('beta')",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "alpha , beta",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1731,25 +2545,25 @@
         ],
         "includes" : [ ],
         "isPartOf" : [
-          "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
-          "P_n^{(\\alpha, \\beta)} (-1) = (-1)^n { n+\\beta\\choose n}",
-          "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,",
+          "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
           "P_{n}^{(\\alpha, \\beta)}(x)",
           "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
-          "P_0^{(\\alpha,\\beta)}(z)= 1",
-          "P_n^{(\\alpha, \\beta)} (1) = {n+\\alpha\\choose n}",
-          "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
-          "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
-          "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
-          "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
-          "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
           "P_{n}^{(\\alpha, \\beta)}",
+          "P_0^{(\\alpha,\\beta)}(z)= 1",
+          "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
+          "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
+          "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
+          "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
+          "P_n^{(\\alpha, \\beta)} (-1) = (-1)^n { n+\\beta\\choose n}",
+          "P_n^{(\\alpha, \\beta)} (1) = {n+\\alpha\\choose n}",
+          "n, n + \\alpha, n + \\beta",
+          "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
+          "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,",
           "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
-          "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+          "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
           "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&= (2n+\\alpha + \\beta-1) \\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
           "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right)  .\\end{align}",
           "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
-          "P_{n}^{(\\alpha, \\beta)}",
           "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )",
           "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left ( \\tfrac{z}{n} \\right ) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\alpha} J_\\alpha(z)\\\\ \\lim_{n \\to \\infty} n^{-\\beta}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left (\\pi - \\tfrac{z}{n} \\right) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\beta} J_\\beta(z)\\end{align}"
         ],
@@ -1811,6 +2625,10 @@
             "score" : 0.35202659303920414
           },
           {
+            "definition" : "quantity",
+            "score" : 0.3401690346273844
+          },
+          {
             "definition" : "equivalent expression",
             "score" : 0.3401381939721649
           },
@@ -1843,6 +2661,10 @@
             "score" : 0.3237473360333137
           },
           {
+            "definition" : "nonnegative integer",
+            "score" : 0.31347914375992064
+          },
+          {
             "definition" : "Rodrigues ' formula",
             "score" : 0.31344831240981247
           },
@@ -1867,20 +2689,12 @@
             "score" : 0.27649015627394585
           },
           {
-            "definition" : "nonnegative integer",
-            "score" : 0.27364520342891335
-          },
-          {
             "definition" : "equivalent definition",
             "score" : 0.27361437207880523
           },
           {
             "definition" : "point",
             "score" : 0.2478452773112104
-          },
-          {
-            "definition" : "quantity",
-            "score" : 0.22638802366954552
           },
           {
             "definition" : "case",
@@ -1901,8 +2715,35 @@
         "semanticFormula" : "\\begin{align}&2 n (n + \\alpha + \\beta) (2 n + \\alpha + \\beta - 2) \\JacobipolyP{\\alpha}{\\beta}{n}@{z} \\\\ &= (2 n + \\alpha + \\beta - 1) \\{(2 n + \\alpha + \\beta) (2 n + \\alpha + \\beta - 2) z + \\alpha^2 - \\beta^2 \\} \\JacobipolyP{\\alpha}{\\beta}{n-1}@{z} - 2 (n + \\alpha - 1) (n + \\beta - 1) (2 n + \\alpha + \\beta) \\JacobipolyP{\\alpha}{\\beta}{n-2}@{z} ,\\end{align}",
         "confidence" : 0.7125985104912714,
         "translations" : {
-          "Mathematica" : "2*n*(n + \\[Alpha]+ \\[Beta])*(2*n + \\[Alpha]+ \\[Beta]- 2)*JacobiP[n, \\[Alpha], \\[Beta], z] == (2*n + \\[Alpha]+ \\[Beta]- 1)*((2*n + \\[Alpha]+ \\[Beta])*(2*n + \\[Alpha]+ \\[Beta]- 2)*z + \\[Alpha]^(2)- \\[Beta]^(2))*JacobiP[n - 1, \\[Alpha], \\[Beta], z]- 2*(n + \\[Alpha]- 1)*(n + \\[Beta]- 1)*(2*n + \\[Alpha]+ \\[Beta])*JacobiP[n - 2, \\[Alpha], \\[Beta], z]",
-          "Maple" : "2*n*(n + alpha + beta)*(2*n + alpha + beta - 2)*JacobiP(n, alpha, beta, z) = (2*n + alpha + beta - 1)*((2*n + alpha + beta)*(2*n + alpha + beta - 2)*z + (alpha)^(2)- (beta)^(2))*JacobiP(n - 1, alpha, beta, z)- 2*(n + alpha - 1)*(n + beta - 1)*(2*n + alpha + beta)*JacobiP(n - 2, alpha, beta, z)"
+          "Mathematica" : {
+            "translation" : "2*n*(n + \\[Alpha]+ \\[Beta])*(2*n + \\[Alpha]+ \\[Beta]- 2)*JacobiP[n, \\[Alpha], \\[Beta], z] == (2*n + \\[Alpha]+ \\[Beta]- 1)*((2*n + \\[Alpha]+ \\[Beta])*(2*n + \\[Alpha]+ \\[Beta]- 2)*z + \\[Alpha]^(2)- \\[Beta]^(2))*JacobiP[n - 1, \\[Alpha], \\[Beta], z]- 2*(n + \\[Alpha]- 1)*(n + \\[Beta]- 1)*(2*n + \\[Alpha]+ \\[Beta])*JacobiP[n - 2, \\[Alpha], \\[Beta], z]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "True",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "2*n*(n + alpha + beta)*(2*n + alpha + beta - 2)*JacobiP(n, alpha, beta, z) = (2*n + alpha + beta - 1)*((2*n + alpha + beta)*(2*n + alpha + beta - 2)*z + (alpha)^(2)- (beta)^(2))*JacobiP(n - 1, alpha, beta, z)- 2*(n + alpha - 1)*(n + beta - 1)*(2*n + alpha + beta)*JacobiP(n - 2, alpha, beta, z)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1912,13 +2753,11 @@
           }
         ],
         "includes" : [
-          "P_{n}^{(\\alpha, \\beta)}(x)",
-          "n + \\alpha + \\beta",
-          "n",
-          "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta",
+          "P_{n}^{(\\alpha, \\beta)}(x)",
           "P_{n}^{(\\alpha, \\beta)}",
           "n",
+          "n + \\alpha + \\beta",
           "z"
         ],
         "isPartOf" : [ ],
@@ -1934,9 +2773,40 @@
         "semanticFormula" : "n= 2, 3,",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "n == 2 , 3 ",
-          "SymPy" : "n == 2 , 3 ",
-          "Maple" : "n = 2 , 3 "
+          "Mathematica" : {
+            "translation" : "n == 2 , 3 ",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "Equal[n, 2]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "n == 2 , 3 ",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "n = 2 , 3 ",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1946,7 +2816,6 @@
           }
         ],
         "includes" : [
-          "n",
           "n=m",
           "n"
         ],
@@ -1961,10 +2830,37 @@
       {
         "formula" : "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right)  .\\end{align}",
         "semanticFormula" : "\\begin{align}(z - 1) \\deriv [1]{ }{z} \\JacobipolyP{\\alpha}{\\beta}{n}@{z} &= \\frac{1}{2} (z - 1) (1 + \\alpha + \\beta + n) \\JacobipolyP{\\alpha + 1}{\\beta + 1}{n-1}@{x} \\\\ &= n \\JacobipolyP{\\alpha}{\\beta}{n}@{x} - (\\alpha + n) \\JacobipolyP{\\alpha}{\\beta + 1}{n-1}@{x} \\\\ &= (1 + \\alpha + \\beta + n) (\\JacobipolyP{\\alpha}{\\beta + 1}{n}@{x} - \\JacobipolyP{\\alpha}{\\beta}{n}@{x}) \\\\ &= (\\alpha + n) \\JacobipolyP{\\alpha - 1}{\\beta + 1}{n}@{x} - \\alpha \\JacobipolyP{\\alpha}{\\beta}{n}@{x} \\\\ &= \\frac{2 (n + 1) \\JacobipolyP{\\alpha}{\\beta - 1}{n+1}@{x} - (z (1 + \\alpha + \\beta + n) + \\alpha + 1 + n - \\beta) \\JacobipolyP{\\alpha}{\\beta}{n}@{x}}{1+z} \\\\ &= \\frac{(2 \\beta + n + nz) \\JacobipolyP{\\alpha}{\\beta}{n}@{x} - 2 (\\beta + n) \\JacobipolyP{\\alpha}{\\beta - 1}{n}@{x}}{1+z} \\\\ &= \\frac{1-z}{1+z} (\\beta \\JacobipolyP{\\alpha}{\\beta}{n}@{x} - (\\beta + n) \\JacobipolyP{\\alpha + 1}{\\beta - 1}{n}@{x}) .\\end{align}",
-        "confidence" : 0.4067576318191648,
+        "confidence" : 0.38050830799010155,
         "translations" : {
-          "Mathematica" : "(z - 1)* D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] == Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*JacobiP[n - 1, \\[Alpha]+ 1, \\[Beta]+ 1, x] == n*JacobiP[n, \\[Alpha], \\[Beta], x]-(\\[Alpha]+ n)*JacobiP[n - 1, \\[Alpha], \\[Beta]+ 1, x] == (1 + \\[Alpha]+ \\[Beta]+ n)*(JacobiP[n, \\[Alpha], \\[Beta]+ 1, x]-JacobiP[n, \\[Alpha], \\[Beta], x]) == (\\[Alpha]+ n)*JacobiP[n, \\[Alpha]- 1, \\[Beta]+ 1, x]- \\[Alpha]*JacobiP[n, \\[Alpha], \\[Beta], x] == Divide[2*(n + 1)*JacobiP[n + 1, \\[Alpha], \\[Beta]- 1, x]-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*JacobiP[n, \\[Alpha], \\[Beta], x],1 + z] == Divide[(2*\\[Beta]+ n + n*z)*JacobiP[n, \\[Alpha], \\[Beta], x]- 2*(\\[Beta]+ n)*JacobiP[n, \\[Alpha], \\[Beta]- 1, x],1 + z] == Divide[1 - z,1 + z]*(\\[Beta]*JacobiP[n, \\[Alpha], \\[Beta], x]-(\\[Beta]+ n)*JacobiP[n, \\[Alpha]+ 1, \\[Beta]- 1, x])",
-          "Maple" : "(z - 1)* diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*JacobiP(n - 1, alpha + 1, beta + 1, x) = n*JacobiP(n, alpha, beta, x)-(alpha + n)*JacobiP(n - 1, alpha, beta + 1, x) = (1 + alpha + beta + n)*(JacobiP(n, alpha, beta + 1, x)-JacobiP(n, alpha, beta, x)) = (alpha + n)*JacobiP(n, alpha - 1, beta + 1, x)- alpha*JacobiP(n, alpha, beta, x) = (2*(n + 1)*JacobiP(n + 1, alpha, beta - 1, x)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*JacobiP(n, alpha, beta, x))/(1 + z) = ((2*beta + n + n*z)*JacobiP(n, alpha, beta, x)- 2*(beta + n)*JacobiP(n, alpha, beta - 1, x))/(1 + z) = (1 - z)/(1 + z)*(beta*JacobiP(n, alpha, beta, x)-(beta + n)*JacobiP(n, alpha + 1, beta - 1, x))"
+          "Mathematica" : {
+            "translation" : "(z - 1)* D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] == Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*JacobiP[n - 1, \\[Alpha]+ 1, \\[Beta]+ 1, x] == n*JacobiP[n, \\[Alpha], \\[Beta], x]-(\\[Alpha]+ n)*JacobiP[n - 1, \\[Alpha], \\[Beta]+ 1, x] == (1 + \\[Alpha]+ \\[Beta]+ n)*(JacobiP[n, \\[Alpha], \\[Beta]+ 1, x]-JacobiP[n, \\[Alpha], \\[Beta], x]) == (\\[Alpha]+ n)*JacobiP[n, \\[Alpha]- 1, \\[Beta]+ 1, x]- \\[Alpha]*JacobiP[n, \\[Alpha], \\[Beta], x] == Divide[2*(n + 1)*JacobiP[n + 1, \\[Alpha], \\[Beta]- 1, x]-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*JacobiP[n, \\[Alpha], \\[Beta], x],1 + z] == Divide[(2*\\[Beta]+ n + n*z)*JacobiP[n, \\[Alpha], \\[Beta], x]- 2*(\\[Beta]+ n)*JacobiP[n, \\[Alpha], \\[Beta]- 1, x],1 + z] == Divide[1 - z,1 + z]*(\\[Beta]*JacobiP[n, \\[Alpha], \\[Beta], x]-(\\[Beta]+ n)*JacobiP[n, \\[Alpha]+ 1, \\[Beta]- 1, x])",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "$Aborted",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "(z - 1)* diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*JacobiP(n - 1, alpha + 1, beta + 1, x) = n*JacobiP(n, alpha, beta, x)-(alpha + n)*JacobiP(n - 1, alpha, beta + 1, x) = (1 + alpha + beta + n)*(JacobiP(n, alpha, beta + 1, x)-JacobiP(n, alpha, beta, x)) = (alpha + n)*JacobiP(n, alpha - 1, beta + 1, x)- alpha*JacobiP(n, alpha, beta, x) = (2*(n + 1)*JacobiP(n + 1, alpha, beta - 1, x)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*JacobiP(n, alpha, beta, x))/(1 + z) = ((2*beta + n + n*z)*JacobiP(n, alpha, beta, x)- 2*(beta + n)*JacobiP(n, alpha, beta - 1, x))/(1 + z) = (1 - z)/(1 + z)*(beta*JacobiP(n, alpha, beta, x)-(beta + n)*JacobiP(n, alpha + 1, beta - 1, x))",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -1974,13 +2870,11 @@
           }
         ],
         "includes" : [
-          "P_{n}^{(\\alpha, \\beta)}(x)",
-          "n + \\alpha + \\beta",
-          "n",
-          "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta",
+          "P_{n}^{(\\alpha, \\beta)}(x)",
           "P_{n}^{(\\alpha, \\beta)}",
           "n",
+          "n + \\alpha + \\beta",
           "z"
         ],
         "isPartOf" : [ ],
@@ -2000,8 +2894,35 @@
         "semanticFormula" : "\\sum_{n=0}^\\infty \\JacobipolyP{\\alpha}{\\beta}{n}@{z} t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
         "confidence" : 0.6859086196238077,
         "translations" : {
-          "Mathematica" : "Sum[JacobiP[n, \\[Alpha], \\[Beta], z]*(t)^(n), {n, 0, Infinity}, GenerateConditions->None] == (2)^(\\[Alpha]+ \\[Beta])* (R)^(- 1)*(1 - t + R)^(- \\[Alpha])*(1 + t + R)^(- \\[Beta])",
-          "Maple" : "sum(JacobiP(n, alpha, beta, z)*(t)^(n), n = 0..infinity) = (2)^(alpha + beta)* (R)^(- 1)*(1 - t + R)^(- alpha)*(1 + t + R)^(- beta)"
+          "Mathematica" : {
+            "translation" : "Sum[JacobiP[n, \\[Alpha], \\[Beta], z]*(t)^(n), {n, 0, Infinity}, GenerateConditions->None] == (2)^(\\[Alpha]+ \\[Beta])* (R)^(- 1)*(1 - t + R)^(- \\[Alpha])*(1 + t + R)^(- \\[Beta])",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "$Aborted",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "sum(JacobiP(n, alpha, beta, z)*(t)^(n), n = 0..infinity) = (2)^(alpha + beta)* (R)^(- 1)*(1 - t + R)^(- alpha)*(1 + t + R)^(- beta)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -2011,11 +2932,9 @@
           }
         ],
         "includes" : [
-          "P_{n}^{(\\alpha, \\beta)}(x)",
-          "n",
-          "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta",
           "n=m",
+          "P_{n}^{(\\alpha, \\beta)}(x)",
           "P_{n}^{(\\alpha, \\beta)}",
           "n",
           "z"
@@ -2037,9 +2956,40 @@
         "semanticFormula" : "R = R (z , t) = (1 - 2 zt + t^2)^{\\frac{1}{2}}",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "R == R*(z , t) == (1 - 2*z*t + (t)^(2))^(Divide[1,2])",
-          "SymPy" : "R == R*(z , t) == (1 - 2*z*t + (t)**(2))**((1)/(2))",
-          "Maple" : "R = R*(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))"
+          "Mathematica" : {
+            "translation" : "R == R*(z , t) == (1 - 2*z*t + (t)^(2))^(Divide[1,2])",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "$Failed",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "R == R*(z , t) == (1 - 2*z*t + (t)**(2))**((1)/(2))",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "R = R*(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -2068,9 +3018,40 @@
         "semanticFormula" : "R(z, 0) = 1",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "R*(z , 0) == 1",
-          "SymPy" : "R*(z , 0) == 1",
-          "Maple" : "R*(z , 0) = 1"
+          "Mathematica" : {
+            "translation" : "R*(z , 0) == 1",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "$Failed",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "R*(z , 0) == 1",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "R*(z , 0) = 1",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -2097,10 +3078,37 @@
       {
         "formula" : "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )",
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos \\theta} = n^{-\\frac{1}{2}} k (\\theta) \\cos (\\AirymodderivN@{x} \\theta + \\gamma) + O (n^{-\\frac{3}{2}})",
-        "confidence" : 0.4540928738647516,
+        "confidence" : 0.4278435500356884,
         "translations" : {
-          "Mathematica" : "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] == (n)^(-Divide[1,2])* k*(\\[Theta])* Cos[Sqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2]*\\[Theta]+ \\[Gamma]]+ O*((n)^(-Divide[3,2]))",
-          "Maple" : "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k*(theta)* cos(sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2)*theta + gamma)+ O*((n)^(-(3)/(2)))"
+          "Mathematica" : {
+            "translation" : "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] == (n)^(-Divide[1,2])* k*(\\[Theta])* Cos[Sqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2]*\\[Theta]+ \\[Gamma]]+ O*((n)^(-Divide[3,2]))",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "$Aborted",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k*(theta)* cos(sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2)*theta + gamma)+ O*((n)^(-(3)/(2)))",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -2110,11 +3118,11 @@
           }
         ],
         "includes" : [
+          "\\alpha,\\beta",
           "P_{n}^{(\\alpha, \\beta)}(x)",
+          "P_{n}^{(\\alpha, \\beta)}",
           "k",
           "n",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "\\alpha,\\beta",
           "O"
         ],
         "isPartOf" : [ ],
@@ -2138,8 +3146,35 @@
         "semanticFormula" : "\\begin{align}k(\\theta) &= \\pi^{-\\frac{1}{2}} \\sin^{-\\alpha-\\frac{1}{2}} \\tfrac{\\theta}{2} \\cos^{-\\beta-\\frac{1}{2}} \\tfrac{\\theta}{2}, \\\\ \\AirymodderivN@{x} &= n + \\tfrac{1}{2} (\\alpha+\\beta+1), \\\\ \\gamma &= - \\tfrac{\\pi}{2} (\\alpha + \\tfrac{1}{2}) ,\\end{align}",
         "confidence" : 0.09467048409117368,
         "translations" : {
-          "Mathematica" : "k*(\\[Theta]) == \\[Pi]^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])\nSqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2] == n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)\n\\[Gamma] == -Divide[\\[Pi],2]*(\\[Alpha]+Divide[1,2])",
-          "Maple" : "k*(theta) = (pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2)); sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2) = n +(1)/(2)*(alpha + beta + 1); gamma = -(pi)/(2)*(alpha +(1)/(2))"
+          "Mathematica" : {
+            "translation" : "k*(\\[Theta]) == \\[Pi]^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])\nSqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2] == n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)\n\\[Gamma] == -Divide[\\[Pi],2]*(\\[Alpha]+Divide[1,2])",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "Equal[Times[k, θ], Times[Power[Pi, Rational[-1, 2]], Power[Plus[Power[AiryAiPrime[x], 2], Power[AiryBiPrime[x], 2]], Rational[1, 2]], Power[Cos[Times[Rational[1, 2], θ]], Plus[Rational[-1, 2], Times[-1, β]]], Power[Sin[Times[Rational[1, 2], θ]], Plus[Rational[-1, 2], Times[-1, α]]]], Plus[n, Times[Rational[1, 2], Plus[1, α, β], γ]], Times[Rational[-1, 4], Pi, Plus[1, Times[2, α]]]]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "k*(theta) = (pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2)); sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2) = n +(1)/(2)*(alpha + beta + 1); gamma = -(pi)/(2)*(alpha +(1)/(2))",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -2173,9 +3208,40 @@
         "semanticFormula" : "O",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "O",
-          "SymPy" : "O",
-          "Maple" : "O"
+          "Mathematica" : {
+            "translation" : "O",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "O",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "O",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "O",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -2208,9 +3274,40 @@
         "semanticFormula" : "[\\epsilon,\\pi-\\epsilon]",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "[\\[Epsilon], \\[Pi]- \\[Epsilon]]",
-          "SymPy" : "[Symbol('epsilon'), Symbol('pi')- Symbol('epsilon')]",
-          "Maple" : "[epsilon , pi - epsilon]"
+          "Mathematica" : {
+            "translation" : "[\\[Epsilon], \\[Pi]- \\[Epsilon]]",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "Part[FullSimplify, ϵ, Plus[Pi, Times[-1, ϵ]]]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "[Symbol('epsilon'), Symbol('pi')- Symbol('epsilon')]",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "[epsilon , pi - epsilon]",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -2241,9 +3338,40 @@
         "semanticFormula" : "\\epsilon > 0",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "\\[Epsilon] > 0",
-          "SymPy" : "Symbol('epsilon') > 0",
-          "Maple" : "epsilon > 0"
+          "Mathematica" : {
+            "translation" : "\\[Epsilon] > 0",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "Greater[ϵ, 0]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "Symbol('epsilon') > 0",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "epsilon > 0",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -2274,8 +3402,35 @@
         "semanticFormula" : "\\pm1",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "\\[PlusMinus]1",
-          "Maple" : "&+- 1"
+          "Mathematica" : {
+            "translation" : "\\[PlusMinus]1",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "PlusMinus[1]",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "&+- 1",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -2318,8 +3473,35 @@
         "semanticFormula" : "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha} \\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos (\\tfrac{z}{n})} &= (\\tfrac{z}{2})^{-\\alpha} J_\\alpha (z) \\\\ \\lim_{n \\to \\infty} n^{-\\beta} \\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos (\\pi - \\tfrac{z}{n})} &= (\\tfrac{z}{2})^{-\\beta} J_\\beta (z)\\end{align}",
         "confidence" : 0.6560523929888044,
         "translations" : {
-          "Mathematica" : "Limit[(n)^(- \\[Alpha])*JacobiP[n, \\[Alpha], \\[Beta], Cos[Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Alpha])* Subscript[J, \\[Alpha]]*(z)\nLimit[(n)^(- \\[Beta])*JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Pi]-Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Beta])* Subscript[J, \\[Beta]]*(z)",
-          "Maple" : "limit((n)^(- alpha)*JacobiP(n, alpha, beta, cos((z)/(n))), n = infinity) = ((z)/(2))^(- alpha)* J[alpha]*(z); limit((n)^(- beta)*JacobiP(n, alpha, beta, cos(pi -(z)/(n))), n = infinity) = ((z)/(2))^(- beta)* J[beta]*(z)"
+          "Mathematica" : {
+            "translation" : "Limit[(n)^(- \\[Alpha])*JacobiP[n, \\[Alpha], \\[Beta], Cos[Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Alpha])* Subscript[J, \\[Alpha]]*(z)\nLimit[(n)^(- \\[Beta])*JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Pi]-Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Beta])* Subscript[J, \\[Beta]]*(z)",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "$Aborted",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "Maple" : {
+            "translation" : "limit((n)^(- alpha)*JacobiP(n, alpha, beta, cos((z)/(n))), n = infinity) = ((z)/(2))^(- alpha)* J[alpha]*(z); limit((n)^(- beta)*JacobiP(n, alpha, beta, cos(pi -(z)/(n))), n = infinity) = ((z)/(2))^(- beta)* J[beta]*(z)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -2329,10 +3511,10 @@
           }
         ],
         "includes" : [
-          "P_{n}^{(\\alpha, \\beta)}(x)",
-          "n",
-          "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta",
+          "P_{n}^{(\\alpha, \\beta)}(x)",
+          "P_{n}^{(\\alpha, \\beta)}",
+          "n",
           "z"
         ],
         "isPartOf" : [ ],
@@ -2368,9 +3550,40 @@
         "semanticFormula" : "z",
         "confidence" : 0.0,
         "translations" : {
-          "Mathematica" : "z",
-          "SymPy" : "z",
-          "Maple" : "z"
+          "Mathematica" : {
+            "translation" : "z",
+            "numericResults" : {
+              "successful" : false,
+              "numberOfTests" : 0,
+              "numberOfFailedTests" : 0,
+              "numberOfSuccessfulTests" : 0,
+              "testCalculations" : [
+                {
+                  "result" : "no-computation-dummy",
+                  "testValues" : {
+                    "\\beta" : "2",
+                    "\\alpha" : "1"
+                  }
+                }
+              ]
+            },
+            "symbolicResults" : [
+              {
+                "result" : "z",
+                "property" : "fullsimplify"
+              }
+            ]
+          },
+          "SymPy" : {
+            "translation" : "z",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          },
+          "Maple" : {
+            "translation" : "z",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+          }
         },
         "positions" : [
           {
@@ -2381,23 +3594,23 @@
         ],
         "includes" : [ ],
         "isPartOf" : [
-          "R = R(z, t) = \\left(1 - 2zt + t^2\\right)^{\\frac{1}{2}}",
-          "{z \\choose n} = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}",
-          "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,",
-          "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
-          "P_0^{(\\alpha,\\beta)}(z)= 1",
-          "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
-          "R(z, 0) = 1",
-          "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
-          "\\Gamma(z)",
-          "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
-          "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&= (2n+\\alpha + \\beta-1) \\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
-          "P_{n}(z) = \\frac{1 }{2^n  n! } \\frac{d^n }{ d z^n }  ( z^2 - 1 )^n",
-          "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
-          "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
           "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+          "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right)  .\\end{align}",
+          "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
+          "R = R(z, t) = \\left(1 - 2zt + t^2\\right)^{\\frac{1}{2}}",
+          "P_0^{(\\alpha,\\beta)}(z)= 1",
+          "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
+          "R(z, 0) = 1",
+          "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
+          "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
+          "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,",
+          "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&= (2n+\\alpha + \\beta-1) \\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
+          "{z \\choose n} = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}",
+          "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
+          "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
           "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left ( \\tfrac{z}{n} \\right ) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\alpha} J_\\alpha(z)\\\\ \\lim_{n \\to \\infty} n^{-\\beta}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left (\\pi - \\tfrac{z}{n} \\right) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\beta} J_\\beta(z)\\end{align}",
-          "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right)  .\\end{align}"
+          "P_{n}(z) = \\frac{1 }{2^n  n! } \\frac{d^n }{ d z^n }  ( z^2 - 1 )^n",
+          "\\Gamma(z)"
         ],
         "definiens" : [
           {

@@ -26,7 +26,7 @@ public class MOINode<T> implements INode<MOIDependency<T>> {
     private final LinkedList<MOIDependency<T>> outgoing;
 
     // an annotation
-    private final T annotation;
+    private T annotation;
 
     /**
      * Keep Kryo happy for serialization
@@ -42,14 +42,6 @@ public class MOINode<T> implements INode<MOIDependency<T>> {
         this.outgoing = new LinkedList<>();
         this.annotation = annotation;
     }
-
-//    public <S> MOINode(MOINode<S> reference, Function<S, T> annotationConverter) {
-//        this.id = reference.id;
-//        this.moi = reference.moi;
-//        this.ingoing = new LinkedList<T>(reference.ingoing);
-//        this.outgoing = new LinkedList<T>(reference.outgoing);
-//        this.annotation = annotationConverter.apply(reference.annotation);
-//    }
 
     public String getId() {
         return id;
@@ -82,20 +74,46 @@ public class MOINode<T> implements INode<MOIDependency<T>> {
         return outgoing;
     }
 
+    /**
+     * Checks if this node only depends on single identifiers. e.g., P_n^{(\alpha,\beta)}(x) include no other
+     * complex MOI but only the single identifiers P, n, \alpha, \beta, and x. Of course this result only returns
+     * true based on the graph structure not on actual MOI analysis. That means, that \cos{\sin{x}} also only depends
+     * on single identifiers if \sin{x} does not appear in the graph and hence there is no dependency to \cos.
+     *
+     * If there are no ingoing dependencies false will be returned.
+     *
+     * @return true if all ingoing dependencies are single identifiers and the list of ingoing identifiers is not empty.
+     */
     public boolean dependsOnlyOnIdentifier() {
         if ( ingoing.isEmpty() ) return false;
         return getIngoingDependencies().stream()
                 .map( MOIDependency::getSource )
                 .map( MOINode::getNode )
-                .allMatch(MathematicalObjectOfInterest::isIdentifier);
+                .allMatch( MathematicalObjectOfInterest::isIdentifier );
     }
 
+    /**
+     * Returns true if this is an annotated node otherwise false.
+     * @return true if the node is annotated otherwise false
+     */
     public boolean hasAnnotation() {
         return annotation != null;
     }
 
+    /**
+     * Retrieve the annotation of this node. Might be null
+     * @return the annotation of the node or null
+     */
     public T getAnnotation() {
         return annotation;
+    }
+
+    /**
+     * Sets or overwrites the existing annotation
+     * @param annotation the new annotation
+     */
+    public void setAnnotation(T annotation) {
+        this.annotation = annotation;
     }
 
     /**

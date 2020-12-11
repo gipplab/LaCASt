@@ -43,10 +43,7 @@ public class SymbolicConfig implements EvaluationConfig {
 
             LOG.info( "Successfully loaded config for symbolic tests." );
         } catch ( IOException ioe ){
-            LOG.fatal("Cannot load the maple native directory " +
-                    "information from the given " + GlobalPaths.PATH_MAPLE_CONFIG.getFileName() +
-                    " file.", ioe
-            );
+            LOG.fatal("Cannot load the symbolic test config from " + GlobalPaths.PATH_NUMERICAL_SETUP.getFileName(), ioe);
         }
     }
 

@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.generic.mlp.struct;
+package gov.nist.drmf.interpreter.generic.mlp.pojo;
 
 import com.formulasearchengine.mathosphere.mlp.pojos.MathTag;
 import com.formulasearchengine.mathosphere.mlp.pojos.Position;
@@ -6,7 +6,6 @@ import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 

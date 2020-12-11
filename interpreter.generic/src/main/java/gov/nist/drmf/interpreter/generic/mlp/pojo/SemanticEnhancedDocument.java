@@ -1,17 +1,12 @@
-package gov.nist.drmf.interpreter.generic.pojo;
+package gov.nist.drmf.interpreter.generic.mlp.pojo;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import gov.nist.drmf.interpreter.generic.mlp.struct.MLPDependencyGraph;
-import gov.nist.drmf.interpreter.generic.mlp.struct.MOIAnnotation;
-import gov.nist.drmf.interpreter.generic.mlp.struct.MOIPresentations;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author Andre Greiner-Petter

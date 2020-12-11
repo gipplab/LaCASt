@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.generic.pojo;
+package gov.nist.drmf.interpreter.generic.mlp.pojo;
 
 import gov.nist.drmf.interpreter.generic.macro.MacroBean;
 import gov.nist.drmf.interpreter.generic.macro.MacroGenericSemanticEntry;

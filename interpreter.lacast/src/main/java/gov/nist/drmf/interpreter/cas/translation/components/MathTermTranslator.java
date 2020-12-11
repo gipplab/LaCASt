@@ -87,7 +87,7 @@ public class MathTermTranslator extends AbstractListTranslator {
         // check if the element should be translated by the term translator
         handleInvalidTags(tag, term);
 
-        TranslatedExpression te = translateIndependentElement(tag);
+        TranslatedExpression te = translateIndependentElement(tag, term);
         if ( te == null )
             te = translateDependentElement(tag, term, exp, following_exp);
         if ( te == null )
@@ -121,9 +121,9 @@ public class MathTermTranslator extends AbstractListTranslator {
     private void handleInvalidTags(MathTermTags tag, MathTerm term) throws TranslationException {
         switch (tag) {
             case function:
-                throwImplementationError(
+                throwError(
                         "MathTermTranslator cannot translate functions. Use the FunctionTranslator instead: "
-                                + term.getTermText() );
+                                + term.getTermText(), TranslationExceptionReason.IMPLEMENTATION_ERROR );
             case prime:
             case primes:
                 throw TranslationException.buildException(
@@ -131,17 +131,8 @@ public class MathTermTranslator extends AbstractListTranslator {
                                 "(differentiation primes) but not in other places.",
                         TranslationExceptionReason.INVALID_LATEX_INPUT
                 );
-            case left_delimiter:
-            case right_delimiter:
-            case left_parenthesis:
-            case left_bracket:
-            case left_brace:
-            case right_parenthesis:
-            case right_bracket:
-            case right_brace:
-                throwImplementationError("MathTermTranslator don't expected brackets but found " + term.getTermText());
             case macro:
-                throwImplementationError("There shouldn't be a macro in MathTermTranslator: " + term.getTermText());
+                throwError("There shouldn't be a macro in MathTermTranslator: " + term.getTermText(), TranslationExceptionReason.IMPLEMENTATION_ERROR);
             case abbreviation:
                 if ( term.getTermText().matches(".*\\.\\s*$") )
                     throw TranslationException.buildExceptionObj(
@@ -159,11 +150,11 @@ public class MathTermTranslator extends AbstractListTranslator {
         }
     }
 
-    private void throwImplementationError(String error) {
+    private void throwError(String error, TranslationExceptionReason reason) {
         throw TranslationException.buildException(
                 this,
                 error,
-                TranslationExceptionReason.IMPLEMENTATION_ERROR
+                reason
         );
     }
 
@@ -171,18 +162,36 @@ public class MathTermTranslator extends AbstractListTranslator {
      * Translates elements that can be performed independently
      * of the current element.
      * @param tag the {@link MathTermTags} of the current element
+     * @param term the math term
      * @return the translated expression or null
      */
     private TranslatedExpression translateIndependentElement(
-            MathTermTags tag
+            MathTermTags tag, MathTerm term
     ) {
-        TranslatedExpression te = null;
-        if (tag == MathTermTags.multiply) {
-            localTranslations.addTranslatedExpression(getConfig().getMULTIPLY());
-            getGlobalTranslationList().addTranslatedExpression(getConfig().getMULTIPLY());
-            te = localTranslations;
+        String translation = "";
+        switch (tag) {
+            case left_delimiter:
+            case right_delimiter:
+            case left_parenthesis:
+            case left_bracket:
+            case left_brace:
+            case right_parenthesis:
+            case right_bracket:
+            case right_brace:
+                if ( !super.isSetMode() ) throwError("Found unexpected bracket: " + term.getTermText() + ". We are not in set-mode so parenthesis logic must be valid!",
+                        TranslationExceptionReason.WRONG_PARENTHESIS);
+                Brackets b = Brackets.getBracket( term );
+                LOG.info("Encounter a unlogical bracket but since we are in set mode, we translate it anyway.");
+                translation = b.getAppropriateString();
+                break;
+            case multiply:
+                translation = getConfig().getMULTIPLY();
+                break;
+            default: return null;
         }
-        return te;
+        localTranslations.addTranslatedExpression(translation);
+        getGlobalTranslationList().addTranslatedExpression(translation);
+        return localTranslations;
     }
 
     /**

@@ -16,44 +16,29 @@ import java.util.stream.Collectors;
  * @author Andre Greiner-Petter
  */
 public class CASConfig {
-    @JsonProperty("cas")
-    private String cas;
-
-    @JsonProperty("paths")
-    private List<String> paths = new LinkedList<>();
+    @JsonProperty("install.path")
+    private String path;
 
     private CASConfig(){}
 
-    @JsonSetter("cas")
-    private void setCas(String cas) {
-        this.cas = cas;
+    @JsonSetter("install.path")
+    public void setInstallPaths(String path) {
+        this.path = path;
     }
 
-    @JsonGetter("cas")
-    public String getCas() {
-        return cas;
-    }
-
-    @JsonSetter("paths")
-    private void setPaths(List<String> paths) {
-        this.paths = paths;
-    }
-
-    @JsonGetter("paths")
-    private List<String> getStringPaths() {
-        return this.paths;
+    @JsonGetter("install.path")
+    public String getStringInstallPath() {
+        return this.path;
     }
 
     @JsonIgnore
-    public List<Path> getPaths() {
-        return paths.stream().map(Paths::get).collect(Collectors.toList());
+    public Path getInstallPath() {
+        if ( path == null ) return null;
+        return Paths.get(path);
     }
 
     @JsonIgnore
     public boolean isValid() {
-        boolean valid = true;
-        for ( Path p : getPaths() )
-            valid &= Files.exists(p);
-        return valid;
+        return path == null || Files.exists(getInstallPath());
     }
 }

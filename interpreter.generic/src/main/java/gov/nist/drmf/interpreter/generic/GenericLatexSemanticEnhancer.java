@@ -9,11 +9,10 @@ import gov.nist.drmf.interpreter.generic.interfaces.IGenericLatexSemanticEnhance
 import gov.nist.drmf.interpreter.generic.mlp.ContextAnalyzer;
 import gov.nist.drmf.interpreter.generic.mlp.Document;
 import gov.nist.drmf.interpreter.generic.mlp.WikitextDocument;
-import gov.nist.drmf.interpreter.generic.mlp.struct.MLPDependencyGraph;
-import gov.nist.drmf.interpreter.generic.mlp.struct.MOIAnnotation;
-import gov.nist.drmf.interpreter.generic.mlp.struct.MOIPresentations;
-import gov.nist.drmf.interpreter.generic.pojo.SemanticEnhancedDocument;
-import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPDependencyGraph;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIAnnotation;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;

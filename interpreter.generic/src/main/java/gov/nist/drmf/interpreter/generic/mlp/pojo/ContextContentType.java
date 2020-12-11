@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.generic.mlp.struct;
+package gov.nist.drmf.interpreter.generic.mlp.pojo;
 
 import org.intellij.lang.annotations.Language;
 

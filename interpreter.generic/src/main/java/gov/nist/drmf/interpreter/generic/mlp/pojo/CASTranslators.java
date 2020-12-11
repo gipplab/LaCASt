@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.generic.mlp.struct;
+package gov.nist.drmf.interpreter.generic.mlp.pojo;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;

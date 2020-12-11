@@ -28,12 +28,8 @@ public final class CASSupporter {
         if ( supporter != null ) return supporter;
 
         Config config = ConfigDiscovery.getConfig();
-        List<CASConfig> casConfigs = config.getCasConfigList();
         supporter = new CASSupporter();
-        for ( CASConfig casc : casConfigs ) {
-            supporter.supportedCAS.add(casc.getCas());
-        }
-
+        supporter.supportedCAS.addAll(config.getSupportedCAS());
         addDefaultCAS(supporter);
         return supporter;
     }

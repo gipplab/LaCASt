@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.generic.mlp;
 
-import gov.nist.drmf.interpreter.generic.mlp.struct.MLPDependencyGraph;
-import gov.nist.drmf.interpreter.generic.mlp.struct.MOIAnnotation;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPDependencyGraph;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIAnnotation;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import mlp.ParseException;
 

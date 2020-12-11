@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.generic.mlp;
 
-import gov.nist.drmf.interpreter.generic.mlp.struct.ContextContentType;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.ContextContentType;
 import org.apache.logging.log4j.Logger;
 
 import static org.apache.logging.log4j.LogManager.getLogger;
