@@ -7,6 +7,13 @@
     "SymPy"
   ],
   "Functions": {
+    "Function Argument": {
+      "MLP": "function arguments",
+      "LaTeX": "\\left($0\\right)",
+      "Maple": "($0)",
+      "Mathematica": "[$0]",
+      "SymPy": "($0)"
+    },
     "Fraction": {
       "MLP": "fraction",
       "LaTeX": "\\frac{$0}{$1}",

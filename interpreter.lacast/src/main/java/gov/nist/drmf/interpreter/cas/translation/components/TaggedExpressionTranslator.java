@@ -5,11 +5,12 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.mlp.MLPWrapper;
-import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionNormalizer;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.MLPWrapper;
+import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -54,7 +55,7 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
         switch( expTag ) {
             case sub_super_script:
                 // in case of sub-super scripts, we first normalize the order, subscript first!
-                MLPWrapper.normalizeSubSuperScript(expression);
+                PomTaggedExpressionNormalizer.normalizeSubSuperScript(expression);
                 // than we fake it as a sequence, since there is no difference to a sequence anymore
                 expression.setTag( ExpressionTags.sequence.tag() );
             case sequence: // in that case use the SequenceTranslator
@@ -62,6 +63,13 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
                 // it only delegates the parsing process to the SequenceTranslator
                 SequenceTranslator p = new SequenceTranslator(super.getSuperTranslator());
                 localTranslations.addTranslatedExpression( p.translate( expression ) );
+                break;
+            case multi_case:
+            case multi_case_single_case:
+            case equation_array:
+            case equation:
+                MultiExpressionTranslator t = new MultiExpressionTranslator(super.getSuperTranslator());
+                localTranslations.addTranslatedExpression( t.translate( expression ) );
                 break;
             case choose:
                 // in case of choose, we manipulate the subtree and mimic a binomial expression
@@ -82,7 +90,6 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
                 break;
             case numerator:
             case denominator:
-            case equation:
             default:
                 throw TranslationException.buildException(
                         this,
@@ -117,7 +124,7 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
         List<PomTaggedExpression> first = new LinkedList<>();
         List<PomTaggedExpression> second = new LinkedList<>();
 
-        List<PomTaggedExpression> comps = expression.getComponents();
+        List<PomTaggedExpression> comps = new LinkedList<>(expression.getComponents());
         boolean before = true;
         while ( !comps.isEmpty() ) {
             PomTaggedExpression pte = comps.remove(0);
@@ -148,10 +155,10 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
         return fakeBinom;
     }
 
-    private void parseBasicFunction( PomTaggedExpression top_exp, ExpressionTags tag )
+    private void parseBasicFunction( PomTaggedExpression topExp, ExpressionTags tag )
             throws TranslationException {
         // extract all components from top expressions
-        String[] comps = extractMultipleSubExpressions( top_exp );
+        String[] comps = extractMultipleSubExpressions( topExp );
 
         // first of all, translate components into translation
         localTranslations.addTranslatedExpression(
@@ -174,12 +181,12 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
     /**
      * A wrapper method for {@link #extractMultipleSubExpressions(List)}.
      *
-     * @param top_expression parent expression of underlying sub-expressions.
+     * @param topExpression parent expression of underlying sub-expressions.
      * @return true if the parsing process finished successful
      * @see #extractMultipleSubExpressions(List)
      */
-    private String[] extractMultipleSubExpressions( PomTaggedExpression top_expression ){
-        return extractMultipleSubExpressions(top_expression.getComponents());
+    private String[] extractMultipleSubExpressions( PomTaggedExpression topExpression ){
+        return extractMultipleSubExpressions(topExpression.getComponents());
     }
 
     /**
@@ -188,16 +195,17 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
      * of several children. As an example a fraction expression has two children,
      * the numerator and the denominator.
      *
-     * @param sub_expressions parent expression of underlying sub-expressions.
+     * @param subExpressions parent expression of underlying sub-expressions.
      * @return true if the parsing process finished successful
      */
-    private String[] extractMultipleSubExpressions( List<PomTaggedExpression> sub_expressions ) {
-        ArrayList<TranslatedExpression> components = new ArrayList<>(sub_expressions.size());
+    private String[] extractMultipleSubExpressions( List<PomTaggedExpression> subExpressions ) {
+        subExpressions = new LinkedList<>(subExpressions);
+        ArrayList<TranslatedExpression> components = new ArrayList<>(subExpressions.size());
         TranslatedExpression global = super.getGlobalTranslationList();
 
-        while ( !sub_expressions.isEmpty() ){
-            PomTaggedExpression exp = sub_expressions.remove(0);
-            TranslatedExpression inner_exp = parseGeneralExpression(exp, sub_expressions);
+        while ( !subExpressions.isEmpty() ){
+            PomTaggedExpression exp = subExpressions.remove(0);
+            TranslatedExpression inner_exp = parseGeneralExpression(exp, subExpressions);
             int num = inner_exp.mergeAll();
             components.add(inner_exp);
             global.removeLastNExps( num ); // remove all previous sub-elements

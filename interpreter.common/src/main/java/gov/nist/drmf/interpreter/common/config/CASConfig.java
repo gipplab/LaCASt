@@ -1,6 +1,9 @@
 package gov.nist.drmf.interpreter.common.config;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,26 +16,29 @@ import java.util.stream.Collectors;
  * @author Andre Greiner-Petter
  */
 public class CASConfig {
-    @JsonProperty("cas")
-    private String cas;
-
-    @JsonProperty("paths")
-    private List<String> paths = new LinkedList<>();
+    @JsonProperty("install.path")
+    private String path;
 
     private CASConfig(){}
 
-    public String getCas() {
-        return cas;
+    @JsonSetter("install.path")
+    public void setInstallPaths(String path) {
+        this.path = path;
     }
 
-    public List<Path> getPaths() {
-        return paths.stream().map(Paths::get).collect(Collectors.toList());
+    @JsonGetter("install.path")
+    public String getStringInstallPath() {
+        return this.path;
     }
 
+    @JsonIgnore
+    public Path getInstallPath() {
+        if ( path == null ) return null;
+        return Paths.get(path);
+    }
+
+    @JsonIgnore
     public boolean isValid() {
-        boolean valid = true;
-        for ( Path p : getPaths() )
-            valid &= Files.exists(p);
-        return valid;
+        return path == null || Files.exists(getInstallPath());
     }
 }

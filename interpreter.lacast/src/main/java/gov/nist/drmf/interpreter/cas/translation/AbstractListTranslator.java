@@ -4,11 +4,11 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
-import gov.nist.drmf.interpreter.mlp.MathTermUtility;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 

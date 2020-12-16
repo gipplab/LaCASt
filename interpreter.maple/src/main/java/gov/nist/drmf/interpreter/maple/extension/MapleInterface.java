@@ -6,6 +6,7 @@ import com.maplesoft.openmaple.Engine;
 import com.maplesoft.openmaple.MString;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.maple.common.MapleConfig;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,7 +22,7 @@ import static gov.nist.drmf.interpreter.common.constants.GlobalConstants.NL;
 /**
  * @author Andre Greiner-Petter
  */
-public class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
+public final class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
     private static final Logger LOG = LogManager.getLogger(MapleInterface.class.getName());
 
     /**
@@ -208,7 +209,8 @@ public class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
     public static MapleInterface getUniqueMapleInterface() {
         if ( mapleInterface == null ) {
             try {
-                mapleInterface = new MapleInterface();
+                if (MapleConfig.areSystemVariablesSetProperly()) mapleInterface = new MapleInterface();
+                return mapleInterface;
             } catch (MapleException e) {
                 LOG.error("Unable to load ");
                 return null;

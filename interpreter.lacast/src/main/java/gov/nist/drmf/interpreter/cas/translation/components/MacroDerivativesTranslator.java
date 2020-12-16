@@ -4,16 +4,16 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.components.util.DerivativeAndPowerHolder;
 import gov.nist.drmf.interpreter.cas.translation.components.util.MacroInfoHolder;
-import gov.nist.drmf.interpreter.cas.translation.components.util.VariableExtractor;
+import gov.nist.drmf.interpreter.cas.translation.components.util.MeomArgumentExtractor;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.DLMFFeatureValues;
-import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
-import gov.nist.drmf.interpreter.mlp.MathTermUtility;
-import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.grammar.DLMFFeatureValues;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -250,7 +250,7 @@ public class MacroDerivativesTranslator extends MacroTranslator {
 
         List<PomTaggedExpression> potentialArgs = new LinkedList<>();
         try {
-            potentialArgs = VariableExtractor.getPotentialArgumentsUntilEndOfScope(
+            potentialArgs = MeomArgumentExtractor.getPotentialArgumentsUntilEndOfScope(
                     followingExps,
                     vars,
                     this
@@ -272,15 +272,16 @@ public class MacroDerivativesTranslator extends MacroTranslator {
     /**
      * In \<macro>^{(<order>)}@{...}, extracts the <order> as the order of differentiation for the macro
      *
-     * @param following_exps .
+     * @param followingExps .
      * @param holder .
      */
     private void parseLagrangeNotation(
-            List<PomTaggedExpression> following_exps,
+            List<PomTaggedExpression> followingExps,
             DerivativeAndPowerHolder holder
     ) {
         // translate the order
-        TranslatedExpression lagrangeExpr = parseGeneralExpression(following_exps.remove(0), following_exps);
+        followingExps = new LinkedList<>(followingExps);
+        TranslatedExpression lagrangeExpr = parseGeneralExpression(followingExps.remove(0), followingExps);
 
         // clean up global translation list
         TranslatedExpression global = getGlobalTranslationList();
@@ -321,7 +322,7 @@ public class MacroDerivativesTranslator extends MacroTranslator {
             PomTaggedExpression p = expressions.get(i);
             MathTerm mt = p.getRoot();
 
-            if ( isDLMFMacro(mt) ) {
+            if ( MathTermUtility.isDLMFMacro(mt) ) {
                 i = handleMacro(mt, expressions, i, variableCandidates);
             } else {
                 variableCandidates.addAll(extractVariableOfDiff(p));

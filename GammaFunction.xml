@@ -1,0 +1,759 @@
+<mediawiki>
+    <page>
+        <title>Gamma function</title>
+        <ns>0</ns>
+        <id>12316</id>
+        <revision>
+            <id>987126228</id>
+            <parentid>987122152</parentid>
+            <timestamp>2020-11-05T02:19:42Z</timestamp>
+            <contributor>
+                <username>Tom.Reding</username>
+                <id>9784415</id>
+            </contributor>
+            <minor />
+            <comment>[[WP:GenFixes]]</comment>
+            <model>wikitext</model>
+            <format>text/x-wiki</format>
+            <text bytes="74161" xml:space="preserve">{{Short description|Extension of the factorial function}}
+{{About||the gamma function of ordinals|Veblen function|the gamma distribution in statistics|Gamma distribution|the function used in video and image color representations|Gamma correction}}
+{{Use dmy dates|date=December 2016}}
+
+[[File:Gamma plot.svg|thumb|right|325px|The gamma function along part of the real axis]]
+
+In [[mathematics]], the '''gamma function''' (represented by &lt;math&gt;\Gamma,&lt;/math&gt; the capital letter [[gamma]] from the [[Greek alphabet]]) is one commonly used extension of the [[factorial function]] to [[complex number]]s. The gamma function is defined for all complex numbers except the non-positive integers.  For any [[positive integer]] &lt;math&gt;n,&lt;/math&gt;
+
+:&lt;math&gt;\Gamma(n) = (n-1)!\ .&lt;/math&gt;
+
+Derived by [[Daniel Bernoulli]], for complex numbers with a positive real part the gamma function is defined via a convergent [[improper integral]]:
+
+:&lt;math&gt; \Gamma(z) = \int_0^\infty x^{z-1} e^{-x}\,dx, \ \qquad \Re(z) &gt; 0\ .&lt;/math&gt;
+
+The gamma function then is defined as the [[analytic continuation]] of this integral function to a [[meromorphic function]] that is [[holomorphic function|holomorphic]] in the whole complex plane except zero and the negative integers, where the function has simple [[Zeros and poles|poles]].
+
+The gamma function has no zeroes, so the [[reciprocal gamma function]] &lt;math&gt;1/\Gamma&lt;/math&gt; is an [[entire function]]. In fact, the gamma function corresponds to the [[Mellin transform]] of the negative [[exponential function]]:
+
+:&lt;math&gt; \Gamma(z) = \{ \mathcal M e^{-x} \} (z).&lt;/math&gt;
+
+Other extensions of the factorial function do exist, but the gamma function is the most popular and useful. It is a component in various probability-distribution functions, and as such it is applicable in the fields of [[probability]] and [[statistics]], as well as [[combinatorics]].
+
+== Motivation ==
+[[File:Factorial Interpolation.svg|thumb|250px|The gamma function interpolates the factorial function to non-integer values.]]
+
+The gamma function can be seen as a solution to the following [[interpolation]] problem:
+: &quot;Find a [[smooth curve]] that connects the points&amp;nbsp;&lt;math&gt;(x, y)&lt;/math&gt; given by &lt;math&gt;y = (x - 1)!&lt;/math&gt; at the positive integer values for&amp;nbsp;&lt;math&gt;x&lt;/math&gt;.&quot;
+
+A plot of the first few factorials makes clear that such a curve can be drawn, but it would be preferable to have a formula that precisely describes the curve, in which the number of operations does not depend on the size of&amp;nbsp;&lt;math&gt;x&lt;/math&gt;. The simple formula for the factorial, &lt;math&gt;x! = 1 \times 2 \times \cdots \times x&lt;/math&gt;, cannot be used directly for fractional values of &lt;math&gt;x&lt;/math&gt; since it is only valid when {{math|''x''}} is a [[natural number]] (or positive integer). There are, relatively speaking, no such simple solutions for factorials; no finite combination of sums, products, powers, [[exponential function]]s, or [[logarithm]]s will suffice to express&amp;nbsp;&lt;math&gt;x!&lt;/math&gt;; but it is possible to find a general formula for factorials using tools such as [[integral]]s and [[limit of a function|limits]] from [[calculus]]. A good solution to this is the gamma function.&lt;ref name=&quot;Davis&quot; /&gt;
+
+There are infinitely many continuous extensions of the factorial to non-integers: infinitely many curves can be drawn through any set of isolated points. The gamma function is the most useful solution in practice, being [[analytic function|analytic]] (except at the non-positive integers), and it can be defined in several equivalent ways. However, it is not the only analytic function which extends the factorial, as adding to it any analytic function which is zero on the positive integers, such as {{math|''k'' sin ''m{{pi}}x''}}, will give another function with that property.&lt;ref name=&quot;Davis&quot; /&gt;
+
+[[File:Gamma plus sin pi z.svg|thumb|250px|The gamma function, {{math| Γ(z)}} in blue, plotted along with {{math| Γ(z) + sin({{pi}}z)}} in green. Notice the intersection at positive integers, both are valid analytic continuations of the factorials to the non-integers]]
+
+A more restrictive property than satisfying the above interpolation is to satisfy the [[recurrence relation]] defining a translated version of the factorial function,&lt;ref&gt;{{cite book |title=Special Functions: A Graduate Text |first1=Richard |last1=Beals |first2=Roderick |last2=Wong |publisher=Cambridge University Press |year=2010 |isbn=978-1-139-49043-6 |page=28 |url=https://books.google.com/books?id=w87QUuTVIXYC}} [https://books.google.com/books?id=w87QUuTVIXYC&amp;pg=PA28 Extract of page 28]&lt;/ref&gt;&lt;ref&gt;{{cite book |title=Differential Equations: An Introduction with Mathematica |edition=illustrated |first1=Clay C. |last1=Ross |publisher=Springer Science &amp; Business Media |year=2013 |isbn=978-1-4757-3949-7 |page=293 |url=https://books.google.com/books?id=Z4bjBwAAQBAJ}} [https://books.google.com/books?id=Z4bjBwAAQBAJ&amp;pg=PA293 Expression G.2 on page 293]&lt;/ref&gt;
+
+:&lt;math&gt;f(1) = 1, &lt;/math&gt;
+:&lt;math&gt;f(x+1) = x f(x),&lt;/math&gt;&lt;!-- please note that this is not the factorial factorial function. It is the gamma function, which is a translated version of the factorial. See the cited sources --&gt;
+
+for any positive real number {{math|''x''}}. But this would allow for multiplication by any periodic analytic function which evaluates to 1 on the positive integers, such as {{math|''e''&lt;sup&gt; ''k'' sin ''m{{pi}}x''&lt;/sup&gt;}}. One of several ways to finally resolve the ambiguity comes from the [[Bohr–Mollerup theorem]]. It states that when the condition that {{math|''f''}} be [[Logarithmically convex function|logarithmically convex]] (or &quot;super-convex&quot;&lt;ref name=&quot;Kingman1961&quot;&gt;{{cite journal|last1=Kingman|first1=J. F. C.|title=A Convexity Property of Positive Matrices|journal=The Quarterly Journal of Mathematics|date=1961|volume=12|issue=1|pages=283–284|doi=10.1093/qmath/12.1.283|bibcode=1961QJMat..12..283K}}&lt;/ref&gt;) is added, it uniquely determines {{math|''f''}} for positive, real inputs. From there, the gamma function can be extended to all real and complex values (except the negative integers and zero) by using the unique [[analytic continuation]] of {{math|''f''}}.&lt;ref&gt;{{MathWorld | urlname=Bohr-MollerupTheorem | title=Bohr–Mollerup Theorem}}&lt;/ref&gt;
+
+== Definition ==
+
+=== Main definition ===
+The notation &lt;math&gt;\Gamma (z)&lt;/math&gt; is due to [[Adrien-Marie Legendre|Legendre]].&lt;ref name=&quot;Davis&quot; /&gt; If the real part of the complex number&amp;nbsp;{{math|''z''}} is positive (&lt;math&gt;\Re (z) &gt; 0&lt;/math&gt;), then the [[integral]]
+
+:&lt;math&gt; \Gamma(z) = \int_0^\infty x^{z-1} e^{-x}\, dx&lt;/math&gt;
+
+[[absolute convergence|converges absolutely]], and is known as the '''Euler integral of the second kind'''. (Euler's integral of the first kind is the [[beta function]].&lt;ref name=&quot;Davis&quot; /&gt;) Using [[integration by parts]], one sees that:
+
+:&lt;math&gt;\begin{align}
+   \Gamma(z+1) &amp; = \int_0^\infty x^{z} e^{-x} \, dx \\
+   &amp; = \Big[-x^z e^{-x}\Big]_0^\infty + \int_0^\infty z x^{z-1} e^{-x}\, dx \\
+   &amp; = \lim_{x\to \infty}(-x^z e^{-x}) - (-0^z e^{-0}) + z\int_0^\infty x^{z-1} e^{-x}\, dx.
+ \end{align}&lt;/math&gt;
+Recognizing that &lt;math&gt;-x^z e^{-x}\to 0&lt;/math&gt; as &lt;math&gt;x\to \infty,&lt;/math&gt;
+:&lt;math&gt;\begin{align}
+   \Gamma(z+1) &amp; = z\int_0^\infty x^{z-1} e^{-x}\, dx \\
+   &amp; = z\Gamma(z).
+ \end{align}&lt;/math&gt;
+
+We can calculate &lt;math&gt;\Gamma(1)\text{:}&lt;/math&gt;
+:&lt;math&gt;\begin{align}
+   \Gamma(1) &amp; = \int_0^\infty x^{1-1} e^{-x}\,dx \\
+   &amp; = \Big[-e^{-x}\Big]_0^\infty \\
+   &amp; = \lim_{x\to \infty}(-e^{-x}) - (-e^{-0}) \\
+   &amp; = 0 - (-1) \\
+   &amp; = 1.
+ \end{align}&lt;/math&gt;
+
+Given that &lt;math&gt;\Gamma(1) = 1&lt;/math&gt; and &lt;math&gt;\Gamma(n+1) = n\Gamma(n),&lt;/math&gt;
+:&lt;math&gt;\Gamma(n) = 1 \cdot 2 \cdot 3 \cdots (n-1) = (n-1)!&lt;/math&gt;
+for all positive integers {{mvar|n}}. This can be seen as an example of [[proof by induction]].
+
+The identity &lt;math display=&quot;inline&quot;&gt;\Gamma(z) = \frac {\Gamma(z + 1)} {z}&lt;/math&gt; can be used (or, yielding the same result, [[analytic continuation]] can be used) to uniquely extend the integral formulation for &lt;math&gt;\Gamma (z)&lt;/math&gt; to a [[meromorphic function]] defined for all complex numbers {{mvar|z}}, except integers less than or equal to zero.&lt;ref name=&quot;Davis&quot; /&gt;  It is this extended version that is commonly referred to as the gamma function.&lt;ref name=&quot;Davis&quot; /&gt;
+
+=== Alternative definitions ===
+
+==== Euler's definition as an infinite product ====
+&lt;!-- Linked to from [[Binomial coefficient]] --&gt;
+When seeking to approximate &lt;math&gt;z!&lt;/math&gt; for a complex number &lt;math&gt;z&lt;/math&gt;, it is effective to first compute &lt;math&gt;n!&lt;/math&gt; for some large integer &lt;math&gt;n&lt;/math&gt;. Use that to approximate a value for &lt;math&gt;(n+z)!&lt;/math&gt;, and then use the recursion relation &lt;math&gt;m! = m(m-1)!&lt;/math&gt; backwards &lt;math&gt;n&lt;/math&gt; times, to unwind it to an approximation for &lt;math&gt;z!&lt;/math&gt;.  Furthermore, this approximation is exact in the limit as &lt;math&gt;n&lt;/math&gt; goes to infinity.
+
+Specifically, for a fixed integer &lt;math&gt;m&lt;/math&gt;, it is the case that
+:&lt;math&gt;\lim_{n \to \infty} \frac{n! \; (n+1)^m}{(n+m)!} = 1\,.&lt;/math&gt;
+
+If &lt;math&gt;m&lt;/math&gt; is not an integer then it is not possible to say whether this equation is true because we have not yet (in this section) defined the factorial function for non-integers.  However, we do get a unique extension of the factorial function to the non-integers by insisting that this equation continue to hold when the arbitrary integer &lt;math&gt;m&lt;/math&gt; is replaced by an arbitrary complex number &lt;math&gt;z&lt;/math&gt;.
+
+:&lt;math&gt;\lim_{n \to \infty} \frac{n! \; (n+1)^z}{(n+z)!} = 1\,.&lt;/math&gt;
+Multiplying both sides by &lt;math&gt;z!&lt;/math&gt; gives
+:&lt;math&gt;\begin{align}
+   z! &amp;= \lim_{n \to \infty} n!\frac{z!}{(n+z)!} (n+1)^z \\[8pt]
+      &amp;= \lim_{n \to \infty} (1 \cdots n)\frac{1}{(1+z) \cdots (n+z)} \left(\left(\frac{2}{1}\right)\left(\frac{3}{2}\right)\cdots \left(\frac{n+1}{n}\right)\right)^z \\[8pt]
+      &amp;= \prod_{n=1}^\infty \left[ \frac{1}{1+\frac{z}{n}} \left(1 + \frac{1}{n}\right)^z \right].
+\end{align}&lt;/math&gt;
+This [[infinite product]] converges for all complex numbers&amp;nbsp;&lt;math&gt;z&lt;/math&gt; except the negative integers, which fail because trying to use the recursion relation &lt;math&gt;m! = m(m - 1)!&lt;/math&gt; backwards through the value &lt;math&gt;m=0&lt;/math&gt; involves a division by zero.
+
+Similarly for the gamma function, the definition as an infinite product due to [[Leonhard Euler|Euler]] is valid for all complex numbers &lt;math&gt;z&lt;/math&gt; except the non-positive integers:
+:&lt;math&gt;\Gamma(z) = \frac{1}{z} \prod_{n=1}^{\infty} \frac{\left(1 + \frac{1}{n}\right)^z}{1+\frac{z}{n}} \,.&lt;/math&gt;
+By this construction, the gamma function is the unique function that simultaneously satisfies &lt;math&gt;\Gamma(1) = 1&lt;/math&gt;, &lt;math&gt;\Gamma(z+1) = z \Gamma(z)&lt;/math&gt; for all complex numbers &lt;math&gt;z&lt;/math&gt; except the non-positive integers, and &lt;math display=&quot;inline&quot;&gt;\lim_{n \to \infty} \frac{\Gamma(n+z)}{\Gamma(n)\;n^z} = 1&lt;/math&gt; for all complex numbers &lt;math&gt;z&lt;/math&gt;.&lt;ref name=&quot;Davis&quot;/&gt;
+
+==== Weierstrass's definition ====
+The definition for the gamma function due to [[Karl Weierstrass|Weierstrass]] is also valid for all complex numbers&amp;nbsp;{{math|''z''}} except the non-positive integers:
+:&lt;math&gt;\Gamma(z) = \frac{e^{-\gamma z}} z \prod_{n=1}^\infty \left(1 + \frac z n \right)^{-1} e^{z/n},&lt;/math&gt;
+where &lt;math&gt;\gamma \approx 0.577216&lt;/math&gt; is the [[Euler–Mascheroni constant]].&lt;ref name=&quot;Davis&quot; /&gt; This is the [[Entire Function#Genus of an entire function|Hadamard Product]] of &lt;math&gt;1/\Gamma(z)&lt;/math&gt; in a rewritten form. Indeed, since &lt;math&gt;1/\Gamma(z)&lt;/math&gt; is [[Entire function|entire]] of genus 1 with a simple zero at &lt;math&gt;z=0&lt;/math&gt;, we have the product representation
+:&lt;math&gt;\frac{1}{\Gamma(z)} = z e^{Az+B} \prod_{\rho} \left(1-\frac{z}{\rho} \right)e^{z/\rho}, &lt;/math&gt;
+where the product is over the zeros &lt;math&gt;\rho\neq0&lt;/math&gt; of &lt;math&gt;1/\Gamma(z)&lt;/math&gt;. Since  &lt;math&gt;\Gamma(z)&lt;/math&gt; has simple poles at the non-positive integers, it follows &lt;math&gt;1/\Gamma(z)&lt;/math&gt; has simple zeros at the nonpositive integers, and so the equation above becomes Weierstrass's formula with &lt;math&gt;-Az-B&lt;/math&gt; in place of &lt;math&gt;-\gamma z&lt;/math&gt;. The derivation of the constants &lt;math&gt;A=\gamma&lt;/math&gt; and &lt;math&gt;B=0&lt;/math&gt; is somewhat technical, but can be accomplished by using some identities involving the [[Riemann zeta function]] (see [[Euler-Mascheroni constant#Relation to the zeta function|this identity]], for instance). See also the [[Weierstrass factorization theorem]].
+
+==== In terms of generalized Laguerre polynomials ====
+A representation of the [[incomplete gamma function]] in terms of [[Laguerre polynomials#Generalized Laguerre polynomials|generalized Laguerre polynomials]] is
+:&lt;math&gt;\Gamma(z,x)=x^z e^{-x} \sum_{n=0}^\infty \frac{L_n ^{(z)}(x)}{n+1},&lt;/math&gt;
+which converges for &lt;math&gt;\Re (z) &gt; -1&lt;/math&gt; and &lt;math&gt;x&gt;0&lt;/math&gt;.&lt;ref name=&quot;ReferenceA&quot;&gt;{{dlmf|authorlink=Richard Askey|first=R. A.|last= Askey|first2= R.|last2= Roy |id=8.7 |title=Series Expansions|ref=none}}&lt;/ref&gt;
+
+== Properties ==
+
+=== General ===
+
+Other important functional equations for the gamma function are [[reflection formula|Euler's reflection formula]]
+
+:&lt;math&gt;\Gamma(1-z) \Gamma(z) = {\pi \over \sin (\pi z)}, \qquad z \not\in \mathbb Z&lt;/math&gt;
+
+which implies
+
+:&lt;math&gt;\Gamma(\varepsilon - n) = (-1)^{n-1} \; \frac{\Gamma(-\varepsilon) \Gamma(1+\varepsilon)}{\Gamma(n+1-\varepsilon)},&lt;/math&gt;
+
+and the [[Multiplication theorem#Gamma function–Legendre formula|Legendre duplication formula]]
+
+:&lt;math&gt;\Gamma(z) \Gamma\left(z + \tfrac12\right) = 2^{1-2z} \; \sqrt{\pi} \; \Gamma(2z).&lt;/math&gt;
+
+{{Collapse top|title=Derivation of Euler's reflection formula}}
+
+Since &lt;math&gt;e^{-t}=\lim_{n\to \infty} \left(1-\frac{t}{n}\right)^n,&lt;/math&gt;
+
+the gamma function can be represented as
+
+: &lt;math&gt;\Gamma (z)=\lim_{n\to \infty}\int_0^n t^{z-1}\left(1-\frac{t}{n}\right)^n \, dt.&lt;/math&gt;
+
+Integrating by parts &lt;math&gt;n&lt;/math&gt; times yields
+
+: &lt;math&gt;\Gamma (z)=\lim_{n\to \infty} \frac{n}{nz} \cdot \frac{n-1}{n(z+1)} \cdot \frac{n-2}{n(z+2)} \cdots \frac{1}{n(z+n-1)} \int_0^n t^{z+n-1} \, dt,&lt;/math&gt;
+
+which is equal to
+
+: &lt;math&gt;\Gamma (z)=\lim_{n\to \infty}\frac{n!}{n^n}\prod_{k=0}^n (z+k)^{-1} n^{z+n}.&lt;/math&gt;
+
+This can be rewritten as
+
+: &lt;math&gt;\Gamma (z)=\lim_{n\to \infty} \frac{n^{z}}{z}\prod_{k=1}^n \frac{k}{z+k}=\lim_{n\to \infty} \frac{n^z}{z} \prod_{k=1}^n \frac{1}{1+\frac{z}{k}}.&lt;/math&gt;
+
+Then, using the functional equation of the gamma function, we get
+
+: &lt;math&gt;-z\Gamma (-z)\Gamma (z)=\Gamma (1-z)\Gamma (z)=\lim_{n\to \infty}\frac{1}{z}\prod_{k=1}^n \frac{1}{1-\frac{z^2}{k^2}}.&lt;/math&gt;
+
+It can be [[Sine#Partial fraction and product expansions of complex sine|proved]] that
+
+: &lt;math&gt;\sin (\pi z)=\pi z\prod_{k=1}^\infty \left(1-\frac{z^2}{k^2}\right).&lt;/math&gt;
+
+Then
+
+: &lt;math&gt;\frac{\pi}{\sin (\pi z)}=\lim_{n\to \infty} \frac{1}{z} \prod_{k=1}^n \frac{1}{1-\frac{z^2}{k^2}}.&lt;/math&gt;
+
+Euler's reflection formula follows:
+
+: &lt;math&gt;\Gamma (1-z)\Gamma (z)=\frac{\pi}{\sin (\pi z)},\qquad z \not \in \mathbb Z.&lt;/math&gt;
+
+{{Collapse bottom}}
+
+{{Collapse top|title=Derivation of the Legendre duplication formula}}
+
+The [[beta function]] can be represented as
+
+: &lt;math&gt;\Beta (z_1,z_2)=\frac{\Gamma (z_1)\Gamma (z_2)}{\Gamma (z_1+z_2)}=\int_0^1 t^{z_1-1}(1-t)^{z_2-1} \, dt.&lt;/math&gt;
+
+Setting &lt;math&gt;z_1=z_2=z&lt;/math&gt; yields
+
+: &lt;math&gt;\frac{\Gamma^2(z)}{\Gamma (2z)}=\int_0^1 t^{z-1}(1-t)^{z-1} \, dt.&lt;/math&gt;
+
+After the substitution &lt;math&gt;t=\frac{1+x}{2}&lt;/math&gt; we get
+
+: &lt;math&gt;\frac{\Gamma^2(z)}{\Gamma (2z)}=\frac{1}{2^{2z-1}}\int_{-1}^1 \left(1-x^{2}\right)^{z-1} \, dx.&lt;/math&gt;
+
+The function &lt;math&gt;(1-x^2)^{z-1}&lt;/math&gt; is even, hence
+
+: &lt;math&gt;2^{2z-1}\Gamma^2(z)=2\Gamma (2z)\int_0^1 (1-x^2)^{z-1} \, dx.&lt;/math&gt;
+
+Now assume
+
+: &lt;math&gt;\Beta \left(\frac{1}{2},z\right)=\int_0^1 t^{\frac{1}{2}-1}(1-t)^{z-1} \, dt, \quad t=s^2.&lt;/math&gt;
+
+Then
+
+: &lt;math&gt;\Beta \left(\frac{1}{2},z\right)=2\int_0^1 (1-s^2)^{z-1} \, ds = 2\int_0^1 (1-x^2)^{z-1} \, dx.&lt;/math&gt;
+
+This implies
+
+: &lt;math&gt;2^{2z-1}\Gamma^2(z)=\Gamma (2z)\Beta \left(\frac{1}{2},z\right).&lt;/math&gt;
+
+Since
+
+: &lt;math&gt;\Beta \left(\frac{1}{2},z\right)=\frac{\Gamma \left(\frac{1}{2}\right)\Gamma (z)}{\Gamma \left(z+\frac{1}{2}\right)}, \quad \Gamma \left(\frac{1}{2}\right)=\sqrt{\pi},&lt;/math&gt;
+
+the Legendre duplication formula follows:
+
+: &lt;math&gt;\Gamma (z)\Gamma \left(z+\frac{1}{2}\right)=2^{1-2z}\sqrt{\pi} \; \Gamma (2z).&lt;/math&gt;
+
+{{Collapse bottom}}
+
+The duplication formula is a special case of the [[multiplication theorem]] (See,&lt;ref name=&quot;ReferenceA&quot;/&gt; Eq. 5.5.6)
+
+:&lt;math&gt;\prod_{k=0}^{m-1}\Gamma\left(z + \frac{k}{m}\right) = (2 \pi)^{\frac{m-1}{2}} \; m^{\frac12 - mz} \; \Gamma(mz).&lt;/math&gt;
+
+A simple but useful property, which can be seen from the limit definition, is:
+
+:&lt;math&gt;\overline{\Gamma(z)} = \Gamma(\overline{z}) \; \Rightarrow \; \Gamma(z)\Gamma(\overline{z}) \in \mathbb{R} .&lt;/math&gt;
+
+In particular, with {{math|''z'' {{=}} ''a''&amp;nbsp;+&amp;nbsp;''bi''}}, this product is
+
+:&lt;math&gt;
+|\Gamma(a+bi)|^2 = |\Gamma(a)|^2 \prod_{k=0}^\infty \frac{1}{1+\frac{b^2}{(a+k)^2}}
+&lt;/math&gt;
+
+If the real part is an integer or a half-integer, this can be finitely expressed in [[Closed-form expression|closed form]]:
+
+:&lt;math&gt;
+\begin{align}
+|\Gamma(bi)|^2 &amp; = \frac{\pi}{b\sinh (\pi b)} \\[6pt]
+|\Gamma\left(\tfrac{1}{2}+bi\right)|^2 &amp; = \frac{\pi}{\cosh (\pi b)} \\
+|\Gamma\left(1+bi\right)|^2 &amp; = \frac{\pi b}{\sinh (\pi b)} \\
+|\Gamma\left(1+n+bi\right)|^2 &amp; = \frac{\pi b}{\sinh (\pi b)} \prod_{k=1}^n \left(k^2 + b^2 \right), \quad n \in \mathbb N \\
+|\Gamma\left(-n+bi\right)|^2 &amp; = \frac{\pi}{b \sinh (\pi b)} \prod_{k=1}^n \left(k^2 + b^2 \right)^{-1}, \quad n \in \mathbb N \\
+|\Gamma\left(\tfrac{1}{2} \pm n+bi\right)|^2 &amp; = \frac{\pi}{\cosh (\pi b)} \prod_{k=1}^n \left(\left( k-\tfrac{1}{2}\right)^2 + b^2 \right)^{\pm 1}, \quad n \in \mathbb N
+\end{align}
+&lt;/math&gt;
+
+{{Collapse top|title=Proof of formulas for integer or half-integer real part}}
+
+First, consider the reflection formula applied to &lt;math&gt;z=bi&lt;/math&gt;.
+:&lt;math&gt;\Gamma(bi)\Gamma(1-bi)=\frac{\pi}{\sin (\pi bi)}&lt;/math&gt;
+Applying the recurrence relation to the second term, we have
+:&lt;math&gt;-bi \cdot \Gamma(bi)\Gamma(-bi)=\frac{\pi}{\sin (\pi bi)}&lt;/math&gt;
+which with simple rearrangement gives
+:&lt;math&gt;\Gamma(bi)\Gamma(-bi)=\frac{\pi}{-bi\sin (\pi bi)}=\frac{\pi}{b\sinh (\pi b)}&lt;/math&gt;
+
+Second, consider the reflection formula applied to &lt;math&gt;z=\tfrac{1}{2}+bi&lt;/math&gt;.
+:&lt;math&gt;\Gamma(\tfrac{1}{2}+bi)\Gamma\left(1-(\tfrac{1}{2}+bi)\right)=\Gamma(\tfrac{1}{2}+bi)\Gamma(\tfrac{1}{2}-bi)=\frac{\pi}{\sin \left(\pi (\tfrac{1}{2}+bi)\right)}=\frac{\pi}{\cos (\pi bi)}=\frac{\pi}{\cosh (\pi b)}&lt;/math&gt;
+
+Formulas for other values of &lt;math&gt;z&lt;/math&gt; for which the real part is integer or half-integer quickly follow by [[mathematical induction|induction]] using the recurrence relation in the positive and negative directions.
+
+{{Collapse bottom}}
+
+Perhaps the best-known value of the gamma function at a non-integer argument is
+
+:&lt;math&gt;\Gamma\left(\tfrac12\right)=\sqrt{\pi},&lt;/math&gt;
+
+which can be found by setting &lt;math display=&quot;inline&quot;&gt;z = \frac{1}{2}&lt;/math&gt; in the reflection or duplication formulas, by using the relation to the [[beta function]] given below with &lt;math display=&quot;inline&quot;&gt;x = y = \frac{1}{2}&lt;/math&gt;, or simply by making the substitution &lt;math&gt;u = \sqrt{x}&lt;/math&gt; in the integral definition of the gamma function, resulting in a [[Gaussian integral]]. In general, for non-negative integer values of &lt;math&gt;n&lt;/math&gt; we have:
+
+:&lt;math&gt;\begin{align}
+\Gamma\left(\tfrac12+n\right) &amp;= {(2n)! \over 4^n n!} \sqrt{\pi} = \frac{(2n-1)!!}{2^n} \sqrt{\pi} = \binom{n-\frac{1}{2}}{n} n! \sqrt{\pi} \\[8pt]
+\Gamma\left(\tfrac12-n\right) &amp;= {(-4)^n n! \over (2n)!} \sqrt{\pi} = \frac{(-2)^n}{(2n-1)!!} \sqrt{\pi} = \frac{\sqrt{\pi}}{\binom{-1/2}{n} n!}
+\end{align}&lt;/math&gt;
+
+where &lt;math&gt;n!!&lt;/math&gt; denotes the [[double factorial]] of ''n'' and, when &lt;math&gt;n = 0&lt;/math&gt;, &lt;math&gt;n!! = 1&lt;/math&gt;. See [[Particular values of the gamma function]] for calculated values.
+
+It might be tempting to generalize the result that &lt;math display=&quot;inline&quot;&gt;\Gamma \left( \frac{1}{2} \right) = \sqrt\pi&lt;/math&gt; by looking for a formula for other individual values &lt;math&gt;\Gamma(r)&lt;/math&gt; where &lt;math&gt;r&lt;/math&gt; is rational, especially because according to [[Digamma function#Gauss's digamma theorem|Gauss's digamma theorem]], it is possible to do so for the closely related [[digamma function]] at every rational value. However, these numbers &lt;math&gt;\Gamma(r)&lt;/math&gt; are not known to be expressible by themselves in terms of elementary functions. It has been proved that &lt;math&gt;\Gamma (n + r)&lt;/math&gt; is a [[transcendental number]] and [[algebraic independence|algebraically independent]] of &lt;math&gt;\pi&lt;/math&gt; for any integer &lt;math&gt;n&lt;/math&gt; and each of the fractions &lt;math display=&quot;inline&quot;&gt;r = \frac{1}{6}, \frac{1}{4}, \frac{1}{3}, \frac{2}{3}, \frac{3}{4}, \frac{5}{6}&lt;/math&gt;.&lt;ref&gt;{{cite journal|last=Waldschmidt |first=M. |date=2006 |url=http://www.math.jussieu.fr/~miw/articles/pdf/TranscendencePeriods.pdf |title=Transcendence of Periods: The State of the Art |journal=Pure Appl. Math. Quart. |volume=2 |issue=2 |pages=435–463 |doi=10.4310/pamq.2006.v2.n2.a3|doi-access=free}}&lt;/ref&gt; In general, when computing values of the gamma function, we must settle for numerical approximations.
+
+Another useful limit for asymptotic approximations is:
+
+:&lt;math&gt;\lim_{n\to\infty} \frac{\Gamma(n+\alpha)}{\Gamma(n)n^\alpha} = 1, \qquad \alpha \in \mathbb{C}. &lt;/math&gt;
+
+The derivatives of the gamma function are described in terms of the [[polygamma function]]. For example:
+
+:&lt;math&gt;\Gamma'(z)=\Gamma(z)\psi_0(z).&lt;/math&gt;
+
+For a positive integer&amp;nbsp;{{math|''m''}} the derivative of the gamma function can be calculated as follows (here&amp;nbsp;&lt;math&gt;\gamma&lt;/math&gt; is the [[Euler–Mascheroni constant]]):
+
+:&lt;math&gt;\Gamma'(m+1) = m! \left( - \gamma + \sum_{k=1}^m\frac{1}{k} \right)\,.&lt;/math&gt;
+
+For &lt;math&gt;\Re(x) &gt; 0&lt;/math&gt; the &lt;math&gt;n&lt;/math&gt;th derivative of the gamma function is:
+[[File:DerivGamma.png|thumb|Derivative of the function {{math|Γ(''z'')}}]]
+
+:&lt;math&gt;\frac{d^n}{dx^n}\Gamma(x) = \int_0^\infty t^{x-1} e^{-t} (\ln t)^n \, dt.&lt;/math&gt;
+
+(This can be derived by differentiating the integral form of the gamma function with respect to &lt;math&gt;x&lt;/math&gt;, and using the technique of [[differentiation under the integral sign]].)
+
+Using the identity
+
+:&lt;math&gt;\Gamma^{(n)}(1)=(-1)^n n!\sum\limits_{\pi\,\vdash \, n}\,\prod_{i=1}^r\frac{\zeta^*(a_i)}{k_i!\cdot a_i} \qquad \zeta^*(x):=\begin{cases}\zeta(x)&amp;x\ne1\\ \gamma&amp;x=1\end{cases}&lt;/math&gt;
+
+where &lt;math&gt;\zeta(z)&lt;/math&gt; is the [[Riemann zeta function]], and &lt;math&gt;\pi&lt;/math&gt; is a [[Partition (number theory)|partition]] of &lt;math&gt;n&lt;/math&gt; given by
+:&lt;math&gt;\pi=\underbrace{a_1+\cdots+a_1}_{k_1 \text{ terms}} + \cdots + \underbrace{a_r + \cdots +a_r}_{k_r \text{ terms}},&lt;/math&gt;
+
+we have in particular
+
+:&lt;math&gt;\Gamma(z) = \frac1z - \gamma + \tfrac12\left(\gamma^2 + \frac {\pi^2}6\right)z - \tfrac16\left(\gamma^3 + \frac {\gamma\pi^2}2 + 2 \zeta(3)\right)z^2 + O(z^3).&lt;/math&gt;
+
+=== Inequalities ===
+When restricted to the positive real numbers, the gamma function is a strictly [[logarithmically convex function]].  This property may be stated in any of the following three equivalent ways:
+* For any two positive real numbers &lt;math&gt;x_1&lt;/math&gt; and &lt;math&gt;x_2&lt;/math&gt;, and for any &lt;math&gt;t \in [0, 1]&lt;/math&gt;,
+::&lt;math&gt;\Gamma(tx_1 + (1 - t)x_2) \le \Gamma(x_1)^t\Gamma(x_2)^{1 - t}.&lt;/math&gt;
+* For any two positive real numbers {{math|''x''}} and {{math|''y''}} with {{math|''y'' &gt; ''x''}},
+::&lt;math&gt;\left(\frac{\Gamma(y)}{\Gamma(x)}\right)^{\frac{1}{y - x}} &gt; \exp\left(\frac{\Gamma'(x)}{\Gamma(x)}\right).&lt;/math&gt;
+* For any positive real number &lt;math&gt;x&lt;/math&gt;,
+::&lt;math&gt;\Gamma''(x)\Gamma(x) &gt; \Gamma'(x)^2.&lt;/math&gt;
+The last of these statements is, essentially by definition, the same as the statement that &lt;math&gt;\psi^{(1)}(x) &gt; 0&lt;/math&gt;, where &lt;math&gt;\psi^{(1)}&lt;/math&gt; is the [[polygamma function]] of order 1.  To prove the logarithmic convexity of the gamma function, it therefore suffices to observe that &lt;math&gt;\psi^{(1)}&lt;/math&gt; has a series representation which, for positive real {{math|''x''}}, consists of only positive terms.
+
+Logarithmic convexity and [[Jensen's inequality]] together imply, for any positive real numbers &lt;math&gt;x_1, \ldots, x_n&lt;/math&gt; and &lt;math&gt;a_1, \ldots, a_n&lt;/math&gt;,
+:&lt;math&gt;\Gamma\left(\frac{a_1x_1 + \cdots + a_nx_n}{a_1 + \cdots + a_n}\right) \le \bigl(\Gamma(x_1)^{a_1} \cdots \Gamma(x_n)^{a_n}\bigr)^{\frac{1}{a_1 + \cdots + a_n}}.&lt;/math&gt;
+
+There are also bounds on ratios of gamma functions.  The best-known is [[Gautschi's inequality]], which says that for any positive real number {{math|''x''}} and any {{math|''s'' ∈ (0, 1)}},
+:&lt;math&gt;x^{1 - s} &lt; \frac{\Gamma(x + 1)}{\Gamma(x + s)} &lt; (x + 1)^{1 - s}.&lt;/math&gt;
+
+=== Stirling's formula ===
+[[File:Gamma1.png|thumb|Representation of the gamma function in the complex plane. Each point {{nowrap|&lt;math&gt;z&lt;/math&gt;}} is colored according to the argument of {{nowrap|&lt;math&gt;\Gamma(z)&lt;/math&gt;.}} The contour plot of the modulus {{nowrap|&lt;math&gt;|\Gamma(z)|&lt;/math&gt;}} is also displayed.]]
+
+[[File:Gamma abs 3D.png|thumb|3-dimensional plot of the absolute value of the complex gamma function]]
+The behavior of &lt;math&gt;\Gamma(z)&lt;/math&gt; for an increasing positive variable is simple. It grows quickly, faster than an exponential function in fact. Asymptotically as &lt;math display=&quot;inline&quot;&gt;z \to \infty\ ,&lt;/math&gt; the magnitude of the gamma function is given by [[Stirling's formula]]
+:&lt;math&gt;\Gamma(z+1)\sim\sqrt{2\pi z}\left(\frac{z}{e}\right)^z,&lt;/math&gt;
+where the symbol &lt;math&gt;\sim&lt;/math&gt; implies asymptotic convergence. In other words, the ratio of the two sides converges to 1 as {{nowrap|&lt;math display=&quot;inline&quot;&gt; z \to + \infty &lt;/math&gt; .&lt;ref name=&quot;Davis&quot;/&gt;}}
+
+=== Residues ===
+The behavior for non-positive &lt;math&gt;z&lt;/math&gt; is more intricate. Euler's integral does not converge for &lt;math&gt;z \le 0&lt;/math&gt;, but the function it defines in the positive complex half-plane has a unique [[analytic continuation]] to the negative half-plane. One way to find that analytic continuation is to use Euler's integral for positive arguments and extend the domain to negative numbers by repeated application of the recurrence formula,&lt;ref name=&quot;Davis&quot;/&gt;
+:&lt;math&gt;\Gamma(z)=\frac{\Gamma(z+n+1)}{z(z+1)\cdots(z+n)},&lt;/math&gt;
+choosing &lt;math&gt;n&lt;/math&gt; such that &lt;math&gt;z + n&lt;/math&gt; is positive. The product in the denominator is zero when &lt;math&gt;z&lt;/math&gt; equals any of the integers &lt;math&gt;0, -1, -2,\cdots&lt;/math&gt;. Thus, the gamma function must be undefined at those points to avoid [[division by zero]]; it is a [[meromorphic function]] with [[simple pole]]s at the non-positive integers.&lt;ref name=&quot;Davis&quot;/&gt;
+
+For a function &lt;math&gt;f&lt;/math&gt; of a complex variable &lt;math&gt;z&lt;/math&gt;, at a [[simple pole]] &lt;math&gt;c&lt;/math&gt;, the [[Residue (complex analysis)|residue]] of &lt;math&gt;f&lt;/math&gt; is given by:
+:&lt;math&gt;\operatorname{Res}(f,c)=\lim_{z\to c}(z-c)f(z).&lt;/math&gt;
+
+For the simple pole &lt;math&gt;z = -n,&lt;/math&gt; we rewrite recurrence formula as:
+:&lt;math&gt;(z+n) \Gamma(z)=\frac{\Gamma(z+n+1)}{z(z+1)\cdots(z+n-1)}.&lt;/math&gt;
+The numerator at &lt;math&gt;z = -n,&lt;/math&gt; is
+:&lt;math&gt;\Gamma(z+n+1) = \Gamma(1) = 1&lt;/math&gt;
+and the denominator
+:&lt;math&gt;z(z+1)\cdots(z+n-1) = -n(1-n)\cdots(n-1-n) = (-1)^n n!.&lt;/math&gt;
+So the residues of the gamma function at those points are:
+:&lt;math&gt;\operatorname{Res}(\Gamma,-n)=\frac{(-1)^n}{n!}.&lt;/math&gt;&lt;ref name=&quot;Mathworld&quot;&gt;{{MathWorld|urlname=GammaFunction |title=Gamma Function}}&lt;/ref&gt;
+
+The gamma function is non-zero everywhere along the real line, although it comes arbitrarily close to zero as {{math|''z'' → −∞}}. There is in fact no complex number &lt;math&gt;z&lt;/math&gt; for which &lt;math&gt;\Gamma (z) = 0&lt;/math&gt;, and hence the [[reciprocal gamma function]] &lt;math display=&quot;inline&quot;&gt;\frac {1}{\Gamma (z)}&lt;/math&gt; is an [[entire function]], with zeros at &lt;math&gt;z = 0, -1, -2, \cdots&lt;/math&gt;.&lt;ref name=&quot;Davis&quot;/&gt;
+
+===Minima===
+The gamma function has a local minimum at {{math|''z''&lt;sub&gt;min&lt;/sub&gt; ≈ {{gaps|+1.46163|21449|68362|34126}}}} (truncated) where it attains the value {{math|Γ(''z''&lt;sub&gt;min&lt;/sub&gt;) ≈ {{gaps|+0.88560|31944|10888|70027}}}} (truncated). The gamma function must alternate sign between the poles because the product in the forward recurrence contains an odd number of negative factors if the number of poles between &lt;math&gt;z&lt;/math&gt; and &lt;math&gt;z + n&lt;/math&gt; is odd, and an even number if the number of poles is even.&lt;ref name=&quot;Mathworld&quot; /&gt;
+
+=== Integral representations ===
+There are many formulas, besides the Euler integral of the second kind, that express the gamma function as an integral.  For instance, when the real part of {{math|''z''}} is positive,&lt;ref&gt;Whittaker and Watson, 12.2 example 1.&lt;/ref&gt;
+:&lt;math&gt;\Gamma(z) = \int_0^1 \left(\log \frac{1}{t}\right)^{z-1}\,dt.&lt;/math&gt;
+
+Binet's first integral formula for the gamma function states that, when the real part of {{math|''z''}} is positive, then:&lt;ref&gt;Whittaker and Watson, 12.31.&lt;/ref&gt;
+:&lt;math&gt;\log \Gamma(z) = \left(z - \frac{1}{2}\right)\log z - z + \frac{1}{2}\log(2\pi) + \int_0^\infty \left(\frac{1}{2} - \frac{1}{t} + \frac{1}{e^t - 1}\right)\frac{e^{-tz}}{t}\,dt.&lt;/math&gt;
+The integral on the right-hand side may be interpreted as a [[Laplace transform]].  That is,
+:&lt;math&gt;\log\left(\Gamma(z)\left(\frac{e}{z}\right)^z\sqrt{2\pi z}\right) = \mathcal{L}\left(\frac{1}{2t} - \frac{1}{t^2} + \frac{1}{t(e^t - 1)}\right)(z).&lt;/math&gt;
+
+Binet's second integral formula states that, again when the real part of {{math|''z''}} is positive, then:&lt;ref&gt;Whittaker and Watson, 12.32.&lt;/ref&gt;
+:&lt;math&gt;\log \Gamma(z) = \left(z - \frac{1}{2}\right)\log z - z + \frac{1}{2}\log(2\pi) + 2\int_0^\infty \frac{\arctan(t/z)}{e^{2\pi t} - 1}\,dt.&lt;/math&gt;
+
+Let {{math|''C''}} be a [[Hankel contour]], meaning a path that begins and ends at the point {{math|∞}} on the [[Riemann sphere]], whose unit tangent vector converges to {{math|−1}} at the start of the path and to {{math|1}} at the end, which has [[winding number]] 1 around {{math|0}}, and which does not cross {{math|[0, ∞)}}.  Fix a branch of &lt;math&gt;\log(-t)&lt;/math&gt; by taking a branch cut along {{math|[0, ∞)}} and by taking &lt;math&gt;\log(-t)&lt;/math&gt; to be real when {{math|''t''}} is on the negative real axis.  Assume {{math|''z''}} is not an integer.  Then Hankel's formula for the gamma function is:&lt;ref&gt;Whittaker and Watson, 12.22.&lt;/ref&gt;
+:&lt;math&gt;\Gamma(z) = -\frac{1}{2i\sin \pi z}\int_C (-t)^{z-1}e^{-t}\,dt,&lt;/math&gt;
+where &lt;math&gt;(-t)^{z-1}&lt;/math&gt; is interpreted as &lt;math&gt;\exp((z-1)\log(-t))&lt;/math&gt;.  The reflection formula leads to the closely related expression
+:&lt;math&gt;\frac{1}{\Gamma(z)} = \frac{i}{2\pi}\int_C (-t)^{-z}e^{-t}\,dt,&lt;/math&gt;
+again valid whenever {{math|''z''}} is not an integer.
+
+=== Fourier series expansion ===
+The [[Gamma function#The log-gamma function|logarithm of the gamma function]] has the following [[Fourier series]] expansion for &lt;math&gt;0 &lt; z &lt; 1:&lt;/math&gt;
+:&lt;math&gt;\ln\Gamma(z) = \left(\frac{1}{2} - z\right)(\gamma + \ln 2) + (1 - z)\ln\pi - \frac{1}{2}\ln\sin(\pi z) + \frac{1}{\pi}\sum_{n=1}^\infty \frac{\ln n}{n}\sin (2\pi n z),&lt;/math&gt;
+
+which was for a long time attributed to [[Ernst Kummer]], who derived it in 1847.&lt;ref&gt;{{cite book|first=Harry |last=Bateman |first2=Arthur |last2=Erdélyi |title=Higher Transcendental Functions |publisher=McGraw-Hill |date=1955}}&lt;/ref&gt;&lt;ref&gt;{{cite book|first=H. M. |last=Srivastava |first2=J. |last2=Choi |title=Series Associated with the Zeta and Related Functions |publisher=Kluwer Academic |location=The Netherlands |date=2001}}&lt;/ref&gt; However, [[Iaroslav Blagouchine]] discovered that [[Carl Johan Malmsten]] first derived this series in 1842.&lt;ref name=&quot;iaroslav_06&quot;&gt;{{cite journal|doi=10.1007/s11139-013-9528-5 |first=Iaroslav V. |last=Blagouchine |title=Rediscovery of Malmsten's integrals, their evaluation by contour integration methods and some related results |journal=Ramanujan J. |volume=35 |issue=1 |pages=21–110 |date=2014 |url=https://www.researchgate.net/publication/257381156}}&lt;/ref&gt;&lt;ref name=&quot;iaroslav_06bis&quot;&gt;{{cite journal|doi=10.1007/s11139-015-9763-z |first=Iaroslav V. |last=Blagouchine |title=Erratum and Addendum to &quot;Rediscovery of Malmsten's integrals, their evaluation by contour integration methods and some related results&quot; |journal=Ramanujan J. |volume=42 |issue=3 |pages=777–781 |date=2016 }}&lt;/ref&gt;
+
+=== Raabe's formula ===
+In 1840 [[Joseph Ludwig Raabe]] proved that
+:&lt;math&gt;\int_a^{a+1}\ln\Gamma(z)\, dz = \tfrac12\ln2\pi + a\ln a - a,\quad a&gt;0.&lt;/math&gt;
+In particular, if &lt;math&gt;a = 0&lt;/math&gt; then
+:&lt;math&gt;\int_0^1\ln\Gamma(z)\, dz = \tfrac12\ln2\pi.&lt;/math&gt;
+
+The latter can be derived taking the logarithm in the above multiplication formula, which gives an expression for the Riemann sum of the integrand. Taking the limit for &lt;math&gt;a \rightarrow \infty&lt;/math&gt; gives the formula.
+
+=== Pi function ===
+An alternative notation which was originally introduced by [[Carl Friedrich Gauss|Gauss]] and which was sometimes used is the &lt;math&gt;\Pi&lt;/math&gt;-function, which in terms of the gamma function is
+
+:&lt;math&gt;\Pi(z) = \Gamma(z+1) = z \Gamma(z) = \int_0^\infty e^{-t} t^z\, dt,&lt;/math&gt;
+
+so that &lt;math&gt;\Pi(n) = n!&lt;/math&gt; for every non-negative integer &lt;math&gt;n&lt;/math&gt;.
+
+Using the pi function the reflection formula takes on the form
+
+:&lt;math&gt;\Pi(z) \Pi(-z) = \frac{\pi z}{\sin( \pi z)} = \frac{1}{\operatorname{sinc}(z)}&lt;/math&gt;
+
+where {{math|sinc}} is the normalized [[sinc function]], while the multiplication theorem takes on the form
+
+:&lt;math&gt;\Pi\left(\frac{z}{m}\right) \, \Pi\left(\frac{z-1}{m}\right) \cdots \Pi\left(\frac{z-m+1}{m}\right) = (2 \pi)^{\frac{m-1}{2}} m^{-z-\frac12} \Pi(z)\ .&lt;/math&gt;
+
+We also sometimes find
+
+:&lt;math&gt;\pi(z) = \frac{1}{\Pi(z)}\ ,&lt;/math&gt;
+
+which is an [[entire function]], defined for every complex number, just like the [[reciprocal gamma function]]. That &lt;math&gt;\pi(z)&lt;/math&gt; is entire entails it has no poles, so &lt;math&gt;\Pi\left(z\right)&lt;/math&gt;, like &lt;math&gt;\Gamma\left(z\right)&lt;/math&gt;, has no [[zero (complex analysis)|zeros]].
+
+The [[volume of an n-ball|volume of an {{math|''n''}}-ellipsoid]] with radii {{math|''r''{{sub|1}}, ..., ''r''{{sub|''n''}}}} can be expressed as
+
+:&lt;math&gt;V_n(r_1,\dotsc,r_n)=\frac{\pi^{\frac{n}{2}}}{\Pi\left(\frac{n}{2}\right)} \prod_{k=1}^n r_k.&lt;/math&gt;
+
+=== Relation to other functions ===
+* In the first integral above, which defines the gamma function, the limits of integration are fixed. The upper and lower [[incomplete gamma function]]s are the functions obtained by allowing the lower or upper (respectively) limit of integration to vary.
+* The gamma function is related to the [[beta function]] by the formula
+
+:: &lt;math&gt;\Beta(x,y) = \int_0^1 t^{x-1}(1-t)^{y-1}\,dt = \frac{\Gamma(x)\,\Gamma(y)}{\Gamma(x+y)}.&lt;/math&gt;
+
+* The [[logarithmic derivative]] of the gamma function is called the [[digamma function]]; higher derivatives are the [[polygamma function]]s.
+* The analog of the gamma function over a [[finite field]] or a [[finite ring]] is the [[Gaussian sum]]s, a type of [[exponential sum]].
+* The [[reciprocal gamma function]] is an [[entire function]] and has been studied as a specific topic.
+* The gamma function also shows up in an important relation with the [[Riemann zeta function]], &lt;math&gt;\zeta (z)&lt;/math&gt;.
+::&lt;math&gt;\pi^{-\frac{z}{2}} \; \Gamma\left(\frac{z}{2}\right) \zeta(z) = \pi^{-\frac{1-z}{2}} \; \Gamma\left(\frac{1-z}{2}\right) \; \zeta(1-z).&lt;/math&gt;
+:It also appears in the following formula:
+::&lt;math&gt;\zeta(z) \Gamma(z) = \int_0^\infty \frac{u^{z}}{e^u - 1} \, \frac{du}{u},&lt;/math&gt;
+:which is valid only for &lt;math&gt;\Re (z) &gt; 1&lt;/math&gt;.
+: The logarithm of the gamma function satisfies the following formula due to Lerch:
+::&lt;math&gt;\log\Gamma(x) = \zeta_H'(0,x) - \zeta'(0),&lt;/math&gt;
+: where &lt;math&gt;\zeta_H&lt;/math&gt; is the [[Hurwitz zeta function]], &lt;math&gt;\zeta&lt;/math&gt; is the Riemann zeta function and the prime ({{math|′}}) denotes differentiation in the first variable.
+* The gamma function is related to the [[stretched exponential function]]. For instance, the moments of that function are
+:: &lt;math&gt;\langle\tau^n\rangle \equiv \int_0^\infty dt\, t^{n-1}\, e^{ - \left( \frac{t}{\tau} \right)^\beta} = \frac{\tau^n}{\beta}\Gamma \left({n \over \beta }\right).&lt;/math&gt;
+
+=== Particular values ===
+{{Main|Particular values of the gamma function}}
+Including up to the first 20 digits after the decimal point, some particular values of the gamma function are:
+:&lt;math&gt;\begin{array}{rcccl}
+\Gamma\left(-\tfrac{3}{2}\right) &amp;=&amp; \tfrac{4}{3} \sqrt{\pi} &amp;\approx&amp; +2.36327\,18012\,07354\,70306 \\
+\Gamma\left(-\tfrac{1}{2}\right) &amp;=&amp; -2\sqrt{\pi} &amp;\approx&amp; -3.54490\,77018\,11032\,05459 \\
+\Gamma\left(\tfrac{1}{2}\right) &amp;=&amp; \sqrt{\pi} &amp;\approx&amp; +1.77245\,38509\,05516\,02729 \\
+\Gamma(1) &amp;=&amp; 0! &amp;=&amp; +1 \\
+\Gamma\left(\tfrac{3}{2}\right) &amp;=&amp; \tfrac{1}{2}\sqrt{\pi} &amp;\approx&amp; +0.88622\,69254\,52758\,01364 \\
+\Gamma(2) &amp;=&amp; 1! &amp;=&amp; +1 \\
+\Gamma\left(\tfrac{5}{2}\right) &amp;=&amp; \tfrac{3}{4}\sqrt{\pi} &amp;\approx&amp; +1.32934\,03881\,79137\,02047 \\
+\Gamma(3) &amp;=&amp; 2! &amp;=&amp; +2 \\
+\Gamma\left(\tfrac{7}{2}\right) &amp;=&amp; \tfrac{15}{8}\sqrt{\pi} &amp;\approx&amp; +3.32335\,09704\,47842\,55118 \\
+\Gamma(4) &amp;=&amp; 3! &amp;=&amp; +6
+\end{array}&lt;/math&gt;
+The complex-valued gamma function is undefined for non-positive integers, but in these cases the value can be defined in the [[Riemann sphere]] as {{math|∞}}. The [[reciprocal gamma function]] is [[well defined]] and [[analytic function|analytic]] at these values (and in the [[entire function|entire complex plane]]):
+:&lt;math&gt;\frac{1}{\Gamma(-3)} = \frac{1}{\Gamma(-2)} = \frac{1}{\Gamma(-1)} = \frac{1}{\Gamma(0)} = 0.&lt;/math&gt;
+
+== The log-gamma function ==
+
+[[File:LogGamma Analytic Function.png|thumb|The analytic function {{math|log Γ(''z'')}}]]
+
+Because the gamma and factorial functions grow so rapidly for moderately large arguments, many computing environments include a function that returns the [[natural logarithm]] of the gamma function (often given the name &lt;code&gt;lgamma&lt;/code&gt; or &lt;code&gt;lngamma&lt;/code&gt; in programming environments or &lt;code&gt;gammaln&lt;/code&gt; in spreadsheets); this grows much more slowly, and for combinatorial calculations allows adding and subtracting logs instead of multiplying and dividing very large values. It is often defined as&lt;ref&gt;{{cite web |title=Log Gamma Function |url=http://mathworld.wolfram.com/LogGammaFunction.html |website=Wolfram MathWorld |access-date=3 January 2019}}&lt;/ref&gt;
+
+:&lt;math&gt;\ln \Gamma ( z ) = - \gamma z - \ln z + \sum _ { k = 1 } ^ { \infty } \left[ \frac { z } { k } - \ln \left( 1 + \frac { z } { k } \right) \right].&lt;/math&gt;
+
+The [[digamma function]], which is the derivative of this function, is also commonly seen.
+In the context of technical and physical applications, e.g. with wave propagation, the functional equation
+
+:&lt;math&gt; \ln \Gamma(z) = \ln \Gamma(z+1) - \ln z&lt;/math&gt;
+
+is often used since it allows one to determine function values in one strip of width 1 in {{math|''z''}} from the neighbouring strip. In particular, starting with a good approximation for a&amp;nbsp;{{math|''z''}} with large real part one may go step by step down to the desired&amp;nbsp;{{math|''z''}}. Following an indication of [[Carl Friedrich Gauss]], Rocktaeschel (1922) proposed for &lt;math&gt;\ln ( \Gamma (z))&lt;/math&gt; an approximation for large {{math|Re(''z'')}}:
+
+:&lt;math&gt; \ln \Gamma(z) \approx (z - \tfrac{1}{2}) \ln z - z + \tfrac{1}{2}\ln(2\pi).&lt;/math&gt;
+
+This can be used to accurately approximate {{math|ln(Γ(''z''))}} for {{math|''z''}} with a smaller {{math|Re(''z'')}} via (P.E.Böhmer, 1939)
+
+:&lt;math&gt; \ln\Gamma(z-m) = \ln\Gamma(z) - \sum_{k=1}^{m} \ln(z-k).&lt;/math&gt;
+
+A more accurate approximation can be obtained by using more terms from the asymptotic expansions of {{math|ln(Γ(''z''))}} and {{math|Γ(''z'')}}, which are based on Stirling's approximation.
+
+:&lt;math&gt;\Gamma(z)\sim z^{z - \frac12} e^{-z} \sqrt{2\pi} \left( 1 + \frac{1}{12z} + \frac{1}{288z^2} - \frac{139}{51\,840 z^3} - \frac{571}{2\,488\,320 z^4}
+        \right) &lt;/math&gt;
+:as {{math|{{abs|''z''}} → ∞}} at constant {{math|{{abs|arg(''z'')}} &lt; π}}.
+
+In a more &quot;natural&quot; presentation:
+
+:&lt;math&gt;\ln \Gamma(z) \sim z \ln (z) - z - \tfrac12 \ln \left (\frac{z}{2\pi} \right ) + \frac{1}{12z} - \frac{1}{360z^3} +\frac{1}{1260 z^5}&lt;/math&gt;
+:as {{math|{{abs|''z''}} → ∞}} at constant {{math|{{abs|arg(''z'')}} &lt; π}}.
+
+The coefficients of the terms with {{math|''k'' &gt; 1}} of {{math|''z''&lt;sup&gt;−''k'' + 1&lt;/sup&gt;}} in the last expansion are simply
+
+:&lt;math&gt;\frac{B_k}{k(k-1)}&lt;/math&gt;
+where the {{math|''B&lt;sub&gt;k&lt;/sub&gt;''}} are the [[Bernoulli numbers]].
+
+=== Properties ===
+The [[Bohr–Mollerup theorem]] states that among all functions extending the factorial functions to the positive real numbers, only the gamma function is [[log-convex]], that is, its [[natural logarithm]] is [[convex function|convex]] on the positive real axis. Another characterisation is given by the [[Wielandt theorem]].
+
+In a certain sense, the {{math|ln(Γ)}} function is the more natural form; it makes some intrinsic attributes of the function clearer. A striking example is the [[Taylor series]] of {{math|ln(Γ)}} around 1:
+
+:&lt;math&gt;\ln \Gamma(z+1)= -\gamma z +\sum_{k=2}^\infty \frac{\zeta(k)}{k} \, (-z)^k \qquad \forall\; |z| &lt; 1&lt;/math&gt;
+
+with {{math|''ζ''(''k'')}} denoting the [[Riemann zeta function]] at {{math|''k''}}.
+
+So, using the following property:
+:&lt;math&gt;\zeta(s) \Gamma(s) = \int_0^\infty \frac{t^s}{e^t-1} \, \frac{dt}{t}&lt;/math&gt;
+we can find an integral representation for the {{math|ln(Γ)}} function:
+
+:&lt;math&gt;\ln \Gamma(z+1)= -\gamma z + \int_0^\infty \frac{\,\left( e^{-zt} - 1 + z t \right)\,}{t \left(e^t - 1 \right)} \, dt &lt;/math&gt;
+
+or, setting {{math|''z'' {{=}} 1}} to obtain an integral for {{math|''γ''}}, we can replace the {{math|''γ''}} term with its integral and incorporate that into the above formula, to get:
+
+:&lt;math&gt;\ln \Gamma(z+1)= \int_0^\infty \frac{\,\left( e^{-zt} - ze^{-t} - 1 + z \right)\,}{t(e^t -1)} \, dt\,. &lt;/math&gt;
+
+There also exist special formulas for the logarithm of the gamma function for rational {{math|''z''}}.
+For instance, if &lt;math&gt;k&lt;/math&gt; and &lt;math&gt;n&lt;/math&gt; are integers with &lt;math&gt;k&lt;n&lt;/math&gt; and &lt;math&gt;k\neq n/2 \,,&lt;/math&gt; then
+
+: &lt;math&gt;
+\begin{align}
+\ln\Gamma \biggl(\!\frac{k}{n}\!\biggr) = {} &amp; \frac{\,(n-2k)\ln2\pi\,}{2n} + \frac{1}{2}\left\{\,\ln\pi-\ln\sin\frac{\pi k}{n} \,\right\} + \frac{1}{\pi}\!\sum_{r=1}^{n-1}\frac{\,\gamma+\ln r\,}{r}\cdot\sin\frac{\,2\pi r k\,}{n} \\
+&amp; {} - \frac{1}{2\pi}\sin\frac{2\pi k}{n}\cdot\!\int_0^\infty \!\!\frac{\,e^{-nx}\!\cdot\ln x\,}{\,\cosh x -\cos( 2\pi k/n )\,}\,{\mathrm d}x
+\end{align}
+&lt;/math&gt;
+
+see.&lt;ref name=&quot;iaroslav_07&quot;&gt;{{cite journal |doi=10.1016/j.jnt.2014.08.009 |volume=148 |title=A theorem for the closed-form evaluation of the first generalized Stieltjes constant at rational arguments and some related summations |year=2015 |journal=Journal of Number Theory |pages=537–592 |last=Blagouchine |first=Iaroslav V. |arxiv=1401.3724}}&lt;/ref&gt;
+This formula is sometimes used for numerical computation, since the integrand decreases very quickly.
+
+=== Integration over log-gamma ===
+
+The integral
+
+:&lt;math&gt; \int_0^z \ln \Gamma (x) \, dx&lt;/math&gt;
+
+can be expressed in terms of the [[Barnes G-function|Barnes {{math|''G''}}-function]]&lt;ref name=&quot;Alexejewsky&quot;&gt;{{cite journal|first=W. P. |last=Alexejewsky |title=Über eine Classe von Funktionen, die der Gammafunktion analog sind |trans-title=On a class of functions analogous to the gamma function |journal=Leipzig Weidmanncshe Buchhandluns |volume=46 |date=1894 |pages=268–275}}&lt;/ref&gt;&lt;ref name=&quot;Barnes&quot;&gt;{{cite journal|first=E. W. |last=Barnes |title=The theory of the ''G''-function |journal=Quart. J. Math. |volume=31 |date=1899 |pages=264–314}}&lt;/ref&gt; (see [[Barnes G-function|Barnes {{math|''G''}}-function]] for a proof):
+
+:&lt;math&gt;\int_0^z \ln \Gamma(x) \, dx = \frac{z}{2} \ln (2 \pi) + \frac{z(1-z)}{2} + z \ln \Gamma(z) - \ln G(z+1)&lt;/math&gt;
+
+where {{math|Re(''z'') &gt; −1}}.
+
+It can also be written in terms of the [[Hurwitz zeta function]]:&lt;ref name=&quot;Adamchik&quot;&gt;{{cite journal|first=Victor S. |last=Adamchik |title=Polygamma functions of negative order |journal=J. Comput. Appl. Math. |volume=100 |issue=2 |date=1998 |pages=191–199 |doi=10.1016/S0377-0427(98)00192-7|doi-access=free }}&lt;/ref&gt;&lt;ref name=&quot;Gosper&quot;&gt;{{cite journal|first=R. W. |last=Gosper |title=&lt;math&gt;\textstyle \int_{n/4}^{m/6} \log F(z) \,dz&lt;/math&gt; in special functions, ''q''-series and related topics |journal=J. Am. Math. Soc. |volume=14 |date=1997}}&lt;/ref&gt;
+
+:&lt;math&gt;\int_0^z \ln \Gamma(x) \, dx = \frac{z}{2} \ln(2 \pi) + \frac{z(1-z)}{2} - \zeta'(-1) + \zeta'(-1,z) .&lt;/math&gt;
+
+When &lt;math&gt;z=1&lt;/math&gt; it follows that
+:&lt;math&gt;
+\int_0^1 \ln \Gamma(x) \, dx = \frac12\log(2\pi),
+&lt;/math&gt;
+and this is a consequence of [[Raabe's formula]] as well. O. Espinosa and V. Moll derived a similar formula for the integral of the square of &lt;math&gt;\log\Gamma&lt;/math&gt;:&lt;ref name=&quot;EspinosaMoll&quot;&gt;{{cite journal|first1=Olivier |last1=Espinosa|first2=Victor H. |last2=Moll|title= On Some Integrals Involving the Hurwitz Zeta Function: Part 1|journal=The Ramanujan Journal |volume=6 |date=2002 |pages=159–188 |doi=10.1023/A:1015706300169}}&lt;/ref&gt;
+:&lt;math&gt;
+\int_{0}^{1} \log ^{2} \Gamma(x) d x=\frac{\gamma^{2}}{12}+\frac{\pi^{2}}{48}+\frac{1}{3} \gamma L_{1}+\frac{4}{3} L_{1}^{2}-\left(\gamma+2 L_{1}\right) \frac{\zeta^{\prime}(2)}{\pi^{2}}+\frac{\zeta^{\prime \prime}(2)}{2 \pi^{2}},
+&lt;/math&gt;
+where &lt;math&gt;L_1&lt;/math&gt; is &lt;math&gt;\frac12\log(2\pi)&lt;/math&gt;.
+
+D. H. Bailey and his co-authors&lt;ref name=&quot;Bailey&quot;&gt;{{cite journal|first1=David H. |last1=Bailey|first2=David |last2=Borwein|first3=Jonathan M.|last3=Borwein|title= On Eulerian log-gamma integrals and Tornheim-Witten zeta functions|journal=The Ramanujan Journal |volume=36 |date=2015 |pages=43–68 |doi=10.1007/s11139-012-9427-1}}&lt;/ref&gt; gave an evaluation for
+:&lt;math&gt;
+L_n:=\int_{0}^{1} \log^{n} \Gamma(x) d x
+&lt;/math&gt;
+when &lt;math&gt;n=1,2&lt;/math&gt; in terms of the Tornheim-Witten zeta function and its derivatives.
+
+In addition, it is also known that&lt;ref name=&quot;ACEKNM&quot;&gt;{{cite journal|first1=T. |last1=Amdeberhan|first2=Mark W.|last2=Coffey|first3=Olivier|last3=Espinosa|first4=Christoph|last4=Koutschan|first5=Dante V.|last5=Manna|first6=Victor H.|last6=Moll|title= Integrals of powers of loggamma|journal=Proc. Amer. Math. Soc.|volume=139|issue=2 |date=2011 |pages=535–545 |doi=10.1090/S0002-9939-2010-10589-0|doi-access=free}}&lt;/ref&gt;
+:&lt;math&gt;
+\lim_{n\to\infty}\frac{L_n}{n!}=1.
+&lt;/math&gt;
+
+== Approximations ==
+[[File:Mplwp factorial gamma stirling.svg|thumb|right|upright=1.35|Comparison gamma (blue line)  with the factorial (blue dots) and Stirling's approximation (red line)]]
+Complex values of the gamma function can be computed numerically with arbitrary precision using [[Stirling's approximation]] or the [[Lanczos approximation]].
+
+The gamma function can be computed to fixed precision for &lt;math&gt;\operatorname{Re} (z) \in [1, 2]&lt;/math&gt; by applying [[integration by parts]] to Euler's integral. For any positive number&amp;nbsp;{{math|''x''}} the gamma function can be written
+
+:&lt;math&gt;\begin{align}
+\Gamma(z) &amp;= \int_0^x e^{-t} t^z \, \frac{dt}{t} + \int_x^\infty e^{-t} t^z\, \frac{dt}{t} \\
+&amp;= x^z e^{-x} \sum_{n=0}^\infty \frac{x^n}{z(z+1) \cdots (z+n)} + \int_x^\infty e^{-t} t^z \, \frac{dt}{t}.
+\end{align}&lt;/math&gt;
+
+When {{math|Re(''z'') ∈ [1,2]}} and &lt;math&gt;x \geq 1&lt;/math&gt;, the absolute value of the last integral is smaller than &lt;math&gt;(x + 1)e^{-x}&lt;/math&gt;. By choosing a large enough &lt;math&gt;x&lt;/math&gt;, this last expression can be made smaller than &lt;math&gt;2^{-N}&lt;/math&gt; for any desired value&amp;nbsp;&lt;math&gt;N&lt;/math&gt;. Thus, the gamma function can be evaluated to &lt;math&gt;N&lt;/math&gt; bits of precision with the above series.
+
+A fast algorithm for calculation of the Euler gamma function for any algebraic argument (including rational) was constructed by E.A. Karatsuba,&lt;ref&gt;E.A. Karatsuba, Fast evaluation of transcendental functions. Probl. Inf. Transm. Vol.27, No.4, pp. 339–360 (1991).&lt;/ref&gt;&lt;ref&gt;E.A. Karatsuba, On a new method for fast evaluation of transcendental functions. Russ. Math. Surv. Vol.46, No.2, pp. 246–247 (1991).&lt;/ref&gt;&lt;ref&gt;E.A. Karatsuba &quot;[http://www.ccas.ru/personal/karatsuba/algen.htm Fast Algorithms and the FEE Method]&quot;.&lt;/ref&gt;
+
+For arguments that are integer multiples of {{math|{{sfrac|1|24}}}}, the gamma function can also be evaluated quickly using [[arithmetic–geometric mean]] iterations (see [[particular values of the gamma function]] and {{harvtxt|Borwein|Zucker|1992}}).
+
+== Applications ==
+One author describes the gamma function as &quot;Arguably, the most common special function, or the least 'special' of them. The other transcendental functions […] are called 'special' because you could conceivably avoid some of them by staying away from many specialized mathematical topics. On the other hand, the gamma function {{math|''y'' {{=}} Γ(''x'')}} is most difficult to avoid.&quot;&lt;ref&gt;Michon, G. P. &quot;[http://home.att.net/~numericana/answer/functions.htm Trigonometry and Basic Functions] {{Webarchive|url=https://web.archive.org/web/20100109035934/http://home.att.net/~numericana/answer/functions.htm |date=9 January 2010 }}&quot;. ''Numericana''. Retrieved May 5, 2007.&lt;/ref&gt;
+
+=== Integration problems ===
+&lt;!-- [[Gamma integral]] redirects here --&gt;
+The gamma function finds application in such diverse areas as [[quantum physics]], [[astrophysics]] and [[fluid dynamics]].&lt;ref&gt;Chaudry, M. A. &amp; Zubair, S. M. (2001). ''On A Class of Incomplete Gamma Functions with Applications''. p.&amp;nbsp;37&lt;/ref&gt; The [[gamma distribution]], which is formulated in terms of the gamma function, is used in [[statistics]] to model a wide range of processes; for example, the time between occurrences of earthquakes.&lt;ref&gt;Rice, J. A. (1995). ''Mathematical Statistics and Data Analysis'' (Second Edition). p.&amp;nbsp;52–53&lt;/ref&gt;
+
+The primary reason for the gamma function's usefulness in such contexts is the prevalence of expressions of the type &lt;math&gt;f(t)e^{-g(t)}&lt;/math&gt;  which describe processes that decay exponentially in time or space. Integrals of such expressions can occasionally be solved in terms of the gamma function when no elementary solution exists. For example, if {{math|''f''}} is a power function and {{math|''g''}} is a linear function, a simple change of variables gives the evaluation
+
+:&lt;math&gt;\int_0^\infty t^b e^{-at} \,dt = \frac{\Gamma(b+1)}{a^{b+1}}.&lt;/math&gt;
+
+The fact that the integration is performed along the entire positive real line might signify that the gamma function describes the cumulation of a time-dependent process that continues indefinitely, or the value might be the total of a distribution in an infinite space.
+
+It is of course frequently useful to take limits of integration other than 0 and {{math|∞}} to describe the cumulation of a finite process, in which case the ordinary gamma function is no longer a solution; the solution is then called an [[incomplete gamma function]]. (The ordinary gamma function, obtained by integrating across the entire positive real line, is sometimes called the ''complete gamma function'' for contrast.)
+
+An important category of exponentially decaying functions is that of [[Gaussian function]]s
+:&lt;math&gt;ae^{-\frac{(x-b)^2}{c^2}}&lt;/math&gt;
+and integrals thereof, such as the [[error function]]. There are many interrelations between these functions and the gamma function; notably, the factor &lt;math&gt;\sqrt{\pi}&lt;/math&gt; obtained by evaluating &lt;math display=&quot;inline&quot;&gt;\Gamma \left( \frac{1}{2} \right)&lt;/math&gt; is the &quot;same&quot; as that found in the normalizing factor of the error function and the [[normal distribution]].
+
+The integrals we have discussed so far involve transcendental functions, but the gamma function also arises from integrals of purely algebraic functions. In particular, the [[arc length]]s of [[ellipse]]s and of the [[Lemniscate of Bernoulli#Arc length and elliptic functions|lemniscate]], which are curves defined by algebraic equations, are given by [[elliptic integral]]s that in special cases can be evaluated in terms of the gamma function. The gamma function can also be used to [[Volume of an n-ball|calculate &quot;volume&quot; and &quot;area&quot;]] of {{math|''n''}}-dimensional [[hypersphere]]s.
+
+=== Calculating products ===
+The gamma function's ability to generalize factorial products immediately leads to applications in many areas of mathematics; in [[combinatorics]], and by extension in areas such as [[probability theory]] and the calculation of [[power series]]. Many expressions involving products of successive integers can be written as some combination of factorials, the most important example perhaps being that of the [[binomial coefficient]]
+
+: &lt;math&gt; \binom n k = \frac{n!}{k!(n-k)!}.&lt;/math&gt;
+
+The example of binomial coefficients motivates why the properties of the gamma function when extended to negative numbers are natural. A binomial coefficient gives the number of ways to choose {{math|''k''}} elements from a set of {{math|''n''}} elements; if {{math|''k'' &gt; ''n''}}, there are of course no ways. If {{math|''k'' &gt; ''n''}}, {{math|(''n'' − ''k'')!}} is the factorial of a negative integer and hence infinite if we use the gamma function definition of factorials—dividing by infinity gives the expected value of 0.
+
+We can replace the factorial by a gamma function to extend any such formula to the complex numbers. Generally, this works for any product wherein each factor is a [[rational function]] of the index variable, by factoring the rational function into linear expressions. If {{math|''P''}} and {{math|''Q''}} are monic polynomials of degree {{math|''m''}} and {{math|''n''}} with respective roots {{math|''p''{{sub|1}}, …, ''p{{sub|m}}''}} and {{math|''q''{{sub|1}}, …, ''q{{sub|n}}''}}, we have
+
+:&lt;math&gt;\prod_{i=a}^b \frac{P(i)}{Q(i)} = \left( \prod_{j=1}^m \frac{\Gamma(b-p_j+1)}{\Gamma(a-p_j)} \right) \left( \prod_{k=1}^n \frac{\Gamma(a-q_k)}{\Gamma(b-q_k+1)} \right).&lt;/math&gt;
+
+If we have a way to calculate the gamma function numerically, it is a breeze to calculate numerical values of such products. The number of gamma functions in the right-hand side depends only on the degree of the polynomials, so it does not matter whether {{math|''b'' − ''a''}} equals 5 or 10&lt;sup&gt;5&lt;/sup&gt;. By taking the appropriate limits, the equation can also be made to hold even when the left-hand product contains zeros or poles.
+
+By taking limits, certain rational products with infinitely many factors can be evaluated in terms of the gamma function as well. Due to the [[Weierstrass factorization theorem]], analytic functions can be written as infinite products, and these can sometimes be represented as finite products or quotients of the gamma function. We have already seen one striking example: the reflection formula essentially represents the sine function as the product of two gamma functions. Starting from this formula, the exponential function as well as all the trigonometric and hyperbolic functions can be expressed in terms of the gamma function.
+
+More functions yet, including the [[hypergeometric function]] and special cases thereof, can be represented by means of complex [[contour integral]]s of products and quotients of the gamma function, called [[Barnes integral|Mellin–Barnes integral]]s.
+
+=== Analytic number theory ===
+
+An elegant and deep application of the gamma function is in the study of the [[Riemann zeta function]]. A fundamental property of the Riemann zeta function is its [[functional equation]]:
+
+:&lt;math&gt;\Gamma\left(\frac{s}{2}\right)\zeta(s)\pi^{-\frac{s}{2}} = \Gamma\left(\frac{1-s}{2}\right)\zeta(1-s)\pi^{-\frac{1-s}{2}}.&lt;/math&gt;
+
+Among other things, this provides an explicit form for the [[analytic continuation]] of the zeta function to a meromorphic function in the complex plane and leads to an immediate proof that the zeta function has infinitely many so-called &quot;trivial&quot; zeros on the real line. Borwein ''et al.'' call this formula &quot;one of the most beautiful findings in mathematics&quot;.&lt;ref&gt;{{cite book |author = Borwein, J. |author2 = Bailey, D. H. |author3 = Girgensohn, R. |name-list-style = amp |year = 2003 |title = Experimentation in Mathematics |publisher = A. K. Peters |pages = 133 |isbn = 978-1-56881-136-9 }}&lt;/ref&gt; Another champion for that title might be
+
+:&lt;math&gt;\zeta(s) \; \Gamma(s) = \int_0^\infty \frac{t^s}{e^t-1} \, \frac{dt}{t}.&lt;/math&gt;
+
+Both formulas were derived by [[Bernhard Riemann]] in his seminal 1859 paper &quot;''Über die Anzahl der Primzahlen unter einer gegebenen Größe''&quot; (&quot;On the Number of Prime Numbers less than a Given Quantity&quot;), one of the milestones in the development of [[analytic number theory]]—the branch of mathematics that studies [[prime number]]s using the tools of mathematical analysis. Factorial numbers, considered as discrete objects, are an important concept in classical number theory because they contain many prime factors, but Riemann found a use for their continuous extension that arguably turned out to be even more important.
+
+== History ==
+The gamma function has caught the interest of some of the most prominent mathematicians of all time. Its history, notably documented by [[Philip J. Davis]] in an article that won him the 1963 [[Chauvenet Prize]], reflects many of the major developments within mathematics since the 18th century. In the words of Davis, &quot;each generation has found something of interest to say about the gamma function. Perhaps the next generation will also.&quot;&lt;ref name=&quot;Davis&quot;&gt;{{cite journal|last=Davis |first=P. J. |date=1959 |title=Leonhard Euler's Integral: A Historical Profile of the Gamma Function |journal=[[American Mathematical Monthly]] |volume=66 |issue=10 |pages=849–869 |url=http://mathdl.maa.org/mathDL/22/?pa=content&amp;sa=viewDocument&amp;nodeId=3104 |access-date=3 December 2016 |doi=10.2307/2309786|jstor=2309786 }}&lt;/ref&gt;
+
+=== 18th century: Euler and Stirling ===
+[[File:DanielBernoulliLettreAGoldbach-1729-10-06.jpg|thumb|[[Daniel Bernoulli]]'s letter to [[Christian Goldbach]], October 6, 1729]]
+
+The problem of extending the factorial to non-integer arguments was apparently first considered by [[Daniel Bernoulli]] and [[Christian Goldbach]] in the 1720s, and was solved at the end of the same decade by [[Leonhard Euler]]. Euler gave two different definitions: the first was not his integral but an [[infinite product]],
+
+:&lt;math&gt;n! = \prod_{k=1}^\infty \frac{\left(1+\frac{1}{k}\right)^n}{1+\frac{n}{k}}\,,&lt;/math&gt;
+
+of which he informed Goldbach in a letter dated October 13, 1729. He wrote to Goldbach again on January 8, 1730, to announce his discovery of the integral representation
+
+:&lt;math&gt;n!=\int_0^1 (-\ln s)^n\, ds\,,&lt;/math&gt;
+
+which is valid for {{math|''n'' &gt; 0}}. By the change of variables {{math|''t'' {{=}} −ln ''s''}}, this becomes the familiar Euler integral. Euler published his results in the paper &quot;De progressionibus transcendentibus seu quarum termini generales algebraice dari nequeunt&quot; (&quot;On transcendental progressions, that is, those whose general terms cannot be given algebraically&quot;), submitted to the [[St. Petersburg Academy]] on November 28, 1729.&lt;ref&gt;Euler's paper was published in ''Commentarii academiae scientiarum Petropolitanae'' 5, 1738, 36–57. See [http://math.dartmouth.edu/~euler/pages/E019.html E19 -- De progressionibus transcendentibus seu quarum termini generales algebraice dari nequeunt], from The Euler Archive, which includes a scanned copy of the original article.&lt;/ref&gt; Euler further discovered some of the gamma function's important functional properties, including the reflection formula.
+
+[[James Stirling (mathematician)|James Stirling]], a contemporary of Euler, also attempted to find a continuous expression for the factorial and came up with what is now known as [[Stirling's formula]]. Although Stirling's formula gives a good estimate of {{math|''n''!}}, also for non-integers, it does not provide the exact value. Extensions of his formula that correct the error were given by Stirling himself and by [[Jacques Philippe Marie Binet]].
+
+=== 19th century: Gauss, Weierstrass and Legendre ===
+[[File:Euler factorial paper.png|thumb|250px|alt=De progressionibus transcendentibus, seu quarum termini generales algebraicae dari nequeunt|The first page of Euler's paper]]
+
+[[Carl Friedrich Gauss]] rewrote Euler's product as
+
+:&lt;math&gt;\Gamma(z) = \lim_{m\to\infty}\frac{m^z m!}{z(z+1)(z+2)\cdots(z+m)}&lt;/math&gt;
+
+and used this formula to discover new properties of the gamma function. Although Euler was a pioneer in the theory of complex variables, he does not appear to have considered the factorial of a complex number, as instead Gauss first did.&lt;ref name=&quot;Remmert&quot;&gt;{{cite book |last=Remmert |first=R. |translator-last=Kay |translator-first=L. D. |title = Classical Topics in Complex Function Theory |publisher = Springer |year = 2006 |isbn = 978-0-387-98221-2 }}&lt;/ref&gt; Gauss also proved the [[multiplication theorem]] of the gamma function and investigated the connection between the gamma function and [[elliptic integral]]s.
+
+[[Karl Weierstrass]] further established the role of the gamma function in [[complex analysis]], starting from yet another product representation,
+
+:&lt;math&gt;\Gamma(z) = \frac{e^{-\gamma z}}{z} \prod_{k=1}^\infty \left(1 + \frac{z}{k}\right)^{-1} e^\frac{z}{k},&lt;/math&gt;
+
+where {{math|''γ''}} is the [[Euler–Mascheroni constant]]. Weierstrass originally wrote his product as one for {{math|{{sfrac|1|Γ}}}}, in which case it is taken over the function's zeros rather than its poles. Inspired by this result, he proved what is known as the [[Weierstrass factorization theorem]]—that any entire function can be written as a product over its zeros in the complex plane; a generalization of the [[fundamental theorem of algebra]].
+
+The name gamma function and the symbol {{math|Γ}} were introduced by [[Adrien-Marie Legendre]] around 1811; Legendre also rewrote Euler's integral definition in its modern form. Although the symbol is an upper-case Greek gamma, there is no accepted standard for whether the function name should be written &quot;gamma function&quot; or &quot;Gamma function&quot; (some authors simply write &quot;{{math|Γ}}-function&quot;). The alternative &quot;pi function&quot; notation {{math|Π(''z'') {{=}} ''z''!}} due to Gauss is sometimes encountered in older literature, but Legendre's notation is dominant in modern works.
+
+It is justified to ask why we distinguish between the &quot;ordinary factorial&quot; and the gamma function by using distinct symbols, and particularly why the gamma function should be normalized to {{math|Γ(''n'' + 1) {{=}} ''n''!}} instead of simply using &quot;{{math|Γ(''n'') {{=}} ''n''!}}&quot;. Consider that the notation for exponents, {{math|''x&lt;sup&gt;n&lt;/sup&gt;''}}, has been generalized from integers to complex numbers {{math|''x&lt;sup&gt;z&lt;/sup&gt;''}} without any change. Legendre's motivation for the normalization does not appear to be known, and has been criticized as cumbersome by some (the 20th-century mathematician [[Cornelius Lanczos]], for example, called it &quot;void of any rationality&quot; and would instead use {{math|''z''!}}).&lt;ref&gt;{{cite journal|last=Lanczos |first=C. |date=1964 |title=A precision approximation of the gamma function |journal=J. SIAM Numer. Anal. Ser. B |volume=1}}&lt;/ref&gt; Legendre's normalization does simplify a few formulae, but complicates most others. From a modern point of view, the Legendre normalization of the Gamma function is the integral of the additive [[character (mathematics)|character]] {{math|''e''&lt;sup&gt;−''x''&lt;/sup&gt;}} against the multiplicative character {{math|''x&lt;sup&gt;z&lt;/sup&gt;''}} with respect to the [[Haar measure]] &lt;math&gt;\tfrac{dx}{x}&lt;/math&gt; on the [[Lie group]] {{math|'''R'''&lt;sup&gt;+&lt;/sup&gt;}}. Thus this normalization makes it clearer that the gamma function is a continuous analogue of a [[Gauss sum]].
+
+=== 19th–20th centuries: characterizing the gamma function ===
+It is somewhat problematic that a large number of definitions have been given for the gamma function. Although they describe the same function, it is not entirely straightforward to prove the equivalence. Stirling never proved that his extended formula corresponds exactly to Euler's gamma function; a proof was first given by [[Charles Hermite]] in 1900.&lt;ref name=&quot;Knuth&quot;&gt;{{cite book |last= Knuth |first=D. E. |title = The Art of Computer Programming, Volume 1 (Fundamental Algorithms) |publisher = Addison-Wesley |year = 1997 }}&lt;/ref&gt; Instead of finding a specialized proof for each formula, it would be desirable to have a general method of identifying the gamma function.
+
+One way to prove would be to find a [[differential equation]] that characterizes the gamma function. Most special functions in applied mathematics arise as solutions to differential equations, whose solutions are unique. However, the gamma function does not appear to satisfy any simple differential equation. [[Otto Hölder]] proved in 1887 that the gamma function at least does not satisfy any [[algebraic differential equation|''algebraic'' differential equation]] by showing that a solution to such an equation could not satisfy the gamma function's recurrence formula, making it a [[transcendentally transcendental function]]. This result is known as [[Hölder's theorem]].
+
+A definite and generally applicable characterization of the gamma function was not given until 1922. [[Harald Bohr]] and [[Johannes Mollerup]] then proved what is known as the ''[[Bohr–Mollerup theorem]]'': that the gamma function is the unique solution to the factorial recurrence relation that is positive and ''[[logarithmic convexity|logarithmically convex]]'' for positive {{math|''z''}} and whose value at 1 is 1 (a function is logarithmically convex if its logarithm is convex). Another characterisation is given by the [[Wielandt theorem]].
+
+The Bohr–Mollerup theorem is useful because it is relatively easy to prove logarithmic convexity for any of the different formulas used to define the gamma function. Taking things further, instead of defining the gamma function by any particular formula, we can choose the conditions of the Bohr–Mollerup theorem as the definition, and then pick any formula we like that satisfies the conditions as a starting point for studying the gamma function. This approach was used by the [[Bourbaki group]].
+
+[[Jonathan Borwein|Borwein]] &amp; Corless&lt;ref&gt;{{cite journal
+| last1                 = Borwein
+| first1                = Jonathan M.
+| author-link1          = Jonathan Borwein
+| last2                 = Corless
+| first2                = Robert M.
+| title                 = Gamma and Factorial in the Monthly
+| journal               = American Mathematical Monthly
+| language              = en
+| publisher             = Mathematical Association of America
+| date      = 2017
+| volume                = 125
+| issue = 5
+| pages                 = 400–24
+| arxiv                 = 1703.05349
+| bibcode= 2017arXiv170305349B
+| doi                   = 10.1080/00029890.2018.1420983
+}}&lt;/ref&gt; review three centuries of work on the gamma function.
+
+=== Reference tables and software ===
+
+Although the gamma function can be calculated virtually as easily as any mathematically simpler function with a modern computer—even with a programmable pocket calculator—this was of course not always the case. Until the mid-20th century, mathematicians relied on hand-made tables; in the case of the gamma function, notably a table computed by Gauss in 1813 and one computed by Legendre in 1825.
+
+[[File:Jahnke gamma function.png|thumb|300px|A hand-drawn graph of the absolute value of the complex gamma function, from ''Tables of Higher Functions'' by [[Eugen Jahnke|Jahnke]] and {{ill|Fritz Emde|de|lt=Emde}}.]]
+
+Tables of complex values of the gamma function, as well as hand-drawn graphs, were given in ''Tables of Higher Functions'' by [[Eugen Jahnke|Jahnke]] and {{ill|Fritz Emde|de|lt=Emde}}, first published in Germany in 1909. According to [[Michael Berry (physicist)|Michael Berry]], &quot;the publication in J&amp;E of a three-dimensional graph showing the poles of the gamma function in the complex plane acquired an almost iconic status.&quot;&lt;ref&gt;{{cite news|last=Berry |first=M. |url=http://scitation.aip.org/journals/doc/PHTOAD-ft/vol_54/iss_4/11_1.shtml?bypassSSO=1 |title=Why are special functions special? |newspaper=Physics Today |date=April 2001}}&lt;/ref&gt;
+
+There was in fact little practical need for anything but real values of the gamma function until the 1930s, when applications for the complex gamma function were discovered in theoretical physics. As electronic computers became available for the production of tables in the 1950s, several extensive tables for the complex gamma function were published to meet the demand, including a table accurate to 12 decimal places from the U.S. [[National Bureau of Standards]].&lt;ref name=Davis /&gt;
+
+''[[Abramowitz and Stegun]]'' became the standard reference for this and many other special functions after its publication in 1964.
+
+Double-precision floating-point implementations of the gamma function and its logarithm are now available in most scientific computing software and special functions libraries, for example [[TK Solver]], [[Matlab]], [[GNU Octave]], and the [[GNU Scientific Library]]. The gamma function was also added to the [[C (programming language)|C]] standard library ([[math.h]]). Arbitrary-precision implementations are available in most [[computer algebra system]]s, such as [[Mathematica]] and [[Maple (software)|Maple]]. [[PARI/GP]], [[MPFR]] and [[MPFUN]] contain free arbitrary-precision implementations. A little-known feature of the calculator app included with the [[Android operating system]] is that it will accept fractional values as input to the factorial function and return the equivalent gamma function value. The same is true for [[Windows Calculator]] (in scientific mode).
+
+== See also ==
+{{div col}}
+* [[Ascending factorial]]
+* [[Cahen–Mellin integral]]
+* [[Elliptic gamma function]]
+* [[Gauss's constant]]
+* [[Hadamard's gamma function]]
+* [[Multiple gamma function]]
+* [[Multivariate gamma function]]
+* [[p-adic gamma function|{{math|''p''}}-adic gamma function]]
+* [[Pochhammer k-symbol|Pochhammer {{math|''k''}}-symbol]]
+* [[q-gamma function|{{math|''q''}}-gamma function]]
+* [[Ramanujan's master theorem]]
+* [[Spouge's approximation]]
+{{div col end}}
+
+== Notes ==
+{{Reflist|30em}}
+* {{Citizendium}}
+
+== Further reading ==
+{{Refbegin|30em}}
+* {{cite book|editor1-first=Milton |editor1-last=Abramowitz |editor2-first=Irene A. |editor2-last=Stegun |title=Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables |location=New York |publisher=Dover |date=1972 |chapter-url=http://www.math.sfu.ca/~cbm/aands/page_253.htm |chapter=Chapter 6|title-link=Abramowitz and Stegun }}
+* {{cite book|first1=G. E. |last1=Andrews |first2=R. |last2=Askey |author-link=Richard Askey |first3=R. |last3=Roy |title=Special Functions |publisher=Cambridge University Press |location=New York |date=1999 |isbn=978-0-521-78988-2 |chapter=Chapter 1 (Gamma and Beta functions)}}
+* {{cite book|last=Artin |first=Emil |author-link=Emil Artin |contribution=The Gamma Function |editor-last=Rosen |editor-first=Michael |title=Exposition by Emil Artin: a selection |series=History of Mathematics |volume=30 |location=Providence, RI |publisher=American Mathematical Society |date=2006}}
+* {{dlmf|authorlink=Richard Askey|first=R.|last= Askey|first2= R.|last2= Roy |id=5 |ref=none }}
+* {{cite journal |last = Birkhoff |first = George D. |author-link = George David Birkhoff |title = Note on the gamma function |journal = Bull. Amer. Math. Soc. |year = 1913 |volume = 20 |number = 1 |pages = 1–10 |mr = 1559418 |doi = 10.1090/s0002-9904-1913-02429-7 |doi-access = free }}
+* {{cite book|first=P. E. |last=Böhmer |title=Differenzengleichungen und bestimmte Integrale |trans-title=Differential Equations and Definite Integrals |publisher=Köhler Verlag |location=Leipzig |date=1939}}
+* {{cite journal|first=Philip J. |last=Davis |title=Leonhard Euler's Integral: A Historical Profile of the Gamma Function |journal=[[American Mathematical Monthly]] |volume=66 |issue=10 |pages=849–869 |date=1959 |doi=10.2307/2309786|jstor=2309786 }}
+* {{cite book|last1 = Press |first1 = W. H. |last2 = Teukolsky |first2 = S. A. |last3 = Vetterling |first3 = W. T. |last4 = Flannery |first4 = B. P. |year = 2007 |title = Numerical Recipes: The Art of Scientific Computing |edition = 3rd |publisher = Cambridge University Press |location = New York |isbn = 978-0-521-88068-8 |chapter = Section 6.1. Gamma Function |chapter-url = http://apps.nrbook.com/empanel/index.html?pg=256 }}
+* {{cite book|first=O. R. |last=Rocktäschel |title=Methoden zur Berechnung der Gammafunktion für komplexes Argument |trans-title=Methods for Calculating the Gamma Function for Complex Arguments |publisher=[[Technische Universität Dresden|Technical University of Dresden]] |location=Dresden |date=1922}}
+* {{cite book|first=Nico M. |last=Temme |title=Special Functions: An Introduction to the Classical Functions of Mathematical Physics |publisher=John Wiley &amp; Sons |location=New York |isbn=978-0-471-11313-3 |date=1996}}
+* {{cite book|author-link1=E. T. Whittaker |first=E. T. |last=Whittaker |first2=G. N. |last2=Watson|author-link2=G. N. Watson |title=[[A Course of Modern Analysis]] |publisher=Cambridge University Press |date=1927 |isbn=978-0-521-58807-2}}
+{{Refend}}
+
+== External links ==
+{{Commons category|Gamma and related functions}}
+* [http://dlmf.nist.gov/5 NIST Digital Library of Mathematical Functions:Gamma function]
+* Pascal Sebah and Xavier Gourdon. ''Introduction to the Gamma Function''. In [http://numbers.computation.free.fr/Constants/Miscellaneous/gammaFunction.ps PostScript] and [http://numbers.computation.free.fr/Constants/Miscellaneous/gammaFunction.html HTML] formats.
+* [http://en.cppreference.com/w/cpp/numeric/math/tgamma C++ reference for &lt;code&gt;std::tgamma&lt;/code&gt;]
+* Examples of problems involving the gamma function can be found at [https://web.archive.org/web/20161002083601/http://www.exampleproblems.com/wiki/index.php?title=Special_Functions Exampleproblems.com].
+* {{springer|title=Gamma function|id=p/g043310|ref=none}}
+* [http://functions.wolfram.com/webMathematica/FunctionEvaluation.jsp?name=Gamma Wolfram gamma function evaluator (arbitrary precision)]
+* {{WolframFunctionsSite | urlname=GammaBetaErf/Gamma | title=Gamma}}
+* [http://www.mathpages.com/home/kmath163/kmath163.htm Volume of n-Spheres and the Gamma Function] at MathPages
+
+{{Authority control}}
+
+[[Category:Gamma and related functions]]
+[[Category:Special hypergeometric functions]]
+[[Category:Meromorphic functions]]</text>
+            <sha1>p641uj9r6874esnddkbxyhxg81wskg0</sha1>
+        </revision>
+    </page>
+</mediawiki>

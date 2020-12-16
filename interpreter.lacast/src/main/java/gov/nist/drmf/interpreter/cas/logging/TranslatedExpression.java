@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.cas.logging;
 
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -14,6 +14,10 @@ public class TranslatedExpression {
     private LinkedList<String> trans_exps;
     private final Set<String> requiredPackages;
 
+    private int latestRelationSymbol;
+
+    private List<String> constraints;
+
     private int negativeReplacements;
 
     private int autoMergeLast;
@@ -23,6 +27,56 @@ public class TranslatedExpression {
         this.autoMergeLast = 0;
         this.requiredPackages = new TreeSet<>();
         this.negativeReplacements = 0;
+        this.constraints = new LinkedList<>();
+        this.latestRelationSymbol = -1;
+    }
+
+    public TranslatedExpression(TranslatedExpression copy) {
+        this.trans_exps = new LinkedList<>(copy.trans_exps);
+        this.autoMergeLast = copy.autoMergeLast;
+        this.requiredPackages = new TreeSet<>(copy.requiredPackages);
+        this.negativeReplacements = copy.negativeReplacements;
+        this.constraints = new LinkedList<>(copy.constraints);
+        this.latestRelationSymbol = copy.latestRelationSymbol;
+    }
+
+    public boolean endedOnRelationSymbol() {
+        return this.latestRelationSymbol == trans_exps.size()-1;
+    }
+
+    public boolean containsRelationSymbol() {
+        return this.latestRelationSymbol >= 0;
+    }
+
+    public void tagLastElementAsRelation(){
+        this.latestRelationSymbol = Math.max(0, trans_exps.size()-1);
+    }
+
+    public TranslatedExpression getElementsAfterRelation() {
+        TranslatedExpression te = new TranslatedExpression();
+        te.autoMergeLast = this.autoMergeLast;
+        te.requiredPackages.addAll(this.requiredPackages);
+        te.negativeReplacements = this.negativeReplacements;
+        te.constraints.addAll(this.constraints);
+        if ( this.latestRelationSymbol < trans_exps.size() )
+            te.trans_exps.addAll(this.trans_exps.subList(this.latestRelationSymbol+1, trans_exps.size()));
+        return te;
+    }
+
+    public void addConstraint(String constraint) {
+        this.constraints.add(constraint);
+    }
+
+    public void tagLastNExpressionsToConstraint(int n) {
+        LinkedList<String> constraintElements = new LinkedList<>();
+        for ( int i = 0; i < n && !trans_exps.isEmpty(); i++ ) {
+            constraintElements.addFirst( trans_exps.removeLast() );
+        }
+        addConstraint( String.join("", constraintElements) );
+    }
+
+    public List<String> getConstraints() {
+        return this.constraints;
     }
 
     public void setNegativeReplacements(int length) {
@@ -52,17 +106,23 @@ public class TranslatedExpression {
             this.trans_exps = new LinkedList<>(tmp);
         }
 
+        if ( this.latestRelationSymbol < expressions.latestRelationSymbol )
+            this.latestRelationSymbol = expressions.latestRelationSymbol;
+        this.requiredPackages.addAll(expressions.getRequiredPackages());
+
         this.autoMergeLast += expressions.autoMergeLast;
         String next = autoMergeLast();
         if ( next.isEmpty() ){
             this.trans_exps.addAll( expressions.trans_exps );
             return;
         }
-        if ( !expressions.trans_exps.isEmpty() )
+
+        if ( !expressions.trans_exps.isEmpty() ) {
             next += expressions.trans_exps.removeFirst();
+        }
+
         this.trans_exps.add( next );
         this.trans_exps.addAll( expressions.trans_exps );
-        this.requiredPackages.addAll(expressions.getRequiredPackages());
     }
 
     public int getLength(){
@@ -207,10 +267,7 @@ public class TranslatedExpression {
     }
 
     public String getTranslatedExpression(){
-        String output = "";
-        for ( String part : trans_exps )
-            output += part;
-        return output;
+        return String.join("", trans_exps);
     }
 
     public String getTranslatedExpression(PackageWrapper pw) {

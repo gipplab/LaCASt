@@ -105,4 +105,25 @@ public class TeXPreProcessorTest {
         assertEquals(in, TeXPreProcessor.resetNumberOfAtsToOne(twoAts));
         assertEquals(in, TeXPreProcessor.resetNumberOfAtsToOne(threeAts));
     }
+
+    @Test
+    public void normalizeGenFracTest() {
+        String in = "\\theta\\genfrac{[}{]}{0pt}{}{#1}{#2}";
+        String out = TeXPreProcessor.normalizeGenFrac(in);
+        assertEquals("\\theta\\left[{#1 \\atop #2}\\right]", out);
+    }
+
+    @Test
+    public void normalizeGenFracAngleBracketTest() {
+        String in = "\\genfrac{<}{>}{0pt}{}{#1}{#2}";
+        String out = TeXPreProcessor.normalizeGenFrac(in);
+        assertEquals("\\left<{#1 \\atop #2}\\right>", out);
+    }
+
+    @Test
+    public void normalizeGenFracParenthesisTest() {
+        String in = "\\genfrac(){0pt}{}{#1}{#2}";
+        String out = TeXPreProcessor.normalizeGenFrac(in);
+        assertEquals("\\left({#1 \\atop #2}\\right)", out);
+    }
 }

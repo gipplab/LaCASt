@@ -1,16 +1,19 @@
 package gov.nist.drmf.interpreter.common.config;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
+import java.time.Instant;
 
 /**
  * The class tries to load the paths for the config and the reference directories from
@@ -27,7 +30,8 @@ import java.nio.file.Paths;
 public final class ConfigDiscovery {
     private static final Logger LOG = LogManager.getLogger(ConfigDiscovery.class.getName());
 
-    private static final ObjectMapper MAPPER = new ObjectMapper(new YAMLFactory());
+    private static final ObjectMapper MAPPER = new ObjectMapper(new YAMLFactory())
+                    .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
 
     private static Config config = null;
 
@@ -36,19 +40,21 @@ public final class ConfigDiscovery {
     public static Config getConfig() {
         if ( config != null ) return config;
 
+        Instant start = Instant.now();
+        LOG.debug("Loading config");
         config = loadConfigFromEnvironmentVariable();
         if ( isValidConfig(config) ) {
-            LOG.info("Loaded config from environment variable");
+            loadedLog("config from environment variable", start);
             return config;
         }
         config = loadConfigFromLocalDir();
         if ( isValidConfig(config) ) {
-            LOG.info("Loaded config from the working directory");
+            loadedLog("config from working directory", start);
             return config;
         }
         config = loadConfigFromResources();
         if ( isValidConfig(config) ) {
-            LOG.info("Loaded default config from internal resources");
+            loadedLog("default config from resources", start);
             return config;
         }
 
@@ -56,6 +62,11 @@ public final class ConfigDiscovery {
                 "Neither from environment variables nor from the local or resource path.");
         System.exit(1);
         return config;
+    }
+
+    private static void loadedLog(String msg, Instant start) {
+        Instant end = Instant.now();
+        LOG.printf(Level.INFO, "Loaded %s [%dms]", msg, Duration.between(start, end).toMillis());
     }
 
     private static boolean isValidConfig(Config config) {
@@ -108,7 +119,7 @@ public final class ConfigDiscovery {
         try {
             return MAPPER.readValue(path.toFile(), Config.class);
         } catch (Exception e) {
-            LOG.trace("Unable to load config from " + path + ": " + e.getMessage());
+            LOG.debug("Unable to load config from " + path + ": " + e.getMessage());
             return null;
         }
     }

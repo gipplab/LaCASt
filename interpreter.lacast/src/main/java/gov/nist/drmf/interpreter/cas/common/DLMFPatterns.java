@@ -16,7 +16,7 @@ public class DLMFPatterns {
 
     @Language("RegExp")
     public static final String PATTERN_BASIC_OPERATIONS =
-            ".*[,;.+\\-*/^_!{}\\[\\]<>\\s=]|\\\\[ci]dot.*";
+            ".*[,;.+\\-*/^_!\\[\\]<>\\s=]|\\\\[ci]dot.*";
 
     @Language("RegExp")
     public static final String STRING_END_TREAT_AS_CLOSED_PARANTHESIS =

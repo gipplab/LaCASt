@@ -2,20 +2,17 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.cas.translation.components.GreekLetterTranslator;
-import gov.nist.drmf.interpreter.cas.translation.components.MacroTranslator;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
-import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,6 +30,11 @@ public class TranslatorComponentsTester {
     static void setup() throws InitTranslatorException {
         slt = new SemanticLatexTranslator(Keys.KEY_MAPLE);
         mlp = SemanticMLPWrapper.getStandardInstance();
+    }
+
+    @AfterEach
+    void reset() {
+        slt.reset();
     }
 
     @Test

@@ -251,8 +251,22 @@ your new CAS and translate `\frac{x^2}{y\cpi\idot\iunit}`.
 
 <details><summary><strong>2. Add macro translations</strong></summary>
 
-The very first step to support macro translations for the new CAS is to add your CAS to `config/support.yaml`. Next, you
-have to add your CSV files for your new CAS in `libs/ReferenceData/CSVTables`. In case of SymPy:
+The very first step to support macro translations for the new CAS is to add your CAS to `lacast.config.yaml`. 
+As you can see, you can define paths for the cas installation but this is currently optional. It might change in the future
+though.
+
+```
+lacast.cas:
+  - cas: "Maple"
+    paths:
+      - "/opt/maple2019"
+      - "/opt/maple2019/bin.X86_64_LINUX"
+  - cas: "Mathematica"
+    paths: "/opt/Wolfram"
+  - cas: "SymPy"
+```
+
+Next, you have to add your CSV files for your new CAS in `libs/ReferenceData/CSVTables`. In case of SymPy:
 1. `CAS_SymPy.csv` which defines the functions of SymPy with all necessary information. Note that it has a DLMF column
 which can be used to perform backward translations in the future (`SymPy -> LaTeX`).
 2. `DLMF_SymPy.csv` which defines the forward translations for all functions defined in `CAS_SymPy.csv`.
@@ -272,7 +286,7 @@ if you don't know where to find it). It asks you enter the CAS you want to suppo
 Current list: [CAS_Maple.csv, CAS_Mathematica.csv, CAS_SymPy.csv]
 ```
 
-If you entered your CAS in the `config/support.yaml`, you shall see your CAS in the list also. Enter `-end` to
+If you entered your CAS in the `lacast.config.yaml` list, you shall see your CAS in the list as well. Enter `-end` to
 kick off the integration process. Once it's done, you should see a summary. I just added translations for the
 elementary functions to SymPy, hence my summary looks like this:
 
@@ -327,8 +341,9 @@ As you can see, in this case, there is no translation defined for SymPy, even th
 This does not harm the test suites, since this case will simply be ignored when the SymPy translator is tested.
 Once you add a SymPy translation, it will be covered automatically.
 
-***Important:*** A CAS in these files will only be tested if it is defined in the early mentioned `config/support.yaml`.
-If you enter test cases for a CAS that is not defined in this config file, the tests will not be triggered!
+***Important:*** A CAS in these files will only be tested if it is defined in the early mentioned `lacast.config.yaml` 
+under `lacast.cas`. If you enter test cases for a CAS that is not defined in this config file, the tests will not be 
+triggered!
 </details>
 
 ## The program structure and important main classes<a name="program"></a>

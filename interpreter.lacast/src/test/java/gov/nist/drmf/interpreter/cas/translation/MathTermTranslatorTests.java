@@ -1,23 +1,21 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
-import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.cas.translation.components.MathTermTranslator;
-import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.mlp.MLPWrapper;
-import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
-import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.MLPWrapper;
+import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -127,6 +125,7 @@ public class MathTermTranslatorTests {
         PomTaggedExpression last = listPTE.get(listPTE.size()-1);
         last.getRoot().setTag(MathTermTags.fence.tag());
 
+        listPTE = new LinkedList<>(listPTE);
         TranslatedExpression te = mathTermTranslator.translate(listPTE.remove(0), listPTE);
 
         assertEquals(expectedResult, te.toString());

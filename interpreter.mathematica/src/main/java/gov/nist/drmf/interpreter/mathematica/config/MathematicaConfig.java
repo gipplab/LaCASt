@@ -2,9 +2,14 @@ package gov.nist.drmf.interpreter.mathematica.config;
 
 import com.wolfram.jlink.KernelLink;
 import com.wolfram.jlink.MathLinkException;
+import gov.nist.drmf.interpreter.common.config.CASConfig;
+import gov.nist.drmf.interpreter.common.config.Config;
+import gov.nist.drmf.interpreter.common.config.ConfigDiscovery;
+import gov.nist.drmf.interpreter.common.config.RequirementChecker;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
@@ -23,48 +29,17 @@ import java.util.Properties;
 public class MathematicaConfig {
     private static final Logger LOG = LogManager.getLogger(MathematicaConfig.class.getName());
 
+    private static final String STD_PATH_TO_MATH = "SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64/";
+
     private MathematicaConfig(){}
 
     public static Path loadMathematicaPath(){
-        try {
-            Properties props = new Properties();
-            props.load(new FileInputStream(GlobalPaths.PATH_MATHEMATICA_CONFIG.toString()));
-            String path = props.getProperty(Keys.KEY_MATHEMATICA_MATH_DIR);
-
-            Path mathPath = Paths.get(path);
-            Path nativePath = mathPath
-                    .getParent()
-                    .getParent()
-                    .resolve("SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64/");
-
-//            System.setProperty("java.library.path", nativePath.toString());
-//            System.setProperty("JD_LIBRARY_PATH", nativePath.toString());
-//            System.out.println("Set java.library.path: " + nativePath.toString());
-
-            LOG.warn("Loading system variables on the fly is no longer supported. Define 'LD_LIBRARY_PATH' manually!");
-//            Map<String,String> sysVars = getModifiableEnvironment();
-//            sysVars.put("LD_LIBRARY_PATH", nativePath.toString());
-//            System.out.println(nativePath.toString());
-
-            return mathPath;
-        } catch (IOException e) {
-            LOG.fatal( "Cannot write the path into the properties file.", e );
-            return null;
-        } catch (Exception e) {
-            LOG.fatal("Cannot tweak system environment variables at runtime.");
-            return null;
-        }
-    }
-
-    private static Map<String,String> getModifiableEnvironment() throws Exception{
-        Class pe = Class.forName("java.lang.ProcessEnvironment");
-        Method getenv = pe.getDeclaredMethod("getenv");
-        getenv.setAccessible(true);
-        Object unmodifiableEnvironment = getenv.invoke(null);
-        Class map = Class.forName("java.util.Collections$UnmodifiableMap");
-        Field m = map.getDeclaredField("m");
-        m.setAccessible(true);
-        return (Map) m.get(unmodifiableEnvironment);
+        Config config = ConfigDiscovery.getConfig();
+        CASConfig mathConfig = config.getCasConfigs().get(Keys.KEY_MATHEMATICA);
+        if ( mathConfig == null ) return null;
+        Path baseInstallPath = mathConfig.getInstallPath();
+        if ( baseInstallPath == null ) return null;
+        return baseInstallPath.resolve("Executables/math");
     }
 
     public static void setCharacterEncoding(KernelLink engine){
@@ -78,8 +53,27 @@ public class MathematicaConfig {
         }
     }
 
+    public static boolean isMathematicaMathPathAvailable() {
+        Path mathPath = MathematicaConfig.loadMathematicaPath();
+        if ( mathPath == null || !Files.exists(mathPath) ) {
+            LOG.warn("Mathematica installation path is not available. Specify the proper path in lacast.config.yaml.");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isSystemEnvironmentVariableProperlySet() {
+        return RequirementChecker.validEnvVariable(
+                Keys.SYSTEM_ENV_LD_LIBRARY_PATH,
+                Keys.KEY_MATHEMATICA,
+                "<mathematica-installation-path>/" + STD_PATH_TO_MATH,
+                "SystemFiles/Links/JLink"
+        );
+    }
+
     public static boolean isMathematicaPresent() {
         try {
+            if ( !isMathematicaMathPathAvailable() || !isSystemEnvironmentVariableProperlySet() ) return false;
             MathematicaInterface m = MathematicaInterface.getInstance();
             return m != null;
         } catch (Exception | Error e) {

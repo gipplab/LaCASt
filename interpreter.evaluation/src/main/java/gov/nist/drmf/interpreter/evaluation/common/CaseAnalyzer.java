@@ -1,15 +1,9 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.cas.constraints.Constraints;
-import gov.nist.drmf.interpreter.evaluation.constraints.MLPConstraintAnalyzer;
-import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

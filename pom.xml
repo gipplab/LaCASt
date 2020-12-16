@@ -27,14 +27,24 @@
 
     <modules>
         <module>interpreter.common</module>
-        <module>interpreter.generic</module>
+        <module>interpreter.pom</module>
         <module>interpreter.lacast</module>
         <module>interpreter.maple</module>
         <module>interpreter.mathematica</module>
+        <module>interpreter.generic</module>
         <module>interpreter.core</module>
         <module>interpreter.evaluation</module>
         <module>interpreter.report</module> <!-- test report of all previous packages -->
     </modules>
+
+    <profiles>
+        <profile>
+            <id>build</id>
+            <modules>
+                <module>mathosphere</module>
+            </modules>
+        </profile>
+    </profiles>
 
     <properties>
         <!--
@@ -145,7 +155,7 @@
             <dependency>
                 <groupId>com.thoughtworks.xstream</groupId>
                 <artifactId>xstream</artifactId>
-                <version>1.4.12</version>
+                <version>1.4.14</version>
             </dependency>
 
             <dependency>

@@ -6,8 +6,9 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
@@ -86,17 +87,28 @@ public class MathTermTranslator extends AbstractListTranslator {
         // check if the element should be translated by the term translator
         handleInvalidTags(tag, term);
 
-        TranslatedExpression te = translateIndependentElement(tag);
+        TranslatedExpression te = translateIndependentElement(tag, term);
         if ( te == null )
             te = translateDependentElement(tag, term, exp, following_exp);
         if ( te == null )
             te = translateDirectly(tag, term, following_exp);
-        if ( te != null ) return te;
+        if ( te != null ) {
+            tagLastElement(term, te);
+            return te;
+        }
 
         // translate others must be last, it translates directly to
         // localTranslations object
         translateOthers(tag, term);
+        tagLastElement(term, localTranslations);
         return localTranslations;
+    }
+
+    private void tagLastElement(MathTerm term, TranslatedExpression te) {
+        if (MathTermUtility.isRelationSymbol(term)) {
+            te.tagLastElementAsRelation();
+            getGlobalTranslationList().tagLastElementAsRelation();
+        }
     }
 
     /**
@@ -109,27 +121,18 @@ public class MathTermTranslator extends AbstractListTranslator {
     private void handleInvalidTags(MathTermTags tag, MathTerm term) throws TranslationException {
         switch (tag) {
             case function:
-                throwImplementationError(
+                throwError(
                         "MathTermTranslator cannot translate functions. Use the FunctionTranslator instead: "
-                                + term.getTermText() );
+                                + term.getTermText(), TranslationExceptionReason.IMPLEMENTATION_ERROR );
             case prime:
             case primes:
                 throw TranslationException.buildException(
                         this, "Primes can only be translated behind semantic macros " +
-                                "(differentation primes) but not in other places.",
+                                "(differentiation primes) but not in other places.",
                         TranslationExceptionReason.INVALID_LATEX_INPUT
                 );
-            case left_delimiter:
-            case right_delimiter:
-            case left_parenthesis:
-            case left_bracket:
-            case left_brace:
-            case right_parenthesis:
-            case right_bracket:
-            case right_brace:
-                throwImplementationError("MathTermTranslator don't expected brackets but found " + term.getTermText());
             case macro:
-                throwImplementationError("There shouldn't be a macro in MathTermTranslator: " + term.getTermText());
+                throwError("There shouldn't be a macro in MathTermTranslator: " + term.getTermText(), TranslationExceptionReason.IMPLEMENTATION_ERROR);
             case abbreviation:
                 if ( term.getTermText().matches(".*\\.\\s*$") )
                     throw TranslationException.buildExceptionObj(
@@ -147,11 +150,11 @@ public class MathTermTranslator extends AbstractListTranslator {
         }
     }
 
-    private void throwImplementationError(String error) {
+    private void throwError(String error, TranslationExceptionReason reason) {
         throw TranslationException.buildException(
                 this,
                 error,
-                TranslationExceptionReason.IMPLEMENTATION_ERROR
+                reason
         );
     }
 
@@ -159,18 +162,36 @@ public class MathTermTranslator extends AbstractListTranslator {
      * Translates elements that can be performed independently
      * of the current element.
      * @param tag the {@link MathTermTags} of the current element
+     * @param term the math term
      * @return the translated expression or null
      */
     private TranslatedExpression translateIndependentElement(
-            MathTermTags tag
+            MathTermTags tag, MathTerm term
     ) {
-        TranslatedExpression te = null;
-        if (tag == MathTermTags.multiply) {
-            localTranslations.addTranslatedExpression(getConfig().getMULTIPLY());
-            getGlobalTranslationList().addTranslatedExpression(getConfig().getMULTIPLY());
-            te = localTranslations;
+        String translation = "";
+        switch (tag) {
+            case left_delimiter:
+            case right_delimiter:
+            case left_parenthesis:
+            case left_bracket:
+            case left_brace:
+            case right_parenthesis:
+            case right_bracket:
+            case right_brace:
+                if ( !super.isSetMode() ) throwError("Found unexpected bracket: " + term.getTermText() + ". We are not in set-mode so parenthesis logic must be valid!",
+                        TranslationExceptionReason.WRONG_PARENTHESIS);
+                Brackets b = Brackets.getBracket( term );
+                LOG.info("Encounter a unlogical bracket but since we are in set mode, we translate it anyway.");
+                translation = b.getAppropriateString();
+                break;
+            case multiply:
+                translation = getConfig().getMULTIPLY();
+                break;
+            default: return null;
         }
-        return te;
+        localTranslations.addTranslatedExpression(translation);
+        getGlobalTranslationList().addTranslatedExpression(translation);
+        return localTranslations;
     }
 
     /**
@@ -263,9 +284,13 @@ public class MathTermTranslator extends AbstractListTranslator {
                 // must be followed by letter -> digit -> ... -> translate directly
                 te = handleDivide(term, following_exp);
                 if ( te != null ) break;
+            case point: case comma: case semicolon:
+                if ( following_exp.isEmpty() ) {
+                    LOG.debug("Expression sequence ends on punctuation. Ignoring this symbol.");
+                    return new TranslatedExpression(); // empty expression
+                }
             case digit:
             case numeric:
-            case comma:
             case minus:
             case plus:
             case equals:
@@ -335,7 +360,7 @@ public class MathTermTranslator extends AbstractListTranslator {
     private TranslatedExpression parseFences(MathTerm term, List<PomTaggedExpression> following_exp) {
         Brackets start = Brackets.ifIsBracketTransform(term, null);
         SequenceTranslator sq = new SequenceTranslator(getSuperTranslator(), start);
-        this.localTranslations.addTranslatedExpression(sq.translate(following_exp));
+        this.localTranslations.addTranslatedExpression(sq.translate(null, following_exp));
         return localTranslations;
     }
 
@@ -428,7 +453,7 @@ public class MathTermTranslator extends AbstractListTranslator {
         // time to translate the sequence
         followingExps.remove(0);
         SequenceTranslator sequenceTranslator = new SequenceTranslator(this, bracket);
-        TranslatedExpression translatedExpression = sequenceTranslator.translate(followingExps);
+        TranslatedExpression translatedExpression = sequenceTranslator.translate(null, followingExps);
 
         // remove last translated expressions from global list
         getGlobalTranslationList().removeLastNExps(translatedExpression.getLength());

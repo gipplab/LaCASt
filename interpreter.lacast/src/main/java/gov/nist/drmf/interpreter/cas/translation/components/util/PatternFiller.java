@@ -119,10 +119,10 @@ public class PatternFiller {
     private String getTranslationPattern(MacroTranslationInformation translationInformation) {
         String pattern = translationInformation.getTranslationPattern();
         if ( pattern == null || pattern.isEmpty() ) {
-            LOG.warn("No direct translation available, switch to alternative mode.");
+            LOG.debug("No direct translation available, switch to alternative mode.");
             SortedSet<String> alts = translationInformation.getAlternativePattern();
             if ( alts.size() > 1 )
-                LOG.warn("Found multiple alternative translations. We choose first. " +
+                LOG.debug("Found multiple alternative translations. We choose first. " +
                         "Check translation information for other options");
             pattern = alts.first();
         }

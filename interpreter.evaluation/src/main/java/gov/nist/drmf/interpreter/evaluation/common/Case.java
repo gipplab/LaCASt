@@ -1,15 +1,15 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
-import gov.nist.drmf.interpreter.cas.constraints.Constraints;
-import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.cas.Constraints;
+import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.common.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
-import gov.nist.drmf.interpreter.mlp.SemanticMLPWrapper;
-import gov.nist.drmf.interpreter.mlp.extensions.MatchablePomTaggedExpression;
-import gov.nist.drmf.interpreter.mlp.extensions.PomMatcher;
-import gov.nist.drmf.interpreter.mlp.extensions.PomMatcherBuilder;
-import gov.nist.drmf.interpreter.mlp.extensions.PrintablePomTaggedExpression;
+import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.extensions.MatchablePomTaggedExpression;
+import gov.nist.drmf.interpreter.pom.extensions.PomMatcher;
+import gov.nist.drmf.interpreter.pom.extensions.PomMatcherBuilder;
+import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.ParseException;

@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -3,3 +3,20 @@
 # or you put this file into the local directory or your home directory in ".lacast" folder.
 lacast.libs.path: "./libs"
 lacast.config.path: "./config"
+
+# the cas paths are currently not in use but my be needed later
+# any new supported cas must be given in that list
+lacast.cas:
+  Maple:
+    install.path: "/opt/maple2019"
+  Mathematica:
+    install.path: "/opt/Wolfram"
+  SymPy:
+
+# the following settings are optional and are loaded exactly as below
+# if nothing is changed because those are the default settings.
+lacast.generic:
+  elasticsearch.host: "localhost"
+  elasticsearch.port: 9200
+  elasticsearch.macros.index: "dlmf-macros"
+  mathoid.url: "http://localhost:10044/texvcinfo"

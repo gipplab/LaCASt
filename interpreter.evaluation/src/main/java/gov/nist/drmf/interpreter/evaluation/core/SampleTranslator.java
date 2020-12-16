@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation.core;
 
-import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
@@ -9,7 +9,6 @@ import gov.nist.drmf.interpreter.core.DLMFTranslator;
 import gov.nist.drmf.interpreter.evaluation.common.Case;
 import gov.nist.drmf.interpreter.evaluation.common.CaseAnalyzer;
 import gov.nist.drmf.interpreter.evaluation.common.SimpleCase;
-import gov.nist.drmf.interpreter.mlp.LineAnalyzer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

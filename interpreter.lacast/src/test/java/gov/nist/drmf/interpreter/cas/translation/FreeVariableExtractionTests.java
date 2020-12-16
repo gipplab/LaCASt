@@ -4,7 +4,7 @@ import gov.nist.drmf.interpreter.common.FreeVariables;
 import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
-import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

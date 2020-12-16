@@ -22,7 +22,13 @@
     <dependencies>
         <dependency>
             <groupId>gov.nist.drmf.interpreter</groupId>
-            <artifactId>interpreter.common</artifactId>
+            <artifactId>interpreter.pom</artifactId>
+            <version>2.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>gov.nist.drmf.interpreter</groupId>
+            <artifactId>interpreter.lacast</artifactId>
             <version>2.1-SNAPSHOT</version>
         </dependency>
 
@@ -41,17 +47,30 @@
             <artifactId>elasticsearch-rest-high-level-client</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.formulasearchengine.mathmltools</groupId>-->
-<!--            <artifactId>mathml-converters</artifactId>-->
-<!--            <version>2.0.5-SNAPSHOT</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.formulasearchengine.mathosphere</groupId>
+            <artifactId>mathosphere-core</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>gov.nist.drmf.interpreter</groupId>
+            <artifactId>interpreter.mathematica</artifactId>
+            <version>2.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <!--suppress UnresolvedMavenProperty -->
+                    <argLine>${argLine}</argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

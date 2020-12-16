@@ -6,12 +6,12 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.components.util.LimitAnalyzer;
-import gov.nist.drmf.interpreter.cas.translation.components.util.VariableExtractor;
+import gov.nist.drmf.interpreter.cas.translation.components.util.MeomArgumentExtractor;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
+import gov.nist.drmf.interpreter.pom.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
-import gov.nist.drmf.interpreter.mlp.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -145,7 +145,7 @@ public class LimitedTranslator extends AbstractListTranslator {
 
     private TranslatedExpression getPotentialTranslatedExpressions(MathematicalEssentialOperatorMetadata limit, List<PomTaggedExpression> list) {
         List<PomTaggedExpression> potentialArguments =
-                VariableExtractor.getPotentialArgumentsUntilEndOfScope(list, limit.getVars(), this);
+                MeomArgumentExtractor.getPotentialArgumentsUntilEndOfScope(list, limit.getVars(), this);
 
         // the potential arguments is a theoretical sequence, so handle it as a sequence!
         PomTaggedExpression topPTE = FakeMLPGenerator.generateEmptySequencePPTE();
@@ -179,8 +179,13 @@ public class LimitedTranslator extends AbstractListTranslator {
             TranslatedExpression transArgs,
             LimitedExpressions category,
             MathTerm root
-    ) {
+    ) throws TranslationException {
         int lastIdx = limit.getVars().size()-1;
+        if ( lastIdx < 0 ) throw TranslationException.buildException(
+                this,
+                "Unable to retrieve free variables for limit expression.",
+                TranslationExceptionReason.INVALID_LATEX_INPUT
+        );
 
         // start with inner -> last elements in limit
         MathematicalEssentialOperatorMetadata.BoundaryStrings boundaries = limit.getArguments(

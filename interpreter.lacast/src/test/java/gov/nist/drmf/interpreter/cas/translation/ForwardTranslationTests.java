@@ -1,10 +1,10 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.cas.translation.cases.InvalidTests;
-import gov.nist.drmf.interpreter.common.constants.CASSupporter;
+import gov.nist.drmf.interpreter.common.config.CASSupporter;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
