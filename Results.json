@@ -113,10 +113,6 @@
             "score" : 0.35068571428571427
           },
           {
-            "definition" : "identity",
-            "score" : 0.35068571428571427
-          },
-          {
             "definition" : "simplicity",
             "score" : 0.3412842248511015
           },
@@ -137,6 +133,10 @@
             "score" : 0.3224897825957048
           },
           {
+            "definition" : "special case",
+            "score" : 0.3146251755059523
+          },
+          {
             "definition" : "polynomial",
             "score" : 0.31459433391452507
           },
@@ -145,11 +145,19 @@
             "score" : 0.31459433390981145
           },
           {
+            "definition" : "asymptotic",
+            "score" : 0.31459433390952196
+          },
+          {
             "definition" : "asymptotic of the Jacobi polynomial",
             "score" : 0.31459433390952196
           },
           {
             "definition" : "function of the Jacobi polynomial",
+            "score" : 0.31459433390952196
+          },
+          {
+            "definition" : "identity",
             "score" : 0.31459433390952196
           },
           {
@@ -165,6 +173,10 @@
             "score" : 0.28265584226469764
           },
           {
+            "definition" : "hypergeometric function",
+            "score" : 0.2776361880199776
+          },
+          {
             "definition" : "nonnegative integer",
             "score" : 0.27479123517494514
           },
@@ -173,15 +185,15 @@
             "score" : 0.27476039365263044
           },
           {
-            "definition" : "branch of square root",
-            "score" : 0.27476039357851473
-          },
-          {
             "definition" : "domain",
             "score" : 0.27476039357851473
           },
           {
             "definition" : "Gauss ' contiguous relation",
+            "score" : 0.27476039357851473
+          },
+          {
+            "definition" : "interior",
             "score" : 0.27476039357851473
           },
           {
@@ -203,6 +215,10 @@
           {
             "definition" : "orthonormal basis",
             "score" : 0.22750321389326258
+          },
+          {
+            "definition" : "branch of square root",
+            "score" : 0.22750321381914684
           },
           {
             "definition" : "expression",
@@ -372,6 +388,14 @@
             "score" : 0.6288842031023242
           },
           {
+            "definition" : "asymptotic",
+            "score" : 0.4270447071245939
+          },
+          {
+            "definition" : "interior",
+            "score" : 0.35159851049127144
+          },
+          {
             "definition" : "Darboux formula",
             "score" : 0.2378174995334326
           },
@@ -383,11 +407,11 @@
       },
       {
         "formula" : "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
-        "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\Pochhammersym{\\alpha + 1}{n}}{n!}{}_2 F_1 (- n , 1 + \\alpha + \\beta + n ; \\alpha + 1 ; \\tfrac{1}{2} (1 - z))",
-        "confidence" : 0.64236305957862,
+        "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\Pochhammersym{\\alpha + 1}{n}}{n!} \\genhyperF{2}{1}@{- n , 1 + \\alpha + \\beta + n}{\\alpha + 1}{\\tfrac{1}{2} (1 - z)}",
+        "confidence" : 0.45800708304610005,
         "translations" : {
           "Mathematica" : {
-            "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Subscript[Divide[Pochhammer[\\[Alpha]+ 1, n],(n)!], 2]*Subscript[F, 1]*(- n , 1 + \\[Alpha]+ \\[Beta]+ n ; \\[Alpha]+ 1 ;Divide[1,2]*(1 - z))",
+            "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[Pochhammer[\\[Alpha]+ 1, n],(n)!]*HypergeometricPFQ[{- n , 1 + \\[Alpha]+ \\[Beta]+ n}, {\\[Alpha]+ 1}, Divide[1,2]*(1 - z)]",
             "numericResults" : {
               "successful" : false,
               "numberOfTests" : 0,
@@ -405,13 +429,13 @@
             },
             "symbolicResults" : [
               {
-                "result" : "$Failed",
+                "result" : "True",
                 "property" : "fullsimplify"
               }
             ]
           },
           "Maple" : {
-            "translation" : "JacobiP(n, alpha, beta, z) = (pochhammer(alpha + 1, n))/(factorial(n))[2]*F[1]*(- n , 1 + alpha + beta + n ; alpha + 1 ;(1)/(2)*(1 - z))",
+            "translation" : "JacobiP(n, alpha, beta, z) = (pochhammer(alpha + 1, n))/(factorial(n))*hypergeom([- n , 1 + alpha + beta + n], [alpha + 1], (1)/(2)*(1 - z))",
             "numericResults" : null,
             "symbolicResults" : [ ]
           }
@@ -437,6 +461,10 @@
           {
             "definition" : "Pochhammer 's symbol",
             "score" : 0.6859086196238077
+          },
+          {
+            "definition" : "hypergeometric function",
+            "score" : 0.5988174995334326
           },
           {
             "definition" : "Jacobi polynomial",
@@ -496,6 +524,10 @@
           {
             "definition" : "Pochhammer 's symbol",
             "score" : 0.722
+          },
+          {
+            "definition" : "hypergeometric function",
+            "score" : 0.5988174995334326
           },
           {
             "definition" : "Jacobi polynomial",
@@ -809,6 +841,10 @@
             "score" : 0.9097529883184008
           },
           {
+            "definition" : "special case",
+            "score" : 0.5672486918673748
+          },
+          {
             "definition" : "nonnegative integer",
             "score" : 0.5274147515363676
           },
@@ -833,12 +869,20 @@
             "score" : 0.34128947089398726
           },
           {
+            "definition" : "interior",
+            "score" : 0.3412842248511015
+          },
+          {
             "definition" : "respect to the weight",
             "score" : 0.3170812444090436
           },
           {
             "definition" : "mathematics",
             "score" : 0.3152658368857124
+          },
+          {
+            "definition" : "asymptotic",
+            "score" : 0.3145943339836376
           },
           {
             "definition" : "Darboux formula",
@@ -897,8 +941,8 @@
           }
         ],
         "includes" : [
-          "x",
           "P_{n}^{(\\alpha, \\beta)}(x)",
+          "x",
           "n",
           "s",
           "P_{n}^{(\\alpha, \\beta)}",
@@ -966,11 +1010,11 @@
         ],
         "includes" : [ ],
         "isPartOf" : [
+          "P_{n}^{(\\alpha, \\beta)}(x)",
+          "(\\alpha+1)_n",
           "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
           "P_{n}(z) = \\frac{1 }{2^n  n! } \\frac{d^n }{ d z^n }  ( z^2 - 1 )^n",
           "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
-          "(\\alpha+1)_n",
-          "P_{n}^{(\\alpha, \\beta)}(x)",
           "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
           "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
           "{z \\choose n} = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}",
@@ -1015,6 +1059,10 @@
             "score" : 0.6317728461022634
           },
           {
+            "definition" : "special case",
+            "score" : 0.6317728461022634
+          },
+          {
             "definition" : "Legendre polynomial",
             "score" : 0.5120429549357158
           },
@@ -1037,10 +1085,6 @@
           {
             "definition" : "symmetry relation",
             "score" : 0.350211185515873
-          },
-          {
-            "definition" : "identity",
-            "score" : 0.34953977816074233
           },
           {
             "definition" : "Darboux formula",
@@ -1071,6 +1115,10 @@
             "score" : 0.34014343914795553
           },
           {
+            "definition" : "asymptotic",
+            "score" : 0.3401381939721649
+          },
+          {
             "definition" : "term",
             "score" : 0.3401381939721649
           },
@@ -1089,6 +1137,10 @@
           {
             "definition" : "mathematics",
             "score" : 0.3136037340697103
+          },
+          {
+            "definition" : "identity",
+            "score" : 0.31344839778454997
           },
           {
             "definition" : "function of the Jacobi polynomial",
@@ -1131,12 +1183,16 @@
             "score" : 0.2736144574535428
           },
           {
-            "definition" : "branch of square root",
-            "score" : 0.27361437207880523
+            "definition" : "interior",
+            "score" : 0.27361436277369383
           },
           {
             "definition" : "domain",
             "score" : 0.2736143619065987
+          },
+          {
+            "definition" : "hypergeometric function",
+            "score" : 0.2478452773112104
           },
           {
             "definition" : "orthonormal basis",
@@ -1147,8 +1203,16 @@
             "score" : 0.22651261397933525
           },
           {
+            "definition" : "branch of square root",
+            "score" : 0.2263571923194374
+          },
+          {
             "definition" : "point",
             "score" : 0.22635718214723086
+          },
+          {
+            "definition" : "equation",
+            "score" : 0.18553036932110353
           }
         ]
       },
@@ -1262,8 +1326,8 @@
           "z"
         ],
         "isPartOf" : [
-          "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
           "{z \\choose n} = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}",
+          "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
           "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
           "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)"
         ],
@@ -1364,6 +1428,10 @@
             "score" : 0.6859086196238077
           },
           {
+            "definition" : "special case",
+            "score" : 0.6460746792928004
+          },
+          {
             "definition" : "Jacobi polynomial",
             "score" : 0.5500952380952381
           }
@@ -1420,8 +1488,8 @@
           "n"
         ],
         "isPartOf" : [
-          "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
           "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
+          "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
           "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
           "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
           "\\left (1-x^2 \\right )y'' + ( \\beta-\\alpha - (\\alpha + \\beta + 2)x )y' + n(n+\\alpha+\\beta+1) y = 0",
@@ -1442,16 +1510,16 @@
             "score" : 0.6476241008701227
           },
           {
+            "definition" : "special case",
+            "score" : 0.5730317852477183
+          },
+          {
             "definition" : "orthogonality condition",
             "score" : 0.45267071030642325
           },
           {
             "definition" : "equivalent expression",
             "score" : 0.36449136763412854
-          },
-          {
-            "definition" : "identity",
-            "score" : 0.3524055268732403
           },
           {
             "definition" : "solution of the second order linear homogeneous differential equation",
@@ -1470,6 +1538,10 @@
             "score" : 0.31698488450476003
           },
           {
+            "definition" : "identity",
+            "score" : 0.316314146497048
+          },
+          {
             "definition" : "Gauss ' contiguous relation",
             "score" : 0.27648020616604074
           },
@@ -1480,6 +1552,10 @@
           {
             "definition" : "series for the hypergeometric function",
             "score" : 0.2507103566762897
+          },
+          {
+            "definition" : "hypergeometric function",
+            "score" : 0.23711771012437738
           }
         ]
       },
@@ -1526,9 +1602,9 @@
           }
         ],
         "includes" : [
+          "P_{n}^{(\\alpha, \\beta)}(x)",
           "n",
           "x",
-          "P_{n}^{(\\alpha, \\beta)}(x)",
           "s",
           "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta"
@@ -1537,6 +1613,10 @@
         "definiens" : [
           {
             "definition" : "Jacobi polynomial",
+            "score" : 0.6859086196238077
+          },
+          {
+            "definition" : "special case",
             "score" : 0.6859086196238077
           },
           {
@@ -1598,8 +1678,8 @@
         ],
         "includes" : [ ],
         "isPartOf" : [
-          "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
-          "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}"
+          "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
+          "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}"
         ],
         "definiens" : [
           {
@@ -1607,8 +1687,16 @@
             "score" : 0.7778461045086086
           },
           {
+            "definition" : "integer value",
+            "score" : 0.6954080343007951
+          },
+          {
             "definition" : "argument of the factorial",
             "score" : 0.6687181434333315
+          },
+          {
+            "definition" : "special case",
+            "score" : 0.6432331635625809
           },
           {
             "definition" : "sum",
@@ -1820,11 +1908,11 @@
           }
         ],
         "includes" : [
-          "n + \\alpha + \\beta",
-          "n",
-          "x",
-          "(1 - x)^{\\alpha}(1 + x)^{\\beta}",
           "P_{n}^{(\\alpha, \\beta)}(x)",
+          "n",
+          "n + \\alpha + \\beta",
+          "(1 - x)^{\\alpha}(1 + x)^{\\beta}",
+          "x",
           "\\Gamma(z)",
           "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta"
@@ -1901,6 +1989,10 @@
             "score" : 0.6460746792928004
           },
           {
+            "definition" : "equation",
+            "score" : 0.5500952380952381
+          },
+          {
             "definition" : "recurrence relation for the Jacobi polynomial",
             "score" : 0.3635871910523791
           },
@@ -1910,14 +2002,14 @@
           },
           {
             "definition" : "branch of square root",
-            "score" : 0.30293665845946705
+            "score" : 0.2556794787000992
           }
         ]
       },
       {
         "formula" : "P_n^{(\\alpha, \\beta)} (1) = {n+\\alpha\\choose n}",
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{1} ={n+\\alpha\\choose n}",
-        "confidence" : 0.8688928255548329,
+        "confidence" : 0.8135152636383296,
         "translations" : {
           "Mathematica" : {
             "translation" : "JacobiP[n, \\[Alpha], \\[Beta], 1] == Binomial[n + \\[Alpha],n]",
@@ -1957,8 +2049,8 @@
           }
         ],
         "includes" : [
-          "n",
           "P_{n}^{(\\alpha, \\beta)}(x)",
+          "n",
           "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta"
         ],
@@ -2021,8 +2113,8 @@
           }
         ],
         "includes" : [
-          "n",
           "P_{n}^{(\\alpha, \\beta)}(x)",
+          "n",
           "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta",
           "z"
@@ -2086,8 +2178,8 @@
           }
         ],
         "includes" : [
-          "n",
           "P_{n}^{(\\alpha, \\beta)}(x)",
+          "n",
           "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta"
         ],
@@ -2174,15 +2266,23 @@
             "score" : 0.3766844353679306
           },
           {
+            "definition" : "asymptotic",
+            "score" : 0.34999454450046674
+          },
+          {
             "definition" : "interval",
             "score" : 0.34999454450046674
+          },
+          {
+            "definition" : "interior",
+            "score" : 0.3101606041694595
           }
         ]
       },
       {
         "formula" : "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
         "semanticFormula" : "\\deriv [k]{ }{z} \\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\EulerGamma@{\\alpha + \\beta + n + 1 + k}}{2^k \\EulerGamma@{\\alpha + \\beta + n + 1}} \\JacobipolyP{\\alpha + k}{\\beta + k}{n-k}@{z}",
-        "confidence" : 0.5947518277932333,
+        "confidence" : 0.6927714811763457,
         "translations" : {
           "Mathematica" : {
             "translation" : "D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, k}] == Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + 1 + k],(2)^(k)*Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*JacobiP[n - k, \\[Alpha]+ k, \\[Beta]+ k, z]",
@@ -2222,11 +2322,11 @@
           }
         ],
         "includes" : [
-          "n + \\alpha + \\beta",
-          "n",
-          "k",
           "P_{n}^{(\\alpha, \\beta)}(x)",
+          "n + \\alpha + \\beta",
           "\\Gamma(z)",
+          "k",
+          "n",
           "P_{n}^{(\\alpha, \\beta)}",
           "\\alpha,\\beta",
           "z"
@@ -2292,19 +2392,19 @@
         ],
         "isPartOf" : [
           "P_n^{(\\alpha, \\beta)} (1) = {n+\\alpha\\choose n}",
+          "P_{n}^{(\\alpha, \\beta)}(x)",
+          "P_0^{(\\alpha,\\beta)}(z)= 1",
+          "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,",
+          "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
           "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+          "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
+          "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
+          "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
           "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
           "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
-          "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
-          "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,",
-          "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
-          "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
-          "P_{n}^{(\\alpha, \\beta)}(x)",
-          "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
-          "P_n^{(\\alpha, \\beta)} (-1) = (-1)^n { n+\\beta\\choose n}",
-          "P_0^{(\\alpha,\\beta)}(z)= 1",
-          "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
           "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
+          "P_n^{(\\alpha, \\beta)} (-1) = (-1)^n { n+\\beta\\choose n}",
+          "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
           "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&= (2n+\\alpha + \\beta-1) \\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
           "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right)  .\\end{align}",
           "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
@@ -2342,12 +2442,12 @@
             "score" : 0.485353064068252
           },
           {
-            "definition" : "identity",
-            "score" : 0.4498056309413439
-          },
-          {
             "definition" : "simplicity",
             "score" : 0.44040414143261547
+          },
+          {
+            "definition" : "identity",
+            "score" : 0.41371425056515165
           },
           {
             "definition" : "alternative normalization",
@@ -2364,6 +2464,10 @@
           {
             "definition" : "function of the Jacobi polynomial",
             "score" : 0.3635812763643209
+          },
+          {
+            "definition" : "asymptotic",
+            "score" : 0.3616262882690492
           },
           {
             "definition" : "Heine formula",
@@ -2390,10 +2494,6 @@
             "score" : 0.32662313047477654
           },
           {
-            "definition" : "branch of square root",
-            "score" : 0.3237473360333137
-          },
-          {
             "definition" : "asymptotic of the Jacobi polynomial",
             "score" : 0.32134375084967315
           },
@@ -2404,6 +2504,10 @@
           {
             "definition" : "Mehler",
             "score" : 0.32134375084967315
+          },
+          {
+            "definition" : "special case",
+            "score" : 0.3136037340697103
           },
           {
             "definition" : "Rodrigues ' formula",
@@ -2418,12 +2522,20 @@
             "score" : 0.31344830216350456
           },
           {
+            "definition" : "interior",
+            "score" : 0.29510245707057825
+          },
+          {
             "definition" : "interval",
             "score" : 0.29510245707057825
           },
           {
             "definition" : "domain",
             "score" : 0.28150981051866586
+          },
+          {
+            "definition" : "branch of square root",
+            "score" : 0.27649015627394585
           },
           {
             "definition" : "nonnegative integer",
@@ -2462,6 +2574,10 @@
             "score" : 0.2263571923194374
           },
           {
+            "definition" : "hypergeometric function",
+            "score" : 0.22635718301432597
+          },
+          {
             "definition" : "hypergeometric polynomial",
             "score" : 0.2263571820731295
           }
@@ -2481,8 +2597,8 @@
         ],
         "includes" : [
           "n + \\alpha + \\beta",
-          "n",
-          "x"
+          "x",
+          "n"
         ],
         "isPartOf" : [ ],
         "definiens" : [
@@ -2546,21 +2662,21 @@
         "includes" : [ ],
         "isPartOf" : [
           "P_n^{(\\alpha, \\beta)} (1) = {n+\\alpha\\choose n}",
+          "P_{n}^{(\\alpha, \\beta)}(x)",
+          "P_0^{(\\alpha,\\beta)}(z)= 1",
+          "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,",
+          "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
+          "n, n + \\alpha, n + \\beta",
           "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+          "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
+          "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
+          "P_{n}^{(\\alpha, \\beta)}",
+          "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
           "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
           "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
-          "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
-          "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,",
-          "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
-          "n, n + \\alpha, n + \\beta",
-          "P_{n}^{(\\alpha, \\beta)}(x)",
-          "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm},  \\alpha,\\beta > -1",
-          "P_n^{(\\alpha, \\beta)} (-1) = (-1)^n { n+\\beta\\choose n}",
-          "P_0^{(\\alpha,\\beta)}(z)= 1",
-          "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
           "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
+          "P_n^{(\\alpha, \\beta)} (-1) = (-1)^n { n+\\beta\\choose n}",
+          "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
           "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&= (2n+\\alpha + \\beta-1) \\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
           "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right)  .\\end{align}",
           "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
@@ -2577,12 +2693,12 @@
             "score" : 0.6839477168404777
           },
           {
-            "definition" : "identity",
-            "score" : 0.6021940404975354
-          },
-          {
             "definition" : "solution of the second order linear homogeneous differential equation",
             "score" : 0.5927925509888069
+          },
+          {
+            "definition" : "identity",
+            "score" : 0.566102660121343
           },
           {
             "definition" : "Gauss ' contiguous relation",
@@ -2613,12 +2729,12 @@
             "score" : 0.3996726567405132
           },
           {
-            "definition" : "simplicity",
+            "definition" : "asymptotic",
             "score" : 0.39027116723178473
           },
           {
-            "definition" : "branch of square root",
-            "score" : 0.3738803102341444
+            "definition" : "simplicity",
+            "score" : 0.39027116723178473
           },
           {
             "definition" : "Heine formula",
@@ -2653,7 +2769,15 @@
             "score" : 0.33493639740158543
           },
           {
+            "definition" : "branch of square root",
+            "score" : 0.32662313047477654
+          },
+          {
             "definition" : "alternative normalization",
+            "score" : 0.3237473360333137
+          },
+          {
+            "definition" : "interior",
             "score" : 0.3237473360333137
           },
           {
@@ -2662,6 +2786,10 @@
           },
           {
             "definition" : "nonnegative integer",
+            "score" : 0.31347914375992064
+          },
+          {
+            "definition" : "special case",
             "score" : 0.31347914375992064
           },
           {
@@ -2703,6 +2831,10 @@
           {
             "definition" : "series for the hypergeometric function",
             "score" : 0.22635718301432597
+          },
+          {
+            "definition" : "hypergeometric function",
+            "score" : 0.22635718214723086
           },
           {
             "definition" : "hypergeometric polynomial",
@@ -2753,11 +2885,11 @@
           }
         ],
         "includes" : [
+          "P_{n}^{(\\alpha, \\beta)}(x)",
           "n + \\alpha + \\beta",
+          "P_{n}^{(\\alpha, \\beta)}",
           "n",
           "\\alpha,\\beta",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "P_{n}^{(\\alpha, \\beta)}(x)",
           "z"
         ],
         "isPartOf" : [ ],
@@ -2816,8 +2948,8 @@
           }
         ],
         "includes" : [
-          "n",
-          "n=m"
+          "n=m",
+          "n"
         ],
         "isPartOf" : [ ],
         "definiens" : [
@@ -2830,7 +2962,7 @@
       {
         "formula" : "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right)  .\\end{align}",
         "semanticFormula" : "\\begin{align}(z - 1) \\deriv [1]{ }{z} \\JacobipolyP{\\alpha}{\\beta}{n}@{z} &= \\frac{1}{2} (z - 1) (1 + \\alpha + \\beta + n) \\JacobipolyP{\\alpha + 1}{\\beta + 1}{n-1}@{x} \\\\ &= n \\JacobipolyP{\\alpha}{\\beta}{n}@{x} - (\\alpha + n) \\JacobipolyP{\\alpha}{\\beta + 1}{n-1}@{x} \\\\ &= (1 + \\alpha + \\beta + n) (\\JacobipolyP{\\alpha}{\\beta + 1}{n}@{x} - \\JacobipolyP{\\alpha}{\\beta}{n}@{x}) \\\\ &= (\\alpha + n) \\JacobipolyP{\\alpha - 1}{\\beta + 1}{n}@{x} - \\alpha \\JacobipolyP{\\alpha}{\\beta}{n}@{x} \\\\ &= \\frac{2 (n + 1) \\JacobipolyP{\\alpha}{\\beta - 1}{n+1}@{x} - (z (1 + \\alpha + \\beta + n) + \\alpha + 1 + n - \\beta) \\JacobipolyP{\\alpha}{\\beta}{n}@{x}}{1+z} \\\\ &= \\frac{(2 \\beta + n + nz) \\JacobipolyP{\\alpha}{\\beta}{n}@{x} - 2 (\\beta + n) \\JacobipolyP{\\alpha}{\\beta - 1}{n}@{x}}{1+z} \\\\ &= \\frac{1-z}{1+z} (\\beta \\JacobipolyP{\\alpha}{\\beta}{n}@{x} - (\\beta + n) \\JacobipolyP{\\alpha + 1}{\\beta - 1}{n}@{x}) .\\end{align}",
-        "confidence" : 0.32381205043506134,
+        "confidence" : 0.4067576318191648,
         "translations" : {
           "Mathematica" : {
             "translation" : "(z - 1)* D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] == Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*JacobiP[n - 1, \\[Alpha]+ 1, \\[Beta]+ 1, x] == n*JacobiP[n, \\[Alpha], \\[Beta], x]-(\\[Alpha]+ n)*JacobiP[n - 1, \\[Alpha], \\[Beta]+ 1, x] == (1 + \\[Alpha]+ \\[Beta]+ n)*(JacobiP[n, \\[Alpha], \\[Beta]+ 1, x]-JacobiP[n, \\[Alpha], \\[Beta], x]) == (\\[Alpha]+ n)*JacobiP[n, \\[Alpha]- 1, \\[Beta]+ 1, x]- \\[Alpha]*JacobiP[n, \\[Alpha], \\[Beta], x] == Divide[2*(n + 1)*JacobiP[n + 1, \\[Alpha], \\[Beta]- 1, x]-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*JacobiP[n, \\[Alpha], \\[Beta], x],1 + z] == Divide[(2*\\[Beta]+ n + n*z)*JacobiP[n, \\[Alpha], \\[Beta], x]- 2*(\\[Beta]+ n)*JacobiP[n, \\[Alpha], \\[Beta]- 1, x],1 + z] == Divide[1 - z,1 + z]*(\\[Beta]*JacobiP[n, \\[Alpha], \\[Beta], x]-(\\[Beta]+ n)*JacobiP[n, \\[Alpha]+ 1, \\[Beta]- 1, x])",
@@ -2870,11 +3002,11 @@
           }
         ],
         "includes" : [
+          "P_{n}^{(\\alpha, \\beta)}(x)",
           "n + \\alpha + \\beta",
+          "P_{n}^{(\\alpha, \\beta)}",
           "n",
           "\\alpha,\\beta",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "P_{n}^{(\\alpha, \\beta)}(x)",
           "z"
         ],
         "isPartOf" : [ ],
@@ -2932,11 +3064,11 @@
           }
         ],
         "includes" : [
+          "P_{n}^{(\\alpha, \\beta)}(x)",
+          "n=m",
+          "P_{n}^{(\\alpha, \\beta)}",
           "n",
           "\\alpha,\\beta",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "n=m",
-          "P_{n}^{(\\alpha, \\beta)}(x)",
           "z"
         ],
         "isPartOf" : [ ],
@@ -2947,7 +3079,7 @@
           },
           {
             "definition" : "branch of square root",
-            "score" : 0.6460746792928004
+            "score" : 0.5988174995334326
           }
         ]
       },
@@ -3004,11 +3136,11 @@
         "isPartOf" : [ ],
         "definiens" : [
           {
-            "definition" : "function of the Jacobi polynomial",
-            "score" : 0.6859086196238077
+            "definition" : "branch of square root",
+            "score" : 0.7125985104912714
           },
           {
-            "definition" : "branch of square root",
+            "definition" : "function of the Jacobi polynomial",
             "score" : 0.6460746792928004
           }
         ]
@@ -3067,7 +3199,7 @@
         "definiens" : [
           {
             "definition" : "branch of square root",
-            "score" : 0.6859086196238077
+            "score" : 0.6460746792928004
           },
           {
             "definition" : "function of the Jacobi polynomial",
@@ -3078,7 +3210,7 @@
       {
         "formula" : "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )",
         "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos \\theta} = n^{-\\frac{1}{2}} k (\\theta) \\cos (\\AirymodderivN@{x} \\theta + \\gamma) + O (n^{-\\frac{3}{2}})",
-        "confidence" : 0.4817816548230033,
+        "confidence" : 0.4540928738647516,
         "translations" : {
           "Mathematica" : {
             "translation" : "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] == (n)^(-Divide[1,2])* k*(\\[Theta])* Cos[Sqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2]*\\[Theta]+ \\[Gamma]]+ O*((n)^(-Divide[3,2]))",
@@ -3118,11 +3250,11 @@
           }
         ],
         "includes" : [
-          "n",
-          "\\alpha,\\beta",
+          "P_{n}^{(\\alpha, \\beta)}(x)",
           "P_{n}^{(\\alpha, \\beta)}",
           "k",
-          "P_{n}^{(\\alpha, \\beta)}(x)",
+          "n",
+          "\\alpha,\\beta",
           "O"
         ],
         "isPartOf" : [ ],
@@ -3130,6 +3262,14 @@
           {
             "definition" : "Darboux formula",
             "score" : 0.722
+          },
+          {
+            "definition" : "asymptotic",
+            "score" : 0.6859086196238077
+          },
+          {
+            "definition" : "interior",
+            "score" : 0.6460746792928004
           },
           {
             "definition" : "interval",
@@ -3184,8 +3324,8 @@
           }
         ],
         "includes" : [
-          "n",
-          "k"
+          "k",
+          "n"
         ],
         "isPartOf" : [ ],
         "definiens" : [
@@ -3198,8 +3338,16 @@
             "score" : 0.6859086196238077
           },
           {
+            "definition" : "asymptotic",
+            "score" : 0.6460746792928004
+          },
+          {
             "definition" : "Darboux formula",
             "score" : 0.6460746792928004
+          },
+          {
+            "definition" : "interior",
+            "score" : 0.5988174995334326
           }
         ]
       },
@@ -3264,6 +3412,14 @@
             "score" : 0.722
           },
           {
+            "definition" : "asymptotic",
+            "score" : 0.6859086196238077
+          },
+          {
+            "definition" : "interior",
+            "score" : 0.6460746792928004
+          },
+          {
             "definition" : "interval",
             "score" : 0.6460746792928004
           }
@@ -3324,12 +3480,20 @@
             "score" : 0.722
           },
           {
+            "definition" : "asymptotic",
+            "score" : 0.6460746792928004
+          },
+          {
             "definition" : "Darboux formula",
             "score" : 0.6460746792928004
           },
           {
             "definition" : "term",
             "score" : 0.6460746792928004
+          },
+          {
+            "definition" : "interior",
+            "score" : 0.5988174995334326
           }
         ]
       },
@@ -3388,12 +3552,20 @@
             "score" : 0.7125985104912714
           },
           {
+            "definition" : "asymptotic",
+            "score" : 0.5988174995334326
+          },
+          {
             "definition" : "Darboux formula",
             "score" : 0.5988174995334326
           },
           {
             "definition" : "term",
             "score" : 0.5988174995334326
+          },
+          {
+            "definition" : "interior",
+            "score" : 0.5500952380952381
           }
         ]
       },
@@ -3511,10 +3683,10 @@
           }
         ],
         "includes" : [
+          "P_{n}^{(\\alpha, \\beta)}(x)",
+          "P_{n}^{(\\alpha, \\beta)}",
           "n",
           "\\alpha,\\beta",
-          "P_{n}^{(\\alpha, \\beta)}",
-          "P_{n}^{(\\alpha, \\beta)}(x)",
           "z"
         ],
         "isPartOf" : [ ],
@@ -3594,23 +3766,23 @@
         ],
         "includes" : [ ],
         "isPartOf" : [
-          "R(z, 0) = 1",
-          "P_{n}(z) = \\frac{1 }{2^n  n! } \\frac{d^n }{ d z^n }  ( z^2 - 1 )^n",
-          "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
-          "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
           "{z \\choose n} = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}",
-          "R = R(z, t) = \\left(1 - 2zt + t^2\\right)^{\\frac{1}{2}}",
-          "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
-          "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,",
-          "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
-          "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
-          "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left ( \\tfrac{z}{n} \\right ) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\alpha} J_\\alpha(z)\\\\ \\lim_{n \\to \\infty} n^{-\\beta}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left (\\pi - \\tfrac{z}{n} \\right) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\beta} J_\\beta(z)\\end{align}",
-          "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&= (2n+\\alpha + \\beta-1) \\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
           "P_0^{(\\alpha,\\beta)}(z)= 1",
+          "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left ( \\tfrac{z}{n} \\right ) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\alpha} J_\\alpha(z)\\\\ \\lim_{n \\to \\infty} n^{-\\beta}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left (\\pi - \\tfrac{z}{n} \\right) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\beta} J_\\beta(z)\\end{align}",
+          "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,",
           "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
+          "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+          "R(z, 0) = 1",
           "\\Gamma(z)",
           "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right)  .\\end{align}",
-          "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)"
+          "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
+          "R = R(z, t) = \\left(1 - 2zt + t^2\\right)^{\\frac{1}{2}}",
+          "P_{n}(z) = \\frac{1 }{2^n  n! } \\frac{d^n }{ d z^n }  ( z^2 - 1 )^n",
+          "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&= (2n+\\alpha + \\beta-1) \\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
+          "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
+          "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
+          "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
+          "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}"
         ],
         "definiens" : [
           {
@@ -3639,7 +3811,7 @@
           },
           {
             "definition" : "branch of square root",
-            "score" : 0.5140038577190457
+            "score" : 0.5406937485865095
           },
           {
             "definition" : "function of the Jacobi polynomial",
@@ -3647,7 +3819,7 @@
           },
           {
             "definition" : "identity",
-            "score" : 0.4784564245921376
+            "score" : 0.44236504421594536
           },
           {
             "definition" : "Gauss ' contiguous relation",
@@ -3708,6 +3880,10 @@
           {
             "definition" : "series for the hypergeometric function",
             "score" : 0.2550079757239094
+          },
+          {
+            "definition" : "hypergeometric function",
+            "score" : 0.25500797572390876
           },
           {
             "definition" : "Jacobi polynomial",
@@ -3786,8 +3962,8 @@
           }
         ],
         "includes" : [
-          "P_{n}^{(\\alpha, \\beta)}",
-          "P_{n}^{(\\alpha, \\beta)}(x)"
+          "P_{n}^{(\\alpha, \\beta)}(x)",
+          "P_{n}^{(\\alpha, \\beta)}"
         ],
         "isPartOf" : [ ],
         "definiens" : [
