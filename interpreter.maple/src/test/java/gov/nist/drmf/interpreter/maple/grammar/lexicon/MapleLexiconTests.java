@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.maple.grammar.lexicon;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
-import gov.nist.drmf.interpreter.mlp.MacrosLexicon;
+import gov.nist.drmf.interpreter.pom.MacrosLexicon;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

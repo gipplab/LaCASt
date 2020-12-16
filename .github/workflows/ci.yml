@@ -1,0 +1,99 @@
+name: GitHub CI
+
+on: [push]
+
+env:
+  CC_TEST_REPORTER_ID: 970bebaf9e240aaf9c86a92251b68f30d373d29f4d07f2e92a0d777009c28a68
+  JACOCO_SOURCE_PATH: 'interpreter.common interpreter.lacast interpreter.maple interpreter.mathematica interpreter.evaluation'
+
+jobs:
+  build_and_test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout Repo
+        uses: actions/checkout@v2
+      - name: Checkout submodules
+        run: git submodule update --init --recursive
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1.4.3
+        with:
+          java-version: 1.11
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Setup Codeclimate Reports
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+      - name: Maven Install
+        run: |
+          mvn -Pbuild install -DskipTests -B -V -DgenerateJars
+          java -jar bin/lexicon-creator.jar -all
+      - name: Maven Test
+        run: mvn test -B -DjacocoReport=remote
+      - name: Fix Jacoco Reports
+        run: source .travis/fix-jacoco.sh
+      - name: Report test coverage to Codeclimate
+        run: |
+          ./cc-test-reporter format-coverage ./target/jacoco-report/jacoco-fix.xml --input-type jacoco > jacoco.log 2>&1
+          ./cc-test-reporter upload-coverage -d > jacocoUpload.log 2>&1
+      - name: Creating release
+        id: create_release
+        run: |
+          TRAVIS_TAG="$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)"
+          rm -rf libs/logs
+          mkdir release
+          zip -r -9 release/${TRAVIS_TAG}.zip bin/* config/* libs/* scripts/* README.md CONTRIBUTING.md
+          echo "::set-output name=release::${TRAVIS_TAG}"
+          echo "${TRAVIS_TAG}" >> release/tag.txt
+      - name: Upload release artifact
+        id: upload_release_artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: release
+          path: release/*
+  deploy_github:
+    name: Deploy Release on GitHub
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    needs: build_and_test
+    steps:
+      - name: Download release artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: release
+      - name:
+        id: get_release_id
+        run: echo "::set-output name=release::$(cat release/tag.txt)"
+      - name: Upload release assets
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ steps.get_release_id.outputs.release }}
+          file: ./release/${{ steps.get_release_id.outputs.release }}.zip
+          file_glob: false
+          overwrite: true
+          body: "Auto Release"
+  deploy_dke:
+    name: Deploy to DKE
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Restart docker on DKE
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.DKE_IP }}
+          username: git
+          key: ${{ secrets.DKE_SSH_KEY }}
+          port: ${{ secrets.DKE_PORT }}
+          script_stop: true # stops script after first failure
+          script: |
+            cd /hdd/work/git/ag-gipp/LaCASt
+            git pull

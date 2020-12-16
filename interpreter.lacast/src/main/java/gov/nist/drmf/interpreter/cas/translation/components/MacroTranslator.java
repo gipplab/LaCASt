@@ -9,11 +9,11 @@ import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.common.interfaces.IFeatureExtractor;
-import gov.nist.drmf.interpreter.mlp.MathTermUtility;
-import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.common.interfaces.IFeatureExtractor;
+import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
@@ -47,7 +47,7 @@ public class MacroTranslator extends AbstractListTranslator {
     private static final Logger LOG = LogManager.getLogger(MacroTranslator.class.getName());
 
     private static final Pattern OPTIONAL_PARAMS_PATTERN =
-            Pattern.compile("\\s*\\[(.*)]\\s*\\*?\\s*");
+            Pattern.compile("\\s*[(\\[](.*)[])]\\s*\\*?\\s*");
 
     private final String cas;
 
@@ -381,7 +381,7 @@ public class MacroTranslator extends AbstractListTranslator {
                     "This is will be rejected in future releases.");
 
             SequenceTranslator sp = new SequenceTranslator(this, b);
-            TranslatedExpression te = sp.translate(followingExps);
+            TranslatedExpression te = sp.translate(null, followingExps);
             getGlobalTranslationList().removeLastNExps(te.getLength());
             arguments.addLast(te.toString());
 

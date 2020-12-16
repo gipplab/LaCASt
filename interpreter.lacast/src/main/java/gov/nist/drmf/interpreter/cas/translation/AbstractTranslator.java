@@ -8,23 +8,18 @@ import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.common.grammar.ExpressionTags;
-import gov.nist.drmf.interpreter.common.grammar.LimitedExpressions;
-import gov.nist.drmf.interpreter.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.mlp.FeatureSetUtility;
-import gov.nist.drmf.interpreter.mlp.MathTermUtility;
-import gov.nist.drmf.interpreter.mlp.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
-import org.apache.commons.text.StringEscapeUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.*;
-
-import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.*;
 
 /**
  * The abstract translator delegates the translation process to the specialized sub-translator
@@ -61,6 +56,12 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     private TranslatedExpression globalExp;
 
     /**
+     * In case of equation arrays or multi-case expressions, we most likely end up
+     * with additional global expressions.
+     */
+    private List<TranslatedExpression> partialTranslations;
+
+    /**
      * Flags of each translator
      */
     private boolean SET_MODE    = false;
@@ -92,6 +93,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         this.config = config;
         this.globalExp = new TranslatedExpression();
         this.infoLogger = new InformationLogger();
+        this.partialTranslations = new LinkedList<>();
     }
 
     /**
@@ -117,8 +119,13 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         if ( superTranslator.infoLogger == null ) {
             superTranslator.infoLogger = new InformationLogger();
         }
-
         this.infoLogger = superTranslator.infoLogger;
+
+        if ( superTranslator.partialTranslations == null ) {
+            superTranslator.partialTranslations = new LinkedList<>();
+        }
+        this.partialTranslations = superTranslator.partialTranslations;
+
         this.SET_MODE = superTranslator.SET_MODE;
         this.tolerant = superTranslator.tolerant;
         this.mlpError = superTranslator.mlpError;
@@ -173,7 +180,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
 
     private TranslatedExpression parseGeneralTerm(MathTerm term, PomTaggedExpression exp, List<PomTaggedExpression> expList) {
         TranslatedExpression transExpression;
-        if (isDLMFMacro(term)) { // BEFORE FUNCTION!
+        if (MathTermUtility.isDLMFMacro(term)) { // BEFORE FUNCTION!
             MacroTranslator mp = new MacroTranslator(this);
             transExpression = mp.translate(exp, expList);
         } //is it a sum or a product
@@ -184,7 +191,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         else if (isSubSequence(term)) {
             Brackets bracket = Brackets.getBracket(term.getTermText());
             SequenceTranslator sp = new SequenceTranslator(this, bracket);
-            transExpression = sp.translate(expList);
+            transExpression = sp.translate(null, expList);
         } // this is special, could be a function like cos
         else if (MathTermUtility.isFunction(term)) {
             FunctionTranslator fp = new FunctionTranslator(this);
@@ -248,27 +255,6 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         } else return false;
     }
 
-    protected static boolean isDLMFMacro(MathTerm term) {
-        MathTermTags tag = MathTermTags.getTagByKey(term.getTag());
-        if (tag != null && tag.equals(MathTermTags.dlmf_macro)) {
-            return true;
-        }
-        FeatureSet dlmf = term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
-        if (dlmf != null) {
-            SortedSet<String> role = dlmf.getFeature(Keys.FEATURE_ROLE);
-            if (role != null &&
-                    (role.first().matches(Keys.FEATURE_VALUE_CONSTANT) ||
-                            role.first().matches(Keys.FEATURE_VALUE_SYMBOL)
-                    )) {
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            return false;
-        }
-    }
-
     protected static boolean isSubSequence(MathTerm term) {
         String tag = term.getTag();
         if (tag != null && tag.matches(MathTermTags.OPEN_PARENTHESIS_PATTERN)) {
@@ -302,7 +288,25 @@ public abstract class AbstractTranslator implements IForwardTranslator {
      */
     protected TranslatedExpression getGlobalTranslationList() {
         if ( superTranslator == null ) return globalExp;
-        else return this.superTranslator.globalExp;
+        else return this.superTranslator.getGlobalTranslationList();
+    }
+
+    /**
+     * Adds a partial translated expression to the list.
+     * @param translatedExpression will be copied so its save to use references
+     */
+    protected void addPartialTranslation(TranslatedExpression translatedExpression) {
+        if ( superTranslator == null ) this.partialTranslations.add(new TranslatedExpression(translatedExpression));
+        else superTranslator.addPartialTranslation(translatedExpression);
+    }
+
+    /**
+     * The additional translations list
+     * @return the list of additional translations
+     */
+    protected List<TranslatedExpression> getListOfPartialTranslations() {
+        if ( superTranslator == null ) return this.partialTranslations;
+        else return this.superTranslator.getListOfPartialTranslations();
     }
 
     /**
@@ -339,6 +343,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
 
     public void reset() {
         globalExp = new TranslatedExpression();
+        partialTranslations = new LinkedList<>();
         mlpError = false;
         infoLogger = new InformationLogger();
         SET_MODE = false;

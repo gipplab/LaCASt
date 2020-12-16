@@ -5,6 +5,7 @@
     "meaning" : "Jacobi-polynomial-P",
     "openMathID" : "orthpoly2_dlmf:Jacobi_P",
     "standardArguments" : {
+      "standardOptionalParameters" : [ ],
       "standardParameters" : [ "\\alpha", "\\beta", "n" ],
       "standardVariables" : [ "x" ]
     }
@@ -12,6 +13,13 @@
   "numberOfParameters" : 3,
   "numberOfOptionalParameters" : 0,
   "numberOfArguments" : 1,
-  "TeX" : [ "P^{(par1,par2)}_{par3} (var1)" ],
-  "semanticTeX" : "\\JacobipolyP{$0}{$1}{$2}@{$3}"
+  "TeX" : [ {
+    "genericTeX" : "P^{(par1,par2)}_{par3} (var1)",
+    "semanticTeX" : "\\JacobipolyP{par1}{par2}{par3}@{var1}",
+    "score" : 1.0
+  }, {
+    "genericTeX" : "P^{(par1,par2)}_{par3}",
+    "semanticTeX" : "\\JacobipolyP{par1}{par2}{par3}@{x}",
+    "score" : 0.0
+  } ]
 }

@@ -1,13 +1,30 @@
 package gov.nist.drmf.interpreter.generic.elasticsearch;
 
+import gov.nist.drmf.interpreter.common.config.ConfigDiscovery;
+import gov.nist.drmf.interpreter.common.config.GenericLacastConfig;
+
 /**
  * @author Andre Greiner-Petter
  */
 public class ElasticSearchConfig {
-    private String host = "localhost";
-    private int port = 9200;
+    private final String host;
 
-    public ElasticSearchConfig(){}
+    private final String index;
+
+    private final int port;
+
+    public ElasticSearchConfig(){
+        GenericLacastConfig c = ConfigDiscovery.getConfig().getGenericLacastConfig();
+        this.host = c.getEsHost();
+        this.index = c.getMacroIndex();
+        this.port = c.getEsPort();
+    }
+
+    public ElasticSearchConfig(String host, int port, String macroIndex) {
+        this.host = host;
+        this.port = port;
+        this.index = macroIndex;
+    }
 
     public String getHost() {
         return host;
@@ -15,5 +32,9 @@ public class ElasticSearchConfig {
 
     public int getPort() {
         return port;
+    }
+
+    public String getIndex() {
+        return index;
     }
 }

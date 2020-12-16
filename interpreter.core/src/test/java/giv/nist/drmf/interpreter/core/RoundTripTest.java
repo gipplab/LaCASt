@@ -2,7 +2,7 @@ package giv.nist.drmf.interpreter.core;
 
 import com.maplesoft.externalcall.MapleException;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.common.meta.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.core.Translator;
 import giv.nist.drmf.interpreter.core.cases.FunctionsTests;
 import giv.nist.drmf.interpreter.core.cases.LaTeXRoundTripIdentityTests;

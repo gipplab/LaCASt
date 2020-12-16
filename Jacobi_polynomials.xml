@@ -1,0 +1,239 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
+  <siteinfo>
+    <sitename>Wikipedia</sitename>
+    <dbname>enwiki</dbname>
+    <base>https://en.wikipedia.org/wiki/Main_Page</base>
+    <generator>MediaWiki 1.35.0-wmf.22</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">Wikipedia</namespace>
+      <namespace key="5" case="first-letter">Wikipedia talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+      <namespace key="100" case="first-letter">Portal</namespace>
+      <namespace key="101" case="first-letter">Portal talk</namespace>
+      <namespace key="108" case="first-letter">Book</namespace>
+      <namespace key="109" case="first-letter">Book talk</namespace>
+      <namespace key="118" case="first-letter">Draft</namespace>
+      <namespace key="119" case="first-letter">Draft talk</namespace>
+      <namespace key="446" case="first-letter">Education Program</namespace>
+      <namespace key="447" case="first-letter">Education Program talk</namespace>
+      <namespace key="710" case="first-letter">TimedText</namespace>
+      <namespace key="711" case="first-letter">TimedText talk</namespace>
+      <namespace key="828" case="first-letter">Module</namespace>
+      <namespace key="829" case="first-letter">Module talk</namespace>
+      <namespace key="2300" case="first-letter">Gadget</namespace>
+      <namespace key="2301" case="first-letter">Gadget talk</namespace>
+      <namespace key="2302" case="case-sensitive">Gadget definition</namespace>
+      <namespace key="2303" case="case-sensitive">Gadget definition talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>Jacobi polynomials</title>
+    <ns>0</ns>
+    <id>30863587</id>
+    <revision>
+      <id>936776001</id>
+      <parentid>906526102</parentid>
+      <timestamp>2020-01-20T23:02:06Z</timestamp>
+      <contributor>
+        <ip>108.28.149.218</ip>
+      </contributor>
+      <comment>/* Recurrence relations */</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text bytes="10387" xml:space="preserve">{{Use American English|date = March 2019}}
+{{Short description|Polynomial sequence}}
+{{for|Jacobi polynomials of several variables|Heckman–Opdam polynomials}}
+In [[mathematics]], '''Jacobi polynomials''' (occasionally called '''hypergeometric polynomials''') {{math|''P''{{su|b=''n''|p=(''α'', ''β'')}}(''x'')}} are a class of [[Classical orthogonal polynomials|classical]] [[orthogonal polynomials]]. They are orthogonal with respect to the weight {{math|(1 − ''x'')&lt;sup&gt;''α''&lt;/sup&gt;(1 + ''x'')&lt;sup&gt;''β''&lt;/sup&gt;}} on the interval {{math|[−1, 1]}}. The [[Gegenbauer polynomials]], and thus also the [[Legendre polynomials|Legendre]], [[Zernike polynomials|Zernike]] and [[Chebyshev polynomials]], are special cases of the Jacobi polynomials.&lt;ref name=sz&gt;{{cite book | last1=Szegő | first1=Gábor | title=Orthogonal Polynomials | url=https://books.google.com/books?id=3hcW8HBh7gsC | publisher= American Mathematical Society | series=Colloquium Publications | isbn=978-0-8218-1023-1 | mr=0372517 | year=1939 | volume=XXIII|chapter=IV. Jacobi polynomials.}} The definition is in IV.1; the differential equation &amp;ndash; in IV.2; Rodrigues' formula is in IV.3; the generating function is in IV.4; the recurrent relation is in IV.5.&lt;/ref&gt;
+
+The Jacobi polynomials were introduced by [[Carl Gustav Jacob Jacobi]].
+
+==Definitions==
+
+===Via the hypergeometric function===
+The Jacobi polynomials are defined via the [[hypergeometric function]] as follows:&lt;ref&gt;{{Abramowitz_Stegun_ref|22|561}}&lt;/ref&gt;
+
+:&lt;math&gt;P_n^{(\alpha,\beta)}(z)=\frac{(\alpha+1)_n}{n!}\,{}_2F_1\left(-n,1+\alpha+\beta+n;\alpha+1;\tfrac{1}{2}(1-z)\right),&lt;/math&gt;
+
+where &lt;math&gt;(\alpha+1)_n&lt;/math&gt; is [[Pochhammer symbol|Pochhammer's symbol]] (for the rising factorial). In this case, the series for the hypergeometric function is finite, therefore one obtains the following equivalent expression:
+
+:&lt;math&gt;P_n^{(\alpha,\beta)} (z) = \frac{\Gamma (\alpha+n+1)}{n!\,\Gamma (\alpha+\beta+n+1)} \sum_{m=0}^n {n\choose m} \frac{\Gamma (\alpha + \beta + n + m + 1)}{\Gamma (\alpha + m + 1)} \left(\frac{z-1}{2}\right)^m.&lt;/math&gt;
+
+===Rodrigues' formula===
+An equivalent definition is given by [[Rodrigues' formula]]:&lt;ref name=sz/&gt;&lt;ref&gt;{{SpringerEOM|id=Jacobi_polynomials|author=P.K. Suetin}}&lt;/ref&gt;
+
+:&lt;math&gt;P_n^{(\alpha,\beta)}(z) = \frac{(-1)^n}{2^n n!} (1-z)^{-\alpha} (1+z)^{-\beta} \frac{d^n}{dz^n} \left\{ (1-z)^\alpha (1+z)^\beta \left (1 - z^2 \right )^n \right\}.&lt;/math&gt;
+
+If &lt;math&gt; \alpha = \beta = 0 &lt;/math&gt;, then it reduces to the [[Legendre polynomials]]: 
+:&lt;math&gt; P_{n}(z) = \frac{1 }{2^n  n! } \frac{d^n }{ d z^n }  ( z^2 - 1 )^n  \; .  &lt;/math&gt;
+
+===Alternate expression for real argument===
+For real ''x'' the Jacobi polynomial can alternatively be written as
+
+:&lt;math&gt;P_n^{(\alpha,\beta)}(x)= \sum_{s=0}^n {n+\alpha\choose n-s}{n+\beta \choose s} \left(\frac{x-1}{2}\right)^{s} \left(\frac{x+1}{2}\right)^{n-s}.&lt;/math&gt;
+
+and for integer ''n''
+
+:&lt;math&gt;{z \choose n} = \begin{cases} \frac{\Gamma(z+1)}{\Gamma(n+1)\Gamma(z-n+1)} &amp; n \geq 0 \\ 0 &amp; n &lt; 0 \end{cases}&lt;/math&gt;
+
+where {{math|Γ(''z'')}} is the [[Gamma function]].
+
+In the special case that the four quantities {{math|''n'', ''n'' + ''α'', ''n'' + ''β''}}, and {{math|''n'' + ''α'' + ''β''}} are nonnegative integers, the Jacobi polynomial can be written as
+
+{{NumBlk|:|&lt;math&gt;P_n^{(\alpha,\beta)}(x)=(n+\alpha)! (n+\beta)! \sum_{s=0}^n \frac{1}{s! (n+\alpha-s)!(\beta+s)!(n-s)!} \left(\frac{x-1}{2}\right)^{n-s} \left(\frac{x+1}{2}\right)^{s}.&lt;/math&gt;|{{EquationRef|1}}}}
+
+The sum extends over all integer values of ''s'' for which the arguments of the factorials are nonnegative.
+
+===Special cases===
+
+:&lt;math&gt;P_0^{(\alpha,\beta)}(z)= 1,&lt;/math&gt;
+:&lt;math&gt;P_1^{(\alpha,\beta)}(z)= (\alpha+1) + (\alpha+\beta+2)\frac{z-1}{2},&lt;/math&gt;
+
+:&lt;math&gt;P_2^{(\alpha,\beta)}(z)= \frac{(\alpha+1)(\alpha+2)}{2}
++ (\alpha+2)(\alpha+\beta+3)\frac{z-1}{2}
+
++ \frac{(\alpha+\beta+3)(\alpha+\beta+4)}{2}\left(\frac{z-1}{2}\right)^2,...&lt;/math&gt;
+
+==Basic properties==
+
+===Orthogonality===
+The Jacobi polynomials satisfy the orthogonality condition
+
+:&lt;math&gt;\int_{-1}^1 (1-x)^{\alpha} (1+x)^{\beta} P_m^{(\alpha,\beta)} (x)P_n^{(\alpha,\beta)} (x)\,dx =\frac{2^{\alpha+\beta+1}}{2n+\alpha+\beta+1} \frac{\Gamma(n+\alpha+1)\Gamma(n+\beta+1)}{\Gamma(n+\alpha+\beta+1)n!} \delta_{nm}, \qquad \alpha,\ \beta &gt; -1.&lt;/math&gt;
+
+As defined, they do not have unit norm with respect to the weight.  This can be corrected by dividing by the square root of the right hand side of the equation above, when &lt;math&gt;n=m&lt;/math&gt;.
+
+Although it does not yield an orthonormal basis, an alternative normalization is sometimes preferred due to its simplicity:
+
+:&lt;math&gt;P_n^{(\alpha, \beta)} (1) = {n+\alpha\choose n}.&lt;/math&gt;
+
+===Symmetry relation===
+The polynomials have the symmetry relation
+
+:&lt;math&gt;P_n^{(\alpha, \beta)} (-z) = (-1)^n P_n^{(\beta, \alpha)} (z);&lt;/math&gt;
+
+thus the other terminal value is
+
+:&lt;math&gt;P_n^{(\alpha, \beta)} (-1) = (-1)^n { n+\beta\choose n}.&lt;/math&gt;
+
+===Derivatives===
+The ''k''th derivative of the explicit expression leads to
+
+:&lt;math&gt;\frac{d^k}{dz^k} P_n^{(\alpha,\beta)} (z) = \frac{\Gamma (\alpha+\beta+n+1+k)}{2^k \Gamma (\alpha+\beta+n+1)} P_{n-k}^{(\alpha+k, \beta+k)} (z).&lt;/math&gt;
+
+===Differential equation===
+The Jacobi polynomial {{math|''P''{{su|b=''n''|p=(''α'', ''β'')}}}} is a solution of the second order [[linear homogeneous differential equation]]&lt;ref name=sz/&gt;
+
+:&lt;math&gt; \left (1-x^2 \right )y'' + ( \beta-\alpha - (\alpha + \beta + 2)x )y' + n(n+\alpha+\beta+1) y = 0.&lt;/math&gt;
+
+===Recurrence relations===
+The [[Orthogonal polynomials#Recurrence relation|recurrence relation]] for the Jacobi polynomials of fixed ''α'',''β'' is:&lt;ref name=sz/&gt;
+
+:&lt;math&gt;\begin{align}
+&amp;2n (n + \alpha + \beta) (2n + \alpha + \beta - 2) P_n^{(\alpha,\beta)}(z) \\
+&amp;\qquad= (2n+\alpha + \beta-1) \Big\{ (2n+\alpha + \beta)(2n+\alpha+\beta-2) z +  \alpha^2 - \beta^2 \Big\} P_{n-1}^{(\alpha,\beta)}(z) - 2 (n+\alpha - 1) (n + \beta-1) (2n+\alpha + \beta) P_{n-2}^{(\alpha, \beta)}(z),
+\end{align}&lt;/math&gt;
+
+for ''n'' = 2, 3, ....
+
+Since the Jacobi polynomials can be described in terms of the hypergeometric function, recurrences of the hypergeometric function give equivalent recurrences of the Jacobi polynomials. In particular, Gauss' contiguous relations correspond to the identities
+
+:&lt;math&gt;\begin{align}
+(z-1) \frac{d}{dz} P_n^{(\alpha,\beta)}(z) &amp;= \frac{1}{2} (z-1)(1+\alpha+\beta+n)P_{n-1}^{(\alpha+1,\beta+1)} \\
+&amp;= n P_n^{(\alpha,\beta)} - (\alpha+n) P_{n-1}^{(\alpha,\beta+1)} \\
+&amp;=(1+\alpha+\beta+n) \left( P_n^{(\alpha,\beta+1)} - P_{n}^{(\alpha,\beta)} \right) \\
+&amp;=(\alpha+n) P_n^{(\alpha-1,\beta+1)} - \alpha P_n^{(\alpha,\beta)} \\
+&amp;=\frac{2(n+1) P_{n+1}^{(\alpha,\beta-1)} - \left(z(1+\alpha+\beta+n)+\alpha+1+n-\beta \right) P_n^{(\alpha,\beta)}}{1+z} \\
+&amp;=\frac{(2\beta+n+nz) P_n^{(\alpha,\beta)} - 2(\beta+n) P_n^{(\alpha,\beta-1)}}{1+z} \\
+&amp;=\frac{1-z}{1+z} \left( \beta P_n^{(\alpha,\beta)} - (\beta+n) P_{n}^{(\alpha+1,\beta-1)} \right) \, .
+\end{align}&lt;/math&gt;
+
+===Generating function===
+The [[generating function]] of the Jacobi polynomials is given by
+
+:&lt;math&gt; \sum_{n=0}^\infty P_n^{(\alpha,\beta)}(z) t^n = 2^{\alpha + \beta} R^{-1} (1 - t + R)^{-\alpha} (1 + t + R)^{-\beta}, &lt;/math&gt;
+
+where
+
+:&lt;math&gt; R = R(z, t) = \left(1 - 2zt + t^2\right)^{\frac{1}{2}}~,  &lt;/math&gt;
+
+and the [[principal branch|branch]] of square root is chosen so that ''R''(''z'', 0) = 1.&lt;ref name=sz/&gt;
+
+==Asymptotics of Jacobi polynomials==
+For ''x'' in the interior of {{math|[−1, 1]}}, the asymptotics of {{math|''P''{{su|b=''n''|p=(''α'', ''β'')}}}} for large ''n'' is given by the Darboux formula&lt;ref name=sz/&gt;
+
+:&lt;math&gt;P_n^{(\alpha,\beta)}(\cos \theta) = n^{-\frac{1}{2}}k(\theta)\cos (N\theta + \gamma) + O \left (n^{-\frac{3}{2}} \right ),&lt;/math&gt;
+
+where
+
+:&lt;math&gt;\begin{align}
+k(\theta) &amp;= \pi^{-\frac{1}{2}} \sin^{-\alpha-\frac{1}{2}} \tfrac{\theta}{2} \cos^{-\beta-\frac{1}{2}} \tfrac{\theta}{2},\\
+N &amp;= n + \tfrac{1}{2} (\alpha+\beta+1),\\
+\gamma &amp;= - \tfrac{\pi}{2} \left (\alpha + \tfrac{1}{2} \right ),
+\end{align} &lt;/math&gt;
+
+and the "''O''" term is uniform on the interval [ε, {{pi}}-ε] for every ε &gt; 0.
+
+The asymptotics of the Jacobi polynomials near the points ±1 is given by the [[Mehler&amp;ndash;Heine formula]]
+
+:&lt;math&gt;\begin{align}
+\lim_{n \to \infty} n^{-\alpha}P_n^{(\alpha,\beta)}\left(\cos \left ( \tfrac{z}{n} \right ) \right) &amp;= \left(\tfrac{z}{2}\right)^{-\alpha} J_\alpha(z)\\ 
+\lim_{n \to \infty} n^{-\beta}P_n^{(\alpha,\beta)}\left(\cos \left (\pi - \tfrac{z}{n} \right) \right) &amp;= \left(\tfrac{z}{2}\right)^{-\beta} J_\beta(z)
+\end{align}&lt;/math&gt;
+
+where the limits are uniform for ''z'' in a bounded [[Domain (mathematical analysis)|domain]].
+
+The asymptotics outside {{math|[−1, 1]}} is less explicit.
+
+==Applications==
+
+===Wigner d-matrix===
+The expression ({{EquationNote|1}}) allows the expression of the [[Wigner D-matrix#Wigner (small) d-matrix|Wigner d-matrix]] ''d''&lt;sup&gt;''j''&lt;/sup&gt;&lt;sub&gt;''m''’,''m''&lt;/sub&gt;(φ) (for 0 ≤ φ ≤ 4{{pi}}) in terms of Jacobi polynomials:&lt;ref&gt;{{cite book| last=Biedenharn| first=L.C.| last2=Louck| first2=J.D.|title=Angular Momentum in Quantum Physics|publisher=Addison-Wesley |location=Reading |year=1981}}&lt;/ref&gt;
+
+:&lt;math&gt;d^j_{m'm}(\phi) =\left[ \frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}\right]^{\frac{1}{2}} \left(\sin\tfrac{\phi}{2}\right)^{m-m'} \left(\cos\tfrac{\phi}{2}\right)^{m+m'} P_{j-m}^{(m-m',m+m')}(\cos \phi).&lt;/math&gt;
+
+==See also==
+*[[Askey–Gasper inequality]]
+*[[Big q-Jacobi polynomials]]
+*[[Continuous q-Jacobi polynomials]]
+*[[Little q-Jacobi polynomials]]
+*[[Pseudo Jacobi polynomials]]
+*[[Jacobi process]]
+*[[Gegenbauer polynomials]]
+*[[Romanovski polynomials]]
+
+==Notes==
+&lt;div class="references"&gt;
+&lt;references /&gt;
+
+==Further reading==
+
+*{{Citation | last1=Andrews | first1=George E. | last2=Askey | first2=Richard | last3=Roy | first3=Ranjan | title=Special functions | publisher=[[Cambridge University Press]] | series=Encyclopedia of Mathematics and its Applications | isbn=978-0-521-62321-6 |id={{ISBN|978-0-521-78988-2}} | mr=1688958 | year=1999 | volume=71}}
+*{{dlmf|id=18|title=Orthogonal Polynomials|first=Tom H. |last=Koornwinder|first2=Roderick S. C.|last2= Wong|first3=Roelof |last3=Koekoek||first4=René F. |last4=Swarttouw}}
+
+==External links==
+*{{MathWorld|title=Jacobi Polynomial|urlname=JacobiPolynomial}}
+
+&lt;/div&gt;
+
+[[Category:Special hypergeometric functions]]
+[[Category:Orthogonal polynomials]]</text>
+      <sha1>0qgnq7camdtdq6kqum51d8ldw8ewcwf</sha1>
+    </revision>
+  </page>
+</mediawiki>

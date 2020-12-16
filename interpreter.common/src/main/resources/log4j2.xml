@@ -7,19 +7,19 @@
 
     <!-- https://logging.apache.org/log4j/2.x/manual/layouts.html -->
     <Appenders>
-        <File name="LogFile" fileName="${allFileName}">
-            <PatternLayout pattern="[%d{ABSOLUTE} %level] %logger{2}: %msg%n"/>
-            <Filters>
-                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
-            </Filters>
-        </File>
+<!--        <File name="LogFile" fileName="${allFileName}">-->
+<!--            <PatternLayout pattern="[%d{ABSOLUTE} %level] %logger{2}: %msg%n"/>-->
+<!--            <Filters>-->
+<!--                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>-->
+<!--            </Filters>-->
+<!--        </File>-->
 
-        <File name="ErrorFile" fileName="${errorFileName}">
-            <PatternLayout pattern="[%d{HH:mm:ss,SSS} %p] [Thread:%t] %logger{36} - %msg%n%throwable{full}%n"/>
-            <Filters>
-                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
-            </Filters>
-        </File>
+<!--        <File name="ErrorFile" fileName="${errorFileName}">-->
+<!--            <PatternLayout pattern="[%d{HH:mm:ss,SSS} %p] [Thread:%t] %logger{36} - %msg%n%throwable{full}%n"/>-->
+<!--            <Filters>-->
+<!--                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>-->
+<!--            </Filters>-->
+<!--        </File>-->
 
         <Console name="HowardConsole" target="SYSTEM_OUT">
             <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] %logger{1}:%line - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
@@ -32,15 +32,18 @@
             </Filters>
         </Console>
 
+        <Console name="InfoConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] %logger{1}:%line - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </Console>
+
         <Console name="DebugConsole" target="SYSTEM_OUT">
             <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] %logger{1}:%line - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
             <Filters>
                 <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
-        </Console>
-
-        <Console name="TraceConsole" target="SYSTEM_OUT">
-            <PatternLayout pattern="%highlight{[%d{HH:mm:ss,SSS} %p] %logger{1}:%line - %msg%n}{TRACE=cyan,DEBUG=blue}"/>
         </Console>
 
         <Console name="ErrorConsole" target="SYSTEM_ERR">
@@ -51,13 +54,29 @@
         </Console>
     </Appenders>
     <Loggers>
+        <Logger name="org.apache.http" level="INFO" additivity="false">
+            <AppenderRef ref="InfoConsole"/>
+        </Logger>
         <Root level="all">
-<!--            <AppenderRef ref="HowardConsole"/>-->
+            <!--
+            IMPORTANT: to avoid creating massive empty logging files especially during debugging, I commented
+            out all file appender above. So if you wish to use them again (LogFile and ErrorFile) you must
+            comment them in again.
+             -->
+
+            <!-- Simply prints all debug and above to console -->
             <AppenderRef ref="DebugConsole"/>
-<!--            <AppenderRef ref="TraceConsole"/>-->
-<!--            <AppenderRef ref="ErrorConsole"/>-->
-<!--            <AppenderRef ref="LogFile"/>-->
-<!--            <AppenderRef ref="ErrorFile"/>-->
+            <!--            <AppenderRef ref="InfoConsole"/>-->
+            <!--            <AppenderRef ref="ErrorConsole"/>-->
+
+            <!--
+            Special wish for howard, it only prints info level to console, no debug and below, no warning and above.
+            This makes especially sense when you write error and log files via LogFile and ErrorFile. Otherwise this
+            logging might be not particularly useful.
+            -->
+            <!--            <AppenderRef ref="HowardConsole"/>-->
+            <!--            <AppenderRef ref="LogFile"/>-->
+            <!--            <AppenderRef ref="ErrorFile"/>-->
         </Root>
     </Loggers>
 </Configuration>

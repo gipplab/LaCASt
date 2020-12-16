@@ -2,9 +2,8 @@ package gov.nist.drmf.interpreter.evaluation.core.numeric;
 
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
-import gov.nist.drmf.interpreter.cas.constraints.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
-import gov.nist.drmf.interpreter.evaluation.core.symbolic.SymbolicConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -42,10 +41,7 @@ public class NumericalConfig implements EvaluationConfig {
             }
             LOG.debug( "Successfully loaded config for numerical tests." );
         } catch ( IOException ioe ){
-            LOG.fatal("Cannot load the maple native directory " +
-                    "information from the given " + GlobalPaths.PATH_MAPLE_CONFIG.getFileName() +
-                    " file.", ioe
-            );
+            LOG.fatal("Cannot load the numerical test config from " + GlobalPaths.PATH_NUMERICAL_SETUP.getFileName(), ioe);
         }
     }
 

@@ -7,7 +7,7 @@ import com.maplesoft.openmaple.MString;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
@@ -192,7 +192,7 @@ public class FunctionAndVariableTranslator extends ListTranslator {
             trans_base.embrace( Brackets.left_latex_parenthesis );
 
         TranslatedList trans_exponent = translateGeneralExpression( exponent );
-        trans_exponent.embrace( Brackets.left_braces );
+        trans_exponent.embrace( Brackets.left_braces_tex_sequence );
 
         translatedList.addTranslatedExpression( trans_base );
         translatedList.addTranslatedExpression( GlobalConstants.CARET_CHAR );

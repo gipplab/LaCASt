@@ -27,10 +27,12 @@ public final class Keys {
     // Key value for Mathematica
     public static final String KEY_MATHEMATICA = "Mathematica";
 
-    public static final String KEY_MATHEMATICA_MATH_DIR = "mathematica_math";
-
     // Key value for SymPy
     public static final String KEY_SYMPY = "SymPy";
+
+    public static final String SYSTEM_ENV_LD_LIBRARY_PATH = "LD_LIBRARY_PATH";
+
+    public static final String SYSTEM_ENV_MAPLE = "MAPLE";
 
     // Key value for DLMF
     public static final String KEY_DLMF = "DLMF";
@@ -59,6 +61,9 @@ public final class Keys {
             FEATURE_BRANCH_CUTS = "Branch Cuts";
 
     public static final String
+            FEATURE_ACCENT  = "Accent";
+
+    public static final String
             FEATURE_VALUE_GREEK     = "Greek",
             FEATURE_VALUE_SYMBOL    = "symbol",
             FEATURE_VALUE_FUNCTION  = "function",
@@ -69,6 +74,7 @@ public final class Keys {
             MLP_KEY_MULTIPLICATION  = "General Multiplication",
             MLP_KEY_ADDITION        = "Addition",
             MLP_KEY_FRACTION        = "fraction",
+            MLP_KEY_FUNCTION_ARGS   = "function arguments",
             MLP_KEY_UNDERSCORE      = "underscore",
             MLP_KEY_LOAD_PACKAGE    = "load-package",
             MLP_KEY_UNLOAD_PACKAGE  = "unload-package",

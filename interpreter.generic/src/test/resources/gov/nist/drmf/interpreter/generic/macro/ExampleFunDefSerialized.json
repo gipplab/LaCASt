@@ -1,0 +1,367 @@
+{
+  "ndivisors" : {
+    "macro" : "ndivisors",
+    "meta" : {
+      "description" : "the number of ways of expressing $n$ as product of $k$ factors",
+      "meaning" : "divisor-function-D",
+      "openMathID" : "numtheory1_dlmf:ndivisors_factors",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ ],
+        "standardParameters" : [ "k" ],
+        "standardVariables" : [ "n" ]
+      }
+    },
+    "numberOfParameters" : 0,
+    "numberOfOptionalParameters" : 1,
+    "numberOfArguments" : 1,
+    "TeX" : [ {
+      "genericTeX" : "d_{opPar1} (var1)",
+      "semanticTeX" : "\\ndivisors[opPar1]@{var1}",
+      "score" : 0.2
+    }, {
+      "genericTeX" : "d_{opPar1}",
+      "semanticTeX" : "\\ndivisors[opPar1]@{n}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "d (var1)",
+      "semanticTeX" : "\\ndivisors@{var1}",
+      "score" : 0.8
+    }, {
+      "genericTeX" : "d",
+      "semanticTeX" : "\\ndivisors@{n}",
+      "score" : 0.0
+    } ]
+  },
+  "genhyperF" : {
+    "macro" : "genhyperF",
+    "meta" : {
+      "description" : "the generalized hypergeometric function",
+      "meaning" : "Gauss-hypergeometric-pFq",
+      "openMathID" : "hypergeo1:hypergeometric_pFq",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ ],
+        "standardParameters" : [ "p", "q" ],
+        "standardVariables" : [ "a_1,\\dots,a_p", "b_1,\\dots,b_q", "z" ]
+      }
+    },
+    "numberOfParameters" : 2,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 3,
+    "TeX" : [ {
+      "genericTeX" : "{}_{par1}F_{par2} (var1;var2;var3)",
+      "semanticTeX" : "\\genhyperF{par1}{par2}@{var1}{var2}{var3}",
+      "score" : 0.19760479041916168
+    }, {
+      "genericTeX" : "{}_{par1}F_{par2} ({var1 \\atop var2};var3)",
+      "semanticTeX" : "\\genhyperF{par1}{par2}@@{var1}{var2}{var3}",
+      "score" : 0.8023952095808383
+    }, {
+      "genericTeX" : "{}_{par1}F_{par2} (var3)",
+      "semanticTeX" : "\\genhyperF{par1}{par2}@@@{a_1,\\dots,a_p}{b_1,\\dots,b_q}{var3}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "{}_{par1}F_{par2}",
+      "semanticTeX" : "\\genhyperF{par1}{par2}@{a_1,\\dots,a_p}{b_1,\\dots,b_q}{z}",
+      "score" : 0.0
+    } ]
+  },
+  "multinomial" : {
+    "macro" : "multinomial",
+    "meta" : {
+      "description" : "the multinomial coefficient",
+      "meaning" : "multinomial",
+      "openMathID" : "combinat1:multinomial",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ ],
+        "standardParameters" : [ "n", "n_1,n_2,\\ldots,n_k" ],
+        "standardVariables" : [ ]
+      }
+    },
+    "numberOfParameters" : 2,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 0,
+    "TeX" : [ {
+      "genericTeX" : "\\left({par1 \\atop par2}\\right)",
+      "semanticTeX" : "\\multinomial{par1}{par2}",
+      "score" : 1.0
+    } ]
+  },
+  "JacobipolyP" : {
+    "macro" : "JacobipolyP",
+    "meta" : {
+      "description" : "the Jacobi polynomial",
+      "meaning" : "Jacobi-polynomial-P",
+      "openMathID" : "orthpoly2_dlmf:Jacobi_P",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ ],
+        "standardParameters" : [ "\\alpha", "\\beta", "n" ],
+        "standardVariables" : [ "x" ]
+      }
+    },
+    "numberOfParameters" : 3,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 1,
+    "TeX" : [ {
+      "genericTeX" : "P^{(par1,par2)}_{par3} (var1)",
+      "semanticTeX" : "\\JacobipolyP{par1}{par2}{par3}@{var1}",
+      "score" : 1.0
+    }, {
+      "genericTeX" : "P^{(par1,par2)}_{par3}",
+      "semanticTeX" : "\\JacobipolyP{par1}{par2}{par3}@{x}",
+      "score" : 0.0
+    } ]
+  },
+  "ChebyshevpolyT" : {
+    "macro" : "ChebyshevpolyT",
+    "meta" : {
+      "description" : "the Chebyshev polynomial of the first kind",
+      "meaning" : "Chebyshev-polynomial-first-kind-T",
+      "openMathID" : "orthpoly2_dlmf:Chebyshev_T",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ ],
+        "standardParameters" : [ "n" ],
+        "standardVariables" : [ "x" ]
+      }
+    },
+    "numberOfParameters" : 1,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 1,
+    "TeX" : [ {
+      "genericTeX" : "T_{par1} (var1)",
+      "semanticTeX" : "\\ChebyshevpolyT{par1}@{var1}",
+      "score" : 1.0
+    }, {
+      "genericTeX" : "T_{par1}",
+      "semanticTeX" : "\\ChebyshevpolyT{par1}@{x}",
+      "score" : 0.0
+    } ]
+  },
+  "Dirichletchar" : {
+    "macro" : "Dirichletchar",
+    "meta" : {
+      "description" : "the Dirichlet character",
+      "meaning" : "Dirichlet-character",
+      "openMathID" : "numtheory2_dlmf:Dirichlet_character",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ "r" ],
+        "standardParameters" : [ ],
+        "standardVariables" : [ "n", "k" ]
+      }
+    },
+    "numberOfParameters" : 0,
+    "numberOfOptionalParameters" : 1,
+    "numberOfArguments" : 2,
+    "TeX" : [ {
+      "genericTeX" : "\\chi_{opPar1} (var1,var2)",
+      "semanticTeX" : "\\Dirichletchar[opPar1]@{var1}{var2}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "\\chi_{opPar1} (var1)",
+      "semanticTeX" : "\\Dirichletchar[opPar1]@@{var1}{k}",
+      "score" : 0.1388888888888889
+    }, {
+      "genericTeX" : "\\chi_{opPar1}",
+      "semanticTeX" : "\\Dirichletchar[opPar1]@{n}{k}",
+      "score" : 0.19791666666666666
+    }, {
+      "genericTeX" : "\\chi (var1,var2)",
+      "semanticTeX" : "\\Dirichletchar@{var1}{var2}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "\\chi (var1)",
+      "semanticTeX" : "\\Dirichletchar@@{var1}{k}",
+      "score" : 0.5277777777777778
+    }, {
+      "genericTeX" : "\\chi",
+      "semanticTeX" : "\\Dirichletchar@{n}{k}",
+      "score" : 0.19791666666666666
+    } ]
+  },
+  "FerrersP" : {
+    "macro" : "FerrersP",
+    "meta" : {
+      "description" : "the Ferrers function of the first kind",
+      "meaning" : "Ferrers-Legendre-P-first-kind",
+      "openMathID" : "legendrefun1_dlmf:Ferrers_P",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ "\\mu" ],
+        "standardParameters" : [ "\\nu" ],
+        "standardVariables" : [ "x" ]
+      }
+    },
+    "numberOfParameters" : 1,
+    "numberOfOptionalParameters" : 1,
+    "numberOfArguments" : 1,
+    "TeX" : [ {
+      "genericTeX" : "\\mathsf{P}^{opPar1}_{par1} (var1)",
+      "semanticTeX" : "\\FerrersP[opPar1]{par1}@{var1}",
+      "score" : 0.7751204648526078
+    }, {
+      "genericTeX" : "\\mathsf{P}^{opPar1}_{par1}",
+      "semanticTeX" : "\\FerrersP[opPar1]{par1}@{x}",
+      "score" : 0.0013109410430839
+    }, {
+      "genericTeX" : "\\mathsf{P}_{par1} (var1)",
+      "semanticTeX" : "\\FerrersP{par1}@{var1}",
+      "score" : 0.21892715419501135
+    }, {
+      "genericTeX" : "\\mathsf{P}_{par1}",
+      "semanticTeX" : "\\FerrersP{par1}@{x}",
+      "score" : 0.0013109410430839
+    } ]
+  },
+  "genhyperF{1}{1}" : {
+    "macro" : "genhyperF{1}{1}",
+    "meta" : {
+      "description" : "Kummer confluent hypergeometric function, $\\genhyperF{1}{1} = \\KummerconfhyperM$",
+      "meaning" : "Kummer-confluent-hypergeometric-M-as-1F1",
+      "openMathID" : "hypergeo1:hypergeometric1F1",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ ],
+        "standardParameters" : [ ],
+        "standardVariables" : [ "a", "b", "z" ]
+      }
+    },
+    "numberOfParameters" : 0,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 3,
+    "TeX" : [ {
+      "genericTeX" : "{}_{1}F_{1} (var1;var2;var3)",
+      "semanticTeX" : "\\genhyperF{1}{1}@{var1}{var2}{var3}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "{}_{1}F_{1} ({var1 \\atop var2};var3)",
+      "semanticTeX" : "\\genhyperF{1}{1}@@{var1}{var2}{var3}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "{}_{1}F_{1} (var3)",
+      "semanticTeX" : "\\genhyperF{1}{1}@@@{a}{b}{var3}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "{}_{1}F_{1}",
+      "semanticTeX" : "\\genhyperF{1}{1}@{a}{b}{z}",
+      "score" : 0.0
+    } ]
+  },
+  "posIntegers" : {
+    "macro" : "posIntegers",
+    "meta" : {
+      "description" : "the set of positive integers",
+      "meaning" : "positive-integers",
+      "openMathID" : "?_dlmf",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ ],
+        "standardParameters" : [ ],
+        "standardVariables" : [ ]
+      }
+    },
+    "numberOfParameters" : 0,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 0,
+    "TeX" : [ {
+      "genericTeX" : "\\mathbb{Z}^{+}",
+      "semanticTeX" : "\\posIntegers",
+      "score" : 0.0
+    } ]
+  },
+  "LeviCivitasym" : {
+    "macro" : "LeviCivitasym",
+    "meta" : {
+      "description" : "the Levi-Civita symbol",
+      "meaning" : "Levi-Civita",
+      "openMathID" : "combinat2_dlmf:Levi-Civita",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ ],
+        "standardParameters" : [ "i", "j", "k" ],
+        "standardVariables" : [ ]
+      }
+    },
+    "numberOfParameters" : 3,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 0,
+    "TeX" : [ {
+      "genericTeX" : "\\epsilon_{par1 par2 par3}",
+      "semanticTeX" : "\\LeviCivitasym{par1}{par2}{par3}",
+      "score" : 1.0
+    } ]
+  },
+  "Pochhammersym" : {
+    "macro" : "Pochhammersym",
+    "meta" : {
+      "description" : "the Pochhammer symbol (or shifted factorial)",
+      "meaning" : "Pochhammer",
+      "openMathID" : "hypergeo0:pochhammer",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ ],
+        "standardParameters" : [ "a", "n" ],
+        "standardVariables" : [ ]
+      }
+    },
+    "numberOfParameters" : 2,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 0,
+    "TeX" : [ {
+      "genericTeX" : "(par1)_{par2}",
+      "semanticTeX" : "\\Pochhammersym{par1}{par2}",
+      "score" : 1.0
+    } ]
+  },
+  "continuous" : {
+    "macro" : "continuous",
+    "meta" : {
+      "description" : "the set of continuous functions $n$-times differentiable on the interval $(a,b)$",
+      "meaning" : "set-of-continuous-functions-n-times-differentiable-on-interval",
+      "openMathID" : "?_dlmf",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ "n" ],
+        "standardParameters" : [ ],
+        "standardVariables" : [ "(a,b)" ]
+      }
+    },
+    "numberOfParameters" : 0,
+    "numberOfOptionalParameters" : 1,
+    "numberOfArguments" : 1,
+    "TeX" : [ {
+      "genericTeX" : "C^{opPar1} var1",
+      "semanticTeX" : "\\continuous[opPar1]@{var1}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "C^{opPar1}",
+      "semanticTeX" : "\\continuous[opPar1]@{(a,b)}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "C var1",
+      "semanticTeX" : "\\continuous@{var1}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "C",
+      "semanticTeX" : "\\continuous@{(a,b)}",
+      "score" : 0.0
+    } ]
+  },
+  "Riemannthetachar" : {
+    "macro" : "Riemannthetachar",
+    "meta" : {
+      "description" : "the Riemann theta function with characteristics",
+      "meaning" : "Riemann-theta-characterstics",
+      "openMathID" : "thetafun3_dlmf:theta_char",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ ],
+        "standardParameters" : [ "\\alpha", "\\beta" ],
+        "standardVariables" : [ "z", "\\Omega" ]
+      }
+    },
+    "numberOfParameters" : 2,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 2,
+    "TeX" : [ {
+      "genericTeX" : "\\theta\\left[{par1 \\atop par2}\\right] (var1 | var2)",
+      "semanticTeX" : "\\Riemannthetachar{par1}{par2}@{var1}{var2}",
+      "score" : 0.0
+    }, {
+      "genericTeX" : "\\theta\\left[{par1 \\atop par2}\\right]",
+      "semanticTeX" : "\\Riemannthetachar{par1}{par2}@{z}{\\Omega}",
+      "score" : 0.0
+    } ]
+  }
+}

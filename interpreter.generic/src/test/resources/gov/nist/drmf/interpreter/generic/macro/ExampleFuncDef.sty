@@ -54,3 +54,47 @@
     description={the set of functions continuous on the interval $(a,b)$},% $\continuous{a,b}$},
     sortkey={C 1 0 z},
 ]{1}[#1]
+\defSpecFun{LeviCivitasym}[3]{\epsilon_{#1\InvisibleComma#2\InvisibleComma#3}}[
+    meaning=Levi-Civita, om=combinat2_dlmf:Levi-Civita,
+    params={i}{j}{k},
+    description={the Levi-Civita symbol},% $\LeviCivitasym{i}{j}{k}$},
+    sortkey={epsilon 0 1 zzz},
+]{0}
+%% Not sure this is a function, but a KIND of function????
+\defSpecFun{Dirichletchar}[1][]{\if.#1.\chi\else\chi_{#1}\fi}[
+    meaning=Dirichlet-character, om=numtheory2_dlmf:Dirichlet_character,
+    params={r}, args={n}{k},
+    description={the Dirichlet character},% $\Dirichletchar{r}$},
+    sortkey={chi 2 1 z z z},
+]{2}[\mleft(#1,#2\mright)][\mleft(#1\mright)]
+\defSpecFun{multinomial}[2]{\genfrac(){0pt}{}{#1}{#2}}[
+    meaning=multinomial, om=combinat1:multinomial,
+    params={n}{n_1,n_2,\ldots,n_k},
+    description={the multinomial coefficient},% $\multinomial{n}{n_1,n_2,\ldots,n_k}$},
+    sortkey={*p(( 2 0 n n},
+    ]{0}
+\defSpecFun{Pochhammersym}[2]{{\mleft(#1\mright)_{#2}}}[ %Extra {} to inhibit breaks
+    meaning=Pochhammer, om=hypergeo0:pochhammer,      % ?
+    params={a}{n},
+    description={the Pochhammer symbol (or shifted factorial)},% $\Pochhammersym{a}{n}$},
+    sortkey={*p( 1 1 z z},
+    ]{0}
+\defSpecFun{Riemannthetachar}[2]{\theta\genfrac{[}{]}{0pt}{}{#1}{#2}}[%
+    meaning=Riemann-theta-characterstics, om=thetafun3_dlmf:theta_char,
+    params={\alpha}{\beta}, args={z}{\Omega},
+    description={the Riemann theta function with characteristics},
+    %     $\Riemannthetachar{\alpha}{\beta}$},
+    sortkey={theta 2 0 zz zz},
+    ]{2}[\mleft(#1 \middle| #2\mright)]
+\defSpecFun{genhyperF}[2]{{{}_{#1}F_{#2}}}[%
+    meaning=Gauss-hypergeometric-pFq, om=hypergeo1:hypergeometric_pFq,
+    params={p}{q}, args={a_1,\dots,a_p}{b_1,\dots,b_q}{z},
+    description={the generalized hypergeometric function},% $\genhyperF{p}{q}$},
+    sortkey={F 3 1 zz z z z},
+    ]{3}[\mleft(#1;#2;#3\mright)][\mleft({#1 \atop #2};#3\mright)][\mleft(#3\mright)]
+\defSpecFun{genhyperF{1}{1}}{{{}_{1}F_{1}}}[%
+    meaning=Kummer-confluent-hypergeometric-M-as-1F1, om=hypergeo1:hypergeometric1F1, % Is this correct?
+    args={a}{b}{z},
+    description={Kummer confluent hypergeometric function, $\genhyperF{1}{1} = \KummerconfhyperM$},
+    sortkey={F 3 1 zz z z z},
+    ]{3}[\mleft(#1;#2;#3\mright)][\mleft({#1 \atop #2};#3\mright)][\mleft(#3\mright)]
