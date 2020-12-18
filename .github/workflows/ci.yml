@@ -67,6 +67,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: release
+          path: release
       - name:
         id: get_release_id
         run: echo "::set-output name=release::$(cat release/tag.txt)"
