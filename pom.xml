@@ -54,14 +54,14 @@
             and Mathematica. If you did not install the CAS on your system,
             just set the variables to your home directory.
         -->
-        <maple.installation.dir>/opt/maple2019</maple.installation.dir>
+        <maple.installation.dir>/opt/maple2020</maple.installation.dir>
         <mathematica.installation.dir>/opt/Wolfram</mathematica.installation.dir>
 
         <!-- settings to proper work with pom-tagger, maple, and mathematica -->
         <mlp.path>${main.basedir}/libs/MLP/MLP.jar</mlp.path>
         <mlp.version>1.1</mlp.version>
         <maple.path>${main.basedir}/libs/Maple</maple.path>
-        <maple.version>2019.1</maple.version>
+        <maple.version>2020.1</maple.version>
         <mathematica.jlink.path>${main.basedir}/libs/Mathematica</mathematica.jlink.path>
         <mathematica.jlink.version>1.0</mathematica.jlink.version>
 
