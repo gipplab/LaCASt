@@ -8,7 +8,7 @@ lacast.config.path: "./config"
 # any new supported cas must be given in that list
 lacast.cas:
   Maple:
-    install.path: "/opt/maple2019"
+    install.path: "/opt/maple2020"
   Mathematica:
     install.path: "/opt/Wolfram"
   SymPy:
