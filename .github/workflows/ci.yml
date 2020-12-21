@@ -71,11 +71,14 @@ jobs:
       - name: Get filename from artifact
         id: get_release_id
         run: echo "::set-output name=release::$(cat release/tag.txt)"
+      - name: Generate tag
+        id: generate_tag
+        run: echo "::set-output name=tag::LaCASt-$(cat release/tag.txt)-r${GITHUB_RUN_ID}"
       - name: Upload release assets
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: LaCASt-${{ steps.get_release_id.outputs.release }}-r${ GITHUB_RUN_ID }
+          tag: ${{ steps.generate_tag.outputs.tag }}
           file: ./release/${{ steps.get_release_id.outputs.release }}.zip
           file_glob: false
           overwrite: true
