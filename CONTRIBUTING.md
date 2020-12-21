@@ -11,6 +11,7 @@
 5. [Support a new CAS](#newCAS)
 6. [The program structure and important main classes](#program)
 7. [Troubleshooting](#troubleshooting)
+8. [Deploy Vmext-Demo Private Container](#deployDkeContainer)
 
 ## Setup Project<a name="start"></a>
 
@@ -397,3 +398,28 @@ Group and count all missing macros:
 ```shell script
 awk -F, '{arr[$1] += $2;} END {for (a in arr) print arr[a]", "a}' *missing* | sort -n -r >> ../maple-missing.txt
 ```
+
+## Deploy Private VMEXT-DEMO Docker Container on DKE01<a name="deployDkeContainer"></a>
+
+This requires access to DKE01 and admin rights. So only do this, if you know what you are doing and why!
+
+1. Save and test your build locally
+```console
+agp@lab:~$ docker cp target/mathpipeline.jar vmext-demo:/mathpipeline.jar
+agp@lab:~$ docker-compose restart vmext-demo
+```
+2. If its working as expected, save and store the image and move it to DKE01
+```console
+agp@lab:~$ docker commit vmext-demo vmext-demo:lacast
+agp@lab:~$ docker save vmext-demo:lacast > vmext-demo-lacast.tar
+agp@lab:~$ scp vmext-demo-lacast.tar andreg-p@dke01:~/vmext-demo-lacast.tar
+```
+3. Save the new image as a release on LaCASt (you need to split the release into multiple zips because the maximum file size is 2GB for releases).
+4. Deploy the new image on DKE01
+```
+agp@lab:~$ ssh dke01
+andreg-p@dke01:~$ docker load -i vmext-demo-lacast.tar
+andreg-p@dke01:~$ cd ../git/srv-dke01/docker
+andreg-p@dke01:~$ docker-compose up -d --remove-orphans --force-recreate vmext-demo >> ../../srv-dke01_last.log
+```
+5. Wait a few seconds and check https://vmext-demo.formulasearchengine.com/swagger-ui.html
