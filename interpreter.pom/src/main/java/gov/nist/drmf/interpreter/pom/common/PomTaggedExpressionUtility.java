@@ -58,6 +58,17 @@ public final class PomTaggedExpressionUtility {
         }
     }
 
+    /**
+     * Returns true if the given pte is \quad or \qquad
+     * @param pte probable long space
+     * @return true if pte is \quad or \qquad
+     */
+    public static boolean isLongSpace( PomTaggedExpression pte ) {
+        if ( pte == null ) return false;
+        return MathTermTags.is( pte, MathTermTags.spaces ) &&
+                pte.getRoot().getTermText().matches("\\\\q+uads?");
+    }
+
     public static boolean isEmptyEquationElement(PomTaggedExpression pte) {
         return pte != null && ExpressionTags.equation.equalsPTE(pte.getParent()) && pte.isEmpty();
     }

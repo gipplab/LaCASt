@@ -55,7 +55,7 @@ public class SequenceTranslator extends AbstractListTranslator {
     private final String MULTIPLY;
     private final Pattern MULTIPLY_PATTERN;
 
-    private boolean hasPassedPunctuation = false;
+    private boolean hasPassedPunctuation;
 
     /**
      * Uses only for a general sequence expression.
@@ -158,11 +158,26 @@ public class SequenceTranslator extends AbstractListTranslator {
         // run through each element
         while (!expList.isEmpty()) {
             PomTaggedExpression exp = expList.remove(0);
-            translateRest(exp, expList);
+
+            if ( PomTaggedExpressionUtility.isLongSpace(exp) ) {
+                handleConstraints(expList);
+                break;
+            } else if ( upcomingConstraint(exp, expList) ) {
+                expList.remove(0);
+                handleConstraints(expList);
+                break;
+            } else {
+                translateNext(exp, expList, true);
+            }
         }
 
         // finally return value
         return localTranslations;
+    }
+
+    private boolean upcomingConstraint( PomTaggedExpression exp, List<PomTaggedExpression> expList ) {
+        return MathTermTags.is( exp, MathTermTags.comma )
+                && !expList.isEmpty() && PomTaggedExpressionUtility.isLongSpace(expList.get(0));
     }
 
     /**
@@ -192,6 +207,10 @@ public class SequenceTranslator extends AbstractListTranslator {
         // and hence the given list is already not the original list of components.
         // hence, we can safely manipulate the list as we wish
 
+        // in this method we do not need to check for constraint starts (like above)
+        // because this method is only used when an open bracket remains open. Hence there is a non closed
+        // sequence still in progress. Hence long spaces do not indicate constraints here in this method, only above
+
         // iterate through all elements
         while (!followingExp.isEmpty()) {
             // take the next expression
@@ -209,7 +228,7 @@ public class SequenceTranslator extends AbstractListTranslator {
                 else continue;
             }
 
-            translateRest(exp, followingExp);
+            translateNext(exp, followingExp, false);
         }
 
         // this should not happen. It means the algorithm reached the end but a bracket is left open.
@@ -219,9 +238,10 @@ public class SequenceTranslator extends AbstractListTranslator {
                 TranslationExceptionReason.WRONG_PARENTHESIS);
     }
 
-    private void translateRest(
+    private void translateNext(
             PomTaggedExpression exp,
-            List<PomTaggedExpression> expList
+            List<PomTaggedExpression> expList,
+            boolean skipMultiplyOnLongSpace
     ) {
         TranslatedExpression innerTranslation = parseGeneralExpression(exp, expList);
 
@@ -237,7 +257,8 @@ public class SequenceTranslator extends AbstractListTranslator {
             lastMerged = true;
         }
 
-        part = checkMultiplyAddition(exp, expList, part);
+        if ( !skipMultiplyOnLongSpace || expList.isEmpty() || !PomTaggedExpressionUtility.isLongSpace(expList.get(0)) )
+            part = checkMultiplyAddition(exp, expList, part);
 
         // finally add all elements to the inner list
         innerTranslation.replaceLastExpression(part);
@@ -246,6 +267,21 @@ public class SequenceTranslator extends AbstractListTranslator {
         } else {
             localTranslations.addTranslatedExpression(innerTranslation);
         }
+    }
+
+    private void handleConstraints(List<PomTaggedExpression> expList) {
+        LOG.debug("Interpret following elements as constraints");
+        TranslatedExpression copyOfLocal = new TranslatedExpression(localTranslations);
+        localTranslations.clear();
+
+        while ( !expList.isEmpty() ) translateNext( expList.remove(0), expList, false );
+
+        super.getGlobalTranslationList().removeLastNExps( localTranslations.getLength() );
+        super.getGlobalTranslationList().addConstraint( localTranslations.getTranslatedExpression() );
+        copyOfLocal.addConstraint( localTranslations.getTranslatedExpression() );
+
+        localTranslations.clear();
+        localTranslations.addTranslatedExpression(copyOfLocal);
     }
 
     private boolean bracketMatchOrSetMode(Brackets bracket) {

@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
@@ -19,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -449,6 +451,17 @@ class SimpleTranslationTests {
         String expect = "1 +(binomial(n + 1,k))^(2)";
         String actual = slt.translate(input);
         assertEquals(expect, actual);
+    }
+
+    @Test
+    public void constraintTranslation() {
+        String input = "1 + x \\quad x > 1";
+        String expect = "1 + x";
+        TranslationInformation translation = slt.translateToObject(input);
+        assertEquals(expect, translation.getTranslatedExpression());
+        List<String> constraints = translation.getTranslatedConstraints();
+        assertEquals(1, constraints.size());
+        assertEquals("x > 1", constraints.get(0));
     }
 
     @Test

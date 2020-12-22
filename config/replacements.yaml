@@ -9,7 +9,7 @@
 # =================================================================================================
 generalReplacements:
   -
-    pattern: (?<!\\)\\(?:displaystyle|hbox|[Bb]ig[lrg]?(?![a-zA-Z])|(?:[sb]f|cal)(?![a-zA-Z])|[!,; ]|(?:neg)?(?:m|med|thin|thick)space(?:\{.+\})?|q+uad+)
+    pattern: (?<!\\)\\(?:displaystyle|hbox|[Bb]ig[lrg]?(?![a-zA-Z])|(?:[sb]f|cal)(?![a-zA-Z])|[!,; ]|(?:neg)?(?:m|med|thin|thick)space(?:\{.+\})?)
   -
     pattern: \[\s*\]
   -
