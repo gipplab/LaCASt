@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.cas.logging;
 
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
+import gov.nist.drmf.interpreter.common.meta.ListExtender;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 
 import java.util.*;
@@ -109,6 +110,7 @@ public class TranslatedExpression {
         if ( this.latestRelationSymbol < expressions.latestRelationSymbol )
             this.latestRelationSymbol = expressions.latestRelationSymbol;
         this.requiredPackages.addAll(expressions.getRequiredPackages());
+        ListExtender.addIfNotExist(constraints, expressions.constraints);
 
         this.autoMergeLast += expressions.autoMergeLast;
         String next = autoMergeLast();

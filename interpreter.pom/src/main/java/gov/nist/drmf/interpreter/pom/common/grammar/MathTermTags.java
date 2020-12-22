@@ -81,11 +81,13 @@ public enum MathTermTags {
     }
 
     public static MathTermTags getTagByMathTerm(MathTerm term) {
+        if ( term == null ) return null;
         String termTag = term.getTag();
         return MathTermTags.getTagByKey(termTag);
     }
 
     public static MathTermTags getTagByExpression(PomTaggedExpression exp) {
+        if ( exp == null ) return null;
         MathTerm term = exp.getRoot();
         return getTagByMathTerm(term);
     }

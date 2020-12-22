@@ -87,6 +87,27 @@ public class MultiExpressionTranslationTests {
     }
 
     @Test
+    public void eqArrayWithConstraintsTest() {
+        String test = "\\begin{align} x &= y, \\quad x > z\\\\ x &= z, \\quad x < z\\end{align}";
+        TranslationInformation ti = slt.translateToObject(test);
+        assertEquals("x = y ; x = z ", ti.getTranslatedExpression());
+        assertEquals(2, ti.getTranslatedConstraints().size(), ti.getTranslatedConstraints().toString());
+
+        List<TranslationInformation> parts = ti.getPartialTranslations();
+        assertEquals(2, parts.size(), parts.toString());
+
+        TranslationInformation firstPart = parts.get(0);
+        assertEquals("x = y ", firstPart.getTranslatedExpression());
+        assertEquals(1, firstPart.getTranslatedConstraints().size());
+        assertEquals("x > z", firstPart.getTranslatedConstraints().get(0));
+
+        TranslationInformation secondPart = parts.get(1);
+        assertEquals("x = z ", secondPart.getTranslatedExpression());
+        assertEquals(1, secondPart.getTranslatedConstraints().size());
+        assertEquals("x < z", secondPart.getTranslatedConstraints().get(0));
+    }
+
+    @Test
     public void partialTranslationTest() {
         assertEquals("x = y; x = z", slt.translate( "\\begin{align} x &= y \\\\ x &= z \\end{align}" ));
         TranslationInformation ti = slt.getTranslationInformationObject();
