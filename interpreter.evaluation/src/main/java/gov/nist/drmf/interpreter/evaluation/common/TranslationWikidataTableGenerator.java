@@ -1,12 +1,11 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.core.DLMFTranslator;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
-import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
+import gov.nist.drmf.interpreter.common.eval.EvaluationConfig;
 import gov.nist.drmf.interpreter.evaluation.core.diff.NumericalDifferencesAnalyzer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

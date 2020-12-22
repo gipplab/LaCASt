@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.evaluation.core;
 
 import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
+import gov.nist.drmf.interpreter.common.eval.EvaluationConfig;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;

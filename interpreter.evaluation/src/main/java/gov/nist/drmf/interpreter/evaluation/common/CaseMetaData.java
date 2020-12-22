@@ -130,7 +130,7 @@ public class CaseMetaData {
 
         String[] conArr = sieved.stream()
                 .flatMap( c -> {
-                    EquationSplitter eq = new EquationSplitter();
+                    CaseEquationSplitter eq = new CaseEquationSplitter();
                     Collection<String> col = eq.constraintSplitter(c);
                     return col.stream();
                 })

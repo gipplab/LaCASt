@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
+import gov.nist.drmf.interpreter.common.latex.Relations;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;

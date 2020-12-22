@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.evaluation.core.symbolic;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
-import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
+import gov.nist.drmf.interpreter.common.eval.EvaluationConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,8 +12,8 @@ import java.nio.file.Paths;
 import java.util.Properties;
 import java.util.regex.Matcher;
 
-import static gov.nist.drmf.interpreter.evaluation.core.numeric.NumericalTestConstants.PATTERN_LHS;
-import static gov.nist.drmf.interpreter.evaluation.core.numeric.NumericalTestConstants.PATTERN_RHS;
+import static gov.nist.drmf.interpreter.common.eval.NumericalTestConstants.PATTERN_LHS;
+import static gov.nist.drmf.interpreter.common.eval.NumericalTestConstants.PATTERN_RHS;
 
 /**
  * @author Andre Greiner-Petter

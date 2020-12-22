@@ -4,6 +4,7 @@ import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.wolfram.jlink.Expr;
 import gov.nist.drmf.interpreter.common.cas.Constraints;
+import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
@@ -20,7 +21,6 @@ import gov.nist.drmf.interpreter.evaluation.common.CaseAnalyzer;
 import gov.nist.drmf.interpreter.evaluation.common.ProcedureLoader;
 import gov.nist.drmf.interpreter.evaluation.common.Status;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
-import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
 import gov.nist.drmf.interpreter.evaluation.core.symbolic.SymbolicEvaluator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
@@ -354,10 +354,10 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
                 lineResult[c.getLine()].add("Skipped - Because timed out");
                 Status.ABORTED.add();
             } else {
-                ICASEngineNumericalEvaluator.ResultType resType = testResult(results);
+                TestResultType resType = testResult(results);
                 String evaluation = "";
-                int tested = getNumericalEvaluator().getPerformedTestCases();
-                int failed = getNumericalEvaluator().getNumberOfFailedTestCases();
+                int tested = getNumericEvaluator().getPerformedTestCases();
+                int failed = getNumericEvaluator().getNumberOfFailedTestCases();
                 if ( tested == 0 && failed > 0 ) {
                     lineResult[c.getLine()].add("Skip - No test values generated");
                     Status.NO_TEST_VALUES.add();
@@ -443,7 +443,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             rhs = "";
         }
 
-        return config.getTestExpression( this.getNumericalEvaluator(), lhs, rhs );
+        return config.getTestExpression( this.getNumericEvaluator(), lhs, rhs );
     }
 
     @Override

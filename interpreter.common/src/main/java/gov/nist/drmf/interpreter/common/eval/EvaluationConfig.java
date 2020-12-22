@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.evaluation.core;
+package gov.nist.drmf.interpreter.common.eval;
 
 import java.nio.file.Path;
 

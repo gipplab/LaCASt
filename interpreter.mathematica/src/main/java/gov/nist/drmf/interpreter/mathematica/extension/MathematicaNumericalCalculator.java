@@ -5,6 +5,7 @@ import com.wolfram.jlink.ExprFormatException;
 import com.wolfram.jlink.MathLinkException;
 import gov.nist.drmf.interpreter.common.cas.GenericCommandBuilder;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
+import gov.nist.drmf.interpreter.common.eval.TestResultType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
@@ -273,7 +274,7 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
     }
 
     @Override
-    public ResultType getStatusOfResult(Expr results) throws ComputerAlgebraSystemEngineException {
+    public TestResultType getStatusOfResult(Expr results) throws ComputerAlgebraSystemEngineException {
         String resStr = results.toString();
 
         try {
@@ -284,9 +285,9 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
 
 //        LOG.info("Numerical test finished. Result: " + resStr);
         LOG.info("Numerical test finished. Result: " + LogManipulator.shortenOutput(resStr, 5));
-        if ( !resStr.matches("^\\{.*") ) return ResultType.ERROR;
-        if ( resStr.matches("\\{}|\\{0(?:.0)?[^\\d.]+}") ) return ResultType.SUCCESS;
-        return ResultType.FAILURE;
+        if ( !resStr.matches("^\\{.*") ) return TestResultType.ERROR;
+        if ( resStr.matches("\\{}|\\{0(?:.0)?[^\\d.]+}") ) return TestResultType.SUCCESS;
+        return TestResultType.FAILURE;
     }
 
     @Override

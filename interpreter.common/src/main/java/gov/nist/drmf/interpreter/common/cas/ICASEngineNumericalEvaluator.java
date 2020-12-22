@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.common.cas;
 
+import gov.nist.drmf.interpreter.common.eval.TestResultType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
 import org.apache.logging.log4j.LogManager;
@@ -8,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Collection;
 import java.util.List;
 import java.util.Observer;
+import java.util.Set;
 
 /**
  * @author Andre Greiner-Petter
@@ -62,6 +64,24 @@ public interface ICASEngineNumericalEvaluator<T> extends Observer, IAbortEvaluat
      */
     String buildTestCases(String nameOfConstraints, int maxCombis) throws ComputerAlgebraSystemEngineException, IllegalArgumentException;
 
+    /**
+     * Returns true if this engine requires to register packages. If this is true
+     * you should implement and use {@link #addRequiredPackages(Set)}.
+     * @return true if this engine requires to register packages
+     */
+    default boolean requiresRegisteredPackages() {
+        return false;
+    }
+
+    /**
+     * Is ignored by default. You should implement this method alongside with
+     * {@link #requiresRegisteredPackages()}.
+     * @param packages the packages to register
+     */
+    default void addRequiredPackages(Set<String> packages) {
+        // nothing to do here...
+    }
+
     T performNumericalTests(
             String expression,
             String testCasesName,
@@ -69,7 +89,7 @@ public interface ICASEngineNumericalEvaluator<T> extends Observer, IAbortEvaluat
             int precision
     ) throws ComputerAlgebraSystemEngineException;
 
-    ResultType getStatusOfResult(T results) throws ComputerAlgebraSystemEngineException;
+    TestResultType getStatusOfResult(T results) throws ComputerAlgebraSystemEngineException;
 
     default int getPerformedTestCases() {
         return 0;
@@ -99,9 +119,5 @@ public interface ICASEngineNumericalEvaluator<T> extends Observer, IAbortEvaluat
      */
     static String getValuesName( String variableName ) {
         return variableName + "Vals";
-    }
-
-    enum ResultType {
-        SUCCESS, FAILURE, ERROR
     }
 }

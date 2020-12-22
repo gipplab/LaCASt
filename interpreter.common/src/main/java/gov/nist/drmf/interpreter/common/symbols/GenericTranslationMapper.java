@@ -5,19 +5,22 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 /**
  * @author Andre Greiner-Petter
  */
-public abstract class AbstractJSONLoader {
+public class GenericTranslationMapper {
+    private static final Logger LOG = LogManager.getLogger(GenericTranslationMapper.class.getName());
+
     /**
      * Storage System:
      *  directory[0] <- all symbols in language 0
@@ -46,20 +49,18 @@ public abstract class AbstractJSONLoader {
 
     /**
      * Initialize the class by loading all greek symbols from a given json file.
-     * @param letters_json_path GreekLetters.json
+     * @param lettersJsonPath GreekLetters.json
+     * @param languages the key that indicates the available languages
+     * @param groupName the key of the group that should be loaded
      */
     protected void init(
-            Path letters_json_path,
+            Path lettersJsonPath,
             String languages,
-            String group_name
-    ) throws IOException
-    {
+            String groupName
+    ) throws IOException {
         try {
-            List<String> lines = Files.readAllLines(letters_json_path);
-            String file = "";
-            while ( !lines.isEmpty() ) file += lines.remove(0);
-            JsonParser parser =  new JsonParser();
-            JsonElement tree = parser.parse(file);
+            String file = Files.readString(lettersJsonPath);
+            JsonElement tree = JsonParser.parseString(file);
             JsonObject mainObj = tree.getAsJsonObject();
             JsonArray langs = mainObj.get(languages).getAsJsonArray();
 
@@ -72,7 +73,7 @@ public abstract class AbstractJSONLoader {
                 word_map[i] = new HashMap<>();
             }
 
-            JsonObject lettersObj = mainObj.get(group_name).getAsJsonObject();
+            JsonObject lettersObj = mainObj.get(groupName).getAsJsonObject();
             Set<Map.Entry<String, JsonElement>> letters = lettersObj.entrySet();
             dictionary = new String[langs.size()][letters.size()];
 
@@ -90,13 +91,11 @@ public abstract class AbstractJSONLoader {
             }
         } catch ( IOException ioe ){
             String s = "Unable to load greek symbols and constants from json directory in: " +
-                    letters_json_path.toString();
-            System.err.println(s);
+                    lettersJsonPath.toString();
+            LOG.error(s);
             throw ioe;
         }
     }
-
-    public abstract String translate( String symbol );
 
     /**
      * Translates a given symbol from a given language to another given language.

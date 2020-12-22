@@ -7,6 +7,7 @@ import com.maplesoft.openmaple.Numeric;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.eval.TestResultType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
@@ -109,6 +110,12 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
         }
     }
 
+    @Override
+    public boolean requiresRegisteredPackages() {
+        return true;
+    }
+
+    @Override
     public void addRequiredPackages(Set<String> requiredPackages) {
         this.requiredPackages.addAll(requiredPackages);
     }
@@ -357,7 +364,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     }
 
     @Override
-    public ResultType getStatusOfResult(Algebraic results) throws ComputerAlgebraSystemEngineException {
+    public TestResultType getStatusOfResult(Algebraic results) throws ComputerAlgebraSystemEngineException {
         try {
             if ( results instanceof com.maplesoft.openmaple.List ) {
                 com.maplesoft.openmaple.List resList = (com.maplesoft.openmaple.List) results;
@@ -365,18 +372,18 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
                 return getStatusOfList(resList);
             } else {
                 LOG.warn("Sieved list was not a list object... " + results.toString());
-                return ResultType.ERROR;
+                return TestResultType.ERROR;
             }
         } catch (MapleException me) {
             throw new ComputerAlgebraSystemEngineException(me);
         }
     }
 
-    private ResultType getStatusOfList(com.maplesoft.openmaple.List aList) throws MapleException {
+    private TestResultType getStatusOfList(com.maplesoft.openmaple.List aList) throws MapleException {
         // if l == 0, the list is empty so the test was successful
         if ( aList.length() == 0 ){
             LOG.info("Test was successful.");
-            return ResultType.SUCCESS;
+            return TestResultType.SUCCESS;
         }
 
         // otherwise the list contains errors or simple failures
@@ -387,8 +394,8 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
         }
 
         if ( allError && aList.length() == numberOfTestCases ) {
-            return ResultType.ERROR;
-        } else return ResultType.FAILURE;
+            return TestResultType.ERROR;
+        } else return TestResultType.FAILURE;
     }
 
     @Override

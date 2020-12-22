@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
+import gov.nist.drmf.interpreter.common.latex.Relations;
+import gov.nist.drmf.interpreter.pom.common.EquationSplitter;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,46 +15,38 @@ import java.util.regex.Pattern;
 /**
  * @author Andre Greiner-Petter
  */
-public class EquationSplitter {
-    private static final Logger LOG = LogManager.getLogger(EquationSplitter.class.getName());
+public class CaseEquationSplitter {
+    private static final Logger LOG = LogManager.getLogger(CaseEquationSplitter.class.getName());
 
     private final static Pattern RELATION_MATCHER = Pattern.compile(
             "\\s*(?:([<>=][<>=]?)|(\\\\[ngl]eq?)([^a-zA-Z])|([()\\[\\]{}|]))\\s*"
     );
 
-    private LinkedList<Brackets> bracketStack = new LinkedList<>();
-    private LinkedList<String> parts = new LinkedList<>();
-    private LinkedList<Relations> rels = new LinkedList<>();
-    private StringBuffer bf = new StringBuffer();
+    private final EquationSplitter equationSplitter;
 
-    public EquationSplitter() {}
-
-    private void reset() {
-        bracketStack.clear();
-        parts.clear();
-        rels.clear();
-        bf = new StringBuffer();
+    public CaseEquationSplitter() {
+        this.equationSplitter = new EquationSplitter();
     }
 
     public LinkedList<Case> split(String latex, CaseMetaData metaData) {
-        buildPartsAndRels(latex);
-        return listCases(parts, rels, metaData);
+        this.equationSplitter.analyzeTex(latex);
+        return listCases(equationSplitter.getParts(), equationSplitter.getRelations(), metaData);
     }
 
     public Collection<String> constraintSplitter(String latex) {
-        buildPartsAndRels(latex);
+        this.equationSplitter.analyzeTex(latex);
         List<String> constraints = new LinkedList<>();
 
-        while ( !rels.isEmpty() ) {
-            String left = parts.removeFirst();
-            String right = parts.getFirst();
-            Relations rel = rels.removeFirst();
+        while ( !equationSplitter.getRelations().isEmpty() ) {
+            String left = equationSplitter.getParts().removeFirst();
+            String right = equationSplitter.getParts().getFirst();
+            Relations rel = equationSplitter.getRelations().removeFirst();
 
             String[] leftElements = left.split(",");
             String[] rightElements = right.split(",");
             boolean numberChain = true;
             if ( rightElements.length > 1 ) {
-                if ( rightElements.length == 2 && !rels.isEmpty() ) numberChain = false;
+                if ( rightElements.length == 2 && !equationSplitter.getRelations().isEmpty() ) numberChain = false;
                 else {
                     for ( String r : rightElements ) {
                         numberChain &= r.matches("\\s*(-?\\s*[0-9.]+|\\\\[lc]?dots)\\s*");
@@ -71,8 +65,8 @@ public class EquationSplitter {
             }
 
             if ( rightElements.length > 1 ) {
-                parts.removeFirst();
-                parts.addFirst( right.substring(right.indexOf(",")+1) );
+                equationSplitter.getParts().removeFirst();
+                equationSplitter.getParts().addFirst( right.substring(right.indexOf(",")+1) );
             }
         }
 
@@ -83,67 +77,6 @@ public class EquationSplitter {
         LeftRightSide lrs = new LeftRightSide(latex);
         if ( lrs.wasSplitted() ) lrs.addCases(constraints);
         else constraints.add(latex);
-    }
-
-    private void buildPartsAndRels(String latex) {
-        reset();
-        Matcher relM = RELATION_MATCHER.matcher(latex);
-        String cacheReplacement = null;
-
-        while ( relM.find() ) {
-            cacheReplacement = handleNextMatch(relM, cacheReplacement);
-        }
-
-        relM.appendTail(bf);
-        String lastPart = bf.toString();
-        if ( cacheReplacement != null ) {
-            lastPart = cacheReplacement + lastPart;
-        }
-        parts.add( lastPart.trim() );
-    }
-
-    private String handleNextMatch(Matcher relM, String cacheReplacement) {
-        if ( relM.group(1) != null || relM.group(2) != null ) {
-            String relStr = relM.group(1) != null ? relM.group(1) : relM.group(2);
-            Relations rel = CaseAnalyzer.getRelation(relStr);
-            if ( rel == null ) {
-                return null;
-            }
-            cacheReplacement = handleRelationCase(relM, cacheReplacement, rel);
-        } else if ( relM.group(4) != null ) {
-            checkBracket(relM);
-        }
-        return cacheReplacement;
-    }
-
-    private String handleRelationCase(Matcher relM, String cacheReplacement, Relations rel) {
-        if ( bracketStack.isEmpty() ){
-            relM.appendReplacement(bf, "");
-            String p = bf.toString();
-            if ( cacheReplacement != null ) {
-                p = cacheReplacement + p;
-                cacheReplacement = null;
-            }
-            p = p.trim();
-            parts.addLast(p);
-            rels.addLast(rel);
-            bf = new StringBuffer(); // reset buffer
-            if ( relM.group(2) != null ) {
-                cacheReplacement = relM.group(3);
-            }
-        }
-        return cacheReplacement;
-    }
-
-    private void checkBracket(Matcher relM) {
-        String relStr = relM.group(4);
-        Brackets b = Brackets.getBracket(relStr);
-        if ( !bracketStack.isEmpty() ){
-            Brackets last = bracketStack.getLast();
-            if ( last.opened && last.counterpart.equals(b.symbol) ) {
-                bracketStack.removeLast();
-            } else bracketStack.addLast(b);
-        } else bracketStack.addLast(b);
     }
 
     private static boolean allEquals(LinkedList<Relations> rels) {
