@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.evaluation.common;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
+import gov.nist.drmf.interpreter.common.latex.Relations;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.core.DLMFTranslator;
 import org.apache.commons.io.IOUtils;

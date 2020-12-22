@@ -1,9 +1,8 @@
-package gov.nist.drmf.interpreter.evaluation.core.numeric;
+package gov.nist.drmf.interpreter.common.eval;
 
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
-import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,7 +16,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.regex.Matcher;
 
-import static gov.nist.drmf.interpreter.evaluation.core.numeric.NumericalTestConstants.*;
+import static gov.nist.drmf.interpreter.common.eval.NumericalTestConstants.*;
 
 /**
  * @author Andre Greiner-Petter

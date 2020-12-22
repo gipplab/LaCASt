@@ -1,12 +1,12 @@
 package gov.nist.drmf.interpreter.evaluation.core.numeric;
 
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
-import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.eval.INumericTestCalculator;
+import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.evaluation.core.symbolic.AbstractSymbolicEvaluator;
-import gov.nist.drmf.interpreter.maple.extension.NumericCalculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.intellij.lang.annotations.Language;
@@ -14,13 +14,16 @@ import org.intellij.lang.annotations.Language;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.regex.Matcher;
 
 /**
  * @author Andre Greiner-Petter
  */
-public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T> {
+public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T> implements INumericTestCalculator<T> {
     private static final Logger LOG = LogManager.getLogger(AbstractNumericalEvaluator.class.getName());
 
     private ICASEngineNumericalEvaluator<T> numericalEvaluator;
@@ -36,6 +39,11 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
         this.numericalEvaluator = numericalEvaluator;
     }
 
+    @Override
+    public ICASEngineNumericalEvaluator<T> getNumericEvaluator(){
+        return this.numericalEvaluator;
+    }
+
     public void setGlobalAssumptions(List<String> globalAssumptions) {
         numericalEvaluator.setGlobalAssumptions(globalAssumptions);
     }
@@ -49,78 +57,6 @@ public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T>
         for ( String script : scripts ) {
             enterEngineCommand(script);
         }
-    }
-
-    public T performNumericalTest(
-            NumericalTest test
-    ) throws ComputerAlgebraSystemEngineException, IllegalArgumentException {
-        LOG.info("Prepare numerical test.");
-
-        // store variables first
-        numericalEvaluator.storeVariables(
-                test.getVariables(),
-                test.getTestValues()
-        );
-
-        // next, store constraint variables extracted from blueprints
-        numericalEvaluator.storeConstraintVariables(
-                test.getConstraintVariables(),
-                test.getConstraintVariablesValues()
-        );
-
-        // next, store special variables (such as k should be integer)
-        numericalEvaluator.storeExtraVariables(
-                test.getExtraVariables(),
-                test.getExtraVariablesValues()
-        );
-
-        // next, store the actual constraints
-        String constraintN = numericalEvaluator.setConstraints(test.getConstraints());
-
-
-        // finally, generate all test cases that fit the constraints
-        String testValuesN = numericalEvaluator.buildTestCases(
-                constraintN,
-                test.getMaxCombis()
-        );
-
-//        Thread abortThread = null;
-//        if ( !test.skipClassicAbortion() ) {
-//            abortThread = getAbortionThread(numericalEvaluator, getTimeoutSeconds()*2);
-//            abortThread.start();
-//        }
-
-        if ( numericalEvaluator instanceof NumericCalculator ) {
-            ((NumericCalculator)numericalEvaluator).addRequiredPackages(super.getRequiredPackages());
-        }
-
-        // perform the test
-        return numericalEvaluator.performNumericalTests(
-                test.getTestExpression(),
-                testValuesN,
-                test.getPostProcessingMethodName(),
-                test.getPrecision()
-        );
-
-//        if ( abortThread != null ) abortThread.interrupt();
-//        return res;
-    }
-
-    public boolean isAbortedResult(T result) {
-        return numericalEvaluator.wasAborted(result);
-    }
-
-//    @Override
-//    public String getOverviewString() {
-//        return Status.buildNumericalString();
-//    }
-
-    public ICASEngineNumericalEvaluator.ResultType testResult(T results) throws ComputerAlgebraSystemEngineException {
-        return numericalEvaluator.getStatusOfResult(results);
-    }
-
-    public ICASEngineNumericalEvaluator<?> getNumericalEvaluator() {
-        return numericalEvaluator;
     }
 
     public Set<ID> getSpecificResults(Path dataset, @Language("RegExp") String resultString) {

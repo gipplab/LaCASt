@@ -1,7 +1,6 @@
-package gov.nist.drmf.interpreter.evaluation.core.numeric;
+package gov.nist.drmf.interpreter.common.eval;
 
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
-import gov.nist.drmf.interpreter.evaluation.common.Case;
 
 import java.util.List;
 import java.util.Set;
@@ -31,7 +30,7 @@ public class NumericalTest {
 
     public NumericalTest(
             String testExpression,
-            Case c,
+            INumericTestCase c,
             NumericalConfig config,
             IConstraintTranslator translator
     ) {
