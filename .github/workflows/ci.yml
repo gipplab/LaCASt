@@ -44,6 +44,7 @@ jobs:
           ./cc-test-reporter upload-coverage -d > jacocoUpload.log 2>&1
       - name: Creating release
         id: create_release
+        if: github.ref == 'refs/heads/master'
         run: |
           TRAVIS_TAG="$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)"
           rm -rf libs/logs
@@ -53,7 +54,7 @@ jobs:
           echo "${TRAVIS_TAG}" >> release/tag.txt
       - name: Generate tag
         id: generate_tag
-        run: echo "::set-output name=tag::LaCASt-${{ steps.generate_tag.outputs.tag }}-r${GITHUB_RUN_ID}"
+        run: echo "::set-output name=tag::LaCASt-$(cat release/tag.txt)-r${GITHUB_RUN_ID}"
       - name: Deploy release on Github
         uses: svenstaro/upload-release-action@v2
         with:
