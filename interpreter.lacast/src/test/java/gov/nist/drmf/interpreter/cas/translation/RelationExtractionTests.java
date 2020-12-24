@@ -6,10 +6,14 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.latex.RelationalComponents;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
+import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
+import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
@@ -115,6 +119,23 @@ public class RelationExtractionTests {
                 gen("=") );
         List<TranslationInformation> subEqs = ti.getPartialTranslations();
         assertEquals(0, subEqs.size());
+    }
+
+    @Resource("components/MultiEquationArray.tex")
+    public void massiveMultilineEquationTest(String latex) {
+        TranslationInformation ti = slt.translateToObject(latex);
+        test( ti, gen(
+                "(z - 1)*Divide[d,d*z]*JacobiP[\\[Beta], n, \\[Alpha], z]",
+                "Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*JacobiP[\\[Beta]+ 1, n - 1, \\[Alpha]+ 1, z]",
+                "n*JacobiP[\\[Beta], n, \\[Alpha], z]-(\\[Alpha]+ n)*JacobiP[\\[Beta]+ 1, n - 1, \\[Alpha], z]",
+                "(1 + \\[Alpha]+ \\[Beta]+ n)*(JacobiP[\\[Beta]+ 1, n, \\[Alpha], z]- JacobiP[\\[Beta], n, \\[Alpha], z])" ,
+                "(\\[Alpha]+ n)*JacobiP[\\[Beta]+ 1, n, \\[Alpha]- 1, z]- \\[Alpha]*JacobiP[\\[Beta], n, \\[Alpha], z]",
+                "Divide[2*(n + 1)*JacobiP[\\[Beta]- 1, n + 1, \\[Alpha], z]-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*JacobiP[\\[Beta], n, \\[Alpha], z],1 + z]",
+                "Divide[(2*\\[Beta]+ n + n*z)*JacobiP[\\[Beta], n, \\[Alpha], z]- 2*(\\[Beta]+ n)*JacobiP[\\[Beta]- 1, n, \\[Alpha], z],1 + z]",
+                "Divide[1 - z,1 + z]*(\\[Beta]*JacobiP[\\[Beta], n, \\[Alpha], z]-(\\[Beta]+ n)*JacobiP[\\[Beta]- 1, n, \\[Alpha]+ 1, z])"
+        ), gen(
+                "=", "=", "=", "=", "=", "=", "="
+        ) );
     }
 
     private static void test(TranslationInformation info, String[] parts, String[] rel) {

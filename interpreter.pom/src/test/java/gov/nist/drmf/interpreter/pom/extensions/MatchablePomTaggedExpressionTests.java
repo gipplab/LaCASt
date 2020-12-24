@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.pom.extensions;
 
 import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
+import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.pom.MLPWrapper;
@@ -1467,9 +1468,8 @@ public class MatchablePomTaggedExpressionTests {
         assertEquals("\\Jacobithetaq{3}@@{0}{\\exp@{-\\pi\\ccompellintKk@{k}/\\compellintKk@{k}}}", ppte.getTexString());
     }
 
-    @Test
-    public void stressTest() throws ParseException, IOException {
-        String testStrings = getResourceContent("StressTestList.txt");
+    @Resource("StressTestList.txt")
+    public void stressTest(String testStrings) throws ParseException {
         String lookout = "P_{var1}^{(var2, var3)}(var4)";
         MatchablePomTaggedExpression matchPTE = PomMatcherBuilder.compile(mlp, lookout, "var\\d");
 
@@ -1496,9 +1496,5 @@ public class MatchablePomTaggedExpressionTests {
         if ( elapsed.toMillis() > 500 ) {
             LOG.warn("Stress test took over half a second. There seem to be a problem with the performance. It's worth checking.");
         }
-    }
-
-    private String getResourceContent(String resourceFilename) throws IOException {
-        return IOUtils.toString(this.getClass().getResourceAsStream(resourceFilename), StandardCharsets.UTF_8);
     }
 }

@@ -1,0 +1,9 @@
+\begin{align}
+    (z-1) \frac{d}{dz} \JacobipolyP{n}{\alpha}{\beta}@{z} &= \frac{1}{2} (z-1)(1+\alpha+\beta+n)\JacobipolyP{n-1}{\alpha+1}{\beta+1}@{z} \\
+    &= n \JacobipolyP{n}{\alpha}{\beta}@{z} - (\alpha+n) \JacobipolyP{n-1}{\alpha}{\beta+1}@{z} \\
+    &=(1+\alpha+\beta+n) \left( \JacobipolyP{n}{\alpha}{\beta+1}@{z} - \JacobipolyP{n}{\alpha}{\beta}@{z} \right) \\
+    &=(\alpha+n) \JacobipolyP{n}{\alpha-1}{\beta+1}@{z} - \alpha \JacobipolyP{n}{\alpha}{\beta}@{z} \\
+    &=\frac{2(n+1) \JacobipolyP{n+1}{\alpha}{\beta-1}@{z} - \left(z(1+\alpha+\beta+n)+\alpha+1+n-\beta \right) \JacobipolyP{n}{\alpha}{\beta}@{z}}{1+z} \\
+    &=\frac{(2\beta+n+nz) \JacobipolyP{n}{\alpha}{\beta}@{z} - 2(\beta+n) \JacobipolyP{n}{\alpha}{\beta-1}@{z}}{1+z} \\
+    &=\frac{1-z}{1+z} \left( \beta \JacobipolyP{n}{\alpha}{\beta}@{z} - (\beta+n) \JacobipolyP{n}{\alpha+1}{\beta-1}@{z} \right)
+\end{align}

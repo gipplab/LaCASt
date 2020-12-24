@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.generic.macro;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import mlp.ParseException;
@@ -71,9 +72,8 @@ public class MacroDistributionAnalyzerTests {
         assertEquals(1, counter.getAtCounter().size());
     }
 
-    @Test
-    void serializerCheck() throws IOException {
-        String jacobiSerialized = MacroDefinitionTests.readResource("JacobipolyPDistributions.json");
+    @Resource("JacobipolyPDistributions.json")
+    void serializerCheck(String jacobiSerialized) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         MacroCounter counter = mapper.readValue( jacobiSerialized, MacroCounter.class );
         assertNotNull(counter);
@@ -87,7 +87,7 @@ public class MacroDistributionAnalyzerTests {
     }
 
     @Test
-    void standardInstanceTest() throws IOException {
+    void standardInstanceTest() {
         MacroDistributionAnalyzer analyzer = MacroDistributionAnalyzer.getStandardInstance();
         MacroCounter counter = analyzer.getMacroCounter( "\\JacobipolyP" );
         assertNotNull(counter);

@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.evaluation.common;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.latex.Relations;
+import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.core.DLMFTranslator;
 import org.apache.commons.io.IOUtils;
@@ -229,11 +230,10 @@ public class CaseAnalyzerTests {
         assertEquals(Relations.EQUAL, c.getRelation());
     }
 
-    @Test
-    public void fileTest() throws IOException {
+    @Resource("test-cases.txt")
+    public void fileTest(String testCases) {
         SymbolDefinedLibrary lib = new SymbolDefinedLibrary();
 
-        String testCases = getResourceContent("test-cases.txt");
         int[] lineCounter = new int[]{0};
         Arrays.stream(testCases.split("\n"))
                 .peek( l -> lineCounter[0]++ )
@@ -266,9 +266,8 @@ public class CaseAnalyzerTests {
         assertEquals("1 + B_{j}", c.getLHS());
     }
 
-    @Test
-    void zetaSubstitutionTest() throws IOException {
-        String testStrings = getResourceContent("zetaSubstitutionTests.txt");
+    @Resource("zetaSubstitutionTests.txt")
+    void zetaSubstitutionTest(String testStrings) {
         SymbolDefinedLibrary lib = new SymbolDefinedLibrary();
         int[] lineCounter = new int[]{0};
         List<LinkedList<Case>> testCases = Arrays.stream(testStrings.split("\n"))
@@ -306,10 +305,8 @@ public class CaseAnalyzerTests {
         assertEquals("\\cpi^{-1}\\sqrt{z/3}\\modBesselK{+ 1/3}@{{\\frac{2}{3} z^{\\frac{3}{2}}}}", actualAiryAiTest.getRHS());
     }
 
-    @Test
-    void wrongSubstitutionTest() throws IOException {
-        String testStrings = getResourceContent("wrongSubstitutionTests.txt");
-
+    @Resource("wrongSubstitutionTests.txt")
+    void wrongSubstitutionTest(String testStrings) {
         SymbolDefinedLibrary lib = new SymbolDefinedLibrary();
         int[] lineCounter = new int[]{0};
         List<LinkedList<Case>> testCases = Arrays.stream(testStrings.split("\n"))
@@ -327,10 +324,8 @@ public class CaseAnalyzerTests {
         assertEquals("-\\EulerConstant", actualAiryAiTest.getRHS());
     }
 
-    @Test
-    void recursiveSubstitutionTest() throws IOException {
-        String testStrings = getResourceContent("recursiveDefinitionTests.txt");
-
+    @Resource("recursiveDefinitionTests.txt")
+    void recursiveSubstitutionTest(String testStrings) {
         SymbolDefinedLibrary lib = new SymbolDefinedLibrary();
         List<LinkedList<Case>> testCases = loadTestCases(testStrings, lib);
 
@@ -363,10 +358,8 @@ public class CaseAnalyzerTests {
                 ")", trickyParaWCase.getRHS());
     }
 
-    @Test
-    void jacobiSubstitutionTest() throws IOException {
-        String testStrings = getResourceContent("jacobiQTests.txt");
-
+    @Resource("jacobiQTests.txt")
+    void jacobiSubstitutionTest(String testStrings){
         SymbolDefinedLibrary lib = new SymbolDefinedLibrary();
         List<LinkedList<Case>> testCases = loadTestCases(testStrings, lib);
 
@@ -386,10 +379,8 @@ public class CaseAnalyzerTests {
                 jacobiCase.getRHS());
     }
 
-    @Test
-    void gammaSubstitutionConstraintTest() throws IOException {
-        String testStrings = getResourceContent("gammaSubstitutionConstraintTests.txt");
-
+    @Resource("gammaSubstitutionConstraintTests.txt")
+    void gammaSubstitutionConstraintTest(String testStrings) {
         SymbolDefinedLibrary lib = new SymbolDefinedLibrary();
         List<LinkedList<Case>> testCases = loadTestCases(testStrings, lib);
 
@@ -405,10 +396,8 @@ public class CaseAnalyzerTests {
         assertEquals("Re(nu +(1)/(2)) > 0", constraintsAfter.get(1));
     }
 
-    @Test
-    void gammaSubstitutionMultiConstraintTest() throws IOException {
-        String testStrings = getResourceContent("gammaSubstitutionConstraintTests.txt");
-
+    @Resource("gammaSubstitutionConstraintTests.txt")
+    void gammaSubstitutionMultiConstraintTest(String testStrings) {
         SymbolDefinedLibrary lib = new SymbolDefinedLibrary();
         List<LinkedList<Case>> testCases = loadTestCases(testStrings, lib);
 
@@ -429,9 +418,5 @@ public class CaseAnalyzerTests {
                 .peek( l -> lineCounter[0]++ )
                 .map(l -> CaseAnalyzer.analyzeLine(l, lineCounter[0], lib))
                 .collect(Collectors.toList());
-    }
-
-    private String getResourceContent(String resourceFilename) throws IOException {
-        return IOUtils.toString(this.getClass().getResourceAsStream(resourceFilename), StandardCharsets.UTF_8);
     }
 }
