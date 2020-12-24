@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.common;
+package gov.nist.drmf.interpreter.common.latex;
 
 import gov.nist.drmf.interpreter.common.replacements.ReplacementConfig;
 import org.apache.logging.log4j.LogManager;

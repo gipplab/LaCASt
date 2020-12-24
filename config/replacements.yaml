@@ -14,7 +14,7 @@ generalReplacements:
     pattern: \[\s*\]
   -
     # you need single quotes here
-    pattern: '(?:[.;<>^/\t\s]|\\\\)+$'
+    pattern: '(?:[.;^/\t\s]|\\\\)+$'
   -
     pattern: (\\hiderel\s*\{\s*([=<>/+\-])\s*})
     replacement: $2

@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.cas.logging;
 
+import gov.nist.drmf.interpreter.common.TranslationInformation;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -106,5 +108,13 @@ public class TranslatedExpressionHelper {
         }
         varPattern.append("\\Q").append(var.get(var.size()-1)).append("\\E)");
         return varPattern;
+    }
+
+    public static void addTranslatedExpressionInformation(TranslatedExpression te, TranslationInformation ti) {
+        ti.setTranslatedExpression( te.getTranslatedExpression() );
+        ti.setRequiredPackages( te.getRequiredPackages() );
+        ti.setFreeVariables( te.getFreeVariables() );
+        ti.setRelationalComponents( te.getAllRelationalComponents() );
+        ti.addTranslatedConstraints( te.getConstraints() );
     }
 }

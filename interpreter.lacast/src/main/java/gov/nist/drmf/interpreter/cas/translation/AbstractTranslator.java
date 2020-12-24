@@ -5,21 +5,20 @@ import gov.nist.drmf.interpreter.cas.common.IForwardTranslator;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.components.*;
 import gov.nist.drmf.interpreter.common.InformationLogger;
-import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
-import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.*;
+import java.util.function.*;
 
 /**
  * The abstract translator delegates the translation process to the specialized sub-translator
@@ -62,6 +61,12 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     private List<TranslatedExpression> partialTranslations;
 
     /**
+     * The translation information object. This is unique for one translation
+     * process.
+     */
+    private TranslationInformation translationInformation;
+
+    /**
      * Flags of each translator
      */
     private boolean SET_MODE    = false;
@@ -75,7 +80,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     /**
      * The current forward translation config
      */
-    private ForwardTranslationProcessConfig config;
+    private final ForwardTranslationProcessConfig config;
 
     /**
      * The super translator object for handling global translations.
@@ -94,6 +99,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
         this.globalExp = new TranslatedExpression();
         this.infoLogger = new InformationLogger();
         this.partialTranslations = new LinkedList<>();
+        this.translationInformation = new TranslationInformation();
     }
 
     /**
@@ -125,6 +131,11 @@ public abstract class AbstractTranslator implements IForwardTranslator {
             superTranslator.partialTranslations = new LinkedList<>();
         }
         this.partialTranslations = superTranslator.partialTranslations;
+
+        if ( superTranslator.translationInformation == null ) {
+            superTranslator.translationInformation = new TranslationInformation();
+        }
+        this.translationInformation = superTranslator.translationInformation;
 
         this.SET_MODE = superTranslator.SET_MODE;
         this.tolerant = superTranslator.tolerant;
@@ -233,7 +244,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
      * @return true if the expression is a tagged super expression
      */
     protected static boolean isTaggedExpression(PomTaggedExpression e) {
-        return !containsTerm(e) || isSQRT(e);
+        return !containsTerm(e) || PomTaggedExpressionUtility.isSQRT(e);
     }
 
     /**
@@ -244,15 +255,6 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     protected static boolean containsTerm(PomTaggedExpression e) {
         MathTerm t = e.getRoot();
         return t != null && !t.isEmpty();
-    }
-
-    protected static boolean isSQRT(PomTaggedExpression e) {
-        String etag = e.getTag();
-        if ( etag == null ) return false;
-        ExpressionTags et = ExpressionTags.getTagByKey(etag);
-        if ( et != null && (et.equals(ExpressionTags.square_root) || et.equals(ExpressionTags.general_root) ) ) {
-            return true;
-        } else return false;
     }
 
     protected static boolean isSubSequence(MathTerm term) {
@@ -310,6 +312,15 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     }
 
     /**
+     * Get the unique translation information for this translation process.
+     * @return the unique translation information for a single translation process
+     */
+    protected TranslationInformation getTranslationInformation() {
+        if ( superTranslator == null ) return this.translationInformation;
+        else return this.superTranslator.getTranslationInformation();
+    }
+
+    /**
      * Gets the super translator object, if any
      * @return super AbstractTranslator
      */
@@ -344,14 +355,82 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     public void reset() {
         globalExp = new TranslatedExpression();
         partialTranslations = new LinkedList<>();
-        mlpError = false;
         infoLogger = new InformationLogger();
+        translationInformation = new TranslationInformation();
+        mlpError = false;
         SET_MODE = false;
         if ( this.superTranslator != null ) this.superTranslator.reset();
     }
 
     public void setFileID(String fileID) {
         this.fileID = fileID;
+    }
+
+    /**
+     * This method is a short version to add an entry to the given local
+     * {@link TranslatedExpression} object {@param local} and the global
+     * {@link TranslatedExpression} object {@link #getGlobalTranslationList()}.
+     *
+     * For example, consider you want to add a string via {@link TranslatedExpression#addTranslatedExpression(String)}
+     * to your local and global lists. Than you can do this via
+     * <pre>
+     *     addLocalAndGlobal(
+     *          TranslatedExpression::addTranslatedExpression,
+     *          localTranslations,
+     *          output
+     *     );
+     * </pre>
+     * which is equivalent to
+     * <pre>
+     *     localTranslations.addTranslatedExpression(output);
+     *     getGlobalTranslationList().addTranslatedExpression(output);
+     * </pre>
+     *
+     * @param consumer the method to invoke on {@link TranslatedExpression}
+     * @param value the value to apply
+     * @param <S> the type of the value to apply
+     */
+    protected <S> void perform(
+            BiConsumer<? super TranslatedExpression, S> consumer,
+            S value
+    ) {
+        consumer.accept(getTranslatedExpressionObject(), value);
+        consumer.accept(getGlobalTranslationList(), value);
+    }
+
+    /**
+     * This is the same as {@link #perform(BiConsumer, Object)} but before
+     * applying the value {@param value}, we perform a mapping via {@param map}. For example, if you
+     * want to add variables to the local and global {@link TranslatedExpression} object you can do this via
+     * <pre>
+     * addLocalAndGlobalMap(
+     *      TranslatedExpression::getFreeVariables,
+     *      FreeVariables::addFreeVariable,
+     *      localTranslations,
+     *      var
+     * );
+     * </pre>
+     * which is again equivalent to
+     * <pre>
+     *     localTranslations.getFreeVariables().addFreeVariable(var);
+     *     getGlobalTranslationList().getFreeVariables().addFreeVariable(var);
+     * </pre>
+     *
+     * @param map the mapping that will be performed on the {@link TranslatedExpression} objects
+     * @param consumer the method to invoke on the mapped objects
+     * @param value the value to apply on the mapped elements methods
+     * @param <S> the type of the value to apply
+     * @param <T> the type of the mapped object
+     */
+    protected <S, T> void mapPerform(
+            Function<? super TranslatedExpression, T> map,
+            BiConsumer<? super T, S> consumer,
+            S value
+    ) {
+        T mapped = map.apply(getTranslatedExpressionObject());
+        T mapped2 = map.apply(getGlobalTranslationList());
+        consumer.accept(mapped, value);
+        consumer.accept(mapped2, value);
     }
 
     public Map<String, Map<Integer, Set<String>>> getProblemTokens() {

@@ -199,8 +199,7 @@ public class MacroTranslator extends AbstractListTranslator {
         // in case we translated an expression in advance, we need to fill up the translation lists
         if ( isDeriv && derivativesTranslator.hasTranslatedInAdvancedComponent() ) {
             TranslatedExpression translatedInAdvance = derivativesTranslator.getTranslatedInAdvanceComponent();
-            localTranslations.addTranslatedExpression(translatedInAdvance);
-            getGlobalTranslationList().addTranslatedExpression(translatedInAdvance);
+            perform(TranslatedExpression::addTranslatedExpression, translatedInAdvance);
 
             // just in case, reset the variable
             derivativesTranslator.resetTranslatedInAdvancedComponent();
@@ -209,8 +208,7 @@ public class MacroTranslator extends AbstractListTranslator {
         derivativesTranslator.updateNegativeReplacement(localTranslations);
 
         if ( info.getTranslationInformation().requirePackages() ) {
-            localTranslations.addRequiredPackages(info.getTranslationInformation().getRequiredPackages());
-            getGlobalTranslationList().addRequiredPackages(info.getTranslationInformation().getRequiredPackages());
+            perform(TranslatedExpression::addRequiredPackages, info.getTranslationInformation().getRequiredPackages());
         }
     }
 
@@ -238,9 +236,7 @@ public class MacroTranslator extends AbstractListTranslator {
 
         MacroTranslationInformation info = macroInfo.getTranslationInformation();
         // just add the translated representation extracted from feature set
-        localTranslations.addTranslatedExpression(info.getTranslationPattern());
-        super.getGlobalTranslationList()
-                .addTranslatedExpression(info.getTranslationPattern());
+        perform(TranslatedExpression::addTranslatedExpression, info.getTranslationPattern());
 
         // done
         return localTranslations;
@@ -407,8 +403,7 @@ public class MacroTranslator extends AbstractListTranslator {
             String pattern = patternFiller.fillPatternWithComponents(getConfig(), args);
 
             // finally, update translation lists
-            localTranslations.addTranslatedExpression(pattern);
-            getGlobalTranslationList().addTranslatedExpression(pattern);
+            perform(TranslatedExpression::addTranslatedExpression, pattern);
         } catch (NullPointerException npe) {
             throw throwMacroException("Argument of macro seems to be missing for " + macro);
         }

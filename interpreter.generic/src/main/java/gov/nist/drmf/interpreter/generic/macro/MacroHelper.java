@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.generic.macro;
 
-import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.pom.extensions.MatcherConfig;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import org.intellij.lang.annotations.Language;

@@ -1,21 +1,26 @@
 package gov.nist.drmf.interpreter.cas.logging;
 
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
+import gov.nist.drmf.interpreter.common.latex.FreeVariables;
+import gov.nist.drmf.interpreter.common.latex.RelationalComponents;
+import gov.nist.drmf.interpreter.common.latex.Relations;
 import gov.nist.drmf.interpreter.common.meta.ListExtender;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @author Andre Greiner-Petter
  */
 public class TranslatedExpression {
     private LinkedList<String> trans_exps;
+
     private final Set<String> requiredPackages;
 
-    private int latestRelationSymbol;
+    private LinkedList<Integer> relationSymbolPositions;
 
     private List<String> constraints;
 
@@ -23,13 +28,22 @@ public class TranslatedExpression {
 
     private int autoMergeLast;
 
+    private final FreeVariables freeVariables;
+
+    private final Map<Integer, RelationalComponents> componentsPositions;
+
+//    private final RelationalComponents relationalComponents;
+
     public TranslatedExpression(){
         this.trans_exps = new LinkedList<>();
         this.autoMergeLast = 0;
         this.requiredPackages = new TreeSet<>();
         this.negativeReplacements = 0;
         this.constraints = new LinkedList<>();
-        this.latestRelationSymbol = -1;
+        this.relationSymbolPositions = new LinkedList<>();
+        this.freeVariables = new FreeVariables();
+//        this.relationalComponents = new RelationalComponents();
+        this.componentsPositions = new HashMap<>();
     }
 
     public TranslatedExpression(TranslatedExpression copy) {
@@ -38,19 +52,77 @@ public class TranslatedExpression {
         this.requiredPackages = new TreeSet<>(copy.requiredPackages);
         this.negativeReplacements = copy.negativeReplacements;
         this.constraints = new LinkedList<>(copy.constraints);
-        this.latestRelationSymbol = copy.latestRelationSymbol;
+        this.relationSymbolPositions = new LinkedList<>(copy.relationSymbolPositions);
+        this.freeVariables = new FreeVariables(copy.freeVariables);
+        this.componentsPositions = new HashMap<>();
+        copy.componentsPositions.forEach((key, value) -> componentsPositions.put(key, new RelationalComponents(value)));
+    }
+
+    public FreeVariables getFreeVariables() {
+        return freeVariables;
+    }
+
+    public void clearRelationalComponents() {
+        componentsPositions.clear();
+    }
+
+    public void addRelationalComponents(RelationalComponents relationalComponents) {
+        int currIdx = Math.max(0, trans_exps.size()-1);
+        if ( this.componentsPositions.containsKey(currIdx) ) {
+            this.componentsPositions.put(currIdx, relationalComponents);
+        } else {
+            this.componentsPositions.get(currIdx).addRelationalComponents(relationalComponents);
+        }
+    }
+
+    public RelationalComponents getAllRelationalComponents() {
+        RelationalComponents total = new RelationalComponents();
+        List<Integer> poss = new LinkedList<>(this.componentsPositions.keySet());
+        Collections.sort(poss);
+        for (Integer integer : poss) {
+            RelationalComponents r = componentsPositions.get(integer);
+            total.addRelationalComponents(r);
+        }
+        return total;
+    }
+
+    public void appendRelationalComponent(String component) {
+        RelationalComponents last = getLastRelationalComponent();
+        last.addComponent(component);
+    }
+
+    public void appendRelationalRelation(String rel) {
+        RelationalComponents last = getLastRelationalComponent();
+        last.addRelation(rel);
+    }
+
+    public RelationalComponents getLastRelationalComponent() {
+        RelationalComponents rel = this.componentsPositions.entrySet().stream()
+                .max(Comparator.comparingInt(Map.Entry::getKey))
+                .map(Map.Entry::getValue)
+                .orElse(null);
+        if ( rel == null ) {
+            rel = new RelationalComponents();
+            this.componentsPositions.put(Math.max(0, trans_exps.size()-1), rel);
+        }
+        return rel;
+    }
+
+    private int getLastRelationSymbolPosition() {
+        if ( relationSymbolPositions.isEmpty() ) return -1;
+        return Collections.max(relationSymbolPositions);
     }
 
     public boolean endedOnRelationSymbol() {
-        return this.latestRelationSymbol == trans_exps.size()-1;
+        return getLastRelationSymbolPosition() == trans_exps.size()-1;
     }
 
     public boolean containsRelationSymbol() {
-        return this.latestRelationSymbol >= 0;
+        return !this.relationSymbolPositions.isEmpty();
     }
 
     public void tagLastElementAsRelation(){
-        this.latestRelationSymbol = Math.max(0, trans_exps.size()-1);
+        this.relationSymbolPositions.add( Math.max(0, trans_exps.size()-1) );
     }
 
     public TranslatedExpression getElementsAfterRelation() {
@@ -59,8 +131,13 @@ public class TranslatedExpression {
         te.requiredPackages.addAll(this.requiredPackages);
         te.negativeReplacements = this.negativeReplacements;
         te.constraints.addAll(this.constraints);
-        if ( this.latestRelationSymbol < trans_exps.size() )
-            te.trans_exps.addAll(this.trans_exps.subList(this.latestRelationSymbol+1, trans_exps.size()));
+
+        int last = getLastRelationSymbolPosition();
+        if ( last < trans_exps.size() )
+            te.trans_exps.addAll(this.trans_exps.subList(last+1, trans_exps.size()));
+
+        this.componentsPositions.entrySet().stream().filter( e -> e.getKey() >= last )
+                .forEach( e -> te.componentsPositions.put( e.getKey()-last, e.getValue() ));
         return te;
     }
 
@@ -107,10 +184,14 @@ public class TranslatedExpression {
             this.trans_exps = new LinkedList<>(tmp);
         }
 
-        if ( this.latestRelationSymbol < expressions.latestRelationSymbol )
-            this.latestRelationSymbol = expressions.latestRelationSymbol;
+        expressions.relationSymbolPositions.forEach( i -> this.relationSymbolPositions.add( i+trans_exps.size() ));
+
         this.requiredPackages.addAll(expressions.getRequiredPackages());
         ListExtender.addIfNotExist(constraints, expressions.constraints);
+        this.freeVariables.addFreeVariables(expressions.getFreeVariables());
+        for ( Map.Entry<Integer, RelationalComponents> entry : expressions.componentsPositions.entrySet() ) {
+            this.componentsPositions.put( entry.getKey()+trans_exps.size(), new RelationalComponents(entry.getValue()) );
+        }
 
         this.autoMergeLast += expressions.autoMergeLast;
         String next = autoMergeLast();
@@ -135,17 +216,29 @@ public class TranslatedExpression {
         int s = trans_exps.size();
         trans_exps = new LinkedList<>();
         requiredPackages.clear();
+        relationSymbolPositions.clear();
+//        relationalComponents.clear();
+        componentsPositions.clear();
+        freeVariables.clear();
         return s;
     }
 
     public TranslatedExpression removeLastNExps(int n){
         TranslatedExpression sub = new TranslatedExpression();
         LinkedList<String> tmp = new LinkedList<>();
+        int limit = trans_exps.size() - n;
+
+        List<Integer> tmpPos = this.relationSymbolPositions.stream().filter( i -> i > limit ).collect(Collectors.toList());
+        tmpPos.forEach( i -> sub.relationSymbolPositions.add( i - limit ) );
+
         for( int i = 0; i < n && !trans_exps.isEmpty(); i++ ){
             tmp.add(removeLastExpression());
         }
         while ( !tmp.isEmpty() )
             sub.addTranslatedExpression( tmp.removeLast() );
+
+        List<Integer> pos = this.componentsPositions.keySet().stream().filter(relationalComponents -> relationalComponents >= limit).collect(Collectors.toList());
+        pos.forEach( p -> sub.componentsPositions.put(p-limit, this.componentsPositions.remove(p)));
         return sub;
     }
 
@@ -185,7 +278,11 @@ public class TranslatedExpression {
     }
 
     public String removeLastExpression(){
-        if ( !trans_exps.isEmpty() ) return trans_exps.removeLast();
+        if ( !trans_exps.isEmpty() ) {
+            int currPos = trans_exps.size();
+            relationSymbolPositions.removeLastOccurrence(currPos-1);
+            return trans_exps.removeLast();
+        }
         else return null;
     }
 

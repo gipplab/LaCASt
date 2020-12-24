@@ -2,10 +2,13 @@ package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.latex.RelationalComponents;
+import gov.nist.drmf.interpreter.common.latex.Relations;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
@@ -144,7 +147,7 @@ class SimpleTranslationTests {
     @Test
     void fracMultiply2() {
         String in = "(\\frac{x}{y})x";
-        String eout = "((x)/(y))* x";
+        String eout = "((x)/(y))*x";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
@@ -306,7 +309,7 @@ class SimpleTranslationTests {
     @Test
     void multiplyTrickyBarTest() {
         String in = "(\\tfrac{1}{4} + |z|)n";
-        String eout = "((1)/(4)+abs(z))* n";
+        String eout = "((1)/(4)+abs(z))*n";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
@@ -322,7 +325,7 @@ class SimpleTranslationTests {
     @Test
     void multiplyTrickyBar3Test() {
         String in = "(\\tfrac{1}{4} + \\left|z \\right|)n";
-        String eout = "((1)/(4)+abs(z))* n";
+        String eout = "((1)/(4)+abs(z))*n";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
@@ -331,6 +334,62 @@ class SimpleTranslationTests {
     void generalBracketTest() {
         String in = "\\left[ x \\right] + \\left( y \\right) + \\left| z \\right|";
         String eout = "(x)+(y)+abs(z)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void simpleTranslateInequalityTest() {
+        String in = "3 > 2";
+        String eout = "3 > 2";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+
+        RelationalComponents comps = slt.getTranslationInformation().getRelationalComponents();
+        assertEquals(2, comps.getComponents().size(), comps.getComponents().toString());
+        assertEquals(1, comps.getRelations().size(), comps.getRelations().toString());
+
+        assertEquals("3", comps.getComponents().get(0), comps.getComponents().toString());
+        assertEquals("2", comps.getComponents().get(1), comps.getComponents().toString());
+        assertEquals(Relations.GREATER_THAN, comps.getRelations().get(0), comps.getRelations().toString());
+    }
+
+    @Test
+    void simpleTranslateInequalityReverseTest() {
+        String in = "2 < 3";
+        String eout = "2 < 3";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+
+        RelationalComponents comps = slt.getTranslationInformation().getRelationalComponents();
+        assertEquals(2, comps.getComponents().size(), comps.getComponents().toString());
+        assertEquals(1, comps.getRelations().size(), comps.getRelations().toString());
+
+        assertEquals("2", comps.getComponents().get(0), comps.getComponents().toString());
+        assertEquals("3", comps.getComponents().get(1), comps.getComponents().toString());
+        assertEquals(Relations.LESS_THAN, comps.getRelations().get(0), comps.getRelations().toString());
+    }
+
+    @Test
+    void multiplyBracketTest() {
+        String in = "2 (x + y)";
+        String eout = "2*(x + y)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void angleBracketTest() {
+        String in = "2 < 3 + 5 > x";
+        String eout = "2*(3 + 5)*x";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void spaceBehindSlashTest() {
+        String in = "2/3";
+        String eout = "2/3";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
@@ -433,7 +492,7 @@ class SimpleTranslationTests {
         String label = "4.2.E33";
         String res = slt.translate(in, label);
         System.out.println(res);
-        assertEquals("exp(z) = (exp(z))* exp(2*k*z*Pi*I)", res);
+        assertEquals("exp(z) = (exp(z))*exp(2*k*z*Pi*I)", res);
     }
 
     @Test

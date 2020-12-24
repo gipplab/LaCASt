@@ -61,6 +61,11 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         return translatedInAdvance != null;
     }
 
+    @Override
+    public TranslatedExpression getTranslatedExpressionObject() {
+        return translatedInAdvance;
+    }
+
     TranslatedExpression getTranslatedInAdvanceComponent() {
         return translatedInAdvance;
     }

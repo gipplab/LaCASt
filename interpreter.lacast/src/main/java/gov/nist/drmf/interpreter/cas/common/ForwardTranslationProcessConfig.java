@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.cas.common;
 import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
+import gov.nist.drmf.interpreter.common.config.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.pom.common;
 
-import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.FeatureValues;
@@ -58,6 +58,22 @@ public final class PomTaggedExpressionUtility {
         }
     }
 
+    public static boolean isRelationSymbol(PomTaggedExpression pte) {
+        return MathTermUtility.isRelationSymbol(pte.getRoot());
+    }
+
+    /**
+     * Checks if the given PTE is a square root or general root
+     * @param e expression
+     * @return true if the expression is a root
+     */
+    public static boolean isSQRT(PomTaggedExpression e) {
+        String etag = e.getTag();
+        if ( etag == null ) return false;
+        ExpressionTags et = ExpressionTags.getTagByKey(etag);
+        return et != null && (et.equals(ExpressionTags.square_root) || et.equals(ExpressionTags.general_root));
+    }
+
     /**
      * Returns true if the given pte is \quad or \qquad
      * @param pte probable long space
@@ -75,6 +91,10 @@ public final class PomTaggedExpressionUtility {
 
     public static boolean isSequence(PomTaggedExpression pte) {
         return ExpressionTags.sequence.equalsPTE(pte);
+    }
+
+    public static boolean isEquationArray(PomTaggedExpression pte) {
+        return ExpressionTags.equation.equalsPTE(pte) || ExpressionTags.equation_array.equalsPTE(pte);
     }
 
     /**

@@ -117,6 +117,28 @@ public class ThrowTranslationExceptionTests {
         assertEquals("\\LambertW", te.getReasonObj());
     }
 
+    @Test
+    void parenthesisMismatchTest() {
+        String expr = "x + ( y";
+        TranslationException te = assertThrows(
+                TranslationException.class,
+                () -> slt.translate(expr)
+        );
+
+        assertEquals(TranslationExceptionReason.WRONG_PARENTHESIS, te.getReason());
+    }
+
+    @Test
+    void parenthesisMismatchReverseTest() {
+        String expr = "x + ) y";
+        TranslationException te = assertThrows(
+                TranslationException.class,
+                () -> slt.translate(expr)
+        );
+
+        assertEquals(TranslationExceptionReason.WRONG_PARENTHESIS, te.getReason());
+    }
+
     /**
      * It's kind of debatable. LaCASt would be more robust when we only allow arguments in curly brackets.
      * For example, <code>\cos(x)</code> should throw an error, because the argument is not strictly provided

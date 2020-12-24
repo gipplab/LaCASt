@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.evaluation.common;
 import gov.nist.drmf.interpreter.common.cas.Constraints;
 import gov.nist.drmf.interpreter.common.eval.INumericTestCase;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
-import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.latex.Relations;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
