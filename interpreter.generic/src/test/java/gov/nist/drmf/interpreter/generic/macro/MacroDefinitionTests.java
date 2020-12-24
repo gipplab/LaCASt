@@ -2,16 +2,15 @@ package gov.nist.drmf.interpreter.generic.macro;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import gov.nist.drmf.interpreter.common.tests.Resource;
+import gov.nist.drmf.interpreter.common.tests.ResourceProvider;
 import gov.nist.drmf.interpreter.pom.extensions.MatcherConfig;
-import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -22,36 +21,21 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Andre Greiner-Petter
  */
 public class MacroDefinitionTests {
-    private static final Logger LOG = LogManager.getLogger(MacroDefinitionTests.class.getName());
-
     private static Map<String, MacroBean> loadedMacros;
 
-    private static final String fileName = "ExampleFunDefSerialized.json";
-
     @BeforeAll
-    public static void setup() throws IOException {
-        String in = readResource("ExampleFuncDef.sty");
+    public static void setup(String in) throws IOException {
+        ResourceProvider.load(MacroDefinitionTests.class, "ExampleFuncDef.sty");
         MacroDefinitionStyleFileParser parser = new MacroDefinitionStyleFileParser();
         parser.load(in);
         loadedMacros = parser.getExtractedMacros();
     }
 
-    public static String readResource(String fileName) throws IOException {
-        try (InputStream is = MacroDefinitionTests.class
-                .getResourceAsStream(fileName)) {
-            return IOUtils.toString(is, StandardCharsets.UTF_8);
-        } catch ( IOException ioe ) {
-            LOG.error("Cannot load resource file " + fileName, ioe);
-            throw ioe;
-        }
-    }
-
-    @Test
-    public void serializerFullTest() throws IOException {
+    @Resource("ExampleFunDefSerialized.json")
+    public void serializerFullTest(String gold) throws IOException {
         // fully write serialized file to temp
         ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         String serializedStream = mapper.writeValueAsString(loadedMacros);
-        String gold = readResource(fileName);
         assertEquals(gold, serializedStream);
     }
 
@@ -240,19 +224,16 @@ public class MacroDefinitionTests {
         assertFalse( strictConfig.getIllegalTokensForWildcard("var2").contains(",") );
     }
 
-    @Test
-    public void serializerTest() throws IOException {
+    @Resource("JacobipolyPSerialized.json")
+    public void serializerTest(String gold) throws IOException {
         ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         MacroBean jacBean = loadedMacros.get("JacobipolyP");
         String jacBeanStr = mapper.writeValueAsString(jacBean);
-
-        String gold = readResource("JacobipolyPSerialized.json");
         assertEquals(gold, jacBeanStr);
     }
 
-    @Test
-    public void deserializerTest() throws IOException {
-        String jacobiSerialized = readResource("JacobipolyPSerialized.json");
+    @Resource("JacobipolyPSerialized.json")
+    public void deserializerTest(String jacobiSerialized) throws IOException {
         MacroBean jacGoldBean = loadedMacros.get("JacobipolyP");
 
         ObjectMapper mapper = new ObjectMapper();

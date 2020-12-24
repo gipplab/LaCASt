@@ -1,15 +1,13 @@
 package gov.nist.drmf.interpreter.generic;
 
+import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
+import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.generic.elasticsearch.AssumeElasticsearchAvailability;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
-import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 import mlp.ParseException;
-import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,9 +18,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 @AssumeElasticsearchAvailability
 public class GenericLatexSemanticEnhancerTest {
-    @Test
-    void simpleWikitextTest() throws IOException {
-        String text = getResourceContent("mlp/simpleWikitest.xml");
+    @Resource("mlp/simpleWikitest.xml")
+    void simpleWikitextTest(String text) {
         GenericLatexSemanticEnhancer enhancer = new GenericLatexSemanticEnhancer();
         SemanticEnhancedDocument semanticDocument = enhancer.getSemanticEnhancedDocument(text);
         List<MOIPresentations> moiPresentationsList = semanticDocument.getFormulae();
@@ -72,9 +69,5 @@ public class GenericLatexSemanticEnhancerTest {
         assertEquals("\\EulerGamma@{\\Pochhammersym{\\alpha + 1}{n}}", gammaCompositionMOI.getSemanticLatex());
         assertEquals("GAMMA(pochhammer(alpha + 1, n))", gammaCompositionMOI.getCasResults("Maple").getCasRepresentation());
         assertEquals("Gamma[Pochhammer[\\[Alpha]+ 1, n]]", gammaCompositionMOI.getCasResults("Mathematica").getCasRepresentation());
-    }
-
-    private String getResourceContent(String resourceFilename) throws IOException {
-        return IOUtils.toString(this.getClass().getResourceAsStream(resourceFilename), StandardCharsets.UTF_8);
     }
 }

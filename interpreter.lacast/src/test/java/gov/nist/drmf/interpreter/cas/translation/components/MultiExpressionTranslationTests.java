@@ -6,14 +6,20 @@ import gov.nist.drmf.interpreter.common.latex.FreeVariables;
 import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
+import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
+import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Set;
 
@@ -164,5 +170,11 @@ public class MultiExpressionTranslationTests {
 
         assertTrue( ti.getRequiredPackages().isEmpty() );
         assertTrue( ti.getTranslatedConstraints().isEmpty() );
+    }
+
+    @Resource({"MultiEquationArray.tex", "MultiEquationArrayMapleTranslation.txt"})
+    public void massiveMultilineEquationTest(String source, String solution) {
+        String translation = slt.translate(source);
+        assertEquals(solution, translation);
     }
 }
