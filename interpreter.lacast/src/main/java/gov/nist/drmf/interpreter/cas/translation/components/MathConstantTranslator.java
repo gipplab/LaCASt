@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.common.latex.FreeVariables;
 import gov.nist.drmf.interpreter.pom.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
@@ -84,9 +85,8 @@ public class MathConstantTranslator extends AbstractTranslator {
 
         if ( translation != null ) {
             // anyway, finally we translated it...
-            localTranslations.addTranslatedExpression(translation);
             // add getGlobalTranslationList() as well
-            getGlobalTranslationList().addTranslatedExpression(translation);
+            perform(TranslatedExpression::addTranslatedExpression, translation);
             getInfoLogger().addGeneralInfo(
                     constant,
                     DLMFFeatureValues.MEANING.getFeatureValue(set, CAS) + " was translated to: " + translation
@@ -122,7 +122,7 @@ public class MathConstantTranslator extends AbstractTranslator {
             );
             // and now, use this translation
             translation = constant;
-            getInfoLogger().getFreeVariables().addFreeVariable(translation);
+            mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::addFreeVariable, translation);
         }
         return translation;
     }
@@ -141,7 +141,7 @@ public class MathConstantTranslator extends AbstractTranslator {
                 );
                 GreekLetterTranslator glt = new GreekLetterTranslator(getSuperTranslator());
                 localTranslations = glt.translate(exp);
-                getInfoLogger().getFreeVariables().addFreeVariable(localTranslations.getTranslatedExpression());
+                mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::addFreeVariable, localTranslations.getTranslatedExpression());
                 return true;
             } else {
                 throw TranslationException.buildExceptionObj(this,

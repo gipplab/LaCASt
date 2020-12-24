@@ -189,8 +189,7 @@ public class MathTermTranslator extends AbstractListTranslator {
                 break;
             default: return null;
         }
-        localTranslations.addTranslatedExpression(translation);
-        getGlobalTranslationList().addTranslatedExpression(translation);
+        perform(TranslatedExpression::addTranslatedExpression, translation);
         return localTranslations;
     }
 
@@ -297,8 +296,7 @@ public class MathTermTranslator extends AbstractListTranslator {
             case less_than:
             case greater_than: // all above should translated directly
                 String translation = translateSymbol(term);
-                localTranslations.addTranslatedExpression(translation);
-                getGlobalTranslationList().addTranslatedExpression(translation);
+                perform(TranslatedExpression::addTranslatedExpression, translation);
 
                 te = localTranslations;
                 break;
@@ -353,8 +351,7 @@ public class MathTermTranslator extends AbstractListTranslator {
         } else {
             symbol = sT.translateFromMLPKey(tag.tag());
         }
-        localTranslations.addTranslatedExpression(symbol);
-        getGlobalTranslationList().addTranslatedExpression(symbol);
+        perform(TranslatedExpression::addTranslatedExpression, symbol);
     }
 
     private TranslatedExpression parseFences(MathTerm term, List<PomTaggedExpression> following_exp) {
@@ -431,8 +428,7 @@ public class MathTermTranslator extends AbstractListTranslator {
             );
         }
 
-        localTranslations.addTranslatedExpression(translation);
-        getGlobalTranslationList().addTranslatedExpression(translation);
+        perform(TranslatedExpression::addTranslatedExpression, translation);
         return localTranslations;
     }
 
@@ -459,8 +455,7 @@ public class MathTermTranslator extends AbstractListTranslator {
         getGlobalTranslationList().removeLastNExps(translatedExpression.getLength());
 
         String intervalTranslation = buildIntervalTranslation(translatedExpression, bracket, firstArgument);
-        localTranslations.addTranslatedExpression(intervalTranslation);
-        getGlobalTranslationList().addTranslatedExpression(intervalTranslation);
+        perform(TranslatedExpression::addTranslatedExpression, intervalTranslation);
         return localTranslations;
     }
 
@@ -491,8 +486,7 @@ public class MathTermTranslator extends AbstractListTranslator {
         String relationTranslation = sT.translate(term.getTermText());
         if (bracket == null || !Brackets.isOpenedSetBracket(bracket)) {
             // nothing special, just translate term and return it. Following expressions are handled by someone else
-            localTranslations.addTranslatedExpression(relationTranslation);
-            getGlobalTranslationList().addTranslatedExpression(relationTranslation);
+            perform(TranslatedExpression::addTranslatedExpression, relationTranslation);
             return true;
         } else if ( !bracket.opened ) {
             throw TranslationException.buildExceptionObj(

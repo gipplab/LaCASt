@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.pom.extensions;
 
-import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.interfaces.IMatcher;
 import gov.nist.drmf.interpreter.common.text.IndexRange;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;

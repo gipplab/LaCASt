@@ -1,18 +1,9 @@
 package gov.nist.drmf.interpreter.pom;
 
-import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
-import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
-import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
-import gov.nist.drmf.interpreter.pom.common.grammar.FeatureValues;
-import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.*;
-
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * A simple wrapper class to parse LaTeX expression via the PoM-Tagger.

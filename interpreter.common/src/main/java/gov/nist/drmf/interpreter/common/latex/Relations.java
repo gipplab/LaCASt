@@ -37,7 +37,6 @@ public enum Relations {
      * @return the symbol in CAS syntax
      * @deprecated use {@link #getSymbol(String)} instead
      */
-    @Deprecated
     public String getSymbol(){
         return symbol;
     }

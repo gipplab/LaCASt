@@ -1,8 +1,6 @@
 package gov.nist.drmf.interpreter.maple.translation.components;
 
-import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.List;
-import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 

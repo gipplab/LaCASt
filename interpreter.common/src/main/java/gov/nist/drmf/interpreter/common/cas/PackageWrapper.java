@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.common.cas;
 
-import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
+import gov.nist.drmf.interpreter.common.config.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.interfaces.IPackageWrapper;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;

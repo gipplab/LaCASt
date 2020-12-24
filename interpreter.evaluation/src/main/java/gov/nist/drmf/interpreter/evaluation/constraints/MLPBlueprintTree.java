@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.evaluation.constraints;
 
-import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.pom.MLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;

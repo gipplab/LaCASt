@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.common.latex.FreeVariables;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import mlp.MathTerm;
@@ -15,7 +16,7 @@ import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CHAR_BACKSLASH;
  * @author Andre Greiner-Petter
  */
 public class GreekLetterTranslator extends AbstractTranslator {
-    private TranslatedExpression localTranslations = new TranslatedExpression();
+    private final TranslatedExpression localTranslations = new TranslatedExpression();
 
     /**
      * Every translator has an abstract super translator object, which should be
@@ -77,8 +78,7 @@ public class GreekLetterTranslator extends AbstractTranslator {
         }
 
         // otherwise add all
-        localTranslations.addTranslatedExpression(translated_letter);
-        getGlobalTranslationList().addTranslatedExpression(translated_letter);
-        getInfoLogger().getFreeVariables().addFreeVariable(translated_letter);
+        perform(TranslatedExpression::addTranslatedExpression, translated_letter);
+        mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::addFreeVariable, translated_letter);
     }
 }

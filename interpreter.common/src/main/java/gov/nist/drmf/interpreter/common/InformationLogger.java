@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.common;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * @author Andre Greiner-Petter
@@ -8,26 +10,18 @@ import java.util.*;
 public class InformationLogger {
     private final String new_line = System.lineSeparator();
 
-    private HashMap<String, String> gen_info_map;
+    private final HashMap<String, String> gen_info_map;
 
-    private HashMap<String, String> macro_info_map;
-
-    private FreeVariables freeVariables;
+    private final HashMap<String, String> macro_info_map;
 
     public InformationLogger(){
         gen_info_map = new HashMap<>();
         macro_info_map = new HashMap<>();
-        freeVariables = new FreeVariables();
     }
 
     public InformationLogger(InformationLogger logger) {
         gen_info_map = new HashMap<>(logger.gen_info_map);
         macro_info_map = new HashMap<>(logger.macro_info_map);
-        freeVariables = new FreeVariables(logger.freeVariables);
-    }
-
-    public FreeVariables getFreeVariables() {
-        return freeVariables;
     }
 
     public void addGeneralInfo( String key, String info ){
@@ -58,17 +52,17 @@ public class InformationLogger {
 
     @Override
     public String toString(){
-        String info = "Information about the conversion process:" + new_line;
+        StringBuilder info = new StringBuilder("Information about the conversion process:" + new_line);
         for ( String key : macro_info_map.keySet() ){
-            info += key + ": " + macro_info_map.get(key) + new_line + new_line;
+            info.append(key).append(": ").append(macro_info_map.get(key)).append(new_line).append(new_line);
         }
 
         LinkedList<String> list = new LinkedList<>(gen_info_map.keySet());
         Collections.sort(list);
         while ( !list.isEmpty() ){
             String key = list.remove(0);
-            info += key + ": " + gen_info_map.get(key) + new_line;
+            info.append(key).append(": ").append(gen_info_map.get(key)).append(new_line);
         }
-        return info;
+        return info.toString();
     }
 }

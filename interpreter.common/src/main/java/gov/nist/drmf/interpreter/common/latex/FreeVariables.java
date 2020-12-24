@@ -1,9 +1,12 @@
-package gov.nist.drmf.interpreter.common;
+package gov.nist.drmf.interpreter.common.latex;
 
+import gov.nist.drmf.interpreter.common.meta.ListExtender;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.*;
+
+import static java.util.function.Predicate.not;
 
 /**
  * @author Andre Greiner-Petter
@@ -27,6 +30,24 @@ public class FreeVariables {
         freeVariables = new LinkedList<>(fvars.freeVariables);
         temporarilySuppressedVars = new HashSet<>(fvars.temporarilySuppressedVars);
         suppressionStartPosition = fvars.suppressionStartPosition;
+    }
+
+    public void clear() {
+        freeVariables.clear();
+        temporarilySuppressedVars.clear();
+        suppressionStartPosition = -1;
+    }
+
+    public void addFreeVariables(FreeVariables otherVars) {
+        addFreeVariables(otherVars.freeVariables);
+    }
+
+    public void replaceFreeVariables(FreeVariables otherVars) {
+        freeVariables.clear();
+        temporarilySuppressedVars.clear();
+        freeVariables.addAll(otherVars.freeVariables);
+        temporarilySuppressedVars.addAll( otherVars.temporarilySuppressedVars );
+        suppressionStartPosition = otherVars.suppressionStartPosition;
     }
 
     public void suppressingVars(String... vars) {
@@ -65,11 +86,14 @@ public class FreeVariables {
     }
 
     public void addFreeVariable(String... vars) {
-        if ( vars == null || vars.length == 0 ) return;
-        for ( String v : vars ){
-            if ( !temporarilySuppressedVars.contains(v) )
-                freeVariables.add(v);
-        }
+        addFreeVariables(Arrays.asList(vars));
+    }
+
+    public void addFreeVariables(List<String> vars) {
+        if ( vars == null || vars.size() == 0 ) return;
+        ListExtender.addAll(
+                freeVariables, vars, not(temporarilySuppressedVars::contains)
+        );
     }
 
     public void deleteFreeVariablesSinceSuppression(String... vars) {

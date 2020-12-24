@@ -2,7 +2,7 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
-import gov.nist.drmf.interpreter.common.FreeVariables;
+import gov.nist.drmf.interpreter.common.latex.FreeVariables;
 import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
@@ -77,6 +77,16 @@ public class MultiExpressionTranslationTests {
         assertEquals(2, additionalTranslations.size(), additionalTranslations.toString());
         assertEquals("x = y", additionalTranslations.get(0).getTranslatedExpression());
         assertEquals("a = z", additionalTranslations.get(1).getTranslatedExpression());
+
+        FreeVariables freeVar1 = additionalTranslations.get(0).getFreeVariables();
+        assertEquals(2, freeVar1.getFreeVariables().size());
+        assertTrue(freeVar1.getFreeVariables().contains("x"));
+        assertTrue(freeVar1.getFreeVariables().contains("y"));
+
+        FreeVariables freeVar2 = additionalTranslations.get(1).getFreeVariables();
+        assertEquals(2, freeVar2.getFreeVariables().size());
+        assertTrue(freeVar2.getFreeVariables().contains("a"));
+        assertTrue(freeVar2.getFreeVariables().contains("z"));
     }
 
     @Test
@@ -100,11 +110,20 @@ public class MultiExpressionTranslationTests {
         assertEquals("x = y ", firstPart.getTranslatedExpression());
         assertEquals(1, firstPart.getTranslatedConstraints().size());
         assertEquals("x > z", firstPart.getTranslatedConstraints().get(0));
+        FreeVariables freeVar1 = firstPart.getFreeVariables();
+        assertEquals(3, freeVar1.getFreeVariables().size());
+        assertTrue(freeVar1.getFreeVariables().contains("x"));
+        assertTrue(freeVar1.getFreeVariables().contains("y"));
+        assertTrue(freeVar1.getFreeVariables().contains("z"));
 
         TranslationInformation secondPart = parts.get(1);
         assertEquals("x = z ", secondPart.getTranslatedExpression());
         assertEquals(1, secondPart.getTranslatedConstraints().size());
         assertEquals("x < z", secondPart.getTranslatedConstraints().get(0));
+        FreeVariables freeVar2 = secondPart.getFreeVariables();
+        assertEquals(2, freeVar2.getFreeVariables().size());
+        assertTrue(freeVar2.getFreeVariables().contains("x"));
+        assertTrue(freeVar2.getFreeVariables().contains("z"));
     }
 
     @Test
@@ -112,6 +131,16 @@ public class MultiExpressionTranslationTests {
         assertEquals("x = y; x = z", slt.translate( "\\begin{align} x &= y \\\\ x &= z \\end{align}" ));
         TranslationInformation ti = slt.getTranslationInformationObject();
         assertEquals(2, ti.getPartialTranslations().size());
+
+        FreeVariables freeVar1 = ti.getPartialTranslations().get(0).getFreeVariables();
+        assertEquals(2, freeVar1.getFreeVariables().size());
+        assertTrue(freeVar1.getFreeVariables().contains("x"));
+        assertTrue(freeVar1.getFreeVariables().contains("y"));
+
+        FreeVariables freeVar2 = ti.getPartialTranslations().get(1).getFreeVariables();
+        assertEquals(2, freeVar2.getFreeVariables().size());
+        assertTrue(freeVar2.getFreeVariables().contains("x"));
+        assertTrue(freeVar2.getFreeVariables().contains("z"));
     }
 
     @Test

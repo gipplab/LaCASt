@@ -85,8 +85,7 @@ public class OperationTranslator extends AbstractListTranslator {
 
         // the given translated expression is one complete phrase
         // so add it to the global lexicon
-        localTranslations.addTranslatedExpression( translatedMod );
-        getGlobalTranslationList().addTranslatedExpression( translatedMod );
+        perform(TranslatedExpression::addTranslatedExpression, translatedMod);
 
         // since we replaced the last phrase in global_exp
         // global_exp and local_inner_exp are the same. Theoretically
@@ -113,8 +112,7 @@ public class OperationTranslator extends AbstractListTranslator {
             getInfoLogger().addGeneralInfo(
                     term.getTermText(),
                     "was translated to: " + translation);
-            localTranslations.addTranslatedExpression( translation );
-            getGlobalTranslationList().addTranslatedExpression( translation );
+            perform(TranslatedExpression::addTranslatedExpression, translation);
             return localTranslations;
         }
     }
