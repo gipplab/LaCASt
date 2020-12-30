@@ -1,7 +1,10 @@
 package gov.nist.drmf.interpreter.generic.mlp;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPDependencyGraph;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIAnnotation;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import mlp.ParseException;
 
@@ -28,6 +31,17 @@ public interface Document {
      * @return the dependency graph of all formulae in the document
      */
     MLPDependencyGraph getMOIDependencyGraph();
+
+    /**
+     * Generates a {@link MLPDependencyGraph} from the given serialized JSON of a single {@link SemanticEnhancedDocument}.
+     * @param serializedSemanticEnhancedDocument the serialized JSON string of a single {@link SemanticEnhancedDocument}
+     * @return the graph {@link MLPDependencyGraph} of the serialized JSON object
+     * @throws JsonProcessingException if the JSON cannot be deserialized
+     */
+    default MLPDependencyGraph deserializeDependencyGraph(String serializedSemanticEnhancedDocument) throws JsonProcessingException {
+        SemanticEnhancedDocument sed = SemanticEnhancedDocument.deserialize(serializedSemanticEnhancedDocument);
+        return new MLPDependencyGraph(sed.getFormulae());
+    }
 
     /**
      * This annotates the given latex expression and returns the

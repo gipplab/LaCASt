@@ -74,6 +74,14 @@ public class MOINode<T> implements INode<MOIDependency<T>> {
         return outgoing;
     }
 
+    void addIngoingDependency(MOIDependency<T> ingoingDependency) {
+        this.ingoing.add(ingoingDependency);
+    }
+
+    void addOutgoingDependency(MOIDependency<T> outgoingDependency) {
+        this.outgoing.add(outgoingDependency);
+    }
+
     /**
      * Checks if this node only depends on single identifiers. e.g., P_n^{(\alpha,\beta)}(x) include no other
      * complex MOI but only the single identifiers P, n, \alpha, \beta, and x. Of course this result only returns

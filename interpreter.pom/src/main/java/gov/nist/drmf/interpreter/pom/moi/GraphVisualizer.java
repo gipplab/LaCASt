@@ -29,6 +29,11 @@ public class GraphVisualizer {
             library.put(""+counter[0], l);
             counter[0]++;
         });
+
+//        library.put("1", "P_{n}^{(\\alpha, \\beta)}(x)");
+//        library.put("2", "P_{n}^{(\\alpha, \\beta)}(z)");
+//        library.put("3", "P_{n}^{(\\alpha, \\beta)}(y)");
+
         MOIDependencyGraph<?> moiGraph = MOIDependencyGraphBuilder.generateGraph(library);
         System.out.println("Loaded library.");
 

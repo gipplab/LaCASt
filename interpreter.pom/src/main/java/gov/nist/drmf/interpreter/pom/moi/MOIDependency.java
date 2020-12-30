@@ -13,7 +13,7 @@ public class MOIDependency<T> {
 
     private final MOINode<T> source;
     private final MOINode<T> sink;
-    private final DependencyPattern attribute;
+    private DependencyPattern attribute;
 
     /**
      * Keep Kryo happy for serialization
@@ -22,9 +22,13 @@ public class MOIDependency<T> {
         this(null, null, null);
     }
 
-    public MOIDependency(MOINode<T> source, MOINode<T> sink, DependencyPattern attribute) {
+    public MOIDependency(MOINode<T> source, MOINode<T> sink) {
         this.source = source;
         this.sink = sink;
+    }
+
+    public MOIDependency(MOINode<T> source, MOINode<T> sink, DependencyPattern attribute) {
+        this(source, sink);
         this.attribute = attribute;
     }
 
@@ -36,6 +40,10 @@ public class MOIDependency<T> {
         return sink;
     }
 
+    /**
+     * Could be null!
+     * @return the dependency pattern that matched
+     */
     public DependencyPattern getAttribute() {
         return attribute;
     }

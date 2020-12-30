@@ -1,59 +1,109 @@
 package gov.nist.drmf.interpreter.generic.interfaces;
 
+import gov.nist.drmf.interpreter.common.pojo.CASResult;
+import gov.nist.drmf.interpreter.common.pojo.ComputationTask;
+import gov.nist.drmf.interpreter.generic.exceptions.MinimumRequirementNotFulfilledException;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
-import mlp.ParseException;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 
 /**
+ * This API represents the general tasks we need to achieve as described in
+ * https://github.com/ag-gipp/LaCASt/issues/204.
+ *
  * @author Andre Greiner-Petter
  */
 public interface IGenericLatexSemanticEnhancerAPI {
     /**
-     * Enhances the given generic LaTeX string by the given context and returns a semantic LaTeX parsed
-     * expression.
-     * @param context the textual context
-     * @param latex the generic latex string
-     * @return semantically enhanced parsed LaTeX expression
-     * @throws ParseException if the expressions cannot be parsed
-     */
-    default MOIPresentations enhanceGenericLaTeX(String context, String latex) throws ParseException {
-        return enhanceGenericLaTeX(context, latex, null);
-    }
-
-    /**
-     * Enhances the given generic LaTeX string by the given context and returns a semantic LaTeX parsed
-     * expression. By providing a label of a DLMF equation, it triggers auto-replacement rules in the context
-     * of the DLMF, such as <code>i</code> become <code>\iunit</code>.
+     * Triggers the full-fledged semantic enhancement pipeline except for computing the results via CAS.
+     * This is equivalent to calling {@link #generateAnnotatedDocument(String)} and
+     * {@link #appendMOIPresentationsToDocument(SemanticEnhancedDocument)}.
      *
-     * @param context the textual context
-     * @param latex the generic latex string
-     * @param dlmfLabel a label of a DLMF equation (can be null)
-     * @return semantically enhanced parsed LaTeX expression
-     * @throws ParseException if the expressions cannot be parsed
+     * For adding CAS computation results to the semantic enhanced document you can call
+     * {@link #appendCASComputationsToDocument(SemanticEnhancedDocument)} on the resulted document from this method.
+     *
+     * @param context the textual context to analyze
+     * @return the full semantically enhanced document without computation results from CAS
      */
-    MOIPresentations enhanceGenericLaTeX(String context, String latex, String dlmfLabel) throws ParseException;
-
-    /**
-     * Enhances the given generic LaTeX string by the given context and returns a semantic LaTeX string.
-     * @param context the textual context
-     * @param latex the generic latex string
-     * @return semantically enhanced LaTeX string
-     * @throws ParseException if the expressions cannot be parsed
-     */
-    default String enhanceGenericLaTeXToString(String context, String latex) throws ParseException {
-        return enhanceGenericLaTeXToString(context, latex, null);
+    default SemanticEnhancedDocument fullyEnhanceDocument(String context) {
+        SemanticEnhancedDocument sed = generateAnnotatedDocument(context);
+        return appendMOIPresentationsToDocument(sed);
     }
 
     /**
-     * Enhances the given generic LaTeX string by the given context and returns a semantic LaTeX
-     * expression. By providing a label of a DLMF equation, it triggers auto-replacement rules in the context
-     * of the DLMF, such as <code>i</code> become <code>\iunit</code>.
-     * @param context the textual context
-     * @param latex the generic latex string
-     * @param dlmfLabel a label of a DLMF equation (can be null)
-     * @return semantically enhanced LaTeX string
-     * @throws ParseException if the expressions cannot be parsed
+     * The first step in the pipeline. Only generates a base representation of a semantically enhanced document.
+     * It contains the full graph structure (including definition annotations) of the MOI in the given context.
+     *
+     * It does not contain translations yet. Neither to semantic LaTeX nor to any CAS representation. This will can
+     * be added by calling {@link #appendMOIPresentationsToDocument(SemanticEnhancedDocument)} on the result of this
+     * method.
+     *
+     * @param context the context to analyze
+     * @return a base version of a semantically annotated document essentially containing the entire dependency graph
+     *          and including all definiens annotations but no translations to semantic LaTeX nor to any CAS.
      */
-    default String enhanceGenericLaTeXToString(String context, String latex, String dlmfLabel) throws ParseException {
-        return enhanceGenericLaTeX(context, latex, dlmfLabel).getSemanticLatex();
-    }
+    SemanticEnhancedDocument generateAnnotatedDocument(String context);
+
+    /**
+     * Requires the base version of a semantic enhanced document generated by {@link #generateAnnotatedDocument(String)}.
+     * Based on the dependency graph, this method will further fill-out the given annotated document with translations
+     * to semantic LaTeX and to all CAS representations. It still does not contain any computation results yet though!
+     * @param annotatedDocument base semantic document generated by {@link #generateAnnotatedDocument(String)}
+     * @return the same object annotated with semantic latex and CAS translations
+     */
+    SemanticEnhancedDocument appendMOIPresentationsToDocument(SemanticEnhancedDocument annotatedDocument)
+            throws MinimumRequirementNotFulfilledException;
+
+    /**
+     * This requires a semantic document containing all translations to semantic LaTeX and CAS representations as
+     * returned by {@link #appendMOIPresentationsToDocument(SemanticEnhancedDocument)}. It will trigger all computations
+     * on every node in the document for every CAS. The final returned semantic document is fully-fledged and include
+     * all computation results for all CAS.
+     *
+     * This is usually not advised because it may take a very long time to compute! It is better to compute results
+     * for single variables though, such as via {@link #computeMOI(MOIPresentations)}.
+     *
+     * @param semanticDocument semantic document containing all translations to semantic LaTeX and CAS representations
+     *                         as generated by {@link #appendMOIPresentationsToDocument(SemanticEnhancedDocument)}
+     * @return fully-fledged document including CAS computation results
+     */
+    SemanticEnhancedDocument appendCASComputationsToDocument(SemanticEnhancedDocument semanticDocument)
+            throws MinimumRequirementNotFulfilledException;
+
+    /**
+     * Generates an MOI representation for a single formula with the given context. This includes translations
+     * to semantic LaTeX and CAS but no computations yet. In order to analyze the MOI via CAS you need to use one of the
+     * computeMOI methods.
+     * @param annotatedDocument annotated document as generated by {@link #generateAnnotatedDocument(String)}.
+     * @param formula the formula to translate
+     * @return MOI with semantic LaTeX and CAS representations
+     */
+    MOIPresentations generateMOIPresentationFromDocument(SemanticEnhancedDocument annotatedDocument, String formula)
+            throws MinimumRequirementNotFulfilledException;
+
+    /**
+     * Performs CAS computations on the MOI. The MOI must contain translations to semantic LaTeX and CAS already.
+     * @param translatedMOI an MOI as generated by {@link #generateMOIPresentationFromDocument(SemanticEnhancedDocument, String)}
+     *                      or as a single formula from {@link #appendMOIPresentationsToDocument(SemanticEnhancedDocument)}
+     * @return MOI including the computed CAS results for the given MOI
+     */
+    MOIPresentations computeMOI(MOIPresentations translatedMOI);
+
+    /**
+     * Generate CAS results for the given translated MOI and specified CAS.
+     * @param translatedMOI an MOI as generated by {@link #generateMOIPresentationFromDocument(SemanticEnhancedDocument, String)}
+     *                      or as a single formula from {@link #appendMOIPresentationsToDocument(SemanticEnhancedDocument)}
+     * @param cas the CAS to verify
+     * @return CAS results for the given MOI and specified CAS
+     */
+    CASResult computeMOI(MOIPresentations translatedMOI, String cas);
+
+    /**
+     * Generate CAS results for the given translated MOI and specified CAS. It only performs the specified computation,
+     * essentially symbolic or numeric computation task, but not both.
+     * @param translatedMOI an MOI as generated by {@link #generateMOIPresentationFromDocument(SemanticEnhancedDocument, String)}
+     *                      or as a single formula from {@link #appendMOIPresentationsToDocument(SemanticEnhancedDocument)}
+     * @param cas the CAS to verify
+     * @return CAS results for the given MOI, specified CAS, and the computation task
+     */
+    CASResult computeMOI(MOIPresentations translatedMOI, String cas, ComputationTask task);
 }

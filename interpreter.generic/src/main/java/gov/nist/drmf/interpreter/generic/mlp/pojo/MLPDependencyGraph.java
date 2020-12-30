@@ -2,18 +2,19 @@ package gov.nist.drmf.interpreter.generic.mlp.pojo;
 
 import com.formulasearchengine.mathosphere.mlp.pojos.MathTag;
 import com.formulasearchengine.mathosphere.mlp.pojos.MathTagGraph;
+import com.formulasearchengine.mathosphere.mlp.pojos.Position;
 import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
+import com.formulasearchengine.mathosphere.mlp.text.WikiTextUtils;
+import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
 import gov.nist.drmf.interpreter.pom.moi.MOIDependency;
 import gov.nist.drmf.interpreter.pom.moi.MOIDependencyGraph;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
+import gov.nist.drmf.interpreter.pom.moi.MathematicalObjectOfInterest;
 import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -24,6 +25,69 @@ public class MLPDependencyGraph extends MOIDependencyGraph<MOIAnnotation> implem
 
     public MLPDependencyGraph() {
         super();
+    }
+
+    /**
+     * This constructs an existing dependency graph from the given list of MOIs.
+     * @param formulae the list of nodes for this graph including dependencies
+     */
+    public MLPDependencyGraph(List<MOIPresentations> formulae) {
+        Map<String, String> texIDMap = addNodes(formulae);
+        addDependencies(formulae, texIDMap);
+    }
+
+    private Map<String, String> addNodes(List<MOIPresentations> formulae) {
+        Map<String, String> texIDMap = new HashMap<>();
+        for ( MOIPresentations f : formulae ) {
+            MathTag mathTag = new MathTag(f.getGenericLatex(), WikiTextUtils.MathMarkUpType.LATEX);
+            texIDMap.put( f.getGenericLatex(), mathTag.placeholder() );
+            for ( Position p : f.getPositions() ) mathTag.addPosition(p);
+
+            MOIAnnotation annotation = new MOIAnnotation(mathTag);
+            for ( FormulaDefinition def : f.getDefiniens() ) {
+                Relation relation = new Relation();
+                relation.setMathTag(mathTag);
+                relation.setDefinition(def.getDefinition());
+                relation.setScore(def.getScore());
+                annotation.appendRelation( relation );
+            }
+
+            try {
+                // I wonder if we really must create an MOI here including parsing all the stuff.
+                // Probably we must because we take the PTE later to translate it to CAS...
+                MathematicalObjectOfInterest moi = new MathematicalObjectOfInterest(mathTag.getContent());
+                MOINode<MOIAnnotation> node = new MOINode<>(mathTag.placeholder(), moi, annotation);
+                super.addNode(node);
+            } catch (ParseException e) {
+                LOG.warn("Unable to generate MOI from given TeX string. " +
+                        "Not adding the node to the graph even though it existed in the given JSON.");
+            }
+        }
+        return texIDMap;
+    }
+
+    private void addDependencies(List<MOIPresentations> formulae, Map<String, String> texToIdMap) {
+        for ( MOIPresentations f : formulae ) {
+            String id = texToIdMap.get(f.getGenericLatex());
+            if ( id == null ) continue;
+
+            MOINode<MOIAnnotation> node = super.getNode(id);
+            List<String> ingoingNodes = f.getIngoingNodes();
+            for ( String sources : ingoingNodes ) {
+                id = texToIdMap.get(sources);
+                if ( id == null ) continue;
+                MOINode<MOIAnnotation> sourceNode = super.getNode(id);
+                super.addDependency(sourceNode, node);
+            }
+
+            List<String> outgoingNodes = f.getOutgoingNodes();
+            for ( String sink : outgoingNodes ) {
+                id = texToIdMap.get(sink);
+                if ( id == null ) continue;
+                MOINode<MOIAnnotation> sinkNode = super.getNode(id);
+                super.addDependency(node, sinkNode);
+            }
+        }
     }
 
     @Override

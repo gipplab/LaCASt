@@ -56,14 +56,14 @@ public class GenericLatexSemanticEnhancerTest {
         String notIncludedMath = "\\Gamma( (\\alpha+1)_n )";
 
         GenericLatexSemanticEnhancer enhancer = new GenericLatexSemanticEnhancer();
-        MOIPresentations gammaMOI = enhancer.enhanceGenericLaTeX(context, includedMath);
+        MOIPresentations gammaMOI = enhancer.enhanceGenericLaTeX(context, includedMath, null);
         assertNotNull(gammaMOI);
         assertEquals("\\Gamma(z)", gammaMOI.getGenericLatex());
         assertEquals("\\EulerGamma@{z}", gammaMOI.getSemanticLatex());
         assertEquals("GAMMA(z)", gammaMOI.getCasResults("Maple").getCasRepresentation());
         assertEquals("Gamma[z]", gammaMOI.getCasResults("Mathematica").getCasRepresentation());
 
-        MOIPresentations gammaCompositionMOI = enhancer.enhanceGenericLaTeX(context, notIncludedMath);
+        MOIPresentations gammaCompositionMOI = enhancer.enhanceGenericLaTeX(context, notIncludedMath, null);
         assertNotNull(gammaCompositionMOI);
         assertEquals("\\Gamma( (\\alpha+1)_n )", gammaCompositionMOI.getGenericLatex());
         assertEquals("\\EulerGamma@{\\Pochhammersym{\\alpha + 1}{n}}", gammaCompositionMOI.getSemanticLatex());

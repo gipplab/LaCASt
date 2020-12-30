@@ -1,0 +1,51 @@
+{
+    "formula" : "P_{n}^{(\\alpha, \\beta)}(x)",
+    "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{x}",
+    "confidence" : 0.8135152636383296,
+    "translations" : {
+        "Mathematica" : {
+            "translation" : "JacobiP[n, \\[Alpha], \\[Beta], x]",
+            "numericResults" : {
+                "successful" : false,
+                "numberOfTests" : 0,
+                "numberOfFailedTests" : 0,
+                "numberOfSuccessfulTests" : 0,
+                "testCalculations" : [
+                    {
+                        "result" : "no-computation-dummy",
+                        "testValues" : {
+                            "\\beta" : "2",
+                            "\\alpha" : "1"
+                        }
+                    }
+                ]
+            },
+            "symbolicResults" : [
+                {
+                    "result" : "JacobiP[n, α, β, x]",
+                    "property" : "fullsimplify"
+                }
+            ]
+        },
+        "Maple" : {
+            "translation" : "JacobiP(n, alpha, beta, x)",
+            "numericResults" : null,
+            "symbolicResults" : [ ]
+        }
+    },
+    "positions" : [
+        {
+            "section" : 0,
+            "sentence" : 0,
+            "word" : 15
+        }
+    ],
+    "includes" : [],
+    "isPartOf" : [],
+    "definiens" : [
+        {
+            "definition" : "Jacobi polynomial",
+            "score" : 0.8135152636383296
+        }
+    ]
+}
