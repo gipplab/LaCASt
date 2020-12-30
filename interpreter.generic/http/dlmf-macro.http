@@ -19,7 +19,7 @@ Content-Type: application/json
             "path": "meta",
             "query": {
                 "match": {
-                    "meta.description": "Bessel function"
+                    "meta.description": "Jacobi polynomial"
                 }
             }
         }

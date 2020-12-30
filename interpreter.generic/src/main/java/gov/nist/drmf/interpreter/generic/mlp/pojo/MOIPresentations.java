@@ -1,9 +1,6 @@
 package gov.nist.drmf.interpreter.generic.mlp.pojo;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 import com.formulasearchengine.mathosphere.mlp.pojos.Position;
 import com.wolfram.jlink.Expr;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
@@ -37,6 +34,9 @@ import java.util.stream.Stream;
 })
 public class MOIPresentations {
     private static final Logger LOG = LogManager.getLogger(MOIPresentations.class.getName());
+
+    @JsonIgnore
+    private SemanticEnhancedAnnotationStatus status = SemanticEnhancedAnnotationStatus.BASE;
 
     @JsonProperty("definiens")
     private List<FormulaDefinition> definiens;
@@ -156,6 +156,16 @@ public class MOIPresentations {
                 .collect(Collectors.toList());
     }
 
+    @JsonIgnore
+    public SemanticEnhancedAnnotationStatus getStatus() {
+        return status;
+    }
+
+    @JsonIgnore
+    public void setStatus(SemanticEnhancedAnnotationStatus status) {
+        this.status = status;
+    }
+
     @JsonGetter("formula")
     public String getGenericLatex() {
         return genericLatex;
@@ -174,6 +184,18 @@ public class MOIPresentations {
     @JsonGetter("translations")
     public Map<String, CASResult> getCasRepresentations() {
         return casRepresentations;
+    }
+
+    @JsonSetter("translations")
+    public void setCasRepresentations(Map<String, CASResult> casRepresentations) {
+        if ( casRepresentations.containsKey("Mathematica") ) {
+            CASResult result = casRepresentations.get("Mathematica");
+            if ( result.getNumericResults() != null || result.getSymbolicResults() != null ) {
+                if ( !status.hasPassed( SemanticEnhancedAnnotationStatus.COMPUTED ) )
+                    status = SemanticEnhancedAnnotationStatus.COMPUTED;
+            }
+        }
+        this.casRepresentations.putAll(casRepresentations);
     }
 
     @JsonGetter("confidence")
@@ -204,6 +226,34 @@ public class MOIPresentations {
     @JsonGetter("isPartOf")
     public List<String> getOutgoingNodes() {
         return outgoingNodes;
+    }
+
+    @JsonSetter("definiens")
+    public void setDefiniens(List<FormulaDefinition> definiens) {
+        if ( !status.hasPassed( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED ) )
+            status = SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED;
+        this.definiens = definiens;
+    }
+
+    @JsonSetter("semanticFormula")
+    public void setSemanticLatex(String semanticLatex) {
+        if ( !status.hasPassed( SemanticEnhancedAnnotationStatus.TRANSLATED ) )
+            status = SemanticEnhancedAnnotationStatus.TRANSLATED;
+        this.semanticLatex = semanticLatex;
+    }
+
+    @JsonSetter("includes")
+    public void setIngoingNodes(List<String> ingoingNodes) {
+        if ( !status.hasPassed( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED ) )
+            status = SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED;
+        this.ingoingNodes = ingoingNodes;
+    }
+
+    @JsonSetter("isPartOf")
+    public void setOutgoingNodes(List<String> outgoingNodes) {
+        if ( !status.hasPassed( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED ) )
+            status = SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED;
+        this.outgoingNodes = outgoingNodes;
     }
 
     @Override

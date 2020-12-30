@@ -65,6 +65,16 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
     }
 
     /**
+     * Adds a node to the existing graph without adding any dependencies in between.
+     * If a node exists with the same ID this method does nothing.
+     * @param node the node to add
+     */
+    protected void addNode(MOINode<T> node) {
+        if ( containsNode(node.getId()) ) return;
+        vertices.put(node.getId(), node);
+    }
+
+    /**
      * Updates all dependencies for the given node (in- and outgoing edges are updated/generated)
      * @param node the node
      */
@@ -80,6 +90,18 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
                 );
             }
         }
+    }
+
+    protected void addDependency(MOINode<T> source, MOINode<T> sink) {
+        MOIDependency<T> dependency = new MOIDependency<>(source, sink);
+        this.edges.put(
+                new Connection(
+                        dependency.getSource().getId(),
+                        dependency.getSink().getId()),
+                dependency
+        );
+        source.addOutgoingDependency(dependency);
+        sink.addIngoingDependency(dependency);
     }
 
     @Override

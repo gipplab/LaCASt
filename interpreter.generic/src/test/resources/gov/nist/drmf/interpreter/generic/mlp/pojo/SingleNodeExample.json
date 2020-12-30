@@ -1,0 +1,25 @@
+{
+    "title": "Jacoib polynomials",
+    "formulae": [
+        {
+            "formula" : "P_{n}^{(\\alpha, \\beta)}(x)",
+            "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{x}",
+            "confidence" : 0.8135152636383296,
+            "positions" : [
+                {
+                    "section" : 0,
+                    "sentence" : 0,
+                    "word" : 15
+                }
+            ],
+            "includes" : [],
+            "isPartOf" : [],
+            "definiens": [
+                {
+                    "definition" : "Jacobi polynomial",
+                    "score" : 0.8135152636383296
+                }
+            ]
+        }
+    ]
+}

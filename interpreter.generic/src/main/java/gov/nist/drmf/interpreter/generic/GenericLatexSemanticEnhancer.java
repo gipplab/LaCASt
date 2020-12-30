@@ -5,14 +5,14 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.formulasearchengine.mathosphere.mlp.contracts.WikiTextPageExtractorMapper;
+import gov.nist.drmf.interpreter.common.pojo.CASResult;
+import gov.nist.drmf.interpreter.common.pojo.ComputationTask;
+import gov.nist.drmf.interpreter.generic.exceptions.MinimumRequirementNotFulfilledException;
 import gov.nist.drmf.interpreter.generic.interfaces.IGenericLatexSemanticEnhancerAPI;
 import gov.nist.drmf.interpreter.generic.mlp.ContextAnalyzer;
 import gov.nist.drmf.interpreter.generic.mlp.Document;
 import gov.nist.drmf.interpreter.generic.mlp.WikitextDocument;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPDependencyGraph;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIAnnotation;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.*;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;
@@ -40,6 +40,51 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
      */
     public GenericLatexSemanticEnhancer() {}
 
+    @Override
+    public SemanticEnhancedDocument generateAnnotatedDocument(String context) {
+        return null;
+    }
+
+    @Override
+    public SemanticEnhancedDocument appendMOIPresentationsToDocument(SemanticEnhancedDocument annotatedDocument) throws MinimumRequirementNotFulfilledException {
+        checkRank( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED, annotatedDocument );
+
+        return null;
+    }
+
+    @Override
+    public SemanticEnhancedDocument appendCASComputationsToDocument(SemanticEnhancedDocument semanticDocument) throws MinimumRequirementNotFulfilledException {
+        checkRank( SemanticEnhancedAnnotationStatus.TRANSLATED, semanticDocument );
+
+        return null;
+    }
+
+    @Override
+    public MOIPresentations generateMOIPresentationFromDocument(SemanticEnhancedDocument annotatedDocument, String formula) throws MinimumRequirementNotFulfilledException {
+        checkRank( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED, annotatedDocument );
+
+        return null;
+    }
+
+    @Override
+    public MOIPresentations computeMOI(MOIPresentations translatedMOI) {
+        return null;
+    }
+
+    @Override
+    public CASResult computeMOI(MOIPresentations translatedMOI, String cas) {
+        return null;
+    }
+
+    @Override
+    public CASResult computeMOI(MOIPresentations translatedMOI, String cas, ComputationTask task) {
+        return null;
+    }
+
+    private void checkRank(SemanticEnhancedAnnotationStatus min, SemanticEnhancedDocument sed) throws MinimumRequirementNotFulfilledException {
+        if ( !sed.getSemanticState().hasPassed(min) ) throw new MinimumRequirementNotFulfilledException(min, sed.getSemanticState());
+    }
+
     /**
      * Generates a semantic enhanced document for the given string of a document.
      * The string should be a single document ont multiple documents! If you want to provide
@@ -65,7 +110,6 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
         return new SemanticEnhancedDocument(document.getTitle(), annotatedGraph);
     }
 
-    @Override
     public MOIPresentations enhanceGenericLaTeX(String context, String latex, String dlmfLabel) throws ParseException {
         Document document = ContextAnalyzer.getDocument(context);
         MOINode<MOIAnnotation> annotatedMoiNode = document.getAnnotatedMOINode(latex);

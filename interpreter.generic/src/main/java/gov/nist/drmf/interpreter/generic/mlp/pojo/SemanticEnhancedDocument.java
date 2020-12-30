@@ -1,17 +1,27 @@
 package gov.nist.drmf.interpreter.generic.mlp.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.guava.GuavaModule;
+import gov.nist.drmf.interpreter.common.pojo.CASResult;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.function.Predicate.not;
 
 /**
  * @author Andre Greiner-Petter
  */
 public class SemanticEnhancedDocument {
+    @JsonIgnore
+    private SemanticEnhancedAnnotationStatus semanticState = SemanticEnhancedAnnotationStatus.BASE;
+
     @JsonProperty("title")
     private final String title;
 
@@ -29,6 +39,15 @@ public class SemanticEnhancedDocument {
                 .sorted(Comparator.comparing(MOINode::getAnnotation))
                 .map(MOIPresentations::new)
                 .collect(Collectors.toList());
+        this.semanticState = SemanticEnhancedAnnotationStatus.COMPUTED;
+    }
+
+    public SemanticEnhancedAnnotationStatus getSemanticState() {
+        return semanticState;
+    }
+
+    public void setSemanticState(SemanticEnhancedAnnotationStatus semanticState) {
+        this.semanticState = semanticState;
     }
 
     public String getTitle() {
@@ -37,5 +56,32 @@ public class SemanticEnhancedDocument {
 
     public List<MOIPresentations> getFormulae() {
         return formulae;
+    }
+
+    public static SemanticEnhancedDocument deserialize(String json) throws JsonProcessingException {
+        ObjectMapper mapper = getMapper();
+
+        SemanticEnhancedDocument sed = mapper.readValue(json, SemanticEnhancedDocument.class);
+        sed.semanticState = getRank(sed);
+        return sed;
+    }
+
+    private static SemanticEnhancedAnnotationStatus getRank(SemanticEnhancedDocument sed) {
+        Stream<MOIPresentations> moiStream = sed.getFormulae().stream();
+
+        return moiStream.map( MOIPresentations::getStatus )
+                .max( Comparator.comparingInt(SemanticEnhancedAnnotationStatus::getRank) )
+                .orElse(SemanticEnhancedAnnotationStatus.BASE);
+    }
+
+    @JsonIgnore
+    private static ObjectMapper mapperInstance;
+
+    public static ObjectMapper getMapper() {
+        if ( mapperInstance == null ) {
+            mapperInstance = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+            mapperInstance.registerModule(new GuavaModule());
+        }
+        return mapperInstance;
     }
 }

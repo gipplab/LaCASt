@@ -19,6 +19,11 @@ public class CASResult {
     @JsonProperty("symbolicResults")
     private final List<SymbolicCalculation> symbolicResults;
 
+    private CASResult() {
+        casRepresentation = "";
+        symbolicResults = new LinkedList<>();
+    }
+
     public CASResult(String casRepresentation) {
         this.casRepresentation = casRepresentation;
         this.symbolicResults = new LinkedList<>();
