@@ -1,11 +1,20 @@
 package gov.nist.drmf.interpreter.pom.moi;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 public interface INode<T> {
-    Collection<T> getIngoingDependencies();
+    default Collection<INode<T>> getIngoingNodes() {
+        return getIngoingDependencies().stream().map(IDependency::getSource).collect(Collectors.toList());
+    }
 
-    Collection<T> getOutgoingDependencies();
+    default Collection<INode<T>> getOutgoingNodes() {
+        return getOutgoingDependencies().stream().map(IDependency::getSink).collect(Collectors.toList());
+    }
+
+    Collection<? extends IDependency<T>> getIngoingDependencies();
+
+    Collection<? extends IDependency<T>> getOutgoingDependencies();
 
     default boolean isSource() {
         return getIngoingDependencies().isEmpty();

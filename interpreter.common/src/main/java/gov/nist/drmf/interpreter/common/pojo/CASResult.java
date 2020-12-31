@@ -17,16 +17,14 @@ public class CASResult {
     private NumericResult numericResults;
 
     @JsonProperty("symbolicResults")
-    private final List<SymbolicCalculation> symbolicResults;
+    private List<SymbolicCalculation> symbolicResults;
 
     private CASResult() {
         casRepresentation = "";
-        symbolicResults = new LinkedList<>();
     }
 
     public CASResult(String casRepresentation) {
         this.casRepresentation = casRepresentation;
-        this.symbolicResults = new LinkedList<>();
     }
 
     public String getCasRepresentation() {
@@ -46,10 +44,12 @@ public class CASResult {
     }
 
     public void addSymbolicResult(SymbolicCalculation symbolicCalculation) {
+        if ( this.symbolicResults == null ) symbolicResults = new LinkedList<>();
         this.symbolicResults.add(symbolicCalculation);
     }
 
     public void addSymbolicResult(Collection<SymbolicCalculation> symbolicCalculation) {
+        if ( this.symbolicResults == null ) symbolicResults = new LinkedList<>();
         this.symbolicResults.addAll(symbolicCalculation);
     }
 }

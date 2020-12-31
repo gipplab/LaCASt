@@ -1,14 +1,19 @@
 package gov.nist.drmf.interpreter.generic.mlp;
 
+import com.formulasearchengine.mathosphere.mlp.pojos.MathTag;
 import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
+import com.formulasearchengine.mathosphere.mlp.text.WikiTextUtils;
+import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
+import gov.nist.drmf.interpreter.common.eval.INumericTestCalculator;
+import gov.nist.drmf.interpreter.common.pojo.CASResult;
 import gov.nist.drmf.interpreter.generic.common.GenericReplacementTool;
 import gov.nist.drmf.interpreter.generic.elasticsearch.DLMFElasticSearchClient;
 import gov.nist.drmf.interpreter.generic.elasticsearch.MacroResult;
+import gov.nist.drmf.interpreter.generic.exceptions.MinimumRequirementNotFulfilledException;
+import gov.nist.drmf.interpreter.generic.interfaces.IPartialEnhancer;
 import gov.nist.drmf.interpreter.generic.macro.*;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIAnnotation;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPLacastScorer;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.*;
 import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticReplacementRule;
 import gov.nist.drmf.interpreter.pom.extensions.*;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import gov.nist.drmf.interpreter.pom.moi.MathematicalObjectOfInterest;
@@ -23,83 +28,42 @@ import java.util.stream.Collectors;
 /**
  * @author Andre Greiner-Petter
  */
-public class SemanticEnhancer {
+public class SemanticEnhancer implements IPartialEnhancer {
     private static final Logger LOG = LogManager.getLogger(SemanticEnhancer.class.getName());
 
-    private final MacroDistributionAnalyzer macroDist;
-
-    private DLMFElasticSearchClient elasticSearchConnector;
-
-    private static final int considerNumberOfTopRelations = 3;
-    private static final int considerNumberOfTopMacros = 5;
-
-    private final Set<String> macroPatternMemory;
-    private final LinkedList<SemanticReplacementRule> macroPatterns;
-
-    private final Set<String> definiensMemory;
-    private final List<FormulaDefinition> definiens;
-    private final List<String> macros;
-
-    private double score;
+    private final MacroRetriever retriever;
 
     public SemanticEnhancer() {
-        this.macroPatternMemory = new HashSet<>();
-        this.macroPatterns = new LinkedList<>();
-        this.definiensMemory = new HashSet<>();
-        this.definiens = new LinkedList<>();
-        this.macros = new LinkedList<>();
-        this.score = 0;
-        this.macroDist = MacroDistributionAnalyzer.getStandardInstance();
+        this.retriever = new MacroRetriever();
     }
 
-    private void reset() {
-        elasticSearchConnector = new DLMFElasticSearchClient();
-        macroPatternMemory.clear();
-        macroPatterns.clear();
-        definiensMemory.clear();
-        definiens.clear();
-        macros.clear();
-        score = 0;
+    @Override
+    public MOIPresentations generateAnnotatedLatex(String latex, MLPDependencyGraph graph) throws ParseException {
+        MathTag mathTag = new MathTag(latex, WikiTextUtils.MathMarkUpType.LATEX);
+        MOINode<MOIAnnotation> node = graph.addFormulaNode( mathTag );
+        return new MOIPresentations( node );
     }
 
-    private void cleanup() {
-        elasticSearchConnector.stop();
-        elasticSearchConnector = null;
-    }
-
-    public double getScore() {
-        return score;
-    }
-
-    public List<FormulaDefinition> getUsedDefiniens() {
-        return definiens;
-    }
-
-    public List<String> getUsedMacros() {
-        return macros;
-    }
-
-    public PrintablePomTaggedExpression semanticallyEnhance(MOINode<MOIAnnotation> node) throws IOException, ParseException {
-        reset();
-        PrintablePomTaggedExpression result = coreSemanticallyEnhance(node);
-        cleanup();
-        return result;
-    }
-
-    private PrintablePomTaggedExpression coreSemanticallyEnhance(MOINode<MOIAnnotation> node) throws IOException, ParseException {
+    @Override
+    public void appendSemanticLatex(MOIPresentations moi, MOINode<MOIAnnotation> node) throws ParseException {
         String originalTex = node.getNode().getOriginalLaTeX();
         LOG.info("Start semantically enhancing moi " + node.getId() + ": " + originalTex);
 
-        definiens.addAll(
-                node.getAnnotation().getAttachedRelations().stream()
-                    .map( r -> new FormulaDefinition(r.getScore(), r.getDefinition()) )
-                    .collect(Collectors.toList())
-        );
+        RetrievedMacros retrievedMacros = retriever.retrieveReplacements(node);
+        coreSemanticallyEnhance(moi, node, retrievedMacros);
+    }
 
-        List<MOINode<MOIAnnotation>> dependentNodes = node.getDependencyNodes();
-        retrieveReplacementListsEnhance(node, dependentNodes);
-        LOG.info("Retrieved "+ macroPatterns.size() +" replacement rules. Start applying each rule.");
+    @Override
+    public CASResult computeNumerically(String semanticLatex, CASResult casResult, INumericTestCalculator<?> numericTestCalculator) {
+        return null;
+    }
 
+    @Override
+    public CASResult computeSemantically(String semanticLatex, CASResult casResult, ICASEngineSymbolicEvaluator<?> symbolicEvaluator) {
+        return null;
+    }
+
+    private PrintablePomTaggedExpression coreSemanticallyEnhance(MOIPresentations moiPresentation, MOINode<MOIAnnotation> node, RetrievedMacros retrievedMacros) throws ParseException {
         MathematicalObjectOfInterest moi = node.getNode();
         PrintablePomTaggedExpression pte = moi.getMoi();
         Set<String> replacementPerformed = new HashSet<>();
@@ -109,21 +73,10 @@ public class SemanticEnhancer {
         pte = genericReplacementTool.getSemanticallyEnhancedExpression();
         LOG.debug("Replaced general patterns: " + pte.getTexString());
 
-        macroPatterns.sort((a, b) -> {
-            double diff = a.getScore() - b.getScore();
-            if ( diff == 0 ) {
-                MacroCounter c1 = macroDist.getMacroCounter( "\\" + a.getMacro().getName() );
-                MacroCounter c2 = macroDist.getMacroCounter( "\\" + b.getMacro().getName() );
-
-                return c2.getMacroCounter() - c1.getMacroCounter();
-            }
-
-            return Double.compare(b.getScore(), a.getScore());
-        });
-
+        List<SemanticReplacementRule> macroPatterns = retrievedMacros.getPatterns();
         int counter = 0;
-        while( !macroPatterns.isEmpty() ) {
-            SemanticReplacementRule semanticReplacementRule = macroPatterns.removeFirst();
+        double score = 0.0;
+        for( SemanticReplacementRule semanticReplacementRule : macroPatterns ) {
             MacroBean macro = semanticReplacementRule.getMacro();
             MatcherConfig config = MacroHelper.getMatchingConfig(macro, node);
 
@@ -144,64 +97,20 @@ public class SemanticEnhancer {
             LOG.debug("Replacement applied, updated MOI: " + pte.getTexString());
             if ( matcher.performedReplacements() ) {
                 counter++;
-                this.score += semanticReplacementRule.getScore();
+                score += semanticReplacementRule.getScore();
             }
         }
 
-        this.score = counter > 0 ? score/(double)counter : 0;
+        score = counter > 0 ? score/(double)counter : 0;
 
         LOG.info("Semantically enhanced MOI.\n" +
                 "From: "+node.getNode().getOriginalLaTeX()+"\n" +
                 "To:   "+pte.getTexString()
         );
 
+        moiPresentation.setScore(score);
+        moiPresentation.setSemanticLatex(pte.getTexString());
+
         return pte;
-    }
-
-    private void retrieveReplacementListsEnhance(
-            MOINode<MOIAnnotation> node,
-            List<MOINode<MOIAnnotation>> dependencyList
-    ) throws IOException {
-        List<Relation> definiensList = node.getAnnotation().getAttachedRelations();
-        LOG.debug("Retrieve " + definiensList.size() + " definiens for node "+ node.getId() +": " + node.getNode().getOriginalLaTeX());
-        Collections.sort(definiensList);
-
-        for ( int i = 0; i < definiensList.size() && i < considerNumberOfTopRelations; i++ ) {
-            Relation definitionRelation = definiensList.get(i);
-            double definiensScore = definitionRelation.getScore();
-            String definition = definitionRelation.getDefinition();
-            if ( this.definiensMemory.contains(definition) ) continue;
-
-//            this.definiens.add(new FormulaDefiniens(definiensScore, definition));
-            LinkedList<MacroResult> macros = elasticSearchConnector.searchMacroDescription(definition);
-            LOG.debug("For definition " + definition + ": retrieved " + macros.size() + " semantic macros " + macros);
-
-            double maxMacroScore = macros.isEmpty() ? 0 : macros.get(0).getScore();
-            MLPLacastScorer scorer = new MLPLacastScorer(maxMacroScore);
-
-            for ( int j = 0; j < macros.size() && j < considerNumberOfTopMacros; j++ ) {
-                MacroResult macroResult = macros.get(j);
-                MacroBean macro = macroResult.getMacro();
-                if ( this.macros.contains(macro.getName()) )
-                    continue;
-
-                this.macros.add( macro.getName() );
-                if ( !macroPatternMemory.contains(macro.getName()) ) {
-                    LOG.debug("Add semantic macro " + macro.getName());
-                    macroPatternMemory.add(macro.getName());
-
-                    MacroCounter counter = macroDist.getMacroCounter("\\" + macro.getName());
-                    for ( MacroGenericSemanticEntry entry : macro.getTex() ) {
-                        double score = counter != null ?
-                                scorer.getScore( definiensScore, macroResult.getScore(), entry.getScore() ) :
-                                0;
-                        macroPatterns.add( new SemanticReplacementRule(macro, entry, score) );
-                    }
-                }
-            }
-        }
-
-        if ( !dependencyList.isEmpty() )
-            retrieveReplacementListsEnhance(dependencyList.remove(0), dependencyList);
     }
 }
