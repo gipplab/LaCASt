@@ -14,7 +14,7 @@ public class ElasticSearchConfig {
     private final int port;
 
     public ElasticSearchConfig(){
-        GenericLacastConfig c = ConfigDiscovery.getConfig().getGenericLacastConfig();
+        GenericLacastConfig c = GenericLacastConfig.getConfig();
         this.host = c.getEsHost();
         this.index = c.getMacroIndex();
         this.port = c.getEsPort();

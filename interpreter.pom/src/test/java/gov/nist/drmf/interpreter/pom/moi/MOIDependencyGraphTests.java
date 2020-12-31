@@ -34,7 +34,7 @@ public class MOIDependencyGraphTests {
         MOINode<Void> g = vertMap.get("2");
         MOINode<Void> fg = vertMap.get("3");
 
-        List<MOINode<Void>> dependencyNodes = fg.getDependencyNodes();
+        Collection<INode<Void>> dependencyNodes = fg.getIngoingNodes();
         assertEquals(2, dependencyNodes.size());
         assertTrue(dependencyNodes.contains(f));
         assertTrue(dependencyNodes.contains(g));

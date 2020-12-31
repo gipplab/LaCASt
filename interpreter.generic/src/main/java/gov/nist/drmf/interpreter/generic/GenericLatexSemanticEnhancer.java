@@ -5,12 +5,15 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.formulasearchengine.mathosphere.mlp.contracts.WikiTextPageExtractorMapper;
+import com.formulasearchengine.mathosphere.mlp.pojos.MathTag;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.pojo.CASResult;
 import gov.nist.drmf.interpreter.common.pojo.ComputationTask;
 import gov.nist.drmf.interpreter.generic.exceptions.MinimumRequirementNotFulfilledException;
 import gov.nist.drmf.interpreter.generic.interfaces.IGenericLatexSemanticEnhancerAPI;
 import gov.nist.drmf.interpreter.generic.mlp.ContextAnalyzer;
 import gov.nist.drmf.interpreter.generic.mlp.Document;
+import gov.nist.drmf.interpreter.generic.mlp.SemanticEnhancer;
 import gov.nist.drmf.interpreter.generic.mlp.WikitextDocument;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.*;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
@@ -35,21 +38,35 @@ import java.util.stream.Collectors;
  */
 public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhancerAPI {
     private static final Logger LOG = LogManager.getLogger(GenericLatexSemanticEnhancer.class.getName());
+
+    private final SemanticEnhancer semanticEnhancer;
+
+    private final CASTranslators translators;
+
     /**
      * Constructs a new instance of the class
      */
-    public GenericLatexSemanticEnhancer() {}
-
-    @Override
-    public SemanticEnhancedDocument generateAnnotatedDocument(String context) {
-        return null;
+    public GenericLatexSemanticEnhancer() {
+        this.semanticEnhancer = new SemanticEnhancer();
+        this.translators = new CASTranslators();
     }
 
     @Override
-    public SemanticEnhancedDocument appendMOIPresentationsToDocument(SemanticEnhancedDocument annotatedDocument) throws MinimumRequirementNotFulfilledException {
+    public SemanticEnhancedDocument generateAnnotatedDocument(String context) {
+        Document document = ContextAnalyzer.getDocument(context);
+        return getSemanticEnhancedDocument(document);
+    }
+
+    @Override
+    public SemanticEnhancedDocument appendTranslationsToDocument(SemanticEnhancedDocument annotatedDocument) throws MinimumRequirementNotFulfilledException {
         checkRank( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED, annotatedDocument );
 
-        return null;
+        MLPDependencyGraph graph = new MLPDependencyGraph(annotatedDocument.getFormulae());
+        for ( MOIPresentations formula : annotatedDocument.getFormulae() ) {
+            appendTranslationToMOI(formula, graph.getNode(formula.getId()));
+        }
+
+        return annotatedDocument;
     }
 
     @Override
@@ -60,10 +77,34 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
     }
 
     @Override
-    public MOIPresentations generateMOIPresentationFromDocument(SemanticEnhancedDocument annotatedDocument, String formula) throws MinimumRequirementNotFulfilledException {
+    public MOIPresentations generateMOIPresentationFromDocument(SemanticEnhancedDocument annotatedDocument, String formula) throws MinimumRequirementNotFulfilledException, ParseException {
         checkRank( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED, annotatedDocument );
 
-        return null;
+        String id = MathTag.getID(formula);
+        MLPDependencyGraph graph = new MLPDependencyGraph(annotatedDocument.getFormulae());
+        MOIPresentations moi = annotatedDocument.getFormulae().stream().filter( m -> m.getId().equals(id) ).findFirst()
+                .orElse( null );
+        if ( moi == null ) {
+            moi = semanticEnhancer.generateAnnotatedLatex(formula, graph);
+        }
+
+        appendTranslationToMOI(moi, graph.getNode(id));
+        return moi;
+    }
+
+    private void appendTranslationToMOI(MOIPresentations moi, MOINode<MOIAnnotation> node) {
+        // node cannot be null unless something serious broke before...
+        try {
+            semanticEnhancer.appendSemanticLatex( moi, node );
+            translators.getTranslators().forEach( (k, t) -> {
+                try { semanticEnhancer.appendCASRepresentation(moi, k, t); }
+                catch (TranslationException te) {
+                    LOG.warn(te.toString());
+                }
+            } );
+        } catch (ParseException p) {
+            LOG.error("Unable to generate semantic latex due to a parsing error for " + moi.getId() + ": " + moi.getGenericLatex(), p);
+        }
     }
 
     @Override
@@ -86,21 +127,6 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
     }
 
     /**
-     * Generates a semantic enhanced document for the given string of a document.
-     * The string should be a single document ont multiple documents! If you want to provide
-     * multi documents, e.g., a wiki document with multi-pages use
-     * {@link #getSemanticEnhancedDocumentsFromWikitext(String)} instead.
-     *
-     * This class uses the {@link ContextAnalyzer} to determine the type of document.
-     *
-     * @param document the document
-     * @return semantically enhanced document
-     */
-    public SemanticEnhancedDocument getSemanticEnhancedDocument(String document) {
-        return this.getSemanticEnhancedDocument(ContextAnalyzer.getDocument(document));
-    }
-
-    /**
      * Generates a semantic enhanced document for the given document
      * @param document the document
      * @return semantically enhanced document
@@ -108,12 +134,6 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
     public SemanticEnhancedDocument getSemanticEnhancedDocument(Document document) {
         MLPDependencyGraph annotatedGraph = document.getMOIDependencyGraph();
         return new SemanticEnhancedDocument(document.getTitle(), annotatedGraph);
-    }
-
-    public MOIPresentations enhanceGenericLaTeX(String context, String latex, String dlmfLabel) throws ParseException {
-        Document document = ContextAnalyzer.getDocument(context);
-        MOINode<MOIAnnotation> annotatedMoiNode = document.getAnnotatedMOINode(latex);
-        return new MOIPresentations(annotatedMoiNode);
     }
 
     public List<SemanticEnhancedDocument> getSemanticEnhancedDocumentsFromWikitext(String context) {

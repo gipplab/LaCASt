@@ -4,29 +4,43 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.config.CASSupporter;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
+import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Andre Greiner-Petter
  */
 public class CASTranslators {
-
-    private static CASTranslators translators;
+    private static final Logger LOG = LogManager.getLogger(CASTranslators.class.getName());
 
     private final Map<String, SemanticLatexTranslator> translatorMap;
     private final List<String> supportedCAS;
 
-    private CASTranslators() throws InitTranslatorException {
+    public CASTranslators() {
         CASSupporter supporter = CASSupporter.getSupportedCAS();
         this.translatorMap = new HashMap<>();
-        this.supportedCAS = supporter.getAllCAS();
-        for ( String cas : supportedCAS ) {
-            SemanticLatexTranslator slt = new SemanticLatexTranslator(cas);
-            translatorMap.put(cas, slt);
+        this.supportedCAS = new LinkedList<>();
+        for ( String cas : supporter.getAllCAS() ) {
+            try {
+                SemanticLatexTranslator slt = new SemanticLatexTranslator(cas);
+                translatorMap.put(cas, slt);
+            } catch (InitTranslatorException e) {
+                LOG.warn("Unable to setup semantic translator for language " + cas, e);
+            }
+        }
+    }
+
+    public CASTranslators(List<SemanticLatexTranslator> translators) {
+        this.translatorMap = new HashMap<>();
+        this.supportedCAS = new LinkedList<>();
+
+        for (SemanticLatexTranslator translator : translators) {
+            translatorMap.put( translator.getSourceLanguage(), translator );
+            supportedCAS.add( translator.getSourceLanguage() );
         }
     }
 
@@ -43,15 +57,11 @@ public class CASTranslators {
         return te.getTranslatedExpression();
     }
 
+    public Map<String, ITranslator> getTranslators() {
+        return new HashMap<>(translatorMap);
+    }
+
     public List<String> getSupportedCAS() {
         return supportedCAS;
     }
-
-    public static CASTranslators getTranslatorsInstance() throws InitTranslatorException {
-        if ( translators == null ) {
-            translators = new CASTranslators();
-        }
-        return translators;
-    }
-
 }

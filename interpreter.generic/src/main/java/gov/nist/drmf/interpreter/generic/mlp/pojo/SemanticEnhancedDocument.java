@@ -19,9 +19,6 @@ import static java.util.function.Predicate.not;
  * @author Andre Greiner-Petter
  */
 public class SemanticEnhancedDocument {
-    @JsonIgnore
-    private SemanticEnhancedAnnotationStatus semanticState = SemanticEnhancedAnnotationStatus.BASE;
-
     @JsonProperty("title")
     private final String title;
 
@@ -39,15 +36,10 @@ public class SemanticEnhancedDocument {
                 .sorted(Comparator.comparing(MOINode::getAnnotation))
                 .map(MOIPresentations::new)
                 .collect(Collectors.toList());
-        this.semanticState = SemanticEnhancedAnnotationStatus.COMPUTED;
     }
 
     public SemanticEnhancedAnnotationStatus getSemanticState() {
-        return semanticState;
-    }
-
-    public void setSemanticState(SemanticEnhancedAnnotationStatus semanticState) {
-        this.semanticState = semanticState;
+        return getRank(this);
     }
 
     public String getTitle() {
@@ -60,10 +52,7 @@ public class SemanticEnhancedDocument {
 
     public static SemanticEnhancedDocument deserialize(String json) throws JsonProcessingException {
         ObjectMapper mapper = getMapper();
-
-        SemanticEnhancedDocument sed = mapper.readValue(json, SemanticEnhancedDocument.class);
-        sed.semanticState = getRank(sed);
-        return sed;
+        return mapper.readValue(json, SemanticEnhancedDocument.class);
     }
 
     private static SemanticEnhancedAnnotationStatus getRank(SemanticEnhancedDocument sed) {

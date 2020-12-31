@@ -18,6 +18,9 @@ public class GenericLacastConfig {
     @JsonProperty("mathoid.url")
     private String mathoidUrl = "http://localhost:10044/texvcinfo";
 
+    @JsonProperty("settings")
+    private Settings settings;
+
     public GenericLacastConfig() {}
 
     public String getEsHost() {
@@ -34,5 +37,34 @@ public class GenericLacastConfig {
 
     public String getMathoidUrl() {
         return mathoidUrl;
+    }
+
+    public int getMaxRelations() {
+        return settings.maxRelations;
+    }
+
+    public int getMaxMacros() {
+        return settings.maxMacros;
+    }
+
+    public int getMaxDepth() {
+        return settings.maxDepth;
+    }
+
+    public static GenericLacastConfig getConfig() {
+        return ConfigDiscovery.getConfig().getGenericLacastConfig();
+    }
+
+    private class Settings {
+        @JsonProperty("max.relations")
+        private int maxRelations = 3;
+
+        @JsonProperty("max.macros")
+        private int maxMacros = 5;
+
+        @JsonProperty("max.depth")
+        private int maxDepth = -1;
+
+        public Settings() {}
     }
 }

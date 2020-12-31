@@ -101,6 +101,22 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
     }
 
     /**
+     * Returns the source language of this translator which is always "LaTeX"
+     * @return the source language of this translator
+     */
+    public String getSourceLanguage() {
+        return config.getFROM_LANGUAGE();
+    }
+
+    /**
+     * Returns the target language of this translator, i.e., the language to which the expressions will be translated to.
+     * @return the translations the expressions will be translated to
+     */
+    public String getTargetLanguage() {
+        return config.getTO_LANGUAGE();
+    }
+
+    /**
      * Initializes the back end for the translation from semantic LaTeX to
      * a computer algebra system. It loads all translation information
      * from the files in the given path and instantiate the PomParser from

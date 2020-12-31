@@ -10,6 +10,7 @@ import gov.nist.drmf.interpreter.generic.mlp.SemanticEnhancer;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaSimplifier;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
+import gov.nist.drmf.interpreter.pom.moi.INode;
 import gov.nist.drmf.interpreter.pom.moi.MOIDependency;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import gov.nist.drmf.interpreter.pom.moi.MathematicalObjectOfInterest;
@@ -18,10 +19,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -29,7 +27,7 @@ import java.util.stream.Stream;
  * @author Andre Greiner-Petter
  */
 @JsonPropertyOrder({
-        "formula", "semanticFormula", "confidence", "translations",
+        "id", "formula", "semanticFormula", "confidence", "translations",
         "positions", "includes", "isPartOf", "definiens"
 })
 public class MOIPresentations {
@@ -38,15 +36,14 @@ public class MOIPresentations {
     @JsonIgnore
     private SemanticEnhancedAnnotationStatus status = SemanticEnhancedAnnotationStatus.BASE;
 
-    @JsonProperty("definiens")
-    private List<FormulaDefinition> definiens;
-
-    // for debug reasons
-    @JsonIgnore
-    private List<String> macros;
+    @JsonProperty("id")
+    private final String id;
 
     @JsonProperty("formula")
     private final String genericLatex;
+
+    @JsonProperty("definiens")
+    private List<FormulaDefinition> definiens;
 
     @JsonProperty("semanticFormula")
     private String semanticLatex;
@@ -55,7 +52,7 @@ public class MOIPresentations {
     private final Map<String, CASResult> casRepresentations;
 
     @JsonProperty("confidence")
-    private double score = 0;
+    private Double score;
 
     @JsonProperty("positions")
     private List<Position> positions;
@@ -66,56 +63,29 @@ public class MOIPresentations {
     @JsonProperty("isPartOf")
     private List<String> outgoingNodes;
 
-    private MOIPresentations() {
+    public MOIPresentations() {
+        id = "FORMULA_EMPTY";
         genericLatex = "";
         casRepresentations = new HashMap<>();
     }
 
     public MOIPresentations(MOINode<MOIAnnotation> node) {
+        this.id = node.getId();
         this.genericLatex = node.getNode().getOriginalLaTeX();
         this.ingoingNodes = getDependants(node, true);
         this.outgoingNodes = getDependants(node, false);
-        this.positions = node.getAnnotation().getFormula().getPositions();
-        this.positions.sort( Position.getComparator() );
-        LOG.debug("Setup MOI representations on graph node: " + genericLatex);
-        SemanticEnhancer enhancer = new SemanticEnhancer();
-        casRepresentations = new HashMap<>();
-        try {
-            PrintablePomTaggedExpression semanticPTE = enhancer.semanticallyEnhance(node);
-            this.score = enhancer.getScore();
-            this.definiens = enhancer.getUsedDefiniens();
-            this.macros = enhancer.getUsedMacros();
+        this.casRepresentations = new HashMap<>();
 
-            definiens.sort(Comparator.comparingDouble(FormulaDefinition::getScore).reversed());
-            if ( semanticPTE == null ) {
-                LOG.warn("Unable to semantically enhance latex.");
-                return;
+        if ( node.getAnnotation() != null ) {
+            if ( node.getAnnotation().getFormula() != null ) {
+                this.positions = node.getAnnotation().getFormula().getPositions();
+                this.positions.sort( Position.getComparator() );
             }
 
-            this.semanticLatex = semanticPTE.getTexString();
-            LOG.debug("Semantically enhanced generic LaTeX: " + semanticLatex);
-
-            CASTranslators translators = CASTranslators.getTranslatorsInstance();
-            LOG.debug("Translate to all supported CAS.");
-            for ( String cas : translators.getSupportedCAS() ) {
-                try {
-                    String translation = translators.translate(cas, semanticPTE);
-                    CASResult result =  new CASResult(translation);
-                    if ( cas.equals("Mathematica") ) this.tryMathematicaComputation(result);
-                    this.casRepresentations.put(cas, result);
-                    LOG.debug("Translation to " + cas + ": " + translation);
-                } catch ( Exception e ) {
-                    LOG.warn("Unable to translate expression to CAS " + cas + ": " + e.toString());
-                }
-            }
-        } catch (IOException e) {
-            LOG.warn("Unable to generate semantic LaTeX.");
-            LOG.debug("Error when generating semantic LaTeX", e);
-        } catch (ParseException e) {
-            LOG.warn("Unable to parse LaTeX.");
-            LOG.debug("Error when parsing LaTeX", e);
-        } catch (InitTranslatorException e) {
-            LOG.error("Unable to setup CAS translators.", e);
+            this.definiens = node.getAnnotation().getAttachedRelations().stream()
+                    .map(r -> new FormulaDefinition(r.getScore(), r.getDefinition()))
+                    .collect(Collectors.toCollection(LinkedList::new));
+            if ( !definiens.isEmpty() ) status = SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED;
         }
     }
 
@@ -147,10 +117,10 @@ public class MOIPresentations {
     }
 
     private List<String> getDependants(MOINode<MOIAnnotation> node, boolean ingoing) {
-        Stream<MOIDependency<MOIAnnotation>> stream = ingoing ?
-                node.getIngoingDependencies().stream() :
-                node.getOutgoingDependencies().stream();
-        return stream.map( d -> ingoing ? d.getSource() : d.getSink() )
+        Collection<INode<MOIAnnotation>> nodes = ingoing ?
+                node.getIngoingNodes() : node.getOutgoingNodes();
+
+        return nodes.stream().map( n -> (MOINode<MOIAnnotation>)n )
                 .map( MOINode::getNode )
                 .map( MathematicalObjectOfInterest::getOriginalLaTeX )
                 .collect(Collectors.toList());
@@ -164,6 +134,11 @@ public class MOIPresentations {
     @JsonIgnore
     public void setStatus(SemanticEnhancedAnnotationStatus status) {
         this.status = status;
+    }
+
+    @JsonGetter("id")
+    public String getId() {
+        return id;
     }
 
     @JsonGetter("formula")
@@ -188,14 +163,28 @@ public class MOIPresentations {
 
     @JsonSetter("translations")
     public void setCasRepresentations(Map<String, CASResult> casRepresentations) {
-        if ( casRepresentations.containsKey("Mathematica") ) {
-            CASResult result = casRepresentations.get("Mathematica");
-            if ( result.getNumericResults() != null || result.getSymbolicResults() != null ) {
-                if ( !status.hasPassed( SemanticEnhancedAnnotationStatus.COMPUTED ) )
-                    status = SemanticEnhancedAnnotationStatus.COMPUTED;
-            }
-        }
-        this.casRepresentations.putAll(casRepresentations);
+        casRepresentations.forEach(this::addCasRepresentation);
+    }
+
+    @JsonIgnore
+    public void addCasRepresentation(String cas, CASResult casResult) {
+        updateStatus(getStatusFromCASResult(casResult));
+        this.casRepresentations.put(cas, casResult);
+    }
+
+    @JsonIgnore
+    private SemanticEnhancedAnnotationStatus getStatusFromCASResult(CASResult result) {
+        if ( result.getNumericResults() != null || result.getSymbolicResults() != null ) {
+            if ( !status.hasPassed( SemanticEnhancedAnnotationStatus.COMPUTED ) )
+                return SemanticEnhancedAnnotationStatus.COMPUTED;
+        } else if ( !result.getCasRepresentation().isBlank() )
+            return SemanticEnhancedAnnotationStatus.TRANSLATED;
+        return SemanticEnhancedAnnotationStatus.BASE;
+    }
+
+    @JsonIgnore
+    private void updateStatus(SemanticEnhancedAnnotationStatus newStatus) {
+        if ( newStatus.hasPassed(status) ) status = newStatus;
     }
 
     @JsonGetter("confidence")
@@ -203,14 +192,14 @@ public class MOIPresentations {
         return score;
     }
 
+    @JsonSetter("confidence")
+    public void setScore(double score) {
+        this.score = score;
+    }
+
     @JsonGetter("definiens")
     public List<FormulaDefinition> getDefiniens() {
         return definiens;
-    }
-
-    @JsonIgnore
-    public List<String> getMacros() {
-        return macros;
     }
 
     @JsonGetter("positions")
@@ -230,29 +219,25 @@ public class MOIPresentations {
 
     @JsonSetter("definiens")
     public void setDefiniens(List<FormulaDefinition> definiens) {
-        if ( !status.hasPassed( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED ) )
+        if ( !definiens.isEmpty() && !status.hasPassed( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED ) )
             status = SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED;
         this.definiens = definiens;
     }
 
     @JsonSetter("semanticFormula")
     public void setSemanticLatex(String semanticLatex) {
-        if ( !status.hasPassed( SemanticEnhancedAnnotationStatus.TRANSLATED ) )
+        if ( !semanticLatex.isBlank() && !status.hasPassed( SemanticEnhancedAnnotationStatus.TRANSLATED ) )
             status = SemanticEnhancedAnnotationStatus.TRANSLATED;
         this.semanticLatex = semanticLatex;
     }
 
     @JsonSetter("includes")
     public void setIngoingNodes(List<String> ingoingNodes) {
-        if ( !status.hasPassed( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED ) )
-            status = SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED;
         this.ingoingNodes = ingoingNodes;
     }
 
     @JsonSetter("isPartOf")
     public void setOutgoingNodes(List<String> outgoingNodes) {
-        if ( !status.hasPassed( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED ) )
-            status = SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED;
         this.outgoingNodes = outgoingNodes;
     }
 
@@ -260,7 +245,7 @@ public class MOIPresentations {
     @JsonIgnore
     public String toString() {
         String out =
-                "Score: " + score + "; Used Definiens: " + definiens + "; Used Macros: " + macros + "\n" +
+                "Score: " + score + "; Used Definiens: " + definiens + "; Used Macros: ---" + "\n" +
                 " Generic LaTeX: " + genericLatex + "\n" +
                 "Semantic LaTeX: " + semanticLatex + "\n";
         for ( Map.Entry<String, CASResult> trans : this.casRepresentations.entrySet() ) {

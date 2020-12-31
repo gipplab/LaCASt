@@ -6,10 +6,7 @@ import com.formulasearchengine.mathosphere.mlp.pojos.Position;
 import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
 import com.formulasearchengine.mathosphere.mlp.text.WikiTextUtils;
 import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
-import gov.nist.drmf.interpreter.pom.moi.MOIDependency;
-import gov.nist.drmf.interpreter.pom.moi.MOIDependencyGraph;
-import gov.nist.drmf.interpreter.pom.moi.MOINode;
-import gov.nist.drmf.interpreter.pom.moi.MathematicalObjectOfInterest;
+import gov.nist.drmf.interpreter.pom.moi.*;
 import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -152,8 +149,9 @@ public class MLPDependencyGraph extends MOIDependencyGraph<MOIAnnotation> implem
         MOINode<MOIAnnotation> node = super.getNode(mathTag.placeholder());
         if ( node == null ) return new HashSet<>();
         return node.getOutgoingDependencies().stream()
-                .map( MOIDependency::getSink )
-                .map( MOINode<MOIAnnotation>::getAnnotation )
+                .map( IDependency::getSink )
+                .map( n -> (MOINode<MOIAnnotation>)n )
+                .map( MOINode::getAnnotation )
                 .map( MOIAnnotation::getFormula )
                 .collect(Collectors.toSet());
     }
@@ -163,8 +161,9 @@ public class MLPDependencyGraph extends MOIDependencyGraph<MOIAnnotation> implem
         MOINode<MOIAnnotation> node = super.getNode(mathTag.placeholder());
         if ( node == null ) return new HashSet<>();
         return node.getIngoingDependencies().stream()
-                .map( MOIDependency::getSource )
-                .map( MOINode<MOIAnnotation>::getAnnotation )
+                .map( IDependency::getSource )
+                .map( n -> (MOINode<MOIAnnotation>)n )
+                .map( MOINode::getAnnotation )
                 .map( MOIAnnotation::getFormula )
                 .collect(Collectors.toSet());
     }

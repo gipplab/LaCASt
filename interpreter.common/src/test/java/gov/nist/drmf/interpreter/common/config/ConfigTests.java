@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ConfigTests {
     @Test
     void defaultGenericConfigTest() {
-        GenericLacastConfig clc = new GenericLacastConfig();
+        GenericLacastConfig clc = GenericLacastConfig.getConfig();
         assertEquals("localhost", clc.getEsHost());
         assertEquals(9200, clc.getEsPort());
         assertEquals("dlmf-macros", clc.getMacroIndex());

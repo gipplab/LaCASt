@@ -9,7 +9,7 @@ package gov.nist.drmf.interpreter.pom.moi;
  * @see DependencyPattern
  * @author Andre Greiner-Petter
  */
-public class MOIDependency<T> {
+public class MOIDependency<T> implements IDependency<T> {
 
     private final MOINode<T> source;
     private final MOINode<T> sink;
@@ -32,11 +32,21 @@ public class MOIDependency<T> {
         this.attribute = attribute;
     }
 
-    public MOINode<T> getSource() {
+    public MOINode<T> getSourceNode() {
         return source;
     }
 
-    public MOINode<T> getSink() {
+    public MOINode<T> getSinkNode() {
+        return sink;
+    }
+
+    @Override
+    public INode<T> getSource() {
+        return source;
+    }
+
+    @Override
+    public INode<T> getSink() {
         return sink;
     }
 
