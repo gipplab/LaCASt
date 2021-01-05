@@ -9,6 +9,7 @@ import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.interfaces.IPackageWrapper;
 import gov.nist.drmf.interpreter.evaluation.common.*;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
+import gov.nist.drmf.interpreter.pom.common.CaseMetaData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -304,27 +305,6 @@ public abstract class AbstractEvaluator<T> {
             LOG.fatal("Cannot load dataset!", ioe);
             return null;
         }
-    }
-
-    protected static Thread getAbortionThread(IAbortEvaluator evaluator) {
-        return getAbortionThread(evaluator, timeoutMS);
-    }
-
-    protected static Thread getAbortionThread(IAbortEvaluator evaluator, double timeout) {
-        return new Thread(() -> {
-            boolean interrupted = false;
-            LOG.debug("Start waiting for abortion.");
-            try {
-                Thread.sleep((int)timeout);
-            } catch ( InterruptedException ie ) {
-                LOG.debug("Interrupted, no abortion necessary.");
-                interrupted = true;
-            }
-
-            if ( !interrupted ) {
-                evaluator.abort();
-            }
-        });
     }
 
     public abstract EvaluationConfig getConfig();

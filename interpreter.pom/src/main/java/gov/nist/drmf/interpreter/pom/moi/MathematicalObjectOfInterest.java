@@ -28,7 +28,7 @@ public class MathematicalObjectOfInterest {
     private final PrintablePomTaggedExpression moi;
     private MatchablePomTaggedExpression matchableMOI;
 
-    private String originalLaTeX;
+    private final String originalLaTeX;
     private String pattern;
 
     private HashMap<String, String> wildcardIdentifierMapping;
@@ -41,14 +41,15 @@ public class MathematicalObjectOfInterest {
         this.identifiers = null;
         this.moi = null;
         this.matchableMOI = null;
+        this.originalLaTeX = "";
     }
 
     public MathematicalObjectOfInterest(String latex) throws ParseException {
-        this(mlp.parse(latex));
+        this(latex, mlp.parse(latex));
     }
 
-    public MathematicalObjectOfInterest(PrintablePomTaggedExpression moi) {
-        this.originalLaTeX = moi.getTexString();
+    public MathematicalObjectOfInterest(String latex, PrintablePomTaggedExpression moi) {
+        this.originalLaTeX = latex;
         this.moi = moi;
 
         PrintablePomTaggedExpression moiCopy = new PrintablePomTaggedExpression(moi);

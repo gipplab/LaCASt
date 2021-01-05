@@ -58,4 +58,13 @@ public final class MapleConstants {
 
     public static final String ENV_VAR_LEGENDRE_CUT_LEGENDRE =
             "_EnvLegendreCut := -1 .. 1;" + System.lineSeparator() + FORGET;
+
+    public static String[] getDefaultPrePostCommands() {
+        String[] pac = new String[2];
+        pac[0] = MapleConstants.ENV_VAR_LEGENDRE_CUT_FERRER;
+        pac[0] += System.lineSeparator();
+        //pac[0] += FERRER_DEF_ASS + System.lineSeparator();
+        pac[1] = MapleConstants.ENV_VAR_LEGENDRE_CUT_LEGENDRE;
+        return pac;
+    }
 }

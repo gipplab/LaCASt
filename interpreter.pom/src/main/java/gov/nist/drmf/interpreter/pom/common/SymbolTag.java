@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.evaluation.common;
+package gov.nist.drmf.interpreter.pom.common;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,7 +24,7 @@ public class SymbolTag {
         this(id, symbol, null, null);
     }
 
-    SymbolTag(String id, String symbol, String expr, CaseMetaData definitionMetaData ) {
+    public SymbolTag(String id, String symbol, String expr, CaseMetaData definitionMetaData ) {
         this.id = id;
         this.symbol = symbol;
         this.definition = expr;

@@ -53,7 +53,7 @@ public class MLPDependencyGraph extends MOIDependencyGraph<MOIAnnotation> implem
                 // I wonder if we really must create an MOI here including parsing all the stuff.
                 // Probably we must because we take the PTE later to translate it to CAS...
                 MathematicalObjectOfInterest moi = new MathematicalObjectOfInterest(mathTag.getContent());
-                MOINode<MOIAnnotation> node = new MOINode<>(mathTag.placeholder(), moi, annotation);
+                MOINode<MOIAnnotation> node = new MOINode<>(f.getId(), moi, annotation);
                 super.addNode(node);
             } catch (ParseException e) {
                 LOG.warn("Unable to generate MOI from given TeX string. " +

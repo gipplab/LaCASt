@@ -7,6 +7,7 @@ import com.formulasearchengine.mathosphere.mlp.pojos.MathTag;
 import com.formulasearchengine.mathosphere.mlp.text.WikiTextUtils;
 import gov.nist.drmf.interpreter.common.pojo.CASResult;
 import gov.nist.drmf.interpreter.common.tests.Resource;
+import gov.nist.drmf.interpreter.generic.elasticsearch.AssumeElasticsearchAvailability;
 
 import java.util.Collection;
 import java.util.Map;
@@ -51,6 +52,7 @@ public class MLPDependencyGraphTests {
         assertEquals( 1, graph.getVertices().size() );
     }
 
+    @AssumeElasticsearchAvailability
     @Resource("JacobiResults.json")
     void testGeneratingGraphFromJson(String json) throws JsonProcessingException {
         SemanticEnhancedDocument sed = SemanticEnhancedDocument.deserialize(json);

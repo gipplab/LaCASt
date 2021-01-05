@@ -1,8 +1,11 @@
 package gov.nist.drmf.interpreter.generic.mlp.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.util.DefaultIndenter;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
@@ -38,10 +41,6 @@ public class SemanticEnhancedDocument {
                 .collect(Collectors.toList());
     }
 
-    public SemanticEnhancedAnnotationStatus getSemanticState() {
-        return getRank(this);
-    }
-
     public String getTitle() {
         return title;
     }
@@ -50,11 +49,23 @@ public class SemanticEnhancedDocument {
         return formulae;
     }
 
+    @JsonIgnore
+    public SemanticEnhancedAnnotationStatus getSemanticState() {
+        return getRank(this);
+    }
+
+    @JsonIgnore
     public static SemanticEnhancedDocument deserialize(String json) throws JsonProcessingException {
         ObjectMapper mapper = getMapper();
         return mapper.readValue(json, SemanticEnhancedDocument.class);
     }
 
+    @JsonIgnore
+    public String serialize() throws JsonProcessingException {
+        return getMapper().writer(printer).writeValueAsString(this);
+    }
+
+    @JsonIgnore
     private static SemanticEnhancedAnnotationStatus getRank(SemanticEnhancedDocument sed) {
         Stream<MOIPresentations> moiStream = sed.getFormulae().stream();
 
@@ -66,10 +77,17 @@ public class SemanticEnhancedDocument {
     @JsonIgnore
     private static ObjectMapper mapperInstance;
 
+    @JsonIgnore
+    private static DefaultPrettyPrinter printer;
+
     public static ObjectMapper getMapper() {
         if ( mapperInstance == null ) {
             mapperInstance = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+            mapperInstance.setSerializationInclusion(JsonInclude.Include.NON_NULL);
             mapperInstance.registerModule(new GuavaModule());
+
+            printer = new DefaultPrettyPrinter();
+            printer.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
         }
         return mapperInstance;
     }

@@ -8,6 +8,8 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.latex.Relations;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.common.CaseMetaData;
+import gov.nist.drmf.interpreter.pom.common.SymbolTag;
 import gov.nist.drmf.interpreter.pom.extensions.MatchablePomTaggedExpression;
 import gov.nist.drmf.interpreter.pom.extensions.PomMatcher;
 import gov.nist.drmf.interpreter.pom.extensions.PomMatcherBuilder;

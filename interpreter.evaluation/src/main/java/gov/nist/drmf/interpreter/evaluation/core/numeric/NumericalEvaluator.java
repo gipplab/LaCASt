@@ -3,14 +3,9 @@ package gov.nist.drmf.interpreter.evaluation.core.numeric;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.wolfram.jlink.Expr;
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.Constraints;
 import gov.nist.drmf.interpreter.common.eval.*;
-import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
-import gov.nist.drmf.interpreter.common.TranslationInformation;
-import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
-import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
-import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
@@ -18,16 +13,11 @@ import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
 import gov.nist.drmf.interpreter.core.DLMFTranslator;
 import gov.nist.drmf.interpreter.evaluation.common.Case;
 import gov.nist.drmf.interpreter.evaluation.common.CaseAnalyzer;
-import gov.nist.drmf.interpreter.evaluation.common.ProcedureLoader;
 import gov.nist.drmf.interpreter.evaluation.common.Status;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
-import gov.nist.drmf.interpreter.evaluation.core.symbolic.SymbolicEvaluator;
+import gov.nist.drmf.interpreter.maple.MapleConnector;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
-import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
-import gov.nist.drmf.interpreter.maple.extension.NumericCalculator;
-import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
-import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
-import gov.nist.drmf.interpreter.mathematica.extension.MathematicaNumericalCalculator;
+import gov.nist.drmf.interpreter.mathematica.MathematicaConnector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -90,7 +80,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
     public static final int MAX_LOG_LENGTH = 300;
 
-    private NumericalConfig config;
+    private NumericalConfig config = NumericalConfig.config();
 
     private HashMap<Integer, String> labelLib;
 
@@ -123,16 +113,10 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
      * @throws IOException
      */
     public NumericalEvaluator(
-            IConstraintTranslator forwardTranslator,
-            IComputerAlgebraSystemEngine<T> engine,
-            ICASEngineNumericalEvaluator<T> numericalEvaluator,
-            INumericalEvaluationScripts scriptHandler,
-            String[] defaultPrevAfterCmds,
-            String[] procedures,
-            NumericalConfig config
-    ) throws ComputerAlgebraSystemEngineException {
-        super(forwardTranslator, engine, numericalEvaluator);
-        this.scriptHandler = scriptHandler;
+            NativeComputerAlgebraInterfaceBuilder<T> interfaceBuilder
+    ) throws ComputerAlgebraSystemEngineException, InitTranslatorException {
+        super(new DLMFTranslator(interfaceBuilder.getLanguageKey()), interfaceBuilder.getCASEngine(), interfaceBuilder.getNumericEvaluator());
+        this.scriptHandler = interfaceBuilder.getEvaluationScriptHandler();
 
         // use blueprints to parse constraints
         CaseAnalyzer.ACTIVE_BLUEPRINTS = true;
@@ -168,8 +152,8 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             testSet.add(i);
         }
 
-        setUpScripts(procedures);
-        numericalEvaluator.setTimeout(config.getTimeout());
+        setUpScripts(interfaceBuilder.getNumericProcedures());
+        interfaceBuilder.getNumericEvaluator().setTimeout( config.getTimeout() );
 
         Status.reset();
         init();
@@ -424,7 +408,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
                 config,
                 getThisConstraintTranslator()
         );
-        test.setPostProcessingMethodName(scriptHandler.getPostProcessingScriptName(c));
+        test.setPostProcessingMethodName(scriptHandler.getPostProcessingScriptName(c.isEquation()));
         test.setVariables(variables);
         return test;
     }
@@ -484,76 +468,14 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
     public static NumericalEvaluator createStandardMapleEvaluator()
             throws IOException, MapleException, ComputerAlgebraSystemEngineException, InitTranslatorException {
-        String[] mapleScripts = new String[3];
-        String numericalProc = MapleTranslator.extractProcedure(GlobalPaths.PATH_MAPLE_NUMERICAL_PROCEDURES);
-        mapleScripts[0] = numericalProc;
-
-        // load expectation of results template
-        NumericalConfig config =  NumericalConfig.config();
-        String expectationTemplate = config.getExpectationTemplate();
-        // load numerical sieve
-        String sieve_procedure = MapleTranslator.extractProcedure( GlobalPaths.PATH_MAPLE_NUMERICAL_SIEVE_PROCEDURE );
-        String sieve_procedure_relation = "rel" + sieve_procedure;
-
-        // replace condition placeholder
-        String numericalSievesMethod = MapleTranslator.extractNameOfProcedure(sieve_procedure);
-        String numericalSievesMethodRelations = "rel" + numericalSievesMethod;
-
-        sieve_procedure = sieve_procedure.replaceAll(
-                NumericalTestConstants.KEY_NUMERICAL_SIEVES_CONDITION,
-                expectationTemplate
-        );
-
-        sieve_procedure_relation = sieve_procedure_relation.replaceAll(
-                NumericalTestConstants.KEY_NUMERICAL_SIEVES_CONDITION,
-                "result"
-        );
-
-        mapleScripts[1] = sieve_procedure;
-        mapleScripts[2] = sieve_procedure_relation;
-        LOG.debug("Setup done!");
-
-        DLMFTranslator dlmfTranslator = new DLMFTranslator(Keys.KEY_MAPLE);
-        MapleInterface mapleInterface = MapleInterface.getUniqueMapleInterface();
-        NumericCalculator numericCalculator = new NumericCalculator();
-
-        NumericalEvaluator evaluator = new NumericalEvaluator<Algebraic>(
-                dlmfTranslator,
-                mapleInterface,
-                numericCalculator,
-                (c -> c.isEquation() ? numericalSievesMethod : numericalSievesMethodRelations),
-                SymbolicEvaluator.getMaplePrevAfterCommands(),
-                mapleScripts,
-                config
-        );
-
+        NumericalEvaluator evaluator = new NumericalEvaluator<Algebraic>(new MapleConnector());
         evaluator.isMaple = true;
-
         return evaluator;
     }
 
     public static NumericalEvaluator createStandardMathematicaEvaluator() throws IOException, ComputerAlgebraSystemEngineException, InitTranslatorException {
-        NumericalConfig config =  NumericalConfig.config();
-
-        DLMFTranslator dlmfTranslator = new DLMFTranslator(Keys.KEY_MATHEMATICA);
-        MathematicaInterface mathematicaInterface = MathematicaInterface.getInstance();
-        MathematicaNumericalCalculator numericalCalculator = new MathematicaNumericalCalculator();
-        numericalCalculator.setThreshold(config.getThreshold());
-
-        String script = ProcedureLoader.getProcedure(GlobalPaths.PATH_MATHEMATICA_NUMERICAL_PROCEDURES);
-
-        NumericalEvaluator evaluator = new NumericalEvaluator<Expr>(
-                dlmfTranslator,
-                mathematicaInterface,
-                numericalCalculator,
-                (c -> c.isEquation() ? "" : ""),
-                null,
-                new String[]{script},
-                config
-        );
-
+        NumericalEvaluator evaluator = new NumericalEvaluator<Expr>(new MathematicaConnector());
         evaluator.isMaple = false;
-
         return evaluator;
     }
 

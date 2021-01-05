@@ -47,6 +47,16 @@ public class GreekLetters extends GenericTranslationMapper implements ITranslato
     }
 
     @Override
+    public String getSourceLanguage() {
+        return FROM;
+    }
+
+    @Override
+    public String getTargetLanguage() {
+        return TO;
+    }
+
+    @Override
     public String translate( String symbol ) {
         return translationMapper.translate( FROM, TO, symbol );
     }

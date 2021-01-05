@@ -32,4 +32,16 @@ public interface ITranslator {
      * @throws TranslationException if an error due translation occurs.
      */
     TranslationInformation translateToObject( String expression ) throws TranslationException;
+
+    /**
+     * Returns the source language of this translator object
+     * @return source language of this translator
+     */
+    String getSourceLanguage();
+
+    /**
+     * Returns the target language of this translator (e.g., the name of the CAS)
+     * @return the target language of this translator
+     */
+    String getTargetLanguage();
 }

@@ -6,15 +6,14 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.common.latex.RelationalComponents;
+import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
+import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
 import gov.nist.drmf.interpreter.pom.common.MeomArgumentLimitChecker;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
-import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
-import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -225,11 +224,8 @@ public class SequenceTranslator extends AbstractListTranslator {
             }
 
             if ( stack.size() > 1 ) {
-                throw TranslationException.buildException(this,
-                        "Encountered mismatched bracket. There are couple of opened brackets that are never closed: "
-                                + stack.toString(),
-                        TranslationExceptionReason.WRONG_PARENTHESIS
-                );
+                LOG.debug("If considering current left-angle-bracket as an open bracket, we encounter a bracket mismatch. " +
+                        "Hence we assume it is a relation and continue");
             }
 
             // so we did not reach an end of this "opened" bracket, like x * <2+3> + x

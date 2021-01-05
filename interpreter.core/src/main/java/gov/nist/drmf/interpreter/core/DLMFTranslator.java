@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.core;
 
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.TranslationInformation;
@@ -28,6 +29,16 @@ public class DLMFTranslator implements IConstraintTranslator {
         config = dlmfInterface.getConfig();
         packageWrapper = new PackageWrapper(config);
         LOG.debug("Initialized DLMF LaTeX Interface.");
+    }
+
+    @Override
+    public String getSourceLanguage() {
+        return Keys.KEY_LATEX;
+    }
+
+    @Override
+    public String getTargetLanguage() {
+        return dlmfInterface.getSourceLanguage();
     }
 
     @Override

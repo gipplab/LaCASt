@@ -8,7 +8,9 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 public interface IAbortEvaluator<T> {
     void setTimeout(double timeoutInSeconds);
 
-    void abort();
+    default void disableTimeout() {
+        setTimeout(-1);
+    }
 
     boolean wasAborted(T result);
 }

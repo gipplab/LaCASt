@@ -1,7 +1,8 @@
-package gov.nist.drmf.interpreter.evaluation.common;
+package gov.nist.drmf.interpreter.pom.common;
 
 import gov.nist.drmf.interpreter.common.cas.Constraints;
-import gov.nist.drmf.interpreter.evaluation.constraints.MLPConstraintAnalyzer;
+import gov.nist.drmf.interpreter.common.eval.Label;
+import gov.nist.drmf.interpreter.pom.eval.constraints.MLPConstraintAnalyzer;
 import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,6 +32,10 @@ public class CaseMetaData {
     private int linenumber;
 
     private static MLPConstraintAnalyzer analyzer = MLPConstraintAnalyzer.getAnalyzerInstance();
+
+    public CaseMetaData() {
+        this(-1, null, new Constraints(), new LinkedList<>());
+    }
 
     public CaseMetaData(int linenumber, Label label, Constraints constraints, LinkedList<SymbolTag> symbolsUsed){
         this.label = label;
@@ -130,7 +135,7 @@ public class CaseMetaData {
 
         String[] conArr = sieved.stream()
                 .flatMap( c -> {
-                    CaseEquationSplitter eq = new CaseEquationSplitter();
+                    EquationSplitter eq = new EquationSplitter();
                     Collection<String> col = eq.constraintSplitter(c);
                     return col.stream();
                 })
@@ -165,7 +170,7 @@ public class CaseMetaData {
 
     private static int updateLists(String[][] rule, String con, LinkedList<String[][]> varVals, LinkedList<String> sieved) {
         int length = 0;
-        if ( rule != null && CaseAnalyzer.ACTIVE_BLUEPRINTS ) {
+        if ( rule != null && true ) {
             varVals.add(rule);
             length = rule[0].length;
         } else sieved.add(con);

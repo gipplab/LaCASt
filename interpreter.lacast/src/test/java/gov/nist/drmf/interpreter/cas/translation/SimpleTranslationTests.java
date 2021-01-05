@@ -387,6 +387,22 @@ class SimpleTranslationTests {
     }
 
     @Test
+    void noAngleBracketButRelationTest() {
+        String in = "2 < 3 + 5 < x";
+        String eout = "2 < 3 + 5 < x";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void noAngleBracketButRelationReverseTest() {
+        String in = "2 > 3 + 5 > x";
+        String eout = "2 > 3 + 5 > x";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
     void spaceBehindSlashTest() {
         String in = "2/3";
         String eout = "2/3";

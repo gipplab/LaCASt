@@ -307,11 +307,6 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
     }
 
     @Override
-    public void abort() {
-        LOG.warn("Abortion is not supported by Maple.");
-    }
-
-    @Override
     public boolean wasAborted(Algebraic result) {
         return maple.isAbortedExpression(result);
     }

@@ -2,17 +2,15 @@ package gov.nist.drmf.interpreter.mathematica.extension;
 
 import com.wolfram.jlink.Expr;
 import com.wolfram.jlink.MathLinkException;
-import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.time.Duration;
 import java.util.Set;
 import java.util.regex.Pattern;
-
-import static gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker.MATH_ABORTION_SIGNAL;
 
 /**
  * @author Andre Greiner-Petter
@@ -23,7 +21,7 @@ public class MathematicaSimplifier implements ICASEngineSymbolicEvaluator<Expr> 
     private final MathematicaInterface mathematicaInterface;
     private final SymbolicEquivalenceChecker miEquiChecker;
 
-    private int timeout = -1;
+    private Duration timeout = Duration.ofSeconds(-1);
 
     public MathematicaSimplifier() {
         this.mathematicaInterface = MathematicaInterface.getInstance();
@@ -32,12 +30,12 @@ public class MathematicaSimplifier implements ICASEngineSymbolicEvaluator<Expr> 
 
     @Override
     public void setTimeout(double timeoutInSeconds) {
-        this.timeout = (int)(1_000*timeoutInSeconds);
-//        LOG.warn("Timeout for Mathematica is not implemented yet...");
+        this.timeout = Duration.ofMillis( (int)(timeoutInSeconds * 1_000) );
     }
 
+    @Override
     public void disableTimeout() {
-        this.timeout = -1;
+        this.timeout = Duration.ofSeconds(-1);
     }
 
     @Override
@@ -58,7 +56,7 @@ public class MathematicaSimplifier implements ICASEngineSymbolicEvaluator<Expr> 
 
     @Override
     public boolean isAsExpected(Expr in, double expect) {
-        return miEquiChecker.isNumber(in, expect);
+        return miEquiChecker.isNumber(in, expect) || miEquiChecker.isTrue(in);
     }
 
     @Override
@@ -87,17 +85,10 @@ public class MathematicaSimplifier implements ICASEngineSymbolicEvaluator<Expr> 
     private Expr fullSimplify(String expression, String assumption, Set<String> requiredPackages) throws ComputerAlgebraSystemEngineException {
         logReqPackages(requiredPackages);
         try {
-            Expr res = null;
-            Thread abortionThread = null;
-            if ( timeout > 0 ) {
-                abortionThread = MathematicaInterface.getAbortionThread(this, timeout);
-                abortionThread.start();
-            }
+            Expr res;
             if ( assumption == null )
-                res = miEquiChecker.fullSimplify(expression);
-            else res = miEquiChecker.fullSimplify(expression, assumption);
-            if ( abortionThread != null )
-                abortionThread.interrupt();
+                res = miEquiChecker.fullSimplify(expression, timeout);
+            else res = miEquiChecker.fullSimplify(expression, assumption, timeout);
             return res;
         } catch (MathLinkException e) {
             throw new ComputerAlgebraSystemEngineException(e);
@@ -105,12 +96,7 @@ public class MathematicaSimplifier implements ICASEngineSymbolicEvaluator<Expr> 
     }
 
     @Override
-    public void abort() {
-        miEquiChecker.abort();
-    }
-
-    @Override
     public boolean wasAborted(Expr result) {
-        return result.toString().matches(Pattern.quote(MATH_ABORTION_SIGNAL));
+        return result.toString().matches(Pattern.quote(MathematicaInterface.MATH_ABORTION_SIGNAL));
     }
 }

@@ -4,14 +4,13 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.latex.Relations;
 import gov.nist.drmf.interpreter.common.tests.Resource;
+import gov.nist.drmf.interpreter.pom.common.CaseMetaData;
+import gov.nist.drmf.interpreter.pom.common.SymbolTag;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.core.DLMFTranslator;
-import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;

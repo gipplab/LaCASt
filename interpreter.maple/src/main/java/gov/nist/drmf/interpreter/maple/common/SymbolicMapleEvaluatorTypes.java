@@ -1,4 +1,6 @@
-package gov.nist.drmf.interpreter.evaluation.core.symbolic;
+package gov.nist.drmf.interpreter.maple.common;
+
+import gov.nist.drmf.interpreter.common.eval.ISymbolicTestCases;
 
 /**
  * @author Andre Greiner-Petter

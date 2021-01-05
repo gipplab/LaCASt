@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -28,6 +29,8 @@ import java.util.regex.Pattern;
  */
 public final class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> {
     private static final Logger LOG = LogManager.getLogger(MathematicaInterface.class.getName());
+
+    public static final String MATH_ABORTION_SIGNAL = "$Aborted";
 
     /**
      * The kernel
@@ -61,7 +64,7 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine<
         // set encoding to avoid UTF-8 chars of greek letters
         MathematicaConfig.setCharacterEncoding(mathKernel);
         this.mathKernel = mathKernel;
-        this.evalChecker = new SymbolicEquivalenceChecker(mathKernel);
+        this.evalChecker = new SymbolicEquivalenceChecker(this);
         LOG.info("Successfully instantiated mathematica interface");
     }
 
@@ -118,6 +121,20 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine<
         mathKernel.evaluate(input);
         mathKernel.waitForAnswer();
         return mathKernel.getExpr();
+    }
+
+    public Expr evaluateToExpression(String input, Duration timeout) throws MathLinkException {
+        input = wrapInTimeout(input, timeout);
+        return evaluateToExpression(input);
+    }
+
+    public static String wrapInTimeout(String input, Duration timeout) {
+        if ( timeout != null && !timeout.isNegative() ) {
+            String timeoutStr = "" + timeout.getSeconds();
+            if ( timeout.toMillisPart() > 0 ) timeoutStr += "." + timeout.toMillisPart();
+            input = Commands.TIME_CONSTRAINED.build( input, timeoutStr );
+        }
+        return input;
     }
 
     public String convertToFullForm(String input) {
@@ -178,7 +195,12 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine<
 
     @Override
     public void forceGC() {
-        LOG.trace("Ignore force GC for Mathematica");
+        try {
+            LOG.debug("Clear native Mathematica system cache");
+            evaluate(Commands.CLEAR_CACHE.build());
+        } catch (MathLinkException e) {
+            LOG.error("Unable to clear system cache in Mathematica", e);
+        }
     }
 
     @Override
@@ -207,22 +229,5 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine<
         } catch (NumberFormatException e) {
             throw new ComputerAlgebraSystemEngineException(e);
         }
-    }
-
-    public static Thread getAbortionThread(IAbortEvaluator<Expr> simplifier, int timeout) {
-        return new Thread(() -> {
-            boolean interrupted = false;
-            try {
-                Thread.sleep(timeout);
-            } catch ( InterruptedException ie ) {
-                LOG.debug("Interrupted, no abortion necessary.");
-                interrupted = true;
-            }
-
-            if ( !interrupted ) {
-                LOG.debug("Register an abortion request. Forward it to mathematica engine.");
-                simplifier.abort();
-            }
-        });
     }
 }

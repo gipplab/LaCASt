@@ -55,6 +55,14 @@ public class SemanticEnhancer implements IPartialEnhancer {
 
     @Override
     public CASResult computeNumerically(String semanticLatex, CASResult casResult, INumericTestCalculator<?> numericTestCalculator) {
+        // first: get instance of Maple and Mathematica as translators (only if available)
+        // second: build NumericalTest (which should be the same for all)
+        // third: call performTest
+        // fourth: analyze test case, remove correct answers
+        // fifth: update CASResult
+
+
+
         return null;
     }
 
@@ -63,7 +71,7 @@ public class SemanticEnhancer implements IPartialEnhancer {
         return null;
     }
 
-    private PrintablePomTaggedExpression coreSemanticallyEnhance(MOIPresentations moiPresentation, MOINode<MOIAnnotation> node, RetrievedMacros retrievedMacros) throws ParseException {
+    private void coreSemanticallyEnhance(MOIPresentations moiPresentation, MOINode<MOIAnnotation> node, RetrievedMacros retrievedMacros) throws ParseException {
         MathematicalObjectOfInterest moi = node.getNode();
         PrintablePomTaggedExpression pte = moi.getMoi();
         Set<String> replacementPerformed = new HashSet<>();
@@ -110,7 +118,5 @@ public class SemanticEnhancer implements IPartialEnhancer {
 
         moiPresentation.setScore(score);
         moiPresentation.setSemanticLatex(pte.getTexString());
-
-        return pte;
     }
 }

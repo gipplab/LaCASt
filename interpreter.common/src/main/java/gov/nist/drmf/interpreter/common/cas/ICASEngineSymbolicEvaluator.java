@@ -2,14 +2,12 @@ package gov.nist.drmf.interpreter.common.cas;
 
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Set;
 
 /**
  * @author Andre Greiner-Petter
  */
-public interface ICASEngineSymbolicEvaluator<T> extends Observer, IAbortEvaluator<T> {
+public interface ICASEngineSymbolicEvaluator<T> extends IAbortEvaluator<T> {
 
     T simplify( String expr, Set<String> requiredPackages ) throws ComputerAlgebraSystemEngineException;
 
@@ -20,9 +18,4 @@ public interface ICASEngineSymbolicEvaluator<T> extends Observer, IAbortEvaluato
     boolean isConditionallyExpected(T in, double expect);
 
     String getCondition(T in);
-
-    @Override
-    default void update(Observable o, Object arg) {
-        abort();
-    }
 }
