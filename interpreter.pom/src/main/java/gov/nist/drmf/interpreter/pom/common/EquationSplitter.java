@@ -2,8 +2,12 @@ package gov.nist.drmf.interpreter.pom.common;
 
 import gov.nist.drmf.interpreter.common.latex.Relations;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,6 +15,7 @@ import java.util.regex.Pattern;
  * @author Andre Greiner-Petter
  */
 public class EquationSplitter {
+    private static final Logger LOG = LogManager.getLogger(EquationSplitter.class.getName());
 
     private final static Pattern RELATION_MATCHER = Pattern.compile(
             "\\s*(?:([<>=][<>=]?)|(\\\\[ngl]eq?)([^a-zA-Z])|([()\\[\\]{}|]))\\s*"
@@ -109,5 +114,51 @@ public class EquationSplitter {
                 bracketStack.removeLast();
             } else bracketStack.addLast(b);
         } else bracketStack.addLast(b);
+    }
+
+    public Collection<String> constraintSplitter(String latex) {
+        analyzeTex(latex);
+        List<String> constraints = new LinkedList<>();
+
+        while ( !getRelations().isEmpty() ) {
+            String left = getParts().removeFirst();
+            String right = getParts().getFirst();
+            Relations rel = getRelations().removeFirst();
+
+            String[] leftElements = left.split(",");
+            String[] rightElements = right.split(",");
+            boolean numberChain = true;
+            if ( rightElements.length > 1 ) {
+                if ( rightElements.length == 2 && !getRelations().isEmpty() ) numberChain = false;
+                else {
+                    for ( String r : rightElements ) {
+                        numberChain &= r.matches("\\s*(-?\\s*[0-9.]+|\\\\[lc]?dots)\\s*");
+                    }
+                }
+            } else numberChain = false;
+
+            if ( numberChain ) {
+                LOG.error("Unable to analyze constraint (list of number after blueprints): " + latex);
+                return constraints;
+            }
+
+            for ( String el : leftElements ) {
+                String e = el + " " + rel.getTexSymbol() + " " + rightElements[0];
+                splitPMConstraints(e, constraints);
+            }
+
+            if ( rightElements.length > 1 ) {
+                getParts().removeFirst();
+                getParts().addFirst( right.substring(right.indexOf(",")+1) );
+            }
+        }
+
+        return constraints;
+    }
+
+    private static void splitPMConstraints(String latex, Collection<String> constraints) {
+        LeftRightSide lrs = new LeftRightSide(latex);
+        if ( lrs.wasSplitted() ) lrs.addCases(constraints);
+        else constraints.add(latex);
     }
 }

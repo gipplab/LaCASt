@@ -165,7 +165,17 @@ public final class MapleTranslator extends AbstractAlgebraicTranslator<Algebraic
         }
     }
 
-    public static String extractNameOfProcedure( String maple_proc ){
+    @Override
+    public String getSourceLanguage() {
+        return Keys.KEY_MAPLE;
+    }
+
+    @Override
+    public String getTargetLanguage() {
+        return Keys.KEY_LATEX;
+    }
+
+    public static String extractNameOfProcedure(String maple_proc ){
         return maple_proc.split(define_symb)[0].trim();
     }
 

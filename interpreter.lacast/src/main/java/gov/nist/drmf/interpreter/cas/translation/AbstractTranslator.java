@@ -329,13 +329,13 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     }
 
     public void activateSetMode() {
-        LOG.debug("Set-Mode for sequences activated!");
+        LOG.trace("Set-Mode for sequences activated!");
         SET_MODE = true;
         if ( this.superTranslator != null ) this.superTranslator.activateSetMode();
     }
 
     public void deactivateSetMode() {
-        LOG.debug("Set-Mode for sequences deactivated!");
+        LOG.trace("Set-Mode for sequences deactivated!");
         SET_MODE = false;
         if ( this.superTranslator != null ) this.superTranslator.deactivateSetMode();
     }

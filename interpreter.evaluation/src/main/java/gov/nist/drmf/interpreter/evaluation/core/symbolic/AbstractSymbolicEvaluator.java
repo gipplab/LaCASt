@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.evaluation.core.symbolic;
 
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
+import gov.nist.drmf.interpreter.common.eval.ISymbolicTestCases;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
@@ -40,13 +41,7 @@ public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> 
     }
 
     public T simplify( String command ) throws ComputerAlgebraSystemEngineException {
-        Thread abortThread = getAbortionThread(symbolicEvaluator);
-        abortThread.start();
-        T result = symbolicEvaluator.simplify(command, getRequiredPackages());
-        // waits for an answer, once the answer is received, we finished the process
-        abortThread.interrupt();
-
-        return result;
+        return symbolicEvaluator.simplify(command, getRequiredPackages());
     }
 
     public T simplify( String command, String assumption ) throws ComputerAlgebraSystemEngineException {

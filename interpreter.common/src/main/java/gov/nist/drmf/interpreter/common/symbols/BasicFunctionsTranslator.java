@@ -41,6 +41,16 @@ public class BasicFunctionsTranslator extends GenericTranslationMapper implement
         }
     }
 
+    @Override
+    public String getSourceLanguage() {
+        return KEY_NAME;
+    }
+
+    @Override
+    public String getTargetLanguage() {
+        return TO;
+    }
+
     /**
      * This function function only returns the abstract
      * pattern for the given function name. As an example

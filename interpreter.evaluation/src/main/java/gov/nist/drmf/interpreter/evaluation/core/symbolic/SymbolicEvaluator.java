@@ -1,5 +1,10 @@
 package gov.nist.drmf.interpreter.evaluation.core.symbolic;
 
+import com.maplesoft.openmaple.Algebraic;
+import com.wolfram.jlink.Expr;
+import gov.nist.drmf.interpreter.common.eval.ISymbolicTestCases;
+import gov.nist.drmf.interpreter.common.eval.NativeComputerAlgebraInterfaceBuilder;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
@@ -14,9 +19,13 @@ import gov.nist.drmf.interpreter.evaluation.common.Status;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.common.eval.EvaluationConfig;
 import gov.nist.drmf.interpreter.common.eval.NumericalConfig;
+import gov.nist.drmf.interpreter.maple.MapleConnector;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
+import gov.nist.drmf.interpreter.maple.common.SymbolicMapleEvaluatorTypes;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
 import gov.nist.drmf.interpreter.maple.extension.Simplifier;
+import gov.nist.drmf.interpreter.mathematica.MathematicaConnector;
+import gov.nist.drmf.interpreter.mathematica.common.SymbolicMathematicaEvaluatorTypes;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaSimplifier;
 import org.apache.logging.log4j.LogManager;
@@ -60,18 +69,14 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
      * 3) performTests();
      */
     public SymbolicEvaluator(
-            IConstraintTranslator forwardTranslator,
-            IComputerAlgebraSystemEngine<T> engine,
-            ICASEngineSymbolicEvaluator<T> symbolicEvaluator,
-            ISymbolicTestCases[] testCases,
-            String[] defaultPrevAfterCmds
-    ) throws IOException {
-        super( forwardTranslator, engine, symbolicEvaluator, testCases );
+            NativeComputerAlgebraInterfaceBuilder<T> casBuilder
+    ) throws IOException, InitTranslatorException {
+        super( new DLMFTranslator(casBuilder.getLanguageKey()), casBuilder.getCASEngine(), casBuilder.getSymbolicEvaluator(), casBuilder.getDefaultSymbolicTestCases() );
 
         CaseAnalyzer.ACTIVE_BLUEPRINTS = false; // take raw constraints
 
         this.config = new SymbolicConfig();
-        symbolicEvaluator.setTimeout(config.getTimeout());
+        casBuilder.getSymbolicEvaluator().setTimeout(config.getTimeout());
         super.setTimeoutSeconds(config.getTimeout());
 
         NumericalConfig.NumericalProperties.KEY_OUTPUT.setValue(config.getOutputPath().toString());
@@ -99,7 +104,7 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         }
 
         Status.reset();
-        mathematica = (engine instanceof MathematicaInterface);
+        mathematica = (casBuilder.getCASEngine() instanceof MathematicaInterface);
         expectedResult = Double.parseDouble(config.getExpectationValue());
     }
 
@@ -168,15 +173,6 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         }
     }
 
-    public static String[] getMaplePrevAfterCommands() {
-        String[] pac = new String[2];
-        pac[0] = MapleConstants.ENV_VAR_LEGENDRE_CUT_FERRER;
-        pac[0] += System.lineSeparator();
-        //pac[0] += FERRER_DEF_ASS + System.lineSeparator();
-        pac[1] = MapleConstants.ENV_VAR_LEGENDRE_CUT_LEGENDRE;
-        return pac;
-    }
-
     public String[] checkPrevCommand( String caseStr ){
         if ( caseStr.contains("\\Ferrer") ){
             return this.defaultPrevAfterCmds;
@@ -201,6 +197,10 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
             Status.SKIPPED.add();
             return;
         }
+
+        LOG.info("Replacing defined symbols.");
+        c.replaceSymbolsUsed(super.getSymbolDefinitionLibrary());
+        LOG.info("Final Test case: " + c);
 
         // first translations
         String lhs = null, rhs = null;
@@ -394,36 +394,14 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         this.gcCaller = 0;
     }
 
-    public static SymbolicEvaluator createStandardMapleEvaluator() throws Exception {
-        DLMFTranslator dlmfTranslator = new DLMFTranslator(Keys.KEY_MAPLE);
-        MapleInterface mapleInterface = MapleInterface.getUniqueMapleInterface();
-        Simplifier simplifier = new Simplifier();
-
-        SymbolicEvaluator evaluator = new SymbolicEvaluator(
-                dlmfTranslator,
-                mapleInterface,
-                simplifier,
-                SymbolicMapleEvaluatorTypes.values(),
-                SymbolicEvaluator.getMaplePrevAfterCommands()
-        );
-
+    public static SymbolicEvaluator<Algebraic> createStandardMapleEvaluator() throws Exception {
+        SymbolicEvaluator<Algebraic> evaluator = new SymbolicEvaluator<>(new MapleConnector());
         evaluator.init();
         return evaluator;
     }
 
-    public static SymbolicEvaluator createStandardMathematicaEvaluator() throws Exception {
-        DLMFTranslator dlmfTranslator = new DLMFTranslator(Keys.KEY_MATHEMATICA);
-        MathematicaInterface mathematicaInterface = MathematicaInterface.getInstance();
-        MathematicaSimplifier mathematicaSimplifier = new MathematicaSimplifier();
-
-        SymbolicEvaluator evaluator = new SymbolicEvaluator(
-                dlmfTranslator,
-                mathematicaInterface,
-                mathematicaSimplifier,
-                SymbolicMathematicaEvaluatorTypes.values(),
-                null
-        );
-
+    public static SymbolicEvaluator<Expr> createStandardMathematicaEvaluator() throws Exception {
+        SymbolicEvaluator<Expr> evaluator = new SymbolicEvaluator<>(new MathematicaConnector());
         evaluator.init();
         return evaluator;
     }

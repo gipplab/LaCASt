@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.evaluation.constraints;
+package gov.nist.drmf.interpreter.pom.eval.constraints;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

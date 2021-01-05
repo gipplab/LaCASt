@@ -42,6 +42,16 @@ public class Constants extends GenericTranslationMapper implements ITranslator {
     }
 
     @Override
+    public String getSourceLanguage() {
+        return FROM;
+    }
+
+    @Override
+    public String getTargetLanguage() {
+        return TO;
+    }
+
+    @Override
     public String translate( String symbol ) {
         return translationMapper.translate( FROM, TO, symbol );
     }

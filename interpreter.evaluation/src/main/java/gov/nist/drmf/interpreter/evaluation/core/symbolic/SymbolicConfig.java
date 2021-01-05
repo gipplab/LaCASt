@@ -2,6 +2,8 @@ package gov.nist.drmf.interpreter.evaluation.core.symbolic;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.eval.EvaluationConfig;
+import gov.nist.drmf.interpreter.maple.common.SymbolicMapleEvaluatorTypes;
+import gov.nist.drmf.interpreter.mathematica.common.SymbolicMathematicaEvaluatorTypes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

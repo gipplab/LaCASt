@@ -68,6 +68,12 @@ public class RelationExtractionTests {
     }
 
     @Test
+    void multiRelationTest() {
+        slt.translate("x < y < z");
+        test(slt.getTranslationInformation(), gen("x", "y", "z"), gen("<", "<"));
+    }
+
+    @Test
     void sumTest() {
         slt.translate("\\sum_{n=0}^{10} n = 2 n");
         test(slt.getTranslationInformation(),

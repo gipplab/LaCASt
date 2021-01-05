@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.evaluation.common;
+package gov.nist.drmf.interpreter.common.eval;
 
 import gov.nist.drmf.interpreter.common.replacements.DLMFConditionalReplacementImpl;
 

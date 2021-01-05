@@ -164,7 +164,7 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
         GenericLatexSemanticEnhancer enhancer = new GenericLatexSemanticEnhancer();
         List<SemanticEnhancedDocument> docs = enhancer.getSemanticEnhancedDocumentsFromWikitext(p);
 
-        ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+        ObjectMapper mapper = SemanticEnhancedDocument.getMapper();
         DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
         prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
 

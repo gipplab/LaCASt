@@ -1,8 +1,11 @@
 package gov.nist.drmf.interpreter.generic;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
 import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.generic.elasticsearch.AssumeElasticsearchAvailability;
+import gov.nist.drmf.interpreter.generic.mlp.SemanticEnhancer;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPDependencyGraph;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedAnnotationStatus;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
@@ -77,5 +80,18 @@ public class GenericLatexSemanticEnhancerTest {
         assertEquals("\\EulerGamma@{\\Pochhammersym{\\alpha + 1}{n}}", gammaCompositionMOI.getSemanticLatex());
         assertEquals("GAMMA(pochhammer(alpha + 1, n))", gammaCompositionMOI.getCasResults("Maple").getCasRepresentation());
         assertEquals("Gamma[Pochhammer[\\[Alpha]+ 1, n]]", gammaCompositionMOI.getCasResults("Mathematica").getCasRepresentation());
+    }
+
+    /**
+     * This rather short test case is quite heavy. Providing a json of the annotated document (i.e., a document with
+     * definitions for each formula and the entire dependency graph) it checks if the outcome is the same document
+     * annotated with translations to semantic LaTeX and the CAS Maple/Mathematica when possible.
+     */
+    @Resource({"mlp/JacobiSemanticAnnotatedDoc.json", "mlp/JacobiTranslatedDoc.json"})
+    void addTranslationsTest(String annotatedDoc, String translatedDoc) throws JsonProcessingException {
+        SemanticEnhancedDocument sed = SemanticEnhancedDocument.deserialize(annotatedDoc);
+        GenericLatexSemanticEnhancer enhancer = new GenericLatexSemanticEnhancer();
+        enhancer.appendTranslationsToDocument(sed);
+        assertEquals( translatedDoc, sed.serialize() );
     }
 }

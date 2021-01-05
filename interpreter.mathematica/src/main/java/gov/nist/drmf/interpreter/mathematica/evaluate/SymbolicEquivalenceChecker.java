@@ -1,13 +1,12 @@
 package gov.nist.drmf.interpreter.mathematica.evaluate;
 
-import com.wolfram.jlink.Expr;
-import com.wolfram.jlink.ExprFormatException;
-import com.wolfram.jlink.KernelLink;
-import com.wolfram.jlink.MathLinkException;
+import com.wolfram.jlink.*;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
+import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.time.Duration;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -17,12 +16,10 @@ import java.util.Observer;
 public class SymbolicEquivalenceChecker {
     private static final Logger LOG = LogManager.getLogger(SymbolicEquivalenceChecker.class.getName());
 
-    public static final String MATH_ABORTION_SIGNAL = "$Aborted";
+    private final MathematicaInterface mathematica;
 
-    private final KernelLink engine;
-
-    public SymbolicEquivalenceChecker( KernelLink engine ){
-        this.engine = engine;
+    public SymbolicEquivalenceChecker(MathematicaInterface mathematica){
+        this.mathematica = mathematica;
     }
 
     public boolean fullSimplifyDifference( String LHS, String RHS, String assumption ) throws MathLinkException {
@@ -38,20 +35,24 @@ public class SymbolicEquivalenceChecker {
     }
 
     public Expr fullSimplify(String test) throws MathLinkException {
-        return fullSimplify(test, null);
+        return fullSimplify(test, null, Duration.ofSeconds(-1));
+    }
+
+    public Expr fullSimplify(String test, Duration timeout) throws MathLinkException {
+        return fullSimplify(test, null, timeout);
     }
 
     public Expr fullSimplify(String test, String assumption) throws MathLinkException {
-//        String simplify = Commands.FULL_SIMPLIFY.build(test);
+        return fullSimplify( test, assumption, Duration.ofSeconds(-1) );
+    }
+
+    public Expr fullSimplify(String test, String assumption, Duration timeout) throws MathLinkException {
         String expr = assumption == null ?
                 Commands.FULL_SIMPLIFY.build(test) :
                 Commands.FULL_SIMPLIFY_ASSUMPTION.build(test, assumption);
 
         LOG.debug("Start simplification: " + expr);
-        engine.evaluate(expr);
-        engine.waitForAnswer();
-
-        return engine.getExpr();
+        return mathematica.evaluateToExpression(expr, timeout);
     }
 
     public boolean testZero(Expr expr) {
@@ -59,7 +60,7 @@ public class SymbolicEquivalenceChecker {
     }
 
     public boolean isNumber(Expr expr, double number) {
-        if ( expr.numberQ() ) {
+        if ( expr != null && expr.numberQ() ) {
             try {
                 double d = expr.asDouble();
                 return d == number;
@@ -70,8 +71,8 @@ public class SymbolicEquivalenceChecker {
         return false;
     }
 
-    public void abort() {
-        LOG.warn("Register an abortion request. Call abort evaluation now!");
-        engine.abortEvaluation();
+    public boolean isTrue(Expr expr) {
+        if ( expr == null ) return false;
+        return expr.trueQ();
     }
 }

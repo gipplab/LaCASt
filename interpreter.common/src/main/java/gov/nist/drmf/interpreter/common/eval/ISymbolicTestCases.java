@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.evaluation.core.symbolic;
+package gov.nist.drmf.interpreter.common.eval;
 
 /**
  * @author Andre Greiner-Petter

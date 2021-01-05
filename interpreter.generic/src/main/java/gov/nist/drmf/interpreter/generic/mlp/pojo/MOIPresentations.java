@@ -188,12 +188,12 @@ public class MOIPresentations {
     }
 
     @JsonGetter("confidence")
-    public double getScore() {
+    public Double getScore() {
         return score;
     }
 
     @JsonSetter("confidence")
-    public void setScore(double score) {
+    public void setScore(Double score) {
         this.score = score;
     }
 

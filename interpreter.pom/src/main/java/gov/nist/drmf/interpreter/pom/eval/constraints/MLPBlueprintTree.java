@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.evaluation.constraints;
+package gov.nist.drmf.interpreter.pom.eval.constraints;
 
 import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.pom.MLPWrapper;

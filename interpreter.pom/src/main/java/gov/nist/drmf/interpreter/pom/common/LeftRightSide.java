@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.evaluation.common;
+package gov.nist.drmf.interpreter.pom.common;
 
 import gov.nist.drmf.interpreter.common.latex.Relations;
 
@@ -31,25 +31,20 @@ public class LeftRightSide {
         return splitted;
     }
 
+    public String getOriginal() {
+        return orig;
+    }
+
+    public String getLHS() {
+        return one;
+    }
+
+    public String getRHS() {
+        return two;
+    }
+
     public void addCases(Collection<String> collection) {
         collection.add(one);
         collection.add(two);
-    }
-
-    public List<Case> getCases(LeftRightSide opposite, Relations rel, CaseMetaData metaData) {
-        List<Case> cases = new LinkedList<>();
-        if ( splitted && opposite.splitted ) {
-            cases.add(new Case(one, opposite.one, rel, metaData));
-            cases.add(new Case(two, opposite.two, rel, metaData));
-        } else if (splitted) {
-            cases.add(new Case(one, opposite.orig, rel, metaData));
-            cases.add(new Case(two, opposite.orig, rel, metaData));
-        } else if (opposite.splitted) {
-            cases.add(new Case(orig, opposite.one, rel, metaData));
-            cases.add(new Case(orig, opposite.two, rel, metaData));
-        } else {
-            cases.add(new Case(orig, opposite.orig, rel, metaData));
-        }
-        return cases;
     }
 }

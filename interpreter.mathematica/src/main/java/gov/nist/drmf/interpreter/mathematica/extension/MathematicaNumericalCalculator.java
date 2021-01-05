@@ -1,7 +1,6 @@
 package gov.nist.drmf.interpreter.mathematica.extension;
 
 import com.wolfram.jlink.Expr;
-import com.wolfram.jlink.ExprFormatException;
 import com.wolfram.jlink.MathLinkException;
 import gov.nist.drmf.interpreter.common.cas.GenericCommandBuilder;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
@@ -13,16 +12,12 @@ import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.beans.Expression;
+import java.time.Duration;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-
-import static gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker.MATH_ABORTION_SIGNAL;
 
 /**
  * @author Andre Greiner-Petter
@@ -36,7 +31,7 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
     private final MathematicaInterface mathematicaInterface;
     private final SymbolicEquivalenceChecker miEquiChecker;
 
-    private int timeout = -1;
+    private Duration timeout = Duration.ofSeconds(-1);
 
     private String globalAssumptions = "{}";
     private String globalConstraints = "{}";
@@ -238,7 +233,12 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
 
     @Override
     public void setTimeout(double timeoutInSeconds) {
-        this.timeout = (int)(1_000*timeoutInSeconds);
+        this.timeout = Duration.ofMillis( (int)(timeoutInSeconds * 1_000) );
+    }
+
+    @Override
+    public void disableTimeout() {
+        this.timeout = Duration.ofSeconds(-1);
     }
 
     @Override
@@ -257,17 +257,9 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
         return runWithTimeout(sb.toString(), timeout);
     }
 
-    private Expr runWithTimeout(String cmd, int timeout) throws ComputerAlgebraSystemEngineException {
+    private Expr runWithTimeout(String cmd, Duration timeout) throws ComputerAlgebraSystemEngineException {
         try {
-            Thread abortionThread = null;
-            if ( timeout > 0 ) {
-                abortionThread = MathematicaInterface.getAbortionThread(this, timeout);
-                abortionThread.start();
-            }
-            Expr result = mathematicaInterface.evaluateToExpression(cmd);
-            if ( abortionThread != null ) abortionThread.interrupt();
-
-            return result;
+            return mathematicaInterface.evaluateToExpression(cmd, timeout);
         } catch (MathLinkException e) {
             throw new ComputerAlgebraSystemEngineException(e);
         }
@@ -306,18 +298,7 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
     }
 
     @Override
-    public void abort() {
-        miEquiChecker.abort();
-    }
-
-    @Override
     public boolean wasAborted(Expr result) {
-        return result.toString().matches(Pattern.quote(MATH_ABORTION_SIGNAL));
-    }
-
-    @Override
-    @Deprecated
-    public void update(Observable observable, Object o) {
-        // nothing to do here
+        return result.toString().matches(Pattern.quote(MathematicaInterface.MATH_ABORTION_SIGNAL));
     }
 }

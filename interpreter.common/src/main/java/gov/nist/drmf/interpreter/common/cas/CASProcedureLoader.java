@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.evaluation.common;
+package gov.nist.drmf.interpreter.common.cas;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 /**
  * @author Andre Greiner-Petter
  */
-public class ProcedureLoader {
-    private static final Logger LOG = LogManager.getLogger(ProcedureLoader.class.getName());
+public class CASProcedureLoader {
+    private static final Logger LOG = LogManager.getLogger(CASProcedureLoader.class.getName());
 
     public static String getProcedure(Path path) {
         try (Stream<String> stream = Files.lines(path)){

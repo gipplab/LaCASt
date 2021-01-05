@@ -1,8 +1,7 @@
-package gov.nist.drmf.interpreter.evaluation.constraints;
+package gov.nist.drmf.interpreter.pom.eval.constraints;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import mlp.ParseException;
-import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

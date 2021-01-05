@@ -414,18 +414,8 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     }
 
     @Override
-    public void abort() {
-        LOG.warn("Maple supports abortion via timelimit when starting computation.");
-    }
-
-    @Override
     public boolean wasAborted(Algebraic result) {
         return maple.isAbortedExpression(result);
-    }
-
-    @Override
-    public void update(Observable observable, Object o) {
-        abort();
     }
 
     private void checkValues( Algebraic nTestValsA, String valsName ) throws MapleException, IllegalArgumentException {

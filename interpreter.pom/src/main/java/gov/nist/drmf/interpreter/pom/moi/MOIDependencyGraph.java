@@ -38,17 +38,18 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
     @Override
     public MOINode<T> addNode(String id, String moi, T annotation) throws ParseException, NotMatchableException {
         if ( containsNode(id) ) return getNode(id);
-        return addNode(id, mlp.parse(moi), annotation);
+        return addNode(id, moi, mlp.parse(moi), annotation);
     }
 
     /**
      * Adds a node to the graph with the given annotation.
      * @param id the unique node ID
+     * @param latex the original latex string that was used to generate the MOI
      * @param moi the mathematical object of interest
      * @param annotation the annotation object (or null)
      * @return the added Node
      */
-    public MOINode<T> addNode(String id, PrintablePomTaggedExpression moi, T annotation) throws NotMatchableException {
+    public MOINode<T> addNode(String id, String latex, PrintablePomTaggedExpression moi, T annotation) throws NotMatchableException {
         // the node already exists, so no need to add a new one, the user do not need to know that
         // because there is no difference between two identical nodes in the graph or just one of them
         if ( containsNode(id) ) {
@@ -57,7 +58,7 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
         }
 
         LOG.info("Add new MOI node to graph: " + moi.getTexString());
-        MOINode<T> node = new MOINode<>(id, new MathematicalObjectOfInterest(moi), annotation);
+        MOINode<T> node = new MOINode<>(id, new MathematicalObjectOfInterest(latex, moi), annotation);
         LOG.info("Setup dependencies for new node");
         updateDependencies(node);
         vertices.put(node.getId(), node);
