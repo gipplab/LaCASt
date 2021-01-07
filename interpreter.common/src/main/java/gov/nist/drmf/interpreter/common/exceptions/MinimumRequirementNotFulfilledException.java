@@ -1,6 +1,6 @@
-package gov.nist.drmf.interpreter.generic.exceptions;
+package gov.nist.drmf.interpreter.common.exceptions;
 
-import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedAnnotationStatus;
+import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
 
 /**
  * @author Andre Greiner-Petter

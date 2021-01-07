@@ -1,21 +1,29 @@
 package gov.nist.drmf.interpreter.common.cas;
 
+import gov.nist.drmf.interpreter.common.eval.NumericalTest;
 import gov.nist.drmf.interpreter.common.eval.TestResultType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
+import gov.nist.drmf.interpreter.common.pojo.NumericCalculation;
+import gov.nist.drmf.interpreter.common.pojo.NumericResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Observer;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Andre Greiner-Petter
  */
 public interface ICASEngineNumericalEvaluator<T> extends IAbortEvaluator<T> {
-    static final Logger LOG = LogManager.getLogger(ICASEngineNumericalEvaluator.class.getName());
+    Logger LOG = LogManager.getLogger(ICASEngineNumericalEvaluator.class.getName());
+
+    /**
+     * Sets global assumptions that will be applied to all following tests.
+     * @param assumptions list of assumptions
+     */
+    default void setGlobalAssumptions(List<String> assumptions) {
+        LOG.warn("Ignoring global assumptions. Overwrite setGlobalAssumptions if you wanna use them!");
+    }
 
     /**
      * Stores the variables of the given expression and returns the
@@ -87,26 +95,132 @@ public interface ICASEngineNumericalEvaluator<T> extends IAbortEvaluator<T> {
         // nothing to do here...
     }
 
-    T performNumericalTests(
+    /**
+     * The last part in the chain of a setup for numerical test. See {@link #performNumericalTest(NumericalTest)} to
+     * see the entire process of setting up a numeric test.
+     * @param expression the expression that should be tested (e.g. lhs-rhs)
+     * @param testCasesName the variable name of the stored test cases returned by {@link #buildTestCases(String, int)}
+     * @param postProcessingMethodName the process to call after the test was performed (for post processing)
+     * @param precision the precision the numerical test should use
+     * @return the original CAS result. Use {@link #wasAborted(Object)} and {@link #getStatusOfResult(Object)} to analyze
+     * the result or call {@link #getNumericCalculationList(Object)} to get an object list of the result
+     * @throws ComputerAlgebraSystemEngineException if something in the CAS went wrong during the test
+     */
+    T performGeneratedTestOnExpression(
             String expression,
             String testCasesName,
             String postProcessingMethodName,
             int precision
     ) throws ComputerAlgebraSystemEngineException;
 
+    /**
+     * Performs the numerical test at once by the given test object.
+     * This means it:
+     * 1) sets up the variables {@link #storeVariables(Collection, Collection)}
+     * 2) sets up constraint variables {@link #storeConstraintVariables(List, List)}
+     * 3) sets up extra variables {@link #storeExtraVariables(List, List)}
+     * 4) sets the constraints {@link #setConstraints(List)}
+     * 5) builds the test cases {@link #buildTestCases(String, int)}
+     * 6) and performs the test finally {@link #performGeneratedTestOnExpression(String, String, String, int)}.
+     *
+     * @param test the test case
+     * @return the result
+     * @throws ComputerAlgebraSystemEngineException if an error was thrown
+     */
+    default T performNumericalTest(NumericalTest test)
+            throws ComputerAlgebraSystemEngineException {
+        // store variables first
+        storeVariables(
+                test.getVariables(),
+                test.getTestValues()
+        );
+
+        // next, store constraint variables extracted from blueprints
+        storeConstraintVariables(
+                test.getConstraintVariables(),
+                test.getConstraintVariablesValues()
+        );
+
+        // next, store special variables (such as k should be integer)
+        storeExtraVariables(
+                test.getExtraVariables(),
+                test.getExtraVariablesValues()
+        );
+
+        // next, store the actual constraints
+        String constraintN = setConstraints(test.getConstraints());
+
+
+        // finally, generate all test cases that fit the constraints
+        String testValuesN = buildTestCases(
+                constraintN,
+                test.getMaxCombis()
+        );
+
+        // perform the test
+        return performGeneratedTestOnExpression(
+                test.getTestExpression(),
+                testValuesN,
+                test.getPostProcessingMethodName(),
+                test.getPrecision()
+        );
+    }
+
+    /**
+     * Returns the status of the test result
+     * @param results the test result returned by {@link #performNumericalTest(NumericalTest)} or
+     *                {@link #performGeneratedTestOnExpression(String, String, String, int)}.
+     * @return the type of the result
+     * @throws ComputerAlgebraSystemEngineException if the expressions cannot be analyzed
+     */
     TestResultType getStatusOfResult(T results) throws ComputerAlgebraSystemEngineException;
 
+    /**
+     * @return the number of total test cases as performed by the latest test
+     */
     default int getPerformedTestCases() {
         return 0;
     }
 
+    /**
+     * @return the number of failed test cases as performed by the latest test
+     */
     default int getNumberOfFailedTestCases() {
         return 0;
     }
 
-    default void setGlobalAssumptions(List<String> assumptions) {
-        LOG.warn("Ignoring global assumptions. Overwrite setGlobalAssumptions if you wanna use them!");
+    /**
+     * Returns a rather convenient pojo that summarizes the test result
+     * @param results the test result as it was returned by {@link #performNumericalTest(NumericalTest)} or
+     *                by {@link #performGeneratedTestOnExpression(String, String, String, int)}
+     * @return a summary of the numeric test as a pojo
+     * @throws ComputerAlgebraSystemEngineException if the result cannot be analyzed by the CAS
+     */
+    default NumericResult getNumericResult(T results) throws ComputerAlgebraSystemEngineException {
+        TestResultType type = getStatusOfResult(results);
+        int tests = getPerformedTestCases();
+        int failed = getNumberOfFailedTestCases();
+
+        NumericResult nr = new NumericResult(
+                TestResultType.SUCCESS.equals(type),
+                tests,
+                failed,
+                tests-failed
+        );
+
+        nr.addTestCalculations( getNumericCalculationList(results) );
+        return nr;
     }
+
+    /**
+     * Analysis the result and returns a list of the performed tests that failed!
+     * Notice that successful tests does not appear in the list. Hence, an empty list means the test
+     * was successful.
+     * @param result as it was generated by {@link #performNumericalTest(NumericalTest)} or
+     *               by {@link #performGeneratedTestOnExpression(String, String, String, int)}
+     * @return the list of failed test calculations and the values
+     */
+    List<NumericCalculation> getNumericCalculationList(T result);
 
     /**
      * In Maple its evalf( input );

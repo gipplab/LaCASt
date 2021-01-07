@@ -10,6 +10,7 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.eval.ISymbolicTestCases;
 import gov.nist.drmf.interpreter.common.eval.NativeComputerAlgebraInterfaceBuilder;
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
+import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.mathematica.common.SymbolicMathematicaEvaluatorTypes;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
@@ -52,7 +53,7 @@ public class MathematicaConnector implements NativeComputerAlgebraInterfaceBuild
     }
 
     @Override
-    public ICASEngineNumericalEvaluator<Expr> getNumericEvaluator() throws CASUnavailableException {
+    public ICASEngineNumericalEvaluator<Expr> getNumericEvaluator() throws CASUnavailableException, ComputerAlgebraSystemEngineException {
         if ( !isCASAvailable() ) throw new CASUnavailableException();
         if ( numericalCalculator == null ) numericalCalculator = new MathematicaNumericalCalculator();
         return numericalCalculator;

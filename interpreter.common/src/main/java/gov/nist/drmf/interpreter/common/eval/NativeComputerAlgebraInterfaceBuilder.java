@@ -4,6 +4,10 @@ import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
+import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.pojo.NumericCalculation;
+
+import java.util.List;
 
 /**
  * This is an evaluation builder for CAS. It returns all necessary
@@ -30,25 +34,76 @@ public interface NativeComputerAlgebraInterfaceBuilder<T> {
      */
     String getLanguageKey();
 
+    /**
+     * Returns the CAS engine itself
+     * @return a direct interface to the native CAS
+     * @throws CASUnavailableException if {@link #isCASAvailable()} returns false
+     */
     IComputerAlgebraSystemEngine<T> getCASEngine() throws CASUnavailableException;
 
-    ICASEngineNumericalEvaluator<T> getNumericEvaluator() throws CASUnavailableException;
+    /**
+     * Returns the numeric evaluator of the CAS
+     * @return an interface to the numeric evaluator of the cas
+     * @throws CASUnavailableException if {@link #isCASAvailable()} returns false
+     */
+    ICASEngineNumericalEvaluator<T> getNumericEvaluator() throws CASUnavailableException, ComputerAlgebraSystemEngineException;
 
+    /**
+     * Returns the symbolic evaluator of the CAS
+     * @return an interface to the symbolic evaluator of the cas
+     * @throws CASUnavailableException if {@link #isCASAvailable()} returns false
+     */
     ICASEngineSymbolicEvaluator<T> getSymbolicEvaluator() throws CASUnavailableException;
 
     /* Symbolic Calculation Connections */
+
+    /**
+     * Returns the default symbolic test cases that this CAS supports.
+     * For example, Mathematica by default only supports 'FullSimplify'.
+     * @return the default symbolic test cases
+     */
     ISymbolicTestCases[] getDefaultSymbolicTestCases();
 
     /* Numeric Calculation Connections */
+
+    /**
+     * Returns the evaluation script handler
+     * @return script handler for numerical tests
+     * @throws CASUnavailableException if {@link #isCASAvailable()} returns false
+     */
     default INumericalEvaluationScripts getEvaluationScriptHandler() throws CASUnavailableException {
         return (e -> e ? "" : "");
     }
 
+    /**
+     * Gets the default pre- and post-commands that will be performed before (in the first entry)
+     * and after (second entry) a numerical test
+     * @return the default commands for numerical tests (default is null)
+     */
     default String[] getDefaultPrePostComputationCommands() {
         return null;
     }
 
+    /**
+     * Returns the names of the numeric procedures.
+     * @return the numeric procedures that are necessary to perform numerical tests
+     */
     default String[] getNumericProcedures() {
         return null;
+    }
+
+    /**
+     * Loads the numeric procedures as given by {@link #getNumericProcedures()}.
+     * @throws CASUnavailableException if {@link #isCASAvailable()} returns false
+     * @throws ComputerAlgebraSystemEngineException if the values cannot be entered to the CAS
+     */
+    default void loadNumericProcedures() throws CASUnavailableException, ComputerAlgebraSystemEngineException {
+        if (!isCASAvailable()) throw new CASUnavailableException();
+        String[] procedures = getNumericProcedures();
+        if ( procedures == null ) return;
+
+        for ( String proc : procedures ) {
+            getCASEngine().enterCommand(proc);
+        }
     }
 }

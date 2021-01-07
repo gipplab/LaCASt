@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.core;
+package gov.nist.drmf.interpreter.core.api;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;

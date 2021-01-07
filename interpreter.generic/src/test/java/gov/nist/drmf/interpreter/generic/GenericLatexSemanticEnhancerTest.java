@@ -4,10 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
 import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.generic.elasticsearch.AssumeElasticsearchAvailability;
-import gov.nist.drmf.interpreter.generic.mlp.SemanticEnhancer;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPDependencyGraph;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedAnnotationStatus;
+import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 import mlp.ParseException;
 import org.junit.jupiter.api.Test;
@@ -25,9 +23,9 @@ public class GenericLatexSemanticEnhancerTest {
     void simpleWikitextTest(String text) {
         GenericLatexSemanticEnhancer enhancer = new GenericLatexSemanticEnhancer();
         SemanticEnhancedDocument semanticDocument = enhancer.generateAnnotatedDocument(text);
-        assertEquals(SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED, semanticDocument.getSemanticState());
+        assertEquals(SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED, semanticDocument.getRank());
         enhancer.appendTranslationsToDocument(semanticDocument);
-        assertEquals(SemanticEnhancedAnnotationStatus.TRANSLATED, semanticDocument.getSemanticState());
+        assertEquals(SemanticEnhancedAnnotationStatus.TRANSLATED, semanticDocument.getRank());
 
         List<MOIPresentations> moiPresentationsList = semanticDocument.getFormulae();
 
@@ -68,7 +66,7 @@ public class GenericLatexSemanticEnhancerTest {
         MOIPresentations gammaMOI = enhancer.generateMOIPresentationFromDocument(sed, includedMath);
         assertNotNull(gammaMOI);
         assertEquals("\\Gamma(z)", gammaMOI.getGenericLatex());
-        assertEquals(SemanticEnhancedAnnotationStatus.TRANSLATED, gammaMOI.getStatus());
+        assertEquals(SemanticEnhancedAnnotationStatus.TRANSLATED, gammaMOI.getRank());
         assertEquals("\\EulerGamma@{z}", gammaMOI.getSemanticLatex());
         assertEquals("GAMMA(z)", gammaMOI.getCasResults("Maple").getCasRepresentation());
         assertEquals("Gamma[z]", gammaMOI.getCasResults("Mathematica").getCasRepresentation());
@@ -76,7 +74,7 @@ public class GenericLatexSemanticEnhancerTest {
         MOIPresentations gammaCompositionMOI = enhancer.generateMOIPresentationFromDocument(sed, notIncludedMath);
         assertNotNull(gammaCompositionMOI);
         assertEquals("\\Gamma( (\\alpha+1)_n )", gammaCompositionMOI.getGenericLatex());
-        assertEquals(SemanticEnhancedAnnotationStatus.TRANSLATED, gammaMOI.getStatus());
+        assertEquals(SemanticEnhancedAnnotationStatus.TRANSLATED, gammaMOI.getRank());
         assertEquals("\\EulerGamma@{\\Pochhammersym{\\alpha + 1}{n}}", gammaCompositionMOI.getSemanticLatex());
         assertEquals("GAMMA(pochhammer(alpha + 1, n))", gammaCompositionMOI.getCasResults("Maple").getCasRepresentation());
         assertEquals("Gamma[Pochhammer[\\[Alpha]+ 1, n]]", gammaCompositionMOI.getCasResults("Mathematica").getCasRepresentation());
