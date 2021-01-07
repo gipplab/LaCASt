@@ -183,6 +183,10 @@ public class NumericalConfig implements EvaluationConfig {
         return NumericalProperties.KEY_ASSUMPTION.value;
     }
 
+    public String[] getEntireTestSuiteAssumptionsList() {
+        return getEntireTestSuiteAssumptions().split(" \\|\\| ");
+    }
+
     @Override
     public String getTestExpression() {
         return getRawTestExpression();

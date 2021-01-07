@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.generic.mlp.pojo;
+package gov.nist.drmf.interpreter.common.pojo;
 
 public enum SemanticEnhancedAnnotationStatus implements Comparable<SemanticEnhancedAnnotationStatus> {
     BASE(0, "base document without annotations or graph structure"),

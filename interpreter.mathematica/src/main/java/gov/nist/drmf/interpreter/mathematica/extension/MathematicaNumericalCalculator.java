@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.common.cas.GenericCommandBuilder;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.eval.TestResultType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.pojo.NumericCalculation;
 import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
@@ -13,10 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.Duration;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Observable;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -155,12 +153,31 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
     @Override
     public String setConstraints(List<String> constraints) {
         String variables = Commands.COMPLEMENT.build(varName, eVars);
-        String command = "Join[" +
-                    Commands.FILTER_ASSUMPTIONS.build(buildMathList(constraints), variables) + ", " +
-                    Commands.FILTER_ASSUMPTIONS.build(globalAssumptions, variables) + ", " +
-                    Commands.FILTER_ASSUMPTIONS.build(globalConstraints, variables) +
-//                    Commands.FILTER_GLOBAL_ASSUMPTIONS.build(globalConstraints, varName, buildMathList(constraints)) +
-                "]";
+        String command = "Join[";
+//                +
+//                    Commands.FILTER_ASSUMPTIONS.build(buildMathList(constraints), variables) + ", " +
+//                    Commands.FILTER_ASSUMPTIONS.build(globalAssumptions, variables) + ", " +
+//                    Commands.FILTER_ASSUMPTIONS.build(globalConstraints, variables) +
+////                    Commands.FILTER_GLOBAL_ASSUMPTIONS.build(globalConstraints, varName, buildMathList(constraints)) +
+//                "]";
+
+        if ( constraints != null && !constraints.isEmpty() ) {
+            command += Commands.FILTER_ASSUMPTIONS.build(buildMathList(constraints), variables);
+        }
+
+        if ( command.endsWith("]") ) command += ", ";
+
+        if ( !globalAssumptions.equals("{}") ){
+            command += Commands.FILTER_ASSUMPTIONS.build(globalAssumptions, variables);
+        }
+
+        if ( command.endsWith("]") ) command += ", ";
+
+        if ( !globalConstraints.equals("{}") ) {
+            command += Commands.FILTER_ASSUMPTIONS.build(globalConstraints, variables);
+        }
+
+        command += "]";
 
         addVarDefinitionNL(sb, cons, command);
         return ((constraints == null || constraints.isEmpty()) && globalAssumptions.matches("\\{}") ) ?
@@ -202,7 +219,7 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
     private void enterSetup() {
         try {
             LOG.info("Setup variables for numerical test case.");
-            LOG.trace(sb.toString());
+            LOG.debug(sb.toString());
             mathematicaInterface.evaluate(sb.toString());
             String appliedConst = mathematicaInterface.evaluate(cons);
             LOG.debug("Applying constraints: " + appliedConst);
@@ -242,7 +259,7 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
     }
 
     @Override
-    public Expr performNumericalTests(String expression, String testCasesName, String postProcessingMethodName, int precision) throws ComputerAlgebraSystemEngineException {
+    public Expr performGeneratedTestOnExpression(String expression, String testCasesName, String postProcessingMethodName, int precision) throws ComputerAlgebraSystemEngineException {
         if ( wasAborted != null && testCasesName == null ) return wasAborted;
 
 //            String testCasesStr = mathematicaInterface.evaluate(testCasesName);
@@ -295,6 +312,51 @@ public class MathematicaNumericalCalculator implements ICASEngineNumericalEvalua
     @Override
     public String generateNumericalTestExpression(String input) {
         return input;
+    }
+
+    @Override
+    public List<NumericCalculation> getNumericCalculationList(Expr result) {
+        if ( !result.listQ() ) return new LinkedList<>();
+
+        List<NumericCalculation> resultsList = new LinkedList<>();
+        Expr[] resultsArr = result.args();
+        for ( Expr res : resultsArr ) {
+            NumericCalculation nc = getNumericCalculation(res);
+            if ( nc != null ) resultsList.add(nc);
+        }
+
+        return resultsList;
+    }
+
+    private NumericCalculation getNumericCalculation(Expr result) {
+        if ( !result.listQ() ) return null;
+
+        Expr[] singleResultArgs = result.args();
+        if ( singleResultArgs.length != 2 ) {
+            LOG.warn("Given result list is not a list of numeric results. Expected to 2 elements for a single result but got: " + result.toString());
+            return null;
+        }
+
+        NumericCalculation nc = new NumericCalculation();
+        nc.setResult( singleResultArgs[0].toString() );
+
+        Map<String, String> varValMap = new HashMap<>();
+        nc.setTestValues(varValMap);
+
+        Expr varValPairs = singleResultArgs[1];
+        if ( !varValPairs.listQ() ) return nc;
+
+        for ( Expr varValPair : varValPairs.args() ) {
+            if ( !varValPair.head().toString().equals("Rule") ) {
+                LOG.warn("Unable to parse non-rule numeric variable-value pair.");
+                continue;
+            }
+
+            Expr[] varValPairArr = varValPair.args();
+            varValMap.put( varValPairArr[0].toString(), varValPairArr[1].toString() );
+        }
+
+        return nc;
     }
 
     @Override

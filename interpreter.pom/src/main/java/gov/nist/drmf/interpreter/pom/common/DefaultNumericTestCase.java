@@ -43,6 +43,8 @@ public class DefaultNumericTestCase implements INumericTestCase {
 
     @Override
     public List<String> getConstraintValues() {
+        if ( metaData == null || metaData.getConstraints() == null || metaData.getConstraints().getSpecialConstraintVariables() == null )
+            return new LinkedList<>();
         return List.of(metaData.getConstraints().getSpecialConstraintValues());
     }
 

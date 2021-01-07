@@ -7,7 +7,7 @@ import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.pom.common.CaseMetaData;
 import gov.nist.drmf.interpreter.pom.common.SymbolTag;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
-import gov.nist.drmf.interpreter.core.DLMFTranslator;
+import gov.nist.drmf.interpreter.core.api.DLMFTranslator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

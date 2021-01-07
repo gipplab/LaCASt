@@ -25,46 +25,10 @@ public interface INumericTestCalculator<T> {
     default T performNumericalTest(NumericalTest test)
             throws ComputerAlgebraSystemEngineException {
         ICASEngineNumericalEvaluator<T> numericalEvaluator = getNumericEvaluator();
-
-        // store variables first
-        numericalEvaluator.storeVariables(
-                test.getVariables(),
-                test.getTestValues()
-        );
-
-        // next, store constraint variables extracted from blueprints
-        numericalEvaluator.storeConstraintVariables(
-                test.getConstraintVariables(),
-                test.getConstraintVariablesValues()
-        );
-
-        // next, store special variables (such as k should be integer)
-        numericalEvaluator.storeExtraVariables(
-                test.getExtraVariables(),
-                test.getExtraVariablesValues()
-        );
-
-        // next, store the actual constraints
-        String constraintN = numericalEvaluator.setConstraints(test.getConstraints());
-
-
-        // finally, generate all test cases that fit the constraints
-        String testValuesN = numericalEvaluator.buildTestCases(
-                constraintN,
-                test.getMaxCombis()
-        );
-
         if ( numericalEvaluator.requiresRegisteredPackages() ) {
             numericalEvaluator.addRequiredPackages(getRequiredPackages());
         }
-
-        // perform the test
-        return numericalEvaluator.performNumericalTests(
-                test.getTestExpression(),
-                testValuesN,
-                test.getPostProcessingMethodName(),
-                test.getPrecision()
-        );
+        return numericalEvaluator.performNumericalTest(test);
     }
 
     /**

@@ -19,6 +19,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Andre Greiner-Petter
@@ -34,9 +36,12 @@ public class MapleConnector implements NativeComputerAlgebraInterfaceBuilder<Alg
     private String[] numericProcedures;
     private INumericalEvaluationScripts scriptHandler = null;
 
+    private boolean loadedScriptsSuccessfully = false;
+
     public MapleConnector() {
         try {
             loadScripts();
+            this.loadedScriptsSuccessfully = true;
         } catch ( IOException ioe ) {
             LOG.error("Unable to load procedures for Maple. Continue without procedures.", ioe);
         }
@@ -76,6 +81,7 @@ public class MapleConnector implements NativeComputerAlgebraInterfaceBuilder<Alg
 
     @Override
     public boolean isCASAvailable() {
+        if ( !loadedScriptsSuccessfully ) return false;
         if ( mapleIsAvailable == null ) mapleIsAvailable = MapleInterface.isMaplePresent();
         return mapleIsAvailable;
     }

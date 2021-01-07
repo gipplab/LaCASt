@@ -2,7 +2,7 @@ package gov.nist.drmf.interpreter.generic.interfaces;
 
 import gov.nist.drmf.interpreter.common.pojo.CASResult;
 import gov.nist.drmf.interpreter.common.pojo.ComputationTask;
-import gov.nist.drmf.interpreter.generic.exceptions.MinimumRequirementNotFulfilledException;
+import gov.nist.drmf.interpreter.common.exceptions.MinimumRequirementNotFulfilledException;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 import mlp.ParseException;

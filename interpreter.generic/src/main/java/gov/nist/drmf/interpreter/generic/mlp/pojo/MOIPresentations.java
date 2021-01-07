@@ -2,26 +2,18 @@ package gov.nist.drmf.interpreter.generic.mlp.pojo;
 
 import com.fasterxml.jackson.annotation.*;
 import com.formulasearchengine.mathosphere.mlp.pojos.Position;
-import com.wolfram.jlink.Expr;
-import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
-import gov.nist.drmf.interpreter.common.pojo.*;
-import gov.nist.drmf.interpreter.generic.mlp.SemanticEnhancer;
-import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
-import gov.nist.drmf.interpreter.mathematica.extension.MathematicaSimplifier;
-import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
+import gov.nist.drmf.interpreter.common.interfaces.SemanticallyRanked;
+import gov.nist.drmf.interpreter.common.pojo.CASResult;
+import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
+import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
 import gov.nist.drmf.interpreter.pom.moi.INode;
-import gov.nist.drmf.interpreter.pom.moi.MOIDependency;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import gov.nist.drmf.interpreter.pom.moi.MathematicalObjectOfInterest;
-import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author Andre Greiner-Petter
@@ -30,7 +22,7 @@ import java.util.stream.Stream;
         "id", "formula", "semanticFormula", "confidence", "translations",
         "positions", "includes", "isPartOf", "definiens"
 })
-public class MOIPresentations {
+public class MOIPresentations implements SemanticallyRanked {
     private static final Logger LOG = LogManager.getLogger(MOIPresentations.class.getName());
 
     @JsonIgnore
@@ -89,33 +81,6 @@ public class MOIPresentations {
         }
     }
 
-    private void tryMathematicaComputation(CASResult casResult) {
-        if ( !MathematicaConfig.isMathematicaPresent() ) return;
-
-        // let's add a fake numeric computation just to show how it may look like
-        NumericResult nr = new NumericResult(false, 0, 0, 0);
-        NumericCalculation nc = new NumericCalculation();
-        nc.setResult("no-computation-dummy");
-        HashMap<String, String> testValues = new HashMap<>();
-        testValues.put("\\alpha", "1");
-        testValues.put("\\beta", "2");
-        nc.setTestValues(testValues);
-        nr.addTestCalculations( nc );
-        casResult.setNumericResults(nr);
-
-        MathematicaSimplifier simplifier = new MathematicaSimplifier();
-        simplifier.setTimeout(1);
-        try {
-            Expr symbolicResultExpr = simplifier.simplify(casResult.getCasRepresentation(), null);
-            SymbolicCalculation sc = new SymbolicCalculation();
-            sc.setResult( symbolicResultExpr.toString() );
-            sc.setTestProperty("fullsimplify");
-            casResult.addSymbolicResult( sc );
-        } catch (ComputerAlgebraSystemEngineException e) {
-            LOG.debug("Unable to simplify mathematical expression.");
-        }
-    }
-
     private List<String> getDependants(MOINode<MOIAnnotation> node, boolean ingoing) {
         Collection<INode<MOIAnnotation>> nodes = ingoing ?
                 node.getIngoingNodes() : node.getOutgoingNodes();
@@ -127,13 +92,8 @@ public class MOIPresentations {
     }
 
     @JsonIgnore
-    public SemanticEnhancedAnnotationStatus getStatus() {
+    public SemanticEnhancedAnnotationStatus getRank() {
         return status;
-    }
-
-    @JsonIgnore
-    public void setStatus(SemanticEnhancedAnnotationStatus status) {
-        this.status = status;
     }
 
     @JsonGetter("id")

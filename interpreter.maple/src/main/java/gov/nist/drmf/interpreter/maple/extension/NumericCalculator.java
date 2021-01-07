@@ -9,6 +9,7 @@ import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.eval.TestResultType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.pojo.NumericCalculation;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import org.apache.logging.log4j.LogManager;
@@ -308,7 +309,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     }
 
     @Override
-    public Algebraic performNumericalTests(
+    public Algebraic performGeneratedTestOnExpression(
             String expression,
             String testCasesName,
             String postProcessingMethodName,
@@ -376,6 +377,59 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
             }
         } catch (MapleException me) {
             throw new ComputerAlgebraSystemEngineException(me);
+        }
+    }
+
+    @Override
+    public List<NumericCalculation> getNumericCalculationList(Algebraic result) {
+        try {
+            if ( result instanceof com.maplesoft.openmaple.List ) {
+                com.maplesoft.openmaple.List resList = (com.maplesoft.openmaple.List) result;
+                List<NumericCalculation> calcs = new LinkedList<>();
+                for ( int i = 0; i < resList.length(); i++ ) {
+                    Algebraic resI = resList.get(i);
+                    NumericCalculation singleCalc = getNumericCalculation(resI);
+                    if ( singleCalc != null ) calcs.add(singleCalc);
+                }
+                return calcs;
+            }
+        } catch (MapleException me) {
+            LOG.warn("Unable to create list of numerical calculations from given result.");
+        }
+        LOG.debug("Given list was empty or not a list.");
+        return new LinkedList<>();
+    }
+
+    private NumericCalculation getNumericCalculation(Algebraic singleResult) {
+        if ( !(singleResult instanceof com.maplesoft.openmaple.List) ) return null;
+        com.maplesoft.openmaple.List resList = (com.maplesoft.openmaple.List) singleResult;
+
+        try {
+            if ( resList.length() != 2 ) {
+                LOG.warn("The given single numeric test result is not a numeric test result. Expected 2 elements but got: " + singleResult.toString());
+                return null;
+            }
+
+            NumericCalculation numericCalculation = new NumericCalculation();
+            numericCalculation.setResult(resList.get(0).toString());
+            Map<String, String> varValMap = new HashMap<>();
+            numericCalculation.setTestValues(varValMap);
+
+            Algebraic variableValues = resList.get(1);
+            if ( variableValues instanceof com.maplesoft.openmaple.List ) {
+                com.maplesoft.openmaple.List variableList = (com.maplesoft.openmaple.List) variableValues;
+                for ( int i = 0; i < variableList.length(); i++ ) {
+                    Algebraic varValPair = variableList.get(i);
+                    String[] varValPairArr = varValPair.toString().split(" = ");
+                    if ( varValPairArr.length != 2 ) continue;
+                    varValMap.put(varValPairArr[0], varValPairArr[1]);
+                }
+            }
+
+            return numericCalculation;
+        } catch (MapleException e) {
+            LOG.warn("Unable to analyze the single result " + singleResult.toString(), e);
+            return null;
         }
     }
 

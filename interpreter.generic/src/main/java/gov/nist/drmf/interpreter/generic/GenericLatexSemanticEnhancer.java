@@ -3,18 +3,20 @@ package gov.nist.drmf.interpreter.generic;
 import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.formulasearchengine.mathosphere.mlp.contracts.WikiTextPageExtractorMapper;
 import com.formulasearchengine.mathosphere.mlp.pojos.MathTag;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.interfaces.SemanticallyRanked;
 import gov.nist.drmf.interpreter.common.pojo.CASResult;
 import gov.nist.drmf.interpreter.common.pojo.ComputationTask;
-import gov.nist.drmf.interpreter.generic.exceptions.MinimumRequirementNotFulfilledException;
+import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
+import gov.nist.drmf.interpreter.common.exceptions.MinimumRequirementNotFulfilledException;
 import gov.nist.drmf.interpreter.generic.interfaces.IGenericLatexSemanticEnhancerAPI;
 import gov.nist.drmf.interpreter.generic.mlp.ContextAnalyzer;
 import gov.nist.drmf.interpreter.generic.mlp.Document;
 import gov.nist.drmf.interpreter.generic.mlp.SemanticEnhancer;
 import gov.nist.drmf.interpreter.generic.mlp.WikitextDocument;
+import gov.nist.drmf.interpreter.generic.mlp.cas.CASTranslators;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.*;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import mlp.ParseException;
@@ -59,7 +61,7 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
 
     @Override
     public SemanticEnhancedDocument appendTranslationsToDocument(SemanticEnhancedDocument annotatedDocument) throws MinimumRequirementNotFulfilledException {
-        checkRank( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED, annotatedDocument );
+        annotatedDocument.requires(SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED);
 
         MLPDependencyGraph graph = new MLPDependencyGraph(annotatedDocument.getFormulae());
         for ( MOIPresentations formula : annotatedDocument.getFormulae() ) {
@@ -71,14 +73,14 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
 
     @Override
     public SemanticEnhancedDocument appendCASComputationsToDocument(SemanticEnhancedDocument semanticDocument) throws MinimumRequirementNotFulfilledException {
-        checkRank( SemanticEnhancedAnnotationStatus.TRANSLATED, semanticDocument );
+        semanticDocument.requires(SemanticEnhancedAnnotationStatus.TRANSLATED);
 
         return null;
     }
 
     @Override
     public MOIPresentations generateMOIPresentationFromDocument(SemanticEnhancedDocument annotatedDocument, String formula) throws MinimumRequirementNotFulfilledException, ParseException {
-        checkRank( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED, annotatedDocument );
+        annotatedDocument.requires(SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED);
 
         String id = MathTag.getID(formula);
         MLPDependencyGraph graph = new MLPDependencyGraph(annotatedDocument.getFormulae());
@@ -109,6 +111,8 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
 
     @Override
     public MOIPresentations computeMOI(MOIPresentations translatedMOI) {
+        translatedMOI.requires(SemanticEnhancedAnnotationStatus.TRANSLATED);
+
         return null;
     }
 
@@ -120,10 +124,6 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
     @Override
     public CASResult computeMOI(MOIPresentations translatedMOI, String cas, ComputationTask task) {
         return null;
-    }
-
-    private void checkRank(SemanticEnhancedAnnotationStatus min, SemanticEnhancedDocument sed) throws MinimumRequirementNotFulfilledException {
-        if ( !sed.getSemanticState().hasPassed(min) ) throw new MinimumRequirementNotFulfilledException(min, sed.getSemanticState());
     }
 
     /**

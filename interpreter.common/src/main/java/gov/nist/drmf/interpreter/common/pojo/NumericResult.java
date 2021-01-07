@@ -40,6 +40,21 @@ public class NumericResult {
         this.numberOfSuccessfulTests = successfulTests;
     }
 
+    /**
+     * Merges the given results with this object.
+     * @param nr another numeric result object
+     */
+    @JsonIgnore
+    public void addFurtherResults(NumericResult nr) {
+        if ( this.numberOfTotalTests == 0 ) this.successful = nr.successful;
+        else this.successful &= nr.successful; // this new test case is only successful if all parts where successful
+
+        this.numberOfTotalTests += nr.numberOfTotalTests;
+        this.numberOfFailedTests += nr.numberOfFailedTests;
+        this.numberOfSuccessfulTests += nr.numberOfSuccessfulTests;
+        testCalculations.addAll( nr.testCalculations );
+    }
+
     public boolean isSuccessful() {
         return successful;
     }

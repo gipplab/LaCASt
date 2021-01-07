@@ -9,19 +9,18 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
-import gov.nist.drmf.interpreter.common.pojo.CASResult;
+import gov.nist.drmf.interpreter.common.interfaces.SemanticallyRanked;
+import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.util.function.Predicate.not;
-
 /**
  * @author Andre Greiner-Petter
  */
-public class SemanticEnhancedDocument {
+public class SemanticEnhancedDocument implements SemanticallyRanked {
     @JsonProperty("title")
     private final String title;
 
@@ -50,7 +49,7 @@ public class SemanticEnhancedDocument {
     }
 
     @JsonIgnore
-    public SemanticEnhancedAnnotationStatus getSemanticState() {
+    public SemanticEnhancedAnnotationStatus getRank() {
         return getRank(this);
     }
 
@@ -69,7 +68,7 @@ public class SemanticEnhancedDocument {
     private static SemanticEnhancedAnnotationStatus getRank(SemanticEnhancedDocument sed) {
         Stream<MOIPresentations> moiStream = sed.getFormulae().stream();
 
-        return moiStream.map( MOIPresentations::getStatus )
+        return moiStream.map( MOIPresentations::getRank )
                 .max( Comparator.comparingInt(SemanticEnhancedAnnotationStatus::getRank) )
                 .orElse(SemanticEnhancedAnnotationStatus.BASE);
     }
