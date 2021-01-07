@@ -72,24 +72,25 @@ public enum Relations {
      * @return the relation or null if the symbol is not a relation
      */
     public static Relations getRelation(String symbol) {
+        Relations rel = null;
         if ( symbol.matches("\\s*(?:\\\\leq?|<=)\\s*") ){
-            return Relations.LESS_EQ_THAN;
+            rel = Relations.LESS_EQ_THAN;
         }
         else if ( symbol.matches( "\\s*(?:\\\\geq?|=>)\\s*" ) ){
-            return Relations.GREATER_EQ_THAN;
+            rel = Relations.GREATER_EQ_THAN;
         }
         else if ( symbol.matches( "\\s*(?:\\\\neq?|<>)\\s*" ) ){
-            return Relations.UNEQUAL;
+            rel = Relations.UNEQUAL;
         }
         else if ( symbol.matches("\\s*<\\s*") ){
-            return Relations.LESS_THAN;
+            rel = Relations.LESS_THAN;
         }
         else if ( symbol.matches( "\\s*>\\s*" ) ){
-            return Relations.GREATER_THAN;
+            rel = Relations.GREATER_THAN;
         }
         else if ( symbol.matches( "\\s*=\\s*" ) ) {
-            return Relations.EQUAL;
+            rel = Relations.EQUAL;
         }
-        else return null;
+        return rel;
     }
 }

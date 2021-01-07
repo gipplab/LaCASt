@@ -69,21 +69,29 @@ public class MLPDependencyGraph extends MOIDependencyGraph<MOIAnnotation> implem
             if ( id == null ) continue;
 
             MOINode<MOIAnnotation> node = super.getNode(id);
-            List<String> ingoingNodes = f.getIngoingNodes();
-            for ( String sources : ingoingNodes ) {
-                id = texToIdMap.get(sources);
-                if ( id == null ) continue;
-                MOINode<MOIAnnotation> sourceNode = super.getNode(id);
-                super.addDependency(sourceNode, node);
-            }
+            addInOutNodes(
+                    f.getIngoingNodes(),
+                    texToIdMap,
+                    node,
+                    true
+            );
 
-            List<String> outgoingNodes = f.getOutgoingNodes();
-            for ( String sink : outgoingNodes ) {
-                id = texToIdMap.get(sink);
-                if ( id == null ) continue;
-                MOINode<MOIAnnotation> sinkNode = super.getNode(id);
-                super.addDependency(node, sinkNode);
-            }
+            addInOutNodes(
+                    f.getOutgoingNodes(),
+                    texToIdMap,
+                    node,
+                    false
+            );
+        }
+    }
+
+    private void addInOutNodes(List<String> nodeIds, Map<String, String> texToIdMap, MOINode<MOIAnnotation> node, boolean isIngoing) {
+        for ( String otherNode : nodeIds ) {
+            String id = texToIdMap.get(otherNode);
+            if ( id == null ) continue;
+            MOINode<MOIAnnotation> sourceSinkNode = super.getNode(id);
+            if ( isIngoing ) super.addDependency(sourceSinkNode, node);
+            else super.addDependency(node, sourceSinkNode);
         }
     }
 
