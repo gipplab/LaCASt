@@ -3,13 +3,13 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
+import gov.nist.drmf.interpreter.cas.translation.components.util.SequenceHelper;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
-import gov.nist.drmf.interpreter.pom.common.MeomArgumentLimitChecker;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
@@ -58,6 +58,8 @@ public class SequenceTranslator extends AbstractListTranslator {
 
     private boolean hasPassedPunctuation;
 
+    private final SequenceHelper sequenceHelper;
+
     /**
      * Uses only for a general sequence expression.
      * If the tag is sequence we don't need to check any parenthesis.
@@ -83,6 +85,7 @@ public class SequenceTranslator extends AbstractListTranslator {
         MULTIPLY_PATTERN = Pattern.compile("(.*)"+Pattern.quote(MULTIPLY)+"\\s*");
         this.openBracket = openBracket;
         this.hasPassedPunctuation = false;
+        this.sequenceHelper = new SequenceHelper(this, this::isSetMode);
     }
 
     @Override
@@ -144,14 +147,7 @@ public class SequenceTranslator extends AbstractListTranslator {
      */
     @Override
     public TranslatedExpression translate(PomTaggedExpression expression) {
-        if (!ExpressionTags.sequence.tag().matches(expression.getTag())) {
-            throw TranslationException.buildException(this,
-                    "You used the wrong translation method. " +
-                            "The given expression is not a sequence! " +
-                            expression.getTag(),
-                    TranslationExceptionReason.IMPLEMENTATION_ERROR
-            );
-        }
+        sequenceHelper.throwIfIsNotSequence(expression);
 
         // get all sub elements
         List<PomTaggedExpression> expList = new LinkedList<>(expression.getComponents());
@@ -169,16 +165,8 @@ public class SequenceTranslator extends AbstractListTranslator {
                 expList.remove(0);
                 handleConstraints(expList);
                 break;
-            } else if ( handleAsBracket(bracket, expList) ) {
-                if ( prev != null ) {
-                    List<PomTaggedExpression> tmp = new LinkedList<>();
-                    tmp.add( FakeMLPGenerator.generateBracketExpression( Brackets.left_parenthesis ) );
-                    String lastPart = checkMultiplyAddition(prev, tmp, localTranslations.getLastExpression().trim());
-                    perform(TranslatedExpression::replaceLastExpression, lastPart);
-                }
-
-                SequenceTranslator st = new SequenceTranslator(super.getSuperTranslator(), bracket);
-                localTranslations.addTranslatedExpression(st.translate(expList));
+            } else if ( sequenceHelper.handleAsBracket(bracket, expList) ) {
+                translateAsBracket(prev, bracket, expList);
             } else {
                 translateNext(exp, expList, true);
             }
@@ -189,54 +177,16 @@ public class SequenceTranslator extends AbstractListTranslator {
         return localTranslations;
     }
 
-    private boolean handleAsBracket(Brackets bracket, List<PomTaggedExpression> followingExps) {
-        if ( bracket == null || isSetMode() ) return false;
+    private void translateAsBracket(PomTaggedExpression prev, Brackets bracket, List<PomTaggedExpression> expList) {
+        if ( prev != null ) {
+            List<PomTaggedExpression> tmp = new LinkedList<>();
+            tmp.add( FakeMLPGenerator.generateBracketExpression( Brackets.left_parenthesis ) );
+            String lastPart = checkMultiplyAddition(prev, tmp, localTranslations.getLastExpression().trim());
+            perform(TranslatedExpression::replaceLastExpression, lastPart);
+        }
 
-        if ( Brackets.left_angle_brackets.equals(bracket) ) {
-            // that might be a relation symbol, so let's check it
-            LinkedList<Brackets> stack = new LinkedList<>();
-            stack.add( bracket );
-            for ( PomTaggedExpression pte : followingExps ) {
-                if ( stack.isEmpty() ) return true;
-
-                Brackets b = Brackets.getBracket(pte);
-                if ( b == null ) {
-                    if (MeomArgumentLimitChecker.isGeneralBreakPoint(pte.getRoot()))
-                        break;
-                    else continue;
-                }
-
-                if ( b.opened ) {
-                    stack.addLast(b);
-                } else {
-                    Brackets leastOpened = stack.getLast();
-                    if (leastOpened.isCounterPart(b) ) {
-                        stack.removeLast();
-                    } else {
-                        // hmm... we discovered mismatched parenthesis
-                        throw TranslationException.buildException(this,
-                                "Encountered mismatched bracket. Open bracket '"
-                                        + leastOpened + "' does not match closing '" + b  +"' bracket",
-                                TranslationExceptionReason.WRONG_PARENTHESIS
-                        );
-                    }
-                }
-            }
-
-            if ( stack.size() > 1 ) {
-                LOG.debug("If considering current left-angle-bracket as an open bracket, we encounter a bracket mismatch. " +
-                        "Hence we assume it is a relation and continue");
-            }
-
-            // so we did not reach an end of this "opened" bracket, like x * <2+3> + x
-            return stack.isEmpty();
-        } else if ( Brackets.right_angle_brackets.equals(bracket) ) return false;
-        else if ( !bracket.opened ) {
-            throw TranslationException.buildException(this,
-                    "Encountered closing bracket without opening it.",
-                    TranslationExceptionReason.WRONG_PARENTHESIS
-            );
-        } else return true;
+        SequenceTranslator st = new SequenceTranslator(super.getSuperTranslator(), bracket);
+        localTranslations.addTranslatedExpression(st.translate(expList));
     }
 
     private boolean upcomingConstraint( PomTaggedExpression exp, List<PomTaggedExpression> expList ) {
@@ -304,27 +254,8 @@ public class SequenceTranslator extends AbstractListTranslator {
                 TranslationExceptionReason.WRONG_PARENTHESIS);
     }
 
-    private boolean isRelationSymbol( PomTaggedExpression exp, List<PomTaggedExpression> expList ) {
-        if ( !PomTaggedExpressionUtility.isRelationSymbol(exp) || !isRelationInValidPosition(exp) ) return false;
-
-        Brackets b = Brackets.getBracket(exp);
-        if ( b != null ) return !handleAsBracket(b, expList);
-        return true;
-    }
-
-    private boolean isRelationInValidPosition( PomTaggedExpression exp ) {
-        PomTaggedExpression parent = exp.getParent();
-        if ( parent == null ) return false;
-
-        if ( PomTaggedExpressionUtility.isSequence(parent) && parent.getParent() == null ){
-            return true;
-        }
-
-        return PomTaggedExpressionUtility.isSequence(parent) && PomTaggedExpressionUtility.isEquationArray(parent.getParent());
-    }
-
     private void handleRelationSplit(PomTaggedExpression exp, List<PomTaggedExpression> expList) {
-        if ( !isRelationSymbol(exp, expList) ) return;
+        if ( !sequenceHelper.isRelationSymbol(exp, expList) ) return;
 
         // alright, we finally encountered a relation symbol in exp... time to split it... left hand side is part
         // of the local translation already
@@ -508,7 +439,7 @@ public class SequenceTranslator extends AbstractListTranslator {
             // so simply replace the last if necessary
             String tmp = global.getLastExpression();
             global.replaceLastExpression(tmp + MULTIPLY);
-        } else if (addSpace(specTreatExp, exp_list)) {
+        } else if (sequenceHelper.addSpace(specTreatExp, exp_list)) {
             part = addSimpleSpace(part);
 
             // the global list already got each element before,
@@ -544,47 +475,5 @@ public class SequenceTranslator extends AbstractListTranslator {
                 expList != null &&
                 !expList.isEmpty() &&
                 expList.get(0).getRoot().getTermText().matches(Brackets.ABSOLUTE_VAL_TERM_TEXT_PATTERN);
-    }
-
-    /**
-     * Returns true if there has to be a space symbol following the current expression.
-     *
-     * @param currExp  the current expression
-     * @param expList the following expressions
-     * @return true if the current expressions needs an white space symbol behind its translation
-     */
-    private boolean addSpace(PomTaggedExpression currExp, List<PomTaggedExpression> expList) {
-        try {
-            Boolean tmp = addSpaceSizeOperatorCheck(currExp, expList);
-            if ( tmp != null ) return tmp;
-
-            MathTerm curr = currExp.getRoot();
-            MathTerm next = expList.get(0).getRoot();
-            return addSpaceParenthesisCheck(curr, next);
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    private Boolean addSpaceSizeOperatorCheck(PomTaggedExpression currExp, List<PomTaggedExpression> expList) {
-        if (expList == null || expList.size() < 1) {
-            return false;
-        }
-
-        if ( isOpSymbol(currExp) || isOpSymbol(expList.get(0)) )
-            return true;
-
-        return null;
-    }
-
-    private boolean addSpaceParenthesisCheck(MathTerm curr, MathTerm next) {
-        if (FeatureSetUtility.isConsideredAsRelation(curr) || FeatureSetUtility.isConsideredAsRelation(next))
-            return true;
-
-        return !(curr.getTag().matches(MathTermTags.PARENTHESIS_PATTERN)
-                || next.getTag().matches(MathTermTags.PARENTHESIS_PATTERN)
-                || curr.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)
-                || next.getTermText().matches(SPECIAL_SYMBOL_PATTERN_FOR_SPACES)
-        );
     }
 }

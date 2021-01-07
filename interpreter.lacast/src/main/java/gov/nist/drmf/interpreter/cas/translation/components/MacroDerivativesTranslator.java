@@ -3,18 +3,12 @@ package gov.nist.drmf.interpreter.cas.translation.components;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.cas.translation.components.util.DerivativeAndPowerHolder;
+import gov.nist.drmf.interpreter.cas.translation.components.util.MacroDerivativeHelper;
 import gov.nist.drmf.interpreter.cas.translation.components.util.MacroInfoHolder;
-import gov.nist.drmf.interpreter.cas.translation.components.util.MeomArgumentExtractor;
-import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.pom.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
-import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
-import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
-import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -34,12 +28,12 @@ public class MacroDerivativesTranslator extends MacroTranslator {
     private TranslatedExpression translatedInAdvance;
     private int leadingReplacementMemory = 0;
 
-    private final String CAS;
+    private final MacroDerivativeHelper helper;
 
     MacroDerivativesTranslator(AbstractTranslator superTranslator) {
         super(superTranslator);
         resetTranslatedInAdvancedComponent();
-        this.CAS = getConfig().getTO_LANGUAGE();
+        this.helper = new MacroDerivativeHelper(this, this::throwMacroException);
     }
 
     /**
@@ -74,10 +68,9 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         this.translatedInAdvance = null;
     }
 
-    public TranslatedExpression updateNegativeReplacement(TranslatedExpression te) {
+    public void updateNegativeReplacement(TranslatedExpression te) {
         te.setNegativeReplacements( this.leadingReplacementMemory );
         this.leadingReplacementMemory = 0;
-        return te;
     }
 
     /**
@@ -199,7 +192,7 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         // Since it's empty, we have a problem similar to sums. When does the argument ends?
         // so lets follow sums approach
         LinkedList<String> vars = new LinkedList<>();
-        TranslatedExpression translatedPotentialArguments = getArgumentsBasedOnDiffVar(followingExps, vars, diffPowerHolder);
+        TranslatedExpression translatedPotentialArguments = helper.getArgumentsBasedOnDiffVar(followingExps, vars, diffPowerHolder);
         TranslatedExpression transArgs;
 
         if ( translatedPotentialArguments == null ) {
@@ -239,41 +232,6 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         return transArgs;
     }
 
-    private TranslatedExpression getArgumentsBasedOnDiffVar(
-            List<PomTaggedExpression> followingExps,
-            List<String> vars,
-            DerivativeAndPowerHolder diffPowerHolder) {
-        // otherwise! we have a problem similar to sums. When does the argument ends?
-        // so lets follow sums approach
-        PomTaggedExpression variablePTE = followingExps.remove(0);
-
-        diffPowerHolder.setComplexDerivativeVar(!PomTaggedExpressionUtility.isSingleVariable(variablePTE));
-
-        TranslatedExpression varTE = translateInnerExp(variablePTE, new LinkedList<>());
-
-        vars.add(varTE.toString());
-
-        List<PomTaggedExpression> potentialArgs = new LinkedList<>();
-        try {
-            potentialArgs = MeomArgumentExtractor.getPotentialArgumentsUntilEndOfScope(
-                    followingExps,
-                    vars,
-                    this
-            );
-        } catch ( TranslationException te ) {
-            if ( !TranslationExceptionReason.INVALID_LATEX_INPUT.equals(te.getReason()) ) throw te;
-        }
-
-        if ( !potentialArgs.isEmpty() ) {
-            // the potential arguments is a theoretical sequence, so handle it as a sequence!
-            PomTaggedExpression topSeqPTE = FakeMLPGenerator.generateEmptySequencePPTE();
-            for ( PomTaggedExpression pte : potentialArgs ) topSeqPTE.addComponent(pte);
-
-            SequenceTranslator p = new SequenceTranslator(getSuperTranslator());
-            return p.translate( topSeqPTE );
-        } else return null;
-    }
-
     /**
      * In \<macro>^{(<order>)}@{...}, extracts the <order> as the order of differentiation for the macro
      *
@@ -300,97 +258,16 @@ public class MacroDerivativesTranslator extends MacroTranslator {
 
     public String extractVariableOfDifferentiation(List<PomTaggedExpression> arguments) {
         PomTaggedExpression exp = arguments.get(0);
-        Set<String> variableCandidates = new HashSet<>(extractVariableOfDiff(exp));
+        Set<String> variableCandidates = new HashSet<>(helper.extractVariableOfDiff(exp));
 
         for ( int i = 1; i < arguments.size(); i++ ) {
-            updateSetOfCandidates(arguments.get(i), variableCandidates);
+            helper.updateSetOfCandidates(arguments.get(i), variableCandidates);
         }
 
         if ( variableCandidates.size() != 1 )
             throw throwMacroException("Unable to extract unique variable of differentiation. Found: " + variableCandidates);
 
         return variableCandidates.stream().findFirst().get();
-    }
-
-    private void updateSetOfCandidates(PomTaggedExpression exp, Set<String> variableCandidates) {
-        if ( variableCandidates.isEmpty() ) {
-            throw throwMacroException("Unable to extract variable of differentiation");
-        }
-
-        Set<String> set = extractVariableOfDiff(exp);
-        variableCandidates.retainAll(set);
-    }
-
-    private Set<String> extractVariableOfDiff(List<PomTaggedExpression> expressions) {
-        Set<String> variableCandidates = new HashSet<>();
-        for ( int i = 0; i < expressions.size(); i++ ) {
-            PomTaggedExpression p = expressions.get(i);
-            MathTerm mt = p.getRoot();
-
-            if ( MathTermUtility.isDLMFMacro(mt) ) {
-                i = handleMacro(mt, expressions, i, variableCandidates);
-            } else {
-                variableCandidates.addAll(extractVariableOfDiff(p));
-            }
-
-        }
-        return variableCandidates;
-    }
-
-    private int handleMacro(MathTerm mt, List<PomTaggedExpression> expressions, int i, Set<String> variableCandidates) {
-        FeatureSet fset = mt.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
-        Integer slot;
-        Integer numberOfVariables;
-        try {
-            slot = Integer.parseInt(DLMFFeatureValues.SLOT_DERIVATIVE.getFeatureValue(fset, CAS));
-            numberOfVariables = Integer.parseInt(DLMFFeatureValues.NUMBER_OF_VARIABLES.getFeatureValue(fset, CAS));
-        } catch (NumberFormatException e) {
-            LOG.warn("No slot of differentiation found for " + mt.getTermText() + ", assuming its 1.");
-            slot = 1;
-            numberOfVariables = 1;
-        }
-
-        try {
-            i = skipAllAts(expressions, i);
-            int idx = i + slot - 1; // the slot is 1 not 0, so we must add -1
-            variableCandidates.addAll(extractVariableOfDiff(expressions.get(idx)));
-            return i + numberOfVariables;
-        } catch (IndexOutOfBoundsException e) {
-            throw throwMacroException("Unable to find @ after a DLMF macro. That is invalid syntax");
-        }
-    }
-
-    private int skipAllAts(List<PomTaggedExpression> list, int startIdx) {
-        boolean passedAtYet = false;
-        for ( int i = startIdx; i < list.size(); i++ ) {
-            PomTaggedExpression tmp = list.get(i);
-            boolean isAt = MathTermUtility.equals(tmp.getRoot(), MathTermTags.at);
-            if ( isAt && !passedAtYet ) passedAtYet = true;
-            else if ( !isAt && passedAtYet ) {
-                // so passed ats and thats the first that is not an at... we found it
-                return i;
-            }
-        }
-        throw new IndexOutOfBoundsException();
-    }
-
-    private Set<String> extractVariableOfDiff(PomTaggedExpression exp) {
-        if (PomTaggedExpressionUtility.isSequence(exp)) {
-            return extractVariableOfDiff(exp.getComponents());
-        }
-
-        // ok in this case, its a single expression
-        // now we have the good old identifier problem.
-        MathTermTags tag = MathTermTags.getTagByExpression(exp);
-        Set<String> set = new HashSet<>();
-        switch (tag) {
-            case alphanumeric:
-            case special_math_letter:
-            case symbol:
-            case letter:
-                set.add(exp.getRoot().getTermText());
-        }
-        return set;
     }
 
     /**
