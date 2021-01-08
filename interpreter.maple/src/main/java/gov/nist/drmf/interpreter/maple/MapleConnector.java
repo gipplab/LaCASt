@@ -76,6 +76,7 @@ public class MapleConnector implements NativeComputerAlgebraInterfaceBuilder<Alg
         numericProcedures[1] = sieve_procedure;
         numericProcedures[2] = sieve_procedure_relation;
         scriptHandler = (isEquation -> isEquation ? numericalSievesMethod : numericalSievesMethodRelations);
+//        scriptHandler = (isEquation -> isEquation ? numericalSievesMethod : numericalSievesMethod);
         LOG.debug("Finish Maple procedures setup.");
     }
 

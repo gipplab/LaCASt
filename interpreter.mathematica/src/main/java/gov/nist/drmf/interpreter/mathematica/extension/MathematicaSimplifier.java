@@ -55,6 +55,11 @@ public class MathematicaSimplifier implements ICASEngineSymbolicEvaluator<Expr> 
     }
 
     @Override
+    public boolean isTrue(Expr in) {
+        return in.trueQ();
+    }
+
+    @Override
     public boolean isAsExpected(Expr in, double expect) {
         return miEquiChecker.isNumber(in, expect) || miEquiChecker.isTrue(in);
     }

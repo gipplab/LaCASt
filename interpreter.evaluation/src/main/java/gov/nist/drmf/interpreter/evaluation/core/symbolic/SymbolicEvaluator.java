@@ -2,10 +2,9 @@ package gov.nist.drmf.interpreter.evaluation.core.symbolic;
 
 import com.maplesoft.openmaple.Algebraic;
 import com.wolfram.jlink.Expr;
-import gov.nist.drmf.interpreter.common.eval.ISymbolicTestCases;
-import gov.nist.drmf.interpreter.common.eval.NativeComputerAlgebraInterfaceBuilder;
-import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
+import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.core.api.DLMFTranslator;
@@ -13,8 +12,6 @@ import gov.nist.drmf.interpreter.evaluation.common.Case;
 import gov.nist.drmf.interpreter.evaluation.common.CaseAnalyzer;
 import gov.nist.drmf.interpreter.evaluation.common.Status;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
-import gov.nist.drmf.interpreter.common.eval.EvaluationConfig;
-import gov.nist.drmf.interpreter.common.eval.NumericalConfig;
 import gov.nist.drmf.interpreter.maple.MapleConnector;
 import gov.nist.drmf.interpreter.mathematica.MathematicaConnector;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
@@ -35,7 +32,7 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
 
     private static final Logger LOG = LogManager.getLogger(SymbolicEvaluator.class.getName());
 
-    private SymbolicConfig config;
+    private SymbolicalConfig config;
 
     private HashMap<Integer, String> labelLib;
     private Set<ID> skips;
@@ -65,7 +62,7 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
 
         CaseAnalyzer.ACTIVE_BLUEPRINTS = false; // take raw constraints
 
-        this.config = new SymbolicConfig();
+        this.config = new SymbolicalConfig(casBuilder.getDefaultSymbolicTestCases());
         casBuilder.getSymbolicEvaluator().setTimeout(config.getTimeout());
         super.setTimeoutSeconds(config.getTimeout());
 

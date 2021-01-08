@@ -1,26 +1,27 @@
 package gov.nist.drmf.interpreter.maple.common;
 
 import gov.nist.drmf.interpreter.common.eval.ISymbolicTestCases;
+import gov.nist.drmf.interpreter.common.eval.SymbolicTestIDs;
 
 /**
  * @author Andre Greiner-Petter
  */
 public enum SymbolicMapleEvaluatorTypes implements ISymbolicTestCases {
-    SIMPLE("Simple",    "Simple Simplify",                          true,  "",          ""),
-    CONV_EXP("ConvEXP", "EXPonential Conversion (ConvEXP)",         false, "convert(",  ", exp)" ),
-    CONV_HYP("ConvHYP", "HYPergeometric Conversion (ConvHYP)",      false, "convert(",  ", hypergeom)" ),
-    EXPAND("EXP", "Expansion (EXP)",                                false, "expand(",   ")"),
-    EXPAND_EXP("EXP+EXP", "Expansion via EXP (EXP+EXP)",            false, "expand(",   ", exp)"),
-    EXPAND_HYP("EXP+HYP", "Expansion via HYP (EXP+HYP)",            false, "expand(",   ", hypergeom)");
+    SIMPLE(SymbolicTestIDs.SIMPLE,    "Simple Simplify",                          true,  "",          ""),
+    CONV_EXP(SymbolicTestIDs.CONV_EXP, "EXPonential Conversion (ConvEXP)",         false, "convert(",  ", exp)" ),
+    CONV_HYP(SymbolicTestIDs.CONV_HYP, "HYPergeometric Conversion (ConvHYP)",      false, "convert(",  ", hypergeom)" ),
+    EXPAND(SymbolicTestIDs.EXPAND, "Expansion (EXP)",                                false, "expand(",   ")"),
+    EXPAND_EXP(SymbolicTestIDs.EXPAND_EXP, "Expansion via EXP (EXP+EXP)",            false, "expand(",   ", exp)"),
+    EXPAND_HYP(SymbolicTestIDs.EXPAND_HYP, "Expansion via HYP (EXP+HYP)",            false, "expand(",   ", hypergeom)");
 
-    private String shortName;
+    private SymbolicTestIDs id;
     private String name;
     private boolean activated;
 
     private String pre, post;
 
-    SymbolicMapleEvaluatorTypes(String shortName, String name, boolean activated, String pre, String post ){
-        this.shortName = shortName;
+    SymbolicMapleEvaluatorTypes(SymbolicTestIDs id, String name, boolean activated, String pre, String post ){
+        this.id = id;
         this.name = name;
         this.activated = activated;
         this.pre = pre;
@@ -47,13 +48,13 @@ public enum SymbolicMapleEvaluatorTypes implements ISymbolicTestCases {
     }
 
     @Override
-    public String getShortName(){
-        return shortName;
+    public SymbolicTestIDs getID(){
+        return id;
     }
 
     @Override
     public String compactToString(){
-        return shortName + ": " + ( activated ? "ON" : "OFF" );
+        return id.getId() + ": " + ( activated ? "ON" : "OFF" );
     }
 
     @Override

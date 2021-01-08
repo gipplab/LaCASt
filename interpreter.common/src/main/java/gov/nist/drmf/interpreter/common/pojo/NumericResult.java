@@ -1,10 +1,8 @@
 package gov.nist.drmf.interpreter.common.pojo;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,7 +10,11 @@ import java.util.List;
 /**
  * @author Andre Greiner-Petter
  */
-public class NumericResult {
+@JsonPropertyOrder({
+        "successful", "wasAborted", "numberOfTests", "numberOfFailedTests", "numberOfSuccessfulTests",
+        "testCalculations"
+})
+public class NumericResult implements Serializable {
     @JsonProperty("successful")
     private boolean successful;
 
@@ -25,19 +27,25 @@ public class NumericResult {
     @JsonProperty("numberOfSuccessfulTests")
     private int numberOfSuccessfulTests;
 
+    @JsonProperty("wasAborted")
+    private boolean wasAborted;
+
     @JsonProperty("testCalculations")
     private List<NumericCalculation> testCalculations;
 
     public NumericResult() {
         testCalculations = new LinkedList<>();
+        this.successful = false;
+        this.wasAborted = false;
     }
 
-    public NumericResult(boolean successful, int totalTests, int failedTests, int successfulTests) {
+    public NumericResult(boolean successful, int totalTests, int failedTests, int successfulTests, boolean wasAborted) {
         this();
-        this.successful = successful;
+        this.successful = totalTests > 0 && successful;
         this.numberOfTotalTests = totalTests;
         this.numberOfFailedTests = failedTests;
         this.numberOfSuccessfulTests = successfulTests;
+        this.wasAborted = wasAborted;
     }
 
     /**
@@ -46,8 +54,14 @@ public class NumericResult {
      */
     @JsonIgnore
     public void addFurtherResults(NumericResult nr) {
-        if ( this.numberOfTotalTests == 0 ) this.successful = nr.successful;
-        else this.successful &= nr.successful; // this new test case is only successful if all parts where successful
+        if ( this.numberOfTotalTests == 0 ) {
+            this.successful = nr.successful;
+            this.wasAborted = nr.wasAborted;
+        }
+        else {
+            this.successful &= nr.successful; // this new test case is only successful if all parts where successful
+            this.wasAborted |= nr.wasAborted;
+        }
 
         this.numberOfTotalTests += nr.numberOfTotalTests;
         this.numberOfFailedTests += nr.numberOfFailedTests;
@@ -61,6 +75,16 @@ public class NumericResult {
 
     public void setSuccessful(boolean successful) {
         this.successful = successful;
+    }
+
+    @JsonGetter("wasAborted")
+    public Boolean getWasAborted() {
+        return wasAborted;
+    }
+
+    @JsonSetter("wasAborted")
+    public void setWasAborted(Boolean wasAborted) {
+        this.wasAborted = wasAborted;
     }
 
     @JsonGetter("numberOfTests")

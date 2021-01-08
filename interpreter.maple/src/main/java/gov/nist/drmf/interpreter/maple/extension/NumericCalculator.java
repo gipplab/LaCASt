@@ -287,7 +287,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
 
         commandsList = new StringBuffer();
         commandsList.append(testValuesN).append(":= buildTestValues(")
-                .append(constraintsName).append(",").append(testValuesN).append("):").append(NL);
+                .append(constraintsName).append(",").append(testValuesN).append(",").append(maxCombis).append("):").append(NL);
         return testValuesN;
     }
 

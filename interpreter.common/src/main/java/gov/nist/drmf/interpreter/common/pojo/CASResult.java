@@ -17,7 +17,7 @@ public class CASResult {
     private NumericResult numericResults;
 
     @JsonProperty("symbolicResults")
-    private List<SymbolicCalculation> symbolicResults;
+    private SymbolicResult symbolicResults;
 
     private CASResult() {
         casRepresentation = "";
@@ -39,17 +39,11 @@ public class CASResult {
         this.numericResults = numericResults;
     }
 
-    public List<SymbolicCalculation> getSymbolicResults() {
+    public SymbolicResult getSymbolicResults() {
         return symbolicResults;
     }
 
-    public void addSymbolicResult(SymbolicCalculation symbolicCalculation) {
-        if ( this.symbolicResults == null ) symbolicResults = new LinkedList<>();
-        this.symbolicResults.add(symbolicCalculation);
-    }
-
-    public void addSymbolicResult(Collection<SymbolicCalculation> symbolicCalculation) {
-        if ( this.symbolicResults == null ) symbolicResults = new LinkedList<>();
-        this.symbolicResults.addAll(symbolicCalculation);
+    public void setSymbolicResults(SymbolicResult symbolicResults) {
+        this.symbolicResults = symbolicResults;
     }
 }

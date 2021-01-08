@@ -286,6 +286,16 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
     }
 
     @Override
+    public boolean isTrue(Algebraic in) throws ComputerAlgebraSystemEngineException {
+        try {
+            Algebraic boolResult = maple.evaluate( "evalb(" + in.toString() + ");" );
+            return "true".equals(boolResult.toString());
+        } catch (MapleException e) {
+            throw new ComputerAlgebraSystemEngineException(e);
+        }
+    }
+
+    @Override
     public boolean isAsExpected(Algebraic in, double expect) {
         String str = in.toString();
         try {

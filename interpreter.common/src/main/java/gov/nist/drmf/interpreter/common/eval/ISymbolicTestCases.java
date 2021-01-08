@@ -10,7 +10,11 @@ public interface ISymbolicTestCases {
 
     String buildCommand(String cmd);
 
-    String getShortName();
+    SymbolicTestIDs getID();
+
+    default String getShortName() {
+        return getID().getId();
+    }
 
     String compactToString();
 
