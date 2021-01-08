@@ -4,16 +4,15 @@ import com.formulasearchengine.mathosphere.mlp.pojos.MathTag;
 import com.formulasearchengine.mathosphere.mlp.text.WikiTextUtils;
 import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
-import gov.nist.drmf.interpreter.common.eval.DefaultNumericalTestCaseBuilder;
-import gov.nist.drmf.interpreter.common.eval.NativeComputerAlgebraInterfaceBuilder;
-import gov.nist.drmf.interpreter.common.eval.NumericalTest;
+import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
+import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.MinimumRequirementNotFulfilledException;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.common.pojo.CASResult;
 import gov.nist.drmf.interpreter.common.pojo.NumericResult;
 import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
-import gov.nist.drmf.interpreter.common.pojo.SymbolicCalculation;
+import gov.nist.drmf.interpreter.common.pojo.SymbolicResult;
 import gov.nist.drmf.interpreter.generic.common.GenericReplacementTool;
 import gov.nist.drmf.interpreter.generic.interfaces.IPartialEnhancer;
 import gov.nist.drmf.interpreter.generic.macro.*;
@@ -34,7 +33,10 @@ import org.apache.logging.log4j.Logger;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Andre Greiner-Petter
@@ -76,22 +78,40 @@ public class SemanticEnhancer implements IPartialEnhancer {
         LOG.info("Compute MOI " + moi.getId());
 
         Map<String, CASResult> casResultMap = moi.getCasRepresentations();
-        String semanticLaTeX = moi.getSemanticLatex();
-
         Instant start = Instant.now();
         for ( String casName : casResultMap.keySet() ) {
-            LOG.info("Compute numeric and symbolic verification for CAS " + casName + " on MOI " + moi.getId());
-            CASResult casResult = casResultMap.get(casName);
-            LOG.debug("Compute numerical verification tests on " + moi.getId());
-            NumericResult nr = computeNumerically(semanticLaTeX, casName);
-            casResult.setNumericResults(nr);
-            LOG.debug("Compute symbolical verification tests on " + moi.getId());
-            List<SymbolicCalculation> sr = computeSymbolically(semanticLaTeX, casName);
-            casResult.addSymbolicResult(sr);
+            appendComputationResults(moi, casName);
         }
         Duration elapsed = Duration.between(start, Instant.now());
         LOG.printf(Level.INFO,
-                "Finished numeric calculations for %s [%d.%ds]",
+                "Finished all calculations for %s [%d.%ds]",
+                moi.getId(),
+                elapsed.toSecondsPart(),
+                elapsed.toMillisPart()
+        );
+    }
+
+    @Override
+    public void appendComputationResults(MOIPresentations moi, String casName) throws MinimumRequirementNotFulfilledException {
+        Instant start = Instant.now();
+        if ( moi.getId().equals("FORMULA_43e16b736c3ae9163cfddd4918b3c9b8") ) return;
+
+        moi.requires( SemanticEnhancedAnnotationStatus.TRANSLATED );
+        Map<String, CASResult> casResultMap = moi.getCasRepresentations();
+        String semanticLaTeX = moi.getSemanticLatex();
+        LOG.info("Compute numeric and symbolic verification for CAS " + casName + " on MOI " + moi.getId());
+        CASResult casResult = casResultMap.get(casName);
+        LOG.debug("Compute numerical verification tests on " + moi.getId());
+        NumericResult nr = computeNumerically(semanticLaTeX, casName);
+        casResult.setNumericResults(nr);
+        LOG.debug("Compute symbolical verification tests on " + moi.getId());
+        SymbolicResult sr = computeSymbolically(semanticLaTeX, casName);
+        casResult.setSymbolicResults(sr);
+
+        Duration elapsed = Duration.between(start, Instant.now());
+        LOG.printf(Level.INFO,
+                "Finished numeric and symbolic in %s calculations for %s [%d.%ds]",
+                casName,
                 moi.getId(),
                 elapsed.toSecondsPart(),
                 elapsed.toMillisPart()
@@ -106,22 +126,37 @@ public class SemanticEnhancer implements IPartialEnhancer {
                 LOG.debug("The requested CAS is not connected with valid native CAS. Skip it.");
             } else return computeNumericResults(semanticLatex, cas);
         } catch (ComputerAlgebraSystemEngineException e) {
-            LOG.warn("Unable to perform numerical tests for " + casName + " because we were unable to" +
-                    "to setup the forward DLMF translator.", e);
+            LOG.warn("Unable to perform numerical tests for " + casName + ": " + semanticLatex, e);
+        } catch (Exception e) {
+            LOG.warn("Unable to analyze test. Something went wrong: " + semanticLatex, e);
         }
         return null;
     }
 
     @Override
-    public List<SymbolicCalculation> computeSymbolically(String semanticLatex, String casName) {
-        return new LinkedList<>();
+    public SymbolicResult computeSymbolically(String semanticLatex, String casName) {
+        NativeComputerAlgebraInterfaceBuilder<?> cas = this.casConnections.getCASConnection(casName);
+        try {
+            if ( cas == null ) {
+                LOG.debug("The requested CAS is not connected with valid native CAS. Skip it.");
+            } else return computeSymbolicResults(semanticLatex, cas);
+        } catch (ComputerAlgebraSystemEngineException e) {
+            LOG.warn("Unable to perform symbolic tests for " + casName + ": " + semanticLatex, e);
+        } catch (Exception e) {
+            LOG.warn("Unable to analyze test. Something went wrong: " + semanticLatex, e);
+        }
+        return null;
     }
 
-    private <T> NumericResult computeNumericResults(String semanticLatex, NativeComputerAlgebraInterfaceBuilder<T> cas) throws ComputerAlgebraSystemEngineException {
+    private <T> NumericResult computeNumericResults(
+            String semanticLatex,
+            NativeComputerAlgebraInterfaceBuilder<T> cas
+    ) throws ComputerAlgebraSystemEngineException {
+        NumericalConfig config = this.casConnections.getNumericalConfig(cas.getLanguageKey());
         IConstraintTranslator dlmfTranslator = this.casTranslators.getTranslator(cas.getLanguageKey());
         TranslationInformation ti = dlmfTranslator.translateToObject(semanticLatex);
         DefaultNumericalTestCaseBuilder testCaseBuilder = new DefaultNumericalTestCaseBuilder(
-                cas.getNumericEvaluator(), dlmfTranslator, cas.getEvaluationScriptHandler()
+                config, cas.getNumericEvaluator(), dlmfTranslator, cas.getEvaluationScriptHandler()
         );
         DefaultNumericTestCase defaultNumericTestCase = new DefaultNumericTestCase(ti);
 
@@ -140,6 +175,19 @@ public class SemanticEnhancer implements IPartialEnhancer {
             }
         }
         return numericResult;
+    }
+
+    private <T> SymbolicResult computeSymbolicResults(
+            String semanticLatex,
+            NativeComputerAlgebraInterfaceBuilder<T> cas
+    ) throws ComputerAlgebraSystemEngineException {
+        SymbolicalConfig config = this.casConnections.getSymbolicalConfig(cas.getLanguageKey());
+        IConstraintTranslator dlmfTranslator = this.casTranslators.getTranslator(cas.getLanguageKey());
+        ISymbolicTestCases[] testCases = cas.getDefaultSymbolicTestCases();
+
+        SymbolicalTest symbolicalTest = new SymbolicalTest(config, dlmfTranslator, semanticLatex, testCases);
+        ICASEngineSymbolicEvaluator<T> symbolicEvaluator = cas.getSymbolicEvaluator();
+        return symbolicEvaluator.getResult(symbolicalTest);
     }
 
     private void coreSemanticallyEnhance(MOIPresentations moiPresentation, MOINode<MOIAnnotation> node, RetrievedMacros retrievedMacros) throws ParseException {

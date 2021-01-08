@@ -19,14 +19,19 @@ public class DefaultNumericalTestCaseBuilder {
     private final INumericalEvaluationScripts scriptMapper;
 
     public DefaultNumericalTestCaseBuilder(
+            NumericalConfig config,
             ICASEngineNumericalEvaluator<?> evaluator,
             IConstraintTranslator translator,
             INumericalEvaluationScripts scriptMapper
     ) {
-        this.config = NumericalConfig.config();
+        this.config = config;
         this.evaluator = evaluator;
         this.translator = translator;
         this.scriptMapper = scriptMapper;
+    }
+
+    public NumericalConfig getConfig() {
+        return config;
     }
 
     public List<NumericalTest> buildTestCases(
@@ -35,10 +40,10 @@ public class DefaultNumericalTestCaseBuilder {
     ) {
         LinkedList<NumericalTest> tests = new LinkedList<>();
         RelationalComponents relComps = ti.getRelationalComponents();
-        if ( relComps.getRelations().isEmpty() ) {
+        if ( relComps.getRelations().isEmpty() || relComps.getComponents().size() < 2 ) {
             // now LHS/RHS
             NumericalTest test = buildNoRelationTestCase(relComps.getComponents().get(0), testCase);
-            appendInfoToTest(test, ti, false);
+            appendInfoToTest(test, ti, true);
             tests.add(test);
         } else {
             LinkedList<String> tmpCompList = new LinkedList<>(relComps.getComponents());

@@ -2,13 +2,14 @@ package gov.nist.drmf.interpreter.common.eval;
 
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
 /**
  * @author Andre Greiner-Petter
  */
-public class NumericalTest {
+public class NumericalTest implements Serializable {
 
     private final String testExpression;
 

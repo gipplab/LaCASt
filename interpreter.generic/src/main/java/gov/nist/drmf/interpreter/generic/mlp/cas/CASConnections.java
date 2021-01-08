@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.generic.mlp.cas;
 
 import gov.nist.drmf.interpreter.common.eval.NativeComputerAlgebraInterfaceBuilder;
 import gov.nist.drmf.interpreter.common.eval.NumericalConfig;
+import gov.nist.drmf.interpreter.common.eval.SymbolicalConfig;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.maple.MapleConnector;
 import gov.nist.drmf.interpreter.mathematica.MathematicaConnector;
@@ -23,11 +24,17 @@ public final class CASConnections {
 
     private final Map<String, NativeComputerAlgebraInterfaceBuilder<?>> connectionsMap;
 
+    private final Map<String, NumericalConfig> numericalConfigMap;
+    private final Map<String, SymbolicalConfig> symbolicalConfigMap;
+
     private final CASTranslators translators;
 
     private CASConnections(CASTranslators casTranslators) {
         this.translators = casTranslators;
+
         connectionsMap = new HashMap<>();
+        numericalConfigMap = new HashMap<>();
+        symbolicalConfigMap = new HashMap<>();
 
         // first maple
         NativeComputerAlgebraInterfaceBuilder<?> maple = new MapleConnector();
@@ -43,11 +50,18 @@ public final class CASConnections {
             if ( !cas.isCASAvailable() ) return;
 
             connectionsMap.put(cas.getLanguageKey(), cas);
+
+            NumericalConfig numConfig = NumericalConfig.config();
+            cas.getNumericEvaluator().setTimeout(numConfig.getTimeout());
             cas.loadNumericProcedures();
+            numericalConfigMap.put(cas.getLanguageKey(), numConfig);
+
+            SymbolicalConfig symConfig = new SymbolicalConfig(cas.getDefaultSymbolicTestCases());
+            cas.getSymbolicEvaluator().setTimeout(symConfig.getTimeout());
+            symbolicalConfigMap.put(cas.getLanguageKey(), symConfig);
 
             if ( translator != null ) {
-                NumericalConfig config = NumericalConfig.config();
-                String[] globalAssumptions = config.getEntireTestSuiteAssumptionsList();
+                String[] globalAssumptions = numConfig.getEntireTestSuiteAssumptionsList();
                 String[] assumptionsTranslated = translator.translateEachConstraint(globalAssumptions);
                 cas.getNumericEvaluator().setGlobalAssumptions(List.of(assumptionsTranslated));
             }
@@ -71,6 +85,14 @@ public final class CASConnections {
 
     public NativeComputerAlgebraInterfaceBuilder<?> getCASConnection(String cas) {
         return this.connectionsMap.get(cas);
+    }
+
+    public NumericalConfig getNumericalConfig(String cas) {
+        return this.numericalConfigMap.get(cas);
+    }
+
+    public SymbolicalConfig getSymbolicalConfig(String cas) {
+        return this.symbolicalConfigMap.get(cas);
     }
 
     public static CASConnections getInstance() {

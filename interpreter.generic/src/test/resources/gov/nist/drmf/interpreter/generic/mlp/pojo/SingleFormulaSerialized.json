@@ -20,17 +20,21 @@
                     }
                 ]
             },
-            "symbolicResults" : [
-                {
-                    "result" : "JacobiP[n, α, β, x]",
-                    "property" : "fullsimplify"
-                }
-            ]
+            "symbolicResults" : {
+                "successful" : false,
+                "numberOfTests" : 0,
+                "testCalculations": [
+                    {
+                        "result" : "JacobiP[n, α, β, x]",
+                        "property" : "fullsimplify"
+                    }
+                ]
+            }
         },
         "Maple" : {
             "translation" : "JacobiP(n, alpha, beta, x)",
             "numericResults" : null,
-            "symbolicResults" : [ ]
+            "symbolicResults" : null
         }
     },
     "positions" : [

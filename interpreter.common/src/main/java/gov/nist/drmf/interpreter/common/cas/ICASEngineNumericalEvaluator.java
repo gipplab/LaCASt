@@ -199,13 +199,16 @@ public interface ICASEngineNumericalEvaluator<T> extends IAbortEvaluator<T> {
     default NumericResult getNumericResult(T results) throws ComputerAlgebraSystemEngineException {
         TestResultType type = getStatusOfResult(results);
         int tests = getPerformedTestCases();
-        int failed = getNumberOfFailedTestCases();
+        boolean aborted = wasAborted(results);
+        int failed = aborted ? tests : getNumberOfFailedTestCases();
+        int success = aborted ? 0 : tests-failed;
 
         NumericResult nr = new NumericResult(
                 TestResultType.SUCCESS.equals(type),
                 tests,
                 failed,
-                tests-failed
+                success,
+                aborted
         );
 
         nr.addTestCalculations( getNumericCalculationList(results) );

@@ -1,27 +1,28 @@
 package gov.nist.drmf.interpreter.mathematica.common;
 
 import gov.nist.drmf.interpreter.common.eval.ISymbolicTestCases;
+import gov.nist.drmf.interpreter.common.eval.SymbolicTestIDs;
 
 /**
  * @author Andre Greiner-Petter
  */
 public enum SymbolicMathematicaEvaluatorTypes implements ISymbolicTestCases {
     SIMPLE(
-            "Simple",
+            SymbolicTestIDs.SIMPLE,
             "Simple Simplify",
             true,   // simple case is always on
             "",     // simple is just simplified, there are no inner pre-post commands
             ""
     );
 
-    private String shortName;
+    private SymbolicTestIDs id;
     private String name;
     private boolean activated;
 
     private String pre, post;
 
-    SymbolicMathematicaEvaluatorTypes(String shortName, String name, boolean activated, String pre, String post ){
-        this.shortName = shortName;
+    SymbolicMathematicaEvaluatorTypes(SymbolicTestIDs id, String name, boolean activated, String pre, String post ){
+        this.id = id;
         this.name = name;
         this.activated = activated;
         this.pre = pre;
@@ -44,8 +45,8 @@ public enum SymbolicMathematicaEvaluatorTypes implements ISymbolicTestCases {
     }
 
     @Override
-    public String getShortName() {
-        return shortName;
+    public SymbolicTestIDs getID() {
+        return id;
     }
 
     @Override

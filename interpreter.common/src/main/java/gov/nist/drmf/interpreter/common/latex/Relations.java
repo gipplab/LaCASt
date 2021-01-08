@@ -35,7 +35,6 @@ public enum Relations {
      * support, like Maple and Mathematica. In the future it might make more sense to actually translate
      * the tex via {@link gov.nist.drmf.interpreter.common.symbols.SymbolTranslator}.
      * @return the symbol in CAS syntax
-     * @deprecated use {@link #getSymbol(String)} instead
      */
     public String getSymbol(){
         return symbol;
@@ -51,7 +50,9 @@ public enum Relations {
     public String getSymbol(String cas) {
         try {
             GenericTranslationMapper st = SymbolTranslator.getGenericMapper();
-            return st.translate(Keys.KEY_LATEX, cas, texSymbol);
+            String rel = st.translate(Keys.KEY_LATEX, cas, texSymbol);
+            if ( rel == null ) rel = getSymbol();
+            return rel;
         } catch (IOException e) {
             LOG.error("Unable to get symbol translator instance.", e);
             return symbol;

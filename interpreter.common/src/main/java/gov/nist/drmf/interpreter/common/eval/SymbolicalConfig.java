@@ -1,9 +1,6 @@
-package gov.nist.drmf.interpreter.evaluation.core.symbolic;
+package gov.nist.drmf.interpreter.common.eval;
 
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
-import gov.nist.drmf.interpreter.common.eval.EvaluationConfig;
-import gov.nist.drmf.interpreter.maple.common.SymbolicMapleEvaluatorTypes;
-import gov.nist.drmf.interpreter.mathematica.common.SymbolicMathematicaEvaluatorTypes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,42 +17,43 @@ import static gov.nist.drmf.interpreter.common.eval.NumericalTestConstants.PATTE
 /**
  * @author Andre Greiner-Petter
  */
-public class SymbolicConfig implements EvaluationConfig {
+public class SymbolicalConfig implements EvaluationConfig {
 
-    private static final Logger LOG = LogManager.getLogger(SymbolicConfig.class.getName());
+    private static final Logger LOG = LogManager.getLogger(SymbolicalConfig.class.getName());
 
-    public SymbolicConfig () {
+    public SymbolicalConfig(ISymbolicTestCases[] symbolicTestCases) {
         try ( FileInputStream in = new FileInputStream(GlobalPaths.PATH_SYMBOLIC_SETUP.toFile()) ){
             Properties props = new Properties();
             props.load(in);
 
-            for ( SymbolicConfig.SymbolicProperties np : SymbolicConfig.SymbolicProperties.values() ){
+            for ( SymbolicalConfig.SymbolicProperties np : SymbolicalConfig.SymbolicProperties.values() ){
                 String val = props.getProperty(np.key);
                 np.setValue(val);
             }
 
-            SymbolicMathematicaEvaluatorTypes.SIMPLE.setActivated(true); // always on
-            SymbolicMapleEvaluatorTypes.SIMPLE.setActivated(true); // always on
-
-            SymbolicMapleEvaluatorTypes.CONV_EXP.setActivated(enabledConvEXP());
-            SymbolicMapleEvaluatorTypes.CONV_HYP.setActivated(enabledConvHYP());
-            SymbolicMapleEvaluatorTypes.EXPAND.setActivated(enabledExpand());
-            SymbolicMapleEvaluatorTypes.EXPAND_EXP.setActivated(enabledExpandWithEXP());
-            SymbolicMapleEvaluatorTypes.EXPAND_HYP.setActivated(enabledExpandWithHYP());
-
+            activateSymbolicTests(symbolicTestCases);
             LOG.info( "Successfully loaded config for symbolic tests." );
         } catch ( IOException ioe ){
             LOG.fatal("Cannot load the symbolic test config from " + GlobalPaths.PATH_NUMERICAL_SETUP.getFileName(), ioe);
         }
     }
 
-    public Path getDataset(){
-        return Paths.get(SymbolicConfig.SymbolicProperties.KEY_DATASET.value);
+    private void activateSymbolicTests(ISymbolicTestCases[] testCases) {
+        for ( ISymbolicTestCases test : testCases ) {
+            switch ( test.getID() ) {
+                case SIMPLE: test.setActivated(true); break;
+                case CONV_EXP: test.setActivated(enabledConvEXP()); break;
+                case CONV_HYP: test.setActivated(enabledConvHYP()); break;
+                case EXPAND: test.setActivated(enabledExpand()); break;
+                case EXPAND_EXP: test.setActivated(enabledExpandWithEXP()); break;
+                case EXPAND_HYP: test.setActivated(enabledExpandWithHYP()); break;
+            }
+        }
     }
 
-//    public Path getLabelSet(){
-//        return Paths.get(SymbolicConfig.SymbolicProperties.KEY_LABELSET.value);
-//    }
+    public Path getDataset(){
+        return Paths.get(SymbolicalConfig.SymbolicProperties.KEY_DATASET.value);
+    }
 
     @Override
     public Path getOutputPath(){
@@ -69,7 +67,7 @@ public class SymbolicConfig implements EvaluationConfig {
 
     @Override
     public int[] getSubSetInterval(){
-        String in = SymbolicConfig.SymbolicProperties.KEY_SUBSET.value;
+        String in = SymbolicalConfig.SymbolicProperties.KEY_SUBSET.value;
         if ( in == null ) return null;
 
         String[] splitted = in.split(",");
@@ -81,18 +79,18 @@ public class SymbolicConfig implements EvaluationConfig {
 
     @Override
     public String getTestExpression(){
-        return SymbolicConfig.SymbolicProperties.KEY_EXPR.value;
+        return SymbolicalConfig.SymbolicProperties.KEY_EXPR.value;
     }
 
     public String getTestExpression( String LHS, String RHS ){
-        String in = SymbolicConfig.SymbolicProperties.KEY_EXPR.value;
+        String in = SymbolicalConfig.SymbolicProperties.KEY_EXPR.value;
         in = in.replaceAll( PATTERN_LHS, Matcher.quoteReplacement(LHS) );
         in = in.replaceAll( PATTERN_RHS, Matcher.quoteReplacement(RHS) );
         return in;
     }
 
     public String getExpectationValue(){
-        String val = SymbolicConfig.SymbolicProperties.KEY_EXPECT.value;
+        String val = SymbolicalConfig.SymbolicProperties.KEY_EXPECT.value;
         return val == null ? "0" : val;
     }
 
@@ -131,20 +129,19 @@ public class SymbolicConfig implements EvaluationConfig {
 
     private enum SymbolicProperties{
         KEY_DATASET("dlmf_dataset", null),
-//        KEY_LABELSET("dlmf_labelset", null),
         KEY_SUBSET("subset_tests", null),
         KEY_EXPR("test_expression", null),
         KEY_EXPECT("test_expectation", null),
         KEY_OUTPUT("output", null),
         KEY_MISSING_MACRO_OUTPUT("missing_macro_output", null),
         KEY_DLMF_LINK("show_dlmf_links", null),
-        KEY_ENABLE_CONV_EXP("enable_conversion_exp", null),
-        KEY_ENABLE_CONV_HYP("enable_conversion_hypergeom", null),
-        KEY_ENABLE_EXPAND("enable_pre_expansion", null),
-        KEY_ENABLE_EXPAND_EXP("enable_pre_expansion_with_exp", null),
-        KEY_ENABLE_EXPAND_HYP("enable_pre_expansion_with_hypergeom", null),
+        KEY_ENABLE_CONV_EXP("enable_conversion_exp", "true"),
+        KEY_ENABLE_CONV_HYP("enable_conversion_hypergeom", "true"),
+        KEY_ENABLE_EXPAND("enable_pre_expansion", "true"),
+        KEY_ENABLE_EXPAND_EXP("enable_pre_expansion_with_exp", "true"),
+        KEY_ENABLE_EXPAND_HYP("enable_pre_expansion_with_hypergeom", "true"),
         KEY_ASSUMPTION("entire_test_set_assumptions", null),
-        KEY_TIMEOUT("timeout", null);
+        KEY_TIMEOUT("timeout", "10");
 
         private String key, value;
 
