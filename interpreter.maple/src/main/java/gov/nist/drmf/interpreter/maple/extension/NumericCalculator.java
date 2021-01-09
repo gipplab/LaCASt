@@ -2,7 +2,6 @@ package gov.nist.drmf.interpreter.maple.extension;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
-import com.maplesoft.openmaple.MString;
 import com.maplesoft.openmaple.Numeric;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
@@ -35,7 +34,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     private List<String> globalAssumptions = new LinkedList<>();
     private List<String> globalConstraints = new LinkedList<>();
 
-    private final MapleInterface maple;
+    private final OldMapleInterface maple;
     private final PackageWrapper packageWrapper;
 
     private StringBuffer commandsList;
@@ -58,7 +57,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     private Set<String> requiredPackages = new HashSet<>();
 
     public NumericCalculator() {
-        maple = MapleInterface.getUniqueMapleInterface();
+        maple = OldMapleInterface.getUniqueMapleInterface();
         commandsList = new StringBuffer();
 
         SymbolTranslator symbolTranslator = new SymbolTranslator(Keys.KEY_LATEX, Keys.KEY_MAPLE);

@@ -17,13 +17,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Observer;
 
-import static gov.nist.drmf.interpreter.common.constants.GlobalConstants.NL;
-
 /**
  * @author Andre Greiner-Petter
  */
-public final class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
-    private static final Logger LOG = LogManager.getLogger(MapleInterface.class.getName());
+public final class OldMapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
+    private static final Logger LOG = LogManager.getLogger(OldMapleInterface.class.getName());
 
     /**
      * Inner constant to initialize Maple
@@ -45,7 +43,7 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine<Algebr
     /**
      * The unique instance
      */
-    private static MapleInterface mapleInterface;
+    private static OldMapleInterface mapleInterface;
 
     /**
      *
@@ -63,7 +61,7 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine<Algebr
      * The interface to maple
      * @throws MapleException if init wont work
      */
-    private MapleInterface() throws MapleException {
+    private OldMapleInterface() throws MapleException {
         procedureBackup = new LinkedList<>();
         init();
     }
@@ -206,10 +204,10 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine<Algebr
      * @return the unique object of the interface to Maple. Can
      * be null.
      */
-    public static MapleInterface getUniqueMapleInterface() {
+    public static OldMapleInterface getUniqueMapleInterface() {
         if ( mapleInterface == null ) {
             try {
-                if (MapleConfig.areSystemVariablesSetProperly()) mapleInterface = new MapleInterface();
+                if (MapleConfig.areSystemVariablesSetProperly()) mapleInterface = new OldMapleInterface();
                 return mapleInterface;
             } catch (MapleException e) {
                 LOG.error("Unable to load ");
@@ -242,7 +240,7 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine<Algebr
     public boolean isAbortedExpression(Algebraic result) {
         if ( result instanceof MString) {
             try {
-                return ((MString) result).stringValue().equals(MapleInterface.TIMED_OUT_SIGNAL);
+                return ((MString) result).stringValue().equals(OldMapleInterface.TIMED_OUT_SIGNAL);
             } catch (MapleException e) {
                 LOG.error("A maple exception occurred when testing the result " + result);
                 return false;

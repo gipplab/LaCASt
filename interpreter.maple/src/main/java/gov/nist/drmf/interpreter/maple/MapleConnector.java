@@ -8,10 +8,9 @@ import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
-import gov.nist.drmf.interpreter.common.pojo.NumericCalculation;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.common.SymbolicMapleEvaluatorTypes;
-import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
+import gov.nist.drmf.interpreter.maple.extension.OldMapleInterface;
 import gov.nist.drmf.interpreter.maple.extension.NumericCalculator;
 import gov.nist.drmf.interpreter.maple.extension.Simplifier;
 import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
@@ -19,8 +18,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * @author Andre Greiner-Petter
@@ -83,7 +80,7 @@ public class MapleConnector implements NativeComputerAlgebraInterfaceBuilder<Alg
     @Override
     public boolean isCASAvailable() {
         if ( !loadedScriptsSuccessfully ) return false;
-        if ( mapleIsAvailable == null ) mapleIsAvailable = MapleInterface.isMaplePresent();
+        if ( mapleIsAvailable == null ) mapleIsAvailable = OldMapleInterface.isMaplePresent();
         return mapleIsAvailable;
     }
 
@@ -95,7 +92,7 @@ public class MapleConnector implements NativeComputerAlgebraInterfaceBuilder<Alg
     @Override
     public IComputerAlgebraSystemEngine<Algebraic> getCASEngine() throws CASUnavailableException {
         if ( !isCASAvailable() ) throw new CASUnavailableException();
-        return MapleInterface.getUniqueMapleInterface();
+        return OldMapleInterface.getUniqueMapleInterface();
     }
 
     @Override
