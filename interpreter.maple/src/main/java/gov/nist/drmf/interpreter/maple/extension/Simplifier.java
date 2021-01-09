@@ -28,15 +28,15 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
      */
     private static final String ZERO_PATTERN = "0\\.?0*";
 
-    private final MapleInterface maple;
+    private final OldMapleInterface maple;
     private final MapleListener listener;
     private final PackageWrapper packageWrapper;
 
     private double timeout = -1;
 
     public Simplifier() {
-        maple = MapleInterface.getUniqueMapleInterface();
-        listener = MapleInterface.getUniqueMapleListener();
+        maple = OldMapleInterface.getUniqueMapleInterface();
+        listener = OldMapleInterface.getUniqueMapleListener();
 
         SymbolTranslator symbolTranslator = new SymbolTranslator(Keys.KEY_LATEX, Keys.KEY_MAPLE);
         BasicFunctionsTranslator basicFunctionsTranslator = new BasicFunctionsTranslator(Keys.KEY_MAPLE);
@@ -213,7 +213,7 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
         String command = simplify + "(" + maple_expr + ")";
         if ( timeout > 0 ) {
             command = "try timelimit("+timeout+","+command+"); catch \"time expired\": \"";
-            command += MapleInterface.TIMED_OUT_SIGNAL;
+            command += OldMapleInterface.TIMED_OUT_SIGNAL;
             command += "\"; end try;";
         } else command += ";";
 
@@ -264,7 +264,7 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
             cmd = "try timelimit("+timeout+", "+ cmd+") ";
             cmd += "assuming " + assumption + "; ";
             cmd += "catch \"time expired\": \"";
-            cmd += MapleInterface.TIMED_OUT_SIGNAL;
+            cmd += OldMapleInterface.TIMED_OUT_SIGNAL;
             cmd += "\"; end try;";
         } else cmd += "assuming " + assumption + ";";
 

@@ -16,7 +16,7 @@ import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
-import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
+import gov.nist.drmf.interpreter.maple.extension.OldMapleInterface;
 import gov.nist.drmf.interpreter.maple.grammar.lexicon.MapleLexicon;
 import gov.nist.drmf.interpreter.maple.translation.components.AbstractAlgebraicTranslator;
 import org.apache.logging.log4j.LogManager;
@@ -72,7 +72,7 @@ public final class MapleTranslator extends AbstractAlgebraicTranslator<Algebraic
     /**
      * MapleInterface
      */
-    private final MapleInterface maple;
+    private final OldMapleInterface maple;
 
     /**
      *
@@ -85,7 +85,7 @@ public final class MapleTranslator extends AbstractAlgebraicTranslator<Algebraic
      * If you do, you should know what you do and why.
      */
     public MapleTranslator(){
-        maple = MapleInterface.getUniqueMapleInterface();
+        maple = OldMapleInterface.getUniqueMapleInterface();
     }
 
     /**

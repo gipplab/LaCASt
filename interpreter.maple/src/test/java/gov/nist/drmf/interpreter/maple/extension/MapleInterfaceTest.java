@@ -16,11 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 @AssumeMapleAvailability
 public class MapleInterfaceTest {
 
-    private static MapleInterface maple;
+    private static OldMapleInterface maple;
 
     @BeforeAll
     static void setup() {
-        maple = MapleInterface.getUniqueMapleInterface();
+        maple = OldMapleInterface.getUniqueMapleInterface();
     }
 
     @Test
