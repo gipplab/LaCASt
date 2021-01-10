@@ -12,5 +12,5 @@ public final class ProcessKeys {
 
     public static String JAVA_CLASSPATH = "java.class.path";
 
-    public static String JAVA_CLASSPATH_FLAG = "-cp";
+    public static String JAVA_CLASSPATH_FLAG = "-classpath";
 }

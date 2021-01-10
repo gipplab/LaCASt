@@ -16,6 +16,7 @@ import java.rmi.registry.Registry;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * This starts another class in a different VM! It shares most of the same settings as the currently running
@@ -33,10 +34,12 @@ public class RmiProcessHandler {
 
     private Process process = null;
 
-    private SubprocessLoggerRunner infoLogRunner;
-    private SubprocessLoggerRunner errorLogRunner;
+    private SubprocessLoggerRunner logRunner;
+    private Thread logRunnerThread;
 
-    public RmiProcessHandler(Class<?> clazz) {
+    private CompletableFuture<Process> completeProcessFuture;
+
+    public RmiProcessHandler(Class<?> clazz, List<String> jvmArgs) {
         // setup commands
         String javaHome = System.getProperty(ProcessKeys.JAVA_HOME);
         String javaBin = Paths.get(javaHome, "bin", "java").toString();
@@ -45,8 +48,7 @@ public class RmiProcessHandler {
 
         List<String> command = new LinkedList<>();
         command.add(javaBin);
-        command.add("-Xmx2g");
-        command.add("-Xss100M");
+        command.addAll(jvmArgs);
         command.add(ProcessKeys.JAVA_CLASSPATH_FLAG);
         command.add(classpath);
         command.add(className);
@@ -56,11 +58,15 @@ public class RmiProcessHandler {
         processBuilder.directory( Paths.get(".").toFile() );
 
         Map<String, String> processEnv = processBuilder.environment();
+        processBuilder.redirectErrorStream(true);
 
         if ( System.getenv(Keys.SYSTEM_ENV_MAPLE) != null )
             processEnv.put(Keys.SYSTEM_ENV_MAPLE, System.getenv(Keys.SYSTEM_ENV_MAPLE));
         if ( System.getenv(Keys.SYSTEM_ENV_LD_LIBRARY_PATH) != null )
             processEnv.put(Keys.SYSTEM_ENV_LD_LIBRARY_PATH, System.getenv(Keys.SYSTEM_ENV_LD_LIBRARY_PATH));
+
+        Thread shutdownHook = new Thread(this::stop);
+        Runtime.getRuntime().addShutdownHook(shutdownHook);
     }
 
     private void waitForSuccessfulSetupSignal() throws IOException {
@@ -71,96 +77,149 @@ public class RmiProcessHandler {
         while ( !line.matches(".*" + READY_SIGNAL + ".*") ) {
             LOG.debug("Subprocess setup - " + line);
             line = reader.readLine();
+            if ( line == null )
+                throw new IOException("Subprocess is unavailable or does not send ready signal properly.");
         }
-        LOG.info("Finished setting up subprocess. Redirect streams.");
 
-        infoLogRunner = new SubprocessLoggerRunner(true, in);
-        errorLogRunner = new SubprocessLoggerRunner(false, process.getErrorStream());
+        logRunner = new SubprocessLoggerRunner(process.getInputStream());
+        logRunnerThread = new Thread(logRunner);
+        logRunnerThread.start();
 
-        new Thread(infoLogRunner).start();
-        new Thread(errorLogRunner).start();
+        LOG.debug("Received ready signal from subprocess. Initialization has finished successfully.");
     }
 
     public void start() throws IOException {
         if (process != null && process.isAlive()) {
-            process.destroyForcibly();
+            LOG.warn("Old process is still running. We won't restart a new one.");
+            return;
         }
+
+        LOG.info("Start new sub process");
         process = processBuilder.start();
         waitForSuccessfulSetupSignal();
+
+        LOG.info("Established connection with sub process. Setup restart on fail hook.");
+        this.completeProcessFuture = process.onExit().thenApply(this::onCrash);
+
         LOG.info("Subprocess finished successfully. Setup RMI connection.");
     }
 
     public void stop() {
-        if ( infoLogRunner != null ) {
-            infoLogRunner.interrupt();
-            errorLogRunner.interrupt();
-            infoLogRunner = null;
-            errorLogRunner = null;
+        LOG.debug("Stop logger and running processes");
+        if ( logRunner != null ) {
+            logRunner.interrupt();
+            logRunnerThread.interrupt();
+        }
+
+        if ( process != null && process.isAlive() ) {
+            LOG.info("Shutdown subprocess");
+            process.destroyForcibly();
         }
     }
 
+    public CompletableFuture<?> getProcessFuture() {
+        return completeProcessFuture;
+    }
+
+    private Process onCrash(Process process) {
+        LOG.info("Subprocess stopped. Analyze reason...");
+        int exitValue = process.exitValue();
+        if ( exitValue != 0 ) {
+            LOG.error("Subprocess finished on error code " + exitValue + ". Try to recover by restarting VM.");
+            this.stop();
+            try {
+                this.start();
+                return process;
+            } catch (IOException e) {
+                LOG.error("Unable to recover subprocess!", e);
+            }
+        } else {
+            LOG.info("Subprocess stopped properly. No crash that needs to get recovered.");
+        }
+        return null;
+    }
+
     public static void main(String[] args) throws IOException, NotBoundException, InterruptedException {
-        RmiProcessHandler processHandler = new RmiProcessHandler(RmiProcess.class);
+        RmiProcessHandler processHandler = new RmiProcessHandler(RmiProcess.class, List.of(""));
         processHandler.start();
 
         // we should be ready to interact right now...
         Registry registry = LocateRegistry.getRegistry();
         RmiShutdowner rmi = (RmiShutdowner) registry.lookup(RmiProcess.getId());
-        double result = rmi.plus(2, 3);
-        LOG.info("Received result: " + result);
-        Thread.sleep(1500);
-        LOG.info("Alright, seems to work. Time to shut it down, right?");
-        processHandler.stop();
-        rmi.stop();
-        LOG.info("What now? Not sure... ");
-
         try {
-            double lol = rmi.plus(1,2);
-            System.out.println(lol);
-            return;
+            double result = rmi.plus(2, 3);
+            LOG.info("Lol, just worked smoothly: " + result);
         } catch (Exception e) {
-            LOG.warn("Unable to perform computation on other VM. Restart other VM.");
+            LOG.error("Catched it", e);
+//            LOG.warn("Still alive? " + processHandler.process.isAlive());
+//            LOG.warn("What was exit code? " + processHandler.process.exitValue());
         }
 
-        processHandler.start();
-        LOG.info("Not sure if we need a new lookup or if we can just continue? That would be cool!");
-        // ok damn, if there will be an exception, we need to lookup the object again
-        // makes sense... probably thats fine...
+        Thread.sleep(2000);
+        LOG.info("Maybe the storm is over now. To to look for object and call stop properly.");
         rmi = (RmiShutdowner) registry.lookup(RmiProcess.getId());
-        rmi.plus(2, 3);
+        processHandler.stop();
         rmi.stop();
+
+//        LOG.info("Received result: " + result);
+//        Thread.sleep(1500);
+//        LOG.info("Alright, seems to work. Time to shut it down, right?");
+//        processHandler.stop();
+//        rmi.stop();
+//        LOG.info("What now? Not sure... ");
+//
+//        try {
+//            double lol = rmi.plus(1,2);
+//            System.out.println(lol);
+//            return;
+//        } catch (Exception e) {
+//            LOG.warn("Unable to perform computation on other VM. Restart other VM.");
+//        }
+//
+//        processHandler.start();
+//        LOG.info("Not sure if we need a new lookup or if we can just continue? That would be cool!");
+//        // ok damn, if there will be an exception, we need to lookup the object again
+//        // makes sense... probably thats fine...
+//        rmi = (RmiShutdowner) registry.lookup(RmiProcess.getId());
+//        rmi.plus(2, 3);
+//        rmi.stop();
+    }
+
+    public static void sendReadySignal() {
+        System.out.println(RmiProcessHandler.READY_SIGNAL);
     }
 
     private static class SubprocessLoggerRunner implements Runnable {
         private boolean interrupt = false;
 
-        private final boolean isInfoStream;
-
         private final InputStream is;
 
-        private SubprocessLoggerRunner(boolean isInfoStream, InputStream is) {
-            this.isInfoStream = isInfoStream;
+        private SubprocessLoggerRunner(InputStream is) {
             this.is = is;
         }
 
         @Override
         public void run() {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
-                while ( true ) {
-                    String msg = reader.readLine();
+                String msg = reader.readLine();
+                while ( msg != null ) {
                     if ( interrupt ) break;
-                    Level level;
-                    if ( isInfoStream ) {
-                        level = msg.contains("DEBUG") ? Level.DEBUG : Level.INFO;
-                    } else {
-                        level = Level.ERROR;
-                    }
-                    LOG.printf(level, "Subprocess: %s", msg);
+                    LOG.printf(getLevel(msg), "Subprocess: %s", msg);
+                    msg = reader.readLine();
                 }
                 LOG.info("Stop logging subprocess");
             } catch (IOException ioe) {
                 LOG.error("Unable to connect", ioe);
             }
+        }
+
+        private Level getLevel(String msg) {
+            Level level = Level.INFO;
+            if ( msg.contains("TRACE") ) level = Level.TRACE;
+            else if ( msg.contains("DEBUG") ) level = Level.DEBUG;
+            else if ( msg.contains("WARN") ) level = Level.WARN;
+            else if ( msg.matches(".*(ERROR|FATAL).*") ) level = Level.ERROR;
+            return level;
         }
 
         public void interrupt() {

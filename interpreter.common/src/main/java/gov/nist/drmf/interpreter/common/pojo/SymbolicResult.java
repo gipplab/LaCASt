@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.common.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.LinkedList;
@@ -19,6 +20,9 @@ public class SymbolicResult {
     @JsonProperty("testCalculations")
     private List<SymbolicCalculation> testCalculations;
 
+    @JsonIgnore
+    private boolean crashed = false;
+
     public SymbolicResult() {
         testCalculations = new LinkedList<>();
     }
@@ -26,6 +30,17 @@ public class SymbolicResult {
     public SymbolicResult(boolean successful) {
         this();
         this.successful = successful;
+    }
+
+    @JsonIgnore
+    public SymbolicResult markAsCrashed() {
+        this.crashed = true;
+        return this;
+    }
+
+    @JsonIgnore
+    public boolean crashed() {
+        return this.crashed;
     }
 
     public boolean isSuccessful() {

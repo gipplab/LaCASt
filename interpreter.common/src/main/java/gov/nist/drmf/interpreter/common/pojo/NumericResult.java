@@ -33,6 +33,9 @@ public class NumericResult implements Serializable {
     @JsonProperty("testCalculations")
     private List<NumericCalculation> testCalculations;
 
+    @JsonIgnore
+    private boolean crashed = false;
+
     public NumericResult() {
         testCalculations = new LinkedList<>();
         this.successful = false;
@@ -46,6 +49,17 @@ public class NumericResult implements Serializable {
         this.numberOfFailedTests = failedTests;
         this.numberOfSuccessfulTests = successfulTests;
         this.wasAborted = wasAborted;
+    }
+
+    @JsonIgnore
+    public NumericResult markAsCrashed() {
+        this.crashed = true;
+        return this;
+    }
+
+    @JsonIgnore
+    public boolean crashed() {
+        return crashed;
     }
 
     /**

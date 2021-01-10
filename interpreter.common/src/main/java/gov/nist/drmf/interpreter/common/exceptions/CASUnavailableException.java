@@ -7,4 +7,12 @@ package gov.nist.drmf.interpreter.common.exceptions;
  *
  * @author Andre Greiner-Petter
  */
-public class CASUnavailableException extends RuntimeException {}
+public class CASUnavailableException extends RuntimeException {
+    public CASUnavailableException() {
+        super();
+    }
+
+    public CASUnavailableException(Exception e) {
+        super(e);
+    }
+}
