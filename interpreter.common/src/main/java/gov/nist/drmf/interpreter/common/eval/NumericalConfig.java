@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.common.eval;
 
-import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import org.apache.logging.log4j.LogManager;
@@ -14,6 +13,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 
 import static gov.nist.drmf.interpreter.common.eval.NumericalTestConstants.*;
@@ -84,7 +84,7 @@ public class NumericalConfig implements EvaluationConfig {
         return NumericalProperties.KEY_EXPR.value;
     }
 
-    public String getTestExpression(ICASEngineNumericalEvaluator evaluator, String LHS, String RHS ){
+    public String getTestExpression(Function<String, String> testExpressionGenerator, String LHS, String RHS ){
         String in = NumericalProperties.KEY_EXPR.value;
 
         if ( LHS == null || LHS.isEmpty() ){
@@ -98,7 +98,7 @@ public class NumericalConfig implements EvaluationConfig {
         in = in.replaceAll( PATTERN_LHS, Matcher.quoteReplacement(LHS) );
         in = in.replaceAll( PATTERN_RHS, Matcher.quoteReplacement(RHS) );
 //        in = "evalf(" + in + ")";
-        return evaluator.generateNumericalTestExpression(in);
+        return testExpressionGenerator.apply(in);
     }
 
     public String getExpectationTemplate(){

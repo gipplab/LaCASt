@@ -2,9 +2,11 @@ package gov.nist.drmf.interpreter.maple.extension;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
+import gov.nist.drmf.interpreter.common.cas.AbstractCasEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.eval.EvaluatorType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
@@ -13,13 +15,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 /**
  * @author Andre Greiner-Petter
  */
-public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
+public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
     private static final Logger LOG = LogManager.getLogger(Simplifier.class.getName());
 
     /**
@@ -28,15 +31,15 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
      */
     private static final String ZERO_PATTERN = "0\\.?0*";
 
-    private final OldMapleInterface maple;
+    private final MapleInterface maple;
     private final MapleListener listener;
     private final PackageWrapper packageWrapper;
 
     private double timeout = -1;
 
     public Simplifier() {
-        maple = OldMapleInterface.getUniqueMapleInterface();
-        listener = OldMapleInterface.getUniqueMapleListener();
+        maple = MapleInterface.getUniqueMapleInterface();
+        listener = MapleInterface.getUniqueMapleListener();
 
         SymbolTranslator symbolTranslator = new SymbolTranslator(Keys.KEY_LATEX, Keys.KEY_MAPLE);
         BasicFunctionsTranslator basicFunctionsTranslator = new BasicFunctionsTranslator(Keys.KEY_MAPLE);
@@ -47,6 +50,23 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
             LOG.fatal("Unable to initiate the symbol and function translator.", e);
         }
         packageWrapper = new PackageWrapper(basicFunctionsTranslator, symbolTranslator);
+    }
+
+    @Override
+    public void setGlobalSymbolicAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {
+        String cmd = String.join(", ", assumptions);
+        try {
+            maple.evaluate("assume(" + cmd + ");");
+            LOG.info("Set global assumptions in Maple: " + assumptions);
+        } catch (MapleException me) {
+            LOG.error("Unable to set global assumptions for Maple: " + assumptions);
+            throw new ComputerAlgebraSystemEngineException(me);
+        }
+    }
+
+    @Override
+    public void setTimeout(EvaluatorType type, double timeLimit) {
+        if ( EvaluatorType.SYMBOLIC.equals(type) ) this.timeout = timeLimit;
     }
 
     @Override
@@ -213,7 +233,7 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
         String command = simplify + "(" + maple_expr + ")";
         if ( timeout > 0 ) {
             command = "try timelimit("+timeout+","+command+"); catch \"time expired\": \"";
-            command += OldMapleInterface.TIMED_OUT_SIGNAL;
+            command += MapleInterface.TIMED_OUT_SIGNAL;
             command += "\"; end try;";
         } else command += ";";
 
@@ -264,7 +284,7 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
             cmd = "try timelimit("+timeout+", "+ cmd+") ";
             cmd += "assuming " + assumption + "; ";
             cmd += "catch \"time expired\": \"";
-            cmd += OldMapleInterface.TIMED_OUT_SIGNAL;
+            cmd += MapleInterface.TIMED_OUT_SIGNAL;
             cmd += "\"; end try;";
         } else cmd += "assuming " + assumption + ";";
 

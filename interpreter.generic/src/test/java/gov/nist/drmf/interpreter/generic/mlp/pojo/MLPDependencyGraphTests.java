@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
 import com.formulasearchengine.mathosphere.mlp.pojos.MathTag;
 import com.formulasearchengine.mathosphere.mlp.text.WikiTextUtils;
+import gov.nist.drmf.interpreter.common.eval.TestResultType;
 import gov.nist.drmf.interpreter.common.pojo.CASResult;
 import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
 import gov.nist.drmf.interpreter.common.tests.Resource;
@@ -37,9 +38,9 @@ public class MLPDependencyGraphTests {
 
         CASResult mathRes = casRes.get("Mathematica");
         assertEquals( "JacobiP[n, \\[Alpha], \\[Beta], x]", mathRes.getCasRepresentation() );
-        assertFalse( mathRes.getNumericResults().isSuccessful() );
-        assertEquals( 0, mathRes.getNumericResults().getNumberOfTotalTests() );
-        assertEquals( 0, mathRes.getNumericResults().getNumberOfFailedTests() );
+        assertEquals(TestResultType.FAILURE, mathRes.getNumericResults().getTestResultType() );
+        assertEquals( 1, mathRes.getNumericResults().getNumberOfTotalTests() );
+        assertEquals( 1, mathRes.getNumericResults().getNumberOfFailedTests() );
         assertEquals( 0, mathRes.getNumericResults().getNumberOfSuccessfulTests() );
         assertEquals( 1, mathRes.getNumericResults().getTestCalculations().size() );
     }

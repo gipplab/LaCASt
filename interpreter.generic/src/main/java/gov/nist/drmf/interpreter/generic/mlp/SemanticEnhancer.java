@@ -10,9 +10,9 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 import gov.nist.drmf.interpreter.common.exceptions.MinimumRequirementNotFulfilledException;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.common.pojo.CASResult;
-import gov.nist.drmf.interpreter.common.pojo.NumericResult;
+import gov.nist.drmf.interpreter.common.eval.NumericResult;
 import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
-import gov.nist.drmf.interpreter.common.pojo.SymbolicResult;
+import gov.nist.drmf.interpreter.common.eval.SymbolicResult;
 import gov.nist.drmf.interpreter.generic.common.GenericReplacementTool;
 import gov.nist.drmf.interpreter.generic.interfaces.IPartialEnhancer;
 import gov.nist.drmf.interpreter.generic.macro.*;
@@ -120,7 +120,7 @@ public class SemanticEnhancer implements IPartialEnhancer {
 
     @Override
     public NumericResult computeNumerically(String semanticLatex, String casName) {
-        NativeComputerAlgebraInterfaceBuilder<?> cas = this.casConnections.getCASConnection(casName);
+        NativeComputerAlgebraInterfaceBuilder cas = this.casConnections.getCASConnection(casName);
         try {
             if ( cas == null ) {
                 LOG.debug("The requested CAS is not connected with valid native CAS. Skip it.");
@@ -135,22 +135,20 @@ public class SemanticEnhancer implements IPartialEnhancer {
 
     @Override
     public SymbolicResult computeSymbolically(String semanticLatex, String casName) {
-        NativeComputerAlgebraInterfaceBuilder<?> cas = this.casConnections.getCASConnection(casName);
+        NativeComputerAlgebraInterfaceBuilder cas = this.casConnections.getCASConnection(casName);
         try {
             if ( cas == null ) {
                 LOG.debug("The requested CAS is not connected with valid native CAS. Skip it.");
             } else return computeSymbolicResults(semanticLatex, cas);
-        } catch (ComputerAlgebraSystemEngineException e) {
-            LOG.warn("Unable to perform symbolic tests for " + casName + ": " + semanticLatex, e);
         } catch (Exception e) {
             LOG.warn("Unable to analyze test. Something went wrong: " + semanticLatex, e);
         }
         return null;
     }
 
-    private <T> NumericResult computeNumericResults(
+    private NumericResult computeNumericResults(
             String semanticLatex,
-            NativeComputerAlgebraInterfaceBuilder<T> cas
+            NativeComputerAlgebraInterfaceBuilder cas
     ) throws ComputerAlgebraSystemEngineException {
         NumericalConfig config = this.casConnections.getNumericalConfig(cas.getLanguageKey());
         IConstraintTranslator dlmfTranslator = this.casTranslators.getTranslator(cas.getLanguageKey());
@@ -161,14 +159,12 @@ public class SemanticEnhancer implements IPartialEnhancer {
         DefaultNumericTestCase defaultNumericTestCase = new DefaultNumericTestCase(ti);
 
         List<NumericalTest> tests = testCaseBuilder.buildTestCases(ti, defaultNumericTestCase);
-        ICASEngineNumericalEvaluator<T> numericEvaluator = cas.getNumericEvaluator();
+        ICASEngineNumericalEvaluator numericEvaluator = cas.getNumericEvaluator();
 
         NumericResult numericResult = new NumericResult();
         for ( NumericalTest test : tests ) {
             try {
-                numericEvaluator.addRequiredPackages( ti.getRequiredPackages() );
-                T testResult = numericEvaluator.performNumericalTest(test);
-                NumericResult partialResult = numericEvaluator.getNumericResult(testResult);
+                NumericResult partialResult = numericEvaluator.performNumericTest(test);
                 numericResult.addFurtherResults(partialResult);
             } catch (ComputerAlgebraSystemEngineException e) {
                 LOG.warn("A numeric test failed: " + e.getMessage());
@@ -177,17 +173,17 @@ public class SemanticEnhancer implements IPartialEnhancer {
         return numericResult;
     }
 
-    private <T> SymbolicResult computeSymbolicResults(
+    private SymbolicResult computeSymbolicResults(
             String semanticLatex,
-            NativeComputerAlgebraInterfaceBuilder<T> cas
-    ) throws ComputerAlgebraSystemEngineException {
+            NativeComputerAlgebraInterfaceBuilder cas
+    ) {
         SymbolicalConfig config = this.casConnections.getSymbolicalConfig(cas.getLanguageKey());
         IConstraintTranslator dlmfTranslator = this.casTranslators.getTranslator(cas.getLanguageKey());
         ISymbolicTestCases[] testCases = cas.getDefaultSymbolicTestCases();
 
         SymbolicalTest symbolicalTest = new SymbolicalTest(config, dlmfTranslator, semanticLatex, testCases);
-        ICASEngineSymbolicEvaluator<T> symbolicEvaluator = cas.getSymbolicEvaluator();
-        return symbolicEvaluator.getResult(symbolicalTest);
+        ICASEngineSymbolicEvaluator symbolicEvaluator = cas.getSymbolicEvaluator();
+        return symbolicEvaluator.performSymbolicTest(symbolicalTest);
     }
 
     private void coreSemanticallyEnhance(MOIPresentations moiPresentation, MOINode<MOIAnnotation> node, RetrievedMacros retrievedMacros) throws ParseException {

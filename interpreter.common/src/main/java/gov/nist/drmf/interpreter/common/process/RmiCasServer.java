@@ -14,8 +14,8 @@ public interface RmiCasServer extends RmiCasNumericEvaluator, RmiCasSymbolicEval
      *
      * Hence, we must init Maple via RMI. This is the only option it works.
      *
-     * @throws Exception
-     * @throws RemoteException
+     * @throws Exception unable to setup CAS
+     * @throws RemoteException unable to connect via RMI
      */
     void init() throws Exception, RemoteException;
 }

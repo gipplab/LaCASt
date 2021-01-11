@@ -33,7 +33,7 @@ public class EngineTest {
 
     @BeforeAll
     public static void startEngine() {
-        OldMapleInterface mi = OldMapleInterface.getUniqueMapleInterface();
+        MapleInterface mi = MapleInterface.getUniqueMapleInterface();
         if ( mi == null ) fail("Unable to instantiate Maple interface");
 
         t = mi.getEngine();

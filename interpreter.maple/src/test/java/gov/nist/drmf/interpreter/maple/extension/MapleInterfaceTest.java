@@ -16,16 +16,16 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 @AssumeMapleAvailability
 public class MapleInterfaceTest {
 
-    private static OldMapleInterface maple;
+    private static MapleInterface maple;
 
     @BeforeAll
     static void setup() {
-        maple = OldMapleInterface.getUniqueMapleInterface();
+        maple = MapleInterface.getUniqueMapleInterface();
     }
 
     @Test
     void setGlobalAssumptionTest() throws ComputerAlgebraSystemEngineException, MapleException {
-        maple.setGlobalAssumptions("a > 0");
+        maple.enterCommand("assume(a > 0);");
         Algebraic a = maple.evaluate("int(x^a, x = 0..1);");
         assertEquals("1/(a+1)", a.toString());
         maple.evaluate("a := 'a';"); // unassume
