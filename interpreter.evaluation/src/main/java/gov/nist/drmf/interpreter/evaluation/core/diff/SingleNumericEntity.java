@@ -36,7 +36,7 @@ public class SingleNumericEntity {
         }
     }
 
-    public boolean match(SingleNumericEntity sne, ITranslator forwardTranslator, ITranslator backwardTranslator, IComputerAlgebraSystemEngine<Expr> engine) throws ComputerAlgebraSystemEngineException {
+    public boolean match(SingleNumericEntity sne, ITranslator forwardTranslator, ITranslator backwardTranslator, IComputerAlgebraSystemEngine engine) throws ComputerAlgebraSystemEngineException {
         if (sne.isMathematica) return false;
 
         String[] vars = sne.variables.split(", ");
@@ -82,12 +82,11 @@ public class SingleNumericEntity {
         }
         sb.append("}");
 
-        Expr res = engine.enterCommand("ClearAll[" + varBuilder.toString() + "]");
 //        LOG.debug("Reset variables: " + res.toString());
 
         String command = "Select[ReplaceAll["+sb.toString()+", {"+variables+"}], Not[#] &]";
-        res = engine.enterCommand(command);
-        return res.toString().matches("\\{}");
+        String res = engine.enterCommand(command);
+        return res.matches("\\{}");
     }
 
     public static String buildMathematicaValuesList(LinkedList<SingleNumericEntity> list) {

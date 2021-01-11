@@ -1,18 +1,22 @@
-package gov.nist.drmf.interpreter.common.pojo;
+package gov.nist.drmf.interpreter.common.eval;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Andre Greiner-Petter
  */
-public class SymbolicResult {
+@JsonPropertyOrder({
+        "result", "numberOfTests", "testCalculations"
+})
+public class SymbolicResult implements Serializable {
 
-    @JsonProperty("successful")
-    private boolean successful;
+    @JsonProperty("result")
+    private TestResultType testResultType;
 
     @JsonProperty("numberOfTests")
     private int numberOfTests;
@@ -27,9 +31,9 @@ public class SymbolicResult {
         testCalculations = new LinkedList<>();
     }
 
-    public SymbolicResult(boolean successful) {
+    public SymbolicResult(TestResultType testResultType) {
         this();
-        this.successful = successful;
+        this.testResultType = testResultType;
     }
 
     @JsonIgnore
@@ -43,12 +47,14 @@ public class SymbolicResult {
         return this.crashed;
     }
 
-    public boolean isSuccessful() {
-        return successful;
+    @JsonGetter("result")
+    public TestResultType getTestResultType() {
+        return testResultType;
     }
 
-    public void setSuccessful(boolean successful) {
-        this.successful = successful;
+    @JsonSetter("result")
+    public void setTestResultType(TestResultType testResultType) {
+        this.testResultType = testResultType;
     }
 
     public int getNumberOfTests() {
@@ -65,5 +71,11 @@ public class SymbolicResult {
 
     public void setTestCalculations(List<SymbolicCalculation> testCalculations) {
         this.testCalculations = testCalculations;
+    }
+
+    @JsonIgnore
+    public String printCalculations() {
+        List<String> results = testCalculations.stream().map( SymbolicCalculation::getResult ).collect(Collectors.toList());
+        return "[" + String.join(", ", results) + "]";
     }
 }

@@ -1,21 +1,11 @@
 package gov.nist.drmf.interpreter.maple.secure;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
-import com.maplesoft.openmaple.Engine;
-import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
-import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.common.eval.NumericalTest;
-import gov.nist.drmf.interpreter.common.eval.SymbolicalTest;
+import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.common.pojo.NumericResult;
-import gov.nist.drmf.interpreter.common.pojo.SymbolicResult;
 import gov.nist.drmf.interpreter.common.process.RmiCasServer;
 import gov.nist.drmf.interpreter.common.process.RmiProcessHandler;
-import gov.nist.drmf.interpreter.maple.extension.OldMapleInterface;
-import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,7 +15,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Andre Greiner-Petter
@@ -39,24 +28,27 @@ public class MapleRmiServer implements RmiCasServer {
         try {
             registry = LocateRegistry.createRegistry(1099);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            LOG.fatal("Unable to setup RMI LocateRegistry", e);
+            System.exit(1);
         }
     }
 
-    private RmiMapleConnector maple;
+    private InternalRmiMapleConnector mapleConnector;
 
     /**
-     * TODO: I have no clue why... but Maple must be lazy initialized.
+     * I have no clue why... but Maple must be lazy initialized.
      */
     private MapleRmiServer() {}
 
+    @Override
     public void init() throws ComputerAlgebraSystemEngineException, CASUnavailableException {
-        if ( this.maple != null ) return;
-        this.maple = new RmiMapleConnector();
-        this.maple.loadNumericProcedures();
-        if ( !this.maple.isCASAvailable() ) {
+        if ( this.mapleConnector != null ) return;
+        this.mapleConnector = new InternalRmiMapleConnector();
+        this.mapleConnector.loadNumericProcedures();
+        if ( !this.mapleConnector.isCASAvailable() ) {
             throw new CASUnavailableException();
         }
+        LOG.info("Successfully initiated RMI Maple CAS");
     }
 
     @Override
@@ -65,42 +57,58 @@ public class MapleRmiServer implements RmiCasServer {
     }
 
     @Override
+    public void setTimeout(EvaluatorType type, double timeoutInSeconds) {
+        if ( EvaluatorType.NUMERIC.equals(type) ) {
+            this.mapleConnector.getNumericEvaluator().setTimeout(timeoutInSeconds);
+        } else {
+            this.mapleConnector.getSymbolicEvaluator().setTimeout(timeoutInSeconds);
+        }
+    }
+
+    @Override
+    public void disableTimeout(EvaluatorType type) {
+        if ( EvaluatorType.NUMERIC.equals(type) ) {
+            this.mapleConnector.getNumericEvaluator().disableTimeout();
+        } else {
+            this.mapleConnector.getSymbolicEvaluator().disableTimeout();
+        }
+    }
+
+    @Override
     public String enterCommand(String command) throws ComputerAlgebraSystemEngineException {
-        return this.maple.getCASEngine().enterCommand(command).toString();
+        return this.mapleConnector.getCASEngine().enterCommand(command);
     }
 
     @Override
-    public void setGlobalAssumptions(List<String> assumptions) {
-        this.maple.getNumericEvaluator().setGlobalAssumptions(assumptions);
+    public void setGlobalNumericAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {
+        this.mapleConnector.getNumericEvaluator().setGlobalNumericAssumptions(assumptions);
     }
 
     @Override
-    public void addRequiredPackages(Set<String> packages) {
-        this.maple.getNumericEvaluator().addRequiredPackages(packages);
+    public void setGlobalSymbolicAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {
+        this.mapleConnector.getSymbolicEvaluator().setGlobalSymbolicAssumptions(assumptions);
     }
 
     @Override
     public NumericResult performNumericalTest(NumericalTest test) throws ComputerAlgebraSystemEngineException {
-        ICASEngineNumericalEvaluator<Algebraic> numericalEvaluator = this.maple.getNumericEvaluator();
-        Algebraic result = numericalEvaluator.performNumericalTest(test);
-        return numericalEvaluator.getNumericResult(result);
+        return this.mapleConnector.getNumericEvaluator().performNumericTest(test);
     }
 
     @Override
-    public SymbolicResult symbolicTest(SymbolicalTest test) throws ComputerAlgebraSystemEngineException {
-        ICASEngineSymbolicEvaluator<Algebraic> symbolicEvaluator = this.maple.getSymbolicEvaluator();
-        return symbolicEvaluator.getResult(test);
+    public SymbolicResult performSymbolicTest(SymbolicalTest test) {
+        return this.mapleConnector.getSymbolicEvaluator().performSymbolicTest(test);
     }
 
     @Override
     public void forceGC() throws ComputerAlgebraSystemEngineException {
-        this.maple.getCASEngine().forceGC();
+        this.mapleConnector.getCASEngine().forceGC();
     }
 
     @Override
     public void stop() throws RemoteException {
         try {
-            registry.unbind(RmiCasServer.KEY);
+            LOG.info("Received shutdown signal over RMI. Unbind RMI and gracefully shutdown.");
+            registry.unbind(RmiCasServer.KEY + getId());
             UnicastRemoteObject.unexportObject(this, true);
 
             new Thread(() -> {
@@ -113,7 +121,7 @@ public class MapleRmiServer implements RmiCasServer {
         }
     }
 
-    public static void main(String[] args) throws CASUnavailableException, RemoteException, ComputerAlgebraSystemEngineException, MapleException {
+    public static void main(String[] args) throws CASUnavailableException, RemoteException {
         LOG.info("Start Maple JVM");
         MapleRmiServer mapleServer = new MapleRmiServer();
         LOG.info("Successfully started Maple JVM");

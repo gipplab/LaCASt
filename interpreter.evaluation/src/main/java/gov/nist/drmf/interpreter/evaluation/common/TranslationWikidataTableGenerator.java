@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 /**
  * @author Andre Greiner-Petter
  */
-public class TranslationWikidataTableGenerator extends AbstractEvaluator<String> {
+public class TranslationWikidataTableGenerator extends AbstractEvaluator {
     private static final Logger LOG = LogManager.getLogger(TranslationWikidataTableGenerator.class.getName());
 
     private static final int LIMIT_ENTRIES = 4;

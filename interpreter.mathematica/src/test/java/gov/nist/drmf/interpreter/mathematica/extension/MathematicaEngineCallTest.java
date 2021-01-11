@@ -96,7 +96,7 @@ public class MathematicaEngineCallTest {
 
     @Test
     public void conditionalTest() throws ComputerAlgebraSystemEngineException {
-        Expr expr = mi.enterCommand("ConditionalExpression[0, Re[z] > 0]");
+        Expr expr = mi.internalEnterCommand("ConditionalExpression[0, Re[z] > 0]");
 
         assertEquals("ConditionalExpression", expr.head().toString());
 

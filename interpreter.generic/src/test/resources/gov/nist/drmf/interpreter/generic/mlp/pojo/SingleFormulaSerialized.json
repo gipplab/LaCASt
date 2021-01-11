@@ -1,4 +1,5 @@
 {
+    "id" : "FORMULA_b725256371c41890892b17cf94d2106f",
     "formula" : "P_{n}^{(\\alpha, \\beta)}(x)",
     "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{x}",
     "confidence" : 0.8135152636383296,
@@ -6,9 +7,10 @@
         "Mathematica" : {
             "translation" : "JacobiP[n, \\[Alpha], \\[Beta], x]",
             "numericResults" : {
-                "successful" : false,
-                "numberOfTests" : 0,
-                "numberOfFailedTests" : 0,
+                "result": "FAILURE",
+                "wasAborted": false,
+                "numberOfTests" : 1,
+                "numberOfFailedTests" : 1,
                 "numberOfSuccessfulTests" : 0,
                 "testCalculations" : [
                     {
@@ -21,12 +23,14 @@
                 ]
             },
             "symbolicResults" : {
-                "successful" : false,
-                "numberOfTests" : 0,
+                "result": "FAILURE",
+                "numberOfTests" : 1,
                 "testCalculations": [
                     {
+                        "property" : "Simple",
                         "result" : "JacobiP[n, α, β, x]",
-                        "property" : "fullsimplify"
+                        "wasAborted": false,
+                        "wasConditionallySuccessful": false
                     }
                 ]
             }

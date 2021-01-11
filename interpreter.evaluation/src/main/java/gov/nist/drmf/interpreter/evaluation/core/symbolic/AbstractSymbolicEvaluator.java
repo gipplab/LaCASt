@@ -14,25 +14,26 @@ import org.apache.logging.log4j.Logger;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
  */
-public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> {
+public abstract class AbstractSymbolicEvaluator extends AbstractEvaluator {
     private static final Logger LOG = LogManager.getLogger(AbstractSymbolicEvaluator.class.getName());
 
     public static final Pattern SYMBOLIC_LINE_PATTERN = Pattern.compile(
             "^(\\d+-?[a-z]?)(?: \\[.*])?: ([A-Za-z\\s]*).*$"
     );
 
-    private ICASEngineSymbolicEvaluator<T> symbolicEvaluator;
-    private ISymbolicTestCases[] symbolicTestCases;
+    private final ICASEngineSymbolicEvaluator symbolicEvaluator;
+    private final ISymbolicTestCases[] symbolicTestCases;
 
     public AbstractSymbolicEvaluator(
             IConstraintTranslator forwardTranslator,
-            IComputerAlgebraSystemEngine<T> engine,
-            ICASEngineSymbolicEvaluator<T> symbolicEvaluator,
+            IComputerAlgebraSystemEngine engine,
+            ICASEngineSymbolicEvaluator symbolicEvaluator,
             ISymbolicTestCases[] testCases
     ) {
         super( forwardTranslator, engine );
@@ -40,45 +41,16 @@ public abstract class AbstractSymbolicEvaluator<T> extends AbstractEvaluator<T> 
         this.symbolicTestCases = testCases;
     }
 
-    public T simplify( String command ) throws ComputerAlgebraSystemEngineException {
-        return symbolicEvaluator.simplify(command, getRequiredPackages());
-    }
-
-    public T simplify( String command, String assumption ) throws ComputerAlgebraSystemEngineException {
-//        Thread abortThread = getAbortionThread(symbolicEvaluator);
-//        abortThread.start();
-//        LOG.info("Started abortion thread.");
-
-        T result = null;
-        if ( assumption == null || assumption.isEmpty() )
-            result = symbolicEvaluator.simplify(command, getRequiredPackages());
-        else
-            result = symbolicEvaluator.simplify(command, assumption, getRequiredPackages());
-
-        // waits for an answer, once the answer is received, we finished the process
-//        abortThread.interrupt();
-
-        return result;
-    }
-
-    public boolean isAbortedResult(T result) {
-        return symbolicEvaluator.wasAborted(result);
+    public ICASEngineSymbolicEvaluator getSymbolicEvaluator() {
+        return symbolicEvaluator;
     }
 
     public ISymbolicTestCases[] getSymbolicTestCases() {
         return this.symbolicTestCases;
     }
 
-    public boolean validOutCome(T in, double expect) {
-        return symbolicEvaluator.isAsExpected(in, expect);
-    }
-
-    public boolean isConditionallyValid(T in, double expected) {
-        return symbolicEvaluator.isConditionallyExpected(in, expected);
-    }
-
-    public String getCondition(T in) {
-        return symbolicEvaluator.getCondition(in);
+    public void setGlobalSymbolicAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {
+        symbolicEvaluator.setGlobalSymbolicAssumptions(assumptions);
     }
 
     @Override

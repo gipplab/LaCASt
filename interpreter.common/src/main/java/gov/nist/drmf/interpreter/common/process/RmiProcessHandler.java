@@ -83,6 +83,7 @@ public class RmiProcessHandler {
 
         logRunner = new SubprocessLoggerRunner(process.getInputStream());
         logRunnerThread = new Thread(logRunner);
+        logRunnerThread.setDaemon(true);
         logRunnerThread.start();
 
         LOG.debug("Received ready signal from subprocess. Initialization has finished successfully.");
@@ -102,6 +103,10 @@ public class RmiProcessHandler {
         this.completeProcessFuture = process.onExit().thenApply(this::onCrash);
 
         LOG.info("Subprocess finished successfully. Setup RMI connection.");
+    }
+
+    private void stopProcess(Process process) {
+        if ( process != null ) process.destroyForcibly();
     }
 
     public void stop() {

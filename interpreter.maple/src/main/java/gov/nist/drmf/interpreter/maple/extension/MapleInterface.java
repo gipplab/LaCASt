@@ -20,8 +20,8 @@ import java.util.Observer;
 /**
  * @author Andre Greiner-Petter
  */
-public final class OldMapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
-    private static final Logger LOG = LogManager.getLogger(OldMapleInterface.class.getName());
+public final class MapleInterface implements IComputerAlgebraSystemEngine {
+    private static final Logger LOG = LogManager.getLogger(MapleInterface.class.getName());
 
     /**
      * Inner constant to initialize Maple
@@ -43,7 +43,7 @@ public final class OldMapleInterface implements IComputerAlgebraSystemEngine<Alg
     /**
      * The unique instance
      */
-    private static OldMapleInterface mapleInterface;
+    private static MapleInterface mapleInterface;
 
     /**
      *
@@ -61,7 +61,7 @@ public final class OldMapleInterface implements IComputerAlgebraSystemEngine<Alg
      * The interface to maple
      * @throws MapleException if init wont work
      */
-    private OldMapleInterface() throws MapleException {
+    private MapleInterface() throws MapleException {
         procedureBackup = new LinkedList<>();
         init();
     }
@@ -115,22 +115,10 @@ public final class OldMapleInterface implements IComputerAlgebraSystemEngine<Alg
     }
 
     @Override
-    public Algebraic enterCommand(String command) throws ComputerAlgebraSystemEngineException {
+    public String enterCommand(String command) throws ComputerAlgebraSystemEngineException {
         try {
-            return evaluate(command);
+            return evaluate(command).toString();
         } catch (MapleException me) {
-            throw new ComputerAlgebraSystemEngineException(me);
-        }
-    }
-
-    @Override
-    public void setGlobalAssumptions(String... assumptions) throws ComputerAlgebraSystemEngineException {
-        String cmd = String.join(", ", assumptions);
-        try {
-            evaluate("assume(" + cmd + ");");
-            LOG.info("Set global assumptions in Maple: " + Arrays.toString(assumptions));
-        } catch (MapleException me) {
-            LOG.error("Unable to set global assumptions for Maple: " + Arrays.toString(assumptions));
             throw new ComputerAlgebraSystemEngineException(me);
         }
     }
@@ -155,6 +143,10 @@ public final class OldMapleInterface implements IComputerAlgebraSystemEngine<Alg
 
     @Override
     public String buildList(List<String> list) {
+        return buildMapleList(list);
+    }
+
+    public static String buildMapleList(List<String> list) {
         if ( list == null ) {
             return null;
         }
@@ -204,10 +196,10 @@ public final class OldMapleInterface implements IComputerAlgebraSystemEngine<Alg
      * @return the unique object of the interface to Maple. Can
      * be null.
      */
-    public static OldMapleInterface getUniqueMapleInterface() {
+    public static MapleInterface getUniqueMapleInterface() {
         if ( mapleInterface == null ) {
             try {
-                if (MapleConfig.areSystemVariablesSetProperly()) mapleInterface = new OldMapleInterface();
+                if (MapleConfig.isMapleSetup()) mapleInterface = new MapleInterface();
                 return mapleInterface;
             } catch (MapleException e) {
                 LOG.error("Unable to load ");
@@ -224,23 +216,10 @@ public final class OldMapleInterface implements IComputerAlgebraSystemEngine<Alg
      */
     public static MapleListener getUniqueMapleListener(){ return listener; }
 
-    /**
-     * Quick check if Maple is available.
-     * @return true if maple is running and available
-     */
-    public static boolean isMaplePresent() {
-        try {
-            return getUniqueMapleInterface() != null;
-        } catch ( Exception | Error e ) {
-            LOG.warn("Cannot init maple interface", e);
-            return false;
-        }
-    }
-
     public boolean isAbortedExpression(Algebraic result) {
         if ( result instanceof MString) {
             try {
-                return ((MString) result).stringValue().equals(OldMapleInterface.TIMED_OUT_SIGNAL);
+                return ((MString) result).stringValue().equals(MapleInterface.TIMED_OUT_SIGNAL);
             } catch (MapleException e) {
                 LOG.error("A maple exception occurred when testing the result " + result);
                 return false;

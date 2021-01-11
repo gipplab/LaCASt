@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.maple.extension;
 
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.maple.secure.MapleRmiClient;
+import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
@@ -17,10 +18,10 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 /**
  * @author Andre Greiner-Petter
  */
-//@AssumeMapleAvailability
+@AssumeMapleAvailability
 public class MapleRmiTest {
 
-    private static final Logger LOG = LogManager.getLogger(NumericCalculatorTest.class.getName());
+    private static final Logger LOG = LogManager.getLogger(MapleRmiTest.class.getName());
 
     private static MapleRmiClient connector;
 

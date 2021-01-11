@@ -3,12 +3,13 @@ package gov.nist.drmf.interpreter.maple.extension;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.Numeric;
-import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.cas.AbstractCasEngineNumericalEvaluator;
+import gov.nist.drmf.interpreter.common.eval.EvaluatorType;
 import gov.nist.drmf.interpreter.common.eval.TestResultType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.common.pojo.NumericCalculation;
+import gov.nist.drmf.interpreter.common.eval.NumericCalculation;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import org.apache.logging.log4j.LogManager;
@@ -26,7 +27,7 @@ import static gov.nist.drmf.interpreter.maple.extension.CommandBuilder.makeMaple
 /**
  * @author Andre Greiner-Petter
  */
-public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic> {
+public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algebraic> {
     private static final Logger LOG = LogManager.getLogger(NumericCalculator.class.getName());
 
     public static final int MAX_LOG_LENGTH = 300;
@@ -34,7 +35,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     private List<String> globalAssumptions = new LinkedList<>();
     private List<String> globalConstraints = new LinkedList<>();
 
-    private final OldMapleInterface maple;
+    private final MapleInterface maple;
     private final PackageWrapper packageWrapper;
 
     private StringBuffer commandsList;
@@ -57,7 +58,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     private Set<String> requiredPackages = new HashSet<>();
 
     public NumericCalculator() {
-        maple = OldMapleInterface.getUniqueMapleInterface();
+        maple = MapleInterface.getUniqueMapleInterface();
         commandsList = new StringBuffer();
 
         SymbolTranslator symbolTranslator = new SymbolTranslator(Keys.KEY_LATEX, Keys.KEY_MAPLE);
@@ -69,6 +70,11 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
             LOG.fatal("Unable to initiate the symbol and function translator.", e);
         }
         packageWrapper = new PackageWrapper(basicFunctionsTranslator, symbolTranslator);
+    }
+
+    @Override
+    public void setTimeout(EvaluatorType type, double timeLimit) {
+        if ( EvaluatorType.NUMERIC.equals(type) ) this.timeLimit = timeLimit;
     }
 
     @Override
@@ -88,9 +94,9 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
         numberOfTestCases = 0;
         requiredPackages.clear();
 
-        String varValues = ICASEngineNumericalEvaluator.getValuesName(varNames);
-        String conValsN = ICASEngineNumericalEvaluator.getValuesName(conVarN);
-        String specValsN = ICASEngineNumericalEvaluator.getValuesName(specVarN);
+        String varValues = AbstractCasEngineNumericalEvaluator.getValuesName(varNames);
+        String conValsN = AbstractCasEngineNumericalEvaluator.getValuesName(conVarN);
+        String specValsN = AbstractCasEngineNumericalEvaluator.getValuesName(specVarN);
 
         commandsList.append("unassign('" + testExpression + "'):").append(NL);
         commandsList.append("unassign('" + consN + "'):").append(NL);
@@ -132,7 +138,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     private static final Pattern IN_PATTERN = Pattern.compile("^(.*) in (.*)$");
 
     @Override
-    public void setGlobalAssumptions(List<String> assumptions) {
+    public void setGlobalNumericAssumptions(List<String> assumptions) {
         List<String> ass = new LinkedList<>();
         List<String> con = new LinkedList<>();
         for ( String a : assumptions ){
@@ -151,7 +157,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
         // reset commandsList
         clearAll();
 
-        String varValues = ICASEngineNumericalEvaluator.getValuesName(varNames);
+        String varValues = AbstractCasEngineNumericalEvaluator.getValuesName(varNames);
         setVariable(commandsList, varNames, makeMapleSet(variables));
         setVariable(commandsList, varValues, makeMapleList(testValues));
 
@@ -176,7 +182,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
             return;
         }
 
-        String conValsN = ICASEngineNumericalEvaluator.getValuesName(conVarN);
+        String conValsN = AbstractCasEngineNumericalEvaluator.getValuesName(conVarN);
         setVariable(commandsList, conVarN, makeMapleList(constraintVariables));
         setVariable(commandsList, conValsN, makeMapleList(constraintValues));
 
@@ -195,7 +201,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
             this.specVarSet = false;
             return;
         }
-        String specValsN = ICASEngineNumericalEvaluator.getValuesName(specVarN);
+        String specValsN = AbstractCasEngineNumericalEvaluator.getValuesName(specVarN);
 
         commandsList.append(specVarN).append(":=")
                 .append(varNames).append(" intersect ").append(makeMapleSet(extraVariables))
@@ -264,7 +270,7 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
             throws ComputerAlgebraSystemEngineException, IllegalArgumentException {
         String testValuesN = "nTestVals";
 
-        String vals = ICASEngineNumericalEvaluator.getValuesName(varNames);
+        String vals = AbstractCasEngineNumericalEvaluator.getValuesName(varNames);
         commandsList.append(testValuesN).append(":= [op(createListInList(")
                 .append(varNames).append(",").append(vals).append("))");
 
@@ -292,14 +298,14 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
 
     private String additionalCalculations(String combis) {
         if ( specVarSet ) {
-            String extVals = ICASEngineNumericalEvaluator.getValuesName(specVarN);
+            String extVals = AbstractCasEngineNumericalEvaluator.getValuesName(specVarN);
             commandsList.append(", op(createListInList(")
                     .append(specVarN).append(",").append(extVals).append("))");
             combis += " * nops("+extVals+")^nops("+specVarN+")";
         }
 
         if ( conVarSet ) {
-            String conVals = ICASEngineNumericalEvaluator.getValuesName(conVarN);
+            String conVals = AbstractCasEngineNumericalEvaluator.getValuesName(conVarN);
             commandsList.append(", specialVariables(")
                     .append(conVarN).append(",").append(conVals).append(")");
         }
@@ -462,7 +468,11 @@ public class NumericCalculator implements ICASEngineNumericalEvaluator<Algebraic
     }
 
     @Override
-    public String generateNumericalTestExpression(String input) {
+    public String generateNumericTestExpression(String input) {
+        return generateNumericCalculationExpression(input);
+    }
+
+    public static String generateNumericCalculationExpression(String input) {
         return "evalf(" + input + ")";
     }
 
