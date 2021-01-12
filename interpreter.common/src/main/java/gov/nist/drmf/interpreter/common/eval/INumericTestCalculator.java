@@ -8,9 +8,9 @@ import java.util.Set;
 /**
  * @author Andre Greiner-Petter
  */
-public interface INumericTestCalculator<T> {
+public interface INumericTestCalculator {
 
-    ICASEngineNumericalEvaluator<T> getNumericEvaluator();
+    ICASEngineNumericalEvaluator getNumericEvaluator();
 
     Set<String> getRequiredPackages();
 
@@ -22,13 +22,10 @@ public interface INumericTestCalculator<T> {
      * @return the result
      * @throws ComputerAlgebraSystemEngineException if an error was thrown
      */
-    default T performNumericalTest(NumericalTest test)
+    default NumericResult performNumericalTest(NumericalTest test)
             throws ComputerAlgebraSystemEngineException {
-        ICASEngineNumericalEvaluator<T> numericalEvaluator = getNumericEvaluator();
-        if ( numericalEvaluator.requiresRegisteredPackages() ) {
-            numericalEvaluator.addRequiredPackages(getRequiredPackages());
-        }
-        return numericalEvaluator.performNumericalTest(test);
+        ICASEngineNumericalEvaluator numericalEvaluator = getNumericEvaluator();
+        return numericalEvaluator.performNumericTest(test);
     }
 
     /**
@@ -36,8 +33,8 @@ public interface INumericTestCalculator<T> {
      * @param result the result of {@link #performNumericalTest(NumericalTest)}
      * @return true if the result was aborted
      */
-    default boolean isAbortedResult(T result) {
-        return getNumericEvaluator().wasAborted(result);
+    default boolean isAbortedResult(NumericResult result) {
+        return result.wasAborted();
     }
 
     /**
@@ -46,7 +43,7 @@ public interface INumericTestCalculator<T> {
      * @return the result type, successful, failed or error
      * @throws ComputerAlgebraSystemEngineException if the given result cannot be analyzed properly
      */
-    default TestResultType testResult(T results) throws ComputerAlgebraSystemEngineException {
-        return getNumericEvaluator().getStatusOfResult(results);
+    default TestResultType testResult(NumericResult result) throws ComputerAlgebraSystemEngineException {
+        return result.getTestResultType();
     }
 }

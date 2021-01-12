@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
 /**
  * @author Andre Greiner-Petter
  */
-public final class MathematicaInterface implements IComputerAlgebraSystemEngine<Expr> {
+public final class MathematicaInterface implements IComputerAlgebraSystemEngine {
     private static final Logger LOG = LogManager.getLogger(MathematicaInterface.class.getName());
 
     public static final String MATH_ABORTION_SIGNAL = "$Aborted";
@@ -103,13 +103,17 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine<
         return mathKernel;
     }
 
-    @Override
-    public Expr enterCommand(String command) throws ComputerAlgebraSystemEngineException {
+    public Expr internalEnterCommand(String command) throws ComputerAlgebraSystemEngineException {
         try {
             return evaluateToExpression(command);
         } catch (MathLinkException e) {
             throw new ComputerAlgebraSystemEngineException(e);
         }
+    }
+
+    @Override
+    public String enterCommand(String command) throws ComputerAlgebraSystemEngineException {
+        return internalEnterCommand(command).toString();
     }
 
     public String evaluate(String input) throws MathLinkException {
@@ -161,26 +165,6 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine<
         String cmd = Commands.EXTRACT_VARIABLES.build(expression);
         cmd = varName + " := " + cmd + ";";
         evaluate(cmd);
-    }
-
-    private static Pattern inPattern = Pattern.compile("^(.*?) \\[Element] (.*)$");
-
-    @Override
-    public void setGlobalAssumptions(String... assumptions) throws ComputerAlgebraSystemEngineException {
-        for ( int i = 0; i < assumptions.length; i++ ) {
-            if ( assumptions[i].contains("Integers") )
-                assumptions[i] = assumptions[i].replace("Integers", "PositiveIntegers");
-            Matcher m = inPattern.matcher(assumptions[i]);
-            if ( m.matches() ) assumptions[i] = "Element[" + m.group(1) + ", " + m.group(2) + "]";
-        }
-        String cmd = String.join(" && ", assumptions);
-        try {
-            String result = evaluate("$Assumptions = " + cmd);
-            LOG.info("Setup global assumptions: " + result);
-        } catch (MathLinkException e) {
-            LOG.error("Unable to set global assumptions in Mathematica. Assumptions: " + Arrays.toString(assumptions));
-            throw new ComputerAlgebraSystemEngineException(e);
-        }
     }
 
     public SymbolicEquivalenceChecker getEvaluationChecker() {

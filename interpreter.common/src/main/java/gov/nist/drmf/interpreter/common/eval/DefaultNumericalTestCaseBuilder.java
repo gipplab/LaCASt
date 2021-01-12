@@ -14,13 +14,13 @@ import java.util.List;
  */
 public class DefaultNumericalTestCaseBuilder {
     private final NumericalConfig config;
-    private final ICASEngineNumericalEvaluator<?> evaluator;
+    private final ICASEngineNumericalEvaluator evaluator;
     private final IConstraintTranslator translator;
     private final INumericalEvaluationScripts scriptMapper;
 
     public DefaultNumericalTestCaseBuilder(
             NumericalConfig config,
-            ICASEngineNumericalEvaluator<?> evaluator,
+            ICASEngineNumericalEvaluator evaluator,
             IConstraintTranslator translator,
             INumericalEvaluationScripts scriptMapper
     ) {
@@ -74,7 +74,7 @@ public class DefaultNumericalTestCaseBuilder {
         if ( !Relations.EQUAL.equals(rel) ) {
             testExpression = lhs + rel.getSymbol(translator.getTargetLanguage()) + rhs;
         } else {
-            testExpression = config.getTestExpression(evaluator, lhs, rhs);
+            testExpression = config.getTestExpression(evaluator::generateNumericTestExpression, lhs, rhs);
         }
 
         return buildNoRelationTestCase(testExpression, c);

@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.mathematica.extension;
 import com.wolfram.jlink.Expr;
 import gov.nist.drmf.interpreter.common.eval.TestResultType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.common.pojo.NumericCalculation;
+import gov.nist.drmf.interpreter.common.eval.NumericCalculation;
 import gov.nist.drmf.interpreter.mathematica.MathematicaConnector;
 import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
 import org.junit.jupiter.api.BeforeAll;

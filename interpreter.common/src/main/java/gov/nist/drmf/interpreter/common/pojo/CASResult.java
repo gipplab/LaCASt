@@ -1,10 +1,8 @@
 package gov.nist.drmf.interpreter.common.pojo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import gov.nist.drmf.interpreter.common.eval.NumericResult;
+import gov.nist.drmf.interpreter.common.eval.SymbolicResult;
 
 /**
  * @author Andre Greiner-Petter

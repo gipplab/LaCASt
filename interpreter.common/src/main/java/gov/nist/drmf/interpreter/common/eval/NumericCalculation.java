@@ -1,14 +1,15 @@
-package gov.nist.drmf.interpreter.common.pojo;
+package gov.nist.drmf.interpreter.common.eval;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author Andre Greiner-Petter
  */
-public class NumericCalculation {
+public class NumericCalculation implements Serializable {
     @JsonProperty("result")
     private String result;
 

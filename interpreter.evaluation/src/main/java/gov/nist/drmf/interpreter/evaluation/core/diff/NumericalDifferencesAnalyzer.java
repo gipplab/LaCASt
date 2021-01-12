@@ -63,7 +63,7 @@ public class NumericalDifferencesAnalyzer {
 
     private static final Pattern urlPattern = Pattern.compile("url\\{(.*?)}");
 
-    private IComputerAlgebraSystemEngine<Expr> mathematica;
+    private IComputerAlgebraSystemEngine mathematica;
     private ITranslator forwardTranslator;
     private ITranslator backwardTranslator;
 
@@ -198,17 +198,17 @@ public class NumericalDifferencesAnalyzer {
                         testValueList,
                         "10^-5"
                 );
-                Expr res = mathematica.enterCommand(cmd);
+                String res = mathematica.enterCommand(cmd);
 //                Expr res = mathematica.enterCommand("Select[Flatten[" + mathSetDef + " - " + mapleSetDef + "], Abs[#] > 1*10^(-5) &]");
-                if ( res.toString().matches("\\{}") ) {
+                if ( res.matches("\\{}") ) {
                     LOG.info("Same set in line " + i + " [" + url + "]");
                     sameCounter++;
                 } else {
                     LOG.info(mathSetDef);
                     LOG.info(mapleSetDef);
                     LOG.info(testValueList);
-                    LOG.warn("Not same in line " + i + " [" + url + "]\n" + res.toString() + "\n" + mathSetDef + "\n" + mapleSetDef);
-                    results.put(i, res.toString());
+                    LOG.warn("Not same in line " + i + " [" + url + "]\n" + res + "\n" + mathSetDef + "\n" + mapleSetDef);
+                    results.put(i, res);
                 }
             } catch (ComputerAlgebraSystemEngineException e) {
                 errorCounter++;

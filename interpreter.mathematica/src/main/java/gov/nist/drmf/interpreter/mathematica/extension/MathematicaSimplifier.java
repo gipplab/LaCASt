@@ -2,20 +2,23 @@ package gov.nist.drmf.interpreter.mathematica.extension;
 
 import com.wolfram.jlink.Expr;
 import com.wolfram.jlink.MathLinkException;
-import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
+import gov.nist.drmf.interpreter.common.cas.AbstractCasEngineSymbolicEvaluator;
+import gov.nist.drmf.interpreter.common.eval.EvaluatorType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
  */
-public class MathematicaSimplifier implements ICASEngineSymbolicEvaluator<Expr> {
+public class MathematicaSimplifier extends AbstractCasEngineSymbolicEvaluator<Expr> {
     private static final Logger LOG = LogManager.getLogger(MathematicaSimplifier.class.getName());
 
     private final MathematicaInterface mathematicaInterface;
@@ -29,13 +32,19 @@ public class MathematicaSimplifier implements ICASEngineSymbolicEvaluator<Expr> 
     }
 
     @Override
+    public void setTimeout(EvaluatorType type, double timeLimit) {
+        if ( EvaluatorType.SYMBOLIC.equals(type) ) this.setTimeout(timeLimit);
+    }
+
+    @Override
     public void setTimeout(double timeoutInSeconds) {
         this.timeout = Duration.ofMillis( (int)(timeoutInSeconds * 1_000) );
     }
 
     @Override
-    public void disableTimeout() {
-        this.timeout = Duration.ofSeconds(-1);
+    public void disableTimeout(EvaluatorType type) {
+        if ( EvaluatorType.SYMBOLIC.equals(type) )
+            this.timeout = Duration.ofSeconds(-1);
     }
 
     @Override
@@ -103,5 +112,26 @@ public class MathematicaSimplifier implements ICASEngineSymbolicEvaluator<Expr> 
     @Override
     public boolean wasAborted(Expr result) {
         return result.toString().matches(Pattern.quote(MathematicaInterface.MATH_ABORTION_SIGNAL));
+    }
+
+    private static Pattern inPattern = Pattern.compile("^(.*?) \\[Element] (.*)$");
+
+    @Override
+    public void setGlobalSymbolicAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {
+        assumptions.replaceAll(in -> {
+            if ( in.contains("Integers") ) in = in.replace("Integers", "PositiveIntegers");
+            Matcher m = inPattern.matcher(in);
+            if ( m.matches() ) in = "Element[" + m.group(1) + ", " + m.group(2) + "]";
+            return in;
+        });
+
+        String cmd = String.join(" && ", assumptions);
+        try {
+            String result = mathematicaInterface.evaluate("$Assumptions = " + cmd);
+            LOG.info("Setup global assumptions: " + result);
+        } catch (MathLinkException e) {
+            LOG.error("Unable to set global assumptions in Mathematica. Assumptions: " + assumptions);
+            throw new ComputerAlgebraSystemEngineException(e);
+        }
     }
 }

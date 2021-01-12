@@ -5,6 +5,8 @@ import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.common.latex.RelationalComponents;
 import gov.nist.drmf.interpreter.common.latex.Relations;
 
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -12,14 +14,21 @@ import java.util.Set;
 /**
  * @author Andre Greiner-Petter
  */
-public class SymbolicalTest {
+public class SymbolicalTest implements Serializable {
 
-    private final ISymbolicTestCases[] testCases;
+    private ISymbolicTestCases[] testCases;
 
-    private final List<String> testExpressions;
-    private final List<String> expectedValues;
+    private List<String> testExpressions;
+    private List<String> expectedValues;
 
-    private final Set<String> requiredPackages;
+    private Set<String> requiredPackages;
+
+    public SymbolicalTest() {
+        testCases = new ISymbolicTestCases[]{};
+        testExpressions = new LinkedList<>();
+        expectedValues = new LinkedList<>();
+        requiredPackages = new HashSet<>();
+    }
 
     public SymbolicalTest(
             SymbolicalConfig config,
@@ -57,6 +66,22 @@ public class SymbolicalTest {
                 }
             }
         }
+    }
+
+    public void setTestCases(ISymbolicTestCases[] testCases) {
+        this.testCases = testCases;
+    }
+
+    public void setTestExpressions(List<String> testExpressions) {
+        this.testExpressions = testExpressions;
+    }
+
+    public void setExpectedValues(List<String> expectedValues) {
+        this.expectedValues = expectedValues;
+    }
+
+    public void setRequiredPackages(Set<String> requiredPackages) {
+        this.requiredPackages = requiredPackages;
     }
 
     public ISymbolicTestCases[] getTestCases() {

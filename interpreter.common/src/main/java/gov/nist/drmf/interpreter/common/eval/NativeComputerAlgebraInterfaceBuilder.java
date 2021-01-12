@@ -5,9 +5,6 @@ import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.common.pojo.NumericCalculation;
-
-import java.util.List;
 
 /**
  * This is an evaluation builder for CAS. It returns all necessary
@@ -15,7 +12,7 @@ import java.util.List;
  *
  * @author Andre Greiner-Petter
  */
-public interface NativeComputerAlgebraInterfaceBuilder<T> {
+public interface NativeComputerAlgebraInterfaceBuilder {
     /**
      * This is the most critical function. It returns true if the underlying
      * native code this CAS is available. If this method returns false, none of
@@ -39,21 +36,21 @@ public interface NativeComputerAlgebraInterfaceBuilder<T> {
      * @return a direct interface to the native CAS
      * @throws CASUnavailableException if {@link #isCASAvailable()} returns false
      */
-    IComputerAlgebraSystemEngine<T> getCASEngine() throws CASUnavailableException;
+    IComputerAlgebraSystemEngine getCASEngine() throws CASUnavailableException;
 
     /**
      * Returns the numeric evaluator of the CAS
      * @return an interface to the numeric evaluator of the cas
      * @throws CASUnavailableException if {@link #isCASAvailable()} returns false
      */
-    ICASEngineNumericalEvaluator<T> getNumericEvaluator() throws CASUnavailableException, ComputerAlgebraSystemEngineException;
+    ICASEngineNumericalEvaluator getNumericEvaluator() throws CASUnavailableException, ComputerAlgebraSystemEngineException;
 
     /**
      * Returns the symbolic evaluator of the CAS
      * @return an interface to the symbolic evaluator of the cas
      * @throws CASUnavailableException if {@link #isCASAvailable()} returns false
      */
-    ICASEngineSymbolicEvaluator<T> getSymbolicEvaluator() throws CASUnavailableException;
+    ICASEngineSymbolicEvaluator getSymbolicEvaluator() throws CASUnavailableException;
 
     /* Symbolic Calculation Connections */
 

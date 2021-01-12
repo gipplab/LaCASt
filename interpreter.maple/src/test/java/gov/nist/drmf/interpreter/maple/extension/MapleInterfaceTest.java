@@ -25,7 +25,7 @@ public class MapleInterfaceTest {
 
     @Test
     void setGlobalAssumptionTest() throws ComputerAlgebraSystemEngineException, MapleException {
-        maple.setGlobalAssumptions("a > 0");
+        maple.enterCommand("assume(a > 0);");
         Algebraic a = maple.evaluate("int(x^a, x = 0..1);");
         assertEquals("1/(a+1)", a.toString());
         maple.evaluate("a := 'a';"); // unassume

@@ -10,7 +10,8 @@
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], x]",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 49,
             "numberOfSuccessfulTests" : 1,
@@ -459,12 +460,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "JacobiP[n, α, β, x]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -472,7 +475,8 @@
         "Maple" : {
           "translation" : "JacobiP(n, alpha, beta, x)",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 49,
             "numberOfSuccessfulTests" : 1,
@@ -921,32 +925,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "JacobiP(n,alpha,beta,x)",
-                "property" : "Simple"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,x)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "binomial(alpha+n,alpha)*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*x)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,x)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,x)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,x)",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -1162,7 +1148,8 @@
         "Mathematica" : {
           "translation" : "(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 27,
             "numberOfFailedTests" : 27,
             "numberOfSuccessfulTests" : 0,
@@ -1386,12 +1373,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Times[Power[Plus[1, Times[-1, x]], α], Power[Plus[1, x], β]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -1402,7 +1391,8 @@
         "Maple" : {
           "translation" : "(1 - x)^(alpha)*(1 + x)^(beta)",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 27,
             "numberOfFailedTests" : 27,
             "numberOfSuccessfulTests" : 0,
@@ -1626,32 +1616,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "(1-x)^alpha*(1+x)^beta",
-                "property" : "Simple"
-              },
-              {
-                "result" : "(1-x)^alpha*(1+x)^beta",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "(1-x)^alpha*(1+x)^beta",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "(1-x)^alpha*(1+x)^beta",
-                "property" : "EXP"
-              },
-              {
-                "result" : "(1-x)^alpha*(1+x)^beta",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "(1-x)^alpha*(1+x)^beta",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -1707,19 +1679,22 @@
         "Mathematica" : {
           "translation" : "[- 1 , 1]",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 1,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 1,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Part[FullSimplify, -1, 1]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -1730,7 +1705,8 @@
         "Maple" : {
           "translation" : "[- 1 , 1]",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 1,
             "numberOfFailedTests" : 1,
             "numberOfSuccessfulTests" : 0,
@@ -1742,32 +1718,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "[-1, 1]",
-                "property" : "Simple"
-              },
-              {
-                "result" : "[-1, 1]",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "[-1, 1]",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "[-1, 1]",
-                "property" : "EXP"
-              },
-              {
-                "result" : "[-1, 1]",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "[-1, 1]",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -1828,19 +1786,22 @@
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[Pochhammer[\\[Alpha]+ 1, n],(n)!]*HypergeometricPFQ[{- n , 1 + \\[Alpha]+ \\[Beta]+ n}, {\\[Alpha]+ 1}, Divide[1,2]*(1 - z)]",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "0",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -1848,39 +1809,22 @@
         "Maple" : {
           "translation" : "JacobiP(n, alpha, beta, z) = (pochhammer(alpha + 1, n))/(factorial(n))*hypergeom([- n , 1 + alpha + beta + n], [alpha + 1], (1)/(2)*(1 - z))",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : true,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
-                "result" : "JacobiP(n,alpha,beta,z)-pochhammer(alpha+1,n)/n!*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*z)",
-                "property" : "Simple"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,z)-pochhammer(alpha+1,n)/n!*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*z)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "0",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,z)-(alpha+n)!/alpha!/n!*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*z)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,z)-(alpha+n)!/alpha!/n!*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*z)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,z)-(alpha+n)!/alpha!/n!*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*z)",
-                "property" : "EXP+HYP"
+                "property" : "Simple",
+                "result" : "JacobiP(n,alpha,beta,z)-pochhammer(alpha+1,n)/n!*hypergeom([-n, 1+alpha+beta+n],[alpha+1],1/2-1/2*z)",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -1927,7 +1871,8 @@
         "Mathematica" : {
           "translation" : "Pochhammer[\\[Alpha]+ 1, n]",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 9,
             "numberOfFailedTests" : 9,
             "numberOfSuccessfulTests" : 0,
@@ -1998,12 +1943,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Pochhammer[Plus[1, α], n]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -2011,7 +1958,8 @@
         "Maple" : {
           "translation" : "pochhammer(alpha + 1, n)",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 9,
             "numberOfFailedTests" : 9,
             "numberOfSuccessfulTests" : 0,
@@ -2082,32 +2030,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "pochhammer(alpha+1,n)",
-                "property" : "Simple"
-              },
-              {
-                "result" : "pochhammer(alpha+1,n)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "pochhammer(alpha+1,n)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "pochhammer(alpha,n)*(alpha+n)/alpha",
-                "property" : "EXP"
-              },
-              {
-                "result" : "pochhammer(alpha,n)*(alpha+n)/alpha",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "pochhammer(alpha,n)*(alpha+n)/alpha",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -2150,19 +2080,22 @@
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[Gamma[\\[Alpha]+ n + 1],(n)!*Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*Sum[Binomial[n,m]*Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + m + 1],Gamma[\\[Alpha]+ m + 1]]*(Divide[z - 1,2])^(m), {m, 0, n}, GenerateConditions->None]",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "0",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -2170,39 +2103,22 @@
         "Maple" : {
           "translation" : "JacobiP(n, alpha, beta, z) = (GAMMA(alpha + n + 1))/(factorial(n)*GAMMA(alpha + beta + n + 1))*sum(binomial(n,m)*(GAMMA(alpha + beta + n + m + 1))/(GAMMA(alpha + m + 1))*((z - 1)/(2))^(m), m = 0..n)",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : true,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
-                "result" : "JacobiP(n,alpha,beta,z)-GAMMA(n+alpha+1)/GAMMA(alpha+1)/GAMMA(n+1)*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*z)",
-                "property" : "Simple"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,z)-GAMMA(n+alpha+1)/GAMMA(alpha+1)/GAMMA(n+1)*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*z)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "0",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,z)-GAMMA(n+alpha+1)/GAMMA(alpha+1)/GAMMA(n+1)*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*z)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,z)-GAMMA(n+alpha+1)/GAMMA(alpha+1)/GAMMA(n+1)*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*z)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,z)-GAMMA(n+alpha+1)/GAMMA(alpha+1)/GAMMA(n+1)*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*z)",
-                "property" : "EXP+HYP"
+                "property" : "Simple",
+                "result" : "JacobiP(n,alpha,beta,z)-GAMMA(alpha+1+n)/GAMMA(alpha+1)/GAMMA(n+1)*hypergeom([-n, 1+alpha+beta+n],[alpha+1],1/2-1/2*z)",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -2249,19 +2165,22 @@
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[(- 1)^(n),(2)^(n)* (n)!]*(1 - z)^(- \\[Alpha])*(1 + z)^(- \\[Beta])* D[(1 - z)^\\[Alpha]*(1 + z)^\\[Beta]*(1 - (z)^(2))^(n), {z, n}]",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : true,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 50,
             "numberOfSuccessfulTests" : 0,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "$Aborted",
-                "property" : "Simple"
+                "wasAborted" : true,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -2269,7 +2188,8 @@
         "Maple" : {
           "translation" : "JacobiP(n, alpha, beta, z) = ((- 1)^(n))/((2)^(n)* factorial(n))*(1 - z)^(- alpha)*(1 + z)^(- beta)* diff((1 - z)^(alpha)*(1 + z)^(beta)*(1 - (z)^(2))^(n), [z$(n)])",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 50,
             "numberOfSuccessfulTests" : 0,
@@ -2727,32 +2647,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
-                "result" : "JacobiP(n,alpha,beta,z)-(-1)^n*2^(-n)/n!*(1-z)^(-alpha)*(z+1)^(-beta)*Sum(binomial(n,_k1)*(-1)^_k1*pochhammer(alpha-_k1+1,_k1)*(1-z)^(alpha-_k1)*Sum(binomial(n-_k1,_k2)*pochhammer(beta-_k2+1,_k2)*(z+1)^(beta-_k2)*pochhammer(1-n+_k1+_k2,n-_k1-_k2)*z^(-n+_k1+_k2)*hypergeom([1/2, 1, -n],[-1/2*n+1/2*_k1+1/2*_k2+1, -1/2*n+1/2*_k1+1/2*_k2+1/2],z^2),_k2 = 0 .. n-_k1),_k1 = 0 .. n)",
-                "property" : "Simple"
-              },
-              {
-                "result" : "1/n!*(-2^(-n)*(1-z)^(-alpha)*(z+1)^(-beta)*exp(I*Pi*n)*Sum(binomial(n,_k1)*(1-z)^(alpha-_k1)*exp(I*Pi*_k1)*pochhammer(alpha-_k1+1,_k1)*Sum(binomial(n-_k1,_k2)*pochhammer(beta-_k2+1,_k2)*(z+1)^(beta-_k2)*pochhammer(1-n+_k1+_k2,n-_k1-_k2)*z^(-n+_k1+_k2)*hypergeom([1/2, 1, -n],[-1/2*n+1/2*_k1+1/2*_k2+1, -1/2*n+1/2*_k1+1/2*_k2+1/2],z^2),_k2 = 0 .. n-_k1),_k1 = 0 .. n)+JacobiP(n,alpha,beta,z)*n!)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "binomial(alpha+n,alpha)*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*z)-(-1)^n*2^(-n)/n!*(1-z)^(-alpha)*(z+1)^(-beta)*Sum(binomial(n,_k1)*(-1)^_k1*pochhammer(alpha-_k1+1,_k1)*(1-z)^(alpha-_k1)*Sum(binomial(n-_k1,_k2)*pochhammer(beta-_k2+1,_k2)*(z+1)^(beta-_k2)*pochhammer(1-n+_k1+_k2,n-_k1-_k2)*z^(-n+_k1+_k2)*hypergeom([1/2, 1, -n],[-1/2*n+1/2*_k1+1/2*_k2+1, -1/2*n+1/2*_k1+1/2*_k2+1/2],z^2),_k2 = 0 .. n-_k1),_k1 = 0 .. n)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "1/Pi*(-2^(-n)*(1-z)^(-alpha)*(-1)^n*GAMMA(beta+1)*GAMMA(alpha+1)*Sum((-1)^_k1*(1-z)^(alpha-_k1)*z^(-n+_k1)*Sum(sin(Pi*(-n+_k1+_k2))*z^_k2*hypergeom([1/2, 1, -n],[-1/2*n+1/2*_k1+1/2*_k2+1, -1/2*n+1/2*_k1+1/2*_k2+1/2],z^2)/(-n+_k1+_k2)*(z+1)^(-_k2)/GAMMA(beta-_k2+1)/GAMMA(_k2+1),_k2 = 0 .. n-_k1)/GAMMA(alpha-_k1+1)/GAMMA(_k1+1),_k1 = 0 .. n)+JacobiP(n,alpha,beta,z)*Pi)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "1/Pi*(-2^(-n)*(1-z)^(-alpha)*(-1)^n*GAMMA(beta+1)*GAMMA(alpha+1)*Sum((-1)^_k1*(1-z)^(alpha-_k1)*z^(-n+_k1)*Sum(sin(Pi*(-n+_k1+_k2))*z^_k2*hypergeom([1/2, 1, -n],[-1/2*n+1/2*_k1+1/2*_k2+1, -1/2*n+1/2*_k1+1/2*_k2+1/2],z^2)/(-n+_k1+_k2)*(z+1)^(-_k2)/GAMMA(beta-_k2+1)/GAMMA(_k2+1),_k2 = 0 .. n-_k1)/GAMMA(alpha-_k1+1)/GAMMA(_k1+1),_k1 = 0 .. n)+JacobiP(n,alpha,beta,z)*Pi)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "1/Pi*(-2^(-n)*(1-z)^(-alpha)*(-1)^n*GAMMA(beta+1)*GAMMA(alpha+1)*Sum((-1)^_k1*(1-z)^(alpha-_k1)*z^(-n+_k1)*Sum(sin(Pi*(-n+_k1+_k2))*z^_k2*hypergeom([1/2, 1, -n],[-1/2*n+1/2*_k1+1/2*_k2+1, -1/2*n+1/2*_k1+1/2*_k2+1/2],z^2)/(-n+_k1+_k2)*(z+1)^(-_k2)/GAMMA(beta-_k2+1)/GAMMA(_k2+1),_k2 = 0 .. n-_k1)/GAMMA(alpha-_k1+1)/GAMMA(_k1+1),_k1 = 0 .. n)+JacobiP(n,alpha,beta,z)*Pi)",
-                "property" : "EXP+HYP"
+                "property" : "Simple",
+                "result" : "JacobiP(n,alpha,beta,z)-(-1)^n*2^(-n)/n!*(1-z)^(-alpha)*(1+z)^(-beta)*Sum(binomial(n,_k1)*(-1)^_k1*pochhammer(alpha-_k1+1,_k1)*(1-z)^(alpha-_k1)*Sum(binomial(n-_k1,_k2)*pochhammer(beta-_k2+1,_k2)*(1+z)^(beta-_k2)*pochhammer(1-n+_k1+_k2,n-_k1-_k2)*z^(-n+_k1+_k2)*hypergeom([1/2, 1, -n],[-1/2*n+1/2*_k1+1/2*_k2+1, -1/2*n+1/2*_k1+1/2*_k2+1/2],z^2),_k2 = 0 .. n-_k1),_k1 = 0 .. n)",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -2794,7 +2696,8 @@
         "Mathematica" : {
           "translation" : "\\[Alpha] == \\[Beta] == 0",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 18,
             "numberOfFailedTests" : 15,
             "numberOfSuccessfulTests" : 3,
@@ -2907,16 +2810,20 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 2,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Plus[α, Times[-1, β]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
+                "property" : "Simple",
                 "result" : "β",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -2927,7 +2834,8 @@
         "Maple" : {
           "translation" : "alpha = beta = 0",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 18,
             "numberOfFailedTests" : 15,
             "numberOfSuccessfulTests" : 3,
@@ -3040,56 +2948,20 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 12,
+            "result" : "FAILURE",
+            "numberOfTests" : 2,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "alpha-beta",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
+                "property" : "Simple",
                 "result" : "beta",
-                "property" : "Simple"
-              },
-              {
-                "result" : "alpha-beta",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "beta",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "alpha-beta",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "beta",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "alpha-beta",
-                "property" : "EXP"
-              },
-              {
-                "result" : "beta",
-                "property" : "EXP"
-              },
-              {
-                "result" : "alpha-beta",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "beta",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "alpha-beta",
-                "property" : "EXP+HYP"
-              },
-              {
-                "result" : "beta",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -3120,19 +2992,22 @@
         "Mathematica" : {
           "translation" : "LegendreP[n, z] == Divide[1,(2)^(n)* (n)!]*D[((z)^(2)- 1)^(n), {z, n}]",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 21,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 21,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Plus[LegendreP[n, z], Times[-1, Power[2, Times[-1, n]], DifferenceRoot[Function[{, }, {Equal[Plus[Times[Plus[, Times[-2, n]], []], Times[-2, Plus[-1, Times[-1, ], n], z, [Plus[1, ]]], Times[Plus[2, ], Plus[-1, z], Plus[1, z], [Plus[2, ]]]], 0], Equal[[0], Power[Plus[-1, Power[z, 2]], n]], Equal[[1], Times[2, n, z, Power[Plus[-1, Power[z, 2]], Plus[-1, n]]]]}]][n]]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -3140,7 +3015,8 @@
         "Maple" : {
           "translation" : "LegendreP(n, z) = (1)/((2)^(n)* factorial(n))*diff(((z)^(2)- 1)^(n), [z$(n)])",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 9,
             "numberOfFailedTests" : 9,
             "numberOfSuccessfulTests" : 0,
@@ -3211,32 +3087,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "1/n/Pi*(LegendreP(n,z)*Pi*n-2^(-n)*z^(-n)*sin(Pi*n)*(-1)^n*hypergeom([1/2, 1, -n],[-1/2*n+1, -1/2*n+1/2],z^2))",
-                "property" : "Simple"
-              },
-              {
-                "result" : "1/n/Pi*(LegendreP(n,z)*Pi*n-2^(-n)*z^(-n)*sin(Pi*n)*exp(I*Pi*n)*hypergeom([1/2, 1, -n],[-1/2*n+1, -1/2*n+1/2],z^2))",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "1/n/Pi*(hypergeom([-n, n+1],[1],1/2-1/2*z)*Pi*n-2^(-n)*z^(-n)*sin(Pi*n)*(-1)^n*hypergeom([1/2, 1, -n],[-1/2*n+1, -1/2*n+1/2],z^2))",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "1/n/Pi*(LegendreP(n,z)*Pi*n-2^(-n)*z^(-n)*sin(Pi*n)*(-1)^n*hypergeom([1/2, 1, -n],[-1/2*n+1, -1/2*n+1/2],z^2))",
-                "property" : "EXP"
-              },
-              {
-                "result" : "1/n/Pi*(LegendreP(n,z)*Pi*n-2^(-n)*z^(-n)*sin(Pi*n)*(-1)^n*hypergeom([1/2, 1, -n],[-1/2*n+1, -1/2*n+1/2],z^2))",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "1/n/Pi*(LegendreP(n,z)*Pi*n-2^(-n)*z^(-n)*sin(Pi*n)*(-1)^n*hypergeom([1/2, 1, -n],[-1/2*n+1, -1/2*n+1/2],z^2))",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -3270,7 +3128,8 @@
         "Mathematica" : {
           "translation" : "x",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 3,
             "numberOfFailedTests" : 3,
             "numberOfSuccessfulTests" : 0,
@@ -3296,12 +3155,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "x",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -3312,7 +3173,8 @@
         "Maple" : {
           "translation" : "x",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 3,
             "numberOfFailedTests" : 3,
             "numberOfSuccessfulTests" : 0,
@@ -3338,32 +3200,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "x",
-                "property" : "Simple"
-              },
-              {
-                "result" : "x",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "x",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "x",
-                "property" : "EXP"
-              },
-              {
-                "result" : "x",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "x",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -3462,19 +3306,22 @@
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], x] == Sum[Binomial[n + \\[Alpha],n - s]*Binomial[n + \\[Beta],s]*(Divide[x - 1,2])^(s)*(Divide[x + 1,2])^(n - s), {s, 0, n}, GenerateConditions->None]",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Plus[Times[-1, Power[2, Times[-1, n]], Power[Plus[1, x], n], Binomial[Plus[n, α], n], Hypergeometric2F1[Times[-1, n], Plus[Times[-1, n], Times[-1, β]], Plus[1, α], Times[Plus[-1, x], Power[Plus[1, x], -1]]]], JacobiP[n, α, β, x]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -3482,39 +3329,22 @@
         "Maple" : {
           "translation" : "JacobiP(n, alpha, beta, x) = sum(binomial(n + alpha,n - s)*binomial(n + beta,s)*((x - 1)/(2))^(s)*((x + 1)/(2))^(n - s), s = 0..n)",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "JacobiP(n,alpha,beta,x)-binomial(alpha+n,n)*(1/2+1/2*x)^n*hypergeom([-n, -n-beta],[alpha+1],(x-1)/(1+x))",
-                "property" : "Simple"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,x)-binomial(alpha+n,n)*exp(n*(-ln(2)+ln(1+x)))*hypergeom([-n, -n-beta],[alpha+1],(x-1)/(1+x))",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "binomial(alpha+n,alpha)*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*x)-binomial(alpha+n,n)*(1/2+1/2*x)^n*hypergeom([-n, -n-beta],[alpha+1],(x-1)/(1+x))",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,x)-binomial(alpha+n,n)*(1/2+1/2*x)^n*hypergeom([-n, -n-beta],[alpha+1],(x-1)/(1+x))",
-                "property" : "EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,x)-binomial(alpha+n,n)*(1/2+1/2*x)^n*hypergeom([-n, -n-beta],[alpha+1],(x-1)/(1+x))",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,x)-binomial(alpha+n,n)*(1/2+1/2*x)^n*hypergeom([-n, -n-beta],[alpha+1],(x-1)/(1+x))",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -3552,7 +3382,8 @@
         "Mathematica" : {
           "translation" : "n",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 3,
             "numberOfFailedTests" : 3,
             "numberOfSuccessfulTests" : 0,
@@ -3578,12 +3409,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "n",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -3594,7 +3427,8 @@
         "Maple" : {
           "translation" : "n",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 3,
             "numberOfFailedTests" : 3,
             "numberOfSuccessfulTests" : 0,
@@ -3620,32 +3454,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "n",
-                "property" : "Simple"
-              },
-              {
-                "result" : "n",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "n",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "n",
-                "property" : "EXP"
-              },
-              {
-                "result" : "n",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "n",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -3880,10 +3696,11 @@
         "Mathematica" : {
           "translation" : "Binomial[z,n] == ",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 21,
-            "numberOfFailedTests" : 20,
-            "numberOfSuccessfulTests" : 1,
+            "numberOfFailedTests" : 18,
+            "numberOfSuccessfulTests" : 3,
             "testCalculations" : [
               {
                 "result" : "Complex[0.8660254037844387, 0.49999999999999994]",
@@ -3984,13 +3801,6 @@
                 }
               },
               {
-                "result" : "-0.0625",
-                "testValues" : {
-                  "z" : "Rational[3, 2]",
-                  "n" : "3"
-                }
-              },
-              {
                 "result" : "0.5",
                 "testValues" : {
                   "z" : "Rational[1, 2]",
@@ -4002,13 +3812,6 @@
                 "testValues" : {
                   "z" : "Rational[1, 2]",
                   "n" : "2"
-                }
-              },
-              {
-                "result" : "0.0625",
-                "testValues" : {
-                  "z" : "Rational[1, 2]",
-                  "n" : "3"
                 }
               },
               {
@@ -4028,12 +3831,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Binomial[z, n]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -4044,7 +3849,8 @@
         "Maple" : {
           "translation" : "binomial(z,n) = ",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 9,
             "numberOfFailedTests" : 8,
             "numberOfSuccessfulTests" : 1,
@@ -4108,32 +3914,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "binomial(z,n)",
-                "property" : "Simple"
-              },
-              {
-                "result" : "binomial(z,n)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "binomial(z,n)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "binomial(z,n)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "binomial(z,n)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "binomial(z,n)",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -4172,7 +3960,8 @@
         "Mathematica" : {
           "translation" : "Gamma[z]",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 7,
             "numberOfFailedTests" : 7,
             "numberOfSuccessfulTests" : 0,
@@ -4222,12 +4011,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Gamma[z]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -4235,7 +4026,8 @@
         "Maple" : {
           "translation" : "GAMMA(z)",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 3,
             "numberOfFailedTests" : 3,
             "numberOfSuccessfulTests" : 0,
@@ -4261,32 +4053,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "GAMMA(z)",
-                "property" : "Simple"
-              },
-              {
-                "result" : "GAMMA(z)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "GAMMA(z)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "GAMMA(z)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "GAMMA(z)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "GAMMA(z)",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -4352,19 +4126,22 @@
         "Mathematica" : {
           "translation" : "n , n + \\[Alpha], n + \\[Beta]",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 27,
             "numberOfFailedTests" : 4,
             "numberOfSuccessfulTests" : 23,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "FullSimplify[n, Plus[n, α], Plus[n, β]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -4375,7 +4152,8 @@
         "Maple" : {
           "translation" : "n , n + alpha , n + beta",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 27,
             "numberOfFailedTests" : 27,
             "numberOfSuccessfulTests" : 0,
@@ -4597,6 +4375,18 @@
                 }
               }
             ]
+          },
+          "symbolicResults" : {
+            "result" : "ERROR",
+            "numberOfTests" : 1,
+            "testCalculations" : [
+              {
+                "property" : "Simple",
+                "result" : "Error - null",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
+              }
+            ]
           }
         }
       },
@@ -4640,7 +4430,8 @@
         "Mathematica" : {
           "translation" : "n + \\[Alpha]+ \\[Beta]",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 27,
             "numberOfFailedTests" : 27,
             "numberOfSuccessfulTests" : 0,
@@ -4864,12 +4655,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Plus[n, α, β]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -4880,7 +4673,8 @@
         "Maple" : {
           "translation" : "n + alpha + beta",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 27,
             "numberOfFailedTests" : 27,
             "numberOfSuccessfulTests" : 0,
@@ -5104,32 +4898,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
-                "result" : "alpha+beta+n",
-                "property" : "Simple"
-              },
-              {
-                "result" : "alpha+beta+n",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "alpha+beta+n",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "alpha+beta+n",
-                "property" : "EXP"
-              },
-              {
-                "result" : "alpha+beta+n",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "alpha+beta+n",
-                "property" : "EXP+HYP"
+                "property" : "Simple",
+                "result" : "n+alpha+beta",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -5226,19 +5002,22 @@
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], x] == (n + \\[Alpha])!*(n + \\[Beta])!*Sum[Divide[1,(s)!*(n + \\[Alpha]- s)!*(\\[Beta]+ s)!*(n - s)!]*(Divide[x - 1,2])^(n - s)*(Divide[x + 1,2])^(s), {s, 0, n}, GenerateConditions->None]",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Plus[Times[-1, Power[2, Times[-1, n]], Power[Plus[-1, x], n], Power[Gamma[Plus[1, n]], -1], Gamma[Plus[1, n, β]], Hypergeometric2F1Regularized[Times[-1, n], Plus[Times[-1, n], Times[-1, α]], Plus[1, β], Times[Power[Plus[-1, x], -1], Plus[1, x]]]], JacobiP[n, α, β, x]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -5246,39 +5025,22 @@
         "Maple" : {
           "translation" : "JacobiP(n, alpha, beta, x) = factorial(n + alpha)*factorial(n + beta)*sum((1)/(factorial(s)*factorial(n + alpha - s)*factorial(beta + s)*factorial(n - s))*((x - 1)/(2))^(n - s)*((x + 1)/(2))^(s), s = 0..n)",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
-                "result" : "JacobiP(n,alpha,beta,x)-(n+beta)!/beta!/n!*(1/2*x-1/2)^n*hypergeom([-n, -n-alpha],[beta+1],1/(x-1)*(1+x))",
-                "property" : "Simple"
-              },
-              {
-                "result" : "(JacobiP(n,alpha,beta,x)*beta!*n!-exp(-n*(ln(2)-ln(x-1)))*hypergeom([-n, -n-alpha],[beta+1],1/(x-1)*(1+x))*(n+beta)!)/beta!/n!",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "binomial(alpha+n,alpha)*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*x)-(n+beta)!/beta!/n!*(1/2*x-1/2)^n*hypergeom([-n, -n-alpha],[beta+1],1/(x-1)*(1+x))",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,x)-(n+beta)!/beta!/n!*(1/2*x-1/2)^n*hypergeom([-n, -n-alpha],[beta+1],1/(x-1)*(1+x))",
-                "property" : "EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,x)-(n+beta)!/beta!/n!*(1/2*x-1/2)^n*hypergeom([-n, -n-alpha],[beta+1],1/(x-1)*(1+x))",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,x)-(n+beta)!/beta!/n!*(1/2*x-1/2)^n*hypergeom([-n, -n-alpha],[beta+1],1/(x-1)*(1+x))",
-                "property" : "EXP+HYP"
+                "property" : "Simple",
+                "result" : "JacobiP(n,alpha,beta,x)-(n+beta)!/beta!/n!*(1/2*x-1/2)^n*hypergeom([-n, -n-alpha],[beta+1],(1+x)/(x-1))",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -5328,7 +5090,8 @@
         "Mathematica" : {
           "translation" : "s",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 6,
             "numberOfFailedTests" : 6,
             "numberOfSuccessfulTests" : 0,
@@ -5372,12 +5135,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "s",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -5388,7 +5153,8 @@
         "Maple" : {
           "translation" : "s",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 6,
             "numberOfFailedTests" : 6,
             "numberOfSuccessfulTests" : 0,
@@ -5432,32 +5198,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "s",
-                "property" : "Simple"
-              },
-              {
-                "result" : "s",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "s",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "s",
-                "property" : "EXP"
-              },
-              {
-                "result" : "s",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "s",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -5515,19 +5263,22 @@
         "Mathematica" : {
           "translation" : "JacobiP[0, \\[Alpha], \\[Beta], z] == 1",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "0",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -5535,39 +5286,22 @@
         "Maple" : {
           "translation" : "JacobiP(0, alpha, beta, z) = 1",
           "numericResults" : {
-            "successful" : false,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 0,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 0,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : true,
-            "numberOfTests" : 6,
+            "result" : "SUCCESS",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "0",
-                "property" : "Simple"
-              },
-              {
-                "result" : "0",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "0",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "0",
-                "property" : "EXP"
-              },
-              {
-                "result" : "0",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "0",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -5598,19 +5332,22 @@
         "Mathematica" : {
           "translation" : "JacobiP[1, \\[Alpha], \\[Beta], z] == (\\[Alpha]+ 1)+(\\[Alpha]+ \\[Beta]+ 2)*Divide[z - 1,2]",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "0",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -5618,39 +5355,22 @@
         "Maple" : {
           "translation" : "JacobiP(1, alpha, beta, z) = (alpha + 1)+(alpha + beta + 2)*(z - 1)/(2)",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 27,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 27,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : true,
-            "numberOfTests" : 6,
+            "result" : "SUCCESS",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "0",
-                "property" : "Simple"
-              },
-              {
-                "result" : "0",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "0",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "0",
-                "property" : "EXP"
-              },
-              {
-                "result" : "0",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "0",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -5681,19 +5401,22 @@
         "Mathematica" : {
           "translation" : "JacobiP[2, \\[Alpha], \\[Beta], z] == Divide[(\\[Alpha]+ 1)*(\\[Alpha]+ 2),2]+(\\[Alpha]+ 2)*(\\[Alpha]+ \\[Beta]+ 3)*Divide[z - 1,2]+Divide[(\\[Alpha]+ \\[Beta]+ 3)*(\\[Alpha]+ \\[Beta]+ 4),2]*(Divide[z - 1,2])^(2)",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "0",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -5701,39 +5424,22 @@
         "Maple" : {
           "translation" : "JacobiP(2, alpha, beta, z) = ((alpha + 1)*(alpha + 2))/(2)+(alpha + 2)*(alpha + beta + 3)*(z - 1)/(2)+((alpha + beta + 3)*(alpha + beta + 4))/(2)*((z - 1)/(2))^(2)",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 27,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 27,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : true,
-            "numberOfTests" : 6,
+            "result" : "SUCCESS",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "0",
-                "property" : "Simple"
-              },
-              {
-                "result" : "0",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "-1/8*(alpha^2+3*alpha-2*binomial(2+alpha,alpha)+2)*((z+1)^2*alpha^2+((2*beta+7)*z^2+6*z-2*beta-1)*alpha+(beta^2+7*beta+12)*z^2+(-2*beta^2-6*beta)*z+beta^2-beta-4)/(2+alpha)/(alpha+1)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "0",
-                "property" : "EXP"
-              },
-              {
-                "result" : "0",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "0",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -5764,29 +5470,52 @@
         "Mathematica" : {
           "translation" : "Integrate[(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]* JacobiP[m, \\[Alpha], \\[Beta], x]*JacobiP[n, \\[Alpha], \\[Beta], x], {x, - 1, 1}, GenerateConditions->None] == Divide[(2)^(\\[Alpha]+ \\[Beta]+ 1),2*n + \\[Alpha]+ \\[Beta]+ 1]*Divide[Gamma[n + \\[Alpha]+ 1]*Gamma[n + \\[Beta]+ 1],Gamma[n + \\[Alpha]+ \\[Beta]+ 1]*(n)!]*Subscript[\\[Delta], n*m]",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 100,
             "numberOfFailedTests" : 3,
             "numberOfSuccessfulTests" : 97,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 2,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "$Failed",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
+                "property" : "Simple",
                 "result" : "Times[Power[2, Plus[1, α, β]], α, Power[Plus[1, Times[2, n], α, β], -1], Power[Factorial[n], -1], Gamma[Plus[1, n, α]], Gamma[Plus[1, n, β]], Power[Gamma[Plus[1, n, α, β]], -1], Subscript[δ, Times[m, n]]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
         },
         "Maple" : {
-          "translation" : "int((1 - x)^(alpha)*(1 + x)^(beta)* JacobiP(m, alpha, beta, x)*JacobiP(n, alpha, beta, x), x = - 1..1) = ((2)^(alpha + beta + 1))/(2*n + alpha + beta + 1)*(GAMMA(n + alpha + 1)*GAMMA(n + beta + 1))/(GAMMA(n + alpha + beta + 1)*factorial(n))*delta[n*m]"
+          "translation" : "int((1 - x)^(alpha)*(1 + x)^(beta)* JacobiP(m, alpha, beta, x)*JacobiP(n, alpha, beta, x), x = - 1..1) = ((2)^(alpha + beta + 1))/(2*n + alpha + beta + 1)*(GAMMA(n + alpha + 1)*GAMMA(n + beta + 1))/(GAMMA(n + alpha + beta + 1)*factorial(n))*delta[n*m]",
+          "symbolicResults" : {
+            "result" : "ERROR",
+            "numberOfTests" : 2,
+            "testCalculations" : [
+              {
+                "property" : "Simple",
+                "result" : "Error - null",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
+              },
+              {
+                "property" : "Simple",
+                "result" : "Error - null",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
+              }
+            ]
+          }
         }
       },
       "positions" : [
@@ -5827,7 +5556,8 @@
         "Mathematica" : {
           "translation" : "n == m",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 9,
             "numberOfFailedTests" : 6,
             "numberOfSuccessfulTests" : 3,
@@ -5877,12 +5607,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Plus[Times[-1, m], n]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -5893,7 +5625,8 @@
         "Maple" : {
           "translation" : "n = m",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 9,
             "numberOfFailedTests" : 6,
             "numberOfSuccessfulTests" : 3,
@@ -5943,32 +5676,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "n-m",
-                "property" : "Simple"
-              },
-              {
-                "result" : "n-m",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "n-m",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "n-m",
-                "property" : "EXP"
-              },
-              {
-                "result" : "n-m",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "n-m",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -6020,19 +5735,22 @@
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], 1] == Binomial[n + \\[Alpha],n]",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 27,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 27,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "0",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -6040,39 +5758,22 @@
         "Maple" : {
           "translation" : "JacobiP(n, alpha, beta, 1) = binomial(n + alpha,n)",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 27,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 27,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "JacobiP(n,alpha,beta,1)-binomial(alpha+n,n)",
-                "property" : "Simple"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,1)-binomial(alpha+n,n)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "binomial(alpha+n,alpha)-binomial(alpha+n,n)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,1)-binomial(alpha+n,n)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,1)-binomial(alpha+n,n)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,1)-binomial(alpha+n,n)",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -6116,19 +5817,22 @@
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], - z] == (- 1)^(n)* JacobiP[n, \\[Beta], \\[Alpha], z]",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Plus[JacobiP[n, α, β, Times[-1, z]], Times[Power[-1, Plus[1, n]], JacobiP[n, β, α, z]]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -6136,39 +5840,22 @@
         "Maple" : {
           "translation" : "JacobiP(n, alpha, beta, - z) = (- 1)^(n)* JacobiP(n, beta, alpha, z)",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "JacobiP(n,alpha,beta,-z)-(-1)^n*JacobiP(n,beta,alpha,z)",
-                "property" : "Simple"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,-z)-exp(I*Pi*n)*JacobiP(n,beta,alpha,z)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "binomial(alpha+n,alpha)*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2+1/2*z)-(-1)^n*binomial(n+beta,beta)*hypergeom([-n, alpha+beta+n+1],[beta+1],1/2-1/2*z)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,-z)-(-1)^n*JacobiP(n,beta,alpha,z)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,-z)-(-1)^n*JacobiP(n,beta,alpha,z)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,-z)-(-1)^n*JacobiP(n,beta,alpha,z)",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -6213,19 +5900,22 @@
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], - 1] == (- 1)^(n)*Binomial[n + \\[Beta],n]",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 27,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 27,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Plus[Times[Power[-1, Plus[1, n]], Binomial[Plus[n, β], n]], JacobiP[n, α, β, -1]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -6233,39 +5923,22 @@
         "Maple" : {
           "translation" : "JacobiP(n, alpha, beta, - 1) = (- 1)^(n)*binomial(n + beta,n)",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 27,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 27,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "JacobiP(n,alpha,beta,-1)-(-1)^n*binomial(n+beta,n)",
-                "property" : "Simple"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,-1)-exp(I*Pi*n)*binomial(n+beta,n)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "binomial(alpha+n,alpha)*hypergeom([-n, alpha+beta+n+1],[alpha+1],1)-(-1)^n*binomial(n+beta,n)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,-1)-(-1)^n*binomial(n+beta,n)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,-1)-(-1)^n*binomial(n+beta,n)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,-1)-(-1)^n*binomial(n+beta,n)",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -6309,7 +5982,8 @@
         "Mathematica" : {
           "translation" : "k",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 3,
             "numberOfFailedTests" : 3,
             "numberOfSuccessfulTests" : 0,
@@ -6335,12 +6009,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "k",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -6351,7 +6027,8 @@
         "Maple" : {
           "translation" : "k",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 3,
             "numberOfFailedTests" : 3,
             "numberOfSuccessfulTests" : 0,
@@ -6377,32 +6054,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "k",
-                "property" : "Simple"
-              },
-              {
-                "result" : "k",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "k",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "k",
-                "property" : "EXP"
-              },
-              {
-                "result" : "k",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "k",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -6457,19 +6116,22 @@
         "Mathematica" : {
           "translation" : "D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, k}] == Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + 1 + k],(2)^(k)* Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*JacobiP[n - k, \\[Alpha]+ k, \\[Beta]+ k, z]",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "0",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -6477,39 +6139,22 @@
         "Maple" : {
           "translation" : "diff(JacobiP(n, alpha, beta, z), [z$(k)]) = (GAMMA(alpha + beta + n + 1 + k))/((2)^(k)* GAMMA(alpha + beta + n + 1))*JacobiP(n - k, alpha + k, beta + k, z)",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : true,
-            "numberOfTests" : 6,
+            "result" : "SUCCESS",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "0",
-                "property" : "Simple"
-              },
-              {
-                "result" : "0",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "0",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "0",
-                "property" : "EXP"
-              },
-              {
-                "result" : "0",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "0",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -6549,7 +6194,8 @@
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], x]",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 49,
             "numberOfSuccessfulTests" : 1,
@@ -6998,12 +6644,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "JacobiP[n, α, β, x]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -7011,7 +6659,8 @@
         "Maple" : {
           "translation" : "JacobiP(n, alpha, beta, x)",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 49,
             "numberOfSuccessfulTests" : 1,
@@ -7460,32 +7109,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "JacobiP(n,alpha,beta,x)",
-                "property" : "Simple"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,x)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "binomial(alpha+n,alpha)*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*x)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,x)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,x)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "JacobiP(n,alpha,beta,x)",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -7739,19 +7370,22 @@
         "Mathematica" : {
           "translation" : "\\[Alpha], \\[Beta]",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 9,
             "numberOfFailedTests" : 3,
             "numberOfSuccessfulTests" : 6,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "α",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -7762,7 +7396,8 @@
         "Maple" : {
           "translation" : "alpha , beta",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 9,
             "numberOfFailedTests" : 9,
             "numberOfSuccessfulTests" : 0,
@@ -7829,6 +7464,18 @@
                   "alpha" : "2",
                   "beta" : "2"
                 }
+              }
+            ]
+          },
+          "symbolicResults" : {
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
+            "testCalculations" : [
+              {
+                "property" : "Simple",
+                "result" : "alpha",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -8033,7 +7680,8 @@
         "Mathematica" : {
           "translation" : "2*n*(n + \\[Alpha]+ \\[Beta])*(2*n + \\[Alpha]+ \\[Beta]- 2)*JacobiP[n, \\[Alpha], \\[Beta], z] ",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 50,
             "numberOfSuccessfulTests" : 0,
@@ -8491,7 +8139,7 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "ERROR",
             "numberOfTests" : 0,
             "testCalculations" : [ ]
           }
@@ -8499,7 +8147,8 @@
         "Maple" : {
           "translation" : "2*n*(n + alpha + beta)*(2*n + alpha + beta - 2)*JacobiP(n, alpha, beta, z) ",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 49,
             "numberOfSuccessfulTests" : 1,
@@ -8948,7 +8597,7 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "ERROR",
             "numberOfTests" : 0,
             "testCalculations" : [ ]
           }
@@ -8986,19 +8635,22 @@
         "Mathematica" : {
           "translation" : "n == 2 , 3 ",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 3,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 3,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "$Failed",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -9009,7 +8661,8 @@
         "Maple" : {
           "translation" : "n = 2 , 3 ",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 3,
             "numberOfFailedTests" : 3,
             "numberOfSuccessfulTests" : 0,
@@ -9035,32 +8688,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "n-2",
-                "property" : "Simple"
-              },
-              {
-                "result" : "n-2",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "n-2",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "n-2",
-                "property" : "EXP"
-              },
-              {
-                "result" : "n-2",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "n-2",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -9094,7 +8729,8 @@
         "Mathematica" : {
           "translation" : "(z - 1)*D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] == Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*JacobiP[n - 1, \\[Alpha]+ 1, \\[Beta]+ 1, x] == n*JacobiP[n, \\[Alpha], \\[Beta], x]-(\\[Alpha]+ n)*JacobiP[n - 1, \\[Alpha], \\[Beta]+ 1, x] == (1 + \\[Alpha]+ \\[Beta]+ n)*(JacobiP[n, \\[Alpha], \\[Beta]+ 1, x]- JacobiP[n, \\[Alpha], \\[Beta], x]) == (\\[Alpha]+ n)*JacobiP[n, \\[Alpha]- 1, \\[Beta]+ 1, x]- \\[Alpha]*JacobiP[n, \\[Alpha], \\[Beta], x] == Divide[2*(n + 1)*JacobiP[n + 1, \\[Alpha], \\[Beta]- 1, x]-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*JacobiP[n, \\[Alpha], \\[Beta], x],1 + z] == Divide[(2*\\[Beta]+ n + n*z)*JacobiP[n, \\[Alpha], \\[Beta], x]- 2*(\\[Beta]+ n)*JacobiP[n, \\[Alpha], \\[Beta]- 1, x],1 + z] == Divide[1 - z,1 + z]*(\\[Beta]*JacobiP[n, \\[Alpha], \\[Beta], x]-(\\[Beta]+ n)*JacobiP[n, \\[Alpha]+ 1, \\[Beta]- 1, x])",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 350,
             "numberOfFailedTests" : 233,
             "numberOfSuccessfulTests" : 117,
@@ -11432,36 +11068,50 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
             "numberOfTests" : 7,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Times[Rational[1, 2], Plus[-1, z], Plus[1, n, α, β], Plus[Times[-1, JacobiP[Plus[-1, n], Plus[1, α], Plus[1, β], x]], JacobiP[Plus[-1, n], Plus[1, α], Plus[1, β], z]]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
+                "property" : "Simple",
                 "result" : "Plus[Times[Plus[n, α], JacobiP[Plus[-1, n], α, Plus[1, β], x]], Times[Rational[1, 2], Plus[-1, z], Plus[1, n, α, β], JacobiP[Plus[-1, n], Plus[1, α], Plus[1, β], x]], Times[-1, n, JacobiP[n, α, β, x]]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
+                "property" : "Simple",
                 "result" : "0",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
+                "property" : "Simple",
                 "result" : "0",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
+                "property" : "Simple",
                 "result" : "Times[Power[Plus[1, z], -1], Plus[Times[Plus[1, z], Plus[n, α], JacobiP[n, Plus[-1, α], Plus[1, β], x]], Times[Plus[1, n, z, Times[n, z], Times[-1, β], Times[z, β]], JacobiP[n, α, β, x]], Times[-2, Plus[1, n], JacobiP[Plus[1, n], α, Plus[-1, β], x]]]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
+                "property" : "Simple",
                 "result" : "Times[Power[Plus[1, z], -1], Plus[Times[2, Plus[n, β], JacobiP[n, α, Plus[-1, β], x]], Times[-1, Plus[1, z], Plus[1, Times[2, n], α, β], JacobiP[n, α, β, x]], Times[2, Plus[1, n], JacobiP[Plus[1, n], α, Plus[-1, β], x]]]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
+                "property" : "Simple",
                 "result" : "Times[Power[Plus[1, z], -1], Plus[n, β], Plus[Times[-2, JacobiP[n, α, Plus[-1, β], x]], Times[Plus[1, z], JacobiP[n, α, β, x]], Times[-1, Plus[-1, z], JacobiP[n, Plus[1, α], Plus[-1, β], x]]]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -11469,7 +11119,8 @@
         "Maple" : {
           "translation" : "(z - 1)*diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*JacobiP(n - 1, alpha + 1, beta + 1, x) = n*JacobiP(n, alpha, beta, x)-(alpha + n)*JacobiP(n - 1, alpha, beta + 1, x) = (1 + alpha + beta + n)*(JacobiP(n, alpha, beta + 1, x)- JacobiP(n, alpha, beta, x)) = (alpha + n)*JacobiP(n, alpha - 1, beta + 1, x)- alpha*JacobiP(n, alpha, beta, x) = (2*(n + 1)*JacobiP(n + 1, alpha, beta - 1, x)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*JacobiP(n, alpha, beta, x))/(1 + z) = ((2*beta + n + n*z)*JacobiP(n, alpha, beta, x)- 2*(beta + n)*JacobiP(n, alpha, beta - 1, x))/(1 + z) = (1 - z)/(1 + z)*(beta*JacobiP(n, alpha, beta, x)-(beta + n)*JacobiP(n, alpha + 1, beta - 1, x))",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 350,
             "numberOfFailedTests" : 161,
             "numberOfSuccessfulTests" : 189,
@@ -13087,176 +12738,50 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 42,
+            "result" : "FAILURE",
+            "numberOfTests" : 7,
             "testCalculations" : [
               {
-                "result" : "-1/2*(alpha+beta+n+1)*((-1+z)*JacobiP(n-1,alpha+1,beta+1,x)+2*JacobiP(n,alpha,beta,z)-2*JacobiP(n,alpha,beta+1,z))",
-                "property" : "Simple"
+                "property" : "Simple",
+                "result" : "-1/2*((-1+z)*JacobiP(n-1,alpha+1,beta+1,x)+2*JacobiP(n,alpha,beta,z)-2*JacobiP(n,alpha,beta+1,z))*(1+alpha+beta+n)",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
-                "result" : "1/2*(-1+z)*(alpha+beta+n+1)*JacobiP(n-1,alpha+1,beta+1,x)+1/2*(2*n+2*alpha)*JacobiP(n-1,alpha,beta+1,x)-n*JacobiP(n,alpha,beta,x)",
-                "property" : "Simple"
+                "property" : "Simple",
+                "result" : "1/2*(-1+z)*(1+alpha+beta+n)*JacobiP(n-1,alpha+1,beta+1,x)+1/2*(2*n+2*alpha)*JacobiP(n-1,alpha,beta+1,x)-n*JacobiP(n,alpha,beta,x)",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
-                "result" : "(-n-alpha)*JacobiP(n-1,alpha,beta+1,x)+(-n-beta-alpha-1)*JacobiP(n,alpha,beta+1,x)+2*JacobiP(n,alpha,beta,x)*(n+1/2*beta+1/2*alpha+1/2)",
-                "property" : "Simple"
+                "property" : "Simple",
+                "result" : "(-n-alpha)*JacobiP(n-1,alpha,beta+1,x)+(-n-beta-alpha-1)*JacobiP(n,alpha,beta+1,x)+2*(n+1/2*beta+1/2*alpha+1/2)*JacobiP(n,alpha,beta,x)",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
-                "result" : "(-n-alpha)*JacobiP(n,alpha-1,beta+1,x)+(alpha+beta+n+1)*JacobiP(n,alpha,beta+1,x)-JacobiP(n,alpha,beta,x)*(beta+n+1)",
-                "property" : "Simple"
+                "property" : "Simple",
+                "result" : "(-n-alpha)*JacobiP(n,alpha-1,beta+1,x)+(1+alpha+beta+n)*JacobiP(n,alpha,beta+1,x)-JacobiP(n,alpha,beta,x)*(beta+n+1)",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
-                "result" : "((alpha+n)*JacobiP(n,alpha-1,beta+1,x)*(z+1)+(-2*n-2)*JacobiP(n+1,alpha,beta-1,x)+((beta+n+1)*z+n-beta+1)*JacobiP(n,alpha,beta,x))/(z+1)",
-                "property" : "Simple"
+                "property" : "Simple",
+                "result" : "((alpha+n)*JacobiP(n,alpha-1,beta+1,x)*(1+z)+(-2*n-2)*JacobiP(n+1,alpha,beta-1,x)+JacobiP(n,alpha,beta,x)*((beta+n+1)*z+n-beta+1))/(1+z)",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
-                "result" : "((2*n+2)*JacobiP(n+1,alpha,beta-1,x)+(2*n+2*beta)*JacobiP(n,alpha,beta-1,x)-2*(z+1)*(n+1/2*beta+1/2*alpha+1/2)*JacobiP(n,alpha,beta,x))/(z+1)",
-                "property" : "Simple"
+                "property" : "Simple",
+                "result" : "((2*n+2)*JacobiP(n+1,alpha,beta-1,x)+(2*n+2*beta)*JacobiP(n,alpha,beta-1,x)-2*JacobiP(n,alpha,beta,x)*(n+1/2*beta+1/2*alpha+1/2)*(1+z))/(1+z)",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
-                "result" : "(n+beta)*((1-z)*JacobiP(n,alpha+1,beta-1,x)-2*JacobiP(n,alpha,beta-1,x)+(z+1)*JacobiP(n,alpha,beta,x))/(z+1)",
-                "property" : "Simple"
-              },
-              {
-                "result" : "-1/2*(alpha+beta+n+1)*((-1+z)*JacobiP(n-1,alpha+1,beta+1,x)+2*JacobiP(n,alpha,beta,z)-2*JacobiP(n,alpha,beta+1,z))",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "1/2*(-1+z)*(alpha+beta+n+1)*JacobiP(n-1,alpha+1,beta+1,x)+1/2*(2*n+2*alpha)*JacobiP(n-1,alpha,beta+1,x)-n*JacobiP(n,alpha,beta,x)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "(-n-alpha)*JacobiP(n-1,alpha,beta+1,x)+(-n-beta-alpha-1)*JacobiP(n,alpha,beta+1,x)+2*JacobiP(n,alpha,beta,x)*(n+1/2*beta+1/2*alpha+1/2)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "(-n-alpha)*JacobiP(n,alpha-1,beta+1,x)+(alpha+beta+n+1)*JacobiP(n,alpha,beta+1,x)-JacobiP(n,alpha,beta,x)*(beta+n+1)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "((alpha+n)*JacobiP(n,alpha-1,beta+1,x)*(z+1)+(-2*n-2)*JacobiP(n+1,alpha,beta-1,x)+((beta+n+1)*z+n-beta+1)*JacobiP(n,alpha,beta,x))/(z+1)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "((2*n+2)*JacobiP(n+1,alpha,beta-1,x)+(2*n+2*beta)*JacobiP(n,alpha,beta-1,x)-2*(z+1)*(n+1/2*beta+1/2*alpha+1/2)*JacobiP(n,alpha,beta,x))/(z+1)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "(n+beta)*((1-z)*JacobiP(n,alpha+1,beta-1,x)-2*JacobiP(n,alpha,beta-1,x)+(z+1)*JacobiP(n,alpha,beta,x))/(z+1)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "(-1+z)*(-hypergeom([-n+1, alpha+beta+n+2],[2+alpha],1/2-1/2*x)*(alpha+1)*binomial(alpha+n,alpha+1)+binomial(alpha+n,alpha)*n*hypergeom([-n+1, alpha+beta+n+2],[2+alpha],1/2-1/2*z))*(alpha+beta+n+1)/(2*alpha+2)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "(-(alpha+beta+n+1)*(-(alpha+1)*(-1+z)*binomial(alpha+n,alpha+1)+binomial(alpha+n-1,alpha)*(x-1)*(alpha+n))*hypergeom([-n+1, alpha+beta+n+2],[2+alpha],1/2-1/2*x)-2*(alpha+1)*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*x)*((-n-alpha)*binomial(alpha+n-1,alpha)+n*binomial(alpha+n,alpha)))/(2*alpha+2)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "-((-n-alpha)*binomial(alpha+n-1,alpha)+n*binomial(alpha+n,alpha))*((x-1)*(alpha+beta+n+1)*hypergeom([-n+1, alpha+beta+n+2],[2+alpha],1/2-1/2*x)-2*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*x)*(alpha+1))/(2*alpha+2)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "-1/2*(n*(x-1)*(alpha+beta+n+1)*hypergeom([-n+1, alpha+beta+n+2],[2+alpha],1/2-1/2*x)+2*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*x)*alpha*(alpha+1))*((alpha+n)*binomial(alpha+n-1,alpha-1)-alpha*binomial(alpha+n,alpha))/(alpha+1)/alpha",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "1/2*(-2*((-2*alpha+(x-1)*(beta+n+1))*(z+1)*(alpha+n)*binomial(alpha+n-1,alpha-1)-(1+x)*alpha*((-2*n-2)*binomial(n+alpha+1,alpha)+((z+1)*n+(beta+1)*z-beta+1)*binomial(alpha+n,alpha)))*(alpha+1)*hypergeom([-1-n, alpha+beta+n+1],[alpha+1],1/2-1/2*x)+(x-1)*(alpha+beta+n+1)*hypergeom([-n, alpha+beta+n+2],[2+alpha],1/2-1/2*x)*(((beta+n+1)*x+n-beta+1)*(z+1)*(alpha+n)*binomial(alpha+n-1,alpha-1)-(1+x)*alpha*((z+1)*n+(beta+1)*z-beta+1)*binomial(alpha+n,alpha)))/(1+x)/(alpha+1)/alpha/(z+1)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "(2*(alpha+1)*((1+x)*(n+1)*binomial(n+alpha+1,alpha)+((n+beta)*x+(-2*z-1)*n+(-z-1)*alpha-1+(-beta-1)*z)*binomial(alpha+n,alpha))*hypergeom([-1-n, alpha+beta+n],[alpha+1],1/2-1/2*x)-(x-1)*hypergeom([-n, alpha+beta+n+1],[2+alpha],1/2-1/2*x)*(-(n+1)^2*(1+x)*binomial(n+alpha+1,alpha)+((n+beta)*(alpha+beta+n)*x+n^2+(alpha+2+(-2*beta+2)*z)*n+(1+(1-beta)*z)*alpha-beta^2*z+z+1)*binomial(alpha+n,alpha)))/(1+x)/(alpha+1)/(z+1)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "1/2*(n+beta)*((x-1)*n*(-(alpha+1)*(-1+z)*(1+x)*binomial(n+alpha+1,alpha+1)+binomial(alpha+n,alpha)*((-1+z)*(1+x)*n+(-2*beta+(-1+z)*alpha+z+1)*x+(-1+z)*alpha-1+(2*beta-1)*z))*hypergeom([-n+1, alpha+beta+n+1],[alpha+3],1/2-1/2*x)+2*(2+alpha)*hypergeom([-n, alpha+beta+n],[2+alpha],1/2-1/2*x)*(-(alpha+1)*(-1+z)*(1+x)*binomial(n+alpha+1,alpha+1)+binomial(alpha+n,alpha)*((z+1)*(x-1)*n+(alpha+1)*(-1+z)*(1+x))))/(1+x)/(2+alpha)/(alpha+1)/(z+1)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "-1/2*(alpha+beta+n+1)*((-1+z)*JacobiP(n-1,alpha+1,beta+1,x)+2*JacobiP(n,alpha,beta,z)-2*JacobiP(n,alpha,beta+1,z))",
-                "property" : "EXP"
-              },
-              {
-                "result" : "1/2*(-1+z)*(alpha+beta+n+1)*JacobiP(n-1,alpha+1,beta+1,x)+1/2*(2*n+2*alpha)*JacobiP(n-1,alpha,beta+1,x)-n*JacobiP(n,alpha,beta,x)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "(-n-alpha)*JacobiP(n-1,alpha,beta+1,x)+(-n-beta-alpha-1)*JacobiP(n,alpha,beta+1,x)+2*JacobiP(n,alpha,beta,x)*(n+1/2*beta+1/2*alpha+1/2)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "(-n-alpha)*JacobiP(n,alpha-1,beta+1,x)+(alpha+beta+n+1)*JacobiP(n,alpha,beta+1,x)-JacobiP(n,alpha,beta,x)*(beta+n+1)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "((alpha+n)*JacobiP(n,alpha-1,beta+1,x)*(z+1)+(-2*n-2)*JacobiP(n+1,alpha,beta-1,x)+((beta+n+1)*z+n-beta+1)*JacobiP(n,alpha,beta,x))/(z+1)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "((2*n+2)*JacobiP(n+1,alpha,beta-1,x)+(2*n+2*beta)*JacobiP(n,alpha,beta-1,x)-2*(z+1)*(n+1/2*beta+1/2*alpha+1/2)*JacobiP(n,alpha,beta,x))/(z+1)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "(n+beta)*((1-z)*JacobiP(n,alpha+1,beta-1,x)-2*JacobiP(n,alpha,beta-1,x)+(z+1)*JacobiP(n,alpha,beta,x))/(z+1)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "-1/2*(alpha+beta+n+1)*((-1+z)*JacobiP(n-1,alpha+1,beta+1,x)+2*JacobiP(n,alpha,beta,z)-2*JacobiP(n,alpha,beta+1,z))",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "1/2*(-1+z)*(alpha+beta+n+1)*JacobiP(n-1,alpha+1,beta+1,x)+1/2*(2*n+2*alpha)*JacobiP(n-1,alpha,beta+1,x)-n*JacobiP(n,alpha,beta,x)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "(-n-alpha)*JacobiP(n-1,alpha,beta+1,x)+(-n-beta-alpha-1)*JacobiP(n,alpha,beta+1,x)+2*JacobiP(n,alpha,beta,x)*(n+1/2*beta+1/2*alpha+1/2)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "(-n-alpha)*JacobiP(n,alpha-1,beta+1,x)+(alpha+beta+n+1)*JacobiP(n,alpha,beta+1,x)-JacobiP(n,alpha,beta,x)*(beta+n+1)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "((alpha+n)*JacobiP(n,alpha-1,beta+1,x)*(z+1)+(-2*n-2)*JacobiP(n+1,alpha,beta-1,x)+((beta+n+1)*z+n-beta+1)*JacobiP(n,alpha,beta,x))/(z+1)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "((2*n+2)*JacobiP(n+1,alpha,beta-1,x)+(2*n+2*beta)*JacobiP(n,alpha,beta-1,x)-2*(z+1)*(n+1/2*beta+1/2*alpha+1/2)*JacobiP(n,alpha,beta,x))/(z+1)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "(n+beta)*((1-z)*JacobiP(n,alpha+1,beta-1,x)-2*JacobiP(n,alpha,beta-1,x)+(z+1)*JacobiP(n,alpha,beta,x))/(z+1)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "-1/2*(alpha+beta+n+1)*((-1+z)*JacobiP(n-1,alpha+1,beta+1,x)+2*JacobiP(n,alpha,beta,z)-2*JacobiP(n,alpha,beta+1,z))",
-                "property" : "EXP+HYP"
-              },
-              {
-                "result" : "1/2*(-1+z)*(alpha+beta+n+1)*JacobiP(n-1,alpha+1,beta+1,x)+1/2*(2*n+2*alpha)*JacobiP(n-1,alpha,beta+1,x)-n*JacobiP(n,alpha,beta,x)",
-                "property" : "EXP+HYP"
-              },
-              {
-                "result" : "(-n-alpha)*JacobiP(n-1,alpha,beta+1,x)+(-n-beta-alpha-1)*JacobiP(n,alpha,beta+1,x)+2*JacobiP(n,alpha,beta,x)*(n+1/2*beta+1/2*alpha+1/2)",
-                "property" : "EXP+HYP"
-              },
-              {
-                "result" : "(-n-alpha)*JacobiP(n,alpha-1,beta+1,x)+(alpha+beta+n+1)*JacobiP(n,alpha,beta+1,x)-JacobiP(n,alpha,beta,x)*(beta+n+1)",
-                "property" : "EXP+HYP"
-              },
-              {
-                "result" : "((alpha+n)*JacobiP(n,alpha-1,beta+1,x)*(z+1)+(-2*n-2)*JacobiP(n+1,alpha,beta-1,x)+((beta+n+1)*z+n-beta+1)*JacobiP(n,alpha,beta,x))/(z+1)",
-                "property" : "EXP+HYP"
-              },
-              {
-                "result" : "((2*n+2)*JacobiP(n+1,alpha,beta-1,x)+(2*n+2*beta)*JacobiP(n,alpha,beta-1,x)-2*(z+1)*(n+1/2*beta+1/2*alpha+1/2)*JacobiP(n,alpha,beta,x))/(z+1)",
-                "property" : "EXP+HYP"
-              },
-              {
-                "result" : "(n+beta)*((1-z)*JacobiP(n,alpha+1,beta-1,x)-2*JacobiP(n,alpha,beta-1,x)+(z+1)*JacobiP(n,alpha,beta,x))/(z+1)",
-                "property" : "EXP+HYP"
+                "property" : "Simple",
+                "result" : "((1-z)*JacobiP(n,alpha+1,beta-1,x)-2*JacobiP(n,alpha,beta-1,x)+(1+z)*JacobiP(n,alpha,beta,x))*(n+beta)/(1+z)",
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -13338,23 +12863,28 @@
         "Mathematica" : {
           "translation" : "R == R*(z , t) == (1 - 2*z*t + (t)^(2))^(Divide[1,2])",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 100,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 100,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 2,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "$Failed",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
+                "property" : "Simple",
                 "result" : "$Failed",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -13365,7 +12895,8 @@
         "Maple" : {
           "translation" : "R = R*(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 100,
             "numberOfFailedTests" : 95,
             "numberOfSuccessfulTests" : 5,
@@ -14133,56 +13664,20 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 12,
+            "result" : "FAILURE",
+            "numberOfTests" : 2,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "-R*z+R",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               },
               {
+                "property" : "Simple",
                 "result" : "R*z-(t^2-2*t*z+1)^(1/2)",
-                "property" : "Simple"
-              },
-              {
-                "result" : "-R*z+R",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "R*z-(t^2-2*t*z+1)^(1/2)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "-R*z+R",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "R*z-(t^2-2*t*z+1)^(1/2)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "-R*z+R",
-                "property" : "EXP"
-              },
-              {
-                "result" : "R*z-(t^2-2*t*z+1)^(1/2)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "-R*z+R",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "R*z-(t^2-2*t*z+1)^(1/2)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "-R*z+R",
-                "property" : "EXP+HYP"
-              },
-              {
-                "result" : "R*z-(t^2-2*t*z+1)^(1/2)",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -14219,19 +13714,22 @@
         "Mathematica" : {
           "translation" : "R*(z , 0) == 1",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 50,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "$Failed",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -14242,7 +13740,8 @@
         "Maple" : {
           "translation" : "R*(z , 0) = 1",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 30,
             "numberOfFailedTests" : 30,
             "numberOfSuccessfulTests" : 0,
@@ -14460,32 +13959,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "R*z-1",
-                "property" : "Simple"
-              },
-              {
-                "result" : "R*z-1",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "R*z-1",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "R*z-1",
-                "property" : "EXP"
-              },
-              {
-                "result" : "R*z-1",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "R*z-1",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -14522,19 +14003,22 @@
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] == (n)^(-Divide[1,2])* k*(\\[Theta])*Cos[Sqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2]*\\[Theta]+ \\[Gamma]]+ O*((n)^(-Divide[3,2]))",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : true,
             "numberOfTests" : 0,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 0,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Plus[Times[-1, Power[n, Rational[-3, 2]], Plus[O, Times[k, n, θ, Cos[Plus[γ, Times[θ, Power[Plus[Power[AiryAiPrime[x], 2], Power[AiryBiPrime[x], 2]], Rational[1, 2]]]]]]]], JacobiP[n, α, β, Cos[θ]]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -14542,7 +14026,8 @@
         "Maple" : {
           "translation" : "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k*(theta)*cos(sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2)*theta + gamma)+ O*((n)^(-(3)/(2)))",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 50,
             "numberOfSuccessfulTests" : 0,
@@ -15200,32 +14685,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "-(k*theta*cos((AiryAi(1,x)^2+AiryBi(1,x)^2)^(1/2)*theta+gamma)*n-JacobiP(n,alpha,beta,cos(theta))*n^(3/2)+O)/n^(3/2)",
-                "property" : "Simple"
-              },
-              {
-                "result" : "-(k*theta*cos((AiryAi(1,x)^2+AiryBi(1,x)^2)^(1/2)*theta+gamma)*n-JacobiP(n,alpha,beta,cos(theta))*n^(3/2)+O)/n^(3/2)",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "-(-binomial(alpha+n,alpha)*hypergeom([-n, alpha+beta+n+1],[alpha+1],1/2-1/2*cos(theta))*n^(3/2)+k*theta*cos(2/3*(x^2*(BesselI(2/3,2/3*(x^3)^(1/2))*BesselI(-2/3,2/3*(x^3)^(1/2))*(x^3)^(2/3)+BesselI(-2/3,2/3*(x^3)^(1/2))^2*(x^3)^(1/3)*x+BesselI(2/3,2/3*(x^3)^(1/2))^2*x^2)/(x^3)^(2/3))^(1/2)*theta+gamma)*n+O)/n^(3/2)",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "-(cos((AiryAi(1,x)^2+AiryBi(1,x)^2)^(1/2)*theta)*cos(gamma)*k*n*theta-sin((AiryAi(1,x)^2+AiryBi(1,x)^2)^(1/2)*theta)*sin(gamma)*k*n*theta-JacobiP(n,alpha,beta,cos(theta))*n^(3/2)+O)/n^(3/2)",
-                "property" : "EXP"
-              },
-              {
-                "result" : "-(cos((AiryAi(1,x)^2+AiryBi(1,x)^2)^(1/2)*theta)*cos(gamma)*k*n*theta-sin((AiryAi(1,x)^2+AiryBi(1,x)^2)^(1/2)*theta)*sin(gamma)*k*n*theta-JacobiP(n,alpha,beta,cos(theta))*n^(3/2)+O)/n^(3/2)",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "-(cos((AiryAi(1,x)^2+AiryBi(1,x)^2)^(1/2)*theta)*cos(gamma)*k*n*theta-sin((AiryAi(1,x)^2+AiryBi(1,x)^2)^(1/2)*theta)*sin(gamma)*k*n*theta-JacobiP(n,alpha,beta,cos(theta))*n^(3/2)+O)/n^(3/2)",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -15279,7 +14746,7 @@
         "Mathematica" : {
           "translation" : "k*(\\[Theta]) == \\[Pi]^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])\nSqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2] == n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)\n\\[Gamma] == -Divide[\\[Pi],2]*(\\[Alpha]+Divide[1,2])",
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "ERROR",
             "numberOfTests" : 0,
             "testCalculations" : [ ]
           }
@@ -15287,7 +14754,7 @@
         "Maple" : {
           "translation" : "k*(theta) = (pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2)); sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2) = n +(1)/(2)*(alpha + beta + 1); gamma = -(pi)/(2)*(alpha +(1)/(2))",
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "ERROR",
             "numberOfTests" : 0,
             "testCalculations" : [ ]
           }
@@ -15337,7 +14804,8 @@
         "Mathematica" : {
           "translation" : "O",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 10,
             "numberOfFailedTests" : 10,
             "numberOfSuccessfulTests" : 0,
@@ -15405,12 +14873,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "O",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -15421,7 +14891,8 @@
         "Maple" : {
           "translation" : "O",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 10,
             "numberOfFailedTests" : 10,
             "numberOfSuccessfulTests" : 0,
@@ -15489,32 +14960,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "O",
-                "property" : "Simple"
-              },
-              {
-                "result" : "O",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "O",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "O",
-                "property" : "EXP"
-              },
-              {
-                "result" : "O",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "O",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -15563,19 +15016,22 @@
         "Mathematica" : {
           "translation" : "[\\[Epsilon], \\[Pi]- \\[Epsilon]]",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 30,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 30,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Part[FullSimplify, ϵ, Plus[Pi, Times[-1, ϵ]]]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -15586,7 +15042,8 @@
         "Maple" : {
           "translation" : "[epsilon , pi - epsilon]",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 50,
             "numberOfFailedTests" : 50,
             "numberOfSuccessfulTests" : 0,
@@ -15944,32 +15401,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "[epsilon, pi-epsilon]",
-                "property" : "Simple"
-              },
-              {
-                "result" : "[epsilon, pi-epsilon]",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "[epsilon, pi-epsilon]",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "[epsilon, pi-epsilon]",
-                "property" : "EXP"
-              },
-              {
-                "result" : "[epsilon, pi-epsilon]",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "[epsilon, pi-epsilon]",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -16016,19 +15455,22 @@
         "Mathematica" : {
           "translation" : "\\[Epsilon] > 0",
           "numericResults" : {
-            "successful" : true,
+            "result" : "SUCCESS",
+            "wasAborted" : false,
             "numberOfTests" : 3,
             "numberOfFailedTests" : 0,
             "numberOfSuccessfulTests" : 3,
             "testCalculations" : [ ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "Greater[ϵ, 0]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -16039,7 +15481,8 @@
         "Maple" : {
           "translation" : "epsilon > 0",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 10,
             "numberOfFailedTests" : 7,
             "numberOfSuccessfulTests" : 3,
@@ -16089,32 +15532,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "0 < epsilon",
-                "property" : "Simple"
-              },
-              {
-                "result" : "0 < epsilon",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "0 < epsilon",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "0 < epsilon",
-                "property" : "EXP"
-              },
-              {
-                "result" : "0 < epsilon",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "0 < epsilon",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -16161,7 +15586,8 @@
         "Mathematica" : {
           "translation" : "\\[PlusMinus]1",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 1,
             "numberOfFailedTests" : 1,
             "numberOfSuccessfulTests" : 0,
@@ -16173,12 +15599,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "PlusMinus[1]",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -16186,7 +15614,8 @@
         "Maple" : {
           "translation" : "&+- 1",
           "numericResults" : {
-            "successful" : false,
+            "result" : "ERROR",
+            "wasAborted" : false,
             "numberOfTests" : 1,
             "numberOfFailedTests" : 1,
             "numberOfSuccessfulTests" : 0,
@@ -16198,32 +15627,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "&+- 1",
-                "property" : "Simple"
-              },
-              {
-                "result" : "&+- 1",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "&+- 1",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "&+- 1",
-                "property" : "EXP"
-              },
-              {
-                "result" : "&+- 1",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "&+- 1",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -16274,7 +15685,7 @@
         "Mathematica" : {
           "translation" : "Limit[(n)^(- \\[Alpha])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Alpha])* Subscript[J, \\[Alpha]]*(z)\nLimit[(n)^(- \\[Beta])* JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Pi]-Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Beta])* Subscript[J, \\[Beta]]*(z)",
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "ERROR",
             "numberOfTests" : 0,
             "testCalculations" : [ ]
           }
@@ -16282,7 +15693,7 @@
         "Maple" : {
           "translation" : "limit((n)^(- alpha)* JacobiP(n, alpha, beta, cos((z)/(n))), n = infinity) = ((z)/(2))^(- alpha)* J[alpha]*(z); limit((n)^(- beta)* JacobiP(n, alpha, beta, cos(pi -(z)/(n))), n = infinity) = ((z)/(2))^(- beta)* J[beta]*(z)",
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "ERROR",
             "numberOfTests" : 0,
             "testCalculations" : [ ]
           }
@@ -16339,7 +15750,8 @@
         "Mathematica" : {
           "translation" : "z",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 7,
             "numberOfFailedTests" : 7,
             "numberOfSuccessfulTests" : 0,
@@ -16389,12 +15801,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
             "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "z",
-                "property" : "Simple"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }
@@ -16405,7 +15819,8 @@
         "Maple" : {
           "translation" : "z",
           "numericResults" : {
-            "successful" : false,
+            "result" : "FAILURE",
+            "wasAborted" : false,
             "numberOfTests" : 3,
             "numberOfFailedTests" : 3,
             "numberOfSuccessfulTests" : 0,
@@ -16431,32 +15846,14 @@
             ]
           },
           "symbolicResults" : {
-            "successful" : false,
-            "numberOfTests" : 6,
+            "result" : "FAILURE",
+            "numberOfTests" : 1,
             "testCalculations" : [
               {
+                "property" : "Simple",
                 "result" : "z",
-                "property" : "Simple"
-              },
-              {
-                "result" : "z",
-                "property" : "ConvEXP"
-              },
-              {
-                "result" : "z",
-                "property" : "ConvHYP"
-              },
-              {
-                "result" : "z",
-                "property" : "EXP"
-              },
-              {
-                "result" : "z",
-                "property" : "EXP+EXP"
-              },
-              {
-                "result" : "z",
-                "property" : "EXP+HYP"
+                "wasAborted" : false,
+                "wasConditionallySuccessful" : false
               }
             ]
           }

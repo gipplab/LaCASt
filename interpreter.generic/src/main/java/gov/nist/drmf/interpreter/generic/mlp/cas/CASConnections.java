@@ -22,7 +22,7 @@ public final class CASConnections {
 
     private static CASConnections instance;
 
-    private final Map<String, NativeComputerAlgebraInterfaceBuilder<?>> connectionsMap;
+    private final Map<String, NativeComputerAlgebraInterfaceBuilder> connectionsMap;
 
     private final Map<String, NumericalConfig> numericalConfigMap;
     private final Map<String, SymbolicalConfig> symbolicalConfigMap;
@@ -37,15 +37,15 @@ public final class CASConnections {
         symbolicalConfigMap = new HashMap<>();
 
         // first maple
-        NativeComputerAlgebraInterfaceBuilder<?> maple = new MapleConnector();
+        NativeComputerAlgebraInterfaceBuilder maple = new MapleConnector();
         tryAddCAS( maple, casTranslators.getTranslator(maple.getLanguageKey()) );
 
         // next mathematica
-        NativeComputerAlgebraInterfaceBuilder<?> mathematica = new MathematicaConnector();
+        NativeComputerAlgebraInterfaceBuilder mathematica = new MathematicaConnector();
         tryAddCAS( mathematica, casTranslators.getTranslator(mathematica.getLanguageKey()) );
     }
 
-    private void tryAddCAS(NativeComputerAlgebraInterfaceBuilder<?> cas, IConstraintTranslator translator) {
+    private void tryAddCAS(NativeComputerAlgebraInterfaceBuilder cas, IConstraintTranslator translator) {
         try {
             if ( !cas.isCASAvailable() ) return;
 
@@ -63,7 +63,7 @@ public final class CASConnections {
             if ( translator != null ) {
                 String[] globalAssumptions = numConfig.getEntireTestSuiteAssumptionsList();
                 String[] assumptionsTranslated = translator.translateEachConstraint(globalAssumptions);
-                cas.getNumericEvaluator().setGlobalAssumptions(List.of(assumptionsTranslated));
+                cas.getNumericEvaluator().setGlobalNumericAssumptions(List.of(assumptionsTranslated));
             }
         } catch ( Exception | Error e ) {
             LOG.warn("Unable to establish connection with CAS " + cas.getLanguageKey() + ". " +
@@ -79,11 +79,11 @@ public final class CASConnections {
         return translators.getTranslator(cas);
     }
 
-    public List<NativeComputerAlgebraInterfaceBuilder<?>> getCASConnections() {
+    public List<NativeComputerAlgebraInterfaceBuilder> getCASConnections() {
         return new LinkedList<>(connectionsMap.values());
     }
 
-    public NativeComputerAlgebraInterfaceBuilder<?> getCASConnection(String cas) {
+    public NativeComputerAlgebraInterfaceBuilder getCASConnection(String cas) {
         return this.connectionsMap.get(cas);
     }
 
