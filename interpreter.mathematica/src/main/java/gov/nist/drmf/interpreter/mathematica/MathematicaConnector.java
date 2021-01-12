@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.mathematica;
 
-import com.wolfram.jlink.Expr;
 import gov.nist.drmf.interpreter.common.cas.CASProcedureLoader;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
@@ -10,7 +9,6 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.eval.ISymbolicTestCases;
 import gov.nist.drmf.interpreter.common.eval.NativeComputerAlgebraInterfaceBuilder;
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
-import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.mathematica.common.SymbolicMathematicaEvaluatorTypes;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
@@ -20,7 +18,7 @@ import gov.nist.drmf.interpreter.mathematica.extension.MathematicaSimplifier;
 /**
  * @author Andre Greiner-Petter
  */
-public class MathematicaConnector implements NativeComputerAlgebraInterfaceBuilder<Expr> {
+public class MathematicaConnector implements NativeComputerAlgebraInterfaceBuilder {
     private Boolean casIsAvailable = null;
 
     private MathematicaNumericalCalculator numericalCalculator = null;
@@ -40,20 +38,20 @@ public class MathematicaConnector implements NativeComputerAlgebraInterfaceBuild
     }
 
     @Override
-    public IComputerAlgebraSystemEngine<Expr> getCASEngine() throws CASUnavailableException {
+    public IComputerAlgebraSystemEngine getCASEngine() throws CASUnavailableException {
         if ( !isCASAvailable() ) throw new CASUnavailableException();
         return MathematicaInterface.getInstance();
     }
 
     @Override
-    public ICASEngineSymbolicEvaluator<Expr> getSymbolicEvaluator() throws CASUnavailableException {
+    public ICASEngineSymbolicEvaluator getSymbolicEvaluator() throws CASUnavailableException {
         if ( !isCASAvailable() ) throw new CASUnavailableException();
         if ( symbolicCalculator == null ) symbolicCalculator = new MathematicaSimplifier();
         return symbolicCalculator;
     }
 
     @Override
-    public ICASEngineNumericalEvaluator<Expr> getNumericEvaluator() throws CASUnavailableException, ComputerAlgebraSystemEngineException {
+    public ICASEngineNumericalEvaluator getNumericEvaluator() throws CASUnavailableException {
         if ( !isCASAvailable() ) throw new CASUnavailableException();
         if ( numericalCalculator == null ) numericalCalculator = new MathematicaNumericalCalculator();
         return numericalCalculator;

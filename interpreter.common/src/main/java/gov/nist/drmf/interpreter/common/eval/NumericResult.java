@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.common.pojo;
+package gov.nist.drmf.interpreter.common.eval;
 
 import com.fasterxml.jackson.annotation.*;
 
@@ -11,12 +11,12 @@ import java.util.List;
  * @author Andre Greiner-Petter
  */
 @JsonPropertyOrder({
-        "successful", "wasAborted", "numberOfTests", "numberOfFailedTests", "numberOfSuccessfulTests",
+        "result", "wasAborted", "numberOfTests", "numberOfFailedTests", "numberOfSuccessfulTests",
         "testCalculations"
 })
 public class NumericResult implements Serializable {
-    @JsonProperty("successful")
-    private boolean successful;
+    @JsonProperty("result")
+    private TestResultType testResultType;
 
     @JsonProperty("numberOfTests")
     private int numberOfTotalTests;
@@ -33,19 +33,33 @@ public class NumericResult implements Serializable {
     @JsonProperty("testCalculations")
     private List<NumericCalculation> testCalculations;
 
+    @JsonIgnore
+    private boolean crashed = false;
+
     public NumericResult() {
         testCalculations = new LinkedList<>();
-        this.successful = false;
+        this.testResultType = TestResultType.FAILURE;
         this.wasAborted = false;
     }
 
-    public NumericResult(boolean successful, int totalTests, int failedTests, int successfulTests, boolean wasAborted) {
+    public NumericResult(TestResultType resultType, int totalTests, int failedTests, int successfulTests, boolean wasAborted) {
         this();
-        this.successful = totalTests > 0 && successful;
+        this.testResultType = resultType;
         this.numberOfTotalTests = totalTests;
         this.numberOfFailedTests = failedTests;
         this.numberOfSuccessfulTests = successfulTests;
         this.wasAborted = wasAborted;
+    }
+
+    @JsonIgnore
+    public NumericResult markAsCrashed() {
+        this.crashed = true;
+        return this;
+    }
+
+    @JsonIgnore
+    public boolean crashed() {
+        return crashed;
     }
 
     /**
@@ -55,11 +69,11 @@ public class NumericResult implements Serializable {
     @JsonIgnore
     public void addFurtherResults(NumericResult nr) {
         if ( this.numberOfTotalTests == 0 ) {
-            this.successful = nr.successful;
+            this.testResultType = nr.testResultType;
             this.wasAborted = nr.wasAborted;
         }
         else {
-            this.successful &= nr.successful; // this new test case is only successful if all parts where successful
+            this.testResultType.and(nr.testResultType);
             this.wasAborted |= nr.wasAborted;
         }
 
@@ -69,21 +83,23 @@ public class NumericResult implements Serializable {
         testCalculations.addAll( nr.testCalculations );
     }
 
-    public boolean isSuccessful() {
-        return successful;
+    @JsonGetter("result")
+    public TestResultType getTestResultType() {
+        return testResultType;
     }
 
-    public void setSuccessful(boolean successful) {
-        this.successful = successful;
+    @JsonSetter("result")
+    public void setTestResultType(TestResultType testResultType) {
+        this.testResultType = testResultType;
     }
 
     @JsonGetter("wasAborted")
-    public Boolean getWasAborted() {
+    public Boolean wasAborted() {
         return wasAborted;
     }
 
     @JsonSetter("wasAborted")
-    public void setWasAborted(Boolean wasAborted) {
+    public void wasAborted(Boolean wasAborted) {
         this.wasAborted = wasAborted;
     }
 

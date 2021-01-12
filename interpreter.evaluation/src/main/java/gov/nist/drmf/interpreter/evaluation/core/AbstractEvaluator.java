@@ -25,7 +25,7 @@ import java.util.stream.Stream;
 /**
  * @author Andre Greiner-Petter
  */
-public abstract class AbstractEvaluator<T> {
+public abstract class AbstractEvaluator {
     private static final Logger LOG = LogManager.getLogger(AbstractEvaluator.class.getName());
 
     public final static String NL = System.lineSeparator();
@@ -33,7 +33,7 @@ public abstract class AbstractEvaluator<T> {
     private static double timeoutMS = 30_000;
 
     private IConstraintTranslator forwardTranslator;
-    private IComputerAlgebraSystemEngine<T> engine;
+    private IComputerAlgebraSystemEngine engine;
 
     private HashMap<String, Integer> missingMacrosLib;
 
@@ -55,7 +55,7 @@ public abstract class AbstractEvaluator<T> {
 
     public AbstractEvaluator(
             IConstraintTranslator forwardTranslator,
-            IComputerAlgebraSystemEngine<T> engine
+            IComputerAlgebraSystemEngine engine
     ) {
         this.forwardTranslator = forwardTranslator;
         this.packageWrapper = forwardTranslator.getPackageWrapper();
@@ -71,10 +71,6 @@ public abstract class AbstractEvaluator<T> {
 
     public double getTimeoutSeconds() {
         return AbstractEvaluator.timeoutMS;
-    }
-
-    public void setGlobalAssumptions(String... assumptions) throws ComputerAlgebraSystemEngineException {
-        engine.setGlobalAssumptions(assumptions);
     }
 
     public SymbolDefinedLibrary getSymbolDefinitionLibrary() {
@@ -96,8 +92,8 @@ public abstract class AbstractEvaluator<T> {
         this.rememberPackages = false;
     }
 
-    public T enterEngineCommand(String cmd) throws ComputerAlgebraSystemEngineException {
-        return engine.enterCommand(cmd);
+    public void enterEngineCommand(String cmd) throws ComputerAlgebraSystemEngineException {
+        engine.enterCommand(cmd);
     }
 
     public Set<String> getRequiredPackages() {

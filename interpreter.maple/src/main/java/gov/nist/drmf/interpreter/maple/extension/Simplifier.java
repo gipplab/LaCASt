@@ -2,9 +2,11 @@ package gov.nist.drmf.interpreter.maple.extension;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
+import gov.nist.drmf.interpreter.common.cas.AbstractCasEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.eval.EvaluatorType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
@@ -13,13 +15,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 /**
  * @author Andre Greiner-Petter
  */
-public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
+public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
     private static final Logger LOG = LogManager.getLogger(Simplifier.class.getName());
 
     /**
@@ -47,6 +50,23 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
             LOG.fatal("Unable to initiate the symbol and function translator.", e);
         }
         packageWrapper = new PackageWrapper(basicFunctionsTranslator, symbolTranslator);
+    }
+
+    @Override
+    public void setGlobalSymbolicAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {
+        String cmd = String.join(", ", assumptions);
+        try {
+            maple.evaluate("assume(" + cmd + ");");
+            LOG.info("Set global assumptions in Maple: " + assumptions);
+        } catch (MapleException me) {
+            LOG.error("Unable to set global assumptions for Maple: " + assumptions);
+            throw new ComputerAlgebraSystemEngineException(me);
+        }
+    }
+
+    @Override
+    public void setTimeout(EvaluatorType type, double timeLimit) {
+        if ( EvaluatorType.SYMBOLIC.equals(type) ) this.timeout = timeLimit;
     }
 
     @Override

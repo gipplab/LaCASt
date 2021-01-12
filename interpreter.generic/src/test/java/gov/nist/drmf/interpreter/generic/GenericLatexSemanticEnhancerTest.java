@@ -7,6 +7,8 @@ import gov.nist.drmf.interpreter.generic.elasticsearch.AssumeElasticsearchAvaila
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
 import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
+import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
+import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
 import mlp.ParseException;
 import org.junit.jupiter.api.Test;
 

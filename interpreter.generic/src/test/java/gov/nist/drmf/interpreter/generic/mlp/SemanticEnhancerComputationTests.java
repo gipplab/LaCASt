@@ -2,9 +2,10 @@ package gov.nist.drmf.interpreter.generic.mlp;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.eval.TestResultType;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
-import gov.nist.drmf.interpreter.common.pojo.NumericResult;
-import gov.nist.drmf.interpreter.common.pojo.SymbolicResult;
+import gov.nist.drmf.interpreter.common.eval.NumericResult;
+import gov.nist.drmf.interpreter.common.eval.SymbolicResult;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
 import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
@@ -32,7 +33,7 @@ public class SemanticEnhancerComputationTests {
     void numericComputationMathematicaTest() {
         NumericResult nr = enhancer.computeNumerically("x - 1", Keys.KEY_MATHEMATICA);
         assertNotNull( nr );
-        assertFalse( nr.isSuccessful() );
+        assertEquals(TestResultType.FAILURE, nr.getTestResultType() );
         assertTrue( nr.getNumberOfTotalTests() > 0 );
         assertTrue( nr.getNumberOfFailedTests() > 0 );
         assertTrue( nr.getTestCalculations().size() > 0 );
@@ -50,7 +51,7 @@ public class SemanticEnhancerComputationTests {
     void symbolicComputationMathematicaTest() {
         SymbolicResult sr = enhancer.computeSymbolically("x = y", Keys.KEY_MATHEMATICA);
         assertNotNull( sr );
-        assertFalse( sr.isSuccessful() );
+        assertEquals(TestResultType.FAILURE, sr.getTestResultType());
         assertTrue( sr.getNumberOfTests() > 0 );
         assertTrue( sr.getTestCalculations().size() > 0 );
         try {
@@ -67,7 +68,7 @@ public class SemanticEnhancerComputationTests {
     void numericRelationComputationMathematicaTest() {
         NumericResult nr = enhancer.computeNumerically("x < x^2", Keys.KEY_MATHEMATICA);
         assertNotNull( nr );
-        assertFalse( nr.isSuccessful() );
+        assertEquals(TestResultType.FAILURE, nr.getTestResultType());
         assertTrue( nr.getNumberOfTotalTests() > 0 );
         assertTrue( nr.getNumberOfFailedTests() > 0 );
         assertTrue( nr.getTestCalculations().size() > 0 );
@@ -85,7 +86,7 @@ public class SemanticEnhancerComputationTests {
     void numericComputationMapleTest() {
         NumericResult nr = enhancer.computeNumerically("x - 1", Keys.KEY_MAPLE);
         assertNotNull( nr );
-        assertFalse( nr.isSuccessful() );
+        assertEquals(TestResultType.FAILURE, nr.getTestResultType());
         assertTrue( nr.getNumberOfTotalTests() > 0 );
         assertTrue( nr.getNumberOfFailedTests() > 0 );
         assertTrue( nr.getTestCalculations().size() > 0 );
@@ -103,7 +104,7 @@ public class SemanticEnhancerComputationTests {
     void symbolicComputationMapleTest() {
         SymbolicResult sr = enhancer.computeSymbolically("x = y", Keys.KEY_MAPLE);
         assertNotNull( sr );
-        assertFalse( sr.isSuccessful() );
+        assertEquals(TestResultType.FAILURE, sr.getTestResultType());
         assertTrue( sr.getNumberOfTests() > 0 );
         assertTrue( sr.getTestCalculations().size() > 0 );
         try {
@@ -120,7 +121,7 @@ public class SemanticEnhancerComputationTests {
     void numericRelationComputationMapleTest() {
         NumericResult nr = enhancer.computeNumerically("x < x^2", Keys.KEY_MAPLE);
         assertNotNull( nr );
-        assertFalse( nr.isSuccessful() );
+        assertEquals(TestResultType.FAILURE, nr.getTestResultType());
         assertTrue( nr.getNumberOfTotalTests() > 0 );
         assertTrue( nr.getNumberOfFailedTests() > 0 );
         assertTrue( nr.getTestCalculations().size() > 0 );
@@ -142,7 +143,7 @@ public class SemanticEnhancerComputationTests {
                 Keys.KEY_MATHEMATICA
         );
         assertNotNull( nr );
-        assertTrue( nr.isSuccessful() );
+        assertEquals(TestResultType.SUCCESS, nr.getTestResultType());
         assertTrue( nr.getNumberOfTotalTests() > 0 );
         assertEquals( nr.getNumberOfTotalTests(), nr.getNumberOfSuccessfulTests() );
         assertEquals( 0, nr.getNumberOfFailedTests() );
@@ -165,7 +166,7 @@ public class SemanticEnhancerComputationTests {
                 Keys.KEY_MAPLE
         );
         assertNotNull( nr );
-        assertTrue( nr.isSuccessful() );
+        assertEquals(TestResultType.SUCCESS, nr.getTestResultType());
         assertTrue( nr.getNumberOfTotalTests() > 0 );
         assertEquals( nr.getNumberOfTotalTests(), nr.getNumberOfSuccessfulTests() );
         assertEquals( 0, nr.getNumberOfFailedTests() );
@@ -188,7 +189,7 @@ public class SemanticEnhancerComputationTests {
                 Keys.KEY_MATHEMATICA
         );
         assertNotNull( sr );
-        assertTrue( sr.isSuccessful() );
+        assertEquals(TestResultType.SUCCESS, sr.getTestResultType());
         assertTrue( sr.getNumberOfTests() > 0 );
         assertTrue( sr.getTestCalculations().size() > 0 );
         try {
@@ -209,7 +210,7 @@ public class SemanticEnhancerComputationTests {
                 Keys.KEY_MAPLE
         );
         assertNotNull( sr );
-        assertTrue( sr.isSuccessful() );
+        assertEquals(TestResultType.SUCCESS, sr.getTestResultType());
         assertTrue( sr.getNumberOfTests() > 0 );
         assertTrue( sr.getTestCalculations().size() > 0 );
         try {

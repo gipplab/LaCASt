@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.common.eval;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,15 +14,15 @@ public class NumericalTest implements Serializable {
 
     private final String testExpression;
 
-    private final List<String> testValues,
+    private List<String> testValues,
             constraints,
             constraintVariables,
             constraintVariablesValues,
             extraVariables,
             extraVariablesValues;
 
-    private final int precision;
-    private final int maxCombis;
+    private int precision = 10;
+    private int maxCombis = 100;
 
     private String postProcessingMethodName;
 
@@ -29,13 +30,20 @@ public class NumericalTest implements Serializable {
 
     private Set<String> variables;
 
+    private Set<String> requiredPackages;
+
+    public NumericalTest(String testExpression) {
+        this.testExpression = testExpression;
+        this.requiredPackages = new HashSet<>();
+    }
+
     public NumericalTest(
             String testExpression,
             INumericTestCase c,
             NumericalConfig config,
             IConstraintTranslator translator
     ) {
-        this.testExpression = testExpression;
+        this(testExpression);
 
         String label = c.getEquationLabel();
         testValues = config.getListOfNumericalValues(translator, label);
@@ -47,6 +55,61 @@ public class NumericalTest implements Serializable {
 
         precision = config.getPrecision();
         maxCombis = config.getMaximumNumberOfCombs();
+    }
+
+    NumericalTest setTestValues(List<String> testValues) {
+        this.testValues = testValues;
+        return this;
+    }
+
+    NumericalTest setConstraints(List<String> constraints) {
+        this.constraints = constraints;
+        return this;
+    }
+
+    NumericalTest setConstraintVariables(List<String> constraintVariables) {
+        this.constraintVariables = constraintVariables;
+        return this;
+    }
+
+    NumericalTest setConstraintVariablesValues(List<String> constraintVariablesValues) {
+        this.constraintVariablesValues = constraintVariablesValues;
+        return this;
+    }
+
+    NumericalTest setExtraVariables(List<String> extraVariables) {
+        this.extraVariables = extraVariables;
+        return this;
+    }
+
+    NumericalTest setExtraVariablesValues(List<String> extraVariablesValues) {
+        this.extraVariablesValues = extraVariablesValues;
+        return this;
+    }
+
+    NumericalTest setPrecision(int precision) {
+        this.precision = precision;
+        return this;
+    }
+
+    NumericalTest setMaxCombis(int maxCombis) {
+        this.maxCombis = maxCombis;
+        return this;
+    }
+
+    NumericalTest setSkipClassicAbortion(boolean skipClassicAbortion) {
+        this.skipClassicAbortion = skipClassicAbortion;
+        return this;
+    }
+
+    NumericalTest setRequiredPackages(Set<String> requiredPackages) {
+        if ( requiredPackages == null ) this.requiredPackages = new HashSet<>();
+        else this.requiredPackages = new HashSet<>(requiredPackages);
+        return this;
+    }
+
+    public Set<String> getRequiredPackages() {
+        return requiredPackages;
     }
 
     public Set<String> getVariables() {

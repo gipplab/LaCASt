@@ -1,14 +1,13 @@
 package gov.nist.drmf.interpreter.evaluation.core.numeric;
 
 import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
-import com.wolfram.jlink.Expr;
 import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.Constraints;
 import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.eval.NumericResult;
 import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
 import gov.nist.drmf.interpreter.core.api.DLMFTranslator;
 import gov.nist.drmf.interpreter.evaluation.common.Case;
@@ -30,7 +29,7 @@ import java.util.regex.Pattern;
  * @author Andre Greiner-Petter
  */
 @SuppressWarnings("ALL")
-public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//implements Observer {
+public class NumericalEvaluator extends AbstractNumericalEvaluator {//implements Observer {
 
     private static final Logger LOG = LogManager.getLogger(NumericalEvaluator.class.getName());
 
@@ -113,7 +112,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
      * @throws IOException
      */
     public NumericalEvaluator(
-            NativeComputerAlgebraInterfaceBuilder<T> interfaceBuilder
+            NativeComputerAlgebraInterfaceBuilder interfaceBuilder
     ) throws ComputerAlgebraSystemEngineException, InitTranslatorException {
         super(new DLMFTranslator(interfaceBuilder.getLanguageKey()), interfaceBuilder.getCASEngine(), interfaceBuilder.getNumericEvaluator());
         this.scriptHandler = interfaceBuilder.getEvaluationScriptHandler();
@@ -166,7 +165,11 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             String[] ass = overallAss.split(" \\|\\| ");
             String[] transAss = this.getThisConstraintTranslator().translateEachConstraint(ass);
             this.globalConstraints = Arrays.asList(transAss);
-            super.setGlobalAssumptions(globalConstraints);
+            try {
+                super.setGlobalNumericAssumptions(globalConstraints);
+            } catch (ComputerAlgebraSystemEngineException e) {
+                LOG.error("Unable to enter global assumptions", e);
+            }
         }
     }
 
@@ -324,7 +327,7 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
         try {
             if ( isMaple ) test.setSkipClassicAbortion();
-            T results = performNumericalTest(test);
+            NumericResult results = performNumericalTest(test);
 
             LOG.debug("Finished numerical calculations.");
             if ( preAndPostCommands[1] != null ){
@@ -340,8 +343,8 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             } else {
                 TestResultType resType = testResult(results);
                 String evaluation = "";
-                int tested = getNumericEvaluator().getPerformedTestCases();
-                int failed = getNumericEvaluator().getNumberOfFailedTestCases();
+                int tested = results.getNumberOfTotalTests();
+                int failed = results.getNumberOfFailedTests();
                 if ( tested == 0 && failed > 0 ) {
                     lineResult[c.getLine()].add("Skip - No test values generated");
                     Status.NO_TEST_VALUES.add();
@@ -427,7 +430,10 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
             rhs = "";
         }
 
-        return config.getTestExpression( this.getNumericEvaluator(), lhs, rhs );
+        return config.getTestExpression(
+                this.getNumericEvaluator()::generateNumericTestExpression,
+                lhs, rhs
+        );
     }
 
     @Override
@@ -468,13 +474,13 @@ public class NumericalEvaluator<T> extends AbstractNumericalEvaluator<T> {//impl
 
     public static NumericalEvaluator createStandardMapleEvaluator()
             throws IOException, MapleException, ComputerAlgebraSystemEngineException, InitTranslatorException {
-        NumericalEvaluator evaluator = new NumericalEvaluator<Algebraic>(new MapleConnector());
+        NumericalEvaluator evaluator = new NumericalEvaluator(new MapleConnector());
         evaluator.isMaple = true;
         return evaluator;
     }
 
     public static NumericalEvaluator createStandardMathematicaEvaluator() throws IOException, ComputerAlgebraSystemEngineException, InitTranslatorException {
-        NumericalEvaluator evaluator = new NumericalEvaluator<Expr>(new MathematicaConnector());
+        NumericalEvaluator evaluator = new NumericalEvaluator(new MathematicaConnector());
         evaluator.isMaple = false;
         return evaluator;
     }

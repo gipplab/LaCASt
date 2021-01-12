@@ -23,29 +23,29 @@ import java.util.regex.Matcher;
 /**
  * @author Andre Greiner-Petter
  */
-public abstract class AbstractNumericalEvaluator<T> extends AbstractEvaluator<T> implements INumericTestCalculator<T> {
+public abstract class AbstractNumericalEvaluator extends AbstractEvaluator implements INumericTestCalculator {
     private static final Logger LOG = LogManager.getLogger(AbstractNumericalEvaluator.class.getName());
 
-    private ICASEngineNumericalEvaluator<T> numericalEvaluator;
+    private final ICASEngineNumericalEvaluator numericalEvaluator;
 
     private String[] scripts;
 
     public AbstractNumericalEvaluator(
             IConstraintTranslator forwardTranslator,
-            IComputerAlgebraSystemEngine<T> engine,
-            ICASEngineNumericalEvaluator<T> numericalEvaluator
+            IComputerAlgebraSystemEngine engine,
+            ICASEngineNumericalEvaluator numericalEvaluator
     ) {
         super(forwardTranslator, engine);
         this.numericalEvaluator = numericalEvaluator;
     }
 
     @Override
-    public ICASEngineNumericalEvaluator<T> getNumericEvaluator(){
+    public ICASEngineNumericalEvaluator getNumericEvaluator(){
         return this.numericalEvaluator;
     }
 
-    public void setGlobalAssumptions(List<String> globalAssumptions) {
-        numericalEvaluator.setGlobalAssumptions(globalAssumptions);
+    public void setGlobalNumericAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {
+        numericalEvaluator.setGlobalNumericAssumptions(assumptions);
     }
 
     public void setUpScripts(String... scripts) throws ComputerAlgebraSystemEngineException {
