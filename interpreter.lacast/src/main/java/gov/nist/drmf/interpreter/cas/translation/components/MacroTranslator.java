@@ -255,7 +255,7 @@ public class MacroTranslator extends AbstractListTranslator {
 
         // check for optional arguments
         boolean continueParsing = true;
-        while (!followingExps.isEmpty() && continueParsing) {
+        while (followingExps != null && !followingExps.isEmpty() && continueParsing) {
             PomTaggedExpression first = followingExps.get(0);
 
             // if the next one is empty expression, it cannot be a prime, or caret, or [

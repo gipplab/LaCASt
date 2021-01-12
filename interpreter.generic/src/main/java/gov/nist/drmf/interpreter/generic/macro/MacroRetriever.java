@@ -53,6 +53,9 @@ public class MacroRetriever {
         return retrievedMacros;
     }
 
+    // TODO endlosschleife... für
+    // FORMULA_d1053239b308c91c18de37d55d1af74d: \alpha = m +\frac{1 }{2 }
+    // [03:22:22,933 DEBUG] MacroRetriever:79 - Retrieve 9 definiens for node FORMULA_d1053239b308c91c18de37d55d1af74d: \alpha = m +\frac{1 }{2 }
     private void retrieveReplacements(
             DLMFElasticSearchClient esClient,
             int depth,
@@ -69,7 +72,7 @@ public class MacroRetriever {
             MOINode<MOIAnnotation> node = dependencyList.remove(0);
 
             if ( retrievedMacros.visitedNode( node.getId() ) ) continue;
-            retrievedMacros.visitedNode(node.getId());
+            retrievedMacros.addNodeVisit(node.getId());
 
             // add dependency nodes to new depth list, unless we have not visited them yet
             addDependantNodes(node, retrievedMacros, nextDepthList);
