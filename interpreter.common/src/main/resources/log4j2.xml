@@ -75,7 +75,7 @@
             logging might be not particularly useful.
             -->
             <!--            <AppenderRef ref="HowardConsole"/>-->
-            <!--            <AppenderRef ref="LogFile"/>-->
+<!--                        <AppenderRef ref="LogFile"/>-->
             <!--            <AppenderRef ref="ErrorFile"/>-->
         </Root>
     </Loggers>

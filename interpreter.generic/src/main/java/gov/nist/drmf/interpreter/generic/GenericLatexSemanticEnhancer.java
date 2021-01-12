@@ -185,22 +185,29 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
     }
 
     public static void main(String[] args) throws IOException {
-//        Path p = Paths.get("/mnt/share/data/wikipedia/dlmf-template-pages-26-11-2020.xml");
+        Path p = Paths.get("/mnt/share/data/wikipedia/dlmf-template-pages-26-11-2020.xml");
 //        Path p = Paths.get("BesselFunction.xml");
-        Path p = Paths.get("Jacobi_polynomials.xml");
+//        Path p = Paths.get("Jacobi_polynomials.xml");
         GenericLatexSemanticEnhancer enhancer = new GenericLatexSemanticEnhancer();
 
-//        List<SemanticEnhancedDocument> docs = enhancer.getSemanticEnhancedDocumentsFromWikitext(p);
         Instant start = Instant.now();
         LOG.warn("START GENERATING ANNOTATED DOCUMENT");
-        SemanticEnhancedDocument sed = enhancer.generateAnnotatedDocument(p);
-        LOG.warn("FINISHED GENERATING ANNOTATED DOCUMENT");
-        LOG.warn("START TRANSLATING ANNOTATED DOCUMENT");
-        sed = enhancer.appendTranslationsToDocument(sed);
-        LOG.warn("FINISHED TRANSLATING ANNOTATED DOCUMENT");
-        LOG.warn("START COMPUTING TRANSLATED DOCUMENT");
-        sed = enhancer.appendCASComputationsToDocument(sed);
-        LOG.warn("FINISHED COMPUTING TRANSLATED DOCUMENT");
+        List<SemanticEnhancedDocument> docs = enhancer.getSemanticEnhancedDocumentsFromWikitext(p);
+//        SemanticEnhancedDocument sed = enhancer.generateAnnotatedDocument(p);
+//        LOG.warn("FINISHED GENERATING ANNOTATED DOCUMENT");
+//        LOG.warn("START TRANSLATING ANNOTATED DOCUMENT");
+//        sed = enhancer.appendTranslationsToDocument(sed);
+//        LOG.warn("FINISHED TRANSLATING ANNOTATED DOCUMENT");
+//        LOG.warn("START COMPUTING TRANSLATED DOCUMENT");
+//        sed = enhancer.appendCASComputationsToDocument(sed);
+//        LOG.warn("FINISHED COMPUTING TRANSLATED DOCUMENT");
+
+//        for ( SemanticEnhancedDocument sed : docs ) {
+//            LOG.warn("Translating and Evaluating document: " + sed.getTitle());
+//            enhancer.appendTranslationsToDocument(sed);
+//            enhancer.appendCASComputationsToDocument(sed);
+//        }
+
         Duration elapsed = Duration.between(start, Instant.now());
         LOG.warn("FINISHED entire document analysis... [" + elapsed.toString() + "]");
 
@@ -208,11 +215,11 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
         DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
         prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
 
-//        String serializedDoc = mapper.writer(prettyPrinter).writeValueAsString(docs);
-        String serializedDoc = mapper.writer(prettyPrinter).writeValueAsString(sed);
-//        Files.writeString( Paths.get("/mnt/share/data/wikipedia/Results/dlmf-template-results-26-11-2020-generated-03-12-2020.json"), serializedDoc );
+        String serializedDoc = mapper.writer(prettyPrinter).writeValueAsString(docs);
+//        String serializedDoc = mapper.writer(prettyPrinter).writeValueAsString(sed);
+        Files.writeString( Paths.get("/mnt/share/data/wikipedia/Results/dlmf-template-results-26-11-2020-generated-12-01-2021-ANNOTATED.json"), serializedDoc );
 //        Files.writeString( Paths.get("Result-Bessel.json"), serializedDoc );
-        Files.writeString( Paths.get("ResultsFULL.json"), serializedDoc );
+//        Files.writeString( Paths.get("ResultsFULL.json"), serializedDoc );
 
 //        for ( SemanticEnhancedDocument doc : docs ) {
 //            System.out.println("Document: " + doc.getTitle());
