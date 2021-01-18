@@ -32,6 +32,11 @@ public class SemanticEnhancedDocument implements SemanticallyRanked {
         this.formulae = new LinkedList<>();
     }
 
+    public SemanticEnhancedDocument(SemanticEnhancedDocument copy) {
+        this.title = copy.title;
+        this.formulae = new LinkedList<>(copy.formulae);
+    }
+
     public SemanticEnhancedDocument(String title, MLPDependencyGraph graph) {
         this.title = title;
         this.formulae = graph.getVertices().stream()

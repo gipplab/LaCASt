@@ -101,6 +101,7 @@ public class TranslatedExpressionHelper {
     }
 
     public static StringBuilder getVarPattern(List<String> var) {
+        if ( var.isEmpty() ) return new StringBuilder();
         StringBuilder varPattern = new StringBuilder("(");
         for ( int i = 0; i < var.size()-1; i++ ) {
             varPattern.append("\\Q").append(var.get(i)).append("\\E");

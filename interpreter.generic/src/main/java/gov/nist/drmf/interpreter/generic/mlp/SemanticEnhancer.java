@@ -5,6 +5,7 @@ import com.formulasearchengine.mathosphere.mlp.text.WikiTextUtils;
 import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
+import gov.nist.drmf.interpreter.common.config.GenericLacastConfig;
 import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.MinimumRequirementNotFulfilledException;
@@ -18,10 +19,7 @@ import gov.nist.drmf.interpreter.generic.interfaces.IPartialEnhancer;
 import gov.nist.drmf.interpreter.generic.macro.*;
 import gov.nist.drmf.interpreter.generic.mlp.cas.CASConnections;
 import gov.nist.drmf.interpreter.generic.mlp.cas.CASTranslators;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPDependencyGraph;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIAnnotation;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticReplacementRule;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.*;
 import gov.nist.drmf.interpreter.pom.common.DefaultNumericTestCase;
 import gov.nist.drmf.interpreter.pom.extensions.*;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
@@ -50,10 +48,18 @@ public class SemanticEnhancer implements IPartialEnhancer {
 
     private final CASConnections casConnections;
 
-    public SemanticEnhancer() {
-        this.retriever = new MacroRetriever();
-        this.casConnections = CASConnections.getInstance();
-        this.casTranslators = casConnections.getTranslators();
+    protected SemanticEnhancer() {
+        this(GenericLacastConfig.getDefaultConfig());
+    }
+
+    protected SemanticEnhancer(GenericLacastConfig config) {
+        this(config, new CASTranslators());
+    }
+
+    public SemanticEnhancer(GenericLacastConfig config, CASTranslators translators) {
+        this.retriever = new MacroRetriever(config);
+        this.casConnections = new CASConnections(config, translators);
+        this.casTranslators = translators;
     }
 
     @Override
@@ -129,6 +135,11 @@ public class SemanticEnhancer implements IPartialEnhancer {
             LOG.warn("Unable to perform numerical tests for " + casName + ": " + semanticLatex, e);
         } catch (Exception e) {
             LOG.warn("Unable to analyze test. Something went wrong: " + semanticLatex, e);
+        } finally {
+            try { cas.getCASEngine().forceGC(); }
+            catch (NullPointerException | ComputerAlgebraSystemEngineException e){
+                LOG.warn("Unable to call GC in CAS. Ignore it and hope we can survive", e);
+            }
         }
         return null;
     }
@@ -142,6 +153,11 @@ public class SemanticEnhancer implements IPartialEnhancer {
             } else return computeSymbolicResults(semanticLatex, cas);
         } catch (Exception e) {
             LOG.warn("Unable to analyze test. Something went wrong: " + semanticLatex, e);
+        } finally {
+            try { cas.getCASEngine().forceGC(); }
+            catch (NullPointerException | ComputerAlgebraSystemEngineException e){
+                LOG.warn("Unable to call GC in CAS. Ignore it and hope we can survive", e);
+            }
         }
         return null;
     }

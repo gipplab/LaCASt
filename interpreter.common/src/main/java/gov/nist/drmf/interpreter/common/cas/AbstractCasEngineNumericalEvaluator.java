@@ -202,7 +202,7 @@ public abstract class AbstractCasEngineNumericalEvaluator<T> implements ICASEngi
         int tests = getPerformedTestCases();
         boolean aborted = wasAborted(results);
         int failed = aborted ? tests : getNumberOfFailedTestCases();
-        int success = aborted ? 0 : tests-failed;
+        int success = aborted ? 0 : Math.max(0, tests-failed);
 
         NumericResult nr = new NumericResult(
                 type,

@@ -8,6 +8,7 @@ import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.process.RmiCasServer;
 import gov.nist.drmf.interpreter.common.process.RmiProcessHandler;
+import gov.nist.drmf.interpreter.common.process.RmiSubprocessInfo;
 import gov.nist.drmf.interpreter.common.process.UnrecoverableProcessException;
 import gov.nist.drmf.interpreter.maple.common.MapleConfig;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
@@ -35,8 +36,8 @@ public class MapleRmiClient extends RmiProcessHandler
     private final MapleRmiClientNumericEvaluator numericEvaluator;
     private final MapleRmiClientSymbolicEvaluator symbolicEvaluator;
 
-    private MapleRmiClient() throws CASUnavailableException {
-        super( MapleRmiServer.class, List.of("-Xmx2g", "-Xss100M") );
+    public MapleRmiClient(RmiSubprocessInfo subprocessInfo) throws CASUnavailableException {
+        super(subprocessInfo);
         numericEvaluator = new MapleRmiClientNumericEvaluator(this);
         symbolicEvaluator = new MapleRmiClientSymbolicEvaluator(this);
     }
@@ -60,19 +61,21 @@ public class MapleRmiClient extends RmiProcessHandler
 
     @Override
     public void stop() {
-        try {
-            LOG.info("Send Maple RMI server to shutdown.");
-            server.stop();
-            // the server waits 500ms to actually shutdown in order to wait for
-            // java to unbind RMI endpoints. Hence, we should wait at least also 500ms
-            // to continue. Just in case. We do not really need to wait because there is nothing
-            // to wait for actually.
-            try { Thread.sleep(700); }
-            catch (InterruptedException e) {
-                // we dont really care...
+        if ( isAlive() ) {
+            try {
+                LOG.info("Send Maple RMI server shutdown signal and wait.");
+                server.stop();
+                // the server waits 500ms to actually shutdown in order to wait for
+                // java to unbind RMI endpoints. Hence, we should wait at least also 500ms
+                // to continue. Just in case. We do not really need to wait because there is nothing
+                // to wait for actually.
+                try { Thread.sleep(1_000); }
+                catch (InterruptedException e) {
+                    // we dont really care...
+                }
+            } catch (RemoteException e) {
+                LOG.debug("Unable to stop remote JVM.");
             }
-        } catch (RemoteException e) {
-            LOG.debug("Unable to stop remote JVM.");
         }
         super.stop();
     }
@@ -196,34 +199,12 @@ public class MapleRmiClient extends RmiProcessHandler
         return NumericCalculator.generateNumericCalculationExpression(expression);
     }
 
-    private static boolean instantiated = false;
-
-    // the instance
-    private static MapleRmiClient clientInstance;
-
     /**
-     * Returns the unique reference to Maple's RMI client
-     * @return the unique instance of the Maple client
-     * @throws CASUnavailableException if the CAS is unavailable
+     * Simply checks whether the system environment variables are set properly and the paths exists.
+     * This method does not include actually starting Maple and see if it works.
+     * @return checks if maple is theoretically present. It does not perform any license tests!
      */
-    public static MapleRmiClient getInstance() throws CASUnavailableException {
-        if ( clientInstance == null && !instantiated ) {
-            clientInstance = new MapleRmiClient();
-            clientInstance.start();
-            instantiated = clientInstance != null;
-        }
-        return clientInstance;
-    }
-
     public static boolean isMaplePresent() {
-        boolean validSetup = MapleConfig.areSystemVariablesSetProperly();
-        if ( !validSetup ) return false;
-
-        // system variables are set... lets see if we can connect to Maple VM
-        try {
-            return getInstance() != null;
-        } catch (Exception e) {
-            return false;
-        }
+        return MapleConfig.areSystemVariablesSetProperly();
     }
 }

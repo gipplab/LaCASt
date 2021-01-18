@@ -1,8 +1,10 @@
 package gov.nist.drmf.interpreter.generic.mlp.cas;
 
+import gov.nist.drmf.interpreter.common.config.GenericLacastConfig;
 import gov.nist.drmf.interpreter.common.eval.NativeComputerAlgebraInterfaceBuilder;
 import gov.nist.drmf.interpreter.common.eval.NumericalConfig;
 import gov.nist.drmf.interpreter.common.eval.SymbolicalConfig;
+import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.maple.MapleConnector;
 import gov.nist.drmf.interpreter.mathematica.MathematicaConnector;
@@ -20,8 +22,6 @@ import java.util.Map;
 public final class CASConnections {
     private static final Logger LOG = LogManager.getLogger(CASConnections.class.getName());
 
-    private static CASConnections instance;
-
     private final Map<String, NativeComputerAlgebraInterfaceBuilder> connectionsMap;
 
     private final Map<String, NumericalConfig> numericalConfigMap;
@@ -29,7 +29,7 @@ public final class CASConnections {
 
     private final CASTranslators translators;
 
-    private CASConnections(CASTranslators casTranslators) {
+    public CASConnections(GenericLacastConfig config, CASTranslators casTranslators) {
         this.translators = casTranslators;
 
         connectionsMap = new HashMap<>();
@@ -37,12 +37,21 @@ public final class CASConnections {
         symbolicalConfigMap = new HashMap<>();
 
         // first maple
-        NativeComputerAlgebraInterfaceBuilder maple = new MapleConnector();
-        tryAddCAS( maple, casTranslators.getTranslator(maple.getLanguageKey()) );
+        try {
+            NativeComputerAlgebraInterfaceBuilder maple = config.getMapleSubprocessInfo() == null ?
+                    new MapleConnector() : new MapleConnector(config.getMapleSubprocessInfo());
+            tryAddCAS( maple, casTranslators.getTranslator(maple.getLanguageKey()) );
+        } catch ( ExceptionInInitializerError | CASUnavailableException e ) {
+            LOG.warn("Maple is unavailable! So we will not be able to use Maple in the following computations.", e);
+        }
 
         // next mathematica
-        NativeComputerAlgebraInterfaceBuilder mathematica = new MathematicaConnector();
-        tryAddCAS( mathematica, casTranslators.getTranslator(mathematica.getLanguageKey()) );
+        try {
+            NativeComputerAlgebraInterfaceBuilder mathematica = new MathematicaConnector();
+            tryAddCAS( mathematica, casTranslators.getTranslator(mathematica.getLanguageKey()) );
+        } catch ( ExceptionInInitializerError | CASUnavailableException e ) {
+            LOG.warn("Mathematica is unavailable! So we will not be able to use Mathematica in the following computations.", e);
+        }
     }
 
     private void tryAddCAS(NativeComputerAlgebraInterfaceBuilder cas, IConstraintTranslator translator) {
@@ -93,12 +102,5 @@ public final class CASConnections {
 
     public SymbolicalConfig getSymbolicalConfig(String cas) {
         return this.symbolicalConfigMap.get(cas);
-    }
-
-    public static CASConnections getInstance() {
-        if ( instance == null ) {
-            instance = new CASConnections(new CASTranslators());
-        }
-        return instance;
     }
 }

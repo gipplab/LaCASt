@@ -90,8 +90,10 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine {
      *                          pre-defined Maple procedure fails.
      */
     private void init() throws MapleException {
+        LOG.info("Establish Maple connection");
         listener = new MapleListener(true);
         engine = new Engine( maple_args, listener, null, null );
+        LOG.info("Successfully setup Maple engine connection");
     }
 
     /**
@@ -198,8 +200,12 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine {
      */
     public static MapleInterface getUniqueMapleInterface() {
         if ( mapleInterface == null ) {
+            LOG.info("Maple interface is not setup yet. Start initialization.");
             try {
-                if (MapleConfig.isMapleSetup()) mapleInterface = new MapleInterface();
+                LOG.info("Check if Maple setup is set properly");
+                if (MapleConfig.isMapleSetup()) {
+                    mapleInterface = new MapleInterface();
+                }
                 return mapleInterface;
             } catch (MapleException e) {
                 LOG.error("Unable to load ");

@@ -307,6 +307,7 @@ public class TranslatedExpression {
      */
     public TranslatedExpression removeUntilLastAppearanceOfVar(List<String> var, String multiplyChar) {
         TranslatedExpression cache = new TranslatedExpression();
+        if ( trans_exps.isEmpty() ) return cache;
 
         // first element is ALWAYS part of the argument
         cache.trans_exps.addFirst(trans_exps.removeFirst());

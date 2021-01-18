@@ -53,7 +53,7 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
     private void init() throws MathLinkException {
         if ( mathematicaInterface != null ) return; // already instantiated
 
-        LOG.debug("Instantiating mathematica interface");
+        LOG.info("Instantiating mathematica interface");
         Path mathPath = MathematicaConfig.loadMathematicaPath();
         String[] args = getDefaultArguments(mathPath);
 

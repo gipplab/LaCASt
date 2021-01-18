@@ -221,4 +221,24 @@ public class SemanticEnhancerComputationTests {
             LOG.debug("Unable to print numeric test calculation");
         }
     }
+
+    @Test
+    @AssumeMapleAvailability
+    void numericComputationMapleJacobiTest() {
+        NumericResult nr = enhancer.computeNumerically(
+                "\\JacobipolyP{\\alpha}{\\beta}{0}@{x} = 2",
+                Keys.KEY_MAPLE
+        );
+        assertNotNull( nr );
+        assertEquals( 0, nr.getNumberOfTotalTests() );
+        assertEquals( 1, nr.getNumberOfFailedTests() );
+        assertEquals( 0, nr.getNumberOfSuccessfulTests() );
+        try {
+            String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
+            assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
+            LOG.debug(representation);
+        } catch (JsonProcessingException e) {
+            LOG.debug("Unable to print numeric test calculation");
+        }
+    }
 }

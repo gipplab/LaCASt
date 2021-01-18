@@ -94,6 +94,7 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
     }
 
     protected void addDependency(MOINode<T> source, MOINode<T> sink) {
+        if ( source == null || sink == null ) return;
         MOIDependency<T> dependency = new MOIDependency<>(source, sink);
         this.edges.put(
                 new Connection(

@@ -86,8 +86,9 @@ public class BasicFunctionsTranslator extends GenericTranslationMapper implement
      */
     public String translate( String[] args, String function_name ){
         String pattern = translate(function_name);
-        if ( pattern == null ) return null;
+        if ( pattern == null || args == null ) return null;
         for ( int i = 0; i < args.length; i++ ){
+            if ( args[i] == null ) continue;
             pattern = pattern.replace(POSITION_MARKER + i, args[i]);
         }
         return pattern;

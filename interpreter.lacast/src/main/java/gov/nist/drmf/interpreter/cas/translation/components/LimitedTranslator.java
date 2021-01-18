@@ -233,6 +233,7 @@ public class LimitedTranslator extends AbstractListTranslator {
             limit.overwriteUpperLimit(te.getTranslatedExpression());
         }
 
+        if ( limit == null ) return new MathematicalEssentialOperatorMetadata();
         return limit;
     }
 

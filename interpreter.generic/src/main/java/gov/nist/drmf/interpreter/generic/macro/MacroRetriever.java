@@ -27,17 +27,13 @@ public class MacroRetriever {
 
     private final MacroDistributionAnalyzer macroDistributionAnalyzer;
 
-    public MacroRetriever() {
-        this(GenericLacastConfig.getConfig());
-    }
-
     public MacroRetriever(GenericLacastConfig config) {
         this.config = config;
         this.macroDistributionAnalyzer = MacroDistributionAnalyzer.getStandardInstance();
     }
 
     public RetrievedMacros retrieveReplacements(MOINode<MOIAnnotation> node) {
-        DLMFElasticSearchClient client = new DLMFElasticSearchClient();
+        DLMFElasticSearchClient client = new DLMFElasticSearchClient(config.getESConfig());
 
         List<MOINode<MOIAnnotation>> dependentNodes = new LinkedList<>();
         dependentNodes.add( node );

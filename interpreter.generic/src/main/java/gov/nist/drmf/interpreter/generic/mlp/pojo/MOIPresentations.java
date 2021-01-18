@@ -22,6 +22,8 @@ import java.util.stream.Collectors;
         "id", "formula", "semanticFormula", "confidence", "translations",
         "positions", "includes", "isPartOf", "definiens"
 })
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MOIPresentations implements SemanticallyRanked {
     private static final Logger LOG = LogManager.getLogger(MOIPresentations.class.getName());
 
@@ -59,6 +61,22 @@ public class MOIPresentations implements SemanticallyRanked {
         id = "FORMULA_EMPTY";
         genericLatex = "";
         casRepresentations = new HashMap<>();
+    }
+
+    /**
+     * Copy constructor
+     */
+    public MOIPresentations(MOIPresentations copy) {
+        this.status = copy.status;
+        this.id = copy.id;
+        this.genericLatex = copy.genericLatex;
+        if (copy.definiens != null) this.definiens = new LinkedList<>(copy.definiens);
+        this.semanticLatex = copy.semanticLatex;
+        this.casRepresentations = new HashMap<>(copy.casRepresentations);
+        this.score = copy.score;
+        if (copy.positions != null) this.positions = new LinkedList<>(copy.positions);
+        if (copy.ingoingNodes != null) this.ingoingNodes = new LinkedList<>(copy.ingoingNodes);
+        if (copy.outgoingNodes != null) this.outgoingNodes = new LinkedList<>(copy.outgoingNodes);
     }
 
     public MOIPresentations(MOINode<MOIAnnotation> node) {
@@ -193,11 +211,15 @@ public class MOIPresentations implements SemanticallyRanked {
 
     @JsonSetter("includes")
     public void setIngoingNodes(List<String> ingoingNodes) {
+        if ( !ingoingNodes.isEmpty() && !status.hasPassed( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED ) )
+            status = SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED;
         this.ingoingNodes = ingoingNodes;
     }
 
     @JsonSetter("isPartOf")
     public void setOutgoingNodes(List<String> outgoingNodes) {
+        if ( !outgoingNodes.isEmpty() && !status.hasPassed( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED ) )
+            status = SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED;
         this.outgoingNodes = outgoingNodes;
     }
 
