@@ -53,6 +53,7 @@ public class NumericResult implements Serializable {
 
     @JsonIgnore
     public NumericResult markAsCrashed() {
+        this.testResultType = TestResultType.ERROR;
         this.crashed = true;
         return this;
     }

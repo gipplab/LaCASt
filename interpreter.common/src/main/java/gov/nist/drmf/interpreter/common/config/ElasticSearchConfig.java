@@ -1,7 +1,4 @@
-package gov.nist.drmf.interpreter.generic.elasticsearch;
-
-import gov.nist.drmf.interpreter.common.config.ConfigDiscovery;
-import gov.nist.drmf.interpreter.common.config.GenericLacastConfig;
+package gov.nist.drmf.interpreter.common.config;
 
 /**
  * @author Andre Greiner-Petter
@@ -14,7 +11,7 @@ public class ElasticSearchConfig {
     private final int port;
 
     public ElasticSearchConfig(){
-        GenericLacastConfig c = GenericLacastConfig.getConfig();
+        GenericLacastConfig c = GenericLacastConfig.getDefaultConfig();
         this.host = c.getEsHost();
         this.index = c.getMacroIndex();
         this.port = c.getEsPort();

@@ -5,18 +5,24 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.formulasearchengine.mathosphere.mlp.contracts.WikiTextPageExtractorMapper;
 import com.formulasearchengine.mathosphere.mlp.pojos.MathTag;
+import gov.nist.drmf.interpreter.common.config.GenericLacastConfig;
 import gov.nist.drmf.interpreter.common.eval.NumericResult;
 import gov.nist.drmf.interpreter.common.eval.SymbolicResult;
-import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.pojo.*;
 import gov.nist.drmf.interpreter.common.exceptions.MinimumRequirementNotFulfilledException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.pojo.CASResult;
+import gov.nist.drmf.interpreter.common.pojo.ComputationTask;
+import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
 import gov.nist.drmf.interpreter.generic.interfaces.IGenericLatexSemanticEnhancerAPI;
 import gov.nist.drmf.interpreter.generic.mlp.ContextAnalyzer;
 import gov.nist.drmf.interpreter.generic.mlp.Document;
 import gov.nist.drmf.interpreter.generic.mlp.SemanticEnhancer;
 import gov.nist.drmf.interpreter.generic.mlp.WikitextDocument;
 import gov.nist.drmf.interpreter.generic.mlp.cas.CASTranslators;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.*;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPDependencyGraph;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIAnnotation;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;
@@ -50,8 +56,15 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
      * Constructs a new instance of the class
      */
     public GenericLatexSemanticEnhancer() {
-        this.semanticEnhancer = new SemanticEnhancer();
+        this(GenericLacastConfig.getDefaultConfig());
+    }
+
+    /**
+     * Constructs a new instance of the class
+     */
+    public GenericLatexSemanticEnhancer(GenericLacastConfig config) {
         this.translators = new CASTranslators();
+        this.semanticEnhancer = new SemanticEnhancer(config, this.translators);
     }
 
     @Override
@@ -185,14 +198,22 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
     }
 
     public static void main(String[] args) throws IOException {
-        Path p = Paths.get("/mnt/share/data/wikipedia/dlmf-template-pages-26-11-2020.xml");
+        ObjectMapper mapper = SemanticEnhancedDocument.getMapper();
+        DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
+        prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
+
+        Path p = Paths.get("/mnt/share/data/wikipedia/Results/dlmf-template-results-26-11-2020-generated-12-01-2021-ANNOTATED.json");
+//        Path p = Paths.get("/mnt/share/data/wikipedia/dlmf-template-pages-26-11-2020.xml");
 //        Path p = Paths.get("BesselFunction.xml");
 //        Path p = Paths.get("Jacobi_polynomials.xml");
         GenericLatexSemanticEnhancer enhancer = new GenericLatexSemanticEnhancer();
 
         Instant start = Instant.now();
-        LOG.warn("START GENERATING ANNOTATED DOCUMENT");
-        List<SemanticEnhancedDocument> docs = enhancer.getSemanticEnhancedDocumentsFromWikitext(p);
+        SemanticEnhancedDocument[] docs = mapper.readValue(p.toFile(), SemanticEnhancedDocument[].class);
+
+        LOG.info("Finished loading documents from annotated file.");
+//        LOG.warn("START GENERATING ANNOTATED DOCUMENT");
+//        List<SemanticEnhancedDocument> docs = enhancer.getSemanticEnhancedDocumentsFromWikitext(p);
 //        SemanticEnhancedDocument sed = enhancer.generateAnnotatedDocument(p);
 //        LOG.warn("FINISHED GENERATING ANNOTATED DOCUMENT");
 //        LOG.warn("START TRANSLATING ANNOTATED DOCUMENT");
@@ -202,22 +223,24 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
 //        sed = enhancer.appendCASComputationsToDocument(sed);
 //        LOG.warn("FINISHED COMPUTING TRANSLATED DOCUMENT");
 
-//        for ( SemanticEnhancedDocument sed : docs ) {
-//            LOG.warn("Translating and Evaluating document: " + sed.getTitle());
-//            enhancer.appendTranslationsToDocument(sed);
+        for ( int i = 0; i < docs.length; i++ ) {
+            SemanticEnhancedDocument sed = docs[i];
+            if ( sed.getFormulae() == null || sed.getFormulae().isEmpty() ) {
+                LOG.warn("The document " + sed.getTitle() + " does not contain any formulae. Remove it!");
+                docs[i] = null;
+                continue;
+            }
+            LOG.warn("Translating and Evaluating document: " + sed.getTitle());
+            enhancer.appendTranslationsToDocument(sed);
 //            enhancer.appendCASComputationsToDocument(sed);
-//        }
+        }
 
         Duration elapsed = Duration.between(start, Instant.now());
         LOG.warn("FINISHED entire document analysis... [" + elapsed.toString() + "]");
 
-        ObjectMapper mapper = SemanticEnhancedDocument.getMapper();
-        DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
-        prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
-
         String serializedDoc = mapper.writer(prettyPrinter).writeValueAsString(docs);
 //        String serializedDoc = mapper.writer(prettyPrinter).writeValueAsString(sed);
-        Files.writeString( Paths.get("/mnt/share/data/wikipedia/Results/dlmf-template-results-26-11-2020-generated-12-01-2021-ANNOTATED.json"), serializedDoc );
+        Files.writeString( Paths.get("/mnt/share/data/wikipedia/Results/dlmf-template-results-26-11-2020-generated-12-01-2021-TRANSLATED.json"), serializedDoc );
 //        Files.writeString( Paths.get("Result-Bessel.json"), serializedDoc );
 //        Files.writeString( Paths.get("ResultsFULL.json"), serializedDoc );
 

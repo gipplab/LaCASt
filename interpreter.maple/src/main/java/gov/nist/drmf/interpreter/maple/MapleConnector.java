@@ -8,9 +8,11 @@ import gov.nist.drmf.interpreter.common.eval.INumericalEvaluationScripts;
 import gov.nist.drmf.interpreter.common.eval.ISymbolicTestCases;
 import gov.nist.drmf.interpreter.common.eval.NativeComputerAlgebraInterfaceBuilder;
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
+import gov.nist.drmf.interpreter.common.process.RmiSubprocessInfo;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.common.MapleScriptHandler;
 import gov.nist.drmf.interpreter.maple.common.SymbolicMapleEvaluatorTypes;
+import gov.nist.drmf.interpreter.maple.secure.DefaultMapleRmiServerSubprocessInfo;
 import gov.nist.drmf.interpreter.maple.secure.MapleRmiClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,11 +25,17 @@ import java.io.IOException;
 public class MapleConnector implements NativeComputerAlgebraInterfaceBuilder {
     private static final Logger LOG = LogManager.getLogger(MapleConnector.class.getName());
 
-    private static final MapleRmiClient mapleClient = MapleRmiClient.getInstance();
+    private final MapleRmiClient mapleClient;
     private MapleScriptHandler scriptHandler;
     private boolean loadedScripts = false;
 
-    public MapleConnector() {
+    public MapleConnector() throws CASUnavailableException {
+        this(new DefaultMapleRmiServerSubprocessInfo());
+    }
+
+    public MapleConnector(RmiSubprocessInfo casSubprocessInfo) throws CASUnavailableException {
+        this.mapleClient = new MapleRmiClient(casSubprocessInfo);
+        this.mapleClient.start();
         try {
             this.scriptHandler = new MapleScriptHandler();
             loadedScripts = true;

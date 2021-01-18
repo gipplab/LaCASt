@@ -13,9 +13,7 @@ import java.nio.file.Paths;
 import java.rmi.NotBoundException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -37,21 +35,13 @@ public class RmiProcessHandler {
     private SubprocessLoggerRunner logRunner;
     private Thread logRunnerThread;
 
+    private final HashMap<Long, Thread> shutdownHookProcessMap;
+    private final HashSet<Long> ignorePidShutdown;
+
     private CompletableFuture<Process> completeProcessFuture;
 
-    public RmiProcessHandler(Class<?> clazz, List<String> jvmArgs) {
-        // setup commands
-        String javaHome = System.getProperty(ProcessKeys.JAVA_HOME);
-        String javaBin = Paths.get(javaHome, "bin", "java").toString();
-        String classpath = System.getProperty(ProcessKeys.JAVA_CLASSPATH);
-        String className = clazz.getName();
-
-        List<String> command = new LinkedList<>();
-        command.add(javaBin);
-        command.addAll(jvmArgs);
-        command.add(ProcessKeys.JAVA_CLASSPATH_FLAG);
-        command.add(classpath);
-        command.add(className);
+    public RmiProcessHandler(RmiSubprocessInfo info) {
+        List<String> command = info.getCommandLineArguments();
 
         // setup sub process
         processBuilder = new ProcessBuilder(command);
@@ -65,8 +55,8 @@ public class RmiProcessHandler {
         if ( System.getenv(Keys.SYSTEM_ENV_LD_LIBRARY_PATH) != null )
             processEnv.put(Keys.SYSTEM_ENV_LD_LIBRARY_PATH, System.getenv(Keys.SYSTEM_ENV_LD_LIBRARY_PATH));
 
-        Thread shutdownHook = new Thread(this::stop);
-        Runtime.getRuntime().addShutdownHook(shutdownHook);
+        this.shutdownHookProcessMap = new HashMap<>();
+        this.ignorePidShutdown = new HashSet<>();
     }
 
     private void waitForSuccessfulSetupSignal() throws IOException {
@@ -75,10 +65,11 @@ public class RmiProcessHandler {
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         String line = reader.readLine();
         while ( !line.matches(".*" + READY_SIGNAL + ".*") ) {
-            LOG.debug("Subprocess setup - " + line);
+            LOG.info("Subprocess setup - " + line);
             line = reader.readLine();
-            if ( line == null )
+            if ( line == null ) {
                 throw new IOException("Subprocess is unavailable or does not send ready signal properly.");
+            }
         }
 
         logRunner = new SubprocessLoggerRunner(process.getInputStream());
@@ -97,6 +88,12 @@ public class RmiProcessHandler {
 
         LOG.info("Start new sub process");
         process = processBuilder.start();
+
+        // add shutdown hook to every process...
+        Thread shutdownHook = new Thread(() -> stopProcess(process));
+        Runtime.getRuntime().addShutdownHook(shutdownHook);
+        shutdownHookProcessMap.put(process.pid(), shutdownHook);
+
         waitForSuccessfulSetupSignal();
 
         LOG.info("Established connection with sub process. Setup restart on fail hook.");
@@ -106,7 +103,12 @@ public class RmiProcessHandler {
     }
 
     private void stopProcess(Process process) {
-        if ( process != null ) process.destroyForcibly();
+        if ( process != null ) {
+            // before stopping, we need to tell our still active recovery fallback to ignore this specific PID
+            LOG.info("Shutdown hook triggered. Forcefully shutting down subprocess [" + process.pid() +"]");
+            this.ignorePidShutdown.add(process.pid());
+            process.destroyForcibly();
+        }
     }
 
     public void stop() {
@@ -117,9 +119,27 @@ public class RmiProcessHandler {
         }
 
         if ( process != null && process.isAlive() ) {
-            LOG.info("Shutdown subprocess");
+            LOG.info("Process is running. Force shutdown [" + process.pid() + "]");
+            ignorePidShutdown.add(process.pid());
             process.destroyForcibly();
         }
+
+        if ( process != null ) {
+            try {
+                LOG.debug("Remove shutdown hook for dead process [" + process.pid() + "]");
+                Thread t = shutdownHookProcessMap.remove(process.pid());
+                if ( t != null ) {
+                    Runtime.getRuntime().removeShutdownHook(t);
+                    t.interrupt();
+                }
+            } catch (Exception e) {
+                LOG.warn("Try to remove shutdown hook for dying process but it didn't work. " + e.getMessage());
+            }
+        }
+    }
+
+    public boolean isAlive() {
+        return process != null && process.isAlive();
     }
 
     public CompletableFuture<?> getProcessFuture() {
@@ -127,10 +147,15 @@ public class RmiProcessHandler {
     }
 
     private Process onCrash(Process process) {
-        LOG.info("Subprocess stopped. Analyze reason...");
+        if ( ignorePidShutdown.contains(process.pid()) ) {
+            LOG.info("Ignore recovery fallback for forced shutdown from client-site for process id " + process.pid());
+            return process;
+        }
+
+        LOG.info("Subprocess ["+process.pid()+"] stopped unexpectedly. Analyze reason...");
         int exitValue = process.exitValue();
         if ( exitValue != 0 ) {
-            LOG.error("Subprocess finished on error code " + exitValue + ". Try to recover by restarting VM.");
+            LOG.error("Subprocess ["+process.pid()+"] finished on error code " + exitValue + ". Try to recover by restarting VM.");
             this.stop();
             try {
                 this.start();
@@ -145,7 +170,17 @@ public class RmiProcessHandler {
     }
 
     public static void main(String[] args) throws IOException, NotBoundException, InterruptedException {
-        RmiProcessHandler processHandler = new RmiProcessHandler(RmiProcess.class, List.of(""));
+        RmiProcessHandler processHandler = new RmiProcessHandler(new RmiSubprocessInfo() {
+            @Override
+            public String getClassName() {
+                return RmiProcess.class.getName();
+            }
+
+            @Override
+            public List<String> getJvmArgs() {
+                return List.of("");
+            }
+        });
         processHandler.start();
 
         // we should be ready to interact right now...

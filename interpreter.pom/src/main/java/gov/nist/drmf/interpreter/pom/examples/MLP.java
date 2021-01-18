@@ -88,6 +88,7 @@ public class MLP {
             eq = "x = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}";
             eq = "\\begin{align} x &= y \\\\ &= z.,; \\end{align}";
             eq = "x = < \\leq \\neq y";
+            eq = "\\operatorname{li} (x)";
 
             System.out.println();
             System.out.println("Input: " + eq);

@@ -38,6 +38,7 @@ public class InternalRmiMapleConnector implements NativeComputerAlgebraInterface
         try {
             scriptHandler = new MapleScriptHandler();
             this.loadedScriptsSuccessfully = true;
+            LOG.info("Setup maple script handler.");
         } catch ( IOException ioe ) {
             LOG.error("Unable to load procedures for Maple. Continue without procedures.", ioe);
         }

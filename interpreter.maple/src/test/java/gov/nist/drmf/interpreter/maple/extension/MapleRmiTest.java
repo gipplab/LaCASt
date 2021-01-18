@@ -1,10 +1,12 @@
 package gov.nist.drmf.interpreter.maple.extension;
 
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.maple.secure.DefaultMapleRmiServerSubprocessInfo;
 import gov.nist.drmf.interpreter.maple.secure.MapleRmiClient;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +29,12 @@ public class MapleRmiTest {
 
     @BeforeAll
     static void setup() {
-        connector = MapleRmiClient.getInstance();
+        connector = new MapleRmiClient(new DefaultMapleRmiServerSubprocessInfo());
+    }
+
+    @AfterAll
+    static void closeup() {
+        connector.stop();
     }
 
     @Test

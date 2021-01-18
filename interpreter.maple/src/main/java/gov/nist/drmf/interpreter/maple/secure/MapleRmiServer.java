@@ -38,7 +38,7 @@ public class MapleRmiServer implements RmiCasServer {
     /**
      * I have no clue why... but Maple must be lazy initialized.
      */
-    private MapleRmiServer() {}
+    public MapleRmiServer() {}
 
     @Override
     public void init() throws ComputerAlgebraSystemEngineException, CASUnavailableException {

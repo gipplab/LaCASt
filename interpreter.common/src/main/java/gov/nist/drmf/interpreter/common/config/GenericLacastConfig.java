@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.common.config;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import gov.nist.drmf.interpreter.common.process.RmiSubprocessInfo;
 
 /**
  * @author Andre Greiner-Petter
@@ -19,9 +21,23 @@ public class GenericLacastConfig {
     private String mathoidUrl = "http://localhost:10044/texvcinfo";
 
     @JsonProperty("settings")
-    private Settings settings;
+    private final Settings settings;
 
-    public GenericLacastConfig() {}
+    @JsonIgnore
+    private RmiSubprocessInfo mapleSubprocessInfo = null;
+
+    public GenericLacastConfig() {
+        settings = new Settings();
+    }
+
+    public GenericLacastConfig(GenericLacastConfig copy) {
+        this.esHost = copy.esHost;
+        this.esPort = copy.esPort;
+        this.macroIndex = copy.macroIndex;
+        this.mathoidUrl = copy.mathoidUrl;
+        this.settings = copy.settings;
+        this.mapleSubprocessInfo = copy.mapleSubprocessInfo;
+    }
 
     public String getEsHost() {
         return esHost;
@@ -51,7 +67,51 @@ public class GenericLacastConfig {
         return settings.maxDepth;
     }
 
-    public static GenericLacastConfig getConfig() {
+    public void setMaxRelations(int maxRelations) {
+        settings.maxRelations = maxRelations;
+    }
+
+    public void setMaxMacros(int maxMacros) {
+        settings.maxMacros = maxMacros;
+    }
+
+    public void setMaxDepth(int maxDepth) {
+        settings.maxDepth = maxDepth;
+    }
+
+    public void setEsHost(String esHost) {
+        this.esHost = esHost;
+    }
+
+    public void setEsPort(int esPort) {
+        this.esPort = esPort;
+    }
+
+    public void setMacroIndex(String macroIndex) {
+        this.macroIndex = macroIndex;
+    }
+
+    public void setMathoidUrl(String mathoidUrl) {
+        this.mathoidUrl = mathoidUrl;
+    }
+
+    public ElasticSearchConfig getESConfig() {
+        return new ElasticSearchConfig(
+                esHost, esPort, macroIndex
+        );
+    }
+
+    @JsonIgnore
+    public RmiSubprocessInfo getMapleSubprocessInfo() {
+        return mapleSubprocessInfo;
+    }
+
+    @JsonIgnore
+    public void setMapleSubprocessInfo(RmiSubprocessInfo mapleSubprocessInfo) {
+        this.mapleSubprocessInfo = mapleSubprocessInfo;
+    }
+
+    public static GenericLacastConfig getDefaultConfig() {
         return ConfigDiscovery.getConfig().getGenericLacastConfig();
     }
 

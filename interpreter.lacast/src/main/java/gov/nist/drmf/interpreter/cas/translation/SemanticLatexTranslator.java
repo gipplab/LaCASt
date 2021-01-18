@@ -22,6 +22,8 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.LinkedList;
+
 /**
  * <p>
  * This class is the high-level entry point to perform translations from semantic LaTeX to CAS.
@@ -185,7 +187,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
     public synchronized TranslationInformation translateToObject( String expression, String label ) throws TranslationException {
         if ( expression == null || expression.isEmpty() ) {
             LOG.warn("Tried to translate an empty expression");
-            return null;
+            return new TranslationInformation();
         }
 
         innerTranslate(expression, label);
@@ -241,7 +243,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
         TranslatedExpression global = super.getGlobalTranslationList();
 
         // 2) perform translations
-        parseGeneralExpression(expression, null);
+        parseGeneralExpression(expression, new LinkedList<>());
 
         // 3) clean up
         localTranslations.clear();

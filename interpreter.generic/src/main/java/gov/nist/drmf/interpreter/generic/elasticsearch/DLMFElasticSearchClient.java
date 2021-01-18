@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.generic.elasticsearch;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import gov.nist.drmf.interpreter.common.config.ElasticSearchConfig;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.generic.macro.MacroBean;
 import gov.nist.drmf.interpreter.generic.macro.MacroDefinitionStyleFileParser;
