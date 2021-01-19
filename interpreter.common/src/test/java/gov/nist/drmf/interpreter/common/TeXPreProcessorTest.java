@@ -28,6 +28,14 @@ public class TeXPreProcessorTest {
     }
 
     @Test
+    public void lineBreakSpacingTest(){
+        String input = "a \\\\[5pt] b";
+        String expect = "a \\\\ b";
+        String output = TeXPreProcessor.preProcessingTeX( input );
+        assertEquals( expect, output );
+    }
+
+    @Test
     public void stylesTest(){
         String input = "{\\sf\\bf a}";
         String expect = "{ a}";

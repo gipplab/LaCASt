@@ -463,6 +463,27 @@ class SimpleTranslationTests {
     }
 
     @Test
+    void operatornameTest() {
+        String in = "\\operatorname{sin}(x)";
+        String out = "sin(x)";
+        assertEquals(out, slt.translate(in));
+    }
+
+    @Test
+    void operatornameCustomFunctionTest() {
+        String in = "\\operatorname{li}(x)";
+        String out = "li(x)";
+        assertEquals(out, slt.translate(in));
+    }
+
+    @Test
+    void genericLatexTest() {
+        String in = "\\operatorname{li} (x) = \\lim_{\\varepsilon \\to 0+} (\\int_0^{1-\\varepsilon} \\frac{\\diff{t}}{\\ln t} + \\int_{1+\\varepsilon}^x \\frac{\\diff{t}}{\\ln t})";
+        String out = "li(x) = limit(int((1)/(ln(t)), t = 0..1 - varepsilon)+ int((1)/(ln(t)), t = 1 + varepsilon..x), varepsilon = 0, right)";
+        assertEquals(out, slt.translate(in));
+    }
+
+    @Test
     void derivTranslationTest() {
         String in = "\\LegendrepolyP{n}@{z} = \\frac{1 }{2^n  n! } \\deriv [n]{ }{z} (z^2 - 1)^n";
         String out = "LegendreP(n, z) = (1)/((2)^(n)* factorial(n))*diff(((z)^(2)- 1)^(n), [z$(n)])";

@@ -7,6 +7,7 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
@@ -246,7 +247,10 @@ public class MathTermTranslator extends AbstractListTranslator {
                             exp.getRoot().getTermText()
                     );
                 }
-            case dlmf_macro: case command:
+            case command:
+                te = checkForOperatorname(exp, following_exp);
+                if ( te != null ) break;
+            case dlmf_macro:
             case alphanumeric: case abbreviation:
             case special_math_letter: case symbol: case constant: case letter:
                 LetterTranslator letterT = new LetterTranslator(getSuperTranslator());
@@ -254,6 +258,43 @@ public class MathTermTranslator extends AbstractListTranslator {
                 break;
         }
         return te;
+    }
+
+    private TranslatedExpression checkForOperatorname(PomTaggedExpression exp, List<PomTaggedExpression> followingExp) {
+        if (!PomTaggedExpressionUtility.isOperatorname(exp)) return null;
+        LOG.debug("Encountered operatorname. Tag following expression (argument) as a function and continue with function translator");
+
+        if ( followingExp == null || followingExp.isEmpty() ) {
+            throw TranslationException.buildException(
+                    this, "\\operatorname has no argument",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT
+            );
+        }
+
+        PomTaggedExpression arg = followingExp.remove(0);
+        MathTerm term = arg.getRoot();
+        boolean isValidOperator = MathTermUtility.equalsOr(term,
+                MathTermTags.letter,
+                MathTermTags.alphanumeric,
+                MathTermTags.abbreviation,
+                MathTermTags.function
+        );
+
+        super.getInfoLogger().addGeneralInfo(
+                term.getTermText(), "Was interpreted as a function call because of a leading \\operatorname."
+        );
+
+        if ( !isValidOperator ) {
+            throw TranslationException.buildExceptionObj(
+                    this, "The element " + term.getTermText() + " cannot be tagged as a function",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT,
+                    term.getTermText()
+            );
+        }
+
+        PomTaggedExpressionUtility.tagAsFunction(arg);
+        FunctionTranslator ft = new FunctionTranslator(this.getSuperTranslator());
+        return ft.translate(arg, followingExp);
     }
 
     private TranslatedExpression translateOperation(PomTaggedExpression exp, List<PomTaggedExpression> following_exp) {

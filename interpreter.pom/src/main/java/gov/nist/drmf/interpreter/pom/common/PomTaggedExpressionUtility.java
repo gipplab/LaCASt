@@ -58,6 +58,10 @@ public final class PomTaggedExpressionUtility {
         }
     }
 
+    public static boolean isOperatorname(PomTaggedExpression pte) {
+        return MathTermUtility.isOperatorname(pte.getRoot());
+    }
+
     public static boolean isRelationSymbol(PomTaggedExpression pte) {
         return MathTermUtility.isRelationSymbol(pte.getRoot());
     }
@@ -205,10 +209,14 @@ public final class PomTaggedExpressionUtility {
     }
 
     public static String getAppropriateFontTex(PomTaggedExpression pte) {
+        return getAppropriateFontTex(pte, false);
+    }
+
+    public static String getAppropriateFontTex(PomTaggedExpression pte, boolean ignoreMathRm) {
         if ( startsWithEmptyEquation(pte) )
             return "&";
 
-        String appropriateTex = MathTermUtility.getAppropriateFontTex(pte.getRoot());
+        String appropriateTex = MathTermUtility.getAppropriateFontTex(pte.getRoot(), ignoreMathRm);
 
         List<String> rootAccents = FeatureValues.ACCENT.getFeatureValues(pte.getRoot());
         List<String> exprAccents = FeatureValues.ACCENT.getFeatureValues(pte);

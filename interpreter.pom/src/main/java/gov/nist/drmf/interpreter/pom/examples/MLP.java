@@ -89,6 +89,7 @@ public class MLP {
             eq = "\\begin{align} x &= y \\\\ &= z.,; \\end{align}";
             eq = "x = < \\leq \\neq y";
             eq = "\\operatorname{li} (x)";
+            eq = "\\begin{align}x & =ue^u, \\\\[5pt]\\frac{dx}{du} & =(u+1)e^u.\\end{align}";
 
             System.out.println();
             System.out.println("Input: " + eq);
