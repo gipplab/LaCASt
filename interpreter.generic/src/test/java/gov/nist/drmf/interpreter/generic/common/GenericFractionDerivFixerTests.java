@@ -118,7 +118,7 @@ public class GenericFractionDerivFixerTests {
         PrintablePomTaggedExpression newPPTE = fixer.fixGenericDeriv();
 
         assertEquals(ppte, newPPTE);
-        assertEquals("x + \\deriv [n]{ }{z} (z^2 - 1)^n", newPPTE.getTexString());
+        assertEquals("x + \\deriv [n]{ }{z}(z^2 - 1)^n", newPPTE.getTexString());
 
         checkList( ppte.getPrintableComponents(),
                 "x", "+", "\\deriv", "[", "n", "]", "{ }", "{z}", "(", "z", "^2", "-", "1", ")", "^n"
