@@ -51,7 +51,7 @@ public final class PrintablePomTaggedExpressionUtility {
 
             String s = p.getTexString();
             if (!endedOnEquationSeparator &&
-                    !s.matches("^[{^_!].*|[)}\\]|@]") &&
+                    !s.matches("^[{^_!].*|[()}\\]|@]") &&
                     !prev.matches(".*[({\\[|@]$")
             ) sb.append(" ");
             sb.append(s);

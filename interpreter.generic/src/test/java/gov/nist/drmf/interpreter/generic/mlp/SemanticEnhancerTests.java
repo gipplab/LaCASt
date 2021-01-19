@@ -41,6 +41,20 @@ public class SemanticEnhancerTests {
     }
 
     @Test
+    void hermiteTest() throws ParseException {
+        String genericLaTeXExample = "\\mathit{H}_{k-1}(z)";
+        String exampleAnnotationText = "physicists ' Hermite polynomial";
+        MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample, exampleAnnotationText);
+        MOIPresentations moi = new MOIPresentations(node);
+
+        // this node has no further dependencies. Simply "Levi Civita Symbol" is attached and should be performed.
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer();
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertNotNull(moi.getSemanticLatex());
+        assertEquals("\\HermitepolyH{k-1}@{z}", moi.getSemanticLatex());
+    }
+
+    @Test
     void leviCivitaInPlaceSourceNotSinkTest() throws ParseException {
         String genericLaTeXExample = "x + \\epsilon_{i j k}";
         String exampleAnnotationText = "Levi Civita Symbol";
@@ -93,7 +107,6 @@ public class SemanticEnhancerTests {
         MOINode<MOIAnnotation> leviNode = buildNode("2", "\\epsilon_{i j k}", "Levi Civita Symbol");
         MOINode<MOIAnnotation> logNode = buildNode("3", "\\operatorname{ln} (x)", "logarithmic function");
 
-
         // setup dependency between both nodes
         node.setupDependency(leviNode);
         node.setupDependency(logNode);
@@ -111,7 +124,7 @@ public class SemanticEnhancerTests {
     }
 
     @Test
-    void derivTestTest() throws ParseException, IOException {
+    void derivTestTest() throws ParseException {
         String genericLaTeXExample = "P_n^{(\\alpha,\\beta)}(z) = \\frac{d^n}{dz^n} \\left\\{ z \\left (1 - z^2 \\right )^n \\right\\}";
         MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample, "complex equation");
         MOINode<MOIAnnotation> jacobiNode = buildNode("2", "P_n^{(\\alpha,\\beta)}(z)", "Jacobi polynomial");
@@ -124,7 +137,7 @@ public class SemanticEnhancerTests {
         SemanticEnhancer semanticEnhancer = new SemanticEnhancer();
         semanticEnhancer.appendSemanticLatex(moi, node);
         assertNotNull(moi.getSemanticLatex());
-        assertEquals("\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\deriv [n]{ }{z} \\{z (1 - z^2)^n \\}", moi.getSemanticLatex());
+        assertEquals("\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\deriv [n]{ }{z} \\{z(1 - z^2)^n \\}", moi.getSemanticLatex());
     }
 
     private MOINode<MOIAnnotation> buildNode(String id, String genericTex, String annotationText) throws ParseException {

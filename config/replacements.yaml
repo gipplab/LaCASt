@@ -24,6 +24,11 @@ generalReplacements:
     replacement: $1$2
     groups: 2
   -
+    # new line spacing declarations can be ignored
+    # well... im not sure why we need three \... probably we internally replace \ by \\?
+    pattern: \\\\\[\d+.*?\]
+    replacement: \\\
+  -
     # replace \* with *
     pattern: \\\*
     replacement: \*

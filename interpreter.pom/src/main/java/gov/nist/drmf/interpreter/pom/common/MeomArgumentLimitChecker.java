@@ -60,6 +60,6 @@ public class MeomArgumentLimitChecker {
      */
     public static boolean isPotentialLimitBreakpoint(PomTaggedExpression pte) {
         String termText = pte.getRoot().getTermText();
-        return termText.matches("^d[a-zA-Z]+");
+        return termText.matches("^d[a-zA-Z]*");
     }
 }

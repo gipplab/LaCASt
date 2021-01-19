@@ -231,6 +231,11 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             MatcherConfig config
     ){
         MathTerm otherRoot = expression.getRoot();
+        if ( config.ignoreOperatorName() && MathTermUtility.isOperatorname(otherRoot) ) {
+            expression = followingExpressions.remove(0);
+            otherRoot = expression.getRoot();
+        }
+
         while (config.ignoreNumberOfAts() && MathTermUtility.isAt(otherRoot)) {
             if ( followingExpressions.isEmpty() ) {
                 return true;
@@ -239,12 +244,14 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             otherRoot = expression.getRoot();
         }
 
+//        String otherString = PomTaggedExpressionUtility.getAppropriateFontTex(expression, config.ignoreOperatorName());
+//        String thisString = PomTaggedExpressionUtility.getAppropriateFontTex(this, config.ignoreOperatorName());
 
+        String otherString = expression.getRoot().getTermText();
+        String thisString = this.getRoot().getTermText();
 
-        String otherString = PomTaggedExpressionUtility.getAppropriateFontTex(expression);
-        String thisString = PomTaggedExpressionUtility.getAppropriateFontTex(this);
         // TODO we might want to loose this test based on config (maybe ignore feature set, font manipulation, etc).
-        if (!thisString.equals(otherString)) {
+        if (!thisString.equals(otherString) || !matchesAccents(expression, config)) {
             return false;
         }
 
@@ -450,8 +457,9 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
      * @return true if the accents matched otherwise false
      */
     private boolean matchesAccents(PomTaggedExpression pte, MatcherConfig config) {
-        List<String> otherFontManipulations = PomTaggedExpressionUtility.getFontManipulations(pte);
+        if ( config.ignoreFontManipulation() ) return true;
 
+        List<String> otherFontManipulations = PomTaggedExpressionUtility.getFontManipulations(pte);
         if ( this.fontManipulations.size() > otherFontManipulations.size() ) return false;
 
         for ( int i = 0; i < this.fontManipulations.size(); i++ ) {

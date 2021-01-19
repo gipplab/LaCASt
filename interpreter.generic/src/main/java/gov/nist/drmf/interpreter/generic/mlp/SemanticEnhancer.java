@@ -44,9 +44,11 @@ public class SemanticEnhancer implements IPartialEnhancer {
 
     private final MacroRetriever retriever;
 
+    private final GenericLacastConfig config;
+
     private final CASTranslators casTranslators;
 
-    private final CASConnections casConnections;
+    private CASConnections casConnections;
 
     protected SemanticEnhancer() {
         this(GenericLacastConfig.getDefaultConfig());
@@ -58,8 +60,13 @@ public class SemanticEnhancer implements IPartialEnhancer {
 
     public SemanticEnhancer(GenericLacastConfig config, CASTranslators translators) {
         this.retriever = new MacroRetriever(config);
-        this.casConnections = new CASConnections(config, translators);
+        this.config = config;
         this.casTranslators = translators;
+    }
+
+    private void lazyInit() {
+        if ( casConnections == null )
+            this.casConnections = new CASConnections(config, casTranslators);
     }
 
     @Override
@@ -100,7 +107,7 @@ public class SemanticEnhancer implements IPartialEnhancer {
     @Override
     public void appendComputationResults(MOIPresentations moi, String casName) throws MinimumRequirementNotFulfilledException {
         Instant start = Instant.now();
-        if ( moi.getId().equals("FORMULA_43e16b736c3ae9163cfddd4918b3c9b8") ) return;
+//        if ( moi.getId().equals("FORMULA_43e16b736c3ae9163cfddd4918b3c9b8") ) return;
 
         moi.requires( SemanticEnhancedAnnotationStatus.TRANSLATED );
         Map<String, CASResult> casResultMap = moi.getCasRepresentations();
@@ -126,6 +133,7 @@ public class SemanticEnhancer implements IPartialEnhancer {
 
     @Override
     public NumericResult computeNumerically(String semanticLatex, String casName) {
+        lazyInit();
         NativeComputerAlgebraInterfaceBuilder cas = this.casConnections.getCASConnection(casName);
         try {
             if ( cas == null ) {
@@ -146,6 +154,7 @@ public class SemanticEnhancer implements IPartialEnhancer {
 
     @Override
     public SymbolicResult computeSymbolically(String semanticLatex, String casName) {
+        lazyInit();
         NativeComputerAlgebraInterfaceBuilder cas = this.casConnections.getCASConnection(casName);
         try {
             if ( cas == null ) {
@@ -216,8 +225,7 @@ public class SemanticEnhancer implements IPartialEnhancer {
         int counter = 0;
         double score = 0.0;
         for( SemanticReplacementRule semanticReplacementRule : macroPatterns ) {
-            MacroBean macro = semanticReplacementRule.getMacro();
-            MatcherConfig config = MacroHelper.getMatchingConfig(macro, node);
+            MatcherConfig config = MacroHelper.getMatchingConfig(semanticReplacementRule, node);
 
             MacroGenericSemanticEntry entry = semanticReplacementRule.getPattern();
             String genericLaTeXPattern = entry.getGenericTex();
