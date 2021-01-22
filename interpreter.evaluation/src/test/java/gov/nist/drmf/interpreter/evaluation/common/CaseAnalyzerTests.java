@@ -345,12 +345,12 @@ public class CaseAnalyzerTests {
         assertEquals(
                 "\\sqrt{(\\sqrt{1+\\expe ^{2\\cpi a}}-\\expe ^{\\cpi a}) / 2} " +
                 "\\expe^{\\frac{1}{4}\\cpi a}" +
-                " (" +
-                    "\\expe^{\\iunit (\\tfrac{1}{8} \\cpi + \\tfrac{1}{2} (\\phase@@{\\EulerGamma@{\\tfrac{1}{2}+\\iunit a}}))} " +
+                "(" +
+                    "\\expe^{\\iunit(\\tfrac{1}{8} \\cpi + \\tfrac{1}{2} (\\phase@@{\\EulerGamma@{\\tfrac{1}{2}+\\iunit a}}))} " +
                     "\\paraU@{\\iunit a}{" +
                         "x\\expe ^{-\\cpi \\iunit /4}" +
                     "} + " +
-                    "\\expe^{- \\iunit (\\tfrac{1}{8} \\cpi + \\tfrac{1}{2} (\\phase@@{\\EulerGamma@{\\tfrac{1}{2}+\\iunit a}}))} " +
+                    "\\expe^{- \\iunit(\\tfrac{1}{8} \\cpi + \\tfrac{1}{2} (\\phase@@{\\EulerGamma@{\\tfrac{1}{2}+\\iunit a}}))} " +
                     "\\paraU@{-\\iunit a}{" +
                         "x\\expe ^{\\cpi \\iunit /4}" +
                     "}" +
