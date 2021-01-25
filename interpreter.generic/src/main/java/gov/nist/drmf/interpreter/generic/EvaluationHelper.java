@@ -90,7 +90,11 @@ public class EvaluationHelper {
         formulae.add(pick);
     }
 
-    public static void main(String[] args) throws IOException {
+    private void analyzeStatisticsOfDoc(SemanticEnhancedDocument[] docs) {
+
+    }
+
+    public static void buildGoldenDataset() throws IOException {
         Path p = Paths.get("/mnt/share/data/wikipedia/Results/dlmf-template-results-26-11-2020-generated-12-01-2021-TRANSLATED.json");
         EvaluationHelper helper = new EvaluationHelper(p);
         SemanticEnhancedDocument[] docs = helper.loadData();
@@ -98,6 +102,16 @@ public class EvaluationHelper {
 
         String serializedDoc = helper.getString(docs);
         Files.writeString( Paths.get("/mnt/share/data/wikipedia/Results/gold-data-otherSet.json"), serializedDoc );
+    }
+
+    public static void statisticsResults() throws IOException {
+        Path p = Paths.get("/mnt/share/data/wikipedia/Results/dlmf-template-results-26-11-2020-generated-12-01-2021-TRANSLATED.json");
+        EvaluationHelper helper = new EvaluationHelper(p);
+        SemanticEnhancedDocument[] docs = helper.loadData();
+    }
+
+    public static void main(String[] args) throws IOException {
+
     }
 
 }

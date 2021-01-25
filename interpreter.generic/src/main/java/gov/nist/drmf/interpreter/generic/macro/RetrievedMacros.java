@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.generic.macro;
 
-import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticReplacementRule;
 
 import java.util.HashSet;
@@ -68,12 +67,15 @@ public class RetrievedMacros {
     private void orderRules() {
         if ( ordered ) return;
         macroPatterns.sort((a, b) -> {
-            double diff = a.getScore() - b.getScore();
+            double diff = b.getScore() - a.getScore();
             if ( diff == 0 ) {
                 MacroCounter c1 = macroDistributionAnalyzer.getMacroCounter( "\\" + a.getMacro().getName() );
                 MacroCounter c2 = macroDistributionAnalyzer.getMacroCounter( "\\" + b.getMacro().getName() );
 
-                return c2.getMacroCounter() - c1.getMacroCounter();
+                int counterDiff = c2.getMacroCounter() - c1.getMacroCounter();
+                if ( counterDiff == 0 ) {
+                    return b.getPattern().getGenericTex().length() - a.getPattern().getGenericTex().length();
+                } else return counterDiff;
             }
 
             return Double.compare(b.getScore(), a.getScore());

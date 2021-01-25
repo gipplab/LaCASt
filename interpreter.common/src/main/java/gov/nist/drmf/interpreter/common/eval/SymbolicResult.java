@@ -38,7 +38,14 @@ public class SymbolicResult implements Serializable {
 
     @JsonIgnore
     public SymbolicResult markAsCrashed() {
+        this.testResultType = TestResultType.ERROR;
         this.crashed = true;
+        return this;
+    }
+
+    @JsonIgnore
+    public SymbolicResult markAsSkipped() {
+        this.testResultType = TestResultType.SKIPPED;
         return this;
     }
 

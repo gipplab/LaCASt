@@ -229,7 +229,7 @@ public abstract class AbstractCasEngineNumericalEvaluator<T> implements ICASEngi
     public abstract List<NumericCalculation> getNumericCalculationList(T result);
 
     @Override
-    public NumericResult performNumericTest(NumericalTest test) throws ComputerAlgebraSystemEngineException {
+    synchronized public NumericResult performNumericTest(NumericalTest test) throws ComputerAlgebraSystemEngineException {
         T result = performNumericalTest( test );
         return getNumericResult(result);
     }

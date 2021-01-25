@@ -19,7 +19,7 @@ Content-Type: application/json
             "path": "meta",
             "query": {
                 "match": {
-                    "meta.description": "Jacobi polynomial"
+                    "meta.description": "the principal branch of logarithm function"
                 }
             }
         }

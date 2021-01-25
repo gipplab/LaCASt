@@ -59,6 +59,13 @@ public class NumericResult implements Serializable {
     }
 
     @JsonIgnore
+    public NumericResult markAsSkipped() {
+        this.testResultType = TestResultType.SKIPPED;
+        this.crashed = false;
+        return this;
+    }
+
+    @JsonIgnore
     public boolean crashed() {
         return crashed;
     }

@@ -11,7 +11,7 @@
 5. [Support a new CAS](#newCAS)
 6. [The program structure and important main classes](#program)
 7. [Troubleshooting](#troubleshooting)
-8. [Deploy Vmext-Demo Private Container](#deployDkeContainer)
+8. [Update vmext-demo endpoints](#deployDkeContainer)
 
 ## Setup Project<a name="start"></a>
 
@@ -399,9 +399,49 @@ Group and count all missing macros:
 awk -F, '{arr[$1] += $2;} END {for (a in arr) print arr[a]", "a}' *missing* | sort -n -r >> ../maple-missing.txt
 ```
 
-## Deploy Private VMEXT-DEMO Docker Container on DKE01<a name="deployDkeContainer"></a>
+## Update vmext-demo endpoints on DKE01<a name="deployDkeContainer"></a>
 
-This requires access to DKE01 and admin rights. So only do this, if you know what you are doing and why!
+This is what you need to update the vmext-demo endpoints that provide access to LaCASt. Note, that this requires
+admin access to DKE01. Obviously this is more of a reminder for Andre/Moritz instead of a guide for any developer.
+
+#### Update DLMF Macros ES Database
+
+This is rather easy because we can simply re-index the entire DB (it does not take much time).
+
+1. Make sure you stop your local ES instance
+2. Connect to DKE with Port forwarding
+```
+LocalForward 9200 192.168.112.3:9200
+```
+3. Now you can use the exact DKE instance of ES to update the macros. To test this, use `interpreter.generic/http/dlmf-macro.http`
+commands and see if they work for `localhost:9200`.
+4. Now simply run the main `gov.nist.drmf.interpreter.generic.elasticsearch.DLMFElasticSearchClient` will delete the existing
+index of macros and reindex it with the new code.
+
+#### Updating vmext-demo Jar only
+
+1. Build `mathpipeline.jar` locally
+2. SCP it to DKE01
+3. Login to DKE
+4. Push the new jar into the running container
+```console
+agp@dke01:~$ docker cp new-mathpipeline.jar docker_vmext-demo_1:/mathpipeline.jar
+```console
+5. Save the new container state in a new commit
+```
+agp@dke01:~$ docker commit docker_vmext-demo_1 vmext-demo:lacast
+```
+6. Restart the container
+```console
+agp@dke01:~$ cp ../git/srv-dke01/docker
+agp@dke01:/home/git/srv-dke01/docker$ docker-compose restart vmext-demo
+```
+
+#### Deploy Actual Container
+
+Usually, you do not want to do this. If you just have a new `mathpipeline.jar`, please use the previous guide updating 
+the entrypoint of the existing container. If there is no such container on DKE yet, you indeed need to create a new one
+and bring the image to DKE. Only in this case, follow the next steps
 
 1. Save and test your build locally
 ```console

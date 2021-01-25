@@ -207,7 +207,7 @@ public class MathematicaNumericalCalculator extends AbstractCasEngineNumericalEv
     private void enterSetup() {
         try {
             LOG.info("Setup variables for numerical test case.");
-            LOG.debug(sb.toString());
+            LOG.trace(sb.toString());
             mathematicaInterface.evaluate(sb.toString());
             String appliedConst = mathematicaInterface.evaluate(cons);
             LOG.debug("Applying constraints: " + appliedConst);

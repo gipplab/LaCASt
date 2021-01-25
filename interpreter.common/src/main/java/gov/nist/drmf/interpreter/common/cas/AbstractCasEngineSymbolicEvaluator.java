@@ -35,7 +35,7 @@ public abstract class AbstractCasEngineSymbolicEvaluator<T> implements ICASEngin
     public abstract boolean wasAborted(T result);
 
     @Override
-    public SymbolicResult performSymbolicTest(SymbolicalTest test) {
+    synchronized public SymbolicResult performSymbolicTest(SymbolicalTest test) {
         ArrayList<String> testExpressions = new ArrayList<>(test.getTestExpression());
         ArrayList<String> expectedOutcomes = new ArrayList<>(test.getExpectedOutcome());
         ISymbolicTestCases[] symbolicTestCases = test.getTestCases();

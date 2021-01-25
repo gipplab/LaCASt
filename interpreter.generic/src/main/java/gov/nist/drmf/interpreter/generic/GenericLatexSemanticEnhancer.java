@@ -48,8 +48,6 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
 
     private final SemanticEnhancer semanticEnhancer;
 
-    private final CASTranslators translators;
-
     /**
      * Constructs a new instance of the class
      */
@@ -61,8 +59,7 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
      * Constructs a new instance of the class
      */
     public GenericLatexSemanticEnhancer(GenericLacastConfig config) {
-        this.translators = new CASTranslators();
-        this.semanticEnhancer = new SemanticEnhancer(config, this.translators);
+        this.semanticEnhancer = new SemanticEnhancer(config);
     }
 
     @Override
@@ -81,8 +78,9 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
         annotatedDocument.requires(SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED);
 
         MLPDependencyGraph graph = new MLPDependencyGraph(annotatedDocument.getFormulae());
+        CASTranslators casTranslators = new CASTranslators();
         for ( MOIPresentations formula : annotatedDocument.getFormulae() ) {
-            appendTranslationToMOI(formula, graph.getNode(formula.getId()));
+            appendTranslationToMOI(formula, graph.getNode(formula.getId()), casTranslators);
         }
 
         return annotatedDocument;
@@ -92,7 +90,7 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
         context.requires(SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED);
 
         MLPDependencyGraph graph = new MLPDependencyGraph(context.getFormulae());
-        appendTranslationToMOI(moi, graph.getNode(moi.getId()));
+        appendTranslationToMOI(moi, graph.getNode(moi.getId()), new CASTranslators());
         return moi;
     }
 
@@ -124,11 +122,11 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
             moi = semanticEnhancer.generateAnnotatedLatex(formula, graph);
         }
 
-        appendTranslationToMOI(moi, graph.getNode(id));
+        appendTranslationToMOI(moi, graph.getNode(id), new CASTranslators());
         return moi;
     }
 
-    private void appendTranslationToMOI(MOIPresentations moi, MOINode<MOIAnnotation> node) {
+    private void appendTranslationToMOI(MOIPresentations moi, MOINode<MOIAnnotation> node, CASTranslators translators) {
         // node cannot be null unless something serious broke before...
         try {
             semanticEnhancer.appendSemanticLatex( moi, node );
@@ -253,67 +251,68 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
     }
 
     public static void main(String[] args) throws IOException {
-        translateGoldenOnly();
+//        translateGoldenOnly();
 
-//        ObjectMapper mapper = SemanticEnhancedDocument.getMapper();
-//        DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
-//        prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
-//
+        ObjectMapper mapper = SemanticEnhancedDocument.getMapper();
+        DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
+        prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
+
 //        Path p = Paths.get("/mnt/share/data/wikipedia/Results/gold-data.json");
-//        Path annotedP = Paths.get("/mnt/share/data/wikipedia/Results/dlmf-template-results-26-11-2020-generated-12-01-2021-ANNOTATED.json");
-////        Path p = Paths.get("/mnt/share/data/wikipedia/dlmf-template-pages-26-11-2020.xml");
-////        Path p = Paths.get("BesselFunction.xml");
-////        Path p = Paths.get("Jacobi_polynomials.xml");
-//        GenericLatexSemanticEnhancer enhancer = new GenericLatexSemanticEnhancer();
-//
-//        Instant start = Instant.now();
-//        SemanticEnhancedDocument[] docs = mapper.readValue(p.toFile(), SemanticEnhancedDocument[].class);
-//
-//        LOG.info("Finished loading documents from annotated file.");
-////        LOG.warn("START GENERATING ANNOTATED DOCUMENT");
-////        List<SemanticEnhancedDocument> docs = enhancer.getSemanticEnhancedDocumentsFromWikitext(p);
-////        SemanticEnhancedDocument sed = enhancer.generateAnnotatedDocument(p);
-////        LOG.warn("FINISHED GENERATING ANNOTATED DOCUMENT");
-////        LOG.warn("START TRANSLATING ANNOTATED DOCUMENT");
-////        sed = enhancer.appendTranslationsToDocument(sed);
-////        LOG.warn("FINISHED TRANSLATING ANNOTATED DOCUMENT");
-////        LOG.warn("START COMPUTING TRANSLATED DOCUMENT");
-////        sed = enhancer.appendCASComputationsToDocument(sed);
-////        LOG.warn("FINISHED COMPUTING TRANSLATED DOCUMENT");
-//
-//        for ( int i = 0; i < docs.length; i++ ) {
-//            SemanticEnhancedDocument sed = docs[i];
-//            if ( sed == null ) continue;
-//            if ( sed.getFormulae() == null || sed.getFormulae().isEmpty() ) {
-//                LOG.warn("The document " + sed.getTitle() + " does not contain any formulae. Remove it!");
+        Path annotedP = Paths.get("/mnt/share/data/wikipedia/Results/dlmf-template-results-26-11-2020-generated-12-01-2021-TRANSLATED.json");
+//        Path p = Paths.get("/mnt/share/data/wikipedia/dlmf-template-pages-26-11-2020.xml");
+//        Path p = Paths.get("BesselFunction.xml");
+//        Path p = Paths.get("Jacobi_polynomials.xml");
+        GenericLatexSemanticEnhancer enhancer = new GenericLatexSemanticEnhancer();
+
+        Instant start = Instant.now();
+        SemanticEnhancedDocument[] docs = mapper.readValue(annotedP.toFile(), SemanticEnhancedDocument[].class);
+
+        LOG.info("Finished loading documents from annotated file.");
+//        LOG.warn("START GENERATING ANNOTATED DOCUMENT");
+//        List<SemanticEnhancedDocument> docs = enhancer.getSemanticEnhancedDocumentsFromWikitext(p);
+//        SemanticEnhancedDocument sed = enhancer.generateAnnotatedDocument(p);
+//        LOG.warn("FINISHED GENERATING ANNOTATED DOCUMENT");
+//        LOG.warn("START TRANSLATING ANNOTATED DOCUMENT");
+//        sed = enhancer.appendTranslationsToDocument(sed);
+//        LOG.warn("FINISHED TRANSLATING ANNOTATED DOCUMENT");
+//        LOG.warn("START COMPUTING TRANSLATED DOCUMENT");
+//        sed = enhancer.appendCASComputationsToDocument(sed);
+//        LOG.warn("FINISHED COMPUTING TRANSLATED DOCUMENT");
+
+        for ( int i = 0; i < docs.length; i++ ) {
+            SemanticEnhancedDocument sed = docs[i];
+            if ( sed == null ) continue;
+            if ( sed.getFormulae() == null || sed.getFormulae().isEmpty() ) {
+                LOG.warn("The document " + sed.getTitle() + " does not contain any formulae. Remove it!");
 //                docs[i] = null;
-//                continue;
-//            }
-//            LOG.warn("Translating and Evaluating document: " + sed.getTitle());
+                continue;
+            }
+            LOG.warn("Translating and Evaluating document: " + sed.getTitle());
 //            enhancer.appendTranslationsToDocument(sed);
-////            enhancer.appendCASComputationsToDocument(sed);
-//        }
-//
-//        Duration elapsed = Duration.between(start, Instant.now());
-//        LOG.warn("FINISHED entire document analysis... [" + elapsed.toString() + "]");
-//
-//        String serializedDoc = mapper.writer(prettyPrinter).writeValueAsString(docs);
-////        String serializedDoc = mapper.writer(prettyPrinter).writeValueAsString(sed);
-////        Files.writeString( Paths.get("/mnt/share/data/wikipedia/Results/dlmf-template-results-26-11-2020-generated-12-01-2021-TRANSLATED.json"), serializedDoc );
+            enhancer.appendCASComputationsToDocument(sed);
+        }
+
+        Duration elapsed = Duration.between(start, Instant.now());
+        LOG.warn("FINISHED entire document analysis... [" + elapsed.toString() + "]");
+
+        String serializedDoc = mapper.writer(prettyPrinter).writeValueAsString(docs);
+//        String serializedDoc = mapper.writer(prettyPrinter).writeValueAsString(sed);
+//        Files.writeString( Paths.get("/mnt/share/data/wikipedia/Results/dlmf-template-results-26-11-2020-generated-12-01-2021-TRANSLATED.json"), serializedDoc );
+        Files.writeString( Paths.get("/mnt/share/data/wikipedia/Results/dlmf-template-results-26-11-2020-generated-22-01-2021-COMPUTED.json"), serializedDoc );
 //        Files.writeString( Paths.get("/mnt/share/data/wikipedia/Results/gold-data-TRANSLATED.json"), serializedDoc );
-////        Files.writeString( Paths.get("Result-Bessel.json"), serializedDoc );
-////        Files.writeString( Paths.get("ResultsFULL.json"), serializedDoc );
-//
-////        for ( SemanticEnhancedDocument doc : docs ) {
-////            System.out.println("Document: " + doc.getTitle());
-////            List<MOIPresentations> moi = doc.getFormulae();
-////            for ( MOIPresentations m : moi ) {
-////                System.out.println(m);
-////            }
-////        }
-//
-//        // TODO run experiment on entire dataset
-//
-//        // TODO NEXT: WRITE THE DAMN PAPER DUDE
+//        Files.writeString( Paths.get("Result-Bessel.json"), serializedDoc );
+//        Files.writeString( Paths.get("ResultsFULL.json"), serializedDoc );
+
+//        for ( SemanticEnhancedDocument doc : docs ) {
+//            System.out.println("Document: " + doc.getTitle());
+//            List<MOIPresentations> moi = doc.getFormulae();
+//            for ( MOIPresentations m : moi ) {
+//                System.out.println(m);
+//            }
+//        }
+
+        // TODO run experiment on entire dataset
+
+        // TODO NEXT: WRITE THE DAMN PAPER DUDE
     }
 }

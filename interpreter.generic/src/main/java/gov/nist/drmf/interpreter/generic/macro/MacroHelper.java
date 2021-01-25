@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.generic.macro;
 
 import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticReplacementRule;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.extensions.MatcherConfig;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import org.intellij.lang.annotations.Language;
@@ -87,6 +88,8 @@ public final class MacroHelper {
 
             e = e.replaceAll("#", VAR_PREFIX);
             e = cleanString(e);
+            if ( e.matches(VAR_PREFIX + "\\d+") )
+                e = "{" + e + "}";
             list.add(e);
         }
     }

@@ -98,3 +98,9 @@
     description={Kummer confluent hypergeometric function, $\genhyperF{1}{1} = \KummerconfhyperM$},
     sortkey={F 3 1 zz z z z},
     ]{3}[\mleft(#1;#2;#3\mright)][\mleft({#1 \atop #2};#3\mright)][\mleft(#3\mright)]
+\defSpecFun{ln}{\operatorname{ln}}[%
+    base=1,meaning=natural-logarithm,role=OPFUNCTION, om=transc1:ln,
+    args={z},
+    description={the principal branch of logarithm function},% $\ln$},
+    sortkey={ln 1 0 z},
+    ]{1}[\mleft(#1\mright)][#1]
