@@ -22,6 +22,8 @@ public class RetrievedMacros {
 
     private boolean ordered = false;
 
+    private boolean containedEulerMascheroni = false;
+
     public RetrievedMacros(MacroDistributionAnalyzer macroDistributionAnalyzer) {
         this.macroDistributionAnalyzer = macroDistributionAnalyzer;
         this.definiensMemory = new HashSet<>();
@@ -35,6 +37,7 @@ public class RetrievedMacros {
     }
 
     public boolean containsDefinition(String def) {
+        if ( def != null && def.toLowerCase().contains("mascheroni") ) this.containedEulerMascheroni = true;
         return definiensMemory.contains(def);
     }
 
@@ -57,6 +60,10 @@ public class RetrievedMacros {
     public void addPattern(SemanticReplacementRule macroPattern) {
         this.macroPatterns.add(macroPattern);
         this.ordered = false;
+    }
+
+    public boolean containedEulerMascheroniEvidence() {
+        return containedEulerMascheroni;
     }
 
     public List<SemanticReplacementRule> getPatterns() {

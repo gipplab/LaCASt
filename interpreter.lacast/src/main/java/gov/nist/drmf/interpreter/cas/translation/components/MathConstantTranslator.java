@@ -95,13 +95,13 @@ public class MathConstantTranslator extends AbstractTranslator {
         }
 
         // still null? try to translate it as a Greek letter than if possible
-        if ( !tryGreekLetterTranslation(exp, set, constant) ) {
+//        if ( !tryGreekLetterTranslation(exp, set, constant) ) {
             throw TranslationException.buildExceptionObj(
                     this, "Unable to translate constant " +
                             constant + " - " + set.getFeature(Keys.FEATURE_MEANINGS),
                     TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
                     constant);
-        }
+//        }
     }
 
     private String alternativeConstantTranslation(Constants c, FeatureSet set, String constant) {
@@ -124,7 +124,7 @@ public class MathConstantTranslator extends AbstractTranslator {
             // and now, use this translation
             translation = constant;
             mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::addFreeVariable, translation);
-        } else {
+        } else if ( translation != null ) {
             getInfoLogger().addGeneralInfo(
                     constant,
                     "Encountered " + constant + " which is usually the constant '" + translation + "'" + System.lineSeparator() +
@@ -134,30 +134,30 @@ public class MathConstantTranslator extends AbstractTranslator {
         return translation;
     }
 
-    private boolean tryGreekLetterTranslation(PomTaggedExpression exp, FeatureSet set, String constant) {
-        LOG.debug("Still unable to translate math constant as a constant. If its greek letter, fallback to greek translation");
-        try {
-            String alphabet = set.getFeature(Keys.FEATURE_ALPHABET).first();
-            if (alphabet.contains(Keys.FEATURE_VALUE_GREEK)) {
-                LOG.debug("Indeed a greek letter, inform user and translate as greek letter.");
-                getInfoLogger().addGeneralInfo(
-                        constant,
-                        "Unable to translate " + constant + " [" + DLMFFeatureValues.MEANING.getFeatureValue(set, CAS) +
-                                "]. But since it is a Greek letter we translated it to a Greek letter in "
-                                + CAS + "."
-                );
-                GreekLetterTranslator glt = new GreekLetterTranslator(getSuperTranslator());
-                localTranslations = glt.translate(exp);
-                mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::addFreeVariable, localTranslations.getTranslatedExpression());
-                return true;
-            } else {
-                throw TranslationException.buildExceptionObj(this,
-                        "Cannot translate mathematical constant " + constant + " - " +
-                                set.getFeature(Keys.FEATURE_MEANINGS),
-                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION, constant);
-            }
-        } catch (NullPointerException npe) {
-            return false;
-        }
-    }
+//    private boolean tryGreekLetterTranslation(PomTaggedExpression exp, FeatureSet set, String constant) {
+//        LOG.debug("Still unable to translate math constant as a constant. If its greek letter, fallback to greek translation");
+//        try {
+//            String alphabet = set.getFeature(Keys.FEATURE_ALPHABET).first();
+//            if (alphabet.contains(Keys.FEATURE_VALUE_GREEK)) {
+//                LOG.debug("Indeed a greek letter, inform user and translate as greek letter.");
+//                getInfoLogger().addGeneralInfo(
+//                        constant,
+//                        "Unable to translate " + constant + " [" + DLMFFeatureValues.MEANING.getFeatureValue(set, CAS) +
+//                                "]. But since it is a Greek letter we translated it to a Greek letter in "
+//                                + CAS + "."
+//                );
+//                GreekLetterTranslator glt = new GreekLetterTranslator(getSuperTranslator());
+//                localTranslations = glt.translate(exp);
+//                mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::addFreeVariable, localTranslations.getTranslatedExpression());
+//                return true;
+//            } else {
+//                throw TranslationException.buildExceptionObj(this,
+//                        "Cannot translate mathematical constant " + constant + " - " +
+//                                set.getFeature(Keys.FEATURE_MEANINGS),
+//                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION, constant);
+//            }
+//        } catch (NullPointerException npe) {
+//            return false;
+//        }
+//    }
 }

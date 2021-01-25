@@ -338,7 +338,7 @@
       "id" : "FORMULA_c8b5b9184e45bca39744427c45693115",
       "formula" : "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}\\,{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
       "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\Pochhammersym{\\alpha + 1}{n}}{n!} \\genhyperF{2}{1}@{- n , 1 + \\alpha + \\beta + n}{\\alpha + 1}{\\tfrac{1}{2}(1 - z)}",
-      "confidence" : 0.7595312732155871,
+      "confidence" : 0.7595006538205181,
       "translations" : {
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[Pochhammer[\\[Alpha]+ 1, n],(n)!]*HypergeometricPFQ[{- n , 1 + \\[Alpha]+ \\[Beta]+ n}, {\\[Alpha]+ 1}, Divide[1,2]*(1 - z)]"
@@ -424,7 +424,7 @@
       "id" : "FORMULA_8aef2b8e75b872d1e8ef1530bb9bb795",
       "formula" : "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
       "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\EulerGamma@{\\alpha + n + 1}}{n! \\EulerGamma@{\\alpha + \\beta + n + 1}} \\sum_{m=0}^n{n\\choose m} \\frac{\\EulerGamma@{\\alpha + \\beta + n + m + 1}}{\\EulerGamma@{\\alpha + m + 1}}(\\frac{z-1}{2})^m",
-      "confidence" : 0.8815448928370251,
+      "confidence" : 0.8814743347990213,
       "translations" : {
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[Gamma[\\[Alpha]+ n + 1],(n)!*Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*Sum[Binomial[n,m]*Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + m + 1],Gamma[\\[Alpha]+ m + 1]]*(Divide[z - 1,2])^(m), {m, 0, n}, GenerateConditions->None]"
@@ -945,7 +945,7 @@
       "id" : "FORMULA_b1e4493881f1c47423915d9999dd9459",
       "formula" : "{z \\choose n} = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}",
       "semanticFormula" : "{z \\choose n} = \\begin{cases}\\frac{\\EulerGamma@{z + 1}}{\\EulerGamma@{n + 1} \\EulerGamma@{z - n + 1}} n \\geq 0 0 & n < 0\\end{cases}",
-      "confidence" : 0.8348016290115382,
+      "confidence" : 0.8346605129355306,
       "translations" : {
         "Mathematica" : {
           "translation" : "Binomial[z,n] == "
@@ -985,7 +985,7 @@
       "id" : "FORMULA_c5accc69791b469f2ce6bde7e27a4506",
       "formula" : "\\Gamma(z)",
       "semanticFormula" : "\\EulerGamma@{z}",
-      "confidence" : 0.8379354588477813,
+      "confidence" : 0.8377943427717734,
       "translations" : {
         "Mathematica" : {
           "translation" : "Gamma[z]"
@@ -1388,7 +1388,7 @@
       "id" : "FORMULA_77d1d3b415496da5bb77004fd55dff4c",
       "formula" : "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)\\,dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm}, \\qquad \\alpha,\\ \\beta > -1",
       "semanticFormula" : "\\int_{-1}^1(1 - x)^{\\alpha}(1 + x)^{\\beta} \\JacobipolyP{\\alpha}{\\beta}{m}@{x} \\JacobipolyP{\\alpha}{\\beta}{n}@{x} \\diff{x} = \\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\EulerGamma@{n + \\alpha + 1} \\EulerGamma@{n + \\beta + 1}}{\\EulerGamma@{n + \\alpha + \\beta + 1} n!} \\delta_{nm} , \\qquad \\alpha , \\beta > - 1",
-      "confidence" : 0.8602771188346048,
+      "confidence" : 0.860206560796601,
       "translations" : {
         "Mathematica" : {
           "translation" : "Integrate[(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]* JacobiP[m, \\[Alpha], \\[Beta], x]*JacobiP[n, \\[Alpha], \\[Beta], x], {x, - 1, 1}, GenerateConditions->None] == Divide[(2)^(\\[Alpha]+ \\[Beta]+ 1),2*n + \\[Alpha]+ \\[Beta]+ 1]*Divide[Gamma[n + \\[Alpha]+ 1]*Gamma[n + \\[Beta]+ 1],Gamma[n + \\[Alpha]+ \\[Beta]+ 1]*(n)!]*Subscript[\\[Delta], n*m]"
@@ -1666,7 +1666,7 @@
       "id" : "FORMULA_c1a5b2b20d5efff4922f26591d73e078",
       "formula" : "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
       "semanticFormula" : "\\deriv [k]{ }{z} \\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\EulerGamma@{\\alpha + \\beta + n + 1 + k}}{2^k \\EulerGamma@{\\alpha + \\beta + n + 1}} \\JacobipolyP{\\alpha + k}{\\beta + k}{n-k}@{z}",
-      "confidence" : 0.8815448928370251,
+      "confidence" : 0.8814743347990213,
       "translations" : {
         "Mathematica" : {
           "translation" : "D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, k}] == Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + 1 + k],(2)^(k)* Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*JacobiP[n - k, \\[Alpha]+ k, \\[Beta]+ k, z]"
@@ -1703,14 +1703,17 @@
     {
       "id" : "FORMULA_d070202e484c3f87021e1210f0cfe802",
       "formula" : "P_{n}^{(\\alpha, \\beta)}",
-      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{x}",
-      "confidence" : 0.6178063574778105,
+      "semanticFormula" : "P_{n}^{(\\alpha, \\beta)}",
+      "confidence" : 0.0,
       "translations" : {
         "Mathematica" : {
-          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], x]"
+          "translation" : "(Subscript[P, n])^(\\[Alpha], \\[Beta])"
+        },
+        "SymPy" : {
+          "translation" : "(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta'))"
         },
         "Maple" : {
-          "translation" : "JacobiP(n, alpha, beta, x)"
+          "translation" : "(P[n])^(alpha , beta)"
         }
       },
       "positions" : [
@@ -2232,14 +2235,14 @@
     {
       "id" : "FORMULA_2583a2b549a7ff71d02941bc95a657b7",
       "formula" : "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right) \\, .\\end{align}",
-      "semanticFormula" : "\\begin{align}(z - 1) \\deriv [1]{ }{z} \\JacobipolyP{\\alpha}{\\beta}{n}@{z} &= \\frac{1}{2}(z - 1)(1 + \\alpha + \\beta + n) \\JacobipolyP{\\alpha + 1}{\\beta + 1}{n-1}@{x} \\\\ &= n \\JacobipolyP{\\alpha}{\\beta}{n}@{x} -(\\alpha + n) \\JacobipolyP{\\alpha}{\\beta + 1}{n-1}@{x} \\\\ &=(1 + \\alpha + \\beta + n)(\\JacobipolyP{\\alpha}{\\beta + 1}{n}@{x} - \\JacobipolyP{\\alpha}{\\beta}{n}@{x}) \\\\ &=(\\alpha + n) \\JacobipolyP{\\alpha - 1}{\\beta + 1}{n}@{x} - \\alpha \\JacobipolyP{\\alpha}{\\beta}{n}@{x} \\\\ &= \\frac{2(n + 1) \\JacobipolyP{\\alpha}{\\beta - 1}{n+1}@{x} -(z(1 + \\alpha + \\beta + n) + \\alpha + 1 + n - \\beta) \\JacobipolyP{\\alpha}{\\beta}{n}@{x}}{1+z} \\\\ &= \\frac{(2 \\beta + n + nz) \\JacobipolyP{\\alpha}{\\beta}{n}@{x} - 2(\\beta + n) \\JacobipolyP{\\alpha}{\\beta - 1}{n}@{x}}{1+z} \\\\ &= \\frac{1-z}{1+z}(\\beta \\JacobipolyP{\\alpha}{\\beta}{n}@{x} -(\\beta + n) \\JacobipolyP{\\alpha + 1}{\\beta - 1}{n}@{x}) .\\end{align}",
-      "confidence" : 0.7711717545461099,
+      "semanticFormula" : "\\begin{align}(z - 1) \\deriv [1]{ }{z} \\JacobipolyP{\\alpha}{\\beta}{n}@{z} &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\ &= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\ &=(1 + \\alpha + \\beta + n)(P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)}) \\\\ &=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\ &= \\frac{2(n + 1) P_{n+1}^{(\\alpha,\\beta-1)} -(z(1 + \\alpha + \\beta + n) + \\alpha + 1 + n - \\beta) P_n^{(\\alpha,\\beta)}}{1+z} \\\\ &=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\ &= \\frac{1-z}{1+z}(\\beta P_n^{(\\alpha,\\beta)} -(\\beta + n) P_{n}^{(\\alpha+1,\\beta-1)}) .\\end{align}",
+      "confidence" : 0.9378384212127765,
       "translations" : {
         "Mathematica" : {
-          "translation" : "(z - 1)*D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] == Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*JacobiP[n - 1, \\[Alpha]+ 1, \\[Beta]+ 1, x] == n*JacobiP[n, \\[Alpha], \\[Beta], x]-(\\[Alpha]+ n)*JacobiP[n - 1, \\[Alpha], \\[Beta]+ 1, x] == (1 + \\[Alpha]+ \\[Beta]+ n)*(JacobiP[n, \\[Alpha], \\[Beta]+ 1, x]- JacobiP[n, \\[Alpha], \\[Beta], x]) == (\\[Alpha]+ n)*JacobiP[n, \\[Alpha]- 1, \\[Beta]+ 1, x]- \\[Alpha]*JacobiP[n, \\[Alpha], \\[Beta], x] == Divide[2*(n + 1)*JacobiP[n + 1, \\[Alpha], \\[Beta]- 1, x]-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*JacobiP[n, \\[Alpha], \\[Beta], x],1 + z] == Divide[(2*\\[Beta]+ n + n*z)*JacobiP[n, \\[Alpha], \\[Beta], x]- 2*(\\[Beta]+ n)*JacobiP[n, \\[Alpha], \\[Beta]- 1, x],1 + z] == Divide[1 - z,1 + z]*(\\[Beta]*JacobiP[n, \\[Alpha], \\[Beta], x]-(\\[Beta]+ n)*JacobiP[n, \\[Alpha]+ 1, \\[Beta]- 1, x])"
+          "translation" : "(z - 1)*D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] == Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*P(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1) == n*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*P(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1) == (1 + \\[Alpha]+ \\[Beta]+ n)*(P(Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- P(Subscript[P, n])^(\\[Alpha], \\[Beta])) == (\\[Alpha]+ n)*P(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*P(Subscript[P, n])^(\\[Alpha], \\[Beta]) == Divide[2*(n + 1)*P(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*P(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z] == Divide[(2*\\[Beta]+ n + n*z)*P(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z] == Divide[1 - z,1 + z]*(\\[Beta]*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha]+ 1 , \\[Beta]- 1))"
         },
         "Maple" : {
-          "translation" : "(z - 1)*diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*JacobiP(n - 1, alpha + 1, beta + 1, x) = n*JacobiP(n, alpha, beta, x)-(alpha + n)*JacobiP(n - 1, alpha, beta + 1, x) = (1 + alpha + beta + n)*(JacobiP(n, alpha, beta + 1, x)- JacobiP(n, alpha, beta, x)) = (alpha + n)*JacobiP(n, alpha - 1, beta + 1, x)- alpha*JacobiP(n, alpha, beta, x) = (2*(n + 1)*JacobiP(n + 1, alpha, beta - 1, x)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*JacobiP(n, alpha, beta, x))/(1 + z) = ((2*beta + n + n*z)*JacobiP(n, alpha, beta, x)- 2*(beta + n)*JacobiP(n, alpha, beta - 1, x))/(1 + z) = (1 - z)/(1 + z)*(beta*JacobiP(n, alpha, beta, x)-(beta + n)*JacobiP(n, alpha + 1, beta - 1, x))"
+          "translation" : "(z - 1)*diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*P(P[n - 1])^(alpha + 1 , beta + 1) = n*P(P[n])^(alpha , beta)-(alpha + n)*P(P[n - 1])^(alpha , beta + 1) = (1 + alpha + beta + n)*(P(P[n])^(alpha , beta + 1)- P(P[n])^(alpha , beta)) = (alpha + n)*P(P[n])^(alpha - 1 , beta + 1)- alpha*P(P[n])^(alpha , beta) = (2*(n + 1)*P(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*P(P[n])^(alpha , beta))/(1 + z) = ((2*beta + n + n*z)*P(P[n])^(alpha , beta)- 2*(beta + n)*P(P[n])^(alpha , beta - 1))/(1 + z) = (1 - z)/(1 + z)*(beta*P(P[n])^(alpha , beta)-(beta + n)*P(P[n])^(alpha + 1 , beta - 1))"
         }
       },
       "positions" : [
@@ -2389,7 +2392,7 @@
       "id" : "FORMULA_9dc229093c0cfe263c966e50e7f0a24a",
       "formula" : "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )",
       "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos \\theta} = n^{-\\frac{1}{2}} k(\\theta) \\cos(\\AirymodderivN@{x} \\theta + \\gamma) + O(n^{-\\frac{3}{2}})",
-      "confidence" : 0.7552429993085383,
+      "confidence" : 0.7551883285904557,
       "translations" : {
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] == (n)^(-Divide[1,2])* k*(\\[Theta])*Cos[Sqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2]*\\[Theta]+ \\[Gamma]]+ O*((n)^(-Divide[3,2]))"
@@ -2440,14 +2443,14 @@
     {
       "id" : "FORMULA_25de4fcbf8879d9f165ef8adcb1f1d40",
       "formula" : "\\begin{align}k(\\theta) &= \\pi^{-\\frac{1}{2}} \\sin^{-\\alpha-\\frac{1}{2}} \\tfrac{\\theta}{2} \\cos^{-\\beta-\\frac{1}{2}} \\tfrac{\\theta}{2},\\\\N &= n + \\tfrac{1}{2} (\\alpha+\\beta+1),\\\\\\gamma &= - \\tfrac{\\pi}{2} \\left (\\alpha + \\tfrac{1}{2} \\right ),\\end{align}",
-      "semanticFormula" : "\\begin{align}k(\\theta) &= \\pi^{-\\frac{1}{2}} \\sin^{-\\alpha-\\frac{1}{2}} \\tfrac{\\theta}{2} \\cos^{-\\beta-\\frac{1}{2}} \\tfrac{\\theta}{2}, \\\\ \\AirymodderivN@{x} &= n + \\tfrac{1}{2} (\\alpha+\\beta+1), \\\\ \\gamma &= - \\tfrac{\\pi}{2}(\\alpha + \\tfrac{1}{2}) ,\\end{align}",
-      "confidence" : 0.5726475774043003,
+      "semanticFormula" : "\\begin{align}k(\\theta) &= \\cpi^{-\\frac{1}{2}} \\sin^{-\\alpha-\\frac{1}{2}} \\tfrac{\\theta}{2} \\cos^{-\\beta-\\frac{1}{2}} \\tfrac{\\theta}{2} , \\\\ \\AirymodderivN@{x} &= n + \\tfrac{1}{2} (\\alpha+\\beta+1), \\\\ \\gamma &= - \\tfrac{\\cpi}{2}(\\alpha + \\tfrac{1}{2}) ,\\end{align}",
+      "confidence" : 0.5725382359681349,
       "translations" : {
         "Mathematica" : {
-          "translation" : "k*(\\[Theta]) == \\[Pi]^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])\nSqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2] == n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)\n\\[Gamma] == -Divide[\\[Pi],2]*(\\[Alpha]+Divide[1,2])"
+          "translation" : "k*(\\[Theta]) == (Pi)^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])\nSqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2] == n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)\n\\[Gamma] == -Divide[Pi,2]*(\\[Alpha]+Divide[1,2])"
         },
         "Maple" : {
-          "translation" : "k*(theta) = (pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2)); sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2) = n +(1)/(2)*(alpha + beta + 1); gamma = -(pi)/(2)*(alpha +(1)/(2))"
+          "translation" : "k*(theta) = (Pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2)); sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2) = n +(1)/(2)*(alpha + beta + 1); gamma = -(Pi)/(2)*(alpha +(1)/(2))"
         }
       },
       "positions" : [
@@ -2538,17 +2541,17 @@
     {
       "id" : "FORMULA_ce84060a9db09d40e6b443d14a3e30f4",
       "formula" : "[\\epsilon,\\pi-\\epsilon]",
-      "semanticFormula" : "[\\epsilon,\\pi-\\epsilon]",
+      "semanticFormula" : "[\\epsilon , \\cpi - \\epsilon]",
       "confidence" : 0.0,
       "translations" : {
         "Mathematica" : {
-          "translation" : "[\\[Epsilon], \\[Pi]- \\[Epsilon]]"
+          "translation" : "[\\[Epsilon], Pi - \\[Epsilon]]"
         },
         "SymPy" : {
-          "translation" : "[Symbol('epsilon'), Symbol('pi')- Symbol('epsilon')]"
+          "translation" : "[Symbol('epsilon'), pi - Symbol('epsilon')]"
         },
         "Maple" : {
-          "translation" : "[epsilon , pi - epsilon]"
+          "translation" : "[epsilon , Pi - epsilon]"
         }
       },
       "positions" : [
@@ -2683,14 +2686,14 @@
     {
       "id" : "FORMULA_34980bfcd6b86900308ec8f48f593ff0",
       "formula" : "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left ( \\tfrac{z}{n} \\right ) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\alpha} J_\\alpha(z)\\\\ \\lim_{n \\to \\infty} n^{-\\beta}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left (\\pi - \\tfrac{z}{n} \\right) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\beta} J_\\beta(z)\\end{align}",
-      "semanticFormula" : "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha} \\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos(\\tfrac{z}{n})} &=(\\tfrac{z}{2})^{-\\alpha} J_\\alpha(z) \\\\ \\lim_{n \\to \\infty} n^{-\\beta} \\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos(\\pi - \\tfrac{z}{n})} &=(\\tfrac{z}{2})^{-\\beta} J_\\beta(z)\\end{align}",
-      "confidence" : 0.8807935417018536,
+      "semanticFormula" : "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha} \\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos(\\tfrac{z}{n})} &=(\\tfrac{z}{2})^{-\\alpha} J_\\alpha(z) \\\\ \\lim_{n \\to \\infty} n^{-\\beta} \\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos(\\cpi - \\tfrac{z}{n})} &=(\\tfrac{z}{2})^{-\\beta} J_\\beta(z)\\end{align}",
+      "confidence" : 0.8805714208615747,
       "translations" : {
         "Mathematica" : {
-          "translation" : "Limit[(n)^(- \\[Alpha])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Alpha])* Subscript[J, \\[Alpha]]*(z)\nLimit[(n)^(- \\[Beta])* JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Pi]-Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Beta])* Subscript[J, \\[Beta]]*(z)"
+          "translation" : "Limit[(n)^(- \\[Alpha])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Alpha])* Subscript[J, \\[Alpha]]*(z)\nLimit[(n)^(- \\[Beta])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Pi -Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Beta])* Subscript[J, \\[Beta]]*(z)"
         },
         "Maple" : {
-          "translation" : "limit((n)^(- alpha)* JacobiP(n, alpha, beta, cos((z)/(n))), n = infinity) = ((z)/(2))^(- alpha)* J[alpha]*(z); limit((n)^(- beta)* JacobiP(n, alpha, beta, cos(pi -(z)/(n))), n = infinity) = ((z)/(2))^(- beta)* J[beta]*(z)"
+          "translation" : "limit((n)^(- alpha)* JacobiP(n, alpha, beta, cos((z)/(n))), n = infinity) = ((z)/(2))^(- alpha)* J[alpha]*(z); limit((n)^(- beta)* JacobiP(n, alpha, beta, cos(Pi -(z)/(n))), n = infinity) = ((z)/(2))^(- beta)* J[beta]*(z)"
         }
       },
       "positions" : [
@@ -2888,8 +2891,8 @@
     {
       "id" : "FORMULA_6964a7b6d1913beef831d08c5478f8cf",
       "formula" : "d^{j}_{m',m}(\\varphi)",
-      "semanticFormula" : "\\ndivisors@{n}_{m',m}^{j}(\\varphi)",
-      "confidence" : 0.5255118695067048,
+      "semanticFormula" : "d_{m',m}^{j}(\\varphi)",
+      "confidence" : 0.0,
       "translations" : { },
       "positions" : [
         {
@@ -2918,7 +2921,7 @@
     {
       "id" : "FORMULA_4ccb6d1e7c90bf59553de9025e547412",
       "formula" : "0 \\leq \\varphi \\leq 4\\pi)",
-      "semanticFormula" : "0 \\leq \\varphi \\leq 4\\pi)",
+      "semanticFormula" : "0 \\leq \\varphi \\leq 4 \\cpi)",
       "confidence" : 0.0,
       "translations" : { },
       "positions" : [
@@ -2948,8 +2951,8 @@
     {
       "id" : "FORMULA_adb31e6dc814328e8bfc8b3f900eee59",
       "formula" : "d^j_{m'm}(\\phi) =\\left[ \\frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}\\right]^{\\frac{1}{2}} \\left(\\sin\\tfrac{\\phi}{2}\\right)^{m-m'} \\left(\\cos\\tfrac{\\phi}{2}\\right)^{m+m'} P_{j-m}^{(m-m',m+m')}(\\cos \\phi)",
-      "semanticFormula" : "\\ndivisors@{n}_{m'm}^j(\\Eulertotientphi@{n}) = [\\frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}]^{\\frac{1}{2}}(\\sin \\tfrac{\\Eulertotientphi@{n}}{2})^{m-m'}(\\cos \\tfrac{\\Eulertotientphi@{n}}{2})^{m+m'} \\JacobipolyP{m - m '}{m + m '}{j-m}@{\\cos \\Eulertotientphi@{n}}",
-      "confidence" : 0.612392860001872,
+      "semanticFormula" : "d_{m'm}^j(\\phi) = [\\frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}]^{\\frac{1}{2}}(\\sin \\tfrac{\\phi}{2})^{m-m'}(\\cos \\tfrac{\\phi}{2})^{m+m'} \\JacobipolyP{m - m '}{m + m '}{j-m}@{\\cos \\phi}",
+      "confidence" : 0.8662724998444776,
       "translations" : { },
       "positions" : [
         {

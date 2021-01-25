@@ -72,14 +72,14 @@
       {
         "id" : "FORMULA_d3e28ddd096754fb8e1e52aaaa4f7770",
         "formula" : "E(e) \\,=\\, \\int_0^{\\pi/2}\\sqrt {1 - e^2 \\sin^2\\theta}\\ d\\theta",
-        "semanticFormula" : "\\compellintEk@{e} = \\int_0^{\\cpi / 2} \\sqrt {1 - e^2 \\sin^2\\theta} \\diff{\\theta}",
+        "semanticFormula" : "\\compellintEk@{\\expe} = \\int_0^{\\cpi / 2} \\sqrt{1 - \\expe^2 \\sin^2 \\theta} \\diff{\\theta}",
         "confidence" : 0.3371415248998377,
         "translations" : {
           "Mathematica" : {
-            "translation" : "EllipticE[(e)^2] == Integrate[Sqrt[1 - (e)^(2)* (Sin[\\[Theta]])^(2)], {\\[Theta], 0, Pi/2}, GenerateConditions->None]"
+            "translation" : "EllipticE[(E)^2] == Integrate[Sqrt[1 - Exp[2]*(Sin[\\[Theta]])^(2)], {\\[Theta], 0, Pi/2}, GenerateConditions->None]"
           },
           "Maple" : {
-            "translation" : "EllipticE(e) = int(sqrt(1 - (e)^(2)* (sin(theta))^(2)), theta = 0..Pi/2)"
+            "translation" : "EllipticE(exp(1)) = int(sqrt(1 - exp(2)*(sin(theta))^(2)), theta = 0..Pi/2)"
           }
         },
         "positions" : [
@@ -137,14 +137,17 @@
       {
         "id" : "FORMULA_04e9de23897a3b23dee1a9b7312ad99e",
         "formula" : "F(x;k) = u",
-        "semanticFormula" : "\\incellintFk@{\\phi}{k}(x ; k) = u",
+        "semanticFormula" : "F(x;k) = u",
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "EllipticF[\\[Phi], (k)^2]*(x ; k) == u"
+            "translation" : "F*(x ; k) == u"
+          },
+          "SymPy" : {
+            "translation" : "F*(x ; k) == u"
           },
           "Maple" : {
-            "translation" : "EllipticF(sin(phi), k)*(x ; k) = u"
+            "translation" : "F*(x ; k) = u"
           }
         },
         "positions" : [
@@ -205,7 +208,7 @@
       {
         "id" : "FORMULA_19a0f00da77cc439ad679c579a295bd2",
         "formula" : "\\frac{1}{\\Gamma(z)} = \\frac{i}{2\\pi}\\int_C (-t)^{-z}e^{-t}\\,dt",
-        "semanticFormula" : "\\frac{1}{\\EulerGamma@{z}} = \\frac{i}{2\\pi} \\int_C(- t)^{-z} e^{-t} \\diff{t}",
+        "semanticFormula" : "\\frac{1}{\\EulerGamma@{z}} = \\frac{\\iunit}{2 \\cpi} \\int_C(- t)^{-z} \\expe^{-t} \\diff{t}",
         "confidence" : 0.6745414888367827,
         "translations" : { },
         "positions" : [
@@ -289,7 +292,7 @@
       {
         "id" : "FORMULA_bd88ec58aa42c7a59bc2f4ff458a54cf",
         "formula" : "\\psi(x) := \\sum_{n=1}^\\infty e^{-n^2 \\pi x}",
-        "semanticFormula" : "\\psi \\pgcd{x} : = \\sum_{n=1}^\\infty e^{-n^2 \\pi x}",
+        "semanticFormula" : "\\psi \\pgcd{x} : = \\sum_{n=1}^\\infty \\expe^{- n^2 \\cpi x}",
         "confidence" : 0.722,
         "translations" : { },
         "positions" : [
@@ -463,17 +466,17 @@
       {
         "id" : "FORMULA_fe13643d8449f601f150fd50c0751cf2",
         "formula" : "\\begin{align}x & =ue^u, \\\\[5pt]\\frac{dx}{du} & =(u+1)e^u.\\end{align}",
-        "semanticFormula" : "\\begin{align}x & =ue^u, \\\\ [5pt]\\frac{dx}{du} &=(u + 1) \\expe^u .\\end{align}",
+        "semanticFormula" : "\\begin{align}x & =ue^u, \\\\ \\frac{dx}{du} &=(u + 1) \\expe^u .\\end{align}",
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "x == u*(e)^(u)\n(5*p*t)*Divide[d*x,d*u] == (u + 1)*Exp[u]"
+            "translation" : "x == u*(e)^(u)\nDivide[d*x,d*u] == (u + 1)*Exp[u]"
           },
           "SymPy" : {
-            "translation" : "x == u*(e)**(u)\n(5*p*t)*(d*x)/(d*u) == (u + 1)*exp(u)"
+            "translation" : "x == u*(e)**(u)\n(d*x)/(d*u) == (u + 1)*exp(u)"
           },
           "Maple" : {
-            "translation" : "x = u*(e)^(u); (5*p*t)*(d*x)/(d*u) = (u + 1)*exp(u)"
+            "translation" : "x = u*(e)^(u); (d*x)/(d*u) = (u + 1)*exp(u)"
           }
         },
         "positions" : [
@@ -570,14 +573,14 @@
       {
         "id" : "FORMULA_523ec091d0929f0fa69ae7e0d563a72b",
         "formula" : "\\operatorname{erf}^{(k)}(z) = \\frac{2 (-1)^{k-1}}{\\sqrt{\\pi}} \\mathit{H}_{k-1}(z) e^{-z^2} = \\frac{2}{\\sqrt{\\pi}}  \\frac{d^{k-1}}{dz^{k-1}} \\left(e^{-z^2}\\right),\\qquad k=1, 2, \\dots",
-        "semanticFormula" : "\\operatorname{erf}^{(k)}(z) = \\frac{2 (-1)^{k-1}}{\\sqrt{\\pi}} \\mathit{H}_{k-1}(z) e^{-z^2} = \\frac{2}{\\sqrt{\\pi}} \\deriv [{k-1}]{ }{z}(e^{-z^2}) , \\qquad k = 1 , 2 , \\dots",
+        "semanticFormula" : "\\erf@@{(z)}^{(k)} = \\frac{2 (-1)^{k-1}}{\\sqrt{\\cpi}} \\HermitepolyH{k-1}@{z} \\expe^{-z^2} = \\frac{2}{\\sqrt{\\cpi}} \\deriv [{k-1}]{ }{z}(\\expe^{-z^2}) , \\qquad k = 1 , 2 , \\dots",
         "confidence" : 0.444807172128538,
         "translations" : {
           "Mathematica" : {
-            "translation" : "erf[z]^(k) == Divide[2*(- 1)^(k - 1),Sqrt[\\[Pi]]]*Subscript[H, k - 1]*(z)*(e)^(- (z)^(2)) == Divide[2,Sqrt[\\[Pi]]]*D[(e)^(- (z)^(2)), {z, k - 1}] == 1 , 2 , \\[Ellipsis]"
+            "translation" : "(Erf[z])^(k) == Divide[2*(- 1)^(k - 1),Sqrt[Pi]]*HermiteH[k - 1, z]*Exp[- (z)^(2)] == Divide[2,Sqrt[Pi]]*D[Exp[- (z)^(2)], {z, k - 1}]"
           },
           "Maple" : {
-            "translation" : "erf(z)^(k) = (2*(- 1)^(k - 1))/(sqrt(pi))*H[k - 1]*(z)*(e)^(- (z)^(2)) = (2)/(sqrt(pi))*diff((e)^(- (z)^(2)), [z$(k - 1)]) = 1 , 2 , .."
+            "translation" : "(erf(z))^(k) = (2*(- 1)^(k - 1))/(sqrt(Pi))*HermiteH(k - 1, z)*exp(- (z)^(2)) = (2)/(sqrt(Pi))*diff(exp(- (z)^(2)), [z$(k - 1)])"
           }
         },
         "positions" : [
@@ -617,17 +620,17 @@
       {
         "id" : "FORMULA_d9eb68704833b0f525c4ca81a749d9ca",
         "formula" : "x_k = \\cos\\left(\\frac{\\pi(k+1/2)}{n}\\right),\\quad k=0,\\ldots,n-1",
-        "semanticFormula" : "x_k = \\cos(\\frac{\\pi(k+1/2)}{n}) , \\quad k = 0 , \\ldots , n - 1",
+        "semanticFormula" : "x_k = \\cos(\\frac{\\cpi(k + 1 / 2)}{n}) , \\quad k = 0 , \\ldots , n - 1",
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "Subscript[x, k] == Cos[Divide[\\[Pi]*(k + 1/2),n]]"
+            "translation" : "Subscript[x, k] == Cos[Divide[Pi*(k + 1/2),n]]"
           },
           "SymPy" : {
-            "translation" : "Symbol('{x}_{k}') == cos((Symbol('pi')*(k + 1/2))/(n))"
+            "translation" : "Symbol('{x}_{k}') == cos((pi*(k + 1/2))/(n))"
           },
           "Maple" : {
-            "translation" : "x[k] = cos((pi*(k + 1/2))/(n))"
+            "translation" : "x[k] = cos((Pi*(k + 1/2))/(n))"
           }
         },
         "positions" : [
@@ -673,7 +676,7 @@
       {
         "id" : "FORMULA_249043719eb4dd70350b460363255e11",
         "formula" : "E(x, y; u) := \\sum_{n=0}^\\infty u^n \\, \\psi_n (x) \\, \\psi_n (y) = \\frac{1}{\\sqrt{\\pi (1 - u^2)}} \\, \\exp\\left(-\\frac{1 - u}{1 + u} \\, \\frac{(x + y)^2}{4} - \\frac{1 + u}{1 - u} \\, \\frac{(x - y)^2}{4}\\right)",
-        "semanticFormula" : "E(x , y ; u) : = \\sum_{n=0}^\\infty u^n \\psi_n(x) \\psi_n(y) = \\frac{1}{\\sqrt{\\pi (1 - u^2)}} \\exp(- \\frac{1 - u}{1 + u} \\frac{(x + y)^2}{4} - \\frac{1 + u}{1 - u} \\frac{(x - y)^2}{4})",
+        "semanticFormula" : "E(x , y ; u) : = \\sum_{n=0}^\\infty u^n \\psi_n(x) \\psi_n(y) = \\frac{1}{\\sqrt{\\cpi(1 - u^2)}} \\exp(- \\frac{1 - u}{1 + u} \\frac{(x + y)^2}{4} - \\frac{1 + u}{1 - u} \\frac{(x - y)^2}{4})",
         "confidence" : 0.0,
         "translations" : { },
         "positions" : [
@@ -787,14 +790,14 @@
       {
         "id" : "FORMULA_0feb8031b89a9707b164163ec50265f0",
         "formula" : "\\operatorname{Si}(ix) = i\\operatorname{Shi}(x)",
-        "semanticFormula" : "\\sinint@{ix} = i \\operatorname{Shi}(x)",
+        "semanticFormula" : "\\sinint@{ix} = \\iunit \\operatorname{Shi}(x)",
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "SinIntegral[i*x] == i*Shi[x]"
+            "translation" : "SinIntegral[i*x] == I*Shi[x]"
           },
           "Maple" : {
-            "translation" : "Si(i*x) = i*Shi(x)"
+            "translation" : "Si(i*x) = I*Shi(x)"
           }
         },
         "positions" : [
@@ -825,7 +828,7 @@
       {
         "id" : "FORMULA_5f59825d73d63a9990498edca7222261",
         "formula" : "f(z)=\\frac{1}{\\Beta(x,y)}",
-        "semanticFormula" : "f(z)=\\frac{1}{\\Beta(x,y)}",
+        "semanticFormula" : "\\EulerPhi@{z} = \\frac{1}{\\Beta(x,y)}",
         "confidence" : 0.0,
         "translations" : { },
         "positions" : [
@@ -881,7 +884,7 @@
       {
         "id" : "FORMULA_bf1e8348d5ada03e04c8d6022816091a",
         "formula" : "\\begin{align}\\int x^m \\exp(ix^n)\\,dx & =\\frac{x^{m+1}}{m+1}\\,_1F_1\\left(\\begin{array}{c} \\frac{m+1}{n}\\\\1+\\frac{m+1}{n}\\end{array}\\mid ix^n\\right) \\\\& =\\frac{1}{n} i^{(m+1)/n}\\gamma\\left(\\frac{m+1}{n},-ix^n\\right),\\end{align}",
-        "semanticFormula" : "\\begin{align}\\int x^m \\exp(ix^n) \\diff{x} &= \\frac{x^{m+1}}{m+1}_1 F_1(\\begin{array}{c} \\frac{m+1}{n}\\\\1+\\frac{m+1}{n}\\end{array} \\mid ix^n) \\\\ &\\incgamma@{}{}\\end{align}",
+        "semanticFormula" : "\\begin{align}\\int x^m \\exp(ix^n) \\diff{x} &= \\frac{x^{m+1}}{m+1}_1 F_1(\\begin{array}{c} \\frac{m+1}{n}\\\\1+\\frac{m+1}{n}\\end{array} \\mid ix^n) \\\\ &\\iunit  \\incgamma@{}{}\\end{align}",
         "confidence" : 0.6393063866452557,
         "translations" : { },
         "positions" : [
@@ -971,7 +974,7 @@
       {
         "id" : "FORMULA_699b5f465d21dd6af7212cd8414f60c6",
         "formula" : "{}_1F_0(1;;z) = \\sum_{n \\geqslant 0} z^n = (1-z)^{-1}",
-        "semanticFormula" : "\\genhyperF{1}{0}@{a_1,\\dots,a_p}{b_1,\\dots,b_q}{z}(1 ; ; z) = \\sum_{n \\geqslant 0} z^n =(1 - z)^{-1}",
+        "semanticFormula" : "{}_1F_0(1;;z) = \\sum_{n \\geqslant 0} z^n = (1-z)^{-1}",
         "confidence" : 0.0,
         "translations" : { },
         "positions" : [
@@ -1008,7 +1011,7 @@
       {
         "id" : "FORMULA_dcb9beab8f504cfc907c3165d24e5ad3",
         "formula" : "\\chi(-1) = 1",
-        "semanticFormula" : "\\Dirichletchar(- 1) = 1",
+        "semanticFormula" : "\\Dirichletchar@@{- 1}{k} = 1",
         "confidence" : 0.14103512186806413,
         "translations" : { },
         "positions" : [
@@ -1063,7 +1066,7 @@
       {
         "id" : "FORMULA_3b2520d05d324290456841271e8d565b",
         "formula" : "\\operatorname{Bi}'(z)\\sim \\frac{z^{\\frac{1}{4}}e^{\\frac{2}{3}z^{\\frac{3}{2}}}}{\\sqrt\\pi\\,}\\left[ \\sum_{n=0}^{\\infty}\\frac{1+6n}{1-6n} \\dfrac{ \\Gamma(n+\\frac{5}{6})\\Gamma(n+\\frac{1}{6})\\left(\\frac{3}{4}\\right)^n}{2\\pi n! z^{3n/2}} \\right]",
-        "semanticFormula" : "\\AiryBi@{z} '(z) \\asympexp \\frac{z^{\\frac{1}{4}}e^{\\frac{2}{3}z^{\\frac{3}{2}}}}{\\sqrt\\pi} [\\sum_{n=0}^{\\infty} \\frac{1+6n}{1-6n} \\dfrac{\\Gamma(n + \\frac{5}{6}) \\Gamma(n + \\frac{1}{6})(\\frac{3}{4})^n{2\\pi n! z^{3n/2}}}]",
+        "semanticFormula" : "\\AiryBi@{z} '(z) \\sim \\frac{z^{\\frac{1}{4}} \\expe^{\\frac{2}{3}z^{\\frac{3}{2}}}}{\\sqrt{\\cpi}} [\\sum_{n=0}^{\\infty} \\frac{1+6n}{1-6n} \\dfrac{\\Gamma(n + \\frac{5}{6}) \\Gamma(n + \\frac{1}{6})(\\frac{3}{4})^n{2 \\cpi n! z^{3n/2}}}]",
         "confidence" : 0.0,
         "translations" : { },
         "positions" : [
@@ -1162,17 +1165,17 @@
       {
         "id" : "FORMULA_bfba6c35dbbcd8b89c6a29b1ffd6f517",
         "formula" : "q = e^{i\\pi\\tau}",
-        "semanticFormula" : "q = e^{i\\pi\\tau}",
+        "semanticFormula" : "q = \\expe^{\\iunit \\cpi \\tau}",
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "q == (e)^(i*\\[Pi]*\\[Tau])"
+            "translation" : "q == Exp[I*Pi*\\[Tau]]"
           },
           "SymPy" : {
-            "translation" : "q == (e)**(i*Symbol('pi')*Symbol('tau'))"
+            "translation" : "q == exp(I*pi*Symbol('tau'))"
           },
           "Maple" : {
-            "translation" : "q = (e)^(i*pi*tau)"
+            "translation" : "q = exp(I*Pi*tau)"
           }
         },
         "positions" : [
@@ -1313,14 +1316,14 @@
       {
         "id" : "FORMULA_b54c03865b3efa9ea9112567cd66f59d",
         "formula" : "\\frac{\\mathrm{d}}{\\mathrm{d}z} \\operatorname{dn}(z) = - k^2 \\operatorname{sn}(z) \\operatorname{cn}(z)",
-        "semanticFormula" : "\\deriv [1]{ }{z} \\operatorname{dn}(z) = - k^2 \\operatorname{sn}(z) \\operatorname{cn}(z)",
+        "semanticFormula" : "\\deriv [1]{ }{z} \\Jacobielldnk@@{(z)}{k} = - k^2 \\Jacobiellsnk@@{(z)}{k} \\operatorname{cn}(z)",
         "confidence" : 0.27145561148677777,
         "translations" : {
           "Mathematica" : {
-            "translation" : "dnD[dn[z], {z, 1}] == - (k)^(2)* sn[(z)*]*cn[z]"
+            "translation" : "D[JacobiDN[z, (k)^2], {z, 1}] == - (k)^(2)* JacobiSN[z, (k)^2]*cn[z]"
           },
           "Maple" : {
-            "translation" : "dndiff(dn(z), [z$(1)]) = - (k)^(2)* sn((z)*)*cn(z)"
+            "translation" : "diff(JacobiDN(z, k), [z$(1)]) = - (k)^(2)* JacobiSN(z, k)*cn(z)"
           }
         },
         "positions" : [
@@ -1358,7 +1361,7 @@
       {
         "id" : "FORMULA_c82b4ceebacd2b4a03b2eff406834e61",
         "formula" : "\\int_{-\\infty}^\\infty \\frac {\\gamma\\left(\\frac s 2, z^2 \\pi \\right)} {(z^2 \\pi)^\\frac s 2} e^{-2 \\pi i k z} \\mathrm d z = \\frac {\\Gamma\\left(\\frac {1-s} 2, k^2 \\pi \\right)} {(k^2 \\pi)^\\frac {1-s} 2}",
-        "semanticFormula" : "\\int_{-\\infty}^\\infty \\frac{\\incgamma@{\\frac s 2}{z^2 \\nprimes@{x}}}{(z^2 \\nprimes@{x})^\\frac s 2} e^{- 2 \\nprimes@{x} i k z} \\diff{}  \\frac{\\incGamma@\\setmod \\setmod \\nprimes@{x}}",
+        "semanticFormula" : "\\int_{-\\infty}^\\infty \\frac{\\incgamma@{\\frac s 2}{z^2 \\cpi}}{(z^2 \\cpi)^\\frac s 2} \\expe^{- 2 \\cpi \\iunit k z} \\diff{}  \\frac{\\incGamma@{}{\\cpi} \\cpi}",
         "confidence" : 0.25886698611114317,
         "translations" : { },
         "positions" : [
@@ -1495,17 +1498,17 @@
       {
         "id" : "FORMULA_6340f4a043f912a3557e084aaf03792a",
         "formula" : "\\int_{-\\infty}^\\infty \\operatorname{sinc}(t) \\, e^{-i 2 \\pi f t}\\,dt = \\operatorname{rect}(f)",
-        "semanticFormula" : "\\int_{-\\infty}^\\infty \\operatorname{sinc}(t) e^{-i 2 \\pi f t} \\diff{t} = \\operatorname{rect}(f)",
+        "semanticFormula" : "\\int_{-\\infty}^\\infty \\operatorname{sinc}(t) \\expe^{- \\iunit 2 \\cpi f t} \\diff{t} = \\operatorname{rect}(f)",
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "sincIntegrate[sinc[(t)*]*(e)^(- i*2*\\[Pi]*f*t), {t, - Infinity, Infinity}, GenerateConditions->None] == rect[f]"
+            "translation" : "sincIntegrate[sinc[(t)*]*Exp[- I*2*Pi*f*t], {t, - Infinity, Infinity}, GenerateConditions->None] == rect[f]"
           },
           "SymPy" : {
-            "translation" : "sincintegrate(sinc((t)*)*(e)**(- i*2*Symbol('pi')*f*t), (t, - oo, oo)) == rect(f)"
+            "translation" : "sincintegrate(sinc((t)*)*exp(- I*2*pi*f*t), (t, - oo, oo)) == rect(f)"
           },
           "Maple" : {
-            "translation" : "sincint(sinc((t)*)*(e)^(- i*2*pi*f*t), t = - infinity..infinity) = rect(f)"
+            "translation" : "sincint(sinc((t)*)*exp(- I*2*Pi*f*t), t = - infinity..infinity) = rect(f)"
           }
         },
         "positions" : [
@@ -1696,14 +1699,14 @@
       {
         "id" : "FORMULA_c8116180276232704ca3e9f67f207565",
         "formula" : "\\mathrm{Gi}(x) = \\frac{1}{\\pi} \\int_0^\\infty \\sin\\left(\\frac{t^3}{3} + xt\\right)\\, dt",
-        "semanticFormula" : "\\ScorerGi@{x} = \\frac{1}{\\pi} \\int_0^\\infty \\sin(\\frac{t^3}{3} + xt) \\diff{t}",
+        "semanticFormula" : "\\ScorerGi@{x} = \\frac{1}{\\cpi} \\int_0^\\infty \\sin(\\frac{t^3}{3} + xt) \\diff{t}",
         "confidence" : 0.47166315232674316,
         "translations" : {
           "Mathematica" : {
-            "translation" : "ScorerGi[x] == Divide[1,\\[Pi]]*Integrate[Sin[Divide[(t)^(3),3]+ x*t], {t, 0, Infinity}, GenerateConditions->None]"
+            "translation" : "ScorerGi[x] == Divide[1,Pi]*Integrate[Sin[Divide[(t)^(3),3]+ x*t], {t, 0, Infinity}, GenerateConditions->None]"
           },
           "Maple" : {
-            "translation" : "AiryBi(x)*(int(AiryAi(t), t = (x) .. infinity))+AiryAi(x)*(int(AiryBi(t), t = 0 .. (x))) = (1)/(pi)*int(sin(((t)^(3))/(3)+ x*t), t = 0..infinity)"
+            "translation" : "AiryBi(x)*(int(AiryAi(t), t = (x) .. infinity))+AiryAi(x)*(int(AiryBi(t), t = 0 .. (x))) = (1)/(Pi)*int(sin(((t)^(3))/(3)+ x*t), t = 0..infinity)"
           }
         },
         "positions" : [
@@ -1737,7 +1740,7 @@
       {
         "id" : "FORMULA_e663d20df3cca1ae5dec645d320cd511",
         "formula" : "\\frac{\\partial^2}{\\partial x^2} V(x;\\sigma,\\gamma)= \\frac{x^2-\\gamma^2-\\sigma^2}{\\sigma^4} \\frac{\\operatorname{Re}[w(z)]}{\\sigma\\sqrt{2 \\pi}}-\\frac{2 x \\gamma}{\\sigma^4} \\frac{\\operatorname{Im}[w(z)]}{\\sigma\\sqrt{2 \\pi}}+\\frac{\\gamma}{\\sigma^4}\\frac{1}{\\pi}",
-        "semanticFormula" : "\\frac{\\partial^2}{\\partial x^2} V(x ; \\sigma , \\gamma) = \\frac{x^2-\\gamma^2-\\sigma^2}{\\sigma^4} \\frac{\\operatorname{Re} [\\Faddeevaw@{z}]}{\\sigma\\sqrt{2 \\pi}} - \\frac{2 x \\gamma}{\\sigma^4} \\frac{\\operatorname{Im} [\\Faddeevaw@{z}]}{\\sigma\\sqrt{2 \\pi}} + \\frac{\\gamma}{\\sigma^4} \\frac{1}{\\pi}",
+        "semanticFormula" : "\\frac{\\partial^2}{\\partial x^2} V(x ; \\sigma , \\gamma) = \\frac{x^2-\\gamma^2-\\sigma^2}{\\sigma^4} \\frac{\\operatorname{Re} [\\Faddeevaw@{z}]}{\\sigma \\sqrt{2 \\cpi}} - \\frac{2 x \\gamma}{\\sigma^4} \\frac{\\operatorname{Im} [\\Faddeevaw@{z}]}{\\sigma \\sqrt{2 \\cpi}} + \\frac{\\gamma}{\\sigma^4} \\frac{1}{\\cpi}",
         "confidence" : 0.6119889089567749,
         "translations" : { },
         "positions" : [
@@ -1821,14 +1824,14 @@
       {
         "id" : "FORMULA_d83a3ce5244b566d8f71edb7f81afa43",
         "formula" : "M(1,2,z)=(e^z-1)/z,\\ \\ M(1,3,z)=2!(e^z-1-z)/z^2",
-        "semanticFormula" : "\\KummerconfhyperM@{1}{2}{z} = \\pgcd{e^z - 1} / z , \\KummerconfhyperM@{1}{3}{z} = 2! \\pgcd{e^z - 1 - z} / z^2",
+        "semanticFormula" : "\\OlverconfhyperM@{1}{2}{z} = \\pgcd{\\expe^z - 1} / z , \\OlverconfhyperM@{1}{3}{z} = 2! \\pgcd{\\expe^z - 1 - z} / z^2",
         "confidence" : 0.7088503631126443,
         "translations" : {
           "Mathematica" : {
-            "translation" : "Hypergeometric1F1[1, 2, z] == GCD[(e)^(z)- 1]/z , Hypergeometric1F1[1, 3, z] == (2)!*GCD[(e)^(z)- 1 - z]/(z)^(2)"
+            "translation" : "Hypergeometric1F1Regularized[1, 2, z] == GCD[Exp[z]- 1]/z , Hypergeometric1F1Regularized[1, 3, z] == (2)!*GCD[Exp[z]- 1 - z]/(z)^(2)"
           },
           "Maple" : {
-            "translation" : "KummerM(1, 2, z) = gcd((e)^(z)- 1)/z , KummerM(1, 3, z) = factorial(2)*gcd((e)^(z)- 1 - z)/(z)^(2)"
+            "translation" : "KummerM(1, 2, z)/GAMMA(2) = gcd(exp(z)- 1)/z , KummerM(1, 3, z)/GAMMA(3) = factorial(2)*gcd(exp(z)- 1 - z)/(z)^(2)"
           }
         },
         "positions" : [
@@ -2045,14 +2048,14 @@
       {
         "id" : "FORMULA_6bc0d742c4d25c1abb61158150489676",
         "formula" : "\\frac{1}{\\Gamma(z)}= z e^{\\gamma z} \\prod_{k=1}^\\infty \\left\\{ \\left(1+\\frac{z}{k}\\right)e^{-z/k} \\right\\}",
-        "semanticFormula" : "\\frac{1}{\\EulerGamma@{z}} = z e^{\\EulerConstant z} \\prod_{k=1}^\\infty \\{(1 + \\frac{z}{k}) e^{-z/k} \\}",
+        "semanticFormula" : "\\frac{1}{\\EulerGamma@{z}} = z \\expe^{\\EulerConstant z} \\prod_{k=1}^\\infty \\{(1 + \\frac{z}{k}) \\expe^{-z/k} \\}",
         "confidence" : 0.31414642458715236,
         "translations" : {
           "Mathematica" : {
-            "translation" : "Divide[1,Gamma[z]] == z*(e)^(EulerGamma*z)* Product[(1 +Divide[z,k])*(e)^(- z/k), {k, 1, Infinity}, GenerateConditions->None]"
+            "translation" : "Divide[1,Gamma[z]] == z*Exp[EulerGamma*z]*Product[(1 +Divide[z,k])*Exp[- z/k], {k, 1, Infinity}, GenerateConditions->None]"
           },
           "Maple" : {
-            "translation" : "(1)/(GAMMA(z)) = z*(e)^(gamma*z)* product((1 +(z)/(k))*(e)^(- z/k), k = 1..infinity)"
+            "translation" : "(1)/(GAMMA(z)) = z*exp(gamma*z)*product((1 +(z)/(k))*exp(- z/k), k = 1..infinity)"
           }
         },
         "positions" : [
@@ -2288,7 +2291,7 @@
       {
         "id" : "FORMULA_33e3b57bb75d5ea3b5b8ddcceef38430",
         "formula" : "\\lim_{q\\to 1}\\;_{j}\\phi_k \\left[\\begin{matrix} q^{a_1} & q^{a_2} & \\ldots & q^{a_j} \\\\ q^{b_1} & q^{b_2} & \\ldots & q^{b_k} \\end{matrix} ; q,(q-1)^{1+k-j} z \\right]=\\;_{j}F_k \\left[\\begin{matrix} a_1 & a_2 & \\ldots & a_j \\\\ b_1 & b_2 & \\ldots & b_k \\end{matrix} ;z \\right]",
-        "semanticFormula" : "\\lim_{q\\to 1}_{j} \\Eulertotientphi[k]@{n} [\\begin{matrix} q^{a_1} & q^{a_2} & \\ldots & q^{a_j} \\\\ q^{b_1} & q^{b_2} & \\ldots & q^{b_k} \\end{matrix} ; q ,(q - 1)^{1+k-j} z] =_{j} \\hyperF@{a}{b}{c}{z}_k [\\begin{matrix} a_1 & a_2 & \\ldots & a_j \\\\ b_1 & b_2 & \\ldots & b_k \\end{matrix} ; z]",
+        "semanticFormula" : "\\lim_{q\\to 1}_{j} \\phi_k [\\begin{matrix} q^{a_1} & q^{a_2} & \\ldots & q^{a_j} \\\\ q^{b_1} & q^{b_2} & \\ldots & q^{b_k} \\end{matrix} ; q ,(q - 1)^{1+k-j} z] =_{j} F_k [\\begin{matrix} a_1 & a_2 & \\ldots & a_j \\\\ b_1 & b_2 & \\ldots & b_k \\end{matrix} ; z]",
         "confidence" : 0.0,
         "translations" : { },
         "positions" : [
@@ -2652,17 +2655,17 @@
       {
         "id" : "FORMULA_07453e6baf8f216467f9b664de795bfc",
         "formula" : "g_1(x) = \\sum_{k \\geq 1} \\frac{\\sin(k \\pi / 4)}{k! (8x)^k} \\prod_{l = 1}^k (2l - 1)^2",
-        "semanticFormula" : "g_1(x) = \\sum_{k \\geq 1} \\frac{\\sin(k \\pi / 4)}{k! (8x)^k} \\prod_{l = 1}^k (2l - 1)^2",
+        "semanticFormula" : "g_1(x) = \\sum_{k \\geq 1} \\frac{\\sin(k \\cpi / 4)}{k! (8x)^k} \\prod_{l = 1}^k(2 l - 1)^2",
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "Subscript[g, 1]*(x) == Sum[Divide[Sin[k*\\[Pi]/4],(k)!*(8*x)^(k)]*Product[(2*l - 1)^(2), {l, 1, k}, GenerateConditions->None], {k, 1, Infinity}, GenerateConditions->None]"
+            "translation" : "Subscript[g, 1]*(x) == Sum[Divide[Sin[k*Pi/4],(k)!*(8*x)^(k)]*Product[(2*l - 1)^(2), {l, 1, k}, GenerateConditions->None], {k, 1, Infinity}, GenerateConditions->None]"
           },
           "SymPy" : {
-            "translation" : "Symbol('{g}_{1}')*(x) == Sum((sin(k*Symbol('pi')/4))/(factorial(k)*(8*x)**(k))*Product((2*l - 1)**(2), (l, 1, k)), (k, 1, oo))"
+            "translation" : "Symbol('{g}_{1}')*(x) == Sum((sin(k*pi/4))/(factorial(k)*(8*x)**(k))*Product((2*l - 1)**(2), (l, 1, k)), (k, 1, oo))"
           },
           "Maple" : {
-            "translation" : "g[1]*(x) = sum((sin(k*pi/4))/(factorial(k)*(8*x)^(k))*product((2*l - 1)^(2), l = 1..k), k = 1..infinity)"
+            "translation" : "g[1]*(x) = sum((sin(k*Pi/4))/(factorial(k)*(8*x)^(k))*product((2*l - 1)^(2), l = 1..k), k = 1..infinity)"
           }
         },
         "positions" : [
@@ -2701,7 +2704,7 @@
       {
         "id" : "FORMULA_03f5cb50caaedb9f0a4ada231fd61c58",
         "formula" : "S_{\\mu,\\nu}(z) = s_{\\mu,\\nu}(z) + 2^{\\mu-1} \\Gamma\\left(\\frac{\\mu + \\nu + 1}{2}\\right) \\Gamma\\left(\\frac{\\mu - \\nu + 1}{2}\\right)\\left(\\sin \\left[(\\mu - \\nu)\\frac{\\pi}{2}\\right] J_\\nu(z) - \\cos \\left[(\\mu - \\nu)\\frac{\\pi}{2}\\right] Y_\\nu(z)\\right)",
-        "semanticFormula" : "\\LommelS{\\mu}{\\nu}(z) = \\Lommels{\\mu}{\\nu}@{z} + 2^{\\mu-1} \\Gamma(\\frac{\\mu + \\nu + 1}{2}) \\Gamma(\\frac{\\mu - \\nu + 1}{2})(\\sin [(\\mu - \\nu) \\frac{\\pi}{2}] \\BesselJ{\\nu}@{z} - \\cos [(\\mu - \\nu) \\frac{\\pi}{2}] \\BesselY{\\nu}@{z})",
+        "semanticFormula" : "\\LommelS{\\mu}{\\nu}@{z} = \\Lommels{\\mu}{\\nu}@{z} + 2^{\\mu-1} \\Gamma(\\frac{\\mu + \\nu + 1}{2}) \\Gamma(\\frac{\\mu - \\nu + 1}{2})(\\sin [(\\mu - \\nu) \\frac{\\cpi}{2}] \\BesselJ{\\nu}@{z} - \\cos [(\\mu - \\nu) \\frac{\\cpi}{2}] \\BesselY{\\nu}@{z})",
         "confidence" : 0.4855773712067641,
         "translations" : { },
         "positions" : [
@@ -2737,14 +2740,14 @@
       {
         "id" : "FORMULA_6dc2da7f595d2f199fbc15768167f006",
         "formula" : "\\mathbf{H}_{\\alpha}(z) = \\frac{z^{\\alpha+1}}{2^{\\alpha}\\sqrt{\\pi} \\Gamma \\left (\\alpha+\\tfrac{3}{2} \\right )} {}_1F_2 \\left (1,\\tfrac{3}{2}, \\alpha+\\tfrac{3}{2},-\\tfrac{z^2}{4} \\right )",
-        "semanticFormula" : "\\StruveH{\\alpha}@{z} = \\frac{z^{\\alpha+1}}{2^{\\alpha} \\sqrt{\\pi} \\EulerGamma@{\\alpha + \\tfrac{3}{2}}}{}_1 \\hyperF@{a}{b}{c}{z}_2(1 , \\tfrac{3}{2} , \\alpha + \\tfrac{3}{2} , - \\tfrac{z^2}{4})",
+        "semanticFormula" : "\\StruveH{\\alpha}@{z} = \\frac{z^{\\alpha+1}}{2^{\\alpha} \\sqrt{\\cpi} \\EulerGamma@{\\alpha + \\tfrac{3}{2}}}{}_1 F_2(1 , \\tfrac{3}{2} , \\alpha + \\tfrac{3}{2} , - \\tfrac{z^2}{4})",
         "confidence" : 0.438547867043461,
         "translations" : {
           "Mathematica" : {
-            "translation" : "StruveH[\\[Alpha], z] == Subscript[Divide[(z)^(\\[Alpha]+ 1),(2)^\\[Alpha]*Sqrt[\\[Pi]]*Gamma[\\[Alpha]+Divide[3,2]]], 1]*Subscript[Hypergeometric2F1[a, b, c, z], 2]*(1 ,Divide[3,2], \\[Alpha]+Divide[3,2], -Divide[(z)^(2),4])"
+            "translation" : "StruveH[\\[Alpha], z] == Subscript[Divide[(z)^(\\[Alpha]+ 1),(2)^\\[Alpha]*Sqrt[Pi]*Gamma[\\[Alpha]+Divide[3,2]]], 1]*Subscript[F, 2]*(1 ,Divide[3,2], \\[Alpha]+Divide[3,2], -Divide[(z)^(2),4])"
           },
           "Maple" : {
-            "translation" : "StruveH(alpha, z) = ((z)^(alpha + 1))/((2)^(alpha)*sqrt(pi)*GAMMA(alpha +(3)/(2)))[1]*hypergeom([a, b], [c], z)[2]*(1 ,(3)/(2), alpha +(3)/(2), -((z)^(2))/(4))"
+            "translation" : "StruveH(alpha, z) = ((z)^(alpha + 1))/((2)^(alpha)*sqrt(Pi)*GAMMA(alpha +(3)/(2)))[1]*F[2]*(1 ,(3)/(2), alpha +(3)/(2), -((z)^(2))/(4))"
           }
         },
         "positions" : [
@@ -2846,7 +2849,7 @@
       {
         "id" : "FORMULA_59d6999a6b10e8f30a1ccea6173c9927",
         "formula" : "z\\dfrac{\\partial}{\\partial z}\\mathbf{E}_\\nu(z)\\pm\\nu\\mathbf{E}_\\nu(z)=\\pm z\\mathbf{E}_{\\nu\\mp1}(z)\\pm\\frac{1-\\cos\\pi\\nu}{\\pi}",
-        "semanticFormula" : "z \\dfrac{\\partial}{\\partial z} \\WeberE{\\nu}@{z} \\pm \\nu \\WeberE{\\nu}@{z} = \\pm z \\WeberE{\\nu\\mp1}@{z} \\pm \\frac{1-\\cos\\pi\\nu}{\\pi}",
+        "semanticFormula" : "z \\dfrac{\\partial}{\\partial z} \\WeberE{\\nu}@{z} \\pm \\nu \\WeberE{\\nu}@{z} = \\pm z \\WeberE{\\nu\\mp1}@{z} \\pm \\frac{1 - \\cos \\cpi \\nu}{\\cpi}",
         "confidence" : 0.7235082181560087,
         "translations" : { },
         "positions" : [
@@ -2935,7 +2938,7 @@
       {
         "id" : "FORMULA_cdf8d887d4b5ad1a7724773d8eef8fd2",
         "formula" : "\\int_{-\\infty}^{+\\infty} e^{-x^2} f(x)\\,dx \\approx \\sum_{i=1}^n w_i f(x_i)",
-        "semanticFormula" : "\\int_{-\\infty}^{+\\infty} e^{-x^2} f(x) \\diff{x} \\approx \\sum_{i=1}^n w_i f(x_i)",
+        "semanticFormula" : "\\int_{-\\infty}^{+\\infty} \\expe^{-x^2} f(x) \\diff{x} \\approx \\sum_{i=1}^n w_i f(x_i)",
         "confidence" : 0.0,
         "translations" : { },
         "positions" : [
@@ -2971,7 +2974,7 @@
       {
         "id" : "FORMULA_cfe946a0547913234ac79d398f269607",
         "formula" : "p_n(x;a,b,c,d|q) =(ab,ac,ad;q)_na^{-n}\\;_{4}\\phi_3 \\left[\\begin{matrix} q^{-n}&abcdq^{n-1}&ae^{i\\theta}&ae^{-i\\theta} \\\\ ab&ac&ad \\end{matrix} ; q,q \\right]",
-        "semanticFormula" : "p_n(x ; a , b , c , d|q) =(ab , ac , ad ; q)_na^{-n}_{4}\\phi_3 \\left[\\begin{matrix} q^{-n}&abcdq^{n-1}&ae^{i\\theta}&ae^{-i\\theta} \\\\ ab&ac&ad \\end{matrix} ; q,q \\right]    [    ]",
+        "semanticFormula" : "p_n(x ; a , b , c , d|q) =(ab , ac , ad ; q)_na^{-n}_{4}\\phi_3 \\left[\\begin{matrix} q^{-n}&abcdq^{n-1}&ae^{i\\theta}&ae^{-i\\theta} \\\\ ab&ac&ad \\end{matrix} ; q,q \\right]    [\\begin{matrix}^{\\iunit}^{\\iunit}\\end{matrix}    ]",
         "confidence" : 0.0,
         "translations" : { },
         "positions" : [
@@ -3056,17 +3059,17 @@
       {
         "id" : "FORMULA_b76bcf7237b989f6b5d90082fafa53f1",
         "formula" : "\\sum_{x=0}^\\infty \\frac{\\mu^x}{x!} C_n(x; \\mu)C_m(x; \\mu)=\\mu^{-n} e^\\mu n! \\delta_{nm}, \\quad \\mu>0",
-        "semanticFormula" : "\\sum_{x=0}^\\infty \\frac{\\mu^x}{x!} C_n(x; \\mu)C_m(x; \\mu)=\\mu^{-n} e^\\mu n! \\delta_{nm}, \\quad \\mu>0",
+        "semanticFormula" : "\\sum_{x=0}^\\infty \\frac{\\mu^x}{x!} C_n(x ; \\mu) C_m(x ; \\mu) = \\mu^{-n} \\expe^\\mu n! \\delta_{nm} , \\quad \\mu > 0",
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "Sum[Divide[\\[Mu]^(x),(x)!]*Subscript[C, n]*(x ; \\[Mu])*Subscript[C, m]*(x ; \\[Mu]), {x, 0, Infinity}, GenerateConditions->None] == \\[Mu]^(- n)* (e)^\\[Mu]* (n)!*Subscript[\\[Delta], n*m]"
+            "translation" : "Sum[Divide[\\[Mu]^(x),(x)!]*Subscript[C, n]*(x ; \\[Mu])*Subscript[C, m]*(x ; \\[Mu]), {x, 0, Infinity}, GenerateConditions->None] == \\[Mu]^(- n)* Exp[\\[Mu]]*(n)!*Subscript[\\[Delta], n*m]"
           },
           "SymPy" : {
-            "translation" : "Sum(((Symbol('mu'))**(x))/(factorial(x))*Symbol('{C}_{n}')*(x ; Symbol('mu'))*Symbol('{C}_{m}')*(x ; Symbol('mu')), (x, 0, oo)) == (Symbol('mu'))**(- n)* (e)**(Symbol('mu'))* factorial(n)*Symbol('{Symbol('delta')}_{n*m}')"
+            "translation" : "Sum(((Symbol('mu'))**(x))/(factorial(x))*Symbol('{C}_{n}')*(x ; Symbol('mu'))*Symbol('{C}_{m}')*(x ; Symbol('mu')), (x, 0, oo)) == (Symbol('mu'))**(- n)* exp(Symbol('mu'))*factorial(n)*Symbol('{Symbol('delta')}_{n*m}')"
           },
           "Maple" : {
-            "translation" : "sum(((mu)^(x))/(factorial(x))*C[n]*(x ; mu)*C[m]*(x ; mu), x = 0..infinity) = (mu)^(- n)* (e)^(mu)* factorial(n)*delta[n*m]"
+            "translation" : "sum(((mu)^(x))/(factorial(x))*C[n]*(x ; mu)*C[m]*(x ; mu), x = 0..infinity) = (mu)^(- n)* exp(mu)*factorial(n)*delta[n*m]"
           }
         },
         "positions" : [
@@ -3093,7 +3096,7 @@
       {
         "id" : "FORMULA_51c23bddc19530680328afbf28235b90",
         "formula" : "p_n(q^{-x}+q^{x+1}cd;a,b,c,d;q) = {}_4\\phi_3\\left[\\begin{matrix} q^{-n} &abq^{n+1}&q^{-x}&q^{x+1}cd\\\\aq&bdq&cq\\\\ \\end{matrix};q;q\\right]",
-        "semanticFormula" : "p_n(q^{-x} + q^{x+1} cd ; a , b , c , d ; q) = \\qgenhyperphi{4}{3}@{a_0,\\dots,a_r}{b_1,\\dots,b_s}{q}{z} [\\begin{matrix} q^{-n} &abq^{n+1}&q^{-x}&q^{x+1}cd\\\\aq&bdq&cq\\\\ \\end{matrix} ; q ; q]",
+        "semanticFormula" : "p_n(q^{-x} + q^{x+1} cd ; a , b , c , d ; q) ={}_4 \\phi_3 [\\begin{matrix} q^{-n} &abq^{n+1}&q^{-x}&q^{x+1}cd\\\\aq&bdq&cq\\\\ \\end{matrix} ; q ; q]",
         "confidence" : 0.0,
         "translations" : { },
         "positions" : [
@@ -3205,7 +3208,7 @@
       {
         "id" : "FORMULA_85014aaf0c7c1f4fe433115e796a03db",
         "formula" : "x(1-x) \\frac {\\partial^2F_1(x,y)} {\\partial x^2} + y(1-x) \\frac {\\partial^2F_1(x,y)} {\\partial x \\partial y} + [c - (a+b_1+1) x] \\frac {\\partial F_1(x,y)} {\\partial x} - b_1 y \\frac {\\partial F_1(x,y)} {\\partial y} - a b_1 F_1(x,y) = 0",
-        "semanticFormula" : "x(1 - x) \\frac{\\partial^2 \\AppellF{1}@{\\alpha}{\\beta}{\\beta'}{\\gamma}{x}{y}(x , y)}{\\partial x^2} + y(1 - x) \\frac{\\partial^2 \\AppellF{1}@{\\alpha}{\\beta}{\\beta'}{\\gamma}{x}{y}(x , y)}{\\partial x \\partial y} + [c -(a + b_1 + 1) x] \\frac{\\partial \\AppellF{1}@{\\alpha}{\\beta}{\\beta'}{\\gamma}{x}{y}(x , y)}{\\partial x} - b_1 y \\frac{\\partial \\AppellF{1}@{\\alpha}{\\beta}{\\beta'}{\\gamma}{x}{y}(x , y)}{\\partial y} - a b_1 \\AppellF{1}@{\\alpha}{\\beta}{\\beta'}{\\gamma}{x}{y}(x , y) = 0",
+        "semanticFormula" : "x(1-x) \\frac {\\partial^2F_1(x,y)} {\\partial x^2} + y(1-x) \\frac {\\partial^2F_1(x,y)} {\\partial x \\partial y} + [c - (a+b_1+1) x] \\frac {\\partial F_1(x,y)} {\\partial x} - b_1 y \\frac {\\partial F_1(x,y)} {\\partial y} - a b_1 F_1(x,y) = 0",
         "confidence" : 0.0,
         "translations" : { },
         "positions" : [
@@ -3278,7 +3281,7 @@
       {
         "id" : "FORMULA_39f4baaa3543f22706b6f7701518f3eb",
         "formula" : "\\Theta_\\Lambda(\\tau) = \\sum_{x\\in\\Lambda}e^{i\\pi\\tau\\|x\\|^2}\\qquad\\mathrm{Im}\\,\\tau > 0",
-        "semanticFormula" : "\\Theta_\\Lambda(\\tau) = \\sum_{x\\in\\Lambda}e^{i\\pi\\tau\\|x\\|^2}\\qquad\\mathrm{Im}\\tau > 0",
+        "semanticFormula" : "\\Theta_\\Lambda(\\tau) = \\sum_{x\\in\\Lambda} \\expe^{\\iunit \\cpi \\tau \\|x \\|^2} \\qquad \\mathrm{Im} \\tau > 0",
         "confidence" : 0.0,
         "translations" : { },
         "positions" : [
@@ -3311,14 +3314,14 @@
       {
         "id" : "FORMULA_d673cd2334542e8f83f099798c4027b3",
         "formula" : "\\frac{d^2 S}{dz^2}+\\left(\\sum _{j=1}^N \\frac{\\gamma _j}{z - a_j} \\right) \\frac{dS}{dz} + \\frac{V(z)}{\\prod _{j=1}^N (z - a_j)}S = 0",
-        "semanticFormula" : "\\deriv [2]{S}{z} +(\\sum_{j=1}^N \\frac{\\gamma _j}{z - \\Mathieueigvala{j}@{q}}) \\frac{dS}{dz} + \\frac{V(z)}{\\prod_{j=1}^N(z - \\Mathieueigvala{j}@{q})} S = 0",
+        "semanticFormula" : "\\deriv [2]{S}{z} +(\\sum_{j=1}^N \\frac{\\gamma _j}{z - a_j}) \\frac{dS}{dz} + \\frac{V(z)}{\\prod _{j=1}^N (z - a_j)} S = 0",
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "D[S, {z, 2}]+(Sum[Divide[Subscript[\\[Gamma], j],z - MathieuCharacteristicA[j, q]], {j, 1, N}, GenerateConditions->None])*Divide[d*S,d*z]+Divide[V*(z),Product[z - MathieuCharacteristicA[j, q], {j, 1, N}, GenerateConditions->None]]*S == 0"
+            "translation" : "D[S, {z, 2}]+(Sum[Divide[Subscript[\\[Gamma], j],z - Subscript[a, j]], {j, 1, N}, GenerateConditions->None])*Divide[d*S,d*z]+Divide[V*(z),Product[z - Subscript[a, j], {j, 1, N}, GenerateConditions->None]]*S == 0"
           },
           "Maple" : {
-            "translation" : "diff(S, [z$(2)])+(sum((gamma[j])/(z - MathieuA(j, q)), j = 1..N))*(d*S)/(d*z)+(V*(z))/(product(z - MathieuA(j, q), j = 1..N))*S = 0"
+            "translation" : "diff(S, [z$(2)])+(sum((gamma[j])/(z - a[j]), j = 1..N))*(d*S)/(d*z)+(V*(z))/(product(z - a[j], j = 1..N))*S = 0"
           }
         },
         "positions" : [
@@ -3381,17 +3384,17 @@
       {
         "id" : "FORMULA_583d3b9e00bbd73091b01f368d1a82c7",
         "formula" : "w(x) = \\frac{k}{\\sqrt{\\pi}} x^{-1/2} \\exp(-k^2\\log^2 x)",
-        "semanticFormula" : "w(x) = \\frac{k}{\\sqrt{\\pi}} x^{-1/2} \\exp(-k^2\\log^2 x)",
+        "semanticFormula" : "w(x) = \\frac{k}{\\sqrt{\\cpi}} x^{-1/2} \\exp(- k^2 \\log^2 x)",
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "w*(x) == Divide[k,Sqrt[\\[Pi]]]*(x)^(- 1/2)* Exp[- (k)^(2)* (Log[x])^(2)]"
+            "translation" : "w*(x) == Divide[k,Sqrt[Pi]]*(x)^(- 1/2)* Exp[- (k)^(2)* (Log[x])^(2)]"
           },
           "SymPy" : {
-            "translation" : "w*(x) == (k)/(sqrt(Symbol('pi')))*(x)**(- 1/2)* exp(- (k)**(2)* (log(x))**(2))"
+            "translation" : "w*(x) == (k)/(sqrt(pi))*(x)**(- 1/2)* exp(- (k)**(2)* (log(x))**(2))"
           },
           "Maple" : {
-            "translation" : "w*(x) = (k)/(sqrt(pi))*(x)^(- 1/2)* exp(- (k)^(2)* (log(x))^(2))"
+            "translation" : "w*(x) = (k)/(sqrt(Pi))*(x)^(- 1/2)* exp(- (k)^(2)* (log(x))^(2))"
           }
         },
         "positions" : [
@@ -4910,7 +4913,7 @@
       {
         "id" : "FORMULA_f95cd8e6d82bfb68b3b85bef1c1662b1",
         "formula" : "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,..",
-        "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{2}@{z} = \\frac{(\\alpha+1)(\\alpha+2)}{2} +(\\alpha + 2)(\\alpha + \\beta + 3) \\frac{z-1}{2} + \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}(\\frac{z-1}{2})^2 ,",
+        "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{2}@{z} = \\frac{(\\alpha+1)(\\alpha+2)}{2} +(\\alpha + 2)(\\alpha + \\beta + 3) \\frac{z-1}{2} + \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}(\\frac{z-1}{2})^2",
         "confidence" : 0.8135268481205066,
         "translations" : {
           "Mathematica" : {
@@ -5255,14 +5258,17 @@
       {
         "id" : "FORMULA_d070202e484c3f87021e1210f0cfe802",
         "formula" : "P_{n}^{(\\alpha, \\beta)}",
-        "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{x}",
+        "semanticFormula" : "P_{n}^{(\\alpha, \\beta)}",
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "JacobiP[n, \\[Alpha], \\[Beta], x]"
+            "translation" : "(Subscript[P, n])^(\\[Alpha], \\[Beta])"
+          },
+          "SymPy" : {
+            "translation" : "(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta'))"
           },
           "Maple" : {
-            "translation" : "JacobiP(n, alpha, beta, x)"
+            "translation" : "(P[n])^(alpha , beta)"
           }
         },
         "positions" : [
@@ -5765,17 +5771,17 @@
       {
         "id" : "FORMULA_742460c93f449417419cf4d797043608",
         "formula" : "n= 2, 3, ...",
-        "semanticFormula" : "n= 2, 3,",
+        "semanticFormula" : "n= 2, 3",
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "n == 2 , 3 "
+            "translation" : "n == 2 , 3"
           },
           "SymPy" : {
-            "translation" : "n == 2 , 3 "
+            "translation" : "n == 2 , 3"
           },
           "Maple" : {
-            "translation" : "n = 2 , 3 "
+            "translation" : "n = 2 , 3"
           }
         },
         "positions" : [
@@ -5800,14 +5806,14 @@
       {
         "id" : "FORMULA_2583a2b549a7ff71d02941bc95a657b7",
         "formula" : "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right) \\, .\\end{align}",
-        "semanticFormula" : "\\begin{align}(z - 1) \\deriv [1]{ }{z} \\JacobipolyP{\\alpha}{\\beta}{n}@{z} &= \\frac{1}{2}(z - 1)(1 + \\alpha + \\beta + n) \\JacobipolyP{\\alpha + 1}{\\beta + 1}{n-1}@{x} \\\\ &= n \\JacobipolyP{\\alpha}{\\beta}{n}@{x} -(\\alpha + n) \\JacobipolyP{\\alpha}{\\beta + 1}{n-1}@{x} \\\\ &=(1 + \\alpha + \\beta + n)(\\JacobipolyP{\\alpha}{\\beta + 1}{n}@{x} - \\JacobipolyP{\\alpha}{\\beta}{n}@{x}) \\\\ &=(\\alpha + n) \\JacobipolyP{\\alpha - 1}{\\beta + 1}{n}@{x} - \\alpha \\JacobipolyP{\\alpha}{\\beta}{n}@{x} \\\\ &= \\frac{2(n + 1) \\JacobipolyP{\\alpha}{\\beta - 1}{n+1}@{x} -(z(1 + \\alpha + \\beta + n) + \\alpha + 1 + n - \\beta) \\JacobipolyP{\\alpha}{\\beta}{n}@{x}}{1+z} \\\\ &= \\frac{(2 \\beta + n + nz) \\JacobipolyP{\\alpha}{\\beta}{n}@{x} - 2(\\beta + n) \\JacobipolyP{\\alpha}{\\beta - 1}{n}@{x}}{1+z} \\\\ &= \\frac{1-z}{1+z}(\\beta \\JacobipolyP{\\alpha}{\\beta}{n}@{x} -(\\beta + n) \\JacobipolyP{\\alpha + 1}{\\beta - 1}{n}@{x}) .\\end{align}",
+        "semanticFormula" : "\\begin{align}(z - 1) \\deriv [1]{ }{z} \\JacobipolyP{\\alpha}{\\beta}{n}@{z} &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\ &= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\ &=(1 + \\alpha + \\beta + n)(P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)}) \\\\ &=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\ &= \\frac{2(n + 1) P_{n+1}^{(\\alpha,\\beta-1)} -(z(1 + \\alpha + \\beta + n) + \\alpha + 1 + n - \\beta) P_n^{(\\alpha,\\beta)}}{1+z} \\\\ &=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\ &= \\frac{1-z}{1+z}(\\beta P_n^{(\\alpha,\\beta)} -(\\beta + n) P_{n}^{(\\alpha+1,\\beta-1)}) .\\end{align}",
         "confidence" : 0.4067634240602533,
         "translations" : {
           "Mathematica" : {
-            "translation" : "(z - 1)*D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] == Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*JacobiP[n - 1, \\[Alpha]+ 1, \\[Beta]+ 1, x] == n*JacobiP[n, \\[Alpha], \\[Beta], x]-(\\[Alpha]+ n)*JacobiP[n - 1, \\[Alpha], \\[Beta]+ 1, x] == (1 + \\[Alpha]+ \\[Beta]+ n)*(JacobiP[n, \\[Alpha], \\[Beta]+ 1, x]- JacobiP[n, \\[Alpha], \\[Beta], x]) == (\\[Alpha]+ n)*JacobiP[n, \\[Alpha]- 1, \\[Beta]+ 1, x]- \\[Alpha]*JacobiP[n, \\[Alpha], \\[Beta], x] == Divide[2*(n + 1)*JacobiP[n + 1, \\[Alpha], \\[Beta]- 1, x]-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*JacobiP[n, \\[Alpha], \\[Beta], x],1 + z] == Divide[(2*\\[Beta]+ n + n*z)*JacobiP[n, \\[Alpha], \\[Beta], x]- 2*(\\[Beta]+ n)*JacobiP[n, \\[Alpha], \\[Beta]- 1, x],1 + z] == Divide[1 - z,1 + z]*(\\[Beta]*JacobiP[n, \\[Alpha], \\[Beta], x]-(\\[Beta]+ n)*JacobiP[n, \\[Alpha]+ 1, \\[Beta]- 1, x])"
+            "translation" : "(z - 1)*D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] == Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*P(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1) == n*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*P(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1) == (1 + \\[Alpha]+ \\[Beta]+ n)*(P(Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- P(Subscript[P, n])^(\\[Alpha], \\[Beta])) == (\\[Alpha]+ n)*P(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*P(Subscript[P, n])^(\\[Alpha], \\[Beta]) == Divide[2*(n + 1)*P(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*P(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z] == Divide[(2*\\[Beta]+ n + n*z)*P(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z] == Divide[1 - z,1 + z]*(\\[Beta]*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha]+ 1 , \\[Beta]- 1))"
           },
           "Maple" : {
-            "translation" : "(z - 1)*diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*JacobiP(n - 1, alpha + 1, beta + 1, x) = n*JacobiP(n, alpha, beta, x)-(alpha + n)*JacobiP(n - 1, alpha, beta + 1, x) = (1 + alpha + beta + n)*(JacobiP(n, alpha, beta + 1, x)- JacobiP(n, alpha, beta, x)) = (alpha + n)*JacobiP(n, alpha - 1, beta + 1, x)- alpha*JacobiP(n, alpha, beta, x) = (2*(n + 1)*JacobiP(n + 1, alpha, beta - 1, x)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*JacobiP(n, alpha, beta, x))/(1 + z) = ((2*beta + n + n*z)*JacobiP(n, alpha, beta, x)- 2*(beta + n)*JacobiP(n, alpha, beta - 1, x))/(1 + z) = (1 - z)/(1 + z)*(beta*JacobiP(n, alpha, beta, x)-(beta + n)*JacobiP(n, alpha + 1, beta - 1, x))"
+            "translation" : "(z - 1)*diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*P(P[n - 1])^(alpha + 1 , beta + 1) = n*P(P[n])^(alpha , beta)-(alpha + n)*P(P[n - 1])^(alpha , beta + 1) = (1 + alpha + beta + n)*(P(P[n])^(alpha , beta + 1)- P(P[n])^(alpha , beta)) = (alpha + n)*P(P[n])^(alpha - 1 , beta + 1)- alpha*P(P[n])^(alpha , beta) = (2*(n + 1)*P(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*P(P[n])^(alpha , beta))/(1 + z) = ((2*beta + n + n*z)*P(P[n])^(alpha , beta)- 2*(beta + n)*P(P[n])^(alpha , beta - 1))/(1 + z) = (1 - z)/(1 + z)*(beta*P(P[n])^(alpha , beta)-(beta + n)*P(P[n])^(alpha + 1 , beta - 1))"
           }
         },
         "positions" : [
@@ -6008,14 +6014,14 @@
       {
         "id" : "FORMULA_25de4fcbf8879d9f165ef8adcb1f1d40",
         "formula" : "\\begin{align}k(\\theta) &= \\pi^{-\\frac{1}{2}} \\sin^{-\\alpha-\\frac{1}{2}} \\tfrac{\\theta}{2} \\cos^{-\\beta-\\frac{1}{2}} \\tfrac{\\theta}{2},\\\\N &= n + \\tfrac{1}{2} (\\alpha+\\beta+1),\\\\\\gamma &= - \\tfrac{\\pi}{2} \\left (\\alpha + \\tfrac{1}{2} \\right ),\\end{align}",
-        "semanticFormula" : "\\begin{align}k(\\theta) &= \\pi^{-\\frac{1}{2}} \\sin^{-\\alpha-\\frac{1}{2}} \\tfrac{\\theta}{2} \\cos^{-\\beta-\\frac{1}{2}} \\tfrac{\\theta}{2}, \\\\ \\AirymodderivN@{x} &= n + \\tfrac{1}{2} (\\alpha+\\beta+1), \\\\ \\gamma &= - \\tfrac{\\pi}{2}(\\alpha + \\tfrac{1}{2}) ,\\end{align}",
+        "semanticFormula" : "\\begin{align}k(\\theta) &= \\cpi^{-\\frac{1}{2}} \\sin^{-\\alpha-\\frac{1}{2}} \\tfrac{\\theta}{2} \\cos^{-\\beta-\\frac{1}{2}} \\tfrac{\\theta}{2} , \\\\ \\AirymodderivN@{x} &= n + \\tfrac{1}{2} (\\alpha+\\beta+1), \\\\ \\gamma &= - \\tfrac{\\cpi}{2}(\\alpha + \\tfrac{1}{2}) ,\\end{align}",
         "confidence" : 0.09467048409117368,
         "translations" : {
           "Mathematica" : {
-            "translation" : "k*(\\[Theta]) == \\[Pi]^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])\nSqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2] == n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)\n\\[Gamma] == -Divide[\\[Pi],2]*(\\[Alpha]+Divide[1,2])"
+            "translation" : "k*(\\[Theta]) == (Pi)^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])\nSqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2] == n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)\n\\[Gamma] == -Divide[Pi,2]*(\\[Alpha]+Divide[1,2])"
           },
           "Maple" : {
-            "translation" : "k*(theta) = (pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2)); sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2) = n +(1)/(2)*(alpha + beta + 1); gamma = -(pi)/(2)*(alpha +(1)/(2))"
+            "translation" : "k*(theta) = (Pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2)); sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2) = n +(1)/(2)*(alpha + beta + 1); gamma = -(Pi)/(2)*(alpha +(1)/(2))"
           }
         },
         "positions" : [
@@ -6106,17 +6112,17 @@
       {
         "id" : "FORMULA_ce84060a9db09d40e6b443d14a3e30f4",
         "formula" : "[\\epsilon,\\pi-\\epsilon]",
-        "semanticFormula" : "[\\epsilon,\\pi-\\epsilon]",
+        "semanticFormula" : "[\\epsilon , \\cpi - \\epsilon]",
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "[\\[Epsilon], \\[Pi]- \\[Epsilon]]"
+            "translation" : "[\\[Epsilon], Pi - \\[Epsilon]]"
           },
           "SymPy" : {
-            "translation" : "[Symbol('epsilon'), Symbol('pi')- Symbol('epsilon')]"
+            "translation" : "[Symbol('epsilon'), pi - Symbol('epsilon')]"
           },
           "Maple" : {
-            "translation" : "[epsilon , pi - epsilon]"
+            "translation" : "[epsilon , Pi - epsilon]"
           }
         },
         "positions" : [
@@ -6251,14 +6257,14 @@
       {
         "id" : "FORMULA_34980bfcd6b86900308ec8f48f593ff0",
         "formula" : "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left ( \\tfrac{z}{n} \\right ) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\alpha} J_\\alpha(z)\\\\ \\lim_{n \\to \\infty} n^{-\\beta}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left (\\pi - \\tfrac{z}{n} \\right) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\beta} J_\\beta(z)\\end{align}",
-        "semanticFormula" : "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha} \\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos(\\tfrac{z}{n})} &=(\\tfrac{z}{2})^{-\\alpha} J_\\alpha(z) \\\\ \\lim_{n \\to \\infty} n^{-\\beta} \\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos(\\pi - \\tfrac{z}{n})} &=(\\tfrac{z}{2})^{-\\beta} J_\\beta(z)\\end{align}",
+        "semanticFormula" : "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha} \\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos(\\tfrac{z}{n})} &=(\\tfrac{z}{2})^{-\\alpha} J_\\alpha(z) \\\\ \\lim_{n \\to \\infty} n^{-\\beta} \\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos(\\cpi - \\tfrac{z}{n})} &=(\\tfrac{z}{2})^{-\\beta} J_\\beta(z)\\end{align}",
         "confidence" : 0.6560523929888044,
         "translations" : {
           "Mathematica" : {
-            "translation" : "Limit[(n)^(- \\[Alpha])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Alpha])* Subscript[J, \\[Alpha]]*(z)\nLimit[(n)^(- \\[Beta])* JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Pi]-Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Beta])* Subscript[J, \\[Beta]]*(z)"
+            "translation" : "Limit[(n)^(- \\[Alpha])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Alpha])* Subscript[J, \\[Alpha]]*(z)\nLimit[(n)^(- \\[Beta])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Pi -Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Beta])* Subscript[J, \\[Beta]]*(z)"
           },
           "Maple" : {
-            "translation" : "limit((n)^(- alpha)* JacobiP(n, alpha, beta, cos((z)/(n))), n = infinity) = ((z)/(2))^(- alpha)* J[alpha]*(z); limit((n)^(- beta)* JacobiP(n, alpha, beta, cos(pi -(z)/(n))), n = infinity) = ((z)/(2))^(- beta)* J[beta]*(z)"
+            "translation" : "limit((n)^(- alpha)* JacobiP(n, alpha, beta, cos((z)/(n))), n = infinity) = ((z)/(2))^(- alpha)* J[alpha]*(z); limit((n)^(- beta)* JacobiP(n, alpha, beta, cos(Pi -(z)/(n))), n = infinity) = ((z)/(2))^(- beta)* J[beta]*(z)"
           }
         },
         "positions" : [
@@ -6456,7 +6462,7 @@
       {
         "id" : "FORMULA_6964a7b6d1913beef831d08c5478f8cf",
         "formula" : "d^{j}_{m',m}(\\varphi)",
-        "semanticFormula" : "\\ndivisors@{n}_{m',m}^{j}(\\varphi)",
+        "semanticFormula" : "d_{m',m}^{j}(\\varphi)",
         "confidence" : 0.0,
         "translations" : { },
         "positions" : [
@@ -6486,7 +6492,7 @@
       {
         "id" : "FORMULA_4ccb6d1e7c90bf59553de9025e547412",
         "formula" : "0 \\leq \\varphi \\leq 4\\pi)",
-        "semanticFormula" : "0 \\leq \\varphi \\leq 4\\pi)",
+        "semanticFormula" : "0 \\leq \\varphi \\leq 4 \\cpi)",
         "confidence" : 0.0,
         "translations" : { },
         "positions" : [
@@ -6516,7 +6522,7 @@
       {
         "id" : "FORMULA_adb31e6dc814328e8bfc8b3f900eee59",
         "formula" : "d^j_{m'm}(\\phi) =\\left[ \\frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}\\right]^{\\frac{1}{2}} \\left(\\sin\\tfrac{\\phi}{2}\\right)^{m-m'} \\left(\\cos\\tfrac{\\phi}{2}\\right)^{m+m'} P_{j-m}^{(m-m',m+m')}(\\cos \\phi)",
-        "semanticFormula" : "\\ndivisors@{n}_{m'm}^j(\\Eulertotientphi@{n}) = [\\frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}]^{\\frac{1}{2}}(\\sin \\tfrac{\\Eulertotientphi@{n}}{2})^{m-m'}(\\cos \\tfrac{\\Eulertotientphi@{n}}{2})^{m+m'} \\JacobipolyP{m - m '}{m + m '}{j-m}@{\\cos \\Eulertotientphi@{n}}",
+        "semanticFormula" : "d_{m'm}^j(\\phi) = [\\frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}]^{\\frac{1}{2}}(\\sin \\tfrac{\\phi}{2})^{m-m'}(\\cos \\tfrac{\\phi}{2})^{m+m'} \\JacobipolyP{m - m '}{m + m '}{j-m}@{\\cos \\phi}",
         "confidence" : 0.19960583317781086,
         "translations" : { },
         "positions" : [
@@ -6595,7 +6601,7 @@
       {
         "id" : "FORMULA_ff971744100fef3b34b2c93b6adc3efb",
         "formula" : "P_n^{(\\alpha,\\beta)}=\\lim_{t\\to\\infty}t^{-n}p_n\\left(\\tfrac12xt; \\tfrac12(\\alpha+1-it), \\tfrac12(\\beta+1+it), \\tfrac12(\\alpha+1+it), \\tfrac12(\\beta+1-it)\\right)",
-        "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{x} = \\lim_{t\\to\\infty} t^{-n} \\contHahnpolyp{n}@{\\tfrac12 xt}{\\tfrac12(\\alpha + 1 - it)}{\\tfrac12(\\beta + 1 + it)}{\\tfrac12(\\alpha + 1 + it)}{\\tfrac12(\\beta + 1 - it)}",
+        "semanticFormula" : "P_n^{(\\alpha,\\beta)} = \\lim_{t\\to\\infty} t^{-n} \\contHahnpolyp{n}@{\\tfrac12 xt}{\\tfrac12(\\alpha + 1 - it)}{\\tfrac12(\\beta + 1 + it)}{\\tfrac12(\\alpha + 1 + it)}{\\tfrac12(\\beta + 1 - it)}",
         "confidence" : 0.3562992552456357,
         "translations" : { },
         "positions" : [
@@ -6677,7 +6683,7 @@
       {
         "id" : "FORMULA_67e28846328978f4e08bb6b69fe6c549",
         "formula" : "p_n(x;a,b,c|q)=a^{-n}e^{-inu}(abe^{2iu},ac,ad;q)_n*_4\\Phi_3(q^{-n},abcdq^{n-1},ae^{i{(t+2u)}},ae^{-it};abe^{2iu},ac,ad;q;q)",
-        "semanticFormula" : "\\contHahnpolyp{n}@{x}{a}{b}{\\conj{a}}{\\conj{b}}(x ; a , b , c|q) = a^{-n} e^{-inu} \\qmultiPochhammersym{abe^{2iu} , ac , ad}{q}{n} *_4 \\Phi_3(q^{-n} , abcdq^{n-1} , ae^{i{(t+2u)}} , ae^{-it} ; abe^{2iu} , ac , ad ; q ; q)",
+        "semanticFormula" : "p_n(x ; a , b , c|q) = a^{-n} \\expe^{-inu} \\qmultiPochhammersym{abe^{2iu} , ac , ad}{q}{n} *_4 \\Phi_3(q^{-n} , abcdq^{n-1} , ae^{\\iunit{(t+2u)}} , ae^{-it} ; abe^{2iu} , ac , ad ; q ; q)",
         "confidence" : 0.2994087497667163,
         "translations" : { },
         "positions" : [
@@ -6714,7 +6720,7 @@
       {
         "id" : "FORMULA_95daf919f18506606090e49a38d1c1a6",
         "formula" : "p_n(x;a,b,c\\mid q)=\\frac{(ab,ac;q)_n}{a^n}\\cdot {_3\\Phi_2}(q^-n,ae^{i\\theta},ae^{-i\\theta}; ab, ac \\mid q;q)",
-        "semanticFormula" : "\\contHahnpolyp{n}@{x}{a}{b}{\\conj{a}}{\\conj{b}}(x ; a , b , c \\mid q) = \\frac{\\qmultiPochhammersym{ab , ac}{q}{n}}{a^n} \\cdot{_3\\Phi_2}(q^- n , ae^{i\\theta} , ae^{-i\\theta} ; ab , ac \\mid q ; q)",
+        "semanticFormula" : "p_n(x ; a , b , c \\mid q) = \\frac{\\qmultiPochhammersym{ab , ac}{q}{n}}{a^n} \\cdot{_3\\Phi_2}(q^- n , ae^{\\iunit \\theta} , ae^{- \\iunit \\theta} ; ab , ac \\mid q ; q)",
         "confidence" : 0.2994087497667163,
         "translations" : { },
         "positions" : [
@@ -7031,7 +7037,7 @@
       {
         "id" : "FORMULA_aa5a6972c7e8327e316eddc8fd8e9b08",
         "formula" : "P_n(x;a,b;q)=\\frac{1}{(b^{-1}*q^{-n};q,n)}*_2\\Phi_1(q^{-n},aqx^{-1};aq|q;\\frac{x}{b})",
-        "semanticFormula" : "\\bigqJacobipolyP{n}@{x}{a}{b}{c}{q}(x ; a , b ; q) = \\frac{1}{(b^{-1}*q^{-n};q,n)} *_2 \\Phi_1(q^{-n} , aqx^{-1} ; aq|q ; \\frac{x}{b})",
+        "semanticFormula" : "P_n(x;a,b;q)=\\frac{1}{(b^{-1}*q^{-n};q,n)}*_2\\Phi_1(q^{-n},aqx^{-1};aq|q;\\frac{x}{b})",
         "confidence" : 0.0,
         "translations" : { },
         "positions" : [
@@ -7072,7 +7078,7 @@
       {
         "id" : "FORMULA_9221dfda453868628eb8bbcd2d414fdf",
         "formula" : "K_n(\\lambda(x);c,N|q)=_3\\Phi_2(q^{-n},q^{-x},cq^{x-N};q^{-N},0|q;q)",
-        "semanticFormula" : "\\KrawtchoukpolyK{n}@{x}{p}{N}(\\lambda(x) ; c , N|q) =_3 \\Phi_2(q^{-n} , q^{-x} , cq^{x-N} ; q^{-N} , 0|q ; q)",
+        "semanticFormula" : "K_n(\\lambda(x);c,N|q)=_3\\Phi_2(q^{-n},q^{-x},cq^{x-N};q^{-N},0|q;q)",
         "confidence" : 0.0,
         "translations" : { },
         "positions" : [
@@ -7137,7 +7143,7 @@
       {
         "id" : "FORMULA_4e548bca196e13d5af0eaadf2ea725d1",
         "formula" : "\\displaystyle  p_n(x;a|q) = {}_2\\phi_1(q^{-n},0;aq;q,qx) = \\frac{1}{(a^{-1}q^{-n};q)_n}{}_2\\phi_0(q^{-n},x^{-1};;q,x/a)",
-        "semanticFormula" : "\\littleqJacobipolyp{n}@{x}{a}{b}{q}(x ; a|q) = \\qgenhyperphi{2}{1}@{q^{-n} , 0}{aq}{q}{qx} = \\frac{1}{\\qmultiPochhammersym{a^{-1} q^{-n}}{q}{n}} \\qgenhyperphi{2}{0}@{a_0,\\dots,a_r}{b_1,\\dots,b_s}{q}{z}(q^{-n} , x^{-1} ; ; q , x / a)",
+        "semanticFormula" : "p_n(x ; a|q) = \\qgenhyperphi{2}{1}@{q^{-n} , 0}{aq}{q}{qx} = \\frac{1}{\\qmultiPochhammersym{a^{-1} q^{-n}}{q}{n}}{}_2 \\phi_0(q^{-n} , x^{-1} ; ; q , x / a)",
         "confidence" : 0.157760348603772,
         "translations" : { },
         "positions" : [
@@ -7210,7 +7216,7 @@
       {
         "id" : "FORMULA_b9974285610b7a82c94b6a504726df8c",
         "formula" : "h_n(ix;q^{-1}) = i^n\\hat h_n(x;q)",
-        "semanticFormula" : "\\discqHermitepolyhI{n}@{ix}{q^{-1}} = i^n \\hat h_n(x;q)",
+        "semanticFormula" : "\\discqHermitepolyhI{n}@{ix}{q^{-1}} = \\iunit^n \\discqHermitepolyhI{}@{}{}",
         "confidence" : 0.5700603280604081,
         "translations" : { },
         "positions" : [
@@ -7253,7 +7259,7 @@
       {
         "id" : "FORMULA_fa6650cad7aed4d975716018ef03068f",
         "formula" : "P_{n}(x;a\\mid q) = a^{-n} e^{in\\phi} \\frac{a^2;q_n}{(q;q)_n} {_3}\\Phi_2(q^-n, ae^{i(\\theta+2\\phi)}, ae^{-i\\theta}; a^2, 0 \\mid q; q)",
-        "semanticFormula" : "P_{n}(x ; a \\mid q) = a^{-n} e^{in\\phi} \\frac{a^2;q_n}{\\qmultiPochhammersym{q}{q}{n}}{_3} \\Phi_2(q^- n , ae^{i(\\theta+2\\phi)} , ae^{-i\\theta} ; a^2 , 0 \\mid q ; q)",
+        "semanticFormula" : "P_{n}(x ; a \\mid q) = a^{-n} \\expe^{in\\phi} \\frac{a^2;q_n}{\\qmultiPochhammersym{q}{q}{n}}{_3} \\Phi_2(q^- n , ae^{\\iunit(\\theta + 2 \\phi)} , ae^{- \\iunit \\theta} ; a^2 , 0 \\mid q ; q)",
         "confidence" : 0.5988174995334326,
         "translations" : { },
         "positions" : [
@@ -7338,7 +7344,7 @@
       {
         "id" : "FORMULA_a10dc9de9b2b618ad2f2e96dc9eb0207",
         "formula" : "\\sum_{n=0}^\\infty H_n(x \\mid q) \\frac{t^n}{(q;q)_n} = \\frac{1}{\\left( t e^{i \\theta},t e^{-i \\theta};q \\right)_\\infty}",
-        "semanticFormula" : "\\sum_{n=0}^\\infty \\HermitepolyH{n}@{x \\mid q} \\frac{t^n}{(q;q)_n} = \\frac{1}{(t e^{i \\theta} , t e^{-i \\theta} ; q)_\\infty}",
+        "semanticFormula" : "\\sum_{n=0}^\\infty \\HermitepolyH{n}@{x \\mid q} \\frac{t^n}{(q;q)_n} = \\frac{1}{(t \\expe^{\\iunit \\theta} , t \\expe^{- \\iunit \\theta} ; q)_\\infty}",
         "confidence" : 0.4523812950786867,
         "translations" : { },
         "positions" : [
@@ -7415,14 +7421,14 @@
       {
         "id" : "FORMULA_b5ab87b9cd2da05be00884345889d9e3",
         "formula" : "Q_v^\\mu(x)= \\cos(\\mu\\pi)\\left(\\frac{1+x}{1-x}\\right)^{\\mu/2}\\frac{F(v+1,-v;1-\\mu;1/2-2/x)}  {\\Gamma(1-\\mu ) }",
-        "semanticFormula" : "\\assLegendreQ[\\mu]{v}@{x} = \\cos(\\mu \\pi)(\\frac{1+x}{1-x})^{\\mu/2} \\frac{F(v+1,-v;1-\\mu;1/2-2/x)}  {\\Gamma(1-\\mu ) }",
+        "semanticFormula" : "\\FerrersQ[\\mu]{v}@{x} = \\cos(\\mu \\cpi)(\\frac{1+x}{1-x})^{\\mu/2} \\frac{F(v+1,-v;1-\\mu;1/2-2/x)}  {\\Gamma(1-\\mu ) }",
         "confidence" : 0.17023066953166274,
         "translations" : {
           "Mathematica" : {
-            "translation" : "LegendreQ[v, \\[Mu], 3, x] == Cos[(\\[Mu]*\\[Pi])*]*(Divide[1 + x,1 - x])^(\\[Mu]/2)*Divide[F*(v + 1 , - v ; 1 - \\[Mu]; 1/2 - 2/x),\\[CapitalGamma]*(1 - \\[Mu])]"
+            "translation" : "LegendreQ[v, \\[Mu], x] == Cos[(\\[Mu]*Pi)*]*(Divide[1 + x,1 - x])^(\\[Mu]/2)*Divide[F*(v + 1 , - v ; 1 - \\[Mu]; 1/2 - 2/x),\\[CapitalGamma]*(1 - \\[Mu])]"
           },
           "Maple" : {
-            "translation" : "LegendreQ(v, mu, x) = cos((mu*pi)*)*((1 + x)/(1 - x))^(mu/2)*(F*(v + 1 , - v ; 1 - mu ; 1/2 - 2/x))/(Gamma*(1 - mu))"
+            "translation" : "LegendreQ(v, mu, x) = cos((mu*Pi)*)*((1 + x)/(1 - x))^(mu/2)*(F*(v + 1 , - v ; 1 - mu ; 1/2 - 2/x))/(Gamma*(1 - mu))"
           }
         },
         "positions" : [
@@ -7453,17 +7459,17 @@
       {
         "id" : "FORMULA_35ab66efafff0de40d98c0778ebb63c3",
         "formula" : "H_{-v}^{(1)}(z,w)=e^{v\\pi i}H_v^{(1)}(z,w)",
-        "semanticFormula" : "H_{-v}^{(1)}(z,w)=e^{v\\pi i}H_v^{(1)}(z,w)",
+        "semanticFormula" : "H_{-v}^{(1)}(z , w) = \\expe^{v \\cpi \\iunit} H_v^{(1)}(z , w)",
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "(Subscript[H, - v])^(1)*(z , w) == (e)^(v*\\[Pi]*i)* (Subscript[H, v])^(1)*(z , w)"
+            "translation" : "(Subscript[H, - v])^(1)*(z , w) == Exp[v*Pi*I]*(Subscript[H, v])^(1)*(z , w)"
           },
           "SymPy" : {
-            "translation" : "(Symbol('{H}_{- v}'))**(1)*(z , w) == (e)**(v*Symbol('pi')*i)* (Symbol('{H}_{v}'))**(1)*(z , w)"
+            "translation" : "(Symbol('{H}_{- v}'))**(1)*(z , w) == exp(v*pi*I)*(Symbol('{H}_{v}'))**(1)*(z , w)"
           },
           "Maple" : {
-            "translation" : "(H[- v])^(1)*(z , w) = (e)^(v*pi*i)* (H[v])^(1)*(z , w)"
+            "translation" : "(H[- v])^(1)*(z , w) = exp(v*Pi*I)*(H[v])^(1)*(z , w)"
           }
         },
         "positions" : [
@@ -7494,17 +7500,17 @@
       {
         "id" : "FORMULA_c333a7966510ed0b8f4de3147eabe47a",
         "formula" : "K_v(x,y)=\\int_1^\\infty\\frac{e^{-xt-\\frac{y}{t}}}{t^{v+1}}dt",
-        "semanticFormula" : "K_v(x , y) = \\int_1^\\infty \\frac{e^{-xt-\\frac{y}{t}}}{t^{v+1}} \\diff{t}",
+        "semanticFormula" : "K_v(x , y) = \\int_1^\\infty \\frac{\\expe^{-xt-\\frac{y}{t}}}{t^{v+1}} \\diff{t}",
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "Subscript[K, v]*(x , y) == Integrate[Divide[(e)^(- x*t -Divide[y,t]),(t)^(v + 1)], {t, 1, Infinity}, GenerateConditions->None]"
+            "translation" : "Subscript[K, v]*(x , y) == Integrate[Divide[Exp[- x*t -Divide[y,t]],(t)^(v + 1)], {t, 1, Infinity}, GenerateConditions->None]"
           },
           "SymPy" : {
-            "translation" : "Symbol('{K}_{v}')*(x , y) == integrate(((e)**(- x*t -(y)/(t)))/((t)**(v + 1)), (t, 1, oo))"
+            "translation" : "Symbol('{K}_{v}')*(x , y) == integrate((exp(- x*t -(y)/(t)))/((t)**(v + 1)), (t, 1, oo))"
           },
           "Maple" : {
-            "translation" : "K[v]*(x , y) = int(((e)^(- x*t -(y)/(t)))/((t)^(v + 1)), t = 1..infinity)"
+            "translation" : "K[v]*(x , y) = int((exp(- x*t -(y)/(t)))/((t)^(v + 1)), t = 1..infinity)"
           }
         },
         "positions" : [

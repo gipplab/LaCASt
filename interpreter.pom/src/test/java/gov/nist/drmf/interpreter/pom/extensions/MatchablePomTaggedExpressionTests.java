@@ -1290,6 +1290,51 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void singleWildcardSequenceTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "a + {VAR0}", "VAR\\d");
+
+        String test = "a + (x + y)";
+        PomMatcher matcher = blueprint.matcher(test);
+
+        assertTrue(matcher.find());
+        Map<String, String> groups = matcher.groups();
+        assertNotNull(groups);
+        assertEquals("(x + y)", groups.get("VAR0"));
+        assertFalse(matcher.find());
+    }
+
+    @Test
+    public void singleWildcardSequenceInPlaceTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "a + {VAR0}", "VAR\\d");
+
+        String test = "a + (x + y) + z";
+        PomMatcher matcher = blueprint.matcher(test);
+
+        assertTrue(matcher.find());
+        Map<String, String> groups = matcher.groups();
+        assertNotNull(groups);
+        assertEquals("(x + y)", groups.get("VAR0"));
+        assertFalse(matcher.find());
+    }
+
+    @Test
+    public void singleWildcardSequenceNotEndTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "a + {VAR0} + b", "VAR\\d");
+
+        String test = "a + (x + y) + b";
+        PomMatcher matcher = blueprint.matcher(test);
+
+        assertTrue(matcher.find());
+        Map<String, String> groups = matcher.groups();
+        assertNotNull(groups);
+        assertEquals("(x + y)", groups.get("VAR0"));
+        assertFalse(matcher.find());
+    }
+
+    @Test
     public void directMatchTest() throws ParseException {
         MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("x");
         assertTrue(blueprint.match("x"));

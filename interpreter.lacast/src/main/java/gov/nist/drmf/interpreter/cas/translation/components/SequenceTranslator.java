@@ -189,11 +189,6 @@ public class SequenceTranslator extends AbstractListTranslator {
         localTranslations.addTranslatedExpression(st.translate(expList));
     }
 
-    private boolean upcomingConstraint( PomTaggedExpression exp, List<PomTaggedExpression> expList ) {
-        return MathTermTags.is( exp, MathTermTags.comma )
-                && !expList.isEmpty() && PomTaggedExpressionUtility.isLongSpace(expList.get(0));
-    }
-
     /**
      * Use this function ONLY when you created an object of this class
      * with a given bracket {@link SequenceTranslator#SequenceTranslator(AbstractTranslator, Brackets)}.

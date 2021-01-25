@@ -295,7 +295,7 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
     ) {
         PrintablePomTaggedExpression expression;
 
-        if ( !isSingleSequenceWildcard && fontManipulations.isEmpty() ) {
+        if ( continueMatchingEvenWithSingleSequence(bracketStack) && fontManipulations.isEmpty() ) {
             while (!followingExpressions.isEmpty()){
                 expression = followingExpressions.get(0);
                 if ( invalidBracketStack(bracketStack, expression) ) {
@@ -308,11 +308,20 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
                 }
                 followingExpressions.remove(0);
                 matches.add(expression);
+                if ( isSingleSequenceWildcard && bracketStack.isEmpty() ) {
+                    break;
+                }
             }
         }
 
         if ( !bracketStack.isEmpty() ) return false;
         return getCaptures().setCapturedGroup(wildcardID, matches);
+    }
+
+    private boolean continueMatchingEvenWithSingleSequence(
+            LinkedList<Brackets> bracketStack
+    ) {
+        return !isSingleSequenceWildcard || !bracketStack.isEmpty();
     }
 
     private boolean matchWildcardUntilEnd(
@@ -325,13 +334,14 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         PrintablePomTaggedExpression next = followingExpressions.remove(0);
 
         // fill up wild card until the next hit
-        while (!isSingleSequenceWildcard && continueMatching(bracketStack, next, followingExpressions, config)) {
+        while (continueMatchingEvenWithSingleSequence(bracketStack) && continueMatching(bracketStack, next, followingExpressions, config)) {
             if ( earlyFailWhileContinueMatching(next, followingExpressions, bracketStack, config) ) {
                 return false;
             }
 
             matches.add(next);
             next = followingExpressions.remove(0);
+            if ( isSingleSequenceWildcard && bracketStack.isEmpty() ) break;
         }
 
         if ( next == null || !bracketStack.isEmpty() ) return false;

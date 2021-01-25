@@ -6,10 +6,6 @@ import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.ParseException;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -18,6 +14,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @AssumeMLPAvailability
 public class GenericReplacementToolTests {
     private static SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
+
+    @Test
+    void constantReplaceTest() throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parse("i + e^{\\pi}");
+        GenericReplacementTool replacementTool = new GenericReplacementTool(ppte);
+        ppte = replacementTool.getSemanticallyEnhancedExpression();
+        assertEquals("\\iunit + \\expe^{\\cpi}", ppte.getTexString());
+    }
+
+    @Test
+    void iAsIndexTest() throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parse("x_i");
+        GenericReplacementTool replacementTool = new GenericReplacementTool(ppte);
+        ppte = replacementTool.getSemanticallyEnhancedExpression();
+        assertEquals("x_i", ppte.getTexString());
+    }
 
     @Test
     void simpleDiffTest() throws ParseException {

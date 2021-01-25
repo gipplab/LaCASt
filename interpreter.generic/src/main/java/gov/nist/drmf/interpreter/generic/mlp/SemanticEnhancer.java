@@ -16,6 +16,7 @@ import gov.nist.drmf.interpreter.common.eval.NumericResult;
 import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
 import gov.nist.drmf.interpreter.common.eval.SymbolicResult;
 import gov.nist.drmf.interpreter.core.api.DLMFTranslator;
+import gov.nist.drmf.interpreter.generic.common.GenericConstantReplacer;
 import gov.nist.drmf.interpreter.generic.common.GenericReplacementTool;
 import gov.nist.drmf.interpreter.generic.interfaces.IPartialEnhancer;
 import gov.nist.drmf.interpreter.generic.macro.*;
@@ -188,9 +189,7 @@ public class SemanticEnhancer implements IPartialEnhancer {
         NumericalConfig config = this.casConnections.getNumericalConfig(cas.getLanguageKey());
         IConstraintTranslator dlmfTranslator;
         try {
-            DLMFTranslator translator = new DLMFTranslator(cas.getLanguageKey());
-            translator.getConfig().setLettersAsConstantsMode(true);
-            dlmfTranslator = translator;
+            dlmfTranslator = new DLMFTranslator(cas.getLanguageKey());
         } catch (InitTranslatorException e) {
             throw new ComputerAlgebraSystemEngineException(e);
         }
@@ -222,9 +221,7 @@ public class SemanticEnhancer implements IPartialEnhancer {
         SymbolicalConfig config = this.casConnections.getSymbolicalConfig(cas.getLanguageKey());
         IConstraintTranslator dlmfTranslator;
         try {
-            DLMFTranslator translator = new DLMFTranslator(cas.getLanguageKey());
-            translator.getConfig().setLettersAsConstantsMode(true);
-            dlmfTranslator = translator;
+            dlmfTranslator = new DLMFTranslator(cas.getLanguageKey());
         } catch (InitTranslatorException e) {
             return new SymbolicResult().markAsCrashed();
         }
@@ -240,6 +237,11 @@ public class SemanticEnhancer implements IPartialEnhancer {
         PrintablePomTaggedExpression pte = moi.getMoi();
         Set<String> replacementPerformed = new HashSet<>();
         LOG.debug("Start replacements on MOI: " + pte.getTexString());
+
+        if ( retrievedMacros.containedEulerMascheroniEvidence() ) {
+            LOG.debug("The hit contained an evidence on Euler-Mascheroni constant. Hence we replace all \\gamma by \\EulerConstant");
+            GenericConstantReplacer.replaceGammaAsEulerMascheroniConstant(pte);
+        }
 
         GenericReplacementTool genericReplacementTool = new GenericReplacementTool(pte);
         pte = genericReplacementTool.getSemanticallyEnhancedExpression();
