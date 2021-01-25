@@ -30,6 +30,7 @@ public class MapleRmiTest {
     @BeforeAll
     static void setup() {
         connector = new MapleRmiClient(new DefaultMapleRmiServerSubprocessInfo());
+        connector.start();
     }
 
     @AfterAll

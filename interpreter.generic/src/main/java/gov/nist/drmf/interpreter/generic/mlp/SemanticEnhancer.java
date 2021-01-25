@@ -8,12 +8,14 @@ import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.config.GenericLacastConfig;
 import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.MinimumRequirementNotFulfilledException;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.common.pojo.CASResult;
 import gov.nist.drmf.interpreter.common.eval.NumericResult;
 import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
 import gov.nist.drmf.interpreter.common.eval.SymbolicResult;
+import gov.nist.drmf.interpreter.core.api.DLMFTranslator;
 import gov.nist.drmf.interpreter.generic.common.GenericReplacementTool;
 import gov.nist.drmf.interpreter.generic.interfaces.IPartialEnhancer;
 import gov.nist.drmf.interpreter.generic.macro.*;
@@ -35,6 +37,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
@@ -46,27 +49,20 @@ public class SemanticEnhancer implements IPartialEnhancer {
 
     private final GenericLacastConfig config;
 
-    private final CASTranslators casTranslators;
-
     private CASConnections casConnections;
 
     protected SemanticEnhancer() {
         this(GenericLacastConfig.getDefaultConfig());
     }
 
-    protected SemanticEnhancer(GenericLacastConfig config) {
-        this(config, new CASTranslators());
-    }
-
-    public SemanticEnhancer(GenericLacastConfig config, CASTranslators translators) {
+    public SemanticEnhancer(GenericLacastConfig config) {
         this.retriever = new MacroRetriever(config);
         this.config = config;
-        this.casTranslators = translators;
     }
 
-    private void lazyInit() {
+    private synchronized void lazyInit() {
         if ( casConnections == null )
-            this.casConnections = new CASConnections(config, casTranslators);
+            this.casConnections = new CASConnections(config);
     }
 
     @Override
@@ -133,50 +129,69 @@ public class SemanticEnhancer implements IPartialEnhancer {
 
     @Override
     public NumericResult computeNumerically(String semanticLatex, String casName) {
+        if ( EvaluationSkipper.shouldNotBeEvaluated(semanticLatex) ) {
+            LOG.debug("The test expression should not be evaluated due to missing equation or because it contains underscores (troublesome for CAS): " + semanticLatex);
+            return new NumericResult().markAsSkipped();
+        }
+
         lazyInit();
         NativeComputerAlgebraInterfaceBuilder cas = this.casConnections.getCASConnection(casName);
         try {
             if ( cas == null ) {
                 LOG.debug("The requested CAS is not connected with valid native CAS. Skip it.");
-            } else return computeNumericResults(semanticLatex, cas);
+            } else {
+                NumericResult result = computeNumericResults(semanticLatex, cas);
+                try { cas.getCASEngine().forceGC(); }
+                catch (NullPointerException | ComputerAlgebraSystemEngineException e){
+                    LOG.warn("Unable to call GC in CAS " + casName + ". Ignore it and hope we can survive", e);
+                }
+                return result;
+            }
         } catch (ComputerAlgebraSystemEngineException e) {
             LOG.warn("Unable to perform numerical tests for " + casName + ": " + semanticLatex, e);
         } catch (Exception e) {
             LOG.warn("Unable to analyze test. Something went wrong: " + semanticLatex, e);
-        } finally {
-            try { cas.getCASEngine().forceGC(); }
-            catch (NullPointerException | ComputerAlgebraSystemEngineException e){
-                LOG.warn("Unable to call GC in CAS. Ignore it and hope we can survive", e);
-            }
         }
         return null;
     }
 
     @Override
     public SymbolicResult computeSymbolically(String semanticLatex, String casName) {
+        if ( EvaluationSkipper.shouldNotBeEvaluated(semanticLatex) ) {
+            LOG.debug("The test expression should not be evaluated due to missing equation or because it contains underscores (troublesome for CAS): " + semanticLatex);
+            return new SymbolicResult().markAsSkipped();
+        }
+
         lazyInit();
         NativeComputerAlgebraInterfaceBuilder cas = this.casConnections.getCASConnection(casName);
         try {
             if ( cas == null ) {
-                LOG.debug("The requested CAS is not connected with valid native CAS. Skip it.");
-            } else return computeSymbolicResults(semanticLatex, cas);
+                LOG.debug("The requested CAS "+ casName +" is not connected with valid native CAS. Skip it.");
+            } else {
+                SymbolicResult result = computeSymbolicResults(semanticLatex, cas);
+                try { cas.getCASEngine().forceGC(); }
+                catch (NullPointerException | ComputerAlgebraSystemEngineException e){
+                    LOG.warn("Unable to call GC in CAS "+ casName +". Ignore it and hope we can survive", e);
+                }
+                return result;
+            }
         } catch (Exception e) {
             LOG.warn("Unable to analyze test. Something went wrong: " + semanticLatex, e);
-        } finally {
-            try { cas.getCASEngine().forceGC(); }
-            catch (NullPointerException | ComputerAlgebraSystemEngineException e){
-                LOG.warn("Unable to call GC in CAS. Ignore it and hope we can survive", e);
-            }
         }
         return null;
     }
 
-    private NumericResult computeNumericResults(
+    private synchronized NumericResult computeNumericResults(
             String semanticLatex,
             NativeComputerAlgebraInterfaceBuilder cas
     ) throws ComputerAlgebraSystemEngineException {
         NumericalConfig config = this.casConnections.getNumericalConfig(cas.getLanguageKey());
-        IConstraintTranslator dlmfTranslator = this.casTranslators.getTranslator(cas.getLanguageKey());
+        IConstraintTranslator dlmfTranslator;
+        try {
+            dlmfTranslator = new DLMFTranslator(cas.getLanguageKey());
+        } catch (InitTranslatorException e) {
+            throw new ComputerAlgebraSystemEngineException(e);
+        }
         TranslationInformation ti = dlmfTranslator.translateToObject(semanticLatex);
         DefaultNumericalTestCaseBuilder testCaseBuilder = new DefaultNumericalTestCaseBuilder(
                 config, cas.getNumericEvaluator(), dlmfTranslator, cas.getEvaluationScriptHandler()
@@ -198,12 +213,17 @@ public class SemanticEnhancer implements IPartialEnhancer {
         return numericResult;
     }
 
-    private SymbolicResult computeSymbolicResults(
+    private synchronized SymbolicResult computeSymbolicResults(
             String semanticLatex,
             NativeComputerAlgebraInterfaceBuilder cas
     ) {
         SymbolicalConfig config = this.casConnections.getSymbolicalConfig(cas.getLanguageKey());
-        IConstraintTranslator dlmfTranslator = this.casTranslators.getTranslator(cas.getLanguageKey());
+        IConstraintTranslator dlmfTranslator;
+        try {
+            dlmfTranslator = new DLMFTranslator(cas.getLanguageKey());
+        } catch (InitTranslatorException e) {
+            return new SymbolicResult().markAsCrashed();
+        }
         ISymbolicTestCases[] testCases = cas.getDefaultSymbolicTestCases();
 
         SymbolicalTest symbolicalTest = new SymbolicalTest(config, dlmfTranslator, semanticLatex, testCases);

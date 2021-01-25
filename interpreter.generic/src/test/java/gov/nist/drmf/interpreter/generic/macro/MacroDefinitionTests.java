@@ -5,8 +5,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.common.tests.ResourceProvider;
 import gov.nist.drmf.interpreter.pom.extensions.MatcherConfig;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -24,8 +22,8 @@ public class MacroDefinitionTests {
     private static Map<String, MacroBean> loadedMacros;
 
     @BeforeAll
-    public static void setup(String in) throws IOException {
-        ResourceProvider.load(MacroDefinitionTests.class, "ExampleFuncDef.sty");
+    public static void setup() throws IOException {
+        String in = ResourceProvider.load(MacroDefinitionTests.class, "ExampleFuncDef.sty");
         MacroDefinitionStyleFileParser parser = new MacroDefinitionStyleFileParser();
         parser.load(in);
         loadedMacros = parser.getExtractedMacros();
@@ -41,7 +39,7 @@ public class MacroDefinitionTests {
 
     @Test
     public void loadedAllMacrosTest() {
-        assertEquals(13, loadedMacros.keySet().size());
+        assertEquals(14, loadedMacros.keySet().size());
     }
 
     @Test

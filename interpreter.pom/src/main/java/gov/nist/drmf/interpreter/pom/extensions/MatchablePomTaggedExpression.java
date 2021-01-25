@@ -297,7 +297,7 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
 
         if ( !isSingleSequenceWildcard && fontManipulations.isEmpty() ) {
             while (!followingExpressions.isEmpty()){
-                expression = followingExpressions.remove(0);
+                expression = followingExpressions.get(0);
                 if ( invalidBracketStack(bracketStack, expression) ) {
                     if ( !config.allowFollowingTokens() ) return false;
                     else break;
@@ -306,6 +306,7 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
                     if ( !config.allowFollowingTokens() ) return false;
                     else break;
                 }
+                followingExpressions.remove(0);
                 matches.add(expression);
             }
         }

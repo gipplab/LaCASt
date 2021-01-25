@@ -1429,6 +1429,31 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void replaceOperatorTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "\\operatorname{ln} (var1)", "([pv])ar\\d");
+
+        String test = "\\operatorname{ln} (z) = 1";
+        PomMatcher matcher = blueprint.matcher(test);
+
+        PrintablePomTaggedExpression result = matcher.replacePattern( "\\ln@@{z}" );
+        assertEquals("\\ln@@{z} = 1", result.getTexString());
+    }
+
+    @Test
+    public void replaceOperatorIgnoreOperatorTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "\\operatorname{erf} var1", "([pv])ar\\d");
+
+        MatcherConfig config = MatcherConfig.getInPlaceMatchConfig().ignoreOperatorName(true);
+        String test = "\\operatorname{erf} z = \\frac{2}{\\sqrt\\pi}";
+        PomMatcher matcher = blueprint.matcher(test, config);
+
+        PrintablePomTaggedExpression result = matcher.replacePattern( "\\erf@@{var1}" );
+        assertEquals("\\erf@@{z} = \\frac{2}{\\sqrt\\pi}", result.getTexString());
+    }
+
+    @Test
     public void pomMatcherReplaceAllRealWorldTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
                 PomMatcherBuilder.compile(mlp, "P^{(var1, var2)}_{var3} (var4)", "([pv])ar\\d");

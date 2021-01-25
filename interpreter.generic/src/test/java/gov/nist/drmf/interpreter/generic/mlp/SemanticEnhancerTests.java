@@ -1,10 +1,14 @@
 package gov.nist.drmf.interpreter.generic.mlp;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
+import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.generic.elasticsearch.AssumeElasticsearchAvailability;
 import gov.nist.drmf.interpreter.generic.elasticsearch.DLMFElasticSearchClient;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPDependencyGraph;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIAnnotation;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import gov.nist.drmf.interpreter.pom.moi.MathematicalObjectOfInterest;
 import mlp.ParseException;
@@ -12,6 +16,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -138,6 +143,18 @@ public class SemanticEnhancerTests {
         semanticEnhancer.appendSemanticLatex(moi, node);
         assertNotNull(moi.getSemanticLatex());
         assertEquals("\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\deriv [n]{ }{z} \\{z(1 - z^2)^n \\}", moi.getSemanticLatex());
+    }
+
+    @Resource("ErrorFunctionMOI.json")
+    void errorFunctionTranslationTest(String json) throws JsonProcessingException, ParseException {
+        MOIPresentations moi = SemanticEnhancedDocument.getMapper().readValue(json, MOIPresentations.class);
+        List<MOIPresentations> singleFormula = List.of(moi);
+        MLPDependencyGraph graph = new MLPDependencyGraph(singleFormula);
+        MOINode<MOIAnnotation> node = graph.getNode(moi.getId());
+
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer();
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertEquals("\\erf@@{z} = \\frac{2}{\\sqrt\\pi} \\int_0^z e^{-t^2} \\diff{t}", moi.getSemanticLatex());
     }
 
     private MOINode<MOIAnnotation> buildNode(String id, String genericTex, String annotationText) throws ParseException {

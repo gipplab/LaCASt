@@ -28,7 +28,8 @@ public class MLPLacastScorer {
     }
 
     public double getScore() {
-        if ( maxEsScore <= 0 ) return 0;
-        return mlpScore * (esScore/maxEsScore) * dlmfScore;
+        double relEsScore = maxEsScore <= 0 ? 0 : esScore/maxEsScore;
+        // take the average score not the multiplication
+        return (mlpScore + relEsScore + dlmfScore)/3.0;
     }
 }

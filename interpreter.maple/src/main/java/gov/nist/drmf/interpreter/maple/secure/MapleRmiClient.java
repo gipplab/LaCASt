@@ -104,7 +104,7 @@ public class MapleRmiClient extends RmiProcessHandler
     }
 
     @Override
-    public void setTimeout(EvaluatorType type, double timeoutInSeconds) {
+    public synchronized void setTimeout(EvaluatorType type, double timeoutInSeconds) {
         CompletableFuture<?> processFuture = super.getProcessFuture();
         try {
             server.setTimeout(type, timeoutInSeconds);
@@ -115,7 +115,7 @@ public class MapleRmiClient extends RmiProcessHandler
     }
 
     @Override
-    public void disableTimeout(EvaluatorType type) {
+    public synchronized void disableTimeout(EvaluatorType type) {
         CompletableFuture<?> processFuture = super.getProcessFuture();
         try {
             server.disableTimeout(type);
@@ -126,7 +126,7 @@ public class MapleRmiClient extends RmiProcessHandler
     }
 
     @Override
-    public String enterCommand(String command) throws ComputerAlgebraSystemEngineException {
+    public synchronized String enterCommand(String command) throws ComputerAlgebraSystemEngineException {
         CompletableFuture<?> processFuture = super.getProcessFuture();
         try {
             return server.enterCommand(command);
@@ -142,7 +142,7 @@ public class MapleRmiClient extends RmiProcessHandler
         return MapleInterface.buildMapleList(list);
     }
 
-    public void setGlobalNumericAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {
+    public synchronized void setGlobalNumericAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {
         CompletableFuture<?> processFuture = super.getProcessFuture();
         try {
             server.setGlobalNumericAssumptions(assumptions);
@@ -152,7 +152,7 @@ public class MapleRmiClient extends RmiProcessHandler
         }
     }
 
-    public void setGlobalSymbolicAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {
+    public synchronized void setGlobalSymbolicAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {
         CompletableFuture<?> processFuture = super.getProcessFuture();
         try {
             server.setGlobalSymbolicAssumptions(assumptions);
@@ -163,7 +163,7 @@ public class MapleRmiClient extends RmiProcessHandler
     }
 
     @Override
-    public void forceGC() throws ComputerAlgebraSystemEngineException {
+    public synchronized void forceGC() throws ComputerAlgebraSystemEngineException {
         CompletableFuture<?> processFuture = super.getProcessFuture();
         try {
             server.forceGC();
@@ -173,7 +173,7 @@ public class MapleRmiClient extends RmiProcessHandler
         }
     }
 
-    public SymbolicResult performSymbolicTest(SymbolicalTest test) {
+    public synchronized SymbolicResult performSymbolicTest(SymbolicalTest test) {
         CompletableFuture<?> processFuture = super.getProcessFuture();
         try {
             return server.performSymbolicTest(test);
@@ -184,7 +184,7 @@ public class MapleRmiClient extends RmiProcessHandler
         }
     }
 
-    public NumericResult performNumericTest(NumericalTest test) throws ComputerAlgebraSystemEngineException {
+    public synchronized NumericResult performNumericTest(NumericalTest test) throws ComputerAlgebraSystemEngineException {
         CompletableFuture<?> processFuture = super.getProcessFuture();
         try {
             return server.performNumericalTest(test);
@@ -195,7 +195,7 @@ public class MapleRmiClient extends RmiProcessHandler
         }
     }
 
-    public String generateNumericTestExpression(String expression) {
+    public synchronized String generateNumericTestExpression(String expression) {
         return NumericCalculator.generateNumericCalculationExpression(expression);
     }
 
@@ -204,7 +204,7 @@ public class MapleRmiClient extends RmiProcessHandler
      * This method does not include actually starting Maple and see if it works.
      * @return checks if maple is theoretically present. It does not perform any license tests!
      */
-    public static boolean isMaplePresent() {
+    public synchronized static boolean isMaplePresent() {
         return MapleConfig.areSystemVariablesSetProperly();
     }
 }

@@ -49,9 +49,6 @@ public class MacroRetriever {
         return retrievedMacros;
     }
 
-    // TODO endlosschleife... für
-    // FORMULA_d1053239b308c91c18de37d55d1af74d: \alpha = m +\frac{1 }{2 }
-    // [03:22:22,933 DEBUG] MacroRetriever:79 - Retrieve 9 definiens for node FORMULA_d1053239b308c91c18de37d55d1af74d: \alpha = m +\frac{1 }{2 }
     private void retrieveReplacements(
             DLMFElasticSearchClient esClient,
             int depth,
