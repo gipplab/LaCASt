@@ -423,6 +423,19 @@ class SimpleTranslationTests {
     }
 
     @Test
+    void constantModeTranslationTest() {
+        String in = "e + \\pi + i";
+        String out = slt.translate(in);
+        assertEquals("e + pi + i", out);
+        System.out.println(slt.getTranslationInformation().getTranslationInformation());
+        slt.getConfig().setLettersAsConstantsMode(true);
+        TranslationInformation ti = slt.translateToObject(in);
+        assertEquals("exp(1)+ Pi + i", ti.getTranslatedExpression());
+        System.out.println(ti.getTranslationInformation());
+        slt.getConfig().setLettersAsConstantsMode(false);
+    }
+
+    @Test
     void multiplyIunitTest() {
         String in = "\\sqrt{2}+\\sqrt{2} \\iunit";
         String out = "sqrt(2)+sqrt(2)*I";

@@ -24,6 +24,7 @@ public class CASTranslators {
         for ( String cas : supporter.getAllCAS() ) {
             try {
                 DLMFTranslator slt = new DLMFTranslator(cas);
+                slt.getConfig().setLettersAsConstantsMode(true);
                 translatorMap.put(cas, slt);
             } catch (InitTranslatorException e) {
                 LOG.warn("Unable to setup semantic translator for language " + cas, e);

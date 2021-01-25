@@ -355,10 +355,10 @@ public abstract class AbstractTranslator implements IForwardTranslator {
     public void reset() {
         globalExp = new TranslatedExpression();
         partialTranslations = new LinkedList<>();
-        infoLogger = new InformationLogger();
         translationInformation = new TranslationInformation();
         mlpError = false;
         SET_MODE = false;
+        infoLogger.clear();
         if ( this.superTranslator != null ) this.superTranslator.reset();
     }
 

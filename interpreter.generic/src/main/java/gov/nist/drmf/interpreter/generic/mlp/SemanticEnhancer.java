@@ -188,7 +188,9 @@ public class SemanticEnhancer implements IPartialEnhancer {
         NumericalConfig config = this.casConnections.getNumericalConfig(cas.getLanguageKey());
         IConstraintTranslator dlmfTranslator;
         try {
-            dlmfTranslator = new DLMFTranslator(cas.getLanguageKey());
+            DLMFTranslator translator = new DLMFTranslator(cas.getLanguageKey());
+            translator.getConfig().setLettersAsConstantsMode(true);
+            dlmfTranslator = translator;
         } catch (InitTranslatorException e) {
             throw new ComputerAlgebraSystemEngineException(e);
         }
@@ -220,7 +222,9 @@ public class SemanticEnhancer implements IPartialEnhancer {
         SymbolicalConfig config = this.casConnections.getSymbolicalConfig(cas.getLanguageKey());
         IConstraintTranslator dlmfTranslator;
         try {
-            dlmfTranslator = new DLMFTranslator(cas.getLanguageKey());
+            DLMFTranslator translator = new DLMFTranslator(cas.getLanguageKey());
+            translator.getConfig().setLettersAsConstantsMode(true);
+            dlmfTranslator = translator;
         } catch (InitTranslatorException e) {
             return new SymbolicResult().markAsCrashed();
         }

@@ -24,9 +24,12 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
     private String LINE_DELIMITER = "\n";
 
     private BlueprintMaster limitParser = null;
+
     private boolean extensiveOutput = false;
 
     private boolean inlinePackageMode = false;
+
+    private boolean translateLettersAsConstantsIfPossible = false;
 
     public ForwardTranslationProcessConfig(String to_language) {
         super(Keys.KEY_LATEX, to_language);
@@ -49,6 +52,10 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
      */
     public void shortenOutput(boolean shortenOutput) {
         extensiveOutput = !shortenOutput;
+    }
+
+    public void setLettersAsConstantsMode(boolean lettersAsConstantsMode) {
+        this.translateLettersAsConstantsIfPossible = lettersAsConstantsMode;
     }
 
     /**
@@ -91,6 +98,10 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
 
     public boolean isInlinePackageMode() {
         return inlinePackageMode;
+    }
+
+    public boolean translateLettersAsConstantsMode() {
+        return translateLettersAsConstantsIfPossible;
     }
 
     public String getTAB() {
