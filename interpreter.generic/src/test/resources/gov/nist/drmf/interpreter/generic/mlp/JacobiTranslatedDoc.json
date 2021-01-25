@@ -1358,7 +1358,7 @@
     {
       "id" : "FORMULA_f95cd8e6d82bfb68b3b85bef1c1662b1",
       "formula" : "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,..",
-      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{2}@{z} = \\frac{(\\alpha+1)(\\alpha+2)}{2} +(\\alpha + 2)(\\alpha + \\beta + 3) \\frac{z-1}{2} + \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}(\\frac{z-1}{2})^2 ,",
+      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{2}@{z} = \\frac{(\\alpha+1)(\\alpha+2)}{2} +(\\alpha + 2)(\\alpha + \\beta + 3) \\frac{z-1}{2} + \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}(\\frac{z-1}{2})^2",
       "confidence" : 0.9378384212127765,
       "translations" : {
         "Mathematica" : {
@@ -2197,17 +2197,17 @@
     {
       "id" : "FORMULA_742460c93f449417419cf4d797043608",
       "formula" : "n= 2, 3, ...",
-      "semanticFormula" : "n= 2, 3,",
+      "semanticFormula" : "n= 2, 3",
       "confidence" : 0.0,
       "translations" : {
         "Mathematica" : {
-          "translation" : "n == 2 , 3 "
+          "translation" : "n == 2 , 3"
         },
         "SymPy" : {
-          "translation" : "n == 2 , 3 "
+          "translation" : "n == 2 , 3"
         },
         "Maple" : {
-          "translation" : "n = 2 , 3 "
+          "translation" : "n = 2 , 3"
         }
       },
       "positions" : [

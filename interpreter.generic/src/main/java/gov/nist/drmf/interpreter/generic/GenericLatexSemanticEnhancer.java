@@ -10,6 +10,7 @@ import gov.nist.drmf.interpreter.common.eval.NumericResult;
 import gov.nist.drmf.interpreter.common.eval.SymbolicResult;
 import gov.nist.drmf.interpreter.common.exceptions.MinimumRequirementNotFulfilledException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.pojo.CASResult;
 import gov.nist.drmf.interpreter.common.pojo.ComputationTask;
 import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
@@ -113,6 +114,10 @@ public class GenericLatexSemanticEnhancer implements IGenericLatexSemanticEnhanc
     @Override
     public MOIPresentations generateMOIPresentationFromDocument(SemanticEnhancedDocument annotatedDocument, String formula) throws MinimumRequirementNotFulfilledException, ParseException {
         annotatedDocument.requires(SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED);
+
+        LOG.info("Requesting MOI Presentation for given formula. Preprocessing: " + formula);
+        formula = TeXPreProcessor.preProcessingTeX(formula);
+        LOG.info("Pre-processed formula: " + formula);
 
         String id = MathTag.getID(formula);
         MLPDependencyGraph graph = new MLPDependencyGraph(annotatedDocument.getFormulae());

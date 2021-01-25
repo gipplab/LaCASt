@@ -24,6 +24,8 @@ public class TeXPreProcessor {
                     "(\\\\\\*)"
     );
 
+    private static final Pattern EOF_PATTERN = Pattern.compile("^\\s*(.*)\\s*(?:\\\\?[,;.\\\\])+\\s*$");
+
     private static final Pattern GEN_FRAC_PATTERN = Pattern.compile(
             "\\\\genfrac(\\{.}|.)(\\{.}|.)(?:\\\\z@\\{}|\\{0pt}\\{})\\{(.*?)}\\{(.*?)}"
     );
@@ -39,10 +41,12 @@ public class TeXPreProcessor {
     }
 
     public static String preProcessingTeX( String tex, String label ) {
+        tex = TeXPreProcessor.trimIfWrappedInCurlyBrackets(tex);
         if ( replacementConfig == null ) {
             LOG.warn("No replacement rules loaded, fallback to standard replacements.");
-            return fallbackReplacements(tex);
-        } else return replacementConfig.replace(tex, label);
+            tex = fallbackReplacements(tex);
+        } else tex = replacementConfig.replace(tex, label);
+        return clearEndOfFormulaPunctuation(tex);
     }
 
     private static String fallbackReplacements( String tex ){
@@ -62,7 +66,14 @@ public class TeXPreProcessor {
         }
 
         matcher.appendTail(buffer);
-        return buffer.toString();
+        return buffer.toString().trim();
+    }
+
+    public static String clearEndOfFormulaPunctuation(String in) {
+        if ( in == null || in.isBlank() ) return in;
+        Matcher m = EOF_PATTERN.matcher(in);
+        if ( m.matches() ) return m.group(1).trim();
+        else return in;
     }
 
     public static String trimCurlyBrackets(String in) {
@@ -77,6 +88,7 @@ public class TeXPreProcessor {
     }
 
     public static boolean wrappedInCurlyBrackets(String in) {
+        if ( in == null || in.isBlank() ) return false;
         if ( !in.trim().startsWith("{") && !in.trim().endsWith("}") ) return false;
         int openCounter = 1;
         for ( int i = 1; i < in.length(); i++ ) {
@@ -127,6 +139,6 @@ public class TeXPreProcessor {
             m.appendReplacement(sb, newFrac);
         }
         m.appendTail(sb);
-        return sb.toString();
+        return sb.toString().trim();
     }
 }
