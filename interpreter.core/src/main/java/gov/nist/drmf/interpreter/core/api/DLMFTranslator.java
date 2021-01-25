@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.core.api;
 
+import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
@@ -59,5 +60,9 @@ public class DLMFTranslator implements IConstraintTranslator {
     @Override
     public IPackageWrapper<String, String> getPackageWrapper() {
         return packageWrapper;
+    }
+
+    public ForwardTranslationProcessConfig getConfig() {
+        return dlmfInterface.getConfig();
     }
 }

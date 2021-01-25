@@ -107,12 +107,13 @@ public class MathConstantTranslator extends AbstractTranslator {
     private String alternativeConstantTranslation(Constants c, FeatureSet set, String constant) {
         // try from LaTeX to CAS (instead of DLMF to CAS)
         LOG.debug("Cannot translate math constant by MLP key. Try latex instead.");
+        boolean constantsMode = super.getConfig().translateLettersAsConstantsMode();
         String translation = c.translate(Keys.KEY_LATEX, CAS, constant);
-        if (translation != null) {
+        if (translation != null && (!constantsMode || "i".equals(constant))) {
             // if this works, inform the user, that we use this translation now!
             String dlmf = c.translate(Keys.KEY_LATEX, Keys.KEY_DLMF, constant);
             getInfoLogger().addGeneralInfo(
-                    translation,
+                    constant,
                     "You use a typical letter for a constant [" +
                             DLMFFeatureValues.MEANING.getFeatureValue(set, CAS) + "]." + System.lineSeparator() +
                             "We keep it like it is! But you should know that " + CAS +
@@ -123,6 +124,12 @@ public class MathConstantTranslator extends AbstractTranslator {
             // and now, use this translation
             translation = constant;
             mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::addFreeVariable, translation);
+        } else {
+            getInfoLogger().addGeneralInfo(
+                    constant,
+                    "Encountered " + constant + " which is usually the constant '" + translation + "'" + System.lineSeparator() +
+                            "[" + DLMFFeatureValues.MEANING.getFeatureValue(set, CAS) + "]. Translated it to: " + translation + System.lineSeparator()
+            );
         }
         return translation;
     }

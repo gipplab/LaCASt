@@ -24,6 +24,11 @@ public class InformationLogger {
         macro_info_map = new HashMap<>(logger.macro_info_map);
     }
 
+    public void clear() {
+        gen_info_map.clear();
+        macro_info_map.clear();
+    }
+
     public void addGeneralInfo( String key, String info ){
         if ( gen_info_map.containsKey(key) ) return;
         gen_info_map.put(key, info);

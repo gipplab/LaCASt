@@ -303,7 +303,7 @@ public class LetterTranslator extends AbstractListTranslator {
                     term.getTermText(),
                     String.format(LETTER_MSG, DLMFFeatureValues.MEANING.getFeatureValue(constantSet, CAS))
             );
-        } else {
+        } else if ( !super.getConfig().translateLettersAsConstantsMode() ) {
             getInfoLogger().addGeneralInfo(
                     term.getTermText(),
                     String.format(GREEK_MSG, DLMFFeatureValues.MEANING.getFeatureValue(constantSet, CAS), dlmf, term.getTermText())
