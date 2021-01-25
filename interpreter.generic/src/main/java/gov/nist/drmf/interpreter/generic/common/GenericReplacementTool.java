@@ -12,13 +12,19 @@ public class GenericReplacementTool {
 
     private final GenericDifferentialDFixer diffFixer;
     private final GenericFractionDerivFixer derivFixer;
+    private final GenericConstantReplacer constantFixer;
+    private final GenericNormalizeOperatorNameCarets normalizeOperatorNameCarets;
 
     public GenericReplacementTool(PrintablePomTaggedExpression ppte) {
         this.diffFixer = new GenericDifferentialDFixer(ppte);
         this.derivFixer = new GenericFractionDerivFixer(ppte);
+        this.constantFixer = new GenericConstantReplacer(ppte);
+        this.normalizeOperatorNameCarets = new GenericNormalizeOperatorNameCarets(ppte);
     }
 
     public PrintablePomTaggedExpression getSemanticallyEnhancedExpression() {
+        this.normalizeOperatorNameCarets.normalize();
+        this.constantFixer.fixConstants();
         this.diffFixer.fixDifferentialD();
         return this.derivFixer.fixGenericDeriv();
     }

@@ -574,6 +574,17 @@ class SimpleTranslationTests {
     }
 
     @Test
+    public void multiConstraintTranslation() {
+        String input = "\\erf@@{(z)}^{(k)} = \\frac{2 (-1)^{k-1}}{\\sqrt{\\cpi}} \\HermitepolyH{k-1}@{z} \\expe^{-z^2} = \\frac{2}{\\sqrt{\\cpi}} \\deriv [{k-1}]{ }{z}(\\expe^{-z^2}) , \\qquad k = 1 , 2 , \\dots";
+        String expect = "(erf(z))^(k) = (2*(- 1)^(k - 1))/(sqrt(Pi))*HermiteH(k - 1, z)*exp(- (z)^(2)) = (2)/(sqrt(Pi))*diff(exp(- (z)^(2)), [z$(k - 1)])";
+        TranslationInformation translation = slt.translateToObject(input);
+        assertEquals(expect, translation.getTranslatedExpression());
+        List<String> constraints = translation.getTranslatedConstraints();
+        assertEquals(1, constraints.size());
+        assertEquals("k = 1 , 2 , ..", constraints.get(0));
+    }
+
+    @Test
     public void chooseTranslationInSum() {
         String input = "\\sum_{k=0}^{n}{n+1 \\choose k}";
         String expect = "sum(binomial(n + 1,k), k = 0..n)";

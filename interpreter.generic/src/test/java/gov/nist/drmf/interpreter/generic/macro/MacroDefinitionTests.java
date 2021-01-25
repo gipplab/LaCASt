@@ -39,7 +39,7 @@ public class MacroDefinitionTests {
 
     @Test
     public void loadedAllMacrosTest() {
-        assertEquals(14, loadedMacros.keySet().size());
+        assertEquals(15, loadedMacros.keySet().size());
     }
 
     @Test

@@ -28,13 +28,27 @@ public class MacroDefinitionStyleFileParser {
 
     private static final Pattern NUMBER_PATTERN = Pattern.compile("#(\\d+)");
 
+    private static final Pattern COMMENT_LINE = Pattern.compile("^\\s*%.*\n?$",
+            Pattern.MULTILINE);
+
     private final Map<String, MacroBean> macros;
 
     public MacroDefinitionStyleFileParser() {
         macros = new HashMap<>();
     }
 
+    private String deleteCommentLines(String input) {
+        StringBuilder sb = new StringBuilder();
+        Matcher m = COMMENT_LINE.matcher(input);
+        while(m.find()) {
+            m.appendReplacement(sb, "");
+        }
+        m.appendTail(sb);
+        return sb.toString();
+    }
+
     public void load(String input) {
+        input = deleteCommentLines(input);
         Matcher m = FUNC_SPEC_PATTERN.matcher(input);
 
         MacroBean currentBean = null;

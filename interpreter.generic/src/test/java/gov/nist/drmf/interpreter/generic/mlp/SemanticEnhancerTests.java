@@ -125,7 +125,7 @@ public class SemanticEnhancerTests {
         SemanticEnhancer semanticEnhancer = new SemanticEnhancer();
         semanticEnhancer.appendSemanticLatex(moi, node);
         assertNotNull(moi.getSemanticLatex());
-        assertEquals("\\ln@{x} + \\LeviCivitasym{i}{j}{k}", moi.getSemanticLatex());
+        assertEquals("\\ln@@{(x)} + \\LeviCivitasym{i}{j}{k}", moi.getSemanticLatex());
     }
 
     @Test
@@ -154,7 +154,7 @@ public class SemanticEnhancerTests {
 
         SemanticEnhancer semanticEnhancer = new SemanticEnhancer();
         semanticEnhancer.appendSemanticLatex(moi, node);
-        assertEquals("\\erf@@{z} = \\frac{2}{\\sqrt\\pi} \\int_0^z e^{-t^2} \\diff{t}", moi.getSemanticLatex());
+        assertEquals("\\erf@@{z} = \\frac{2}{\\sqrt{\\cpi}} \\int_0^z \\expe^{-t^2} \\diff{t}", moi.getSemanticLatex());
     }
 
     private MOINode<MOIAnnotation> buildNode(String id, String genericTex, String annotationText) throws ParseException {

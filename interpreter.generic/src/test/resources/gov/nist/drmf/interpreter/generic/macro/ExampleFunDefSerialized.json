@@ -314,6 +314,35 @@
       "score" : 1.0
     } ]
   },
+  "Jacobiellcsk" : {
+    "macro" : "Jacobiellcsk",
+    "meta" : {
+      "description" : "the Jacobian elliptic function $\\Jacobiellcsk$ (of modulus $k$)",
+      "meaning" : "Jacobi-elliptic-cs",
+      "openMathID" : "ellfunk1_dlmf:cs",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ ],
+        "standardParameters" : [ ],
+        "standardVariables" : [ "u", "k" ]
+      }
+    },
+    "numberOfParameters" : 0,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 2,
+    "TeX" : [ {
+      "genericTeX" : "\\operatorname{cs} (var1,var2)",
+      "semanticTeX" : "\\Jacobiellcsk@{var1}{var2}",
+      "score" : 0.6176470588235294
+    }, {
+      "genericTeX" : "\\operatorname{cs} {var1}",
+      "semanticTeX" : "\\Jacobiellcsk@@{var1}{k}",
+      "score" : 0.38235294117647056
+    }, {
+      "genericTeX" : "\\operatorname{cs}",
+      "semanticTeX" : "\\Jacobiellcsk@{u}{k}",
+      "score" : 0.0
+    } ]
+  },
   "Pochhammersym" : {
     "macro" : "Pochhammersym",
     "meta" : {

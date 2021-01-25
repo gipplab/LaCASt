@@ -128,6 +128,7 @@ public class MacroRetriever {
         scorer.setMacroESScore(macroResult.getScore());
 
         for ( MacroGenericSemanticEntry entry : macro.getTex() ) {
+            if ( entry.getScore() == 0 ) continue;
             scorer.setMacroLikelihoodScore(entry.getScore());
 
             double score = scorer.getScore();

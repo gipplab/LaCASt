@@ -56,7 +56,6 @@ public final class CASConnections {
         try {
             if ( !cas.isCASAvailable() ) return;
             DLMFTranslator translator = new DLMFTranslator(cas.getLanguageKey());
-            translator.getConfig().setLettersAsConstantsMode(true);
 
             connectionsMap.put(cas.getLanguageKey(), cas);
 
