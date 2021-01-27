@@ -2,7 +2,12 @@ package gov.nist.drmf.interpreter.generic.mlp;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
+import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
+import gov.nist.drmf.interpreter.common.meta.DLMF;
+import gov.nist.drmf.interpreter.common.pojo.CASResult;
 import gov.nist.drmf.interpreter.common.tests.Resource;
+import gov.nist.drmf.interpreter.core.api.DLMFTranslator;
 import gov.nist.drmf.interpreter.generic.elasticsearch.AssumeElasticsearchAvailability;
 import gov.nist.drmf.interpreter.generic.elasticsearch.DLMFElasticSearchClient;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPDependencyGraph;
@@ -12,20 +17,23 @@ import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import gov.nist.drmf.interpreter.pom.moi.MathematicalObjectOfInterest;
 import mlp.ParseException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Andre Greiner-Petter
  */
 @AssumeElasticsearchAvailability
 public class SemanticEnhancerTests {
+    private static final Logger LOG = LogManager.getLogger(SemanticEnhancerTests.class.getName());
+
     @BeforeAll
     static void setup() throws IOException {
         new DLMFElasticSearchClient().indexDLMFDatabaseIfNotExist();
@@ -129,7 +137,7 @@ public class SemanticEnhancerTests {
     }
 
     @Test
-    void derivTestTest() throws ParseException {
+    void derivTestTest() throws ParseException, InitTranslatorException {
         String genericLaTeXExample = "P_n^{(\\alpha,\\beta)}(z) = \\frac{d^n}{dz^n} \\left\\{ z \\left (1 - z^2 \\right )^n \\right\\}";
         MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample, "complex equation");
         MOINode<MOIAnnotation> jacobiNode = buildNode("2", "P_n^{(\\alpha,\\beta)}(z)", "Jacobi polynomial");
@@ -143,6 +151,18 @@ public class SemanticEnhancerTests {
         semanticEnhancer.appendSemanticLatex(moi, node);
         assertNotNull(moi.getSemanticLatex());
         assertEquals("\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\deriv [n]{ }{z} \\{z(1 - z^2)^n \\}", moi.getSemanticLatex());
+
+        semanticEnhancer.appendCASRepresentation( moi, Keys.KEY_MAPLE, new DLMFTranslator(Keys.KEY_MAPLE));
+        CASResult casRes = moi.getCasResults(Keys.KEY_MAPLE);
+        assertNotNull(casRes);
+        assertNotNull(casRes.getTranslationInformation());
+        try {
+            String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(moi);
+            assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
+            LOG.debug(representation);
+        } catch (JsonProcessingException e) {
+            LOG.debug("Unable to print numeric test calculation");
+        }
     }
 
     @Resource("ErrorFunctionMOI.json")

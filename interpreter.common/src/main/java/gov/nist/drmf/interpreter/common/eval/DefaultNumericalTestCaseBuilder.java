@@ -39,10 +39,23 @@ public class DefaultNumericalTestCaseBuilder {
             INumericTestCase testCase
     ) {
         LinkedList<NumericalTest> tests = new LinkedList<>();
+        List<TranslationInformation> tiComponents = ti.getPartialTranslations();
+        if ( !tiComponents.isEmpty() ) {
+            for ( TranslationInformation subTi : tiComponents ) {
+                tests.addAll( buildTestCases(subTi, testCase) );
+            }
+            return tests;
+        }
+
         RelationalComponents relComps = ti.getRelationalComponents();
         if ( relComps.getRelations().isEmpty() || relComps.getComponents().size() < 2 ) {
             // now LHS/RHS
-            NumericalTest test = buildNoRelationTestCase(relComps.getComponents().get(0), testCase);
+            NumericalTest test = buildNoRelationTestCase(
+                    relComps.getComponents().get(0),
+                    "",
+                    relComps.getComponents().get(0),
+                    testCase
+            );
             appendInfoToTest(test, ti, true);
             tests.add(test);
         } else {
@@ -77,11 +90,12 @@ public class DefaultNumericalTestCaseBuilder {
             testExpression = config.getTestExpression(evaluator::generateNumericTestExpression, lhs, rhs);
         }
 
-        return buildNoRelationTestCase(testExpression, c);
+        return buildNoRelationTestCase(lhs, rhs, testExpression, c);
     }
 
-    private NumericalTest buildNoRelationTestCase(String component, INumericTestCase c) {
+    private NumericalTest buildNoRelationTestCase(String lhs, String rhs, String component, INumericTestCase c) {
         return new NumericalTest(
+                lhs, rhs,
                 component,
                 c,
                 config,

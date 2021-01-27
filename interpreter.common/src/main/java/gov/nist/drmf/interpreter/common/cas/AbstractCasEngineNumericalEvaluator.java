@@ -1,10 +1,7 @@
 package gov.nist.drmf.interpreter.common.cas;
 
-import gov.nist.drmf.interpreter.common.eval.NumericalTest;
-import gov.nist.drmf.interpreter.common.eval.TestResultType;
+import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.common.eval.NumericCalculation;
-import gov.nist.drmf.interpreter.common.eval.NumericResult;
 
 import java.util.Collection;
 import java.util.List;
@@ -126,6 +123,8 @@ public abstract class AbstractCasEngineNumericalEvaluator<T> implements ICASEngi
             int precision
     ) throws ComputerAlgebraSystemEngineException;
 
+    public abstract void setCurrentTestCase(String lhs, String rhs);
+
     /**
      * Performs the numerical test at once by the given test object.
      * This means it:
@@ -165,12 +164,13 @@ public abstract class AbstractCasEngineNumericalEvaluator<T> implements ICASEngi
         // next, store the actual constraints
         String constraintN = setConstraints(test.getConstraints());
 
-
         // finally, generate all test cases that fit the constraints
         String testValuesN = buildTestCases(
                 constraintN,
                 test.getMaxCombis()
         );
+
+        setCurrentTestCase(test.getLhs(), test.getRhs());
 
         // perform the test
         return performGeneratedTestOnExpression(
@@ -198,21 +198,9 @@ public abstract class AbstractCasEngineNumericalEvaluator<T> implements ICASEngi
      * @throws ComputerAlgebraSystemEngineException if the result cannot be analyzed by the CAS
      */
     public NumericResult getNumericResult(T results) throws ComputerAlgebraSystemEngineException {
-        TestResultType type = getStatusOfResult(results);
-        int tests = getPerformedTestCases();
-        boolean aborted = wasAborted(results);
-        int failed = aborted ? tests : getNumberOfFailedTestCases();
-        int success = aborted ? 0 : Math.max(0, tests-failed);
-
-        NumericResult nr = new NumericResult(
-                type,
-                tests,
-                failed,
-                success,
-                aborted
-        );
-
-        nr.addTestCalculations( getNumericCalculationList(results) );
+        NumericResult nr = new NumericResult();
+        NumericCalculationGroup group = getNumericCalculationGroup(results);
+        nr.addTestCalculationsGroup( group );
         return nr;
     }
 
@@ -226,7 +214,7 @@ public abstract class AbstractCasEngineNumericalEvaluator<T> implements ICASEngi
      *               by {@link #performGeneratedTestOnExpression(String, String, String, int)}
      * @return the list of failed test calculations and the values
      */
-    public abstract List<NumericCalculation> getNumericCalculationList(T result);
+    public abstract NumericCalculationGroup getNumericCalculationGroup(T result);
 
     @Override
     synchronized public NumericResult performNumericTest(NumericalTest test) throws ComputerAlgebraSystemEngineException {

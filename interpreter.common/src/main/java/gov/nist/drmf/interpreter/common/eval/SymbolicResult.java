@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.common.eval;
 import com.fasterxml.jackson.annotation.*;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,78 +12,171 @@ import java.util.stream.Collectors;
  * @author Andre Greiner-Petter
  */
 @JsonPropertyOrder({
-        "result", "numberOfTests", "testCalculations"
+        "overallResult", "numberOfTests", "numberOfFailedTests", "numberOfSuccessfulTests",
+        "numberOfSkippedTests", "numberOfErrorTests", "wasAborted", "crashed",
+        "testCalculationsGroups"
 })
-public class SymbolicResult implements Serializable {
-
-    @JsonProperty("result")
-    private TestResultType testResultType;
+public class SymbolicResult implements Serializable, ITestResultCounter {
+    @JsonProperty("overallResult")
+    private TestResultType overallResult;
 
     @JsonProperty("numberOfTests")
-    private int numberOfTests;
+    private int numberOfTotalTests = 0;
 
-    @JsonProperty("testCalculations")
-    private List<SymbolicCalculation> testCalculations;
+    @JsonProperty("numberOfFailedTests")
+    private int numberOfFailedTests = 0;
 
-    @JsonIgnore
+    @JsonProperty("numberOfSuccessfulTests")
+    private int numberOfSuccessfulTests = 0;
+
+    @JsonProperty("numberOfErrorTests")
+    private int numberOfErrorTests = 0;
+
+    @JsonProperty("numberOfSkippedTests")
+    private int numberOfSkippedTests = 0;
+
+    @JsonProperty("testCalculationsGroup")
+    private List<SymbolicCalculationGroup> testCalculationsGroups = new LinkedList<>();
+
+    @JsonProperty("crashed")
     private boolean crashed = false;
 
     public SymbolicResult() {
-        testCalculations = new LinkedList<>();
+        overallResult = TestResultType.SKIPPED;
     }
 
-    public SymbolicResult(TestResultType testResultType) {
-        this();
-        this.testResultType = testResultType;
+    @JsonSetter("overallResult")
+    public void setOverallResult(TestResultType overallResult) {
+        this.overallResult = overallResult;
     }
 
     @JsonIgnore
     public SymbolicResult markAsCrashed() {
-        this.testResultType = TestResultType.ERROR;
         this.crashed = true;
         return this;
     }
 
-    @JsonIgnore
-    public SymbolicResult markAsSkipped() {
-        this.testResultType = TestResultType.SKIPPED;
-        return this;
-    }
-
-    @JsonIgnore
+    @JsonGetter("crashed")
     public boolean crashed() {
         return this.crashed;
     }
 
-    @JsonGetter("result")
-    public TestResultType getTestResultType() {
-        return testResultType;
+    @JsonGetter("numberOfTests")
+    public int getNumberOfTotalTests() {
+        return numberOfTotalTests;
     }
 
-    @JsonSetter("result")
-    public void setTestResultType(TestResultType testResultType) {
-        this.testResultType = testResultType;
+    @JsonSetter("numberOfTests")
+    public void setNumberOfTotalTests(int numberOfTotalTests) {
+        this.numberOfTotalTests = numberOfTotalTests;
     }
 
-    public int getNumberOfTests() {
-        return numberOfTests;
+    public int getNumberOfFailedTests() {
+        return numberOfFailedTests;
     }
 
-    public void setNumberOfTests(int numberOfTests) {
-        this.numberOfTests = numberOfTests;
+    public void setNumberOfFailedTests(int numberOfFailedTests) {
+        this.numberOfFailedTests = numberOfFailedTests;
     }
 
-    public List<SymbolicCalculation> getTestCalculations() {
-        return testCalculations;
+    public int getNumberOfSuccessfulTests() {
+        return numberOfSuccessfulTests;
     }
 
-    public void setTestCalculations(List<SymbolicCalculation> testCalculations) {
-        this.testCalculations = testCalculations;
+    public void setNumberOfSuccessfulTests(int numberOfSuccessfulTests) {
+        this.numberOfSuccessfulTests = numberOfSuccessfulTests;
+    }
+
+    public List<SymbolicCalculationGroup> getTestCalculationsGroups() {
+        return testCalculationsGroups;
+    }
+
+    public void setTestCalculations(List<SymbolicCalculationGroup> testCalculationsGroup) {
+        this.testCalculationsGroups = testCalculationsGroup;
+    }
+
+    public int getNumberOfErrorTests() {
+        return numberOfErrorTests;
+    }
+
+    public void setNumberOfErrorTests(int numberOfErrorTests) {
+        this.numberOfErrorTests = numberOfErrorTests;
+    }
+
+    public int getNumberOfSkippedTests() {
+        return numberOfSkippedTests;
+    }
+
+    public void setNumberOfSkippedTests(int numberOfSkippedTests) {
+        this.numberOfSkippedTests = numberOfSkippedTests;
+    }
+
+    @JsonIgnore
+    public void addTestCalculationsGroup(SymbolicCalculationGroup testCalc) {
+        for ( SymbolicCalculation symCalc : testCalc.getTestCalculations() ) {
+            addTestResult(symCalc.getResult());
+        }
+        this.numberOfTotalTests += testCalc.getSize();
+        this.testCalculationsGroups.add(testCalc);
+    }
+
+    @JsonIgnore
+    public void addTestCalculationsGroup(Collection<SymbolicCalculationGroup> testCals) {
+        if ( testCals == null || testCals.isEmpty() ) return;
+
+        for ( SymbolicCalculationGroup nc : testCals ) {
+            addTestCalculationsGroup(nc);
+        }
+    }
+
+    @JsonGetter("overallResult")
+    public TestResultType overallResult() {
+        if ( testCalculationsGroups.isEmpty() ) return TestResultType.SKIPPED;
+        if (numberOfTotalTests == numberOfSuccessfulTests) return TestResultType.SUCCESS;
+        else if ( numberOfErrorTests == 0 && numberOfFailedTests > 0) return TestResultType.FAILURE;
+        else if ( numberOfSkippedTests > 0 ) return TestResultType.SKIPPED;
+        else return TestResultType.ERROR;
     }
 
     @JsonIgnore
     public String printCalculations() {
-        List<String> results = testCalculations.stream().map( SymbolicCalculation::getResult ).collect(Collectors.toList());
+        List<String> results = testCalculationsGroups.stream()
+                .map( SymbolicCalculationGroup::getTestCalculations )
+                .flatMap(Collection::stream)
+                .map( SymbolicCalculation::getResultExpression )
+                .collect(Collectors.toList());
         return "[" + String.join(", ", results) + "]";
+    }
+
+    @JsonIgnore
+    public List<SymbolicCalculation> getAllCalculations() {
+        return testCalculationsGroups.stream()
+                .map( SymbolicCalculationGroup::getTestCalculations )
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
+    }
+
+    @JsonIgnore
+    @Override
+    public void increaseNumberOfSuccessfulTests() {
+        numberOfSuccessfulTests++;
+    }
+
+    @JsonIgnore
+    @Override
+    public void increaseNumberOfFailedTests() {
+        numberOfFailedTests++;
+    }
+
+    @JsonIgnore
+    @Override
+    public void increaseNumberOfErrorTests() {
+        numberOfErrorTests++;
+    }
+
+    @JsonIgnore
+    @Override
+    public void increaseNumberOfSkippedTests() {
+        numberOfSkippedTests++;
     }
 }

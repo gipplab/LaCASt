@@ -147,6 +147,12 @@ public class FunctionTranslator extends AbstractListTranslator {
      * @return true if everything was fine
      */
     private TranslatedExpression parse(List<PomTaggedExpression> following_exp) {
+        if ( following_exp == null || following_exp.isEmpty() ) {
+            throw TranslationException.buildException(
+                    this, "Unable to retrieve argument of function.",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT);
+        }
+
         // get first expression
         PomTaggedExpression first = following_exp.remove(0);
 

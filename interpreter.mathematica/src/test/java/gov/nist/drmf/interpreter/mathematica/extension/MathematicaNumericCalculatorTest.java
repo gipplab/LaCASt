@@ -1,9 +1,9 @@
 package gov.nist.drmf.interpreter.mathematica.extension;
 
 import com.wolfram.jlink.Expr;
+import gov.nist.drmf.interpreter.common.eval.NumericCalculationGroup;
 import gov.nist.drmf.interpreter.common.eval.TestResultType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.common.eval.NumericCalculation;
 import gov.nist.drmf.interpreter.mathematica.MathematicaConnector;
 import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
 import org.junit.jupiter.api.BeforeAll;
@@ -50,14 +50,15 @@ public class MathematicaNumericCalculatorTest {
         assertFalse( calculator.wasAborted(result) );
         assertEquals( TestResultType.FAILURE, calculator.getStatusOfResult(result) );
 
-        List<NumericCalculation> wrongCalcs = calculator.getNumericCalculationList(result);
+        NumericCalculationGroup wrongCalcs = calculator.getNumericCalculationGroup(result);
         assertNotNull(wrongCalcs);
-        assertEquals( 1, wrongCalcs.size() );
-        assertEquals( "1.0", wrongCalcs.get(0).getResult() );
+        assertEquals( 2, wrongCalcs.getSize() );
+        assertEquals( "0.", wrongCalcs.get(0).getResultExpression() );
+        assertEquals( "1.", wrongCalcs.get(1).getResultExpression() );
 
         Map<String, String> values = wrongCalcs.get(0).getTestValues();
         assertEquals( 1, values.keySet().size() );
-        assertEquals( "2", values.get("x") );
+        assertEquals( "1", values.get("x") );
     }
 
     private List<String> genList(String... elements) {

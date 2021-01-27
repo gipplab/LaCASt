@@ -158,7 +158,7 @@ public class SequenceTranslator extends AbstractListTranslator {
             PomTaggedExpression exp = expList.remove(0);
             Brackets bracket = Brackets.getBracket(exp);
 
-            if ( PomTaggedExpressionUtility.isLongSpace(exp) ) {
+            if ( PomTaggedExpressionUtility.isLongSpace(exp) && exp.getPreviousSibling() != null ) {
                 handleConstraints(expList);
                 break;
             } else if ( upcomingConstraint(exp, expList) ) {
@@ -304,7 +304,9 @@ public class SequenceTranslator extends AbstractListTranslator {
         TranslatedExpression copyOfLocal = new TranslatedExpression(localTranslations);
         localTranslations.clear();
 
+        super.getGlobalTranslationList().lockRelationalComponents();
         while ( !expList.isEmpty() ) translateNext( expList.remove(0), expList, false );
+        super.getGlobalTranslationList().releaseRelationalComponents();
 
         super.getGlobalTranslationList().removeLastNExps( localTranslations.getLength() );
         super.getGlobalTranslationList().addConstraint( localTranslations.getTranslatedExpression() );
@@ -446,6 +448,7 @@ public class SequenceTranslator extends AbstractListTranslator {
     }
 
     private String addSimpleSpace(String part) {
+        if ( part == null ) return "";
         if ( !part.matches(".*\\s+$") )
             part += SPACE;
         return part;

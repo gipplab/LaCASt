@@ -41,7 +41,8 @@ public final class PomTaggedExpressionUtility {
 
     public static boolean beginsWithRelation(PomTaggedExpression pte) {
         if ( pte == null ) return false;
-        if ( pte.isEmpty() ) return beginsWithRelation(pte.getNextSibling());
+        if ( pte.isEmpty() || MathTermUtility.equals(pte.getRoot(), MathTermTags.spaces) )
+            return beginsWithRelation(pte.getNextSibling());
         if ( MathTermUtility.isRelationSymbol(pte.getRoot()) ) return true;
         if ( pte.getComponents().size() <= 1 ) return false;
 

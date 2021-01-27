@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.common;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * @author Andre Greiner-Petter
@@ -53,6 +54,14 @@ public class InformationLogger {
 
     public String getInformation(String element) {
         return macro_info_map.computeIfAbsent(element, key -> gen_info_map.get(element));
+    }
+
+    public Map<String, String> getGeneralTranslationInformation() {
+        return gen_info_map;
+    }
+
+    public Map<String, String> getMacroTranslationInformation() {
+        return macro_info_map;
     }
 
     @Override

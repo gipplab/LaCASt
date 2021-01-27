@@ -42,20 +42,22 @@ numericalAutoTest[expr_, tests_, threshold_] :=
         Do[
             Module[{},
                 If[
-                    Or[
-                        And[BooleanQ[Part[results, i]], Not[Part[results, i]]],
-                        And[NumericQ[Part[results, i]], Abs[Part[results, i]] > threshold],
-                        And[Not[BooleanQ[Part[results, i]]], Not[NumericQ[Part[results, i]]]]
-                    ],
-                    If[
-                        i <= Length[tests],
-                        AppendTo[output, {Part[results, i], Part[tests, i]}],
-                        AppendTo[output, {Part[results, i], "NoValue"}]
-                    ]
+                    i <= Length[tests],
+                    AppendTo[output, {Part[results, i], Part[tests, i]}],
+                    AppendTo[output, {Part[results, i], "NoValue"}]
                 ]
             ], {i, Length[results]}];
         Return[output]
     ]
+
+wasSuccessful[expr_, threshold_] := Module[{},
+    Return[
+        Or[
+            And[BooleanQ[expr], expr],
+            And[NumericQ[expr], Abs[expr] < threshold]
+        ]
+    ]
+]
 
 createTestCases[vars_, vals_, constVars_, constVals_, extraVars_, extraVals_] := Module[
     {varsF, constT, extraT, testCases},

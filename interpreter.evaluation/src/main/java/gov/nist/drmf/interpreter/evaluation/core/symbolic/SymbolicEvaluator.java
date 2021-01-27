@@ -279,9 +279,9 @@ public class SymbolicEvaluator extends AbstractSymbolicEvaluator {
         }
 
         boolean allAborted = true;
-        for (SymbolicCalculation sc : result.getTestCalculations()) {
+        for (SymbolicCalculation sc : result.getAllCalculations()) {
             allAborted &= sc.wasAborted();
-            if ( sc.wasSuccessful() ) {
+            if ( TestResultType.SUCCESS.equals(sc.getResult()) ) {
                 if ( sc.isWasConditionallySuccessful() ) {
                     lineResults[c.getLine()].add("Successful under condition " + result.printCalculations());
                     Status.SUCCESS_UNDER_EXTRA_CONDITION.add();
@@ -293,7 +293,7 @@ public class SymbolicEvaluator extends AbstractSymbolicEvaluator {
             }
         }
 
-        if (TestResultType.ERROR.equals(result.getTestResultType())) {
+        if (TestResultType.ERROR.equals(result.overallResult())) {
             lineResults[c.getLine()].add("All Errors: " + Arrays.toString(successStr));
             Status.ERROR.add();
         } else if (allAborted) {

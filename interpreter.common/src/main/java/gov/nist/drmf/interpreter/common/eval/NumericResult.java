@@ -11,12 +11,13 @@ import java.util.List;
  * @author Andre Greiner-Petter
  */
 @JsonPropertyOrder({
-        "result", "wasAborted", "numberOfTests", "numberOfFailedTests", "numberOfSuccessfulTests",
-        "testCalculations"
+        "overallResult", "numberOfTests", "numberOfFailedTests", "numberOfSuccessfulTests",
+        "numberOfSkippedTests", "numberOfErrorTests", "wasAborted", "crashed",
+        "testCalculationsGroups"
 })
-public class NumericResult implements Serializable {
-    @JsonProperty("result")
-    private TestResultType testResultType;
+public class NumericResult implements Serializable, ITestResultCounter {
+    @JsonProperty("overallResult")
+    private TestResultType overallResult;
 
     @JsonProperty("numberOfTests")
     private int numberOfTotalTests;
@@ -27,47 +28,48 @@ public class NumericResult implements Serializable {
     @JsonProperty("numberOfSuccessfulTests")
     private int numberOfSuccessfulTests;
 
+    @JsonProperty("numberOfErrorTests")
+    private int numberOfErrorTests;
+
+    @JsonProperty("numberOfSkippedTests")
+    private int numberOfSkippedTests;
+
+    @JsonProperty("testCalculationsGroups")
+    private List<NumericCalculationGroup> testCalculationsGroups = new LinkedList<>();
+
     @JsonProperty("wasAborted")
-    private boolean wasAborted;
+    private boolean wasAborted = false;
 
-    @JsonProperty("testCalculations")
-    private List<NumericCalculation> testCalculations;
-
-    @JsonIgnore
+    @JsonProperty("crashed")
     private boolean crashed = false;
 
     public NumericResult() {
-        testCalculations = new LinkedList<>();
-        this.testResultType = TestResultType.FAILURE;
-        this.wasAborted = false;
+        overallResult = TestResultType.SKIPPED;
     }
 
-    public NumericResult(TestResultType resultType, int totalTests, int failedTests, int successfulTests, boolean wasAborted) {
-        this();
-        this.testResultType = resultType;
-        this.numberOfTotalTests = totalTests;
-        this.numberOfFailedTests = failedTests;
-        this.numberOfSuccessfulTests = successfulTests;
-        this.wasAborted = wasAborted;
+    @JsonSetter("overallResult")
+    public void setOverallResult(TestResultType overallResult) {
+        this.overallResult = overallResult;
     }
 
-    @JsonIgnore
+    @JsonGetter("crashed")
+    public boolean crashed() {
+        return crashed;
+    }
+
     public NumericResult markAsCrashed() {
-        this.testResultType = TestResultType.ERROR;
         this.crashed = true;
         return this;
     }
 
-    @JsonIgnore
-    public NumericResult markAsSkipped() {
-        this.testResultType = TestResultType.SKIPPED;
-        this.crashed = false;
-        return this;
+    @JsonGetter("wasAborted")
+    public boolean wasAborted() {
+        return wasAborted;
     }
 
-    @JsonIgnore
-    public boolean crashed() {
-        return crashed;
+    @JsonSetter("wasAborted")
+    public void wasAborted(boolean wasAborted) {
+        this.wasAborted = wasAborted;
     }
 
     /**
@@ -76,39 +78,7 @@ public class NumericResult implements Serializable {
      */
     @JsonIgnore
     public void addFurtherResults(NumericResult nr) {
-        if ( this.numberOfTotalTests == 0 ) {
-            this.testResultType = nr.testResultType;
-            this.wasAborted = nr.wasAborted;
-        }
-        else {
-            this.testResultType.and(nr.testResultType);
-            this.wasAborted |= nr.wasAborted;
-        }
-
-        this.numberOfTotalTests += nr.numberOfTotalTests;
-        this.numberOfFailedTests += nr.numberOfFailedTests;
-        this.numberOfSuccessfulTests += nr.numberOfSuccessfulTests;
-        testCalculations.addAll( nr.testCalculations );
-    }
-
-    @JsonGetter("result")
-    public TestResultType getTestResultType() {
-        return testResultType;
-    }
-
-    @JsonSetter("result")
-    public void setTestResultType(TestResultType testResultType) {
-        this.testResultType = testResultType;
-    }
-
-    @JsonGetter("wasAborted")
-    public Boolean wasAborted() {
-        return wasAborted;
-    }
-
-    @JsonSetter("wasAborted")
-    public void wasAborted(Boolean wasAborted) {
-        this.wasAborted = wasAborted;
+        this.addTestCalculationsGroup( nr.getTestCalculationsGroups() );
     }
 
     @JsonGetter("numberOfTests")
@@ -137,21 +107,78 @@ public class NumericResult implements Serializable {
         this.numberOfSuccessfulTests = numberOfSuccessfulTests;
     }
 
-    public List<NumericCalculation> getTestCalculations() {
-        return testCalculations;
+    public List<NumericCalculationGroup> getTestCalculationsGroups() {
+        return testCalculationsGroups;
     }
 
-    public void setTestCalculations(List<NumericCalculation> testCalculations) {
-        this.testCalculations = testCalculations;
+    public void setTestCalculations(List<NumericCalculationGroup> testCalculationsGroup) {
+        this.testCalculationsGroups = testCalculationsGroup;
+    }
+
+    public int getNumberOfErrorTests() {
+        return numberOfErrorTests;
+    }
+
+    public void setNumberOfErrorTests(int numberOfErrorTests) {
+        this.numberOfErrorTests = numberOfErrorTests;
+    }
+
+    public int getNumberOfSkippedTests() {
+        return numberOfSkippedTests;
+    }
+
+    public void setNumberOfSkippedTests(int numberOfSkippedTests) {
+        this.numberOfSkippedTests = numberOfSkippedTests;
     }
 
     @JsonIgnore
-    public void addTestCalculations(NumericCalculation testCalc) {
-        this.testCalculations.add(testCalc);
+    public void addTestCalculationsGroup(NumericCalculationGroup testCalc) {
+        for ( NumericCalculation numCalc : testCalc.getTestCalculations() ) {
+            addTestResult(numCalc.getResult());
+        }
+        this.numberOfTotalTests += testCalc.getSize();
+        this.testCalculationsGroups.add(testCalc);
     }
 
     @JsonIgnore
-    public void addTestCalculations(Collection<NumericCalculation> testCals) {
-        this.testCalculations.addAll(testCals);
+    public void addTestCalculationsGroup(Collection<NumericCalculationGroup> testCals) {
+        if ( testCals == null || testCals.isEmpty() ) return;
+
+        for ( NumericCalculationGroup nc : testCals ) {
+            addTestCalculationsGroup(nc);
+        }
+    }
+
+    @JsonGetter("overallResult")
+    public TestResultType overallResult() {
+        if ( testCalculationsGroups.isEmpty() ) return TestResultType.SKIPPED;
+        if (numberOfTotalTests == numberOfSuccessfulTests) return TestResultType.SUCCESS;
+        else if ( numberOfErrorTests == 0 && numberOfFailedTests > 0) return TestResultType.FAILURE;
+        else if ( numberOfSkippedTests > 0 ) return TestResultType.SKIPPED;
+        else return TestResultType.ERROR;
+    }
+
+    @JsonIgnore
+    @Override
+    public void increaseNumberOfSuccessfulTests() {
+        numberOfSuccessfulTests++;
+    }
+
+    @JsonIgnore
+    @Override
+    public void increaseNumberOfFailedTests() {
+        numberOfFailedTests++;
+    }
+
+    @JsonIgnore
+    @Override
+    public void increaseNumberOfErrorTests() {
+        numberOfErrorTests++;
+    }
+
+    @JsonIgnore
+    @Override
+    public void increaseNumberOfSkippedTests() {
+        numberOfSkippedTests++;
     }
 }

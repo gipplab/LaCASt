@@ -1,21 +1,15 @@
-customResultSieve := proc(values)
-  local result, output, i, msg;
-  if not(type(values,list)) then
-    return values;
-  end if;
-  output := NULL;
-  for i from 1 to nops(values) do
-    result := values[i][1];
-    try
-      if type(result, string) then
-        output := output,values[i];
-      elif not #TEST# then
-        output := output,values[i];
-      end if;
-    catch:
-      msg := StringTools:-Join(["Error -", StringTools:-FormatMessage( lastexception[2..-1] )], " ");
-      output := output,[msg, values[i][2]];
-    end try;
-  end do;
-  return [output];
+customResultSieve := proc(result)
+  local msg;
+  try
+    if type(result, string) then
+      return False;
+    elif not #TEST# then
+      return False;
+    elif #TEST# then
+      return True;
+    end if;
+  catch:
+    msg := StringTools:-Join(["Error -", StringTools:-FormatMessage( lastexception[2..-1] )], " ");
+    return msg;
+  end try;
 end proc:

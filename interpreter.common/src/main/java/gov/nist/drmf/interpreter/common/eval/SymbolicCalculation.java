@@ -11,39 +11,28 @@ import java.io.Serializable;
  * @author Andre Greiner-Petter
  */
 public class SymbolicCalculation implements Serializable {
-    @JsonProperty("property")
-    private String testProperty;
-
     @JsonProperty("result")
-    private String result;
+    private TestResultType result;
+
+    @JsonProperty("testTitle")
+    private String testTitle;
+
+    @JsonProperty("testExpression")
+    private String testExpression;
+
+    @JsonProperty("resultExpression")
+    private String resultExpression;
 
     @JsonProperty("wasAborted")
     private boolean wasAborted = false;
 
-    @JsonProperty("wasConditionallySuccessful")
+    @JsonProperty("conditionallySuccessful")
     private boolean wasConditionallySuccessful = false;
-
-    @JsonIgnore
-    private boolean wasSuccessful;
 
     public SymbolicCalculation(){}
 
-    public String getResult() {
+    public TestResultType getResult() {
         return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
-
-    @JsonGetter("property")
-    public String getTestProperty() {
-        return testProperty;
-    }
-
-    @JsonSetter("property")
-    public void setTestProperty(String testProperty) {
-        this.testProperty = testProperty;
     }
 
     @JsonGetter("wasAborted")
@@ -56,19 +45,39 @@ public class SymbolicCalculation implements Serializable {
         this.wasAborted = wasAborted;
     }
 
+    public void setResult(TestResultType result) {
+        this.result = result;
+    }
+
+    public String getTestExpression() {
+        return testExpression;
+    }
+
+    public void setTestExpression(String testExpression) {
+        this.testExpression = testExpression;
+    }
+
+    public String getResultExpression() {
+        return resultExpression;
+    }
+
+    public void setResultExpression(String resultExpression) {
+        this.resultExpression = resultExpression;
+    }
+
+    public String getTestTitle() {
+        return testTitle;
+    }
+
+    public void setTestTitle(String testTitle) {
+        this.testTitle = testTitle;
+    }
+
     public boolean isWasConditionallySuccessful() {
         return wasConditionallySuccessful;
     }
 
     public void setWasConditionallySuccessful(boolean wasConditionallySuccessful) {
         this.wasConditionallySuccessful = wasConditionallySuccessful;
-    }
-
-    public boolean wasSuccessful() {
-        return wasSuccessful;
-    }
-
-    public void wasSuccessful(boolean wasSuccessful) {
-        this.wasSuccessful = wasSuccessful;
     }
 }

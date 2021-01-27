@@ -17,9 +17,8 @@ public class DefaultMapleRmiServerSubprocessInfo implements RmiSubprocessInfo {
     public List<String> getJvmArgs() {
         return List.of(
                 "-XX:HeapDumpPath=/dev/null",
-                "-Xms2g",
-                "-Xmx10g",
-                "-Xss200M"
+                "-Xms10g",
+                "-Xss500M"
         );
     }
 }
